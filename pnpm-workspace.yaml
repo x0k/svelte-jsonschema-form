@@ -1,0 +1,6 @@
+packages:
+  - "packages/*"
+  - "apps/*"
+
+catalog:
+  vite: ^5.4.4

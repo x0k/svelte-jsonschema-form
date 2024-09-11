@@ -1,0 +1,21 @@
+{
+  "name": "root",
+  "version": "0.0.0",
+  "author": "Krasilnikov Roman",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@9.9.0",
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "check": "turbo run check",
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "preview": "turbo run preview"
+  },
+  "devDependencies": {
+    "only-allow": "^1.2.1",
+    "turbo": "^2.1.1",
+    "typescript": "^5.6.2"
+  }
+}
