@@ -11,12 +11,7 @@
     }:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-        config = {
-          permittedInsecurePackages = [ "python-2.7.18.8" ];
-        };
-      };
+      pkgs = import nixpkgs { inherit system; };
     in
     {
       devShells.${system} = {
