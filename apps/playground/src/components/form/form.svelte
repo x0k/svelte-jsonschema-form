@@ -1,7 +1,9 @@
-<script lang="ts">
+<script lang="ts" generics="T">
   import type { Snippet } from 'svelte';
   import type { HTMLAttributes } from "svelte/elements";
-  import type { JSONSchema7 } from "json-schema";
+
+  import type { FieldProps } from './model';
+  import Field from './field.svelte';
 
   let form: HTMLFormElement;
 
@@ -13,13 +15,18 @@
     form.reset();
   }
 
-  interface Props extends HTMLAttributes<HTMLFormElement> {
-    schema: JSONSchema7;
+  interface Props extends FieldProps<T>, HTMLAttributes<HTMLFormElement> {
     children?: Snippet
-    value?: any;
   }
 
-  const { schema, value, children, ...formProps }: Props = $props();
+  let {
+    value = $bindable(),
+    schema,
+    disabled,
+    readonly,
+    children,
+    ...formProps
+  }: Props = $props();
 
   function handleSubmit(e: SubmitEvent) {
     e.preventDefault();
@@ -27,6 +34,7 @@
 </script>
 
 <form {...formProps} onsubmit={handleSubmit} bind:this={form}>
+  <Field bind:value {schema} {disabled} {readonly} />
   {#if children}
     {@render children()}
   {:else}

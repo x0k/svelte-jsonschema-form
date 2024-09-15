@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Form from '@/components/form.svelte'
+  import Form from '@/components/form/form.svelte'
 </script>
 
 <p>
