@@ -1,8 +1,8 @@
 <script lang="ts">
-  import Form from '@/components/form/form.svelte'
+  import { Form } from "@/components/form";
 </script>
 
 <p>
   App
-  <Form />
+  <Form schema={{}} value />
 </p>

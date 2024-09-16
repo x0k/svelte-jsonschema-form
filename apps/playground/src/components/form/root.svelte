@@ -2,13 +2,14 @@
   import type { Snippet } from 'svelte';
   import type { HTMLAttributes } from "svelte/elements";
 
-  import type { FieldProps } from './model';
+  import type { Components, FieldProps, FormComponentExports } from './model';
+  import { components as defaultComponents } from './components'
   import Field from './field.svelte';
 
-  let form: HTMLFormElement;
+  let form: FormComponentExports
 
   export function submit() {
-    form.requestSubmit();
+    form.submitRequest();
   }
 
   export function reset() {
@@ -16,10 +17,12 @@
   }
 
   interface Props extends FieldProps<T>, HTMLAttributes<HTMLFormElement> {
+    components?: Components
     children?: Snippet
   }
 
   let {
+    components = defaultComponents,
     value = $bindable(),
     schema,
     disabled,
@@ -31,13 +34,15 @@
   function handleSubmit(e: SubmitEvent) {
     e.preventDefault();
   }
+
+  const Form = $derived(components.Form)
 </script>
 
-<form {...formProps} onsubmit={handleSubmit} bind:this={form}>
+<Form {...formProps} bind:this={form} onsubmit={handleSubmit}>
   <Field bind:value {schema} {disabled} {readonly} />
   {#if children}
     {@render children()}
   {:else}
     <button type="submit">Submit</button>
   {/if}
-</form>
+</Form>
