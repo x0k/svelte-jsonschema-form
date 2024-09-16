@@ -10,6 +10,7 @@
     "preinstall": "npx only-allow pnpm",
     "check": "turbo run check",
     "dev": "turbo run dev",
+    "test": "turbo run test",
     "build": "turbo run build",
     "preview": "turbo run preview"
   },

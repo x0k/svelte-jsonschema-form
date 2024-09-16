@@ -21,6 +21,13 @@
       "persistent": true,
       "cache": false
     },
+    "test": {
+      "dependsOn": [
+        "^build"
+      ],
+      "persistent": true,
+      "cache": false
+    },
     "preview": {
       "persistent": true,
       "cache": false,

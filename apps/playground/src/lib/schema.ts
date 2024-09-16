@@ -14,6 +14,7 @@ export function typeOfValue(value: unknown): SchemaType {
   const type = typeof value;
   switch (type) {
     case "boolean":
+    // TODO: Integer type inference ?
     case "number":
     case "object":
     case "string":
@@ -30,13 +31,13 @@ export function typeOfSchema(schema: Schema): SchemaType | SchemaType[] {
   if (schema.const !== undefined) {
     return typeOfValue(schema.const);
   }
-  if (Array.isArray(schema.enum)) {
-    return schema.enum.length === 0 ? "null" : typeOfValue(schema.enum[0]);
-  }
   if (schema.properties || schema.additionalProperties) {
     return "object";
   }
-  throw new Error(`Unsupported schema type: ${JSON.stringify(schema)}`);
+  if (Array.isArray(schema.enum) && schema.enum.length > 0) {
+    return Array.from(new Set(schema.enum.map(typeOfValue)));
+  }
+  return "null";
 }
 
 export function pickSchemaType(types: SchemaType[]): SchemaType {
@@ -52,3 +53,8 @@ export function pickSchemaType(types: SchemaType[]): SchemaType {
   }
   return first;
 }
+
+export const getSimpleSchemaType = (schema: Schema): SchemaType => {
+  const type = typeOfSchema(schema);
+  return Array.isArray(type) ? pickSchemaType(type) : type;
+};

@@ -18,7 +18,7 @@
         default = pkgs.mkShell {
           buildInputs = [
             mk.packages.${system}.default
-            pkgs.nodejs
+            pkgs.nodejs_22
             pkgs.pnpm
           ];
         };
