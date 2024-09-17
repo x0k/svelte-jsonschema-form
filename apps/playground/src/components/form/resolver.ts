@@ -13,7 +13,7 @@ export type ComponentsResolver = <T extends ComponentType>(
 ) => Component<T>;
 
 export function createComponentsResolver(
-  components: ComponentResolvers
+  resolvers: ComponentResolvers
 ): ComponentsResolver {
-  return (options) => components[options.type](options);
+  return (options) => resolvers[options.type](options);
 }

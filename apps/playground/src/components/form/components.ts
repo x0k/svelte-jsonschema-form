@@ -3,7 +3,7 @@ import type { HTMLAttributes } from "svelte/elements";
 
 import type { PropOrDefault } from "@/lib/types";
 
-import type { Schema, SchemaType } from "./schema";
+import type { Schema, SchemaType } from "./schema/schema";
 
 export interface FormComponentProps extends HTMLAttributes<HTMLFormElement> {
   children: Snippet;

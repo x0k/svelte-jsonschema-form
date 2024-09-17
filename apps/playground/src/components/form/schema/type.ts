@@ -1,8 +1,4 @@
-import type { JSONSchema7, JSONSchema7TypeName } from "json-schema";
-
-export type Schema = JSONSchema7;
-
-export type SchemaType = JSONSchema7TypeName;
+import type { Schema, SchemaType } from "./schema.ts";
 
 export function typeOfValue(value: unknown): SchemaType {
   if (value === null) {
