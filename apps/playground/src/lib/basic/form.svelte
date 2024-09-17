@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { FormComponentProps } from '../model'
+  import type { FormComponentProps } from '@/components/form'
 
   let { children, ...props }: FormComponentProps = $props();
 

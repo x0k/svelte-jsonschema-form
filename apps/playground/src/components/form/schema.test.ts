@@ -1,5 +1,5 @@
 import { it, describe } from 'node:test'
-import assert from 'node:assert'
+import assert from 'node:assert/strict'
 
 import { typeOfSchema } from './schema.ts'
 

@@ -2,8 +2,10 @@
   import type { Snippet } from 'svelte';
   import type { HTMLAttributes } from "svelte/elements";
 
-  import type { Components, FieldProps, FormComponentExports } from './model';
-  import { components as defaultComponents } from './components'
+  import type { FieldProps } from './model';
+  import type { FormComponentExports } from './components';
+  import type { ComponentsResolver } from './resolver';
+
   import Field from './field.svelte';
 
   let form: FormComponentExports
@@ -17,12 +19,12 @@
   }
 
   interface Props extends FieldProps<T>, HTMLAttributes<HTMLFormElement> {
-    components?: Components
+    componentsResolver: ComponentsResolver
     children?: Snippet
   }
 
   let {
-    components = defaultComponents,
+    componentsResolver,
     value = $bindable(),
     schema,
     disabled,
@@ -35,7 +37,7 @@
     e.preventDefault();
   }
 
-  const Form = $derived(components.Form)
+  const Form = $derived(componentsResolver({ type: "form", schema }))
 </script>
 
 <Form {...formProps} bind:this={form} onsubmit={handleSubmit}>
