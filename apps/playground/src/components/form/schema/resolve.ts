@@ -46,16 +46,17 @@ export function resolveAllReferences(
   }
 
   let resolvedSchema: Schema = schema;
-
   const ref = resolvedSchema[REF_KEY];
   if (ref) {
     if (stack.has(ref)) {
       return resolvedSchema;
     }
+    const { [REF_KEY]: _, ...resolvedSchemaWithoutRef } = resolvedSchema;
     return resolveAllReferences(
-      Object.assign(findSchemaDefinition(ref, rootSchema), resolvedSchema, {
-        [REF_KEY]: undefined,
-      }),
+      mergeSchemas(
+        findSchemaDefinition(ref, rootSchema),
+        resolvedSchemaWithoutRef
+      ),
       rootSchema,
       new Set(stack).add(ref)
     );
