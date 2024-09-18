@@ -1,4 +1,4 @@
-import type { Schema, SchemaType } from "./schema.ts";
+import type { Schema, SchemaType } from "./schema";
 
 export function typeOfValue(value: unknown): SchemaType {
   if (value === null) {

@@ -1,10 +1,9 @@
-import { it, describe } from 'node:test'
-import assert from 'node:assert/strict'
+import { expect, describe, it } from 'vitest'
 
-import { typeOfSchema } from './type.ts'
+import { typeOfSchema } from './type'
 
 describe('typeOfSchema', () => {
   it("Should allow empty schema", () => {
-    assert.equal(typeOfSchema({}), "null")
+    expect(typeOfSchema({})).toBe("null")
   })
 })

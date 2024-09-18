@@ -24,9 +24,7 @@
     "test": {
       "dependsOn": [
         "^build"
-      ],
-      "persistent": true,
-      "cache": false
+      ]
     },
     "preview": {
       "persistent": true,

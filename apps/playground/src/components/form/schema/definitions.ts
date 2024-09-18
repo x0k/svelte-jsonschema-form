@@ -1,6 +1,7 @@
 import jsonpointer from "jsonpointer";
 
 import { REF_KEY, type Schema } from "./schema";
+import { mergeSchemas } from "./merge";
 
 export function findSchemaDefinition(
   ref: string,
@@ -38,10 +39,11 @@ export function findSchemaDefinition(
       rootSchema,
       new Set(stack).add(ref)
     );
-    return Object.keys(current).length > 1
-      ? // TODO: Proper schema merging
-        Object.assign({}, current, { [REF_KEY]: undefined }, subSchema)
-      : subSchema;
+    if (Object.keys(current).length < 2) {
+      return subSchema;
+    }
+    const { [REF_KEY]: _, ...currentSchema } = current;
+    return mergeSchemas(currentSchema, subSchema);
   }
   return current;
 }
