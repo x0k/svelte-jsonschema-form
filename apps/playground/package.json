@@ -20,7 +20,7 @@
     "@types/json-schema-merge-allof": "^0.6.5",
     "@types/node": "^22.5.5",
     "json-schema": "^0.4.0",
-    "svelte": "5.0.0-next.246",
+    "svelte": "5.0.0-next.252",
     "svelte-check": "^4.0.2",
     "tslib": "^2.7.0",
     "vite": "catalog:",
