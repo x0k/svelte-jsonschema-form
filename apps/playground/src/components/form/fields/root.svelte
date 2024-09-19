@@ -1,18 +1,25 @@
 <script lang="ts" generics="T">
   import { getFormContext } from "../context";
   import { getSimpleSchemaType } from "../schema";
-  import { getComponent } from "../utils";
+  import { getComponent, getField } from "../utils";
 
-  import type { CommonProps } from "./model";
+  import type { CommonProps, FieldValue } from "./model";
 
-  const ctx = getFormContext();
+  const ctx = getFormContext<T>();
 
-  const { value = $bindable(), schema, uiSchema }: CommonProps<T> = $props();
+  let { value = $bindable(), schema, uiSchema }: CommonProps<T> = $props();
 
   const Layout = $derived(getComponent(ctx, "layout", uiSchema));
   const schemaType = $derived(getSimpleSchemaType(schema));
+  const Field = $derived(
+    schemaType === "null" && (schema.anyOf || schema.oneOf)
+      ? null
+      : getField(ctx, schemaType, uiSchema)
+  );
 </script>
 
 <Layout type="root-field">
-  Field
+  {#if Field}
+    <Field bind:value={value as FieldValue[typeof schemaType]} {schema} {uiSchema} />
+  {/if}
 </Layout>

@@ -1,14 +1,14 @@
 import type { Component, ComponentType } from "./component";
 import type { FormContext } from "./context";
 import type { UiSchema } from "./ui-schema";
-import { isSelect as isSelectInternal, type Schema } from "./schema";
 import type { Field, FieldType } from "./fields";
+import { isSelect as isSelectInternal, type Schema } from "./schema";
 
-export function getField<T extends FieldType, V>(
-  ctx: FormContext<V>,
+export function getField<T extends FieldType>(
+  ctx: FormContext<unknown>,
   type: T,
   uiSchema: UiSchema
-): Field<T, V> {
+): Field<T> {
   const field = uiSchema["ui:options"]?.field;
   switch (typeof field) {
     case "undefined":
@@ -16,7 +16,7 @@ export function getField<T extends FieldType, V>(
     case "string":
       return ctx.fields(field as T);
     default:
-      return field as Field<T, V>;
+      return field;
   }
 }
 
