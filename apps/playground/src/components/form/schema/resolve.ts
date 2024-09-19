@@ -98,7 +98,7 @@ export function resolveReference<T>(
 ): Schema[] {
   const resolvedSchema = resolveAllReferences(schema, rootSchema, stack);
   if (!deepEqual(schema, resolvedSchema)) {
-    retrieveSchemaInternal(
+    return retrieveSchemaInternal(
       validator,
       resolvedSchema,
       rootSchema,

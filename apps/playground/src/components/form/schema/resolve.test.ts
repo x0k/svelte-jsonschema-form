@@ -2,6 +2,7 @@ import { expect, it, describe, beforeEach } from "vitest";
 import * as utils from "@rjsf/utils";
 import rjsfValidator from "@rjsf/validator-ajv8";
 import Ajv from "ajv";
+import RefParser from "@apidevtools/json-schema-ref-parser";
 
 import { AjvValidator } from "@/lib/validator";
 
@@ -23,25 +24,34 @@ beforeEach(() => {
   );
 });
 
-describe.skip('resolveAllReferences', () => {
-  it("Should not modify schema", () => {
+describe("resolveAllReferences", () => {
+  it.skip("Should not modify schema", () => {
     for (const schema of schemas) {
       const clone = structuredClone(schema);
       resolveAllReferences(schema, schema);
       expect(clone).toEqual(schema);
     }
-  })
-})
+  });
+  it("Should work", async () => {
+    for (const schema of schemas) {
+      expect(resolveAllReferences(schema, schema)).toEqual(
+        await RefParser.dereference(schema, {
+          mutateInputSchema: false,
+        })
+      );
+    }
+  });
+});
 
-describe.skip("resolveSchema", () => {
-  it("Should not modify schema", () => {
+describe("resolveSchema", () => {
+  it.skip("Should not modify schema", () => {
     for (const schema of schemas) {
       const clone = structuredClone(schema);
       resolveSchema(validator, schema, schema, false, new Set());
       expect(clone).toEqual(schema);
     }
-  })
-})
+  });
+});
 
 describe("retrieveSchema", () => {
   it("Should work", () => {
