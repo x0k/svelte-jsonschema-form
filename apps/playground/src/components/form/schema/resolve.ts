@@ -31,9 +31,9 @@ export function retrieveSchema<T>(
   validator: Validator<T>,
   schema: Schema,
   rootSchema: Schema = {},
-  rawFormData?: T
+  formData?: T
 ): Schema {
-  return retrieveSchemaInternal(validator, schema, rootSchema, rawFormData)[0];
+  return retrieveSchemaInternal(validator, schema, rootSchema, formData)[0];
 }
 
 export function resolveAllReferences(

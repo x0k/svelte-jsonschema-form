@@ -1,4 +1,4 @@
-export * from "./model";
+export * from "./field/model";
 export * from "./schema";
 export * from "./components";
 export * from "./resolver";

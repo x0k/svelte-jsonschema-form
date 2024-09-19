@@ -2,49 +2,60 @@
   import type { Snippet } from 'svelte';
   import type { HTMLAttributes } from "svelte/elements";
 
-  import type { FieldProps } from './model';
-  import type { FormComponentExports } from './components';
   import type { ComponentsResolver } from './resolver';
+  import type { Schema, Validator } from './schema';
+  import { Field, FieldUtils } from './field';
 
-  import Field from './field.svelte';
-
-  let form: FormComponentExports
+  let form = $state<HTMLFormElement>()
 
   export function submit() {
-    form.submitRequest();
+    const requestSubmit = form?.requestSubmit
+    requestSubmit?.call(form)
   }
 
   export function reset() {
-    form.reset();
+    const reset =form?.reset
+    reset?.call(form)
   }
 
-  interface Props extends FieldProps<T>, HTMLAttributes<HTMLFormElement> {
+  interface Props extends HTMLAttributes<HTMLFormElement> {
+    schema: Schema
+    validator: Validator<T>
+    disabled?: boolean
+    readonly?: boolean
+    value?: T
     componentsResolver: ComponentsResolver
     children?: Snippet
   }
 
   let {
     componentsResolver,
-    value = $bindable(),
     schema,
-    disabled,
-    readonly,
+    validator,
+    value = $bindable(),
+    disabled = false,
+    readonly = false,
     children,
     ...formProps
   }: Props = $props();
 
   function handleSubmit(e: SubmitEvent) {
     e.preventDefault();
+    console.log(e);
   }
 
   const Form = $derived(componentsResolver({ type: "form", schema }))
+  const utils = $derived(new FieldUtils(validator, schema))
 </script>
 
-<Form {...formProps} bind:this={form} onsubmit={handleSubmit}>
-  <Field bind:value {schema} {disabled} {readonly} />
+<Form {...formProps} bind:form onsubmit={handleSubmit}>
+  <Field bind:value {schema} {utils} {disabled} {readonly} />
   {#if children}
     {@render children()}
   {:else}
     <button type="submit">Submit</button>
   {/if}
 </Form>
+<button onclick={submit}>
+  Trigger submit
+</button>
