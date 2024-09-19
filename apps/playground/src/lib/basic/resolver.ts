@@ -3,10 +3,11 @@ import {
   type ComponentResolvers,
 } from "@/components/form";
 
-import { Form } from './components'
+import { Form, SubmitButton } from './components'
 
 export const componentResolvers: ComponentResolvers = {
   form: () => Form,
+  button: () => SubmitButton,
   array: () => {
     throw new Error("Not implemented")
   },
@@ -30,4 +31,4 @@ export const componentResolvers: ComponentResolvers = {
   }
 };
 
-export const componentsResolver = createComponentsResolver(componentResolvers);
+export const components = createComponentsResolver(componentResolvers);

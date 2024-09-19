@@ -1,7 +1,7 @@
-import type { ComponentOptions, ComponentType, Component } from "./components";
+import type { ComponentOptions, ComponentType, Component } from "./component";
 
 export type ComponentResolver<T extends ComponentType> = (
-  options: ComponentOptions<T>
+  options: ComponentOptions
 ) => Component<T>;
 
 export type ComponentResolvers = {
@@ -9,11 +9,12 @@ export type ComponentResolvers = {
 };
 
 export type ComponentsResolver = <T extends ComponentType>(
-  options: ComponentOptions<T>
+  type: T,
+  options: ComponentOptions
 ) => Component<T>;
 
 export function createComponentsResolver(
   resolvers: ComponentResolvers
 ): ComponentsResolver {
-  return (options) => resolvers[options.type](options);
+  return (type, options) => resolvers[type](options);
 }

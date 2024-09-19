@@ -4,7 +4,11 @@
 
   import type { ComponentsResolver } from './resolver';
   import type { Schema, Validator } from './schema';
+  import type { ComponentOptions } from './component';
+  import type { UiSchema } from './ui-schema';
+  import type { Translator } from './translation';
   import { Field, FieldUtils } from './field';
+  import SubmitButton from './widgets/submit-button.svelte';
 
   let form = $state<HTMLFormElement>()
 
@@ -14,25 +18,29 @@
   }
 
   export function reset() {
-    const reset =form?.reset
+    const reset = form?.reset
     reset?.call(form)
   }
 
   interface Props extends HTMLAttributes<HTMLFormElement> {
     schema: Schema
     validator: Validator<T>
+    components: ComponentsResolver
+    translator: Translator
+    value?: T
+    uiSchema?: UiSchema
     disabled?: boolean
     readonly?: boolean
-    value?: T
-    componentsResolver: ComponentsResolver
     children?: Snippet
   }
 
   let {
-    componentsResolver,
+    components,
     schema,
     validator,
+    translator,
     value = $bindable(),
+    uiSchema = {},
     disabled = false,
     readonly = false,
     children,
@@ -44,18 +52,17 @@
     console.log(e);
   }
 
-  const Form = $derived(componentsResolver({ type: "form", schema }))
+  const options: ComponentOptions = $derived({ schema, uiSchema })
+  const Form = $derived(components("form", options))
+  const Button = $derived(components("button", options))
   const utils = $derived(new FieldUtils(validator, schema))
 </script>
 
 <Form {...formProps} bind:form onsubmit={handleSubmit}>
-  <Field bind:value {schema} {utils} {disabled} {readonly} />
+  <Field bind:value {schema} {uiSchema} {utils} {disabled} {readonly} />
   {#if children}
     {@render children()}
   {:else}
-    <button type="submit">Submit</button>
+    <SubmitButton {components} {translator} {schema} {uiSchema} />
   {/if}
 </Form>
-<button onclick={submit}>
-  Trigger submit
-</button>
