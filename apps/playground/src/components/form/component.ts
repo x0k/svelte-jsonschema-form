@@ -1,15 +1,18 @@
 import type { Component as SvelteComponent } from "svelte";
 import type { HTMLAttributes } from "svelte/elements";
 
-import type { PropOrDefault } from "@/lib/types";
-
-import type { Schema, SchemaType } from "./schema";
-import type { UiSchema } from "./ui-schema";
-
-export type ComponentType = SchemaType | "form" | "button" | "layout";
+import type { Get } from "@/lib/types";
 
 export interface FormComponentProps extends HTMLAttributes<HTMLFormElement> {
   form: HTMLFormElement | undefined;
+}
+
+export interface LayoutType {
+  "root-field": {};
+}
+
+export interface LayoutComponentProps extends HTMLAttributes<HTMLDivElement> {
+  type: keyof LayoutType;
 }
 
 export interface ComponentProps {
@@ -24,18 +27,12 @@ export interface ComponentBindings {
   form: "form";
 }
 
+export type ComponentType = keyof ComponentProps;
+
 export type Component<T extends ComponentType> = SvelteComponent<
-  PropOrDefault<ComponentProps, T, {}>,
-  PropOrDefault<ComponentExports, T, {}>,
-  PropOrDefault<ComponentBindings, T, "">
+  ComponentProps[T],
+  Get<ComponentExports, T, {}>,
+  Get<ComponentBindings, T, "">
 >;
 
-export interface ComponentOptions {
-  schema: Schema;
-  uiSchema: UiSchema;
-}
-
-export type Components = <T extends ComponentType>(
-  type: T,
-  options: ComponentOptions
-) => Component<T>;
+export type Components = <T extends ComponentType>(type: T) => Component<T>;

@@ -3,12 +3,13 @@
   import type { HTMLAttributes } from "svelte/elements";
 
   import type { Schema, Validator } from './schema';
-  import type { ComponentOptions, Components } from './component';
-  import type { UiSchema } from './ui-schema';
+  import type { Components } from './component';
+  import type { UiSchemaRoot } from './ui-schema';
   import type { Translator } from './translation';
-  import { setFromContext } from './context.svelte';
-  import { Field } from './field';
+  import { setFromContext, type FormContext } from './context';
+  import { type Fields, fields as defaultFields } from './fields';
   import SubmitButton from './submit-button.svelte';
+  import { getComponent, getField } from './utils';
 
   let form = $state<HTMLFormElement>()
 
@@ -28,7 +29,8 @@
     components: Components
     translator: Translator
     value?: T
-    uiSchema?: UiSchema
+    uiSchema?: UiSchemaRoot
+    fields?: Fields
     disabled?: boolean
     readonly?: boolean
     children?: Snippet
@@ -41,6 +43,7 @@
     translator,
     value = $bindable(),
     uiSchema = {},
+    fields = defaultFields,
     disabled = false,
     readonly = false,
     children,
@@ -52,7 +55,7 @@
     console.log(e);
   }
 
-  setFromContext({
+  const ctx: FormContext<T> = {
     get schema() {
       return schema
     },
@@ -68,20 +71,24 @@
     get validator() {
       return validator
     },
+    get fields() {
+      return fields
+    },
     get components() {
       return components
     },
     get translator() {
       return translator
     }
-  })
+  }
+  setFromContext(ctx)
 
-  const options: ComponentOptions = $derived({ schema, uiSchema })
-  const Form = $derived(components("form", options))
+  const Form = $derived(getComponent(ctx, "form", uiSchema))
+  const Field = $derived(getField(ctx, "root", uiSchema))
 </script>
 
 <Form {...formProps} bind:form onsubmit={handleSubmit}>
-  <Field bind:value {schema} {uiSchema} {disabled} {readonly} />
+  <Field bind:value {schema} {uiSchema} />
   {#if children}
     {@render children()}
   {:else}

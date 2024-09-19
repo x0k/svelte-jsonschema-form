@@ -1,3 +1,13 @@
-export type Label = "submit";
+import type { Get } from "@/lib/types";
 
-export type Translator = (label: Label) => string;
+export interface Labels {
+  submit: [type: string];
+  "unknown-field-type": [type: string];
+}
+
+export type Label = keyof Labels;
+
+export type Translator = <L extends Label>(
+  label: L,
+  ...params: Get<Labels, L, []>
+) => string;

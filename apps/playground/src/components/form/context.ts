@@ -3,12 +3,14 @@ import { getContext, setContext } from "svelte";
 import type { Components } from "./component";
 import type { Schema, Validator } from "./schema";
 import type { Translator } from "./translation";
-import type { UiSchema } from "./ui-schema";
+import type { UiSchemaRoot } from "./ui-schema";
+import type { Fields } from './fields';
 
 export interface FormContext<T> {
   schema: Schema;
-  uiSchema: UiSchema;
+  uiSchema: UiSchemaRoot;
   validator: Validator<T>;
+  fields: Fields
   components: Components;
   translator: Translator;
   disabled: boolean;

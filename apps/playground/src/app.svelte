@@ -1,7 +1,7 @@
 <script lang="ts">
   import Ajv from "ajv";
 
-  import { components } from "@/lib/basic";
+  import { components } from "@/lib/components";
   import { AjvValidator } from "@/lib/validator";
   import { enTranslator } from "@/lib/translator";
   import { Form } from "@/components/form";

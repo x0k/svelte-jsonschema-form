@@ -1,18 +1,16 @@
 <script lang="ts">
   import type { UiSchema } from "./ui-schema";
-  import { getFormContext } from "./context.svelte";
+  import { getFormContext } from "./context";
   import { getAttributes, getComponent, getTitle } from "./utils";
 
   const ctx = getFormContext();
-
-  const submitButtonUiSchema: UiSchema = $derived({
-    "ui:options": ctx.uiSchema["ui:options"]?.submitButton ?? {},
+  const uiSchema: UiSchema = $derived({
+    "ui:options": ctx.uiSchema["ui:options"]?.submitButton,
   });
-  const options = $derived({ schema: {}, uiSchema: submitButtonUiSchema });
-  const Button = $derived(getComponent(ctx, "button", options));
-  const content = $derived(getTitle(options, ctx.translator("submit")));
+  const Button = $derived(getComponent(ctx, "button", uiSchema));
+  const content = $derived(getTitle({}, uiSchema, ctx.translator("submit")));
 </script>
 
-<Button type="submit" {...getAttributes(ctx, options)}>
+<Button type="submit" {...getAttributes(ctx, uiSchema)}>
   {content}
 </Button>

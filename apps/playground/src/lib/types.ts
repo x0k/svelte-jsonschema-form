@@ -1,6 +1,6 @@
 export type AnyKey = keyof any;
 
-export type PropOrDefault<R, T extends keyof any, D> = R extends {
+export type Get<R, T extends keyof any, D> = R extends {
   [key in T]: infer V;
 }
   ? V
