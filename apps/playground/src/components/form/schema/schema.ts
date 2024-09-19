@@ -1,11 +1,15 @@
-import type { JSONSchema7, JSONSchema7Type, JSONSchema7TypeName } from "json-schema";
+import type {
+  JSONSchema7,
+  JSONSchema7Type,
+  JSONSchema7TypeName,
+} from "json-schema";
 
 export type Schema = JSONSchema7;
 export type SchemaDefinition = Schema | boolean;
 
 export type SchemaType = JSONSchema7TypeName;
 
-export type JSONType = JSONSchema7Type
+export type JSONType = JSONSchema7Type;
 
 export const REF_KEY = "$ref";
 export const ID_KEY = "$id";
@@ -34,10 +38,3 @@ export const CONTAINS_KEY = "contains";
 
 export const DISCRIMINATOR_KEY = "discriminator";
 export const PROPERTY_NAME_KEY = "propertyName";
-
-export function isSchemaOfConstantValue(schema: Schema): boolean {
-  return (
-    schema.const !== undefined ||
-    (Array.isArray(schema.enum) && schema.enum.length === 1)
-  );
-}

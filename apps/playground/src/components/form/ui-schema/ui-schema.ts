@@ -1,27 +1,32 @@
-import type { PropOrDefault } from "@/lib/types";
-
-import type { Component, ComponentType } from "../component";
+import type { Component } from "../component";
 
 export interface CommonUiOptions {
+  class?: string;
+  style?: string;
+  component?: Component<any>;
   title?: string;
   description?: string;
+  disabled?: boolean;
+  readonly?: boolean;
+  enumNames?: string[];
 }
 
-interface ComponentUiOptions {}
+export interface FormComponentUiOptions {
+  submitButton?: CommonUiOptions;
+}
 
-export type UiOptions<T extends ComponentType> = CommonUiOptions &
-  PropOrDefault<ComponentUiOptions, T, {}> & {
-    "ui:component"?: Component<T>;
-  };
+export type UiOptions = CommonUiOptions & FormComponentUiOptions;
 
-export type UiSchema = UiSchemaRoot & UiSchemaCommon & ArrayUiSchema;
+export type UiSchema = UiSchemaRoot & UiSchemaParts
 
 interface UiSchemaRoot {
-  [key: string]: UiSchema;
+  [key: string]: UiSchemaParts[keyof UiSchemaParts];
 }
 
+type UiSchemaParts = UiSchemaCommon & ArrayUiSchema;
+
 interface UiSchemaCommon {
-  "ui:options"?: UiOptions<ComponentType>;
+  "ui:options"?: UiOptions;
 }
 
 interface ArrayUiSchema {

@@ -2,13 +2,13 @@
   import type { Snippet } from 'svelte';
   import type { HTMLAttributes } from "svelte/elements";
 
-  import type { ComponentsResolver } from './resolver';
   import type { Schema, Validator } from './schema';
-  import type { ComponentOptions } from './component';
+  import type { ComponentOptions, Components } from './component';
   import type { UiSchema } from './ui-schema';
   import type { Translator } from './translation';
-  import { Field, FieldUtils } from './field';
-  import SubmitButton from './widgets/submit-button.svelte';
+  import { setFromContext } from './context.svelte';
+  import { Field } from './field';
+  import SubmitButton from './submit-button.svelte';
 
   let form = $state<HTMLFormElement>()
 
@@ -25,7 +25,7 @@
   interface Props extends HTMLAttributes<HTMLFormElement> {
     schema: Schema
     validator: Validator<T>
-    components: ComponentsResolver
+    components: Components
     translator: Translator
     value?: T
     uiSchema?: UiSchema
@@ -52,17 +52,39 @@
     console.log(e);
   }
 
+  setFromContext({
+    get schema() {
+      return schema
+    },
+    get uiSchema() {
+      return uiSchema
+    },
+    get disabled() {
+      return disabled
+    },
+    get readonly() {
+      return readonly
+    },
+    get validator() {
+      return validator
+    },
+    get components() {
+      return components
+    },
+    get translator() {
+      return translator
+    }
+  })
+
   const options: ComponentOptions = $derived({ schema, uiSchema })
   const Form = $derived(components("form", options))
-  const Button = $derived(components("button", options))
-  const utils = $derived(new FieldUtils(validator, schema))
 </script>
 
 <Form {...formProps} bind:form onsubmit={handleSubmit}>
-  <Field bind:value {schema} {uiSchema} {utils} {disabled} {readonly} />
+  <Field bind:value {schema} {uiSchema} {disabled} {readonly} />
   {#if children}
     {@render children()}
   {:else}
-    <SubmitButton {components} {translator} {schema} {uiSchema} />
+    <SubmitButton />
   {/if}
 </Form>

@@ -1,11 +1,3 @@
-import type { Schema } from "./schema";
-import type { UiSchema } from "./ui-schema";
+export type Label = "submit";
 
-export interface TranslationOptions {
-  schema: Schema;
-  uiSchema: UiSchema;
-}
-
-export type Label = "submit"
-
-export type Translator = (label: Label, options: TranslationOptions) => string;
+export type Translator = (label: Label) => string;
