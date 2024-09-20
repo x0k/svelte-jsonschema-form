@@ -17,6 +17,8 @@ export interface FormContext<T> {
   translator: Translator;
   disabled: boolean;
   readonly: boolean;
+  idPrefix: string
+  idSeparator: string
 }
 
 const FORM_CONTEXT = Symbol("form-context");

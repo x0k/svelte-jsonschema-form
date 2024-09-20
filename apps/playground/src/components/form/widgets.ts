@@ -5,19 +5,17 @@ import type { Schema } from "./schema";
 import type { UiSchema } from "./ui-schema";
 
 export interface WidgetCommonProps<V> extends HTMLAttributes<HTMLElement> {
-  // TODO:
-  // id: string;
-  // name: string;
+  id: string;
   schema: Schema;
   uiSchema: UiSchema;
   value: V;
+  label: string;
   required?: boolean;
   disabled?: boolean;
   readonly?: boolean;
   hideError?: boolean;
   autofocus?: boolean;
   placeholder?: string;
-  label: string;
   hideLabel?: boolean;
   rawErrors?: string[];
 }

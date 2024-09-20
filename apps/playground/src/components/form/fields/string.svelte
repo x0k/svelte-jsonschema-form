@@ -5,9 +5,14 @@
   import type { FieldProps } from "./model";
 
   const ctx = getFormContext();
-  let { value = $bindable(), schema, uiSchema }: FieldProps<"string"> = $props();
+  let {
+    value = $bindable(),
+    schema,
+    uiSchema,
+    idSchema,
+  }: FieldProps<"string"> = $props();
   const Widget = $derived(getWidget(ctx, "text", uiSchema));
-  const label = $derived(getLabel(schema, uiSchema))
+  const label = $derived(getLabel(schema, uiSchema));
 </script>
 
-<Widget bind:value {schema} {uiSchema} {label} />
+<Widget id={idSchema.$id} bind:value {schema} {uiSchema} {label} />

@@ -2,8 +2,21 @@ import type { Component, ComponentType } from "./component";
 import type { FormContext } from "./context";
 import type { UiSchema } from "./ui-schema";
 import type { Field, FieldType } from "./fields";
-import { isSelect as isSelectInternal, type Schema } from "./schema";
-import type { Widget, WidgetType } from './widgets';
+import {
+  isSelect as isSelectInternal,
+  retrieveSchema as retrieveSchemaInternal,
+  type Schema,
+} from "./schema";
+import type { Widget, WidgetType } from "./widgets";
+import { toIdSchema as toIdSchemaInternal, type IdSchema } from "./id-schema";
+
+export function retrieveSchema<T>(
+  ctx: FormContext<T>,
+  schema: Schema,
+  formData: T
+) {
+  return retrieveSchemaInternal(ctx.validator, schema, ctx.schema, formData);
+}
 
 export function getWidget<T extends WidgetType>(
   ctx: FormContext<unknown>,
@@ -72,4 +85,22 @@ export function getAttributes(ctx: FormContext<unknown>, uiSchema: UiSchema) {
 
 export function isSelect(ctx: FormContext<unknown>, schema: Schema) {
   return isSelectInternal(ctx.validator, schema, ctx.schema);
+}
+
+export function toIdSchema<T>(
+  ctx: FormContext<T>,
+  schema: Schema,
+  id?: string,
+  formData?: T
+): IdSchema<T> {
+  return toIdSchemaInternal(
+    ctx.validator,
+    schema,
+    ctx.idPrefix,
+    ctx.idSeparator,
+    [],
+    id,
+    ctx.schema,
+    formData
+  );
 }

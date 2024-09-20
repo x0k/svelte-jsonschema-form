@@ -1,6 +1,6 @@
 import type { Component, ComponentType } from "./component";
-import type { Field, FieldType } from './fields';
-import type { Widget, WidgetType } from './widgets';
+import type { Field, FieldType } from "./fields";
+import type { Widget, WidgetType } from "./widgets";
 
 export type UiSchemaRoot = UiSchemaRootIndex & UiSchemaRootContent;
 
@@ -12,7 +12,9 @@ type UiSchemaRootContent = UiSchemaCommonContent<
   UiOptions & {
     submitButton?: UiOptions;
   }
->;
+> & {
+  "ui:rootFieldId"?: string;
+};
 
 interface UiSchemaCommonContent<O> extends ArrayUiSchema {
   "ui:options"?: O;
@@ -25,7 +27,7 @@ interface ArrayUiSchema {
 export interface UiOptions {
   class?: string;
   style?: string;
-  field?: FieldType | Field<any>
+  field?: FieldType | Field<any>;
   component?: ComponentType | Component<any>;
   widget?: WidgetType | Widget<any>;
   title?: string;

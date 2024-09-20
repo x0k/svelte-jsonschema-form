@@ -10,7 +10,7 @@
   import { setFromContext, type FormContext } from './context';
   import { type Fields, fields as defaultFields } from './fields';
   import SubmitButton from './submit-button.svelte';
-  import { getComponent, getField } from './utils';
+  import { getComponent, getField, retrieveSchema, toIdSchema } from './utils';
 
   let form = $state<HTMLFormElement>()
 
@@ -33,6 +33,8 @@
     fields?: Fields
     disabled?: boolean
     readonly?: boolean
+    idPrefix?: string
+    idSeparator?: string
     children?: Snippet
   }
 
@@ -47,6 +49,8 @@
     fields = defaultFields,
     disabled = false,
     readonly = false,
+    idPrefix = "root",
+    idSeparator = "_",
     children,
     ...formProps
   }: Props = $props();
@@ -69,6 +73,12 @@
     get readonly() {
       return readonly
     },
+    get idPrefix() {
+      return idPrefix
+    },
+    get idSeparator() {
+      return idSeparator
+    },
     get validator() {
       return validator
     },
@@ -89,10 +99,17 @@
 
   const Form = $derived(getComponent(ctx, "form", uiSchema))
   const Field = $derived(getField(ctx, "root", uiSchema))
+  const retrievedSchema = $derived(retrieveSchema(ctx, schema, value))
+  const idSchema = $derived(toIdSchema(
+    ctx,
+    retrievedSchema,
+    uiSchema['ui:rootFieldId'],
+    value
+  ))
 </script>
 
 <Form {...formProps} bind:form onsubmit={handleSubmit}>
-  <Field bind:value {schema} {uiSchema} />
+  <Field bind:value {schema} {uiSchema} {idSchema} />
   {#if children}
     {@render children()}
   {:else}

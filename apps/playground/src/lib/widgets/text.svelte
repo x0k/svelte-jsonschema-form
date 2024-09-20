@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { WidgetProps } from '@/components/form';
+  import type { WidgetProps } from "@/components/form";
 
-  let { value = $bindable() }: WidgetProps<'text'> = $props();
+  let { id, value = $bindable() }: WidgetProps<"text"> = $props();
 </script>
 
-<input type="text" bind:value />
+<input type="text" {id} name={id} bind:value />
