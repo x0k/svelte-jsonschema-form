@@ -4,7 +4,5 @@
 </script>
 
 <div {...props}>
-  {#if children}
-    {@render children()}
-  {/if}
+  {@render children?.()}
 </div>

@@ -5,5 +5,5 @@
 </script>
 
 <form bind:this={form} {...props}>
-  {@render children()}
+  {@render children?.()}
 </form>

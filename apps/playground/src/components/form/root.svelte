@@ -15,13 +15,11 @@
   let form = $state<HTMLFormElement>()
 
   export function submit() {
-    const requestSubmit = form?.requestSubmit
-    requestSubmit?.call(form)
+    form?.requestSubmit()
   }
 
   export function reset() {
-    const reset = form?.reset
-    reset?.call(form)
+    form?.reset()
   }
 
   interface Props extends HTMLAttributes<HTMLFormElement> {
