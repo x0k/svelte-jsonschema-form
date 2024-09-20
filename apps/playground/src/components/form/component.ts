@@ -15,7 +15,7 @@ export interface LayoutComponentProps extends HTMLAttributes<HTMLDivElement> {
   type: keyof LayoutType;
 }
 
-export interface ComponentProps {
+export interface ComponentsAndProps {
   form: FormComponentProps;
   button: HTMLAttributes<HTMLButtonElement>;
   layout: LayoutComponentProps
@@ -27,10 +27,12 @@ export interface ComponentBindings {
   form: "form";
 }
 
-export type ComponentType = keyof ComponentProps;
+export type ComponentType = keyof ComponentsAndProps;
+
+export type ComponentProps<T extends ComponentType> = ComponentsAndProps[T];
 
 export type Component<T extends ComponentType> = SvelteComponent<
-  ComponentProps[T],
+  ComponentProps<T>,
   Get<ComponentExports, T, {}>,
   Get<ComponentBindings, T, "">
 >;

@@ -1,7 +1,7 @@
 import type { Get } from "@/lib/types";
 
 export interface Labels {
-  submit: [type: string];
+  submit: [];
   "unknown-field-type": [type: string];
 }
 

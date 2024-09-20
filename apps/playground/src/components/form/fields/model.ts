@@ -3,13 +3,13 @@ import type { Component as SvelteComponent } from "svelte";
 import type { Schema } from "../schema";
 import type { UiSchema } from "../ui-schema";
 
-export interface CommonProps<T> {
-  value: T;
+export interface FieldCommonProps<V> {
+  value: V;
   schema: Schema;
   uiSchema: UiSchema;
 }
 
-export interface FieldProps {
+export interface FieldAndProps {
   root: {};
   string: {};
   number: {};
@@ -33,10 +33,13 @@ export interface FieldValue {
   unsupported: unknown;
 }
 
-export type FieldType = keyof FieldProps;
+export type FieldType = keyof FieldAndProps;
+
+export type FieldProps<T extends FieldType> = FieldAndProps[T] &
+  FieldCommonProps<FieldValue[T]>;
 
 export type Field<T extends FieldType> = SvelteComponent<
-  FieldProps[T] & CommonProps<FieldValue[T]>,
+  FieldProps<T>,
   {},
   "value"
 >;

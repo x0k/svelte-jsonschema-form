@@ -1,13 +1,13 @@
-<script lang="ts" generics="T">
+<script lang="ts">
   import { getFormContext } from "../context";
   import { getSimpleSchemaType } from "../schema";
   import { getComponent, getField } from "../utils";
 
-  import type { CommonProps, FieldValue } from "./model";
+  import type { FieldProps, FieldValue } from "./model";
 
-  const ctx = getFormContext<T>();
+  const ctx = getFormContext();
 
-  let { value = $bindable(), schema, uiSchema }: CommonProps<T> = $props();
+  let { value = $bindable(), schema, uiSchema }: FieldProps<"root"> = $props();
 
   const Layout = $derived(getComponent(ctx, "layout", uiSchema));
   const schemaType = $derived(getSimpleSchemaType(schema));

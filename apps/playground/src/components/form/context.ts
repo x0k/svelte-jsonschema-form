@@ -5,6 +5,7 @@ import type { Schema, Validator } from "./schema";
 import type { Translator } from "./translation";
 import type { UiSchemaRoot } from "./ui-schema";
 import type { Fields } from './fields';
+import type { Widgets } from './widgets';
 
 export interface FormContext<T> {
   schema: Schema;
@@ -12,6 +13,7 @@ export interface FormContext<T> {
   validator: Validator<T>;
   fields: Fields
   components: Components;
+  widgets: Widgets
   translator: Translator;
   disabled: boolean;
   readonly: boolean;

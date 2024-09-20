@@ -1,5 +1,6 @@
 import type { Component, ComponentType } from "./component";
 import type { Field, FieldType } from './fields';
+import type { Widget, WidgetType } from './widgets';
 
 export type UiSchemaRoot = UiSchemaRootIndex & UiSchemaRootContent;
 
@@ -24,8 +25,9 @@ interface ArrayUiSchema {
 export interface UiOptions {
   class?: string;
   style?: string;
-  field?: FieldType | Field<any, any>
+  field?: FieldType | Field<any>
   component?: ComponentType | Component<any>;
+  widget?: WidgetType | Widget<any>;
   title?: string;
   description?: string;
   disabled?: boolean;

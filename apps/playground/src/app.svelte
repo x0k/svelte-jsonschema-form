@@ -2,6 +2,7 @@
   import Ajv from "ajv";
 
   import { components } from "@/lib/components";
+  import { widgets } from "@/lib/widgets";
   import { AjvValidator } from "@/lib/validator";
   import { enTranslator } from "@/lib/translator";
   import { Form } from "@/components/form";
@@ -19,5 +20,14 @@
 
 <p>
   App
-  <Form {components} schema={{}} {validator} translator={enTranslator} />
+  <Form
+    {components}
+    {widgets}
+    schema={{
+      type: "string",
+      title: "Text",
+    }}
+    {validator}
+    translator={enTranslator}
+  />
 </p>

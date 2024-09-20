@@ -3,6 +3,23 @@ import type { FormContext } from "./context";
 import type { UiSchema } from "./ui-schema";
 import type { Field, FieldType } from "./fields";
 import { isSelect as isSelectInternal, type Schema } from "./schema";
+import type { Widget, WidgetType } from './widgets';
+
+export function getWidget<T extends WidgetType>(
+  ctx: FormContext<unknown>,
+  type: T,
+  uiSchema: UiSchema
+): Widget<T> {
+  const widget = uiSchema["ui:options"]?.widget;
+  switch (typeof widget) {
+    case "undefined":
+      return ctx.widgets(type);
+    case "string":
+      return ctx.widgets(widget as T);
+    default:
+      return widget as Widget<T>;
+  }
+}
 
 export function getField<T extends FieldType>(
   ctx: FormContext<unknown>,
@@ -36,7 +53,7 @@ export function getComponent<T extends ComponentType>(
   }
 }
 
-export function getTitle(
+export function getLabel(
   schema: Schema,
   uiSchema: UiSchema,
   defaultValue = ""

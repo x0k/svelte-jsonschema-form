@@ -6,6 +6,7 @@
   import type { Components } from './component';
   import type { UiSchemaRoot } from './ui-schema';
   import type { Translator } from './translation';
+  import type { Widgets } from './widgets';
   import { setFromContext, type FormContext } from './context';
   import { type Fields, fields as defaultFields } from './fields';
   import SubmitButton from './submit-button.svelte';
@@ -27,6 +28,7 @@
     schema: Schema
     validator: Validator<T>
     components: Components
+    widgets: Widgets
     translator: Translator
     value?: T
     uiSchema?: UiSchemaRoot
@@ -41,6 +43,7 @@
     schema,
     validator,
     translator,
+    widgets,
     value = $bindable(),
     uiSchema = {},
     fields = defaultFields,
@@ -76,6 +79,9 @@
     },
     get components() {
       return components
+    },
+    get widgets() {
+      return widgets
     },
     get translator() {
       return translator
