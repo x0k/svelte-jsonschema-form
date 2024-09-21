@@ -1,31 +1,36 @@
 import type { Component as SvelteComponent } from "svelte";
 import type { HTMLAttributes } from "svelte/elements";
 
-import type { Schema } from "./schema";
+import type { Schema, SchemaValue } from "./schema";
 import type { UiSchema } from "./ui-schema";
+import type { EnumOption } from "./enum";
 
 export interface WidgetCommonProps<V> extends HTMLAttributes<HTMLElement> {
-  id: string;
+  value: V;
   schema: Schema;
   uiSchema: UiSchema;
-  value: V;
+  id: string;
   label: string;
-  required?: boolean;
-  disabled?: boolean;
-  readonly?: boolean;
-  hideError?: boolean;
-  autofocus?: boolean;
-  placeholder?: string;
-  hideLabel?: boolean;
-  rawErrors?: string[];
+  required: boolean;
+  disabled: boolean;
+  readonly: boolean;
+  // hideError: boolean;
+  // autofocus: boolean;
+  // placeholder: string;
+  // hideLabel: boolean;
+  // rawErrors: string[];
 }
 
 export interface WidgetsAndProps {
   text: {};
+  select: {
+    options: EnumOption<SchemaValue>[];
+  };
 }
 
 export interface WidgetValue {
   text: string;
+  select: SchemaValue;
 }
 
 export type WidgetType = keyof WidgetsAndProps;

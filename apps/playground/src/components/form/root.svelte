@@ -109,7 +109,7 @@
 </script>
 
 <Form {...formProps} bind:form onsubmit={handleSubmit}>
-  <Field bind:value {schema} {uiSchema} {idSchema} />
+  <Field name="" bind:value {schema} {uiSchema} {idSchema} />
   {#if children}
     {@render children()}
   {:else}

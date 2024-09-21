@@ -9,7 +9,7 @@ export type SchemaDefinition = Schema | boolean;
 
 export type SchemaType = JSONSchema7TypeName;
 
-export type JSONType = JSONSchema7Type;
+export type SchemaValue = JSONSchema7Type;
 
 export const REF_KEY = "$ref";
 export const ID_KEY = "$id";

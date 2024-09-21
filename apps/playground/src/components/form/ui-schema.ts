@@ -16,12 +16,11 @@ type UiSchemaRootContent = UiSchemaCommonContent<
   "ui:rootFieldId"?: string;
 };
 
-interface UiSchemaCommonContent<O> extends ArrayUiSchema {
+interface UiSchemaCommonContent<O> {
   "ui:options"?: O;
-}
-
-interface ArrayUiSchema {
   items?: UiSchema | UiSchema[];
+  anyOf?: UiSchema[];
+  oneOf?: UiSchema[];
 }
 
 export interface UiOptions {

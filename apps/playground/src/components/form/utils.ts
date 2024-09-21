@@ -66,12 +66,11 @@ export function getComponent<T extends ComponentType>(
   }
 }
 
-export function getLabel(
+export function getTitle(
   schema: Schema,
   uiSchema: UiSchema,
-  defaultValue = ""
 ) {
-  return uiSchema["ui:options"]?.title ?? schema.title ?? defaultValue;
+  return uiSchema["ui:options"]?.title ?? schema.title
 }
 
 export function getAttributes(ctx: FormContext<unknown>, uiSchema: UiSchema) {

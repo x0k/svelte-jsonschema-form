@@ -1,10 +1,11 @@
 import type { Component as SvelteComponent } from "svelte";
 
-import type { Schema } from "../schema";
+import type { Schema, SchemaValue } from "../schema";
 import type { UiSchema } from "../ui-schema";
 import type { IdSchema } from '../id-schema';
 
 export interface FieldCommonProps<V> {
+  name: string
   value: V;
   schema: Schema;
   uiSchema: UiSchema;
@@ -24,15 +25,15 @@ export interface FieldAndProps {
 }
 
 export interface FieldValue {
-  root: unknown;
+  root: SchemaValue
   string: string;
   number: number;
   integer: number;
   boolean: boolean;
-  object: Record<string, unknown>;
-  array: unknown[];
+  object: Record<string, SchemaValue>;
+  array: SchemaValue[];
   null: null;
-  unsupported: unknown;
+  unsupported: SchemaValue;
 }
 
 export type FieldType = keyof FieldAndProps;
