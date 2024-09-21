@@ -26,6 +26,7 @@
     schema={{
       type: "string",
       title: "Text",
+      enum: ["foo", "bar", "baz"],
     }}
     {validator}
     translator={enTranslator}

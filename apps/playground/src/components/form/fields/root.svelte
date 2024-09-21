@@ -1,10 +1,11 @@
 <script lang="ts">
   import merge from "deepmerge";
+
   import { getFormContext } from "../context";
   import { getSimpleSchemaType, ID_KEY } from "../schema";
   import { getComponent, getField, toIdSchema } from "../utils";
 
-  import type { FieldProps, FieldValue } from "./model";
+  import type { FieldProps } from "./model";
 
   const ctx = getFormContext();
 
@@ -14,6 +15,7 @@
     schema,
     uiSchema,
     idSchema,
+    required,
   }: FieldProps<"root"> = $props();
 
   const Layout = $derived(getComponent(ctx, "layout", uiSchema));
@@ -30,6 +32,13 @@
 
 <Layout type="root-field">
   {#if Field}
-    <Field {name} bind:value {schema} {uiSchema} idSchema={fieldIdSchema} />
+    <Field
+      {name}
+      {required}
+      bind:value
+      {schema}
+      {uiSchema}
+      idSchema={fieldIdSchema}
+    />
   {/if}
 </Layout>

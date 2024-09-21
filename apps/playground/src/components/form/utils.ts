@@ -7,7 +7,7 @@ import {
   retrieveSchema as retrieveSchemaInternal,
   type Schema,
 } from "./schema";
-import type { Widget, WidgetType } from "./widgets";
+import type { Widget, WidgetCommonProps, WidgetType } from "./widgets";
 import { toIdSchema as toIdSchemaInternal, type IdSchema } from "./id-schema";
 
 export function retrieveSchema<T>(
@@ -66,20 +66,32 @@ export function getComponent<T extends ComponentType>(
   }
 }
 
-export function getTitle(
-  schema: Schema,
-  uiSchema: UiSchema,
-) {
-  return uiSchema["ui:options"]?.title ?? schema.title
-}
-
-export function getAttributes(ctx: FormContext<unknown>, uiSchema: UiSchema) {
+export function getComponentProps(ctx: FormContext<unknown>, uiSchema: UiSchema) {
   return {
     class: uiSchema["ui:options"]?.class,
     style: uiSchema["ui:options"]?.style,
     disabled: ctx.disabled || uiSchema["ui:options"]?.disabled,
     readonly: ctx.readonly || uiSchema["ui:options"]?.readonly,
   };
+}
+
+export function getWidgetProps<T>(
+  ctx: FormContext<T>,
+  name: string,
+  schema: Schema,
+  uiSchema: UiSchema,
+  idSchema: IdSchema<T>
+) {
+  return {
+    schema,
+    uiSchema,
+    id: idSchema.$id,
+    label: uiSchema["ui:options"]?.title ?? schema.title ?? name,
+    disabled: uiSchema["ui:options"]?.disabled || ctx.disabled,
+    readonly: uiSchema["ui:options"]?.readonly || ctx.readonly,
+    autofocus: uiSchema["ui:options"]?.autofocus || false,
+    placeholder: uiSchema["ui:options"]?.placeholder || "",
+  } satisfies Omit<WidgetCommonProps<T>, "value" | "required">;
 }
 
 export function isSelect(ctx: FormContext<unknown>, schema: Schema) {

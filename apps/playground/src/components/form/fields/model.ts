@@ -2,14 +2,15 @@ import type { Component as SvelteComponent } from "svelte";
 
 import type { Schema, SchemaValue } from "../schema";
 import type { UiSchema } from "../ui-schema";
-import type { IdSchema } from '../id-schema';
+import type { IdSchema } from "../id-schema";
 
 export interface FieldCommonProps<V> {
-  name: string
+  name: string;
   value: V;
   schema: Schema;
   uiSchema: UiSchema;
-  idSchema: IdSchema<V>
+  idSchema: IdSchema<V>;
+  required: boolean;
 }
 
 export interface FieldAndProps {
@@ -25,7 +26,7 @@ export interface FieldAndProps {
 }
 
 export interface FieldValue {
-  root: SchemaValue
+  root: SchemaValue;
   string: string;
   number: number;
   integer: number;

@@ -33,6 +33,8 @@ export interface UiOptions {
   description?: string;
   disabled?: boolean;
   readonly?: boolean;
+  autofocus?: boolean;
+  placeholder?: string;
   enumNames?: string[];
 }
 

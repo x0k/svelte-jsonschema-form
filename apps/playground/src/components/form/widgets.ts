@@ -14,9 +14,9 @@ export interface WidgetCommonProps<V> extends HTMLAttributes<HTMLElement> {
   required: boolean;
   disabled: boolean;
   readonly: boolean;
+  autofocus: boolean;
+  placeholder: string;
   // hideError: boolean;
-  // autofocus: boolean;
-  // placeholder: string;
   // hideLabel: boolean;
   // rawErrors: string[];
 }

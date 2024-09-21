@@ -5,7 +5,7 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug Current App Test File",
+      "name": "Debug Playground App Test File",
       "autoAttachChildProcesses": true,
       "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
       "program": "${workspaceRoot}/apps/playground/node_modules/vitest/vitest.mjs",
