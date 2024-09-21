@@ -18,7 +18,7 @@ export interface LayoutComponentProps extends HTMLAttributes<HTMLDivElement> {
 export interface ComponentsAndProps {
   form: FormComponentProps;
   button: HTMLAttributes<HTMLButtonElement>;
-  layout: LayoutComponentProps
+  layout: LayoutComponentProps;
 }
 
 export interface ComponentExports {}

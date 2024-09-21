@@ -2,7 +2,7 @@ import { getContext, setContext } from "svelte";
 
 import type { Components } from "./component";
 import type { Schema, Validator } from "./schema";
-import type { Translator } from "./translation";
+import type { Translation } from "./translation";
 import type { UiSchemaRoot } from "./ui-schema";
 import type { Fields } from './fields';
 import type { Widgets } from './widgets';
@@ -14,7 +14,7 @@ export interface FormContext<T> {
   fields: Fields
   components: Components;
   widgets: Widgets
-  translator: Translator;
+  translation: Translation;
   disabled: boolean;
   readonly: boolean;
   idPrefix: string

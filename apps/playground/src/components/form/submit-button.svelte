@@ -8,7 +8,9 @@
     "ui:options": ctx.uiSchema["ui:options"]?.submitButton,
   });
   const Button = $derived(getComponent(ctx, "button", uiSchema));
-  const label = $derived(uiSchema["ui:options"]?.title ?? ctx.translator("submit"));
+  const label = $derived(
+    uiSchema["ui:options"]?.title ?? ctx.translation("submit")
+  );
 </script>
 
 <Button type="submit" {...getComponentProps(ctx, uiSchema)}>

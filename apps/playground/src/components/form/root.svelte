@@ -5,7 +5,7 @@
   import type { Schema, Validator } from './schema';
   import type { Components } from './component';
   import type { UiSchemaRoot } from './ui-schema';
-  import type { Translator } from './translation';
+  import type { Translation } from './translation';
   import type { Widgets } from './widgets';
   import { setFromContext, type FormContext } from './context';
   import { type Fields, fields as defaultFields } from './fields';
@@ -27,7 +27,7 @@
     validator: Validator<T>
     components: Components
     widgets: Widgets
-    translator: Translator
+    translation: Translation
     value?: T
     uiSchema?: UiSchemaRoot
     fields?: Fields
@@ -42,7 +42,7 @@
     components,
     schema,
     validator,
-    translator,
+    translation,
     widgets,
     value = $bindable(),
     uiSchema = {},
@@ -91,8 +91,8 @@
     get widgets() {
       return widgets
     },
-    get translator() {
-      return translator
+    get translation() {
+      return translation
     }
   }
   setFromContext(ctx)

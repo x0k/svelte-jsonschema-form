@@ -4,7 +4,7 @@
   import { components } from "@/lib/components";
   import { widgets } from "@/lib/widgets";
   import { AjvValidator } from "@/lib/validator";
-  import { enTranslator } from "@/lib/translator";
+  import { enTranslation } from "@/lib/translation";
   import { Form } from "@/components/form";
 
   const validator = new AjvValidator(
@@ -29,6 +29,6 @@
       enum: ["foo", "bar", "baz"],
     }}
     {validator}
-    translator={enTranslator}
+    translation={enTranslation}
   />
 </p>
