@@ -1,8 +1,8 @@
-<script lang="ts" generics="T">
+<script lang="ts" generics="T extends SchemaValue">
   import type { Snippet } from 'svelte';
   import type { HTMLAttributes } from "svelte/elements";
 
-  import type { Schema, Validator } from './schema';
+  import type { Schema, SchemaValue, Validator } from './schema';
   import type { Components } from './component';
   import type { UiSchemaRoot } from './ui-schema';
   import type { Translation } from './translation';

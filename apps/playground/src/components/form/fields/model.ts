@@ -4,9 +4,9 @@ import type { Schema, SchemaValue } from "../schema";
 import type { UiSchema } from "../ui-schema";
 import type { IdSchema } from "../id-schema";
 
-export interface FieldCommonProps<V> {
+export interface FieldCommonProps<V extends SchemaValue> {
   name: string;
-  value: V;
+  value: V
   schema: Schema;
   uiSchema: UiSchema;
   idSchema: IdSchema<V>;

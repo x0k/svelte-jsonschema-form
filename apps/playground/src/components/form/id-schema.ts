@@ -1,17 +1,17 @@
 import { deepEqual } from "fast-equals";
 
-import { isObject } from "@/lib/object";
-
 import {
   ALL_OF_KEY,
   DEPENDENCIES_KEY,
   ID_KEY,
+  isSchemaObjectValue,
   ITEMS_KEY,
   PROPERTIES_KEY,
   REF_KEY,
   retrieveSchema,
   typeOfSchema,
   type Schema,
+  type SchemaValue,
   type Validator,
 } from "./schema";
 
@@ -26,7 +26,7 @@ export type IdSchema<T> = FieldId &
       }
     : {});
 
-export function toIdSchema<T>(
+export function toIdSchema<T extends SchemaValue>(
   validator: Validator<T>,
   schema: Schema,
   idPrefix: string,
@@ -73,7 +73,7 @@ export function toIdSchema<T>(
   const idSchema = { $id } as IdSchema<Record<string, T>>;
   if (typeOfSchema(schema) === "object" && PROPERTIES_KEY in schema) {
     const properties = schema[PROPERTIES_KEY];
-    const formDataObject = isObject(formData)
+    const formDataObject = isSchemaObjectValue(formData)
       ? (formData as Record<string, T>)
       : undefined;
     for (const name in properties) {
@@ -81,7 +81,7 @@ export function toIdSchema<T>(
       const fieldId = idSchema[ID_KEY] + idSeparator + name;
       idSchema[name] = toIdSchema(
         validator,
-        isObject(field) ? field : {},
+        typeof field === "object" ? field : {},
         idPrefix,
         idSeparator,
         _recurseList,

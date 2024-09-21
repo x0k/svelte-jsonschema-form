@@ -1,5 +1,7 @@
 import type {
   JSONSchema7,
+  JSONSchema7Array,
+  JSONSchema7Object,
   JSONSchema7Type,
   JSONSchema7TypeName,
 } from "json-schema";
@@ -10,6 +12,8 @@ export type SchemaDefinition = Schema | boolean;
 export type SchemaType = JSONSchema7TypeName;
 
 export type SchemaValue = JSONSchema7Type;
+export type SchemaObjectValue = JSONSchema7Object;
+export type SchemaArrayValue = JSONSchema7Array;
 
 export const REF_KEY = "$ref";
 export const ID_KEY = "$id";
@@ -38,3 +42,13 @@ export const CONTAINS_KEY = "contains";
 
 export const DISCRIMINATOR_KEY = "discriminator";
 export const PROPERTY_NAME_KEY = "propertyName";
+
+export function isSchemaObjectValue(
+  value: unknown
+): value is SchemaObjectValue {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+export function isSchemaArrayValue(value: unknown): value is SchemaArrayValue {
+  return Array.isArray(value);
+}

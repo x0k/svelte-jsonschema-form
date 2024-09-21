@@ -1,11 +1,18 @@
-import { isObject } from '@/lib/object';
-
-import { DISCRIMINATOR_KEY, PROPERTY_NAME_KEY, type Schema } from './schema';
+import {
+  DISCRIMINATOR_KEY,
+  isSchemaObjectValue,
+  PROPERTY_NAME_KEY,
+  type Schema,
+  type SchemaValue,
+} from "./schema";
 
 export function getDiscriminatorFieldFromSchema(
   schema: Schema
 ): string | undefined {
-  if (!(DISCRIMINATOR_KEY in schema) || !isObject(schema[DISCRIMINATOR_KEY])) {
+  if (
+    !(DISCRIMINATOR_KEY in schema) ||
+    !isSchemaObjectValue(schema[DISCRIMINATOR_KEY])
+  ) {
     return undefined;
   }
   const discriminator = schema[DISCRIMINATOR_KEY][PROPERTY_NAME_KEY];
@@ -22,12 +29,12 @@ export function getDiscriminatorFieldFromSchema(
   return undefined;
 }
 
-export function getOptionMatchingSimpleDiscriminator<T>(
+export function getOptionMatchingSimpleDiscriminator<T extends SchemaValue>(
   formData: T | undefined,
   options: Schema[],
   discriminatorField?: string
 ): number | undefined {
-  if (discriminatorField && isObject(formData)) {
+  if (discriminatorField && isSchemaObjectValue(formData)) {
     const value = formData[discriminatorField];
     if (value === undefined) {
       return;
@@ -48,8 +55,6 @@ export function getOptionMatchingSimpleDiscriminator<T>(
       if (discriminator.const === value) {
         return i;
       }
-      // @ts-expect-error in theory `fromData` should extend `JSONType` type. But in practice...
-      // TODO: Check is it possible to extend `JSONType` type for all `T` types
       if (discriminator.enum?.includes(value)) {
         return i;
       }

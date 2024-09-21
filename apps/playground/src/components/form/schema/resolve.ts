@@ -1,7 +1,6 @@
 import { deepEqual } from "fast-equals";
 import mergeAllOf, { type Options } from "json-schema-merge-allof";
 
-import { isObject } from "@/lib/object";
 import { array } from "@/lib/array";
 
 import {
@@ -11,12 +10,14 @@ import {
   ANY_OF_KEY,
   DEPENDENCIES_KEY,
   IF_KEY,
+  isSchemaObjectValue,
   ITEMS_KEY,
   ONE_OF_KEY,
   PROPERTIES_KEY,
   REF_KEY,
   type Schema,
   type SchemaDefinition,
+  type SchemaValue,
 } from "./schema";
 import { findSchemaDefinition } from "./definitions";
 import type { Validator } from "./validator";
@@ -27,7 +28,7 @@ import {
   getOptionMatchingSimpleDiscriminator,
 } from "./discriminator";
 
-export function retrieveSchema<T>(
+export function retrieveSchema<T extends SchemaValue>(
   validator: Validator<T>,
   schema: Schema,
   rootSchema: Schema = {},
@@ -88,7 +89,7 @@ export function resolveAllReferences(
   return resolvedSchema;
 }
 
-export function resolveReference<T>(
+export function resolveReference<T extends SchemaValue>(
   validator: Validator<T>,
   schema: Schema,
   rootSchema: Schema,
@@ -110,7 +111,7 @@ export function resolveReference<T>(
   return [schema];
 }
 
-export function retrieveSchemaInternal<T>(
+export function retrieveSchemaInternal<T extends SchemaValue>(
   validator: Validator<T>,
   schema: Schema,
   rootSchema: Schema,
@@ -180,7 +181,7 @@ export function retrieveSchemaInternal<T>(
   });
 }
 
-export function resolveCondition<T>(
+export function resolveCondition<T extends SchemaValue>(
   validator: Validator<T>,
   schema: Schema,
   rootSchema: Schema,
@@ -256,7 +257,7 @@ export function resolveCondition<T>(
   );
 }
 
-export function stubExistingAdditionalProperties<T>(
+export function stubExistingAdditionalProperties<T extends SchemaValue>(
   validator: Validator<T>,
   theSchema: Schema,
   rootSchema?: Schema,
@@ -269,7 +270,7 @@ export function stubExistingAdditionalProperties<T>(
   };
 
   // make sure formData is an object
-  const formData: Record<string, unknown> = isObject(aFormData)
+  const formData: Record<string, unknown> = isSchemaObjectValue(aFormData)
     ? aFormData
     : {};
   Object.keys(formData).forEach((key) => {
@@ -319,7 +320,7 @@ export function stubExistingAdditionalProperties<T>(
   return schema;
 }
 
-export function resolveSchema<T>(
+export function resolveSchema<T extends SchemaValue>(
   validator: Validator<T>,
   schema: Schema,
   rootSchema: Schema,
@@ -381,7 +382,7 @@ export function resolveSchema<T>(
   return [schema];
 }
 
-export function resolveDependencies<T>(
+export function resolveDependencies<T extends SchemaValue>(
   validator: Validator<T>,
   schema: Schema,
   rootSchema: Schema,
@@ -410,7 +411,7 @@ export function resolveDependencies<T>(
   );
 }
 
-export function resolveAnyOrOneOfSchemas<T>(
+export function resolveAnyOrOneOfSchemas<T extends SchemaValue>(
   validator: Validator<T>,
   schema: Schema,
   rootSchema: Schema,
@@ -450,7 +451,7 @@ export function resolveAnyOrOneOfSchemas<T>(
   return [schema];
 }
 
-export function getFirstMatchingOption<T>(
+export function getFirstMatchingOption<T extends SchemaValue>(
   validator: Validator<T>,
   formData: T | undefined,
   options: Schema[],
@@ -472,7 +473,7 @@ export function getFirstMatchingOption<T>(
     return simpleDiscriminatorMatch;
   }
 
-  const isDiscriminatorActual = isObject(formData) && discriminatorField;
+  const isDiscriminatorActual = isSchemaObjectValue(formData) && discriminatorField;
   for (let i = 0; i < options.length; i++) {
     const option = options[i];
     const optionProperties = option[PROPERTIES_KEY];
@@ -538,7 +539,7 @@ export function getFirstMatchingOption<T>(
   return 0;
 }
 
-export function processDependencies<T>(
+export function processDependencies<T extends SchemaValue>(
   validator: Validator<T>,
   dependencies: Schema[typeof DEPENDENCIES_KEY],
   resolvedSchema: Schema,
@@ -553,7 +554,7 @@ export function processDependencies<T>(
     // Skip this dependency if its trigger property is not present.
     if (
       !expandAllBranches &&
-      isObject(formData) &&
+      isSchemaObjectValue(formData) &&
       formData[dependencyKey] === undefined
     ) {
       continue;
@@ -596,7 +597,7 @@ export function processDependencies<T>(
   return schemas;
 }
 
-export function withDependentSchema<T>(
+export function withDependentSchema<T extends SchemaValue>(
   validator: Validator<T>,
   schema: Schema,
   rootSchema: Schema,
@@ -655,7 +656,7 @@ type SchemaWithProperties = Schema & {
   properties: Exclude<Schema["properties"], undefined>;
 };
 
-export function withExactlyOneSubSchema<T>(
+export function withExactlyOneSubSchema<T extends SchemaValue>(
   validator: Validator<T>,
   schema: Schema,
   rootSchema: Schema,
