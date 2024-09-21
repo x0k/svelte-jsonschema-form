@@ -3,4 +3,4 @@ packages:
   - "apps/*"
 
 catalog:
-  vite: ^5.4.6
+  vite: ^5.4.7
