@@ -1,24 +1,24 @@
 import { describe, expect, it } from 'vitest';
 
-import { mergeObjects } from './merge';
+import { mergeSchemaObjects } from './merge';
 
-describe('mergeObjects()', () => {
+describe('mergeSchemaObjects()', () => {
   it('shouldn`t mutate the provided objects', () => {
     const obj1 = { a: 1 };
-    mergeObjects(obj1, { b: 2 });
+    mergeSchemaObjects(obj1, { b: 2 });
     expect(obj1).toEqual({ a: 1 });
   });
 
   it('should merge two one-level deep objects', () => {
-    expect(mergeObjects({ a: 1 }, { b: 2 })).toEqual({ a: 1, b: 2 });
+    expect(mergeSchemaObjects({ a: 1 }, { b: 2 })).toEqual({ a: 1, b: 2 });
   });
 
   it('should override the first object with the values from the second', () => {
-    expect(mergeObjects({ a: 1 }, { a: 2 })).toEqual({ a: 2 });
+    expect(mergeSchemaObjects({ a: 1 }, { a: 2 })).toEqual({ a: 2 });
   });
 
   it('should override non-existing values of the first object with the values from the second', () => {
-    expect(mergeObjects({ a: { b: undefined } }, { a: { b: { c: 1 } } })).toEqual({ a: { b: { c: 1 } } });
+    expect(mergeSchemaObjects({ a: { b: undefined } }, { a: { b: { c: 1 } } })).toEqual({ a: { b: { c: 1 } } });
   });
 
   it('should recursively merge deeply nested objects', () => {
@@ -50,7 +50,7 @@ describe('mergeObjects()', () => {
       },
       c: 3,
     };
-    expect(mergeObjects(obj1, obj2)).toEqual(expected);
+    expect(mergeSchemaObjects(obj1, obj2)).toEqual(expected);
   });
 
   it('should recursively merge File objects', () => {
@@ -61,7 +61,7 @@ describe('mergeObjects()', () => {
     const obj2 = {
       a: file,
     };
-    expect(mergeObjects(obj1, obj2).a).toBeInstanceOf(File);
+    expect(mergeSchemaObjects(obj1, obj2).a).toBeInstanceOf(File);
   });
 
   describe('concatArrays option', () => {
@@ -69,21 +69,21 @@ describe('mergeObjects()', () => {
       const obj1 = { a: [1] };
       const obj2 = { a: [2] };
 
-      expect(mergeObjects(obj1, obj2)).toEqual({ a: [2] });
+      expect(mergeSchemaObjects(obj1, obj2)).toEqual({ a: [2] });
     });
 
     it('should concat arrays when concatArrays is true', () => {
       const obj1 = { a: [1] };
       const obj2 = { a: [2] };
 
-      expect(mergeObjects(obj1, obj2, true)).toEqual({ a: [1, 2] });
+      expect(mergeSchemaObjects(obj1, obj2, true)).toEqual({ a: [1, 2] });
     });
 
     it('should concat nested arrays when concatArrays is true', () => {
       const obj1 = { a: { b: [1] } };
       const obj2 = { a: { b: [2] } };
 
-      expect(mergeObjects(obj1, obj2, true)).toEqual({
+      expect(mergeSchemaObjects(obj1, obj2, true)).toEqual({
         a: { b: [1, 2] },
       });
     });
@@ -92,7 +92,7 @@ describe('mergeObjects()', () => {
       const obj1 = { a: [1] };
       const obj2 = { a: [1, 2] };
 
-      expect(mergeObjects(obj1, obj2, 'preventDuplicates')).toEqual({
+      expect(mergeSchemaObjects(obj1, obj2, 'preventDuplicates')).toEqual({
         a: [1, 2],
       });
     });
@@ -101,7 +101,7 @@ describe('mergeObjects()', () => {
       const obj1 = { a: { b: [1] } };
       const obj2 = { a: { b: [1, 2] } };
 
-      expect(mergeObjects(obj1, obj2, 'preventDuplicates')).toEqual({
+      expect(mergeSchemaObjects(obj1, obj2, 'preventDuplicates')).toEqual({
         a: { b: [1, 2] },
       });
     });

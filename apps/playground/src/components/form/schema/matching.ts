@@ -128,7 +128,7 @@ function calculateIndexScore<T extends SchemaValue>(
     const schemaProperties = schema.properties;
     if (schemaProperties && isSchemaObjectValue(formData)) {
       for (const [key, value] of Object.entries(schemaProperties)) {
-        const formValue = formData[key] as SchemaValue | undefined;
+        const formValue = formData[key];
         if (typeof value === "boolean") {
           continue;
         }

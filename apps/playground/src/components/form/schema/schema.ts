@@ -16,7 +16,7 @@ export type SchemaValue =
   | null;
 
 export interface SchemaObjectValue {
-  [key: string]: SchemaValue;
+  [key: string]: SchemaValue | undefined;
 }
 
 export interface SchemaArrayValue extends Array<SchemaValue> {}

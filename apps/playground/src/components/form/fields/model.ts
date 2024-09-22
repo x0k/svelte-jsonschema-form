@@ -1,6 +1,6 @@
 import type { Component as SvelteComponent } from "svelte";
 
-import type { Schema, SchemaValue } from "../schema";
+import type { Schema, SchemaArrayValue, SchemaObjectValue, SchemaValue } from "../schema";
 import type { UiSchema } from "../ui-schema";
 import type { IdSchema } from "../id-schema";
 
@@ -27,12 +27,12 @@ export interface FieldAndProps {
 
 export interface FieldValue {
   root: SchemaValue;
-  string: string;
+  string: string | File | Date
   number: number;
   integer: number;
   boolean: boolean;
-  object: Record<string, SchemaValue>;
-  array: SchemaValue[];
+  object: SchemaObjectValue
+  array: SchemaArrayValue
   null: null;
   unsupported: SchemaValue;
 }

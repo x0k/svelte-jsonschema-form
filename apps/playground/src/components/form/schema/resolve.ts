@@ -16,6 +16,7 @@ import {
   REF_KEY,
   type Schema,
   type SchemaDefinition,
+  type SchemaObjectValue,
   type SchemaValue,
 } from "./schema";
 import { findSchemaDefinition } from "./definitions";
@@ -276,7 +277,7 @@ export function stubExistingAdditionalProperties<T extends SchemaValue>(
   };
 
   // make sure formData is an object
-  const formData: Record<string, unknown> = isSchemaObjectValue(aFormData)
+  const formData: SchemaObjectValue = isSchemaObjectValue(aFormData)
     ? aFormData
     : {};
   Object.keys(formData).forEach((key) => {
@@ -309,10 +310,16 @@ export function stubExistingAdditionalProperties<T extends SchemaValue>(
           ...schemaAdditionalProperties,
         };
       } else {
-        additionalProperties = { type: typeOfValue(formData[key]) };
+        const value = formData[key];
+        if (value !== undefined) {
+          additionalProperties = { type: typeOfValue(value) }
+        }
       }
     } else {
-      additionalProperties = { type: typeOfValue(formData[key]) };
+      const value = formData[key];
+      if (value !== undefined) {
+        additionalProperties = { type: typeOfValue(value) };
+      }
     }
 
     // The type of our new key should match the additionalProperties value;

@@ -12,7 +12,7 @@ import { findSchemaDefinition } from "./definitions";
 import { isFixedItems } from "./is-fixed-items";
 import { getDiscriminatorFieldFromSchema } from "./discriminator";
 import { isSchemaObjectValue, isSchemaValueEmpty } from "./value";
-import { mergeDefaultsWithFormData, mergeObjects, mergeSchemas } from "./merge";
+import { mergeDefaultsWithFormData, mergeSchemaObjects, mergeSchemas } from "./merge";
 import { getSimpleSchemaType } from "./type";
 import { isMultiSelect } from "./is-select";
 import { getClosestMatchingOption } from "./matching";
@@ -147,7 +147,7 @@ export function computeDefaults<T extends SchemaValue>(
   if (isSchemaObjectValue(defaults) && isSchemaObjectValue(schemaDefault)) {
     // For object defaults, only override parent defaults that are defined in
     // schema.default.
-    defaults = mergeObjects(defaults, schemaDefault);
+    defaults = mergeSchemaObjects(defaults, schemaDefault);
   } else if (schemaDefault !== undefined) {
     defaults = schemaDefault;
   } else if (schemaRef !== undefined) {
@@ -176,7 +176,7 @@ export function computeDefaults<T extends SchemaValue>(
         parentDefaults: Array.isArray(parentDefaults)
           ? parentDefaults[idx]
           : undefined,
-        rawFormData: formData as T,
+        rawFormData: formData,
         required,
       })
     ) as T[];
@@ -409,7 +409,7 @@ export function computeDefaults<T extends SchemaValue>(
         return defaults ? defaults : emptyDefault;
       }
 
-      const defaultEntries: T[] = (defaults || []) as T[];
+      const defaultEntries = Array.isArray(defaults) ? defaults : [];
       const fillerSchema = getInnerSchemaForArrayItem(
         schema,
         AdditionalItemsHandling.Invert
