@@ -1,19 +1,25 @@
-import type {
-  JSONSchema7,
-  JSONSchema7Array,
-  JSONSchema7Object,
-  JSONSchema7Type,
-  JSONSchema7TypeName,
-} from "json-schema";
+import type { JSONSchema7, JSONSchema7TypeName } from "json-schema";
 
 export type Schema = JSONSchema7;
 export type SchemaDefinition = Schema | boolean;
 
 export type SchemaType = JSONSchema7TypeName;
 
-export type SchemaValue = JSONSchema7Type;
-export type SchemaObjectValue = JSONSchema7Object;
-export type SchemaArrayValue = JSONSchema7Array;
+export type SchemaValue =
+  | string
+  | number
+  | boolean
+  | SchemaObjectValue
+  | SchemaArrayValue
+  | File
+  | Date
+  | null;
+
+export interface SchemaObjectValue {
+  [key: string]: SchemaValue;
+}
+
+export interface SchemaArrayValue extends Array<SchemaValue> {}
 
 export const REF_KEY = "$ref";
 export const ID_KEY = "$id";

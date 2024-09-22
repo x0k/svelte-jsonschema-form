@@ -162,15 +162,15 @@ export function mergeDefaultsWithFormData<T = any>(
   return formData;
 }
 
-export function mergeObjects<T extends Record<string, unknown>>(
-  obj1: T,
-  obj2: T,
+export function mergeObjects<A extends Record<string, unknown>, B extends Record<string, unknown>>(
+  obj1: A,
+  obj2: B,
   concatArrays: boolean | "preventDuplicates" = false
 ) {
   const acc: Record<string, unknown> = Object.assign({}, obj1);
   for (const [key, right] of Object.entries(obj2)) {
     const left = obj1 ? obj1[key] : {};
-    if (isSchemaObjectValue<T>(left) && isSchemaObjectValue<T>(right)) {
+    if (isSchemaObjectValue<A>(left) && isSchemaObjectValue<A>(right)) {
       acc[key] = mergeObjects(left, right, concatArrays);
     } else if (concatArrays && Array.isArray(left) && Array.isArray(right)) {
       acc[key] = left.concat(
@@ -182,5 +182,5 @@ export function mergeObjects<T extends Record<string, unknown>>(
       acc[key] = right;
     }
   }
-  return acc as T;
+  return acc as A & B;
 }

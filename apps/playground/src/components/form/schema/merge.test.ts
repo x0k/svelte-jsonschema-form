@@ -18,7 +18,6 @@ describe('mergeObjects()', () => {
   });
 
   it('should override non-existing values of the first object with the values from the second', () => {
-    // @ts-expect-error for testing purposes
     expect(mergeObjects({ a: { b: undefined } }, { a: { b: { c: 1 } } })).toEqual({ a: { b: { c: 1 } } });
   });
 
@@ -54,7 +53,7 @@ describe('mergeObjects()', () => {
     expect(mergeObjects(obj1, obj2)).toEqual(expected);
   });
 
-  it.skip('should recursively merge File objects', () => {
+  it('should recursively merge File objects', () => {
     const file = new File(['test'], 'test.txt');
     const obj1 = {
       a: {},
@@ -62,7 +61,6 @@ describe('mergeObjects()', () => {
     const obj2 = {
       a: file,
     };
-    // @ts-expect-error TODO: Add File type to `SchemaValue` type
     expect(mergeObjects(obj1, obj2).a).toBeInstanceOf(File);
   });
 

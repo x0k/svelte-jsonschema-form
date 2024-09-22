@@ -7,7 +7,13 @@ import type {
 export function isSchemaObjectValue<T = SchemaObjectValue>(
   value: unknown
 ): value is T {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    !Array.isArray(value) &&
+    !(typeof File !== "undefined" && value instanceof File) &&
+    !(typeof Date !== "undefined" && value instanceof Date)
+  );
 }
 
 export function isSchemaArrayValue(value: unknown): value is SchemaArrayValue {
