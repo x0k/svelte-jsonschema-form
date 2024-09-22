@@ -55,7 +55,7 @@ export function getOptionMatchingSimpleDiscriminator<T extends SchemaValue>(
       if (discriminator.const === value) {
         return i;
       }
-      if (discriminator.enum?.includes(value)) {
+      if ((discriminator.enum as SchemaValue[] | undefined)?.includes(value)) {
         return i;
       }
     }
