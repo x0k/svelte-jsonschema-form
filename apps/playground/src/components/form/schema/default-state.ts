@@ -118,7 +118,7 @@ interface ComputeDefaultsProps {
   required?: boolean;
 }
 
-function computeDefaults<T extends SchemaValue>(
+export function computeDefaults<T extends SchemaValue>(
   validator: Validator<T>,
   rawSchema: Schema,
   {
@@ -498,7 +498,7 @@ export enum AdditionalItemsHandling {
   Fallback,
 }
 
-function getInnerSchemaForArrayItem(
+export function getInnerSchemaForArrayItem(
   schema: Schema,
   additionalItems: AdditionalItemsHandling = AdditionalItemsHandling.Ignore,
   idx = -1

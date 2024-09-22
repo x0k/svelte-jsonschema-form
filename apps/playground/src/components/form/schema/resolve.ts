@@ -50,6 +50,7 @@ export function resolveAllReferences(
     if (stack.has(ref)) {
       return resolvedSchema;
     }
+    stack.add(ref);
     const { [REF_KEY]: _, ...resolvedSchemaWithoutRef } = resolvedSchema;
     return resolveAllReferences(
       mergeSchemas(
@@ -57,7 +58,7 @@ export function resolveAllReferences(
         resolvedSchemaWithoutRef
       ),
       rootSchema,
-      new Set(stack).add(ref)
+      stack
     );
   }
 
@@ -68,7 +69,14 @@ export function resolveAllReferences(
       if (typeof value === "boolean") {
         resolvedProps.set(key, value);
       } else {
-        resolvedProps.set(key, resolveAllReferences(value, rootSchema, stack));
+        const stackCopy = new Set(stack);
+        resolvedProps.set(
+          key,
+          resolveAllReferences(value, rootSchema, stackCopy)
+        );
+        // TODO: Replace stack with an object with a Set of references
+        // to use `union` Set method here
+        stackCopy.forEach(stack.add, stack);
       }
     }
     resolvedSchema = {
@@ -476,7 +484,7 @@ export function processDependencies<T extends SchemaValue>(
     ) {
       continue;
     }
-    const { [DEPENDENCIES_KEY]: dependencyValue, ...remainingDependencies } =
+    const { [dependencyKey]: dependencyValue, ...remainingDependencies } =
       dependencies;
     if (Array.isArray(dependencyValue)) {
       schemas[0] = mergeSchemas(resolvedSchema, { required: dependencyValue });
