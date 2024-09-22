@@ -5,12 +5,14 @@ import type { Field, FieldType } from "./fields";
 import {
   isSelect as isSelectInternal,
   retrieveSchema as retrieveSchemaInternal,
+  getDefaultFormState as getDefaultFormStateInternal,
   type Schema,
+  type SchemaValue,
 } from "./schema";
 import type { Widget, WidgetCommonProps, WidgetType } from "./widgets";
 import { toIdSchema as toIdSchemaInternal, type IdSchema } from "./id-schema";
 
-export function retrieveSchema<T>(
+export function retrieveSchema<T extends SchemaValue>(
   ctx: FormContext<T>,
   schema: Schema,
   formData: T
@@ -66,7 +68,10 @@ export function getComponent<T extends ComponentType>(
   }
 }
 
-export function getComponentProps(ctx: FormContext<unknown>, uiSchema: UiSchema) {
+export function getComponentProps(
+  ctx: FormContext<unknown>,
+  uiSchema: UiSchema
+) {
   return {
     class: uiSchema["ui:options"]?.class,
     style: uiSchema["ui:options"]?.style,
@@ -98,7 +103,7 @@ export function isSelect(ctx: FormContext<unknown>, schema: Schema) {
   return isSelectInternal(ctx.validator, schema, ctx.schema);
 }
 
-export function toIdSchema<T>(
+export function toIdSchema<T extends SchemaValue>(
   ctx: FormContext<T>,
   schema: Schema,
   id?: string,
@@ -113,5 +118,19 @@ export function toIdSchema<T>(
     id,
     ctx.schema,
     formData
+  );
+}
+
+export function getDefaultFormState<T extends SchemaValue>(
+  ctx: FormContext<T>,
+  schema: Schema,
+  formData?: T
+) {
+  return getDefaultFormStateInternal(
+    ctx.validator,
+    schema,
+    formData,
+    ctx.schema,
+    false
   );
 }

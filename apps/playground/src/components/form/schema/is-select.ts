@@ -1,9 +1,9 @@
-import type { Schema } from "./schema";
+import type { Schema, SchemaValue } from "./schema";
 import type { Validator } from "./validator";
 import { retrieveSchema } from "./resolve";
 import { isSchemaOfConstantValue } from "./constant";
 
-export function isSelect<T>(
+export function isSelect<T extends SchemaValue>(
   validator: Validator<T>,
   theSchema: Schema,
   rootSchema: Schema
@@ -20,4 +20,24 @@ export function isSelect<T>(
     );
   }
   return false;
+}
+
+export function isMultiSelect<T extends SchemaValue>(
+  validator: Validator<T>,
+  schema: Schema,
+  rootSchema: Schema
+) {
+  const items = schema.items;
+  if (
+    !items ||
+    typeof items === "boolean" ||
+    // TODO: This condition is added to satisfy TS and it looks correct.
+    // But this check is missing in the original code.
+    // Therefore, clarify the term `multi-select` schema
+    Array.isArray(items) ||
+    !schema.uniqueItems
+  ) {
+    return false;
+  }
+  return isSelect(validator, items, rootSchema);
 }

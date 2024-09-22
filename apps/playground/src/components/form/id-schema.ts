@@ -3,13 +3,13 @@ import { deepEqual } from "fast-equals";
 import {
   ALL_OF_KEY,
   DEPENDENCIES_KEY,
+  getSimpleSchemaType,
   ID_KEY,
   isSchemaObjectValue,
   ITEMS_KEY,
   PROPERTIES_KEY,
   REF_KEY,
   retrieveSchema,
-  typeOfSchema,
   type Schema,
   type SchemaValue,
   type Validator,
@@ -71,7 +71,7 @@ export function toIdSchema<T extends SchemaValue>(
   }
   const $id = id || idPrefix;
   const idSchema = { $id } as IdSchema<Record<string, T>>;
-  if (typeOfSchema(schema) === "object" && PROPERTIES_KEY in schema) {
+  if (getSimpleSchemaType(schema) === "object" && PROPERTIES_KEY in schema) {
     const properties = schema[PROPERTIES_KEY];
     const formDataObject = isSchemaObjectValue(formData)
       ? (formData as Record<string, T>)

@@ -1,10 +1,10 @@
 import {
   DISCRIMINATOR_KEY,
-  isSchemaObjectValue,
   PROPERTY_NAME_KEY,
   type Schema,
   type SchemaValue,
 } from "./schema";
+import { isSchemaObjectValue } from "./value";
 
 export function getDiscriminatorFieldFromSchema(
   schema: Schema

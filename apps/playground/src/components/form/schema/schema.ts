@@ -25,6 +25,7 @@ export const ITEMS_KEY = "items";
 export const DEPENDENCIES_KEY = "dependencies";
 export const REQUIRED_KEY = "required";
 export const PATTERN_PROPERTIES_KEY = "patternProperties";
+export const DEFAULT_KEY = "default";
 
 export const IF_KEY = "if";
 export const THEN_KEY = "then";
@@ -43,12 +44,6 @@ export const CONTAINS_KEY = "contains";
 export const DISCRIMINATOR_KEY = "discriminator";
 export const PROPERTY_NAME_KEY = "propertyName";
 
-export function isSchemaObjectValue(
-  value: unknown
-): value is SchemaObjectValue {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
-}
-
-export function isSchemaArrayValue(value: unknown): value is SchemaArrayValue {
-  return Array.isArray(value);
+export function isSchema(schemaDef: SchemaDefinition): schemaDef is Schema {
+  return typeof schemaDef === "object";
 }

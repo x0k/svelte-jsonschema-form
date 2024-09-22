@@ -10,7 +10,7 @@
   import { setFromContext, type FormContext } from './context';
   import { type Fields, fields as defaultFields } from './fields';
   import SubmitButton from './submit-button.svelte';
-  import { getComponent, getField, retrieveSchema, toIdSchema } from './utils';
+  import { getComponent, getDefaultFormState, getField, retrieveSchema, toIdSchema } from './utils';
 
   let form = $state<HTMLFormElement>()
 
@@ -99,7 +99,8 @@
 
   const Form = $derived(getComponent(ctx, "form", uiSchema))
   const Field = $derived(getField(ctx, "root", uiSchema))
-  const retrievedSchema = $derived(retrieveSchema(ctx, schema, value))
+  let formData = $state(getDefaultFormState(ctx, schema, value))
+  const retrievedSchema = $derived(retrieveSchema(ctx, schema, formData))
   const idSchema = $derived(toIdSchema(
     ctx,
     retrievedSchema,
@@ -109,7 +110,7 @@
 </script>
 
 <Form {...formProps} bind:form onsubmit={handleSubmit}>
-  <Field name="" required={false} bind:value {schema} {uiSchema} {idSchema} />
+  <Field name="" required={false} bind:value={formData} {schema} {uiSchema} {idSchema} />
   {#if children}
     {@render children()}
   {:else}

@@ -17,6 +17,7 @@ import {
   type Schema,
   type SchemaDefinition,
 } from "./schema";
+import { isSchemaObjectValue } from "./value";
 
 const OBJECT_KEYS = [
   DEFS_KEY,
@@ -117,4 +118,44 @@ export function mergeSchemas(left: Schema, right: Schema): Schema {
     );
   }
   return merged;
+}
+
+export function mergeDefaultsWithFormData<T = any>(
+  defaults?: T,
+  formData?: T,
+  mergeExtraArrayDefaults = false
+): T | undefined {
+  if (Array.isArray(formData)) {
+    const defaultsArray = Array.isArray(defaults) ? defaults : [];
+    const mapped = formData.map((value, idx) => {
+      if (defaultsArray[idx]) {
+        return mergeDefaultsWithFormData<any>(
+          defaultsArray[idx],
+          value,
+          mergeExtraArrayDefaults
+        );
+      }
+      return value;
+    });
+    // Merge any extra defaults when mergeExtraArrayDefaults is true
+    if (mergeExtraArrayDefaults && mapped.length < defaultsArray.length) {
+      mapped.push(...defaultsArray.slice(mapped.length));
+    }
+    return mapped as unknown as T;
+  }
+  if (isSchemaObjectValue(formData)) {
+    const acc: { [key in keyof T]: any } = Object.assign({}, defaults); // Prevent mutation of source object.
+    const defaultsAsObject = isSchemaObjectValue(defaults)
+      ? defaults
+      : undefined;
+    for (const [key, value] of Object.entries(formData)) {
+      acc[key as keyof T] = mergeDefaultsWithFormData(
+        defaultsAsObject?.[key],
+        value,
+        mergeExtraArrayDefaults
+      );
+    }
+    return acc;
+  }
+  return formData;
 }
