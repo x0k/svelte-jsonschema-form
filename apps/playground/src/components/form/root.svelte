@@ -99,8 +99,8 @@
 
   const Form = $derived(getComponent(ctx, "form", uiSchema))
   const Field = $derived(getField(ctx, "root", uiSchema))
-  let formData = $state(getDefaultFormState(ctx, schema, value))
-  const retrievedSchema = $derived(retrieveSchema(ctx, schema, formData))
+  let formData = $state(getDefaultFormState(ctx, schema, value) ?? null)
+  const retrievedSchema = $derived(retrieveSchema<SchemaValue>(ctx, schema, formData))
   const idSchema = $derived(toIdSchema(
     ctx,
     retrievedSchema,

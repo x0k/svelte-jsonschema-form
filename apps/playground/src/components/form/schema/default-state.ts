@@ -24,7 +24,7 @@ export function getDefaultFormState<T extends SchemaValue>(
   rootSchema?: Schema,
   includeUndefinedValues: boolean | "excludeObjectChildren" = false,
   experimental_defaultFormStateBehavior?: Experimental_DefaultFormStateBehavior
-) {
+): SchemaValue | undefined {
   const schema = retrieveSchema(validator, theSchema, rootSchema, formData);
   const defaults = computeDefaults(validator, schema, {
     rootSchema,
@@ -40,10 +40,12 @@ export function getDefaultFormState<T extends SchemaValue>(
     // No form data? Use schema defaults.
     return defaults;
   }
-  const { mergeExtraDefaults } =
-    experimental_defaultFormStateBehavior?.arrayMinItems || {};
   if (isSchemaObjectValue(formData) || Array.isArray(formData)) {
-    return mergeDefaultsWithFormData(defaults, formData, mergeExtraDefaults);
+    return mergeDefaultsWithFormData(
+      defaults,
+      formData,
+      experimental_defaultFormStateBehavior?.arrayMinItems?.mergeExtraDefaults
+    );
   }
   return formData;
 }
@@ -415,9 +417,7 @@ export function computeDefaults<T extends SchemaValue>(
       const fillerDefault = fillerSchema.default;
 
       // Calculate filler entries for remaining items (minItems - existing raw data/defaults)
-      const fillerEntries = new Array(
-        schema.minItems - defaultsLength
-      ).fill(
+      const fillerEntries = new Array(schema.minItems - defaultsLength).fill(
         computeDefaults(validator, fillerSchema, {
           parentDefaults: fillerDefault,
           rootSchema,
