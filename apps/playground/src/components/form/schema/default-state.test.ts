@@ -59,11 +59,6 @@ describe("getDefaultFormState()", () => {
   afterAll(() => {
     consoleWarnSpy.mockRestore();
   });
-  it("throws error when schema is not an object", () => {
-    expect(() =>
-      getDefaultFormState(testValidator, null as unknown as Schema)
-    ).toThrowError("Invalid schema:");
-  });
   it("getInnerSchemaForArrayItem() item of type boolean returns empty schema", () => {
     expect(
       getInnerSchemaForArrayItem(
@@ -230,7 +225,7 @@ describe("getDefaultFormState()", () => {
         requiredProperty: "foo",
       });
     });
-    it.only("test an object with an additionalProperties", () => {
+    it("test an object with an additionalProperties", () => {
       const schema: Schema = {
         type: "object",
         properties: {

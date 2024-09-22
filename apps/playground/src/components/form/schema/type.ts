@@ -1,6 +1,6 @@
 import type { Schema, SchemaType } from "./schema";
 
-export function typeOfValue(value: unknown): SchemaType {
+export function typeOfValue(value: null | boolean | number | string | object): SchemaType {
   if (value === null) {
     return "null";
   }

@@ -4,9 +4,9 @@ import type {
   SchemaValue,
 } from "./schema";
 
-export function isSchemaObjectValue(
+export function isSchemaObjectValue<T = SchemaObjectValue>(
   value: unknown
-): value is SchemaObjectValue {
+): value is T {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 

@@ -1,4 +1,5 @@
-import { isSchemaObjectValue, type Schema } from "./schema";
+import { type Schema } from "./schema";
+import { isSchemaObjectValue } from './value';
 
 export function isFixedItems(schema: Schema): schema is Omit<
   Schema,

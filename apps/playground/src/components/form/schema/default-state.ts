@@ -1,5 +1,3 @@
-import merge from "deepmerge";
-
 import { resolveDependencies, retrieveSchema } from "./resolve";
 import {
   ALL_OF_KEY,
@@ -14,7 +12,7 @@ import { findSchemaDefinition } from "./definitions";
 import { isFixedItems } from "./is-fixed-items";
 import { getDiscriminatorFieldFromSchema } from "./discriminator";
 import { isSchemaObjectValue, isSchemaValueEmpty } from "./value";
-import { mergeDefaultsWithFormData, mergeSchemas } from "./merge";
+import { mergeDefaultsWithFormData, mergeObjects, mergeSchemas } from "./merge";
 import { getSimpleSchemaType } from "./type";
 import { isMultiSelect } from "./is-select";
 import { getClosestMatchingOption } from "./matching";
@@ -27,9 +25,6 @@ export function getDefaultFormState<T extends SchemaValue>(
   includeUndefinedValues: boolean | "excludeObjectChildren" = false,
   experimental_defaultFormStateBehavior?: Experimental_DefaultFormStateBehavior
 ) {
-  if (!isSchemaObjectValue(theSchema)) {
-    throw new Error("Invalid schema: " + theSchema);
-  }
   const schema = retrieveSchema(validator, theSchema, rootSchema, formData);
   const defaults = computeDefaults(validator, schema, {
     rootSchema,
@@ -113,7 +108,7 @@ interface ComputeDefaultsProps {
   rootSchema?: Schema;
   rawFormData?: SchemaValue;
   includeUndefinedValues?: boolean | "excludeObjectChildren";
-  _recurseList?: string[];
+  stack?: Set<string>;
   experimental_defaultFormStateBehavior?: Experimental_DefaultFormStateBehavior;
   required?: boolean;
 }
@@ -126,7 +121,7 @@ export function computeDefaults<T extends SchemaValue>(
     rawFormData,
     rootSchema = {},
     includeUndefinedValues = false,
-    _recurseList = [],
+    stack = new Set(),
     experimental_defaultFormStateBehavior = undefined,
     required,
   }: ComputeDefaultsProps = {}
@@ -139,7 +134,7 @@ export function computeDefaults<T extends SchemaValue>(
   let defaults: SchemaValue | undefined = parentDefaults;
   // If we get a new schema, then we need to recompute defaults again for the new schema found.
   let schemaToCompute: Schema | null = null;
-  let updatedRecurseList = _recurseList;
+  let nextStack = stack;
 
   const {
     default: schemaDefault,
@@ -147,16 +142,16 @@ export function computeDefaults<T extends SchemaValue>(
     oneOf: schemaOneOf,
     anyOf: schemaAnyOf,
   } = schema;
-  if (isSchemaObjectValue(defaults) && isSchemaObjectValue(schema.default)) {
+  if (isSchemaObjectValue(defaults) && isSchemaObjectValue(schemaDefault)) {
     // For object defaults, only override parent defaults that are defined in
     // schema.default.
-    defaults = merge(defaults, schema.default);
+    defaults = mergeObjects(defaults, schemaDefault);
   } else if (schemaDefault !== undefined) {
-    defaults = schema.default;
+    defaults = schemaDefault;
   } else if (schemaRef !== undefined) {
     // Use referenced schema defaults for this node.
-    if (!_recurseList.includes(schemaRef)) {
-      updatedRecurseList = _recurseList.concat(schemaRef);
+    if (!stack.has(schemaRef)) {
+      nextStack = new Set(stack).add(schemaRef);
       schemaToCompute = findSchemaDefinition(schemaRef, rootSchema);
     }
   } else if (DEPENDENCIES_KEY in schema) {
@@ -174,7 +169,7 @@ export function computeDefaults<T extends SchemaValue>(
       computeDefaults(validator, itemSchema, {
         rootSchema,
         includeUndefinedValues,
-        _recurseList,
+        stack: stack,
         experimental_defaultFormStateBehavior,
         parentDefaults: Array.isArray(parentDefaults)
           ? parentDefaults[idx]
@@ -230,7 +225,7 @@ export function computeDefaults<T extends SchemaValue>(
     return computeDefaults(validator, schemaToCompute, {
       rootSchema,
       includeUndefinedValues,
-      _recurseList: updatedRecurseList,
+      stack: nextStack,
       experimental_defaultFormStateBehavior,
       parentDefaults: defaults,
       rawFormData: formData,
@@ -268,7 +263,7 @@ export function computeDefaults<T extends SchemaValue>(
           }
           const computedDefault = computeDefaults(validator, value, {
             rootSchema,
-            _recurseList,
+            stack: stack,
             experimental_defaultFormStateBehavior,
             includeUndefinedValues: includeUndefinedValues === true,
             parentDefaults: defaultsAsObject?.[key],
@@ -287,10 +282,7 @@ export function computeDefaults<T extends SchemaValue>(
         }
       }
       const schemaAdditionalProperties = retrievedSchema.additionalProperties;
-      if (
-        schemaAdditionalProperties !== undefined &&
-        typeof schemaAdditionalProperties !== "boolean"
-      ) {
+      if (schemaAdditionalProperties !== undefined) {
         const keys = new Set(
           isSchemaObjectValue(defaults)
             ? schemaProperties === undefined
@@ -308,13 +300,17 @@ export function computeDefaults<T extends SchemaValue>(
         for (const key of formDataRequired) {
           keys.add(key);
         }
+        const additionalPropertySchema =
+          typeof schemaAdditionalProperties === "boolean"
+            ? {}
+            : schemaAdditionalProperties;
         keys.forEach((key) => {
           const computedDefault = computeDefaults(
             validator,
-            schemaAdditionalProperties,
+            additionalPropertySchema,
             {
               rootSchema,
-              _recurseList,
+              stack: stack,
               experimental_defaultFormStateBehavior,
               includeUndefinedValues: includeUndefinedValues === true,
               parentDefaults: defaultsAsObject?.[key],
@@ -361,7 +357,7 @@ export function computeDefaults<T extends SchemaValue>(
           );
           return computeDefaults(validator, schemaItem, {
             rootSchema,
-            _recurseList,
+            stack: stack,
             experimental_defaultFormStateBehavior,
             parentDefaults: item,
             required,
@@ -379,9 +375,10 @@ export function computeDefaults<T extends SchemaValue>(
             ? defaults
             : undefined;
           defaults = rawFormData.map((item, idx) => {
+            // TODO: Remove typecast by excluding `undefined` from the return type
             return computeDefaults(validator, schemaItem, {
               rootSchema,
-              _recurseList,
+              stack: stack,
               experimental_defaultFormStateBehavior,
               rawFormData: item,
               parentDefaults: defaultsAsArray?.[idx],
@@ -418,17 +415,17 @@ export function computeDefaults<T extends SchemaValue>(
       const fillerDefault = fillerSchema.default;
 
       // Calculate filler entries for remaining items (minItems - existing raw data/defaults)
-      const fillerEntries: T[] = new Array(
+      const fillerEntries = new Array(
         schema.minItems - defaultsLength
       ).fill(
-        computeDefaults<any>(validator, fillerSchema, {
+        computeDefaults(validator, fillerSchema, {
           parentDefaults: fillerDefault,
           rootSchema,
-          _recurseList,
+          stack: stack,
           experimental_defaultFormStateBehavior,
           required,
         })
-      ) as T[];
+      );
       // then fill up the rest with either the item default or empty, up to minItems
       return defaultEntries.concat(fillerEntries);
     }

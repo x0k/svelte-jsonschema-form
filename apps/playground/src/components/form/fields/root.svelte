@@ -1,8 +1,6 @@
 <script lang="ts">
-  import merge from "deepmerge";
-
   import { getFormContext } from "../context";
-  import { getSimpleSchemaType, ID_KEY } from "../schema";
+  import { getSimpleSchemaType, ID_KEY, mergeObjects } from "../schema";
   import { getComponent, getField, toIdSchema } from "../utils";
 
   import type { FieldProps } from "./model";
@@ -26,7 +24,7 @@
       : getField(ctx, schemaType, uiSchema)
   );
   const fieldIdSchema = $derived(
-    merge(toIdSchema(ctx, schema, idSchema[ID_KEY], value), idSchema)
+    mergeObjects(toIdSchema(ctx, schema, idSchema[ID_KEY], value), idSchema)
   );
 </script>
 
