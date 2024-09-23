@@ -162,12 +162,12 @@ export function mergeDefaultsWithFormData<T = any>(
   return formData;
 }
 
-export function mergeSchemaObjects(
-  obj1: SchemaObjectValue,
-  obj2: SchemaObjectValue,
+export function mergeSchemaObjects<A extends SchemaObjectValue, B extends SchemaObjectValue>(
+  obj1: A,
+  obj2: B,
   concatArrays: boolean | "preventDuplicates" = false
 ) {
-  const acc = Object.assign({}, obj1);
+  const acc: SchemaObjectValue = Object.assign({}, obj1);
   for (const [key, right] of Object.entries(obj2)) {
     const left = obj1 ? obj1[key] : {};
     if (isSchemaObjectValue(left) && isSchemaObjectValue(right)) {
@@ -182,5 +182,5 @@ export function mergeSchemaObjects(
       acc[key] = right;
     }
   }
-  return acc
+  return acc as A & B;
 }

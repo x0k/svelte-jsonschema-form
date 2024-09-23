@@ -6,7 +6,7 @@ import type { IdSchema } from "../id-schema";
 
 export interface FieldCommonProps<V extends SchemaValue> {
   name: string;
-  value: V
+  value: V | undefined
   schema: Schema;
   uiSchema: UiSchema;
   idSchema: IdSchema<V>;
@@ -27,7 +27,7 @@ export interface FieldAndProps {
 
 export interface FieldValue {
   root: SchemaValue;
-  string: string | File | Date
+  string: string
   number: number;
   integer: number;
   boolean: boolean;

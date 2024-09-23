@@ -1,6 +1,6 @@
 import { createTranslation } from "@/components/form";
 
-export const enTranslation = createTranslation({
+export const translation = createTranslation({
   submit: "Submit",
   "unknown-field-type": (type) => `Unknown field type: ${type}`,
 });

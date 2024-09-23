@@ -6,7 +6,7 @@ import type { UiSchema } from "./ui-schema";
 import type { EnumOption } from "./enum";
 
 export interface WidgetCommonProps<V> extends HTMLAttributes<HTMLElement> {
-  value: V;
+  value: V | undefined;
   schema: Schema;
   uiSchema: UiSchema;
   id: string;

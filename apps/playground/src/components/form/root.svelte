@@ -112,8 +112,8 @@
   ))
 </script>
 
-<Form {...formProps} onsubmit={handleSubmit} bind:form >
-  <Field name="" required={false} {schema} {uiSchema} {idSchema} bind:value={formData} />
+<Form bind:form {...formProps} onsubmit={handleSubmit} >
+  <Field bind:value={formData} name="" required={false} {schema} {uiSchema} {idSchema} />
   {#if children}
     {@render children()}
   {:else}

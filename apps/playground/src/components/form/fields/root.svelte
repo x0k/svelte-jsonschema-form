@@ -24,16 +24,19 @@
       : getField(ctx, schemaType, uiSchema)
   );
   const fieldIdSchema = $derived(
-    mergeSchemaObjects(toIdSchema(ctx, schema, idSchema[ID_KEY], value), idSchema)
+    mergeSchemaObjects(
+      toIdSchema(ctx, schema, idSchema[ID_KEY], value),
+      idSchema
+    )
   );
 </script>
 
 <Layout type="root-field">
   {#if Field}
     <Field
+      bind:value
       {name}
       {required}
-      bind:value
       {schema}
       {uiSchema}
       idSchema={fieldIdSchema}
