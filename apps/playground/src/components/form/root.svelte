@@ -101,7 +101,7 @@
   const Field = $derived(getField(ctx, "root", uiSchema))
   let formData = $state(getDefaultFormState(ctx, schema, value))
   $effect(() => {
-    value = formData as T
+    value = $state.snapshot(formData) as T
   })
   const retrievedSchema = $derived(retrieveSchema<SchemaValue>(ctx, schema, formData))
   const idSchema = $derived(toIdSchema(
