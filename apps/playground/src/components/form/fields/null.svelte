@@ -1,11 +1,11 @@
 <script lang="ts">
   import type { FieldProps } from "./model";
 
-  let { value = $bindable() }: FieldProps<"null"> = $props();
+  const { value, onChange }: FieldProps<"null"> = $props();
 
   $effect(() => {
     if (value === undefined) {
-      value = null;
+      onChange(null);
     }
   });
 </script>

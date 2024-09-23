@@ -17,9 +17,10 @@
 
   const ctx = getFormContext();
 
-  let {
+  const {
     name,
-    value = $bindable(),
+    value,
+    onChange,
     schema,
     uiSchema,
     idSchema,
@@ -37,12 +38,6 @@
   const Description = $derived(getComponent(ctx, "description", uiSchema));
   const Button = $derived(getComponent(ctx, "button", uiSchema));
   const Field = $derived(getField(ctx, "root", uiSchema));
-
-  let proxyValue = $state(value ?? {});
-
-  $effect(() => {
-    value = $state.snapshot(proxyValue);
-  })
 
   function isPropertyAdditional(property: string) {
     if (schemaProperties === undefined) {
@@ -79,19 +74,26 @@
   {required}
   {title}
   description={desc ? description : undefined}
-  addButton={canExpand(ctx, schema, uiSchema, proxyValue) ? addButton : undefined}
+  addButton={canExpand(ctx, schema, uiSchema, value) ? addButton : undefined}
 >
   {#each schemaPropertiesOrder as property (property)}
     {@const isAdditional = isPropertyAdditional(property)}
+    {@const propSchema = schemaProperties?.[property]}
     {@const propUiSchema =
       (isAdditional ? uiSchema.additionalProperties : uiSchema[property]) as UiSchema ?? {}}
     <Field
-      bind:value={proxyValue[property]}
+      value={value?.[property]}
+      onChange={(v) => {
+        onChange({
+          ...value,
+          [property]: v,
+        });
+      }}
       name={property}
       required={requiredProperties.has(property)}
-      schema={schemaProperties?.[property] ?? {}}
+      schema={propSchema === undefined || typeof propSchema === "boolean" ? {} : propSchema}
       uiSchema={propUiSchema}
-      idSchema={idSchema[property] ?? {}}
+      idSchema={idSchema?.[property]}
     />
   {/each}
 </Template>

@@ -7,11 +7,7 @@
 
   const ctx = getFormContext();
 
-  const {
-    schema,
-    uiSchema,
-    value: _ = $bindable(),
-  }: FieldProps<"unsupported"> = $props();
+  const { schema, uiSchema }: FieldProps<"unsupported"> = $props();
 
   const Alert = $derived(getComponent(ctx, "alert", uiSchema));
 </script>

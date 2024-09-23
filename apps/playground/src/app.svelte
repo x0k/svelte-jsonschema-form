@@ -52,15 +52,9 @@
     },
   };
   const uiSchema: UiSchemaRoot = {
-    "ui:options": {
-      widget: "select",
-      submitButton: {
-        class:
-          "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded",
-      },
-    },
+    "ui:options": {},
   };
-  let value = $state();
+  let value = $state.raw();
 </script>
 
 <div class="p-2">
@@ -89,6 +83,17 @@
       {uiSchema}
       {validator}
       {translation}
-    />
+    >
+      <div class="flex gap-2" >
+        <button type="submit"> Submit </button>
+        <button type="button"
+          onclick={() => {
+            value = { age: 123 };
+          }}
+        >
+          Outside mutation
+        </button>
+      </div>
+    </Form>
   </div>
 </div>

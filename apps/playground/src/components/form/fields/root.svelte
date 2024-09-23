@@ -7,9 +7,10 @@
 
   const ctx = getFormContext();
 
-  let {
+  const {
     name,
-    value = $bindable(),
+    value,
+    onChange,
     schema,
     uiSchema,
     idSchema,
@@ -23,18 +24,17 @@
       ? null
       : getField(ctx, schemaType, uiSchema)
   );
-  const fieldIdSchema = $derived(
-    mergeSchemaObjects(
-      toIdSchema(ctx, schema, idSchema[ID_KEY], value),
-      idSchema
-    )
-  );
+  const fieldIdSchema = $derived.by(() => {
+    const nextIdSchema = toIdSchema(ctx, schema, idSchema?.[ID_KEY], value);
+    return idSchema ? mergeSchemaObjects(nextIdSchema, idSchema) : nextIdSchema;
+  });
 </script>
 
 <Layout type="root-field">
   {#if Field}
     <Field
-      bind:value
+      {value}
+      {onChange}
       {name}
       {required}
       {schema}

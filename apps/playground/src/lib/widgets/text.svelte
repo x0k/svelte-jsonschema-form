@@ -1,9 +1,10 @@
 <script lang="ts">
   import type { WidgetProps } from "@/components/form";
 
-  let {
+  const {
     id,
-    value = $bindable(),
+    value,
+    onChange,
     required,
     disabled,
     readonly,
@@ -12,4 +13,15 @@
   }: WidgetProps<"text"> = $props();
 </script>
 
-<input type="text" {id} name={id} bind:value {required} {disabled} {readonly} {autofocus} {placeholder} />
+<input
+  type="text"
+  {id}
+  name={id}
+  {value}
+  onchange={(e) => onChange(e.currentTarget.value)}
+  {required}
+  {disabled}
+  {readonly}
+  {autofocus}
+  {placeholder}
+/>

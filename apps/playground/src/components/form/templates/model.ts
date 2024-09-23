@@ -5,7 +5,7 @@ import type { UiSchema } from "../ui-schema";
 import type { IdSchema } from "../id-schema";
 
 export interface TemplateCommonProps<V extends SchemaValue> {
-  name: string
+  name: string;
   value: V | undefined;
   schema: Schema;
   uiSchema: UiSchema;
@@ -35,4 +35,7 @@ export type Template<T extends TemplateType> = SvelteComponent<
   ""
 >;
 
-export type Templates = <T extends TemplateType>(type: T, uiSchema: UiSchema) => Template<T>
+export type Templates = <T extends TemplateType>(
+  type: T,
+  uiSchema: UiSchema
+) => Template<T>;

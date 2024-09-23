@@ -1,31 +1,36 @@
 <script lang="ts">
   import { getFormContext } from "../context";
   import { getField } from "../utils";
-  
+
   import type { FieldProps } from "./model";
 
   const ctx = getFormContext();
 
-  let {
+  const {
     name,
-    value = $bindable(),
+    value,
+    onChange,
     schema,
     idSchema,
     uiSchema,
     required,
   }: FieldProps<"number"> = $props();
 
-  let proxyValue = $state(value === undefined ? undefined : String(value));
+  let proxyValue = $state<string>();
 
   $effect(() => {
-    value = Number(proxyValue);
+    proxyValue = value === undefined ? undefined : String(value);
   });
 
   const Field = $derived(getField(ctx, "string", uiSchema));
 </script>
 
 <Field
-  bind:value={proxyValue}
+  value={proxyValue}
+  onChange={(v) => {
+    proxyValue = v;
+    onChange(Number(v));
+  }}
   {name}
   {schema}
   {uiSchema}

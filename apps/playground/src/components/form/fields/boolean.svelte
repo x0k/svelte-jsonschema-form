@@ -8,9 +8,10 @@
 
   const ctx = getFormContext();
 
-  let {
+  const {
     name,
-    value = $bindable(),
+    value,
+    onChange,
     schema,
     uiSchema,
     idSchema,
@@ -37,7 +38,7 @@
             .filter((s): s is Schema => s !== undefined),
         },
         uiSchema
-      );
+      ) ?? [];
     }
     const enumValues = schema.enum ?? [true, false];
     if (
@@ -50,13 +51,14 @@
         value: v,
       }));
     }
-    return createOptions(schema, uiSchema);
+    return createOptions(schema, uiSchema) ?? [];
   });
 </script>
 
 <Widget
-  bind:value
   {...getWidgetProps(ctx, name, schema, uiSchema, idSchema)}
+  {value}
+  {onChange}
   {options}
   {required}
 />

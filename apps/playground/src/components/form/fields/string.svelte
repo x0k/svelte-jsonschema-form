@@ -6,9 +6,10 @@
   import type { FieldProps } from "./model";
 
   const ctx = getFormContext();
-  let {
+  const {
     name,
-    value = $bindable(),
+    value,
+    onChange,
     schema,
     uiSchema,
     idSchema,
@@ -17,12 +18,13 @@
   const Widget = $derived(
     getWidget(ctx, isSelect(ctx, schema) ? "select" : "text", uiSchema)
   );
-  const options = $derived(createOptions(schema, uiSchema));
+  const options = $derived(createOptions(schema, uiSchema) ?? []);
 </script>
 
 <Widget
-  bind:value
   {...getWidgetProps(ctx, name, schema, uiSchema, idSchema)}
+  {value}
+  {onChange}
   {options}
   {required}
 />
