@@ -4,12 +4,16 @@ import Form from "./form.svelte";
 import Button from "./button.svelte";
 import Layout from "./layout.svelte";
 import Alert from "./alert.svelte";
+import Title from "./title.svelte";
+import Description from './description.svelte';
 
 export const registry: { [T in ComponentType]: Component<T> } = {
   form: Form,
   button: Button,
   layout: Layout,
   alert: Alert,
+  title: Title,
+  description: Description,
 };
 
 export const components: Components = (type) => registry[type];

@@ -21,13 +21,12 @@ interface UiSchemaCommonContent<O> {
   items?: UiSchema | UiSchema[];
   anyOf?: UiSchema[];
   oneOf?: UiSchema[];
+  additionalProperties?: UiSchema;
 }
 
 export interface UiOptions {
   class?: string;
   style?: string;
-  field?: FieldType | Field<any>;
-  component?: ComponentType | Component<any>;
   widget?: WidgetType | Widget<any>;
   title?: string;
   description?: string;
@@ -36,6 +35,8 @@ export interface UiOptions {
   autofocus?: boolean;
   placeholder?: string;
   enumNames?: string[];
+  order?: string[]
+  expandable?: boolean
 }
 
 export type UiSchema = UiSchemaIndex & UiSchemaContent;

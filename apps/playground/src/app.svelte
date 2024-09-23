@@ -17,9 +17,39 @@
     })
   );
   const schema: Schema = {
+    title: "A registration form",
+    description: "A simple form example.",
     type: "object",
-    title: "Text",
-    // enum: ["foo", "bar", "baz"],
+    required: ["firstName", "lastName"],
+    properties: {
+      firstName: {
+        type: "string",
+        title: "First name",
+        default: "Chuck",
+      },
+      lastName: {
+        type: "string",
+        title: "Last name",
+      },
+      age: {
+        type: "integer",
+        title: "Age",
+      },
+      bio: {
+        type: "string",
+        title: "Bio",
+      },
+      password: {
+        type: "string",
+        title: "Password",
+        minLength: 3,
+      },
+      telephone: {
+        type: "string",
+        title: "Telephone",
+        minLength: 10,
+      },
+    },
   };
   const uiSchema: UiSchemaRoot = {
     "ui:options": {
@@ -38,14 +68,15 @@
   <div class="flex gap-2">
     <div class="flex-[3] flex flex-col gap-2">
       <div class="h-[400px] border rounded overflow-auto p-2">
-        <pre class="w-0" ><code>{JSON.stringify(schema, null, 2)}</code></pre>
+        <pre class="w-0"><code>{JSON.stringify(schema, null, 2)}</code></pre>
       </div>
       <div class="flex gap-2">
         <div class="h-[400px] flex-1 border rounded overflow-auto p-2">
-          <pre class="w-0" ><code>{JSON.stringify(uiSchema, null, 2)}</code></pre>
+          <pre class="w-0"><code>{JSON.stringify(uiSchema, null, 2)}</code
+            ></pre>
         </div>
         <div class="h-[400px] flex-1 border rounded overflow-auto p-2">
-          <pre class="w-0" ><code>{JSON.stringify(value, null, 2)}</code></pre>
+          <pre class="w-0"><code>{JSON.stringify(value, null, 2)}</code></pre>
         </div>
       </div>
     </div>

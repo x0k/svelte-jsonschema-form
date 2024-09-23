@@ -48,4 +48,4 @@ export type Field<T extends FieldType> = SvelteComponent<
   "value"
 >;
 
-export type Fields = <T extends FieldType>(type: T) => Field<T>;
+export type Fields = <T extends FieldType>(type: T, uiSchema: UiSchema) => Field<T>;

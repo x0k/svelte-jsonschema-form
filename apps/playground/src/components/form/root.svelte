@@ -11,6 +11,7 @@
   import { type Fields, fields as defaultFields } from './fields';
   import SubmitButton from './submit-button.svelte';
   import { getComponent, getDefaultFormState, getField, retrieveSchema, toIdSchema } from './utils';
+  import { type Templates, templates as defaultTemplates } from './templates';
 
   let form = $state<HTMLFormElement>()
 
@@ -31,6 +32,7 @@
     value?: T
     uiSchema?: UiSchemaRoot
     fields?: Fields
+    templates?: Templates
     disabled?: boolean
     readonly?: boolean
     idPrefix?: string
@@ -47,6 +49,7 @@
     value = $bindable(),
     uiSchema = {},
     fields = defaultFields,
+    templates = defaultTemplates,
     disabled = false,
     readonly = false,
     idPrefix = "root",
@@ -84,6 +87,9 @@
     },
     get fields() {
       return fields
+    },
+    get templates() {
+      return templates
     },
     get components() {
       return components

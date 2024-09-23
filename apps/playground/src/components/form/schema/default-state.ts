@@ -5,6 +5,7 @@ import {
   isSchema,
   type Schema,
   type SchemaObjectValue,
+  type SchemaType,
   type SchemaValue,
 } from "./schema";
 import type { Validator } from "./validator";
@@ -12,10 +13,35 @@ import { findSchemaDefinition } from "./definitions";
 import { isFixedItems } from "./is-fixed-items";
 import { getDiscriminatorFieldFromSchema } from "./discriminator";
 import { isSchemaObjectValue, isSchemaValueEmpty } from "./value";
-import { mergeDefaultsWithFormData, mergeSchemaObjects, mergeSchemas } from "./merge";
+import {
+  mergeDefaultsWithFormData,
+  mergeSchemaObjects,
+  mergeSchemas,
+} from "./merge";
 import { getSimpleSchemaType } from "./type";
 import { isMultiSelect } from "./is-select";
 import { getClosestMatchingOption } from "./matching";
+
+export function getDefaultValueForType(type: SchemaType) {
+  switch (type) {
+    case "array":
+      return [];
+    case "object":
+      return {};
+    case "boolean":
+      return false;
+    case "integer":
+    case "number":
+      return 0;
+    case "string":
+      return "";
+    case "null":
+      return null;
+    default:
+      const n: never = type;
+      throw new Error(`Unsupported schema type: ${n}`);
+  }
+}
 
 export function getDefaultFormState<T extends SchemaValue>(
   validator: Validator<T>,

@@ -6,3 +6,4 @@ export * from "./value";
 export * from "./is-select";
 export * from "./default-state";
 export * from "./merge";
+export * from "./order-properties";

@@ -16,6 +16,7 @@ import type {
   WidgetType,
 } from "./widgets";
 import { toIdSchema as toIdSchemaInternal, type IdSchema } from "./id-schema";
+import type { Template, TemplateType } from "./templates";
 
 export function retrieveSchema<T extends SchemaValue>(
   ctx: FormContext<T>,
@@ -48,17 +49,20 @@ export function getField<T extends FieldType>(
   checkForUndefined = true
 ): Field<T> {
   if (checkForUndefined) {
-    return getField(ctx, type, uiSchema, false) ?? ctx.fields("unsupported");
+    return (
+      getField(ctx, type, uiSchema, false) ??
+      ctx.fields("unsupported", uiSchema)
+    );
   }
-  const field = uiSchema["ui:options"]?.field;
-  switch (typeof field) {
-    case "undefined":
-      return ctx.fields(type);
-    case "string":
-      return ctx.fields(field as T);
-    default:
-      return field;
-  }
+  return ctx.fields(type, uiSchema);
+}
+
+export function getTemplate<T extends TemplateType>(
+  ctx: FormContext<unknown>,
+  type: T,
+  uiSchema: UiSchema
+): Template<T> {
+  return ctx.templates(type, uiSchema);
 }
 
 export function getComponent<T extends ComponentType>(
@@ -66,15 +70,7 @@ export function getComponent<T extends ComponentType>(
   type: T,
   uiSchema: UiSchema
 ): Component<T> {
-  const component = uiSchema["ui:options"]?.component;
-  switch (typeof component) {
-    case "undefined":
-      return ctx.components(type);
-    case "string":
-      return ctx.components(component as T);
-    default:
-      return component as Component<T>;
-  }
+  return ctx.components(type, uiSchema);
 }
 
 export function getComponentProps(
@@ -142,4 +138,23 @@ export function getDefaultFormState<T extends SchemaValue>(
     ctx.schema,
     false
   );
+}
+
+export function canExpand<T>(
+  _: FormContext<T>,
+  schema: Schema,
+  uiSchema: UiSchema,
+  formData?: T
+) {
+  if (!schema.additionalProperties) {
+    return false;
+  }
+  const expandable = uiSchema["ui:options"]?.expandable;
+  if (expandable === false) {
+    return false
+  }
+  if (schema.maxProperties !== undefined && formData) {
+    return Object.keys(formData).length < schema.maxProperties;
+  }
+  return true;
 }
