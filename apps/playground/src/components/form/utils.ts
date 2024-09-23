@@ -9,7 +9,7 @@ import {
   type Schema,
   type SchemaValue,
 } from "./schema";
-import type { Widget, WidgetCommonProps, WidgetType } from "./widgets";
+import type { CompatibleWidgetType, Widget, WidgetCommonProps, WidgetType } from "./widgets";
 import { toIdSchema as toIdSchemaInternal, type IdSchema } from "./id-schema";
 
 export function retrieveSchema<T extends SchemaValue>(
@@ -24,7 +24,7 @@ export function getWidget<T extends WidgetType>(
   ctx: FormContext<unknown>,
   type: T,
   uiSchema: UiSchema
-): Widget<T> {
+): Widget<CompatibleWidgetType<T>> {
   const widget = uiSchema["ui:options"]?.widget;
   switch (typeof widget) {
     case "undefined":
@@ -32,7 +32,7 @@ export function getWidget<T extends WidgetType>(
     case "string":
       return ctx.widgets(widget as T);
     default:
-      return widget as Widget<T>;
+      return widget as Widget<CompatibleWidgetType<T>>;
   }
 }
 

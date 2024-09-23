@@ -3,6 +3,8 @@ import type { Get } from "@/lib/types";
 export interface Labels {
   submit: [];
   "unknown-field-type": [type: string];
+  yes: [];
+  no: [];
 }
 
 export type Label = keyof Labels;

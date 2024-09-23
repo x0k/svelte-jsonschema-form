@@ -26,11 +26,13 @@ export interface WidgetsAndProps {
   select: {
     options: EnumOption<SchemaValue>[];
   };
+  checkbox: {};
 }
 
 export interface WidgetValue {
   text: string;
   select: SchemaValue;
+  checkbox: boolean;
 }
 
 export type WidgetType = keyof WidgetsAndProps;
@@ -44,4 +46,11 @@ export type Widget<T extends WidgetType> = SvelteComponent<
   "value"
 >;
 
-export type Widgets = <T extends WidgetType>(type: T) => Widget<T>;
+export type CompatibleWidgetType<T extends WidgetType> = {
+  [W in WidgetType]: WidgetValue[T] extends WidgetValue[W] ? W : never;
+}[WidgetType];
+
+export type Widgets = <T extends WidgetType>(
+  type: T
+) => Widget<CompatibleWidgetType<T>>;
+

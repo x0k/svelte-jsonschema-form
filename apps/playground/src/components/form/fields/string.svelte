@@ -14,25 +14,15 @@
     idSchema,
     required,
   }: FieldProps<"string"> = $props();
-  const [Widget, widgetProps] = $derived.by(() => {
-    const type = isSelect(ctx, schema) ? "select" : "text";
-    switch (type) {
-      case "select":
-        return [
-          getWidget(ctx, "select", uiSchema),
-          { options: createOptions(schema, uiSchema) },
-        ] as const;
-      case "text":
-        return [getWidget(ctx, "text", uiSchema), {}] as const;
-      default:
-        throw new Error(`Unsupported type: ${type}`);
-    }
-  });
+  const Widget = $derived(
+    getWidget(ctx, isSelect(ctx, schema) ? "select" : "text", uiSchema)
+  );
+  const options = $derived(createOptions(schema, uiSchema));
 </script>
 
 <Widget
   bind:value
   {...getWidgetProps(ctx, name, schema, uiSchema, idSchema)}
-  {...widgetProps}
+  {options}
   {required}
 />

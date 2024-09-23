@@ -17,12 +17,13 @@
     })
   );
   const schema: Schema = {
-    type: "number",
+    type: "boolean",
     title: "Text",
     // enum: ["foo", "bar", "baz"],
   };
   const uiSchema: UiSchemaRoot = {
     "ui:options": {
+      widget: "select",
       submitButton: {
         class:
           "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded",
