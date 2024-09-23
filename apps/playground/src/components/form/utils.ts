@@ -9,7 +9,12 @@ import {
   type Schema,
   type SchemaValue,
 } from "./schema";
-import type { CompatibleWidgetType, Widget, WidgetCommonProps, WidgetType } from "./widgets";
+import type {
+  CompatibleWidgetType,
+  Widget,
+  WidgetCommonProps,
+  WidgetType,
+} from "./widgets";
 import { toIdSchema as toIdSchemaInternal, type IdSchema } from "./id-schema";
 
 export function retrieveSchema<T extends SchemaValue>(
@@ -39,8 +44,12 @@ export function getWidget<T extends WidgetType>(
 export function getField<T extends FieldType>(
   ctx: FormContext<unknown>,
   type: T,
-  uiSchema: UiSchema
+  uiSchema: UiSchema,
+  checkForUndefined = true
 ): Field<T> {
+  if (checkForUndefined) {
+    return getField(ctx, type, uiSchema, false) ?? ctx.fields("unsupported");
+  }
   const field = uiSchema["ui:options"]?.field;
   switch (typeof field) {
     case "undefined":

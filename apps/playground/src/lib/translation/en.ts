@@ -2,7 +2,7 @@ import { createTranslation } from "@/components/form";
 
 export const translation = createTranslation({
   submit: "Submit",
-  "unknown-field-type": (type) => `Unknown field type: ${type}`,
+  "unsupported-field-type": (type) => `Unsupported field type: ${type}`,
   yes: "Yes",
   no: "No",
 });

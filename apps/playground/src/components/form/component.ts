@@ -1,4 +1,4 @@
-import type { Component as SvelteComponent } from "svelte";
+import type { Snippet, Component as SvelteComponent } from "svelte";
 import type { HTMLAttributes } from "svelte/elements";
 
 import type { Get } from "@/lib/types";
@@ -15,10 +15,21 @@ export interface LayoutComponentProps extends HTMLAttributes<HTMLDivElement> {
   type: keyof LayoutType;
 }
 
+export interface AlertType {
+  error: {};
+}
+
+export interface AlertComponentProps
+  extends HTMLAttributes<HTMLDivElement> {
+  type: keyof AlertType;
+  title?: string;
+}
+
 export interface ComponentsAndProps {
   form: FormComponentProps;
   button: HTMLAttributes<HTMLButtonElement>;
   layout: LayoutComponentProps;
+  alert: AlertComponentProps;
 }
 
 export interface ComponentExports {}

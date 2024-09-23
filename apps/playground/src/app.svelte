@@ -17,7 +17,7 @@
     })
   );
   const schema: Schema = {
-    type: "boolean",
+    type: "object",
     title: "Text",
     // enum: ["foo", "bar", "baz"],
   };
@@ -51,13 +51,13 @@
     </div>
     <Form
       class="flex-[2]"
+      bind:value
       {components}
       {widgets}
       {schema}
       {uiSchema}
       {validator}
       {translation}
-      bind:value
     />
   </div>
 </div>

@@ -2,7 +2,7 @@ import type { Get } from "@/lib/types";
 
 export interface Labels {
   submit: [];
-  "unknown-field-type": [type: string];
+  "unsupported-field-type": [type: string];
   yes: [];
   no: [];
 }
