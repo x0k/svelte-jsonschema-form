@@ -7,7 +7,7 @@
   import { translation } from "@/lib/translation/en";
   import { Form, type Schema, type UiSchemaRoot } from "@/components/form";
 
-  const validator = new AjvValidator<string>(
+  const validator = new AjvValidator(
     new Ajv({
       allErrors: true,
       multipleOfPrecision: 8,
@@ -17,9 +17,9 @@
     })
   );
   const schema: Schema = {
-    type: "string",
+    type: "number",
     title: "Text",
-    enum: ["foo", "bar", "baz"],
+    // enum: ["foo", "bar", "baz"],
   };
   const uiSchema: UiSchemaRoot = {
     "ui:options": {
@@ -29,7 +29,7 @@
       },
     },
   };
-  let value = $state<string>();
+  let value = $state();
 </script>
 
 <div class="p-2">
