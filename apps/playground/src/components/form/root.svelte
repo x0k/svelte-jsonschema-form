@@ -99,7 +99,10 @@
 
   const Form = $derived(getComponent(ctx, "form", uiSchema))
   const Field = $derived(getField(ctx, "root", uiSchema))
-  let formData = $state(getDefaultFormState(ctx, schema, value) ?? null)
+  let formData = $state(getDefaultFormState(ctx, schema, value))
+  $effect(() => {
+    value = formData as T
+  })
   const retrievedSchema = $derived(retrieveSchema<SchemaValue>(ctx, schema, formData))
   const idSchema = $derived(toIdSchema(
     ctx,
@@ -109,8 +112,8 @@
   ))
 </script>
 
-<Form {...formProps} bind:form onsubmit={handleSubmit}>
-  <Field name="" required={false} bind:value={formData} {schema} {uiSchema} {idSchema} />
+<Form {...formProps} onsubmit={handleSubmit} bind:form >
+  <Field name="" required={false} {schema} {uiSchema} {idSchema} bind:value={formData} />
   {#if children}
     {@render children()}
   {:else}

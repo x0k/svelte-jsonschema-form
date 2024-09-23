@@ -15,7 +15,7 @@ import { toIdSchema as toIdSchemaInternal, type IdSchema } from "./id-schema";
 export function retrieveSchema<T extends SchemaValue>(
   ctx: FormContext<T>,
   schema: Schema,
-  formData: T
+  formData: T | undefined
 ) {
   return retrieveSchemaInternal(ctx.validator, schema, ctx.schema, formData);
 }
