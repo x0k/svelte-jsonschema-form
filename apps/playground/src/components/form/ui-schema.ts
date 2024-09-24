@@ -1,5 +1,3 @@
-import type { Component, ComponentType } from "./component";
-import type { Field, FieldType } from "./fields";
 import type { Widget, WidgetType } from "./widgets";
 
 export type UiSchemaRoot = UiSchemaRootIndex & UiSchemaRootContent;
@@ -14,6 +12,7 @@ type UiSchemaRootContent = UiSchemaCommonContent<
   }
 > & {
   "ui:rootFieldId"?: string;
+  "ui:globalOptions"?: UiOptions;
 };
 
 interface UiSchemaCommonContent<O> {

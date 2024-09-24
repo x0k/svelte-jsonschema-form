@@ -26,6 +26,14 @@ export function retrieveSchema<T extends SchemaValue>(
   return retrieveSchemaInternal(ctx.validator, schema, ctx.schema, formData);
 }
 
+export function getUiOptions(ctx: FormContext<unknown>, uiSchema: UiSchema) {
+  const globalUiOptions = ctx.uiSchema["ui:globalOptions"];
+  const uiOptions = uiSchema["ui:options"];
+  return globalUiOptions !== undefined
+    ? { ...globalUiOptions, ...uiOptions }
+    : uiOptions;
+}
+
 export function getWidget<T extends WidgetType>(
   ctx: FormContext<unknown>,
   type: T,
@@ -77,11 +85,12 @@ export function getComponentProps(
   ctx: FormContext<unknown>,
   uiSchema: UiSchema
 ) {
+  const uiOptions = getUiOptions(ctx, uiSchema);
   return {
-    class: uiSchema["ui:options"]?.class,
-    style: uiSchema["ui:options"]?.style,
-    disabled: ctx.disabled || uiSchema["ui:options"]?.disabled,
-    readonly: ctx.readonly || uiSchema["ui:options"]?.readonly,
+    class: uiOptions?.class,
+    style: uiOptions?.style,
+    disabled: uiOptions?.disabled || ctx.disabled,
+    readonly: uiOptions?.readonly || ctx.readonly,
   };
 }
 
@@ -92,15 +101,16 @@ export function getWidgetProps<T>(
   uiSchema: UiSchema,
   idSchema: IdSchema<T>
 ) {
+  const uiOptions = getUiOptions(ctx, uiSchema);
   return {
     schema,
     uiSchema,
     id: idSchema.$id,
-    label: uiSchema["ui:options"]?.title ?? schema.title ?? name,
-    disabled: uiSchema["ui:options"]?.disabled || ctx.disabled,
-    readonly: uiSchema["ui:options"]?.readonly || ctx.readonly,
-    autofocus: uiSchema["ui:options"]?.autofocus || false,
-    placeholder: uiSchema["ui:options"]?.placeholder || "",
+    label: uiOptions?.title ?? schema.title ?? name,
+    disabled: uiOptions?.disabled || ctx.disabled,
+    readonly: uiOptions?.readonly || ctx.readonly,
+    autofocus: uiOptions?.autofocus || false,
+    placeholder: uiOptions?.placeholder || "",
   } satisfies Omit<WidgetCommonProps<T>, "value" | "required">;
 }
 
@@ -141,7 +151,7 @@ export function getDefaultFormState<T extends SchemaValue>(
 }
 
 export function canExpand<T>(
-  _: FormContext<T>,
+  ctx: FormContext<T>,
   schema: Schema,
   uiSchema: UiSchema,
   formData?: T
@@ -149,9 +159,9 @@ export function canExpand<T>(
   if (!schema.additionalProperties) {
     return false;
   }
-  const expandable = uiSchema["ui:options"]?.expandable;
+  const expandable = getUiOptions(ctx, uiSchema)?.expandable;
   if (expandable === false) {
-    return false
+    return false;
   }
   if (schema.maxProperties !== undefined && formData) {
     return Object.keys(formData).length < schema.maxProperties;
