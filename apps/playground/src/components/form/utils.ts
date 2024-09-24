@@ -17,6 +17,13 @@ import type {
 } from "./widgets";
 import { toIdSchema as toIdSchemaInternal, type IdSchema } from "./id-schema";
 import type { Template, TemplateType } from "./templates";
+import Message from "./message.svelte";
+
+const createMessage =
+  (message: string): typeof Message =>
+  // @ts-expect-error
+  (internal) =>
+    Message(internal, { message });
 
 export function retrieveSchema<T extends SchemaValue>(
   ctx: FormContext<T>,
@@ -34,11 +41,11 @@ export function getUiOptions(ctx: FormContext<unknown>, uiSchema: UiSchema) {
     : uiOptions;
 }
 
-export function getWidget<T extends WidgetType>(
+function getWidgetInternal<T extends WidgetType>(
   ctx: FormContext<unknown>,
   type: T,
   uiSchema: UiSchema
-): Widget<CompatibleWidgetType<T>> {
+): Widget<CompatibleWidgetType<T>> | undefined {
   const widget = uiSchema["ui:options"]?.widget;
   switch (typeof widget) {
     case "undefined":
@@ -50,19 +57,27 @@ export function getWidget<T extends WidgetType>(
   }
 }
 
+export function getWidget<T extends WidgetType>(
+  ctx: FormContext<unknown>,
+  type: T,
+  uiSchema: UiSchema
+): Widget<CompatibleWidgetType<T>> {
+  return (
+    getWidgetInternal(ctx, type, uiSchema) ??
+    createMessage(`Widget ${type} not found`)
+  );
+}
+
 export function getField<T extends FieldType>(
   ctx: FormContext<unknown>,
   type: T,
-  uiSchema: UiSchema,
-  checkForUndefined = true
+  uiSchema: UiSchema
 ): Field<T> {
-  if (checkForUndefined) {
-    return (
-      getField(ctx, type, uiSchema, false) ??
-      ctx.fields("unsupported", uiSchema)
-    );
-  }
-  return ctx.fields(type, uiSchema);
+  return (
+    ctx.fields(type, uiSchema) ??
+    ctx.fields("unsupported", uiSchema) ??
+    createMessage(`Field ${type} not found`)
+  );
 }
 
 export function getTemplate<T extends TemplateType>(
@@ -70,7 +85,9 @@ export function getTemplate<T extends TemplateType>(
   type: T,
   uiSchema: UiSchema
 ): Template<T> {
-  return ctx.templates(type, uiSchema);
+  return (
+    ctx.templates(type, uiSchema) ?? createMessage(`Template ${type} not found`)
+  );
 }
 
 export function getComponent<T extends ComponentType>(
@@ -78,7 +95,10 @@ export function getComponent<T extends ComponentType>(
   type: T,
   uiSchema: UiSchema
 ): Component<T> {
-  return ctx.components(type, uiSchema);
+  return (
+    ctx.components(type, uiSchema) ??
+    createMessage(`Component ${type} not found`)
+  );
 }
 
 export function getComponentProps(

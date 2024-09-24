@@ -38,4 +38,4 @@ export type Template<T extends TemplateType> = SvelteComponent<
 export type Templates = <T extends TemplateType>(
   type: T,
   uiSchema: UiSchema
-) => Template<T>;
+) => Template<T> | undefined;

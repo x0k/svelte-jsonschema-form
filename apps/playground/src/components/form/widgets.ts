@@ -48,4 +48,4 @@ export type CompatibleWidgetType<T extends WidgetType> = {
 
 export type Widgets = <T extends WidgetType>(
   type: T
-) => Widget<CompatibleWidgetType<T>>;
+) => Widget<CompatibleWidgetType<T>> | undefined;

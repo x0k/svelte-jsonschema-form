@@ -70,4 +70,4 @@ export type Component<T extends ComponentType> = SvelteComponent<
   Get<ComponentBindings, T, "">
 >;
 
-export type Components = <T extends ComponentType>(type: T, uiSchema: UiSchema) => Component<T>;
+export type Components = <T extends ComponentType>(type: T, uiSchema: UiSchema) => Component<T> | undefined;

@@ -57,4 +57,4 @@ export type Field<T extends FieldType> = SvelteComponent<
 export type Fields = <T extends FieldType>(
   type: T,
   uiSchema: UiSchema
-) => Field<T>;
+) => Field<T> | undefined;
