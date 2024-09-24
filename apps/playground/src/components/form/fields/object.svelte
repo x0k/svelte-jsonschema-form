@@ -3,6 +3,7 @@
   import { getFormContext } from "../context";
   import {
     ADDITIONAL_PROPERTY_FLAG,
+    isAdditionalProperty,
     isSchemaObjectValue,
     orderProperties,
   } from "../schema";
@@ -38,17 +39,6 @@
   const Button = $derived(getComponent(ctx, "button", uiSchema));
   const Field = $derived(getField(ctx, "root", uiSchema));
 
-  function isPropertyAdditional(property: string) {
-    if (schemaProperties === undefined) {
-      return false;
-    }
-    const propertySchema = schemaProperties[property];
-    if (typeof propertySchema === "boolean") {
-      return false;
-    }
-    return ADDITIONAL_PROPERTY_FLAG in propertySchema;
-  }
-
   const label = $derived(
     uiSchema["ui:options"]?.title ?? schema.title ?? name
   )
@@ -75,9 +65,9 @@
   description={desc ? description : undefined}
   addButton={canExpand(ctx, schema, uiSchema, value) ? addButton : undefined}
 >
-  {#if value !== undefined}
+  {#if schemaProperties !== undefined && value !== undefined}
     {#each schemaPropertiesOrder as property (property)}
-      {@const isAdditional = isPropertyAdditional(property)}
+      {@const isAdditional = isAdditionalProperty(schemaProperties, property)}
       {@const propSchema = schemaProperties?.[property]}
       {@const propUiSchema =
         (isAdditional ? uiSchema.additionalProperties : uiSchema[property]) as UiSchema ?? {}}
