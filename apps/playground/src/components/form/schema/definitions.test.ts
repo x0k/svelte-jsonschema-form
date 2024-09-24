@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { findSchemaDefinition } from './definitions';
+
 import type { Schema } from './schema';
-// import { findSchemaDefinitionRecursive } from '../src/findSchemaDefinition';
+import { findSchemaDefinition } from './definitions';
+// import { findSchemaDefinitionRecursive } from './definitions';
 
 const schema: Schema = {
   type: 'object',

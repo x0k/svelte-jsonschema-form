@@ -7,15 +7,6 @@
   import { translation } from "@/lib/translation/en";
   import { Form, type Schema, type UiSchemaRoot } from "@/components/form";
 
-  const validator = new AjvValidator(
-    new Ajv({
-      allErrors: true,
-      multipleOfPrecision: 8,
-      strict: false,
-      verbose: true,
-      discriminator: true,
-    })
-  );
   const schema: Schema = {
     title: "A registration form",
     description: "A simple form example.",
@@ -54,7 +45,26 @@
   const uiSchema: UiSchemaRoot = {
     "ui:options": {},
   };
-  let value = $state();
+
+  interface Data {
+    firstName: string;
+    lastName: string;
+    age?: number;
+    bio?: string;
+    password?: string;
+    telephone?: string;
+  }
+
+  let value = $state<Data>();
+  const validator = new AjvValidator(
+    new Ajv({
+      allErrors: true,
+      multipleOfPrecision: 8,
+      strict: false,
+      verbose: true,
+      discriminator: true,
+    })
+  );
 </script>
 
 <div class="p-2">
@@ -84,11 +94,12 @@
       {validator}
       {translation}
     >
-      <div class="flex gap-2" >
+      <div class="flex gap-2">
         <button type="submit"> Submit </button>
-        <button type="button"
+        <button
+          type="button"
           onclick={() => {
-            value = { age: 123 };
+            value = { firstName: "first", lastName: "last" };
           }}
         >
           Outside mutation

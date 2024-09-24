@@ -5,13 +5,10 @@ import {
 } from "./discriminator";
 import { resolveAllReferences, retrieveSchema } from "./resolve";
 import {
-  ANY_OF_KEY,
   isSchema,
-  ONE_OF_KEY,
   PROPERTIES_KEY,
   REF_KEY,
   type Schema,
-  type SchemaObjectValue,
   type SchemaValue,
 } from "./schema";
 import { typeOfValue } from "./type";

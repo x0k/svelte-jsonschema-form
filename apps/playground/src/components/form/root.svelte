@@ -1,4 +1,4 @@
-<script lang="ts" generics="T extends SchemaValue">
+<script lang="ts" generics="T">
   import { untrack, type Snippet } from 'svelte';
   import type { HTMLAttributes } from "svelte/elements";
 
@@ -23,9 +23,11 @@
     form?.reset()
   }
 
+  type Value = SchemaValue | undefined
+
   interface Props extends HTMLAttributes<HTMLFormElement> {
     schema: Schema
-    validator: Validator<T>
+    validator: Validator<Value>
     components: Components
     widgets: Widgets
     translation: Translation
@@ -63,7 +65,7 @@
     console.log(e);
   }
 
-  const ctx: FormContext<T> = {
+  const ctx: FormContext<Value> = {
     get schema() {
       return schema
     },
@@ -109,21 +111,21 @@
     schema;
     untrack(() => {
       // TODO: Mutate `value` directly if it possible
-      value = getDefaultFormState(ctx, schema, value) as T
+      value = getDefaultFormState(ctx, schema, value as Value) as T
     })
   })
   
-  const retrievedSchema = $derived(retrieveSchema(ctx, schema, value))
+  const retrievedSchema = $derived(retrieveSchema(ctx, schema, value as Value))
   const idSchema = $derived(toIdSchema(
     ctx,
     retrievedSchema,
     uiSchema['ui:rootFieldId'],
-    value
+    value as Value
   ))
 </script>
 
 <Form bind:form {...formProps} onsubmit={handleSubmit} >
-  <Field bind:value name="" required={false} {schema} {uiSchema} {idSchema} />
+  <Field bind:value={value as Value} name="" required={false} {schema} {uiSchema} {idSchema} />
   {#if children}
     {@render children()}
   {:else}

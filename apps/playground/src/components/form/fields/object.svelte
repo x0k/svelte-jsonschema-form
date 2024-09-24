@@ -2,13 +2,12 @@
   import type { UiSchema } from '../ui-schema';
   import { getFormContext } from "../context";
   import {
-    ADDITIONAL_PROPERTY_FLAG,
     isAdditionalProperty,
     isSchemaObjectValue,
     orderProperties,
   } from "../schema";
   import {
-  canExpand,
+    canExpand,
     getComponent,
     getField,
     getTemplate,
@@ -49,7 +48,7 @@
   <Title title={label} />
 {/snippet}
 {#snippet description()}
-  <Description description={desc} />
+  <Description description={desc!} />
 {/snippet}
 {#snippet addButton()}
   <Button type="add" />

@@ -64,7 +64,9 @@ export function getWidget<T extends WidgetType>(
 ): Widget<CompatibleWidgetType<T>> {
   return (
     getWidgetInternal(ctx, type, uiSchema) ??
-    createMessage(`Widget ${type} not found`)
+    (createMessage(`Widget ${type} not found`) as Widget<
+      CompatibleWidgetType<T>
+    >)
   );
 }
 
@@ -75,7 +77,7 @@ export function getField<T extends FieldType>(
 ): Field<T> {
   return (
     ctx.fields(type, uiSchema) ??
-    ctx.fields("unsupported", uiSchema) ??
+    (ctx.fields("unsupported", uiSchema) as Field<T>) ??
     createMessage(`Field ${type} not found`)
   );
 }
@@ -86,7 +88,8 @@ export function getTemplate<T extends TemplateType>(
   uiSchema: UiSchema
 ): Template<T> {
   return (
-    ctx.templates(type, uiSchema) ?? createMessage(`Template ${type} not found`)
+    ctx.templates(type, uiSchema) ??
+    (createMessage(`Template ${type} not found`) as Template<T>)
   );
 }
 
@@ -95,6 +98,9 @@ export function getComponent<T extends ComponentType>(
   type: T,
   uiSchema: UiSchema
 ): Component<T> {
+  // @ts-expect-error TODO: Fix this, currently this can fail
+  // when some component with a binding missed in message component
+  // will not be found
   return (
     ctx.components(type, uiSchema) ??
     createMessage(`Component ${type} not found`)
