@@ -98,9 +98,7 @@ export function getComponent<T extends ComponentType>(
   type: T,
   uiSchema: UiSchema
 ): Component<T> {
-  // @ts-expect-error TODO: Fix this, currently this can fail
-  // when some component with a binding missed in message component
-  // will not be found
+  // @ts-expect-error TODO: improve `createMessage` type
   return (
     ctx.components(type, uiSchema) ??
     createMessage(`Component ${type} not found`)
