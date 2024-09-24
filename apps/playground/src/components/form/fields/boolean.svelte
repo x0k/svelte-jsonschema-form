@@ -8,10 +8,9 @@
 
   const ctx = getFormContext();
 
-  const {
+  let {
     name,
-    value,
-    onChange,
+    value = $bindable(),
     schema,
     uiSchema,
     idSchema,
@@ -56,9 +55,8 @@
 </script>
 
 <Widget
+  bind:value
   {...getWidgetProps(ctx, name, schema, uiSchema, idSchema)}
-  {value}
-  {onChange}
   {options}
   {required}
 />

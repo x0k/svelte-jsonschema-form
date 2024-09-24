@@ -15,7 +15,6 @@ import {
   REQUIRED_KEY,
   THEN_KEY,
   type Schema,
-  type SchemaArrayValue,
   type SchemaDefinition,
   type SchemaObjectValue,
 } from "./schema";

@@ -12,7 +12,6 @@ import type { IdSchema } from "../id-schema";
 export interface FieldCommonProps<V extends SchemaValue> {
   name: string;
   value: V | undefined;
-  onChange: (value: V) => void;
   schema: Schema;
   uiSchema: UiSchema;
   idSchema: IdSchema<V>;
@@ -23,14 +22,14 @@ export interface FieldAndProps<V extends SchemaValue> {
   root: Omit<FieldCommonProps<V>, "idSchema"> & {
     idSchema?: IdSchema<SchemaValue>;
   };
-  string: FieldCommonProps<V>
-  number: FieldCommonProps<V>
-  integer: FieldCommonProps<V>
-  boolean: FieldCommonProps<V>
-  object: FieldCommonProps<V>
-  array: FieldCommonProps<V>
-  null: FieldCommonProps<V>
-  unsupported: FieldCommonProps<V>
+  string: FieldCommonProps<V>;
+  number: FieldCommonProps<V>;
+  integer: FieldCommonProps<V>;
+  boolean: FieldCommonProps<V>;
+  object: FieldCommonProps<V>;
+  array: FieldCommonProps<V>;
+  null: FieldCommonProps<V>;
+  unsupported: FieldCommonProps<V>;
 }
 
 export interface FieldValue {
@@ -49,7 +48,11 @@ export type FieldType = keyof FieldAndProps<SchemaValue>;
 
 export type FieldProps<T extends FieldType> = FieldAndProps<FieldValue[T]>[T];
 
-export type Field<T extends FieldType> = SvelteComponent<FieldProps<T>>;
+export type Field<T extends FieldType> = SvelteComponent<
+  FieldProps<T>,
+  {},
+  "value"
+>;
 
 export type Fields = <T extends FieldType>(
   type: T,

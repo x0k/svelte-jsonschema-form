@@ -101,7 +101,7 @@ export function getWidgetProps<T>(
     readonly: uiSchema["ui:options"]?.readonly || ctx.readonly,
     autofocus: uiSchema["ui:options"]?.autofocus || false,
     placeholder: uiSchema["ui:options"]?.placeholder || "",
-  } satisfies Omit<WidgetCommonProps<T>, "value" | "onChange" | "required">;
+  } satisfies Omit<WidgetCommonProps<T>, "value" | "required">;
 }
 
 export function isSelect(ctx: FormContext<unknown>, schema: Schema) {

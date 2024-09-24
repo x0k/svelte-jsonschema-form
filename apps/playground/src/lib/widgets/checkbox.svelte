@@ -1,11 +1,10 @@
 <script lang="ts">
   import type { WidgetProps } from "@/components/form";
 
-  const {
+  let {
     id,
     label,
-    value,
-    onChange,
+    value = $bindable(),
     required,
     disabled,
     autofocus,
@@ -16,10 +15,7 @@
   <input
     {id}
     name={id}
-    checked={value}
-    onchange={(e) => {
-      onChange(e.currentTarget.checked);
-    }}
+    bind:checked={value}
     type="checkbox"
     {required}
     {disabled}

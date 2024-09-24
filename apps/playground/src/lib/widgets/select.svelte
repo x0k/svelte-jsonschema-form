@@ -1,13 +1,9 @@
 <script lang="ts">
-  import { untrack } from "svelte";
-  import { deepEqual } from "fast-equals";
+  import type { WidgetProps } from "@/components/form";
 
-  import type { SchemaValue, WidgetProps } from "@/components/form";
-
-  const {
+  let {
     id,
-    value,
-    onChange,
+    value = $bindable(),
     options,
     required,
     disabled,
@@ -15,29 +11,12 @@
     autofocus,
     placeholder,
   }: WidgetProps<"select"> = $props();
-
-  let proxyValue = $state.raw<SchemaValue>();
-  $effect(() => {
-    proxyValue = $state.snapshot(value);
-  });
-
-  $effect(() => {
-    proxyValue;
-    untrack(() => {
-      if (
-        proxyValue !== undefined &&
-        !deepEqual(proxyValue, $state.snapshot(value))
-      ) {
-        onChange(proxyValue);
-      }
-    });
-  });
 </script>
 
 <select
   {id}
   name={readonly ? id : undefined}
-  bind:value={proxyValue}
+  bind:value
   {required}
   disabled={disabled || readonly}
   {autofocus}

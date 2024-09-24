@@ -7,7 +7,6 @@ import type { EnumOption } from "./enum";
 
 export interface WidgetCommonProps<V> extends HTMLAttributes<HTMLElement> {
   value: V | undefined;
-  onChange: (value: V) => void;
   schema: Schema;
   uiSchema: UiSchema;
   id: string;
@@ -41,7 +40,7 @@ export type WidgetType = keyof WidgetsAndProps;
 export type WidgetProps<T extends WidgetType> = WidgetsAndProps[T] &
   WidgetCommonProps<WidgetValue[T]>;
 
-export type Widget<T extends WidgetType> = SvelteComponent<WidgetProps<T>>;
+export type Widget<T extends WidgetType> = SvelteComponent<WidgetProps<T>, {}, "value">;
 
 export type CompatibleWidgetType<T extends WidgetType> = {
   [W in WidgetType]: WidgetValue[T] extends WidgetValue[W] ? W : never;

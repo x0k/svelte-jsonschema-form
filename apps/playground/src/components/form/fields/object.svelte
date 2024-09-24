@@ -17,10 +17,9 @@
 
   const ctx = getFormContext();
 
-  const {
+  let {
     name,
-    value,
-    onChange,
+    value = $bindable(),
     schema,
     uiSchema,
     idSchema,
@@ -76,24 +75,20 @@
   description={desc ? description : undefined}
   addButton={canExpand(ctx, schema, uiSchema, value) ? addButton : undefined}
 >
-  {#each schemaPropertiesOrder as property (property)}
-    {@const isAdditional = isPropertyAdditional(property)}
-    {@const propSchema = schemaProperties?.[property]}
-    {@const propUiSchema =
-      (isAdditional ? uiSchema.additionalProperties : uiSchema[property]) as UiSchema ?? {}}
-    <Field
-      value={value?.[property]}
-      onChange={(v) => {
-        onChange({
-          ...value,
-          [property]: v,
-        });
-      }}
-      name={property}
-      required={requiredProperties.has(property)}
-      schema={propSchema === undefined || typeof propSchema === "boolean" ? {} : propSchema}
-      uiSchema={propUiSchema}
-      idSchema={idSchema?.[property]}
-    />
-  {/each}
+  {#if value !== undefined}
+    {#each schemaPropertiesOrder as property (property)}
+      {@const isAdditional = isPropertyAdditional(property)}
+      {@const propSchema = schemaProperties?.[property]}
+      {@const propUiSchema =
+        (isAdditional ? uiSchema.additionalProperties : uiSchema[property]) as UiSchema ?? {}}
+      <Field
+        bind:value={value[property]}
+        name={property}
+        required={requiredProperties.has(property)}
+        schema={propSchema === undefined || typeof propSchema === "boolean" ? {} : propSchema}
+        uiSchema={propUiSchema}
+        idSchema={idSchema[property]}
+      />
+    {/each}
+  {/if}
 </Template>

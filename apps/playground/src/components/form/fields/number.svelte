@@ -6,31 +6,35 @@
 
   const ctx = getFormContext();
 
-  const {
+  let {
     name,
-    value,
-    onChange,
+    value = $bindable(),
     schema,
     idSchema,
     uiSchema,
     required,
   }: FieldProps<"number"> = $props();
 
+  let lastValue: number | undefined = undefined;
   let proxyValue = $state<string>();
-
   $effect(() => {
+    if (Object.is(value, lastValue)) {
+      return;
+    }
     proxyValue = value === undefined ? undefined : String(value);
+  });
+  $effect(() => {
+    if (proxyValue === undefined) {
+      return;
+    }
+    value = lastValue = Number(proxyValue);
   });
 
   const Field = $derived(getField(ctx, "string", uiSchema));
 </script>
 
 <Field
-  value={proxyValue}
-  onChange={(v) => {
-    proxyValue = v;
-    onChange(Number(v));
-  }}
+  bind:value={proxyValue}
   {name}
   {schema}
   {uiSchema}

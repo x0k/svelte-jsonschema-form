@@ -1,5 +1,5 @@
 <script lang="ts" generics="T extends SchemaValue">
-  import type { Snippet } from 'svelte';
+  import { untrack, type Snippet } from 'svelte';
   import type { HTMLAttributes } from "svelte/elements";
 
   import type { Schema, SchemaValue, Validator } from './schema';
@@ -105,9 +105,15 @@
 
   const Form = $derived(getComponent(ctx, "form", uiSchema))
   const Field = $derived(getField(ctx, "root", uiSchema))
-  const formData = $derived(getDefaultFormState(ctx, schema, value))
+  $effect(() => {
+    schema;
+    untrack(() => {
+      // TODO: Mutate `value` directly if it possible
+      value = getDefaultFormState(ctx, schema, value) as T
+    })
+  })
   
-  const retrievedSchema = $derived(retrieveSchema<SchemaValue>(ctx, schema, formData))
+  const retrievedSchema = $derived(retrieveSchema(ctx, schema, value))
   const idSchema = $derived(toIdSchema(
     ctx,
     retrievedSchema,
@@ -117,9 +123,7 @@
 </script>
 
 <Form bind:form {...formProps} onsubmit={handleSubmit} >
-  <Field value={formData} onChange={(v) => {
-    value = v as T
-  }} name="" required={false} {schema} {uiSchema} {idSchema} />
+  <Field bind:value name="" required={false} {schema} {uiSchema} {idSchema} />
   {#if children}
     {@render children()}
   {:else}

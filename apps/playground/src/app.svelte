@@ -54,7 +54,7 @@
   const uiSchema: UiSchemaRoot = {
     "ui:options": {},
   };
-  let value = $state.raw();
+  let value = $state();
 </script>
 
 <div class="p-2">

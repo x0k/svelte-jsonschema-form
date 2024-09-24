@@ -6,10 +6,9 @@
   import type { FieldProps } from "./model";
 
   const ctx = getFormContext();
-  const {
+  let {
     name,
-    value,
-    onChange,
+    value = $bindable(),
     schema,
     uiSchema,
     idSchema,
@@ -23,8 +22,7 @@
 
 <Widget
   {...getWidgetProps(ctx, name, schema, uiSchema, idSchema)}
-  {value}
-  {onChange}
+  bind:value
   {options}
   {required}
 />

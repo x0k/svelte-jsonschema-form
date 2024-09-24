@@ -1,10 +1,9 @@
 <script lang="ts">
   import type { WidgetProps } from "@/components/form";
 
-  const {
+  let {
     id,
-    value,
-    onChange,
+    value = $bindable(),
     required,
     disabled,
     readonly,
@@ -14,11 +13,10 @@
 </script>
 
 <input
-  type="text"
   {id}
   name={id}
-  {value}
-  onchange={(e) => onChange(e.currentTarget.value)}
+  type="text"
+  bind:value
   {required}
   {disabled}
   {readonly}

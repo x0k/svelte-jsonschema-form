@@ -7,10 +7,9 @@
 
   const ctx = getFormContext();
 
-  const {
+  let {
     name,
-    value,
-    onChange,
+    value = $bindable(),
     schema,
     uiSchema,
     idSchema,
@@ -33,8 +32,7 @@
 <Layout type="root-field">
   {#if Field}
     <Field
-      {value}
-      {onChange}
+      bind:value
       {name}
       {required}
       {schema}
