@@ -21,26 +21,35 @@ export interface WidgetCommonProps<V> extends HTMLAttributes<HTMLElement> {
   // rawErrors: string[];
 }
 
-export interface WidgetsAndProps {
-  text: {};
-  select: {
-    options: EnumOption<SchemaValue>[];
-  };
-  checkbox: {};
+export interface SelectWidgetProps<V> extends WidgetCommonProps<V> {
+  options: EnumOption<SchemaValue>[];
+}
+
+export interface WidgetsAndProps<V> {
+  text: WidgetCommonProps<V>;
+  number: WidgetCommonProps<V>;
+  select: SelectWidgetProps<V>;
+  checkbox: WidgetCommonProps<V>;
 }
 
 export interface WidgetValue {
   text: string;
+  number: number;
   select: SchemaValue;
   checkbox: boolean;
 }
 
-export type WidgetType = keyof WidgetsAndProps;
+export type WidgetType = keyof WidgetsAndProps<SchemaValue>;
 
-export type WidgetProps<T extends WidgetType> = WidgetsAndProps[T] &
-  WidgetCommonProps<WidgetValue[T]>;
+export type WidgetProps<T extends WidgetType> = WidgetsAndProps<
+  WidgetValue[T]
+>[T];
 
-export type Widget<T extends WidgetType> = SvelteComponent<WidgetProps<T>, {}, "value">;
+export type Widget<T extends WidgetType> = SvelteComponent<
+  WidgetProps<T>,
+  {},
+  "value"
+>;
 
 export type CompatibleWidgetType<T extends WidgetType> = {
   [W in WidgetType]: WidgetValue[T] extends WidgetValue[W] ? W : never;

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { createTransformation } from "@/lib/svelte.svelte";
   import { getFormContext } from "../context";
   import { getWidget, getWidgetProps } from "../utils";
 
@@ -16,10 +17,19 @@
   }: FieldProps<"number"> = $props();
 
   const Widget = $derived(getWidget(ctx, "number", uiSchema));
+
+  const transformation = createTransformation({
+    input: () => value,
+    transform: (v) => v,
+    guard: (v) => Number.isInteger(v) || v === null,
+    update: (v) => {
+      value = v;
+    }
+  });
 </script>
 
 <Widget
   {...getWidgetProps(ctx, name, schema, uiSchema, idSchema)}
-  bind:value
+  bind:value={transformation.value}
   {required}
 />
