@@ -1,27 +1,29 @@
-export type TransformationConfig<I, O> = {
-  input: () => I;
-  transform: (v: I) => O;
-  guard?: (v: O) => boolean;
-  update?: (v: O) => void;
+export type TransformationConfig<V> = {
+  /**
+   * @param isDependencyRegistrationOnlyCall - when `true`, indicates that function is called only for dependency registration and result will be ignored
+   */
+  transform: (isDependencyRegistrationOnlyCall: boolean) => V;
+  guard?: (v: V) => boolean;
+  update?: (v: V) => void;
 };
 
-export function createTransformation<I, O>(config: TransformationConfig<I, O>) {
+export function createTransformation<V>(config: TransformationConfig<V>) {
   let updatedBySuccessor = false;
-  let updatedValue = $state.raw<O>();
+  let updatedValue = $state.raw<V>();
   const transformed = $derived.by(() => {
-    const value = config.input();
     const updated = updatedValue;
     if (updatedBySuccessor) {
       updatedBySuccessor = false;
-      return updated as O;
+      config.transform(true);
+      return updated as V;
     }
-    return config.transform(value);
+    return config.transform(false);
   });
   return {
     get value() {
       return transformed;
     },
-    set value(value: O) {
+    set value(value: V) {
       if (config.guard && !config.guard(value)) {
         return;
       }

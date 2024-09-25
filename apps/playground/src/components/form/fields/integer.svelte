@@ -19,12 +19,11 @@
   const Widget = $derived(getWidget(ctx, "number", uiSchema));
 
   const transformation = createTransformation({
-    input: () => value,
-    transform: (v) => v,
+    transform: () => value,
     guard: (v) => Number.isInteger(v) || v === null,
     update: (v) => {
       value = v;
-    }
+    },
   });
 </script>
 
