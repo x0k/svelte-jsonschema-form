@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { createTransformation } from "@/lib/svelte.svelte";
+
   import { getFormContext } from "../context";
   import { getField } from "../utils";
 
@@ -15,26 +17,19 @@
     required,
   }: FieldProps<"number"> = $props();
 
-  let lastValue: number | undefined = undefined;
-  let proxyValue = $state<string>();
-  $effect(() => {
-    if (Object.is(value, lastValue)) {
-      return;
-    }
-    proxyValue = value === undefined ? undefined : String(value);
-  });
-  $effect(() => {
-    if (proxyValue === undefined) {
-      return;
-    }
-    value = lastValue = Number(proxyValue);
+  const transformation = createTransformation({
+    input: () => value,
+    transform: (value) => (value === undefined ? undefined : String(value)),
+    update: (v) => {
+      value = Number(v);
+    },
   });
 
   const Field = $derived(getField(ctx, "string", uiSchema));
 </script>
 
 <Field
-  bind:value={proxyValue}
+  bind:value={transformation.value}
   {name}
   {schema}
   {uiSchema}
