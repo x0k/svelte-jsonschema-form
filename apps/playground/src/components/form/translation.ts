@@ -3,6 +3,7 @@ import type { Get } from "@/lib/types";
 export interface Labels {
   submit: [];
   "unsupported-field-type": [type: string];
+  "array-schema-missing-items": [];
   yes: [];
   no: [];
 }

@@ -20,8 +20,16 @@ export interface ObjectTemplateProps {
   children: Snippet;
 }
 
+export interface ArrayTemplateProps {
+  title?: Snippet;
+  description?: Snippet;
+  addButton?: Snippet;
+  children: Snippet;
+}
+
 export interface TemplateAndProps {
   object: ObjectTemplateProps;
+  array: ArrayTemplateProps;
 }
 
 export type TemplateType = keyof TemplateAndProps;

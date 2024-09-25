@@ -21,6 +21,9 @@ export interface ButtonComponentProps extends HTMLAttributes<HTMLButtonElement> 
 export interface LayoutType {
   "root-field": {};
   "object-field": {};
+  "object-properties": {};
+  "array-field": {};
+  "array-items": {};
 }
 
 export interface LayoutComponentProps extends HTMLAttributes<HTMLDivElement> {

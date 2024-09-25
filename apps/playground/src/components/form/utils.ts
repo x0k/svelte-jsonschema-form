@@ -4,8 +4,10 @@ import type { UiSchema } from "./ui-schema";
 import type { Field, FieldType } from "./fields";
 import {
   isSelect as isSelectInternal,
+  isMultiSelect as isMultiSelectInternal,
   retrieveSchema as retrieveSchemaInternal,
   getDefaultFormState as getDefaultFormStateInternal,
+  isFilesArray as isFilesArrayInternal,
   type Schema,
   type SchemaValue,
 } from "./schema";
@@ -70,16 +72,48 @@ export function getWidget<T extends WidgetType>(
   );
 }
 
+function getFieldInternal<T extends FieldType>(
+  ctx: FormContext<unknown>,
+  type: T,
+  uiSchema: UiSchema
+): Field<T> | undefined {
+  const field = uiSchema["ui:field"];
+  switch (typeof field) {
+    case "undefined":
+      return ctx.fields(type, uiSchema);
+    case "string":
+      return ctx.fields(field as T, uiSchema);
+    default:
+      return field as Field<T>;
+  }
+}
+
 export function getField<T extends FieldType>(
   ctx: FormContext<unknown>,
   type: T,
   uiSchema: UiSchema
 ): Field<T> {
   return (
-    ctx.fields(type, uiSchema) ??
+    getFieldInternal(ctx, type, uiSchema) ??
     (ctx.fields("unsupported", uiSchema) as Field<T>) ??
     createMessage(`Field ${type} not found`)
   );
+}
+
+function getTemplateInternal<T extends TemplateType>(
+  ctx: FormContext<unknown>,
+  type: T,
+  uiSchema: UiSchema
+): Template<T> | undefined {
+  const template = uiSchema["ui:template"];
+  switch (typeof template) {
+    case "undefined":
+      return ctx.templates(type, uiSchema);
+    case "string":
+      return ctx.templates(template as T, uiSchema);
+    default:
+      return template as Template<T>;
+  }
 }
 
 export function getTemplate<T extends TemplateType>(
@@ -88,9 +122,25 @@ export function getTemplate<T extends TemplateType>(
   uiSchema: UiSchema
 ): Template<T> {
   return (
-    ctx.templates(type, uiSchema) ??
+    getTemplateInternal(ctx, type, uiSchema) ??
     (createMessage(`Template ${type} not found`) as Template<T>)
   );
+}
+
+function getComponentInternal<T extends ComponentType>(
+  ctx: FormContext<unknown>,
+  type: T,
+  uiSchema: UiSchema
+): Component<T> | undefined {
+  const component = uiSchema["ui:components"]?.[type];
+  switch (typeof component) {
+    case "undefined":
+      return ctx.components(type, uiSchema);
+    case "string":
+      return ctx.components(component as T, uiSchema);
+    default:
+      return component as Component<T>;
+  }
 }
 
 export function getComponent<T extends ComponentType>(
@@ -100,7 +150,7 @@ export function getComponent<T extends ComponentType>(
 ): Component<T> {
   // @ts-expect-error TODO: improve `createMessage` type
   return (
-    ctx.components(type, uiSchema) ??
+    getComponentInternal(ctx, type, uiSchema) ??
     createMessage(`Component ${type} not found`)
   );
 }
@@ -140,6 +190,10 @@ export function getWidgetProps<T>(
 
 export function isSelect(ctx: FormContext<unknown>, schema: Schema) {
   return isSelectInternal(ctx.validator, schema, ctx.schema);
+}
+
+export function isMultiSelect(ctx: FormContext<unknown>, schema: Schema) {
+  return isMultiSelectInternal(ctx.validator, schema, ctx.schema);
 }
 
 export function toIdSchema<T extends SchemaValue>(
@@ -191,4 +245,8 @@ export function canExpand<T>(
     return Object.keys(formData).length < schema.maxProperties;
   }
   return true;
+}
+
+export function isFilesArray(ctx: FormContext<unknown>, schema: Schema) {
+  return isFilesArrayInternal(ctx.validator, schema, ctx.schema);
 }

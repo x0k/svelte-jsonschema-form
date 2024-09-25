@@ -50,6 +50,8 @@ export const CONTAINS_KEY = "contains";
 export const DISCRIMINATOR_KEY = "discriminator";
 export const PROPERTY_NAME_KEY = "propertyName";
 
+export const DATA_URL_FORMAT = "data-url";
+
 export function isSchema(schemaDef: SchemaDefinition): schemaDef is Schema {
   return typeof schemaDef === "object";
 }

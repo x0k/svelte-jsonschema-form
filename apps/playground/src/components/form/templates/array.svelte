@@ -6,15 +6,15 @@ import { getFormContext } from '../context';
 
   const ctx = getFormContext()
 
-  const { uiSchema, title, description, children, addButton }: TemplateProps<"object"> = $props();
+  const { uiSchema, title, description, children, addButton }: TemplateProps<"array"> = $props();
 
   const Layout = $derived(getComponent(ctx, "layout", uiSchema));
 </script>
 
-<Layout type="object-field">
+<Layout type="array-field">
   {@render title?.()}
   {@render description?.()}
-  <Layout type="object-properties">
+  <Layout type="array-items">
     {@render children()}
   </Layout>
   {@render addButton?.()}
