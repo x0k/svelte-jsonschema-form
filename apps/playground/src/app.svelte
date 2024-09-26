@@ -5,73 +5,15 @@
   import { widgets } from "@/lib/widgets";
   import { AjvValidator } from "@/lib/validator";
   import { translation } from "@/lib/translation/en";
-  import { Form, type Schema, type UiSchemaRoot } from "@/components/form";
-  import { ShadowHost } from '@/components/shadow';
+  import { Form } from "@/components/form";
+  import { ShadowHost } from "@/components/shadow";
 
-  const schema: Schema = {
-    title: "A registration form",
-    description: "A simple form example.",
-    type: "object",
-    required: ["firstName"],
-    properties: {
-      firstName: {
-        type: "string",
-        title: "First name",
-        default: "Chuck",
-      },
-      age: {
-        type: "integer",
-        title: "Age",
-      },
-      password: {
-        type: "string",
-        title: "Password",
-        minLength: 3,
-      },
-      hobbies: {
-        type: "array",
-        title: "Hobbies",
-        items: {
-          type: "string",
-        },
-      },
-      sports: {
-        type: "array",
-        title: "Sports",
-        items: [
-          { type: "string", title: "String" },
-          { type: "number", title: "Number" },
-          { type: "boolean", title: "Boolean" },
-        ],
-        additionalItems: {
-          title: "Additional item",
-          type: "integer",
-        }
-      }
-    },
-    additionalProperties: {
-      type: "boolean",
-    }
-  };
-  const uiSchema: UiSchemaRoot = {
-    "ui:options": {},
-    hobbies: {
-      "ui:options": {
-        copyable: true
-      },
-    }
-  };
+  import { samples } from "./samples";
 
-  interface Data {
-    firstName: string;
-    lastName: string;
-    age?: number;
-    bio?: string;
-    password?: string;
-    telephone?: string;
-  }
+  let schema = $state(samples.Simple.schema);
+  let uiSchema = $state(samples.Simple.uiSchema);
+  let value = $state(samples.Simple.formData);
 
-  let value = $state<Data>();
   const validator = new AjvValidator(
     new Ajv({
       allErrors: true,
@@ -85,6 +27,21 @@
 
 <div class="p-2">
   <div class="text-3xl font-bold pb-2">Playground</div>
+  <div class="flex gap-2 flex-wrap pb-2">
+    {#each Object.entries(samples) as [name, sample]}
+      <button
+        type="button"
+        class="border rounded p-2"
+        onclick={() => {
+          schema = sample.schema;
+          uiSchema = sample.uiSchema;
+          value = sample.formData;
+        }}
+      >
+        {name}
+      </button>
+    {/each}
+  </div>
   <div class="flex gap-2">
     <div class="flex-[3] flex flex-col gap-2">
       <div class="h-[400px] border rounded overflow-auto p-2">
@@ -100,7 +57,7 @@
         </div>
       </div>
     </div>
-    <ShadowHost class="flex-[2]" >
+    <ShadowHost class="flex-[2]">
       <Form
         class="flex-[2]"
         bind:value
@@ -110,19 +67,7 @@
         {uiSchema}
         {validator}
         {translation}
-      >
-        <div class="flex gap-2">
-          <button type="submit"> Submit </button>
-          <button
-            type="button"
-            onclick={() => {
-              value = { firstName: "first", lastName: "last" };
-            }}
-          >
-            Outside mutation
-          </button>
-        </div>
-      </Form>
+      />
     </ShadowHost>
   </div>
 </div>
