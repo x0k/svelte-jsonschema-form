@@ -8,6 +8,14 @@
   <button type="submit" {...props}>
     {@render children?.()}
   </button>
+{:else if type === "add-object-property"}
+  <button type="button" {...props}>
+    Add property
+  </button>
+{:else if type === "remove-object-property"}
+  <button type="button" {...props}>
+    Del
+  </button>
 {:else if type === "add-array-item"}
   <button type="button" {...props}>
     Add item

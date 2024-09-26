@@ -1,6 +1,6 @@
 <script lang="ts">
   import { getFormContext } from "../context";
-  import { getWidget, getWidgetProps } from "../utils";
+  import { getUiOptions, getWidget, getWidgetProps } from "../utils";
 
   import type { FieldProps } from "./model";
 
@@ -16,10 +16,11 @@
   }: FieldProps<"number"> = $props();
 
   const Widget = $derived(getWidget(ctx, "number", uiSchema));
+  const uiOptions = $derived(getUiOptions(ctx, uiSchema));
 </script>
 
 <Widget
-  {...getWidgetProps(ctx, name, schema, uiSchema, idSchema)}
+  {...getWidgetProps(ctx, name, schema, uiSchema, idSchema, uiOptions)}
   bind:value
   {required}
 />

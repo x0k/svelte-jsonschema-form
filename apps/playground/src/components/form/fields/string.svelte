@@ -1,7 +1,7 @@
 <script lang="ts">
   import { getFormContext } from "../context";
   import { createOptions } from "../enum";
-  import { getWidget, getWidgetProps, isSelect } from "../utils";
+  import { getUiOptions, getWidget, getWidgetProps, isSelect } from "../utils";
 
   import type { FieldProps } from "./model";
 
@@ -18,10 +18,11 @@
     getWidget(ctx, isSelect(ctx, schema) ? "select" : "text", uiSchema)
   );
   const options = $derived(createOptions(schema, uiSchema) ?? []);
+  const uiOptions = $derived(getUiOptions(ctx, uiSchema));
 </script>
 
 <Widget
-  {...getWidgetProps(ctx, name, schema, uiSchema, idSchema)}
+  {...getWidgetProps(ctx, name, schema, uiSchema, idSchema, uiOptions)}
   bind:value
   {options}
   {required}

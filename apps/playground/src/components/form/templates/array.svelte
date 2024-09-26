@@ -9,11 +9,17 @@ import { getFormContext } from '../context';
   const { uiSchema, title, description, children, addButton }: TemplateProps<"array"> = $props();
 
   const Layout = $derived(getComponent(ctx, "layout", uiSchema));
+  const Title = $derived(getComponent(ctx, "title", uiSchema));
+  const Description = $derived(getComponent(ctx, "description", uiSchema));
 </script>
 
 <Layout type="array-field">
-  {@render title?.()}
-  {@render description?.()}
+  {#if title !== undefined}
+    <Title type="array" {title} />
+  {/if}
+  {#if description !== undefined}
+    <Description type="array" {description} />
+  {/if}
   <Layout type="array-items">
     {@render children()}
   </Layout>

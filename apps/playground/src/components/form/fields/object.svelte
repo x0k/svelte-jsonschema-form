@@ -2,15 +2,21 @@
   import type { UiSchema } from '../ui-schema';
   import { getFormContext } from "../context";
   import {
+    getDefaultValueForType,
+    getSimpleSchemaType,
     isAdditionalProperty,
+    isSchemaExpandable,
     isSchemaObjectValue,
     orderProperties,
   } from "../schema";
   import {
-    canExpand,
     getComponent,
+    getDefaultFormState,
     getField,
+    getFieldProps,
     getTemplate,
+    getUiOptions,
+    retrieveSchema,
   } from "../utils";
 
   import type { FieldProps } from "./model";
@@ -25,44 +31,64 @@
     idSchema,
     required,
   }: FieldProps<"object"> = $props();
-  const requiredProperties = $derived(new Set(schema.required));
-  const schemaProperties = $derived(schema.properties);
+  const uiOptions = $derived(getUiOptions(ctx, uiSchema))
+  // TODO: Is it required? Seems like `root` field will always do the same thing
+  const retrievedSchema = $derived(retrieveSchema(ctx, schema, value))
+  const requiredProperties = $derived(new Set(retrievedSchema.required));
+  const schemaProperties = $derived(retrievedSchema.properties);
   const schemaPropertiesOrder = $derived(
     isSchemaObjectValue(schemaProperties)
-      ? orderProperties(schemaProperties, uiSchema["ui:options"]?.order)
+      ? orderProperties(schemaProperties, uiOptions?.order)
       : []
   );
   const Template = $derived(getTemplate(ctx, "object", uiSchema));
-  const Title = $derived(getComponent(ctx, "title", uiSchema));
-  const Description = $derived(getComponent(ctx, "description", uiSchema));
   const Button = $derived(getComponent(ctx, "button", uiSchema));
   const Field = $derived(getField(ctx, "root", uiSchema));
 
-  const label = $derived(
-    uiSchema["ui:options"]?.title ?? schema.title ?? name
+  const { title, readonly, description, disabled } = $derived(getFieldProps(ctx, name, retrievedSchema, uiOptions))
+
+  const schemaAdditionalProperties = $derived(
+    isSchemaObjectValue(retrievedSchema.additionalProperties) ? retrieveSchema(ctx, retrievedSchema.additionalProperties, value) : {}
   )
-  const desc = $derived(uiSchema["ui:options"]?.description ?? schema.description)
+  const canExpand = $derived(uiOptions?.expandable !== false && isSchemaExpandable(retrievedSchema, value))
+
+  const newKeySeparator = $derived(uiOptions?.duplicateKeySuffixSeparator ?? "-")
+  function generateNewKey(preferredKey: string) {
+    let index = 0
+    let newKey = preferredKey
+    while(value && newKey in value) {
+      newKey = `${preferredKey}${newKeySeparator}${++index}`
+    }
+    return newKey
+  }
 </script>
 
-{#snippet title()}
-  <Title type="object" title={label} />
-{/snippet}
-{#snippet description()}
-  <Description type="object" description={desc!} />
-{/snippet}
 {#snippet addButton()}
-  <Button type="add-object-property" />
+  <Button
+    type="add-object-property"
+    disabled={disabled || readonly}
+    onclick={(e) => {
+      e.preventDefault();
+      if (value === undefined) {
+        console.warn("Object value is undefined")
+        return
+      }
+      const newKey = generateNewKey("newKey")
+      value[newKey] = getDefaultFormState(ctx, schemaAdditionalProperties, value)
+        ?? getDefaultValueForType(getSimpleSchemaType(schemaAdditionalProperties))
+    }}
+  />
 {/snippet}
 <Template
   {name}
   {value}
-  {schema}
+  schema={retrievedSchema}
   {uiSchema}
   {idSchema}
   {required}
   {title}
-  description={desc ? description : undefined}
-  addButton={canExpand(ctx, schema, uiSchema, value) ? addButton : undefined}
+  {description}
+  addButton={canExpand ? addButton : undefined}
 >
   {#if schemaProperties !== undefined && value !== undefined}
     {#each schemaPropertiesOrder as property (property)}

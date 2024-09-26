@@ -11,8 +11,6 @@
   const arrayCtx = getArrayContext();
 
   const Template = $derived(getTemplate(ctx, "array", arrayCtx.uiSchema));
-  const Title = $derived(getComponent(ctx, "title", arrayCtx.uiSchema));
-  const Description = $derived(getComponent(ctx, "description", arrayCtx.uiSchema));
   const Button = $derived(getComponent(ctx, "button", arrayCtx.uiSchema));
 
   const schemaItems = $derived(
@@ -43,9 +41,6 @@
   // })
   </script>
 
-{#snippet description()}
-  <Description type="array" description={arrayCtx.description!} />
-{/snippet}
 {#snippet addButton()}
   <Button
     type="add-array-item"
@@ -60,17 +55,15 @@
 {/snippet}
 <Template
   name={arrayCtx.name}
+  title={arrayCtx.title}
   value={arrayCtx.value}
   schema={arrayCtx.schema}
   uiSchema={arrayCtx.uiSchema}
   idSchema={arrayCtx.idSchema}
   required={arrayCtx.required}
-  description={arrayCtx.description !== undefined ? description : undefined}
+  description={arrayCtx.description}
   addButton={arrayCtx.canAdd && schemaAdditionalItems ? addButton : undefined}
 >
-  {#snippet title()}
-    <Title type="array" title={arrayCtx.label} />
-  {/snippet}
   {#if arrayCtx.value}
     {#each arrayCtx.value as item, index}
       {@const isAdditional = index >= schemaItems.length}

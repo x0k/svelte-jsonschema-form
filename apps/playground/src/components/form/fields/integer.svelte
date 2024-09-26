@@ -1,7 +1,7 @@
 <script lang="ts">
   import { createTransformation } from "@/lib/svelte.svelte";
   import { getFormContext } from "../context";
-  import { getWidget, getWidgetProps } from "../utils";
+  import { getUiOptions, getWidget, getWidgetProps } from "../utils";
 
   import type { FieldProps } from "./model";
 
@@ -25,10 +25,11 @@
       value = v;
     },
   });
+  const uiOptions = $derived(getUiOptions(ctx, uiSchema))
 </script>
 
 <Widget
-  {...getWidgetProps(ctx, name, schema, uiSchema, idSchema)}
+  {...getWidgetProps(ctx, name, schema, uiSchema, idSchema, uiOptions)}
   bind:value={transformation.value}
   {required}
 />

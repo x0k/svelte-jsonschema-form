@@ -51,6 +51,7 @@ export interface UiOptions {
   orderable?: boolean;
   removable?: boolean;
   copyable?: boolean;
+  duplicateKeySuffixSeparator?: string;
 }
 
 export type UiSchema = UiSchemaIndex & UiSchemaContent;

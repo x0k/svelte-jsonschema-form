@@ -10,3 +10,4 @@ export * from "./order-properties";
 export * from "./is-additional-property";
 export * from "./is-files-array";
 export * from "./is-fixed-items";
+export * from "./is-expandable";

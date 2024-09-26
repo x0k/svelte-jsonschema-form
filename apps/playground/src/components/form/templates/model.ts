@@ -14,15 +14,15 @@ export interface TemplateCommonProps<V extends SchemaValue> {
 }
 
 export interface ObjectTemplateProps {
-  title?: Snippet;
-  description?: Snippet;
+  title: string | undefined
+  description: string | undefined
   addButton?: Snippet;
   children: Snippet;
 }
 
 export interface ArrayTemplateProps {
-  title?: Snippet;
-  description?: Snippet;
+  title: string | undefined
+  description: string | undefined
   addButton?: Snippet;
   children: Snippet;
 }

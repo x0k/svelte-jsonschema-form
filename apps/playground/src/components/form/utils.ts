@@ -1,6 +1,6 @@
 import type { Component, ComponentType } from "./component";
 import type { FormContext } from "./context";
-import type { UiSchema } from "./ui-schema";
+import type { UiOptions, UiSchema } from "./ui-schema";
 import type { Field, FieldType } from "./fields";
 import {
   isSelect as isSelectInternal,
@@ -101,6 +101,20 @@ export function getField<T extends FieldType>(
   );
 }
 
+export function getFieldProps(
+  ctx: FormContext<unknown>,
+  name: string,
+  schema: Schema,
+  uiOptions: UiOptions | undefined
+) {
+  return {
+    title: uiOptions?.title ?? schema.title ?? name,
+    description: uiOptions?.description ?? schema.description,
+    readonly: uiOptions?.readonly || ctx.readonly,
+    disabled: uiOptions?.disabled || ctx.disabled,
+  }
+}
+
 function getTemplateInternal<T extends TemplateType>(
   ctx: FormContext<unknown>,
   type: T,
@@ -158,9 +172,8 @@ export function getComponent<T extends ComponentType>(
 
 export function getComponentProps(
   ctx: FormContext<unknown>,
-  uiSchema: UiSchema
+  uiOptions: UiOptions | undefined
 ) {
-  const uiOptions = getUiOptions(ctx, uiSchema);
   return {
     class: uiOptions?.class,
     style: uiOptions?.style,
@@ -174,9 +187,9 @@ export function getWidgetProps<T>(
   name: string,
   schema: Schema,
   uiSchema: UiSchema,
-  idSchema: IdSchema<T>
+  idSchema: IdSchema<T>,
+  uiOptions: UiOptions | undefined
 ) {
-  const uiOptions = getUiOptions(ctx, uiSchema);
   return {
     schema,
     uiSchema,
@@ -227,25 +240,6 @@ export function getDefaultFormState<T extends SchemaValue>(
     ctx.schema,
     false
   );
-}
-
-export function canExpand<T>(
-  ctx: FormContext<T>,
-  schema: Schema,
-  uiSchema: UiSchema,
-  formData?: T
-) {
-  if (!schema.additionalProperties) {
-    return false;
-  }
-  const expandable = getUiOptions(ctx, uiSchema)?.expandable;
-  if (expandable === false) {
-    return false;
-  }
-  if (schema.maxProperties !== undefined && formData) {
-    return Object.keys(formData).length < schema.maxProperties;
-  }
-  return true;
 }
 
 export function isFilesArray(ctx: FormContext<unknown>, schema: Schema) {

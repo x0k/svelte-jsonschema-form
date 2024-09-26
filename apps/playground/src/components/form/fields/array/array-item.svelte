@@ -1,9 +1,9 @@
 <script lang="ts">
-  import type { Schema, SchemaArrayValue, SchemaValue } from "../../schema";
+  import type { Schema, SchemaValue } from "../../schema";
   import type { UiSchema } from "../../ui-schema";
   import type { IdSchema } from "../../id-schema";
   import { getFormContext } from "../../context";
-  import { getComponent, getComponentProps, getField, getTemplate } from "../../utils";
+  import { getComponent, getComponentProps, getField, getTemplate, getUiOptions } from "../../utils";
 
   import { getArrayContext } from './context';
   import { makeHandler } from './utils';
@@ -46,7 +46,8 @@
   const remove = $derived(arrayCtx.removable && canRemove)
   const copy = $derived(arrayCtx.copyable && arrayCtx.canAdd)
   const toolbar = $derived(moveUp || moveDown || remove || copy)
-  const componentProps = $derived(getComponentProps(ctx, uiSchema))
+  const uiOptions = $derived(getUiOptions(ctx, uiSchema))
+  const componentProps = $derived(getComponentProps(ctx, uiOptions))
 </script>
 
 {#snippet buttons()}
