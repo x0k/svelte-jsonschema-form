@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Schema, SchemaValue } from "../../schema";
+  import type { Schema, SchemaArrayValue, SchemaValue } from "../../schema";
   import type { UiSchema } from "../../ui-schema";
   import type { IdSchema } from "../../id-schema";
   import { getFormContext } from "../../context";
@@ -46,6 +46,18 @@
   const copy = $derived(arrayCtx.copyable && arrayCtx.canAdd)
   const toolbar = $derived(moveUp || moveDown || remove || copy)
   const componentProps = $derived(getComponentProps(ctx, uiSchema))
+
+  function makeHandler(fn: (arr: SchemaArrayValue) => void) {
+    return (e: Event) => {
+      e.preventDefault()
+      const arr = arrayCtx.value
+      if (!Array.isArray(arr)) {
+        console.warn("Value is not an array")
+        return
+      }
+      fn(arr)
+    }
+  }
 </script>
 
 {#snippet buttons()}
@@ -53,39 +65,38 @@
     <Button
       type="move-up-array-item"
       disabled={componentProps.disabled || componentProps.readonly || !moveUp}
+      onclick={makeHandler((arr) => {
+        const tmp = arr[index]
+        arr[index] = arr[index - 1]
+        arr[index - 1] = tmp
+      })}
     />
     <Button
       type="move-down-array-item"
       disabled={componentProps.disabled || componentProps.readonly || !moveDown}
+      onclick={makeHandler((arr) => {
+        const tmp = arr[index]
+        arr[index] = arr[index + 1]
+        arr[index + 1] = tmp
+      })}
     />
   {/if}
   {#if copy}
     <Button
       type="copy-array-item"
       disabled={componentProps.disabled || componentProps.readonly}
-      onclick={(e) => {
-        e.preventDefault()
-        if (!Array.isArray(arrayCtx.value)) {
-          console.warn("Value is not an array")
-          return
-        }
-        const itemClone = $state.snapshot(value)
-        arrayCtx.value.splice(index, 0, itemClone)
-      }}
+      onclick={makeHandler((arr) => {
+        arr.splice(index, 0, $state.snapshot(value))
+      })}
     />
   {/if}
   {#if remove}
     <Button
       type="remove-array-item"
       disabled={componentProps.disabled || componentProps.readonly}
-      onclick={(e) => {
-        e.preventDefault()
-        if (!Array.isArray(arrayCtx.value)) {
-          console.warn("Value is not an array")
-          return
-        }
-        arrayCtx.value.splice(index, 1)
-      }}
+      onclick={makeHandler((arr) => {
+        arr.splice(index, 1)
+      })}
     />
   {/if}
 {/snippet}
