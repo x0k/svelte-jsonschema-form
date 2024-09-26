@@ -10,6 +10,7 @@ import {
   isFilesArray as isFilesArrayInternal,
   type Schema,
   type SchemaValue,
+  type SchemaArrayValue,
 } from "./schema";
 import type {
   CompatibleWidgetType,
@@ -249,4 +250,24 @@ export function canExpand<T>(
 
 export function isFilesArray(ctx: FormContext<unknown>, schema: Schema) {
   return isFilesArrayInternal(ctx.validator, schema, ctx.schema);
+}
+
+export function getArrayItemSchemaId(
+  ctx: FormContext<unknown>,
+  arrayIdSchema: IdSchema<SchemaArrayValue>,
+  itemSchema: Schema,
+  index: number,
+  value: SchemaValue | undefined
+) {
+  const idPrefix = `${arrayIdSchema.$id}${ctx.idSeparator}${index}`;
+  return toIdSchemaInternal(
+    ctx.validator,
+    itemSchema,
+    idPrefix,
+    ctx.idSeparator,
+    [],
+    ctx.idPrefix,
+    ctx.schema,
+    value
+  );
 }

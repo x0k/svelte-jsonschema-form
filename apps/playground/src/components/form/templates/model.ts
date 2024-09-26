@@ -27,9 +27,16 @@ export interface ArrayTemplateProps {
   children: Snippet;
 }
 
+export interface ArrayItemTemplateProps {
+  index: number;
+  buttons?: Snippet;
+  children: Snippet;
+}
+
 export interface TemplateAndProps {
   object: ObjectTemplateProps;
   array: ArrayTemplateProps;
+  "array-item": ArrayItemTemplateProps;
 }
 
 export type TemplateType = keyof TemplateAndProps;

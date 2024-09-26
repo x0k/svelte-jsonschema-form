@@ -7,7 +7,7 @@ export type TransformationConfig<V> = {
   /**
    * @returns `true` to indicate that input update should not be ignored
    */
-  update?: (v: V) => (void | boolean);
+  update?: (v: V) => void | boolean;
 };
 
 export function createTransformation<V>(config: TransformationConfig<V>) {
@@ -32,9 +32,10 @@ export function createTransformation<V>(config: TransformationConfig<V>) {
       }
       // NOTE: We should not to ignore input update in two cases:
       // 1. During input update new value is produced (`true` value returned from `config.update`)
-      // 2. Setter is executed with same value as last one (because `derivedOutput` will not be
+      // 2. Setter is executed with the same value as last one (because `output` will not be
       //    triggered and `ignoreInputUpdate` flag will be stale)
-      ignoreInputUpdate = !config.update?.(value) && !Object.is(value, lastOutputValue);
+      ignoreInputUpdate =
+        !config.update?.(value) && !Object.is(value, lastOutputValue);
       lastOutputValue = value;
     },
   };

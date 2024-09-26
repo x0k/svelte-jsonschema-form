@@ -20,6 +20,7 @@ type UiSchemaRootContent = UiSchemaCommonContent<
 
 interface UiSchemaCommonContent<O> {
   "ui:options"?: O;
+  "ui:widget"?: WidgetType | Widget<WidgetType>;
   "ui:field"?: FieldType | Field<FieldType>;
   "ui:template"?: TemplateType | Template<TemplateType>;
   "ui:components"?: {
@@ -34,7 +35,6 @@ interface UiSchemaCommonContent<O> {
 export interface UiOptions {
   class?: string;
   style?: string;
-  widget?: WidgetType | Widget<WidgetType>;
   title?: string;
   description?: string;
   disabled?: boolean;
@@ -44,6 +44,9 @@ export interface UiOptions {
   enumNames?: string[];
   order?: string[];
   expandable?: boolean;
+  orderable?: boolean;
+  removable?: boolean;
+  copyable?: boolean;
 }
 
 export type UiSchema = UiSchemaIndex & UiSchemaContent;

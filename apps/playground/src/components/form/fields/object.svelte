@@ -51,7 +51,7 @@
   <Description description={desc!} />
 {/snippet}
 {#snippet addButton()}
-  <Button type="add" />
+  <Button type="add-object-property" />
 {/snippet}
 <Template
   {name}

@@ -1,16 +1,16 @@
 <script lang="ts">
   import { isFixedItems } from "../../schema";
   import { getFormContext } from "../../context";
-  import { isFilesArray, isMultiSelect } from "../../utils";
+  import { getUiOptions, isFilesArray, isMultiSelect } from "../../utils";
 
   import type { FieldProps } from "../model";
 
   import { setArrayContext, type ArrayContext } from "./context";
-  import FilesArray from "./files-array.svelte";
-  import FixedArray from "./fixed-array.svelte";
+  import UnsupportedArray from "./unsupported-array.svelte";
   import MultiSelectArray from "./multi-select-array.svelte";
+  import FixedArray from "./fixed-array.svelte";
+  import FilesArray from "./files-array.svelte";
   import NormalArray from "./normal-array.svelte";
-  import Unsupported from "./unsupported-array.svelte";
 
   let {
     name,
@@ -22,6 +22,12 @@
   }: FieldProps<"array"> = $props();
 
   const ctx = getFormContext();
+
+  const {
+    orderable = true,
+    removable = true,
+    copyable = false,
+  } = $derived(getUiOptions(ctx, uiSchema) ?? {});
 
   const arrayCtx: ArrayContext = {
     get name() {
@@ -45,14 +51,21 @@
     get required() {
       return required;
     },
+    get orderable() {
+      return orderable;
+    },
+    get removable() {
+      return removable;
+    },
+    get copyable() {
+      return copyable;
+    },
   };
   setArrayContext(arrayCtx);
-
-  const schemaItems = $derived(schema.items);
 </script>
 
-{#if schemaItems === undefined}
-  <Unsupported />
+{#if schema.items === undefined}
+  <UnsupportedArray />
 {:else if isMultiSelect(ctx, schema)}
   <MultiSelectArray />
   <!-- {:else if isCustomWidget(uiSchema)} -->

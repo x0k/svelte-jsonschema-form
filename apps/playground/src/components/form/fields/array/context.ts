@@ -11,6 +11,9 @@ export interface ArrayContext {
   uiSchema: UiSchema;
   idSchema: IdSchema<SchemaArrayValue>;
   required: boolean;
+  orderable: boolean;
+  removable: boolean;
+  copyable: boolean;
 }
 
 const ARRAY_CONTEXT = Symbol("array-context");
