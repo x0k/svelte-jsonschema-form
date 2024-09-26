@@ -22,7 +22,9 @@ interface UiSchemaCommonContent<O> {
   "ui:options"?: O;
   "ui:widget"?: WidgetType | Widget<WidgetType>;
   "ui:field"?: FieldType | Field<FieldType>;
-  "ui:template"?: TemplateType | Template<TemplateType>;
+  "ui:templates"?: {
+    [T in TemplateType]: undefined | TemplateType | Template<T>;
+  };
   "ui:components"?: {
     [T in ComponentType]: undefined | ComponentType | Component<T>;
   };
@@ -43,6 +45,7 @@ export interface UiOptions {
   placeholder?: string;
   enumNames?: string[];
   order?: string[];
+  addable?: boolean;
   expandable?: boolean;
   orderable?: boolean;
   removable?: boolean;

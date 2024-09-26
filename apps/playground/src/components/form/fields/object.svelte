@@ -45,10 +45,10 @@
 </script>
 
 {#snippet title()}
-  <Title title={label} />
+  <Title type="object" title={label} />
 {/snippet}
 {#snippet description()}
-  <Description description={desc!} />
+  <Description type="object" description={desc!} />
 {/snippet}
 {#snippet addButton()}
   <Button type="add-object-property" />

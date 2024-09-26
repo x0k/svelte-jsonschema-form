@@ -1,7 +1,7 @@
 <script lang="ts">
   import { isFixedItems } from "../../schema";
   import { getFormContext } from "../../context";
-  import { getUiOptions, isFilesArray, isMultiSelect } from "../../utils";
+  import { getUiOptions, getWidgetProps, isFilesArray, isMultiSelect } from "../../utils";
 
   import type { FieldProps } from "../model";
 
@@ -24,14 +24,32 @@
   const ctx = getFormContext();
 
   const {
+    addable = true,
     orderable = true,
     removable = true,
     copyable = false,
   } = $derived(getUiOptions(ctx, uiSchema) ?? {});
 
+  const canAdd = $derived(
+    addable &&
+      Array.isArray(value) &&
+      value.length < (schema.maxItems ?? Infinity)
+  );
+  // TODO: introduce new `get...Props` function for `array`, `object` and `root` fields
+  const widgetProps = $derived(getWidgetProps(ctx, name, schema, uiSchema, idSchema));
+  const description = $derived(
+    uiSchema["ui:options"]?.description ?? schema.description
+  );
+
   const arrayCtx: ArrayContext = {
     get name() {
       return name;
+    },
+    get label() {
+      return widgetProps.label
+    },
+    get description() {
+      return description;
     },
     get value() {
       return value;
@@ -50,6 +68,18 @@
     },
     get required() {
       return required;
+    },
+    get disabled() {
+      return widgetProps.disabled;
+    },
+    get readonly() {
+      return widgetProps.readonly;
+    },
+    get canAdd() {
+      return canAdd;
+    },
+    get addable() {
+      return addable;
     },
     get orderable() {
       return orderable;

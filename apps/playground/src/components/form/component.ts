@@ -22,6 +22,7 @@ export interface ButtonType {
 
 export interface ButtonComponentProps extends HTMLAttributes<HTMLButtonElement> {
   type: keyof ButtonType;
+  disabled: boolean;
 }
 
 export interface LayoutType {
@@ -30,6 +31,8 @@ export interface LayoutType {
   "object-properties": {};
   "array-field": {};
   "array-items": {};
+  "array-item": {};
+  "array-item-content": {}
   "array-item-buttons": {}
 }
 
@@ -47,11 +50,18 @@ export interface AlertComponentProps
   title?: string;
 }
 
+export interface ParentType {
+  "object": {};
+  "array": {};
+}
+
 export interface TitleComponentProps extends HTMLAttributes<HTMLElement> {
+  type: keyof ParentType;
   title: string;
 }
 
 export interface DescriptionComponentProps extends HTMLAttributes<HTMLElement> {
+  type: keyof ParentType;
   description: string;
 }
 

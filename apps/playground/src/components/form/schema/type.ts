@@ -1,6 +1,8 @@
 import type { Schema, SchemaType } from "./schema";
 
-export function typeOfValue(value: null | boolean | number | string | object): SchemaType {
+export function typeOfValue(
+  value: null | boolean | number | string | object
+): SchemaType {
   if (value === null) {
     return "null";
   }
@@ -34,6 +36,11 @@ export function typeOfSchema(schema: Schema): SchemaType | SchemaType[] {
     return Array.from(new Set(schema.enum.map(typeOfValue)));
   }
   return "null";
+}
+
+export function isSchemaNullable(schema: Schema): boolean {
+  const type = typeOfSchema(schema);
+  return type === "null" || (Array.isArray(type) && type.includes("null"));
 }
 
 export function pickSchemaType(types: SchemaType[]): SchemaType {

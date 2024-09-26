@@ -6,6 +6,7 @@
   import { AjvValidator } from "@/lib/validator";
   import { translation } from "@/lib/translation/en";
   import { Form, type Schema, type UiSchemaRoot } from "@/components/form";
+  import { ShadowHost } from '@/components/shadow';
 
   const schema: Schema = {
     title: "A registration form",
@@ -40,10 +41,22 @@
         title: "Telephone",
         minLength: 10,
       },
+      hobbies: {
+        type: "array",
+        title: "Hobbies",
+        items: {
+          type: "string",
+        },
+      }
     },
   };
   const uiSchema: UiSchemaRoot = {
     "ui:options": {},
+    hobbies: {
+      "ui:options": {
+        copyable: true
+      },
+    }
   };
 
   interface Data {
@@ -84,27 +97,29 @@
         </div>
       </div>
     </div>
-    <Form
-      class="flex-[2]"
-      bind:value
-      {components}
-      {widgets}
-      {schema}
-      {uiSchema}
-      {validator}
-      {translation}
-    >
-      <div class="flex gap-2">
-        <button type="submit"> Submit </button>
-        <button
-          type="button"
-          onclick={() => {
-            value = { firstName: "first", lastName: "last" };
-          }}
-        >
-          Outside mutation
-        </button>
-      </div>
-    </Form>
+    <ShadowHost class="flex-[2]" >
+      <Form
+        class="flex-[2]"
+        bind:value
+        {components}
+        {widgets}
+        {schema}
+        {uiSchema}
+        {validator}
+        {translation}
+      >
+        <div class="flex gap-2">
+          <button type="submit"> Submit </button>
+          <button
+            type="button"
+            onclick={() => {
+              value = { firstName: "first", lastName: "last" };
+            }}
+          >
+            Outside mutation
+          </button>
+        </div>
+      </Form>
+    </ShadowHost>
   </div>
 </div>

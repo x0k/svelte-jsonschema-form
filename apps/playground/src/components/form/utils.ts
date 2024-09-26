@@ -49,7 +49,7 @@ function getWidgetInternal<T extends WidgetType>(
   type: T,
   uiSchema: UiSchema
 ): Widget<CompatibleWidgetType<T>> | undefined {
-  const widget = uiSchema["ui:options"]?.widget;
+  const widget = uiSchema["ui:widget"];
   switch (typeof widget) {
     case "undefined":
       return ctx.widgets(type);
@@ -106,7 +106,7 @@ function getTemplateInternal<T extends TemplateType>(
   type: T,
   uiSchema: UiSchema
 ): Template<T> | undefined {
-  const template = uiSchema["ui:template"];
+  const template = uiSchema["ui:templates"]?.[type];
   switch (typeof template) {
     case "undefined":
       return ctx.templates(type, uiSchema);

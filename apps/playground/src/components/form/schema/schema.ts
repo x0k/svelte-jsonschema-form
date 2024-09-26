@@ -19,7 +19,7 @@ export interface SchemaObjectValue {
   [key: string]: SchemaValue | undefined;
 }
 
-export interface SchemaArrayValue extends Array<SchemaValue> {}
+export interface SchemaArrayValue extends Array<SchemaValue | undefined> {}
 
 export const REF_KEY = "$ref";
 export const ID_KEY = "$id";

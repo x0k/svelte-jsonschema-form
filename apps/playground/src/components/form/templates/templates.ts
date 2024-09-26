@@ -1,11 +1,13 @@
-import { type Template, type Templates, type TemplateType } from './model'
+import { type Template, type Templates, type TemplateType } from "./model";
 
-import Object from './object.svelte'
-import Array from './array.svelte'
+import Object from "./object.svelte";
+import Array from "./array.svelte";
+import ArrayItem from "./array-item.svelte";
 
 export const templatesRegistry: { [T in TemplateType]: Template<T> } = {
   object: Object,
   array: Array,
-}
+  "array-item": ArrayItem,
+};
 
-export const templates: Templates = (type) => templatesRegistry[type]
+export const templates: Templates = (type) => templatesRegistry[type];

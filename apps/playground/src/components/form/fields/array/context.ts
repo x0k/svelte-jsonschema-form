@@ -10,7 +10,13 @@ export interface ArrayContext {
   schema: Schema;
   uiSchema: UiSchema;
   idSchema: IdSchema<SchemaArrayValue>;
+  label: string
+  description: string | undefined
   required: boolean;
+  disabled: boolean;
+  readonly: boolean;
+  canAdd: boolean;
+  addable: boolean;
   orderable: boolean;
   removable: boolean;
   copyable: boolean;
