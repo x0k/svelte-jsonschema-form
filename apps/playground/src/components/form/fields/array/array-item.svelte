@@ -3,7 +3,7 @@
   import type { UiSchema } from "../../ui-schema";
   import type { IdSchema } from "../../id-schema";
   import { getFormContext } from "../../context";
-  import { getComponent, getComponentProps, getField, getTemplate, getUiOptions } from "../../utils";
+  import { getComponent, getField, getFieldProps, getTemplate, getUiOptions } from "../../utils";
 
   import { getArrayContext } from './context';
   import { makeHandler } from './utils';
@@ -47,14 +47,17 @@
   const copy = $derived(arrayCtx.copyable && arrayCtx.canAdd)
   const toolbar = $derived(moveUp || moveDown || remove || copy)
   const uiOptions = $derived(getUiOptions(ctx, uiSchema))
-  const componentProps = $derived(getComponentProps(ctx, uiOptions))
+  const disabled = $derived.by(() => {
+    const { readonly, disabled } = getFieldProps(ctx, name, schema, uiOptions)
+    return readonly || disabled
+  })
 </script>
 
 {#snippet buttons()}
   {#if arrayCtx.orderable}
     <Button
-      type="move-up-array-item"
-      disabled={componentProps.disabled || componentProps.readonly || !moveUp}
+      type="array-item-move-up"
+      disabled={disabled || !moveUp}
       onclick={makeHandler(arrayCtx, (arr) => {
         const tmp = arr[index]
         arr[index] = arr[index - 1]
@@ -62,8 +65,8 @@
       })}
     />
     <Button
-      type="move-down-array-item"
-      disabled={componentProps.disabled || componentProps.readonly || !moveDown}
+      type="array-item-move-down"
+      disabled={disabled || !moveDown}
       onclick={makeHandler(arrayCtx, (arr) => {
         const tmp = arr[index]
         arr[index] = arr[index + 1]
@@ -73,8 +76,8 @@
   {/if}
   {#if copy}
     <Button
-      type="copy-array-item"
-      disabled={componentProps.disabled || componentProps.readonly}
+      type="array-item-copy"
+      {disabled}
       onclick={makeHandler(arrayCtx, (arr) => {
         arr.splice(index, 0, $state.snapshot(value))
       })}
@@ -82,8 +85,8 @@
   {/if}
   {#if remove}
     <Button
-      type="remove-array-item"
-      disabled={componentProps.disabled || componentProps.readonly}
+      type="array-item-remove"
+      {disabled}
       onclick={makeHandler(arrayCtx, (arr) => {
         arr.splice(index, 1)
       })}

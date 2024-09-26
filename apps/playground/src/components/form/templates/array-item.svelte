@@ -16,7 +16,7 @@
     {@render children()}
   </Layout>
   {#if buttons}
-    <Layout type="array-item-buttons">
+    <Layout type="array-item-controls">
       {@render buttons()}
     </Layout>
   {/if}

@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { noop } from '@/lib/function';
+  
   import { getFormContext } from "../context";
   import { createOptions } from "../enum";
   import { type Schema } from "../schema";
@@ -62,4 +64,6 @@
   {...getWidgetProps(ctx, name, schema, uiSchema, idSchema, uiOptions)}
   {options}
   {required}
+  onfocus={noop}
+  onblur={noop}
 />

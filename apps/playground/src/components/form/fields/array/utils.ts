@@ -1,4 +1,5 @@
 import type { SchemaArrayValue } from "../../schema";
+
 import type { ArrayContext } from "./context";
 
 export function getArrayItemName(ctx: ArrayContext, index: number) {

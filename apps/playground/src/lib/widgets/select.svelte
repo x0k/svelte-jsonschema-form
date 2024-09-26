@@ -2,25 +2,19 @@
   import type { WidgetProps } from "@/components/form";
 
   let {
-    id,
     value = $bindable(),
     options,
-    required,
     disabled,
     readonly,
-    autofocus,
-    placeholder,
+    ...rest
   }: WidgetProps<"select"> = $props();
 </script>
 
 <select
-  {id}
-  name={readonly ? id : undefined}
+  {...rest}
+  name={readonly ? rest.id : undefined}
   bind:value
-  {required}
   disabled={disabled || readonly}
-  {autofocus}
-  {placeholder}
 >
   {#each options as option}
     <option value={option.value}>
@@ -29,5 +23,5 @@
   {/each}
 </select>
 {#if readonly}
-  <input type="hidden" name={id} {value} />
+  <input type="hidden" name={rest.id} {value} />
 {/if}

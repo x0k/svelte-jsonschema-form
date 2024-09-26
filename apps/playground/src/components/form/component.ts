@@ -11,13 +11,13 @@ export interface FormComponentProps extends HTMLAttributes<HTMLFormElement> {
 
 export interface ButtonType {
   submit: {};
-  "add-object-property": {};
-  "remove-object-property": {};
-  "add-array-item": {};
-  "move-down-array-item": {};
-  "move-up-array-item": {};
-  "copy-array-item": {};
-  "remove-array-item": {};
+  "object-property-add": {};
+  "object-property-remove": {};
+  "array-item-add": {};
+  "array-item-move-down": {};
+  "array-item-move-up": {};
+  "array-item-copy": {};
+  "array-item-remove": {};
 }
 
 export interface ButtonComponentProps extends HTMLAttributes<HTMLButtonElement> {
@@ -29,11 +29,15 @@ export interface LayoutType {
   "root-field": {};
   "object-field": {};
   "object-properties": {};
+  "object-property": {};
+  "object-property-key-input": {};
+  "object-property-content": {};
+  "object-property-controls": {};
   "array-field": {};
   "array-items": {};
   "array-item": {};
   "array-item-content": {}
-  "array-item-buttons": {}
+  "array-item-controls": {}
 }
 
 export interface LayoutComponentProps extends HTMLAttributes<HTMLDivElement> {

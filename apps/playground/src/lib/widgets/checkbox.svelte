@@ -2,24 +2,18 @@
   import type { WidgetProps } from "@/components/form";
 
   let {
-    id,
     label,
     value = $bindable(),
-    required,
-    disabled,
-    autofocus,
+    ...rest
   }: WidgetProps<"checkbox"> = $props();
 </script>
 
 <label>
   <input
-    {id}
-    name={id}
-    bind:checked={value}
+    {...rest}
     type="checkbox"
-    {required}
-    {disabled}
-    {autofocus}
+    bind:checked={value}
+    name={rest.id}
   />
   {label}
 </label>

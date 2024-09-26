@@ -8,31 +8,31 @@
   <button type="submit" {...props}>
     {@render children?.()}
   </button>
-{:else if type === "add-object-property"}
+{:else if type === "object-property-add"}
   <button type="button" {...props}>
     Add property
   </button>
-{:else if type === "remove-object-property"}
+{:else if type === "object-property-remove"}
   <button type="button" {...props}>
     Del
   </button>
-{:else if type === "add-array-item"}
+{:else if type === "array-item-add"}
   <button type="button" {...props}>
     Add item
   </button>
-{:else if type === "move-up-array-item"}
+{:else if type === "array-item-move-up"}
   <button type="button" {...props}>
     Up
   </button>
-{:else if type === "move-down-array-item"}
+{:else if type === "array-item-move-down"}
   <button type="button" {...props}>
     Down
   </button>
-{:else if type === "copy-array-item"}
+{:else if type === "array-item-copy"}
   <button type="button" {...props}>
     Copy
   </button>
-{:else if type === "remove-array-item"}
+{:else if type === "array-item-remove"}
   <button type="button" {...props}>
     Del
   </button>

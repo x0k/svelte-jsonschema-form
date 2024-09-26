@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { noop } from '@/lib/function';
+
   import { getFormContext } from "../context";
   import { getUiOptions, getWidget, getWidgetProps } from "../utils";
 
@@ -23,4 +25,6 @@
   {...getWidgetProps(ctx, name, schema, uiSchema, idSchema, uiOptions)}
   bind:value
   {required}
+  onblur={noop}
+  onfocus={noop}
 />

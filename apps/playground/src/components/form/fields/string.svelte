@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { noop } from '@/lib/function';
+
   import { getFormContext } from "../context";
   import { createOptions } from "../enum";
   import { getUiOptions, getWidget, getWidgetProps, isSelect } from "../utils";
@@ -14,6 +16,7 @@
     idSchema,
     required,
   }: FieldProps<"string"> = $props();
+  // TODO: Separate into two components
   const Widget = $derived(
     getWidget(ctx, isSelect(ctx, schema) ? "select" : "text", uiSchema)
   );
@@ -26,4 +29,6 @@
   bind:value
   {options}
   {required}
+  onfocus={noop}
+  onblur={noop}
 />

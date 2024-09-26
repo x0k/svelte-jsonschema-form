@@ -2,24 +2,14 @@
   import type { WidgetProps } from "@/components/form";
 
   let {
-    id,
     value = $bindable(),
-    required,
-    disabled,
-    readonly,
-    autofocus,
-    placeholder,
+    ...rest
   }: WidgetProps<"number"> = $props();
 </script>
 
 <input
-  {id}
-  name={id}
+  {...rest}
+  name={rest.id}
   type="number"
   bind:value
-  {required}
-  {disabled}
-  {readonly}
-  {autofocus}
-  {placeholder}
 />

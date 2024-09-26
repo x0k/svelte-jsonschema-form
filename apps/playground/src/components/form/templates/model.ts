@@ -1,33 +1,52 @@
 import type { Snippet, Component as SvelteComponent } from "svelte";
 
-import type { Schema, SchemaValue } from "../schema";
+import type {
+  Schema,
+  SchemaArrayValue,
+  SchemaObjectValue,
+  SchemaValue,
+} from "../schema";
 import type { UiSchema } from "../ui-schema";
 import type { IdSchema } from "../id-schema";
 
-export interface TemplateCommonProps<V extends SchemaValue> {
+export interface TemplateCommonProps<
+  V extends SchemaValue,
+  IdSchemaType = IdSchema<V>
+> {
   name: string;
   value: V | undefined;
   schema: Schema;
   uiSchema: UiSchema;
-  idSchema: IdSchema<V>;
+  idSchema: IdSchemaType;
   required: boolean;
 }
 
-export interface ObjectTemplateProps {
-  title: string | undefined
-  description: string | undefined
+export interface ObjectTemplateProps
+  extends TemplateCommonProps<SchemaObjectValue> {
+  title: string | undefined;
+  description: string | undefined;
   addButton?: Snippet;
   children: Snippet;
 }
 
-export interface ArrayTemplateProps {
-  title: string | undefined
-  description: string | undefined
+export interface ObjectPropertyTemplateProps
+  extends TemplateCommonProps<SchemaValue, IdSchema<SchemaValue> | undefined> {
+  property: string;
+  keyInput?: Snippet;
+  removeButton?: Snippet;
+  children: Snippet;
+}
+
+export interface ArrayTemplateProps
+  extends TemplateCommonProps<SchemaArrayValue> {
+  title: string | undefined;
+  description: string | undefined;
   addButton?: Snippet;
   children: Snippet;
 }
 
-export interface ArrayItemTemplateProps {
+export interface ArrayItemTemplateProps
+  extends TemplateCommonProps<SchemaValue> {
   index: number;
   buttons?: Snippet;
   children: Snippet;
@@ -35,14 +54,14 @@ export interface ArrayItemTemplateProps {
 
 export interface TemplateAndProps {
   object: ObjectTemplateProps;
+  "object-property": ObjectPropertyTemplateProps;
   array: ArrayTemplateProps;
   "array-item": ArrayItemTemplateProps;
 }
 
 export type TemplateType = keyof TemplateAndProps;
 
-export type TemplateProps<T extends TemplateType> = TemplateAndProps[T] &
-  TemplateCommonProps<SchemaValue>;
+export type TemplateProps<T extends TemplateType> = TemplateAndProps[T];
 
 export type Template<T extends TemplateType> = SvelteComponent<
   TemplateProps<T>,

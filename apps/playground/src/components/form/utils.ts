@@ -112,7 +112,7 @@ export function getFieldProps(
     description: uiOptions?.description ?? schema.description,
     readonly: uiOptions?.readonly || ctx.readonly,
     disabled: uiOptions?.disabled || ctx.disabled,
-  }
+  };
 }
 
 function getTemplateInternal<T extends TemplateType>(
@@ -189,7 +189,7 @@ export function getWidgetProps<T>(
   uiSchema: UiSchema,
   idSchema: IdSchema<T>,
   uiOptions: UiOptions | undefined
-) {
+): Omit<WidgetCommonProps<T>, "value" | "required" | "onfocus" | "onblur"> {
   return {
     schema,
     uiSchema,
@@ -199,7 +199,7 @@ export function getWidgetProps<T>(
     readonly: uiOptions?.readonly || ctx.readonly,
     autofocus: uiOptions?.autofocus || false,
     placeholder: uiOptions?.placeholder || "",
-  } satisfies Omit<WidgetCommonProps<T>, "value" | "required">;
+  };
 }
 
 export function isSelect(ctx: FormContext<unknown>, schema: Schema) {

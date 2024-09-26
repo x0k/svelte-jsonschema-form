@@ -43,7 +43,7 @@
 
 {#snippet addButton()}
   <Button
-    type="add-array-item"
+    type="array-item-add"
     disabled={arrayCtx.disabled || arrayCtx.readonly}
     onclick={makeHandler(arrayCtx, (arr) => {
       if (schemaAdditionalItems === null) {

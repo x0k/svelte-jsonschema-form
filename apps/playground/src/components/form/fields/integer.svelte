@@ -1,5 +1,7 @@
 <script lang="ts">
   import { createTransformation } from "@/lib/svelte.svelte";
+  import { noop } from '@/lib/function';
+  
   import { getFormContext } from "../context";
   import { getUiOptions, getWidget, getWidgetProps } from "../utils";
 
@@ -32,4 +34,6 @@
   {...getWidgetProps(ctx, name, schema, uiSchema, idSchema, uiOptions)}
   bind:value={transformation.value}
   {required}
+  onfocus={noop}
+  onblur={noop}
 />

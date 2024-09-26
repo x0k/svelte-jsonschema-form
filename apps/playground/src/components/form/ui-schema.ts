@@ -32,6 +32,7 @@ interface UiSchemaCommonContent<O> {
   anyOf?: UiSchema[];
   oneOf?: UiSchema[];
   additionalProperties?: UiSchema;
+  additionalPropertyKeyInput?: UiSchema;
   additionalItems?: UiSchema;
 }
 
