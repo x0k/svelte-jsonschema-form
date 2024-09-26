@@ -32,6 +32,7 @@ interface UiSchemaCommonContent<O> {
   anyOf?: UiSchema[];
   oneOf?: UiSchema[];
   additionalProperties?: UiSchema;
+  additionalItems?: UiSchema;
 }
 
 export interface UiOptions {

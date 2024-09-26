@@ -5,7 +5,6 @@
     isSchemaObjectValue,
     type Schema,
   } from "../../schema";
-  import type { UiSchema } from "../../ui-schema";
   import {
     getArrayItemSchemaId,
     getComponent,
@@ -16,6 +15,7 @@
 
   import { getArrayContext } from "./context";
   import ArrayItem from "./array-item.svelte";
+  import { getArrayItemName, makeHandler } from './utils';
 
   const ctx = getFormContext();
   const arrayCtx = getArrayContext();
@@ -26,10 +26,9 @@
   const Button = $derived(getComponent(ctx, "button", arrayCtx.uiSchema));
 
   const schemaItems: Schema = $derived(
-    // NOTE: Fixed array is covered in another component
     isSchemaObjectValue(arrayCtx.schema.items) ? arrayCtx.schema.items : {}
   );
-  const itemUiSchema: UiSchema = $derived(
+  const itemUiSchema = $derived(
     arrayCtx.uiSchema.items !== undefined &&
       !Array.isArray(arrayCtx.uiSchema.items)
       ? arrayCtx.uiSchema.items
@@ -41,14 +40,13 @@
   <Description type="array" description={arrayCtx.description!} />
 {/snippet}
 {#snippet addButton()}
-  <Button type="add-array-item" disabled={arrayCtx.disabled || arrayCtx.readonly} onclick={(e) => {
-    e.preventDefault()
-    if (!Array.isArray(arrayCtx.value)) {
-      console.warn("Value is not an array")
-      return
-    }
-    arrayCtx.value.push(getDefaultFormState(ctx, schemaItems))
-  }} />
+  <Button
+    type="add-array-item"
+    disabled={arrayCtx.disabled || arrayCtx.readonly}
+    onclick={makeHandler(arrayCtx, (arr) => {
+      arr.push(getDefaultFormState(ctx, schemaItems))
+    })}
+  />
 {/snippet}
 <Template
   name={arrayCtx.name}
@@ -73,10 +71,9 @@
         index,
         item
       )}
-      {@const itemRequired = !isSchemaNullable(itemSchema)}
       <ArrayItem
         {index}
-        name={`${arrayCtx.name}-${index}`}
+        name={getArrayItemName(arrayCtx, index)}
         bind:value={arrayCtx.value[index]}
         schema={itemSchema}
         uiSchema={itemUiSchema}
@@ -84,7 +81,7 @@
         canRemove={true}
         canMoveUp={index > 0}
         canMoveDown={index < arrayCtx.value.length - 1}
-        required={itemRequired}
+        required={!isSchemaNullable(itemSchema)}
       />
     {/each}
   {/if}

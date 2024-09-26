@@ -6,6 +6,7 @@
   import { getComponent, getComponentProps, getField, getTemplate } from "../../utils";
 
   import { getArrayContext } from './context';
+  import { makeHandler } from './utils';
 
   let {
     index,
@@ -46,18 +47,6 @@
   const copy = $derived(arrayCtx.copyable && arrayCtx.canAdd)
   const toolbar = $derived(moveUp || moveDown || remove || copy)
   const componentProps = $derived(getComponentProps(ctx, uiSchema))
-
-  function makeHandler(fn: (arr: SchemaArrayValue) => void) {
-    return (e: Event) => {
-      e.preventDefault()
-      const arr = arrayCtx.value
-      if (!Array.isArray(arr)) {
-        console.warn("Value is not an array")
-        return
-      }
-      fn(arr)
-    }
-  }
 </script>
 
 {#snippet buttons()}
@@ -65,7 +54,7 @@
     <Button
       type="move-up-array-item"
       disabled={componentProps.disabled || componentProps.readonly || !moveUp}
-      onclick={makeHandler((arr) => {
+      onclick={makeHandler(arrayCtx, (arr) => {
         const tmp = arr[index]
         arr[index] = arr[index - 1]
         arr[index - 1] = tmp
@@ -74,7 +63,7 @@
     <Button
       type="move-down-array-item"
       disabled={componentProps.disabled || componentProps.readonly || !moveDown}
-      onclick={makeHandler((arr) => {
+      onclick={makeHandler(arrayCtx, (arr) => {
         const tmp = arr[index]
         arr[index] = arr[index + 1]
         arr[index + 1] = tmp
@@ -85,7 +74,7 @@
     <Button
       type="copy-array-item"
       disabled={componentProps.disabled || componentProps.readonly}
-      onclick={makeHandler((arr) => {
+      onclick={makeHandler(arrayCtx, (arr) => {
         arr.splice(index, 0, $state.snapshot(value))
       })}
     />
@@ -94,7 +83,7 @@
     <Button
       type="remove-array-item"
       disabled={componentProps.disabled || componentProps.readonly}
-      onclick={makeHandler((arr) => {
+      onclick={makeHandler(arrayCtx, (arr) => {
         arr.splice(index, 1)
       })}
     />

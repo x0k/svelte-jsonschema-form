@@ -47,6 +47,19 @@
         items: {
           type: "string",
         },
+      },
+      sports: {
+        type: "array",
+        title: "Sports",
+        items: [
+          { type: "string", title: "String" },
+          { type: "number", title: "Number" },
+          { type: "boolean", title: "Boolean" },
+        ],
+        additionalItems: {
+          title: "Additional item",
+          type: "integer",
+        }
       }
     },
   };
