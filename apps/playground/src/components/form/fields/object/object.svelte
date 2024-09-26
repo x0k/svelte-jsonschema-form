@@ -81,9 +81,8 @@
         return
       }
       const newKey = generateNewKey("newKey", newKeySeparator, value)
-      value[newKey] = schemaAdditionalProperties.default !== undefined
-        ? structuredClone(schemaAdditionalProperties.default)
-        : getDefaultValueForType(getSimpleSchemaType(schemaAdditionalProperties))
+      value[newKey] = getDefaultFormState(ctx, schemaAdditionalProperties, undefined)
+        ?? getDefaultValueForType(getSimpleSchemaType(schemaAdditionalProperties))
     }}
   />
 {/snippet}

@@ -231,7 +231,7 @@ export function toIdSchema<T extends SchemaValue>(
 export function getDefaultFormState<T extends SchemaValue>(
   ctx: FormContext<T>,
   schema: Schema,
-  formData?: T
+  formData: T | undefined
 ) {
   return getDefaultFormStateInternal(
     ctx.validator,

@@ -39,7 +39,7 @@
     type="array-item-add"
     disabled={arrayCtx.disabled || arrayCtx.readonly}
     onclick={makeHandler(arrayCtx, (arr) => {
-      arr.push(getDefaultFormState(ctx, schemaItems))
+      arr.push(getDefaultFormState(ctx, schemaItems, undefined))
     })}
   />
 {/snippet}

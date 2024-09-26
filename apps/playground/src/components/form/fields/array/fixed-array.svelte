@@ -49,7 +49,7 @@
       if (schemaAdditionalItems === null) {
         return
       }
-      arr.push(getDefaultFormState(ctx, schemaAdditionalItems))
+      arr.push(getDefaultFormState(ctx, schemaAdditionalItems, undefined))
     })}
   />
 {/snippet}
