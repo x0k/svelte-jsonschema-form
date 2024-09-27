@@ -48,7 +48,7 @@
   const toolbar = $derived(moveUp || moveDown || remove || copy)
   const uiOptions = $derived(getUiOptions(ctx, uiSchema))
   const disabled = $derived.by(() => {
-    const { readonly, disabled } = getFieldProps(ctx, name, schema, uiOptions)
+    const { readonly, disabled } = getFieldProps(ctx, uiOptions)
     return readonly || disabled
   })
 </script>
@@ -101,6 +101,7 @@
   {uiSchema}
   {idSchema}
   {required}
+  {uiOptions}
   buttons={toolbar ? buttons : undefined}
 >
   <Field {name} bind:value {schema} {uiSchema} {idSchema} {required} />

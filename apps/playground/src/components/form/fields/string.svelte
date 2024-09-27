@@ -1,13 +1,18 @@
 <script lang="ts">
-  import { noop } from '@/lib/function';
+  import { noop } from "@/lib/function";
 
   import { getFormContext } from "../context";
   import { createOptions } from "../enum";
-  import { getUiOptions, getWidget, getWidgetProps, isSelect } from "../utils";
+  import {
+    getTemplate,
+    getUiOptions,
+    getWidget,
+    getWidgetProps,
+    isSelect,
+  } from "../utils";
 
   import type { FieldProps } from "./model";
 
-  const ctx = getFormContext();
   let {
     name,
     value = $bindable(),
@@ -16,6 +21,10 @@
     idSchema,
     required,
   }: FieldProps<"string"> = $props();
+
+  const ctx = getFormContext();
+
+  const Template = $derived(getTemplate(ctx, "field", uiSchema));
   // TODO: Separate into two components
   const Widget = $derived(
     getWidget(ctx, isSelect(ctx, schema) ? "select" : "text", uiSchema)
@@ -24,11 +33,22 @@
   const uiOptions = $derived(getUiOptions(ctx, uiSchema));
 </script>
 
-<Widget
-  {...getWidgetProps(ctx, name, schema, uiSchema, idSchema, uiOptions)}
-  bind:value
-  {options}
+<Template
+  showTitle={true}
+  {name}
+  {value}
+  {schema}
+  {uiSchema}
+  {idSchema}
   {required}
-  onfocus={noop}
-  onblur={noop}
-/>
+  {uiOptions}
+>
+  <Widget
+    {...getWidgetProps(ctx, name, schema, uiSchema, idSchema, uiOptions)}
+    bind:value
+    {options}
+    {required}
+    onfocus={noop}
+    onblur={noop}
+  />
+</Template>

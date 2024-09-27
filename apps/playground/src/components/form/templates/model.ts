@@ -6,7 +6,7 @@ import type {
   SchemaObjectValue,
   SchemaValue,
 } from "../schema";
-import type { UiSchema } from "../ui-schema";
+import type { UiOptions, UiSchema } from "../ui-schema";
 import type { IdSchema } from "../id-schema";
 
 export interface TemplateCommonProps<
@@ -18,13 +18,12 @@ export interface TemplateCommonProps<
   schema: Schema;
   uiSchema: UiSchema;
   idSchema: IdSchemaType;
+  uiOptions: UiOptions | undefined;
   required: boolean;
 }
 
 export interface ObjectTemplateProps
   extends TemplateCommonProps<SchemaObjectValue> {
-  title: string | undefined;
-  description: string | undefined;
   addButton?: Snippet;
   children: Snippet;
 }
@@ -39,8 +38,6 @@ export interface ObjectPropertyTemplateProps
 
 export interface ArrayTemplateProps
   extends TemplateCommonProps<SchemaArrayValue> {
-  title: string | undefined;
-  description: string | undefined;
   addButton?: Snippet;
   children: Snippet;
 }
@@ -52,7 +49,13 @@ export interface ArrayItemTemplateProps
   children: Snippet;
 }
 
+export interface FieldTemplateProps extends TemplateCommonProps<SchemaValue> {
+  showTitle: boolean;
+  children: Snippet;
+}
+
 export interface TemplateAndProps {
+  field: FieldTemplateProps;
   object: ObjectTemplateProps;
   "object-property": ObjectPropertyTemplateProps;
   array: ArrayTemplateProps;

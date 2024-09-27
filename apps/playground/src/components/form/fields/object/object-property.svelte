@@ -36,7 +36,7 @@
   const Button = $derived(getComponent(ctx, "button", uiSchema))
   const uiOptions = $derived(getUiOptions(ctx, uiSchema))
   const disabled = $derived.by(() => {
-    const { readonly, disabled } = getFieldProps(ctx, name, schema, uiOptions)
+    const { readonly, disabled } = getFieldProps(ctx, uiOptions)
     return readonly || disabled
   })
 </script>
@@ -71,6 +71,7 @@
   {uiSchema}
   {idSchema}
   {required}
+  {uiOptions}
   keyInput={isAdditional ? keyInput : undefined}
   removeButton={isAdditional ? removeButton : undefined}
 >

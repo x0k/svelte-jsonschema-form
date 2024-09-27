@@ -24,7 +24,6 @@ import Message from "./message.svelte";
 
 const createMessage =
   (message: string): typeof Message =>
-  // @ts-expect-error
   (internal) =>
     Message(internal, { message });
 
@@ -101,15 +100,25 @@ export function getField<T extends FieldType>(
   );
 }
 
-export function getFieldProps(
-  ctx: FormContext<unknown>,
+export function getTemplateProps(
+  _: FormContext<unknown>,
   name: string,
   schema: Schema,
   uiOptions: UiOptions | undefined
 ) {
   return {
     title: uiOptions?.title ?? schema.title ?? name,
+    showMeta: uiOptions?.hideTitle !== true,
     description: uiOptions?.description ?? schema.description,
+  };
+}
+
+// TODO: Remove title and description once templates can do this
+export function getFieldProps(
+  ctx: FormContext<unknown>,
+  uiOptions: UiOptions | undefined
+) {
+  return {
     readonly: uiOptions?.readonly || ctx.readonly,
     disabled: uiOptions?.disabled || ctx.disabled,
   };
@@ -199,6 +208,7 @@ export function getWidgetProps<T>(
     readonly: uiOptions?.readonly || ctx.readonly,
     autofocus: uiOptions?.autofocus || false,
     placeholder: uiOptions?.placeholder || "",
+    autocomplete: uiOptions?.autocomplete,
   };
 }
 

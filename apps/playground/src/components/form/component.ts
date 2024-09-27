@@ -3,7 +3,7 @@ import type { HTMLAttributes } from "svelte/elements";
 
 import type { Get } from "@/lib/types";
 
-import type { UiSchema } from './ui-schema';
+import type { UiSchema } from "./ui-schema";
 
 export interface FormComponentProps extends HTMLAttributes<HTMLFormElement> {
   form: HTMLFormElement | undefined;
@@ -20,13 +20,16 @@ export interface ButtonType {
   "array-item-remove": {};
 }
 
-export interface ButtonComponentProps extends HTMLAttributes<HTMLButtonElement> {
+export interface ButtonComponentProps
+  extends HTMLAttributes<HTMLButtonElement> {
   type: keyof ButtonType;
   disabled: boolean;
 }
 
 export interface LayoutType {
   "root-field": {};
+  "field": {};
+  "field-content": {};
   "object-field": {};
   "object-properties": {};
   "object-property": {};
@@ -36,8 +39,8 @@ export interface LayoutType {
   "array-field": {};
   "array-items": {};
   "array-item": {};
-  "array-item-content": {}
-  "array-item-controls": {}
+  "array-item-content": {};
+  "array-item-controls": {};
 }
 
 export interface LayoutComponentProps extends HTMLAttributes<HTMLDivElement> {
@@ -48,25 +51,31 @@ export interface AlertType {
   error: {};
 }
 
-export interface AlertComponentProps
-  extends HTMLAttributes<HTMLDivElement> {
+export interface AlertComponentProps extends HTMLAttributes<HTMLDivElement> {
   type: keyof AlertType;
   title?: string;
 }
 
 export interface ParentTemplateType {
-  "object": {};
-  "array": {};
+  field: {};
+  object: {};
+  array: {};
 }
 
 export interface TitleComponentProps extends HTMLAttributes<HTMLElement> {
   type: keyof ParentTemplateType;
   title: string;
+  forId: string
+  required: boolean
 }
 
 export interface DescriptionComponentProps extends HTMLAttributes<HTMLElement> {
   type: keyof ParentTemplateType;
   description: string;
+}
+
+export interface HelpComponentProps extends HTMLAttributes<HTMLElement> {
+  help: string;
 }
 
 export interface ComponentsAndProps {
@@ -76,9 +85,8 @@ export interface ComponentsAndProps {
   alert: AlertComponentProps;
   title: TitleComponentProps;
   description: DescriptionComponentProps;
+  help: HelpComponentProps;
 }
-
-export interface ComponentExports {}
 
 export interface ComponentBindings {
   form: "form";
@@ -90,8 +98,11 @@ export type ComponentProps<T extends ComponentType> = ComponentsAndProps[T];
 
 export type Component<T extends ComponentType> = SvelteComponent<
   ComponentProps<T>,
-  Get<ComponentExports, T, {}>,
+  {},
   Get<ComponentBindings, T, "">
 >;
 
-export type Components = <T extends ComponentType>(type: T, uiSchema: UiSchema) => Component<T> | undefined;
+export type Components = <T extends ComponentType>(
+  type: T,
+  uiSchema: UiSchema
+) => Component<T> | undefined;

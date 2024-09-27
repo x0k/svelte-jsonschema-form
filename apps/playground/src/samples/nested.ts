@@ -1,6 +1,7 @@
 import type { Sample } from './Sample';
 
 const nested: Sample = {
+  status: "warnings",
   schema: {
     title: 'A list of tasks',
     type: 'object',

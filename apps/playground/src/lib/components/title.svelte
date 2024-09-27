@@ -1,7 +1,17 @@
 <script lang="ts">
-  import type { ComponentProps } from '@/components/form';
+  import type { ComponentProps } from "@/components/form";
 
-  const { title, ...props }: ComponentProps<"title"> = $props();
+  const { title, type, forId, required, ...props }: ComponentProps<"title"> =
+    $props();
 </script>
 
-<p {...props}>{title}</p>
+{#if type === "field"}
+  <label for={forId}>
+    {title}
+    {#if required}
+      <span>*</span>
+    {/if}
+  </label>
+{:else}
+  <p {...props}>{title}</p>
+{/if}

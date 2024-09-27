@@ -55,14 +55,13 @@
 {/snippet}
 <Template
   name={arrayCtx.name}
-  title={arrayCtx.title}
   value={arrayCtx.value}
   schema={arrayCtx.schema}
   uiSchema={arrayCtx.uiSchema}
   idSchema={arrayCtx.idSchema}
   required={arrayCtx.required}
-  description={arrayCtx.description}
   addButton={arrayCtx.canAdd && schemaAdditionalItems ? addButton : undefined}
+  uiOptions={arrayCtx.uiOptions}
 >
   {#if arrayCtx.value}
     {#each arrayCtx.value as item, index}

@@ -49,20 +49,20 @@
     }
   }
   setObjectContext(objCtx)
-
+  
   // TODO: Is it required? Seems like `root` field will always do the same thing
   const retrievedSchema = $derived(retrieveSchema(ctx, schema, value))
   const requiredProperties = $derived(new Set(retrievedSchema.required));
   const schemaProperties = $derived(retrievedSchema.properties);
   const schemaPropertiesOrder = $derived(
     isSchemaObjectValue(schemaProperties)
-      ? orderProperties(schemaProperties, uiOptions?.order)
-      : []
+    ? orderProperties(schemaProperties, uiOptions?.order)
+    : []
   );
   const Template = $derived(getTemplate(ctx, "object", uiSchema));
   const Button = $derived(getComponent(ctx, "button", uiSchema));
-
-  const { title, readonly, description, disabled } = $derived(getFieldProps(ctx, name, retrievedSchema, uiOptions))
+  
+  const { readonly, disabled } = $derived(getFieldProps(ctx, uiOptions))
 
   const schemaAdditionalProperties = $derived(
     isSchemaObjectValue(retrievedSchema.additionalProperties) ? retrieveSchema(ctx, retrievedSchema.additionalProperties, value) : {}
@@ -93,8 +93,7 @@
   {uiSchema}
   {idSchema}
   {required}
-  {title}
-  {description}
+  {uiOptions}
   addButton={canExpand ? addButton : undefined}
 >
   {#if schemaProperties !== undefined && value !== undefined}

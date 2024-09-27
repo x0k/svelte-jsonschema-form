@@ -45,13 +45,12 @@
 {/snippet}
 <Template
   name={arrayCtx.name}
-  title={arrayCtx.title}
   value={arrayCtx.value}
   schema={arrayCtx.schema}
   uiSchema={arrayCtx.uiSchema}
   idSchema={arrayCtx.idSchema}
   required={arrayCtx.required}
-  description={arrayCtx.description}
+  uiOptions={arrayCtx.uiOptions}
   addButton={arrayCtx.canAdd ? addButton : undefined}
 >
   {#if arrayCtx.value}

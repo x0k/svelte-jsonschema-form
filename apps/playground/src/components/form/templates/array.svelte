@@ -1,24 +1,26 @@
 <script lang="ts">
 import { getFormContext } from '../context';
-  import { getComponent } from '../utils';
+  import { getComponent, getTemplateProps } from '../utils';
 
   import type { TemplateProps } from './model';
 
   const ctx = getFormContext()
 
-  const { uiSchema, title, description, children, addButton }: TemplateProps<"array"> = $props();
+  const { uiSchema, idSchema, uiOptions, name, schema, required, children, addButton }: TemplateProps<"array"> = $props();
 
   const Layout = $derived(getComponent(ctx, "layout", uiSchema));
   const Title = $derived(getComponent(ctx, "title", uiSchema));
   const Description = $derived(getComponent(ctx, "description", uiSchema));
+
+  const { title, description, showMeta } = $derived(getTemplateProps(ctx, name, schema, uiOptions))
 </script>
 
 <Layout type="array-field">
-  {#if title !== undefined}
-    <Title type="array" {title} />
-  {/if}
-  {#if description !== undefined}
-    <Description type="array" {description} />
+  {#if showMeta}
+    <Title type="array" {title} {required} forId={idSchema.$id} />
+    {#if description !== undefined}
+      <Description type="array" {description} />
+    {/if}
   {/if}
   <Layout type="array-items">
     {@render children()}

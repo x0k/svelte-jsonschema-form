@@ -39,8 +39,11 @@
       <button
         type="button"
         class="border rounded p-2"
-        class:bg-green-200={sample.status === "ok"}
-        class:bg-red-200={sample.status === "broken" || sample.status === undefined}
+        class:bg-green-200={sample.status === "prefect"}
+        class:bg-blue-200={sample.status === "ok"}
+        class:bg-yellow-200={sample.status === "warnings"}
+        class:bg-red-200={sample.status === "broken" ||
+          sample.status === undefined}
         class:bg-neutral-200={sample.status === "skipped"}
         disabled={sample.status === "skipped"}
         onclick={() => {
@@ -60,7 +63,12 @@
       </div>
       <div class="flex gap-2">
         <div class="h-[360px] flex-1 border rounded overflow-auto p-2">
-          <pre class="w-0"><code>{JSON.stringify(uiSchema, null, 2)}</code
+          <pre class="w-0"><code
+              >{JSON.stringify(
+                uiSchema,
+                (_, v) => (typeof v === "function" ? `Component(${v.componentName})` : v),
+                2
+              )}</code
             ></pre>
         </div>
         <div class="h-[360px] flex-1 border rounded overflow-auto p-2">

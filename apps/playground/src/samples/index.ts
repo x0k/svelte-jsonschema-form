@@ -41,7 +41,7 @@ const skipped: Sample = {
 };
 
 export const samples = Object.freeze({
-  Blank: { status: "ok", schema: {}, uiSchema: {}, formData: {} },
+  Blank: { status: "prefect", schema: {}, uiSchema: {}, formData: {} },
   Simple: simple,
   "UI Options": options,
   Nested: nested,

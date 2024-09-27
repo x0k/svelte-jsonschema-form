@@ -1,8 +1,13 @@
 <script lang="ts">
-  import { noop } from '@/lib/function';
+  import { noop } from "@/lib/function";
 
   import { getFormContext } from "../context";
-  import { getUiOptions, getWidget, getWidgetProps } from "../utils";
+  import {
+    getTemplate,
+    getUiOptions,
+    getWidget,
+    getWidgetProps,
+  } from "../utils";
 
   import type { FieldProps } from "./model";
 
@@ -17,14 +22,26 @@
     required,
   }: FieldProps<"number"> = $props();
 
+  const Template = $derived(getTemplate(ctx, "field", uiSchema));
   const Widget = $derived(getWidget(ctx, "number", uiSchema));
   const uiOptions = $derived(getUiOptions(ctx, uiSchema));
 </script>
 
-<Widget
-  {...getWidgetProps(ctx, name, schema, uiSchema, idSchema, uiOptions)}
-  bind:value
+<Template
+  showTitle={true}
+  {name}
+  {value}
+  {schema}
+  {uiSchema}
+  {idSchema}
   {required}
-  onblur={noop}
-  onfocus={noop}
-/>
+  {uiOptions}
+>
+  <Widget
+    {...getWidgetProps(ctx, name, schema, uiSchema, idSchema, uiOptions)}
+    bind:value
+    {required}
+    onblur={noop}
+    onfocus={noop}
+  />
+</Template>

@@ -1,9 +1,14 @@
 <script lang="ts">
   import { createTransformation } from "@/lib/svelte.svelte";
-  import { noop } from '@/lib/function';
-  
+  import { noop } from "@/lib/function";
+
   import { getFormContext } from "../context";
-  import { getUiOptions, getWidget, getWidgetProps } from "../utils";
+  import {
+    getTemplate,
+    getUiOptions,
+    getWidget,
+    getWidgetProps,
+  } from "../utils";
 
   import type { FieldProps } from "./model";
 
@@ -18,6 +23,7 @@
     required,
   }: FieldProps<"number"> = $props();
 
+  const Template = $derived(getTemplate(ctx, "field", uiSchema));
   const Widget = $derived(getWidget(ctx, "number", uiSchema));
 
   const transformation = createTransformation({
@@ -27,13 +33,24 @@
       value = v;
     },
   });
-  const uiOptions = $derived(getUiOptions(ctx, uiSchema))
+  const uiOptions = $derived(getUiOptions(ctx, uiSchema));
 </script>
 
-<Widget
-  {...getWidgetProps(ctx, name, schema, uiSchema, idSchema, uiOptions)}
-  bind:value={transformation.value}
+<Template
+  showTitle={true}
+  {name}
+  {value}
+  {schema}
+  {uiSchema}
+  {idSchema}
   {required}
-  onfocus={noop}
-  onblur={noop}
-/>
+  {uiOptions}
+>
+  <Widget
+    {...getWidgetProps(ctx, name, schema, uiSchema, idSchema, uiOptions)}
+    bind:value={transformation.value}
+    {required}
+    onfocus={noop}
+    onblur={noop}
+  />
+</Template>

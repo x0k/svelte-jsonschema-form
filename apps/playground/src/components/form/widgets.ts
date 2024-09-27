@@ -1,5 +1,5 @@
 import type { Component as SvelteComponent } from "svelte";
-import type { HTMLAttributes } from "svelte/elements";
+import type { FullAutoFill, HTMLAttributes } from "svelte/elements";
 
 import type { Schema, SchemaValue } from "./schema";
 import type { UiSchema } from "./ui-schema";
@@ -16,6 +16,7 @@ export interface WidgetCommonProps<V> extends HTMLAttributes<HTMLElement> {
   readonly: boolean;
   autofocus: boolean;
   placeholder: string;
+  autocomplete: FullAutoFill | undefined;
   onfocus: () => void;
   onblur: () => void;
   // hideError: boolean;

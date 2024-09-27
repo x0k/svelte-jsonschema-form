@@ -11,5 +11,8 @@ t:
 b:
   pnpm run build
 
+tb:
+  pnpx turbo run build --only
+
 c:
   pnpm run check

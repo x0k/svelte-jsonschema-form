@@ -11,8 +11,6 @@ export interface ArrayContext {
   uiSchema: UiSchema;
   idSchema: IdSchema<SchemaArrayValue>;
   uiOptions: UiOptions | undefined;
-  title: string
-  description: string | undefined
   required: boolean;
   disabled: boolean;
   readonly: boolean;

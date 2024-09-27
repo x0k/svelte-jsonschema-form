@@ -1,3 +1,5 @@
+import type { FullAutoFill, HTMLInputTypeAttribute } from 'svelte/elements';
+
 import type { Component, ComponentType } from "./component";
 import type { Field, FieldType } from "./fields";
 import type { Template, TemplateType } from "./templates";
@@ -22,12 +24,12 @@ interface UiSchemaCommonContent<O> {
   "ui:options"?: O;
   "ui:widget"?: WidgetType | Widget<WidgetType>;
   "ui:field"?: FieldType | Field<FieldType>;
-  "ui:templates"?: {
-    [T in TemplateType]: undefined | TemplateType | Template<T>;
-  };
-  "ui:components"?: {
-    [T in ComponentType]: undefined | ComponentType | Component<T>;
-  };
+  "ui:templates"?: Partial<{
+    [T in TemplateType]: TemplateType | Template<T>;
+  }>;
+  "ui:components"?: Partial<{
+    [T in ComponentType]: ComponentType | Component<T>;
+  }>;
   items?: UiSchema | UiSchema[];
   anyOf?: UiSchema[];
   oneOf?: UiSchema[];
@@ -45,6 +47,7 @@ export interface UiOptions {
   readonly?: boolean;
   autofocus?: boolean;
   placeholder?: string;
+  autocomplete?: FullAutoFill;
   enumNames?: string[];
   order?: string[];
   addable?: boolean;
@@ -54,6 +57,9 @@ export interface UiOptions {
   copyable?: boolean;
   duplicateKeySuffixSeparator?: string;
   rows?: number;
+  help?: string;
+  inputType?: HTMLInputTypeAttribute
+  hideTitle?: boolean
 }
 
 export type UiSchema = UiSchemaIndex & UiSchemaContent;

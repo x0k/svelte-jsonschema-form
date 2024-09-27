@@ -41,8 +41,8 @@
       Array.isArray(value) &&
       (schema.maxItems === undefined || value.length < schema.maxItems)
   );
-  const { title, description, disabled, readonly } = $derived(
-    getFieldProps(ctx, name, schema, uiOptions)
+  const { disabled, readonly } = $derived(
+    getFieldProps(ctx, uiOptions)
   );
 
   const arrayCtx: ArrayContext = {
@@ -51,12 +51,6 @@
     },
     get uiOptions() {
       return uiOptions;
-    },
-    get title() {
-      return title;
-    },
-    get description() {
-      return description;
     },
     get value() {
       return value;

@@ -1,10 +1,15 @@
 <script lang="ts">
-  import { noop } from '@/lib/function';
-  
+  import { noop } from "@/lib/function";
+
   import { getFormContext } from "../context";
   import { createOptions } from "../enum";
   import { type Schema } from "../schema";
-  import { getUiOptions, getWidget, getWidgetProps } from "../utils";
+  import {
+    getTemplate,
+    getUiOptions,
+    getWidget,
+    getWidgetProps,
+  } from "../utils";
 
   import type { FieldProps } from "./model";
 
@@ -19,6 +24,7 @@
     required,
   }: FieldProps<"boolean"> = $props();
 
+  const Template = $derived(getTemplate(ctx, "field", uiSchema));
   const Widget = $derived(getWidget(ctx, "checkbox", uiSchema));
   const uiOptions = $derived(getUiOptions(ctx, uiSchema));
   const options = $derived.by(() => {
@@ -59,11 +65,22 @@
   });
 </script>
 
-<Widget
-  bind:value
-  {...getWidgetProps(ctx, name, schema, uiSchema, idSchema, uiOptions)}
-  {options}
+<Template
+  showTitle={false}
+  {name}
+  {value}
+  {schema}
+  {uiSchema}
+  {idSchema}
   {required}
-  onfocus={noop}
-  onblur={noop}
-/>
+  {uiOptions}
+>
+  <Widget
+    bind:value
+    {...getWidgetProps(ctx, name, schema, uiSchema, idSchema, uiOptions)}
+    {options}
+    {required}
+    onfocus={noop}
+    onblur={noop}
+  />
+</Template>
