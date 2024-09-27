@@ -5,11 +5,11 @@
 </script>
 
 {#if type === "submit"}
-  <button type="submit" {...props}>
+  <button type="submit" style="width: 100%; padding: 0.5rem" {...props}>
     {@render children?.()}
   </button>
 {:else if type === "object-property-add"}
-  <button type="button" {...props}>
+  <button type="button" style="width: 100%; padding: 0.2rem" {...props}>
     Add property
   </button>
 {:else if type === "object-property-remove"}
@@ -17,7 +17,7 @@
     Del
   </button>
 {:else if type === "array-item-add"}
-  <button type="button" {...props}>
+  <button type="button" style="width: 100%; padding: 0.2rem" {...props}>
     Add item
   </button>
 {:else if type === "array-item-move-up"}

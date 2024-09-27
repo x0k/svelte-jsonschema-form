@@ -29,7 +29,7 @@ const optionsSample: Sample = {
       "ui:options": {
         title: "Confirm Details",
         input: {
-          style: "width: 100%;",
+          style: "width: 100%; padding: 12px 0; margin: 0;",
         },
       },
     },
@@ -38,7 +38,6 @@ const optionsSample: Sample = {
         // 'ui:emptyValue': '',
         input: {
           autofocus: true,
-          style: "width: 100%;",
           autocomplete: "family-name",
         },
       },

@@ -18,7 +18,7 @@
 
 <Layout type="field">
   {#if showMeta}
-    {#if showTitle}
+    {#if showTitle && title}
       <Title type="field" {title} {required} forId={idSchema.$id} />
     {/if}
     {#if description !== undefined}

@@ -1,6 +1,7 @@
 import type { Sample } from './Sample';
 
 const arrays: Sample = {
+  status: "broken",
   schema: {
     definitions: {
       Thing: {
@@ -137,17 +138,19 @@ const arrays: Sample = {
     },
   },
   uiSchema: {
-    listOfStrings: {
-      items: { 'ui:emptyValue': '' },
-    },
+    // listOfStrings: {
+    //   items: {
+    //     'ui:emptyValue': ''
+    //   },
+    // },
     multipleChoicesList: {
       'ui:widget': 'checkboxes',
     },
     fixedItemsList: {
       items: [{ 'ui:widget': 'textarea' }, { 'ui:widget': 'select' }],
-      additionalItems: {
-        'ui:widget': 'updown',
-      },
+      // additionalItems: {
+      //   'ui:widget': 'updown',
+      // },
     },
     unorderable: {
       'ui:options': {

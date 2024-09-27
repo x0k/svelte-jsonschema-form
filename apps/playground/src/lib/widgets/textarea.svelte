@@ -4,4 +4,8 @@
   let { value = $bindable(), attributes }: WidgetProps<"textarea"> = $props();
 </script>
 
-<textarea bind:value {...attributes}></textarea>
+<textarea
+  bind:value
+  {...attributes}
+  style={`flex-grow: 1; ${attributes?.style || ""}`}
+></textarea>

@@ -27,7 +27,7 @@
   );
 </script>
 
-<div class="py-2 px-8 h-screen">
+<div class="py-2 px-8 pb-4 min-h-screen">
   <div class="text-3xl font-bold pb-2 flex items-center">
     <h1 class="grow">Playground</h1>
     <a target="_blank" href="https://github.com/x0k/svelte-jsonschema-form">
@@ -57,8 +57,8 @@
     {/each}
   </div>
   <div class="flex gap-2">
-    <div class="flex-[3] flex flex-col gap-2">
-      <div class="h-[400px] border rounded overflow-auto p-2">
+    <div class="flex-[4] flex flex-col gap-2">
+      <div class="h-[360px] border rounded overflow-auto p-2">
         <pre class="w-0"><code>{JSON.stringify(schema, null, 2)}</code></pre>
       </div>
       <div class="flex gap-2">
@@ -76,9 +76,8 @@
         </div>
       </div>
     </div>
-    <ShadowHost class="flex-[2]">
+    <ShadowHost class="flex-[3]">
       <Form
-        class="flex-[2]"
         bind:value
         {components}
         {widgets}

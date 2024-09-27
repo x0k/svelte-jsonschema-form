@@ -6,12 +6,12 @@
 </script>
 
 {#if type === "field"}
-  <label for={forId}>
+  <label style="font-weight: bold; padding-bottom: 0.5rem;" for={forId}>
     {title}
     {#if required}
       <span>*</span>
     {/if}
   </label>
 {:else}
-  <p {...props}>{title}</p>
+  <div style="font-weight: bold; padding-bottom: 0.5rem;" {...props}>{title}</div>
 {/if}

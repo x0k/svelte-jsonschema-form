@@ -17,7 +17,9 @@ import { getFormContext } from '../context';
 
 <Layout type="array-field">
   {#if showMeta}
-    <Title type="array" {title} {required} forId={idSchema.$id} />
+    {#if title}
+      <Title type="array" {title} {required} forId={idSchema.$id} />
+    {/if}
     {#if description !== undefined}
       <Description type="array" {description} />
     {/if}

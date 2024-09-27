@@ -4,4 +4,9 @@
   let { value = $bindable(), attributes }: WidgetProps<"number"> = $props();
 </script>
 
-<input type="number" bind:value {...attributes} />
+<input
+  type="number"
+  bind:value
+  {...attributes}
+  style={`flex-grow: 1; ${attributes?.style || ""}`}
+/>
