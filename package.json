@@ -12,6 +12,7 @@
     "dev": "turbo run dev",
     "test": "turbo run test",
     "build": "turbo run build",
+    "build-unsafe": "turbo run build --only",
     "preview": "turbo run preview"
   },
   "devDependencies": {

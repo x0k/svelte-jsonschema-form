@@ -8,6 +8,8 @@
   import { Form } from "@/components/form";
   import { ShadowHost } from "@/components/shadow";
 
+  import Github from "./github.svelte";
+
   import { samples } from "./samples";
 
   let schema = $state(samples.Simple.schema);
@@ -25,8 +27,13 @@
   );
 </script>
 
-<div class="p-2">
-  <div class="text-3xl font-bold pb-2">Playground</div>
+<div class="py-2 px-8">
+  <div class="text-3xl font-bold pb-2 flex items-center">
+    <h1 class="grow">Playground</h1>
+    <a target="_blank" href="https://github.com/x0k/svelte-jsonschema-form">
+      <Github class="h-8 w-8" />
+    </a>
+  </div>
   <div class="flex gap-2 flex-wrap pb-2">
     {#each Object.entries(samples) as [name, sample]}
       <button
