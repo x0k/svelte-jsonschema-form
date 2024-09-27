@@ -1,17 +1,17 @@
 import { type Template, type Templates, type TemplateType } from "./model";
 
-import FieldTemplate from './field-template.svelte';
-import Object from "./object.svelte";
-import ObjectProperty from './object-property.svelte';
-import Array from "./array.svelte";
-import ArrayItem from "./array-item.svelte";
+import FieldTemplate from "./field-template.svelte";
+import ObjectTemplate from "./object-template.svelte";
+import ObjectPropertyTemplate from "./object-property-template.svelte";
+import ArrayTemplate from "./array-template.svelte";
+import ArrayItemTemplate from "./array-item-template.svelte";
 
 export const templatesRegistry: { [T in TemplateType]: Template<T> } = {
   field: FieldTemplate,
-  object: Object,
-  'object-property': ObjectProperty,
-  array: Array,
-  "array-item": ArrayItem,
+  object: ObjectTemplate,
+  "object-property": ObjectPropertyTemplate,
+  array: ArrayTemplate,
+  "array-item": ArrayItemTemplate,
 };
 
 export const templates: Templates = (type) => templatesRegistry[type];

@@ -14,15 +14,15 @@
     getDefaultFormState,
     getTemplate,
     getUiOptions,
-    isDisabledOrReadonly,
     retrieveSchema,
   } from "../../utils";
 
   import type { FieldProps } from "../model";
+  import { isDisabledOrReadonly } from '../is-disabled-or-readonly'
 
   import ObjectProperty from './object-property.svelte';
   import { setObjectContext, type ObjectContext } from './context';
-  import { generateNewKey } from './utils';
+  import { generateNewKey } from './generate-new-object-key';
 
   const ctx = getFormContext();
 

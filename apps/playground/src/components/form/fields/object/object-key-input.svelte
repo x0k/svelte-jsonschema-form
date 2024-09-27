@@ -8,10 +8,10 @@
   import { getFormContext } from "../../context";
   import { getUiOptions, getWidget } from "../../utils";
 
-  import { inputAttributes, makeAttributes } from "../utils";
+  import { inputAttributes, makeAttributes } from "../make-widget-attributes";
 
   import { getObjectContext } from "./context";
-  import { generateNewKey } from "./utils";
+  import { generateNewKey } from "./generate-new-object-key";
 
   const {
     property,

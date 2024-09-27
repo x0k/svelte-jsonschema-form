@@ -5,7 +5,7 @@
   import { getTemplate, getUiOptions, getWidget } from "../utils";
 
   import type { FieldProps } from "./model";
-  import { inputAttributes, makeAttributes } from "./utils";
+  import { inputAttributes, makeAttributes } from "./make-widget-attributes";
 
   const ctx = getFormContext();
 

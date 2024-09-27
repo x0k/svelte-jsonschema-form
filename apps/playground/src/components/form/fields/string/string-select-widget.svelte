@@ -6,7 +6,7 @@
   import type { Schema, SchemaValue } from "../../schema";
   import type { UiOptions, UiSchema } from "../../ui-schema";
   import { getWidget } from "../../utils";
-  import { makeAttributes, selectAttributes } from "../utils";
+  import { makeAttributes, selectAttributes } from "../make-widget-attributes";
 
   import { createOptions } from "../../enum";
 

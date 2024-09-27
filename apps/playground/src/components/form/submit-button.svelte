@@ -3,7 +3,8 @@
 
   import type { UiSchema } from "./ui-schema";
   import { getFormContext } from "./context";
-  import { getComponent, getUiOptions, isDisabledOrReadonly } from "./utils";
+  import { getComponent, getUiOptions } from "./utils";
+  import { isDisabledOrReadonly } from './fields/is-disabled-or-readonly';
 
   const ctx = getFormContext();
   const uiSchema: UiSchema = $derived(ctx.uiSchema.submitButton ?? {});
@@ -13,6 +14,6 @@
   const disabledOrReadonly = $derived(isDisabledOrReadonly(ctx, uiOptions?.input));
 </script>
 
-<Button type="submit" {...uiOptions?.input as Omit<HTMLButtonAttributes, "type">} disabled={disabledOrReadonly} >
+<Button type="submit" attributes={uiOptions?.input as HTMLButtonAttributes} disabled={disabledOrReadonly} >
   {label}
 </Button>

@@ -6,7 +6,6 @@
     type Schema,
   } from "../../schema";
   import {
-    getArrayItemSchemaId,
     getComponent,
     getDefaultFormState,
     getTemplate,
@@ -15,7 +14,9 @@
 
   import { getArrayContext } from "./context";
   import ArrayItem from "./array-item.svelte";
-  import { getArrayItemName, makeHandler } from './utils';
+  import { makeHandler } from './make-click-handler';
+  import { getArrayItemName } from './get-array-item-name'
+  import { getArrayItemSchemaId } from './get-array-item-schema-id'
 
   const ctx = getFormContext();
   const arrayCtx = getArrayContext();
@@ -37,7 +38,7 @@
 {#snippet addButton()}
   <Button
     type="array-item-add"
-    disabled={arrayCtx.disabled || arrayCtx.readonly}
+    disabled={arrayCtx.disabledOrReadonly}
     onclick={makeHandler(arrayCtx, (arr) => {
       arr.push(getDefaultFormState(ctx, schemaItems, undefined))
     })}

@@ -3,19 +3,20 @@
   import { getFormContext } from "../../context";
   import {
     getUiOptions,
-    isDisabledOrReadonly,
-    isFilesArray,
     isMultiSelect,
   } from "../../utils";
 
   import type { FieldProps } from "../model";
-
+  import { isDisabledOrReadonly } from '../is-disabled-or-readonly'
+  
   import { setArrayContext, type ArrayContext } from "./context";
   import UnsupportedArray from "./unsupported-array.svelte";
   import MultiSelectArray from "./multi-select-array.svelte";
   import FixedArray from "./fixed-array.svelte";
   import FilesArray from "./files-array.svelte";
   import NormalArray from "./normal-array.svelte";
+  
+  import { isFilesArray } from './is-files-array'
 
   let {
     name,

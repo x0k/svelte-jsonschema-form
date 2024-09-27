@@ -3,10 +3,12 @@
   import type { UiSchema } from "../../ui-schema";
   import type { IdSchema } from "../../id-schema";
   import { getFormContext } from "../../context";
-  import { getComponent, getField, getTemplate, getUiOptions, isDisabledOrReadonly } from "../../utils";
+  import { getComponent, getField, getTemplate, getUiOptions } from "../../utils";
+
+  import { isDisabledOrReadonly } from '../is-disabled-or-readonly'
 
   import { getArrayContext } from './context';
-  import { makeHandler } from './utils';
+  import { makeHandler } from './make-click-handler';
 
   let {
     index,

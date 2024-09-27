@@ -7,7 +7,7 @@
   import type { UiOptions, UiSchema } from "../../ui-schema";
   import { getWidget } from "../../utils";
 
-  import { inputAttributes, makeAttributes } from "../utils";
+  import { inputAttributes, makeAttributes } from "../make-widget-attributes";
 
   let {
     name,

@@ -6,4 +6,4 @@ export * from "./context";
 export * from "./widgets";
 export * from "./translation";
 export * from "./templates";
-export { default as Form } from "./root.svelte";
+export { default as Form } from "./form.svelte";

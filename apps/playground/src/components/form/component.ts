@@ -1,15 +1,11 @@
-import type { Component as SvelteComponent } from "svelte";
-import type {
-  HTMLAttributes,
-  HTMLButtonAttributes,
-  HTMLFormAttributes,
-} from "svelte/elements";
+import type { Snippet, Component as SvelteComponent } from "svelte";
 
 import type { Get } from "@/lib/types";
 
 import type { UiSchema } from "./ui-schema";
+import type { HTMLButtonAttributes } from "svelte/elements";
 
-export interface FormComponentProps extends HTMLFormAttributes {
+export interface FormComponentProps {
   form: HTMLFormElement | undefined;
 }
 
@@ -24,10 +20,13 @@ export interface ButtonType {
   "array-item-remove": {};
 }
 
-export interface ButtonComponentProps
-  extends Omit<HTMLButtonAttributes, "type"> {
+export interface ButtonComponentProps {
   type: keyof ButtonType;
   disabled: boolean;
+  onclick?: (e: Event) => void;
+  // For submit button
+  attributes?: HTMLButtonAttributes | undefined;
+  children?: Snippet;
 }
 
 export interface LayoutType {
@@ -47,7 +46,7 @@ export interface LayoutType {
   "array-item-controls": {};
 }
 
-export interface LayoutComponentProps extends HTMLAttributes<HTMLDivElement> {
+export interface LayoutComponentProps {
   type: keyof LayoutType;
 }
 
@@ -55,7 +54,7 @@ export interface AlertType {
   error: {};
 }
 
-export interface AlertComponentProps extends HTMLAttributes<HTMLDivElement> {
+export interface AlertComponentProps {
   type: keyof AlertType;
   title?: string;
 }
@@ -66,19 +65,19 @@ export interface ParentTemplateType {
   array: {};
 }
 
-export interface TitleComponentProps extends HTMLAttributes<HTMLElement> {
+export interface TitleComponentProps {
   type: keyof ParentTemplateType;
   title: string;
   forId: string;
   required: boolean;
 }
 
-export interface DescriptionComponentProps extends HTMLAttributes<HTMLElement> {
+export interface DescriptionComponentProps {
   type: keyof ParentTemplateType;
   description: string;
 }
 
-export interface HelpComponentProps extends HTMLAttributes<HTMLElement> {
+export interface HelpComponentProps {
   help: string;
 }
 

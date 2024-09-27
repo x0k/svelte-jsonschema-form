@@ -1,11 +1,13 @@
 <script lang="ts">
   import { getFormContext } from '../../context';
   import { isSchemaNullable, isSchemaObjectValue } from '../../schema';
-  import { getArrayItemSchemaId, getComponent, getDefaultFormState, getTemplate, retrieveSchema } from '../../utils';
+  import { getComponent, getDefaultFormState, getTemplate, retrieveSchema } from '../../utils';
   
   import { getArrayContext } from './context';
   import ArrayItem from './array-item.svelte';
-  import { getArrayItemName, makeHandler } from './utils';
+  import { makeHandler } from './make-click-handler';
+  import { getArrayItemName } from './get-array-item-name'
+  import { getArrayItemSchemaId } from './get-array-item-schema-id'
 
   const ctx = getFormContext();
   const arrayCtx = getArrayContext();
@@ -44,7 +46,7 @@
 {#snippet addButton()}
   <Button
     type="array-item-add"
-    disabled={arrayCtx.disabled || arrayCtx.readonly}
+    disabled={arrayCtx.disabledOrReadonly}
     onclick={makeHandler(arrayCtx, (arr) => {
       if (schemaAdditionalItems === null) {
         return

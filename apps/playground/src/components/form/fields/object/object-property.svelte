@@ -3,7 +3,9 @@
   import type { UiSchema } from '../../ui-schema';
   import type { IdSchema } from '../../id-schema';
   import { getFormContext } from '../../context';
-  import { getComponent, getField, getTemplate, getUiOptions, isDisabledOrReadonly } from '../../utils';
+  import { getComponent, getField, getTemplate, getUiOptions } from '../../utils';
+
+  import { isDisabledOrReadonly } from '../is-disabled-or-readonly'
   
   import ObjectKeyInput from './object-key-input.svelte';
   import { getObjectContext } from './context';

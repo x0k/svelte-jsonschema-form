@@ -1,21 +1,19 @@
 import type { Component, ComponentType } from "./component";
 import type { FormContext } from "./context";
-import type { InputAttributes, UiOptions, UiSchema } from "./ui-schema";
+import type { UiOptions, UiSchema } from "./ui-schema";
 import type { Field, FieldType } from "./fields";
 import {
   isSelect as isSelectInternal,
   isMultiSelect as isMultiSelectInternal,
   retrieveSchema as retrieveSchemaInternal,
   getDefaultFormState as getDefaultFormStateInternal,
-  isFilesArray as isFilesArrayInternal,
   type Schema,
   type SchemaValue,
-  type SchemaArrayValue,
 } from "./schema";
 import type { CompatibleWidgetType, Widget, WidgetType } from "./widgets";
 import { toIdSchema as toIdSchemaInternal, type IdSchema } from "./id-schema";
 import type { Template, TemplateType } from "./templates";
-import Message from "./message.svelte";
+import Message from "./error-message.svelte";
 
 const createMessage =
   (message: string): typeof Message =>
@@ -106,15 +104,6 @@ export function getTemplateProps(
     showMeta: uiOptions?.hideTitle !== true,
     description: uiOptions?.description ?? schema.description,
   };
-}
-
-export function isDisabledOrReadonly(
-  ctx: FormContext<unknown>,
-  attributes: InputAttributes | undefined
-) {
-  return (
-    attributes?.disabled || attributes?.readonly || ctx.disabled || ctx.readonly
-  );
 }
 
 function getTemplateInternal<T extends TemplateType>(
@@ -209,29 +198,5 @@ export function getDefaultFormState<T extends SchemaValue>(
     formData,
     ctx.schema,
     false
-  );
-}
-
-export function isFilesArray(ctx: FormContext<unknown>, schema: Schema) {
-  return isFilesArrayInternal(ctx.validator, schema, ctx.schema);
-}
-
-export function getArrayItemSchemaId(
-  ctx: FormContext<unknown>,
-  arrayIdSchema: IdSchema<SchemaArrayValue>,
-  itemSchema: Schema,
-  index: number,
-  value: SchemaValue | undefined
-) {
-  const idPrefix = `${arrayIdSchema.$id}${ctx.idSeparator}${index}`;
-  return toIdSchemaInternal(
-    ctx.validator,
-    itemSchema,
-    idPrefix,
-    ctx.idSeparator,
-    [],
-    ctx.idPrefix,
-    ctx.schema,
-    value
   );
 }

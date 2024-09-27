@@ -1,11 +1,11 @@
 <script lang="ts">
   import type { ComponentProps } from '@/components/form';
   
-  const { children, type, ...props }: ComponentProps<"button"> = $props();
+  const { children, type, attributes, ...props }: ComponentProps<"button"> = $props();
 </script>
 
 {#if type === "submit"}
-  <button type="submit" style="width: 100%; padding: 0.5rem" {...props}>
+  <button type="submit" style="width: 100%; padding: 0.5rem" {...attributes} disabled={props.disabled}>
     {@render children?.()}
   </button>
 {:else if type === "object-property-add"}
