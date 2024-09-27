@@ -1,10 +1,10 @@
 <script lang="ts">
   import type { ComponentProps } from '@/components/form';
 
-  const { type: _, title, children, ...props }: ComponentProps<"alert"> = $props();
+  const { type: _, title, children }: ComponentProps<"alert"> = $props();
 </script>
 
-<div {...props}>
+<div>
   {#if title}
     <h3>{title}</h3>
   {/if}

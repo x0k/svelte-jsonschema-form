@@ -1,31 +1,40 @@
 <script lang="ts">
-  import type { ComponentProps } from '@/components/form';
+  import type { ComponentProps } from "@/components/form";
 
-  const { children, type, ...props }: ComponentProps<"layout"> = $props();
+  const { type, children }: ComponentProps<"layout"> = $props();
+
+  function getStyle(type: ComponentProps<"layout">["type"]) {
+    switch (type) {
+      case "array-item":
+      case "array-item-controls":
+        return "display: flex; gap: 0.5rem; align-items: start;";
+      case "array-item-content":
+        return "flex-grow: 1;";
+      case "field-content":
+        return "display: flex;";
+      case "array-items":
+      case "object-properties":
+      case "array-field":
+      case "object-field":
+        return "display: flex; flex-direction: column; gap: 0.5rem;";
+      case "field":
+      case "field-meta":
+        return "display: block;"
+      case "object-field-meta":
+      case "array-field-meta":
+        return "padding-bottom: 0;";
+      default:
+        return undefined
+    }
+  }
+
+  const style = $derived(getStyle(type));
 </script>
 
-{#if type === "array-item" || type === "array-item-controls"}
-  <div {...props} style="display: flex; gap: 0.5rem; align-items: start;" >
-    {@render children?.()}
-  </div>
-{:else if type === "array-item-content"}
-  <div {...props} style="flex-grow: 1;">
-    {@render children?.()}
-  </div>
-{:else if type === "field-content"}
-  <div {...props} style="flex-grow: 1; display: flex; padding: 0.2rem 0;">
-    {@render children?.()}
-  </div>
-{:else if type === "object-properties" || type === "array-items"}
-  <div {...props} style="display: flex; flex-direction: column; gap: 0.5rem; padding-bottom: 0.5rem;" >
-    {@render children?.()}
-  </div>
-{:else if type === "object-field" || type === "array-field"}
-  <div {...props} style="padding-bottom: 0.5rem;">
-    {@render children?.()}
+{#if style}
+  <div style={getStyle(type)} data-layout={type}>
+    {@render children()}
   </div>
 {:else}
-  <div {...props} data-layout={type} >
-    {@render children?.()}
-  </div>
+  {@render children()}
 {/if}

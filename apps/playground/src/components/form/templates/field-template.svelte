@@ -17,13 +17,15 @@
 </script>
 
 <Layout type="field">
-  {#if showMeta}
-    {#if showTitle && title}
-      <Title type="field" {title} {required} forId={idSchema.$id} />
-    {/if}
-    {#if description !== undefined}
-      <Description type="field" {description} />
-    {/if}
+  {#if showMeta && ((showTitle && title) || description)}
+    <Layout type="field-meta">
+      {#if showTitle && title}
+        <Title type="field" {title} {required} forId={idSchema.$id} />
+      {/if}
+      {#if description}
+        <Description type="field" {description} />
+      {/if}
+    </Layout>
   {/if}
   <Layout type="field-content">
     {@render children()}

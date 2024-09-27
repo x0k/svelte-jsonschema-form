@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { ComponentProps } from '@/components/form';
+  import type { ComponentProps } from "@/components/form";
 
-  const { description, type, ...props }: ComponentProps<"description"> = $props();
+  const { description }: ComponentProps<"description"> = $props();
 </script>
 
-<div style="font-weight: 300;" {...props}>{description}</div>
+<div style="font-weight: 300;">{description}</div>

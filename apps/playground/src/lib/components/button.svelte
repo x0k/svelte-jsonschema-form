@@ -1,41 +1,45 @@
 <script lang="ts">
   import type { ComponentProps } from '@/components/form';
   
-  const { children, type, attributes, ...props }: ComponentProps<"button"> = $props();
+  const { children, type, attributes, disabled, onclick }: ComponentProps<"button"> = $props();
+
+  function getStyle(type: ComponentProps<"button">["type"]) {
+    switch (type) {
+      case "object-property-add":
+      case "array-item-add":
+        return "width: 100%; padding: 0.25rem";
+      default:
+        return undefined
+    }
+  }
+
+  function getText(type: ComponentProps<"button">["type"]) {
+    switch (type) {
+      case "object-property-add":
+        return "Add property";
+      case "array-item-add":
+        return "Add item";
+      case "array-item-move-up":
+        return "Up";
+      case "array-item-move-down":
+        return "Down";
+      case "array-item-copy":
+        return "Copy";
+      case "object-property-remove":
+      case "array-item-remove":
+        return "Del";
+      default:
+        return undefined
+    }
+  }
 </script>
 
 {#if type === "submit"}
-  <button type="submit" style="width: 100%; padding: 0.5rem" {...attributes} disabled={props.disabled}>
+  <button type="submit" style="width: 100%; padding: 0.5rem" {...attributes} {disabled}>
     {@render children?.()}
   </button>
-{:else if type === "object-property-add"}
-  <button type="button" style="width: 100%; padding: 0.2rem" {...props}>
-    Add property
-  </button>
-{:else if type === "object-property-remove"}
-  <button type="button" {...props}>
-    Del
-  </button>
-{:else if type === "array-item-add"}
-  <button type="button" style="width: 100%; padding: 0.2rem" {...props}>
-    Add item
-  </button>
-{:else if type === "array-item-move-up"}
-  <button type="button" {...props}>
-    Up
-  </button>
-{:else if type === "array-item-move-down"}
-  <button type="button" {...props}>
-    Down
-  </button>
-{:else if type === "array-item-copy"}
-  <button type="button" {...props}>
-    Copy
-  </button>
-{:else if type === "array-item-remove"}
-  <button type="button" {...props}>
-    Del
-  </button>
 {:else}
-  Unsupported button type: "{type}"
+  <button type="button" style={getStyle(type)} {disabled} {onclick}>
+    {getText(type)}
+  </button>
 {/if}

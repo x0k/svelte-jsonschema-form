@@ -7,6 +7,8 @@ import type { HTMLButtonAttributes } from "svelte/elements";
 
 export interface FormComponentProps {
   form: HTMLFormElement | undefined;
+  onsubmit: (e: SubmitEvent) => void;
+  children: Snippet;
 }
 
 export interface ButtonType {
@@ -32,14 +34,17 @@ export interface ButtonComponentProps {
 export interface LayoutType {
   "root-field": {};
   field: {};
+  "field-meta": {};
   "field-content": {};
   "object-field": {};
+  "object-field-meta": {};
   "object-properties": {};
   "object-property": {};
   "object-property-key-input": {};
   "object-property-content": {};
   "object-property-controls": {};
   "array-field": {};
+  "array-field-meta": {};
   "array-items": {};
   "array-item": {};
   "array-item-content": {};
@@ -48,6 +53,7 @@ export interface LayoutType {
 
 export interface LayoutComponentProps {
   type: keyof LayoutType;
+  children: Snippet;
 }
 
 export interface AlertType {
@@ -57,6 +63,7 @@ export interface AlertType {
 export interface AlertComponentProps {
   type: keyof AlertType;
   title?: string;
+  children: Snippet;
 }
 
 export interface ParentTemplateType {

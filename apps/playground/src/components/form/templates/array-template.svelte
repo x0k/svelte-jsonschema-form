@@ -16,13 +16,15 @@ import { getFormContext } from '../context';
 </script>
 
 <Layout type="array-field">
-  {#if showMeta}
-    {#if title}
-      <Title type="array" {title} {required} forId={idSchema.$id} />
-    {/if}
-    {#if description !== undefined}
-      <Description type="array" {description} />
-    {/if}
+  {#if showMeta && (title || description)}
+    <Layout type="array-field-meta">
+      {#if title}
+        <Title type="array" {title} {required} forId={idSchema.$id} />
+      {/if}
+      {#if description}
+        <Description type="array" {description} />
+      {/if}
+    </Layout>
   {/if}
   <Layout type="array-items">
     {@render children()}
