@@ -33,14 +33,21 @@ import ifThenElse from "./ifThenElse";
 import customField from "./customField";
 import type { Sample } from "./Sample";
 
+const skipped: Sample = {
+  status: "skipped",
+  schema: {},
+  uiSchema: {},
+  formData: {},
+};
+
 export const samples = Object.freeze({
-  Blank: { schema: {}, uiSchema: {}, formData: {} },
+  Blank: { status: "ok", schema: {}, uiSchema: {}, formData: {} },
   Simple: simple,
   "UI Options": options,
   Nested: nested,
   Arrays: arrays,
   Numbers: numbers,
-  // Widgets: widgets,
+  Widgets: skipped, //widgets,
   Ordering: ordering,
   References: references,
   Custom: custom,
@@ -51,14 +58,14 @@ export const samples = Object.freeze({
   Validation: validation,
   Files: files,
   Single: single,
-  // 'Custom Array': customArray,
-  // 'Custom Object': customObject,
+  "Custom Array": skipped, //customArray,
+  "Custom Object": skipped, //customObject,
   Alternatives: alternatives,
   "Property dependencies": propertyDependencies,
   "Schema dependencies": schemaDependencies,
   "Additional Properties": additionalProperties,
   "Any Of": anyOf,
-  // 'Any Of with Custom Field': customFieldAnyOf,
+  "Any Of with Custom Field": skipped, // customFieldAnyOf,
   "One Of": oneOf,
   "All Of": allOf,
   "If Then Else": ifThenElse,

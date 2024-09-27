@@ -27,7 +27,7 @@
   );
 </script>
 
-<div class="py-2 px-8">
+<div class="py-2 px-8 h-screen">
   <div class="text-3xl font-bold pb-2 flex items-center">
     <h1 class="grow">Playground</h1>
     <a target="_blank" href="https://github.com/x0k/svelte-jsonschema-form">
@@ -39,6 +39,10 @@
       <button
         type="button"
         class="border rounded p-2"
+        class:bg-green-200={sample.status === "ok"}
+        class:bg-red-200={sample.status === "broken" || sample.status === undefined}
+        class:bg-neutral-200={sample.status === "skipped"}
+        disabled={sample.status === "skipped"}
         onclick={() => {
           schema = sample.schema;
           uiSchema = sample.uiSchema;
@@ -55,11 +59,11 @@
         <pre class="w-0"><code>{JSON.stringify(schema, null, 2)}</code></pre>
       </div>
       <div class="flex gap-2">
-        <div class="h-[400px] flex-1 border rounded overflow-auto p-2">
+        <div class="h-[360px] flex-1 border rounded overflow-auto p-2">
           <pre class="w-0"><code>{JSON.stringify(uiSchema, null, 2)}</code
             ></pre>
         </div>
-        <div class="h-[400px] flex-1 border rounded overflow-auto p-2">
+        <div class="h-[360px] flex-1 border rounded overflow-auto p-2">
           <pre class="w-0"><code>{JSON.stringify(value, null, 2)}</code></pre>
         </div>
       </div>

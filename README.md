@@ -1,6 +1,6 @@
 # svelte-jsonschema-form
 
-Unofficial port of [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form) to [Svelte 5](https://svelte-5-preview.vercel.app/docs/introduction).
+Unofficial port of [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form) to [Svelte 5](https://svelte-5-preview.vercel.app/docs/introduction) (WIP).
 
 ## See also
 
