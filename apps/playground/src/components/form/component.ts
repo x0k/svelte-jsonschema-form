@@ -54,18 +54,18 @@ export interface AlertComponentProps
   title?: string;
 }
 
-export interface TemplateType {
+export interface ParentTemplateType {
   "object": {};
   "array": {};
 }
 
 export interface TitleComponentProps extends HTMLAttributes<HTMLElement> {
-  type: keyof TemplateType;
+  type: keyof ParentTemplateType;
   title: string;
 }
 
 export interface DescriptionComponentProps extends HTMLAttributes<HTMLElement> {
-  type: keyof TemplateType;
+  type: keyof ParentTemplateType;
   description: string;
 }
 

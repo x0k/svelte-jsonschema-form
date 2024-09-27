@@ -6,6 +6,8 @@
     options,
     disabled,
     readonly,
+    schema,
+    uiSchema,
     ...rest
   }: WidgetProps<"select"> = $props();
 </script>

@@ -29,6 +29,7 @@ export interface SelectWidgetProps<V> extends WidgetCommonProps<V> {
 
 export interface WidgetsAndProps<V> {
   text: WidgetCommonProps<V>;
+  textarea: WidgetCommonProps<V>;
   number: WidgetCommonProps<V>;
   select: SelectWidgetProps<V>;
   checkbox: WidgetCommonProps<V>;
@@ -36,6 +37,7 @@ export interface WidgetsAndProps<V> {
 
 export interface WidgetValue {
   text: string;
+  textarea: string;
   number: number;
   select: SchemaValue;
   checkbox: boolean;
