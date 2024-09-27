@@ -2,11 +2,13 @@
   import { createTransformation } from "@/lib/svelte.svelte";
   import { noop } from "@/lib/function";
 
-  import type { Schema, SchemaValue } from "../../schema";
+  import type { SchemaValue } from "../../schema";
   import type { UiSchema } from "../../ui-schema";
-  import type { IdSchema } from "../../id-schema";
+  import { computeId, type IdSchema } from "../../id-schema";
   import { getFormContext } from "../../context";
-  import { getUiOptions, getWidget, getWidgetProps } from "../../utils";
+  import { getUiOptions, getWidget } from "../../utils";
+
+  import { inputAttributes, makeAttributes } from "../utils";
 
   import { getObjectContext } from "./context";
   import { generateNewKey } from "./utils";
@@ -28,44 +30,38 @@
 
   const Widget = $derived(getWidget(ctx, "text", uiSchema));
 
-  const schema: Schema = {
-    type: "string",
-  };
-
   const uiOptions = $derived(getUiOptions(ctx, uiSchema));
 
   const key = createTransformation<string | undefined>({
     transform: () => property,
   });
+
+  const attributes = $derived.by(() => {
+    const id = computeId(idSchema ?? { $id: ctx.idPrefix }, "key-input");
+    return makeAttributes(
+      ctx,
+      {
+        id,
+        name: id,
+        required: true,
+        onfocus: noop,
+        onblur: () => {
+          if (!key.value || key.value === property) {
+            return;
+          }
+          const obj = objCtx.value;
+          if (obj === undefined) {
+            console.warn("Object value is undefined");
+            return;
+          }
+          const newKey = generateNewKey(key.value, objCtx.newKeySeparator, obj);
+          obj[newKey] = obj[property];
+          delete obj[property];
+        },
+      },
+      inputAttributes(uiOptions?.input)
+    );
+  });
 </script>
 
-<Widget
-  {...getWidgetProps(
-    ctx,
-    `${name} Key`,
-    schema,
-    uiSchema,
-    {
-      $id: idSchema
-        ? `${idSchema.$id}${ctx.idSeparator}key-input`
-        : `${ctx.idPrefix}${ctx.idSeparator}key-input`,
-    },
-    uiOptions
-  )}
-  bind:value={key.value}
-  onblur={() => {
-    if (!key.value || key.value === property) {
-      return;
-    }
-    const obj = objCtx.value;
-    if (obj === undefined) {
-      console.warn("Object value is undefined");
-      return;
-    }
-    const newKey = generateNewKey(key.value, objCtx.newKeySeparator, obj);
-    obj[newKey] = obj[property];
-    delete obj[property];
-  }}
-  onfocus={noop}
-  required
-/>
+<Widget {attributes} label={`${name} Key`} bind:value={key.value} />

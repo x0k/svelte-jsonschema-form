@@ -1,2 +1,2 @@
 export * from './context'
-export { default as Array } from './array.svelte'
+export { default as ArrayField } from './array-field.svelte'

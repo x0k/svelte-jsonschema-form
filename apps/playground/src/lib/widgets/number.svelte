@@ -1,23 +1,7 @@
 <script lang="ts">
-  import { getFormContext, type WidgetProps } from "@/components/form";
-  import { getUiOptions } from "@/components/form/utils";
+  import type { WidgetProps } from "@/components/form";
 
-  let {
-    value = $bindable(),
-    schema,
-    uiSchema,
-    ...rest
-  }: WidgetProps<"number"> = $props();
-  const ctx = getFormContext();
-  const uiOptions = $derived(getUiOptions(ctx, uiSchema));
+  let { value = $bindable(), attributes }: WidgetProps<"number"> = $props();
 </script>
 
-<input
-  {...rest}
-  name={rest.id}
-  type={uiOptions?.inputType ?? "number"}
-  bind:value
-  min={schema.minimum}
-  max={schema.maximum}
-  step={schema.multipleOf}
-/>
+<input type="number" bind:value {...attributes} />

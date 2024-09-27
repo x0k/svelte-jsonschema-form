@@ -12,9 +12,9 @@
   import {
     getComponent,
     getDefaultFormState,
-    getFieldProps,
     getTemplate,
     getUiOptions,
+    isDisabledOrReadonly,
     retrieveSchema,
   } from "../../utils";
 
@@ -62,7 +62,7 @@
   const Template = $derived(getTemplate(ctx, "object", uiSchema));
   const Button = $derived(getComponent(ctx, "button", uiSchema));
   
-  const { readonly, disabled } = $derived(getFieldProps(ctx, uiOptions))
+  const disabledOrReadOnly = $derived(isDisabledOrReadonly(ctx, uiOptions?.input))
 
   const schemaAdditionalProperties = $derived(
     isSchemaObjectValue(retrievedSchema.additionalProperties) ? retrieveSchema(ctx, retrievedSchema.additionalProperties, value) : {}
@@ -73,7 +73,7 @@
 {#snippet addButton()}
   <Button
     type="object-property-add"
-    disabled={disabled || readonly}
+    disabled={disabledOrReadOnly}
     onclick={(e) => {
       e.preventDefault();
       if (value === undefined) {

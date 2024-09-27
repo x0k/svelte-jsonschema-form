@@ -1,4 +1,9 @@
-import type { FullAutoFill, HTMLInputTypeAttribute } from 'svelte/elements';
+import type {
+  HTMLButtonAttributes,
+  HTMLInputAttributes,
+  HTMLSelectAttributes,
+  HTMLTextareaAttributes,
+} from "svelte/elements";
 
 import type { Component, ComponentType } from "./component";
 import type { Field, FieldType } from "./fields";
@@ -11,17 +16,14 @@ interface UiSchemaRootIndex {
   [key: string]: UiSchemaRootContent[keyof UiSchemaRootContent];
 }
 
-type UiSchemaRootContent = UiSchemaCommonContent<
-  UiOptions & {
-    submitButton?: UiOptions;
-  }
-> & {
+type UiSchemaRootContent = UiSchemaContent & {
   "ui:rootFieldId"?: string;
   "ui:globalOptions"?: UiOptions;
+  submitButton?: UiSchema;
 };
 
-interface UiSchemaCommonContent<O> {
-  "ui:options"?: O;
+interface UiSchemaContent {
+  "ui:options"?: UiOptions;
   "ui:widget"?: WidgetType | Widget<WidgetType>;
   "ui:field"?: FieldType | Field<FieldType>;
   "ui:templates"?: Partial<{
@@ -38,16 +40,21 @@ interface UiSchemaCommonContent<O> {
   additionalItems?: UiSchema;
 }
 
+// TODO: Omit non serializable properties
+export type InputAttributes = (
+  | HTMLInputAttributes
+  | HTMLTextareaAttributes
+  | HTMLSelectAttributes
+  | HTMLButtonAttributes
+) & {
+  // To reduce amount of type casting
+  readonly?: boolean;
+};
+
 export interface UiOptions {
-  class?: string;
-  style?: string;
+  input?: InputAttributes;
   title?: string;
   description?: string;
-  disabled?: boolean;
-  readonly?: boolean;
-  autofocus?: boolean;
-  placeholder?: string;
-  autocomplete?: FullAutoFill;
   enumNames?: string[];
   order?: string[];
   addable?: boolean;
@@ -56,10 +63,8 @@ export interface UiOptions {
   removable?: boolean;
   copyable?: boolean;
   duplicateKeySuffixSeparator?: string;
-  rows?: number;
   help?: string;
-  inputType?: HTMLInputTypeAttribute
-  hideTitle?: boolean
+  hideTitle?: boolean;
 }
 
 export type UiSchema = UiSchemaIndex & UiSchemaContent;
@@ -67,5 +72,3 @@ export type UiSchema = UiSchemaIndex & UiSchemaContent;
 interface UiSchemaIndex {
   [key: string]: UiSchemaContent[keyof UiSchemaContent];
 }
-
-type UiSchemaContent = UiSchemaCommonContent<UiOptions>;

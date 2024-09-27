@@ -12,8 +12,7 @@ export interface ArrayContext {
   idSchema: IdSchema<SchemaArrayValue>;
   uiOptions: UiOptions | undefined;
   required: boolean;
-  disabled: boolean;
-  readonly: boolean;
+  disabledOrReadonly: boolean;
   canAdd: boolean;
   addable: boolean;
   orderable: boolean;

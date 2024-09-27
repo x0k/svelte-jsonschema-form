@@ -1,6 +1,6 @@
 import type { Component, ComponentType } from "./component";
 import type { FormContext } from "./context";
-import type { UiOptions, UiSchema } from "./ui-schema";
+import type { InputAttributes, UiOptions, UiSchema } from "./ui-schema";
 import type { Field, FieldType } from "./fields";
 import {
   isSelect as isSelectInternal,
@@ -12,12 +12,7 @@ import {
   type SchemaValue,
   type SchemaArrayValue,
 } from "./schema";
-import type {
-  CompatibleWidgetType,
-  Widget,
-  WidgetCommonProps,
-  WidgetType,
-} from "./widgets";
+import type { CompatibleWidgetType, Widget, WidgetType } from "./widgets";
 import { toIdSchema as toIdSchemaInternal, type IdSchema } from "./id-schema";
 import type { Template, TemplateType } from "./templates";
 import Message from "./message.svelte";
@@ -113,15 +108,13 @@ export function getTemplateProps(
   };
 }
 
-// TODO: Remove title and description once templates can do this
-export function getFieldProps(
+export function isDisabledOrReadonly(
   ctx: FormContext<unknown>,
-  uiOptions: UiOptions | undefined
+  attributes: InputAttributes | undefined
 ) {
-  return {
-    readonly: uiOptions?.readonly || ctx.readonly,
-    disabled: uiOptions?.disabled || ctx.disabled,
-  };
+  return (
+    attributes?.disabled || attributes?.readonly || ctx.disabled || ctx.readonly
+  );
 }
 
 function getTemplateInternal<T extends TemplateType>(
@@ -177,39 +170,6 @@ export function getComponent<T extends ComponentType>(
     getComponentInternal(ctx, type, uiSchema) ??
     createMessage(`Component ${type} not found`)
   );
-}
-
-export function getComponentProps(
-  ctx: FormContext<unknown>,
-  uiOptions: UiOptions | undefined
-) {
-  return {
-    class: uiOptions?.class,
-    style: uiOptions?.style,
-    disabled: uiOptions?.disabled || ctx.disabled,
-    readonly: uiOptions?.readonly || ctx.readonly,
-  };
-}
-
-export function getWidgetProps<T>(
-  ctx: FormContext<T>,
-  name: string,
-  schema: Schema,
-  uiSchema: UiSchema,
-  idSchema: IdSchema<T>,
-  uiOptions: UiOptions | undefined
-): Omit<WidgetCommonProps<T>, "value" | "required" | "onfocus" | "onblur"> {
-  return {
-    schema,
-    uiSchema,
-    id: idSchema.$id,
-    label: uiOptions?.title ?? schema.title ?? name,
-    disabled: uiOptions?.disabled || ctx.disabled,
-    readonly: uiOptions?.readonly || ctx.readonly,
-    autofocus: uiOptions?.autofocus || false,
-    placeholder: uiOptions?.placeholder || "",
-    autocomplete: uiOptions?.autocomplete,
-  };
 }
 
 export function isSelect(ctx: FormContext<unknown>, schema: Schema) {

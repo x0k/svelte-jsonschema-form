@@ -1,39 +1,40 @@
 import type { Component as SvelteComponent } from "svelte";
-import type { FullAutoFill, HTMLAttributes } from "svelte/elements";
+import type {
+  HTMLInputAttributes,
+  HTMLSelectAttributes,
+  HTMLTextareaAttributes,
+} from "svelte/elements";
 
-import type { Schema, SchemaValue } from "./schema";
-import type { UiSchema } from "./ui-schema";
+import type { SchemaValue } from "./schema";
 import type { EnumOption } from "./enum";
 
-export interface WidgetCommonProps<V> extends HTMLAttributes<HTMLElement> {
-  value: V | undefined;
-  schema: Schema;
-  uiSchema: UiSchema;
+export interface RequiredAttributes {
   id: string;
-  label: string;
+  name: string;
   required: boolean;
-  disabled: boolean;
   readonly: boolean;
-  autofocus: boolean;
-  placeholder: string;
-  autocomplete: FullAutoFill | undefined;
+  disabled: boolean;
   onfocus: () => void;
   onblur: () => void;
-  // hideError: boolean;
-  // hideLabel: boolean;
-  // rawErrors: string[];
 }
 
-export interface SelectWidgetProps<V> extends WidgetCommonProps<V> {
+export interface WidgetCommonProps<V, A> {
+  label: string;
+  value: V | undefined;
+  attributes: A & RequiredAttributes;
+}
+
+export interface SelectWidgetProps<V>
+  extends WidgetCommonProps<V, HTMLSelectAttributes> {
   options: EnumOption<SchemaValue>[];
 }
 
 export interface WidgetsAndProps<V> {
-  text: WidgetCommonProps<V>;
-  textarea: WidgetCommonProps<V>;
-  number: WidgetCommonProps<V>;
+  text: WidgetCommonProps<V, HTMLInputAttributes>;
+  textarea: WidgetCommonProps<V, HTMLTextareaAttributes>;
+  number: WidgetCommonProps<V, HTMLInputAttributes>;
   select: SelectWidgetProps<V>;
-  checkbox: WidgetCommonProps<V>;
+  checkbox: WidgetCommonProps<V, HTMLInputAttributes>;
 }
 
 export interface WidgetValue {

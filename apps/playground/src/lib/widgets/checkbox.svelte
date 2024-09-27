@@ -4,13 +4,11 @@
   let {
     label,
     value = $bindable(),
-    schema,
-    uiSchema,
-    ...rest
+    attributes,
   }: WidgetProps<"checkbox"> = $props();
 </script>
 
 <label>
-  <input {...rest} type="checkbox" bind:checked={value} name={rest.id} />
+  <input type="checkbox" bind:checked={value} {...attributes} />
   {label}
 </label>

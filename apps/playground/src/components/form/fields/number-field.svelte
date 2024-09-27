@@ -2,14 +2,10 @@
   import { noop } from "@/lib/function";
 
   import { getFormContext } from "../context";
-  import {
-    getTemplate,
-    getUiOptions,
-    getWidget,
-    getWidgetProps,
-  } from "../utils";
+  import { getTemplate, getUiOptions, getWidget } from "../utils";
 
   import type { FieldProps } from "./model";
+  import { inputAttributes, makeAttributes } from "./utils";
 
   const ctx = getFormContext();
 
@@ -25,6 +21,24 @@
   const Template = $derived(getTemplate(ctx, "field", uiSchema));
   const Widget = $derived(getWidget(ctx, "number", uiSchema));
   const uiOptions = $derived(getUiOptions(ctx, uiSchema));
+
+  const attributes = $derived(
+    makeAttributes(
+      ctx,
+      {
+        id: idSchema.$id,
+        name: idSchema.$id,
+        onfocus: noop,
+        onblur: noop,
+        required,
+        // TODO: Support for exclusiveMinimum and exclusiveMaximum
+        min: schema.minimum,
+        max: schema.maximum,
+        step: schema.multipleOf,
+      },
+      inputAttributes(uiOptions?.input)
+    )
+  );
 </script>
 
 <Template
@@ -37,11 +51,5 @@
   {required}
   {uiOptions}
 >
-  <Widget
-    {...getWidgetProps(ctx, name, schema, uiSchema, idSchema, uiOptions)}
-    bind:value
-    {required}
-    onblur={noop}
-    onfocus={noop}
-  />
+  <Widget label={name} bind:value {attributes} />
 </Template>

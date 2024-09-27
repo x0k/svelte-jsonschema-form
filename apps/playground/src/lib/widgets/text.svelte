@@ -1,22 +1,15 @@
 <script lang="ts">
-  import { getFormContext, type WidgetProps } from "@/components/form";
-  import { getUiOptions } from "@/components/form/utils";
+  import type { WidgetProps } from "@/components/form";
 
   let {
     value = $bindable(),
-    schema,
-    uiSchema,
-    ...rest
+    attributes
   }: WidgetProps<"text"> = $props();
-  const ctx = getFormContext();
-  const uiOptions = $derived(getUiOptions(ctx, uiSchema));
+  
 </script>
 
 <input
-  {...rest}
-  type={uiOptions?.inputType ?? "text"}
+  type="text"
   bind:value
-  name={rest.id}
-  minlength={schema.minLength}
-  pattern={schema.pattern}
+  {...attributes}
 />

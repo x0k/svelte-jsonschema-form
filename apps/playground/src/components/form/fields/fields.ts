@@ -1,25 +1,25 @@
 import type { Field, Fields, FieldType } from "./model";
 
-import { Array } from './array'
-import { Object } from './object';
-import Root from "./root.svelte";
-import Null from './null.svelte'
-import String from './string.svelte'
-import Number from './number.svelte'
-import Integer from './integer.svelte';
-import Boolean from './boolean.svelte';
-import Unsupported from './unsupported.svelte';
+import { ArrayField } from "./array";
+import { ObjectField } from "./object";
+import { StringField } from "./string";
+import RootField from "./root-field.svelte";
+import NullField from "./null-field.svelte";
+import NumberField from "./number-field.svelte";
+import IntegerField from "./integer-field.svelte";
+import BooleanField from "./boolean-field.svelte";
+import UnsupportedField from "./unsupported-field.svelte";
 
 export const fieldsRegistry: { [T in FieldType]: Field<T> } = {
-  root: Root,
-  null: Null,
-  string: String,
-  integer: Integer,
-  number: Number,
-  boolean: Boolean,
-  object: Object,
-  array: Array,
-  unsupported: Unsupported,
+  root: RootField,
+  null: NullField,
+  integer: IntegerField,
+  number: NumberField,
+  boolean: BooleanField,
+  unsupported: UnsupportedField,
+  string: StringField,
+  object: ObjectField,
+  array: ArrayField,
 };
 
-export const fields: Fields = (type) => fieldsRegistry[type]
+export const fields: Fields = (type) => fieldsRegistry[type];

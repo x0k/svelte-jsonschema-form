@@ -1,11 +1,15 @@
 import type { Component as SvelteComponent } from "svelte";
-import type { HTMLAttributes } from "svelte/elements";
+import type {
+  HTMLAttributes,
+  HTMLButtonAttributes,
+  HTMLFormAttributes,
+} from "svelte/elements";
 
 import type { Get } from "@/lib/types";
 
 import type { UiSchema } from "./ui-schema";
 
-export interface FormComponentProps extends HTMLAttributes<HTMLFormElement> {
+export interface FormComponentProps extends HTMLFormAttributes {
   form: HTMLFormElement | undefined;
 }
 
@@ -21,14 +25,14 @@ export interface ButtonType {
 }
 
 export interface ButtonComponentProps
-  extends HTMLAttributes<HTMLButtonElement> {
+  extends Omit<HTMLButtonAttributes, "type"> {
   type: keyof ButtonType;
   disabled: boolean;
 }
 
 export interface LayoutType {
   "root-field": {};
-  "field": {};
+  field: {};
   "field-content": {};
   "object-field": {};
   "object-properties": {};
@@ -65,8 +69,8 @@ export interface ParentTemplateType {
 export interface TitleComponentProps extends HTMLAttributes<HTMLElement> {
   type: keyof ParentTemplateType;
   title: string;
-  forId: string
-  required: boolean
+  forId: string;
+  required: boolean;
 }
 
 export interface DescriptionComponentProps extends HTMLAttributes<HTMLElement> {

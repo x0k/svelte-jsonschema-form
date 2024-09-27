@@ -2,21 +2,17 @@
   import type { WidgetProps } from "@/components/form";
 
   let {
+    attributes,
     value = $bindable(),
     options,
-    disabled,
-    readonly,
-    schema,
-    uiSchema,
-    ...rest
   }: WidgetProps<"select"> = $props();
+  const { readonly, ...rest } = attributes
 </script>
 
 <select
-  {...rest}
-  name={readonly ? rest.id : undefined}
   bind:value
-  disabled={disabled || readonly}
+  {...attributes}
+  disabled={rest.disabled || readonly}
 >
   {#each options as option}
     <option value={option.value}>

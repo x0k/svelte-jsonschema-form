@@ -3,7 +3,7 @@
   import type { UiSchema } from '../../ui-schema';
   import type { IdSchema } from '../../id-schema';
   import { getFormContext } from '../../context';
-  import { getComponent, getField, getFieldProps, getTemplate, getUiOptions } from '../../utils';
+  import { getComponent, getField, getTemplate, getUiOptions, isDisabledOrReadonly } from '../../utils';
   
   import ObjectKeyInput from './object-key-input.svelte';
   import { getObjectContext } from './context';
@@ -35,10 +35,9 @@
   const Field = $derived(getField(ctx, "root", uiSchema))
   const Button = $derived(getComponent(ctx, "button", uiSchema))
   const uiOptions = $derived(getUiOptions(ctx, uiSchema))
-  const disabled = $derived.by(() => {
-    const { readonly, disabled } = getFieldProps(ctx, uiOptions)
-    return readonly || disabled
-  })
+  const disabledOrReadonly = $derived(
+    isDisabledOrReadonly(ctx, uiOptions?.input)
+  )
 </script>
 
 {#snippet keyInput()}
@@ -52,7 +51,7 @@
 {#snippet removeButton()}
   <Button
     type="object-property-remove"
-    {disabled}
+    disabled={disabledOrReadonly}
     onclick={(e) => {
       e.preventDefault();
       if (objCtx.value === undefined) {

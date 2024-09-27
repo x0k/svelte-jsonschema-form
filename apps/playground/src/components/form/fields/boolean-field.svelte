@@ -4,14 +4,10 @@
   import { getFormContext } from "../context";
   import { createOptions } from "../enum";
   import { type Schema } from "../schema";
-  import {
-    getTemplate,
-    getUiOptions,
-    getWidget,
-    getWidgetProps,
-  } from "../utils";
+  import { getTemplate, getUiOptions, getWidget } from "../utils";
 
   import type { FieldProps } from "./model";
+  import { inputAttributes, makeAttributes } from "./utils";
 
   const ctx = getFormContext();
 
@@ -63,6 +59,19 @@
     }
     return createOptions(schema, uiSchema) ?? [];
   });
+  const attributes = $derived(
+    makeAttributes(
+      ctx,
+      {
+        id: idSchema.$id,
+        name: idSchema.$id,
+        required,
+        onfocus: noop,
+        onblur: noop,
+      },
+      inputAttributes(uiOptions?.input)
+    )
+  );
 </script>
 
 <Template
@@ -75,12 +84,5 @@
   {required}
   {uiOptions}
 >
-  <Widget
-    bind:value
-    {...getWidgetProps(ctx, name, schema, uiSchema, idSchema, uiOptions)}
-    {options}
-    {required}
-    onfocus={noop}
-    onblur={noop}
-  />
+  <Widget label={name} bind:value {attributes} {options} />
 </Template>

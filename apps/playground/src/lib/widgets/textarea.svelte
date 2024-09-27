@@ -1,10 +1,7 @@
 <script lang="ts">
-  import { getFormContext, type WidgetProps } from "@/components/form";
-  import { getUiOptions } from '@/components/form/utils';
+  import type { WidgetProps } from "@/components/form";
 
-  let { value = $bindable(), schema, uiSchema, ...rest }: WidgetProps<"text"> = $props();
-  const ctx = getFormContext()
-  const uiOptions = $derived(getUiOptions(ctx, uiSchema))
+  let { value = $bindable(), attributes }: WidgetProps<"textarea"> = $props();
 </script>
 
-<textarea {...rest} bind:value rows={uiOptions?.rows} name={rest.id}></textarea>
+<textarea bind:value {...attributes}></textarea>

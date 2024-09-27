@@ -93,3 +93,15 @@ export function toIdSchema<T extends SchemaValue>(
   }
   return idSchema as IdSchema<T>;
 }
+
+export interface IdentifiableFieldElement {
+  help: {};
+  "key-input": {};
+}
+
+export function computeId<T>(
+  idSchema: IdSchema<T>,
+  element: keyof IdentifiableFieldElement
+) {
+  return `${idSchema.$id}__${element}`;
+}

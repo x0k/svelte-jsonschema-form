@@ -42,13 +42,15 @@ const simple: Sample = {
   uiSchema: {
     firstName: {
       "ui:options": {
-        autofocus: true,
-        // emptyValue: "",
-        placeholder:
-          "ui:emptyValue causes this field to always be valid despite being required",
-        autocomplete: "family-name",
         description:
           "Make text **bold** or *italic*. Take a look at other options [here](https://markdown-to-jsx.quantizor.dev/).",
+        // emptyValue: "",
+        input: {
+          autofocus: true,
+          placeholder:
+            "ui:emptyValue causes this field to always be valid despite being required",
+          autocomplete: "family-name",
+        },
       },
       "ui:components": {
         description: MarkdownDescription,
@@ -56,9 +58,11 @@ const simple: Sample = {
     },
     lastName: {
       "ui:options": {
-        autocomplete: "given-name",
         description:
           "Make things **bold** or *italic*. Embed snippets of `code`. <small>And this is a small texts.</small> ",
+        input: {
+          autocomplete: "given-name",
+        },
       },
       "ui:components": {
         description: MarkdownDescription,
@@ -75,13 +79,17 @@ const simple: Sample = {
     },
     password: {
       "ui:options": {
-        inputType: "password",
         help: "Hint: Make it strong!",
+        input: {
+          type: "password",
+        },
       },
     },
     telephone: {
       "ui:options": {
-        inputType: "tel",
+        input: {
+          type: "tel",
+        },
       },
     },
   },

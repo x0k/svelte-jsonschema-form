@@ -2,8 +2,8 @@
   import { isFixedItems } from "../../schema";
   import { getFormContext } from "../../context";
   import {
-    getFieldProps,
     getUiOptions,
+    isDisabledOrReadonly,
     isFilesArray,
     isMultiSelect,
   } from "../../utils";
@@ -41,8 +41,8 @@
       Array.isArray(value) &&
       (schema.maxItems === undefined || value.length < schema.maxItems)
   );
-  const { disabled, readonly } = $derived(
-    getFieldProps(ctx, uiOptions)
+  const disabledOrReadonly = $derived(
+    isDisabledOrReadonly(ctx, uiOptions?.input)
   );
 
   const arrayCtx: ArrayContext = {
@@ -70,11 +70,8 @@
     get required() {
       return required;
     },
-    get disabled() {
-      return disabled;
-    },
-    get readonly() {
-      return readonly;
+    get disabledOrReadonly() {
+      return disabledOrReadonly;
     },
     get canAdd() {
       return canAdd;
