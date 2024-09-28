@@ -66,6 +66,7 @@ export function resolveAllReferences(
   const properties = resolvedSchema[PROPERTIES_KEY];
   if (properties) {
     const resolvedProps = new Map<string, SchemaDefinition>();
+    const stackCopies: Set<string>[] = [];
     for (const [key, value] of Object.entries(properties)) {
       if (typeof value === "boolean") {
         resolvedProps.set(key, value);
@@ -77,8 +78,15 @@ export function resolveAllReferences(
         );
         // TODO: Replace stack with an object with a Set of references
         // to use `union` Set method here
-        stackCopy.forEach(stack.add, stack);
+        stackCopies.push(stackCopy);
       }
+    }
+    const stackSize = stack.size;
+    for (const copy of stackCopies) {
+      if (copy.size === stackSize) {
+        continue;
+      }
+      copy.forEach(stack.add, stack);
     }
     resolvedSchema = {
       ...resolvedSchema,

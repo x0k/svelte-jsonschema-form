@@ -1,6 +1,7 @@
 import type { Sample } from './Sample';
 
 const references: Sample = {
+  status: "warnings",
   schema: {
     definitions: {
       address: {
@@ -42,7 +43,9 @@ const references: Sample = {
     },
   },
   uiSchema: {
-    'ui:order': ['shipping_address', 'billing_address', 'tree'],
+    'ui:options': {
+      order: ['shipping_address', 'billing_address', 'tree'],
+    }
   },
   formData: {
     billing_address: {
