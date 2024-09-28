@@ -26,7 +26,7 @@ import { getFormContext } from '../context';
       {/if}
     </Layout>
   {/if}
-  <Layout type="object-properties">
+  <Layout type="object-properties" attributes={uiOptions?.content}>
     {@render children()}
   </Layout>
   {@render addButton?.()}

@@ -1,4 +1,5 @@
 import type {
+  HTMLAttributes,
   HTMLButtonAttributes,
   HTMLInputAttributes,
   HTMLSelectAttributes,
@@ -53,6 +54,10 @@ export type InputAttributes = (
 
 export interface UiOptions {
   input?: InputAttributes;
+  content?: HTMLAttributes<HTMLDivElement>
+  // TODO: Clarify the need for this
+  // container?: HTMLAttributes<HTMLDivElement>
+  // root?: HTMLAttributes<HTMLDivElement>
   title?: string;
   description?: string;
   enumNames?: string[];

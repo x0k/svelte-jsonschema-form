@@ -1,7 +1,7 @@
 import type { Sample } from './Sample';
 
 const numbers: Sample = {
-  status: "broken",
+  status: "prefect",
   schema: {
     type: 'object',
     title: 'Number fields & widgets',
@@ -41,10 +41,7 @@ const numbers: Sample = {
   },
   uiSchema: {
     numberEnumRadio: {
-      // 'ui:widget': 'radio',
-      // 'ui:options': {
-      //   inline: true,
-      // },
+      'ui:widget': 'radio',
     },
     integerRange: {
       'ui:options': {

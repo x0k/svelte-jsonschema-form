@@ -3,7 +3,7 @@ import type { Snippet, Component as SvelteComponent } from "svelte";
 import type { Get } from "@/lib/types";
 
 import type { UiSchema } from "./ui-schema";
-import type { HTMLButtonAttributes } from "svelte/elements";
+import type { HTMLAttributes, HTMLButtonAttributes } from "svelte/elements";
 
 export interface FormComponentProps {
   form: HTMLFormElement | undefined;
@@ -54,6 +54,7 @@ export interface LayoutType {
 export interface LayoutComponentProps {
   type: keyof LayoutType;
   children: Snippet;
+  attributes?: HTMLAttributes<HTMLDivElement> | undefined;
 }
 
 export interface AlertType {

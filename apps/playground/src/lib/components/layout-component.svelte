@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { ComponentProps } from "@/components/form";
 
-  const { type, children }: ComponentProps<"layout"> = $props();
+  const { type, children, attributes }: ComponentProps<"layout"> = $props();
 
   function getStyle(type: ComponentProps<"layout">["type"]) {
     switch (type) {
@@ -11,7 +11,7 @@
       case "array-item-content":
         return "flex-grow: 1;";
       case "field-content":
-        return "display: flex;";
+        return "display: flex; gap: 0.5rem; flex-wrap: wrap;";
       case "array-items":
       case "object-properties":
       case "array-field":
@@ -31,8 +31,8 @@
   const style = $derived(getStyle(type));
 </script>
 
-{#if style}
-  <div style={getStyle(type)} data-layout={type}>
+{#if style || attributes}
+  <div style={getStyle(type)} data-layout={type} {...attributes}>
     {@render children()}
   </div>
 {:else}

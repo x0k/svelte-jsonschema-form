@@ -27,7 +27,7 @@
       {/if}
     </Layout>
   {/if}
-  <Layout type="field-content">
+  <Layout type="field-content" attributes={uiOptions?.content}>
     {@render children()}
   </Layout>
   {#if uiOptions?.help !== undefined}

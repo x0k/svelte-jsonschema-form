@@ -29,11 +29,17 @@ export interface SelectWidgetProps<V>
   options: EnumOption<SchemaValue>[];
 }
 
+export interface RadioWidgetProps<V>
+  extends WidgetCommonProps<V, HTMLInputAttributes> {
+  options: EnumOption<SchemaValue>[];
+}
+
 export interface WidgetsAndProps<V> {
   text: WidgetCommonProps<V, HTMLInputAttributes>;
   textarea: WidgetCommonProps<V, HTMLTextareaAttributes>;
   number: WidgetCommonProps<V, HTMLInputAttributes>;
   select: SelectWidgetProps<V>;
+  radio: RadioWidgetProps<V>;
   checkbox: WidgetCommonProps<V, HTMLInputAttributes>;
 }
 
@@ -42,6 +48,7 @@ export interface WidgetValue {
   textarea: string;
   number: number;
   select: SchemaValue;
+  radio: SchemaValue;
   checkbox: boolean;
 }
 
