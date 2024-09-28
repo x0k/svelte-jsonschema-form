@@ -1,6 +1,7 @@
 import type { Sample } from './Sample';
 
 const numbers: Sample = {
+  status: "broken",
   schema: {
     type: 'object',
     title: 'Number fields & widgets',
@@ -39,20 +40,25 @@ const numbers: Sample = {
     },
   },
   uiSchema: {
-    integer: {
-      'ui:widget': 'updown',
-    },
     numberEnumRadio: {
-      'ui:widget': 'radio',
-      'ui:options': {
-        inline: true,
-      },
+      // 'ui:widget': 'radio',
+      // 'ui:options': {
+      //   inline: true,
+      // },
     },
     integerRange: {
-      'ui:widget': 'range',
+      'ui:options': {
+        "input": {
+          type: "range"
+        }
+      }
     },
     integerRangeSteps: {
-      'ui:widget': 'range',
+      'ui:options': {
+        "input": {
+          type: "range"
+        }
+      }
     },
   },
   formData: {
