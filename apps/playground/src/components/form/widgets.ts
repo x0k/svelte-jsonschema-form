@@ -36,6 +36,8 @@ export interface RadioWidgetProps<V>
 
 export interface WidgetsAndProps<V> {
   text: WidgetCommonProps<V, HTMLInputAttributes>;
+  email: WidgetCommonProps<V, HTMLInputAttributes>;
+  url: WidgetCommonProps<V, HTMLInputAttributes>;
   textarea: WidgetCommonProps<V, HTMLTextareaAttributes>;
   number: WidgetCommonProps<V, HTMLInputAttributes>;
   select: SelectWidgetProps<V>;
@@ -46,6 +48,8 @@ export interface WidgetsAndProps<V> {
 
 export interface WidgetValue {
   text: string;
+  email: string;
+  url: string;
   textarea: string;
   number: number;
   select: SchemaValue;

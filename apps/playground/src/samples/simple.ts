@@ -3,7 +3,7 @@ import type { Sample } from "./Sample";
 import { MarkdownDescription } from "./components";
 
 const simple: Sample = {
-  status: "prefect",
+  status: "perfect",
   schema: {
     title: "A registration form",
     description: "A simple form example.",

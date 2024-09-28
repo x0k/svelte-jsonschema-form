@@ -15,7 +15,7 @@ import { getFormContext } from '../context';
   const { title, description, showMeta } = $derived(getTemplateProps(ctx, name, schema, uiOptions))
 </script>
 
-<Layout type="object-field">
+<Layout type="object-field" attributes={uiOptions?.container}>
   {#if showMeta && (title || description)}
     <Layout type="object-field-meta">
       {#if title}

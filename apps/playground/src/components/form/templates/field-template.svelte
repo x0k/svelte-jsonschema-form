@@ -16,7 +16,7 @@
   const { title, description, showMeta } = $derived(getTemplateProps(ctx, name, schema, uiOptions))
 </script>
 
-<Layout type="field">
+<Layout type="field" attributes={uiOptions?.container}>
   {#if showMeta && ((showTitle && title) || description)}
     <Layout type="field-meta">
       {#if showTitle && title}

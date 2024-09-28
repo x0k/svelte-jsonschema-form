@@ -55,8 +55,8 @@ export type InputAttributes = (
 export interface UiOptions {
   input?: InputAttributes;
   content?: HTMLAttributes<HTMLDivElement>
+  container?: HTMLAttributes<HTMLDivElement>
   // TODO: Clarify the need for this
-  // container or wrapper?: HTMLAttributes<HTMLDivElement>
   // root?: HTMLAttributes<HTMLDivElement>
   title?: string;
   description?: string;

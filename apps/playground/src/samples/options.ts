@@ -1,7 +1,7 @@
 import type { Sample } from "./Sample";
 
 const optionsSample: Sample = {
-  status: "prefect",
+  status: "perfect",
   schema: {
     title: "A registration form",
     description: "A simple form example. Demonstrating ui options",

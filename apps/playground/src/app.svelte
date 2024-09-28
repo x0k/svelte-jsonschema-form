@@ -58,7 +58,7 @@
       <button
         type="button"
         class="border rounded p-2"
-        class:bg-green-200={sample.status === "prefect"}
+        class:bg-green-200={sample.status === "perfect"}
         class:bg-blue-200={sample.status === "ok"}
         class:bg-yellow-200={sample.status === "warnings"}
         class:bg-red-200={sample.status === "broken" ||

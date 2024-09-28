@@ -6,7 +6,7 @@ import enumObjects from "./enumObjects";
 import nested from "./nested";
 import numbers from "./numbers";
 import simple from "./simple";
-// import widgets from './widgets';
+import widgets from './widgets';
 import ordering from "./ordering";
 import references from "./references";
 import custom from "./custom";
@@ -41,13 +41,13 @@ const skipped: Sample = {
 };
 
 export const samples = Object.freeze({
-  Blank: { status: "prefect", schema: {}, uiSchema: {}, formData: {} },
+  Blank: { status: "perfect", schema: {}, uiSchema: {}, formData: {} },
   Simple: simple,
   "UI Options": options,
   Nested: nested,
   Arrays: arrays,
   Numbers: numbers,
-  Widgets: skipped, //widgets,
+  Widgets: widgets,
   Ordering: ordering,
   References: references,
   Custom: custom,

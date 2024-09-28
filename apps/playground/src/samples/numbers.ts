@@ -1,7 +1,7 @@
 import type { Sample } from './Sample';
 
 const numbers: Sample = {
-  status: "prefect",
+  status: "perfect",
   schema: {
     type: 'object',
     title: 'Number fields & widgets',
