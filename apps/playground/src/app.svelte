@@ -9,12 +9,31 @@
   import { ShadowHost } from "@/components/shadow";
 
   import Github from "./github.svelte";
-
   import { samples } from "./samples";
+
+  function isSampleName(name: unknown): name is keyof typeof samples {
+    return typeof name === "string" && name in samples
+  }
+
+  const url = new URL(window.location.toString());
+  const initialSampleName = url.searchParams.get("sample");
+  function selectSample(name: keyof typeof samples, replace = false) {
+    url.searchParams.set("sample", name);
+    history[replace ? "replaceState" : "pushState"](null, "", url);
+    return name
+  }
+  let sampleName = $state(
+    isSampleName(initialSampleName) ? initialSampleName : selectSample("Simple", true)
+  );
 
   let schema = $state(samples.Simple.schema);
   let uiSchema = $state(samples.Simple.uiSchema);
   let value = $state(samples.Simple.formData);
+  $effect(() => {
+    schema = samples[sampleName].schema
+    uiSchema = samples[sampleName].uiSchema
+    value = samples[sampleName].formData
+  })
 
   const validator = new AjvValidator(
     new Ajv({
@@ -45,11 +64,10 @@
         class:bg-red-200={sample.status === "broken" ||
           sample.status === undefined}
         class:bg-neutral-200={sample.status === "skipped"}
+        class:font-bold={name === sampleName}
         disabled={sample.status === "skipped"}
         onclick={() => {
-          schema = sample.schema;
-          uiSchema = sample.uiSchema;
-          value = sample.formData;
+          sampleName = selectSample(name as keyof typeof samples);
         }}
       >
         {name}

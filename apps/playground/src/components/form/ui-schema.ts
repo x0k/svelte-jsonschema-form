@@ -56,7 +56,7 @@ export interface UiOptions {
   input?: InputAttributes;
   content?: HTMLAttributes<HTMLDivElement>
   // TODO: Clarify the need for this
-  // container?: HTMLAttributes<HTMLDivElement>
+  // container or wrapper?: HTMLAttributes<HTMLDivElement>
   // root?: HTMLAttributes<HTMLDivElement>
   title?: string;
   description?: string;

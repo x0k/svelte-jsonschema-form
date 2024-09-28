@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { ComponentProps } from '@/components/form';
 
-  const { type: _, title, children }: ComponentProps<"alert"> = $props();
+  const { title, children }: ComponentProps<"alert"> = $props();
 </script>
 
 <div>
