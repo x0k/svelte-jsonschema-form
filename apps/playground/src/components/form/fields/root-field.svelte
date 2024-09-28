@@ -1,7 +1,7 @@
 <script lang="ts">
   import { getFormContext } from "../context";
   import { getSimpleSchemaType, ID_KEY, mergeSchemaObjects } from "../schema";
-  import { getComponent, getField, toIdSchema } from "../utils";
+  import { getComponent, getField, isSelect, toIdSchema } from "../utils";
 
   import type { FieldProps } from "./model";
 
@@ -21,7 +21,7 @@
   const Field = $derived(
     schemaType === "null" && (schema.anyOf || schema.oneOf)
       ? null
-      : getField(ctx, schemaType, uiSchema)
+      : getField(ctx, isSelect(ctx, schema) ? "enum" : schemaType, uiSchema)
   );
   const fieldIdSchema = $derived.by(() => {
     const nextIdSchema = toIdSchema(ctx, schema, idSchema?.[ID_KEY], value);
