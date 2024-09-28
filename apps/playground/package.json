@@ -36,6 +36,7 @@
     "fast-equals": "^5.0.1",
     "json-schema-merge-allof": "^0.8.1",
     "jsonpointer": "^5.0.1",
-    "svelte-markdown": "^0.4.1"
+    "rehype-raw": "^7.0.0",
+    "svelte-exmarkdown": "^3.0.5"
   }
 }

@@ -64,4 +64,4 @@
   });
 </script>
 
-<Widget {attributes} label={`${name} Key`} bind:value={key.value} />
+<Widget {attributes} label="{name} Key" bind:value={key.value} />

@@ -1,6 +1,9 @@
 import type { Sample } from './Sample';
 
+import { GeoField } from './components'
+
 const custom: Sample = {
+  status: "perfect",
   schema: {
     title: 'A localisation form',
     type: 'object',
@@ -15,7 +18,7 @@ const custom: Sample = {
     },
   },
   uiSchema: {
-    'ui:field': 'geo',
+    'ui:field': GeoField
   },
   formData: {
     lat: 0,

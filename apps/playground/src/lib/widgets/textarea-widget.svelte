@@ -7,5 +7,5 @@
 <textarea
   bind:value
   {...attributes}
-  style={`flex-grow: 1; ${attributes?.style || ""}`}
+  style="flex-grow: 1; {attributes?.style || ""}"
 ></textarea>

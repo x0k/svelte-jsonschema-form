@@ -1,11 +1,17 @@
 <script lang="ts">
-  import SvelteMarkdown from 'svelte-markdown'
+  import Markdown, { Transparent } from "svelte-exmarkdown";
+  import type { Plugin } from "svelte-exmarkdown";
+  import rehypeRaw from "rehype-raw";
 
-  import type { ComponentProps } from '@/components/form';
+  import type { ComponentProps } from "@/components/form";
 
-  import Paragraph from './paragraph.svelte';
+  const plugins: Plugin[] = [
+    { rehypePlugin: [rehypeRaw], renderer: { p: Transparent } },
+  ];
 
   const { description }: ComponentProps<"description"> = $props();
 </script>
 
-<SvelteMarkdown source={description} renderers={{ paragraph: Paragraph }} />
+<div>
+  <Markdown md={description} {plugins} />
+</div>

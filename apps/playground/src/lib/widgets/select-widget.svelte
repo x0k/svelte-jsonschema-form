@@ -13,7 +13,7 @@
   bind:value
   {...attributes}
   disabled={rest.disabled || readonly}
-  style={`flex-grow: 1; ${attributes?.style || ""}`}
+  style="flex-grow: 1; {attributes?.style || ""}"
 >
   {#each options as option}
     <option value={option.value}>

@@ -23,10 +23,14 @@ type UiSchemaRootContent = UiSchemaContent & {
   submitButton?: UiSchema;
 };
 
+type AllFields = {
+  [T in FieldType]: Field<T>
+}
+
 interface UiSchemaContent {
   "ui:options"?: UiOptions;
   "ui:widget"?: WidgetType | Widget<WidgetType>;
-  "ui:field"?: FieldType | Field<FieldType>;
+  "ui:field"?: FieldType | AllFields[FieldType];
   "ui:templates"?: Partial<{
     [T in TemplateType]: TemplateType | Template<T>;
   }>;
