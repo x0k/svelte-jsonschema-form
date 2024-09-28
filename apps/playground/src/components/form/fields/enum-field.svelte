@@ -15,6 +15,7 @@
     uiSchema,
     idSchema,
     required,
+    multiple = false,
   }: FieldProps<"enum"> = $props();
 
   const ctx = getFormContext();
@@ -41,7 +42,7 @@
 </script>
 
 <Template
-  showTitle={true}
+  showTitle
   {name}
   {value}
   {schema}
@@ -50,5 +51,5 @@
   {required}
   {uiOptions}
 >
-  <Widget {attributes} label={name} bind:value {options} />
+  <Widget {attributes} label={name} bind:value {options} {multiple} />
 </Template>

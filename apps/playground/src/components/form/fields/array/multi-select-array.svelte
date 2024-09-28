@@ -13,9 +13,11 @@
   const schemaItems: Schema = $derived(
     isSchemaObjectValue(arrayCtx.schema.items) ? arrayCtx.schema.items : {}
   );
+  $inspect(schemaItems)
 </script>
 
 <Field
+  multiple
   name={arrayCtx.name}
   bind:value={arrayCtx.value}
   schema={schemaItems}

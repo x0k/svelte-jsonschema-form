@@ -29,7 +29,9 @@ export interface FieldAndProps<V extends SchemaValue> {
   object: FieldCommonProps<V>;
   array: FieldCommonProps<V>;
   null: FieldCommonProps<V>;
-  enum: FieldCommonProps<V>;
+  enum: FieldCommonProps<V> & {
+    multiple?: boolean;
+  };
   hidden: FieldCommonProps<V>;
   unsupported: FieldCommonProps<V>;
 }

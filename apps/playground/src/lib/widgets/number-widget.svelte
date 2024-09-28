@@ -12,6 +12,6 @@
 <input
   type="number"
   bind:value
+  style="flex-grow: 1"
   {...attributes}
-  style="flex-grow: 1; {attributes?.style || ""}"
 />

@@ -169,7 +169,7 @@ const widgets: Sample = {
     selectWidgetOptions: {
       "ui:options": {
         input: {
-          style: "background-color: pink;",
+          style: "flex-grow: 1; background-color: pink;",
         },
       },
     },

@@ -26,6 +26,7 @@ export interface WidgetCommonProps<V, A> {
 
 export interface SelectWidgetProps<V>
   extends WidgetCommonProps<V, HTMLSelectAttributes> {
+  multiple: boolean;
   options: EnumOption<SchemaValue>[];
 }
 

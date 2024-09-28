@@ -29,7 +29,7 @@ const optionsSample: Sample = {
       "ui:options": {
         title: "Confirm Details",
         input: {
-          style: "width: 100%; padding: 12px 0; margin: 0;",
+          style: "width: 100%; background-color: lightgreen; border-radius: 8px; padding: 12px 0; margin: 0;",
         },
       },
     },
