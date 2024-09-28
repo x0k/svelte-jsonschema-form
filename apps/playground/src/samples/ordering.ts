@@ -1,6 +1,7 @@
 import type { Sample } from './Sample';
 
 const ordering: Sample = {
+  status: "perfect",
   schema: {
     title: 'A registration form',
     type: 'object',
@@ -29,15 +30,21 @@ const ordering: Sample = {
     },
   },
   uiSchema: {
-    'ui:order': ['firstName', 'lastName', '*', 'password'],
-    age: {
-      'ui:widget': 'updown',
+    'ui:options': {
+      order: ['firstName', 'lastName', '*', 'password'],
     },
+    // age: {
+    //   'ui:widget': 'updown',
+    // },
     bio: {
       'ui:widget': 'textarea',
     },
     password: {
-      'ui:widget': 'password',
+      "ui:options": {
+        input: {
+          type: "password",
+        },
+      }
     },
   },
   formData: {
