@@ -10,6 +10,7 @@ import IntegerField from "./integer-field.svelte";
 import BooleanField from "./boolean-field.svelte";
 import UnsupportedField from "./unsupported-field.svelte";
 import EnumField from './enum-field.svelte';
+import HiddenField from './hidden-field.svelte';
 
 export const fieldsRegistry: { [T in FieldType]: Field<T> } = {
   root: RootField,
@@ -22,6 +23,7 @@ export const fieldsRegistry: { [T in FieldType]: Field<T> } = {
   string: StringField,
   object: ObjectField,
   array: ArrayField,
+  hidden: HiddenField,
 };
 
 export const fields: Fields = (type) => fieldsRegistry[type];

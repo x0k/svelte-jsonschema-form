@@ -30,6 +30,7 @@ export interface FieldAndProps<V extends SchemaValue> {
   array: FieldCommonProps<V>;
   null: FieldCommonProps<V>;
   enum: FieldCommonProps<V>;
+  hidden: FieldCommonProps<V>;
   unsupported: FieldCommonProps<V>;
 }
 
@@ -43,6 +44,7 @@ export interface FieldValue {
   array: SchemaArrayValue;
   null: null;
   enum: SchemaValue;
+  hidden: SchemaValue;
   unsupported: SchemaValue;
 }
 

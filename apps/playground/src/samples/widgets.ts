@@ -143,14 +143,7 @@ const widgets: Sample = {
       },
     },
     secret: {
-      "ui:options": {
-        input: {
-          type: "hidden",
-        },
-        container: {
-          style: "display: none;",
-        }
-      },
+      "ui:field": "hidden",
     },
     disabled: {
       "ui:options": {
