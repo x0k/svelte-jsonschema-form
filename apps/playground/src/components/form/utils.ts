@@ -59,9 +59,9 @@ export function getWidget<T extends WidgetType>(
 ): Widget<CompatibleWidgetType<T>> {
   return (
     getWidgetInternal(ctx, type, uiSchema) ??
-    (createMessage(`Widget ${type} not found`) as Widget<
-      CompatibleWidgetType<T>
-    >)
+    (createMessage(
+      `Widget "${uiSchema["ui:widget"] ?? type}" not found`
+    ) as Widget<CompatibleWidgetType<T>>)
   );
 }
 
@@ -89,7 +89,7 @@ export function getField<T extends FieldType>(
   return (
     getFieldInternal(ctx, type, uiSchema) ??
     (ctx.fields("unsupported", uiSchema) as Field<T>) ??
-    createMessage(`Field ${type} not found`)
+    createMessage(`Field "${uiSchema["ui:field"] ?? type}" not found`)
   );
 }
 
@@ -129,7 +129,9 @@ export function getTemplate<T extends TemplateType>(
 ): Template<T> {
   return (
     getTemplateInternal(ctx, type, uiSchema) ??
-    (createMessage(`Template ${type} not found`) as Template<T>)
+    (createMessage(
+      `Template "${uiSchema["ui:templates"]?.[type] ?? type}" not found`
+    ) as Template<T>)
   );
 }
 
@@ -157,7 +159,9 @@ export function getComponent<T extends ComponentType>(
   // @ts-expect-error TODO: improve `createMessage` type
   return (
     getComponentInternal(ctx, type, uiSchema) ??
-    createMessage(`Component ${type} not found`)
+    createMessage(
+      `Component "${uiSchema["ui:components"]?.[type] ?? type}" not found`
+    )
   );
 }
 
