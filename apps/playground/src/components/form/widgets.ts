@@ -5,7 +5,7 @@ import type {
   HTMLTextareaAttributes,
 } from "svelte/elements";
 
-import type { SchemaValue } from "./schema";
+import type { SchemaArrayValue, SchemaValue } from "./schema";
 import type { EnumOption } from "./enum";
 
 export interface RequiredAttributes {
@@ -41,6 +41,7 @@ export interface WidgetsAndProps<V> {
   select: SelectWidgetProps<V>;
   radio: RadioWidgetProps<V>;
   checkbox: WidgetCommonProps<V, HTMLInputAttributes>;
+  checkboxes: RadioWidgetProps<V>;
 }
 
 export interface WidgetValue {
@@ -50,6 +51,7 @@ export interface WidgetValue {
   select: SchemaValue;
   radio: SchemaValue;
   checkbox: boolean;
+  checkboxes: SchemaArrayValue;
 }
 
 export type WidgetType = keyof WidgetsAndProps<SchemaValue>;

@@ -1,7 +1,7 @@
 import type { Sample } from './Sample';
 
 const arrays: Sample = {
-  status: "broken",
+  status: "warnings",
   schema: {
     definitions: {
       Thing: {
@@ -145,12 +145,14 @@ const arrays: Sample = {
     // },
     multipleChoicesList: {
       'ui:widget': 'checkboxes',
+      "ui:options": {
+        "content": {
+          style: "display: flex; flex-direction: column; gap: 0.2rem"
+        }
+      }
     },
     fixedItemsList: {
       items: [{ 'ui:widget': 'textarea' }, { 'ui:widget': 'select' }],
-      // additionalItems: {
-      //   'ui:widget': 'updown',
-      // },
     },
     unorderable: {
       'ui:options': {

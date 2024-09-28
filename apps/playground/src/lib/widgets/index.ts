@@ -6,6 +6,7 @@ import NumberWidget from "./number-widget.svelte";
 import SelectWidget from "./select-widget.svelte";
 import CheckBoxWidget from "./checkbox-widget.svelte";
 import RadioWidget from './radio-widget.svelte';
+import CheckboxesWidget from './checkboxes-widget.svelte';
 
 export const registry: { [T in WidgetType]: Widget<T> } = {
   text: TextWidget,
@@ -13,7 +14,8 @@ export const registry: { [T in WidgetType]: Widget<T> } = {
   number: NumberWidget,
   select: SelectWidget,
   checkbox: CheckBoxWidget,
-  radio: RadioWidget
+  radio: RadioWidget,
+  checkboxes: CheckboxesWidget,
 };
 
 export const widgets: Widgets = (type) => registry[type];
