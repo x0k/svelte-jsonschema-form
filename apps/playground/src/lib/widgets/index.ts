@@ -1,17 +1,17 @@
 import type { Widget, Widgets, WidgetType } from "@/components/form";
 
-import Text from "./text.svelte";
-import Textarea from './textarea.svelte';
-import Number from './number.svelte'
-import Select from './select.svelte';
-import CheckBox from './checkbox.svelte'
+import TextWidget from "./text-widget.svelte";
+import TextareaWidget from "./textarea-widget.svelte";
+import NumberWidget from "./number-widget.svelte";
+import SelectWidget from "./select-widget.svelte";
+import CheckBoxWidget from "./checkbox-widget.svelte";
 
 export const registry: { [T in WidgetType]: Widget<T> } = {
-  text: Text,
-  textarea: Textarea,
-  number: Number,
-  select: Select,
-  checkbox: CheckBox
+  text: TextWidget,
+  textarea: TextareaWidget,
+  number: NumberWidget,
+  select: SelectWidget,
+  checkbox: CheckBoxWidget,
 };
 
 export const widgets: Widgets = (type) => registry[type];
