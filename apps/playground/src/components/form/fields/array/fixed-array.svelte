@@ -1,7 +1,9 @@
 <script lang="ts">
   import { getFormContext } from '../../context';
   import { isSchemaNullable, isSchemaObjectValue } from '../../schema';
-  import { getComponent, getDefaultFormState, getTemplate, retrieveSchema } from '../../utils';
+  import { getComponent } from '../../component';
+  import { getTemplate } from '../../templates';
+  import { getDefaultFormState, getUiOptions, retrieveSchema } from '../../utils';
   
   import { getArrayContext } from './context';
   import ArrayItem from './array-item.svelte';
@@ -12,12 +14,12 @@
   const ctx = getFormContext();
   const arrayCtx = getArrayContext();
 
-  const Template = $derived(getTemplate(ctx, "array", arrayCtx.uiSchema));
-  const Button = $derived(getComponent(ctx, "button", arrayCtx.uiSchema));
+  const Template = $derived(getTemplate(ctx, "array", arrayCtx.config));
+  const Button = $derived(getComponent(ctx, "button", arrayCtx.config));
 
   const schemaItems = $derived(
-    Array.isArray(arrayCtx.schema.items)
-      ? arrayCtx.schema.items.map((item, i) => {
+    Array.isArray(arrayCtx.config.schema.items)
+      ? arrayCtx.config.schema.items.map((item, i) => {
         if (typeof item === "boolean") {
           throw new Error("Invalid schema: items must be an array of schemas")
         }
@@ -26,8 +28,8 @@
       : []
   )
   const schemaAdditionalItems = $derived(
-    isSchemaObjectValue(arrayCtx.schema?.additionalItems)
-      ? retrieveSchema(ctx, arrayCtx.schema.additionalItems, arrayCtx.value)
+    isSchemaObjectValue(arrayCtx.config.schema?.additionalItems)
+      ? retrieveSchema(ctx, arrayCtx.config.schema.additionalItems, arrayCtx.value)
       : null
   )
 
@@ -56,43 +58,42 @@
   />
 {/snippet}
 <Template
-  name={arrayCtx.name}
   value={arrayCtx.value}
-  schema={arrayCtx.schema}
-  uiSchema={arrayCtx.uiSchema}
-  idSchema={arrayCtx.idSchema}
-  required={arrayCtx.required}
+  config={arrayCtx.config}
   addButton={arrayCtx.canAdd && schemaAdditionalItems ? addButton : undefined}
-  uiOptions={arrayCtx.uiOptions}
 >
   {#if arrayCtx.value}
     {#each arrayCtx.value as item, index}
       {@const isAdditional = index >= schemaItems.length}
       {@const itemSchema = isAdditional && schemaAdditionalItems ? retrieveSchema(ctx, schemaAdditionalItems, item) : schemaItems[index]}
+      {@const uiSchema = arrayCtx.config.uiSchema}
       {@const itemUiSchema = (isAdditional
-        ? arrayCtx.uiSchema.additionalItems
-        : Array.isArray(arrayCtx.uiSchema.items)
-        ? arrayCtx.uiSchema.items[index]
-        : arrayCtx.uiSchema.items
+        ? uiSchema.additionalItems
+        : Array.isArray(uiSchema.items)
+        ? uiSchema.items[index]
+        : uiSchema.items
       ) ?? {}}
       {@const itemIdSchema = getArrayItemSchemaId(
         ctx,
-        arrayCtx.idSchema,
+        arrayCtx.config.idSchema,
         itemSchema,
         index,
         item
       )}
       <ArrayItem
         {index}
-        name={getArrayItemName(arrayCtx, index)}
+        config={{
+          name: getArrayItemName(arrayCtx, index),
+          schema: itemSchema,
+          uiSchema: itemUiSchema,
+          uiOptions: getUiOptions(ctx, itemUiSchema),
+          idSchema: itemIdSchema,
+          required: !isSchemaNullable(itemSchema),
+        }}
         bind:value={arrayCtx.value[index]}
-        schema={itemSchema}
-        uiSchema={itemUiSchema}
-        idSchema={itemIdSchema}
         canRemove={isAdditional}
         canMoveUp={index > schemaItems.length}
         canMoveDown={isAdditional && index < arrayCtx.value.length - 1}
-        required={!isSchemaNullable(itemSchema)}
       />
     {/each}
   {/if}

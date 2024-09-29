@@ -2,8 +2,9 @@ import type { Snippet, Component as SvelteComponent } from "svelte";
 
 import type { Get } from "@/lib/types";
 
-import type { UiSchema } from "./ui-schema";
 import type { HTMLAttributes, HTMLButtonAttributes } from "svelte/elements";
+import type { FormContext } from "./context";
+import { createMessage, type Config } from "./config";
 
 export interface FormComponentProps {
   form: HTMLFormElement | undefined;
@@ -115,5 +116,37 @@ export type Component<T extends ComponentType> = SvelteComponent<
 
 export type Components = <T extends ComponentType>(
   type: T,
-  uiSchema: UiSchema
+  config: Config
 ) => Component<T> | undefined;
+
+function getComponentInternal<T extends ComponentType>(
+  ctx: FormContext<unknown>,
+  type: T,
+  config: Config
+): Component<T> | undefined {
+  const component = config.uiSchema["ui:components"]?.[type];
+  switch (typeof component) {
+    case "undefined":
+      return ctx.components(type, config);
+    case "string":
+      return ctx.components(component as T, config);
+    default:
+      return component as Component<T>;
+  }
+}
+
+export function getComponent<T extends ComponentType>(
+  ctx: FormContext<unknown>,
+  type: T,
+  config: Config
+): Component<T> {
+  // @ts-expect-error TODO: improve `createMessage` type
+  return (
+    getComponentInternal(ctx, type, config) ??
+    createMessage(
+      `Component "${
+        config.uiSchema["ui:components"]?.[type] ?? type
+      }" not found`
+    )
+  );
+}

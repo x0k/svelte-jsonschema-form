@@ -26,6 +26,10 @@ export type IdSchema<T> = FieldId &
       }
     : {});
 
+export const FAKE_ID_SCHEMA: IdSchema<SchemaValue> = {
+  $id: "fake-id",
+};
+
 export function toIdSchema<T extends SchemaValue>(
   validator: Validator<T>,
   schema: Schema,

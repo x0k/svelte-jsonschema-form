@@ -6,7 +6,9 @@
   import type { UiSchema } from "../../ui-schema";
   import { computeId, type IdSchema } from "../../id-schema";
   import { getFormContext } from "../../context";
-  import { getUiOptions, getWidget } from "../../utils";
+  import type { Config } from "../../config";
+  import { getWidget } from "../../widgets";
+  import { getUiOptions } from "../../utils";
 
   import { inputAttributes, makeAttributes } from "../make-widget-attributes";
 
@@ -28,17 +30,26 @@
   const ctx = getFormContext();
   const objCtx = getObjectContext();
 
-  const Widget = $derived(getWidget(ctx, "text", uiSchema));
-
+  const id = $derived(
+    computeId(idSchema ?? { $id: ctx.idPrefix }, "key-input")
+  );
   const uiOptions = $derived(getUiOptions(ctx, uiSchema));
+  const config: Config = $derived({
+    name: `${name} Key`,
+    schema: { type: "string" },
+    idSchema: { $id: id },
+    uiSchema,
+    uiOptions,
+    required: true,
+  });
+  const Widget = $derived(getWidget(ctx, "text", config));
 
   const key = createTransformation<string | undefined>({
     transform: () => property,
   });
 
-  const attributes = $derived.by(() => {
-    const id = computeId(idSchema ?? { $id: ctx.idPrefix }, "key-input");
-    return makeAttributes(
+  const attributes = $derived(
+    makeAttributes(
       ctx,
       {
         id,
@@ -60,8 +71,8 @@
         },
       },
       inputAttributes(uiOptions?.input)
-    );
-  });
+    )
+  );
 </script>
 
-<Widget {attributes} label="{name} Key" bind:value={key.value} />
+<Widget {attributes} {config} bind:value={key.value} />

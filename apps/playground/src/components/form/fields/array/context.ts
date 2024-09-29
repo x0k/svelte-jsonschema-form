@@ -1,17 +1,11 @@
 import { getContext, setContext } from "svelte";
 
-import type { Schema, SchemaArrayValue } from "../../schema";
-import type { UiOptions, UiSchema } from "../../ui-schema";
-import type { IdSchema } from "../../id-schema";
+import type { SchemaArrayValue } from "../../schema";
+import type { Config } from '../../config';
 
 export interface ArrayContext {
-  name: string;
   value: SchemaArrayValue | undefined;
-  schema: Schema;
-  uiSchema: UiSchema;
-  idSchema: IdSchema<SchemaArrayValue>;
-  uiOptions: UiOptions | undefined;
-  required: boolean;
+  config: Config<SchemaArrayValue>;
   disabledOrReadonly: boolean;
   canAdd: boolean;
   addable: boolean;

@@ -1,27 +1,20 @@
 import type { Component as SvelteComponent } from "svelte";
 
 import type {
-  Schema,
   SchemaArrayValue,
   SchemaObjectValue,
   SchemaValue,
 } from "../schema";
-import type { UiSchema } from "../ui-schema";
-import type { IdSchema } from "../id-schema";
+import { createMessage, type Config } from "../config";
+import type { FormContext } from "../context";
 
 export interface FieldCommonProps<V extends SchemaValue> {
-  name: string;
   value: V | undefined;
-  schema: Schema;
-  uiSchema: UiSchema;
-  idSchema: IdSchema<V>;
-  required: boolean;
+  config: Config<V>;
 }
 
 export interface FieldAndProps<V extends SchemaValue> {
-  root: Omit<FieldCommonProps<V>, "idSchema"> & {
-    idSchema?: IdSchema<SchemaValue>;
-  };
+  root: FieldCommonProps<V>;
   string: FieldCommonProps<V>;
   number: FieldCommonProps<V>;
   integer: FieldCommonProps<V>;
@@ -62,5 +55,33 @@ export type Field<T extends FieldType> = SvelteComponent<
 
 export type Fields = <T extends FieldType>(
   type: T,
-  uiSchema: UiSchema
+  config: Config
 ) => Field<T> | undefined;
+
+function getFieldInternal<T extends FieldType>(
+  ctx: FormContext<unknown>,
+  type: T,
+  config: Config
+): Field<T> | undefined {
+  const field = config.uiSchema["ui:field"];
+  switch (typeof field) {
+    case "undefined":
+      return ctx.fields(type, config);
+    case "string":
+      return ctx.fields(field as T, config);
+    default:
+      return field as Field<T>;
+  }
+}
+
+export function getField<T extends FieldType>(
+  ctx: FormContext<unknown>,
+  type: T,
+  config: Config
+): Field<T> {
+  return (
+    getFieldInternal(ctx, type, config) ??
+    (ctx.fields("unsupported", config) as Field<T>) ??
+    createMessage(`Field "${config.uiSchema["ui:field"] ?? type}" not found`)
+  );
+}

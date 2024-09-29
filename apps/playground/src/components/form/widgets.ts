@@ -7,6 +7,8 @@ import type {
 
 import type { SchemaArrayValue, SchemaValue } from "./schema";
 import type { EnumOption } from "./enum";
+import type { FormContext } from "./context";
+import { createMessage, type Config } from "./config";
 
 export interface RequiredAttributes {
   id: string;
@@ -19,7 +21,7 @@ export interface RequiredAttributes {
 }
 
 export interface WidgetCommonProps<V, A> {
-  label: string;
+  config: Config
   value: V | undefined;
   attributes: A & RequiredAttributes;
 }
@@ -76,5 +78,35 @@ export type CompatibleWidgetType<T extends WidgetType> = {
 }[WidgetType];
 
 export type Widgets = <T extends WidgetType>(
-  type: T
+  type: T,
+  config: Config
 ) => Widget<CompatibleWidgetType<T>> | undefined;
+
+function getWidgetInternal<T extends WidgetType>(
+  ctx: FormContext<unknown>,
+  type: T,
+  config: Config
+): Widget<CompatibleWidgetType<T>> | undefined {
+  const widget = config.uiSchema["ui:widget"];
+  switch (typeof widget) {
+    case "undefined":
+      return ctx.widgets(type, config);
+    case "string":
+      return ctx.widgets(widget as T, config);
+    default:
+      return widget as Widget<CompatibleWidgetType<T>>;
+  }
+}
+
+export function getWidget<T extends WidgetType>(
+  ctx: FormContext<unknown>,
+  type: T,
+  config: Config
+): Widget<CompatibleWidgetType<T>> {
+  return (
+    getWidgetInternal(ctx, type, config) ??
+    (createMessage(
+      `Widget "${config.uiSchema["ui:widget"] ?? type}" not found`
+    ) as Widget<CompatibleWidgetType<T>>)
+  );
+}

@@ -1,10 +1,12 @@
 <script lang="ts">
-  import type { Schema, SchemaValue } from "../../schema";
-  import type { UiSchema } from "../../ui-schema";
-  import type { IdSchema } from "../../id-schema";
+  import type { SchemaValue } from "../../schema";
+  import type { Config } from '../../config';
   import { getFormContext } from "../../context";
-  import { getComponent, getField, getTemplate, getUiOptions } from "../../utils";
+  import { getComponent } from '../../component';
+  import { getTemplate } from '../../templates';
+  import { getUiOptions } from "../../utils";
 
+  import { getField } from '../model';
   import { isDisabledOrReadonly } from '../is-disabled-or-readonly'
 
   import { getArrayContext } from './context';
@@ -12,24 +14,16 @@
 
   let {
     index,
-    name,
     value = $bindable(),
-    schema,
-    uiSchema,
-    idSchema,
-    required,
+    config,
     //
     canRemove,
     canMoveUp,
     canMoveDown,
   }: {
     index: number;
-    name: string;
     value: SchemaValue | undefined;
-    schema: Schema;
-    uiSchema: UiSchema;
-    idSchema: IdSchema<SchemaValue>;
-    required: boolean;
+    config: Config<SchemaValue>;
 
     canRemove: boolean;
     canMoveUp: boolean;
@@ -39,16 +33,16 @@
   const ctx = getFormContext();
   const arrayCtx = getArrayContext();
 
-  const Template = $derived(getTemplate(ctx, "array-item", uiSchema));
-  const Field = $derived(getField(ctx, "root", uiSchema));
-  const Button = $derived(getComponent(ctx, "button", uiSchema))
+  const Template = $derived(getTemplate(ctx, "array-item", config));
+  const Field = $derived(getField(ctx, "root", config));
+  const Button = $derived(getComponent(ctx, "button", config));
 
   const moveUp = $derived(arrayCtx.orderable && canMoveUp)
   const moveDown = $derived(arrayCtx.orderable && canMoveDown)
   const remove = $derived(arrayCtx.removable && canRemove)
   const copy = $derived(arrayCtx.copyable && arrayCtx.canAdd)
   const toolbar = $derived(moveUp || moveDown || remove || copy)
-  const uiOptions = $derived(getUiOptions(ctx, uiSchema))
+  const uiOptions = $derived(getUiOptions(ctx, config.uiSchema))
   const disabledOrReadonly = $derived(
     isDisabledOrReadonly(ctx, uiOptions?.input)
   )
@@ -96,14 +90,9 @@
 {/snippet}
 <Template
   {index}
-  {name}
   {value}
-  {schema}
-  {uiSchema}
-  {idSchema}
-  {required}
-  {uiOptions}
+  {config}
   buttons={toolbar ? buttons : undefined}
 >
-  <Field {name} bind:value {schema} {uiSchema} {idSchema} {required} />
+  <Field bind:value {config} />
 </Template>

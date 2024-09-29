@@ -1,31 +1,38 @@
 <script lang="ts">
+  import { getComponent } from "../component";
   import { getFormContext } from "../context";
+  import { FAKE_ID_SCHEMA } from "../id-schema";
   import { getSimpleSchemaType, ID_KEY, mergeSchemaObjects } from "../schema";
-  import { getComponent, getField, isSelect, toIdSchema } from "../utils";
+  import { isSelect, toIdSchema } from "../utils";
 
-  import type { FieldProps } from "./model";
+  import { getField, type FieldProps } from "./model";
 
   const ctx = getFormContext();
 
-  let {
-    name,
-    value = $bindable(),
-    schema,
-    uiSchema,
-    idSchema,
-    required,
-  }: FieldProps<"root"> = $props();
+  let { config, value = $bindable() }: FieldProps<"root"> = $props();
 
-  const Layout = $derived(getComponent(ctx, "layout", uiSchema));
-  const schemaType = $derived(getSimpleSchemaType(schema));
+  const Layout = $derived(getComponent(ctx, "layout", config));
+  const schemaType = $derived(getSimpleSchemaType(config.schema));
   const Field = $derived(
-    schemaType === "null" && (schema.anyOf || schema.oneOf)
+    schemaType === "null" && (config.schema.anyOf || config.schema.oneOf)
       ? null
-      : getField(ctx, isSelect(ctx, schema) ? "enum" : schemaType, uiSchema)
+      : getField(
+          ctx,
+          isSelect(ctx, config.schema) ? "enum" : schemaType,
+          config
+        )
   );
   const fieldIdSchema = $derived.by(() => {
-    const nextIdSchema = toIdSchema(ctx, schema, idSchema?.[ID_KEY], value);
-    return idSchema ? mergeSchemaObjects(nextIdSchema, idSchema) : nextIdSchema;
+    const isFake = config.idSchema === FAKE_ID_SCHEMA;
+    const nextIdSchema = toIdSchema(
+      ctx,
+      config.schema,
+      isFake ? undefined : config.idSchema[ID_KEY],
+      value
+    );
+    return isFake
+      ? nextIdSchema
+      : mergeSchemaObjects(nextIdSchema, config.idSchema);
   });
 </script>
 
@@ -33,11 +40,10 @@
   {#if Field}
     <Field
       bind:value
-      {name}
-      {required}
-      {schema}
-      {uiSchema}
-      idSchema={fieldIdSchema}
+      config={{
+        ...config,
+        idSchema: fieldIdSchema,
+      }}
     />
   {/if}
 </Layout>

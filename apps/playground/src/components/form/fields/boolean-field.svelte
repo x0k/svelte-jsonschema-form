@@ -1,36 +1,27 @@
 <script lang="ts">
-  import { noop } from "@/lib/function";
-
   import { getFormContext } from "../context";
   import { createOptions } from "../enum";
   import { type Schema } from "../schema";
-  import { getTemplate, getUiOptions, getWidget } from "../utils";
+  import { getTemplate } from "../templates";
+  import { getWidget } from "../widgets";
 
   import type { FieldProps } from "./model";
   import { inputAttributes, makeAttributes } from "./make-widget-attributes";
 
   const ctx = getFormContext();
 
-  let {
-    name,
-    value = $bindable(),
-    schema,
-    uiSchema,
-    idSchema,
-    required,
-  }: FieldProps<"boolean"> = $props();
+  let { config, value = $bindable() }: FieldProps<"boolean"> = $props();
 
-  const Template = $derived(getTemplate(ctx, "field", uiSchema));
-  const Widget = $derived(getWidget(ctx, "checkbox", uiSchema));
-  const uiOptions = $derived(getUiOptions(ctx, uiSchema));
+  const Template = $derived(getTemplate(ctx, "field", config));
+  const Widget = $derived(getWidget(ctx, "checkbox", config));
   const options = $derived.by(() => {
     const yes = ctx.translation("yes");
     const no = ctx.translation("no");
-    if (Array.isArray(schema.oneOf)) {
+    if (Array.isArray(config.schema.oneOf)) {
       return (
         createOptions(
           {
-            oneOf: schema.oneOf
+            oneOf: config.schema.oneOf
               .map((option): Schema | undefined => {
                 if (typeof option === "boolean") {
                   return undefined;
@@ -42,47 +33,30 @@
               })
               .filter((s): s is Schema => s !== undefined),
           },
-          uiSchema
+          config.uiSchema
         ) ?? []
       );
     }
-    const enumValues = schema.enum ?? [true, false];
+    const enumValues = config.schema.enum ?? [true, false];
     if (
       enumValues.length === 2 &&
       enumValues.every((v) => typeof v === "boolean") &&
-      uiOptions?.enumNames === undefined
+      config.uiOptions?.enumNames === undefined
     ) {
       return enumValues.map((v) => ({
         label: v ? yes : no,
         value: v,
       }));
     }
-    return createOptions(schema, uiSchema) ?? [];
+    return createOptions(config.schema, config.uiSchema) ?? [];
   });
-  const attributes = $derived(
-    makeAttributes(
-      ctx,
-      {
-        id: idSchema.$id,
-        name: idSchema.$id,
-        required,
-        onfocus: noop,
-        onblur: noop,
-      },
-      inputAttributes(uiOptions?.input)
-    )
-  );
+  const attributes = $derived(makeAttributes(ctx, config, inputAttributes));
 </script>
 
 <Template
   showTitle={false}
-  {name}
   {value}
-  {schema}
-  {uiSchema}
-  {idSchema}
-  {required}
-  {uiOptions}
+  {config}
 >
-  <Widget label={name} bind:value {attributes} {options} />
+  <Widget bind:value {attributes} {options} {config} />
 </Template>

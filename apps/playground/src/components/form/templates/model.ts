@@ -1,25 +1,16 @@
 import type { Snippet, Component as SvelteComponent } from "svelte";
 
 import type {
-  Schema,
   SchemaArrayValue,
   SchemaObjectValue,
   SchemaValue,
 } from "../schema";
-import type { UiOptions, UiSchema } from "../ui-schema";
-import type { IdSchema } from "../id-schema";
+import { createMessage, type Config } from "../config";
+import type { FormContext } from "../context";
 
-export interface TemplateCommonProps<
-  V extends SchemaValue,
-  IdSchemaType = IdSchema<V>
-> {
-  name: string;
+export interface TemplateCommonProps<V extends SchemaValue> {
   value: V | undefined;
-  schema: Schema;
-  uiSchema: UiSchema;
-  idSchema: IdSchemaType;
-  uiOptions: UiOptions | undefined;
-  required: boolean;
+  config: Config<V>;
 }
 
 export interface ObjectTemplateProps
@@ -29,7 +20,7 @@ export interface ObjectTemplateProps
 }
 
 export interface ObjectPropertyTemplateProps
-  extends TemplateCommonProps<SchemaValue, IdSchema<SchemaValue> | undefined> {
+  extends TemplateCommonProps<SchemaValue> {
   property: string;
   keyInput?: Snippet;
   removeButton?: Snippet;
@@ -74,5 +65,34 @@ export type Template<T extends TemplateType> = SvelteComponent<
 
 export type Templates = <T extends TemplateType>(
   type: T,
-  uiSchema: UiSchema
+  config: Config
 ) => Template<T> | undefined;
+
+function getTemplateInternal<T extends TemplateType>(
+  ctx: FormContext<unknown>,
+  type: T,
+  config: Config
+): Template<T> | undefined {
+  const template = config.uiSchema["ui:templates"]?.[type];
+  switch (typeof template) {
+    case "undefined":
+      return ctx.templates(type, config);
+    case "string":
+      return ctx.templates(template as T, config);
+    default:
+      return template as Template<T>;
+  }
+}
+
+export function getTemplate<T extends TemplateType>(
+  ctx: FormContext<unknown>,
+  type: T,
+  config: Config
+): Template<T> {
+  return (
+    getTemplateInternal(ctx, type, config) ??
+    (createMessage(
+      `Template "${config.uiSchema["ui:templates"]?.[type] ?? type}" not found`
+    ) as Template<T>)
+  );
+}

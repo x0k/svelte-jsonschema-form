@@ -5,10 +5,11 @@
     isSchemaObjectValue,
     type Schema,
   } from "../../schema";
+  import { getComponent } from '../../component';
+  import { getTemplate } from '../../templates';
   import {
-    getComponent,
     getDefaultFormState,
-    getTemplate,
+    getUiOptions,
     retrieveSchema,
   } from "../../utils";
 
@@ -21,16 +22,16 @@
   const ctx = getFormContext();
   const arrayCtx = getArrayContext();
 
-  const Template = $derived(getTemplate(ctx, "array", arrayCtx.uiSchema));
-  const Button = $derived(getComponent(ctx, "button", arrayCtx.uiSchema));
+  const Template = $derived(getTemplate(ctx, "array", arrayCtx.config));
+  const Button = $derived(getComponent(ctx, "button", arrayCtx.config));
 
   const schemaItems: Schema = $derived(
-    isSchemaObjectValue(arrayCtx.schema.items) ? arrayCtx.schema.items : {}
+    isSchemaObjectValue(arrayCtx.config.schema.items) ? arrayCtx.config.schema.items : {}
   );
   const itemUiSchema = $derived(
-    arrayCtx.uiSchema.items !== undefined &&
-      !Array.isArray(arrayCtx.uiSchema.items)
-      ? arrayCtx.uiSchema.items
+    arrayCtx.config.uiSchema.items !== undefined &&
+      !Array.isArray(arrayCtx.config.uiSchema.items)
+      ? arrayCtx.config.uiSchema.items
       : {}
   );
 </script>
@@ -45,13 +46,8 @@
   />
 {/snippet}
 <Template
-  name={arrayCtx.name}
+  config={arrayCtx.config}
   value={arrayCtx.value}
-  schema={arrayCtx.schema}
-  uiSchema={arrayCtx.uiSchema}
-  idSchema={arrayCtx.idSchema}
-  required={arrayCtx.required}
-  uiOptions={arrayCtx.uiOptions}
   addButton={arrayCtx.canAdd ? addButton : undefined}
 >
   {#if arrayCtx.value}
@@ -59,22 +55,25 @@
       {@const itemSchema = retrieveSchema(ctx, schemaItems, item)}
       {@const itemIdSchema = getArrayItemSchemaId(
         ctx,
-        arrayCtx.idSchema,
+        arrayCtx.config.idSchema,
         itemSchema,
         index,
         item
       )}
       <ArrayItem
         {index}
-        name={getArrayItemName(arrayCtx, index)}
+        config={{
+          name: getArrayItemName(arrayCtx, index),
+          schema: itemSchema,
+          uiSchema: itemUiSchema,
+          uiOptions: getUiOptions(ctx, itemUiSchema),
+          idSchema: itemIdSchema,
+          required: !isSchemaNullable(itemSchema),
+        }}
         bind:value={arrayCtx.value[index]}
-        schema={itemSchema}
-        uiSchema={itemUiSchema}
-        idSchema={itemIdSchema}
         canRemove={true}
         canMoveUp={index > 0}
         canMoveDown={index < arrayCtx.value.length - 1}
-        required={!isSchemaNullable(itemSchema)}
       />
     {/each}
   {/if}
