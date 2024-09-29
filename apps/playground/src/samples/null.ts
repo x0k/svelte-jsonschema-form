@@ -1,6 +1,7 @@
 import type { Sample } from './Sample';
 
 const nullField: Sample = {
+  status: "broken",
   schema: {
     title: 'Null field example',
     description: 'A short form with a null field',
@@ -21,8 +22,12 @@ const nullField: Sample = {
   },
   uiSchema: {
     firstName: {
-      'ui:autofocus': true,
-      'ui:emptyValue': '',
+      "ui:options": {
+        input: {
+          autofocus: true,
+        }
+      }
+      // 'ui:emptyValue': '',
     },
   },
   formData: {},

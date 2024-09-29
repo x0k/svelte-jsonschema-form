@@ -1,5 +1,5 @@
 import type { FormContext } from "./context";
-import type { UiOptions, UiSchema } from "./ui-schema";
+import type { UiSchema } from "./ui-schema";
 import {
   isSelect as isSelectInternal,
   isMultiSelect as isMultiSelectInternal,
@@ -24,19 +24,6 @@ export function getUiOptions(ctx: FormContext<unknown>, uiSchema: UiSchema) {
   return globalUiOptions !== undefined
     ? { ...globalUiOptions, ...uiOptions }
     : uiOptions;
-}
-
-export function getTemplateProps(
-  _: FormContext<unknown>,
-  name: string,
-  schema: Schema,
-  uiOptions: UiOptions | undefined
-) {
-  return {
-    title: uiOptions?.title ?? schema.title ?? name,
-    showMeta: uiOptions?.hideTitle !== true,
-    description: uiOptions?.description ?? schema.description,
-  };
 }
 
 export function isSelect(ctx: FormContext<unknown>, schema: Schema) {

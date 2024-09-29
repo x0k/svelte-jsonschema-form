@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { FieldProps } from "@/components/form";
 
-  let { idSchema, value = $bindable() }: FieldProps<"object"> = $props();
+  let { config, value = $bindable() }: FieldProps<"object"> = $props();
 </script>
 
 <div>
@@ -15,7 +15,7 @@
       <label style="flex: 1">
         <b>Latitude</b>
         <input
-          id="{idSchema.$id}-lat"
+          id="{config.idSchema.$id}-lat"
           type="number"
           step="0.00001"
           bind:value={value.lat}
@@ -24,7 +24,7 @@
       <label style="flex: 1">
         <b>Longitude</b>
         <input
-          id="{idSchema.$id}-lon"
+          id="{config.idSchema.$id}-lon"
           type="number"
           step="0.00001"
           bind:value={value.lon}

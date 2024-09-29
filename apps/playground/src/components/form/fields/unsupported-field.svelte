@@ -1,24 +1,25 @@
 <script lang="ts">
   import { getFormContext } from "../context";
   import { getSimpleSchemaType } from "../schema";
-  import { getComponent } from "../utils";
+  import { getComponent } from "../component";
 
   import type { FieldProps } from "./model";
 
   const ctx = getFormContext();
 
-  const {
-    value: _ = $bindable(),
-    schema,
-    uiSchema,
-  }: FieldProps<"unsupported"> = $props();
+  const { value: _ = $bindable(), config }: FieldProps<"unsupported"> =
+    $props();
 
-  const Alert = $derived(getComponent(ctx, "alert", uiSchema));
+  const Alert = $derived(getComponent(ctx, "alert", config));
 </script>
 
 <Alert
   type="error"
-  title={ctx.translation("unsupported-field-type", getSimpleSchemaType(schema))}
+  title={ctx.translation(
+    "unsupported-field-type",
+    getSimpleSchemaType(config.schema)
+  )}
+  {config}
 >
-  {JSON.stringify(schema, null, 2)}
+  {JSON.stringify(config, null, 2)}
 </Alert>

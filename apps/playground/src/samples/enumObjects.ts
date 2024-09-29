@@ -1,6 +1,7 @@
 import type { Sample } from './Sample';
 
 const enumObjects: Sample = {
+  status: "broken",
   schema: {
     definitions: {
       locations: {
@@ -55,10 +56,10 @@ const enumObjects: Sample = {
   },
   uiSchema: {
     locationRadio: {
-      'ui:widget': 'RadioWidget',
+      'ui:widget': 'radio',
     },
     checkboxes: {
-      'ui:widget': 'CheckboxesWidget',
+      'ui:widget': 'checkboxes',
     },
   },
   formData: {

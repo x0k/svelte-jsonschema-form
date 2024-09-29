@@ -1,6 +1,7 @@
 import type { Sample } from './Sample';
 
 const single: Sample = {
+  status: "broken",
   schema: {
     title: 'A single-field form',
     type: 'string',

@@ -1,6 +1,7 @@
 import type { Sample } from './Sample';
 
 const date: Sample = {
+  status: "broken",
   schema: {
     title: 'Date and time widgets',
     type: 'object',
@@ -44,18 +45,19 @@ const date: Sample = {
   uiSchema: {
     alternative: {
       'alt-datetime': {
-        'ui:widget': 'alt-datetime',
-        'ui:options': {
-          yearsRange: [1980, 2030],
-          format: 'YMD',
-        },
+        // TODO: Support for `alt-datetime` widget
+        // 'ui:widget': 'alt-datetime',
+        // 'ui:options': {
+          // yearsRange: [1980, 2030],
+          // format: 'YMD',
+        // },
       },
       'alt-date': {
-        'ui:widget': 'alt-date',
-        'ui:options': {
-          yearsRange: [1980, 2030],
-          format: 'MDY',
-        },
+        // 'ui:widget': 'alt-date',
+        // 'ui:options': {
+        //   yearsRange: [1980, 2030],
+        //   format: 'MDY',
+        // },
       },
     },
   },

@@ -44,6 +44,7 @@
 {/snippet}
 {#snippet removeButton()}
   <Button
+    {config}
     type="object-property-remove"
     disabled={disabledOrReadonly}
     onclick={(e) => {

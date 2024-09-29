@@ -1,6 +1,7 @@
 import type { Sample } from './Sample';
 
 const customField: Sample = {
+  status: "broken",
   schema: {
     title: 'A registration form',
     description: 'A custom-field form example.',

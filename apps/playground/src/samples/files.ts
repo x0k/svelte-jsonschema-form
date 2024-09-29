@@ -1,6 +1,7 @@
 import type { Sample } from './Sample';
 
 const files: Sample = {
+  status: "broken",
   schema: {
     title: 'Files',
     type: 'object',
@@ -27,7 +28,11 @@ const files: Sample = {
   },
   uiSchema: {
     filesAccept: {
-      'ui:options': { accept: '.pdf' },
+      'ui:options': {
+        input: {
+          accept: '.pdf'
+        }
+      },
     },
   },
   formData: {},

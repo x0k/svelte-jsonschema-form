@@ -16,7 +16,6 @@
       ? arrayCtx.config.schema.items
       : {}
   );
-  $inspect(schemaItems);
 </script>
 
 <Field

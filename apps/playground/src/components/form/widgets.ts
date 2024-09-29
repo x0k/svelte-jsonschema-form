@@ -16,8 +16,8 @@ export interface RequiredAttributes {
   required: boolean;
   readonly: boolean;
   disabled: boolean;
-  onfocus: () => void;
-  onblur: () => void;
+  onfocus: (e: Event) => void;
+  onblur: (e: Event) => void;
 }
 
 export interface WidgetCommonProps<V, A> {

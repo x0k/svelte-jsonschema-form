@@ -1,6 +1,5 @@
 <script lang="ts">
   import { createTransformation } from "@/lib/svelte.svelte";
-  import { noop } from "@/lib/function";
 
   import type { SchemaValue } from "../../schema";
   import type { UiSchema } from "../../ui-schema";
@@ -10,7 +9,7 @@
   import { getWidget } from "../../widgets";
   import { getUiOptions } from "../../utils";
 
-  import { inputAttributes, makeAttributes } from "../make-widget-attributes";
+  import { inputAttributes } from "../make-widget-attributes";
 
   import { getObjectContext } from "./context";
   import { generateNewKey } from "./generate-new-object-key";
@@ -49,29 +48,23 @@
   });
 
   const attributes = $derived(
-    makeAttributes(
-      ctx,
-      {
-        id,
-        name: id,
-        required: true,
-        onfocus: noop,
-        onblur: () => {
-          if (!key.value || key.value === property) {
-            return;
-          }
-          const obj = objCtx.value;
-          if (obj === undefined) {
-            console.warn("Object value is undefined");
-            return;
-          }
-          const newKey = generateNewKey(key.value, objCtx.newKeySeparator, obj);
-          obj[newKey] = obj[property];
-          delete obj[property];
-        },
+    inputAttributes(ctx, config, {
+      onblur: () => {
+        if (!key.value || key.value === property) {
+          return;
+        }
+        const obj = objCtx.value;
+        if (obj === undefined) {
+          console.warn("Object value is undefined");
+          return;
+        }
+        const newKey = generateNewKey(key.value, objCtx.newKeySeparator, obj);
+        // TODO: Check this variant to avoid warning
+        // obj[newKey] = $state.snapshot(obj[property]);
+        obj[newKey] = obj[property];
+        delete obj[property];
       },
-      inputAttributes(uiOptions?.input)
-    )
+    })
   );
 </script>
 

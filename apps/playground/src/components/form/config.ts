@@ -1,5 +1,5 @@
 import type { IdSchema } from "./id-schema";
-import type { Schema, SchemaValue } from "./schema";
+import type { Schema } from "./schema";
 import type { UiOptions, UiSchema } from "./ui-schema";
 import Message from "./error-message.svelte";
 

@@ -28,7 +28,7 @@ const optionsSample: Sample = {
     submitButton: {
       "ui:options": {
         title: "Confirm Details",
-        input: {
+        button: {
           style: "width: 100%; background-color: lightgreen; border-radius: 8px; padding: 12px 0; margin: 0;",
         },
       },

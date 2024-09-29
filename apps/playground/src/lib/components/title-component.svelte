@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { ComponentProps } from "@/components/form";
+  import type { HTMLAttributes, HTMLLabelAttributes } from 'svelte/elements';
 
   const { title, type, forId, required }: ComponentProps<"title"> = $props();
 </script>

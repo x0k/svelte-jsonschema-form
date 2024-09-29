@@ -1,6 +1,7 @@
 import type { Sample } from './Sample';
 
 const examples: Sample = {
+  status: "broken",
   schema: {
     title: 'Examples',
     description: 'A text field with example values.',
@@ -13,6 +14,8 @@ const examples: Sample = {
       },
     },
   },
+  uiSchema: {},
+  formData: {},
 };
 
 export default examples;

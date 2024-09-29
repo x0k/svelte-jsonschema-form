@@ -1,55 +1,27 @@
 <script lang="ts">
-  import { noop } from "@/lib/function";
-
   import { getFormContext } from "../context";
-  import { getTemplate, getUiOptions, getWidget } from "../utils";
   import { createOptions } from "../enum";
+  import { getTemplate } from "../templates";
+  import { getWidget } from "../widgets";
 
   import type { FieldProps } from "./model";
-  import { makeAttributes, selectAttributes } from "./make-widget-attributes";
+  import { selectAttributes } from "./make-widget-attributes";
 
   let {
-    name,
+    config,
     value = $bindable(),
-    schema,
-    uiSchema,
-    idSchema,
-    required,
     multiple = false,
   }: FieldProps<"enum"> = $props();
 
   const ctx = getFormContext();
 
-  const Template = $derived(getTemplate(ctx, "field", uiSchema));
-  const Widget = $derived(getWidget(ctx, "select", uiSchema));
+  const Template = $derived(getTemplate(ctx, "field", config));
+  const Widget = $derived(getWidget(ctx, "select", config));
 
-  const uiOptions = $derived(getUiOptions(ctx, uiSchema));
-
-  const attributes = $derived(
-    makeAttributes(
-      ctx,
-      {
-        id: idSchema.$id,
-        name: idSchema.$id,
-        onfocus: noop,
-        onblur: noop,
-        required,
-      },
-      selectAttributes(uiOptions?.input)
-    )
-  );
-  const options = $derived(createOptions(schema, uiSchema) ?? []);
+  const attributes = $derived(selectAttributes(ctx, config));
+  const options = $derived(createOptions(config.schema, config.uiSchema) ?? []);
 </script>
 
-<Template
-  showTitle
-  {name}
-  {value}
-  {schema}
-  {uiSchema}
-  {idSchema}
-  {required}
-  {uiOptions}
->
-  <Widget {attributes} label={name} bind:value {options} {multiple} />
+<Template showTitle {value} {config}>
+  <Widget {attributes} {config} bind:value {options} {multiple} />
 </Template>

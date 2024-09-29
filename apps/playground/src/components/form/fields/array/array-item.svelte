@@ -51,6 +51,7 @@
 {#snippet buttons()}
   {#if arrayCtx.orderable}
     <Button
+      {config}
       type="array-item-move-up"
       disabled={disabledOrReadonly || !moveUp}
       onclick={makeHandler(arrayCtx, (arr) => {
@@ -60,6 +61,7 @@
       })}
     />
     <Button
+      {config}
       type="array-item-move-down"
       disabled={disabledOrReadonly || !moveDown}
       onclick={makeHandler(arrayCtx, (arr) => {
@@ -71,6 +73,7 @@
   {/if}
   {#if copy}
     <Button
+      {config}
       type="array-item-copy"
       disabled={disabledOrReadonly}
       onclick={makeHandler(arrayCtx, (arr) => {
@@ -80,6 +83,7 @@
   {/if}
   {#if remove}
     <Button
+      {config}
       type="array-item-remove"
       disabled={disabledOrReadonly}
       onclick={makeHandler(arrayCtx, (arr) => {

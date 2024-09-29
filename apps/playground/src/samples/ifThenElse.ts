@@ -1,6 +1,7 @@
 import type { Sample } from './Sample';
 
 const ifThenElse: Sample = {
+  status: "broken",
   schema: {
     type: 'object',
     properties: {
@@ -43,6 +44,7 @@ const ifThenElse: Sample = {
       },
     ],
   },
+  uiSchema: {},
   formData: {},
 };
 

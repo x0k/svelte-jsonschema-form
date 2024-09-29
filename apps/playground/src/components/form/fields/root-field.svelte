@@ -36,7 +36,7 @@
   });
 </script>
 
-<Layout type="root-field">
+<Layout type="root-field" {config}>
   {#if Field}
     <Field
       bind:value

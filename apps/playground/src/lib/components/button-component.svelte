@@ -39,7 +39,7 @@
     {@render children?.()}
   </button>
 {:else}
-  <button type="button" style={getStyle(type)} {disabled} {onclick}>
+  <button type="button" style={getStyle(type)} {...attributes} {disabled} {onclick}>
     {getText(type)}
   </button>
 {/if}

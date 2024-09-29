@@ -1,5 +1,4 @@
 <script lang="ts">
-  import type { UiSchema } from '../../ui-schema';
   import { getFormContext } from "../../context";
   import {
     getDefaultValueForType,
@@ -9,19 +8,22 @@
     isSchemaObjectValue,
     orderProperties,
   } from "../../schema";
+  import type { UiSchema } from '../../ui-schema';
+  import { FAKE_ID_SCHEMA } from '../../id-schema';
+  import { getTemplate } from '../../templates';
+  import { getComponent } from '../../component';
   import {
     getDefaultFormState,
+    getUiOptions,
     retrieveSchema,
   } from "../../utils";
 
   import type { FieldProps } from "../model";
-  import { isDisabledOrReadonly } from '../is-disabled-or-readonly'
+  import { isDisabledOrReadonly } from '../is-disabled-or-readonly';
 
   import ObjectProperty from './object-property.svelte';
   import { setObjectContext, type ObjectContext } from './context';
   import { generateNewKey } from './generate-new-object-key';
-  import { getTemplate } from '../../templates';
-  import { getComponent } from '../../component';
 
   const ctx = getFormContext();
 
@@ -57,7 +59,7 @@
   const Button = $derived(getComponent(ctx, "button", config));
   
   const disabledOrReadOnly = $derived(isDisabledOrReadonly(ctx, config.uiOptions?.input))
-
+  
   const schemaAdditionalProperties = $derived(
     isSchemaObjectValue(retrievedSchema.additionalProperties) ? retrieveSchema(ctx, retrievedSchema.additionalProperties, value) : {}
   )
@@ -67,7 +69,9 @@
 {#snippet addButton()}
   <Button
     type="object-property-add"
+    {config}
     disabled={disabledOrReadOnly}
+    attributes={config.uiOptions?.button}
     onclick={(e) => {
       e.preventDefault();
       if (value === undefined) {
@@ -88,18 +92,21 @@
   {#if schemaProperties !== undefined && value !== undefined}
     {#each schemaPropertiesOrder as property (property)}
       {@const isAdditional = isAdditionalProperty(schemaProperties, property)}
-      {@const propSchema = schemaProperties?.[property]}
+      {@const propSchema = schemaProperties[property]}
       {@const propUiSchema =
         (isAdditional ? config.uiSchema.additionalProperties : config.uiSchema[property]) as UiSchema ?? {}}
       <ObjectProperty
         {property}
         {isAdditional}
         bind:value={value[property]}
-        name={property}
-        required={requiredProperties.has(property)}
-        schema={propSchema === undefined || typeof propSchema === "boolean" ? {} : propSchema}
-        uiSchema={propUiSchema}
-        idSchema={config.idSchema[property]}
+        config={{
+          name: property,
+          schema: typeof propSchema === "boolean" ? {} : propSchema,
+          uiSchema: propUiSchema,
+          uiOptions: getUiOptions(ctx, propUiSchema),
+          idSchema: config.idSchema[property] ?? FAKE_ID_SCHEMA,
+          required: requiredProperties.has(property),
+        }}
       />
     {/each}
   {/if}

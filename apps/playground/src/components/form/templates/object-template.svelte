@@ -1,32 +1,33 @@
 <script lang="ts">
 import { getFormContext } from '../context';
-  import { getComponent, getTemplateProps } from '../utils';
+  import { getComponent } from '../component';
 
   import type { TemplateProps } from './model';
+  import { getTemplateProps } from './get-template-props';
 
   const ctx = getFormContext()
 
-  const { uiSchema, children, addButton, name, schema, uiOptions, idSchema, required }: TemplateProps<"object"> = $props();
+  const { config, children, addButton }: TemplateProps<"object"> = $props();
 
-  const Layout = $derived(getComponent(ctx, "layout", uiSchema));
-  const Title = $derived(getComponent(ctx, "title", uiSchema));
-  const Description = $derived(getComponent(ctx, "description", uiSchema));
+  const Layout = $derived(getComponent(ctx, "layout", config));
+  const Title = $derived(getComponent(ctx, "title", config));
+  const Description = $derived(getComponent(ctx, "description", config));
 
-  const { title, description, showMeta } = $derived(getTemplateProps(ctx, name, schema, uiOptions))
+  const { title, description, showMeta } = $derived(getTemplateProps(config))
 </script>
 
-<Layout type="object-field" attributes={uiOptions?.container}>
+<Layout type="object-field" attributes={config.uiOptions?.container} {config}>
   {#if showMeta && (title || description)}
-    <Layout type="object-field-meta">
+    <Layout type="object-field-meta" {config}>
       {#if title}
-        <Title type="object" forId={idSchema.$id} {required} {title} />
+        <Title type="object" forId={config.idSchema.$id} required={config.required} {config} {title} />
       {/if}
       {#if description}
-        <Description type="object" {description} />
+        <Description type="object" {description} {config}/>
       {/if}
     </Layout>
   {/if}
-  <Layout type="object-properties" attributes={uiOptions?.content}>
+  <Layout type="object-properties" attributes={config.uiOptions?.content} {config}>
     {@render children()}
   </Layout>
   {@render addButton?.()}

@@ -20,6 +20,7 @@ const transformErrors: ErrorTransformer = (errors) => {
 };
 
 const validation: Sample = {
+  status: "broken",
   schema: {
     title: 'Custom validation',
     description:
@@ -44,12 +45,13 @@ const validation: Sample = {
     },
   },
   uiSchema: {
-    pass1: { 'ui:widget': 'password' },
-    pass2: { 'ui:widget': 'password' },
+    pass1: { "ui:options": { input: { type: "password" } } },
+    pass2: { "ui:options": { input: { type: "password" } } },
   },
   formData: {},
-  customValidate,
-  transformErrors,
+  // TODO: support for custom validation and transform errors
+  // customValidate,
+  // transformErrors,
 };
 
 export default validation;

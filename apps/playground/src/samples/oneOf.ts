@@ -1,6 +1,7 @@
 import type { Sample } from './Sample';
 
 const oneOf: Sample = {
+  status: "broken",
   schema: {
     type: 'object',
     oneOf: [
@@ -22,6 +23,7 @@ const oneOf: Sample = {
       },
     ],
   },
+  uiSchema: {},
   formData: {},
 };
 

@@ -2,7 +2,7 @@
   import type { WidgetProps } from "@/components/form";
 
   let {
-    label,
+    config,
     value = $bindable(),
     attributes,
   }: WidgetProps<"checkbox"> = $props();
@@ -10,5 +10,5 @@
 
 <label>
   <input type="checkbox" bind:checked={value} {...attributes} />
-  {label}
+  {config.name}
 </label>

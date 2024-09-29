@@ -1,19 +1,39 @@
 <script lang="ts">
-  import type { HTMLButtonAttributes } from 'svelte/elements';
-
+  import { isDisabledOrReadonly } from "./fields/is-disabled-or-readonly";
+  import type { Config } from "./config";
   import type { UiSchema } from "./ui-schema";
+  import { FAKE_ID_SCHEMA } from "./id-schema";
   import { getFormContext } from "./context";
-  import { getComponent, getUiOptions } from "./utils";
-  import { isDisabledOrReadonly } from './fields/is-disabled-or-readonly';
+  import { getComponent } from "./component";
+  import { getUiOptions } from "./utils";
 
   const ctx = getFormContext();
+
   const uiSchema: UiSchema = $derived(ctx.uiSchema.submitButton ?? {});
   const uiOptions = $derived(getUiOptions(ctx, uiSchema));
-  const Button = $derived(getComponent(ctx, "button", uiSchema));
+
+  const config: Config = $derived({
+    name: "",
+    idSchema: FAKE_ID_SCHEMA,
+    schema: {},
+    uiSchema,
+    uiOptions,
+    required: false,
+  });
+
+  const Button = $derived(getComponent(ctx, "button", config));
   const label = $derived(uiOptions?.title ?? ctx.translation("submit"));
-  const disabledOrReadonly = $derived(isDisabledOrReadonly(ctx, uiOptions?.input));
+
+  const disabledOrReadonly = $derived(
+    isDisabledOrReadonly(ctx, uiOptions?.button)
+  );
 </script>
 
-<Button type="submit" attributes={uiOptions?.input as HTMLButtonAttributes} disabled={disabledOrReadonly} >
+<Button
+  type="submit"
+  {config}
+  attributes={uiOptions?.button}
+  disabled={disabledOrReadonly}
+>
   {label}
 </Button>

@@ -1,6 +1,7 @@
 import type { Sample } from './Sample';
 
 const anyOf: Sample = {
+  status: "broken",
   schema: {
     type: 'object',
     properties: {
@@ -57,6 +58,7 @@ const anyOf: Sample = {
       },
     ],
   },
+  uiSchema: {},
   formData: {},
 };
 

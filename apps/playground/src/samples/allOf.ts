@@ -1,6 +1,7 @@
 import type { Sample } from './Sample';
 
 const allOf: Sample = {
+  status: "broken",
   schema: {
     type: 'object',
     allOf: [
@@ -24,6 +25,7 @@ const allOf: Sample = {
       },
     ],
   },
+  uiSchema: {},
   formData: {},
 };
 

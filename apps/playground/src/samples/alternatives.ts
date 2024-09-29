@@ -1,6 +1,7 @@
 import type { Sample } from './Sample';
 
 const alternatives: Sample = {
+  "status": "broken",
   schema: {
     definitions: {
       Color: {
@@ -78,9 +79,10 @@ const alternatives: Sample = {
     },
   },
   uiSchema: {
-    blendMode: {
-      'ui:enumDisabled': ['multiply'],
-    },
+    // TODO: Support ui:enumDisabled
+    // blendMode: {
+    //   'ui:enumDisabled': ['multiply'],
+    // },
     toggleMask: {
       'ui:widget': 'radio',
     },

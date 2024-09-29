@@ -1,8 +1,8 @@
 import type { Snippet, Component as SvelteComponent } from "svelte";
+import type { HTMLAttributes, HTMLButtonAttributes } from "svelte/elements";
 
 import type { Get } from "@/lib/types";
 
-import type { HTMLAttributes, HTMLButtonAttributes } from "svelte/elements";
 import type { FormContext } from "./context";
 import { createMessage, type Config } from "./config";
 
@@ -106,7 +106,9 @@ export interface ComponentBindings {
 
 export type ComponentType = keyof ComponentsAndProps;
 
-export type ComponentProps<T extends ComponentType> = ComponentsAndProps[T];
+export type ComponentProps<T extends ComponentType> = ComponentsAndProps[T] & {
+  config: Config;
+};
 
 export type Component<T extends ComponentType> = SvelteComponent<
   ComponentProps<T>,

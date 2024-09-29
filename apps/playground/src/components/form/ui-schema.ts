@@ -50,7 +50,6 @@ export type InputAttributes = (
   | HTMLInputAttributes
   | HTMLTextareaAttributes
   | HTMLSelectAttributes
-  | HTMLButtonAttributes
 ) & {
   // To reduce amount of type casting
   readonly?: boolean;
@@ -60,6 +59,7 @@ export interface UiOptions {
   input?: InputAttributes;
   content?: HTMLAttributes<HTMLDivElement>
   container?: HTMLAttributes<HTMLDivElement>
+  button?: HTMLButtonAttributes
   // TODO: Clarify the need for this
   // root?: HTMLAttributes<HTMLDivElement>
   title?: string;

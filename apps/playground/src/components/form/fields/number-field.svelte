@@ -1,55 +1,21 @@
 <script lang="ts">
-  import { noop } from "@/lib/function";
-
   import { getFormContext } from "../context";
-  import { getTemplate, getUiOptions, getWidget } from "../utils";
+  import { getTemplate } from "../templates";
+  import { getWidget } from "../widgets";
 
   import type { FieldProps } from "./model";
-  import { inputAttributes, makeAttributes } from "./make-widget-attributes";
+  import { inputAttributes } from "./make-widget-attributes";
 
   const ctx = getFormContext();
 
-  let {
-    name,
-    value = $bindable(),
-    schema,
-    idSchema,
-    uiSchema,
-    required,
-  }: FieldProps<"number"> = $props();
+  let { value = $bindable(), config }: FieldProps<"number"> = $props();
 
-  const Template = $derived(getTemplate(ctx, "field", uiSchema));
-  const Widget = $derived(getWidget(ctx, "number", uiSchema));
-  const uiOptions = $derived(getUiOptions(ctx, uiSchema));
+  const Template = $derived(getTemplate(ctx, "field", config));
+  const Widget = $derived(getWidget(ctx, "number", config));
 
-  const attributes = $derived(
-    makeAttributes(
-      ctx,
-      {
-        id: idSchema.$id,
-        name: idSchema.$id,
-        onfocus: noop,
-        onblur: noop,
-        required,
-        // TODO: Support for exclusiveMinimum and exclusiveMaximum
-        min: schema.minimum,
-        max: schema.maximum,
-        step: schema.multipleOf,
-      },
-      inputAttributes(uiOptions?.input)
-    )
-  );
+  const attributes = $derived(inputAttributes(ctx, config));
 </script>
 
-<Template
-  showTitle={true}
-  {name}
-  {value}
-  {schema}
-  {uiSchema}
-  {idSchema}
-  {required}
-  {uiOptions}
->
-  <Widget label={name} bind:value {attributes} />
+<Template showTitle {value} {config}>
+  <Widget {config} bind:value {attributes} />
 </Template>

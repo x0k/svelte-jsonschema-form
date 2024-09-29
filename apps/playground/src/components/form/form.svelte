@@ -8,10 +8,12 @@
   import type { Translation } from './translation';
   import type { Widgets } from './widgets';
   import { setFromContext, type FormContext } from './context';
-  import { type Fields, fields as defaultFields } from './fields';
-  import SubmitButton from './submit-button.svelte';
-  import { getComponent, getDefaultFormState, getField, retrieveSchema, toIdSchema } from './utils';
+  import { type Fields, fields as defaultFields, getField } from './fields';
   import { type Templates, templates as defaultTemplates } from './templates';
+  import { getDefaultFormState, getUiOptions, retrieveSchema, toIdSchema } from './utils';
+  import { getComponent } from './component'
+  import SubmitButton from './submit-button.svelte';
+  import type { Config } from './config';
 
   let form = $state<HTMLFormElement>()
 
@@ -60,6 +62,14 @@
     ...formProps
   }: Props = $props();
 
+  $effect(() => {
+    schema;
+    untrack(() => {
+      // TODO: Mutate `value` directly if it possible
+      value = getDefaultFormState(ctx, schema, value as Value) as T
+    })
+  })
+
   function handleSubmit(e: SubmitEvent) {
     e.preventDefault();
     console.log(e);
@@ -105,16 +115,6 @@
   }
   setFromContext(ctx)
 
-  const Form = $derived(getComponent(ctx, "form", uiSchema))
-  const Field = $derived(getField(ctx, "root", uiSchema))
-  $effect(() => {
-    schema;
-    untrack(() => {
-      // TODO: Mutate `value` directly if it possible
-      value = getDefaultFormState(ctx, schema, value as Value) as T
-    })
-  })
-  
   const retrievedSchema = $derived(retrieveSchema(ctx, schema, value as Value))
   const idSchema = $derived(toIdSchema(
     ctx,
@@ -122,10 +122,22 @@
     uiSchema['ui:rootFieldId'],
     value as Value
   ))
+
+  const config: Config = $derived({
+    name: "",
+    schema: retrievedSchema,
+    uiSchema,
+    idSchema,
+    uiOptions: getUiOptions(ctx, uiSchema),
+    required: false,
+  })
+
+  const Form = $derived(getComponent(ctx, "form", config))
+  const Field = $derived(getField(ctx, "root", config))
 </script>
 
-<Form bind:form {...formProps} onsubmit={handleSubmit} >
-  <Field bind:value={value as Value} name="" required={false} {schema} {uiSchema} {idSchema} />
+<Form bind:form {...formProps} onsubmit={handleSubmit} {config} >
+  <Field bind:value={value as Value} {config} />
   {#if children}
     {@render children()}
   {:else}

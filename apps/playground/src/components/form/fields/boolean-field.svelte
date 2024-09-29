@@ -6,7 +6,7 @@
   import { getWidget } from "../widgets";
 
   import type { FieldProps } from "./model";
-  import { inputAttributes, makeAttributes } from "./make-widget-attributes";
+  import { inputAttributes } from "./make-widget-attributes";
 
   const ctx = getFormContext();
 
@@ -50,13 +50,9 @@
     }
     return createOptions(config.schema, config.uiSchema) ?? [];
   });
-  const attributes = $derived(makeAttributes(ctx, config, inputAttributes));
+  const attributes = $derived(inputAttributes(ctx, config));
 </script>
 
-<Template
-  showTitle={false}
-  {value}
-  {config}
->
+<Template showTitle={false} {value} {config}>
   <Widget bind:value {attributes} {options} {config} />
 </Template>
