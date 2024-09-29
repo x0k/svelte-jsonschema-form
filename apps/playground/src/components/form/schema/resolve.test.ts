@@ -386,6 +386,45 @@ describe("retrieveSchema()", () => {
       },
     });
   });
+  it("should `resolve` sibling refs to the same definition", () => {
+    const schema = {
+      definitions: {
+        address: {
+          type: "object",
+          properties: {
+            street_address: { type: "string" },
+            city: { type: "string" },
+            state: { type: "string" },
+          },
+          required: ["street_address", "city", "state"],
+        },
+      },
+      type: "object",
+      properties: {
+        billing_address: {
+          title: "Billing address",
+          $ref: "#/definitions/address",
+        },
+        shipping_address: {
+          title: "Shipping address",
+          $ref: "#/definitions/address",
+        },
+      },
+    } satisfies Schema;
+    expect(retrieveSchema(testValidator, schema, schema)).toEqual({
+      ...schema,
+      properties: {
+        billing_address: {
+          ...schema.definitions.address,
+          title: "Billing address",
+        },
+        shipping_address: {
+          ...schema.definitions.address,
+          title: "Shipping address",
+        }
+      }
+    })
+  });
   describe("property dependencies", () => {
     describe("false condition", () => {
       it("should not add required properties", () => {
