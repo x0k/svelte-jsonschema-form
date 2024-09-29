@@ -44,11 +44,22 @@
       discriminator: true,
     })
   );
+
+  let disabled = $state(false)
+  let readonly = $state(false)
 </script>
 
 <div class="py-2 px-8 pb-4 min-h-screen">
-  <div class="text-3xl font-bold pb-2 flex items-center">
-    <h1 class="grow">Playground</h1>
+  <div class="pb-2 flex items-center gap-4">
+    <h1 class="grow text-3xl font-bold">Playground</h1>
+    <label>
+      <input type="checkbox" bind:checked={disabled} />
+      Disabled
+    </label>
+    <label>
+      <input type="checkbox" bind:checked={readonly} />
+      Readonly
+    </label>
     <a target="_blank" href="https://github.com/x0k/svelte-jsonschema-form">
       <Github class="h-8 w-8" />
     </a>
@@ -103,6 +114,8 @@
         {uiSchema}
         {validator}
         {translation}
+        {readonly}
+        {disabled}
       />
     </ShadowHost>
   </div>

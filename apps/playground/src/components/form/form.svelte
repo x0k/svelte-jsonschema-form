@@ -1,6 +1,6 @@
 <script lang="ts" generics="T">
   import { untrack, type Snippet } from 'svelte';
-  import type { HTMLAttributes } from "svelte/elements";
+  import type { HTMLFormAttributes } from "svelte/elements";
 
   import type { Schema, SchemaValue, Validator } from './schema';
   import type { Components } from './component';
@@ -27,7 +27,7 @@
 
   type Value = SchemaValue | undefined
 
-  interface Props extends HTMLAttributes<HTMLFormElement> {
+  interface Props extends HTMLFormAttributes {
     schema: Schema
     validator: Validator<Value>
     components: Components
