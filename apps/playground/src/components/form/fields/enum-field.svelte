@@ -19,7 +19,7 @@
   const Widget = $derived(getWidget(ctx, "select", config));
 
   const attributes = $derived(selectAttributes(ctx, config));
-  const options = $derived(createOptions(config.schema, config.uiSchema) ?? []);
+  const options = $derived(createOptions(config.schema, config.uiSchema, config.uiOptions) ?? []);
 </script>
 
 <Template showTitle {value} {config}>

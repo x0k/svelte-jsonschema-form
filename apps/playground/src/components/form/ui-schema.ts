@@ -66,6 +66,8 @@ export interface UiOptions {
   title?: string;
   description?: string;
   enumNames?: string[];
+  // Strict equality
+  disabledEnumValues?: SchemaValue[];
   order?: string[];
   addable?: boolean;
   expandable?: boolean;

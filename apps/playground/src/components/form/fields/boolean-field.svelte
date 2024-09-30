@@ -33,7 +33,8 @@
               })
               .filter((s): s is Schema => s !== undefined),
           },
-          config.uiSchema
+          config.uiSchema,
+          config.uiOptions
         ) ?? []
       );
     }
@@ -46,9 +47,10 @@
       return enumValues.map((v) => ({
         label: v ? yes : no,
         value: v,
+        disabled: false,
       }));
     }
-    return createOptions(config.schema, config.uiSchema) ?? [];
+    return createOptions(config.schema, config.uiSchema, config.uiOptions) ?? [];
   });
   const attributes = $derived(inputAttributes(ctx, config));
 </script>

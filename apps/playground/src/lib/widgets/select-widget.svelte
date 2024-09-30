@@ -30,7 +30,7 @@
     <option value={undefined}>{attributes.placeholder}</option>
   {/if}
   {#each options as option}
-    <option value={option.value}>
+    <option value={option.value} disabled={option.disabled} >
       {option.label}
     </option>
   {/each}

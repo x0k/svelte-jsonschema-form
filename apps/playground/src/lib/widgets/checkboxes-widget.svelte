@@ -15,6 +15,7 @@
       bind:group={value}
       value={option.value}
       {...attributes}
+      disabled={option.disabled || attributes.disabled}
     />
     {option.label}
   </label>
