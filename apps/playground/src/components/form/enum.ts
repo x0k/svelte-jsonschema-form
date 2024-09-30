@@ -31,7 +31,7 @@ export function createOptions(
   const enumValues = schema.enum;
   const disabledValues = new Set(uiOptions?.disabledEnumValues);
   if (enumValues) {
-    const enumNames = uiSchema["ui:options"]?.enumNames;
+    const enumNames = uiOptions?.enumNames;
     return enumValues.map((value, i) => {
       const label = enumNames?.[i] ?? String(value);
       return { label, value, disabled: disabledValues.has(value) };

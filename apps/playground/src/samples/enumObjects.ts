@@ -5,8 +5,8 @@ const enumObjects: Sample = {
   schema: {
     definitions: {
       locations: {
-        // @ts-expect-error -- enumNames an RJSF keyword and is not in the JSON Schema spec
-        enumNames: ['New York', 'Amsterdam', 'Hong Kong'],
+        // `enumNames` is not supported
+        // enumNames: ['New York', 'Amsterdam', 'Hong Kong'],
         enum: [
           {
             name: 'New York',
@@ -55,6 +55,9 @@ const enumObjects: Sample = {
     },
   },
   uiSchema: {
+    "ui:globalOptions": {
+      enumNames: ["New York", "Amsterdam", "Hong Kong"],
+    },
     locationRadio: {
       'ui:widget': 'radio',
     },
