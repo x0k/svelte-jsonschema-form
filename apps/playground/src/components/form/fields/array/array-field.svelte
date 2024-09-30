@@ -75,7 +75,7 @@
   <!-- {:else if isCustomWidget(uiSchema)} -->
 {:else if isFixedItems(config.schema)}
   <FixedArray />
-{:else if isFilesArray(ctx, config.schema)}
+{:else if isFilesArray(ctx, config.schema) && config.uiOptions?.orderable !== true}
   <OtherFieldArray field="file" />
 {:else}
   <NormalArray />

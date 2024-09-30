@@ -11,6 +11,11 @@ const files: Sample = {
         format: 'data-url',
         title: 'Single file',
       },
+      filesAccept: {
+        type: 'string',
+        format: 'data-url',
+        title: 'Single File with Accept attribute',
+      },
       files: {
         type: 'array',
         title: 'Multiple files',
@@ -19,11 +24,14 @@ const files: Sample = {
           format: 'data-url',
         },
       },
-      filesAccept: {
-        type: 'string',
-        format: 'data-url',
-        title: 'Single File with Accept attribute',
-      },
+      orderableFiles: {
+        type: "array",
+        title: "Multiple files with order",
+        items: {
+          type: "string",
+          format: "data-url",
+        }
+      }
     },
   },
   uiSchema: {
@@ -34,6 +42,11 @@ const files: Sample = {
         }
       },
     },
+    orderableFiles: {
+      "ui:options": {
+        orderable: true
+      }
+    }
   },
   formData: {},
 };
