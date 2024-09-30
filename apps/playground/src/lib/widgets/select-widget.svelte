@@ -17,7 +17,7 @@
   // Looks like inputs with `bind:` attribute are not properly controlled.
   // TODO: Figure out is it a bug or not
 
-  const guarded = proxy(() => value, {
+  const guarded = proxy(() => multiple ? value ?? [] : value, {
     guard: () => !readonly,
     update: (v) => {
       value = v
