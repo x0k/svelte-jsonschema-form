@@ -51,58 +51,37 @@
     return Promise.all(promises);
   }
 
-  let controller = new AbortController();
-  let promise = $state.raw<Promise<void>>();
   const files = asyncProxy(
     async (isRegOnly, signal) => {
       if (!value || isRegOnly) {
-        return;
+        return
       }
       const data = new DataTransfer();
       await (multiple ? addFiles : addFile)(signal, data, value);
       return data.files;
     },
-    (v) => v,
-    {
-      update(v) {
-        controller.abort();
-        controller = new AbortController();
-        if (v === undefined || v.length === 0) {
-          value = multiple ? [] : undefined;
-          return;
-        }
-        promise = (
-          multiple
-            ? Promise.all(
-                Array.from(v).map((f) => fileToDataURL(controller.signal, f))
-              )
-            : fileToDataURL(controller.signal, v[0])
-        ).then(
-          (v) => {
-            promise = undefined;
-            value = v;
-          },
-          (e) => {
-            if (e instanceof ProgressEvent && e.type === "abort") {
-              // NOTE: Do not clear `promise` state here, because
-              // another promise is already in progress.
-              console.warn("File read aborted");
-              return;
-            }
-            promise = undefined;
-            console.error("Failed to read file", e);
-          }
-        );
-      },
-    }
+    async (v, signal) => {
+      if (v === undefined || v.length === 0) {
+        value = multiple ? [] : undefined;
+        return;
+      }
+      try {
+        value = await (multiple
+          ? Promise.all(Array.from(v).map((f) => fileToDataURL(signal, f)))
+          : fileToDataURL(signal, v[0]));
+      } catch (e) {
+        console.error("Failed to read file", e);
+      }
+    },
+    (v) => v
   );
 </script>
 
 <Template showTitle {value} {config}>
   <Widget
     bind:value={files.value}
-    loading={promise !== undefined}
-    processing={files.processing}
+    processing={files.inputProcessing}
+    loading={files.outputProcessing}
     {attributes}
     {config}
     {multiple}

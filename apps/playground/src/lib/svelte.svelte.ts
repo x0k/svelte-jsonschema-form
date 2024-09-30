@@ -1,4 +1,4 @@
-import { tick } from "svelte";
+import { tick, untrack } from "svelte";
 
 export interface SyncInput<V> {
   /**
@@ -26,9 +26,9 @@ export function proxy<V>(input: SyncInput<V>) {
     },
     set value(value: V) {
       if (Object.is(proxyValue, value)) {
-        return
+        return;
       }
-      ignoreInputUpdate = true
+      ignoreInputUpdate = true;
       proxyValue = value;
     },
   };
@@ -45,79 +45,67 @@ export interface AsyncInput<V> {
   (isDependencyRegistrationOnlyCall: true, signal: AbortSignal): void;
 }
 
-export interface ProxyConfig<V> {
-  guard?: (v: V) => boolean;
-  /**
-   * @returns `true` to indicate that input update should not be ignored
-   */
-  update?: (v: V) => void | boolean;
-}
-
 export function asyncProxy<V>(
   asyncInput: AsyncInput<V>,
-  defaultValue: (prev: V | undefined) => V,
-  config: ProxyConfig<V> = {}
+  asyncOutput: (value: V, signal: AbortSignal) => Promise<void>,
+  defaultValue: (prev: V | undefined) => V
 ) {
-  let ignoreInputUpdate = false;
-  let processing = $state.raw(false);
-  let lastOutputValue = $state.raw<V>();
-  let controller = new AbortController();
-  const output = $derived.by(() => {
-    controller.abort();
-    controller = new AbortController();
-    const trackedLastOutputValue = lastOutputValue;
-    if (ignoreInputUpdate) {
-      ignoreInputUpdate = false;
-      asyncInput(true, controller.signal);
-      return trackedLastOutputValue as V;
+  let inputsInProcess = $state.raw(0);
+  let outputsInProcess = $state.raw(0);
+  let proxyValue = $state.raw<V>();
+  let inputController = new AbortController();
+  let outputController = new AbortController();
+  let ignoreProxyUpdate = true;
+  const derivation = $derived.by(() => {
+    const proxyVal = proxyValue;
+    if (ignoreProxyUpdate) {
+      ignoreProxyUpdate = false;
+      asyncInput(true, inputController.signal);
+      return proxyVal as V;
     }
-    tick()
-      .then(() => {
-        processing = true;
-        return asyncInput(false, controller.signal);
+    inputController.abort();
+    inputController = new AbortController();
+    outputController.abort();
+    outputController = new AbortController();
+    untrack(() => {
+      inputsInProcess++;
+    });
+    asyncInput(false, inputController.signal)
+      .then((v) => {
+        ignoreProxyUpdate = true;
+        proxyValue = v;
       })
-      .then(
-        (v) => {
-          ignoreInputUpdate = true;
-          lastOutputValue = v;
-          processing = false;
-        },
-        (e) => {
-          if (e instanceof DOMException && e.name === "AbortError") {
-            // NOTE: Do not reset `processing` flag here, because
-            // another update is already in progress
-            return;
-          }
-          processing = false;
-          console.error(
-            "An error occurred while calculating the proxy value",
-            e
-          );
-          console.warn(
-            "You should handle all errors except abort error on your side"
-          );
-        }
-      );
-    return defaultValue(trackedLastOutputValue);
+      .finally(() => {
+        untrack(() => {
+          inputsInProcess--;
+        });
+      });
+    return defaultValue(proxyVal);
   });
   return {
-    get processing() {
-      return processing;
-    },
     get value() {
-      return output;
+      return derivation;
     },
-    set value(value: V) {
-      if (config.guard && !config.guard(value)) {
+    set value(v) {
+      if (Object.is(proxyValue, v)) {
         return;
       }
-      // NOTE: We should not to ignore input update in two cases:
-      // 1. During input update new value is produced (`true` value returned from `config.update`)
-      // 2. Setter is executed with the same value as last one (because `output` will not be
-      //    triggered and `ignoreInputUpdate` flag will be stale)
-      ignoreInputUpdate =
-        !config.update?.(value) && !Object.is(value, lastOutputValue);
-      lastOutputValue = value;
+      outputController.abort();
+      outputController = new AbortController();
+      outputsInProcess++;
+      asyncOutput(v, outputController.signal)
+        .then(() => {
+          ignoreProxyUpdate = true;
+        })
+        .finally(() => {
+          outputsInProcess--;
+        });
+    },
+    get inputProcessing() {
+      return inputsInProcess > 0;
+    },
+    get outputProcessing() {
+      return outputsInProcess > 0;
     },
   };
 }
