@@ -1,13 +1,5 @@
 import { tick } from "svelte";
 
-export interface ProxyConfig<V> {
-  guard?: (v: V) => boolean;
-  /**
-   * @returns `true` to indicate that input update should not be ignored
-   */
-  update?: (v: V) => void | boolean;
-}
-
 export interface SyncInput<V> {
   /**
    * @param isDependencyRegistrationOnlyCall - when `true`, indicates that function is called only for dependency registration and result will be ignored
@@ -16,15 +8,15 @@ export interface SyncInput<V> {
   (isDependencyRegistrationOnlyCall: true): void;
 }
 
-export function proxy<V>(input: SyncInput<V>, config: ProxyConfig<V> = {}) {
+export function proxy<V>(input: SyncInput<V>) {
   let ignoreInputUpdate = false;
-  let lastOutputValue = $state.raw<V>();
+  let proxyValue = $state.raw<V>();
   const output = $derived.by(() => {
-    const trackedLastOutputValue = lastOutputValue;
+    const proxyVal = proxyValue;
     if (ignoreInputUpdate) {
       ignoreInputUpdate = false;
       input(true);
-      return trackedLastOutputValue as V;
+      return proxyVal as V;
     }
     return input(false);
   });
@@ -33,16 +25,11 @@ export function proxy<V>(input: SyncInput<V>, config: ProxyConfig<V> = {}) {
       return output;
     },
     set value(value: V) {
-      if (config.guard && !config.guard(value)) {
-        return;
+      if (Object.is(proxyValue, value)) {
+        return
       }
-      // NOTE: We should not to ignore input update in two cases:
-      // 1. During input update new value is produced (`true` value returned from `config.update`)
-      // 2. Setter is executed with the same value as last one (because `output` will not be
-      //    triggered and `ignoreInputUpdate` flag will be stale)
-      ignoreInputUpdate =
-        !config.update?.(value) && !Object.is(value, lastOutputValue);
-      lastOutputValue = value;
+      ignoreInputUpdate = true
+      proxyValue = value;
     },
   };
 }
@@ -56,6 +43,14 @@ export interface AsyncInput<V> {
    * @param signal used here to simplify typing
    */
   (isDependencyRegistrationOnlyCall: true, signal: AbortSignal): void;
+}
+
+export interface ProxyConfig<V> {
+  guard?: (v: V) => boolean;
+  /**
+   * @returns `true` to indicate that input update should not be ignored
+   */
+  update?: (v: V) => void | boolean;
 }
 
 export function asyncProxy<V>(

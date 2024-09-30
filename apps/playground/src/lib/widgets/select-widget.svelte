@@ -1,6 +1,5 @@
 <script lang="ts">
   import type { WidgetProps } from "@/components/form";
-  import { proxy } from '@/lib/svelte.svelte';
 
   let {
     attributes,
@@ -17,12 +16,17 @@
   // Looks like inputs with `bind:` attribute are not properly controlled.
   // TODO: Figure out is it a bug or not
 
-  const guarded = proxy(() => multiple ? value ?? [] : value, {
-    guard: () => !readonly,
-    update: (v) => {
+  const guarded = {
+    get value() {
+      return multiple ? value ?? [] : value
+    },
+    set value(v) {
+      if (readonly) {
+        return
+      }
       value = v
     }
-  })
+  }
 </script>
 
 {#snippet children()}

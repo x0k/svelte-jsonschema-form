@@ -274,15 +274,15 @@ export const FIRST_OPTION_ONE_OF_DATA = {
 export const ONE_OF_SCHEMA_DATA = { ...oneOfData, unique_to_second: 5 };
 
 export const ALL_OPTIONS: EnumOption<string>[] = [
-  { value: "foo", label: "Foo" },
-  { value: "bar", label: "Bar" },
-  { value: "baz", label: "Baz" },
-  { value: "boo", label: "Boo" },
+  { value: "foo", label: "Foo", disabled: false },
+  { value: "bar", label: "Bar", disabled: false },
+  { value: "baz", label: "Baz", disabled: false },
+  { value: "boo", label: "Boo", disabled: false },
 ];
 
 export const FALSY_OPTIONS: EnumOption<number | string>[] = [
-  { value: "", label: "Empty String" },
-  { value: 0, label: "Zero" },
+  { disabled: false, value: "", label: "Empty String" },
+  { disabled: false, value: 0, label: "Zero" },
 ];
 
 export const RECURSIVE_REF_ALLOF: Schema = deepFreeze({

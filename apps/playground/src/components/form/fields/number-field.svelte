@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { proxy } from "@/lib/svelte.svelte";
-
   import { getFormContext } from "../context";
   import { getTemplate } from "../templates";
   import { getWidget } from "../widgets";
@@ -17,12 +15,15 @@
 
   const attributes = $derived(inputAttributes(ctx, config));
 
-  const redacted = proxy<number | null | undefined>(() => value, {
-    update(v) {
+  const redacted = {
+    get value() {
+      return value;
+    },
+    set value(v) {
       value =
         v === null ? (config.uiOptions?.emptyValue as number | undefined) : v;
     },
-  });
+  };
 </script>
 
 <Template showTitle value={redacted.value} {config}>
