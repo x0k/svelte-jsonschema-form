@@ -12,7 +12,7 @@
   const Field = $derived(getField(ctx, "number", config));
 
   const integer = proxy(() => value, {
-    guard: (v) => Number.isInteger(v) || v === null,
+    guard: (v) => Number.isInteger(v) || v === config.uiOptions?.emptyValue,
     update: (v) => {
       value = v;
     },

@@ -62,7 +62,7 @@ export interface WidgetValue {
   email: string;
   url: string;
   textarea: string;
-  number: number;
+  number: number | null
   select: SchemaValue;
   radio: SchemaValue;
   checkbox: boolean;

@@ -50,8 +50,8 @@ const errorSchema: Sample = {
         input: {
           autofocus: true,
         },
+        emptyValue: "",
       },
-      // 'ui:emptyValue': '',
     },
     age: {
       "ui:options": {

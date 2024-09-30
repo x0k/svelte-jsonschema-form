@@ -44,7 +44,7 @@ const simple: Sample = {
       "ui:options": {
         description:
           "Make text **bold** or *italic*. Take a look at other options [here](https://markdown-to-jsx.quantizor.dev/).",
-        // emptyValue: "",
+        emptyValue: "",
         input: {
           autofocus: true,
           placeholder:

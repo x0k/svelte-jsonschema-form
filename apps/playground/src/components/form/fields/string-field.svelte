@@ -6,6 +6,7 @@
 
   import type { FieldProps } from "./model";
   import { inputAttributes } from "./make-widget-attributes";
+  import { proxy } from "@/lib/svelte.svelte";
 
   let { config, value = $bindable() }: FieldProps<"string"> = $props();
 
@@ -30,8 +31,15 @@
   const Widget = $derived(getWidget(ctx, widgetType(config.schema), config));
 
   const attributes = $derived(inputAttributes(ctx, config));
+
+  const redacted = proxy(() => value, {
+    update(v) {
+      value =
+        v === "" ? (config.uiOptions?.emptyValue as string | undefined) : v;
+    },
+  });
 </script>
 
-<Template showTitle={true} {value} {config}>
-  <Widget {config} bind:value {attributes} />
+<Template showTitle={true} value={redacted.value} {config}>
+  <Widget {config} bind:value={redacted.value} {attributes} />
 </Template>

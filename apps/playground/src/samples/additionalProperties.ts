@@ -27,8 +27,8 @@ const additionalProperties: Sample = {
         input: {
           autofocus: true,
         },
+        emptyValue: "",
       },
-      // 'ui:emptyValue': '',
     },
   },
   formData: {

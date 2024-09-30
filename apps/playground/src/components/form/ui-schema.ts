@@ -10,6 +10,7 @@ import type { Component, ComponentType } from "./component";
 import type { Field, FieldType } from "./fields";
 import type { Template, TemplateType } from "./templates";
 import type { Widget, WidgetType } from "./widgets";
+import type { SchemaValue } from './schema';
 
 export type UiSchemaRoot = UiSchemaRootIndex & UiSchemaRootContent;
 
@@ -74,6 +75,7 @@ export interface UiOptions {
   duplicateKeySuffixSeparator?: string;
   help?: string;
   hideTitle?: boolean;
+  emptyValue?: SchemaValue
 }
 
 export type UiSchema = UiSchemaIndex & UiSchemaContent;

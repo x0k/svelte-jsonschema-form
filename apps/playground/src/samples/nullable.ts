@@ -1,7 +1,7 @@
 import type { Sample } from "./Sample";
 
 const nullable: Sample = {
-  status: "broken",
+  status: "perfect",
   schema: {
     title: "A registration form (nullable)",
     description: "A simple form example using nullable types",
@@ -43,15 +43,15 @@ const nullable: Sample = {
         input: {
           autofocus: true,
         },
+        emptyValue: "",
       },
-      // 'ui:emptyValue': '',
     },
     age: {
       "ui:options": {
         title: "Age of person",
         description: "(earthian year)",
+        emptyValue: null,
       },
-      // 'ui:emptyValue': null,
     },
     bio: {
       "ui:widget": "textarea",
@@ -60,8 +60,8 @@ const nullable: Sample = {
           placeholder:
             "Leaving this field empty will cause formData property to be `null`",
         },
+        emptyValue: null,
       },
-      // "ui:emptyValue": null,
     },
     password: {
       "ui:options": {
@@ -79,7 +79,7 @@ const nullable: Sample = {
       "ui:options": {
         input: {
           type: "tel",
-        }
+        },
       },
     },
   },

@@ -29,13 +29,14 @@ const optionsSample: Sample = {
       "ui:options": {
         title: "Confirm Details",
         button: {
-          style: "width: 100%; background-color: lightgreen; border-radius: 8px; padding: 12px 0; margin: 0;",
+          style:
+            "width: 100%; background-color: lightgreen; border-radius: 8px; padding: 12px 0; margin: 0;",
         },
       },
     },
     firstName: {
       "ui:options": {
-        // 'ui:emptyValue': '',
+        emptyValue: "",
         input: {
           autofocus: true,
           autocomplete: "family-name",
@@ -44,7 +45,7 @@ const optionsSample: Sample = {
     },
     lastName: {
       "ui:options": {
-        // "ui:emptyValue": "",
+        emptyValue: "",
         title: "Surname",
         input: {
           autocomplete: "given-name",
