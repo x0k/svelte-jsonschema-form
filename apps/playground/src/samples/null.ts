@@ -1,7 +1,7 @@
 import type { Sample } from "./Sample";
 
 const nullField: Sample = {
-  status: "broken",
+  status: "perfect",
   schema: {
     title: "Null field example",
     description: "A short form with a null field",
