@@ -11,11 +11,13 @@ import BooleanField from "./boolean-field.svelte";
 import UnsupportedField from "./unsupported-field.svelte";
 import EnumField from './enum-field.svelte';
 import HiddenField from './hidden-field.svelte';
+import FileField from './file-field.svelte';
 
 export const fieldsRegistry: { [T in FieldType]: Field<T> } = {
   root: RootField,
   null: NullField,
   enum: EnumField,
+  file: FileField,
   integer: IntegerField,
   number: NumberField,
   boolean: BooleanField,

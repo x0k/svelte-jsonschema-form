@@ -8,9 +8,8 @@
 
   import { setArrayContext, type ArrayContext } from "./context";
   import UnsupportedArray from "./unsupported-array.svelte";
-  import MultiSelectArray from "./multi-select-array.svelte";
+  import OtherFieldArray from "./other-field-array.svelte";
   import FixedArray from "./fixed-array.svelte";
-  import FilesArray from "./files-array.svelte";
   import NormalArray from "./normal-array.svelte";
 
   import { isFilesArray } from "./is-files-array";
@@ -72,12 +71,12 @@
 {#if config.schema.items === undefined}
   <UnsupportedArray />
 {:else if isMultiSelect(ctx, config.schema)}
-  <MultiSelectArray />
+  <OtherFieldArray field="enum" />
   <!-- {:else if isCustomWidget(uiSchema)} -->
 {:else if isFixedItems(config.schema)}
   <FixedArray />
 {:else if isFilesArray(ctx, config.schema)}
-  <FilesArray />
+  <OtherFieldArray field="file" />
 {:else}
   <NormalArray />
 {/if}

@@ -2,7 +2,12 @@
   import { getComponent } from "../component";
   import { getFormContext } from "../context";
   import { FAKE_ID_SCHEMA } from "../id-schema";
-  import { getSimpleSchemaType, ID_KEY, mergeSchemaObjects } from "../schema";
+  import {
+    getSimpleSchemaType,
+    ID_KEY,
+    isFileSchema,
+    mergeSchemaObjects,
+  } from "../schema";
   import { isSelect, toIdSchema } from "../utils";
 
   import { getField, type FieldProps } from "./model";
@@ -18,7 +23,11 @@
       ? null
       : getField(
           ctx,
-          isSelect(ctx, config.schema) ? "enum" : schemaType,
+          isSelect(ctx, config.schema)
+            ? "enum"
+            : isFileSchema(config.schema)
+              ? "file"
+              : schemaType,
           config
         )
   );

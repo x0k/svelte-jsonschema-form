@@ -2,6 +2,12 @@ import { retrieveSchema } from "./resolve";
 import { DATA_URL_FORMAT, type Schema, type SchemaValue } from "./schema";
 import type { Validator } from "./validator";
 
+export function isFileSchema(
+  { type, format }: Schema
+) {
+  return type === "string" && format === DATA_URL_FORMAT;
+}
+
 export function isFilesArray<T extends SchemaValue>(
   validator: Validator<T>,
   schema: Schema,
@@ -10,9 +16,7 @@ export function isFilesArray<T extends SchemaValue>(
   const { items } = schema;
   if (typeof items === "object" && !Array.isArray(items)) {
     const itemsSchema = retrieveSchema(validator, items, rootSchema);
-    return (
-      itemsSchema.type === "string" && itemsSchema.format === DATA_URL_FORMAT
-    );
+    return isFileSchema(itemsSchema);
   }
   return false;
 }

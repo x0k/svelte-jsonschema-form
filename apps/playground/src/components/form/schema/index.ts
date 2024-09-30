@@ -8,6 +8,6 @@ export * from "./default-state";
 export * from "./merge";
 export * from "./order-properties";
 export * from "./is-additional-property";
-export * from "./is-files-array";
+export * from "./is-file-schema";
 export * from "./is-fixed-items";
 export * from "./is-expandable";

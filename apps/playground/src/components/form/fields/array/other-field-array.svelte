@@ -6,10 +6,12 @@
 
   import { getArrayContext } from "./context";
 
+  const { field }: { field: "enum" | "file" } = $props()
+
   const ctx = getFormContext();
   const arrayCtx = getArrayContext();
 
-  const Field = $derived(getField(ctx, "enum", arrayCtx.config));
+  const Field = $derived(getField(ctx, field, arrayCtx.config));
 
   const schemaItems: Schema = $derived(
     isSchemaObjectValue(arrayCtx.config.schema.items)

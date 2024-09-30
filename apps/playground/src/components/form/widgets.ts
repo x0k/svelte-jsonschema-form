@@ -39,7 +39,8 @@ export interface RadioWidgetProps<V>
 
 export interface FileWidgetProps<V>
   extends WidgetCommonProps<V, HTMLInputAttributes> {
-  multiple?: boolean;
+  multiple: boolean;
+  loading: boolean;
 }
 
 export interface WidgetsAndProps<V> {
@@ -65,7 +66,7 @@ export interface WidgetValue {
   radio: SchemaValue;
   checkbox: boolean;
   checkboxes: SchemaArrayValue;
-  file: string | SchemaArrayValue
+  file: FileList
 }
 
 export type WidgetType = keyof WidgetsAndProps<SchemaValue>;
