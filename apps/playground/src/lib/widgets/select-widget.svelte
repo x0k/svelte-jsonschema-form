@@ -26,10 +26,10 @@
 </script>
 
 {#snippet children()}
+  {#if !multiple && config.schema.default === undefined}
+    <option value={undefined}>{attributes.placeholder}</option>
+  {/if}
   {#each options as option}
-    {#if !multiple && config.schema.default === undefined}
-      <option value={undefined}>{attributes.placeholder}</option>
-    {/if}
     <option value={option.value}>
       {option.label}
     </option>
