@@ -2,7 +2,8 @@ export type TransformationConfig<V> = {
   /**
    * @param isDependencyRegistrationOnlyCall - when `true`, indicates that function is called only for dependency registration and result will be ignored
    */
-  transform: (isDependencyRegistrationOnlyCall: boolean) => V;
+  transform: ((isDependencyRegistrationOnlyCall: false) => V) &
+    ((isDependencyRegistrationOnlyCall: true) => void);
   guard?: (v: V) => boolean;
   /**
    * @returns `true` to indicate that input update should not be ignored

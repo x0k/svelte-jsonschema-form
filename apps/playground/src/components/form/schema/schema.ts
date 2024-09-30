@@ -11,8 +11,6 @@ export type SchemaValue =
   | boolean
   | SchemaObjectValue
   | SchemaArrayValue
-  | File
-  | Date
   | null;
 
 export interface SchemaObjectValue {

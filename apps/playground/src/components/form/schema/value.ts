@@ -8,11 +8,9 @@ export function isSchemaObjectValue(
   value: unknown
 ): value is SchemaObjectValue {
   return (
-    typeof value === "object" &&
-    value !== null &&
-    !Array.isArray(value) &&
-    !(typeof File !== "undefined" && value instanceof File) &&
-    !(typeof Date !== "undefined" && value instanceof Date)
+    typeof value === "object" && value !== null && !Array.isArray(value)
+    // !(typeof File !== "undefined" && value instanceof File) &&
+    // !(typeof Date !== "undefined" && value instanceof Date)
   );
 }
 

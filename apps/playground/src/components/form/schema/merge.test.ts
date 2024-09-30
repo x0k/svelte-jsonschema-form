@@ -53,16 +53,17 @@ describe('mergeSchemaObjects()', () => {
     expect(mergeSchemaObjects(obj1, obj2)).toEqual(expected);
   });
 
-  it('should recursively merge File objects', () => {
-    const file = new File(['test'], 'test.txt');
-    const obj1 = {
-      a: {},
-    };
-    const obj2 = {
-      a: file,
-    };
-    expect(mergeSchemaObjects(obj1, obj2).a).toBeInstanceOf(File);
-  });
+  // NOTE: File is not supported
+  // it('should recursively merge File objects', () => {
+  //   const file = new File(['test'], 'test.txt');
+  //   const obj1 = {
+  //     a: {},
+  //   };
+  //   const obj2 = {
+  //     a: file,
+  //   };
+  //   expect(mergeSchemaObjects(obj1, obj2).a).toBeInstanceOf(File);
+  // });
 
   describe('concatArrays option', () => {
     it('should not concat arrays by default', () => {

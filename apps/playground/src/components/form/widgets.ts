@@ -37,6 +37,11 @@ export interface RadioWidgetProps<V>
   options: EnumOption<SchemaValue>[];
 }
 
+export interface FileWidgetProps<V>
+  extends WidgetCommonProps<V, HTMLInputAttributes> {
+  multiple?: boolean;
+}
+
 export interface WidgetsAndProps<V> {
   text: WidgetCommonProps<V, HTMLInputAttributes>;
   email: WidgetCommonProps<V, HTMLInputAttributes>;
@@ -47,6 +52,7 @@ export interface WidgetsAndProps<V> {
   radio: RadioWidgetProps<V>;
   checkbox: WidgetCommonProps<V, HTMLInputAttributes>;
   checkboxes: RadioWidgetProps<V>;
+  file: FileWidgetProps<V>;
 }
 
 export interface WidgetValue {
@@ -59,6 +65,7 @@ export interface WidgetValue {
   radio: SchemaValue;
   checkbox: boolean;
   checkboxes: SchemaArrayValue;
+  file: string | SchemaArrayValue
 }
 
 export type WidgetType = keyof WidgetsAndProps<SchemaValue>;

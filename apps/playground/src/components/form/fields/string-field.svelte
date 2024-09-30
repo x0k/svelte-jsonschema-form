@@ -16,6 +16,8 @@
     switch (format) {
       case "uri":
         return "url";
+      case 'data-url':
+        return "file";
       case "email":
         return format;
       default:

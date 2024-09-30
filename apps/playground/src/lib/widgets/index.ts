@@ -9,6 +9,7 @@ import RadioWidget from './radio-widget.svelte';
 import CheckboxesWidget from './checkboxes-widget.svelte';
 import EmailWidget from './email-widget.svelte';
 import UrlWidget from './url-widget.svelte';
+import FileWidget from './file-widget.svelte';
 
 export const registry: { [T in WidgetType]: Widget<T> } = {
   text: TextWidget,
@@ -20,6 +21,7 @@ export const registry: { [T in WidgetType]: Widget<T> } = {
   checkboxes: CheckboxesWidget,
   url: UrlWidget,
   email: EmailWidget,
+  file: FileWidget,
 };
 
 export const widgets: Widgets = (type) => registry[type];
