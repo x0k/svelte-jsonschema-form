@@ -9,7 +9,7 @@ function largeEnum(n: number) {
 }
 
 const large: Sample = {
-  status: "broken",
+  status: "perfect",
   schema: {
     definitions: {
       largeEnum: { type: "string", enum: largeEnum(100) },

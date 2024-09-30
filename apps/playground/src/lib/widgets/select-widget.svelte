@@ -7,6 +7,7 @@
     value = $bindable(),
     options,
     multiple,
+    config,
   }: WidgetProps<"select"> = $props();
   
   const { readonly, ...rest } = $derived(attributes)
@@ -26,6 +27,9 @@
 
 {#snippet children()}
   {#each options as option}
+    {#if !multiple && config.schema.default === undefined}
+      <option value={undefined}>{attributes.placeholder}</option>
+    {/if}
     <option value={option.value}>
       {option.label}
     </option>
