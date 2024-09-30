@@ -21,7 +21,7 @@ export interface RequiredAttributes {
 }
 
 export interface WidgetCommonProps<V, A> {
-  config: Config
+  config: Config;
   value: V | undefined;
   attributes: A & RequiredAttributes;
 }
@@ -41,6 +41,7 @@ export interface FileWidgetProps<V>
   extends WidgetCommonProps<V, HTMLInputAttributes> {
   multiple: boolean;
   loading: boolean;
+  processing: boolean;
 }
 
 export interface WidgetsAndProps<V> {
@@ -66,7 +67,7 @@ export interface WidgetValue {
   radio: SchemaValue;
   checkbox: boolean;
   checkboxes: SchemaArrayValue;
-  file: FileList
+  file: FileList;
 }
 
 export type WidgetType = keyof WidgetsAndProps<SchemaValue>;

@@ -5,6 +5,7 @@
     attributes,
     multiple,
     loading,
+    processing,
     value = $bindable(),
   }: WidgetProps<"file"> = $props();
 </script>
@@ -15,5 +16,6 @@
   {multiple}
   style="flex-grow: 1"
   data-loading={loading}
+  data-processing={processing}
   {...attributes}
 />

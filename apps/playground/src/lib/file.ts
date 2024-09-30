@@ -1,5 +1,7 @@
-export function dataURLtoBlob(dataURILike: string) {
-  if (dataURILike.indexOf("data:") === -1) {
+const CHUNK_SIZE = 8192;
+
+export async function dataURLtoBlob(signal: AbortSignal, dataURILike: string) {
+  if (!dataURILike.startsWith("data:")) {
     throw new Error("File is invalid: URI must be a dataURI");
   }
   const dataURI = dataURILike.slice(5);
@@ -19,13 +21,20 @@ export function dataURLtoBlob(dataURILike: string) {
 
   try {
     const binary = atob(base64);
+    scheduler.yield({ signal });
     const array = new Array(binary.length);
     for (let i = 0; i < binary.length; i++) {
+      if (i % CHUNK_SIZE === 0) {
+        scheduler.yield({ signal });
+      }
       array[i] = binary.charCodeAt(i);
     }
     const blob = new Blob([new Uint8Array(array)], { type });
     return { blob, name };
   } catch (error) {
+    if (error instanceof DOMException && error.name === "AbortError") {
+      throw error;
+    }
     throw new Error("File is invalid: " + (error as Error).message);
   }
 }

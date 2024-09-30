@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createTransformation } from "@/lib/svelte.svelte";
+  import { proxy } from "@/lib/svelte.svelte";
 
   import { getFormContext } from "../context";
 
@@ -11,8 +11,7 @@
 
   const Field = $derived(getField(ctx, "number", config));
 
-  const transformation = createTransformation({
-    transform: () => value,
+  const integer = proxy(() => value, {
     guard: (v) => Number.isInteger(v) || v === null,
     update: (v) => {
       value = v;
@@ -20,4 +19,4 @@
   });
 </script>
 
-<Field bind:value={transformation.value} {config} />
+<Field bind:value={integer.value} {config} />

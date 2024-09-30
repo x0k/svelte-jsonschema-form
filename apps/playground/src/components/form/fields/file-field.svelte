@@ -1,6 +1,6 @@
 <script lang="ts">
   import { dataURLtoBlob, fileToDataURL } from "@/lib/file";
-  import { createTransformation } from "@/lib/svelte.svelte";
+  import { asyncProxy } from "@/lib/svelte.svelte";
 
   import type { SchemaArrayValue, SchemaValue } from "../schema";
   import { getFormContext } from "../context";
@@ -23,72 +23,86 @@
 
   const attributes = $derived(inputAttributes(ctx, config));
 
-  function addFile(data: DataTransfer, dataUri: SchemaValue | undefined) {
+  async function addFile(
+    signal: AbortSignal,
+    data: DataTransfer,
+    dataUri: SchemaValue | undefined
+  ) {
     if (typeof dataUri !== "string") {
       throw new Error("Value must be a string");
     }
     // TODO: cache this operation
-    const { name, blob } = dataURLtoBlob(dataUri);
+    const { name, blob } = await dataURLtoBlob(signal, dataUri);
     data.items.add(new File([blob], name, { type: blob.type }));
   }
 
-  function addFiles(data: DataTransfer, dataUris: string | SchemaArrayValue) {
+  function addFiles(
+    signal: AbortSignal,
+    data: DataTransfer,
+    dataUris: string | SchemaArrayValue
+  ) {
     if (!Array.isArray(dataUris)) {
       throw new Error("Value must be an array of strings");
     }
+    const promises: Promise<void>[] = [];
     for (const dataUri of dataUris) {
-      addFile(data, dataUri);
+      promises.push(addFile(signal, data, dataUri));
     }
+    return Promise.all(promises);
   }
 
   let controller = new AbortController();
   let promise = $state.raw<Promise<void>>();
-  const transformed = createTransformation({
-    transform: (isRegOnly) => {
+  const files = asyncProxy(
+    async (isRegOnly, signal) => {
       if (!value || isRegOnly) {
         return;
       }
       const data = new DataTransfer();
-      (multiple ? addFiles : addFile)(data, value);
+      await (multiple ? addFiles : addFile)(signal, data, value);
       return data.files;
     },
-    update(v) {
-      if (v === undefined || v.length === 0) {
-        value = multiple ? [] : undefined;
-        return;
-      }
-      controller.abort();
-      controller = new AbortController();
-      promise = (
-        multiple
-          ? Promise.all(
-              Array.from(v).map((f) => fileToDataURL(controller.signal, f))
-            )
-          : fileToDataURL(controller.signal, v[0])
-      ).then(
-        (v) => {
-          promise = undefined;
-          value = v;
-        },
-        (e) => {
-          if (e instanceof ProgressEvent && e.type === "abort") {
-            // NOTE: Do not clear `promise` state here, because
-            // another promise is already in progress.
-            console.warn("File read aborted");
-            return;
-          }
-          promise = undefined;
-          console.error("Failed to read file", e);
+    (v) => v,
+    {
+      update(v) {
+        controller.abort();
+        controller = new AbortController();
+        if (v === undefined || v.length === 0) {
+          value = multiple ? [] : undefined;
+          return;
         }
-      );
-    },
-  });
+        promise = (
+          multiple
+            ? Promise.all(
+                Array.from(v).map((f) => fileToDataURL(controller.signal, f))
+              )
+            : fileToDataURL(controller.signal, v[0])
+        ).then(
+          (v) => {
+            promise = undefined;
+            value = v;
+          },
+          (e) => {
+            if (e instanceof ProgressEvent && e.type === "abort") {
+              // NOTE: Do not clear `promise` state here, because
+              // another promise is already in progress.
+              console.warn("File read aborted");
+              return;
+            }
+            promise = undefined;
+            console.error("Failed to read file", e);
+          }
+        );
+      },
+    }
+  );
 </script>
 
 <Template showTitle {value} {config}>
   <Widget
-    bind:value={transformed.value}
+    bind:value={files.value}
     loading={promise !== undefined}
+    processing={files.processing}
     {attributes}
     {config}
     {multiple}

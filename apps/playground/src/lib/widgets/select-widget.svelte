@@ -1,7 +1,6 @@
 <script lang="ts">
   import type { WidgetProps } from "@/components/form";
-
-  import { createTransformation } from '../svelte.svelte';
+  import { proxy } from '@/lib/svelte.svelte';
 
   let {
     attributes,
@@ -17,8 +16,7 @@
   // Looks like inputs with `bind:` attribute are not properly controlled.
   // TODO: Figure out is it a bug or not
 
-  const transformed = createTransformation({
-    transform: () => value,
+  const guarded = proxy(() => value, {
     guard: () => !readonly,
     update: (v) => {
       value = v
@@ -36,7 +34,7 @@
 {#if multiple}
   <select
     multiple
-    bind:value={transformed.value}
+    bind:value={guarded.value}
     style="flex-grow: 1"
     {...rest}
   >
@@ -44,7 +42,7 @@
   </select>
 {:else}
   <select
-    bind:value={transformed.value}
+    bind:value={guarded.value}
     style="flex-grow: 1"
     {...rest}
   >

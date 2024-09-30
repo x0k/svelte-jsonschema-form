@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createTransformation } from "@/lib/svelte.svelte";
+  import { proxy } from "@/lib/svelte.svelte";
 
   import type { SchemaValue } from "../../schema";
   import type { UiSchema } from "../../ui-schema";
@@ -43,9 +43,7 @@
   });
   const Widget = $derived(getWidget(ctx, "text", config));
 
-  const key = createTransformation<string | undefined>({
-    transform: () => property,
-  });
+  const key = proxy<string | undefined>(() => property);
 
   const attributes = $derived(
     inputAttributes(ctx, config, {
