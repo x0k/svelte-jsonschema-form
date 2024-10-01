@@ -19,6 +19,7 @@
       case "object-field":
         return "display: flex; flex-direction: column; gap: 0.5rem;";
       case "field":
+        return "display: flex; flex-direction: column; gap: 0.2rem;";
       case "field-meta":
         return "display: block;"
       case "object-property-key-input":
