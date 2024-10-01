@@ -1,7 +1,7 @@
 import type { Sample } from './Sample';
 
 const examples: Sample = {
-  status: "broken",
+  status: "perfect",
   schema: {
     title: 'Examples',
     description: 'A text field with example values.',

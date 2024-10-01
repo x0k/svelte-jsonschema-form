@@ -101,6 +101,7 @@ export function toIdSchema<T extends SchemaValue>(
 export interface IdentifiableFieldElement {
   help: {};
   "key-input": {};
+  examples: {};
 }
 
 export function computeId<T>(
