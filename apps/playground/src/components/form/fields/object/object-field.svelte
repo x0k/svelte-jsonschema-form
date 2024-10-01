@@ -31,6 +31,11 @@
     config,
     value = $bindable(),
   }: FieldProps<"object"> = $props();
+  $effect(() => {
+    if (value === undefined) {
+      value = {}
+    }
+  })
   
   const newKeySeparator = $derived(config.uiOptions?.duplicateKeySuffixSeparator ?? "-")
   const objCtx: ObjectContext = {

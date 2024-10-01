@@ -17,24 +17,17 @@
   }
 
   const url = new URL(window.location.toString());
-  const initialSampleName = url.searchParams.get("sample");
+  const parsedSampleName = url.searchParams.get("sample");
   function selectSample(name: keyof typeof samples, replace = false) {
     url.searchParams.set("sample", name);
     history[replace ? "replaceState" : "pushState"](null, "", url);
     return name
   }
-  let sampleName = $state(
-    isSampleName(initialSampleName) ? initialSampleName : selectSample("Simple", true)
-  );
-
-  let schema = $state(samples.Simple.schema);
-  let uiSchema = $state(samples.Simple.uiSchema);
-  let value = $state(samples.Simple.formData);
-  $effect(() => {
-    schema = samples[sampleName].schema
-    uiSchema = samples[sampleName].uiSchema
-    value = samples[sampleName].formData
-  })
+  const initialSampleName = isSampleName(parsedSampleName) ? parsedSampleName : selectSample("Date & time", true)
+  let sampleName = $state(initialSampleName);
+  let schema = $state(samples[initialSampleName].schema);
+  let uiSchema = $state(samples[initialSampleName].uiSchema);
+  let value = $state(samples[initialSampleName].formData);
 
   const validator = new AjvValidator(
     new Ajv({
@@ -81,6 +74,9 @@
         disabled={sample.status === "skipped"}
         onclick={() => {
           sampleName = selectSample(name as keyof typeof samples);
+          schema = samples[sampleName].schema;
+          uiSchema = samples[sampleName].uiSchema;
+          value = samples[sampleName].formData;
         }}
       >
         {name}

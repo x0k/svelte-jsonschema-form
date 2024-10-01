@@ -7,8 +7,6 @@ import SelectWidget from "./select-widget.svelte";
 import CheckBoxWidget from "./checkbox-widget.svelte";
 import RadioWidget from './radio-widget.svelte';
 import CheckboxesWidget from './checkboxes-widget.svelte';
-import EmailWidget from './email-widget.svelte';
-import UrlWidget from './url-widget.svelte';
 import FileWidget from './file-widget.svelte';
 
 export const registry: { [T in WidgetType]: Widget<T> } = {
@@ -19,8 +17,6 @@ export const registry: { [T in WidgetType]: Widget<T> } = {
   checkbox: CheckBoxWidget,
   radio: RadioWidget,
   checkboxes: CheckboxesWidget,
-  url: UrlWidget,
-  email: EmailWidget,
   file: FileWidget,
 };
 

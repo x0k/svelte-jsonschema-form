@@ -1,5 +1,4 @@
 import type {
-  HTMLButtonAttributes,
   HTMLInputAttributes,
   HTMLSelectAttributes,
   HTMLTextareaAttributes,
@@ -34,11 +33,27 @@ function readonlyAndDisabled<T extends Partial<Nullable<ReadonlyAndDisabled>>>(
   return obj as T & ReadonlyAndDisabled;
 }
 
+function inputType(format: string | undefined) {
+  switch (format) {
+    case "date-time":
+      return "datetime-local";
+    case "uri":
+      return "url";
+    case "date":
+    case "time":
+    case "email":
+      return format;
+    default:
+      return undefined;
+  }
+}
+
 export function inputAttributes(
   ctx: FormContext<unknown>,
   { idSchema, required, schema, uiOptions }: Config,
   { onblur = noop, onfocus = noop }: Handlers = {}
 ) {
+  const type = inputType(schema.format);
   return readonlyAndDisabled(
     ctx,
     Object.assign(
@@ -55,6 +70,7 @@ export function inputAttributes(
         max: schema.maximum,
         step: schema.multipleOf,
       } satisfies HTMLInputAttributes,
+      type && { type },
       uiOptions?.input as HTMLInputAttributes | undefined
     )
   );

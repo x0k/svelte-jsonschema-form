@@ -9,25 +9,10 @@
 
   let { config, value = $bindable() }: FieldProps<"string"> = $props();
 
-  function widgetType({ format }: Schema) {
-    if (format === undefined) {
-      return "text";
-    }
-    switch (format) {
-      case "uri":
-        return "url";
-      case "email":
-        return format;
-      default:
-        console.error(`Unsupported string format: ${format}`);
-        return "text";
-    }
-  }
-
   const ctx = getFormContext();
 
   const Template = $derived(getTemplate(ctx, "field", config));
-  const Widget = $derived(getWidget(ctx, widgetType(config.schema), config));
+  const Widget = $derived(getWidget(ctx, "text", config));
 
   const attributes = $derived(inputAttributes(ctx, config));
 
