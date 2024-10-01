@@ -1,7 +1,7 @@
 import type { Sample } from "./Sample";
 
 const additionalProperties: Sample = {
-  status: "broken",
+  status: "perfect",
   schema: {
     title: "A customizable registration form",
     description: "A simple form with additional properties example.",

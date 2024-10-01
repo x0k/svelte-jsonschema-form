@@ -7,6 +7,7 @@
     switch (type) {
       case "array-item":
       case "array-item-controls":
+      case "object-property":
         return "display: flex; gap: 0.2rem; align-items: start;";
       case "array-item-content":
         return "flex-grow: 1;";
@@ -20,6 +21,11 @@
       case "field":
       case "field-meta":
         return "display: block;"
+      case "object-property-key-input":
+      case "object-property-content":
+        return "flex-grow: 1;";
+      // case "object-property-controls":
+        // return "align-self: flex-start;";
       case "object-field-meta":
       case "array-field-meta":
         return "padding-bottom: 0;";

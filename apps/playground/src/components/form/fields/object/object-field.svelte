@@ -1,6 +1,7 @@
 <script lang="ts">
   import { getFormContext } from "../../context";
   import {
+  ADDITIONAL_PROPERTY_FLAG,
     getDefaultValueForType,
     getSimpleSchemaType,
     isAdditionalProperty,
@@ -24,6 +25,7 @@
   import ObjectProperty from './object-property.svelte';
   import { setObjectContext, type ObjectContext } from './context';
   import { generateNewKey } from './generate-new-object-key';
+  import { createOriginalKeysOrder } from './create-original-keys-order';
 
   const ctx = getFormContext();
 
@@ -57,7 +59,7 @@
   const schemaProperties = $derived(retrievedSchema.properties);
   const schemaPropertiesOrder = $derived(
     isSchemaObjectValue(schemaProperties)
-    ? orderProperties(schemaProperties, config.uiOptions?.order)
+    ? orderProperties(schemaProperties, config.uiOptions?.order ?? createOriginalKeysOrder(schemaProperties))
     : []
   );
   const Template = $derived(getTemplate(ctx, "object", config));
