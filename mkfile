@@ -11,6 +11,9 @@ t:
 b:
   pnpm run build
 
+tp:
+  pnpx turbo run preview --only
+
 tb:
   pnpx turbo run build --only
 

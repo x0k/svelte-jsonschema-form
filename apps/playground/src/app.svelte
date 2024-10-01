@@ -7,8 +7,9 @@
   import { translation } from "@/lib/translation/en";
   import { Form } from "@/components/form";
   import { ShadowHost } from "@/components/shadow";
+  import Github from "@/components/github.svelte";
+  import ThemePicker from './theme-picker.svelte';
 
-  import Github from "./github.svelte";
   import { samples } from "./samples";
 
   function isSampleName(name: unknown): name is keyof typeof samples {
@@ -49,7 +50,7 @@
   let readonly = $state(false)
 </script>
 
-<div class="py-2 px-8 pb-4 min-h-screen">
+<div class="py-2 px-8 pb-4 min-h-screen dark:[color-scheme:dark] dark:bg-slate-900 dark:text-white">
   <div class="pb-2 flex items-center gap-4">
     <h1 class="grow text-3xl font-bold">Playground</h1>
     <label>
@@ -60,21 +61,22 @@
       <input type="checkbox" bind:checked={readonly} />
       Readonly
     </label>
+    <ThemePicker />
     <a target="_blank" href="https://github.com/x0k/svelte-jsonschema-form">
-      <Github class="h-8 w-8" />
+      <Github class="h-8 w-8 bg-white rounded-full" />
     </a>
   </div>
-  <div class="flex gap-2 flex-wrap pb-2">
+  <div class="flex gap-2 flex-wrap pb-2 text-black">
     {#each Object.entries(samples) as [name, sample]}
       <button
         type="button"
-        class="border rounded p-2"
-        class:bg-green-200={sample.status === "perfect"}
-        class:bg-blue-200={sample.status === "ok"}
-        class:bg-yellow-200={sample.status === "warnings"}
-        class:bg-red-200={sample.status === "broken" ||
+        class="rounded p-2"
+        class:bg-green-300={sample.status === "perfect"}
+        class:bg-blue-300={sample.status === "ok"}
+        class:bg-yellow-300={sample.status === "warnings"}
+        class:bg-red-300={sample.status === "broken" ||
           sample.status === undefined}
-        class:bg-neutral-200={sample.status === "skipped"}
+        class:bg-neutral-300={sample.status === "skipped"}
         class:font-bold={name === sampleName}
         disabled={sample.status === "skipped"}
         onclick={() => {
