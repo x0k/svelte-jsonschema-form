@@ -1,6 +1,5 @@
 <script lang="ts">
   import { getFormContext } from "../context";
-  import type { Schema } from "../schema";
   import { getTemplate } from "../templates";
   import { getWidget } from "../widgets";
 
@@ -27,6 +26,6 @@
   };
 </script>
 
-<Template showTitle={true} value={redacted.value} {config}>
+<Template showTitle value={redacted.value} {config}>
   <Widget {config} bind:value={redacted.value} {attributes} />
 </Template>

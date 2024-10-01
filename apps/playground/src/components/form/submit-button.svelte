@@ -13,7 +13,8 @@
   const uiOptions = $derived(getUiOptions(ctx, uiSchema));
 
   const config: Config = $derived({
-    name: "",
+    name: "submit-button",
+    title: "",
     idSchema: FAKE_ID_SCHEMA,
     schema: {},
     uiSchema,

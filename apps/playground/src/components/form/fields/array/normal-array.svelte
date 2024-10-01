@@ -16,7 +16,7 @@
   import { getArrayContext } from "./context";
   import ArrayItem from "./array-item.svelte";
   import { makeHandler } from './make-click-handler';
-  import { getArrayItemName } from './get-array-item-name'
+  import { getArrayItemName, getArrayItemTitle } from './get-array-item-name'
   import { getArrayItemSchemaId } from './get-array-item-schema-id'
 
   const ctx = getFormContext();
@@ -66,6 +66,7 @@
         {index}
         config={{
           name: getArrayItemName(arrayCtx, index),
+          title: getArrayItemTitle(arrayCtx, index),
           schema: itemSchema,
           uiSchema: itemUiSchema,
           uiOptions: getUiOptions(ctx, itemUiSchema),

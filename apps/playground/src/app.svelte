@@ -45,8 +45,8 @@
   let readonly = $state(false)
 </script>
 
-<div class="py-2 px-8 pb-4 min-h-screen dark:[color-scheme:dark] dark:bg-slate-900 dark:text-white">
-  <div class="pb-2 flex items-center gap-4">
+<div class="py-4 px-8 min-h-screen dark:[color-scheme:dark] dark:bg-slate-900 dark:text-white">
+  <div class="pb-6 flex items-center gap-4">
     <h1 class="grow text-3xl font-bold">Playground</h1>
     <label>
       <input type="checkbox" bind:checked={disabled} />
@@ -61,7 +61,7 @@
       <Github class="h-8 w-8 bg-white rounded-full" />
     </a>
   </div>
-  <div class="flex gap-2 flex-wrap pb-2 text-black">
+  <div class="flex gap-2 flex-wrap pb-6 text-black">
     {#each Object.entries(samples) as [name, sample]}
       <button
         type="button"
@@ -85,7 +85,7 @@
       </button>
     {/each}
   </div>
-  <div class="flex gap-2">
+  <div class="flex gap-8">
     <div class="flex-[4] flex flex-col gap-2">
       <div class="h-[360px] border rounded overflow-auto p-2">
         <pre class="w-0"><code>{JSON.stringify(schema, null, 2)}</code></pre>

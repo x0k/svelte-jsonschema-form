@@ -122,13 +122,14 @@
     uiSchema['ui:rootFieldId'],
     value as Value
   ))
-
+  const uiOptions = $derived(getUiOptions(ctx, uiSchema))
   const config: Config = $derived({
     name: "",
+    title: uiOptions?.title ?? schema.title ?? "",
     schema: retrievedSchema,
     uiSchema,
     idSchema,
-    uiOptions: getUiOptions(ctx, uiSchema),
+    uiOptions,
     required: false,
   })
 

@@ -10,5 +10,5 @@
 
 <label>
   <input type="checkbox" bind:checked={value} {...attributes} />
-  {config.name}
+  {config.title}
 </label>

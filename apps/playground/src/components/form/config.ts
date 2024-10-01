@@ -10,6 +10,7 @@ export const createMessage =
 
 export interface Config<V = unknown> {
   name: string;
+  title: string;
   schema: Schema;
   uiSchema: UiSchema;
   idSchema: IdSchema<V>;

@@ -17,9 +17,7 @@ import date from "./date";
 import validation from "./validation";
 import files from "./files";
 import single from "./single";
-// import customArray from './customArray';
 // import customFieldAnyOf from './customFieldAnyOf';
-// import customObject from './customObject';
 import alternatives from "./alternatives";
 import propertyDependencies from "./propertyDependencies";
 import schemaDependencies from "./schemaDependencies";
@@ -58,8 +56,6 @@ export const samples = Object.freeze({
   Validation: validation,
   Files: files,
   Single: single,
-  "Custom Array": skipped, //customArray,
-  "Custom Object": skipped, //customObject,
   Alternatives: alternatives,
   "Property dependencies": propertyDependencies,
   "Schema dependencies": schemaDependencies,

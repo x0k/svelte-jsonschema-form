@@ -106,6 +106,7 @@
         bind:value={value[property]}
         config={{
           name: property,
+          title: property,
           schema: typeof propSchema === "boolean" ? {} : propSchema,
           uiSchema: propUiSchema,
           uiOptions: getUiOptions(ctx, propUiSchema),

@@ -13,6 +13,7 @@
 
   import { getObjectContext } from "./context";
   import { generateNewKey } from "./generate-new-object-key";
+  import { getTemplate } from '../../templates';
 
   const {
     property,
@@ -34,13 +35,16 @@
   );
   const uiOptions = $derived(getUiOptions(ctx, uiSchema));
   const config: Config = $derived({
-    name: `${name} Key`,
+    name: `${name}_key`,
+    title: `${name} Key`,
     schema: { type: "string" },
     idSchema: { $id: id },
     uiSchema,
     uiOptions,
     required: true,
   });
+
+  const Template  = $derived(getTemplate(ctx, "field", config));
   const Widget = $derived(getWidget(ctx, "text", config));
 
   const key = proxy<string | undefined>(() => property);
@@ -59,11 +63,13 @@
         const newKey = generateNewKey(key.value, objCtx.newKeySeparator, obj);
         // TODO: Check this variant to avoid warning
         // obj[newKey] = $state.snapshot(obj[property]);
-        obj[newKey] = obj[property];
+        obj[newKey] = $state.snapshot(obj[property]);
         delete obj[property];
       },
     })
   );
 </script>
 
-<Widget {attributes} {config} bind:value={key.value} />
+<Template showTitle value={property} {config}>
+  <Widget {attributes} {config} bind:value={key.value} />
+</Template>

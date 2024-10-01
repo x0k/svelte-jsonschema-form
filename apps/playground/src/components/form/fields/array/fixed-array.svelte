@@ -86,6 +86,7 @@
         {index}
         config={{
           name: getArrayItemName(arrayCtx, index),
+          title: getArrayItemName(arrayCtx, index),
           schema: itemSchema,
           uiSchema: itemUiSchema,
           uiOptions: getUiOptions(ctx, itemUiSchema),

@@ -1,28 +1,51 @@
-import type { Sample } from './Sample';
+import type { Sample } from "./Sample";
 
-import { GeoField } from './components'
+import { GeoField, CustomLayout } from "./components";
 
 const custom: Sample = {
   status: "perfect",
   schema: {
-    title: 'A localisation form',
-    type: 'object',
-    required: ['lat', 'lon'],
+    title: "Custom components",
+    type: "object",
     properties: {
-      lat: {
-        type: 'number',
+      field: {
+        title: "Custom field",
+        type: "object",
+        required: ["lat", "lon"],
+        properties: {
+          lat: {
+            type: "number",
+          },
+          lon: {
+            type: "number",
+          },
+        },
       },
-      lon: {
-        type: 'number',
+      layout: {
+        title: "Array with custom layout",
+        type: "array",
+        items: {
+          type: "string",
+        },
       },
     },
   },
   uiSchema: {
-    'ui:field': GeoField
+    field: {
+      "ui:field": GeoField,
+    },
+    layout: {
+      "ui:components": {
+        layout: CustomLayout,
+      },
+    },
   },
   formData: {
-    lat: 0,
-    lon: 0,
+    field: {
+      lat: 0,
+      lon: 0,
+    },
+    layout: ["svelte", "jsonschema", "form", "array", "of", "strings"],
   },
 };
 

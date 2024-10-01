@@ -1,5 +1,6 @@
 import type { Sample } from './Sample';
 
+// TODO: Enable this sample after packages separations
 const customField: Sample = {
   status: "skipped",
   schema: {
