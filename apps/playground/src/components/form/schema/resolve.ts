@@ -171,9 +171,24 @@ export function retrieveSchemaInternal<T extends SchemaValue>(
         return schemas;
       }
       try {
+        const withContainsSchemas: SchemaDefinition[] = [];
+        const withoutContainsSchemas: SchemaDefinition[] = [];
+        resolvedSchema.allOf?.forEach((s) => {
+          if (typeof s === "object" && s.contains) {
+            withContainsSchemas.push(s);
+          } else {
+            withoutContainsSchemas.push(s);
+          }
+        });
+        if (withContainsSchemas.length) {
+          resolvedSchema = { ...resolvedSchema, allOf: withoutContainsSchemas };
+        }
         resolvedSchema = mergeAllOf(resolvedSchema, {
           deep: false,
         } as Options) as Schema;
+        if (withContainsSchemas.length) {
+          resolvedSchema.allOf = withContainsSchemas;
+        }
       } catch (e) {
         console.warn("could not merge subschemas in allOf:\n", e);
         const { allOf, ...resolvedSchemaWithoutAllOf } = resolvedSchema;
@@ -320,7 +335,7 @@ export function stubExistingAdditionalProperties<T extends SchemaValue>(
       } else {
         const value = formData[key];
         if (value !== undefined) {
-          additionalProperties = { type: typeOfValue(value) }
+          additionalProperties = { type: typeOfValue(value) };
         }
       }
     } else {

@@ -421,9 +421,9 @@ describe("retrieveSchema()", () => {
         shipping_address: {
           ...schema.definitions.address,
           title: "Shipping address",
-        }
-      }
-    })
+        },
+      },
+    });
   });
   describe("property dependencies", () => {
     describe("false condition", () => {
@@ -914,6 +914,83 @@ describe("retrieveSchema()", () => {
         retrieveSchema(testValidator, schema, rootSchema, formData)
       ).toEqual({
         type: "string",
+      });
+    });
+    it("should not merge `allOf.contains` schemas", () => {
+      // https://github.com/rjsf-team/react-jsonschema-form/issues/2923#issuecomment-1946034240
+      const schema: Schema = {
+        type: "array",
+        items: {
+          type: "object",
+          properties: {
+            a: {
+              type: "string",
+            },
+          },
+        },
+        allOf: [
+          {
+            maxItems: 5,
+          },
+          {
+            contains: {
+              type: "object",
+              properties: {
+                a: {
+                  pattern: "1",
+                },
+              },
+            },
+          },
+          {
+            contains: {
+              type: "object",
+              properties: {
+                a: {
+                  pattern: "2",
+                },
+              },
+            },
+          },
+        ],
+      };
+      const rootSchema: Schema = { definitions: {} };
+      const formData = {};
+      expect(
+        retrieveSchema(testValidator, schema, rootSchema, formData)
+      ).toEqual({
+        type: "array",
+        items: {
+          type: "object",
+          properties: {
+            a: {
+              type: "string",
+            },
+          },
+        },
+        maxItems: 5,
+        allOf: [
+          {
+            contains: {
+              type: "object",
+              properties: {
+                a: {
+                  pattern: "1",
+                },
+              },
+            },
+          },
+          {
+            contains: {
+              type: "object",
+              properties: {
+                a: {
+                  pattern: "2",
+                },
+              },
+            },
+          },
+        ],
       });
     });
     it("should not merge incompatible types", () => {
