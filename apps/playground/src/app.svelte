@@ -8,8 +8,8 @@
   import { Form } from "@/components/form";
   import { ShadowHost } from "@/components/shadow";
   import Github from "@/components/github.svelte";
-  import ThemePicker from './theme-picker.svelte';
 
+  import ThemePicker from './theme-picker.svelte';
   import { samples } from "./samples";
 
   function isSampleName(name: unknown): name is keyof typeof samples {
@@ -87,11 +87,11 @@
   </div>
   <div class="flex gap-8">
     <div class="flex-[4] flex flex-col gap-2">
-      <div class="h-[360px] border rounded overflow-auto p-2">
+      <div class="h-[400px] border rounded overflow-auto p-2">
         <pre class="w-0"><code>{JSON.stringify(schema, null, 2)}</code></pre>
       </div>
       <div class="flex gap-2">
-        <div class="h-[360px] flex-1 border rounded overflow-auto p-2">
+        <div class="h-[400px] flex-1 border rounded overflow-auto p-2">
           <pre class="w-0"><code
               >{JSON.stringify(
                 uiSchema,
@@ -100,12 +100,12 @@
               )}</code
             ></pre>
         </div>
-        <div class="h-[360px] flex-1 border rounded overflow-auto p-2">
+        <div class="h-[400px] flex-1 border rounded overflow-auto p-2">
           <pre class="w-0"><code>{JSON.stringify(value, null, 2)}</code></pre>
         </div>
       </div>
     </div>
-    <ShadowHost class="flex-[3]">
+    <ShadowHost class="flex-[3] max-h-[808px] overflow-y-auto">
       <Form
         bind:value
         {components}
