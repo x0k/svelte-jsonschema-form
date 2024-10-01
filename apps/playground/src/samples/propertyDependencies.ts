@@ -1,7 +1,7 @@
 import type { Sample } from "./Sample";
 
 const propertyDependencies: Sample = {
-  status: "broken",
+  status: "perfect",
   schema: {
     title: "Property dependencies",
     description: "These samples are best viewed without live validation.",
