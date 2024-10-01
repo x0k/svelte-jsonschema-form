@@ -8,6 +8,7 @@ import {
   DEPENDENCIES_KEY,
   ELSE_KEY,
   IF_KEY,
+  ITEMS_KEY,
   NOT_KEY,
   ONE_OF_KEY,
   PATTERN_PROPERTIES_KEY,
@@ -54,6 +55,11 @@ function mergeRecords<T>(
   return target;
 }
 
+function mergeArrays<T>(left: T[], right: T[], unique = false) {
+  const merged = left.concat(right);
+  return unique ? Array.from(new Set(merged)) : merged;
+}
+
 function mergeSchemaDefinitions(
   left: SchemaDefinition,
   right: SchemaDefinition
@@ -86,6 +92,13 @@ export function mergeSchemas(left: Schema, right: Schema): Schema {
       merged[key] = mergeRecords(l, r, mergeSchemaDefinitions);
     }
   }
+  if (left[ITEMS_KEY] && right[ITEMS_KEY]) {
+    merged[ITEMS_KEY] =
+      isSchemaObjectValue(left[ITEMS_KEY]) &&
+      isSchemaObjectValue(right[ITEMS_KEY])
+        ? mergeSchemas(left[ITEMS_KEY], right[ITEMS_KEY])
+        : right[ITEMS_KEY];
+  }
   if (left[DEPENDENCIES_KEY] && right[DEPENDENCIES_KEY]) {
     merged[DEPENDENCIES_KEY] = mergeRecords(
       left[DEPENDENCIES_KEY],
@@ -114,8 +127,10 @@ export function mergeSchemas(left: Schema, right: Schema): Schema {
     }
   }
   if (left[REQUIRED_KEY] && right[REQUIRED_KEY]) {
-    merged[REQUIRED_KEY] = Array.from(
-      new Set(left[REQUIRED_KEY].concat(right[REQUIRED_KEY]))
+    merged[REQUIRED_KEY] = mergeArrays(
+      left[REQUIRED_KEY],
+      right[REQUIRED_KEY],
+      true
     );
   }
   return merged;
@@ -161,11 +176,10 @@ export function mergeDefaultsWithFormData<T = any>(
   return formData;
 }
 
-export function mergeSchemaObjects<A extends SchemaObjectValue, B extends SchemaObjectValue>(
-  obj1: A,
-  obj2: B,
-  concatArrays: boolean | "preventDuplicates" = false
-) {
+export function mergeSchemaObjects<
+  A extends SchemaObjectValue,
+  B extends SchemaObjectValue
+>(obj1: A, obj2: B, concatArrays: boolean | "preventDuplicates" = false) {
   const acc: SchemaObjectValue = Object.assign({}, obj1);
   for (const [key, right] of Object.entries(obj2)) {
     const left = obj1 ? obj1[key] : {};
