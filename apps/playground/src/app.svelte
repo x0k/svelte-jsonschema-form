@@ -23,7 +23,9 @@
     history[replace ? "replaceState" : "pushState"](null, "", url);
     return name
   }
-  const initialSampleName = isSampleName(parsedSampleName) ? parsedSampleName : selectSample("Date & time", true)
+  const initialSampleName = isSampleName(parsedSampleName)
+    ? parsedSampleName
+    : selectSample("Simple", true)
   let sampleName = $state(initialSampleName);
   let schema = $state(samples[initialSampleName].schema);
   let uiSchema = $state(samples[initialSampleName].uiSchema);
