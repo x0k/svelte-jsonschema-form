@@ -113,9 +113,15 @@ const widgets: Sample = {
     boolean: {
       radio: {
         "ui:widget": "radio",
+        "ui:options": {
+          hideTitle: false,
+        }
       },
       select: {
         "ui:widget": "select",
+        "ui:options": {
+          hideTitle: false,
+        }
       },
     },
     string: {

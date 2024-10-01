@@ -50,11 +50,13 @@
         disabled: false,
       }));
     }
-    return createOptions(config.schema, config.uiSchema, config.uiOptions) ?? [];
+    return (
+      createOptions(config.schema, config.uiSchema, config.uiOptions) ?? []
+    );
   });
   const attributes = $derived(inputAttributes(ctx, config));
 </script>
 
-<Template showTitle={false} {value} {config}>
+<Template showTitle={config.uiOptions?.hideTitle === false} {value} {config}>
   <Widget bind:value {attributes} {options} {config} />
 </Template>
