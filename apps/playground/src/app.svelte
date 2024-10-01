@@ -65,7 +65,7 @@
     {#each Object.entries(samples) as [name, sample]}
       <button
         type="button"
-        class="rounded p-2"
+        class="rounded shadow p-2"
         class:bg-green-300={sample.status === "perfect"}
         class:bg-blue-300={sample.status === "ok"}
         class:bg-yellow-300={sample.status === "warnings"}
