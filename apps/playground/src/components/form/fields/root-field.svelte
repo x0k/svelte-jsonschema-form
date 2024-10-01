@@ -19,7 +19,8 @@
   const Layout = $derived(getComponent(ctx, "layout", config));
   const schemaType = $derived(getSimpleSchemaType(config.schema));
   const Field = $derived(
-    schemaType === "null" && (config.schema.anyOf || config.schema.oneOf)
+    (config.schema.anyOf || config.schema.oneOf) &&
+      (schemaType === "null" || !isSelect(ctx, config.schema))
       ? null
       : getField(
           ctx,
