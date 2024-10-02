@@ -13,3 +13,4 @@ export * from "./is-fixed-items";
 export * from "./is-expandable";
 export * from "./matching";
 export * from "./discriminator";
+export * from "./sanitize-data-for-new-schema";

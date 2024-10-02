@@ -6,10 +6,26 @@ import {
   retrieveSchema as retrieveSchemaInternal,
   getDefaultFormState as getDefaultFormStateInternal,
   getClosestMatchingOption as getClosestMatchingOptionInternal,
+  sanitizeDataForNewSchema as sanitizeDataForNewSchemaInternal,
   type Schema,
   type SchemaValue,
 } from "./schema";
 import { toIdSchema as toIdSchemaInternal, type IdSchema } from "./id-schema";
+
+export function sanitizeDataForNewSchema(
+  ctx: FormContext,
+  newSchema: Schema,
+  oldSchema: Schema,
+  formData: SchemaValue | undefined
+) {
+  return sanitizeDataForNewSchemaInternal(
+    ctx.validator,
+    ctx.schema,
+    newSchema,
+    oldSchema,
+    formData
+  );
+}
 
 export function getClosestMatchingOption(
   ctx: FormContext,

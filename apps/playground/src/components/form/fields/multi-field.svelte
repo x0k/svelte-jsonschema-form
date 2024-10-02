@@ -4,7 +4,7 @@
   import { getFormContext } from "../context";
   import { getDiscriminatorFieldFromSchema, mergeSchemas } from "../schema";
   import type { UiSchema } from "../ui-schema";
-  import { getClosestMatchingOption, getUiOptions, retrieveSchema } from "../utils";
+  import { getClosestMatchingOption, getDefaultFormState, getUiOptions, retrieveSchema, sanitizeDataForNewSchema } from "../utils";
   import type { EnumOption } from "../enum";
   import { getWidget } from "../widgets";
   import type { Config } from "../config";
@@ -47,6 +47,17 @@
       0,
       discriminator
     );
+  }, (newSelected, oldSelected) => {
+    if (oldSelected === undefined) {
+      return
+    }
+    const newSchema = newSelected < 0 ? undefined : retrievedOptions[newSelected];
+    if (newSchema === undefined) {
+      value = undefined
+      return
+    }
+    const oldSchema = oldSelected < 0 ? undefined : retrievedOptions[oldSelected];
+    value = getDefaultFormState(ctx, newSchema, oldSchema !== undefined ? sanitizeDataForNewSchema(ctx, newSchema, oldSchema, value) : value)
   });
 
   const optionSchema = $derived.by(() => {
@@ -80,7 +91,6 @@
 
   const enumOptions = $derived<EnumOption<number>[]>(
     retrievedOptions.map((s, i) => ({
-      // TODO: Use translation
       label:
         optionsUiOptions[i]?.title ??
         s.title ??

@@ -60,7 +60,7 @@ function sanitizeArrays(
   return NO_VALUE;
 }
 
-export default function sanitizeDataForNewSchema(
+export function sanitizeDataForNewSchema(
   validator: Validator,
   rootSchema: Schema,
   newSchema: Schema,

@@ -1,4 +1,4 @@
-import { tick, untrack } from "svelte";
+import { untrack } from "svelte";
 
 export interface SyncInput<V> {
   /**
@@ -8,7 +8,7 @@ export interface SyncInput<V> {
   (isDependencyRegistrationOnlyCall: true): void;
 }
 
-export function proxy<V>(input: SyncInput<V>) {
+export function proxy<V>(input: SyncInput<V>, onChange?: (value: V, prev: V) => void) {
   let ignoreInputUpdate = false;
   let proxyValue = $state.raw<V>();
   const output = $derived.by(() => {
@@ -28,6 +28,7 @@ export function proxy<V>(input: SyncInput<V>) {
       if (Object.is(proxyValue, value)) {
         return;
       }
+      onChange?.(value, output);
       ignoreInputUpdate = true;
       proxyValue = value;
     },
