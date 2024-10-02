@@ -26,9 +26,9 @@ const JUNK_OPTION: Schema = {
   },
 };
 
-export function getFirstMatchingOption<T extends SchemaValue>(
-  validator: Validator<T>,
-  formData: T | undefined,
+export function getFirstMatchingOption(
+  validator: Validator,
+  formData: SchemaValue | undefined,
   options: Schema[],
   rootSchema: Schema,
   discriminatorField?: string
@@ -62,7 +62,7 @@ export function getFirstMatchingOption<T extends SchemaValue>(
     if (isDiscriminatorActual && discriminatorField in optionProperties) {
       const discriminator = optionProperties[discriminatorField];
       const value = formData[discriminatorField];
-      if (validator.isValid(discriminator, rootSchema, value as T)) {
+      if (validator.isValid(discriminator, rootSchema, value)) {
         return i;
       }
     }
@@ -114,11 +114,11 @@ export function getFirstMatchingOption<T extends SchemaValue>(
   return 0;
 }
 
-function calculateIndexScore<T extends SchemaValue>(
-  validator: Validator<T>,
+function calculateIndexScore(
+  validator: Validator,
   rootSchema: Schema,
   schema?: Schema,
-  formData: T | SchemaValue = {}
+  formData: SchemaValue = {}
 ): number {
   let totalScore = 0;
   if (schema) {
@@ -130,7 +130,7 @@ function calculateIndexScore<T extends SchemaValue>(
           continue;
         }
         if (schema[REF_KEY] !== undefined) {
-          const newSchema = retrieveSchema<SchemaValue>(
+          const newSchema = retrieveSchema(
             validator,
             value,
             rootSchema,
@@ -147,7 +147,7 @@ function calculateIndexScore<T extends SchemaValue>(
         const altSchemas = value.oneOf || value.anyOf;
         if (altSchemas && formValue) {
           const discriminator = getDiscriminatorFieldFromSchema(value);
-          totalScore += getClosestMatchingOption<SchemaValue>(
+          totalScore += getClosestMatchingOption(
             validator,
             rootSchema,
             formValue,
@@ -193,10 +193,10 @@ function calculateIndexScore<T extends SchemaValue>(
   return totalScore;
 }
 
-export function getClosestMatchingOption<T extends SchemaValue>(
-  validator: Validator<T>,
+export function getClosestMatchingOption(
+  validator: Validator,
   rootSchema: Schema,
-  formData: T | undefined,
+  formData: SchemaValue | undefined,
   options: Schema[],
   selectedOption = -1,
   discriminatorField?: string

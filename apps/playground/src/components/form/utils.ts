@@ -11,9 +11,9 @@ import {
 } from "./schema";
 import { toIdSchema as toIdSchemaInternal, type IdSchema } from "./id-schema";
 
-export function getClosestMatchingOption<T extends SchemaValue>(
-  ctx: FormContext<T>,
-  formData: T | undefined,
+export function getClosestMatchingOption(
+  ctx: FormContext,
+  formData: SchemaValue | undefined,
   options: Schema[],
   selectedOption: number,
   discriminatorField: string | undefined
@@ -28,15 +28,15 @@ export function getClosestMatchingOption<T extends SchemaValue>(
   );
 }
 
-export function retrieveSchema<T extends SchemaValue>(
-  ctx: FormContext<T>,
+export function retrieveSchema(
+  ctx: FormContext,
   schema: Schema,
-  formData: T | undefined
+  formData: SchemaValue | undefined
 ) {
   return retrieveSchemaInternal(ctx.validator, schema, ctx.schema, formData);
 }
 
-export function getUiOptions(ctx: FormContext<unknown>, uiSchema: UiSchema) {
+export function getUiOptions(ctx: FormContext, uiSchema: UiSchema) {
   const globalUiOptions = ctx.uiSchema["ui:globalOptions"];
   const uiOptions = uiSchema["ui:options"];
   return globalUiOptions !== undefined
@@ -44,20 +44,20 @@ export function getUiOptions(ctx: FormContext<unknown>, uiSchema: UiSchema) {
     : uiOptions;
 }
 
-export function isSelect(ctx: FormContext<unknown>, schema: Schema) {
+export function isSelect(ctx: FormContext, schema: Schema) {
   return isSelectInternal(ctx.validator, schema, ctx.schema);
 }
 
-export function isMultiSelect(ctx: FormContext<unknown>, schema: Schema) {
+export function isMultiSelect(ctx: FormContext, schema: Schema) {
   return isMultiSelectInternal(ctx.validator, schema, ctx.schema);
 }
 
-export function toIdSchema<T extends SchemaValue>(
-  ctx: FormContext<T>,
+export function toIdSchema(
+  ctx: FormContext,
   schema: Schema,
   id?: string,
-  formData?: T
-): IdSchema<T> {
+  formData?: SchemaValue
+): IdSchema<SchemaValue> {
   return toIdSchemaInternal(
     ctx.validator,
     schema,
@@ -70,10 +70,10 @@ export function toIdSchema<T extends SchemaValue>(
   );
 }
 
-export function getDefaultFormState<T extends SchemaValue>(
-  ctx: FormContext<T>,
+export function getDefaultFormState(
+  ctx: FormContext,
   schema: Schema,
-  formData: T | undefined
+  formData: SchemaValue | undefined
 ) {
   return getDefaultFormStateInternal(
     ctx.validator,

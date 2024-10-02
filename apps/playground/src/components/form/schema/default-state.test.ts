@@ -23,9 +23,9 @@ import { RECURSIVE_REF, RECURSIVE_REF_ALLOF } from "./fixtures/test-data";
 import type { Validator } from "./validator";
 import type { Schema } from "./schema";
 
-let testValidator: Validator<any>;
+let testValidator: Validator;
 let testValidatorMockValues: boolean[];
-let testValidatorMock: MockInstance<Validator<any>["isValid"]>;
+let testValidatorMock: MockInstance<Validator["isValid"]>;
 
 beforeEach(() => {
   testValidator = new AjvValidator(

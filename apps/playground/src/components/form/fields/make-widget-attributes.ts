@@ -25,7 +25,7 @@ interface Handlers {
 }
 
 function readonlyAndDisabled<T extends Partial<Nullable<ReadonlyAndDisabled>>>(
-  ctx: FormContext<unknown>,
+  ctx: FormContext,
   obj: T
 ) {
   obj.readonly ||= ctx.readonly;
@@ -49,7 +49,7 @@ function inputType(format: string | undefined) {
 }
 
 export function inputAttributes(
-  ctx: FormContext<unknown>,
+  ctx: FormContext,
   { idSchema, required, schema, uiOptions }: Config,
   { onblur = noop, onfocus = noop }: Handlers = {}
 ) {
@@ -77,7 +77,7 @@ export function inputAttributes(
 }
 
 export function textareaAttributes(
-  ctx: FormContext<unknown>,
+  ctx: FormContext,
   { idSchema, required, schema, uiOptions }: Config,
   { onblur = noop, onfocus = noop }: Handlers = {}
 ) {
@@ -99,7 +99,7 @@ export function textareaAttributes(
 }
 
 export function selectAttributes(
-  ctx: FormContext<unknown>,
+  ctx: FormContext,
   { idSchema, required, uiOptions }: Config,
   { onblur = noop, onfocus = noop }: Handlers = {}
 ) {
@@ -119,7 +119,7 @@ export function selectAttributes(
 }
 
 function readonlyOrDisabled<T extends Partial<Nullable<Disabled>>>(
-  ctx: FormContext<unknown>,
+  ctx: FormContext,
   obj: T
 ) {
   obj.disabled ||= ctx.disabled || ctx.readonly;

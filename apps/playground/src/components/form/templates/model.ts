@@ -70,7 +70,7 @@ export type Templates = <T extends TemplateType>(
 ) => Template<T> | undefined;
 
 function getTemplateInternal<T extends TemplateType>(
-  ctx: FormContext<unknown>,
+  ctx: FormContext,
   type: T,
   config: Config
 ): Template<T> | undefined {
@@ -86,7 +86,7 @@ function getTemplateInternal<T extends TemplateType>(
 }
 
 export function getTemplate<T extends TemplateType>(
-  ctx: FormContext<unknown>,
+  ctx: FormContext,
   type: T,
   config: Config
 ): Template<T> {

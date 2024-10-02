@@ -7,11 +7,11 @@ import {
   ID_KEY,
   isSchemaObjectValue,
   ITEMS_KEY,
-  ONE_OF_KEY,
   PROPERTIES_KEY,
   REF_KEY,
   retrieveSchema,
   type Schema,
+  type SchemaObjectValue,
   type SchemaValue,
   type Validator,
 } from "./schema";
@@ -31,16 +31,16 @@ export const FAKE_ID_SCHEMA: IdSchema<SchemaValue> = {
   $id: "fake-id",
 };
 
-export function toIdSchema<T extends SchemaValue>(
-  validator: Validator<T>,
+export function toIdSchema(
+  validator: Validator,
   schema: Schema,
   idPrefix: string,
   idSeparator: string,
   _recurseList: Schema[],
   id?: string | null,
   rootSchema?: Schema,
-  formData?: T
-): IdSchema<T> {
+  formData?: SchemaValue
+): IdSchema<SchemaValue> {
   if (REF_KEY in schema || DEPENDENCIES_KEY in schema || ALL_OF_KEY in schema) {
     const _schema = retrieveSchema(validator, schema, rootSchema, formData);
     const sameSchemaIndex = _recurseList.findIndex((item) =>
@@ -75,12 +75,10 @@ export function toIdSchema<T extends SchemaValue>(
     }
   }
   const $id = id || idPrefix;
-  const idSchema = { $id } as IdSchema<Record<string, T>>;
+  const idSchema = { $id } as IdSchema<SchemaObjectValue>;
   if (getSimpleSchemaType(schema) === "object" && PROPERTIES_KEY in schema) {
     const properties = schema[PROPERTIES_KEY];
-    const formDataObject = isSchemaObjectValue(formData)
-      ? (formData as Record<string, T>)
-      : undefined;
+    const formDataObject = isSchemaObjectValue(formData) ? formData : undefined;
     for (const name in properties) {
       const field = properties[name];
       const fieldId = idSchema[ID_KEY] + idSeparator + name;
@@ -96,7 +94,7 @@ export function toIdSchema<T extends SchemaValue>(
       );
     }
   }
-  return idSchema as IdSchema<T>;
+  return idSchema as IdSchema<SchemaValue>;
 }
 
 export interface IdentifiableFieldElement {

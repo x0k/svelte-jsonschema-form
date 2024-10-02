@@ -1,10 +1,10 @@
-import type { Schema, SchemaValue } from "./schema";
+import type { Schema } from "./schema";
 import type { Validator } from "./validator";
 import { retrieveSchema } from "./resolve";
 import { isSchemaOfConstantValue } from "./constant";
 
-export function isSelect<T extends SchemaValue>(
-  validator: Validator<T>,
+export function isSelect(
+  validator: Validator,
   theSchema: Schema,
   rootSchema: Schema
 ) {
@@ -22,8 +22,8 @@ export function isSelect<T extends SchemaValue>(
   return false;
 }
 
-export function isMultiSelect<T extends SchemaValue>(
-  validator: Validator<T>,
+export function isMultiSelect(
+  validator: Validator,
   schema: Schema,
   rootSchema: Schema
 ) {

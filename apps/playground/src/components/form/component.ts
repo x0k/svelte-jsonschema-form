@@ -125,7 +125,7 @@ export type Components = <T extends ComponentType>(
 ) => Component<T> | undefined;
 
 function getComponentInternal<T extends ComponentType>(
-  ctx: FormContext<unknown>,
+  ctx: FormContext,
   type: T,
   config: Config
 ): Component<T> | undefined {
@@ -141,7 +141,7 @@ function getComponentInternal<T extends ComponentType>(
 }
 
 export function getComponent<T extends ComponentType>(
-  ctx: FormContext<unknown>,
+  ctx: FormContext,
   type: T,
   config: Config
 ): Component<T> {

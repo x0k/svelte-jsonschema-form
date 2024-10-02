@@ -3,7 +3,7 @@ import type { FormContext } from "../context";
 import type { InputAttributes } from "../ui-schema";
 
 export function isDisabledOrReadonly(
-  ctx: FormContext<unknown>,
+  ctx: FormContext,
   attributes:
     | InputAttributes
     | (HTMLButtonAttributes & { readonly?: boolean })

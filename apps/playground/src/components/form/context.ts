@@ -8,10 +8,10 @@ import type { Fields } from "./fields";
 import type { Widgets } from "./widgets";
 import type { Templates } from "./templates";
 
-export interface FormContext<T> {
+export interface FormContext {
   schema: Schema;
   uiSchema: UiSchemaRoot;
-  validator: Validator<T>;
+  validator: Validator;
   fields: Fields;
   components: Components;
   widgets: Widgets;
@@ -25,10 +25,10 @@ export interface FormContext<T> {
 
 const FORM_CONTEXT = Symbol("form-context");
 
-export function getFormContext<T>(): FormContext<T> {
+export function getFormContext(): FormContext {
   return getContext(FORM_CONTEXT);
 }
 
-export function setFromContext<T>(ctx: FormContext<T>) {
+export function setFromContext(ctx: FormContext) {
   setContext(FORM_CONTEXT, ctx);
 }

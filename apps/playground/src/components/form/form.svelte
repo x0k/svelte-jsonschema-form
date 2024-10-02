@@ -29,7 +29,7 @@
 
   interface Props extends HTMLFormAttributes {
     schema: Schema
-    validator: Validator<Value>
+    validator: Validator
     components: Components
     widgets: Widgets
     translation: Translation
@@ -75,7 +75,7 @@
     console.log(e);
   }
 
-  const ctx: FormContext<Value> = {
+  const ctx: FormContext = {
     get schema() {
       return schema
     },

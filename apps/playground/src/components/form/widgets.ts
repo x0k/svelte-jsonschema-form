@@ -58,7 +58,7 @@ export interface WidgetsAndProps<V> {
 export interface WidgetValue {
   text: string;
   textarea: string;
-  number: number | null
+  number: number | null;
   select: SchemaValue;
   radio: SchemaValue;
   checkbox: boolean;
@@ -88,7 +88,7 @@ export type Widgets = <T extends WidgetType>(
 ) => Widget<CompatibleWidgetType<T>> | undefined;
 
 function getWidgetInternal<T extends WidgetType>(
-  ctx: FormContext<unknown>,
+  ctx: FormContext,
   type: T,
   config: Config
 ): Widget<CompatibleWidgetType<T>> | undefined {
@@ -104,7 +104,7 @@ function getWidgetInternal<T extends WidgetType>(
 }
 
 export function getWidget<T extends WidgetType>(
-  ctx: FormContext<unknown>,
+  ctx: FormContext,
   type: T,
   config: Config
 ): Widget<CompatibleWidgetType<T>> {

@@ -1,5 +1,5 @@
-import type { Schema, SchemaDefinition } from "./schema";
+import type { Schema, SchemaDefinition, SchemaValue } from "./schema";
 
-export interface Validator<T> {
-  isValid(schema: SchemaDefinition, rootSchema: Schema, formData?: T): boolean;
+export interface Validator {
+  isValid(schema: SchemaDefinition, rootSchema: Schema, formData?: SchemaValue): boolean;
 }

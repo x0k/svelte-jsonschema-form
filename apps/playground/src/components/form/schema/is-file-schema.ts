@@ -1,15 +1,13 @@
 import { retrieveSchema } from "./resolve";
-import { DATA_URL_FORMAT, type Schema, type SchemaValue } from "./schema";
+import { DATA_URL_FORMAT, type Schema } from "./schema";
 import type { Validator } from "./validator";
 
-export function isFileSchema(
-  { type, format }: Schema
-) {
+export function isFileSchema({ type, format }: Schema) {
   return type === "string" && format === DATA_URL_FORMAT;
 }
 
-export function isFilesArray<T extends SchemaValue>(
-  validator: Validator<T>,
+export function isFilesArray(
+  validator: Validator,
   schema: Schema,
   rootSchema?: Schema
 ) {

@@ -4,15 +4,15 @@
   import { getFormContext } from "../context";
   import { getDiscriminatorFieldFromSchema, mergeSchemas } from "../schema";
   import type { UiSchema } from "../ui-schema";
-  import { getClosestMatchingOption, getUiOptions } from "../utils";
+  import { getClosestMatchingOption, getUiOptions, retrieveSchema } from "../utils";
   import type { EnumOption } from "../enum";
   import { getWidget } from "../widgets";
   import type { Config } from "../config";
   import { computeId } from "../id-schema";
+  import { getTemplate } from '../templates';
 
   import { getField, type FieldProps } from "./model";
   import { selectAttributes } from "./make-widget-attributes";
-  import { getTemplate } from '../templates';
 
   let {
     value = $bindable(),
@@ -28,9 +28,10 @@
 
   const retrievedOptions = $derived(
     (config.schema[combinationKey] ?? []).map((s) =>
-      typeof s !== "boolean" ? s : {}
+      typeof s !== "boolean" ? retrieveSchema(ctx, s, undefined) : {}
     )
   );
+
   const selectedOption = proxy((isRegOnly) => {
     if (isRegOnly) {
       config.schema;
@@ -96,7 +97,7 @@
   );
 
   const widgetConfig: Config = $derived.by(() => {
-    const suffix = `__${combinationKey.toLowerCase()}`;
+    const suffix = `${combinationKey.toLowerCase()}`;
     return {
       ...config,
       schema: { type: "integer", default: 0 },

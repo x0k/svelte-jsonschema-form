@@ -69,7 +69,7 @@ export type Fields = <T extends FieldType>(
 ) => Field<T> | undefined;
 
 function getFieldInternal<T extends FieldType>(
-  ctx: FormContext<unknown>,
+  ctx: FormContext,
   type: T,
   config: Config
 ): Field<T> | undefined {
@@ -85,7 +85,7 @@ function getFieldInternal<T extends FieldType>(
 }
 
 export function getField<T extends FieldType>(
-  ctx: FormContext<unknown>,
+  ctx: FormContext,
   type: T,
   config: Config
 ): Field<T> {

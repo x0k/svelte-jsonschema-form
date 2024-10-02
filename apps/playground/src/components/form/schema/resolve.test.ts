@@ -43,9 +43,9 @@ import {
 } from "./fixtures/test-data";
 import type { Validator } from "./validator";
 
-let testValidator: Validator<any>;
+let testValidator: Validator;
 let testValidatorMockValues: boolean[];
-let testValidatorMock: MockInstance<Validator<any>["isValid"]>;
+let testValidatorMock: MockInstance<Validator["isValid"]>;
 
 beforeEach(() => {
   testValidator = new AjvValidator(

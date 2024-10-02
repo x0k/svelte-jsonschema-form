@@ -43,10 +43,10 @@ export function getDefaultValueForType(type: SchemaType) {
   }
 }
 
-export function getDefaultFormState<T extends SchemaValue>(
-  validator: Validator<T>,
+export function getDefaultFormState(
+  validator: Validator,
   theSchema: Schema,
-  formData?: T,
+  formData?: SchemaValue,
   rootSchema?: Schema,
   includeUndefinedValues: boolean | "excludeObjectChildren" = false,
   experimental_defaultFormStateBehavior?: Experimental_DefaultFormStateBehavior
@@ -93,8 +93,8 @@ type Experimental_ArrayMinItems = {
    * @param [rootSchema] - The root schema that will be forwarded to all the APIs
    * @returns A boolean indicating whether to skip populating the array with default values.
    */
-  computeSkipPopulate?: <T>(
-    validator: Validator<T>,
+  computeSkipPopulate?: (
+    validator: Validator,
     schema: Schema,
     rootSchema?: Schema
   ) => boolean;
@@ -142,7 +142,7 @@ interface ComputeDefaultsProps {
 }
 
 export function computeDefaults<T extends SchemaValue>(
-  validator: Validator<T>,
+  validator: Validator,
   rawSchema: Schema,
   {
     parentDefaults,
@@ -183,7 +183,7 @@ export function computeDefaults<T extends SchemaValue>(
       schemaToCompute = findSchemaDefinition(schemaRef, rootSchema);
     }
   } else if (DEPENDENCIES_KEY in schema) {
-    const resolvedSchema = resolveDependencies<SchemaValue>(
+    const resolvedSchema = resolveDependencies(
       validator,
       schema,
       rootSchema,
@@ -213,7 +213,7 @@ export function computeDefaults<T extends SchemaValue>(
     }
     const nextSchema =
       schemaOneOf[
-        getClosestMatchingOption<SchemaValue>(
+        getClosestMatchingOption(
           validator,
           rootSchema,
           isSchemaValueEmpty(formData) ? undefined : formData,
@@ -234,7 +234,7 @@ export function computeDefaults<T extends SchemaValue>(
     const discriminator = getDiscriminatorFieldFromSchema(schema);
     const nextSchema =
       schemaAnyOf[
-        getClosestMatchingOption<SchemaValue>(
+        getClosestMatchingOption(
           validator,
           rootSchema,
           isSchemaValueEmpty(formData) ? undefined : formData,
@@ -274,7 +274,7 @@ export function computeDefaults<T extends SchemaValue>(
       const retrievedSchema =
         experimental_defaultFormStateBehavior?.allOf === "populateDefaults" &&
         ALL_OF_KEY in schema
-          ? retrieveSchema<SchemaValue>(validator, schema, rootSchema, formData)
+          ? retrieveSchema(validator, schema, rootSchema, formData)
           : schema;
       const objDefaults = new Map<string, SchemaValue>();
       const schemaProperties = retrievedSchema.properties;

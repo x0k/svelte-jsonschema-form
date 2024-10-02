@@ -27,11 +27,11 @@ import { getDiscriminatorFieldFromSchema } from "./discriminator";
 import { getFirstMatchingOption } from "./matching";
 import { isSchemaObjectValue } from "./value";
 
-export function retrieveSchema<T extends SchemaValue>(
-  validator: Validator<T>,
+export function retrieveSchema(
+  validator: Validator,
   schema: Schema,
   rootSchema: Schema = {},
-  formData?: T
+  formData?: SchemaValue
 ): Schema {
   return retrieveSchemaInternal(validator, schema, rootSchema, formData)[0];
 }
@@ -104,13 +104,13 @@ export function resolveAllReferences(
   return resolvedSchema;
 }
 
-export function resolveReference<T extends SchemaValue>(
-  validator: Validator<T>,
+export function resolveReference(
+  validator: Validator,
   schema: Schema,
   rootSchema: Schema,
   expandAllBranches: boolean,
   stack: Set<string>,
-  formData?: T
+  formData?: SchemaValue
 ): Schema[] {
   const resolvedSchema = resolveAllReferences(schema, rootSchema, stack);
   if (!deepEqual(schema, resolvedSchema)) {
@@ -126,11 +126,11 @@ export function resolveReference<T extends SchemaValue>(
   return [schema];
 }
 
-export function retrieveSchemaInternal<T extends SchemaValue>(
-  validator: Validator<T>,
+export function retrieveSchemaInternal(
+  validator: Validator,
   schema: Schema,
   rootSchema: Schema,
-  formData?: T,
+  formData?: SchemaValue,
   expandAllBranches = false,
   stack = new Set<string>()
 ): Schema[] {
@@ -203,7 +203,7 @@ export function retrieveSchemaInternal<T extends SchemaValue>(
         validator,
         resolvedSchema,
         rootSchema,
-        formData as T
+        formData
       );
     }
 
@@ -211,13 +211,13 @@ export function retrieveSchemaInternal<T extends SchemaValue>(
   });
 }
 
-export function resolveCondition<T extends SchemaValue>(
-  validator: Validator<T>,
+export function resolveCondition(
+  validator: Validator,
   schema: Schema,
   rootSchema: Schema,
   expandAllBranches: boolean,
   stack: Set<string>,
-  formData?: T
+  formData?: SchemaValue
 ): Schema[] {
   const {
     if: expression,
@@ -227,7 +227,7 @@ export function resolveCondition<T extends SchemaValue>(
   } = schema;
   const conditionValue =
     expression !== undefined &&
-    validator.isValid(expression, rootSchema, formData || ({} as T));
+    validator.isValid(expression, rootSchema, formData || {});
   let resolvedSchemas = [resolvedSchemaLessConditional];
   let schemas: Schema[] = [];
   if (expandAllBranches) {
@@ -287,11 +287,11 @@ export function resolveCondition<T extends SchemaValue>(
   );
 }
 
-export function stubExistingAdditionalProperties<T extends SchemaValue>(
-  validator: Validator<T>,
+export function stubExistingAdditionalProperties(
+  validator: Validator,
   theSchema: Schema,
   rootSchema?: Schema,
-  aFormData?: T
+  aFormData?: SchemaValue
 ): Schema {
   // Clone the schema so that we don't ruin the consumer's original
   const schema = {
@@ -320,7 +320,7 @@ export function stubExistingAdditionalProperties<T extends SchemaValue>(
           validator,
           { $ref: schemaAdditionalProperties[REF_KEY] },
           rootSchema,
-          formData as T
+          formData
         );
       } else if ("type" in schemaAdditionalProperties) {
         additionalProperties = { ...schemaAdditionalProperties };
@@ -356,13 +356,13 @@ export function stubExistingAdditionalProperties<T extends SchemaValue>(
   return schema;
 }
 
-export function resolveSchema<T extends SchemaValue>(
-  validator: Validator<T>,
+export function resolveSchema(
+  validator: Validator,
   schema: Schema,
   rootSchema: Schema,
   expandAllBranches: boolean,
   stack: Set<string>,
-  formData?: T
+  formData?: SchemaValue
 ): Schema[] {
   const updatedSchemas = resolveReference(
     validator,
@@ -418,13 +418,13 @@ export function resolveSchema<T extends SchemaValue>(
   return [schema];
 }
 
-export function resolveDependencies<T extends SchemaValue>(
-  validator: Validator<T>,
+export function resolveDependencies(
+  validator: Validator,
   schema: Schema,
   rootSchema: Schema,
   expandAllBranches: boolean,
   stack: Set<string>,
-  formData?: T
+  formData?: SchemaValue
 ): Schema[] {
   const { [DEPENDENCIES_KEY]: dependencies, ...remainingSchema } = schema;
   const resolvedSchemas = resolveAnyOrOneOfSchemas(
@@ -447,12 +447,12 @@ export function resolveDependencies<T extends SchemaValue>(
   );
 }
 
-export function resolveAnyOrOneOfSchemas<T extends SchemaValue>(
-  validator: Validator<T>,
+export function resolveAnyOrOneOfSchemas(
+  validator: Validator,
   schema: Schema,
   rootSchema: Schema,
   expandAllBranches: boolean,
-  rawFormData?: T
+  rawFormData?: SchemaValue
 ) {
   let anyOrOneOf: Schema[] | undefined;
   const { oneOf, anyOf, ...remaining } = schema;
@@ -464,7 +464,7 @@ export function resolveAnyOrOneOfSchemas<T extends SchemaValue>(
   if (anyOrOneOf) {
     // Ensure that during expand all branches we pass an object rather than undefined so that all options are interrogated
     const formData =
-      rawFormData === undefined && expandAllBranches ? ({} as T) : rawFormData;
+      rawFormData === undefined && expandAllBranches ? {} : rawFormData;
     const discriminator = getDiscriminatorFieldFromSchema(schema);
     anyOrOneOf = anyOrOneOf.map((s) => {
       // Due to anyOf/oneOf possibly using the same $ref we always pass a fresh recurse list array so that each option
@@ -487,14 +487,14 @@ export function resolveAnyOrOneOfSchemas<T extends SchemaValue>(
   return [schema];
 }
 
-export function processDependencies<T extends SchemaValue>(
-  validator: Validator<T>,
+export function processDependencies(
+  validator: Validator,
   dependencies: Schema[typeof DEPENDENCIES_KEY],
   resolvedSchema: Schema,
   rootSchema: Schema,
   expandAllBranches: boolean,
   stack: Set<string>,
-  formData?: T
+  formData?: SchemaValue
 ): Schema[] {
   let schemas = [resolvedSchema];
   // Process dependencies updating the local schema properties as appropriate.
@@ -545,15 +545,15 @@ export function processDependencies<T extends SchemaValue>(
   return schemas;
 }
 
-export function withDependentSchema<T extends SchemaValue>(
-  validator: Validator<T>,
+export function withDependentSchema(
+  validator: Validator,
   schema: Schema,
   rootSchema: Schema,
   dependencyKey: string,
   dependencyValue: Schema,
   expandAllBranches: boolean,
   stack: Set<string>,
-  formData?: T
+  formData?: SchemaValue
 ): Schema[] {
   const dependentSchemas = retrieveSchemaInternal(
     validator,
@@ -586,7 +586,7 @@ export function withDependentSchema<T extends SchemaValue>(
     });
     const allPermutations = getAllPermutationsOfXxxOf(resolvedOneOfs);
     return allPermutations.flatMap((resolvedOneOf) =>
-      withExactlyOneSubSchema<T>(
+      withExactlyOneSubSchema(
         validator,
         mergedSchema,
         rootSchema,
@@ -604,15 +604,15 @@ type SchemaWithProperties = Schema & {
   properties: Exclude<Schema["properties"], undefined>;
 };
 
-export function withExactlyOneSubSchema<T extends SchemaValue>(
-  validator: Validator<T>,
+export function withExactlyOneSubSchema(
+  validator: Validator,
   schema: Schema,
   rootSchema: Schema,
   dependencyKey: string,
   oneOf: Exclude<Schema["oneOf"], undefined>,
   expandAllBranches: boolean,
   stack: Set<string>,
-  formData?: T
+  formData?: SchemaValue
 ): Schema[] {
   const validSubSchemas = oneOf!.filter(
     (subschema): subschema is SchemaWithProperties => {

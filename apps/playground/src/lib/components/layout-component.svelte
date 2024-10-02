@@ -17,6 +17,7 @@
       case "object-properties":
       case "array-field":
       case "object-field":
+      case "multi-field":
         return "display: flex; flex-direction: column; gap: 0.5rem;";
       case "field":
         return "display: flex; flex-direction: column; gap: 0.2rem;";

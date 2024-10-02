@@ -3,7 +3,7 @@ import { toIdSchema, type IdSchema } from "../../id-schema";
 import type { Schema, SchemaArrayValue, SchemaValue } from "../../schema";
 
 export function getArrayItemSchemaId(
-  ctx: FormContext<unknown>,
+  ctx: FormContext,
   arrayIdSchema: IdSchema<SchemaArrayValue>,
   itemSchema: Schema,
   index: number,

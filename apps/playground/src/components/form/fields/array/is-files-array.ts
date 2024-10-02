@@ -4,6 +4,6 @@ import {
   isFilesArray as isFilesArrayInternal,
 } from "../../schema";
 
-export function isFilesArray(ctx: FormContext<unknown>, schema: Schema) {
+export function isFilesArray(ctx: FormContext, schema: Schema) {
   return isFilesArrayInternal(ctx.validator, schema, ctx.schema);
 }
