@@ -89,18 +89,18 @@
     return config.uiSchema;
   });
 
+  const enumOptionLabel = $derived.by(() => {
+    const customTitle = config.uiOptions?.title ?? config.schema.title;
+    return customTitle !== undefined
+      ? (index: number) => ctx.translation("multi-schema-option-label-with-title", customTitle, index)
+      : (index: number) => ctx.translation("multi-schema-option-label", index);
+  })
   const enumOptions = $derived<EnumOption<number>[]>(
     retrievedOptions.map((s, i) => ({
       label:
         optionsUiOptions[i]?.title ??
         s.title ??
-        (config.title
-          ? ctx.translation(
-              "multi-schema-option-label-with-title",
-              config.title,
-              i
-            )
-          : ctx.translation("multi-schema-option-label", i)),
+        enumOptionLabel(i),
       value: i,
       disabled: false,
     }))
