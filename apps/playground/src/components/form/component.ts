@@ -50,6 +50,9 @@ export interface LayoutType {
   "array-item": {};
   "array-item-content": {};
   "array-item-controls": {};
+  "multi-field": {};
+  "multi-field-content": {};
+  "multi-field-controls": {};
 }
 
 export interface LayoutComponentProps {

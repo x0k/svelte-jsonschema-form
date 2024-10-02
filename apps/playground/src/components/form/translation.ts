@@ -6,6 +6,8 @@ export interface Labels {
   "array-schema-missing-items": [];
   yes: [];
   no: [];
+  "multi-schema-option-label-with-title": [title: string, index: number];
+  "multi-schema-option-label": [index: number];
 }
 
 export type Label = keyof Labels;

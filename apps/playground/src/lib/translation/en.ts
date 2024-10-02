@@ -6,4 +6,6 @@ export const translation = createTranslation({
   "array-schema-missing-items": "Missing items definition",
   yes: "Yes",
   no: "No",
+  "multi-schema-option-label-with-title": (title, index) => `${title} option ${index + 1}`,
+  "multi-schema-option-label": (index) => `Option ${index + 1}`,
 });

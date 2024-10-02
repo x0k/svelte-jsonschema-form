@@ -12,6 +12,7 @@
 
   import { getField, type FieldProps } from "./model";
   import { selectAttributes } from "./make-widget-attributes";
+  import { getTemplate } from '../templates';
 
   let {
     value = $bindable(),
@@ -21,6 +22,7 @@
 
   const ctx = getFormContext();
 
+  const Template = $derived(getTemplate(ctx, "multi", config));
   const Field = $derived(getField(ctx, "root", config));
   const Widget = $derived(getWidget(ctx, "select", config));
 
@@ -78,7 +80,16 @@
   const enumOptions = $derived<EnumOption<number>[]>(
     retrievedOptions.map((s, i) => ({
       // TODO: Use translation
-      label: optionsUiOptions[i]?.title ?? s.title ?? String(i),
+      label:
+        optionsUiOptions[i]?.title ??
+        s.title ??
+        (config.title
+          ? ctx.translation(
+              "multi-schema-option-label-with-title",
+              config.title,
+              i
+            )
+          : ctx.translation("multi-schema-option-label", i)),
       value: i,
       disabled: false,
     }))
@@ -97,21 +108,25 @@
   const attributes = $derived(selectAttributes(ctx, widgetConfig));
 </script>
 
-<Widget
-  {attributes}
-  config={widgetConfig}
-  options={enumOptions}
-  bind:value={selectedOption.value}
-  multiple={false}
-/>
-{#if optionSchema}
-  <Field
-    bind:value
-    config={{
-      ...config,
-      schema: optionSchema,
-      uiSchema: optionUiSchema,
-      title: "",
-    }}
-  />
-{/if}
+<Template {config} {value}>
+  {#snippet optionSelector()}
+    <Widget
+      {attributes}
+      config={widgetConfig}
+      options={enumOptions}
+      bind:value={selectedOption.value}
+      multiple={false}
+    />
+  {/snippet}
+  {#if optionSchema}
+    <Field
+      bind:value
+      config={{
+        ...config,
+        schema: optionSchema,
+        uiSchema: optionUiSchema,
+        title: "",
+      }}
+    />
+  {/if}
+</Template>

@@ -11,12 +11,12 @@ import type { FormContext } from "../context";
 export interface TemplateCommonProps<V extends SchemaValue> {
   value: V | undefined;
   config: Config<V>;
+  children: Snippet;
 }
 
 export interface ObjectTemplateProps
   extends TemplateCommonProps<SchemaObjectValue> {
   addButton?: Snippet;
-  children: Snippet;
 }
 
 export interface ObjectPropertyTemplateProps
@@ -24,25 +24,25 @@ export interface ObjectPropertyTemplateProps
   property: string;
   keyInput?: Snippet;
   removeButton?: Snippet;
-  children: Snippet;
 }
 
 export interface ArrayTemplateProps
   extends TemplateCommonProps<SchemaArrayValue> {
   addButton?: Snippet;
-  children: Snippet;
 }
 
 export interface ArrayItemTemplateProps
   extends TemplateCommonProps<SchemaValue> {
   index: number;
   buttons?: Snippet;
-  children: Snippet;
 }
 
 export interface FieldTemplateProps extends TemplateCommonProps<SchemaValue> {
   showTitle: boolean;
-  children: Snippet;
+}
+
+export interface MultiTemplateProps extends TemplateCommonProps<SchemaValue> {
+  optionSelector: Snippet
 }
 
 export interface TemplateAndProps {
@@ -51,6 +51,7 @@ export interface TemplateAndProps {
   "object-property": ObjectPropertyTemplateProps;
   array: ArrayTemplateProps;
   "array-item": ArrayItemTemplateProps;
+  multi: MultiTemplateProps;
 }
 
 export type TemplateType = keyof TemplateAndProps;
