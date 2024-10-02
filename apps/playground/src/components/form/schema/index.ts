@@ -11,3 +11,5 @@ export * from "./is-additional-property";
 export * from "./is-file-schema";
 export * from "./is-fixed-items";
 export * from "./is-expandable";
+export * from "./matching";
+export * from "./discriminator";

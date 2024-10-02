@@ -1,6 +1,8 @@
 import type { Component as SvelteComponent } from "svelte";
 
 import type {
+  ANY_OF_KEY,
+  ONE_OF_KEY,
   SchemaArrayValue,
   SchemaObjectValue,
   SchemaValue,
@@ -15,6 +17,9 @@ export interface FieldCommonProps<V extends SchemaValue> {
 
 export interface FieldAndProps<V extends SchemaValue> {
   root: FieldCommonProps<V>;
+  multi: FieldCommonProps<V> & {
+    combinationKey: typeof ONE_OF_KEY | typeof ANY_OF_KEY;
+  };
   string: FieldCommonProps<V>;
   number: FieldCommonProps<V>;
   integer: FieldCommonProps<V>;
@@ -27,13 +32,14 @@ export interface FieldAndProps<V extends SchemaValue> {
   };
   file: FieldCommonProps<V> & {
     multiple?: boolean;
-  }
+  };
   hidden: FieldCommonProps<V>;
   unsupported: FieldCommonProps<V>;
 }
 
 export interface FieldValue {
   root: SchemaValue;
+  multi: SchemaValue;
   string: string;
   number: number;
   integer: number;

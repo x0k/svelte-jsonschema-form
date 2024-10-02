@@ -35,7 +35,7 @@
   );
   const uiOptions = $derived(getUiOptions(ctx, uiSchema));
   const config: Config = $derived({
-    name: `${name}_key`,
+    name: `${name}__key`,
     title: `${name} Key`,
     schema: { type: "string" },
     idSchema: { $id: id },

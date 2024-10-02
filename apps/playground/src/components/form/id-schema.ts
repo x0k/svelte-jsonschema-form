@@ -7,6 +7,7 @@ import {
   ID_KEY,
   isSchemaObjectValue,
   ITEMS_KEY,
+  ONE_OF_KEY,
   PROPERTIES_KEY,
   REF_KEY,
   retrieveSchema,
@@ -106,7 +107,7 @@ export interface IdentifiableFieldElement {
 
 export function computeId<T>(
   idSchema: IdSchema<T>,
-  element: keyof IdentifiableFieldElement
+  element: keyof IdentifiableFieldElement | string
 ) {
   return `${idSchema.$id}__${element}`;
 }

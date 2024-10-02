@@ -5,10 +5,28 @@ import {
   isMultiSelect as isMultiSelectInternal,
   retrieveSchema as retrieveSchemaInternal,
   getDefaultFormState as getDefaultFormStateInternal,
+  getClosestMatchingOption as getClosestMatchingOptionInternal,
   type Schema,
   type SchemaValue,
 } from "./schema";
 import { toIdSchema as toIdSchemaInternal, type IdSchema } from "./id-schema";
+
+export function getClosestMatchingOption<T extends SchemaValue>(
+  ctx: FormContext<T>,
+  formData: T | undefined,
+  options: Schema[],
+  selectedOption: number,
+  discriminatorField: string | undefined
+) {
+  return getClosestMatchingOptionInternal(
+    ctx.validator,
+    ctx.schema,
+    formData,
+    options,
+    selectedOption,
+    discriminatorField
+  );
+}
 
 export function retrieveSchema<T extends SchemaValue>(
   ctx: FormContext<T>,
