@@ -1,6 +1,6 @@
 <script lang="ts">
   import { getFormContext } from '../../context';
-  import { isSchemaNullable, isSchemaObjectValue } from '../../schema';
+  import { isSchemaNullable, isSchemaObjectValue, type Schema } from '../../schema';
   import { getComponent } from '../../component';
   import { getTemplate } from '../../templates';
   import { getDefaultFormState, getUiOptions, retrieveSchema } from '../../utils';
@@ -13,6 +13,15 @@
 
   const ctx = getFormContext();
   const arrayCtx = getArrayContext();
+  $effect(() => {
+    if (arrayCtx.value === undefined) {
+      arrayCtx.value = new Array(schemaItems.length)
+      return
+    }
+    if (arrayCtx.value.length < schemaItems.length) {
+      arrayCtx.value.push(...new Array(schemaItems.length - arrayCtx.value.length))
+    }
+  })
 
   const Template = $derived(getTemplate(ctx, "array", arrayCtx.config));
   const Button = $derived(getComponent(ctx, "button", arrayCtx.config));
@@ -27,23 +36,12 @@
       })
       : []
   )
-  const schemaAdditionalItems = $derived(
+  const schemaAdditionalItems: Schema | false = $derived(
     isSchemaObjectValue(arrayCtx.config.schema?.additionalItems)
-      ? retrieveSchema(ctx, arrayCtx.config.schema.additionalItems, arrayCtx.value)
-      : null
+      ? arrayCtx.config.schema.additionalItems
+      : false
   )
-
-  // TODO: Check that this code is needed and generation of default values is required
-  // $effect(() => {
-  //   if (arrayCtx.value === undefined) {
-  //     arrayCtx.value = new Array(schemaItems.length)
-  //     return
-  //   }
-  //   if (arrayCtx.value.length < schemaItems.length) {
-  //     arrayCtx.value.push(...new Array(schemaItems.length - arrayCtx.value.length))
-  //   }
-  // })
-  </script>
+</script>
 
 {#snippet addButton()}
   <Button
@@ -52,7 +50,7 @@
     attributes={arrayCtx.config.uiOptions?.button}
     disabled={arrayCtx.disabledOrReadonly}
     onclick={makeHandler(arrayCtx, (arr) => {
-      if (schemaAdditionalItems === null) {
+      if (!schemaAdditionalItems) {
         return
       }
       arr.push(getDefaultFormState(ctx, schemaAdditionalItems, undefined))

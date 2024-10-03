@@ -1,7 +1,7 @@
 import type { Sample } from "./Sample";
 
 const schemaDependencies: Sample = {
-  status: "broken",
+  status: "warnings",
   schema: {
     title: "Schema dependencies",
     description: "These samples are best viewed without live validation.",
@@ -117,12 +117,18 @@ const schemaDependencies: Sample = {
     conditional: {
       "Do you want to get rid of any?": {
         "ui:widget": "radio",
+        "ui:options": {
+          hideTitle: false,
+        },
       },
     },
     arrayOfConditionals: {
       items: {
         "Do you want to get rid of any?": {
           "ui:widget": "radio",
+          "ui:options": {
+            hideTitle: false,
+          },
         },
       },
     },
@@ -130,11 +136,17 @@ const schemaDependencies: Sample = {
       items: {
         "Do you want to get rid of any?": {
           "ui:widget": "radio",
+          "ui:options": {
+            hideTitle: false,
+          },
         },
       },
       additionalItems: {
         "Do you want to get rid of any?": {
           "ui:widget": "radio",
+          "ui:options": {
+            hideTitle: false,
+          },
         },
       },
     },
