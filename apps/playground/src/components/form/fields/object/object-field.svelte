@@ -71,12 +71,14 @@
     isSchemaObjectValue(retrievedSchema.additionalProperties) ? retrieveSchema(ctx, retrievedSchema.additionalProperties, value) : {}
   )
   const canExpand = $derived(config.uiOptions?.expandable !== false && isSchemaExpandable(retrievedSchema, value))
+  const errors = $derived(ctx.errors.get(config.idSchema.$id) ?? [])
 </script>
 
 {#snippet addButton()}
   <Button
     type="object-property-add"
     {config}
+    {errors}
     disabled={disabledOrReadOnly}
     attributes={config.uiOptions?.button}
     onclick={(e) => {

@@ -1,7 +1,7 @@
 <script lang="ts">
   import Ajv from "ajv";
 
-  import { components } from "@/lib/components";
+  import { components, registry as componentsRegistry } from "@/lib/components";
   import { widgets } from "@/lib/widgets";
   import { AjvValidator } from "@/lib/validator";
   import { translation } from "@/lib/translation/en";

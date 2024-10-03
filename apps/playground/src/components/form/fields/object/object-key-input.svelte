@@ -8,12 +8,12 @@
   import type { Config } from "../../config";
   import { getWidget } from "../../widgets";
   import { getUiOptions } from "../../utils";
+  import { getTemplate } from '../../templates';
 
   import { inputAttributes } from "../make-widget-attributes";
 
   import { getObjectContext } from "./context";
   import { generateNewKey } from "./generate-new-object-key";
-  import { getTemplate } from '../../templates';
 
   const {
     property,
@@ -68,8 +68,9 @@
       },
     })
   );
+  const errors = $derived((idSchema && ctx.errors.get(idSchema.$id)) ?? []);
 </script>
 
-<Template showTitle value={property} {config}>
-  <Widget {attributes} {config} bind:value={key.value} />
+<Template {errors} showTitle value={property} {config}>
+  <Widget {errors} {attributes} {config} bind:value={key.value} />
 </Template>

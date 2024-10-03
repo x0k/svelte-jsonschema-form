@@ -16,6 +16,6 @@
   const Template = $derived(getTemplate(ctx, "field", config))
 </script>
 
-<Template showTitle value={value} {config}>
+<Template errors={[]} showTitle value={value} {config}>
   {#snippet children()}{/snippet}
 </Template>

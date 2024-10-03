@@ -7,6 +7,7 @@ import AlertComponent from "./alert-component.svelte";
 import TitleComponent from "./title-component.svelte";
 import DescriptionComponent from "./description-component.svelte";
 import HelpComponent from "./help-component.svelte";
+import ErrorsList from './errors-list.svelte';
 
 export const registry: { [T in ComponentType]: Component<T> } = {
   form: FormComponent,
@@ -16,6 +17,7 @@ export const registry: { [T in ComponentType]: Component<T> } = {
   title: TitleComponent,
   description: DescriptionComponent,
   help: HelpComponent,
+  errorsList: ErrorsList
 };
 
 export const components: Components = (type) => registry[type];

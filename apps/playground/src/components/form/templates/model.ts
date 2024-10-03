@@ -7,6 +7,7 @@ import type {
 } from "../schema";
 import { createMessage, type Config } from "../config";
 import type { FormContext } from "../context";
+import type { ValidationError } from '../data-validator';
 
 export interface TemplateCommonProps<V extends SchemaValue> {
   value: V | undefined;
@@ -39,6 +40,7 @@ export interface ArrayItemTemplateProps
 
 export interface FieldTemplateProps extends TemplateCommonProps<SchemaValue> {
   showTitle: boolean;
+  errors: ValidationError<unknown>[];
 }
 
 export interface MultiTemplateProps extends TemplateCommonProps<SchemaValue> {

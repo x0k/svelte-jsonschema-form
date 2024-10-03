@@ -32,6 +32,7 @@
   const disabledOrReadonly = $derived(
     isDisabledOrReadonly(ctx, config.uiOptions?.input)
   )
+  const errors = $derived(ctx.errors.get(config.idSchema.$id) ?? [])
 </script>
 
 {#snippet keyInput()}
@@ -44,6 +45,7 @@
 {/snippet}
 {#snippet removeButton()}
   <Button
+    {errors}
     {config}
     type="object-property-remove"
     disabled={disabledOrReadonly}

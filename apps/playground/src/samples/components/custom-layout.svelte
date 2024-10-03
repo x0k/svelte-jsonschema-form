@@ -5,7 +5,7 @@
     type ComponentProps,
   } from "@/components/form";
 
-  const { config, type, children, attributes }: ComponentProps<"layout"> =
+  const { config, type, children, attributes, errors }: ComponentProps<"layout"> =
     $props();
 
   const ctx = getFormContext();
@@ -27,5 +27,5 @@
     {@render children()}
   </div>
 {:else}
-  <Layout {config} {type} {attributes} {children} />
+  <Layout {config} {type} {attributes} {children} {errors} />
 {/if}

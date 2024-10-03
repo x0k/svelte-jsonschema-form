@@ -9,6 +9,7 @@ import type { SchemaArrayValue, SchemaValue } from "./schema";
 import type { EnumOption } from "./enum";
 import type { FormContext } from "./context";
 import { createMessage, type Config } from "./config";
+import type { ValidationError } from "./data-validator";
 
 export interface RequiredAttributes {
   id: string;
@@ -24,6 +25,7 @@ export interface WidgetCommonProps<V, A> {
   config: Config;
   value: V | undefined;
   attributes: A & RequiredAttributes;
+  errors: ValidationError<unknown>[];
 }
 
 export interface SelectWidgetProps<V>

@@ -75,14 +75,17 @@
     },
     (v) => v
   );
+
+  const errors = $derived(ctx.errors.get(config.idSchema.$id) ?? []);
 </script>
 
-<Template showTitle {value} {config}>
+<Template showTitle {value} {config} {errors}>
   <Widget
     bind:value={files.value}
     processing={files.inputProcessing}
     loading={files.outputProcessing}
     {attributes}
+    {errors}
     {config}
     {multiple}
   />

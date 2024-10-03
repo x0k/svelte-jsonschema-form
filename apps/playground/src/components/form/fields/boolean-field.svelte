@@ -55,8 +55,14 @@
     );
   });
   const attributes = $derived(inputAttributes(ctx, config));
+  const errors = $derived(ctx.errors.get(config.idSchema.$id) ?? []);
 </script>
 
-<Template showTitle={config.uiOptions?.hideTitle === false} {value} {config}>
-  <Widget bind:value {attributes} {options} {config} />
+<Template
+  {errors}
+  showTitle={config.uiOptions?.hideTitle === false}
+  {value}
+  {config}
+>
+  <Widget bind:value {errors} {attributes} {options} {config} />
 </Template>

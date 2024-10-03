@@ -20,8 +20,9 @@
 
   const attributes = $derived(selectAttributes(ctx, config));
   const options = $derived(createOptions(config.schema, config.uiSchema, config.uiOptions) ?? []);
+  const errors = $derived(ctx.errors.get(config.idSchema.$id) ?? []);
 </script>
 
-<Template showTitle {value} {config}>
-  <Widget {attributes} {config} bind:value {options} {multiple} />
+<Template showTitle {value} {config} {errors}>
+  <Widget {attributes} {config} {errors} bind:value {options} {multiple} />
 </Template>

@@ -35,6 +35,7 @@
   {config}
   attributes={uiOptions?.button}
   disabled={disabledOrReadonly}
+  errors={[]}
 >
   {label}
 </Button>

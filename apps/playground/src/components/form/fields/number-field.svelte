@@ -24,8 +24,10 @@
         v === null ? (config.uiOptions?.emptyValue as number | undefined) : v;
     },
   };
+
+  const errors = $derived(ctx.errors.get(config.idSchema.$id) ?? []);
 </script>
 
-<Template showTitle value={redacted.value} {config}>
-  <Widget {config} bind:value={redacted.value} {attributes} />
+<Template {errors} showTitle value={redacted.value} {config}>
+  <Widget {config} {errors} bind:value={redacted.value} {attributes} />
 </Template>

@@ -14,6 +14,7 @@
 </script>
 
 <Alert
+  errors={[]}
   type="error"
   title={ctx.translation(
     "unsupported-field-type",

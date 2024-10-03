@@ -10,6 +10,7 @@ import {
   schemaHash,
   ValidatorErrorType,
   type DataValidator,
+  type FormContext,
   type Schema,
   type SchemaDefinition,
   type SchemaValue,
@@ -30,9 +31,9 @@ export class AjvValidator implements Validator, DataValidator<ErrorObject> {
   }
 
   validateFormData(
+    ctx: FormContext,
     schema: Schema,
     formData: SchemaValue | undefined,
-    uiSchema: UiSchemaRoot
   ): ValidatorError<ErrorObject>[] {
     const schemaRef = schema[ID_KEY];
     let errors: ErrorObject[] | null | undefined;
@@ -59,8 +60,8 @@ export class AjvValidator implements Validator, DataValidator<ErrorObject> {
       errors?.map((error) => {
         return {
           type: ValidatorErrorType.ValidationError,
-          instancePath: error.instancePath,
-          message: this.errorObjectToMessage(error, uiSchema),
+          instanceId: this.instancePathToId(ctx, error.instancePath),
+          message: this.errorObjectToMessage(error, ctx.uiSchema),
           error,
         };
       }) ?? []
@@ -91,6 +92,16 @@ export class AjvValidator implements Validator, DataValidator<ErrorObject> {
       console.warn("Failed to validate", e);
       return false;
     }
+  }
+
+  private instancePathToId({ idPrefix, idSeparator, }: FormContext, instancePath: string) {
+    const path = instancePath.split("/")
+    if (path[0] === "") {
+      path[0] = idPrefix
+    } else {
+      path.unshift(idPrefix)
+    }
+    return path.join(idSeparator)
   }
 
   private errorObjectToMessage(

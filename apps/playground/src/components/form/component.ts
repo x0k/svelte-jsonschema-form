@@ -9,6 +9,7 @@ import type { Get } from "@/lib/types";
 
 import type { FormContext } from "./context";
 import { createMessage, type Config } from "./config";
+import type { ValidationError } from './data-validator';
 
 export interface FormComponentProps {
   attributes: HTMLFormAttributes;
@@ -98,6 +99,10 @@ export interface HelpComponentProps {
   help: string;
 }
 
+export interface ErrorsListProps {
+  errors: ValidationError<unknown>[];
+}
+
 export interface ComponentsAndProps {
   form: FormComponentProps;
   button: ButtonComponentProps;
@@ -106,6 +111,7 @@ export interface ComponentsAndProps {
   title: TitleComponentProps;
   description: DescriptionComponentProps;
   help: HelpComponentProps;
+  errorsList: ErrorsListProps;
 }
 
 export interface ComponentBindings {
@@ -116,6 +122,7 @@ export type ComponentType = keyof ComponentsAndProps;
 
 export type ComponentProps<T extends ComponentType> = ComponentsAndProps[T] & {
   config: Config;
+  errors: ValidationError<unknown>[];
 };
 
 export type Component<T extends ComponentType> = SvelteComponent<

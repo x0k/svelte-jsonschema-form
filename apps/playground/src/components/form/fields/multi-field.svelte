@@ -122,6 +122,7 @@
 <Template {config} {value}>
   {#snippet optionSelector()}
     <Widget
+      errors={[]}
       {attributes}
       config={widgetConfig}
       options={enumOptions}

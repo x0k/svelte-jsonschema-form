@@ -14,7 +14,7 @@
   import { getComponent } from './component'
   import SubmitButton from './submit-button.svelte';
   import type { Config } from './config';
-  import type { DataValidator, ValidatorError } from './data-validator';
+  import { ValidatorErrorType, type DataValidator, type ValidationError, type ValidatorError } from './data-validator';
 
   let form = $state<HTMLFormElement>()
 
@@ -73,23 +73,12 @@
     })
   })
 
-  function isValid() {
-    const errors = validator.validateFormData(schema, value as Value, uiSchema)
-    onErrors?.(errors)
-    return errors.length === 0
-  }
-
-  function handleSubmit(e: SubmitEvent) {
-    e.preventDefault();
-
-    if (!isValid()) {
-      return
-    }
-
-    console.log(e);
-  }
+  let errors = $state.raw<Map<string, ValidationError<E>[]>>(new Map())
 
   const ctx: FormContext = {
+    get errors() {
+      return errors
+    },
     get schema() {
       return schema
     },
@@ -149,9 +138,26 @@
 
   const Form = $derived(getComponent(ctx, "form", config))
   const Field = $derived(getField(ctx, "root", config))
+
+  function isValid() {
+    const allErrors = validator.validateFormData(ctx, schema, value as Value)
+    errors = Map.groupBy(allErrors.filter(e => e.type === ValidatorErrorType.ValidationError), (e) => e.instanceId)
+    onErrors?.(allErrors)
+    return allErrors.length === 0
+  }
+
+  function handleSubmit(e: SubmitEvent) {
+    e.preventDefault();
+
+    if (!isValid()) {
+      return
+    }
+
+    console.log(e);
+  }
 </script>
 
-<Form bind:form {attributes} onsubmit={handleSubmit} {config} >
+<Form bind:form {attributes} onsubmit={handleSubmit} {config} errors={[]} >
   <Field bind:value={value as Value} {config} />
   {#if children}
     {@render children()}

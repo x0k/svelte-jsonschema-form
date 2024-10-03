@@ -55,7 +55,7 @@
   });
 </script>
 
-<Layout type="root-field" {config}>
+<Layout errors={[]} type="root-field" {config}>
   {#if Field}
     <Field
       bind:value
