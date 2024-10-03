@@ -19,6 +19,7 @@ export interface ValidationError<E>
 
 export interface SchemaError
   extends AbstractValidatorError<ValidatorErrorType.SchemaError> {
+  message: string
   error: Error;
 }
 

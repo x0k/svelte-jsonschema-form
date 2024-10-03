@@ -48,6 +48,10 @@ export class AjvValidator implements Validator, DataValidator<ErrorObject> {
         {
           type: ValidatorErrorType.SchemaError,
           error: err as Error,
+          message:
+            err instanceof Error
+              ? err.message
+              : "Unknown error during schema compilation",
         },
       ];
     }
@@ -101,6 +105,8 @@ export class AjvValidator implements Validator, DataValidator<ErrorObject> {
     const path = instancePath.split("/").slice(1);
     if (missingProperty) {
       path.push(missingProperty);
+      // TODO: Write a specific `getValueByPath` function for
+      // `items`, `additionalItems` and other cases
       const propertyUiSchema: UiSchema | undefined = getValueByPath(
         uiSchema,
         path

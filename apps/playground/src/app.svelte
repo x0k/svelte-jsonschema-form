@@ -5,7 +5,7 @@
   import { widgets } from "@/lib/widgets";
   import { AjvValidator } from "@/lib/validator";
   import { translation } from "@/lib/translation/en";
-  import { Form } from "@/components/form";
+  import { Form, type ValidatorError } from "@/components/form";
   import { ShadowHost } from "@/components/shadow";
   import Github from "@/components/github.svelte";
 
@@ -44,6 +44,7 @@
   let disabled = $state(false)
   let readonly = $state(false)
   let html5Validation = $state(false)
+  let errors = $state.raw<ValidatorError<any>[]>([])
 </script>
 
 <div class="py-4 px-8 min-h-screen dark:[color-scheme:dark] dark:bg-slate-900 dark:text-white">
@@ -111,6 +112,16 @@
       </div>
     </div>
     <ShadowHost class="flex-[3] max-h-[808px] overflow-y-auto">
+      {#if errors.length > 0}
+        <div style="color: red; padding-bottom: 1rem;">
+          <span style="font-size: larger; font-weight: bold;" >Errors</span>
+          <ui>
+            {#each errors as err (err.message)}
+              <li>{err.message}</li>
+            {/each}
+          </ui>
+        </div>
+      {/if}
       <Form
         bind:value
         {components}
@@ -122,7 +133,10 @@
         {readonly}
         {disabled}
         novalidate={!html5Validation}
-        onErrors={(errors) => console.log("errors", errors)}
+        onErrors={(validatorErrors) => {
+          console.log("errors", validatorErrors)
+          errors = validatorErrors
+        }}
       />
     </ShadowHost>
   </div>

@@ -8,6 +8,9 @@ import type {
 } from "@/components/form";
 
 export class RJSFValidator implements Validator {
+  reset (): void {
+    validator.reset();
+  }
   isValid(
     schemaDefinition: SchemaDefinition,
     rootSchema: Schema,
