@@ -17,7 +17,6 @@ import date from "./date";
 import validation from "./validation";
 import files from "./files";
 import single from "./single";
-// import customFieldAnyOf from './customFieldAnyOf';
 import alternatives from "./alternatives";
 import propertyDependencies from "./propertyDependencies";
 import schemaDependencies from "./schemaDependencies";
@@ -30,13 +29,6 @@ import options from "./options";
 import ifThenElse from "./ifThenElse";
 import customField from "./customField";
 import type { Sample } from "./Sample";
-
-const skipped: Sample = {
-  status: "skipped",
-  schema: {},
-  uiSchema: {},
-  formData: {},
-};
 
 export const samples = Object.freeze({
   Blank: { status: "perfect", schema: {}, uiSchema: {}, formData: {} },
@@ -61,7 +53,6 @@ export const samples = Object.freeze({
   "Schema dependencies": schemaDependencies,
   "Additional Properties": additionalProperties,
   "Any Of": anyOf,
-  "Any Of with Custom Field": skipped, // customFieldAnyOf,
   "One Of": oneOf,
   "All Of": allOf,
   "If Then Else": ifThenElse,

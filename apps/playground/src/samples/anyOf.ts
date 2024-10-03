@@ -1,7 +1,7 @@
 import type { Sample } from './Sample';
 
 const anyOf: Sample = {
-  status: "broken",
+  status: "warnings",
   schema: {
     type: 'object',
     properties: {

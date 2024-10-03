@@ -1,7 +1,7 @@
 import type { Sample } from './Sample';
 
 const ifThenElse: Sample = {
-  status: "broken",
+  status: "warnings",
   schema: {
     type: 'object',
     properties: {
