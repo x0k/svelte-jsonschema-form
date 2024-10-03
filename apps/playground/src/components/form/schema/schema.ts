@@ -35,6 +35,7 @@ export const CONST_KEY = "const";
 export const IF_KEY = "if";
 export const THEN_KEY = "then";
 export const ELSE_KEY = "else";
+export const CONTAINS_KEY = "contains";
 
 export const ALL_OF_KEY = "allOf";
 export const ANY_OF_KEY = "anyOf";
@@ -42,14 +43,43 @@ export const ONE_OF_KEY = "oneOf";
 
 export const NOT_KEY = "not";
 
+export const ROOT_SCHEMA_PREFIX = "__sjsf_rootSchema";
 export const ADDITIONAL_PROPERTY_FLAG = "__additional_property";
 export const ADDITIONAL_PROPERTIES_KEY = "additionalProperties";
-export const CONTAINS_KEY = "contains";
+export const ADDITIONAL_ITEMS_KEY = "additionalItems";
+export const PROPERTY_NAMES_KEY = "propertyNames";
 
 export const DISCRIMINATOR_KEY = "discriminator";
 export const PROPERTY_NAME_KEY = "propertyName";
 
 export const DATA_URL_FORMAT = "data-url";
+
+export const SUB_SCHEMAS = [
+  ITEMS_KEY,
+  ADDITIONAL_ITEMS_KEY,
+  CONTAINS_KEY,
+  ADDITIONAL_PROPERTIES_KEY,
+  PROPERTY_NAMES_KEY,
+  IF_KEY,
+  THEN_KEY,
+  ELSE_KEY,
+  NOT_KEY,
+] as const;
+
+export const RECORDS_OF_SUB_SCHEMAS = [
+  DEFS_KEY,
+  PROPERTIES_KEY,
+  PATTERN_PROPERTIES_KEY,
+  DEPENDENCIES_KEY,
+  DEFINITIONS_KEY,
+] as const;
+
+export const ARRAYS_OF_SUB_SCHEMAS = [
+  ALL_OF_KEY,
+  ANY_OF_KEY,
+  ONE_OF_KEY,
+  ITEMS_KEY,
+] as const;
 
 export function isSchema(schemaDef: SchemaDefinition): schemaDef is Schema {
   return typeof schemaDef === "object";

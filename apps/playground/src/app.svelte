@@ -9,7 +9,6 @@
   import { ShadowHost } from "@/components/shadow";
   import Github from "@/components/github.svelte";
 
-  import { RJSFValidator } from './lib/validator/rjsf-validator'
   import ThemePicker from './theme-picker.svelte';
   import { samples } from "./samples";
 
@@ -41,7 +40,6 @@
       discriminator: true,
     })
   );
-  const rjsfValidator = new RJSFValidator();
 
   let disabled = $state(false)
   let readonly = $state(false)
@@ -114,7 +112,7 @@
         {widgets}
         {schema}
         {uiSchema}
-        validator={rjsfValidator}
+        {validator}
         {translation}
         {readonly}
         {disabled}

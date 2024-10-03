@@ -1,28 +1,46 @@
 import type Ajv from "ajv";
-import type { ValidateFunction } from "ajv";
+import { deepEqual } from "fast-equals";
 
-import type {
-  Schema,
-  SchemaDefinition,
-  SchemaValue,
-  Validator,
+import {
+  ID_KEY,
+  prefixSchemaRefs,
+  ROOT_SCHEMA_PREFIX,
+  schemaHash,
+  type Schema,
+  type SchemaDefinition,
+  type SchemaValue,
+  type Validator,
 } from "@/components/form";
 
 const trueSchema: Schema = {};
 const falseSchema: Schema = {};
 
 export class AjvValidator implements Validator {
-  private cache = new WeakMap<Schema, ValidateFunction<SchemaValue>>();
-
   constructor(private readonly ajv: Ajv) {}
+
+  reset() {
+    this.ajv.removeSchema();
+  }
 
   isValid(
     schemaDefinition: SchemaDefinition,
-    _rootSchema: Schema,
-    formData?: SchemaValue | undefined
+    rootSchema: Schema,
+    formData: SchemaValue | undefined
   ): boolean {
+    const rootSchemaId = this.handleRootSchemaUpdate(rootSchema);
+    const schemaWithPrefixedRefs = prefixSchemaRefs(
+      this.transformSchemaDefinition(schemaDefinition),
+      rootSchemaId
+    );
+    const schemaId =
+      schemaWithPrefixedRefs[ID_KEY] ?? schemaHash(schemaWithPrefixedRefs);
+    const validator =
+      this.ajv.getSchema(schemaId) ??
+      this.ajv
+        .addSchema(schemaWithPrefixedRefs, schemaId)
+        .getSchema(schemaId) ??
+      this.ajv.compile(schemaWithPrefixedRefs);
     try {
-      const validator = this.getValidator(schemaDefinition);
       return validator(formData);
     } catch (e) {
       console.warn("Failed to validate", e);
@@ -30,15 +48,17 @@ export class AjvValidator implements Validator {
     }
   }
 
-  private getValidator(schemaDefinition: SchemaDefinition) {
-    const schema = this.transformSchemaDefinition(schemaDefinition);
-    let validator = this.cache.get(schema);
-    if (validator) {
-      return validator;
+  private handleRootSchemaUpdate(rootSchema: Schema) {
+    const rootSchemaId = rootSchema[ID_KEY] ?? ROOT_SCHEMA_PREFIX;
+    let schema = this.ajv.getSchema(rootSchemaId)?.schema;
+    if (schema !== undefined && !deepEqual(schema, rootSchema)) {
+      this.ajv.removeSchema(rootSchemaId);
+      schema = undefined;
     }
-    validator = this.ajv.compile(schema);
-    this.cache.set(schema, validator);
-    return validator;
+    if (schema === undefined) {
+      this.ajv.addSchema(rootSchema, rootSchemaId);
+    }
+    return rootSchemaId;
   }
 
   private transformSchemaDefinition(schema: SchemaDefinition): Schema {

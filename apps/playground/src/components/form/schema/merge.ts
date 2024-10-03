@@ -1,4 +1,5 @@
 import {
+  ADDITIONAL_ITEMS_KEY,
   ADDITIONAL_PROPERTIES_KEY,
   ALL_OF_KEY,
   ANY_OF_KEY,
@@ -13,6 +14,7 @@ import {
   ONE_OF_KEY,
   PATTERN_PROPERTIES_KEY,
   PROPERTIES_KEY,
+  PROPERTY_NAMES_KEY,
   REQUIRED_KEY,
   THEN_KEY,
   type Schema,
@@ -21,23 +23,32 @@ import {
 } from "./schema";
 import { isSchemaObjectValue } from "./value";
 
-const OBJECT_KEYS = [
-  DEFS_KEY,
-  PROPERTIES_KEY,
-  PATTERN_PROPERTIES_KEY,
-  DEFINITIONS_KEY,
-] as const;
-
-const SCHEMA_KEYS = [
-  ADDITIONAL_PROPERTIES_KEY,
+const SUB_SCHEMAS = [
+  // ITEMS_KEY,
+  ADDITIONAL_ITEMS_KEY,
   CONTAINS_KEY,
+  ADDITIONAL_PROPERTIES_KEY,
+  PROPERTY_NAMES_KEY,
   IF_KEY,
   THEN_KEY,
   ELSE_KEY,
   NOT_KEY,
 ] as const;
 
-const ARRAY_KEYS = [ALL_OF_KEY, ANY_OF_KEY, ONE_OF_KEY] as const;
+const RECORDS_OF_SUB_SCHEMAS = [
+  DEFS_KEY,
+  PROPERTIES_KEY,
+  PATTERN_PROPERTIES_KEY,
+  // DEPENDENCIES_KEY,
+  DEFINITIONS_KEY,
+] as const;
+
+const ARRAYS_OF_SUB_SCHEMAS = [
+  ALL_OF_KEY,
+  ANY_OF_KEY,
+  ONE_OF_KEY,
+  // ITEMS_KEY,
+] as const;
 
 function mergeRecords<T>(
   left: Record<string, T>,
@@ -82,7 +93,7 @@ function mergeSchemaDependencies(
 
 export function mergeSchemas(left: Schema, right: Schema): Schema {
   const merged = Object.assign({}, left, right);
-  for (const key of OBJECT_KEYS) {
+  for (const key of RECORDS_OF_SUB_SCHEMAS) {
     if (!(key in merged)) {
       continue;
     }
@@ -106,7 +117,7 @@ export function mergeSchemas(left: Schema, right: Schema): Schema {
       mergeSchemaDependencies
     );
   }
-  for (const key of SCHEMA_KEYS) {
+  for (const key of SUB_SCHEMAS) {
     if (!(key in merged)) {
       continue;
     }
@@ -116,7 +127,7 @@ export function mergeSchemas(left: Schema, right: Schema): Schema {
       merged[key] = mergeSchemaDefinitions(l, r);
     }
   }
-  for (const key of ARRAY_KEYS) {
+  for (const key of ARRAYS_OF_SUB_SCHEMAS) {
     if (!(key in merged)) {
       continue;
     }

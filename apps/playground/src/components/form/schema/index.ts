@@ -14,3 +14,5 @@ export * from "./is-expandable";
 export * from "./matching";
 export * from "./discriminator";
 export * from "./sanitize-data-for-new-schema";
+export * from "./prefix-schema-refs";
+export * from "./schema-hash";

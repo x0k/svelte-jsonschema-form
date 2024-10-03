@@ -18,7 +18,7 @@ import {
   SECOND_ONE_OF,
 } from "./fixtures/test-data";
 import type { Validator } from "./validator";
-import sanitizeDataForNewSchema from "./sanitize-data-for-new-schema";
+import { sanitizeDataForNewSchema } from "./sanitize-data-for-new-schema";
 import { retrieveSchema } from "./resolve";
 import type { Schema } from "./schema";
 
