@@ -43,6 +43,7 @@
 
   let disabled = $state(false)
   let readonly = $state(false)
+  let html5Validation = $state(false)
 </script>
 
 <div class="py-4 px-8 min-h-screen dark:[color-scheme:dark] dark:bg-slate-900 dark:text-white">
@@ -55,6 +56,10 @@
     <label>
       <input type="checkbox" bind:checked={readonly} />
       Readonly
+    </label>
+    <label>
+      <input type="checkbox" bind:checked={html5Validation} />
+      HTML5 validation
     </label>
     <ThemePicker />
     <a target="_blank" href="https://github.com/x0k/svelte-jsonschema-form">
@@ -116,7 +121,7 @@
         {translation}
         {readonly}
         {disabled}
-        novalidate
+        novalidate={!html5Validation}
         onErrors={(errors) => console.log("errors", errors)}
       />
     </ShadowHost>
