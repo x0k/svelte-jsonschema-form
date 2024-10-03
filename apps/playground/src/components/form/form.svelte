@@ -1,8 +1,8 @@
-<script lang="ts" generics="T">
+<script lang="ts" generics="T, E">
   import { untrack, type Snippet } from 'svelte';
   import type { HTMLFormAttributes } from "svelte/elements";
 
-  import type { Schema, SchemaValue, Validator } from './schema';
+  import { type Schema, type SchemaValue, type Validator } from './schema';
   import type { Components } from './component';
   import type { UiSchemaRoot } from './ui-schema';
   import type { Translation } from './translation';
@@ -14,6 +14,7 @@
   import { getComponent } from './component'
   import SubmitButton from './submit-button.svelte';
   import type { Config } from './config';
+  import type { DataValidator, ValidatorError } from './data-validator';
 
   let form = $state<HTMLFormElement>()
 
@@ -29,7 +30,7 @@
 
   interface Props extends HTMLFormAttributes {
     schema: Schema
-    validator: Validator
+    validator: Validator & DataValidator<E>
     components: Components
     widgets: Widgets
     translation: Translation
@@ -42,6 +43,7 @@
     idPrefix?: string
     idSeparator?: string
     children?: Snippet
+    onErrors?: (errors: ValidatorError<E>[]) => void
   }
 
   let {
@@ -59,7 +61,8 @@
     idPrefix = "root",
     idSeparator = "_",
     children,
-    ...formProps
+    onErrors,
+    ...attributes
   }: Props = $props();
 
   $effect(() => {
@@ -70,8 +73,19 @@
     })
   })
 
+  function isValid() {
+    const errors = validator.validateFormData(schema, value as Value, uiSchema)
+    onErrors?.(errors)
+    return errors.length === 0
+  }
+
   function handleSubmit(e: SubmitEvent) {
     e.preventDefault();
+
+    if (!isValid()) {
+      return
+    }
+
     console.log(e);
   }
 
@@ -137,7 +151,7 @@
   const Field = $derived(getField(ctx, "root", config))
 </script>
 
-<Form bind:form {...formProps} onsubmit={handleSubmit} {config} >
+<Form bind:form {attributes} onsubmit={handleSubmit} {config} >
   <Field bind:value={value as Value} {config} />
   {#if children}
     {@render children()}

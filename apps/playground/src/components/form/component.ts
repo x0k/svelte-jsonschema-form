@@ -1,5 +1,9 @@
 import type { Snippet, Component as SvelteComponent } from "svelte";
-import type { HTMLAttributes, HTMLButtonAttributes } from "svelte/elements";
+import type {
+  HTMLAttributes,
+  HTMLButtonAttributes,
+  HTMLFormAttributes,
+} from "svelte/elements";
 
 import type { Get } from "@/lib/types";
 
@@ -7,6 +11,7 @@ import type { FormContext } from "./context";
 import { createMessage, type Config } from "./config";
 
 export interface FormComponentProps {
+  attributes: HTMLFormAttributes;
   form: HTMLFormElement | undefined;
   onsubmit: (e: SubmitEvent) => void;
   children: Snippet;

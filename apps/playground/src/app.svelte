@@ -116,6 +116,8 @@
         {translation}
         {readonly}
         {disabled}
+        novalidate
+        onErrors={(errors) => console.log("errors", errors)}
       />
     </ShadowHost>
   </div>

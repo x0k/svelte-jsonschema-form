@@ -68,7 +68,8 @@ export function inputAttributes(
         pattern: schema.pattern,
         min: schema.minimum,
         max: schema.maximum,
-        step: schema.multipleOf,
+        step:
+          schema.multipleOf ?? (schema.type === "number" ? "any" : undefined),
       } satisfies HTMLInputAttributes,
       type && { type },
       uiOptions?.input as HTMLInputAttributes | undefined
