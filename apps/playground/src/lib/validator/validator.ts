@@ -58,11 +58,15 @@ export class AjvValidator implements Validator, DataValidator<ErrorObject> {
     }
     return (
       errors?.map((error) => {
+        let path = error.instancePath.split("/");
+        if (path[0] === "") {
+          path = path.slice(1);
+        }
         return {
           type: ValidatorErrorType.ValidationError,
-          instanceId: this.instancePathToId(ctx, error.instancePath),
-          propertyTitle: this.errorObjectToPropertyTitle(error, ctx.uiSchema),
-          message: error.message ?? "",
+          instanceId: this.instancePathToId(ctx, path),
+          propertyTitle: this.errorObjectToPropertyTitle(error, path, ctx.uiSchema),
+          message: this.errorObjectToMessage(error, path, ctx.uiSchema),
           error,
         };
       }) ?? []
@@ -97,36 +101,41 @@ export class AjvValidator implements Validator, DataValidator<ErrorObject> {
 
   private instancePathToId(
     { idPrefix, idSeparator }: FormContext,
-    instancePath: string
+    path: string[]
   ) {
-    const path = instancePath.split("/");
-    if (path[0] === "") {
-      path[0] = idPrefix;
-    } else {
-      path.unshift(idPrefix);
-    }
-    return path.join(idSeparator);
+    return `${idPrefix}${idSeparator}${path.join(idSeparator)}`;
   }
 
-  private errorObjectToPropertyTitle(
-    { instancePath, params: { missingProperty }, parentSchema }: ErrorObject,
+  private errorObjectToMessage(
+    { params: { missingProperty }, parentSchema, message }: ErrorObject,
+    path: string[],
     uiSchema: UiSchemaRoot
   ): string {
-    const path = instancePath.split("/").slice(1);
+    if (!message) {
+      return "";
+    }
     if (missingProperty) {
-      path.push(missingProperty);
       // TODO: Write a specific `getValueByPath` function for
       // `items`, `additionalItems` and other cases
       const propertyUiSchema: UiSchema | undefined = getValueByPath(
         uiSchema,
-        path
+        path.concat(missingProperty)
       );
-      return (
+      const customPropertyTitle: string | undefined =
         propertyUiSchema?.["ui:options"]?.title ??
-        parentSchema?.properties?.[missingProperty]?.title ??
-        missingProperty
-      );
+        parentSchema?.properties?.[missingProperty]?.title;
+      if (customPropertyTitle) {
+        return message.replace(missingProperty, customPropertyTitle);
+      }
     }
+    return message;
+  }
+
+  private errorObjectToPropertyTitle(
+    { parentSchema }: ErrorObject,
+    path: string[],
+    uiSchema: UiSchemaRoot
+  ): string {
     const instanceUiSchema: UiSchema | undefined = getValueByPath(
       uiSchema,
       path
@@ -134,7 +143,7 @@ export class AjvValidator implements Validator, DataValidator<ErrorObject> {
     return (
       instanceUiSchema?.["ui:options"]?.title ??
       parentSchema?.title ??
-      instancePath
+      path.join(".")
     );
   }
 
