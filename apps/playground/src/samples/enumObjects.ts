@@ -1,7 +1,7 @@
 import type { Sample } from './Sample';
 
 const enumObjects: Sample = {
-  status: "broken",
+  status: "warnings",
   schema: {
     definitions: {
       locations: {
@@ -71,6 +71,18 @@ const enumObjects: Sample = {
       lat: 52,
       lon: 5,
     },
+    locationRadio: {
+      name: "New York",
+      lat: 40,
+      lon: 74,
+    },
+    checkboxes: [
+      {
+        name: 'Hong Kong',
+        lat: 22,
+        lon: 114,
+      }
+    ]
   },
 };
 

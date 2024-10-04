@@ -1,6 +1,8 @@
 <script lang="ts">
   import type { WidgetProps } from "@/components/form";
 
+  import { makeOptionsMapper } from './options';
+
   let {
     attributes,
     value = $bindable(),
@@ -16,25 +18,38 @@
   // Looks like inputs with `bind:` attribute are not properly controlled.
   // TODO: Figure out is it a bug or not
 
+  const { indexToValue, valueToIndex } = $derived(makeOptionsMapper(options))
+
   const guarded = {
     get value() {
-      return multiple ? value ?? [] : value
+      if (value === undefined) {
+        return multiple ? [] : -1
+      }
+      if (!multiple) {
+        return valueToIndex(value)
+      }
+      if (!Array.isArray(value)) {
+        throw new Error("Value must be an array")
+      }
+      return value.map(valueToIndex)
     },
     set value(v) {
       if (readonly) {
         return
       }
-      value = v
+      value = Array.isArray(v)
+        ? v.map(indexToValue)
+        : indexToValue(v)
     }
   }
 </script>
 
 {#snippet children()}
   {#if !multiple && config.schema.default === undefined}
-    <option value={undefined}>{attributes.placeholder}</option>
+    <option value={-1}>{attributes.placeholder}</option>
   {/if}
-  {#each options as option}
-    <option value={option.value} disabled={option.disabled} >
+  {#each options as option, index (option.value)}
+    <option value={index} disabled={option.disabled} >
       {option.label}
     </option>
   {/each}

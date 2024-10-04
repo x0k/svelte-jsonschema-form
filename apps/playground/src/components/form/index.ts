@@ -9,4 +9,5 @@ export * from "./translation";
 export * from "./templates";
 export * from "./config";
 export * from "./data-validator";
+export * from "./enum";
 export { default as Form } from "./form.svelte";
