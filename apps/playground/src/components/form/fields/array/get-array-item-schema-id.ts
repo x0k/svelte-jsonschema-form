@@ -9,14 +9,14 @@ export function getArrayItemSchemaId(
   index: number,
   value: SchemaValue | undefined
 ) {
-  const idPrefix = `${arrayIdSchema.$id}${ctx.idSeparator}${index}`;
+  const id = `${arrayIdSchema.$id}${ctx.idSeparator}${index}`;
   return toIdSchema(
     ctx.validator,
     itemSchema,
-    idPrefix,
+    ctx.idPrefix,
     ctx.idSeparator,
     [],
-    ctx.idPrefix,
+    id,
     ctx.schema,
     value
   );
