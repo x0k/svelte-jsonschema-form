@@ -22,7 +22,7 @@ export interface FormContext {
   readonly: boolean;
   idPrefix: string;
   idSeparator: string;
-  errors: Map<string, ValidationError<unknown>[]>;
+  validationErrors: Map<string, ValidationError<unknown>[]>;
 }
 
 const FORM_CONTEXT = Symbol("form-context");

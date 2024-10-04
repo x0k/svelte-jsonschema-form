@@ -43,7 +43,7 @@
     idPrefix?: string
     idSeparator?: string
     children?: Snippet
-    onErrors?: (errors: ValidatorError<E>[]) => void
+    errors?: ValidatorError<unknown>[]
   }
 
   let {
@@ -61,7 +61,7 @@
     idPrefix = "root",
     idSeparator = "_",
     children,
-    onErrors,
+    errors = $bindable([]),
     ...attributes
   }: Props = $props();
 
@@ -70,14 +70,15 @@
     untrack(() => {
       // TODO: Mutate `value` directly if it possible
       value = getDefaultFormState(ctx, schema, value as Value) as T
+      errors = []
     })
   })
 
-  let errors = $state.raw<Map<string, ValidationError<E>[]>>(new Map())
+  let validationErrors = $derived(Map.groupBy(errors.filter(e => e.type === ValidatorErrorType.ValidationError), (e) => e.instanceId))
 
   const ctx: FormContext = {
-    get errors() {
-      return errors
+    get validationErrors() {
+      return validationErrors
     },
     get schema() {
       return schema
@@ -140,10 +141,8 @@
   const Field = $derived(getField(ctx, "root", config))
 
   function isValid() {
-    const allErrors = validator.validateFormData(ctx, schema, value as Value)
-    errors = Map.groupBy(allErrors.filter(e => e.type === ValidatorErrorType.ValidationError), (e) => e.instanceId)
-    onErrors?.(allErrors)
-    return allErrors.length === 0
+    errors = validator.validateFormData(ctx, schema, value as Value)
+    return errors.length === 0
   }
 
   function handleSubmit(e: SubmitEvent) {

@@ -1,11 +1,11 @@
 <script lang="ts">
   import Ajv from "ajv";
 
-  import { components, registry as componentsRegistry } from "@/lib/components";
+  import { components } from "@/lib/components";
   import { widgets } from "@/lib/widgets";
   import { AjvValidator } from "@/lib/validator";
   import { translation } from "@/lib/translation/en";
-  import { Form, type ValidatorError } from "@/components/form";
+  import { Form, ValidatorErrorType, type ValidatorError } from "@/components/form";
   import { ShadowHost } from "@/components/shadow";
   import Github from "@/components/github.svelte";
 
@@ -45,6 +45,9 @@
   let readonly = $state(false)
   let html5Validation = $state(false)
   let errors = $state.raw<ValidatorError<any>[]>([])
+  $effect(() => {
+    console.log(errors)
+  })
 </script>
 
 <div class="py-4 px-8 min-h-screen dark:[color-scheme:dark] dark:bg-slate-900 dark:text-white">
@@ -116,8 +119,12 @@
         <div style="color: red; padding-bottom: 1rem;">
           <span style="font-size: larger; font-weight: bold;" >Errors</span>
           <ui>
-            {#each errors as err (err.message)}
-              <li>{err.message}</li>
+            {#each errors as err}
+              {#if err.type === ValidatorErrorType.ValidationError}
+                <li>'{err.propertyTitle}' {err.message}</li>
+              {:else}
+                <li>{err.message}</li>
+              {/if}
             {/each}
           </ui>
         </div>
@@ -132,11 +139,8 @@
         {translation}
         {readonly}
         {disabled}
-        novalidate={!html5Validation}
-        onErrors={(validatorErrors) => {
-          console.log("errors", validatorErrors)
-          errors = validatorErrors
-        }}
+        novalidate={!html5Validation || undefined}
+        bind:errors
       />
     </ShadowHost>
   </div>

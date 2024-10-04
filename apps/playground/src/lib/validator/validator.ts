@@ -33,7 +33,7 @@ export class AjvValidator implements Validator, DataValidator<ErrorObject> {
   validateFormData(
     ctx: FormContext,
     schema: Schema,
-    formData: SchemaValue | undefined,
+    formData: SchemaValue | undefined
   ): ValidatorError<ErrorObject>[] {
     const schemaRef = schema[ID_KEY];
     let errors: ErrorObject[] | null | undefined;
@@ -61,7 +61,8 @@ export class AjvValidator implements Validator, DataValidator<ErrorObject> {
         return {
           type: ValidatorErrorType.ValidationError,
           instanceId: this.instancePathToId(ctx, error.instancePath),
-          message: this.errorObjectToMessage(error, ctx.uiSchema),
+          propertyTitle: this.errorObjectToPropertyTitle(error, ctx.uiSchema),
+          message: error.message ?? "",
           error,
         };
       }) ?? []
@@ -94,23 +95,21 @@ export class AjvValidator implements Validator, DataValidator<ErrorObject> {
     }
   }
 
-  private instancePathToId({ idPrefix, idSeparator, }: FormContext, instancePath: string) {
-    const path = instancePath.split("/")
+  private instancePathToId(
+    { idPrefix, idSeparator }: FormContext,
+    instancePath: string
+  ) {
+    const path = instancePath.split("/");
     if (path[0] === "") {
-      path[0] = idPrefix
+      path[0] = idPrefix;
     } else {
-      path.unshift(idPrefix)
+      path.unshift(idPrefix);
     }
-    return path.join(idSeparator)
+    return path.join(idSeparator);
   }
 
-  private errorObjectToMessage(
-    {
-      instancePath,
-      message = "",
-      params: { missingProperty },
-      parentSchema,
-    }: ErrorObject,
+  private errorObjectToPropertyTitle(
+    { instancePath, params: { missingProperty }, parentSchema }: ErrorObject,
     uiSchema: UiSchemaRoot
   ): string {
     const path = instancePath.split("/").slice(1);
@@ -122,18 +121,21 @@ export class AjvValidator implements Validator, DataValidator<ErrorObject> {
         uiSchema,
         path
       );
-      const title: string | undefined =
+      return (
         propertyUiSchema?.["ui:options"]?.title ??
-        parentSchema?.properties?.[missingProperty]?.title;
-      return title ? message.replace(missingProperty, title) : message;
+        parentSchema?.properties?.[missingProperty]?.title ??
+        missingProperty
+      );
     }
     const instanceUiSchema: UiSchema | undefined = getValueByPath(
       uiSchema,
       path
     );
-    const title: string | undefined =
-      instanceUiSchema?.["ui:options"]?.title ?? parentSchema?.title;
-    return `'${title || instancePath}' ${message}`.trimEnd();
+    return (
+      instanceUiSchema?.["ui:options"]?.title ??
+      parentSchema?.title ??
+      instancePath
+    );
   }
 
   private handleRootSchemaUpdate(rootSchema: Schema) {

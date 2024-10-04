@@ -12,6 +12,7 @@ import { getFormContext } from '../context';
   const Layout = $derived(getComponent(ctx, "layout", config));
   const Title = $derived(getComponent(ctx, "title", config));
   const Description = $derived(getComponent(ctx, "description", config));
+  const ErrorsList = $derived(getComponent(ctx, "errorsList", config));
 
   const { title, description, showMeta } = $derived(getTemplateProps(config))
 </script>
@@ -31,4 +32,7 @@ import { getFormContext } from '../context';
     {@render children()}
   </Layout>
   {@render addButton?.()}
+  {#if errors.length > 0}
+    <ErrorsList {errors} {config} />
+  {/if}
 </Layout>

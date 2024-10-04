@@ -16,7 +16,7 @@ import type { ValidationError } from "./data-validator";
 export const NO_ERRORS: ValidationError<unknown>[] = [];
 
 export function getErrors(ctx: FormContext, idSchema: IdSchema<SchemaValue>) {
-  return ctx.errors.get(idSchema.$id) ?? NO_ERRORS;
+  return ctx.validationErrors.get(idSchema.$id) ?? NO_ERRORS;
 }
 
 export function sanitizeDataForNewSchema(

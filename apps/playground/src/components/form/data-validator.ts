@@ -13,6 +13,7 @@ export interface AbstractValidatorError<T extends ValidatorErrorType> {
 export interface ValidationError<E>
   extends AbstractValidatorError<ValidatorErrorType.ValidationError> {
   instanceId: string;
+  propertyTitle: string;
   message: string;
   error: E
 }
