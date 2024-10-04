@@ -8,7 +8,7 @@
   import { getArrayContext } from './context';
   import ArrayItem from './array-item.svelte';
   import { makeHandler } from './make-click-handler';
-  import { getArrayItemName } from './get-array-item-name'
+  import { getArrayItemName, getFixedArrayItemTitle, getNormalArrayItemTitle } from './get-array-item-name'
   import { getArrayItemSchemaId } from './get-array-item-schema-id'
 
   let { value = $bindable() }: { value: SchemaArrayValue | undefined } = $props()
@@ -88,7 +88,7 @@
         {index}
         config={{
           name: getArrayItemName(arrayCtx, index),
-          title: getArrayItemName(arrayCtx, index),
+          title: getFixedArrayItemTitle(arrayCtx, index),
           schema: itemSchema,
           uiSchema: itemUiSchema,
           uiOptions: getUiOptions(ctx, itemUiSchema),
