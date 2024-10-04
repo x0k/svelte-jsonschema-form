@@ -38,6 +38,7 @@
 
 {#snippet addButton()}
   <Button
+    errors={arrayCtx.errors}
     config={arrayCtx.config}
     attributes={arrayCtx.config.uiOptions?.button}
     type="array-item-add"
@@ -48,6 +49,7 @@
   />
 {/snippet}
 <Template
+  errors={arrayCtx.errors}
   config={arrayCtx.config}
   value={arrayCtx.value}
   addButton={arrayCtx.canAdd ? addButton : undefined}

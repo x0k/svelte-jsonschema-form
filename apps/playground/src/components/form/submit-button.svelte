@@ -5,7 +5,7 @@
   import { FAKE_ID_SCHEMA } from "./id-schema";
   import { getFormContext } from "./context";
   import { getComponent } from "./component";
-  import { getUiOptions } from "./utils";
+  import { getUiOptions, NO_ERRORS } from "./utils";
 
   const ctx = getFormContext();
 
@@ -35,7 +35,7 @@
   {config}
   attributes={uiOptions?.button}
   disabled={disabledOrReadonly}
-  errors={[]}
+  errors={NO_ERRORS}
 >
   {label}
 </Button>

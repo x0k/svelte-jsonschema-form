@@ -1,6 +1,5 @@
 import type { FormContext } from './context';
 import type { Schema, SchemaValue } from "./schema";
-import type { UiSchemaRoot } from "./ui-schema";
 
 export enum ValidatorErrorType {
   ValidationError = "validation-error",

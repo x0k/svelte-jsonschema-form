@@ -11,6 +11,13 @@ import {
   type SchemaValue,
 } from "./schema";
 import { toIdSchema as toIdSchemaInternal, type IdSchema } from "./id-schema";
+import type { ValidationError } from "./data-validator";
+
+export const NO_ERRORS: ValidationError<unknown>[] = [];
+
+export function getErrors(ctx: FormContext, idSchema: IdSchema<SchemaValue>) {
+  return ctx.errors.get(idSchema.$id) ?? NO_ERRORS;
+}
 
 export function sanitizeDataForNewSchema(
   ctx: FormContext,

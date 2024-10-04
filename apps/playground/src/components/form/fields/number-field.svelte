@@ -2,6 +2,7 @@
   import { getFormContext } from "../context";
   import { getTemplate } from "../templates";
   import { getWidget } from "../widgets";
+  import { getErrors } from '../utils';
 
   import type { FieldProps } from "./model";
   import { inputAttributes } from "./make-widget-attributes";
@@ -25,7 +26,7 @@
     },
   };
 
-  const errors = $derived(ctx.errors.get(config.idSchema.$id) ?? []);
+  const errors = $derived(getErrors(ctx, config.idSchema));
 </script>
 
 <Template {errors} showTitle value={redacted.value} {config}>

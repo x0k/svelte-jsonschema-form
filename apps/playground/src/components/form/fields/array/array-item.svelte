@@ -4,7 +4,7 @@
   import { getFormContext } from "../../context";
   import { getComponent } from '../../component';
   import { getTemplate } from '../../templates';
-  import { getUiOptions } from "../../utils";
+  import { getErrors, getUiOptions } from "../../utils";
 
   import { getField } from '../model';
   import { isDisabledOrReadonly } from '../is-disabled-or-readonly'
@@ -46,11 +46,13 @@
   const disabledOrReadonly = $derived(
     isDisabledOrReadonly(ctx, uiOptions?.input)
   )
+  const errors = $derived(getErrors(ctx, config.idSchema))
 </script>
 
 {#snippet buttons()}
   {#if arrayCtx.orderable}
     <Button
+      {errors}
       {config}
       type="array-item-move-up"
       disabled={disabledOrReadonly || !moveUp}
@@ -61,6 +63,7 @@
       })}
     />
     <Button
+      {errors}
       {config}
       type="array-item-move-down"
       disabled={disabledOrReadonly || !moveDown}
@@ -73,6 +76,7 @@
   {/if}
   {#if copy}
     <Button
+      {errors}
       {config}
       type="array-item-copy"
       disabled={disabledOrReadonly}
@@ -83,6 +87,7 @@
   {/if}
   {#if remove}
     <Button
+      {errors}
       {config}
       type="array-item-remove"
       disabled={disabledOrReadonly}
@@ -96,6 +101,7 @@
   {index}
   {value}
   {config}
+  {errors}
   buttons={toolbar ? buttons : undefined}
 >
   <Field bind:value {config} />

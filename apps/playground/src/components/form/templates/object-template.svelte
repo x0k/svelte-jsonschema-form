@@ -7,7 +7,7 @@ import { getFormContext } from '../context';
 
   const ctx = getFormContext()
 
-  const { config, children, addButton }: TemplateProps<"object"> = $props();
+  const { config, children, addButton, errors }: TemplateProps<"object"> = $props();
 
   const Layout = $derived(getComponent(ctx, "layout", config));
   const Title = $derived(getComponent(ctx, "title", config));
@@ -16,18 +16,18 @@ import { getFormContext } from '../context';
   const { title, description, showMeta } = $derived(getTemplateProps(config))
 </script>
 
-<Layout type="object-field" attributes={config.uiOptions?.container} {config}>
+<Layout type="object-field" attributes={config.uiOptions?.container} {config} {errors}>
   {#if showMeta && (title || description)}
-    <Layout type="object-field-meta" {config}>
+    <Layout type="object-field-meta" {config} {errors}>
       {#if title}
-        <Title type="object" forId={config.idSchema.$id} required={config.required} {config} {title} />
+        <Title type="object" forId={config.idSchema.$id} required={config.required} {config} {title} {errors} />
       {/if}
       {#if description}
-        <Description type="object" {description} {config}/>
+        <Description type="object" {description} {config} {errors}/>
       {/if}
     </Layout>
   {/if}
-  <Layout type="object-properties" attributes={config.uiOptions?.content} {config}>
+  <Layout type="object-properties" attributes={config.uiOptions?.content} {config} {errors}>
     {@render children()}
   </Layout>
   {@render addButton?.()}

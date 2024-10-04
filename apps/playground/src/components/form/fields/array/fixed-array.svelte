@@ -45,6 +45,7 @@
 
 {#snippet addButton()}
   <Button
+    errors={arrayCtx.errors}
     config={arrayCtx.config}
     type="array-item-add"
     attributes={arrayCtx.config.uiOptions?.button}
@@ -60,6 +61,7 @@
 <Template
   value={arrayCtx.value}
   config={arrayCtx.config}
+  errors={arrayCtx.errors}
   addButton={arrayCtx.canAdd && schemaAdditionalItems ? addButton : undefined}
 >
   {#if arrayCtx.value}

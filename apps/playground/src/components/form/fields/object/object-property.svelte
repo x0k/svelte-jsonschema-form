@@ -10,6 +10,7 @@
   
   import ObjectKeyInput from './object-key-input.svelte';
   import { getObjectContext } from './context';
+  import { getErrors } from '../../utils';
 
   let {
     config,
@@ -32,7 +33,7 @@
   const disabledOrReadonly = $derived(
     isDisabledOrReadonly(ctx, config.uiOptions?.input)
   )
-  const errors = $derived(ctx.errors.get(config.idSchema.$id) ?? [])
+  const errors = $derived(getErrors(ctx, config.idSchema))
 </script>
 
 {#snippet keyInput()}
@@ -63,6 +64,7 @@
   {property}
   {value}
   {config}
+  {errors}
   keyInput={isAdditional ? keyInput : undefined}
   removeButton={isAdditional ? removeButton : undefined}
 >

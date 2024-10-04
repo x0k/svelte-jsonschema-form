@@ -10,7 +10,7 @@
   import { setFromContext, type FormContext } from './context';
   import { type Fields, fields as defaultFields, getField } from './fields';
   import { type Templates, templates as defaultTemplates } from './templates';
-  import { getDefaultFormState, getUiOptions, retrieveSchema, toIdSchema } from './utils';
+  import { getDefaultFormState, getUiOptions, NO_ERRORS, retrieveSchema, toIdSchema } from './utils';
   import { getComponent } from './component'
   import SubmitButton from './submit-button.svelte';
   import type { Config } from './config';
@@ -157,7 +157,7 @@
   }
 </script>
 
-<Form bind:form {attributes} onsubmit={handleSubmit} {config} errors={[]} >
+<Form bind:form {attributes} onsubmit={handleSubmit} {config} errors={NO_ERRORS} >
   <Field bind:value={value as Value} {config} />
   {#if children}
     {@render children()}

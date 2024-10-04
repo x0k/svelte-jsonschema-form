@@ -12,6 +12,7 @@
 
 <Alert
   config={arrayCtx.config}
+  errors={arrayCtx.errors}
   type="error"
   title={ctx.translation("array-schema-missing-items")}
 >

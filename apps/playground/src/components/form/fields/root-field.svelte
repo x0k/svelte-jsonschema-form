@@ -9,7 +9,7 @@
     isFileSchema,
     mergeSchemaObjects,
   } from "../schema";
-  import { isSelect, toIdSchema } from "../utils";
+  import { getErrors, isSelect, toIdSchema } from "../utils";
 
   import { getField, type FieldProps } from "./model";
 
@@ -53,9 +53,11 @@
       ? nextIdSchema
       : mergeSchemaObjects(nextIdSchema, config.idSchema);
   });
+
+  const errors = $derived(getErrors(ctx, fieldIdSchema));
 </script>
 
-<Layout errors={[]} type="root-field" {config}>
+<Layout {errors} type="root-field" {config}>
   {#if Field}
     <Field
       bind:value

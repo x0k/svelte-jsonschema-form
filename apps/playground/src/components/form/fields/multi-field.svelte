@@ -4,7 +4,7 @@
   import { getFormContext } from "../context";
   import { getDiscriminatorFieldFromSchema, mergeSchemas } from "../schema";
   import type { UiSchema } from "../ui-schema";
-  import { getClosestMatchingOption, getDefaultFormState, getUiOptions, retrieveSchema, sanitizeDataForNewSchema } from "../utils";
+  import { getClosestMatchingOption, getDefaultFormState, getErrors, getUiOptions, retrieveSchema, sanitizeDataForNewSchema } from "../utils";
   import type { EnumOption } from "../enum";
   import { getWidget } from "../widgets";
   import type { Config } from "../config";
@@ -117,12 +117,13 @@
     };
   });
   const attributes = $derived(selectAttributes(ctx, widgetConfig));
+  const errors = $derived(getErrors(ctx, config.idSchema));
 </script>
 
-<Template {config} {value}>
+<Template {config} {value} {errors}>
   {#snippet optionSelector()}
     <Widget
-      errors={[]}
+      {errors}
       {attributes}
       config={widgetConfig}
       options={enumOptions}

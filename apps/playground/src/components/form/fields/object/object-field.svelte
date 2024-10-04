@@ -15,6 +15,7 @@
   import { getComponent } from '../../component';
   import {
     getDefaultFormState,
+    getErrors,
     getUiOptions,
     retrieveSchema,
   } from "../../utils";
@@ -71,7 +72,7 @@
     isSchemaObjectValue(retrievedSchema.additionalProperties) ? retrieveSchema(ctx, retrievedSchema.additionalProperties, value) : {}
   )
   const canExpand = $derived(config.uiOptions?.expandable !== false && isSchemaExpandable(retrievedSchema, value))
-  const errors = $derived(ctx.errors.get(config.idSchema.$id) ?? [])
+  const errors = $derived(getErrors(ctx, config.idSchema));
 </script>
 
 {#snippet addButton()}
@@ -96,6 +97,7 @@
 <Template
   {value}
   {config}
+  {errors}
   addButton={canExpand ? addButton : undefined}
 >
   {#if schemaProperties !== undefined && value !== undefined}

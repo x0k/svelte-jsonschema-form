@@ -7,7 +7,7 @@
   import { getFormContext } from "../../context";
   import type { Config } from "../../config";
   import { getWidget } from "../../widgets";
-  import { getUiOptions } from "../../utils";
+  import { getErrors, getUiOptions } from "../../utils";
   import { getTemplate } from '../../templates';
 
   import { inputAttributes } from "../make-widget-attributes";
@@ -24,7 +24,7 @@
     property: string;
     name: string;
     uiSchema: UiSchema;
-    idSchema: IdSchema<SchemaValue> | undefined;
+    idSchema: IdSchema<SchemaValue>
   } = $props();
 
   const ctx = getFormContext();
@@ -68,7 +68,7 @@
       },
     })
   );
-  const errors = $derived((idSchema && ctx.errors.get(idSchema.$id)) ?? []);
+  const errors = $derived(getErrors(ctx, config.idSchema));
 </script>
 
 <Template {errors} showTitle value={property} {config}>

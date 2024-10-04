@@ -4,7 +4,7 @@
 
   import type { TemplateProps } from './model';
 
-  const { children, optionSelector, config }: TemplateProps<"multi"> = $props()
+  const { children, optionSelector, config, errors }: TemplateProps<"multi"> = $props()
 
   const ctx = getFormContext()
 
@@ -12,11 +12,11 @@
 </script>
 
 
-<Layout type="multi-field" {config}>
-  <Layout type="multi-field-controls" {config}>
+<Layout type="multi-field" {config} {errors}>
+  <Layout type="multi-field-controls" {config} {errors}>
     {@render optionSelector()}
   </Layout>
-  <Layout type="multi-field-content" {config}>
+  <Layout type="multi-field-content" {config} {errors}>
     {@render children()}
   </Layout>
 </Layout>

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { isFixedItems } from "../../schema";
   import { getFormContext } from "../../context";
-  import { getUiOptions, isMultiSelect } from "../../utils";
+  import { getErrors, getUiOptions, isMultiSelect } from "../../utils";
 
   import type { FieldProps } from "../model";
   import { isDisabledOrReadonly } from "../is-disabled-or-readonly";
@@ -35,6 +35,7 @@
   const disabledOrReadonly = $derived(
     isDisabledOrReadonly(ctx, uiOptions?.input)
   );
+  const errors = $derived(getErrors(ctx, config.idSchema));
 
   const arrayCtx: ArrayContext = {
     get value() {
@@ -42,6 +43,9 @@
     },
     set value(v) {
       value = v;
+    },
+    get errors() {
+      return errors;
     },
     get config() {
       return config;

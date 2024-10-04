@@ -5,6 +5,7 @@
 
   import type { FieldProps } from "./model";
   import { inputAttributes } from "./make-widget-attributes";
+  import { getErrors } from '../utils';
 
   let { config, value = $bindable() }: FieldProps<"string"> = $props();
 
@@ -25,7 +26,7 @@
     },
   };
 
-  const errors = $derived(ctx.errors.get(config.idSchema.$id) ?? []);
+  const errors = $derived(getErrors(ctx, config.idSchema));
 </script>
 
 <Template showTitle value={redacted.value} {config} {errors}>

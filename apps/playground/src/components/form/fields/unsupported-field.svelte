@@ -4,6 +4,7 @@
   import { getComponent } from "../component";
 
   import type { FieldProps } from "./model";
+  import { getErrors } from '../utils';
 
   const ctx = getFormContext();
 
@@ -11,10 +12,11 @@
     $props();
 
   const Alert = $derived(getComponent(ctx, "alert", config));
+  const errors = $derived(getErrors(ctx, config.idSchema));
 </script>
 
 <Alert
-  errors={[]}
+  errors={errors}
   type="error"
   title={ctx.translation(
     "unsupported-field-type",
