@@ -30,8 +30,10 @@ import ifThenElse from "./ifThenElse";
 import customField from "./customField";
 import type { Sample } from "./Sample";
 
+const blank: Sample = { status: "perfect", schema: {}, uiSchema: {}, formData: {} };
+
 export const samples = Object.freeze({
-  Blank: { status: "perfect", schema: {}, uiSchema: {}, formData: {} },
+  Blank: blank,
   Simple: simple,
   "UI Options": options,
   Nested: nested,

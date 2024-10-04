@@ -20,7 +20,10 @@ const transformErrors: ErrorTransformer = (errors) => {
 };
 
 const validation: Sample = {
-  status: "broken",
+  // This sample is more about documentation of custom validation:
+  // 1. Custom validation may be performed is a submit handler, additional errors should be pushed into `errors` array
+  // 2. Errors transformation may be performed by overloading `validateFormData` method of `DataValidator`
+  status: "skipped",
   schema: {
     title: 'Custom validation',
     description:

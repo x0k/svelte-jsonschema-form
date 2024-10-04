@@ -1,14 +1,9 @@
-import type { Sample } from "./Sample";
-import { ErrorSchemaBuilder } from "@rjsf/utils";
+import { ValidatorErrorType } from "@/components/form";
 
-const errorSchemaBuilder = new ErrorSchemaBuilder();
-errorSchemaBuilder.addErrors(
-  "some error that got added as a prop",
-  "firstName"
-);
+import type { Sample } from "./Sample";
 
 const errorSchema: Sample = {
-  status: "broken",
+  status: "perfect",
   schema: {
     title: "A registration form",
     description: "A simple form example.",
@@ -88,8 +83,15 @@ const errorSchema: Sample = {
     bio: "Roundhouse kicking asses since 1940",
     password: "noneed",
   },
-  // TODO: ErrorSchema
-  // extraErrors: errorSchemaBuilder.ErrorSchema,
+  errors: [
+    {
+      type: ValidatorErrorType.ValidationError,
+      instanceId: "root_firstName",
+      propertyTitle: "firstName",
+      message: "some error that got added as a prop",
+      error: null,
+    },
+  ],
 };
 
 export default errorSchema;

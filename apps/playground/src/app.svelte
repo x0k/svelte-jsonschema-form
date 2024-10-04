@@ -11,6 +11,7 @@
 
   import ThemePicker from './theme-picker.svelte';
   import { samples } from "./samples";
+  import { tick } from 'svelte';
 
   function isSampleName(name: unknown): name is keyof typeof samples {
     return typeof name === "string" && name in samples
@@ -45,7 +46,7 @@
   let readonly = $state(false)
   let html5Validation = $state(false)
   let errorsList = $state(true)
-  let errors = $state.raw<ValidatorError<any>[]>([])
+  let errors = $state.raw<ValidatorError<any>[]>(samples[initialSampleName].errors ?? [])
   $effect(() => {
     console.log("errors", errors)
   })
@@ -93,6 +94,7 @@
           schema = samples[sampleName].schema;
           uiSchema = samples[sampleName].uiSchema;
           value = samples[sampleName].formData;
+          errors = samples[sampleName].errors ?? [];
         }}
       >
         {name}

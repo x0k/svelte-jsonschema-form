@@ -14,7 +14,7 @@
   import { getComponent } from './component'
   import SubmitButton from './submit-button.svelte';
   import type { Config } from './config';
-  import { ValidatorErrorType, type DataValidator, type ValidationError, type ValidatorError } from './data-validator';
+  import { ValidatorErrorType, type DataValidator, type ValidatorError } from './data-validator';
 
   let form = $state<HTMLFormElement>()
 
@@ -24,6 +24,10 @@
 
   export function reset() {
     form?.reset()
+  }
+
+  export function resetErrors() {
+    errors = [];
   }
 
   type Value = SchemaValue | undefined
@@ -70,11 +74,6 @@
     untrack(() => {
       // TODO: Mutate `value` directly if it possible
       value = getDefaultFormState(ctx, schema, value as Value) as T
-      // NOTE: While `errors.length = 0` is more efficient we use this
-      //       to handle the case with a bind to raw state.
-      if (errors.length > 0) {
-        errors = []
-      }
     })
   })
 
