@@ -5,7 +5,7 @@
 </script>
 
 <ui style="color: red;">
-  {#each errors as err (err.message)}
+  {#each errors as err}
     <li>{err.message}</li>
   {/each}
 </ui>

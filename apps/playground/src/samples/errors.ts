@@ -1,7 +1,7 @@
 import type { Sample } from "./Sample";
 
 const errors: Sample = {
-  status: "warnings",
+  status: "perfect",
   schema: {
     title: "Contextualized errors",
     type: "object",

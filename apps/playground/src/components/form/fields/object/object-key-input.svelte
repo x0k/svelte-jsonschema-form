@@ -1,7 +1,7 @@
 <script lang="ts">
   import { proxy } from "@/lib/svelte.svelte";
 
-  import type { SchemaValue } from "../../schema";
+  import type { SchemaObjectValue, SchemaValue } from "../../schema";
   import type { UiSchema } from "../../ui-schema";
   import { computeId, type IdSchema } from "../../id-schema";
   import { getFormContext } from "../../context";
@@ -20,7 +20,9 @@
     name,
     uiSchema,
     idSchema,
+    obj = $bindable(),
   }: {
+    obj: SchemaObjectValue
     property: string;
     name: string;
     uiSchema: UiSchema;
@@ -55,15 +57,8 @@
         if (!key.value || key.value === property) {
           return;
         }
-        const obj = objCtx.value;
-        if (obj === undefined) {
-          console.warn("Object value is undefined");
-          return;
-        }
         const newKey = generateNewKey(key.value, objCtx.newKeySeparator, obj);
-        // TODO: Check this variant to avoid warning
-        // obj[newKey] = $state.snapshot(obj[property]);
-        obj[newKey] = $state.snapshot(obj[property]);
+        obj[newKey] = obj[property];
         delete obj[property];
       },
     })

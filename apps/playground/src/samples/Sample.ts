@@ -1,6 +1,6 @@
 import type { Schema, SchemaValue, UiSchemaRoot, ValidatorError } from "@/components/form";
 
-type SampleStatus = "perfect" | "ok" | "broken" | "warnings" | "skipped";
+type SampleStatus = "perfect" | "broken" | "warnings" | "skipped";
 
 export interface Sample {
   status: SampleStatus;

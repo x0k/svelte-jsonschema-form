@@ -1,7 +1,7 @@
 import type { Sample } from "./Sample";
 
 const alternatives: Sample = {
-  status: "warnings",
+  status: "perfect",
   schema: {
     definitions: {
       Color: {

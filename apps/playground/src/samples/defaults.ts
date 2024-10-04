@@ -1,7 +1,7 @@
 import type { Sample } from './Sample';
 
 const defaults: Sample = {
-  status: "warnings",
+  status: "perfect",
   schema: {
     title: 'Schema default properties',
     type: 'object',

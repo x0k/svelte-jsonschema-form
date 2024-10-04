@@ -1,9 +1,6 @@
 import { getContext, setContext } from "svelte";
 
-import type { SchemaObjectValue } from "../../schema";
-
 export interface ObjectContext {
-  value: SchemaObjectValue | undefined;
   newKeySeparator: string;
 }
 

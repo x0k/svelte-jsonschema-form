@@ -4,6 +4,7 @@
     isSchemaNullable,
     isSchemaObjectValue,
     type Schema,
+    type SchemaArrayValue,
   } from "../../schema";
   import { getComponent } from '../../component';
   import { getTemplate } from '../../templates';
@@ -18,6 +19,8 @@
   import { makeHandler } from './make-click-handler';
   import { getArrayItemName, getArrayItemTitle } from './get-array-item-name'
   import { getArrayItemSchemaId } from './get-array-item-schema-id'
+
+  let { value = $bindable() }: { value: SchemaArrayValue | undefined } = $props()
 
   const ctx = getFormContext();
   const arrayCtx = getArrayContext();
@@ -43,19 +46,19 @@
     attributes={arrayCtx.config.uiOptions?.button}
     type="array-item-add"
     disabled={arrayCtx.disabledOrReadonly}
-    onclick={makeHandler(arrayCtx, (arr) => {
-      arr.push(getDefaultFormState(ctx, schemaItems, undefined))
+    onclick={makeHandler(() => {
+      value?.push(getDefaultFormState(ctx, schemaItems, undefined))
     })}
   />
 {/snippet}
 <Template
   errors={arrayCtx.errors}
   config={arrayCtx.config}
-  value={arrayCtx.value}
+  value={value}
   addButton={arrayCtx.canAdd ? addButton : undefined}
 >
-  {#if arrayCtx.value}
-    {#each arrayCtx.value as item, index}
+  {#if value}
+    {#each value as item, index}
       {@const itemSchema = retrieveSchema(ctx, schemaItems, item)}
       {@const itemIdSchema = getArrayItemSchemaId(
         ctx,
@@ -75,10 +78,11 @@
           idSchema: itemIdSchema,
           required: !isSchemaNullable(itemSchema),
         }}
-        bind:value={arrayCtx.value[index]}
+        bind:arr={value}
+        bind:value={value[index]}
         canRemove={true}
         canMoveUp={index > 0}
-        canMoveDown={index < arrayCtx.value.length - 1}
+        canMoveDown={index < value.length - 1}
       />
     {/each}
   {/if}

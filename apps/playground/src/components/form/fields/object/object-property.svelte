@@ -1,31 +1,31 @@
 <script lang="ts">
-  import type { SchemaValue } from '../../schema';
+  import type { SchemaObjectValue, SchemaValue } from '../../schema';
   import type { Config } from '../../config';
   import { getFormContext } from '../../context';
   import { getTemplate } from '../../templates';
   import { getComponent } from '../../component';
+  import { getErrors } from '../../utils';
 
   import { getField } from '../model';
   import { isDisabledOrReadonly } from '../is-disabled-or-readonly'
   
   import ObjectKeyInput from './object-key-input.svelte';
-  import { getObjectContext } from './context';
-  import { getErrors } from '../../utils';
 
   let {
     config,
     property,
     isAdditional,
     value = $bindable(),
+    obj = $bindable(),
   }: {
     config: Config,
     property: string;
     isAdditional: boolean;
     value: SchemaValue | undefined;
+    obj: SchemaObjectValue
   } = $props()
 
   const ctx = getFormContext()
-  const objCtx = getObjectContext()
 
   const Template = $derived(getTemplate(ctx, "object-property", config))
   const Field = $derived(getField(ctx, "root", config))
@@ -38,6 +38,7 @@
 
 {#snippet keyInput()}
   <ObjectKeyInput
+    bind:obj
     {property}
     name={config.name}
     uiSchema={config.uiSchema.additionalPropertyKeyInput ?? {}}
@@ -52,11 +53,7 @@
     disabled={disabledOrReadonly}
     onclick={(e) => {
       e.preventDefault();
-      if (objCtx.value === undefined) {
-        console.warn("Object value is undefined")
-        return
-      }
-      delete objCtx.value[property]
+      delete obj[property]
     }}
   />
 {/snippet}

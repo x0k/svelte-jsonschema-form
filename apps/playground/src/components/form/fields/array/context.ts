@@ -5,7 +5,6 @@ import type { Config } from '../../config';
 import type { ValidationError } from '../../data-validator';
 
 export interface ArrayContext {
-  value: SchemaArrayValue | undefined;
   config: Config<SchemaArrayValue>;
   disabledOrReadonly: boolean;
   canAdd: boolean;

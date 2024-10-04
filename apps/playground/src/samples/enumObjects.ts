@@ -1,7 +1,7 @@
 import type { Sample } from './Sample';
 
 const enumObjects: Sample = {
-  status: "warnings",
+  status: "perfect",
   schema: {
     definitions: {
       locations: {

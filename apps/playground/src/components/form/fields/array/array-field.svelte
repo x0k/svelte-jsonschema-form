@@ -8,7 +8,7 @@
 
   import { setArrayContext, type ArrayContext } from "./context";
   import UnsupportedArray from "./unsupported-array.svelte";
-  import OtherFieldArray from "./other-field-array.svelte";
+  import AnotherFieldArray from "./another-field-array.svelte";
   import FixedArray from "./fixed-array.svelte";
   import NormalArray from "./normal-array.svelte";
 
@@ -38,12 +38,6 @@
   const errors = $derived(getErrors(ctx, config.idSchema));
 
   const arrayCtx: ArrayContext = {
-    get value() {
-      return value;
-    },
-    set value(v) {
-      value = v;
-    },
     get errors() {
       return errors;
     },
@@ -75,12 +69,12 @@
 {#if config.schema.items === undefined}
   <UnsupportedArray />
 {:else if isMultiSelect(ctx, config.schema)}
-  <OtherFieldArray field="enum" />
+  <AnotherFieldArray bind:value field="enum" />
   <!-- {:else if isCustomWidget(uiSchema)} -->
 {:else if isFixedItems(config.schema)}
-  <FixedArray />
+  <FixedArray bind:value />
 {:else if isFilesArray(ctx, config.schema) && config.uiOptions?.orderable !== true}
-  <OtherFieldArray field="file" />
+  <AnotherFieldArray bind:value field="file" />
 {:else}
-  <NormalArray />
+  <NormalArray bind:value />
 {/if}

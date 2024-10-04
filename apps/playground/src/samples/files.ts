@@ -1,7 +1,7 @@
 import type { Sample } from './Sample';
 
 const files: Sample = {
-  status: "warnings",
+  status: "perfect",
   schema: {
     title: 'Files',
     type: 'object',

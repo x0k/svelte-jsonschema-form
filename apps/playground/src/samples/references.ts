@@ -1,7 +1,7 @@
 import type { Sample } from './Sample';
 
 const references: Sample = {
-  status: "warnings",
+  status: "perfect",
   schema: {
     definitions: {
       address: {

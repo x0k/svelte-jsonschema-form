@@ -1,12 +1,12 @@
 <script lang="ts">
   import { getFormContext } from "../../context";
-  import { isSchemaObjectValue, type Schema } from "../../schema";
+  import { isSchemaObjectValue, type Schema, type SchemaArrayValue } from "../../schema";
 
   import { getField } from "../model";
 
   import { getArrayContext } from "./context";
 
-  const { field }: { field: "enum" | "file" } = $props()
+  let { field, value = $bindable() }: { field: "enum" | "file", value: SchemaArrayValue | undefined } = $props()
 
   const ctx = getFormContext();
   const arrayCtx = getArrayContext();
@@ -22,7 +22,7 @@
 
 <Field
   multiple
-  bind:value={arrayCtx.value}
+  bind:value
   config={{
     ...arrayCtx.config,
     schema: schemaItems,

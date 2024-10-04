@@ -1,6 +1,6 @@
 <script lang="ts">
   import { getFormContext } from '../../context';
-  import { isSchemaNullable, isSchemaObjectValue, type Schema } from '../../schema';
+  import { isSchemaNullable, isSchemaObjectValue, type Schema, type SchemaArrayValue } from '../../schema';
   import { getComponent } from '../../component';
   import { getTemplate } from '../../templates';
   import { getDefaultFormState, getUiOptions, retrieveSchema } from '../../utils';
@@ -11,15 +11,17 @@
   import { getArrayItemName } from './get-array-item-name'
   import { getArrayItemSchemaId } from './get-array-item-schema-id'
 
+  let { value = $bindable() }: { value: SchemaArrayValue | undefined } = $props()
+
   const ctx = getFormContext();
   const arrayCtx = getArrayContext();
   $effect(() => {
-    if (arrayCtx.value === undefined) {
-      arrayCtx.value = new Array(schemaItems.length)
+    if (value === undefined) {
+      value = new Array(schemaItems.length)
       return
     }
-    if (arrayCtx.value.length < schemaItems.length) {
-      arrayCtx.value.push(...new Array(schemaItems.length - arrayCtx.value.length))
+    if (value.length < schemaItems.length) {
+      value.push(...new Array(schemaItems.length - value.length))
     }
   })
 
@@ -32,7 +34,7 @@
         if (typeof item === "boolean") {
           throw new Error("Invalid schema: items must be an array of schemas")
         }
-        return retrieveSchema(ctx, item, arrayCtx.value?.[i])
+        return retrieveSchema(ctx, item, value?.[i])
       })
       : []
   )
@@ -50,22 +52,22 @@
     type="array-item-add"
     attributes={arrayCtx.config.uiOptions?.button}
     disabled={arrayCtx.disabledOrReadonly}
-    onclick={makeHandler(arrayCtx, (arr) => {
-      if (!schemaAdditionalItems) {
+    onclick={makeHandler(() => {
+      if (!schemaAdditionalItems || value === undefined) {
         return
       }
-      arr.push(getDefaultFormState(ctx, schemaAdditionalItems, undefined))
+      value.push(getDefaultFormState(ctx, schemaAdditionalItems, undefined))
     })}
   />
 {/snippet}
 <Template
-  value={arrayCtx.value}
+  value={value}
   config={arrayCtx.config}
   errors={arrayCtx.errors}
   addButton={arrayCtx.canAdd && schemaAdditionalItems ? addButton : undefined}
 >
-  {#if arrayCtx.value}
-    {#each arrayCtx.value as item, index}
+  {#if value}
+    {#each value as item, index}
       {@const isAdditional = index >= schemaItems.length}
       {@const itemSchema = isAdditional && schemaAdditionalItems ? retrieveSchema(ctx, schemaAdditionalItems, item) : schemaItems[index]}
       {@const uiSchema = arrayCtx.config.uiSchema}
@@ -93,10 +95,11 @@
           idSchema: itemIdSchema,
           required: !isSchemaNullable(itemSchema),
         }}
-        bind:value={arrayCtx.value[index]}
+        bind:arr={value}
+        bind:value={value[index]}
         canRemove={isAdditional}
         canMoveUp={index > schemaItems.length}
-        canMoveDown={isAdditional && index < arrayCtx.value.length - 1}
+        canMoveDown={isAdditional && index < value.length - 1}
       />
     {/each}
   {/if}

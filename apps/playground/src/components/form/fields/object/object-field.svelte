@@ -42,12 +42,6 @@
   
   const newKeySeparator = $derived(config.uiOptions?.duplicateKeySuffixSeparator ?? "-")
   const objCtx: ObjectContext = {
-    get value() {
-      return value
-    },
-    set value(v) {
-      value = v
-    },
     get newKeySeparator() {
       return newKeySeparator
     }
@@ -109,6 +103,7 @@
       <ObjectProperty
         {property}
         {isAdditional}
+        bind:obj={value}
         bind:value={value[property]}
         config={{
           name: property,

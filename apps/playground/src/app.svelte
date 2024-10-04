@@ -82,7 +82,6 @@
         type="button"
         class="rounded shadow p-2"
         class:bg-green-300={sample.status === "perfect"}
-        class:bg-blue-300={sample.status === "ok"}
         class:bg-yellow-300={sample.status === "warnings"}
         class:bg-red-300={sample.status === "broken" ||
           sample.status === undefined}

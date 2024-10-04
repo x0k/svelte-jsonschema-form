@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { SchemaValue } from "../../schema";
+  import type { SchemaArrayValue, SchemaValue } from "../../schema";
   import type { Config } from '../../config';
   import { getFormContext } from "../../context";
   import { getComponent } from '../../component';
@@ -14,6 +14,7 @@
 
   let {
     index,
+    arr = $bindable(),
     value = $bindable(),
     config,
     //
@@ -21,6 +22,7 @@
     canMoveUp,
     canMoveDown,
   }: {
+    arr: SchemaArrayValue
     index: number;
     value: SchemaValue | undefined;
     config: Config<SchemaValue>;
@@ -56,7 +58,7 @@
       {config}
       type="array-item-move-up"
       disabled={disabledOrReadonly || !moveUp}
-      onclick={makeHandler(arrayCtx, (arr) => {
+      onclick={makeHandler(() => {
         const tmp = arr[index]
         arr[index] = arr[index - 1]
         arr[index - 1] = tmp
@@ -67,7 +69,7 @@
       {config}
       type="array-item-move-down"
       disabled={disabledOrReadonly || !moveDown}
-      onclick={makeHandler(arrayCtx, (arr) => {
+      onclick={makeHandler(() => {
         const tmp = arr[index]
         arr[index] = arr[index + 1]
         arr[index + 1] = tmp
@@ -80,7 +82,7 @@
       {config}
       type="array-item-copy"
       disabled={disabledOrReadonly}
-      onclick={makeHandler(arrayCtx, (arr) => {
+      onclick={makeHandler(() => {
         arr.splice(index, 0, $state.snapshot(value))
       })}
     />
@@ -91,7 +93,7 @@
       {config}
       type="array-item-remove"
       disabled={disabledOrReadonly}
-      onclick={makeHandler(arrayCtx, (arr) => {
+      onclick={makeHandler(() => {
         arr.splice(index, 1)
       })}
     />
