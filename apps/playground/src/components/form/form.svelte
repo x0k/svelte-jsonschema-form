@@ -70,7 +70,11 @@
     untrack(() => {
       // TODO: Mutate `value` directly if it possible
       value = getDefaultFormState(ctx, schema, value as Value) as T
-      errors = []
+      // NOTE: While `errors.length = 0` is more efficient we use this
+      //       to handle the case with a bind to raw state.
+      if (errors.length > 0) {
+        errors = []
+      }
     })
   })
 

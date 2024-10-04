@@ -44,14 +44,15 @@
   let disabled = $state(false)
   let readonly = $state(false)
   let html5Validation = $state(false)
+  let errorsList = $state(true)
   let errors = $state.raw<ValidatorError<any>[]>([])
   $effect(() => {
-    console.log(errors)
+    console.log("errors", errors)
   })
 </script>
 
 <div class="py-4 px-8 min-h-screen dark:[color-scheme:dark] dark:bg-slate-900 dark:text-white">
-  <div class="pb-6 flex items-center gap-4">
+  <div class="pb-6 flex flex-wrap items-center gap-4">
     <h1 class="grow text-3xl font-bold">Playground</h1>
     <label>
       <input type="checkbox" bind:checked={disabled} />
@@ -64,6 +65,10 @@
     <label>
       <input type="checkbox" bind:checked={html5Validation} />
       HTML5 validation
+    </label>
+    <label>
+      <input type="checkbox" bind:checked={errorsList} />
+      Errors list
     </label>
     <ThemePicker />
     <a target="_blank" href="https://github.com/x0k/svelte-jsonschema-form">
@@ -115,7 +120,7 @@
       </div>
     </div>
     <ShadowHost class="flex-[3] max-h-[808px] overflow-y-auto">
-      {#if errors.length > 0}
+      {#if errorsList && errors.length > 0}
         <div style="color: red; padding-bottom: 1rem;">
           <span style="font-size: larger; font-weight: bold;" >Errors</span>
           <ui>
