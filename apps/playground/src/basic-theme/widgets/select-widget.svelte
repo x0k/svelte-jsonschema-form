@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { WidgetProps } from "@/components/form";
+  import type { WidgetProps } from "@/form";
 
   import { makeOptionsMapper } from './options';
 

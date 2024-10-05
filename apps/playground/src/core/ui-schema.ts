@@ -6,10 +6,10 @@ import type {
   HTMLTextareaAttributes,
 } from "svelte/elements";
 
-import type { Component, ComponentType } from "../components/form/component";
-import type { Field, FieldType } from "../components/form/fields";
-import type { Template, TemplateType } from "../components/form/templates";
-import type { Widget, WidgetType } from "../components/form/widgets";
+import type { Component, ComponentType } from "../form/component";
+import type { Field, FieldType } from "../form/fields";
+import type { Template, TemplateType } from "../form/templates";
+import type { Widget, WidgetType } from "../form/widgets";
 import type { SchemaValue } from './schema';
 
 export type UiSchemaRoot = UiSchemaRootIndex & UiSchemaRootContent;

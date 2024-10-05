@@ -3,7 +3,7 @@
     getComponent,
     getFormContext,
     type ComponentProps,
-  } from "@/components/form";
+  } from "@/form";
 
   const { config, type, children, attributes, errors }: ComponentProps<"layout"> =
     $props();

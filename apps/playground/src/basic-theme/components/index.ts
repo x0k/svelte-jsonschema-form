@@ -1,4 +1,4 @@
-import type { Component, Components, ComponentType } from "@/components/form";
+import type { Component, Components, ComponentType } from "@/form";
 
 import FormComponent from "./form-component.svelte";
 import ButtonComponent from "./button-component.svelte";

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { ComponentProps } from '@/components/form';
+  import type { ComponentProps } from '@/form';
   
   const { children, type, attributes, disabled, onclick }: ComponentProps<"button"> = $props();
 

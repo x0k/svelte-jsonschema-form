@@ -1,35 +1,34 @@
 <script lang="ts">
-  import type { WidgetProps } from "@/components/form";
+  import type { WidgetProps } from "@/form";
 
-  import { makeOptionsMapper } from './options';
+  import { makeOptionsMapper } from "./options";
 
   let {
     attributes,
     value = $bindable(),
     options,
-  }: WidgetProps<"radio"> = $props();
+  }: WidgetProps<"checkboxes"> = $props();
 
-  const { indexToValue, valueToIndex } = $derived(makeOptionsMapper(options))
-
-  const readonly = $derived(attributes.readonly)
+  const readonly = $derived(attributes.readonly);
+  const { indexToValue, valueToIndex } = $derived(makeOptionsMapper(options));
 
   const guarder = {
     get value() {
-      return valueToIndex(value)
+      return value?.map(valueToIndex) ?? [];
     },
     set value(v) {
       if (readonly) {
-        return
+        return;
       }
-      value = indexToValue(v)
-    }
-  }
+      value = v.map(indexToValue);
+    },
+  };
 </script>
 
 {#each options as option, index (option.value)}
   <label>
     <input
-      type="radio"
+      type="checkbox"
       bind:group={guarder.value}
       value={index}
       {...attributes}

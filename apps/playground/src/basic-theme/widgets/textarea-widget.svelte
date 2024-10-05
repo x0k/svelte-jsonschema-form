@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { WidgetProps } from "@/components/form";
+  import type { WidgetProps } from "@/form";
 
   let { value = $bindable(), attributes }: WidgetProps<"textarea"> = $props();
 </script>

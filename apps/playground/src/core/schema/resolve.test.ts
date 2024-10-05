@@ -11,7 +11,7 @@ import {
 } from "vitest";
 import Ajv from "ajv";
 
-import { AjvValidator } from "@/lib/validator";
+import { AjvValidator } from "@/validator";
 import { getValueByPath } from "@/lib/object";
 
 import {

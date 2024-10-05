@@ -1,16 +1,16 @@
 <script lang="ts">
   import Ajv from "ajv";
 
-  import { components } from "@/lib/components";
-  import { widgets } from "@/lib/widgets";
-  import { AjvValidator } from "@/lib/validator";
-  import { translation } from "@/lib/translation/en";
-  import { ValidatorErrorType, type ValidatorError } from '@/core';
-  import { Form } from "@/components/form";
-  import { ShadowHost } from "@/components/shadow";
-  import Github from "@/components/github.svelte";
+  import { ValidatorErrorType, type ValidatorError } from './core';
+  import { Form } from "./form";
+  import { translation } from "./translation/en";
+  import { components, widgets } from "./basic-theme";
+  import { AjvValidator } from "./validator";
 
+  import { ShadowHost } from "./shadow";
+  import Github from "./github.svelte";
   import ThemePicker from './theme-picker.svelte';
+  
   import { samples } from "./samples";
 
   function isSampleName(name: unknown): name is keyof typeof samples {
