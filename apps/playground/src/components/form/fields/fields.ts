@@ -1,6 +1,12 @@
 import type { Field, Fields, FieldType } from "./model";
 
-import { ArrayField } from "./array";
+import {
+  ArrayField,
+  AnotherFieldArrayField,
+  NormalArrayField,
+  FixedArrayField,
+  UnsupportedArrayField,
+} from "./array";
 import { ObjectField } from "./object";
 import RootField from "./root-field.svelte";
 import NullField from "./null-field.svelte";
@@ -9,10 +15,10 @@ import StringField from "./string-field.svelte";
 import IntegerField from "./integer-field.svelte";
 import BooleanField from "./boolean-field.svelte";
 import UnsupportedField from "./unsupported-field.svelte";
-import EnumField from './enum-field.svelte';
-import HiddenField from './hidden-field.svelte';
-import FileField from './file-field.svelte';
-import MultiField from './multi-field.svelte';
+import EnumField from "./enum-field.svelte";
+import HiddenField from "./hidden-field.svelte";
+import FileField from "./file-field.svelte";
+import MultiField from "./multi-field.svelte";
 
 export const fieldsRegistry: { [T in FieldType]: Field<T> } = {
   root: RootField,
@@ -27,6 +33,10 @@ export const fieldsRegistry: { [T in FieldType]: Field<T> } = {
   string: StringField,
   object: ObjectField,
   array: ArrayField,
+  unsupportedArray: UnsupportedArrayField,
+  anotherFieldArray: AnotherFieldArrayField,
+  fixedArray: FixedArrayField,
+  normalArray: NormalArrayField,
   hidden: HiddenField,
 };
 

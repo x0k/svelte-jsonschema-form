@@ -25,7 +25,15 @@ export interface FieldAndProps<V extends SchemaValue> {
   integer: FieldCommonProps<V>;
   boolean: FieldCommonProps<V>;
   object: FieldCommonProps<V>;
+
   array: FieldCommonProps<V>;
+  unsupportedArray: FieldCommonProps<V>;
+  anotherFieldArray: FieldCommonProps<V> & {
+    field: "enum" | "file";
+  }
+  fixedArray: FieldCommonProps<V>;
+  normalArray: FieldCommonProps<V>;
+
   null: FieldCommonProps<V>;
   enum: FieldCommonProps<V> & {
     multiple?: boolean;
@@ -46,6 +54,10 @@ export interface FieldValue {
   boolean: boolean;
   object: SchemaObjectValue;
   array: SchemaArrayValue;
+  unsupportedArray: SchemaArrayValue;
+  anotherFieldArray: SchemaArrayValue;
+  fixedArray: SchemaArrayValue;
+  normalArray: SchemaArrayValue;
   null: null;
   enum: SchemaValue;
   file: string | SchemaArrayValue;

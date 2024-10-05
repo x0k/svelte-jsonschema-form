@@ -1,11 +1,8 @@
 import { getContext, setContext } from "svelte";
 
-import type { SchemaArrayValue } from "../../schema";
-import type { Config } from '../../config';
 import type { ValidationError } from '../../data-validator';
 
 export interface ArrayContext {
-  config: Config<SchemaArrayValue>;
   disabledOrReadonly: boolean;
   canAdd: boolean;
   addable: boolean;

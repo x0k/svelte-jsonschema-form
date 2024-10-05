@@ -13,6 +13,8 @@
     getUiOptions,
     retrieveSchema,
   } from "../../utils";
+  
+  import type { FieldProps } from '../model';
 
   import { getArrayContext } from "./context";
   import ArrayItem from "./array-item.svelte";
@@ -20,21 +22,21 @@
   import { getArrayItemName, getNormalArrayItemTitle } from './get-array-item-name'
   import { getArrayItemSchemaId } from './get-array-item-schema-id'
 
-  let { value = $bindable() }: { value: SchemaArrayValue | undefined } = $props()
+  let { value = $bindable(), config }: FieldProps<"normalArray"> = $props()
 
   const ctx = getFormContext();
   const arrayCtx = getArrayContext();
 
-  const Template = $derived(getTemplate(ctx, "array", arrayCtx.config));
-  const Button = $derived(getComponent(ctx, "button", arrayCtx.config));
+  const Template = $derived(getTemplate(ctx, "array", config));
+  const Button = $derived(getComponent(ctx, "button", config));
 
   const schemaItems: Schema = $derived(
-    isSchemaObjectValue(arrayCtx.config.schema.items) ? arrayCtx.config.schema.items : {}
+    isSchemaObjectValue(config.schema.items) ? config.schema.items : {}
   );
   const itemUiSchema = $derived(
-    arrayCtx.config.uiSchema.items !== undefined &&
-      !Array.isArray(arrayCtx.config.uiSchema.items)
-      ? arrayCtx.config.uiSchema.items
+    config.uiSchema.items !== undefined &&
+      !Array.isArray(config.uiSchema.items)
+      ? config.uiSchema.items
       : {}
   );
 </script>
@@ -42,8 +44,8 @@
 {#snippet addButton()}
   <Button
     errors={arrayCtx.errors}
-    config={arrayCtx.config}
-    attributes={arrayCtx.config.uiOptions?.button}
+    config={config}
+    attributes={config.uiOptions?.button}
     type="array-item-add"
     disabled={arrayCtx.disabledOrReadonly}
     onclick={makeHandler(() => {
@@ -53,7 +55,7 @@
 {/snippet}
 <Template
   errors={arrayCtx.errors}
-  config={arrayCtx.config}
+  config={config}
   value={value}
   addButton={arrayCtx.canAdd ? addButton : undefined}
 >
@@ -62,7 +64,7 @@
       {@const itemSchema = retrieveSchema(ctx, schemaItems, item)}
       {@const itemIdSchema = getArrayItemSchemaId(
         ctx,
-        arrayCtx.config.idSchema,
+        config.idSchema,
         itemSchema,
         index,
         item
@@ -70,8 +72,8 @@
       <ArrayItem
         {index}
         config={{
-          name: getArrayItemName(arrayCtx, index),
-          title: getNormalArrayItemTitle(arrayCtx, index),
+          name: getArrayItemName(config, index),
+          title: getNormalArrayItemTitle(config, index),
           schema: itemSchema,
           uiSchema: itemUiSchema,
           uiOptions: getUiOptions(ctx, itemUiSchema),

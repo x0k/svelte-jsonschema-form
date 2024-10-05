@@ -1,0 +1,29 @@
+<script lang="ts">
+  import { getFormContext } from "../../context";
+  import { isSchemaObjectValue, type Schema } from "../../schema";
+
+  import { getField, type FieldProps } from "../model";
+
+  let {
+    field,
+    value = $bindable(),
+    config,
+  }: FieldProps<"anotherFieldArray"> = $props();
+
+  const ctx = getFormContext();
+
+  const Field = $derived(getField(ctx, field, config));
+
+  const schemaItems: Schema = $derived(
+    isSchemaObjectValue(config.schema.items) ? config.schema.items : {}
+  );
+</script>
+
+<Field
+  multiple
+  bind:value
+  config={{
+    ...config,
+    schema: schemaItems,
+  }}
+/>

@@ -3,15 +3,10 @@
   import { getFormContext } from "../../context";
   import { getErrors, getUiOptions, isMultiSelect } from "../../utils";
 
-  import type { FieldProps } from "../model";
+  import { getField, type FieldProps } from "../model";
   import { isDisabledOrReadonly } from "../is-disabled-or-readonly";
 
   import { setArrayContext, type ArrayContext } from "./context";
-  import UnsupportedArray from "./unsupported-array.svelte";
-  import AnotherFieldArray from "./another-field-array.svelte";
-  import FixedArray from "./fixed-array.svelte";
-  import NormalArray from "./normal-array.svelte";
-
   import { isFilesArray } from "./is-files-array";
 
   let { value = $bindable(), config }: FieldProps<"array"> = $props();
@@ -41,9 +36,6 @@
     get errors() {
       return errors;
     },
-    get config() {
-      return config;
-    },
     get disabledOrReadonly() {
       return disabledOrReadonly;
     },
@@ -64,17 +56,27 @@
     },
   };
   setArrayContext(arrayCtx);
+
+  const [arrayField, field] = $derived.by(() => {
+    if (config.schema.items === undefined) {
+      return ["unsupportedArray", undefined] as const;
+    }
+    if (isMultiSelect(ctx, config.schema)) {
+      return ["anotherFieldArray", "enum"] as const;
+    }
+    if (isFixedItems(config.schema)) {
+      return ["fixedArray", undefined] as const;
+    }
+    if (
+      isFilesArray(ctx, config.schema) &&
+      config.uiOptions?.orderable !== true
+    ) {
+      return ["anotherFieldArray", "file"] as const;
+    }
+    return ["normalArray", undefined] as const;
+  });
+
+  const ArrayField = $derived(getField(ctx, arrayField, config));
 </script>
 
-{#if config.schema.items === undefined}
-  <UnsupportedArray />
-{:else if isMultiSelect(ctx, config.schema)}
-  <AnotherFieldArray bind:value field="enum" />
-  <!-- {:else if isCustomWidget(uiSchema)} -->
-{:else if isFixedItems(config.schema)}
-  <FixedArray bind:value />
-{:else if isFilesArray(ctx, config.schema) && config.uiOptions?.orderable !== true}
-  <AnotherFieldArray bind:value field="file" />
-{:else}
-  <NormalArray bind:value />
-{/if}
+<ArrayField bind:value {config} {field} />

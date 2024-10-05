@@ -5,8 +5,6 @@ import type {
   HTMLFormAttributes,
 } from "svelte/elements";
 
-import type { Get } from "@/lib/types";
-
 import type { FormContext } from "./context";
 import { createMessage, type Config } from "./config";
 import type { ValidationError } from './data-validator';
@@ -115,7 +113,14 @@ export interface ComponentsAndProps {
 }
 
 export interface ComponentBindings {
-  form: "form";
+  form: "form"
+  button: ""
+  layout: ""
+  alert: ""
+  title: ""
+  description: ""
+  help: ""
+  errorsList: ""
 }
 
 export type ComponentType = keyof ComponentsAndProps;
@@ -128,7 +133,7 @@ export type ComponentProps<T extends ComponentType> = ComponentsAndProps[T] & {
 export type Component<T extends ComponentType> = SvelteComponent<
   ComponentProps<T>,
   {},
-  Get<ComponentBindings, T, "">
+  ComponentBindings[T]
 >;
 
 export type Components = <T extends ComponentType>(

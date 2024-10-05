@@ -1,7 +1,7 @@
-import type { ArrayContext } from "./context";
+import type { Config } from "../../config";
 
-export function getArrayItemName(ctx: ArrayContext, index: number) {
-  return `${ctx.config.name}__${index}`;
+export function getArrayItemName(config: Config, index: number) {
+  return `${config.name}__${index}`;
 }
 
 function titleWithIndex(title: string, index: number) {
@@ -9,20 +9,14 @@ function titleWithIndex(title: string, index: number) {
 }
 
 export function getNormalArrayItemTitle(
-  { config: { uiOptions, schema, title } }: ArrayContext,
+  { uiOptions, schema, title }: Config,
   index: number
 ) {
   return titleWithIndex(uiOptions?.title ?? schema.title ?? title, index);
 }
 
 export function getFixedArrayItemTitle(
-  {
-    config: {
-      uiSchema: { items: uiItems },
-      schema: { items },
-      title,
-    },
-  }: ArrayContext,
+  { uiSchema: { items: uiItems }, schema: { items }, title }: Config,
   index: number
 ) {
   if (Array.isArray(uiItems)) {

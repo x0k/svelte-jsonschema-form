@@ -1,17 +1,19 @@
 <script lang="ts">
   import { getFormContext } from '../../context';
-  import { isSchemaNullable, isSchemaObjectValue, type Schema, type SchemaArrayValue } from '../../schema';
+  import { isSchemaNullable, isSchemaObjectValue, type Schema } from '../../schema';
   import { getComponent } from '../../component';
   import { getTemplate } from '../../templates';
   import { getDefaultFormState, getUiOptions, retrieveSchema } from '../../utils';
   
+  import type { FieldProps } from '../model';
+  
   import { getArrayContext } from './context';
   import ArrayItem from './array-item.svelte';
   import { makeHandler } from './make-click-handler';
-  import { getArrayItemName, getFixedArrayItemTitle, getNormalArrayItemTitle } from './get-array-item-name'
+  import { getArrayItemName, getFixedArrayItemTitle } from './get-array-item-name'
   import { getArrayItemSchemaId } from './get-array-item-schema-id'
 
-  let { value = $bindable() }: { value: SchemaArrayValue | undefined } = $props()
+  let { value = $bindable(), config }: FieldProps<"fixedArray"> = $props()
 
   const ctx = getFormContext();
   const arrayCtx = getArrayContext();
@@ -25,12 +27,12 @@
     }
   })
 
-  const Template = $derived(getTemplate(ctx, "array", arrayCtx.config));
-  const Button = $derived(getComponent(ctx, "button", arrayCtx.config));
+  const Template = $derived(getTemplate(ctx, "array", config));
+  const Button = $derived(getComponent(ctx, "button", config));
 
   const schemaItems = $derived(
-    Array.isArray(arrayCtx.config.schema.items)
-      ? arrayCtx.config.schema.items.map((item, i) => {
+    Array.isArray(config.schema.items)
+      ? config.schema.items.map((item, i) => {
         if (typeof item === "boolean") {
           throw new Error("Invalid schema: items must be an array of schemas")
         }
@@ -39,8 +41,8 @@
       : []
   )
   const schemaAdditionalItems: Schema | false = $derived(
-    isSchemaObjectValue(arrayCtx.config.schema?.additionalItems)
-      ? arrayCtx.config.schema.additionalItems
+    isSchemaObjectValue(config.schema?.additionalItems)
+      ? config.schema.additionalItems
       : false
   )
 </script>
@@ -48,9 +50,9 @@
 {#snippet addButton()}
   <Button
     errors={arrayCtx.errors}
-    config={arrayCtx.config}
+    {config}
     type="array-item-add"
-    attributes={arrayCtx.config.uiOptions?.button}
+    attributes={config.uiOptions?.button}
     disabled={arrayCtx.disabledOrReadonly}
     onclick={makeHandler(() => {
       if (!schemaAdditionalItems || value === undefined) {
@@ -62,7 +64,7 @@
 {/snippet}
 <Template
   value={value}
-  config={arrayCtx.config}
+  {config}
   errors={arrayCtx.errors}
   addButton={arrayCtx.canAdd && schemaAdditionalItems ? addButton : undefined}
 >
@@ -70,7 +72,7 @@
     {#each value as item, index}
       {@const isAdditional = index >= schemaItems.length}
       {@const itemSchema = isAdditional && schemaAdditionalItems ? retrieveSchema(ctx, schemaAdditionalItems, item) : schemaItems[index]}
-      {@const uiSchema = arrayCtx.config.uiSchema}
+      {@const uiSchema = config.uiSchema}
       {@const itemUiSchema = (isAdditional
         ? uiSchema.additionalItems
         : Array.isArray(uiSchema.items)
@@ -79,7 +81,7 @@
       ) ?? {}}
       {@const itemIdSchema = getArrayItemSchemaId(
         ctx,
-        arrayCtx.config.idSchema,
+        config.idSchema,
         itemSchema,
         index,
         item
@@ -87,8 +89,8 @@
       <ArrayItem
         {index}
         config={{
-          name: getArrayItemName(arrayCtx, index),
-          title: getFixedArrayItemTitle(arrayCtx, index),
+          name: getArrayItemName(config, index),
+          title: getFixedArrayItemTitle(config, index),
           schema: itemSchema,
           uiSchema: itemUiSchema,
           uiOptions: getUiOptions(ctx, itemUiSchema),
