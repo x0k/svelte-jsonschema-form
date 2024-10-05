@@ -9,7 +9,6 @@ import {
   ROOT_SCHEMA_PREFIX,
   schemaHash,
   ValidatorErrorType,
-  type DataValidator,
   type Schema,
   type SchemaDefinition,
   type SchemaValue,
@@ -22,7 +21,7 @@ import {
 const trueSchema: Schema = {};
 const falseSchema: Schema = {};
 
-export class AjvValidator implements Validator, DataValidator<ErrorObject> {
+export class AjvValidator implements Validator<ErrorObject> {
   constructor(
     private readonly ajv: Ajv,
     private readonly uiSchema: UiSchemaRoot = {},

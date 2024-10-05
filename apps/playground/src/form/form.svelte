@@ -2,7 +2,7 @@
   import { untrack, type Snippet } from 'svelte';
   import type { HTMLFormAttributes } from "svelte/elements";
 
-  import { type UiSchemaRoot, type Translation, type Schema, type SchemaValue, type Validator, ValidatorErrorType, type DataValidator, type ValidatorError, type Config } from '@/core';
+  import { type UiSchemaRoot, type Translation, type Schema, type SchemaValue, type Validator, ValidatorErrorType, type ValidatorError, type Config } from '@/core';
   
   import type { Components } from './component';
   import type { Widgets } from './widgets';
@@ -31,7 +31,7 @@
 
   interface Props extends HTMLFormAttributes {
     schema: Schema
-    validator: Validator & DataValidator<E>
+    validator: Validator<E>
     components: Components
     widgets: Widgets
     translation: Translation
