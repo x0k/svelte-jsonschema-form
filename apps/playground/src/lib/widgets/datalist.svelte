@@ -1,12 +1,17 @@
 <script lang="ts" module>
-  import { computeId, type Config } from "@/components/form";
+  import type { HTMLInputAttributes } from 'svelte/elements';
+  
+  import { type Config } from "@/components/form";
 
-  export function dataListOptions({ schema: { examples, default: defaultValue }, idSchema }: Config) {
-    if (!Array.isArray(examples)) {
+  export function makeExamples(
+    { schema: { examples, default: defaultValue } }: Config,
+    { list }: HTMLInputAttributes,
+  ) {
+    if (!Array.isArray(examples) || !list) {
       return
     }
     return {
-      id: computeId(idSchema, "examples"),
+      id: list,
       examples: defaultValue !== undefined && !examples.includes(defaultValue) ? [defaultValue].concat(examples) : examples
     }
   }
@@ -14,15 +19,15 @@
 
 <script lang="ts">
   const {
-    options
+    examples,
   }: {
-    options: ReturnType<typeof dataListOptions>
+    examples: ReturnType<typeof makeExamples>
   } = $props();
 </script>
 
-{#if options}
-  <datalist id={options.id}>
-    {#each options.examples as example (example)}
+{#if examples}
+  <datalist id={examples.id}>
+    {#each examples.examples as example (example)}
       <option value={example}></option>
     {/each}
   </datalist>

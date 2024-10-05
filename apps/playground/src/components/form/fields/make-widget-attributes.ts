@@ -9,6 +9,7 @@ import { noop } from "@/lib/function";
 
 import type { FormContext } from "../context";
 import type { Config } from "../config";
+import { computeId } from "../id-schema";
 
 interface Disabled {
   disabled: boolean;
@@ -70,6 +71,9 @@ export function inputAttributes(
         max: schema.maximum,
         step:
           schema.multipleOf ?? (schema.type === "number" ? "any" : undefined),
+        list: Array.isArray(schema.examples)
+          ? computeId(idSchema, "examples")
+          : undefined,
       } satisfies HTMLInputAttributes,
       type && { type },
       uiOptions?.input as HTMLInputAttributes | undefined
@@ -117,12 +121,4 @@ export function selectAttributes(
       uiOptions?.input as HTMLSelectAttributes | undefined
     )
   );
-}
-
-function readonlyOrDisabled<T extends Partial<Nullable<Disabled>>>(
-  ctx: FormContext,
-  obj: T
-) {
-  obj.disabled ||= ctx.disabled || ctx.readonly;
-  return obj as T & Disabled;
 }
