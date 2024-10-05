@@ -1,4 +1,4 @@
-import { ADDITIONAL_PROPERTY_FLAG, type Schema } from "../../schema";
+import { ADDITIONAL_PROPERTY_FLAG, type Schema } from "@/core";
 
 export function createOriginalKeysOrder(
   properties: Exclude<Schema["properties"], undefined>

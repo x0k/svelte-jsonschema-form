@@ -6,9 +6,11 @@ import type {
   SchemaArrayValue,
   SchemaObjectValue,
   SchemaValue,
-} from "../schema";
-import { createMessage, type Config } from "../config";
+  Config,
+} from "@/core";
+
 import type { FormContext } from "../context";
+import { createMessage } from '../error-message.svelte';
 
 export interface FieldCommonProps<V extends SchemaValue> {
   value: V | undefined;
@@ -28,9 +30,9 @@ export interface FieldAndProps<V extends SchemaValue> {
   object: FieldCommonProps<V>;
   objectProperty: FieldCommonProps<V> & {
     property: string;
-    obj: SchemaObjectValue
+    obj: SchemaObjectValue;
     isAdditional: boolean;
-  }
+  };
 
   array: FieldCommonProps<V>;
   unsupportedArray: FieldCommonProps<V>;
@@ -41,11 +43,11 @@ export interface FieldAndProps<V extends SchemaValue> {
   normalArray: FieldCommonProps<V>;
   arrayItem: FieldCommonProps<V> & {
     index: number;
-    arr: SchemaArrayValue
+    arr: SchemaArrayValue;
     canRemove: boolean;
     canMoveUp: boolean;
     canMoveDown: boolean;
-  }
+  };
 
   null: FieldCommonProps<V>;
   enum: FieldCommonProps<V> & {
@@ -94,7 +96,7 @@ export interface FieldValue {
   anotherFieldArray: SchemaArrayValue;
   fixedArray: SchemaArrayValue;
   normalArray: SchemaArrayValue;
-  arrayItem: SchemaValue
+  arrayItem: SchemaValue;
   null: null;
   enum: SchemaValue;
   file: string | SchemaArrayValue;

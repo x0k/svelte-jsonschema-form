@@ -1,10 +1,11 @@
 <script lang="ts">
-  import { getFormContext } from "../../context";
   import {
     isSchemaNullable,
     isSchemaObjectValue,
     type Schema,
-  } from "../../schema";
+  } from "@/core";
+  
+  import { getFormContext } from "../../context";
   import { getComponent } from '../../component';
   import { getTemplate } from '../../templates';
   import {

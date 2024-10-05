@@ -5,9 +5,10 @@ import type {
   HTMLFormAttributes,
 } from "svelte/elements";
 
+import type { Config, ValidationError } from '@/core';
+
 import type { FormContext } from "./context";
-import { createMessage, type Config } from "./config";
-import type { ValidationError } from './data-validator';
+import { createMessage } from './error-message.svelte';
 
 export interface FormComponentProps {
   attributes: HTMLFormAttributes;

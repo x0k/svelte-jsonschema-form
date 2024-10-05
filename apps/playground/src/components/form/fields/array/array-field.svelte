@@ -1,10 +1,11 @@
 <script lang="ts">
-  import { isFixedItems } from "../../schema";
+  import { isFixedItems } from "@/core";
+
   import { getFormContext } from "../../context";
   import { getErrors, getUiOptions, isMultiSelect } from "../../utils";
+  import { isDisabledOrReadonly } from "../../is-disabled-or-readonly";
 
   import { getField, type FieldProps } from "../model";
-  import { isDisabledOrReadonly } from "../is-disabled-or-readonly";
 
   import { setArrayContext, type ArrayContext } from "./context";
   import { isFilesArray } from "./is-files-array";

@@ -5,7 +5,7 @@
   import { getErrors, getUiOptions } from "../../utils";
 
   import { getField, type FieldProps } from '../model';
-  import { isDisabledOrReadonly } from '../is-disabled-or-readonly'
+  import { isDisabledOrReadonly } from '../../is-disabled-or-readonly'
 
   import { getArrayContext } from './context';
   import { makeHandler } from './make-click-handler';

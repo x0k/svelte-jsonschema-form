@@ -1,11 +1,11 @@
 <script lang="ts">
   import { dataURLtoBlob, fileToDataURL } from "@/lib/file";
   import { asyncProxy } from "@/lib/svelte.svelte";
+  import type { SchemaArrayValue, SchemaValue } from "@/core";
 
-  import type { SchemaArrayValue, SchemaValue } from "../schema";
+  import { getWidget } from "../widgets";
   import { getFormContext } from "../context";
   import { getTemplate } from "../templates";
-  import { getWidget } from "../widgets";
   import { getErrors } from '../utils';
 
   import type { FieldProps } from "./model";

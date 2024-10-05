@@ -1,3 +1,12 @@
+<script lang="ts" module>
+  import Message from './error-message.svelte';
+
+  export function createMessage(message: string): typeof Message {
+    return (internal) =>
+      Message(internal, { message });
+  }
+</script>
+
 <script lang="ts">
   // NOTE: `$binding()` rune is not required for the components imitation
   // because we replacing original props with the binding info

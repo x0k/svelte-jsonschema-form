@@ -2,10 +2,9 @@
   import { untrack, type Snippet } from 'svelte';
   import type { HTMLFormAttributes } from "svelte/elements";
 
-  import { type Schema, type SchemaValue, type Validator } from './schema';
+  import { type UiSchemaRoot, type Translation, type Schema, type SchemaValue, type Validator, ValidatorErrorType, type DataValidator, type ValidatorError, type Config } from '@/core';
+  
   import type { Components } from './component';
-  import type { UiSchemaRoot } from './ui-schema';
-  import type { Translation } from './translation';
   import type { Widgets } from './widgets';
   import { setFromContext, type FormContext } from './context';
   import { type Fields, fields as defaultFields, getField } from './fields';
@@ -13,8 +12,6 @@
   import { getDefaultFormState, getUiOptions, NO_ERRORS, retrieveSchema, toIdSchema } from './utils';
   import { getComponent } from './component'
   import SubmitButton from './submit-button.svelte';
-  import type { Config } from './config';
-  import { ValidatorErrorType, type DataValidator, type ValidatorError } from './data-validator';
 
   let form = $state<HTMLFormElement>()
 
@@ -144,7 +141,7 @@
   const Field = $derived(getField(ctx, "root", config))
 
   function isValid() {
-    errors = validator.validateFormData(ctx, schema, value as Value)
+    errors = validator.validateFormData(schema, value as Value)
     return errors.length === 0
   }
 

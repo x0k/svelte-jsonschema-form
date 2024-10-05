@@ -10,7 +10,6 @@ import {
   schemaHash,
   ValidatorErrorType,
   type DataValidator,
-  type FormContext,
   type Schema,
   type SchemaDefinition,
   type SchemaValue,
@@ -18,20 +17,24 @@ import {
   type UiSchemaRoot,
   type Validator,
   type ValidatorError,
-} from "@/components/form";
+} from "@/core";
 
 const trueSchema: Schema = {};
 const falseSchema: Schema = {};
 
 export class AjvValidator implements Validator, DataValidator<ErrorObject> {
-  constructor(private readonly ajv: Ajv) {}
+  constructor(
+    private readonly ajv: Ajv,
+    private readonly uiSchema: UiSchemaRoot = {},
+    private readonly idPrefix: string = "root",
+    private readonly idSeparator: string = "_"
+  ) {}
 
   reset() {
     this.ajv.removeSchema();
   }
 
   validateFormData(
-    ctx: FormContext,
     schema: Schema,
     formData: SchemaValue | undefined
   ): ValidatorError<ErrorObject>[] {
@@ -64,9 +67,9 @@ export class AjvValidator implements Validator, DataValidator<ErrorObject> {
         }
         return {
           type: ValidatorErrorType.ValidationError,
-          instanceId: this.instancePathToId(ctx, path),
-          propertyTitle: this.errorObjectToPropertyTitle(error, path, ctx.uiSchema),
-          message: this.errorObjectToMessage(error, path, ctx.uiSchema),
+          instanceId: this.instancePathToId(path),
+          propertyTitle: this.errorObjectToPropertyTitle(error, path),
+          message: this.errorObjectToMessage(error, path),
           error,
         };
       }) ?? []
@@ -99,17 +102,13 @@ export class AjvValidator implements Validator, DataValidator<ErrorObject> {
     }
   }
 
-  private instancePathToId(
-    { idPrefix, idSeparator }: FormContext,
-    path: string[]
-  ) {
-    return `${idPrefix}${idSeparator}${path.join(idSeparator)}`;
+  private instancePathToId(path: string[]) {
+    return `${this.idPrefix}${this.idSeparator}${path.join(this.idSeparator)}`;
   }
 
   private errorObjectToMessage(
     { params: { missingProperty }, parentSchema, message }: ErrorObject,
-    path: string[],
-    uiSchema: UiSchemaRoot
+    path: string[]
   ): string {
     if (!message) {
       return "";
@@ -118,7 +117,7 @@ export class AjvValidator implements Validator, DataValidator<ErrorObject> {
       // TODO: Write a specific `getValueByPath` function for
       // `items`, `additionalItems` and other cases
       const propertyUiSchema: UiSchema | undefined = getValueByPath(
-        uiSchema,
+        this.uiSchema,
         path.concat(missingProperty)
       );
       const customPropertyTitle: string | undefined =
@@ -133,11 +132,10 @@ export class AjvValidator implements Validator, DataValidator<ErrorObject> {
 
   private errorObjectToPropertyTitle(
     { parentSchema }: ErrorObject,
-    path: string[],
-    uiSchema: UiSchemaRoot
+    path: string[]
   ): string {
     const instanceUiSchema: UiSchema | undefined = getValueByPath(
-      uiSchema,
+      this.uiSchema,
       path
     );
     return (

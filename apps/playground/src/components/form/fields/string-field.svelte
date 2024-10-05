@@ -2,10 +2,10 @@
   import { getFormContext } from "../context";
   import { getTemplate } from "../templates";
   import { getWidget } from "../widgets";
+  import { getErrors } from '../utils';
 
   import type { FieldProps } from "./model";
   import { inputAttributes } from "./make-widget-attributes";
-  import { getErrors } from '../utils';
 
   let { config, value = $bindable() }: FieldProps<"string"> = $props();
 

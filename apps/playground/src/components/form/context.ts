@@ -1,13 +1,17 @@
 import { getContext, setContext } from "svelte";
 
+import type {
+  UiSchemaRoot,
+  Validator,
+  Translation,
+  Schema,
+  ValidationError,
+} from "@/core";
+
 import type { Components } from "./component";
-import type { Schema, Validator } from "./schema";
-import type { Translation } from "./translation";
-import type { UiSchemaRoot } from "./ui-schema";
 import type { Fields } from "./fields";
 import type { Widgets } from "./widgets";
 import type { Templates } from "./templates";
-import type { ValidationError } from './data-validator';
 
 export interface FormContext {
   schema: Schema;

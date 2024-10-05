@@ -6,10 +6,9 @@ import type {
 
 import type { Nullable } from "@/lib/types";
 import { noop } from "@/lib/function";
+import { type Config, computeId } from "@/core";
 
 import type { FormContext } from "../context";
-import type { Config } from "../config";
-import { computeId } from "../id-schema";
 
 interface Disabled {
   disabled: boolean;

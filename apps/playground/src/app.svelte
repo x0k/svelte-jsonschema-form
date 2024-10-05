@@ -5,13 +5,13 @@
   import { widgets } from "@/lib/widgets";
   import { AjvValidator } from "@/lib/validator";
   import { translation } from "@/lib/translation/en";
-  import { Form, ValidatorErrorType, type ValidatorError } from "@/components/form";
+  import { ValidatorErrorType, type ValidatorError } from '@/core';
+  import { Form } from "@/components/form";
   import { ShadowHost } from "@/components/shadow";
   import Github from "@/components/github.svelte";
 
   import ThemePicker from './theme-picker.svelte';
   import { samples } from "./samples";
-  import { tick } from 'svelte';
 
   function isSampleName(name: unknown): name is keyof typeof samples {
     return typeof name === "string" && name in samples
@@ -32,16 +32,17 @@
   let uiSchema = $state(samples[initialSampleName].uiSchema);
   let value = $state(samples[initialSampleName].formData);
 
-  const validator = new AjvValidator(
+  const validator = $derived(new AjvValidator(
     new Ajv({
       allErrors: true,
       multipleOfPrecision: 8,
       strict: false,
       verbose: true,
       discriminator: true,
-    })
-  );
-
+    }),
+    uiSchema
+  ));
+  
   let disabled = $state(false)
   let readonly = $state(false)
   let html5Validation = $state(false)

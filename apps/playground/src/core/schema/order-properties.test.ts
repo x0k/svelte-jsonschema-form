@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { orderProperties } from './order-properties';
 
 function fix(keys: string[]) {

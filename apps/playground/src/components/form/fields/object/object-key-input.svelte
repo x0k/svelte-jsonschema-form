@@ -1,14 +1,18 @@
 <script lang="ts">
   import { proxy } from "@/lib/svelte.svelte";
+  import {
+    type SchemaObjectValue,
+    type SchemaValue,
+    type UiSchema,
+    type IdSchema,
+    type Config,
+    computeId,
+  } from "@/core";
 
-  import type { SchemaObjectValue, SchemaValue } from "../../schema";
-  import type { UiSchema } from "../../ui-schema";
-  import { computeId, type IdSchema } from "../../id-schema";
   import { getFormContext } from "../../context";
-  import type { Config } from "../../config";
   import { getWidget } from "../../widgets";
   import { getErrors, getUiOptions } from "../../utils";
-  import { getTemplate } from '../../templates';
+  import { getTemplate } from "../../templates";
 
   import { inputAttributes } from "../make-widget-attributes";
 
@@ -22,11 +26,11 @@
     idSchema,
     obj = $bindable(),
   }: {
-    obj: SchemaObjectValue
+    obj: SchemaObjectValue;
     property: string;
     name: string;
     uiSchema: UiSchema;
-    idSchema: IdSchema<SchemaValue>
+    idSchema: IdSchema<SchemaValue>;
   } = $props();
 
   const ctx = getFormContext();
@@ -46,7 +50,7 @@
     required: true,
   });
 
-  const Template  = $derived(getTemplate(ctx, "field", config));
+  const Template = $derived(getTemplate(ctx, "field", config));
   const Widget = $derived(getWidget(ctx, "text", config));
 
   const key = proxy<string | undefined>(() => property);

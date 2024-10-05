@@ -1,6 +1,6 @@
 import type { FormContext } from "./context";
-import type { UiSchema } from "./ui-schema";
 import {
+  type UiSchema,
   isSelect as isSelectInternal,
   isMultiSelect as isMultiSelectInternal,
   retrieveSchema as retrieveSchemaInternal,
@@ -9,9 +9,10 @@ import {
   sanitizeDataForNewSchema as sanitizeDataForNewSchemaInternal,
   type Schema,
   type SchemaValue,
-} from "./schema";
-import { toIdSchema as toIdSchemaInternal, type IdSchema } from "./id-schema";
-import type { ValidationError } from "./data-validator";
+  toIdSchema as toIdSchemaInternal,
+  type IdSchema,
+  type ValidationError,
+} from "@/core";
 
 export const NO_ERRORS: ValidationError<unknown>[] = [];
 

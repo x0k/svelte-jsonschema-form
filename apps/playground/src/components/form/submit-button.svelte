@@ -1,8 +1,7 @@
 <script lang="ts">
-  import { isDisabledOrReadonly } from "./fields/is-disabled-or-readonly";
-  import type { Config } from "./config";
-  import type { UiSchema } from "./ui-schema";
-  import { FAKE_ID_SCHEMA } from "./id-schema";
+  import { type Config, type UiSchema, FAKE_ID_SCHEMA } from "@/core";
+  
+  import { isDisabledOrReadonly } from "./is-disabled-or-readonly";
   import { getFormContext } from "./context";
   import { getComponent } from "./component";
   import { getUiOptions, NO_ERRORS } from "./utils";

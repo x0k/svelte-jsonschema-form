@@ -1,14 +1,14 @@
 <script lang="ts">
+  import { isSchemaNullable, isSchemaObjectValue, type Schema } from '@/core';
+  
   import { getFormContext } from '../../context';
-  import { isSchemaNullable, isSchemaObjectValue, type Schema } from '../../schema';
   import { getComponent } from '../../component';
   import { getTemplate } from '../../templates';
   import { getDefaultFormState, getUiOptions, retrieveSchema } from '../../utils';
   
-  import type { FieldProps } from '../model';
+  import { getField, type FieldProps } from '../model';
   
   import { getArrayContext } from './context';
-  import ArrayItem from './array-item-field.svelte';
   import { makeHandler } from './make-click-handler';
   import { getArrayItemName, getFixedArrayItemTitle } from './get-array-item-name'
   import { getArrayItemSchemaId } from './get-array-item-schema-id'
@@ -27,6 +27,7 @@
     }
   })
 
+  const ArrayItem = $derived(getField(ctx, "arrayItem", config));
   const Template = $derived(getTemplate(ctx, "array", config));
   const Button = $derived(getComponent(ctx, "button", config));
 

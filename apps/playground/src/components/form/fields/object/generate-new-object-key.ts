@@ -1,4 +1,4 @@
-import type { SchemaObjectValue } from "../../schema";
+import type { SchemaObjectValue } from "@/core";
 
 export function generateNewKey(
   preferredKey: string,

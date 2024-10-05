@@ -1,4 +1,4 @@
-import type { Schema, SchemaValue, UiSchemaRoot, ValidatorError } from "@/components/form";
+import type { Schema, SchemaValue, UiSchemaRoot, ValidatorError } from "@/core";
 
 type SampleStatus = "perfect" | "broken" | "warnings" | "skipped";
 

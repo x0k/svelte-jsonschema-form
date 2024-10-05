@@ -1,4 +1,4 @@
-import { createTranslation } from "@/components/form";
+import { createTranslation } from "@/core";
 
 export const translation = createTranslation({
   submit: "Submit",

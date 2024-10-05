@@ -1,6 +1,6 @@
 import { getContext, setContext } from "svelte";
 
-import type { ValidationError } from '../../data-validator';
+import type { ValidationError } from '@/core';
 
 export interface ArrayContext {
   disabledOrReadonly: boolean;

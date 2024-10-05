@@ -1,15 +1,11 @@
 <script lang="ts">
   import { proxy } from "@/lib/svelte.svelte";
+  import { computeId, getDiscriminatorFieldFromSchema, mergeSchemas, type Config, type EnumOption, type UiSchema } from '@/core';
 
   import { getFormContext } from "../context";
-  import { getDiscriminatorFieldFromSchema, mergeSchemas } from "../schema";
-  import type { UiSchema } from "../ui-schema";
-  import { getClosestMatchingOption, getDefaultFormState, getErrors, getUiOptions, retrieveSchema, sanitizeDataForNewSchema } from "../utils";
-  import type { EnumOption } from "../enum";
-  import { getWidget } from "../widgets";
-  import type { Config } from "../config";
-  import { computeId } from "../id-schema";
   import { getTemplate } from '../templates';
+  import { getWidget } from '../widgets';
+  import { getClosestMatchingOption, getDefaultFormState, getErrors, getUiOptions, retrieveSchema, sanitizeDataForNewSchema } from "../utils";
 
   import { getField, type FieldProps } from "./model";
   import { selectAttributes } from "./make-widget-attributes";

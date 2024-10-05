@@ -1,3 +1,4 @@
+import { isRecord } from "@/lib/object";
 import type {
   SchemaArrayValue,
   SchemaObjectValue,
@@ -7,11 +8,7 @@ import type {
 export function isSchemaObjectValue(
   value: unknown
 ): value is SchemaObjectValue {
-  return (
-    typeof value === "object" && value !== null && !Array.isArray(value)
-    // !(typeof File !== "undefined" && value instanceof File) &&
-    // !(typeof Date !== "undefined" && value instanceof Date)
-  );
+  return isRecord(value);
 }
 
 export function isSchemaArrayValue(value: unknown): value is SchemaArrayValue {

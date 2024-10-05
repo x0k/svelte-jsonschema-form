@@ -5,7 +5,7 @@
   import { getErrors } from '../../utils';
 
   import { getField, type FieldProps } from '../model';
-  import { isDisabledOrReadonly } from '../is-disabled-or-readonly'
+  import { isDisabledOrReadonly } from '../../is-disabled-or-readonly'
   
   import ObjectKeyInput from './object-key-input.svelte';
 

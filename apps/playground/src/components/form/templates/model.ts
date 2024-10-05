@@ -4,10 +4,12 @@ import type {
   SchemaArrayValue,
   SchemaObjectValue,
   SchemaValue,
-} from "../schema";
-import { createMessage, type Config } from "../config";
+  Config,
+  ValidationError,
+} from "@/core";
+
 import type { FormContext } from "../context";
-import type { ValidationError } from '../data-validator';
+import { createMessage } from '../error-message.svelte';
 
 export interface TemplateCommonProps<V extends SchemaValue> {
   value: V | undefined;
@@ -44,7 +46,7 @@ export interface FieldTemplateProps extends TemplateCommonProps<SchemaValue> {
 }
 
 export interface MultiTemplateProps extends TemplateCommonProps<SchemaValue> {
-  optionSelector: Snippet
+  optionSelector: Snippet;
 }
 
 export interface TemplateAndProps {

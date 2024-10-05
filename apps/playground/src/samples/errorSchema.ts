@@ -1,4 +1,4 @@
-import { ValidatorErrorType } from "@/components/form";
+import { ValidatorErrorType } from "@/core";
 
 import type { Sample } from "./Sample";
 

@@ -1,7 +1,7 @@
 <script lang="ts">
+  import { createOptions, type Schema } from "@/core";
+  
   import { getFormContext } from "../context";
-  import { createOptions } from "../enum";
-  import { type Schema } from "../schema";
   import { getTemplate } from "../templates";
   import { getWidget } from "../widgets";
   import { getErrors } from '../utils';

@@ -1,4 +1,3 @@
-import type { FormContext } from './context';
 import type { Schema, SchemaValue } from "./schema";
 
 export enum ValidatorErrorType {
@@ -15,12 +14,12 @@ export interface ValidationError<E>
   instanceId: string;
   propertyTitle: string;
   message: string;
-  error: E
+  error: E;
 }
 
 export interface SchemaError
   extends AbstractValidatorError<ValidatorErrorType.SchemaError> {
-  message: string
+  message: string;
   error: Error;
 }
 
@@ -28,8 +27,7 @@ export type ValidatorError<E> = ValidationError<E> | SchemaError;
 
 export interface DataValidator<E> {
   validateFormData(
-    ctx: FormContext,
     schema: Schema,
-    formData: SchemaValue | undefined,
+    formData: SchemaValue | undefined
   ): ValidatorError<E>[];
 }

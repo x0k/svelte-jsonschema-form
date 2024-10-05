@@ -1,14 +1,15 @@
 <script lang="ts">
-  import { getComponent } from "../component";
-  import { getFormContext } from "../context";
-  import { FAKE_ID_SCHEMA } from "../id-schema";
   import {
+    FAKE_ID_SCHEMA,
     ANY_OF_KEY,
     getSimpleSchemaType,
     ID_KEY,
     isFileSchema,
     mergeSchemaObjects,
-  } from "../schema";
+  } from "@/core";
+
+  import { getComponent } from "../component";
+  import { getFormContext } from "../context";
   import { getErrors, isSelect, toIdSchema } from "../utils";
 
   import { getField, type FieldProps } from "./model";

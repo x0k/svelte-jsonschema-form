@@ -1,17 +1,19 @@
 <script lang="ts">
-  import { getFormContext } from "../../context";
   import {
+    type UiSchema,
     getDefaultValueForType,
     getSimpleSchemaType,
     isAdditionalProperty,
     isSchemaExpandable,
     isSchemaObjectValue,
     orderProperties,
-  } from "../../schema";
-  import type { UiSchema } from '../../ui-schema';
-  import { FAKE_ID_SCHEMA } from '../../id-schema';
+    FAKE_ID_SCHEMA
+  } from '@/core';
+  
+  import { getFormContext } from "../../context";
   import { getTemplate } from '../../templates';
   import { getComponent } from '../../component';
+  import { isDisabledOrReadonly } from '../../is-disabled-or-readonly';
   import {
     getDefaultFormState,
     getErrors,
@@ -20,7 +22,6 @@
   } from "../../utils";
 
   import { getField, type FieldProps } from "../model";
-  import { isDisabledOrReadonly } from '../is-disabled-or-readonly';
 
   import { setObjectContext, type ObjectContext } from './context';
   import { generateNewKey } from './generate-new-object-key';

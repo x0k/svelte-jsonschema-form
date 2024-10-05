@@ -1,6 +1,6 @@
 import { deepEqual } from "fast-equals";
 
-import type { EnumOption, SchemaValue } from "@/components/form";
+import type { SchemaValue, EnumOption } from "@/core";
 
 export function makeOptionsMapper(options: EnumOption<SchemaValue>[]) {
   const map = new Map(options.map((option, index) => [option.value, index]));
