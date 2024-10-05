@@ -1,7 +1,6 @@
 <script lang="ts">
   import { getFormContext } from "../../context";
   import {
-  ADDITIONAL_PROPERTY_FLAG,
     getDefaultValueForType,
     getSimpleSchemaType,
     isAdditionalProperty,
@@ -20,10 +19,9 @@
     retrieveSchema,
   } from "../../utils";
 
-  import type { FieldProps } from "../model";
+  import { getField, type FieldProps } from "../model";
   import { isDisabledOrReadonly } from '../is-disabled-or-readonly';
 
-  import ObjectProperty from './object-property.svelte';
   import { setObjectContext, type ObjectContext } from './context';
   import { generateNewKey } from './generate-new-object-key';
   import { createOriginalKeysOrder } from './create-original-keys-order';
@@ -57,6 +55,8 @@
     ? orderProperties(schemaProperties, config.uiOptions?.order ?? createOriginalKeysOrder(schemaProperties))
     : []
   );
+
+  const ObjectProperty = $derived(getField(ctx, "objectProperty", config));
   const Template = $derived(getTemplate(ctx, "object", config));
   const Button = $derived(getComponent(ctx, "button", config));
   

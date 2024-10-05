@@ -1,12 +1,10 @@
 <script lang="ts">
-  import type { SchemaArrayValue, SchemaValue } from "../../schema";
-  import type { Config } from '../../config';
   import { getFormContext } from "../../context";
   import { getComponent } from '../../component';
   import { getTemplate } from '../../templates';
   import { getErrors, getUiOptions } from "../../utils";
 
-  import { getField } from '../model';
+  import { getField, type FieldProps } from '../model';
   import { isDisabledOrReadonly } from '../is-disabled-or-readonly'
 
   import { getArrayContext } from './context';
@@ -21,16 +19,7 @@
     canRemove,
     canMoveUp,
     canMoveDown,
-  }: {
-    arr: SchemaArrayValue
-    index: number;
-    value: SchemaValue | undefined;
-    config: Config<SchemaValue>;
-
-    canRemove: boolean;
-    canMoveUp: boolean;
-    canMoveDown: boolean;
-  } = $props();
+  }: FieldProps<"arrayItem"> = $props();
 
   const ctx = getFormContext();
   const arrayCtx = getArrayContext();

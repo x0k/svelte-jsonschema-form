@@ -1,12 +1,10 @@
 <script lang="ts">
-  import type { SchemaObjectValue, SchemaValue } from '../../schema';
-  import type { Config } from '../../config';
   import { getFormContext } from '../../context';
   import { getTemplate } from '../../templates';
   import { getComponent } from '../../component';
   import { getErrors } from '../../utils';
 
-  import { getField } from '../model';
+  import { getField, type FieldProps } from '../model';
   import { isDisabledOrReadonly } from '../is-disabled-or-readonly'
   
   import ObjectKeyInput from './object-key-input.svelte';
@@ -17,13 +15,7 @@
     isAdditional,
     value = $bindable(),
     obj = $bindable(),
-  }: {
-    config: Config,
-    property: string;
-    isAdditional: boolean;
-    value: SchemaValue | undefined;
-    obj: SchemaObjectValue
-  } = $props()
+  }: FieldProps<"objectProperty"> = $props()
 
   const ctx = getFormContext()
 

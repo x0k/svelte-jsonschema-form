@@ -6,8 +6,9 @@ import {
   NormalArrayField,
   FixedArrayField,
   UnsupportedArrayField,
+  ArrayItemField,
 } from "./array";
-import { ObjectField } from "./object";
+import { ObjectField, ObjectPropertyField } from "./object";
 import RootField from "./root-field.svelte";
 import NullField from "./null-field.svelte";
 import NumberField from "./number-field.svelte";
@@ -32,11 +33,13 @@ export const fieldsRegistry: { [T in FieldType]: Field<T> } = {
   unsupported: UnsupportedField,
   string: StringField,
   object: ObjectField,
+  objectProperty: ObjectPropertyField,
   array: ArrayField,
   unsupportedArray: UnsupportedArrayField,
   anotherFieldArray: AnotherFieldArrayField,
   fixedArray: FixedArrayField,
   normalArray: NormalArrayField,
+  arrayItem: ArrayItemField,
   hidden: HiddenField,
 };
 

@@ -24,15 +24,28 @@ export interface FieldAndProps<V extends SchemaValue> {
   number: FieldCommonProps<V>;
   integer: FieldCommonProps<V>;
   boolean: FieldCommonProps<V>;
+
   object: FieldCommonProps<V>;
+  objectProperty: FieldCommonProps<V> & {
+    property: string;
+    obj: SchemaObjectValue
+    isAdditional: boolean;
+  }
 
   array: FieldCommonProps<V>;
   unsupportedArray: FieldCommonProps<V>;
   anotherFieldArray: FieldCommonProps<V> & {
     field: "enum" | "file";
-  }
+  };
   fixedArray: FieldCommonProps<V>;
   normalArray: FieldCommonProps<V>;
+  arrayItem: FieldCommonProps<V> & {
+    index: number;
+    arr: SchemaArrayValue
+    canRemove: boolean;
+    canMoveUp: boolean;
+    canMoveDown: boolean;
+  }
 
   null: FieldCommonProps<V>;
   enum: FieldCommonProps<V> & {
@@ -45,6 +58,28 @@ export interface FieldAndProps<V extends SchemaValue> {
   unsupported: FieldCommonProps<V>;
 }
 
+export interface FieldBindings {
+  root: "value";
+  multi: "value";
+  string: "value";
+  number: "value";
+  integer: "value";
+  boolean: "value";
+  object: "value";
+  objectProperty: "value" | "obj";
+  array: "value";
+  unsupportedArray: "value";
+  anotherFieldArray: "value";
+  fixedArray: "value";
+  normalArray: "value";
+  arrayItem: "value" | "arr";
+  null: "value";
+  enum: "value";
+  file: "value";
+  hidden: "value";
+  unsupported: "value";
+}
+
 export interface FieldValue {
   root: SchemaValue;
   multi: SchemaValue;
@@ -53,11 +88,13 @@ export interface FieldValue {
   integer: number;
   boolean: boolean;
   object: SchemaObjectValue;
+  objectProperty: SchemaValue;
   array: SchemaArrayValue;
   unsupportedArray: SchemaArrayValue;
   anotherFieldArray: SchemaArrayValue;
   fixedArray: SchemaArrayValue;
   normalArray: SchemaArrayValue;
+  arrayItem: SchemaValue
   null: null;
   enum: SchemaValue;
   file: string | SchemaArrayValue;
@@ -72,7 +109,7 @@ export type FieldProps<T extends FieldType> = FieldAndProps<FieldValue[T]>[T];
 export type Field<T extends FieldType> = SvelteComponent<
   FieldProps<T>,
   {},
-  "value"
+  FieldBindings[T]
 >;
 
 export type Fields = <T extends FieldType>(

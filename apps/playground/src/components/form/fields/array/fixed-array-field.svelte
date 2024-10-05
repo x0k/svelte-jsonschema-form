@@ -8,7 +8,7 @@
   import type { FieldProps } from '../model';
   
   import { getArrayContext } from './context';
-  import ArrayItem from './array-item.svelte';
+  import ArrayItem from './array-item-field.svelte';
   import { makeHandler } from './make-click-handler';
   import { getArrayItemName, getFixedArrayItemTitle } from './get-array-item-name'
   import { getArrayItemSchemaId } from './get-array-item-schema-id'
