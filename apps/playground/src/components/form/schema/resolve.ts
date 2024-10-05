@@ -426,7 +426,7 @@ export function resolveDependencies(
   stack: Set<string>,
   formData?: SchemaValue
 ): Schema[] {
-  const { [DEPENDENCIES_KEY]: dependencies, ...remainingSchema } = schema;
+  const { dependencies, ...remainingSchema } = schema;
   const resolvedSchemas = resolveAnyOrOneOfSchemas(
     validator,
     remainingSchema,
@@ -502,8 +502,7 @@ export function processDependencies(
     // Skip this dependency if its trigger property is not present.
     if (
       !expandAllBranches &&
-      isSchemaObjectValue(formData) &&
-      formData[dependencyKey] === undefined
+      (!isSchemaObjectValue(formData) || formData[dependencyKey] === undefined)
     ) {
       continue;
     }
