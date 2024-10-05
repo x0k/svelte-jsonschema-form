@@ -1,7 +1,9 @@
 import type { Sample } from './Sample';
 
 const ifThenElse: Sample = {
-  status: "warnings",
+  // NOTE: This sample produces warnings in the console as original project does.
+  // Looks like `json-schema-merge-allof` package can't properly handle `if` and `then` in `allOf`.
+  status: "perfect",
   schema: {
     type: 'object',
     properties: {
