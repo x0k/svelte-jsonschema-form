@@ -87,7 +87,9 @@
       value[newKey] = getDefaultFormState(ctx, schemaAdditionalProperties, undefined)
         ?? getDefaultValueForType(getSimpleSchemaType(schemaAdditionalProperties))
     }}
-  />
+  >
+    {ctx.translation("add-object-property")}
+  </Button>
 {/snippet}
 <Template
   {value}

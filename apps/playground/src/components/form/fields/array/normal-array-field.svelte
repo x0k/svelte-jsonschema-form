@@ -51,7 +51,9 @@
     onclick={makeHandler(() => {
       value?.push(getDefaultFormState(ctx, schemaItems, undefined))
     })}
-  />
+  >
+    {ctx.translation("add-array-item")}
+  </Button>
 {/snippet}
 <Template
   errors={arrayCtx.errors}

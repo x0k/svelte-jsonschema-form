@@ -61,7 +61,9 @@
       }
       value.push(getDefaultFormState(ctx, schemaAdditionalItems, undefined))
     })}
-  />
+  >
+    {ctx.translation("add-array-item")}
+  </Button>
 {/snippet}
 <Template
   value={value}

@@ -52,7 +52,9 @@
         arr[index] = arr[index - 1]
         arr[index - 1] = tmp
       })}
-    />
+    >
+      {ctx.translation("move-array-item-up")}
+    </Button>
     <Button
       {errors}
       {config}
@@ -63,7 +65,9 @@
         arr[index] = arr[index + 1]
         arr[index + 1] = tmp
       })}
-    />
+    >
+      {ctx.translation("move-array-item-down")}
+    </Button>
   {/if}
   {#if copy}
     <Button
@@ -74,7 +78,9 @@
       onclick={makeHandler(() => {
         arr.splice(index, 0, $state.snapshot(value))
       })}
-    />
+    >
+      {ctx.translation("copy-array-item")}
+    </Button>
   {/if}
   {#if remove}
     <Button
@@ -85,7 +91,9 @@
       onclick={makeHandler(() => {
         arr.splice(index, 1)
       })}
-    />
+    >
+      {ctx.translation("remove-array-item")}
+    </Button>
   {/if}
 {/snippet}
 <Template

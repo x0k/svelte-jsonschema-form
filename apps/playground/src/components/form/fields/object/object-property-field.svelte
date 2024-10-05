@@ -47,7 +47,9 @@
       e.preventDefault();
       delete obj[property]
     }}
-  />
+  >
+    {ctx.translation("remove-object-property")}
+  </Button>
 {/snippet}
 <Template
   {property}

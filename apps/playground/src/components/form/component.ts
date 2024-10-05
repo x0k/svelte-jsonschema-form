@@ -31,10 +31,10 @@ export interface ButtonType {
 export interface ButtonComponentProps {
   type: keyof ButtonType;
   disabled: boolean;
+  children: Snippet;
   onclick?: (e: Event) => void;
   // For submit button
   attributes?: HTMLButtonAttributes | undefined;
-  children?: Snippet;
 }
 
 export interface LayoutType {

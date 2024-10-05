@@ -8,15 +8,16 @@ export interface Labels {
   no: [];
   "multi-schema-option-label-with-title": [title: string, index: number];
   "multi-schema-option-label": [index: number];
+  "remove-object-property": []
+  "add-object-property": []
+  "remove-array-item": []
+  "copy-array-item": []
+  "move-array-item-up": []
+  "move-array-item-down": []
+  "add-array-item": []
 }
 
 export type Label = keyof Labels;
-
-type SimpleLabels = {
-  [L in Label]: Labels[L]["length"] extends 0 ? L : never;
-};
-
-export type SimpleLabel = SimpleLabels[keyof SimpleLabels];
 
 export type Translation = <L extends Label>(
   label: L,
