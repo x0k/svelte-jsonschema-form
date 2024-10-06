@@ -8,6 +8,7 @@
     "check": "svelte-check --tsconfig ./tsconfig.json && tsc -p tsconfig.node.json"
   },
   "devDependencies": {
+    "@sveltejs/package": "^2.3.5",
     "@sveltejs/vite-plugin-svelte": "^4.0.0-next.7",
     "@tsconfig/svelte": "^5.0.4",
     "@types/json-schema": "^7.0.15",
@@ -15,12 +16,14 @@
     "@types/node": "^22.7.4",
     "deep-freeze-es6": "^3.0.2",
     "json-schema": "^0.4.0",
-    "svelte": "5.0.0-next.260",
     "svelte-check": "^4.0.4",
     "tslib": "^2.7.0",
     "vite": "catalog:",
     "vite-plugin-dts": "^4.2.3",
     "vitest": "catalog:"
+  },
+  "peerDependencies": {
+    "svelte": "5.0.0-next.260"
   },
   "dependencies": {
     "ajv": "^8.17.1",
@@ -31,11 +34,9 @@
     "scheduler-polyfill": "1.3.0-beta.0"
   },
   "exports": {
-    "./lib/*": "./dist/lib/*",
-    "./core/*": "./dist/core/*",
-    ".": "./dist/form.js",
-    "./translations/*": "./dist/translations/*",
-    "./validators/*": "./dist/validators/*",
-    "./themes/*": "./dist/themes/*"
+    ".": {
+      "types": "./dist/form/index.d.ts",
+      "svelte": "./dist/form/index.js"
+    }
   }
 }

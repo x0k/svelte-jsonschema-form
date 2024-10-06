@@ -3,7 +3,7 @@
     getComponent,
     getFormContext,
     type ComponentProps,
-  } from "@/form";
+  } from "@sjsf/form";
 
   const { config, type, children, attributes, errors }: ComponentProps<"layout"> =
     $props();

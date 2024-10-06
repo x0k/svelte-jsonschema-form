@@ -1,11 +1,10 @@
 <script lang="ts">
   import Ajv from "ajv";
-
-  import { ValidatorErrorType, type ValidatorError } from './core';
-  import { Form } from "./form";
-  import { translation } from "./translation/en";
-  import { components, widgets } from "./basic-theme";
-  import { AjvValidator } from "./validator";
+  import { Form } from '@sjsf/form'
+  import { type ValidatorError, ValidatorErrorType } from '@sjsf/form/core/schema'
+  import { translation } from "@sjsf/form/translations/en";
+  import { components, widgets } from "@sjsf/form/themes/basic";
+  import { AjvValidator } from "@sjsf/form/validators/ajv";
 
   import { ShadowHost } from "./shadow";
   import Github from "./github.svelte";

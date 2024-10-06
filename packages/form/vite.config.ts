@@ -28,9 +28,6 @@ export default defineConfig({
       },
       formats: ["es"],
     },
-    rollupOptions: {
-      external: ["svelte"],
-    },
   },
   plugins: [svelte(), dts()],
   resolve: {
