@@ -6,6 +6,7 @@ dist/
 
 # generated types
 .astro/
+.svelte-kit/
 
 # dependencies
 node_modules/

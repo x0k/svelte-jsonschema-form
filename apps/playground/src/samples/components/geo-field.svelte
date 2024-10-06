@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { FieldProps } from "@/form";
+  import type { FieldProps } from "@sjsf/form";
 
   let { config, value = $bindable() }: FieldProps<"object"> = $props();
 </script>

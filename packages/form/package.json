@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "test": "vitest run",
-    "build": "vite build",
+    "build": "svelte-package",
     "check": "svelte-check --tsconfig ./tsconfig.json && tsc -p tsconfig.node.json"
   },
   "devDependencies": {
@@ -14,6 +14,7 @@
     "@types/json-schema": "^7.0.15",
     "@types/json-schema-merge-allof": "^0.6.5",
     "@types/node": "^22.7.4",
+    "ajv": "^8.17.1",
     "deep-freeze-es6": "^3.0.2",
     "json-schema": "^0.4.0",
     "svelte-check": "^4.0.4",
@@ -26,17 +27,46 @@
     "svelte": "5.0.0-next.260"
   },
   "dependencies": {
-    "ajv": "^8.17.1",
-    "ajv-formats": "^3.0.1",
     "fast-equals": "^5.0.1",
     "json-schema-merge-allof": "^0.8.1",
     "jsonpointer": "^5.0.1",
     "scheduler-polyfill": "1.3.0-beta.0"
   },
   "exports": {
+    "./lib/*": {
+      "default": "./dist/lib/*.js",
+      "svelte": "./dist/lib/*.js",
+      "types": "./dist/lib/*.d.ts"
+    },
+    "./core": {
+      "default": "./dist/core/index.js",
+      "svelte": "./dist/core/index.js",
+      "types": "./dist/core/index.d.ts"
+    },
+    "./core/*": {
+      "default": "./dist/core/*.js",
+      "svelte": "./dist/core/*.js",
+      "types": "./dist/core/*.d.ts"
+    },
     ".": {
-      "types": "./dist/form/index.d.ts",
-      "svelte": "./dist/form/index.js"
+      "default": "./dist/form/index.js",
+      "svelte": "./dist/form/index.js",
+      "types": "./dist/form/index.d.ts"
+    },
+    "./translations/*": {
+      "default": "./dist/translations/*.js",
+      "svelte": "./dist/translations/*.js",
+      "types": "./dist/translations/*.d.ts"
+    },
+    "./themes/basic": {
+      "default": "./dist/themes/basic/index.js",
+      "svelte": "./dist/themes/basic/index.js",
+      "types": "./dist/themes/basic/index.d.ts"
+    },
+    "./validators/*": {
+      "default": "./dist/validators/*.js",
+      "svelte": "./dist/validators/*.js",
+      "types": "./dist/validators/*.d.ts"
     }
   }
 }

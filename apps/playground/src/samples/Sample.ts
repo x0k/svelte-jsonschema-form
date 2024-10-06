@@ -1,4 +1,4 @@
-import type { Schema, SchemaValue, UiSchemaRoot, ValidatorError } from "@/core";
+import type { Schema, SchemaValue, ValidatorError, UiSchemaRoot } from '@sjsf/form/core';
 
 type SampleStatus = "perfect" | "broken" | "warnings" | "skipped";
 

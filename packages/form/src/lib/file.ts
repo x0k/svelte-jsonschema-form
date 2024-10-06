@@ -1,3 +1,5 @@
+import "scheduler-polyfill";
+
 const CHUNK_SIZE = 8192;
 
 export async function dataURLtoBlob(signal: AbortSignal, dataURILike: string) {

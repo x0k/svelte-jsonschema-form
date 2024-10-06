@@ -42,8 +42,7 @@ jobs:
             ${{ runner.os }}-turbo-
 
       - name: Build
-        # TODO: Switch to `build` once all build errors are fixed
-        run: pnpm run build-unsafe
+        run: pnpm run build
 
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3

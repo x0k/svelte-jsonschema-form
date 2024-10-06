@@ -3,7 +3,7 @@
   import type { Plugin } from "svelte-exmarkdown";
   import rehypeRaw from "rehype-raw";
 
-  import type { ComponentProps } from "@/form";
+  import type { ComponentProps } from "@sjsf/form";
 
   const plugins: Plugin[] = [
     { rehypePlugin: [rehypeRaw], renderer: { p: Transparent } },

@@ -29,58 +29,31 @@ importers:
 
   apps/playground:
     dependencies:
+      '@sjsf/form':
+        specifier: workspace:*
+        version: link:../../packages/form
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
-      ajv-formats:
-        specifier: ^3.0.1
-        version: 3.0.1(ajv@8.17.1)
-      fast-equals:
-        specifier: ^5.0.1
-        version: 5.0.1
-      json-schema-merge-allof:
-        specifier: ^0.8.1
-        version: 0.8.1
-      jsonpointer:
-        specifier: ^5.0.1
-        version: 5.0.1
       rehype-raw:
         specifier: ^7.0.0
         version: 7.0.0
-      scheduler-polyfill:
-        specifier: 1.3.0-beta.0
-        version: 1.3.0-beta.0
       svelte-exmarkdown:
         specifier: ^3.0.5
         version: 3.0.5(svelte@5.0.0-next.260)
     devDependencies:
-      '@sjsf/form':
-        specifier: workspace:*
-        version: link:../../packages/form
       '@sveltejs/vite-plugin-svelte':
         specifier: ^4.0.0-next.7
         version: 4.0.0-next.7(svelte@5.0.0-next.260)(vite@5.4.8(@types/node@22.7.4))
       '@tsconfig/svelte':
         specifier: ^5.0.4
         version: 5.0.4
-      '@types/json-schema':
-        specifier: ^7.0.15
-        version: 7.0.15
-      '@types/json-schema-merge-allof':
-        specifier: ^0.6.5
-        version: 0.6.5
       '@types/node':
         specifier: ^22.7.4
         version: 22.7.4
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.4.47)
-      deep-freeze-es6:
-        specifier: ^3.0.2
-        version: 3.0.2
-      json-schema:
-        specifier: ^0.4.0
-        version: 0.4.0
       postcss:
         specifier: ^8.4.47
         version: 8.4.47
@@ -105,12 +78,6 @@ importers:
 
   packages/form:
     dependencies:
-      ajv:
-        specifier: ^8.17.1
-        version: 8.17.1
-      ajv-formats:
-        specifier: ^3.0.1
-        version: 3.0.1(ajv@8.17.1)
       fast-equals:
         specifier: ^5.0.1
         version: 5.0.1
@@ -145,6 +112,9 @@ importers:
       '@types/node':
         specifier: ^22.7.4
         version: 22.7.4
+      ajv:
+        specifier: ^8.17.1
+        version: 8.17.1
       deep-freeze-es6:
         specifier: ^3.0.2
         version: 3.0.2
@@ -2239,10 +2209,6 @@ snapshots:
   ajv-formats@3.0.1(ajv@8.13.0):
     optionalDependencies:
       ajv: 8.13.0
-
-  ajv-formats@3.0.1(ajv@8.17.1):
-    optionalDependencies:
-      ajv: 8.17.1
 
   ajv@8.12.0:
     dependencies:

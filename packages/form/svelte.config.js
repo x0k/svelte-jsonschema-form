@@ -5,8 +5,11 @@ export default {
   // for more information about preprocessors
   preprocess: vitePreprocess(),
   kit: {
+    files: {
+      lib: "src",
+    },
     alias: {
-      "@/*": "src/*",
+      "@/": "./src/",
     }
   },
   compilerOptions: {
