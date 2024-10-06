@@ -1,9 +1,8 @@
 {
-  "name": "root",
-  "version": "0.0.0",
+  "name": "svelte-jsonschema-form",
+  "private": true,
   "author": "Krasilnikov Roman",
   "license": "MIT",
-  "private": true,
   "type": "module",
   "packageManager": "pnpm@9.9.0",
   "scripts": {

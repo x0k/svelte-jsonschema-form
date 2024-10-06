@@ -1,13 +1,10 @@
 {
-  "name": "playground",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@sjsf/form",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "vite",
     "test": "vitest run",
     "build": "vite build",
-    "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json && tsc -p tsconfig.node.json"
   },
   "devDependencies": {
@@ -16,15 +13,13 @@
     "@types/json-schema": "^7.0.15",
     "@types/json-schema-merge-allof": "^0.6.5",
     "@types/node": "^22.7.4",
-    "autoprefixer": "^10.4.20",
     "deep-freeze-es6": "^3.0.2",
     "json-schema": "^0.4.0",
-    "postcss": "^8.4.47",
     "svelte": "5.0.0-next.260",
     "svelte-check": "^4.0.4",
-    "tailwindcss": "^3.4.13",
     "tslib": "^2.7.0",
     "vite": "catalog:",
+    "vite-plugin-dts": "^4.2.3",
     "vitest": "catalog:"
   },
   "dependencies": {
@@ -33,8 +28,14 @@
     "fast-equals": "^5.0.1",
     "json-schema-merge-allof": "^0.8.1",
     "jsonpointer": "^5.0.1",
-    "rehype-raw": "^7.0.0",
-    "scheduler-polyfill": "1.3.0-beta.0",
-    "svelte-exmarkdown": "^3.0.5"
+    "scheduler-polyfill": "1.3.0-beta.0"
+  },
+  "exports": {
+    "./lib/*": "./dist/lib/*",
+    "./core/*": "./dist/core/*",
+    ".": "./dist/form.js",
+    "./translations/*": "./dist/translations/*",
+    "./validators/*": "./dist/validators/*",
+    "./themes/*": "./dist/themes/*"
   }
 }

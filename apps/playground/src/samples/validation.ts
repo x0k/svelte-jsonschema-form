@@ -1,5 +1,4 @@
 import type { Sample } from './Sample';
-import type { ErrorTransformer } from '@rjsf/utils';
 
 function customValidate({ pass1, pass2 }: { pass1: string; pass2: string }, errors: any) {
   if (pass1 !== pass2) {
@@ -8,7 +7,7 @@ function customValidate({ pass1, pass2 }: { pass1: string; pass2: string }, erro
   return errors;
 }
 
-const transformErrors: ErrorTransformer = (errors) => {
+const transformErrors = (errors: Record<string, unknown>[]) => {
   return errors.map((error) => {
     if (error.name === 'minimum' && error.schemaPath === '#/properties/age/minimum') {
       return Object.assign({}, error, {
