@@ -1,47 +1,76 @@
-import type { Sample } from './Sample';
+import { AjvValidator } from "@sjsf/form/validators/ajv";
 
-function customValidate({ pass1, pass2 }: { pass1: string; pass2: string }, errors: any) {
+import type { Sample } from "./Sample";
+import {
+  ValidatorErrorType,
+  type Schema,
+  type SchemaValue,
+  type ValidatorError,
+} from "@sjsf/form/core";
+import type { ErrorObject } from "ajv";
+
+function customValidate(value: SchemaValue | undefined): ValidatorError<unknown>[] {
+  const { pass1, pass2 } = value as {
+    pass1: string;
+    pass2: string;
+  };
   if (pass1 !== pass2) {
-    errors.pass2.addError("Passwords don't match.");
+    return [
+      {
+        type: ValidatorErrorType.ValidationError,
+        error: null,
+        instanceId: "root_pass2",
+        propertyTitle: "Repeat password",
+        message: "Passwords don't match.",
+      },
+    ];
   }
-  return errors;
+  return [];
 }
 
-const transformErrors = (errors: Record<string, unknown>[]) => {
-  return errors.map((error) => {
-    if (error.name === 'minimum' && error.schemaPath === '#/properties/age/minimum') {
-      return Object.assign({}, error, {
-        message: 'You need to be 18 because of some legal thing',
-      });
-    }
-    return error;
-  });
-};
+class CustomAjvValidator extends AjvValidator {
+  validateFormData(
+    schema: Schema,
+    formData: SchemaValue | undefined
+  ): ValidatorError<ErrorObject>[] {
+    return super.validateFormData(schema, formData).map((error) => {
+      if (error.type === ValidatorErrorType.SchemaError) {
+        return error;
+      }
+      if (
+        error.error.keyword === "minimum" &&
+        error.error.schemaPath === "#/properties/age/minimum"
+      ) {
+        return Object.assign({}, error, {
+          message: "You need to be 18 because of some legal thing",
+        });
+      }
+      return error;
+    });
+  }
+}
 
 const validation: Sample = {
-  // This sample is more about documentation of custom validation:
-  // 1. Custom validation may be performed is a submit handler, additional errors should be pushed into `errors` array
-  // 2. Errors transformation may be performed by overloading `validateFormData` method of `DataValidator`
-  status: "skipped",
+  status: "perfect",
   schema: {
-    title: 'Custom validation',
+    title: "Custom validation",
     description:
-      'This form defines custom validation rules checking that the two passwords match. There is also a custom validation message when submitting an age < 18, which can only be seen if HTML5 validation is turned off.',
-    type: 'object',
+      "This form defines custom validation rules checking that the two passwords match. There is also a custom validation message when submitting an age < 18, which can only be seen if HTML5 validation is turned off.",
+    type: "object",
     properties: {
       pass1: {
-        title: 'Password',
-        type: 'string',
+        title: "Password",
+        type: "string",
         minLength: 3,
       },
       pass2: {
-        title: 'Repeat password',
-        type: 'string',
+        title: "Repeat password",
+        type: "string",
         minLength: 3,
       },
       age: {
-        title: 'Age',
-        type: 'number',
+        title: "Age",
+        type: "number",
         minimum: 18,
       },
     },
@@ -51,9 +80,8 @@ const validation: Sample = {
     pass2: { "ui:options": { input: { type: "password" } } },
   },
   formData: {},
-  // TODO: support for custom validation and transform errors
-  // customValidate,
-  // transformErrors,
+  Validator: CustomAjvValidator,
+  validate: customValidate,
 };
 
 export default validation;

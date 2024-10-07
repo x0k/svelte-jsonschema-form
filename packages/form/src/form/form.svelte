@@ -48,6 +48,8 @@
     idSeparator?: string
     children?: Snippet
     errors?: ValidatorError<unknown>[]
+    onSubmit?: (value: T | undefined, e: SubmitEvent) => void
+    onSubmitError?: (errors: ValidatorError<unknown>[], e: SubmitEvent) => void
   }
 
   let {
@@ -66,6 +68,8 @@
     idSeparator = "_",
     children,
     errors = $bindable([]),
+    onSubmit,
+    onSubmitError,
     ...attributes
   }: Props = $props();
 
@@ -143,19 +147,18 @@
   const Form = $derived(getComponent(ctx, "form", config))
   const Field = $derived(getField(ctx, "root", config))
 
-  function isValid() {
-    errors = validator.validateFormData(schema, value as Value)
-    return errors.length === 0
+  export function validate() {
+    return validator.validateFormData(schema, value as Value)
   }
 
   function handleSubmit(e: SubmitEvent) {
     e.preventDefault();
-
-    if (!isValid()) {
+    errors = validate();
+    if (errors.length === 0) {
+      onSubmit?.($state.snapshot(value) as T | undefined, e)
       return
     }
-
-    console.log(e);
+    onSubmitError?.(errors, e)
   }
 </script>
 

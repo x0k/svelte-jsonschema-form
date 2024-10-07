@@ -11,6 +11,12 @@ t:
 b:
   pnpm run build
 
+f/:
+  pushd packages/form
+  b:
+    pnpm run build
+  popd
+
 p:
   pnpm run preview
 

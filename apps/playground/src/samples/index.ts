@@ -27,7 +27,6 @@ import errorSchema from "./errorSchema";
 import defaults from "./defaults";
 import options from "./options";
 import ifThenElse from "./ifThenElse";
-import customField from "./customField";
 import type { Sample } from "./Sample";
 
 const blank: Sample = { status: "perfect", schema: {}, uiSchema: {}, formData: {} };
@@ -63,5 +62,4 @@ export const samples = Object.freeze({
   Nullable: nullable,
   ErrorSchema: errorSchema,
   Defaults: defaults,
-  "Custom Field": customField,
 } satisfies Record<string, Sample>);

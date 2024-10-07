@@ -1,7 +1,7 @@
 <script lang="ts">
   import Ajv from "ajv";
   import { Form } from '@sjsf/form'
-  import { type ValidatorError, ValidatorErrorType } from '@sjsf/form/core';
+  import { type SchemaValue, type ValidatorError, ValidatorErrorType } from '@sjsf/form/core';
   import { translation } from "@sjsf/form/translations/en";
   import { theme } from "@sjsf/form/themes/basic";
   import { AjvValidator } from "@sjsf/form/validators/ajv";
@@ -31,7 +31,7 @@
   let uiSchema = $state(samples[initialSampleName].uiSchema);
   let value = $state(samples[initialSampleName].formData);
 
-  const validator = $derived(new AjvValidator(
+  const validator = $derived(new (samples[sampleName].Validator ?? AjvValidator)(
     new Ajv({
       allErrors: true,
       multipleOfPrecision: 8,
@@ -47,9 +47,8 @@
   let html5Validation = $state(false)
   let errorsList = $state(true)
   let errors = $state.raw<ValidatorError<any>[]>(samples[initialSampleName].errors ?? [])
-  $effect(() => {
-    console.log("errors", errors)
-  })
+
+  let form: Form<SchemaValue, unknown>
 </script>
 
 <div class="py-4 px-8 min-h-screen dark:[color-scheme:dark] dark:bg-slate-900 dark:text-white">
@@ -136,6 +135,7 @@
         </div>
       {/if}
       <Form
+        bind:this={form}
         bind:value
         {...theme}
         {schema}
@@ -146,6 +146,15 @@
         {disabled}
         novalidate={!html5Validation || undefined}
         bind:errors
+        onsubmit={(e) => {
+          e.preventDefault();
+          errors = form.validate().concat(samples[sampleName].validate?.(value) ?? [])
+          if (errors.length > 0) {
+            console.log("errors", $state.snapshot(errors))
+            return
+          }
+          console.log("submit", $state.snapshot(value))
+        }}
       />
     </ShadowHost>
   </div>
