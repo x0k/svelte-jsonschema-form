@@ -1,3 +1,7 @@
+// This file was copied and modified from https://github.com/rjsf-team/react-jsonschema-form/blob/f4229bf6e067d31b24de3ef9d3ca754ee52529ac/packages/utils/src/optionsList.ts
+// Licensed under the Apache License, Version 2.0.
+// Modifications made by Roman Krasilnikov.
+
 import type { Schema, SchemaDefinition, SchemaValue } from "./schema";
 import { getSchemaConstantValue } from "./schema/constant-schema";
 import type { UiOptions, UiSchema } from "./ui-schema";

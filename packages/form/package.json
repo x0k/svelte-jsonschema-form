@@ -1,6 +1,7 @@
 {
   "name": "@sjsf/form",
   "version": "0.0.1",
+  "license": "(MIT AND Apache-2.0)",
   "type": "module",
   "scripts": {
     "test": "vitest run --exclude '.svelte-kit/**'",

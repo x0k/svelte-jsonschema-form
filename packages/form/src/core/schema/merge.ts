@@ -1,54 +1,19 @@
+// This file was copied and modified from https://github.com/rjsf-team/react-jsonschema-form/blob/f4229bf6e067d31b24de3ef9d3ca754ee52529ac/packages/utils/src/mergeObjects.ts
+// Licensed under the Apache License, Version 2.0.
+// Modifications made by Roman Krasilnikov.
+
 import {
-  ADDITIONAL_ITEMS_KEY,
-  ADDITIONAL_PROPERTIES_KEY,
-  ALL_OF_KEY,
-  ANY_OF_KEY,
-  CONTAINS_KEY,
-  DEFINITIONS_KEY,
-  DEFS_KEY,
+  ARRAYS_OF_SUB_SCHEMAS,
   DEPENDENCIES_KEY,
-  ELSE_KEY,
-  IF_KEY,
   ITEMS_KEY,
-  NOT_KEY,
-  ONE_OF_KEY,
-  PATTERN_PROPERTIES_KEY,
-  PROPERTIES_KEY,
-  PROPERTY_NAMES_KEY,
+  RECORDS_OF_SUB_SCHEMAS,
   REQUIRED_KEY,
-  THEN_KEY,
+  SUB_SCHEMAS,
   type Schema,
   type SchemaDefinition,
   type SchemaObjectValue,
 } from "./schema";
 import { isSchemaObjectValue } from "./value";
-
-const SUB_SCHEMAS = [
-  // ITEMS_KEY,
-  ADDITIONAL_ITEMS_KEY,
-  CONTAINS_KEY,
-  ADDITIONAL_PROPERTIES_KEY,
-  PROPERTY_NAMES_KEY,
-  IF_KEY,
-  THEN_KEY,
-  ELSE_KEY,
-  NOT_KEY,
-] as const;
-
-const RECORDS_OF_SUB_SCHEMAS = [
-  DEFS_KEY,
-  PROPERTIES_KEY,
-  PATTERN_PROPERTIES_KEY,
-  // DEPENDENCIES_KEY,
-  DEFINITIONS_KEY,
-] as const;
-
-const ARRAYS_OF_SUB_SCHEMAS = [
-  ALL_OF_KEY,
-  ANY_OF_KEY,
-  ONE_OF_KEY,
-  // ITEMS_KEY,
-] as const;
 
 function mergeRecords<T>(
   left: Record<string, T>,
@@ -94,7 +59,7 @@ function mergeSchemaDependencies(
 export function mergeSchemas(left: Schema, right: Schema): Schema {
   const merged = Object.assign({}, left, right);
   for (const key of RECORDS_OF_SUB_SCHEMAS) {
-    if (!(key in merged)) {
+    if (!(key in merged) || key === DEPENDENCIES_KEY) {
       continue;
     }
     const l = left[key];
@@ -118,7 +83,7 @@ export function mergeSchemas(left: Schema, right: Schema): Schema {
     );
   }
   for (const key of SUB_SCHEMAS) {
-    if (!(key in merged)) {
+    if (!(key in merged) || key === ITEMS_KEY) {
       continue;
     }
     const l = left[key];
@@ -128,7 +93,7 @@ export function mergeSchemas(left: Schema, right: Schema): Schema {
     }
   }
   for (const key of ARRAYS_OF_SUB_SCHEMAS) {
-    if (!(key in merged)) {
+    if (!(key in merged) || key === ITEMS_KEY) {
       continue;
     }
     const l = left[key];
