@@ -84,3 +84,7 @@ export const ARRAYS_OF_SUB_SCHEMAS = [
 export function isSchema(schemaDef: SchemaDefinition): schemaDef is Schema {
   return typeof schemaDef === "object";
 }
+
+export function isNormalArrayItems(items: Schema['items']): items is Schema {
+  return typeof items === "object" && !Array.isArray(items);
+}

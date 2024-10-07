@@ -10,6 +10,7 @@ import {
   ANY_OF_KEY,
   DEPENDENCIES_KEY,
   IF_KEY,
+  isSchema,
   ITEMS_KEY,
   ONE_OF_KEY,
   PROPERTIES_KEY,
@@ -41,10 +42,6 @@ export function resolveAllReferences(
   rootSchema: Schema,
   stack = new Set<string>()
 ): Schema {
-  if (typeof schema !== "object") {
-    return schema;
-  }
-
   let resolvedSchema: Schema = schema;
   const ref = resolvedSchema[REF_KEY];
   if (ref) {
@@ -174,7 +171,7 @@ export function retrieveSchemaInternal(
         const withContainsSchemas: SchemaDefinition[] = [];
         const withoutContainsSchemas: SchemaDefinition[] = [];
         resolvedSchema.allOf?.forEach((s) => {
-          if (typeof s === "object" && s.contains) {
+          if (isSchema(s) && s.contains) {
             withContainsSchemas.push(s);
           } else {
             withoutContainsSchemas.push(s);

@@ -1,5 +1,6 @@
 import { deepEqual } from "fast-equals";
 
+import { isObject } from '@/lib/object';
 import type { EnumOption } from "@/core/enum";
 import type { SchemaValue } from '@/core/schema';
 
@@ -14,7 +15,7 @@ export function makeOptionsMapper(options: EnumOption<SchemaValue>[]) {
       if (index !== undefined) {
         return index;
       }
-      if (value === null || typeof value !== "object") {
+      if (!isObject(value)) {
         return options.findIndex((option) => option.value === value);
       }
       return options.findIndex((option) => deepEqual(option.value, value));

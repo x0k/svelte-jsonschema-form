@@ -1,4 +1,5 @@
-import { isRecord } from "@/lib/object";
+import { isRecord, isObject } from "@/lib/object";
+
 import type {
   SchemaArrayValue,
   SchemaObjectValue,
@@ -16,7 +17,7 @@ export function isSchemaArrayValue(value: unknown): value is SchemaArrayValue {
 }
 
 export function isSchemaValueEmpty<V extends SchemaValue>(value: V) {
-  if (typeof value !== "object" || value === null) {
+  if (!isObject(value)) {
     return true;
   }
   if (Array.isArray(value)) {

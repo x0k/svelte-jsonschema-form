@@ -1,5 +1,5 @@
 import type { Schema, SchemaDefinition, SchemaValue } from "./schema";
-import { getSchemaConstantValue } from "./schema/constant";
+import { getSchemaConstantValue } from "./schema/constant-schema";
 import type { UiOptions, UiSchema } from "./ui-schema";
 
 export interface SimpleEnumOption<T> {

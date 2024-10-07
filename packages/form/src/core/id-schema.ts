@@ -5,6 +5,8 @@ import {
   DEPENDENCIES_KEY,
   getSimpleSchemaType,
   ID_KEY,
+  isNormalArrayItems,
+  isSchema,
   isSchemaObjectValue,
   ITEMS_KEY,
   PROPERTIES_KEY,
@@ -61,7 +63,7 @@ export function toIdSchema(
   }
   if (ITEMS_KEY in schema) {
     const items = schema[ITEMS_KEY];
-    if (typeof items === "object" && !Array.isArray(items) && !items[REF_KEY]) {
+    if (isNormalArrayItems(items) && !items[REF_KEY]) {
       return toIdSchema(
         validator,
         items,
@@ -84,7 +86,7 @@ export function toIdSchema(
       const fieldId = idSchema[ID_KEY] + idSeparator + name;
       idSchema[name] = toIdSchema(
         validator,
-        typeof field === "object" ? field : {},
+        isSchema(field) ? field : {},
         idPrefix,
         idSeparator,
         _recurseList,

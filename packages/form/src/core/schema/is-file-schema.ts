@@ -1,5 +1,5 @@
 import { retrieveSchema } from "./resolve";
-import { DATA_URL_FORMAT, type Schema } from "./schema";
+import { DATA_URL_FORMAT, isNormalArrayItems, type Schema } from "./schema";
 import type { Validator } from "./validator";
 
 export function isFileSchema({ type, format }: Schema) {
@@ -12,7 +12,7 @@ export function isFilesArray(
   rootSchema?: Schema
 ) {
   const { items } = schema;
-  if (typeof items === "object" && !Array.isArray(items)) {
+  if (isNormalArrayItems(items)) {
     const itemsSchema = retrieveSchema(validator, items, rootSchema);
     return isFileSchema(itemsSchema);
   }

@@ -1,7 +1,7 @@
 import type { Schema } from "./schema";
 import type { Validator } from "./validator";
 import { retrieveSchema } from "./resolve";
-import { isSchemaOfConstantValue } from "./constant";
+import { isSchemaOfConstantValue } from "./constant-schema";
 
 export function isSelect(
   validator: Validator,

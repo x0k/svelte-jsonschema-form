@@ -1,4 +1,3 @@
-import { array } from "@/lib/array";
 import {
   getDiscriminatorFieldFromSchema,
   getOptionMatchingSimpleDiscriminator,
@@ -241,7 +240,9 @@ export function getClosestMatchingOption(
   }
   if (!allValidIndexes.length) {
     // No indexes were valid, so we'll score all the options, add all the indexes
-    array(resolvedOptions.length, (i) => allValidIndexes.push(i));
+    for (let i = 0; i < resolvedOptions.length; i++) {
+      allValidIndexes.push(i);
+    }
   }
   type BestType = { bestIndex: number; bestScore: number };
   const scoreCount = new Set<number>();

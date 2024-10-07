@@ -21,6 +21,4 @@ export const registry: { [T in WidgetType]: Widget<T> } = {
 };
 
 // @ts-expect-error TODO: improve `widgets` type
-export const widgets: Widgets = (type) => {
-  return registry[type];
-}
+export const widgets: Widgets = (type) => registry[type];
