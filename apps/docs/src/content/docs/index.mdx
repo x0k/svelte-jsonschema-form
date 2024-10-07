@@ -1,0 +1,36 @@
+---
+title: svelte-jsonschema-form
+description: Svelte JSON Schema Form
+template: splash
+hero:
+  tagline: A Svelte 5 library for building forms out of a JSON schema.
+  actions:
+    - text: Quickstart
+      link: /quickstart/
+      icon: right-arrow
+    - text: View on GitHub
+      link: https://github.com/x0k/svelte-jsonschema-form
+      icon: external
+      variant: minimal
+---
+
+import { Code, Card } from '@astrojs/starlight/components';
+
+import Form from './_simple-form.astro';
+import formCode from './_simple-form.svelte?raw';
+
+## Installation
+
+Install the library and `ajv` for validation.
+
+```svelte
+npm install @sjsf/form ajv
+```
+
+## Usage
+
+<Code code={formCode} lang="svelte" />
+
+<Card>
+	<Form />
+</Card>
