@@ -3,7 +3,7 @@
   import { Form } from '@sjsf/form'
   import { type ValidatorError, ValidatorErrorType } from '@sjsf/form/core';
   import { translation } from "@sjsf/form/translations/en";
-  import { components, widgets } from "@sjsf/form/themes/basic";
+  import { theme } from "@sjsf/form/themes/basic";
   import { AjvValidator } from "@sjsf/form/validators/ajv";
 
   import { ShadowHost } from "./shadow";
@@ -137,8 +137,7 @@
       {/if}
       <Form
         bind:value
-        {components}
-        {widgets}
+        {...theme}
         {schema}
         {uiSchema}
         {validator}

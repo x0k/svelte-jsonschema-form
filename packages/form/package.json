@@ -38,9 +38,9 @@
       "types": "./dist/lib/*.d.ts"
     },
     "./core": {
-      "default": "./dist/core/exports.js",
-      "svelte": "./dist/core/exports.js",
-      "types": "./dist/core/exports.d.ts"
+      "default": "./dist/core/export-only-do-not-use-internally.js",
+      "svelte": "./dist/core/export-only-do-not-use-internally.js",
+      "types": "./dist/core/export-only-do-not-use-internally.d.ts"
     },
     "./core/*": {
       "default": "./dist/core/*.js",
@@ -57,15 +57,30 @@
       "svelte": "./dist/form/index.js",
       "types": "./dist/form/index.d.ts"
     },
+    "./translations": {
+      "default": "./dist/translations/index.js",
+      "svelte": "./dist/translations/index.js",
+      "types": "./dist/translations/index.d.ts"
+    },
     "./translations/*": {
       "default": "./dist/translations/*.js",
       "svelte": "./dist/translations/*.js",
       "types": "./dist/translations/*.d.ts"
     },
+    "./themes": {
+      "default": "./dist/themes/index.js",
+      "svelte": "./dist/themes/index.js",
+      "types": "./dist/themes/index.d.ts"
+    },
     "./themes/basic": {
       "default": "./dist/themes/basic/index.js",
       "svelte": "./dist/themes/basic/index.js",
       "types": "./dist/themes/basic/index.d.ts"
+    },
+    "./validators": {
+      "default": "./dist/validators/index.js",
+      "svelte": "./dist/validators/index.js",
+      "types": "./dist/validators/index.d.ts"
     },
     "./validators/*": {
       "default": "./dist/validators/*.js",
