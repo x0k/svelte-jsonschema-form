@@ -10,21 +10,21 @@
   },
   "devDependencies": {
     "@sveltejs/package": "^2.3.5",
-    "@sveltejs/vite-plugin-svelte": "^4.0.0-next.7",
-    "@tsconfig/svelte": "^5.0.4",
+    "@sveltejs/vite-plugin-svelte": "catalog:",
+    "@tsconfig/svelte": "catalog:",
     "@types/json-schema": "^7.0.15",
     "@types/json-schema-merge-allof": "^0.6.5",
-    "@types/node": "^22.7.4",
-    "ajv": "^8.17.1",
+    "@types/node": "^22.7.5",
     "deep-freeze-es6": "^3.0.2",
     "json-schema": "^0.4.0",
-    "svelte-check": "^4.0.4",
+    "svelte-check": "catalog:",
     "vite": "catalog:",
     "vite-plugin-dts": "^4.2.3",
     "vitest": "catalog:"
   },
   "peerDependencies": {
-    "svelte": "5.0.0-next.262"
+    "svelte": "5.0.0-next.262",
+    "ajv": "^8.17.1"
   },
   "dependencies": {
     "fast-equals": "^5.0.1",

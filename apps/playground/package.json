@@ -10,13 +10,13 @@
     "check": "svelte-check --tsconfig ./tsconfig.json && tsc -p tsconfig.node.json"
   },
   "devDependencies": {
-    "@sveltejs/vite-plugin-svelte": "^4.0.0-next.7",
-    "@tsconfig/svelte": "^5.0.4",
-    "@types/node": "^22.7.4",
+    "@sveltejs/vite-plugin-svelte": "catalog:",
+    "@tsconfig/svelte": "catalog:",
+    "@types/node": "^22.7.5",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.47",
-    "svelte": "5.0.0-next.260",
-    "svelte-check": "^4.0.4",
+    "svelte": "catalog:",
+    "svelte-check": "catalog:",
     "tailwindcss": "^3.4.13",
     "vite": "catalog:"
   },

@@ -1,6 +1,60 @@
 # svelte-jsonschema-form
 
-Unofficial port of [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form) to [Svelte 5](https://svelte-5-preview.vercel.app/docs/introduction) (WIP).
+Svelte 5 library for creating forms based on JSON schema.
+Unofficial port of [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form).
+
+## Installation
+
+Install the library and `ajv` for validation.
+
+```shell
+npm install @sjsf/form ajv
+```
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import Ajv from 'ajv';
+  import { Form } from '@sjsf/form';
+  import { translation } from '@sjsf/form/translations/en';
+  import { theme } from '@sjsf/form/themes/basic';
+  import { AjvValidator } from '@sjsf/form/validators/ajv';
+
+  const validator = new AjvValidator(new Ajv({
+    allErrors: true,
+    multipleOfPrecision: 8,
+    strict: false,
+    verbose: true,
+    discriminator: true,
+  }));
+</script>
+
+<Form
+  {...theme}
+  schema={{
+    title: 'Tasks',
+    type: 'array',
+    items: {
+      type: 'object',
+      properties: {
+        name: {
+          type: 'string',
+          title: 'Name',
+        },
+        description: {
+          type: 'string',
+          title: 'Description',
+        },
+      },
+      required: ["name"]
+    },
+  }}
+  {validator}
+  {translation}
+  onSubmit={console.log}
+/>
+```
 
 ## License
 

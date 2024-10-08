@@ -16,11 +16,11 @@
     "isolatedModules": true,
     "moduleDetection": "force",
     
-    "baseUrl": ".",
+    "baseUrl": "../apps/playground",
     "paths": {
-      "@/*": ["./src/*"],
+      "@/*": ["../apps/playground/src/*"],
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.svelte"],
+  "include": ["../apps/playground/src/**/*.ts", "../apps/playground/src/**/*.js", "../apps/playground/src/**/*.svelte"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

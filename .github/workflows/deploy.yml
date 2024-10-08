@@ -44,10 +44,13 @@ jobs:
       - name: Build
         run: pnpm run build
 
+      - name: Merge build outputs
+        run: mv apps/playground/dist apps/docs/dist/playground
+
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "apps/playground/dist/"
+          path: "apps/docs/dist/"
 
   deploy:
     needs: build

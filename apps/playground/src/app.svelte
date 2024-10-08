@@ -8,6 +8,7 @@
 
   import { ShadowHost } from "./shadow";
   import Github from "./github.svelte";
+  import OpenBook from './open-book.svelte';
   import ThemePicker from './theme-picker.svelte';
   
   import { samples } from "./samples";
@@ -71,7 +72,10 @@
       Errors list
     </label>
     <ThemePicker />
-    <a target="_blank" href="https://github.com/x0k/svelte-jsonschema-form">
+    <a href="https://x0k.github.io/svelte-jsonschema-form/">
+      <OpenBook class="h-8 w-8" />
+    </a>
+    <a target="_blank" href="https://github.com/x0k/svelte-jsonschema-form/">
       <Github class="h-8 w-8 bg-white rounded-full" />
     </a>
   </div>

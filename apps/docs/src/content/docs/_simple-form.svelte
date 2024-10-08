@@ -1,25 +1,28 @@
 <script lang="ts">
   import Ajv from 'ajv';
   import { Form } from '@sjsf/form';
-	import { translation } from '@sjsf/form/translations/en';
-	import { theme } from '@sjsf/form/themes/basic';
-	import { AjvValidator } from '@sjsf/form/validators/ajv';
+  import { translation } from '@sjsf/form/translations/en';
+  import { theme } from '@sjsf/form/themes/basic';
+  import { AjvValidator } from '@sjsf/form/validators/ajv';
 
-	const validator = new AjvValidator(new Ajv({
-		allErrors: true,
-		multipleOfPrecision: 8,
-		strict: false,
-		verbose: true,
-		discriminator: true,
-	}));
+  const validator = new AjvValidator(new Ajv({
+    allErrors: true,
+    multipleOfPrecision: 8,
+    strict: false,
+    verbose: true,
+    discriminator: true,
+  }));
+
+  let value = $state()
 </script>
 
 <Form
-	{...theme}
-	schema={{
-		title: 'Tasks',
-		type: 'array',
-		items: {
+  bind:value
+  {...theme}
+  schema={{
+    title: 'Tasks',
+    type: 'array',
+    items: {
       type: 'object',
       properties: {
         name: {
@@ -30,10 +33,12 @@
           type: 'string',
           title: 'Description',
         },
-      }
+      },
+      required: ["name"]
     },
-	}}
-	{validator}
-	{translation}
-	onSubmit={console.log}
-/>
+  }}
+  {validator}
+  {translation}
+>
+  <pre><code>{JSON.stringify(value, null, 2)}</code></pre>
+</Form>
