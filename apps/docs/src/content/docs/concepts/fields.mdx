@@ -1,0 +1,65 @@
+---
+title: Fields
+sidebar:
+  order: 3
+---
+
+import FieldsHierarchy from "./_fields-hierarchy.astro";
+
+Fields are logical blocks of the form.
+
+They are responsible for preparing data for widgets, maintaining data consistency
+and the use of templates.
+
+## Fields hierarchy
+
+<FieldsHierarchy />
+
+## Fields list
+
+```typescript
+interface FieldCommonProps<V extends SchemaValue> {
+  value: V | undefined;
+  config: Config<V>;
+}
+
+interface FieldAndProps<V extends SchemaValue> {
+  root: FieldCommonProps<V>;
+  multi: FieldCommonProps<V> & {
+    combinationKey: typeof ONE_OF_KEY | typeof ANY_OF_KEY;
+  };
+  string: FieldCommonProps<V>;
+  number: FieldCommonProps<V>;
+  integer: FieldCommonProps<V>;
+  boolean: FieldCommonProps<V>;
+  object: FieldCommonProps<V>;
+  objectProperty: FieldCommonProps<V> & {
+    property: string;
+    obj: SchemaObjectValue;
+    isAdditional: boolean;
+  };
+  array: FieldCommonProps<V>;
+  unsupportedArray: FieldCommonProps<V>;
+  anotherFieldArray: FieldCommonProps<V> & {
+    field: "enum" | "file";
+  };
+  fixedArray: FieldCommonProps<V>;
+  normalArray: FieldCommonProps<V>;
+  arrayItem: FieldCommonProps<V> & {
+    index: number;
+    arr: SchemaArrayValue;
+    canRemove: boolean;
+    canMoveUp: boolean;
+    canMoveDown: boolean;
+  };
+  null: FieldCommonProps<V>;
+  enum: FieldCommonProps<V> & {
+    multiple?: boolean;
+  };
+  file: FieldCommonProps<V> & {
+    multiple?: boolean;
+  };
+  hidden: FieldCommonProps<V>;
+  unsupported: FieldCommonProps<V>;
+}
+```

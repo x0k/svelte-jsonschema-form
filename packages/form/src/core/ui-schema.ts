@@ -10,7 +10,8 @@ import type { Component, ComponentType } from "../form/component";
 import type { Field, FieldType } from "../form/fields";
 import type { Template, TemplateType } from "../form/templates";
 import type { Widget, WidgetType } from "../form/widgets";
-import type { SchemaValue } from './schema';
+
+import type { SchemaValue } from "./schema";
 
 export type UiSchemaRoot = UiSchemaRootIndex & UiSchemaRootContent;
 
@@ -25,8 +26,8 @@ type UiSchemaRootContent = UiSchemaContent & {
 };
 
 type AllFields = {
-  [T in FieldType]: Field<T>
-}
+  [T in FieldType]: Field<T>;
+};
 
 interface UiSchemaContent {
   "ui:options"?: UiOptions;
@@ -57,27 +58,91 @@ export type InputAttributes = (
 };
 
 export interface UiOptions {
+  /**
+   * Overrides the input attributes.
+   * `readonly` and `disabled` attributes are mixed with the form state.
+   */
   input?: InputAttributes;
-  content?: HTMLAttributes<HTMLDivElement>
-  container?: HTMLAttributes<HTMLDivElement>
-  button?: HTMLButtonAttributes
+  /**
+   * Overrides the attributes of a `layout` component that wraps around widget component.
+   */
+  content?: HTMLAttributes<HTMLDivElement>;
+  /**
+   * Overrides the attributes of the `layout` component that wraps the entire field.
+   */
+  container?: HTMLAttributes<HTMLDivElement>;
+  /**
+   * Overrides the attributes of the main button component of the field.
+   */
+  button?: HTMLButtonAttributes;
   // TODO: Clarify the need for this
   // root?: HTMLAttributes<HTMLDivElement>
+  /**
+   * Overrides the title of the field.
+   */
   title?: string;
+  /**
+   * Overrides the description of the field (over the widget).
+   */
   description?: string;
+  /**
+   * List of labels for enum values in the schema.
+   */
   enumNames?: string[];
-  // Strict equality
+  /**
+   * List of enum values that are disabled. Values are compared by string equality.
+   */
   disabledEnumValues?: SchemaValue[];
+  /**
+   * Order of properties in the object schema.
+   * You must specify all properties or use the wildcard `*`.
+   */
   order?: string[];
-  addable?: boolean;
+  /**
+   * Allow adding new properties to the object schema with `additionalProperties`.
+   * @default true
+   */
   expandable?: boolean;
+  /**
+   * Allow adding new items to the array schema.
+   * @default true
+   */
+  addable?: boolean;
+  /**
+   * Allow reordering items in the array schema.
+   * If you want an orderable array of file fields, set this to `true` explicitly.
+   * @default true
+   */
   orderable?: boolean;
+  /**
+   * Allow removing items from the array schema.
+   * @default true
+   */
   removable?: boolean;
+  /**
+   * Allow duplicating items in the array schema.
+   * @default false
+   */
   copyable?: boolean;
+  /**
+   * Separator between key and integer suffix in the key of a new property in a schema with `additionalProperties`.
+   * @default '-'
+   */
   duplicateKeySuffixSeparator?: string;
+  /**
+   * Help text for the field (under the widget).
+   */
   help?: string;
+  /**
+   * Hide the title of the field.
+   * If you want to show a title of the `boolean` field this should be set to `false` explicitly.
+   * @default false
+   */
   hideTitle?: boolean;
-  emptyValue?: SchemaValue
+  /**
+   * Default value to use when an input for a field is empty
+   */
+  emptyValue?: SchemaValue;
 }
 
 export type UiSchema = UiSchemaIndex & UiSchemaContent;

@@ -1,0 +1,26 @@
+---
+title: Start Here
+sidebar:
+  order: 0
+---
+
+import { LinkCard, CardGrid } from '@astrojs/starlight/components';
+
+The form component consists of several parts that allow you to divide responsibility for different aspects of the form.
+
+<CardGrid>
+  <LinkCard
+    title="JSON Schema"
+    href="json-schema"
+    description="Your data model"
+  />
+  <LinkCard
+    title="UI Schema"
+    href="ui-schema"
+    description="How the form should look like"
+  />
+  <LinkCard title="Fields" href="fields" description="Form logic block" />
+  <LinkCard title="Widgets" href="widgets" description="Various input elements" />
+  <LinkCard title="Components" href="components" description="Reusable UI elements" />
+  <LinkCard title="Templates" href="templates" description="Standardized component structures"/>
+</CardGrid>

@@ -1,3 +1,121 @@
 ---
 title: UI Schema
+sidebar:
+  order: 2
 ---
+
+UI schema allows you to customize the appearance of the form and influence its behavior.
+
+The UI schema object follows the tree structure of the form field hierarchy, and defines how each property should be rendered.
+
+Each UI schema node may contain the following fields:
+
+- `ui:options`- Set of ui options (see below)
+- `ui:widget` - Widget type or a custom widget component (should have compatible value types)
+- `ui:field` - Field type or a custom field component
+- `ui:templates` - Key value pairs (record) of template type to a different template type or a custom template component
+- `ui:components` - Key value pairs (record) of component type to a different component type or custom component
+- `items` - UI schema or array of UI schema for array items
+- `anyOf`, `oneOf` - Array of UI schema
+- `additionalProperties`, `additionalItems` - UI schema for additional properties and items
+- `additionalPropertyKeyInput` - UI schema for additional property key input 
+
+## UI schema root
+
+Root node of UI schema can have an additional fields:
+
+- `ui:rootFieldId` - prefix of generated field ids
+- `ui:globalOptions` - global ui options that are applied to all fields, are overwritten by `ui:options`.
+- `submitButton` - submit button UI schema
+
+## UI options
+
+```typescript
+interface UiOptions {
+  /**
+   * Overrides the input attributes.
+   * `readonly` and `disabled` attributes are mixed with the form state.
+   */
+  input?: InputAttributes;
+  /**
+   * Overrides the attributes of a `layout` component that wraps around widget component.
+   */
+  content?: HTMLAttributes<HTMLDivElement>;
+  /**
+   * Overrides the attributes of the `layout` component that wraps the entire field.
+   */
+  container?: HTMLAttributes<HTMLDivElement>;
+  /**
+   * Overrides the attributes of the main button component of the field.
+   */
+  button?: HTMLButtonAttributes;
+  // TODO: Clarify the need for this
+  // root?: HTMLAttributes<HTMLDivElement>
+  /**
+   * Overrides the title of the field.
+   */
+  title?: string;
+  /**
+   * Overrides the description of the field (over the widget).
+   */
+  description?: string;
+  /**
+   * List of labels for enum values in the schema.
+   */
+  enumNames?: string[];
+  /**
+   * List of enum values that are disabled. Values are compared by string equality.
+   */
+  disabledEnumValues?: SchemaValue[];
+  /**
+   * Order of properties in the object schema.
+   * You must specify all properties or use the wildcard `*`.
+   */
+  order?: string[];
+  /**
+   * Allow adding new properties to the object schema with `additionalProperties`.
+   * @default true
+   */
+  expandable?: boolean;
+  /**
+   * Allow adding new items to the array schema.
+   * @default true
+   */
+  addable?: boolean;
+  /**
+   * Allow reordering items in the array schema.
+   * If you want an orderable array of file fields, set this to `true` explicitly.
+   * @default true
+   */
+  orderable?: boolean;
+  /**
+   * Allow removing items from the array schema.
+   * @default true
+   */
+  removable?: boolean;
+  /**
+   * Allow duplicating items in the array schema.
+   * @default false
+   */
+  copyable?: boolean;
+  /**
+   * Separator between key and integer suffix in the key of a new property in a schema with `additionalProperties`.
+   * @default '-'
+   */
+  duplicateKeySuffixSeparator?: string;
+  /**
+   * Help text for the field (under the widget).
+   */
+  help?: string;
+  /**
+   * Hide the title of the field.
+   * If you want to show a title of the `boolean` field this should be set to `false` explicitly.
+   * @default false
+   */
+  hideTitle?: boolean;
+  /**
+   * Default value to use when an input for a field is empty
+   */
+  emptyValue?: SchemaValue;
+}
+```
