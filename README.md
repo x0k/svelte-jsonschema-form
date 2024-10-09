@@ -11,7 +11,7 @@ Unofficial port of [react-jsonschema-form](https://github.com/rjsf-team/react-js
 Install the library and `ajv` for validation.
 
 ```shell
-npm install @sjsf/form ajv
+npm install @sjsf/form @sjsf/ajv8-validator ajv@8
 ```
 
 ## Usage
@@ -21,8 +21,8 @@ npm install @sjsf/form ajv
   import Ajv from 'ajv';
   import { Form } from '@sjsf/form';
   import { translation } from '@sjsf/form/translations/en';
-  import { theme } from '@sjsf/form/themes/basic';
-  import { AjvValidator } from '@sjsf/form/validators/ajv';
+  import { theme } from '@sjsf/form/basic-theme';
+  import { AjvValidator } from '@sjsf/ajv8-validator';
 
   const validator = new AjvValidator(new Ajv({
     allErrors: true,

@@ -2,10 +2,10 @@ import {
   type Schema,
   type SchemaArrayValue,
   type SchemaValue,
-} from "@/core/schema";
-import { toIdSchema, type IdSchema } from "@/core/id-schema";
+} from "@/core/schema/index.js";
+import { toIdSchema, type IdSchema } from "@/core/id-schema.js";
 
-import type { FormContext } from "../../context";
+import type { FormContext } from "../../context.js";
 
 export function getArrayItemSchemaId(
   ctx: FormContext,

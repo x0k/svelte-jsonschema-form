@@ -1,12 +1,12 @@
 <script lang="ts">
-  import type { Config } from "@/core/config";
-  import type { UiSchema } from "@/core/ui-schema";
-  import { FAKE_ID_SCHEMA } from "@/core/id-schema";
+  import type { Config } from "@/core/config.js";
+  import type { UiSchema } from "@/core/ui-schema.js";
+  import { FAKE_ID_SCHEMA } from "@/core/id-schema.js";
 
-  import { isDisabledOrReadonly } from "./is-disabled-or-readonly";
-  import { getFormContext } from "./context";
-  import { getComponent } from "./component";
-  import { getUiOptions, NO_ERRORS } from "./utils";
+  import { isDisabledOrReadonly } from "./is-disabled-or-readonly.js";
+  import { getFormContext } from "./context.js";
+  import { getComponent } from "./component.js";
+  import { getUiOptions, NO_ERRORS } from "./utils.js";
 
   const ctx = getFormContext();
 

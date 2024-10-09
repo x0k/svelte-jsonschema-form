@@ -5,18 +5,18 @@
 import {
   getDiscriminatorFieldFromSchema,
   getOptionMatchingSimpleDiscriminator,
-} from "./discriminator";
-import { resolveAllReferences, retrieveSchema } from "./resolve";
+} from "./discriminator.js";
+import { resolveAllReferences, retrieveSchema } from "./resolve.js";
 import {
   isSchema,
   PROPERTIES_KEY,
   REF_KEY,
   type Schema,
   type SchemaValue,
-} from "./schema";
-import { typeOfValue } from "./type";
-import type { Validator } from "./validator";
-import { isSchemaObjectValue } from "./value";
+} from "./schema.js";
+import { typeOfValue } from "./type.js";
+import type { Validator } from "./validator.js";
+import { isSchemaObjectValue } from "./value.js";
 
 const JUNK_OPTION_ID = "_$junk_option_schema_id$_";
 const JUNK_OPTION: Schema = {
@@ -54,7 +54,7 @@ export function getFirstMatchingOption(
   const isDiscriminatorActual =
     isSchemaObjectValue(formData) && discriminatorField;
   for (let i = 0; i < options.length; i++) {
-    const option = options[i];
+    const option = options[i]!;
     const optionProperties = option[PROPERTIES_KEY];
     if (optionProperties === undefined) {
       if (validator.isValid(option, rootSchema, formData)) {
@@ -62,7 +62,10 @@ export function getFirstMatchingOption(
       }
       continue;
     }
-    if (isDiscriminatorActual && discriminatorField in optionProperties) {
+    if (
+      isDiscriminatorActual &&
+      optionProperties[discriminatorField] !== undefined
+    ) {
       const discriminator = optionProperties[discriminatorField];
       const value = formData[discriminatorField];
       if (validator.isValid(discriminator, rootSchema, value)) {
@@ -240,7 +243,7 @@ export function getClosestMatchingOption(
 
   // There is only one valid index, so return it!
   if (allValidIndexes.length === 1) {
-    return allValidIndexes[0];
+    return allValidIndexes[0]!;
   }
   if (!allValidIndexes.length) {
     // No indexes were valid, so we'll score all the options, add all the indexes

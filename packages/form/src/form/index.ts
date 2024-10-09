@@ -1,7 +1,7 @@
-export * from "./component";
-export * from "./fields";
-export * from "./context";
-export * from "./widgets";
-export * from "./templates";
-export * from "./theme";
+export * from "./component.js";
+export * from "./fields/index.js";
+export * from "./templates/index.js";
+export * from "./context.js";
+export * from "./widgets.js";
+export * from "./theme.js";
 export { default as Form } from "./form.svelte";

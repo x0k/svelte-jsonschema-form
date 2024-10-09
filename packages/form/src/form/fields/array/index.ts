@@ -1,4 +1,4 @@
-export * from './context'
+export * from './context.js'
 export { default as UnsupportedArrayField } from './unsupported-array-field.svelte'
 export { default as AnotherFieldArrayField } from './another-field-array-field.svelte'
 export { default as FixedArrayField } from './fixed-array-field.svelte'

@@ -5,14 +5,14 @@
     ID_KEY,
     isFileSchema,
     mergeSchemaObjects,
-  } from "@/core/schema";
-  import { FAKE_ID_SCHEMA } from '@/core/id-schema';
+  } from "@/core/schema/index.js";
+  import { FAKE_ID_SCHEMA } from '@/core/id-schema.js';
 
-  import { getComponent } from "../component";
-  import { getFormContext } from "../context";
-  import { getErrors, isSelect, toIdSchema } from "../utils";
+  import { getComponent } from "../component.js";
+  import { getFormContext } from "../context.js";
+  import { getErrors, isSelect, toIdSchema } from "../utils.js";
 
-  import { getField, type FieldProps } from "./model";
+  import { getField, type FieldProps } from "./model.js";
 
   const ctx = getFormContext();
 

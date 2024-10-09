@@ -6,26 +6,26 @@
     isSchemaExpandable,
     isSchemaObjectValue,
     orderProperties,
-  } from '@/core/schema';
-  import type { UiSchema } from '@/core/ui-schema';
-  import { FAKE_ID_SCHEMA } from '@/core/id-schema';
+  } from '@/core/schema/index.js';
+  import type { UiSchema } from '@/core/ui-schema.js';
+  import { FAKE_ID_SCHEMA } from '@/core/id-schema.js';
   
-  import { getFormContext } from "../../context";
-  import { getTemplate } from '../../templates';
-  import { getComponent } from '../../component';
-  import { isDisabledOrReadonly } from '../../is-disabled-or-readonly';
+  import { getFormContext } from "../../context.js";
+  import { getTemplate } from '../../templates/index.js';
+  import { getComponent } from '../../component.js';
+  import { isDisabledOrReadonly } from '../../is-disabled-or-readonly.js';
   import {
     getDefaultFormState,
     getErrors,
     getUiOptions,
     retrieveSchema,
-  } from "../../utils";
+  } from "../../utils.js";
 
-  import { getField, type FieldProps } from "../model";
+  import { getField, type FieldProps } from "../model.js";
 
-  import { setObjectContext, type ObjectContext } from './context';
-  import { generateNewKey } from './generate-new-object-key';
-  import { createOriginalKeysOrder } from './create-original-keys-order';
+  import { setObjectContext, type ObjectContext } from './context.js';
+  import { generateNewKey } from './generate-new-object-key.js';
+  import { createOriginalKeysOrder } from './create-original-keys-order.js';
 
   const ctx = getFormContext();
 
@@ -100,7 +100,7 @@
   {#if schemaProperties !== undefined && value !== undefined}
     {#each schemaPropertiesOrder as property (property)}
       {@const isAdditional = isAdditionalProperty(schemaProperties, property)}
-      {@const propSchema = schemaProperties[property]}
+      {@const propSchema = schemaProperties[property]!}
       {@const propUiSchema =
         (isAdditional ? config.uiSchema.additionalProperties : config.uiSchema[property]) as UiSchema ?? {}}
       <ObjectProperty

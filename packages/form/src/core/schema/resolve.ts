@@ -2,10 +2,10 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { deepEqual } from "@/lib/deep-equal";
 import mergeAllOf, { type Options } from "json-schema-merge-allof";
 
-import { array } from "@/lib/array";
+import { deepEqual } from "@/lib/deep-equal.js";
+import { array } from "@/lib/array.js";
 
 import {
   ADDITIONAL_PROPERTIES_KEY,
@@ -23,14 +23,14 @@ import {
   type SchemaDefinition,
   type SchemaObjectValue,
   type SchemaValue,
-} from "./schema";
-import { findSchemaDefinition } from "./definitions";
-import type { Validator } from "./validator";
-import { mergeSchemas } from "./merge";
-import { typeOfValue } from "./type";
-import { getDiscriminatorFieldFromSchema } from "./discriminator";
-import { getFirstMatchingOption } from "./matching";
-import { isSchemaObjectValue } from "./value";
+} from "./schema.js";
+import { findSchemaDefinition } from "./definitions.js";
+import type { Validator } from "./validator.js";
+import { mergeSchemas } from "./merge.js";
+import { typeOfValue } from "./type.js";
+import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
+import { getFirstMatchingOption } from "./matching.js";
+import { isSchemaObjectValue } from "./value.js";
 
 export function retrieveSchema(
   validator: Validator,
@@ -38,7 +38,7 @@ export function retrieveSchema(
   rootSchema: Schema = {},
   formData?: SchemaValue
 ): Schema {
-  return retrieveSchemaInternal(validator, schema, rootSchema, formData)[0];
+  return retrieveSchemaInternal(validator, schema, rootSchema, formData)[0]!;
 }
 
 export function resolveAllReferences(
@@ -162,7 +162,7 @@ export function retrieveSchemaInternal(
         const { [ALL_OF_KEY]: _, ...restOfSchema } = resolvedSchema;
         const schemas: Schema[] = [];
         for (let i = 0; i < resolvedAllOf.length; i++) {
-          const schema = resolvedAllOf[i];
+          const schema = resolvedAllOf[i]!;
           if (typeof schema === "boolean") {
             continue;
           }
@@ -483,7 +483,7 @@ export function resolveAnyOrOneOfSchemas(
     if (expandAllBranches) {
       return anyOrOneOf.map((item) => mergeSchemas(remaining, item));
     }
-    schema = mergeSchemas(remaining, anyOrOneOf[option]);
+    schema = mergeSchemas(remaining, anyOrOneOf[option]!);
   }
   return [schema];
 }
@@ -518,7 +518,7 @@ export function processDependencies(
       dependencies;
     if (Array.isArray(dependencyValue)) {
       schemas[0] = mergeSchemas(resolvedSchema, { required: dependencyValue });
-    } else if (typeof dependencyValue !== "boolean") {
+    } else if (typeof dependencyValue !== "boolean" && dependencyValue) {
       schemas = withDependentSchema(
         validator,
         resolvedSchema,
@@ -669,12 +669,12 @@ export function getAllPermutationsOfXxxOf(listOfLists: SchemaDefinition[][]) {
       if (list.length > 1) {
         return list.flatMap((element) =>
           array(permutations.length, (i) =>
-            [...permutations[i]].concat(element)
+            [...permutations[i]!].concat(element)
           )
         );
       }
       // Otherwise just push in the single value into the current set of permutations
-      permutations.forEach((permutation) => permutation.push(list[0]));
+      permutations.forEach((permutation) => permutation.push(list[0]!));
       return permutations;
     },
     [[]] as SchemaDefinition[][] // Start with an empty list

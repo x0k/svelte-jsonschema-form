@@ -4,7 +4,7 @@
 
 import { describe, expect, it } from 'vitest';
 
-import { orderProperties } from './order-properties';
+import { orderProperties } from './order-properties.js';
 
 function fix(keys: string[]) {
   return Object.fromEntries(keys.map((key) => [key, {}]));

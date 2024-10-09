@@ -2,18 +2,18 @@
   import { untrack, type Snippet } from 'svelte';
   import type { HTMLFormAttributes } from "svelte/elements";
 
-  import type { Config } from '@/core/config';
-  import type { Translation } from '@/core/translation';
-  import type { UiSchemaRoot } from '@/core/ui-schema';
-  import { type Schema, type SchemaValue, type Validator, type ValidatorError, ValidatorErrorType } from '@/core/schema';
+  import type { Config } from '@/core/config.js';
+  import type { Translation } from '@/core/translation.js';
+  import type { UiSchemaRoot } from '@/core/ui-schema.js';
+  import { type Schema, type SchemaValue, type Validator, type ValidatorError, ValidatorErrorType } from '@/core/schema/index.js';
   
-  import type { Components } from './component';
-  import type { Widgets } from './widgets';
-  import { setFromContext, type FormContext } from './context';
-  import { type Fields, fields as defaultFields, getField } from './fields';
-  import { type Templates, templates as defaultTemplates } from './templates';
-  import { getDefaultFormState, getUiOptions, NO_ERRORS, retrieveSchema, toIdSchema } from './utils';
-  import { getComponent } from './component'
+  import type { Components } from './component.js';
+  import type { Widgets } from './widgets.js';
+  import { setFromContext, type FormContext } from './context.js';
+  import { type Fields, fields as defaultFields, getField } from './fields/index.js';
+  import { type Templates, templates as defaultTemplates } from './templates/index.js';
+  import { getDefaultFormState, getUiOptions, NO_ERRORS, retrieveSchema, toIdSchema } from './utils.js';
+  import { getComponent } from './component.js'
   import SubmitButton from './submit-button.svelte';
 
   let form = $state<HTMLFormElement>()

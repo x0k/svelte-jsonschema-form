@@ -10,48 +10,23 @@ import {
   beforeEach,
   vi,
   type MockInstance,
-  afterEach,
 } from "vitest";
-import Ajv from "ajv";
-
-import { AjvValidator } from "@/validators/ajv";
 
 import {
   getDefaultFormState,
   AdditionalItemsHandling,
   computeDefaults,
   getInnerSchemaForArrayItem,
-} from "./default-state";
-import { RECURSIVE_REF, RECURSIVE_REF_ALLOF } from "./fixtures/test-data";
-import type { Validator } from "./validator";
-import type { Schema } from "./schema";
+} from "./default-state.js";
+import { RECURSIVE_REF, RECURSIVE_REF_ALLOF } from "./fixtures/test-data.js";
+import type { Validator } from "./validator.js";
+import type { Schema } from "./schema.js";
+import { makeTestValidator } from "./test-validator.js";
 
 let testValidator: Validator;
-let testValidatorMockValues: boolean[];
-let testValidatorMock: MockInstance<Validator["isValid"]>;
 
 beforeEach(() => {
-  testValidator = new AjvValidator(
-    new Ajv({
-      allErrors: true,
-      discriminator: true,
-      strict: false,
-      verbose: true,
-      multipleOfPrecision: 8,
-    })
-  );
-  testValidatorMockValues = [];
-  testValidatorMock = vi
-    .spyOn(testValidator, "isValid")
-    .mockImplementation(() => {
-      if (testValidatorMockValues.length > 0) {
-        return testValidatorMockValues.shift()!;
-      }
-      return true;
-    });
-});
-afterEach(() => {
-  testValidatorMock.mockClear();
+  testValidator = makeTestValidator();
 });
 
 describe("getDefaultFormState()", () => {
@@ -2400,7 +2375,9 @@ describe("getDefaultFormState()", () => {
         },
       };
       // Mock errors so that getMatchingOption works as expected
-      testValidatorMockValues = [false, false, false, true];
+      testValidator = makeTestValidator({
+        isValid: [false, false, false, true],
+      });
       expect(
         getDefaultFormState(testValidator, schema, { test: { b: "b" } })
       ).toEqual({
@@ -2602,7 +2579,9 @@ describe("getDefaultFormState()", () => {
         },
       };
       // Mock errors so that getMatchingOption works as expected
-      testValidatorMockValues = [false, false, false, true];
+      testValidator = makeTestValidator({
+        isValid: [false, false, false, true],
+      });
       expect(
         getDefaultFormState(testValidator, schema, { test: { b: "b" } })
       ).toEqual({
@@ -2730,12 +2709,14 @@ describe("getDefaultFormState()", () => {
     });
     it("should populate defaults for nested dependencies in arrays when matching enum values in oneOf", () => {
       // Mock isValid so that withExactlyOneSubschema works as expected
-      testValidatorMockValues = [
-        true, // First oneOf... first === first
-        false, // Second oneOf... second !== first
-        false, // First oneOf... first !== second
-        true, // Second oneOf... second === second
-      ];
+      testValidator = makeTestValidator({
+        isValid: [
+          true, // First oneOf... first === first
+          false, // Second oneOf... second !== first
+          false, // First oneOf... first !== second
+          true, // Second oneOf... second === second
+        ],
+      });
       const schema: Schema = {
         type: "array",
         items: {

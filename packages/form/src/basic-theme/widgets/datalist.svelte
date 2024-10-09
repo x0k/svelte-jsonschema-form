@@ -1,7 +1,7 @@
 <script lang="ts" module>
   import type { HTMLInputAttributes } from 'svelte/elements';
   
-  import type { Config } from "@/core/config";
+  import type { Config } from "@/core/config.js";
 
   export function makeExamples(
     { schema: { examples, default: defaultValue } }: Config,

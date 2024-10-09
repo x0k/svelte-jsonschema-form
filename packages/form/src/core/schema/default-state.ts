@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { resolveDependencies, retrieveSchema } from "./resolve";
+import { resolveDependencies, retrieveSchema } from "./resolve.js";
 import {
   ALL_OF_KEY,
   DEPENDENCIES_KEY,
@@ -11,20 +11,20 @@ import {
   type SchemaObjectValue,
   type SchemaType,
   type SchemaValue,
-} from "./schema";
-import type { Validator } from "./validator";
-import { findSchemaDefinition } from "./definitions";
-import { isFixedItems } from "./is-fixed-items";
-import { getDiscriminatorFieldFromSchema } from "./discriminator";
-import { isSchemaObjectValue, isSchemaValueEmpty } from "./value";
+} from "./schema.js";
+import type { Validator } from "./validator.js";
+import { findSchemaDefinition } from "./definitions.js";
+import { isFixedItems } from "./is-fixed-items.js";
+import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
+import { isSchemaObjectValue, isSchemaValueEmpty } from "./value.js";
 import {
   mergeDefaultsWithFormData,
   mergeSchemaObjects,
   mergeSchemas,
-} from "./merge";
-import { getSimpleSchemaType } from "./type";
-import { isMultiSelect } from "./is-select";
-import { getClosestMatchingOption } from "./matching";
+} from "./merge.js";
+import { getSimpleSchemaType } from "./type.js";
+import { isMultiSelect } from "./is-select.js";
+import { getClosestMatchingOption } from "./matching.js";
 
 export function getDefaultValueForType(type: SchemaType) {
   switch (type) {
@@ -163,7 +163,7 @@ export function computeDefaults<T extends SchemaValue>(
     : {};
   const schema: Schema = isSchemaObjectValue(rawSchema) ? rawSchema : {};
   // Compute the defaults recursively: give highest priority to deepest nodes.
-  let defaults: SchemaValue | undefined = parentDefaults;
+  let defaults = parentDefaults;
   // If we get a new schema, then we need to recompute defaults again for the new schema found.
   let schemaToCompute: Schema | null = null;
   let nextStack = stack;
@@ -195,7 +195,7 @@ export function computeDefaults<T extends SchemaValue>(
       new Set(),
       formData
     );
-    schemaToCompute = resolvedSchema[0]; // pick the first element from resolve dependencies
+    schemaToCompute = resolvedSchema[0]!; // pick the first element from resolve dependencies
   } else if (isFixedItems(schema)) {
     defaults = schema.items.map((itemSchema, idx) =>
       computeDefaults(validator, itemSchema, {
@@ -225,7 +225,7 @@ export function computeDefaults<T extends SchemaValue>(
           0,
           getDiscriminatorFieldFromSchema(schema)
         )
-      ];
+      ]!;
     if (typeof nextSchema === "boolean") {
       return undefined;
     }
@@ -246,7 +246,7 @@ export function computeDefaults<T extends SchemaValue>(
           0,
           discriminator
         )
-      ];
+      ]!;
     if (typeof nextSchema === "boolean") {
       return undefined;
     }
@@ -532,7 +532,7 @@ export function getInnerSchemaForArrayItem(
 ): Schema {
   if (idx >= 0) {
     if (Array.isArray(schema.items) && idx < schema.items.length) {
-      const item = schema.items[idx];
+      const item = schema.items[idx]!;
       if (typeof item !== "boolean") {
         return item;
       }

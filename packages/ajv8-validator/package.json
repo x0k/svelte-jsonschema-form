@@ -1,6 +1,7 @@
 {
   "name": "@sjsf/ajv8-validator",
   "version": "0.0.1",
+  "license": "MIT",
   "description": "The ajv-8 based validator",
   "type": "module",
   "scripts": {
@@ -8,8 +9,6 @@
     "dev": "tsc --watch"
   },
   "keywords": [],
-  "author": "Krasilnikov Roman",
-  "license": "MIT",
   "exports": {
     ".": "./dist/validator.js"
   },

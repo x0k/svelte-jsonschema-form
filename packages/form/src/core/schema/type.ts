@@ -1,4 +1,4 @@
-import type { Schema, SchemaType } from "./schema";
+import type { Schema, SchemaType } from "./schema.js";
 
 export function typeOfValue(
   value: null | boolean | number | string | object
@@ -47,12 +47,12 @@ export function pickSchemaType(types: SchemaType[]): SchemaType {
   if (types.length === 0) {
     throw new Error(`Unsupported schema types: empty type array`);
   }
-  const first = types[0];
+  const first = types[0]!;
   if (types.length === 1) {
     return first;
   }
   if (first === "null") {
-    return types[1];
+    return types[1]!;
   }
   return first;
 }

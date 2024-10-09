@@ -1,4 +1,4 @@
-import type { AnyKey, ValuesOf } from "./types";
+import type { AnyKey, ValuesOf } from "./types.js";
 
 export type ObjectOf<T> = Record<AnyKey, T>;
 

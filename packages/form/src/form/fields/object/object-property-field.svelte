@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { getFormContext } from '../../context';
-  import { getTemplate } from '../../templates';
-  import { getComponent } from '../../component';
-  import { getErrors } from '../../utils';
+  import { getFormContext } from '../../context.js';
+  import { getTemplate } from '../../templates/index.js';
+  import { getComponent } from '../../component.js';
+  import { getErrors } from '../../utils.js';
 
-  import { getField, type FieldProps } from '../model';
-  import { isDisabledOrReadonly } from '../../is-disabled-or-readonly'
+  import { getField, type FieldProps } from '../model.js';
+  import { isDisabledOrReadonly } from '../../is-disabled-or-readonly.js'
   
   import ObjectKeyInput from './object-key-input.svelte';
 

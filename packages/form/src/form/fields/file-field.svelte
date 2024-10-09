@@ -1,15 +1,15 @@
 <script lang="ts">
-  import { dataURLtoBlob, fileToDataURL } from "@/lib/file";
+  import { dataURLtoBlob, fileToDataURL } from "@/lib/file.js";
   import { asyncProxy } from "@/lib/svelte.svelte";
-  import type { SchemaArrayValue, SchemaValue } from "@/core/schema";
+  import type { SchemaArrayValue, SchemaValue } from "@/core/schema/index.js";
 
-  import { getWidget } from "../widgets";
-  import { getFormContext } from "../context";
-  import { getTemplate } from "../templates";
-  import { getErrors } from '../utils';
+  import { getWidget } from "../widgets.js";
+  import { getFormContext } from "../context.js";
+  import { getTemplate } from "../templates/index.js";
+  import { getErrors } from '../utils.js';
 
-  import type { FieldProps } from "./model";
-  import { inputAttributes } from "./make-widget-attributes";
+  import type { FieldProps } from "./model.js";
+  import { inputAttributes } from "./make-widget-attributes.js";
 
   let {
     config,
@@ -69,7 +69,7 @@
       try {
         value = await (multiple
           ? Promise.all(Array.from(v).map((f) => fileToDataURL(signal, f)))
-          : fileToDataURL(signal, v[0]));
+          : fileToDataURL(signal, v[0]!));
       } catch (e) {
         console.error("Failed to read file", e);
       }

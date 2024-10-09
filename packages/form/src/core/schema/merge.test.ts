@@ -4,8 +4,8 @@
 
 import { describe, expect, it } from "vitest";
 
-import { mergeSchemaObjects, mergeSchemas } from "./merge";
-import type { Schema } from "./schema";
+import { mergeSchemaObjects, mergeSchemas } from "./merge.js";
+import type { Schema } from "./schema.js";
 
 describe("mergeSchemas()", () => {
   it("shouldn`t mutate the provided objects", () => {

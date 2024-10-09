@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { WidgetProps } from "@/form";
+  import type { WidgetProps } from "@/form/index.js";
 
-  import { makeOptionsMapper } from "./options";
+  import { makeOptionsMapper } from "./options.js";
 
   let {
     attributes,

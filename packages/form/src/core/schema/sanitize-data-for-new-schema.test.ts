@@ -2,56 +2,24 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import {
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  it,
-  vi,
-  type MockInstance,
-} from "vitest";
-import Ajv from "ajv";
-
-import { AjvValidator } from "@/validators/ajv";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import {
   FIRST_ONE_OF,
   oneOfData,
   oneOfSchema,
   SECOND_ONE_OF,
-} from "./fixtures/test-data";
-import type { Validator } from "./validator";
-import { sanitizeDataForNewSchema } from "./sanitize-data-for-new-schema";
-import { retrieveSchema } from "./resolve";
-import type { Schema } from "./schema";
+} from "./fixtures/test-data.js";
+import type { Validator } from "./validator.js";
+import { sanitizeDataForNewSchema } from "./sanitize-data-for-new-schema.js";
+import { retrieveSchema } from "./resolve.js";
+import type { Schema } from "./schema.js";
+import { makeTestValidator } from "./test-validator.js";
 
 let testValidator: Validator;
-let testValidatorMockValues: boolean[];
-let testValidatorMock: MockInstance<Validator["isValid"]>;
 
 beforeEach(() => {
-  testValidator = new AjvValidator(
-    new Ajv({
-      allErrors: true,
-      discriminator: true,
-      strict: false,
-      verbose: true,
-      multipleOfPrecision: 8,
-    })
-  );
-  testValidatorMockValues = [];
-  testValidatorMock = vi
-    .spyOn(testValidator, "isValid")
-    .mockImplementation(() => {
-      if (testValidatorMockValues.length > 0) {
-        return testValidatorMockValues.shift()!;
-      }
-      return true;
-    });
-});
-afterEach(() => {
-  testValidatorMock.mockClear();
+  testValidator = makeTestValidator();
 });
 
 describe("sanitizeDataForNewSchema", () => {

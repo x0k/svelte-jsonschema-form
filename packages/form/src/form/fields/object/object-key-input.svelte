@@ -1,19 +1,19 @@
 <script lang="ts">
   import { proxy } from "@/lib/svelte.svelte";
-  import type { Config } from "@/core/config";
-  import type { UiSchema } from "@/core/ui-schema";
-  import { type SchemaObjectValue, type SchemaValue } from "@/core/schema";
-  import { type IdSchema, computeId } from "@/core/id-schema";
+  import type { Config } from "@/core/config.js";
+  import type { UiSchema } from "@/core/ui-schema.js";
+  import { type SchemaObjectValue, type SchemaValue } from "@/core/schema/index.js";
+  import { type IdSchema, computeId } from "@/core/id-schema.js";
 
-  import { getFormContext } from "../../context";
-  import { getWidget } from "../../widgets";
-  import { getErrors, getUiOptions } from "../../utils";
-  import { getTemplate } from "../../templates";
+  import { getFormContext } from "../../context.js";
+  import { getWidget } from "../../widgets.js";
+  import { getErrors, getUiOptions } from "../../utils.js";
+  import { getTemplate } from "../../templates/index.js";
 
-  import { inputAttributes } from "../make-widget-attributes";
+  import { inputAttributes } from "../make-widget-attributes.js";
 
-  import { getObjectContext } from "./context";
-  import { generateNewKey } from "./generate-new-object-key";
+  import { getObjectContext } from "./context.js";
+  import { generateNewKey } from "./generate-new-object-key.js";
 
   const {
     property,

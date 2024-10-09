@@ -4,8 +4,8 @@
 
 import { describe, expect, it } from 'vitest';
 
-import { ROOT_SCHEMA_PREFIX, type Schema } from './schema';
-import { prefixSchemaRefs } from './prefix-schema-refs';
+import { ROOT_SCHEMA_PREFIX, type Schema } from './schema.js';
+import { prefixSchemaRefs } from './prefix-schema-refs.js';
 
 describe('prefixSchemaRefs()', () => {
   it('should recursively add id prefix to all refs', () => {

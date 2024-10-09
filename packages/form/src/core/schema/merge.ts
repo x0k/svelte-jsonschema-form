@@ -12,8 +12,8 @@ import {
   type Schema,
   type SchemaDefinition,
   type SchemaObjectValue,
-} from "./schema";
-import { isSchemaObjectValue } from "./value";
+} from "./schema.js";
+import { isSchemaObjectValue } from "./value.js";
 
 function mergeRecords<T>(
   left: Record<string, T>,
@@ -22,7 +22,7 @@ function mergeRecords<T>(
 ) {
   const target = Object.assign({}, left);
   for (const [key, value] of Object.entries(right)) {
-    if (!(key in left)) {
+    if (left[key] === undefined) {
       target[key] = value;
       continue;
     }

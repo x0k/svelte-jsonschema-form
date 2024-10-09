@@ -9,11 +9,11 @@ import type {
   SchemaArrayValue,
   SchemaValue,
   ValidationError,
-} from "@/core/schema";
-import type { Config } from "@/core/config";
-import type { EnumOption } from "@/core/enum";
+} from "@/core/schema/index.js";
+import type { Config } from "@/core/config.js";
+import type { EnumOption } from "@/core/enum.js";
 
-import type { FormContext } from "./context";
+import type { FormContext } from "./context.js";
 import { createMessage } from "./error-message.svelte";
 
 export interface RequiredAttributes {

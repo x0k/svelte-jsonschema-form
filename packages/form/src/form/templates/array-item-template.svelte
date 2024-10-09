@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { getFormContext } from '../context';
-  import { getComponent } from '../component';
+  import { getFormContext } from '../context.js';
+  import { getComponent } from '../component.js';
 
-  import type { TemplateProps } from './model';
+  import type { TemplateProps } from './model.js';
 
   const { children, buttons, config, errors }: TemplateProps<"array-item"> = $props();
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { ComponentProps } from "@/form";
+  import type { ComponentProps } from "@/form/index.js";
 
   const { type, children, attributes }: ComponentProps<"layout"> = $props();
 

@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { deepEqual } from "@/lib/deep-equal";
+import { deepEqual } from "@/lib/deep-equal.js";
 
 import {
   ALL_OF_KEY,
@@ -20,7 +20,7 @@ import {
   type SchemaObjectValue,
   type SchemaValue,
   type Validator,
-} from "./schema";
+} from "./schema/index.js";
 
 export type FieldId = {
   $id: string;
@@ -86,7 +86,7 @@ export function toIdSchema(
     const properties = schema[PROPERTIES_KEY];
     const formDataObject = isSchemaObjectValue(formData) ? formData : undefined;
     for (const name in properties) {
-      const field = properties[name];
+      const field = properties[name]!;
       const fieldId = idSchema[ID_KEY] + idSeparator + name;
       idSchema[name] = toIdSchema(
         validator,

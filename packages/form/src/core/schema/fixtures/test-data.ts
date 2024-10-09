@@ -4,8 +4,8 @@
 
 import deepFreeze from "deep-freeze-es6";
 
-import { ONE_OF_KEY, ID_KEY, type Schema } from "../schema";
-import type { EnumOption } from '../../enum';
+import { ONE_OF_KEY, ID_KEY, type Schema } from "../schema.js";
+import type { EnumOption } from '../../enum.js';
 
 export const oneOfData = {
   name: "second_option",
@@ -200,8 +200,8 @@ export const oneOfSchema: Schema = deepFreeze({
   ],
 });
 export const ONE_OF_SCHEMA_OPTIONS = oneOfSchema[ONE_OF_KEY]! as Schema[];
-export const FIRST_ONE_OF: Schema = ONE_OF_SCHEMA_OPTIONS[0];
-export const SECOND_ONE_OF: Schema = ONE_OF_SCHEMA_OPTIONS[1];
+export const FIRST_ONE_OF: Schema = ONE_OF_SCHEMA_OPTIONS[0]!;
+export const SECOND_ONE_OF: Schema = ONE_OF_SCHEMA_OPTIONS[1]!;
 export const OPTIONAL_ONE_OF_SCHEMA: Schema = deepFreeze<Schema>({
   oneOf: [
     {

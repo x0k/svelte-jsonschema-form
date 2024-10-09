@@ -5,10 +5,10 @@ import type {
   SchemaObjectValue,
   SchemaValue,
   ValidationError,
-} from "@/core/schema";
-import type { Config } from "@/core/config";
+} from "@/core/schema/index.js";
+import type { Config } from "@/core/config.js";
 
-import type { FormContext } from "../context";
+import type { FormContext } from "../context.js";
 import { createMessage } from "../error-message.svelte";
 
 export interface TemplateCommonProps<V extends SchemaValue> {

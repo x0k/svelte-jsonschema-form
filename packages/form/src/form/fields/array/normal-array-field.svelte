@@ -3,23 +3,23 @@
     isSchemaNullable,
     isSchemaObjectValue,
     type Schema,
-  } from "@/core/schema";
+  } from "@/core/schema/index.js";
   
-  import { getFormContext } from "../../context";
-  import { getComponent } from '../../component';
-  import { getTemplate } from '../../templates';
+  import { getFormContext } from "../../context.js";
+  import { getComponent } from '../../component.js';
+  import { getTemplate } from '../../templates/index.js';
   import {
     getDefaultFormState,
     getUiOptions,
     retrieveSchema,
-  } from "../../utils";
+  } from "../../utils.js";
   
-  import { getField, type FieldProps } from '../model';
+  import { getField, type FieldProps } from '../model.js';
 
-  import { getArrayContext } from "./context";
-  import { makeHandler } from './make-click-handler';
-  import { getArrayItemName, getNormalArrayItemTitle } from './get-array-item-name'
-  import { getArrayItemSchemaId } from './get-array-item-schema-id'
+  import { getArrayContext } from './context.js';
+  import { makeHandler } from './make-click-handler.js';
+  import { getArrayItemName, getNormalArrayItemTitle } from './get-array-item-name.js'
+  import { getArrayItemSchemaId } from './get-array-item-schema-id.js'
 
   let { value = $bindable(), config }: FieldProps<"normalArray"> = $props()
 

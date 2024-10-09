@@ -1,8 +1,7 @@
-import { deepEqual } from "@/lib/deep-equal";
-
-import { isObject } from '@/lib/object';
-import type { EnumOption } from "@/core/enum";
-import type { SchemaValue } from '@/core/schema';
+import { deepEqual } from "@/lib/deep-equal.js";
+import { isObject } from '@/lib/object.js';
+import type { EnumOption } from "@/core/enum.js";
+import type { SchemaValue } from '@/core/schema/index.js';
 
 export function makeOptionsMapper(options: EnumOption<SchemaValue>[]) {
   const map = new Map(options.map((option, index) => [option.value, index]));

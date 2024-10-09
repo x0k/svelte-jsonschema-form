@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { getFormContext } from "../context";
+  import { getFormContext } from "../context.js";
 
-  import { getField, type FieldProps } from "./model";
+  import { getField, type FieldProps } from "./model.js";
 
   let { value = $bindable(), config }: FieldProps<"integer"> = $props();
 

@@ -1,4 +1,4 @@
-import type { Config } from "@/core/config";
+import type { Config } from "@/core/config.js";
 
 export function getTemplateProps({ title, uiOptions, schema }: Config) {
   return {

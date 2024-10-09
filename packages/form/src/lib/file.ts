@@ -14,7 +14,7 @@ export async function dataURLtoBlob(signal: AbortSignal, dataURILike: string) {
   if (splitted.length !== 2) {
     throw new Error("File is invalid: dataURI must be base64");
   }
-  const [media, base64] = splitted;
+  const [media, base64] = splitted as [string, string];
   const [mime, ...mediaParams] = media.split(";");
   const type = mime || "";
 

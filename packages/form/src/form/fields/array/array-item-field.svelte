@@ -1,14 +1,14 @@
 <script lang="ts">
-  import { getFormContext } from "../../context";
-  import { getComponent } from '../../component';
-  import { getTemplate } from '../../templates';
-  import { getErrors, getUiOptions } from "../../utils";
+  import { getFormContext } from "../../context.js";
+  import { getComponent } from '../../component.js';
+  import { getTemplate } from '../../templates/index.js';
+  import { getErrors, getUiOptions } from "../../utils.js";
 
-  import { getField, type FieldProps } from '../model';
-  import { isDisabledOrReadonly } from '../../is-disabled-or-readonly'
+  import { getField, type FieldProps } from '../model.js';
+  import { isDisabledOrReadonly } from '../../is-disabled-or-readonly.js'
 
-  import { getArrayContext } from './context';
-  import { makeHandler } from './make-click-handler';
+  import { getArrayContext } from './context.js';
+  import { makeHandler } from './make-click-handler.js';
 
   let {
     index,

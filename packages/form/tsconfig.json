@@ -1,26 +1,28 @@
 {
-  "extends": "@tsconfig/svelte/tsconfig.json",
+  "extends": "@total-typescript/tsconfig/bundler/dom/library-monorepo",
   "compilerOptions": {
-    "target": "ESNext",
-    "useDefineForClassFields": true,
-    "module": "ESNext",
-    "resolveJsonModule": true,
-    /**
-     * Typecheck JS in `.svelte` and `.js` files by default.
-     * Disable checkJs if you'd like to use dynamic types in JS.
-     * Note that setting allowJs false does not prevent the use
-     * of JS in `.svelte` files.
-     */
-    "allowJs": true,
-    "checkJs": true,
-    "isolatedModules": true,
-    "moduleDetection": "force",
-    
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "lib": [
+      "ES2023",
+      "ESNext.Disposable",
+      "ESNext.Collection",
+      "DOM",
+    ],
+    "rootDir": "src",
+    "types": [
+      "vite/client",
+    ],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
+      "@/*": [
+        "./src/*"
+      ],
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.svelte", "../ajv8-validator/src/ajv.ts"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.js",
+    "src/**/*.svelte"
+  ],
 }

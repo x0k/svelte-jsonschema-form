@@ -1,18 +1,18 @@
 <script lang="ts">
   import { proxy } from "@/lib/svelte.svelte";
-  import { computeId } from '@/core/id-schema';
-  import type { Config } from '@/core/config';
-  import type { EnumOption } from '@/core/enum';
-  import { getDiscriminatorFieldFromSchema, mergeSchemas } from '@/core/schema';
-  import type { UiSchema } from '@/core/ui-schema';
+  import { computeId } from '@/core/id-schema.js';
+  import type { Config } from '@/core/config.js';
+  import type { EnumOption } from '@/core/enum.js';
+  import { getDiscriminatorFieldFromSchema, mergeSchemas } from '@/core/schema/index.js';
+  import type { UiSchema } from '@/core/ui-schema.js';
 
-  import { getFormContext } from "../context";
-  import { getTemplate } from '../templates';
-  import { getWidget } from '../widgets';
-  import { getClosestMatchingOption, getDefaultFormState, getErrors, getUiOptions, retrieveSchema, sanitizeDataForNewSchema } from "../utils";
+  import { getFormContext } from "../context.js";
+  import { getTemplate } from '../templates/index.js';
+  import { getWidget } from '../widgets.js';
+  import { getClosestMatchingOption, getDefaultFormState, getErrors, getUiOptions, retrieveSchema, sanitizeDataForNewSchema } from "../utils.js";
 
-  import { getField, type FieldProps } from "./model";
-  import { selectAttributes } from "./make-widget-attributes";
+  import { getField, type FieldProps } from "./model.js";
+  import { selectAttributes } from "./make-widget-attributes.js";
 
   let {
     value = $bindable(),
@@ -65,7 +65,7 @@
     if (selected < 0) {
       return null;
     }
-    const schema = retrievedOptions[selected];
+    const schema = retrievedOptions[selected]!;
     const { required } = config.schema;
     return required ? mergeSchemas({ required }, schema) : schema;
   });
@@ -84,7 +84,7 @@
       return {};
     }
     if (selected < optionsUiSchemas.length) {
-      return optionsUiSchemas[selected];
+      return optionsUiSchemas[selected]!;
     }
     return config.uiSchema;
   });

@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import type { Schema } from './schema';
+import type { Schema } from './schema.js';
 
 function hashString(string: string): string {
   let hash = 0;

@@ -13,16 +13,14 @@ import {
   vi,
   type MockInstance,
 } from "vitest";
-import Ajv from "ajv";
 
-import { getValueByPath } from "@/lib/object";
-import { AjvValidator } from "@/validators/ajv";
+import { getValueByPath } from "@/lib/object.js";
 
 import {
   type Schema,
   ADDITIONAL_PROPERTY_FLAG,
   PROPERTIES_KEY,
-} from "./schema";
+} from "./schema.js";
 import {
   getAllPermutationsOfXxxOf,
   resolveAnyOrOneOfSchemas,
@@ -31,7 +29,7 @@ import {
   retrieveSchemaInternal,
   stubExistingAdditionalProperties,
   withExactlyOneSubSchema,
-} from "./resolve";
+} from "./resolve.js";
 import {
   PROPERTY_DEPENDENCIES,
   RECURSIVE_REF,
@@ -44,35 +42,14 @@ import {
   SCHEMA_WITH_MULTIPLE_CONDITIONS,
   SCHEMA_WITH_NESTED_CONDITIONS,
   SUPER_SCHEMA,
-} from "./fixtures/test-data";
-import type { Validator } from "./validator";
+} from "./fixtures/test-data.js";
+import type { Validator } from "./validator.js";
+import { makeTestValidator } from "./test-validator.js";
 
 let testValidator: Validator;
-let testValidatorMockValues: boolean[];
-let testValidatorMock: MockInstance<Validator["isValid"]>;
 
 beforeEach(() => {
-  testValidator = new AjvValidator(
-    new Ajv({
-      allErrors: true,
-      discriminator: true,
-      strict: false,
-      verbose: true,
-      multipleOfPrecision: 8,
-    })
-  );
-  testValidatorMockValues = [];
-  testValidatorMock = vi
-    .spyOn(testValidator, "isValid")
-    .mockImplementation(() => {
-      if (testValidatorMockValues.length > 0) {
-        return testValidatorMockValues.shift()!;
-      }
-      return true;
-    });
-});
-afterEach(() => {
-  testValidatorMock.mockClear();
+  testValidator = makeTestValidator();
 });
 
 describe("retrieveSchema()", () => {
@@ -648,10 +625,12 @@ describe("retrieveSchema()", () => {
       describe("with $ref in oneOf", () => {
         it("should retrieve referenced schemas", () => {
           // Mock isValid so that withExactlyOneSubschema works as expected
-          testValidatorMockValues = [
-            false, // First oneOf... second !== first
-            true, // Second oneOf... second === second
-          ];
+          testValidator = makeTestValidator({
+            isValid: [
+              false, // First oneOf... second !== first
+              true, // Second oneOf... second === second
+            ],
+          });
           const schema: Schema = {
             type: "object",
             properties: {
@@ -726,10 +705,12 @@ describe("retrieveSchema()", () => {
       describe("true condition", () => {
         it("should add `first` properties given `first` data", () => {
           // Mock isValid so that withExactlyOneSubschema works as expected
-          testValidatorMockValues = [
-            true, // First dependency... first === first
-            false, // Second dependency... second !== first
-          ];
+          testValidator = makeTestValidator({
+            isValid: [
+              true, // First dependency... first === first
+              false, // Second dependency... second !== first
+            ],
+          });
           const schema: Schema = {
             ...SCHEMA_AND_ONEOF_REF_DEPENDENCIES,
             definitions: undefined,
@@ -753,10 +734,12 @@ describe("retrieveSchema()", () => {
 
         it("should add `second` properties given `second` data", () => {
           // Mock isValid so that withExactlyOneSubschema works as expected
-          testValidatorMockValues = [
-            false, // First dependency... first !== second
-            true, // Second dependency... second === second
-          ];
+          testValidator = makeTestValidator({
+            isValid: [
+              false, // First dependency... first !== second
+              true, // Second dependency... second === second
+            ],
+          });
           const schema: Schema = {
             ...SCHEMA_AND_ONEOF_REF_DEPENDENCIES,
             definitions: undefined,
@@ -788,12 +771,14 @@ describe("retrieveSchema()", () => {
 
           it("should not include nested dependencies that should be hidden", () => {
             // Mock isValid so that withExactlyOneSubschema works as expected
-            testValidatorMockValues = [
-              false, // employee_accounts oneOf ... - fail
-              true, // update_absences first oneOf... success
-              false, // update_absences second oneOf... fail
-              false, // update_absences third oneOf... fail
-            ];
+            testValidator = makeTestValidator({
+              isValid: [
+                false, // employee_accounts oneOf ... - fail
+                true, // update_absences first oneOf... success
+                false, // update_absences second oneOf... fail
+                false, // update_absences third oneOf... fail
+              ],
+            });
             const formData = {
               employee_accounts: false,
               update_absences: "BOTH",
@@ -816,12 +801,14 @@ describe("retrieveSchema()", () => {
 
           it("should include nested dependencies that should not be hidden", () => {
             // Mock isValid so that withExactlyOneSubschema works as expected
-            testValidatorMockValues = [
-              true, // employee_accounts oneOf... success
-              true, // update_absences first oneOf... success
-              false, // update_absences second oneOf... fail
-              false, // update_absences third oneOf... fail
-            ];
+            testValidator = makeTestValidator({
+              isValid: [
+                true, // employee_accounts oneOf... success
+                true, // update_absences first oneOf... success
+                false, // update_absences second oneOf... fail
+                false, // update_absences third oneOf... fail
+              ],
+            });
             const formData = {
               employee_accounts: true,
               update_absences: "BOTH",
@@ -858,10 +845,12 @@ describe("retrieveSchema()", () => {
       describe("with $ref in dependency", () => {
         it("should retrieve the referenced schema", () => {
           // Mock isValid so that withExactlyOneSubschema works as expected
-          testValidatorMockValues = [
-            false, // First oneOf... fail
-            true, // Second oneOf... success
-          ];
+          testValidator = makeTestValidator({
+            isValid: [
+              false, // First oneOf... fail
+              true, // Second oneOf... success
+            ],
+          });
           const schema: Schema = {
             type: "object",
             properties: {
@@ -1075,10 +1064,12 @@ describe("retrieveSchema()", () => {
   describe("Conditional schemas (If, Then, Else)", () => {
     it("should resolve if, then", () => {
       // Mock errors so that resolveCondition works as expected
-      testValidatorMockValues = [
-        true, // First condition Country... USA pass
-        false, // Second condition Countery... Canada fail
-      ];
+      testValidator = makeTestValidator({
+        isValid: [
+          true, // First condition Country... USA pass
+          false, // Second condition Countery... Canada fail
+        ],
+      });
       const rootSchema: Schema = { definitions: {} };
       const formData = {
         country: "United States of America",
@@ -1104,9 +1095,11 @@ describe("retrieveSchema()", () => {
     });
     it("should resolve if, else", () => {
       // Mock errors so that resolveCondition works as expected
-      testValidatorMockValues = [
-        false, // First condition Country... USA fail
-      ];
+      testValidator = makeTestValidator({
+        isValid: [
+          false, // First condition Country... USA fail
+        ],
+      });
       const rootSchema: Schema = { definitions: {} };
       const formData = {
         country: "Canada",
@@ -1132,10 +1125,12 @@ describe("retrieveSchema()", () => {
     });
     it("should resolve multiple conditions", () => {
       // Mock errors so that resolveCondition works as expected
-      testValidatorMockValues = [
-        true, // First condition animal... Cat pass
-        false, // Second condition animal... Fish fail
-      ];
+      testValidator = makeTestValidator({
+        isValid: [
+          true, // First condition animal... Cat pass
+          false, // Second condition animal... Fish fail
+        ],
+      });
       const schema: Schema = {
         type: "object",
         properties: {
@@ -1198,12 +1193,14 @@ describe("retrieveSchema()", () => {
     });
     it("should resolve multiple conditions in nested allOf blocks", () => {
       // Mock errors so that resolveCondition works as expected
-      testValidatorMockValues = [
-        false, // First condition Animal... Cat fail
-        true, // Second condition Animal... Dog pass
-        false, // Third condition Breed... Alsatian fail
-        true, // Fourth condition Breed... Dalmation pass
-      ];
+      testValidator = makeTestValidator({
+        isValid: [
+          false, // First condition Animal... Cat fail
+          true, // Second condition Animal... Dog pass
+          false, // Third condition Breed... Alsatian fail
+          true, // Fourth condition Breed... Dalmation pass
+        ],
+      });
       const rootSchema: Schema = { definitions: {} };
       const formData = {
         Animal: "Dog",
@@ -1290,10 +1287,12 @@ describe("retrieveSchema()", () => {
     });
     it("should resolve $ref", () => {
       // Mock errors so that resolveCondition works as expected
-      testValidatorMockValues = [
-        true, // First condition animal... Cat pass
-        false, // Second condition animal... Fish fail
-      ];
+      testValidator = makeTestValidator({
+        isValid: [
+          true, // First condition animal... Cat pass
+          false, // Second condition animal... Fish fail
+        ],
+      });
       const schema: Schema = {
         type: "object",
         properties: {

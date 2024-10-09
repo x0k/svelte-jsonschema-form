@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { getComponent } from '../component';
-  import { getFormContext } from '../context';
+  import { getComponent } from '../component.js';
+  import { getFormContext } from '../context.js';
 
-  import type { TemplateProps } from './model';
+  import type { TemplateProps } from './model.js';
 
   const { children, optionSelector, config, errors }: TemplateProps<"multi"> = $props()
 

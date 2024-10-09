@@ -5,8 +5,8 @@ import {
   ARRAYS_OF_SUB_SCHEMAS,
   isSchema,
   REF_KEY,
-} from "./schema";
-import { isSchemaObjectValue } from "./value";
+} from "./schema.js";
+import { isSchemaObjectValue } from "./value.js";
 
 function prefixMutableSchemaRefs(schema: Schema, prefix: string): Schema {
   for (const key of ARRAYS_OF_SUB_SCHEMAS) {

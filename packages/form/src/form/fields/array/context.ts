@@ -1,6 +1,6 @@
 import { getContext, setContext } from "svelte";
 
-import type { ValidationError } from '@/core/schema';
+import type { ValidationError } from '@/core/schema/index.js';
 
 export interface ArrayContext {
   disabledOrReadonly: boolean;

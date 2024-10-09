@@ -4,8 +4,8 @@
 
 import { describe, expect, it } from 'vitest';
 
-import type { Schema } from './schema';
-import { findSchemaDefinition } from './definitions';
+import type { Schema } from './schema.js';
+import { findSchemaDefinition } from './definitions.js';
 // import { findSchemaDefinitionRecursive } from './definitions';
 
 const schema: Schema = {

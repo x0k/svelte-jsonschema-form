@@ -4,8 +4,8 @@
 
 import jsonpointer from "jsonpointer";
 
-import { REF_KEY, type Schema } from "./schema";
-import { mergeSchemas } from "./merge";
+import { REF_KEY, type Schema } from "./schema.js";
+import { mergeSchemas } from "./merge.js";
 
 export function findSchemaDefinition(
   ref: string,
@@ -30,7 +30,7 @@ export function findSchemaDefinition(
         throw new Error(`Definition for ${ref} is a circular reference`);
       }
       const refs = Array.from(stack);
-      const firstRef = refs[0];
+      const firstRef = refs[0]!;
       refs.push(ref, firstRef);
       throw new Error(
         `Definition for ${firstRef} contains a circular reference through ${refs.join(

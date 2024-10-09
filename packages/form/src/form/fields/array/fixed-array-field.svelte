@@ -1,17 +1,17 @@
 <script lang="ts">
-  import { isSchemaNullable, isSchemaObjectValue, type Schema } from '@/core/schema';
+  import { isSchemaNullable, isSchemaObjectValue, type Schema } from '@/core/schema/index.js';
   
-  import { getFormContext } from '../../context';
-  import { getComponent } from '../../component';
-  import { getTemplate } from '../../templates';
-  import { getDefaultFormState, getUiOptions, retrieveSchema } from '../../utils';
+  import { getFormContext } from '../../context.js';
+  import { getComponent } from '../../component.js';
+  import { getTemplate } from '../../templates/index.js';
+  import { getDefaultFormState, getUiOptions, retrieveSchema } from '../../utils.js';
   
-  import { getField, type FieldProps } from '../model';
+  import { getField, type FieldProps } from '../model.js';
   
-  import { getArrayContext } from './context';
-  import { makeHandler } from './make-click-handler';
-  import { getArrayItemName, getFixedArrayItemTitle } from './get-array-item-name'
-  import { getArrayItemSchemaId } from './get-array-item-schema-id'
+  import { getArrayContext } from './context.js';
+  import { makeHandler } from './make-click-handler.js';
+  import { getArrayItemName, getFixedArrayItemTitle } from './get-array-item-name.js'
+  import { getArrayItemSchemaId } from './get-array-item-schema-id.js'
 
   let { value = $bindable(), config }: FieldProps<"fixedArray"> = $props()
 
@@ -74,7 +74,7 @@
   {#if value}
     {#each value as item, index}
       {@const isAdditional = index >= schemaItems.length}
-      {@const itemSchema = isAdditional && schemaAdditionalItems ? retrieveSchema(ctx, schemaAdditionalItems, item) : schemaItems[index]}
+      {@const itemSchema = isAdditional && schemaAdditionalItems ? retrieveSchema(ctx, schemaAdditionalItems, item) : schemaItems[index]!}
       {@const uiSchema = config.uiSchema}
       {@const itemUiSchema = (isAdditional
         ? uiSchema.additionalItems

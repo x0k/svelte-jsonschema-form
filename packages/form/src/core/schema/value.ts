@@ -1,10 +1,10 @@
-import { isRecord, isObject } from "@/lib/object";
+import { isRecord, isObject } from "@/lib/object.js";
 
 import type {
   SchemaArrayValue,
   SchemaObjectValue,
   SchemaValue,
-} from "./schema";
+} from "./schema.js";
 
 export function isSchemaObjectValue(
   value: unknown

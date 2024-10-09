@@ -8,10 +8,10 @@ import {
   type SchemaArrayValue,
   type SchemaObjectValue,
   type SchemaValue,
-} from "./schema";
-import { retrieveSchema } from "./resolve";
-import type { Validator } from "./validator";
-import { isSchemaObjectValue } from "./value";
+} from "./schema.js";
+import { retrieveSchema } from "./resolve.js";
+import type { Validator } from "./validator.js";
+import { isSchemaObjectValue } from "./value.js";
 
 const NO_VALUE = Symbol("no Value");
 

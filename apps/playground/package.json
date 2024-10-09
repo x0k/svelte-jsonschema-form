@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "check": "svelte-check --tsconfig ./tsconfig.json && tsc -p tsconfig.node.json"
+    "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "catalog:",
@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@sjsf/form": "workspace:*",
+    "@sjsf/ajv8-validator": "workspace:*",
     "ajv": "^8.17.1",
     "rehype-raw": "^7.0.0",
     "svelte-exmarkdown": "^3.0.5"

@@ -15,6 +15,8 @@ f/:
   pushd packages/form
   b:
     pnpm run build
+  c:
+    pnpm run check
   popd
 
 p:

@@ -1,8 +1,8 @@
 import type { HTMLButtonAttributes } from "svelte/elements";
 
-import type { InputAttributes } from "@/core/ui-schema";
+import type { InputAttributes } from "@/core/ui-schema.js";
 
-import type { FormContext } from "./context";
+import type { FormContext } from "./context.js";
 
 export function isDisabledOrReadonly(
   ctx: FormContext,

@@ -1,4 +1,4 @@
-import { type Template, type Templates, type TemplateType } from "./model";
+import { type Template, type Templates, type TemplateType } from "./model.js";
 
 import FieldTemplate from "./field-template.svelte";
 import ObjectTemplate from "./object-template.svelte";

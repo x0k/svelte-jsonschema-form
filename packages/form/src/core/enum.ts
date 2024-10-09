@@ -2,9 +2,9 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import type { Schema, SchemaDefinition, SchemaValue } from "./schema";
-import { getSchemaConstantValue } from "./schema/constant-schema";
-import type { UiOptions, UiSchema } from "./ui-schema";
+import type { Schema, SchemaDefinition, SchemaValue } from "./schema/index.js";
+import { getSchemaConstantValue } from "./schema/constant-schema.js";
+import type { UiOptions, UiSchema } from "./ui-schema.js";
 
 export interface SimpleEnumOption<T> {
   value: T;

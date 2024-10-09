@@ -6,7 +6,7 @@
   "scripts": {
     "test": "vitest run --exclude '.svelte-kit/**'",
     "build": "svelte-package",
-    "check": "svelte-check --tsconfig ./tsconfig.json && tsc -p tsconfig.node.json"
+    "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "devDependencies": {
     "@sveltejs/package": "^2.3.5",
@@ -31,6 +31,7 @@
     "jsonpointer": "^5.0.1",
     "scheduler-polyfill": "1.3.0-beta.0"
   },
+  "types": "./dist/form/index.d.ts",
   "exports": {
     "./lib/*": {
       "default": "./dist/lib/*.js",

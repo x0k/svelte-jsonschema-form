@@ -1,2 +1,2 @@
-export * from "./model";
-export * from "./fields";
+export * from "./model.js";
+export * from "./fields.js";

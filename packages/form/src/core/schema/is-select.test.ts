@@ -2,49 +2,17 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import {
-  vi,
-  beforeEach,
-  describe,
-  it,
-  type MockInstance,
-  afterEach,
-  expect,
-} from "vitest";
-import Ajv from "ajv";
+import { beforeEach, describe, it, expect } from "vitest";
 
-import { AjvValidator } from "@/validators/ajv";
-
-import type { Schema } from "./schema";
-import type { Validator } from "./validator";
-import { isMultiSelect, isSelect } from "./is-select";
+import type { Schema } from "./schema.js";
+import type { Validator } from "./validator.js";
+import { isMultiSelect, isSelect } from "./is-select.js";
+import { makeTestValidator } from "./test-validator.js";
 
 let testValidator: Validator;
-let testValidatorMockValues: boolean[];
-let testValidatorMock: MockInstance<Validator["isValid"]>;
 
 beforeEach(() => {
-  testValidator = new AjvValidator(
-    new Ajv({
-      allErrors: true,
-      discriminator: true,
-      strict: false,
-      verbose: true,
-      multipleOfPrecision: 8,
-    })
-  );
-  testValidatorMockValues = [];
-  testValidatorMock = vi
-    .spyOn(testValidator, "isValid")
-    .mockImplementation(() => {
-      if (testValidatorMockValues.length > 0) {
-        return testValidatorMockValues.shift()!;
-      }
-      return true;
-    });
-});
-afterEach(() => {
-  testValidatorMock.mockClear();
+  testValidator = makeTestValidator();
 });
 
 describe("isSelect()", () => {

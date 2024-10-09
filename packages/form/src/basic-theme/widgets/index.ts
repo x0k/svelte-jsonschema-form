@@ -1,4 +1,4 @@
-import type { Widget, Widgets, WidgetType } from "@/form";
+import type { Widget, Widgets, WidgetType } from "@/form/index.js";
 
 import TextWidget from "./text-widget.svelte";
 import TextareaWidget from "./textarea-widget.svelte";

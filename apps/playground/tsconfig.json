@@ -1,26 +1,21 @@
 {
-  "extends": "@tsconfig/svelte/tsconfig.json",
+  "extends": "@total-typescript/tsconfig/bundler/dom/app",
   "compilerOptions": {
-    "target": "ESNext",
-    "useDefineForClassFields": true,
-    "module": "ESNext",
-    "resolveJsonModule": true,
-    /**
-     * Typecheck JS in `.svelte` and `.js` files by default.
-     * Disable checkJs if you'd like to use dynamic types in JS.
-     * Note that setting allowJs false does not prevent the use
-     * of JS in `.svelte` files.
-     */
-    "allowJs": true,
-    "checkJs": true,
-    "isolatedModules": true,
-    "moduleDetection": "force",
-    
-    "baseUrl": "../apps/playground",
+    "moduleResolution": "Bundler",
+    "rootDir": "src",
+    "types": [
+      "vite/client",
+    ],
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["../apps/playground/src/*"],
+      "@/*": [
+        "./src/*"
+      ],
     }
   },
-  "include": ["../apps/playground/src/**/*.ts", "../apps/playground/src/**/*.js", "../apps/playground/src/**/*.svelte"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.js",
+    "src/**/*.svelte"
+  ],
 }

@@ -1,5 +1,5 @@
 import type { Schema, SchemaValue, ValidatorError, UiSchemaRoot } from '@sjsf/form/core';
-import type { AjvValidator } from '@sjsf/form/validators';
+import type { AjvValidator } from '@sjsf/ajv8-validator';
 
 type SampleStatus = "perfect" | "broken" | "warnings" | "skipped";
 
@@ -10,5 +10,4 @@ export interface Sample {
   formData: SchemaValue;
   errors?: ValidatorError<unknown>[];
   Validator?: typeof AjvValidator
-  validate?: (value: SchemaValue | undefined) => ValidatorError<unknown>[];
 }

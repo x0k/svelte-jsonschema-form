@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { getSimpleSchemaType } from "@/core/schema";
+  import { getSimpleSchemaType } from "@/core/schema/index.js";
 
-  import { getFormContext } from "../context";
-  import { getComponent } from "../component";
-  import { getErrors } from '../utils';
+  import { getFormContext } from "../context.js";
+  import { getComponent } from "../component.js";
+  import { getErrors } from '../utils.js';
 
-  import type { FieldProps } from "./model";
+  import type { FieldProps } from "./model.js";
 
   const ctx = getFormContext();
 

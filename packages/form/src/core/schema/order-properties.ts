@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import type { Schema } from "./schema";
+import type { Schema } from "./schema.js";
 
 const errorPropList = (arr: string[]) =>
   arr.length > 1 ? `properties '${arr.join("', '")}'` : `property '${arr[0]}'`;

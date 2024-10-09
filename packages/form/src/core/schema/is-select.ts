@@ -2,10 +2,10 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import type { Schema } from "./schema";
-import type { Validator } from "./validator";
-import { retrieveSchema } from "./resolve";
-import { isSchemaOfConstantValue } from "./constant-schema";
+import type { Schema } from "./schema.js";
+import type { Validator } from "./validator.js";
+import { retrieveSchema } from "./resolve.js";
+import { isSchemaOfConstantValue } from "./constant-schema.js";
 
 export function isSelect(
   validator: Validator,

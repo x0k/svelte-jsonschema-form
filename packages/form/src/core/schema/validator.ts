@@ -1,4 +1,4 @@
-import type { Schema, SchemaDefinition, SchemaValue } from "./schema";
+import type { Schema, SchemaDefinition, SchemaValue } from "./schema.js";
 
 export enum ValidatorErrorType {
   ValidationError = "validation-error",

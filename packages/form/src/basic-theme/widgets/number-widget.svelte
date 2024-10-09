@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { WidgetProps } from "@/form";
+  import type { WidgetProps } from "@/form/index.js";
 
   import Datalist, { makeExamples } from "./datalist.svelte";
 

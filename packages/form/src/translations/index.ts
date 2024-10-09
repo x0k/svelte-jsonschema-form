@@ -1,2 +1,2 @@
-export { translation as en } from './en'
-export { translation as ru } from './ru'
+export { translation as en } from './en.js'
+export { translation as ru } from './ru.js'

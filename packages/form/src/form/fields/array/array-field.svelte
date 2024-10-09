@@ -1,14 +1,14 @@
 <script lang="ts">
-  import { isFixedItems } from "@/core/schema";
+  import { isFixedItems } from "@/core/schema/index.js";
 
-  import { getFormContext } from "../../context";
-  import { getErrors, getUiOptions, isMultiSelect } from "../../utils";
-  import { isDisabledOrReadonly } from "../../is-disabled-or-readonly";
+  import { getFormContext } from "../../context.js";
+  import { getErrors, getUiOptions, isMultiSelect } from "../../utils.js";
+  import { isDisabledOrReadonly } from "../../is-disabled-or-readonly.js";
 
-  import { getField, type FieldProps } from "../model";
+  import { getField, type FieldProps } from "../model.js";
 
-  import { setArrayContext, type ArrayContext } from "./context";
-  import { isFilesArray } from "./is-files-array";
+  import { setArrayContext, type ArrayContext } from "./context.js";
+  import { isFilesArray } from "./is-files-array.js";
 
   let { value = $bindable(), config }: FieldProps<"array"> = $props();
 

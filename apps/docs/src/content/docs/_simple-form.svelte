@@ -2,8 +2,8 @@
   import Ajv from 'ajv';
   import { Form } from '@sjsf/form';
   import { translation } from '@sjsf/form/translations/en';
-  import { theme } from '@sjsf/form/themes/basic';
-  import { AjvValidator } from '@sjsf/form/validators/ajv';
+  import { theme } from '@sjsf/form/basic-theme';
+  import { AjvValidator } from '@sjsf/ajv8-validator';
 
   const validator = new AjvValidator(new Ajv({
     allErrors: true,

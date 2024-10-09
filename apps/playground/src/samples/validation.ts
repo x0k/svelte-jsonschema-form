@@ -1,4 +1,4 @@
-import { AjvValidator } from "@sjsf/form/validators/ajv";
+import { AjvValidator } from "@sjsf/ajv8-validator";
 
 import type { Sample } from "./Sample";
 import {
@@ -9,7 +9,7 @@ import {
 } from "@sjsf/form/core";
 import type { ErrorObject } from "ajv";
 
-function customValidate(value: SchemaValue | undefined): ValidatorError<unknown>[] {
+function customValidate(value: SchemaValue | undefined): ValidatorError<ErrorObject>[] {
   const { pass1, pass2 } = value as {
     pass1: string;
     pass2: string;
@@ -18,7 +18,7 @@ function customValidate(value: SchemaValue | undefined): ValidatorError<unknown>
     return [
       {
         type: ValidatorErrorType.ValidationError,
-        error: null,
+        error: {} as ErrorObject,
         instanceId: "root_pass2",
         propertyTitle: "Repeat password",
         message: "Passwords don't match.",
@@ -29,11 +29,11 @@ function customValidate(value: SchemaValue | undefined): ValidatorError<unknown>
 }
 
 class CustomAjvValidator extends AjvValidator {
-  validateFormData(
+  override validateFormData(
     schema: Schema,
     formData: SchemaValue | undefined
   ): ValidatorError<ErrorObject>[] {
-    return super.validateFormData(schema, formData).map((error) => {
+    const errors = super.validateFormData(schema, formData).map((error) => {
       if (error.type === ValidatorErrorType.SchemaError) {
         return error;
       }
@@ -47,6 +47,7 @@ class CustomAjvValidator extends AjvValidator {
       }
       return error;
     });
+    return errors.concat(customValidate(formData))
   }
 }
 
@@ -81,7 +82,6 @@ const validation: Sample = {
   },
   formData: {},
   Validator: CustomAjvValidator,
-  validate: customValidate,
 };
 
 export default validation;

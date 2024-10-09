@@ -7,8 +7,8 @@ import {
   PROPERTY_NAME_KEY,
   type Schema,
   type SchemaValue,
-} from "./schema";
-import { isSchemaObjectValue } from "./value";
+} from "./schema.js";
+import { isSchemaObjectValue } from "./value.js";
 
 export function getDiscriminatorFieldFromSchema(
   schema: Schema
@@ -44,7 +44,7 @@ export function getOptionMatchingSimpleDiscriminator<T extends SchemaValue>(
       return;
     }
     for (let i = 0; i < options.length; i++) {
-      const option = options[i];
+      const option = options[i]!;
       const discriminator = option.properties?.[discriminatorField] ?? {};
       if (discriminator === true) {
         return i;

@@ -1,4 +1,4 @@
-import type { Field, Fields, FieldType } from "./model";
+import type { Field, Fields, FieldType } from "./model.js";
 
 import {
   ArrayField,
@@ -7,8 +7,8 @@ import {
   FixedArrayField,
   UnsupportedArrayField,
   ArrayItemField,
-} from "./array";
-import { ObjectField, ObjectPropertyField } from "./object";
+} from "./array/index.js";
+import { ObjectField, ObjectPropertyField } from "./object/index.js";
 import RootField from "./root-field.svelte";
 import NullField from "./null-field.svelte";
 import NumberField from "./number-field.svelte";

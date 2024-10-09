@@ -1,5 +1,5 @@
-import type { Schema, SchemaValue } from "./schema";
-import { isSchemaObjectValue } from "./value";
+import type { Schema, SchemaValue } from "./schema.js";
+import { isSchemaObjectValue } from "./value.js";
 
 export function isSchemaExpandable(
   schema: Schema,

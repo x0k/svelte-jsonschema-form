@@ -1,9 +1,9 @@
 <script lang="ts">
-import { getFormContext } from '../context';
-  import { getComponent } from '../component';
+import { getFormContext } from '../context.js';
+  import { getComponent } from '../component.js';
 
-  import type { TemplateProps } from './model';
-  import { getTemplateProps } from './get-template-props';
+  import type { TemplateProps } from './model.js';
+  import { getTemplateProps } from './get-template-props.js';
 
   const ctx = getFormContext()
 

@@ -1,8 +1,8 @@
 {
-  "extends": "@total-typescript/tsconfig/tsc/no-dom/library-monorepo",
+  "extends": "@total-typescript/tsconfig/tsc/dom/library-monorepo",
   "compilerOptions": {
+    "moduleResolution": "NodeNext",
     "outDir": "dist",
     "rootDir": "src",
-    "noUncheckedIndexedAccess": false,
   },
 }

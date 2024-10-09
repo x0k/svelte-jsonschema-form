@@ -6,10 +6,10 @@ import type {
   ANY_OF_KEY,
   SchemaObjectValue,
   SchemaArrayValue,
-} from "@/core/schema";
-import type { Config } from "@/core/config";
+} from "@/core/schema/index.js";
+import type { Config } from "@/core/config.js";
 
-import type { FormContext } from "../context";
+import type { FormContext } from "../context.js";
 import { createMessage } from "../error-message.svelte";
 
 export interface FieldCommonProps<V extends SchemaValue> {

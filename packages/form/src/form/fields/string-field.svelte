@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { getFormContext } from "../context";
-  import { getTemplate } from "../templates";
-  import { getWidget } from "../widgets";
-  import { getErrors } from '../utils';
+  import { getFormContext } from "../context.js";
+  import { getTemplate } from "../templates/index.js";
+  import { getWidget } from "../widgets.js";
+  import { getErrors } from '../utils.js';
 
-  import type { FieldProps } from "./model";
-  import { inputAttributes } from "./make-widget-attributes";
+  import type { FieldProps } from "./model.js";
+  import { inputAttributes } from "./make-widget-attributes.js";
 
   let { config, value = $bindable() }: FieldProps<"string"> = $props();
 

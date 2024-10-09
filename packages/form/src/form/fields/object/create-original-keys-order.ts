@@ -1,4 +1,4 @@
-import { ADDITIONAL_PROPERTY_FLAG, isSchema, type Schema } from "@/core/schema";
+import { ADDITIONAL_PROPERTY_FLAG, isSchema, type Schema } from "@/core/schema/index.js";
 
 export function createOriginalKeysOrder(
   properties: Exclude<Schema["properties"], undefined>
@@ -6,7 +6,7 @@ export function createOriginalKeysOrder(
   const order: string[] = [];
   const keys = Object.keys(properties);
   for (const key of keys) {
-    const property = properties[key];
+    const property = properties[key]!;
     if (!isSchema(property) || ADDITIONAL_PROPERTY_FLAG in property) {
       continue;
     }

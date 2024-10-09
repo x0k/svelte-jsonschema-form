@@ -1,4 +1,4 @@
-import type { Config } from "@/core/config";
+import type { Config } from "@/core/config.js";
 
 export function getArrayItemName(config: Config, index: number) {
   return `${config.name}__${index}`;

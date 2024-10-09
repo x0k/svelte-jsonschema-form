@@ -2,8 +2,8 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { type Schema } from "./schema";
-import { isSchemaObjectValue } from './value';
+import { type Schema } from "./schema.js";
+import { isSchemaObjectValue } from './value.js';
 
 export function isFixedItems(schema: Schema): schema is Omit<
   Schema,

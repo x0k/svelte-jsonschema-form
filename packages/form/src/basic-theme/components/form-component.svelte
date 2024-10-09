@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { FormComponentProps } from '@/form'
+  import type { FormComponentProps } from '@/form/index.js'
 
   let { children, form = $bindable(), onsubmit, attributes }: FormComponentProps = $props();
 </script>

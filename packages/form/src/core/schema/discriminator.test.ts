@@ -4,8 +4,8 @@
 
 import { afterAll, beforeAll, describe, expect, it, test, vi, type MockInstance } from 'vitest';
 
-import { getDiscriminatorFieldFromSchema, getOptionMatchingSimpleDiscriminator } from './discriminator';
-import type { Schema } from './schema';
+import { getDiscriminatorFieldFromSchema, getOptionMatchingSimpleDiscriminator } from './discriminator.js';
+import type { Schema } from './schema.js';
 
 const PROPERTY_NAME = 'testProp';
 // @ts-expect-error

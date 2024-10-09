@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import type { Schema } from "./schema";
+import type { Schema } from "./schema.js";
 
 export function isSchemaOfConstantValue(schema: Schema): boolean {
   return (
@@ -14,7 +14,7 @@ export function isSchemaOfConstantValue(schema: Schema): boolean {
 export function getSchemaConstantValue(schema: Schema) {
   const enumValues = schema.enum
   if (Array.isArray(enumValues) && enumValues.length === 1) {
-    return enumValues[0];
+    return enumValues[0]!;
   }
   const constant = schema.const
   if (constant !== undefined) {

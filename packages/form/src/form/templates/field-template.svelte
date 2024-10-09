@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { getComponent } from '../component';
-  import { getFormContext } from '../context';
+  import { getComponent } from '../component.js';
+  import { getFormContext } from '../context.js';
 
-  import type { TemplateProps } from './model';
-  import { getTemplateProps } from './get-template-props';
+  import type { TemplateProps } from './model.js';
+  import { getTemplateProps } from './get-template-props.js';
 
   const { children, config, showTitle, errors }: TemplateProps<"field"> = $props();
 

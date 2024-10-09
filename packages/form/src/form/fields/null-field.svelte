@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { getFormContext } from '../context';
-  import { getTemplate } from '../templates';
-  import { NO_ERRORS } from '../utils';
+  import { getFormContext } from '../context.js';
+  import { getTemplate } from '../templates/index.js';
+  import { NO_ERRORS } from '../utils.js';
 
-  import type { FieldProps } from "./model";
+  import type { FieldProps } from "./model.js";
 
   let { value = $bindable(), config }: FieldProps<"null"> = $props();
 
