@@ -24,3 +24,6 @@ p:
 
 c:
   pnpm run check
+
+cs:
+  pnpm changeset

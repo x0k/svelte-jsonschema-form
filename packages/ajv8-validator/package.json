@@ -1,14 +1,32 @@
 {
   "name": "@sjsf/ajv8-validator",
-  "description": "The ajv-8 based validator",
   "version": "0.0.1",
+  "description": "The ajv-8 based validator",
   "license": "MIT",
+  "keywords": [
+    "validator",
+    "jsonschema",
+    "ajv8"
+  ],
   "type": "module",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "provenance": true,
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/x0k/svelte-jsonschema-form",
+    "directory": "packages/form"
+  },
+  "bugs": "https://github.com/x0k/svelte-jsonschema-form/issues",
+  "homepage": "https://x0k.github.io/svelte-jsonschema-form/",
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch"
   },
-  "keywords": [],
   "exports": {
     ".": "./dist/index.js"
   },

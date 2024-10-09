@@ -4,14 +4,17 @@
   "author": "Krasilnikov Roman",
   "license": "MIT",
   "type": "module",
-  "packageManager": "pnpm@9.9.0",
+  "version": "0.0.0",
+  "packageManager": "pnpm@9.12.0",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "check": "turbo run check",
     "dev": "turbo run dev",
     "test": "turbo run test",
     "build": "turbo run build",
-    "preview": "turbo run preview"
+    "preview": "turbo run preview",
+    "ci:build": "turbo run build test --filter=./packages/*",
+    "ci:version": "changeset version && pnpm install --no-frozen-lockfile"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.9",
