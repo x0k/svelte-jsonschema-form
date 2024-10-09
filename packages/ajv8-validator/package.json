@@ -10,7 +10,7 @@
   },
   "keywords": [],
   "exports": {
-    ".": "./dist/validator.js"
+    ".": "./dist/index.js"
   },
   "dependencies": {
     "@sjsf/form": "workspace:*"

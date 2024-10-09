@@ -8,7 +8,7 @@
   } from "@sjsf/form/core";
   import { translation } from "@sjsf/form/translations/en";
   import { theme } from "@sjsf/form/basic-theme";
-  import { AjvValidator } from "@sjsf/ajv8-validator";
+  import { AjvValidator, addFormComponents, DEFAULT_AJV_CONFIG } from "@sjsf/ajv8-validator";
 
   import { ShadowHost } from "./shadow";
   import Github from "./github.svelte";
@@ -39,13 +39,7 @@
 
   const validator = $derived(
     new (samples[sampleName].Validator ?? AjvValidator)(
-      new Ajv({
-        allErrors: true,
-        multipleOfPrecision: 8,
-        strict: false,
-        verbose: true,
-        discriminator: true,
-      }),
+      addFormComponents(new Ajv(DEFAULT_AJV_CONFIG)),
       uiSchema
     )
   );

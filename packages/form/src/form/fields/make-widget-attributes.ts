@@ -40,6 +40,7 @@ function inputType(format: string | undefined) {
       return "datetime-local";
     case "uri":
       return "url";
+    case "color":
     case "date":
     case "time":
     case "email":

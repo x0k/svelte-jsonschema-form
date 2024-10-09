@@ -58,6 +58,7 @@ const widgets: Sample = {
           },
           color: {
             type: "string",
+            format: "color",
             title: "color picker",
             default: "#151ce6",
           },
@@ -86,7 +87,7 @@ const widgets: Sample = {
       widgetOptions: {
         title: "Widget with options",
         type: "string",
-        default: "I am yellow",
+        default: "I am orange",
       },
       selectWidgetOptions: {
         title: "Select widget with options",
@@ -140,13 +141,6 @@ const widgets: Sample = {
           },
         },
       },
-      color: {
-        "ui:options": {
-          input: {
-            type: "color",
-          },
-        },
-      },
     },
     secret: {
       "ui:field": "hidden",
@@ -168,7 +162,7 @@ const widgets: Sample = {
     widgetOptions: {
       "ui:options": {
         input: {
-          style: "flex-grow: 1; background-color: yellow;",
+          style: "flex-grow: 1; background-color: darkorange;",
         },
       },
     },
