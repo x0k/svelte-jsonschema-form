@@ -2,9 +2,9 @@ import {
   type Schema,
   type SchemaArrayValue,
   type SchemaValue,
-} from "@/core/schema/index.js";
-import { toIdSchema, type IdSchema } from "@/core/id-schema.js";
+} from "@/core/index.js";
 
+import { toIdSchema, type IdSchema } from "../../id-schema.js";
 import type { FormContext } from "../../context.js";
 
 export function getArrayItemSchemaId(

@@ -5,9 +5,9 @@
     ID_KEY,
     isFileSchema,
     mergeSchemaObjects,
-  } from "@/core/schema/index.js";
-  import { FAKE_ID_SCHEMA } from '@/core/id-schema.js';
+  } from "@/core/index.js";
 
+  import { FAKE_ID_SCHEMA } from '../id-schema.js';
   import { getComponent } from "../component.js";
   import { getFormContext } from "../context.js";
   import { getErrors, isSelect, toIdSchema } from "../utils.js";

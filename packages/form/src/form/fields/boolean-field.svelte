@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { type Schema } from "@/core/schema/index.js";
-  import { createOptions } from '@/core/enum.js';
+  import { type Schema } from "@/core/index.js";
   
   import { getFormContext } from "../context.js";
   import { getTemplate } from "../templates/index.js";
   import { getWidget } from "../widgets.js";
   import { getErrors } from '../utils.js';
+  import { createOptions } from '../enum.js';
 
   import type { FieldProps } from "./model.js";
   import { inputAttributes } from "./make-widget-attributes.js";

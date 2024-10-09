@@ -6,9 +6,9 @@ import type {
   ANY_OF_KEY,
   SchemaObjectValue,
   SchemaArrayValue,
-} from "@/core/schema/index.js";
-import type { Config } from "@/core/config.js";
+} from "@/core/index.js";
 
+import type { Config } from "../config.js";
 import type { FormContext } from "../context.js";
 import { createMessage } from "../error-message.svelte";
 
@@ -17,7 +17,7 @@ export interface FieldCommonProps<V extends SchemaValue> {
   config: Config<V>;
 }
 
-export interface FieldAndProps<V extends SchemaValue> {
+export interface FieldsAndProps<V extends SchemaValue> {
   root: FieldCommonProps<V>;
   multi: FieldCommonProps<V> & {
     combinationKey: typeof ONE_OF_KEY | typeof ANY_OF_KEY;
@@ -104,9 +104,9 @@ export interface FieldValue {
   unsupported: SchemaValue;
 }
 
-export type FieldType = keyof FieldAndProps<SchemaValue>;
+export type FieldType = keyof FieldsAndProps<SchemaValue>;
 
-export type FieldProps<T extends FieldType> = FieldAndProps<FieldValue[T]>[T];
+export type FieldProps<T extends FieldType> = FieldsAndProps<FieldValue[T]>[T];
 
 export type Field<T extends FieldType> = SvelteComponent<
   FieldProps<T>,

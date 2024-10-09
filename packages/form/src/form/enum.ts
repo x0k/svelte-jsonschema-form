@@ -2,21 +2,15 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import type { Schema, SchemaDefinition, SchemaValue } from "./schema/index.js";
-import { getSchemaConstantValue } from "./schema/constant-schema.js";
+import {
+  getSchemaConstantValue,
+  type EnumOption,
+  type Schema,
+  type SchemaDefinition,
+  type SchemaValue,
+} from "@/core/index.js";
+
 import type { UiOptions, UiSchema } from "./ui-schema.js";
-
-export interface SimpleEnumOption<T> {
-  value: T;
-  label: string;
-  disabled: boolean;
-}
-
-export interface ComplexEnumOption<T> extends SimpleEnumOption<T> {
-  schema: Schema;
-}
-
-export type EnumOption<T> = SimpleEnumOption<T> | ComplexEnumOption<T>;
 
 function getAltSchemas(
   schema: Schema,

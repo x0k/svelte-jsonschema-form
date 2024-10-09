@@ -1,4 +1,4 @@
-import { ValidatorErrorType } from "@sjsf/form/core";
+import { ValidatorErrorType } from "@sjsf/form";
 
 import type { Sample } from "./Sample";
 

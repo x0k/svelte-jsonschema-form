@@ -39,19 +39,14 @@
       "types": "./dist/lib/*.d.ts"
     },
     "./core": {
-      "default": "./dist/core/export-only-do-not-use-internally.js",
-      "svelte": "./dist/core/export-only-do-not-use-internally.js",
-      "types": "./dist/core/export-only-do-not-use-internally.d.ts"
+      "default": "./dist/core/index.js",
+      "svelte": "./dist/core/index.js",
+      "types": "./dist/core/index.d.ts"
     },
     ".": {
       "default": "./dist/form/index.js",
       "svelte": "./dist/form/index.js",
       "types": "./dist/form/index.d.ts"
-    },
-    "./translations": {
-      "default": "./dist/translations/index.js",
-      "svelte": "./dist/translations/index.js",
-      "types": "./dist/translations/index.d.ts"
     },
     "./translations/*": {
       "default": "./dist/translations/*.js",

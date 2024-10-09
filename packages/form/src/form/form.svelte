@@ -2,11 +2,11 @@
   import { untrack, type Snippet } from 'svelte';
   import type { HTMLFormAttributes } from "svelte/elements";
 
-  import type { Config } from '@/core/config.js';
-  import type { Translation } from '@/core/translation.js';
-  import type { UiSchemaRoot } from '@/core/ui-schema.js';
-  import { type Schema, type SchemaValue, type Validator, type ValidatorError, ValidatorErrorType } from '@/core/schema/index.js';
-  
+  import { type Schema, type SchemaValue, type Validator, type ValidatorError, ValidatorErrorType } from '@/core/index.js';
+
+  import type { Config } from './config.js';
+  import type { Translation } from './translation.js';
+  import type { UiSchemaRoot } from './ui-schema.js';
   import type { Components } from './component.js';
   import type { Widgets } from './widgets.js';
   import { setFromContext, type FormContext } from './context.js';

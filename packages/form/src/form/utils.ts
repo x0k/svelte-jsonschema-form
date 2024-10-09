@@ -1,8 +1,3 @@
-import type { UiSchema } from "@/core/ui-schema.js";
-import {
-  type IdSchema,
-  toIdSchema as toIdSchemaInternal,
-} from "@/core/id-schema.js";
 import {
   isSelect as isSelectInternal,
   isMultiSelect as isMultiSelectInternal,
@@ -13,8 +8,13 @@ import {
   type Schema,
   type SchemaValue,
   type ValidationError,
-} from "@/core/schema/index.js";
+} from "@/core/index.js";
 
+import type { UiSchema } from "./ui-schema.js";
+import {
+  type IdSchema,
+  toIdSchema as toIdSchemaInternal,
+} from "./id-schema.js";
 import type { FormContext } from "./context.js";
 
 export const NO_ERRORS: ValidationError<unknown>[] = [];

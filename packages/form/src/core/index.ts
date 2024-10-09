@@ -16,3 +16,5 @@ export * from "./discriminator.js";
 export * from "./sanitize-data-for-new-schema.js";
 export * from "./prefix-schema-refs.js";
 export * from "./schema-hash.js";
+export * from "./enum-option.js";
+export * from "./constant-schema.js";

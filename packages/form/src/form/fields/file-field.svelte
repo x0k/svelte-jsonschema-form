@@ -1,7 +1,7 @@
 <script lang="ts">
   import { dataURLtoBlob, fileToDataURL } from "@/lib/file.js";
   import { asyncProxy } from "@/lib/svelte.svelte";
-  import type { SchemaArrayValue, SchemaValue } from "@/core/schema/index.js";
+  import type { SchemaArrayValue, SchemaValue } from "@/core/index.js";
 
   import { getWidget } from "../widgets.js";
   import { getFormContext } from "../context.js";

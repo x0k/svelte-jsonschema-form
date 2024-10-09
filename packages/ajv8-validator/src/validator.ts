@@ -1,5 +1,6 @@
 import type { Ajv } from "ajv";
 import type { ErrorObject } from "ajv";
+
 import { deepEqual } from "@sjsf/form/lib/deep-equal";
 import { getValueByPath } from "@sjsf/form/lib/object";
 import {
@@ -13,9 +14,8 @@ import {
   type SchemaValue,
   type Validator,
   type ValidatorError,
-  type UiSchema,
-  type UiSchemaRoot
 } from "@sjsf/form/core";
+import type { UiSchema, UiSchemaRoot } from "@sjsf/form";
 
 const trueSchema: Schema = {};
 const falseSchema: Schema = {};

@@ -1,8 +1,8 @@
 import { getContext, setContext } from "svelte";
 
-import type { Validator, Schema, ValidationError } from "@/core/schema/index.js";
-import type { Translation } from "@/core/translation.js";
-import type { UiSchemaRoot } from "@/core/ui-schema.js";
+import type { Validator, Schema, ValidationError } from "@/core/index.js";
+import type { Translation } from "./translation.js";
+import type { UiSchemaRoot } from "./ui-schema.js";
 
 import type { Components } from "./component.js";
 import type { Widgets } from "./widgets.js";

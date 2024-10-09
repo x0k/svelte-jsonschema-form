@@ -1,4 +1,4 @@
-import type { SchemaObjectValue } from "@/core/schema/index.js";
+import type { SchemaObjectValue } from "@/core/index.js";
 
 export function generateNewKey(
   preferredKey: string,

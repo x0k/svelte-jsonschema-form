@@ -23,7 +23,7 @@ interface FieldCommonProps<V extends SchemaValue> {
   config: Config<V>;
 }
 
-interface FieldAndProps<V extends SchemaValue> {
+interface FieldsAndProps<V extends SchemaValue> {
   root: FieldCommonProps<V>;
   multi: FieldCommonProps<V> & {
     combinationKey: typeof ONE_OF_KEY | typeof ANY_OF_KEY;

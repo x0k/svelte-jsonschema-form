@@ -6,14 +6,13 @@ import type {
   HTMLTextareaAttributes,
 } from "svelte/elements";
 
-import type { Component, ComponentType } from "../form/component.js";
-// TODO: Move fields model to core
-import type { Field, FieldType } from "../form/fields/index.js";
-// TODO: Move templates model to core
-import type { Template, TemplateType } from "../form/templates/index.js";
-import type { Widget, WidgetType } from "../form/widgets.js";
+import type { SchemaValue } from "@/core/index.js";
 
-import type { SchemaValue } from "./schema/index.js";
+import type { Component, ComponentType } from "./component.js";
+import type { Field, FieldType } from "./fields/index.js";
+import type { Template, TemplateType } from "./templates/index.js";
+import type { Widget, WidgetType } from "./widgets.js";
+
 
 export type UiSchemaRoot = UiSchemaRootIndex & UiSchemaRootContent;
 

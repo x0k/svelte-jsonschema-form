@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { isFixedItems } from "@/core/schema/index.js";
+  import { isFixedItems } from "@/core/index.js";
 
   import { getFormContext } from "../../context.js";
   import { getErrors, getUiOptions, isMultiSelect } from "../../utils.js";

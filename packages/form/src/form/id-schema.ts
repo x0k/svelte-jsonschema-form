@@ -20,7 +20,7 @@ import {
   type SchemaObjectValue,
   type SchemaValue,
   type Validator,
-} from "./schema/index.js";
+} from "@/core/index.js";
 
 export type FieldId = {
   $id: string;

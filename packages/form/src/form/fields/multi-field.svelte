@@ -1,10 +1,9 @@
 <script lang="ts">
   import { proxy } from "@/lib/svelte.svelte";
-  import { computeId } from '@/core/id-schema.js';
-  import type { Config } from '@/core/config.js';
-  import type { EnumOption } from '@/core/enum.js';
-  import { getDiscriminatorFieldFromSchema, mergeSchemas } from '@/core/schema/index.js';
-  import type { UiSchema } from '@/core/ui-schema.js';
+  import { computeId } from '../id-schema.js';
+  import type { Config } from '../config.js';
+  import { getDiscriminatorFieldFromSchema, mergeSchemas, type EnumOption } from '@/core/index.js';
+  import type { UiSchema } from '../ui-schema.js';
 
   import { getFormContext } from "../context.js";
   import { getTemplate } from '../templates/index.js';

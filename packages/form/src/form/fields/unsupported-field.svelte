@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getSimpleSchemaType } from "@/core/schema/index.js";
+  import { getSimpleSchemaType } from "@/core/index.js";
 
   import { getFormContext } from "../context.js";
   import { getComponent } from "../component.js";

@@ -5,9 +5,9 @@ import type {
   HTMLFormAttributes,
 } from "svelte/elements";
 
-import type { ValidationError } from "@/core/schema/index.js";
-import type { Config } from "@/core/config.js";
+import type { ValidationError } from "@/core/index.js";
 
+import type { Config } from "./config.js";
 import type { FormContext } from "./context.js";
 import { createMessage } from "./error-message.svelte";
 

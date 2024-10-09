@@ -5,9 +5,9 @@ import type {
   SchemaObjectValue,
   SchemaValue,
   ValidationError,
-} from "@/core/schema/index.js";
-import type { Config } from "@/core/config.js";
+} from "@/core/index.js";
 
+import type { Config } from "../config.js";
 import type { FormContext } from "../context.js";
 import { createMessage } from "../error-message.svelte";
 

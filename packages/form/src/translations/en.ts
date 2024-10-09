@@ -1,4 +1,4 @@
-import { createTranslation } from "@/core/translation.js";
+import { createTranslation } from "@/form/translation.js";
 
 export const translation = createTranslation({
   submit: "Submit",

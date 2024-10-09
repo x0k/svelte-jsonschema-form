@@ -1,10 +1,9 @@
 <script lang="ts">
-  import { createOptions } from "@/core/enum.js";
-  
+  import { createOptions } from "../enum.js";
   import { getFormContext } from "../context.js";
   import { getTemplate } from "../templates/index.js";
   import { getWidget } from "../widgets.js";
-  import { getErrors } from '../utils.js';
+  import { getErrors } from "../utils.js";
 
   import type { FieldProps } from "./model.js";
   import { selectAttributes } from "./make-widget-attributes.js";
@@ -21,7 +20,9 @@
   const Widget = $derived(getWidget(ctx, "select", config));
 
   const attributes = $derived(selectAttributes(ctx, config));
-  const options = $derived(createOptions(config.schema, config.uiSchema, config.uiOptions) ?? []);
+  const options = $derived(
+    createOptions(config.schema, config.uiSchema, config.uiOptions) ?? []
+  );
   const errors = $derived(getErrors(ctx, config.idSchema));
 </script>
 

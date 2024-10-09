@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { isSchemaNullable, isSchemaObjectValue, type Schema } from '@/core/schema/index.js';
+  import { isSchemaNullable, isSchemaObjectValue, type Schema } from '@/core/index.js';
   
   import { getFormContext } from '../../context.js';
   import { getComponent } from '../../component.js';

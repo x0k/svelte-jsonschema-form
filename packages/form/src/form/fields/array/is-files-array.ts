@@ -1,4 +1,4 @@
-import { type Schema, isFilesArray as isFilesArrayInternal } from "@/core/schema/index.js";
+import { type Schema, isFilesArray as isFilesArrayInternal } from "@/core/index.js";
 
 import type { FormContext } from "../../context.js";
 

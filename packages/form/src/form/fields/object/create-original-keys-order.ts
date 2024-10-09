@@ -1,4 +1,4 @@
-import { ADDITIONAL_PROPERTY_FLAG, isSchema, type Schema } from "@/core/schema/index.js";
+import { ADDITIONAL_PROPERTY_FLAG, isSchema, type Schema } from "@/core/index.js";
 
 export function createOriginalKeysOrder(
   properties: Exclude<Schema["properties"], undefined>

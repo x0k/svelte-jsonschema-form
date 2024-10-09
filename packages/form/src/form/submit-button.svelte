@@ -1,8 +1,7 @@
 <script lang="ts">
-  import type { Config } from "@/core/config.js";
-  import type { UiSchema } from "@/core/ui-schema.js";
-  import { FAKE_ID_SCHEMA } from "@/core/id-schema.js";
-
+  import type { Config } from "./config.js";
+  import type { UiSchema } from "./ui-schema.js";
+  import { FAKE_ID_SCHEMA } from "./id-schema.js";
   import { isDisabledOrReadonly } from "./is-disabled-or-readonly.js";
   import { getFormContext } from "./context.js";
   import { getComponent } from "./component.js";

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { isSchemaObjectValue, type Schema } from "@/core/schema/index.js";
+  import { isSchemaObjectValue, type Schema } from "@/core/index.js";
 
   import { getFormContext } from "../../context.js";
 

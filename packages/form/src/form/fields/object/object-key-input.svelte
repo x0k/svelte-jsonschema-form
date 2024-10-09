@@ -1,10 +1,10 @@
 <script lang="ts">
   import { proxy } from "@/lib/svelte.svelte";
-  import type { Config } from "@/core/config.js";
-  import type { UiSchema } from "@/core/ui-schema.js";
-  import { type SchemaObjectValue, type SchemaValue } from "@/core/schema/index.js";
-  import { type IdSchema, computeId } from "@/core/id-schema.js";
+  import { type SchemaObjectValue, type SchemaValue } from "@/core/index.js";
 
+  import type { Config } from "../../config.js";
+  import type { UiSchema } from "../../ui-schema.js";
+  import { type IdSchema, computeId } from "../../id-schema.js";
   import { getFormContext } from "../../context.js";
   import { getWidget } from "../../widgets.js";
   import { getErrors, getUiOptions } from "../../utils.js";

@@ -1,11 +1,11 @@
 <script lang="ts">
   import Ajv from "ajv";
-  import { Form } from "@sjsf/form";
   import {
+    Form,
+    ValidatorErrorType,
     type SchemaValue,
     type ValidatorError,
-    ValidatorErrorType,
-  } from "@sjsf/form/core";
+  } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { theme } from "@sjsf/form/basic-theme";
   import { AjvValidator, addFormComponents, DEFAULT_AJV_CONFIG } from "@sjsf/ajv8-validator";

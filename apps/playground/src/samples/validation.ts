@@ -1,13 +1,13 @@
-import { AjvValidator } from "@sjsf/ajv8-validator";
-
-import type { Sample } from "./Sample";
+import type { ErrorObject } from "ajv";
 import {
   ValidatorErrorType,
   type Schema,
   type SchemaValue,
   type ValidatorError,
-} from "@sjsf/form/core";
-import type { ErrorObject } from "ajv";
+} from "@sjsf/form";
+import { AjvValidator } from "@sjsf/ajv8-validator";
+
+import type { Sample } from "./Sample";
 
 function customValidate(value: SchemaValue | undefined): ValidatorError<ErrorObject>[] {
   const { pass1, pass2 } = value as {

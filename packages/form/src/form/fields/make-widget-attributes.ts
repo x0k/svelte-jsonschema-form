@@ -6,9 +6,9 @@ import type {
 
 import type { Nullable } from "@/lib/types.js";
 import { noop } from "@/lib/function.js";
-import type { Config } from "@/core/config.js";
-import { computeId } from "@/core/id-schema.js";
 
+import type { Config } from "../config.js";
+import { computeId } from "../id-schema.js";
 import type { FormContext } from "../context.js";
 
 interface Disabled {

@@ -1,4 +1,4 @@
-import type { Schema, SchemaValue, ValidatorError, UiSchemaRoot } from '@sjsf/form/core';
+import type { Schema, SchemaValue, ValidatorError, UiSchemaRoot } from '@sjsf/form';
 import type { AjvValidator } from '@sjsf/ajv8-validator';
 
 type SampleStatus = "perfect" | "broken" | "warnings" | "skipped";
