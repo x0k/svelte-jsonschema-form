@@ -12,8 +12,8 @@
     "@astrojs/check": "^0.9.4",
     "@astrojs/starlight": "^0.28.3",
     "@astrojs/svelte": "^5.7.2",
-    "@sjsf/form": "workspace:*",
     "@sjsf/ajv8-validator": "workspace:*",
+    "@sjsf/form": "workspace:*",
     "ajv": "^8.17.1",
     "astro": "^4.15.12",
     "mermaid": "^11.3.0",
@@ -21,6 +21,7 @@
     "sharp": "^0.33.5",
     "starlight-package-managers": "^0.7.0",
     "svelte-exmarkdown": "^3.0.5",
+    "svg-pan-zoom": "github:bumbu/svg-pan-zoom",
     "typescript": "^5.6.2"
   },
   "devDependencies": {

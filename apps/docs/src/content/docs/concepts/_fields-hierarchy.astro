@@ -1,11 +1,12 @@
-<div id="fields-hierarchy-diagram-container">
+<div id="fields-hierarchy-diagram-container" style="height: 500px; background-color: white;">
   Loading...
 </div>
 
 <script>
-  import mermaid from 'mermaid'
+  import mermaid from "mermaid";
+  import svgPanZoom from "svg-pan-zoom";
 
-  mermaid.initialize({ startOnLoad: false })
+  mermaid.initialize({ startOnLoad: false });
 
   const diagram = `stateDiagram-v2
   state root_field_choice <<choice>>
@@ -64,11 +65,22 @@
   SelectWidget --> [*]
   FileWidget --> [*]
   NumberWidget --> [*]
-  TextWidget --> [*]`
+  TextWidget --> [*]`;
 
-  const el = document.getElementById('fields-hierarchy-diagram-container')
+  const el = document.getElementById("fields-hierarchy-diagram-container");
   if (el) {
-    const { svg } = await mermaid.render('fields-hierarchy-diagram', diagram)
-    el.innerHTML = svg
+    const { svg } = await mermaid.render("fields-hierarchy-diagram", diagram);
+    el.innerHTML = svg.replace(/[ ]*max-width:[ 0-9\.]*px;/i, "");
+    svgPanZoom("#fields-hierarchy-diagram", {
+      zoomEnabled: true,
+      controlIconsEnabled: true,
+      fit: true,
+      center: true,
+    });
   }
 </script>
+<style is:global>
+  #fields-hierarchy-diagram {
+    height: 100%;
+  }
+</style>
