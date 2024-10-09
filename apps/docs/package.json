@@ -1,7 +1,8 @@
 {
   "name": "docs",
+  "private": true,
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "scripts": {
     "dev": "astro dev",
     "build": " astro build",
@@ -9,22 +10,19 @@
     "check": "#astro check"
   },
   "dependencies": {
+    "@sjsf/form": "workspace:*",
+    "@sjsf/ajv8-validator": "workspace:*",
+    "mermaid": "^11.3.0",
+    "ajv": "catalog:",
+    "svg-pan-zoom": "github:bumbu/svg-pan-zoom"
+  },
+  "devDependencies": {
+    "astro": "^4.15.12",
+    "sharp": "^0.33.5",
+    "starlight-package-managers": "^0.7.0",
     "@astrojs/check": "^0.9.4",
     "@astrojs/starlight": "^0.28.3",
     "@astrojs/svelte": "^5.7.2",
-    "@sjsf/ajv8-validator": "workspace:*",
-    "@sjsf/form": "workspace:*",
-    "ajv": "^8.17.1",
-    "astro": "^4.15.12",
-    "mermaid": "^11.3.0",
-    "rehype-raw": "^7.0.0",
-    "sharp": "^0.33.5",
-    "starlight-package-managers": "^0.7.0",
-    "svelte-exmarkdown": "^3.0.5",
-    "svg-pan-zoom": "github:bumbu/svg-pan-zoom",
-    "typescript": "^5.6.2"
-  },
-  "devDependencies": {
     "svelte": "catalog:"
   }
 }

@@ -1,8 +1,8 @@
 {
   "name": "@sjsf/ajv8-validator",
+  "description": "The ajv-8 based validator",
   "version": "0.0.1",
   "license": "MIT",
-  "description": "The ajv-8 based validator",
   "type": "module",
   "scripts": {
     "build": "tsc",
@@ -12,10 +12,8 @@
   "exports": {
     ".": "./dist/index.js"
   },
-  "dependencies": {
-    "@sjsf/form": "workspace:*"
-  },
   "peerDependencies": {
-    "ajv": "^8.17.1"
+    "@sjsf/form": "workspace:*",
+    "ajv": "catalog:"
   }
 }
