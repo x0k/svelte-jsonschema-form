@@ -1,4 +1,7 @@
-<div id="fields-hierarchy-diagram-container" style="height: 500px; background-color: white;">
+<div
+  id="fields-hierarchy-diagram-container"
+  style="height: 500px; background-color: white;"
+>
   Loading...
 </div>
 
@@ -67,17 +70,26 @@
   NumberWidget --> [*]
   TextWidget --> [*]`;
 
-  const el = document.getElementById("fields-hierarchy-diagram-container");
-  if (el) {
-    const { svg } = await mermaid.render("fields-hierarchy-diagram", diagram);
-    el.innerHTML = svg.replace(/[ ]*max-width:[ 0-9\.]*px;/i, "");
-    svgPanZoom("#fields-hierarchy-diagram", {
-      zoomEnabled: true,
-      controlIconsEnabled: true,
-      fit: true,
-      center: true,
-    });
-  }
+  document.addEventListener(
+    "DOMContentLoaded",
+    async () => {
+      const el = document.getElementById("fields-hierarchy-diagram-container");
+      if (el) {
+        const { svg } = await mermaid.render(
+          "fields-hierarchy-diagram",
+          diagram
+        );
+        el.innerHTML = svg.replace(/[ ]*max-width:[ 0-9\.]*px;/i, "");
+        svgPanZoom("#fields-hierarchy-diagram", {
+          zoomEnabled: true,
+          controlIconsEnabled: true,
+          fit: true,
+          center: true,
+        });
+      }
+    },
+    { once: true }
+  );
 </script>
 <style is:global>
   #fields-hierarchy-diagram {
