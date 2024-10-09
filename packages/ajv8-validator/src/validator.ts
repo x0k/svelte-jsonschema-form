@@ -1,8 +1,7 @@
-import type Ajv from "ajv";
+import type { Ajv } from "ajv";
 import type { ErrorObject } from "ajv";
-import { deepEqual } from "fast-equals";
-
-import { getValueByPath } from "@/lib/object";
+import { deepEqual } from "@sjsf/form/lib/deep-equal";
+import { getValueByPath } from "@sjsf/form/lib/object";
 import {
   ID_KEY,
   prefixSchemaRefs,
@@ -14,8 +13,9 @@ import {
   type SchemaValue,
   type Validator,
   type ValidatorError,
-} from "@/core/schema";
-import type { UiSchema, UiSchemaRoot } from "@/core/ui-schema";
+  type UiSchema,
+  type UiSchemaRoot
+} from "@sjsf/form/core";
 
 const trueSchema: Schema = {};
 const falseSchema: Schema = {};

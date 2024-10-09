@@ -23,8 +23,7 @@
     "vitest": "catalog:"
   },
   "peerDependencies": {
-    "svelte": "5.0.0-next.262",
-    "ajv": "^8.17.1"
+    "svelte": "5.0.0-next.262"
   },
   "dependencies": {
     "fast-equals": "^5.0.1",
@@ -43,16 +42,6 @@
       "svelte": "./dist/core/export-only-do-not-use-internally.js",
       "types": "./dist/core/export-only-do-not-use-internally.d.ts"
     },
-    "./core/*": {
-      "default": "./dist/core/*.js",
-      "svelte": "./dist/core/*.js",
-      "types": "./dist/core/*.d.ts"
-    },
-    "./core/schema": {
-      "default": "./dist/core/schema/index.js",
-      "svelte": "./dist/core/schema/index.js",
-      "types": "./dist/core/schema/index.d.ts"
-    },
     ".": {
       "default": "./dist/form/index.js",
       "svelte": "./dist/form/index.js",
@@ -68,25 +57,10 @@
       "svelte": "./dist/translations/*.js",
       "types": "./dist/translations/*.d.ts"
     },
-    "./themes": {
-      "default": "./dist/themes/index.js",
-      "svelte": "./dist/themes/index.js",
-      "types": "./dist/themes/index.d.ts"
-    },
-    "./themes/basic": {
-      "default": "./dist/themes/basic/index.js",
-      "svelte": "./dist/themes/basic/index.js",
-      "types": "./dist/themes/basic/index.d.ts"
-    },
-    "./validators": {
-      "default": "./dist/validators/index.js",
-      "svelte": "./dist/validators/index.js",
-      "types": "./dist/validators/index.d.ts"
-    },
-    "./validators/*": {
-      "default": "./dist/validators/*.js",
-      "svelte": "./dist/validators/*.js",
-      "types": "./dist/validators/*.d.ts"
+    "./basic-theme": {
+      "default": "./dist/basic-theme/index.js",
+      "svelte": "./dist/basic-theme/index.js",
+      "types": "./dist/basic-theme/index.d.ts"
     }
   }
 }

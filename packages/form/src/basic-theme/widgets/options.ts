@@ -1,4 +1,4 @@
-import { deepEqual } from "fast-equals";
+import { deepEqual } from "@/lib/deep-equal";
 
 import { isObject } from '@/lib/object';
 import type { EnumOption } from "@/core/enum";

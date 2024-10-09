@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { deepEqual } from "fast-equals";
+import { deepEqual } from "@/lib/deep-equal";
 import mergeAllOf, { type Options } from "json-schema-merge-allof";
 
 import { array } from "@/lib/array";

@@ -92,7 +92,7 @@
         class:font-bold={name === sampleName}
         disabled={sample.status === "skipped"}
         onclick={() => {
-          sampleName = selectSample(name as keyof typeof samples);
+          sampleName = selectSample(name);
           schema = samples[sampleName].schema;
           uiSchema = samples[sampleName].uiSchema;
           value = samples[sampleName].formData;
