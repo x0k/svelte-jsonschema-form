@@ -3,3 +3,54 @@ title: Templates
 sidebar:
   order: 6
 ---
+
+## Templates list
+
+```typescript
+interface TemplateCommonProps<V extends SchemaValue> {
+  value: V | undefined;
+  config: Config<V>;
+  errors: ValidationError<unknown>[];
+  children: Snippet;
+}
+
+interface ObjectTemplateProps
+  extends TemplateCommonProps<SchemaObjectValue> {
+  addButton?: Snippet;
+}
+
+interface ObjectPropertyTemplateProps
+  extends TemplateCommonProps<SchemaValue> {
+  property: string;
+  keyInput?: Snippet;
+  removeButton?: Snippet;
+}
+
+interface ArrayTemplateProps
+  extends TemplateCommonProps<SchemaArrayValue> {
+  addButton?: Snippet;
+}
+
+interface ArrayItemTemplateProps
+  extends TemplateCommonProps<SchemaValue> {
+  index: number;
+  buttons?: Snippet;
+}
+
+interface FieldTemplateProps extends TemplateCommonProps<SchemaValue> {
+  showTitle: boolean;
+}
+
+interface MultiTemplateProps extends TemplateCommonProps<SchemaValue> {
+  optionSelector: Snippet;
+}
+
+interface TemplateAndProps {
+  field: FieldTemplateProps;
+  object: ObjectTemplateProps;
+  "object-property": ObjectPropertyTemplateProps;
+  array: ArrayTemplateProps;
+  "array-item": ArrayItemTemplateProps;
+  multi: MultiTemplateProps;
+}
+```

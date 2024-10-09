@@ -34,7 +34,6 @@ export interface ButtonComponentProps {
   disabled: boolean;
   children: Snippet;
   onclick?: (e: Event) => void;
-  // For submit button
   attributes?: HTMLButtonAttributes | undefined;
 }
 

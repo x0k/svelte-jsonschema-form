@@ -7,6 +7,7 @@ import svelte from '@astrojs/svelte'
 export default defineConfig({
 	site: 'https://x0k.github.io',
 	base: "/svelte-jsonschema-form/",
+	trailingSlash: 'always',
 	integrations: [
 		svelte(),
 		starlight({

@@ -3,3 +3,34 @@ title: Validator
 sidebar:
   order: 7
 ---
+
+When the form is submitted, the form data is validated to conform to the given JSON schema.
+
+## Errors transformation and custom validation
+
+One way to convert errors and perform custom validation is to extend the Validator class.
+[Example](https://x0k.github.io/svelte-jsonschema-form/playground/?sample=Validation).
+
+```typescript
+class CustomAjvValidator extends AjvValidator {
+  validateFormData(
+    schema: Schema,
+    formData: SchemaValue | undefined
+  ): ValidatorError<ErrorObject>[] {
+    return super.validateFormData(schema, formData).map((error) => {
+      if (error.type === ValidatorErrorType.SchemaError) {
+        return error;
+      }
+      if (
+        error.error.keyword === "minimum" &&
+        error.error.schemaPath === "#/properties/age/minimum"
+      ) {
+        return Object.assign({}, error, {
+          message: "You need to be 18 because of some legal thing",
+        });
+      }
+      return error;
+    });
+  }
+}
+```
