@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { WidgetProps } from "@/form/index.js";
+  import type { WidgetProps } from "@sjsf/form";
 
   import { makeOptionsMapper } from './options.js';
 
@@ -56,17 +56,17 @@
 {/snippet}
 {#if multiple}
   <select
-    multiple
+    class="select select-sm select-bordered grow"
     bind:value={guarded.value}
-    style="flex-grow: 1"
+    multiple
     {...rest}
   >
     {@render children()}
   </select>
 {:else}
   <select
+    class="select select-sm select-bordered grow"
     bind:value={guarded.value}
-    style="flex-grow: 1"
     {...rest}
   >
     {@render children()}

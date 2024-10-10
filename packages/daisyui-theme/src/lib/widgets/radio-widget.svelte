@@ -1,40 +1,37 @@
 <script lang="ts">
-  import type { WidgetProps } from "@/form/index.js";
+	import type { WidgetProps } from '@sjsf/form';
 
-  import { makeOptionsMapper } from './options.js';
+	import { makeOptionsMapper } from './options.js';
 
-  let {
-    attributes,
-    value = $bindable(),
-    options,
-  }: WidgetProps<"radio"> = $props();
+	let { attributes, value = $bindable(), options }: WidgetProps<'radio'> = $props();
 
-  const { indexToValue, valueToIndex } = $derived(makeOptionsMapper(options))
+	const { indexToValue, valueToIndex } = $derived(makeOptionsMapper(options));
 
-  const readonly = $derived(attributes.readonly)
+	const readonly = $derived(attributes.readonly);
 
-  const guarder = {
-    get value() {
-      return valueToIndex(value)
-    },
-    set value(v) {
-      if (readonly) {
-        return
-      }
-      value = indexToValue(v)
-    }
-  }
+	const guarder = {
+		get value() {
+			return valueToIndex(value);
+		},
+		set value(v) {
+			if (readonly) {
+				return;
+			}
+			value = indexToValue(v);
+		}
+	};
 </script>
 
 {#each options as option, index (option.value)}
-  <label>
-    <input
-      type="radio"
-      bind:group={guarder.value}
-      value={index}
-      {...attributes}
-      disabled={option.disabled || attributes.disabled}
-    />
-    {option.label}
-  </label>
+	<label class="label cursor-pointer gap-2">
+		<input
+			type="radio"
+			class="radio radio-sm"
+			bind:group={guarder.value}
+			value={index}
+			{...attributes}
+			disabled={option.disabled || attributes.disabled}
+		/>
+		<span class="label-text">{option.label}</span>
+	</label>
 {/each}

@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { ComponentProps } from "@/form/index.js";
+  import type { ComponentProps } from "@sjsf/form";
 
   const { description }: ComponentProps<"description"> = $props();
 </script>
 
-<div style="font-weight: 300;">{description}</div>
+<div class="text-sm opacity-70">{description}</div>

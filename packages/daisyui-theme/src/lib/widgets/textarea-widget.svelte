@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { WidgetProps } from "@/form/index.js";
+  import type { WidgetProps } from "@sjsf/form";
 
   let { value = $bindable(), attributes }: WidgetProps<"textarea"> = $props();
 </script>
 
-<textarea bind:value style="flex-grow: 1;" {...attributes}></textarea>
+<textarea bind:value class="textarea textarea-bordered textarea-sm grow" {...attributes}></textarea>

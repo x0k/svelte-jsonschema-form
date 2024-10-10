@@ -1,21 +1,19 @@
 <script lang="ts">
-  import type { ComponentProps } from '@/form/index.js';
-  
-  const { children, type, attributes, disabled, onclick }: ComponentProps<"button"> = $props();
+	import type { ComponentProps } from '@sjsf/form';
 
-  function getStyle(type: ComponentProps<"button">["type"]) {
-    switch (type) {
-      case "submit":
-        return "width: 100%; padding: 0.5rem";
-      case "object-property-add":
-      case "array-item-add":
-        return "width: 100%; padding: 0.25rem";
-      default:
-        return undefined
-    }
-  }
+	const { children, type, attributes, disabled, onclick }: ComponentProps<'button'> = $props();
+
+	const isSubmit = $derived(type === 'submit');
 </script>
 
-<button type={type === "submit" ? "submit" : "button"} style={getStyle(type)} {onclick} {...attributes} {disabled}>
-  {@render children()}
+<button
+	class="btn"
+  class:btn-sm={!isSubmit}
+  class:btn-primary={isSubmit}
+	type={isSubmit ? 'submit' : 'button'}
+	{onclick}
+	{...attributes}
+	{disabled}
+>
+	{@render children()}
 </button>

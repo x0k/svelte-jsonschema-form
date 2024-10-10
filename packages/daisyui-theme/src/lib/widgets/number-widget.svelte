@@ -1,20 +1,21 @@
 <script lang="ts">
-  import type { WidgetProps } from "@/form/index.js";
+	import type { WidgetProps } from '@sjsf/form';
 
-  import Datalist, { makeExamples } from "./datalist.svelte";
+	import Datalist, { makeExamples } from './datalist.svelte';
 
-  let {
-    value = $bindable(),
-    attributes,
-    config,
-  }: WidgetProps<"number"> = $props();
-  const examples = $derived(makeExamples(config, attributes));
+	let { value = $bindable(), attributes, config }: WidgetProps<'number'> = $props();
+	const examples = $derived(makeExamples(config, attributes));
 </script>
 
-{#if attributes.type === "range"}
-  <span style="padding: 0 1rem; min-width: 3ex;">
-    {value}
-  </span>
+{#if attributes.type === 'range'}
+	<span class="px-4 min-w-14">
+		{value}
+	</span>
 {/if}
-<input type="number" bind:value style="flex-grow: 1" {...attributes} />
+<input
+	type="number"
+	bind:value
+	class={attributes.type === 'range' ? 'range range-sm grow w-0' : 'input input-sm input-bordered grow'}
+	{...attributes}
+/>
 <Datalist {examples} />

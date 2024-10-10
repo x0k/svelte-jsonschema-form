@@ -39,6 +39,11 @@ const widgets: Sample = {
             title: "select box",
             description: "This is the select-description",
           },
+          toggle: {
+            type: "boolean",
+            title: "toggle",
+            description: "This is the toggle-description",
+          },
         },
       },
       string: {
@@ -123,6 +128,9 @@ const widgets: Sample = {
         "ui:options": {
           hideTitle: false,
         }
+      },
+      toggle: {
+        "ui:widget": "toggle",
       },
     },
     string: {

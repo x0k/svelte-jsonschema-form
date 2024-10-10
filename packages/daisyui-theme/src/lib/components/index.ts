@@ -1,4 +1,4 @@
-import type { Component, Components, ComponentType } from "@/form/index.js";
+import type { Component, Components, ComponentType } from "@sjsf/form";
 
 import FormComponent from "./form-component.svelte";
 import ButtonComponent from "./button-component.svelte";

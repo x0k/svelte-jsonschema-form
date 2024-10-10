@@ -1,10 +1,10 @@
 <script lang="ts">
-  import type { ComponentProps } from "@/form/index.js";
+  import type { ComponentProps } from "@sjsf/form";
 
   const { errors }: ComponentProps<"errorsList"> = $props();
 </script>
 
-<ui style="color: red;">
+<ui class="text-error">
   {#each errors as err}
     <li>{err.message}</li>
   {/each}

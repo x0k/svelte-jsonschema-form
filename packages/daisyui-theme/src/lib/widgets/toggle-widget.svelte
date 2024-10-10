@@ -5,6 +5,6 @@
 </script>
 
 <label class="label cursor-pointer gap-2">
-	<input type="checkbox" class="checkbox checkbox-sm" bind:checked={value} {...attributes} />
+	<input type="checkbox" class="toggle toggle-sm" bind:checked={value} {...attributes} />
 	<span class="label-text">{config.title}</span>
 </label>
