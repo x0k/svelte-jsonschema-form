@@ -6,6 +6,9 @@ on:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
+permissions:
+  id-token: write
+
 jobs:
   version:
     timeout-minutes: 15
