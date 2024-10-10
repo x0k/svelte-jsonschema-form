@@ -1,10 +1,7 @@
 <script lang="ts">
 	import type { WidgetProps } from '@sjsf/form';
 
-	import Datalist, { makeExamples } from './datalist.svelte';
-
-	let { value = $bindable(), attributes, config, errors }: WidgetProps<'number'> = $props();
-	const examples = $derived(makeExamples(config, attributes));
+	let { value = $bindable(), attributes, errors }: WidgetProps<'number'> = $props();
 </script>
 
 {#if attributes.type === 'range'}
@@ -15,8 +12,9 @@
 <input
 	type="number"
 	bind:value
-	class={attributes.type === 'range' ? 'range range-sm grow w-0' : 'input input-sm input-bordered grow'}
-  class:input-error={errors.length}
+	class={attributes.type === 'range'
+		? 'range range-sm grow w-0'
+		: 'input input-sm input-bordered grow'}
+	class:input-error={errors.length}
 	{...attributes}
 />
-<Datalist {examples} />

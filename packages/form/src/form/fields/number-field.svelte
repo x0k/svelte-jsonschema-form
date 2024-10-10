@@ -6,6 +6,7 @@
 
   import type { FieldProps } from "./model.js";
   import { inputAttributes } from "./make-widget-attributes.js";
+  import Datalist, { makeExamples } from './datalist.svelte';
 
   const ctx = getFormContext();
 
@@ -27,8 +28,11 @@
   };
 
   const errors = $derived(getErrors(ctx, config.idSchema));
+
+  const examples = $derived(makeExamples(config, attributes));
 </script>
 
 <Template {errors} showTitle value={redacted.value} {config}>
   <Widget {config} {errors} bind:value={redacted.value} {attributes} />
+  <Datalist {examples} />
 </Template>

@@ -1,11 +1,7 @@
 <script lang="ts">
 	import { type WidgetProps } from '@sjsf/form';
 
-	import Datalist, { makeExamples } from './datalist.svelte';
-
-	let { value = $bindable(), attributes, config, errors }: WidgetProps<'text'> = $props();
-
-	const examples = $derived(makeExamples(config, attributes));
+	let { value = $bindable(), attributes, errors }: WidgetProps<'text'> = $props();
 </script>
 
 <input
@@ -15,4 +11,3 @@
 	class:input-error={errors.length}
 	{...attributes}
 />
-<Datalist {examples} />

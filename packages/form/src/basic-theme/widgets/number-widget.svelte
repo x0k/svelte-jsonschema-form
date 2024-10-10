@@ -1,14 +1,7 @@
 <script lang="ts">
   import type { WidgetProps } from "@/form/index.js";
 
-  import Datalist, { makeExamples } from "./datalist.svelte";
-
-  let {
-    value = $bindable(),
-    attributes,
-    config,
-  }: WidgetProps<"number"> = $props();
-  const examples = $derived(makeExamples(config, attributes));
+  let { value = $bindable(), attributes }: WidgetProps<"number"> = $props();
 </script>
 
 {#if attributes.type === "range"}
@@ -17,4 +10,3 @@
   </span>
 {/if}
 <input type="number" bind:value style="flex-grow: 1" {...attributes} />
-<Datalist {examples} />
