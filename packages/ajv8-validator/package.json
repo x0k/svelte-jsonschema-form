@@ -19,17 +19,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/x0k/svelte-jsonschema-form",
-    "directory": "packages/form"
+    "url": "git+https://github.com/x0k/svelte-jsonschema-form.git",
+    "directory": "packages/ajv8-validator"
   },
   "bugs": "https://github.com/x0k/svelte-jsonschema-form/issues",
   "homepage": "https://x0k.github.io/svelte-jsonschema-form/",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && publint",
     "dev": "tsc --watch"
   },
   "exports": {
-    ".": "./dist/index.js"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
   },
   "peerDependencies": {
     "@sjsf/form": "workspace:*",
