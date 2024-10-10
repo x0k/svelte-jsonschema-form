@@ -9,12 +9,6 @@ catalogs:
     '@tsconfig/svelte':
       specifier: ^5.0.4
       version: 5.0.4
-    ajv:
-      specifier: ^8.17.1
-      version: 8.17.1
-    svelte:
-      specifier: 5.0.0-next.264
-      version: 5.0.0-next.264
     svelte-check:
       specifier: ^4.0.4
       version: 4.0.4
@@ -158,9 +152,6 @@ importers:
       jsonpointer:
         specifier: ^5.0.1
         version: 5.0.1
-      scheduler-polyfill:
-        specifier: 1.3.0-beta.0
-        version: 1.3.0-beta.0
       svelte:
         specifier: 5.0.0-next.264
         version: 5.0.0-next.264
@@ -2801,9 +2792,6 @@ packages:
 
   sax@1.4.1:
     resolution: {integrity: sha512-+aWOz7yVScEGoKNd4PA10LZ8sk0A/z5+nXQG5giUO5rprX9jgYsTdov9qCchZiPIZezbZH+jRut8nPodFAX4Jg==}
-
-  scheduler-polyfill@1.3.0-beta.0:
-    resolution: {integrity: sha512-5o7oBifP25DC/z9QbxeU3H50e0btLMyQB3PnY2bnrF20qKd7//hXfmjRTVKZi5bZ8eFhVc03xGtS6abVjtvDXg==}
 
   section-matter@1.0.0:
     resolution: {integrity: sha512-vfD3pmTzGpufjScBh50YHKzEu2lxBWhVEHsNGoEXmCmn2hKGfeNLYMzCJpe8cD7gqX7TJluOVpBkAequ6dgMmA==}
@@ -6802,8 +6790,6 @@ snapshots:
   safer-buffer@2.1.2: {}
 
   sax@1.4.1: {}
-
-  scheduler-polyfill@1.3.0-beta.0: {}
 
   section-matter@1.0.0:
     dependencies:

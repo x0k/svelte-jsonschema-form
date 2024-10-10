@@ -1,46 +1,48 @@
 // This file was copied and modified from https://github.com/rjsf-team/react-jsonschema-form/blob/f4229bf6e067d31b24de3ef9d3ca754ee52529ac/packages/utils/src/dataURItoBlob.ts
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
-import "scheduler-polyfill";
+import type { SchedulerYield } from './scheduler.js';
 
 const CHUNK_SIZE = 8192;
 
-export async function dataURLtoBlob(signal: AbortSignal, dataURILike: string) {
-  if (!dataURILike.startsWith("data:")) {
-    throw new Error("File is invalid: URI must be a dataURI");
-  }
-  const dataURI = dataURILike.slice(5);
-  const splitted = dataURI.split(";base64,");
-  if (splitted.length !== 2) {
-    throw new Error("File is invalid: dataURI must be base64");
-  }
-  const [media, base64] = splitted as [string, string];
-  const [mime, ...mediaParams] = media.split(";");
-  const type = mime || "";
+export function makeDataURLtoBlob(schedulerYield: SchedulerYield) {
+  return async (signal: AbortSignal, dataURILike: string) => {
+    if (!dataURILike.startsWith("data:")) {
+      throw new Error("File is invalid: URI must be a dataURI");
+    }
+    const dataURI = dataURILike.slice(5);
+    const splitted = dataURI.split(";base64,");
+    if (splitted.length !== 2) {
+      throw new Error("File is invalid: dataURI must be base64");
+    }
+    const [media, base64] = splitted as [string, string];
+    const [mime, ...mediaParams] = media.split(";");
+    const type = mime || "";
 
-  const name = decodeURI(
-    mediaParams
-      .map((param) => param.split("="))
-      .find(([key]) => key === "name")?.[1] || "unknown"
-  );
+    const name = decodeURI(
+      mediaParams
+        .map((param) => param.split("="))
+        .find(([key]) => key === "name")?.[1] || "unknown"
+    );
 
-  try {
-    const binary = atob(base64);
-    scheduler.yield({ signal });
-    const array = new Array(binary.length);
-    for (let i = 0; i < binary.length; i++) {
-      if (i % CHUNK_SIZE === 0) {
-        scheduler.yield({ signal });
+    try {
+      const binary = atob(base64);
+      await schedulerYield({ signal });
+      const array = new Array(binary.length);
+      for (let i = 0; i < binary.length; i++) {
+        if (i % CHUNK_SIZE === 0) {
+          await schedulerYield({ signal });
+        }
+        array[i] = binary.charCodeAt(i);
       }
-      array[i] = binary.charCodeAt(i);
+      const blob = new Blob([new Uint8Array(array)], { type });
+      return { blob, name };
+    } catch (error) {
+      if (error instanceof DOMException && error.name === "AbortError") {
+        throw error;
+      }
+      throw new Error("File is invalid: " + (error as Error).message);
     }
-    const blob = new Blob([new Uint8Array(array)], { type });
-    return { blob, name };
-  } catch (error) {
-    if (error instanceof DOMException && error.name === "AbortError") {
-      throw error;
-    }
-    throw new Error("File is invalid: " + (error as Error).message);
   }
 }
 

@@ -33,8 +33,7 @@
   "dependencies": {
     "fast-equals": "^5.0.1",
     "json-schema-merge-allof": "^0.8.1",
-    "jsonpointer": "^5.0.1",
-    "scheduler-polyfill": "1.3.0-beta.0"
+    "jsonpointer": "^5.0.1"
   },
   "peerDependencies": {
     "svelte": "5.0.0-next.264"

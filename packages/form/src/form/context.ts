@@ -1,9 +1,10 @@
 import { getContext, setContext } from "svelte";
 
+import type { SchedulerYield } from '@/lib/scheduler.js';
 import type { Validator, Schema, ValidationError } from "@/core/index.js";
+
 import type { Translation } from "./translation.js";
 import type { UiSchemaRoot } from "./ui-schema.js";
-
 import type { Components } from "./component.js";
 import type { Widgets } from "./widgets.js";
 import type { Fields } from "./fields/index.js";
@@ -23,6 +24,7 @@ export interface FormContext {
   idPrefix: string;
   idSeparator: string;
   validationErrors: Map<string, ValidationError<unknown>[]>;
+  schedulerYield: SchedulerYield
 }
 
 const FORM_CONTEXT = Symbol("form-context");

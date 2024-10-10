@@ -122,7 +122,18 @@
     },
     get translation() {
       return translation
-    }
+    },
+    schedulerYield: typeof scheduler !== "undefined" && "yield" in scheduler
+      ? scheduler.yield.bind(scheduler)
+      : ({ signal }) => new Promise((resolve, reject) => {
+          setTimeout(() => {
+            if (signal.aborted) {
+              reject(signal.reason)
+            } else {
+              resolve()
+            }
+          }, 0);
+        }),
   }
   setFromContext(ctx)
 

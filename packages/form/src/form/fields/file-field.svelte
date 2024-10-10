@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { dataURLtoBlob, fileToDataURL } from "@/lib/file.js";
+  import { makeDataURLtoBlob, fileToDataURL } from "@/lib/file.js";
   import { asyncProxy } from "@/lib/svelte.svelte";
   import type { SchemaArrayValue, SchemaValue } from "@/core/index.js";
 
@@ -18,6 +18,7 @@
   }: FieldProps<"file"> = $props();
 
   const ctx = getFormContext();
+  const dataURLtoBlob = $derived(makeDataURLtoBlob(ctx.schedulerYield));
 
   const Template = $derived(getTemplate(ctx, "field", config));
   const Widget = $derived(getWidget(ctx, "file", config));
