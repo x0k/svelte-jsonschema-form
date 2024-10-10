@@ -40,7 +40,7 @@
 </script>
 
 {#if style || attributes}
-  <div style={getStyle(type)} data-layout={type} {...attributes}>
+  <div {style} data-layout={type} {...attributes}>
     {@render children()}
   </div>
 {:else}
