@@ -10,7 +10,8 @@
   ],
   "type": "module",
   "files": [
-    "dist"
+    "dist",
+    "LICENSE-APACHE"
   ],
   "publishConfig": {
     "provenance": true

@@ -64,7 +64,7 @@ npm install @sjsf/form @sjsf/ajv8-validator ajv@8
 This project includes modifications of code from [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form), which is licensed under the Apache License, Version 2.0.
 The rest of the project is under the MIT license.
 
-See [LICENSE-MIT](LICENSE-MIT) and [LICENSE-APACHE](LICENSE-APACHE) for details.
+See [LICENSE-MIT](LICENSE) and [LICENSE-APACHE](LICENSE-APACHE) for details.
 
 ## See also
 
