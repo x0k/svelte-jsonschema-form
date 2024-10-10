@@ -48,8 +48,8 @@ jobs:
         with:
           version: pnpm ci:version
           publish: pnpm exec changeset publish
-          commit: "chore: update versions"
-          title: "chore: update versions"
+          commit: "[ci] release"
+          title: "[ci] release"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
