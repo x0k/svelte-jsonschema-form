@@ -13,8 +13,7 @@
     "dist"
   ],
   "publishConfig": {
-    "provenance": true,
-    "access": "public"
+    "provenance": true
   },
   "repository": {
     "type": "git",
