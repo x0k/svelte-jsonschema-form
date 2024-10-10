@@ -21,6 +21,8 @@ f/:
 
 daisy/:
   pushd packages/daisyui-theme
+  b:
+    pnpm run build
   d:
     pnpm run dev
   popd
