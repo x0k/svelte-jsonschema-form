@@ -19,6 +19,12 @@ f/:
     pnpm run check
   popd
 
+daisy/:
+  pushd packages/daisyui-theme
+  d:
+    pnpm run dev
+  popd
+
 p:
   pnpm run preview
 
