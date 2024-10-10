@@ -1,5 +1,5 @@
 ---
-"@sjsf/form": minor
+"@sjsf/form": patch
 ---
 
 Remove `unsupported` fields, `alert` component
