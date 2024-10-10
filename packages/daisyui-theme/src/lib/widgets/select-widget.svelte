@@ -9,6 +9,7 @@
     options,
     multiple,
     config,
+    errors,
   }: WidgetProps<"select"> = $props();
   
   const { readonly, ...rest } = $derived(attributes)
@@ -57,6 +58,7 @@
 {#if multiple}
   <select
     class="select select-sm select-bordered grow"
+    class:select-error={errors.length}
     bind:value={guarded.value}
     multiple
     {...rest}
@@ -66,6 +68,7 @@
 {:else}
   <select
     class="select select-sm select-bordered grow"
+    class:select-error={errors.length}
     bind:value={guarded.value}
     {...rest}
   >

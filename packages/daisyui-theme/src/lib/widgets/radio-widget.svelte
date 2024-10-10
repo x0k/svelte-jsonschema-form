@@ -3,7 +3,7 @@
 
 	import { makeOptionsMapper } from './options.js';
 
-	let { attributes, value = $bindable(), options }: WidgetProps<'radio'> = $props();
+	let { attributes, value = $bindable(), options, errors }: WidgetProps<'radio'> = $props();
 
 	const { indexToValue, valueToIndex } = $derived(makeOptionsMapper(options));
 
@@ -27,6 +27,7 @@
 		<input
 			type="radio"
 			class="radio radio-sm"
+      class:radio-error={errors.length}
 			bind:group={guarder.value}
 			value={index}
 			{...attributes}

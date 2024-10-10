@@ -3,7 +3,7 @@
 
 	import { makeOptionsMapper } from './options.js';
 
-	let { attributes, value = $bindable(), options }: WidgetProps<'checkboxes'> = $props();
+	let { attributes, value = $bindable(), options, errors }: WidgetProps<'checkboxes'> = $props();
 
 	const readonly = $derived(attributes.readonly);
 	const { indexToValue, valueToIndex } = $derived(makeOptionsMapper(options));
@@ -26,6 +26,7 @@
     <input
     type="checkbox"
     class="checkbox checkbox-sm"
+    class:checkbox-error={errors.length}
     bind:group={guarder.value}
     value={index}
     {...attributes}

@@ -3,7 +3,7 @@
 
 	import Datalist, { makeExamples } from './datalist.svelte';
 
-	let { value = $bindable(), attributes, config }: WidgetProps<'number'> = $props();
+	let { value = $bindable(), attributes, config, errors }: WidgetProps<'number'> = $props();
 	const examples = $derived(makeExamples(config, attributes));
 </script>
 
@@ -16,6 +16,7 @@
 	type="number"
 	bind:value
 	class={attributes.type === 'range' ? 'range range-sm grow w-0' : 'input input-sm input-bordered grow'}
+  class:input-error={errors.length}
 	{...attributes}
 />
 <Datalist {examples} />
