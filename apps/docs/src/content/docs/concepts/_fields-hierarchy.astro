@@ -33,7 +33,6 @@
   root_field_choice --> BooleanField : type === 'boolean'
   root_field_choice --> ObjectField : type === 'object'
   root_field_choice --> ArrayField : type === 'array'
-  root_field_choice --> UnsupportedField : otherwise
   root_fork --> root_multi_field_choice
   root_multi_field_choice --> MultiField : (anyOf || oneOf) && type === undefined && !isSelectSchema
   root_multi_field_choice --> [*] : otherwise
@@ -54,11 +53,10 @@
   object_property_choice --> [*] : otherwise
   object_property_fork --> RootField
   ArrayField --> array_choice
-  array_choice --> UnsupportedArrayField : items === undefined
+  array_choice --> [*] : items === undefined
   array_choice --> AnotherArrayField : isMultiSelectSchema || isFilesArray
   array_choice --> FixedArrayField : isFixedArray
   array_choice --> NormalArrayField : otherwise
-  UnsupportedArrayField --> [*]
   AnotherArrayField --> EnumField : field === 'enum'
   AnotherArrayField --> FileField : field === 'file'
   FixedArrayField --> ArrayItemField

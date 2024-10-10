@@ -39,7 +39,6 @@ interface FieldsAndProps<V extends SchemaValue> {
     isAdditional: boolean;
   };
   array: FieldCommonProps<V>;
-  unsupportedArray: FieldCommonProps<V>;
   anotherFieldArray: FieldCommonProps<V> & {
     field: "enum" | "file";
   };
@@ -60,6 +59,5 @@ interface FieldsAndProps<V extends SchemaValue> {
     multiple?: boolean;
   };
   hidden: FieldCommonProps<V>;
-  unsupported: FieldCommonProps<V>;
 }
 ```

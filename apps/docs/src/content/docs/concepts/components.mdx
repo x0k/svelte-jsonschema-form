@@ -62,16 +62,6 @@ interface LayoutComponentProps {
   attributes?: HTMLAttributes<HTMLDivElement> | undefined;
 }
 
-interface AlertType {
-  error: {};
-}
-
-interface AlertComponentProps {
-  type: keyof AlertType;
-  title?: string;
-  children: Snippet;
-}
-
 interface ParentTemplateType {
   field: {};
   object: {};
@@ -102,7 +92,6 @@ interface ComponentsAndProps {
   form: FormComponentProps;
   button: ButtonComponentProps;
   layout: LayoutComponentProps;
-  alert: AlertComponentProps;
   title: TitleComponentProps;
   description: DescriptionComponentProps;
   help: HelpComponentProps;
