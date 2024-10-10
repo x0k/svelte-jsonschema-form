@@ -41,7 +41,7 @@ const schema: Schema = {
 
 const EXTRA_EXPECTED = { type: 'string', title: 'foo' };
 
-describe.only('findSchemaDefinition()', () => {
+describe('findSchemaDefinition()', () => {
   it('throws error when ref is malformed', () => {
     expect(() => findSchemaDefinition('definitions/missing', {})).toThrowError(
       'Invalid reference: definitions/missing'

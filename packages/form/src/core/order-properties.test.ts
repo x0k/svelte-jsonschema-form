@@ -10,7 +10,7 @@ function fix(keys: string[]) {
   return Object.fromEntries(keys.map((key) => [key, {}]));
 }
 
-describe.only('orderProperties()', () => {
+describe('orderProperties()', () => {
   it('returns properties when order array is not specified', () => {
     const keys = ['foo', 'baz']
     const properties = fix(keys);
