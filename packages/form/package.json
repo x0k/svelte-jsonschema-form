@@ -11,7 +11,9 @@
   "type": "module",
   "files": [
     "dist",
-    "LICENSE-APACHE"
+    "LICENSE-APACHE",
+		"!dist/**/*.test.*",
+		"!dist/**/*.spec.*"
   ],
   "publishConfig": {
     "provenance": true

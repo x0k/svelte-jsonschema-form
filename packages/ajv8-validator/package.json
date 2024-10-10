@@ -10,7 +10,9 @@
   ],
   "type": "module",
   "files": [
-    "dist"
+    "dist",
+		"!dist/**/*.test.*",
+		"!dist/**/*.spec.*"
   ],
   "publishConfig": {
     "provenance": true
