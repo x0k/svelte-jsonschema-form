@@ -136,12 +136,13 @@ importers:
 
   packages/ajv8-validator:
     dependencies:
-      '@sjsf/form':
-        specifier: workspace:*
-        version: link:../form
       ajv:
         specifier: 'catalog:'
         version: 8.17.1
+    devDependencies:
+      '@sjsf/form':
+        specifier: workspace:*
+        version: link:../form
 
   packages/form:
     dependencies:
