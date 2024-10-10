@@ -1,7 +1,5 @@
 <script lang="ts">
-  import type { WidgetProps } from "@/form/index.js";
-
-  import { makeOptionsMapper } from './options.js';
+  import { multipleOptions, singleOption, type WidgetProps } from "@/form/index.js";
 
   let {
     attributes,
@@ -13,35 +11,15 @@
   
   const { readonly, ...rest } = $derived(attributes)
 
-  // NOTE: On current version of svelte (5.0.0-next.259) this solution
-  // can prevent only state modification, but the UI will be updated.
-  // Looks like inputs with `bind:` attribute are not properly controlled.
-  // TODO: Figure out is it a bug or not
-
-  const { indexToValue, valueToIndex } = $derived(makeOptionsMapper(options))
-
-  const guarded = {
-    get value() {
-      if (value === undefined) {
-        return multiple ? [] : -1
-      }
-      if (!multiple) {
-        return valueToIndex(value)
-      }
-      if (!Array.isArray(value)) {
-        throw new Error("Value must be an array")
-      }
-      return value.map(valueToIndex)
-    },
-    set value(v) {
-      if (readonly) {
-        return
-      }
-      value = Array.isArray(v)
-        ? v.map(indexToValue)
-        : indexToValue(v)
-    }
-  }
+	const guarded = $derived(
+		(multiple ? multipleOptions : singleOption)({
+			options: () => options,
+      // @ts-expect-error
+			value: () => value,
+			update: (v) => (value = v),
+			readonly: () => readonly
+		})
+	);
 </script>
 
 {#snippet children()}

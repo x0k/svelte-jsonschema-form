@@ -1,25 +1,14 @@
 <script lang="ts">
-	import type { WidgetProps } from '@sjsf/form';
-
-	import { makeOptionsMapper } from './options.js';
+	import { type WidgetProps, singleOption } from '@sjsf/form';
 
 	let { attributes, value = $bindable(), options, errors }: WidgetProps<'radio'> = $props();
 
-	const { indexToValue, valueToIndex } = $derived(makeOptionsMapper(options));
-
-	const readonly = $derived(attributes.readonly);
-
-	const guarder = {
-		get value() {
-			return valueToIndex(value);
-		},
-		set value(v) {
-			if (readonly) {
-				return;
-			}
-			value = indexToValue(v);
-		}
-	};
+	const guarder = singleOption({
+		options: () => options,
+		value: () => value,
+		update: (v) => (value = v),
+		readonly: () => attributes.readonly
+	});
 </script>
 
 {#each options as option, index (option.value)}
@@ -27,7 +16,7 @@
 		<input
 			type="radio"
 			class="radio radio-sm"
-      class:radio-error={errors.length}
+			class:radio-error={errors.length}
 			bind:group={guarder.value}
 			value={index}
 			{...attributes}

@@ -1,7 +1,5 @@
 <script lang="ts">
-  import type { WidgetProps } from "@/form/index.js";
-
-  import { makeOptionsMapper } from "./options.js";
+  import { multipleOptions, type WidgetProps } from "@/form/index.js";
 
   let {
     attributes,
@@ -9,20 +7,12 @@
     options,
   }: WidgetProps<"checkboxes"> = $props();
 
-  const readonly = $derived(attributes.readonly);
-  const { indexToValue, valueToIndex } = $derived(makeOptionsMapper(options));
-
-  const guarder = {
-    get value() {
-      return value?.map(valueToIndex) ?? [];
-    },
-    set value(v) {
-      if (readonly) {
-        return;
-      }
-      value = v.map(indexToValue);
-    },
-  };
+	const guarder = multipleOptions({
+		options: () => options,
+		value: () => value,
+		update: (v) => (value = v),
+		readonly: () => attributes.readonly
+	});
 </script>
 
 {#each options as option, index (option.value)}
