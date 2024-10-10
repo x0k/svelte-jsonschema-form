@@ -1,7 +1,7 @@
-import { deepEqual } from "@/lib/deep-equal.js";
-import { isObject } from '@/lib/object.js';
+import { deepEqual } from "@sjsf/form/lib/deep-equal";
+import { isObject } from '@sjsf/form/lib/object';
 
-import type { EnumOption, SchemaValue } from '@/core/index.js';
+import type { EnumOption, SchemaValue } from '@sjsf/form/core';
 
 export function makeOptionsMapper(options: EnumOption<SchemaValue>[]) {
   const map = new Map(options.map((option, index) => [option.value, index]));

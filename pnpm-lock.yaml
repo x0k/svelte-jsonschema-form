@@ -9,6 +9,12 @@ catalogs:
     '@tsconfig/svelte':
       specifier: ^5.0.4
       version: 5.0.4
+    ajv:
+      specifier: ^8.17.1
+      version: 8.17.1
+    svelte:
+      specifier: 5.0.0-next.264
+      version: 5.0.0-next.264
     svelte-check:
       specifier: ^4.0.4
       version: 4.0.4
@@ -146,6 +152,9 @@ importers:
       '@playwright/test':
         specifier: ^1.28.1
         version: 1.48.0
+      '@sjsf/ajv8-validator':
+        specifier: workspace:*
+        version: link:../ajv8-validator
       '@sjsf/form':
         specifier: workspace:*
         version: link:../form
@@ -164,6 +173,9 @@ importers:
       '@types/eslint':
         specifier: ^9.6.0
         version: 9.6.1
+      ajv:
+        specifier: 'catalog:'
+        version: 8.17.1
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.4.47)
