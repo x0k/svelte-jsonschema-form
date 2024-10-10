@@ -4,6 +4,7 @@
   import { getFormContext } from "../../context.js";
   import { getErrors, getUiOptions, isMultiSelect } from "../../utils.js";
   import { isDisabledOrReadonly } from "../../is-disabled-or-readonly.js";
+  import ErrorMessage from "../../error-message.svelte";
 
   import { getField, type FieldProps } from "../model.js";
 
@@ -59,9 +60,6 @@
   setArrayContext(arrayCtx);
 
   const [arrayField, field] = $derived.by(() => {
-    if (config.schema.items === undefined) {
-      return ["unsupportedArray", undefined] as const;
-    }
     if (isMultiSelect(ctx, config.schema)) {
       return ["anotherFieldArray", "enum"] as const;
     }
@@ -80,4 +78,8 @@
   const ArrayField = $derived(getField(ctx, arrayField, config));
 </script>
 
-<ArrayField bind:value {config} {field} />
+{#if config.schema.items === undefined}
+  <ErrorMessage message={ctx.translation("array-schema-missing-items")} />
+{:else}
+  <ArrayField bind:value {config} {field} />
+{/if}

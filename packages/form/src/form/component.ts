@@ -66,16 +66,6 @@ export interface LayoutComponentProps {
   attributes?: HTMLAttributes<HTMLDivElement> | undefined;
 }
 
-export interface AlertType {
-  error: {};
-}
-
-export interface AlertComponentProps {
-  type: keyof AlertType;
-  title?: string;
-  children: Snippet;
-}
-
 export interface ParentTemplateType {
   field: {};
   object: {};
@@ -106,7 +96,6 @@ export interface ComponentsAndProps {
   form: FormComponentProps;
   button: ButtonComponentProps;
   layout: LayoutComponentProps;
-  alert: AlertComponentProps;
   title: TitleComponentProps;
   description: DescriptionComponentProps;
   help: HelpComponentProps;
@@ -117,7 +106,6 @@ export interface ComponentBindings {
   form: "form";
   button: "";
   layout: "";
-  alert: "";
   title: "";
   description: "";
   help: "";

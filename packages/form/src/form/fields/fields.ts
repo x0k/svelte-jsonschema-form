@@ -5,7 +5,6 @@ import {
   AnotherFieldArrayField,
   NormalArrayField,
   FixedArrayField,
-  UnsupportedArrayField,
   ArrayItemField,
 } from "./array/index.js";
 import { ObjectField, ObjectPropertyField } from "./object/index.js";
@@ -15,7 +14,6 @@ import NumberField from "./number-field.svelte";
 import StringField from "./string-field.svelte";
 import IntegerField from "./integer-field.svelte";
 import BooleanField from "./boolean-field.svelte";
-import UnsupportedField from "./unsupported-field.svelte";
 import EnumField from "./enum-field.svelte";
 import HiddenField from "./hidden-field.svelte";
 import FileField from "./file-field.svelte";
@@ -30,12 +28,10 @@ export const fieldsRegistry: { [T in FieldType]: Field<T> } = {
   integer: IntegerField,
   number: NumberField,
   boolean: BooleanField,
-  unsupported: UnsupportedField,
   string: StringField,
   object: ObjectField,
   objectProperty: ObjectPropertyField,
   array: ArrayField,
-  unsupportedArray: UnsupportedArrayField,
   anotherFieldArray: AnotherFieldArrayField,
   fixedArray: FixedArrayField,
   normalArray: NormalArrayField,

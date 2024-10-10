@@ -1,6 +1,5 @@
 export interface Labels {
   submit: [];
-  "unsupported-field-type": [type: string];
   "array-schema-missing-items": [];
   yes: [];
   no: [];

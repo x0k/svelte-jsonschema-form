@@ -35,7 +35,6 @@ export interface FieldsAndProps<V extends SchemaValue> {
   };
 
   array: FieldCommonProps<V>;
-  unsupportedArray: FieldCommonProps<V>;
   anotherFieldArray: FieldCommonProps<V> & {
     field: "enum" | "file";
   };
@@ -57,7 +56,6 @@ export interface FieldsAndProps<V extends SchemaValue> {
     multiple?: boolean;
   };
   hidden: FieldCommonProps<V>;
-  unsupported: FieldCommonProps<V>;
 }
 
 export interface FieldBindings {
@@ -70,7 +68,6 @@ export interface FieldBindings {
   object: "value";
   objectProperty: "value" | "obj";
   array: "value";
-  unsupportedArray: "value";
   anotherFieldArray: "value";
   fixedArray: "value";
   normalArray: "value";
@@ -79,7 +76,6 @@ export interface FieldBindings {
   enum: "value";
   file: "value";
   hidden: "value";
-  unsupported: "value";
 }
 
 export interface FieldValue {
@@ -92,7 +88,6 @@ export interface FieldValue {
   object: SchemaObjectValue;
   objectProperty: SchemaValue;
   array: SchemaArrayValue;
-  unsupportedArray: SchemaArrayValue;
   anotherFieldArray: SchemaArrayValue;
   fixedArray: SchemaArrayValue;
   normalArray: SchemaArrayValue;
@@ -101,7 +96,6 @@ export interface FieldValue {
   enum: SchemaValue;
   file: string | SchemaArrayValue;
   hidden: SchemaValue;
-  unsupported: SchemaValue;
 }
 
 export type FieldType = keyof FieldsAndProps<SchemaValue>;
@@ -143,7 +137,6 @@ export function getField<T extends FieldType>(
 ): Field<T> {
   return (
     getFieldInternal(ctx, type, config) ??
-    (ctx.fields("unsupported", config) as Field<T>) ??
-    createMessage(`Field "${config.uiSchema["ui:field"] ?? type}" not found`)
+    createMessage(`Field "${config.uiSchema["ui:field"] ?? type}" not found`) as Field<T>
   );
 }

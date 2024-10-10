@@ -2,7 +2,6 @@ import { createTranslation } from "@/form/translation.js";
 
 export const translation = createTranslation({
   submit: "Продолжить",
-  "unsupported-field-type": (type) => `Неподдерживаемый тип поля: ${type}`,
   "array-schema-missing-items": "Отсутствует опция `items`",
   yes: "Да",
   no: "Нет",

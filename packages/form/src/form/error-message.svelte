@@ -14,4 +14,4 @@
   const { message }: any = $props();
 </script>
 
-<p style="color: red;">{message}</p>
+<pre style="color: red;">{message}</pre>

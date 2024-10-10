@@ -2,7 +2,6 @@ import { createTranslation } from "@/form/translation.js";
 
 export const translation = createTranslation({
   submit: "Submit",
-  "unsupported-field-type": (type) => `Unsupported field type: ${type}`,
   "array-schema-missing-items": "Missing items definition",
   yes: "Yes",
   no: "No",
