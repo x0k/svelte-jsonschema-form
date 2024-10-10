@@ -1,26 +1,12 @@
 <script lang="ts">
-  import Ajv from 'ajv';
-	import { Form } from '@sjsf/form';
-	import { addFormComponents, AjvValidator, DEFAULT_AJV_CONFIG } from '@sjsf/ajv8-validator';
-	import { translation } from '@sjsf/form/translations/en';
-  
-  import "../app.css";
+	import '../app.css';
 	import { theme } from '../lib/index.js';
-  import { schema, uiSchema, errors } from './schema'
 
-	const validator = $derived(
-		new (AjvValidator)(
-			addFormComponents(new Ajv(DEFAULT_AJV_CONFIG)),
-			uiSchema
-		)
-	);
+	import WidgetsForm from './widgets.svelte';
+  import ComponentsForm from './components.svelte';
 </script>
 
-<Form
-  {...theme}
-  {schema}
-  {uiSchema}
-  {validator}
-  {translation}
-  {errors}
-/>
+<div class="flex gap-8 p-8">
+	<WidgetsForm class="flex flex-1 flex-col gap-4" {theme} />
+	<ComponentsForm class="flex flex-1 flex-col gap-4" {theme} />
+</div>

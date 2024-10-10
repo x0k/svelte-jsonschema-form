@@ -22,13 +22,13 @@
 </script>
 
 <div
-	class:flex={isItem || isControls || isColumn}
+	class:flex={isItem || isControls || isField || isColumn}
 	class:gap-2={isItem || isField}
 	class:gap-4={isColumn}
 	class:items-start={isItem || isControls}
 	class:join={isControls}
 	class:grow={isGrowable}
-	class:flex-col={isColumn}
+	class:flex-col={isColumn || isField}
 	data-layout={type}
 	{...attributes}
 >
