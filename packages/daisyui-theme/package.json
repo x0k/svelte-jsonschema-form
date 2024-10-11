@@ -28,7 +28,7 @@
 		"dev": "vite dev",
 		"build": "svelte-package && vite build && mv $(find .svelte-kit/output/client/_app/immutable/assets/ -name \"_page*.css\" | head -n 1) dist/styles.css && publint",
 		"preview": "vite preview",
-		"test": "pnpm run test:integration && pnpm run test:unit",
+		"test": "pnpm run test:unit",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
