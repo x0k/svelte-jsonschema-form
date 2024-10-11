@@ -1,5 +1,12 @@
 # @sjsf/ajv8-validator
 
+## 0.0.6
+
+### Patch Changes
+
+- Updated dependencies [[`c0cba76`](https://github.com/x0k/svelte-jsonschema-form/commit/c0cba768c867177b9414c3e79c906bf630e72a76)]:
+  - @sjsf/form@0.0.6
+
 ## 0.0.5
 
 ### Patch Changes

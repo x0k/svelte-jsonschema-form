@@ -1,5 +1,11 @@
 # @sjsf/form
 
+## 0.0.6
+
+### Patch Changes
+
+- [`c0cba76`](https://github.com/x0k/svelte-jsonschema-form/commit/c0cba768c867177b9414c3e79c906bf630e72a76) Thanks [@x0k](https://github.com/x0k)! - Update options mapping, for custom mappers
+
 ## 0.0.5
 
 ### Patch Changes
