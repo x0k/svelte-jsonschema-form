@@ -177,6 +177,7 @@
       {/if}
       <Form
         data-theme={lightOrDark}
+        class={lightOrDark}
         style="background-color: transparent; display: flex; flex-direction: column; gap: 1rem"
         bind:value
         {...theme}

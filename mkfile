@@ -43,6 +43,14 @@ daisy/:
     pnpm run dev
   popd
 
+flow/:
+  pushd packages/flowbite-theme
+  b:
+    pnpm run build
+  d:
+    pnpm run dev
+  popd
+
 p:
   pnpm run preview
 
