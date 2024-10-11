@@ -1,5 +1,14 @@
 # @sjsf/daisyui-theme
 
+## 0.0.5
+
+### Patch Changes
+
+- [`34042fa`](https://github.com/x0k/svelte-jsonschema-form/commit/34042fa48212bba5154c60bcdcfa3ffef6d66d82) Thanks [@x0k](https://github.com/x0k)! - Add `focusOnFirstError` feature
+
+- Updated dependencies [[`34042fa`](https://github.com/x0k/svelte-jsonschema-form/commit/34042fa48212bba5154c60bcdcfa3ffef6d66d82)]:
+  - @sjsf/form@0.0.5
+
 ## 0.0.4
 
 ### Patch Changes

@@ -1,5 +1,19 @@
 # docs
 
+## 0.0.4
+
+### Patch Changes
+
+- [`34042fa`](https://github.com/x0k/svelte-jsonschema-form/commit/34042fa48212bba5154c60bcdcfa3ffef6d66d82) Thanks [@x0k](https://github.com/x0k)! - Add `focusOnFirstError` feature
+
+- [`24d1dd5`](https://github.com/x0k/svelte-jsonschema-form/commit/24d1dd576e3559a16c4fd03a71dde41e92f99d9c) Thanks [@x0k](https://github.com/x0k)! - Add widgets customization page
+
+- [`e718abb`](https://github.com/x0k/svelte-jsonschema-form/commit/e718abb2e351ee347bed8416b52e4ee1a6eb29f6) Thanks [@x0k](https://github.com/x0k)! - Themes page
+
+- Updated dependencies [[`34042fa`](https://github.com/x0k/svelte-jsonschema-form/commit/34042fa48212bba5154c60bcdcfa3ffef6d66d82)]:
+  - @sjsf/form@0.0.5
+  - @sjsf/ajv8-validator@0.0.5
+
 ## 0.0.3
 
 ### Patch Changes
