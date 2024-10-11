@@ -1,6 +1,6 @@
 {
 	"name": "@sjsf/daisyui-theme",
-	"version": "0.0.0",
+	"version": "0.0.4",
 	"description": "The daisyui based theme for @sjsf/form",
 	"license": "MIT",
 	"keywords": [
