@@ -1,0 +1,5 @@
+---
+"docs": patch
+---
+
+Themes page

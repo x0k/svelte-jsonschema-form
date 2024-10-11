@@ -25,6 +25,10 @@ export default defineConfig({
           label: "Concepts",
           autogenerate: { directory: "concepts" },
         },
+        {
+          label: "Customization",
+          autogenerate: { directory: "customization" },
+        }
         // {
         // 	label: 'Guides',
         // 	items: [
