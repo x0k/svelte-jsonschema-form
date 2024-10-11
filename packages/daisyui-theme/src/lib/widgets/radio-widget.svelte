@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { type WidgetProps, singleOption } from '@sjsf/form';
+	import { type WidgetProps, indexMapper, singleOption } from '@sjsf/form';
 
 	let { attributes, value = $bindable(), options, errors }: WidgetProps<'radio'> = $props();
 
 	const guarder = singleOption({
-		options: () => options,
+		mapper: () => indexMapper(options),
 		value: () => value,
 		update: (v) => (value = v),
 		readonly: () => attributes.readonly

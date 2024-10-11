@@ -3,10 +3,15 @@ import { isObject } from '@/lib/object.js';
 
 import type { EnumOption, SchemaArrayValue, SchemaValue } from '@/core/index.js';
 
-function makeOptionsMapper(options: EnumOption<SchemaValue>[]) {
+export interface OptionsMapper<V> {
+  fromValue: (value: SchemaValue | undefined) => V;
+  toValue: (value: V) => SchemaValue | undefined;
+}
+
+export function indexMapper(options: EnumOption<SchemaValue>[]): OptionsMapper<number> {
   const map = new Map(options.map((option, index) => [option.value, index]));
   return {
-    valueToIndex(value: SchemaValue | undefined) {
+    fromValue(value: SchemaValue | undefined) {
       if (value === undefined) {
         return -1;
       }
@@ -19,58 +24,70 @@ function makeOptionsMapper(options: EnumOption<SchemaValue>[]) {
       }
       return options.findIndex((option) => deepEqual(option.value, value));
     },
-    indexToValue(index: number) {
+    toValue(index: number) {
       return options[index]?.value;
     },
   };
 }
 
-export function singleOption({
-  options,
+export function stringIndexMapper(options: EnumOption<SchemaValue>[]): OptionsMapper<string> {
+  const { fromValue, toValue } = indexMapper(options);
+  return {
+    fromValue(value) {
+      return String(fromValue(value));
+    },
+    toValue(value) {
+      return toValue(Number(value));
+    },
+  };
+}
+
+export function singleOption<V>({
+  mapper,
   value,
   update,
   readonly,
 }: {
-  options: () => EnumOption<SchemaValue>[],
+  mapper: () => OptionsMapper<V>,
   value: () => SchemaValue | undefined,
   update: (value: SchemaValue | undefined) => void,
   readonly: () => boolean
 }) {
-  const { indexToValue, valueToIndex } = $derived(makeOptionsMapper(options()));
+  const { fromValue, toValue } = $derived(mapper());
   return {
     get value() {
-      return valueToIndex(value());
+      return fromValue(value());
     },
     set value(v) {
       if (readonly()) {
         return;
       }
-      update(indexToValue(v));
+      update(toValue(v));
     }
   }
 }
 
-export function multipleOptions({
-  options,
+export function multipleOptions<V>({
+  mapper,
   value,
   update,
   readonly,
 }: {
-  options: () => EnumOption<SchemaValue>[],
+  mapper: () => OptionsMapper<V>,
   value: () => SchemaArrayValue | undefined,
   update: (value: SchemaArrayValue) => void,
   readonly: () => boolean
 }) {
-  const { indexToValue, valueToIndex } = $derived(makeOptionsMapper(options()));
+  const { fromValue, toValue } = $derived(mapper());
   return {
     get value() {
-      return value()?.map(valueToIndex) ?? [];
+      return value()?.map(fromValue) ?? [];
     },
     set value(v) {
       if (readonly()) {
         return;
       }
-      update(v.map(indexToValue));
+      update(v.map(toValue));
     }
   }
 }

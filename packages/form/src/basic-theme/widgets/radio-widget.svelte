@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { singleOption, type WidgetProps } from "@/form/index.js";
+  import { singleOption, indexMapper, type WidgetProps } from "@/form/index.js";
 
   let {
     attributes,
@@ -8,7 +8,7 @@
   }: WidgetProps<"radio"> = $props();
 
   const guarder = singleOption({
-    options: () => options,
+    mapper: () => indexMapper(options),
     value: () => value,
     update: (v) => (value = v),
     readonly: () => attributes.readonly,

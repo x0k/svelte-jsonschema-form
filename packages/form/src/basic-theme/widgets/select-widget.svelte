@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { multipleOptions, singleOption, type WidgetProps } from "@/form/index.js";
+  import { indexMapper, multipleOptions, singleOption, type WidgetProps } from "@/form/index.js";
 
   let {
     attributes,
@@ -13,7 +13,7 @@
 
 	const guarded = $derived(
 		(multiple ? multipleOptions : singleOption)({
-			options: () => options,
+			mapper: () => indexMapper(options),
       // @ts-expect-error
 			value: () => value,
 			update: (v) => (value = v),

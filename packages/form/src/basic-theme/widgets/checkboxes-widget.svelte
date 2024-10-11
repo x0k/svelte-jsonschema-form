@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { multipleOptions, type WidgetProps } from "@/form/index.js";
+  import { multipleOptions, indexMapper, type WidgetProps } from "@/form/index.js";
 
   let {
     attributes,
@@ -8,7 +8,7 @@
   }: WidgetProps<"checkboxes"> = $props();
 
 	const guarder = multipleOptions({
-		options: () => options,
+		mapper: () => indexMapper(options),
 		value: () => value,
 		update: (v) => (value = v),
 		readonly: () => attributes.readonly

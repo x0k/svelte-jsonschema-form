@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { singleOption, multipleOptions, type WidgetProps } from '@sjsf/form';
+	import { singleOption, multipleOptions, type WidgetProps, indexMapper } from '@sjsf/form';
 	import Select, { type SelectProps } from 'flowbite-svelte/Select.svelte';
 	import MultiSelect, { type MultiSelectProps } from 'flowbite-svelte/MultiSelect.svelte';
 
@@ -15,7 +15,7 @@
 
 	const guarded = $derived(
 		(multiple ? multipleOptions : singleOption)({
-			options: () => options,
+			mapper: () => indexMapper(options),
 			// @ts-expect-error
 			value: () => value,
 			update: (v) => (value = v),
@@ -35,7 +35,7 @@
 		class="grow"
 		bind:value={guarded.value as number[]}
 		items={selectOptions}
-		{placeholder}
+		placeholder={placeholder ?? undefined}
 		{...multiSelectProps}
 	/>
 {:else}

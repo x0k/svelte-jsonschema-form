@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { multipleOptions, type WidgetProps } from '@sjsf/form';
+	import { multipleOptions, indexMapper, type WidgetProps } from '@sjsf/form';
 
 	let { attributes, value = $bindable(), options, errors }: WidgetProps<'checkboxes'> = $props();
 
 	const guarder = multipleOptions({
-		options: () => options,
+		mapper: () => indexMapper(options),
 		value: () => value,
 		update: (v) => (value = v),
 		readonly: () => attributes.readonly

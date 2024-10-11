@@ -45,6 +45,8 @@ daisy/:
 
 flow/:
   pushd packages/flowbite-theme
+  c:
+    pnpm run check
   b:
     pnpm run build
   d:
