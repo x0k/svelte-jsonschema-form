@@ -14,7 +14,8 @@
     "@sjsf/ajv8-validator": "workspace:*",
     "ajv": "catalog:",
     "rehype-raw": "^7.0.0",
-    "svelte-exmarkdown": "^3.0.5"
+    "svelte-exmarkdown": "^3.0.5",
+    "@sjsf/daisyui-theme": "workspace:*"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "catalog:",

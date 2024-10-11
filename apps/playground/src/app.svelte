@@ -3,11 +3,10 @@
   import {
     Form,
     ValidatorErrorType,
-    type SchemaValue,
     type ValidatorError,
   } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
-  import { theme } from "@sjsf/form/basic-theme";
+  import { themes, themeStyles } from './themes'
   import { AjvValidator, addFormComponents, DEFAULT_AJV_CONFIG } from "@sjsf/ajv8-validator";
 
   import { ShadowHost } from "./shadow";
@@ -22,7 +21,12 @@
     return typeof name === "string" && name in samples;
   }
 
+  function isThemeName(name: unknown): name is keyof typeof themes {
+    return typeof name === "string" && name in themes;
+  }
+
   const url = new URL(window.location.toString());
+
   const parsedSampleName = url.searchParams.get("sample");
   function selectSample(name: keyof typeof samples, replace = false) {
     url.searchParams.set("sample", name);
@@ -36,6 +40,19 @@
   let schema = $state(samples[initialSampleName].schema);
   let uiSchema = $state(samples[initialSampleName].uiSchema);
   let value = $state(samples[initialSampleName].formData);
+
+  const parsedThemeName = url.searchParams.get("theme");
+  function selectTheme(name: keyof typeof themes, replace = false) {
+    url.searchParams.set("theme", name);
+    history[replace ? "replaceState" : "pushState"](null, "", url);
+    return name;
+  }
+  const initialThemeName = isThemeName(parsedThemeName)
+    ? parsedThemeName
+    : selectTheme("basic", true);
+  let themeName = $state(initialThemeName);
+  const theme = $derived(themes[themeName]);
+  const themeStyle = $derived(themeStyles[themeName]);
 
   const validator = $derived(
     new (samples[sampleName].Validator ?? AjvValidator)(
@@ -51,8 +68,6 @@
   let errors = $state.raw<ValidatorError<any>[]>(
     samples[initialSampleName].errors ?? []
   );
-
-  let form: Form<SchemaValue, unknown>;
 </script>
 
 <div
@@ -76,6 +91,11 @@
       <input type="checkbox" bind:checked={errorsList} />
       Errors list
     </label>
+    <select bind:value={themeName}>
+      {#each Object.keys(themes) as name (name)}
+        <option value={name}>{name}</option>
+      {/each}
+    </select>
     <ThemePicker />
     <a href="https://x0k.github.io/svelte-jsonschema-form/">
       <OpenBook class="h-8 w-8" />
@@ -129,7 +149,7 @@
         </div>
       </div>
     </div>
-    <ShadowHost class="flex-[3] max-h-[808px] overflow-y-auto">
+    <ShadowHost class="flex-[3] max-h-[808px] overflow-y-auto" style={themeStyle}>
       {#if errorsList && errors.length > 0}
         <div style="color: red; padding-bottom: 1rem;">
           <span style="font-size: larger; font-weight: bold;">Errors</span>
@@ -145,7 +165,6 @@
         </div>
       {/if}
       <Form
-        bind:this={form}
         bind:value
         {...theme}
         {schema}
