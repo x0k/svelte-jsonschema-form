@@ -19,6 +19,14 @@ f/:
     pnpm run check
   popd
 
+docs/:
+  pushd apps/docs
+  b:
+    pnpm run build
+  d:
+    pnpm run dev
+  popd
+
 daisy/:
   pushd packages/daisyui-theme
   b:
