@@ -15,16 +15,17 @@
   });
 
   $effect(() => {
-    mount(Root, { target: shadow, props: { children } });
+    const root = mount(Root, { target: shadow, props: { children } });
+    let styleElement: HTMLStyleElement | undefined;
     if (style) {
-      const styleElement = document.createElement("style");
+      styleElement = document.createElement("style");
       styleElement.textContent = style;
       shadow.appendChild(styleElement);
     }
-    // Looks like we don't need to unmount
-    // return () => {
-    //   unmount(shadow);
-    // };
+    return () => {
+      styleElement?.remove();
+      unmount(root);
+    };
   });
 </script>
 

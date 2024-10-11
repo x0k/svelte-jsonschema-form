@@ -1,7 +1,5 @@
 <script lang="ts">
-  let theme = $state<"system" | "light" | "dark">(
-    localStorage.theme ?? "system"
-  );
+  let { theme = $bindable() }: { theme: "system" | "light" | "dark" } = $props();
 
   function updateTheme() {
     if (

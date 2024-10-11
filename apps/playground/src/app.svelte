@@ -16,7 +16,6 @@
 
   import { samples } from "./samples";
 
-
   function isSampleName(name: unknown): name is keyof typeof samples {
     return typeof name === "string" && name in samples;
   }
@@ -68,6 +67,12 @@
   let errors = $state.raw<ValidatorError<any>[]>(
     samples[initialSampleName].errors ?? []
   );
+
+  let playgroundTheme = $state<"system" | "light" | "dark">(
+    localStorage.theme ?? "system"
+  );
+
+  const lightOrDark = $derived(playgroundTheme === "system" ? window.matchMedia("(prefers-color-scheme: dark)") ? "dark" : "light" : playgroundTheme)
 </script>
 
 <div
@@ -91,12 +96,12 @@
       <input type="checkbox" bind:checked={errorsList} />
       Errors list
     </label>
-    <select bind:value={themeName}>
+    <select bind:value={themeName} onchange={() => selectTheme(themeName)}>
       {#each Object.keys(themes) as name (name)}
         <option value={name}>{name}</option>
       {/each}
     </select>
-    <ThemePicker />
+    <ThemePicker bind:theme={playgroundTheme} />
     <a href="https://x0k.github.io/svelte-jsonschema-form/">
       <OpenBook class="h-8 w-8" />
     </a>
@@ -165,6 +170,8 @@
         </div>
       {/if}
       <Form
+        data-theme={lightOrDark}
+        style="background-color: transparent; display: flex; flex-direction: column; gap: 1rem"
         bind:value
         {...theme}
         {schema}
