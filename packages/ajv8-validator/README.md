@@ -25,3 +25,7 @@ const validator = new AjvValidator(
   addFormComponents(new Ajv(DEFAULT_AJV_CONFIG))
 );
 ```
+
+## License
+
+MIT
