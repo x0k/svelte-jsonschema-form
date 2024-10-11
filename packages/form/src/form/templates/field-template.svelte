@@ -33,7 +33,7 @@
     {@render children()}
   </Layout>
   {#if errors.length > 0}
-    <ErrorsList {errors} {config} />
+    <ErrorsList forId={config.idSchema.$id} {errors} {config} />
   {/if}
   {#if config.uiOptions?.help !== undefined}
     <Help help={config.uiOptions.help} {config} {errors} />

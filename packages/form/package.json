@@ -76,6 +76,11 @@
       "types": "./dist/basic-theme/index.d.ts",
       "svelte": "./dist/basic-theme/index.js",
       "default": "./dist/basic-theme/index.js"
+    },
+    "./focus-on-first-error": {
+      "types": "./dist/focus-on-first-error.d.ts",
+      "svelte": "./dist/focus-on-first-error.js",
+      "default": "./dist/focus-on-first-error.js"
     }
   }
 }

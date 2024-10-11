@@ -89,6 +89,7 @@ export interface HelpComponentProps {
 }
 
 export interface ErrorsListProps {
+  forId: string;
   errors: ValidationError<unknown>[];
 }
 

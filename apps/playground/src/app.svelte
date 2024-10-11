@@ -6,9 +6,10 @@
     type ValidatorError,
   } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
-  import { themes, themeStyles } from './themes'
   import { AjvValidator, addFormComponents, DEFAULT_AJV_CONFIG } from "@sjsf/ajv8-validator";
+  import { focusOnFirstError } from '@sjsf/form/focus-on-first-error';
 
+  import { themes, themeStyles } from './themes'
   import { ShadowHost } from "./shadow";
   import Github from "./github.svelte";
   import OpenBook from "./open-book.svelte";
@@ -64,6 +65,7 @@
   let readonly = $state(false);
   let html5Validation = $state(false);
   let errorsList = $state(true);
+  let doFocusOnFirstError = $state(true);
   let errors = $state.raw<ValidatorError<any>[]>(
     samples[initialSampleName].errors ?? []
   );
@@ -95,6 +97,10 @@
     <label>
       <input type="checkbox" bind:checked={errorsList} />
       Errors list
+    </label>
+    <label>
+      <input type="checkbox" bind:checked={doFocusOnFirstError} />
+      Focus on first error
     </label>
     <select bind:value={themeName} onchange={() => selectTheme(themeName)}>
       {#each Object.keys(themes) as name (name)}
@@ -185,7 +191,10 @@
         onSubmit={(value) => {
           console.log("submit", value);
         }}
-        onSubmitError={(errors) => {
+        onSubmitError={(errors, e) => {
+          if (doFocusOnFirstError) {
+            focusOnFirstError(errors, e);
+          }
           console.log("errors", errors);
         }}
       />

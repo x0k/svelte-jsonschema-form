@@ -33,6 +33,6 @@ import { getTemplateProps } from './get-template-props.js';
   </Layout>
   {@render addButton?.()}
   {#if errors.length > 0}
-    <ErrorsList {errors} {config} />
+    <ErrorsList forId={config.idSchema.$id} {errors} {config} />
   {/if}
 </Layout>

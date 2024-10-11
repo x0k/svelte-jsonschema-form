@@ -1,0 +1,24 @@
+---
+title: Focus on first error
+sidebar:
+  order: 2
+---
+
+You can achieve focus on the first error by using the `focusOnFirstError` function.
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import { Form } from "@sjsf/form";
+  import { focusOnFirstError } from '@sjsf/form/focus-on-first-error';
+</script>
+
+<Form {...} onSubmitError={focusOnFirstError} />
+```
+
+## Explanation
+
+1. `focusOnFirstError` will try to find a focusable element and focus it.
+2. If it's not found, it will try to find an errors list and scroll it into view.
+3. If it's not found, it will return `false`.

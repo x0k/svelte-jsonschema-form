@@ -21,10 +21,18 @@ f/:
 
 docs/:
   pushd apps/docs
-  b:
-    pnpm run build
   d:
     pnpm run dev
+  b:
+    pnpm run build
+  popd
+
+pl/:
+  pushd apps/playground
+  d:
+    pnpm run dev
+  b:
+    pnpm run build
   popd
 
 daisy/:
