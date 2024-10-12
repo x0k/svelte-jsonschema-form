@@ -7,7 +7,6 @@ import {
   sanitizeDataForNewSchema as sanitizeDataForNewSchemaInternal,
   type Schema,
   type SchemaValue,
-  type ValidationError,
 } from "@/core/index.js";
 
 import type { UiSchema } from "./ui-schema.js";
@@ -16,11 +15,10 @@ import {
   toIdSchema as toIdSchemaInternal,
 } from "./id-schema.js";
 import type { FormContext } from "./context.js";
-
-export const NO_ERRORS: ValidationError<unknown>[] = [];
+import { NO_ERRORS } from "./errors.js";
 
 export function getErrors(ctx: FormContext, idSchema: IdSchema<SchemaValue>) {
-  return ctx.validationErrors.get(idSchema.$id) ?? NO_ERRORS;
+  return ctx.errors.get(idSchema.$id) ?? NO_ERRORS;
 }
 
 export function sanitizeDataForNewSchema(

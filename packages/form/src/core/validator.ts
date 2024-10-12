@@ -1,31 +1,11 @@
 import type { Schema, SchemaDefinition, SchemaValue } from "./schema.js";
 
-export enum ValidatorErrorType {
-  ValidationError = "validation-error",
-  SchemaError = "schema-error",
-}
-
-export interface AbstractValidatorError<T extends ValidatorErrorType> {
-  type: T;
-}
-
-export interface ValidationError<E>
-  extends AbstractValidatorError<ValidatorErrorType.ValidationError> {
+export interface ValidationError<E> {
   instanceId: string;
   propertyTitle: string;
   message: string;
   error: E;
 }
-
-export interface SchemaError
-  extends AbstractValidatorError<ValidatorErrorType.SchemaError> {
-  message: string;
-  error: Error;
-}
-
-export type ValidatorError<E> = ValidationError<E> | SchemaError;
-
-
 
 export interface Validator<E = unknown> {
   isValid(
@@ -35,9 +15,9 @@ export interface Validator<E = unknown> {
   ): boolean;
 
   validateFormData(
-    schema: Schema,
+    rootSchema: Schema,
     formData: SchemaValue | undefined
-  ): ValidatorError<E>[];
+  ): ValidationError<E>[];
 
   reset(): void;
 }

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { getFormContext } from '../context.js';
   import { getTemplate } from '../templates/index.js';
-  import { NO_ERRORS } from '../utils.js';
+  import { NO_ERRORS } from '../errors.js';
 
   import type { FieldProps } from "./model.js";
 

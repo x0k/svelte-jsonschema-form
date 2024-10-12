@@ -1,4 +1,5 @@
 import { getContext, setContext } from "svelte";
+import type { SvelteMap } from 'svelte/reactivity';
 
 import type { SchedulerYield } from '@/lib/scheduler.js';
 import type { Validator, Schema, ValidationError } from "@/core/index.js";
@@ -23,7 +24,7 @@ export interface FormContext {
   readonly: boolean;
   idPrefix: string;
   idSeparator: string;
-  validationErrors: Map<string, ValidationError<unknown>[]>;
+  errors: SvelteMap<string, ValidationError<unknown>[]>;
   schedulerYield: SchedulerYield
 }
 

@@ -1,18 +1,20 @@
 <script lang="ts" generics="T, E">
   import { untrack, type Snippet } from 'svelte';
   import type { HTMLFormAttributes } from "svelte/elements";
+  import { SvelteMap } from 'svelte/reactivity';
 
-  import { type Schema, type SchemaValue, type Validator, type ValidatorError, ValidatorErrorType } from '@/core/index.js';
+  import { type Schema, type SchemaValue, type Validator } from '@/core/index.js';
 
   import type { Config } from './config.js';
   import type { Translation } from './translation.js';
   import type { UiSchemaRoot } from './ui-schema.js';
   import type { Components } from './component.js';
   import type { Widgets } from './widgets.js';
+  import { type Errors, NO_ERRORS } from './errors.js'
   import { setFromContext, type FormContext } from './context.js';
   import { type Fields, fields as defaultFields, getField } from './fields/index.js';
   import { type Templates, templates as defaultTemplates } from './templates/index.js';
-  import { getDefaultFormState, getUiOptions, NO_ERRORS, retrieveSchema, toIdSchema } from './utils.js';
+  import { getDefaultFormState, getUiOptions, retrieveSchema, toIdSchema } from './utils.js';
   import { getComponent } from './component.js'
   import SubmitButton from './submit-button.svelte';
 
@@ -27,7 +29,7 @@
   }
 
   export function resetErrors() {
-    errors = [];
+    errors.clear()
   }
 
   type Value = SchemaValue | undefined
@@ -47,9 +49,9 @@
     idPrefix?: string
     idSeparator?: string
     children?: Snippet
-    errors?: ValidatorError<unknown>[]
+    errors?: Errors<E>
     onSubmit?: (value: T | undefined, e: SubmitEvent) => void
-    onSubmitError?: (errors: ValidatorError<unknown>[], e: SubmitEvent) => void
+    onSubmitError?: (errors: Errors<E>, e: SubmitEvent) => void
   }
 
   let {
@@ -67,7 +69,7 @@
     idPrefix = "root",
     idSeparator = "_",
     children,
-    errors = $bindable([]),
+    errors = $bindable(new SvelteMap()),
     onSubmit,
     onSubmitError,
     ...attributes
@@ -81,11 +83,9 @@
     })
   })
 
-  let validationErrors = $derived(Map.groupBy(errors.filter(e => e.type === ValidatorErrorType.ValidationError), (e) => e.instanceId))
-
   const ctx: FormContext = {
-    get validationErrors() {
-      return validationErrors
+    get errors() {
+      return errors
     },
     get schema() {
       return schema
@@ -159,13 +159,14 @@
   const Field = $derived(getField(ctx, "root", config))
 
   export function validate() {
-    return validator.validateFormData(schema, value as Value)
+    const list = validator.validateFormData(schema, value as Value)
+    return new SvelteMap(SvelteMap.groupBy(list, (error) => error.instanceId))
   }
 
   function handleSubmit(e: SubmitEvent) {
     e.preventDefault();
     errors = validate();
-    if (errors.length === 0) {
+    if (errors.size === 0) {
       onSubmit?.($state.snapshot(value) as T | undefined, e)
       return
     }

@@ -1,4 +1,4 @@
-import { ValidatorErrorType } from "@sjsf/form";
+import { SvelteMap } from "svelte/reactivity";
 
 import type { Sample } from "./Sample";
 
@@ -83,15 +83,19 @@ const errorSchema: Sample = {
     bio: "Roundhouse kicking asses since 1940",
     password: "noneed",
   },
-  errors: [
-    {
-      type: ValidatorErrorType.ValidationError,
-      instanceId: "root_firstName",
-      propertyTitle: "firstName",
-      message: "some error that got added as a prop",
-      error: null,
-    },
-  ],
+  errors: new SvelteMap([
+    [
+      "root_firstName",
+      [
+        {
+          instanceId: "root_firstName",
+          propertyTitle: "firstName",
+          message: "some error that got added as a prop",
+          error: null,
+        },
+      ],
+    ],
+  ]),
 };
 
 export default errorSchema;

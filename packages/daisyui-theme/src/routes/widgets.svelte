@@ -1,19 +1,19 @@
 <script lang="ts">
-  import type { HTMLFormAttributes } from "svelte/elements";
+	import type { HTMLFormAttributes } from 'svelte/elements';
 	import Ajv from 'ajv';
 	import {
-	 	Form,
-		ValidatorErrorType,
+		Form,
 		type Theme,
 		type Schema,
 		type UiSchema,
 		type UiSchemaRoot,
-		type ValidatorError
+		type ValidationError
 	} from '@sjsf/form';
 	import { translation } from '@sjsf/form/translations/en';
 	import { addFormComponents, AjvValidator, DEFAULT_AJV_CONFIG } from '@sjsf/ajv8-validator';
+	import { SvelteMap } from 'svelte/reactivity';
 
-	const { theme, ...rest }: { theme: Theme } & HTMLFormAttributes = $props()
+	const { theme, ...rest }: { theme: Theme } & HTMLFormAttributes = $props();
 
 	const states = (schema: Schema): Schema => ({
 		type: 'object',
@@ -118,35 +118,33 @@
 		})
 	};
 
-	const errors: ValidatorError<unknown>[] = [
-		'checkbox',
-		'checkboxes',
-		'file',
-		'multiFile',
-		'number',
-		'radio',
-		'select',
-		'multiSelect',
-		'text',
-		'textarea',
-		'toggle'
-	].map((key) => ({
-		type: ValidatorErrorType.ValidationError,
-		error: null,
-		instanceId: `root_${key}_error`,
-		propertyTitle: 'error',
-		message: `${key} error`
-	}));
+	const errors = new SvelteMap(
+		[
+			'checkbox',
+			'checkboxes',
+			'file',
+			'multiFile',
+			'number',
+			'radio',
+			'select',
+			'multiSelect',
+			'text',
+			'textarea',
+			'toggle'
+		].map((key) => [
+			key,
+			[
+				{
+					error: null,
+					instanceId: `root_${key}_error`,
+					propertyTitle: 'error',
+					message: `${key} error`
+				}
+			] satisfies ValidationError<unknown>[]
+		])
+	);
 
-	const validator = new AjvValidator(addFormComponents(new Ajv(DEFAULT_AJV_CONFIG)), uiSchema)
+	const validator = new AjvValidator(addFormComponents(new Ajv(DEFAULT_AJV_CONFIG)), uiSchema);
 </script>
 
-<Form
-	{...rest}
-	{...theme}
-	{schema}
-	{uiSchema}
-	{validator}
-	{translation}
-	{errors}
-/>
+<Form {...rest} {...theme} {schema} {uiSchema} {validator} {translation} {errors} />

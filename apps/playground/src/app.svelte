@@ -1,10 +1,7 @@
 <script lang="ts">
+  import { SvelteMap } from 'svelte/reactivity';
   import Ajv from "ajv";
-  import {
-    Form,
-    ValidatorErrorType,
-    type ValidatorError,
-  } from "@sjsf/form";
+  import { Form, type Errors } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { AjvValidator, addFormComponents, DEFAULT_AJV_CONFIG } from "@sjsf/ajv8-validator";
   import { focusOnFirstError } from '@sjsf/form/focus-on-first-error';
@@ -66,8 +63,8 @@
   let html5Validation = $state(false);
   let errorsList = $state(true);
   let doFocusOnFirstError = $state(true);
-  let errors = $state.raw<ValidatorError<any>[]>(
-    samples[initialSampleName].errors ?? []
+  let errors: Errors = $state.raw(
+    samples[initialSampleName].errors ?? new SvelteMap()
   );
 
   let playgroundTheme = $state<"system" | "light" | "dark">(
@@ -132,7 +129,7 @@
           schema = samples[sampleName].schema;
           uiSchema = samples[sampleName].uiSchema;
           value = samples[sampleName].formData;
-          errors = samples[sampleName].errors ?? [];
+          errors = samples[sampleName].errors ?? new SvelteMap();
         }}
       >
         {name}
@@ -161,16 +158,14 @@
       </div>
     </div>
     <ShadowHost class="flex-[3] max-h-[808px] overflow-y-auto" style={themeStyle}>
-      {#if errorsList && errors.length > 0}
+      {#if errorsList && errors.size > 0}
         <div style="color: red; padding-bottom: 1rem;">
           <span style="font-size: larger; font-weight: bold;">Errors</span>
           <ui>
-            {#each errors as err}
-              {#if err.type === ValidatorErrorType.ValidationError}
-                <li>'{err.propertyTitle}' {err.message}</li>
-              {:else}
+            {#each errors as [field, fieldErrors] (field)}
+              {#each fieldErrors as err}
                 <li>{err.message}</li>
-              {/if}
+              {/each}
             {/each}
           </ui>
         </div>

@@ -1,10 +1,6 @@
 import { tick } from "svelte";
 
-import {
-  ValidatorErrorType,
-  type ValidatorError,
-  type ValidationError,
-} from "@/core/validator.js";
+import type { Errors, ValidationError } from './form/index.js';
 
 export function getFocusableElement(
   form: HTMLElement,
@@ -48,18 +44,19 @@ export function getFocusAction(
 }
 
 export function focusOnFirstError(
-  errors: ValidatorError<unknown>[],
+  errors: Errors,
   e: SubmitEvent
 ) {
-  const form = e.target;
-  if (!(form instanceof HTMLElement)) {
-    console.warn("Expected form to be an HTMLFormElement, got", form);
+  if (errors.size === 0) {
     return false;
   }
-  const error = errors.find(
-    (err) => err.type === ValidatorErrorType.ValidationError
-  );
-  if (!error) {
+  const form = e.target;
+  if (!(form instanceof HTMLElement)) {
+    console.warn("Expected form to be an HTMLElement, got", form);
+    return false;
+  }
+  const error = errors.values().next().value?.[0];
+  if (error === undefined) {
     return false;
   }
   const focusAction = getFocusAction(form, error);

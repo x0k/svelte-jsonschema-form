@@ -1,14 +1,8 @@
 <script lang="ts">
 	import type { HTMLFormAttributes } from 'svelte/elements';
+	import { SvelteMap } from 'svelte/reactivity';
 	import Ajv from 'ajv';
-	import {
-		Form,
-		type Theme,
-		type Schema,
-		type UiSchemaRoot,
-		type ValidatorError,
-		ValidatorErrorType
-	} from '@sjsf/form';
+	import { Form, type Theme, type Schema, type UiSchemaRoot } from '@sjsf/form';
 	import { translation } from '@sjsf/form/translations/en';
 	import { addFormComponents, AjvValidator, DEFAULT_AJV_CONFIG } from '@sjsf/ajv8-validator';
 
@@ -46,22 +40,30 @@
 		}
 	};
 
-	const errors: ValidatorError<unknown>[] = [
-		{
-			type: ValidatorErrorType.ValidationError,
-			instanceId: 'root',
-			error: null,
-			message: 'test error',
-			propertyTitle: 'Title'
-		},
-		{
-			type: ValidatorErrorType.ValidationError,
-			instanceId: 'root',
-			error: null,
-			message: 'test error 2',
-			propertyTitle: 'Title'
-		}
-	];
+	const errors = new SvelteMap([
+		[
+			'root',
+			[
+				{
+					instanceId: 'root',
+					error: null,
+					message: 'test error',
+					propertyTitle: 'Title'
+				}
+			]
+		],
+		[
+			'root',
+			[
+				{
+					instanceId: 'root',
+					error: null,
+					message: 'test error 2',
+					propertyTitle: 'Title'
+				}
+			]
+		]
+	]);
 
 	let value = $state({
 		array: ['fixed', 123],

@@ -5,7 +5,8 @@
   import { isDisabledOrReadonly } from "./is-disabled-or-readonly.js";
   import { getFormContext } from "./context.js";
   import { getComponent } from "./component.js";
-  import { getUiOptions, NO_ERRORS } from "./utils.js";
+  import { NO_ERRORS } from './errors.js';
+  import { getUiOptions } from "./utils.js";
 
   const ctx = getFormContext();
 

@@ -1,15 +1,16 @@
 import type { ErrorObject } from "ajv";
 import {
-  ValidatorErrorType,
   type Schema,
   type SchemaValue,
-  type ValidatorError,
+  type ValidationError,
 } from "@sjsf/form";
 import { AjvValidator } from "@sjsf/ajv8-validator";
 
 import type { Sample } from "./Sample";
 
-function customValidate(value: SchemaValue | undefined): ValidatorError<ErrorObject>[] {
+function customValidate(
+  value: SchemaValue | undefined
+): ValidationError<ErrorObject>[] {
   const { pass1, pass2 } = value as {
     pass1: string;
     pass2: string;
@@ -17,7 +18,6 @@ function customValidate(value: SchemaValue | undefined): ValidatorError<ErrorObj
   if (pass1 !== pass2) {
     return [
       {
-        type: ValidatorErrorType.ValidationError,
         error: {} as ErrorObject,
         instanceId: "root_pass2",
         propertyTitle: "Repeat password",
@@ -32,11 +32,8 @@ class CustomAjvValidator extends AjvValidator {
   override validateFormData(
     schema: Schema,
     formData: SchemaValue | undefined
-  ): ValidatorError<ErrorObject>[] {
+  ): ValidationError<ErrorObject>[] {
     const errors = super.validateFormData(schema, formData).map((error) => {
-      if (error.type === ValidatorErrorType.SchemaError) {
-        return error;
-      }
       if (
         error.error.keyword === "minimum" &&
         error.error.schemaPath === "#/properties/age/minimum"
@@ -47,7 +44,7 @@ class CustomAjvValidator extends AjvValidator {
       }
       return error;
     });
-    return errors.concat(customValidate(formData))
+    return errors.concat(customValidate(formData));
   }
 }
 

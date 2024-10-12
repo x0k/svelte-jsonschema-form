@@ -8,14 +8,12 @@ import {
   prefixSchemaRefs,
   ROOT_SCHEMA_PREFIX,
   schemaHash,
-  ValidatorErrorType,
   type Schema,
   type SchemaDefinition,
   type SchemaValue,
   type Validator,
-  type ValidatorError,
 } from "@sjsf/form/core";
-import type { UiSchema, UiSchemaRoot } from "@sjsf/form";
+import type { UiSchema, UiSchemaRoot, ValidationError } from "@sjsf/form";
 
 const trueSchema: Schema = {};
 const falseSchema: Schema = {};
@@ -35,28 +33,14 @@ export class AjvValidator implements Validator<ErrorObject> {
   validateFormData(
     schema: Schema,
     formData: SchemaValue | undefined
-  ): ValidatorError<ErrorObject>[] {
+  ): ValidationError<ErrorObject>[] {
     const schemaRef = schema[ID_KEY];
     let errors: ErrorObject[] | null | undefined;
-    try {
-      const validator =
-        (schemaRef && this.ajv.getSchema(schemaRef)) ||
-        this.ajv.compile(schema);
-      validator(formData);
-      errors = validator.errors;
-      validator.errors = null;
-    } catch (err) {
-      return [
-        {
-          type: ValidatorErrorType.SchemaError,
-          error: err as Error,
-          message:
-            err instanceof Error
-              ? err.message
-              : "Unknown error during schema compilation",
-        },
-      ];
-    }
+    const validator =
+      (schemaRef && this.ajv.getSchema(schemaRef)) || this.ajv.compile(schema);
+    validator(formData);
+    errors = validator.errors;
+    validator.errors = null;
     return (
       errors?.map((error) => {
         let path = error.instancePath.split("/");
@@ -64,7 +48,6 @@ export class AjvValidator implements Validator<ErrorObject> {
           path = path.slice(1);
         }
         return {
-          type: ValidatorErrorType.ValidationError,
           instanceId: this.instancePathToId(error, path),
           propertyTitle: this.errorObjectToPropertyTitle(error, path),
           message: this.errorObjectToMessage(error, path),
