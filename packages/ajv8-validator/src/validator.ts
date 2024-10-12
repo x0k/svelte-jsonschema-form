@@ -65,7 +65,7 @@ export class AjvValidator implements Validator<ErrorObject> {
         }
         return {
           type: ValidatorErrorType.ValidationError,
-          instanceId: this.instancePathToId(path),
+          instanceId: this.instancePathToId(error, path),
           propertyTitle: this.errorObjectToPropertyTitle(error, path),
           message: this.errorObjectToMessage(error, path),
           error,
@@ -100,8 +100,17 @@ export class AjvValidator implements Validator<ErrorObject> {
     }
   }
 
-  private instancePathToId(path: string[]) {
-    return `${this.idPrefix}${this.idSeparator}${path.join(this.idSeparator)}`;
+  private instancePathToId(
+    { params: { missingProperty } }: ErrorObject,
+    path: string[]
+  ) {
+    const id =
+      path.length === 0
+        ? this.idPrefix
+        : `${this.idPrefix}${this.idSeparator}${path.join(this.idSeparator)}`;
+    return missingProperty !== undefined
+      ? `${id}${this.idSeparator}${missingProperty}`
+      : id;
   }
 
   private errorObjectToMessage(

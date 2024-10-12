@@ -11,6 +11,12 @@ t:
 b:
   pnpm run build
 
+v/:
+  pushd packages/ajv8-validator
+  b:
+    pnpm run build
+  popd
+
 f/:
   pushd packages/form
   b:
