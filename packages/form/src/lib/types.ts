@@ -17,3 +17,5 @@ export type ValuesOf<T, D extends number = 3> = D extends 0
 export type Nullable<T> = {
   [P in keyof T]: T[P] | null;
 };
+
+export type Brand<Name extends string, Base = string> = Base & { __brand: Name }

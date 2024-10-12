@@ -3,7 +3,7 @@
   import type { HTMLFormAttributes } from "svelte/elements";
   import { SvelteMap } from 'svelte/reactivity';
 
-  import { type Schema, type SchemaValue, type Validator } from '@/core/index.js';
+  import { type Schema, type SchemaValue } from '@/core/index.js';
 
   import type { Config } from './config.js';
   import type { Translation } from './translation.js';
@@ -17,33 +17,21 @@
   import { getDefaultFormState, getUiOptions, retrieveSchema, toIdSchema } from './utils.js';
   import { getComponent } from './component.js'
   import SubmitButton from './submit-button.svelte';
-
-  let form = $state<HTMLFormElement>()
-
-  export function submit() {
-    form?.requestSubmit()
-  }
-
-  export function reset() {
-    form?.reset()
-  }
-
-  export function resetErrors() {
-    errors.clear()
-  }
-
-  type Value = SchemaValue | undefined
+  import type { InputsValidationMode } from './validation.js';
+  import type { FormValidator } from './validator.js';
 
   interface Props extends HTMLFormAttributes {
     schema: Schema
-    validator: Validator<E>
+    validator: FormValidator<E>
     components: Components
     widgets: Widgets
     translation: Translation
+    form?: HTMLFormElement
     value?: T
     uiSchema?: UiSchemaRoot
     fields?: Fields
     templates?: Templates
+    inputsValidationMode?: InputsValidationMode,
     disabled?: boolean
     readonly?: boolean
     idPrefix?: string
@@ -60,10 +48,12 @@
     validator,
     translation,
     widgets,
+    form = $bindable(),
     value = $bindable(),
     uiSchema = {},
     fields = defaultFields,
     templates = defaultTemplates,
+    inputsValidationMode = 0,
     disabled = false,
     readonly = false,
     idPrefix = "root",
@@ -75,6 +65,24 @@
     ...attributes
   }: Props = $props();
 
+  let isSubmitted = $state(false)
+
+  $effect(() => {
+    if (form === undefined) {
+      return
+    }
+    const onReset = () => {
+      isSubmitted = false
+      errors.clear()
+    }
+    form.addEventListener("reset", onReset)
+    return () => {
+      form?.removeEventListener("reset", onReset)
+    }
+  })
+
+  type Value = SchemaValue | undefined
+
   $effect(() => {
     schema;
     untrack(() => {
@@ -84,6 +92,12 @@
   })
 
   const ctx: FormContext = {
+    get inputsValidationMode() {
+      return inputsValidationMode
+    },
+    get isSubmitted() {
+      return isSubmitted
+    },
     get errors() {
       return errors
     },
@@ -165,6 +179,7 @@
 
   function handleSubmit(e: SubmitEvent) {
     e.preventDefault();
+    isSubmitted = true
     errors = validate();
     if (errors.size === 0) {
       onSubmit?.($state.snapshot(value) as T | undefined, e)

@@ -9,4 +9,4 @@
   const ctx = getFormContext();
 </script>
 
-<input {value} {...inputAttributes(ctx, config)} type="hidden" />
+<input {value} {...inputAttributes(ctx, config, {})} type="hidden" />

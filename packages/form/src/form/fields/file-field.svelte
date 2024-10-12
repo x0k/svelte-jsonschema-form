@@ -6,10 +6,11 @@
   import { getWidget } from "../widgets.js";
   import { getFormContext } from "../context.js";
   import { getTemplate } from "../templates/index.js";
-  import { getErrors } from '../utils.js';
+  import { getErrors, validateField } from '../utils.js';
 
   import type { FieldProps } from "./model.js";
   import { inputAttributes } from "./make-widget-attributes.js";
+  import { makeEventHandlers } from './make-event-handlers.svelte.js';
 
   let {
     config,
@@ -23,7 +24,10 @@
   const Template = $derived(getTemplate(ctx, "field", config));
   const Widget = $derived(getWidget(ctx, "file", config));
 
-  const attributes = $derived(inputAttributes(ctx, config));
+  const handlers = makeEventHandlers(ctx, () =>
+    validateField(ctx, config, value)
+  );
+  const attributes = $derived(inputAttributes(ctx, config, handlers));
 
   async function addFile(
     signal: AbortSignal,

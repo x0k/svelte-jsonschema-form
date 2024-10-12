@@ -8,13 +8,13 @@ import type {
 import type {
   SchemaArrayValue,
   SchemaValue,
-  ValidationError,
   EnumOption,
 } from "@/core/index.js";
 
 import type { Config } from "./config.js";
 import type { FormContext } from "./context.js";
 import { createMessage } from "./error-message.svelte";
+import type { FieldErrors } from "./errors.js";
 
 export interface RequiredAttributes {
   id: string;
@@ -22,15 +22,13 @@ export interface RequiredAttributes {
   required: boolean;
   readonly: boolean;
   disabled: boolean;
-  onfocus: (e: Event) => void;
-  onblur: (e: Event) => void;
 }
 
 export interface WidgetCommonProps<V, A> {
   config: Config;
   value: V | undefined;
   attributes: A & RequiredAttributes;
-  errors: ValidationError<unknown>[];
+  errors: FieldErrors;
 }
 
 export interface SelectWidgetProps<V>

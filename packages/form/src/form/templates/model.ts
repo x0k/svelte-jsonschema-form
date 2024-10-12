@@ -4,17 +4,17 @@ import type {
   SchemaArrayValue,
   SchemaObjectValue,
   SchemaValue,
-  ValidationError,
 } from "@/core/index.js";
 
 import type { Config } from "../config.js";
 import type { FormContext } from "../context.js";
 import { createMessage } from "../error-message.svelte";
+import type { FieldErrors } from "../errors.js";
 
 export interface TemplateCommonProps<V extends SchemaValue> {
   value: V | undefined;
   config: Config<V>;
-  errors: ValidationError<unknown>[];
+  errors: FieldErrors;
   children: Snippet;
 }
 

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { SvelteMap } from 'svelte/reactivity';
   import Ajv from "ajv";
-  import { Form, type Errors } from "@sjsf/form";
+  import { Form, ON_BLUR, ON_CHANGE, ON_CHANGED, ON_INPUT, ON_SUBMITTED, ON_TOUCHED, type Errors } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { AjvValidator, addFormComponents, DEFAULT_AJV_CONFIG } from "@sjsf/ajv8-validator";
   import { focusOnFirstError } from '@sjsf/form/focus-on-first-error';
@@ -72,6 +72,9 @@
   );
 
   const lightOrDark = $derived(playgroundTheme === "system" ? window.matchMedia("(prefers-color-scheme: dark)") ? "dark" : "light" : playgroundTheme)
+
+  let validationEvent = $state(0);
+  let validationAfter = $state(0)
 </script>
 
 <div
@@ -99,6 +102,18 @@
       <input type="checkbox" bind:checked={doFocusOnFirstError} />
       Focus on first error
     </label>
+    <select bind:value={validationEvent}>
+      <option value={0}>None</option>
+      <option value={ON_INPUT}>On Input</option>
+      <option value={ON_CHANGE}>On Change</option>
+      <option value={ON_BLUR}>On Blur</option>
+    </select>
+    <select bind:value={validationAfter}>
+      <option value={0}>Always</option>
+      <option value={ON_CHANGED}>After Changed</option>
+      <option value={ON_TOUCHED}>After Touched</option>
+      <option value={ON_SUBMITTED}>After Submitted</option>
+    </select>
     <select bind:value={themeName} onchange={() => selectTheme(themeName)}>
       {#each Object.keys(themes) as name (name)}
         <option value={name}>{name}</option>
@@ -158,18 +173,6 @@
       </div>
     </div>
     <ShadowHost class="flex-[3] max-h-[808px] overflow-y-auto" style={themeStyle}>
-      {#if errorsList && errors.size > 0}
-        <div style="color: red; padding-bottom: 1rem;">
-          <span style="font-size: larger; font-weight: bold;">Errors</span>
-          <ui>
-            {#each errors as [field, fieldErrors] (field)}
-              {#each fieldErrors as err}
-                <li>{err.message}</li>
-              {/each}
-            {/each}
-          </ui>
-        </div>
-      {/if}
       <Form
         data-theme={lightOrDark}
         class={lightOrDark}
@@ -183,6 +186,7 @@
         {readonly}
         {disabled}
         novalidate={!html5Validation || undefined}
+        inputsValidationMode={validationEvent | validationAfter}
         bind:errors
         onSubmit={(value) => {
           console.log("submit", value);
@@ -194,6 +198,18 @@
           console.log("errors", errors);
         }}
       />
+      {#if errorsList && errors.size > 0}
+        <div style="color: red; padding-bottom: 1rem;">
+          <span style="font-size: larger; font-weight: bold;">Errors</span>
+          <ui>
+            {#each errors as [field, fieldErrors] (field)}
+              {#each fieldErrors as err}
+                <li>{err.message}</li>
+              {/each}
+            {/each}
+          </ui>
+        </div>
+      {/if}
     </ShadowHost>
   </div>
 </div>

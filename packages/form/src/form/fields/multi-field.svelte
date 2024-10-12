@@ -115,7 +115,7 @@
       required: true,
     };
   });
-  const attributes = $derived(selectAttributes(ctx, widgetConfig));
+  const attributes = $derived(selectAttributes(ctx, widgetConfig, {}));
   const errors = $derived(getErrors(ctx, config.idSchema));
 </script>
 

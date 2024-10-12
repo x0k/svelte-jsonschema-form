@@ -11,14 +11,35 @@ import {
   type Schema,
   type SchemaDefinition,
   type SchemaValue,
-  type Validator,
 } from "@sjsf/form/core";
-import type { UiSchema, UiSchemaRoot, ValidationError } from "@sjsf/form";
+import type {
+  Config,
+  FieldErrors,
+  FormValidator,
+  UiSchema,
+  UiSchemaRoot,
+  ValidationError,
+} from "@sjsf/form";
 
 const trueSchema: Schema = {};
 const falseSchema: Schema = {};
 
-export class AjvValidator implements Validator<ErrorObject> {
+const FIELD_KEY = "field";
+const NO_ERRORS: FieldErrors<ErrorObject> = [];
+
+export class AjvValidator implements FormValidator<ErrorObject> {
+  private fieldValidationSchemaRequired: string[] = [];
+  private fieldValidationSchema = {
+    type: "object",
+    properties: {
+      field: {},
+    },
+    required: this.fieldValidationSchemaRequired,
+  } satisfies Schema;
+  private fieldValidationData: { field: SchemaValue | undefined } = {
+    field: undefined,
+  };
+
   constructor(
     private readonly ajv: Ajv,
     private readonly uiSchema: UiSchemaRoot = {},
@@ -35,10 +56,10 @@ export class AjvValidator implements Validator<ErrorObject> {
     formData: SchemaValue | undefined
   ): ValidationError<ErrorObject>[] {
     const schemaRef = schema[ID_KEY];
-    let errors: ErrorObject[] | null | undefined;
     const validator =
       (schemaRef && this.ajv.getSchema(schemaRef)) || this.ajv.compile(schema);
     validator(formData);
+    let errors: ErrorObject[] | null | undefined;
     errors = validator.errors;
     validator.errors = null;
     return (
@@ -50,10 +71,54 @@ export class AjvValidator implements Validator<ErrorObject> {
         return {
           instanceId: this.instancePathToId(error, path),
           propertyTitle: this.errorObjectToPropertyTitle(error, path),
-          message: this.errorObjectToMessage(error, path),
+          message: this.errorObjectToMessage(
+            error,
+            (missingProperty, parentSchema) => {
+              // TODO: Write a specific `getValueByPath` function for
+              // `items`, `additionalItems` and other cases
+              const uiSchemaTitle = getValueByPath(
+                this.uiSchema,
+                path.concat(missingProperty)
+              )?.["ui:options"]?.title;
+              if (uiSchemaTitle !== undefined) {
+                return uiSchemaTitle;
+              }
+              const prop = parentSchema?.properties?.[missingProperty];
+              if (typeof prop === "object") {
+                return prop.title;
+              }
+              return undefined;
+            }
+          ),
           error,
         };
-      }) ?? []
+      }) ?? NO_ERRORS
+    );
+  }
+
+  validateFieldData(
+    config: Config,
+    fieldData: SchemaValue | undefined
+  ): FieldErrors<ErrorObject> {
+    const instanceId = config.idSchema.$id;
+    if (instanceId === this.idPrefix) {
+      return this.validateFormData(config.schema, fieldData);
+    }
+    const schema = this.getFieldValidationSchemaForSyncValidation(config);
+    const validator = this.ajv.compile(schema);
+    const data = this.getFieldValidationDataForSyncValidation(fieldData);
+    validator(data);
+    let errors: ErrorObject[] | null | undefined;
+    errors = validator.errors;
+    validator.errors = null;
+    console.log(schema, errors);
+    return (
+      errors?.map((error) => ({
+        instanceId,
+        propertyTitle: config.title,
+        message: this.errorObjectToMessage(error, () => config.title),
+        error,
+      })) ?? NO_ERRORS
     );
   }
 
@@ -83,6 +148,24 @@ export class AjvValidator implements Validator<ErrorObject> {
     }
   }
 
+  private getFieldValidationSchemaForSyncValidation(config: Config) {
+    this.fieldValidationSchema.properties.field = config.schema;
+    if (config.required) {
+      this.fieldValidationSchemaRequired.length = 1;
+      this.fieldValidationSchemaRequired[0] = FIELD_KEY;
+    } else {
+      this.fieldValidationSchemaRequired.length = 0;
+    }
+    return this.fieldValidationSchema;
+  }
+
+  private getFieldValidationDataForSyncValidation(
+    data: SchemaValue | undefined
+  ) {
+    this.fieldValidationData.field = data;
+    return this.fieldValidationData;
+  }
+
   private instancePathToId(
     { params: { missingProperty } }: ErrorObject,
     path: string[]
@@ -98,26 +181,22 @@ export class AjvValidator implements Validator<ErrorObject> {
 
   private errorObjectToMessage(
     { params: { missingProperty }, parentSchema, message }: ErrorObject,
-    path: string[]
+    getPropertyTitle: (
+      missingProperty: string,
+      parentSchema?: Schema
+    ) => string | undefined
   ): string {
     if (!message) {
       return "";
     }
-    if (missingProperty) {
-      // TODO: Write a specific `getValueByPath` function for
-      // `items`, `additionalItems` and other cases
-      const propertyUiSchema: UiSchema | undefined = getValueByPath(
-        this.uiSchema,
-        path.concat(missingProperty)
-      );
-      const customPropertyTitle: string | undefined =
-        propertyUiSchema?.["ui:options"]?.title ??
-        parentSchema?.properties?.[missingProperty]?.title;
-      if (customPropertyTitle) {
-        return message.replace(missingProperty, customPropertyTitle);
-      }
+    if (missingProperty === undefined) {
+      return message;
     }
-    return message;
+    const propertyTitle = getPropertyTitle(missingProperty, parentSchema);
+    if (propertyTitle === undefined) {
+      return message;
+    }
+    return message.replace(missingProperty, propertyTitle);
   }
 
   private errorObjectToPropertyTitle(

@@ -5,7 +5,6 @@ import type {
 } from "svelte/elements";
 
 import type { Nullable } from "@/lib/types.js";
-import { noop } from "@/lib/function.js";
 
 import type { Config } from "../config.js";
 import { computeId } from "../id-schema.js";
@@ -20,9 +19,9 @@ interface ReadonlyAndDisabled extends Disabled {
 }
 
 interface Handlers {
-  onfocus?: (e: Event) => void;
   onblur?: (e: Event) => void;
-  onclick?: (e: Event) => void;
+  oninput?: (e: Event) => void;
+  onchange?: (e: Event) => void;
 }
 
 function readonlyAndDisabled<T extends Partial<Nullable<ReadonlyAndDisabled>>>(
@@ -53,7 +52,7 @@ function inputType(format: string | undefined) {
 export function inputAttributes(
   ctx: FormContext,
   { idSchema, required, schema, uiOptions }: Config,
-  { onblur = noop, onfocus = noop }: Handlers = {}
+  handlers: Handlers
 ) {
   const type = inputType(schema.format);
   return readonlyAndDisabled(
@@ -63,8 +62,6 @@ export function inputAttributes(
         id: idSchema.$id,
         name: idSchema.$id,
         required,
-        onfocus,
-        onblur,
         minlength: schema.minLength,
         maxlength: schema.maxLength,
         pattern: schema.pattern,
@@ -75,6 +72,9 @@ export function inputAttributes(
         list: Array.isArray(schema.examples)
           ? computeId(idSchema, "examples")
           : undefined,
+        oninput: handlers.oninput,
+        onchange: handlers.onchange,
+        onblur: handlers.onblur,
       } satisfies HTMLInputAttributes,
       type && { type },
       uiOptions?.input as HTMLInputAttributes | undefined
@@ -85,7 +85,7 @@ export function inputAttributes(
 export function textareaAttributes(
   ctx: FormContext,
   { idSchema, required, schema, uiOptions }: Config,
-  { onblur = noop, onfocus = noop }: Handlers = {}
+  handlers: Handlers
 ) {
   return readonlyAndDisabled(
     ctx,
@@ -96,8 +96,9 @@ export function textareaAttributes(
         required,
         minlength: schema.minLength,
         maxlength: schema.maxLength,
-        onfocus,
-        onblur,
+        oninput: handlers.oninput,
+        onchange: handlers.onchange,
+        onblur: handlers.onblur,
       } satisfies HTMLTextareaAttributes,
       uiOptions?.input as HTMLTextareaAttributes | undefined
     )
@@ -107,7 +108,7 @@ export function textareaAttributes(
 export function selectAttributes(
   ctx: FormContext,
   { idSchema, required, uiOptions }: Config,
-  { onblur = noop, onfocus = noop }: Handlers = {}
+  handlers: Handlers
 ) {
   return readonlyAndDisabled(
     ctx,
@@ -116,8 +117,9 @@ export function selectAttributes(
         id: idSchema.$id,
         name: idSchema.$id,
         required,
-        onfocus,
-        onblur,
+        oninput: handlers.oninput,
+        onchange: handlers.onchange,
+        onblur: handlers.onblur,
       } satisfies HTMLSelectAttributes,
       uiOptions?.input as HTMLSelectAttributes | undefined
     )
