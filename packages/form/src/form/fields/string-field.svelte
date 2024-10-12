@@ -16,10 +16,9 @@
   const Template = $derived(getTemplate(ctx, "field", config));
   const Widget = $derived(getWidget(ctx, "text", config));
 
-  const handlers = makeEventHandlers(ctx, () => {
-    console.log("validate");
-    validateField(ctx, config, value);
-  });
+  const handlers = makeEventHandlers(ctx, () =>
+    validateField(ctx, config, value)
+  );
   const attributes = $derived(inputAttributes(ctx, config, handlers));
 
   const redacted = {

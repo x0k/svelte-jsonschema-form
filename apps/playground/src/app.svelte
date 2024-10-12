@@ -73,8 +73,18 @@
 
   const lightOrDark = $derived(playgroundTheme === "system" ? window.matchMedia("(prefers-color-scheme: dark)") ? "dark" : "light" : playgroundTheme)
 
-  let validationEvent = $state(0);
-  let validationAfter = $state(0)
+
+  function setValidation(name: "vevent" | "vafter", value: number, replace = false) {
+    url.searchParams.set(name, value.toString());
+    history[replace ? "replaceState" : "pushState"](null, "", url);
+    return value;
+  }
+  const urlValidationEvent = Number(url.searchParams.get("vevent") ?? 0)
+  const initialValidationEvent = urlValidationEvent > 0 && urlValidationEvent < 8 ? urlValidationEvent : 0
+  let validationEvent = $state(setValidation("vevent", initialValidationEvent, true));
+  const urlValidationAfter = Number(url.searchParams.get("vafter") ?? 0)
+  const initialValidationAfter = [0, ON_CHANGED, ON_TOUCHED, ON_SUBMITTED].find((v) => v === urlValidationAfter) ?? 0
+  let validationAfter = $state(setValidation("vafter", initialValidationAfter, true));
 </script>
 
 <div
@@ -102,13 +112,17 @@
       <input type="checkbox" bind:checked={doFocusOnFirstError} />
       Focus on first error
     </label>
-    <select bind:value={validationEvent}>
+    <select bind:value={validationEvent} onchange={() => setValidation("vevent", validationEvent)}>
       <option value={0}>None</option>
       <option value={ON_INPUT}>On Input</option>
       <option value={ON_CHANGE}>On Change</option>
       <option value={ON_BLUR}>On Blur</option>
+      <option value={ON_INPUT | ON_BLUR}>Input & Blur</option>
+      <option value={ON_INPUT | ON_CHANGE}>Input & Change</option>
+      <option value={ON_BLUR | ON_CHANGE}>Blur & Change</option>
+      <option value={ON_INPUT | ON_BLUR | ON_CHANGE}>All</option>
     </select>
-    <select bind:value={validationAfter}>
+    <select bind:value={validationAfter} onchange={() => setValidation("vafter", validationAfter)}>
       <option value={0}>Always</option>
       <option value={ON_CHANGED}>After Changed</option>
       <option value={ON_TOUCHED}>After Touched</option>

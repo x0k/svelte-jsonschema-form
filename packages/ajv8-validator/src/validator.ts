@@ -24,22 +24,11 @@ import type {
 const trueSchema: Schema = {};
 const falseSchema: Schema = {};
 
-const FIELD_KEY = "field";
+const FIELD_REQUIRED = ["field"];
+const FIELD_NOT_REQUIRED: string[] = [];
 const NO_ERRORS: FieldErrors<ErrorObject> = [];
 
 export class AjvValidator implements FormValidator<ErrorObject> {
-  private fieldValidationSchemaRequired: string[] = [];
-  private fieldValidationSchema = {
-    type: "object",
-    properties: {
-      field: {},
-    },
-    required: this.fieldValidationSchemaRequired,
-  } satisfies Schema;
-  private fieldValidationData: { field: SchemaValue | undefined } = {
-    field: undefined,
-  };
-
   constructor(
     private readonly ajv: Ajv,
     private readonly uiSchema: UiSchemaRoot = {},
@@ -59,8 +48,7 @@ export class AjvValidator implements FormValidator<ErrorObject> {
     const validator =
       (schemaRef && this.ajv.getSchema(schemaRef)) || this.ajv.compile(schema);
     validator(formData);
-    let errors: ErrorObject[] | null | undefined;
-    errors = validator.errors;
+    const errors = validator.errors;
     validator.errors = null;
     return (
       errors?.map((error) => {
@@ -106,12 +94,10 @@ export class AjvValidator implements FormValidator<ErrorObject> {
     }
     const schema = this.getFieldValidationSchemaForSyncValidation(config);
     const validator = this.ajv.compile(schema);
-    const data = this.getFieldValidationDataForSyncValidation(fieldData);
+    const data = { field: fieldData };
     validator(data);
-    let errors: ErrorObject[] | null | undefined;
-    errors = validator.errors;
+    const errors = validator.errors;
     validator.errors = null;
-    console.log(schema, errors);
     return (
       errors?.map((error) => ({
         instanceId,
@@ -149,21 +135,13 @@ export class AjvValidator implements FormValidator<ErrorObject> {
   }
 
   private getFieldValidationSchemaForSyncValidation(config: Config) {
-    this.fieldValidationSchema.properties.field = config.schema;
-    if (config.required) {
-      this.fieldValidationSchemaRequired.length = 1;
-      this.fieldValidationSchemaRequired[0] = FIELD_KEY;
-    } else {
-      this.fieldValidationSchemaRequired.length = 0;
-    }
-    return this.fieldValidationSchema;
-  }
-
-  private getFieldValidationDataForSyncValidation(
-    data: SchemaValue | undefined
-  ) {
-    this.fieldValidationData.field = data;
-    return this.fieldValidationData;
+    return {
+      type: "object",
+      properties: {
+        field: config.schema,
+      },
+      required: config.required ? FIELD_REQUIRED : FIELD_NOT_REQUIRED,
+    } satisfies Schema;
   }
 
   private instancePathToId(
