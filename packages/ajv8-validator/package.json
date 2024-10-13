@@ -35,7 +35,7 @@
     }
   },
   "peerDependencies": {
-    "@sjsf/form": "workspace:*",
+    "@sjsf/form": "workspace:^0",
     "ajv": "catalog:"
   },
   "devDependencies": {

@@ -48,7 +48,7 @@
 		"./styles.css": "./dist/styles.css"
 	},
 	"peerDependencies": {
-		"@sjsf/form": "workspace:*",
+		"@sjsf/form": "workspace:^0",
 		"svelte": "^5.0.0-next.1"
 	},
 	"devDependencies": {
