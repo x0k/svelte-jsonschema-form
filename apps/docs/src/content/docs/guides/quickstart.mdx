@@ -4,3 +4,59 @@ sidebar:
   order: 0
 ---
 
+import { Code, Card, LinkCard } from '@astrojs/starlight/components';
+
+
+import MinimalSetup from './_minimal-setup.astro';
+import UiSchema from './_ui-schema.astro';
+import FormData from './_form-data.astro';
+import minimalSetupCode from './_minimal-setup.svelte?raw';
+import uiSchemaCode from './_ui-schema.svelte?raw';
+import formDataCode from './_form-data.svelte?raw';
+
+## Minimal setup
+
+Let's explore the most basic setup:
+
+<Code code={minimalSetupCode} lang="svelte" />
+
+<Card>
+  <MinimalSetup />
+</Card>
+
+With this setting, the form will be built based on the JSON Schema definition and
+will behave like a normal HTML form, performing only HTML5 validation.
+
+<LinkCard title="JSON Schema API reference" href="../../api-reference/json-schema/" />
+
+But by providing additional properties we can customize the form behavior.
+
+## Handlers
+
+By providing `onSubmit` handler, you can achieve the form data validation and get a snapshot of the current form data
+(if valid, otherwise the `onSubmitError` handler will be triggered with the errors).
+
+<LinkCard title="Handlers API reference" href="../../api-reference/handlers/" />
+
+## UI Schema
+
+You can also customize the form UI with the `uiSchema` property.
+
+<Code code={uiSchemaCode} lang="svelte" />
+
+<Card>
+  <UiSchema />
+</Card>
+
+<LinkCard title="UI Schema API reference" href="../../api-reference/ui-schema/" />
+
+
+## Form state
+
+You can use bindable properties like `value` and `errors` to work with form state.
+
+<Code code={formDataCode} lang="svelte" />
+
+<Card>
+  <FormData />
+</Card>

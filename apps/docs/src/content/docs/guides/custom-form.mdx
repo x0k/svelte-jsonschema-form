@@ -1,0 +1,16 @@
+---
+title: Custom form
+sidebar:
+  order: 5
+---
+
+import { Code } from '@astrojs/starlight/components';
+
+import customFormCode from '@/components/custom-form.svelte?raw';
+
+Even with a simple setup, resulting code is very verbose.
+Therefore, after choosing a theme, validator and translation, it is convenient to create a custom component.
+
+Unfortunately, right now, passing bindable props in Svelte 5 is also very verbose.
+
+<Code code={customFormCode} lang="svelte" title="custom-form.svelte" />

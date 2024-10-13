@@ -6,51 +6,38 @@ sidebar:
 
 When the form is submitted, the form data is validated to conform to the given JSON schema.
 
-## Errors transformation and custom validation
-
-One way to convert errors and perform custom validation is to extend the Validator class.
-[Example](https://x0k.github.io/svelte-jsonschema-form/playground/?sample=Validation).
-
 ```typescript
-function customValidate(value: SchemaValue | undefined): ValidatorError<ErrorObject>[] {
-  const { pass1, pass2 } = value as {
-    pass1: string;
-    pass2: string;
-  };
-  if (pass1 !== pass2) {
-    return [
-      {
-        type: ValidatorErrorType.ValidationError,
-        error: {} as ErrorObject,
-        instanceId: "root_pass2",
-        propertyTitle: "Repeat password",
-        message: "Passwords don't match.",
-      },
-    ];
-  }
-  return [];
+interface Validator {
+  isValid(
+    schema: SchemaDefinition,
+    rootSchema: Schema,
+    formData: SchemaValue | undefined
+  ): boolean;
+  reset(): void;
 }
 
-class CustomAjvValidator extends AjvValidator {
-  override validateFormData(
-    schema: Schema,
+interface ValidationError<E> {
+  instanceId: string;
+  propertyTitle: string;
+  message: string;
+  error: E;
+}
+
+interface FormValidator<E = unknown> extends Validator {
+  /** 
+   * Full form validation
+   */
+  validateFormData(
+    rootSchema: Schema,
     formData: SchemaValue | undefined
-  ): ValidatorError<ErrorObject>[] {
-    const errors = super.validateFormData(schema, formData).map((error) => {
-      if (error.type === ValidatorErrorType.SchemaError) {
-        return error;
-      }
-      if (
-        error.error.keyword === "minimum" &&
-        error.error.schemaPath === "#/properties/age/minimum"
-      ) {
-        return Object.assign({}, error, {
-          message: "You need to be 18 because of some legal thing",
-        });
-      }
-      return error;
-    });
-    return errors.concat(customValidate(formData))
-  }
+  ): ValidationError<E>[];
+
+  /**
+   * Individual field validation
+   */
+  validateFieldData(
+    field: Config,
+    fieldData: SchemaValue | undefined
+  ): ValidationError<E>[];
 }
 ```

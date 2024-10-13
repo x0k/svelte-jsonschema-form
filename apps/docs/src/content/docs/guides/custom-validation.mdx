@@ -1,0 +1,58 @@
+---
+title: Custom validation
+sidebar:
+  order: 3
+---
+
+## Errors transformation and custom validation
+
+One way to convert errors and perform custom validation is to extend the Validator class.
+[Example](https://x0k.github.io/svelte-jsonschema-form/playground/?sample=Validation).
+
+:::note
+This customization will be applied only during full form validation.
+
+For more information see [Validator](../../api-reference/validator/).
+:::
+
+```typescript
+function customValidate(value: SchemaValue | undefined): ValidatorError<ErrorObject>[] {
+  const { pass1, pass2 } = value as {
+    pass1: string;
+    pass2: string;
+  };
+  if (pass1 !== pass2) {
+    return [
+      {
+        instanceId: "root_pass2",
+        propertyTitle: "Repeat password",
+        message: "Passwords don't match.",
+        error: {} as ErrorObject,
+      },
+    ];
+  }
+  return [];
+}
+
+class CustomAjvValidator extends AjvValidator {
+  override validateFormData(
+    schema: Schema,
+    formData: SchemaValue | undefined
+  ): ValidatorError<ErrorObject>[] {
+    // Errors transformation
+    const errors = super.validateFormData(schema, formData).map((error) => {
+      if (
+        error.error.keyword === "minimum" &&
+        error.error.schemaPath === "#/properties/age/minimum"
+      ) {
+        return Object.assign({}, error, {
+          message: "You need to be 18 because of some legal thing",
+        });
+      }
+      return error;
+    });
+    // Custom validation
+    return errors.concat(customValidate(formData))
+  }
+}
+```

@@ -1,0 +1,9 @@
+---
+import { ShadowHost } from "@/components/shadow";
+
+import UiSchemaForm from "./_ui-schema.svelte";
+---
+
+<ShadowHost client:only="svelte">
+  <UiSchemaForm client:only="svelte" />
+</ShadowHost>
