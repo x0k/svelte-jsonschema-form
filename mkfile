@@ -25,7 +25,7 @@ f/:
     pnpm run check
   popd
 
-docs/:
+ds/:
   pushd apps/docs
   d:
     pnpm run dev

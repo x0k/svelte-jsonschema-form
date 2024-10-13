@@ -22,13 +22,13 @@ export default defineConfig({
       },
       sidebar: [
         {
-          label: "Concepts",
-          autogenerate: { directory: "concepts" },
+          label: "Guides",
+          autogenerate: { directory: "guides" },
         },
         {
-          label: "Customization",
-          autogenerate: { directory: "customization" },
-        }
+          label: "API Reference",
+          autogenerate: { directory: "api-reference" },
+        },
         // {
         // 	label: 'Guides',
         // 	items: [
