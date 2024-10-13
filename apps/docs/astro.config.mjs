@@ -26,6 +26,10 @@ export default defineConfig({
           autogenerate: { directory: "guides" },
         },
         {
+          label: "Themes",
+          autogenerate: { directory: "themes" },
+        },
+        {
           label: "API Reference",
           autogenerate: { directory: "api-reference" },
         },
@@ -42,6 +46,7 @@ export default defineConfig({
         // },
       ],
       components: {
+        Head: "./src/components/custom-head.astro",
         Header: "./src/components/header-with-links.astro",
       },
     }),

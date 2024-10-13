@@ -1,0 +1,20 @@
+---
+title: Basic
+sidebar:
+  order: 0
+---
+
+import Npm from '@/components/npm.astro';
+
+By default package `@sjsf/form` comes with a basic theme.
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import { Form } from "@sjsf/form";
+  import { theme } from '@sjsf/form/basic-theme';
+</script>
+
+<Form {...theme} />
+```

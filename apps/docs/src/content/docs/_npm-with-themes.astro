@@ -1,0 +1,66 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { LinkCard } from "@astrojs/starlight/components";
+
+import { THEMES, THEME_TTITLES, type Theme } from "@/shared";
+import { DEFAULT_LOCALE } from "@/i18n";
+import Npm from "@/components/npm.astro";
+
+const theme = (Astro.params.theme ?? "basic") as Theme;
+
+const THEME_PACKAGES = {
+  basic: "",
+  daisyui: "@sjsf/daisyui-theme",
+  flowbite: "@sjsf/flowbite-theme",
+} satisfies Record<Theme, string>;
+
+const THEME_URLS = {
+  basic: ".",
+  daisyui: "with-daisyui/",
+  flowbite: "with-flowbite/",
+};
+
+const isBasic = theme === "basic";
+function getUrl(isActive: boolean, url: string) {
+  return isActive ? "." : isBasic ? url : `../${url}`;
+}
+
+const locale = Astro.currentLocale ?? DEFAULT_LOCALE;
+---
+
+<div class="theme-picker">
+  {
+    THEMES.map((t) => {
+      const isActive = t === theme;
+      return (
+        <a href={getUrl(isActive, THEME_URLS[t])} data-active={isActive}>
+          {THEME_TTITLES[t]}
+        </a>
+      );
+    })
+  }
+</div>
+
+<Npm pkg={`@sjsf/form @sjsf/ajv8-validator ajv@8 ${THEME_PACKAGES[theme]}`} />
+
+<LinkCard
+  title={`${THEME_TTITLES[theme]} theme setup`}
+  href={getRelativeLocaleUrl(locale, `/themes/${theme}/`)}
+/>
+
+<style>
+  .theme-picker {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  .theme-picker a {
+    flex-grow: 1;
+    padding: 0.5rem;
+    text-align: center;
+    border: 1px solid var(--sl-color-gray-5);
+  }
+  .theme-picker a[data-active] {
+    background-color: var(--sl-color-gray-5);
+  }
+</style>

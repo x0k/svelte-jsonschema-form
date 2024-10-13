@@ -1,0 +1,11 @@
+---
+import type { ComponentProps } from 'astro/types';
+import { ViewTransitions } from 'astro:transitions';
+
+import Head from '@astrojs/starlight/components/Head.astro';
+
+export type Props = ComponentProps<typeof Head>
+---
+
+<Head {...Astro.props} />
+<ViewTransitions />
