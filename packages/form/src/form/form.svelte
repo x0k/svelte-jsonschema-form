@@ -27,6 +27,7 @@
     widgets: Widgets
     translation: Translation
     form?: HTMLFormElement
+    isSubmitted?: boolean
     value?: T
     uiSchema?: UiSchemaRoot
     fields?: Fields
@@ -40,6 +41,7 @@
     errors?: Errors<E>
     onSubmit?: (value: T | undefined, e: SubmitEvent) => void
     onSubmitError?: (errors: Errors<E>, e: SubmitEvent) => void
+    onReset?: (e: Event) => void
   }
 
   let {
@@ -48,7 +50,6 @@
     validator,
     translation,
     widgets,
-    form = $bindable(),
     value = $bindable(),
     uiSchema = {},
     fields = defaultFields,
@@ -59,21 +60,22 @@
     idPrefix = "root",
     idSeparator = "_",
     children,
+    form = $bindable(),
+    isSubmitted = $bindable(false),
     errors = $bindable(new SvelteMap()),
     onSubmit,
     onSubmitError,
+    onReset = () => {
+      isSubmitted = false
+      errors.clear()
+    },
+    onsubmit,
     ...attributes
   }: Props = $props();
-
-  let isSubmitted = $state(false)
 
   $effect(() => {
     if (form === undefined) {
       return
-    }
-    const onReset = () => {
-      isSubmitted = false
-      errors.clear()
     }
     form.addEventListener("reset", onReset)
     return () => {
@@ -86,7 +88,7 @@
   $effect(() => {
     schema;
     untrack(() => {
-      // TODO: Mutate `value` directly if it possible
+      // TODO: Mutate `value` directly if it is possible
       value = getDefaultFormState(ctx, schema, value as Value) as T
     })
   })
@@ -177,7 +179,7 @@
     return new SvelteMap(SvelteMap.groupBy(list, (error) => error.instanceId))
   }
 
-  function handleSubmit(e: SubmitEvent) {
+  const submitHandler = $derived(onSubmit || onSubmitError ? (e: SubmitEvent) => {
     e.preventDefault();
     isSubmitted = true
     errors = validate();
@@ -186,10 +188,10 @@
       return
     }
     onSubmitError?.(errors, e)
-  }
+  } : onsubmit)
 </script>
 
-<Form bind:form {attributes} onsubmit={handleSubmit} {config} errors={NO_ERRORS} >
+<Form bind:form {attributes} onsubmit={submitHandler} {config} errors={NO_ERRORS} >
   <Field bind:value={value as Value} {config} />
   {#if children}
     {@render children()}

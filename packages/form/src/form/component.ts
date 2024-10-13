@@ -8,12 +8,12 @@ import type {
 import type { Config } from "./config.js";
 import type { FormContext } from "./context.js";
 import { createMessage } from "./error-message.svelte";
-import type { ValidationError } from './validator.js';
+import type { ValidationError } from "./validator.js";
 
 export interface FormComponentProps {
   attributes: HTMLFormAttributes;
   form: HTMLFormElement | undefined;
-  onsubmit: (e: SubmitEvent) => void;
+  onsubmit: HTMLFormAttributes['onsubmit'];
   children: Snippet;
 }
 

@@ -14,11 +14,17 @@ export interface ValidationError<E> {
 }
 
 export interface FormValidator<E = unknown> extends Validator {
+  /** 
+   * Full form validation
+   */
   validateFormData(
     rootSchema: Schema,
     formData: SchemaValue | undefined
   ): ValidationError<E>[];
 
+  /**
+   * Individual field validation
+   */
   validateFieldData(
     field: Config,
     fieldData: SchemaValue | undefined
