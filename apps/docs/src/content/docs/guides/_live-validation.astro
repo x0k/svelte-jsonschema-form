@@ -1,0 +1,10 @@
+---
+import { ShadowHost } from "@/components/shadow";
+
+import LiveValidationForm from "./_live-validation.svelte";
+---
+
+<ShadowHost client:only="svelte">
+  <LiveValidationForm client:only="svelte" />
+</ShadowHost>
+

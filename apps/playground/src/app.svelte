@@ -1,7 +1,7 @@
 <script lang="ts">
   import { SvelteMap } from 'svelte/reactivity';
   import Ajv from "ajv";
-  import { Form, ON_BLUR, ON_CHANGE, ON_CHANGED, ON_INPUT, ON_SUBMITTED, ON_TOUCHED, type Errors } from "@sjsf/form";
+  import { Form, ON_BLUR, ON_CHANGE, ON_INPUT, AFTER_CHANGED, AFTER_SUBMITTED, AFTER_TOUCHED, type Errors } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { AjvValidator, addFormComponents, DEFAULT_AJV_CONFIG } from "@sjsf/ajv8-validator";
   import { focusOnFirstError } from '@sjsf/form/focus-on-first-error';
@@ -83,7 +83,7 @@
   const initialValidationEvent = urlValidationEvent > 0 && urlValidationEvent < 8 ? urlValidationEvent : 0
   let validationEvent = $state(setValidation("vevent", initialValidationEvent, true));
   const urlValidationAfter = Number(url.searchParams.get("vafter") ?? 0)
-  const initialValidationAfter = [0, ON_CHANGED, ON_TOUCHED, ON_SUBMITTED].find((v) => v === urlValidationAfter) ?? 0
+  const initialValidationAfter = [0, AFTER_SUBMITTED, AFTER_TOUCHED, AFTER_CHANGED].find((v) => v === urlValidationAfter) ?? 0
   let validationAfter = $state(setValidation("vafter", initialValidationAfter, true));
 </script>
 
@@ -124,9 +124,9 @@
     </select>
     <select bind:value={validationAfter} onchange={() => setValidation("vafter", validationAfter)}>
       <option value={0}>Always</option>
-      <option value={ON_CHANGED}>After Changed</option>
-      <option value={ON_TOUCHED}>After Touched</option>
-      <option value={ON_SUBMITTED}>After Submitted</option>
+      <option value={AFTER_CHANGED}>After Changed</option>
+      <option value={AFTER_TOUCHED}>After Touched</option>
+      <option value={AFTER_SUBMITTED}>After Submitted</option>
     </select>
     <select bind:value={themeName} onchange={() => selectTheme(themeName)}>
       {#each Object.keys(themes) as name (name)}

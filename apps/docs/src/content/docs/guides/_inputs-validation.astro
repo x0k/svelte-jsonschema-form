@@ -1,0 +1,9 @@
+---
+import { ShadowHost } from "@/components/shadow";
+
+import InputValidationsFrom from "./_inputs-validation.svelte";
+---
+
+<ShadowHost client:only="svelte">
+  <InputValidationsFrom client:only="svelte" />
+</ShadowHost>

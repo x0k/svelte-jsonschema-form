@@ -1,8 +1,8 @@
 import type { FormContext } from "../context.js";
 import {
-  ON_SUBMITTED,
-  ON_CHANGED,
-  ON_TOUCHED,
+  AFTER_SUBMITTED,
+  AFTER_CHANGED,
+  AFTER_TOUCHED,
   ON_INPUT,
   ON_CHANGE,
   ON_BLUR,
@@ -25,9 +25,9 @@ export function makeEventHandlers(ctx: FormContext, validate: () => void) {
     const m = ctx.inputsValidationMode;
     if (
       !(m & event) ||
-      (m & ON_SUBMITTED && !ctx.isSubmitted) ||
-      (m & ON_CHANGED && !changed) ||
-      (m & ON_TOUCHED && !touched)
+      (m & AFTER_SUBMITTED && !ctx.isSubmitted) ||
+      (m & AFTER_CHANGED && !changed) ||
+      (m & AFTER_TOUCHED && !touched)
     ) {
       return;
     }

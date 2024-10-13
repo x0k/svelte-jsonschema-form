@@ -1,15 +1,21 @@
-export type InputsValidationMode = number;
+---
+title: Inputs validation mode
+---
+
+```typescript
+type InputsValidationMode = number;
 
 /** Validation is triggered on input event */
-export const ON_INPUT = 1;
+const ON_INPUT = 1;
 /** Validation is triggered on change event */
-export const ON_CHANGE = 2;
+const ON_CHANGE = 2;
 /** Validation is triggered on blur event */
-export const ON_BLUR = 4;
+const ON_BLUR = 4;
 
 /** Validation is not triggered before first change event */
-export const AFTER_CHANGED = 8;
+const AFTER_CHANGED = 8;
 /** Validation is not triggered before first blur event */
-export const AFTER_TOUCHED = 16;
+const AFTER_TOUCHED = 16;
 /** Validation is not triggered before first form submission */
-export const AFTER_SUBMITTED = 32;
+const AFTER_SUBMITTED = 32;
+```

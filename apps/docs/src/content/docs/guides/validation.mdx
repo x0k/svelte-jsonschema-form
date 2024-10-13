@@ -4,3 +4,60 @@ sidebar:
   order: 1
 ---
 
+import { Code, Card, LinkCard } from '@astrojs/starlight/components';
+
+import LiveValidation from './_live-validation.astro'
+import InputsValidation from './_inputs-validation.astro'
+import FocusOnFirsError from './_focus-on-first-error.astro'
+import liveValidationCode from './_live-validation.svelte?raw'
+import inputsValidationCode from './_inputs-validation.svelte?raw'
+import focusOnFirstErrorCode from './_focus-on-first-error.svelte?raw'
+
+By default form data will be validated by HTML5 validation and provided validator only on submission.
+
+:::tip
+
+To disable HTML5 validation pass `novalidate` attribute to the form element.
+
+:::
+
+## Live validation (not recommended)
+
+By utilizing Svelte 5 reactivity, we can easily implement live validation.
+
+<Code code={liveValidationCode} lang="svelte" />
+
+<Card>
+  <LiveValidation />
+</Card>
+
+While it is possible, this approach has low efficiency, because usually
+revalidation of the whole form when changing one field does not make sense.
+
+## Inputs validation
+
+Instead of full form revalidation, we propose to perform revalidation of only the input field and full validation of the form when submitting.
+
+<Code code={inputsValidationCode} lang="svelte" />
+
+<Card>
+  <InputsValidation />
+</Card>
+
+The form in this example will only revalidate input fields on the `input` and `change` events after the first submission of the form.
+
+<LinkCard title="Inputs validation mode API reference" href="../../api-reference/inputs-validation-mode/" />
+
+## Focus on first error
+
+You can achieve focus on the first error by using the `focusOnFirstError` function.
+
+<Code code={focusOnFirstErrorCode} lang="svelte" />
+
+<Card>
+  <FocusOnFirsError />
+</Card>
+
+1. `focusOnFirstError` will try to find a focusable element and focus it.
+2. If it's not found, it will try to find an errors list and scroll it into view.
+3. If it's not found, it will return `false`.
