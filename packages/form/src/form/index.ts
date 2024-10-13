@@ -12,4 +12,5 @@ export * from "./options.svelte.js";
 export * from "./errors.js";
 export * from "./validation.js";
 export * from "./validator.js";
+export * from "./id-schema.js";
 export { default as Form, type Props as FormProps } from "./form.svelte";

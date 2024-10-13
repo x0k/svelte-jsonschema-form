@@ -22,6 +22,9 @@ import {
   type Validator,
 } from "@/core/index.js";
 
+export const DEFAULT_ID_PREFIX = "root";
+export const DEFAULT_ID_SEPARATOR = "_";
+
 export type FieldId = {
   $id: string;
 };

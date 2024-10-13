@@ -55,6 +55,7 @@
   import { getDefaultFormState, getUiOptions, retrieveSchema, toIdSchema } from './utils.js';
   import { getComponent } from './component.js'
   import SubmitButton from './submit-button.svelte';
+  import { DEFAULT_ID_PREFIX, DEFAULT_ID_SEPARATOR } from './id-schema.js';
 
   let {
     components,
@@ -69,8 +70,8 @@
     inputsValidationMode = 0,
     disabled = false,
     readonly = false,
-    idPrefix = "root",
-    idSeparator = "_",
+    idPrefix = DEFAULT_ID_PREFIX,
+    idSeparator = DEFAULT_ID_SEPARATOR,
     children,
     form = $bindable(),
     isSubmitted = $bindable(false),

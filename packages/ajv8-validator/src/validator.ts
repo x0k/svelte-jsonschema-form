@@ -12,13 +12,15 @@ import {
   type SchemaDefinition,
   type SchemaValue,
 } from "@sjsf/form/core";
-import type {
-  Config,
-  FieldErrors,
-  FormValidator,
-  UiSchema,
-  UiSchemaRoot,
-  ValidationError,
+import {
+  DEFAULT_ID_PREFIX,
+  DEFAULT_ID_SEPARATOR,
+  type Config,
+  type FieldErrors,
+  type FormValidator,
+  type UiSchema,
+  type UiSchemaRoot,
+  type ValidationError,
 } from "@sjsf/form";
 
 const trueSchema: Schema = {};
@@ -32,8 +34,8 @@ export class AjvValidator implements FormValidator<ErrorObject> {
   constructor(
     private readonly ajv: Ajv,
     private readonly uiSchema: UiSchemaRoot = {},
-    private readonly idPrefix: string = "root",
-    private readonly idSeparator: string = "_"
+    private readonly idPrefix: string = DEFAULT_ID_PREFIX,
+    private readonly idSeparator: string = DEFAULT_ID_SEPARATOR
   ) {}
 
   reset() {
