@@ -3,6 +3,7 @@
   import type { HTMLFormAttributes } from "svelte/elements";
   import { SvelteMap } from 'svelte/reactivity';
 
+  import type { SchedulerYield } from '@/lib/scheduler.js';
   import { type Schema, type SchemaValue } from '@/core/index.js';
 
   import type { Config } from './config.js';
@@ -42,6 +43,7 @@
     onSubmit?: (value: T | undefined, e: SubmitEvent) => void
     onSubmitError?: (errors: Errors<E>, e: SubmitEvent) => void
     onReset?: (e: Event) => void
+    schedulerYield?: SchedulerYield
   }
 
   let {
@@ -70,6 +72,17 @@
       errors.clear()
     },
     onsubmit,
+    schedulerYield = typeof scheduler !== "undefined" && "yield" in scheduler
+      ? scheduler.yield.bind(scheduler)
+      : ({ signal }) => new Promise((resolve, reject) => {
+          setTimeout(() => {
+            if (signal.aborted) {
+              reject(signal.reason)
+            } else {
+              resolve()
+            }
+          }, 0);
+        }),
     ...attributes
   }: Props = $props();
 
@@ -139,17 +152,9 @@
     get translation() {
       return translation
     },
-    schedulerYield: typeof scheduler !== "undefined" && "yield" in scheduler
-      ? scheduler.yield.bind(scheduler)
-      : ({ signal }) => new Promise((resolve, reject) => {
-          setTimeout(() => {
-            if (signal.aborted) {
-              reject(signal.reason)
-            } else {
-              resolve()
-            }
-          }, 0);
-        }),
+    get schedulerYield() {
+      return schedulerYield
+    },
   }
   setFromContext(ctx)
 
