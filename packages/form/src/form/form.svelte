@@ -1,27 +1,21 @@
-<script lang="ts" generics="T, E">
-  import { untrack, type Snippet } from 'svelte';
+<script lang="ts" module>
   import type { HTMLFormAttributes } from "svelte/elements";
-  import { SvelteMap } from 'svelte/reactivity';
+  import type { Snippet } from 'svelte';
 
   import type { SchedulerYield } from '@/lib/scheduler.js';
-  import { type Schema, type SchemaValue } from '@/core/index.js';
+  import type { Schema } from '@/core/index.js';
 
-  import type { Config } from './config.js';
   import type { Translation } from './translation.js';
   import type { UiSchemaRoot } from './ui-schema.js';
   import type { Components } from './component.js';
   import type { Widgets } from './widgets.js';
-  import { type Errors, NO_ERRORS } from './errors.js'
-  import { setFromContext, type FormContext } from './context.js';
-  import { type Fields, fields as defaultFields, getField } from './fields/index.js';
-  import { type Templates, templates as defaultTemplates } from './templates/index.js';
-  import { getDefaultFormState, getUiOptions, retrieveSchema, toIdSchema } from './utils.js';
-  import { getComponent } from './component.js'
-  import SubmitButton from './submit-button.svelte';
+  import type { Errors } from './errors.js'
+  import type { Fields } from './fields/index.js';
+  import type { Templates } from './templates/index.js';
   import type { InputsValidationMode } from './validation.js';
   import type { FormValidator } from './validator.js';
 
-  interface Props extends HTMLFormAttributes {
+  export interface Props<T, E> extends HTMLFormAttributes {
     schema: Schema
     validator: FormValidator<E>
     components: Components
@@ -45,6 +39,22 @@
     onReset?: (e: Event) => void
     schedulerYield?: SchedulerYield
   }
+</script>
+
+<script lang="ts" generics="T, E">
+  import { untrack } from 'svelte';
+  import { SvelteMap } from 'svelte/reactivity';
+
+  import type { SchemaValue } from '@/core/index.js';
+
+  import type { Config } from './config.js';
+  import { NO_ERRORS } from './errors.js';
+  import { setFromContext, type FormContext } from './context.js';
+  import { fields as defaultFields, getField } from './fields/index.js';
+  import { templates as defaultTemplates } from './templates/index.js';
+  import { getDefaultFormState, getUiOptions, retrieveSchema, toIdSchema } from './utils.js';
+  import { getComponent } from './component.js'
+  import SubmitButton from './submit-button.svelte';
 
   let {
     components,
@@ -84,7 +94,7 @@
           }, 0);
         }),
     ...attributes
-  }: Props = $props();
+  }: Props<T, E> = $props();
 
   $effect(() => {
     if (form === undefined) {
