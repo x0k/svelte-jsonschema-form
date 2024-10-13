@@ -1,6 +1,6 @@
 {
 	"name": "@sjsf/flowbite-theme",
-	"version": "0.0.6",
+	"version": "0.1.0",
 	"description": "The flowbite based theme for svelte-jsonschema-form",
 	"license": "MIT",
 	"keywords": [
@@ -48,7 +48,7 @@
 		"./styles.css": "./dist/styles.css"
 	},
 	"peerDependencies": {
-		"@sjsf/form": "workspace:^0",
+		"@sjsf/form": "workspace:^0.1.0",
 		"svelte": "^5.0.0-next.1"
 	},
 	"devDependencies": {

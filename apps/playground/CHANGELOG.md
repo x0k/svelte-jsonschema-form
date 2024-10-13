@@ -1,5 +1,15 @@
 # playground
 
+## 0.0.6
+
+### Patch Changes
+
+- Updated dependencies [[`ea62b7c`](https://github.com/x0k/svelte-jsonschema-form/commit/ea62b7c8d40d4f8b4e5440c28fd9d81f2201b3ec), [`edc5643`](https://github.com/x0k/svelte-jsonschema-form/commit/edc5643f305a6b40bf0875d9ab5e53e439d0f3bb), [`3ce6404`](https://github.com/x0k/svelte-jsonschema-form/commit/3ce640406b1000be4097f2f08f21f63caee191e2)]:
+  - @sjsf/form@0.1.0
+  - @sjsf/ajv8-validator@0.1.0
+  - @sjsf/daisyui-theme@0.1.0
+  - @sjsf/flowbite-theme@0.1.0
+
 ## 0.0.5
 
 ### Patch Changes
