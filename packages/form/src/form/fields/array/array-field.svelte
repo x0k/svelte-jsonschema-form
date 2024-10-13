@@ -10,6 +10,7 @@
 
   import { setArrayContext, type ArrayContext } from "./context.js";
   import { isFilesArray } from "./is-files-array.js";
+  import { createKeyedArray } from "./keyed-array.svelte.js";
 
   let { value = $bindable(), config }: FieldProps<"array"> = $props();
 
@@ -56,6 +57,7 @@
     get copyable() {
       return copyable;
     },
+    keyed: createKeyedArray(() => value),
   };
   setArrayContext(arrayCtx);
 

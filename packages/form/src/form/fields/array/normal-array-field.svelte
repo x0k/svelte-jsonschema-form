@@ -3,6 +3,7 @@
     isSchemaNullable,
     isSchemaObjectValue,
     type Schema,
+    type SchemaArrayValue,
   } from "@/core/index.js";
   
   import { getFormContext } from "../../context.js";
@@ -49,7 +50,7 @@
     type="array-item-add"
     disabled={arrayCtx.disabledOrReadonly}
     onclick={makeHandler(() => {
-      value?.push(getDefaultFormState(ctx, schemaItems, undefined))
+      arrayCtx.keyed.push(getDefaultFormState(ctx, schemaItems, undefined))
     })}
   >
     {ctx.translation("add-array-item")}
@@ -62,7 +63,7 @@
   addButton={arrayCtx.canAdd ? addButton : undefined}
 >
   {#if value}
-    {#each value as item, index}
+    {#each value as item, index (arrayCtx.keyed.key(index))}
       {@const itemSchema = retrieveSchema(ctx, schemaItems, item)}
       {@const itemIdSchema = getArrayItemSchemaId(
         ctx,

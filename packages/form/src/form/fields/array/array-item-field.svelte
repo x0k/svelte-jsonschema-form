@@ -48,9 +48,7 @@
       type="array-item-move-up"
       disabled={disabledOrReadonly || !moveUp}
       onclick={makeHandler(() => {
-        const tmp = arr[index]
-        arr[index] = arr[index - 1]
-        arr[index - 1] = tmp
+        arrayCtx.keyed.swap(index, index - 1)
       })}
     >
       {ctx.translation("move-array-item-up")}
@@ -61,9 +59,7 @@
       type="array-item-move-down"
       disabled={disabledOrReadonly || !moveDown}
       onclick={makeHandler(() => {
-        const tmp = arr[index]
-        arr[index] = arr[index + 1]
-        arr[index + 1] = tmp
+        arrayCtx.keyed.swap(index, index + 1)
       })}
     >
       {ctx.translation("move-array-item-down")}
@@ -76,7 +72,7 @@
       type="array-item-copy"
       disabled={disabledOrReadonly}
       onclick={makeHandler(() => {
-        arr.splice(index, 0, $state.snapshot(value))
+        arrayCtx.keyed.insert(index, $state.snapshot(value))
       })}
     >
       {ctx.translation("copy-array-item")}
@@ -89,7 +85,7 @@
       type="array-item-remove"
       disabled={disabledOrReadonly}
       onclick={makeHandler(() => {
-        arr.splice(index, 1)
+        arrayCtx.keyed.remove(index)
       })}
     >
       {ctx.translation("remove-array-item")}

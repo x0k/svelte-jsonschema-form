@@ -2,6 +2,8 @@ import { getContext, setContext } from "svelte";
 
 import type { ValidationError } from '../../validator.js';
 
+import type { KeyedArray } from './keyed-array.svelte.js';
+
 export interface ArrayContext {
   disabledOrReadonly: boolean;
   canAdd: boolean;
@@ -10,6 +12,7 @@ export interface ArrayContext {
   removable: boolean;
   copyable: boolean;
   errors: ValidationError<unknown>[];
+  keyed: KeyedArray;
 }
 
 const ARRAY_CONTEXT = Symbol("array-context");
