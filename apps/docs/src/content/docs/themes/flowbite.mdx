@@ -4,7 +4,12 @@ sidebar:
   order: 2
 ---
 
+import { Code, Card } from '@astrojs/starlight/components';
+
 import Npm from '@/components/npm.astro';
+
+import FlowbiteTheme from './_flowbite-theme.astro';
+import flowbiteThemeCode from './_flowbite-theme.svelte?raw';
 
 ## Installation
 
@@ -45,14 +50,11 @@ import flowbiteStyles from "@sjsf/flowbite-theme/styles.css?inline";
 
 ## Apply theme
 
-```svelte
-<script lang="ts">
-  import { Form } from '@sjsf/form';
-  import { theme } from '@sjsf/flowbite-theme';
-</script>
+<Code code={flowbiteThemeCode} lang="svelte" />
 
-<Form {...theme} />
-```
+<Card>
+  <FlowbiteTheme />
+</Card>
 
 ## Additional widgets
 

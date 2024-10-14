@@ -4,7 +4,12 @@ sidebar:
   order: 1
 ---
 
+import { Code, Card } from '@astrojs/starlight/components';
+
 import Npm from '@/components/npm.astro';
+
+import DaisyuiTheme from './_daisyui-theme.astro';
+import daisyuiThemeCode from './_daisyui-theme.svelte?raw';
 
 ## Installation
 
@@ -47,14 +52,11 @@ import daisyStyles from "@sjsf/daisyui-theme/styles.css?inline";
 
 ## Apply theme
 
-```svelte
-<script lang="ts">
-  import { Form } from '@sjsf/form';
-  import { theme } from '@sjsf/daisyui-theme';
-</script>
+<Code code={daisyuiThemeCode} lang="svelte" />
 
-<Form {...theme} />
-```
+<Card>
+  <DaisyuiTheme />
+</Card>
 
 ## Additional widgets
 

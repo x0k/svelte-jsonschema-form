@@ -1,0 +1,11 @@
+---
+import daisyuiStyles from '@sjsf/daisyui-theme/styles.css?inline';
+
+import { ShadowHost } from "@/components/shadow";
+
+import DaisyuiThemeForm from "./_daisyui-theme.svelte";
+---
+
+<ShadowHost client:only="svelte" style={daisyuiStyles}>
+  <DaisyuiThemeForm client:only="svelte" />
+</ShadowHost>

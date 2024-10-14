@@ -59,6 +59,12 @@ importers:
       '@sjsf/ajv8-validator':
         specifier: workspace:*
         version: link:../../packages/ajv8-validator
+      '@sjsf/daisyui-theme':
+        specifier: workspace:*
+        version: link:../../packages/daisyui-theme
+      '@sjsf/flowbite-theme':
+        specifier: workspace:*
+        version: link:../../packages/flowbite-theme
       '@sjsf/form':
         specifier: workspace:*
         version: link:../../packages/form
