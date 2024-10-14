@@ -47,7 +47,8 @@
   }
   setObjectContext(objCtx)
   
-  // TODO: Is it required? Seems like `root` field will always do the same thing
+  // NOTE: This is required for computing a schema which will include all additional properties
+  //       in the `properties` field with the `ADDITIONAL_PROPERTY_FLAG` flag.
   const retrievedSchema = $derived(retrieveSchema(ctx, config.schema, value))
   const requiredProperties = $derived(new Set(retrievedSchema.required));
   const schemaProperties = $derived(retrievedSchema.properties);
