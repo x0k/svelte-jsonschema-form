@@ -9,9 +9,12 @@ import { Code, Card, LinkCard } from '@astrojs/starlight/components';
 import LiveValidation from './_live-validation.astro'
 import InputsValidation from './_inputs-validation.astro'
 import FocusOnFirsError from './_focus-on-first-error.astro'
+import ErrorsList from './_errors-list.astro'
+
 import liveValidationCode from './_live-validation.svelte?raw'
 import inputsValidationCode from './_inputs-validation.svelte?raw'
 import focusOnFirstErrorCode from './_focus-on-first-error.svelte?raw'
+import errorsListCode from './_errors-list.svelte?raw'
 
 By default form data will be validated by HTML5 validation and provided validator only on submission.
 
@@ -61,3 +64,13 @@ You can achieve focus on the first error by using the `focusOnFirstError` functi
 1. `focusOnFirstError` will try to find a focusable element and focus it.
 2. If it's not found, it will try to find an errors list and scroll it into view.
 3. If it's not found, it will return `false`.
+
+## Errors list
+
+Creating a list of errors is pretty simple.
+
+<Code code={errorsListCode} lang="svelte" />
+
+<Card>
+  <ErrorsList />
+</Card>

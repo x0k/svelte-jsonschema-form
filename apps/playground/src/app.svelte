@@ -218,7 +218,7 @@
           <ui>
             {#each errors as [field, fieldErrors] (field)}
               {#each fieldErrors as err}
-                <li>{err.message}</li>
+                <li>{err.propertyTitle} {err.message}</li>
               {/each}
             {/each}
           </ui>
