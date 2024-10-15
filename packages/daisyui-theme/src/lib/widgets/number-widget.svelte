@@ -8,8 +8,8 @@
 	type="number"
 	bind:value
 	class={attributes.type === 'range'
-		? 'range range-sm grow'
-		: 'input input-sm input-bordered grow'}
+		? 'range grow'
+		: 'input input-bordered grow'}
 	class:input-error={errors.length}
 	{...attributes}
 />

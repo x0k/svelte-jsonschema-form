@@ -14,7 +14,7 @@
 	<label class="label cursor-pointer gap-2 justify-start">
 		<input
 			type="checkbox"
-			class="checkbox checkbox-sm"
+			class="checkbox"
 			class:checkbox-error={errors.length}
 			bind:group={mapped.value}
 			value={index}

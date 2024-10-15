@@ -15,7 +15,7 @@
 	type="file"
 	bind:files={value}
 	{multiple}
-	class="file-input file-input-sm grow"
+	class="file-input grow"
 	class:file-input-error={errors.length}
 	data-loading={loading}
 	data-processing={processing}

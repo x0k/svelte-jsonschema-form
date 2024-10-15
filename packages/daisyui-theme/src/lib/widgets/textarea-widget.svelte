@@ -6,7 +6,7 @@
 
 <textarea
 	bind:value
-	class="textarea textarea-bordered textarea-sm grow"
+	class="textarea textarea-bordered grow"
 	class:textarea-error={errors.length}
 	{...attributes}
 ></textarea>

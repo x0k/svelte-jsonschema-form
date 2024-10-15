@@ -32,7 +32,7 @@
 {/snippet}
 {#if multiple}
 	<select
-		class="select select-sm select-bordered grow"
+		class="select select-bordered grow"
 		class:select-error={errors.length}
 		bind:value={mapped.value}
 		multiple
@@ -42,7 +42,7 @@
 	</select>
 {:else}
 	<select
-		class="select select-sm select-bordered grow"
+		class="select select-bordered grow"
 		class:select-error={errors.length}
 		bind:value={mapped.value}
 		{...attributes}

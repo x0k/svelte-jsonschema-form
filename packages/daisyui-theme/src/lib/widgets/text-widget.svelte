@@ -7,7 +7,7 @@
 <input
 	type="text"
 	bind:value
-	class="input input-sm input-bordered grow"
+	class="input input-bordered grow"
 	class:input-error={errors.length}
 	{...attributes}
 />

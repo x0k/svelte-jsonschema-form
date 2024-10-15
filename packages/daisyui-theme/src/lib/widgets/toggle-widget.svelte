@@ -7,7 +7,7 @@
 <label class="label cursor-pointer gap-2">
 	<input
 		type="checkbox"
-		class="toggle toggle-sm"
+		class="toggle"
 		class:toggle-error={errors.length}
 		bind:checked={value}
 		{...attributes}

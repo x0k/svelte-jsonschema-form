@@ -14,7 +14,7 @@
 	<label class="label cursor-pointer gap-2">
 		<input
 			type="radio"
-			class="radio radio-sm"
+			class="radio"
 			class:radio-error={errors.length}
 			bind:group={mapped.value}
 			value={index}

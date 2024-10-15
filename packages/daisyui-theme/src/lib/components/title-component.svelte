@@ -5,12 +5,12 @@
 </script>
 
 {#if type === "field"}
-  <label class="font-bold text-lg" for={forId}>
+  <label class="label-text" for={forId}>
     {title}
     {#if required}
       <span>*</span>
     {/if}
   </label>
 {:else}
-  <div class="font-bold text-2xl">{title}</div>
+  <div class="font-bold text-xl">{title}</div>
 {/if}
