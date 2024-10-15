@@ -1,5 +1,23 @@
 # docs
 
+## 0.0.7
+
+### Patch Changes
+
+- [`d36a76c`](https://github.com/x0k/svelte-jsonschema-form/commit/d36a76c157305e4a62eccc710e5b8f45fa13dbe0) Thanks [@x0k](https://github.com/x0k)! - Remove form `readonly` attribute (use `inert` instead)
+
+- [`2bb3774`](https://github.com/x0k/svelte-jsonschema-form/commit/2bb37743b1e33b8b34f8b45f8050c6a7c14516fc) Thanks [@x0k](https://github.com/x0k)! - Add errors list guide
+
+- [`0851037`](https://github.com/x0k/svelte-jsonschema-form/commit/08510374dffdb28da7dd78d66e4a1f569570c47e) Thanks [@x0k](https://github.com/x0k)! - Add themes demo
+
+- [`648804e`](https://github.com/x0k/svelte-jsonschema-form/commit/648804ed422ff610ba20ca4947f4bbae9fda8ac4) Thanks [@x0k](https://github.com/x0k)! - Update custom form guide
+
+- Updated dependencies [[`d36a76c`](https://github.com/x0k/svelte-jsonschema-form/commit/d36a76c157305e4a62eccc710e5b8f45fa13dbe0)]:
+  - @sjsf/form@0.2.0
+  - @sjsf/flowbite-theme@0.2.0
+  - @sjsf/daisyui-theme@0.2.0
+  - @sjsf/ajv8-validator@0.2.0
+
 ## 0.0.6
 
 ### Patch Changes
