@@ -7,9 +7,6 @@
 </script>
 
 {#if attributes.type === 'range'}
-	<span class="min-w-min w-14 px-4">
-		{value}
-	</span>
 	<Range bind:value {...attributes as InputProps} />
 {:else}
 	<Input type="number" bind:value {...attributes as InputProps} />
