@@ -20,7 +20,6 @@ export interface RequiredAttributes {
   id: string;
   name: string;
   required: boolean;
-  readonly: boolean;
   disabled: boolean;
 }
 

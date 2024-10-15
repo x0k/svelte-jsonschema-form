@@ -46,12 +46,10 @@ export function singleOption<V>({
   mapper,
   value,
   update,
-  readonly,
 }: {
   mapper: () => OptionsMapper<V>,
   value: () => SchemaValue | undefined,
   update: (value: SchemaValue | undefined) => void,
-  readonly: () => boolean
 }) {
   const { fromValue, toValue } = $derived(mapper());
   return {
@@ -59,9 +57,6 @@ export function singleOption<V>({
       return fromValue(value());
     },
     set value(v) {
-      if (readonly()) {
-        return;
-      }
       update(toValue(v));
     }
   }
@@ -71,12 +66,10 @@ export function multipleOptions<V>({
   mapper,
   value,
   update,
-  readonly,
 }: {
   mapper: () => OptionsMapper<V>,
   value: () => SchemaArrayValue | undefined,
   update: (value: SchemaArrayValue) => void,
-  readonly: () => boolean
 }) {
   const { fromValue, toValue } = $derived(mapper());
   return {
@@ -84,9 +77,6 @@ export function multipleOptions<V>({
       return value()?.map(fromValue) ?? [];
     },
     set value(v) {
-      if (readonly()) {
-        return;
-      }
       update(v.map(toValue));
     }
   }

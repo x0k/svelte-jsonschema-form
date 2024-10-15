@@ -9,8 +9,6 @@
 	const { children, type, attributes, disabled, onclick }: ComponentProps<'button'> = $props();
 
 	const isSubmit = $derived(type === 'submit');
-
-	const buttonProps = $derived(attributes as ButtonProps);
 </script>
 
 <Button
@@ -18,7 +16,7 @@
 	type={isSubmit ? 'submit' : 'button'}
 	size={isSubmit ? 'md' : 'sm'}
 	{onclick}
-	{...buttonProps}
+	{...attributes as ButtonProps}
 	{disabled}
 >
 	{#if type === "array-item-move-up"}

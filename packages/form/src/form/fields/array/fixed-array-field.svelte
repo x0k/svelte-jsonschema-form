@@ -54,7 +54,7 @@
     {config}
     type="array-item-add"
     attributes={config.uiOptions?.button}
-    disabled={arrayCtx.disabledOrReadonly}
+    disabled={arrayCtx.disabled}
     onclick={makeHandler(() => {
       if (!schemaAdditionalItems || value === undefined) {
         return

@@ -9,15 +9,12 @@
     config,
   }: WidgetProps<"select"> = $props();
   
-  const { readonly, ...rest } = $derived(attributes)
-
-	const guarded = $derived(
+	const mapped = $derived(
 		(multiple ? multipleOptions : singleOption)({
 			mapper: () => indexMapper(options),
       // @ts-expect-error
 			value: () => value,
 			update: (v) => (value = v),
-			readonly: () => readonly
 		})
 	);
 </script>
@@ -35,17 +32,17 @@
 {#if multiple}
   <select
     multiple
-    bind:value={guarded.value}
+    bind:value={mapped.value}
     style="flex-grow: 1"
-    {...rest}
+    {...attributes}
   >
     {@render children()}
   </select>
 {:else}
   <select
-    bind:value={guarded.value}
+    bind:value={mapped.value}
     style="flex-grow: 1"
-    {...rest}
+    {...attributes}
   >
     {@render children()}
   </select>

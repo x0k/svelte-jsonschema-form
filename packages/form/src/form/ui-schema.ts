@@ -53,10 +53,7 @@ export type InputAttributes = (
   | HTMLInputAttributes
   | HTMLTextareaAttributes
   | HTMLSelectAttributes
-) & {
-  // To reduce amount of type casting
-  readonly?: boolean;
-};
+)
 
 export interface UiOptions {
   /**

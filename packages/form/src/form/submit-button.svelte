@@ -2,10 +2,10 @@
   import type { Config } from "./config.js";
   import type { UiSchema } from "./ui-schema.js";
   import { FAKE_ID_SCHEMA } from "./id-schema.js";
-  import { isDisabledOrReadonly } from "./is-disabled-or-readonly.js";
+  import { isDisabled } from "./is-disabled.js";
   import { getFormContext } from "./context.js";
   import { getComponent } from "./component.js";
-  import { NO_ERRORS } from './errors.js';
+  import { NO_ERRORS } from "./errors.js";
   import { getUiOptions } from "./utils.js";
 
   const ctx = getFormContext();
@@ -26,16 +26,14 @@
   const Button = $derived(getComponent(ctx, "button", config));
   const label = $derived(uiOptions?.title ?? ctx.translation("submit"));
 
-  const disabledOrReadonly = $derived(
-    isDisabledOrReadonly(ctx, uiOptions?.button)
-  );
+  const disabled = $derived(isDisabled(ctx, uiOptions?.button));
 </script>
 
 <Button
   type="submit"
   {config}
+  {disabled}
   attributes={uiOptions?.button}
-  disabled={disabledOrReadonly}
   errors={NO_ERRORS}
 >
   {label}

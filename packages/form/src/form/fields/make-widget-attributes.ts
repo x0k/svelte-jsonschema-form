@@ -14,23 +14,18 @@ interface Disabled {
   disabled: boolean;
 }
 
-interface ReadonlyAndDisabled extends Disabled {
-  readonly: boolean;
-}
-
 interface Handlers {
   onblur?: (e: Event) => void;
   oninput?: (e: Event) => void;
   onchange?: (e: Event) => void;
 }
 
-function readonlyAndDisabled<T extends Partial<Nullable<ReadonlyAndDisabled>>>(
+function explicitDisabled<T extends Partial<Nullable<Disabled>>>(
   ctx: FormContext,
   obj: T
 ) {
-  obj.readonly ||= ctx.readonly;
   obj.disabled ||= ctx.disabled;
-  return obj as T & ReadonlyAndDisabled;
+  return obj as T & Disabled;
 }
 
 function inputType(format: string | undefined) {
@@ -55,7 +50,7 @@ export function inputAttributes(
   handlers: Handlers
 ) {
   const type = inputType(schema.format);
-  return readonlyAndDisabled(
+  return explicitDisabled(
     ctx,
     Object.assign(
       {
@@ -87,7 +82,7 @@ export function textareaAttributes(
   { idSchema, required, schema, uiOptions }: Config,
   handlers: Handlers
 ) {
-  return readonlyAndDisabled(
+  return explicitDisabled(
     ctx,
     Object.assign(
       {
@@ -110,7 +105,7 @@ export function selectAttributes(
   { idSchema, required, uiOptions }: Config,
   handlers: Handlers
 ) {
-  return readonlyAndDisabled(
+  return explicitDisabled(
     ctx,
     Object.assign(
       {

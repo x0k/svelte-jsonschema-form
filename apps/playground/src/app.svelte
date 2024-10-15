@@ -59,7 +59,7 @@
   );
 
   let disabled = $state(false);
-  let readonly = $state(false);
+  let inert = $state(false);
   let html5Validation = $state(false);
   let errorsList = $state(true);
   let doFocusOnFirstError = $state(true);
@@ -97,8 +97,8 @@
       Disabled
     </label>
     <label>
-      <input type="checkbox" bind:checked={readonly} />
-      Readonly
+      <input type="checkbox" bind:checked={inert} />
+      Inert (readonly)
     </label>
     <label>
       <input type="checkbox" bind:checked={html5Validation} />
@@ -197,7 +197,7 @@
         {uiSchema}
         {validator}
         {translation}
-        {readonly}
+        {inert}
         {disabled}
         novalidate={!html5Validation || undefined}
         inputsValidationMode={validationEvent | validationAfter}

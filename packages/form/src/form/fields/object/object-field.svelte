@@ -13,7 +13,7 @@
     import { getFormContext } from "../../context.js";
   import { getTemplate } from '../../templates/index.js';
   import { getComponent } from '../../component.js';
-  import { isDisabledOrReadonly } from '../../is-disabled-or-readonly.js';
+  import { isDisabled } from '../../is-disabled.js';
   import {
     getDefaultFormState,
     getErrors,
@@ -62,7 +62,7 @@
   const Template = $derived(getTemplate(ctx, "object", config));
   const Button = $derived(getComponent(ctx, "button", config));
   
-  const disabledOrReadOnly = $derived(isDisabledOrReadonly(ctx, config.uiOptions?.input))
+  const disabled = $derived(isDisabled(ctx, config.uiOptions?.input))
   
   const schemaAdditionalProperties = $derived(
     isSchemaObjectValue(retrievedSchema.additionalProperties) ? retrieveSchema(ctx, retrievedSchema.additionalProperties, value) : {}
@@ -76,7 +76,7 @@
     type="object-property-add"
     {config}
     {errors}
-    disabled={disabledOrReadOnly}
+    {disabled}
     attributes={config.uiOptions?.button}
     onclick={(e) => {
       e.preventDefault();

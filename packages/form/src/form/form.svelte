@@ -29,7 +29,6 @@
     templates?: Templates
     inputsValidationMode?: InputsValidationMode,
     disabled?: boolean
-    readonly?: boolean
     idPrefix?: string
     idSeparator?: string
     children?: Snippet
@@ -69,7 +68,6 @@
     templates = defaultTemplates,
     inputsValidationMode = 0,
     disabled = false,
-    readonly = false,
     idPrefix = DEFAULT_ID_PREFIX,
     idSeparator = DEFAULT_ID_SEPARATOR,
     children,
@@ -135,9 +133,6 @@
     },
     get disabled() {
       return disabled
-    },
-    get readonly() {
-      return readonly
     },
     get idPrefix() {
       return idPrefix

@@ -4,13 +4,10 @@
 
 	let { attributes, value = $bindable(), options }: WidgetProps<'checkboxes'> = $props();
 
-	const checkboxProps = $derived(attributes as CheckboxProps);
-
-	const guarder = multipleOptions({
+	const mapped = multipleOptions({
 		mapper: () => stringIndexMapper(options),
 		value: () => value,
-		update: (v) => (value = v),
-		readonly: () => attributes.readonly
+		update: (v) => (value = v)
 	});
 
 	const choices = $derived(
@@ -21,4 +18,9 @@
 	);
 </script>
 
-<Checkbox {choices} bind:group={guarder.value} groupInputClass="ms-2" {...checkboxProps} />
+<Checkbox
+	{choices}
+	bind:group={mapped.value}
+	groupInputClass="ms-2"
+	{...attributes as CheckboxProps}
+/>

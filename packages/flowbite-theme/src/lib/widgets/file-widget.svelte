@@ -10,7 +10,6 @@
 		value = $bindable(),
 	}: WidgetProps<'file'> = $props();
 
-	const fileUploadProps = $derived(attributes as FileuploadProps);
 </script>
 
 <FileUpload
@@ -18,5 +17,5 @@
 	{multiple}
 	data-loading={loading}
 	data-processing={processing}
-	{...fileUploadProps}
+	{...attributes as FileuploadProps}
 />

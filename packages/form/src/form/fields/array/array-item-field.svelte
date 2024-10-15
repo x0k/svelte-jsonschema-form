@@ -5,7 +5,7 @@
   import { getErrors, getUiOptions } from "../../utils.js";
 
   import { getField, type FieldProps } from '../model.js';
-  import { isDisabledOrReadonly } from '../../is-disabled-or-readonly.js'
+  import { isDisabled } from '../../is-disabled.js'
 
   import { getArrayContext } from './context.js';
   import { makeHandler } from './make-click-handler.js';
@@ -34,8 +34,8 @@
   const copy = $derived(arrayCtx.copyable && arrayCtx.canAdd)
   const toolbar = $derived(moveUp || moveDown || remove || copy)
   const uiOptions = $derived(getUiOptions(ctx, config.uiSchema))
-  const disabledOrReadonly = $derived(
-    isDisabledOrReadonly(ctx, uiOptions?.input)
+  const disabled = $derived(
+    isDisabled(ctx, uiOptions?.input)
   )
   const errors = $derived(getErrors(ctx, config.idSchema))
 </script>
@@ -46,7 +46,7 @@
       {errors}
       {config}
       type="array-item-move-up"
-      disabled={disabledOrReadonly || !moveUp}
+      disabled={disabled || !moveUp}
       onclick={makeHandler(() => {
         const tmp = arr[index]
         arr[index] = arr[index - 1]
@@ -59,7 +59,7 @@
       {errors}
       {config}
       type="array-item-move-down"
-      disabled={disabledOrReadonly || !moveDown}
+      disabled={disabled || !moveDown}
       onclick={makeHandler(() => {
         const tmp = arr[index]
         arr[index] = arr[index + 1]
@@ -73,8 +73,8 @@
     <Button
       {errors}
       {config}
+      {disabled}
       type="array-item-copy"
-      disabled={disabledOrReadonly}
       onclick={makeHandler(() => {
         arr.splice(index, 0, $state.snapshot(value))
       })}
@@ -87,7 +87,7 @@
       {errors}
       {config}
       type="array-item-remove"
-      disabled={disabledOrReadonly}
+      {disabled}
       onclick={makeHandler(() => {
         arr.splice(index, 1)
       })}

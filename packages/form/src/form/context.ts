@@ -24,7 +24,6 @@ export interface FormContext {
   translation: Translation;
   templates: Templates;
   disabled: boolean;
-  readonly: boolean;
   idPrefix: string;
   idSeparator: string;
   errors: Errors;

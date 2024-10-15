@@ -3,7 +3,7 @@ import { getContext, setContext } from "svelte";
 import type { ValidationError } from '../../validator.js';
 
 export interface ArrayContext {
-  disabledOrReadonly: boolean;
+  disabled: boolean;
   canAdd: boolean;
   addable: boolean;
   orderable: boolean;

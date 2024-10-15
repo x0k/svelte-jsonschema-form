@@ -47,7 +47,7 @@
     config={config}
     attributes={config.uiOptions?.button}
     type="array-item-add"
-    disabled={arrayCtx.disabledOrReadonly}
+    disabled={arrayCtx.disabled}
     onclick={makeHandler(() => {
       value?.push(getDefaultFormState(ctx, schemaItems, undefined))
     })}

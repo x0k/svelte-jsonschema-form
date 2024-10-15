@@ -3,7 +3,7 @@
 
   import { getFormContext } from "../../context.js";
   import { getErrors, getUiOptions, isMultiSelect } from "../../utils.js";
-  import { isDisabledOrReadonly } from "../../is-disabled-or-readonly.js";
+  import { isDisabled } from "../../is-disabled.js";
   import ErrorMessage from "../../error-message.svelte";
 
   import { getField, type FieldProps } from "../model.js";
@@ -29,8 +29,8 @@
       (config.schema.maxItems === undefined ||
         value.length < config.schema.maxItems)
   );
-  const disabledOrReadonly = $derived(
-    isDisabledOrReadonly(ctx, uiOptions?.input)
+  const disabled = $derived(
+    isDisabled(ctx, uiOptions?.input)
   );
   const errors = $derived(getErrors(ctx, config.idSchema));
 
@@ -38,8 +38,8 @@
     get errors() {
       return errors;
     },
-    get disabledOrReadonly() {
-      return disabledOrReadonly;
+    get disabled() {
+      return disabled;
     },
     get canAdd() {
       return canAdd;

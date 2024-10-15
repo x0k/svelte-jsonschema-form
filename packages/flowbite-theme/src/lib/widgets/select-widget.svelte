@@ -11,15 +11,14 @@
 		config
 	}: WidgetProps<'select'> = $props();
 
-	const { readonly, placeholder, ...rest } = $derived(attributes);
+	const { placeholder, ...rest } = $derived(attributes);
 
-	const guarded = $derived(
+	const mapped = $derived(
 		(multiple ? multipleOptions : singleOption)({
 			mapper: () => indexMapper(options),
 			// @ts-expect-error
 			value: () => value,
-			update: (v) => (value = v),
-			readonly: () => readonly
+			update: (v) => (value = v)
 		})
 	);
 </script>
@@ -30,17 +29,15 @@
 		name: option.label,
 		disabled: option.disabled
 	}))}
-	{@const multiSelectProps = rest as MultiSelectProps}
 	<MultiSelect
 		class="grow"
-		bind:value={guarded.value as number[]}
+		bind:value={mapped.value as number[]}
 		items={selectOptions}
 		placeholder={placeholder ?? undefined}
-		{...multiSelectProps}
+		{...rest as MultiSelectProps}
 	/>
 {:else}
-	{@const selectProps = rest as SelectProps}
-	<Select bind:value={guarded.value as number} placeholder="" {...selectProps}>
+	<Select bind:value={mapped.value as number} placeholder="" {...rest as SelectProps}>
 		{#if config.schema.default === undefined}
 			<option value={-1}>{placeholder}</option>
 		{/if}

@@ -3,8 +3,6 @@
 	import Input, { type InputProps } from 'flowbite-svelte/Input.svelte';
 
 	let { value = $bindable(), attributes }: WidgetProps<'text'> = $props();
-
-	const inputProps = $derived(attributes as InputProps);
 </script>
 
-<Input type="text" bind:value {...inputProps} />
+<Input type="text" bind:value {...attributes as InputProps} />
