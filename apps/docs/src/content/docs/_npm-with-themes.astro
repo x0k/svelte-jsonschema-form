@@ -12,13 +12,8 @@ const THEME_PACKAGES = {
   basic: "",
   daisyui: "@sjsf/daisyui-theme",
   flowbite: "@sjsf/flowbite-theme",
+  skeleton: "@sjsf/skeleton-theme",
 } satisfies Record<Theme, string>;
-
-const THEME_URLS = {
-  basic: ".",
-  daisyui: "with-daisyui/",
-  flowbite: "with-flowbite/",
-};
 
 const isBasic = theme === "basic";
 function getUrl(isActive: boolean, url: string) {
@@ -33,7 +28,10 @@ const locale = Astro.currentLocale ?? DEFAULT_LOCALE;
     THEMES.map((t) => {
       const isActive = t === theme;
       return (
-        <a href={getUrl(isActive, THEME_URLS[t])} data-active={isActive}>
+        <a
+          href={getUrl(isActive, t === "basic" ? "." : `with-${t}/`)}
+          data-active={isActive}
+        >
           {THEME_TTITLES[t]}
         </a>
       );

@@ -16,7 +16,8 @@
     "rehype-raw": "^7.0.0",
     "svelte-exmarkdown": "^3.0.5",
     "@sjsf/daisyui-theme": "workspace:*",
-    "@sjsf/flowbite-theme": "workspace:*"
+    "@sjsf/flowbite-theme": "workspace:*",
+    "@sjsf/skeleton-theme": "workspace:*"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "catalog:",

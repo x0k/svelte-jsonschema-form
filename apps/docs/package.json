@@ -14,6 +14,7 @@
     "@sjsf/daisyui-theme": "workspace:*",
     "@sjsf/flowbite-theme": "workspace:*",
     "@sjsf/form": "workspace:*",
+    "@sjsf/skeleton-theme": "workspace:*",
     "ajv": "catalog:",
     "mermaid": "^11.3.0",
     "svg-pan-zoom": "github:bumbu/svg-pan-zoom"

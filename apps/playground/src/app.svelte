@@ -188,9 +188,9 @@
     </div>
     <ShadowHost class="flex-[3] max-h-[808px] overflow-y-auto" style={themeStyle}>
       <Form
-        data-theme={lightOrDark}
+        data-theme={themeName === "skeleton" ? "cerberus" : lightOrDark}
         class={lightOrDark}
-        style="background-color: transparent; display: flex; flex-direction: column; gap: 1rem"
+        style="background-color: transparent; display: flex; flex-direction: column; gap: 1rem; padding: 0.1rem;"
         bind:value
         {...theme}
         {schema}

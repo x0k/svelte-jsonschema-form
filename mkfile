@@ -53,6 +53,14 @@ daisy/:
     pnpm run dev
   popd
 
+skeleton/:
+  pushd packages/skeleton-theme
+  b:
+    pnpm run build
+  d:
+    pnpm run dev
+  popd
+
 flow/:
   pushd packages/flowbite-theme
   c:

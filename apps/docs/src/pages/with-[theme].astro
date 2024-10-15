@@ -1,11 +1,11 @@
 ---
 import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
 
-import { THEME_TTITLES, type Theme } from '@/shared';
+import { THEME_TTITLES, THEMES, type Theme } from "@/shared";
 import { Content, frontmatter } from "@/content/docs/index.mdx";
 
 export function getStaticPaths() {
-  return [{ params: { theme: "daisyui" } }, { params: { theme: "flowbite" } }];
+  return THEMES.slice(1).map((theme) => ({ params: { theme } }))
 }
 
 function fixGetStartedUrl(
