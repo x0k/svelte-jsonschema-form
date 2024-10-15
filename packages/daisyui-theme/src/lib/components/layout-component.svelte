@@ -17,12 +17,14 @@
 		type === 'array-field' ||
 			type === 'object-field' ||
 			type === 'array-items' ||
-			type === 'object-properties'
+			type === 'object-properties' ||
+			type === 'root-field'
 	);
+	const isMultiFieldControls = $derived(type === 'multi-field-controls');
 </script>
 
 <div
-	class:flex={isItem || isControls || isField || isColumn}
+	class:flex={isItem || isControls || isField || isColumn || isMultiFieldControls}
 	class:gap-2={isItem || isField}
 	class:gap-4={isColumn}
 	class:items-start={isItem || isControls}
