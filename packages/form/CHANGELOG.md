@@ -1,5 +1,11 @@
 # @sjsf/form
 
+## 0.2.0
+
+### Minor Changes
+
+- [`d36a76c`](https://github.com/x0k/svelte-jsonschema-form/commit/d36a76c157305e4a62eccc710e5b8f45fa13dbe0) Thanks [@x0k](https://github.com/x0k)! - Remove form `readonly` attribute (use `inert` instead)
+
 ## 0.1.0
 
 ### Minor Changes
