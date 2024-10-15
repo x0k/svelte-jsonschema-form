@@ -1,9 +1,10 @@
 <script lang="ts">
   import { SvelteMap } from "svelte/reactivity";
 
-  import type { Schema, UiSchemaRoot, Errors } from "@sjsf/form";
+  import type { Schema, Errors } from "@sjsf/form";
 
-  import CustomForm from "@/components/custom-form.svelte";
+  import { CustomForm } from "@/components/custom-form";
+  import type { ErrorObject } from "ajv";
 
   const schema: Schema = {
     type: "string",
@@ -12,7 +13,7 @@
 
   let value = $state("initial");
 
-  let errors: Errors = $state.raw(new SvelteMap());
+  let errors: Errors<ErrorObject> = $state.raw(new SvelteMap());
 </script>
 
 <CustomForm bind:value bind:errors {schema} novalidate onSubmit={console.log} />

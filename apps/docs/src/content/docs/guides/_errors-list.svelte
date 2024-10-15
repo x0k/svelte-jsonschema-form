@@ -3,7 +3,7 @@
   import type { Errors } from "@sjsf/form";
   import { SvelteMap } from 'svelte/reactivity';
 
-  import CustomForm from "@/components/custom-form.svelte";
+  import { CustomForm } from "@/components/custom-form";
 
   import { objectSchema } from './_demo-schemas';
 

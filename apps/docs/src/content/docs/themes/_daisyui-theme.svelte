@@ -2,7 +2,7 @@
   import { theme } from "@sjsf/daisyui-theme";
 
   import { astroTheme } from "@/theme.svelte";
-  import CustomForm from "@/components/custom-form.svelte";
+  import { CustomForm } from "@/components/custom-form";
 
   import { schema, uiSchema } from "./_demo-schema";
 

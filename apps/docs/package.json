@@ -7,7 +7,7 @@
     "dev": "astro dev",
     "build": " astro build",
     "preview": "astro preview",
-    "check": "#astro check"
+    "check": "astro check"
   },
   "dependencies": {
     "@sjsf/ajv8-validator": "workspace:*",

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { theme } from "@sjsf/form/basic-theme";
 
-  import CustomForm from "@/components/custom-form.svelte";
+  import { CustomForm } from '@/components/custom-form'
 
   import { schema, uiSchema } from "./_demo-schema";
 

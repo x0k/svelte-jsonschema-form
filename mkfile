@@ -27,10 +27,14 @@ f/:
 
 ds/:
   pushd apps/docs
+  c:
+    pnpm run check
   d:
     pnpm run dev
   b:
     pnpm run build
+  p:
+    pnpm run preview
   popd
 
 pl/:
