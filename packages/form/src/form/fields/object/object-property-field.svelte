@@ -48,7 +48,7 @@
       delete obj[property]
     }}
   >
-    {ctx.translation("remove-object-property")}
+    {@render ctx.iconOrTranslation(["remove-object-property"])}
   </Button>
 {/snippet}
 <Template

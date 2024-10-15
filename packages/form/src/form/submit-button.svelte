@@ -25,6 +25,7 @@
 
   const Button = $derived(getComponent(ctx, "button", config));
   const label = $derived(uiOptions?.title ?? ctx.translation("submit"));
+  const icon = $derived(ctx.icons.submit);
 
   const disabled = $derived(isDisabled(ctx, uiOptions?.button));
 </script>
@@ -36,5 +37,9 @@
   attributes={uiOptions?.button}
   errors={NO_ERRORS}
 >
-  {label}
+  {#if icon}
+    {@render icon(["submit"])}
+  {:else}
+    {label}
+  {/if}
 </Button>

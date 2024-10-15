@@ -5,7 +5,7 @@
   import type { SchedulerYield } from '@/lib/scheduler.js';
   import type { Schema } from '@/core/index.js';
 
-  import type { Translation } from './translation.js';
+  import type { Label, Labels, Translation } from './translation.js';
   import type { UiSchemaRoot } from './ui-schema.js';
   import type { Components } from './component.js';
   import type { Widgets } from './widgets.js';
@@ -14,6 +14,7 @@
   import type { Templates } from './templates/index.js';
   import type { InputsValidationMode } from './validation.js';
   import type { FormValidator } from './validator.js';
+  import type { Icons } from './icons.js';
 
   export interface Props<T, E> extends HTMLFormAttributes {
     schema: Schema
@@ -27,6 +28,7 @@
     uiSchema?: UiSchemaRoot
     fields?: Fields
     templates?: Templates
+    icons?: Icons
     inputsValidationMode?: InputsValidationMode,
     disabled?: boolean
     idPrefix?: string
@@ -66,6 +68,7 @@
     uiSchema = {},
     fields = defaultFields,
     templates = defaultTemplates,
+    icons = {},
     inputsValidationMode = 0,
     disabled = false,
     idPrefix = DEFAULT_ID_PREFIX,
@@ -158,9 +161,15 @@
     get translation() {
       return translation
     },
+    get icons() {
+      return icons
+    },
     get schedulerYield() {
       return schedulerYield
-    },
+    },    
+    get iconOrTranslation() {
+      return iconOrTranslation
+    }
   }
   setFromContext(ctx)
 
@@ -201,6 +210,17 @@
     onSubmitError?.(errors, e)
   } : onsubmit)
 </script>
+
+{#snippet iconOrTranslation(params: {
+  [L in Label]: [L, ...Labels[L]]
+}[Label])}
+  {@const icon = icons[params[0]]}
+  {#if icon}
+    {@render icon(params as never)}
+  {:else}
+    {translation.apply(null, params)}
+  {/if}
+{/snippet}
 
 <Form bind:form {attributes} onsubmit={submitHandler} {config} errors={NO_ERRORS} >
   <Field bind:value={value as Value} {config} />
