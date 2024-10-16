@@ -101,9 +101,11 @@
   {#if schemaProperties !== undefined && value !== undefined}
     {#each schemaPropertiesOrder as property (property)}
       {@const isAdditional = isAdditionalProperty(schemaProperties, property)}
-      {@const propSchema = schemaProperties[property]!}
+      {@const propSchemaDefinition = schemaProperties[property]!}
+      {@const propSchema = typeof propSchemaDefinition === "boolean" ? {} : propSchemaDefinition}
       {@const propUiSchema =
         (isAdditional ? config.uiSchema.additionalProperties : config.uiSchema[property]) as UiSchema ?? {}}
+      {@const propUiOptions = getUiOptions(ctx, propUiSchema)}
       <ObjectProperty
         {property}
         {isAdditional}
@@ -111,10 +113,10 @@
         bind:value={value[property]}
         config={{
           name: property,
-          title: property,
-          schema: typeof propSchema === "boolean" ? {} : propSchema,
+          title: propUiOptions?.title ?? propSchema.title ?? property,
+          schema: propSchema,
           uiSchema: propUiSchema,
-          uiOptions: getUiOptions(ctx, propUiSchema),
+          uiOptions: propUiOptions,
           idSchema: config.idSchema[property] ?? FAKE_ID_SCHEMA,
           required: requiredProperties.has(property),
         }}
