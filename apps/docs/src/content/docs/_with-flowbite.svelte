@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Form } from "@sjsf/form";
+  import { FormBase, getDefaultFormState } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { theme } from "@sjsf/flowbite-theme";
 
@@ -8,12 +8,12 @@
   import { schema, uiSchema, initialData } from "./_schema";
   import { validator } from "./_validator";
 
-  let value = $state(initialData);
+  let value = $state(getDefaultFormState(validator, schema, initialData));
 
   const astro = astroTheme();
 </script>
 
-<Form
+<FormBase
   class="flex flex-col gap-4 mb-4 {astro.darkOrLight}"
   bind:value
   {...theme}
