@@ -71,6 +71,16 @@ flow/:
     pnpm run dev
   popd
 
+flowi/:
+  pushd packages/flowbite-icons
+  c:
+    pnpm run check
+  b:
+    pnpm run build
+  d:
+    pnpm run dev
+  popd
+
 p:
   pnpm run preview
 

@@ -1,10 +1,10 @@
 {
-	"name": "@sjsf/flowbite-theme",
-	"version": "0.2.0",
-	"description": "The flowbite based theme for svelte-jsonschema-form",
+	"name": "@sjsf/flowbite-icons",
+	"version": "0.0.0",
+	"description": "The flowbite based icons set for svelte-jsonschema-form",
 	"license": "MIT",
 	"keywords": [
-		"theme",
+		"icons",
 		"flowbite",
 		"form"
 	],
@@ -20,7 +20,7 @@
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/x0k/svelte-jsonschema-form.git",
-		"directory": "packages/flowbite-theme"
+		"directory": "packages/flowbite-icons"
 	},
 	"bugs": "https://github.com/x0k/svelte-jsonschema-form/issues",
 	"homepage": "https://x0k.github.io/svelte-jsonschema-form/",
@@ -53,20 +53,17 @@
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",
-		"@sjsf/ajv8-validator": "workspace:*",
 		"@sjsf/form": "workspace:*",
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/package": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^4.0.0-next.6",
 		"@types/eslint": "^9.6.0",
-		"ajv": "catalog:",
 		"autoprefixer": "^10.4.20",
 		"eslint": "^9.0.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.36.0",
-		"flowbite": "^2.5.2",
-		"flowbite-svelte": "^0.46.23",
+		"flowbite-svelte-icons": "2.0.0-next.17",
 		"globals": "^15.0.0",
 		"postcss": "^8.4.47",
 		"prettier": "^3.1.1",

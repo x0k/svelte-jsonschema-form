@@ -7,6 +7,7 @@
   import { focusOnFirstError } from '@sjsf/form/focus-on-first-error';
 
   import { themes, themeStyles } from './themes'
+  import { icons, iconsStyles } from './icons'
   import { ShadowHost } from "./shadow";
   import Github from "./github.svelte";
   import OpenBook from "./open-book.svelte";
@@ -20,6 +21,10 @@
 
   function isThemeName(name: unknown): name is keyof typeof themes {
     return typeof name === "string" && name in themes;
+  }
+
+  function isIconSetName(name: unknown): name is keyof typeof icons {
+    return typeof name === "string" && name in icons;
   }
 
   const url = new URL(window.location.toString());
@@ -51,12 +56,26 @@
   const theme = $derived(themes[themeName]);
   const themeStyle = $derived(themeStyles[themeName]);
 
+  const parsedIconSetName = url.searchParams.get("icons");
+  function selectIconSet(name: keyof typeof icons, replace = false) {
+    url.searchParams.set("icons", name);
+    history[replace ? "replaceState" : "pushState"](null, "", url);
+    return name;
+  }
+  const initialIconSetName = isIconSetName(parsedIconSetName)
+    ? parsedIconSetName
+    : selectIconSet("none", true);
+  let iconSetName = $state(initialIconSetName);
+  const iconSet = $derived(icons[iconSetName]);
+  const iconSetStyle = $derived(iconsStyles[iconSetName]);
+
   const validator = $derived(
     new (samples[sampleName].Validator ?? AjvValidator)(
       addFormComponents(new Ajv(DEFAULT_AJV_CONFIG)),
       uiSchema
     )
   );
+
 
   let disabled = $state(false);
   let inert = $state(false);
@@ -128,6 +147,11 @@
       <option value={AFTER_TOUCHED}>After Touched</option>
       <option value={AFTER_SUBMITTED}>After Submitted</option>
     </select>
+    <select bind:value={iconSetName} onchange={() => selectIconSet(iconSetName)}>
+      {#each Object.keys(icons) as name (name)}
+        <option value={name}>{name}</option>
+      {/each}
+    </select>
     <select bind:value={themeName} onchange={() => selectTheme(themeName)}>
       {#each Object.keys(themes) as name (name)}
         <option value={name}>{name}</option>
@@ -186,13 +210,14 @@
         </div>
       </div>
     </div>
-    <ShadowHost class="flex-[3] max-h-[808px] overflow-y-auto" style={themeStyle}>
+    <ShadowHost class="flex-[3] max-h-[808px] overflow-y-auto" style={`${themeStyle}\n${iconSetStyle}`}>
       <Form
         data-theme={themeName === "skeleton" ? "cerberus" : lightOrDark}
         class={lightOrDark}
         style="background-color: transparent; display: flex; flex-direction: column; gap: 1rem; padding: 0.1rem;"
         bind:value
         {...theme}
+        icons={iconSet}
         {schema}
         {uiSchema}
         {validator}

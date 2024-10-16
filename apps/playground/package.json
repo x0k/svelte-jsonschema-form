@@ -17,6 +17,7 @@
     "svelte-exmarkdown": "^3.0.5",
     "@sjsf/daisyui-theme": "workspace:*",
     "@sjsf/flowbite-theme": "workspace:*",
+    "@sjsf/flowbite-icons": "workspace:*",
     "@sjsf/skeleton-theme": "workspace:*"
   },
   "devDependencies": {
