@@ -1,5 +1,19 @@
 # @sjsf/form
 
+## 0.2.1
+
+### Patch Changes
+
+- [`2003fcd`](https://github.com/x0k/svelte-jsonschema-form/commit/2003fcdeecb859ec6865c2480f14b353d1c8af7d) Thanks [@x0k](https://github.com/x0k)! - Add icons property
+
+- [`b89983a`](https://github.com/x0k/svelte-jsonschema-form/commit/b89983a095d956f025f6e58546027219ee05678c) Thanks [@x0k](https://github.com/x0k)! - Remove label for range widget
+
+- [`2dd6c35`](https://github.com/x0k/svelte-jsonschema-form/commit/2dd6c352bf6a3018c8ff0593403860260e1a2ee0) Thanks [@x0k](https://github.com/x0k)! - Disable copy button for fixed elements of array
+
+- [`da81bf8`](https://github.com/x0k/svelte-jsonschema-form/commit/da81bf838b24fd4c1edc3c3af01f3afc160b8018) Thanks [@x0k](https://github.com/x0k)! - Fix `root-field` layout gap
+
+- [`339f9be`](https://github.com/x0k/svelte-jsonschema-form/commit/339f9be504d0866fd69a1628adb5dc5739009744) Thanks [@x0k](https://github.com/x0k)! - Fix object property title evaluation
+
 ## 0.2.0
 
 ### Minor Changes
