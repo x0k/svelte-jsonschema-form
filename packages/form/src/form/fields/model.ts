@@ -43,6 +43,7 @@ export interface FieldsAndProps<V extends SchemaValue> {
   arrayItem: FieldCommonProps<V> & {
     index: number;
     arr: SchemaArrayValue;
+    canCopy: boolean;
     canRemove: boolean;
     canMoveUp: boolean;
     canMoveDown: boolean;

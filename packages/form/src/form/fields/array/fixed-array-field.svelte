@@ -102,9 +102,10 @@
         }}
         bind:arr={value}
         bind:value={value[index]}
-        canRemove={isAdditional}
-        canMoveUp={index > schemaItems.length}
-        canMoveDown={isAdditional && index < value.length - 1}
+        canCopy={arrayCtx.copyable && isAdditional && arrayCtx.canAdd}
+        canRemove={arrayCtx.removable && isAdditional}
+        canMoveUp={arrayCtx.orderable && index > schemaItems.length}
+        canMoveDown={arrayCtx.orderable && isAdditional && index < value.length - 1}
       />
     {/each}
   {/if}

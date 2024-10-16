@@ -15,7 +15,7 @@
     arr = $bindable(),
     value = $bindable(),
     config,
-    //
+    canCopy,
     canRemove,
     canMoveUp,
     canMoveDown,
@@ -28,11 +28,7 @@
   const Field = $derived(getField(ctx, "root", config));
   const Button = $derived(getComponent(ctx, "button", config));
 
-  const moveUp = $derived(arrayCtx.orderable && canMoveUp)
-  const moveDown = $derived(arrayCtx.orderable && canMoveDown)
-  const remove = $derived(arrayCtx.removable && canRemove)
-  const copy = $derived(arrayCtx.copyable && arrayCtx.canAdd)
-  const toolbar = $derived(moveUp || moveDown || remove || copy)
+  const toolbar = $derived(canCopy || canRemove || canMoveUp || canMoveDown);
   const uiOptions = $derived(getUiOptions(ctx, config.uiSchema))
   const disabled = $derived(
     isDisabled(ctx, uiOptions?.input)
@@ -46,7 +42,7 @@
       {errors}
       {config}
       type="array-item-move-up"
-      disabled={disabled || !moveUp}
+      disabled={disabled || !canMoveUp}
       onclick={makeHandler(() => {
         const tmp = arr[index]
         arr[index] = arr[index - 1]
@@ -59,7 +55,7 @@
       {errors}
       {config}
       type="array-item-move-down"
-      disabled={disabled || !moveDown}
+      disabled={disabled || !canMoveDown}
       onclick={makeHandler(() => {
         const tmp = arr[index]
         arr[index] = arr[index + 1]
@@ -69,7 +65,7 @@
       {@render ctx.iconOrTranslation(["move-array-item-down"])}
     </Button>
   {/if}
-  {#if copy}
+  {#if canCopy}
     <Button
       {errors}
       {config}
@@ -82,7 +78,7 @@
       {@render ctx.iconOrTranslation(["copy-array-item"])}
     </Button>
   {/if}
-  {#if remove}
+  {#if canRemove}
     <Button
       {errors}
       {config}

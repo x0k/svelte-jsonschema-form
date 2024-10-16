@@ -84,9 +84,10 @@
         }}
         bind:arr={value}
         bind:value={value[index]}
-        canRemove={true}
-        canMoveUp={index > 0}
-        canMoveDown={index < value.length - 1}
+        canCopy={arrayCtx.copyable && arrayCtx.canAdd}
+        canRemove={arrayCtx.removable}
+        canMoveUp={arrayCtx.orderable && index > 0}
+        canMoveDown={arrayCtx.orderable && index < value.length - 1}
       />
     {/each}
   {/if}
