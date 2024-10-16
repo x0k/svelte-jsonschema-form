@@ -3,7 +3,7 @@
 
   import type { Schema, Errors } from "@sjsf/form";
 
-  import { CustomForm } from "@/components/custom-form";
+  import CustomForm from "@/components/custom-form.svelte";
   import type { ErrorObject } from "ajv";
 
   const schema: Schema = {

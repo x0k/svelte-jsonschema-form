@@ -2,7 +2,7 @@
   import { theme } from "@sjsf/flowbite-theme";
 
   import { astroTheme } from "@/theme.svelte";
-  import { CustomForm } from "@/components/custom-form";
+  import CustomForm from "@/components/custom-form.svelte";
 
   import { schema, uiSchema } from "./_demo-schema";
 
