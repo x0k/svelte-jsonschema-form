@@ -1,0 +1,65 @@
+---
+import { Tabs, TabItem, Code, Card } from "@astrojs/starlight/components";
+import daisyuiStyles from '@sjsf/daisyui-theme/styles.css?inline';
+import flowbiteStyles from '@sjsf/flowbite-theme/styles.css?inline';
+import skeletonStyles from '@sjsf/skeleton-theme/styles.css?inline';
+
+import type { Theme } from "@/shared";
+import { ShadowHost } from "@/components/shadow";
+
+import WithBasic from "./_with-basic.svelte";
+import WithSkeleton from "./_with-skeleton.svelte";
+import WithDaisyui from "./_with-daisyui.svelte";
+import WithFlowbite from "./_with-flowbite.svelte";
+
+import schemaCode from "./_schema?raw";
+import validatorCode from './_validator?raw';
+import withBasicCode from "./_with-basic.svelte?raw";
+import withSkeletonCode from "./_with-skeleton.svelte?raw";
+import withDaisyuiCode from "./_with-daisyui.svelte?raw";
+import withFlowbiteCode from "./_with-flowbite.svelte?raw";
+
+const theme = (Astro.params.theme ?? "basic") as Theme;
+
+const STYLES = {
+  basic: "",
+  daisyui: daisyuiStyles,
+  flowbite: flowbiteStyles,
+  skeleton: skeletonStyles,
+} satisfies Record<Theme, string>;
+
+const CODE = {
+  basic: withBasicCode,
+  daisyui: withDaisyuiCode,
+  flowbite: withFlowbiteCode,
+  skeleton: withSkeletonCode,
+} satisfies Record<Theme, string>;
+---
+
+<Tabs>
+  <TabItem label="Form.svelte">
+    <Code code={CODE[theme]} lang="svelte" />
+  </TabItem>
+  <TabItem label="_schema.ts">
+    <Code code={schemaCode} lang="typescript" />
+  </TabItem>
+  <TabItem label="_validator.ts">
+    <Code code={validatorCode} lang="typescript" />
+  </TabItem>
+</Tabs>
+
+<Card title="">
+  <ShadowHost client:only="svelte" style={STYLES[theme]}>
+    {
+      theme === "basic" ? (
+        <WithBasic client:only="svelte" />
+      ) : theme === "daisyui" ? (
+        <WithDaisyui client:only="svelte" />
+      ) : theme === "flowbite" ? (
+        <WithFlowbite client:only="svelte" />
+      ) : theme === "skeleton" ? (
+        <WithSkeleton client:only="svelte" />
+      ) : null
+    }
+  </ShadowHost>
+</Card>

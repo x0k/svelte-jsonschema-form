@@ -11,7 +11,7 @@ export default defineConfig({
   trailingSlash: "always",
   i18n: {
     defaultLocale: "en",
-    locales: ["en", "ru"],
+    locales: ["en"],
   },
   integrations: [
     svelte(),
