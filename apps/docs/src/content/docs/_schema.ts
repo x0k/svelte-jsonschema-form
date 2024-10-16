@@ -4,7 +4,7 @@ export const schema: Schema = {
   title: "A registration form",
   description: "A simple form example.",
   type: "object",
-  required: ["firstName", "lastName", "start"],
+  required: ["firstName", "lastName"],
   properties: {
     firstName: {
       type: "string",
