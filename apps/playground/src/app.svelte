@@ -147,13 +147,13 @@
       <option value={AFTER_TOUCHED}>After Touched</option>
       <option value={AFTER_SUBMITTED}>After Submitted</option>
     </select>
-    <select bind:value={iconSetName} onchange={() => selectIconSet(iconSetName)}>
-      {#each Object.keys(icons) as name (name)}
+    <select bind:value={themeName} onchange={() => selectTheme(themeName)}>
+      {#each Object.keys(themes) as name (name)}
         <option value={name}>{name}</option>
       {/each}
     </select>
-    <select bind:value={themeName} onchange={() => selectTheme(themeName)}>
-      {#each Object.keys(themes) as name (name)}
+    <select bind:value={iconSetName} onchange={() => selectIconSet(iconSetName)}>
+      {#each Object.keys(icons) as name (name)}
         <option value={name}>{name}</option>
       {/each}
     </select>

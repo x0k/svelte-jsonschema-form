@@ -18,7 +18,8 @@
     "@sjsf/daisyui-theme": "workspace:*",
     "@sjsf/flowbite-theme": "workspace:*",
     "@sjsf/flowbite-icons": "workspace:*",
-    "@sjsf/skeleton-theme": "workspace:*"
+    "@sjsf/skeleton-theme": "workspace:*",
+    "@sjsf/lucide-icons": "workspace:*"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "catalog:",

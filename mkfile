@@ -81,6 +81,16 @@ flowi/:
     pnpm run dev
   popd
 
+luci/:
+  pushd packages/lucide-icons
+  c:
+    pnpm run check
+  b:
+    pnpm run build
+  d:
+    pnpm run dev
+  popd
+
 p:
   pnpm run preview
 
