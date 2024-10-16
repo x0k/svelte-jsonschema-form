@@ -8,6 +8,7 @@
 
 <button
 	class="btn join-item"
+	class:btn-sm={!isSubmit}
   class:btn-primary={isSubmit}
   class:w-full={isSubmit}
 	type={isSubmit ? 'submit' : 'button'}
