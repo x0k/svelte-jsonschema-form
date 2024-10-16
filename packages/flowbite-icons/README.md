@@ -46,7 +46,7 @@ export default {
 import flowbiteIconsStyles from "@sjsf/flowbite-icons/styles.css?inline";
 ```
 
-### Apply theme
+### Apply icons
 
 ```svelte
 <script lang="ts">
