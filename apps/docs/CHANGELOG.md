@@ -1,5 +1,22 @@
 # docs
 
+## 0.0.8
+
+### Patch Changes
+
+- [`b61f8fe`](https://github.com/x0k/svelte-jsonschema-form/commit/b61f8fe699ed52d9a6c061952444a038edda0081) Thanks [@x0k](https://github.com/x0k)! - Improve usage example
+
+- [`d004016`](https://github.com/x0k/svelte-jsonschema-form/commit/d004016218564202e11f74349e55b6aa156f8e1c) Thanks [@x0k](https://github.com/x0k)! - Add skeleton-theme package
+
+- Updated dependencies [[`5fa3131`](https://github.com/x0k/svelte-jsonschema-form/commit/5fa31313fa4aef7db4c0fb9c159166729a2a3933), [`2003fcd`](https://github.com/x0k/svelte-jsonschema-form/commit/2003fcdeecb859ec6865c2480f14b353d1c8af7d), [`ea4180f`](https://github.com/x0k/svelte-jsonschema-form/commit/ea4180ffd848be1064b2c13e621f7ef0215cebaa), [`b89983a`](https://github.com/x0k/svelte-jsonschema-form/commit/b89983a095d956f025f6e58546027219ee05678c), [`d004016`](https://github.com/x0k/svelte-jsonschema-form/commit/d004016218564202e11f74349e55b6aa156f8e1c), [`2dd6c35`](https://github.com/x0k/svelte-jsonschema-form/commit/2dd6c352bf6a3018c8ff0593403860260e1a2ee0), [`da81bf8`](https://github.com/x0k/svelte-jsonschema-form/commit/da81bf838b24fd4c1edc3c3af01f3afc160b8018), [`339f9be`](https://github.com/x0k/svelte-jsonschema-form/commit/339f9be504d0866fd69a1628adb5dc5739009744), [`77a8906`](https://github.com/x0k/svelte-jsonschema-form/commit/77a8906b68526e3aab82c762d8c18790f9687eb2)]:
+  - @sjsf/lucide-icons@0.2.1
+  - @sjsf/form@0.2.1
+  - @sjsf/daisyui-theme@0.2.1
+  - @sjsf/flowbite-theme@0.2.1
+  - @sjsf/skeleton-theme@0.2.1
+  - @sjsf/flowbite-icons@0.2.1
+  - @sjsf/ajv8-validator@0.2.1
+
 ## 0.0.7
 
 ### Patch Changes
