@@ -78,9 +78,7 @@
 
 
   let disabled = $state(false);
-  let inert = $state(false);
   let html5Validation = $state(false);
-  let errorsList = $state(true);
   let doFocusOnFirstError = $state(true);
   let errors: Errors = $state.raw(
     samples[initialSampleName].errors ?? new SvelteMap()
@@ -116,16 +114,8 @@
       Disabled
     </label>
     <label>
-      <input type="checkbox" bind:checked={inert} />
-      Inert (readonly)
-    </label>
-    <label>
       <input type="checkbox" bind:checked={html5Validation} />
       HTML5 validation
-    </label>
-    <label>
-      <input type="checkbox" bind:checked={errorsList} />
-      Errors list
     </label>
     <label>
       <input type="checkbox" bind:checked={doFocusOnFirstError} />
@@ -222,7 +212,6 @@
         {uiSchema}
         {validator}
         {translation}
-        {inert}
         {disabled}
         novalidate={!html5Validation || undefined}
         inputsValidationMode={validationEvent | validationAfter}
@@ -237,18 +226,6 @@
           console.log("errors", errors);
         }}
       />
-      {#if errorsList && errors.size > 0}
-        <div style="color: red; padding-bottom: 1rem;">
-          <span style="font-size: larger; font-weight: bold;">Errors</span>
-          <ui>
-            {#each errors as [field, fieldErrors] (field)}
-              {#each fieldErrors as err}
-                <li>{err.propertyTitle} {err.message}</li>
-              {/each}
-            {/each}
-          </ui>
-        </div>
-      {/if}
     </ShadowHost>
   </div>
 </div>
