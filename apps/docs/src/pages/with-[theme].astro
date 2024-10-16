@@ -5,7 +5,7 @@ import { THEME_TTITLES, THEMES, type Theme } from "@/shared";
 import { Content, frontmatter } from "@/content/docs/index.mdx";
 
 export function getStaticPaths() {
-  return THEMES.slice(1).map((theme) => ({ params: { theme } }))
+  return THEMES.slice(1).map((theme) => ({ params: { theme } }));
 }
 
 function fixGetStartedUrl(
@@ -13,8 +13,19 @@ function fixGetStartedUrl(
 ): Record<string, any> {
   const action = frontmatter?.hero?.actions?.[0];
   if (!action) return frontmatter;
-  action.link = `../${action.link}`;
-  return frontmatter;
+  return {
+    ...frontmatter,
+    hero: {
+      ...frontmatter.hero,
+      actions: [
+        {
+          ...action,
+          link: `../${action.link}`,
+        },
+        ...frontmatter.hero.actions.slice(1),
+      ],
+    },
+  };
 }
 ---
 

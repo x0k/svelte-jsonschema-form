@@ -45,7 +45,6 @@ export const uiSchema: UiSchemaRoot = {
   firstName: {
     "ui:options": {
       input: {
-        autofocus: true,
         autocomplete: "family-name",
       },
     },
