@@ -1,5 +1,20 @@
 # docs
 
+## 0.0.10
+
+### Patch Changes
+
+- [`47193c8`](https://github.com/x0k/svelte-jsonschema-form/commit/47193c87bfbd2c70b6295aa435e551cc95516f58) Thanks [@x0k](https://github.com/x0k)! - Update install instructions
+
+- Updated dependencies [[`6f33fcd`](https://github.com/x0k/svelte-jsonschema-form/commit/6f33fcd6c53305a790890e85ba11e0214607876b), [`47193c8`](https://github.com/x0k/svelte-jsonschema-form/commit/47193c87bfbd2c70b6295aa435e551cc95516f58)]:
+  - @sjsf/flowbite-icons@0.2.3
+  - @sjsf/flowbite-theme@0.2.3
+  - @sjsf/skeleton-theme@0.2.3
+  - @sjsf/daisyui-theme@0.2.3
+  - @sjsf/lucide-icons@0.2.3
+  - @sjsf/ajv8-validator@0.2.3
+  - @sjsf/form@0.2.3
+
 ## 0.0.9
 
 ### Patch Changes

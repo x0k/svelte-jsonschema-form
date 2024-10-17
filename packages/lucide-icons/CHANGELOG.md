@@ -1,5 +1,14 @@
 # @sjsf/lucide-icons
 
+## 0.2.3
+
+### Patch Changes
+
+- [`6f33fcd`](https://github.com/x0k/svelte-jsonschema-form/commit/6f33fcd6c53305a790890e85ba11e0214607876b) Thanks [@x0k](https://github.com/x0k)! - Fix peer dependencies
+
+- Updated dependencies []:
+  - @sjsf/form@0.2.3
+
 ## 0.2.2
 
 ### Patch Changes
