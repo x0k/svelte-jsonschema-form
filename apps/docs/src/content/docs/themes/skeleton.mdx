@@ -4,12 +4,13 @@ sidebar:
   order: 3
 ---
 
-import { Code, Card } from '@astrojs/starlight/components';
+import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/components';
 
 import Npm from '@/components/npm.astro';
 
 import SkeletonTheme from './_skeleton-theme.astro';
 import skeletonThemCode from './_skeleton-theme.svelte?raw';
+import demoSchemaCode from './_demo-schema.ts?raw';
 
 ## Installation
 
@@ -21,7 +22,13 @@ This is Skeleton v3 based theme.
 
 :::
 
-## Configuration
+### Install Skeleton
+
+<LinkButton href="https://next.skeleton.dev/docs/get-started/installation/sveltekit" variant='minimal' target="_blank" icon="external" >
+  SvelteKit - Skeleton
+</LinkButton>
+
+### Setup styles
 
 There is two ways to setup styles:
 
@@ -45,17 +52,6 @@ export default {
 }
 ```
 
-Or with a preset
-
-```typescript
-import themePreset from '@sjsf/skeleton-theme/preset'
-
-/** @type {import('tailwindcss').Config} */
-export default {
-  presets: [themePreset],
-}
-```
-
 2. Inject prepared styles (not recommended)
 
 ```typescript
@@ -65,14 +61,21 @@ import daisyStyles from "@sjsf/skeleton-theme/styles.css?inline";
 
 Bundled themes:
 
-- cerberus
-- catppuccin
-- pine
-- rose
+- `cerberus`
+- `catppuccin`
+- `pine`
+- `rose`
 
-## Apply theme
+## Demo
 
-<Code code={skeletonThemCode} lang="svelte" />
+<Tabs>
+<TabItem label="Form.svelte">
+  <Code code={skeletonThemCode} lang="svelte" />
+</TabItem>
+<TabItem label="_demo-schema.ts">
+  <Code code={demoSchemaCode} lang="typescript" />
+</TabItem>
+</Tabs>
 
 <Card>
   <SkeletonTheme />

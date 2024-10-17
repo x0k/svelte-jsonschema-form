@@ -4,18 +4,26 @@ sidebar:
   order: 0
 ---
 
-import { Code, Card } from '@astrojs/starlight/components';
+import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
 
 import Npm from '@/components/npm.astro';
 
 import BasicTheme from './_basic-theme.astro';
 import basicThemeCode from './_basic-theme.svelte?raw';
+import demoSchemaCode from './_demo-schema.ts?raw';
 
 By default package `@sjsf/form` comes with a basic theme.
 
-## Usage
+## Demo
 
+<Tabs>
+<TabItem label="Form.svelte">
 <Code code={basicThemeCode} lang="svelte" />
+</TabItem>
+<TabItem label="_demo-schema.ts">
+<Code code={demoSchemaCode} lang="typescript" />
+</TabItem>
+</Tabs>
 
 <Card>
   <BasicTheme />

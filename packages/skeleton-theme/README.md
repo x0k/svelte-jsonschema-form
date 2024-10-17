@@ -57,10 +57,10 @@ import daisyStyles from "@sjsf/skeleton-theme/styles.css?inline";
 
 Bundled themes:
 
-- cerberus
-- catppuccin
-- pine
-- rose
+- `cerberus`
+- `catppuccin`
+- `pine`
+- `rose`
 
 ### Apply theme
 

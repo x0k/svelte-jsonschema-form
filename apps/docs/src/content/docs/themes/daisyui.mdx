@@ -4,18 +4,25 @@ sidebar:
   order: 1
 ---
 
-import { Code, Card } from '@astrojs/starlight/components';
+import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/components';
 
 import Npm from '@/components/npm.astro';
 
 import DaisyuiTheme from './_daisyui-theme.astro';
 import daisyuiThemeCode from './_daisyui-theme.svelte?raw';
+import demoSchemaCode from './_demo-schema.ts?raw';
 
 ## Installation
 
 <Npm pkg="@sjsf/form @sjsf/daisyui-theme" />
 
-## Configuration
+### Install daisyUI
+
+<LinkButton href="https://daisyui.com/docs/install/" variant='minimal' target="_blank" icon="external">
+  Install daisyUI as a Tailwind CSS plugin
+</LinkButton>
+
+### Setup styles
 
 There is two ways to setup styles:
 
@@ -32,17 +39,6 @@ export default {
 }
 ```
 
-Or with a preset
-
-```typescript
-import themePreset from '@sjsf/daisyui-theme/preset'
-
-/** @type {import('tailwindcss').Config} */
-export default {
-  presets: [themePreset],
-}
-```
-
 2. Inject prepared styles (not recommended)
 
 ```typescript
@@ -50,14 +46,21 @@ export default {
 import daisyStyles from "@sjsf/daisyui-theme/styles.css?inline";
 ```
 
-## Apply theme
+## Additional widgets
 
-<Code code={daisyuiThemeCode} lang="svelte" />
+- `toggle`
+
+## Demo
+
+<Tabs>
+<TabItem label="Form.svelte">
+  <Code code={daisyuiThemeCode} lang="svelte" />
+</TabItem>
+<TabItem label="_demo-schema.ts">
+  <Code code={demoSchemaCode} lang="typescript" />
+</TabItem>
+</Tabs>
 
 <Card>
   <DaisyuiTheme />
 </Card>
-
-## Additional widgets
-
-- `toggle`

@@ -21,11 +21,11 @@ There is two ways to setup styles:
 
 ```typescript
 import flowbite from 'flowbite/plugin';
-import { THEME_CONTENT, FLOWBITE_CONTENT, FLOWBITE_ICONS_CONTENT } from '@sjsf/flowbite-theme/preset'
+import { THEME_CONTENT, FLOWBITE_CONTENT } from '@sjsf/flowbite-theme/preset'
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./src/**/*.{html,js,svelte,ts}', THEME_CONTENT, FLOWBITE_CONTENT, FLOWBITE_ICONS_CONTENT],
+  content: ['./src/**/*.{html,js,svelte,ts}', THEME_CONTENT, FLOWBITE_CONTENT],
   plugins: [flowbite],
 }
 ```
