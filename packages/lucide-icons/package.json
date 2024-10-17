@@ -44,6 +44,7 @@
 	},
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^0.2.2",
+		"lucide-svelte": "^0.453.0",
 		"svelte": "^5.0.0-next.1"
 	},
 	"devDependencies": {
@@ -70,8 +71,5 @@
 		"vitest": "^2.0.0"
 	},
 	"svelte": "./dist/index.js",
-	"types": "./dist/index.d.ts",
-	"dependencies": {
-		"lucide-svelte": "^0.453.0"
-	}
+	"types": "./dist/index.d.ts"
 }
