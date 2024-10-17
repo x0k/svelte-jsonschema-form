@@ -12,6 +12,7 @@
   import Github from "./github.svelte";
   import OpenBook from "./open-book.svelte";
   import ThemePicker from "./theme-picker.svelte";
+  import Editor from './editor.svelte';
 
   import { samples } from "./samples";
 
@@ -181,23 +182,10 @@
   </div>
   <div class="flex gap-8">
     <div class="flex-[4] flex flex-col gap-2">
-      <div class="h-[400px] border rounded overflow-auto p-2">
-        <pre class="w-0"><code>{JSON.stringify(schema, null, 2)}</code></pre>
-      </div>
+      <Editor class="font-mono h-[400px] border rounded p-2 data-[error=true]:border-red-500 data-[error=true]:outline-none bg-transparent" bind:value={schema} />
       <div class="flex gap-2">
-        <div class="h-[400px] flex-1 border rounded overflow-auto p-2">
-          <pre class="w-0"><code
-              >{JSON.stringify(
-                uiSchema,
-                (_, v) =>
-                  typeof v === "function" ? `Component(${v.componentName})` : v,
-                2
-              )}</code
-            ></pre>
-        </div>
-        <div class="h-[400px] flex-1 border rounded overflow-auto p-2">
-          <pre class="w-0"><code>{JSON.stringify(value, null, 2)}</code></pre>
-        </div>
+        <Editor class="font-mono h-[400px] grow border rounded p-2 data-[error=true]:border-red-500 data-[error=true]:outline-none bg-transparent" bind:value={uiSchema} />
+        <Editor class="font-mono h-[400px] grow border rounded p-2 data-[error=true]:border-red-500 data-[error=true]:outline-none bg-transparent" bind:value={value} />
       </div>
     </div>
     <ShadowHost class="flex-[3] max-h-[808px] overflow-y-auto" style={`${themeStyle}\n${iconSetStyle}`}>
