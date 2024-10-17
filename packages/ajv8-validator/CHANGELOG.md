@@ -1,5 +1,12 @@
 # @sjsf/ajv8-validator
 
+## 0.2.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/form@0.2.3
+
 ## 0.2.2
 
 ### Patch Changes
