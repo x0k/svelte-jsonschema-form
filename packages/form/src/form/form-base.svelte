@@ -35,8 +35,9 @@
     idSeparator?: string
     children?: Snippet
     errors?: Errors<E>
+    getSnapshot?: () => SchemaValue | undefined
     onSubmit?: (value: T | undefined, e: SubmitEvent) => void
-    onSubmitError?: (errors: Errors<E>, e: SubmitEvent) => void
+    onSubmitError?: (errors: Errors<E>, e: SubmitEvent, snapshot: SchemaValue | undefined) => void
     onReset?: (e: Event) => void
     schedulerYield?: SchedulerYield
   }
@@ -77,13 +78,14 @@
     idPrefix = DEFAULT_ID_PREFIX,
     idSeparator = DEFAULT_ID_SEPARATOR,
     children,
+    onsubmit,
     onSubmit,
     onSubmitError,
     onReset = () => {
       isSubmitted = false
       errors.clear()
     },
-    onsubmit,
+    getSnapshot = () => $state.snapshot(value) as SchemaValue | undefined,
     schedulerYield = typeof scheduler !== "undefined" && "yield" in scheduler
       ? scheduler.yield.bind(scheduler)
       : ({ signal }) => new Promise((resolve, reject) => {
@@ -186,20 +188,25 @@
   const Form = $derived(getComponent(ctx, "form", config))
   const Field = $derived(getField(ctx, "root", config))
 
-  export function validate() {
-    const list = validator.validateFormData(schema, value as Value)
+  function validateSnapshot(snapshot: SchemaValue | undefined) {
+    const list = validator.validateFormData(schema, snapshot)
     return new SvelteMap(SvelteMap.groupBy(list, (error) => error.instanceId))
+  }
+
+  export function validate() {
+    return validateSnapshot(getSnapshot())
   }
 
   const submitHandler = $derived(onSubmit || onSubmitError ? (e: SubmitEvent) => {
     e.preventDefault();
     isSubmitted = true
-    errors = validate();
+    const snapshot = getSnapshot()
+    errors = validateSnapshot(snapshot);
     if (errors.size === 0) {
-      onSubmit?.($state.snapshot(value) as T | undefined, e)
+      onSubmit?.(snapshot as T | undefined, e)
       return
     }
-    onSubmitError?.(errors, e)
+    onSubmitError?.(errors, e, snapshot)
   } : onsubmit)
 </script>
 
