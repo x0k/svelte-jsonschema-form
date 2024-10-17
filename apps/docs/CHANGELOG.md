@@ -1,5 +1,22 @@
 # docs
 
+## 0.0.9
+
+### Patch Changes
+
+- [`12ef6f1`](https://github.com/x0k/svelte-jsonschema-form/commit/12ef6f1ed8551c078cefdbac6a1ec6a08104a4f7) Thanks [@x0k](https://github.com/x0k)! - Add `Labels and icons` section
+
+- [`337d3d7`](https://github.com/x0k/svelte-jsonschema-form/commit/337d3d74f479b5164df66f4a8344958e1befc146) Thanks [@x0k](https://github.com/x0k)! - Add `Programmatic control` section
+
+- Updated dependencies [[`0a4bad3`](https://github.com/x0k/svelte-jsonschema-form/commit/0a4bad3d218bd5d30f14aa9349149dcca42e40f2)]:
+  - @sjsf/form@0.2.2
+  - @sjsf/ajv8-validator@0.2.2
+  - @sjsf/daisyui-theme@0.2.2
+  - @sjsf/flowbite-icons@0.2.2
+  - @sjsf/flowbite-theme@0.2.2
+  - @sjsf/lucide-icons@0.2.2
+  - @sjsf/skeleton-theme@0.2.2
+
 ## 0.0.8
 
 ### Patch Changes
