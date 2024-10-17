@@ -1,5 +1,11 @@
 # @sjsf/form
 
+## 0.2.2
+
+### Patch Changes
+
+- [`0a4bad3`](https://github.com/x0k/svelte-jsonschema-form/commit/0a4bad3d218bd5d30f14aa9349149dcca42e40f2) Thanks [@x0k](https://github.com/x0k)! - Add `FormBase`, `getDefaultFormState` exports
+
 ## 0.2.1
 
 ### Patch Changes
