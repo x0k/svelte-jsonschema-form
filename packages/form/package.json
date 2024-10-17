@@ -80,7 +80,7 @@
     },
     "./focus-on-first-error": {
       "types": "./dist/focus-on-first-error.d.ts",
-      "default": "./dist/focus-on-first-error.js"
+      "svelte": "./dist/focus-on-first-error.js"
     }
   }
 }
