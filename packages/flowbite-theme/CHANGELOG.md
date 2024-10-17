@@ -1,5 +1,12 @@
 # @sjsf/flowbite-theme
 
+## 0.2.4
+
+### Patch Changes
+
+- Updated dependencies [[`2e93326`](https://github.com/x0k/svelte-jsonschema-form/commit/2e93326f73c0a1181ef4abadadc04bf86f778044)]:
+  - @sjsf/form@0.2.4
+
 ## 0.2.3
 
 ### Patch Changes

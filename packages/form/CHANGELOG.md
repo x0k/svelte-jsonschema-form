@@ -1,5 +1,11 @@
 # @sjsf/form
 
+## 0.2.4
+
+### Patch Changes
+
+- [`2e93326`](https://github.com/x0k/svelte-jsonschema-form/commit/2e93326f73c0a1181ef4abadadc04bf86f778044) Thanks [@x0k](https://github.com/x0k)! - Fix exports definitions
+
 ## 0.2.3
 
 ## 0.2.2
