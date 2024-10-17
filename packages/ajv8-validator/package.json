@@ -28,10 +28,12 @@
     "build": "tsc && publint",
     "dev": "tsc --watch"
   },
+  "types": "dist/index.d.ts",
+  "main": "dist/index.js",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
+      "svelte": "./dist/index.js"
     }
   },
   "peerDependencies": {
