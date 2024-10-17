@@ -23,7 +23,7 @@
   {#if !multiple && config.schema.default === undefined}
     <option value={-1}>{attributes.placeholder}</option>
   {/if}
-  {#each options as option, index (option.value)}
+  {#each options as option, index (option.id)}
     <option value={index} disabled={option.disabled} >
       {option.label}
     </option>

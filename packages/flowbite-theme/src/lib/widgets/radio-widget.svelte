@@ -11,11 +11,12 @@
 	});
 </script>
 
-{#each options as option, index (option.value)}
+{#each options as option, index (option.id)}
 	<Radio
 		bind:group={mapped.value}
 		value={index}
 		{...attributes as RadioProps}
+		id={option.id}
 		disabled={option.disabled || attributes.disabled}
 	>
 		{option.label}

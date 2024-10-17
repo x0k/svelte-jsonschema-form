@@ -110,11 +110,13 @@ export interface IdentifiableFieldElement {
   help: {};
   "key-input": {};
   examples: {};
+  oneof: {};
+  anyof: {};
 }
 
 export function computeId<T>(
   idSchema: IdSchema<T>,
-  element: keyof IdentifiableFieldElement | string
+  element: keyof IdentifiableFieldElement | number
 ) {
   return `${idSchema.$id}__${element}`;
 }

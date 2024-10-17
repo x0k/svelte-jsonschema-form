@@ -1,6 +1,7 @@
 import type { Schema } from './schema.js';
 
 export interface SimpleEnumOption<T> {
+  id: string;
   value: T;
   label: string;
   disabled: boolean;

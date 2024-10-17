@@ -7,7 +7,7 @@
 
   import type { FieldProps } from "./model.js";
   import { selectAttributes } from "./make-widget-attributes.js";
-  import { makeEventHandlers } from './make-event-handlers.svelte.js';
+  import { makeEventHandlers } from "./make-event-handlers.svelte.js";
 
   let {
     config,
@@ -25,7 +25,12 @@
   );
   const attributes = $derived(selectAttributes(ctx, config, handlers));
   const options = $derived(
-    createOptions(config.schema, config.uiSchema, config.uiOptions) ?? []
+    createOptions(
+      config.schema,
+      config.idSchema,
+      config.uiSchema,
+      config.uiOptions
+    ) ?? []
   );
   const errors = $derived(getErrors(ctx, config.idSchema));
 </script>

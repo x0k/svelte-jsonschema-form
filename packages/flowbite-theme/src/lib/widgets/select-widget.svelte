@@ -41,7 +41,7 @@
 		{#if config.schema.default === undefined}
 			<option value={-1}>{placeholder}</option>
 		{/if}
-		{#each options as option, index (option.value)}
+		{#each options as option, index (option.id)}
 			<option value={index} disabled={option.disabled}>
 				{option.label}
 			</option>

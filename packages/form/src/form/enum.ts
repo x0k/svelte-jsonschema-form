@@ -11,6 +11,7 @@ import {
 } from "@/core/index.js";
 
 import type { UiOptions, UiSchema } from "./ui-schema.js";
+import { computeId, type IdSchema } from "./id-schema.js";
 
 function getAltSchemas(
   schema: Schema,
@@ -23,6 +24,7 @@ function getAltSchemas(
 
 export function createOptions(
   schema: Schema,
+  idSchema: IdSchema<SchemaValue>,
   uiSchema: UiSchema,
   uiOptions: UiOptions | undefined
 ): EnumOption<SchemaValue>[] | undefined {
@@ -32,7 +34,12 @@ export function createOptions(
     const enumNames = uiOptions?.enumNames;
     return enumValues.map((value, i) => {
       const label = enumNames?.[i] ?? String(value);
-      return { label, value, disabled: disabledValues.has(value) };
+      return {
+        id: computeId(idSchema, i),
+        label,
+        value,
+        disabled: disabledValues.has(value),
+      };
     });
   }
   const [altSchemas, altUiSchemas] = getAltSchemas(schema, uiSchema);
@@ -48,6 +55,7 @@ export function createOptions(
         altSchemaDef.title ??
         String(value);
       return {
+        id: computeId(idSchema, index),
         schema: altSchemaDef,
         label,
         value,

@@ -10,7 +10,7 @@
 	});
 </script>
 
-{#each options as option, index (option.value)}
+{#each options as option, index (option.id)}
 	<label class="flex items-center space-x-2 cursor-pointer">
 		<input
 			type="checkbox"
@@ -18,6 +18,7 @@
 			bind:group={mapped.value}
 			value={index}
 			{...attributes}
+			id={option.id}
 			disabled={option.disabled || attributes.disabled}
 		/>
 		<p>{option.label}</p>

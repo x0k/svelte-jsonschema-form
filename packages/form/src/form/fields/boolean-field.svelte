@@ -1,15 +1,16 @@
 <script lang="ts">
   import { type Schema } from "@/core/index.js";
-  
+
   import { getFormContext } from "../context.js";
   import { getTemplate } from "../templates/index.js";
   import { getWidget } from "../widgets.js";
-  import { getErrors, validateField } from '../utils.js';
-  import { createOptions } from '../enum.js';
+  import { getErrors, validateField } from "../utils.js";
+  import { createOptions } from "../enum.js";
+  import { computeId } from "../id-schema.js";
 
   import type { FieldProps } from "./model.js";
   import { inputAttributes } from "./make-widget-attributes.js";
-  import { makeEventHandlers } from './make-event-handlers.svelte.js';
+  import { makeEventHandlers } from "./make-event-handlers.svelte.js";
 
   const ctx = getFormContext();
 
@@ -36,6 +37,7 @@
               })
               .filter((s): s is Schema => s !== undefined),
           },
+          config.idSchema,
           config.uiSchema,
           config.uiOptions
         ) ?? []
@@ -47,14 +49,20 @@
       enumValues.every((v) => typeof v === "boolean") &&
       config.uiOptions?.enumNames === undefined
     ) {
-      return enumValues.map((v) => ({
+      return enumValues.map((v, i) => ({
+        id: computeId(config.idSchema, i),
         label: v ? yes : no,
         value: v,
         disabled: false,
       }));
     }
     return (
-      createOptions(config.schema, config.uiSchema, config.uiOptions) ?? []
+      createOptions(
+        config.schema,
+        config.idSchema,
+        config.uiSchema,
+        config.uiOptions
+      ) ?? []
     );
   });
 

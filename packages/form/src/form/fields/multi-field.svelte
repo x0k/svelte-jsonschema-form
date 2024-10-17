@@ -96,6 +96,7 @@
   })
   const enumOptions = $derived<EnumOption<number>[]>(
     retrievedOptions.map((s, i) => ({
+      id: computeId(config.idSchema, i),
       label:
         optionsUiOptions[i]?.title ??
         s.title ??
@@ -106,7 +107,7 @@
   );
 
   const widgetConfig: Config = $derived.by(() => {
-    const suffix = `${combinationKey.toLowerCase()}`;
+    const suffix = combinationKey.toLowerCase() as Lowercase<typeof combinationKey>;
     return {
       ...config,
       schema: { type: "integer", default: 0 },
