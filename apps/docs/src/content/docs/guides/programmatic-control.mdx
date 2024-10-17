@@ -1,0 +1,32 @@
+---
+title: Programmatic control
+sidebar:
+  order: 3
+---
+
+import { Code, Card } from '@astrojs/starlight/components';
+
+import BindForm from './_bind-form.svelte';
+import bindFormCode from './_bind-form.svelte?raw';
+
+If you need to control the form programmatically, you can bind to the `form` property.
+
+<Code code={bindFormCode} lang="svelte" />
+
+<Card>
+  <BindForm client:only="svelte" />
+</Card>
+
+## Methods
+
+Also you can bind to `this` to get access to exported methods:
+
+### Validate
+
+Perform validation on the form without form state modifications.
+
+```typescript
+import type { Errors } from '@sjsf/form';
+
+function validate(): Errors<E>
+```
