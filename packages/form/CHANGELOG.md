@@ -1,5 +1,13 @@
 # @sjsf/form
 
+## 0.2.6
+
+### Patch Changes
+
+- [`607a3c3`](https://github.com/x0k/svelte-jsonschema-form/commit/607a3c3071d5cc8060ae9eb998ab88ee14970dde) Thanks [@x0k](https://github.com/x0k)! - Fix duplication of form field id in widgets with options list
+
+- [`63293f8`](https://github.com/x0k/svelte-jsonschema-form/commit/63293f802c7e92c646addfe3dec69906f7f77217) Thanks [@x0k](https://github.com/x0k)! - Add `getSnapshot` property
+
 ## 0.2.5
 
 ### Patch Changes
