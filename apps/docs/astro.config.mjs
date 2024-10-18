@@ -30,8 +30,8 @@ export default defineConfig({
           autogenerate: { directory: "themes" },
         },
         {
-          label: "Customization",
-          autogenerate: { directory: "customization" },
+          label: "Advanced scenarios",
+          autogenerate: { directory: "advanced" },
         },
         {
           label: "API Reference",

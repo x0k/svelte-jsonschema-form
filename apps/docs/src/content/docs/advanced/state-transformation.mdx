@@ -1,0 +1,40 @@
+---
+title: State transformation
+sidebar:
+  order: 4
+---
+
+In some cases it may be necessary to transform the form state before it is passed to the validator.
+
+You can do this by providing `getSnapshot` attribute.
+
+```svelte
+<script lang="ts">
+  import { Form } from "@sjsf/form";
+  import { translation } from "@sjsf/form/translations/en";
+  import { theme } from "@sjsf/form/basic-theme";
+
+  import { schema, uiSchema, initialData } from "./schema";
+  import { validator } from "./validator";
+  import { transform } from "./transform";
+
+  let value = $state();
+</script>
+
+<Form
+  bind:value
+  {...theme}
+  {schema}
+  {uiSchema}
+  {validator}
+  {translation}
+  getSnapshot={() => transform($state.snapshot(value))}
+  onSubmit={(value) => {
+    console.log("transformed", value);
+  }}
+  onSubmitError={(errors, _, value) => {
+    console.log("errors", errors);
+    console.log("transformed", value);
+  }}
+/>
+```

@@ -1,0 +1,56 @@
+---
+title: Form base
+sidebar:
+  order: 0
+---
+
+By default `Form` will calculate default value for provided `schema` and current `value` on each `schema` change.
+
+```typescript
+$effect(() => {
+  schema;
+  value = untrack(() => getDefaultFormState(
+    validator,
+    schema,
+    value
+  ));
+});
+```
+
+While this behavior is convenient it has some drawbacks:
+
+- Empty form on initial render when `value` is `undefined`
+- Additional render after defaults calculation
+- This behavior may not be desirable in some cases
+
+To prevent this behavior, you can use `FormBase` component,
+which provides the same interface as `Form`.
+
+:::note
+
+You should calculate initial value by yourself.
+
+:::
+
+```svelte
+<script lang="ts">
+  import { FormBase, getDefaultFormState } from "@sjsf/form";
+  import { translation } from "@sjsf/form/translations/en";
+  import { theme } from "@sjsf/form/basic-theme";
+
+  import { schema, uiSchema, initialData } from "./schema";
+  import { validator } from "./validator";
+
+  let value = $state(getDefaultFormState(validator, schema, initialData));
+</script>
+
+<FormBase
+  bind:value
+  {...theme}
+  {schema}
+  {uiSchema}
+  {validator}
+  {translation}
+  onSubmit={console.log}
+/>
+```

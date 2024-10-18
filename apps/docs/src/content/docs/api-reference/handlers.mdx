@@ -4,4 +4,45 @@ sidebar:
   order: 9
 ---
 
-TODO
+```typescript
+interface FormProps<T> {
+    /**
+     * Will be called when the form is submitted if `onSubmit` or `onSubmitError` is not provided
+     */
+	  onsubmit?: EventHandler<SubmitEvent, HTMLFormElement> | undefined | null;
+
+    /**
+     * The function to get the form data snapshot
+     * 
+     * The snapshot is used to validate the form and passed to
+     * `onSubmit` and `onSubmitError` handlers. 
+     * 
+     * @default () => $state.snapshot(value)
+     */
+    getSnapshot?: () => SchemaValue | undefined
+    /**
+     * Submit handler
+     * 
+     * Will be called when the form is submitted and form data
+     * snapshot is valid
+     */
+    onSubmit?: (value: T | undefined, e: SubmitEvent) => void
+    /**
+     * Submit error handler
+     * 
+     * Will be called when the form is submitted and form data
+     * snapshot is not valid
+     */
+    onSubmitError?: (errors: Errors<E>, e: SubmitEvent, snapshot: SchemaValue | undefined) => void
+    /**
+     * Reset handler
+     * 
+     * Will be called on form reset.
+     * 
+     * By default it will clear the errors and set `isSubmitted` state to `false`.
+     * 
+     * @default  () => { isSubmitted = false; errors.clear() }
+     */
+    onReset?: (e: Event) => void
+}
+```
