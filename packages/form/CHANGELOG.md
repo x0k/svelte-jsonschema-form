@@ -1,5 +1,11 @@
 # @sjsf/form
 
+## 0.2.7
+
+### Patch Changes
+
+- [`080092c`](https://github.com/x0k/svelte-jsonschema-form/commit/080092c53755428e8e9a210ed8e125423c73f7df) Thanks [@x0k](https://github.com/x0k)! - Add `omitExtraData` feature
+
 ## 0.2.6
 
 ### Patch Changes
