@@ -5,11 +5,11 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug Playground App Test File",
+      "name": "Debug Form Test File",
       "autoAttachChildProcesses": true,
       "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
-      "program": "${workspaceRoot}/apps/playground/node_modules/vitest/vitest.mjs",
-      "args": ["run", "${relativeFile}", "-r", "${workspaceRoot}/apps/playground/"],
+      "program": "${workspaceRoot}/packages/form/node_modules/vitest/vitest.mjs",
+      "args": ["run", "${relativeFile}", "-r", "${workspaceRoot}/packages/form/"],
       "smartStep": true,
       "console": "integratedTerminal"
     }

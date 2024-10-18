@@ -6,7 +6,7 @@ d:
   pnpm run dev
 
 t:
-  pnpm run test
+  pnpm run test $@
 
 b:
   pnpm run build

@@ -31,6 +31,7 @@
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "dependencies": {
+    "es-toolkit": "^1.25.2",
     "fast-equals": "^5.0.1",
     "json-schema-merge-allof": "^0.8.1",
     "jsonpointer": "^5.0.1"
@@ -81,6 +82,10 @@
     "./focus-on-first-error": {
       "types": "./dist/focus-on-first-error.d.ts",
       "svelte": "./dist/focus-on-first-error.js"
+    },
+    "./legacy-omit-extra-data": {
+      "types": "./dist/legacy-omit-extra-data.d.ts",
+      "default": "./dist/legacy-omit-extra-data.js"
     }
   }
 }
