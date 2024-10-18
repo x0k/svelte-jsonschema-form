@@ -1,5 +1,20 @@
 # docs
 
+## 0.0.14
+
+### Patch Changes
+
+- [`e71c9d4`](https://github.com/x0k/svelte-jsonschema-form/commit/e71c9d4d43f6e0c1fafee59939fbb4db72db39e7) Thanks [@x0k](https://github.com/x0k)! - Add `omitExtraData` docs
+
+- Updated dependencies [[`080092c`](https://github.com/x0k/svelte-jsonschema-form/commit/080092c53755428e8e9a210ed8e125423c73f7df)]:
+  - @sjsf/form@0.2.7
+  - @sjsf/ajv8-validator@0.2.7
+  - @sjsf/daisyui-theme@0.2.7
+  - @sjsf/flowbite-icons@0.2.7
+  - @sjsf/flowbite-theme@0.2.7
+  - @sjsf/lucide-icons@0.2.7
+  - @sjsf/skeleton-theme@0.2.7
+
 ## 0.0.13
 
 ### Patch Changes
