@@ -1,5 +1,13 @@
 # @sjsf/form
 
+## 1.0.0
+
+### Major Changes
+
+- [`49e353f`](https://github.com/x0k/svelte-jsonschema-form/commit/49e353fe6b7578d078155a22e82651f4e9a08fea) Thanks [@x0k](https://github.com/x0k)! - Refactor context API
+
+- [`8d51c45`](https://github.com/x0k/svelte-jsonschema-form/commit/8d51c458acbb3b5299adb2467e47bff78524e895) Thanks [@x0k](https://github.com/x0k)! - Bump deps (Svelte 5)
+
 ## 0.2.7
 
 ### Patch Changes
