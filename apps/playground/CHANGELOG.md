@@ -1,5 +1,22 @@
 # playground
 
+## 1.0.0
+
+### Major Changes
+
+- [`8d51c45`](https://github.com/x0k/svelte-jsonschema-form/commit/8d51c458acbb3b5299adb2467e47bff78524e895) Thanks [@x0k](https://github.com/x0k)! - Bump deps (Svelte 5)
+
+### Patch Changes
+
+- Updated dependencies [[`49e353f`](https://github.com/x0k/svelte-jsonschema-form/commit/49e353fe6b7578d078155a22e82651f4e9a08fea), [`8d51c45`](https://github.com/x0k/svelte-jsonschema-form/commit/8d51c458acbb3b5299adb2467e47bff78524e895)]:
+  - @sjsf/form@1.0.0
+  - @sjsf/flowbite-icons@1.0.0
+  - @sjsf/flowbite-theme@1.0.0
+  - @sjsf/skeleton-theme@1.0.0
+  - @sjsf/daisyui-theme@1.0.0
+  - @sjsf/lucide-icons@1.0.0
+  - @sjsf/ajv8-validator@1.0.0
+
 ## 0.0.14
 
 ### Patch Changes
