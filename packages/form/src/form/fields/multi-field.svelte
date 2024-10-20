@@ -5,13 +5,11 @@
   import { getDiscriminatorFieldFromSchema, mergeSchemas, type EnumOption } from '@/core/index.js';
   import type { UiSchema } from '../ui-schema.js';
 
-  import { getFormContext } from "../context.js";
+  import { selectAttributes, getClosestMatchingOption, getDefaultFormState, getErrors, getUiOptions, retrieveSchema, sanitizeDataForNewSchema, getFormContext } from "../context/index.js";
   import { getTemplate } from '../templates/index.js';
   import { getWidget } from '../widgets.js';
-  import { getClosestMatchingOption, getDefaultFormState, getErrors, getUiOptions, retrieveSchema, sanitizeDataForNewSchema } from "../utils.js";
 
   import { getField, type FieldProps } from "./model.js";
-  import { selectAttributes } from "./make-widget-attributes.js";
 
   let {
     value = $bindable(),

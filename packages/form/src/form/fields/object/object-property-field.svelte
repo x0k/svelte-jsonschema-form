@@ -1,8 +1,7 @@
 <script lang="ts">
-  import { getFormContext } from '../../context.js';
+  import { getErrors, getFormContext } from '../../context/index.js';
   import { getTemplate } from '../../templates/index.js';
   import { getComponent } from '../../component.js';
-  import { getErrors } from '../../utils.js';
   import { isDisabled } from '../../is-disabled.js'
 
   import { getField, type FieldProps } from '../model.js';

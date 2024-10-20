@@ -1,4 +1,3 @@
-import type { FormContext } from "../context.js";
 import {
   AFTER_SUBMITTED,
   AFTER_CHANGED,
@@ -7,6 +6,8 @@ import {
   ON_CHANGE,
   ON_BLUR,
 } from "../validation.js";
+
+import type { FormContext } from './context.js';
 
 export function makeEventHandlers(ctx: FormContext, validate: () => void) {
   let changed = $state(false);

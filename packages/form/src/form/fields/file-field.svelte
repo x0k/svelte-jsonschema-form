@@ -3,14 +3,17 @@
   import { asyncProxy } from "@/lib/svelte.svelte";
   import type { SchemaArrayValue, SchemaValue } from "@/core/index.js";
 
+  import {
+    inputAttributes,
+    makeEventHandlers,
+    getErrors,
+    validateField,
+    getFormContext,
+  } from "../context/index.js";
   import { getWidget } from "../widgets.js";
-  import { getFormContext } from "../context.js";
   import { getTemplate } from "../templates/index.js";
-  import { getErrors, validateField } from '../utils.js';
 
   import type { FieldProps } from "./model.js";
-  import { inputAttributes } from "./make-widget-attributes.js";
-  import { makeEventHandlers } from './make-event-handlers.svelte.js';
 
   let {
     config,
@@ -60,7 +63,7 @@
   const files = asyncProxy(
     async (isRegOnly, signal) => {
       if (!value || isRegOnly) {
-        return
+        return;
       }
       const data = new DataTransfer();
       await (multiple ? addFiles : addFile)(signal, data, value);

@@ -3,10 +3,9 @@
   import type { UiSchema } from "./ui-schema.js";
   import { FAKE_ID_SCHEMA } from "./id-schema.js";
   import { isDisabled } from "./is-disabled.js";
-  import { getFormContext } from "./context.js";
+  import { getUiOptions, getFormContext } from "./context/index.js";
   import { getComponent } from "./component.js";
   import { NO_ERRORS } from "./errors.js";
-  import { getUiOptions } from "./utils.js";
 
   const ctx = getFormContext();
 

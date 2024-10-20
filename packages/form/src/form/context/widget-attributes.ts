@@ -8,7 +8,8 @@ import type { Nullable } from "@/lib/types.js";
 
 import type { Config } from "../config.js";
 import { computeId } from "../id-schema.js";
-import type { FormContext } from "../context.js";
+
+import type { FormContext } from './context.js';
 
 interface Disabled {
   disabled: boolean;

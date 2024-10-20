@@ -1,16 +1,19 @@
 <script lang="ts">
   import { type Schema } from "@/core/index.js";
 
-  import { getFormContext } from "../context.js";
+  import {
+    inputAttributes,
+    makeEventHandlers,
+    getErrors,
+    validateField,
+    getFormContext,
+  } from "../context/index.js";
   import { getTemplate } from "../templates/index.js";
   import { getWidget } from "../widgets.js";
-  import { getErrors, validateField } from "../utils.js";
   import { createOptions } from "../enum.js";
   import { computeId } from "../id-schema.js";
 
   import type { FieldProps } from "./model.js";
-  import { inputAttributes } from "./make-widget-attributes.js";
-  import { makeEventHandlers } from "./make-event-handlers.svelte.js";
 
   const ctx = getFormContext();
 

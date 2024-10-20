@@ -79,10 +79,9 @@
 
   import type { Config } from './config.js';
   import { NO_ERRORS } from './errors.js';
-  import { setFromContext, type FormContext } from './context.js';
+  import { setFromContext, type FormContext, getUiOptions, retrieveSchema, toIdSchema } from './context/index.js';
   import { fields as defaultFields, getField } from './fields/index.js';
   import { templates as defaultTemplates } from './templates/index.js';
-  import { getUiOptions, retrieveSchema, toIdSchema } from './utils.js';
   import { DEFAULT_ID_PREFIX, DEFAULT_ID_SEPARATOR } from './id-schema.js';
   import { getComponent } from './component.js'
   import SubmitButton from './submit-button.svelte';

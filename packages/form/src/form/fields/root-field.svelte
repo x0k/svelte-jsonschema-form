@@ -9,8 +9,7 @@
 
   import { FAKE_ID_SCHEMA } from '../id-schema.js';
   import { getComponent } from "../component.js";
-  import { getFormContext } from "../context.js";
-  import { getErrors, isSelect, toIdSchema } from "../utils.js";
+  import { getErrors, isSelect, toIdSchema, getFormContext } from "../context/index.js";
 
   import { getField, type FieldProps } from "./model.js";
 

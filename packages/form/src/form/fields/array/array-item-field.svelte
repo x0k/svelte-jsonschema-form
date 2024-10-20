@@ -1,14 +1,12 @@
 <script lang="ts">
-  import { getFormContext } from "../../context.js";
+  import { getErrors, getUiOptions, getFormContext } from "../../context/index.js";
   import { getComponent } from '../../component.js';
   import { getTemplate } from '../../templates/index.js';
-  import { getErrors, getUiOptions } from "../../utils.js";
 
   import { getField, type FieldProps } from '../model.js';
   import { isDisabled } from '../../is-disabled.js'
 
   import { getArrayContext } from './context.js';
-  import { makeHandler } from './make-click-handler.js';
 
   let {
     index,
@@ -43,11 +41,12 @@
       {config}
       type="array-item-move-up"
       disabled={disabled || !canMoveUp}
-      onclick={makeHandler(() => {
+      onclick={(e) => {
+        e.preventDefault()
         const tmp = arr[index]
         arr[index] = arr[index - 1]
         arr[index - 1] = tmp
-      })}
+      }}
     >
       {@render ctx.iconOrTranslation(["move-array-item-up"])}
     </Button>
@@ -56,11 +55,12 @@
       {config}
       type="array-item-move-down"
       disabled={disabled || !canMoveDown}
-      onclick={makeHandler(() => {
+      onclick={(e) => {
+        e.preventDefault()
         const tmp = arr[index]
         arr[index] = arr[index + 1]
         arr[index + 1] = tmp
-      })}
+      }}
     >
       {@render ctx.iconOrTranslation(["move-array-item-down"])}
     </Button>
@@ -71,9 +71,10 @@
       {config}
       {disabled}
       type="array-item-copy"
-      onclick={makeHandler(() => {
+      onclick={(e) => {
+        e.preventDefault()
         arr.splice(index, 0, $state.snapshot(value))
-      })}
+      }}
     >
       {@render ctx.iconOrTranslation(["copy-array-item"])}
     </Button>
@@ -84,9 +85,10 @@
       {config}
       type="array-item-remove"
       {disabled}
-      onclick={makeHandler(() => {
+      onclick={(e) => {
+        e.preventDefault()
         arr.splice(index, 1)
-      })}
+      }}
     >
       {@render ctx.iconOrTranslation(["remove-array-item"])}
     </Button>

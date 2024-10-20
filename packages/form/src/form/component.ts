@@ -6,7 +6,7 @@ import type {
 } from "svelte/elements";
 
 import type { Config } from "./config.js";
-import type { FormContext } from "./context.js";
+import type { FormContext } from "./context/index.js";
 import { createMessage } from "./error-message.svelte";
 import type { ValidationError } from "./validator.js";
 

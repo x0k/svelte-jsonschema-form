@@ -1,17 +1,14 @@
 <script lang="ts">
   import { isSchemaNullable, isSchemaObjectValue, type Schema } from '@/core/index.js';
   
-  import { getFormContext } from '../../context.js';
+  import { getDefaultFormState, getUiOptions, retrieveSchema, getFormContext } from '../../context/index.js';
   import { getComponent } from '../../component.js';
   import { getTemplate } from '../../templates/index.js';
-  import { getDefaultFormState, getUiOptions, retrieveSchema } from '../../utils.js';
   
   import { getField, type FieldProps } from '../model.js';
   
-  import { getArrayContext } from './context.js';
-  import { makeHandler } from './make-click-handler.js';
+  import { getArrayItemSchemaId, getArrayContext } from './context.js';
   import { getArrayItemName, getFixedArrayItemTitle } from './get-array-item-name.js'
-  import { getArrayItemSchemaId } from './get-array-item-schema-id.js'
 
   let { value = $bindable(), config }: FieldProps<"fixedArray"> = $props()
 
@@ -55,12 +52,13 @@
     type="array-item-add"
     attributes={config.uiOptions?.button}
     disabled={arrayCtx.disabled}
-    onclick={makeHandler(() => {
+    onclick={(e) => {
+      e.preventDefault();
       if (!schemaAdditionalItems || value === undefined) {
         return
       }
       value.push(getDefaultFormState(ctx, schemaAdditionalItems, undefined))
-    })}
+    }}
   >
     {@render ctx.iconOrTranslation(["add-array-item"])}
   </Button>

@@ -1,6 +1,15 @@
 import { getContext, setContext } from "svelte";
 
-import type { ValidationError } from '../../validator.js';
+import {
+  isFilesArray as isFilesArrayInternal,
+  type SchemaArrayValue,
+  type Schema,
+  type SchemaValue,
+} from "@/core/index.js";
+
+import type { ValidationError } from "../../validator.js";
+import type { FormContext } from "../../context/index.js";
+import { type IdSchema, toIdSchema } from "../../id-schema.js";
 
 export interface ArrayContext {
   disabled: boolean;
@@ -20,4 +29,28 @@ export function getArrayContext(): ArrayContext {
 
 export function setArrayContext(ctx: ArrayContext) {
   setContext(ARRAY_CONTEXT, ctx);
+}
+
+export function getArrayItemSchemaId(
+  ctx: FormContext,
+  arrayIdSchema: IdSchema<SchemaArrayValue>,
+  itemSchema: Schema,
+  index: number,
+  value: SchemaValue | undefined
+) {
+  const id = `${arrayIdSchema.$id}${ctx.idSeparator}${index}`;
+  return toIdSchema(
+    ctx.validator,
+    itemSchema,
+    ctx.idPrefix,
+    ctx.idSeparator,
+    [],
+    id,
+    ctx.schema,
+    value
+  );
+}
+
+export function isFilesArray(ctx: FormContext, schema: Schema) {
+  return isFilesArrayInternal(ctx.validator, schema, ctx.schema);
 }

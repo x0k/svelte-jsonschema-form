@@ -1,13 +1,16 @@
 <script lang="ts">
   import { createOptions } from "../enum.js";
-  import { getFormContext } from "../context.js";
+  import {
+    selectAttributes,
+    makeEventHandlers,
+    getErrors,
+    validateField,
+    getFormContext,
+  } from "../context/index.js";
   import { getTemplate } from "../templates/index.js";
   import { getWidget } from "../widgets.js";
-  import { getErrors, validateField } from "../utils.js";
 
   import type { FieldProps } from "./model.js";
-  import { selectAttributes } from "./make-widget-attributes.js";
-  import { makeEventHandlers } from "./make-event-handlers.svelte.js";
 
   let {
     config,

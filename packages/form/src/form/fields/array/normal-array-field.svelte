@@ -5,21 +5,19 @@
     type Schema,
   } from "@/core/index.js";
   
-  import { getFormContext } from "../../context.js";
-  import { getComponent } from '../../component.js';
-  import { getTemplate } from '../../templates/index.js';
   import {
     getDefaultFormState,
     getUiOptions,
     retrieveSchema,
-  } from "../../utils.js";
+    getFormContext,
+  } from "../../context/index.js";
+  import { getComponent } from '../../component.js';
+  import { getTemplate } from '../../templates/index.js';
   
   import { getField, type FieldProps } from '../model.js';
 
-  import { getArrayContext } from './context.js';
-  import { makeHandler } from './make-click-handler.js';
+  import { getArrayItemSchemaId, getArrayContext } from './context.js';
   import { getArrayItemName, getNormalArrayItemTitle } from './get-array-item-name.js'
-  import { getArrayItemSchemaId } from './get-array-item-schema-id.js'
 
   let { value = $bindable(), config }: FieldProps<"normalArray"> = $props()
 
@@ -48,9 +46,10 @@
     attributes={config.uiOptions?.button}
     type="array-item-add"
     disabled={arrayCtx.disabled}
-    onclick={makeHandler(() => {
+    onclick={(e) => {
+      e.preventDefault();
       value?.push(getDefaultFormState(ctx, schemaItems, undefined))
-    })}
+    }}
   >
     {@render ctx.iconOrTranslation(["add-array-item"])}
   </Button>

@@ -9,7 +9,7 @@ import type {
 } from "@/core/index.js";
 
 import type { Config } from "../config.js";
-import type { FormContext } from "../context.js";
+import type { FormContext } from "../context/index.js";
 import { createMessage } from "../error-message.svelte";
 
 export interface FieldCommonProps<V extends SchemaValue> {

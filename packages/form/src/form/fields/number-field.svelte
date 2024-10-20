@@ -1,13 +1,16 @@
 <script lang="ts">
-  import { getFormContext } from "../context.js";
+  import {
+    inputAttributes,
+    makeEventHandlers,
+    getErrors,
+    validateField,
+    getFormContext,
+  } from "../context/index.js";
   import { getTemplate } from "../templates/index.js";
   import { getWidget } from "../widgets.js";
-  import { getErrors, validateField } from '../utils.js';
 
   import type { FieldProps } from "./model.js";
-  import { inputAttributes } from "./make-widget-attributes.js";
-  import Datalist, { makeExamples } from './datalist.svelte';
-  import { makeEventHandlers } from './make-event-handlers.svelte.js';
+  import Datalist, { makeExamples } from "./datalist.svelte";
 
   const ctx = getFormContext();
 
@@ -15,7 +18,7 @@
 
   const Template = $derived(getTemplate(ctx, "field", config));
   const Widget = $derived(getWidget(ctx, "number", config));
-  
+
   const handlers = makeEventHandlers(ctx, () =>
     validateField(ctx, config, value)
   );

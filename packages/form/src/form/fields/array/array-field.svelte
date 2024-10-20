@@ -1,15 +1,13 @@
 <script lang="ts">
   import { isFixedItems } from "@/core/index.js";
 
-  import { getFormContext } from "../../context.js";
-  import { getErrors, getUiOptions, isMultiSelect } from "../../utils.js";
+  import { getErrors, getUiOptions, isMultiSelect, getFormContext } from "../../context/index.js";
   import { isDisabled } from "../../is-disabled.js";
   import ErrorMessage from "../../error-message.svelte";
 
   import { getField, type FieldProps } from "../model.js";
 
-  import { setArrayContext, type ArrayContext } from "./context.js";
-  import { isFilesArray } from "./is-files-array.js";
+  import { setArrayContext, type ArrayContext, isFilesArray } from "./context.js";
 
   let { value = $bindable(), config }: FieldProps<"array"> = $props();
 
