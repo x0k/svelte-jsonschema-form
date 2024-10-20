@@ -15,7 +15,7 @@
     getComponent,
     isDisabled,
     getField,
-    getDefaultFormState,
+    getDefaultFieldState,
     getErrors,
     getUiOptions,
     retrieveSchema,
@@ -86,7 +86,7 @@
         return
       }
       const newKey = generateNewKey("newKey", newKeySeparator, value)
-      value[newKey] = getDefaultFormState(ctx, schemaAdditionalProperties, undefined)
+      value[newKey] = getDefaultFieldState(ctx, schemaAdditionalProperties, undefined)
         ?? getDefaultValueForType(getSimpleSchemaType(schemaAdditionalProperties))
     }}
   >

@@ -15,7 +15,7 @@
     getField,
     selectAttributes,
     getClosestMatchingOption,
-    getDefaultFormState,
+    getDefaultFieldState,
     getErrors,
     getUiOptions,
     retrieveSchema,
@@ -68,7 +68,7 @@
       return
     }
     const oldSchema = oldSelected < 0 ? undefined : retrievedOptions[oldSelected];
-    value = getDefaultFormState(ctx, newSchema, oldSchema !== undefined ? sanitizeDataForNewSchema(ctx, newSchema, oldSchema, value) : value)
+    value = getDefaultFieldState(ctx, newSchema, oldSchema !== undefined ? sanitizeDataForNewSchema(ctx, newSchema, oldSchema, value) : value)
   });
 
   const optionSchema = $derived.by(() => {

@@ -8,7 +8,7 @@ import {
   getClosestMatchingOption as getClosestMatchingOptionInternal,
 } from "@/core/index.js";
 
-import { getDefaultFormState as getDefaultFormStateInternal } from "../get-default-form-state.js";
+import { getDefaultFormState } from "../get-default-form-state.js";
 
 import type { FormContext } from "./context.js";
 
@@ -60,12 +60,12 @@ export function getClosestMatchingOption(
   );
 }
 
-export function getDefaultFormState(
+export function getDefaultFieldState(
   ctx: FormContext,
   schema: Schema,
   formData: SchemaValue | undefined
 ) {
-  return getDefaultFormStateInternal(
+  return getDefaultFormState(
     ctx.validator,
     schema,
     formData,

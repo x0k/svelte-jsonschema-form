@@ -5,7 +5,7 @@
     getComponent,
     getTemplate,
     getField,
-    getDefaultFormState,
+    getDefaultFieldState,
     getUiOptions,
     retrieveSchema,
     getFormContext
@@ -63,7 +63,7 @@
       if (!schemaAdditionalItems || value === undefined) {
         return
       }
-      value.push(getDefaultFormState(ctx, schemaAdditionalItems, undefined))
+      value.push(getDefaultFieldState(ctx, schemaAdditionalItems, undefined))
     }}
   >
     {@render ctx.iconOrTranslation(["add-array-item"])}

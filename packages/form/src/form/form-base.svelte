@@ -86,7 +86,7 @@
     type FormContext,
     getUiOptions,
     retrieveSchema,
-    toIdSchema,
+    makeIdSchema,
   } from './context/index.js';
   import { fields as defaultFields } from './fields/index.js';
   import { templates as defaultTemplates } from './templates/index.js';
@@ -203,7 +203,7 @@
   setFromContext(ctx)
 
   const retrievedSchema = $derived(retrieveSchema(ctx, schema, value as Value))
-  const idSchema = $derived(toIdSchema(
+  const idSchema = $derived(makeIdSchema(
     ctx,
     retrievedSchema,
     uiSchema['ui:rootFieldId'],

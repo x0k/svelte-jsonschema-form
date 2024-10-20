@@ -13,7 +13,7 @@
     getField,
     getErrors,
     isSelect,
-    toIdSchema,
+    makeIdSchema,
     getFormContext,
   } from "../context/index.js";
 
@@ -49,7 +49,7 @@
   const MultiField = $derived(getField(ctx, "multi", config));
   const fieldIdSchema = $derived.by(() => {
     const isFake = config.idSchema === FAKE_ID_SCHEMA;
-    const nextIdSchema = toIdSchema(
+    const nextIdSchema = makeIdSchema(
       ctx,
       config.schema,
       isFake ? undefined : config.idSchema[ID_KEY],

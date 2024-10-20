@@ -8,8 +8,8 @@ import {
 } from "@/core/index.js";
 
 import type { ValidationError } from "../../validator.js";
-import type { FormContext } from "../../context/index.js";
-import { type IdSchema, toIdSchema } from "../../id-schema.js";
+import { type FormContext, makeIdSchema } from "../../context/index.js";
+import { type IdSchema } from "../../id-schema.js";
 
 export interface ArrayContext {
   disabled: boolean;
@@ -39,16 +39,7 @@ export function getArrayItemSchemaId(
   value: SchemaValue | undefined
 ) {
   const id = `${arrayIdSchema.$id}${ctx.idSeparator}${index}`;
-  return toIdSchema(
-    ctx.validator,
-    itemSchema,
-    ctx.idPrefix,
-    ctx.idSeparator,
-    [],
-    id,
-    ctx.schema,
-    value
-  );
+  return makeIdSchema(ctx, itemSchema, id, value);
 }
 
 export function isFilesArray(ctx: FormContext, schema: Schema) {

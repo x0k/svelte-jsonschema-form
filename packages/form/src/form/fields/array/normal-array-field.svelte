@@ -9,7 +9,7 @@
     getField,
     getComponent,
     getTemplate,
-    getDefaultFormState,
+    getDefaultFieldState,
     getUiOptions,
     retrieveSchema,
     getFormContext,
@@ -49,7 +49,7 @@
     disabled={arrayCtx.disabled}
     onclick={(e) => {
       e.preventDefault();
-      value?.push(getDefaultFormState(ctx, schemaItems, undefined))
+      value?.push(getDefaultFieldState(ctx, schemaItems, undefined))
     }}
   >
     {@render ctx.iconOrTranslation(["add-array-item"])}

@@ -13,10 +13,7 @@ import type { Templates } from "../templates/index.js";
 import type { Errors } from "../errors.js";
 import type { FormValidator } from "../validator.js";
 import type { Icons } from "../icons.js";
-import {
-  type IdSchema,
-  toIdSchema as toIdSchemaInternal,
-} from "../id-schema.js";
+import { type IdSchema, toIdSchema } from "../id-schema.js";
 
 export interface FormContext {
   isSubmitted: boolean;
@@ -60,13 +57,13 @@ export function getUiOptions(ctx: FormContext, uiSchema: UiSchema) {
     : uiOptions;
 }
 
-export function toIdSchema(
+export function makeIdSchema(
   ctx: FormContext,
   schema: Schema,
   id?: string,
   formData?: SchemaValue
 ): IdSchema<SchemaValue> {
-  return toIdSchemaInternal(
+  return toIdSchema(
     ctx.validator,
     schema,
     ctx.idPrefix,

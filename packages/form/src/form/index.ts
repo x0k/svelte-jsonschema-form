@@ -15,8 +15,7 @@ export * from "./id-schema.js";
 export * from "./icons.js";
 export * from "./get-default-form-state.js";
 
-export { getFormContext, setFromContext } from "./context/index.js";
-export type { FormContext } from "./context/index.js";
+export * from "./context/index.js";
 export {
   default as FormBase,
   type Props as FormProps,
