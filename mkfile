@@ -43,6 +43,8 @@ pl/:
     pnpm run dev
   b:
     pnpm run build
+  p:
+    pnpm run preview
   popd
 
 daisy/:

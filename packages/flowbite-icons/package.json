@@ -49,8 +49,8 @@
 	},
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^0.2.7",
-		"flowbite-svelte-icons": "2.0.0-next.17",
-		"svelte": "^5.0.0-next.1"
+		"flowbite-svelte-icons": "^2.0.0-next.17",
+		"svelte": "^5.0.0"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",
@@ -58,19 +58,19 @@
 		"@sveltejs/adapter-static": "^3.0.5",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/package": "^2.0.0",
-		"@sveltejs/vite-plugin-svelte": "^4.0.0-next.6",
+		"@sveltejs/vite-plugin-svelte": "^4.0.0",
 		"@types/eslint": "^9.6.0",
 		"autoprefixer": "^10.4.20",
 		"eslint": "^9.0.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.36.0",
-		"flowbite-svelte-icons": "2.0.0-next.17",
+		"flowbite-svelte-icons": "^2.0.0-next.17",
 		"globals": "^15.0.0",
 		"postcss": "^8.4.47",
 		"prettier": "^3.1.1",
 		"prettier-plugin-svelte": "^3.1.2",
 		"publint": "^0.2.0",
-		"svelte": "^5.0.0-next.1",
+		"svelte": "^5.0.0",
 		"svelte-check": "^4.0.0",
 		"tailwindcss": "^3.4.13",
 		"typescript": "^5.0.0",
