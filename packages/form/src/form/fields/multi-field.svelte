@@ -1,15 +1,29 @@
 <script lang="ts">
   import { proxy } from "@/lib/svelte.svelte";
+  import {
+    getDiscriminatorFieldFromSchema,
+    mergeSchemas,
+    type EnumOption,
+  } from '@/core/index.js';
+
   import { computeId } from '../id-schema.js';
   import type { Config } from '../config.js';
-  import { getDiscriminatorFieldFromSchema, mergeSchemas, type EnumOption } from '@/core/index.js';
   import type { UiSchema } from '../ui-schema.js';
+  import {
+    getTemplate,
+    getWidget,
+    getField,
+    selectAttributes,
+    getClosestMatchingOption,
+    getDefaultFormState,
+    getErrors,
+    getUiOptions,
+    retrieveSchema,
+    sanitizeDataForNewSchema,
+    getFormContext
+  } from "../context/index.js";
 
-  import { selectAttributes, getClosestMatchingOption, getDefaultFormState, getErrors, getUiOptions, retrieveSchema, sanitizeDataForNewSchema, getFormContext } from "../context/index.js";
-  import { getTemplate } from '../templates/index.js';
-  import { getWidget } from '../widgets.js';
-
-  import { getField, type FieldProps } from "./model.js";
+  import type { FieldProps } from "./model.js";
 
   let {
     value = $bindable(),

@@ -4,14 +4,14 @@
   import type { SchemaArrayValue, SchemaValue } from "@/core/index.js";
 
   import {
+    getWidget,
+    getTemplate,
     inputAttributes,
     makeEventHandlers,
     getErrors,
     validateField,
     getFormContext,
   } from "../context/index.js";
-  import { getWidget } from "../widgets.js";
-  import { getTemplate } from "../templates/index.js";
 
   import type { FieldProps } from "./model.js";
 

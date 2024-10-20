@@ -1,10 +1,15 @@
 <script lang="ts">
-  import { getErrors, getUiOptions, getFormContext } from "../../context/index.js";
-  import { getComponent } from '../../component.js';
-  import { getTemplate } from '../../templates/index.js';
+  import {
+    getComponent,
+    getTemplate,
+    getField,
+    isDisabled,
+    getErrors,
+    getUiOptions,
+    getFormContext
+  } from "../../context/index.js";
 
-  import { getField, type FieldProps } from '../model.js';
-  import { isDisabled } from '../../is-disabled.js'
+  import type { FieldProps } from '../model.js';
 
   import { getArrayContext } from './context.js';
 

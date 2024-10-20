@@ -1,11 +1,17 @@
 <script lang="ts">
   import { isSchemaNullable, isSchemaObjectValue, type Schema } from '@/core/index.js';
   
-  import { getDefaultFormState, getUiOptions, retrieveSchema, getFormContext } from '../../context/index.js';
-  import { getComponent } from '../../component.js';
-  import { getTemplate } from '../../templates/index.js';
+  import {
+    getComponent,
+    getTemplate,
+    getField,
+    getDefaultFormState,
+    getUiOptions,
+    retrieveSchema,
+    getFormContext
+  } from '../../context/index.js';
   
-  import { getField, type FieldProps } from '../model.js';
+  import type { FieldProps } from '../model.js';
   
   import { getArrayItemSchemaId, getArrayContext } from './context.js';
   import { getArrayItemName, getFixedArrayItemTitle } from './get-array-item-name.js'

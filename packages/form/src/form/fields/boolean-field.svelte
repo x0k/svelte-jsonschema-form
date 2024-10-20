@@ -2,14 +2,14 @@
   import { type Schema } from "@/core/index.js";
 
   import {
+    getTemplate,
+    getWidget,
     inputAttributes,
     makeEventHandlers,
     getErrors,
     validateField,
     getFormContext,
   } from "../context/index.js";
-  import { getTemplate } from "../templates/index.js";
-  import { getWidget } from "../widgets.js";
   import { createOptions } from "../enum.js";
   import { computeId } from "../id-schema.js";
 

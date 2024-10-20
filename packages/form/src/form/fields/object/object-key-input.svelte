@@ -5,10 +5,14 @@
   import type { Config } from "../../config.js";
   import type { UiSchema } from "../../ui-schema.js";
   import { type IdSchema, computeId } from "../../id-schema.js";
-  import { inputAttributes, getErrors, getUiOptions, getFormContext } from "../../context/index.js";
-  import { getWidget } from "../../widgets.js";
-  import { getTemplate } from "../../templates/index.js";
-
+  import {
+    getWidget,
+    getTemplate,
+    inputAttributes,
+    getErrors,
+    getUiOptions,
+    getFormContext,
+  } from "../../context/index.js";
 
   import { getObjectContext } from "./context.js";
   import { generateNewKey } from "./generate-new-object-key.js";

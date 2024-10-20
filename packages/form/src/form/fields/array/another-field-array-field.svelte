@@ -1,9 +1,9 @@
 <script lang="ts">
   import { isSchemaObjectValue, type Schema } from "@/core/index.js";
 
-  import { getFormContext } from "../../context/index.js";
+  import { getFormContext, getField } from "../../context/index.js";
 
-  import { getField, type FieldProps } from "../model.js";
+  import type { FieldProps } from "../model.js";
 
   let {
     field,

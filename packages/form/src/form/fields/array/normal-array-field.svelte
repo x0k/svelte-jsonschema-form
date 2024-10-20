@@ -6,15 +6,16 @@
   } from "@/core/index.js";
   
   import {
+    getField,
+    getComponent,
+    getTemplate,
     getDefaultFormState,
     getUiOptions,
     retrieveSchema,
     getFormContext,
   } from "../../context/index.js";
-  import { getComponent } from '../../component.js';
-  import { getTemplate } from '../../templates/index.js';
   
-  import { getField, type FieldProps } from '../model.js';
+  import type { FieldProps } from '../model.js';
 
   import { getArrayItemSchemaId, getArrayContext } from './context.js';
   import { getArrayItemName, getNormalArrayItemTitle } from './get-array-item-name.js'

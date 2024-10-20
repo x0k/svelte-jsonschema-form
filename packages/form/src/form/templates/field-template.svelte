@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { getComponent } from '../component.js';
-  import { getFormContext } from '../context/index.js';
+  import { getComponent, getFormContext } from '../context/index.js';
 
   import type { TemplateProps } from './model.js';
   import { getTemplateProps } from './get-template-props.js';

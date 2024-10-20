@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { getFormContext } from '../context/index.js';
-  import { getTemplate } from '../templates/index.js';
+  import { getTemplate, getFormContext } from '../context/index.js';
   import { NO_ERRORS } from '../errors.js';
 
   import type { FieldProps } from "./model.js";
@@ -19,5 +18,5 @@
 </script>
 
 <Template errors={NO_ERRORS} showTitle value={value} {config}>
-  {#snippet children()}{/snippet}
+  {null}
 </Template>

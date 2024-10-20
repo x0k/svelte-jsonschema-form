@@ -1,13 +1,23 @@
 <script lang="ts">
   import { isFixedItems } from "@/core/index.js";
 
-  import { getErrors, getUiOptions, isMultiSelect, getFormContext } from "../../context/index.js";
-  import { isDisabled } from "../../is-disabled.js";
+  import {
+    isDisabled,
+    getField,
+    getErrors,
+    getUiOptions,
+    isMultiSelect,
+    getFormContext,
+  } from "../../context/index.js";
   import ErrorMessage from "../../error-message.svelte";
 
-  import { getField, type FieldProps } from "../model.js";
+  import type { FieldProps } from "../model.js";
 
-  import { setArrayContext, type ArrayContext, isFilesArray } from "./context.js";
+  import {
+    setArrayContext,
+    type ArrayContext,
+    isFilesArray,
+  } from "./context.js";
 
   let { value = $bindable(), config }: FieldProps<"array"> = $props();
 
@@ -27,9 +37,7 @@
       (config.schema.maxItems === undefined ||
         value.length < config.schema.maxItems)
   );
-  const disabled = $derived(
-    isDisabled(ctx, uiOptions?.input)
-  );
+  const disabled = $derived(isDisabled(ctx, uiOptions?.input));
   const errors = $derived(getErrors(ctx, config.idSchema));
 
   const arrayCtx: ArrayContext = {

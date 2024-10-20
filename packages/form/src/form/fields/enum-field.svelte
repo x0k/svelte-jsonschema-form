@@ -1,14 +1,14 @@
 <script lang="ts">
   import { createOptions } from "../enum.js";
   import {
+    getTemplate,
+    getWidget,
     selectAttributes,
     makeEventHandlers,
     getErrors,
     validateField,
     getFormContext,
   } from "../context/index.js";
-  import { getTemplate } from "../templates/index.js";
-  import { getWidget } from "../widgets.js";
 
   import type { FieldProps } from "./model.js";
 

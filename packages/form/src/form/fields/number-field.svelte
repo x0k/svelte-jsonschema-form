@@ -1,13 +1,13 @@
 <script lang="ts">
   import {
+    getTemplate,
+    getWidget,
     inputAttributes,
     makeEventHandlers,
     getErrors,
     validateField,
     getFormContext,
   } from "../context/index.js";
-  import { getTemplate } from "../templates/index.js";
-  import { getWidget } from "../widgets.js";
 
   import type { FieldProps } from "./model.js";
   import Datalist, { makeExamples } from "./datalist.svelte";

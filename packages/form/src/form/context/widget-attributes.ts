@@ -1,4 +1,5 @@
 import type {
+  HTMLButtonAttributes,
   HTMLInputAttributes,
   HTMLSelectAttributes,
   HTMLTextareaAttributes,
@@ -10,6 +11,7 @@ import type { Config } from "../config.js";
 import { computeId } from "../id-schema.js";
 
 import type { FormContext } from './context.js';
+import type { InputAttributes } from '../ui-schema.js';
 
 interface Disabled {
   disabled: boolean;
@@ -120,4 +122,11 @@ export function selectAttributes(
       uiOptions?.input as HTMLSelectAttributes | undefined
     )
   );
+}
+
+export function isDisabled(
+  ctx: FormContext,
+  attributes: InputAttributes | HTMLButtonAttributes | undefined
+) {
+  return attributes?.disabled || ctx.disabled;
 }

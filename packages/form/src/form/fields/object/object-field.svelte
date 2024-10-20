@@ -11,17 +11,18 @@
   import type { UiSchema } from '../../ui-schema.js';
   import { FAKE_ID_SCHEMA } from '../../id-schema.js';
   import {
+    getTemplate,
+    getComponent,
+    isDisabled,
+    getField,
     getDefaultFormState,
     getErrors,
     getUiOptions,
     retrieveSchema,
     getFormContext
   } from "../../context/index.js";
-  import { getTemplate } from '../../templates/index.js';
-  import { getComponent } from '../../component.js';
-  import { isDisabled } from '../../is-disabled.js';
 
-  import { getField, type FieldProps } from "../model.js";
+  import type { FieldProps } from "../model.js";
 
   import { setObjectContext, type ObjectContext } from './context.js';
   import { generateNewKey } from './generate-new-object-key.js';

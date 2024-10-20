@@ -7,11 +7,17 @@
     mergeSchemaObjects,
   } from "@/core/index.js";
 
-  import { FAKE_ID_SCHEMA } from '../id-schema.js';
-  import { getComponent } from "../component.js";
-  import { getErrors, isSelect, toIdSchema, getFormContext } from "../context/index.js";
+  import { FAKE_ID_SCHEMA } from "../id-schema.js";
+  import {
+    getComponent,
+    getField,
+    getErrors,
+    isSelect,
+    toIdSchema,
+    getFormContext,
+  } from "../context/index.js";
 
-  import { getField, type FieldProps } from "./model.js";
+  import type { FieldProps } from "./model.js";
 
   const ctx = getFormContext();
 

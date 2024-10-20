@@ -65,7 +65,7 @@
      * 
      * By default it will clear the errors and set `isSubmitted` state to `false`.
      * 
-     * @default  () => { isSubmitted = false; errors.clear() }
+     * @default () => { isSubmitted = false; errors.clear() }
      */
     onReset?: (e: Event) => void
     schedulerYield?: SchedulerYield
@@ -79,11 +79,18 @@
 
   import type { Config } from './config.js';
   import { NO_ERRORS } from './errors.js';
-  import { setFromContext, type FormContext, getUiOptions, retrieveSchema, toIdSchema } from './context/index.js';
-  import { fields as defaultFields, getField } from './fields/index.js';
+  import {
+    getComponent,
+    getField,
+    setFromContext,
+    type FormContext,
+    getUiOptions,
+    retrieveSchema,
+    toIdSchema,
+  } from './context/index.js';
+  import { fields as defaultFields } from './fields/index.js';
   import { templates as defaultTemplates } from './templates/index.js';
   import { DEFAULT_ID_PREFIX, DEFAULT_ID_SEPARATOR } from './id-schema.js';
-  import { getComponent } from './component.js'
   import SubmitButton from './submit-button.svelte';
 
   let {
