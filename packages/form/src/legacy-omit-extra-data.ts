@@ -9,7 +9,7 @@ import { retrieveSchema2 } from './core/resolve.js';
 import type { Schema, SchemaObjectValue, SchemaValue } from './core/schema.js';
 import type { Validator } from './core/validator.js';
 import { isSchemaValueEmpty } from './core/value.js';
-import { defaultMerger } from './core/default-merger.js';
+import { DefaultMerger } from './core/default-merger.js';
 import type { Merger } from './core/merger.js';
 
 /**
@@ -69,7 +69,7 @@ export function omitExtraData(
   validator: Validator,
   schema: Schema,
   formData: SchemaValue | undefined,
-  merger: Merger = defaultMerger
+  merger: Merger = new DefaultMerger(validator, schema)
 ) {
   return omitExtraData2(validator, merger, schema, formData);
 }

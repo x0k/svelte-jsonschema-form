@@ -86,6 +86,10 @@
     "./legacy-omit-extra-data": {
       "types": "./dist/legacy-omit-extra-data.d.ts",
       "default": "./dist/legacy-omit-extra-data.js"
+    },
+    "./get-default-form-state": {
+      "types": "./dist/get-default-form-state.d.ts",
+      "default": "./dist/get-default-form-state.js"
     }
   }
 }

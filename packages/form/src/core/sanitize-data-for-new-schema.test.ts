@@ -15,12 +15,15 @@ import { sanitizeDataForNewSchema2 } from "./sanitize-data-for-new-schema.js";
 import { retrieveSchema2 } from "./resolve.js";
 import type { Schema } from "./schema.js";
 import { makeTestValidator } from "./test-validator.js";
-import { defaultMerger } from "./default-merger.js";
+import { DefaultMerger } from "./default-merger.js";
+import type { Merger } from './merger.js';
 
 let testValidator: Validator;
+let defaultMerger: Merger
 
 beforeEach(() => {
   testValidator = makeTestValidator();
+  defaultMerger = new DefaultMerger(testValidator, oneOfSchema);
 });
 
 describe("sanitizeDataForNewSchema", () => {

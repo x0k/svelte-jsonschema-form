@@ -6,7 +6,7 @@ import { deepEqual } from "@/lib/deep-equal.js";
 
 import {
   ALL_OF_KEY,
-  defaultMerger,
+  DefaultMerger,
   DEPENDENCIES_KEY,
   getSimpleSchemaType,
   ID_KEY,
@@ -54,7 +54,7 @@ export function toIdSchema(
   id?: string | null,
   rootSchema?: Schema,
   formData?: SchemaValue,
-  merger: Merger = defaultMerger
+  merger: Merger = new DefaultMerger(validator, rootSchema ?? schema)
 ): IdSchema<SchemaValue> {
   return toIdSchema2(
     validator,

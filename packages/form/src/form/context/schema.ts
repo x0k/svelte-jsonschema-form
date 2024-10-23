@@ -8,8 +8,6 @@ import {
   getClosestMatchingOption2 as getClosestMatchingOptionInternal,
 } from "@/core/index.js";
 
-import { getDefaultFormState2 } from "../get-default-form-state.js";
-
 import type { FormContext } from "./context.js";
 
 export function isSelect(ctx: FormContext, schema: Schema) {
@@ -25,7 +23,13 @@ export function retrieveSchema(
   schema: Schema,
   formData: SchemaValue | undefined
 ) {
-  return retrieveSchemaInternal(ctx.validator, ctx.merger, schema, ctx.schema, formData);
+  return retrieveSchemaInternal(
+    ctx.validator,
+    ctx.merger,
+    schema,
+    ctx.schema,
+    formData
+  );
 }
 
 export function sanitizeDataForNewSchema(
@@ -67,11 +71,5 @@ export function getDefaultFieldState(
   schema: Schema,
   formData: SchemaValue | undefined
 ) {
-  return getDefaultFormState2(
-    ctx.validator,
-    ctx.merger,
-    schema,
-    formData,
-    ctx.schema
-  );
+  return ctx.merger.mergeFormDataAndSchemaDefaults(formData, schema);
 }

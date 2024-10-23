@@ -21,7 +21,7 @@ import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
 import { getClosestMatchingOption } from "./matching.js";
 import { isSchemaObjectValue } from "./value.js";
 import type { Merger } from './merger.js';
-import { defaultMerger } from './default-merger.js';
+import { DefaultMerger } from './default-merger.js';
 
 export const SJSF_ADDITIONAL_PROPERTIES_FLAG = "__sjsf_additionalProperties";
 
@@ -52,7 +52,7 @@ export function toPathSchema(
   name = "",
   rootSchema: Schema = schema,
   formData?: SchemaValue,
-  merger: Merger = defaultMerger
+  merger: Merger = new DefaultMerger(validator, rootSchema)
 ) {
   return toPathSchemaInternal(validator, merger, schema, name, rootSchema, formData);
 }

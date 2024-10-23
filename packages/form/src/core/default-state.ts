@@ -25,7 +25,7 @@ import {
 import { getSimpleSchemaType } from "./type.js";
 import { isMultiSelect2 } from "./is-select.js";
 import { getClosestMatchingOption2 } from "./matching.js";
-import { defaultMerger } from './default-merger.js';
+import { DefaultMerger } from './default-merger.js';
 import type { Merger } from './merger.js';
 
 export function getDefaultValueForType(type: SchemaType) {
@@ -59,7 +59,7 @@ export function getDefaultFormState(
   rootSchema?: Schema,
   includeUndefinedValues: boolean | "excludeObjectChildren" = false,
   experimental_defaultFormStateBehavior?: Experimental_DefaultFormStateBehavior,
-  merger: Merger = defaultMerger
+  merger: Merger = new DefaultMerger(validator, rootSchema ?? theSchema)
 ): SchemaValue | undefined {
   return getDefaultFormState2(
     validator,
@@ -100,7 +100,8 @@ export function getDefaultFormState2(
     return mergeDefaultsWithFormData(
       defaults,
       formData,
-      experimental_defaultFormStateBehavior?.arrayMinItems?.mergeExtraDefaults
+      experimental_defaultFormStateBehavior?.arrayMinItems?.mergeExtraDefaults,
+      experimental_defaultFormStateBehavior?.mergeDefaultsIntoFormData === "useDefaultIfFormDataUndefined"
     );
   }
   return formData;
@@ -159,6 +160,15 @@ type Experimental_DefaultFormStateBehavior = {
    * Optional flag to compute the default form state using allOf and if/then/else schemas. Defaults to `skipDefaults'.
    */
   allOf?: "populateDefaults" | "skipDefaults";
+  /** Optional enumerated flag controlling how the defaults are merged into the form data when dealing with undefined
+   * values, defaulting to `useFormDataIfPresent`.
+   * NOTE: If there is a default for a field and the `formData` is unspecified, the default ALWAYS merges.
+   * - `useFormDataIfPresent`: Legacy behavior - Do not merge defaults if there is a value for a field in `formData`,
+   *        even if that value is explicitly set to `undefined`
+   * - `useDefaultIfFormDataUndefined`: - If the value of a field within the `formData` is `undefined`, then use the
+   *        default value instead
+   */
+  mergeDefaultsIntoFormData?: 'useFormDataIfPresent' | 'useDefaultIfFormDataUndefined';
 };
 
 interface ComputeDefaultsProps {
@@ -178,7 +188,7 @@ export function computeDefaults<T extends SchemaValue>(
   validator: Validator,
   rawSchema: Schema,
   computeDefaultsProps?: ComputeDefaultsProps,
-  merger: Merger = defaultMerger
+  merger: Merger = new DefaultMerger(validator, rawSchema)
 ): SchemaValue | undefined {
   return computeDefaults2<T>(
     validator,

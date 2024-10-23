@@ -2,30 +2,30 @@
   import { SvelteMap } from "svelte/reactivity";
   import { untrack } from "svelte";
 
-  import { defaultMerger, type SchemaValue } from "@/core/index.js";
+  import { DefaultMerger, type SchemaValue } from "@/core/index.js";
 
   import FormBase, { type Props } from "./form-base.svelte";
-  import { getDefaultFormState2 } from "./get-default-form-state.js";
 
   let {
     value = $bindable(),
     form = $bindable(),
     isSubmitted = $bindable(false),
     errors = $bindable(new SvelteMap()),
-    merger = defaultMerger,
+    schema,
+    validator,
+    merger,
     ...rest
   }: Props<T, E> = $props();
 
+  const reactiveMerger = $derived(merger ?? new DefaultMerger(validator, schema));
+
   $effect(() => {
-    rest.schema;
-    value = untrack(
-      () =>
-        getDefaultFormState2(
-          rest.validator,
-          merger,
-          rest.schema,
-          value as SchemaValue | undefined
-        ) as T
+    schema;
+    value = untrack(() =>
+      reactiveMerger.mergeFormDataAndSchemaDefaults(
+        value as SchemaValue | undefined,
+        schema
+      ) as T
     );
   });
 
@@ -43,5 +43,7 @@
   bind:form
   bind:isSubmitted
   bind:errors
-  {merger}
+  {validator}
+  {schema}
+  merger={reactiveMerger}
 />

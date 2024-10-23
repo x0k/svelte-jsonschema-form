@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { defaultMerger } from './default-merger.js';
+import { DefaultMerger } from './default-merger.js';
 import {
   getDiscriminatorFieldFromSchema,
   getOptionMatchingSimpleDiscriminator,
@@ -130,7 +130,7 @@ export function calculateIndexScore(
   rootSchema: Schema,
   schema?: Schema,
   formData?: SchemaValue,
-  merger: Merger = defaultMerger
+  merger: Merger = new DefaultMerger(validator, rootSchema)
 ): number {
   return calculateIndexScore2(validator, merger, rootSchema, schema, formData);
 }
@@ -232,7 +232,7 @@ export function getClosestMatchingOption(
   options: Schema[],
   selectedOption = -1,
   discriminatorField?: string,
-  merger: Merger = defaultMerger
+  merger: Merger = new DefaultMerger(validator, rootSchema)
 ): number {
   return getClosestMatchingOption2(
     validator,

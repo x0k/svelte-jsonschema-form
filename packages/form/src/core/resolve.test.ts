@@ -45,12 +45,15 @@ import {
 } from "./fixtures/test-data.js";
 import type { Validator } from "./validator.js";
 import { makeTestValidator } from "./test-validator.js";
-import { defaultMerger } from "./default-merger.js";
+import { DefaultMerger } from "./default-merger.js";
+import type { Merger } from './merger.js';
 
 let testValidator: Validator;
+let defaultMerger: Merger
 
 beforeEach(() => {
   testValidator = makeTestValidator();
+  defaultMerger = new DefaultMerger(testValidator, {});
 });
 
 describe("retrieveSchema2()", () => {

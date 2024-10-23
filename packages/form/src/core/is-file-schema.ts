@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { defaultMerger } from './default-merger.js';
+import { DefaultMerger } from './default-merger.js';
 import type { Merger } from './merger.js';
 import { retrieveSchema2 } from "./resolve.js";
 import { DATA_URL_FORMAT, isNormalArrayItems, type Schema } from "./schema.js";
@@ -19,7 +19,7 @@ export function isFilesArray(
   validator: Validator,
   schema: Schema,
   rootSchema?: Schema,
-  merger: Merger = defaultMerger
+  merger: Merger = new DefaultMerger(validator, rootSchema ?? schema)
 ) {
   return isFilesArray2(validator, merger, schema, rootSchema);
 }

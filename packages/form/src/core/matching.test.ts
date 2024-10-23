@@ -17,15 +17,18 @@ import { calculateIndexScore2, getClosestMatchingOption2 } from "./matching.js";
 import { beforeEach, describe, expect, it } from "vitest";
 import type { Validator } from "./validator.js";
 import { makeTestValidator } from "./test-validator.js";
-import { defaultMerger } from "./default-merger.js";
+import { DefaultMerger } from "./default-merger.js";
+import type { Merger } from './merger.js';
 
 const firstOption = oneOfSchema.definitions!.first_option_def as Schema;
 const secondOption = oneOfSchema.definitions!.second_option_def as Schema;
 
 let testValidator: Validator;
+let defaultMerger: Merger
 
 beforeEach(() => {
   testValidator = makeTestValidator();
+  defaultMerger = new DefaultMerger(testValidator, oneOfSchema);
 });
 
 describe("calculateIndexScore", () => {

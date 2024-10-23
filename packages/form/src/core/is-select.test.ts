@@ -8,12 +8,15 @@ import type { Schema } from "./schema.js";
 import type { Validator } from "./validator.js";
 import { isMultiSelect2, isSelect2 } from "./is-select.js";
 import { makeTestValidator } from "./test-validator.js";
-import { defaultMerger } from './default-merger.js';
+import { DefaultMerger } from './default-merger.js';
+import type { Merger } from './merger.js';
 
 let testValidator: Validator;
+let defaultMerger: Merger
 
 beforeEach(() => {
   testValidator = makeTestValidator();
+  defaultMerger = new DefaultMerger(testValidator, {});
 });
 
 describe("isSelect2()", () => {

@@ -3,7 +3,7 @@
   import type { Snippet } from 'svelte';
 
   import type { SchedulerYield } from '@/lib/scheduler.js';
-  import { defaultMerger, type Merger, type Schema } from '@/core/index.js';
+  import { DefaultMerger, type Merger, type Schema } from '@/core/index.js';
 
   import type { Label, Labels, Translation } from './translation.js';
   import type { UiSchemaRoot } from './ui-schema.js';
@@ -113,7 +113,7 @@
     disabled = false,
     idPrefix = DEFAULT_ID_PREFIX,
     idSeparator = DEFAULT_ID_SEPARATOR,
-    merger = defaultMerger,
+    merger,
     children,
     onsubmit,
     onSubmit,
@@ -146,6 +146,8 @@
       form?.removeEventListener("reset", onReset)
     }
   })
+
+  const reactiveMerger = $derived(merger ?? new DefaultMerger(validator, schema));
 
   type Value = SchemaValue | undefined
 
@@ -193,7 +195,7 @@
       return translation
     },
     get merger() {
-      return merger
+      return reactiveMerger
     },
     get icons() {
       return icons

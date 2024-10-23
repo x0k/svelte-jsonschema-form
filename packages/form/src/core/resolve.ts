@@ -30,7 +30,7 @@ import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
 import { getFirstMatchingOption } from "./matching.js";
 import { isSchemaObjectValue } from "./value.js";
 import type { Merger } from "./merger.js";
-import { defaultMerger } from './default-merger.js';
+import { DefaultMerger } from './default-merger.js';
 
 /**
  * @deprecated use `retrieveSchema2`
@@ -40,7 +40,7 @@ export function retrieveSchema(
   schema: Schema,
   rootSchema: Schema = {},
   formData?: SchemaValue,
-  merger: Merger = defaultMerger
+  merger: Merger = new DefaultMerger(validator, rootSchema)
 ): Schema {
   return retrieveSchema2(validator, merger, schema, rootSchema, formData);
 }
@@ -135,7 +135,7 @@ export function resolveReference(
   expandAllBranches: boolean,
   stack: Set<string>,
   formData?: SchemaValue,
-  merger: Merger = defaultMerger
+  merger: Merger = new DefaultMerger(validator, rootSchema)
 ): Schema[] {
   return resolveReference2(
     validator,
@@ -272,7 +272,7 @@ export function resolveCondition(
   expandAllBranches: boolean,
   stack: Set<string>,
   formData?: SchemaValue,
-  merger: Merger = defaultMerger
+  merger: Merger = new DefaultMerger(validator, rootSchema)
 ): Schema[] {
   return resolveCondition2(
     validator,
@@ -374,7 +374,7 @@ export function stubExistingAdditionalProperties(
   theSchema: Schema,
   rootSchema?: Schema,
   aFormData?: SchemaValue,
-  merger: Merger = defaultMerger
+  merger: Merger = new DefaultMerger(validator, rootSchema ?? theSchema)
 ): Schema {
   return stubExistingAdditionalProperties2(
     validator,
@@ -466,7 +466,7 @@ export function resolveSchema(
   expandAllBranches: boolean,
   stack: Set<string>,
   formData?: SchemaValue,
-  merger: Merger = defaultMerger
+  merger: Merger = new DefaultMerger(validator, rootSchema)
 ): Schema[] {
   return resolveSchema2(
     validator,
@@ -556,7 +556,7 @@ export function resolveDependencies(
   expandAllBranches: boolean,
   stack: Set<string>,
   formData?: SchemaValue,
-  merger: Merger = defaultMerger
+  merger: Merger = new DefaultMerger(validator, rootSchema)
 ): Schema[] {
   return resolveDependencies2(
     validator,
@@ -651,7 +651,7 @@ export function processDependencies(
   expandAllBranches: boolean,
   stack: Set<string>,
   formData?: SchemaValue,
-  merger: Merger = defaultMerger
+  merger: Merger = new DefaultMerger(validator, rootSchema)
 ): Schema[] {
   return processDependencies2(
     validator,
@@ -737,7 +737,7 @@ export function withDependentSchema(
   expandAllBranches: boolean,
   stack: Set<string>,
   formData?: SchemaValue,
-  merger: Merger = defaultMerger
+  merger: Merger = new DefaultMerger(validator, rootSchema)
 ): Schema[] {
   return withDependentSchema2(
     validator,
@@ -827,7 +827,7 @@ export function withExactlyOneSubSchema(
   expandAllBranches: boolean,
   stack: Set<string>,
   formData?: SchemaValue,
-  merger: Merger = defaultMerger
+  merger: Merger = new DefaultMerger(validator, rootSchema)
 ): Schema[] {
   return withExactlyOneSubSchema2(
     validator,

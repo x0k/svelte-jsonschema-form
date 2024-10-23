@@ -22,12 +22,15 @@ import { RECURSIVE_REF, RECURSIVE_REF_ALLOF } from "./fixtures/test-data.js";
 import type { Validator } from "./validator.js";
 import type { Schema } from "./schema.js";
 import { makeTestValidator } from "./test-validator.js";
-import { defaultMerger } from './default-merger.js';
+import { DefaultMerger } from './default-merger.js';
+import type { Merger } from './merger.js';
 
 let testValidator: Validator;
+let defaultMerger: Merger
 
 beforeEach(() => {
   testValidator = makeTestValidator();
+  defaultMerger = new DefaultMerger(testValidator, {});
 });
 
 describe("getDefaultFormState2()", () => {
@@ -2950,6 +2953,39 @@ describe("getDefaultFormState2()", () => {
       expect(getDefaultFormState2(testValidator, defaultMerger, schema, formData)).toEqual(
         result
       );
+    });
+  });
+  describe('object with defaults and undefined in formData, testing mergeDefaultsIntoFormData', () => {
+    let schema: Schema;
+    let defaultedFormData: any;
+    beforeAll(() => {
+      schema = {
+        type: 'object',
+        properties: {
+          field: {
+            type: 'string',
+            default: 'foo',
+          },
+        },
+        required: ['field'],
+      };
+      defaultedFormData = { field: 'foo' };
+    });
+    it('returns field value of default when formData is empty', () => {
+      const formData = {};
+      expect(getDefaultFormState2(testValidator, defaultMerger, schema, formData)).toEqual(defaultedFormData);
+    });
+    it('returns field value of undefined when formData has undefined for field', () => {
+      const formData = { field: undefined };
+      expect(getDefaultFormState2(testValidator, defaultMerger, schema, formData)).toEqual(formData);
+    });
+    it('returns field value of default when formData has undefined for field and `useDefaultIfFormDataUndefined`', () => {
+      const formData = { field: undefined };
+      expect(
+        getDefaultFormState2(testValidator, defaultMerger, schema, formData, undefined, undefined, {
+          mergeDefaultsIntoFormData: 'useDefaultIfFormDataUndefined',
+        })
+      ).toEqual(defaultedFormData);
     });
   });
   it("should return undefined defaults for a required array property with minItems", () => {

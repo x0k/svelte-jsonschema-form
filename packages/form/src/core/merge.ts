@@ -115,8 +115,12 @@ export function mergeSchemas(left: Schema, right: Schema): Schema {
 export function mergeDefaultsWithFormData<T = any>(
   defaults?: T,
   formData?: T,
-  mergeExtraArrayDefaults = false
+  mergeExtraArrayDefaults = false,
+  defaultsSupersedesUndefined = false
 ): T | undefined {
+  if (formData === undefined && defaultsSupersedesUndefined) {
+    return defaults;
+  }
   if (Array.isArray(formData)) {
     const defaultsArray = Array.isArray(defaults) ? defaults : [];
     const mapped = formData.map((value, idx) => {
@@ -124,7 +128,8 @@ export function mergeDefaultsWithFormData<T = any>(
         return mergeDefaultsWithFormData<any>(
           defaultsArray[idx],
           value,
-          mergeExtraArrayDefaults
+          mergeExtraArrayDefaults,
+          defaultsSupersedesUndefined,
         );
       }
       return value;
@@ -144,7 +149,8 @@ export function mergeDefaultsWithFormData<T = any>(
       acc[key as keyof T] = mergeDefaultsWithFormData(
         defaultsAsObject?.[key],
         value,
-        mergeExtraArrayDefaults
+        mergeExtraArrayDefaults,
+        defaultsSupersedesUndefined
       );
     }
     return acc;
