@@ -3,7 +3,7 @@
   import type { Snippet } from 'svelte';
 
   import type { SchedulerYield } from '@/lib/scheduler.js';
-  import type { Schema } from '@/core/index.js';
+  import { defaultMerger, type Merger, type Schema } from '@/core/index.js';
 
   import type { Label, Labels, Translation } from './translation.js';
   import type { UiSchemaRoot } from './ui-schema.js';
@@ -22,6 +22,7 @@
     components: Components
     widgets: Widgets
     translation: Translation
+    merger?: Merger
     form?: HTMLFormElement
     isSubmitted?: boolean
     value?: T
@@ -112,6 +113,7 @@
     disabled = false,
     idPrefix = DEFAULT_ID_PREFIX,
     idSeparator = DEFAULT_ID_SEPARATOR,
+    merger = defaultMerger,
     children,
     onsubmit,
     onSubmit,
@@ -189,6 +191,9 @@
     },
     get translation() {
       return translation
+    },
+    get merger() {
+      return merger
     },
     get icons() {
       return icons

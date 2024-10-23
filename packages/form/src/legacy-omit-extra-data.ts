@@ -5,10 +5,12 @@
 import { get, pick } from 'es-toolkit/compat'
 
 import { NAME_KEY, SJSF_ADDITIONAL_PROPERTIES_FLAG, toPathSchema, type PathSchema } from './core/path-schema.js';
-import { retrieveSchema } from './core/resolve.js';
+import { retrieveSchema2 } from './core/resolve.js';
 import type { Schema, SchemaObjectValue, SchemaValue } from './core/schema.js';
 import type { Validator } from './core/validator.js';
 import { isSchemaValueEmpty } from './core/value.js';
+import { defaultMerger } from './core/default-merger.js';
+import type { Merger } from './core/merger.js';
 
 /**
  * @private For testing only
@@ -60,12 +62,25 @@ export function getUsedFormData(formData: SchemaValue | undefined, fields: strin
     return data as SchemaValue;
   };
 
+/**
+ * @deprecated use `omitExtraData2`
+ */
 export function omitExtraData(
   validator: Validator,
   schema: Schema,
+  formData: SchemaValue | undefined,
+  merger: Merger = defaultMerger
+) {
+  return omitExtraData2(validator, merger, schema, formData);
+}
+
+export function omitExtraData2(
+  validator: Validator,
+  merger: Merger,
+  schema: Schema,
   formData: SchemaValue | undefined
 ) {
-  const retrievedSchema = retrieveSchema(validator, schema, schema, formData);
+  const retrievedSchema = retrieveSchema2(validator, merger, schema, schema, formData);
   const pathSchema = toPathSchema(validator, retrievedSchema, "", schema, formData);
   const fieldNames = getFieldNames(pathSchema, formData);
   return getUsedFormData(formData, fieldNames);

@@ -2,11 +2,13 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
+import { defaultMerger } from './default-merger.js';
 import {
   getDiscriminatorFieldFromSchema,
   getOptionMatchingSimpleDiscriminator,
 } from "./discriminator.js";
-import { resolveAllReferences, retrieveSchema } from "./resolve.js";
+import type { Merger } from './merger.js';
+import { resolveAllReferences, retrieveSchema2 } from "./resolve.js";
 import {
   isSchema,
   PROPERTIES_KEY,
@@ -120,8 +122,22 @@ export function getFirstMatchingOption(
   return 0;
 }
 
+/**
+ * @deprecated use `calculateIndexScore2`
+ */
 export function calculateIndexScore(
   validator: Validator,
+  rootSchema: Schema,
+  schema?: Schema,
+  formData?: SchemaValue,
+  merger: Merger = defaultMerger
+): number {
+  return calculateIndexScore2(validator, merger, rootSchema, schema, formData);
+}
+
+export function calculateIndexScore2(
+  validator: Validator,
+  merger: Merger,
   rootSchema: Schema,
   schema?: Schema,
   formData?: SchemaValue
@@ -136,8 +152,9 @@ export function calculateIndexScore(
           continue;
         }
         if (propertySchema[REF_KEY] !== undefined) {
-          const newSchema = retrieveSchema(
+          const newSchema = retrieveSchema2(
             validator,
+            merger,
             propertySchema,
             rootSchema,
             formValue
@@ -205,8 +222,32 @@ export function calculateIndexScore(
   return totalScore;
 }
 
+/**
+ * @deprecated use `getClosestMatchingOption2`
+ */
 export function getClosestMatchingOption(
   validator: Validator,
+  rootSchema: Schema,
+  formData: SchemaValue | undefined,
+  options: Schema[],
+  selectedOption = -1,
+  discriminatorField?: string,
+  merger: Merger = defaultMerger
+): number {
+  return getClosestMatchingOption2(
+    validator,
+    merger,
+    rootSchema,
+    formData,
+    options,
+    selectedOption,
+    discriminatorField
+  )
+}
+
+export function getClosestMatchingOption2(
+  validator: Validator,
+  merger: Merger,
   rootSchema: Schema,
   formData: SchemaValue | undefined,
   options: Schema[],
@@ -265,7 +306,7 @@ export function getClosestMatchingOption(
   for (let i = 0; i < allValidIndexes.length; i++) {
     const index = allValidIndexes[i]!;
     const option = resolvedOptions[index];
-    const score = calculateIndexScore(validator, rootSchema, option, formData);
+    const score = calculateIndexScore2(validator, merger, rootSchema, option, formData);
     scoreCount.add(score);
     if (score > bestScore) {
       bestScore = score;

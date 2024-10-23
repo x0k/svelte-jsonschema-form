@@ -9,20 +9,23 @@ import {
   type SchemaObjectValue,
   type SchemaValue,
 } from "./schema.js";
-import { retrieveSchema } from "./resolve.js";
+import { retrieveSchema2 } from "./resolve.js";
 import type { Validator } from "./validator.js";
 import { isSchemaObjectValue } from "./value.js";
+import type { Merger } from './merger.js';
+import { defaultMerger } from './default-merger.js';
 
 const NO_VALUE = Symbol("no Value");
 
 function retrieveIfNeeded(
   validator: Validator,
+  merger: Merger,
   schema: Schema,
   rootSchema: Schema,
   formData?: SchemaValue
 ) {
   return schema[REF_KEY] !== undefined
-    ? retrieveSchema(validator, schema, rootSchema, formData)
+    ? retrieveSchema2(validator, merger, schema, rootSchema, formData)
     : schema;
 }
 
@@ -31,6 +34,7 @@ function sanitizeArrays(
   oldSchemaItems: Schema,
   newSchemaItems: Schema,
   validator: Validator,
+  merger: Merger,
   rootSchema: Schema,
   data: SchemaArrayValue
 ) {
@@ -40,8 +44,9 @@ function sanitizeArrays(
     const maxItems = newSchema.maxItems ?? -1;
     if (newSchemaType === "object") {
       return data.reduce((newValue: SchemaArrayValue, aValue) => {
-        const itemValue = sanitizeDataForNewSchema(
+        const itemValue = sanitizeDataForNewSchema2(
           validator,
+          merger,
           rootSchema,
           newSchemaItems,
           oldSchemaItems,
@@ -64,8 +69,30 @@ function sanitizeArrays(
   return NO_VALUE;
 }
 
+/**
+ * @deprecated use `sanitizeDataForNewSchema2`
+ */
 export function sanitizeDataForNewSchema(
   validator: Validator,
+  rootSchema: Schema,
+  newSchema: Schema,
+  oldSchema: Schema,
+  data: SchemaValue | undefined,
+  merger: Merger = defaultMerger,
+): SchemaValue | undefined {
+  return sanitizeDataForNewSchema2(
+    validator,
+    merger,
+    rootSchema,
+    newSchema,
+    oldSchema,
+    data
+  )
+}
+
+export function sanitizeDataForNewSchema2(
+  validator: Validator,
+  merger: Merger,
   rootSchema: Schema,
   newSchema: Schema,
   oldSchema: Schema,
@@ -96,12 +123,14 @@ export function sanitizeDataForNewSchema(
         typeof newKeyedSchemaDef === "object" ? newKeyedSchemaDef : {};
       oldKeyedSchema = retrieveIfNeeded(
         validator,
+        merger,
         oldKeyedSchema,
         rootSchema,
         formValue
       );
       newKeyedSchema = retrieveIfNeeded(
         validator,
+        merger,
         newKeyedSchema,
         rootSchema,
         formValue
@@ -117,8 +146,9 @@ export function sanitizeDataForNewSchema(
           newSchemaTypeForKey === "object" ||
           (newSchemaTypeForKey === "array" && Array.isArray(formValue))
         ) {
-          const itemData = sanitizeDataForNewSchema(
+          const itemData = sanitizeDataForNewSchema2(
             validator,
+            merger,
             rootSchema,
             newKeyedSchema,
             oldKeyedSchema,
@@ -168,9 +198,10 @@ export function sanitizeDataForNewSchema(
     ) {
       const newFormDataArray = sanitizeArrays(
         newSchema,
-        retrieveIfNeeded(validator, oldSchemaItems, rootSchema, data),
-        retrieveIfNeeded(validator, newSchemaItems, rootSchema, data),
+        retrieveIfNeeded(validator, merger, oldSchemaItems, rootSchema, data),
+        retrieveIfNeeded(validator, merger, newSchemaItems, rootSchema, data),
         validator,
+        merger,
         rootSchema,
         data
       );

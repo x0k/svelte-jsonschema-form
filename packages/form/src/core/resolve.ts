@@ -2,8 +2,6 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import mergeAllOf, { type Options } from "json-schema-merge-allof";
-
 import { deepEqual } from "@/lib/deep-equal.js";
 import { array } from "@/lib/array.js";
 
@@ -31,14 +29,36 @@ import { typeOfValue } from "./type.js";
 import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
 import { getFirstMatchingOption } from "./matching.js";
 import { isSchemaObjectValue } from "./value.js";
+import type { Merger } from "./merger.js";
+import { defaultMerger } from './default-merger.js';
 
+/**
+ * @deprecated use `retrieveSchema2`
+ */
 export function retrieveSchema(
   validator: Validator,
   schema: Schema,
   rootSchema: Schema = {},
+  formData?: SchemaValue,
+  merger: Merger = defaultMerger
+): Schema {
+  return retrieveSchema2(validator, merger, schema, rootSchema, formData);
+}
+
+export function retrieveSchema2(
+  validator: Validator,
+  merger: Merger,
+  schema: Schema,
+  rootSchema: Schema = {},
   formData?: SchemaValue
 ): Schema {
-  return retrieveSchemaInternal(validator, schema, rootSchema, formData)[0]!;
+  return retrieveSchemaInternal(
+    validator,
+    merger,
+    schema,
+    rootSchema,
+    formData
+  )[0]!;
 }
 
 export function resolveAllReferences(
@@ -105,8 +125,32 @@ export function resolveAllReferences(
   return resolvedSchema;
 }
 
+/**
+ * @deprecated use `resolveReference2`
+ */
 export function resolveReference(
   validator: Validator,
+  schema: Schema,
+  rootSchema: Schema,
+  expandAllBranches: boolean,
+  stack: Set<string>,
+  formData?: SchemaValue,
+  merger: Merger = defaultMerger
+): Schema[] {
+  return resolveReference2(
+    validator,
+    merger,
+    schema,
+    rootSchema,
+    expandAllBranches,
+    stack,
+    formData
+  );
+}
+
+export function resolveReference2(
+  validator: Validator,
+  merger: Merger,
   schema: Schema,
   rootSchema: Schema,
   expandAllBranches: boolean,
@@ -117,6 +161,7 @@ export function resolveReference(
   if (!deepEqual(schema, resolvedSchema)) {
     return retrieveSchemaInternal(
       validator,
+      merger,
       resolvedSchema,
       rootSchema,
       formData,
@@ -127,16 +172,21 @@ export function resolveReference(
   return [schema];
 }
 
+/**
+ * @private
+ */
 export function retrieveSchemaInternal(
   validator: Validator,
+  merger: Merger,
   schema: Schema,
   rootSchema: Schema,
   formData?: SchemaValue,
   expandAllBranches = false,
   stack = new Set<string>()
 ): Schema[] {
-  const resolvedSchemas = resolveSchema(
+  const resolvedSchemas = resolveSchema2(
     validator,
+    merger,
     schema,
     rootSchema,
     expandAllBranches,
@@ -146,8 +196,9 @@ export function retrieveSchemaInternal(
   return resolvedSchemas.flatMap((s): Schema | Schema[] => {
     let resolvedSchema = s;
     if (IF_KEY in resolvedSchema) {
-      return resolveCondition(
+      return resolveCondition2(
         validator,
+        merger,
         resolvedSchema,
         rootSchema,
         expandAllBranches,
@@ -184,9 +235,7 @@ export function retrieveSchemaInternal(
         if (withContainsSchemas.length) {
           resolvedSchema = { ...resolvedSchema, allOf: withoutContainsSchemas };
         }
-        resolvedSchema = mergeAllOf(resolvedSchema, {
-          deep: false,
-        } as Options) as Schema;
+        resolvedSchema = merger.mergeAllOf(resolvedSchema);
         if (withContainsSchemas.length) {
           resolvedSchema.allOf = withContainsSchemas;
         }
@@ -200,8 +249,9 @@ export function retrieveSchemaInternal(
       ADDITIONAL_PROPERTIES_KEY in resolvedSchema &&
       resolvedSchema.additionalProperties !== false;
     if (hasAdditionalProperties) {
-      return stubExistingAdditionalProperties(
+      return stubExistingAdditionalProperties2(
         validator,
+        merger,
         resolvedSchema,
         rootSchema,
         formData
@@ -212,8 +262,32 @@ export function retrieveSchemaInternal(
   });
 }
 
+/**
+ * @deprecated use `resolveCondition2`
+ */
 export function resolveCondition(
   validator: Validator,
+  schema: Schema,
+  rootSchema: Schema,
+  expandAllBranches: boolean,
+  stack: Set<string>,
+  formData?: SchemaValue,
+  merger: Merger = defaultMerger
+): Schema[] {
+  return resolveCondition2(
+    validator,
+    merger,
+    schema,
+    rootSchema,
+    expandAllBranches,
+    stack,
+    formData
+  );
+}
+
+export function resolveCondition2(
+  validator: Validator,
+  merger: Merger,
   schema: Schema,
   rootSchema: Schema,
   expandAllBranches: boolean,
@@ -236,6 +310,7 @@ export function resolveCondition(
       schemas = schemas.concat(
         retrieveSchemaInternal(
           validator,
+          merger,
           then,
           rootSchema,
           formData,
@@ -248,6 +323,7 @@ export function resolveCondition(
       schemas = schemas.concat(
         retrieveSchemaInternal(
           validator,
+          merger,
           otherwise,
           rootSchema,
           formData,
@@ -262,6 +338,7 @@ export function resolveCondition(
       schemas = schemas.concat(
         retrieveSchemaInternal(
           validator,
+          merger,
           conditionalSchema,
           rootSchema,
           formData,
@@ -279,6 +356,7 @@ export function resolveCondition(
   return resolvedSchemas.flatMap((s) =>
     retrieveSchemaInternal(
       validator,
+      merger,
       s,
       rootSchema,
       formData,
@@ -288,8 +366,28 @@ export function resolveCondition(
   );
 }
 
+/**
+ * @deprecated use `stubExistingAdditionalProperties2`
+ */
 export function stubExistingAdditionalProperties(
   validator: Validator,
+  theSchema: Schema,
+  rootSchema?: Schema,
+  aFormData?: SchemaValue,
+  merger: Merger = defaultMerger
+): Schema {
+  return stubExistingAdditionalProperties2(
+    validator,
+    merger,
+    theSchema,
+    rootSchema,
+    aFormData
+  );
+}
+
+export function stubExistingAdditionalProperties2(
+  validator: Validator,
+  merger: Merger,
   theSchema: Schema,
   rootSchema?: Schema,
   aFormData?: SchemaValue
@@ -317,8 +415,9 @@ export function stubExistingAdditionalProperties(
       schemaAdditionalProperties
     ) {
       if (REF_KEY in schemaAdditionalProperties) {
-        additionalProperties = retrieveSchema(
+        additionalProperties = retrieveSchema2(
           validator,
+          merger,
           { $ref: schemaAdditionalProperties[REF_KEY] },
           rootSchema,
           formData
@@ -357,16 +456,41 @@ export function stubExistingAdditionalProperties(
   return schema;
 }
 
+/**
+ * @deprecated use `resolveSchema2`
+ */
 export function resolveSchema(
   validator: Validator,
   schema: Schema,
   rootSchema: Schema,
   expandAllBranches: boolean,
   stack: Set<string>,
+  formData?: SchemaValue,
+  merger: Merger = defaultMerger
+): Schema[] {
+  return resolveSchema2(
+    validator,
+    merger,
+    schema,
+    rootSchema,
+    expandAllBranches,
+    stack,
+    formData
+  );
+}
+
+export function resolveSchema2(
+  validator: Validator,
+  merger: Merger,
+  schema: Schema,
+  rootSchema: Schema,
+  expandAllBranches: boolean,
+  stack: Set<string>,
   formData?: SchemaValue
 ): Schema[] {
-  const updatedSchemas = resolveReference(
+  const updatedSchemas = resolveReference2(
     validator,
+    merger,
     schema,
     rootSchema,
     expandAllBranches,
@@ -377,8 +501,9 @@ export function resolveSchema(
     return updatedSchemas;
   }
   if (DEPENDENCIES_KEY in schema) {
-    const resolvedSchemas = resolveDependencies(
+    const resolvedSchemas = resolveDependencies2(
       validator,
+      merger,
       schema,
       rootSchema,
       expandAllBranches,
@@ -388,6 +513,7 @@ export function resolveSchema(
     return resolvedSchemas.flatMap((s) => {
       return retrieveSchemaInternal(
         validator,
+        merger,
         s,
         rootSchema,
         formData,
@@ -402,6 +528,7 @@ export function resolveSchema(
       .map((allOfSubSchema) =>
         retrieveSchemaInternal(
           validator,
+          merger,
           allOfSubSchema,
           rootSchema,
           formData,
@@ -419,8 +546,32 @@ export function resolveSchema(
   return [schema];
 }
 
+/**
+ * @deprecated use `resolveDependencies2`
+ */
 export function resolveDependencies(
   validator: Validator,
+  schema: Schema,
+  rootSchema: Schema,
+  expandAllBranches: boolean,
+  stack: Set<string>,
+  formData?: SchemaValue,
+  merger: Merger = defaultMerger
+): Schema[] {
+  return resolveDependencies2(
+    validator,
+    merger,
+    schema,
+    rootSchema,
+    expandAllBranches,
+    stack,
+    formData
+  );
+}
+
+export function resolveDependencies2(
+  validator: Validator,
+  merger: Merger,
   schema: Schema,
   rootSchema: Schema,
   expandAllBranches: boolean,
@@ -436,8 +587,9 @@ export function resolveDependencies(
     formData
   );
   return resolvedSchemas.flatMap((resolvedSchema) =>
-    processDependencies(
+    processDependencies2(
       validator,
+      merger,
       dependencies,
       resolvedSchema,
       rootSchema,
@@ -488,8 +640,34 @@ export function resolveAnyOrOneOfSchemas(
   return [schema];
 }
 
+/**
+ * @deprecated use `processDependencies2`
+ */
 export function processDependencies(
   validator: Validator,
+  dependencies: Schema[typeof DEPENDENCIES_KEY],
+  resolvedSchema: Schema,
+  rootSchema: Schema,
+  expandAllBranches: boolean,
+  stack: Set<string>,
+  formData?: SchemaValue,
+  merger: Merger = defaultMerger
+): Schema[] {
+  return processDependencies2(
+    validator,
+    merger,
+    dependencies,
+    resolvedSchema,
+    rootSchema,
+    expandAllBranches,
+    stack,
+    formData
+  );
+}
+
+export function processDependencies2(
+  validator: Validator,
+  merger: Merger,
   dependencies: Schema[typeof DEPENDENCIES_KEY],
   resolvedSchema: Schema,
   rootSchema: Schema,
@@ -519,8 +697,9 @@ export function processDependencies(
     if (Array.isArray(dependencyValue)) {
       schemas[0] = mergeSchemas(resolvedSchema, { required: dependencyValue });
     } else if (typeof dependencyValue !== "boolean" && dependencyValue) {
-      schemas = withDependentSchema(
+      schemas = withDependentSchema2(
         validator,
+        merger,
         resolvedSchema,
         rootSchema,
         dependencyKey,
@@ -531,8 +710,9 @@ export function processDependencies(
       );
     }
     return schemas.flatMap((schema) =>
-      processDependencies(
+      processDependencies2(
         validator,
+        merger,
         remainingDependencies,
         schema,
         rootSchema,
@@ -545,8 +725,36 @@ export function processDependencies(
   return schemas;
 }
 
+/**
+ * @deprecated use `withDependentSchema2`
+ */
 export function withDependentSchema(
   validator: Validator,
+  schema: Schema,
+  rootSchema: Schema,
+  dependencyKey: string,
+  dependencyValue: Schema,
+  expandAllBranches: boolean,
+  stack: Set<string>,
+  formData?: SchemaValue,
+  merger: Merger = defaultMerger
+): Schema[] {
+  return withDependentSchema2(
+    validator,
+    merger,
+    schema,
+    rootSchema,
+    dependencyKey,
+    dependencyValue,
+    expandAllBranches,
+    stack,
+    formData
+  );
+}
+
+export function withDependentSchema2(
+  validator: Validator,
+  merger: Merger,
   schema: Schema,
   rootSchema: Schema,
   dependencyKey: string,
@@ -557,6 +765,7 @@ export function withDependentSchema(
 ): Schema[] {
   const dependentSchemas = retrieveSchemaInternal(
     validator,
+    merger,
     dependencyValue,
     rootSchema,
     formData,
@@ -575,8 +784,9 @@ export function withDependentSchema(
       if (typeof subschema === "boolean" || !(REF_KEY in subschema)) {
         return [subschema];
       }
-      return resolveReference(
+      return resolveReference2(
         validator,
+        merger,
         subschema,
         rootSchema,
         expandAllBranches,
@@ -586,8 +796,9 @@ export function withDependentSchema(
     });
     const allPermutations = getAllPermutationsOfXxxOf(resolvedOneOfs);
     return allPermutations.flatMap((resolvedOneOf) =>
-      withExactlyOneSubSchema(
+      withExactlyOneSubSchema2(
         validator,
+        merger,
         mergedSchema,
         rootSchema,
         dependencyKey,
@@ -604,8 +815,36 @@ type SchemaWithProperties = Schema & {
   properties: Exclude<Schema["properties"], undefined>;
 };
 
+/**
+ * @deprecated use `withExactlyOneSubSchema2`
+ */
 export function withExactlyOneSubSchema(
   validator: Validator,
+  schema: Schema,
+  rootSchema: Schema,
+  dependencyKey: string,
+  oneOf: Exclude<Schema["oneOf"], undefined>,
+  expandAllBranches: boolean,
+  stack: Set<string>,
+  formData?: SchemaValue,
+  merger: Merger = defaultMerger
+): Schema[] {
+  return withExactlyOneSubSchema2(
+    validator,
+    merger,
+    schema,
+    rootSchema,
+    dependencyKey,
+    oneOf,
+    expandAllBranches,
+    stack,
+    formData
+  );
+}
+
+export function withExactlyOneSubSchema2(
+  validator: Validator,
+  merger: Merger,
   schema: Schema,
   rootSchema: Schema,
   dependencyKey: string,
@@ -652,6 +891,7 @@ export function withExactlyOneSubSchema(
     const dependentSchema = { ...subschema, properties: dependentSubSchema };
     const schemas = retrieveSchemaInternal(
       validator,
+      merger,
       dependentSchema,
       rootSchema,
       formData,

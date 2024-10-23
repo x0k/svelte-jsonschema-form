@@ -17,7 +17,8 @@ import { RECURSIVE_REF, RECURSIVE_REF_ALLOF } from "./fixtures/test-data.js";
 import type { Schema } from "./schema.js";
 import type { Validator } from "./validator.js";
 import { makeTestValidator } from "./test-validator.js";
-import { toPathSchema } from "./path-schema.js";
+import { toPathSchema2 } from "./path-schema.js";
+import { defaultMerger } from './default-merger.js';
 
 let testValidator: Validator;
 
@@ -25,7 +26,7 @@ beforeEach(() => {
   testValidator = makeTestValidator();
 });
 
-describe("toPathSchema()", () => {
+describe("toPathSchema2()", () => {
   let consoleWarnSpy: MockInstance<typeof console.warn>;
   beforeAll(() => {
     consoleWarnSpy = vi.spyOn(console, "warn").mockImplementation(() => {}); // mock this to avoid actually warning in the tests
@@ -37,12 +38,12 @@ describe("toPathSchema()", () => {
   it("should return a pathSchema for root field", () => {
     const schema: Schema = { type: "string" };
 
-    expect(toPathSchema(testValidator, schema)).toEqual({ $name: "" });
+    expect(toPathSchema2(testValidator, defaultMerger, schema)).toEqual({ $name: "" });
   });
   it("should return a pathSchema for root field, with additional properties", () => {
     const schema: Schema = { type: "string", additionalProperties: true };
 
-    expect(toPathSchema(testValidator, schema)).toEqual({
+    expect(toPathSchema2(testValidator, defaultMerger, schema)).toEqual({
       $name: "",
       __sjsf_additionalProperties: true,
     });
@@ -53,7 +54,7 @@ describe("toPathSchema()", () => {
       additionalProperties: false,
     };
 
-    expect(toPathSchema(testValidator, schema)).toEqual({ $name: "" });
+    expect(toPathSchema2(testValidator, defaultMerger, schema)).toEqual({ $name: "" });
   });
   it("should return a pathSchema for nested objects", () => {
     const schema: Schema = {
@@ -68,7 +69,7 @@ describe("toPathSchema()", () => {
       },
     };
 
-    expect(toPathSchema(testValidator, schema)).toEqual({
+    expect(toPathSchema2(testValidator, defaultMerger, schema)).toEqual({
       $name: "",
       level1: {
         $name: "level1",
@@ -120,7 +121,7 @@ describe("toPathSchema()", () => {
       ],
     };
 
-    expect(toPathSchema(testValidator, schema, "", schema, formData)).toEqual({
+    expect(toPathSchema2(testValidator, defaultMerger, schema, "", schema, formData)).toEqual({
       $name: "",
       list: {
         $name: "list",
@@ -193,7 +194,7 @@ describe("toPathSchema()", () => {
       },
     };
 
-    expect(toPathSchema(testValidator, schema, "", schema, formData)).toEqual({
+    expect(toPathSchema2(testValidator, defaultMerger, schema, "", schema, formData)).toEqual({
       $name: "",
       billing_address: {
         $name: "billing_address",
@@ -255,7 +256,7 @@ describe("toPathSchema()", () => {
       ],
     };
 
-    expect(toPathSchema(testValidator, schema, "", schema, formData)).toEqual({
+    expect(toPathSchema2(testValidator, defaultMerger, schema, "", schema, formData)).toEqual({
       $name: "",
       address_list: {
         $name: "address_list",
@@ -467,7 +468,7 @@ describe("toPathSchema()", () => {
       fixedNoToolbar: [42, true, "additional item one", "additional item two"],
     };
 
-    expect(toPathSchema(testValidator, schema, "", schema, formData)).toEqual({
+    expect(toPathSchema2(testValidator, defaultMerger, schema, "", schema, formData)).toEqual({
       $name: "",
       defaultsAndMinItems: {
         $name: "defaultsAndMinItems",
@@ -662,7 +663,7 @@ describe("toPathSchema()", () => {
     // Two options per getClosestMatchingOption, the first one is false, the second one makes the lorem value true
     testValidator = makeTestValidator({ isValid: [false, true] });
 
-    expect(toPathSchema(testValidator, schema, "", schema, formData)).toEqual({
+    expect(toPathSchema2(testValidator, defaultMerger, schema, "", schema, formData)).toEqual({
       $name: "",
       lorem: {
         $name: "lorem",
@@ -704,7 +705,7 @@ describe("toPathSchema()", () => {
     // the second ones make the ipsum value true
     testValidator = makeTestValidator({ isValid: [false, false, false, true] });
 
-    expect(toPathSchema(testValidator, schema, "", schema, formData)).toEqual({
+    expect(toPathSchema2(testValidator, defaultMerger, schema, "", schema, formData)).toEqual({
       $name: "",
       ipsum: {
         $name: "ipsum",
@@ -715,8 +716,9 @@ describe("toPathSchema()", () => {
     });
   });
   it("should handle recursive ref to one level", () => {
-    const result = toPathSchema(
+    const result = toPathSchema2(
       testValidator,
+      defaultMerger,
       RECURSIVE_REF,
       undefined,
       RECURSIVE_REF
@@ -738,8 +740,9 @@ describe("toPathSchema()", () => {
     });
   });
   it("should handle recursive allof ref to one level, based on formData", () => {
-    const result = toPathSchema(
+    const result = toPathSchema2(
       testValidator,
+      defaultMerger,
       RECURSIVE_REF_ALLOF,
       undefined,
       RECURSIVE_REF_ALLOF
@@ -776,7 +779,7 @@ describe("toPathSchema()", () => {
       arr: [{ name: "name1" }],
     };
 
-    expect(toPathSchema(testValidator, schema, "", schema, formData)).toEqual({
+    expect(toPathSchema2(testValidator, defaultMerger, schema, "", schema, formData)).toEqual({
       $name: "",
       arr: {
         $name: "arr",
@@ -820,7 +823,7 @@ describe("toPathSchema()", () => {
       arr: [{ name: "name1" }, "name2"],
     };
 
-    expect(toPathSchema(testValidator, schema, "", schema, formData)).toEqual({
+    expect(toPathSchema2(testValidator, defaultMerger, schema, "", schema, formData)).toEqual({
       $name: "",
       arr: {
         $name: "arr",
@@ -867,7 +870,7 @@ describe("toPathSchema()", () => {
       arr: [{ name: "name1" }],
     };
 
-    expect(toPathSchema(testValidator, schema, "", schema, formData)).toEqual({
+    expect(toPathSchema2(testValidator, defaultMerger, schema, "", schema, formData)).toEqual({
       $name: "",
       arr: {
         $name: "arr",
@@ -909,7 +912,7 @@ describe("toPathSchema()", () => {
       arr: [{ name: "name1" }, "name2"],
     };
 
-    expect(toPathSchema(testValidator, schema, "", schema, formData)).toEqual({
+    expect(toPathSchema2(testValidator, defaultMerger, schema, "", schema, formData)).toEqual({
       $name: "",
       arr: {
         $name: "arr",

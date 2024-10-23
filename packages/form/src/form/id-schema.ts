@@ -6,6 +6,7 @@ import { deepEqual } from "@/lib/deep-equal.js";
 
 import {
   ALL_OF_KEY,
+  defaultMerger,
   DEPENDENCIES_KEY,
   getSimpleSchemaType,
   ID_KEY,
@@ -15,7 +16,8 @@ import {
   ITEMS_KEY,
   PROPERTIES_KEY,
   REF_KEY,
-  retrieveSchema,
+  retrieveSchema2,
+  type Merger,
   type Schema,
   type SchemaObjectValue,
   type SchemaValue,
@@ -40,8 +42,36 @@ export const FAKE_ID_SCHEMA: IdSchema<SchemaValue> = {
   $id: "fake-id",
 };
 
+/**
+ * @deprecated use `toIdSchema2`
+ */
 export function toIdSchema(
   validator: Validator,
+  schema: Schema,
+  idPrefix: string,
+  idSeparator: string,
+  _recurseList: Schema[],
+  id?: string | null,
+  rootSchema?: Schema,
+  formData?: SchemaValue,
+  merger: Merger = defaultMerger
+): IdSchema<SchemaValue> {
+  return toIdSchema2(
+    validator,
+    merger,
+    schema,
+    idPrefix,
+    idSeparator,
+    _recurseList,
+    id,
+    rootSchema,
+    formData
+  );
+}
+
+export function toIdSchema2(
+  validator: Validator,
+  merger: Merger,
   schema: Schema,
   idPrefix: string,
   idSeparator: string,
@@ -51,13 +81,14 @@ export function toIdSchema(
   formData?: SchemaValue
 ): IdSchema<SchemaValue> {
   if (REF_KEY in schema || DEPENDENCIES_KEY in schema || ALL_OF_KEY in schema) {
-    const _schema = retrieveSchema(validator, schema, rootSchema, formData);
+    const _schema = retrieveSchema2(validator, merger, schema, rootSchema, formData);
     const sameSchemaIndex = _recurseList.findIndex((item) =>
       deepEqual(item, _schema)
     );
     if (sameSchemaIndex === -1) {
-      return toIdSchema(
+      return toIdSchema2(
         validator,
+        merger,
         _schema,
         idPrefix,
         idSeparator,
@@ -71,8 +102,9 @@ export function toIdSchema(
   if (ITEMS_KEY in schema) {
     const items = schema[ITEMS_KEY];
     if (isNormalArrayItems(items) && !items[REF_KEY]) {
-      return toIdSchema(
+      return toIdSchema2(
         validator,
+        merger,
         items,
         idPrefix,
         idSeparator,
@@ -91,8 +123,9 @@ export function toIdSchema(
     for (const name in properties) {
       const field = properties[name]!;
       const fieldId = idSchema[ID_KEY] + idSeparator + name;
-      idSchema[name] = toIdSchema(
+      idSchema[name] = toIdSchema2(
         validator,
+        merger,
         isSchema(field) ? field : {},
         idPrefix,
         idSeparator,

@@ -1,7 +1,7 @@
 import { getContext, setContext } from "svelte";
 
 import {
-  isFilesArray as isFilesArrayInternal,
+  isFilesArray2 as isFilesArrayInternal,
   type SchemaArrayValue,
   type Schema,
   type SchemaValue,
@@ -43,5 +43,5 @@ export function getArrayItemSchemaId(
 }
 
 export function isFilesArray(ctx: FormContext, schema: Schema) {
-  return isFilesArrayInternal(ctx.validator, schema, ctx.schema);
+  return isFilesArrayInternal(ctx.validator, ctx.merger, schema, ctx.schema);
 }

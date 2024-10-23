@@ -1,23 +1,23 @@
 import {
   type Schema,
   type SchemaValue,
-  isSelect as isSelectInternal,
-  isMultiSelect as isMultiSelectInternal,
-  retrieveSchema as retrieveSchemaInternal,
-  sanitizeDataForNewSchema as sanitizeDataForNewSchemaInternal,
-  getClosestMatchingOption as getClosestMatchingOptionInternal,
+  isSelect2 as isSelectInternal,
+  isMultiSelect2 as isMultiSelectInternal,
+  retrieveSchema2 as retrieveSchemaInternal,
+  sanitizeDataForNewSchema2 as sanitizeDataForNewSchemaInternal,
+  getClosestMatchingOption2 as getClosestMatchingOptionInternal,
 } from "@/core/index.js";
 
-import { getDefaultFormState } from "../get-default-form-state.js";
+import { getDefaultFormState2 } from "../get-default-form-state.js";
 
 import type { FormContext } from "./context.js";
 
 export function isSelect(ctx: FormContext, schema: Schema) {
-  return isSelectInternal(ctx.validator, schema, ctx.schema);
+  return isSelectInternal(ctx.validator, ctx.merger, schema, ctx.schema);
 }
 
 export function isMultiSelect(ctx: FormContext, schema: Schema) {
-  return isMultiSelectInternal(ctx.validator, schema, ctx.schema);
+  return isMultiSelectInternal(ctx.validator, ctx.merger, schema, ctx.schema);
 }
 
 export function retrieveSchema(
@@ -25,7 +25,7 @@ export function retrieveSchema(
   schema: Schema,
   formData: SchemaValue | undefined
 ) {
-  return retrieveSchemaInternal(ctx.validator, schema, ctx.schema, formData);
+  return retrieveSchemaInternal(ctx.validator, ctx.merger, schema, ctx.schema, formData);
 }
 
 export function sanitizeDataForNewSchema(
@@ -36,6 +36,7 @@ export function sanitizeDataForNewSchema(
 ) {
   return sanitizeDataForNewSchemaInternal(
     ctx.validator,
+    ctx.merger,
     ctx.schema,
     newSchema,
     oldSchema,
@@ -52,6 +53,7 @@ export function getClosestMatchingOption(
 ) {
   return getClosestMatchingOptionInternal(
     ctx.validator,
+    ctx.merger,
     ctx.schema,
     formData,
     options,
@@ -65,8 +67,9 @@ export function getDefaultFieldState(
   schema: Schema,
   formData: SchemaValue | undefined
 ) {
-  return getDefaultFormState(
+  return getDefaultFormState2(
     ctx.validator,
+    ctx.merger,
     schema,
     formData,
     ctx.schema

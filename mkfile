@@ -23,6 +23,8 @@ f/:
     pnpm run build
   c:
     pnpm run check
+  t:
+    pnpm run test
   popd
 
 ds/:

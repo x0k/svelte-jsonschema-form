@@ -4,7 +4,7 @@
 
 import { deepEqual } from "@/lib/deep-equal.js";
 
-import { retrieveSchema } from "./resolve.js";
+import { retrieveSchema2 } from "./resolve.js";
 import {
   ALL_OF_KEY,
   DEPENDENCIES_KEY,
@@ -20,6 +20,8 @@ import type { Validator } from "./validator.js";
 import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
 import { getClosestMatchingOption } from "./matching.js";
 import { isSchemaObjectValue } from "./value.js";
+import type { Merger } from './merger.js';
+import { defaultMerger } from './default-merger.js';
 
 export const SJSF_ADDITIONAL_PROPERTIES_FLAG = "__sjsf_additionalProperties";
 
@@ -41,18 +43,34 @@ export type PathSchema<T = any> =
 
 export const NAME_KEY = "$name";
 
+/**
+ * @deprecated use `toPathSchema2`
+ */
 export function toPathSchema(
   validator: Validator,
   schema: Schema,
   name = "",
   rootSchema: Schema = schema,
+  formData?: SchemaValue,
+  merger: Merger = defaultMerger
+) {
+  return toPathSchemaInternal(validator, merger, schema, name, rootSchema, formData);
+}
+
+export function toPathSchema2(
+  validator: Validator,
+  merger: Merger,
+  schema: Schema,
+  name = "",
+  rootSchema: Schema = schema,
   formData?: SchemaValue
 ) {
-  return toPathSchemaInternal(validator, schema, name, rootSchema, formData);
+  return toPathSchemaInternal(validator, merger, schema, name, rootSchema, formData);
 }
 
 function toPathSchemaInternal(
   validator: Validator,
+  merger: Merger,
   schema: SchemaDefinition,
   name: string,
   rootSchema: Schema,
@@ -68,13 +86,14 @@ function toPathSchemaInternal(
   }
 
   if (REF_KEY in schema || DEPENDENCIES_KEY in schema || ALL_OF_KEY in schema) {
-    const _schema = retrieveSchema(validator, schema, rootSchema, formData);
+    const _schema = retrieveSchema2(validator, merger, schema, rootSchema, formData);
     const sameSchemaIndex = _recurseList.findIndex((item) =>
       deepEqual(item, _schema)
     );
     if (sameSchemaIndex === -1) {
       return toPathSchemaInternal(
         validator,
+        merger,
         _schema,
         name,
         rootSchema,
@@ -101,6 +120,7 @@ function toPathSchemaInternal(
       ...pathSchema,
       ...toPathSchemaInternal(
         validator,
+        merger,
         _schema,
         name,
         rootSchema,
@@ -124,6 +144,7 @@ function toPathSchemaInternal(
         if (schemaItems[i]) {
           arrayPathSchema[i] = toPathSchemaInternal(
             validator,
+            merger,
             schemaItems[i],
             `${name}.${i}`,
             rootSchema,
@@ -133,6 +154,7 @@ function toPathSchemaInternal(
         } else if (schemaAdditionalItems) {
           arrayPathSchema[i] = toPathSchemaInternal(
             validator,
+            merger,
             schemaAdditionalItems,
             `${name}.${i}`,
             rootSchema,
@@ -149,6 +171,7 @@ function toPathSchemaInternal(
       formData.forEach((element, i: number) => {
         arrayPathSchema[i] = toPathSchemaInternal(
           validator,
+          merger,
           schemaItems,
           `${name}.${i}`,
           rootSchema,
@@ -164,6 +187,7 @@ function toPathSchemaInternal(
       (pathSchema as PathSchema<SchemaObjectValue>)[property] =
         toPathSchemaInternal(
           validator,
+          merger,
           field,
           `${name}.${property}`,
           rootSchema,

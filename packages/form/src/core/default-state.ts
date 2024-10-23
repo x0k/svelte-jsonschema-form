@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { resolveDependencies, retrieveSchema } from "./resolve.js";
+import { resolveDependencies2, retrieveSchema2 } from "./resolve.js";
 import {
   ALL_OF_KEY,
   DEPENDENCIES_KEY,
@@ -23,8 +23,10 @@ import {
   mergeSchemas,
 } from "./merge.js";
 import { getSimpleSchemaType } from "./type.js";
-import { isMultiSelect } from "./is-select.js";
-import { getClosestMatchingOption } from "./matching.js";
+import { isMultiSelect2 } from "./is-select.js";
+import { getClosestMatchingOption2 } from "./matching.js";
+import { defaultMerger } from './default-merger.js';
+import type { Merger } from './merger.js';
 
 export function getDefaultValueForType(type: SchemaType) {
   switch (type) {
@@ -47,16 +49,40 @@ export function getDefaultValueForType(type: SchemaType) {
   }
 }
 
+/**
+ * @deprecated use `getDefaultFormState2`
+ */
 export function getDefaultFormState(
   validator: Validator,
   theSchema: Schema,
   formData?: SchemaValue,
   rootSchema?: Schema,
   includeUndefinedValues: boolean | "excludeObjectChildren" = false,
+  experimental_defaultFormStateBehavior?: Experimental_DefaultFormStateBehavior,
+  merger: Merger = defaultMerger
+): SchemaValue | undefined {
+  return getDefaultFormState2(
+    validator,
+    merger,
+    theSchema,
+    formData,
+    rootSchema,
+    includeUndefinedValues,
+    experimental_defaultFormStateBehavior
+  )
+}
+
+export function getDefaultFormState2(
+  validator: Validator,
+  merger: Merger,
+  theSchema: Schema,
+  formData?: SchemaValue,
+  rootSchema?: Schema,
+  includeUndefinedValues: boolean | "excludeObjectChildren" = false,
   experimental_defaultFormStateBehavior?: Experimental_DefaultFormStateBehavior
 ): SchemaValue | undefined {
-  const schema = retrieveSchema(validator, theSchema, rootSchema, formData);
-  const defaults = computeDefaults(validator, schema, {
+  const schema = retrieveSchema2(validator, merger, theSchema, rootSchema, formData);
+  const defaults = computeDefaults2(validator, merger, schema, {
     rootSchema,
     includeUndefinedValues,
     experimental_defaultFormStateBehavior,
@@ -145,8 +171,26 @@ interface ComputeDefaultsProps {
   required?: boolean;
 }
 
+/**
+ * @deprecated use `computeDefaults2`
+ */
 export function computeDefaults<T extends SchemaValue>(
   validator: Validator,
+  rawSchema: Schema,
+  computeDefaultsProps?: ComputeDefaultsProps,
+  merger: Merger = defaultMerger
+): SchemaValue | undefined {
+  return computeDefaults2<T>(
+    validator,
+    merger,
+    rawSchema,
+    computeDefaultsProps,
+  );
+}
+
+export function computeDefaults2<T extends SchemaValue>(
+  validator: Validator,
+  merger: Merger,
   rawSchema: Schema,
   {
     parentDefaults,
@@ -156,7 +200,7 @@ export function computeDefaults<T extends SchemaValue>(
     stack = new Set(),
     experimental_defaultFormStateBehavior = undefined,
     required,
-  }: ComputeDefaultsProps = {}
+  }: ComputeDefaultsProps = {},
 ): SchemaValue | undefined {
   const formData: SchemaObjectValue = isSchemaObjectValue(rawFormData)
     ? rawFormData
@@ -187,8 +231,9 @@ export function computeDefaults<T extends SchemaValue>(
       schemaToCompute = findSchemaDefinition(schemaRef, rootSchema);
     }
   } else if (DEPENDENCIES_KEY in schema) {
-    const resolvedSchema = resolveDependencies(
+    const resolvedSchema = resolveDependencies2(
       validator,
+      merger,
       schema,
       rootSchema,
       false,
@@ -198,7 +243,7 @@ export function computeDefaults<T extends SchemaValue>(
     schemaToCompute = resolvedSchema[0]!; // pick the first element from resolve dependencies
   } else if (isFixedItems(schema)) {
     defaults = schema.items.map((itemSchema, idx) =>
-      computeDefaults(validator, itemSchema, {
+      computeDefaults2(validator, merger, itemSchema, {
         rootSchema,
         includeUndefinedValues,
         stack: stack,
@@ -217,8 +262,9 @@ export function computeDefaults<T extends SchemaValue>(
     }
     const nextSchema =
       schemaOneOf[
-        getClosestMatchingOption(
+        getClosestMatchingOption2(
           validator,
+          merger,
           rootSchema,
           isSchemaValueEmpty(formData) ? undefined : formData,
           schemaOneOf.filter(isSchema),
@@ -238,8 +284,9 @@ export function computeDefaults<T extends SchemaValue>(
     const discriminator = getDiscriminatorFieldFromSchema(schema);
     const nextSchema =
       schemaAnyOf[
-        getClosestMatchingOption(
+        getClosestMatchingOption2(
           validator,
+          merger,
           rootSchema,
           isSchemaValueEmpty(formData) ? undefined : formData,
           schemaAnyOf.filter(isSchema),
@@ -254,7 +301,7 @@ export function computeDefaults<T extends SchemaValue>(
   }
 
   if (schemaToCompute) {
-    return computeDefaults(validator, schemaToCompute, {
+    return computeDefaults2(validator, merger, schemaToCompute, {
       rootSchema,
       includeUndefinedValues,
       stack: nextStack,
@@ -278,7 +325,7 @@ export function computeDefaults<T extends SchemaValue>(
       const retrievedSchema =
         experimental_defaultFormStateBehavior?.allOf === "populateDefaults" &&
         ALL_OF_KEY in schema
-          ? retrieveSchema(validator, schema, rootSchema, formData)
+          ? retrieveSchema2(validator, merger, schema, rootSchema, formData)
           : schema;
       const objDefaults = new Map<string, SchemaValue>();
       const schemaProperties = retrievedSchema.properties;
@@ -293,7 +340,7 @@ export function computeDefaults<T extends SchemaValue>(
           if (typeof value === "boolean") {
             continue;
           }
-          const computedDefault = computeDefaults(validator, value, {
+          const computedDefault = computeDefaults2(validator, merger, value, {
             rootSchema,
             stack: stack,
             experimental_defaultFormStateBehavior,
@@ -337,8 +384,9 @@ export function computeDefaults<T extends SchemaValue>(
             ? {}
             : schemaAdditionalProperties;
         keys.forEach((key) => {
-          const computedDefault = computeDefaults(
+          const computedDefault = computeDefaults2(
             validator,
+            merger,
             additionalPropertySchema,
             {
               rootSchema,
@@ -387,7 +435,7 @@ export function computeDefaults<T extends SchemaValue>(
             AdditionalItemsHandling.Fallback,
             idx
           );
-          return computeDefaults(validator, schemaItem, {
+          return computeDefaults2(validator, merger, schemaItem, {
             rootSchema,
             stack: stack,
             experimental_defaultFormStateBehavior,
@@ -408,7 +456,7 @@ export function computeDefaults<T extends SchemaValue>(
             : undefined;
           defaults = rawFormData.map((item, idx) => {
             // TODO: Remove typecast by excluding `undefined` from the return type
-            return computeDefaults(validator, schemaItem, {
+            return computeDefaults2(validator, merger, schemaItem, {
               rootSchema,
               stack: stack,
               experimental_defaultFormStateBehavior,
@@ -432,7 +480,7 @@ export function computeDefaults<T extends SchemaValue>(
       const defaultsLength = Array.isArray(defaults) ? defaults.length : 0;
       if (
         !schema.minItems ||
-        isMultiSelect(validator, schema, rootSchema) ||
+        isMultiSelect2(validator, merger, schema, rootSchema) ||
         computeSkipPopulate(validator, schema, rootSchema) ||
         schema.minItems <= defaultsLength
       ) {
@@ -448,7 +496,7 @@ export function computeDefaults<T extends SchemaValue>(
 
       // Calculate filler entries for remaining items (minItems - existing raw data/defaults)
       const fillerEntries = new Array(schema.minItems - defaultsLength).fill(
-        computeDefaults(validator, fillerSchema, {
+        computeDefaults2(validator, merger, fillerSchema, {
           parentDefaults: fillerDefault,
           rootSchema,
           stack: stack,
