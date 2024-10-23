@@ -6,6 +6,7 @@ import type {
 } from "svelte/elements";
 
 import type { Nullable } from "@/lib/types.js";
+import type { Schema } from '@/core/index.js';
 
 import type { Config } from "../config.js";
 import { computeId } from "../id-schema.js";
@@ -47,6 +48,12 @@ function inputType(format: string | undefined) {
   }
 }
 
+function isReadonly(
+  schema: Schema
+) {
+  return schema.readOnly || schema.const !== undefined;
+}
+
 export function inputAttributes(
   ctx: FormContext,
   { idSchema, required, schema, uiOptions }: Config,
@@ -70,6 +77,7 @@ export function inputAttributes(
         list: Array.isArray(schema.examples)
           ? computeId(idSchema, "examples")
           : undefined,
+        readonly: isReadonly(schema),
         oninput: handlers.oninput,
         onchange: handlers.onchange,
         onblur: handlers.onblur,
@@ -94,6 +102,7 @@ export function textareaAttributes(
         required,
         minlength: schema.minLength,
         maxlength: schema.maxLength,
+        readonly: isReadonly(schema),
         oninput: handlers.oninput,
         onchange: handlers.onchange,
         onblur: handlers.onblur,
