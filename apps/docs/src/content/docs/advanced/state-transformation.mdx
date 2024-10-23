@@ -25,26 +25,28 @@ It will be replaced with `@sjsf/form/omit-extra-data` import in the major releas
 
 ```svelte
 <script lang="ts">
-  import { Form } from "@sjsf/form";
+  import { Form, DefaultMerger } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { theme } from "@sjsf/form/basic-theme";
-  import { omitExtraData } from "@sjsf/form/legacy-omit-extra-data";
+  import { omitExtraData2 } from "@sjsf/form/legacy-omit-extra-data";
 
   import { schema, uiSchema, initialData } from "./schema";
   import { validator } from "./validator";
   import { transform } from "./transform";
 
+  const merger = new DefaultMerger(validator, schema);
   let value = $state();
 </script>
 
 <Form
   bind:value
   {...theme}
+  {merger}
   {schema}
   {uiSchema}
   {validator}
   {translation}
-  getSnapshot={() => omitExtraData(validator, schema, $state.snapshot(value))}
+  getSnapshot={() => omitExtraData2(validator, merger, schema, $state.snapshot(value))}
   onSubmit={(value) => {
     console.log("transformed", value);
   }}

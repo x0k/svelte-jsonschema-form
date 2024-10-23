@@ -34,9 +34,10 @@ You should calculate initial value by yourself.
 
 ```svelte
 <script lang="ts">
-  import { FormBase, getDefaultFormState } from "@sjsf/form";
+  import { FormBase } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { theme } from "@sjsf/form/basic-theme";
+  import { getDefaultFormState } from '@sjsf/form/get-default-form-state';
 
   import { schema, uiSchema, initialData } from "./schema";
   import { validator } from "./validator";
