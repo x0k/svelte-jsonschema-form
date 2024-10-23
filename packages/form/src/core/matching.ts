@@ -213,6 +213,9 @@ export function getClosestMatchingOption(
   selectedOption = -1,
   discriminatorField?: string
 ): number {
+  if (options.length === 0) {
+    return selectedOption;
+  }
   // First resolve any refs in the options
   const resolvedOptions = options.map((option) => {
     return resolveAllReferences(option, rootSchema);
@@ -249,7 +252,7 @@ export function getClosestMatchingOption(
   if (allValidIndexes.length === 1) {
     return allValidIndexes[0]!;
   }
-  if (!allValidIndexes.length) {
+  if (allValidIndexes.length === 0) {
     // No indexes were valid, so we'll score all the options, add all the indexes
     for (let i = 0; i < resolvedOptions.length; i++) {
       allValidIndexes.push(i);
@@ -259,36 +262,10 @@ export function getClosestMatchingOption(
   let bestScore = 0;
   let bestIndex = selectedOption;
   // Score all the options in the list of valid indexes and return the index with the best score
-  // const { bestIndex }: BestType = allValidIndexes.reduce(
-  //   (scoreData: BestType, index: number) => {
-  //     const { bestScore } = scoreData;
-  //     const option = resolvedOptions[index];
-  //     const score = calculateIndexScore(
-  //       validator,
-  //       rootSchema,
-  //       option,
-  //       formData
-  //     );
-  //     scoreCount.add(score);
-  //     if (score > bestScore) {
-  //       return { bestIndex: index, bestScore: score };
-  //     }
-  //     return scoreData;
-  //   },
-  //   { bestIndex: selectedOption, bestScore: 0 }
-  // );
   for (let i = 0; i < allValidIndexes.length; i++) {
     const index = allValidIndexes[i]!;
-    if (index === selectedOption) {
-      continue;
-    }
     const option = resolvedOptions[index];
-    const score = calculateIndexScore(
-      validator,
-      rootSchema,
-      option,
-      formData,
-    )
+    const score = calculateIndexScore(validator, rootSchema, option, formData);
     scoreCount.add(score);
     if (score > bestScore) {
       bestScore = score;
@@ -296,7 +273,11 @@ export function getClosestMatchingOption(
     }
   }
   // if all scores are the same go with selectedOption
-  if (scoreCount.size === 1 && selectedOption >= 0) {
+  if (
+    allValidIndexes.length > 1 &&
+    scoreCount.size === 1 &&
+    selectedOption >= 0
+  ) {
     return selectedOption;
   }
 
