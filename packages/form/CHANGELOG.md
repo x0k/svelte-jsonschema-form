@@ -1,5 +1,21 @@
 # @sjsf/form
 
+## 1.1.0
+
+### Minor Changes
+
+- [`67ff48c`](https://github.com/x0k/svelte-jsonschema-form/commit/67ff48cab5055a0167bde46b316d5f6f85f79279) Thanks [@x0k](https://github.com/x0k)! - Add `merger` form option
+
+- [`26a1f69`](https://github.com/x0k/svelte-jsonschema-form/commit/26a1f69b52c2b2d4dcf803e7bc3ea35671750af7) Thanks [@x0k](https://github.com/x0k)! - Add `mergeFormDataAndSchemaDefaults` method to `Merger`
+
+### Patch Changes
+
+- [#16](https://github.com/x0k/svelte-jsonschema-form/pull/16) [`81b6952`](https://github.com/x0k/svelte-jsonschema-form/commit/81b69526ac9fd29d10007c25140b954dc1aecfef) Thanks [@x0k](https://github.com/x0k)! - Port fix of `getClosestMatchingOption` to improve the scoring of sub-property objects
+
+  [Original pull request](https://github.com/rjsf-team/react-jsonschema-form/pull/4329)
+
+- [`2e08cd4`](https://github.com/x0k/svelte-jsonschema-form/commit/2e08cd4c52cd42fcb082d16175adb991643699ed) Thanks [@x0k](https://github.com/x0k)! - Make fields of `const` property readonly
+
 ## 1.0.0
 
 ### Major Changes
