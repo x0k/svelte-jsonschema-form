@@ -6,7 +6,7 @@ import { deepEqual } from "@/lib/deep-equal.js";
 
 import {
   ALL_OF_KEY,
-  DefaultMerger,
+  defaultMerger,
   DEPENDENCIES_KEY,
   getSimpleSchemaType,
   ID_KEY,
@@ -17,7 +17,7 @@ import {
   PROPERTIES_KEY,
   REF_KEY,
   retrieveSchema2,
-  type Merger,
+  type Merger2,
   type Schema,
   type SchemaObjectValue,
   type SchemaValue,
@@ -54,7 +54,7 @@ export function toIdSchema(
   id?: string | null,
   rootSchema?: Schema,
   formData?: SchemaValue,
-  merger: Merger = new DefaultMerger(validator, rootSchema ?? schema)
+  merger = defaultMerger
 ): IdSchema<SchemaValue> {
   return toIdSchema2(
     validator,
@@ -71,7 +71,7 @@ export function toIdSchema(
 
 export function toIdSchema2(
   validator: Validator,
-  merger: Merger,
+  merger: Merger2,
   schema: Schema,
   idPrefix: string,
   idSeparator: string,
@@ -81,7 +81,13 @@ export function toIdSchema2(
   formData?: SchemaValue
 ): IdSchema<SchemaValue> {
   if (REF_KEY in schema || DEPENDENCIES_KEY in schema || ALL_OF_KEY in schema) {
-    const _schema = retrieveSchema2(validator, merger, schema, rootSchema, formData);
+    const _schema = retrieveSchema2(
+      validator,
+      merger,
+      schema,
+      rootSchema,
+      formData
+    );
     const sameSchemaIndex = _recurseList.findIndex((item) =>
       deepEqual(item, _schema)
     );

@@ -18,10 +18,10 @@ import {
 } from "./schema.js";
 import type { Validator } from "./validator.js";
 import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
-import { getClosestMatchingOption } from "./matching.js";
 import { isSchemaObjectValue } from "./value.js";
-import type { Merger } from './merger.js';
-import { DefaultMerger } from './default-merger.js';
+import type { Merger2 } from './merger.js';
+import { defaultMerger } from './merger.js';
+import { getClosestMatchingOption2 } from './matching.js';
 
 export const SJSF_ADDITIONAL_PROPERTIES_FLAG = "__sjsf_additionalProperties";
 
@@ -52,14 +52,14 @@ export function toPathSchema(
   name = "",
   rootSchema: Schema = schema,
   formData?: SchemaValue,
-  merger: Merger = new DefaultMerger(validator, rootSchema)
+  merger= defaultMerger
 ) {
   return toPathSchemaInternal(validator, merger, schema, name, rootSchema, formData);
 }
 
 export function toPathSchema2(
   validator: Validator,
-  merger: Merger,
+  merger: Merger2,
   schema: Schema,
   name = "",
   rootSchema: Schema = schema,
@@ -70,7 +70,7 @@ export function toPathSchema2(
 
 function toPathSchemaInternal(
   validator: Validator,
-  merger: Merger,
+  merger: Merger2,
   schema: SchemaDefinition,
   name: string,
   rootSchema: Schema,
@@ -107,8 +107,9 @@ function toPathSchemaInternal(
   if (Array.isArray(combinationValue)) {
     const discriminator = getDiscriminatorFieldFromSchema(schema);
     const schemas = combinationValue.filter(isSchema);
-    const index = getClosestMatchingOption(
+    const index = getClosestMatchingOption2(
       validator,
+      merger,
       rootSchema,
       formData,
       schemas,

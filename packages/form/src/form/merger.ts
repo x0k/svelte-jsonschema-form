@@ -1,12 +1,23 @@
-import { defaultMerger, type Merger } from "./merger.js";
-import type { Schema, SchemaValue } from "./schema.js";
-import type { Validator } from "./validator.js";
-import { getDefaultFormState2 } from "./default-state.js";
+import {
+  defaultMerger,
+  getDefaultFormState2,
+  type Merger2,
+  type Schema,
+  type SchemaValue,
+  type Validator,
+} from "@/core/index.js";
 
-/**
- * @deprecated use `DefaultFormMerger` from `@sjsf/form`
- */
-export class DefaultMerger implements Merger {
+export interface FormMerger extends Merger2 {
+  /**
+   * Merges defaults of `schema` into `formData`
+   */
+  mergeFormDataAndSchemaDefaults(
+    formData: SchemaValue | undefined,
+    schema: Schema
+  ): SchemaValue | undefined;
+}
+
+export class DefaultFormMerger implements FormMerger {
   constructor(
     protected readonly validator: Validator,
     protected readonly rootSchema: Schema

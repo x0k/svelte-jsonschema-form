@@ -5,11 +5,14 @@ sidebar:
 ---
 
 ```typescript
-export interface Merger {
+interface Merger2 {
   /**
    * Merges schema and its `allOf` schemas into a single schema
    */
   mergeAllOf(schema: Schema): Schema;
+}
+
+interface FormMerger extends Merger2 {
   /**
    * Merges defaults of `schema` into `formData`
    */

@@ -6,8 +6,7 @@ import type { Schema } from "./schema.js";
 import type { Validator } from "./validator.js";
 import { retrieveSchema2 } from "./resolve.js";
 import { isSchemaOfConstantValue } from "./constant-schema.js";
-import type { Merger } from "./merger.js";
-import { DefaultMerger } from "./default-merger.js";
+import { defaultMerger, type Merger2 } from "./merger.js";
 
 /**
  * @deprecated use `isSelect2`
@@ -16,14 +15,14 @@ export function isSelect(
   validator: Validator,
   theSchema: Schema,
   rootSchema: Schema,
-  merger: Merger = new DefaultMerger(validator, rootSchema)
+  merger = defaultMerger
 ) {
   return isSelect2(validator, merger, theSchema, rootSchema);
 }
 
 export function isSelect2(
   validator: Validator,
-  merger: Merger,
+  merger: Merger2,
   theSchema: Schema,
   rootSchema: Schema
 ) {
@@ -48,14 +47,14 @@ export function isMultiSelect(
   validator: Validator,
   schema: Schema,
   rootSchema: Schema,
-  merger: Merger = new DefaultMerger(validator, rootSchema)
+  merger = defaultMerger
 ) {
   return isMultiSelect2(validator, merger, schema, rootSchema);
 }
 
 export function isMultiSelect2(
   validator: Validator,
-  merger: Merger,
+  merger: Merger2,
   schema: Schema,
   rootSchema: Schema
 ) {

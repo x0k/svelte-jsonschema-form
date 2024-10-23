@@ -2,9 +2,10 @@
   import { SvelteMap } from "svelte/reactivity";
   import { untrack } from "svelte";
 
-  import { DefaultMerger, type SchemaValue } from "@/core/index.js";
+  import type { SchemaValue } from "@/core/index.js";
 
   import FormBase, { type Props } from "./form-base.svelte";
+  import { DefaultFormMerger } from './merger.js'
 
   let {
     value = $bindable(),
@@ -17,7 +18,7 @@
     ...rest
   }: Props<T, E> = $props();
 
-  const reactiveMerger = $derived(merger ?? new DefaultMerger(validator, schema));
+  const reactiveMerger = $derived(merger ?? new DefaultFormMerger(validator, schema));
 
   $effect(() => {
     schema;

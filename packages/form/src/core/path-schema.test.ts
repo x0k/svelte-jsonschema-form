@@ -18,15 +18,12 @@ import type { Schema } from "./schema.js";
 import type { Validator } from "./validator.js";
 import { makeTestValidator } from "./test-validator.js";
 import { toPathSchema2 } from "./path-schema.js";
-import { DefaultMerger } from './default-merger.js';
-import type { Merger } from './merger.js';
+import { defaultMerger } from './merger.js';
 
 let testValidator: Validator;
-let defaultMerger: Merger
 
 beforeEach(() => {
   testValidator = makeTestValidator();
-  defaultMerger = new DefaultMerger(testValidator, {});
 });
 
 describe("toPathSchema2()", () => {

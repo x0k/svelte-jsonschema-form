@@ -3,7 +3,7 @@
   import type { Snippet } from 'svelte';
 
   import type { SchedulerYield } from '@/lib/scheduler.js';
-  import { DefaultMerger, type Merger, type Schema } from '@/core/index.js';
+  import type { Schema, SchemaValue } from '@/core/index.js';
 
   import type { Label, Labels, Translation } from './translation.js';
   import type { UiSchemaRoot } from './ui-schema.js';
@@ -14,6 +14,7 @@
   import type { Templates } from './templates/index.js';
   import type { InputsValidationMode } from './validation.js';
   import type { FormValidator } from './validator.js';
+  import type { FormMerger } from './merger.js';
   import type { Icons } from './icons.js';
 
   export interface Props<T, E> extends HTMLFormAttributes {
@@ -22,7 +23,7 @@
     components: Components
     widgets: Widgets
     translation: Translation
-    merger?: Merger
+    merger?: FormMerger
     form?: HTMLFormElement
     isSubmitted?: boolean
     value?: T
@@ -76,8 +77,6 @@
 <script lang="ts" generics="T, E">
   import { SvelteMap } from 'svelte/reactivity';
 
-  import type { SchemaValue } from '@/core/index.js';
-
   import type { Config } from './config.js';
   import { NO_ERRORS } from './errors.js';
   import {
@@ -92,6 +91,7 @@
   import { fields as defaultFields } from './fields/index.js';
   import { templates as defaultTemplates } from './templates/index.js';
   import { DEFAULT_ID_PREFIX, DEFAULT_ID_SEPARATOR } from './id-schema.js';
+  import { DefaultFormMerger } from './merger.js'
   import SubmitButton from './submit-button.svelte';
 
   let {
@@ -147,7 +147,7 @@
     }
   })
 
-  const reactiveMerger = $derived(merger ?? new DefaultMerger(validator, schema));
+  const reactiveMerger = $derived(merger ?? new DefaultFormMerger(validator, schema));
 
   type Value = SchemaValue | undefined
 

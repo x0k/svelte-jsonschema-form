@@ -25,8 +25,8 @@ import {
 import { getSimpleSchemaType } from "./type.js";
 import { isMultiSelect2 } from "./is-select.js";
 import { getClosestMatchingOption2 } from "./matching.js";
-import { DefaultMerger } from './default-merger.js';
-import type { Merger } from './merger.js';
+import { defaultMerger } from './merger.js';
+import type { Merger2 } from './merger.js';
 
 export function getDefaultValueForType(type: SchemaType) {
   switch (type) {
@@ -59,7 +59,7 @@ export function getDefaultFormState(
   rootSchema?: Schema,
   includeUndefinedValues: boolean | "excludeObjectChildren" = false,
   experimental_defaultFormStateBehavior?: Experimental_DefaultFormStateBehavior,
-  merger: Merger = new DefaultMerger(validator, rootSchema ?? theSchema)
+  merger: Merger2 = defaultMerger
 ): SchemaValue | undefined {
   return getDefaultFormState2(
     validator,
@@ -74,7 +74,7 @@ export function getDefaultFormState(
 
 export function getDefaultFormState2(
   validator: Validator,
-  merger: Merger,
+  merger: Merger2,
   theSchema: Schema,
   formData?: SchemaValue,
   rootSchema?: Schema,
@@ -188,7 +188,7 @@ export function computeDefaults<T extends SchemaValue>(
   validator: Validator,
   rawSchema: Schema,
   computeDefaultsProps?: ComputeDefaultsProps,
-  merger: Merger = new DefaultMerger(validator, rawSchema)
+  merger = defaultMerger
 ): SchemaValue | undefined {
   return computeDefaults2<T>(
     validator,
@@ -200,7 +200,7 @@ export function computeDefaults<T extends SchemaValue>(
 
 export function computeDefaults2<T extends SchemaValue>(
   validator: Validator,
-  merger: Merger,
+  merger: Merger2,
   rawSchema: Schema,
   {
     parentDefaults,

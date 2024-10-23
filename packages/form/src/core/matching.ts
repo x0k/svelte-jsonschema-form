@@ -2,12 +2,11 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { DefaultMerger } from './default-merger.js';
 import {
   getDiscriminatorFieldFromSchema,
   getOptionMatchingSimpleDiscriminator,
 } from "./discriminator.js";
-import type { Merger } from './merger.js';
+import { defaultMerger, type Merger2 } from "./merger.js";
 import { resolveAllReferences, retrieveSchema2 } from "./resolve.js";
 import {
   isSchema,
@@ -130,14 +129,14 @@ export function calculateIndexScore(
   rootSchema: Schema,
   schema?: Schema,
   formData?: SchemaValue,
-  merger: Merger = new DefaultMerger(validator, rootSchema)
+  merger = defaultMerger
 ): number {
   return calculateIndexScore2(validator, merger, rootSchema, schema, formData);
 }
 
 export function calculateIndexScore2(
   validator: Validator,
-  merger: Merger,
+  merger: Merger2,
   rootSchema: Schema,
   schema?: Schema,
   formData?: SchemaValue
@@ -232,7 +231,7 @@ export function getClosestMatchingOption(
   options: Schema[],
   selectedOption = -1,
   discriminatorField?: string,
-  merger: Merger = new DefaultMerger(validator, rootSchema)
+  merger = defaultMerger
 ): number {
   return getClosestMatchingOption2(
     validator,
@@ -242,12 +241,12 @@ export function getClosestMatchingOption(
     options,
     selectedOption,
     discriminatorField
-  )
+  );
 }
 
 export function getClosestMatchingOption2(
   validator: Validator,
-  merger: Merger,
+  merger: Merger2,
   rootSchema: Schema,
   formData: SchemaValue | undefined,
   options: Schema[],
@@ -306,7 +305,13 @@ export function getClosestMatchingOption2(
   for (let i = 0; i < allValidIndexes.length; i++) {
     const index = allValidIndexes[i]!;
     const option = resolvedOptions[index];
-    const score = calculateIndexScore2(validator, merger, rootSchema, option, formData);
+    const score = calculateIndexScore2(
+      validator,
+      merger,
+      rootSchema,
+      option,
+      formData
+    );
     scoreCount.add(score);
     if (score > bestScore) {
       bestScore = score;

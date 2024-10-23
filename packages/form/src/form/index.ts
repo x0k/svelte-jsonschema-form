@@ -1,7 +1,8 @@
 import {
   DefaultMerger,
+  defaultMerger,
   getDefaultFormState2,
-  type Merger,
+  type Merger2,
   type Schema,
   type SchemaValue,
   type Validator,
@@ -15,13 +16,13 @@ export function getDefaultFormState(
   schema: Schema,
   formData: SchemaValue | undefined = undefined,
   rootSchema = schema,
-  merger: Merger = new DefaultMerger(validator, rootSchema)
+  merger: Merger2 = defaultMerger
 ) {
   return getDefaultFormState2(validator, merger, schema, formData, rootSchema);
 }
 
 export type { Schema, SchemaValue } from "@/core/index.js";
-export { DefaultMerger }
+export { DefaultMerger };
 
 export * from "./component.js";
 export * from "./fields/index.js";
@@ -34,6 +35,7 @@ export * from "./options.svelte.js";
 export * from "./errors.js";
 export * from "./validation.js";
 export * from "./validator.js";
+export * from "./merger.js";
 export * from "./id-schema.js";
 export * from "./icons.js";
 

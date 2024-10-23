@@ -2,7 +2,7 @@ import { getContext, setContext, type Snippet } from "svelte";
 
 import type { SchedulerYield } from "@/lib/scheduler.js";
 
-import { type Merger, type Schema, type SchemaValue } from "@/core/index.js";
+import type { Schema, SchemaValue } from "@/core/index.js";
 
 import type { Label, Labels, Translation } from "../translation.js";
 import type { UiSchema, UiSchemaRoot } from "../ui-schema.js";
@@ -14,6 +14,7 @@ import type { Errors } from "../errors.js";
 import type { FormValidator } from "../validator.js";
 import type { Icons } from "../icons.js";
 import { type IdSchema, toIdSchema2 } from "../id-schema.js";
+import type { FormMerger } from '../merger.js';
 
 export interface FormContext {
   isSubmitted: boolean;
@@ -21,7 +22,7 @@ export interface FormContext {
   schema: Schema;
   uiSchema: UiSchemaRoot;
   validator: FormValidator;
-  merger: Merger;
+  merger: FormMerger;
   fields: Fields;
   components: Components;
   widgets: Widgets;
