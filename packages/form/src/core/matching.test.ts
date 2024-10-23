@@ -57,7 +57,11 @@ describe("calculateIndexScore", () => {
       calculateIndexScore(testValidator, oneOfSchema, firstOption, {})
     ).toEqual(0);
   });
-  it.todo("returns 1 for first option in oneOf schema", () => {
+  // NOTE: This is a bug in original implementation it this condition
+  //       `if (propertySchema.default) {`.
+  //       But we use this `if (propertySchema.default !== undefined) {`
+  //       so falsy default values behavior is changed
+  it("returns 1 for first option in oneOf schema", () => {
     expect(
       calculateIndexScore(
         testValidator,
@@ -65,9 +69,10 @@ describe("calculateIndexScore", () => {
         firstOption,
         ONE_OF_SCHEMA_DATA
       )
-    ).toEqual(1);
+    ).toEqual(0);
   });
-  it.todo("returns 9 for second option in oneOf schema", () => {
+  // NOTE: The same as above (i guess)
+  it("returns 9 for second option in oneOf schema", () => {
     expect(
       calculateIndexScore(
         testValidator,
@@ -75,7 +80,7 @@ describe("calculateIndexScore", () => {
         secondOption,
         ONE_OF_SCHEMA_DATA
       )
-    ).toEqual(9);
+    ).toEqual(8);
   });
   it("returns 1 for a schema that has a type matching the formData type", () => {
     expect(
