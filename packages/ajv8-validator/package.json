@@ -1,6 +1,6 @@
 {
   "name": "@sjsf/ajv8-validator",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "The ajv-8 based validator for svelte-jsonschema-form",
   "license": "MIT",
   "keywords": [
@@ -37,7 +37,7 @@
     }
   },
   "peerDependencies": {
-    "@sjsf/form": "workspace:^1.1.0",
+    "@sjsf/form": "workspace:^1.1.1",
     "ajv": "catalog:"
   },
   "devDependencies": {

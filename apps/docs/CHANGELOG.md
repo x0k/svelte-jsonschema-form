@@ -1,5 +1,20 @@
 # docs
 
+## 1.0.2
+
+### Patch Changes
+
+- [`985b1ce`](https://github.com/x0k/svelte-jsonschema-form/commit/985b1ceb1f2a4c5db87f29a559be6d0a143073d2) Thanks [@x0k](https://github.com/x0k)! - Simplify `Merger` type
+
+- Updated dependencies [[`985b1ce`](https://github.com/x0k/svelte-jsonschema-form/commit/985b1ceb1f2a4c5db87f29a559be6d0a143073d2)]:
+  - @sjsf/form@1.1.1
+  - @sjsf/ajv8-validator@1.1.1
+  - @sjsf/daisyui-theme@1.1.1
+  - @sjsf/flowbite-icons@1.1.1
+  - @sjsf/flowbite-theme@1.1.1
+  - @sjsf/lucide-icons@1.1.1
+  - @sjsf/skeleton-theme@1.1.1
+
 ## 1.0.1
 
 ### Patch Changes
