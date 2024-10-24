@@ -1,5 +1,18 @@
 # docs
 
+## 1.0.3
+
+### Patch Changes
+
+- Updated dependencies [[`4f8c576`](https://github.com/x0k/svelte-jsonschema-form/commit/4f8c576d6e666b3e091b3e7581552534eb14dae8)]:
+  - @sjsf/form@1.1.2
+  - @sjsf/ajv8-validator@1.1.2
+  - @sjsf/daisyui-theme@1.1.2
+  - @sjsf/flowbite-icons@1.1.2
+  - @sjsf/flowbite-theme@1.1.2
+  - @sjsf/lucide-icons@1.1.2
+  - @sjsf/skeleton-theme@1.1.2
+
 ## 1.0.2
 
 ### Patch Changes

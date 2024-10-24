@@ -1,5 +1,11 @@
 # @sjsf/form
 
+## 1.1.2
+
+### Patch Changes
+
+- [`4f8c576`](https://github.com/x0k/svelte-jsonschema-form/commit/4f8c576d6e666b3e091b3e7581552534eb14dae8) Thanks [@x0k](https://github.com/x0k)! - Fix defaults population for properties from `dependencies`
+
 ## 1.1.1
 
 ### Patch Changes
