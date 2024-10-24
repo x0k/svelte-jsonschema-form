@@ -27,6 +27,7 @@ import errorSchema from "./errorSchema";
 import defaults from "./defaults";
 import options from "./options";
 import ifThenElse from "./ifThenElse";
+import oneOfDefaults from './one-of-defaults'
 import type { Sample } from "./Sample";
 
 const blank: Sample = { status: "perfect", schema: {}, uiSchema: {}, formData: {} };
@@ -62,4 +63,5 @@ export const samples = Object.freeze({
   Nullable: nullable,
   ErrorSchema: errorSchema,
   Defaults: defaults,
+  OneOfDefaults: oneOfDefaults,
 } satisfies Record<string, Sample>);
