@@ -1,4 +1,7 @@
 <script lang="ts">
+  import { untrack } from 'svelte';
+
+  import { deepEqual } from '@/lib/deep-equal.js'
   import {
     getDefaultValueForType,
     getSimpleSchemaType,
@@ -6,6 +9,8 @@
     isSchemaExpandable,
     isSchemaObjectValue,
     orderProperties,
+    type Schema,
+    type SchemaObjectValue,
   } from '@/core/index.js';
 
   import type { UiSchema } from '../../ui-schema.js';
@@ -34,12 +39,6 @@
     config,
     value = $bindable(),
   }: FieldProps<"object"> = $props();
-  $effect(() => {
-    if (value === undefined) {
-      value = {}
-    }
-  })
-  
   const newKeySeparator = $derived(config.uiOptions?.duplicateKeySuffixSeparator ?? "-")
   const objCtx: ObjectContext = {
     get newKeySeparator() {
@@ -49,14 +48,29 @@
   setObjectContext(objCtx)
   
   // NOTE: This is required for computing a schema which will include all additional properties
-  //       in the `properties` field with the `ADDITIONAL_PROPERTY_FLAG` flag.
+  //       in the `properties` field with the `ADDITIONAL_PROPERTY_FLAG` flag and
+  //       `dependencies` resolution.
   const retrievedSchema = $derived(retrieveSchema(ctx, config.schema, value))
   const requiredProperties = $derived(new Set(retrievedSchema.required));
-  const schemaProperties = $derived(retrievedSchema.properties);
+
+  let lastSchemaProperties: Schema['properties'] = undefined
+  const schemaProperties = $derived.by(() => {
+    if (!deepEqual(lastSchemaProperties, retrievedSchema.properties)) {
+      lastSchemaProperties = $state.snapshot(retrievedSchema.properties)
+    }
+    return lastSchemaProperties
+  });
+  // This code should populate `defaults` for properties from `dependencies` before new `fields`
+  // will populate their `defaults`.
+  $effect.pre(() => {
+    schemaProperties;
+    value = untrack(() => getDefaultFieldState(ctx, retrievedSchema, value) as SchemaObjectValue);
+  })
+
   const schemaPropertiesOrder = $derived(
     isSchemaObjectValue(schemaProperties)
-    ? orderProperties(schemaProperties, config.uiOptions?.order ?? createOriginalKeysOrder(schemaProperties))
-    : []
+      ? orderProperties(schemaProperties, config.uiOptions?.order ?? createOriginalKeysOrder(schemaProperties))
+      : []
   );
 
   const ObjectProperty = $derived(getField(ctx, "objectProperty", config));
