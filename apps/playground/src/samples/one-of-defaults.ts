@@ -204,8 +204,8 @@ const uiSchema: UiSchemaRoot = {
   },
 };
 
-export default {
-  status: "broken",
+const sample: Sample = {
+  status: "perfect",
   schema,
   uiSchema,
   formData: {
@@ -215,4 +215,6 @@ export default {
     paginate: false,
     createOnOpen: true,
   },
-} satisfies Sample;
+}
+
+export default sample;
