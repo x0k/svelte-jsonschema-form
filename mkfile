@@ -95,6 +95,16 @@ luci/:
     pnpm run dev
   popd
 
+shad/:
+  pushd packages/shadcn-theme
+  c:
+    pnpm run check
+  b:
+    pnpm run build
+  d:
+    pnpm run dev
+  popd
+
 p:
   pnpm run preview
 
