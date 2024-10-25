@@ -52,7 +52,7 @@ export default {
 
 ```typescript
 // Inject them as you like
-import daisyStyles from "@sjsf/skeleton-theme/styles.css?inline";
+import themeStyles from "@sjsf/skeleton-theme/styles.css?inline";
 ```
 
 Bundled themes:

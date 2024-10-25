@@ -45,7 +45,7 @@ export default {
 
 ```typescript
 // Inject them as you like
-import flowbiteStyles from "@sjsf/flowbite-theme/styles.css?inline";
+import themeStyles from "@sjsf/flowbite-theme/styles.css?inline";
 ```
 
 ### Apply theme

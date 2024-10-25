@@ -45,7 +45,7 @@ export default {
 
 ```typescript
 // Inject them as you like
-import daisyStyles from "@sjsf/daisyui-theme/styles.css?inline";
+import themeStyles from "@sjsf/daisyui-theme/styles.css?inline";
 ```
 
 ### Apply theme
