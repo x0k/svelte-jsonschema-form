@@ -31,6 +31,11 @@ Root node of UI schema can have an additional fields:
 ## UI options
 
 ```typescript
+type InputAttributes =
+  | HTMLInputAttributes
+  | HTMLTextareaAttributes
+  | HTMLSelectAttributes
+
 interface UiOptions {
   /**
    * Overrides the input attributes.
