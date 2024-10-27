@@ -2,11 +2,15 @@
 	import type { HTMLFormAttributes } from 'svelte/elements';
 	import { SvelteMap } from 'svelte/reactivity';
 	import Ajv from 'ajv';
-	import { Form, type Theme, type Schema, type UiSchemaRoot } from '@sjsf/form';
+	import { Form, type Theme, type Schema, type UiSchemaRoot, type SchemaValue } from '@sjsf/form';
 	import { translation } from '@sjsf/form/translations/en';
 	import { addFormComponents, AjvValidator, DEFAULT_AJV_CONFIG } from '@sjsf/ajv8-validator';
 
-	const { theme, ...rest }: { theme: Theme } & HTMLFormAttributes = $props();
+	let {
+		value = $bindable(),
+		theme,
+		...rest
+	}: { value: SchemaValue | undefined; theme: Theme } & HTMLFormAttributes = $props();
 
 	const schema: Schema = {
 		type: 'object',
@@ -64,11 +68,6 @@
 			]
 		]
 	]);
-
-	let value = $state({
-		array: ['fixed', 123],
-		additional: 'value'
-	});
 
 	const validator = new AjvValidator(addFormComponents(new Ajv(DEFAULT_AJV_CONFIG)), uiSchema);
 </script>

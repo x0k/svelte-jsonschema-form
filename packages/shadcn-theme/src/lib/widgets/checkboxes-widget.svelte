@@ -1,26 +1,39 @@
 <script lang="ts">
-	import { multipleOptions, indexMapper, type WidgetProps } from '@sjsf/form';
+	import type { ComponentProps } from 'svelte';
+	import { multipleOptions, stringIndexMapper, type WidgetProps } from '@sjsf/form';
+
+	import { Checkbox } from '$lib/components/ui/checkbox';
+	import { Label } from '$lib/components/ui/label';
 
 	let { attributes, value = $bindable(), options }: WidgetProps<'checkboxes'> = $props();
 
 	const mapped = multipleOptions({
-		mapper: () => indexMapper(options),
+		mapper: () => stringIndexMapper(options),
 		value: () => value,
-		update: (v) => (value = v),
+		update: (v) => (value = v)
 	});
+
+	const indexes = $derived(new Set(mapped.value));
 </script>
 
 {#each options as option, index (option.id)}
-	<label class="flex items-center space-x-2 cursor-pointer">
-		<input
-			type="checkbox"
-			class="checkbox"
-			bind:group={mapped.value}
-			value={index}
-			{...attributes}
+	{@const indexStr = index.toString()}
+	<div class="flex items-center space-x-2">
+		<Checkbox
+			checked={indexes.has(indexStr)}
+			value={indexStr}
+			onCheckedChange={(v) => {
+				if (v === 'indeterminate') {
+					return;
+				}
+				mapped.value = v
+					? mapped.value.concat(indexStr)
+					: mapped.value.filter((index) => index !== indexStr);
+			}}
+			{...attributes as ComponentProps<typeof Checkbox>}
 			id={option.id}
 			disabled={option.disabled || attributes.disabled}
 		/>
-		<p>{option.label}</p>
-	</label>
+		<Label for={option.id}>{option.label}</Label>
+	</div>
 {/each}

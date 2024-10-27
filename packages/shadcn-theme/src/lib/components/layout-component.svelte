@@ -24,10 +24,9 @@
 
 <div
 	class:flex={isItem || isControls || isField || isColumn}
-	class:gap-2={isItem || isField}
+	class:gap-2={isItem || isField || isControls}
 	class:gap-4={isColumn}
 	class:items-start={isItem || isControls}
-	class:btn-group={isControls}
 	class:preset-outlined-surface-200-800={isControls}
 	class:grow={isGrowable}
 	class:flex-col={isColumn || isField}

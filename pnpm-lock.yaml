@@ -558,6 +558,9 @@ importers:
 
   packages/shadcn-theme:
     devDependencies:
+      '@internationalized/date':
+        specifier: ^3.5.6
+        version: 3.5.6
       '@playwright/test':
         specifier: 'catalog:'
         version: 1.48.2
@@ -589,8 +592,8 @@ importers:
         specifier: 'catalog:'
         version: 10.4.20(postcss@8.4.47)
       bits-ui:
-        specifier: 1.0.0-next.28
-        version: 1.0.0-next.28(svelte@5.1.3)
+        specifier: 1.0.0-next.29
+        version: 1.0.0-next.29(svelte@5.1.3)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -606,6 +609,9 @@ importers:
       globals:
         specifier: 'catalog:'
         version: 15.11.0
+      lucide-svelte:
+        specifier: ^0.453.0
+        version: 0.453.0(svelte@5.1.3)
       postcss:
         specifier: 'catalog:'
         version: 8.4.47
@@ -1930,8 +1936,8 @@ packages:
     resolution: {integrity: sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==}
     engines: {node: '>=8'}
 
-  bits-ui@1.0.0-next.28:
-    resolution: {integrity: sha512-mA2gf79xVLmq2mY0tAzC6ZBB8hUJunxb20/04kOVIN1UL+d75BvA3hdSdEgSj0TrEWU1GmlJr1HWKW4+Q1JIhA==}
+  bits-ui@1.0.0-next.29:
+    resolution: {integrity: sha512-xYby2jvmWymyzcgo2CuMmNMelZ23Df6+/Aqb3SYMo+/r7PWlZDbh4gzqOLl3IADtCKpV4AD2wCmIHy7UK2enTA==}
     engines: {node: '>=18', pnpm: '>=8.7.0'}
     peerDependencies:
       svelte: ^5.0.0-next.1
@@ -6312,7 +6318,7 @@ snapshots:
 
   binary-extensions@2.3.0: {}
 
-  bits-ui@1.0.0-next.28(svelte@5.1.3):
+  bits-ui@1.0.0-next.29(svelte@5.1.3):
     dependencies:
       '@floating-ui/core': 1.6.8
       '@floating-ui/dom': 1.6.11

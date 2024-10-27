@@ -1,16 +1,17 @@
 <script lang="ts">
   import type { ComponentProps } from "@sjsf/form";
+  import { Label } from './ui/label'
 
   const { title, type, forId, required }: ComponentProps<"title"> = $props();
 </script>
 
 {#if type === "field"}
-  <label class="label-text" for={forId}>
+  <Label for={forId}>
     {title}
     {#if required}
       <span>*</span>
     {/if}
-  </label>
+  </Label>
 {:else}
-  <div class="font-bold text-2xl">{title}</div>
+  <div class="text-lg font-bold">{title}</div>
 {/if}

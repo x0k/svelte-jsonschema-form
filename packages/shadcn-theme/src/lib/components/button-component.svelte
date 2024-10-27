@@ -10,14 +10,3 @@
 <Button type={isSubmit ? 'submit' : 'button'} {onclick} {...attributes as ButtonProps} {disabled}>
 	{@render children()}
 </Button>
-<!-- <button
-	class="btn preset-filled"
-  class:preset-filled-primary-500={isSubmit}
-  class:w-full={isSubmit}
-	type={isSubmit ? 'submit' : 'button'}
-	{onclick}
-	{...attributes}
-	{disabled}
->
-	{@render children()}
-</button> -->

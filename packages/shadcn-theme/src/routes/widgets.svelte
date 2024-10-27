@@ -7,13 +7,18 @@
 		type Schema,
 		type UiSchema,
 		type UiSchemaRoot,
-		type ValidationError
+		type ValidationError,
+		type SchemaValue
 	} from '@sjsf/form';
 	import { translation } from '@sjsf/form/translations/en';
 	import { addFormComponents, AjvValidator, DEFAULT_AJV_CONFIG } from '@sjsf/ajv8-validator';
 	import { SvelteMap } from 'svelte/reactivity';
 
-	const { theme, ...rest }: { theme: Theme } & HTMLFormAttributes = $props();
+	let {
+		value = $bindable(),
+		theme,
+		...rest
+	}: { theme: Theme; value: SchemaValue | undefined } & HTMLFormAttributes = $props();
 
 	const states = (schema: Schema): Schema => ({
 		type: 'object',
@@ -141,4 +146,4 @@
 	const validator = new AjvValidator(addFormComponents(new Ajv(DEFAULT_AJV_CONFIG)), uiSchema);
 </script>
 
-<Form {...rest} {...theme} {schema} {uiSchema} {validator} {translation} {errors} />
+<Form {...rest} {...theme} {schema} {uiSchema} {validator} {translation} {errors} bind:value />
