@@ -24,12 +24,11 @@
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "catalog:",
     "@tsconfig/svelte": "catalog:",
-    "@types/node": "^22.7.5",
-    "autoprefixer": "^10.4.20",
-    "postcss": "^8.4.47",
+    "autoprefixer": "catalog:",
+    "postcss": "catalog:",
     "svelte": "catalog:",
     "svelte-check": "catalog:",
-    "tailwindcss": "^3.4.13",
+    "tailwindcss": "catalog:",
     "vite": "catalog:"
   }
 }

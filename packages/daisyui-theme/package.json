@@ -42,7 +42,6 @@
 			"svelte": "./dist/index.js"
 		},
 		"./preset": {
-			"types": "./dist/preset.d.ts",
 			"default": "./dist/preset.js"
 		},
 		"./styles.css": "./dist/styles.css"
