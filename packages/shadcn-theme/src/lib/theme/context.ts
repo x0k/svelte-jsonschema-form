@@ -19,13 +19,12 @@ import type {
 	WithoutChildrenOrChild
 } from 'bits-ui';
 
+type CalendarProps = WithoutChildrenOrChild<Calendar.RootProps>;
+
 export interface ThemeComponents {
 	Button: Component<HTMLButtonAttributes>;
-	Calendar: Component<
-		WithoutChildrenOrChild<Calendar.RootProps>,
-		{},
-		'value' | 'placeholder' | 'ref'
-	>;
+	// @ts-expect-error too complex
+	Calendar: Component<CalendarProps, {}, 'value' | 'placeholder' | 'ref'>;
 	Checkbox: Component<WithoutChildrenOrChild<Checkbox.RootProps>, {}, 'checked' | 'ref'>;
 	Input: Component<WithElementRef<HTMLInputAttributes>, {}, 'value' | 'ref'>;
 	FilesInput: Component<
