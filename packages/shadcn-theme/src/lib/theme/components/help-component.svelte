@@ -4,4 +4,4 @@
   const { help }: ComponentProps<"help"> = $props();
 </script>
 
-<div class="text-muted">{help}</div>
+<div class="text-muted-foreground">{help}</div>

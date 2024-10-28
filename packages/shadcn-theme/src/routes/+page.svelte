@@ -2,7 +2,8 @@
 	import { components as defaultComponents } from '../lib/default-ui';
 	import { components as newYorkComponents } from '../lib/new-york-ui';
 
-	import Page from './page.svelte';
+	import Content from './content.svelte';
+	import '../app.css';
 
 	const components = {
 		default: defaultComponents,
@@ -17,5 +18,5 @@
 	<option value="new-york">NewYork</option>
 </select>
 {#key componentsName}
-	<Page components={components[componentsName]} />
+	<Content components={components[componentsName]} />
 {/key}

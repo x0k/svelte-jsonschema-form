@@ -1,15 +1,15 @@
 <script lang="ts">
 	import type { SchemaValue } from '@sjsf/form';
 
-	import '../app.css';
 	import { theme, setThemeContext, type ThemeComponents } from '../lib/theme/index.js';
 
 	import WidgetsForm from './widgets.svelte';
 	import ComponentsForm from './components.svelte';
+	import { initialState } from './widgets';
 
   const { components }: { components: ThemeComponents } = $props()
 
-	let widgetsValue: SchemaValue | undefined = $state();
+	let widgetsValue: SchemaValue | undefined = $state(initialState);
 
 	let componentsValue = $state({
 		array: ['fixed', 123],
