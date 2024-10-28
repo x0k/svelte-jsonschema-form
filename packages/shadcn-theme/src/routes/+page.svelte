@@ -2,7 +2,8 @@
 	import type { SchemaValue } from '@sjsf/form';
 
 	import '../app.css';
-	import { theme } from '../lib/index.js';
+	import { theme, setThemeContext } from '../lib/theme/index.js';
+	import { components } from '../lib/default-ui'
 
 	import WidgetsForm from './widgets.svelte';
   import ComponentsForm from './components.svelte';
@@ -13,6 +14,8 @@
 		array: ['fixed', 123],
 		additional: 'value'
 	});
+
+	setThemeContext({ components })
 </script>
 
 {#snippet formData(value: SchemaValue | undefined)}

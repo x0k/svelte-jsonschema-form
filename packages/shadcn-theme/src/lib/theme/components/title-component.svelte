@@ -1,8 +1,13 @@
 <script lang="ts">
   import type { ComponentProps } from "@sjsf/form";
-  import { Label } from './ui/label'
+
+  import { getThemeContext } from '../context'
 
   const { title, type, forId, required }: ComponentProps<"title"> = $props();
+
+  const ctx = getThemeContext();
+
+  const { Label } = $derived(ctx.components);
 </script>
 
 {#if type === "field"}

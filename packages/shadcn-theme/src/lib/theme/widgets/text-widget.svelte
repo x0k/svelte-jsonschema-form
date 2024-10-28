@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { type WidgetProps } from '@sjsf/form';
 
-	import { Input } from '$lib/components/ui/input';
-	// import { Popover, PopoverTrigger, PopoverContent } from '$lib/components/ui/popover';
-	// import { Button } from '$lib/components/ui/button';
-	// import { cn } from '$lib/utils';
-	// import Calendar from '$lib/components/ui/calendar/calendar.svelte';
+	import { getThemeContext } from '../context';
+
+	const ctx = getThemeContext();
+
+	const { Input } = $derived(ctx.components)
 
 	let { value = $bindable(), attributes }: WidgetProps<'text'> = $props();
 

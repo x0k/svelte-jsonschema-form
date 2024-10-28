@@ -2,8 +2,11 @@
 	import { type WidgetProps, stringIndexMapper, singleOption } from '@sjsf/form';
 	import type { ComponentProps } from 'svelte';
 
-	import { Label } from '$lib/components/ui/label';
-	import { RadioGroup, RadioGroupItem } from '$lib/components/ui/radio-group';
+	import { getThemeContext } from '../context';
+
+	const ctx = getThemeContext();
+
+	const { RadioGroup, RadioGroupItem, Label } = $derived(ctx.components);
 
 	let { attributes, value = $bindable(), options }: WidgetProps<'radio'> = $props();
 

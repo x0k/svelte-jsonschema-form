@@ -1,7 +1,11 @@
 <script lang="ts">
 	import type { WidgetProps } from '@sjsf/form';
 
-	import { Textarea } from '$lib/components/ui/textarea';
+	import { getThemeContext } from '../context';
+
+	const ctx = getThemeContext();
+
+	const { Textarea } = $derived(ctx.components)
 
 	let { value = $bindable(), attributes }: WidgetProps<'textarea'> = $props();
 </script>

@@ -1,7 +1,11 @@
 <script lang="ts">
 	import { singleOption, stringIndexMapper, multipleOptions, type WidgetProps } from '@sjsf/form';
 
-	import { Select, SelectItem, SelectTrigger, SelectContent } from '$lib/components/ui/select';
+	import { getThemeContext } from '../context';
+
+	const ctx = getThemeContext();
+
+	const { Select, SelectTrigger, SelectContent, SelectItem } = $derived(ctx.components);
 
 	let {
 		attributes,
@@ -52,23 +56,3 @@
 		{/each}
 	</SelectContent>
 </Select>
-
-<!-- {#snippet children()}
-	{#if !multiple && config.schema.default === undefined}
-		<option value={-1}>{attributes.placeholder}</option>
-	{/if}
-	{#each options as option, index (option.id)}
-		<option value={index} disabled={option.disabled}>
-			{option.label}
-		</option>
-	{/each}
-{/snippet}
-{#if multiple}
-	<select class="select" bind:value={mapped.value} multiple {...attributes}>
-		{@render children()}
-	</select>
-{:else}
-	<select class="select" bind:value={mapped.value} {...attributes}>
-		{@render children()}
-	</select>
-{/if} -->

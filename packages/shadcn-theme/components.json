@@ -9,7 +9,7 @@
 	"aliases": {
 		"components": "$lib/components",
 		"utils": "$lib/utils",
-		"ui": "$lib/components/ui",
+		"ui": "$lib/default-ui",
 		"hooks": "$lib/hooks"
 	},
 	"typescript": true,

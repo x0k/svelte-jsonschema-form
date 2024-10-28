@@ -2,8 +2,11 @@
 	// import type { ComponentProps } from 'svelte';
 	import type { WidgetProps } from '@sjsf/form';
 
-	import { Input } from '$lib/components/ui/input';
-	// import { Slider } from '$lib/components/ui/slider';
+	import { getThemeContext } from '../context'
+
+	const ctx = getThemeContext();
+
+	const { Input } = $derived(ctx.components)
 
 	let { value = $bindable(), attributes }: WidgetProps<'number'> = $props();
 

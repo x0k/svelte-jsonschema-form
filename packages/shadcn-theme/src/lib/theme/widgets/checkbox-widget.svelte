@@ -2,10 +2,13 @@
 	import type { ComponentProps } from 'svelte';
 	import type { WidgetProps } from '@sjsf/form';
 
-	import { Checkbox } from '$lib/components/ui/checkbox';
-	import { Label } from '$lib/components/ui/label';
+	import { getThemeContext } from '../context'
 
 	let { config, value = $bindable(), attributes }: WidgetProps<'checkbox'> = $props();
+
+	const ctx = getThemeContext();
+
+	const { Checkbox, Label } = $derived(ctx.components)
 
 	const mapped = {
 		get value() {

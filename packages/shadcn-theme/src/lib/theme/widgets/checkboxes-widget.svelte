@@ -2,8 +2,11 @@
 	import type { ComponentProps } from 'svelte';
 	import { multipleOptions, stringIndexMapper, type WidgetProps } from '@sjsf/form';
 
-	import { Checkbox } from '$lib/components/ui/checkbox';
-	import { Label } from '$lib/components/ui/label';
+	import { getThemeContext } from '../context'
+
+	const ctx = getThemeContext();
+
+	const { Checkbox, Label } = $derived(ctx.components)
 
 	let { attributes, value = $bindable(), options }: WidgetProps<'checkboxes'> = $props();
 
