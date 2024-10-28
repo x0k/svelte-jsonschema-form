@@ -18,5 +18,5 @@
     {/if}
   </Label>
 {:else}
-  <div class="text-lg font-bold">{title}</div>
+  <div class="text-lg font-medium">{title}</div>
 {/if}
