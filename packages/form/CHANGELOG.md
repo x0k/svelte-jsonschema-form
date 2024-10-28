@@ -1,5 +1,13 @@
 # @sjsf/form
 
+## 1.2.0
+
+### Patch Changes
+
+- [`c80ec86`](https://github.com/x0k/svelte-jsonschema-form/commit/c80ec86740ca536e948280036e2ecf85164334ca) Thanks [@x0k](https://github.com/x0k)! - Fix reading `title` from `undefined` schema
+
+- [`41980fd`](https://github.com/x0k/svelte-jsonschema-form/commit/41980fd7e8d68b603c8311ada162874724b8e2f1) Thanks [@x0k](https://github.com/x0k)! - Sync dev packages versions
+
 ## 1.1.2
 
 ### Patch Changes
