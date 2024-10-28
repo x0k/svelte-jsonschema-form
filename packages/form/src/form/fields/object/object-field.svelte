@@ -116,7 +116,7 @@
   {#if schemaProperties !== undefined && value !== undefined}
     {#each schemaPropertiesOrder as property (property)}
       {@const isAdditional = isAdditionalProperty(schemaProperties, property)}
-      {@const propSchemaDefinition = schemaProperties[property]!}
+      {@const propSchemaDefinition = schemaProperties[property] ?? false}
       {@const propSchema = typeof propSchemaDefinition === "boolean" ? {} : propSchemaDefinition}
       {@const propUiSchema =
         (isAdditional ? config.uiSchema.additionalProperties : config.uiSchema[property]) as UiSchema ?? {}}
