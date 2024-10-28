@@ -17,6 +17,7 @@
     "@sjsf/lucide-icons": "workspace:*",
     "@sjsf/form": "workspace:*",
     "@sjsf/skeleton-theme": "workspace:*",
+    "@sjsf/shadcn-theme": "workspace:*",
     "ajv": "catalog:",
     "mermaid": "^11.3.0",
     "svg-pan-zoom": "github:bumbu/svg-pan-zoom"

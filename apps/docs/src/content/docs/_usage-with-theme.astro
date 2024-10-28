@@ -3,6 +3,7 @@ import { Tabs, TabItem, Code, Card } from "@astrojs/starlight/components";
 import daisyuiStyles from '@sjsf/daisyui-theme/styles.css?inline';
 import flowbiteStyles from '@sjsf/flowbite-theme/styles.css?inline';
 import skeletonStyles from '@sjsf/skeleton-theme/styles.css?inline';
+import shadcnStyles from '@sjsf/shadcn-theme/styles.css?inline';
 
 import type { Theme } from "@/shared";
 import { ShadowHost } from "@/components/shadow";
@@ -11,6 +12,7 @@ import WithBasic from "./_with-basic.svelte";
 import WithSkeleton from "./_with-skeleton.svelte";
 import WithDaisyui from "./_with-daisyui.svelte";
 import WithFlowbite from "./_with-flowbite.svelte";
+import WithShadcn from "./_with-shadcn.svelte";
 
 import schemaCode from "./_schema?raw";
 import validatorCode from './_validator?raw';
@@ -18,6 +20,7 @@ import withBasicCode from "./_with-basic.svelte?raw";
 import withSkeletonCode from "./_with-skeleton.svelte?raw";
 import withDaisyuiCode from "./_with-daisyui.svelte?raw";
 import withFlowbiteCode from "./_with-flowbite.svelte?raw";
+import withShadcnCode from "./_with-shadcn.svelte?raw";
 
 const theme = (Astro.params.theme ?? "basic") as Theme;
 
@@ -26,6 +29,7 @@ const STYLES = {
   daisyui: daisyuiStyles,
   flowbite: flowbiteStyles,
   skeleton: skeletonStyles,
+  shadcn: shadcnStyles
 } satisfies Record<Theme, string>;
 
 const CODE = {
@@ -33,6 +37,7 @@ const CODE = {
   daisyui: withDaisyuiCode,
   flowbite: withFlowbiteCode,
   skeleton: withSkeletonCode,
+  shadcn: withShadcnCode
 } satisfies Record<Theme, string>;
 ---
 
@@ -59,6 +64,8 @@ const CODE = {
         <WithFlowbite client:only="svelte" />
       ) : theme === "skeleton" ? (
         <WithSkeleton client:only="svelte" />
+      ) : theme === "shadcn" ? (
+        <WithShadcn client:only="svelte" />
       ) : null
     }
   </ShadowHost>
