@@ -38,8 +38,12 @@
 	},
 	"exports": {
 		".": {
-			"types": "./dist/index.d.ts",
-			"svelte": "./dist/index.js"
+			"types": "./dist/theme/index.d.ts",
+			"svelte": "./dist/theme/index.js"
+		},
+		"./default": {
+			"types": "./dist/default-ui/index.d.ts",
+			"svelte": "./dist/default-ui/index.js"
 		},
 		"./preset": {
 			"types": "./dist/preset.d.ts",
@@ -51,6 +55,7 @@
 		"@sjsf/form": "workspace:^1.1.2",
 		"bits-ui": "1.0.0-next.28",
 		"clsx": "^2.1.1",
+		"lucide-svelte": "^0.453.0",
 		"svelte": "^5.0.0",
 		"tailwind-merge": "^2.5.4",
 		"tailwind-variants": "^0.2.1"
@@ -87,6 +92,6 @@
 		"vite": "catalog:",
 		"vitest": "catalog:"
 	},
-	"svelte": "./dist/index.js",
-	"types": "./dist/index.d.ts"
+	"svelte": "./dist/theme/index.js",
+	"types": "./dist/theme/index.d.ts"
 }
