@@ -19,7 +19,8 @@
     "@sjsf/flowbite-theme": "workspace:*",
     "@sjsf/flowbite-icons": "workspace:*",
     "@sjsf/skeleton-theme": "workspace:*",
-    "@sjsf/lucide-icons": "workspace:*"
+    "@sjsf/lucide-icons": "workspace:*",
+    "@sjsf/shadcn-theme": "workspace:*"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "catalog:",

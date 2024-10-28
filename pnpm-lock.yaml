@@ -177,6 +177,9 @@ importers:
       '@sjsf/lucide-icons':
         specifier: workspace:*
         version: link:../../packages/lucide-icons
+      '@sjsf/shadcn-theme':
+        specifier: workspace:*
+        version: link:../../packages/shadcn-theme
       '@sjsf/skeleton-theme':
         specifier: workspace:*
         version: link:../../packages/skeleton-theme

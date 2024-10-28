@@ -1,11 +1,12 @@
 <script lang="ts">
   import { SvelteMap } from 'svelte/reactivity';
   import Ajv from "ajv";
-  import { Form, ON_BLUR, ON_CHANGE, ON_INPUT, AFTER_CHANGED, AFTER_SUBMITTED, AFTER_TOUCHED, type Errors } from "@sjsf/form";
+  import { ON_BLUR, ON_CHANGE, ON_INPUT, AFTER_CHANGED, AFTER_SUBMITTED, AFTER_TOUCHED, type Errors } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { AjvValidator, addFormComponents, DEFAULT_AJV_CONFIG } from "@sjsf/ajv8-validator";
   import { focusOnFirstError } from '@sjsf/form/focus-on-first-error';
 
+  import Form from "./form.svelte";
   import { themes, themeStyles } from './themes'
   import { icons, iconsStyles } from './icons'
   import { ShadowHost } from "./shadow";
@@ -189,31 +190,32 @@
       </div>
     </div>
     <ShadowHost class="flex-[3] max-h-[808px] overflow-y-auto" style={`${themeStyle}\n${iconSetStyle}`}>
-      <Form
-        data-theme={themeName === "skeleton" ? "cerberus" : lightOrDark}
-        class={lightOrDark}
-        style="background-color: transparent; display: flex; flex-direction: column; gap: 1rem; padding: 0.1rem;"
-        bind:value
-        {...theme}
-        icons={iconSet}
-        {schema}
-        {uiSchema}
-        {validator}
-        {translation}
-        {disabled}
-        novalidate={!html5Validation || undefined}
-        inputsValidationMode={validationEvent | validationAfter}
-        bind:errors
-        onSubmit={(value) => {
-          console.log("submit", value);
-        }}
-        onSubmitError={(errors, e) => {
-          if (doFocusOnFirstError) {
-            focusOnFirstError(errors, e);
-          }
-          console.log("errors", errors);
-        }}
-      />
+      {#key themeName}
+        <Form
+          {themeName}
+          {lightOrDark}
+          bind:value
+          {...theme}
+          icons={iconSet}
+          {schema}
+          {uiSchema}
+          {validator}
+          {translation}
+          {disabled}
+          novalidate={!html5Validation || undefined}
+          inputsValidationMode={validationEvent | validationAfter}
+          bind:errors
+          onSubmit={(value) => {
+            console.log("submit", value);
+          }}
+          onSubmitError={(errors, e) => {
+            if (doFocusOnFirstError) {
+              focusOnFirstError(errors, e);
+            }
+            console.log("errors", errors);
+          }}
+        />
+      {/key}
     </ShadowHost>
   </div>
 </div>
