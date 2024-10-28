@@ -10,6 +10,13 @@
 
 	const { Checkbox, Label } = $derived(ctx.components)
 
+	// Recreates behavior of standard checkbox
+	$effect(() => {
+		if (value === undefined) {
+			value = false
+		}
+	})
+
 	const mapped = {
 		get value() {
 			return value ?? false;
