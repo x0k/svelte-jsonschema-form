@@ -1,3 +1,7 @@
+<!--
+    @component
+    @deprecated use `useForm` API
+-->
 <script lang="ts" generics="T, E">
   import { SvelteMap } from "svelte/reactivity";
   import { untrack } from "svelte";

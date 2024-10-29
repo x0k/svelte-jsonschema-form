@@ -1,3 +1,7 @@
+<!--
+    @component
+    @deprecated use `useForm` API
+-->
 <script lang="ts" module>
   import type { HTMLFormAttributes } from "svelte/elements";
   import type { Snippet } from 'svelte';

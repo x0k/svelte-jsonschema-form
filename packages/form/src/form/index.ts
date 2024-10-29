@@ -45,3 +45,6 @@ export {
   type Props as FormProps,
 } from "./form-base.svelte";
 export { default as Form } from "./form.svelte";
+
+export * from './use-form.svelte.js'
+export { default as Field } from "./field.svelte";
