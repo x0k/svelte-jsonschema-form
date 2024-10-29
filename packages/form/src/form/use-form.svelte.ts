@@ -259,7 +259,7 @@ export function useForm<T, E>(options: UseFormOptions<T, E>): UseFormAPI<T, E> {
       return value as T | undefined;
     },
     set value(v) {
-      value = v as Value;
+      value = merger.mergeFormDataAndSchemaDefaults(v as Value, options.schema);
     },
     get formValue() {
       return value
