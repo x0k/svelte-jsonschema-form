@@ -82,7 +82,16 @@ export interface UseFormOptions<T, E> {
 
 type Value = SchemaValue | undefined;
 
-export function useForm<T, E>(options: UseFormOptions<T, E>) {
+export interface UseFormAPI<T, E> {
+  value: T | undefined;
+  formValue: SchemaValue | undefined;
+  element: HTMLFormElement | undefined;
+  errors: Errors<E>;
+  isSubmitted: boolean;
+  validate: () => Errors<E>;
+}
+
+export function useForm<T, E>(options: UseFormOptions<T, E>): UseFormAPI<T, E> {
   const merger = $derived(
     options.merger ?? new DefaultFormMerger(options.validator, options.schema)
   );
