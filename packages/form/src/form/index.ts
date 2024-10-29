@@ -47,4 +47,5 @@ export {
 export { default as Form } from "./form.svelte";
 
 export * from './use-form.svelte.js'
-export { default as Field } from "./field.svelte";
+export { default as FormContent } from "./form-content.svelte";
+export { default as SubmitButton } from "./submit-button.svelte";
