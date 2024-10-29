@@ -1,6 +1,6 @@
 <script lang="ts">
   import Ajv from "ajv";
-  import { Form, type Schema } from "@sjsf/form";
+  import { type Schema, useForm, SimpleForm } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { theme } from "@sjsf/form/basic-theme";
   import {
@@ -19,16 +19,18 @@
     properties: {
       text: {
         type: "string",
-      }
+      },
     },
     required: ["text"],
-  }
+  };
+
+  const form = useForm({
+    ...theme,
+    schema,
+    validator,
+    translation,
+    onSubmit: console.log,
+  });
 </script>
 
-<Form
-  {...theme}
-  {schema}
-  {validator}
-  {translation}
-  onsubmit={(e) => e.preventDefault()}
-/>
+<SimpleForm {form} style="display: flex; flex-direction: column; gap: 1rem" />
