@@ -1,4 +1,5 @@
 import type { ComponentInternals, Snippet } from "svelte";
+import type { HTMLFormAttributes } from "svelte/elements";
 import { SvelteMap } from "svelte/reactivity";
 
 import type { SchedulerYield } from "@/lib/scheduler.js";
@@ -36,8 +37,8 @@ export interface UseFormOptions<T, E> {
   disabled?: boolean;
   idPrefix?: string;
   idSeparator?: string;
+  props?: HTMLFormAttributes;
   //
-  initialElement?: HTMLFormElement;
   initialValue?: T;
   initialErrors?: Errors<E>;
   /**
@@ -82,21 +83,20 @@ export interface UseFormOptions<T, E> {
 
 type Value = SchemaValue | undefined;
 
-export interface UseFormAPI<T, E> {
+export interface FormState<T, E> {
   value: T | undefined;
   formValue: SchemaValue | undefined;
-  element: HTMLFormElement | undefined;
   errors: Errors<E>;
   isSubmitted: boolean;
   validate: () => Errors<E>;
+  readonly props: HTMLFormAttributes;
 }
 
-export function useForm<T, E>(options: UseFormOptions<T, E>): UseFormAPI<T, E> {
+export function useForm<T, E>(options: UseFormOptions<T, E>): FormState<T, E> {
   const merger = $derived(
     options.merger ?? new DefaultFormMerger(options.validator, options.schema)
   );
 
-  let element = $state(options.initialElement);
   let value = $state(
     merger.mergeFormDataAndSchemaDefaults(
       options.initialValue as Value,
@@ -115,31 +115,17 @@ export function useForm<T, E>(options: UseFormOptions<T, E>): UseFormAPI<T, E> {
     return new SvelteMap(SvelteMap.groupBy(list, (error) => error.instanceId));
   }
 
-  const submitHandler = $derived(
-    options.onSubmit || options.onSubmitError
-      ? (e: SubmitEvent) => {
-          e.preventDefault();
-          isSubmitted = true;
-          const snapshot = getSnapshot();
-          errors = validateSnapshot(snapshot);
-          if (errors.size === 0) {
-            options.onSubmit?.(snapshot as T | undefined, e);
-            return;
-          }
-          options.onSubmitError?.(errors, e, snapshot);
-        }
-      : undefined
-  );
-  $effect(() => {
-    if (element === undefined || submitHandler === undefined) {
+  const submitHandler = (e: SubmitEvent) => {
+    e.preventDefault();
+    isSubmitted = true;
+    const snapshot = getSnapshot();
+    errors = validateSnapshot(snapshot);
+    if (errors.size === 0) {
+      options.onSubmit?.(snapshot as T | undefined, e);
       return;
     }
-    const handler = submitHandler;
-    element.addEventListener("submit", handler);
-    return () => {
-      element?.removeEventListener("submit", handler);
-    };
-  })
+    options.onSubmitError?.(errors, e, snapshot);
+  };
 
   const resetHandler = $derived(
     options.onReset ??
@@ -148,16 +134,6 @@ export function useForm<T, E>(options: UseFormOptions<T, E>): UseFormAPI<T, E> {
         errors.clear();
       })
   );
-  $effect(() => {
-    if (element === undefined) {
-      return;
-    }
-    const handler = resetHandler;
-    element.addEventListener("reset", handler);
-    return () => {
-      element?.removeEventListener("reset", handler);
-    };
-  });
 
   const inputsValidationMode = $derived(options.inputsValidationMode ?? 0);
   const uiSchema = $derived(options.uiSchema ?? {});
@@ -262,16 +238,10 @@ export function useForm<T, E>(options: UseFormOptions<T, E>): UseFormAPI<T, E> {
       value = merger.mergeFormDataAndSchemaDefaults(v as Value, options.schema);
     },
     get formValue() {
-      return value
+      return value;
     },
     set formValue(v) {
-      value = v
-    },
-    get element() {
-      return element;
-    },
-    set element(v) {
-      element = v;
+      value = v;
     },
     get errors() {
       return errors;
@@ -287,6 +257,13 @@ export function useForm<T, E>(options: UseFormOptions<T, E>): UseFormAPI<T, E> {
     },
     validate() {
       return validateSnapshot(getSnapshot());
+    },
+    get props() {
+      return {
+        onsubmit: submitHandler,
+        onreset: resetHandler,
+        ...options.props,
+      };
     },
   };
 }
