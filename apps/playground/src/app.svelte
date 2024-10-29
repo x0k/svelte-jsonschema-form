@@ -1,12 +1,13 @@
 <script lang="ts">
   import { SvelteMap } from 'svelte/reactivity';
   import Ajv from "ajv";
-  import { ON_BLUR, ON_CHANGE, ON_INPUT, AFTER_CHANGED, AFTER_SUBMITTED, AFTER_TOUCHED, useForm } from "@sjsf/form";
+  import { ON_BLUR, ON_CHANGE, ON_INPUT, AFTER_CHANGED, AFTER_SUBMITTED, AFTER_TOUCHED, useForm, SimpleForm } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { AjvValidator, addFormComponents, DEFAULT_AJV_CONFIG } from "@sjsf/ajv8-validator";
   import { focusOnFirstError } from '@sjsf/form/focus-on-first-error';
+  import { setThemeContext } from '@sjsf/shadcn-theme'
+  import { components } from '@sjsf/shadcn-theme/default'
 
-  import Form from "./form.svelte";
   import { themes, themeStyles } from './themes'
   import { icons, iconsStyles } from './icons'
   import { ShadowHost } from "./shadow";
@@ -138,6 +139,8 @@
   const urlValidationAfter = Number(url.searchParams.get("vafter") ?? 0)
   const initialValidationAfter = [0, AFTER_SUBMITTED, AFTER_TOUCHED, AFTER_CHANGED].find((v) => v === urlValidationAfter) ?? 0
   let validationAfter = $state(setValidation("vafter", initialValidationAfter, true));
+
+  setThemeContext({ components });
 </script>
 
 <div
@@ -224,15 +227,13 @@
       </div>
     </div>
     <ShadowHost class="flex-[3] max-h-[808px] overflow-y-auto" style={`${themeStyle}\n${iconSetStyle}`}>
-      {#key themeName}
-        <Form
-          bind:form={form.element}
-          bind:value={form.formValue}
-          {themeName}
-          {lightOrDark}
-          {html5Validation}
-        />
-      {/key}
+      <SimpleForm
+        {form}
+        data-theme={themeName === "skeleton" ? "cerberus" : lightOrDark}
+        class={lightOrDark}
+        style="background-color: transparent; display: flex; flex-direction: column; gap: 1rem; padding: 0.3rem;"
+        novalidate={!html5Validation || undefined}
+      />
     </ShadowHost>
   </div>
 </div>
