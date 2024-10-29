@@ -64,7 +64,9 @@
   // will populate their `defaults`.
   $effect.pre(() => {
     schemaProperties;
-    value = untrack(() => getDefaultFieldState(ctx, retrievedSchema, value) as SchemaObjectValue);
+    untrack(() => {
+      value = getDefaultFieldState(ctx, retrievedSchema, value) as SchemaObjectValue
+    });
   })
 
   const schemaPropertiesOrder = $derived(
