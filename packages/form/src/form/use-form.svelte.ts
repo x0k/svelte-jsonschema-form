@@ -21,7 +21,7 @@ import { templates as defaultTemplates } from "./templates/index.js";
 import { DEFAULT_ID_PREFIX, DEFAULT_ID_SEPARATOR } from "./id-schema.js";
 import IconOrTranslation from "./icon-or-translation.svelte";
 
-export interface Options<T, E> {
+export interface UseFormOptions<T, E> {
   validator: FormValidator<E>;
   schema: Schema;
   components: Components;
@@ -82,7 +82,7 @@ export interface Options<T, E> {
 
 type Value = SchemaValue | undefined;
 
-export function useForm<T, E>(options: Options<T, E>) {
+export function useForm<T, E>(options: UseFormOptions<T, E>) {
   const merger = $derived(
     options.merger ?? new DefaultFormMerger(options.validator, options.schema)
   );
