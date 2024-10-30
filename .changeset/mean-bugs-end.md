@@ -2,4 +2,4 @@
 "@sjsf/form": minor
 ---
 
-Implement `useForm` API
+Implement `useForm` API, Add `FormContent` and `SubmitButton` components
