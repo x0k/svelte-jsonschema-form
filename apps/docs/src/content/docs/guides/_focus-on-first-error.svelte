@@ -1,13 +1,20 @@
 <script lang="ts">
+  import { SimpleForm } from "@sjsf/form";
   import { focusOnFirstError } from "@sjsf/form/focus-on-first-error";
 
-  import CustomForm from "@/components/custom-form.svelte";
+  import { useCustomForm } from "@/components/custom-form";
 
   import { objectSchema } from "./_demo-schemas";
+
+  const form = useCustomForm({
+    schema: objectSchema,
+    onSubmit: console.log,
+    onSubmitError: focusOnFirstError,
+  });
 </script>
 
-<CustomForm
-  schema={objectSchema}
+<SimpleForm
+  {form}
   novalidate
-  onSubmitError={focusOnFirstError}
+  style="display: flex; flex-direction: column; gap: 1rem"
 />
