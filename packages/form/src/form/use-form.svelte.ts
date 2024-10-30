@@ -1,5 +1,5 @@
 import type { ComponentInternals, Snippet } from "svelte";
-import type { Action } from 'svelte/action';
+import type { Action } from "svelte/action";
 import { SvelteMap } from "svelte/reactivity";
 
 import type { SchedulerYield } from "@/lib/scheduler.js";
@@ -15,7 +15,7 @@ import type { Templates } from "./templates/index.js";
 import type { Icons } from "./icons.js";
 import type { InputsValidationMode } from "./validation.js";
 import type { Errors } from "./errors.js";
-import { setFromContext, type FormContext } from "./context/index.js";
+import { setFromContext } from "./context/index.js";
 import { DefaultFormMerger, type FormMerger } from "./merger.js";
 import { fields as defaultFields } from "./fields/index.js";
 import { templates as defaultTemplates } from "./templates/index.js";
@@ -80,18 +80,21 @@ export interface UseFormOptions<T, E> {
   schedulerYield?: SchedulerYield;
 }
 
-type Value = SchemaValue | undefined;
-
 export interface FormState<T, E> {
   value: T | undefined;
   formValue: SchemaValue | undefined;
   errors: Errors<E>;
   isSubmitted: boolean;
   validate: () => Errors<E>;
-  enhance: Action
 }
 
-export function useForm<T, E>(options: UseFormOptions<T, E>): FormState<T, E> {
+export interface FormAPI<T, E> extends FormState<T, E> {
+  enhance: Action;
+}
+
+type Value = SchemaValue | undefined;
+
+export function useForm<T, E>(options: UseFormOptions<T, E>): FormAPI<T, E> {
   const merger = $derived(
     options.merger ?? new DefaultFormMerger(options.validator, options.schema)
   );
@@ -158,7 +161,7 @@ export function useForm<T, E>(options: UseFormOptions<T, E>): FormState<T, E> {
           })
   );
 
-  const ctx: FormContext = {
+  setFromContext({
     get inputsValidationMode() {
       return inputsValidationMode;
     },
@@ -226,8 +229,7 @@ export function useForm<T, E>(options: UseFormOptions<T, E>): FormState<T, E> {
         }[Label],
       ]
     >,
-  };
-  setFromContext(ctx);
+  });
 
   return {
     get value() {
@@ -257,15 +259,15 @@ export function useForm<T, E>(options: UseFormOptions<T, E>): FormState<T, E> {
     validate() {
       return validateSnapshot(getSnapshot());
     },
-    enhance: (node) => {
+    enhance(node) {
       $effect(() => {
         node.addEventListener("submit", submitHandler);
         node.addEventListener("reset", resetHandler);
         return () => {
           node.removeEventListener("submit", submitHandler);
           node.removeEventListener("reset", resetHandler);
-        }
-      })
+        };
+      });
     },
   };
 }
