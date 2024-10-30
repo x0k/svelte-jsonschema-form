@@ -1,7 +1,6 @@
 <script lang="ts">
-  import { SvelteMap } from "svelte/reactivity";
   import Ajv from "ajv";
-  import { useForm, SimpleForm, type Errors, type Schema } from "@sjsf/form";
+  import { useForm, SimpleForm, type Schema } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { theme } from "@sjsf/form/basic-theme";
   import {
@@ -9,7 +8,6 @@
     addFormComponents,
     DEFAULT_AJV_CONFIG,
   } from "@sjsf/ajv8-validator";
-  import { untrack } from "svelte";
 
   const validator = new AjvValidator(
     addFormComponents(new Ajv(DEFAULT_AJV_CONFIG))

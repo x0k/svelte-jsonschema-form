@@ -1,20 +1,21 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
-  import type { Schema } from "@sjsf/form";
+  import { type Schema, SimpleForm } from "@sjsf/form";
 
-  import CustomForm from "@/components/custom-form.svelte";
+  import { useCustomForm } from "@/components/custom-form";
 
-  const { children: icon }: { children: Snippet } = $props();
+  const { children }: { children: Snippet } = $props();
 
   const schema: Schema = {
-    title: "With icon",
+    title: "With icons",
   };
-  let value = $state();
+  
+  const form = useCustomForm({
+    schema,
+    icons: {
+      submit: children
+    }
+  });
 </script>
 
-<CustomForm
-  bind:value
-  icons={{ submit: icon }}
-  {schema}
-  onSubmit={console.log}
-/>
+<SimpleForm {form} />
