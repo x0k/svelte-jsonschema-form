@@ -2,7 +2,7 @@
 
 The [flowbite-svelte-icons](https://github.com/themesberg/flowbite-svelte-icons) based icons set for [svelte-jsonschema-form](https://github.com/x0k/svelte-jsonschema-form).
 
-- [Documentation](https://x0k.github.io/svelte-jsonschema-form/)
+- [Documentation](https://x0k.github.io/svelte-jsonschema-form/guides/labels-and-icons/#flowbite-icons)
 - [Playground](https://x0k.github.io/svelte-jsonschema-form/playground/)
 
 ## Installation
@@ -50,11 +50,13 @@ import flowbiteIconsStyles from "@sjsf/flowbite-icons/styles.css?inline";
 
 ```svelte
 <script lang="ts">
-  import { Form } from '@sjsf/form';
+  import { useForm } from '@sjsf/form';
   import { icons } from '@sjsf/flowbite-icons';
-</script>
 
-<Form {icons} />
+  const form = useForm({
+    icons
+  })
+</script>
 ```
 
 ## License

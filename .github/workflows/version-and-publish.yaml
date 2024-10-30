@@ -1,4 +1,4 @@
-name: Release
+name: Version and Publish
 on:
   push:
     branches:
@@ -10,7 +10,6 @@ permissions:
   id-token: write
   contents: write
   pull-requests: write
-  pages: write
 
 jobs:
   version:
@@ -41,9 +40,9 @@ jobs:
             ${{ runner.os }}-turbo-
 
       - name: Build
-        run: pnpm run ci:build
+        run: pnpm run ci:build --filter="@sjsf/*"
 
-      - name: create and publish versions
+      - name: Create and publish versions
         uses: changesets/action@v1
         with:
           version: pnpm ci:version
@@ -53,23 +52,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Merge apps build outputs
-        run: mv apps/playground/dist apps/docs/dist/playground
-
-      - name: Upload Pages Artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: "apps/docs/dist/"
-
-  deploy:
-    needs: version
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-

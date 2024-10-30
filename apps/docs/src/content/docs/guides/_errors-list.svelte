@@ -1,26 +1,27 @@
 <script lang="ts">
-  import type { ErrorObject } from 'ajv';
-  import type { Errors } from "@sjsf/form";
-  import { SvelteMap } from 'svelte/reactivity';
+  import { SimpleForm } from "@sjsf/form";
 
-  import CustomForm from "@/components/custom-form.svelte";
+  import { useCustomForm } from "@/components/custom-form";
 
-  import { objectSchema } from './_demo-schemas';
+  import { objectSchema } from "./_demo-schemas";
 
-  let errors: Errors<ErrorObject> = $state.raw(new SvelteMap());
+  const form = useCustomForm({
+    schema: objectSchema,
+    onSubmit: console.log,
+  });
 </script>
 
-<CustomForm
-  bind:errors
-  schema={objectSchema}
+<SimpleForm
+  {form}
   novalidate
-  onSubmit={console.log}
+  style="display: flex; flex-direction: column; gap: 1rem"
 />
-{#if errors.size > 0}
+
+{#if form.errors.size > 0}
   <div style="padding-top: 1rem;">
     <span style="font-size: larger; font-weight: bold;">Errors</span>
     <ui style="color: red;">
-      {#each errors as [field, fieldErrors] (field)}
+      {#each form.errors as [field, fieldErrors] (field)}
         {#each fieldErrors as err}
           <li>"{err.propertyTitle}" {err.message}</li>
         {/each}

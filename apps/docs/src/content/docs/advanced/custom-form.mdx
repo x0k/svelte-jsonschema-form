@@ -1,0 +1,14 @@
+---
+title: Custom form
+sidebar:
+  order: 0
+---
+
+import { Code } from '@astrojs/starlight/components';
+
+import customFormCode from '@/components/custom-form.ts?raw';
+
+Even with a simple setup, resulting code is very verbose.
+Therefore, after choosing a theme, validator and translation, it is convenient to create a wrapper around the `useForm`.
+
+<Code code={customFormCode} lang="typescript" title="custom-form.ts" />

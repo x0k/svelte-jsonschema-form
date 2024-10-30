@@ -1,22 +1,21 @@
 <script lang="ts">
-  import { Form } from "@sjsf/form";
+  import { useForm, SimpleForm } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { theme } from "@sjsf/form/basic-theme";
 
-  import { schema, uiSchema, initialData } from "./_schema";
+  import { schema, uiSchema, initialValue } from "./_schema";
   import { validator } from "./_validator";
 
-  let value = $state(initialData);
+  const form = useForm({
+    ...theme,
+    initialValue,
+    schema,
+    uiSchema,
+    validator,
+    translation,
+  });
 </script>
 
-<Form
-  bind:value
-  {...theme}
-  {schema}
-  {uiSchema}
-  {validator}
-  {translation}
-  onSubmit={console.log}
-/>
+<SimpleForm {form} style="display: flex; flex-direction: column; gap: 1rem;" />
 
-<pre>{JSON.stringify(value, null, 2)}</pre>
+<pre>{JSON.stringify(form.value, null, 2)}</pre>

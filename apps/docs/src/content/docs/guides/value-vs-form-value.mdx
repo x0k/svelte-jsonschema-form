@@ -1,0 +1,20 @@
+---
+title: "`value` vs `formValue`"
+sidebar:
+  order: 4
+---
+
+Once a form is created, you have access to its state through the `value` and `formValue` properties.
+Let's take a look at their areas of application:
+
+`value: T | undefined`
+
+- Intended for use by the user
+- Maintains the consistency of the form state
+  - Returns a snapshot of the form state
+  - The update takes into account the default values from the JSON Schema
+
+`formValue: SchemaValue | undefined`
+
+- Intended for use by the library
+- Direct access to the form state

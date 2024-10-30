@@ -1,27 +1,25 @@
 <script lang="ts">
-  import { Form } from "@sjsf/form";
+  import { SimpleForm, useForm } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { theme } from "@sjsf/flowbite-theme";
 
-  import { astroTheme } from "@/theme.svelte";
+  import { useAstro } from "@/astro.svelte";
 
-  import { schema, uiSchema, initialData } from "./_schema";
+  import { schema, uiSchema, initialValue } from "./_schema";
   import { validator } from "./_validator";
 
-  let value = $state(initialData);
+  const astro = useAstro();
 
-  const astro = astroTheme();
+  const form = useForm({
+    ...theme,
+    initialValue,
+    schema,
+    uiSchema,
+    validator,
+    translation,
+  });
 </script>
 
-<Form
-  class="flex flex-col gap-4 mb-4 {astro.darkOrLight}"
-  bind:value
-  {...theme}
-  {schema}
-  {uiSchema}
-  {validator}
-  {translation}
-  onSubmit={console.log}
-/>
+<SimpleForm {form} class="flex flex-col gap-4 mb-4 {astro.darkOrLight}" />
 
-<pre>{JSON.stringify(value, null, 2)}</pre>
+<pre>{JSON.stringify(form.value, null, 2)}</pre>

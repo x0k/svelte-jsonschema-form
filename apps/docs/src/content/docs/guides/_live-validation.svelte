@@ -1,7 +1,6 @@
 <script lang="ts">
-  import { SvelteMap } from "svelte/reactivity";
   import Ajv from "ajv";
-  import { Form, type Errors, type Schema } from "@sjsf/form";
+  import { useForm, SimpleForm, type Schema } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { theme } from "@sjsf/form/basic-theme";
   import {
@@ -16,25 +15,21 @@
 
   const schema: Schema = {
     type: "string",
-    minLength: 7,
+    minLength: 10,
   };
 
-  let form: Form<any, any>;
-  let value = $state("initial");
-  let errors: Errors = $state.raw(new SvelteMap());
+  const form = useForm({
+    ...theme,
+    initialValue: "initial",
+    schema,
+    validator,
+    translation,
+    onSubmit: console.log,
+  });
+
   $effect(() => {
-    value;
-    errors = form.validate();
+    form.errors = form.validate();
   });
 </script>
 
-<Form
-  bind:this={form}
-  bind:value
-  bind:errors
-  {...theme}
-  {schema}
-  {validator}
-  {translation}
-  onSubmit={console.log}
-/>
+<SimpleForm {form} style="display: flex; flex-direction: column; gap: 1rem" />

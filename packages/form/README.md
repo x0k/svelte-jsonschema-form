@@ -19,7 +19,7 @@ npm install @sjsf/form @sjsf/ajv8-validator ajv@8
 ```svelte
 <script lang="ts">
   import Ajv from 'ajv';
-  import { Form } from '@sjsf/form';
+  import { useForm, SimpleForm, type Schema } from '@sjsf/form';
   import { translation } from '@sjsf/form/translations/en';
   import { theme } from '@sjsf/form/basic-theme';
   import {
@@ -31,11 +31,8 @@ npm install @sjsf/form @sjsf/ajv8-validator ajv@8
   const validator = new AjvValidator(
     addFormComponents(new Ajv(DEFAULT_AJV_CONFIG))
   );
-</script>
 
-<Form
-  {...theme}
-  schema={{
+  const schema: Schema = {
     title: 'Tasks',
     type: 'array',
     items: {
@@ -52,11 +49,18 @@ npm install @sjsf/form @sjsf/ajv8-validator ajv@8
       },
       required: ["name"]
     },
-  }}
-  {validator}
-  {translation}
-  onSubmit={console.log}
-/>
+  }
+
+  const form = useForm({
+    ...theme,
+    schema,
+    validator,
+    translation,
+    onSubmit: console.log
+  })
+</script>
+
+<SimpleForm {form} style="display: flex; flex-direction: column; gap: 1rem" />
 ```
 
 ## License

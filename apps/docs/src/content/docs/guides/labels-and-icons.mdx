@@ -47,11 +47,13 @@ Usage:
 
 ```svelte
 <script lang="ts">
-  import { Form } from '@sjsf/form';
+  import { useForm } from '@sjsf/form';
   import { icons } from '@sjsf/lucide-icons';
-</script>
 
-<Form {icons} />
+  const form = useForm({
+    icons
+  })
+</script>
 ```
 
 <LinkButton
@@ -85,11 +87,13 @@ Usage:
 
 ```svelte
 <script lang="ts">
-  import { Form } from '@sjsf/form';
+  import { useForm } from '@sjsf/form';
   import { icons } from '@sjsf/flowbite-icons';
-</script>
 
-<Form {icons} />
+  const form = useForm({
+    icons
+  })
+</script>
 ```
 
 <LinkButton

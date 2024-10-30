@@ -1,11 +1,11 @@
 <script lang="ts">
-  import type { Schema, UiSchemaRoot } from "@sjsf/form";
+  import { SimpleForm, type Schema, type UiSchemaRoot } from "@sjsf/form";
 
-  import CustomForm from "@/components/custom-form.svelte";
+  import { useCustomForm } from "@/components/custom-form";
 
   const schema: Schema = {
-    title: "Schema title",
     type: "string",
+    title: "Simple text input",
   };
 
   const uiSchema: UiSchemaRoot = {
@@ -17,6 +17,12 @@
       },
     },
   };
+
+  const form = useCustomForm({
+    schema,
+    uiSchema,
+    onSubmit: console.log,
+  });
 </script>
 
-<CustomForm {schema} {uiSchema} onSubmit={console.log} />
+<SimpleForm {form} style="display: flex; flex-direction: column; gap: 1rem" />

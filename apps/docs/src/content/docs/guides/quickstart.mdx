@@ -8,10 +8,12 @@ import { Code, Card, LinkCard } from '@astrojs/starlight/components';
 
 
 import MinimalSetup from './_minimal-setup.astro';
-import UiSchema from './_ui-schema.astro';
-import FormData from './_form-data.astro';
 import minimalSetupCode from './_minimal-setup.svelte?raw';
+
+import UiSchema from './_ui-schema.astro';
 import uiSchemaCode from './_ui-schema.svelte?raw';
+
+import FormData from './_form-data.astro';
 import formDataCode from './_form-data.svelte?raw';
 
 ## Minimal setup
@@ -24,23 +26,25 @@ Let's explore the most basic setup:
   <MinimalSetup />
 </Card>
 
-With this setting, the form will be built based on the JSON Schema definition and
-will behave like a normal HTML form, performing only HTML5 validation.
+Quite verbose and here's why:
+
+- **Explicit Configuration**: The library favors explicit configuration over "magic" defaults.
+- **Tree-Shakeable Architecture**: Each feature is separated into modules so you can import only the functionality you need, keeping your bundle lean and optimized.
+- **Highly Customizable**: We provide extensive customization options so that you can customize every piece of from.
 
 <LinkCard title="JSON Schema API reference" href="../../api-reference/json-schema/" />
-
-But by providing additional properties we can customize the form behavior.
-
-## Handlers
-
-By providing `onSubmit` handler, you can achieve the form data validation and get a snapshot of the current form data
-(if valid, otherwise the `onSubmitError` handler will be triggered with the errors).
 
 <LinkCard title="Handlers API reference" href="../../api-reference/handlers/" />
 
 ## UI Schema
 
 You can also customize the form UI with the `uiSchema` property.
+
+:::note
+
+We'll talk about `useCustomForm` in [Custom form](../../advanced/custom-form/) guide.
+
+:::
 
 <Code code={uiSchemaCode} lang="svelte" />
 
@@ -53,16 +57,10 @@ You can also customize the form UI with the `uiSchema` property.
 
 ## Form state
 
-You can use bindable properties like `value` and `errors` to work with form state.
+You can use properties like `value` and `errors` to work with form state.
 
 <Code code={formDataCode} lang="svelte" />
 
 <Card>
   <FormData />
 </Card>
-
-:::tip
-
-To make the entire form read-only use the `inert` attribute.
-
-:::

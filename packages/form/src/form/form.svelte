@@ -1,3 +1,7 @@
+<!--
+    @component
+    @deprecated use `SimpleForm` component
+-->
 <script lang="ts" generics="T, E">
   import { SvelteMap } from "svelte/reactivity";
   import { untrack } from "svelte";

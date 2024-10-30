@@ -1,27 +1,24 @@
 <script lang="ts">
-  import { SvelteMap } from "svelte/reactivity";
+  import { type Schema, SimpleForm } from "@sjsf/form";
 
-  import type { Schema, Errors } from "@sjsf/form";
-
-  import CustomForm from "@/components/custom-form.svelte";
-  import type { ErrorObject } from "ajv";
+  import { useCustomForm } from "@/components/custom-form";
 
   const schema: Schema = {
     type: "string",
     minLength: 10,
   };
 
-  let value = $state("initial");
-
-  let errors: Errors<ErrorObject> = $state.raw(new SvelteMap());
+  const form = useCustomForm({
+    initialValue: "initial",
+    schema,
+    onSubmit: console.log,
+  });
 </script>
 
-<CustomForm bind:value bind:errors {schema} novalidate onSubmit={console.log} />
+<SimpleForm style="display: flex; flex-direction: column; gap: 1rem" {form} />
 
-<div>
-  <pre>{JSON.stringify(
-      { value, errors: Object.fromEntries(errors) },
-      null,
-      2
-    )}</pre>
-</div>
+<pre>{JSON.stringify(
+    { value: form.value, errors: Object.fromEntries(form.errors) },
+    null,
+    2
+  )}</pre>

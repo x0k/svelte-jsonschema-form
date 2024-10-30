@@ -1,27 +1,22 @@
 <script lang="ts">
-  import type { Schema } from "@sjsf/form";
+  import { FormContent, type Schema } from "@sjsf/form";
 
-  import CustomForm from "@/components/custom-form.svelte";
+  import { useCustomForm } from "@/components/custom-form";
 
   const schema: Schema = {
     type: "string",
   };
 
-  let form = $state<HTMLFormElement>();
+  const form = useCustomForm({
+    schema,
+    onSubmit: (v) => window.alert(v),
+  });
+
+  let formElement: HTMLFormElement;
 </script>
 
-<CustomForm bind:form {schema} novalidate onSubmit={(v) => window.alert(v)}>
-  {null}
-</CustomForm>
-
-<button
-  onclick={() => {
-    form?.requestSubmit();
-  }}>My submit</button
->
-
-<button onclick={() => {
-  form?.reset();
-}} >
-  My reset
-</button>
+<form bind:this={formElement} use:form.enhance>
+  <FormContent bind:value={form.formValue} />
+</form>
+<button onclick={() => formElement?.requestSubmit()}>My submit</button>
+<button onclick={() => formElement?.reset()}> My reset </button>

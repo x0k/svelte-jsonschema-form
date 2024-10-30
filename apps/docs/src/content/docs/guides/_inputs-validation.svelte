@@ -1,14 +1,19 @@
 <script lang="ts">
-  import { ON_CHANGE, ON_INPUT, AFTER_SUBMITTED } from "@sjsf/form";
+  import { ON_CHANGE, ON_INPUT, AFTER_SUBMITTED, SimpleForm } from "@sjsf/form";
 
-  import CustomForm from "@/components/custom-form.svelte";
+  import { useCustomForm } from "@/components/custom-form";
 
   import { objectSchema } from "./_demo-schemas";
+
+  const form = useCustomForm({
+    schema: objectSchema,
+    inputsValidationMode: ON_INPUT | ON_CHANGE | AFTER_SUBMITTED,
+    onSubmit: console.log,
+  });
 </script>
 
-<CustomForm
-  schema={objectSchema}
-  inputsValidationMode={ON_INPUT | ON_CHANGE | AFTER_SUBMITTED}
+<SimpleForm
+  {form}
   novalidate
-  onSubmit={console.log}
+  style="display: flex; flex-direction: column; gap: 1rem"
 />
