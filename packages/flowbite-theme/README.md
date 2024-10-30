@@ -2,7 +2,7 @@
 
 The [flowbite-svelte](https://github.com/themesberg/flowbite-svelte) based theme for [svelte-jsonschema-form](https://github.com/x0k/svelte-jsonschema-form).
 
-- [Documentation](https://x0k.github.io/svelte-jsonschema-form/)
+- [Documentation](https://x0k.github.io/svelte-jsonschema-form/themes/flowbite/)
 - [Playground](https://x0k.github.io/svelte-jsonschema-form/playground/)
 
 ## Installation
@@ -52,11 +52,13 @@ import themeStyles from "@sjsf/flowbite-theme/styles.css?inline";
 
 ```svelte
 <script lang="ts">
-  import { Form } from '@sjsf/form';
+  import { useForm } from '@sjsf/form';
   import { theme } from '@sjsf/flowbite-theme';
-</script>
 
-<Form {...theme} />
+  const form = useForm({
+    ...theme,
+  })
+</script>
 ```
 
 ## License
