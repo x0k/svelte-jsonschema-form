@@ -4,8 +4,8 @@
   import { useCustomForm } from "@/components/custom-form.ts";
 
   const schema: Schema = {
-    title: "Schema title",
     type: "string",
+    title: "Simple text input",
   };
 
   const uiSchema: UiSchemaRoot = {

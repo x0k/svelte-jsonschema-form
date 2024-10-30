@@ -14,14 +14,8 @@
   );
 
   const schema: Schema = {
-    type: "object",
-    title: "Mini form",
-    properties: {
-      text: {
-        type: "string",
-      },
-    },
-    required: ["text"],
+    type: "string",
+    title: "Simple text input",
   };
 
   const form = useForm({

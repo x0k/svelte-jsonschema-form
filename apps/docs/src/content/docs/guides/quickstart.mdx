@@ -26,23 +26,21 @@ Let's explore the most basic setup:
   <MinimalSetup />
 </Card>
 
-With this setting, the form will be built based on the JSON Schema definition and
-will behave like a normal HTML form, performing only HTML5 validation.
-
 <LinkCard title="JSON Schema API reference" href="../../api-reference/json-schema/" />
 
-But by providing additional properties we can customize the form behavior.
-
-## Handlers
-
-By providing `onSubmit` handler, you can achieve the form data validation and get a snapshot of the current form data
-(if valid, otherwise the `onSubmitError` handler will be triggered with the errors).
-
 <LinkCard title="Handlers API reference" href="../../api-reference/handlers/" />
+
+Simple right? Let's do a little form customization.
 
 ## UI Schema
 
 You can also customize the form UI with the `uiSchema` property.
+
+:::note
+
+We'll talk about `useCustomForm` in [Custom form](../../advanced/custom-form/) guide.
+
+:::
 
 <Code code={uiSchemaCode} lang="svelte" />
 
