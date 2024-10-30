@@ -1,5 +1,5 @@
 import type { ComponentInternals, Snippet } from "svelte";
-import type { HTMLFormAttributes } from "svelte/elements";
+import type { Action } from 'svelte/action';
 import { SvelteMap } from "svelte/reactivity";
 
 import type { SchedulerYield } from "@/lib/scheduler.js";
@@ -37,7 +37,6 @@ export interface UseFormOptions<T, E> {
   disabled?: boolean;
   idPrefix?: string;
   idSeparator?: string;
-  props?: HTMLFormAttributes;
   //
   initialValue?: T;
   initialErrors?: Errors<E>;
@@ -89,7 +88,7 @@ export interface FormState<T, E> {
   errors: Errors<E>;
   isSubmitted: boolean;
   validate: () => Errors<E>;
-  readonly props: HTMLFormAttributes;
+  enhance: Action
 }
 
 export function useForm<T, E>(options: UseFormOptions<T, E>): FormState<T, E> {
@@ -258,12 +257,15 @@ export function useForm<T, E>(options: UseFormOptions<T, E>): FormState<T, E> {
     validate() {
       return validateSnapshot(getSnapshot());
     },
-    get props() {
-      return {
-        onsubmit: submitHandler,
-        onreset: resetHandler,
-        ...options.props,
-      };
+    enhance: (node) => {
+      $effect(() => {
+        node.addEventListener("submit", submitHandler);
+        node.addEventListener("reset", resetHandler);
+        return () => {
+          node.removeEventListener("submit", submitHandler);
+          node.removeEventListener("reset", resetHandler);
+        }
+      })
     },
   };
 }

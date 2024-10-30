@@ -12,7 +12,7 @@
   const { form, ...rest }: Props = $props();
 </script>
 
-<form {...form.props} {...rest}>
+<form use:form.enhance {...rest}>
   <!-- svelte-ignore ownership_invalid_binding -->
   <FormContent bind:value={form.formValue} />
   <SubmitButton />
