@@ -46,7 +46,7 @@ export interface UseFormOptions<T, E> {
    * The snapshot is used to validate the form and passed to
    * `onSubmit` and `onSubmitError` handlers.
    *
-   * @default () => $state.snapshot(value)
+   * @default () => $state.snapshot(formValue)
    */
   getSnapshot?: () => SchemaValue | undefined;
   /**

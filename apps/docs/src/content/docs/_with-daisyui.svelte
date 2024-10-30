@@ -6,7 +6,7 @@
   import { useAstro } from "@/astro.svelte";
 
   import { schema, uiSchema, initialValue } from "./_schema";
-  import { validator } from './_validator'
+  import { validator } from "./_validator";
 
   const astro = useAstro();
 

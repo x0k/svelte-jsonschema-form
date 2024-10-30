@@ -15,9 +15,9 @@ interface FormProps<T> {
      * The function to get the form data snapshot
      * 
      * The snapshot is used to validate the form and passed to
-     * `onSubmit` and `onSubmitError` handlers. 
+     * `onSubmit` and `onSubmitError` handlers.
      * 
-     * @default () => $state.snapshot(value)
+     * @default () => $state.snapshot(formValue)
      */
     getSnapshot?: () => SchemaValue | undefined
     /**
@@ -41,7 +41,7 @@ interface FormProps<T> {
      * 
      * By default it will clear the errors and set `isSubmitted` state to `false`.
      * 
-     * @default  () => { isSubmitted = false; errors.clear() }
+     * @default () => { isSubmitted = false; errors.clear() }
      */
     onReset?: (e: Event) => void
 }
