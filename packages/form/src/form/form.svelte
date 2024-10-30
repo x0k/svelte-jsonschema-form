@@ -1,6 +1,6 @@
 <!--
     @component
-    @deprecated use `SimpleForm` component
+    @deprecated use `SimpleForm` instead
 -->
 <script lang="ts" generics="T, E">
   import { SvelteMap } from "svelte/reactivity";

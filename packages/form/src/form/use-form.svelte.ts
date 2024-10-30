@@ -15,7 +15,7 @@ import type { Templates } from "./templates/index.js";
 import type { Icons } from "./icons.js";
 import type { InputsValidationMode } from "./validation.js";
 import type { Errors } from "./errors.js";
-import { setFromContext } from "./context/index.js";
+import { setFromContext, type FormContext } from "./context/index.js";
 import { DefaultFormMerger, type FormMerger } from "./merger.js";
 import { fields as defaultFields } from "./fields/index.js";
 import { templates as defaultTemplates } from "./templates/index.js";
@@ -94,7 +94,9 @@ export interface FormAPI<T, E> extends FormState<T, E> {
 
 type Value = SchemaValue | undefined;
 
-export function useForm<T, E>(options: UseFormOptions<T, E>): FormAPI<T, E> {
+export function createForm<T, E>(
+  options: UseFormOptions<T, E>
+): [FormContext, FormAPI<T, E>] {
   const merger = $derived(
     options.merger ?? new DefaultFormMerger(options.validator, options.schema)
   );
@@ -161,113 +163,126 @@ export function useForm<T, E>(options: UseFormOptions<T, E>): FormAPI<T, E> {
           })
   );
 
-  setFromContext({
-    get inputsValidationMode() {
-      return inputsValidationMode;
+  return [
+    {
+      get inputsValidationMode() {
+        return inputsValidationMode;
+      },
+      get isSubmitted() {
+        return isSubmitted;
+      },
+      get errors() {
+        return errors;
+      },
+      get schema() {
+        return options.schema;
+      },
+      get uiSchema() {
+        return uiSchema;
+      },
+      get disabled() {
+        return disabled;
+      },
+      get idPrefix() {
+        return idPrefix;
+      },
+      get idSeparator() {
+        return idSeparator;
+      },
+      get validator() {
+        return options.validator;
+      },
+      get merger() {
+        return merger;
+      },
+      get fields() {
+        return fields;
+      },
+      get templates() {
+        return templates;
+      },
+      get components() {
+        return options.components;
+      },
+      get widgets() {
+        return options.widgets;
+      },
+      get translation() {
+        return options.translation;
+      },
+      get icons() {
+        return icons;
+      },
+      get schedulerYield() {
+        return schedulerYield;
+      },
+      iconOrTranslation: (<L extends Label>(
+        internals: ComponentInternals,
+        data: () => [L, ...Labels[L]]
+      ) => {
+        IconOrTranslation(internals, {
+          get data() {
+            return data();
+          },
+        });
+      }) as unknown as Snippet<
+        [
+          {
+            [L in Label]: [L, ...Labels[L]];
+          }[Label],
+        ]
+      >,
     },
-    get isSubmitted() {
-      return isSubmitted;
+    {
+      get value() {
+        return getSnapshot() as T | undefined;
+      },
+      set value(v) {
+        value = merger.mergeFormDataAndSchemaDefaults(
+          v as Value,
+          options.schema
+        );
+      },
+      get formValue() {
+        return value;
+      },
+      set formValue(v) {
+        value = v;
+      },
+      get errors() {
+        return errors;
+      },
+      set errors(v) {
+        errors = v;
+      },
+      get isSubmitted() {
+        return isSubmitted;
+      },
+      set isSubmitted(v) {
+        isSubmitted = v;
+      },
+      validate() {
+        return validateSnapshot(getSnapshot());
+      },
+      enhance(node) {
+        $effect(() => {
+          node.addEventListener("submit", submitHandler);
+          node.addEventListener("reset", resetHandler);
+          return () => {
+            node.removeEventListener("submit", submitHandler);
+            node.removeEventListener("reset", resetHandler);
+          };
+        });
+      },
     },
-    get errors() {
-      return errors;
-    },
-    get schema() {
-      return options.schema;
-    },
-    get uiSchema() {
-      return uiSchema;
-    },
-    get disabled() {
-      return disabled;
-    },
-    get idPrefix() {
-      return idPrefix;
-    },
-    get idSeparator() {
-      return idSeparator;
-    },
-    get validator() {
-      return options.validator;
-    },
-    get merger() {
-      return merger;
-    },
-    get fields() {
-      return fields;
-    },
-    get templates() {
-      return templates;
-    },
-    get components() {
-      return options.components;
-    },
-    get widgets() {
-      return options.widgets;
-    },
-    get translation() {
-      return options.translation;
-    },
-    get icons() {
-      return icons;
-    },
-    get schedulerYield() {
-      return schedulerYield;
-    },
-    iconOrTranslation: (<L extends Label>(
-      internals: ComponentInternals,
-      data: () => [L, ...Labels[L]]
-    ) => {
-      IconOrTranslation(internals, {
-        get data() {
-          return data();
-        },
-      });
-    }) as unknown as Snippet<
-      [
-        {
-          [L in Label]: [L, ...Labels[L]];
-        }[Label],
-      ]
-    >,
-  });
+  ];
+}
 
-  return {
-    get value() {
-      return getSnapshot() as T | undefined;
-    },
-    set value(v) {
-      value = merger.mergeFormDataAndSchemaDefaults(v as Value, options.schema);
-    },
-    get formValue() {
-      return value;
-    },
-    set formValue(v) {
-      value = v;
-    },
-    get errors() {
-      return errors;
-    },
-    set errors(v) {
-      errors = v;
-    },
-    get isSubmitted() {
-      return isSubmitted;
-    },
-    set isSubmitted(v) {
-      isSubmitted = v;
-    },
-    validate() {
-      return validateSnapshot(getSnapshot());
-    },
-    enhance(node) {
-      $effect(() => {
-        node.addEventListener("submit", submitHandler);
-        node.addEventListener("reset", resetHandler);
-        return () => {
-          node.removeEventListener("submit", submitHandler);
-          node.removeEventListener("reset", resetHandler);
-        };
-      });
-    },
-  };
+/**
+ * Create a FormAPI and set form context
+ */
+export function useForm<T, E>(options: UseFormOptions<T, E>) {
+  const [ctx, api] = createForm(options);
+  setFromContext(ctx);
+  return api;
 }
