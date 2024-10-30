@@ -72,9 +72,15 @@ export interface UseFormOptions<T, E> {
    *
    * Will be called on form reset.
    *
-   * By default it will clear the errors and set `isSubmitted` state to `false`.
+   * By default it will clear the errors, set `isSubmitted` state to `false` and
+   * reset the form `value` to the `initialValue`.
    *
-   * @default () => { isSubmitted = false; errors.clear() }
+   * @default (e) => {
+   *   e.preventDefault();
+   *   isSubmitted = false;
+   *   errors.clear();
+   *   value = initialValue;
+   *  }
    */
   onReset?: (e: Event) => void;
   schedulerYield?: SchedulerYield;
@@ -133,9 +139,14 @@ export function createForm<T, E>(
 
   const resetHandler = $derived(
     options.onReset ??
-      (() => {
+      ((e: Event) => {
+        e.preventDefault();
         isSubmitted = false;
         errors.clear();
+        value = merger.mergeFormDataAndSchemaDefaults(
+          options.initialValue as Value,
+          options.schema
+        );
       })
   );
 

@@ -5,10 +5,12 @@
 
   const schema: Schema = {
     type: "string",
+    minLength: 10,
   };
 
   const form = useCustomForm({
     schema,
+    initialValue: "initial",
     onSubmit: (v) => window.alert(v),
   });
 
