@@ -87,7 +87,7 @@ export const uiSchema: UiSchemaRoot = {
   },
 };
 
-export const initialData = {
+export const initialValue = {
   lastName: "Norris",
   age: 75,
   bio: "Roundhouse kicking asses since 1940",

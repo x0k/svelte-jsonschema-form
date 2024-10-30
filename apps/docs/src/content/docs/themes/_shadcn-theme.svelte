@@ -1,27 +1,24 @@
 <script lang="ts">
+  import { SimpleForm } from "@sjsf/form";
   import { theme, setThemeContext } from "@sjsf/shadcn-theme";
-  import { components } from '@sjsf/shadcn-theme/default'
+  import { components } from "@sjsf/shadcn-theme/default";
 
-  import { astroTheme } from "@/theme.svelte";
-  import CustomForm from "@/components/custom-form.svelte";
+  import { useAstro } from "@/astro.svelte";
+  import { useCustomForm } from "@/components/custom-form";
 
   import { schema, uiSchema } from "./_demo-schema";
 
-  const astro = astroTheme();
+  const astro = useAstro();
 
-  let value = $state();
+  const form = useCustomForm({
+    ...theme,
+    schema,
+    uiSchema,
+  });
 
-  setThemeContext({ components })
+  setThemeContext({ components });
 </script>
 
-<CustomForm
-  {...theme}
-  bind:value
-  {schema}
-  {uiSchema}
-  novalidate
-  onSubmit={console.log}
-  class="flex flex-col gap-4 {astro.darkOrLight}"
-/>
+<SimpleForm {form} novalidate class="flex flex-col gap-4 {astro.darkOrLight}" />
 
-<pre style="padding-top: 1rem;">{JSON.stringify(value, null, 2)}</pre>
+<pre style="padding-top: 1rem;">{JSON.stringify(form.value, null, 2)}</pre>

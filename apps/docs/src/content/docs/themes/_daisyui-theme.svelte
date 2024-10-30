@@ -1,25 +1,26 @@
 <script lang="ts">
+  import { SimpleForm } from "@sjsf/form";
   import { theme } from "@sjsf/daisyui-theme";
 
-  import { astroTheme } from "@/theme.svelte";
-  import CustomForm from "@/components/custom-form.svelte";
+  import { useAstro } from "@/astro.svelte";
+  import { useCustomForm } from "@/components/custom-form";
 
   import { schema, uiSchema } from "./_demo-schema";
 
-  const astro = astroTheme();
+  const astro = useAstro();
 
-  let value = $state()
+  const form = useCustomForm({
+    ...theme,
+    schema,
+    uiSchema,
+  });
 </script>
 
-<CustomForm
-  {...theme}
-  bind:value
-  {schema}
-  {uiSchema}
+<SimpleForm
+  {form}
   novalidate
-  onSubmit={console.log}
-  style="background-color: transparent; margin-bottom: 1rem;"
+  style="display: flex; flex-direction: column; gap: 1rem; background-color: transparent; margin-bottom: 1rem;"
   data-theme={astro.darkOrLight}
 />
 
-<pre>{JSON.stringify(value, null, 2)}</pre>
+<pre>{JSON.stringify(form.value, null, 2)}</pre>
