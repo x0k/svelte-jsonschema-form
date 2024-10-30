@@ -26,11 +26,15 @@ Let's explore the most basic setup:
   <MinimalSetup />
 </Card>
 
+Quite verbose and here's why:
+
+- **Explicit Configuration**: The library favors explicit configuration over "magic" defaults.
+- **Tree-Shakeable Architecture**: Each feature is separated into modules so you can import only the functionality you need, keeping your bundle lean and optimized.
+- **Highly Customizable**: We provide extensive customization options so that you can customize every piece of from.
+
 <LinkCard title="JSON Schema API reference" href="../../api-reference/json-schema/" />
 
 <LinkCard title="Handlers API reference" href="../../api-reference/handlers/" />
-
-Simple right? Let's do a little form customization.
 
 ## UI Schema
 
@@ -53,16 +57,10 @@ We'll talk about `useCustomForm` in [Custom form](../../advanced/custom-form/) g
 
 ## Form state
 
-You can use bindable properties like `value` and `errors` to work with form state.
+You can use properties like `value` and `errors` to work with form state.
 
 <Code code={formDataCode} lang="svelte" />
 
 <Card>
   <FormData />
 </Card>
-
-:::tip
-
-To make the entire form read-only use the `inert` attribute.
-
-:::
