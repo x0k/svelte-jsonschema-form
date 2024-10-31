@@ -25,8 +25,8 @@ import {
 import { getSimpleSchemaType } from "./type.js";
 import { isMultiSelect2 } from "./is-select.js";
 import { getClosestMatchingOption2 } from "./matching.js";
-import { defaultMerger } from './merger.js';
-import type { Merger2 } from './merger.js';
+import { defaultMerger } from "./merger.js";
+import type { Merger2 } from "./merger.js";
 
 export function getDefaultValueForType(type: SchemaType) {
   switch (type) {
@@ -69,24 +69,34 @@ export function getDefaultFormState(
     rootSchema,
     includeUndefinedValues,
     experimental_defaultFormStateBehavior
-  )
+  );
 }
 
 export function getDefaultFormState2(
   validator: Validator,
   merger: Merger2,
   theSchema: Schema,
-  formData?: SchemaValue,
-  rootSchema?: Schema,
+  formData: SchemaValue | undefined = undefined,
+  rootSchema: Schema = {},
   includeUndefinedValues: boolean | "excludeObjectChildren" = false,
-  experimental_defaultFormStateBehavior?: Experimental_DefaultFormStateBehavior
+  experimental_defaultFormStateBehavior: Experimental_DefaultFormStateBehavior = {}
 ): SchemaValue | undefined {
-  const schema = retrieveSchema2(validator, merger, theSchema, rootSchema, formData);
-  const defaults = computeDefaults2(validator, merger, schema, {
+  const schema = retrieveSchema2(
+    validator,
+    merger,
+    theSchema,
+    rootSchema,
+    formData
+  );
+  const defaults = computeDefaults3(validator, merger, schema, {
     rootSchema,
     includeUndefinedValues,
     experimental_defaultFormStateBehavior,
     rawFormData: formData,
+    parentDefaults: undefined,
+    required: false,
+    isSchemaRoot: true,
+    stack: new Set<string>(),
   });
   if (
     formData === undefined ||
@@ -101,7 +111,8 @@ export function getDefaultFormState2(
       defaults,
       formData,
       experimental_defaultFormStateBehavior?.arrayMinItems?.mergeExtraDefaults,
-      experimental_defaultFormStateBehavior?.mergeDefaultsIntoFormData === "useDefaultIfFormDataUndefined"
+      experimental_defaultFormStateBehavior?.mergeDefaultsIntoFormData ===
+        "useDefaultIfFormDataUndefined"
     );
   }
   return formData;
@@ -168,9 +179,14 @@ type Experimental_DefaultFormStateBehavior = {
    * - `useDefaultIfFormDataUndefined`: - If the value of a field within the `formData` is `undefined`, then use the
    *        default value instead
    */
-  mergeDefaultsIntoFormData?: 'useFormDataIfPresent' | 'useDefaultIfFormDataUndefined';
+  mergeDefaultsIntoFormData?:
+    | "useFormDataIfPresent"
+    | "useDefaultIfFormDataUndefined";
 };
 
+/**
+ * @deprecated use `ComputeDefaultsProps2`
+ */
 interface ComputeDefaultsProps {
   parentDefaults?: SchemaValue;
   rootSchema?: Schema;
@@ -181,8 +197,19 @@ interface ComputeDefaultsProps {
   required?: boolean;
 }
 
+interface ComputeDefaultsProps2 {
+  parentDefaults: SchemaValue | undefined;
+  rootSchema: Schema;
+  rawFormData: SchemaValue | undefined;
+  includeUndefinedValues: boolean | "excludeObjectChildren";
+  stack: Set<string>;
+  experimental_defaultFormStateBehavior: Experimental_DefaultFormStateBehavior;
+  isSchemaRoot: boolean;
+  required: boolean;
+}
+
 /**
- * @deprecated use `computeDefaults2`
+ * @deprecated use `computeDefaults3`
  */
 export function computeDefaults<T extends SchemaValue>(
   validator: Validator,
@@ -194,24 +221,54 @@ export function computeDefaults<T extends SchemaValue>(
     validator,
     merger,
     rawSchema,
-    computeDefaultsProps,
+    computeDefaultsProps
   );
 }
 
+/**
+ * @deprecated use `computeDefaults3`
+ */
 export function computeDefaults2<T extends SchemaValue>(
   validator: Validator,
   merger: Merger2,
   rawSchema: Schema,
   {
-    parentDefaults,
-    rawFormData,
     rootSchema = {},
     includeUndefinedValues = false,
     stack = new Set(),
-    experimental_defaultFormStateBehavior = undefined,
-    required,
-  }: ComputeDefaultsProps = {},
+    required = false,
+    parentDefaults = undefined,
+    experimental_defaultFormStateBehavior = {},
+    rawFormData = undefined,
+  }: ComputeDefaultsProps = {}
 ): SchemaValue | undefined {
+  return computeDefaults3(validator, merger, rawSchema, {
+    parentDefaults,
+    rootSchema,
+    rawFormData,
+    includeUndefinedValues,
+    stack,
+    experimental_defaultFormStateBehavior,
+    required,
+    isSchemaRoot: true,
+  });
+}
+export function computeDefaults3(
+  validator: Validator,
+  merger: Merger2,
+  rawSchema: Schema,
+  computeDefaultsProps: ComputeDefaultsProps2
+): SchemaValue | undefined {
+  const {
+    parentDefaults,
+    rawFormData,
+    rootSchema,
+    includeUndefinedValues,
+    stack,
+    experimental_defaultFormStateBehavior,
+    required,
+    isSchemaRoot,
+  } = computeDefaultsProps;
   const formData: SchemaObjectValue = isSchemaObjectValue(rawFormData)
     ? rawFormData
     : {};
@@ -241,6 +298,7 @@ export function computeDefaults2<T extends SchemaValue>(
       schemaToCompute = findSchemaDefinition(schemaRef, rootSchema);
     }
   } else if (DEPENDENCIES_KEY in schema) {
+    // Get the default if set from properties to ensure the dependencies conditions are resolved based on it
     const resolvedSchema = resolveDependencies2(
       validator,
       merger,
@@ -253,18 +311,19 @@ export function computeDefaults2<T extends SchemaValue>(
     schemaToCompute = resolvedSchema[0]!; // pick the first element from resolve dependencies
   } else if (isFixedItems(schema)) {
     defaults = schema.items.map((itemSchema, idx) =>
-      computeDefaults2(validator, merger, itemSchema, {
+      computeDefaults3(validator, merger, itemSchema, {
         rootSchema,
         includeUndefinedValues,
-        stack: stack,
+        stack,
         experimental_defaultFormStateBehavior,
         parentDefaults: Array.isArray(parentDefaults)
           ? parentDefaults[idx]
           : undefined,
         rawFormData: formData,
         required,
+        isSchemaRoot: false,
       })
-    ) as T[];
+    );
   } else if (schemaOneOf !== undefined) {
     const { oneOf: _, ...remaining } = schema;
     if (schemaOneOf.length === 0) {
@@ -311,7 +370,8 @@ export function computeDefaults2<T extends SchemaValue>(
   }
 
   if (schemaToCompute) {
-    return computeDefaults2(validator, merger, schemaToCompute, {
+    return computeDefaults3(validator, merger, schemaToCompute, {
+      isSchemaRoot,
       rootSchema,
       includeUndefinedValues,
       stack: nextStack,
@@ -337,6 +397,7 @@ export function computeDefaults2<T extends SchemaValue>(
         ALL_OF_KEY in schema
           ? retrieveSchema2(validator, merger, schema, rootSchema, formData)
           : schema;
+      const retrievedSchemaRequired = new Set(retrievedSchema.required);
       const objDefaults = new Map<string, SchemaValue>();
       const schemaProperties = retrievedSchema.properties;
       const defaultsAsObject = isSchemaObjectValue(defaults)
@@ -350,29 +411,31 @@ export function computeDefaults2<T extends SchemaValue>(
           if (typeof value === "boolean") {
             continue;
           }
-          const computedDefault = computeDefaults2(validator, merger, value, {
+          const computedDefault = computeDefaults3(validator, merger, value, {
             rootSchema,
-            stack: stack,
+            stack,
             experimental_defaultFormStateBehavior,
             includeUndefinedValues: includeUndefinedValues === true,
             parentDefaults: defaultsAsObject?.[key],
             rawFormData: formDataAsObject?.[key],
-            required: retrievedSchema.required?.includes(key),
+            required: retrievedSchemaRequired.has(key),
+            isSchemaRoot: false,
           });
           maybeAddDefaultToObject(
             objDefaults,
             key,
             computedDefault,
             includeUndefinedValues,
+            isSchemaRoot,
             required,
-            retrievedSchema.required,
+            new Set(retrievedSchema.required),
             experimental_defaultFormStateBehavior
           );
         }
       }
       const schemaAdditionalProperties = retrievedSchema.additionalProperties;
       if (schemaAdditionalProperties !== undefined) {
-        const keys = new Set(
+        let keys = new Set(
           isSchemaObjectValue(defaults)
             ? schemaProperties === undefined
               ? Object.keys(defaults)
@@ -382,19 +445,18 @@ export function computeDefaults2<T extends SchemaValue>(
             : undefined
         );
         const formDataKeys = Object.keys(formData);
-        const formDataRequired =
+        const formDataRequired = new Set(
           schemaProperties === undefined
             ? formDataKeys
-            : formDataKeys.filter((key) => !(key in schemaProperties));
-        for (const key of formDataRequired) {
-          keys.add(key);
-        }
+            : formDataKeys.filter((key) => !(key in schemaProperties))
+        );
+        keys = keys.union(formDataRequired);
         const additionalPropertySchema =
           typeof schemaAdditionalProperties === "boolean"
             ? {}
             : schemaAdditionalProperties;
         keys.forEach((key) => {
-          const computedDefault = computeDefaults2(
+          const computedDefault = computeDefaults3(
             validator,
             merger,
             additionalPropertySchema,
@@ -405,7 +467,8 @@ export function computeDefaults2<T extends SchemaValue>(
               includeUndefinedValues: includeUndefinedValues === true,
               parentDefaults: defaultsAsObject?.[key],
               rawFormData: formDataAsObject?.[key],
-              required: retrievedSchema.required?.includes(key),
+              required: retrievedSchemaRequired.has(key),
+              isSchemaRoot,
             }
           );
           // Since these are additional properties we don't need to add the `experimental_defaultFormStateBehavior` prop
@@ -414,8 +477,10 @@ export function computeDefaults2<T extends SchemaValue>(
             key,
             computedDefault,
             includeUndefinedValues,
+            isSchemaRoot,
             required,
-            formDataRequired
+            formDataRequired,
+            {}
           );
         });
       }
@@ -445,14 +510,17 @@ export function computeDefaults2<T extends SchemaValue>(
             AdditionalItemsHandling.Fallback,
             idx
           );
-          return computeDefaults2(validator, merger, schemaItem, {
+          return computeDefaults3(validator, merger, schemaItem, {
             rootSchema,
-            stack: stack,
+            stack,
             experimental_defaultFormStateBehavior,
             parentDefaults: item,
             required,
+            includeUndefinedValues: false,
+            rawFormData: undefined,
+            isSchemaRoot: false,
           });
-        }) as T[];
+        });
       }
 
       // Deeply inject defaults into already existing form data
@@ -465,16 +533,17 @@ export function computeDefaults2<T extends SchemaValue>(
             ? defaults
             : undefined;
           defaults = rawFormData.map((item, idx) => {
-            // TODO: Remove typecast by excluding `undefined` from the return type
-            return computeDefaults2(validator, merger, schemaItem, {
+            return computeDefaults3(validator, merger, schemaItem, {
               rootSchema,
-              stack: stack,
+              stack,
               experimental_defaultFormStateBehavior,
               rawFormData: item,
               parentDefaults: defaultsAsArray?.[idx],
               required,
+              includeUndefinedValues: false,
+              isSchemaRoot: false,
             });
-          }) as T[];
+          });
         }
       }
 
@@ -506,12 +575,15 @@ export function computeDefaults2<T extends SchemaValue>(
 
       // Calculate filler entries for remaining items (minItems - existing raw data/defaults)
       const fillerEntries = new Array(schema.minItems - defaultsLength).fill(
-        computeDefaults2(validator, merger, fillerSchema, {
+        computeDefaults3(validator, merger, fillerSchema, {
           parentDefaults: fillerDefault,
           rootSchema,
           stack: stack,
           experimental_defaultFormStateBehavior,
           required,
+          includeUndefinedValues: false,
+          rawFormData: undefined,
+          isSchemaRoot: false,
         })
       );
       // then fill up the rest with either the item default or empty, up to minItems
@@ -527,9 +599,10 @@ function maybeAddDefaultToObject(
   key: string,
   computedDefault: SchemaValue | undefined,
   includeUndefinedValues: boolean | "excludeObjectChildren",
-  isParentRequired?: boolean,
-  requiredFields: string[] = [],
-  experimental_defaultFormStateBehavior: Experimental_DefaultFormStateBehavior = {}
+  isSchemaRoot: boolean,
+  isParentRequired: boolean,
+  requiredFields: Set<string>,
+  experimental_defaultFormStateBehavior: Experimental_DefaultFormStateBehavior
 ) {
   const { emptyObjectFields = "populateAllDefaults" } =
     experimental_defaultFormStateBehavior;
@@ -541,10 +614,9 @@ function maybeAddDefaultToObject(
     if (isSchemaObjectValue(computedDefault)) {
       // If isParentRequired is undefined, then we are at the root level of the schema so defer to the requiredness of
       // the field key itself in the `requiredField` list
-      const isSelfOrParentRequired =
-        isParentRequired === undefined
-          ? requiredFields.includes(key)
-          : isParentRequired;
+      const isSelfOrParentRequired = isSchemaRoot
+        ? requiredFields.has(key)
+        : isParentRequired;
 
       // If emptyObjectFields 'skipEmptyDefaults' store computedDefault if it's a non-empty object(e.g. not {})
       if (emptyObjectFields === "skipEmptyDefaults") {
@@ -556,8 +628,7 @@ function maybeAddDefaultToObject(
       // Condition 1: If computedDefault is not empty or if the key is a required field
       // Condition 2: If the parent object is required or emptyObjectFields is not 'populateRequiredDefaults'
       else if (
-        (!isSchemaValueEmpty(computedDefault) ||
-          requiredFields.includes(key)) &&
+        (!isSchemaValueEmpty(computedDefault) || requiredFields.has(key)) &&
         (isSelfOrParentRequired ||
           emptyObjectFields !== "populateRequiredDefaults")
       ) {
@@ -570,7 +641,7 @@ function maybeAddDefaultToObject(
       computedDefault !== undefined &&
       (emptyObjectFields === "populateAllDefaults" ||
         emptyObjectFields === "skipEmptyDefaults" ||
-        requiredFields.includes(key))
+        requiredFields.has(key))
     ) {
       obj.set(key, computedDefault);
     }
