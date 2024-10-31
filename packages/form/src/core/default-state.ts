@@ -199,10 +199,10 @@ interface ComputeDefaultsProps {
   required?: boolean;
 }
 
-interface ComputeDefaultsProps2 {
+interface ComputeDefaultsProps2<FormData = SchemaValue | undefined> {
   parentDefaults: SchemaValue | undefined;
   rootSchema: Schema;
-  rawFormData: SchemaValue | undefined;
+  rawFormData: FormData;
   includeUndefinedValues: boolean | "excludeObjectChildren";
   stack: Set<string>;
   experimental_defaultFormStateBehavior: Experimental_DefaultFormStateBehavior;
@@ -312,8 +312,10 @@ export function computeDefaults3(
         validator,
         merger,
         schema,
-        computeDefaultsProps,
-        formData,
+        {
+          ...computeDefaultsProps,
+          rawFormData: formData,
+        },
         defaults
       ),
     };
@@ -516,17 +518,15 @@ export function getDefaultBasedOnSchemaType(
   switch (getSimpleSchemaType(rawSchema)) {
     // We need to recurse for object schema inner default values.
     case "object": {
-      const formData: SchemaObjectValue = isSchemaObjectValue(
-        computeDefaultsProps.rawFormData
-      )
-        ? computeDefaultsProps.rawFormData
-        : {};
+      const { rawFormData } = computeDefaultsProps;
       return getObjectDefaults(
         validator,
         merger,
         rawSchema,
-        computeDefaultsProps,
-        formData,
+        {
+          ...computeDefaultsProps,
+          rawFormData: isSchemaObjectValue(rawFormData) ? rawFormData : {},
+        },
         defaults
       );
     }
@@ -555,8 +555,8 @@ export function getObjectDefaults(
     experimental_defaultFormStateBehavior,
     required,
     isSchemaRoot,
-  }: ComputeDefaultsProps2,
-  formData: SchemaObjectValue,
+    rawFormData: formData,
+  }: ComputeDefaultsProps2<SchemaObjectValue>,
   defaults: SchemaValue | undefined
 ): SchemaObjectValue {
   // This is a custom addition that fixes this issue:
@@ -589,7 +589,8 @@ export function getObjectDefaults(
         required: retrievedSchemaRequired.has(key),
         isSchemaRoot: false,
       });
-      const isConst = value.const !== undefined || parentConstObject[key] !== undefined;
+      const isConst =
+        value.const !== undefined || parentConstObject[key] !== undefined;
       maybeAddDefaultToObject(
         objDefaults,
         key,

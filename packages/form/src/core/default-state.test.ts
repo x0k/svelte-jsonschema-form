@@ -938,8 +938,7 @@ describe("getDefaultFormState2()", () => {
           testValidator,
           defaultMerger,
           schema,
-          { ...defaults, rootSchema: schema },
-          {},
+          { ...defaults, rootSchema: schema, rawFormData: {} },
           undefined
         )
       ).toEqual({
@@ -972,8 +971,7 @@ describe("getDefaultFormState2()", () => {
           testValidator,
           defaultMerger,
           schema,
-          { ...defaults, rootSchema: schema },
-          {},
+          { ...defaults, rawFormData: {}, rootSchema: schema },
           undefined
         )
       ).toEqual({
@@ -1015,8 +1013,8 @@ describe("getDefaultFormState2()", () => {
             ...defaults,
             rootSchema: schema,
             includeUndefinedValues: true,
+            rawFormData: {},
           },
-          {},
           undefined
         )
       ).toEqual({
@@ -1065,8 +1063,8 @@ describe("getDefaultFormState2()", () => {
             ...defaults,
             rootSchema: schema,
             includeUndefinedValues: "excludeObjectChildren",
+            rawFormData: {},
           },
-          {},
           undefined
         )
       ).toEqual({
@@ -1097,8 +1095,7 @@ describe("getDefaultFormState2()", () => {
           testValidator,
           defaultMerger,
           schema,
-          { ...defaults, rootSchema: schema },
-          {},
+          { ...defaults, rootSchema: schema, rawFormData: {} },
           { foo: "bar" }
         )
       ).toEqual({
@@ -1132,8 +1129,8 @@ describe("getDefaultFormState2()", () => {
             ...defaults,
             rootSchema: schema,
             includeUndefinedValues: true,
+            rawFormData: {},
           },
-          {},
           {
             foo: "bar",
           }
@@ -1180,7 +1177,6 @@ describe("getDefaultFormState2()", () => {
             rootSchema: schema,
             rawFormData: { test: { foo: "x", newKey: {} } },
           },
-          {},
           undefined
         )
       ).toEqual({
@@ -1230,7 +1226,6 @@ describe("getDefaultFormState2()", () => {
             rootSchema: schema,
             rawFormData: { test: { foo: "x", newKey: {} } },
           },
-          {},
           undefined
         )
       ).toEqual({
@@ -1277,7 +1272,6 @@ describe("getDefaultFormState2()", () => {
             rootSchema: schema,
             rawFormData: {},
           },
-          {},
           undefined
         )
       ).toEqual({});
@@ -1298,8 +1292,8 @@ describe("getDefaultFormState2()", () => {
             ...defaults,
             rootSchema: schema,
             includeUndefinedValues: "excludeObjectChildren",
+            rawFormData: {},
           },
-          {},
           undefined
         )
       ).toEqual({});
@@ -1313,8 +1307,8 @@ describe("getDefaultFormState2()", () => {
           {
             ...defaults,
             rootSchema: RECURSIVE_REF_ALLOF,
+            rawFormData: {},
           },
-          {},
           undefined
         )
       ).toEqual({
@@ -1328,8 +1322,7 @@ describe("getDefaultFormState2()", () => {
           testValidator,
           defaultMerger,
           schema,
-          defaults,
-          {},
+          { ...defaults, rawFormData: {} },
           undefined
         )
       ).toStrictEqual({});
