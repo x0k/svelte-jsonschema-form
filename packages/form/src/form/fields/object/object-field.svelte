@@ -106,7 +106,7 @@
         ?? getDefaultValueForType(getSimpleSchemaType(schemaAdditionalProperties))
     }}
   >
-    {@render ctx.iconOrTranslation(["add-object-property"])}
+    <ctx.IconOrTranslation data={["add-object-property"]} />
   </Button>
 {/snippet}
 <Template

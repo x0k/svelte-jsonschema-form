@@ -51,7 +51,7 @@
       delete obj[property]
     }}
   >
-    {@render ctx.iconOrTranslation(["remove-object-property"])}
+    <ctx.IconOrTranslation data={["remove-object-property"]} />
   </Button>
 {/snippet}
 <Template

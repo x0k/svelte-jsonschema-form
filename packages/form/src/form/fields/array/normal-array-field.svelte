@@ -52,7 +52,7 @@
       value?.push(getDefaultFieldState(ctx, schemaItems, undefined))
     }}
   >
-    {@render ctx.iconOrTranslation(["add-array-item"])}
+    <ctx.IconOrTranslation data={["add-array-item"]} />
   </Button>
 {/snippet}
 <Template

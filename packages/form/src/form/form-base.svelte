@@ -91,11 +91,13 @@
     getUiOptions,
     retrieveSchema,
     makeIdSchema,
+    type IconOrTranslationData,
   } from './context/index.js';
   import { fields as defaultFields } from './fields/index.js';
   import { templates as defaultTemplates } from './templates/index.js';
   import { DEFAULT_ID_PREFIX, DEFAULT_ID_SEPARATOR } from './id-schema.js';
-  import { DefaultFormMerger } from './merger.js'
+  import { DefaultFormMerger } from './merger.js';
+  import IconOrTranslation from './icon-or-translation.svelte';
   import SubmitButton from './submit-button.svelte';
 
   let {
@@ -206,10 +208,9 @@
     },
     get schedulerYield() {
       return schedulerYield
-    },    
-    get iconOrTranslation() {
-      return iconOrTranslation
-    }
+    },
+    iconOrTranslation,
+    IconOrTranslation,
   }
   setFromContext(ctx)
 
@@ -256,15 +257,8 @@
   } : onsubmit)
 </script>
 
-{#snippet iconOrTranslation(params: {
-  [L in Label]: [L, ...Labels[L]]
-}[Label])}
-  {@const icon = icons[params[0]]}
-  {#if icon}
-    {@render icon(params as never)}
-  {:else}
-    {translation.apply(null, params)}
-  {/if}
+{#snippet iconOrTranslation(data: IconOrTranslationData)}
+  <IconOrTranslation {data} />
 {/snippet}
 
 <Form bind:form {attributes} onsubmit={submitHandler} {config} errors={NO_ERRORS} >

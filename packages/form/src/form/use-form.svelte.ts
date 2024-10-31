@@ -15,7 +15,11 @@ import type { Templates } from "./templates/index.js";
 import type { Icons } from "./icons.js";
 import type { InputsValidationMode } from "./validation.js";
 import type { Errors } from "./errors.js";
-import { setFromContext, type FormContext } from "./context/index.js";
+import {
+  setFromContext,
+  type FormContext,
+  type IconOrTranslationData,
+} from "./context/index.js";
 import { DefaultFormMerger, type FormMerger } from "./merger.js";
 import { fields as defaultFields } from "./fields/index.js";
 import { templates as defaultTemplates } from "./templates/index.js";
@@ -227,22 +231,26 @@ export function createForm<T, E>(
       get schedulerYield() {
         return schedulerYield;
       },
-      iconOrTranslation: (<L extends Label>(
+      IconOrTranslation,
+      iconOrTranslation: ((
         internals: ComponentInternals,
-        data: () => [L, ...Labels[L]]
+        data: IconOrTranslationData | (() => IconOrTranslationData)
       ) => {
-        IconOrTranslation(internals, {
-          get data() {
-            return data();
-          },
-        });
-      }) as unknown as Snippet<
-        [
-          {
-            [L in Label]: [L, ...Labels[L]];
-          }[Label],
-        ]
-      >,
+        IconOrTranslation(
+          internals,
+          // Looks like during SSR the `data` is not a getter function
+          // TODO: Clarify how to detect SSR in Svelte (not SvelteKit)
+          typeof data === "function"
+            ? {
+                get data() {
+                  return data();
+                },
+              }
+            : {
+                data,
+              }
+        );
+      }) as unknown as Snippet<[IconOrTranslationData]>,
     },
     {
       get value() {

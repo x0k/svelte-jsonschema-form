@@ -1,4 +1,4 @@
-import { getContext, setContext, type Snippet } from "svelte";
+import { getContext, setContext, type Component, type Snippet } from "svelte";
 
 import type { SchedulerYield } from "@/lib/scheduler.js";
 
@@ -14,7 +14,11 @@ import type { Errors } from "../errors.js";
 import type { FormValidator } from "../validator.js";
 import type { Icons } from "../icons.js";
 import { type IdSchema, toIdSchema2 } from "../id-schema.js";
-import type { FormMerger } from '../merger.js';
+import type { FormMerger } from "../merger.js";
+
+export type IconOrTranslationData = {
+  [L in Label]: [L, ...Labels[L]];
+}[Label]
 
 export interface FormContext {
   isSubmitted: boolean;
@@ -34,11 +38,9 @@ export interface FormContext {
   idSeparator: string;
   errors: Errors;
   schedulerYield: SchedulerYield;
-  iconOrTranslation: Snippet<
-    {
-      [L in Label]: [[L, ...Labels[L]]];
-    }[Label]
-  >;
+  /** @deprecated use `IconOrTranslation` instead */
+  iconOrTranslation: Snippet<[IconOrTranslationData]>;
+  IconOrTranslation: Component<{ data: IconOrTranslationData }>;
 }
 
 const FORM_CONTEXT = Symbol("form-context");

@@ -1,16 +1,15 @@
-<script lang="ts" generics="L extends Label" >
-  import { getFormContext } from './context/context.js';
-  import type { Label, Labels } from './translation.js'
+<script lang="ts">
+  import { getFormContext, type IconOrTranslationData } from './context/context.js';
 
   const ctx = getFormContext()
 
-  const { data }: { data: [L, ...Labels[L]] } = $props();
+  const { data }: { data: IconOrTranslationData } = $props();
 
   const icon = $derived(ctx.icons[data[0]])
 </script>
 
 {#if icon}
-  {@render icon(data)}
+  {@render icon(data as never)}
 {:else}
-  {ctx.translation.apply(null, data as never)}
+  {ctx.translation.apply(null, data)}
 {/if}

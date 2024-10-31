@@ -53,7 +53,7 @@
         arr[index - 1] = tmp
       }}
     >
-      {@render ctx.iconOrTranslation(["move-array-item-up"])}
+      <ctx.IconOrTranslation data={["move-array-item-up"]} />
     </Button>
     <Button
       {errors}
@@ -67,7 +67,7 @@
         arr[index + 1] = tmp
       }}
     >
-      {@render ctx.iconOrTranslation(["move-array-item-down"])}
+      <ctx.IconOrTranslation data={["move-array-item-down"]} />
     </Button>
   {/if}
   {#if canCopy}
@@ -81,7 +81,7 @@
         arr.splice(index, 0, $state.snapshot(value))
       }}
     >
-      {@render ctx.iconOrTranslation(["copy-array-item"])}
+      <ctx.IconOrTranslation data={["copy-array-item"]} />
     </Button>
   {/if}
   {#if canRemove}
@@ -95,7 +95,7 @@
         arr.splice(index, 1)
       }}
     >
-      {@render ctx.iconOrTranslation(["remove-array-item"])}
+      <ctx.IconOrTranslation data={["remove-array-item"]} />
     </Button>
   {/if}
 {/snippet}
