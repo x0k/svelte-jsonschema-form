@@ -1,0 +1,34 @@
+{
+  "name": "testing",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run --exclude '.svelte-kit/**'",
+    "build": "svelte-package && publint",
+    "check": "svelte-check --tsconfig ./tsconfig.json"
+  },
+  "peerDependencies": {
+    "svelte": "^5.0.0"
+  },
+  "dependencies": {
+    "@sjsf/form": "workspace:*",
+    "@sjsf/ajv8-validator": "workspace:*",
+    "ajv": "catalog:"
+  },
+  "devDependencies": {
+    "@sveltejs/package": "catalog:",
+    "@sveltejs/vite-plugin-svelte": "catalog:",
+    "@tsconfig/svelte": "catalog:",
+    "svelte": "catalog:",
+    "svelte-check": "catalog:",
+    "vite": "catalog:",
+    "vitest": "catalog:"
+  },
+  "exports": {
+    "./demo": {
+      "types": "./dist/demo/index.d.ts",
+      "svelte": "./dist/demo/index.js"
+    }
+  }
+}

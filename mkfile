@@ -105,6 +105,12 @@ shad/:
     pnpm run dev
   popd
 
+ts/:
+  pushd packages/testing
+  b:
+    pnpm run build
+  popd
+
 p:
   pnpm run preview
 

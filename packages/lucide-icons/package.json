@@ -65,6 +65,7 @@
 		"lucide-svelte": "^0.453.0",
 		"svelte": "catalog:",
 		"svelte-check": "catalog:",
+		"testing": "workspace:*",
 		"typescript-eslint": "catalog:",
 		"vite": "catalog:",
 		"vitest": "catalog:"

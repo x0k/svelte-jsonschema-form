@@ -96,7 +96,8 @@
 		"tailwindcss-animate": "^1.0.7",
 		"typescript-eslint": "catalog:",
 		"vite": "catalog:",
-		"vitest": "catalog:"
+		"vitest": "catalog:",
+		"testing": "workspace:*"
 	},
 	"svelte": "./dist/theme/index.js",
 	"types": "./dist/theme/index.d.ts"

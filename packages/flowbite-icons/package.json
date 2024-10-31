@@ -72,6 +72,7 @@
 		"svelte": "catalog:",
 		"svelte-check": "catalog:",
 		"tailwindcss": "catalog:",
+		"testing": "workspace:*",
 		"typescript-eslint": "catalog:",
 		"vite": "catalog:",
 		"vitest": "catalog:"
