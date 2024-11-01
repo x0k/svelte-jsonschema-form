@@ -47,11 +47,13 @@ interface UiSchemaContent {
   additionalItems?: UiSchema;
 }
 
-// TODO: Omit non serializable properties
-export type InputAttributes =
-  | HTMLInputAttributes
-  | HTMLTextareaAttributes
-  | HTMLSelectAttributes;
+export interface Inputs {
+  input: HTMLInputAttributes;
+  textarea: HTMLTextareaAttributes;
+  select: HTMLSelectAttributes;
+}
+
+export type InputAttributes = Inputs[keyof Inputs];
 
 export interface UiOptions {
   /**

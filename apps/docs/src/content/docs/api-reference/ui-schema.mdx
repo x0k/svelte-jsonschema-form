@@ -31,10 +31,13 @@ Root node of UI schema can have an additional fields:
 ## UI options
 
 ```typescript
-type InputAttributes =
-  | HTMLInputAttributes
-  | HTMLTextareaAttributes
-  | HTMLSelectAttributes
+interface Inputs {
+  input: HTMLInputAttributes;
+  textarea: HTMLTextareaAttributes;
+  select: HTMLSelectAttributes;
+}
+
+type InputAttributes = Inputs[keyof Inputs];
 
 interface UiOptions {
   /**
