@@ -1,5 +1,4 @@
 import { SvelteMap } from "svelte/reactivity";
-
 import type {
   Schema,
   UiSchema,
@@ -11,6 +10,7 @@ export const states = (schema: Schema): Schema => ({
   type: "object",
   properties: {
     default: schema,
+    readonly: schema,
     disabled: schema,
     error: schema,
   },
@@ -61,11 +61,29 @@ export const schema: Schema = {
     multiSelect: states(uniqueArray),
     text: states(text),
     textarea: states(text),
+    date: states(text)
   },
 };
 
 export const uiStates = (uiSchema: UiSchema): UiSchema => ({
-  default: uiSchema,
+  default: {
+    ...uiSchema,
+    "ui:options": {
+      ...uiSchema["ui:options"],
+      input: {
+        placeholder: "placeholder",
+      },
+    }
+  },
+  readonly: {
+    ...uiSchema,
+    "ui:options": {
+      input: {
+        ...uiSchema["ui:options"]?.input,
+        readonly: true,
+      }
+    }
+  },
   disabled: {
     ...uiSchema,
     "ui:options": {
@@ -103,6 +121,13 @@ export const uiSchema: UiSchemaRoot = {
   textarea: uiStates({
     "ui:widget": "textarea",
   }),
+  date: uiStates({
+    "ui:options": {
+      input: {
+        type: "date",
+      }
+    }
+  })
 };
 
 export const errors = new SvelteMap(
