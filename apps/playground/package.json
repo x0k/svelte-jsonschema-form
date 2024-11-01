@@ -20,7 +20,8 @@
     "@sjsf/flowbite-icons": "workspace:*",
     "@sjsf/skeleton-theme": "workspace:*",
     "@sjsf/lucide-icons": "workspace:*",
-    "@sjsf/shadcn-theme": "workspace:*"
+    "@sjsf/shadcn-theme": "workspace:*",
+    "@sjsf/radix-icons": "workspace:*"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "catalog:",

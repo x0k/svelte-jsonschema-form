@@ -95,6 +95,16 @@ luci/:
     pnpm run dev
   popd
 
+radi/:
+  pushd packages/radix-icons
+  c:
+    pnpm run check
+  b:
+    pnpm run build
+  d:
+    pnpm run dev
+  popd
+
 shad/:
   pushd packages/shadcn-theme
   c:

@@ -13,8 +13,6 @@
     "@sjsf/ajv8-validator": "workspace:*",
     "@sjsf/daisyui-theme": "workspace:*",
     "@sjsf/flowbite-theme": "workspace:*",
-    "@sjsf/flowbite-icons": "workspace:*",
-    "@sjsf/lucide-icons": "workspace:*",
     "@sjsf/form": "workspace:*",
     "@sjsf/skeleton-theme": "workspace:*",
     "@sjsf/shadcn-theme": "workspace:*",
