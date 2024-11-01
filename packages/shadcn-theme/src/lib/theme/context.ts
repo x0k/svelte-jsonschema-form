@@ -9,7 +9,6 @@ import type {
 	Calendar,
 	Checkbox,
 	Label,
-	Popover,
 	RadioGroup,
 	Select,
 	Slider,
@@ -18,6 +17,7 @@ import type {
 	WithoutChild,
 	WithoutChildrenOrChild
 } from 'bits-ui';
+import { Popover } from 'bits-ui';
 
 type CalendarProps = WithoutChildrenOrChild<Calendar.RootProps>;
 
@@ -36,6 +36,10 @@ export interface ThemeComponents {
 	>;
 	Label: Component<Label.RootProps>;
 	Popover: Component<Popover.ContentProps>;
+	// @deprecate (for search reasons)
+	// TODO: Make this components required in next major
+	PopoverTrigger?: Component<Popover.TriggerProps>;
+	PopoverContent?: Component<Popover.ContentProps>;
 	RadioGroup: Component<RadioGroup.RootProps, {}, 'value' | 'ref'>;
 	RadioGroupItem: Component<WithoutChildrenOrChild<RadioGroup.ItemProps>>;
 	Select: Component<Select.RootProps, {}, 'value' | 'open'>;
@@ -53,10 +57,28 @@ export interface ThemeContext {
 
 const THEME_CONTEXT = Symbol('theme-context');
 
-export function getThemeContext(): ThemeContext {
+export function getThemeContext(): Required<ThemeContext> {
 	return getContext(THEME_CONTEXT);
 }
 
 export function setThemeContext(ctx: ThemeContext) {
-	setContext(THEME_CONTEXT, ctx);
+	// TODO: Remove Proxy in next major
+	setContext(THEME_CONTEXT, {
+		get components() {
+			return new Proxy(ctx.components, {
+				get(target, prop, receiver) {
+					switch (prop as keyof ThemeComponents) {
+						case 'PopoverContent': {
+							return target.PopoverContent ?? Popover.Content;
+						}
+						case 'PopoverTrigger': {
+							return target.PopoverTrigger ?? Popover.Trigger;
+						}
+						default:
+							return Reflect.get(target, prop, receiver);
+					}
+				}
+			});
+		}
+	});
 }

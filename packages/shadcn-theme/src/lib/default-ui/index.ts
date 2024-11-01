@@ -6,7 +6,7 @@ import { Checkbox } from './checkbox';
 import { Input } from './input';
 import { FilesInput } from './files-input';
 import { Label } from './label';
-import { Popover } from './popover';
+import { Popover, PopoverTrigger, PopoverContent } from './popover';
 import { RadioGroup, RadioGroupItem } from './radio-group';
 import { Select, SelectContent, SelectItem, SelectTrigger } from './select';
 import { Slider } from './slider';
@@ -21,6 +21,8 @@ export const components: ThemeComponents = {
 	FilesInput,
 	Label,
 	Popover,
+	PopoverTrigger,
+	PopoverContent,
 	RadioGroup,
 	RadioGroupItem,
 	Select,
