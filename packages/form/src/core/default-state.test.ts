@@ -52,6 +52,63 @@ describe("getDefaultFormState2()", () => {
   afterAll(() => {
     consoleWarnSpy.mockRestore();
   });
+  it("test an object const value merge with formData", () => {
+    const schema: Schema = {
+      type: "object",
+      properties: {
+        localConst: {
+          type: "string",
+          const: "local",
+        },
+        RootConst: {
+          type: "object",
+          properties: {
+            attr1: {
+              type: "number",
+            },
+            attr2: {
+              type: "boolean",
+            },
+          },
+          const: {
+            attr1: 1,
+            attr2: true,
+          },
+        },
+        RootAndLocalConst: {
+          type: "string",
+          const: "FromLocal",
+        },
+        fromFormData: {
+          type: "string",
+        },
+      },
+      const: {
+        RootAndLocalConst: "FromRoot",
+      },
+    };
+    expect(
+      getDefaultFormState2(
+        testValidator,
+        defaultMerger,
+        schema,
+        {
+          fromFormData: "fromFormData",
+        },
+        schema,
+        false,
+        { emptyObjectFields: "skipDefaults" }
+      )
+    ).toEqual({
+      localConst: "local",
+      RootConst: {
+        attr1: 1,
+        attr2: true,
+      },
+      RootAndLocalConst: "FromLocal",
+      fromFormData: "fromFormData",
+    });
+  });
   it("getInnerSchemaForArrayItem() item of type boolean returns empty schema", () => {
     expect(
       getInnerSchemaForArrayItem(
@@ -87,6 +144,25 @@ describe("getDefaultFormState2()", () => {
         })
       ).toEqual({
         foo: 42,
+      });
+    });
+    it("test computeDefaults that is passed a schema with a const property", () => {
+      const schema: Schema = {
+        type: "object",
+        properties: {
+          test: {
+            type: "string",
+            const: "test",
+          },
+        },
+      };
+      expect(
+        computeDefaults3(testValidator, defaultMerger, schema, {
+          ...defaults,
+          rootSchema: schema,
+        })
+      ).toEqual({
+        test: "test",
       });
     });
     it("test an object with an optional property that has a nested required property", () => {
@@ -613,6 +689,68 @@ describe("getDefaultFormState2()", () => {
         requiredProperty: "foo",
       });
     });
+    it("test an object const value populate as field defaults", () => {
+      const schema: Schema = {
+        type: "object",
+        properties: {
+          localConst: {
+            type: "string",
+            const: "local",
+          },
+          RootConst: {
+            type: "object",
+            properties: {
+              attr1: {
+                type: "number",
+              },
+              attr2: {
+                type: "boolean",
+              },
+            },
+            const: {
+              attr1: 1,
+              attr2: true,
+            },
+          },
+          fromFormData: {
+            type: "string",
+            default: "notUsed",
+          },
+          RootAndLocalConst: {
+            type: "string",
+            const: "FromLocal",
+          },
+        },
+        const: {
+          RootAndLocalConst: "FromRoot",
+        },
+      };
+      expect(
+        getObjectDefaults(
+          testValidator,
+          defaultMerger,
+          schema,
+          {
+            ...defaults,
+            rootSchema: schema,
+            experimental_defaultFormStateBehavior: {
+              emptyObjectFields: "skipDefaults",
+            },
+            rawFormData: {
+              fromFormData: "fromFormData",
+            },
+          },
+          undefined
+        )
+      ).toEqual({
+        localConst: "local",
+        RootConst: {
+          attr1: 1,
+          attr2: true,
+        },
+        RootAndLocalConst: "FromLocal",
+      });
+    });
     it("test an object with an additionalProperties", () => {
       const schema: Schema = {
         type: "object",
@@ -838,6 +976,30 @@ describe("getDefaultFormState2()", () => {
         )
       ).toEqual(["Raphael", "Michaelangelo", "Unknown", "Unknown"]);
     });
+    it("test an array const value populate as defaults", () => {
+      const schema: Schema = {
+        type: "array",
+        minItems: 4,
+        const: ["ConstFromRoot", "ConstFromRoot"],
+        items: {
+          type: "string",
+          const: "Constant",
+        },
+      };
+      expect(
+        getArrayDefaults(
+          testValidator,
+          defaultMerger,
+          schema,
+          {
+            ...defaults,
+            rootSchema: schema,
+            includeUndefinedValues: "excludeObjectChildren",
+          },
+          ["ConstFromRoot", "ConstFromRoot"]
+        )
+      ).toEqual(["ConstFromRoot", "ConstFromRoot", "Constant", "Constant"]);
+    });
     it("test an array with no defaults", () => {
       const schema: Schema = {
         type: "array",
@@ -859,8 +1021,8 @@ describe("getDefaultFormState2()", () => {
           },
           undefined
         )
-      // NOTE: Looks like in original code jest ignores the length and thinks
-      //       that [] === [undefined, undefined, undefined, undefined]
+        // NOTE: Looks like in original code jest ignores the length and thinks
+        //       that [] === [undefined, undefined, undefined, undefined]
       ).toEqual([undefined, undefined, undefined, undefined]);
     });
     it("test computeDefaults handles an invalid property schema", () => {
@@ -1377,8 +1539,8 @@ describe("getDefaultFormState2()", () => {
           },
           undefined
         )
-      // NOTE: Looks like in original code jest ignores the length and thinks
-      //       that [] === [undefined, undefined, undefined, undefined]
+        // NOTE: Looks like in original code jest ignores the length and thinks
+        //       that [] === [undefined, undefined, undefined, undefined]
       ).toEqual([undefined, undefined, undefined, undefined]);
     });
     it("test computeDefaults handles an invalid array schema", () => {
