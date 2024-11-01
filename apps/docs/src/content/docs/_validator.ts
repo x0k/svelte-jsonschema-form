@@ -4,6 +4,7 @@ import {
   addFormComponents,
   DEFAULT_AJV_CONFIG,
 } from "@sjsf/ajv8-validator";
+import { isSchemaObjectValue } from "@sjsf/form/core";
 import type { Schema, SchemaValue, ValidationError } from "@sjsf/form";
 
 class StarValidator extends AjvValidator {
@@ -11,14 +12,15 @@ class StarValidator extends AjvValidator {
     schema: Schema,
     formData: SchemaValue | undefined
   ): ValidationError<ErrorObject>[] {
-    return super.validateFormData(schema, formData).map((error) =>
-      error.instanceId !== "root_star"
-        ? error
-        : {
-            ...error,
-            message: "I will try my best!",
-          }
-    );
+    const errors = super.validateFormData(schema, formData);
+    return isSchemaObjectValue(formData) && !formData["star"]
+      ? errors.concat({
+          instanceId: "root_star",
+          propertyTitle: "Star",
+          message: "I will try my best!",
+          error: {} as ErrorObject,
+        })
+      : errors;
   }
 }
 

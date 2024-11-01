@@ -36,7 +36,6 @@ export const schema: Schema = {
     star: {
       type: "boolean",
       title: "Star",
-      const: true,
     },
   },
 };
