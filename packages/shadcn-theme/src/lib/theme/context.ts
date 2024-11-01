@@ -19,7 +19,7 @@ import type {
 } from 'bits-ui';
 import { Popover } from 'bits-ui';
 
-type CalendarProps = WithoutChildrenOrChild<Calendar.RootProps>;
+export type CalendarProps = WithoutChildrenOrChild<Calendar.RootProps>;
 
 export interface ThemeComponents {
 	Button: Component<HTMLButtonAttributes>;
@@ -51,19 +51,32 @@ export interface ThemeComponents {
 	Textarea: Component<WithElementRef<HTMLTextareaAttributes>, {}, 'value' | 'ref'>;
 }
 
+export type DateFormatter = (date: Date) => string;
+
 export interface ThemeContext {
 	components: ThemeComponents;
+	formatDate?: DateFormatter;
 }
 
 const THEME_CONTEXT = Symbol('theme-context');
 
-export function getThemeContext(): Required<ThemeContext> {
+export function getThemeContext(): Required<Omit<ThemeContext, 'components'>> & {
+	components: Required<ThemeComponents>;
+} {
 	return getContext(THEME_CONTEXT);
 }
 
 export function setThemeContext(ctx: ThemeContext) {
 	// TODO: Remove Proxy in next major
+	const dateTimeFormat = new Intl.DateTimeFormat(undefined, {
+		year: 'numeric',
+		month: '2-digit',
+		day: 'numeric'
+	});
 	setContext(THEME_CONTEXT, {
+		get formatDate() {
+			return ctx.formatDate ?? ((date) => dateTimeFormat.format(date));
+		},
 		get components() {
 			return new Proxy(ctx.components, {
 				get(target, prop, receiver) {

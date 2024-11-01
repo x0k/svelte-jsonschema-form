@@ -71,6 +71,7 @@ export const uiStates = (uiSchema: UiSchema): UiSchema => ({
     "ui:options": {
       ...uiSchema["ui:options"],
       input: {
+        ...uiSchema["ui:options"]?.input,
         placeholder: "placeholder",
       },
     }
