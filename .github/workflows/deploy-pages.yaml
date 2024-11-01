@@ -1,7 +1,10 @@
 name: Deploy to GitHub Pages
 on:
-  release:
-    types: [published]
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+  workflow_dispatch: # Adds the manual trigger
 
 permissions:
   id-token: write
@@ -10,6 +13,7 @@ permissions:
 
 jobs:
   deploy:
+    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.merged == true && github.actor == 'github-actions[bot]')
     runs-on: ubuntu-latest
     environment:
       name: github-pages
