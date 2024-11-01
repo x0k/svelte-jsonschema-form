@@ -859,7 +859,9 @@ describe("getDefaultFormState2()", () => {
           },
           undefined
         )
-      ).toEqual([]);
+      // NOTE: Looks like in original code jest ignores the length and thinks
+      //       that [] === [undefined, undefined, undefined, undefined]
+      ).toEqual([undefined, undefined, undefined, undefined]);
     });
     it("test computeDefaults handles an invalid property schema", () => {
       const schema: Schema = {
@@ -1375,7 +1377,9 @@ describe("getDefaultFormState2()", () => {
           },
           undefined
         )
-      ).toEqual([]);
+      // NOTE: Looks like in original code jest ignores the length and thinks
+      //       that [] === [undefined, undefined, undefined, undefined]
+      ).toEqual([undefined, undefined, undefined, undefined]);
     });
     it("test computeDefaults handles an invalid array schema", () => {
       const schema: Schema = {
