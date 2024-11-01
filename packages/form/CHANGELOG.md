@@ -1,5 +1,27 @@
 # @sjsf/form
 
+## 1.3.0
+
+### Minor Changes
+
+- [`fe35ad2`](https://github.com/x0k/svelte-jsonschema-form/commit/fe35ad2e4a557e4904a055558f10a86319e4ee79) Thanks [@x0k](https://github.com/x0k)! - Reset form value in default reset handler
+
+- [#22](https://github.com/x0k/svelte-jsonschema-form/pull/22) [`6144b9a`](https://github.com/x0k/svelte-jsonschema-form/commit/6144b9a3583cdf68ba240f663d5d3b6d15cea9d6) Thanks [@x0k](https://github.com/x0k)! - Implement `useForm` API, Add `FormContent` and `SubmitButton` components
+
+- [`13a1beb`](https://github.com/x0k/svelte-jsonschema-form/commit/13a1bebd2ecd6cd84e7b8378aa8a713e7db5365c) Thanks [@x0k](https://github.com/x0k)! - Add `createForm` function
+
+- [`e2c9d61`](https://github.com/x0k/svelte-jsonschema-form/commit/e2c9d61023bef189ee270076776eebc83bef0499) Thanks [@x0k](https://github.com/x0k)! - Allow to augment `InputAttributes` type
+
+### Patch Changes
+
+- [`23f37ab`](https://github.com/x0k/svelte-jsonschema-form/commit/23f37abf7b928bfef45a45ab4a902660a139bfcd) Thanks [@x0k](https://github.com/x0k)! - Porst a bunch of fixes for `getDefaultFormState`:
+
+  - [Bug: issue with dependencies computeDefaults](https://github.com/rjsf-team/react-jsonschema-form/pull/4282)
+  - [Make fields with const pre-fiiled and readonly](https://github.com/rjsf-team/react-jsonschema-form/pull/4326)
+  - [Bug: Deep nested dependencies issue with assigning values to formData](https://github.com/rjsf-team/react-jsonschema-form/pull/4356)
+
+- [`b88b944`](https://github.com/x0k/svelte-jsonschema-form/commit/b88b944629b7b60ea1063c9b580831d0d1676875) Thanks [@x0k](https://github.com/x0k)! - Use the stricter `ComputeDefaultsProps2` type
+
 ## 1.2.0
 
 ### Patch Changes
