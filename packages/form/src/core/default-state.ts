@@ -307,7 +307,6 @@ export function computeDefaults3(
   } else if (DEPENDENCIES_KEY in schema) {
     // Get the default if set from properties to ensure the dependencies conditions are resolved based on it
     const defaultFormData = {
-      ...formData,
       ...getObjectDefaults(
         validator,
         merger,
@@ -318,6 +317,7 @@ export function computeDefaults3(
         },
         defaults
       ),
+      ...formData,
     };
     // Get the default if set from properties to ensure the dependencies conditions are resolved based on it
     const resolvedSchema = resolveDependencies2(

@@ -109,6 +109,91 @@ describe("getDefaultFormState2()", () => {
       fromFormData: "fromFormData",
     });
   });
+  it("test an object with deep nested dependencies with formData", () => {
+    const schema: Schema = {
+      type: "object",
+      properties: {
+        nestedObject: {
+          type: "object",
+          properties: {
+            first: {
+              type: "string",
+              enum: ["no", "yes"],
+              default: "no",
+            },
+          },
+          dependencies: {
+            first: {
+              oneOf: [
+                {
+                  properties: {
+                    first: {
+                      enum: ["yes"],
+                    },
+                    second: {
+                      type: "object",
+                      properties: {
+                        deeplyNestedThird: {
+                          type: "string",
+                          enum: ["before", "after"],
+                          default: "before",
+                        },
+                      },
+                    },
+                  },
+                },
+                {
+                  properties: {
+                    first: {
+                      enum: ["no"],
+                    },
+                  },
+                },
+              ],
+            },
+          },
+        },
+      },
+    };
+
+    // Mock isValid so that withExactlyOneSubschema works as expected
+    testValidator = makeTestValidator({
+      isValid: [
+        true, // First oneOf... first === first
+        false, // Second oneOf... second !== first
+      ],
+    });
+    expect(
+      getDefaultFormState2(
+        testValidator,
+        defaultMerger,
+        schema,
+        {
+          nestedObject: {
+            first: "yes",
+          },
+        },
+        schema,
+        false,
+        {
+          emptyObjectFields: "populateAllDefaults",
+          allOf: "skipDefaults",
+          arrayMinItems: {
+            populate: "populate" as any,
+            mergeExtraDefaults: false,
+          },
+          mergeDefaultsIntoFormData: "useFormDataIfPresent",
+        }
+      )
+    ).toEqual({
+      nestedObject: {
+        first: "yes",
+        second: {
+          deeplyNestedThird: "before",
+        },
+      },
+    });
+  });
   it("getInnerSchemaForArrayItem() item of type boolean returns empty schema", () => {
     expect(
       getInnerSchemaForArrayItem(
@@ -478,6 +563,79 @@ describe("getDefaultFormState2()", () => {
           rawFormData: {},
         })
       ).toEqual({});
+    });
+    it("test an object with deep nested dependencies with formData", () => {
+      const schema: Schema = {
+        type: "object",
+        properties: {
+          nestedObject: {
+            type: "object",
+            properties: {
+              first: {
+                type: "string",
+                enum: ["no", "yes"],
+                default: "no",
+              },
+            },
+            dependencies: {
+              first: {
+                oneOf: [
+                  {
+                    properties: {
+                      first: {
+                        enum: ["yes"],
+                      },
+                      second: {
+                        type: "object",
+                        properties: {
+                          deeplyNestedThird: {
+                            type: "string",
+                            enum: ["before", "after"],
+                            default: "before",
+                          },
+                        },
+                      },
+                    },
+                  },
+                  {
+                    properties: {
+                      first: {
+                        enum: ["no"],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        },
+      };
+
+      // Mock isValid so that withExactlyOneSubschema works as expected
+      testValidator = makeTestValidator({
+        isValid: [
+          true, // First oneOf... first === first
+          false, // Second oneOf... second !== first
+        ],
+      });
+      expect(
+        computeDefaults3(testValidator, defaultMerger, schema, {
+          ...defaults,
+          rootSchema: schema,
+          rawFormData: {
+            nestedObject: {
+              first: "yes",
+            },
+          },
+        })
+      ).toEqual({
+        nestedObject: {
+          first: "no",
+          second: {
+            deeplyNestedThird: "before",
+          },
+        },
+      });
     });
     it("test computeDefaults handles an invalid property schema", () => {
       const schema: Schema = {

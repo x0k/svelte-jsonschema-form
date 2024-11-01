@@ -25,6 +25,7 @@ import {
   getAllPermutationsOfXxxOf,
   resolveAnyOrOneOfSchemas,
   resolveCondition2,
+  resolveDependencies2,
   retrieveSchema2,
   retrieveSchemaInternal,
   stubExistingAdditionalProperties2,
@@ -45,7 +46,7 @@ import {
 } from "./fixtures/test-data.js";
 import type { Validator } from "./validator.js";
 import { makeTestValidator } from "./test-validator.js";
-import { defaultMerger } from './merger.js';
+import { defaultMerger } from "./merger.js";
 
 let testValidator: Validator;
 
@@ -53,6 +54,92 @@ beforeEach(() => {
   testValidator = makeTestValidator();
 });
 
+describe("resolveDependencies()", () => {
+  it("test an object with dependencies", () => {
+    const schema: Schema = {
+      type: "object",
+      properties: {
+        first: {
+          type: "string",
+          enum: ["no", "yes"],
+          default: "no",
+        },
+      },
+      dependencies: {
+        first: {
+          oneOf: [
+            {
+              properties: {
+                first: {
+                  enum: ["yes"],
+                },
+                second: {
+                  type: "object",
+                  properties: {
+                    deeplyNestedThird: {
+                      type: "string",
+                      enum: ["before", "after"],
+                      default: "before",
+                    },
+                  },
+                },
+              },
+            },
+            {
+              properties: {
+                first: {
+                  enum: ["no"],
+                },
+              },
+            },
+          ],
+        },
+      },
+    };
+
+    // Mock isValid so that withExactlyOneSubschema works as expected
+    testValidator = makeTestValidator({
+      isValid: [
+        true, // First oneOf... first === first
+        false, // Second oneOf... second !== first
+      ],
+    });
+    expect(
+      resolveDependencies2(
+        testValidator,
+        defaultMerger,
+        schema,
+        schema,
+        false,
+        new Set(),
+        {
+          first: "yes",
+        }
+      )
+    ).toEqual([
+      {
+        type: "object",
+        properties: {
+          first: {
+            type: "string",
+            enum: ["no", "yes"],
+            default: "no",
+          },
+          second: {
+            type: "object",
+            properties: {
+              deeplyNestedThird: {
+                type: "string",
+                enum: ["before", "after"],
+                default: "before",
+              },
+            },
+          },
+        },
+      },
+    ]);
+  });
+});
 describe("retrieveSchema2()", () => {
   let consoleWarnSpy: MockInstance<typeof console.warn>;
   beforeAll(() => {
