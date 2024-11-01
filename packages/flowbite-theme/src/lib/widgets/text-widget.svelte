@@ -5,9 +5,14 @@
 
 	let { value = $bindable(), attributes }: WidgetProps<'text'> = $props();
 
+	function parseLocalDate(date: string) {
+		const [year, month, day] = date.split('-').map(Number);
+		return new Date(year, month - 1, day);
+	}
+
 	const date = {
 		get value() {
-			return value ? new Date(value) : null;
+			return value ? parseLocalDate(value) : null;
 		},
 		set value(v) {
 			if (attributes.readonly) {
