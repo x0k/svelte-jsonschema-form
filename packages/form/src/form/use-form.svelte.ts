@@ -8,7 +8,7 @@ import type { Schema, SchemaValue } from "@/core/schema.js";
 import type { FormValidator } from "./validator.js";
 import type { Components } from "./component.js";
 import type { Widgets } from "./widgets.js";
-import type { Label, Labels, Translation } from "./translation.js";
+import type { Translation } from "./translation.js";
 import type { UiSchemaRoot } from "./ui-schema.js";
 import type { Fields } from "./fields/index.js";
 import type { Templates } from "./templates/index.js";
@@ -95,6 +95,7 @@ export interface FormState<T, E> {
   formValue: SchemaValue | undefined;
   errors: Errors<E>;
   isSubmitted: boolean;
+  isChanged: boolean;
   validate: () => Errors<E>;
 }
 
@@ -119,6 +120,7 @@ export function createForm<T, E>(
   );
   let errors: Errors<E> = $state(options.initialErrors ?? new SvelteMap());
   let isSubmitted = $state(false);
+  let isChanged = $state(false);
 
   const getSnapshot = $derived(
     options.getSnapshot ?? (() => $state.snapshot(value))
@@ -185,6 +187,12 @@ export function createForm<T, E>(
       },
       get isSubmitted() {
         return isSubmitted;
+      },
+      get isChanged() {
+        return isChanged;
+      },
+      set isChanged(v) {
+        isChanged = v;
       },
       get errors() {
         return errors;
@@ -279,6 +287,12 @@ export function createForm<T, E>(
       },
       set isSubmitted(v) {
         isSubmitted = v;
+      },
+      get isChanged() {
+        return isChanged;
+      },
+      set isChanged(v) {
+        isChanged = v;
       },
       validate() {
         return validateSnapshot(getSnapshot());

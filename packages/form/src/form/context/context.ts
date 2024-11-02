@@ -22,6 +22,7 @@ export type IconOrTranslationData = {
 
 export interface FormContext {
   isSubmitted: boolean;
+  isChanged: boolean;
   inputsValidationMode: number;
   schema: Schema;
   uiSchema: UiSchemaRoot;

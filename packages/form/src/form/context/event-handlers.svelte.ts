@@ -44,6 +44,7 @@ export function makeEventHandlers(ctx: FormContext, validate: () => void) {
     },
     onchange() {
       changed = true;
+      ctx.isChanged = true;
       onChange?.();
     },
     onblur() {
