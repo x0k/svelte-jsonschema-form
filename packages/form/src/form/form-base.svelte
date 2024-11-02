@@ -157,9 +157,17 @@
 
   type Value = SchemaValue | undefined
 
+  let isChanged = $state(false);
+
   const ctx: FormContext = {
     get inputsValidationMode() {
       return inputsValidationMode
+    },
+    get isChanged() {
+      return isChanged
+    },
+    set isChanged(v) {
+      isChanged = v
     },
     get isSubmitted() {
       return isSubmitted
