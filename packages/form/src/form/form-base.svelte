@@ -126,6 +126,7 @@
     onSubmitError,
     onReset = () => {
       isSubmitted = false
+      isChanged = false
       errors.clear()
     },
     getSnapshot = () => $state.snapshot(value) as SchemaValue | undefined,
@@ -259,6 +260,7 @@
     errors = validateSnapshot(snapshot);
     if (errors.size === 0) {
       onSubmit?.(snapshot as T | undefined, e)
+      isChanged = false
       return
     }
     onSubmitError?.(errors, e, snapshot)

@@ -82,6 +82,7 @@ export interface UseFormOptions<T, E> {
    * @default (e) => {
    *   e.preventDefault();
    *   isSubmitted = false;
+   *   isChanged = false;
    *   errors.clear();
    *   value = initialValue;
    *  }
@@ -138,6 +139,7 @@ export function createForm<T, E>(
     errors = validateSnapshot(snapshot);
     if (errors.size === 0) {
       options.onSubmit?.(snapshot as T | undefined, e);
+      isChanged = false;
       return;
     }
     options.onSubmitError?.(errors, e, snapshot);
@@ -148,6 +150,7 @@ export function createForm<T, E>(
       ((e: Event) => {
         e.preventDefault();
         isSubmitted = false;
+        isChanged = false;
         errors.clear();
         value = merger.mergeFormDataAndSchemaDefaults(
           options.initialValue as Value,
