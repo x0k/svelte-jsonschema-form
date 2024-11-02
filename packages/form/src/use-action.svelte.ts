@@ -33,7 +33,7 @@ export type ActionState<E> =
 export type ActionsCombinator<E> = (state: ActionState<E>) => boolean | "abort";
 
 export interface ActionOptions<T, R, E = unknown> {
-  action: (signal: AbortSignal, data: T) => Promise<R>;
+  do: (signal: AbortSignal, data: T) => Promise<R>;
   onSuccess?: (result: R) => void;
   onFailure?: (failure: FailedAction<E>) => void;
   /**
@@ -138,7 +138,7 @@ export function useAction<T, R, E = unknown>(
         status: status === Status.Delayed ? Status.Processed : Status.IDLE,
       };
       abortController = new AbortController();
-      const action = options.action(abortController.signal, value).then(
+      const action = options.do(abortController.signal, value).then(
         (result) => {
           if (ref?.deref() !== action) return;
           state = { status: Status.Success };
