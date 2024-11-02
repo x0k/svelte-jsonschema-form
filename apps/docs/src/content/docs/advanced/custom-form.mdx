@@ -7,8 +7,17 @@ sidebar:
 import { Code } from '@astrojs/starlight/components';
 
 import customFormCode from '@/components/custom-form.ts?raw';
+import customFormComponentCode from './_custom-form.svelte?raw';
+
+## Hook
 
 Even with a simple setup, resulting code is very verbose.
 Therefore, after choosing a theme, validator and translation, it is convenient to create a wrapper around the `useForm`.
 
 <Code code={customFormCode} lang="typescript" title="custom-form.ts" />
+
+## Component
+
+You also can create your own form component.
+
+<Code code={customFormComponentCode} lang="svelte" title="custom-form.svelte" />
