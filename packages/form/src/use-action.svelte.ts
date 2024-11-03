@@ -37,7 +37,7 @@ export interface ActionOptions<T, R, E> {
   onSuccess?: (result: R) => void;
   onFailure?: (failure: FailedAction<E>) => void;
   /**
-   * @default waitForPrevious
+   * @default ignoreNewUntilPreviousIsFinished
    */
   combinator?: ActionsCombinator<E>;
   /**
@@ -51,10 +51,9 @@ export interface ActionOptions<T, R, E> {
 }
 
 /**
- * Wait for completion of previous action
+ * Forget previous action
  */
-export const waitForPrevious: ActionsCombinator<any> = ({ status }) =>
-  status <= Status.IDLE;
+export const forgetPrevious: ActionsCombinator<any> = () => true;
 
 /**
  * Abort previous action
@@ -62,9 +61,11 @@ export const waitForPrevious: ActionsCombinator<any> = ({ status }) =>
 export const abortPrevious: ActionsCombinator<any> = () => "abort";
 
 /**
- * Ignore previous action
+ * Ignore new actions until the previous action is completed
  */
-export const ignorePrevious: ActionsCombinator<any> = () => true;
+export const ignoreNewUntilPreviousIsFinished: ActionsCombinator<any> = ({
+  status,
+}) => status <= Status.IDLE;
 
 export type ActionRun<T> = T extends undefined | unknown
   ? (value?: T) => Promise<void>
@@ -86,7 +87,9 @@ export function useAction<T, R, E = unknown>(
 ): Action<T, R, E> {
   const delayedMs = $derived(options.delayedMs ?? 500);
   const timeoutMs = $derived(options.timeoutMs ?? 8000);
-  const combinator = $derived(options.combinator ?? waitForPrevious);
+  const combinator = $derived(
+    options.combinator ?? ignoreNewUntilPreviousIsFinished
+  );
 
   let state = $state<ActionState<E>>({
     status: Status.IDLE,
