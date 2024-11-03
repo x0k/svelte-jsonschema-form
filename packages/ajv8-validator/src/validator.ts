@@ -15,6 +15,7 @@ import {
 import {
   DEFAULT_ID_PREFIX,
   DEFAULT_ID_SEPARATOR,
+  pathToId,
   type Config,
   type FieldErrors,
   type FormValidator,
@@ -150,10 +151,7 @@ export class AjvValidator implements FormValidator<ErrorObject> {
     { params: { missingProperty } }: ErrorObject,
     path: string[]
   ) {
-    const id =
-      path.length === 0
-        ? this.idPrefix
-        : `${this.idPrefix}${this.idSeparator}${path.join(this.idSeparator)}`;
+    const id = pathToId(this.idPrefix, this.idSeparator, path);
     return missingProperty !== undefined
       ? `${id}${this.idSeparator}${missingProperty}`
       : id;
