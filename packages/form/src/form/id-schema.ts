@@ -25,6 +25,9 @@ import {
 } from "@/core/index.js";
 
 export const DEFAULT_ID_PREFIX = "root";
+
+// @deprecated
+// TODO: Make the separator more specific
 export const DEFAULT_ID_SEPARATOR = "_";
 
 export type FieldId = {
@@ -158,4 +161,14 @@ export function computeId<T>(
   element: keyof IdentifiableFieldElement | number
 ) {
   return `${idSchema.$id}__${element}`;
+}
+
+export function pathToId(
+  idPrefix: string,
+  idSeparator: string,
+  path: Array<string | number>
+) {
+  return path.length === 0
+    ? idPrefix
+    : `${idPrefix}${idSeparator}${path.join(idSeparator)}`;
 }

@@ -5,7 +5,7 @@ import { SvelteMap } from "svelte/reactivity";
 import type { SchedulerYield } from "@/lib/scheduler.js";
 import type { Schema, SchemaValue } from "@/core/schema.js";
 
-import type { FormValidator } from "./validator.js";
+import type { FormValidator, ValidationError } from "./validator.js";
 import type { Components } from "./component.js";
 import type { Widgets } from "./widgets.js";
 import type { Translation } from "./translation.js";
@@ -14,7 +14,7 @@ import type { Fields } from "./fields/index.js";
 import type { Templates } from "./templates/index.js";
 import type { Icons } from "./icons.js";
 import type { InputsValidationMode } from "./validation.js";
-import { groupErrors, type Errors } from "./errors.js";
+import { groupErrors, type Errors, type FieldErrors } from "./errors.js";
 import {
   setFromContext,
   type FormContext,
@@ -23,7 +23,11 @@ import {
 import { DefaultFormMerger, type FormMerger } from "./merger.js";
 import { fields as defaultFields } from "./fields/index.js";
 import { templates as defaultTemplates } from "./templates/index.js";
-import { DEFAULT_ID_PREFIX, DEFAULT_ID_SEPARATOR } from "./id-schema.js";
+import {
+  DEFAULT_ID_PREFIX,
+  DEFAULT_ID_SEPARATOR,
+  pathToId,
+} from "./id-schema.js";
 import IconOrTranslation from "./icon-or-translation.svelte";
 
 export interface UseFormOptions<T, E> {
@@ -94,6 +98,10 @@ export interface FormState<T, E> {
   validate(): Errors<E>;
   submit(e: SubmitEvent): void;
   reset(): void;
+  updateErrorsByPath(
+    path: Array<string | number>,
+    update: (errors: FieldErrors<E>) => Omit<ValidationError<E>, "instanceId">[]
+  ): void;
 }
 
 export interface FormAPI<T, E> extends FormState<T, E> {
@@ -175,8 +183,8 @@ export function createForm<T, E>(
   const templates = $derived(options.templates ?? defaultTemplates);
   const icons = $derived(options.icons ?? {});
   const schedulerYield: SchedulerYield = $derived(
-    options.schedulerYield ??
-      (typeof scheduler !== "undefined" && "yield" in scheduler)
+    (options.schedulerYield ??
+      (typeof scheduler !== "undefined" && "yield" in scheduler))
       ? scheduler.yield.bind(scheduler)
       : ({ signal }: Parameters<SchedulerYield>[0]) =>
           new Promise((resolve, reject) => {
@@ -309,6 +317,14 @@ export function createForm<T, E>(
       },
       submit,
       reset,
+      updateErrorsByPath(path, update) {
+        const instanceId = pathToId(idPrefix, idSeparator, path);
+        const list = errors.get(instanceId);
+        errors.set(
+          instanceId,
+          update(list ?? []).map((e) => ({ ...e, instanceId }))
+        );
+      },
       enhance(node) {
         $effect(() => {
           node.addEventListener("submit", submitHandler);
