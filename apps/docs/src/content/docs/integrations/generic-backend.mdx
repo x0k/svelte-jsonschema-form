@@ -1,0 +1,18 @@
+---
+title: Generic backend
+sidebar:
+  order: 0
+---
+
+import { Card, Code } from '@astrojs/starlight/components'
+
+import Form from './_generic-backend.svelte';
+import formCode from './_generic-backend.svelte?raw';
+
+You can improve the experience of sending data to the server by using the `useAction` hook.
+
+<Code code={formCode} lang="svelte" />
+
+<Card>
+  <Form client:only="svelte" />
+</Card>
