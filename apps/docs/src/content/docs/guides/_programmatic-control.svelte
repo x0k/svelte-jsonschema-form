@@ -20,5 +20,19 @@
 <form bind:this={formElement} use:form.enhance>
   <FormContent bind:value={form.formValue} />
 </form>
-<button onclick={() => formElement?.requestSubmit()}>My submit</button>
-<button onclick={() => formElement?.reset()}> My reset </button>
+<button
+  onclick={(e) => {
+    formElement?.requestSubmit();
+    // or (note that the `target` and `currentTarget` will not be properly set)
+    // form.submit(new SubmitEvent("submit", { submitter: e.currentTarget }));
+  }}>My submit</button
+>
+<button
+  onclick={() => {
+    formElement?.reset();
+    // or (not that `onReset` handler will not be called)
+    // form.reset();
+  }}
+>
+  My reset
+</button>

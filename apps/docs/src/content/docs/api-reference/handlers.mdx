@@ -39,16 +39,10 @@ interface FormProps<T> {
    *
    * Will be called on form reset.
    *
-   * By default it will clear the errors, set `isSubmitted` state to `false` and
-   * reset the form `value` to the `initialValue`.
+   * By default it will clear the errors, set `isSubmitted` and `isChanged` state
+   * to `false` and reset the form `value` to the `initialValue`.
    *
-   * @default (e) => {
-   *   e.preventDefault();
-   *   isSubmitted = false;
-   *   isChanged = false;
-   *   errors.clear();
-   *   value = initialValue;
-   *  }
+   * @default (e) => { e.preventDefault(); reset(); }
    */
   onReset?: (e: Event) => void
 }

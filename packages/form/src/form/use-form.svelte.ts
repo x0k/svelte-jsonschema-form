@@ -14,7 +14,7 @@ import type { Fields } from "./fields/index.js";
 import type { Templates } from "./templates/index.js";
 import type { Icons } from "./icons.js";
 import type { InputsValidationMode } from "./validation.js";
-import type { Errors } from "./errors.js";
+import { groupErrors, type Errors } from "./errors.js";
 import {
   setFromContext,
   type FormContext,
@@ -76,16 +76,10 @@ export interface UseFormOptions<T, E> {
    *
    * Will be called on form reset.
    *
-   * By default it will clear the errors, set `isSubmitted` state to `false` and
-   * reset the form `value` to the `initialValue`.
+   * By default it will clear the errors, set `isSubmitted` and `isChanged` state
+   * to `false` and reset the form `value` to the `initialValue`.
    *
-   * @default (e) => {
-   *   e.preventDefault();
-   *   isSubmitted = false;
-   *   isChanged = false;
-   *   errors.clear();
-   *   value = initialValue;
-   *  }
+   * @default (e) => { e.preventDefault(); reset(); }
    */
   onReset?: (e: Event) => void;
   schedulerYield?: SchedulerYield;
@@ -97,7 +91,9 @@ export interface FormState<T, E> {
   errors: Errors<E>;
   isSubmitted: boolean;
   isChanged: boolean;
-  validate: () => Errors<E>;
+  validate(): Errors<E>;
+  submit(e: SubmitEvent): void;
+  reset(): void;
 }
 
 export interface FormAPI<T, E> extends FormState<T, E> {
@@ -128,12 +124,12 @@ export function createForm<T, E>(
   );
 
   function validateSnapshot(snapshot: SchemaValue | undefined) {
-    const list = options.validator.validateFormData(options.schema, snapshot);
-    return new SvelteMap(SvelteMap.groupBy(list, (error) => error.instanceId));
+    return groupErrors(
+      options.validator.validateFormData(options.schema, snapshot)
+    );
   }
 
-  const submitHandler = (e: SubmitEvent) => {
-    e.preventDefault();
+  function submit(e: SubmitEvent) {
     isSubmitted = true;
     const snapshot = getSnapshot();
     errors = validateSnapshot(snapshot);
@@ -143,19 +139,30 @@ export function createForm<T, E>(
       return;
     }
     options.onSubmitError?.(errors, e, snapshot);
+  }
+
+  const submitHandler = (e: SubmitEvent) => {
+    e.preventDefault();
+    submit(e);
   };
 
+  function reset() {
+    isSubmitted = false;
+    isChanged = false;
+    errors.clear();
+    value = merger.mergeFormDataAndSchemaDefaults(
+      options.initialValue as Value,
+      options.schema
+    );
+  }
+
+  // @deprecated
+  // TODO: Call `options.onReset` inside `reset` instead of overwriting it
   const resetHandler = $derived(
     options.onReset ??
       ((e: Event) => {
         e.preventDefault();
-        isSubmitted = false;
-        isChanged = false;
-        errors.clear();
-        value = merger.mergeFormDataAndSchemaDefaults(
-          options.initialValue as Value,
-          options.schema
-        );
+        reset();
       })
   );
 
@@ -168,8 +175,8 @@ export function createForm<T, E>(
   const templates = $derived(options.templates ?? defaultTemplates);
   const icons = $derived(options.icons ?? {});
   const schedulerYield: SchedulerYield = $derived(
-    (options.schedulerYield ??
-      (typeof scheduler !== "undefined" && "yield" in scheduler))
+    options.schedulerYield ??
+      (typeof scheduler !== "undefined" && "yield" in scheduler)
       ? scheduler.yield.bind(scheduler)
       : ({ signal }: Parameters<SchedulerYield>[0]) =>
           new Promise((resolve, reject) => {
@@ -300,6 +307,8 @@ export function createForm<T, E>(
       validate() {
         return validateSnapshot(getSnapshot());
       },
+      submit,
+      reset,
       enhance(node) {
         $effect(() => {
           node.addEventListener("submit", submitHandler);
