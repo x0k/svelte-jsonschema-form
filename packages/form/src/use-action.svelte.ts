@@ -91,7 +91,7 @@ export function useAction<T, R, E = unknown>(
     options.combinator ?? ignoreNewUntilPreviousIsFinished
   );
 
-  let state = $state<ActionState<E>>({
+  let state = $state.raw<ActionState<E>>({
     status: Status.IDLE,
   });
   let abortController: AbortController | null = null;
@@ -110,18 +110,17 @@ export function useAction<T, R, E = unknown>(
     clearTimeouts();
   }
 
-  const status = $derived(state.status);
-  const isSuccess = $derived(status === Status.Success);
-  const isFailed = $derived(status === Status.Failed);
-  const isProcessed = $derived(status === Status.Processed);
-  const isDelayed = $derived(status === Status.Delayed);
+  const isSuccess = $derived(state.status === Status.Success);
+  const isFailed = $derived(state.status === Status.Failed);
+  const isProcessed = $derived(state.status === Status.Processed);
+  const isDelayed = $derived(state.status === Status.Delayed);
 
   return {
     get state() {
       return state;
     },
     get status() {
-      return status;
+      return state.status;
     },
     get isSuccess() {
       return isSuccess;
@@ -144,18 +143,18 @@ export function useAction<T, R, E = unknown>(
         abort();
       }
       state = {
-        status: status === Status.Delayed ? Status.Processed : Status.IDLE,
+        status: state.status === Status.Delayed ? Status.Delayed : Status.Processed,
       };
       abortController = new AbortController();
       const action = options.do(abortController.signal, value).then(
         (result) => {
-          if (ref?.deref() !== action) return;
+          if (ref?.deref() !== action || state.status === Status.Failed) return;
           state = { status: Status.Success };
           options.onSuccess?.(result);
         },
         (error) => {
           // Action may have been aborted by user or timeout
-          if (ref?.deref() !== action || status === Status.Failed) return;
+          if (ref?.deref() !== action || state.status === Status.Failed) return;
           state = { status: Status.Failed, reason: "error", error };
           options.onFailure?.(state);
         }

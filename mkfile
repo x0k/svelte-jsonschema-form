@@ -24,7 +24,7 @@ f/:
   c:
     pnpm run check
   t:
-    pnpm run test
+    pnpm run test $@
   popd
 
 ds/:
