@@ -67,10 +67,6 @@ export const ignoreNewUntilPreviousIsFinished: ActionsCombinator<any> = ({
   status,
 }) => status <= Status.IDLE;
 
-export type ActionRun<T> = T extends undefined | unknown
-  ? (value?: T) => Promise<void>
-  : (value: T) => Promise<void>;
-
 export interface Action<T, R, E> {
   readonly state: Readonly<ActionState<E>>;
   readonly status: Status;
@@ -78,11 +74,11 @@ export interface Action<T, R, E> {
   readonly isFailed: boolean;
   readonly isProcessed: boolean;
   readonly isDelayed: boolean;
-  run: ActionRun<T>;
+  run(data: T): Promise<void>;
   abort(): void;
 }
 
-export function useAction<T, R, E = unknown>(
+export function useAction<T, R = unknown, E = unknown>(
   options: ActionOptions<T, R, E>
 ): Action<T, R, E> {
   const delayedMs = $derived(options.delayedMs ?? 500);
@@ -134,7 +130,7 @@ export function useAction<T, R, E = unknown>(
     get isDelayed() {
       return isDelayed;
     },
-    run: ((value: T) => {
+    run(data) {
       const decision = combinator(state);
       if (decision === false) {
         return Promise.resolve();
@@ -143,10 +139,11 @@ export function useAction<T, R, E = unknown>(
         abort();
       }
       state = {
-        status: state.status === Status.Delayed ? Status.Delayed : Status.Processed,
+        status:
+          state.status === Status.Delayed ? Status.Delayed : Status.Processed,
       };
       abortController = new AbortController();
-      const action = options.do(abortController.signal, value).then(
+      const action = options.do(abortController.signal, data).then(
         (result) => {
           if (ref?.deref() !== action || state.status === Status.Failed) return;
           state = { status: Status.Success };
@@ -172,7 +169,7 @@ export function useAction<T, R, E = unknown>(
         options.onFailure?.(state);
       }, timeoutMs);
       return action;
-    }) as ActionRun<T>,
+    },
     abort() {
       state = { status: Status.Failed, reason: "aborted" };
       abort();

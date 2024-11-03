@@ -21,7 +21,7 @@ describe("useAction", () => {
       const action = useAction({
         do: () => Promise.resolve(),
       });
-      const promise = action.run();
+      const promise = action.run(undefined);
       expect(action.status).toBe(Status.Processed);
       await promise;
       expect(action.status).toBe(Status.Success);
@@ -37,7 +37,7 @@ describe("useAction", () => {
         delayedMs: 10,
         timeoutMs: 50,
       });
-      const promise = action.run();
+      const promise = action.run(undefined);
       vi.advanceTimersByTime(10);
       expect(action.status).toBe(Status.Delayed);
       vi.advanceTimersByTime(40);
@@ -61,11 +61,11 @@ describe("useAction", () => {
         do: impl,
         combinator: ignoreNewUntilPreviousIsFinished,
       });
-      action.run();
-      action.run();
+      action.run(undefined);
+      action.run(undefined);
       vi.advanceTimersByTime(100);
       await tick();
-      action.run();
+      action.run(undefined);
       expect(impl).toBeCalledTimes(2);
     });
     it("Should forget previous action with 'forgetPrevious' combinator", async () => {
@@ -76,8 +76,8 @@ describe("useAction", () => {
         combinator: forgetPrevious,
         onSuccess,
       });
-      action.run();
-      action.run();
+      action.run(undefined);
+      action.run(undefined);
       await tick();
       expect(onSuccess).toBeCalledTimes(1);
       expect(onSuccess).toBeCalledWith(1);
@@ -95,9 +95,9 @@ describe("useAction", () => {
         combinator: abortPrevious,
         onSuccess,
       });
-      action.run();
-      action.run();
-      await action.run()
+      action.run(undefined);
+      action.run(undefined);
+      await action.run(undefined)
       expect(onAbort).toBeCalledTimes(2);
       expect(impl).toBeCalledTimes(3);
       expect(onSuccess).toBeCalledTimes(1);
