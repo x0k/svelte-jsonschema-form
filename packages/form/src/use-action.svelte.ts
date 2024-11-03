@@ -1,10 +1,8 @@
-// Order is important
 export enum Status {
-  Failed,
-  Success,
   IDLE,
   Processed,
-  Delayed,
+  Success,
+  Failed,
 }
 
 export interface AbstractActionsState<S extends Status> {
@@ -26,9 +24,15 @@ export type FailedAction<E> =
   | ActionFailedByError<E>
   | AbstractFailedAction<Exclude<ActionFailureReason, "error">>;
 
+export interface ProcessedAction
+  extends AbstractActionsState<Status.Processed> {
+  delayed: boolean;
+}
+
 export type ActionState<E> =
   | FailedAction<E>
-  | AbstractActionsState<Exclude<Status, Status.Failed>>;
+  | ProcessedAction
+  | AbstractActionsState<Exclude<Status, Status.Failed | Status.Processed>>;
 
 export type ActionsCombinator<E> = (state: ActionState<E>) => boolean | "abort";
 
@@ -65,7 +69,7 @@ export const abortPrevious: ActionsCombinator<any> = () => "abort";
  */
 export const ignoreNewUntilPreviousIsFinished: ActionsCombinator<any> = ({
   status,
-}) => status <= Status.IDLE;
+}) => status !== Status.Processed;
 
 export interface Action<T, R, E> {
   readonly state: Readonly<ActionState<E>>;
@@ -83,6 +87,9 @@ export function useAction<T, R = unknown, E = unknown>(
 ): Action<T, R, E> {
   const delayedMs = $derived(options.delayedMs ?? 500);
   const timeoutMs = $derived(options.timeoutMs ?? 8000);
+  if (timeoutMs < delayedMs) {
+    throw new Error("timeoutMs must be greater than delayedMs");
+  }
   const combinator = $derived(
     options.combinator ?? ignoreNewUntilPreviousIsFinished
   );
@@ -106,12 +113,7 @@ export function useAction<T, R = unknown, E = unknown>(
     clearTimeouts();
   }
 
-  const isSuccess = $derived(state.status === Status.Success);
-  const isFailed = $derived(state.status === Status.Failed);
-  const isProcessed = $derived(state.status === Status.Processed);
-  const isDelayed = $derived(state.status === Status.Delayed);
-
-  return {
+  const action: Action<T, R, E> = {
     get state() {
       return state;
     },
@@ -119,16 +121,16 @@ export function useAction<T, R = unknown, E = unknown>(
       return state.status;
     },
     get isSuccess() {
-      return isSuccess;
+      return state.status === Status.Success;
     },
     get isFailed() {
-      return isFailed;
+      return state.status === Status.Failed;
     },
     get isProcessed() {
-      return isProcessed;
+      return state.status === Status.Processed;
     },
     get isDelayed() {
-      return isDelayed;
+      return state.status === Status.Processed && state.delayed;
     },
     run(data) {
       const decision = combinator(state);
@@ -139,36 +141,42 @@ export function useAction<T, R = unknown, E = unknown>(
         abort();
       }
       state = {
-        status:
-          state.status === Status.Delayed ? Status.Delayed : Status.Processed,
+        status: Status.Processed,
+        delayed: action.isDelayed,
       };
       abortController = new AbortController();
-      const action = options.do(abortController.signal, data).then(
+      const promise = options.do(abortController.signal, data).then(
         (result) => {
-          if (ref?.deref() !== action || state.status === Status.Failed) return;
+          // Action may have been aborted by user or timeout
+          if (ref?.deref() !== promise || state.status === Status.Failed)
+            return;
           state = { status: Status.Success };
+          clearTimeouts();
           options.onSuccess?.(result);
         },
         (error) => {
-          // Action may have been aborted by user or timeout
-          if (ref?.deref() !== action || state.status === Status.Failed) return;
+          if (ref?.deref() !== promise || state.status === Status.Failed)
+            return;
           state = { status: Status.Failed, reason: "error", error };
+          clearTimeouts();
           options.onFailure?.(state);
         }
       );
-      ref = new WeakRef(action);
+      ref = new WeakRef(promise);
       clearTimeouts();
       delayedCallbackId = setTimeout(() => {
-        if (ref?.deref() !== action) return;
-        state = { status: Status.Delayed };
+        if (ref?.deref() !== promise || state.status !== Status.Processed)
+          return;
+        state = { status: Status.Processed, delayed: true };
       }, delayedMs);
       timeoutCallbackId = setTimeout(() => {
-        if (ref?.deref() !== action) return;
+        if (ref?.deref() !== promise || state.status !== Status.Processed)
+          return;
         state = { status: Status.Failed, reason: "timeout" };
         abort();
         options.onFailure?.(state);
       }, timeoutMs);
-      return action;
+      return promise;
     },
     abort() {
       state = { status: Status.Failed, reason: "aborted" };
@@ -176,4 +184,5 @@ export function useAction<T, R = unknown, E = unknown>(
       options.onFailure?.(state);
     },
   };
+  return action;
 }
