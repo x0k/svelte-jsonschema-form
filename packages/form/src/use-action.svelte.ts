@@ -32,7 +32,7 @@ export type ActionState<E> =
 
 export type ActionsCombinator<E> = (state: ActionState<E>) => boolean | "abort";
 
-export interface ActionOptions<T, R, E = unknown> {
+export interface ActionOptions<T, R, E> {
   do: (signal: AbortSignal, data: T) => Promise<R>;
   onSuccess?: (result: R) => void;
   onFailure?: (failure: FailedAction<E>) => void;
@@ -66,14 +66,18 @@ export const abortPrevious: ActionsCombinator<any> = () => "abort";
  */
 export const ignorePrevious: ActionsCombinator<any> = () => true;
 
-export interface Action<T, R, E = unknown> {
+export type ActionRun<T> = T extends undefined | unknown
+  ? (value?: T) => Promise<void>
+  : (value: T) => Promise<void>;
+
+export interface Action<T, R, E> {
   readonly state: Readonly<ActionState<E>>;
   readonly status: Status;
   readonly isSuccess: boolean;
   readonly isFailed: boolean;
   readonly isProcessed: boolean;
   readonly isDelayed: boolean;
-  run(value: T): void;
+  run: ActionRun<T>;
   abort(): void;
 }
 
@@ -128,9 +132,11 @@ export function useAction<T, R, E = unknown>(
     get isDelayed() {
       return isDelayed;
     },
-    run(value: T) {
+    run: ((value: T) => {
       const decision = combinator(state);
-      if (decision === false) return;
+      if (decision === false) {
+        return Promise.resolve();
+      }
       if (decision === "abort") {
         abort();
       }
@@ -163,7 +169,8 @@ export function useAction<T, R, E = unknown>(
         abort();
         options.onFailure?.(state);
       }, timeoutMs);
-    },
+      return action;
+    }) as ActionRun<T>,
     abort() {
       state = { status: Status.Failed, reason: "aborted" };
       abort();
