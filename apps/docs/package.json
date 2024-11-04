@@ -14,11 +14,14 @@
     "@sjsf/daisyui-theme": "workspace:*",
     "@sjsf/flowbite-theme": "workspace:*",
     "@sjsf/form": "workspace:*",
-    "@sjsf/skeleton-theme": "workspace:*",
     "@sjsf/shadcn-theme": "workspace:*",
+    "@sjsf/skeleton-theme": "workspace:*",
+    "@sjsf/zod-integration": "workspace:*",
     "ajv": "catalog:",
     "mermaid": "^11.3.0",
-    "svg-pan-zoom": "github:bumbu/svg-pan-zoom"
+    "svg-pan-zoom": "github:bumbu/svg-pan-zoom",
+    "zod": "catalog:",
+    "zod-to-json-schema": "^3.23.5"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
