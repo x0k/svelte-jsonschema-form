@@ -5,45 +5,45 @@ export enum Status {
   Failed,
 }
 
-export interface AbstractActionsState<S extends Status> {
+export interface AbstractMutationState<S extends Status> {
   status: S;
 }
 
-export type ActionFailureReason = "timeout" | "aborted" | "error";
+export type MutationFailureReason = "timeout" | "aborted" | "error";
 
-export interface AbstractFailedAction<R extends ActionFailureReason>
-  extends AbstractActionsState<Status.Failed> {
+export interface AbstractFailedMutation<R extends MutationFailureReason>
+  extends AbstractMutationState<Status.Failed> {
   reason: R;
 }
 
-export interface ActionFailedByError<E> extends AbstractFailedAction<"error"> {
+export interface MutationFailedByError<E> extends AbstractFailedMutation<"error"> {
   error: E;
 }
 
-export type FailedAction<E> =
-  | ActionFailedByError<E>
-  | AbstractFailedAction<Exclude<ActionFailureReason, "error">>;
+export type FailedMutation<E> =
+  | MutationFailedByError<E>
+  | AbstractFailedMutation<Exclude<MutationFailureReason, "error">>;
 
-export interface ProcessedAction
-  extends AbstractActionsState<Status.Processed> {
+export interface ProcessedMutation
+  extends AbstractMutationState<Status.Processed> {
   delayed: boolean;
 }
 
-export type ActionState<E> =
-  | FailedAction<E>
-  | ProcessedAction
-  | AbstractActionsState<Exclude<Status, Status.Failed | Status.Processed>>;
+export type MutationState<E> =
+  | FailedMutation<E>
+  | ProcessedMutation
+  | AbstractMutationState<Exclude<Status, Status.Failed | Status.Processed>>;
 
-export type ActionsCombinator<E> = (state: ActionState<E>) => boolean | "abort";
+export type MutationsCombinator<E> = (state: MutationState<E>) => boolean | "abort";
 
-export interface ActionOptions<T, R, E> {
-  do: (signal: AbortSignal, data: T) => Promise<R>;
+export interface MutationOptions<T, R, E> {
+  mutate: (signal: AbortSignal, data: T) => Promise<R>;
   onSuccess?: (result: R) => void;
-  onFailure?: (failure: FailedAction<E>) => void;
+  onFailure?: (failure: FailedMutation<E>) => void;
   /**
    * @default ignoreNewUntilPreviousIsFinished
    */
-  combinator?: ActionsCombinator<E>;
+  combinator?: MutationsCombinator<E>;
   /**
    * @default 500
    */
@@ -55,24 +55,24 @@ export interface ActionOptions<T, R, E> {
 }
 
 /**
- * Forget previous action
+ * Forget previous mutation
  */
-export const forgetPrevious: ActionsCombinator<any> = () => true;
+export const forgetPrevious: MutationsCombinator<any> = () => true;
 
 /**
- * Abort previous action
+ * Abort previous mutation
  */
-export const abortPrevious: ActionsCombinator<any> = () => "abort";
+export const abortPrevious: MutationsCombinator<any> = () => "abort";
 
 /**
- * Ignore new actions until the previous action is completed
+ * Ignore new mutation until the previous mutation is completed
  */
-export const ignoreNewUntilPreviousIsFinished: ActionsCombinator<any> = ({
+export const ignoreNewUntilPreviousIsFinished: MutationsCombinator<any> = ({
   status,
 }) => status !== Status.Processed;
 
-export interface Action<T, R, E> {
-  readonly state: Readonly<ActionState<E>>;
+export interface Mutation<T, R, E> {
+  readonly state: Readonly<MutationState<E>>;
   readonly status: Status;
   readonly isSuccess: boolean;
   readonly isFailed: boolean;
@@ -82,9 +82,9 @@ export interface Action<T, R, E> {
   abort(): void;
 }
 
-export function useAction<T, R = unknown, E = unknown>(
-  options: ActionOptions<T, R, E>
-): Action<T, R, E> {
+export function useMutation<T, R = unknown, E = unknown>(
+  options: MutationOptions<T, R, E>
+): Mutation<T, R, E> {
   const delayedMs = $derived(options.delayedMs ?? 500);
   const timeoutMs = $derived(options.timeoutMs ?? 8000);
   if (timeoutMs < delayedMs) {
@@ -94,7 +94,7 @@ export function useAction<T, R = unknown, E = unknown>(
     options.combinator ?? ignoreNewUntilPreviousIsFinished
   );
 
-  let state = $state.raw<ActionState<E>>({
+  let state = $state.raw<MutationState<E>>({
     status: Status.IDLE,
   });
   let abortController: AbortController | null = null;
@@ -113,7 +113,7 @@ export function useAction<T, R = unknown, E = unknown>(
     clearTimeouts();
   }
 
-  const action: Action<T, R, E> = {
+  const mutation: Mutation<T, R, E> = {
     get state() {
       return state;
     },
@@ -142,12 +142,12 @@ export function useAction<T, R = unknown, E = unknown>(
       }
       state = {
         status: Status.Processed,
-        delayed: action.isDelayed,
+        delayed: mutation.isDelayed,
       };
       abortController = new AbortController();
-      const promise = options.do(abortController.signal, data).then(
+      const promise = options.mutate(abortController.signal, data).then(
         (result) => {
-          // Action may have been aborted by user or timeout
+          // Mutation may have been aborted by user or timeout
           if (ref?.deref() !== promise || state.status === Status.Failed)
             return;
           state = { status: Status.Success };
@@ -184,5 +184,5 @@ export function useAction<T, R = unknown, E = unknown>(
       options.onFailure?.(state);
     },
   };
-  return action;
+  return mutation;
 }

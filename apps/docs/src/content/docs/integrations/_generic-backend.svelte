@@ -1,6 +1,6 @@
 <script lang="ts">
   import { FormContent, SubmitButton } from "@sjsf/form";
-  import { Status, useAction } from "@sjsf/form/use-action.svelte";
+  import { Status, useMutation } from "@sjsf/form/use-mutation.svelte";
 
   import { useCustomForm } from "@/components/custom-form";
 
@@ -8,8 +8,8 @@
   let duration = $state(0);
   let data = $state<string>();
 
-  const action = useAction({
-    do: (_signal, value: string | undefined = "") =>
+  const mutation = useMutation({
+    mutate: (_signal, value: string | undefined = "") =>
       new Promise<string>((resolve, reject) => {
         data = undefined;
         isError = Math.random() > 0.5;
@@ -35,9 +35,9 @@
     schema: {
       type: "string",
     },
-    onSubmit: action.run,
+    onSubmit: mutation.run,
     get disabled() {
-      return action.isProcessed;
+      return mutation.isProcessed;
     },
   });
 </script>
@@ -48,7 +48,7 @@
 
 <form use:form.enhance style="display: flex; flex-direction: column; gap: 1rem">
   <FormContent bind:value={form.formValue} />
-  {#if action.isDelayed}
+  {#if mutation.isDelayed}
     <button style="padding: 0.5rem;" disabled>Processed...</button>
   {:else}
     <SubmitButton />
@@ -56,7 +56,7 @@
   {#if data !== undefined}
     <p>Data: {data}</p>
   {/if}
-  {#if action.state.status === Status.Failed}
-    <p class="text-red-500">Failed: {action.state.reason}</p>
+  {#if mutation.state.status === Status.Failed}
+    <p class="text-red-500">Failed: {mutation.state.reason}</p>
   {/if}
 </form>
