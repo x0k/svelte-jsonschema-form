@@ -62,8 +62,12 @@ export interface UseFormOptions<T, E> {
    *
    * Will be called when the form is submitted and form data
    * snapshot is valid
+   * 
+   * Note that we rely on `validator.validateFormData` to check that the
+   * `formData is T`. So make sure you provide a `T` type that
+   * matches the validator check result.
    */
-  onSubmit?: (value: T | undefined, e: SubmitEvent) => void;
+  onSubmit?: (value: T, e: SubmitEvent) => void;
   /**
    * Submit error handler
    *
@@ -142,7 +146,7 @@ export function createForm<T, E>(
     const snapshot = getSnapshot();
     errors = validateSnapshot(snapshot);
     if (errors.size === 0) {
-      options.onSubmit?.(snapshot as T | undefined, e);
+      options.onSubmit?.(snapshot as T, e);
       isChanged = false;
       return;
     }

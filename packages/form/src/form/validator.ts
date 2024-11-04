@@ -16,6 +16,9 @@ export interface ValidationError<E> {
 export interface FormValidator<E = unknown> extends Validator {
   /** 
    * Full form validation
+   * 
+   * Essentially this is the `formData is T` check, but since `T` doesn't
+   * extend `SchemaValue`, we don't declare this as a type guard.
    */
   validateFormData(
     rootSchema: Schema,

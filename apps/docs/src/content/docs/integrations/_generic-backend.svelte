@@ -56,10 +56,7 @@
         },
       },
     },
-    onSubmit(config: Config | undefined) {
-      if (!config) return;
-      mutation.run(config);
-    },
+    onSubmit: mutation.run,
     get disabled() {
       return mutation.isProcessed;
     },
