@@ -8,12 +8,14 @@
     getDefaultFieldState,
     getUiOptions,
     retrieveSchema,
-    getFormContext
+    getFormContext,
+    makeIdSchema,
+    makeArrayItemId
   } from '../../context/index.js';
   
   import type { FieldProps } from '../model.js';
   
-  import { getArrayItemSchemaId, getArrayContext } from './context.js';
+  import { getArrayContext } from './context.js';
   import { getArrayItemName, getFixedArrayItemTitle } from './get-array-item-name.js'
 
   let { value = $bindable(), config }: FieldProps<"fixedArray"> = $props()
@@ -86,11 +88,10 @@
         ? uiSchema.items[index]
         : uiSchema.items
       ) ?? {}}
-      {@const itemIdSchema = getArrayItemSchemaId(
+      {@const itemIdSchema = makeIdSchema(
         ctx,
-        config.idSchema,
         itemSchema,
-        index,
+        makeArrayItemId(ctx, config.idSchema.$id, index),
         item
       )}
       <ArrayItem

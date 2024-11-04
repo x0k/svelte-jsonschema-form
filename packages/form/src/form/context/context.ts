@@ -14,6 +14,7 @@ import type { Errors } from "../errors.js";
 import type { FormValidator } from "../validator.js";
 import type { Icons } from "../icons.js";
 import type { FormMerger } from "../merger.js";
+import type { IdConfig } from '../id-schema.js';
 
 export type IconOrTranslationData = {
   [L in Label]: [L, ...Labels[L]];
@@ -34,9 +35,11 @@ export interface FormContext {
   templates: Templates;
   icons: Icons;
   disabled: boolean;
+  /** @deprecated use `idConfig.prefix` instead */
   idPrefix: string;
+  /** @deprecated use `idConfig.propertySeparator` instead */
   idSeparator: string;
-  pseudoIdSeparator: string;
+  idConfig: Readonly<IdConfig>;
   errors: Errors;
   schedulerYield: SchedulerYield;
   /** @deprecated use `IconOrTranslation` instead */

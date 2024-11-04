@@ -25,9 +25,10 @@ import { fields as defaultFields } from "./fields/index.js";
 import { templates as defaultTemplates } from "./templates/index.js";
 import {
   DEFAULT_ID_PREFIX,
-  DEFAULT_ID_SEPARATOR,
+  DEFAULT_ID_PROPERTY_SEPARATOR,
+  DEFAULT_ID_INDEX_SEPARATOR,
   DEFAULT_PSEUDO_ID_SEPARATOR,
-  pathToId,
+  pathToId2,
 } from "./id-schema.js";
 import IconOrTranslation from "./icon-or-translation.svelte";
 
@@ -45,7 +46,10 @@ export interface UseFormOptions<T, E> {
   inputsValidationMode?: InputsValidationMode;
   disabled?: boolean;
   idPrefix?: string;
+  /** @deprecated use `idPropertySeparator` */
   idSeparator?: string;
+  idPropertySeparator?: string;
+  idIndexSeparator?: string;
   pseudoIdSeparator?: string;
   //
   initialValue?: T;
@@ -184,7 +188,8 @@ export function createForm<T, E>(
   const uiSchema = $derived(options.uiSchema ?? {});
   const disabled = $derived(options.disabled ?? false);
   const idPrefix = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX);
-  const idSeparator = $derived(options.idSeparator ?? DEFAULT_ID_SEPARATOR);
+  const idPropertySeparator = $derived(options.idPropertySeparator ?? options.idSeparator ?? DEFAULT_ID_PROPERTY_SEPARATOR);
+  const idIndexSeparator = $derived(options.idIndexSeparator ?? DEFAULT_ID_INDEX_SEPARATOR);
   const pseudoIdSeparator = $derived(
     options.pseudoIdSeparator ?? DEFAULT_PSEUDO_ID_SEPARATOR
   );
@@ -206,6 +211,21 @@ export function createForm<T, E>(
             }, 0);
           })
   );
+
+  const idConfig = {
+    get prefix() {
+      return idPrefix;
+    },
+    get propertySeparator() {
+      return idPropertySeparator;
+    },
+    get indexSeparator() {
+      return idIndexSeparator;
+    },
+    get pseudoSeparator() {
+      return pseudoIdSeparator;
+    }
+  }
 
   return [
     {
@@ -237,11 +257,9 @@ export function createForm<T, E>(
         return idPrefix;
       },
       get idSeparator() {
-        return idSeparator;
+        return idPropertySeparator;
       },
-      get pseudoIdSeparator() {
-        return pseudoIdSeparator;
-      },
+      idConfig,
       get validator() {
         return options.validator;
       },
@@ -330,7 +348,7 @@ export function createForm<T, E>(
       submit,
       reset,
       updateErrorsByPath(path, update) {
-        const instanceId = pathToId(idPrefix, idSeparator, path);
+        const instanceId = pathToId2(idConfig, path);
         const list = errors.get(instanceId);
         errors.set(
           instanceId,

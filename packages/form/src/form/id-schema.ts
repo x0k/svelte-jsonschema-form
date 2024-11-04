@@ -26,11 +26,28 @@ import {
 
 export const DEFAULT_ID_PREFIX = "root";
 
-// @deprecated
-// TODO: Make the separator more specific
-export const DEFAULT_ID_SEPARATOR = "_";
+export const DEFAULT_ID_PROPERTY_SEPARATOR = ".";
 
-export const DEFAULT_PSEUDO_ID_SEPARATOR = "::"
+/** @deprecated use `DEFAULT_ID_PROPERTY_SEPARATOR` */
+export const DEFAULT_ID_SEPARATOR = DEFAULT_ID_PROPERTY_SEPARATOR;
+
+export const DEFAULT_ID_INDEX_SEPARATOR = "@";
+
+export const DEFAULT_PSEUDO_ID_SEPARATOR = "::";
+
+export const DEFAULT_ID_CONFIG: IdConfig = {
+  prefix: DEFAULT_ID_PREFIX,
+  indexSeparator: DEFAULT_ID_INDEX_SEPARATOR,
+  propertySeparator: DEFAULT_ID_PROPERTY_SEPARATOR,
+  pseudoSeparator: DEFAULT_PSEUDO_ID_SEPARATOR,
+};
+
+export interface IdConfig {
+  prefix: string;
+  propertySeparator: string;
+  indexSeparator: string;
+  pseudoSeparator: string;
+}
 
 export type FieldId = {
   $id: string;
@@ -79,7 +96,7 @@ export function toIdSchema2(
   merger: Merger2,
   schema: Schema,
   idPrefix: string,
-  idSeparator: string,
+  idPropertySeparator: string,
   _recurseList: Schema[],
   id?: string | null,
   rootSchema?: Schema,
@@ -102,7 +119,7 @@ export function toIdSchema2(
         merger,
         _schema,
         idPrefix,
-        idSeparator,
+        idPropertySeparator,
         _recurseList.concat(_schema),
         id,
         rootSchema,
@@ -118,7 +135,7 @@ export function toIdSchema2(
         merger,
         items,
         idPrefix,
-        idSeparator,
+        idPropertySeparator,
         _recurseList,
         id,
         rootSchema,
@@ -126,20 +143,20 @@ export function toIdSchema2(
       );
     }
   }
-  const $id = id || idPrefix;
+  const $id = id ?? idPrefix;
   const idSchema = { $id } as IdSchema<SchemaObjectValue>;
   if (getSimpleSchemaType(schema) === "object" && PROPERTIES_KEY in schema) {
     const properties = schema[PROPERTIES_KEY];
     const formDataObject = isSchemaObjectValue(formData) ? formData : undefined;
     for (const name in properties) {
       const field = properties[name]!;
-      const fieldId = idSchema[ID_KEY] + idSeparator + name;
+      const fieldId = idSchema[ID_KEY] + idPropertySeparator + name;
       idSchema[name] = toIdSchema2(
         validator,
         merger,
         isSchema(field) ? field : {},
         idPrefix,
-        idSeparator,
+        idPropertySeparator,
         _recurseList,
         fieldId,
         rootSchema,
@@ -177,12 +194,37 @@ export function computePseudoId(
   return `${instanceId}${pseudoIdSeparator}${element}`;
 }
 
+/**
+ * @deprecated use `pathToId2`
+ */
 export function pathToId(
   idPrefix: string,
   idSeparator: string,
+  path: Array<string | number>,
+  idIndexSeparator = DEFAULT_ID_INDEX_SEPARATOR
+) {
+  return pathToId2(
+    {
+      prefix: idPrefix,
+      indexSeparator: idIndexSeparator,
+      propertySeparator: idSeparator,
+      pseudoSeparator: DEFAULT_PSEUDO_ID_SEPARATOR,
+    },
+    path
+  );
+}
+
+export function pathToId2(
+  { prefix, indexSeparator, propertySeparator }: IdConfig,
   path: Array<string | number>
 ) {
-  return path.length === 0
-    ? idPrefix
-    : `${idPrefix}${idSeparator}${path.join(idSeparator)}`;
+  if (path.length === 0) {
+    return prefix;
+  }
+  let id = prefix;
+  for (let i = 0; i < path.length; i++) {
+    const component = path[i];
+    id += `${typeof component === "number" ? indexSeparator : propertySeparator}${component}`;
+  }
+  return id;
 }

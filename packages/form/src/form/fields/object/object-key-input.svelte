@@ -36,11 +36,11 @@
   const objCtx = getObjectContext();
 
   const id = $derived(
-    makePseudoId(ctx, idSchema?.$id ?? ctx.idPrefix, "key-input")
+    makePseudoId(ctx, idSchema?.$id ?? ctx.idConfig.prefix, "key-input")
   );
   const uiOptions = $derived(getUiOptions(ctx, uiSchema));
   const config: Config = $derived({
-    name: `${name}__key`,
+    name: id,
     title: `${name} Key`,
     schema: { type: "string" },
     idSchema: { $id: id },
