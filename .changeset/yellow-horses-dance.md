@@ -2,4 +2,4 @@
 "@sjsf/form": minor
 ---
 
-Add `useAction` API
+Add `useMutation` API
