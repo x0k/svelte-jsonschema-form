@@ -1,9 +1,9 @@
 import {
+  type SchemaDefinition,
   ARRAYS_OF_SUB_SCHEMAS,
-  isSchema,
   RECORDS_OF_SUB_SCHEMAS,
   SUB_SCHEMAS,
-  type SchemaDefinition,
+  isSchema,
 } from "./schema.js";
 
 export interface Visitor<Node> {
