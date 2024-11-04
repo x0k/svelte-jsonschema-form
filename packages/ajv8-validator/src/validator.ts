@@ -14,14 +14,17 @@ import {
 } from "@sjsf/form/core";
 import {
   DEFAULT_ID_PREFIX,
-  DEFAULT_ID_SEPARATOR,
-  pathToId,
+  DEFAULT_ID_PROPERTY_SEPARATOR,
+  DEFAULT_ID_INDEX_SEPARATOR,
+  pathToId2,
   type Config,
   type FieldErrors,
   type FormValidator,
   type UiSchema,
   type UiSchemaRoot,
   type ValidationError,
+  DEFAULT_PSEUDO_ID_SEPARATOR,
+  type IdConfig,
 } from "@sjsf/form";
 
 const trueSchema: Schema = {};
@@ -31,13 +34,26 @@ const FIELD_REQUIRED = ["field"];
 const FIELD_NOT_REQUIRED: string[] = [];
 const NO_ERRORS: FieldErrors<ErrorObject> = [];
 
+const IS_INDEX_REGEX = /^\d+$/;
+
 export class AjvValidator implements FormValidator<ErrorObject> {
+  private readonly idConfig: IdConfig;
+
   constructor(
     private readonly ajv: Ajv,
     private readonly uiSchema: UiSchemaRoot = {},
     private readonly idPrefix: string = DEFAULT_ID_PREFIX,
-    private readonly idSeparator: string = DEFAULT_ID_SEPARATOR
-  ) {}
+    private readonly idPropertySeparator: string = DEFAULT_ID_PROPERTY_SEPARATOR,
+    private readonly idIndexSeparator: string = DEFAULT_ID_INDEX_SEPARATOR,
+    private readonly idPseudoSeparator: string = DEFAULT_PSEUDO_ID_SEPARATOR
+  ) {
+    this.idConfig = {
+      prefix: this.idPrefix,
+      propertySeparator: this.idPropertySeparator,
+      indexSeparator: this.idIndexSeparator,
+      pseudoSeparator: this.idPseudoSeparator,
+    };
+  }
 
   reset() {
     this.ajv.removeSchema();
@@ -151,9 +167,18 @@ export class AjvValidator implements FormValidator<ErrorObject> {
     { params: { missingProperty } }: ErrorObject,
     path: string[]
   ) {
-    const id = pathToId(this.idPrefix, this.idSeparator, path);
+    const id = pathToId2(
+      this.idConfig,
+      path.map((component) => {
+        if (!IS_INDEX_REGEX.test(component)) {
+          return component;
+        }
+        const num = Number(component);
+        return isNaN(num) ? component : num;
+      })
+    );
     return missingProperty !== undefined
-      ? `${id}${this.idSeparator}${missingProperty}`
+      ? `${id}${this.idPropertySeparator}${missingProperty}`
       : id;
   }
 
