@@ -1,3 +1,8 @@
+import type {
+  ArraySchemaTraverserContext,
+  RecordSchemaTraverserContext,
+  SchemaTraverserContext,
+} from "./schema-traverser.js";
 import {
   type SchemaDefinition,
   type Schema,
@@ -5,13 +10,14 @@ import {
   RECORDS_OF_SUB_SCHEMAS,
   ARRAYS_OF_SUB_SCHEMAS,
   isSchema,
+  type SubSchemaKey,
+  type SubSchemasArrayKey,
+  type SubSchemasRecordKey,
 } from "./schema.js";
 
 export type TransformedSchema<R> = Omit<
   Schema,
-  | (typeof SUB_SCHEMAS)[number]
-  | (typeof RECORDS_OF_SUB_SCHEMAS)[number]
-  | (typeof ARRAYS_OF_SUB_SCHEMAS)[number]
+  SubSchemaKey | SubSchemasArrayKey | SubSchemasRecordKey
 > & {
   items?: R | R[] | undefined;
   additionalItems?: R | undefined;
@@ -38,10 +44,14 @@ export type TransformedSchemaDefinition<R> = TransformedSchema<R> | boolean;
 
 export function transformSchemaDefinition<R>(
   schema: SchemaDefinition,
-  transform: (shallowCopy: TransformedSchemaDefinition<R>) => R
+  transform: (
+    shallowCopy: TransformedSchemaDefinition<R>,
+    ctx: SchemaTraverserContext
+  ) => R,
+  ctx: SchemaTraverserContext = { type: "root" }
 ): R {
   if (!isSchema(schema)) {
-    return transform(schema);
+    return transform(schema, ctx);
   }
   const shallowCopy = {
     ...schema,
@@ -51,9 +61,15 @@ export function transformSchemaDefinition<R>(
     if (array === undefined || !Array.isArray(array)) {
       continue;
     }
-    shallowCopy[key] = array.map((item) =>
-      transformSchemaDefinition(item, transform)
-    );
+    const ctx: ArraySchemaTraverserContext = {
+      type: "array",
+      key,
+      index: 0,
+    };
+    shallowCopy[key] = array.map((item, index) => {
+      ctx.index = index;
+      return transformSchemaDefinition(item, transform, ctx);
+    });
   }
   const map = new Map<string, R>();
   for (const key of RECORDS_OF_SUB_SCHEMAS) {
@@ -61,11 +77,17 @@ export function transformSchemaDefinition<R>(
     if (record === undefined) {
       continue;
     }
+    const ctx: RecordSchemaTraverserContext = {
+      type: "record",
+      key,
+      property: "",
+    };
     for (const [property, value] of Object.entries(record)) {
       if (Array.isArray(value)) {
         continue;
       }
-      map.set(property, transformSchemaDefinition(value, transform));
+      ctx.property = property;
+      map.set(property, transformSchemaDefinition(value, transform, ctx));
     }
     shallowCopy[key] = Object.fromEntries(map);
     map.clear();
@@ -75,7 +97,10 @@ export function transformSchemaDefinition<R>(
     if (value === undefined || Array.isArray(value)) {
       continue;
     }
-    shallowCopy[key] = transformSchemaDefinition(value, transform);
+    shallowCopy[key] = transformSchemaDefinition(value, transform, {
+      type: "sub",
+      key,
+    });
   }
-  return transform(shallowCopy);
+  return transform(shallowCopy, ctx);
 }

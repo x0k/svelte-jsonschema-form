@@ -66,6 +66,8 @@ export const SUB_SCHEMAS = [
   NOT_KEY,
 ] as const;
 
+export type SubSchemaKey = (typeof SUB_SCHEMAS)[number];
+
 export const RECORDS_OF_SUB_SCHEMAS = [
   DEFS_KEY,
   PROPERTIES_KEY,
@@ -74,6 +76,8 @@ export const RECORDS_OF_SUB_SCHEMAS = [
   DEFINITIONS_KEY,
 ] as const;
 
+export type SubSchemasRecordKey = (typeof RECORDS_OF_SUB_SCHEMAS)[number];
+
 export const ARRAYS_OF_SUB_SCHEMAS = [
   ALL_OF_KEY,
   ANY_OF_KEY,
@@ -81,10 +85,12 @@ export const ARRAYS_OF_SUB_SCHEMAS = [
   ITEMS_KEY,
 ] as const;
 
+export type SubSchemasArrayKey = (typeof ARRAYS_OF_SUB_SCHEMAS)[number];
+
 export function isSchema(schemaDef: SchemaDefinition): schemaDef is Schema {
   return typeof schemaDef === "object";
 }
 
-export function isNormalArrayItems(items: Schema['items']): items is Schema {
+export function isNormalArrayItems(items: Schema["items"]): items is Schema {
   return typeof items === "object" && !Array.isArray(items);
 }
