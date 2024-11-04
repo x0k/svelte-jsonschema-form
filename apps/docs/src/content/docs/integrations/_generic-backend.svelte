@@ -4,47 +4,67 @@
 
   import { useCustomForm } from "@/components/custom-form";
 
-  let isError = $state(false);
-  let duration = $state(0);
   let data = $state<string>();
 
+  interface Config {
+    reject: boolean;
+    delay: number;
+    value: string;
+  }
+
   const mutation = useMutation({
-    mutate: (_signal, value: string | undefined = "") =>
+    mutate: (_signal, { reject: isError, delay, value }: Config) =>
       new Promise<string>((resolve, reject) => {
         data = undefined;
-        isError = Math.random() > 0.5;
-        duration = Math.random() * 5000;
         setTimeout(() => {
           if (isError) {
             reject(value);
           } else {
             resolve(value);
           }
-        }, duration);
+        }, delay);
       }),
     onSuccess(response) {
       data = response;
-      form.reset();
     },
     onFailure: console.error,
-    delayedMs: 1000,
-    timeoutMs: 3000,
+    delayedMs: 500,
+    timeoutMs: 2000,
   });
 
   const form = useCustomForm({
     schema: {
-      type: "string",
+      properties: {
+        delay: {
+          type: "integer",
+          enum: [250, 1500, 2500],
+          default: 1500,
+        },
+        reject: {
+          type: "boolean",
+        },
+        value: {
+          type: "string",
+        },
+      },
     },
-    onSubmit: mutation.run,
+    uiSchema: {
+      delay: {
+        "ui:widget": "radio",
+        "ui:options": {
+          enumNames: ["250ms", "1.5s", "2.5s"],
+        },
+      },
+    },
+    onSubmit(config: Config | undefined) {
+      if (!config) return;
+      mutation.run(config);
+    },
     get disabled() {
       return mutation.isProcessed;
     },
   });
 </script>
-
-<p>
-  Reject: {isError}, delay: {(duration / 1000).toFixed(2)}sec
-</p>
 
 <form use:form.enhance style="display: flex; flex-direction: column; gap: 1rem">
   <FormContent bind:value={form.formValue} />

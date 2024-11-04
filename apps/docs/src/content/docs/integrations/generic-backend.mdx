@@ -6,7 +6,7 @@ sidebar:
 
 import { Card, Code } from '@astrojs/starlight/components'
 
-import Form from './_generic-backend.svelte';
+import Form from './_generic-backend.astro';
 import formCode from './_generic-backend.svelte?raw';
 
 You can improve the experience of sending data to the server by using the `useMutation` hook.
@@ -14,5 +14,5 @@ You can improve the experience of sending data to the server by using the `useMu
 <Code code={formCode} lang="svelte" />
 
 <Card>
-  <Form client:only="svelte" />
+  <Form />
 </Card>
