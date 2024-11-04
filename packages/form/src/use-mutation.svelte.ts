@@ -36,8 +36,8 @@ export type MutationState<E> =
 
 export type MutationsCombinator<E> = (state: MutationState<E>) => boolean | "abort";
 
-export interface MutationOptions<T, R, E> {
-  mutate: (signal: AbortSignal, data: T) => Promise<R>;
+export interface MutationOptions<T extends ReadonlyArray<any>, R, E> {
+  mutate: (signal: AbortSignal, ...args: T) => Promise<R>;
   onSuccess?: (result: R) => void;
   onFailure?: (failure: FailedMutation<E>) => void;
   /**
@@ -71,18 +71,18 @@ export const ignoreNewUntilPreviousIsFinished: MutationsCombinator<any> = ({
   status,
 }) => status !== Status.Processed;
 
-export interface Mutation<T, R, E> {
+export interface Mutation<T extends ReadonlyArray<any>, R, E> {
   readonly state: Readonly<MutationState<E>>;
   readonly status: Status;
   readonly isSuccess: boolean;
   readonly isFailed: boolean;
   readonly isProcessed: boolean;
   readonly isDelayed: boolean;
-  run(data: T): Promise<void>;
+  run(...args: T): Promise<void>;
   abort(): void;
 }
 
-export function useMutation<T, R = unknown, E = unknown>(
+export function useMutation<T extends ReadonlyArray<any>, R = unknown, E = unknown>(
   options: MutationOptions<T, R, E>
 ): Mutation<T, R, E> {
   const delayedMs = $derived(options.delayedMs ?? 500);
@@ -132,7 +132,7 @@ export function useMutation<T, R = unknown, E = unknown>(
     get isDelayed() {
       return state.status === Status.Processed && state.delayed;
     },
-    run(data) {
+    run(...args) {
       const decision = combinator(state);
       if (decision === false) {
         return Promise.resolve();
@@ -145,7 +145,7 @@ export function useMutation<T, R = unknown, E = unknown>(
         delayed: mutation.isDelayed,
       };
       abortController = new AbortController();
-      const promise = options.mutate(abortController.signal, data).then(
+      const promise = options.mutate(abortController.signal, ...args).then(
         (result) => {
           // Mutation may have been aborted by user or timeout
           if (ref?.deref() !== promise || state.status === Status.Failed)

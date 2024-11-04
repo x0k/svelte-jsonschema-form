@@ -23,7 +23,7 @@ describe("useMutation", () => {
         delayedMs: 50,
         timeoutMs: 100,
       });
-      const promise = mutation.run(undefined);
+      const promise = mutation.run();
       expect(mutation.status).toBe(Status.Processed);
       await promise;
       expect(mutation.status).toBe(Status.Success);
@@ -38,7 +38,7 @@ describe("useMutation", () => {
         delayedMs: 50,
         timeoutMs: 100,
       });
-      const promise = mutation.run(undefined);
+      const promise = mutation.run();
       expect(mutation.status).toBe(Status.Processed);
       await promise;
       expect(mutation.status).toBe(Status.Failed);
@@ -58,7 +58,7 @@ describe("useMutation", () => {
         delayedMs: 10,
         timeoutMs: 50,
       });
-      mutation.run(undefined);
+      mutation.run();
       expect(mutation.status).toBe(Status.Processed);
       expect(mutation.isDelayed).toBe(false);
       vi.advanceTimersByTime(10);
@@ -89,11 +89,11 @@ describe("useMutation", () => {
         mutate: impl,
         combinator: ignoreNewUntilPreviousIsFinished,
       });
-      mutation.run(undefined);
-      mutation.run(undefined);
+      mutation.run();
+      mutation.run();
       vi.advanceTimersByTime(100);
       await tick();
-      mutation.run(undefined);
+      mutation.run();
       expect(impl).toBeCalledTimes(2);
     });
     it("Should forget previous mutation with 'forgetPrevious' combinator", async () => {
@@ -104,8 +104,8 @@ describe("useMutation", () => {
         combinator: forgetPrevious,
         onSuccess,
       });
-      mutation.run(undefined);
-      await mutation.run(undefined);
+      mutation.run();
+      await mutation.run();
       expect(onSuccess).toBeCalledTimes(1);
       expect(onSuccess).toBeCalledWith(1);
     });
@@ -122,9 +122,9 @@ describe("useMutation", () => {
         combinator: abortPrevious,
         onSuccess,
       });
-      mutation.run(undefined);
-      mutation.run(undefined);
-      await mutation.run(undefined);
+      mutation.run();
+      mutation.run();
+      await mutation.run();
       expect(onAbort).toBeCalledTimes(2);
       expect(impl).toBeCalledTimes(3);
       expect(onSuccess).toBeCalledTimes(1);
