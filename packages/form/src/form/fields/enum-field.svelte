@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createOptions } from "../enum.js";
+  import { createOptions2 } from "../enum.js";
   import {
     getTemplate,
     getWidget,
@@ -8,6 +8,7 @@
     getErrors,
     validateField,
     getFormContext,
+    makePseudoId,
   } from "../context/index.js";
 
   import type { FieldProps } from "./model.js";
@@ -28,11 +29,8 @@
   );
   const attributes = $derived(selectAttributes(ctx, config, handlers));
   const options = $derived(
-    createOptions(
-      config.schema,
-      config.idSchema,
-      config.uiSchema,
-      config.uiOptions
+    createOptions2(config.schema, config.idSchema, config.uiOptions, (i) =>
+      makePseudoId(ctx, config.idSchema.$id, i)
     ) ?? []
   );
   const errors = $derived(getErrors(ctx, config.idSchema));

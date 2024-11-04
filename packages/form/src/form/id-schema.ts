@@ -30,6 +30,8 @@ export const DEFAULT_ID_PREFIX = "root";
 // TODO: Make the separator more specific
 export const DEFAULT_ID_SEPARATOR = "_";
 
+export const DEFAULT_PSEUDO_ID_SEPARATOR = "::"
+
 export type FieldId = {
   $id: string;
 };
@@ -156,11 +158,23 @@ export interface IdentifiableFieldElement {
   anyof: {};
 }
 
+/**
+ * @deprecated use `computePseudoId`
+ */
 export function computeId<T>(
   idSchema: IdSchema<T>,
+  element: keyof IdentifiableFieldElement | number,
+  pseudoIdSeparator = DEFAULT_PSEUDO_ID_SEPARATOR
+) {
+  return computePseudoId(pseudoIdSeparator, idSchema.$id, element);
+}
+
+export function computePseudoId(
+  pseudoIdSeparator: string,
+  instanceId: string,
   element: keyof IdentifiableFieldElement | number
 ) {
-  return `${idSchema.$id}__${element}`;
+  return `${instanceId}${pseudoIdSeparator}${element}`;
 }
 
 export function pathToId(

@@ -26,6 +26,7 @@ import { templates as defaultTemplates } from "./templates/index.js";
 import {
   DEFAULT_ID_PREFIX,
   DEFAULT_ID_SEPARATOR,
+  DEFAULT_PSEUDO_ID_SEPARATOR,
   pathToId,
 } from "./id-schema.js";
 import IconOrTranslation from "./icon-or-translation.svelte";
@@ -45,6 +46,7 @@ export interface UseFormOptions<T, E> {
   disabled?: boolean;
   idPrefix?: string;
   idSeparator?: string;
+  pseudoIdSeparator?: string;
   //
   initialValue?: T;
   initialErrors?: Errors<E>;
@@ -62,7 +64,7 @@ export interface UseFormOptions<T, E> {
    *
    * Will be called when the form is submitted and form data
    * snapshot is valid
-   * 
+   *
    * Note that we rely on `validator.validateFormData` to check that the
    * `formData is T`. So make sure you provide a `T` type that
    * matches the validator check result.
@@ -183,6 +185,9 @@ export function createForm<T, E>(
   const disabled = $derived(options.disabled ?? false);
   const idPrefix = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX);
   const idSeparator = $derived(options.idSeparator ?? DEFAULT_ID_SEPARATOR);
+  const pseudoIdSeparator = $derived(
+    options.pseudoIdSeparator ?? DEFAULT_PSEUDO_ID_SEPARATOR
+  );
   const fields = $derived(options.fields ?? defaultFields);
   const templates = $derived(options.templates ?? defaultTemplates);
   const icons = $derived(options.icons ?? {});
@@ -233,6 +238,9 @@ export function createForm<T, E>(
       },
       get idSeparator() {
         return idSeparator;
+      },
+      get pseudoIdSeparator() {
+        return pseudoIdSeparator;
       },
       get validator() {
         return options.validator;

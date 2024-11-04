@@ -9,9 +9,9 @@
     getErrors,
     validateField,
     getFormContext,
+    makePseudoId,
   } from "../context/index.js";
-  import { createOptions } from "../enum.js";
-  import { computeId } from "../id-schema.js";
+  import { createOptions2 } from "../enum.js";
 
   import type { FieldProps } from "./model.js";
 
@@ -24,9 +24,10 @@
   const options = $derived.by(() => {
     const yes = ctx.translation("yes");
     const no = ctx.translation("no");
+    const computeId = (i: number) => makePseudoId(ctx, config.idSchema.$id, i);
     if (Array.isArray(config.schema.oneOf)) {
       return (
-        createOptions(
+        createOptions2(
           {
             oneOf: config.schema.oneOf
               .map((option): Schema | undefined => {
@@ -41,8 +42,8 @@
               .filter((s): s is Schema => s !== undefined),
           },
           config.idSchema,
-          config.uiSchema,
-          config.uiOptions
+          config.uiOptions,
+          computeId
         ) ?? []
       );
     }
@@ -53,18 +54,18 @@
       config.uiOptions?.enumNames === undefined
     ) {
       return enumValues.map((v, i) => ({
-        id: computeId(config.idSchema, i),
+        id: makePseudoId(ctx, config.idSchema.$id, i),
         label: v ? yes : no,
         value: v,
         disabled: false,
       }));
     }
     return (
-      createOptions(
+      createOptions2(
         config.schema,
         config.idSchema,
-        config.uiSchema,
-        config.uiOptions
+        config.uiOptions,
+        computeId
       ) ?? []
     );
   });

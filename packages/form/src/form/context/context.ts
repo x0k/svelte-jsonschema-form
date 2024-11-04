@@ -2,7 +2,7 @@ import { getContext, setContext, type Component, type Snippet } from "svelte";
 
 import type { SchedulerYield } from "@/lib/scheduler.js";
 
-import type { Schema, SchemaValue } from "@/core/index.js";
+import type { Schema } from "@/core/index.js";
 
 import type { Label, Labels, Translation } from "../translation.js";
 import type { UiSchema, UiSchemaRoot } from "../ui-schema.js";
@@ -13,7 +13,6 @@ import type { Templates } from "../templates/index.js";
 import type { Errors } from "../errors.js";
 import type { FormValidator } from "../validator.js";
 import type { Icons } from "../icons.js";
-import { type IdSchema, toIdSchema2 } from "../id-schema.js";
 import type { FormMerger } from "../merger.js";
 
 export type IconOrTranslationData = {
@@ -37,6 +36,7 @@ export interface FormContext {
   disabled: boolean;
   idPrefix: string;
   idSeparator: string;
+  pseudoIdSeparator: string;
   errors: Errors;
   schedulerYield: SchedulerYield;
   /** @deprecated use `IconOrTranslation` instead */
@@ -62,21 +62,3 @@ export function getUiOptions(ctx: FormContext, uiSchema: UiSchema) {
     : uiOptions;
 }
 
-export function makeIdSchema(
-  ctx: FormContext,
-  schema: Schema,
-  id?: string,
-  formData?: SchemaValue
-): IdSchema<SchemaValue> {
-  return toIdSchema2(
-    ctx.validator,
-    ctx.merger,
-    schema,
-    ctx.idPrefix,
-    ctx.idSeparator,
-    [],
-    id,
-    ctx.schema,
-    formData
-  );
-}

@@ -11,7 +11,12 @@ import {
 } from "@/core/index.js";
 
 import type { UiOptions, UiSchema } from "./ui-schema.js";
-import { computeId, type IdSchema } from "./id-schema.js";
+import {
+  computeId,
+  computePseudoId,
+  DEFAULT_PSEUDO_ID_SEPARATOR,
+  type IdSchema,
+} from "./id-schema.js";
 
 function getAltSchemas(
   schema: Schema,
@@ -22,20 +27,35 @@ function getAltSchemas(
     : [schema.oneOf, uiSchema.oneOf];
 }
 
+/**
+ * @deprecated use `createOptions2`
+ */
 export function createOptions(
   schema: Schema,
   idSchema: IdSchema<SchemaValue>,
   uiSchema: UiSchema,
-  uiOptions: UiOptions | undefined
+  uiOptions: UiOptions | undefined,
+  pseudoIdSeparator = DEFAULT_PSEUDO_ID_SEPARATOR
+): EnumOption<SchemaValue>[] | undefined {
+  return createOptions2(schema, uiSchema, uiOptions, (index) =>
+    computePseudoId(pseudoIdSeparator, idSchema.$id, index)
+  );
+}
+
+export function createOptions2(
+  schema: Schema,
+  uiSchema: UiSchema,
+  uiOptions: UiOptions | undefined,
+  computeId: (index: number) => string
 ): EnumOption<SchemaValue>[] | undefined {
   const enumValues = schema.enum;
   const disabledValues = new Set(uiOptions?.disabledEnumValues);
   if (enumValues) {
     const enumNames = uiOptions?.enumNames;
-    return enumValues.map((value, i) => {
-      const label = enumNames?.[i] ?? String(value);
+    return enumValues.map((value, index) => {
+      const label = enumNames?.[index] ?? String(value);
       return {
-        id: computeId(idSchema, i),
+        id: computeId(index),
         label,
         value,
         disabled: disabledValues.has(value),
@@ -55,7 +75,7 @@ export function createOptions(
         altSchemaDef.title ??
         String(value);
       return {
-        id: computeId(idSchema, index),
+        id: computeId(index),
         schema: altSchemaDef,
         label,
         value,
