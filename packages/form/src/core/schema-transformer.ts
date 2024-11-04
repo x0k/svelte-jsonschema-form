@@ -38,7 +38,7 @@ export type TransformedSchemaDefinition<R> = TransformedSchema<R> | boolean;
 
 export function transformSchemaDefinition<R>(
   schema: SchemaDefinition,
-  transform: (node: TransformedSchemaDefinition<R>) => R
+  transform: (shallowCopy: TransformedSchemaDefinition<R>) => R
 ): R {
   if (!isSchema(schema)) {
     return transform(schema);
