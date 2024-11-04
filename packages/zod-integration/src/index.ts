@@ -2,28 +2,26 @@ import { getValueByPath } from "@sjsf/form/lib/object";
 import {
   type FormValidator,
   type UiSchemaRoot,
-  DEFAULT_ID_PREFIX,
-  DEFAULT_ID_SEPARATOR,
-  pathToId,
+  type IdConfig,
+  DEFAULT_ID_CONFIG,
+  pathToId2,
 } from "@sjsf/form";
 import type { ZodIssue, ZodSchema } from "zod";
 
 export interface ZodOptions {
   schema: ZodSchema;
   uiSchema?: UiSchemaRoot;
-  idPrefix?: string;
-  idSeparator?: string;
+  idConfig?: Partial<IdConfig>;
 }
 
 export function withZod<E>(
   validator: FormValidator<E>,
-  {
-    schema: zodSchema,
-    uiSchema = {},
-    idPrefix = DEFAULT_ID_PREFIX,
-    idSeparator = DEFAULT_ID_SEPARATOR,
-  }: ZodOptions
+  { schema: zodSchema, uiSchema = {}, idConfig = DEFAULT_ID_CONFIG }: ZodOptions
 ): FormValidator<E | ZodIssue> {
+  const normalizedIdConfig = {
+    ...DEFAULT_ID_CONFIG,
+    ...idConfig,
+  };
   return {
     isValid(schema, rootSchema, formData) {
       return validator.isValid(schema, rootSchema, formData);
@@ -40,7 +38,7 @@ export function withZod<E>(
         return [];
       }
       return result.error.issues.map((issue) => {
-        const instanceId = pathToId(idPrefix, idSeparator, issue.path);
+        const instanceId = pathToId2(normalizedIdConfig, issue.path);
         const propertyTitle =
           getValueByPath(uiSchema, issue.path)?.["ui:options"]?.title ??
           issue.path[issue.path.length - 1] ??
