@@ -473,16 +473,13 @@ importers:
       jsonpointer:
         specifier: ^5.0.1
         version: 5.0.1
-      svelte:
-        specifier: ^5.0.0
-        version: 5.0.2
     devDependencies:
       '@sveltejs/package':
         specifier: 'catalog:'
-        version: 2.3.7(svelte@5.0.2)(typescript@5.6.3)
+        version: 2.3.7(svelte@5.1.9)(typescript@5.6.3)
       '@sveltejs/vite-plugin-svelte':
         specifier: ^4.0.0
-        version: 4.0.0(svelte@5.0.2)(vite@5.4.10(@types/node@22.7.5))
+        version: 4.0.0(svelte@5.1.9)(vite@5.4.10(@types/node@22.7.5))
       '@tsconfig/svelte':
         specifier: 'catalog:'
         version: 5.0.4
@@ -495,9 +492,12 @@ importers:
       deep-freeze-es6:
         specifier: ^3.0.2
         version: 3.0.2
+      svelte:
+        specifier: 'catalog:'
+        version: 5.1.9
       svelte-check:
         specifier: 'catalog:'
-        version: 4.0.5(svelte@5.0.2)(typescript@5.6.3)
+        version: 4.0.5(svelte@5.1.9)(typescript@5.6.3)
       vite:
         specifier: 'catalog:'
         version: 5.4.10(@types/node@22.7.5)
@@ -4237,10 +4237,6 @@ packages:
       svelte: ^3.55 || ^4.0.0-next.0 || ^4.0 || ^5.0.0-next.0
       typescript: ^4.9.4 || ^5.0.0
 
-  svelte@5.0.2:
-    resolution: {integrity: sha512-TIqp5kjyTMa45L0McUvVfjuvlF/hyxVolyAc9APY3/FeF5aqYpt+Y1PckPQ7DlsDkthxNeq2+ystop8GlIV3kw==}
-    engines: {node: '>=18'}
-
   svelte@5.1.9:
     resolution: {integrity: sha512-nzq+PPKGS2PoEWDjAcXSrKSbXmmmOAxd6dAz1IhRusUpVkFS6DMELWPyBPGwu6TpO/gsgtFXwX0M4+pAR5gzKw==}
     engines: {node: '>=18'}
@@ -5850,17 +5846,6 @@ snapshots:
       tiny-glob: 0.2.9
       vite: 5.4.10(@types/node@22.7.5)
 
-  '@sveltejs/package@2.3.7(svelte@5.0.2)(typescript@5.6.3)':
-    dependencies:
-      chokidar: 4.0.1
-      kleur: 4.1.5
-      sade: 1.8.1
-      semver: 7.6.3
-      svelte: 5.0.2
-      svelte2tsx: 0.7.21(svelte@5.0.2)(typescript@5.6.3)
-    transitivePeerDependencies:
-      - typescript
-
   '@sveltejs/package@2.3.7(svelte@5.1.9)(typescript@5.6.3)':
     dependencies:
       chokidar: 4.0.1
@@ -5872,34 +5857,12 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@sveltejs/vite-plugin-svelte-inspector@3.0.0(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.0.2)(vite@5.4.10(@types/node@22.7.5)))(svelte@5.0.2)(vite@5.4.10(@types/node@22.7.5))':
-    dependencies:
-      '@sveltejs/vite-plugin-svelte': 4.0.0(svelte@5.0.2)(vite@5.4.10(@types/node@22.7.5))
-      debug: 4.3.7
-      svelte: 5.0.2
-      vite: 5.4.10(@types/node@22.7.5)
-    transitivePeerDependencies:
-      - supports-color
-
   '@sveltejs/vite-plugin-svelte-inspector@3.0.0(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.9)(vite@5.4.10(@types/node@22.7.5)))(svelte@5.1.9)(vite@5.4.10(@types/node@22.7.5))':
     dependencies:
       '@sveltejs/vite-plugin-svelte': 4.0.0(svelte@5.1.9)(vite@5.4.10(@types/node@22.7.5))
       debug: 4.3.7
       svelte: 5.1.9
       vite: 5.4.10(@types/node@22.7.5)
-    transitivePeerDependencies:
-      - supports-color
-
-  '@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.0.2)(vite@5.4.10(@types/node@22.7.5))':
-    dependencies:
-      '@sveltejs/vite-plugin-svelte-inspector': 3.0.0(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.0.2)(vite@5.4.10(@types/node@22.7.5)))(svelte@5.0.2)(vite@5.4.10(@types/node@22.7.5))
-      debug: 4.3.7
-      deepmerge: 4.3.1
-      kleur: 4.1.5
-      magic-string: 0.30.12
-      svelte: 5.0.2
-      vite: 5.4.10(@types/node@22.7.5)
-      vitefu: 1.0.3(vite@5.4.10(@types/node@22.7.5))
     transitivePeerDependencies:
       - supports-color
 
@@ -9030,18 +8993,6 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  svelte-check@4.0.5(svelte@5.0.2)(typescript@5.6.3):
-    dependencies:
-      '@jridgewell/trace-mapping': 0.3.25
-      chokidar: 4.0.1
-      fdir: 6.4.0
-      picocolors: 1.1.1
-      sade: 1.8.1
-      svelte: 5.0.2
-      typescript: 5.6.3
-    transitivePeerDependencies:
-      - picomatch
-
   svelte-check@4.0.5(svelte@5.1.9)(typescript@5.6.3):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
@@ -9084,35 +9035,12 @@ snapshots:
       style-to-object: 1.0.8
       svelte: 5.1.9
 
-  svelte2tsx@0.7.21(svelte@5.0.2)(typescript@5.6.3):
-    dependencies:
-      dedent-js: 1.0.1
-      pascal-case: 3.1.2
-      svelte: 5.0.2
-      typescript: 5.6.3
-
   svelte2tsx@0.7.21(svelte@5.1.9)(typescript@5.6.3):
     dependencies:
       dedent-js: 1.0.1
       pascal-case: 3.1.2
       svelte: 5.1.9
       typescript: 5.6.3
-
-  svelte@5.0.2:
-    dependencies:
-      '@ampproject/remapping': 2.3.0
-      '@jridgewell/sourcemap-codec': 1.5.0
-      '@types/estree': 1.0.6
-      acorn: 8.13.0
-      acorn-typescript: 1.4.13(acorn@8.13.0)
-      aria-query: 5.3.2
-      axobject-query: 4.1.0
-      esm-env: 1.0.0
-      esrap: 1.2.2
-      is-reference: 3.0.2
-      locate-character: 3.0.0
-      magic-string: 0.30.12
-      zimmerframe: 1.1.2
 
   svelte@5.1.9:
     dependencies:

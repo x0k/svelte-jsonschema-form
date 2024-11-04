@@ -46,6 +46,7 @@
     "@types/json-schema": "^7.0.15",
     "@types/json-schema-merge-allof": "^0.6.5",
     "deep-freeze-es6": "^3.0.2",
+    "svelte": "catalog:",
     "svelte-check": "catalog:",
     "vite": "catalog:",
     "vitest": "catalog:"
@@ -88,6 +89,10 @@
     "./get-default-form-state": {
       "types": "./dist/get-default-form-state.d.ts",
       "default": "./dist/get-default-form-state.js"
+    },
+    "./use-mutation.svelte": {
+      "types": "./dist/use-mutation.svelte.d.ts",
+      "svelte": "./dist/use-mutation.svelte.js"
     }
   }
 }

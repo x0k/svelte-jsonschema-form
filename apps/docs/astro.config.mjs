@@ -30,6 +30,10 @@ export default defineConfig({
           autogenerate: { directory: "themes" },
         },
         {
+          label: "Integrations",
+          autogenerate: { directory: "integrations" },
+        },
+        {
           label: "Advanced scenarios",
           autogenerate: { directory: "advanced" },
         },
