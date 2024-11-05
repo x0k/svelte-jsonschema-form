@@ -11,10 +11,7 @@ interface RequiredAttributes {
   id: string;
   name: string;
   required: boolean;
-  readonly: boolean;
   disabled: boolean;
-  onfocus: (e: Event) => void;
-  onblur: (e: Event) => void;
 }
 
 interface WidgetCommonProps<V, A> {
