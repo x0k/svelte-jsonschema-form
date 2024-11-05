@@ -18,6 +18,7 @@ import {
   REF_KEY,
   retrieveSchema2,
   type Merger2,
+  type Path,
   type Schema,
   type SchemaObjectValue,
   type SchemaValue,
@@ -175,11 +176,7 @@ export function computePseudoId(
   return `${instanceId}${pseudoIdSeparator}${element}`;
 }
 
-export function pathToId(
-  idPrefix: string,
-  idSeparator: string,
-  path: Array<string | number>
-) {
+export function pathToId(idPrefix: string, idSeparator: string, path: Path) {
   return path.length === 0
     ? idPrefix
     : `${idPrefix}${idSeparator}${path.join(idSeparator)}`;
