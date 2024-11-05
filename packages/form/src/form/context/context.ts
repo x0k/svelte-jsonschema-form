@@ -14,11 +14,12 @@ import type { Errors } from "../errors.js";
 import type { FormValidator } from "../validator.js";
 import type { Icons } from "../icons.js";
 import type { FormMerger } from "../merger.js";
-import type { IdConfig } from '../id-schema.js';
+import type { IdConfig } from "../id-schema.js";
+import type { Config } from '../config.js';
 
 export type IconOrTranslationData = {
   [L in Label]: [L, ...Labels[L]];
-}[Label]
+}[Label];
 
 export interface FormContext {
   isSubmitted: boolean;
@@ -45,6 +46,7 @@ export interface FormContext {
   /** @deprecated use `IconOrTranslation` instead */
   iconOrTranslation: Snippet<[IconOrTranslationData]>;
   IconOrTranslation: Component<{ data: IconOrTranslationData }>;
+  validateAdditionalPropertyKey(config: Config, key: string): boolean;
 }
 
 const FORM_CONTEXT = Symbol("form-context");
@@ -64,4 +66,3 @@ export function getUiOptions(ctx: FormContext, uiSchema: UiSchema) {
     ? { ...globalUiOptions, ...uiOptions }
     : uiOptions;
 }
-

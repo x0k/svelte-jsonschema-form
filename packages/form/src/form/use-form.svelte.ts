@@ -5,7 +5,14 @@ import { SvelteMap } from "svelte/reactivity";
 import type { SchedulerYield } from "@/lib/scheduler.js";
 import type { Schema, SchemaValue } from "@/core/schema.js";
 
-import type { FormValidator, ValidationError } from "./validator.js";
+import {
+  ADDITIONAL_PROPERTY_KEY_ERROR,
+  isExtendedFormValidator,
+  type AdditionalPropertyKeyError,
+  type ExtendedFormValidator,
+  type FormValidator,
+  type ValidationError,
+} from "./validator.js";
 import type { Components } from "./component.js";
 import type { Widgets } from "./widgets.js";
 import type { Translation } from "./translation.js";
@@ -13,6 +20,7 @@ import type { UiSchemaRoot } from "./ui-schema.js";
 import type { Fields } from "./fields/index.js";
 import type { Templates } from "./templates/index.js";
 import type { Icons } from "./icons.js";
+import type { Config } from "./config.js";
 import type { InputsValidationMode } from "./validation.js";
 import { groupErrors, type Errors, type FieldErrors } from "./errors.js";
 import {
@@ -33,7 +41,9 @@ import {
 import IconOrTranslation from "./icon-or-translation.svelte";
 
 export interface UseFormOptions<T, E> {
-  validator: FormValidator<E>;
+  validator:
+    | (E extends AdditionalPropertyKeyError ? ExtendedFormValidator<E> : never)
+    | FormValidator<E>;
   schema: Schema;
   components: Components;
   translation: Translation;
@@ -188,8 +198,14 @@ export function createForm<T, E>(
   const uiSchema = $derived(options.uiSchema ?? {});
   const disabled = $derived(options.disabled ?? false);
   const idPrefix = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX);
-  const idPropertySeparator = $derived(options.idPropertySeparator ?? options.idSeparator ?? DEFAULT_ID_PROPERTY_SEPARATOR);
-  const idIndexSeparator = $derived(options.idIndexSeparator ?? DEFAULT_ID_INDEX_SEPARATOR);
+  const idPropertySeparator = $derived(
+    options.idPropertySeparator ??
+      options.idSeparator ??
+      DEFAULT_ID_PROPERTY_SEPARATOR
+  );
+  const idIndexSeparator = $derived(
+    options.idIndexSeparator ?? DEFAULT_ID_INDEX_SEPARATOR
+  );
   const pseudoIdSeparator = $derived(
     options.pseudoIdSeparator ?? DEFAULT_PSEUDO_ID_SEPARATOR
   );
@@ -224,13 +240,36 @@ export function createForm<T, E>(
     },
     get pseudoSeparator() {
       return pseudoIdSeparator;
-    }
-  }
+    },
+  };
+
+  const additionalPropertyKeyValidator = $derived.by(() => {
+    const validator = options.validator;
+    return isExtendedFormValidator(validator)
+      ? (config: Config, key: string) => {
+          const instanceId = config.idSchema.$id;
+          const messages = validator.validateAdditionalPropertyKey(key);
+          errors.set(
+            instanceId,
+            messages.map((message) => ({
+              instanceId,
+              propertyTitle: config.title,
+              message,
+              error: ADDITIONAL_PROPERTY_KEY_ERROR as E,
+            }))
+          );
+          return messages.length === 0;
+        }
+      : () => true;
+  });
 
   return [
     {
       get inputsValidationMode() {
         return inputsValidationMode;
+      },
+      get validateAdditionalPropertyKey() {
+        return additionalPropertyKeyValidator;
       },
       get isSubmitted() {
         return isSubmitted;

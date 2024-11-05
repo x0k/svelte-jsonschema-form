@@ -165,6 +165,9 @@
   let isChanged = $state(false);
 
   const ctx: FormContext = {
+    validateAdditionalPropertyKey() {
+      return true
+    },
     get inputsValidationMode() {
       return inputsValidationMode
     },
