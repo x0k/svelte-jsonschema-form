@@ -40,7 +40,6 @@ export interface FormContext {
   errors: Errors;
   schedulerYield: SchedulerYield;
   IconOrTranslation: Component<{ data: IconOrTranslationData }>;
-  validateAdditionalPropertyKey(config: Config, key: string): boolean;
   /** @deprecated use `idConfig.prefix` instead */
   idPrefix: string;
   /** @deprecated use `idConfig.propertySeparator` instead */

@@ -5,12 +5,7 @@ import { SvelteMap } from "svelte/reactivity";
 import type { SchedulerYield } from "@/lib/scheduler.js";
 import type { Schema, SchemaValue } from "@/core/schema.js";
 
-import {
-  ADDITIONAL_PROPERTY_KEY_ERROR,
-  isExtendedFormValidator,
-  type FormValidator,
-  type ValidationError,
-} from "./validator.js";
+import { type FormValidator, type ValidationError } from "./validator.js";
 import type { Components } from "./component.js";
 import type { Widgets } from "./widgets.js";
 import type { Translation } from "./translation.js";
@@ -38,12 +33,8 @@ import {
 } from "./id-schema.js";
 import IconOrTranslation from "./icon-or-translation.svelte";
 
-export interface UseFormOptions<
-  T,
-  E,
-  V extends FormValidator<E> = FormValidator<E>,
-> {
-  validator: V;
+export interface UseFormOptions<T, E> {
+  validator: FormValidator<E>;
   schema: Schema;
   components: Components;
   translation: Translation;
@@ -243,33 +234,10 @@ export function createForm<T, E>(
     },
   };
 
-  const additionalPropertyKeyValidator = $derived.by(() => {
-    const validator = options.validator;
-    return isExtendedFormValidator(validator)
-      ? (config: Config, key: string) => {
-          const instanceId = config.idSchema.$id;
-          const messages = validator.validateAdditionalPropertyKey(key);
-          errors.set(
-            instanceId,
-            messages.map((message) => ({
-              instanceId,
-              propertyTitle: config.title,
-              message,
-              error: ADDITIONAL_PROPERTY_KEY_ERROR as E,
-            }))
-          );
-          return messages.length === 0;
-        }
-      : () => true;
-  });
-
   return [
     {
       get inputsValidationMode() {
         return inputsValidationMode;
-      },
-      get validateAdditionalPropertyKey() {
-        return additionalPropertyKeyValidator;
       },
       get isSubmitted() {
         return isSubmitted;

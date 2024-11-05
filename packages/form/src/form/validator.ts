@@ -28,27 +28,4 @@ export interface FormValidator<E = unknown> extends Validator {
     field: Config,
     fieldData: SchemaValue | undefined
   ): ValidationError<E>[];
-
-  /**
-   * Additional property key validation
-   */
-}
-
-export const ADDITIONAL_PROPERTY_KEY_ERROR = Symbol(
-  "additional-property-key-error"
-);
-
-export type AdditionalPropertyKeyError = typeof ADDITIONAL_PROPERTY_KEY_ERROR;
-
-export interface ExtendedFormValidator<E extends AdditionalPropertyKeyError>
-  extends FormValidator<E> {
-  validateAdditionalPropertyKey(
-    key: string
-  ): string[];
-}
-
-export function isExtendedFormValidator(
-  validator: FormValidator<any> | ExtendedFormValidator<any>
-): validator is ExtendedFormValidator<any> {
-  return "validateAdditionalPropertyKey" in validator;
 }

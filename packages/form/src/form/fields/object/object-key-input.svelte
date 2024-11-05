@@ -61,9 +61,6 @@
           return;
         }
         const newKey = generateNewKey(key.value, objCtx.newKeySeparator, obj);
-        if (!ctx.validateAdditionalPropertyKey(config, newKey)) {
-          return;
-        }
         obj[newKey] = obj[property];
         delete obj[property];
       },
