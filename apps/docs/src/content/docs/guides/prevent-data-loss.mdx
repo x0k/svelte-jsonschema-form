@@ -1,0 +1,23 @@
+---
+title: Prevent data loss
+sidebar:
+  order: 4
+---
+
+import { Code, Card } from '@astrojs/starlight/components'
+
+import Form from './_prevent-data-loss.svelte'
+import formCode from './_prevent-data-loss.svelte?raw'
+
+You can prevent data loss due to accidentally closing or reloading a tab by using
+the `preventDataLoss` function.
+
+## Example
+
+Try to change the value of the form and reload the page.
+
+<Code code={formCode} lang="svelte" />
+
+<Card>
+  <Form client:only="svelte" />
+</Card>
