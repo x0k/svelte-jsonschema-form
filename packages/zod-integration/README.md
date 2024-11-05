@@ -2,7 +2,7 @@
 
 The [zod](https://github.com/colinhacks/zod) based validator augmentation for [svelte-jsonschema-form](https://github.com/x0k/svelte-jsonschema-form).
 
-- [Documentation](https://x0k.github.io/svelte-jsonschema-form/)
+- [Documentation](https://x0k.github.io/svelte-jsonschema-form/integrations/zod/)
 - [Playground](https://x0k.github.io/svelte-jsonschema-form/playground/)
 
 ## Installation
