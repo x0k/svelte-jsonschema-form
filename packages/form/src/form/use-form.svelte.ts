@@ -8,8 +8,6 @@ import type { Schema, SchemaValue } from "@/core/schema.js";
 import {
   ADDITIONAL_PROPERTY_KEY_ERROR,
   isExtendedFormValidator,
-  type AdditionalPropertyKeyError,
-  type ExtendedFormValidator,
   type FormValidator,
   type ValidationError,
 } from "./validator.js";
@@ -40,10 +38,12 @@ import {
 } from "./id-schema.js";
 import IconOrTranslation from "./icon-or-translation.svelte";
 
-export interface UseFormOptions<T, E> {
-  validator:
-    | (E extends AdditionalPropertyKeyError ? ExtendedFormValidator<E> : never)
-    | FormValidator<E>;
+export interface UseFormOptions<
+  T,
+  E,
+  V extends FormValidator<E> = FormValidator<E>,
+> {
+  validator: V;
   schema: Schema;
   components: Components;
   translation: Translation;
