@@ -47,14 +47,6 @@ export interface UseFormOptions<T, E> {
   idPrefix?: string;
   idSeparator?: string;
   pseudoIdSeparator?: string;
-  /**
-   * Analyze the scheme for keys that include identifier separators.
-   * 
-   * NOTE: This will be `true` by default in the next major release
-   * 
-   * @default `warn`
-   */
-  schemaAnalysis?: boolean | "warn";
   //
   initialValue?: T;
   initialErrors?:
