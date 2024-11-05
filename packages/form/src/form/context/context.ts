@@ -36,17 +36,17 @@ export interface FormContext {
   templates: Templates;
   icons: Icons;
   disabled: boolean;
+  idConfig: Readonly<IdConfig>;
+  errors: Errors;
+  schedulerYield: SchedulerYield;
+  IconOrTranslation: Component<{ data: IconOrTranslationData }>;
+  validateAdditionalPropertyKey(config: Config, key: string): boolean;
   /** @deprecated use `idConfig.prefix` instead */
   idPrefix: string;
   /** @deprecated use `idConfig.propertySeparator` instead */
   idSeparator: string;
-  idConfig: Readonly<IdConfig>;
-  errors: Errors;
-  schedulerYield: SchedulerYield;
   /** @deprecated use `IconOrTranslation` instead */
   iconOrTranslation: Snippet<[IconOrTranslationData]>;
-  IconOrTranslation: Component<{ data: IconOrTranslationData }>;
-  validateAdditionalPropertyKey(config: Config, key: string): boolean;
 }
 
 const FORM_CONTEXT = Symbol("form-context");
