@@ -1,8 +1,8 @@
-import { isObject } from '@/lib/object.js';
+import { isObject } from "@/lib/object.js";
 
 import type { SchemaValue } from "./schema.js";
 import type { Visitor } from "./traverser.js";
-import type { Path } from './path.js';
+import type { Path } from "./path.js";
 
 export type SchemaValueTraverserContextType = "root" | "array" | "record";
 
@@ -10,7 +10,7 @@ export interface AbstractSchemaValueTraverserContext<
   T extends SchemaValueTraverserContextType,
 > {
   type: T;
-  path: Path
+  path: Path;
 }
 
 export interface RootSchemaValueTraverserContext
@@ -29,39 +29,44 @@ export type SchemaValueTraverserContext =
   | ArraySchemaValueTraverserContext
   | RecordSchemaValueTraverserContext;
 
-export type SchemaValueVisitor = Visitor<
+export type SchemaValueVisitor<R> = Visitor<
   SchemaValue,
-  SchemaValueTraverserContext
+  SchemaValueTraverserContext,
+  R
 >;
 
-export function traverseSchemaValue(
+export function* traverseSchemaValue<R>(
   value: SchemaValue,
-  visitor: SchemaValueVisitor,
+  visitor: SchemaValueVisitor<R>,
   ctx: SchemaValueTraverserContext = { type: "root", path: [] }
-) {
-  visitor.onEnter?.(value, ctx);
+): Generator<R> {
+  if (visitor.onEnter) {
+    yield* visitor.onEnter(value, ctx);
+  }
   if (Array.isArray(value)) {
     const c: ArraySchemaValueTraverserContext = {
       type: "array",
       index: 0,
-      path: ctx.path.concat(0)
+      path: ctx.path.concat(0),
     };
     for (let index = 0; index < value.length; index++) {
       c.index = index;
       c.path[c.path.length - 1] = index;
-      traverseSchemaValue(value[index]!, visitor, c);
+      yield* traverseSchemaValue(value[index]!, visitor, c);
     }
   } else if (isObject(value)) {
     const c: RecordSchemaValueTraverserContext = {
       type: "record",
       key: "",
-      path: ctx.path.concat("")
-    }
+      path: ctx.path.concat(""),
+    };
     for (const key of Object.keys(value)) {
       c.key = key;
       c.path[c.path.length - 1] = key;
-      traverseSchemaValue(value[key]!, visitor, c);
+      yield* traverseSchemaValue(value[key]!, visitor, c);
     }
   }
-  visitor.onLeave?.(value, ctx);
+  if (visitor.onLeave) {
+    yield* visitor.onLeave(value, ctx);
+  }
 }

@@ -46,72 +46,75 @@ export type SchemaTraverserContext =
   | SubSchemaTraverserContext
   | RootSchemaTraverserContext;
 
-export type SchemaDefinitionVisitor = Visitor<
+export type SchemaDefinitionVisitor<R> = Visitor<
   SchemaDefinition,
-  SchemaTraverserContext
+  SchemaTraverserContext,
+  R
 >;
 
-export function traverseSchemaDefinition(
+export function* traverseSchemaDefinition<R>(
   schema: SchemaDefinition,
-  visitor: SchemaDefinitionVisitor,
+  visitor: SchemaDefinitionVisitor<R>,
   ctx: SchemaTraverserContext = { type: "root", path: [] }
-) {
-  visitor.onEnter?.(schema, ctx);
-  if (!isSchema(schema)) {
-    visitor.onLeave?.(schema, ctx);
-    return;
+): Generator<R> {
+  if (visitor.onEnter) {
+    yield* visitor.onEnter(schema, ctx);
   }
-  for (const key of ARRAYS_OF_SUB_SCHEMAS) {
-    const array = schema[key];
-    if (array === undefined || !Array.isArray(array)) {
-      continue;
+  if (isSchema(schema)) {
+    for (const key of ARRAYS_OF_SUB_SCHEMAS) {
+      const array = schema[key];
+      if (array === undefined || !Array.isArray(array)) {
+        continue;
+      }
+      const c: ArraySchemaTraverserContext = {
+        type: "array",
+        key,
+        index: 0,
+        path: ctx.path.concat(key, 0),
+      };
+      for (let index = 0; index < array.length; index++) {
+        c.index = index;
+        c.path[c.path.length - 1] = index;
+        yield* traverseSchemaDefinition(array[index]!, visitor, c);
+      }
     }
-    const c: ArraySchemaTraverserContext = {
-      type: "array",
-      key,
-      index: 0,
-      path: ctx.path.concat(key, 0),
+    for (const key of RECORDS_OF_SUB_SCHEMAS) {
+      const record = schema[key];
+      if (record === undefined) {
+        continue;
+      }
+      const c: RecordSchemaTraverserContext = {
+        type: "record",
+        key,
+        property: "",
+        path: ctx.path.concat(key, ""),
+      };
+      for (const property of Object.keys(record)) {
+        const value = record[property];
+        if (value === undefined || Array.isArray(value)) {
+          continue;
+        }
+        c.property = property;
+        c.path[c.path.length - 1] = property;
+        yield* traverseSchemaDefinition(value, visitor, c);
+      }
+    }
+    const c: SubSchemaTraverserContext = {
+      type: "sub",
+      key: "additionalItems",
+      path: ctx.path.concat(""),
     };
-    for (let index = 0; index < array.length; index++) {
-      c.index = index;
-      c.path[c.path.length - 1] = index;
-      traverseSchemaDefinition(array[index]!, visitor, c);
-    }
-  }
-  for (const key of RECORDS_OF_SUB_SCHEMAS) {
-    const record = schema[key];
-    if (record === undefined) {
-      continue;
-    }
-    const c: RecordSchemaTraverserContext = {
-      type: "record",
-      key,
-      property: "",
-      path: ctx.path.concat(key, ""),
-    };
-    for (const property of Object.keys(record)) {
-      const value = record[property];
+    for (const key of SUB_SCHEMAS) {
+      const value = schema[key];
       if (value === undefined || Array.isArray(value)) {
         continue;
       }
-      c.property = property;
-      c.path[c.path.length - 1] = property;
-      traverseSchemaDefinition(value, visitor, c);
+      c.key = key;
+      c.path[c.path.length - 1] = key;
+      yield* traverseSchemaDefinition(value, visitor, c);
     }
   }
-  const c: SubSchemaTraverserContext = {
-    type: "sub",
-    key: "additionalItems",
-    path: ctx.path.concat(""),
-  };
-  for (const key of SUB_SCHEMAS) {
-    const value = schema[key];
-    if (value === undefined || Array.isArray(value)) {
-      continue;
-    }
-    c.key = key;
-    c.path[c.path.length - 1] = key;
-    traverseSchemaDefinition(value, visitor, c);
+  if (visitor.onLeave) {
+    yield* visitor.onLeave(schema, ctx);
   }
-  visitor.onLeave?.(schema, ctx);
 }

@@ -2,6 +2,7 @@ import type {
   ArraySchemaTraverserContext,
   RecordSchemaTraverserContext,
   SchemaTraverserContext,
+  SubSchemaTraverserContext,
 } from "./schema-traverser.js";
 import {
   type SchemaDefinition,
@@ -48,7 +49,7 @@ export function transformSchemaDefinition<R>(
     shallowCopy: TransformedSchemaDefinition<R>,
     ctx: SchemaTraverserContext
   ) => R,
-  ctx: SchemaTraverserContext = { type: "root" }
+  ctx: SchemaTraverserContext = { type: "root", path: [] }
 ): R {
   if (!isSchema(schema)) {
     return transform(schema, ctx);
@@ -61,14 +62,16 @@ export function transformSchemaDefinition<R>(
     if (array === undefined || !Array.isArray(array)) {
       continue;
     }
-    const ctx: ArraySchemaTraverserContext = {
+    const c: ArraySchemaTraverserContext = {
       type: "array",
       key,
       index: 0,
+      path: ctx.path.concat(key, 0),
     };
     shallowCopy[key] = array.map((item, index) => {
-      ctx.index = index;
-      return transformSchemaDefinition(item, transform, ctx);
+      c.index = index;
+      c.path[c.path.length - 1] = index;
+      return transformSchemaDefinition(item, transform, c);
     });
   }
   const map = new Map<string, R>();
@@ -77,30 +80,36 @@ export function transformSchemaDefinition<R>(
     if (record === undefined) {
       continue;
     }
-    const ctx: RecordSchemaTraverserContext = {
+    const c: RecordSchemaTraverserContext = {
       type: "record",
       key,
       property: "",
+      path: ctx.path.concat(key, ""),
     };
     for (const [property, value] of Object.entries(record)) {
       if (Array.isArray(value)) {
         continue;
       }
-      ctx.property = property;
-      map.set(property, transformSchemaDefinition(value, transform, ctx));
+      c.property = property;
+      c.path[c.path.length - 1] = property;
+      map.set(property, transformSchemaDefinition(value, transform, c));
     }
     shallowCopy[key] = Object.fromEntries(map);
     map.clear();
   }
+  const c: SubSchemaTraverserContext = {
+    type: "sub",
+    key: "items",
+    path: ctx.path.concat(""),
+  };
   for (const key of SUB_SCHEMAS) {
     const value = schema[key];
     if (value === undefined || Array.isArray(value)) {
       continue;
     }
-    shallowCopy[key] = transformSchemaDefinition(value, transform, {
-      type: "sub",
-      key,
-    });
+    c.key = key;
+    c.path[c.path.length - 1] = key;
+    shallowCopy[key] = transformSchemaDefinition(value, transform, c);
   }
   return transform(shallowCopy, ctx);
 }

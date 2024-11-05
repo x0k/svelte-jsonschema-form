@@ -97,6 +97,10 @@
     "./prevent-data-loss.svelte": {
       "types": "./dist/prevent-data-loss.svelte.d.ts",
       "svelte": "./dist/prevent-data-loss.svelte.js"
+    },
+    "./static-analysis": {
+      "types": "./dist/static-analysis.d.ts",
+      "default": "./dist/static-analysis.js"
     }
   }
 }

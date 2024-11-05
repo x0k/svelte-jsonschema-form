@@ -1,4 +1,4 @@
-export interface Visitor<Node, Context> {
-  onEnter?: (node: Node, ctx: Context) => void;
-  onLeave?: (node: Node, ctx: Context) => void;
+export interface Visitor<Node, Context, R> {
+  onEnter?: (node: Node, ctx: Context) => Generator<R>;
+  onLeave?: (node: Node, ctx: Context) => Generator<R>;
 }
