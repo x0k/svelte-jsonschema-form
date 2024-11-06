@@ -829,6 +829,10 @@ importers:
         version: 2.1.4(@types/node@22.7.5)
 
   packages/sveltekit-integration:
+    dependencies:
+      esm-env:
+        specifier: ^1.1.4
+        version: 1.1.4
     devDependencies:
       '@playwright/test':
         specifier: 'catalog:'

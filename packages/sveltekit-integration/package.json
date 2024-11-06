@@ -41,12 +41,17 @@
 		".": {
 			"types": "./dist/index.d.ts",
 			"svelte": "./dist/index.js"
+		},
+		"./client": {
+			"types": "./dist/client.svelte.d.ts",
+			"svelte": "./dist/client.svelte.js"
 		}
 	},
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^1.4.0",
+		"@sveltejs/kit": "^2.7.0",
 		"svelte": "^5.0.0",
-		"@sveltejs/kit": "^2.7.0"
+		"esm-env": "^1.0.0"
 	},
 	"devDependencies": {
 		"@playwright/test": "catalog:",
