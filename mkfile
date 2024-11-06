@@ -121,6 +121,16 @@ ts/:
     pnpm run build
   popd
 
+sv/:
+  pushd packages/sveltekit-integration
+  c:
+    pnpm run check
+  b:
+    pnpm run build
+  d:
+    pnpm run dev
+  popd
+
 p:
   pnpm run preview
 
