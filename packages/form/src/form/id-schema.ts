@@ -26,7 +26,7 @@ import {
 
 export const DEFAULT_ID_PREFIX = "root";
 
-export const DEFAULT_ID_SEPARATOR = "_";
+export const DEFAULT_ID_SEPARATOR = ".";
 
 export const DEFAULT_PSEUDO_ID_SEPARATOR = "::";
 
