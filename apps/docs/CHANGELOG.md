@@ -1,5 +1,24 @@
 # docs
 
+## 1.2.0
+
+### Minor Changes
+
+- [#26](https://github.com/x0k/svelte-jsonschema-form/pull/26) [`fbb032d`](https://github.com/x0k/svelte-jsonschema-form/commit/fbb032ddc6b9072a02cd6f05679ab15f3aa17738) Thanks [@x0k](https://github.com/x0k)! - Add Zod integration guide
+
+- [#26](https://github.com/x0k/svelte-jsonschema-form/pull/26) [`696b641`](https://github.com/x0k/svelte-jsonschema-form/commit/696b641923e7b94f41dc8aca659d9bd0a74f4690) Thanks [@x0k](https://github.com/x0k)! - Add `preventDataLoss` guide
+
+### Patch Changes
+
+- Updated dependencies [[`7553e6e`](https://github.com/x0k/svelte-jsonschema-form/commit/7553e6e108feb60025800e2e0290273db51f3684), [`699362f`](https://github.com/x0k/svelte-jsonschema-form/commit/699362fd1ab96efd78f1ee08374630aab4ab2b5c), [`c75aa31`](https://github.com/x0k/svelte-jsonschema-form/commit/c75aa31735b7e5bc27ca4a5203339dd4a43cec3d), [`fbb032d`](https://github.com/x0k/svelte-jsonschema-form/commit/fbb032ddc6b9072a02cd6f05679ab15f3aa17738), [`34b2481`](https://github.com/x0k/svelte-jsonschema-form/commit/34b2481db20a8c633a0317a41a4b4793ac3946fc), [`385b636`](https://github.com/x0k/svelte-jsonschema-form/commit/385b6369cca368be64c9616fb85fe3c247183439), [`89a3e04`](https://github.com/x0k/svelte-jsonschema-form/commit/89a3e045206de84ab9fc76f0d2c3125ad26ad105), [`dad20e1`](https://github.com/x0k/svelte-jsonschema-form/commit/dad20e122cb3cfead93e42acf44ea6a6b9d417ec), [`a6606d1`](https://github.com/x0k/svelte-jsonschema-form/commit/a6606d1bae97d7c229b6eaed59ce45201e617ebe), [`ad5df20`](https://github.com/x0k/svelte-jsonschema-form/commit/ad5df2045b771745d1cacadafe5551bd46f1a32e), [`0084022`](https://github.com/x0k/svelte-jsonschema-form/commit/0084022fb6e0c3176f76c8bc9579af8b133ef19b)]:
+  - @sjsf/ajv8-validator@1.5.0
+  - @sjsf/skeleton-theme@1.5.0
+  - @sjsf/form@1.5.0
+  - @sjsf/zod-integration@1.5.0
+  - @sjsf/shadcn-theme@1.5.0
+  - @sjsf/daisyui-theme@1.5.0
+  - @sjsf/flowbite-theme@1.5.0
+
 ## 1.1.0
 
 ### Minor Changes

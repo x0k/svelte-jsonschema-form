@@ -1,5 +1,25 @@
 # @sjsf/form
 
+## 1.5.0
+
+### Minor Changes
+
+- [#26](https://github.com/x0k/svelte-jsonschema-form/pull/26) [`c75aa31`](https://github.com/x0k/svelte-jsonschema-form/commit/c75aa31735b7e5bc27ca4a5203339dd4a43cec3d) Thanks [@x0k](https://github.com/x0k)! - Add `preventDataLoss` function for handling `beforeunload` event
+
+- [#26](https://github.com/x0k/svelte-jsonschema-form/pull/26) [`dad20e1`](https://github.com/x0k/svelte-jsonschema-form/commit/dad20e122cb3cfead93e42acf44ea6a6b9d417ec) Thanks [@x0k](https://github.com/x0k)! - Allow to pass multiple arguments to `mutation.run` method
+
+- [#26](https://github.com/x0k/svelte-jsonschema-form/pull/26) [`a6606d1`](https://github.com/x0k/svelte-jsonschema-form/commit/a6606d1bae97d7c229b6eaed59ce45201e617ebe) Thanks [@x0k](https://github.com/x0k)! - Add form option `pseudoIdSeparator`
+
+### Patch Changes
+
+- [#26](https://github.com/x0k/svelte-jsonschema-form/pull/26) [`34b2481`](https://github.com/x0k/svelte-jsonschema-form/commit/34b2481db20a8c633a0317a41a4b4793ac3946fc) Thanks [@x0k](https://github.com/x0k)! - Changed the value of `DEFAULT_ID_SEPARATOR`
+
+  This change may be a BREAKING change for you if you code implicitly depends on this constant.
+
+- [#26](https://github.com/x0k/svelte-jsonschema-form/pull/26) [`89a3e04`](https://github.com/x0k/svelte-jsonschema-form/commit/89a3e045206de84ab9fc76f0d2c3125ad26ad105) Thanks [@x0k](https://github.com/x0k)! - Remove forced `undefined` for `value` in `onSubmit` handler of the form
+
+- [#26](https://github.com/x0k/svelte-jsonschema-form/pull/26) [`0084022`](https://github.com/x0k/svelte-jsonschema-form/commit/0084022fb6e0c3176f76c8bc9579af8b133ef19b) Thanks [@x0k](https://github.com/x0k)! - Allow to pass a `Map` and `Array` to the `initialErrors` form option
+
 ## 1.4.0
 
 ### Minor Changes
