@@ -4,7 +4,7 @@
 
   import type { Config } from "../../config.js";
   import type { UiSchema } from "../../ui-schema.js";
-  import { type IdSchema, computeId } from "../../id-schema.js";
+  import type { IdSchema } from "../../id-schema.js";
   import {
     getWidget,
     getTemplate,
@@ -12,6 +12,7 @@
     getErrors,
     getUiOptions,
     getFormContext,
+    makePseudoId,
   } from "../../context/index.js";
 
   import { getObjectContext } from "./context.js";
@@ -35,11 +36,11 @@
   const objCtx = getObjectContext();
 
   const id = $derived(
-    computeId(idSchema ?? { $id: ctx.idPrefix }, "key-input")
+    makePseudoId(ctx, idSchema?.$id ?? ctx.idPrefix, "key-input")
   );
   const uiOptions = $derived(getUiOptions(ctx, uiSchema));
   const config: Config = $derived({
-    name: `${name}__key`,
+    name: id,
     title: `${name} Key`,
     schema: { type: "string" },
     idSchema: { $id: id },

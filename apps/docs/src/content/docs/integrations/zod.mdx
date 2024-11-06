@@ -1,0 +1,34 @@
+---
+title: Zod
+sidebar:
+  order: 1
+---
+
+import { Code, Card } from '@astrojs/starlight/components';
+
+import Npm from '@/components/npm.astro';
+
+import Form from './_zod.astro';
+import formCode from './_zod.svelte?raw';
+
+You may want to use Zod integration because:
+
+- You can use Zod schema as a source of truth for the form value type (z.infer).
+- This is an easy way to add custom error messages
+
+## Installation
+
+<Npm pkg="@sjsf/form @sjsf/zod-integration zod zod-to-json-schema" />
+
+References:
+
+- [Zod](https://github.com/colinhacks/zod)
+- [Zod to Json Schema](https://github.com/StefanTerdell/zod-to-json-schema)
+
+## Example
+
+<Code code={formCode} lang='svelte' />
+
+<Card>
+  <Form />
+</Card>

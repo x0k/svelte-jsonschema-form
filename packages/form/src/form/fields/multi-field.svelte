@@ -6,7 +6,6 @@
     type EnumOption,
   } from '@/core/index.js';
 
-  import { computeId } from '../id-schema.js';
   import type { Config } from '../config.js';
   import type { UiSchema } from '../ui-schema.js';
   import {
@@ -20,7 +19,8 @@
     getUiOptions,
     retrieveSchema,
     sanitizeDataForNewSchema,
-    getFormContext
+    getFormContext,
+    makePseudoId
   } from "../context/index.js";
 
   import type { FieldProps } from "./model.js";
@@ -108,7 +108,7 @@
   })
   const enumOptions = $derived<EnumOption<number>[]>(
     retrievedOptions.map((s, i) => ({
-      id: computeId(config.idSchema, i),
+      id: makePseudoId(ctx, config.idSchema.$id, i),
       label:
         optionsUiOptions[i]?.title ??
         s.title ??
@@ -124,7 +124,7 @@
       ...config,
       schema: { type: "integer", default: 0 },
       name: `${config.name}__${suffix}`,
-      idSchema: { $id: computeId(config.idSchema, suffix) },
+      idSchema: { $id: makePseudoId(ctx, config.idSchema.$id, suffix) },
       required: true,
     };
   });

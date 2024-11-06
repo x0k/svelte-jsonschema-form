@@ -26,9 +26,9 @@ import {
 
 export const DEFAULT_ID_PREFIX = "root";
 
-// @deprecated
-// TODO: Make the separator more specific
-export const DEFAULT_ID_SEPARATOR = "_";
+export const DEFAULT_ID_SEPARATOR = ".";
+
+export const DEFAULT_PSEUDO_ID_SEPARATOR = "::";
 
 export type FieldId = {
   $id: string;
@@ -77,7 +77,7 @@ export function toIdSchema2(
   merger: Merger2,
   schema: Schema,
   idPrefix: string,
-  idSeparator: string,
+  idPropertySeparator: string,
   _recurseList: Schema[],
   id?: string | null,
   rootSchema?: Schema,
@@ -100,7 +100,7 @@ export function toIdSchema2(
         merger,
         _schema,
         idPrefix,
-        idSeparator,
+        idPropertySeparator,
         _recurseList.concat(_schema),
         id,
         rootSchema,
@@ -116,7 +116,7 @@ export function toIdSchema2(
         merger,
         items,
         idPrefix,
-        idSeparator,
+        idPropertySeparator,
         _recurseList,
         id,
         rootSchema,
@@ -124,20 +124,20 @@ export function toIdSchema2(
       );
     }
   }
-  const $id = id || idPrefix;
+  const $id = id ?? idPrefix;
   const idSchema = { $id } as IdSchema<SchemaObjectValue>;
   if (getSimpleSchemaType(schema) === "object" && PROPERTIES_KEY in schema) {
     const properties = schema[PROPERTIES_KEY];
     const formDataObject = isSchemaObjectValue(formData) ? formData : undefined;
     for (const name in properties) {
       const field = properties[name]!;
-      const fieldId = idSchema[ID_KEY] + idSeparator + name;
+      const fieldId = idSchema[ID_KEY] + idPropertySeparator + name;
       idSchema[name] = toIdSchema2(
         validator,
         merger,
         isSchema(field) ? field : {},
         idPrefix,
-        idSeparator,
+        idPropertySeparator,
         _recurseList,
         fieldId,
         rootSchema,
@@ -156,11 +156,23 @@ export interface IdentifiableFieldElement {
   anyof: {};
 }
 
+/**
+ * @deprecated use `computePseudoId`
+ */
 export function computeId<T>(
   idSchema: IdSchema<T>,
+  element: keyof IdentifiableFieldElement | number,
+  pseudoIdSeparator = DEFAULT_PSEUDO_ID_SEPARATOR
+) {
+  return computePseudoId(pseudoIdSeparator, idSchema.$id, element);
+}
+
+export function computePseudoId(
+  pseudoIdSeparator: string,
+  instanceId: string,
   element: keyof IdentifiableFieldElement | number
 ) {
-  return `${idSchema.$id}__${element}`;
+  return `${instanceId}${pseudoIdSeparator}${element}`;
 }
 
 export function pathToId(

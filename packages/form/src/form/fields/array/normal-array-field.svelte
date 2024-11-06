@@ -13,11 +13,13 @@
     getUiOptions,
     retrieveSchema,
     getFormContext,
+    makeArrayItemId,
+    makeIdSchema,
   } from "../../context/index.js";
   
   import type { FieldProps } from '../model.js';
 
-  import { getArrayItemSchemaId, getArrayContext } from './context.js';
+  import { getArrayContext } from './context.js';
   import { getArrayItemName, getNormalArrayItemTitle } from './get-array-item-name.js'
 
   let { value = $bindable(), config }: FieldProps<"normalArray"> = $props()
@@ -64,11 +66,10 @@
   {#if value}
     {#each value as item, index}
       {@const itemSchema = retrieveSchema(ctx, schemaItems, item)}
-      {@const itemIdSchema = getArrayItemSchemaId(
+      {@const itemIdSchema = makeIdSchema(
         ctx,
-        config.idSchema,
         itemSchema,
-        index,
+        makeArrayItemId(ctx, config.idSchema.$id, index),
         item
       )}
       <ArrayItem

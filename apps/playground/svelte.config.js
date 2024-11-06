@@ -5,6 +5,7 @@ export default {
   // for more information about preprocessors
   preprocess: vitePreprocess(),
   compilerOptions: {
+    // Because `lucide-icons`
     // runes: true,
   },
 };

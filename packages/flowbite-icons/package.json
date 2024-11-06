@@ -64,7 +64,7 @@
 		"eslint": "catalog:",
 		"eslint-config-prettier": "catalog:",
 		"eslint-plugin-svelte": "catalog:",
-		"flowbite-svelte-icons": "^2.0.0-next.17",
+		"flowbite-svelte-icons": "^2.0.2",
 		"globals": "catalog:",
 		"postcss": "catalog:",
 		"prettier": "catalog:",

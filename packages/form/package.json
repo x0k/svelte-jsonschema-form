@@ -93,6 +93,10 @@
     "./use-mutation.svelte": {
       "types": "./dist/use-mutation.svelte.d.ts",
       "svelte": "./dist/use-mutation.svelte.js"
+    },
+    "./prevent-data-loss.svelte": {
+      "types": "./dist/prevent-data-loss.svelte.d.ts",
+      "svelte": "./dist/prevent-data-loss.svelte.js"
     }
   }
 }

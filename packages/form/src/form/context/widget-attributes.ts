@@ -6,13 +6,13 @@ import type {
 } from "svelte/elements";
 
 import type { Nullable } from "@/lib/types.js";
-import type { Schema } from '@/core/index.js';
+import type { Schema } from "@/core/index.js";
 
 import type { Config } from "../config.js";
-import { computeId } from "../id-schema.js";
+import type { InputAttributes } from "../ui-schema.js";
 
-import type { FormContext } from './context.js';
-import type { InputAttributes } from '../ui-schema.js';
+import type { FormContext } from "./context.js";
+import { makePseudoId } from "./id-schema.js";
 
 interface Disabled {
   disabled: boolean;
@@ -48,9 +48,7 @@ function inputType(format: string | undefined) {
   }
 }
 
-function isReadonly(
-  schema: Schema
-) {
+function isReadonly(schema: Schema) {
   return schema.readOnly || schema.const !== undefined;
 }
 
@@ -75,7 +73,7 @@ export function inputAttributes(
         step:
           schema.multipleOf ?? (schema.type === "number" ? "any" : undefined),
         list: Array.isArray(schema.examples)
-          ? computeId(idSchema, "examples")
+          ? makePseudoId(ctx, idSchema.$id, "examples")
           : undefined,
         readonly: isReadonly(schema),
         oninput: handlers.oninput,

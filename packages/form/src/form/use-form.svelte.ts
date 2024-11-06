@@ -5,7 +5,7 @@ import { SvelteMap } from "svelte/reactivity";
 import type { SchedulerYield } from "@/lib/scheduler.js";
 import type { Schema, SchemaValue } from "@/core/schema.js";
 
-import type { FormValidator, ValidationError } from "./validator.js";
+import { type FormValidator, type ValidationError } from "./validator.js";
 import type { Components } from "./component.js";
 import type { Widgets } from "./widgets.js";
 import type { Translation } from "./translation.js";
@@ -26,6 +26,7 @@ import { templates as defaultTemplates } from "./templates/index.js";
 import {
   DEFAULT_ID_PREFIX,
   DEFAULT_ID_SEPARATOR,
+  DEFAULT_PSEUDO_ID_SEPARATOR,
   pathToId,
 } from "./id-schema.js";
 import IconOrTranslation from "./icon-or-translation.svelte";
@@ -45,9 +46,13 @@ export interface UseFormOptions<T, E> {
   disabled?: boolean;
   idPrefix?: string;
   idSeparator?: string;
+  pseudoIdSeparator?: string;
   //
   initialValue?: T;
-  initialErrors?: Errors<E>;
+  initialErrors?:
+    | Errors<E>
+    | Map<string, FieldErrors<E>>
+    | ValidationError<E>[];
   /**
    * The function to get the form data snapshot
    *
@@ -62,8 +67,12 @@ export interface UseFormOptions<T, E> {
    *
    * Will be called when the form is submitted and form data
    * snapshot is valid
+   *
+   * Note that we rely on `validator.validateFormData` to check that the
+   * `formData is T`. So make sure you provide a `T` type that
+   * matches the validator check result.
    */
-  onSubmit?: (value: T | undefined, e: SubmitEvent) => void;
+  onSubmit?: (value: T, e: SubmitEvent) => void;
   /**
    * Submit error handler
    *
@@ -123,7 +132,11 @@ export function createForm<T, E>(
       options.schema
     )
   );
-  let errors: Errors<E> = $state(options.initialErrors ?? new SvelteMap());
+  let errors: Errors<E> = $state(
+    Array.isArray(options.initialErrors)
+      ? groupErrors(options.initialErrors)
+      : new SvelteMap(options.initialErrors)
+  );
   let isSubmitted = $state(false);
   let isChanged = $state(false);
 
@@ -142,7 +155,7 @@ export function createForm<T, E>(
     const snapshot = getSnapshot();
     errors = validateSnapshot(snapshot);
     if (errors.size === 0) {
-      options.onSubmit?.(snapshot as T | undefined, e);
+      options.onSubmit?.(snapshot as T, e);
       isChanged = false;
       return;
     }
@@ -179,6 +192,9 @@ export function createForm<T, E>(
   const disabled = $derived(options.disabled ?? false);
   const idPrefix = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX);
   const idSeparator = $derived(options.idSeparator ?? DEFAULT_ID_SEPARATOR);
+  const pseudoIdSeparator = $derived(
+    options.pseudoIdSeparator ?? DEFAULT_PSEUDO_ID_SEPARATOR
+  );
   const fields = $derived(options.fields ?? defaultFields);
   const templates = $derived(options.templates ?? defaultTemplates);
   const icons = $derived(options.icons ?? {});
@@ -229,6 +245,9 @@ export function createForm<T, E>(
       },
       get idSeparator() {
         return idSeparator;
+      },
+      get idPseudoSeparator() {
+        return pseudoIdSeparator;
       },
       get validator() {
         return options.validator;

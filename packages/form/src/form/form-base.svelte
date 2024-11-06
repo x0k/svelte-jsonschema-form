@@ -9,7 +9,7 @@
   import type { SchedulerYield } from '@/lib/scheduler.js';
   import type { Schema, SchemaValue } from '@/core/index.js';
 
-  import type { Label, Labels, Translation } from './translation.js';
+  import type { Translation } from './translation.js';
   import type { UiSchemaRoot } from './ui-schema.js';
   import type { Components } from './component.js';
   import type { Widgets } from './widgets.js';
@@ -39,6 +39,8 @@
     disabled?: boolean
     idPrefix?: string
     idSeparator?: string
+    idIndexSeparator?: string
+    pseudoIdSeparator?: string
     children?: Snippet
     errors?: Errors<E>
     /**
@@ -95,7 +97,7 @@
   } from './context/index.js';
   import { fields as defaultFields } from './fields/index.js';
   import { templates as defaultTemplates } from './templates/index.js';
-  import { DEFAULT_ID_PREFIX, DEFAULT_ID_SEPARATOR } from './id-schema.js';
+  import { DEFAULT_ID_PREFIX, DEFAULT_ID_SEPARATOR, DEFAULT_PSEUDO_ID_SEPARATOR } from './id-schema.js';
   import { DefaultFormMerger } from './merger.js';
   import IconOrTranslation from './icon-or-translation.svelte';
   import SubmitButton from './submit-button.svelte';
@@ -119,6 +121,8 @@
     disabled = false,
     idPrefix = DEFAULT_ID_PREFIX,
     idSeparator = DEFAULT_ID_SEPARATOR,
+    idIndexSeparator = DEFAULT_ID_SEPARATOR,
+    pseudoIdSeparator = DEFAULT_PSEUDO_ID_SEPARATOR,
     merger,
     children,
     onsubmit,
@@ -190,6 +194,9 @@
     },
     get idSeparator() {
       return idSeparator
+    },
+    get idPseudoSeparator() {
+      return pseudoIdSeparator
     },
     get validator() {
       return validator
