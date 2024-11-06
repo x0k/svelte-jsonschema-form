@@ -49,7 +49,10 @@ export interface UseFormOptions<T, E> {
   pseudoIdSeparator?: string;
   //
   initialValue?: T;
-  initialErrors?: Errors<E>;
+  initialErrors?:
+    | Errors<E>
+    | Map<string, FieldErrors<E>>
+    | ValidationError<E>[];
   /**
    * The function to get the form data snapshot
    *
@@ -129,7 +132,11 @@ export function createForm<T, E>(
       options.schema
     )
   );
-  let errors: Errors<E> = $state(options.initialErrors ?? new SvelteMap());
+  let errors: Errors<E> = $state(
+    Array.isArray(options.initialErrors)
+      ? groupErrors(options.initialErrors)
+      : new SvelteMap(options.initialErrors)
+  );
   let isSubmitted = $state(false);
   let isChanged = $state(false);
 
