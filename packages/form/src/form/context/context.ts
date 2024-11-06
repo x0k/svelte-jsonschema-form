@@ -14,8 +14,6 @@ import type { Errors } from "../errors.js";
 import type { FormValidator } from "../validator.js";
 import type { Icons } from "../icons.js";
 import type { FormMerger } from "../merger.js";
-import type { IdConfig } from "../id-schema.js";
-import type { Config } from '../config.js';
 
 export type IconOrTranslationData = {
   [L in Label]: [L, ...Labels[L]];
@@ -35,15 +33,13 @@ export interface FormContext {
   translation: Translation;
   templates: Templates;
   icons: Icons;
+  idPrefix: string;
+  idSeparator: string;
+  idPseudoSeparator: string;
   disabled: boolean;
-  idConfig: Readonly<IdConfig>;
   errors: Errors;
   schedulerYield: SchedulerYield;
   IconOrTranslation: Component<{ data: IconOrTranslationData }>;
-  /** @deprecated use `idConfig.prefix` instead */
-  idPrefix: string;
-  /** @deprecated use `idConfig.propertySeparator` instead */
-  idSeparator: string;
   /** @deprecated use `IconOrTranslation` instead */
   iconOrTranslation: Snippet<[IconOrTranslationData]>;
 }

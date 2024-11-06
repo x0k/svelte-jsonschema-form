@@ -26,28 +26,9 @@ import {
 
 export const DEFAULT_ID_PREFIX = "root";
 
-export const DEFAULT_ID_PROPERTY_SEPARATOR = ".";
-
-/** @deprecated use `DEFAULT_ID_PROPERTY_SEPARATOR` */
-export const DEFAULT_ID_SEPARATOR = DEFAULT_ID_PROPERTY_SEPARATOR;
-
-export const DEFAULT_ID_INDEX_SEPARATOR = "@";
+export const DEFAULT_ID_SEPARATOR = "_";
 
 export const DEFAULT_PSEUDO_ID_SEPARATOR = "::";
-
-export const DEFAULT_ID_CONFIG: IdConfig = {
-  prefix: DEFAULT_ID_PREFIX,
-  indexSeparator: DEFAULT_ID_INDEX_SEPARATOR,
-  propertySeparator: DEFAULT_ID_PROPERTY_SEPARATOR,
-  pseudoSeparator: DEFAULT_PSEUDO_ID_SEPARATOR,
-};
-
-export interface IdConfig {
-  prefix: string;
-  propertySeparator: string;
-  indexSeparator: string;
-  pseudoSeparator: string;
-}
 
 export type FieldId = {
   $id: string;
@@ -194,37 +175,12 @@ export function computePseudoId(
   return `${instanceId}${pseudoIdSeparator}${element}`;
 }
 
-/**
- * @deprecated use `pathToId2`
- */
 export function pathToId(
   idPrefix: string,
   idSeparator: string,
-  path: Array<string | number>,
-  idIndexSeparator = DEFAULT_ID_INDEX_SEPARATOR
-) {
-  return pathToId2(
-    {
-      prefix: idPrefix,
-      indexSeparator: idIndexSeparator,
-      propertySeparator: idSeparator,
-      pseudoSeparator: DEFAULT_PSEUDO_ID_SEPARATOR,
-    },
-    path
-  );
-}
-
-export function pathToId2(
-  { prefix, indexSeparator, propertySeparator }: IdConfig,
   path: Array<string | number>
 ) {
-  if (path.length === 0) {
-    return prefix;
-  }
-  let id = prefix;
-  for (let i = 0; i < path.length; i++) {
-    const component = path[i];
-    id += `${typeof component === "number" ? indexSeparator : propertySeparator}${component}`;
-  }
-  return id;
+  return path.length === 0
+    ? idPrefix
+    : `${idPrefix}${idSeparator}${path.join(idSeparator)}`;
 }

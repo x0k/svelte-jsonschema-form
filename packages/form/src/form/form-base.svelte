@@ -97,7 +97,7 @@
   } from './context/index.js';
   import { fields as defaultFields } from './fields/index.js';
   import { templates as defaultTemplates } from './templates/index.js';
-  import { DEFAULT_ID_PREFIX, DEFAULT_ID_PROPERTY_SEPARATOR, DEFAULT_ID_INDEX_SEPARATOR, DEFAULT_PSEUDO_ID_SEPARATOR } from './id-schema.js';
+  import { DEFAULT_ID_PREFIX, DEFAULT_ID_SEPARATOR, DEFAULT_PSEUDO_ID_SEPARATOR } from './id-schema.js';
   import { DefaultFormMerger } from './merger.js';
   import IconOrTranslation from './icon-or-translation.svelte';
   import SubmitButton from './submit-button.svelte';
@@ -120,8 +120,8 @@
     inputsValidationMode = 0,
     disabled = false,
     idPrefix = DEFAULT_ID_PREFIX,
-    idSeparator = DEFAULT_ID_PROPERTY_SEPARATOR,
-    idIndexSeparator = DEFAULT_ID_INDEX_SEPARATOR,
+    idSeparator = DEFAULT_ID_SEPARATOR,
+    idIndexSeparator = DEFAULT_ID_SEPARATOR,
     pseudoIdSeparator = DEFAULT_PSEUDO_ID_SEPARATOR,
     merger,
     children,
@@ -195,19 +195,8 @@
     get idSeparator() {
       return idSeparator
     },
-    idConfig: {
-      get prefix() {
-        return idPrefix
-      },
-      get indexSeparator() {
-        return idIndexSeparator
-      },
-      get propertySeparator() {
-        return idSeparator
-      },
-      get pseudoSeparator() {
-        return pseudoIdSeparator
-      }
+    get idPseudoSeparator() {
+      return pseudoIdSeparator
     },
     get validator() {
       return validator
