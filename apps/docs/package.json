@@ -18,19 +18,19 @@
     "@sjsf/skeleton-theme": "workspace:*",
     "@sjsf/zod-integration": "workspace:*",
     "ajv": "catalog:",
-    "mermaid": "^11.3.0",
+    "mermaid": "^11.4.0",
     "svg-pan-zoom": "github:bumbu/svg-pan-zoom",
     "zod": "catalog:",
     "zod-to-json-schema": "^3.23.5"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
-    "@astrojs/starlight": "^0.28.3",
-    "@astrojs/svelte": "^5.7.2",
-    "astro": "^4.16.6",
-    "astro-vtbot": "^1.10.3",
+    "@astrojs/starlight": "^0.28.6",
+    "@astrojs/svelte": "^5.7.3",
+    "astro": "^4.16.10",
+    "astro-vtbot": "^1.10.6",
     "sharp": "^0.33.5",
-    "starlight-package-managers": "^0.7.0",
+    "starlight-package-managers": "^0.8.0",
     "svelte": "catalog:"
   }
 }
