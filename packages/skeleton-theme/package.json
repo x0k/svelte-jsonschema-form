@@ -49,7 +49,7 @@
 	},
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^1.4.0",
-		"@skeletonlabs/skeleton": "3.0.0-next.5",
+		"@skeletonlabs/skeleton": "^3.0.0-next.5",
 		"@tailwindcss/forms": "^0.5.9",
 		"svelte": "^5.0.0"
 	},
@@ -57,7 +57,7 @@
 		"@playwright/test": "catalog:",
 		"@sjsf/ajv8-validator": "workspace:*",
 		"@sjsf/form": "workspace:*",
-		"@skeletonlabs/skeleton": "3.0.0-next.5",
+		"@skeletonlabs/skeleton": "^3.0.0-next.6",
 		"@sveltejs/adapter-static": "catalog:",
 		"@sveltejs/kit": "catalog:",
 		"@sveltejs/package": "catalog:",
