@@ -9,11 +9,9 @@ import {
 } from "@/core/index.js";
 
 import {
-  DEFAULT_ID_INDEX_SEPARATOR,
+  DEFAULT_ID_SEPARATOR,
   DEFAULT_ID_PREFIX,
-  DEFAULT_ID_PROPERTY_SEPARATOR,
   DEFAULT_PSEUDO_ID_SEPARATOR,
-  type IdConfig,
 } from "./form/id-schema.js";
 
 const INDEX_REGEX = /^\d+$/;
@@ -26,6 +24,12 @@ export interface SchemaIssue {
 
 const ID_CONFIG_ISSUER = "idConfig";
 const SCHEMA_ISSUER = "schema";
+
+interface IdConfig {
+  prefix: string;
+  separator: string;
+  pseudoSeparator: string;
+}
 
 function* idConfigAnalysis(idConfig: IdConfig): Generator<SchemaIssue> {
   const keys = Object.keys(idConfig) as (keyof IdConfig)[];
@@ -143,8 +147,7 @@ function* schemaAnalysis(
 export interface StaticAnalysisOptions<T extends SchemaValue> {
   schema: Schema;
   idPrefix?: string;
-  idPropertySeparator?: string;
-  idIndexSeparator?: string;
+  idSeparator?: string;
   idPseudoSeparator?: string;
   initialValue?: T;
 }
@@ -152,15 +155,13 @@ export interface StaticAnalysisOptions<T extends SchemaValue> {
 export function* staticAnalysis<T extends SchemaValue>({
   schema,
   idPrefix = DEFAULT_ID_PREFIX,
-  idPropertySeparator = DEFAULT_ID_PROPERTY_SEPARATOR,
-  idIndexSeparator = DEFAULT_ID_INDEX_SEPARATOR,
+  idSeparator = DEFAULT_ID_SEPARATOR,
   idPseudoSeparator = DEFAULT_PSEUDO_ID_SEPARATOR,
   initialValue,
 }: StaticAnalysisOptions<T>): Generator<SchemaIssue> {
   const idConfig: IdConfig = {
     prefix: idPrefix,
-    propertySeparator: idPropertySeparator,
-    indexSeparator: idIndexSeparator,
+    separator: idSeparator,
     pseudoSeparator: idPseudoSeparator,
   };
   yield* idConfigAnalysis(idConfig);
