@@ -38,11 +38,10 @@ export type FormNameFromActionDataUnion<ActionData> = ActionData extends any
 export type ValidatorErrorFromValidatedFormData<VFD> =
 	VFD extends ValidatedFormData<infer E, any> ? E : never;
 
-export type InitialFromDataFromPageData<PageData, FormName extends AnyKey> = {
-	[K in keyof PageData & FormName]: PageData[K] extends InitialFormData<any, any, any>
-		? PageData[K]
+export type InitialFromDataFromPageData<PageData, FormName extends AnyKey> =
+	PageData[keyof PageData & FormName] extends InitialFormData<any, any, any>
+		? PageData[keyof PageData & FormName]
 		: never;
-}[keyof PageData & FormName];
 
 export type FormValueFromInitialFormData<IFD, E, FallbackValue> =
 	IFD extends InitialFormData<infer T, E, any> ? T : FallbackValue;
@@ -53,11 +52,14 @@ export type SendFormFromInitialFormData<IFD, V, E> =
 export type SendDataFromValidatedFormData<VFD, E> =
 	VFD extends ValidatedFormData<E, infer SendData> ? SendData : false;
 
-export type UseSvelteKitOptions<FormName, V, E, SendSchema extends boolean> = Omit<
+export type UseSvelteKitOptions<ActionData, FormName, V, E, SendSchema extends boolean> = Omit<
 	UseFormOptions<V, E>,
 	'onSubmit' | (SendSchema extends true ? 'schema' : never)
 > &
-	Omit<MutationOptions<[V, SubmitEvent], unknown, unknown>, 'mutate'> & {
+	Omit<
+		MutationOptions<[V, SubmitEvent], ActionResult<NonNullable<ActionData>>, unknown>,
+		'mutate'
+	> & {
 		// Form options
 		name: FormName;
 		/** @default true */
@@ -80,9 +82,10 @@ export type UseSvelteKitOptions<FormName, V, E, SendSchema extends boolean> = Om
 		: { schema: Schema });
 
 export function useSvelteKitForm<
-	ActionData,
+	ActionData extends Record<AnyKey, any> | null,
 	PageData,
-	FormName extends FormNameFromActionDataUnion<ActionData> = FormNameFromActionDataUnion<ActionData>,
+	FormName extends
+		FormNameFromActionDataUnion<ActionData> = FormNameFromActionDataUnion<ActionData>,
 	FallbackValue = SchemaValue,
 	// Local
 	VFD = ValidatedFormDataFromActionDataUnion<ActionData, FormName>,
@@ -91,7 +94,7 @@ export function useSvelteKitForm<
 	V = FormValueFromInitialFormData<IFD, E, FallbackValue>,
 	SendSchema extends boolean = SendFormFromInitialFormData<IFD, V, E>,
 	SendData extends boolean = SendDataFromValidatedFormData<VFD, E>
->(options: UseSvelteKitOptions<FormName, V, E, SendSchema>) {
+>(options: UseSvelteKitOptions<ActionData, FormName, V, E, SendSchema>) {
 	let lastInitialFormData: InitialFormData<V, E, SendSchema> | undefined;
 	let initialized = false;
 	const unsubscribe = page.subscribe((page) => {
@@ -162,7 +165,7 @@ export function useSvelteKitForm<
 				formData.append(JSON_CHUNKS_KEY, chunk);
 			}
 
-			let result: ActionResult;
+			let result: ActionResult<NonNullable<ActionData>>;
 			try {
 				const headers = new Headers({
 					accept: 'application/json',
