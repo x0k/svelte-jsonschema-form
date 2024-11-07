@@ -4,8 +4,7 @@
 	import { theme } from '@sjsf/form/basic-theme';
 	import { translation } from '@sjsf/form/translations/en';
 
-	import { page } from '$app/stores';
-	import { useSvelteKitForm } from '$lib/client.svelte';
+	import { useSvelteKitForm } from '$lib/client';
 
 	import type { PageData, ActionData } from './$types';
 
@@ -15,10 +14,6 @@
 		validator: createValidator(),
 		translation
 	});
-
-	const unsub = page.subscribe((page) => console.log('Page update', page));
-	console.log('after sub');
-	$effect(() => unsub);
 </script>
 
 <article>

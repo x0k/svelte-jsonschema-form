@@ -43,8 +43,8 @@
 			"svelte": "./dist/index.js"
 		},
 		"./client": {
-			"types": "./dist/client.svelte.d.ts",
-			"svelte": "./dist/client.svelte.js"
+			"types": "./dist/client/index.d.ts",
+			"svelte": "./dist/client/index.js"
 		}
 	},
 	"peerDependencies": {
