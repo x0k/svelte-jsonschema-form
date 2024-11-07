@@ -1,131 +1,36 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { DEV } from 'esm-env';
-import { onDestroy } from 'svelte';
 import type { ActionResult } from '@sveltejs/kit';
-import type { AnyKey } from '@sjsf/form/lib/types';
-import { isRecord } from '@sjsf/form/lib/object';
-import {
-	groupErrors,
-	useForm,
-	type Schema,
-	type SchemaValue,
-	type UseFormOptions
-} from '@sjsf/form';
 import { useMutation, type MutationOptions } from '@sjsf/form/use-mutation.svelte';
 
-import { page } from '$app/stores';
 import { applyAction, deserialize } from '$app/forms';
 import { invalidateAll } from '$app/navigation';
 
-import { JSON_CHUNKS_KEY, type InitialFormData, type ValidatedFormData } from './model';
+import { JSON_CHUNKS_KEY } from '../model';
 
-export type ValidatedFormDataFromActionDataBranch<ActionData, FormName extends keyof ActionData> =
-	ActionData[FormName] extends ValidatedFormData<any, any> ? ActionData[FormName] : never;
-
-export type ValidatedFormDataFromActionDataUnion<
-	ActionData,
-	FormName extends keyof ActionData
-> = ActionData extends any ? ValidatedFormDataFromActionDataBranch<ActionData, FormName> : never;
-
-export type FormNameFromActionDataBranch<ActionData> = keyof {
-	[K in keyof ActionData]: ActionData[K] extends ValidatedFormData<any, any> ? K : never;
+export type SveltekitMutationOptions<ActionData, V> = Omit<
+	MutationOptions<[V, SubmitEvent], ActionResult<NonNullable<ActionData>>, unknown>,
+	'mutate'
+> & {
+	/** @default 500000 */
+	jsonChunkSize?: number;
+	/** @default true */
+	reset?: boolean;
+	/** @default true */
+	invalidateAll?: boolean;
 };
 
-export type FormNameFromActionDataUnion<ActionData> = ActionData extends any
-	? FormNameFromActionDataBranch<ActionData>
-	: never;
-
-export type ValidatorErrorFromValidatedFormData<VFD> =
-	VFD extends ValidatedFormData<infer E, any> ? E : never;
-
-export type InitialFromDataFromPageData<PageData, FormName extends AnyKey> =
-	PageData[keyof PageData & FormName] extends InitialFormData<any, any, any>
-		? PageData[keyof PageData & FormName]
-		: never;
-
-export type FormValueFromInitialFormData<IFD, E, FallbackValue> =
-	IFD extends InitialFormData<infer T, E, any> ? T : FallbackValue;
-
-export type SendFormFromInitialFormData<IFD, V, E> =
-	IFD extends InitialFormData<V, E, infer SendSchema> ? SendSchema : false;
-
-export type SendDataFromValidatedFormData<VFD, E> =
-	VFD extends ValidatedFormData<E, infer SendData> ? SendData : false;
-
-export type UseSvelteKitOptions<ActionData, FormName, V, E, SendSchema extends boolean> = Omit<
-	UseFormOptions<V, E>,
-	'onSubmit' | (SendSchema extends true ? 'schema' : never)
-> &
-	Omit<
-		MutationOptions<[V, SubmitEvent], ActionResult<NonNullable<ActionData>>, unknown>,
-		'mutate'
-	> & {
-		// Form options
-		name: FormName;
-		/** @default false */
-		forceDataInvalidation?: boolean;
-		/** @default true */
-		resetOnUpdate?: boolean;
-		// Mutation options
-		/** @default 500000 */
-		jsonChunkSize?: number;
-		/** @default true */
-		reset?: boolean;
-		/** @default true */
-		invalidateAll?: boolean;
-	} & (SendSchema extends true
-		? {
-				schema?: Schema;
-			}
-		: { schema: Schema });
-
-export function useSvelteKitForm<
-	ActionData extends Record<AnyKey, any> | null,
-	PageData,
-	FormName extends
-		FormNameFromActionDataUnion<ActionData> = FormNameFromActionDataUnion<ActionData>,
-	FallbackValue = SchemaValue,
-	// Local
-	VFD = ValidatedFormDataFromActionDataUnion<ActionData, FormName>,
-	E = ValidatorErrorFromValidatedFormData<VFD>,
-	IFD = InitialFromDataFromPageData<PageData, FormName>,
-	V = FormValueFromInitialFormData<IFD, E, FallbackValue>,
-	SendSchema extends boolean = SendFormFromInitialFormData<IFD, V, E>,
-	SendData extends boolean = SendDataFromValidatedFormData<VFD, E>
->(options: UseSvelteKitOptions<ActionData, FormName, V, E, SendSchema>) {
-	let lastInitialFormData: InitialFormData<V, E, SendSchema> | undefined;
-	let initialized = false;
-	const unsubscribe = page.subscribe((page) => {
-		if (!initialized) {
-			initialized = true;
-			lastInitialFormData = page.data[options.name as string];
-			return;
-		}
-		if (!isRecord(page.form)) {
-			return;
-		}
-		const validationData = page.form[options.name] as ValidatedFormData<E, SendData> | undefined;
-		if (!validationData) {
-			return;
-		}
-		if (validationData.sendData) {
-			form.formValue = validationData.data;
-		}
-		form.errors = groupErrors(validationData.errors);
-	});
-	onDestroy(unsubscribe);
-
+export function useSvelteKitMutation<ActionData, V>(
+	options: SveltekitMutationOptions<ActionData, V>
+) {
 	const jsonChunkSize = $derived(options.jsonChunkSize ?? 500000);
-
-	const mutation = useMutation({
+	return useMutation({
 		// Based on https://github.com/sveltejs/kit/blob/92b2686314a7dbebee1761c3da7719d599f003c7/packages/kit/src/runtime/app/forms.js
 		async mutate(signal: AbortSignal, data: V, e: SubmitEvent) {
-			const form = e.currentTarget;
-			if (!(form instanceof HTMLFormElement)) {
+			const formElement = e.currentTarget;
+			if (!(formElement instanceof HTMLFormElement)) {
 				throw new Error(`Event currentTarget is not an HTMLFormElement`);
 			}
-			const clonedForm = clone(form);
-			const getAttribute = makeFormAttributeAccessor(clonedForm, getSubmitter(e));
+			const getAttribute = makeFormAttributeAccessor(clone(formElement), getSubmitter(e));
 			const method = getAttribute('method');
 			const action = new URL(getAttribute('action'));
 			const enctype = getAttribute('enctype');
@@ -134,7 +39,7 @@ export function useSvelteKitForm<
 				if (method !== 'post') {
 					throw new Error('use:enhance can only be used on <form> fields with method="POST"');
 				}
-				const formData = new FormData(form);
+				const formData = new FormData(formElement);
 				for (const value of formData.values()) {
 					if (value instanceof File) {
 						throw new Error(
@@ -188,7 +93,8 @@ export function useSvelteKitForm<
 
 			if (result.type === 'success') {
 				if (options.reset !== false) {
-					form.reset();
+					// We call reset from the prototype to avoid DOM clobbering
+					HTMLFormElement.prototype.reset.call(formElement);
 				}
 				if (options.invalidateAll !== false) {
 					await invalidateAll();
@@ -215,17 +121,6 @@ export function useSvelteKitForm<
 			return options.timeoutMs;
 		}
 	});
-	const form = useForm<V, E>(
-		Object.setPrototypeOf(options, {
-			...lastInitialFormData,
-			onSubmit: mutation.run
-		})
-	);
-	return {
-		form,
-		mutation,
-		enhance: form.enhance.bind(form)
-	};
 }
 
 function clone<T extends HTMLElement>(element: T): T {

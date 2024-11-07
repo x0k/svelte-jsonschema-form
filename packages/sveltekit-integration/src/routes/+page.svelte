@@ -4,7 +4,7 @@
 	import { theme } from '@sjsf/form/basic-theme';
 	import { translation } from '@sjsf/form/translations/en';
 
-	import { useSvelteKitForm } from '$lib/client.svelte';
+	import { useSvelteKitForm } from '$lib/client';
 
 	import type { PageData, ActionData } from './$types';
 
