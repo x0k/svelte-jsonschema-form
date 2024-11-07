@@ -8,7 +8,7 @@
 
 	import type { PageData, ActionData } from './$types';
 
-	const form = useSvelteKitForm<ActionData, PageData, 'form2'>({
+	const { form } = useSvelteKitForm<ActionData, PageData, 'form2'>({
 		...theme,
 		name: 'form2',
 		validator: createValidator(),
