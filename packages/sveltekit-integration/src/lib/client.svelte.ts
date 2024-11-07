@@ -62,8 +62,6 @@ export type UseSvelteKitOptions<ActionData, FormName, V, E, SendSchema extends b
 	> & {
 		// Form options
 		name: FormName;
-		/** @default true */
-		applyAction?: boolean;
 		/** @default false */
 		forceDataInvalidation?: boolean;
 		/** @default true */
@@ -103,31 +101,17 @@ export function useSvelteKitForm<
 			lastInitialFormData = page.data[options.name as string];
 			return;
 		}
-		if (options.applyAction !== false && isRecord<ValidatedFormData<E, SendData>>(page.form)) {
-			const validationData = page.form[options.name];
-			if (validationData.isValid) {
-				return;
-			}
-			if (validationData.sendData) {
-				form.formValue = validationData.data;
-			}
-			form.errors = groupErrors(validationData.errors);
+		if (!isRecord(page.form)) {
 			return;
 		}
-		// TODO: Clarify conditions for the code below.
-		//       What will happen when we have multiple forms on the same page?
-		const nextInitialData = page.data[options.name as string] as
-			| InitialFormData<V, E, SendSchema>
-			| undefined;
-		// TODO: Clarify what happens when one of several forms has been updated.
-		//       Is referential equality ok here?
-		if (!nextInitialData || nextInitialData === lastInitialFormData) {
+		const validationData = page.form[options.name] as ValidatedFormData<E, SendData> | undefined;
+		if (!validationData) {
 			return;
 		}
-		if (options.forceDataInvalidation) {
-			form.value = nextInitialData.initialValue;
-			form.errors = groupErrors(nextInitialData.initialErrors);
+		if (validationData.sendData) {
+			form.formValue = validationData.data;
 		}
+		form.errors = groupErrors(validationData.errors);
 	});
 	onDestroy(unsubscribe);
 
