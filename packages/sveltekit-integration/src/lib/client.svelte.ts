@@ -1,12 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { ActionResult } from '@sveltejs/kit';
-import { MutationOptions, useMutation } from '@sjsf/form/use-mutation.svelte';
+import { type MutationOptions, useMutation } from '@sjsf/form/use-mutation.svelte';
 import { DEV } from 'esm-env';
-import type { FormState } from '@sjsf/form';
+import type { Form, FormState, SchemaValue } from '@sjsf/form';
 
 import { applyAction, deserialize } from '$app/forms';
 import { invalidateAll } from '$app/navigation';
 
-const JSON_CHUNKS_KEY = '__sjsf_sveltekit_json_chunks';
+import { type InitialFormData, JSON_CHUNKS_KEY, type ValidatedFormData } from './model';
+import { page } from '$app/stores';
+import type { AnyKey } from '@sjsf/form/lib/types';
 
 function capitalize<T extends string>(str: T): Capitalize<T> {
 	return (str.charAt(0).toUpperCase() + str.slice(1)) as Capitalize<T>;
@@ -150,4 +153,49 @@ export function useSvelteKit<T, E>(input: SvelteKitOptions<T, ActionResult, E>) 
 	};
 
 	return useMutation(options);
+}
+
+export type FormNameFromActionDataBranch<ActionData> = keyof {
+	[K in keyof ActionData]: ActionData[K] extends ValidatedFormData<any> ? K : never;
+};
+
+export type FormNameFromActionDataUnion<ActionData> = ActionData extends any
+	? FormNameFromActionDataBranch<ActionData>
+	: never;
+
+export type ValidatorErrorFromActionDataBranch<ActionData, FormName extends keyof ActionData> =
+	ActionData[FormName] extends ValidatedFormData<infer E> ? E : never;
+
+export type ValidatorErrorFromActionDataUnion<
+	ActionData,
+	FormName extends keyof ActionData
+> = ActionData extends any ? ValidatorErrorFromActionDataBranch<ActionData, FormName> : never;
+
+export type FormValueFromPageData<PageData, FormName extends AnyKey, E, D> = PageData extends {
+	[N in FormName]: InitialFormData<infer T, E, any>;
+}
+	? T
+	: D;
+
+export type SvelteKitFormState<E, PageData, FormName extends AnyKey, T> = E extends never
+	? never
+	: FormState<FormValueFromPageData<PageData, FormName, E, T>, E>;
+
+export function useSvelteKitForm<
+	ActionData,
+	FormName extends FormNameFromActionDataUnion<ActionData>,
+	PageData = unknown,
+	T = SchemaValue
+>(
+	formName: FormName
+): SvelteKitFormState<
+	ValidatorErrorFromActionDataUnion<ActionData, FormName>,
+	PageData,
+	FormName,
+	T
+> {
+	let initializedForm;
+	const unsubscribe = page.subscribe((page) => {});
+
+	return {} as any;
 }

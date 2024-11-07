@@ -831,7 +831,7 @@ importers:
   packages/sveltekit-integration:
     dependencies:
       esm-env:
-        specifier: ^1.1.4
+        specifier: ^1.0.0
         version: 1.1.4
     devDependencies:
       '@playwright/test':
@@ -845,16 +845,16 @@ importers:
         version: link:../form
       '@sveltejs/adapter-static':
         specifier: 'catalog:'
-        version: 3.0.5(@sveltejs/kit@2.7.3(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.9)(vite@5.4.10(@types/node@22.7.5)))(svelte@5.1.9)(vite@5.4.10(@types/node@22.7.5)))
+        version: 3.0.6(@sveltejs/kit@2.7.7(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.11)(vite@5.4.10(@types/node@22.7.5)))(svelte@5.1.11)(vite@5.4.10(@types/node@22.7.5)))
       '@sveltejs/kit':
         specifier: 'catalog:'
-        version: 2.7.3(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.9)(vite@5.4.10(@types/node@22.7.5)))(svelte@5.1.9)(vite@5.4.10(@types/node@22.7.5))
+        version: 2.7.7(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.11)(vite@5.4.10(@types/node@22.7.5)))(svelte@5.1.11)(vite@5.4.10(@types/node@22.7.5))
       '@sveltejs/package':
         specifier: 'catalog:'
-        version: 2.3.7(svelte@5.1.9)(typescript@5.6.3)
+        version: 2.3.7(svelte@5.1.11)(typescript@5.6.3)
       '@sveltejs/vite-plugin-svelte':
         specifier: ^4.0.0
-        version: 4.0.0(svelte@5.1.9)(vite@5.4.10(@types/node@22.7.5))
+        version: 4.0.0(svelte@5.1.11)(vite@5.4.10(@types/node@22.7.5))
       '@types/eslint':
         specifier: 'catalog:'
         version: 9.6.1
@@ -866,16 +866,16 @@ importers:
         version: 10.4.20(postcss@8.4.47)
       eslint:
         specifier: 'catalog:'
-        version: 9.13.0(jiti@1.21.6)
+        version: 9.14.0(jiti@1.21.6)
       eslint-config-prettier:
         specifier: 'catalog:'
-        version: 9.1.0(eslint@9.13.0(jiti@1.21.6))
+        version: 9.1.0(eslint@9.14.0(jiti@1.21.6))
       eslint-plugin-svelte:
         specifier: 'catalog:'
-        version: 2.46.0(eslint@9.13.0(jiti@1.21.6))(svelte@5.1.9)
+        version: 2.46.0(eslint@9.14.0(jiti@1.21.6))(svelte@5.1.11)
       globals:
         specifier: 'catalog:'
-        version: 15.11.0
+        version: 15.12.0
       postcss:
         specifier: 'catalog:'
         version: 8.4.47
@@ -884,13 +884,13 @@ importers:
         version: 3.3.3
       prettier-plugin-svelte:
         specifier: 'catalog:'
-        version: 3.2.7(prettier@3.3.3)(svelte@5.1.9)
+        version: 3.2.7(prettier@3.3.3)(svelte@5.1.11)
       svelte:
         specifier: 'catalog:'
-        version: 5.1.9
+        version: 5.1.11
       svelte-check:
         specifier: 'catalog:'
-        version: 4.0.5(svelte@5.1.9)(typescript@5.6.3)
+        version: 4.0.5(picomatch@4.0.2)(svelte@5.1.11)(typescript@5.6.3)
       tailwindcss:
         specifier: 'catalog:'
         version: 3.4.14
@@ -899,13 +899,13 @@ importers:
         version: link:../testing
       typescript-eslint:
         specifier: 'catalog:'
-        version: 8.11.0(eslint@9.13.0(jiti@1.21.6))(typescript@5.6.3)
+        version: 8.13.0(eslint@9.14.0(jiti@1.21.6))(typescript@5.6.3)
       vite:
         specifier: 'catalog:'
         version: 5.4.10(@types/node@22.7.5)
       vitest:
         specifier: 'catalog:'
-        version: 2.1.2(@types/node@22.7.5)
+        version: 2.1.4(@types/node@22.7.5)
 
   packages/testing:
     dependencies:
