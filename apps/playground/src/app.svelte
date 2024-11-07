@@ -15,6 +15,7 @@
   import OpenBook from "./open-book.svelte";
   import ThemePicker from "./theme-picker.svelte";
   import Editor from './editor.svelte';
+  import Debug from './debug.svelte';
 
   import { samples } from "./samples";
 
@@ -234,6 +235,9 @@
         style="background-color: transparent; display: flex; flex-direction: column; gap: 1rem; padding: 0.3rem;"
         novalidate={!html5Validation || undefined}
       />
+      {#if location.hostname === "localhost"}
+        <Debug />
+      {/if}
     </ShadowHost>
   </div>
 </div>
