@@ -47,8 +47,8 @@
 			"svelte": "./dist/client/index.js"
 		},
 		"./server": {
-			"types": "./dist/server.d.ts",
-			"svelte": "./dist/server.js"
+			"types": "./dist/server/index.d.ts",
+			"svelte": "./dist/server/index.js"
 		}
 	},
 	"peerDependencies": {
@@ -83,6 +83,6 @@
 		"vite": "catalog:",
 		"vitest": "catalog:"
 	},
-	"svelte": "./dist/index.js",
-	"types": "./dist/index.d.ts"
+	"svelte": "./dist/model.js",
+	"types": "./dist/model.d.ts"
 }
