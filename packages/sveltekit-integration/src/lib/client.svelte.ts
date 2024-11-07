@@ -82,7 +82,7 @@ export type UseSvelteKitOptions<FormName, V, E, SendSchema extends boolean> = Om
 export function useSvelteKitForm<
 	ActionData,
 	PageData,
-	FormName extends FormNameFromActionDataUnion<ActionData>,
+	FormName extends FormNameFromActionDataUnion<ActionData> = FormNameFromActionDataUnion<ActionData>,
 	FallbackValue = SchemaValue,
 	// Local
 	VFD = ValidatedFormDataFromActionDataUnion<ActionData, FormName>,
@@ -144,7 +144,7 @@ export function useSvelteKitForm<
 			const enctype = getAttribute('enctype');
 
 			if (DEV) {
-				if (method !== 'POST') {
+				if (method !== 'post') {
 					throw new Error('use:enhance can only be used on <form> fields with method="POST"');
 				}
 				const formData = new FormData(form);

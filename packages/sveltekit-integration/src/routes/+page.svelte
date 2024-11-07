@@ -4,23 +4,27 @@
 	import { theme } from '@sjsf/form/basic-theme';
 	import { translation } from '@sjsf/form/translations/en';
 
-	import { useSvelteKitForm } from '$lib/client';
+	import { useSvelteKitForm } from '$lib/client.svelte';
 
 	import type { PageData, ActionData } from './$types';
 
-	const { form } = useSvelteKitForm<ActionData, PageData, 'form2'>({
+	const { form, enhance } = useSvelteKitForm<ActionData, PageData>({
 		...theme,
-		name: 'form2',
+		name: 'form',
 		validator: createValidator(),
-		translation
+		translation,
+		onSuccess: console.log,
+		onFailure: console.warn,
 	});
 </script>
 
 <article>
-	<header>
-		<h1>New Contact</h1>
-	</header>
-	<form method="POST" style="display: flex; flex-direction: column; gap: 1rem">
+	<form
+		method="POST"
+		use:enhance
+		novalidate
+		style="display: flex; flex-direction: column; gap: 1rem"
+	>
 		<FormContent bind:value={form.formValue} />
 		<button type="submit" style="padding: 0.5rem;">Submit</button>
 	</form>

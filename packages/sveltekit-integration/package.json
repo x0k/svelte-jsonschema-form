@@ -39,12 +39,16 @@
 	},
 	"exports": {
 		".": {
-			"types": "./dist/index.d.ts",
-			"svelte": "./dist/index.js"
+			"types": "./dist/model.d.ts",
+			"svelte": "./dist/model.js"
 		},
 		"./client": {
-			"types": "./dist/client/index.d.ts",
-			"svelte": "./dist/client/index.js"
+			"types": "./dist/client.svelte.d.ts",
+			"svelte": "./dist/client.svelte.js"
+		},
+		"./server": {
+			"types": "./dist/server.d.ts",
+			"svelte": "./dist/server.js"
 		}
 	},
 	"peerDependencies": {
