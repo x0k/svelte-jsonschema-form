@@ -6,7 +6,7 @@ import {
 	type SchemaValue
 } from '@sjsf/form';
 
-import { JSON_CHUNKS_KEY, type InitialFormData, type ValidatedFormData } from './model';
+import { JSON_CHUNKS_KEY, type InitialFormData, type ValidatedFormData } from '../model';
 
 export interface InitFormOptions<T, E, SendSchema extends boolean> {
 	schema: Schema;

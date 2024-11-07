@@ -129,6 +129,8 @@ sv/:
     pnpm run build
   d:
     pnpm run dev
+  t:
+    pnpm run test $@
   popd
 
 p:
