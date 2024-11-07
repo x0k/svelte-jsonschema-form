@@ -48,21 +48,27 @@ export function parseFormData(formData: FormData): SchemaValue | undefined {
 	return undefined;
 }
 
-export interface ValidateFormOptions<E> {
+export interface ValidateFormOptions<E, SendData extends boolean> {
 	data: SchemaValue | undefined;
 	schema: Schema;
 	validator: FormValidator<E>;
+	/** @default false */
+	sendData?: SendData;
 }
 
-export function validateForm<E>({
+export function validateForm<E, SendData extends boolean = false>({
 	schema,
 	validator,
-	data
-}: ValidateFormOptions<E>): ValidatedFormData<E> {
+	data,
+	sendData
+}: ValidateFormOptions<E, SendData>): ValidatedFormData<E, SendData> {
 	const errors = validator.validateFormData(schema, data);
 	return {
 		isValid: errors.length === 0,
-		data,
+		sendData,
+		data: (sendData ? data : undefined) as SendData extends true
+			? SchemaValue | undefined
+			: undefined,
 		errors
 	};
 }

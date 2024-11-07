@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { FormContent, useForm } from '@sjsf/form';
+	import { FormContent } from '@sjsf/form';
 	import { createValidator } from '@sjsf/ajv8-validator';
 	import { theme } from '@sjsf/form/basic-theme';
 	import { translation } from '@sjsf/form/translations/en';
@@ -8,23 +8,17 @@
 	import { useSvelteKitForm } from '$lib/client.svelte';
 
 	import type { PageData, ActionData } from './$types';
-	import { schema } from './schema';
 
-	const { data, form: f }: { data: PageData; form: ActionData } = $props();
-
-	const form2 = useSvelteKitForm<ActionData, "form", PageData>("form")
-
-	const unsub = page.subscribe((page) => console.log('Page update', page))
-	console.log("after sub")
-	$effect(() => unsub);
-
-	const form = useForm({
-		...data.form,
+	const form = useSvelteKitForm<ActionData, PageData, 'form2'>({
 		...theme,
-		schema,
+		name: 'form2',
 		validator: createValidator(),
 		translation
 	});
+
+	const unsub = page.subscribe((page) => console.log('Page update', page));
+	console.log('after sub');
+	$effect(() => unsub);
 </script>
 
 <article>
@@ -35,5 +29,4 @@
 		<FormContent bind:value={form.formValue} />
 		<button type="submit" style="padding: 0.5rem;">Submit</button>
 	</form>
-	<pre>{JSON.stringify(data, null, 2)}</pre>
 </article>

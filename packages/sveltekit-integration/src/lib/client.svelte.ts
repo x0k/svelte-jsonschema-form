@@ -1,15 +1,24 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { ActionResult } from '@sveltejs/kit';
-import { type MutationOptions, useMutation } from '@sjsf/form/use-mutation.svelte';
 import { DEV } from 'esm-env';
-import type { Form, FormState, SchemaValue } from '@sjsf/form';
+import type { AnyKey } from '@sjsf/form/lib/types';
+import {
+	groupErrors,
+	useForm,
+	type FormState,
+	type Schema,
+	type SchemaValue,
+	type UseFormOptions
+} from '@sjsf/form';
+import { type MutationOptions, useMutation } from '@sjsf/form/use-mutation.svelte';
 
-import { applyAction, deserialize } from '$app/forms';
+import { page } from '$app/stores';
 import { invalidateAll } from '$app/navigation';
+import { applyAction, deserialize } from '$app/forms';
 
 import { type InitialFormData, JSON_CHUNKS_KEY, type ValidatedFormData } from './model';
-import { page } from '$app/stores';
-import type { AnyKey } from '@sjsf/form/lib/types';
+import { onDestroy } from 'svelte';
+import { isRecord } from '@sjsf/form/lib/object';
 
 function capitalize<T extends string>(str: T): Capitalize<T> {
 	return (str.charAt(0).toUpperCase() + str.slice(1)) as Capitalize<T>;
@@ -155,47 +164,106 @@ export function useSvelteKit<T, E>(input: SvelteKitOptions<T, ActionResult, E>) 
 	return useMutation(options);
 }
 
+export type ValidatedFormDataFromActionDataBranch<ActionData, FormName extends keyof ActionData> =
+	ActionData[FormName] extends ValidatedFormData<any, any> ? ActionData[FormName] : never;
+
+export type ValidatedFormDataFromActionDataUnion<
+	ActionData,
+	FormName extends keyof ActionData
+> = ActionData extends any ? ValidatedFormDataFromActionDataBranch<ActionData, FormName> : never;
+
 export type FormNameFromActionDataBranch<ActionData> = keyof {
-	[K in keyof ActionData]: ActionData[K] extends ValidatedFormData<any> ? K : never;
+	[K in keyof ActionData]: ActionData[K] extends ValidatedFormData<any, any> ? K : never;
 };
 
 export type FormNameFromActionDataUnion<ActionData> = ActionData extends any
 	? FormNameFromActionDataBranch<ActionData>
 	: never;
 
-export type ValidatorErrorFromActionDataBranch<ActionData, FormName extends keyof ActionData> =
-	ActionData[FormName] extends ValidatedFormData<infer E> ? E : never;
+export type ValidatorErrorFromValidatedFormData<VFD> =
+	VFD extends ValidatedFormData<infer E, any> ? E : never;
 
-export type ValidatorErrorFromActionDataUnion<
-	ActionData,
-	FormName extends keyof ActionData
-> = ActionData extends any ? ValidatorErrorFromActionDataBranch<ActionData, FormName> : never;
+export type InitialFromDataFromPageData<PageData, FormName extends AnyKey> = {
+	[K in keyof PageData & FormName]: PageData[K] extends InitialFormData<any, any, any>
+		? PageData[K]
+		: never;
+}[keyof PageData & FormName];
 
-export type FormValueFromPageData<PageData, FormName extends AnyKey, E, D> = PageData extends {
-	[N in FormName]: InitialFormData<infer T, E, any>;
-}
-	? T
-	: D;
+export type FormValueFromInitialFormData<IFD, E, FallbackValue> =
+	IFD extends InitialFormData<infer T, E, any> ? T : FallbackValue;
 
-export type SvelteKitFormState<E, PageData, FormName extends AnyKey, T> = E extends never
-	? never
-	: FormState<FormValueFromPageData<PageData, FormName, E, T>, E>;
+export type SvelteKitFormState<V, E> = E extends never ? never : FormState<V, E>;
+
+export type SendFormFromInitialFormData<IFD, V, E> =
+	IFD extends InitialFormData<V, E, infer SendSchema> ? SendSchema : false;
+
+export type SendDataFromValidatedFormData<VFD, E> =
+	VFD extends ValidatedFormData<E, infer SendData> ? SendData : false;
+
+export type UseSvelteKitOptions<FormName, V, E, SendSchema extends boolean> = Omit<
+	UseFormOptions<V, E>,
+	SendSchema extends true ? 'schema' : never
+> & {
+	name: FormName;
+	/** @default true */
+	applyAction?: boolean;
+	/** @default false */
+	forceDataInvalidation?: boolean;
+	/** @default true */
+	resetOnUpdate?: boolean;
+} & (SendSchema extends true
+		? {
+				schema?: Schema;
+			}
+		: { schema: Schema });
 
 export function useSvelteKitForm<
 	ActionData,
-	FormName extends FormNameFromActionDataUnion<ActionData>,
-	PageData = unknown,
-	T = SchemaValue
->(
-	formName: FormName
-): SvelteKitFormState<
-	ValidatorErrorFromActionDataUnion<ActionData, FormName>,
 	PageData,
-	FormName,
-	T
-> {
-	let initializedForm;
-	const unsubscribe = page.subscribe((page) => {});
-
-	return {} as any;
+	FormName extends FormNameFromActionDataUnion<ActionData>,
+	FallbackValue = SchemaValue,
+	// Local
+	VFD = ValidatedFormDataFromActionDataUnion<ActionData, FormName>,
+	E = ValidatorErrorFromValidatedFormData<VFD>,
+	IFD = InitialFromDataFromPageData<PageData, FormName>,
+	V = FormValueFromInitialFormData<IFD, E, FallbackValue>,
+	SendSchema extends boolean = SendFormFromInitialFormData<IFD, V, E>,
+	SendData extends boolean = SendDataFromValidatedFormData<VFD, E>
+>(options: UseSvelteKitOptions<FormName, V, E, SendSchema>): SvelteKitFormState<V, E> {
+	let lastInitialFormData: InitialFormData<V, E, SendSchema> | undefined;
+	let initialized = false;
+	const unsubscribe = page.subscribe((page) => {
+		if (!initialized) {
+			initialized = true;
+			lastInitialFormData = page.data[options.name as string];
+			return;
+		}
+		if (options.applyAction !== false && isRecord<ValidatedFormData<E, SendData>>(page.form)) {
+			const validationData = page.form[options.name];
+			if (validationData.isValid) {
+				return;
+			}
+			if (validationData.sendData) {
+				form.formValue = validationData.data;
+			}
+			form.errors = groupErrors(validationData.errors);
+		} else {
+			const nextInitialData = page.data[options.name as string] as
+				| InitialFormData<V, E, SendSchema>
+				| undefined;
+			if (!nextInitialData || nextInitialData === lastInitialFormData) {
+				return;
+			}
+			if (options.forceDataInvalidation) {
+				form.value = nextInitialData.initialValue;
+				form.errors = groupErrors(nextInitialData.initialErrors);
+			}
+			if (options.resetOnUpdate !== false) {
+				form.reset();
+			}
+		}
+	});
+	onDestroy(unsubscribe);
+	const form = useForm<V, E>(Object.setPrototypeOf(options, lastInitialFormData ?? null));
+	return form as unknown as SvelteKitFormState<V, E>;
 }

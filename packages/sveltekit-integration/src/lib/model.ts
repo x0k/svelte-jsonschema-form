@@ -8,8 +8,9 @@ export interface InitialFormData<T, E, SendSchema extends boolean> {
 	schema: SendSchema extends true ? Schema : undefined;
 }
 
-export interface ValidatedFormData<E> {
-	isValid: boolean
-	data: SchemaValue | undefined
-	errors: ValidationError<E>[]
+export interface ValidatedFormData<E, SendData extends boolean> {
+	isValid: boolean;
+	sendData?: SendData;
+	data: SendData extends true ? SchemaValue | undefined : undefined;
+	errors: ValidationError<E>[];
 }
