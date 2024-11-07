@@ -28,27 +28,27 @@ interface LeaveEvent extends AbstractEvent<EventType.Leave> {
 
 type Event = EnterEvent | LeaveEvent;
 
-export interface SchemaValueParserOptions<T> {
+export interface SchemaValueParserOptions {
 	schema: Schema;
-	entries: Entry<T>[];
+	entries: Entries<string>;
 	idPrefix: string;
 	idSeparator: string;
 	idPseudoSeparator: string;
-	convertValue: (schema: SchemaDefinition, value: T) => SchemaValue | undefined;
+	convertValue: (schema: SchemaDefinition, entries: Entries<string>) => SchemaValue | undefined;
 }
 
-export function parseSchemaValue<T>({
+export function parseSchemaValue({
 	schema,
 	entries,
 	idPrefix,
 	convertValue
-}: SchemaValueParserOptions<T>): SchemaValue | undefined {
-  if (entries.length === 0) {
-    return undefined;
-  }
+}: SchemaValueParserOptions): SchemaValue | undefined {
+	if (entries.length === 0) {
+		return undefined;
+	}
 	let keyFilter = '';
 	const lengthsStack: number[] = [];
-	const entriesStack: Entries<T>[] = [entries];
+	const entriesStack: Entries<string>[] = [entries];
 	let result: SchemaValue | undefined = undefined;
 
 	const visitor: SchemaDefinitionVisitor<Event> = {
@@ -79,8 +79,8 @@ export function parseSchemaValue<T>({
 	function pushEntries() {
 		const last = entriesStack[entriesStack.length - 1];
 		const regExp = new RegExp(keyFilter);
-		const right: Entries<T> = [];
-		const left: Entries<T> = [];
+		const right: Entries<string> = [];
+		const left: Entries<string> = [];
 		for (const entry of last) {
 			if (regExp.test(entry[0])) {
 				right.push(entry);
@@ -112,11 +112,7 @@ export function parseSchemaValue<T>({
 				if (last.length === 0) {
 					continue;
 				}
-				if (last.length > 1) {
-					throw new Error(`Too many entries for ${keyFilter}`);
-				}
-				const [, value] = last[0];
-				result = convertValue(event.schema, value);
+				result = convertValue(event.schema, last);
 				popEntries();
 				popFilterComponent();
 				continue;
