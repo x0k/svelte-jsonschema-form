@@ -1,8 +1,11 @@
 import {
+	getSimpleSchemaType,
 	traverseSchemaDefinition,
+	type SchemaArrayValue,
 	type SchemaDefinition,
 	type SchemaDefinitionVisitor,
-	type SchemaTraverserContextType
+	type SchemaObjectValue,
+	type SchemaTraverserContext,
 } from '@sjsf/form/core';
 import type { Schema, SchemaValue } from '@sjsf/form';
 
@@ -19,10 +22,12 @@ interface AbstractEvent<T extends EventType> {
 }
 
 interface EnterEvent extends AbstractEvent<EventType.Enter> {
-	node: SchemaTraverserContextType;
+	ctx: SchemaTraverserContext
+	schema: SchemaDefinition;
 }
 
 interface LeaveEvent extends AbstractEvent<EventType.Leave> {
+	ctx: SchemaTraverserContext
 	schema: SchemaDefinition;
 }
 
@@ -41,6 +46,7 @@ export function parseSchemaValue({
 	schema,
 	entries,
 	idPrefix,
+	idSeparator,
 	convertValue
 }: SchemaValueParserOptions): SchemaValue | undefined {
 	if (entries.length === 0) {
@@ -49,18 +55,21 @@ export function parseSchemaValue({
 	let keyFilter = '';
 	const lengthsStack: number[] = [];
 	const entriesStack: Entries<string>[] = [entries];
-	let result: SchemaValue | undefined = undefined;
+	const valueStack: SchemaArrayValue = [];
+	let result: SchemaValue | undefined;
 
 	const visitor: SchemaDefinitionVisitor<Event> = {
 		*onEnter(node, ctx) {
 			yield {
 				type: EventType.Enter,
-				node: ctx.type
+				ctx,
+				schema: node
 			};
 		},
-		*onLeave(node) {
+		*onLeave(node, ctx) {
 			yield {
 				type: EventType.Leave,
+				ctx,
 				schema: node
 			};
 		}
@@ -78,7 +87,7 @@ export function parseSchemaValue({
 
 	function pushEntries() {
 		const last = entriesStack[entriesStack.length - 1];
-		const regExp = new RegExp(keyFilter);
+		const regExp = new RegExp(keyFilter + "\\b");
 		const right: Entries<string> = [];
 		const left: Entries<string> = [];
 		for (const entry of last) {
@@ -96,23 +105,71 @@ export function parseSchemaValue({
 		entriesStack.pop();
 	}
 
+	function pushValue(schema: SchemaDefinition) {
+		if (typeof schema === "boolean") {
+			valueStack.push(undefined);
+			return
+		}
+		switch(getSimpleSchemaType(schema)) {
+			case "array":
+				valueStack.push([]);
+				break;
+			case "object":
+				valueStack.push({});
+				break;
+			default:
+				valueStack.push(undefined);
+				break;
+		}
+	}
+
+	function popValue(ctx: SchemaTraverserContext) {
+		const value = valueStack.pop();
+		switch (ctx.type) {
+			case "array": {
+				const array = valueStack[valueStack.length - 1] as SchemaArrayValue;
+				array[ctx.index] = value;
+				break;
+			}
+			case "record": {
+				const record = valueStack[valueStack.length - 1] as SchemaObjectValue;
+				record[ctx.property] = value;
+				break;
+			}
+			case "root": {
+				result = value;
+				break;
+			}
+			default:
+				throw new Error(`Handling of "${ctx.type}" context is not implemented`);
+		}
+	}
+
 	for (const event of traverseSchemaDefinition(schema, visitor)) {
 		switch (event.type) {
 			case EventType.Enter: {
-				switch (event.node) {
+				switch (event.ctx.type) {
 					case 'root': {
 						pushFilterComponent(`^${idPrefix}`);
 						pushEntries();
+						pushValue(event.schema);
+						continue;
+					}
+					case "record": {
+						pushFilterComponent(`${idSeparator}${event.ctx.property}`);
+						pushEntries();
+						pushValue(event.schema);
+						continue;
 					}
 				}
 				continue;
 			}
 			case EventType.Leave: {
-				const last = entriesStack[entriesStack.length - 1];
-				if (last.length === 0) {
-					continue;
+				const currentEntries = entriesStack[entriesStack.length - 1];
+				if (currentEntries.length > 0) {;
+					valueStack[valueStack.length - 1] = convertValue(event.schema, currentEntries);;
 				}
-				result = convertValue(event.schema, last);
+				popValue(event.ctx);
 				popEntries();
 				popFilterComponent();
 				continue;
