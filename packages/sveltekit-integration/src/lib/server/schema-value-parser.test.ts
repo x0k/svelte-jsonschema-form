@@ -277,4 +277,105 @@ describe('parseSchemaValue', () => {
 			}
 		});
 	});
+	it('Should parse schema with alternatives', () => {
+		const schema: Schema = {
+			definitions: {
+				Color: {
+					title: 'Color',
+					type: 'string',
+					anyOf: [
+						{
+							type: 'string',
+							enum: ['#ff0000'],
+							title: 'Red'
+						},
+						{
+							type: 'string',
+							enum: ['#00ff00'],
+							title: 'Green'
+						},
+						{
+							type: 'string',
+							enum: ['#0000ff'],
+							title: 'Blue'
+						}
+					]
+				},
+				Toggle: {
+					title: 'Toggle',
+					type: 'boolean',
+					oneOf: [
+						{
+							title: 'Enable',
+							const: true
+						},
+						{
+							title: 'Disable',
+							const: false
+						}
+					]
+				}
+			},
+			title: 'Image editor',
+			type: 'object',
+			required: ['currentColor', 'colorMask', 'blendMode'],
+			properties: {
+				currentColor: {
+					$ref: '#/definitions/Color',
+					title: 'Brush color'
+				},
+				colorMask: {
+					type: 'array',
+					uniqueItems: true,
+					items: {
+						$ref: '#/definitions/Color'
+					},
+					title: 'Color mask'
+				},
+				toggleMask: {
+					title: 'Apply color mask',
+					$ref: '#/definitions/Toggle'
+				},
+				colorPalette: {
+					type: 'array',
+					title: 'Color palette',
+					items: {
+						$ref: '#/definitions/Color'
+					}
+				},
+				blendMode: {
+					title: 'Blend mode',
+					type: 'string',
+					oneOf: [
+						{
+							const: 'screen',
+							title: 'Screen'
+						},
+						{
+							const: 'multiply',
+							title: 'Multiply'
+						},
+						{
+							const: 'overlay',
+							title: 'Overlay'
+						}
+					]
+				}
+			}
+		};
+		const entries: Entries<string> = [
+			['root.currentColor', '1'],
+			['root.colorMask', '2'],
+			['root.toggleMask', '0'],
+			['root.colorPalette.0', '0'],
+			['root.blendMode', '0']
+		];
+		expect(parseSchemaValue({ ...defaultOptions, schema, entries })).toEqual({
+			colorMask: ['2'],
+			toggleMask: '0',
+			colorPalette: ['0'],
+			blendMode: '0',
+			currentColor: '1'
+		});
+	});
 });

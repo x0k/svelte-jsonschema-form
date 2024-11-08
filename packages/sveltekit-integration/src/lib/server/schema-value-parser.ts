@@ -184,12 +184,12 @@ export function parseSchemaValue({
 					if (isSchema(message.schema)) {
 						const ref = message.schema.$ref;
 						if (ref !== undefined) {
-							depth--;
-							skipNode(generator);
 							if (entriesStack[entriesStack.length - 1].length > 0) {
 								const schemaDef = resolveRef(ref, rootSchema);
 								result = parse(traverseSchemaDefinition(schemaDef, visitor, message.ctx), depth);
 							}
+							depth--;
+							skipNode(generator);
 							continue;
 						}
 					}
@@ -231,6 +231,20 @@ export function parseSchemaValue({
 									const values: SchemaArrayValue = [];
 									while (entriesStack[entriesStack.length - 1].length > 0) {
 										pushFilterAndEntries(`${idSeparator}${i++}`);
+										// Special case: array items have no indexes, but they have the same names
+										if (i === 1 && entriesStack[entriesStack.length - 1].length === 0) {
+											popEntriesAndFilter();
+											const arrayEntries = entriesStack[entriesStack.length - 1];
+											for (let j = 0; j < arrayEntries.length; j++) {
+												entriesStack.push([arrayEntries[j]])
+												values.push(
+													parse(traverseSchemaDefinition(message.schema, visitor, message.ctx))
+												)
+												entriesStack.pop();
+											}
+											arrayEntries.length = 0;
+											break;
+										}
 										values.push(
 											parse(traverseSchemaDefinition(message.schema, visitor, message.ctx))
 										);
@@ -285,7 +299,16 @@ export function parseSchemaValue({
 							}
 						}
 						case 'array':
-							continue;
+							switch (message.ctx.key) {
+								case 'allOf':
+								case 'anyOf':
+								case 'oneOf':
+									continue;
+								case 'items':
+									throw todo('Enter: Unimplemented array context', message.ctx);
+								default:
+									throw unreachable('Enter: Unknown array context', message.ctx);
+							}
 						default:
 							throw unreachable('Enter: Unknown context type', message.ctx);
 					}
@@ -301,9 +324,12 @@ export function parseSchemaValue({
 							result = popValue(message.ctx);
 							continue;
 						}
-						case 'root':
-						case 'record':
 						case 'array': {
+							result = valueStack[valueStack.length - 1];
+							continue;
+						}
+						case 'root':
+						case 'record': {
 							calculateValueOnStack(message.schema);
 							result = popValue(message.ctx);
 							popEntriesAndFilter();
