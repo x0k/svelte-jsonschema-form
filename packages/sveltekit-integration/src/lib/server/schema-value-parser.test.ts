@@ -185,4 +185,96 @@ describe('parseSchemaValue', () => {
 			newKey: 'foo'
 		});
 	});
+	it('Should resolve references', () => {
+		const schema: Schema = {
+			definitions: {
+				address: {
+					type: 'object',
+					properties: {
+						street_address: {
+							type: 'string'
+						},
+						city: {
+							type: 'string'
+						},
+						state: {
+							type: 'string'
+						}
+					},
+					required: ['street_address', 'city', 'state']
+				},
+				node: {
+					type: 'object',
+					properties: {
+						name: {
+							type: 'string'
+						},
+						children: {
+							type: 'array',
+							items: {
+								$ref: '#/definitions/node'
+							}
+						}
+					}
+				}
+			},
+			type: 'object',
+			properties: {
+				billing_address: {
+					title: 'Billing address',
+					$ref: '#/definitions/address'
+				},
+				shipping_address: {
+					title: 'Shipping address',
+					$ref: '#/definitions/address'
+				},
+				tree: {
+					title: 'Recursive references',
+					$ref: '#/definitions/node'
+				}
+			}
+		};
+		const entries: Entries<string> = [
+			['root.shipping_address.street_address', '221B, Baker Street'],
+			['root.shipping_address.city', 'London'],
+			['root.shipping_address.state', 'N/A'],
+			['root.billing_address.street_address', '21, Jump Street'],
+			['root.billing_address.city', 'Babel'],
+			['root.billing_address.state', 'Neverland'],
+			['root.tree.name', 'root'],
+			['root.tree.children.0.name', 'leaf'],
+			['root.tree.children.0.children.0.name', 'bar'],
+			['root.tree.children.1.name', 'foo']
+		];
+		expect(parseSchemaValue({ ...defaultOptions, schema, entries })).toEqual({
+			tree: {
+				children: [
+					{
+						children: [
+							{
+								children: [],
+								name: 'bar'
+							}
+						],
+						name: 'leaf'
+					},
+					{
+						children: [],
+						name: 'foo'
+					}
+				],
+				name: 'root'
+			},
+			billing_address: {
+				street_address: '21, Jump Street',
+				city: 'Babel',
+				state: 'Neverland'
+			},
+			shipping_address: {
+				street_address: '221B, Baker Street',
+				city: 'London',
+				state: 'N/A'
+			}
+		});
+	});
 });

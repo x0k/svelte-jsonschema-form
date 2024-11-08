@@ -1,3 +1,4 @@
+import jsonpointer from 'jsonpointer';
 import {
 	getSimpleSchemaType,
 	isSchema,
@@ -157,7 +158,7 @@ export function parseSchemaValue({
 			case 'record': {
 				const record = valueStack[valueStack.length - 1] as SchemaObjectValue;
 				record[ctx.property] = value;
-				break;
+				return record;
 			}
 			case 'array':
 				throw unexpected(`PopValue: Unexpected context`, ctx);
@@ -173,14 +174,25 @@ export function parseSchemaValue({
 		}
 	}
 
-	function parse(generator: Generator<Message>) {
+	function parse(generator: Generator<Message>, depth = 0) {
 		let result: SchemaValue | undefined;
-		let depth = 0;
 		for (let it = generator.next(); !it.done; it = generator.next()) {
 			const message = it.value;
 			switch (message.type) {
 				case MessageType.Enter: {
 					depth++;
+					if (isSchema(message.schema)) {
+						const ref = message.schema.$ref;
+						if (ref !== undefined) {
+							depth--;
+							skipNode(generator);
+							if (entriesStack[entriesStack.length - 1].length > 0) {
+								const schemaDef = resolveRef(ref, rootSchema);
+								result = parse(traverseSchemaDefinition(schemaDef, visitor, message.ctx), depth);
+							}
+							continue;
+						}
+					}
 					switch (message.ctx.type) {
 						case 'root': {
 							pushFilterAndEntries(`^${idPrefix}`);
@@ -188,9 +200,23 @@ export function parseSchemaValue({
 							continue;
 						}
 						case 'record': {
-							pushFilterAndEntries(`${idSeparator}${message.ctx.property}`);
-							pushValue(message.schema);
-							continue;
+							switch (message.ctx.key) {
+								case 'properties': {
+									pushFilterAndEntries(`${idSeparator}${message.ctx.property}`);
+									pushValue(message.schema);
+									continue;
+								}
+								case '$defs':
+								case 'definitions':
+									depth--;
+									skipNode(generator);
+									continue;
+								case 'dependencies':
+								case 'patternProperties':
+									throw todo(`Enter: Unimplemented record context`, message.ctx);
+								default:
+									throw unreachable(`Enter: Unexpected record context`, message.ctx);
+							}
 						}
 						case 'sub': {
 							if (depth === 1) {
@@ -295,6 +321,20 @@ export function parseSchemaValue({
 		return result;
 	}
 	return parse(traverseSchemaDefinition(rootSchema, visitor));
+}
+
+function resolveRef(ref: string, rootSchema: Schema) {
+	if (!ref.startsWith('#')) {
+		throw new Error(`Invalid reference: ${ref}, must start with #`);
+	}
+	const schemaDef: SchemaDefinition | undefined = jsonpointer.get(
+		rootSchema,
+		decodeURIComponent(ref.substring(1))
+	);
+	if (schemaDef === undefined) {
+		throw new Error(`Could not find a definition for ${ref}.`);
+	}
+	return schemaDef;
 }
 
 // TODO: `$ref`'s resolution, maybe `oneOf`, `anyOf`, `allOf` ???
