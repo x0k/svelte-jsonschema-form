@@ -75,7 +75,7 @@ export function parseSchemaValue({
 		}
 	};
 
-	function pushFilterComponent(cmp: string) {
+	function pushFilter(cmp: string) {
 		// Filter
 		keyFilter += cmp;
 		lengthsStack.push(cmp.length);
@@ -95,7 +95,7 @@ export function parseSchemaValue({
 		entriesStack.push(right);
 	}
 
-	function popFilterComponent() {
+	function popFilter() {
 		// Entries
 		entriesStack.pop();
 		// Filter
@@ -152,12 +152,12 @@ export function parseSchemaValue({
 					depth++;
 					switch (message.ctx.type) {
 						case 'root': {
-							pushFilterComponent(`^${idPrefix}`);
+							pushFilter(`^${idPrefix}`);
 							pushValue(message.schema);
 							continue;
 						}
 						case 'record': {
-							pushFilterComponent(`${idSeparator}${message.ctx.property}`);
+							pushFilter(`${idSeparator}${message.ctx.property}`);
 							pushValue(message.schema);
 							continue;
 						}
@@ -165,21 +165,18 @@ export function parseSchemaValue({
 							if (depth === 1) {
 								pushValue(message.schema);
 							} else {
+								depth--;
+								skipNode(generator);
 								let i = 0;
 								const values: SchemaArrayValue = [];
-								while (true) {
-									pushFilterComponent(`${idSeparator}${i++}`);
-									if (entriesStack[entriesStack.length - 1].length === 0) {
-										break;
-									}
+								while (entriesStack[entriesStack.length - 1].length > 0) {
+									pushFilter(`${idSeparator}${i++}`);
 									values.push(
 										parse(traverseSchemaDefinition(message.schema, visitor, message.ctx))
 									);
-									popFilterComponent();
+									popFilter();
 								}
-								skipNode(generator);
 								valueStack[valueStack.length - 1] = values;
-								popFilterComponent();
 							}
 							continue;
 						}
@@ -201,7 +198,7 @@ export function parseSchemaValue({
 								valueStack[valueStack.length - 1] = convertValue(message.schema, currentEntries);
 							}
 							result = popValue(message.ctx);
-							popFilterComponent();
+							popFilter();
 							continue;
 						}
 					}
