@@ -7,6 +7,7 @@ import {
   SUB_SCHEMAS,
   isSchema,
   type SubSchemasRecordKey,
+  type Schema,
 } from "./schema.js";
 import type { Visitor } from "./traverser.js";
 import type { Path } from "./path.js";
@@ -22,18 +23,21 @@ export interface AbstractSchemaTraverserContext<
 
 export interface ArraySchemaTraverserContext
   extends AbstractSchemaTraverserContext<"array"> {
+  parent: Schema
   key: SubSchemasArrayKey;
   index: number;
 }
 
 export interface RecordSchemaTraverserContext
   extends AbstractSchemaTraverserContext<"record"> {
+  parent: Schema
   key: SubSchemasRecordKey;
   property: string;
 }
 
 export interface SubSchemaTraverserContext
   extends AbstractSchemaTraverserContext<"sub"> {
+  parent: Schema
   key: SubSchemaKey;
 }
 
@@ -68,6 +72,7 @@ export function* traverseSchemaDefinition<R>(
       }
       const c: ArraySchemaTraverserContext = {
         type: "array",
+        parent: schema,
         key,
         index: 0,
         path: ctx.path.concat(key, 0),
@@ -85,6 +90,7 @@ export function* traverseSchemaDefinition<R>(
       }
       const c: RecordSchemaTraverserContext = {
         type: "record",
+        parent: schema,
         key,
         property: "",
         path: ctx.path.concat(key, ""),
@@ -101,6 +107,7 @@ export function* traverseSchemaDefinition<R>(
     }
     const c: SubSchemaTraverserContext = {
       type: "sub",
+      parent: schema,
       key: "additionalItems",
       path: ctx.path.concat(""),
     };

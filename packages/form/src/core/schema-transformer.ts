@@ -64,6 +64,7 @@ export function transformSchemaDefinition<R>(
     }
     const c: ArraySchemaTraverserContext = {
       type: "array",
+      parent: schema,
       key,
       index: 0,
       path: ctx.path.concat(key, 0),
@@ -82,6 +83,7 @@ export function transformSchemaDefinition<R>(
     }
     const c: RecordSchemaTraverserContext = {
       type: "record",
+      parent: schema,
       key,
       property: "",
       path: ctx.path.concat(key, ""),
@@ -99,6 +101,7 @@ export function transformSchemaDefinition<R>(
   }
   const c: SubSchemaTraverserContext = {
     type: "sub",
+    parent: schema,
     key: "items",
     path: ctx.path.concat(""),
   };
