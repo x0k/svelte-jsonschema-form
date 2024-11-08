@@ -5,33 +5,33 @@ import {
 	type SchemaDefinition,
 	type SchemaDefinitionVisitor,
 	type SchemaObjectValue,
-	type SchemaTraverserContext,
+	type SchemaTraverserContext
 } from '@sjsf/form/core';
 import type { Schema, SchemaValue } from '@sjsf/form';
 
 export type Entry<T> = [key: string, value: T];
 export type Entries<T> = Entry<T>[];
 
-enum EventType {
+enum MessageType {
 	Enter,
 	Leave
 }
 
-interface AbstractEvent<T extends EventType> {
+interface AbstractMessage<T extends MessageType> {
 	type: T;
 }
 
-interface EnterEvent extends AbstractEvent<EventType.Enter> {
-	ctx: SchemaTraverserContext
+interface EnterMessage extends AbstractMessage<MessageType.Enter> {
+	ctx: SchemaTraverserContext;
 	schema: SchemaDefinition;
 }
 
-interface LeaveEvent extends AbstractEvent<EventType.Leave> {
-	ctx: SchemaTraverserContext
+interface LeaveMessage extends AbstractMessage<MessageType.Leave> {
+	ctx: SchemaTraverserContext;
 	schema: SchemaDefinition;
 }
 
-type Event = EnterEvent | LeaveEvent;
+type Message = EnterMessage | LeaveMessage;
 
 export interface SchemaValueParserOptions {
 	schema: Schema;
@@ -43,7 +43,7 @@ export interface SchemaValueParserOptions {
 }
 
 export function parseSchemaValue({
-	schema,
+	schema: rootSchema,
 	entries,
 	idPrefix,
 	idSeparator,
@@ -52,23 +52,23 @@ export function parseSchemaValue({
 	if (entries.length === 0) {
 		return undefined;
 	}
+	const BOUNDARY = `($|${escapeRegex(idSeparator)})`;
 	let keyFilter = '';
 	const lengthsStack: number[] = [];
 	const entriesStack: Entries<string>[] = [entries];
 	const valueStack: SchemaArrayValue = [];
-	let result: SchemaValue | undefined;
 
-	const visitor: SchemaDefinitionVisitor<Event> = {
+	const visitor: SchemaDefinitionVisitor<Message> = {
 		*onEnter(node, ctx) {
 			yield {
-				type: EventType.Enter,
+				type: MessageType.Enter,
 				ctx,
 				schema: node
 			};
 		},
 		*onLeave(node, ctx) {
 			yield {
-				type: EventType.Leave,
+				type: MessageType.Leave,
 				ctx,
 				schema: node
 			};
@@ -76,18 +76,12 @@ export function parseSchemaValue({
 	};
 
 	function pushFilterComponent(cmp: string) {
+		// Filter
 		keyFilter += cmp;
 		lengthsStack.push(cmp.length);
-	}
-
-	function popFilterComponent() {
-		const len = lengthsStack.pop()!;
-		keyFilter = keyFilter.slice(0, -len);
-	}
-
-	function pushEntries() {
+		// Entries
 		const last = entriesStack[entriesStack.length - 1];
-		const regExp = new RegExp(keyFilter + "\\b");
+		const regExp = new RegExp(keyFilter + BOUNDARY);
 		const right: Entries<string> = [];
 		const left: Entries<string> = [];
 		for (const entry of last) {
@@ -101,20 +95,24 @@ export function parseSchemaValue({
 		entriesStack.push(right);
 	}
 
-	function popEntries() {
+	function popFilterComponent() {
+		// Entries
 		entriesStack.pop();
+		// Filter
+		const len = lengthsStack.pop()!;
+		keyFilter = keyFilter.slice(0, -len);
 	}
 
 	function pushValue(schema: SchemaDefinition) {
-		if (typeof schema === "boolean") {
+		if (typeof schema === 'boolean') {
 			valueStack.push(undefined);
-			return
+			return;
 		}
-		switch(getSimpleSchemaType(schema)) {
-			case "array":
+		switch (getSimpleSchemaType(schema)) {
+			case 'array':
 				valueStack.push([]);
 				break;
-			case "object":
+			case 'object':
 				valueStack.push({});
 				break;
 			default:
@@ -126,60 +124,118 @@ export function parseSchemaValue({
 	function popValue(ctx: SchemaTraverserContext) {
 		const value = valueStack.pop();
 		switch (ctx.type) {
-			case "array": {
-				const array = valueStack[valueStack.length - 1] as SchemaArrayValue;
-				array[ctx.index] = value;
-				break;
-			}
-			case "record": {
+			case 'record': {
 				const record = valueStack[valueStack.length - 1] as SchemaObjectValue;
 				record[ctx.property] = value;
 				break;
 			}
-			case "root": {
-				result = value;
+			case 'sub': {
+				const array = valueStack[valueStack.length - 1] as SchemaArrayValue;
+				array.push(value);
 				break;
+			}
+			case 'root': {
+				return value;
 			}
 			default:
 				throw new Error(`Handling of "${ctx.type}" context is not implemented`);
 		}
 	}
 
-	for (const event of traverseSchemaDefinition(schema, visitor)) {
-		switch (event.type) {
-			case EventType.Enter: {
-				switch (event.ctx.type) {
-					case 'root': {
-						pushFilterComponent(`^${idPrefix}`);
-						pushEntries();
-						pushValue(event.schema);
-						continue;
+	function parse(generator: Generator<Message>) {
+		let result: SchemaValue | undefined;
+		let depth = 0;
+		for (let it = generator.next(); !it.done; it = generator.next()) {
+			const message = it.value;
+			switch (message.type) {
+				case MessageType.Enter: {
+					depth++;
+					switch (message.ctx.type) {
+						case 'root': {
+							pushFilterComponent(`^${idPrefix}`);
+							pushValue(message.schema);
+							continue;
+						}
+						case 'record': {
+							pushFilterComponent(`${idSeparator}${message.ctx.property}`);
+							pushValue(message.schema);
+							continue;
+						}
+						case 'sub': {
+							if (depth === 1) {
+								pushValue(message.schema);
+							} else {
+								let i = 0;
+								const values: SchemaArrayValue = [];
+								while (true) {
+									pushFilterComponent(`${idSeparator}${i++}`);
+									if (entriesStack[entriesStack.length - 1].length === 0) {
+										break;
+									}
+									values.push(
+										parse(traverseSchemaDefinition(message.schema, visitor, message.ctx))
+									);
+									popFilterComponent();
+								}
+								skipNode(generator);
+								valueStack[valueStack.length - 1] = values;
+								popFilterComponent();
+							}
+							continue;
+						}
 					}
-					case "record": {
-						pushFilterComponent(`${idSeparator}${event.ctx.property}`);
-						pushEntries();
-						pushValue(event.schema);
-						continue;
+					continue;
+				}
+				case MessageType.Leave: {
+					depth--;
+					switch (message.ctx.type) {
+						case 'sub': {
+							if (depth === 0) {
+								result = valueStack.pop();
+							}
+							continue;
+						}
+						default: {
+							const currentEntries = entriesStack[entriesStack.length - 1];
+							if (currentEntries.length > 0) {
+								valueStack[valueStack.length - 1] = convertValue(message.schema, currentEntries);
+							}
+							result = popValue(message.ctx);
+							popFilterComponent();
+							continue;
+						}
 					}
 				}
-				continue;
-			}
-			case EventType.Leave: {
-				const currentEntries = entriesStack[entriesStack.length - 1];
-				if (currentEntries.length > 0) {;
-					valueStack[valueStack.length - 1] = convertValue(event.schema, currentEntries);;
+				default: {
+					const neverEvent: never = message;
+					throw new Error(`Unknown event: ${JSON.stringify(neverEvent)}`);
 				}
-				popValue(event.ctx);
-				popEntries();
-				popFilterComponent();
-				continue;
-			}
-			default: {
-				const neverEvent: never = event;
-				throw new Error(`Unknown event: ${JSON.stringify(neverEvent)}`);
 			}
 		}
+		return result;
 	}
+	return parse(traverseSchemaDefinition(rootSchema, visitor));
+}
 
-	return result;
+function skipNode(generator: Generator<Message>) {
+	let depth = 0;
+	for (let it = generator.next(); !it.done; it = generator.next()) {
+		switch (it.value.type) {
+			case MessageType.Enter: {
+				depth++;
+				break;
+			}
+			case MessageType.Leave: {
+				depth--;
+				break;
+			}
+		}
+		if (depth === 0) {
+			return;
+		}
+	}
+}
+
+function escapeRegex(str: string) {
+	return str.replace(/[/\-\\^$*+?.()|[\]{}]/g, '\\$&');
 }
