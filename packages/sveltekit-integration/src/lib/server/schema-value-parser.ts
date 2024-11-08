@@ -47,15 +47,17 @@ export function parseSchemaValue({
 	entries,
 	idPrefix,
 	idSeparator,
+	idPseudoSeparator,
 	convertValue
 }: SchemaValueParserOptions): SchemaValue | undefined {
 	if (entries.length === 0) {
 		return undefined;
 	}
+  
 	const BOUNDARY = `($|${escapeRegex(idSeparator)})`;
 	let keyFilter = '';
 	const lengthsStack: number[] = [];
-	const entriesStack: Entries<string>[] = [entries];
+	const entriesStack: Entries<string>[] = [removePseudoElements(entries, idPseudoSeparator)];
 	const valueStack: SchemaArrayValue = [];
 
 	const visitor: SchemaDefinitionVisitor<Message> = {
@@ -180,8 +182,11 @@ export function parseSchemaValue({
 							}
 							continue;
 						}
+						case 'array':
+							continue;
+						default:
+							throw unreachable('Enter: Unknown context type', message.ctx);
 					}
-					continue;
 				}
 				case MessageType.Leave: {
 					depth--;
@@ -189,10 +194,14 @@ export function parseSchemaValue({
 						case 'sub': {
 							if (depth === 0) {
 								result = valueStack.pop();
+								continue;
+							} else {
+								throw unexpected('Leave: Unexpected sub schema', message.ctx);
 							}
-							continue;
 						}
-						default: {
+						case 'root':
+						case 'record':
+						case 'array': {
 							const currentEntries = entriesStack[entriesStack.length - 1];
 							if (currentEntries.length > 0) {
 								valueStack[valueStack.length - 1] = convertValue(message.schema, currentEntries);
@@ -201,11 +210,12 @@ export function parseSchemaValue({
 							popFilter();
 							continue;
 						}
+						default:
+							throw unreachable('Leave: Unknown context type', message.ctx);
 					}
 				}
 				default: {
-					const neverEvent: never = message;
-					throw new Error(`Unknown event: ${JSON.stringify(neverEvent)}`);
+					throw unreachable('Unknown message type', message);
 				}
 			}
 		}
@@ -214,9 +224,18 @@ export function parseSchemaValue({
 	return parse(traverseSchemaDefinition(rootSchema, visitor));
 }
 
+function unexpected<T>(message: string, value: T) {
+	return new Error(`${message} "${JSON.stringify(value)}"`);
+}
+
+function unreachable(message: string, value: never) {
+	return new Error(`${message} "${JSON.stringify(value)}"`);
+}
+
 function skipNode(generator: Generator<Message>) {
-	let depth = 0;
-	for (let it = generator.next(); !it.done; it = generator.next()) {
+	let depth = 1;
+	do {
+    const it = generator.next();
 		switch (it.value.type) {
 			case MessageType.Enter: {
 				depth++;
@@ -227,10 +246,11 @@ function skipNode(generator: Generator<Message>) {
 				break;
 			}
 		}
-		if (depth === 0) {
-			return;
-		}
-	}
+	} while (depth > 0);
+}
+
+function removePseudoElements(entries: Entries<string>, idPseudoSeparator: string) {
+	return entries.filter(([key]) => key.lastIndexOf(idPseudoSeparator) === -1);
 }
 
 function escapeRegex(str: string) {
