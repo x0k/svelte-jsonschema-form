@@ -567,7 +567,166 @@ describe('parseSchemaValue', () => {
 			copyable: ['one', 'two'],
 			unremovable: ['one', 'two'],
 			noToolbar: ['one', 'two'],
-			fixedNoToolbar: ["42", "on", 'additional item one', 'additional item two']
+			fixedNoToolbar: ['42', 'on', 'additional item one', 'additional item two']
+		});
+	});
+	it('Should parse schema with dependencies', () => {
+		const schema: Schema = {
+			title: 'Schema dependencies',
+			description: 'These samples are best viewed without live validation.',
+			type: 'object',
+			properties: {
+				simple: {
+					title: 'Simple',
+					type: 'object',
+					properties: {
+						name: {
+							type: 'string'
+						},
+						credit_card: {
+							type: 'number'
+						}
+					},
+					required: ['name'],
+					dependencies: {
+						credit_card: {
+							properties: {
+								billing_address: {
+									type: 'string'
+								}
+							},
+							required: ['billing_address']
+						}
+					}
+				},
+				conditional: {
+					title: 'Conditional',
+					$ref: '#/definitions/person'
+				},
+				arrayOfConditionals: {
+					title: 'Array of conditionals',
+					type: 'array',
+					items: {
+						$ref: '#/definitions/person'
+					}
+				},
+				fixedArrayOfConditionals: {
+					title: 'Fixed array of conditionals',
+					type: 'array',
+					items: [
+						{
+							title: 'Primary person',
+							$ref: '#/definitions/person'
+						}
+					],
+					additionalItems: {
+						title: 'Additional person',
+						$ref: '#/definitions/person'
+					}
+				}
+			},
+			definitions: {
+				person: {
+					title: 'Person',
+					type: 'object',
+					properties: {
+						'Do you have any pets?': {
+							type: 'string',
+							enum: ['No', 'Yes: One', 'Yes: More than one'],
+							default: 'No'
+						}
+					},
+					required: ['Do you have any pets?'],
+					dependencies: {
+						'Do you have any pets?': {
+							oneOf: [
+								{
+									properties: {
+										'Do you have any pets?': {
+											enum: ['No']
+										}
+									}
+								},
+								{
+									properties: {
+										'Do you have any pets?': {
+											enum: ['Yes: One']
+										},
+										'How old is your pet?': {
+											type: 'number'
+										}
+									},
+									required: ['How old is your pet?']
+								},
+								{
+									properties: {
+										'Do you have any pets?': {
+											enum: ['Yes: More than one']
+										},
+										'Do you want to get rid of any?': {
+											type: 'boolean'
+										}
+									},
+									required: ['Do you want to get rid of any?']
+								}
+							]
+						}
+					}
+				}
+			}
+		};
+		const entries: Entries<string> = [
+			['root.simple.name', 'Randy'],
+			['root.simple.credit_card', ''],
+			['root.conditional.Do you have any pets?', '0'],
+			['root.arrayOfConditionals.0.Do you have any pets?', '1'],
+			['root.arrayOfConditionals.0.How old is your pet?', '6'],
+			['root.arrayOfConditionals.1.Do you have any pets?', '2'],
+			['root.arrayOfConditionals.1.Do you want to get rid of any?', '1'],
+			['root.fixedArrayOfConditionals.0.Do you have any pets?', '0'],
+			['root.fixedArrayOfConditionals.1.Do you have any pets?', '1'],
+			['root.fixedArrayOfConditionals.1.How old is your pet?', '6'],
+			['root.fixedArrayOfConditionals.2.Do you have any pets?', '2'],
+			['root.fixedArrayOfConditionals.2.Do you want to get rid of any?', '0']
+		];
+		expect(parseSchemaValue({ ...defaultOptions, schema, entries })).toEqual({
+			conditional: {
+				'Do you have any pets?': '0'
+			},
+			arrayOfConditionals: [
+				{
+					'Do you have any pets?': '1',
+					"Do you want to get rid of any?": undefined,
+					'How old is your pet?': '6'
+				},
+				{
+					'Do you have any pets?': '2',
+					'Do you want to get rid of any?': '1',
+					"How old is your pet?": undefined
+				}
+			],
+			fixedArrayOfConditionals: [
+				{
+					'Do you have any pets?': '0',
+					"Do you want to get rid of any?": undefined,
+					"How old is your pet?": undefined
+				},
+				{
+					'Do you have any pets?': '1',
+					"Do you want to get rid of any?": undefined,
+					'How old is your pet?': '6'
+				},
+				{
+					'Do you have any pets?': '2',
+					'Do you want to get rid of any?': '0',
+					"How old is your pet?": undefined
+				}
+			],
+			simple: {
+				name: 'Randy',
+				credit_card: '',
+				billing_address: undefined,
+			}
 		});
 	});
 });

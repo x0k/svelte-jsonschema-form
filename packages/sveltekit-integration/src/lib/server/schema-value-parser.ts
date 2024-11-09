@@ -50,7 +50,7 @@ export function parseSchemaValue({
 	schema: rootSchema,
 	entries,
 	idPrefix,
-	idSeparator,
+	idSeparator: originalIdSeparator,
 	idPseudoSeparator,
 	convertValue
 }: SchemaValueParserOptions): SchemaValue | undefined {
@@ -58,7 +58,8 @@ export function parseSchemaValue({
 		return undefined;
 	}
 
-	const BOUNDARY = `($|${escapeRegex(idSeparator)})`;
+	const idSeparator = escapeRegex(originalIdSeparator);
+	const BOUNDARY = `($|${idSeparator})`;
 	let keyFilter = '';
 	const lengthsStack: number[] = [];
 	const entriesStack: Entries<string>[] = [removePseudoElements(entries, idPseudoSeparator)];
@@ -157,12 +158,12 @@ export function parseSchemaValue({
 			}
 			case 'record': {
 				const record = valueStack[valueStack.length - 1] as SchemaObjectValue;
-				record[ctx.property] = value;
+				record[ctx.property] ??= value;
 				return record;
 			}
 			case 'array': {
 				const array = valueStack[valueStack.length - 1] as SchemaArrayValue;
-				array[ctx.index] = value;
+				array[ctx.index] ??= value;
 				return array;
 			}
 			default:
@@ -202,14 +203,14 @@ export function parseSchemaValue({
 					}
 					switch (message.ctx.type) {
 						case 'root': {
-							pushFilterAndEntries(`^${idPrefix}`);
+							pushFilterAndEntries(`^${escapeRegex(idPrefix)}`);
 							pushValue(message.schema);
 							continue;
 						}
 						case 'record': {
 							switch (message.ctx.key) {
 								case 'properties': {
-									pushFilterAndEntries(`${idSeparator}${message.ctx.property}`);
+									pushFilterAndEntries(`${idSeparator}${escapeRegex(message.ctx.property)}`);
 									pushValue(message.schema);
 									continue;
 								}
@@ -218,6 +219,7 @@ export function parseSchemaValue({
 									skipNodeDecDepth();
 									continue;
 								case 'dependencies':
+									continue;
 								case 'patternProperties':
 									throw todo(`Enter: Unimplemented record context`, message.ctx);
 								default:
@@ -273,7 +275,7 @@ export function parseSchemaValue({
 										getKnownProperties(message.ctx.parent, rootSchema)
 									);
 									for (const entry of entriesStack[entriesStack.length - 1]) {
-										const keyEnd = entry[0].indexOf(idSeparator, keyFilter.length);
+										const keyEnd = entry[0].indexOf(originalIdSeparator, keyFilter.length);
 										const key = entry[0].slice(
 											keyFilter.length,
 											keyEnd === -1 ? undefined : keyEnd
@@ -288,7 +290,7 @@ export function parseSchemaValue({
 									entriesStack[entriesStack.length - 1] = known;
 									const record = valueStack[valueStack.length - 1] as SchemaObjectValue;
 									for (const [key, entries] of unknown) {
-										pushFilter(`${idSeparator}${key}`);
+										pushFilter(`${idSeparator}${escapeRegex(key)}$`);
 										entriesStack.push(entries);
 										record[key] = parse(
 											traverseSchemaDefinition(message.schema, visitor, message.ctx)
@@ -318,8 +320,10 @@ export function parseSchemaValue({
 										);
 										popEntriesAndFilter();
 									}
-									const array = valueStack[valueStack.length - 1]
-									valueStack[valueStack.length - 1] = Array.isArray(array) ? array.concat(values) : values;
+									const array = valueStack[valueStack.length - 1];
+									valueStack[valueStack.length - 1] = Array.isArray(array)
+										? array.concat(values)
+										: values;
 									continue;
 								}
 								default:
@@ -371,12 +375,32 @@ export function parseSchemaValue({
 									throw unreachable('Leave: Unknown array context', message.ctx);
 							}
 						}
-						case 'root':
-						case 'record': {
+						case 'root': {
 							calculateValueOnStack(message.schema);
 							result = popValue(message.ctx);
 							popEntriesAndFilter();
 							continue;
+						}
+						case 'record': {
+							switch (message.ctx.key) {
+								case 'dependencies': {
+									result = valueStack[valueStack.length - 1];
+									continue;
+								}
+								case '$defs':
+								case 'definitions':
+									throw unexpected('Leave: Unexpected record schema', message.ctx);
+								case 'patternProperties':
+									throw todo('Leave: patternProperties', message.ctx);
+								case 'properties': {
+									calculateValueOnStack(message.schema);
+									result = popValue(message.ctx);
+									popEntriesAndFilter();
+									continue;
+								}
+								default:
+									throw unreachable('Leave: Unknown record context', message.ctx);
+							}
 						}
 						default:
 							throw unreachable('Leave: Unknown context type', message.ctx);
