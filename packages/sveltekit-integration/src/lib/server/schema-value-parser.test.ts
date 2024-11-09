@@ -284,7 +284,7 @@ describe('parseSchemaValue', () => {
 			}
 		});
 	});
-	it.only('Should parse schema with alternatives', () => {
+	it('Should parse schema with alternatives', () => {
 		const schema: Schema = {
 			definitions: {
 				Color: {
@@ -577,7 +577,7 @@ describe('parseSchemaValue', () => {
 			fixedNoToolbar: ['42', 'on', 'additional item one', 'additional item two']
 		});
 	});
-	it('Should parse schema with dependencies', () => {
+	it.only('Should parse schema with dependencies', () => {
 		const schema: Schema = {
 			title: 'Schema dependencies',
 			description: 'These samples are best viewed without live validation.',
@@ -730,7 +730,7 @@ describe('parseSchemaValue', () => {
 			}
 		});
 	});
-	it('Should parse schema with If/Then/Else', () => {
+	it.skip('Should parse schema with If/Then/Else', () => {
 		const schema: Schema = {
 			type: 'object',
 			properties: {

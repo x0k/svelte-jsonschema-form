@@ -161,9 +161,23 @@ export function parseSchemaValue({
 	function popValue(ctx: SchemaTraverserContext) {
 		const value = valueStack.pop();
 		switch (ctx.type) {
-			case 'root':
-			case 'sub': {
+			case 'root': {
 				return value;
+			}
+			case 'sub': {
+				switch (ctx.key) {
+					case 'additionalItems':
+					case 'items': {
+						const array = valueStack[valueStack.length - 1] as SchemaArrayValue;
+						array.push(value);
+						return array;
+					}
+					case 'additionalProperties': {
+						return value;
+					}
+					default:
+						throw unexpected(`PopValue: Unknown context`, ctx);
+				}
 			}
 			case 'record': {
 				const record = valueStack[valueStack.length - 1] as SchemaObjectValue;
@@ -197,6 +211,18 @@ export function parseSchemaValue({
 			switch (message.type) {
 				case MessageType.Enter: {
 					depth++;
+					if (
+						(message.ctx.type === 'record' &&
+							(message.ctx.key === '$defs' || message.ctx.key === 'definitions')) ||
+						(message.ctx.type === 'sub' &&
+							(message.ctx.key === 'if' ||
+								message.ctx.key === 'contains' ||
+								message.ctx.key === 'not' ||
+								message.ctx.key === 'propertyNames'))
+					) {
+						skipNodeDecDepth();
+						continue;
+					}
 					if (isSchema(message.schema)) {
 						const ref = message.schema.$ref;
 						if (ref !== undefined) {
@@ -211,9 +237,19 @@ export function parseSchemaValue({
 						const anyOfOrOneOf = anyOf || oneOf;
 						if (Array.isArray(anyOfOrOneOf)) {
 							skipNodeDecDepth();
-							// if (isSelect2(validator, merger, message.schema, rootSchema)) {
-							// 	continue;
-							// }
+							if (isSelect2(validator, merger, message.schema, rootSchema)) {
+								const property = message.ctx.type === 'record' ? message.ctx.property : undefined;
+								if (property) {
+									pushFilterAndEntries(`${idSeparator}${escapeRegex(property)}`);
+								}
+								pushValue(message.schema);
+								calculateValueOnStack(message.schema);
+								result = popValue(message.ctx);
+								if (property) {
+									popEntriesAndFilter();
+								}
+								continue;
+							}
 							const bestIndex = getClosestMatchingOption2(
 								validator,
 								merger,
@@ -256,14 +292,13 @@ export function parseSchemaValue({
 								}
 								case '$defs':
 								case 'definitions':
-									skipNodeDecDepth();
-									continue;
+									throw unexpected(`Enter: Unexpected record context`, message.ctx);
 								case 'dependencies':
 									continue;
 								case 'patternProperties':
 									throw todo(`Enter: Unimplemented record context`, message.ctx);
 								default:
-									throw unreachable(`Enter: Unexpected record context`, message.ctx);
+									throw unreachable(`Enter: Unknown record context`, message.ctx);
 							}
 						}
 						case 'sub': {
@@ -279,13 +314,11 @@ export function parseSchemaValue({
 								case 'if':
 								case 'not':
 								case 'propertyNames': {
-									skipNodeDecDepth();
-									continue;
+									throw unexpected(`Enter: Unexpected sub context`, message.ctx);
 								}
 								case 'items': {
 									skipNodeDecDepth();
 									let i = 0;
-									const values: SchemaArrayValue = [];
 									while (entriesStack[entriesStack.length - 1].length > 0) {
 										pushFilterAndEntries(`${idSeparator}${i++}`);
 										// Special case: array items have no indexes, but they have the same names
@@ -294,20 +327,15 @@ export function parseSchemaValue({
 											const arrayEntries = entriesStack[entriesStack.length - 1];
 											for (let j = 0; j < arrayEntries.length; j++) {
 												entriesStack.push([arrayEntries[j]]);
-												values.push(
-													parse(traverseSchemaDefinition(message.schema, visitor, message.ctx))
-												);
+												parse(traverseSchemaDefinition(message.schema, visitor, message.ctx));
 												entriesStack.pop();
 											}
 											arrayEntries.length = 0;
 											break;
 										}
-										values.push(
-											parse(traverseSchemaDefinition(message.schema, visitor, message.ctx))
-										);
+										parse(traverseSchemaDefinition(message.schema, visitor, message.ctx));
 										popEntriesAndFilter();
 									}
-									valueStack[valueStack.length - 1] = values;
 									continue;
 								}
 								case 'additionalProperties': {
@@ -346,7 +374,6 @@ export function parseSchemaValue({
 									const schemaItems = message.ctx.parent.items;
 									const initialIndex = Array.isArray(schemaItems) ? schemaItems.length : 0;
 									let i = initialIndex;
-									const values: SchemaArrayValue = [];
 									while (entriesStack[entriesStack.length - 1].length > 0) {
 										pushFilterAndEntries(`${idSeparator}${i++}`);
 										if (
@@ -356,15 +383,9 @@ export function parseSchemaValue({
 											popEntriesAndFilter();
 											break;
 										}
-										values.push(
-											parse(traverseSchemaDefinition(message.schema, visitor, message.ctx))
-										);
+										parse(traverseSchemaDefinition(message.schema, visitor, message.ctx));
 										popEntriesAndFilter();
 									}
-									const array = valueStack[valueStack.length - 1];
-									valueStack[valueStack.length - 1] = Array.isArray(array)
-										? array.concat(values)
-										: values;
 									continue;
 								}
 								default:
