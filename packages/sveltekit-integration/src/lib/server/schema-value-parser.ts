@@ -160,8 +160,11 @@ export function parseSchemaValue({
 				record[ctx.property] = value;
 				return record;
 			}
-			case 'array':
-				throw unexpected(`PopValue: Unexpected context`, ctx);
+			case 'array': {
+				const array = valueStack[valueStack.length - 1] as SchemaArrayValue;
+				array[ctx.index] = value;
+				return array;
+			}
 			default:
 				throw unreachable(`PopValue: Unknown context`, ctx);
 		}
@@ -175,6 +178,11 @@ export function parseSchemaValue({
 	}
 
 	function parse(generator: Generator<Message>, depth = 0) {
+		function skipNodeDecDepth() {
+			skipNode(generator);
+			depth--;
+		}
+
 		let result: SchemaValue | undefined;
 		for (let it = generator.next(); !it.done; it = generator.next()) {
 			const message = it.value;
@@ -188,8 +196,7 @@ export function parseSchemaValue({
 								const schemaDef = resolveRef(ref, rootSchema);
 								result = parse(traverseSchemaDefinition(schemaDef, visitor, message.ctx), depth);
 							}
-							depth--;
-							skipNode(generator);
+							skipNodeDecDepth();
 							continue;
 						}
 					}
@@ -208,8 +215,7 @@ export function parseSchemaValue({
 								}
 								case '$defs':
 								case 'definitions':
-									depth--;
-									skipNode(generator);
+									skipNodeDecDepth();
 									continue;
 								case 'dependencies':
 								case 'patternProperties':
@@ -224,9 +230,17 @@ export function parseSchemaValue({
 								continue;
 							}
 							switch (message.ctx.key) {
+								case 'then':
+								case 'else':
+								case 'contains':
+								case 'if':
+								case 'not':
+								case 'propertyNames': {
+									skipNodeDecDepth();
+									continue;
+								}
 								case 'items': {
-									depth--;
-									skipNode(generator);
+									skipNodeDecDepth();
 									let i = 0;
 									const values: SchemaArrayValue = [];
 									while (entriesStack[entriesStack.length - 1].length > 0) {
@@ -236,10 +250,10 @@ export function parseSchemaValue({
 											popEntriesAndFilter();
 											const arrayEntries = entriesStack[entriesStack.length - 1];
 											for (let j = 0; j < arrayEntries.length; j++) {
-												entriesStack.push([arrayEntries[j]])
+												entriesStack.push([arrayEntries[j]]);
 												values.push(
 													parse(traverseSchemaDefinition(message.schema, visitor, message.ctx))
-												)
+												);
 												entriesStack.pop();
 											}
 											arrayEntries.length = 0;
@@ -254,8 +268,7 @@ export function parseSchemaValue({
 									continue;
 								}
 								case 'additionalProperties': {
-									depth--;
-									skipNode(generator);
+									skipNodeDecDepth();
 									const knownProperties = new Set(
 										getKnownProperties(message.ctx.parent, rootSchema)
 									);
@@ -285,15 +298,30 @@ export function parseSchemaValue({
 									}
 									continue;
 								}
-								case 'additionalItems':
-								case 'then':
-								case 'else':
-									throw todo('Enter: Unimplemented sub key', message.ctx);
-								case 'contains':
-								case 'if':
-								case 'not':
-								case 'propertyNames':
+								case 'additionalItems': {
+									skipNodeDecDepth();
+									const schemaItems = message.ctx.parent.items;
+									const initialIndex = Array.isArray(schemaItems) ? schemaItems.length : 0;
+									let i = initialIndex;
+									const values: SchemaArrayValue = [];
+									while (entriesStack[entriesStack.length - 1].length > 0) {
+										pushFilterAndEntries(`${idSeparator}${i++}`);
+										if (
+											i === initialIndex + 1 &&
+											entriesStack[entriesStack.length - 1].length === 0
+										) {
+											popEntriesAndFilter();
+											break;
+										}
+										values.push(
+											parse(traverseSchemaDefinition(message.schema, visitor, message.ctx))
+										);
+										popEntriesAndFilter();
+									}
+									const array = valueStack[valueStack.length - 1]
+									valueStack[valueStack.length - 1] = Array.isArray(array) ? array.concat(values) : values;
 									continue;
+								}
 								default:
 									throw unreachable('Enter: Unknown sub key', message.ctx);
 							}
@@ -304,8 +332,11 @@ export function parseSchemaValue({
 								case 'anyOf':
 								case 'oneOf':
 									continue;
-								case 'items':
-									throw todo('Enter: Unimplemented array context', message.ctx);
+								case 'items': {
+									pushFilterAndEntries(`${idSeparator}${message.ctx.index}`);
+									pushValue(message.schema);
+									continue;
+								}
 								default:
 									throw unreachable('Enter: Unknown array context', message.ctx);
 							}
@@ -325,8 +356,20 @@ export function parseSchemaValue({
 							continue;
 						}
 						case 'array': {
-							result = valueStack[valueStack.length - 1];
-							continue;
+							switch (message.ctx.key) {
+								case 'allOf':
+								case 'anyOf':
+								case 'oneOf':
+									result = valueStack[valueStack.length - 1];
+									continue;
+								case 'items':
+									calculateValueOnStack(message.schema);
+									result = popValue(message.ctx);
+									popEntriesAndFilter();
+									continue;
+								default:
+									throw unreachable('Leave: Unknown array context', message.ctx);
+							}
 						}
 						case 'root':
 						case 'record': {
@@ -393,7 +436,7 @@ function unexpected<T>(message: string, value: T) {
 }
 
 function unreachable(message: string, value: never) {
-	return new Error(`${message} "${JSON.stringify(value)}"`);
+	return new Error(`Unreachable: ${message} "${JSON.stringify(value)}"`);
 }
 
 function skipNode(generator: Generator<Message>) {

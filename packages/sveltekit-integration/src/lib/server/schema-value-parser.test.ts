@@ -378,4 +378,196 @@ describe('parseSchemaValue', () => {
 			currentColor: '1'
 		});
 	});
+	it('Should parse schema with fixed arrays and additional items', () => {
+		const schema: Schema = {
+			definitions: {
+				Thing: {
+					type: 'object',
+					properties: {
+						name: {
+							type: 'string',
+							default: 'Default name'
+						}
+					}
+				}
+			},
+			type: 'object',
+			properties: {
+				listOfStrings: {
+					type: 'array',
+					title: 'A list of strings',
+					items: {
+						type: 'string',
+						default: 'bazinga'
+					}
+				},
+				multipleChoicesList: {
+					type: 'array',
+					title: 'A multiple choices list',
+					items: {
+						type: 'string',
+						enum: ['foo', 'bar', 'fuzz', 'qux']
+					},
+					uniqueItems: true
+				},
+				fixedItemsList: {
+					type: 'array',
+					title: 'A list of fixed items',
+					items: [
+						{
+							title: 'A string value',
+							type: 'string',
+							default: 'lorem ipsum'
+						},
+						{
+							title: 'a boolean value',
+							type: 'boolean'
+						}
+					],
+					additionalItems: {
+						title: 'Additional item',
+						type: 'number'
+					}
+				},
+				minItemsList: {
+					type: 'array',
+					title: 'A list with a minimal number of items',
+					minItems: 3,
+					items: {
+						$ref: '#/definitions/Thing'
+					}
+				},
+				defaultsAndMinItems: {
+					type: 'array',
+					title: 'List and item level defaults',
+					minItems: 5,
+					default: ['carp', 'trout', 'bream'],
+					items: {
+						type: 'string',
+						default: 'unidentified'
+					}
+				},
+				nestedList: {
+					type: 'array',
+					title: 'Nested list',
+					items: {
+						type: 'array',
+						title: 'Inner list',
+						items: {
+							type: 'string',
+							default: 'lorem ipsum'
+						}
+					}
+				},
+				unorderable: {
+					title: 'Unorderable items',
+					type: 'array',
+					items: {
+						type: 'string',
+						default: 'lorem ipsum'
+					}
+				},
+				copyable: {
+					title: 'Copyable items',
+					type: 'array',
+					items: {
+						type: 'string',
+						default: 'lorem ipsum'
+					}
+				},
+				unremovable: {
+					title: 'Unremovable items',
+					type: 'array',
+					items: {
+						type: 'string',
+						default: 'lorem ipsum'
+					}
+				},
+				noToolbar: {
+					title: 'No add, remove and order buttons',
+					type: 'array',
+					items: {
+						type: 'string',
+						default: 'lorem ipsum'
+					}
+				},
+				fixedNoToolbar: {
+					title: 'Fixed array without buttons',
+					type: 'array',
+					items: [
+						{
+							title: 'A number',
+							type: 'number',
+							default: 42
+						},
+						{
+							title: 'A boolean',
+							type: 'boolean',
+							default: false
+						}
+					],
+					additionalItems: {
+						title: 'A string',
+						type: 'string',
+						default: 'lorem ipsum'
+					}
+				}
+			}
+		};
+		const entries: Entries<string> = [
+			['root.listOfStrings.0', 'foo'],
+			['root.listOfStrings.1', 'bar'],
+			['root.multipleChoicesList', '0'],
+			['root.multipleChoicesList', '1'],
+			['root.fixedItemsList.0', 'Some text'],
+			['root.fixedItemsList.1', '0'],
+			['root.fixedItemsList.2', '123'],
+			['root.minItemsList.0.name', 'Default name'],
+			['root.minItemsList.1.name', 'Default name'],
+			['root.minItemsList.2.name', 'Default name'],
+			['root.defaultsAndMinItems.0', 'carp'],
+			['root.defaultsAndMinItems.1', 'trout'],
+			['root.defaultsAndMinItems.2', 'bream'],
+			['root.defaultsAndMinItems.3', 'unidentified'],
+			['root.defaultsAndMinItems.4', 'unidentified'],
+			['root.nestedList.0.0', 'lorem'],
+			['root.nestedList.0.1', 'ipsum'],
+			['root.nestedList.1.0', 'dolor'],
+			['root.unorderable.0', 'one'],
+			['root.unorderable.1', 'two'],
+			['root.copyable.0', 'one'],
+			['root.copyable.1', 'two'],
+			['root.unremovable.0', 'one'],
+			['root.unremovable.1', 'two'],
+			['root.noToolbar.0', 'one'],
+			['root.noToolbar.1', 'two'],
+			['root.fixedNoToolbar.0', '42'],
+			['root.fixedNoToolbar.1', 'on'],
+			['root.fixedNoToolbar.2', 'additional item one'],
+			['root.fixedNoToolbar.3', 'additional item two']
+		];
+		expect(parseSchemaValue({ ...defaultOptions, schema, entries })).toEqual({
+			listOfStrings: ['foo', 'bar'],
+			multipleChoicesList: ['0', '1'],
+			fixedItemsList: ['Some text', '0', '123'],
+			minItemsList: [
+				{
+					name: 'Default name'
+				},
+				{
+					name: 'Default name'
+				},
+				{
+					name: 'Default name'
+				}
+			],
+			defaultsAndMinItems: ['carp', 'trout', 'bream', 'unidentified', 'unidentified'],
+			nestedList: [['lorem', 'ipsum'], ['dolor']],
+			unorderable: ['one', 'two'],
+			copyable: ['one', 'two'],
+			unremovable: ['one', 'two'],
+			noToolbar: ['one', 'two'],
+			fixedNoToolbar: ["42", "on", 'additional item one', 'additional item two']
+		});
+	});
 });
