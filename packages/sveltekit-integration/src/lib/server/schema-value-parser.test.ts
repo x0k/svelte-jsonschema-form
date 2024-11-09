@@ -696,37 +696,102 @@ describe('parseSchemaValue', () => {
 			arrayOfConditionals: [
 				{
 					'Do you have any pets?': '1',
-					"Do you want to get rid of any?": undefined,
+					'Do you want to get rid of any?': undefined,
 					'How old is your pet?': '6'
 				},
 				{
 					'Do you have any pets?': '2',
 					'Do you want to get rid of any?': '1',
-					"How old is your pet?": undefined
+					'How old is your pet?': undefined
 				}
 			],
 			fixedArrayOfConditionals: [
 				{
 					'Do you have any pets?': '0',
-					"Do you want to get rid of any?": undefined,
-					"How old is your pet?": undefined
+					'Do you want to get rid of any?': undefined,
+					'How old is your pet?': undefined
 				},
 				{
 					'Do you have any pets?': '1',
-					"Do you want to get rid of any?": undefined,
+					'Do you want to get rid of any?': undefined,
 					'How old is your pet?': '6'
 				},
 				{
 					'Do you have any pets?': '2',
 					'Do you want to get rid of any?': '0',
-					"How old is your pet?": undefined
+					'How old is your pet?': undefined
 				}
 			],
 			simple: {
 				name: 'Randy',
 				credit_card: '',
-				billing_address: undefined,
+				billing_address: undefined
 			}
+		});
+	});
+	it('Should parse schema with If/Then/Else', () => {
+		const schema: Schema = {
+			type: 'object',
+			properties: {
+				animal: {
+					enum: ['Cat', 'Fish']
+				}
+			},
+			allOf: [
+				{
+					if: {
+						properties: {
+							animal: {
+								const: 'Cat'
+							}
+						}
+					},
+					then: {
+						properties: {
+							food: {
+								type: 'string',
+								enum: ['meat', 'grass', 'fish']
+							}
+						},
+						required: ['food']
+					}
+				},
+				{
+					if: {
+						properties: {
+							animal: {
+								const: 'Fish'
+							}
+						}
+					},
+					then: {
+						properties: {
+							food: {
+								type: 'string',
+								enum: ['insect', 'worms']
+							},
+							water: {
+								type: 'string',
+								enum: ['lake', 'sea']
+							}
+						},
+						required: ['food', 'water']
+					}
+				},
+				{
+					required: ['animal']
+				}
+			]
+		};
+		const entries: Entries<string> = [
+			['root.animal', '1'],
+			['root.food', '0'],
+			['root.water', '1']
+		];
+		expect(parseSchemaValue({ ...defaultOptions, schema, entries })).toEqual({
+			animal: '1',
+			food: '0',
+			water: '1'
 		});
 	});
 });

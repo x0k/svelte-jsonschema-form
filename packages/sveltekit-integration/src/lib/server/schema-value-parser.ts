@@ -234,6 +234,7 @@ export function parseSchemaValue({
 							switch (message.ctx.key) {
 								case 'then':
 								case 'else':
+									continue;
 								case 'contains':
 								case 'if':
 								case 'not':
@@ -352,12 +353,30 @@ export function parseSchemaValue({
 					depth--;
 					switch (message.ctx.type) {
 						case 'sub': {
-							if (depth !== 0) {
-								throw unexpected('Leave: Unexpected sub schema', message.ctx);
+							switch (message.ctx.key) {
+								case 'if':
+								case 'contains':
+								case 'not':
+								case 'propertyNames':
+									throw unexpected('Leave: Unexpected sub schema', message.ctx);
+								case 'then':
+								case 'else': {
+									result = valueStack[valueStack.length - 1];
+									continue;
+								}
+								case 'items':
+								case 'additionalItems':
+								case 'additionalProperties': {
+									if (depth !== 0) {
+										throw unexpected('Leave: Unexpected sub schema', message.ctx);
+									}
+									calculateValueOnStack(message.schema);
+									result = popValue(message.ctx);
+									continue;
+								}
+								default:
+									throw unreachable('Leave: Unknown sub key', message.ctx);
 							}
-							calculateValueOnStack(message.schema);
-							result = popValue(message.ctx);
-							continue;
 						}
 						case 'array': {
 							switch (message.ctx.key) {
