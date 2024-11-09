@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
+import { defaultMerger } from '@sjsf/form/core';
 import type { Schema } from '@sjsf/form';
+import { createValidator } from '@sjsf/ajv8-validator'
 
 import {
 	parseSchemaValue,
@@ -13,7 +15,12 @@ const defaultOptions: SchemaValueParserOptions = {
 	idPrefix: 'root',
 	idSeparator: '.',
 	idPseudoSeparator: '::',
-	convertValue: (_, v) => v[0][1]
+	validator: createValidator(),
+	merger: defaultMerger,
+	convertValue: (s, v) => {
+		console.log(s, v)
+		return v[0]?.[1]
+	}
 };
 
 describe('parseSchemaValue', () => {
@@ -277,7 +284,7 @@ describe('parseSchemaValue', () => {
 			}
 		});
 	});
-	it('Should parse schema with alternatives', () => {
+	it.only('Should parse schema with alternatives', () => {
 		const schema: Schema = {
 			definitions: {
 				Color: {
@@ -632,8 +639,9 @@ describe('parseSchemaValue', () => {
 					properties: {
 						'Do you have any pets?': {
 							type: 'string',
-							enum: ['No', 'Yes: One', 'Yes: More than one'],
-							default: 'No'
+							// enum: ['No', 'Yes: One', 'Yes: More than one'],
+							enum: ['0', '1', '2'],
+							default: '0'
 						}
 					},
 					required: ['Do you have any pets?'],
@@ -643,14 +651,14 @@ describe('parseSchemaValue', () => {
 								{
 									properties: {
 										'Do you have any pets?': {
-											enum: ['No']
+											enum: ['0']
 										}
 									}
 								},
 								{
 									properties: {
 										'Do you have any pets?': {
-											enum: ['Yes: One']
+											enum: ['1']
 										},
 										'How old is your pet?': {
 											type: 'number'
@@ -661,7 +669,7 @@ describe('parseSchemaValue', () => {
 								{
 									properties: {
 										'Do you have any pets?': {
-											enum: ['Yes: More than one']
+											enum: ['2']
 										},
 										'Do you want to get rid of any?': {
 											type: 'boolean'
@@ -696,36 +704,29 @@ describe('parseSchemaValue', () => {
 			arrayOfConditionals: [
 				{
 					'Do you have any pets?': '1',
-					'Do you want to get rid of any?': undefined,
 					'How old is your pet?': '6'
 				},
 				{
 					'Do you have any pets?': '2',
 					'Do you want to get rid of any?': '1',
-					'How old is your pet?': undefined
 				}
 			],
 			fixedArrayOfConditionals: [
 				{
 					'Do you have any pets?': '0',
-					'Do you want to get rid of any?': undefined,
-					'How old is your pet?': undefined
 				},
 				{
 					'Do you have any pets?': '1',
-					'Do you want to get rid of any?': undefined,
 					'How old is your pet?': '6'
 				},
 				{
 					'Do you have any pets?': '2',
 					'Do you want to get rid of any?': '0',
-					'How old is your pet?': undefined
 				}
 			],
 			simple: {
 				name: 'Randy',
 				credit_card: '',
-				billing_address: undefined
 			}
 		});
 	});

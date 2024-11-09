@@ -1,13 +1,18 @@
 import jsonpointer from 'jsonpointer';
 import {
+	getClosestMatchingOption2,
+	getDiscriminatorFieldFromSchema,
 	getSimpleSchemaType,
 	isSchema,
+	isSelect2,
 	traverseSchemaDefinition,
+	type Merger2,
 	type SchemaArrayValue,
 	type SchemaDefinition,
 	type SchemaDefinitionVisitor,
 	type SchemaObjectValue,
-	type SchemaTraverserContext
+	type SchemaTraverserContext,
+	type Validator
 } from '@sjsf/form/core';
 import type { Schema, SchemaValue } from '@sjsf/form';
 
@@ -41,6 +46,8 @@ export interface SchemaValueParserOptions {
 	idPrefix: string;
 	idSeparator: string;
 	idPseudoSeparator: string;
+	validator: Validator;
+	merger: Merger2;
 	convertValue: (schema: SchemaDefinition, entries: Entries<string>) => SchemaValue | undefined;
 }
 
@@ -52,7 +59,9 @@ export function parseSchemaValue({
 	idPrefix,
 	idSeparator: originalIdSeparator,
 	idPseudoSeparator,
-	convertValue
+	convertValue,
+	merger,
+	validator
 }: SchemaValueParserOptions): SchemaValue | undefined {
 	if (entries.length === 0) {
 		return undefined;
@@ -173,9 +182,7 @@ export function parseSchemaValue({
 
 	function calculateValueOnStack(schema: SchemaDefinition) {
 		const entries = entriesStack[entriesStack.length - 1];
-		if (entries.length > 0) {
-			valueStack[valueStack.length - 1] = convertValue(schema, entries);
-		}
+		valueStack[valueStack.length - 1] ??= convertValue(schema, entries);
 	}
 
 	function parse(generator: Generator<Message>, depth = 0) {
@@ -198,6 +205,39 @@ export function parseSchemaValue({
 								result = parse(traverseSchemaDefinition(schemaDef, visitor, message.ctx), depth);
 							}
 							skipNodeDecDepth();
+							continue;
+						}
+						const { anyOf, oneOf } = message.schema;
+						const anyOfOrOneOf = anyOf || oneOf;
+						if (Array.isArray(anyOfOrOneOf)) {
+							skipNodeDecDepth();
+							// if (isSelect2(validator, merger, message.schema, rootSchema)) {
+							// 	continue;
+							// }
+							const bestIndex = getClosestMatchingOption2(
+								validator,
+								merger,
+								rootSchema,
+								valueStack[valueStack.length - 1],
+								anyOfOrOneOf.map((def) => {
+									if (typeof def === 'boolean') {
+										return def ? {} : { not: {} };
+									}
+									return def;
+								}),
+								0,
+								getDiscriminatorFieldFromSchema(message.schema)
+							);
+							const key = Array.isArray(oneOf) ? 'oneOf' : 'anyOf';
+							result = parse(
+								traverseSchemaDefinition(anyOfOrOneOf[bestIndex], visitor, {
+									type: 'array',
+									key,
+									index: bestIndex,
+									parent: message.schema,
+									path: message.ctx.path.concat(key, bestIndex)
+								})
+							);
 							continue;
 						}
 					}
@@ -335,8 +375,10 @@ export function parseSchemaValue({
 							switch (message.ctx.key) {
 								case 'allOf':
 								case 'anyOf':
-								case 'oneOf':
+								case 'oneOf': {
+									pushValue(message.schema);
 									continue;
+								}
 								case 'items': {
 									pushFilterAndEntries(`${idSeparator}${message.ctx.index}`);
 									pushValue(message.schema);
@@ -383,7 +425,8 @@ export function parseSchemaValue({
 								case 'allOf':
 								case 'anyOf':
 								case 'oneOf':
-									result = valueStack[valueStack.length - 1];
+									calculateValueOnStack(message.schema);
+									result = popValue(message.ctx);
 									continue;
 								case 'items':
 									calculateValueOnStack(message.schema);
@@ -449,24 +492,42 @@ function resolveRef(ref: string, rootSchema: Schema) {
 	return schemaDef;
 }
 
-// TODO: `$ref`'s resolution, maybe `oneOf`, `anyOf`, `allOf` ???
 function* getKnownProperties(
-	{ properties, dependencies }: Schema,
-	rootSchema: Schema
+	{ $ref: ref, properties, dependencies, oneOf, allOf, anyOf }: Schema,
+	rootSchema: Schema,
+	stack = new Set<string>()
 ): Generator<string> {
+	if (ref) {
+		if (stack.has(ref)) {
+			return;
+		}
+		stack.add(ref);
+		const resolved = resolveRef(ref, rootSchema);
+		if (isSchema(resolved)) {
+			yield* getKnownProperties(resolved, rootSchema, stack);
+		}
+		return;
+	}
 	if (properties) {
 		for (const key of Object.keys(properties)) {
 			yield key;
 		}
 	}
-	if (dependencies === undefined) {
-		return;
-	}
-	for (const dependency of Object.values(dependencies)) {
-		if (Array.isArray(dependency) || !isSchema(dependency)) {
-			continue;
+	for (const alternatives of [oneOf, allOf, anyOf]) {
+		if (Array.isArray(alternatives)) {
+			for (const alternative of alternatives) {
+				if (isSchema(alternative)) {
+					yield* getKnownProperties(alternative, rootSchema, stack);
+				}
+			}
 		}
-		yield* getKnownProperties(dependency, rootSchema);
+	}
+	if (dependencies !== undefined) {
+		for (const dependency of Object.values(dependencies)) {
+			if (!Array.isArray(dependency) && isSchema(dependency)) {
+				yield* getKnownProperties(dependency, rootSchema, stack);
+			}
+		}
 	}
 }
 
