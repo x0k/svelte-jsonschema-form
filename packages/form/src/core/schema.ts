@@ -54,12 +54,31 @@ export const PROPERTY_NAME_KEY = "propertyName";
 
 export const DATA_URL_FORMAT = "data-url";
 
+export const RECORDS_OF_SUB_SCHEMAS = [
+  DEFS_KEY,
+  DEFINITIONS_KEY,
+  PROPERTIES_KEY,
+  PATTERN_PROPERTIES_KEY,
+  DEPENDENCIES_KEY,
+] as const;
+
+export type SubSchemasRecordKey = (typeof RECORDS_OF_SUB_SCHEMAS)[number];
+
+export const ARRAYS_OF_SUB_SCHEMAS = [
+  ITEMS_KEY,
+  ALL_OF_KEY,
+  ONE_OF_KEY,
+  ANY_OF_KEY,
+] as const;
+
+export type SubSchemasArrayKey = (typeof ARRAYS_OF_SUB_SCHEMAS)[number];
+
 export const SUB_SCHEMAS = [
   ITEMS_KEY,
   ADDITIONAL_ITEMS_KEY,
-  CONTAINS_KEY,
   ADDITIONAL_PROPERTIES_KEY,
   PROPERTY_NAMES_KEY,
+  CONTAINS_KEY,
   IF_KEY,
   THEN_KEY,
   ELSE_KEY,
@@ -68,24 +87,6 @@ export const SUB_SCHEMAS = [
 
 export type SubSchemaKey = (typeof SUB_SCHEMAS)[number];
 
-export const RECORDS_OF_SUB_SCHEMAS = [
-  DEFS_KEY,
-  PROPERTIES_KEY,
-  PATTERN_PROPERTIES_KEY,
-  DEPENDENCIES_KEY,
-  DEFINITIONS_KEY,
-] as const;
-
-export type SubSchemasRecordKey = (typeof RECORDS_OF_SUB_SCHEMAS)[number];
-
-export const ARRAYS_OF_SUB_SCHEMAS = [
-  ALL_OF_KEY,
-  ANY_OF_KEY,
-  ONE_OF_KEY,
-  ITEMS_KEY,
-] as const;
-
-export type SubSchemasArrayKey = (typeof ARRAYS_OF_SUB_SCHEMAS)[number];
 
 export function isSchema(schemaDef: SchemaDefinition): schemaDef is Schema {
   return typeof schemaDef === "object";
