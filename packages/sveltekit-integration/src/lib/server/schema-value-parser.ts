@@ -140,7 +140,7 @@ export function parseSchemaValue({
 		popFilter();
 	}
 
-	function pushValue(schema: SchemaDefinition) {
+	function pushValuePlaceholder(schema: SchemaDefinition) {
 		if (typeof schema === 'boolean') {
 			valueStack.push(undefined);
 			return;
@@ -158,11 +158,11 @@ export function parseSchemaValue({
 		}
 	}
 
-	function popValue(ctx: SchemaTraverserContext) {
+	function integrateValueBack(ctx: SchemaTraverserContext) {
 		const value = valueStack.pop();
 		switch (ctx.type) {
 			case 'root': {
-				return value;
+				throw unexpected('PopValue: Unknown context', ctx);
 			}
 			case 'sub': {
 				switch (ctx.key) {
@@ -170,10 +170,11 @@ export function parseSchemaValue({
 					case 'items': {
 						const array = valueStack[valueStack.length - 1] as SchemaArrayValue;
 						array.push(value);
-						return array;
+						return;
 					}
-					case 'additionalProperties': {
-						return value;
+					case 'then':
+					case 'else': {
+						return;
 					}
 					default:
 						throw unexpected(`PopValue: Unknown context`, ctx);
@@ -182,12 +183,12 @@ export function parseSchemaValue({
 			case 'record': {
 				const record = valueStack[valueStack.length - 1] as SchemaObjectValue;
 				record[ctx.property] ??= value;
-				return record;
+				return;
 			}
 			case 'array': {
 				const array = valueStack[valueStack.length - 1] as SchemaArrayValue;
 				array[ctx.index] ??= value;
-				return array;
+				return;
 			}
 			default:
 				throw unreachable(`PopValue: Unknown context`, ctx);
@@ -205,7 +206,6 @@ export function parseSchemaValue({
 			depth--;
 		}
 
-		let result: SchemaValue | undefined;
 		for (let it = generator.next(); !it.done; it = generator.next()) {
 			const message = it.value;
 			switch (message.type) {
@@ -215,10 +215,12 @@ export function parseSchemaValue({
 						(message.ctx.type === 'record' &&
 							(message.ctx.key === '$defs' || message.ctx.key === 'definitions')) ||
 						(message.ctx.type === 'sub' &&
-							(message.ctx.key === 'if' ||
-								message.ctx.key === 'contains' ||
+							(message.ctx.key === 'contains' ||
 								message.ctx.key === 'not' ||
-								message.ctx.key === 'propertyNames'))
+								message.ctx.key === 'propertyNames')) ||
+						(depth > 2 &&
+							message.ctx.type === 'array' &&
+							(message.ctx.key === 'oneOf' || message.ctx.key === 'anyOf'))
 					) {
 						skipNodeDecDepth();
 						continue;
@@ -228,66 +230,44 @@ export function parseSchemaValue({
 						if (ref !== undefined) {
 							if (entriesStack[entriesStack.length - 1].length > 0) {
 								const schemaDef = resolveRef(ref, rootSchema);
-								result = parse(traverseSchemaDefinition(schemaDef, visitor, message.ctx), depth);
+								parse(traverseSchemaDefinition(schemaDef, visitor, message.ctx), depth);
 							}
 							skipNodeDecDepth();
 							continue;
 						}
-						const { anyOf, oneOf } = message.schema;
-						const anyOfOrOneOf = anyOf || oneOf;
-						if (Array.isArray(anyOfOrOneOf)) {
+						const { if: expression, then, else: otherwise } = message.schema;
+						if (expression !== undefined) {
 							skipNodeDecDepth();
-							if (isSelect2(validator, merger, message.schema, rootSchema)) {
-								const property = message.ctx.type === 'record' ? message.ctx.property : undefined;
-								if (property) {
-									pushFilterAndEntries(`${idSeparator}${escapeRegex(property)}`);
-								}
-								pushValue(message.schema);
-								calculateValueOnStack(message.schema);
-								result = popValue(message.ctx);
-								if (property) {
-									popEntriesAndFilter();
-								}
-								continue;
+							const isThenBranch =
+								typeof expression === 'boolean'
+									? expression
+									: validator.isValid(expression, rootSchema, valueStack[valueStack.length - 1]);
+							const branch = isThenBranch ? then : otherwise;
+							if (branch !== undefined) {
+								const key = isThenBranch ? 'then' : 'else';
+								parse(
+									traverseSchemaDefinition(branch, visitor, {
+										type: 'sub',
+										key,
+										parent: message.schema,
+										path: message.ctx.path.concat(key)
+									})
+								);
 							}
-							const bestIndex = getClosestMatchingOption2(
-								validator,
-								merger,
-								rootSchema,
-								valueStack[valueStack.length - 1],
-								anyOfOrOneOf.map((def) => {
-									if (typeof def === 'boolean') {
-										return def ? {} : { not: {} };
-									}
-									return def;
-								}),
-								0,
-								getDiscriminatorFieldFromSchema(message.schema)
-							);
-							const key = Array.isArray(oneOf) ? 'oneOf' : 'anyOf';
-							result = parse(
-								traverseSchemaDefinition(anyOfOrOneOf[bestIndex], visitor, {
-									type: 'array',
-									key,
-									index: bestIndex,
-									parent: message.schema,
-									path: message.ctx.path.concat(key, bestIndex)
-								})
-							);
 							continue;
 						}
 					}
 					switch (message.ctx.type) {
 						case 'root': {
 							pushFilterAndEntries(`^${escapeRegex(idPrefix)}`);
-							pushValue(message.schema);
+							pushValuePlaceholder(message.schema);
 							continue;
 						}
 						case 'record': {
 							switch (message.ctx.key) {
 								case 'properties': {
 									pushFilterAndEntries(`${idSeparator}${escapeRegex(message.ctx.property)}`);
-									pushValue(message.schema);
+									pushValuePlaceholder(message.schema);
 									continue;
 								}
 								case '$defs':
@@ -302,21 +282,25 @@ export function parseSchemaValue({
 							}
 						}
 						case 'sub': {
-							if (depth === 1) {
-								pushValue(message.schema);
-								continue;
-							}
 							switch (message.ctx.key) {
-								case 'then':
-								case 'else':
-									continue;
-								case 'contains':
 								case 'if':
+								case 'contains':
 								case 'not':
 								case 'propertyNames': {
 									throw unexpected(`Enter: Unexpected sub context`, message.ctx);
 								}
+								case 'then':
+								case 'else': {
+									if (depth !== 1) {
+										throw unexpected(`Enter: Unexpected sub context`, message.ctx);
+									}
+									continue;
+								}
 								case 'items': {
+									if (depth === 1) {
+										pushValuePlaceholder(message.schema);
+										continue;
+									}
 									skipNodeDecDepth();
 									let i = 0;
 									while (entriesStack[entriesStack.length - 1].length > 0) {
@@ -339,6 +323,10 @@ export function parseSchemaValue({
 									continue;
 								}
 								case 'additionalProperties': {
+									if (depth === 1) {
+										pushValuePlaceholder(message.schema);
+										continue;
+									}
 									skipNodeDecDepth();
 									const knownProperties = new Set(
 										getKnownProperties(message.ctx.parent, rootSchema)
@@ -361,15 +349,18 @@ export function parseSchemaValue({
 									for (const [key, entries] of unknown) {
 										pushFilter(`${idSeparator}${escapeRegex(key)}$`);
 										entriesStack.push(entries);
-										record[key] = parse(
-											traverseSchemaDefinition(message.schema, visitor, message.ctx)
-										);
+										parse(traverseSchemaDefinition(message.schema, visitor, message.ctx));
+										record[key] = valueStack.pop();
 										entriesStack.pop();
 										popFilter();
 									}
 									continue;
 								}
 								case 'additionalItems': {
+									if (depth === 1) {
+										pushValuePlaceholder(message.schema);
+										continue;
+									}
 									skipNodeDecDepth();
 									const schemaItems = message.ctx.parent.items;
 									const initialIndex = Array.isArray(schemaItems) ? schemaItems.length : 0;
@@ -395,19 +386,23 @@ export function parseSchemaValue({
 						case 'array':
 							switch (message.ctx.key) {
 								case 'allOf': {
-									pushValue(message.schema);
 									continue;
 								}
 								case 'anyOf':
 								case 'oneOf': {
-									if (depth !== 1) {
-										throw unexpected('Enter: Unexpected array context', message.ctx);
+									if (depth === 1) {
+										continue;
 									}
-									continue
+									if (depth === 2) {
+										calculateValueOnStack(message.schema);
+										integrateValueBack(message.ctx);
+										continue;
+									}
+									throw unexpected('Enter: Unexpected array context', message.ctx);
 								}
 								case 'items': {
 									pushFilterAndEntries(`${idSeparator}${message.ctx.index}`);
-									pushValue(message.schema);
+									pushValuePlaceholder(message.schema);
 									continue;
 								}
 								default:
@@ -419,27 +414,72 @@ export function parseSchemaValue({
 				}
 				case MessageType.Leave: {
 					depth--;
+					if (isSchema(message.schema)) {
+						const { anyOf, oneOf } = message.schema;
+						const anyOfOrOneOf = anyOf || oneOf;
+						if (Array.isArray(anyOfOrOneOf)) {
+							if (isSelect2(validator, merger, message.schema, rootSchema)) {
+								calculateValueOnStack(message.schema);
+								integrateValueBack(message.ctx);
+								popEntriesAndFilter();
+								continue;
+							}
+							const bestIndex = getClosestMatchingOption2(
+								validator,
+								merger,
+								rootSchema,
+								valueStack[valueStack.length - 1],
+								anyOfOrOneOf.map((def) => {
+									if (typeof def === 'boolean') {
+										return def ? {} : { not: {} };
+									}
+									return def;
+								}),
+								0,
+								getDiscriminatorFieldFromSchema(message.schema)
+							);
+							const key = Array.isArray(oneOf) ? 'oneOf' : 'anyOf';
+							parse(
+								traverseSchemaDefinition(anyOfOrOneOf[bestIndex], visitor, {
+									type: 'array',
+									key,
+									index: bestIndex,
+									parent: message.schema,
+									path: message.ctx.path.concat(key, bestIndex)
+								})
+							);
+						}
+					}
 					switch (message.ctx.type) {
 						case 'sub': {
 							switch (message.ctx.key) {
 								case 'if':
 								case 'contains':
 								case 'not':
-								case 'propertyNames':
+								case 'propertyNames': {
 									throw unexpected('Leave: Unexpected sub schema', message.ctx);
+								}
 								case 'then':
 								case 'else': {
-									result = valueStack[valueStack.length - 1];
+									if (depth !== 0) {
+										throw unexpected('Leave: Unexpected sub schema', message.ctx);
+									}
 									continue;
 								}
 								case 'items':
-								case 'additionalItems':
-								case 'additionalProperties': {
+								case 'additionalItems': {
 									if (depth !== 0) {
 										throw unexpected('Leave: Unexpected sub schema', message.ctx);
 									}
 									calculateValueOnStack(message.schema);
-									result = popValue(message.ctx);
+									integrateValueBack(message.ctx);
+									continue;
+								}
+								case "additionalProperties": {
+									if (depth !== 0) {
+										throw unexpected('Leave: Unexpected sub schema', message.ctx);
+									}
+									calculateValueOnStack(message.schema);
 									continue;
 								}
 								default:
@@ -449,18 +489,19 @@ export function parseSchemaValue({
 						case 'array': {
 							switch (message.ctx.key) {
 								case 'allOf':
-									calculateValueOnStack(message.schema);
-									result = popValue(message.ctx);
 									continue;
 								case 'anyOf':
 								case 'oneOf':
-									if (depth !== 0) {
-										throw unexpected('Leave: Unexpected array schema', message.ctx);
+									if (depth === 0) {
+										continue;
 									}
-									continue;
+									if (depth === 1) {
+										continue;
+									}
+									throw unexpected('Leave: Unexpected array schema', message.ctx);
 								case 'items':
 									calculateValueOnStack(message.schema);
-									result = popValue(message.ctx);
+									integrateValueBack(message.ctx);
 									popEntriesAndFilter();
 									continue;
 								default:
@@ -469,14 +510,12 @@ export function parseSchemaValue({
 						}
 						case 'root': {
 							calculateValueOnStack(message.schema);
-							result = popValue(message.ctx);
 							popEntriesAndFilter();
 							continue;
 						}
 						case 'record': {
 							switch (message.ctx.key) {
 								case 'dependencies': {
-									result = valueStack[valueStack.length - 1];
 									continue;
 								}
 								case '$defs':
@@ -486,7 +525,7 @@ export function parseSchemaValue({
 									throw todo('Leave: patternProperties', message.ctx);
 								case 'properties': {
 									calculateValueOnStack(message.schema);
-									result = popValue(message.ctx);
+									integrateValueBack(message.ctx);
 									popEntriesAndFilter();
 									continue;
 								}
@@ -503,9 +542,10 @@ export function parseSchemaValue({
 				}
 			}
 		}
-		return result;
 	}
-	return parse(traverseSchemaDefinition(rootSchema, visitor));
+	parse(traverseSchemaDefinition(rootSchema, visitor));
+	console.log(valueStack);
+	return valueStack[0];
 }
 
 function resolveRef(ref: string, rootSchema: Schema) {

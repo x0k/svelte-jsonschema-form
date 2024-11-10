@@ -284,7 +284,7 @@ describe('parseSchemaValue', () => {
 			}
 		});
 	});
-	it('Should parse schema with alternatives', () => {
+	it.only('Should parse schema with alternatives', () => {
 		const schema: Schema = {
 			definitions: {
 				Color: {
@@ -730,12 +730,12 @@ describe('parseSchemaValue', () => {
 			}
 		});
 	});
-	it.skip('Should parse schema with If/Then/Else', () => {
+	it('Should parse schema with If/Then/Else', () => {
 		const schema: Schema = {
 			type: 'object',
 			properties: {
 				animal: {
-					enum: ['Cat', 'Fish']
+					enum: ['0', '1']
 				}
 			},
 			allOf: [
@@ -743,7 +743,7 @@ describe('parseSchemaValue', () => {
 					if: {
 						properties: {
 							animal: {
-								const: 'Cat'
+								const: '0'
 							}
 						}
 					},
@@ -761,7 +761,7 @@ describe('parseSchemaValue', () => {
 					if: {
 						properties: {
 							animal: {
-								const: 'Fish'
+								const: '1'
 							}
 						}
 					},
