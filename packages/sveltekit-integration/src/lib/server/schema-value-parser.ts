@@ -394,11 +394,16 @@ export function parseSchemaValue({
 						}
 						case 'array':
 							switch (message.ctx.key) {
-								case 'allOf':
-								case 'anyOf':
-								case 'oneOf': {
+								case 'allOf': {
 									pushValue(message.schema);
 									continue;
+								}
+								case 'anyOf':
+								case 'oneOf': {
+									if (depth !== 1) {
+										throw unexpected('Enter: Unexpected array context', message.ctx);
+									}
+									continue
 								}
 								case 'items': {
 									pushFilterAndEntries(`${idSeparator}${message.ctx.index}`);
@@ -444,10 +449,14 @@ export function parseSchemaValue({
 						case 'array': {
 							switch (message.ctx.key) {
 								case 'allOf':
-								case 'anyOf':
-								case 'oneOf':
 									calculateValueOnStack(message.schema);
 									result = popValue(message.ctx);
+									continue;
+								case 'anyOf':
+								case 'oneOf':
+									if (depth !== 0) {
+										throw unexpected('Leave: Unexpected array schema', message.ctx);
+									}
 									continue;
 								case 'items':
 									calculateValueOnStack(message.schema);

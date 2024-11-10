@@ -577,7 +577,7 @@ describe('parseSchemaValue', () => {
 			fixedNoToolbar: ['42', 'on', 'additional item one', 'additional item two']
 		});
 	});
-	it.only('Should parse schema with dependencies', () => {
+	it('Should parse schema with dependencies', () => {
 		const schema: Schema = {
 			title: 'Schema dependencies',
 			description: 'These samples are best viewed without live validation.',
