@@ -62,6 +62,8 @@ export const RECORDS_OF_SUB_SCHEMAS = [
   DEPENDENCIES_KEY,
 ] as const;
 
+export const SET_OF_RECORDS_OF_SUB_SCHEMAS = new Set(RECORDS_OF_SUB_SCHEMAS);
+
 export type SubSchemasRecordKey = (typeof RECORDS_OF_SUB_SCHEMAS)[number];
 
 export const ARRAYS_OF_SUB_SCHEMAS = [
@@ -70,6 +72,8 @@ export const ARRAYS_OF_SUB_SCHEMAS = [
   ONE_OF_KEY,
   ANY_OF_KEY,
 ] as const;
+
+export const SET_OF_ARRAYS_OF_SUB_SCHEMAS = new Set(ARRAYS_OF_SUB_SCHEMAS);
 
 export type SubSchemasArrayKey = (typeof ARRAYS_OF_SUB_SCHEMAS)[number];
 
@@ -85,8 +89,17 @@ export const SUB_SCHEMAS = [
   NOT_KEY,
 ] as const;
 
+export const SET_OF_SUB_SCHEMAS = new Set(SUB_SCHEMAS);
+
 export type SubSchemaKey = (typeof SUB_SCHEMAS)[number];
 
+export const SCHEMA_KEYS = [
+  ...RECORDS_OF_SUB_SCHEMAS,
+  ...ARRAYS_OF_SUB_SCHEMAS,
+  ...SUB_SCHEMAS,
+]
+
+export type SchemaKey = (typeof SCHEMA_KEYS)[number];
 
 export function isSchema(schemaDef: SchemaDefinition): schemaDef is Schema {
   return typeof schemaDef === "object";
@@ -94,4 +107,16 @@ export function isSchema(schemaDef: SchemaDefinition): schemaDef is Schema {
 
 export function isNormalArrayItems(items: Schema["items"]): items is Schema {
   return typeof items === "object" && !Array.isArray(items);
+}
+
+export function isSubSchemaKey(key: string): key is SubSchemaKey {
+  return SET_OF_SUB_SCHEMAS.has(key as SubSchemaKey);
+}
+
+export function isSubSchemasArrayKey(key: string): key is SubSchemasArrayKey {
+  return SET_OF_ARRAYS_OF_SUB_SCHEMAS.has(key as SubSchemasArrayKey);
+}
+
+export function isSubSchemasRecordKey(key: string): key is SubSchemasRecordKey {
+  return SET_OF_RECORDS_OF_SUB_SCHEMAS.has(key as SubSchemasRecordKey);
 }

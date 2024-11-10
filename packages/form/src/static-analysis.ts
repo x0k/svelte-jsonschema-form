@@ -1,7 +1,11 @@
 import { isObject } from "@/lib/object.js";
 import {
+  ARRAYS_OF_SUB_SCHEMAS,
   isSchema,
-  traverseSchemaDefinition,
+  makeSchemaDefinitionTraverser,
+  RECORDS_OF_SUB_SCHEMAS,
+  SCHEMA_KEYS,
+  SUB_SCHEMAS,
   traverseSchemaValue,
   type Path,
   type Schema,
@@ -116,7 +120,7 @@ function* schemaAnalysis(
   idSeparatorEntries: [string, string][],
   schema: Schema
 ): Generator<SchemaIssue> {
-  yield* traverseSchemaDefinition(schema, {
+  yield* makeSchemaDefinitionTraverser(SCHEMA_KEYS, {
     *onEnter(node, ctx) {
       if (!isSchema(node)) {
         return;
@@ -141,7 +145,7 @@ function* schemaAnalysis(
         );
       }
     },
-  });
+  })(schema);
 }
 
 export interface StaticAnalysisOptions<T extends SchemaValue> {

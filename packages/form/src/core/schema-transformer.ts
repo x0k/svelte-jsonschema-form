@@ -14,6 +14,7 @@ import {
   type SubSchemaKey,
   type SubSchemasArrayKey,
   type SubSchemasRecordKey,
+  type SchemaKey,
 } from "./schema.js";
 
 export type TransformedSchema<R> = Omit<
@@ -47,9 +48,9 @@ export function transformSchemaDefinition<R>(
   schema: SchemaDefinition,
   transform: (
     shallowCopy: TransformedSchemaDefinition<R>,
-    ctx: SchemaTraverserContext
+    ctx: SchemaTraverserContext<SchemaKey>
   ) => R,
-  ctx: SchemaTraverserContext = { type: "root", path: [] }
+  ctx: SchemaTraverserContext<SchemaKey> = { type: "root", path: [] }
 ): R {
   if (!isSchema(schema)) {
     return transform(schema, ctx);
@@ -62,7 +63,7 @@ export function transformSchemaDefinition<R>(
     if (array === undefined || !Array.isArray(array)) {
       continue;
     }
-    const c: ArraySchemaTraverserContext = {
+    const c: ArraySchemaTraverserContext<SchemaKey> = {
       type: "array",
       parent: schema,
       key,
@@ -81,7 +82,7 @@ export function transformSchemaDefinition<R>(
     if (record === undefined) {
       continue;
     }
-    const c: RecordSchemaTraverserContext = {
+    const c: RecordSchemaTraverserContext<SchemaKey> = {
       type: "record",
       parent: schema,
       key,
@@ -99,7 +100,7 @@ export function transformSchemaDefinition<R>(
     shallowCopy[key] = Object.fromEntries(map);
     map.clear();
   }
-  const c: SubSchemaTraverserContext = {
+  const c: SubSchemaTraverserContext<SchemaKey> = {
     type: "sub",
     parent: schema,
     key: "items",

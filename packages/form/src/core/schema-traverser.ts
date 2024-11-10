@@ -2,12 +2,13 @@ import {
   type SubSchemasArrayKey,
   type SchemaDefinition,
   type SubSchemaKey,
-  ARRAYS_OF_SUB_SCHEMAS,
-  RECORDS_OF_SUB_SCHEMAS,
-  SUB_SCHEMAS,
   isSchema,
   type SubSchemasRecordKey,
   type Schema,
+  type SchemaKey,
+  isSubSchemaKey,
+  isSubSchemasArrayKey,
+  isSubSchemasRecordKey,
 } from "./schema.js";
 import type { Visitor } from "./traverser.js";
 import type { Path } from "./path.js";
@@ -16,112 +17,126 @@ export type SchemaTraverserContextType = "array" | "record" | "sub" | "root";
 
 export interface AbstractSchemaTraverserContext<
   T extends SchemaTraverserContextType,
+  K extends SchemaKey,
 > {
   type: T;
-  path: Path;
+  path: SubSchemasArrayKey extends K ? Path : string[];
 }
 
-export interface ArraySchemaTraverserContext
-  extends AbstractSchemaTraverserContext<"array"> {
-  parent: Schema
-  key: SubSchemasArrayKey;
+export interface ArraySchemaTraverserContext<K extends SchemaKey>
+  extends AbstractSchemaTraverserContext<"array", K> {
+  parent: Schema;
+  key: SubSchemasArrayKey & K;
   index: number;
 }
 
-export interface RecordSchemaTraverserContext
-  extends AbstractSchemaTraverserContext<"record"> {
-  parent: Schema
-  key: SubSchemasRecordKey;
+export interface RecordSchemaTraverserContext<K extends SchemaKey>
+  extends AbstractSchemaTraverserContext<"record", K> {
+  parent: Schema;
+  key: SubSchemasRecordKey & K;
   property: string;
 }
 
-export interface SubSchemaTraverserContext
-  extends AbstractSchemaTraverserContext<"sub"> {
-  parent: Schema
-  key: SubSchemaKey;
+export interface SubSchemaTraverserContext<K extends SchemaKey>
+  extends AbstractSchemaTraverserContext<"sub", K> {
+  parent: Schema;
+  key: SubSchemaKey & K;
 }
+export interface RootSchemaTraverserContext<K extends SchemaKey>
+  extends AbstractSchemaTraverserContext<"root", K> {}
 
-export interface RootSchemaTraverserContext
-  extends AbstractSchemaTraverserContext<"root"> {}
+export type SchemaTraverserContext<K extends SchemaKey> =
+  | ArraySchemaTraverserContext<K>
+  | RecordSchemaTraverserContext<K>
+  | SubSchemaTraverserContext<K>
+  | RootSchemaTraverserContext<K>;
 
-export type SchemaTraverserContext =
-  | ArraySchemaTraverserContext
-  | RecordSchemaTraverserContext
-  | SubSchemaTraverserContext
-  | RootSchemaTraverserContext;
-
-export type SchemaDefinitionVisitor<R> = Visitor<
+export type SchemaDefinitionVisitor<K extends SchemaKey, R> = Visitor<
   SchemaDefinition,
-  SchemaTraverserContext,
+  SchemaTraverserContext<K>,
   R
 >;
 
-export function* traverseSchemaDefinition<R>(
-  schema: SchemaDefinition,
-  visitor: SchemaDefinitionVisitor<R>,
-  ctx: SchemaTraverserContext = { type: "root", path: [] }
-): Generator<R> {
-  if (visitor.onEnter) {
-    yield* visitor.onEnter(schema, ctx);
-  }
-  if (isSchema(schema)) {
-    for (const key of RECORDS_OF_SUB_SCHEMAS) {
-      const record = schema[key];
-      if (record === undefined) {
-        continue;
-      }
-      const c: RecordSchemaTraverserContext = {
-        type: "record",
-        parent: schema,
-        key,
-        property: "",
-        path: ctx.path.concat(key, ""),
-      };
-      for (const property of Object.keys(record)) {
-        const value = record[property];
-        if (value === undefined || Array.isArray(value)) {
-          continue;
-        }
-        c.property = property;
-        c.path[c.path.length - 1] = property;
-        yield* traverseSchemaDefinition(value, visitor, c);
-      }
+export function makeSchemaDefinitionTraverser<const K extends SchemaKey[], R>(
+  keys: K,
+  visitor: SchemaDefinitionVisitor<K[number], R>
+) {
+  return function* traverse(
+    schema: SchemaDefinition,
+    ctx: SchemaTraverserContext<K[number]> = { type: "root", path: [] }
+  ): Generator<R> {
+    if (visitor.onEnter) {
+      yield* visitor.onEnter(schema, ctx);
     }
-    for (const key of ARRAYS_OF_SUB_SCHEMAS) {
-      const array = schema[key];
-      if (array === undefined || !Array.isArray(array)) {
-        continue;
-      }
-      const c: ArraySchemaTraverserContext = {
+    if (isSchema(schema)) {
+      const fakeKey = "";
+      const subCtx: SubSchemaTraverserContext<K[number]> = {
+        type: "sub",
+        parent: schema,
+        key: fakeKey as SubSchemaKey,
+        // @ts-expect-error
+        path: ctx.path.concat(fakeKey as SubSchemaKey),
+      };
+      const arrayCtx: ArraySchemaTraverserContext<K[number]> = {
         type: "array",
         parent: schema,
-        key,
+        key: fakeKey as SubSchemasArrayKey,
         index: 0,
-        path: ctx.path.concat(key, 0),
+        // @ts-expect-error
+        path: ctx.path.concat(fakeKey as SubSchemasArrayKey, 0),
       };
-      for (let index = 0; index < array.length; index++) {
-        c.index = index;
-        c.path[c.path.length - 1] = index;
-        yield* traverseSchemaDefinition(array[index]!, visitor, c);
+      const recordCtx: RecordSchemaTraverserContext<K[number]> = {
+        type: "record",
+        parent: schema,
+        key: fakeKey as SubSchemasRecordKey,
+        property: "",
+        // @ts-expect-error
+        path: ctx.path.concat(fakeKey as SubSchemasRecordKey, ""),
+      };
+      for (const key of keys) {
+        if (isSubSchemaKey(key)) {
+          const value = schema[key];
+          if (value === undefined || Array.isArray(value)) {
+            continue;
+          }
+          subCtx.key = key;
+          subCtx.path[subCtx.path.length - 1] = key;
+          yield* traverse(value, subCtx);
+        }
+        if (isSubSchemasArrayKey(key)) {
+          const array = schema[key];
+          if (array === undefined || !Array.isArray(array)) {
+            continue;
+          }
+          arrayCtx.key = key;
+          arrayCtx.path[arrayCtx.path.length - 2] = key;
+          for (let index = 0; index < array.length; index++) {
+            arrayCtx.index = index;
+            arrayCtx.path[arrayCtx.path.length - 1] = index;
+            yield* traverse(array[index]!, arrayCtx);
+          }
+        }
+        if (isSubSchemasRecordKey(key)) {
+          const record = schema[key];
+          if (record === undefined) {
+            continue;
+          }
+          recordCtx.key = key;
+          recordCtx.path[recordCtx.path.length - 2] = key;
+          for (const property of Object.keys(record)) {
+            const value = record[property];
+            if (value === undefined || Array.isArray(value)) {
+              continue;
+            }
+            recordCtx.property = property;
+            recordCtx.path[recordCtx.path.length - 1] = property;
+            yield* traverse(value, recordCtx);
+          }
+        }
       }
     }
-    const c: SubSchemaTraverserContext = {
-      type: "sub",
-      parent: schema,
-      key: "additionalItems",
-      path: ctx.path.concat(""),
-    };
-    for (const key of SUB_SCHEMAS) {
-      const value = schema[key];
-      if (value === undefined || Array.isArray(value)) {
-        continue;
-      }
-      c.key = key;
-      c.path[c.path.length - 1] = key;
-      yield* traverseSchemaDefinition(value, visitor, c);
+    if (visitor.onLeave) {
+      yield* visitor.onLeave(schema, ctx);
     }
-  }
-  if (visitor.onLeave) {
-    yield* visitor.onLeave(schema, ctx);
-  }
+  };
 }
