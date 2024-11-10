@@ -284,7 +284,7 @@ describe('parseSchemaValue', () => {
 			}
 		});
 	});
-	it.only('Should parse schema with alternatives', () => {
+	it('Should parse schema with alternatives', () => {
 		const schema: Schema = {
 			definitions: {
 				Color: {

@@ -2,43 +2,19 @@ import jsonpointer from 'jsonpointer';
 import {
 	getClosestMatchingOption2,
 	getDiscriminatorFieldFromSchema,
-	getSimpleSchemaType,
 	isSchema,
+	isSchemaObjectValue,
 	isSelect2,
-	traverseSchemaDefinition,
 	type Merger2,
 	type SchemaArrayValue,
 	type SchemaDefinition,
-	type SchemaDefinitionVisitor,
 	type SchemaObjectValue,
-	type SchemaTraverserContext,
 	type Validator
 } from '@sjsf/form/core';
 import type { Schema, SchemaValue } from '@sjsf/form';
 
 export type Entry<T> = [key: string, value: T];
 export type Entries<T> = Entry<T>[];
-
-enum MessageType {
-	Enter,
-	Leave
-}
-
-interface AbstractMessage<T extends MessageType> {
-	type: T;
-}
-
-interface EnterMessage extends AbstractMessage<MessageType.Enter> {
-	ctx: SchemaTraverserContext;
-	schema: SchemaDefinition;
-}
-
-interface LeaveMessage extends AbstractMessage<MessageType.Leave> {
-	ctx: SchemaTraverserContext;
-	schema: SchemaDefinition;
-}
-
-type Message = EnterMessage | LeaveMessage;
 
 export interface SchemaValueParserOptions {
 	schema: Schema;
@@ -54,25 +30,24 @@ export interface SchemaValueParserOptions {
 const KNOWN_PROPERTIES = Symbol('known-properties');
 
 export function parseSchemaValue({
-	schema: rootSchema,
+	convertValue,
 	entries,
 	idPrefix,
-	idSeparator: originalIdSeparator,
 	idPseudoSeparator,
-	convertValue,
-	merger,
-	validator
-}: SchemaValueParserOptions): SchemaValue | undefined {
+	idSeparator: originalIdSeparator,
+	schema: rootSchema,
+	validator,
+	merger
+}: SchemaValueParserOptions) {
 	if (entries.length === 0) {
 		return undefined;
 	}
 
 	const idSeparator = escapeRegex(originalIdSeparator);
 	const BOUNDARY = `($|${idSeparator})`;
-	let keyFilter = '';
-	const lengthsStack: number[] = [];
+	let filter = '';
+	const filterLengthStack: number[] = [];
 	const entriesStack: Entries<string>[] = [removePseudoElements(entries, idPseudoSeparator)];
-	const valueStack: SchemaArrayValue = [];
 
 	const groups = new Map<string | typeof KNOWN_PROPERTIES, Entries<string>>();
 	function addGroupEntry(key: string | typeof KNOWN_PROPERTIES, entry: Entry<string>) {
@@ -91,37 +66,20 @@ export function parseSchemaValue({
 		return { known, unknown };
 	}
 
-	const visitor: SchemaDefinitionVisitor<Message> = {
-		*onEnter(node, ctx) {
-			yield {
-				type: MessageType.Enter,
-				ctx,
-				schema: node
-			};
-		},
-		*onLeave(node, ctx) {
-			yield {
-				type: MessageType.Leave,
-				ctx,
-				schema: node
-			};
-		}
-	};
-
 	function pushFilter(cmp: string) {
-		keyFilter += cmp;
-		lengthsStack.push(cmp.length);
+		filter += cmp;
+		filterLengthStack.push(cmp.length);
 	}
 
 	function popFilter() {
-		const len = lengthsStack.pop()!;
-		keyFilter = keyFilter.slice(0, -len);
+		const len = filterLengthStack.pop()!;
+		filter = filter.slice(0, -len);
 	}
 
 	function pushFilterAndEntries(cmp: string) {
 		pushFilter(cmp);
 		const last = entriesStack[entriesStack.length - 1];
-		const regExp = new RegExp(keyFilter + BOUNDARY);
+		const regExp = new RegExp(filter + BOUNDARY);
 		const right: Entries<string> = [];
 		const left: Entries<string> = [];
 		for (const entry of last) {
@@ -140,412 +98,157 @@ export function parseSchemaValue({
 		popFilter();
 	}
 
-	function pushValuePlaceholder(schema: SchemaDefinition) {
-		if (typeof schema === 'boolean') {
-			valueStack.push(undefined);
-			return;
-		}
-		switch (getSimpleSchemaType(schema)) {
-			case 'array':
-				valueStack.push([]);
-				break;
-			case 'object':
-				valueStack.push({});
-				break;
-			default:
-				valueStack.push(undefined);
-				break;
-		}
-	}
-
-	function integrateValueBack(ctx: SchemaTraverserContext) {
-		const value = valueStack.pop();
-		switch (ctx.type) {
-			case 'root': {
-				throw unexpected('PopValue: Unknown context', ctx);
+	function parseObject(schema: Schema) {
+		const { properties, additionalProperties } = schema;
+		const value: SchemaObjectValue = {};
+		if (properties !== undefined) {
+			for (const [property, schema] of Object.entries(properties)) {
+				pushFilterAndEntries(`${idSeparator}${escapeRegex(property)}`);
+				value[property] = parseSchemaDef(schema);
+				popEntriesAndFilter();
 			}
-			case 'sub': {
-				switch (ctx.key) {
-					case 'additionalItems':
-					case 'items': {
-						const array = valueStack[valueStack.length - 1] as SchemaArrayValue;
-						array.push(value);
-						return;
-					}
-					case 'then':
-					case 'else': {
-						return;
-					}
-					default:
-						throw unexpected(`PopValue: Unknown context`, ctx);
+		}
+		if (additionalProperties !== undefined) {
+			const knownProperties = new Set(getKnownProperties(schema, rootSchema));
+			for (const entry of entriesStack[entriesStack.length - 1]) {
+				const keyEnd = entry[0].indexOf(originalIdSeparator, filter.length);
+				const key = entry[0].slice(filter.length, keyEnd === -1 ? undefined : keyEnd);
+				if (knownProperties.has(key)) {
+					addGroupEntry(KNOWN_PROPERTIES, entry);
+				} else {
+					addGroupEntry(key, entry);
 				}
 			}
-			case 'record': {
-				const record = valueStack[valueStack.length - 1] as SchemaObjectValue;
-				record[ctx.property] ??= value;
-				return;
+			const { known, unknown } = popGroupEntries();
+			entriesStack[entriesStack.length - 1] = known;
+			for (const [key, entries] of unknown) {
+				pushFilter(`${idSeparator}${escapeRegex(key)}`);
+				entriesStack.push(entries);
+				value[key] = parseSchemaDef(additionalProperties);
+				entriesStack.pop();
+				popFilter();
 			}
-			case 'array': {
-				const array = valueStack[valueStack.length - 1] as SchemaArrayValue;
-				array[ctx.index] ??= value;
-				return;
-			}
-			default:
-				throw unreachable(`PopValue: Unknown context`, ctx);
 		}
+		return value;
 	}
 
-	function calculateValueOnStack(schema: SchemaDefinition) {
-		const entries = entriesStack[entriesStack.length - 1];
-		valueStack[valueStack.length - 1] ??= convertValue(schema, entries);
-	}
-
-	function parse(generator: Generator<Message>, depth = 0) {
-		function skipNodeDecDepth() {
-			skipNode(generator);
-			depth--;
-		}
-
-		for (let it = generator.next(); !it.done; it = generator.next()) {
-			const message = it.value;
-			switch (message.type) {
-				case MessageType.Enter: {
-					depth++;
-					if (
-						(message.ctx.type === 'record' &&
-							(message.ctx.key === '$defs' || message.ctx.key === 'definitions')) ||
-						(message.ctx.type === 'sub' &&
-							(message.ctx.key === 'contains' ||
-								message.ctx.key === 'not' ||
-								message.ctx.key === 'propertyNames')) ||
-						(depth > 2 &&
-							message.ctx.type === 'array' &&
-							(message.ctx.key === 'oneOf' || message.ctx.key === 'anyOf'))
-					) {
-						skipNodeDecDepth();
-						continue;
-					}
-					if (isSchema(message.schema)) {
-						const ref = message.schema.$ref;
-						if (ref !== undefined) {
-							if (entriesStack[entriesStack.length - 1].length > 0) {
-								const schemaDef = resolveRef(ref, rootSchema);
-								parse(traverseSchemaDefinition(schemaDef, visitor, message.ctx), depth);
-							}
-							skipNodeDecDepth();
-							continue;
-						}
-						const { if: expression, then, else: otherwise } = message.schema;
-						if (expression !== undefined) {
-							skipNodeDecDepth();
-							const isThenBranch =
-								typeof expression === 'boolean'
-									? expression
-									: validator.isValid(expression, rootSchema, valueStack[valueStack.length - 1]);
-							const branch = isThenBranch ? then : otherwise;
-							if (branch !== undefined) {
-								const key = isThenBranch ? 'then' : 'else';
-								parse(
-									traverseSchemaDefinition(branch, visitor, {
-										type: 'sub',
-										key,
-										parent: message.schema,
-										path: message.ctx.path.concat(key)
-									})
-								);
-							}
-							continue;
-						}
-					}
-					switch (message.ctx.type) {
-						case 'root': {
-							pushFilterAndEntries(`^${escapeRegex(idPrefix)}`);
-							pushValuePlaceholder(message.schema);
-							continue;
-						}
-						case 'record': {
-							switch (message.ctx.key) {
-								case 'properties': {
-									pushFilterAndEntries(`${idSeparator}${escapeRegex(message.ctx.property)}`);
-									pushValuePlaceholder(message.schema);
-									continue;
-								}
-								case '$defs':
-								case 'definitions':
-									throw unexpected(`Enter: Unexpected record context`, message.ctx);
-								case 'dependencies':
-									continue;
-								case 'patternProperties':
-									throw todo(`Enter: Unimplemented record context`, message.ctx);
-								default:
-									throw unreachable(`Enter: Unknown record context`, message.ctx);
-							}
-						}
-						case 'sub': {
-							switch (message.ctx.key) {
-								case 'if':
-								case 'contains':
-								case 'not':
-								case 'propertyNames': {
-									throw unexpected(`Enter: Unexpected sub context`, message.ctx);
-								}
-								case 'then':
-								case 'else': {
-									if (depth !== 1) {
-										throw unexpected(`Enter: Unexpected sub context`, message.ctx);
-									}
-									continue;
-								}
-								case 'items': {
-									if (depth === 1) {
-										pushValuePlaceholder(message.schema);
-										continue;
-									}
-									skipNodeDecDepth();
-									let i = 0;
-									while (entriesStack[entriesStack.length - 1].length > 0) {
-										pushFilterAndEntries(`${idSeparator}${i++}`);
-										// Special case: array items have no indexes, but they have the same names
-										if (i === 1 && entriesStack[entriesStack.length - 1].length === 0) {
-											popEntriesAndFilter();
-											const arrayEntries = entriesStack[entriesStack.length - 1];
-											for (let j = 0; j < arrayEntries.length; j++) {
-												entriesStack.push([arrayEntries[j]]);
-												parse(traverseSchemaDefinition(message.schema, visitor, message.ctx));
-												entriesStack.pop();
-											}
-											arrayEntries.length = 0;
-											break;
-										}
-										parse(traverseSchemaDefinition(message.schema, visitor, message.ctx));
-										popEntriesAndFilter();
-									}
-									continue;
-								}
-								case 'additionalProperties': {
-									if (depth === 1) {
-										pushValuePlaceholder(message.schema);
-										continue;
-									}
-									skipNodeDecDepth();
-									const knownProperties = new Set(
-										getKnownProperties(message.ctx.parent, rootSchema)
-									);
-									for (const entry of entriesStack[entriesStack.length - 1]) {
-										const keyEnd = entry[0].indexOf(originalIdSeparator, keyFilter.length);
-										const key = entry[0].slice(
-											keyFilter.length,
-											keyEnd === -1 ? undefined : keyEnd
-										);
-										if (knownProperties.has(key)) {
-											addGroupEntry(KNOWN_PROPERTIES, entry);
-										} else {
-											addGroupEntry(key, entry);
-										}
-									}
-									const { known, unknown } = popGroupEntries();
-									entriesStack[entriesStack.length - 1] = known;
-									const record = valueStack[valueStack.length - 1] as SchemaObjectValue;
-									for (const [key, entries] of unknown) {
-										pushFilter(`${idSeparator}${escapeRegex(key)}$`);
-										entriesStack.push(entries);
-										parse(traverseSchemaDefinition(message.schema, visitor, message.ctx));
-										record[key] = valueStack.pop();
-										entriesStack.pop();
-										popFilter();
-									}
-									continue;
-								}
-								case 'additionalItems': {
-									if (depth === 1) {
-										pushValuePlaceholder(message.schema);
-										continue;
-									}
-									skipNodeDecDepth();
-									const schemaItems = message.ctx.parent.items;
-									const initialIndex = Array.isArray(schemaItems) ? schemaItems.length : 0;
-									let i = initialIndex;
-									while (entriesStack[entriesStack.length - 1].length > 0) {
-										pushFilterAndEntries(`${idSeparator}${i++}`);
-										if (
-											i === initialIndex + 1 &&
-											entriesStack[entriesStack.length - 1].length === 0
-										) {
-											popEntriesAndFilter();
-											break;
-										}
-										parse(traverseSchemaDefinition(message.schema, visitor, message.ctx));
-										popEntriesAndFilter();
-									}
-									continue;
-								}
-								default:
-									throw unreachable('Enter: Unknown sub key', message.ctx);
-							}
-						}
-						case 'array':
-							switch (message.ctx.key) {
-								case 'allOf': {
-									continue;
-								}
-								case 'anyOf':
-								case 'oneOf': {
-									if (depth === 1) {
-										continue;
-									}
-									if (depth === 2) {
-										calculateValueOnStack(message.schema);
-										integrateValueBack(message.ctx);
-										continue;
-									}
-									throw unexpected('Enter: Unexpected array context', message.ctx);
-								}
-								case 'items': {
-									pushFilterAndEntries(`${idSeparator}${message.ctx.index}`);
-									pushValuePlaceholder(message.schema);
-									continue;
-								}
-								default:
-									throw unreachable('Enter: Unknown array context', message.ctx);
-							}
-						default:
-							throw unreachable('Enter: Unknown context type', message.ctx);
-					}
+	function parseArray(schema: Schema) {
+		const { items, additionalItems } = schema;
+		const value: SchemaArrayValue = [];
+		if (items !== undefined) {
+			if (Array.isArray(items)) {
+				for (let i = 0; i < items.length; i++) {
+					pushFilterAndEntries(`${idSeparator}${i}`);
+					value.push(parseSchemaDef(items[i]));
+					popEntriesAndFilter();
 				}
-				case MessageType.Leave: {
-					depth--;
-					if (isSchema(message.schema)) {
-						const { anyOf, oneOf } = message.schema;
-						const anyOfOrOneOf = anyOf || oneOf;
-						if (Array.isArray(anyOfOrOneOf)) {
-							if (isSelect2(validator, merger, message.schema, rootSchema)) {
-								calculateValueOnStack(message.schema);
-								integrateValueBack(message.ctx);
-								popEntriesAndFilter();
-								continue;
-							}
-							const bestIndex = getClosestMatchingOption2(
-								validator,
-								merger,
-								rootSchema,
-								valueStack[valueStack.length - 1],
-								anyOfOrOneOf.map((def) => {
-									if (typeof def === 'boolean') {
-										return def ? {} : { not: {} };
-									}
-									return def;
-								}),
-								0,
-								getDiscriminatorFieldFromSchema(message.schema)
-							);
-							const key = Array.isArray(oneOf) ? 'oneOf' : 'anyOf';
-							parse(
-								traverseSchemaDefinition(anyOfOrOneOf[bestIndex], visitor, {
-									type: 'array',
-									key,
-									index: bestIndex,
-									parent: message.schema,
-									path: message.ctx.path.concat(key, bestIndex)
-								})
-							);
-						}
-					}
-					switch (message.ctx.type) {
-						case 'sub': {
-							switch (message.ctx.key) {
-								case 'if':
-								case 'contains':
-								case 'not':
-								case 'propertyNames': {
-									throw unexpected('Leave: Unexpected sub schema', message.ctx);
-								}
-								case 'then':
-								case 'else': {
-									if (depth !== 0) {
-										throw unexpected('Leave: Unexpected sub schema', message.ctx);
-									}
-									continue;
-								}
-								case 'items':
-								case 'additionalItems': {
-									if (depth !== 0) {
-										throw unexpected('Leave: Unexpected sub schema', message.ctx);
-									}
-									calculateValueOnStack(message.schema);
-									integrateValueBack(message.ctx);
-									continue;
-								}
-								case "additionalProperties": {
-									if (depth !== 0) {
-										throw unexpected('Leave: Unexpected sub schema', message.ctx);
-									}
-									calculateValueOnStack(message.schema);
-									continue;
-								}
-								default:
-									throw unreachable('Leave: Unknown sub key', message.ctx);
-							}
-						}
-						case 'array': {
-							switch (message.ctx.key) {
-								case 'allOf':
-									continue;
-								case 'anyOf':
-								case 'oneOf':
-									if (depth === 0) {
-										continue;
-									}
-									if (depth === 1) {
-										continue;
-									}
-									throw unexpected('Leave: Unexpected array schema', message.ctx);
-								case 'items':
-									calculateValueOnStack(message.schema);
-									integrateValueBack(message.ctx);
-									popEntriesAndFilter();
-									continue;
-								default:
-									throw unreachable('Leave: Unknown array context', message.ctx);
-							}
-						}
-						case 'root': {
-							calculateValueOnStack(message.schema);
+				if (additionalItems !== undefined) {
+					let i = items.length;
+					while (entriesStack[entriesStack.length - 1].length > 0) {
+						pushFilterAndEntries(`${idSeparator}${i++}`);
+						if (i === items.length + 1 && entriesStack[entriesStack.length - 1].length === 0) {
 							popEntriesAndFilter();
-							continue;
+							break;
 						}
-						case 'record': {
-							switch (message.ctx.key) {
-								case 'dependencies': {
-									continue;
-								}
-								case '$defs':
-								case 'definitions':
-									throw unexpected('Leave: Unexpected record schema', message.ctx);
-								case 'patternProperties':
-									throw todo('Leave: patternProperties', message.ctx);
-								case 'properties': {
-									calculateValueOnStack(message.schema);
-									integrateValueBack(message.ctx);
-									popEntriesAndFilter();
-									continue;
-								}
-								default:
-									throw unreachable('Leave: Unknown record context', message.ctx);
-							}
-						}
-						default:
-							throw unreachable('Leave: Unknown context type', message.ctx);
+						value.push(parseSchemaDef(additionalItems));
+						popEntriesAndFilter();
 					}
 				}
-				default: {
-					throw unreachable('Unknown message type', message);
+			} else {
+				let i = 0;
+				while (entriesStack[entriesStack.length - 1].length > 0) {
+					pushFilterAndEntries(`${idSeparator}${i++}`);
+					// Special case: array items have no indexes, but they have the same names
+					if (i === 1 && entriesStack[entriesStack.length - 1].length === 0) {
+						popEntriesAndFilter();
+						const arrayEntries = entriesStack[entriesStack.length - 1];
+						for (let j = 0; j < arrayEntries.length; j++) {
+							entriesStack.push([arrayEntries[j]]);
+							value.push(parseSchemaDef(items));
+							entriesStack.pop();
+						}
+						arrayEntries.length = 0;
+						break;
+					}
+					value.push(parseSchemaDef(items));
+					popEntriesAndFilter();
 				}
 			}
 		}
+		return value;
 	}
-	parse(traverseSchemaDefinition(rootSchema, visitor));
-	console.log(valueStack);
-	return valueStack[0];
+
+	function handleAltSchema(schema: Schema, value: SchemaValue | undefined) {
+		const { anyOf, oneOf } = schema;
+		const altSchema = anyOf ?? oneOf;
+		if (!Array.isArray(altSchema) || isSelect2(validator, merger, schema, rootSchema)) {
+			return value;
+		}
+		const bestIndex = getClosestMatchingOption2(
+			validator,
+			merger,
+			rootSchema,
+			value,
+			altSchema.map((def) => {
+				if (typeof def === 'boolean') {
+					return def ? {} : { not: {} };
+				}
+				return def;
+			}),
+			0,
+			getDiscriminatorFieldFromSchema(schema)
+		);
+		return parseSchemaDef(altSchema[bestIndex], value);
+	}
+
+	function handleConditions(schema: Schema, value: SchemaValue | undefined) {
+		const { if: expression, then, else: otherwise } = schema;
+		if (expression === undefined) {
+			return value;
+		}
+		const isThenBranch =
+			typeof expression === 'boolean'
+				? expression
+				: validator.isValid(expression, rootSchema, value);
+		const branch = isThenBranch ? then : otherwise;
+		return branch === undefined ? value : parseSchemaDef(branch, value);
+	}
+
+	function handleDependencies(schema: Schema, value: SchemaValue | undefined) {
+		const { dependencies } = schema;
+		if (dependencies === undefined || !isSchemaObjectValue(value)) {
+			return value;
+		}
+		let result = value;
+		for (const [key, deps] of Object.entries(dependencies)) {
+			if (!(key in value) || Array.isArray(deps)) {
+				continue;
+			}
+			result = { ...(parseSchemaDef(deps, result) as SchemaObjectValue), ...result };
+		}
+		return result;
+	}
+
+	function parseSchemaDef(schema: SchemaDefinition, value?: SchemaValue): SchemaValue | undefined {
+		if (!isSchema(schema)) {
+			return schema ? convertValue(schema, entriesStack[entriesStack.length - 1]) : undefined;
+		}
+		const { properties, items, $ref: ref } = schema;
+		if (ref !== undefined) {
+			return parseSchemaDef(resolveRef(ref, rootSchema));
+		}
+		if (properties !== undefined) {
+			value = parseObject(schema);
+		} else if (items !== undefined) {
+			value = parseArray(schema);
+		} else {
+			value = convertValue(schema, entriesStack[entriesStack.length - 1]);
+		}
+		return handleDependencies(schema, handleAltSchema(schema, handleConditions(schema, value)));
+	}
+
+	pushFilterAndEntries(`^${escapeRegex(idPrefix)}`);
+	return parseSchemaDef(rootSchema);
 }
 
 function resolveRef(ref: string, rootSchema: Schema) {
@@ -599,35 +302,6 @@ function* getKnownProperties(
 			}
 		}
 	}
-}
-
-function todo<T>(message: string, value: T) {
-	return new Error(`TODO: ${message} "${JSON.stringify(value)}"`);
-}
-
-function unexpected<T>(message: string, value: T) {
-	return new Error(`Unexpected: ${message} "${JSON.stringify(value)}"`);
-}
-
-function unreachable(message: string, value: never) {
-	return new Error(`Unreachable: ${message} "${JSON.stringify(value)}"`);
-}
-
-function skipNode(generator: Generator<Message>) {
-	let depth = 1;
-	do {
-		const it = generator.next();
-		switch (it.value.type) {
-			case MessageType.Enter: {
-				depth++;
-				break;
-			}
-			case MessageType.Leave: {
-				depth--;
-				break;
-			}
-		}
-	} while (depth > 0);
 }
 
 function removePseudoElements(entries: Entries<string>, idPseudoSeparator: string) {

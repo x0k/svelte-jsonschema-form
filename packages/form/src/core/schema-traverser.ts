@@ -57,38 +57,38 @@ export type SchemaDefinitionVisitor<K extends SchemaKey, R> = Visitor<
   R
 >;
 
-export function makeSchemaDefinitionTraverser<const K extends SchemaKey[], R>(
-  keys: K,
-  visitor: SchemaDefinitionVisitor<K[number], R>
+export function makeSchemaDefinitionTraverser<const K extends SchemaKey, R>(
+  keys: ReadonlyArray<K>,
+  visitor: SchemaDefinitionVisitor<K, R>
 ) {
   return function* traverse(
     schema: SchemaDefinition,
-    ctx: SchemaTraverserContext<K[number]> = { type: "root", path: [] }
+    ctx: SchemaTraverserContext<K> = { type: "root", path: [] }
   ): Generator<R> {
     if (visitor.onEnter) {
       yield* visitor.onEnter(schema, ctx);
     }
     if (isSchema(schema)) {
       const fakeKey = "";
-      const subCtx: SubSchemaTraverserContext<K[number]> = {
+      const subCtx: SubSchemaTraverserContext<K> = {
         type: "sub",
         parent: schema,
-        key: fakeKey as SubSchemaKey,
+        key: fakeKey as SubSchemaKey & K,
         // @ts-expect-error
         path: ctx.path.concat(fakeKey as SubSchemaKey),
       };
-      const arrayCtx: ArraySchemaTraverserContext<K[number]> = {
+      const arrayCtx: ArraySchemaTraverserContext<K> = {
         type: "array",
         parent: schema,
-        key: fakeKey as SubSchemasArrayKey,
+        key: fakeKey as SubSchemasArrayKey & K,
         index: 0,
         // @ts-expect-error
         path: ctx.path.concat(fakeKey as SubSchemasArrayKey, 0),
       };
-      const recordCtx: RecordSchemaTraverserContext<K[number]> = {
+      const recordCtx: RecordSchemaTraverserContext<K> = {
         type: "record",
         parent: schema,
-        key: fakeKey as SubSchemasRecordKey,
+        key: fakeKey as SubSchemasRecordKey & K,
         property: "",
         // @ts-expect-error
         path: ctx.path.concat(fakeKey as SubSchemasRecordKey, ""),
