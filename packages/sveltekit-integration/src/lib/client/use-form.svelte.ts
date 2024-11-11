@@ -43,11 +43,11 @@ export type InitialFromDataFromPageData<PageData, FormName extends AnyKey> =
 export type FormValueFromInitialFormData<IFD, E, FallbackValue> =
 	IFD extends InitialFormData<infer T, E, any> ? T : FallbackValue;
 
-export type SendFormFromInitialFormData<IFD, V, E> =
-	IFD extends InitialFormData<V, E, infer SendSchema> ? SendSchema : false;
-
 export type SendDataFromValidatedFormData<VFD, E> =
 	VFD extends ValidatedFormData<E, infer SendData> ? SendData : false;
+
+export type SendSchemaFromInitialFormData<IFD, V, E> =
+	IFD extends InitialFormData<V, E, infer SendSchema> ? SendSchema : false;
 
 export type UseSvelteKitFormOptions<ActionData, FormName, V, E, SendSchema extends boolean> = Omit<
 	UseFormOptions<V, E>,
@@ -77,28 +77,38 @@ export function useSvelteKitForm<
 	IFD = InitialFromDataFromPageData<PageData, FormName>,
 	E = ValidatorErrorFromValidatedFormData<VFD>,
 	V = FormValueFromInitialFormData<IFD, E, FallbackValue>,
-	SendSchema extends boolean = SendFormFromInitialFormData<IFD, V, E>,
+	SendSchema extends boolean = SendSchemaFromInitialFormData<IFD, V, E>,
 	SendData extends boolean = SendDataFromValidatedFormData<VFD, E>
 >(options: UseSvelteKitFormOptions<ActionData, FormName, V, E, SendSchema>) {
 	let lastInitialFormData: InitialFormData<V, E, SendSchema> | undefined;
 	let initialized = false;
 	const unsubscribe = page.subscribe((page) => {
+		if (isRecord(page.form)) {
+			const validationData = page.form[options.name] as
+				| ValidatedFormData<E, SendData>
+				| undefined;
+			if (validationData !== undefined) {
+				if (initialized) {
+					if (validationData.sendData) {
+						form.formValue = validationData.data;
+					}
+					form.errors = groupErrors(validationData.errors);
+				} else {
+					initialized = true;
+					lastInitialFormData = {
+						schema: options.schema ?? page.data[options.name as string].schema,
+						initialValue: validationData.data as V,
+						initialErrors: validationData.errors
+					};
+				}
+				return;
+			}
+		}
 		if (!initialized) {
 			initialized = true;
 			lastInitialFormData = page.data[options.name as string];
 			return;
 		}
-		if (!isRecord(page.form)) {
-			return;
-		}
-		const validationData = page.form[options.name] as ValidatedFormData<E, SendData> | undefined;
-		if (!validationData) {
-			return;
-		}
-		if (validationData.sendData) {
-			form.formValue = validationData.data;
-		}
-		form.errors = groupErrors(validationData.errors);
 	});
 	onDestroy(unsubscribe);
 

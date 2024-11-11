@@ -1,13 +1,17 @@
 import { describe, expect, it } from 'vitest';
-import { makeFormDataEntriesConverter } from './convert-form-data-entries';
+import {
+	makeFormDataEntriesConverter,
+	type FormDataConverterOptions
+} from './convert-form-data-entries';
 import { createValidator } from '@sjsf/ajv8-validator';
 import { defaultMerger, type Schema } from '@sjsf/form/core';
 import type { Entries } from './entry';
 
-const defaultOptions = {
+const defaultOptions: FormDataConverterOptions = {
 	validator: createValidator(),
 	merger: defaultMerger,
-	rootSchema: {}
+	rootSchema: {},
+	rootUiSchema: {}
 };
 
 const convert = makeFormDataEntriesConverter(defaultOptions);
@@ -15,23 +19,24 @@ const convert = makeFormDataEntriesConverter(defaultOptions);
 describe('convertFormDataEntries', () => {
 	it('Should return null for empty nullable schema', () => {
 		expect(
-			convert(
-				{
+			convert({
+				schema: {
 					type: ['string', 'null']
 				},
-				[]
-			)
+				uiSchema: {},
+				entries: []
+			})
 		).toBeNull();
 	});
 	it('Should convert boolean', () => {
 		const schema: Schema = { title: 'A boolean', type: 'boolean', default: false };
 		const entries: Entries<string> = [['root.fixedNoToolbar.1', 'on']];
-		expect(convert(schema, entries)).toEqual(true);
+		expect(convert({ schema, uiSchema: {}, entries })).toEqual(true);
 	});
 	it('Should convert number', () => {
 		const schema: Schema = { title: 'A number', type: 'number', default: 42 };
 		const entries: Entries<string> = [['root.fixedNoToolbar.0', '42']];
-		expect(convert(schema, entries)).toEqual(42);
+		expect(convert({ schema, uiSchema: {}, entries })).toEqual(42);
 	});
 	it('Should return correct value from anyOf', () => {
 		const schema: Schema = {
@@ -56,7 +61,7 @@ describe('convertFormDataEntries', () => {
 			]
 		};
 		const entries: Entries<string> = [['root.currentColor', '1']];
-		expect(convert(schema, entries)).toEqual('#00ff00');
+		expect(convert({ schema, uiSchema: {}, entries })).toEqual('#00ff00');
 	});
 	it('Should return correct value from oneOf', () => {
 		const schema: Schema = {
@@ -68,11 +73,11 @@ describe('convertFormDataEntries', () => {
 			]
 		};
 		const entries: Entries<string> = [['root.toggleMask', '0']];
-		expect(convert(schema, entries)).toEqual(true);
+		expect(convert({ schema, uiSchema: {}, entries })).toEqual(true);
 	});
 	it('Should return correct value from enum', () => {
 		const schema: Schema = { type: 'string', enum: ['foo', 'bar', 'fuzz', 'qux'] };
 		const entries: Entries<string> = [['root.multipleChoicesList', '1']];
-		expect(convert(schema, entries)).toEqual('bar');
+		expect(convert({ schema, uiSchema: {}, entries })).toEqual('bar');
 	});
 });

@@ -8,7 +8,8 @@ import {
 	type FormMerger,
 	type FormValidator,
 	type Schema,
-	type SchemaValue
+	type SchemaValue,
+	type UiSchemaRoot
 } from '@sjsf/form';
 
 import { JSON_CHUNKS_KEY, type InitialFormData, type ValidatedFormData } from '../model';
@@ -64,7 +65,15 @@ export function makeFormDataParser({
 	idSeparator = DEFAULT_ID_SEPARATOR,
 	idPseudoSeparator = DEFAULT_PSEUDO_ID_SEPARATOR
 }: FormDataParserOptions) {
-	return async (schema: Schema, request: Request): Promise<SchemaValue | undefined> => {
+	return async ({
+		request,
+		schema,
+		uiSchema = {}
+	}: {
+		schema: Schema;
+		request: Request;
+		uiSchema?: UiSchemaRoot;
+	}): Promise<SchemaValue | undefined> => {
 		const formData = await request.formData();
 		if (formData.get(JSON_CHUNKS_KEY)) {
 			const chunks = formData.getAll(JSON_CHUNKS_KEY).join('');
@@ -75,6 +84,7 @@ export function makeFormDataParser({
 			idSeparator,
 			idPseudoSeparator,
 			schema,
+			uiSchema,
 			entries: await Promise.all(
 				formData
 					.entries()
@@ -91,7 +101,8 @@ export function makeFormDataParser({
 			convertEntries: makeFormDataEntriesConverter({
 				validator,
 				merger,
-				rootSchema: schema
+				rootSchema: schema,
+				rootUiSchema: uiSchema
 			})
 		});
 	};
@@ -105,11 +116,14 @@ export interface ValidateFormOptions<E, SendData extends boolean> {
 	sendData?: SendData;
 }
 
-export function validateForm<E, SendData extends boolean = false>({
+export function validateForm<
+	E,
+	SendData extends boolean = false
+>({
 	schema,
 	validator,
 	data,
-	sendData
+	sendData,
 }: ValidateFormOptions<E, SendData>): ValidatedFormData<E, SendData> {
 	const errors = validator.validateFormData(schema, data);
 	return {

@@ -37,16 +37,17 @@ export const load = async () => {
 };
 
 export const actions = {
-	default: async (event) => {
-		const result = {
+	default: async ({ request }) => {
+		return {
 			form: validateForm({
 				schema,
 				validator,
-				data: await parseFormData(schema, event.request),
+				data: await parseFormData({
+					schema,
+					request,
+				}),
 				sendData: true
 			})
 		};
-		console.log(result)
-		return result;
 	}
 } satisfies Actions;

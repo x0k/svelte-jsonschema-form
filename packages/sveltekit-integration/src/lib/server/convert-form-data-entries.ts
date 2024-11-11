@@ -5,25 +5,26 @@ import {
 	pickSchemaType,
 	typeOfSchema,
 	type Merger2,
-	type SchemaDefinition,
 	type Validator
 } from '@sjsf/form/core';
-import { DEFAULT_BOOLEAN_ENUM, type Schema, type SchemaValue } from '@sjsf/form';
+import { DEFAULT_BOOLEAN_ENUM, type Schema, type UiSchemaRoot } from '@sjsf/form';
 
-import type { Entries } from './entry';
+import type { EntriesConverter } from './entry';
 
 export interface FormDataConverterOptions {
 	validator: Validator;
 	merger: Merger2;
 	rootSchema: Schema;
+	rootUiSchema: UiSchemaRoot;
 }
 
 export function makeFormDataEntriesConverter({
 	validator,
 	merger,
-	rootSchema
-}: FormDataConverterOptions) {
-	return (schema: SchemaDefinition, entries: Entries<string>): SchemaValue | undefined => {
+	rootSchema,
+	rootUiSchema
+}: FormDataConverterOptions): EntriesConverter<string> {
+	return ({ entries, schema, uiSchema }) => {
 		if (typeof schema === 'boolean') {
 			return schema ? entries[0]?.[1] : undefined;
 		}
@@ -57,6 +58,13 @@ export function makeFormDataEntriesConverter({
 		}
 		switch (type) {
 			case 'string':
+				if (value === '') {
+					return schema.default === '' ||
+						uiSchema['ui:options']?.emptyValue === '' ||
+						rootUiSchema['ui:options']?.emptyValue === ''
+						? ''
+						: undefined;
+				}
 				return value;
 			case 'boolean':
 				return value === 'on';

@@ -9,13 +9,14 @@ import { makeFormDataEntriesConverter } from './convert-form-data-entries';
 
 const defaultOptions: SchemaValueParserOptions<string> = {
 	schema: {},
+	uiSchema: {},
 	entries: [],
 	idPrefix: 'root',
 	idSeparator: '.',
 	idPseudoSeparator: '::',
 	validator: createValidator(),
 	merger: defaultMerger,
-	convertEntries: (_, v) => v[0]?.[1]
+	convertEntries: ({ entries }) => entries[0]?.[1]
 };
 
 describe('parseSchemaValue', () => {
@@ -1083,7 +1084,8 @@ describe('parseSchemaValue', () => {
 					convertEntries: makeFormDataEntriesConverter({
 						validator: defaultOptions.validator,
 						merger: defaultOptions.merger,
-						rootSchema: schema
+						rootSchema: schema,
+						rootUiSchema: {}
 					})
 				})
 			).toEqual({
