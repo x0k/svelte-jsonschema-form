@@ -14,17 +14,11 @@
 		validator: createValidator(),
 		translation,
 		onSuccess: console.log,
-		onFailure: console.warn,
+		onFailure: console.warn
 	});
 </script>
 
-<article>
-	<form
-		method="POST"
-		novalidate
-		style="display: flex; flex-direction: column; gap: 1rem"
-	>
-		<FormContent bind:value={form.formValue} />
-		<button type="submit" style="padding: 0.5rem;">Submit</button>
-	</form>
-</article>
+<form method="POST" novalidate style="display: flex; flex-direction: column; gap: 1rem">
+	<FormContent bind:value={form.formValue} />
+	<button type="submit" style="padding: 0.5rem;">Submit</button>
+</form>

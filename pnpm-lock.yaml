@@ -828,7 +828,7 @@ importers:
         specifier: 'catalog:'
         version: 2.1.4(@types/node@22.7.5)
 
-  packages/sveltekit-integration:
+  packages/sveltekit:
     dependencies:
       esm-env:
         specifier: ^1.0.0
@@ -4438,12 +4438,6 @@ packages:
     peerDependencies:
       svelte: ^5.0.0-next.126
 
-  svelte2tsx@0.7.21:
-    resolution: {integrity: sha512-cdYR5gYBK0Ys3/jzGu9yfW9oxGLtLAnxcKtS7oJy2pjLhLLYSZcWeeeuaY9SMULwlqMZ1HfngGH3n5VdquRC3Q==}
-    peerDependencies:
-      svelte: ^3.55 || ^4.0.0-next.0 || ^4.0 || ^5.0.0-next.0
-      typescript: ^4.9.4 || ^5.0.0
-
   svelte2tsx@0.7.22:
     resolution: {integrity: sha512-hf55ujq17ufVpDQlJzaQfRr9EjlLIwGmFlpKq4uYrQAQFw/99q1OcVYyBT6568iJySgBUY9PdccURrORmfetmQ==}
     peerDependencies:
@@ -6086,7 +6080,7 @@ snapshots:
       sade: 1.8.1
       semver: 7.6.3
       svelte: 5.1.11
-      svelte2tsx: 0.7.21(svelte@5.1.11)(typescript@5.6.3)
+      svelte2tsx: 0.7.22(svelte@5.1.11)(typescript@5.6.3)
     transitivePeerDependencies:
       - typescript
 
@@ -6516,10 +6510,6 @@ snapshots:
   '@vtbag/turn-signal@1.1.0': {}
 
   '@yr/monotone-cubic-spline@1.0.3': {}
-
-  acorn-jsx@5.3.2(acorn@8.13.0):
-    dependencies:
-      acorn: 8.13.0
 
   acorn-jsx@5.3.2(acorn@8.14.0):
     dependencies:
@@ -7342,8 +7332,8 @@ snapshots:
 
   espree@9.6.1:
     dependencies:
-      acorn: 8.13.0
-      acorn-jsx: 5.3.2(acorn@8.13.0)
+      acorn: 8.14.0
+      acorn-jsx: 5.3.2(acorn@8.14.0)
       eslint-visitor-keys: 3.4.3
 
   esprima@4.0.1: {}
@@ -9387,13 +9377,6 @@ snapshots:
       clsx: 2.1.1
       style-to-object: 1.0.8
       svelte: 5.1.11
-
-  svelte2tsx@0.7.21(svelte@5.1.11)(typescript@5.6.3):
-    dependencies:
-      dedent-js: 1.0.1
-      pascal-case: 3.1.2
-      svelte: 5.1.11
-      typescript: 5.6.3
 
   svelte2tsx@0.7.22(svelte@5.1.11)(typescript@5.6.3):
     dependencies:

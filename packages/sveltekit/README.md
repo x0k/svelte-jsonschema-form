@@ -1,4 +1,4 @@
-# @sjsf/sveltekit-integration
+# @sjsf/sveltekit
 
 The [SvelteKit](https://svelte.dev/docs/kit/introduction) integration for [svelte-jsonschema-form](https://github.com/x0k/svelte-jsonschema-form).
 
@@ -8,7 +8,7 @@ The [SvelteKit](https://svelte.dev/docs/kit/introduction) integration for [svelt
 ## Installation
 
 ```shell
-npm install @sjsf/sveltekit-integration
+npm install @sjsf/sveltekit
 ```
 
 ## Usage

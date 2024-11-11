@@ -122,7 +122,7 @@ ts/:
   popd
 
 sv/:
-  pushd packages/sveltekit-integration
+  pushd packages/sveltekit
   c:
     pnpm run check
   b:
