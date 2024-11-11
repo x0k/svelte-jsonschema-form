@@ -1,9 +1,11 @@
 <script lang="ts">
   import { proxy } from "@/lib/svelte.svelte";
+  import { deepEqual } from '@/lib/deep-equal.js'
   import {
     getDiscriminatorFieldFromSchema,
     mergeSchemas,
     type EnumOption,
+    type SchemaValue,
   } from '@/core/index.js';
 
   import type { Config } from '../config.js';
@@ -43,20 +45,24 @@
     )
   );
 
-  const selectedOption = proxy((isRegOnly) => {
+  let lastValue: SchemaValue | undefined
+  const selectedOption = proxy((isRegOnly, currentSelected: number | undefined) => {
     if (isRegOnly) {
       config.schema;
       value;
       retrievedOptions;
       return -1;
     }
-    const discriminator = getDiscriminatorFieldFromSchema(config.schema);
+    if (currentSelected !== undefined && deepEqual(lastValue, value)) {
+      return currentSelected
+    }
+    lastValue = $state.snapshot(value)
     return getClosestMatchingOption(
       ctx,
       value,
       retrievedOptions,
       0,
-      discriminator
+      getDiscriminatorFieldFromSchema(config.schema),
     );
   }, (newSelected, oldSelected) => {
     if (oldSelected === undefined) {

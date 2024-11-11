@@ -4,8 +4,8 @@ export interface SyncInput<V> {
   /**
    * @param isDependencyRegistrationOnlyCall - when `true`, indicates that function is called only for dependency registration and result will be ignored
    */
-  (isDependencyRegistrationOnlyCall: false): V;
-  (isDependencyRegistrationOnlyCall: true): void;
+  (isDependencyRegistrationOnlyCall: false, currentValue: V | undefined): V;
+  (isDependencyRegistrationOnlyCall: true, currentValue: V | undefined): void;
 }
 
 export function proxy<V>(input: SyncInput<V>, onChange?: (value: V, prev: V) => void) {
@@ -15,10 +15,10 @@ export function proxy<V>(input: SyncInput<V>, onChange?: (value: V, prev: V) => 
     const proxyVal = proxyValue;
     if (ignoreInputUpdate) {
       ignoreInputUpdate = false;
-      input(true);
+      input(true, proxyVal);
       return proxyVal as V;
     }
-    return input(false);
+    return input(false, proxyVal);
   });
   return {
     get value() {
