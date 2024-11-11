@@ -5,6 +5,7 @@ import {
 	pickSchemaType,
 	typeOfSchema,
 	type Merger2,
+	type SchemaDefinition,
 	type Validator
 } from '@sjsf/form/core';
 import { DEFAULT_BOOLEAN_ENUM, type Schema, type SchemaValue } from '@sjsf/form';
@@ -22,7 +23,10 @@ export function makeFormDataEntriesConverter({
 	merger,
 	rootSchema
 }: FormDataConverterOptions) {
-	return (schema: Schema, entries: Entries<string>): SchemaValue | undefined => {
+	return (schema: SchemaDefinition, entries: Entries<string>): SchemaValue | undefined => {
+		if (typeof schema === 'boolean') {
+			return schema ? entries[0]?.[1] : undefined;
+		}
 		const typeOrTypes = typeOfSchema(schema);
 		const type = Array.isArray(typeOrTypes) ? pickSchemaType(typeOrTypes) : typeOrTypes;
 		if (entries.length === 0) {
