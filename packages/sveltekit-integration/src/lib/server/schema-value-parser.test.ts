@@ -17,10 +17,7 @@ const defaultOptions: SchemaValueParserOptions = {
 	idPseudoSeparator: '::',
 	validator: createValidator(),
 	merger: defaultMerger,
-	convertValue: (s, v) => {
-		console.log(s, v)
-		return v[0]?.[1]
-	}
+	convertValue: (_, v) => v[0]?.[1]
 };
 
 describe('parseSchemaValue', () => {

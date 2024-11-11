@@ -3,6 +3,7 @@ import {
 	getClosestMatchingOption2,
 	getDiscriminatorFieldFromSchema,
 	isSchema,
+	isSchemaArrayValue,
 	isSchemaObjectValue,
 	isSelect2,
 	type Merger2,
@@ -98,13 +99,12 @@ export function parseSchemaValue({
 		popFilter();
 	}
 
-	function parseObject(schema: Schema) {
+	function parseObject(schema: Schema, value: SchemaObjectValue) {
 		const { properties, additionalProperties } = schema;
-		const value: SchemaObjectValue = {};
 		if (properties !== undefined) {
 			for (const [property, schema] of Object.entries(properties)) {
 				pushFilterAndEntries(`${idSeparator}${escapeRegex(property)}`);
-				value[property] = parseSchemaDef(schema);
+				value[property] ??= parseSchemaDef(schema);
 				popEntriesAndFilter();
 			}
 		}
@@ -124,7 +124,7 @@ export function parseSchemaValue({
 			for (const [key, entries] of unknown) {
 				pushFilter(`${idSeparator}${escapeRegex(key)}`);
 				entriesStack.push(entries);
-				value[key] = parseSchemaDef(additionalProperties);
+				value[key] ??= parseSchemaDef(additionalProperties);
 				entriesStack.pop();
 				popFilter();
 			}
@@ -132,9 +132,8 @@ export function parseSchemaValue({
 		return value;
 	}
 
-	function parseArray(schema: Schema) {
+	function parseArray(schema: Schema, value: SchemaArrayValue) {
 		const { items, additionalItems } = schema;
-		const value: SchemaArrayValue = [];
 		if (items !== undefined) {
 			if (Array.isArray(items)) {
 				for (let i = 0; i < items.length; i++) {
@@ -219,14 +218,24 @@ export function parseSchemaValue({
 		if (dependencies === undefined || !isSchemaObjectValue(value)) {
 			return value;
 		}
-		let result = value;
 		for (const [key, deps] of Object.entries(dependencies)) {
 			if (!(key in value) || Array.isArray(deps)) {
 				continue;
 			}
-			result = { ...(parseSchemaDef(deps, result) as SchemaObjectValue), ...result };
+			value = parseSchemaDef(deps, value) as SchemaObjectValue;
 		}
-		return result;
+		return value;
+	}
+
+	function handleAllOf(schema: Schema, value: SchemaValue | undefined) {
+		const { allOf } = schema;
+		if (!Array.isArray(allOf)) {
+			return value;
+		}
+		for (const def of allOf) {
+			value = parseSchemaDef(def, value);
+		}
+		return value;
 	}
 
 	function parseSchemaDef(schema: SchemaDefinition, value?: SchemaValue): SchemaValue | undefined {
@@ -238,13 +247,16 @@ export function parseSchemaValue({
 			return parseSchemaDef(resolveRef(ref, rootSchema));
 		}
 		if (properties !== undefined) {
-			value = parseObject(schema);
+			value = parseObject(schema, isSchemaObjectValue(value) ? value : {});
 		} else if (items !== undefined) {
-			value = parseArray(schema);
-		} else {
+			value = parseArray(schema, isSchemaArrayValue(value) ? value : []);
+		} else if (value === undefined) {
 			value = convertValue(schema, entriesStack[entriesStack.length - 1]);
 		}
-		return handleDependencies(schema, handleAltSchema(schema, handleConditions(schema, value)));
+		return handleAllOf(
+			schema,
+			handleDependencies(schema, handleAltSchema(schema, handleConditions(schema, value)))
+		);
 	}
 
 	pushFilterAndEntries(`^${escapeRegex(idPrefix)}`);
