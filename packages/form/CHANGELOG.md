@@ -1,5 +1,13 @@
 # @sjsf/form
 
+## 1.5.1
+
+### Patch Changes
+
+- [`d8b4211`](https://github.com/x0k/svelte-jsonschema-form/commit/d8b421173cb2226b82f33a5f78a84c3fca075918) Thanks [@x0k](https://github.com/x0k)! - Fix multi-field selector
+
+  This is not a proper fix (array of multi-fields is still broken) but it's a good place to start.
+
 ## 1.5.0
 
 ### Minor Changes
