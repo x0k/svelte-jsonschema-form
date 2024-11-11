@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { defaultMerger } from '@sjsf/form/core';
 import type { Schema } from '@sjsf/form';
-import { createValidator } from '@sjsf/ajv8-validator'
+import { createValidator } from '@sjsf/ajv8-validator';
 
 import {
 	parseSchemaValue,
@@ -281,7 +281,7 @@ describe('parseSchemaValue', () => {
 			}
 		});
 	});
-	it('Should parse schema with alternatives', () => {
+	it('Should parse schema with oneOf', () => {
 		const schema: Schema = {
 			definitions: {
 				Color: {
@@ -380,6 +380,120 @@ describe('parseSchemaValue', () => {
 			colorPalette: ['0'],
 			blendMode: '0',
 			currentColor: '1'
+		});
+	});
+	it('Should parse schema with anyOf', () => {
+		const schema: Schema = {
+			type: 'object',
+			properties: {
+				age: {
+					type: 'integer',
+					title: 'Age'
+				},
+				items: {
+					type: 'array',
+					items: {
+						type: 'object',
+						anyOf: [
+							{
+								properties: {
+									foo: {
+										type: 'string'
+									}
+								}
+							},
+							{
+								properties: {
+									bar: {
+										type: 'string'
+									}
+								}
+							}
+						]
+					}
+				}
+			},
+			anyOf: [
+				{
+					title: 'First method of identification',
+					properties: {
+						firstName: {
+							type: 'string',
+							title: 'First name',
+							default: 'Chuck'
+						},
+						lastName: {
+							type: 'string',
+							title: 'Last name'
+						}
+					}
+				},
+				{
+					title: 'Second method of identification',
+					properties: {
+						idCode: {
+							type: 'string',
+							title: 'ID code'
+						}
+					}
+				}
+			]
+		};
+		const entries: Entries<string> = [
+			['root.age', '123'],
+			['root.items.0::anyof', '1'],
+			['root.items.0.bar', 'bar'],
+			['root.items.1::anyof', '0'],
+			['root.items.1.foo', 'foo'],
+			['root::anyof', '0'],
+			['root.firstName', 'Chuck'],
+			['root.lastName', '']
+		];
+		expect(parseSchemaValue({ ...defaultOptions, schema, entries })).toEqual({
+			firstName: 'Chuck',
+			items: [
+				{
+					bar: 'bar'
+				},
+				{
+					foo: 'foo'
+				}
+			],
+			age: '123',
+			lastName: ''
+		});
+	});
+	it('Should parse schema with allOf', () => {
+		const schema: Schema = {
+			type: 'object',
+			allOf: [
+				{
+					properties: {
+						lorem: {
+							type: ['string', 'boolean'],
+							default: true
+						}
+					}
+				},
+				{
+					properties: {
+						lorem: {
+							type: 'boolean'
+						},
+						ipsum: {
+							type: 'string'
+						}
+					}
+				}
+			]
+		};
+		const entries: Entries<string> = [
+			['root.lorem', 'on'],
+			['root.ipsum', 'foo']
+		];
+		expect(parseSchemaValue({ ...defaultOptions, schema, entries })).toEqual({
+			lorem: 'on',
+			ipsum: 'foo'
 		});
 	});
 	it('Should parse schema with fixed arrays and additional items', () => {
@@ -705,12 +819,12 @@ describe('parseSchemaValue', () => {
 				},
 				{
 					'Do you have any pets?': '2',
-					'Do you want to get rid of any?': '1',
+					'Do you want to get rid of any?': '1'
 				}
 			],
 			fixedArrayOfConditionals: [
 				{
-					'Do you have any pets?': '0',
+					'Do you have any pets?': '0'
 				},
 				{
 					'Do you have any pets?': '1',
@@ -718,12 +832,12 @@ describe('parseSchemaValue', () => {
 				},
 				{
 					'Do you have any pets?': '2',
-					'Do you want to get rid of any?': '0',
+					'Do you want to get rid of any?': '0'
 				}
 			],
 			simple: {
 				name: 'Randy',
-				credit_card: '',
+				credit_card: ''
 			}
 		});
 	});

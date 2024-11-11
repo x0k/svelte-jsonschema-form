@@ -1,7 +1,9 @@
 import jsonpointer from 'jsonpointer';
+import { isObject } from '@sjsf/form/lib/object';
 import {
 	getClosestMatchingOption2,
 	getDiscriminatorFieldFromSchema,
+	getSimpleSchemaType,
 	isSchema,
 	isSchemaArrayValue,
 	isSchemaObjectValue,
@@ -100,11 +102,21 @@ export function parseSchemaValue({
 	}
 
 	function parseObject(schema: Schema, value: SchemaObjectValue) {
+		function setProperty(property: string, schemaDef: SchemaDefinition) {
+			if (value[property] === undefined) {
+				const propertyValue = parseSchemaDef(schemaDef);
+				if (propertyValue !== undefined) {
+					value[property] = propertyValue;
+				}
+			}
+		}
+
 		const { properties, additionalProperties } = schema;
+
 		if (properties !== undefined) {
 			for (const [property, schema] of Object.entries(properties)) {
 				pushFilterAndEntries(`${idSeparator}${escapeRegex(property)}`);
-				value[property] ??= parseSchemaDef(schema);
+				setProperty(property, schema);
 				popEntriesAndFilter();
 			}
 		}
@@ -124,7 +136,7 @@ export function parseSchemaValue({
 			for (const [key, entries] of unknown) {
 				pushFilter(`${idSeparator}${escapeRegex(key)}`);
 				entriesStack.push(entries);
-				value[key] ??= parseSchemaDef(additionalProperties);
+				setProperty(key, additionalProperties);
 				entriesStack.pop();
 				popFilter();
 			}
@@ -177,10 +189,18 @@ export function parseSchemaValue({
 		return value;
 	}
 
-	function handleAltSchema(schema: Schema, value: SchemaValue | undefined) {
-		const { anyOf, oneOf } = schema;
-		const altSchema = anyOf ?? oneOf;
-		if (!Array.isArray(altSchema) || isSelect2(validator, merger, schema, rootSchema)) {
+	function handleAllOf(allOf: Schema['allOf'], value: SchemaValue | undefined) {
+		if (!Array.isArray(allOf)) {
+			return value;
+		}
+		for (const def of allOf) {
+			value = parseSchemaDef(def, value);
+		}
+		return value;
+	}
+
+	function handleOneOf(oneOf: Schema['oneOf'], schema: Schema, value: SchemaValue | undefined) {
+		if (!Array.isArray(oneOf) || isSelect2(validator, merger, schema, rootSchema)) {
 			return value;
 		}
 		const bestIndex = getClosestMatchingOption2(
@@ -188,7 +208,7 @@ export function parseSchemaValue({
 			merger,
 			rootSchema,
 			value,
-			altSchema.map((def) => {
+			oneOf.map((def) => {
 				if (typeof def === 'boolean') {
 					return def ? {} : { not: {} };
 				}
@@ -197,7 +217,22 @@ export function parseSchemaValue({
 			0,
 			getDiscriminatorFieldFromSchema(schema)
 		);
-		return parseSchemaDef(altSchema[bestIndex], value);
+		return parseSchemaDef(oneOf[bestIndex], value);
+	}
+
+	function handleAnyOf(schema: Schema, value: SchemaValue | undefined) {
+		const { anyOf } = schema;
+		if (!Array.isArray(anyOf)) {
+			return value;
+		}
+		if (
+			value === undefined ||
+			(isObject(value) &&
+				(Array.isArray(value) ? value.length === 0 : Object.keys(value).length === 0))
+		) {
+			return handleAllOf(anyOf, value);
+		}
+		return handleOneOf(anyOf, schema, value);
 	}
 
 	function handleConditions(schema: Schema, value: SchemaValue | undefined) {
@@ -227,35 +262,31 @@ export function parseSchemaValue({
 		return value;
 	}
 
-	function handleAllOf(schema: Schema, value: SchemaValue | undefined) {
-		const { allOf } = schema;
-		if (!Array.isArray(allOf)) {
-			return value;
-		}
-		for (const def of allOf) {
-			value = parseSchemaDef(def, value);
-		}
-		return value;
-	}
-
 	function parseSchemaDef(schema: SchemaDefinition, value?: SchemaValue): SchemaValue | undefined {
 		if (!isSchema(schema)) {
 			return schema ? convertValue(schema, entriesStack[entriesStack.length - 1]) : undefined;
 		}
-		const { properties, items, $ref: ref } = schema;
+		const { $ref: ref } = schema;
 		if (ref !== undefined) {
 			return parseSchemaDef(resolveRef(ref, rootSchema));
 		}
-		if (properties !== undefined) {
+		const type = getSimpleSchemaType(schema);
+		if (type === 'object') {
 			value = parseObject(schema, isSchemaObjectValue(value) ? value : {});
-		} else if (items !== undefined) {
+		} else if (type === 'array') {
 			value = parseArray(schema, isSchemaArrayValue(value) ? value : []);
 		} else if (value === undefined) {
 			value = convertValue(schema, entriesStack[entriesStack.length - 1]);
 		}
-		return handleAllOf(
+		return handleDependencies(
 			schema,
-			handleDependencies(schema, handleAltSchema(schema, handleConditions(schema, value)))
+			handleAnyOf(
+				schema,
+				handleAllOf(
+					schema.allOf,
+					handleOneOf(schema.oneOf, schema, handleConditions(schema, value))
+				)
+			)
 		);
 	}
 
