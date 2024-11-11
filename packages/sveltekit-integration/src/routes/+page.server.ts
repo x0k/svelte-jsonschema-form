@@ -1,11 +1,15 @@
 import type { Schema } from '@sjsf/form';
 import { createValidator } from '@sjsf/ajv8-validator';
 
-import { initForm, parseFormData, validateForm } from '$lib/server';
+import { initForm, makeFormDataParser, validateForm } from '$lib/server';
 
 import type { Actions } from './$types';
 
 const validator = createValidator();
+
+const parseFormData = makeFormDataParser({
+	validator
+});
 
 const schema: Schema = {
 	title: 'A customizable registration form',
@@ -34,21 +38,15 @@ export const load = async () => {
 
 export const actions = {
 	default: async (event) => {
-		return {
+		const result = {
 			form: validateForm({
 				schema,
 				validator,
-				data: parseFormData(await event.request.formData())
+				data: await parseFormData(schema, event.request),
+				sendData: true
 			})
 		};
+		console.log(result)
+		return result;
 	}
-	// register: async (event) => {
-	// 	return {
-	// 		form2: validateForm({
-	// 			schema,
-	// 			validator,
-	// 			data: parseFormData(await event.request.formData())
-	// 		})
-	// 	};
-	// }
 } satisfies Actions;

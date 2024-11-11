@@ -22,8 +22,9 @@
 
   async function dumpEntries() {
     const formData = new FormData(form);
-    await copyTextToClipboard(JSON.stringify([...formData.entries()]))
-    console.log("copied to clipboard");
+    const entries = [...formData.entries()]
+    await copyTextToClipboard(JSON.stringify(entries))
+    console.log("copied to clipboard", entries);
   }
 </script>
 

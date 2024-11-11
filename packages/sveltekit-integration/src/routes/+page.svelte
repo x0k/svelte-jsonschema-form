@@ -8,7 +8,7 @@
 
 	import type { PageData, ActionData } from './$types';
 
-	const { form, enhance } = useSvelteKitForm<ActionData, PageData>({
+	const { form } = useSvelteKitForm<ActionData, PageData>({
 		...theme,
 		name: 'form',
 		validator: createValidator(),
@@ -21,7 +21,6 @@
 <article>
 	<form
 		method="POST"
-		use:enhance
 		novalidate
 		style="display: flex; flex-direction: column; gap: 1rem"
 	>
