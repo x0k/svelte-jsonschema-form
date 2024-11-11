@@ -3,13 +3,13 @@ import { defaultMerger } from '@sjsf/form/core';
 import type { Schema } from '@sjsf/form';
 import { createValidator } from '@sjsf/ajv8-validator';
 
+import type { Entries } from './entry';
 import {
 	parseSchemaValue,
-	type Entries,
 	type SchemaValueParserOptions
 } from './schema-value-parser';
 
-const defaultOptions: SchemaValueParserOptions = {
+const defaultOptions: SchemaValueParserOptions<string> = {
 	schema: {},
 	entries: [],
 	idPrefix: 'root',
@@ -17,7 +17,7 @@ const defaultOptions: SchemaValueParserOptions = {
 	idPseudoSeparator: '::',
 	validator: createValidator(),
 	merger: defaultMerger,
-	convertValue: (_, v) => v[0]?.[1]
+	convertEntries: (_, v) => v[0]?.[1]
 };
 
 describe('parseSchemaValue', () => {

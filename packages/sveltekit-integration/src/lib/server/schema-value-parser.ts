@@ -16,24 +16,23 @@ import {
 } from '@sjsf/form/core';
 import type { Schema, SchemaValue } from '@sjsf/form';
 
-export type Entry<T> = [key: string, value: T];
-export type Entries<T> = Entry<T>[];
+import type { Entries, Entry } from './entry';
 
-export interface SchemaValueParserOptions {
+export interface SchemaValueParserOptions<T> {
 	schema: Schema;
-	entries: Entries<string>;
+	entries: Entries<T>;
 	idPrefix: string;
 	idSeparator: string;
 	idPseudoSeparator: string;
 	validator: Validator;
 	merger: Merger2;
-	convertValue: (schema: SchemaDefinition, entries: Entries<string>) => SchemaValue | undefined;
+	convertEntries: (schema: SchemaDefinition, entries: Entries<T>) => SchemaValue | undefined;
 }
 
 const KNOWN_PROPERTIES = Symbol('known-properties');
 
-export function parseSchemaValue({
-	convertValue,
+export function parseSchemaValue<T>({
+	convertEntries,
 	entries,
 	idPrefix,
 	idPseudoSeparator,
@@ -41,7 +40,7 @@ export function parseSchemaValue({
 	schema: rootSchema,
 	validator,
 	merger
-}: SchemaValueParserOptions) {
+}: SchemaValueParserOptions<T>) {
 	if (entries.length === 0) {
 		return undefined;
 	}
@@ -50,10 +49,10 @@ export function parseSchemaValue({
 	const BOUNDARY = `($|${idSeparator})`;
 	let filter = '';
 	const filterLengthStack: number[] = [];
-	const entriesStack: Entries<string>[] = [removePseudoElements(entries, idPseudoSeparator)];
+	const entriesStack: Entries<T>[] = [removePseudoElements(entries, idPseudoSeparator)];
 
-	const groups = new Map<string | typeof KNOWN_PROPERTIES, Entries<string>>();
-	function addGroupEntry(key: string | typeof KNOWN_PROPERTIES, entry: Entry<string>) {
+	const groups = new Map<string | typeof KNOWN_PROPERTIES, Entries<T>>();
+	function addGroupEntry(key: string | typeof KNOWN_PROPERTIES, entry: Entry<T>) {
 		const group = groups.get(key);
 		if (group) {
 			group.push(entry);
@@ -64,7 +63,7 @@ export function parseSchemaValue({
 	function popGroupEntries() {
 		const known = groups.get(KNOWN_PROPERTIES) ?? [];
 		groups.delete(KNOWN_PROPERTIES);
-		const unknown = Array.from(groups.entries()) as [string, Entries<string>][];
+		const unknown = Array.from(groups.entries()) as [string, Entries<T>][];
 		groups.clear();
 		return { known, unknown };
 	}
@@ -83,8 +82,8 @@ export function parseSchemaValue({
 		pushFilter(cmp);
 		const last = entriesStack[entriesStack.length - 1];
 		const regExp = new RegExp(filter + BOUNDARY);
-		const right: Entries<string> = [];
-		const left: Entries<string> = [];
+		const right: Entries<T> = [];
+		const left: Entries<T> = [];
 		for (const entry of last) {
 			if (regExp.test(entry[0])) {
 				right.push(entry);
@@ -264,7 +263,7 @@ export function parseSchemaValue({
 
 	function parseSchemaDef(schema: SchemaDefinition, value?: SchemaValue): SchemaValue | undefined {
 		if (!isSchema(schema)) {
-			return schema ? convertValue(schema, entriesStack[entriesStack.length - 1]) : undefined;
+			return schema ? convertEntries(schema, entriesStack[entriesStack.length - 1]) : undefined;
 		}
 		const { $ref: ref } = schema;
 		if (ref !== undefined) {
@@ -276,7 +275,7 @@ export function parseSchemaValue({
 		} else if (type === 'array') {
 			value = parseArray(schema, isSchemaArrayValue(value) ? value : []);
 		} else if (value === undefined) {
-			value = convertValue(schema, entriesStack[entriesStack.length - 1]);
+			value = convertEntries(schema, entriesStack[entriesStack.length - 1]);
 		}
 		return handleDependencies(
 			schema,
@@ -347,7 +346,7 @@ function* getKnownProperties(
 	}
 }
 
-function removePseudoElements(entries: Entries<string>, idPseudoSeparator: string) {
+function removePseudoElements<T>(entries: Entries<T>, idPseudoSeparator: string) {
 	return entries.filter(([key]) => key.lastIndexOf(idPseudoSeparator) === -1);
 }
 
