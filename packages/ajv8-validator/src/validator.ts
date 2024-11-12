@@ -13,8 +13,10 @@ import {
   type SchemaValue,
 } from "@sjsf/form/core";
 import {
+  computePseudoId,
   DEFAULT_ID_PREFIX,
   DEFAULT_ID_SEPARATOR,
+  DEFAULT_PSEUDO_ID_SEPARATOR,
   pathToId,
   type Config,
   type FieldErrors,
@@ -36,7 +38,8 @@ export class AjvValidator implements FormValidator<ErrorObject> {
     private readonly ajv: Ajv,
     private readonly uiSchema: UiSchemaRoot = {},
     private readonly idPrefix: string = DEFAULT_ID_PREFIX,
-    private readonly idSeparator: string = DEFAULT_ID_SEPARATOR
+    private readonly idSeparator: string = DEFAULT_ID_SEPARATOR,
+    private readonly idPseudoSeparator: string = DEFAULT_PSEUDO_ID_SEPARATOR
   ) {}
 
   reset() {
@@ -148,13 +151,26 @@ export class AjvValidator implements FormValidator<ErrorObject> {
   }
 
   private instancePathToId(
-    { params: { missingProperty } }: ErrorObject,
+    {
+      params: { missingProperty, propertyName: propertyNameParam },
+      propertyName = propertyNameParam,
+    }: ErrorObject,
     path: string[]
   ) {
-    const id = pathToId(this.idPrefix, this.idSeparator, path);
-    return missingProperty !== undefined
-      ? `${id}${this.idSeparator}${missingProperty}`
-      : id;
+    let id = pathToId(this.idPrefix, this.idSeparator, path);
+    id =
+      missingProperty !== undefined
+        ? `${id}${this.idSeparator}${missingProperty}`
+        : id;
+    id =
+      propertyName !== undefined
+        ? computePseudoId(
+            this.idPseudoSeparator,
+            `${id}${this.idSeparator}${propertyName}`,
+            "key-input"
+          )
+        : id;
+    return id;
   }
 
   private errorObjectToMessage(

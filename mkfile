@@ -11,7 +11,7 @@ t:
 b:
   pnpm run build
 
-v/:
+ajv/:
   pushd packages/ajv8-validator
   b:
     pnpm run build
