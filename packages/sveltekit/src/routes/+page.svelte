@@ -15,6 +15,7 @@
 		translation,
 		onSuccess: console.log,
 		onFailure: console.warn,
+		onSubmitError: console.error,
 		additionalPropertyKeyValidationError({ separators }) {
 			return `The content of these sequences ("${separators.join('", "')}") is prohibited`;
 		}

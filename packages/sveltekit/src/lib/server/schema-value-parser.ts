@@ -1,5 +1,6 @@
 import jsonpointer from 'jsonpointer';
 import { isObject } from '@sjsf/form/lib/object';
+import { escapeRegex } from '@sjsf/form/lib/reg-exp';
 import {
 	getClosestMatchingOption2,
 	getDiscriminatorFieldFromSchema,
@@ -382,8 +383,4 @@ function* getKnownProperties(
 
 function removePseudoElements<T>(entries: Entries<T>, idPseudoSeparator: string) {
 	return entries.filter(([key]) => key.lastIndexOf(idPseudoSeparator) === -1);
-}
-
-function escapeRegex(str: string) {
-	return str.replace(/[/\-\\^$*+?.()|[\]{}]/g, '\\$&');
 }
