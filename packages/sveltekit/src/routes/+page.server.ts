@@ -49,5 +49,14 @@ export const actions = {
 				sendData: true
 			})
 		};
+	},
+	register: async () => {
+		return {
+			form2: validateForm({
+				schema,
+				validator,
+				data: { field: "123" }
+			})
+		}
 	}
 } satisfies Actions;
