@@ -4,21 +4,24 @@
 	import { theme } from '@sjsf/form/basic-theme';
 	import { translation } from '@sjsf/form/translations/en';
 
-	import { useSvelteKitForm } from '$lib/client';
+	import { useSvelteKitForm, svelteKitForm } from '$lib/client';
 
 	import type { PageData, ActionData } from './$types';
 
-	const { form } = useSvelteKitForm<ActionData, PageData>({
+	const { form, enhance } = useSvelteKitForm({
 		...theme,
-		name: 'form',
+		spec: svelteKitForm<ActionData, PageData>('form'),
 		validator: createValidator(),
 		translation,
 		onSuccess: console.log,
-		onFailure: console.warn
+		onFailure: console.warn,
+		additionalPropertyKeyValidationError({ separators }) {
+			return `The content of these sequences ("${separators.join('", "')}") is prohibited`;
+		}
 	});
 </script>
 
-<form method="POST" novalidate style="display: flex; flex-direction: column; gap: 1rem">
+<form use:enhance method="POST" novalidate style="display: flex; flex-direction: column; gap: 1rem">
 	<FormContent bind:value={form.formValue} />
 	<button type="submit" style="padding: 0.5rem;">Submit</button>
 </form>

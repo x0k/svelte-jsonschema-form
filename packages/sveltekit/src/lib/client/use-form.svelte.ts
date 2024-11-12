@@ -3,11 +3,15 @@ import { onDestroy } from 'svelte';
 import type { AnyKey } from '@sjsf/form/lib/types';
 import { isRecord } from '@sjsf/form/lib/object';
 import {
+	DEFAULT_ID_SEPARATOR,
+	DEFAULT_PSEUDO_ID_SEPARATOR,
 	groupErrors,
-	useForm,
+	useForm2,
+	type AdditionalPropertyKeyError,
+	type AdditionalPropertyKeyValidator,
 	type Schema,
 	type SchemaValue,
-	type UseFormOptions
+	type UseFormOptions2
 } from '@sjsf/form';
 
 import { page } from '$app/stores';
@@ -16,12 +20,14 @@ import type { InitialFormData, ValidatedFormData } from '../model';
 
 import { useSvelteKitMutation, type SveltekitMutationOptions } from './use-mutation.svelte';
 
-export type ValidatedFormDataFromActionDataBranch<ActionData, FormName extends keyof ActionData> =
-	ActionData[FormName] extends ValidatedFormData<any, any> ? ActionData[FormName] : never;
+export type ValidatedFormDataFromActionDataBranch<ActionData, FormName extends AnyKey> =
+	ActionData[keyof ActionData & FormName] extends ValidatedFormData<any, any>
+		? ActionData[keyof ActionData & FormName]
+		: never;
 
 export type ValidatedFormDataFromActionDataUnion<
 	ActionData,
-	FormName extends keyof ActionData
+	FormName extends AnyKey
 > = ActionData extends any ? ValidatedFormDataFromActionDataBranch<ActionData, FormName> : never;
 
 export type FormNameFromActionDataBranch<ActionData> = keyof {
@@ -41,7 +47,11 @@ export type InitialFromDataFromPageData<PageData, FormName extends AnyKey> =
 		: never;
 
 export type FormValueFromInitialFormData<IFD, E, FallbackValue> =
-	IFD extends InitialFormData<infer T, E, any> ? T : FallbackValue;
+	IFD extends InitialFormData<infer T, E, any>
+		? unknown extends T
+			? FallbackValue
+			: T
+		: FallbackValue;
 
 export type SendDataFromValidatedFormData<VFD, E> =
 	VFD extends ValidatedFormData<E, infer SendData> ? SendData : false;
@@ -49,17 +59,51 @@ export type SendDataFromValidatedFormData<VFD, E> =
 export type SendSchemaFromInitialFormData<IFD, V, E> =
 	IFD extends InitialFormData<V, E, infer SendSchema> ? SendSchema : false;
 
-export type UseSvelteKitFormOptions<ActionData, FormName, V, E, SendSchema extends boolean> = Omit<
-	UseFormOptions<V, E>,
-	'onSubmit' | (SendSchema extends true ? 'schema' : never)
-> &
-	SveltekitMutationOptions<ActionData, V> & {
+type SvelteKitForm<
+	ActionData,
+	PageData,
+	N extends FormNameFromActionDataUnion<ActionData>,
+	FallbackValue = SchemaValue
+> = {
+	name: N;
+	__actionData: ActionData;
+	__pageData: PageData;
+	__fallbackValue: FallbackValue;
+};
+
+type NameFromSvelteKitForm<F extends SvelteKitForm<any, any, any>> =
+	F extends SvelteKitForm<any, any, infer Name> ? Name : never;
+
+export function svelteKitForm<
+	ActionData extends Record<AnyKey, any> | null,
+	PageData,
+	N extends FormNameFromActionDataUnion<ActionData> = FormNameFromActionDataUnion<ActionData>,
+	FallbackValue = SchemaValue
+>(
+	name: FormNameFromActionDataUnion<ActionData>
+): SvelteKitForm<ActionData, PageData, N, FallbackValue> {
+	return { name } as SvelteKitForm<ActionData, PageData, N, FallbackValue>;
+}
+
+export type AdditionalPropertyKeyValidationError =
+	| string
+	| ((ctx: { key: string; separator: string; separators: string[] }) => string);
+
+export type UseSvelteKitFormOptions<
+	F extends SvelteKitForm<any, any, any>,
+	V,
+	E,
+	SendSchema extends boolean,
+	AD = F['__actionData']
+> = Omit<UseFormOptions2<V, E>, 'onSubmit' | (SendSchema extends true ? 'schema' : never)> &
+	SveltekitMutationOptions<AD, V> & {
 		// Form options
-		name: FormName;
+		spec: F;
 		/** @default false */
 		forceDataInvalidation?: boolean;
 		/** @default true */
 		resetOnUpdate?: boolean;
+		additionalPropertyKeyValidationError?: AdditionalPropertyKeyValidationError;
 	} & (SendSchema extends true
 		? {
 				schema?: Schema;
@@ -67,26 +111,30 @@ export type UseSvelteKitFormOptions<ActionData, FormName, V, E, SendSchema exten
 		: { schema: Schema });
 
 export function useSvelteKitForm<
-	ActionData extends Record<AnyKey, any> | null,
-	PageData,
-	FormName extends
-		FormNameFromActionDataUnion<ActionData> = FormNameFromActionDataUnion<ActionData>,
-	FallbackValue = SchemaValue,
+	const O extends UseSvelteKitFormOptions<any, any, any, any, any>,
 	// Local
-	VFD = ValidatedFormDataFromActionDataUnion<ActionData, FormName>,
-	IFD = InitialFromDataFromPageData<PageData, FormName>,
-	E = ValidatorErrorFromValidatedFormData<VFD>,
+	SKF extends SvelteKitForm<any, any, any> = O['spec'],
+	ActionData = SKF['__actionData'],
+	PageData = SKF['__pageData'],
+	FallbackValue = SKF['__fallbackValue'],
+	N extends AnyKey = NameFromSvelteKitForm<SKF>,
+	VFD = ValidatedFormDataFromActionDataUnion<ActionData, N>,
+	IFD = InitialFromDataFromPageData<PageData, N>,
+	E = O extends
+		| { additionalPropertyKeyValidationError: AdditionalPropertyKeyValidationError }
+		| { additionalPropertyKeyValidator: AdditionalPropertyKeyValidator }
+		? ValidatorErrorFromValidatedFormData<VFD> | AdditionalPropertyKeyError
+		: ValidatorErrorFromValidatedFormData<VFD>,
 	V = FormValueFromInitialFormData<IFD, E, FallbackValue>,
 	SendSchema extends boolean = SendSchemaFromInitialFormData<IFD, V, E>,
 	SendData extends boolean = SendDataFromValidatedFormData<VFD, E>
->(options: UseSvelteKitFormOptions<ActionData, FormName, V, E, SendSchema>) {
+>(options: O) {
 	let lastInitialFormData: InitialFormData<V, E, SendSchema> | undefined;
 	let initialized = false;
+	const spec: SKF = options.spec;
 	const unsubscribe = page.subscribe((page) => {
 		if (isRecord(page.form)) {
-			const validationData = page.form[options.name] as
-				| ValidatedFormData<E, SendData>
-				| undefined;
+			const validationData = page.form[spec.name] as ValidatedFormData<E, SendData> | undefined;
 			if (validationData !== undefined) {
 				if (initialized) {
 					if (validationData.sendData) {
@@ -96,7 +144,7 @@ export function useSvelteKitForm<
 				} else {
 					initialized = true;
 					lastInitialFormData = {
-						schema: options.schema ?? page.data[options.name as string].schema,
+						schema: options.schema ?? page.data[spec.name as string].schema,
 						initialValue: validationData.data as V,
 						initialErrors: validationData.errors
 					};
@@ -106,7 +154,7 @@ export function useSvelteKitForm<
 		}
 		if (!initialized) {
 			initialized = true;
-			lastInitialFormData = page.data[options.name as string];
+			lastInitialFormData = page.data[spec.name as string];
 			return;
 		}
 	});
@@ -114,10 +162,31 @@ export function useSvelteKitForm<
 
 	const mutation = useSvelteKitMutation<ActionData, V>(options);
 
-	const form = useForm<V, E>(
+	const separators = [
+		options.idSeparator ?? DEFAULT_ID_SEPARATOR,
+		options.pseudoIdSeparator ?? DEFAULT_PSEUDO_ID_SEPARATOR
+	];
+	const additionalPropertyKeyValidationError = $derived(
+		options.additionalPropertyKeyValidationError
+	);
+	const form = useForm2<UseFormOptions2<V, E>>(
 		Object.setPrototypeOf(options, {
 			...lastInitialFormData,
-			onSubmit: mutation.run
+			onSubmit: mutation.run,
+			additionalPropertyKeyValidator: additionalPropertyKeyValidationError && {
+				validateAdditionalPropertyKey(key: string): string[] {
+					for (const separator of separators) {
+						if (key.includes(separator)) {
+							return [
+								typeof additionalPropertyKeyValidationError === 'string'
+									? additionalPropertyKeyValidationError
+									: additionalPropertyKeyValidationError({ key, separator, separators })
+							];
+						}
+					}
+					return [];
+				}
+			}
 		})
 	);
 

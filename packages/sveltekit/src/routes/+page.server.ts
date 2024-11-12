@@ -32,7 +32,7 @@ const schema: Schema = {
 };
 
 export const load = async () => {
-	const form = initForm({ initialValue: {}, schema, validator, sendSchema: true });
+	const form = initForm({ schema, validator, sendSchema: true });
 	return { form };
 };
 
