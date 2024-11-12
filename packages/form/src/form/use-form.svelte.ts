@@ -37,6 +37,7 @@ import {
 } from "./id-schema.js";
 import IconOrTranslation from "./icon-or-translation.svelte";
 import type { Config } from "./config.js";
+import { createAdditionalPropertyKeyValidationSchema } from "./additional-property-key-validation-schema.js";
 
 /**
  * @deprecated use `UseFormOptions2`
@@ -176,53 +177,6 @@ export function createForm2<
   let isSubmitted = $state(false);
   let isChanged = $state(false);
 
-  const getSnapshot = $derived(
-    options.getSnapshot ?? (() => $state.snapshot(value))
-  );
-
-  function validateSnapshot(snapshot: SchemaValue | undefined) {
-    return groupErrors(
-      options.validator.validateFormData(options.schema, snapshot)
-    );
-  }
-
-  function submit(e: SubmitEvent) {
-    isSubmitted = true;
-    const snapshot = getSnapshot();
-    errors = validateSnapshot(snapshot);
-    if (errors.size === 0) {
-      options.onSubmit?.(snapshot as T, e);
-      isChanged = false;
-      return;
-    }
-    options.onSubmitError?.(errors, e, snapshot);
-  }
-
-  const submitHandler = (e: SubmitEvent) => {
-    e.preventDefault();
-    submit(e);
-  };
-
-  function reset() {
-    isSubmitted = false;
-    isChanged = false;
-    errors.clear();
-    value = merger.mergeFormDataAndSchemaDefaults(
-      options.initialValue as Value,
-      options.schema
-    );
-  }
-
-  // @deprecated
-  // TODO: Call `options.onReset` inside `reset` instead of overwriting it
-  const resetHandler = $derived(
-    options.onReset ??
-      ((e: Event) => {
-        e.preventDefault();
-        reset();
-      })
-  );
-
   const inputsValidationMode = $derived(options.inputsValidationMode ?? 0);
   const uiSchema = $derived(options.uiSchema ?? {});
   const disabled = $derived(options.disabled ?? false);
@@ -268,6 +222,62 @@ export function createForm2<
         }
       : () => true;
   });
+
+  const getSnapshot = $derived(
+    options.getSnapshot ?? (() => $state.snapshot(value))
+  );
+
+  const validationSchema = $derived(
+    options.additionalPropertyKeyValidator
+      ? createAdditionalPropertyKeyValidationSchema(options.schema, [
+          idSeparator,
+          pseudoIdSeparator,
+        ])
+      : options.schema
+  );
+
+  function validateSnapshot(snapshot: SchemaValue | undefined) {
+    return groupErrors(
+      options.validator.validateFormData(validationSchema, snapshot)
+    );
+  }
+
+  function submit(e: SubmitEvent) {
+    isSubmitted = true;
+    const snapshot = getSnapshot();
+    errors = validateSnapshot(snapshot);
+    if (errors.size === 0) {
+      options.onSubmit?.(snapshot as T, e);
+      isChanged = false;
+      return;
+    }
+    options.onSubmitError?.(errors, e, snapshot);
+  }
+
+  const submitHandler = (e: SubmitEvent) => {
+    e.preventDefault();
+    submit(e);
+  };
+
+  function reset() {
+    isSubmitted = false;
+    isChanged = false;
+    errors.clear();
+    value = merger.mergeFormDataAndSchemaDefaults(
+      options.initialValue as Value,
+      options.schema
+    );
+  }
+
+  // @deprecated
+  // TODO: Call `options.onReset` inside `reset` instead of overwriting it
+  const resetHandler = $derived(
+    options.onReset ??
+      ((e: Event) => {
+        e.preventDefault();
+        reset();
+      })
+  );
 
   return [
     {
