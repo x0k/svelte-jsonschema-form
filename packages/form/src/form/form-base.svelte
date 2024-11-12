@@ -168,6 +168,9 @@
     get inputsValidationMode() {
       return inputsValidationMode
     },
+    validateAdditionalPropertyKey() {
+      return true
+    },
     get isChanged() {
       return isChanged
     },

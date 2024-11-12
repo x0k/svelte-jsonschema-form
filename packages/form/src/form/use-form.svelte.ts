@@ -5,7 +5,13 @@ import { SvelteMap } from "svelte/reactivity";
 import type { SchedulerYield } from "@/lib/scheduler.js";
 import type { Schema, SchemaValue } from "@/core/schema.js";
 
-import { type FormValidator, type ValidationError } from "./validator.js";
+import {
+  ADDITIONAL_PROPERTY_KEY_ERROR,
+  type AdditionalPropertyKeyError,
+  type AdditionalPropertyKeyValidator,
+  type FormValidator,
+  type ValidationError,
+} from "./validator.js";
 import type { Components } from "./component.js";
 import type { Widgets } from "./widgets.js";
 import type { Translation } from "./translation.js";
@@ -30,7 +36,11 @@ import {
   pathToId,
 } from "./id-schema.js";
 import IconOrTranslation from "./icon-or-translation.svelte";
+import type { Config } from "./config.js";
 
+/**
+ * @deprecated use `UseFormOptions2`
+ */
 export interface UseFormOptions<T, E> {
   validator: FormValidator<E>;
   schema: Schema;
@@ -98,6 +108,10 @@ export interface UseFormOptions<T, E> {
   schedulerYield?: SchedulerYield;
 }
 
+export interface UseFormOptions2<T, E> extends UseFormOptions<T, E> {
+  additionalPropertyKeyValidator?: AdditionalPropertyKeyValidator;
+}
+
 export interface FormState<T, E> {
   value: T | undefined;
   formValue: SchemaValue | undefined;
@@ -119,9 +133,31 @@ export interface FormAPI<T, E> extends FormState<T, E> {
 
 type Value = SchemaValue | undefined;
 
+/**
+ * @deprecated use `createForm2`
+ */
 export function createForm<T, E>(
   options: UseFormOptions<T, E>
 ): [FormContext, FormAPI<T, E>] {
+  return createForm2(options);
+}
+
+type FormValueFromOptions<O extends UseFormOptions2<any, any>> =
+  O extends UseFormOptions2<infer T, any> ? T : never;
+
+type ValidatorErrorFromOptions<O extends UseFormOptions2<any, any>> =
+  O extends UseFormOptions2<any, infer E> ? E : never;
+
+export function createForm2<
+  const O extends UseFormOptions2<any, any>,
+  T = FormValueFromOptions<O>,
+  VE = ValidatorErrorFromOptions<O>,
+  E = O extends {
+    additionalPropertyKeyValidator: AdditionalPropertyKeyValidator;
+  }
+    ? VE | AdditionalPropertyKeyError
+    : VE,
+>(options: O): [FormContext, FormAPI<T, E>] {
   const merger = $derived(
     options.merger ?? new DefaultFormMerger(options.validator, options.schema)
   );
@@ -213,11 +249,33 @@ export function createForm<T, E>(
             }, 0);
           })
   );
+  const additionalPropertyKeyValidator = $derived.by(() => {
+    const validator = options.additionalPropertyKeyValidator;
+    return validator
+      ? (config: Config, key: string) => {
+          const instanceId = config.idSchema.$id;
+          const messages = validator.validateAdditionalPropertyKey(key);
+          errors.set(
+            instanceId,
+            messages.map((message) => ({
+              instanceId,
+              propertyTitle: config.title,
+              message,
+              error: ADDITIONAL_PROPERTY_KEY_ERROR as E,
+            }))
+          );
+          return messages.length === 0;
+        }
+      : () => true;
+  });
 
   return [
     {
       get inputsValidationMode() {
         return inputsValidationMode;
+      },
+      get validateAdditionalPropertyKey() {
+        return additionalPropertyKeyValidator;
       },
       get isSubmitted() {
         return isSubmitted;
@@ -360,9 +418,17 @@ export function createForm<T, E>(
 
 /**
  * Create a FormAPI and set form context
+ * @deprecated use `useForm2`
  */
-export function useForm<T, E>(options: UseFormOptions<T, E>) {
-  const [ctx, api] = createForm(options);
+export function useForm<T, E>(options: UseFormOptions<T, E>): FormAPI<T, E> {
+  return useForm2(options);
+}
+
+/**
+ * Create a FormAPI and set form context
+ */
+export function useForm2<O extends UseFormOptions2<any, any>>(options: O) {
+  const [ctx, api] = createForm2(options);
   setFromContext(ctx);
   return api;
 }
