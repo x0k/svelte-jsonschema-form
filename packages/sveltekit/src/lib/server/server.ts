@@ -4,8 +4,6 @@ import {
 	DEFAULT_ID_PREFIX,
 	DEFAULT_ID_SEPARATOR,
 	DEFAULT_PSEUDO_ID_SEPARATOR,
-	DefaultFormMerger,
-	type FormMerger,
 	type FormValidator,
 	type Schema,
 	type SchemaValue,
@@ -22,10 +20,7 @@ export interface InitFormOptions<T, E, SendSchema extends boolean> {
 	schema: Schema;
 	validator: FormValidator<E>;
 	sendSchema?: SendSchema;
-	merger?: FormMerger;
 	initialValue?: T;
-	/** @default true */
-	computeDefaults?: boolean;
 	/** @default false */
 	performValidation?: boolean;
 }
@@ -33,18 +28,13 @@ export interface InitFormOptions<T, E, SendSchema extends boolean> {
 export function initForm<T, E, SendSchema extends boolean = false>({
 	schema,
 	validator,
-	merger = new DefaultFormMerger(validator, schema),
 	initialValue,
-	computeDefaults = true,
 	performValidation = false,
 	sendSchema
 }: InitFormOptions<T, E, SendSchema>): InitialFormData<T, E, SendSchema> {
-	const defaultedData = computeDefaults
-		? merger.mergeFormDataAndSchemaDefaults(initialValue as SchemaValue | undefined, schema)
-		: (initialValue as SchemaValue | undefined);
-	const errors = performValidation ? validator.validateFormData(schema, defaultedData) : [];
+	const errors = performValidation ? validator.validateFormData(schema, initialValue as SchemaValue | undefined) : [];
 	return {
-		initialValue: defaultedData as T | undefined,
+		initialValue,
 		initialErrors: errors,
 		schema: (sendSchema ? schema : undefined) as SendSchema extends true ? Schema : undefined
 	};
