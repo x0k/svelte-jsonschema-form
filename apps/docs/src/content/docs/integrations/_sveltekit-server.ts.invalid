@@ -18,9 +18,6 @@ const schema: Schema = {
   title: "Registration form",
   type: "object",
   required: ["firstName", "lastName"],
-  additionalProperties: {
-    type: "string",
-  },
   properties: {
     firstName: {
       type: "string",

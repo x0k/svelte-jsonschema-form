@@ -11,6 +11,11 @@ import Npm from '@/components/npm.astro';
 import clientCode from './_sveltekit-client.svelte.invalid?raw';
 import serverCode from './_sveltekit-server.ts.invalid?raw';
 
+Since this is a `Svelte` library, you may want to use it with the `SvelteKit`.
+
+With this package you will be able to perform server-side validation of form data
+even if the user has `JavaScript` disabled.
+
 ## Installation
 
 <Npm pkg="@sjsf/form @sjsf/sveltekit" />
@@ -25,3 +30,49 @@ import serverCode from './_sveltekit-server.ts.invalid?raw';
     <Code code={serverCode} lang='typescript' />
   </TabItem>
 </Tabs>
+
+## Server
+
+On the server side you should implement at least one [action](https://svelte.dev/docs/kit/form-actions)
+which will always return the result of `validateForm` function (`redirect` and `error` helpers are allowed).
+
+```typescript
+export const actions = {
+  default: async (event) => {
+    const form = validateForm({/* ... */})
+    if (!form.isValid) {
+      return fail(400, { form });
+    }
+    return {
+      form,
+    };
+  },
+} satisfies Actions;
+```
+
+:::note
+
+You can use any convenient name instead of `form`
+
+:::
+
+If you want to populate form from database, you can use `initForm` function inside the `load` function.
+
+```typescript
+export const load = async () => {
+  const data = await getData();
+  const form = initForm({ schema, validator, initialValue: data });
+  return { form };
+};
+```
+
+:::note
+
+The name of the `initForm` function result should match the name from the `action`
+
+:::
+
+## Client
+
+## Disabled JavaScript
+
