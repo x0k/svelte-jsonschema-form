@@ -150,7 +150,7 @@ type ValidatorErrorFromOptions<O extends UseFormOptions2<any, any>> =
   O extends UseFormOptions2<any, infer E> ? E : never;
 
 export function createForm2<
-  const O extends UseFormOptions2<any, any>,
+  O extends UseFormOptions2<any, any>,
   T = FormValueFromOptions<O>,
   VE = ValidatorErrorFromOptions<O>,
   E = O extends {

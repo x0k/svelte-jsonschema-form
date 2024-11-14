@@ -1,7 +1,7 @@
 <script lang="ts">
   import { SvelteMap } from 'svelte/reactivity';
   import Ajv from "ajv";
-  import { ON_BLUR, ON_CHANGE, ON_INPUT, AFTER_CHANGED, AFTER_SUBMITTED, AFTER_TOUCHED, useForm, SimpleForm } from "@sjsf/form";
+  import { ON_BLUR, ON_CHANGE, ON_INPUT, AFTER_CHANGED, AFTER_SUBMITTED, AFTER_TOUCHED, useForm2, SimpleForm } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { AjvValidator, addFormComponents, DEFAULT_AJV_CONFIG } from "@sjsf/ajv8-validator";
   import { focusOnFirstError } from '@sjsf/form/focus-on-first-error';
@@ -83,7 +83,7 @@
   let html5Validation = $state(false);
   let doFocusOnFirstError = $state(true);
 
-  const form = useForm({
+  const form = useForm2({
     initialValue: samples[initialSampleName].formData,
     initialErrors: samples[initialSampleName].errors ?? new SvelteMap(),
     translation,

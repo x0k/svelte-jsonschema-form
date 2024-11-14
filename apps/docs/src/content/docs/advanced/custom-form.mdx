@@ -12,9 +12,23 @@ import customFormComponentCode from './_custom-form.svelte?raw';
 ## Hook
 
 Even with a simple setup, resulting code is very verbose.
-Therefore, after choosing a theme, validator and translation, it is convenient to create a wrapper around the `useForm`.
+Therefore, after choosing a theme, validator and translation, it is convenient to create a wrapper around the `useForm2`.
 
 <Code code={customFormCode} lang="typescript" title="custom-form.ts" />
+
+:::note
+
+Note that you can simplify the above code if certain restrictions are met:
+
+- If you are sure that you will always call the `useForm2` hook with passing the object literal, you can use the following code instead of `Proxy`:
+
+`Object.setPrototypeOf(options, defaults)`
+
+- If you are sure you will not use getters as options, then use a spread operator instead of `Proxy`:
+
+`{ ...defaults, ...options }`
+
+:::
 
 ## Component
 

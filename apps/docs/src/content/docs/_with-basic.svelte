@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { useForm, SimpleForm } from "@sjsf/form";
+  import { useForm2, SimpleForm } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { theme } from "@sjsf/form/basic-theme";
 
   import { schema, uiSchema, initialValue } from "./_schema";
   import { validator } from "./_validator";
 
-  const form = useForm({
+  const form = useForm2({
     ...theme,
     initialValue,
     schema,
