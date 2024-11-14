@@ -77,7 +77,7 @@ export type AdditionalPropertyKeyValidationError =
 
 export type SvelteKitFormOptions<ActionData, V, E, SendSchema extends boolean> = Omit<
   UseFormOptions2<V, E>,
-  'onSubmit' | (SendSchema extends true ? 'schema' : never)
+  'onSubmit' | 'schema'
 > &
   SveltekitMutationOptions<ActionData, V> & {
     additionalPropertyKeyValidationError?: AdditionalPropertyKeyValidationError;
@@ -141,10 +141,7 @@ export function useSvelteKitForm<
   const mutation = useSvelteKitMutation<Meta['__actionData'], V>(options);
 
   const separators = [
-    //@ts-expect-error TODO: This is related to passing `SendDataFromValidatedFormData<VFD, E>`
-    // to `SvelteKitFormOptions`.
     options.idSeparator ?? DEFAULT_ID_SEPARATOR,
-    //@ts-expect-error also
     options.pseudoIdSeparator ?? DEFAULT_PSEUDO_ID_SEPARATOR
   ];
   const additionalPropertyKeyValidationError = $derived(
