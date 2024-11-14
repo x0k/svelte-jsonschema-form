@@ -24,9 +24,9 @@ Note that you can simplify the above code if certain restrictions are met:
 
 `Object.setPrototypeOf(options, defaults)`
 
-- If you are sure you will not use getters as options, then use a spread operator instead of `Proxy`:
+- If you are sure you will not use getters as options, then use `Object.assign` instead of `Proxy`:
 
-`{ ...defaults, ...options }`
+`Object.assign(defaults, options)`
 
 :::
 
