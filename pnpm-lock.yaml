@@ -122,6 +122,9 @@ importers:
       '@sjsf/skeleton-theme':
         specifier: workspace:*
         version: link:../../packages/skeleton-theme
+      '@sjsf/sveltekit':
+        specifier: workspace:*
+        version: link:../../packages/sveltekit
       '@sjsf/zod-integration':
         specifier: workspace:*
         version: link:../../packages/zod-integration

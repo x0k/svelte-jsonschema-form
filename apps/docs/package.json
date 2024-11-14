@@ -16,6 +16,7 @@
     "@sjsf/form": "workspace:*",
     "@sjsf/shadcn-theme": "workspace:*",
     "@sjsf/skeleton-theme": "workspace:*",
+    "@sjsf/sveltekit": "workspace:*",
     "@sjsf/zod-integration": "workspace:*",
     "ajv": "catalog:",
     "mermaid": "^11.4.0",

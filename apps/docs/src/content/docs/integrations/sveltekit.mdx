@@ -1,0 +1,27 @@
+---
+title: SvelteKit
+sidebar:
+  position: 2
+---
+
+import { Code, Tabs, TabItem } from "@astrojs/starlight/components";
+
+import Npm from '@/components/npm.astro';
+
+import clientCode from './_sveltekit-client.svelte.invalid?raw';
+import serverCode from './_sveltekit-server.ts.invalid?raw';
+
+## Installation
+
+<Npm pkg="@sjsf/form @sjsf/sveltekit" />
+
+## Example
+
+<Tabs>
+  <TabItem label='+page.svelte' >
+    <Code code={clientCode} lang='svelte' />
+  </TabItem>
+  <TabItem label='+page.server.ts'>
+    <Code code={serverCode} lang='typescript' />
+  </TabItem>
+</Tabs>

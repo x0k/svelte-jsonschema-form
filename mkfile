@@ -27,7 +27,7 @@ f/:
     pnpm run test $@
   popd
 
-ds/:
+docs/:
   pushd apps/docs
   c:
     pnpm run check
@@ -39,7 +39,7 @@ ds/:
     pnpm run preview
   popd
 
-pl/:
+pg/:
   pushd apps/playground
   d:
     pnpm run dev
