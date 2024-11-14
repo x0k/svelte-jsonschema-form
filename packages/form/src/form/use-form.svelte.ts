@@ -140,7 +140,8 @@ type Value = SchemaValue | undefined;
 export function createForm<T, E>(
   options: UseFormOptions<T, E>
 ): [FormContext, FormAPI<T, E>] {
-  return createForm2(options);
+  const [api, ctx] = createForm2(options);
+  return [ctx, api];
 }
 
 type FormValueFromOptions<O extends UseFormOptions2<any, any>> =
@@ -148,6 +149,8 @@ type FormValueFromOptions<O extends UseFormOptions2<any, any>> =
 
 type ValidatorErrorFromOptions<O extends UseFormOptions2<any, any>> =
   O extends UseFormOptions2<any, infer E> ? E : never;
+
+export type FormApiAndContext<T, E> = [FormAPI<T, E>, FormContext];
 
 export function createForm2<
   O extends UseFormOptions2<any, any>,
@@ -158,7 +161,7 @@ export function createForm2<
   }
     ? VE | AdditionalPropertyKeyError
     : VE,
->(options: O): [FormContext, FormAPI<T, E>] {
+>(options: O): FormApiAndContext<T, E> {
   const merger = $derived(
     options.merger ?? new DefaultFormMerger(options.validator, options.schema)
   );
@@ -281,6 +284,64 @@ export function createForm2<
 
   return [
     {
+      get value() {
+        return getSnapshot() as T | undefined;
+      },
+      set value(v) {
+        value = merger.mergeFormDataAndSchemaDefaults(
+          v as Value,
+          options.schema
+        );
+      },
+      get formValue() {
+        return value;
+      },
+      set formValue(v) {
+        value = v;
+      },
+      get errors() {
+        return errors;
+      },
+      set errors(v) {
+        errors = v;
+      },
+      get isSubmitted() {
+        return isSubmitted;
+      },
+      set isSubmitted(v) {
+        isSubmitted = v;
+      },
+      get isChanged() {
+        return isChanged;
+      },
+      set isChanged(v) {
+        isChanged = v;
+      },
+      validate() {
+        return validateSnapshot(getSnapshot());
+      },
+      submit,
+      reset,
+      updateErrorsByPath(path, update) {
+        const instanceId = pathToId(idPrefix, idSeparator, path);
+        const list = errors.get(instanceId);
+        errors.set(
+          instanceId,
+          update(list ?? []).map((e) => ({ ...e, instanceId }))
+        );
+      },
+      enhance(node) {
+        $effect(() => {
+          node.addEventListener("submit", submitHandler);
+          node.addEventListener("reset", resetHandler);
+          return () => {
+            node.removeEventListener("submit", submitHandler);
+            node.removeEventListener("reset", resetHandler);
+          };
+        });
+      },
+    },
+    {
       get inputsValidationMode() {
         return inputsValidationMode;
       },
@@ -365,64 +426,6 @@ export function createForm2<
         );
       }) as unknown as Snippet<[IconOrTranslationData]>,
     },
-    {
-      get value() {
-        return getSnapshot() as T | undefined;
-      },
-      set value(v) {
-        value = merger.mergeFormDataAndSchemaDefaults(
-          v as Value,
-          options.schema
-        );
-      },
-      get formValue() {
-        return value;
-      },
-      set formValue(v) {
-        value = v;
-      },
-      get errors() {
-        return errors;
-      },
-      set errors(v) {
-        errors = v;
-      },
-      get isSubmitted() {
-        return isSubmitted;
-      },
-      set isSubmitted(v) {
-        isSubmitted = v;
-      },
-      get isChanged() {
-        return isChanged;
-      },
-      set isChanged(v) {
-        isChanged = v;
-      },
-      validate() {
-        return validateSnapshot(getSnapshot());
-      },
-      submit,
-      reset,
-      updateErrorsByPath(path, update) {
-        const instanceId = pathToId(idPrefix, idSeparator, path);
-        const list = errors.get(instanceId);
-        errors.set(
-          instanceId,
-          update(list ?? []).map((e) => ({ ...e, instanceId }))
-        );
-      },
-      enhance(node) {
-        $effect(() => {
-          node.addEventListener("submit", submitHandler);
-          node.addEventListener("reset", resetHandler);
-          return () => {
-            node.removeEventListener("submit", submitHandler);
-            node.removeEventListener("reset", resetHandler);
-          };
-        });
-      },
-    },
   ];
 }
 
@@ -438,7 +441,7 @@ export function useForm<T, E>(options: UseFormOptions<T, E>): FormAPI<T, E> {
  * Create a FormAPI and set form context
  */
 export function useForm2<O extends UseFormOptions2<any, any>>(options: O) {
-  const [ctx, api] = createForm2(options);
+  const [api, ctx] = createForm2(options);
   setFromContext(ctx);
   return api;
 }
