@@ -136,7 +136,7 @@ But if you really want the form to work with `JavaScript` disabled, you should c
 will not update their state.
 - Some widgets (like multiselect, depends on the theme) may will not work, because they require `JavaScript`.
 - Conversion from `FormData` to `JSON` can happen with data loss.
-This conversion relies on the fields id computation algorithm and
+This conversion relies on the field names computation algorithm and
 it may lead to ambiguous results if the following conditions are violated:
   - Id prefix and separators:
     - Must be non empty, non numeric string
