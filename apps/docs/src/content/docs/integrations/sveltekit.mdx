@@ -5,6 +5,7 @@ sidebar:
 ---
 
 import { Code, Tabs, TabItem } from "@astrojs/starlight/components";
+import { DEFAULT_ID_SEPARATOR, DEFAULT_PSEUDO_ID_SEPARATOR } from '@sjsf/form';
 
 import Npm from '@/components/npm.astro';
 
@@ -107,5 +108,28 @@ According to Svelte documentation your form should always use `POST` requests.
 
 You should always use `enhance` action on your forms.
 
-But if you really want the form to work with `JavaScript` disabled, then check out the list of restrictions.
+But if you really want the form to work with `JavaScript` disabled, you should consider the following limitation:
 
+- `validateForm` should be called with `sendData: true`
+- Form elements for `oneOf`, `anyOf`, `dependencies`, `additionalProperties` and `additionalItems`
+will not update their state.
+- Some widgets (like multiselect, depends on the theme) may will not work, because they require `JavaScript`.
+- Conversion from `FormData` to `JSON` can happen with data loss.
+This conversion relies on the fields id computation algorithm and
+it may lead to ambiguous results if the following conditions are violated:
+  - Id prefix and separators:
+    - Must be non empty, non numeric string
+    - Must not include each other
+  - Property names and keys of default object values in your schema must not contain the separators.
+    If they do you can change the default separators with `idSeparator` and `isPseudoSeparator` options.
+    Default separator values:
+      - `idSeparator` - <code>{DEFAULT_ID_SEPARATOR}</code>
+      - `isPseudoSeparator` - <code>{DEFAULT_PSEUDO_ID_SEPARATOR}</code>
+  - If your schema contains `additionalProperties`:
+    - Keys of initial object values must not contain the separators.
+    - If you provide some initial value for `additionalProperties` or `JavaScript` is enabled but the form is used without `enhance`:
+      - You should provide `additionalPropertyKeyValidationError` or `additionalPropertyKeyValidator` options to `useSvelteKitForm` for preventing the user to input invalid keys.
+  - You may produce these checks at runtime with the `staticAnalysis` and other functions from `@sjsf/form/static-analysis` submodule.
+    Functions from this submodule returns an iterable of errors, so you can:
+    - Throw an error on the first error or list all errors (in a dev environment)
+    - Check if the data in the server action is correct and save the original form data if there are errors (in a production environment)
