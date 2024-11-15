@@ -1,5 +1,25 @@
 # docs
 
+## 1.3.0
+
+### Minor Changes
+
+- Add multiple forms guide ([#28](https://github.com/x0k/svelte-jsonschema-form/pull/28))
+
+- Add SvelteKit integration page ([#28](https://github.com/x0k/svelte-jsonschema-form/pull/28))
+
+### Patch Changes
+
+- Updated dependencies [[`7d47974`](https://github.com/x0k/svelte-jsonschema-form/commit/7d479742b4a6e3dc65ac1d5317091f5ffc49e097), [`665d9b4`](https://github.com/x0k/svelte-jsonschema-form/commit/665d9b4338f2e70a62c1a06057af7e5c68c50b7e), [`5d84164`](https://github.com/x0k/svelte-jsonschema-form/commit/5d841645f9ddb5f08164805c7fea9acdc4b287f0), [`4c6322c`](https://github.com/x0k/svelte-jsonschema-form/commit/4c6322c4b1c09a15890146f66a15db1f47120ccf)]:
+  - @sjsf/form@1.6.0
+  - @sjsf/sveltekit@1.6.0
+  - @sjsf/ajv8-validator@1.6.0
+  - @sjsf/daisyui-theme@1.6.0
+  - @sjsf/flowbite-theme@1.6.0
+  - @sjsf/shadcn-theme@1.6.0
+  - @sjsf/skeleton-theme@1.6.0
+  - @sjsf/zod-integration@1.6.0
+
 ## 1.2.1
 
 ### Patch Changes
