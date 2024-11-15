@@ -1,7 +1,7 @@
 ---
 title: SvelteKit
 sidebar:
-  order: 1
+  order: 2
 ---
 
 import { Code, Tabs, TabItem } from "@astrojs/starlight/components";
@@ -37,10 +37,27 @@ even if the user has `JavaScript` disabled.
 On the server side you should implement at least one [action](https://svelte.dev/docs/kit/form-actions)
 which will always return the result of `validateForm` function (`redirect` and `error` helpers are allowed).
 
+If form data is passed via `FormData` you should create a parser for it.
+
 ```typescript
+import { makeFormDataParser, validateForm } from '@sjsf/sveltekit/server';
+
+const validator = createValidator();
+
+const parseFormData = makeFormDataParser({
+	validator
+});
+
 export const actions = {
   default: async (event) => {
-    const form = validateForm({/* ... */})
+    const form = validateForm({
+      schema,
+      validator,
+      data: await parseFormData({
+        schema,
+        request,
+      }),
+    })
     if (!form.isValid) {
       return fail(400, { form });
     }
@@ -60,6 +77,8 @@ You can use any convenient name instead of `form`
 If you want to populate form from database, you can use `initForm` function inside the `load` function.
 
 ```typescript
+import { initForm } from '@sjsf/sveltekit/server';
+
 export const load = async () => {
   const data = await getData();
   const form = initForm({ schema, validator, initialValue: data });
@@ -78,6 +97,8 @@ The name of the `initForm` function result should match the name from the `actio
 On the client side you should call `useSvelteKitForm`.
 
 ```typescript
+import { useSvelteKitForm, meta } from '@sjsf/sveltekit/client';
+
 import type { PageData, ActionData } from './$types';
 
 const { form, mutation, enhance } = useSvelteKitForm(
@@ -132,4 +153,4 @@ it may lead to ambiguous results if the following conditions are violated:
   - You may produce these checks at runtime with the `staticAnalysis` and other functions from `@sjsf/form/static-analysis` submodule.
     Functions from this submodule returns an iterable of errors, so you can:
     - Throw an error on the first error or list all errors (in a dev environment)
-    - Check if the data in the server action is correct and save the original form data if there are errors (in a production environment)
+    - Check if the schema and id separator is correct and save the original form data if there are errors (in a production environment)
