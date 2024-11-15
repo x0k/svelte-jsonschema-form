@@ -1,11 +1,8 @@
 import { isObject } from "@/lib/object.js";
 import {
-  ARRAYS_OF_SUB_SCHEMAS,
   isSchema,
   makeSchemaDefinitionTraverser,
-  RECORDS_OF_SUB_SCHEMAS,
   SCHEMA_KEYS,
-  SUB_SCHEMAS,
   traverseSchemaValue,
   type Path,
   type Schema,
@@ -18,7 +15,7 @@ import {
   DEFAULT_PSEUDO_ID_SEPARATOR,
 } from "./form/id-schema.js";
 
-const INDEX_REGEX = /^\d+$/;
+export const SEQUENCE_OF_DIGITS_REGEX = /^\d+$/;
 
 export interface SchemaIssue {
   issuer: string;
@@ -26,16 +23,34 @@ export interface SchemaIssue {
   path: Path;
 }
 
-const ID_CONFIG_ISSUER = "idConfig";
-const SCHEMA_ISSUER = "schema";
+export const ID_CONFIG_ISSUER = "idConfig";
+export const SCHEMA_ISSUER = "schema";
 
-interface IdConfig {
+export interface IdConfig {
   prefix: string;
   separator: string;
   pseudoSeparator: string;
 }
 
-function* idConfigAnalysis(idConfig: IdConfig): Generator<SchemaIssue> {
+export function makeIdConfig({
+  prefix = DEFAULT_ID_PREFIX,
+  pseudoSeparator = DEFAULT_PSEUDO_ID_SEPARATOR,
+  separator = DEFAULT_ID_SEPARATOR
+}: Partial<IdConfig> = {}): IdConfig {
+  return {
+    prefix,
+    separator,
+    pseudoSeparator
+  };
+}
+
+export type IdSeparatorEntries = [string, string][];
+
+export function makeIdSeparatorEntries(idConfig: IdConfig): [string, string][] {
+  return Object.entries(idConfig).filter((e) => e[0] !== "prefix");
+}
+
+export function* idConfigAnalysis(idConfig: IdConfig): Generator<SchemaIssue> {
   const keys = Object.keys(idConfig) as (keyof IdConfig)[];
   for (const key of keys) {
     const value = idConfig[key]!;
@@ -47,7 +62,7 @@ function* idConfigAnalysis(idConfig: IdConfig): Generator<SchemaIssue> {
       };
       continue;
     }
-    if (INDEX_REGEX.test(value)) {
+    if (SEQUENCE_OF_DIGITS_REGEX.test(value)) {
       yield {
         issuer: ID_CONFIG_ISSUER,
         message: `value "${value}" should not be a sequence of digits`,
@@ -71,33 +86,26 @@ function* idConfigAnalysis(idConfig: IdConfig): Generator<SchemaIssue> {
   }
 }
 
-function* objectKeyAnalysis(
+export function* objectKeyAnalysis(
   issuer: string,
-  idSeparatorEntries: [string, string][],
+  idSeparatorEntries: IdSeparatorEntries,
   key: string,
   path: Path
 ): Generator<SchemaIssue> {
-  if (INDEX_REGEX.test(key)) {
-    yield {
-      issuer,
-      message: `key "${key}" should not be a sequence of digits`,
-      path,
-    };
-  }
-  for (const [key, value] of idSeparatorEntries) {
-    if (key.includes(value)) {
+  for (const [separator, value] of idSeparatorEntries) {
+    if (separator.includes(value)) {
       yield {
         issuer,
-        message: `key "${key}" includes separator "${key}: ${value}", expected: key should not include separator value`,
+        message: `key "${key}" includes separator "${separator}: ${value}", expected: key should not include separator value`,
         path,
       };
     }
   }
 }
 
-function* schemaValueAnalysis(
+export function* schemaValueAnalysis(
   issuer: string,
-  idSeparatorEntries: [string, string][],
+  idSeparatorEntries: IdSeparatorEntries,
   value: SchemaValue,
   basePath: Path = []
 ): Generator<SchemaIssue> {
@@ -116,8 +124,8 @@ function* schemaValueAnalysis(
   });
 }
 
-function* schemaAnalysis(
-  idSeparatorEntries: [string, string][],
+export function* schemaAnalysis(
+  idSeparatorEntries: IdSeparatorEntries,
   schema: Schema
 ): Generator<SchemaIssue> {
   yield* makeSchemaDefinitionTraverser(SCHEMA_KEYS, {
@@ -150,28 +158,17 @@ function* schemaAnalysis(
 
 export interface StaticAnalysisOptions<T extends SchemaValue> {
   schema: Schema;
-  idPrefix?: string;
-  idSeparator?: string;
-  idPseudoSeparator?: string;
+  idConfig: IdConfig;
   initialValue?: T;
 }
 
 export function* staticAnalysis<T extends SchemaValue>({
   schema,
-  idPrefix = DEFAULT_ID_PREFIX,
-  idSeparator = DEFAULT_ID_SEPARATOR,
-  idPseudoSeparator = DEFAULT_PSEUDO_ID_SEPARATOR,
+  idConfig,
   initialValue,
 }: StaticAnalysisOptions<T>): Generator<SchemaIssue> {
-  const idConfig: IdConfig = {
-    prefix: idPrefix,
-    separator: idSeparator,
-    pseudoSeparator: idPseudoSeparator,
-  };
   yield* idConfigAnalysis(idConfig);
-  const idSeparatorEntries: [string, string][] = Object.entries(
-    idConfig
-  ).filter((e) => e[0] !== "prefix");
+  const idSeparatorEntries = makeIdSeparatorEntries(idConfig);
   yield* schemaAnalysis(idSeparatorEntries, schema);
   if (initialValue !== undefined) {
     yield* schemaValueAnalysis(
