@@ -11,7 +11,7 @@
     getFormContext,
     makePseudoId,
   } from "../context/index.js";
-  import { createOptions2 } from "../enum.js";
+  import { createOptions2, DEFAULT_BOOLEAN_ENUM } from "../enum.js";
 
   import type { FieldProps } from "./model.js";
 
@@ -29,17 +29,17 @@
       return (
         createOptions2(
           {
-            oneOf: config.schema.oneOf
-              .map((option): Schema | undefined => {
-                if (typeof option === "boolean") {
-                  return undefined;
-                }
-                return {
-                  ...option,
-                  title: option.title ?? (option.const === true ? yes : no),
-                };
-              })
-              .filter((s): s is Schema => s !== undefined),
+            oneOf: config.schema.oneOf.map((option): Schema => {
+              if (typeof option === "boolean") {
+                return option
+                  ? { const: true, title: yes }
+                  : { const: false, title: no };
+              }
+              return {
+                ...option,
+                title: option.title ?? (option.const === true ? yes : no),
+              };
+            }),
           },
           config.idSchema,
           config.uiOptions,
@@ -47,7 +47,7 @@
         ) ?? []
       );
     }
-    const enumValues = config.schema.enum ?? [true, false];
+    const enumValues = config.schema.enum ?? DEFAULT_BOOLEAN_ENUM
     if (
       enumValues.length === 2 &&
       enumValues.every((v) => typeof v === "boolean") &&

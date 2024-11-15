@@ -5,7 +5,13 @@ import { SvelteMap } from "svelte/reactivity";
 import type { SchedulerYield } from "@/lib/scheduler.js";
 import type { Schema, SchemaValue } from "@/core/schema.js";
 
-import { type FormValidator, type ValidationError } from "./validator.js";
+import {
+  ADDITIONAL_PROPERTY_KEY_ERROR,
+  type AdditionalPropertyKeyError,
+  type AdditionalPropertyKeyValidator,
+  type FormValidator,
+  type ValidationError,
+} from "./validator.js";
 import type { Components } from "./component.js";
 import type { Widgets } from "./widgets.js";
 import type { Translation } from "./translation.js";
@@ -30,7 +36,12 @@ import {
   pathToId,
 } from "./id-schema.js";
 import IconOrTranslation from "./icon-or-translation.svelte";
+import type { Config } from "./config.js";
+import { createAdditionalPropertyKeyValidationSchema } from "./additional-property-key-validation-schema.js";
 
+/**
+ * @deprecated use `UseFormOptions2`
+ */
 export interface UseFormOptions<T, E> {
   validator: FormValidator<E>;
   schema: Schema;
@@ -98,6 +109,10 @@ export interface UseFormOptions<T, E> {
   schedulerYield?: SchedulerYield;
 }
 
+export interface UseFormOptions2<T, E> extends UseFormOptions<T, E> {
+  additionalPropertyKeyValidator?: AdditionalPropertyKeyValidator;
+}
+
 export interface FormState<T, E> {
   value: T | undefined;
   formValue: SchemaValue | undefined;
@@ -119,9 +134,34 @@ export interface FormAPI<T, E> extends FormState<T, E> {
 
 type Value = SchemaValue | undefined;
 
+/**
+ * @deprecated use `createForm2`
+ */
 export function createForm<T, E>(
   options: UseFormOptions<T, E>
 ): [FormContext, FormAPI<T, E>] {
+  const [api, ctx] = createForm2(options);
+  return [ctx, api];
+}
+
+type FormValueFromOptions<O extends UseFormOptions2<any, any>> =
+  O extends UseFormOptions2<infer T, any> ? T : never;
+
+type ValidatorErrorFromOptions<O extends UseFormOptions2<any, any>> =
+  O extends UseFormOptions2<any, infer E> ? E : never;
+
+export type FormApiAndContext<T, E> = [FormAPI<T, E>, FormContext];
+
+export function createForm2<
+  O extends UseFormOptions2<any, any>,
+  T = FormValueFromOptions<O>,
+  VE = ValidatorErrorFromOptions<O>,
+  E = O extends {
+    additionalPropertyKeyValidator: AdditionalPropertyKeyValidator;
+  }
+    ? VE | AdditionalPropertyKeyError
+    : VE,
+>(options: O): FormApiAndContext<T, E> {
   const merger = $derived(
     options.merger ?? new DefaultFormMerger(options.validator, options.schema)
   );
@@ -140,13 +180,68 @@ export function createForm<T, E>(
   let isSubmitted = $state(false);
   let isChanged = $state(false);
 
+  const inputsValidationMode = $derived(options.inputsValidationMode ?? 0);
+  const uiSchema = $derived(options.uiSchema ?? {});
+  const disabled = $derived(options.disabled ?? false);
+  const idPrefix = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX);
+  const idSeparator = $derived(options.idSeparator ?? DEFAULT_ID_SEPARATOR);
+  const pseudoIdSeparator = $derived(
+    options.pseudoIdSeparator ?? DEFAULT_PSEUDO_ID_SEPARATOR
+  );
+  const fields = $derived(options.fields ?? defaultFields);
+  const templates = $derived(options.templates ?? defaultTemplates);
+  const icons = $derived(options.icons ?? {});
+  const schedulerYield: SchedulerYield = $derived(
+    (options.schedulerYield ??
+      (typeof scheduler !== "undefined" && "yield" in scheduler))
+      ? scheduler.yield.bind(scheduler)
+      : ({ signal }: Parameters<SchedulerYield>[0]) =>
+          new Promise((resolve, reject) => {
+            setTimeout(() => {
+              if (signal.aborted) {
+                reject(signal.reason);
+              } else {
+                resolve();
+              }
+            }, 0);
+          })
+  );
+  const additionalPropertyKeyValidator = $derived.by(() => {
+    const validator = options.additionalPropertyKeyValidator;
+    return validator
+      ? (config: Config, key: string) => {
+          const instanceId = config.idSchema.$id;
+          const messages = validator.validateAdditionalPropertyKey(key);
+          errors.set(
+            instanceId,
+            messages.map((message) => ({
+              instanceId,
+              propertyTitle: config.title,
+              message,
+              error: ADDITIONAL_PROPERTY_KEY_ERROR as E,
+            }))
+          );
+          return messages.length === 0;
+        }
+      : () => true;
+  });
+
   const getSnapshot = $derived(
     options.getSnapshot ?? (() => $state.snapshot(value))
   );
 
+  const validationSchema = $derived(
+    options.additionalPropertyKeyValidator
+      ? createAdditionalPropertyKeyValidationSchema(options.schema, [
+          idSeparator,
+          pseudoIdSeparator,
+        ])
+      : options.schema
+  );
+
   function validateSnapshot(snapshot: SchemaValue | undefined) {
     return groupErrors(
-      options.validator.validateFormData(options.schema, snapshot)
+      options.validator.validateFormData(validationSchema, snapshot)
     );
   }
 
@@ -187,37 +282,71 @@ export function createForm<T, E>(
       })
   );
 
-  const inputsValidationMode = $derived(options.inputsValidationMode ?? 0);
-  const uiSchema = $derived(options.uiSchema ?? {});
-  const disabled = $derived(options.disabled ?? false);
-  const idPrefix = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX);
-  const idSeparator = $derived(options.idSeparator ?? DEFAULT_ID_SEPARATOR);
-  const pseudoIdSeparator = $derived(
-    options.pseudoIdSeparator ?? DEFAULT_PSEUDO_ID_SEPARATOR
-  );
-  const fields = $derived(options.fields ?? defaultFields);
-  const templates = $derived(options.templates ?? defaultTemplates);
-  const icons = $derived(options.icons ?? {});
-  const schedulerYield: SchedulerYield = $derived(
-    (options.schedulerYield ??
-      (typeof scheduler !== "undefined" && "yield" in scheduler))
-      ? scheduler.yield.bind(scheduler)
-      : ({ signal }: Parameters<SchedulerYield>[0]) =>
-          new Promise((resolve, reject) => {
-            setTimeout(() => {
-              if (signal.aborted) {
-                reject(signal.reason);
-              } else {
-                resolve();
-              }
-            }, 0);
-          })
-  );
-
   return [
+    {
+      get value() {
+        return getSnapshot() as T | undefined;
+      },
+      set value(v) {
+        value = merger.mergeFormDataAndSchemaDefaults(
+          v as Value,
+          options.schema
+        );
+      },
+      get formValue() {
+        return value;
+      },
+      set formValue(v) {
+        value = v;
+      },
+      get errors() {
+        return errors;
+      },
+      set errors(v) {
+        errors = v;
+      },
+      get isSubmitted() {
+        return isSubmitted;
+      },
+      set isSubmitted(v) {
+        isSubmitted = v;
+      },
+      get isChanged() {
+        return isChanged;
+      },
+      set isChanged(v) {
+        isChanged = v;
+      },
+      validate() {
+        return validateSnapshot(getSnapshot());
+      },
+      submit,
+      reset,
+      updateErrorsByPath(path, update) {
+        const instanceId = pathToId(idPrefix, idSeparator, path);
+        const list = errors.get(instanceId);
+        errors.set(
+          instanceId,
+          update(list ?? []).map((e) => ({ ...e, instanceId }))
+        );
+      },
+      enhance(node) {
+        $effect(() => {
+          node.addEventListener("submit", submitHandler);
+          node.addEventListener("reset", resetHandler);
+          return () => {
+            node.removeEventListener("submit", submitHandler);
+            node.removeEventListener("reset", resetHandler);
+          };
+        });
+      },
+    },
     {
       get inputsValidationMode() {
         return inputsValidationMode;
+      },
+      get validateAdditionalPropertyKey() {
+        return additionalPropertyKeyValidator;
       },
       get isSubmitted() {
         return isSubmitted;
@@ -297,72 +426,22 @@ export function createForm<T, E>(
         );
       }) as unknown as Snippet<[IconOrTranslationData]>,
     },
-    {
-      get value() {
-        return getSnapshot() as T | undefined;
-      },
-      set value(v) {
-        value = merger.mergeFormDataAndSchemaDefaults(
-          v as Value,
-          options.schema
-        );
-      },
-      get formValue() {
-        return value;
-      },
-      set formValue(v) {
-        value = v;
-      },
-      get errors() {
-        return errors;
-      },
-      set errors(v) {
-        errors = v;
-      },
-      get isSubmitted() {
-        return isSubmitted;
-      },
-      set isSubmitted(v) {
-        isSubmitted = v;
-      },
-      get isChanged() {
-        return isChanged;
-      },
-      set isChanged(v) {
-        isChanged = v;
-      },
-      validate() {
-        return validateSnapshot(getSnapshot());
-      },
-      submit,
-      reset,
-      updateErrorsByPath(path, update) {
-        const instanceId = pathToId(idPrefix, idSeparator, path);
-        const list = errors.get(instanceId);
-        errors.set(
-          instanceId,
-          update(list ?? []).map((e) => ({ ...e, instanceId }))
-        );
-      },
-      enhance(node) {
-        $effect(() => {
-          node.addEventListener("submit", submitHandler);
-          node.addEventListener("reset", resetHandler);
-          return () => {
-            node.removeEventListener("submit", submitHandler);
-            node.removeEventListener("reset", resetHandler);
-          };
-        });
-      },
-    },
   ];
 }
 
 /**
  * Create a FormAPI and set form context
+ * @deprecated use `useForm2`
  */
-export function useForm<T, E>(options: UseFormOptions<T, E>) {
-  const [ctx, api] = createForm(options);
+export function useForm<T, E>(options: UseFormOptions<T, E>): FormAPI<T, E> {
+  return useForm2(options);
+}
+
+/**
+ * Create a FormAPI and set form context
+ */
+export function useForm2<O extends UseFormOptions2<any, any>>(options: O) {
+  const [api, ctx] = createForm2(options);
   setFromContext(ctx);
   return api;
 }

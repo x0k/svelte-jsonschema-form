@@ -1,6 +1,7 @@
 import { SvelteMap } from "svelte/reactivity";
 
 import type { Sample } from "./Sample";
+import { DEFAULT_ID_PREFIX, DEFAULT_ID_SEPARATOR, pathToId } from '@sjsf/form';
 
 const errorSchema: Sample = {
   status: "perfect",
@@ -85,7 +86,7 @@ const errorSchema: Sample = {
   },
   errors: new SvelteMap([
     [
-      "root_firstName",
+      pathToId(DEFAULT_ID_PREFIX, DEFAULT_ID_SEPARATOR, ["firstName"]),
       [
         {
           instanceId: "root_firstName",

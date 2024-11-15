@@ -7,9 +7,41 @@
       "request": "launch",
       "name": "Debug Form Test File",
       "autoAttachChildProcesses": true,
-      "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
+      "skipFiles": [
+        "<node_internals>/**",
+        "**/node_modules/**"
+      ],
       "program": "${workspaceRoot}/packages/form/node_modules/vitest/vitest.mjs",
-      "args": ["run", "${relativeFile}", "-r", "${workspaceRoot}/packages/form/"],
+      "args": [
+        "run",
+        "${relativeFile}",
+        "-r",
+        "${workspaceRoot}/packages/form/"
+      ],
+      "smartStep": true,
+      "console": "integratedTerminal"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Form SvelteKit Integration Test File",
+      "autoAttachChildProcesses": true,
+      "skipFiles": [
+        "<node_internals>/**",
+        "**/node_modules/**"
+      ],
+      "program": "${workspaceRoot}/packages/sveltekit-integration/node_modules/vitest/vitest.mjs",
+      "args": [
+        "run",
+        "../../${relativeFile}",
+        "-r",
+        "${workspaceRoot}/packages/sveltekit-integration/"
+      ],
+      "env": {
+        "NODE_ENV": "development",
+        "VITE_TEST": "true"
+      },
+      "cwd": "${workspaceRoot}/packages/sveltekit-integration",
       "smartStep": true,
       "console": "integratedTerminal"
     }

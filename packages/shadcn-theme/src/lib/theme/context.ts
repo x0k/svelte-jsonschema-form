@@ -25,7 +25,7 @@ export interface ThemeComponents {
 	Button: Component<HTMLButtonAttributes>;
 	// @ts-expect-error too complex
 	Calendar: Component<CalendarProps, {}, 'value' | 'placeholder' | 'ref'>;
-	Checkbox: Component<WithoutChildrenOrChild<Checkbox.RootProps>, {}, 'checked' | 'ref'>;
+	Checkbox: Component<WithoutChildrenOrChild<Checkbox.RootProps>, {}, 'checked' | 'indeterminate' | 'ref'>;
 	Input: Component<WithElementRef<HTMLInputAttributes>, {}, 'value' | 'ref'>;
 	FilesInput: Component<
 		HTMLInputAttributes & {

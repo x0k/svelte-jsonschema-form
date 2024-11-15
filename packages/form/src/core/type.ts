@@ -38,9 +38,12 @@ export function typeOfSchema(schema: Schema): SchemaType | SchemaType[] {
   return "null";
 }
 
-export function isSchemaNullable(schema: Schema): boolean {
-  const type = typeOfSchema(schema);
+export function isNullableSchemaType(type: SchemaType | SchemaType[]): boolean {
   return type === "null" || (Array.isArray(type) && type.includes("null"));
+}
+
+export function isSchemaNullable(schema: Schema): boolean {
+  return isNullableSchemaType(typeOfSchema(schema));
 }
 
 export function pickSchemaType(types: SchemaType[]): SchemaType {

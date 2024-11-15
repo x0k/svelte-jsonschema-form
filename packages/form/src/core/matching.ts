@@ -158,8 +158,9 @@ export function calculateIndexScore2(
             rootSchema,
             formValue
           );
-          totalScore += calculateIndexScore(
+          totalScore += calculateIndexScore2(
             validator,
+            merger,
             rootSchema,
             newSchema,
             formValue
@@ -169,8 +170,9 @@ export function calculateIndexScore2(
         const altSchemas = propertySchema.oneOf || propertySchema.anyOf;
         if (altSchemas && formValue) {
           const discriminator = getDiscriminatorFieldFromSchema(propertySchema);
-          totalScore += getClosestMatchingOption(
+          totalScore += getClosestMatchingOption2(
             validator,
+            merger,
             rootSchema,
             formValue,
             altSchemas.filter(isSchema),
@@ -183,8 +185,9 @@ export function calculateIndexScore2(
           if (isSchemaObjectValue(formValue)) {
             totalScore += 1;
           }
-          totalScore += calculateIndexScore(
+          totalScore += calculateIndexScore2(
             validator,
+            merger,
             rootSchema,
             propertySchema,
             formValue

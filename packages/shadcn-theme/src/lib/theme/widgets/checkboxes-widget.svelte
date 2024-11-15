@@ -26,9 +26,6 @@
 			checked={indexes.has(indexStr)}
 			value={indexStr}
 			onCheckedChange={(v) => {
-				if (v === 'indeterminate') {
-					return;
-				}
 				mapped.value = v
 					? mapped.value.concat(indexStr)
 					: mapped.value.filter((index) => index !== indexStr);

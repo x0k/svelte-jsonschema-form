@@ -12,11 +12,12 @@ import {
 
 import type { UiOptions, UiSchema } from "./ui-schema.js";
 import {
-  computeId,
   computePseudoId,
   DEFAULT_PSEUDO_ID_SEPARATOR,
   type IdSchema,
 } from "./id-schema.js";
+
+export const DEFAULT_BOOLEAN_ENUM = [true, false]
 
 function getAltSchemas(
   schema: Schema,

@@ -11,7 +11,7 @@ t:
 b:
   pnpm run build
 
-v/:
+ajv/:
   pushd packages/ajv8-validator
   b:
     pnpm run build
@@ -27,7 +27,7 @@ f/:
     pnpm run test $@
   popd
 
-ds/:
+docs/:
   pushd apps/docs
   c:
     pnpm run check
@@ -39,7 +39,7 @@ ds/:
     pnpm run preview
   popd
 
-pl/:
+pg/:
   pushd apps/playground
   d:
     pnpm run dev
@@ -119,6 +119,18 @@ ts/:
   pushd packages/testing
   b:
     pnpm run build
+  popd
+
+sv/:
+  pushd packages/sveltekit
+  c:
+    pnpm run check
+  b:
+    pnpm run build
+  d:
+    pnpm run dev
+  t:
+    pnpm run test $@
   popd
 
 p:

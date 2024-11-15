@@ -15,10 +15,10 @@ npm install @sjsf/form @sjsf/radix-icons
 
 ```svelte
 <script lang="ts">
-  import { useForm } from '@sjsf/form';
+  import { useForm2 } from '@sjsf/form';
   import { icons } from '@sjsf/radix-icons';
 
-  const form = useForm({
+  const form = useForm2({
     icons
   })
 </script>

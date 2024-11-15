@@ -52,10 +52,10 @@ import themeStyles from "@sjsf/daisyui-theme/styles.css?inline";
 
 ```svelte
 <script lang="ts">
-  import { useForm } from '@sjsf/form';
+  import { useForm2 } from '@sjsf/form';
   import { theme } from '@sjsf/daisyui-theme';
 
-  const form = useForm({
+  const form = useForm2({
     ...theme
   })
 </script>

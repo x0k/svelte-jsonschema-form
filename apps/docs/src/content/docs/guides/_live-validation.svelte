@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { useForm, SimpleForm, type Schema } from "@sjsf/form";
+  import { useForm2, SimpleForm, type Schema } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { theme } from "@sjsf/form/basic-theme";
   import { createValidator } from "@sjsf/ajv8-validator";
@@ -11,7 +11,7 @@
     minLength: 10,
   };
 
-  const form = useForm({
+  const form = useForm2({
     ...theme,
     initialValue: "initial",
     schema,

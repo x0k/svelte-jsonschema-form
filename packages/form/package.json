@@ -31,7 +31,7 @@
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "dependencies": {
-    "es-toolkit": "^1.26.1",
+    "es-toolkit": "^1.27.0",
     "fast-equals": "^5.0.1",
     "json-schema-merge-allof": "^0.8.1",
     "jsonpointer": "^5.0.1"
@@ -97,6 +97,10 @@
     "./prevent-data-loss.svelte": {
       "types": "./dist/prevent-data-loss.svelte.d.ts",
       "svelte": "./dist/prevent-data-loss.svelte.js"
+    },
+    "./static-analysis": {
+      "types": "./dist/static-analysis.d.ts",
+      "default": "./dist/static-analysis.js"
     }
   }
 }
