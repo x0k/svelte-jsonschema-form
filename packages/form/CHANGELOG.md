@@ -1,5 +1,13 @@
 # @sjsf/form
 
+## 1.6.0
+
+### Minor Changes
+
+- Add `parent` property to the `SchemaTraverserContext` ([#28](https://github.com/x0k/svelte-jsonschema-form/pull/28))
+
+- Add additional property key validator ([#28](https://github.com/x0k/svelte-jsonschema-form/pull/28))
+
 ## 1.5.1
 
 ### Patch Changes

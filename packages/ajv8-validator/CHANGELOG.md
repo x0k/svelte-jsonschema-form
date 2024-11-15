@@ -1,5 +1,14 @@
 # @sjsf/ajv8-validator
 
+## 1.6.0
+
+### Patch Changes
+
+- Improve error path inference for `propertyNames` error ([#28](https://github.com/x0k/svelte-jsonschema-form/pull/28))
+
+- Updated dependencies [[`7d47974`](https://github.com/x0k/svelte-jsonschema-form/commit/7d479742b4a6e3dc65ac1d5317091f5ffc49e097), [`5d84164`](https://github.com/x0k/svelte-jsonschema-form/commit/5d841645f9ddb5f08164805c7fea9acdc4b287f0)]:
+  - @sjsf/form@1.6.0
+
 ## 1.5.1
 
 ### Patch Changes
