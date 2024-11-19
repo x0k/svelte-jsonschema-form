@@ -1,5 +1,13 @@
 # @sjsf/form
 
+## 1.6.1
+
+### Patch Changes
+
+- Port fix for `getArrayDefaults` ([`753a8bd`](https://github.com/x0k/svelte-jsonschema-form/commit/753a8bde50408a02f6ec5b77e1bc85f9a599fae3))
+
+  - [Bug: Issue with array schema defaults not applying properly when formData is an empty array](https://github.com/rjsf-team/react-jsonschema-form/pull/4359)
+
 ## 1.6.0
 
 ### Minor Changes
