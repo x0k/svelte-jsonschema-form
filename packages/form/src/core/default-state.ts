@@ -670,17 +670,20 @@ export function getArrayDefaults(
   }: ComputeDefaultsProps2,
   defaults: SchemaArrayValue | undefined
 ): SchemaArrayValue | undefined {
-  const neverPopulate =
-    experimental_defaultFormStateBehavior?.arrayMinItems?.populate === "never";
-  const ignoreMinItemsFlagSet =
-    experimental_defaultFormStateBehavior?.arrayMinItems?.populate ===
-    "requiredOnly";
+  const {
+    populate: arrayMinItemsPopulate,
+    mergeExtraDefaults: arrayMergeExtraDefaults,
+    computeSkipPopulate = () => false,
+  } = experimental_defaultFormStateBehavior?.arrayMinItems ?? {};
+
+  const neverPopulate = arrayMinItemsPopulate === "never";
+  const ignoreMinItemsFlagSet = arrayMinItemsPopulate === "requiredOnly";
+  const isPopulateAll =
+    arrayMinItemsPopulate === "all" ||
+    (!neverPopulate && !ignoreMinItemsFlagSet);
   const isSkipEmptyDefaults =
     experimental_defaultFormStateBehavior?.emptyObjectFields ===
     "skipEmptyDefaults";
-  const computeSkipPopulate =
-    experimental_defaultFormStateBehavior?.arrayMinItems?.computeSkipPopulate ??
-    (() => false);
 
   const emptyDefault: SchemaArrayValue | undefined = isSkipEmptyDefaults
     ? undefined
@@ -713,7 +716,7 @@ export function getArrayDefaults(
     if (neverPopulate) {
       defaults = rawFormData;
     } else {
-      defaults = rawFormData.map((item, idx) => {
+      const itemDefaults = rawFormData.map((item, idx) => {
         return computeDefaults3(validator, merger, schemaItem, {
           rootSchema,
           stack,
@@ -725,6 +728,16 @@ export function getArrayDefaults(
           isSchemaRoot: false,
         });
       });
+      // If the populate 'requiredOnly' flag is set then we only merge and include extra defaults if they are required.
+      // Or if populate 'all' is set we merge and include extra defaults.
+      const mergeExtraDefaults =
+        ((ignoreMinItemsFlagSet && required) || isPopulateAll) &&
+        arrayMergeExtraDefaults === true;
+      defaults = mergeDefaultsWithFormData(
+        defaults,
+        itemDefaults,
+        mergeExtraDefaults
+      );
     }
   }
 
