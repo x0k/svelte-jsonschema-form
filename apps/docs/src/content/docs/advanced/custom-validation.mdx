@@ -24,7 +24,7 @@ function customValidate(value: SchemaValue | undefined): ValidatorError<ErrorObj
   if (pass1 !== pass2) {
     return [
       {
-        instanceId: "root_pass2",
+        instanceId: pathToId(DEFAULT_ID_PREFIX, DEFAULT_ID_SEPARATOR, ["pass2"]),
         propertyTitle: "Repeat password",
         message: "Passwords don't match.",
         error: {} as ErrorObject,

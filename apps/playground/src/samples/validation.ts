@@ -1,5 +1,8 @@
 import type { ErrorObject } from "ajv";
 import {
+  DEFAULT_ID_PREFIX,
+  DEFAULT_ID_SEPARATOR,
+  pathToId,
   type Schema,
   type SchemaValue,
   type ValidationError,
@@ -19,7 +22,7 @@ function customValidate(
     return [
       {
         error: {} as ErrorObject,
-        instanceId: "root_pass2",
+        instanceId: pathToId(DEFAULT_ID_PREFIX, DEFAULT_ID_SEPARATOR, ["pass2"]),
         propertyTitle: "Repeat password",
         message: "Passwords don't match.",
       },
