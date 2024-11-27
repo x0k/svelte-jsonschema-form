@@ -23,7 +23,12 @@ import {
   mergeSchemaObjects,
   mergeSchemas,
 } from "./merge.js";
-import { getSimpleSchemaType } from "./type.js";
+import {
+  getSimpleSchemaType,
+  isNullableSchemaType,
+  isPrimitiveSchemaType,
+  typeOfSchema,
+} from "./type.js";
 import { isMultiSelect2 } from "./is-select.js";
 import { getClosestMatchingOption2 } from "./matching.js";
 import { defaultMerger } from "./merger.js";
@@ -184,6 +189,18 @@ type Experimental_DefaultFormStateBehavior = {
   mergeDefaultsIntoFormData?:
     | "useFormDataIfPresent"
     | "useDefaultIfFormDataUndefined";
+  /** Optional enumerated flag controlling how const values are merged into the form data as defaults when dealing with
+   * undefined values, defaulting to `always`. The defaulting behavior for this flag will always be controlled by the
+   * `emptyObjectField` flag value. For instance, if `populateRequiredDefaults` is set and the const value is not
+   * required, it will not be set.
+   * - `always`: A const value will always be merged into the form as a default. If there is are const values in a
+   *        `oneOf` (for instance to create an enumeration with title different from the values), the first const value
+   *        will be defaulted
+   * - `skipOneOf`: If const is in a `oneOf` it will NOT pick the first value as a default
+   * - `never`: A const value will never be used as a default
+   *
+   */
+  constAsDefaults?: "always" | "skipOneOf" | "never";
 };
 
 /**
@@ -279,6 +296,7 @@ export function computeDefaults3(
   let defaults = parentDefaults;
   // If we get a new schema, then we need to recompute defaults again for the new schema found.
   let schemaToCompute: Schema | null = null;
+  let experimentalBehaviorToCompute = experimental_defaultFormStateBehavior;
   let nextStack = stack;
 
   const {
@@ -287,7 +305,10 @@ export function computeDefaults3(
     oneOf: schemaOneOf,
     anyOf: schemaAnyOf,
   } = schema;
-  if (isSchemaOfConstantValue(schema)) {
+  if (
+    isSchemaOfConstantValue(schema) &&
+    experimental_defaultFormStateBehavior.constAsDefaults !== "never"
+  ) {
     defaults = schema.const;
   } else if (
     isSchemaObjectValue(defaults) &&
@@ -350,6 +371,19 @@ export function computeDefaults3(
     if (schemaOneOf.length === 0) {
       return undefined;
     }
+    const schemaType = typeOfSchema(schema);
+    if (
+      (Array.isArray(schemaType)
+        ? schemaType.every(isPrimitiveSchemaType)
+        : isPrimitiveSchemaType(schemaType)) &&
+      experimentalBehaviorToCompute?.constAsDefaults === "skipOneOf"
+    ) {
+      // If we are in a oneOf of a primitive type, then we want to pass constAsDefaults as 'never' for the recursion
+      experimentalBehaviorToCompute = {
+        ...experimentalBehaviorToCompute,
+        constAsDefaults: "never",
+      };
+    }
     const nextSchema =
       schemaOneOf[
         getClosestMatchingOption2(
@@ -371,7 +405,6 @@ export function computeDefaults3(
     if (schemaAnyOf.length === 0) {
       return undefined;
     }
-    const discriminator = getDiscriminatorFieldFromSchema(schema);
     const nextSchema =
       schemaAnyOf[
         getClosestMatchingOption2(
@@ -381,7 +414,7 @@ export function computeDefaults3(
           isSchemaValueEmpty(formData) ? undefined : formData,
           schemaAnyOf.filter(isSchema),
           0,
-          discriminator
+          getDiscriminatorFieldFromSchema(schema)
         )
       ]!;
     if (typeof nextSchema === "boolean") {
@@ -396,7 +429,7 @@ export function computeDefaults3(
       rootSchema,
       includeUndefinedValues,
       stack: nextStack,
-      experimental_defaultFormStateBehavior,
+      experimental_defaultFormStateBehavior: experimentalBehaviorToCompute,
       parentDefaults: defaults,
       rawFormData: formData,
       required,
@@ -590,7 +623,8 @@ export function getObjectDefaults(
         isSchemaRoot: false,
       });
       const isConst =
-        value.const !== undefined || parentConstObject[key] !== undefined;
+        (value.const !== undefined || parentConstObject[key] !== undefined) &&
+        experimental_defaultFormStateBehavior.constAsDefaults !== "never";
       maybeAddDefaultToObject(
         objDefaults,
         key,
@@ -741,7 +775,10 @@ export function getArrayDefaults(
     }
   }
 
-  if (schema.const === undefined) {
+  if (
+    schema.const === undefined ||
+    experimental_defaultFormStateBehavior.constAsDefaults === "never"
+  ) {
     // Check if the schema has a const property defined, then we should always return the computedDefault since it's coming from the const.
     if (neverPopulate) {
       return defaults ?? emptyDefault;

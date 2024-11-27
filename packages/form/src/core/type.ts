@@ -64,3 +64,13 @@ export const getSimpleSchemaType = (schema: Schema): SchemaType => {
   const type = typeOfSchema(schema);
   return Array.isArray(type) ? pickSchemaType(type) : type;
 };
+
+export function isPrimitiveSchemaType(type: SchemaType): boolean {
+  return (
+    type === "boolean" ||
+    type === "integer" ||
+    type === "number" ||
+    type === "string" ||
+    type === "null"
+  );
+}
