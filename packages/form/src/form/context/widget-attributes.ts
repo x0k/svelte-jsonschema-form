@@ -48,10 +48,6 @@ function inputType(format: string | undefined) {
   }
 }
 
-function isReadonly(schema: Schema) {
-  return schema.readOnly || schema.const !== undefined;
-}
-
 export function inputAttributes(
   ctx: FormContext,
   { idSchema, required, schema, uiOptions }: Config,
@@ -75,7 +71,7 @@ export function inputAttributes(
         list: Array.isArray(schema.examples)
           ? makePseudoId(ctx, idSchema.$id, "examples")
           : undefined,
-        readonly: isReadonly(schema),
+        readonly: schema.readOnly,
         oninput: handlers.oninput,
         onchange: handlers.onchange,
         onblur: handlers.onblur,
@@ -100,7 +96,7 @@ export function textareaAttributes(
         required,
         minlength: schema.minLength,
         maxlength: schema.maxLength,
-        readonly: isReadonly(schema),
+        readonly: schema.readOnly,
         oninput: handlers.oninput,
         onchange: handlers.onchange,
         onblur: handlers.onblur,
