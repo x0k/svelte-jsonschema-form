@@ -17,7 +17,7 @@
     "@sjsf/shadcn-theme": "workspace:*",
     "@sjsf/skeleton-theme": "workspace:*",
     "@sjsf/sveltekit": "workspace:*",
-    "@sjsf/zod-integration": "workspace:*",
+    "@sjsf/zod-validator": "workspace:*",
     "ajv": "catalog:",
     "mermaid": "^11.4.0",
     "svg-pan-zoom": "github:bumbu/svg-pan-zoom",

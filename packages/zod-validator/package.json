@@ -1,7 +1,7 @@
 {
-  "name": "@sjsf/zod-integration",
+  "name": "@sjsf/zod-validator",
   "version": "1.6.1",
-  "description": "The zod based validator augmentation for svelte-jsonschema-form",
+  "description": "The zod based validator for svelte-jsonschema-form",
   "license": "MIT",
   "keywords": [
     "validator",
@@ -20,7 +20,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/x0k/svelte-jsonschema-form.git",
-    "directory": "packages/zod-integration"
+    "directory": "packages/zod-validator"
   },
   "bugs": "https://github.com/x0k/svelte-jsonschema-form/issues",
   "homepage": "https://x0k.github.io/svelte-jsonschema-form/",
@@ -34,14 +34,20 @@
     ".": {
       "types": "./dist/index.d.ts",
       "svelte": "./dist/index.js"
+    },
+    "./augmentation": {
+      "types": "./dist/augmentation.d.ts",
+      "svelte": "./dist/augmentation.js"
     }
   },
   "peerDependencies": {
     "@sjsf/form": "workspace:^1.6.1",
-    "zod": "^3.23.0"
+    "zod": "^3.23.0",
+    "json-schema-to-zod": "^2.0.0"
   },
   "devDependencies": {
     "@sjsf/form": "workspace:*",
-    "zod": "catalog:"
+    "zod": "catalog:",
+    "json-schema-to-zod": "^2.4.1"
   }
 }

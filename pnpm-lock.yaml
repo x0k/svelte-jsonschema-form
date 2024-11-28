@@ -125,9 +125,9 @@ importers:
       '@sjsf/sveltekit':
         specifier: workspace:*
         version: link:../../packages/sveltekit
-      '@sjsf/zod-integration':
+      '@sjsf/zod-validator':
         specifier: workspace:*
-        version: link:../../packages/zod-integration
+        version: link:../../packages/zod-validator
       ajv:
         specifier: 'catalog:'
         version: 8.17.1
@@ -947,11 +947,14 @@ importers:
         specifier: 'catalog:'
         version: 2.1.5(@types/node@22.7.5)
 
-  packages/zod-integration:
+  packages/zod-validator:
     devDependencies:
       '@sjsf/form':
         specifier: workspace:*
         version: link:../form
+      json-schema-to-zod:
+        specifier: ^2.4.1
+        version: 2.4.1
       zod:
         specifier: 'catalog:'
         version: 3.23.8
@@ -3344,6 +3347,10 @@ packages:
   json-schema-merge-allof@0.8.1:
     resolution: {integrity: sha512-CTUKmIlPJbsWfzRRnOXz+0MjIqvnleIXwFTzz+t9T86HnYX/Rozria6ZVGLktAU9e+NygNljveP+yxqtQp/Q4w==}
     engines: {node: '>=12.0.0'}
+
+  json-schema-to-zod@2.4.1:
+    resolution: {integrity: sha512-aMoez9TxgnfLAIZaWTPaQ+j7rOt1K9Ew/TBI85XcnhcFlo/47b1MDgpi4r07XndLSZWOX/KsJiRJvhdzSvo2Dw==}
+    hasBin: true
 
   json-schema-traverse@0.4.1:
     resolution: {integrity: sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg==}
@@ -7895,6 +7902,8 @@ snapshots:
       compute-lcm: 1.1.2
       json-schema-compare: 0.2.2
       lodash: 4.17.21
+
+  json-schema-to-zod@2.4.1: {}
 
   json-schema-traverse@0.4.1: {}
 

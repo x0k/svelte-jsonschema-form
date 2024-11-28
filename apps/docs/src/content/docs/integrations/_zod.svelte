@@ -1,7 +1,7 @@
 <script lang="ts">
   import { SimpleForm, type Schema, type UiSchema } from "@sjsf/form";
   import { createValidator } from "@sjsf/ajv8-validator";
-  import { withZod } from "@sjsf/zod-integration";
+  import { withZod } from "@sjsf/zod-validator/augmentation";
   import { zodToJsonSchema } from "zod-to-json-schema";
   import { z } from "zod";
 
