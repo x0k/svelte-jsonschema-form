@@ -18,6 +18,7 @@
   import Debug from './debug.svelte';
 
   import { samples } from "./samples";
+  import { validators } from './validators';
 
   function isSampleName(name: unknown): name is keyof typeof samples {
     return typeof name === "string" && name in samples;
@@ -29,6 +30,10 @@
 
   function isIconSetName(name: unknown): name is keyof typeof icons {
     return typeof name === "string" && name in icons;
+  }
+
+  function isValidatorName(name: unknown): name is keyof typeof validators {
+    return typeof name === "string" && name in validators;
   }
 
   const url = new URL(window.location.toString());
@@ -72,12 +77,26 @@
   const iconSet = $derived(icons[iconSetName]);
   const iconSetStyle = $derived(iconsStyles[iconSetName]);
 
-  const validator = $derived(
-    new (samples[sampleName].Validator ?? AjvValidator)(
-      addFormComponents(new Ajv(DEFAULT_AJV_CONFIG)),
-      uiSchema
-    )
-  );
+  const parsedValidatorName = url.searchParams.get("validator");
+  function selectValidator(name: keyof typeof validators, replace = false) {
+    url.searchParams.set("validator", name);
+    history[replace ? "replaceState" : "pushState"](null, "", url);
+    return name;
+  }
+  const initialValidatorName = isValidatorName(parsedValidatorName)
+    ? parsedValidatorName
+    : selectValidator("ajv8", true);
+  let validatorName = $state(initialValidatorName);
+  const validator = $derived.by(() => {
+    const Val = samples[sampleName].Validator
+    if (Val) {
+      return new Val(
+        addFormComponents(new Ajv(DEFAULT_AJV_CONFIG)),
+        uiSchema
+      )
+    }
+    return validators[validatorName]()
+  });
 
   let disabled = $state(false);
   let html5Validation = $state(false);
@@ -176,6 +195,11 @@
       <option value={AFTER_CHANGED}>After Changed</option>
       <option value={AFTER_TOUCHED}>After Touched</option>
       <option value={AFTER_SUBMITTED}>After Submitted</option>
+    </select>
+    <select bind:value={validatorName} onchange={() => selectValidator(validatorName)}>
+      {#each Object.keys(validators) as name (name)}
+        <option value={name}>{name}</option>
+      {/each}
     </select>
     <select bind:value={themeName} onchange={() => selectTheme(themeName)}>
       {#each Object.keys(themes) as name (name)}
