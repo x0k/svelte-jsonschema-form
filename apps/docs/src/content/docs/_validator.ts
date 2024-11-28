@@ -1,6 +1,6 @@
 import Ajv, { type ErrorObject } from "ajv";
 import {
-  AjvValidator,
+  Validator,
   addFormComponents,
   DEFAULT_AJV_CONFIG,
 } from "@sjsf/ajv8-validator";
@@ -14,7 +14,7 @@ import {
   type ValidationError,
 } from "@sjsf/form";
 
-class StarValidator extends AjvValidator {
+class StarValidator extends Validator {
   validateFormData(
     schema: Schema,
     formData: SchemaValue | undefined
