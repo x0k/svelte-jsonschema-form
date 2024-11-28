@@ -33,7 +33,7 @@ const FIELD_REQUIRED = ["field"];
 const FIELD_NOT_REQUIRED: string[] = [];
 const NO_ERRORS: FieldErrors<ErrorObject> = [];
 
-export function makeSchemaCompiler(ajv: Ajv) {
+export function makeSchemaCompiler(ajv: Ajv, schemasCache: Map<string, WeakRef<Schema>>) {
   let rootSchemaId = "";
   let usePrefixSchemaRefs = false;
   const validatorsCache = new WeakMap<Schema, ValidateFunction>();
@@ -59,6 +59,13 @@ export function makeSchemaCompiler(ajv: Ajv) {
       ajv.addSchema(rootSchema, rootSchemaId);
     }
     usePrefixSchemaRefs = schema !== rootSchema;
+    const schemaId = schema[ID_KEY]
+    if (usePrefixSchemaRefs && schemaId !== undefined) {
+      const schemaRef = schemasCache.get(schemaId);
+      if (schemaRef?.deref() !== schema) {
+        ajv.removeSchema(schemaId);
+      }
+    }
     return compile(schema);
   };
 }
@@ -95,6 +102,7 @@ export interface ValidatorOptions {
   idPrefix?: string;
   idSeparator?: string;
   idPseudoSeparator?: string;
+  schemasCache?: Map<string, WeakRef<Schema>>;
   compileSchema?: (schema: Schema, rootSchema: Schema) => ValidateFunction;
   compileFieldSchema?: (config: Config) => ValidateFunction;
 }
@@ -105,6 +113,7 @@ export class Validator implements FormValidator<ErrorObject> {
   private readonly idPrefix: string;
   private readonly idSeparator: string;
   private readonly idPseudoSeparator: string;
+  private readonly schemasCache: Map<string, WeakRef<Schema>>;
   private readonly compileSchema: (
     schema: Schema,
     rootSchema: Schema
@@ -116,7 +125,8 @@ export class Validator implements FormValidator<ErrorObject> {
     idPrefix = DEFAULT_ID_PREFIX,
     idSeparator = DEFAULT_ID_SEPARATOR,
     idPseudoSeparator = DEFAULT_PSEUDO_ID_SEPARATOR,
-    compileSchema = makeSchemaCompiler(ajv),
+    schemasCache = new Map<string, WeakRef<Schema>>(),
+    compileSchema = makeSchemaCompiler(ajv, schemasCache),
     compileFieldSchema = makeFieldSchemaCompiler(ajv),
   }: ValidatorOptions) {
     this.ajv = ajv;
@@ -124,6 +134,7 @@ export class Validator implements FormValidator<ErrorObject> {
     this.idPrefix = idPrefix;
     this.idSeparator = idSeparator;
     this.idPseudoSeparator = idPseudoSeparator;
+    this.schemasCache = schemasCache;
     this.compileSchema = compileSchema;
     this.compileFieldSchema = compileFieldSchema;
   }
@@ -212,6 +223,7 @@ export class Validator implements FormValidator<ErrorObject> {
 
   reset() {
     this.ajv.removeSchema();
+    this.schemasCache.clear();
   }
 
   private instancePathToId(

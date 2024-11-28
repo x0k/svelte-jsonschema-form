@@ -15,6 +15,8 @@ ajv/:
   pushd packages/ajv8-validator
   b:
     pnpm run build
+  t:
+    pnpm run test
   popd
 
 zod/:

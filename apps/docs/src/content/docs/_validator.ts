@@ -33,6 +33,6 @@ class StarValidator extends Validator {
   }
 }
 
-export const validator = new StarValidator(
-  addFormComponents(new Ajv(DEFAULT_AJV_CONFIG))
-);
+export const validator = new StarValidator({
+  ajv: addFormComponents(new Ajv(DEFAULT_AJV_CONFIG))
+});
