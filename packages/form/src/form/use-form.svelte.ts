@@ -4,13 +4,16 @@ import { SvelteMap } from "svelte/reactivity";
 
 import type { SchedulerYield } from "@/lib/scheduler.js";
 import type { Schema, SchemaValue } from "@/core/schema.js";
+import { useMutation, type FailedMutation } from "@/use-mutation.svelte.js";
 
 import {
   ADDITIONAL_PROPERTY_KEY_ERROR,
+  VALIDATION_PROCESS_ERROR,
   type AdditionalPropertyKeyError,
   type AdditionalPropertyKeyValidator,
   type FormValidator,
   type ValidationError,
+  type ValidationProcessError,
 } from "./validator.js";
 import type { Components } from "./component.js";
 import type { Widgets } from "./widgets.js";
@@ -96,6 +99,15 @@ export interface UseFormOptions<T, E> {
     snapshot: SchemaValue | undefined
   ) => void;
   /**
+   * Validation error handler
+   *
+   * Will be called when the validation fails by different reasons:
+   * - error during validation
+   * - validation is cancelled
+   * - validation timeout
+   */
+  onValidationFailure?: (state: FailedMutation<unknown>) => void;
+  /**
    * Reset handler
    *
    * Will be called on form reset.
@@ -109,8 +121,13 @@ export interface UseFormOptions<T, E> {
   schedulerYield?: SchedulerYield;
 }
 
+export type ValidationProcessErrorTranslation = (
+  state: FailedMutation<unknown>
+) => string;
+
 export interface UseFormOptions2<T, E> extends UseFormOptions<T, E> {
   additionalPropertyKeyValidator?: AdditionalPropertyKeyValidator;
+  handleValidationProcessError?: ValidationProcessErrorTranslation;
 }
 
 export interface FormState<T, E> {
@@ -120,6 +137,7 @@ export interface FormState<T, E> {
   isSubmitted: boolean;
   isChanged: boolean;
   validate(): Errors<E>;
+  validateAsync(): Promise<Errors<E>>;
   submit(e: SubmitEvent): void;
   reset(): void;
   updateErrorsByPath(
@@ -156,11 +174,16 @@ export function createForm2<
   O extends UseFormOptions2<any, any>,
   T = FormValueFromOptions<O>,
   VE = ValidatorErrorFromOptions<O>,
-  E = O extends {
+  E1 = O extends {
     additionalPropertyKeyValidator: AdditionalPropertyKeyValidator;
   }
     ? VE | AdditionalPropertyKeyError
     : VE,
+  E = O extends {
+    handleValidationProcessError: ValidationProcessErrorTranslation;
+  }
+    ? E1 | ValidationProcessError
+    : E1,
 >(options: O): FormApiAndContext<T, E> {
   const merger = $derived(
     options.merger ?? new DefaultFormMerger(options.validator, options.schema)
@@ -240,26 +263,56 @@ export function createForm2<
   );
 
   function validateSnapshot(snapshot: SchemaValue | undefined) {
-    return groupErrors(
-      options.validator.validateFormData($state.snapshot(validationSchema), snapshot)
+    return options.validator.validateFormData(
+      $state.snapshot(validationSchema),
+      snapshot
     );
   }
 
-  function submit(e: SubmitEvent) {
-    isSubmitted = true;
-    const snapshot = getSnapshot();
-    errors = validateSnapshot(snapshot);
-    if (errors.size === 0) {
-      options.onSubmit?.(snapshot as T, e);
-      isChanged = false;
-      return;
-    }
-    options.onSubmitError?.(errors, e, snapshot);
-  }
+  const validation = useMutation({
+    async mutate(_signal, event: SubmitEvent) {
+      isSubmitted = true;
+      const snapshot = getSnapshot();
+      const validationErrors = await validateSnapshot(snapshot);
+      return {
+        event,
+        snapshot,
+        validationErrors,
+      };
+    },
+    onSuccess({ event, snapshot, validationErrors }) {
+      errors = groupErrors(validationErrors);
+      if (errors.size === 0) {
+        options.onSubmit?.(snapshot as T, event);
+        isChanged = false;
+        return;
+      }
+      options.onSubmitError?.(errors, event, snapshot);
+    },
+    onFailure(state) {
+      if (options.handleValidationProcessError) {
+        const currentErrors = errors.get(idPrefix) ?? [];
+        const error: ValidationProcessError = {
+          type: VALIDATION_PROCESS_ERROR,
+          state,
+        };
+        errors.set(
+          idPrefix,
+          currentErrors.concat({
+            instanceId: idPrefix,
+            propertyTitle: "",
+            message: options.handleValidationProcessError(state),
+            error: error as E,
+          })
+        );
+      }
+      options.onValidationFailure?.(state);
+    },
+  });
 
   const submitHandler = (e: SubmitEvent) => {
     e.preventDefault();
-    submit(e);
+    validation.run(e);
   };
 
   function reset() {
@@ -318,9 +371,21 @@ export function createForm2<
         isChanged = v;
       },
       validate() {
-        return validateSnapshot(getSnapshot());
+        const errors = validateSnapshot(getSnapshot());
+        if (errors instanceof Promise) {
+          throw new Error("`validate` cannot be called with async validator");
+        }
+        return groupErrors(errors);
       },
-      submit,
+      async validateAsync() {
+        const errors = await validateSnapshot(getSnapshot());
+        return groupErrors(errors);
+      },
+      submit(e) {
+        // @deprecated
+        // TODO: Maybe we should return this promise in next major version
+        validation.run(e);
+      },
       reset,
       updateErrorsByPath(path, update) {
         const instanceId = pathToId(idPrefix, idSeparator, path);

@@ -256,6 +256,9 @@
 
   function validateSnapshot(snapshot: SchemaValue | undefined) {
     const list = validator.validateFormData(schema, snapshot)
+    if (list instanceof Promise) {
+      throw new Error("This component does not support async validators")
+    }
     return new SvelteMap(SvelteMap.groupBy(list, (error) => error.instanceId))
   }
 

@@ -1,6 +1,7 @@
 import type { Schema, SchemaValue, Validator } from "@/core/index.js";
 
 import type { Config } from "./config.js";
+import type { FailedMutation } from '@/use-mutation.svelte.js';
 
 export interface ValidationError<E> {
   instanceId: string;
@@ -19,7 +20,7 @@ export interface FormValidator<E = unknown> extends Validator {
   validateFormData(
     rootSchema: Schema,
     formData: SchemaValue | undefined
-  ): ValidationError<E>[];
+  ): ValidationError<E>[] | Promise<ValidationError<E>[]>;
 
   /**
    * Individual field validation
@@ -27,7 +28,7 @@ export interface FormValidator<E = unknown> extends Validator {
   validateFieldData(
     field: Config,
     fieldData: SchemaValue | undefined
-  ): ValidationError<E>[];
+  ): ValidationError<E>[] | Promise<ValidationError<E>[]>;
 }
 
 export const ADDITIONAL_PROPERTY_KEY_ERROR = Symbol(
@@ -40,4 +41,11 @@ export interface AdditionalPropertyKeyValidator {
    * Additional property key validation
    */
   validateAdditionalPropertyKey: (key: string) => string[];
+}
+
+export const VALIDATION_PROCESS_ERROR = Symbol("validation-process-error");
+
+export interface ValidationProcessError {
+  type: typeof VALIDATION_PROCESS_ERROR;
+  state: FailedMutation<unknown>;
 }
