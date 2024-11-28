@@ -51,7 +51,7 @@ References:
 ## Caveats
 
 If you using this library only for full form validation (without inputs validation mode)
-and your form does not have and `oneOf`, `anyOf`, `dependencies` and `if` keywords,
+and your form does not have and `oneOf`, `anyOf`, `dependencies` `if` keywords or recursive references,
 you can use this library pretty safely.
 
 If you are using inputs validation mode then starting from this point
@@ -59,7 +59,7 @@ internally we start to use `json-schema-to-zod`.
 So first of all, please read this warning [about using this library at runtime](https://github.com/StefanTerdell/json-schema-to-zod?tab=readme-ov-file#use-at-runtime).
 However, I believe you are still safe as only small leafy bits of the circuit are transformed with this approach.
 
-If you use any conditional keyword it means with a high probability something can go wrong.
+If you use any conditional keyword or recursive references it means with a high probability something can go wrong.
 If you have problems with this approach, try using zod with a different validator using the `augment` submodule.
 So in this case zod validator will be used only for full form validation.
 

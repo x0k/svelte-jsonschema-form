@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { SimpleForm, type Schema, ON_INPUT } from "@sjsf/form";
+  import { SimpleForm, ON_INPUT, type Schema } from "@sjsf/form";
   import { createValidator } from "@sjsf/zod-validator";
   import { zodToJsonSchema } from "zod-to-json-schema";
   import { z } from "zod";
@@ -24,12 +24,10 @@
 
   type Value = z.infer<typeof schema>;
 
-  const rootSchema = zodToJsonSchema(schema, { errorMessages: true }) as Schema
-
-  const validator = createValidator({ schema, rootSchema, uiSchema });
+  const validator = createValidator({ schema, uiSchema });
 
   const form = useCustomForm({
-    schema: rootSchema,
+    schema: zodToJsonSchema(schema, { errorMessages: true }) as Schema,
     uiSchema,
     validator,
     inputsValidationMode: ON_INPUT,

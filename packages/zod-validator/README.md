@@ -23,15 +23,12 @@ const schema = z.object({
   /* your schema */
 });
 
-const rootSchema = zodToJsonSchema(schema) as Schema
-
 const validator = createValidator({
   schema,
-  rootSchema
 });
 
 const form = useForm2({
-  schema: rootSchema,
+  schema: zodToJsonSchema(schema) as Schema,
   validator
 })
 ```

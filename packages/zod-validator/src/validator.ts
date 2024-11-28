@@ -20,40 +20,80 @@ const FIELD_REQUIRED = ["field"];
 const FIELD_NOT_REQUIRED: string[] = [];
 const NO_ERRORS: FieldErrors<ZodIssue> = [];
 
-function evalZodSchema(schema: Schema) {
+export function evalZodSchema(schema: Schema) {
   return new Function("z", `return ${jsonSchemaToZod(schema)}`)(z);
 }
 
+export function makeZodSchemaFactory() {
+  const cache = new WeakMap<Schema, ZodSchema>();
+  let lastRootSchema: Schema;
+  const factory = weakMemoize<Schema, ZodSchema>(cache, (schema) =>
+    evalZodSchema(resolveAllReferences(schema, lastRootSchema))
+  );
+  return (schema: Schema, rootSchema: Schema) => {
+    if (lastRootSchema !== rootSchema) {
+      lastRootSchema = rootSchema;
+      cache.delete(schema);
+    }
+    return factory(schema);
+  };
+}
+
+export function makeFieldZodSchemaFactory() {
+  const cache = new WeakMap<Schema, ZodSchema>();
+  const requiredCache = new WeakMap<Schema, boolean>();
+  let isRequired = false;
+  const factory = weakMemoize<Schema, ZodSchema>(cache, (schema) =>
+    evalZodSchema({
+      type: "object",
+      properties: {
+        field: schema,
+      },
+      required: isRequired ? FIELD_REQUIRED : FIELD_NOT_REQUIRED,
+    })
+  );
+  return (config: Config) => {
+    isRequired = config.required;
+    const prev = requiredCache.get(config.schema);
+    if (prev !== isRequired) {
+      requiredCache.set(config.schema, isRequired);
+      cache.delete(config.schema);
+    }
+    return factory(config.schema);
+  };
+}
+
+export interface ValidatorOptions {
+  schema: ZodSchema;
+  uiSchema?: UiSchemaRoot;
+  idPrefix?: string;
+  idSeparator?: string;
+  zodSchemaFactory?: (schema: Schema, rootSchema: Schema) => ZodSchema;
+  fieldZodSchemaFactory?: (config: Config) => ZodSchema;
+}
+
 export class Validator implements FormValidator<ZodIssue> {
-  private toZodSchema = weakMemoize<Schema, ZodSchema>(
-    new WeakMap(),
-    (schema) => evalZodSchema(resolveAllReferences(schema, this.rootSchema))
-  );
-  private _isFieldRequired = false;
-  private _toFieldZodSchema = weakMemoize<Schema, ZodSchema>(
-    new WeakMap(),
-    (schema) =>
-      evalZodSchema({
-        type: "object",
-        properties: {
-          field: schema,
-        },
-        required: this._isFieldRequired ? FIELD_REQUIRED : FIELD_NOT_REQUIRED,
-      })
-  );
-
-  private toFieldZodSchema(config: Config) {
-    this._isFieldRequired = config.required;
-    return this._toFieldZodSchema(config.schema);
+  private readonly zodSchema: ZodSchema;
+  private readonly uiSchema: UiSchemaRoot;
+  private readonly idPrefix: string;
+  private readonly idSeparator: string;
+  private readonly zodSchemaFactory: (schema: Schema, rootSchema: Schema) => ZodSchema;
+  private readonly fieldZodSchemaFactory: (config: Config) => ZodSchema;
+  constructor({
+    schema,
+    uiSchema = {},
+    idPrefix = DEFAULT_ID_PREFIX,
+    idSeparator = DEFAULT_ID_SEPARATOR,
+    zodSchemaFactory = makeZodSchemaFactory(),
+    fieldZodSchemaFactory = makeFieldZodSchemaFactory(),
+  }: ValidatorOptions) {
+    this.zodSchema = schema;
+    this.uiSchema = uiSchema;
+    this.idPrefix = idPrefix;
+    this.idSeparator = idSeparator;
+    this.zodSchemaFactory = zodSchemaFactory;
+    this.fieldZodSchemaFactory = fieldZodSchemaFactory;
   }
-
-  constructor(
-    private readonly zodSchema: ZodSchema,
-    private readonly rootSchema: Schema,
-    private readonly uiSchema: UiSchemaRoot = {},
-    private readonly idPrefix: string = DEFAULT_ID_PREFIX,
-    private readonly idSeparator: string = DEFAULT_ID_SEPARATOR
-  ) {}
 
   validateFieldData(
     config: Config,
@@ -63,7 +103,7 @@ export class Validator implements FormValidator<ZodIssue> {
     if (instanceId === this.idPrefix) {
       return this.validateFormData(config.schema, fieldData);
     }
-    const schema = this.toFieldZodSchema(config);
+    const schema = this.fieldZodSchemaFactory(config);
     const result = schema.safeParse({ field: fieldData });
     if (result.success) {
       return NO_ERRORS;
@@ -80,13 +120,13 @@ export class Validator implements FormValidator<ZodIssue> {
 
   isValid(
     schema: SchemaDefinition,
-    _rootSchema: Schema,
+    rootSchema: Schema,
     formData: SchemaValue | undefined
   ): boolean {
     if (typeof schema === "boolean") {
       return schema;
     }
-    const zodSchema = this.toZodSchema(schema);
+    const zodSchema = this.zodSchemaFactory(schema, rootSchema);
     const result = zodSchema.safeParse(formData);
     return result.success;
   }
