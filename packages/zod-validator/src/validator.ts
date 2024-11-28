@@ -12,33 +12,34 @@ import {
   type UiSchemaRoot,
   type ValidationError,
 } from "@sjsf/form";
-import type { ZodIssue, ZodSchema } from "zod";
+import { z, type ZodIssue, type ZodSchema } from "zod";
 import { jsonSchemaToZod } from "json-schema-to-zod";
-import { weakMemoize } from '@sjsf/form/lib/memoize';
+import { weakMemoize } from "@sjsf/form/lib/memoize";
 
 const FIELD_REQUIRED = ["field"];
 const FIELD_NOT_REQUIRED: string[] = [];
 const NO_ERRORS: FieldErrors<ZodIssue> = [];
 
+function evalZodSchema(schema: Schema) {
+  return new Function("z", `return ${jsonSchemaToZod(schema)}`)(z);
+}
+
 export class Validator implements FormValidator<ZodIssue> {
   private toZodSchema = weakMemoize<Schema, ZodSchema>(
     new WeakMap(),
-    (schema) =>
-      eval(jsonSchemaToZod(resolveAllReferences(schema, this.rootSchema)))
+    (schema) => evalZodSchema(resolveAllReferences(schema, this.rootSchema))
   );
   private _isFieldRequired = false;
   private _toFieldZodSchema = weakMemoize<Schema, ZodSchema>(
     new WeakMap(),
     (schema) =>
-      eval(
-        jsonSchemaToZod({
-          type: "object",
-          properties: {
-            field: schema,
-          },
-          required: this._isFieldRequired ? FIELD_REQUIRED : FIELD_NOT_REQUIRED,
-        })
-      )
+      evalZodSchema({
+        type: "object",
+        properties: {
+          field: schema,
+        },
+        required: this._isFieldRequired ? FIELD_REQUIRED : FIELD_NOT_REQUIRED,
+      })
   );
 
   private toFieldZodSchema(config: Config) {
