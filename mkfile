@@ -17,6 +17,12 @@ ajv/:
     pnpm run build
   popd
 
+zod/:
+  pushd packages/zod-validator
+  b:
+    pnpm run build
+  popd
+
 f/:
   pushd packages/form
   b:
