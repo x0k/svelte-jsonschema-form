@@ -1,13 +1,13 @@
-import type { Ajv } from "ajv";
+import type { Ajv, ValidateFunction } from "ajv";
 import type { ErrorObject } from "ajv";
 
 import { deepEqual } from "@sjsf/form/lib/deep-equal";
 import { getValueByPath } from "@sjsf/form/lib/object";
+import { weakMemoize } from "@sjsf/form/lib/memoize";
 import {
   ID_KEY,
   prefixSchemaRefs,
   ROOT_SCHEMA_PREFIX,
-  schemaHash,
   type Schema,
   type SchemaDefinition,
   type SchemaValue,
@@ -33,26 +33,123 @@ const FIELD_REQUIRED = ["field"];
 const FIELD_NOT_REQUIRED: string[] = [];
 const NO_ERRORS: FieldErrors<ErrorObject> = [];
 
-export class AjvValidator implements FormValidator<ErrorObject> {
-  constructor(
-    private readonly ajv: Ajv,
-    private readonly uiSchema: UiSchemaRoot = {},
-    private readonly idPrefix: string = DEFAULT_ID_PREFIX,
-    private readonly idSeparator: string = DEFAULT_ID_SEPARATOR,
-    private readonly idPseudoSeparator: string = DEFAULT_PSEUDO_ID_SEPARATOR
-  ) {}
+export function makeSchemaCompiler(ajv: Ajv) {
+  let rootSchemaId = "";
+  let usePrefixSchemaRefs = false;
+  const validatorsCache = new WeakMap<Schema, ValidateFunction>();
+  const compile = weakMemoize<Schema, ValidateFunction>(
+    validatorsCache,
+    (schema) => {
+      return ajv.compile(
+        usePrefixSchemaRefs ? prefixSchemaRefs(schema, rootSchemaId) : schema
+      );
+    }
+  );
+  return (schema: Schema, rootSchema: Schema) => {
+    rootSchemaId = rootSchema[ID_KEY] ?? ROOT_SCHEMA_PREFIX;
+    let ajvSchema = ajv.getSchema(rootSchemaId)?.schema;
+    // @deprecated
+    // TODO: Replace deep equality comparison with reference equality by default
+    if (ajvSchema !== undefined && !deepEqual(ajvSchema, rootSchema)) {
+      ajv.removeSchema(rootSchemaId);
+      validatorsCache.delete(schema);
+      ajvSchema = undefined;
+    }
+    if (ajvSchema === undefined) {
+      ajv.addSchema(rootSchema, rootSchemaId);
+    }
+    usePrefixSchemaRefs = schema !== rootSchema;
+    return compile(schema);
+  };
+}
 
-  reset() {
-    this.ajv.removeSchema();
+export function makeFieldSchemaCompiler(ajv: Ajv) {
+  let isRequired = false;
+  const validatorsCache = new WeakMap<Schema, ValidateFunction>();
+  const requiredCache = new WeakMap<Schema, boolean>();
+  const compile = weakMemoize<Schema, ValidateFunction>(
+    validatorsCache,
+    (schema) =>
+      ajv.compile({
+        type: "object",
+        properties: {
+          field: schema,
+        },
+        required: isRequired ? FIELD_REQUIRED : FIELD_NOT_REQUIRED,
+      })
+  );
+  return (config: Config) => {
+    isRequired = config.required;
+    const prev = requiredCache.get(config.schema);
+    if (prev !== config.required) {
+      validatorsCache.delete(config.schema);
+      requiredCache.set(config.schema, config.required);
+    }
+    return compile(config.schema);
+  };
+}
+
+export interface ValidatorOptions {
+  ajv: Ajv;
+  uiSchema?: UiSchemaRoot;
+  idPrefix?: string;
+  idSeparator?: string;
+  idPseudoSeparator?: string;
+  compileSchema?: (schema: Schema, rootSchema: Schema) => ValidateFunction;
+  compileFieldSchema?: (config: Config) => ValidateFunction;
+}
+
+export class Validator implements FormValidator<ErrorObject> {
+  private readonly ajv: Ajv;
+  private readonly uiSchema: UiSchemaRoot;
+  private readonly idPrefix: string;
+  private readonly idSeparator: string;
+  private readonly idPseudoSeparator: string;
+  private readonly compileSchema: (
+    schema: Schema,
+    rootSchema: Schema
+  ) => ValidateFunction;
+  private readonly compileFieldSchema: (config: Config) => ValidateFunction;
+  constructor({
+    ajv,
+    uiSchema = {},
+    idPrefix = DEFAULT_ID_PREFIX,
+    idSeparator = DEFAULT_ID_SEPARATOR,
+    idPseudoSeparator = DEFAULT_PSEUDO_ID_SEPARATOR,
+    compileSchema = makeSchemaCompiler(ajv),
+    compileFieldSchema = makeFieldSchemaCompiler(ajv),
+  }: ValidatorOptions) {
+    this.ajv = ajv;
+    this.uiSchema = uiSchema;
+    this.idPrefix = idPrefix;
+    this.idSeparator = idSeparator;
+    this.idPseudoSeparator = idPseudoSeparator;
+    this.compileSchema = compileSchema;
+    this.compileFieldSchema = compileFieldSchema;
+  }
+
+  isValid(
+    schemaDefinition: SchemaDefinition,
+    rootSchema: Schema,
+    formData: SchemaValue | undefined
+  ): boolean {
+    const validator = this.compileSchema(
+      this.transformSchemaDefinition(schemaDefinition),
+      rootSchema
+    );
+    try {
+      return validator(formData);
+    } catch (e) {
+      console.warn("Failed to validate", e);
+      return false;
+    }
   }
 
   validateFormData(
     schema: Schema,
     formData: SchemaValue | undefined
   ): ValidationError<ErrorObject>[] {
-    const schemaRef = schema[ID_KEY];
-    const validator =
-      (schemaRef && this.ajv.getSchema(schemaRef)) || this.ajv.compile(schema);
+    const validator = this.compileSchema(schema, schema);
     validator(formData);
     const errors = validator.errors;
     validator.errors = null;
@@ -98,8 +195,7 @@ export class AjvValidator implements FormValidator<ErrorObject> {
     if (instanceId === this.idPrefix) {
       return this.validateFormData(config.schema, fieldData);
     }
-    const schema = this.getFieldValidationSchemaForSyncValidation(config);
-    const validator = this.ajv.compile(schema);
+    const validator = this.compileFieldSchema(config);
     const data = { field: fieldData };
     validator(data);
     const errors = validator.errors;
@@ -114,40 +210,8 @@ export class AjvValidator implements FormValidator<ErrorObject> {
     );
   }
 
-  isValid(
-    schemaDefinition: SchemaDefinition,
-    rootSchema: Schema,
-    formData: SchemaValue | undefined
-  ): boolean {
-    const rootSchemaId = this.handleRootSchemaUpdate(rootSchema);
-    const schemaWithPrefixedRefs = prefixSchemaRefs(
-      this.transformSchemaDefinition(schemaDefinition),
-      rootSchemaId
-    );
-    const schemaId =
-      schemaWithPrefixedRefs[ID_KEY] ?? schemaHash(schemaWithPrefixedRefs);
-    const validator =
-      this.ajv.getSchema(schemaId) ??
-      this.ajv
-        .addSchema(schemaWithPrefixedRefs, schemaId)
-        .getSchema(schemaId) ??
-      this.ajv.compile(schemaWithPrefixedRefs);
-    try {
-      return validator(formData);
-    } catch (e) {
-      console.warn("Failed to validate", e);
-      return false;
-    }
-  }
-
-  private getFieldValidationSchemaForSyncValidation(config: Config) {
-    return {
-      type: "object",
-      properties: {
-        field: config.schema,
-      },
-      required: config.required ? FIELD_REQUIRED : FIELD_NOT_REQUIRED,
-    } satisfies Schema;
+  reset() {
+    this.ajv.removeSchema();
   }
 
   private instancePathToId(
@@ -208,19 +272,6 @@ export class AjvValidator implements FormValidator<ErrorObject> {
     );
   }
 
-  private handleRootSchemaUpdate(rootSchema: Schema) {
-    const rootSchemaId = rootSchema[ID_KEY] ?? ROOT_SCHEMA_PREFIX;
-    let schema = this.ajv.getSchema(rootSchemaId)?.schema;
-    if (schema !== undefined && !deepEqual(schema, rootSchema)) {
-      this.ajv.removeSchema(rootSchemaId);
-      schema = undefined;
-    }
-    if (schema === undefined) {
-      this.ajv.addSchema(rootSchema, rootSchemaId);
-    }
-    return rootSchemaId;
-  }
-
   private transformSchemaDefinition(schema: SchemaDefinition): Schema {
     switch (schema) {
       case true:
@@ -230,5 +281,24 @@ export class AjvValidator implements FormValidator<ErrorObject> {
       default:
         return schema;
     }
+  }
+}
+
+/** @deprecated Use `Validator` */
+export class AjvValidator extends Validator {
+  constructor(
+    ajv: Ajv,
+    uiSchema: UiSchemaRoot = {},
+    idPrefix = DEFAULT_ID_PREFIX,
+    idSeparator = DEFAULT_ID_SEPARATOR,
+    idPseudoSeparator = DEFAULT_PSEUDO_ID_SEPARATOR
+  ) {
+    super({
+      ajv,
+      uiSchema,
+      idPrefix,
+      idSeparator,
+      idPseudoSeparator,
+    });
   }
 }
