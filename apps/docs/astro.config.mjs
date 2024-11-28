@@ -30,6 +30,10 @@ export default defineConfig({
           autogenerate: { directory: "themes" },
         },
         {
+          label: "Validators",
+          autogenerate: { directory: "validators" },
+        },
+        {
           label: "Integrations",
           autogenerate: { directory: "integrations" },
         },
