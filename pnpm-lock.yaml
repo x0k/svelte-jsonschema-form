@@ -107,6 +107,9 @@ importers:
       '@sjsf/ajv8-validator':
         specifier: workspace:*
         version: link:../../packages/ajv8-validator
+      '@sjsf/cfworker-validator':
+        specifier: workspace:*
+        version: link:../../packages/cfworker-validator
       '@sjsf/daisyui-theme':
         specifier: workspace:*
         version: link:../../packages/daisyui-theme
@@ -174,6 +177,9 @@ importers:
       '@sjsf/ajv8-validator':
         specifier: workspace:*
         version: link:../../packages/ajv8-validator
+      '@sjsf/cfworker-validator':
+        specifier: workspace:*
+        version: link:../../packages/cfworker-validator
       '@sjsf/daisyui-theme':
         specifier: workspace:*
         version: link:../../packages/daisyui-theme
@@ -250,6 +256,15 @@ importers:
       vitest:
         specifier: 'catalog:'
         version: 2.1.5(@types/node@22.7.5)
+
+  packages/cfworker-validator:
+    devDependencies:
+      '@cfworker/json-schema':
+        specifier: ^3.0.1
+        version: 3.0.1
+      '@sjsf/form':
+        specifier: workspace:*
+        version: link:../form
 
   packages/daisyui-theme:
     devDependencies:
@@ -1136,6 +1151,9 @@ packages:
 
   '@braintree/sanitize-url@7.1.0':
     resolution: {integrity: sha512-o+UlMLt49RvtCASlOMW0AkHnabN9wR9rwCCherxO0yG4Npy34GkvrAqdXQvrhNs+jh+gkK8gB8Lf05qL/O7KWg==}
+
+  '@cfworker/json-schema@3.0.1':
+    resolution: {integrity: sha512-fjgm7yhAaUVp7Lp4WGTiuBXzXgUoKWxVEFEte0YWdPIo6tWMxL3Jv7zrGSaxd/4fihLaRJEUsK1aMkGdAEcqUg==}
 
   '@changesets/apply-release-plan@7.0.5':
     resolution: {integrity: sha512-1cWCk+ZshEkSVEZrm2fSj1Gz8sYvxgUL4Q78+1ZZqeqfuevPTPk033/yUZ3df8BKMohkqqHfzj0HOOrG0KtXTw==}
@@ -5335,6 +5353,8 @@ snapshots:
       '@babel/helper-validator-identifier': 7.25.9
 
   '@braintree/sanitize-url@7.1.0': {}
+
+  '@cfworker/json-schema@3.0.1': {}
 
   '@changesets/apply-release-plan@7.0.5':
     dependencies:

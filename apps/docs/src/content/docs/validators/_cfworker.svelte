@@ -1,6 +1,6 @@
 <script lang="ts">
   import { SimpleForm, ON_INPUT } from "@sjsf/form";
-  import { createValidator } from "@sjsf/ajv8-validator";
+  import { createValidator } from "@sjsf/cfworker-validator";
 
   import { useCustomForm } from "@/components/custom-form";
 

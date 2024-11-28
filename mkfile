@@ -25,6 +25,12 @@ zod/:
     pnpm run build
   popd
 
+cfw/:
+  pushd packages/cfworker-validator
+  b:
+    pnpm run build
+  popd
+
 f/:
   pushd packages/form
   b:

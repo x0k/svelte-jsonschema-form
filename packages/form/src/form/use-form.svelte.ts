@@ -241,7 +241,7 @@ export function createForm2<
 
   function validateSnapshot(snapshot: SchemaValue | undefined) {
     return groupErrors(
-      options.validator.validateFormData(validationSchema, snapshot)
+      options.validator.validateFormData($state.snapshot(validationSchema), snapshot)
     );
   }
 
