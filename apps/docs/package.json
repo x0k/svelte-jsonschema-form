@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@sjsf/ajv8-validator": "workspace:*",
+    "@sjsf/cfworker-validator": "workspace:*",
     "@sjsf/daisyui-theme": "workspace:*",
     "@sjsf/flowbite-theme": "workspace:*",
     "@sjsf/form": "workspace:*",

@@ -107,6 +107,9 @@ importers:
       '@sjsf/ajv8-validator':
         specifier: workspace:*
         version: link:../../packages/ajv8-validator
+      '@sjsf/cfworker-validator':
+        specifier: workspace:*
+        version: link:../../packages/cfworker-validator
       '@sjsf/daisyui-theme':
         specifier: workspace:*
         version: link:../../packages/daisyui-theme

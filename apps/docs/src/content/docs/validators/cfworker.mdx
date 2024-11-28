@@ -1,0 +1,43 @@
+---
+title: cfworker/json-schema
+sidebar:
+  order: 2
+---
+
+import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
+
+import Npm from '@/components/npm.astro';
+
+import Form from './_cfworker.astro';
+import formCode from './_cfworker.svelte?raw';
+import sharedCode from './_shared.ts?raw';
+
+:::caution
+
+This validator is experimental.
+
+At least `"format": "data-url",` is not supported right now.
+
+:::
+
+Form validator implementation based on [@cfworker/json-schema](https://github.com/cfworker/cfworker/tree/main/packages/json-schema).
+
+## Installation
+
+<Npm pkg="@sjsf/form @sjsf/cfworker-validator @cfworker/json-schema" />
+
+## Example
+
+<Tabs>
+  <TabItem label="form.svelte">
+    <Code code={formCode} lang='svelte' />
+  </TabItem>
+  <TabItem label="_shared.ts">
+    <Code code={sharedCode} lang='typescript' />
+  </TabItem>
+</Tabs>
+
+<Card>
+  <Form />
+</Card>
+
