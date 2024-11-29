@@ -2,7 +2,7 @@ import { getContext, setContext, type Component, type Snippet } from "svelte";
 
 import type { SchedulerYield } from "@/lib/scheduler.js";
 
-import type { Schema } from "@/core/index.js";
+import type { Schema, SchemaValue } from "@/core/index.js";
 
 import type { Label, Labels, Translation } from "../translation.js";
 import type { UiSchema, UiSchemaRoot } from "../ui-schema.js";
@@ -44,6 +44,7 @@ export interface FormContext {
   /** @deprecated use `IconOrTranslation` instead */
   iconOrTranslation: Snippet<[IconOrTranslationData]>;
   validateAdditionalPropertyKey(config: Config, key: string): boolean;
+  validateFieldData(config: Config, value: SchemaValue | undefined): void;
 }
 
 const FORM_CONTEXT = Symbol("form-context");

@@ -15,10 +15,5 @@ export function validateField(
   config: Config,
   value: SchemaValue | undefined
 ) {
-  const errors = ctx.validator.validateFieldData(config, value);
-  if (errors.length === 0) {
-    ctx.errors.delete(config.idSchema.$id);
-  } else {
-    ctx.errors.set(config.idSchema.$id, errors);
-  }
+  ctx.validateFieldData(config, value);
 }

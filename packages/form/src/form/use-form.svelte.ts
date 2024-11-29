@@ -106,7 +106,18 @@ export interface UseFormOptions<T, E> {
    * - validation is cancelled
    * - validation timeout
    */
-  onValidationFailure?: (state: FailedMutation<unknown>) => void;
+  onValidationFailure?: (
+    state: FailedMutation<unknown>,
+    e: SubmitEvent
+  ) => void;
+  /**
+   * Field validation error handler
+   */
+  onFieldValidationFailure?: (
+    state: FailedMutation<unknown>,
+    config: Config,
+    value: SchemaValue | undefined
+  ) => void;
   /**
    * Reset handler
    *
@@ -289,30 +300,59 @@ export function createForm2<
       }
       options.onSubmitError?.(errors, event, snapshot);
     },
-    onFailure(state) {
+    onFailure(state, e) {
       if (options.handleValidationProcessError) {
-        const currentErrors = errors.get(idPrefix) ?? [];
         const error: ValidationProcessError = {
           type: VALIDATION_PROCESS_ERROR,
           state,
         };
-        errors.set(
-          idPrefix,
-          currentErrors.concat({
+        errors.set(idPrefix, [
+          {
             instanceId: idPrefix,
             propertyTitle: "",
             message: options.handleValidationProcessError(state),
             error: error as E,
-          })
-        );
+          },
+        ]);
       }
-      options.onValidationFailure?.(state);
+      options.onValidationFailure?.(state, e);
+    },
+  });
+
+  const fieldValidation = useMutation({
+    async mutate(_signal, config: Config, value: SchemaValue | undefined) {
+      return options.validator.validateFieldData(config, value);
+    },
+    onSuccess(validationErrors: ValidationError<E>[], config) {
+      if (validationErrors.length > 0) {
+        errors.delete(config.idSchema.$id);
+      } else {
+        errors.set(config.idSchema.$id, validationErrors);
+      }
+    },
+    onFailure(state, config, value) {
+      if (options.handleValidationProcessError && state.reason !== "aborted") {
+        const error: ValidationProcessError = {
+          type: VALIDATION_PROCESS_ERROR,
+          state,
+        };
+        errors.set(config.idSchema.$id, [
+          {
+            instanceId: config.idSchema.$id,
+            propertyTitle: config.title,
+            message: options.handleValidationProcessError(state),
+            error: error as E,
+          },
+        ]);
+      }
+      options.onFieldValidationFailure?.(state, config, value);
     },
   });
 
   const submitHandler = (e: SubmitEvent) => {
     e.preventDefault();
     validation.run(e);
+    validation.state
   };
 
   function reset() {
@@ -412,6 +452,9 @@ export function createForm2<
       },
       get validateAdditionalPropertyKey() {
         return additionalPropertyKeyValidator;
+      },
+      get validateFieldData() {
+        return fieldValidation.run.bind(fieldValidation);
       },
       get isSubmitted() {
         return isSubmitted;
