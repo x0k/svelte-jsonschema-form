@@ -33,9 +33,9 @@ const falseSchema: Schema = {
 
 const FIELD_REQUIRED = ["field"];
 const FIELD_NOT_REQUIRED: string[] = [];
-const NO_ERRORS: ErrorObject[] = [];
+const NO_ERRORS: FieldErrors<ErrorObject> = [];
 
-export function makeSchemaCompiler<A extends boolean>(ajv: Ajv, async: A) {
+export function makeSchemaCompiler<A extends boolean>(ajv: Ajv, _async: A) {
   let rootSchemaId = "";
   let usePrefixSchemaRefs = false;
   const validatorsCache = new WeakMap<Schema, AnyValidateFunction>();
@@ -46,13 +46,6 @@ export function makeSchemaCompiler<A extends boolean>(ajv: Ajv, async: A) {
       if (usePrefixSchemaRefs) {
         ajvSchema = prefixSchemaRefs(schema, rootSchemaId);
         delete ajvSchema[ID_KEY];
-        // @ts-expect-error wtf
-        ajvSchema.$async = async;
-      } else if (async) {
-        ajvSchema = {
-          $async: true,
-          ...schema,
-        };
       }
       return ajv.compile(ajvSchema);
     }
@@ -77,7 +70,10 @@ export function makeSchemaCompiler<A extends boolean>(ajv: Ajv, async: A) {
   };
 }
 
-export function makeFieldSchemaCompiler<A extends boolean>(ajv: Ajv, async: A) {
+export function makeFieldSchemaCompiler<A extends boolean>(
+  ajv: Ajv,
+  _async: A
+) {
   let isRequired = false;
   const validatorsCache = new WeakMap<Schema, AnyValidateFunction>();
   const requiredCache = new WeakMap<Schema, boolean>();
@@ -85,7 +81,6 @@ export function makeFieldSchemaCompiler<A extends boolean>(ajv: Ajv, async: A) {
     validatorsCache,
     (schema) =>
       ajv.compile({
-        $async: async,
         type: "object",
         properties: {
           field: schema,
@@ -316,7 +311,10 @@ export class Validator extends AbstractValidator {
     validator(formData);
     const errors = validator.errors;
     validator.errors = null;
-    return this.transformErrors(errors ?? NO_ERRORS);
+    if (!errors) {
+      return NO_ERRORS;
+    }
+    return this.transformErrors(errors);
   }
 
   override validateFieldData(
@@ -332,7 +330,10 @@ export class Validator extends AbstractValidator {
     validator(data);
     const errors = validator.errors;
     validator.errors = null;
-    return this.transformFieldErrors(errors ?? NO_ERRORS, config);
+    if (!errors) {
+      return NO_ERRORS;
+    }
+    return this.transformFieldErrors(errors, config);
   }
 }
 
@@ -356,7 +357,7 @@ export class AjvValidator extends Validator {
 }
 
 export interface AsyncValidatorOptions extends AbstractValidatorOptions {
-  compileSchema?: (schema: Schema, rootSchema: Schema) => AsyncValidateFunction;
+  compileSchema?: (schema: Schema, rootSchema: Schema) => ValidateFunction;
   compileAsyncSchema?: (
     schema: Schema,
     rootSchema: Schema
@@ -401,10 +402,11 @@ export class AsyncValidator extends AbstractValidator {
       if (!(error instanceof Ajv.ValidationError)) {
         throw error;
       }
+      return this.transformErrors(error.errors as ErrorObject[]);
+    } finally {
+      validator.errors = null;
     }
-    const errors = validator.errors;
-    validator.errors = null;
-    return this.transformErrors(errors ?? NO_ERRORS);
+    return NO_ERRORS;
   }
 
   override async validateFieldData(
@@ -423,9 +425,10 @@ export class AsyncValidator extends AbstractValidator {
       if (!(error instanceof Ajv.ValidationError)) {
         throw error;
       }
+      return this.transformFieldErrors(error.errors as ErrorObject[], config);
+    } finally {
+      validator.errors = null;
     }
-    const errors = validator.errors;
-    validator.errors = null;
-    return this.transformFieldErrors(errors ?? NO_ERRORS, config);
+    return NO_ERRORS;
   }
 }
