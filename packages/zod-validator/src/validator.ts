@@ -1,12 +1,9 @@
-import { getValueByPath } from "@sjsf/form/lib/object";
 import { type SchemaDefinition, resolveAllReferences } from "@sjsf/form/core";
 import {
   DEFAULT_ID_PREFIX,
   DEFAULT_ID_SEPARATOR,
-  pathToId,
   type Config,
-  type FieldErrors,
-  type FormValidator,
+  type FormValidator2,
   type Schema,
   type SchemaValue,
   type UiSchemaRoot,
@@ -16,9 +13,10 @@ import { z, type ZodIssue, type ZodSchema } from "zod";
 import { jsonSchemaToZod } from "json-schema-to-zod";
 import { weakMemoize } from "@sjsf/form/lib/memoize";
 
+import { makeFormDataValidationResultTransformer, NO_ERRORS } from './shared.js';
+
 const FIELD_REQUIRED = ["field"];
 const FIELD_NOT_REQUIRED: string[] = [];
-const NO_ERRORS: FieldErrors<ZodIssue> = [];
 
 export function evalZodSchema(schema: Schema) {
   return new Function("z", `return ${jsonSchemaToZod(schema)}`)(z);
@@ -63,7 +61,8 @@ export function makeFieldZodSchemaFactory() {
   };
 }
 
-export interface ValidatorOptions {
+export interface ValidatorOptions<Async extends boolean> {
+  async: Async;
   schema: ZodSchema;
   uiSchema?: UiSchemaRoot;
   idPrefix?: string;
@@ -72,50 +71,60 @@ export interface ValidatorOptions {
   fieldZodSchemaFactory?: (config: Config) => ZodSchema;
 }
 
-export class Validator implements FormValidator<ZodIssue> {
-  private readonly zodSchema: ZodSchema;
-  private readonly uiSchema: UiSchemaRoot;
-  private readonly idPrefix: string;
-  private readonly idSeparator: string;
-  private readonly zodSchemaFactory: (schema: Schema, rootSchema: Schema) => ZodSchema;
-  private readonly fieldZodSchemaFactory: (config: Config) => ZodSchema;
+export type ValidationResult<Async extends boolean> = Async extends true
+  ? Promise<ValidationError<ZodIssue>[]>
+  : ValidationError<ZodIssue>[];
+
+export class Validator<Async extends boolean>
+  implements FormValidator2<ZodIssue>
+{
+  protected readonly async: Async;
+  protected readonly zodSchema: ZodSchema;
+  protected readonly uiSchema: UiSchemaRoot;
+  protected readonly idPrefix: string;
+  protected readonly idSeparator: string;
+  protected readonly zodSchemaFactory: (
+    schema: Schema,
+    rootSchema: Schema
+  ) => ZodSchema;
+  protected readonly fieldZodSchemaFactory: (config: Config) => ZodSchema;
+  protected readonly transformFormDataValidationResult: (
+    result: z.SafeParseReturnType<any, any>
+  ) => ValidationError<ZodIssue>[];
   constructor({
+    async,
     schema,
     uiSchema = {},
     idPrefix = DEFAULT_ID_PREFIX,
     idSeparator = DEFAULT_ID_SEPARATOR,
     zodSchemaFactory = makeZodSchemaFactory(),
     fieldZodSchemaFactory = makeFieldZodSchemaFactory(),
-  }: ValidatorOptions) {
+  }: ValidatorOptions<Async>) {
+    this.async = async;
     this.zodSchema = schema;
     this.uiSchema = uiSchema;
     this.idPrefix = idPrefix;
     this.idSeparator = idSeparator;
     this.zodSchemaFactory = zodSchemaFactory;
     this.fieldZodSchemaFactory = fieldZodSchemaFactory;
+    this.transformFormDataValidationResult =
+      makeFormDataValidationResultTransformer(idPrefix, idSeparator, uiSchema);
   }
 
   validateFieldData(
     config: Config,
     fieldData: SchemaValue | undefined
-  ): ValidationError<ZodIssue>[] {
+  ): ValidationResult<Async> {
     const instanceId = config.idSchema.$id;
     if (instanceId === this.idPrefix) {
       return this.validateFormData(config.schema, fieldData);
     }
     const schema = this.fieldZodSchemaFactory(config);
     const result = schema.safeParse({ field: fieldData });
-    if (result.success) {
-      return NO_ERRORS;
-    }
-    return result.error.issues.map((issue) => {
-      return {
-        instanceId,
-        propertyTitle: config.title,
-        message: issue.message,
-        error: issue,
-      };
-    });
+    const transformed = this.transformFieldDataValidationResult(result, config);
+    return (
+      this.async ? Promise.resolve(transformed) : transformed
+    ) as ValidationResult<Async>;
   }
 
   isValid(
@@ -136,23 +145,32 @@ export class Validator implements FormValidator<ZodIssue> {
   validateFormData(
     _rootSchema: Schema,
     formData: SchemaValue | undefined
-  ): ValidationError<ZodIssue>[] {
-    const result = this.zodSchema.safeParse(formData);
+  ): ValidationResult<Async> {
+    return (
+      this.async
+        ? this.zodSchema
+            .safeParseAsync(formData)
+            .then(this.transformFormDataValidationResult)
+        : this.transformFormDataValidationResult(
+            this.zodSchema.safeParse(formData)
+          )
+    ) as ValidationResult<Async>;
+  }
+
+  protected transformFieldDataValidationResult = (
+    result: z.SafeParseReturnType<any, any>,
+    config: Config
+  ): ValidationError<ZodIssue>[] => {
     if (result.success) {
       return NO_ERRORS;
     }
     return result.error.issues.map((issue) => {
-      const instanceId = pathToId(this.idPrefix, this.idSeparator, issue.path);
-      const propertyTitle =
-        getValueByPath(this.uiSchema, issue.path)?.["ui:options"]?.title ??
-        issue.path[issue.path.length - 1] ??
-        instanceId;
       return {
-        instanceId,
-        propertyTitle,
+        instanceId: config.idSchema.$id,
+        propertyTitle: config.title,
         message: issue.message,
         error: issue,
       };
     });
-  }
+  };
 }

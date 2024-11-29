@@ -1,3 +1,5 @@
+import type { MaybePromise } from "@/lib/types.js";
+
 export enum Status {
   IDLE,
   Processed,
@@ -16,7 +18,8 @@ export interface AbstractFailedMutation<R extends MutationFailureReason>
   reason: R;
 }
 
-export interface MutationFailedByError<E> extends AbstractFailedMutation<"error"> {
+export interface MutationFailedByError<E>
+  extends AbstractFailedMutation<"error"> {
   error: E;
 }
 
@@ -24,26 +27,40 @@ export type FailedMutation<E> =
   | MutationFailedByError<E>
   | AbstractFailedMutation<Exclude<MutationFailureReason, "error">>;
 
-export interface ProcessedMutation
+// @deprecated
+// TODO: Remove `unknown` default
+export interface ProcessedMutation<T = unknown>
   extends AbstractMutationState<Status.Processed> {
   delayed: boolean;
+  args: T;
 }
 
-export type MutationState<E> =
+// @deprecated
+// TODO: Remove `unknown` default and swap types
+export type MutationState<E, T = unknown> =
   | FailedMutation<E>
-  | ProcessedMutation
+  | ProcessedMutation<T>
   | AbstractMutationState<Exclude<Status, Status.Failed | Status.Processed>>;
 
-export type MutationsCombinator<E> = (state: MutationState<E>) => boolean | "abort";
+/** @deprecated use `MutationsCombinator2` */
+export type MutationsCombinator<E> = (
+  state: MutationState<E>
+) => boolean | "abort";
+
+// @deprecated
+// TODO: Swap types
+export type MutationsCombinator2<E, T> = (
+  state: MutationState<E, T>
+) => MaybePromise<boolean | "abort">;
 
 export interface MutationOptions<T extends ReadonlyArray<any>, R, E> {
   mutate: (signal: AbortSignal, ...args: T) => Promise<R>;
-  onSuccess?: (result: R) => void;
-  onFailure?: (failure: FailedMutation<E>) => void;
+  onSuccess?: (result: R, ...args: T) => void;
+  onFailure?: (failure: FailedMutation<E>, ...args: T) => void;
   /**
    * @default ignoreNewUntilPreviousIsFinished
    */
-  combinator?: MutationsCombinator<E>;
+  combinator?: MutationsCombinator2<E, T>;
   /**
    * @default 500
    */
@@ -57,22 +74,57 @@ export interface MutationOptions<T extends ReadonlyArray<any>, R, E> {
 /**
  * Forget previous mutation
  */
-export const forgetPrevious: MutationsCombinator<any> = () => true;
+export const forgetPrevious: MutationsCombinator2<any, any> = () => true;
 
 /**
  * Abort previous mutation
  */
-export const abortPrevious: MutationsCombinator<any> = () => "abort";
+export const abortPrevious: MutationsCombinator2<any, any> = () => "abort";
 
 /**
  * Ignore new mutation until the previous mutation is completed
  */
-export const ignoreNewUntilPreviousIsFinished: MutationsCombinator<any> = ({
-  status,
-}) => status !== Status.Processed;
+export const ignoreNewUntilPreviousIsFinished: MutationsCombinator2<
+  any,
+  any
+> = ({ status }) => status !== Status.Processed;
+
+export function throttle(
+  combinator: MutationsCombinator2<any, any>,
+  delayedMs: number
+): MutationsCombinator2<any, any> {
+  let nextCallAfter = 0;
+  return (state) => {
+    const now = Date.now();
+    if (now < nextCallAfter) {
+      return false;
+    }
+    nextCallAfter = now + delayedMs;
+    return combinator(state);
+  };
+}
+
+export function debounce(
+  combinator: MutationsCombinator2<any, any>,
+  delayedMs: number
+): MutationsCombinator2<any, any> {
+  let callbackId: NodeJS.Timeout;
+  let lastReject: undefined | (() => void);
+  return (state) => {
+    clearTimeout(callbackId);
+    lastReject?.();
+    return new Promise((resolve, reject) => {
+      lastReject = reject;
+      callbackId = setTimeout(() => {
+        lastReject = undefined;
+        resolve(combinator(state));
+      }, delayedMs);
+    });
+  };
+}
 
 export interface Mutation<T extends ReadonlyArray<any>, R, E> {
-  readonly state: Readonly<MutationState<E>>;
+  readonly state: Readonly<MutationState<E, T>>;
   readonly status: Status;
   readonly isSuccess: boolean;
   readonly isFailed: boolean;
@@ -82,9 +134,11 @@ export interface Mutation<T extends ReadonlyArray<any>, R, E> {
   abort(): void;
 }
 
-export function useMutation<T extends ReadonlyArray<any>, R = unknown, E = unknown>(
-  options: MutationOptions<T, R, E>
-): Mutation<T, R, E> {
+export function useMutation<
+  T extends ReadonlyArray<any>,
+  R = unknown,
+  E = unknown,
+>(options: MutationOptions<T, R, E>): Mutation<T, R, E> {
   const delayedMs = $derived(options.delayedMs ?? 500);
   const timeoutMs = $derived(options.timeoutMs ?? 8000);
   if (timeoutMs < delayedMs) {
@@ -94,7 +148,7 @@ export function useMutation<T extends ReadonlyArray<any>, R = unknown, E = unkno
     options.combinator ?? ignoreNewUntilPreviousIsFinished
   );
 
-  let state = $state.raw<MutationState<E>>({
+  let state = $state.raw<MutationState<E, T>>({
     status: Status.IDLE,
   });
   let abortController: AbortController | null = null;
@@ -132,8 +186,18 @@ export function useMutation<T extends ReadonlyArray<any>, R = unknown, E = unkno
     get isDelayed() {
       return state.status === Status.Processed && state.delayed;
     },
-    run(...args) {
-      const decision = combinator(state);
+    async run(...args) {
+      let decision: boolean | "abort";
+      try {
+        const d = combinator(state);
+        if (d instanceof Promise) {
+          decision = await d;
+        } else {
+          decision = d;
+        }
+      } catch (error) {
+        decision = false;
+      }
       if (decision === false) {
         return Promise.resolve();
       }
@@ -143,6 +207,7 @@ export function useMutation<T extends ReadonlyArray<any>, R = unknown, E = unkno
       state = {
         status: Status.Processed,
         delayed: mutation.isDelayed,
+        args,
       };
       abortController = new AbortController();
       const promise = options.mutate(abortController.signal, ...args).then(
@@ -152,14 +217,14 @@ export function useMutation<T extends ReadonlyArray<any>, R = unknown, E = unkno
             return;
           state = { status: Status.Success };
           clearTimeouts();
-          options.onSuccess?.(result);
+          options.onSuccess?.(result, ...args);
         },
         (error) => {
           if (ref?.deref() !== promise || state.status === Status.Failed)
             return;
           state = { status: Status.Failed, reason: "error", error };
           clearTimeouts();
-          options.onFailure?.(state);
+          options.onFailure?.(state, ...args);
         }
       );
       ref = new WeakRef(promise);
@@ -167,21 +232,23 @@ export function useMutation<T extends ReadonlyArray<any>, R = unknown, E = unkno
       delayedCallbackId = setTimeout(() => {
         if (ref?.deref() !== promise || state.status !== Status.Processed)
           return;
-        state = { status: Status.Processed, delayed: true };
+        state = { status: Status.Processed, delayed: true, args };
       }, delayedMs);
       timeoutCallbackId = setTimeout(() => {
         if (ref?.deref() !== promise || state.status !== Status.Processed)
           return;
         state = { status: Status.Failed, reason: "timeout" };
         abort();
-        options.onFailure?.(state);
+        options.onFailure?.(state, ...args);
       }, timeoutMs);
       return promise;
     },
     abort() {
+      if (state.status !== Status.Processed) return;
+      const { args } = state;
       state = { status: Status.Failed, reason: "aborted" };
       abort();
-      options.onFailure?.(state);
+      options.onFailure?.(state, ...args);
     },
   };
   return mutation;

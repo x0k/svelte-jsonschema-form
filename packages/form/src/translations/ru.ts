@@ -1,4 +1,5 @@
 import { createTranslation } from "@/form/translation.js";
+import type { FailedMutation, MutationFailureReason } from '@/use-mutation.svelte.js';
 
 export const translation = createTranslation({
   submit: "Продолжить",
@@ -16,3 +17,13 @@ export const translation = createTranslation({
   "remove-array-item": "Удалить",
   "remove-object-property": "Удалить",
 });
+
+const FAILURE_REASONS: Record<MutationFailureReason, string> = {
+  "aborted": "Валидация прервана",
+  "timeout": "Валидация завершена по таймауту",
+  "error": "Что-то пошло не так во время валидации",
+}
+
+export function handleValidationProcessError (state: FailedMutation<unknown>) {
+  return FAILURE_REASONS[state.reason]
+}

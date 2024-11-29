@@ -1,14 +1,15 @@
-import { getValueByPath } from "@sjsf/form/lib/object";
 import {
-  type FormValidator,
+  type FormValidator2,
   type UiSchemaRoot,
   DEFAULT_ID_PREFIX,
   DEFAULT_ID_SEPARATOR,
-  pathToId,
 } from "@sjsf/form";
 import type { ZodIssue, ZodSchema } from "zod";
 
+import { makeFormDataValidationResultTransformer } from "./shared.js";
+
 export interface ZodOptions {
+  async?: boolean;
   schema: ZodSchema;
   uiSchema?: UiSchemaRoot;
   idPrefix?: string;
@@ -16,42 +17,35 @@ export interface ZodOptions {
 }
 
 export function withZod<E>(
-  validator: FormValidator<E>,
+  validator: FormValidator2<E>,
   {
     schema: zodSchema,
     uiSchema = {},
     idPrefix = DEFAULT_ID_PREFIX,
     idSeparator = DEFAULT_ID_SEPARATOR,
+    async = false,
   }: ZodOptions
-): FormValidator<E | ZodIssue> {
+): FormValidator2<E | ZodIssue> {
+  const transformFormDataValidationResult =
+    makeFormDataValidationResultTransformer(idPrefix, idSeparator, uiSchema);
   return {
     isValid(schema, rootSchema, formData) {
       return validator.isValid(schema, rootSchema, formData);
     },
-    validateFieldData(field, fieldData) {
-      return validator.validateFieldData(field, fieldData);
+    validateFieldData(field, fieldData, signal) {
+      return validator.validateFieldData(field, fieldData, signal);
     },
     reset() {
       validator.reset();
     },
     validateFormData(_rootSchema, formData) {
-      const result = zodSchema.safeParse(formData);
-      if (result.success) {
-        return [];
+      if (async) {
+        return zodSchema
+          .safeParseAsync(formData)
+          .then(transformFormDataValidationResult);
       }
-      return result.error.issues.map((issue) => {
-        const instanceId = pathToId(idPrefix, idSeparator, issue.path);
-        const propertyTitle =
-          getValueByPath(uiSchema, issue.path)?.["ui:options"]?.title ??
-          issue.path[issue.path.length - 1] ??
-          instanceId;
-        return {
-          instanceId,
-          propertyTitle,
-          message: issue.message,
-          error: issue,
-        };
-      });
+      const result = zodSchema.safeParse(formData);
+      return transformFormDataValidationResult(result);
     },
   };
 }
