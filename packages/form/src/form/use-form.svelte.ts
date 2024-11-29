@@ -6,10 +6,11 @@ import type { SchedulerYield } from "@/lib/scheduler.js";
 import type { Schema, SchemaValue } from "@/core/schema.js";
 import {
   abortPrevious,
+  debounce,
   useMutation,
   type FailedMutation,
   type Mutation,
-  type MutationsCombinator,
+  type MutationsCombinator2,
 } from "@/use-mutation.svelte.js";
 
 import {
@@ -48,6 +49,8 @@ import IconOrTranslation from "./icon-or-translation.svelte";
 import type { Config } from "./config.js";
 import { createAdditionalPropertyKeyValidationSchema } from "./additional-property-key-validation-schema.js";
 
+export const DEFAULT_FIELD_VALIDATION_DEBOUNCE_MS = 300;
+
 /**
  * @deprecated use `UseFormOptions2`
  */
@@ -76,7 +79,7 @@ export interface UseFormOptions<T, E> {
   /**
    * @default ignoreNewUntilPreviousIsFinished
    */
-  validationCombinator?: MutationsCombinator<unknown, [SubmitEvent]>;
+  validationCombinator?: MutationsCombinator2<unknown, [SubmitEvent]>;
   /**
    * @default 500
    */
@@ -86,9 +89,13 @@ export interface UseFormOptions<T, E> {
    */
   validationTimeoutMs?: number;
   /**
-   * @default abortPrevious
+   * @default 300
    */
-  fieldValidationCombinator?: MutationsCombinator<
+  fieldValidationDebounceMs?: number;
+  /**
+   * @default debounce(abortPrevious, fieldValidationDebounceMs)
+   */
+  fieldValidationCombinator?: MutationsCombinator2<
     unknown,
     [Config<unknown>, SchemaValue | undefined]
   >;
@@ -414,7 +421,14 @@ export function createForm2<
       options.onFieldValidationFailure?.(state, config, value);
     },
     get combinator() {
-      return options.fieldValidationCombinator ?? abortPrevious;
+      return (
+        options.fieldValidationCombinator ??
+        debounce(
+          abortPrevious,
+          options.fieldValidationDebounceMs ??
+            DEFAULT_FIELD_VALIDATION_DEBOUNCE_MS
+        )
+      );
     },
     get delayedMs() {
       return options.fieldValidationDelayedMs;
