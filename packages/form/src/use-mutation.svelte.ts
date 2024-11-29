@@ -24,26 +24,33 @@ export type FailedMutation<E> =
   | MutationFailedByError<E>
   | AbstractFailedMutation<Exclude<MutationFailureReason, "error">>;
 
-export interface ProcessedMutation
+// @deprecated
+// TODO: Remove `unknown` default
+export interface ProcessedMutation<T = unknown>
   extends AbstractMutationState<Status.Processed> {
   delayed: boolean;
+  args: T
 }
 
-export type MutationState<E> =
+// @deprecated
+// TODO: Remove `unknown` default and swap types
+export type MutationState<E, T = unknown> =
   | FailedMutation<E>
-  | ProcessedMutation
+  | ProcessedMutation<T>
   | AbstractMutationState<Exclude<Status, Status.Failed | Status.Processed>>;
 
-export type MutationsCombinator<E> = (state: MutationState<E>) => boolean | "abort";
+// @deprecated
+// TODO: Remove `unknown` default and swap types
+export type MutationsCombinator<E, T = unknown> = (state: MutationState<E, T>) => boolean | "abort";
 
 export interface MutationOptions<T extends ReadonlyArray<any>, R, E> {
   mutate: (signal: AbortSignal, ...args: T) => Promise<R>;
-  onSuccess?: (result: R) => void;
-  onFailure?: (failure: FailedMutation<E>) => void;
+  onSuccess?: (result: R, ...args: T) => void;
+  onFailure?: (failure: FailedMutation<E>, ...args: T) => void;
   /**
    * @default ignoreNewUntilPreviousIsFinished
    */
-  combinator?: MutationsCombinator<E>;
+  combinator?: MutationsCombinator<E, T>;
   /**
    * @default 500
    */
@@ -57,22 +64,22 @@ export interface MutationOptions<T extends ReadonlyArray<any>, R, E> {
 /**
  * Forget previous mutation
  */
-export const forgetPrevious: MutationsCombinator<any> = () => true;
+export const forgetPrevious: MutationsCombinator<any, any> = () => true;
 
 /**
  * Abort previous mutation
  */
-export const abortPrevious: MutationsCombinator<any> = () => "abort";
+export const abortPrevious: MutationsCombinator<any, any> = () => "abort";
 
 /**
  * Ignore new mutation until the previous mutation is completed
  */
-export const ignoreNewUntilPreviousIsFinished: MutationsCombinator<any> = ({
+export const ignoreNewUntilPreviousIsFinished: MutationsCombinator<any, any> = ({
   status,
 }) => status !== Status.Processed;
 
 export interface Mutation<T extends ReadonlyArray<any>, R, E> {
-  readonly state: Readonly<MutationState<E>>;
+  readonly state: Readonly<MutationState<E, T>>;
   readonly status: Status;
   readonly isSuccess: boolean;
   readonly isFailed: boolean;
@@ -94,7 +101,7 @@ export function useMutation<T extends ReadonlyArray<any>, R = unknown, E = unkno
     options.combinator ?? ignoreNewUntilPreviousIsFinished
   );
 
-  let state = $state.raw<MutationState<E>>({
+  let state = $state.raw<MutationState<E, T>>({
     status: Status.IDLE,
   });
   let abortController: AbortController | null = null;
@@ -143,6 +150,7 @@ export function useMutation<T extends ReadonlyArray<any>, R = unknown, E = unkno
       state = {
         status: Status.Processed,
         delayed: mutation.isDelayed,
+        args,
       };
       abortController = new AbortController();
       const promise = options.mutate(abortController.signal, ...args).then(
@@ -152,14 +160,14 @@ export function useMutation<T extends ReadonlyArray<any>, R = unknown, E = unkno
             return;
           state = { status: Status.Success };
           clearTimeouts();
-          options.onSuccess?.(result);
+          options.onSuccess?.(result, ...args);
         },
         (error) => {
           if (ref?.deref() !== promise || state.status === Status.Failed)
             return;
           state = { status: Status.Failed, reason: "error", error };
           clearTimeouts();
-          options.onFailure?.(state);
+          options.onFailure?.(state, ...args);
         }
       );
       ref = new WeakRef(promise);
@@ -167,21 +175,23 @@ export function useMutation<T extends ReadonlyArray<any>, R = unknown, E = unkno
       delayedCallbackId = setTimeout(() => {
         if (ref?.deref() !== promise || state.status !== Status.Processed)
           return;
-        state = { status: Status.Processed, delayed: true };
+        state = { status: Status.Processed, delayed: true, args };
       }, delayedMs);
       timeoutCallbackId = setTimeout(() => {
         if (ref?.deref() !== promise || state.status !== Status.Processed)
           return;
         state = { status: Status.Failed, reason: "timeout" };
         abort();
-        options.onFailure?.(state);
+        options.onFailure?.(state, ...args);
       }, timeoutMs);
       return promise;
     },
     abort() {
+      if (state.status !== Status.Processed) return;
+      const { args } = state;
       state = { status: Status.Failed, reason: "aborted" };
       abort();
-      options.onFailure?.(state);
+      options.onFailure?.(state, ...args);
     },
   };
   return mutation;
