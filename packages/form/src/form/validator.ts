@@ -2,6 +2,7 @@ import type { Schema, SchemaValue, Validator } from "@/core/index.js";
 import type { FailedMutation } from "@/use-mutation.svelte.js";
 
 import type { Config } from "./config.js";
+import type { MaybePromise } from '@/lib/types.js';
 
 export interface ValidationError<E> {
   instanceId: string;
@@ -45,7 +46,7 @@ export interface FormValidator2<E = unknown> extends Validator {
     rootSchema: Schema,
     formData: SchemaValue | undefined,
     signal: AbortSignal
-  ): ValidationError<E>[] | Promise<ValidationError<E>[]>;
+  ): MaybePromise<ValidationError<E>[]>;
 
   /**
    * Individual field validation
@@ -54,7 +55,7 @@ export interface FormValidator2<E = unknown> extends Validator {
     field: Config,
     fieldData: SchemaValue | undefined,
     signal: AbortSignal
-  ): ValidationError<E>[] | Promise<ValidationError<E>[]>;
+  ): MaybePromise<ValidationError<E>[]>;
 }
 
 export const ADDITIONAL_PROPERTY_KEY_ERROR = Symbol(
