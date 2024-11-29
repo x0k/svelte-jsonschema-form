@@ -189,7 +189,12 @@ export function useMutation<
     async run(...args) {
       let decision: boolean | "abort";
       try {
-        decision = await combinator(state);
+        const d = combinator(state);
+        if (d instanceof Promise) {
+          decision = await d;
+        } else {
+          decision = d;
+        }
       } catch (error) {
         decision = false;
       }
