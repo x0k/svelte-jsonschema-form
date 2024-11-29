@@ -1,3 +1,5 @@
+import type { MaybePromise } from "@/lib/types.js";
+
 export enum Status {
   IDLE,
   Processed,
@@ -16,7 +18,8 @@ export interface AbstractFailedMutation<R extends MutationFailureReason>
   reason: R;
 }
 
-export interface MutationFailedByError<E> extends AbstractFailedMutation<"error"> {
+export interface MutationFailedByError<E>
+  extends AbstractFailedMutation<"error"> {
   error: E;
 }
 
@@ -29,7 +32,7 @@ export type FailedMutation<E> =
 export interface ProcessedMutation<T = unknown>
   extends AbstractMutationState<Status.Processed> {
   delayed: boolean;
-  args: T
+  args: T;
 }
 
 // @deprecated
@@ -39,9 +42,16 @@ export type MutationState<E, T = unknown> =
   | ProcessedMutation<T>
   | AbstractMutationState<Exclude<Status, Status.Failed | Status.Processed>>;
 
+/** @deprecated use `MutationsCombinator2` */
+export type MutationsCombinator<E> = (
+  state: MutationState<E>
+) => boolean | "abort";
+
 // @deprecated
-// TODO: Remove `unknown` default and swap types
-export type MutationsCombinator<E, T = unknown> = (state: MutationState<E, T>) => boolean | "abort";
+// TODO: Swap types
+export type MutationsCombinator2<E, T> = (
+  state: MutationState<E, T>
+) => MaybePromise<boolean | "abort">;
 
 export interface MutationOptions<T extends ReadonlyArray<any>, R, E> {
   mutate: (signal: AbortSignal, ...args: T) => Promise<R>;
@@ -50,7 +60,7 @@ export interface MutationOptions<T extends ReadonlyArray<any>, R, E> {
   /**
    * @default ignoreNewUntilPreviousIsFinished
    */
-  combinator?: MutationsCombinator<E, T>;
+  combinator?: MutationsCombinator2<E, T>;
   /**
    * @default 500
    */
@@ -64,19 +74,54 @@ export interface MutationOptions<T extends ReadonlyArray<any>, R, E> {
 /**
  * Forget previous mutation
  */
-export const forgetPrevious: MutationsCombinator<any, any> = () => true;
+export const forgetPrevious: MutationsCombinator2<any, any> = () => true;
 
 /**
  * Abort previous mutation
  */
-export const abortPrevious: MutationsCombinator<any, any> = () => "abort";
+export const abortPrevious: MutationsCombinator2<any, any> = () => "abort";
 
 /**
  * Ignore new mutation until the previous mutation is completed
  */
-export const ignoreNewUntilPreviousIsFinished: MutationsCombinator<any, any> = ({
-  status,
-}) => status !== Status.Processed;
+export const ignoreNewUntilPreviousIsFinished: MutationsCombinator2<
+  any,
+  any
+> = ({ status }) => status !== Status.Processed;
+
+export function throttle(
+  combinator: MutationsCombinator2<any, any>,
+  delayedMs: number
+): MutationsCombinator2<any, any> {
+  let nextCallAfter = 0;
+  return (state) => {
+    const now = Date.now();
+    if (now < nextCallAfter) {
+      return false;
+    }
+    nextCallAfter = now + delayedMs;
+    return combinator(state);
+  };
+}
+
+export function debounce(
+  combinator: MutationsCombinator2<any, any>,
+  delayedMs: number
+): MutationsCombinator2<any, any> {
+  let callbackId: NodeJS.Timeout;
+  let lastReject: undefined | (() => void);
+  return (state) => {
+    clearTimeout(callbackId);
+    lastReject?.();
+    return new Promise((resolve, reject) => {
+      lastReject = reject;
+      callbackId = setTimeout(() => {
+        lastReject = undefined;
+        resolve(combinator(state));
+      }, delayedMs);
+    });
+  };
+}
 
 export interface Mutation<T extends ReadonlyArray<any>, R, E> {
   readonly state: Readonly<MutationState<E, T>>;
@@ -89,9 +134,11 @@ export interface Mutation<T extends ReadonlyArray<any>, R, E> {
   abort(): void;
 }
 
-export function useMutation<T extends ReadonlyArray<any>, R = unknown, E = unknown>(
-  options: MutationOptions<T, R, E>
-): Mutation<T, R, E> {
+export function useMutation<
+  T extends ReadonlyArray<any>,
+  R = unknown,
+  E = unknown,
+>(options: MutationOptions<T, R, E>): Mutation<T, R, E> {
   const delayedMs = $derived(options.delayedMs ?? 500);
   const timeoutMs = $derived(options.timeoutMs ?? 8000);
   if (timeoutMs < delayedMs) {
@@ -139,8 +186,13 @@ export function useMutation<T extends ReadonlyArray<any>, R = unknown, E = unkno
     get isDelayed() {
       return state.status === Status.Processed && state.delayed;
     },
-    run(...args) {
-      const decision = combinator(state);
+    async run(...args) {
+      let decision: boolean | "abort";
+      try {
+        decision = await combinator(state);
+      } catch (error) {
+        decision = false;
+      }
       if (decision === false) {
         return Promise.resolve();
       }
