@@ -1,6 +1,7 @@
 import { Ajv, type AsyncValidateFunction, type ValidateFunction } from "ajv";
 import type { ErrorObject, AnySchema } from "ajv";
 
+import type { MaybePromise } from '@sjsf/form/lib/types';
 import { deepEqual } from "@sjsf/form/lib/deep-equal";
 import { getValueByPath } from "@sjsf/form/lib/object";
 import { weakMemoize } from "@sjsf/form/lib/memoize";
@@ -156,13 +157,13 @@ export abstract class AbstractValidator implements FormValidator2<ErrorObject> {
     rootSchema: Schema,
     formData: SchemaValue | undefined,
     signal: AbortSignal
-  ): FieldErrors<ErrorObject> | Promise<FieldErrors<ErrorObject>>;
+  ): MaybePromise<FieldErrors<ErrorObject>>;
 
   abstract validateFieldData(
     config: Config,
     fieldData: SchemaValue | undefined,
     signal: AbortSignal
-  ): FieldErrors<ErrorObject> | Promise<FieldErrors<ErrorObject>>;
+  ): MaybePromise<FieldErrors<ErrorObject>>;
 
   reset() {
     this.ajv.removeSchema();
