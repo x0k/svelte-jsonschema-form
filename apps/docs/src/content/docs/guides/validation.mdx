@@ -6,11 +6,16 @@ sidebar:
 
 import { Code, Card, LinkCard } from '@astrojs/starlight/components';
 
+import { DEFAULT_FIELD_VALIDATION_DEBOUNCE_MS } from '@sjsf/form';
+
 import LiveValidation from './_live-validation.astro'
 import liveValidationCode from './_live-validation.svelte?raw'
 
 import InputsValidation from './_inputs-validation.astro'
 import inputsValidationCode from './_inputs-validation.svelte?raw'
+
+import AsyncValidation from './_async-validation.astro'
+import asyncValidationCode from './_async-validation.svelte?raw'
 
 import FocusOnFirsError from './_focus-on-first-error.astro'
 import focusOnFirstErrorCode from './_focus-on-first-error.svelte?raw'
@@ -43,6 +48,14 @@ revalidation of the whole form when changing one field does not make sense.
 
 Instead of full form revalidation, we propose to perform revalidation of only the input field and full validation of the form when submitting.
 
+:::note
+
+By default, inputs validation is performed with a debounce of {DEFAULT_FIELD_VALIDATION_DEBOUNCE_MS}ms.
+
+This can be changed by passing the `validationDebounceMs` option.
+
+:::
+
 <Code code={inputsValidationCode} lang="svelte" />
 
 <Card>
@@ -52,6 +65,33 @@ Instead of full form revalidation, we propose to perform revalidation of only th
 The form in this example will only revalidate input fields on the `input` and `change` events after the first submission of the form.
 
 <LinkCard title="Inputs validation mode API reference" href="../../api-reference/inputs-validation-mode/" />
+
+## Async validation
+
+The form supports asynchronous validation, please see your validator page for more information.
+
+:::note
+
+By default, a new form validation process can only be started after the previous one is completed;
+a new input validation process aborts the previous one.
+
+You can change this behavior by passing the `validationCombinator` and `fieldValidationCombinator` options.
+
+:::
+
+To correctly display potential validation process errors you should use the `handleValidationProcessError` option.
+
+:::note
+
+By default, messages about aborting input validation are not displayed
+
+:::
+
+<Code code={asyncValidationCode} lang="svelte" />
+
+<Card>
+  <AsyncValidation />
+</Card>
 
 ## Focus on first error
 
@@ -65,7 +105,7 @@ You can achieve focus on the first error by using the `focusOnFirstError` functi
 
 1. `focusOnFirstError` will try to find a focusable element and focus it.
 2. If it's not found, it will try to find an errors list and scroll it into view.
-3. If it's not found, it will return `false`.
+3. If it's not found, it will return `false`, so you can extend the behavior.
 
 ## Errors list
 

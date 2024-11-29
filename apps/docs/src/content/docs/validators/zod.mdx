@@ -69,3 +69,16 @@ import { withZod } from "@sjsf/zod-integration/augment";
 
 const validator = withZod(createValidator(), { schema, uiSchema });
 ```
+
+## Async validation
+
+This validator supports async validation but only for the full form validation.
+
+```typescript
+import { createValidator } from "@sjsf/zod-validator";
+
+const validator = createValidator({
+  async: true,
+  schema,
+});
+```

@@ -4,7 +4,7 @@ sidebar:
   order: 0
 ---
 
-import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
+import { LinkButton, Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
 
 import Npm from '@/components/npm.astro';
 
@@ -39,3 +39,25 @@ but in next major version it will check only for reference equality by default.
 <Card>
   <Form />
 </Card>
+
+## Async validation
+
+This validator supports async validation.
+
+<LinkButton
+  href="https://ajv.js.org/guide/async-validation.html"
+  variant="secondary"
+  icon="external"
+  iconPlacement="end"
+  target="_blank"
+>
+  Asynchronous validation
+</LinkButton>
+
+```typescript
+import { createAsyncValidator } from "@sjsf/ajv8-validator";
+
+const validator = createAsyncValidator({
+  ajv: yourAjvInstance,
+})
+```
