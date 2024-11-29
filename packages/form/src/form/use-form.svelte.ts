@@ -448,7 +448,7 @@ export function createForm2<
       })
   );
 
-  const fakeAbortSignal = new AbortSignal();
+  const fakeAbortSignal = new AbortController().signal;
 
   return [
     {
