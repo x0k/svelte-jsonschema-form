@@ -23,3 +23,5 @@ export type Brand<Name extends string, Base = string> = Base & { __brand: Name }
 export type Prettify<T> = {
   [K in keyof T]: T[K];
 } & {};
+
+export type MaybePromise<T> = T | Promise<T>;
