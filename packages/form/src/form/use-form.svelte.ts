@@ -174,6 +174,7 @@ export interface UseFormOptions2<T, E> extends UseFormOptions<T, E> {
   // @deprecated
   // TODO: Move translation functionality to `Translation`
   // and always add `ValidationProcessError` to the errors type
+  // so this can be removed
   handleValidationProcessError?: ValidationProcessErrorTranslation;
 }
 
@@ -390,9 +391,9 @@ export function createForm2<
     },
     onSuccess(validationErrors: ValidationError<E>[], config) {
       if (validationErrors.length > 0) {
-        errors.delete(config.idSchema.$id);
-      } else {
         errors.set(config.idSchema.$id, validationErrors);
+      } else {
+        errors.delete(config.idSchema.$id);
       }
     },
     onFailure(state, config, value) {
