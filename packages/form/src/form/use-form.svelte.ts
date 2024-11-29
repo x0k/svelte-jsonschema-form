@@ -4,14 +4,20 @@ import { SvelteMap } from "svelte/reactivity";
 
 import type { SchedulerYield } from "@/lib/scheduler.js";
 import type { Schema, SchemaValue } from "@/core/schema.js";
-import { useMutation, type FailedMutation } from "@/use-mutation.svelte.js";
+import {
+  abortPrevious,
+  useMutation,
+  type FailedMutation,
+  type Mutation,
+  type MutationsCombinator,
+} from "@/use-mutation.svelte.js";
 
 import {
   ADDITIONAL_PROPERTY_KEY_ERROR,
   VALIDATION_PROCESS_ERROR,
   type AdditionalPropertyKeyError,
   type AdditionalPropertyKeyValidator,
-  type FormValidator,
+  type FormValidator2,
   type ValidationError,
   type ValidationProcessError,
 } from "./validator.js";
@@ -46,7 +52,7 @@ import { createAdditionalPropertyKeyValidationSchema } from "./additional-proper
  * @deprecated use `UseFormOptions2`
  */
 export interface UseFormOptions<T, E> {
-  validator: FormValidator<E>;
+  validator: FormValidator2<E>;
   schema: Schema;
   components: Components;
   translation: Translation;
@@ -67,6 +73,33 @@ export interface UseFormOptions<T, E> {
     | Errors<E>
     | Map<string, FieldErrors<E>>
     | ValidationError<E>[];
+  /**
+   * @default ignoreNewUntilPreviousIsFinished
+   */
+  validationCombinator?: MutationsCombinator<unknown, [SubmitEvent]>;
+  /**
+   * @default 500
+   */
+  validationDelayedMs?: number;
+  /**
+   * @default 8000
+   */
+  validationTimeoutMs?: number;
+  /**
+   * @default abortPrevious
+   */
+  fieldValidationCombinator?: MutationsCombinator<
+    unknown,
+    [Config<unknown>, SchemaValue | undefined]
+  >;
+  /**
+   * @default 500
+   */
+  fieldValidationDelayedMs?: number;
+  /**
+   * @default 8000
+   */
+  fieldValidationTimeoutMs?: number;
   /**
    * The function to get the form data snapshot
    *
@@ -99,9 +132,9 @@ export interface UseFormOptions<T, E> {
     snapshot: SchemaValue | undefined
   ) => void;
   /**
-   * Validation error handler
+   * Form validation error handler
    *
-   * Will be called when the validation fails by different reasons:
+   * Will be called when the validation fails by a different reasons:
    * - error during validation
    * - validation is cancelled
    * - validation timeout
@@ -138,6 +171,9 @@ export type ValidationProcessErrorTranslation = (
 
 export interface UseFormOptions2<T, E> extends UseFormOptions<T, E> {
   additionalPropertyKeyValidator?: AdditionalPropertyKeyValidator;
+  // @deprecated
+  // TODO: Move translation functionality to `Translation`
+  // and always add `ValidationProcessError` to the errors type
   handleValidationProcessError?: ValidationProcessErrorTranslation;
 }
 
@@ -147,8 +183,21 @@ export interface FormState<T, E> {
   errors: Errors<E>;
   isSubmitted: boolean;
   isChanged: boolean;
+  validation: Mutation<
+    [event: SubmitEvent],
+    {
+      snapshot: SchemaValue | undefined;
+      validationErrors: Errors<E>;
+    },
+    unknown
+  >;
+  fieldValidation: Mutation<
+    [config: Config<unknown>, value: SchemaValue | undefined],
+    ValidationError<E>[],
+    unknown
+  >;
   validate(): Errors<E>;
-  validateAsync(): Promise<Errors<E>>;
+  validateAsync(signal: AbortSignal): Promise<Errors<E>>;
   submit(e: SubmitEvent): void;
   reset(): void;
   updateErrorsByPath(
@@ -273,26 +322,33 @@ export function createForm2<
       : options.schema
   );
 
-  function validateSnapshot(snapshot: SchemaValue | undefined) {
-    return options.validator.validateFormData(
+  function validateSnapshot(
+    snapshot: SchemaValue | undefined,
+    signal: AbortSignal
+  ) {
+    const errors = options.validator.validateFormData(
       $state.snapshot(validationSchema),
-      snapshot
+      snapshot,
+      signal
     );
+    if (errors instanceof Promise) {
+      return errors.then(groupErrors);
+    }
+    return groupErrors(errors);
   }
 
   const validation = useMutation({
-    async mutate(_signal, event: SubmitEvent) {
+    async mutate(signal, _event: SubmitEvent) {
       isSubmitted = true;
       const snapshot = getSnapshot();
-      const validationErrors = await validateSnapshot(snapshot);
+      const validationErrors = await validateSnapshot(snapshot, signal);
       return {
-        event,
         snapshot,
         validationErrors,
       };
     },
-    onSuccess({ event, snapshot, validationErrors }) {
-      errors = groupErrors(validationErrors);
+    onSuccess({ snapshot, validationErrors }, event) {
+      errors = validationErrors;
       if (errors.size === 0) {
         options.onSubmit?.(snapshot as T, event);
         isChanged = false;
@@ -317,11 +373,20 @@ export function createForm2<
       }
       options.onValidationFailure?.(state, e);
     },
+    get combinator() {
+      return options.validationCombinator;
+    },
+    get delayedMs() {
+      return options.validationDelayedMs;
+    },
+    get timeoutMs() {
+      return options.validationTimeoutMs;
+    },
   });
 
   const fieldValidation = useMutation({
-    async mutate(_signal, config: Config, value: SchemaValue | undefined) {
-      return options.validator.validateFieldData(config, value);
+    async mutate(signal, config: Config, value: SchemaValue | undefined) {
+      return options.validator.validateFieldData(config, value, signal);
     },
     onSuccess(validationErrors: ValidationError<E>[], config) {
       if (validationErrors.length > 0) {
@@ -347,13 +412,21 @@ export function createForm2<
       }
       options.onFieldValidationFailure?.(state, config, value);
     },
+    get combinator() {
+      return options.fieldValidationCombinator ?? abortPrevious;
+    },
+    get delayedMs() {
+      return options.fieldValidationDelayedMs;
+    },
+    get timeoutMs() {
+      return options.fieldValidationTimeoutMs;
+    },
   });
 
-  const submitHandler = (e: SubmitEvent) => {
+  function submitHandler(e: SubmitEvent) {
     e.preventDefault();
     validation.run(e);
-    validation.state
-  };
+  }
 
   function reset() {
     isSubmitted = false;
@@ -374,6 +447,8 @@ export function createForm2<
         reset();
       })
   );
+
+  const fakeAbortSignal = new AbortSignal();
 
   return [
     {
@@ -410,16 +485,17 @@ export function createForm2<
       set isChanged(v) {
         isChanged = v;
       },
+      validation,
+      fieldValidation,
       validate() {
-        const errors = validateSnapshot(getSnapshot());
+        const errors = validateSnapshot(getSnapshot(), fakeAbortSignal);
         if (errors instanceof Promise) {
           throw new Error("`validate` cannot be called with async validator");
         }
-        return groupErrors(errors);
+        return errors;
       },
-      async validateAsync() {
-        const errors = await validateSnapshot(getSnapshot());
-        return groupErrors(errors);
+      async validateAsync(signal: AbortSignal) {
+        return validateSnapshot(getSnapshot(), signal);
       },
       submit(e) {
         // @deprecated
@@ -453,9 +529,8 @@ export function createForm2<
       get validateAdditionalPropertyKey() {
         return additionalPropertyKeyValidator;
       },
-      get validateFieldData() {
-        return fieldValidation.run.bind(fieldValidation);
-      },
+      validation,
+      fieldValidation,
       get isSubmitted() {
         return isSubmitted;
       },

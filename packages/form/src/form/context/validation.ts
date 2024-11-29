@@ -15,5 +15,5 @@ export function validateField(
   config: Config,
   value: SchemaValue | undefined
 ) {
-  ctx.validateFieldData(config, value);
+  ctx.fieldValidation.run(config, value);
 }

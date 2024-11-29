@@ -1,8 +1,8 @@
 import { getContext, setContext, type Component, type Snippet } from "svelte";
 
 import type { SchedulerYield } from "@/lib/scheduler.js";
-
 import type { Schema, SchemaValue } from "@/core/index.js";
+import type { Mutation } from '@/use-mutation.svelte.js';
 
 import type { Label, Labels, Translation } from "../translation.js";
 import type { UiSchema, UiSchemaRoot } from "../ui-schema.js";
@@ -11,7 +11,7 @@ import type { Widgets } from "../widgets.js";
 import type { Fields } from "../fields/index.js";
 import type { Templates } from "../templates/index.js";
 import type { Errors } from "../errors.js";
-import type { FormValidator } from "../validator.js";
+import type { FormValidator2, ValidationError } from "../validator.js";
 import type { Icons } from "../icons.js";
 import type { FormMerger } from "../merger.js";
 import type { Config } from '../config.js';
@@ -26,7 +26,7 @@ export interface FormContext {
   inputsValidationMode: number;
   schema: Schema;
   uiSchema: UiSchemaRoot;
-  validator: FormValidator;
+  validator: FormValidator2;
   merger: FormMerger;
   fields: Fields;
   components: Components;
@@ -44,7 +44,19 @@ export interface FormContext {
   /** @deprecated use `IconOrTranslation` instead */
   iconOrTranslation: Snippet<[IconOrTranslationData]>;
   validateAdditionalPropertyKey(config: Config, key: string): boolean;
-  validateFieldData(config: Config, value: SchemaValue | undefined): void;
+  validation: Mutation<
+    [event: SubmitEvent],
+    {
+      snapshot: SchemaValue | undefined;
+      validationErrors: Errors;
+    },
+    unknown
+  >;
+  fieldValidation: Mutation<
+    [config: Config<unknown>, value: SchemaValue | undefined],
+    ValidationError<unknown>[],
+    unknown
+  >;
 }
 
 const FORM_CONTEXT = Symbol("form-context");
