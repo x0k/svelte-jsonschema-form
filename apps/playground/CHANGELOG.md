@@ -1,5 +1,27 @@
 # playground
 
+## 1.2.0
+
+### Minor Changes
+
+- Add validators selector ([#38](https://github.com/x0k/svelte-jsonschema-form/pull/38))
+
+- Allow to customize validation events and modifiers ([#41](https://github.com/x0k/svelte-jsonschema-form/pull/41))
+
+### Patch Changes
+
+- Updated dependencies [[`874269c`](https://github.com/x0k/svelte-jsonschema-form/commit/874269c5dbdfa269371117806674275ec40e659f), [`763679f`](https://github.com/x0k/svelte-jsonschema-form/commit/763679fccd8bdd5236e4f15259f76edd280b72d8), [`ca9f9ef`](https://github.com/x0k/svelte-jsonschema-form/commit/ca9f9ef4afbbbd0cbf2c30a98ba9c86d71fc497a), [`5f058fe`](https://github.com/x0k/svelte-jsonschema-form/commit/5f058fe4dcb7c2ab4fee891374d8e727bcdb0b2c), [`bffcb8c`](https://github.com/x0k/svelte-jsonschema-form/commit/bffcb8c67fda2fec965846bac3d4da9569e15e39), [`725e93a`](https://github.com/x0k/svelte-jsonschema-form/commit/725e93a43d07303a6952b4ed3e44b96c6afe8f39), [`bd3b935`](https://github.com/x0k/svelte-jsonschema-form/commit/bd3b935c4b05b7b192c182bd80f9023a0b24af3c), [`419d57c`](https://github.com/x0k/svelte-jsonschema-form/commit/419d57c7bf633b1e139c24fedcd2e2ee91ef6444), [`4470869`](https://github.com/x0k/svelte-jsonschema-form/commit/4470869122547638546739ca5bc8de54afba2bbf), [`a209a66`](https://github.com/x0k/svelte-jsonschema-form/commit/a209a667d91642edf6ec75d755c4bd1f022a267b), [`9cae983`](https://github.com/x0k/svelte-jsonschema-form/commit/9cae983d9651fd76c2aed52cac87ef5b9d6483c3), [`4ba48ec`](https://github.com/x0k/svelte-jsonschema-form/commit/4ba48ec3bd67f1e3c1c57a38011912c02378a1eb)]:
+  - @sjsf/ajv8-validator@1.7.0
+  - @sjsf/form@1.7.0
+  - @sjsf/cfworker-validator@1.7.0
+  - @sjsf/shadcn-theme@1.7.0
+  - @sjsf/daisyui-theme@1.7.0
+  - @sjsf/flowbite-theme@1.7.0
+  - @sjsf/skeleton-theme@1.7.0
+  - @sjsf/flowbite-icons@1.7.0
+  - @sjsf/lucide-icons@1.7.0
+  - @sjsf/radix-icons@1.7.0
+
 ## 1.1.1
 
 ### Patch Changes

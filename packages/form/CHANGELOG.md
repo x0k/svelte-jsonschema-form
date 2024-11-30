@@ -1,5 +1,29 @@
 # @sjsf/form
 
+## 1.7.0
+
+### Minor Changes
+
+- Add `constAsDefaults` option to get default form state function. ([#34](https://github.com/x0k/svelte-jsonschema-form/pull/34))
+
+  This is a port of this PR [Adding feature to support const as default bug fix seeming like a regression](https://github.com/rjsf-team/react-jsonschema-form/pull/4381).
+
+- Pass arguments of `mutation.run` to the `onSuccess` and `onFailure` handlers. ([#39](https://github.com/x0k/svelte-jsonschema-form/pull/39))
+
+- Add `lib/memoize` submodule ([#36](https://github.com/x0k/svelte-jsonschema-form/pull/36))
+
+- Implement array and object fields revalidation ([#41](https://github.com/x0k/svelte-jsonschema-form/pull/41))
+
+- Add support for async validation ([#39](https://github.com/x0k/svelte-jsonschema-form/pull/39))
+
+- Add `debounce` and `throttle` mutation combinators ([#39](https://github.com/x0k/svelte-jsonschema-form/pull/39))
+
+### Patch Changes
+
+- Fix `array` based inputs validation ([#40](https://github.com/x0k/svelte-jsonschema-form/pull/40))
+
+- Do not consider `const` in `readonly` attribute calculation. ([#34](https://github.com/x0k/svelte-jsonschema-form/pull/34))
+
 ## 1.6.1
 
 ### Patch Changes
