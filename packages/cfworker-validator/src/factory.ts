@@ -9,7 +9,7 @@ import {
   Validator,
   type CfValidatorFactory,
   type ValidatorOptions,
-} from "./validator.js";
+} from "./validator.svelte.js";
 
 export function defaultFactory(schema: Schema): CfValidator {
   return new CfValidator(schema as CfSchema, "7", false);

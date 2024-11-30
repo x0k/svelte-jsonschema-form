@@ -16,7 +16,7 @@ import {
   DEFAULT_ID_SEPARATOR,
   pathToId,
   type Config,
-  type FormValidator,
+  type FormValidator2,
   type Schema,
   type SchemaValue,
   type UiSchema,
@@ -29,6 +29,8 @@ const trueSchema: Schema = {};
 const falseSchema: Schema = {
   not: {},
 };
+
+const FIELD_NOT_REQUIRED: string[] = [];
 
 export type CfValidatorFactory = (schema: Schema) => CfValidator;
 
@@ -50,21 +52,33 @@ export function makeValidatorFactory(factory: CfValidatorFactory) {
     const validator = makeValidator(schema);
     if (usePrefixSchemaRefs && lastRootSchema?.deref() !== rootSchema) {
       lastRootSchema = new WeakRef(rootSchema);
-      validator.addSchema(rootSchema as CfSchema, rootSchemaId);
+      validator.addSchema(
+        $state.snapshot(rootSchema) as CfSchema,
+        rootSchemaId
+      );
     }
     return validator;
   };
 }
 
 export function makeFieldValidatorFactory(factory: CfValidatorFactory) {
+  let fieldTitle = "";
   let isRequired = false;
   const validatorsCache = new WeakMap<Schema, CfValidator>();
   const requiredCache = new WeakMap<Schema, boolean>();
   const makeValidator = weakMemoize<Schema, CfValidator>(
     validatorsCache,
-    (schema) => factory(schema)
+    (schema) =>
+      factory({
+        type: "object",
+        properties: {
+          [fieldTitle]: schema,
+        },
+        required: isRequired ? [fieldTitle] : FIELD_NOT_REQUIRED,
+      })
   );
   return (config: Config) => {
+    fieldTitle = config.title;
     isRequired = config.required;
     const prev = requiredCache.get(config.schema);
     if (prev !== isRequired) {
@@ -84,7 +98,7 @@ export interface ValidatorOptions {
   createFieldValidator?: (config: Config) => CfValidator;
 }
 
-export class Validator implements FormValidator<OutputUnit> {
+export class Validator implements FormValidator2<OutputUnit> {
   private readonly uiSchema: UiSchemaRoot;
   private readonly idPrefix: string;
   private readonly idSeparator: string;
@@ -149,7 +163,9 @@ export class Validator implements FormValidator<OutputUnit> {
       return this.validateFormData(field.schema, fieldData);
     }
     const validator = this.createFieldValidator(field);
-    const errors = validator.validate(fieldData).errors;
+    const errors = validator.validate(
+      fieldData === undefined ? {} : { [field.title]: fieldData }
+    ).errors;
     return errors.map((unit) => {
       return {
         instanceId,
