@@ -61,7 +61,6 @@
 		"clsx": "^2.1.1",
 		"lucide-svelte": "^0.453.0",
 		"svelte": "^5.0.0",
-		"svelte-radix": "^2.0.1",
 		"tailwind-merge": "^2.5.4",
 		"tailwind-variants": "^0.2.1"
 	},
@@ -89,7 +88,6 @@
 		"prettier-plugin-svelte": "catalog:",
 		"svelte": "catalog:",
 		"svelte-check": "catalog:",
-		"svelte-radix": "^2.0.1",
 		"tailwind-merge": "^2.5.5",
 		"tailwind-variants": "^0.3.0",
 		"tailwindcss": "catalog:",
