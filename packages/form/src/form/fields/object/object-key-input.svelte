@@ -66,6 +66,7 @@
         }
         obj[newKey] = obj[property];
         delete obj[property];
+        objCtx.validate();
       },
     })
   );

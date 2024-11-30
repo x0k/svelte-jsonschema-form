@@ -8,8 +8,10 @@
     getUiOptions,
     isMultiSelect,
     getFormContext,
+    validateField,
   } from "../../context/index.js";
   import ErrorMessage from "../../error-message.svelte";
+  import { AFTER_SUBMITTED, ON_ARRAY_CHANGE } from "../../validation.js";
 
   import type { FieldProps } from "../model.js";
 
@@ -61,6 +63,13 @@
     },
     get copyable() {
       return copyable;
+    },
+    validate() {
+      const m = ctx.fieldsValidationMode;
+      if (!(m & ON_ARRAY_CHANGE) || (m & AFTER_SUBMITTED && !ctx.isSubmitted)) {
+        return;
+      }
+      validateField(ctx, config, value);
     },
   };
   setArrayContext(arrayCtx);

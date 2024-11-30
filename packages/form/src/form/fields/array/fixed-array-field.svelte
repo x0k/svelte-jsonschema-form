@@ -66,6 +66,7 @@
         return
       }
       value.push(getDefaultFieldState(ctx, schemaAdditionalItems, undefined))
+      arrayCtx.validate();
     }}
   >
     <ctx.IconOrTranslation data={["add-array-item"]} />

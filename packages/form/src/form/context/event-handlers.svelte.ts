@@ -23,7 +23,7 @@ export function makeEventHandlers(ctx: FormContext, validate: () => void) {
   });
 
   const makeHandler = (event: number) => {
-    const m = ctx.inputsValidationMode;
+    const m = ctx.fieldsValidationMode;
     if (
       !(m & event) ||
       (m & AFTER_SUBMITTED && !ctx.isSubmitted) ||

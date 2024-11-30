@@ -2,6 +2,7 @@ import { getContext, setContext } from "svelte";
 
 export interface ObjectContext {
   newKeySeparator: string;
+  validate: () => void;
 }
 
 const OBJECT_CONTEXT = Symbol("object-context");
