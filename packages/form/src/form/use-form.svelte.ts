@@ -335,7 +335,7 @@ export function createForm2<
     signal: AbortSignal
   ) {
     const errors = options.validator.validateFormData(
-      $state.snapshot(validationSchema),
+      validationSchema,
       snapshot,
       signal
     );
