@@ -1,24 +1,39 @@
 <script lang="ts">
-  import { SvelteMap } from 'svelte/reactivity';
+  import { SvelteMap } from "svelte/reactivity";
   import Ajv from "ajv";
-  import { ON_BLUR, ON_CHANGE, ON_INPUT, AFTER_CHANGED, AFTER_SUBMITTED, AFTER_TOUCHED, useForm2, SimpleForm } from "@sjsf/form";
-  import { translation, handleValidationProcessError } from "@sjsf/form/translations/en";
+  import {
+    ON_BLUR,
+    ON_CHANGE,
+    ON_INPUT,
+    AFTER_CHANGED,
+    AFTER_SUBMITTED,
+    AFTER_TOUCHED,
+    useForm2,
+    SimpleForm,
+    ON_ARRAY_CHANGE,
+    ON_OBJECT_CHANGE,
+  } from "@sjsf/form";
+  import {
+    translation,
+    handleValidationProcessError,
+  } from "@sjsf/form/translations/en";
   import { addFormComponents, DEFAULT_AJV_CONFIG } from "@sjsf/ajv8-validator";
-  import { focusOnFirstError } from '@sjsf/form/focus-on-first-error';
-  import { setThemeContext } from '@sjsf/shadcn-theme'
-  import { components } from '@sjsf/shadcn-theme/default'
+  import { focusOnFirstError } from "@sjsf/form/focus-on-first-error";
+  import { setThemeContext } from "@sjsf/shadcn-theme";
+  import { components } from "@sjsf/shadcn-theme/default";
 
-  import { themes, themeStyles } from './themes'
-  import { icons, iconsStyles } from './icons'
+  import { themes, themeStyles } from "./themes";
+  import { icons, iconsStyles } from "./icons";
   import { ShadowHost } from "./shadow";
   import Github from "./github.svelte";
   import OpenBook from "./open-book.svelte";
   import ThemePicker from "./theme-picker.svelte";
-  import Editor from './editor.svelte';
-  import Debug from './debug.svelte';
+  import Editor from "./editor.svelte";
+  import Debug from "./debug.svelte";
 
   import { samples } from "./samples";
-  import { validators } from './validators';
+  import { validators } from "./validators";
+  import Bits from "./bits.svelte";
 
   function isSampleName(name: unknown): name is keyof typeof samples {
     return typeof name === "string" && name in samples;
@@ -88,14 +103,11 @@
     : selectValidator("ajv8", true);
   let validatorName = $state(initialValidatorName);
   const validator = $derived.by(() => {
-    const Val = samples[sampleName].Validator
+    const Val = samples[sampleName].Validator;
     if (Val) {
-      return new Val(
-        addFormComponents(new Ajv(DEFAULT_AJV_CONFIG)),
-        uiSchema
-      )
+      return new Val(addFormComponents(new Ajv(DEFAULT_AJV_CONFIG)), uiSchema);
     }
-    return validators[validatorName]()
+    return validators[validatorName]();
   });
 
   let disabled = $state(false);
@@ -105,7 +117,7 @@
   const form = useForm2({
     handleValidationProcessError: (state) => {
       console.error(state);
-      return handleValidationProcessError(state)
+      return handleValidationProcessError(state);
     },
     initialValue: samples[initialSampleName].formData,
     initialErrors: samples[initialSampleName].errors ?? new SvelteMap(),
@@ -129,40 +141,63 @@
       return disabled;
     },
     get inputsValidationMode() {
-      return validationEvent | validationAfter
+      return validationEvent | validationAfter | ON_ARRAY_CHANGE;
     },
     get icons() {
       return iconSet;
     },
-    onSubmit (value) {
+    onSubmit(value) {
       console.log("submit", value);
     },
-    onSubmitError (errors, e) {
+    onSubmitError(errors, e) {
       if (doFocusOnFirstError) {
         focusOnFirstError(errors, e);
       }
       console.log("errors", errors);
     },
-  })
+  });
 
   let playgroundTheme = $state<"system" | "light" | "dark">(
     localStorage.theme ?? "system"
   );
 
-  const lightOrDark = $derived(playgroundTheme === "system" ? window.matchMedia("(prefers-color-scheme: dark)") ? "dark" : "light" : playgroundTheme)
+  const lightOrDark = $derived(
+    playgroundTheme === "system"
+      ? window.matchMedia("(prefers-color-scheme: dark)")
+        ? "dark"
+        : "light"
+      : playgroundTheme
+  );
 
-
-  function setValidation(name: "vevent" | "vafter", value: number, replace = false) {
+  function setValidation(
+    name: "vevent" | "vafter",
+    value: number,
+    replace = false
+  ) {
     url.searchParams.set(name, value.toString());
     history[replace ? "replaceState" : "pushState"](null, "", url);
     return value;
   }
-  const urlValidationEvent = Number(url.searchParams.get("vevent") ?? 0)
-  const initialValidationEvent = urlValidationEvent > 0 && urlValidationEvent < 8 ? urlValidationEvent : 0
-  let validationEvent = $state(setValidation("vevent", initialValidationEvent, true));
-  const urlValidationAfter = Number(url.searchParams.get("vafter") ?? 0)
-  const initialValidationAfter = [0, AFTER_SUBMITTED, AFTER_TOUCHED, AFTER_CHANGED].find((v) => v === urlValidationAfter) ?? 0
-  let validationAfter = $state(setValidation("vafter", initialValidationAfter, true));
+  const urlValidationEvent = Number(url.searchParams.get("vevent") ?? 0);
+  const initialValidationEvent =
+    urlValidationEvent > 0 && urlValidationEvent < 8 ? urlValidationEvent : 0;
+  let validationEvent = $state(
+    setValidation("vevent", initialValidationEvent, true)
+  );
+  $effect(() => {
+    setValidation("vevent", validationEvent)
+  })
+  const urlValidationAfter = Number(url.searchParams.get("vafter") ?? 0);
+  const initialValidationAfter =
+    [0, AFTER_SUBMITTED, AFTER_TOUCHED, AFTER_CHANGED].find(
+      (v) => v === urlValidationAfter
+    ) ?? 0;
+  let validationAfter = $state(
+    setValidation("vafter", initialValidationAfter, true)
+  );
+  $effect(() => {
+    setValidation("vafter", validationAfter);
+  })
 
   setThemeContext({ components });
 </script>
@@ -184,23 +219,30 @@
       <input type="checkbox" bind:checked={doFocusOnFirstError} />
       Focus on first error
     </label>
-    <select bind:value={validationEvent} onchange={() => setValidation("vevent", validationEvent)}>
-      <option value={0}>None</option>
-      <option value={ON_INPUT}>On Input</option>
-      <option value={ON_CHANGE}>On Change</option>
-      <option value={ON_BLUR}>On Blur</option>
-      <option value={ON_INPUT | ON_BLUR}>Input & Blur</option>
-      <option value={ON_INPUT | ON_CHANGE}>Input & Change</option>
-      <option value={ON_BLUR | ON_CHANGE}>Blur & Change</option>
-      <option value={ON_INPUT | ON_BLUR | ON_CHANGE}>All</option>
-    </select>
-    <select bind:value={validationAfter} onchange={() => setValidation("vafter", validationAfter)}>
-      <option value={0}>Always</option>
-      <option value={AFTER_CHANGED}>After Changed</option>
-      <option value={AFTER_TOUCHED}>After Touched</option>
-      <option value={AFTER_SUBMITTED}>After Submitted</option>
-    </select>
-    <select bind:value={validatorName} onchange={() => selectValidator(validatorName)}>
+    <Bits
+      title="Validation Events"
+      bind:value={validationEvent}
+      flags={[
+        [ON_INPUT, "On Input"],
+        [ON_CHANGE, "On Change"],
+        [ON_BLUR, "On Blur"],
+        [ON_ARRAY_CHANGE, "Array Changed"],
+        [ON_OBJECT_CHANGE, "Object Changed"],
+      ]}
+    />
+    <Bits
+      title="Validation Modifiers"
+      bind:value={validationAfter}
+      flags={[
+        [AFTER_CHANGED, "After Changed"],
+        [AFTER_TOUCHED, "After Touched"],
+        [AFTER_SUBMITTED, "After Submitted"],
+      ]}
+    />
+    <select
+      bind:value={validatorName}
+      onchange={() => selectValidator(validatorName)}
+    >
       {#each Object.keys(validators) as name (name)}
         <option value={name}>{name}</option>
       {/each}
@@ -210,7 +252,10 @@
         <option value={name}>{name}</option>
       {/each}
     </select>
-    <select bind:value={iconSetName} onchange={() => selectIconSet(iconSetName)}>
+    <select
+      bind:value={iconSetName}
+      onchange={() => selectIconSet(iconSetName)}
+    >
       {#each Object.keys(icons) as name (name)}
         <option value={name}>{name}</option>
       {/each}
@@ -249,13 +294,25 @@
   </div>
   <div class="flex gap-8">
     <div class="flex-[4] flex flex-col gap-2">
-      <Editor class="font-mono h-[400px] border rounded p-2 data-[error=true]:border-red-500 data-[error=true]:outline-none bg-transparent" bind:value={schema} />
+      <Editor
+        class="font-mono h-[400px] border rounded p-2 data-[error=true]:border-red-500 data-[error=true]:outline-none bg-transparent"
+        bind:value={schema}
+      />
       <div class="flex gap-2">
-        <Editor class="font-mono h-[400px] grow border rounded p-2 data-[error=true]:border-red-500 data-[error=true]:outline-none bg-transparent" bind:value={uiSchema} />
-        <Editor class="font-mono h-[400px] grow border rounded p-2 data-[error=true]:border-red-500 data-[error=true]:outline-none bg-transparent" bind:value={form.value} />
+        <Editor
+          class="font-mono h-[400px] grow border rounded p-2 data-[error=true]:border-red-500 data-[error=true]:outline-none bg-transparent"
+          bind:value={uiSchema}
+        />
+        <Editor
+          class="font-mono h-[400px] grow border rounded p-2 data-[error=true]:border-red-500 data-[error=true]:outline-none bg-transparent"
+          bind:value={form.value}
+        />
       </div>
     </div>
-    <ShadowHost class="flex-[3] max-h-[808px] overflow-y-auto" style={`${themeStyle}\n${iconSetStyle}`}>
+    <ShadowHost
+      class="flex-[3] max-h-[808px] overflow-y-auto"
+      style={`${themeStyle}\n${iconSetStyle}`}
+    >
       <SimpleForm
         {form}
         data-theme={themeName === "skeleton" ? "cerberus" : lightOrDark}

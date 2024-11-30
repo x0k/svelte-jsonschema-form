@@ -53,7 +53,7 @@ docs/:
     pnpm run preview
   popd
 
-pg/:
+pl/:
   pushd apps/playground
   d:
     pnpm run dev
