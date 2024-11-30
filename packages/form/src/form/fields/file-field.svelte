@@ -18,7 +18,7 @@
   let {
     config,
     value = $bindable(),
-    multiple = false,
+    multiple
   }: FieldProps<"file"> = $props();
 
   const ctx = getFormContext();
@@ -96,6 +96,6 @@
     {attributes}
     {errors}
     {config}
-    {multiple}
+    multiple={multiple !== undefined}
   />
 </Template>

@@ -6,6 +6,7 @@ import type {
   ANY_OF_KEY,
   SchemaObjectValue,
   SchemaArrayValue,
+  Schema,
 } from "@/core/index.js";
 
 import type { Config } from "../config.js";
@@ -49,10 +50,10 @@ export interface FieldsAndProps<V extends SchemaValue> {
 
   null: FieldCommonProps<V>;
   enum: FieldCommonProps<V> & {
-    multiple?: boolean;
+    multiple?: Schema;
   };
   file: FieldCommonProps<V> & {
-    multiple?: boolean;
+    multiple?: Schema;
   };
   hidden: FieldCommonProps<V>;
 }

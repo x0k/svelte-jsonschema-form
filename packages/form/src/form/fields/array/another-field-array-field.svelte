@@ -21,10 +21,7 @@
 </script>
 
 <Field
-  multiple
+  multiple={schemaItems}
   bind:value
-  config={{
-    ...config,
-    schema: schemaItems,
-  }}
+  config={config}
 />

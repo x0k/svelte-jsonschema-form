@@ -53,10 +53,10 @@ interface FieldsAndProps<V extends SchemaValue> {
   };
   null: FieldCommonProps<V>;
   enum: FieldCommonProps<V> & {
-    multiple?: boolean;
+    multiple?: Schema;
   };
   file: FieldCommonProps<V> & {
-    multiple?: boolean;
+    multiple?: Schema;
   };
   hidden: FieldCommonProps<V>;
 }
