@@ -31,7 +31,7 @@
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "dependencies": {
-    "es-toolkit": "^1.27.0",
+    "es-toolkit": "^1.28.0",
     "fast-equals": "^5.0.1",
     "json-schema-merge-allof": "^0.8.1",
     "jsonpointer": "^5.0.1"
