@@ -1,5 +1,12 @@
 import { Validator, type ValidatorOptions } from "./validator.js";
 
-export function createValidator<Async extends boolean>(options: ValidatorOptions<Async>) {
-  return new Validator(options);
+export type ValidatorFactoryOptions<Async extends boolean> = Omit<ValidatorOptions<Async>, "async"> & {
+  async?: Async
+}
+
+export function createValidator<Async extends boolean = false>(options: ValidatorFactoryOptions<Async>) {
+  return new Validator({
+    ...options,
+    async: options.async ?? false
+  });
 }
