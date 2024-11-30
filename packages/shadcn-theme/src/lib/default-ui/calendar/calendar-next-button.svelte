@@ -1,5 +1,4 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte';
 	import { Calendar as CalendarPrimitive } from "bits-ui";
 	import ChevronRight from "lucide-svelte/icons/chevron-right";
 	import { buttonVariants } from "$lib/default-ui/button/index.js";
@@ -24,6 +23,6 @@
 		"size-7 bg-transparent p-0 opacity-50 hover:opacity-100",
 		className
 	)}
-	children={children as Snippet || Fallback}
+	children={children || Fallback}
 	{...restProps}
 />

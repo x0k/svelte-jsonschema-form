@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Slider as SliderPrimitive, type SliderRootSnippetProps, type WithoutChildrenOrChild } from "bits-ui";
+	import { Slider as SliderPrimitive, type WithoutChildrenOrChild } from "bits-ui";
 	import { cn } from "$lib/utils.js";
 
 	let {
@@ -18,7 +18,7 @@
 	class={cn("relative flex w-full touch-none select-none items-center", className)}
 	{...restProps}
 >
-	{#snippet children({ thumbs }: SliderRootSnippetProps)}
+	{#snippet children({ thumbs })}
 		<span class="bg-primary/20 relative h-1.5 w-full grow overflow-hidden rounded-full">
 			<SliderPrimitive.Range class="bg-primary absolute h-full" />
 		</span>
