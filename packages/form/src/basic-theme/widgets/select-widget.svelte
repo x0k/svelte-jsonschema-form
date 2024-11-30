@@ -1,5 +1,10 @@
 <script lang="ts">
-  import { indexMapper, multipleOptions, singleOption, type WidgetProps } from "@/form/index.js";
+  import {
+    indexMapper,
+    multipleOptions,
+    singleOption,
+    type WidgetProps,
+  } from "@/form/index.js";
 
   let {
     attributes,
@@ -8,15 +13,15 @@
     multiple,
     config,
   }: WidgetProps<"select"> = $props();
-  
-	const mapped = $derived(
-		(multiple ? multipleOptions : singleOption)({
-			mapper: () => indexMapper(options),
+
+  const mapped = $derived(
+    (multiple ? multipleOptions : singleOption)({
+      mapper: () => indexMapper(options),
       // @ts-expect-error
-			value: () => value,
-			update: (v) => (value = v),
-		})
-	);
+      value: () => value,
+      update: (v) => (value = v),
+    })
+  );
 </script>
 
 {#snippet children()}
@@ -24,7 +29,7 @@
     <option value={-1}>{attributes.placeholder}</option>
   {/if}
   {#each options as option, index (option.id)}
-    <option value={index} disabled={option.disabled} >
+    <option value={index} disabled={option.disabled}>
       {option.label}
     </option>
   {/each}
@@ -39,11 +44,7 @@
     {@render children()}
   </select>
 {:else}
-  <select
-    bind:value={mapped.value}
-    style="flex-grow: 1"
-    {...attributes}
-  >
+  <select bind:value={mapped.value} style="flex-grow: 1" {...attributes}>
     {@render children()}
   </select>
 {/if}

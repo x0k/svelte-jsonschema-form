@@ -7,7 +7,7 @@ import {
   ON_BLUR,
 } from "../validation.js";
 
-import type { FormContext } from './context.js';
+import type { FormContext } from "./context.js";
 
 export function makeEventHandlers(ctx: FormContext, validate: () => void) {
   let changed = $state(false);
@@ -22,7 +22,7 @@ export function makeEventHandlers(ctx: FormContext, validate: () => void) {
     touched = false;
   });
 
-  const makeHandler = (event: number, validate: () => void) => {
+  const makeHandler = (event: number) => {
     const m = ctx.inputsValidationMode;
     if (
       !(m & event) ||
@@ -34,9 +34,9 @@ export function makeEventHandlers(ctx: FormContext, validate: () => void) {
     }
     return validate;
   };
-  const onInput = $derived(makeHandler(ON_INPUT, validate));
-  const onChange = $derived(makeHandler(ON_CHANGE, validate));
-  const onBlur = $derived(makeHandler(ON_BLUR, validate));
+  const onInput = $derived(makeHandler(ON_INPUT));
+  const onChange = $derived(makeHandler(ON_CHANGE));
+  const onBlur = $derived(makeHandler(ON_BLUR));
 
   return {
     oninput() {
