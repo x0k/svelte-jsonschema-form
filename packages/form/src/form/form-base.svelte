@@ -214,14 +214,14 @@
   });
 
   const ctx: FormContext = {
-    get inputsValidationMode() {
+    get fieldsValidationMode() {
       return inputsValidationMode;
     },
     validateAdditionalPropertyKey() {
       return true;
     },
     validation,
-    fieldValidation,
+    fieldsValidation: fieldValidation,
     get isChanged() {
       return isChanged;
     },

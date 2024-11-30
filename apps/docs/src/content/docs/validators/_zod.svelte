@@ -24,13 +24,13 @@
 
   type Value = z.infer<typeof schema>;
 
-  const validator = createValidator({ schema, uiSchema });
+  const validator = createValidator({ schema });
 
   const form = useCustomForm({
     schema: zodToJsonSchema(schema, { errorMessages: true }) as Schema,
     uiSchema,
     validator,
-    inputsValidationMode: ON_INPUT,
+    fieldsValidationMode: ON_INPUT,
     initialValue: initialValue as Value,
   });
 </script>

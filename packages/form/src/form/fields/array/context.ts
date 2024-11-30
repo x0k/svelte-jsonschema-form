@@ -23,6 +23,7 @@ export interface ArrayContext {
   removable: boolean;
   copyable: boolean;
   errors: ValidationError<unknown>[];
+  validate: () => void;
 }
 
 const ARRAY_CONTEXT = Symbol("array-context");

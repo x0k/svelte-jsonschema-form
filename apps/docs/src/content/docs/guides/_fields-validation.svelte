@@ -7,7 +7,7 @@
 
   const form = useCustomForm({
     schema: objectSchema,
-    inputsValidationMode: ON_INPUT | ON_CHANGE | AFTER_SUBMITTED,
+    fieldsValidationMode: ON_INPUT | ON_CHANGE | AFTER_SUBMITTED,
     onSubmit: console.log,
   });
 </script>

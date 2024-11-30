@@ -79,6 +79,7 @@
       onclick={(e) => {
         e.preventDefault()
         arr.splice(index, 0, $state.snapshot(value))
+        arrayCtx.validate()
       }}
     >
       <ctx.IconOrTranslation data={["copy-array-item"]} />
@@ -93,6 +94,7 @@
       onclick={(e) => {
         e.preventDefault()
         arr.splice(index, 1)
+        arrayCtx.validate()
       }}
     >
       <ctx.IconOrTranslation data={["remove-array-item"]} />

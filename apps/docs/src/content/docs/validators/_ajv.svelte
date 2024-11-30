@@ -1,18 +1,18 @@
 <script lang="ts">
   import { SimpleForm, ON_INPUT } from "@sjsf/form";
-  import { createValidator } from "@sjsf/ajv8-validator";
+  import { createValidator2 } from "@sjsf/ajv8-validator";
 
   import { useCustomForm } from "@/components/custom-form";
 
   import { schema, uiSchema } from './_shared';
 
-  const validator = createValidator();
+  const validator = createValidator2();
 
   const form = useCustomForm({
     schema,
     uiSchema,
     validator,
-    inputsValidationMode: ON_INPUT,
+    fieldsValidationMode: ON_INPUT,
     initialValue: {
       id: "Invalid",
       skills: ["karate", "budo", "aikido"],

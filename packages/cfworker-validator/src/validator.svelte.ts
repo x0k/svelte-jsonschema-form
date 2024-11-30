@@ -41,10 +41,14 @@ export function makeValidatorFactory(factory: CfValidatorFactory) {
   const validatorsCache = new WeakMap<Schema, CfValidator>();
   const makeValidator = weakMemoize<Schema, CfValidator>(
     validatorsCache,
-    (schema) =>
-      factory(
-        usePrefixSchemaRefs ? prefixSchemaRefs(schema, rootSchemaId) : schema
-      )
+    (schema) => {
+      const snapshot = $state.snapshot(schema);
+      return factory(
+        usePrefixSchemaRefs
+          ? prefixSchemaRefs(snapshot, rootSchemaId)
+          : snapshot
+      );
+    }
   );
   return (schema: Schema, rootSchema: Schema) => {
     rootSchemaId = rootSchema[ID_KEY] ?? ROOT_SCHEMA_PREFIX;
@@ -166,14 +170,16 @@ export class Validator implements FormValidator2<OutputUnit> {
     const errors = validator.validate(
       fieldData === undefined ? {} : { [field.title]: fieldData }
     ).errors;
-    return errors.map((unit) => {
-      return {
-        instanceId,
-        propertyTitle: field.title,
-        message: unit.error,
-        error: unit,
-      };
-    });
+    return errors
+      .filter((error) => error.instanceLocation === `#/${field.title}`)
+      .map((unit) => {
+        return {
+          instanceId,
+          propertyTitle: field.title,
+          message: unit.error,
+          error: unit,
+        };
+      });
   }
 
   reset(): void {}

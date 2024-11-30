@@ -12,7 +12,7 @@
     schema,
     uiSchema,
     validator,
-    inputsValidationMode: ON_INPUT,
+    fieldsValidationMode: ON_INPUT,
     initialValue: {
       id: "Invalid",
       skills: ["karate", "budo", "aikido"],

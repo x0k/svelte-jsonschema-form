@@ -16,7 +16,10 @@ import sharedCode from './_shared.ts?raw';
 
 This validator is experimental.
 
-At least `data-url` and `color` formats are ignored. 
+- `data-url` and `color` formats are ignored.
+- By itself this validator does not support `undefined` values. And we don't
+have any additional logic to handle it in this adapter. So you should provide
+custom `merger` instance and/or use `emptyValue` options in your UI schema.
 
 :::
 

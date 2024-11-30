@@ -52,6 +52,7 @@
     onclick={(e) => {
       e.preventDefault();
       value?.push(getDefaultFieldState(ctx, schemaItems, undefined))
+      arrayCtx.validate();
     }}
   >
     <ctx.IconOrTranslation data={["add-array-item"]} />

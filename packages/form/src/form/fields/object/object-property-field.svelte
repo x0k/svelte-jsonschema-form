@@ -5,12 +5,13 @@
     getComponent,
     getErrors,
     getFormContext,
-    isDisabled
-  } from '../../context/index.js';
+    isDisabled,
+  } from "../../context/index.js";
 
-  import type { FieldProps } from '../model.js';
-  
-  import ObjectKeyInput from './object-key-input.svelte';
+  import type { FieldProps } from "../model.js";
+
+  import { getObjectContext } from "./context.js";
+  import ObjectKeyInput from "./object-key-input.svelte";
 
   let {
     config,
@@ -18,17 +19,16 @@
     isAdditional,
     value = $bindable(),
     obj = $bindable(),
-  }: FieldProps<"objectProperty"> = $props()
+  }: FieldProps<"objectProperty"> = $props();
 
-  const ctx = getFormContext()
+  const ctx = getFormContext();
+  const objCtx = getObjectContext();
 
-  const Template = $derived(getTemplate(ctx, "object-property", config))
-  const Field = $derived(getField(ctx, "root", config))
-  const Button = $derived(getComponent(ctx, "button", config))
-  const disabled = $derived(
-    isDisabled(ctx, config.uiOptions?.input)
-  )
-  const errors = $derived(getErrors(ctx, config.idSchema))
+  const Template = $derived(getTemplate(ctx, "object-property", config));
+  const Field = $derived(getField(ctx, "root", config));
+  const Button = $derived(getComponent(ctx, "button", config));
+  const disabled = $derived(isDisabled(ctx, config.uiOptions?.input));
+  const errors = $derived(getErrors(ctx, config.idSchema));
 </script>
 
 {#snippet keyInput()}
@@ -48,7 +48,8 @@
     type="object-property-remove"
     onclick={(e) => {
       e.preventDefault();
-      delete obj[property]
+      delete obj[property];
+      objCtx.validate();
     }}
   >
     <ctx.IconOrTranslation data={["remove-object-property"]} />
@@ -62,8 +63,5 @@
   keyInput={isAdditional ? keyInput : undefined}
   removeButton={isAdditional ? removeButton : undefined}
 >
-  <Field
-    bind:value
-    {config}
-  />
+  <Field bind:value {config} />
 </Template>

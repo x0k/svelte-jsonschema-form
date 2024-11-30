@@ -23,7 +23,7 @@ export type IconOrTranslationData = {
 export interface FormContext {
   isSubmitted: boolean;
   isChanged: boolean;
-  inputsValidationMode: number;
+  fieldsValidationMode: number;
   schema: Schema;
   uiSchema: UiSchemaRoot;
   validator: FormValidator2;
@@ -52,7 +52,7 @@ export interface FormContext {
     },
     unknown
   >;
-  fieldValidation: Mutation<
+  fieldsValidation: Mutation<
     [config: Config<unknown>, value: SchemaValue | undefined],
     ValidationError<unknown>[],
     unknown

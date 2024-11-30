@@ -29,7 +29,7 @@ import type { UiSchemaRoot } from "./ui-schema.js";
 import type { Fields } from "./fields/index.js";
 import type { Templates } from "./templates/index.js";
 import type { Icons } from "./icons.js";
-import type { InputsValidationMode } from "./validation.js";
+import type { FieldsValidationMode } from "./validation.js";
 import { groupErrors, type Errors, type FieldErrors } from "./errors.js";
 import {
   setFromContext,
@@ -49,7 +49,7 @@ import IconOrTranslation from "./icon-or-translation.svelte";
 import type { Config } from "./config.js";
 import { createAdditionalPropertyKeyValidationSchema } from "./additional-property-key-validation-schema.js";
 
-export const DEFAULT_FIELD_VALIDATION_DEBOUNCE_MS = 300;
+export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
 
 /**
  * @deprecated use `UseFormOptions2`
@@ -65,7 +65,9 @@ export interface UseFormOptions<T, E> {
   fields?: Fields;
   templates?: Templates;
   icons?: Icons;
-  inputsValidationMode?: InputsValidationMode;
+  /** @deprecated use `fieldsValidationMode` */
+  inputsValidationMode?: FieldsValidationMode;
+  fieldsValidationMode?: FieldsValidationMode;
   disabled?: boolean;
   idPrefix?: string;
   idSeparator?: string;
@@ -91,22 +93,22 @@ export interface UseFormOptions<T, E> {
   /**
    * @default 300
    */
-  fieldValidationDebounceMs?: number;
+  fieldsValidationDebounceMs?: number;
   /**
-   * @default debounce(abortPrevious, fieldValidationDebounceMs)
+   * @default debounce(abortPrevious, fieldsValidationDebounceMs)
    */
-  fieldValidationCombinator?: MutationsCombinator2<
+  fieldsValidationCombinator?: MutationsCombinator2<
     unknown,
     [Config<unknown>, SchemaValue | undefined]
   >;
   /**
    * @default 500
    */
-  fieldValidationDelayedMs?: number;
+  fieldsValidationDelayedMs?: number;
   /**
    * @default 8000
    */
-  fieldValidationTimeoutMs?: number;
+  fieldsValidationTimeoutMs?: number;
   /**
    * The function to get the form data snapshot
    *
@@ -153,7 +155,7 @@ export interface UseFormOptions<T, E> {
   /**
    * Field validation error handler
    */
-  onFieldValidationFailure?: (
+  onFieldsValidationFailure?: (
     state: FailedMutation<unknown>,
     config: Config,
     value: SchemaValue | undefined
@@ -199,7 +201,7 @@ export interface FormState<T, E> {
     },
     unknown
   >;
-  fieldValidation: Mutation<
+  fieldsValidation: Mutation<
     [config: Config<unknown>, value: SchemaValue | undefined],
     ValidationError<E>[],
     unknown
@@ -271,7 +273,9 @@ export function createForm2<
   let isSubmitted = $state(false);
   let isChanged = $state(false);
 
-  const inputsValidationMode = $derived(options.inputsValidationMode ?? 0);
+  const fieldsValidationMode = $derived(
+    options.fieldsValidationMode ?? options.inputsValidationMode ?? 0
+  );
   const uiSchema = $derived(options.uiSchema ?? {});
   const disabled = $derived(options.disabled ?? false);
   const idPrefix = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX);
@@ -392,7 +396,7 @@ export function createForm2<
     },
   });
 
-  const fieldValidation = useMutation({
+  const fieldsValidation = useMutation({
     async mutate(signal, config: Config, value: SchemaValue | undefined) {
       return options.validator.validateFieldData(config, value, signal);
     },
@@ -418,23 +422,23 @@ export function createForm2<
           },
         ]);
       }
-      options.onFieldValidationFailure?.(state, config, value);
+      options.onFieldsValidationFailure?.(state, config, value);
     },
     get combinator() {
       return (
-        options.fieldValidationCombinator ??
+        options.fieldsValidationCombinator ??
         debounce(
           abortPrevious,
-          options.fieldValidationDebounceMs ??
-            DEFAULT_FIELD_VALIDATION_DEBOUNCE_MS
+          options.fieldsValidationDebounceMs ??
+            DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS
         )
       );
     },
     get delayedMs() {
-      return options.fieldValidationDelayedMs;
+      return options.fieldsValidationDelayedMs;
     },
     get timeoutMs() {
-      return options.fieldValidationTimeoutMs;
+      return options.fieldsValidationTimeoutMs;
     },
   });
 
@@ -501,7 +505,7 @@ export function createForm2<
         isChanged = v;
       },
       validation,
-      fieldValidation,
+      fieldsValidation,
       validate() {
         const errors = validateSnapshot(getSnapshot(), fakeAbortSignal);
         if (errors instanceof Promise) {
@@ -538,14 +542,14 @@ export function createForm2<
       },
     },
     {
-      get inputsValidationMode() {
-        return inputsValidationMode;
+      get fieldsValidationMode() {
+        return fieldsValidationMode;
       },
       get validateAdditionalPropertyKey() {
         return additionalPropertyKeyValidator;
       },
       validation,
-      fieldValidation,
+      fieldsValidation,
       get isSubmitted() {
         return isSubmitted;
       },
