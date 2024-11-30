@@ -1,7 +1,6 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte';
 	import { Calendar as CalendarPrimitive } from "bits-ui";
-	import ChevronLeft from "svelte-radix/ChevronLeft.svelte";
+	import ChevronLeft from "lucide-svelte/icons/chevron-left";
 	import { buttonVariants } from "$lib/new-york-ui/button/index.js";
 	import { cn } from "$lib/utils.js";
 
@@ -14,7 +13,7 @@
 </script>
 
 {#snippet Fallback()}
-	<ChevronLeft class="size-4" />
+	<ChevronLeft />
 {/snippet}
 
 <CalendarPrimitive.PrevButton
@@ -25,5 +24,5 @@
 		className
 	)}
 	{...restProps}
-	children={children as Snippet || Fallback}
+	children={children || Fallback}
 />

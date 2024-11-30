@@ -77,7 +77,7 @@
 		"@types/eslint": "catalog:",
 		"ajv": "catalog:",
 		"autoprefixer": "catalog:",
-		"bits-ui": "^1.0.0-next.65",
+		"bits-ui": "1.0.0-next.65",
 		"clsx": "^2.1.1",
 		"eslint": "catalog:",
 		"eslint-config-prettier": "catalog:",
@@ -94,10 +94,10 @@
 		"tailwind-variants": "^0.3.0",
 		"tailwindcss": "catalog:",
 		"tailwindcss-animate": "^1.0.7",
+		"testing": "workspace:*",
 		"typescript-eslint": "catalog:",
 		"vite": "catalog:",
-		"vitest": "catalog:",
-		"testing": "workspace:*"
+		"vitest": "catalog:"
 	},
 	"svelte": "./dist/theme/index.js",
 	"types": "./dist/theme/index.d.ts"
