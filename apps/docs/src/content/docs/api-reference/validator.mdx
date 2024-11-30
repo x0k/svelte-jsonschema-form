@@ -23,21 +23,28 @@ interface ValidationError<E> {
   error: E;
 }
 
-interface FormValidator<E = unknown> extends Validator {
-  /** 
+type MaybePromise<T> = T | Promise<T>;
+
+interface FormValidator2<E = unknown> extends Validator {
+  /**
    * Full form validation
+   *
+   * Essentially this is the `formData is T` check, but since `T` doesn't
+   * extend `SchemaValue`, we don't declare this as a type guard.
    */
   validateFormData(
     rootSchema: Schema,
-    formData: SchemaValue | undefined
-  ): ValidationError<E>[];
+    formData: SchemaValue | undefined,
+    signal: AbortSignal
+  ): MaybePromise<ValidationError<E>[]>;
 
   /**
    * Individual field validation
    */
   validateFieldData(
     field: Config,
-    fieldData: SchemaValue | undefined
-  ): ValidationError<E>[];
+    fieldData: SchemaValue | undefined,
+    signal: AbortSignal
+  ): MaybePromise<ValidationError<E>[]>;
 }
 ```

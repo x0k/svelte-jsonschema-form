@@ -35,6 +35,26 @@ interface FormProps<T> {
    */
   onSubmitError?: (errors: Errors<E>, e: SubmitEvent, snapshot: SchemaValue | undefined) => void
   /**
+   * Form validation error handler
+   *
+   * Will be called when the validation fails by a different reasons:
+   * - error during validation
+   * - validation is cancelled
+   * - validation timeout
+   */
+  onValidationFailure?: (
+    state: FailedMutation<unknown>,
+    e: SubmitEvent
+  ) => void;
+  /**
+   * Field validation error handler
+   */
+  onFieldValidationFailure?: (
+    state: FailedMutation<unknown>,
+    config: Config,
+    value: SchemaValue | undefined
+  ) => void;
+  /**
    * Reset handler
    *
    * Will be called on form reset.
