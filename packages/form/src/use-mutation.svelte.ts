@@ -167,6 +167,49 @@ export function useMutation<
     clearTimeouts();
   }
 
+  function run(decision: boolean | "abort", args: T) {
+    if (decision === false) {
+      return Promise.resolve();
+    }
+    if (decision === "abort") {
+      abort();
+    }
+    state = {
+      status: Status.Processed,
+      delayed: mutation.isDelayed,
+      args,
+    };
+    abortController = new AbortController();
+    const promise = options.mutate(abortController.signal, ...args).then(
+      (result) => {
+        // Mutation may have been aborted by user or timeout
+        if (ref?.deref() !== promise || state.status === Status.Failed) return;
+        state = { status: Status.Success };
+        clearTimeouts();
+        options.onSuccess?.(result, ...args);
+      },
+      (error) => {
+        if (ref?.deref() !== promise || state.status === Status.Failed) return;
+        state = { status: Status.Failed, reason: "error", error };
+        clearTimeouts();
+        options.onFailure?.(state, ...args);
+      }
+    );
+    ref = new WeakRef(promise);
+    clearTimeouts();
+    delayedCallbackId = setTimeout(() => {
+      if (ref?.deref() !== promise || state.status !== Status.Processed) return;
+      state = { status: Status.Processed, delayed: true, args };
+    }, delayedMs);
+    timeoutCallbackId = setTimeout(() => {
+      if (ref?.deref() !== promise || state.status !== Status.Processed) return;
+      state = { status: Status.Failed, reason: "timeout" };
+      abort();
+      options.onFailure?.(state, ...args);
+    }, timeoutMs);
+    return promise;
+  }
+
   const mutation: Mutation<T, R, E> = {
     get state() {
       return state;
@@ -189,59 +232,16 @@ export function useMutation<
     async run(...args) {
       let decision: boolean | "abort";
       try {
-        const d = combinator(state);
-        if (d instanceof Promise) {
-          decision = await d;
+        const dec = combinator(state);
+        if (dec instanceof Promise) {
+          decision = await dec;
         } else {
-          decision = d;
+          decision = dec;
         }
       } catch (error) {
-        decision = false;
+        return
       }
-      if (decision === false) {
-        return Promise.resolve();
-      }
-      if (decision === "abort") {
-        abort();
-      }
-      state = {
-        status: Status.Processed,
-        delayed: mutation.isDelayed,
-        args,
-      };
-      abortController = new AbortController();
-      const promise = options.mutate(abortController.signal, ...args).then(
-        (result) => {
-          // Mutation may have been aborted by user or timeout
-          if (ref?.deref() !== promise || state.status === Status.Failed)
-            return;
-          state = { status: Status.Success };
-          clearTimeouts();
-          options.onSuccess?.(result, ...args);
-        },
-        (error) => {
-          if (ref?.deref() !== promise || state.status === Status.Failed)
-            return;
-          state = { status: Status.Failed, reason: "error", error };
-          clearTimeouts();
-          options.onFailure?.(state, ...args);
-        }
-      );
-      ref = new WeakRef(promise);
-      clearTimeouts();
-      delayedCallbackId = setTimeout(() => {
-        if (ref?.deref() !== promise || state.status !== Status.Processed)
-          return;
-        state = { status: Status.Processed, delayed: true, args };
-      }, delayedMs);
-      timeoutCallbackId = setTimeout(() => {
-        if (ref?.deref() !== promise || state.status !== Status.Processed)
-          return;
-        state = { status: Status.Failed, reason: "timeout" };
-        abort();
-        options.onFailure?.(state, ...args);
-      }, timeoutMs);
-      return promise;
+      return run(decision, args);
     },
     abort() {
       if (state.status !== Status.Processed) return;
