@@ -36,6 +36,10 @@ const FIELD_REQUIRED = ["field"];
 const FIELD_NOT_REQUIRED: string[] = [];
 const NO_ERRORS: FieldErrors<ErrorObject> = [];
 
+export function isFieldError(error: ErrorObject): boolean {
+  return error.instancePath === "/field";
+}
+
 export function makeSchemaCompiler<A extends boolean>(ajv: Ajv, _async: A) {
   let rootSchemaId = "";
   let usePrefixSchemaRefs = false;
@@ -170,7 +174,7 @@ export abstract class AbstractValidator implements FormValidator2<ErrorObject> {
   }
 
   protected transformFieldErrors(errors: ErrorObject[], config: Config) {
-    return errors.map((error) => ({
+    return errors.filter(isFieldError).map((error) => ({
       instanceId: config.idSchema.$id,
       propertyTitle: config.title,
       message: this.errorObjectToMessage(error, () => config.title),
