@@ -6,13 +6,13 @@ sidebar:
 
 import { Code, Card, LinkCard } from '@astrojs/starlight/components';
 
-import { DEFAULT_FIELD_VALIDATION_DEBOUNCE_MS } from '@sjsf/form';
+import { DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS } from '@sjsf/form';
 
 import LiveValidation from './_live-validation.astro'
 import liveValidationCode from './_live-validation.svelte?raw'
 
-import InputsValidation from './_inputs-validation.astro'
-import inputsValidationCode from './_inputs-validation.svelte?raw'
+import FieldsValidation from './_fields-validation.astro'
+import fieldsValidationCode from './_fields-validation.svelte?raw'
 
 import AsyncValidation from './_async-validation.astro'
 import asyncValidationCode from './_async-validation.svelte?raw'
@@ -44,27 +44,28 @@ By utilizing Svelte 5 reactivity, we can easily implement live validation.
 While it is possible, this approach has low efficiency, because usually
 revalidation of the whole form when changing one field does not make sense.
 
-## Inputs validation
+## Fields validation
 
-Instead of full form revalidation, we propose to perform revalidation of only the input field and full validation of the form when submitting.
+Instead of full form revalidation, we propose to perform revalidation of only the changing field and
+full validation of the form when submitting.
 
 :::note
 
-By default, inputs validation is performed with a debounce of {DEFAULT_FIELD_VALIDATION_DEBOUNCE_MS}ms.
+By default, fields validation is performed with a debounce of {DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS}ms.
 
-This can be changed by passing the `validationDebounceMs` option.
+This can be changed by passing the `fieldsValidationDebounceMs` option.
 
 :::
 
-<Code code={inputsValidationCode} lang="svelte" />
+<Code code={fieldsValidationCode} lang="svelte" />
 
 <Card>
-  <InputsValidation />
+  <FieldsValidation />
 </Card>
 
 The form in this example will only revalidate input fields on the `input` and `change` events after the first submission of the form.
 
-<LinkCard title="Inputs validation mode API reference" href="../../api-reference/inputs-validation-mode/" />
+<LinkCard title="Fields validation mode API reference" href="../../api-reference/fields-validation-mode/" />
 
 ## Async validation
 
@@ -75,7 +76,7 @@ The form supports asynchronous validation, please see your validator page for mo
 By default, a new form validation process can only be started after the previous one is completed;
 a new input validation process aborts the previous one.
 
-You can change this behavior by passing the `validationCombinator` and `fieldValidationCombinator` options.
+You can change this behavior by passing the `validationCombinator` and `fieldsValidationCombinator` options.
 
 :::
 

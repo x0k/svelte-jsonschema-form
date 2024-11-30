@@ -36,7 +36,7 @@
     validator: createAsyncValidator({ ajv }),
     handleValidationProcessError,
     schema: schema,
-    inputsValidationMode: ON_INPUT,
+    fieldsValidationMode: ON_INPUT,
     onSubmit: console.log,
   });
 
@@ -48,7 +48,7 @@
   };
 </script>
 
-form validation: {statusNames[form.validation.status]}, inputs validation: {statusNames[form.fieldValidation.status]}
+form validation: {statusNames[form.validation.status]}, fields validation: {statusNames[form.fieldsValidation.status]}
 <SimpleForm
   {form}
   novalidate
