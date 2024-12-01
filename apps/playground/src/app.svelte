@@ -141,7 +141,7 @@
       return disabled;
     },
     get inputsValidationMode() {
-      return validationEvent | validationAfter | ON_ARRAY_CHANGE;
+      return validationEvent | validationAfter;
     },
     get icons() {
       return iconSet;
