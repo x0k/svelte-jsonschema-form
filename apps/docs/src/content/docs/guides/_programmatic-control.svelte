@@ -21,17 +21,19 @@
   <FormContent bind:value={form.formValue} />
 </form>
 <button
-  onclick={(e) => {
+  onclick={(_e) => {
     formElement?.requestSubmit();
-    // or (note that the `target` and `currentTarget` will not be properly set)
-    // form.submit(new SubmitEvent("submit", { submitter: e.currentTarget }));
+    // or
+    // form.submit(new SubmitEvent("submit", { submitter: _e.currentTarget }));
+    // (note that the `target` and `currentTarget` will not be properly set)
   }}>My submit</button
 >
 <button
   onclick={() => {
     formElement?.reset();
-    // or (not that `onReset` handler will not be called)
+    // or
     // form.reset();
+    // (note that `onReset` handler will not be called)
   }}
 >
   My reset

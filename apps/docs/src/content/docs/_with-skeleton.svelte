@@ -7,6 +7,7 @@
 
   import { schema, uiSchema, initialValue } from "./_schema";
   import { validator } from "./_validator";
+  import { onSubmit } from "./_on-submit";
 
   const astro = useAstro();
 
@@ -17,6 +18,7 @@
     uiSchema,
     validator,
     translation,
+    onSubmit,
   });
 </script>
 

@@ -23,7 +23,7 @@ import focusOnFirstErrorCode from './_focus-on-first-error.svelte?raw'
 import ErrorsList from './_errors-list.astro'
 import errorsListCode from './_errors-list.svelte?raw'
 
-By default, form data will only be validated by HTML5 validation and the provided validator when submitted.
+By default, form data when submitted will be validated using HTML5 validation and the provided validator.
 
 :::tip
 
@@ -33,7 +33,7 @@ To disable HTML5 validation pass `novalidate` attribute to the form element.
 
 ## Live validation (not recommended)
 
-By utilizing Svelte 5 reactivity, we can easily implement live validation.
+You can easily implement live validation by utilizing Svelte 5 reactivity
 
 <Code code={liveValidationCode} lang="svelte" />
 
@@ -41,19 +41,20 @@ By utilizing Svelte 5 reactivity, we can easily implement live validation.
   <LiveValidation />
 </Card>
 
-While it is possible, this approach has low efficiency, because usually
-revalidation of the whole form when changing one field does not make sense.
+While it is possible, this approach has low efficiency because
+it is usually not meaningful to validate the entire form when only one field is changed.
 
 ## Fields validation
 
-Instead of full form revalidation, we propose to perform revalidation of only the changing field and
-full validation of the form when submitting.
+Instead of performing a full form validation every time a field is changed,
+we propose to validate only the field being changed and
+full validation of the form on submission.
 
 :::note
 
 By default, fields validation is performed with a debounce of {DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS}ms.
 
-This can be changed by passing the `fieldsValidationDebounceMs` option.
+This behavior can be changed using the `fieldsValidationDebounceMs` option.
 
 :::
 
@@ -63,28 +64,30 @@ This can be changed by passing the `fieldsValidationDebounceMs` option.
   <FieldsValidation />
 </Card>
 
-The form in this example will only revalidate input fields on the `input` and `change` events after the first submission of the form.
+The form in this example will validate fields during the `input` and `change` events only after the first submission of the form.
 
 <LinkCard title="Fields validation mode API reference" href="../../api-reference/fields-validation-mode/" />
 
 ## Async validation
 
-The form supports asynchronous validation, please see your validator page for more information.
+The form supports asynchronous validation.
 
 :::note
 
-By default, a new form validation process can only be started after the previous one is completed;
-a new input validation process aborts the previous one.
+By default
+
+- a new form validation process can only be started after the previous one is completed;
+- a new fields validation process aborts the previous one.
 
 You can change this behavior by passing the `validationCombinator` and `fieldsValidationCombinator` options.
 
 :::
 
-To correctly display potential validation process errors you should use the `handleValidationProcessError` option.
+To correctly display potential validation process errors, the `handleValidationProcessError` option should be used.
 
 :::note
 
-By default, messages about aborting input validation are not displayed
+By default, fields validation abort errors are not displayed
 
 :::
 
@@ -93,6 +96,14 @@ By default, messages about aborting input validation are not displayed
 <Card>
   <AsyncValidation />
 </Card>
+
+Please see your validator page for more information.
+
+<LinkCard title="Ajv" href="../../validators/ajv/#async-validation" />
+<LinkCard title="Zod" href="../../validators/zod/#async-validation" />
+<LinkCard title="@cfworker/json-schema" href="../../validators/cfworker/#async-validation" />
+
+
 
 ## Focus on first error
 
@@ -110,7 +121,7 @@ You can achieve focus on the first error by using the `focusOnFirstError` functi
 
 ## Errors list
 
-Creating a list of errors is pretty simple.
+If necessary, you can create a list of errors
 
 <Code code={errorsListCode} lang="svelte" />
 

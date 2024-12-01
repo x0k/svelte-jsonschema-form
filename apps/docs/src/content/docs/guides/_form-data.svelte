@@ -15,7 +15,11 @@
   });
 </script>
 
-<SimpleForm style="display: flex; flex-direction: column; gap: 1rem" {form} />
+<SimpleForm
+  style="display: flex; flex-direction: column; gap: 1rem"
+  novalidate
+  {form}
+/>
 
 <pre>{JSON.stringify(
     { value: form.value, errors: Object.fromEntries(form.errors) },

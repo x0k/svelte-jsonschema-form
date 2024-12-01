@@ -14,7 +14,7 @@ import demoSchemaCode from './_demo-schema.ts?raw';
 
 ## Installation
 
-<Npm pkg="@sjsf/form @sjsf/shadcn-theme" />
+<Npm pkg="@sjsf/shadcn-theme" />
 
 :::note
 
@@ -24,7 +24,7 @@ This is `shadcn-svelte@next` based theme.
 
 ### Install Shadcn Svelte
 
-<LinkButton href="https://next.shadcn-svelte.com/docs/installation" variant='minimal' target="_blank" icon="external">
+<LinkButton href="https://next.shadcn-svelte.com/docs/installation" variant='secondary' target="_blank" icon="external">
   Installation - shadcn-svelte
 </LinkButton>
 
@@ -68,6 +68,15 @@ However, you can use already prepared component sets or mix them with your own c
 - `@sjsf/shadcn-theme/new-york`
 
 ## Demo
+
+:::caution
+
+Currently, some `shadcn-svelte` components do not work in the shadow DOM,
+which is used in the documentation and playground.
+
+See [this issue](https://github.com/huntabyte/bits-ui/issues/828) for more details.
+
+:::
 
 <Tabs>
 <TabItem label="Form.svelte">

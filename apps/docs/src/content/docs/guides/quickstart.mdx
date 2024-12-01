@@ -29,8 +29,9 @@ Let's explore the most basic setup:
 Quite verbose and here's why:
 
 - **Explicit Configuration**: The library favors explicit configuration over "magic" defaults.
-- **Tree-Shakeable Architecture**: Each feature is separated into modules so you can import only the functionality you need, keeping your bundle lean and optimized.
-- **Highly Customizable**: We provide extensive customization options so that you can customize every piece of from.
+- **Tree-Shakeable Architecture**: Each feature is located in its own [submodule](https://nodejs.org/api/packages.html#subpath-exports)
+so you can import only the functionality you need, keeping your bundle lean and optimized.
+- **Highly Customizable**: We provide extensive customization options so that you can tailor every aspect of the library to your needs.
 
 <LinkCard title="JSON Schema API reference" href="../../api-reference/json-schema/" />
 
@@ -38,11 +39,11 @@ Quite verbose and here's why:
 
 ## UI Schema
 
-You can also customize the form UI with the `uiSchema` property.
+You can also customize the form's UI using the `uiSchema` property.
 
 :::note
 
-We'll talk about `useCustomForm` in [Custom form](../../advanced/custom-form/) guide.
+We'll talk about `useCustomForm` hook in [Custom form](../../advanced/custom-form/) guide.
 
 :::
 
@@ -57,7 +58,7 @@ We'll talk about `useCustomForm` in [Custom form](../../advanced/custom-form/) g
 
 ## Form state
 
-You can use properties like `value` and `errors` to work with form state.
+To access the state of the form you can use properties such as `value` and `errors`
 
 <Code code={formDataCode} lang="svelte" />
 

@@ -43,7 +43,7 @@ even if the user has `JavaScript` disabled.
 On the server side you should implement at least one [action](https://svelte.dev/docs/kit/form-actions)
 which will always return the result of `validateForm` function (`redirect` and `error` helpers are allowed).
 
-If form data is passed via `FormData` you should create a parser for it.
+If the form data is passed as `FormData`, you need to create a parser for it.
 
 ```typescript
 import { makeFormDataParser, validateForm } from '@sjsf/sveltekit/server';
@@ -80,7 +80,8 @@ You can use any convenient name instead of `form`
 
 :::
 
-If you want to populate form from database, you can use `initForm` function inside the `load` function.
+If you want to populate the form from the database,
+you can use the `initForm` function inside the `load` function.
 
 ```typescript
 import { initForm } from '@sjsf/sveltekit/server';
@@ -131,7 +132,7 @@ According to Svelte documentation your form should always use `POST` requests.
 </form>
 ```
 
-## Progressive enhancement
+### Progressive enhancement
 
 You should always use `enhance` action on your forms.
 
