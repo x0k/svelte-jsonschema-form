@@ -293,24 +293,24 @@
     {/each}
   </div>
   <div class="flex gap-8">
-    <div class="flex-[4] flex flex-col gap-2">
+    <div class="flex-[4] flex flex-col">
       <Editor
-        class="font-mono h-[400px] border rounded p-2 data-[error=true]:border-red-500 data-[error=true]:outline-none bg-transparent"
+        class="font-mono h-[385px] border border-b-0 rounded-t p-2 data-[error=true]:border-red-500 data-[error=true]:outline-none bg-transparent"
         bind:value={schema}
       />
-      <div class="flex gap-2">
+      <div class="flex">
         <Editor
-          class="font-mono h-[400px] grow border rounded p-2 data-[error=true]:border-red-500 data-[error=true]:outline-none bg-transparent"
+          class="font-mono h-[385px] grow border rounded-bl p-2 data-[error=true]:border-red-500 data-[error=true]:outline-none bg-transparent"
           bind:value={uiSchema}
         />
         <Editor
-          class="font-mono h-[400px] grow border rounded p-2 data-[error=true]:border-red-500 data-[error=true]:outline-none bg-transparent"
+          class="font-mono h-[385px] grow border rounded-br p-2 data-[error=true]:border-red-500 data-[error=true]:outline-none bg-transparent"
           bind:value={form.value}
         />
       </div>
     </div>
     <ShadowHost
-      class="flex-[3] max-h-[808px] overflow-y-auto"
+      class="flex-[3] max-h-[770px] overflow-y-auto"
       style={`${themeStyle}\n${iconSetStyle}`}
     >
       <SimpleForm
