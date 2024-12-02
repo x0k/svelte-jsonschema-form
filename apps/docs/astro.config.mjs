@@ -45,10 +45,15 @@ export default defineConfig({
           label: "API Reference",
           autogenerate: { directory: "api-reference" },
         },
+        {
+          label: "Changelogs",
+          autogenerate: { directory: "changelogs" },
+        }
       ],
       components: {
         Head: "./src/components/custom-head.astro",
         Header: "./src/components/header-with-links.astro",
+        MarkdownContent: "./src/components/markdown-content.astro",
       },
     }),
   ],
@@ -56,6 +61,7 @@ export default defineConfig({
     resolve: {
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
+        "#": fileURLToPath(new URL("../../packages", import.meta.url)),
       },
     },
   },

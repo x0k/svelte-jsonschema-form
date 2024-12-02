@@ -1,0 +1,16 @@
+---
+import type { Props } from "@astrojs/starlight/props";
+import Default from "@astrojs/starlight/components/MarkdownContent.astro";
+
+const isChangelog = Astro.props.slug.startsWith("changelogs");
+---
+
+<Default {...Astro.props}>
+  <slot />
+</Default>
+
+{isChangelog && <style>
+  .sl-markdown-content h1 {
+    display: none !important;
+  }
+</style>}
