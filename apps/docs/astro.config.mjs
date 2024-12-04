@@ -20,6 +20,16 @@ export default defineConfig({
       social: {
         github: "https://github.com/x0k/svelte-jsonschema-form",
       },
+      head: [
+        {
+          tag: "script",
+          attrs: {
+            "data-goatcounter": "https://sjsf-counter.x0k.online/count",
+            async: true,
+            src: "https://sjsf-counter.x0k.online/count.js",
+          }
+        },
+      ],
       sidebar: [
         {
           label: "Guides",
