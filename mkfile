@@ -155,3 +155,6 @@ c:
 
 cs:
   pnpm changeset
+
+h:
+  mk -P targets "*"
