@@ -23,9 +23,7 @@
           <input
             type="checkbox"
             checked={Boolean(value & flag)}
-            onchange={() => {
-              console.log((value ^= flag));
-            }}
+            onchange={() => (value ^= flag)}
           />
           {label}
         </label>
