@@ -129,6 +129,18 @@ shad/:
     pnpm run dev
   popd
 
+svar/:
+  pushd packages/svar-theme
+  c:
+    pnpm run check
+  b:
+    pnpm run build
+  d:
+    pnpm run dev
+  popd
+
+
+
 ts/:
   pushd packages/testing
   b:
