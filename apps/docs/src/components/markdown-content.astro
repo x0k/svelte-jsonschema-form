@@ -2,7 +2,7 @@
 import type { Props } from "@astrojs/starlight/props";
 import Default from "@astrojs/starlight/components/MarkdownContent.astro";
 
-const isChangelog = Astro.props.slug.startsWith("changelogs");
+const isChangelog = Astro.props.id.startsWith("changelogs");
 ---
 
 <Default {...Astro.props}>
