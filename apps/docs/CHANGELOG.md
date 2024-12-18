@@ -1,5 +1,26 @@
 # docs
 
+## 1.5.0
+
+### Minor Changes
+
+- Add changelogs section ([`9249f90`](https://github.com/x0k/svelte-jsonschema-form/commit/9249f904bb6c8f0cfd2aecfa59db7b45690741a7))
+
+### Patch Changes
+
+- Migrate to astro 5 ([`140d6b1`](https://github.com/x0k/svelte-jsonschema-form/commit/140d6b1560b6abfacd0933d580bfdd78a5d3615c))
+
+- Updated dependencies [[`01d1b60`](https://github.com/x0k/svelte-jsonschema-form/commit/01d1b60d2ef46e8e3700625a78978b83e968bf0c)]:
+  - @sjsf/cfworker-validator@1.7.1
+  - @sjsf/ajv8-validator@1.7.1
+  - @sjsf/daisyui-theme@1.7.1
+  - @sjsf/flowbite-theme@1.7.1
+  - @sjsf/form@1.7.1
+  - @sjsf/shadcn-theme@1.7.1
+  - @sjsf/skeleton-theme@1.7.1
+  - @sjsf/sveltekit@1.7.1
+  - @sjsf/zod-validator@1.7.1
+
 ## 1.4.0
 
 ### Minor Changes
