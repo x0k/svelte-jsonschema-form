@@ -38,10 +38,10 @@
   },
   "peerDependencies": {
     "@sjsf/form": "workspace:^1.7.0",
-    "@cfworker/json-schema": "^2.0.0 || ^3.0.0"
+    "@cfworker/json-schema": "^2.0.0 || ^3.0.0 || ^4.0.0"
   },
   "devDependencies": {
     "@sjsf/form": "workspace:*",
-    "@cfworker/json-schema": "^3.0.1"
+    "@cfworker/json-schema": "^4.0.3"
   }
 }
