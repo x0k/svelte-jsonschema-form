@@ -1,5 +1,14 @@
 # @sjsf/cfworker-validator
 
+## 1.7.1
+
+### Patch Changes
+
+- Add 4.x.x version to peer dependencies ([`01d1b60`](https://github.com/x0k/svelte-jsonschema-form/commit/01d1b60d2ef46e8e3700625a78978b83e968bf0c))
+
+- Updated dependencies []:
+  - @sjsf/form@1.7.1
+
 ## 1.7.0
 
 ### Minor Changes
