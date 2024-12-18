@@ -15,7 +15,7 @@
     "@sjsf/cfworker-validator": "workspace:*",
     "ajv": "catalog:",
     "rehype-raw": "^7.0.0",
-    "svelte-exmarkdown": "^4.0.1",
+    "svelte-exmarkdown": "^4.0.2",
     "@sjsf/daisyui-theme": "workspace:*",
     "@sjsf/flowbite-theme": "workspace:*",
     "@sjsf/flowbite-icons": "workspace:*",

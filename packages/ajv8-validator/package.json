@@ -44,6 +44,7 @@
   "devDependencies": {
     "ajv": "catalog:",
     "@sjsf/form": "workspace:*",
+    "vite": "catalog:",
     "vitest": "catalog:",
     "@sveltejs/vite-plugin-svelte": "catalog:",
     "svelte": "catalog:"
