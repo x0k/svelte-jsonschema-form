@@ -141,6 +141,16 @@ shad/:
     pnpm run dev
   popd
 
+m3/:
+  pushd packages/m3-theme
+  c:
+    pnpm run check
+  b:
+    pnpm run build
+  d:
+    pnpm run dev
+  popd
+
 ts/:
   pushd packages/testing
   b:

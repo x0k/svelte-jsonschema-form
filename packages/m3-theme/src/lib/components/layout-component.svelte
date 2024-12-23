@@ -1,0 +1,48 @@
+<script lang="ts">
+  import type { ComponentProps } from "@/form/index.js";
+
+  const { type, children, attributes }: ComponentProps<"layout"> = $props();
+
+  function getStyle(type: ComponentProps<"layout">["type"]) {
+    switch (type) {
+      case "array-item":
+      case "array-item-controls":
+      case "object-property":
+        return "display: flex; gap: 0.2rem; align-items: start;";
+      case "array-item-content":
+        return "flex-grow: 1;";
+      case "field-content":
+        return "display: flex; gap: 0.5rem; flex-wrap: wrap;";
+      case "array-items":
+      case "object-properties":
+      case "array-field":
+      case "object-field":
+      case "multi-field":
+        return "display: flex; flex-direction: column; gap: 0.5rem;";
+      case "field":
+        return "display: flex; flex-direction: column; gap: 0.2rem;";
+      case "field-meta":
+        return "display: block;"
+      case "object-property-key-input":
+      case "object-property-content":
+        return "flex-grow: 1;";
+      // case "object-property-controls":
+        // return "align-self: flex-start;";
+      case "object-field-meta":
+      case "array-field-meta":
+        return "padding-bottom: 0;";
+      default:
+        return undefined
+    }
+  }
+
+  const style = $derived(getStyle(type));
+</script>
+
+{#if style || attributes}
+  <div {style} data-layout={type} {...attributes}>
+    {@render children()}
+  </div>
+{:else}
+  {@render children()}
+{/if}
