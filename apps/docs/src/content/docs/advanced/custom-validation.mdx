@@ -4,19 +4,32 @@ sidebar:
   order: 1
 ---
 
+import { LinkCard } from '@astrojs/starlight/components';
+
 ## Errors transformation and custom validation
 
-One way to convert errors and perform custom validation is to extend the Validator class.
-[Example](https://x0k.github.io/svelte-jsonschema-form/playground/?sample=Validation).
+One way to transform errors and/or perform custom validation is to create a custom validator.
 
-:::note
-This customization will be applied only during full form validation.
-
-For more information see [Validator](../../api-reference/validator/).
-:::
+- [Demo](https://x0k.github.io/svelte-jsonschema-form/playground/?sample=Validation)
+- [Code](https://github.com/x0k/sjsf-examples/blob/cb06b15aa14a8bf72a84ece6054d868b90170f89/src/routes/custom-validator/%2Bpage.svelte)
 
 ```typescript
-function customValidate(value: SchemaValue | undefined): ValidatorError<ErrorObject>[] {
+import {
+  DEFAULT_ID_PREFIX,
+  DEFAULT_ID_SEPARATOR,
+  pathToId,
+  type FormValidator2,
+  type SchemaValue,
+  type ValidationError,
+} from "@sjsf/form";
+import { createValidator2, Validator } from "@sjsf/ajv8-validator";
+import type { ErrorObject } from "ajv";
+
+class CustomError {}
+
+function customValidate(
+  value: SchemaValue | undefined
+): ValidationError<CustomError>[] {
   const { pass1, pass2 } = value as {
     pass1: string;
     pass2: string;
@@ -24,35 +37,58 @@ function customValidate(value: SchemaValue | undefined): ValidatorError<ErrorObj
   if (pass1 !== pass2) {
     return [
       {
-        instanceId: pathToId(DEFAULT_ID_PREFIX, DEFAULT_ID_SEPARATOR, ["pass2"]),
+        instanceId: pathToId(DEFAULT_ID_PREFIX, DEFAULT_ID_SEPARATOR, [
+          "pass2",
+        ]),
         propertyTitle: "Repeat password",
         message: "Passwords don't match.",
-        error: {} as ErrorObject,
+        error: new CustomError(),
       },
     ];
   }
   return [];
 }
 
-class CustomAjvValidator extends AjvValidator {
-  override validateFormData(
-    schema: Schema,
-    formData: SchemaValue | undefined
-  ): ValidatorError<ErrorObject>[] {
-    // Errors transformation
-    const errors = super.validateFormData(schema, formData).map((error) => {
-      if (
-        error.error.keyword === "minimum" &&
-        error.error.schemaPath === "#/properties/age/minimum"
-      ) {
-        return Object.assign({}, error, {
-          message: "You need to be 18 because of some legal thing",
-        });
-      }
-      return error;
-    });
-    // Custom validation
-    return errors.concat(customValidate(formData))
-  }
+function transformErrors(
+  errors: ValidationError<ErrorObject>[]
+): ValidationError<ErrorObject>[] {
+  return errors.map((error) => {
+    if (
+      error.error.keyword === "minimum" &&
+      error.error.schemaPath === "#/properties/age/minimum"
+    ) {
+      return Object.assign({}, error, {
+        message: "You need to be 18 because of some legal thing",
+      });
+    }
+    return error;
+  });
 }
+
+function createCustomValidator(
+  validator: Validator
+): FormValidator2<ErrorObject | CustomError> {
+  return {
+    isValid(schema, rootSchema, formData) {
+      return validator.isValid(schema, rootSchema, formData);
+    },
+    reset() {
+      validator.reset();
+    },
+    validateFieldData(field, fieldData) {
+      // You can also customize this method to transform/add custom errors
+      // during individual fields validation
+      return validator.validateFieldData(field, fieldData);
+    },
+    validateFormData(rootSchema, formData) {
+      const errors: ValidationError<ErrorObject | CustomError>[] =
+        transformErrors(validator.validateFormData(rootSchema, formData));
+      return errors.concat(customValidate(formData));
+    },
+  };
+}
+
+const validator = createCustomValidator(createValidator2());
 ```
+
+<LinkCard title="Validator API reference" href="../../api-reference/validator/" />
