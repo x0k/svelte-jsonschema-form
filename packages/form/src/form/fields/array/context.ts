@@ -59,8 +59,3 @@ export function getArrayItemSchemaId(
     value
   );
 }
-
-/** @deprecated use `isFilesArray from `form/context` */
-export function isFilesArray(ctx: FormContext, schema: Schema) {
-  return isFilesArrayInternal(ctx.validator, ctx.merger, schema, ctx.schema);
-}
