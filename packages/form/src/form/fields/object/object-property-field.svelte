@@ -18,7 +18,6 @@
     property,
     isAdditional,
     value = $bindable(),
-    obj = $bindable(),
   }: FieldProps<"objectProperty"> = $props();
 
   const ctx = getFormContext();
@@ -33,7 +32,6 @@
 
 {#snippet keyInput()}
   <ObjectKeyInput
-    bind:obj
     {property}
     name={config.name}
     uiSchema={config.uiSchema.additionalPropertyKeyInput ?? {}}
@@ -48,8 +46,7 @@
     type="object-property-remove"
     onclick={(e) => {
       e.preventDefault();
-      delete obj[property];
-      objCtx.validate();
+      objCtx.removeProperty(property)
     }}
   >
     <ctx.IconOrTranslation data={["remove-object-property"]} />

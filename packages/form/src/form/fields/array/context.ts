@@ -23,7 +23,13 @@ export interface ArrayContext {
   removable: boolean;
   copyable: boolean;
   errors: ValidationError<unknown>[];
+  /** @deprecated */
   validate: () => void;
+  pushItem(itemSchema: Schema): void;
+  moveItemUp(index: number): void;
+  moveItemDown(index: number): void;
+  copyItem(index: number): void;
+  removeItem(index: number): void;
 }
 
 const ARRAY_CONTEXT = Symbol("array-context");
@@ -54,6 +60,7 @@ export function getArrayItemSchemaId(
   );
 }
 
+/** @deprecated use `isFilesArray from `form/context` */
 export function isFilesArray(ctx: FormContext, schema: Schema) {
   return isFilesArrayInternal(ctx.validator, ctx.merger, schema, ctx.schema);
 }
