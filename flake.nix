@@ -21,6 +21,9 @@
             pkgs.nodejs_22
             pkgs.pnpm
           ];
+          shellHook = ''
+            source <(COMPLETE=''${SHELL##*/} mk)
+          '';
         };
       };
     };

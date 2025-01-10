@@ -62,7 +62,7 @@
 		"@types/eslint": "catalog:",
 		"ajv": "catalog:",
 		"autoprefixer": "catalog:",
-		"daisyui": "^4.12.22",
+		"daisyui": "^4.12.23",
 		"eslint": "catalog:",
 		"eslint-config-prettier": "catalog:",
 		"eslint-plugin-svelte": "catalog:",
