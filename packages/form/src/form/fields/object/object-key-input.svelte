@@ -16,16 +16,13 @@
   } from "../../context/index.js";
 
   import { getObjectContext } from "./context.js";
-  import { generateNewKey } from "./generate-new-object-key.js";
 
   const {
     property,
     name,
     uiSchema,
     idSchema,
-    obj = $bindable(),
   }: {
-    obj: SchemaObjectValue;
     property: string;
     name: string;
     uiSchema: UiSchema;
@@ -60,13 +57,7 @@
         if (!key.value || key.value === property) {
           return;
         }
-        const newKey = generateNewKey(key.value, objCtx.newKeySeparator, obj);
-        if (!ctx.validateAdditionalPropertyKey(config, newKey)) {
-          return;
-        }
-        obj[newKey] = obj[property];
-        delete obj[property];
-        objCtx.validate();
+        objCtx.renameProperty(property, key.value)
       },
     })
   );

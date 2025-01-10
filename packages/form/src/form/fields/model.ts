@@ -29,7 +29,6 @@ export interface FieldsAndProps<V extends SchemaValue> {
   object: FieldCommonProps<V>;
   objectProperty: FieldCommonProps<V> & {
     property: string;
-    obj: SchemaObjectValue;
     isAdditional: boolean;
   };
 
@@ -66,7 +65,7 @@ export interface FieldBindings {
   integer: "value";
   boolean: "value";
   object: "value";
-  objectProperty: "value" | "obj";
+  objectProperty: "value";
   array: "value";
   anotherFieldArray: "value";
   fixedArray: "value";

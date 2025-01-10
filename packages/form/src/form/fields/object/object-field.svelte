@@ -41,19 +41,47 @@
   const newKeySeparator = $derived(
     config.uiOptions?.duplicateKeySuffixSeparator ?? "-"
   );
+
+  function validate() {
+    const m = ctx.fieldsValidationMode;
+    if (!(m & ON_OBJECT_CHANGE) || (m & AFTER_SUBMITTED && !ctx.isSubmitted)) {
+      return;
+    }
+    validateField(ctx, config, value);
+  }
   const objCtx: ObjectContext = {
     get newKeySeparator() {
       return newKeySeparator;
     },
-    validate() {
-      const m = ctx.fieldsValidationMode;
-      if (
-        !(m & ON_OBJECT_CHANGE) ||
-        (m & AFTER_SUBMITTED && !ctx.isSubmitted)
-      ) {
+    validate,
+    addProperty() {
+      if (value === undefined) {
         return;
       }
-      validateField(ctx, config, value);
+      const newKey = generateNewKey("newKey", newKeySeparator, value);
+      value[newKey] =
+        getDefaultFieldState(ctx, schemaAdditionalProperties, undefined) ??
+        getDefaultValueForType(getSimpleSchemaType(schemaAdditionalProperties));
+      validate();
+    },
+    removeProperty(prop) {
+      if (value === undefined) {
+        return;
+      }
+      delete value[prop];
+      validate();
+    },
+    renameProperty(oldProp, newProp) {
+      if (value === undefined) {
+        return;
+      }
+      const newKey = generateNewKey(newProp, newKeySeparator, value);
+      if (!ctx.validateAdditionalPropertyKey(config, newKey)) {
+        return;
+      }
+      value[newKey] = value[oldProp];
+      delete value[oldProp];
+      validate();
     },
   };
   setObjectContext(objCtx);
@@ -120,15 +148,7 @@
     attributes={config.uiOptions?.button}
     onclick={(e) => {
       e.preventDefault();
-      if (value === undefined) {
-        console.warn("Object value is undefined");
-        return;
-      }
-      const newKey = generateNewKey("newKey", newKeySeparator, value);
-      value[newKey] =
-        getDefaultFieldState(ctx, schemaAdditionalProperties, undefined) ??
-        getDefaultValueForType(getSimpleSchemaType(schemaAdditionalProperties));
-      objCtx.validate();
+      objCtx.addProperty();
     }}
   >
     <ctx.IconOrTranslation data={["add-object-property"]} />
@@ -154,7 +174,6 @@
       <ObjectProperty
         {property}
         {isAdditional}
-        bind:obj={value}
         bind:value={value[property]}
         config={{
           name: property,
