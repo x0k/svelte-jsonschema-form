@@ -55,7 +55,7 @@
 {#if 'href' in restProps}
 	<a
 		bind:this={ref}
-		class={cn(buttonVariants({ variant, size, className: className as string }))}
+		class={cn(buttonVariants({ variant, size }), className)}
 		{...restProps}
 	>
 		{@render children?.()}
@@ -63,7 +63,7 @@
 {:else}
 	<button
 		bind:this={ref}
-		class={cn(buttonVariants({ variant, size, className: className as string }))}
+		class={cn(buttonVariants({ variant, size }), className)}
 		type={type as HTMLButtonAttributes['type']}
 		{...restProps as HTMLButtonAttributes}
 	>

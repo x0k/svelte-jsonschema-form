@@ -9,12 +9,13 @@
 	const { Slider } = $derived(ctx.components);
 
 	let { value = $bindable(), attributes }: WidgetProps<'number'> = $props();
+	
 	const slider = {
 		get value() {
-			return [value ?? 0];
+			return value ?? 0
 		},
 		set value(v) {
-			value = v[0];
+			value = v
 		}
 	};
 
@@ -31,6 +32,7 @@
 </script>
 
 <Slider
+  type="single"
 	bind:value={slider.value}
 	id={attributes.id}
 	max={n(attributes.max)}

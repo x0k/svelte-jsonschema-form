@@ -1,6 +1,6 @@
 {
 	"$schema": "https://next.shadcn-svelte.com/schema.json",
-	"style": "default",
+	"style": "new-york",
 	"tailwind": {
 		"config": "tailwind.config.js",
 		"css": "src/app.css",
@@ -9,7 +9,7 @@
 	"aliases": {
 		"components": "$lib/components",
 		"utils": "$lib/utils",
-		"ui": "$lib/default-ui",
+		"ui": "$lib/new-york-ui",
 		"hooks": "$lib/hooks"
 	},
 	"typescript": true,
