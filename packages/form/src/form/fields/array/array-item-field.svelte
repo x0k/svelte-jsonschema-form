@@ -6,16 +6,15 @@
     isDisabled,
     getErrors,
     getUiOptions,
-    getFormContext
+    getFormContext,
   } from "../../context/index.js";
 
-  import type { FieldProps } from '../model.js';
+  import type { FieldProps } from "../model.js";
 
-  import { getArrayContext } from './context.js';
+  import { getArrayContext } from "./context.js";
 
   let {
     index,
-    arr = $bindable(),
     value = $bindable(),
     config,
     canCopy,
@@ -32,11 +31,9 @@
   const Button = $derived(getComponent(ctx, "button", config));
 
   const toolbar = $derived(canCopy || canRemove || canMoveUp || canMoveDown);
-  const uiOptions = $derived(getUiOptions(ctx, config.uiSchema))
-  const disabled = $derived(
-    isDisabled(ctx, uiOptions?.input)
-  )
-  const errors = $derived(getErrors(ctx, config.idSchema))
+  const uiOptions = $derived(getUiOptions(ctx, config.uiSchema));
+  const disabled = $derived(isDisabled(ctx, uiOptions?.input));
+  const errors = $derived(getErrors(ctx, config.idSchema));
 </script>
 
 {#snippet buttons()}
@@ -47,10 +44,8 @@
       type="array-item-move-up"
       disabled={disabled || !canMoveUp}
       onclick={(e) => {
-        e.preventDefault()
-        const tmp = arr[index]
-        arr[index] = arr[index - 1]
-        arr[index - 1] = tmp
+        e.preventDefault();
+        arrayCtx.moveItemUp(index);
       }}
     >
       <ctx.IconOrTranslation data={["move-array-item-up"]} />
@@ -61,10 +56,8 @@
       type="array-item-move-down"
       disabled={disabled || !canMoveDown}
       onclick={(e) => {
-        e.preventDefault()
-        const tmp = arr[index]
-        arr[index] = arr[index + 1]
-        arr[index + 1] = tmp
+        e.preventDefault();
+        arrayCtx.moveItemDown(index)
       }}
     >
       <ctx.IconOrTranslation data={["move-array-item-down"]} />
@@ -77,9 +70,8 @@
       {disabled}
       type="array-item-copy"
       onclick={(e) => {
-        e.preventDefault()
-        arr.splice(index, 0, $state.snapshot(value))
-        arrayCtx.validate()
+        e.preventDefault();
+        arrayCtx.copyItem(index)
       }}
     >
       <ctx.IconOrTranslation data={["copy-array-item"]} />
@@ -92,9 +84,8 @@
       type="array-item-remove"
       {disabled}
       onclick={(e) => {
-        e.preventDefault()
-        arr.splice(index, 1)
-        arrayCtx.validate()
+        e.preventDefault();
+        arrayCtx.removeItem(index)
       }}
     >
       <ctx.IconOrTranslation data={["remove-array-item"]} />

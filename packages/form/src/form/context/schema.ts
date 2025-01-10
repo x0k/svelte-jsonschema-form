@@ -2,6 +2,7 @@ import {
   type Schema,
   type SchemaValue,
   isSelect2 as isSelectInternal,
+  isFilesArray2 as isFilesArrayInternal,
   isMultiSelect2 as isMultiSelectInternal,
   retrieveSchema2 as retrieveSchemaInternal,
   sanitizeDataForNewSchema2 as sanitizeDataForNewSchemaInternal,
@@ -16,6 +17,10 @@ export function isSelect(ctx: FormContext, schema: Schema) {
 
 export function isMultiSelect(ctx: FormContext, schema: Schema) {
   return isMultiSelectInternal(ctx.validator, ctx.merger, schema, ctx.schema);
+}
+
+export function isFilesArray(ctx: FormContext, schema: Schema) {
+  return isFilesArrayInternal(ctx.validator, ctx.merger, schema, ctx.schema);
 }
 
 export function retrieveSchema(

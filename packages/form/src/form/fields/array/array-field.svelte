@@ -1,14 +1,16 @@
 <script lang="ts">
-  import { isFixedItems } from "@/core/index.js";
+  import { isFixedItems, type Schema } from "@/core/index.js";
 
   import {
     isDisabled,
     getField,
     getErrors,
     getUiOptions,
+    isFilesArray,
     isMultiSelect,
     getFormContext,
     validateField,
+    getDefaultFieldState,
   } from "../../context/index.js";
   import ErrorMessage from "../../error-message.svelte";
   import { AFTER_SUBMITTED, ON_ARRAY_CHANGE } from "../../validation.js";
@@ -18,7 +20,6 @@
   import {
     setArrayContext,
     type ArrayContext,
-    isFilesArray,
   } from "./context.js";
 
   let { value = $bindable(), config }: FieldProps<"array"> = $props();
@@ -42,6 +43,14 @@
   const disabled = $derived(isDisabled(ctx, uiOptions?.input));
   const errors = $derived(getErrors(ctx, config.idSchema));
 
+  function validate() {
+    const m = ctx.fieldsValidationMode;
+    if (!(m & ON_ARRAY_CHANGE) || (m & AFTER_SUBMITTED && !ctx.isSubmitted)) {
+      return;
+    }
+    validateField(ctx, config, value);
+  }
+
   const arrayCtx: ArrayContext = {
     get errors() {
       return errors;
@@ -64,13 +73,46 @@
     get copyable() {
       return copyable;
     },
-    validate() {
-      const m = ctx.fieldsValidationMode;
-      if (!(m & ON_ARRAY_CHANGE) || (m & AFTER_SUBMITTED && !ctx.isSubmitted)) {
+    validate,
+    pushItem(itemSchema: Schema) {
+      if (value === undefined) {
         return;
       }
-      validateField(ctx, config, value);
+      value.push(getDefaultFieldState(ctx, itemSchema, undefined));
+      validate();
     },
+    moveItemUp(index) {
+      if (value === undefined || index < 1) {
+        return;
+      }
+      const tmp = value[index];
+      value[index] = value[index - 1];
+      value[index - 1] = tmp;
+      validate();
+    },
+    moveItemDown(index) {
+      if (value === undefined || index > value.length - 2) {
+        return;
+      }
+      const tmp = value[index];
+      value[index] = value[index + 1];
+      value[index + 1] = tmp;
+      validate();
+    },
+    copyItem(index) {
+      if (value === undefined) {
+        return
+      }
+      value.splice(index, 0, $state.snapshot(value[index]))
+      validate()
+    },
+    removeItem(index) {
+      if (value === undefined) {
+        return
+      }
+      value.splice(index, 1)
+      validate()
+    }
   };
   setArrayContext(arrayCtx);
 

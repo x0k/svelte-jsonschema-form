@@ -40,7 +40,6 @@ export interface FieldsAndProps<V extends SchemaValue> {
   normalArray: FieldCommonProps<V>;
   arrayItem: FieldCommonProps<V> & {
     index: number;
-    arr: SchemaArrayValue;
     canCopy: boolean;
     canRemove: boolean;
     canMoveUp: boolean;
@@ -70,7 +69,7 @@ export interface FieldBindings {
   anotherFieldArray: "value";
   fixedArray: "value";
   normalArray: "value";
-  arrayItem: "value" | "arr";
+  arrayItem: "value";
   null: "value";
   enum: "value";
   file: "value";
@@ -104,7 +103,6 @@ export type FieldProps<T extends FieldType> = FieldsAndProps<FieldValue[T]>[T];
 export type Field<T extends FieldType> = SvelteComponent<
   FieldProps<T>,
   {},
-  // @ts-expect-error something with typescript
   FieldBindings[T]
 >;
 

@@ -62,11 +62,10 @@
     disabled={arrayCtx.disabled}
     onclick={(e) => {
       e.preventDefault();
-      if (!schemaAdditionalItems || value === undefined) {
+      if (schemaAdditionalItems === false) {
         return
       }
-      value.push(getDefaultFieldState(ctx, schemaAdditionalItems, undefined))
-      arrayCtx.validate();
+      arrayCtx.pushItem(schemaAdditionalItems)
     }}
   >
     <ctx.IconOrTranslation data={["add-array-item"]} />
@@ -106,7 +105,6 @@
           idSchema: itemIdSchema,
           required: !isSchemaNullable(itemSchema),
         }}
-        bind:arr={value}
         bind:value={value[index]}
         canCopy={arrayCtx.copyable && isAdditional && arrayCtx.canAdd}
         canRemove={arrayCtx.removable && isAdditional}

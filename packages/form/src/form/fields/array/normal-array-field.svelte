@@ -9,7 +9,6 @@
     getField,
     getComponent,
     getTemplate,
-    getDefaultFieldState,
     getUiOptions,
     retrieveSchema,
     getFormContext,
@@ -51,8 +50,7 @@
     disabled={arrayCtx.disabled}
     onclick={(e) => {
       e.preventDefault();
-      value?.push(getDefaultFieldState(ctx, schemaItems, undefined))
-      arrayCtx.validate();
+      arrayCtx.pushItem(schemaItems)
     }}
   >
     <ctx.IconOrTranslation data={["add-array-item"]} />
@@ -84,7 +82,6 @@
           idSchema: itemIdSchema,
           required: !isSchemaNullable(itemSchema),
         }}
-        bind:arr={value}
         bind:value={value[index]}
         canCopy={arrayCtx.copyable && arrayCtx.canAdd}
         canRemove={arrayCtx.removable}
