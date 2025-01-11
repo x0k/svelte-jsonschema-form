@@ -6,7 +6,9 @@
 
   import { schema, uiSchema } from './_shared';
 
-  const validator = createValidator2();
+  const validator = createValidator2({
+    uiSchema
+  });
 
   const form = useCustomForm({
     schema,

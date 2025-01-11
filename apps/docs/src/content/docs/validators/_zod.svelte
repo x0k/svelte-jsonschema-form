@@ -24,7 +24,7 @@
 
   type Value = z.infer<typeof schema>;
 
-  const validator = createValidator({ schema });
+  const validator = createValidator({ schema, uiSchema });
 
   const form = useCustomForm({
     schema: zodToJsonSchema(schema, { errorMessages: true }) as Schema,

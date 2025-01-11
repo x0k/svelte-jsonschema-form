@@ -14,7 +14,6 @@
     ...theme,
     schema,
     translation,
-    validator: createValidator2(),
     onSubmit: (v: string) => window.alert(v),
   };
 
@@ -22,12 +21,18 @@
     ...common,
     initialValue: "foo",
     idPrefix: "form1",
+    validator: createValidator2({
+      idPrefix: "form1",
+    }),
   });
 
   const [form2, form2Ctx] = createForm2({
     ...common,
     initialValue: "bar",
     idPrefix: "form2",
+    validator: createValidator2({
+      idPrefix: "form2",
+    })
   });
 </script>
 
