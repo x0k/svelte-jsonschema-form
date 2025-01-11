@@ -11,6 +11,7 @@ import Npm from '@/components/npm.astro';
 import Form from './_ajv.astro';
 import formCode from './_ajv.svelte?raw';
 import sharedCode from './_shared.ts?raw';
+import apiCode from './_ajv.api.ts?raw'
 
 Form validator implementation based on [Ajv@8 JSON schema validator](https://github.com/ajv-validator/ajv).
 
@@ -61,3 +62,7 @@ const validator = createAsyncValidator({
   ajv: yourAjvInstance,
 })
 ```
+
+## API
+
+<Code code={apiCode} lang="typescript" />
