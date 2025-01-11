@@ -11,6 +11,7 @@ import Npm from '@/components/npm.astro';
 import Form from './_cfworker.astro';
 import formCode from './_cfworker.svelte?raw';
 import sharedCode from './_shared.ts?raw';
+import apiCode from './_cfworker.api.ts?raw';
 
 :::caution
 
@@ -47,3 +48,7 @@ Form validator implementation based on [@cfworker/json-schema](https://github.co
 ## Async validation
 
 This validator does not support async validation.
+
+## API
+
+<Code code={apiCode} lang="typescript" />
