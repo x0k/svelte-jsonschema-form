@@ -8,7 +8,7 @@ import {
   type ValidatorOptions,
 } from "./validator.js";
 
-/** @deprecated Use `createValidator2` */
+/** @deprecated Use `createValidator2` instead */
 export function createValidator(options: Options = DEFAULT_AJV_CONFIG) {
   return new Validator({
     ajv: addFormComponents(new Ajv(options)),

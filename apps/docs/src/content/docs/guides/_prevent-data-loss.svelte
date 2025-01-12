@@ -1,12 +1,13 @@
 <script lang="ts">
-  import { FormContent } from "@sjsf/form";
+  import { FormContent, setFromContext } from "@sjsf/form";
   import { preventDataLoss } from "@sjsf/form/prevent-data-loss.svelte";
 
-  import { useCustomForm } from "@/components/custom-form";
+  import { createCustomForm } from "@/components/custom-form";
 
-  const form = useCustomForm({
+  const form = createCustomForm({
     schema: { type: "string" },
   });
+  setFromContext(form.context)
 
   preventDataLoss(form);
 </script>

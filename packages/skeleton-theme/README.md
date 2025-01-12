@@ -66,10 +66,10 @@ Bundled themes:
 
 ```svelte
 <script lang="ts">
-  import { useForm2 } from '@sjsf/form';
+  import { createForm3 } from '@sjsf/form';
   import { theme } from '@sjsf/skeleton-theme';
 
-  const form = useForm2({
+  const form = createForm3({
     ...theme,
   })
 </script>

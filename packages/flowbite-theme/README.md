@@ -52,10 +52,10 @@ import themeStyles from "@sjsf/flowbite-theme/styles.css?inline";
 
 ```svelte
 <script lang="ts">
-  import { useForm2 } from '@sjsf/form';
+  import { createForm3 } from '@sjsf/form';
   import { theme } from '@sjsf/flowbite-theme';
 
-  const form = useForm2({
+  const form = createForm3({
     ...theme,
   })
 </script>

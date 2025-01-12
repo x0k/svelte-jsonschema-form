@@ -2,13 +2,13 @@
   import { SimpleForm, ON_INPUT } from "@sjsf/form";
   import { createValidator } from "@sjsf/cfworker-validator";
 
-  import { useCustomForm } from "@/components/custom-form";
+  import { createCustomForm } from "@/components/custom-form";
 
   import { schema, uiSchema } from './_shared';
 
   const validator = createValidator({ uiSchema });
 
-  const form = useCustomForm({
+  const form = createCustomForm({
     schema,
     uiSchema,
     validator,

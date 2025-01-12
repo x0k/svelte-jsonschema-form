@@ -4,7 +4,7 @@
   import { zodToJsonSchema } from "zod-to-json-schema";
   import { z } from "zod";
 
-  import { useCustomForm } from "@/components/custom-form";
+  import { createCustomForm } from "@/components/custom-form";
 
   import { initialValue, uiSchema } from './_shared';
 
@@ -26,7 +26,7 @@
 
   const validator = createValidator({ schema, uiSchema });
 
-  const form = useCustomForm({
+  const form = createCustomForm({
     schema: zodToJsonSchema(schema, { errorMessages: true }) as Schema,
     uiSchema,
     validator,

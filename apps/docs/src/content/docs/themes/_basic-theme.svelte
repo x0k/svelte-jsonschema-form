@@ -2,11 +2,11 @@
   import { SimpleForm } from "@sjsf/form";
   import { theme } from "@sjsf/form/basic-theme";
 
-  import { useCustomForm } from "@/components/custom-form";
+  import { createCustomForm } from "@/components/custom-form";
 
   import { schema, uiSchema } from "./_demo-schema";
   
-  const form = useCustomForm({
+  const form = createCustomForm({
     ...theme,
     schema,
     uiSchema,

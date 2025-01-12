@@ -1,7 +1,7 @@
 <script lang="ts">
   import { SimpleForm, type Schema, type UiSchemaRoot } from "@sjsf/form";
 
-  import { useCustomForm } from "@/components/custom-form";
+  import { createCustomForm } from "@/components/custom-form";
 
   const schema: Schema = {
     type: "string",
@@ -18,7 +18,7 @@
     },
   };
 
-  const form = useCustomForm({
+  const form = createCustomForm({
     schema,
     uiSchema,
     onSubmit: console.log,

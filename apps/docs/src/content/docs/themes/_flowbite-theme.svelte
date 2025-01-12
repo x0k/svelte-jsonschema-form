@@ -3,13 +3,13 @@
   import { theme } from "@sjsf/flowbite-theme";
 
   import { useAstro } from "@/astro.svelte";
-  import { useCustomForm } from "@/components/custom-form";
+  import { createCustomForm } from "@/components/custom-form";
 
   import { schema, uiSchema } from "./_demo-schema";
 
   const astro = useAstro();
 
-  const form = useCustomForm({
+  const form = createCustomForm({
     ...theme,
     schema,
     uiSchema,

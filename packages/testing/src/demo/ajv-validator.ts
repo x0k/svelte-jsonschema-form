@@ -1,3 +1,3 @@
-import { createValidator } from "@sjsf/ajv8-validator";
+import { createValidator2 } from "@sjsf/ajv8-validator";
 
-export const validator = createValidator();
+export const validator = createValidator2();

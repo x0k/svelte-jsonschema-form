@@ -1,6 +1,6 @@
 <script lang="ts">
   import { FormContent } from '@sjsf/form';
-  import { createValidator } from '@sjsf/ajv8-validator';
+  import { createValidator2 } from '@sjsf/ajv8-validator';
   import { theme } from '@sjsf/form/basic-theme';
   import { translation } from '@sjsf/form/translations/en';
 
@@ -10,7 +10,7 @@
 
   const { form, enhance } = useSvelteKitForm(meta<ActionData, PageData>(), "form", {
     ...theme,
-    validator: createValidator(),
+    validator: createValidator2(),
     translation,
     onSuccess: console.log,
     onFailure: console.warn,
