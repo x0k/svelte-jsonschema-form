@@ -11,8 +11,6 @@ The [SvelteKit](https://svelte.dev/docs/kit/introduction) integration for [svelt
 npm install @sjsf/sveltekit
 ```
 
-## Usage
-
 ## License
 
 MIT

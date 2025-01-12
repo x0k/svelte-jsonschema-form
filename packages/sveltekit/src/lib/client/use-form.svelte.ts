@@ -6,12 +6,13 @@ import {
   DEFAULT_ID_SEPARATOR,
   DEFAULT_PSEUDO_ID_SEPARATOR,
   groupErrors,
-  useForm2,
+  createForm3,
+  setFromContext,
   type AdditionalPropertyKeyError,
   type AdditionalPropertyKeyValidator,
   type Schema,
   type SchemaValue,
-  type UseFormOptions2
+  type FormOptions
 } from '@sjsf/form';
 
 import { page } from '$app/stores';
@@ -76,7 +77,7 @@ export type AdditionalPropertyKeyValidationError =
   | ((ctx: { key: string; separator: string; separators: string[] }) => string);
 
 export type SvelteKitFormOptions<ActionData, V, E, SendSchema extends boolean> = Omit<
-  UseFormOptions2<V, E>,
+  FormOptions<V, E>,
   'onSubmit' | 'schema'
 > &
   SveltekitMutationOptions<ActionData, V> & {
@@ -147,7 +148,7 @@ export function useSvelteKitForm<
   const additionalPropertyKeyValidationError = $derived(
     options.additionalPropertyKeyValidationError
   );
-  const form = useForm2<UseFormOptions2<V, E>>(
+  const form = createForm3<FormOptions<V, E>>(
     Object.setPrototypeOf(options, {
       ...lastInitialFormData,
       onSubmit: mutation.run,
@@ -167,6 +168,7 @@ export function useSvelteKitForm<
       }
     })
   );
+  setFromContext(form.context);
 
   return {
     form,
