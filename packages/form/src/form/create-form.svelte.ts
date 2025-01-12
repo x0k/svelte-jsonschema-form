@@ -51,6 +51,8 @@ import { createAdditionalPropertyKeyValidationSchema } from "./additional-proper
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
 
+export type FormValue = SchemaValue | undefined;
+
 /**
  * @deprecated use `UseFormOptions2`
  */
@@ -99,7 +101,7 @@ export interface UseFormOptions<T, E> {
    */
   fieldsValidationCombinator?: MutationsCombinator2<
     unknown,
-    [Config<unknown>, SchemaValue | undefined]
+    [Config<unknown>, FormValue]
   >;
   /**
    * @default 500
@@ -117,7 +119,7 @@ export interface UseFormOptions<T, E> {
    *
    * @default () => $state.snapshot(formValue)
    */
-  getSnapshot?: () => SchemaValue | undefined;
+  getSnapshot?: () => FormValue;
   /**
    * Submit handler
    *
@@ -138,7 +140,7 @@ export interface UseFormOptions<T, E> {
   onSubmitError?: (
     errors: Errors<E>,
     e: SubmitEvent,
-    snapshot: SchemaValue | undefined
+    snapshot: FormValue
   ) => void;
   /**
    * Form validation error handler
@@ -158,7 +160,7 @@ export interface UseFormOptions<T, E> {
   onFieldsValidationFailure?: (
     state: FailedMutation<unknown>,
     config: Config,
-    value: SchemaValue | undefined
+    value: FormValue
   ) => void;
   /**
    * Reset handler
@@ -192,21 +194,21 @@ export type UseFormOptions2<T, E> = FormOptions<T, E>;
 
 export interface FormState<T, E> {
   value: T | undefined;
-  /** @deprecated moved to the `FormAPI2` */
-  formValue: SchemaValue | undefined;
+  /** @deprecated moved to the `FormInternals` */
+  formValue: FormValue;
   errors: Errors<E>;
   isSubmitted: boolean;
   isChanged: boolean;
   validation: Mutation<
     [event: SubmitEvent],
     {
-      snapshot: SchemaValue | undefined;
+      snapshot: FormValue;
       validationErrors: Errors<E>;
     },
     unknown
   >;
   fieldsValidation: Mutation<
-    [config: Config<unknown>, value: SchemaValue | undefined],
+    [config: Config<unknown>, value: FormValue],
     ValidationError<E>[],
     unknown
   >;
@@ -220,19 +222,17 @@ export interface FormState<T, E> {
   ): void;
 }
 
-export interface FormAPI2 {
+export interface FormInternals {
   enhance: Action;
   context: FormContext;
-  formValue: SchemaValue | undefined;
+  formValue: FormValue;
 }
 
-/** @deprecated use `FormAPI2` or `FormState` instead */
+/** @deprecated use `FormInternals` or `FormState` instead */
 export interface FormAPI<T, E> extends FormState<T, E> {
   enhance: Action;
   context: FormContext;
 }
-
-export type FormValue = SchemaValue | undefined;
 
 /**
  * @deprecated use `createForm3` instead
@@ -274,7 +274,7 @@ export function createForm2<
 }
 
 export function createForm3<
-  O extends UseFormOptions2<any, any>,
+  O extends FormOptions<any, any>,
   T = FormValueFromOptions<O>,
   VE = ValidatorErrorFromOptions<O>,
   E1 = O extends {
@@ -287,7 +287,7 @@ export function createForm3<
   }
     ? E1 | ValidationProcessError
     : E1,
->(options: O): FormState<T, E> & FormAPI2 {
+>(options: O): FormState<T, E> & FormInternals {
   const merger = $derived(
     options.merger ?? new DefaultFormMerger(options.validator, options.schema)
   );
@@ -368,7 +368,7 @@ export function createForm3<
   );
 
   function validateSnapshot(
-    snapshot: SchemaValue | undefined,
+    snapshot: FormValue,
     signal: AbortSignal
   ) {
     const errors = options.validator.validateFormData(
@@ -430,7 +430,7 @@ export function createForm3<
   });
 
   const fieldsValidation = useMutation({
-    async mutate(signal, config: Config, value: SchemaValue | undefined) {
+    async mutate(signal, config: Config, value: FormValue) {
       return options.validator.validateFieldData(config, value, signal);
     },
     onSuccess(validationErrors: ValidationError<E>[], config) {

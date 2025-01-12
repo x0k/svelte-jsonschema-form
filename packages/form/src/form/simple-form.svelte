@@ -1,13 +1,13 @@
 <script lang="ts" generics="T, E">
   import type { HTMLFormAttributes } from "svelte/elements";
 
-  import type { FormAPI2 } from "./create-form.svelte.js";
+  import type { FormInternals } from "./create-form.svelte.js";
   import FormContent from "./form-content.svelte";
   import SubmitButton from "./submit-button.svelte";
   import { setFromContext } from './context/context.js';
 
   interface Props extends HTMLFormAttributes {
-    form: FormAPI2
+    form: FormInternals
   }
 
   const { form, ...rest }: Props = $props();
