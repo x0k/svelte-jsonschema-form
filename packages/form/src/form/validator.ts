@@ -58,6 +58,9 @@ export interface FormValidator2<E = unknown> extends Validator {
   ): MaybePromise<ValidationError<E>[]>;
 }
 
+// @deprecated
+// TODO: Turn errors into classes to make it easier to distinguish them via `instanceof`.
+
 export const ADDITIONAL_PROPERTY_KEY_ERROR = Symbol(
   "additional-property-key-error"
 );

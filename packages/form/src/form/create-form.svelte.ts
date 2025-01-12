@@ -178,7 +178,7 @@ export type ValidationProcessErrorTranslation = (
   state: FailedMutation<unknown>
 ) => string;
 
-export interface UseFormOptions2<T, E> extends UseFormOptions<T, E> {
+export interface FormOptions<T, E> extends UseFormOptions<T, E> {
   additionalPropertyKeyValidator?: AdditionalPropertyKeyValidator;
   // @deprecated
   // TODO: Move translation functionality to `Translation`
@@ -187,8 +187,12 @@ export interface UseFormOptions2<T, E> extends UseFormOptions<T, E> {
   handleValidationProcessError?: ValidationProcessErrorTranslation;
 }
 
+/** @default use `FormOptions` instead */
+export type UseFormOptions2<T, E> = FormOptions<T, E>;
+
 export interface FormState<T, E> {
   value: T | undefined;
+  /** @deprecated moved to the `FormAPI2` */
   formValue: SchemaValue | undefined;
   errors: Errors<E>;
   isSubmitted: boolean;
@@ -216,14 +220,22 @@ export interface FormState<T, E> {
   ): void;
 }
 
-export interface FormAPI<T, E> extends FormState<T, E> {
+export interface FormAPI2 {
   enhance: Action;
+  context: FormContext;
+  formValue: SchemaValue | undefined;
 }
 
-type Value = SchemaValue | undefined;
+/** @deprecated use `FormAPI2` or `FormState` instead */
+export interface FormAPI<T, E> extends FormState<T, E> {
+  enhance: Action;
+  context: FormContext;
+}
+
+export type FormValue = SchemaValue | undefined;
 
 /**
- * @deprecated use `createForm2`
+ * @deprecated use `createForm3` instead
  */
 export function createForm<T, E>(
   options: UseFormOptions<T, E>
@@ -238,8 +250,10 @@ type FormValueFromOptions<O extends UseFormOptions2<any, any>> =
 type ValidatorErrorFromOptions<O extends UseFormOptions2<any, any>> =
   O extends UseFormOptions2<any, infer E> ? E : never;
 
+/** @deprecated */
 export type FormApiAndContext<T, E> = [FormAPI<T, E>, FormContext];
 
+/** @deprecated use `createForm3` instead */
 export function createForm2<
   O extends UseFormOptions2<any, any>,
   T = FormValueFromOptions<O>,
@@ -255,13 +269,32 @@ export function createForm2<
     ? E1 | ValidationProcessError
     : E1,
 >(options: O): FormApiAndContext<T, E> {
+  const form = createForm3(options);
+  return [form, form.context];
+}
+
+export function createForm3<
+  O extends UseFormOptions2<any, any>,
+  T = FormValueFromOptions<O>,
+  VE = ValidatorErrorFromOptions<O>,
+  E1 = O extends {
+    additionalPropertyKeyValidator: AdditionalPropertyKeyValidator;
+  }
+    ? VE | AdditionalPropertyKeyError
+    : VE,
+  E = O extends {
+    handleValidationProcessError: ValidationProcessErrorTranslation;
+  }
+    ? E1 | ValidationProcessError
+    : E1,
+>(options: O): FormState<T, E> & FormAPI2 {
   const merger = $derived(
     options.merger ?? new DefaultFormMerger(options.validator, options.schema)
   );
 
   let value = $state(
     merger.mergeFormDataAndSchemaDefaults(
-      options.initialValue as Value,
+      options.initialValue as FormValue,
       options.schema
     )
   );
@@ -442,6 +475,94 @@ export function createForm2<
     },
   });
 
+  const context: FormContext = {
+    get fieldsValidationMode() {
+      return fieldsValidationMode;
+    },
+    get validateAdditionalPropertyKey() {
+      return additionalPropertyKeyValidator;
+    },
+    validation,
+    fieldsValidation,
+    get isSubmitted() {
+      return isSubmitted;
+    },
+    get isChanged() {
+      return isChanged;
+    },
+    set isChanged(v) {
+      isChanged = v;
+    },
+    get errors() {
+      return errors;
+    },
+    get schema() {
+      return options.schema;
+    },
+    get uiSchema() {
+      return uiSchema;
+    },
+    get disabled() {
+      return disabled;
+    },
+    get idPrefix() {
+      return idPrefix;
+    },
+    get idSeparator() {
+      return idSeparator;
+    },
+    get idPseudoSeparator() {
+      return pseudoIdSeparator;
+    },
+    get validator() {
+      return options.validator;
+    },
+    get merger() {
+      return merger;
+    },
+    get fields() {
+      return fields;
+    },
+    get templates() {
+      return templates;
+    },
+    get components() {
+      return options.components;
+    },
+    get widgets() {
+      return options.widgets;
+    },
+    get translation() {
+      return options.translation;
+    },
+    get icons() {
+      return icons;
+    },
+    get schedulerYield() {
+      return schedulerYield;
+    },
+    IconOrTranslation,
+    iconOrTranslation: ((
+      internals: ComponentInternals,
+      data: IconOrTranslationData | (() => IconOrTranslationData)
+    ) => {
+      IconOrTranslation(
+        internals,
+        // Looks like during SSR the `data` is not a getter function
+        // TODO: Clarify how to detect SSR in Svelte (not SvelteKit)
+        typeof data === "function"
+          ? {
+              get data() {
+                return data();
+              },
+            }
+          : {
+              data,
+            }
+      );
+    }) as unknown as Snippet<[IconOrTranslationData]>,
+  };
+
   function submitHandler(e: SubmitEvent) {
     e.preventDefault();
     validation.run(e);
@@ -452,7 +573,7 @@ export function createForm2<
     isChanged = false;
     errors.clear();
     value = merger.mergeFormDataAndSchemaDefaults(
-      options.initialValue as Value,
+      options.initialValue as FormValue,
       options.schema
     );
   }
@@ -469,171 +590,80 @@ export function createForm2<
 
   const fakeAbortSignal = new AbortController().signal;
 
-  return [
-    {
-      get value() {
-        return getSnapshot() as T | undefined;
-      },
-      set value(v) {
-        value = merger.mergeFormDataAndSchemaDefaults(
-          v as Value,
-          options.schema
-        );
-      },
-      get formValue() {
-        return value;
-      },
-      set formValue(v) {
-        value = v;
-      },
-      get errors() {
-        return errors;
-      },
-      set errors(v) {
-        errors = v;
-      },
-      get isSubmitted() {
-        return isSubmitted;
-      },
-      set isSubmitted(v) {
-        isSubmitted = v;
-      },
-      get isChanged() {
-        return isChanged;
-      },
-      set isChanged(v) {
-        isChanged = v;
-      },
-      validation,
-      fieldsValidation,
-      validate() {
-        const errors = validateSnapshot(getSnapshot(), fakeAbortSignal);
-        if (errors instanceof Promise) {
-          throw new Error("`validate` cannot be called with async validator");
-        }
-        return errors;
-      },
-      async validateAsync(signal: AbortSignal) {
-        return validateSnapshot(getSnapshot(), signal);
-      },
-      submit(e) {
-        // @deprecated
-        // TODO: Maybe we should return this promise in next major version
-        validation.run(e);
-      },
-      reset,
-      updateErrorsByPath(path, update) {
-        const instanceId = pathToId(idPrefix, idSeparator, path);
-        const list = errors.get(instanceId);
-        errors.set(
-          instanceId,
-          update(list ?? []).map((e) => ({ ...e, instanceId }))
-        );
-      },
-      enhance(node) {
-        $effect(() => {
-          node.addEventListener("submit", submitHandler);
-          node.addEventListener("reset", resetHandler);
-          return () => {
-            node.removeEventListener("submit", submitHandler);
-            node.removeEventListener("reset", resetHandler);
-          };
-        });
-      },
+  return {
+    get value() {
+      return getSnapshot() as T | undefined;
     },
-    {
-      get fieldsValidationMode() {
-        return fieldsValidationMode;
-      },
-      get validateAdditionalPropertyKey() {
-        return additionalPropertyKeyValidator;
-      },
-      validation,
-      fieldsValidation,
-      get isSubmitted() {
-        return isSubmitted;
-      },
-      get isChanged() {
-        return isChanged;
-      },
-      set isChanged(v) {
-        isChanged = v;
-      },
-      get errors() {
-        return errors;
-      },
-      get schema() {
-        return options.schema;
-      },
-      get uiSchema() {
-        return uiSchema;
-      },
-      get disabled() {
-        return disabled;
-      },
-      get idPrefix() {
-        return idPrefix;
-      },
-      get idSeparator() {
-        return idSeparator;
-      },
-      get idPseudoSeparator() {
-        return pseudoIdSeparator;
-      },
-      get validator() {
-        return options.validator;
-      },
-      get merger() {
-        return merger;
-      },
-      get fields() {
-        return fields;
-      },
-      get templates() {
-        return templates;
-      },
-      get components() {
-        return options.components;
-      },
-      get widgets() {
-        return options.widgets;
-      },
-      get translation() {
-        return options.translation;
-      },
-      get icons() {
-        return icons;
-      },
-      get schedulerYield() {
-        return schedulerYield;
-      },
-      IconOrTranslation,
-      iconOrTranslation: ((
-        internals: ComponentInternals,
-        data: IconOrTranslationData | (() => IconOrTranslationData)
-      ) => {
-        IconOrTranslation(
-          internals,
-          // Looks like during SSR the `data` is not a getter function
-          // TODO: Clarify how to detect SSR in Svelte (not SvelteKit)
-          typeof data === "function"
-            ? {
-                get data() {
-                  return data();
-                },
-              }
-            : {
-                data,
-              }
-        );
-      }) as unknown as Snippet<[IconOrTranslationData]>,
+    set value(v) {
+      value = merger.mergeFormDataAndSchemaDefaults(v as FormValue, options.schema);
     },
-  ];
+    get formValue() {
+      return value;
+    },
+    set formValue(v) {
+      value = v;
+    },
+    get errors() {
+      return errors;
+    },
+    set errors(v) {
+      errors = v;
+    },
+    get isSubmitted() {
+      return isSubmitted;
+    },
+    set isSubmitted(v) {
+      isSubmitted = v;
+    },
+    get isChanged() {
+      return isChanged;
+    },
+    set isChanged(v) {
+      isChanged = v;
+    },
+    context,
+    validation,
+    fieldsValidation,
+    validate() {
+      const errors = validateSnapshot(getSnapshot(), fakeAbortSignal);
+      if (errors instanceof Promise) {
+        throw new Error("`validate` cannot be called with async validator");
+      }
+      return errors;
+    },
+    async validateAsync(signal: AbortSignal) {
+      return validateSnapshot(getSnapshot(), signal);
+    },
+    submit(e) {
+      // @deprecated
+      // TODO: Maybe we should return this promise in next major version
+      validation.run(e);
+    },
+    reset,
+    updateErrorsByPath(path, update) {
+      const instanceId = pathToId(idPrefix, idSeparator, path);
+      const list = errors.get(instanceId);
+      errors.set(
+        instanceId,
+        update(list ?? []).map((e) => ({ ...e, instanceId }))
+      );
+    },
+    enhance(node) {
+      $effect(() => {
+        node.addEventListener("submit", submitHandler);
+        node.addEventListener("reset", resetHandler);
+        return () => {
+          node.removeEventListener("submit", submitHandler);
+          node.removeEventListener("reset", resetHandler);
+        };
+      });
+    },
+  };
 }
 
 /**
  * Create a FormAPI and set form context
- * @deprecated use `useForm2`
+ * @deprecated use `createForm3` instead
  */
 export function useForm<T, E>(options: UseFormOptions<T, E>): FormAPI<T, E> {
   return useForm2(options);
@@ -641,6 +671,7 @@ export function useForm<T, E>(options: UseFormOptions<T, E>): FormAPI<T, E> {
 
 /**
  * Create a FormAPI and set form context
+ * @deprecated use `createForm3` instead
  */
 export function useForm2<O extends UseFormOptions2<any, any>>(options: O) {
   const [api, ctx] = createForm2(options);
