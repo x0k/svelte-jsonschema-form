@@ -187,7 +187,7 @@ export interface FormOptions<T, E> extends UseFormOptions<T, E> {
   handleValidationProcessError?: ValidationProcessErrorTranslation;
 }
 
-/** @default use `FormOptions` instead */
+/** @deprecated use `FormOptions` instead */
 export type UseFormOptions2<T, E> = FormOptions<T, E>;
 
 export interface FormState<T, E> {
