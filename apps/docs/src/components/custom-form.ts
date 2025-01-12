@@ -1,5 +1,5 @@
 import type { ErrorObject } from "ajv";
-import { type FormAPI2, type FormState, type FormOptions, createForm3 } from "@sjsf/form";
+import { type FormInternals, type FormState, type FormOptions, createForm3 } from "@sjsf/form";
 import { translation } from "@sjsf/form/translations/en";
 import { theme } from "@sjsf/form/basic-theme";
 import { createValidator2 } from "@sjsf/ajv8-validator";
@@ -11,7 +11,7 @@ export type CustomOptions<T, E> = Omit<FormOptions<T, E>, Defaults> &
 
 export function createCustomForm<T, E = ErrorObject>(
   options: CustomOptions<T, E>
-): FormState<T, E> & FormAPI2 {
+): FormState<T, E> & FormInternals {
   const validator = createValidator2();
   const defaults: Pick<FormOptions<T, ErrorObject>, Defaults> = {
     ...theme,
