@@ -5,7 +5,7 @@
   import { handleValidationProcessError } from '@sjsf/form/translations/en';
   import { Status } from '@sjsf/form/use-mutation.svelte';
 
-  import { useCustomForm } from "@/components/custom-form";
+  import { createCustomForm } from "@/components/custom-form";
 
   const ajv = addFormComponents(new Ajv());
   const validate: SchemaValidateFunction = async (schema, data) => {
@@ -32,7 +32,7 @@
     },
   };
 
-  const form = useCustomForm({
+  const form = createCustomForm({
     validator: createAsyncValidator({ ajv }),
     handleValidationProcessError,
     schema: schema,

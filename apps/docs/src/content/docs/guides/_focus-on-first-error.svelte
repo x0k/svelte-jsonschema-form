@@ -2,11 +2,11 @@
   import { SimpleForm } from "@sjsf/form";
   import { focusOnFirstError } from "@sjsf/form/focus-on-first-error";
 
-  import { useCustomForm } from "@/components/custom-form";
+  import { createCustomForm } from "@/components/custom-form";
 
   import { objectSchema } from "./_demo-schemas";
 
-  const form = useCustomForm({
+  const form = createCustomForm({
     schema: objectSchema,
     onSubmit: console.log,
     onSubmitError: focusOnFirstError,

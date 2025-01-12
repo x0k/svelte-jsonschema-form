@@ -3,12 +3,12 @@ import {
 	makeFormDataEntriesConverter,
 	type FormDataConverterOptions
 } from './convert-form-data-entries';
-import { createValidator } from '@sjsf/ajv8-validator';
+import { createValidator2 } from '@sjsf/ajv8-validator';
 import { defaultMerger, type Schema } from '@sjsf/form/core';
 import type { Entries } from './entry';
 
 const defaultOptions: FormDataConverterOptions = {
-	validator: createValidator(),
+	validator: createValidator2(),
 	merger: defaultMerger,
 	rootSchema: {},
 	rootUiSchema: {}

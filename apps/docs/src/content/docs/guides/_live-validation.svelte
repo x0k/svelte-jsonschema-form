@@ -1,17 +1,17 @@
 <script lang="ts">
-  import { useForm2, SimpleForm, type Schema } from "@sjsf/form";
+  import { createForm3, SimpleForm, type Schema } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { theme } from "@sjsf/form/basic-theme";
-  import { createValidator } from "@sjsf/ajv8-validator";
+  import { createValidator2 } from "@sjsf/ajv8-validator";
 
-  const validator = createValidator();
+  const validator = createValidator2();
 
   const schema: Schema = {
     type: "string",
     minLength: 10,
   };
 
-  const form = useForm2({
+  const form = createForm3({
     ...theme,
     initialValue: "initial",
     schema,

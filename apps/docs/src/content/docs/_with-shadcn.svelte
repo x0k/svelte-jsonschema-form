@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { SimpleForm, useForm2 } from "@sjsf/form";
+  import { SimpleForm, createForm3 } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { theme, setThemeContext } from "@sjsf/shadcn-theme";
   import { components } from "@sjsf/shadcn-theme/default";
@@ -12,7 +12,7 @@
 
   const astro = useAstro();
 
-  const form = useForm2({
+  const form = createForm3({
     ...theme,
     initialValue,
     schema,

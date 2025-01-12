@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { useForm2, SimpleForm } from "@sjsf/form";
+  import { createForm3, SimpleForm } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { theme } from "@sjsf/form/basic-theme";
 
@@ -7,7 +7,7 @@
   import { validator } from "./_validator";
   import { onSubmit } from './_on-submit';
 
-  const form = useForm2({
+  const form = createForm3({
     ...theme,
     initialValue,
     schema,

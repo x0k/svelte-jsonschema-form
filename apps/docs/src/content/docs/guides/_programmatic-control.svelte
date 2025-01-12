@@ -1,18 +1,19 @@
 <script lang="ts">
-  import { FormContent, type Schema } from "@sjsf/form";
+  import { FormContent, setFromContext, type Schema } from "@sjsf/form";
 
-  import { useCustomForm } from "@/components/custom-form";
+  import { createCustomForm } from "@/components/custom-form";
 
   const schema: Schema = {
     type: "string",
     minLength: 10,
   };
 
-  const form = useCustomForm({
+  const form = createCustomForm({
     schema,
     initialValue: "initial",
     onSubmit: (v) => window.alert(v),
   });
+  setFromContext(form.context)
 
   let formElement: HTMLFormElement;
 </script>

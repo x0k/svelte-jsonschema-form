@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { FormContent, SubmitButton } from "@sjsf/form";
+  import { FormContent, setFromContext, SubmitButton } from "@sjsf/form";
   import { Status, useMutation } from "@sjsf/form/use-mutation.svelte";
 
-  import { useCustomForm } from "@/components/custom-form";
+  import { createCustomForm } from "@/components/custom-form";
 
   let data = $state<string>();
 
@@ -32,7 +32,7 @@
     timeoutMs: 2000,
   });
 
-  const form = useCustomForm({
+  const form = createCustomForm({
     schema: {
       properties: {
         delay: {
@@ -61,6 +61,7 @@
       return mutation.isProcessed;
     },
   });
+  setFromContext(form.context)
 </script>
 
 <form use:form.enhance style="display: flex; flex-direction: column; gap: 1rem">

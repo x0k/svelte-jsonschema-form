@@ -1,24 +1,24 @@
 import type { ErrorObject } from "ajv";
-import { useForm2, type FormAPI, type UseFormOptions2 } from "@sjsf/form";
+import { type FormInternals, type FormState, type FormOptions, createForm3 } from "@sjsf/form";
 import { translation } from "@sjsf/form/translations/en";
 import { theme } from "@sjsf/form/basic-theme";
 import { createValidator2 } from "@sjsf/ajv8-validator";
 
 type Defaults = "widgets" | "components" | "validator" | "translation";
 
-export type CustomOptions<T, E> = Omit<UseFormOptions2<T, E>, Defaults> &
-  Partial<Pick<UseFormOptions2<T, E>, Defaults>>;
+export type CustomOptions<T, E> = Omit<FormOptions<T, E>, Defaults> &
+  Partial<Pick<FormOptions<T, E>, Defaults>>;
 
-export function useCustomForm<T, E = ErrorObject>(
+export function createCustomForm<T, E = ErrorObject>(
   options: CustomOptions<T, E>
-): FormAPI<T, E> {
+): FormState<T, E> & FormInternals {
   const validator = createValidator2();
-  const defaults: Pick<UseFormOptions2<T, ErrorObject>, Defaults> = {
+  const defaults: Pick<FormOptions<T, ErrorObject>, Defaults> = {
     ...theme,
     validator,
     translation,
   };
-  return useForm2(
+  return createForm3(
     new Proxy(options, {
       get(target, p, receiver) {
         if (!(p in target)) {
@@ -26,6 +26,6 @@ export function useCustomForm<T, E = ErrorObject>(
         }
         return Reflect.get(target, p, receiver);
       },
-    }) as UseFormOptions2<T, E>
+    }) as FormOptions<T, E>
   );
 }

@@ -4,13 +4,12 @@ sidebar:
   order: 4
 ---
 
-import { Code, Tabs, TabItem, Card } from '@astrojs/starlight/components';
+import { Code, Card } from '@astrojs/starlight/components';
 
 import { DEFAULT_ID_PREFIX } from '@sjsf/form'
 
 import Form from './_multiple-forms.astro';
 import formCode from './_multiple-forms.svelte?raw';
-import formComponentCode from './_multiple-forms-form.svelte?raw';
 
 There are a few rules to follow if you want to use multiple forms
 
@@ -20,20 +19,7 @@ You should provide custom `idPrefix` to avoid id collisions in the DOM
 
 The default value of `idPrefix` is <code>{DEFAULT_ID_PREFIX}</code>.
 
-## In one component
-
-Because `useForm2` internally calls `setFormContext`, you can't create multiple forms in one component with it.
-
-But if you really want to create multiple forms in one component, look at `createForm2`.
-
-<Tabs>
-  <TabItem label="_multiple-forms.svelte" >
-    <Code code={formCode} lang='svelte' />
-  </TabItem>
-  <TabItem label="_multiple-forms-form.svelte">
-    <Code code={formComponentCode} lang='svelte' />
-  </TabItem>
-</Tabs>
+<Code code={formCode} lang='svelte' />
 
 <Card>
   <Form />

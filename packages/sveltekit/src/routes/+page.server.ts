@@ -1,11 +1,11 @@
 import type { Schema } from '@sjsf/form';
-import { createValidator } from '@sjsf/ajv8-validator';
+import { createValidator2 } from '@sjsf/ajv8-validator';
 
 import { initForm, makeFormDataParser, validateForm } from '$lib/server';
 
 import type { Actions } from './$types';
 
-const validator = createValidator();
+const validator = createValidator2();
 
 const parseFormData = makeFormDataParser({
 	validator

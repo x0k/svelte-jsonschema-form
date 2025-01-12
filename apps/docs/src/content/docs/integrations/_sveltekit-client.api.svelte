@@ -1,6 +1,6 @@
 <script lang="ts">
   import { FormContent } from "@sjsf/form";
-  import { createValidator } from "@sjsf/ajv8-validator";
+  import { createValidator2 } from "@sjsf/ajv8-validator";
   import { theme } from "@sjsf/form/basic-theme";
   import { translation } from "@sjsf/form/translations/en";
   import { useSvelteKitForm, meta } from "@sjsf/sveltekit/client";
@@ -12,7 +12,7 @@
     "form",
     {
       ...theme,
-      validator: createValidator(),
+      validator: createValidator2(),
       translation,
     }
   );

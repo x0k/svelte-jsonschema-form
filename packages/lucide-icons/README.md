@@ -15,10 +15,10 @@ npm install @sjsf/form @sjsf/lucide-icons
 
 ```svelte
 <script lang="ts">
-  import { useForm2 } from '@sjsf/form';
+  import { createForm3 } from '@sjsf/form';
   import { icons } from '@sjsf/lucide-icons';
 
-  const form = useForm2({
+  const form = createForm3({
     icons
   })
 </script>

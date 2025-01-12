@@ -1,7 +1,7 @@
 <script lang="ts" generics="T">
-  import { type Schema, type UiSchemaRoot, FormContent, SubmitButton } from '@sjsf/form'
+  import { type Schema, type UiSchemaRoot, FormContent, setFromContext, SubmitButton } from '@sjsf/form'
 
-  import { useCustomForm } from '@/components/custom-form'
+  import { createCustomForm } from '@/components/custom-form'
 
   interface Props {
     schema: Schema
@@ -12,12 +12,13 @@
 
   const { schema, uiSchema, initialValue, onSubmit }: Props = $props()
 
-  const form = useCustomForm({
+  const form = createCustomForm({
     schema,
     uiSchema,
     initialValue,
     onSubmit,
   })
+  setFromContext(form.context)
 </script>
 
 <form use:form.enhance style="display: flex; flex-direction: column; gap: 1rem">

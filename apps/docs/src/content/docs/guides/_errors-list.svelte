@@ -1,11 +1,11 @@
 <script lang="ts">
   import { SimpleForm } from "@sjsf/form";
 
-  import { useCustomForm } from "@/components/custom-form";
+  import { createCustomForm } from "@/components/custom-form";
 
   import { objectSchema } from "./_demo-schemas";
 
-  const form = useCustomForm({
+  const form = createCustomForm({
     schema: objectSchema,
     onSubmit: console.log,
   });
