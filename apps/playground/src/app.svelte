@@ -8,7 +8,7 @@
     AFTER_CHANGED,
     AFTER_SUBMITTED,
     AFTER_TOUCHED,
-    useForm2,
+    createForm3,
     SimpleForm,
     ON_ARRAY_CHANGE,
     ON_OBJECT_CHANGE,
@@ -114,7 +114,7 @@
   let html5Validation = $state(false);
   let doFocusOnFirstError = $state(true);
 
-  const form = useForm2({
+  const form = createForm3({
     handleValidationProcessError: (state) => {
       console.error(state);
       return handleValidationProcessError(state);
