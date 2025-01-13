@@ -1,5 +1,13 @@
 # testing
 
+## 0.0.9
+
+### Patch Changes
+
+- Updated dependencies [[`d68a37f`](https://github.com/x0k/svelte-jsonschema-form/commit/d68a37f3114688d0d4b9fb4b52ebe1b6cef8763d), [`ffc77e7`](https://github.com/x0k/svelte-jsonschema-form/commit/ffc77e73899a8855c6e1be656dc69174343c68c3), [`0943dbc`](https://github.com/x0k/svelte-jsonschema-form/commit/0943dbce286fe8afcfb520dc540dcb5509153c08), [`8b969e9`](https://github.com/x0k/svelte-jsonschema-form/commit/8b969e9faec87ca482bcc33ed6b14ee3987cd10f), [`a7dd2ce`](https://github.com/x0k/svelte-jsonschema-form/commit/a7dd2ce220f5cef42b154947ad265d5688feee29)]:
+  - @sjsf/form@1.8.0
+  - @sjsf/ajv8-validator@1.8.0
+
 ## 0.0.8
 
 ### Patch Changes

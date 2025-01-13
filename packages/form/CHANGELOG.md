@@ -1,5 +1,24 @@
 # @sjsf/form
 
+## 1.8.0
+
+### Minor Changes
+
+- Add `isSchemaValueDeepEqual` and `isSchemaDeepEqual` functions ([#55](https://github.com/x0k/svelte-jsonschema-form/pull/55))
+
+- Add `createForm3` function ([#54](https://github.com/x0k/svelte-jsonschema-form/pull/54))
+
+  ## Migration
+
+  - Replace `useForm2` with `createForm3`.
+  - If custom form is used it should call `setFormContext(form.context)` before using `FormContent` and `SubmitButton` components.
+
+### Patch Changes
+
+- Extract array and object fields logic into their contexts ([#50](https://github.com/x0k/svelte-jsonschema-form/pull/50))
+
+- Bump dev deps ([`a7dd2ce`](https://github.com/x0k/svelte-jsonschema-form/commit/a7dd2ce220f5cef42b154947ad265d5688feee29))
+
 ## 1.7.0
 
 ### Minor Changes
