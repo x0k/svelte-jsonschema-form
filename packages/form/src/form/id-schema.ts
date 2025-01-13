@@ -2,8 +2,6 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { deepEqual } from "@/lib/deep-equal.js";
-
 import {
   ALL_OF_KEY,
   defaultMerger,
@@ -12,6 +10,7 @@ import {
   ID_KEY,
   isNormalArrayItems,
   isSchema,
+  isSchemaDeepEqual,
   isSchemaObjectValue,
   ITEMS_KEY,
   PROPERTIES_KEY,
@@ -93,7 +92,7 @@ export function toIdSchema2(
       formData
     );
     const sameSchemaIndex = _recurseList.findIndex((item) =>
-      deepEqual(item, _schema)
+      isSchemaDeepEqual(item, _schema)
     );
     if (sameSchemaIndex === -1) {
       return toIdSchema2(
