@@ -1,11 +1,11 @@
 <script lang="ts">
   import { untrack } from "svelte";
 
-  import { deepEqual } from "@/lib/deep-equal.js";
   import {
     getDefaultValueForType,
     getSimpleSchemaType,
     isAdditionalProperty,
+    isSchemaDeepEqual,
     isSchemaExpandable,
     isSchemaObjectValue,
     orderProperties,
@@ -94,7 +94,7 @@
 
   let lastSchemaProperties: Schema["properties"] = undefined;
   const schemaProperties = $derived.by(() => {
-    if (!deepEqual(lastSchemaProperties, retrievedSchema.properties)) {
+    if (!isSchemaDeepEqual(lastSchemaProperties, retrievedSchema.properties)) {
       lastSchemaProperties = $state.snapshot(retrievedSchema.properties);
     }
     return lastSchemaProperties;

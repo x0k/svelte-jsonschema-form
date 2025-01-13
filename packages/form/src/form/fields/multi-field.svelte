@@ -1,8 +1,8 @@
 <script lang="ts">
   import { proxy } from "@/lib/svelte.svelte";
-  import { deepEqual } from '@/lib/deep-equal.js'
   import {
     getDiscriminatorFieldFromSchema,
+    isSchemaValueDeepEqual,
     mergeSchemas,
     type EnumOption,
     type SchemaValue,
@@ -53,7 +53,7 @@
       retrievedOptions;
       return -1;
     }
-    if (currentSelected !== undefined && deepEqual(lastValue, value)) {
+    if (currentSelected !== undefined && isSchemaValueDeepEqual(lastValue, value)) {
       return currentSelected
     }
     lastValue = $state.snapshot(value)

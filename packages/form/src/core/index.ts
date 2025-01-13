@@ -22,5 +22,6 @@ export * from "./merger.js";
 export * from "./default-merger.js";
 export * from "./schema-traverser.js";
 export * from "./schema-value-traverser.js";
-export * from './schema-transformer.js';
+export * from "./schema-transformer.js";
 export * from "./path.js";
+export * from "./deep-equal.js";

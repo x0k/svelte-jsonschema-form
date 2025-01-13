@@ -1,14 +1,15 @@
 import { Ajv, type AsyncValidateFunction, type ValidateFunction } from "ajv";
 import type { ErrorObject, AnySchema } from "ajv";
+import type { AnyValidateFunction } from "ajv/dist/core.js";
 
-import type { MaybePromise } from '@sjsf/form/lib/types';
-import { deepEqual } from "@sjsf/form/lib/deep-equal";
+import type { MaybePromise } from "@sjsf/form/lib/types";
 import { getValueByPath } from "@sjsf/form/lib/object";
 import { weakMemoize } from "@sjsf/form/lib/memoize";
 import {
   ID_KEY,
   prefixSchemaRefs,
   ROOT_SCHEMA_PREFIX,
+  isSchemaDeepEqual,
   type Schema,
   type SchemaDefinition,
   type SchemaValue,
@@ -25,7 +26,6 @@ import {
   type UiSchema,
   type UiSchemaRoot,
 } from "@sjsf/form";
-import type { AnyValidateFunction } from "ajv/dist/core.js";
 
 const trueSchema: Schema = {};
 const falseSchema: Schema = {
@@ -58,9 +58,12 @@ export function makeSchemaCompiler<A extends boolean>(ajv: Ajv, _async: A) {
   return (schema: Schema, rootSchema: Schema) => {
     rootSchemaId = rootSchema[ID_KEY] ?? ROOT_SCHEMA_PREFIX;
     let ajvSchema = ajv.getSchema(rootSchemaId)?.schema;
-    // @deprecated
-    // TODO: Replace deep equality comparison with reference equality by default
-    if (ajvSchema !== undefined && !deepEqual(ajvSchema, rootSchema)) {
+    if (
+      ajvSchema !== undefined &&
+      // @deprecated
+      // TODO: Replace deep equality comparison with reference equality by default
+      !isSchemaDeepEqual(ajvSchema as Schema, rootSchema)
+    ) {
       ajv.removeSchema(rootSchemaId);
       validatorsCache.delete(schema);
       ajvSchema = undefined;

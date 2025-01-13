@@ -2,7 +2,6 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { deepEqual } from "@/lib/deep-equal.js";
 import { array } from "@/lib/array.js";
 
 import {
@@ -30,6 +29,7 @@ import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
 import { getFirstMatchingOption } from "./matching.js";
 import { isSchemaObjectValue } from "./value.js";
 import { defaultMerger, type Merger2 } from "./merger.js";
+import { isSchemaDeepEqual } from './deep-equal.js';
 
 /**
  * @deprecated use `retrieveSchema2`
@@ -157,7 +157,7 @@ export function resolveReference2(
   formData?: SchemaValue
 ): Schema[] {
   const resolvedSchema = resolveAllReferences(schema, rootSchema, stack);
-  if (!deepEqual(schema, resolvedSchema)) {
+  if (!isSchemaDeepEqual(schema, resolvedSchema)) {
     return retrieveSchemaInternal(
       validator,
       merger,

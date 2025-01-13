@@ -2,8 +2,6 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { deepEqual } from "@/lib/deep-equal.js";
-
 import { retrieveSchema2 } from "./resolve.js";
 import {
   ALL_OF_KEY,
@@ -22,6 +20,7 @@ import { isSchemaObjectValue } from "./value.js";
 import type { Merger2 } from './merger.js';
 import { defaultMerger } from './merger.js';
 import { getClosestMatchingOption2 } from './matching.js';
+import { isSchemaDeepEqual } from './deep-equal.js';
 
 export const SJSF_ADDITIONAL_PROPERTIES_FLAG = "__sjsf_additionalProperties";
 
@@ -88,7 +87,7 @@ function toPathSchemaInternal(
   if (REF_KEY in schema || DEPENDENCIES_KEY in schema || ALL_OF_KEY in schema) {
     const _schema = retrieveSchema2(validator, merger, schema, rootSchema, formData);
     const sameSchemaIndex = _recurseList.findIndex((item) =>
-      deepEqual(item, _schema)
+      isSchemaDeepEqual(item, _schema)
     );
     if (sameSchemaIndex === -1) {
       return toPathSchemaInternal(
