@@ -1,3 +1,4 @@
+import { isObject } from "@/lib/object.js";
 import {
   getKnownProperties,
   resolveRef,
@@ -10,7 +11,12 @@ import {
   type SchemaObjectValue,
   type SchemaValue,
   type Validator,
-} from "./core/index.js";
+  type SchemaArrayValue,
+  isSchemaArrayValue,
+  isSelect2,
+  getClosestMatchingOption2,
+  getDiscriminatorFieldFromSchema,
+} from "@/core/index.js";
 
 export function omitExtraData(
   validator: Validator,
@@ -67,21 +73,142 @@ export function omitExtraData(
       );
       for (const [key, value] of Object.entries(source)) {
         if (key in target) {
-          continue
+          continue;
         }
-        const found = patterns.find((e) => e[0].test(key))
+        const found = patterns.find((e) => e[0].test(key));
         if (found === undefined) {
-          continue
+          continue;
         }
-        setProperty(key, found[1], value)
+        setProperty(key, found[1], value);
       }
     }
     if (propertyNames !== undefined) {
       for (const [key, value] of Object.entries(source)) {
-        target[key] = value
+        target[key] = value;
       }
     }
-    return target
+    return target;
+  }
+
+  function handleArray(
+    schema: Schema,
+    source: SchemaValue | undefined,
+    target: SchemaArrayValue
+  ) {
+    if (!isSchemaArrayValue(source)) {
+      return target;
+    }
+    const { items, additionalItems } = schema;
+    if (items !== undefined) {
+      if (Array.isArray(items)) {
+        for (let i = 0; i < items.length; i++) {
+          target.push(omit(items[i]!, source[i]));
+        }
+      } else {
+        for (let i = 0; i < source.length; i++) {
+          target.push(omit(items, source[i]));
+        }
+      }
+    }
+    if (additionalItems !== undefined) {
+      for (let i = target.length; i < source.length; i++) {
+        target.push(omit(additionalItems, source[i]));
+      }
+    }
+    return target;
+  }
+
+  function handleConditions(
+    schema: Schema,
+    source: SchemaValue | undefined,
+    target: SchemaValue | undefined
+  ) {
+    const { if: condition, then, else: otherwise } = schema;
+    if (condition === undefined) {
+      return target;
+    }
+    const isThenBranch = isSchema(condition)
+      ? validator.isValid(condition, rootSchema, source)
+      : condition;
+    const branch = isThenBranch ? then : otherwise;
+    return branch === undefined ? target : omit(branch, source, target);
+  }
+
+  function handleOneOf(
+    oneOf: Schema["oneOf"],
+    schema: Schema,
+    source: SchemaValue | undefined,
+    target: SchemaValue | undefined
+  ) {
+    if (
+      !Array.isArray(oneOf) ||
+      isSelect2(validator, merger, schema, rootSchema)
+    ) {
+      return target;
+    }
+    const bestIndex = getClosestMatchingOption2(
+      validator,
+      merger,
+      rootSchema,
+      source,
+      oneOf.map((d) => (isSchema(d) ? d : d ? {} : { not: {} })),
+      0,
+      getDiscriminatorFieldFromSchema(schema)
+    );
+    return omit(oneOf[bestIndex]!, source, target);
+  }
+
+  function handleAllOf(
+    allOf: Schema["allOf"],
+    source: SchemaValue | undefined,
+    target: SchemaValue | undefined
+  ) {
+    if (!Array.isArray(allOf)) {
+      return target;
+    }
+    for (let i = 0; i < allOf.length; i++) {
+      target = omit(allOf[i]!, source, target);
+    }
+    return target;
+  }
+
+  function handleAnyOf(
+    schema: Schema,
+    source: SchemaValue | undefined,
+    target: SchemaValue | undefined
+  ) {
+    const { anyOf } = schema;
+    if (!Array.isArray(anyOf)) {
+      return target;
+    }
+    if (
+      source === undefined ||
+      (isObject(source) &&
+        (Array.isArray(source)
+          ? source.length === 0
+          : Object.keys(source).length === 0))
+    ) {
+      return handleAllOf(anyOf, source, target);
+    }
+    return handleOneOf(anyOf, schema, source, target);
+  }
+
+  function handleDependencies(
+    schema: Schema,
+    source: SchemaValue | undefined,
+    target: SchemaValue | undefined
+  ) {
+    const { dependencies } = schema;
+    if (dependencies === undefined || !isSchemaObjectValue(source)) {
+      return target;
+    }
+    for (const [key, deps] of Object.entries(dependencies)) {
+      if (!(key in source) || Array.isArray(deps)) {
+        continue;
+      }
+      target = omit(deps, source, target);
+    }
+    return target;
   }
 
   function omit(
@@ -103,7 +230,34 @@ export function omitExtraData(
         source,
         isSchemaObjectValue(target) ? target : {}
       );
+    } else if (type === "array") {
+      value = handleArray(
+        schema,
+        source,
+        isSchemaArrayValue(target) ? target : []
+      );
+    } else if (target === undefined) {
+      target = source;
     }
+
+    return handleDependencies(
+      schema,
+      source,
+      handleAnyOf(
+        schema,
+        source,
+        handleAllOf(
+          schema.allOf,
+          source,
+          handleOneOf(
+            schema.oneOf,
+            schema,
+            source,
+            handleConditions(schema, source, target)
+          )
+        )
+      )
+    );
   }
 
   return omit(rootSchema, value);

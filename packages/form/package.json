@@ -82,6 +82,10 @@
       "types": "./dist/focus-on-first-error.d.ts",
       "svelte": "./dist/focus-on-first-error.js"
     },
+    "./omit-extra-data": {
+      "types": "./dist/omit-extra-data.d.ts",
+      "default": "./dist/omit-extra-data.js"
+    },
     "./legacy-omit-extra-data": {
       "types": "./dist/legacy-omit-extra-data.d.ts",
       "default": "./dist/legacy-omit-extra-data.js"
