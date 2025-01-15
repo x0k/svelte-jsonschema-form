@@ -1,4 +1,4 @@
-import type { Schema, SchemaType } from "./schema.js";
+import { isSchema, type Schema, type SchemaType } from "./schema.js";
 
 export function typeOfValue(
   value: null | boolean | number | string | object
@@ -29,11 +29,28 @@ export function typeOfSchema(schema: Schema): SchemaType | SchemaType[] {
   if (schema.const !== undefined) {
     return typeOfValue(schema.const);
   }
-  if (schema.properties || schema.additionalProperties) {
+  if (
+    schema.properties ||
+    schema.additionalProperties ||
+    schema.propertyNames ||
+    schema.patternProperties
+  ) {
     return "object";
   }
   if (Array.isArray(schema.enum) && schema.enum.length > 0) {
     return Array.from(new Set(schema.enum.map(typeOfValue)));
+  }
+  const alt = schema.allOf ?? schema.anyOf ?? schema.oneOf;
+  if (alt) {
+    let types: SchemaType[] = [];
+    for (let i = 0; i < alt.length; i++) {
+      const item = alt[i]!;
+      if (!isSchema(item)) {
+        continue;
+      }
+      types = types.concat(typeOfSchema(item));
+    }
+    return Array.from(new Set(types));
   }
   return "null";
 }
