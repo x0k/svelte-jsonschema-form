@@ -73,6 +73,9 @@ export function omitExtraData(
   return omitExtraData2(validator, merger, schema, formData);
 }
 
+/**
+ * @deprecated use `omitExtraData` from `form/omit-extra-data` instead
+ */
 export function omitExtraData2(
   validator: Validator,
   merger: Merger2,

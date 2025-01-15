@@ -4,23 +4,36 @@
 
 import jsonpointer from "jsonpointer";
 
-import { REF_KEY, type Schema } from "./schema.js";
+import {
+  isSchema,
+  REF_KEY,
+  type Schema,
+  type SchemaDefinition,
+} from "./schema.js";
 import { mergeSchemas } from "./merge.js";
+
+export function resolveRef(ref: string, rootSchema: Schema) {
+  if (!ref.startsWith("#")) {
+    throw new Error(`Invalid reference: ${ref}, must start with #`);
+  }
+  const schemaDef: SchemaDefinition | undefined = jsonpointer.get(
+    rootSchema,
+    decodeURIComponent(ref.substring(1))
+  );
+  if (schemaDef === undefined) {
+    throw new Error(`Could not find a definition for ${ref}.`);
+  }
+  return schemaDef;
+}
 
 export function findSchemaDefinition(
   ref: string,
   rootSchema: Schema,
   stack = new Set<string>()
 ): Schema {
-  if (!ref.startsWith("#")) {
-    throw new Error(`Invalid reference: ${ref}, must start with #`);
-  }
-  const current: Schema | undefined = jsonpointer.get(
-    rootSchema,
-    decodeURIComponent(ref.substring(1))
-  );
-  if (current === undefined) {
-    throw new Error(`Could not find a definition for ${ref}.`);
+  const current = resolveRef(ref, rootSchema);
+  if (!isSchema(current)) {
+    throw new Error(`Definition for ${ref} should be a schema (object)`);
   }
   const nextRef = current[REF_KEY];
   if (nextRef) {
