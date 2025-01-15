@@ -11,11 +11,8 @@ import { DEFAULT_ID_PREFIX } from '@sjsf/form'
 import Form from './_multiple-forms.astro';
 import formCode from './_multiple-forms.svelte?raw';
 
-There are a few rules to follow if you want to use multiple forms
-
-## On the same page
-
-You should provide custom `idPrefix` to avoid id collisions in the DOM
+To use multiple forms on the same page, you must specify a custom `idPrefix`
+to avoid id collision in the DOM.
 
 The default value of `idPrefix` is <code>{DEFAULT_ID_PREFIX}</code>.
 
