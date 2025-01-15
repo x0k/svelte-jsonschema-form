@@ -84,8 +84,5 @@
 		"vitest": "catalog:"
 	},
 	"svelte": "./dist/model.js",
-	"types": "./dist/model.d.ts",
-	"dependencies": {
-		"jsonpointer": "^5.0.1"
-	}
+	"types": "./dist/model.d.ts"
 }
