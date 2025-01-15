@@ -116,27 +116,43 @@ export function mergeDefaultsWithFormData<T = any>(
   defaults?: T,
   formData?: T,
   mergeExtraArrayDefaults = false,
-  defaultsSupersedesUndefined = false
+  defaultsSupersedesUndefined = false,
+  overrideFormDataWithDefaults = false
 ): T | undefined {
-  if (formData === undefined && defaultsSupersedesUndefined) {
-    return defaults;
-  }
+  // NOTE: I missed the PR where this line was removed, but it is not present in 5.24.0
+  // if (formData === undefined && defaultsSupersedesUndefined) {
+  //   return defaults;
+  // }
   if (Array.isArray(formData)) {
     const defaultsArray = Array.isArray(defaults) ? defaults : [];
-    const mapped = formData.map((value, idx) => {
-      if (defaultsArray[idx]) {
+
+    // If overrideFormDataWithDefaults is true, we want to override the formData with the defaults
+    const overrideArray = overrideFormDataWithDefaults
+      ? defaultsArray
+      : formData;
+    const overrideOppositeArray = overrideFormDataWithDefaults
+      ? formData
+      : defaultsArray;
+
+    const mapped = overrideArray.map((value, idx) => {
+      if (overrideOppositeArray[idx]) {
         return mergeDefaultsWithFormData<any>(
           defaultsArray[idx],
-          value,
+          formData[idx],
           mergeExtraArrayDefaults,
           defaultsSupersedesUndefined,
+          overrideFormDataWithDefaults
         );
       }
       return value;
     });
     // Merge any extra defaults when mergeExtraArrayDefaults is true
-    if (mergeExtraArrayDefaults && mapped.length < defaultsArray.length) {
-      mapped.push(...defaultsArray.slice(mapped.length));
+    // Or when overrideFormDataWithDefaults is true and the default array is shorter than the formData array
+    if (
+      (mergeExtraArrayDefaults || overrideFormDataWithDefaults) &&
+      mapped.length < overrideOppositeArray.length
+    ) {
+      mapped.push(...overrideOppositeArray.slice(mapped.length));
     }
     return mapped as unknown as T;
   }
@@ -145,22 +161,42 @@ export function mergeDefaultsWithFormData<T = any>(
     const defaultsAsObject = isSchemaObjectValue(defaults)
       ? defaults
       : undefined;
+    const defaultsObject = isSchemaObjectValue(defaults) ? defaults : {};
     for (const [key, value] of Object.entries(formData)) {
+      const keyExistsInDefaults = key in defaultsObject;
+      const keyExistsInFormData = key in formData;
+
       acc[key as keyof T] = mergeDefaultsWithFormData(
         defaultsAsObject?.[key],
         value,
         mergeExtraArrayDefaults,
-        defaultsSupersedesUndefined
+        defaultsSupersedesUndefined,
+        // overrideFormDataWithDefaults can be true only when the key value exists in defaults
+        // Or if the key value doesn't exist in formData
+        overrideFormDataWithDefaults &&
+          (keyExistsInDefaults || !keyExistsInFormData)
       );
     }
     return acc;
+  }
+
+  // NOTE: Condition changed
+  //   (defaultSupercedesUndefined &&
+  //   ((!isNil(defaults) && isNil(formData)) || (typeof formData === 'number' && isNaN(formData)))) ||
+  // (overrideFormDataWithDefaults && !isNil(formData))
+  if (
+    formData === undefined
+      ? defaultsSupersedesUndefined && defaults !== undefined
+      : overrideFormDataWithDefaults
+  ) {
+    return defaults;
   }
   return formData;
 }
 
 export function mergeSchemaObjects<
   A extends SchemaObjectValue,
-  B extends SchemaObjectValue
+  B extends SchemaObjectValue,
 >(obj1: A, obj2: B, concatArrays: boolean | "preventDuplicates" = false) {
   const acc: SchemaObjectValue = Object.assign({}, obj1);
   for (const [key, right] of Object.entries(obj2)) {

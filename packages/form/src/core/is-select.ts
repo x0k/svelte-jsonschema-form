@@ -2,10 +2,10 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import type { Schema } from "./schema.js";
+import { isSchema, type Schema, type SchemaValue } from "./schema.js";
 import type { Validator } from "./validator.js";
 import { retrieveSchema2 } from "./resolve.js";
-import { isSchemaOfConstantValue } from "./constant-schema.js";
+import { getSchemaConstantValue, isSchemaOfConstantValue } from "./constant-schema.js";
 import { defaultMerger, type Merger2 } from "./merger.js";
 
 /**
@@ -38,6 +38,26 @@ export function isSelect2(
     );
   }
   return false;
+}
+
+export function getSelectOptionValues({
+  enum: enumValues,
+  oneOf,
+  anyOf,
+}: Schema): SchemaValue[] | undefined {
+  if (enumValues !== undefined) {
+    return enumValues;
+  }
+  const altSchema = oneOf ?? anyOf;
+  if (altSchema === undefined) {
+    return undefined;
+  }
+  return altSchema.map((schemaDef, i) => {
+    if (!isSchema(schemaDef)) {
+      throw new Error(`Invalid enum definition in altSchema.${i}`);
+    }
+    return getSchemaConstantValue(schemaDef);
+  });
 }
 
 /**
