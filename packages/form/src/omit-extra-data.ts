@@ -26,12 +26,9 @@ export function omitExtraData(
 ): SchemaValue | undefined {
   function handleObject(
     schema: Schema,
-    source: SchemaValue | undefined,
+    source: SchemaObjectValue,
     target: SchemaObjectValue
   ): SchemaObjectValue {
-    if (!isSchemaObjectValue(source)) {
-      return target;
-    }
     const {
       properties,
       additionalProperties,
@@ -44,7 +41,7 @@ export function omitExtraData(
       schemaDef: SchemaDefinition,
       value: SchemaValue | undefined
     ) {
-      const v = omit(schemaDef, value);
+      const v = omit(schemaDef, value, target[key]);
       if (v !== undefined) {
         target[key] = v;
       }
@@ -92,12 +89,9 @@ export function omitExtraData(
 
   function handleArray(
     schema: Schema,
-    source: SchemaValue | undefined,
+    source: SchemaArrayValue,
     target: SchemaArrayValue
   ) {
-    if (!isSchemaArrayValue(source)) {
-      return target;
-    }
     const { items, additionalItems } = schema;
     if (items !== undefined) {
       if (Array.isArray(items)) {
@@ -110,7 +104,7 @@ export function omitExtraData(
         }
       }
     }
-    if (additionalItems !== undefined) {
+    if (additionalItems) {
       for (let i = target.length; i < source.length; i++) {
         target.push(omit(additionalItems, source[i]));
       }
@@ -216,22 +210,37 @@ export function omitExtraData(
     source: SchemaValue | undefined,
     target?: SchemaValue
   ): SchemaValue | undefined {
-    if (!isSchema(schema)) {
+    if (source === undefined || !isSchema(schema)) {
       return source;
     }
     const { $ref: ref } = schema;
     if (ref !== undefined) {
       return omit(resolveRef(ref, rootSchema), source, target);
     }
+    target = handleAnyOf(
+      schema,
+      source,
+      handleAllOf(
+        schema.allOf,
+        source,
+        handleOneOf(schema.oneOf, schema, source, target)
+      )
+    );
     const type = getSimpleSchemaType(schema);
     if (type === "object") {
+      if (!isSchemaObjectValue(source)) {
+        return undefined;
+      }
       target = handleObject(
         schema,
         source,
         isSchemaObjectValue(target) ? target : {}
       );
     } else if (type === "array") {
-      value = handleArray(
+      if (!isSchemaArrayValue(source)) {
+        return undefined;
+      }
+      target = handleArray(
         schema,
         source,
         isSchemaArrayValue(target) ? target : []
@@ -243,20 +252,7 @@ export function omitExtraData(
     return handleDependencies(
       schema,
       source,
-      handleAnyOf(
-        schema,
-        source,
-        handleAllOf(
-          schema.allOf,
-          source,
-          handleOneOf(
-            schema.oneOf,
-            schema,
-            source,
-            handleConditions(schema, source, target)
-          )
-        )
-      )
+      handleConditions(schema, source, target)
     );
   }
 
