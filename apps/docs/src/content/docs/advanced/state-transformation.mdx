@@ -16,10 +16,7 @@ For this you can use `omitExtraData` function.
 
 :::note
 
-Currently function `omitExtraData` is imported from `@sjsf/form/legacy-omit-extra-data` and
-will be deprecated because it's implementation does not meet the requirements of our code base.
-
-It will be replaced with `@sjsf/form/omit-extra-data` import in the major release.
+The `omitExtraData` function does not perform data validation!
 
 :::
 
@@ -29,11 +26,10 @@ It will be replaced with `@sjsf/form/omit-extra-data` import in the major releas
   import { createForm3 } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { theme } from "@sjsf/form/basic-theme";
-  import { omitExtraData2 } from "@sjsf/form/legacy-omit-extra-data";
+  import { omitExtraData } from "@sjsf/form/omit-extra-data";
 
   import { schema, uiSchema, initialValue } from "./schema";
   import { validator } from "./validator";
-  import { transform } from "./transform";
   
   const form = createForm3({
     ...theme,
@@ -43,7 +39,7 @@ It will be replaced with `@sjsf/form/omit-extra-data` import in the major releas
     validator,
     translation,
     getSnapshot() {
-      return omitExtraData2(validator, defaultMerger, schema, $state.snapshot(form.formValue))
+      return omitExtraData(validator, defaultMerger, schema, $state.snapshot(form.formValue))
     },
     onSubmit(value) {
       console.log("transformed", value);
