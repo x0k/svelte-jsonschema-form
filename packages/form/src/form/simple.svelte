@@ -20,7 +20,6 @@
 </script>
 
 <form use:form.enhance {...rest}>
-  <!-- svelte-ignore ownership_invalid_binding -->
-  <FormContent bind:value={form.formValue} />
+  <FormContent {form} />
   <SubmitButton />
 </form>

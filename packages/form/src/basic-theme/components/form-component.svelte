@@ -4,7 +4,6 @@
   let {
     children,
     form = $bindable(),
-    ref = $bindable(),
     onsubmit,
     attributes,
   }: FormComponentProps = $props();
@@ -15,7 +14,6 @@
   style="display: flex; flex-direction: column; gap: 1rem"
   {...attributes}
   bind:this={form}
-  bind:this={ref}
 >
   {@render children()}
 </form>

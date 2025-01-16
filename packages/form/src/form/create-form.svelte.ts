@@ -237,6 +237,8 @@ export interface FormInternals {
 export interface FormAPI<T, E> extends FormState<T, E> {
   enhance: Action;
   context: FormContext;
+  submitHandler: EventHandler<SubmitEvent, HTMLFormElement>
+  resetHandler: FormEventHandler<HTMLFormElement>
 }
 
 /**

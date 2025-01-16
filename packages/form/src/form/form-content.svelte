@@ -1,4 +1,10 @@
+<!--
+    @component
+    @deprecated use `Content` instead
+-->
 <script lang="ts">
+  import type { SchemaValue } from "@/core/schema.js";
+
   import {
     retrieveSchema,
     getFormContext,
@@ -6,22 +12,21 @@
     getUiOptions,
     getField,
   } from "./context/index.js";
-  import type { Config } from "./config.js";
-  import type { FormInternals } from "./create-form.svelte.js";
+  import type { Config } from './config.js';
 
-  const { form }: { form: FormInternals } = $props();
+  let { value = $bindable() }: { value: SchemaValue | undefined } = $props();
 
   const ctx = getFormContext();
 
   const retrievedSchema = $derived(
-    retrieveSchema(ctx, ctx.schema, form.formValue)
+    retrieveSchema(ctx, ctx.schema, value)
   );
   const idSchema = $derived(
     makeIdSchema(
       ctx,
       retrievedSchema,
       ctx.uiSchema["ui:rootFieldId"],
-      form.formValue
+      value
     )
   );
   const uiOptions = $derived(getUiOptions(ctx, ctx.uiSchema));
@@ -33,10 +38,9 @@
     idSchema,
     uiOptions,
     required: false,
-  });
+  })
 
   const Field = $derived(getField(ctx, "root", config));
 </script>
 
-<!-- svelte-ignore ownership_invalid_binding -->
-<Field bind:value={form.formValue} {config} />
+<Field bind:value {config} />

@@ -38,10 +38,7 @@ export { default as Form2 } from "./form2.svelte";
 
 // Deprecated
 
-export {
-  /** @deprecated use `Content` instead */
-  default as FormContent,
-} from "./content.svelte";
+export { default as FormContent } from "./form-content.svelte";
 export {
   default as FormBase,
   type Props as FormProps,
