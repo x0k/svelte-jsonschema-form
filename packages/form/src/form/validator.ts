@@ -1,8 +1,9 @@
 import type { Schema, SchemaValue, Validator } from "@/core/index.js";
 import type { FailedMutation } from "@/use-mutation.svelte.js";
 
-import type { Config } from "./config.js";
 import type { MaybePromise } from '@/lib/types.js';
+
+import type { Config } from "./config.js";
 
 export interface ValidationError<E> {
   instanceId: string;
