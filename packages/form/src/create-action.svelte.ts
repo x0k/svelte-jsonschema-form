@@ -7,60 +7,49 @@ export enum Status {
   Failed,
 }
 
-export interface AbstractMutationState<S extends Status> {
+export interface AbstractActionState<S extends Status> {
   status: S;
 }
 
-export type MutationFailureReason = "timeout" | "aborted" | "error";
+export type ActionFailureReason = "timeout" | "aborted" | "error";
 
-export interface AbstractFailedMutation<R extends MutationFailureReason>
-  extends AbstractMutationState<Status.Failed> {
+export interface AbstractFailedAction<R extends ActionFailureReason>
+  extends AbstractActionState<Status.Failed> {
   reason: R;
 }
 
-export interface MutationFailedByError<E>
-  extends AbstractFailedMutation<"error"> {
+export interface ActionFailedByError<E> extends AbstractFailedAction<"error"> {
   error: E;
 }
 
-export type FailedMutation<E> =
-  | MutationFailedByError<E>
-  | AbstractFailedMutation<Exclude<MutationFailureReason, "error">>;
+export type FailedAction<E> =
+  | ActionFailedByError<E>
+  | AbstractFailedAction<Exclude<ActionFailureReason, "error">>;
 
-// @deprecated
-// TODO: Remove `unknown` default
-export interface ProcessedMutation<T = unknown>
-  extends AbstractMutationState<Status.Processed> {
+export interface ProcessedAction<T>
+  extends AbstractActionState<Status.Processed> {
   delayed: boolean;
   args: T;
 }
 
-// @deprecated
-// TODO: Remove `unknown` default and swap types
-export type MutationState<E, T = unknown> =
-  | FailedMutation<E>
-  | ProcessedMutation<T>
-  | AbstractMutationState<Exclude<Status, Status.Failed | Status.Processed>>;
+export type ActionState<T, E> =
+  | FailedAction<E>
+  | ProcessedAction<T>
+  | AbstractActionState<Exclude<Status, Status.Failed | Status.Processed>>;
 
-/** @deprecated use `MutationsCombinator2` */
-export type MutationsCombinator<E> = (
-  state: MutationState<E>
-) => boolean | "abort";
-
-// @deprecated
-// TODO: Swap types
-export type MutationsCombinator2<E, T> = (
-  state: MutationState<E, T>
+export type ActionsCombinator<T, E> = (
+  state: ActionState<T, E>
 ) => MaybePromise<boolean | "abort">;
 
-export interface MutationOptions<T extends ReadonlyArray<any>, R, E> {
-  mutate: (signal: AbortSignal, ...args: T) => Promise<R>;
+export interface ActionOptions<T extends ReadonlyArray<any>, R, E> {
+  execute: (signal: AbortSignal, ...args: T) => Promise<R>;
   onSuccess?: (result: R, ...args: T) => void;
-  onFailure?: (failure: FailedMutation<E>, ...args: T) => void;
+  onFailure?: (failure: FailedAction<E>, ...args: T) => void;
   /**
+   * A runtime error `combinator` is interpreted as `false`
    * @default ignoreNewUntilPreviousIsFinished
    */
-  combinator?: MutationsCombinator2<E, T>;
+  combinator?: ActionsCombinator<T, E>;
   /**
    * @default 500
    */
@@ -74,25 +63,24 @@ export interface MutationOptions<T extends ReadonlyArray<any>, R, E> {
 /**
  * Forget previous mutation
  */
-export const forgetPrevious: MutationsCombinator2<any, any> = () => true;
+export const forgetPrevious: ActionsCombinator<any, any> = () => true;
 
 /**
  * Abort previous mutation
  */
-export const abortPrevious: MutationsCombinator2<any, any> = () => "abort";
+export const abortPrevious: ActionsCombinator<any, any> = () => "abort";
 
 /**
  * Ignore new mutation until the previous mutation is completed
  */
-export const ignoreNewUntilPreviousIsFinished: MutationsCombinator2<
-  any,
-  any
-> = ({ status }) => status !== Status.Processed;
+export const ignoreNewUntilPreviousIsFinished: ActionsCombinator<any, any> = ({
+  status,
+}) => status !== Status.Processed;
 
-export function throttle(
-  combinator: MutationsCombinator2<any, any>,
+export function throttle<T, E>(
+  combinator: ActionsCombinator<T, E>,
   delayedMs: number
-): MutationsCombinator2<any, any> {
+): ActionsCombinator<T, E> {
   let nextCallAfter = 0;
   return (state) => {
     const now = Date.now();
@@ -104,10 +92,10 @@ export function throttle(
   };
 }
 
-export function debounce(
-  combinator: MutationsCombinator2<any, any>,
+export function debounce<T, E>(
+  combinator: ActionsCombinator<T, E>,
   delayedMs: number
-): MutationsCombinator2<any, any> {
+): ActionsCombinator<T, E> {
   let callbackId: NodeJS.Timeout;
   let lastReject: undefined | (() => void);
   return (state) => {
@@ -123,8 +111,8 @@ export function debounce(
   };
 }
 
-export interface Mutation<T extends ReadonlyArray<any>, R, E> {
-  readonly state: Readonly<MutationState<E, T>>;
+export interface Action<T extends ReadonlyArray<any>, R, E> {
+  readonly state: Readonly<ActionState<T, E>>;
   readonly status: Status;
   readonly isSuccess: boolean;
   readonly isFailed: boolean;
@@ -133,14 +121,12 @@ export interface Mutation<T extends ReadonlyArray<any>, R, E> {
   run(...args: T): Promise<void>;
   abort(): void;
 }
-/**
- * @deprecated use `createAction` from 'form/create-action.svelte`instead
- */
-export function useMutation<
+
+export function createAction<
   T extends ReadonlyArray<any>,
   R = unknown,
   E = unknown,
->(options: MutationOptions<T, R, E>): Mutation<T, R, E> {
+>(options: ActionOptions<T, R, E>): Action<T, R, E> {
   const delayedMs = $derived(options.delayedMs ?? 500);
   const timeoutMs = $derived(options.timeoutMs ?? 8000);
   if (timeoutMs < delayedMs) {
@@ -150,7 +136,7 @@ export function useMutation<
     options.combinator ?? ignoreNewUntilPreviousIsFinished
   );
 
-  let state = $state.raw<MutationState<E, T>>({
+  let state = $state.raw<ActionState<T, E>>({
     status: Status.IDLE,
   });
   let abortController: AbortController | null = null;
@@ -178,11 +164,11 @@ export function useMutation<
     }
     state = {
       status: Status.Processed,
-      delayed: mutation.isDelayed,
+      delayed: action.isDelayed,
       args,
     };
     abortController = new AbortController();
-    const promise = options.mutate(abortController.signal, ...args).then(
+    const promise = options.execute(abortController.signal, ...args).then(
       (result) => {
         // Mutation may have been aborted by user or timeout
         if (ref?.deref() !== promise || state.status === Status.Failed) return;
@@ -212,7 +198,7 @@ export function useMutation<
     return promise;
   }
 
-  const mutation: Mutation<T, R, E> = {
+  const action: Action<T, R, E> = {
     get state() {
       return state;
     },
@@ -241,7 +227,7 @@ export function useMutation<
           decision = dec;
         }
       } catch (error) {
-        return
+        decision = false;
       }
       return run(decision, args);
     },
@@ -253,5 +239,5 @@ export function useMutation<
       options.onFailure?.(state, ...args);
     },
   };
-  return mutation;
+  return action;
 }
