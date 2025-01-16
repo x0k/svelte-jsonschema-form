@@ -1,18 +1,18 @@
-import type { EventHandler, FormEventHandler } from 'svelte/elements';
+import type { EventHandler, FormEventHandler } from "svelte/elements";
 import type { ComponentInternals, Snippet } from "svelte";
-import type { Action } from "svelte/action";
+import type { Action as SvelteAction } from "svelte/action";
 import { SvelteMap } from "svelte/reactivity";
 
 import type { SchedulerYield } from "@/lib/scheduler.js";
 import type { Schema, SchemaValue } from "@/core/schema.js";
 import {
   abortPrevious,
+  createAction,
   debounce,
-  useMutation,
-  type FailedMutation,
-  type Mutation,
-  type MutationsCombinator2,
-} from "@/use-mutation.svelte.js";
+  type Action,
+  type ActionsCombinator,
+  type FailedAction,
+} from "@/create-action.svelte.js";
 
 import {
   ADDITIONAL_PROPERTY_KEY_ERROR,
@@ -84,7 +84,7 @@ export interface UseFormOptions<T, E> {
   /**
    * @default ignoreNewUntilPreviousIsFinished
    */
-  validationCombinator?: MutationsCombinator2<unknown, [SubmitEvent]>;
+  validationCombinator?: ActionsCombinator<[SubmitEvent], unknown>;
   /**
    * @default 500
    */
@@ -100,9 +100,9 @@ export interface UseFormOptions<T, E> {
   /**
    * @default debounce(abortPrevious, fieldsValidationDebounceMs)
    */
-  fieldsValidationCombinator?: MutationsCombinator2<
-    unknown,
-    [Config<unknown>, FormValue]
+  fieldsValidationCombinator?: ActionsCombinator<
+    [Config<unknown>, FormValue],
+    unknown
   >;
   /**
    * @default 500
@@ -151,15 +151,12 @@ export interface UseFormOptions<T, E> {
    * - validation is cancelled
    * - validation timeout
    */
-  onValidationFailure?: (
-    state: FailedMutation<unknown>,
-    e: SubmitEvent
-  ) => void;
+  onValidationFailure?: (state: FailedAction<unknown>, e: SubmitEvent) => void;
   /**
    * Field validation error handler
    */
   onFieldsValidationFailure?: (
-    state: FailedMutation<unknown>,
+    state: FailedAction<unknown>,
     config: Config,
     value: FormValue
   ) => void;
@@ -178,7 +175,7 @@ export interface UseFormOptions<T, E> {
 }
 
 export type ValidationProcessErrorTranslation = (
-  state: FailedMutation<unknown>
+  state: FailedAction<unknown>
 ) => string;
 
 export interface FormOptions<T, E> extends UseFormOptions<T, E> {
@@ -200,7 +197,7 @@ export interface FormState<T, E> {
   errors: Errors<E>;
   isSubmitted: boolean;
   isChanged: boolean;
-  validation: Mutation<
+  validation: Action<
     [event: SubmitEvent],
     {
       snapshot: FormValue;
@@ -208,7 +205,7 @@ export interface FormState<T, E> {
     },
     unknown
   >;
-  fieldsValidation: Mutation<
+  fieldsValidation: Action<
     [config: Config<unknown>, value: FormValue],
     ValidationError<E>[],
     unknown
@@ -226,19 +223,19 @@ export interface FormState<T, E> {
 export interface FormInternals {
   // @deprecated
   // TODO: Replace `enhance` and `*Handler` with `attachment`
-  enhance: Action;
-  submitHandler: EventHandler<SubmitEvent, HTMLFormElement>
-  resetHandler: FormEventHandler<HTMLFormElement>
+  enhance: SvelteAction;
+  submitHandler: EventHandler<SubmitEvent, HTMLFormElement>;
+  resetHandler: FormEventHandler<HTMLFormElement>;
   context: FormContext;
   formValue: FormValue;
 }
 
 /** @deprecated use `FormInternals` or `FormState` instead */
 export interface FormAPI<T, E> extends FormState<T, E> {
-  enhance: Action;
+  enhance: SvelteAction;
   context: FormContext;
-  submitHandler: EventHandler<SubmitEvent, HTMLFormElement>
-  resetHandler: FormEventHandler<HTMLFormElement>
+  submitHandler: EventHandler<SubmitEvent, HTMLFormElement>;
+  resetHandler: FormEventHandler<HTMLFormElement>;
 }
 
 /**
@@ -374,10 +371,7 @@ export function createForm3<
       : options.schema
   );
 
-  function validateSnapshot(
-    snapshot: FormValue,
-    signal: AbortSignal
-  ) {
+  function validateSnapshot(snapshot: FormValue, signal: AbortSignal) {
     const errors = options.validator.validateFormData(
       validationSchema,
       snapshot,
@@ -389,8 +383,8 @@ export function createForm3<
     return groupErrors(errors);
   }
 
-  const validation = useMutation({
-    async mutate(signal, _event: SubmitEvent) {
+  const validation = createAction({
+    async execute(signal, _event: SubmitEvent) {
       isSubmitted = true;
       const snapshot = getSnapshot();
       const validationErrors = await validateSnapshot(snapshot, signal);
@@ -436,8 +430,8 @@ export function createForm3<
     },
   });
 
-  const fieldsValidation = useMutation({
-    async mutate(signal, config: Config, value: FormValue) {
+  const fieldsValidation = createAction({
+    async execute(signal, config: Config, value: FormValue) {
       return options.validator.validateFieldData(config, value, signal);
     },
     onSuccess(validationErrors: ValidationError<E>[], config) {
@@ -602,7 +596,10 @@ export function createForm3<
       return getSnapshot() as T | undefined;
     },
     set value(v) {
-      value = merger.mergeFormDataAndSchemaDefaults(v as FormValue, options.schema);
+      value = merger.mergeFormDataAndSchemaDefaults(
+        v as FormValue,
+        options.schema
+      );
     },
     get formValue() {
       return value;
@@ -666,7 +663,7 @@ export function createForm3<
       });
     },
     submitHandler,
-    resetHandler
+    resetHandler,
   };
 }
 
