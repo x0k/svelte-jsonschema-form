@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Content, FormElement, setFromContext, SubmitButton } from "@sjsf/form";
-  import { Status, useMutation } from "@sjsf/form/use-mutation.svelte";
+  import { Status, createAction } from "@sjsf/form/create-action.svelte";
 
   import { createCustomForm } from "@/components/custom-form";
 
@@ -12,8 +12,8 @@
     value: string;
   }
 
-  const mutation = useMutation({
-    mutate: (_signal, { reject: isError, delay, value }: Config) =>
+  const resolve = createAction({
+    execute: (_signal, { reject: isError, delay, value }: Config) =>
       new Promise<string>((resolve, reject) => {
         data = undefined;
         setTimeout(() => {
@@ -24,7 +24,7 @@
           }
         }, delay);
       }),
-    onSuccess(response) {
+    onSuccess(response: string) {
       data = response;
     },
     onFailure: console.error,
@@ -56,9 +56,9 @@
         },
       },
     },
-    onSubmit: mutation.run,
+    onSubmit: resolve.run,
     get disabled() {
-      return mutation.isProcessed;
+      return resolve.isProcessed;
     },
   });
   setFromContext(form.context)
@@ -66,7 +66,7 @@
 
 <FormElement {form}>
   <Content {form} />
-  {#if mutation.isDelayed}
+  {#if resolve.isDelayed}
     <button style="padding: 0.5rem;" disabled>Processed...</button>
   {:else}
     <SubmitButton />
@@ -74,7 +74,7 @@
   {#if data !== undefined}
     <p>Data: {data}</p>
   {/if}
-  {#if mutation.state.status === Status.Failed}
-    <p class="text-red-500">Failed: {mutation.state.reason}</p>
+  {#if resolve.state.status === Status.Failed}
+    <p class="text-red-500">Failed: {resolve.state.reason}</p>
   {/if}
 </FormElement>
