@@ -555,13 +555,13 @@ function maybeAddDefaultToObject(
       obj.set(key, computedDefault);
     }
   } else if (emptyObjectFields !== "skipDefaults") {
-    if (isSchemaObjectValue(computedDefault)) {
-      // If isParentRequired is undefined, then we are at the root level of the schema so defer to the requiredness of
-      // the field key itself in the `requiredField` list
-      const isSelfOrParentRequired = isSchemaRoot
-        ? requiredFields.has(key)
-        : isParentRequired;
+    // If isParentRequired is undefined, then we are at the root level of the schema so defer to the requiredness of
+    // the field key itself in the `requiredField` list
+    const isSelfOrParentRequired = isSchemaRoot
+      ? requiredFields.has(key)
+      : isParentRequired;
 
+    if (isSchemaObjectValue(computedDefault)) {
       // If emptyObjectFields 'skipEmptyDefaults' store computedDefault if it's a non-empty object(e.g. not {})
       if (emptyObjectFields === "skipEmptyDefaults") {
         if (!isSchemaValueEmpty(computedDefault)) {
@@ -585,7 +585,7 @@ function maybeAddDefaultToObject(
       computedDefault !== undefined &&
       (emptyObjectFields === "populateAllDefaults" ||
         emptyObjectFields === "skipEmptyDefaults" ||
-        requiredFields.has(key))
+        (isSelfOrParentRequired && requiredFields.has(key)))
     ) {
       obj.set(key, computedDefault);
     }
