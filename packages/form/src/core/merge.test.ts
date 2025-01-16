@@ -449,7 +449,7 @@ describe("mergeDefaultsWithFormData()", () => {
   });
 
   it("should return default when formData is null and defaultSupercedesUndefined true", () => {
-    expect(mergeDefaultsWithFormData({}, null, undefined, true)).toBeNull();
+    expect(mergeDefaultsWithFormData({}, null, undefined, true)).toEqual({})
   });
 
   it("should return undefined when formData is undefined", () => {

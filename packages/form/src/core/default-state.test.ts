@@ -3334,11 +3334,6 @@ describe("getDefaultFormState2()", () => {
       ).toEqual({
         baseRequiredProperty: {
           requiredProperty: "foo",
-          // NOTE: this part of data is not present in original test
-          // because original code ignores falsy defaults
-          optionalProperty: {
-            nestedRequiredProperty: "",
-          },
         },
       });
     });
