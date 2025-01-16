@@ -19,7 +19,7 @@ import { page } from '$app/stores';
 
 import type { InitialFormData, ValidatedFormData } from '../model';
 
-import { useSvelteKitMutation, type SveltekitMutationOptions } from './use-mutation.svelte';
+import { createSvelteKitRequest, type SveltekitRequestOptions } from './create-request.svelte';
 
 export type ValidatedFormDataFromActionDataBranch<ActionData, FormName extends keyof ActionData> =
   ActionData[FormName] extends ValidatedFormData<any, any> ? ActionData[FormName] : never;
@@ -80,7 +80,7 @@ export type SvelteKitFormOptions<ActionData, V, E, SendSchema extends boolean> =
   FormOptions<V, E>,
   'onSubmit' | 'schema'
 > &
-  SveltekitMutationOptions<ActionData, V> & {
+  SveltekitRequestOptions<ActionData, V> & {
     additionalPropertyKeyValidationError?: AdditionalPropertyKeyValidationError;
   } & (SendSchema extends true
     ? {
@@ -139,7 +139,7 @@ export function useSvelteKitForm<
   });
   onDestroy(unsubscribe);
 
-  const mutation = useSvelteKitMutation<Meta['__actionData'], V>(options);
+  const request = createSvelteKitRequest<Meta['__actionData'], V>(options);
 
   const separators = [
     options.idSeparator ?? DEFAULT_ID_SEPARATOR,
@@ -151,7 +151,7 @@ export function useSvelteKitForm<
   const form = createForm3<FormOptions<V, E>>(
     Object.setPrototypeOf(options, {
       ...lastInitialFormData,
-      onSubmit: mutation.run,
+      onSubmit: request.run,
       additionalPropertyKeyValidator: additionalPropertyKeyValidationError && {
         validateAdditionalPropertyKey(key: string): string[] {
           for (const separator of separators) {
@@ -172,7 +172,7 @@ export function useSvelteKitForm<
 
   return {
     form,
-    mutation,
+    mutation: request,
     enhance: form.enhance.bind(form)
   };
 }

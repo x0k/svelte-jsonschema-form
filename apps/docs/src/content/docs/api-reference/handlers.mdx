@@ -38,14 +38,14 @@ interface FormOptions<T, E> {
    * - validation timeout
    */
   onValidationFailure?: (
-    state: FailedMutation<unknown>,
+    state: FailedAction<unknown>,
     e: SubmitEvent
   ) => void;
   /**
    * Field validation error handler
    */
   onFieldsValidationFailure?: (
-    state: FailedMutation<unknown>,
+    state: FailedAction<unknown>,
     config: Config,
     value: SchemaValue | undefined
   ) => void;
