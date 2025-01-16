@@ -25,3 +25,9 @@ export type Prettify<T> = {
 } & {};
 
 export type MaybePromise<T> = T | Promise<T>;
+
+export type Nil = null | undefined
+
+export function isNil<T>(v: T | Nil): v is Nil {
+  return v === undefined || v === null
+}

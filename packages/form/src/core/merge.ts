@@ -2,6 +2,8 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
+import { isNil } from '@/lib/types.js';
+
 import {
   ARRAYS_OF_SUB_SCHEMAS,
   DEPENDENCIES_KEY,
@@ -158,16 +160,15 @@ export function mergeDefaultsWithFormData<T = any>(
   }
   if (isSchemaObjectValue(formData)) {
     const acc: { [key in keyof T]: any } = Object.assign({}, defaults); // Prevent mutation of source object.
-    const defaultsAsObject = isSchemaObjectValue(defaults)
+    const defaultsObject: SchemaObjectValue = isSchemaObjectValue(defaults)
       ? defaults
-      : undefined;
-    const defaultsObject = isSchemaObjectValue(defaults) ? defaults : {};
+      : {};
     for (const [key, value] of Object.entries(formData)) {
       const keyExistsInDefaults = key in defaultsObject;
       const keyExistsInFormData = key in formData;
 
       acc[key as keyof T] = mergeDefaultsWithFormData(
-        defaultsAsObject?.[key],
+        defaultsObject[key],
         value,
         mergeExtraArrayDefaults,
         defaultsSupersedesUndefined,
@@ -180,14 +181,16 @@ export function mergeDefaultsWithFormData<T = any>(
     return acc;
   }
 
-  // NOTE: Condition changed
-  //   (defaultSupercedesUndefined &&
-  //   ((!isNil(defaults) && isNil(formData)) || (typeof formData === 'number' && isNaN(formData)))) ||
-  // (overrideFormDataWithDefaults && !isNil(formData))
   if (
-    formData === undefined
-      ? defaultsSupersedesUndefined && defaults !== undefined
-      : overrideFormDataWithDefaults
+    (defaultsSupersedesUndefined &&
+      ((!isNil(defaults) && isNil(formData)) ||
+        (typeof formData === "number" && isNaN(formData)))) ||
+    (overrideFormDataWithDefaults && !isNil(formData))
+    // NOTE: The above condition is inherited from RJSF to maintain tests compatibility
+    // but i would prefer more simple one
+    // formData === undefined
+    //   ? defaultsSupersedesUndefined && defaults !== undefined
+    //   : overrideFormDataWithDefaults
   ) {
     return defaults;
   }
