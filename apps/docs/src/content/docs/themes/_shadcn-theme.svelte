@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { SimpleForm } from "@sjsf/form";
+  import { RawForm } from "@sjsf/form";
   import { theme, setThemeContext } from "@sjsf/shadcn-theme";
   import { components } from "@sjsf/shadcn-theme/default";
 
@@ -19,6 +19,11 @@
   setThemeContext({ components });
 </script>
 
-<SimpleForm {form} novalidate class="flex flex-col gap-4 {astro.darkOrLight}" />
+<RawForm
+  {form}
+  novalidate
+  class="flex flex-col gap-4 {astro.darkOrLight}"
+  style="margin-bottom: 1rem;"
+/>
 
-<pre style="padding-top: 1rem;">{JSON.stringify(form.value, null, 2)}</pre>
+<pre>{JSON.stringify(form.value, null, 2)}</pre>

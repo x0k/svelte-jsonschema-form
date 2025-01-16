@@ -8,6 +8,7 @@ import type {
   FieldErrors,
 } from "@sjsf/form";
 import type { Mutation } from "@sjsf/form/use-mutation.svelte";
+import type { EventHandler, FormEventHandler } from 'svelte/elements';
 
 interface FormState<T, E> {
   value: T | undefined;
@@ -41,4 +42,6 @@ interface FormInternals {
   enhance: Action;
   context: FormContext;
   formValue: FormValue;
+  submitHandler: EventHandler<SubmitEvent, HTMLFormElement>
+  resetHandler: FormEventHandler<HTMLFormElement>
 }

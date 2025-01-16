@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { FormContent } from "@sjsf/form";
+  import { Content } from "@sjsf/form";
   import { createValidator2 } from "@sjsf/ajv8-validator";
   import { theme } from "@sjsf/form/basic-theme";
   import { translation } from "@sjsf/form/translations/en";
@@ -24,6 +24,6 @@
   novalidate
   style="display: flex; flex-direction: column; gap: 1rem"
 >
-  <FormContent bind:value={form.formValue} />
+  <Content {form} />
   <button type="submit" style="padding: 0.5rem;">Submit</button>
 </form>

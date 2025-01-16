@@ -105,6 +105,10 @@
     "./static-analysis": {
       "types": "./dist/static-analysis.d.ts",
       "default": "./dist/static-analysis.js"
+    },
+    "./fake-validator": {
+      "types": "./dist/fake-validator.d.ts",
+      "default": "./dist/fake-validator.js"
     }
   }
 }

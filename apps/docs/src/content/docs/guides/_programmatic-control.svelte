@@ -1,5 +1,10 @@
 <script lang="ts">
-  import { FormContent, setFromContext, type Schema } from "@sjsf/form";
+  import {
+    Content,
+    FormElement,
+    setFromContext,
+    type Schema,
+  } from "@sjsf/form";
 
   import { createCustomForm } from "@/components/custom-form";
 
@@ -13,17 +18,17 @@
     initialValue: "initial",
     onSubmit: (v) => window.alert(v),
   });
-  setFromContext(form.context)
+  setFromContext(form.context);
 
-  let formElement: HTMLFormElement;
+  let ref: HTMLFormElement | undefined = $state();
 </script>
 
-<form bind:this={formElement} use:form.enhance>
-  <FormContent bind:value={form.formValue} />
-</form>
+<FormElement bind:ref {form}>
+  <Content {form} />
+</FormElement>
 <button
   onclick={(_e) => {
-    formElement?.requestSubmit();
+    ref?.requestSubmit();
     // or
     // form.submit(new SubmitEvent("submit", { submitter: _e.currentTarget }));
     // (note that the `target` and `currentTarget` will not be properly set)
@@ -31,7 +36,7 @@
 >
 <button
   onclick={() => {
-    formElement?.reset();
+    ref?.reset();
     // or
     // form.reset();
     // (note that `onReset` handler will not be called)

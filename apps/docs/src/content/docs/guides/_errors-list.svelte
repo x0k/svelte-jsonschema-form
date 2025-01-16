@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { SimpleForm } from "@sjsf/form";
+  import { RawForm } from "@sjsf/form";
 
   import { createCustomForm } from "@/components/custom-form";
 
@@ -7,15 +7,10 @@
 
   const form = createCustomForm({
     schema: objectSchema,
-    onSubmit: console.log,
   });
 </script>
 
-<SimpleForm
-  {form}
-  novalidate
-  style="display: flex; flex-direction: column; gap: 1rem"
-/>
+<RawForm {form} novalidate />
 
 {#if form.errors.size > 0}
   <div style="padding-top: 1rem;">

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createForm3, SimpleForm, type Schema } from "@sjsf/form";
+  import { createForm3, RawForm, type Schema } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { theme } from "@sjsf/form/basic-theme";
   import { createValidator2 } from "@sjsf/ajv8-validator";
@@ -25,4 +25,4 @@
   });
 </script>
 
-<SimpleForm {form} style="display: flex; flex-direction: column; gap: 1rem" />
+<RawForm {form} />

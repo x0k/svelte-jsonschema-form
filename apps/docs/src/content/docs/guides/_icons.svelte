@@ -1,21 +1,16 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
-  import { type Schema, SimpleForm } from "@sjsf/form";
 
-  import { createCustomForm } from "@/components/custom-form";
+  import CustomForm from '@/components/custom-form.svelte';
 
   const { children }: { children: Snippet } = $props();
-
-  const schema: Schema = {
-    title: "With icons",
-  };
-  
-  const form = createCustomForm({
-    schema,
-    icons: {
-      submit: children
-    }
-  });
 </script>
 
-<SimpleForm {form} />
+<CustomForm
+  schema={{
+    title: "With icons",
+  }}
+  icons={{
+    submit: children
+  }}
+/>

@@ -1,3 +1,4 @@
+import type { EventHandler, FormEventHandler } from 'svelte/elements';
 import type { ComponentInternals, Snippet } from "svelte";
 import type { Action } from "svelte/action";
 import { SvelteMap } from "svelte/reactivity";
@@ -223,7 +224,11 @@ export interface FormState<T, E> {
 }
 
 export interface FormInternals {
+  // @deprecated
+  // TODO: Replace `enhance` and `*Handler` with `attachment`
   enhance: Action;
+  submitHandler: EventHandler<SubmitEvent, HTMLFormElement>
+  resetHandler: FormEventHandler<HTMLFormElement>
   context: FormContext;
   formValue: FormValue;
 }
@@ -232,6 +237,8 @@ export interface FormInternals {
 export interface FormAPI<T, E> extends FormState<T, E> {
   enhance: Action;
   context: FormContext;
+  submitHandler: EventHandler<SubmitEvent, HTMLFormElement>
+  resetHandler: FormEventHandler<HTMLFormElement>
 }
 
 /**
@@ -658,6 +665,8 @@ export function createForm3<
         };
       });
     },
+    submitHandler,
+    resetHandler
   };
 }
 

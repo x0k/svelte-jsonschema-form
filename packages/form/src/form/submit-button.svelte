@@ -2,12 +2,19 @@
   import type { Config } from "./config.js";
   import type { UiSchema } from "./ui-schema.js";
   import { FAKE_ID_SCHEMA } from "./id-schema.js";
-  import { isDisabled, getComponent, getUiOptions, getFormContext } from "./context/index.js";
+  import {
+    isDisabled,
+    getComponent,
+    getUiOptions,
+    getFormContext,
+  } from "./context/index.js";
   import { NO_ERRORS } from "./errors.js";
 
   const ctx = getFormContext();
 
-  const uiSchema: UiSchema = $derived(ctx.uiSchema.submitButton ?? {});
+  const uiSchema: UiSchema = $derived(
+    ctx.uiSchema["ui:submitButton"] ?? ctx.uiSchema.submitButton ?? {}
+  );
   const uiOptions = $derived(getUiOptions(ctx, uiSchema));
 
   const config: Config = $derived({

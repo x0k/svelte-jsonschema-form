@@ -7,9 +7,9 @@ sidebar:
 import { Code } from '@astrojs/starlight/components';
 
 import customFormCode from '@/components/custom-form.ts?raw';
-import customFormComponentCode from './_custom-form.svelte?raw';
+import customFormComponentCode from '@/components/custom-form.svelte?raw';
 
-## Hook
+## Factory
 
 Even with a simple setup, resulting code is very verbose.
 Therefore, after choosing a theme, validator and translation, it is convenient to create a wrapper around the `createForm3`.
@@ -20,7 +20,7 @@ Therefore, after choosing a theme, validator and translation, it is convenient t
 
 Note that you can simplify the above code if certain restrictions are met:
 
-- If you are sure that you will always call the `createForm3` hook with passing the object literal, you can use the following code instead of `Proxy`:
+- If you are sure that you will always call the `createForm3` function with passing the object literal, you can use the following code instead of `Proxy`:
 
 `Object.setPrototypeOf(options, defaults)`
 

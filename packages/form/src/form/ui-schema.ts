@@ -1,6 +1,7 @@
 import type {
   HTMLAttributes,
   HTMLButtonAttributes,
+  HTMLFormAttributes,
   HTMLInputAttributes,
   HTMLSelectAttributes,
   HTMLTextareaAttributes,
@@ -22,6 +23,9 @@ interface UiSchemaRootIndex {
 type UiSchemaRootContent = UiSchemaContent & {
   "ui:rootFieldId"?: string;
   "ui:globalOptions"?: UiOptions;
+  "ui:formElement"?: UiSchema;
+  "ui:submitButton"?: UiSchema;
+  /** @deprecated use `ui:submitButton` property */
   submitButton?: UiSchema;
 };
 
@@ -73,6 +77,10 @@ export interface UiOptions {
    * Overrides the attributes of the main button component of the field.
    */
   button?: HTMLButtonAttributes;
+  /**
+   * Overrides the attributes of the form element
+   */
+  form?: HTMLFormAttributes;
   // TODO: Clarify the need for this
   // root?: HTMLAttributes<HTMLDivElement>
   /**

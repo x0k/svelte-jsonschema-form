@@ -52,6 +52,10 @@ export default defineConfig({
           autogenerate: { directory: "advanced" },
         },
         {
+          label: "Migration guides",
+          autogenerate: { directory: "migration-guides" }
+        },
+        {
           label: "API Reference",
           autogenerate: { directory: "api-reference" },
         },

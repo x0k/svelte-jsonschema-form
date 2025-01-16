@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { SimpleForm, type Schema, type UiSchemaRoot } from "@sjsf/form";
+  import type { Schema, UiSchemaRoot } from "@sjsf/form";
 
-  import { createCustomForm } from "@/components/custom-form";
+  import CustomForm from "@/components/custom-form.svelte";
 
   const schema: Schema = {
     type: "string",
@@ -17,12 +17,6 @@
       },
     },
   };
-
-  const form = createCustomForm({
-    schema,
-    uiSchema,
-    onSubmit: console.log,
-  });
 </script>
 
-<SimpleForm {form} style="display: flex; flex-direction: column; gap: 1rem" />
+<CustomForm {schema} {uiSchema} onSubmit={(v) => window.alert(v)} />

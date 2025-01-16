@@ -9,9 +9,10 @@ import type { Config } from "./config.js";
 import type { ValidationError } from "./validator.js";
 
 export interface FormComponentProps {
+  form?: HTMLFormElement | undefined;
+  /** @deprecated */
+  onsubmit?: HTMLFormAttributes['onsubmit'];
   attributes: HTMLFormAttributes;
-  form: HTMLFormElement | undefined;
-  onsubmit: HTMLFormAttributes['onsubmit'];
   children: Snippet;
 }
 
