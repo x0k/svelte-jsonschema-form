@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { FormContent, setFromContext, SubmitButton } from "@sjsf/form";
+  import { Content, FormElement, setFromContext, SubmitButton } from "@sjsf/form";
   import { Status, useMutation } from "@sjsf/form/use-mutation.svelte";
 
   import { createCustomForm } from "@/components/custom-form";
@@ -64,8 +64,8 @@
   setFromContext(form.context)
 </script>
 
-<form use:form.enhance style="display: flex; flex-direction: column; gap: 1rem">
-  <FormContent bind:value={form.formValue} />
+<FormElement {form}>
+  <Content {form} />
   {#if mutation.isDelayed}
     <button style="padding: 0.5rem;" disabled>Processed...</button>
   {:else}
@@ -77,4 +77,4 @@
   {#if mutation.state.status === Status.Failed}
     <p class="text-red-500">Failed: {mutation.state.reason}</p>
   {/if}
-</form>
+</FormElement>

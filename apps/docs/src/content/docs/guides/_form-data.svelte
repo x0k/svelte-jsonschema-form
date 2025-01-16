@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { type Schema, SimpleForm } from "@sjsf/form";
+  import { RawForm, type Schema } from "@sjsf/form";
 
   import { createCustomForm } from "@/components/custom-form";
 
@@ -15,11 +15,7 @@
   });
 </script>
 
-<SimpleForm
-  style="display: flex; flex-direction: column; gap: 1rem"
-  novalidate
-  {form}
-/>
+<RawForm {form} novalidate />
 
 <pre>{JSON.stringify(
     { value: form.value, errors: Object.fromEntries(form.errors) },

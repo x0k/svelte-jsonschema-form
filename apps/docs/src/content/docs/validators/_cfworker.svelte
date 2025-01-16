@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { SimpleForm, ON_INPUT } from "@sjsf/form";
+  import { RawForm, ON_INPUT } from "@sjsf/form";
   import { createValidator } from "@sjsf/cfworker-validator";
 
   import { createCustomForm } from "@/components/custom-form";
 
-  import { schema, uiSchema } from './_shared';
+  import { schema, uiSchema } from "./_shared";
 
   const validator = createValidator({ uiSchema });
 
@@ -17,14 +17,10 @@
       id: "Invalid",
       skills: ["karate", "budo", "aikido"],
       multipleChoicesList: ["foo", "bar", "fuzz"],
-    }
+    },
   });
 </script>
 
-<SimpleForm
-  {form}
-  novalidate
-  style="display: flex; flex-direction: column; gap: 1rem;"
-/>
+<RawForm {form} novalidate />
 
 <pre>{JSON.stringify(form.value, null, 2)}</pre>

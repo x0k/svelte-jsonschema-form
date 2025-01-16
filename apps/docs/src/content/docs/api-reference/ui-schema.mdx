@@ -26,7 +26,8 @@ Root node of UI schema can have an additional fields:
 
 - `ui:rootFieldId` - prefix of generated field ids
 - `ui:globalOptions` - global ui options that are applied to all fields, are overwritten by `ui:options`.
-- `submitButton` - submit button UI schema
+- `ui:submitButton` - submit button UI schema
+- `ui:formElement` - form element UI schema
 
 ## UI options
 
@@ -57,8 +58,10 @@ interface UiOptions {
    * Overrides the attributes of the main button component of the field.
    */
   button?: HTMLButtonAttributes;
-  // TODO: Clarify the need for this
-  // root?: HTMLAttributes<HTMLDivElement>
+  /**
+   * Overrides the attributes of the form element
+   */
+  form?: HTMLFormAttributes;
   /**
    * Overrides the title of the field.
    */

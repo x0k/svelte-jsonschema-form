@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { SimpleForm } from '@sjsf/form';
+  import { RawForm } from '@sjsf/form';
   import { theme } from "@sjsf/skeleton-theme";
 
   import { useAstro } from "@/astro.svelte";
@@ -16,7 +16,7 @@
   });
 </script>
 
-<SimpleForm
+<RawForm
   {form}
   novalidate
   class="flex flex-col gap-4 {astro.darkOrLight}"

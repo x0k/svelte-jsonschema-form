@@ -1,9 +1,12 @@
 <script lang="ts">
   import Ajv, { type AsyncSchema, type SchemaValidateFunction } from "ajv";
-  import { addFormComponents, createAsyncValidator } from "@sjsf/ajv8-validator";
-  import { ON_INPUT, SimpleForm } from "@sjsf/form";
-  import { handleValidationProcessError } from '@sjsf/form/translations/en';
-  import { Status } from '@sjsf/form/use-mutation.svelte';
+  import {
+    addFormComponents,
+    createAsyncValidator,
+  } from "@sjsf/ajv8-validator";
+  import { ON_INPUT, RawForm } from "@sjsf/form";
+  import { handleValidationProcessError } from "@sjsf/form/translations/en";
+  import { Status } from "@sjsf/form/use-mutation.svelte";
 
   import { createCustomForm } from "@/components/custom-form";
 
@@ -48,9 +51,7 @@
   };
 </script>
 
-form validation: {statusNames[form.validation.status]}, fields validation: {statusNames[form.fieldsValidation.status]}
-<SimpleForm
-  {form}
-  novalidate
-  style="display: flex; flex-direction: column; gap: 1rem"
-/>
+form validation: {statusNames[form.validation.status]}, fields validation: {statusNames[
+  form.fieldsValidation.status
+]}
+<RawForm {form} novalidate />

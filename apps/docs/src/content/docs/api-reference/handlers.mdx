@@ -5,12 +5,7 @@ sidebar:
 ---
 
 ```typescript
-interface FormProps<T> {
-  /**
-   * Will be called when the form is submitted if `onSubmit` or `onSubmitError` is not provided
-   */
-  onsubmit?: EventHandler<SubmitEvent, HTMLFormElement> | undefined | null;
-
+interface FormOptions<T, E> {
   /**
    * The function to get the form data snapshot
    * 
