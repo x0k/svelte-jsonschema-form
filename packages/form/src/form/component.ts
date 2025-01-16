@@ -9,8 +9,9 @@ import type { Config } from "./config.js";
 import type { ValidationError } from "./validator.js";
 
 export interface FormComponentProps {
-  /** @deprecated */
+  /** @deprecated use `ref` instead */
   form?: HTMLFormElement | undefined;
+  ref?: HTMLFormElement | undefined;
   /** @deprecated */
   onsubmit?: HTMLFormAttributes['onsubmit'];
   attributes: HTMLFormAttributes;
@@ -103,7 +104,7 @@ export interface ComponentsAndProps {
 }
 
 export interface ComponentBindings {
-  form: "form";
+  form: "form" | "ref";
   button: "";
   layout: "";
   title: "";
