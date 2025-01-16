@@ -1,15 +1,15 @@
 import { DEV } from 'esm-env';
 import type { ActionResult } from '@sveltejs/kit';
-import { useMutation, type MutationOptions } from '@sjsf/form/use-mutation.svelte';
+import { createAction, type ActionOptions } from '@sjsf/form/create-action.svelte';
 
 import { applyAction, deserialize } from '$app/forms';
 import { invalidateAll } from '$app/navigation';
 
 import { JSON_CHUNKS_KEY } from '../model';
 
-export type SveltekitMutationOptions<ActionData, V> = Omit<
-	MutationOptions<[V, SubmitEvent], ActionResult<NonNullable<ActionData>>, unknown>,
-	'mutate'
+export type SveltekitRequestOptions<ActionData, V> = Omit<
+	ActionOptions<[V, SubmitEvent], ActionResult<NonNullable<ActionData>>, unknown>,
+	'execute'
 > & {
 	/** @default 500000 */
 	jsonChunkSize?: number;
@@ -19,14 +19,13 @@ export type SveltekitMutationOptions<ActionData, V> = Omit<
 	invalidateAll?: boolean;
 };
 
-/** @deprecated use `createSvelteKitRequest` instead */
-export function useSvelteKitMutation<ActionData, V>(
-	options: SveltekitMutationOptions<ActionData, V>
+export function createSvelteKitRequest<ActionData, V>(
+	options: SveltekitRequestOptions<ActionData, V>
 ) {
 	const jsonChunkSize = $derived(options.jsonChunkSize ?? 500000);
-	return useMutation({
+	return createAction({
 		// Based on https://github.com/sveltejs/kit/blob/92b2686314a7dbebee1761c3da7719d599f003c7/packages/kit/src/runtime/app/forms.js
-		async mutate(signal: AbortSignal, data: V, e: SubmitEvent) {
+		async execute(signal: AbortSignal, data: V, e: SubmitEvent) {
 			const formElement = e.currentTarget;
 			if (!(formElement instanceof HTMLFormElement)) {
 				throw new Error(`Event currentTarget is not an HTMLFormElement`);
@@ -120,7 +119,7 @@ export function useSvelteKitMutation<ActionData, V>(
 		},
 		get timeoutMs() {
 			return options.timeoutMs;
-		}
+		},
 	});
 }
 
