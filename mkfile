@@ -141,6 +141,8 @@ sv/:
     pnpm run check
   b:
     pnpm run build
+  p:
+    pnpm run preview
   d:
     pnpm run dev
   t:

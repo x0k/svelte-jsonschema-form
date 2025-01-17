@@ -19,7 +19,7 @@ import { page } from '$app/stores';
 
 import type { InitialFormData, ValidatedFormData } from '../model';
 
-import { createSvelteKitRequest, type SveltekitRequestOptions } from './create-request.svelte';
+import { useSvelteKitMutation, type SveltekitMutationOptions } from './use-mutation.svelte';
 
 export type ValidatedFormDataFromActionDataBranch<ActionData, FormName extends keyof ActionData> =
   ActionData[FormName] extends ValidatedFormData<any, any> ? ActionData[FormName] : never;
@@ -80,7 +80,7 @@ export type SvelteKitFormOptions<ActionData, V, E, SendSchema extends boolean> =
   FormOptions<V, E>,
   'onSubmit' | 'schema'
 > &
-  SveltekitRequestOptions<ActionData, V> & {
+  SveltekitMutationOptions<ActionData, V> & {
     additionalPropertyKeyValidationError?: AdditionalPropertyKeyValidationError;
   } & (SendSchema extends true
     ? {
@@ -88,6 +88,7 @@ export type SvelteKitFormOptions<ActionData, V, E, SendSchema extends boolean> =
       }
     : { schema: Schema });
 
+/** @deprecated use `createSvelteKitForm` instead */
 export function useSvelteKitForm<
   Meta extends SvelteKitFormMeta<any, any>,
   N extends FormNameFromActionDataUnion<Meta['__actionData']>,
@@ -139,7 +140,7 @@ export function useSvelteKitForm<
   });
   onDestroy(unsubscribe);
 
-  const request = createSvelteKitRequest<Meta['__actionData'], V>(options);
+  const request = useSvelteKitMutation<Meta['__actionData'], V>(options);
 
   const separators = [
     options.idSeparator ?? DEFAULT_ID_SEPARATOR,
