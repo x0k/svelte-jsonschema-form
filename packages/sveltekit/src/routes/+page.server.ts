@@ -32,7 +32,11 @@ const schema: Schema = {
 };
 
 export const load = async () => {
-  const form = initForm({ initialValue: { 'newKey::123': 'foo' }, sendSchema: true, schema });
+  const form = initForm({
+    initialValue: { 'newKey::123': 'foo', 'also.333': 'bar' },
+    sendSchema: true,
+    schema
+  });
   return { form };
 };
 
@@ -42,6 +46,7 @@ export const actions = {
       request,
       schema
     });
+    console.log(data);
     return {
       form: await validateForm2({
         request,

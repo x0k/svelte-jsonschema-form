@@ -15,7 +15,8 @@ import {
   type SchemaArrayValue,
   type SchemaDefinition,
   type SchemaObjectValue,
-  type Validator
+  type Validator,
+  typeOfSchema,
 } from '@sjsf/form/core';
 import type { IdentifiableFieldElement, Schema, SchemaValue, UiSchema } from '@sjsf/form';
 
@@ -174,9 +175,19 @@ export function parseSchemaValue<T>({
     if (additionalProperties !== undefined) {
       const knownProperties = new Set(getKnownProperties(schema, rootSchema));
       const additionalKeys = new Map<string, string>();
+      let isObjectOrArraySchema = false;
+      if (isSchema(additionalProperties)) {
+        const schemaType = typeOfSchema(additionalProperties);
+        isObjectOrArraySchema = Array.isArray(schemaType)
+          ? schemaType.includes('object') || schemaType.includes('array')
+          : schemaType === 'object' || schemaType === 'array';
+      }
       for (const entry of entriesStack[entriesStack.length - 1]) {
         const str = entry[0];
         let keyEnd: number | undefined = str.indexOf(originalIdSeparator, filter.length);
+        if (keyEnd !== -1 && !isObjectOrArraySchema) {
+          keyEnd = -1;
+        }
         if (keyEnd === -1) {
           const val = entry[1];
           if (str.endsWith(SEPARATED_KEY_INPUT_KET) && typeof val === 'string') {

@@ -178,14 +178,14 @@ describe('parseSchemaValue', () => {
 			['root.lastName', 'Norris'],
 			['root.assKickCount::key-input', 'assKickCountChanged'],
 			['root.assKickCount', 'infinity'],
-			['root.newKey::key-input', 'newKey'],
-			['root.newKey', 'foo']
+			['root.new.key::key-input', 'new.keyChanged'],
+			['root.new.key', 'foo']
 		];
 		expect(parseSchemaValue({ ...defaultOptions, schema, entries })).toEqual({
 			firstName: 'Chuck',
 			lastName: 'Norris',
 			assKickCountChanged: 'infinity',
-			newKey: 'foo'
+			'new.keyChanged': 'foo',
 		});
 	});
 	it('Should resolve references', () => {
