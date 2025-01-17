@@ -1,3 +1,4 @@
+import { some } from '@sjsf/form/lib/array';
 import { isObject } from '@sjsf/form/lib/object';
 import { escapeRegex } from '@sjsf/form/lib/reg-exp';
 import { type Trie, getNodeByKeys, insertValue } from '@sjsf/form/lib/trie';
@@ -17,8 +18,11 @@ import {
   type SchemaObjectValue,
   type Validator,
   typeOfSchema,
+  isArrayOrObjectSchemaType
 } from '@sjsf/form/core';
 import type { IdentifiableFieldElement, Schema, SchemaValue, UiSchema } from '@sjsf/form';
+
+import { IDENTIFIABLE_FIELD_ELEMENTS } from '../model.js';
 
 import type { Entries, EntriesConverter, Entry } from './entry.js';
 
@@ -37,19 +41,11 @@ export interface SchemaValueParserOptions<T> {
 
 const KNOWN_PROPERTIES = Symbol('known-properties');
 
-const IDENTIFIABLE_FIELD_ELEMENT: IdentifiableFieldElement = {
-  'key-input': {},
-  anyof: {},
-  examples: {},
-  help: {},
-  oneof: {}
-};
-
 const KEY_INPUT_KEY: keyof IdentifiableFieldElement = 'key-input';
 
 let DEFAULT_IDENTIFIABLE_ELEMENTS_TRIE: Trie<string, true>;
 
-for (const key of Object.keys(IDENTIFIABLE_FIELD_ELEMENT)) {
+for (const key of IDENTIFIABLE_FIELD_ELEMENTS) {
   DEFAULT_IDENTIFIABLE_ELEMENTS_TRIE = insertValue(
     DEFAULT_IDENTIFIABLE_ELEMENTS_TRIE,
     key.split(''),
@@ -175,13 +171,9 @@ export function parseSchemaValue<T>({
     if (additionalProperties !== undefined) {
       const knownProperties = new Set(getKnownProperties(schema, rootSchema));
       const additionalKeys = new Map<string, string>();
-      let isObjectOrArraySchema = false;
-      if (isSchema(additionalProperties)) {
-        const schemaType = typeOfSchema(additionalProperties);
-        isObjectOrArraySchema = Array.isArray(schemaType)
-          ? schemaType.includes('object') || schemaType.includes('array')
-          : schemaType === 'object' || schemaType === 'array';
-      }
+      const isObjectOrArraySchema =
+        isSchema(additionalProperties) &&
+        some(typeOfSchema(additionalProperties), isArrayOrObjectSchemaType);
       for (const entry of entriesStack[entriesStack.length - 1]) {
         const str = entry[0];
         let keyEnd: number | undefined = str.indexOf(originalIdSeparator, filter.length);

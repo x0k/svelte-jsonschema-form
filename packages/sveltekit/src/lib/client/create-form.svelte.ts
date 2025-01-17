@@ -8,14 +8,27 @@ import {
   type AdditionalPropertyKeyValidator,
   type Schema,
   type FormOptions,
-  groupErrors
+  groupErrors,
+  type Config,
+  type IdentifiableFieldElement
 } from '@sjsf/form';
 
 import { page } from '$app/state';
 
-import type { InitialFormData, ValidatedFormData } from '../model.js';
+import {
+  IDENTIFIABLE_FIELD_ELEMENTS,
+  type InitialFormData,
+  type ValidatedFormData
+} from '../model.js';
 
 import type { SvelteKitFormMeta } from './meta.js';
+import {
+  isArrayOrObjectSchemaType,
+  isPrimitiveSchemaType,
+  isSchema,
+  typeOfSchema
+} from '@sjsf/form/core';
+import { some } from '@sjsf/form/lib/array';
 
 export type AdditionalPropertyKeyValidationError2 =
   | string
@@ -26,6 +39,7 @@ export type SvelteKitFormOptions2<V, E, SendSchema extends boolean> = Omit<
   'schema'
 > & {
   additionalPropertyKeyValidationError?: AdditionalPropertyKeyValidationError2;
+  identifiableFieldElements?: (keyof IdentifiableFieldElement)[];
 } & (SendSchema extends true
     ? {
         schema?: Schema;
@@ -60,10 +74,13 @@ export function createSvelteKitForm<
         return page.data[meta.name];
       }
     });
-  const separators = [
-    options.idSeparator ?? DEFAULT_ID_SEPARATOR,
-    options.pseudoIdSeparator ?? DEFAULT_PSEUDO_ID_SEPARATOR
-  ];
+  const idSeparator = $derived(options.idSeparator ?? DEFAULT_ID_SEPARATOR);
+  const separators = $derived([idSeparator]);
+  const suffixes = $derived.by(() => {
+    const pseudo = options.pseudoIdSeparator ?? DEFAULT_PSEUDO_ID_SEPARATOR;
+    const elements = options.identifiableFieldElements ?? IDENTIFIABLE_FIELD_ELEMENTS;
+    return elements.map((el) => `${pseudo}${el}`);
+  });
   const additionalPropertyKeyValidationError = $derived(
     options.additionalPropertyKeyValidationError
   );
@@ -72,17 +89,45 @@ export function createSvelteKitForm<
     additionalPropertyKeyValidator:
       additionalPropertyKeyValidationError !== undefined
         ? {
-            validateAdditionalPropertyKey(key: string): string[] {
-              for (const separator of separators) {
-                if (key.includes(separator)) {
-                  return [
-                    typeof additionalPropertyKeyValidationError === 'string'
-                      ? additionalPropertyKeyValidationError
-                      : additionalPropertyKeyValidationError({ key, separator, separators })
-                  ];
-                }
+            validateAdditionalPropertyKey(key: string, config: Config): string[] {
+              const messages: string[] = [];
+              const { additionalProperties } = config.schema;
+              if (additionalProperties === undefined) {
+                return messages;
               }
-              return [];
+              const types = isSchema(additionalProperties)
+                ? typeOfSchema(additionalProperties)
+                : [];
+              for (const separator of separators) {
+                if (!key.includes(separator)) {
+                  continue;
+                }
+                if (separator === idSeparator) {
+                  if (!some(types, isArrayOrObjectSchemaType)) {
+                    continue;
+                  }
+                }
+                messages.push(
+                  typeof additionalPropertyKeyValidationError === 'string'
+                    ? additionalPropertyKeyValidationError
+                    : additionalPropertyKeyValidationError({ key, separator, separators })
+                );
+              }
+              for (const suffix of suffixes) {
+                if (!key.endsWith(suffix) || !some(types, isPrimitiveSchemaType)) {
+                  continue;
+                }
+                messages.push(
+                  typeof additionalPropertyKeyValidationError === 'string'
+                    ? additionalPropertyKeyValidationError
+                    : additionalPropertyKeyValidationError({
+                        key,
+                        separator: suffix,
+                        separators: suffixes
+                      })
+                );
+              }
+              return messages;
             }
           }
         : undefined
