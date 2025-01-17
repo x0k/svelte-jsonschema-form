@@ -30,18 +30,18 @@
         "<node_internals>/**",
         "**/node_modules/**"
       ],
-      "program": "${workspaceRoot}/packages/sveltekit-integration/node_modules/vitest/vitest.mjs",
+      "program": "${workspaceRoot}/packages/sveltekit/node_modules/vitest/vitest.mjs",
       "args": [
         "run",
         "../../${relativeFile}",
         "-r",
-        "${workspaceRoot}/packages/sveltekit-integration/"
+        "${workspaceRoot}/packages/sveltekit/"
       ],
       "env": {
         "NODE_ENV": "development",
         "VITE_TEST": "true"
       },
-      "cwd": "${workspaceRoot}/packages/sveltekit-integration",
+      "cwd": "${workspaceRoot}/packages/sveltekit",
       "smartStep": true,
       "console": "integratedTerminal"
     }

@@ -66,7 +66,7 @@ export function makeFormDataParser({
     uiSchema?: UiSchemaRoot;
   }): Promise<SchemaValue | undefined> => {
     const formData = await request.formData();
-    if (formData.get(JSON_CHUNKS_KEY)) {
+    if (formData.has(JSON_CHUNKS_KEY)) {
       const chunks = formData.getAll(JSON_CHUNKS_KEY).join('');
       return JSON.parse(chunks);
     }

@@ -176,7 +176,7 @@ describe('parseSchemaValue', () => {
 		const entries: Entries<string> = [
 			['root.firstName', 'Chuck'],
 			['root.lastName', 'Norris'],
-			['root.assKickCount::key-input', 'assKickCount'],
+			['root.assKickCount::key-input', 'assKickCountChanged'],
 			['root.assKickCount', 'infinity'],
 			['root.newKey::key-input', 'newKey'],
 			['root.newKey', 'foo']
@@ -184,7 +184,7 @@ describe('parseSchemaValue', () => {
 		expect(parseSchemaValue({ ...defaultOptions, schema, entries })).toEqual({
 			firstName: 'Chuck',
 			lastName: 'Norris',
-			assKickCount: 'infinity',
+			assKickCountChanged: 'infinity',
 			newKey: 'foo'
 		});
 	});

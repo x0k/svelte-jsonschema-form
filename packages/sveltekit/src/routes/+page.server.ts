@@ -38,15 +38,16 @@ export const load = async () => {
 
 export const actions = {
   first: async ({ request }) => {
+    const data = await parseFormData({
+      request,
+      schema
+    });
     return {
       form: await validateForm2({
         request,
         schema,
         validator,
-        data: await parseFormData({
-          request,
-          schema
-        }),
+        data,
         sendData: true
       })
     };
