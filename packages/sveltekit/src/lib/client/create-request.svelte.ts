@@ -6,11 +6,9 @@ import { createAction, type ActionOptions } from '@sjsf/form/create-action.svelt
 import { applyAction, deserialize } from '$app/forms';
 import { invalidateAll } from '$app/navigation';
 
-import { JSON_CHUNKS_KEY } from '../model';
+import { JSON_CHUNKS_KEY } from '../model.js';
 
-import type {
-  SvelteKitFormMeta
-} from './meta';
+import type { SvelteKitFormMeta } from './meta.js';
 
 export type SveltekitRequestOptions<ActionData, V> = Omit<
   ActionOptions<[V, SubmitEvent], ActionResult<NonNullable<ActionData>>, unknown>,

@@ -17,7 +17,7 @@ import {
 
 import { page } from '$app/stores';
 
-import type { InitialFormData, ValidatedFormData } from '../model';
+import type { InitialFormData, ValidatedFormData } from '../model.js';
 
 import { useSvelteKitMutation, type SveltekitMutationOptions } from './use-mutation.svelte';
 

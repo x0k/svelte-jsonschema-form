@@ -5,17 +5,18 @@ import {
   DEFAULT_ID_SEPARATOR,
   DEFAULT_PSEUDO_ID_SEPARATOR,
   type FormValidator,
+  type FormValidator2,
   type Schema,
   type SchemaValue,
   type UiSchemaRoot,
   type ValidationError
 } from '@sjsf/form';
 
-import { JSON_CHUNKS_KEY, type InitialFormData, type ValidatedFormData } from '../model';
+import { JSON_CHUNKS_KEY, type InitialFormData, type ValidatedFormData } from '../model.js';
 
-import type { Entry } from './entry';
-import { parseSchemaValue } from './schema-value-parser';
-import { makeFormDataEntriesConverter } from './convert-form-data-entries';
+import type { Entry } from './entry.js';
+import { parseSchemaValue } from './schema-value-parser.js';
+import { makeFormDataEntriesConverter } from './convert-form-data-entries.js';
 
 export type InitFormOptions<T, E, SendSchema extends boolean> = {
   sendSchema?: SendSchema;
@@ -113,6 +114,33 @@ export function validateForm<E, SendData extends boolean = false>({
   sendData
 }: ValidateFormOptions<E, SendData>): ValidatedFormData<E, SendData> {
   const errors = validator.validateFormData(schema, data);
+  return {
+    isValid: errors.length === 0,
+    sendData,
+    data: (sendData ? data : undefined) as SendData extends true
+      ? SchemaValue | undefined
+      : undefined,
+    errors
+  };
+}
+
+export interface ValidateFormOptions2<E, SendData extends boolean> {
+  request: Request
+  data: SchemaValue | undefined;
+  schema: Schema;
+  validator: FormValidator2<E>;
+  /** @default false */
+  sendData?: SendData;
+}
+
+export async function validateForm2<E, SendData extends boolean = false>({
+  request,
+  schema,
+  validator,
+  data,
+  sendData
+}: ValidateFormOptions2<E, SendData>): Promise<ValidatedFormData<E, SendData>> {
+  const errors = await validator.validateFormData(schema, data, request.signal);
   return {
     isValid: errors.length === 0,
     sendData,

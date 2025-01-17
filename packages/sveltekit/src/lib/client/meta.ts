@@ -2,7 +2,7 @@
 import type { AnyKey } from '@sjsf/form/lib/types';
 import type { SchemaValue } from '@sjsf/form';
 
-import type { ValidatedFormData, InitialFormData } from '../model';
+import type { ValidatedFormData, InitialFormData } from '../model.js';
 
 export type SvelteKitFormMeta<
   ActionData,

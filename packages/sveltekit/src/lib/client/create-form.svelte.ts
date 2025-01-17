@@ -13,9 +13,9 @@ import {
 
 import { page } from '$app/state';
 
-import type { InitialFormData, ValidatedFormData } from '../model';
+import type { InitialFormData, ValidatedFormData } from '../model.js';
 
-import type { SvelteKitFormMeta } from './meta';
+import type { SvelteKitFormMeta } from './meta.js';
 
 export type AdditionalPropertyKeyValidationError2 =
   | string
@@ -30,7 +30,9 @@ export type SvelteKitFormOptions2<V, E, SendSchema extends boolean> = Omit<
     ? {
         schema?: Schema;
       }
-    : { schema: Schema });
+    : {
+        schema: Schema;
+      });
 
 export function createSvelteKitForm<
   Meta extends SvelteKitFormMeta<any, any, string, any>,
@@ -65,27 +67,28 @@ export function createSvelteKitForm<
   const additionalPropertyKeyValidationError = $derived(
     options.additionalPropertyKeyValidationError
   );
-  const form = createForm3<FormOptions<Meta['__formValue'], E>>(
-    Object.setPrototypeOf(options, {
-      ...initialFormData,
-      additionalPropertyKeyValidator:
-        additionalPropertyKeyValidationError !== undefined
-          ? {
-              validateAdditionalPropertyKey(key: string): string[] {
-                for (const separator of separators) {
-                  if (key.includes(separator)) {
-                    return [
-                      typeof additionalPropertyKeyValidationError === 'string'
-                        ? additionalPropertyKeyValidationError
-                        : additionalPropertyKeyValidationError({ key, separator, separators })
-                    ];
-                  }
+  const proto = {
+    ...initialFormData,
+    additionalPropertyKeyValidator:
+      additionalPropertyKeyValidationError !== undefined
+        ? {
+            validateAdditionalPropertyKey(key: string): string[] {
+              for (const separator of separators) {
+                if (key.includes(separator)) {
+                  return [
+                    typeof additionalPropertyKeyValidationError === 'string'
+                      ? additionalPropertyKeyValidationError
+                      : additionalPropertyKeyValidationError({ key, separator, separators })
+                  ];
                 }
-                return [];
               }
+              return [];
             }
-          : undefined
-    })
+          }
+        : undefined
+  };
+  const form = createForm3<FormOptions<Meta['__formValue'], E>>(
+    Object.setPrototypeOf(options, proto)
   );
   $effect(() => {
     if (!isRecord(page.form)) {

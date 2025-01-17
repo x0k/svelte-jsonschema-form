@@ -18,7 +18,7 @@ import {
 } from '@sjsf/form/core';
 import type { Schema, SchemaValue, UiSchema } from '@sjsf/form';
 
-import type { Entries, EntriesConverter, Entry } from './entry';
+import type { Entries, EntriesConverter, Entry } from './entry.js';
 
 export interface SchemaValueParserOptions<T> {
   schema: Schema;

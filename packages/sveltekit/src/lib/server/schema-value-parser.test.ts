@@ -3,9 +3,9 @@ import { defaultMerger } from '@sjsf/form/core';
 import type { Schema } from '@sjsf/form';
 import { createValidator2 } from '@sjsf/ajv8-validator';
 
-import type { Entries } from './entry';
-import { parseSchemaValue, type SchemaValueParserOptions } from './schema-value-parser';
-import { makeFormDataEntriesConverter } from './convert-form-data-entries';
+import type { Entries } from './entry.js';
+import { parseSchemaValue, type SchemaValueParserOptions } from './schema-value-parser.js';
+import { makeFormDataEntriesConverter } from './convert-form-data-entries.js';
 
 const defaultOptions: SchemaValueParserOptions<string> = {
 	schema: {},
