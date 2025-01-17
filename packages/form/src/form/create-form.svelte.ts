@@ -48,7 +48,6 @@ import {
 } from "./id-schema.js";
 import IconOrTranslation from "./icon-or-translation.svelte";
 import type { Config } from "./config.js";
-import { createAdditionalPropertyKeyValidationSchema } from "./additional-property-key-validation-schema.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
 
@@ -343,7 +342,7 @@ export function createForm3<
     return validator
       ? (config: Config, key: string) => {
           const instanceId = config.idSchema.$id;
-          const messages = validator.validateAdditionalPropertyKey(key);
+          const messages = validator.validateAdditionalPropertyKey(key, config);
           errors.set(
             instanceId,
             messages.map((message) => ({
@@ -362,18 +361,9 @@ export function createForm3<
     options.getSnapshot ?? (() => $state.snapshot(value))
   );
 
-  const validationSchema = $derived(
-    options.additionalPropertyKeyValidator
-      ? createAdditionalPropertyKeyValidationSchema(options.schema, [
-          idSeparator,
-          pseudoIdSeparator,
-        ])
-      : options.schema
-  );
-
   function validateSnapshot(snapshot: FormValue, signal: AbortSignal) {
     const errors = options.validator.validateFormData(
-      validationSchema,
+      options.schema,
       snapshot,
       signal
     );
