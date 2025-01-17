@@ -91,3 +91,7 @@ export function isPrimitiveSchemaType(type: SchemaType): boolean {
     type === "null"
   );
 }
+
+export function isArrayOrObjectSchemaType(type: SchemaType): boolean {
+  return type === "array" || type === "object";
+}
