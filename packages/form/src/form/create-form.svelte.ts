@@ -340,14 +340,17 @@ export function createForm3<
   const additionalPropertyKeyValidator = $derived.by(() => {
     const validator = options.additionalPropertyKeyValidator;
     return validator
-      ? (config: Config, key: string) => {
-          const instanceId = config.idSchema.$id;
-          const messages = validator.validateAdditionalPropertyKey(key, config);
+      ? (config: Config, key: string, fieldConfig: Config) => {
+          const instanceId = fieldConfig.idSchema.$id;
+          const messages = validator.validateAdditionalPropertyKey(
+            key,
+            config.schema
+          );
           errors.set(
             instanceId,
             messages.map((message) => ({
               instanceId,
-              propertyTitle: config.title,
+              propertyTitle: fieldConfig.title,
               message,
               error: ADDITIONAL_PROPERTY_KEY_ERROR as E,
             }))

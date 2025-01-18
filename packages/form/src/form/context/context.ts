@@ -43,7 +43,7 @@ export interface FormContext {
   IconOrTranslation: Component<{ data: IconOrTranslationData }>;
   /** @deprecated use `IconOrTranslation` instead */
   iconOrTranslation: Snippet<[IconOrTranslationData]>;
-  validateAdditionalPropertyKey(config: Config, key: string): boolean;
+  validateAdditionalPropertyKey(config: Config, key: string, fieldConfig: Config): boolean;
   validation: Mutation<
     [event: SubmitEvent],
     {

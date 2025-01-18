@@ -1,6 +1,6 @@
 <script lang="ts">
   import { proxy } from "@/lib/svelte.svelte";
-  import { type SchemaObjectValue, type SchemaValue } from "@/core/index.js";
+  import type { SchemaValue } from "@/core/index.js";
 
   import type { Config } from "../../config.js";
   import type { UiSchema } from "../../ui-schema.js";
@@ -57,7 +57,7 @@
         if (!key.value || key.value === property) {
           return;
         }
-        objCtx.renameProperty(property, key.value)
+        objCtx.renameProperty(property, key.value, config);
       },
     })
   );

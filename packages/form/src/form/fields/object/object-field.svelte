@@ -72,12 +72,12 @@
       delete value[prop];
       validate();
     },
-    renameProperty(oldProp, newProp) {
+    renameProperty(oldProp, newProp, fieldConfig) {
       if (value === undefined) {
         return;
       }
       const newKey = generateNewKey(newProp, newKeySeparator, value);
-      if (!ctx.validateAdditionalPropertyKey(config, newKey)) {
+      if (!ctx.validateAdditionalPropertyKey(config, newKey, fieldConfig)) {
         return;
       }
       value[newKey] = value[oldProp];

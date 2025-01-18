@@ -71,7 +71,7 @@ export interface AdditionalPropertyKeyValidator {
   /**
    * Additional property key validation
    */
-  validateAdditionalPropertyKey: (key: string, config: Config) => string[];
+  validateAdditionalPropertyKey: (key: string, schema: Schema) => string[];
 }
 
 export const VALIDATION_PROCESS_ERROR = Symbol("validation-process-error");
