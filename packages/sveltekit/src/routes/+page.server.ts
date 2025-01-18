@@ -46,7 +46,6 @@ export const actions = {
       request,
       schema
     });
-    console.log(data);
     return {
       form: await validateForm2({
         request,
@@ -57,7 +56,7 @@ export const actions = {
       })
     };
   },
-  register: async () => {
+  second: async () => {
     return {
       form2: validateForm({
         schema,

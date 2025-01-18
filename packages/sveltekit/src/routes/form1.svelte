@@ -1,4 +1,3 @@
-
 <script lang="ts">
   import { Content, setFromContext } from '@sjsf/form';
   import { createValidator2 } from '@sjsf/ajv8-validator';
@@ -8,6 +7,8 @@
   import { createMeta, createSvelteKitForm, createSvelteKitRequest } from '$lib/client/index.js';
 
   import type { PageData, ActionData } from './$types.js';
+
+  import { ERROR_TYPE_OBJECTS } from './model.js';
 
   const meta = createMeta<ActionData, PageData, 'form'>('form');
   const request = createSvelteKitRequest(meta, {
@@ -20,9 +21,9 @@
     translation,
     onSubmit: request.run,
     onSubmitError: console.warn,
-    additionalPropertyKeyValidationError({ separators }) {
-      return `The content of these sequences ("${separators.join('", "')}") is prohibited`;
-    },
+    additionalPropertyKeyValidationError({ type, values }) {
+      return `The presence of these ${ERROR_TYPE_OBJECTS[type]} ("${values.join('", "')}") is prohibited`;
+    }
   });
   setFromContext(form.context);
 </script>

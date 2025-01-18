@@ -1,5 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { isRecord } from '@sjsf/form/lib/object';
+import { some } from '@sjsf/form/lib/array';
+import {
+  isArrayOrObjectSchemaType,
+  isPrimitiveSchemaType,
+  isSchema,
+  typeOfSchema
+} from '@sjsf/form/core';
 import {
   DEFAULT_ID_SEPARATOR,
   DEFAULT_PSEUDO_ID_SEPARATOR,
@@ -9,7 +16,6 @@ import {
   type Schema,
   type FormOptions,
   groupErrors,
-  type Config,
   type IdentifiableFieldElement
 } from '@sjsf/form';
 
@@ -22,17 +28,26 @@ import {
 } from '../model.js';
 
 import type { SvelteKitFormMeta } from './meta.js';
-import {
-  isArrayOrObjectSchemaType,
-  isPrimitiveSchemaType,
-  isSchema,
-  typeOfSchema
-} from '@sjsf/form/core';
-import { some } from '@sjsf/form/lib/array';
+
+export enum AdditionalPropertyKeyValidationErrorType {
+  ForbiddenSequence = 'forbidden-sequence',
+  ForbiddenSuffix = 'forbidden-suffix'
+}
+
+export interface AdditionalPropertyKeyValidationErrorFnOptions {
+  key: string;
+  type: AdditionalPropertyKeyValidationErrorType;
+  /** @deprecated */
+  separator: string;
+  /** @deprecated */
+  separators: string[];
+  value: string;
+  values: string[];
+}
 
 export type AdditionalPropertyKeyValidationError2 =
   | string
-  | ((ctx: { key: string; separator: string; separators: string[] }) => string);
+  | ((ctx: AdditionalPropertyKeyValidationErrorFnOptions) => string);
 
 export type SvelteKitFormOptions2<V, E, SendSchema extends boolean> = Omit<
   FormOptions<V, E>,
@@ -89,12 +104,29 @@ export function createSvelteKitForm<
     additionalPropertyKeyValidator:
       additionalPropertyKeyValidationError !== undefined
         ? {
-            validateAdditionalPropertyKey(key: string, config: Config): string[] {
+            validateAdditionalPropertyKey(key: string, { additionalProperties }: Schema): string[] {
               const messages: string[] = [];
-              const { additionalProperties } = config.schema;
               if (additionalProperties === undefined) {
                 return messages;
               }
+              const pushMessage = (
+                type: AdditionalPropertyKeyValidationErrorType,
+                value: string,
+                values: string[]
+              ) =>
+                messages.push(
+                  typeof additionalPropertyKeyValidationError === 'string'
+                    ? additionalPropertyKeyValidationError
+                    : additionalPropertyKeyValidationError({
+                        type,
+                        key,
+                        value,
+                        values,
+                        separator: value,
+                        separators: values
+                      })
+                );
+              // TODO: handle `$ref` in `additionalProperties`
               const types = isSchema(additionalProperties)
                 ? typeOfSchema(additionalProperties)
                 : [];
@@ -107,24 +139,20 @@ export function createSvelteKitForm<
                     continue;
                   }
                 }
-                messages.push(
-                  typeof additionalPropertyKeyValidationError === 'string'
-                    ? additionalPropertyKeyValidationError
-                    : additionalPropertyKeyValidationError({ key, separator, separators })
+                pushMessage(
+                  AdditionalPropertyKeyValidationErrorType.ForbiddenSequence,
+                  separator,
+                  separators
                 );
               }
               for (const suffix of suffixes) {
                 if (!key.endsWith(suffix) || !some(types, isPrimitiveSchemaType)) {
                   continue;
                 }
-                messages.push(
-                  typeof additionalPropertyKeyValidationError === 'string'
-                    ? additionalPropertyKeyValidationError
-                    : additionalPropertyKeyValidationError({
-                        key,
-                        separator: suffix,
-                        separators: suffixes
-                      })
+                pushMessage(
+                  AdditionalPropertyKeyValidationErrorType.ForbiddenSuffix,
+                  suffix,
+                  suffixes
                 );
               }
               return messages;
