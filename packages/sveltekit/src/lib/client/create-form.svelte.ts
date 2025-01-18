@@ -99,7 +99,7 @@ export function createSvelteKitForm<
   const additionalPropertyKeyValidationError = $derived(
     options.additionalPropertyKeyValidationError
   );
-  const proto = {
+  const defaults = {
     ...initialFormData,
     additionalPropertyKeyValidator:
       additionalPropertyKeyValidationError !== undefined
@@ -160,8 +160,18 @@ export function createSvelteKitForm<
           }
         : undefined
   };
-  const form = createForm3<FormOptions<Meta['__formValue'], E>>(
-    Object.setPrototypeOf(options, proto)
+  const form = createForm3(
+    new Proxy(options, {
+      has(target, p) {
+        return Reflect.has(target, p) || p in defaults
+      },
+      get(target, p, receiver) {
+        if (!(p in target)) {
+          return defaults[p as keyof typeof defaults];
+        }
+        return Reflect.get(target, p, receiver);
+      }
+    }) as unknown as FormOptions<Meta['__formValue'], E>
   );
   $effect(() => {
     if (!isRecord(page.form)) {
