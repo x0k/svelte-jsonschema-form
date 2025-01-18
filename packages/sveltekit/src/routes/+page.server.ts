@@ -52,7 +52,6 @@ export const actions = {
         schema,
         validator,
         data,
-        sendData: true
       })
     };
   },

@@ -65,7 +65,7 @@ export type SvelteKitFormOptions2<V, E, SendSchema extends boolean> = Omit<
 
 export function createSvelteKitForm<
   Meta extends SvelteKitFormMeta<any, any, string, any>,
-  Options extends SvelteKitFormOptions2<Meta['__formValue'], E, Meta['__sendData']>,
+  Options extends SvelteKitFormOptions2<Meta['__formValue'], E, Meta['__sendSchema']>,
   E = Options extends
     | { additionalPropertyKeyValidationError: AdditionalPropertyKeyValidationError2 }
     | { additionalPropertyKeyValidator: AdditionalPropertyKeyValidator }
