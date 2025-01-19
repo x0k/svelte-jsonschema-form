@@ -79,11 +79,13 @@ export function createSvelteKitForm<
           | ValidatedFormData<E, Meta['__sendData']>
           | undefined;
         if (validationData !== undefined) {
-          return {
-            schema: options.schema ?? page.data[meta.name].schema,
-            initialValue: validationData.data,
-            initialErrors: validationData.errors
-          };
+          return validationData.isValid
+            ? page.data[meta.name]
+            : {
+                schema: options.schema ?? page.data[meta.name].schema,
+                initialValue: validationData.data,
+                initialErrors: validationData.errors
+              };
         }
       } else {
         return page.data[meta.name];
@@ -163,7 +165,7 @@ export function createSvelteKitForm<
   const form = createForm3(
     new Proxy(options, {
       has(target, p) {
-        return Reflect.has(target, p) || p in defaults
+        return Reflect.has(target, p) || p in defaults;
       },
       get(target, p, receiver) {
         if (!(p in target)) {
@@ -183,7 +185,7 @@ export function createSvelteKitForm<
     if (validationData === undefined) {
       return;
     }
-    if (validationData.sendData) {
+    if (validationData.sendData && form.isSubmitted) {
       form.formValue = validationData.data;
     }
     form.errors = groupErrors(validationData.errors);
