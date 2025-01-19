@@ -4,33 +4,30 @@ import type { SchemaValue } from '@sjsf/form';
 
 import type { ValidatedFormData, InitialFormData } from '../model.js';
 
-export type SvelteKitFormMeta<
+export interface SvelteKitFormMeta<
   ActionData,
   PageData,
   Name extends FormNameFromActionDataUnion<ActionData>,
   FallbackValue,
-  VFD = ValidatedFormDataFromActionDataUnion<ActionData, Name>,
-  IFD = InitialFromDataFromPageData<PageData, Name>
-> = {
+  IFD = InitialFromDataFromPageData<PageData, Name>,
+  VFD = ValidatedFormDataFromActionDataUnion<ActionData, Name>
+> {
   name: Name;
   __actionData: ActionData;
   __pageData: PageData;
-  __fallbackValue: FallbackValue;
-  __validationFormData: VFD;
-  __initialFormData: IFD;
   __formValue: FormValueFromInitialFormData<IFD, FallbackValue>;
   __validationError: ValidatorErrorFromValidatedFormData<VFD>;
   __sendSchema: SendSchemaFromInitialFormData<IFD>;
   __sendData: SendDataFromValidatedFormData<VFD>;
-};
+}
 
 export function createMeta<
   ActionData,
   PageData,
-  N extends FormNameFromActionDataUnion<ActionData>,
+  Name extends FormNameFromActionDataUnion<ActionData>,
   FallbackValue = SchemaValue
->(name: N): SvelteKitFormMeta<ActionData, PageData, N, FallbackValue> {
-  return { name } as SvelteKitFormMeta<ActionData, PageData, N, FallbackValue>;
+>(name: Name) {
+  return { name } as SvelteKitFormMeta<ActionData, PageData, Name, FallbackValue>;
 }
 
 type FormNameFromActionDataBranch<ActionData> = keyof {
@@ -52,17 +49,17 @@ type ValidatedFormDataFromActionDataUnion<
 type ValidatorErrorFromValidatedFormData<VFD> =
   VFD extends ValidatedFormData<infer E, any> ? E : never;
 
-type InitialFromDataFromPageData<PageData, FormName extends AnyKey> =
-  PageData[keyof PageData & FormName] extends InitialFormData<any, any, any>
-    ? PageData[keyof PageData & FormName]
-    : InitialFormData<never, never, false>;
+type InitialFromDataFromPageData<PageData, FormName extends AnyKey> = PageData extends {
+  [K in FormName]: InitialFormData<any, any, any>;
+}
+  ? PageData[FormName]
+  : unknown
 
-type FormValueFromInitialFormData<IFD, FallbackValue> =
-  IFD extends InitialFormData<infer T, any, any>
-    ? unknown extends T
-      ? FallbackValue
-      : T
-    : FallbackValue;
+type FormValueFromInitialFormData<IFD, FallbackValue> = unknown extends IFD
+  ? FallbackValue
+  : IFD extends InitialFormData<infer T, any, any>
+    ? T
+    : never;
 
 type SendDataFromValidatedFormData<VFD> =
   VFD extends ValidatedFormData<any, infer SendData> ? SendData : false;
