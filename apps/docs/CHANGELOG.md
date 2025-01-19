@@ -1,5 +1,34 @@
 # docs
 
+## 1.6.0
+
+### Minor Changes
+
+- Add migration guides section ([#60](https://github.com/x0k/svelte-jsonschema-form/pull/60))
+
+### Patch Changes
+
+- Refactor multiple forms guide ([`8c1393d`](https://github.com/x0k/svelte-jsonschema-form/commit/8c1393d01a287380a874beca6ad551eca56e7468))
+
+- Update SvelteKit integration guide ([#62](https://github.com/x0k/svelte-jsonschema-form/pull/62))
+
+- Migrate to new components ([#60](https://github.com/x0k/svelte-jsonschema-form/pull/60))
+
+- Update state transformation guide ([#56](https://github.com/x0k/svelte-jsonschema-form/pull/56))
+
+- Update generic backend integration guide ([#61](https://github.com/x0k/svelte-jsonschema-form/pull/61))
+
+- Updated dependencies [[`458ce6f`](https://github.com/x0k/svelte-jsonschema-form/commit/458ce6fc48bfd536c49c4b37c76e9156cd1725ec), [`af80d88`](https://github.com/x0k/svelte-jsonschema-form/commit/af80d88ff1d6e204f80c5354a672a38aec09725e), [`3efecb2`](https://github.com/x0k/svelte-jsonschema-form/commit/3efecb2af58db7aa676bb246e6382c9811a9b943), [`1aef3de`](https://github.com/x0k/svelte-jsonschema-form/commit/1aef3ded9a2ad6b5e11449bf501c99f9dab1bbf2), [`7ad876f`](https://github.com/x0k/svelte-jsonschema-form/commit/7ad876f2608125b3d4aafd602c54d2f56180889d), [`b12b3a6`](https://github.com/x0k/svelte-jsonschema-form/commit/b12b3a68a7f6f34bc050c794bf52af673695c702), [`f8358f3`](https://github.com/x0k/svelte-jsonschema-form/commit/f8358f3289b1b40994f9e11a95f4be6a76117e9a), [`6736f69`](https://github.com/x0k/svelte-jsonschema-form/commit/6736f69d54791b2e4e69adf9959b2120dae980bb), [`09dce24`](https://github.com/x0k/svelte-jsonschema-form/commit/09dce2442c2d3e68de527462966ff5d5122f09f9), [`e059b3f`](https://github.com/x0k/svelte-jsonschema-form/commit/e059b3fbb5b925e7f0343a20fbcc77c080050515), [`a8a58d1`](https://github.com/x0k/svelte-jsonschema-form/commit/a8a58d165167c997a587caf238c255e66c6f736b)]:
+  - @sjsf/sveltekit@1.9.0
+  - @sjsf/form@1.9.0
+  - @sjsf/ajv8-validator@1.9.0
+  - @sjsf/cfworker-validator@1.9.0
+  - @sjsf/daisyui-theme@1.9.0
+  - @sjsf/flowbite-theme@1.9.0
+  - @sjsf/shadcn-theme@1.9.0
+  - @sjsf/skeleton-theme@1.9.0
+  - @sjsf/zod-validator@1.9.0
+
 ## 1.5.0
 
 ### Minor Changes
