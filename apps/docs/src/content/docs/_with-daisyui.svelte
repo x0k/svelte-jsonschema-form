@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { SimpleForm, createForm3 } from "@sjsf/form";
+  import { RawForm, createForm3 } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { theme } from "@sjsf/daisyui-theme";
 
@@ -22,10 +22,9 @@
   });
 </script>
 
-<SimpleForm
+<RawForm
   {form}
   style="background-color: transparent; margin-bottom: 1rem;"
-  class="flex flex-col gap-4"
   data-theme={astro.darkOrLight}
 />
 

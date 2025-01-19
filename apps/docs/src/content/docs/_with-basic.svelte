@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createForm3, SimpleForm } from "@sjsf/form";
+  import { createForm3, RawForm } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { theme } from "@sjsf/form/basic-theme";
 
@@ -18,6 +18,6 @@
   });
 </script>
 
-<SimpleForm {form} style="display: flex; flex-direction: column; gap: 1rem;" />
+<RawForm {form} />
 
 <pre>{JSON.stringify(form.value, null, 2)}</pre>

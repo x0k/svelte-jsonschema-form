@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { SimpleForm, createForm3 } from "@sjsf/form";
+  import { RawForm, createForm3 } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { theme } from "@sjsf/skeleton-theme";
 
@@ -22,7 +22,7 @@
   });
 </script>
 
-<SimpleForm
+<RawForm
   {form}
   class="flex flex-col gap-4 {astro.darkOrLight}"
   style="margin-bottom: 1rem;"
