@@ -1,5 +1,7 @@
+import { some } from '@sjsf/form/lib/array';
 import { isObject } from '@sjsf/form/lib/object';
 import { escapeRegex } from '@sjsf/form/lib/reg-exp';
+import { type Trie, getNodeByKeys, insertValue } from '@sjsf/form/lib/trie';
 import {
   getClosestMatchingOption2,
   getDiscriminatorFieldFromSchema,
@@ -14,11 +16,15 @@ import {
   type SchemaArrayValue,
   type SchemaDefinition,
   type SchemaObjectValue,
-  type Validator
+  type Validator,
+  typeOfSchema,
+  isArrayOrObjectSchemaType
 } from '@sjsf/form/core';
-import type { Schema, SchemaValue, UiSchema } from '@sjsf/form';
+import type { IdentifiableFieldElement, Schema, SchemaValue, UiSchema } from '@sjsf/form';
 
-import type { Entries, EntriesConverter, Entry } from './entry';
+import { IDENTIFIABLE_FIELD_ELEMENTS } from '../model.js';
+
+import type { Entries, EntriesConverter, Entry } from './entry.js';
 
 export interface SchemaValueParserOptions<T> {
   schema: Schema;
@@ -30,9 +36,45 @@ export interface SchemaValueParserOptions<T> {
   validator: Validator;
   merger: Merger2;
   convertEntries: EntriesConverter<T>;
+  identifiableElementsTrie?: Trie<string, true>;
 }
 
 const KNOWN_PROPERTIES = Symbol('known-properties');
+
+const KEY_INPUT_KEY: keyof IdentifiableFieldElement = 'key-input';
+
+let DEFAULT_IDENTIFIABLE_ELEMENTS_TRIE: Trie<string, true>;
+
+for (const key of IDENTIFIABLE_FIELD_ELEMENTS) {
+  DEFAULT_IDENTIFIABLE_ELEMENTS_TRIE = insertValue(
+    DEFAULT_IDENTIFIABLE_ELEMENTS_TRIE,
+    key.split(''),
+    true
+  );
+}
+
+function removePseudoElements<T>(
+  entries: Entries<T>,
+  idPseudoSeparator: string,
+  blacklist: Trie<string, boolean>
+) {
+  return entries.filter(([key]) => {
+    const index = key.lastIndexOf(idPseudoSeparator);
+    if (index === -1) {
+      return true;
+    }
+    const subKey = key.substring(index + idPseudoSeparator.length);
+    if (subKey === KEY_INPUT_KEY) {
+      return true;
+    }
+    // Numbers are used for enum option ids, not inputs
+    // if (Number.isInteger(Number(subKey))) {
+    //   return false;
+    // }
+    const node = getNodeByKeys(blacklist, subKey.split(''));
+    return node?.value !== true;
+  });
+}
 
 export function parseSchemaValue<T>({
   convertEntries,
@@ -43,17 +85,20 @@ export function parseSchemaValue<T>({
   schema: rootSchema,
   uiSchema: rootUiSchema,
   validator,
-  merger
+  merger,
+  identifiableElementsTrie = DEFAULT_IDENTIFIABLE_ELEMENTS_TRIE
 }: SchemaValueParserOptions<T>) {
   if (entries.length === 0) {
     return undefined;
   }
-
   const idSeparator = escapeRegex(originalIdSeparator);
   const BOUNDARY = `($|${idSeparator})`;
+  const SEPARATED_KEY_INPUT_KET = `${idPseudoSeparator}${KEY_INPUT_KEY}`;
   let filter = '';
   const filterLengthStack: number[] = [];
-  const entriesStack: Entries<T>[] = [removePseudoElements(entries, idPseudoSeparator)];
+  const entriesStack: Entries<T>[] = [
+    removePseudoElements(entries, idPseudoSeparator, identifiableElementsTrie)
+  ];
 
   const groups = new Map<string | typeof KNOWN_PROPERTIES, Entries<T>>();
   function addGroupEntry(key: string | typeof KNOWN_PROPERTIES, entry: Entry<T>) {
@@ -125,9 +170,26 @@ export function parseSchemaValue<T>({
     }
     if (additionalProperties !== undefined) {
       const knownProperties = new Set(getKnownProperties(schema, rootSchema));
+      const additionalKeys = new Map<string, string>();
+      const isObjectOrArraySchema =
+        isSchema(additionalProperties) &&
+        some(typeOfSchema(additionalProperties), isArrayOrObjectSchemaType);
       for (const entry of entriesStack[entriesStack.length - 1]) {
-        const keyEnd = entry[0].indexOf(originalIdSeparator, filter.length);
-        const key = entry[0].slice(filter.length, keyEnd === -1 ? undefined : keyEnd);
+        const str = entry[0];
+        let keyEnd: number | undefined = str.indexOf(originalIdSeparator, filter.length);
+        if (keyEnd !== -1 && !isObjectOrArraySchema) {
+          keyEnd = -1;
+        }
+        if (keyEnd === -1) {
+          const val = entry[1];
+          if (str.endsWith(SEPARATED_KEY_INPUT_KET) && typeof val === 'string') {
+            const group = str.slice(filter.length, str.length - SEPARATED_KEY_INPUT_KET.length);
+            additionalKeys.set(group, val);
+            continue;
+          }
+          keyEnd = undefined;
+        }
+        const key = str.slice(filter.length, keyEnd);
         if (knownProperties.has(key)) {
           addGroupEntry(KNOWN_PROPERTIES, entry);
         } else {
@@ -139,7 +201,11 @@ export function parseSchemaValue<T>({
       for (const [key, entries] of unknown) {
         pushFilter(`${idSeparator}${escapeRegex(key)}`);
         entriesStack.push(entries);
-        setProperty(key, additionalProperties, uiSchema.additionalProperties ?? {});
+        setProperty(
+          additionalKeys.get(key) ?? key,
+          additionalProperties,
+          uiSchema.additionalProperties ?? {}
+        );
         entriesStack.pop();
         popFilter();
       }
@@ -327,8 +393,4 @@ export function parseSchemaValue<T>({
 
   pushFilterAndEntries(`^${escapeRegex(idPrefix)}`);
   return parseSchemaDef(rootSchema, rootUiSchema);
-}
-
-function removePseudoElements<T>(entries: Entries<T>, idPseudoSeparator: string) {
-  return entries.filter(([key]) => key.lastIndexOf(idPseudoSeparator) === -1);
 }

@@ -3,9 +3,9 @@ import { defaultMerger } from '@sjsf/form/core';
 import type { Schema } from '@sjsf/form';
 import { createValidator2 } from '@sjsf/ajv8-validator';
 
-import type { Entries } from './entry';
-import { parseSchemaValue, type SchemaValueParserOptions } from './schema-value-parser';
-import { makeFormDataEntriesConverter } from './convert-form-data-entries';
+import type { Entries } from './entry.js';
+import { parseSchemaValue, type SchemaValueParserOptions } from './schema-value-parser.js';
+import { makeFormDataEntriesConverter } from './convert-form-data-entries.js';
 
 const defaultOptions: SchemaValueParserOptions<string> = {
 	schema: {},
@@ -176,16 +176,16 @@ describe('parseSchemaValue', () => {
 		const entries: Entries<string> = [
 			['root.firstName', 'Chuck'],
 			['root.lastName', 'Norris'],
-			['root.assKickCount::key-input', 'assKickCount'],
+			['root.assKickCount::key-input', 'assKickCountChanged'],
 			['root.assKickCount', 'infinity'],
-			['root.newKey::key-input', 'newKey'],
-			['root.newKey', 'foo']
+			['root.new.key::key-input', 'new.keyChanged'],
+			['root.new.key', 'foo']
 		];
 		expect(parseSchemaValue({ ...defaultOptions, schema, entries })).toEqual({
 			firstName: 'Chuck',
 			lastName: 'Norris',
-			assKickCount: 'infinity',
-			newKey: 'foo'
+			assKickCountChanged: 'infinity',
+			'new.keyChanged': 'foo',
 		});
 	});
 	it('Should resolve references', () => {

@@ -5,7 +5,7 @@ import { useMutation, type MutationOptions } from '@sjsf/form/use-mutation.svelt
 import { applyAction, deserialize } from '$app/forms';
 import { invalidateAll } from '$app/navigation';
 
-import { JSON_CHUNKS_KEY } from '../model';
+import { JSON_CHUNKS_KEY } from '../model.js';
 
 export type SveltekitMutationOptions<ActionData, V> = Omit<
 	MutationOptions<[V, SubmitEvent], ActionResult<NonNullable<ActionData>>, unknown>,

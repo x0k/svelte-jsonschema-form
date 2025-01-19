@@ -9,7 +9,7 @@ import {
 } from '@sjsf/form/core';
 import { DEFAULT_BOOLEAN_ENUM, type Schema, type UiSchemaRoot } from '@sjsf/form';
 
-import type { EntriesConverter } from './entry';
+import type { EntriesConverter } from './entry.js';
 
 export interface FormDataConverterOptions {
 	validator: Validator;

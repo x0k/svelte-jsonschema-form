@@ -48,3 +48,11 @@ export function makeArrayItemId(
 ) {
   return `${parentId}${ctx.idSeparator}${index}`;
 }
+
+export function makeObjectPropertyId(
+  ctx: FormContext,
+  parentId: string,
+  property: string
+) {
+  return `${parentId}${ctx.idSeparator}${property}`
+}

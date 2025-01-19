@@ -14,7 +14,6 @@
   } from "@/core/index.js";
 
   import type { UiSchema } from "../../ui-schema.js";
-  import { FAKE_ID_SCHEMA } from "../../id-schema.js";
   import {
     getTemplate,
     getComponent,
@@ -26,6 +25,8 @@
     retrieveSchema,
     getFormContext,
     validateField,
+    makeIdSchema,
+    makeObjectPropertyId,
   } from "../../context/index.js";
   import { AFTER_SUBMITTED, ON_OBJECT_CHANGE } from "../../validation.js";
 
@@ -71,12 +72,12 @@
       delete value[prop];
       validate();
     },
-    renameProperty(oldProp, newProp) {
+    renameProperty(oldProp, newProp, fieldConfig) {
       if (value === undefined) {
         return;
       }
       const newKey = generateNewKey(newProp, newKeySeparator, value);
-      if (!ctx.validateAdditionalPropertyKey(config, newKey)) {
+      if (!ctx.validateAdditionalPropertyKey(config, newKey, fieldConfig)) {
         return;
       }
       value[newKey] = value[oldProp];
@@ -181,7 +182,14 @@
           schema: propSchema,
           uiSchema: propUiSchema,
           uiOptions: propUiOptions,
-          idSchema: config.idSchema[property] ?? FAKE_ID_SCHEMA,
+          idSchema:
+            config.idSchema[property] ??
+            makeIdSchema(
+              ctx,
+              propSchema,
+              makeObjectPropertyId(ctx, config.idSchema.$id, property),
+              value[property]
+            ),
           required: requiredProperties.has(property),
         }}
       />
