@@ -1,5 +1,25 @@
 # @sjsf/form
 
+## 1.9.0
+
+### Minor Changes
+
+- Add omit extra data submodule ([#56](https://github.com/x0k/svelte-jsonschema-form/pull/56))
+
+- Add create action submodule ([#61](https://github.com/x0k/svelte-jsonschema-form/pull/61))
+
+- Add `fake-validator` submodule ([#60](https://github.com/x0k/svelte-jsonschema-form/pull/60))
+
+- Add `FormElement`, `RawForm`, `Form2` components ([#60](https://github.com/x0k/svelte-jsonschema-form/pull/60))
+
+### Patch Changes
+
+- Fix nested additional properties id's inference ([#62](https://github.com/x0k/svelte-jsonschema-form/pull/62))
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/4388 ([#58](https://github.com/x0k/svelte-jsonschema-form/pull/58))
+
+- Port <https://github.com/rjsf-team/react-jsonschema-form/pull/4425> fix ([#59](https://github.com/x0k/svelte-jsonschema-form/pull/59))
+
 ## 1.8.0
 
 ### Minor Changes
