@@ -107,6 +107,7 @@ export interface ValidateFormOptions<E, SendData extends boolean> {
   sendData?: SendData;
 }
 
+/** @deprecated use `validateForm2` instead */
 export function validateForm<E, SendData extends boolean = false>({
   schema,
   validator,
