@@ -41,6 +41,8 @@ f/:
     pnpm run check
   t:
     pnpm run test $@
+  tui:
+    pnpm run test:ui
   popd
 
 docs/:

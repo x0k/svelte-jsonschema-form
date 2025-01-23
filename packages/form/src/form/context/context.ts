@@ -59,7 +59,7 @@ export interface FormContext {
   >;
 }
 
-const FORM_CONTEXT = Symbol("form-context");
+export const FORM_CONTEXT = Symbol("form-context");
 
 export function getFormContext(): FormContext {
   return getContext(FORM_CONTEXT);
