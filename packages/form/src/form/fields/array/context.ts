@@ -1,19 +1,14 @@
 import { getContext, setContext } from "svelte";
 
-import {
-  isFilesArray2 as isFilesArrayInternal,
-  type SchemaArrayValue,
-  type Schema,
-  type SchemaValue,
-} from "@/core/index.js";
+import type { SchemaArrayValue, Schema, SchemaValue } from "@/core/index.js";
 
-import type { ValidationError } from "../../validator.js";
 import {
   type FormContext,
   makeArrayItemId,
   makeIdSchema,
 } from "../../context/index.js";
-import { type IdSchema } from "../../id-schema.js";
+import type { ValidationError } from "../../validator.js";
+import type { IdSchema } from "../../id-schema.js";
 
 export interface ArrayContext {
   disabled: boolean;
@@ -25,6 +20,7 @@ export interface ArrayContext {
   errors: ValidationError<unknown>[];
   /** @deprecated */
   validate: () => void;
+  key(index: number): number;
   pushItem(itemSchema: Schema): void;
   moveItemUp(index: number): void;
   moveItemDown(index: number): void;

@@ -63,7 +63,7 @@
   addButton={arrayCtx.canAdd ? addButton : undefined}
 >
   {#if value}
-    {#each value as item, index}
+    {#each value as item, index (arrayCtx.key(index))}
       {@const itemSchema = retrieveSchema(ctx, schemaItems, item)}
       {@const itemIdSchema = makeIdSchema(
         ctx,
