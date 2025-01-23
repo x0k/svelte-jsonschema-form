@@ -4,6 +4,10 @@ sidebar:
   order: 2
 ---
 
+import { Code } from '@astrojs/starlight/components'
+
+import uiSchemaExampleCode from './_ui-schema-example.ts?raw'
+
 UI schema allows you to customize the appearance of the form and influence its behavior.
 
 The UI schema object follows the tree structure of the form field hierarchy, and defines how each property should be rendered.
@@ -128,5 +132,51 @@ interface UiOptions {
    * Default value to use when an input for a field is empty
    */
   emptyValue?: SchemaValue;
+}
+```
+
+## UI schema evaluation rules
+
+Usually ui schema corresponds to the data structure described by json schema.
+
+For example, with this json schema, the following ui schema would be correct:
+
+<Code code={uiSchemaExampleCode} lang="typescript" />
+
+Special cases:
+
+### Array
+
+Instead of defining indices in the ui schema, the `items` keyword should be used
+to specify the ui schema for the elements of the array.
+
+For a fixed array `items` also can be an array.
+If you have additional items you should use `additionalItems` keyword
+to specify the ui schema for them.
+
+```
+{
+  items: [<uiSchema>, ...],
+  additionalItems: <uiSchema>
+}
+```
+
+### Object
+
+You should use `additionalProperties` keyword to specify the ui schema for
+additional properties.
+
+You can use `additionalPropertyKeyInput` keyword to define an ui schema for
+the additional property key input field.
+
+### oneOf/anyOf
+
+You can define separate ui schemas for each `oneOf/anyOf` branch
+using the corresponding keyword in the ui schema.
+Otherwise the ui schema of the current field will be used.
+
+```
+{
+  oneOf: [<uiSchema>, ...]
 }
 ```
