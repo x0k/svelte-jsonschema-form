@@ -9,7 +9,9 @@ export default defineConfig({
   test: {},
   plugins: [svelte()],
   resolve: {
-    conditions: process.env.VITEST ? ["browser"] : [],
+    conditions: process.env.VITEST
+      ? ["browser"]
+      : ["module", "browser", "development|production"],
     alias: {
       "@": resolve(__dirname, "src"),
     },

@@ -12,6 +12,7 @@
   "files": [
     "dist",
     "LICENSE-APACHE",
+    "!app.*",
     "!dist/**/*.test.*",
     "!dist/**/*.spec.*"
   ],
@@ -26,6 +27,7 @@
   "bugs": "https://github.com/x0k/svelte-jsonschema-form/issues",
   "homepage": "https://x0k.github.io/svelte-jsonschema-form/",
   "scripts": {
+    "dev": "vite",
     "test": "vitest run --exclude '.svelte-kit/**'",
     "build": "svelte-package && publint",
     "check": "svelte-check --tsconfig ./tsconfig.json"
