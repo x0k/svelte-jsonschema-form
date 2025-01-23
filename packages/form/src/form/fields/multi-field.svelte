@@ -6,10 +6,10 @@
     mergeSchemas,
     type EnumOption,
     type SchemaValue,
-  } from '@/core/index.js';
+  } from "@/core/index.js";
 
-  import type { Config } from '../config.js';
-  import type { UiSchema } from '../ui-schema.js';
+  import type { Config } from "../config.js";
+  import type { UiSchema } from "../ui-schema.js";
   import {
     getTemplate,
     getWidget,
@@ -22,7 +22,7 @@
     retrieveSchema,
     sanitizeDataForNewSchema,
     getFormContext,
-    makePseudoId
+    makePseudoId,
   } from "../context/index.js";
 
   import type { FieldProps } from "./model.js";
@@ -45,37 +45,51 @@
     )
   );
 
-  let lastValue: SchemaValue | undefined
-  const selectedOption = proxy((isRegOnly, currentSelected: number | undefined) => {
-    if (isRegOnly) {
-      config.schema;
-      value;
-      retrievedOptions;
-      return -1;
+  let lastValue: SchemaValue | undefined;
+  const selectedOption = proxy(
+    (isRegOnly, currentSelected: number | undefined) => {
+      if (isRegOnly) {
+        config.schema;
+        value;
+        retrievedOptions;
+        return -1;
+      }
+      if (
+        currentSelected !== undefined &&
+        isSchemaValueDeepEqual(lastValue, value)
+      ) {
+        return currentSelected;
+      }
+      lastValue = $state.snapshot(value);
+      return getClosestMatchingOption(
+        ctx,
+        value,
+        retrievedOptions,
+        0,
+        getDiscriminatorFieldFromSchema(config.schema)
+      );
+    },
+    (newSelected, oldSelected) => {
+      if (oldSelected === undefined) {
+        return;
+      }
+      const newSchema =
+        newSelected < 0 ? undefined : retrievedOptions[newSelected];
+      if (newSchema === undefined) {
+        value = undefined;
+        return;
+      }
+      const oldSchema =
+        oldSelected < 0 ? undefined : retrievedOptions[oldSelected];
+      value = getDefaultFieldState(
+        ctx,
+        newSchema,
+        oldSchema !== undefined
+          ? sanitizeDataForNewSchema(ctx, newSchema, oldSchema, value)
+          : value
+      );
     }
-    if (currentSelected !== undefined && isSchemaValueDeepEqual(lastValue, value)) {
-      return currentSelected
-    }
-    lastValue = $state.snapshot(value)
-    return getClosestMatchingOption(
-      ctx,
-      value,
-      retrievedOptions,
-      0,
-      getDiscriminatorFieldFromSchema(config.schema),
-    );
-  }, (newSelected, oldSelected) => {
-    if (oldSelected === undefined) {
-      return
-    }
-    const newSchema = newSelected < 0 ? undefined : retrievedOptions[newSelected];
-    if (newSchema === undefined) {
-      value = undefined
-      return
-    }
-    const oldSchema = oldSelected < 0 ? undefined : retrievedOptions[oldSelected];
-    value = getDefaultFieldState(ctx, newSchema, oldSchema !== undefined ? sanitizeDataForNewSchema(ctx, newSchema, oldSchema, value) : value)
-  });
+  );
 
   const optionSchema = $derived.by(() => {
     const selected = selectedOption.value;
@@ -109,23 +123,27 @@
   const enumOptionLabel = $derived.by(() => {
     const customTitle = config.uiOptions?.title ?? config.schema.title;
     return customTitle !== undefined
-      ? (index: number) => ctx.translation("multi-schema-option-label-with-title", customTitle, index)
+      ? (index: number) =>
+          ctx.translation(
+            "multi-schema-option-label-with-title",
+            customTitle,
+            index
+          )
       : (index: number) => ctx.translation("multi-schema-option-label", index);
-  })
+  });
   const enumOptions = $derived<EnumOption<number>[]>(
     retrievedOptions.map((s, i) => ({
       id: makePseudoId(ctx, config.idSchema.$id, i),
-      label:
-        optionsUiOptions[i]?.title ??
-        s.title ??
-        enumOptionLabel(i),
+      label: optionsUiOptions[i]?.title ?? s.title ?? enumOptionLabel(i),
       value: i,
       disabled: false,
     }))
   );
 
   const widgetConfig: Config = $derived.by(() => {
-    const suffix = combinationKey.toLowerCase() as Lowercase<typeof combinationKey>;
+    const suffix = combinationKey.toLowerCase() as Lowercase<
+      typeof combinationKey
+    >;
     return {
       ...config,
       schema: { type: "integer", default: 0 },
