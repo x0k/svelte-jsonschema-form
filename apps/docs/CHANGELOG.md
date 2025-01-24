@@ -1,5 +1,22 @@
 # docs
 
+## 1.6.1
+
+### Patch Changes
+
+- Add ui schema evaluation rules paragraph ([`00be16c`](https://github.com/x0k/svelte-jsonschema-form/commit/00be16c7e93860a9ce7179cead47928a3e6bab75))
+
+- Updated dependencies [[`01d5f56`](https://github.com/x0k/svelte-jsonschema-form/commit/01d5f564b6a0865e75fc9d6033255b386086dec1)]:
+  - @sjsf/form@1.9.1
+  - @sjsf/ajv8-validator@1.9.1
+  - @sjsf/cfworker-validator@1.9.1
+  - @sjsf/daisyui-theme@1.9.1
+  - @sjsf/flowbite-theme@1.9.1
+  - @sjsf/shadcn-theme@1.9.1
+  - @sjsf/skeleton-theme@1.9.1
+  - @sjsf/sveltekit@1.9.1
+  - @sjsf/zod-validator@1.9.1
+
 ## 1.6.0
 
 ### Minor Changes

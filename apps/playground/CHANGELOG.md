@@ -1,5 +1,21 @@
 # playground
 
+## 1.2.3
+
+### Patch Changes
+
+- Updated dependencies [[`01d5f56`](https://github.com/x0k/svelte-jsonschema-form/commit/01d5f564b6a0865e75fc9d6033255b386086dec1)]:
+  - @sjsf/form@1.9.1
+  - @sjsf/ajv8-validator@1.9.1
+  - @sjsf/cfworker-validator@1.9.1
+  - @sjsf/daisyui-theme@1.9.1
+  - @sjsf/flowbite-icons@1.9.1
+  - @sjsf/flowbite-theme@1.9.1
+  - @sjsf/lucide-icons@1.9.1
+  - @sjsf/radix-icons@1.9.1
+  - @sjsf/shadcn-theme@1.9.1
+  - @sjsf/skeleton-theme@1.9.1
+
 ## 1.2.2
 
 ### Patch Changes

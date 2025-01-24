@@ -1,5 +1,11 @@
 # @sjsf/form
 
+## 1.9.1
+
+### Patch Changes
+
+- Use keyed array inside an array field to preserve items state ([#65](https://github.com/x0k/svelte-jsonschema-form/pull/65))
+
 ## 1.9.0
 
 ### Minor Changes
