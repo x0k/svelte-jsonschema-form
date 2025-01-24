@@ -4,4 +4,4 @@
   const { description }: ComponentProps<"description"> = $props();
 </script>
 
-<div class="label-text-alt">{description}</div>
+<div class="m3-font-body-large">{description}</div>
