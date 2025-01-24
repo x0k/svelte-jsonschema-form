@@ -47,6 +47,7 @@
     "@sveltejs/vite-plugin-svelte": "catalog:",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/svelte": "^5.2.6",
+    "@testing-library/user-event": "^14.6.1",
     "@tsconfig/svelte": "catalog:",
     "@types/json-schema": "^7.0.15",
     "@types/json-schema-merge-allof": "^0.6.5",

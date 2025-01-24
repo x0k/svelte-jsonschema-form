@@ -23,6 +23,7 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.js",
-    "src/**/*.svelte"
+    "src/**/*.svelte",
+    "./vitest-setup.ts"
   ],
 }
