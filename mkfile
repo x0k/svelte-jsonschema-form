@@ -33,12 +33,16 @@ cfw/:
 
 f/:
   pushd packages/form
+  d:
+    pnpm run dev
   b:
     pnpm run build
   c:
     pnpm run check
   t:
     pnpm run test $@
+  tui:
+    pnpm run test:ui
   popd
 
 docs/:

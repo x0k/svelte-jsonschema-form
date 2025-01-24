@@ -4,8 +4,8 @@ packages:
 
 catalog:
   ajv: "^8.17.1"
-  vite: "6.0.7"
-  vitest: "3.0.1"
+  vite: "6.0.11"
+  vitest: "3.0.4"
   svelte: "^5.18.0"
   "@sveltejs/kit": "^2.15.3"
   "@sveltejs/adapter-static": "^3.0.8"

@@ -12,6 +12,7 @@
   "files": [
     "dist",
     "LICENSE-APACHE",
+    "!app.*",
     "!dist/**/*.test.*",
     "!dist/**/*.spec.*"
   ],
@@ -26,7 +27,9 @@
   "bugs": "https://github.com/x0k/svelte-jsonschema-form/issues",
   "homepage": "https://x0k.github.io/svelte-jsonschema-form/",
   "scripts": {
+    "dev": "vite",
     "test": "vitest run --exclude '.svelte-kit/**'",
+    "test:ui": "vitest --ui --exclude '.svelte-kit/**'",
     "build": "svelte-package && publint",
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
@@ -42,10 +45,15 @@
   "devDependencies": {
     "@sveltejs/package": "catalog:",
     "@sveltejs/vite-plugin-svelte": "catalog:",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/svelte": "^5.2.6",
+    "@testing-library/user-event": "^14.6.1",
     "@tsconfig/svelte": "catalog:",
     "@types/json-schema": "^7.0.15",
     "@types/json-schema-merge-allof": "^0.6.5",
+    "@vitest/ui": "^3.0.4",
     "deep-freeze-es6": "^4.0.0",
+    "jsdom": "^26.0.0",
     "svelte": "catalog:",
     "svelte-check": "catalog:",
     "vite": "catalog:",

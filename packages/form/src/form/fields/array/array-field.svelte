@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { createKeyedArray } from "@/lib/keyed-array.svelte.js";
   import { isFixedItems, type Schema } from "@/core/index.js";
 
   import {
@@ -17,10 +18,7 @@
 
   import type { FieldProps } from "../model.js";
 
-  import {
-    setArrayContext,
-    type ArrayContext,
-  } from "./context.js";
+  import { setArrayContext, type ArrayContext } from "./context.js";
 
   let { value = $bindable(), config }: FieldProps<"array"> = $props();
 
@@ -51,6 +49,8 @@
     validateField(ctx, config, value);
   }
 
+  const keyedArray = createKeyedArray(() => value ?? []);
+
   const arrayCtx: ArrayContext = {
     get errors() {
       return errors;
@@ -74,45 +74,29 @@
       return copyable;
     },
     validate,
+    key(index) {
+      return keyedArray.key(index);
+    },
     pushItem(itemSchema: Schema) {
-      if (value === undefined) {
-        return;
-      }
-      value.push(getDefaultFieldState(ctx, itemSchema, undefined));
+      keyedArray.push(getDefaultFieldState(ctx, itemSchema, undefined));
       validate();
     },
     moveItemUp(index) {
-      if (value === undefined || index < 1) {
-        return;
-      }
-      const tmp = value[index];
-      value[index] = value[index - 1];
-      value[index - 1] = tmp;
+      keyedArray.swap(index, index - 1);
       validate();
     },
     moveItemDown(index) {
-      if (value === undefined || index > value.length - 2) {
-        return;
-      }
-      const tmp = value[index];
-      value[index] = value[index + 1];
-      value[index + 1] = tmp;
+      keyedArray.swap(index, index + 1);
       validate();
     },
     copyItem(index) {
-      if (value === undefined) {
-        return
-      }
-      value.splice(index, 0, $state.snapshot(value[index]))
-      validate()
+      keyedArray.insert(index, $state.snapshot(value![index]));
+      validate();
     },
     removeItem(index) {
-      if (value === undefined) {
-        return
-      }
-      value.splice(index, 1)
-      validate()
-    }
+      keyedArray.remove(index);
+      validate();
+    },
   };
   setArrayContext(arrayCtx);
 

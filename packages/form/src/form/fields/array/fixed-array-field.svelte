@@ -78,7 +78,7 @@
   addButton={arrayCtx.canAdd && schemaAdditionalItems ? addButton : undefined}
 >
   {#if value}
-    {#each value as item, index}
+    {#each value as item, index (arrayCtx.key(index))}
       {@const isAdditional = index >= schemaItems.length}
       {@const itemSchema = isAdditional && schemaAdditionalItems ? retrieveSchema(ctx, schemaAdditionalItems, item) : schemaItems[index]!}
       {@const uiSchema = config.uiSchema}
