@@ -1,5 +1,12 @@
 # @sjsf/flowbite-icons
 
+## 1.9.1
+
+### Patch Changes
+
+- Updated dependencies [[`01d5f56`](https://github.com/x0k/svelte-jsonschema-form/commit/01d5f564b6a0865e75fc9d6033255b386086dec1)]:
+  - @sjsf/form@1.9.1
+
 ## 1.9.0
 
 ### Patch Changes
