@@ -58,14 +58,22 @@ Since `shadcn-svelte` is not a component library you should provide your compone
 
 ```typescript
 import { setThemeContext } from '@sjsf/shadcn-theme';
+import { components } from '@sjsf/shadcn-theme/default';
+// or import { components } from '@sjsf/shadcn-theme/new-york';
 
-setThemeContext({ components: { ... } })
+setThemeContext({ components })
 ```
 
-However, you can use already prepared component sets or mix them with your own components:
+:::caution
 
-- `@sjsf/shadcn-theme/default`
-- `@sjsf/shadcn-theme/new-york`
+You should define `components: ThemeComponents` yourself:
+
+- to reduce final bundle size
+- to avoid https://github.com/x0k/svelte-jsonschema-form/issues/48
+
+  In this case you also should remove `bind:this={ref}` bindings from your components.
+
+:::
 
 ## Demo
 
@@ -74,7 +82,7 @@ However, you can use already prepared component sets or mix them with your own c
 Currently, some `shadcn-svelte` components do not work in the shadow DOM,
 which is used in the documentation and playground.
 
-See [this issue](https://github.com/huntabyte/bits-ui/issues/828) for more details.
+See https://github.com/huntabyte/bits-ui/issues/828 for more details.
 
 :::
 
