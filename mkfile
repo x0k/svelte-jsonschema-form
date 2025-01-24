@@ -133,6 +133,16 @@ shad/:
     pnpm run dev
   popd
 
+stdf/:
+  pushd packages/stdf-theme
+  c:
+    pnpm run check
+  b:
+    pnpm run build
+  d:
+    pnpm run dev
+  popd
+
 ts/:
   pushd packages/testing
   b:
