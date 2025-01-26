@@ -21,6 +21,7 @@ interface UiSchemaRootIndex {
 }
 
 type UiSchemaRootContent = UiSchemaContent & {
+  /** @deprecated use `idPrefix` option of form instead */
   "ui:rootFieldId"?: string;
   "ui:globalOptions"?: UiOptions;
   "ui:formElement"?: UiSchema;
