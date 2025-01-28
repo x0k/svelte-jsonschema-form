@@ -137,7 +137,7 @@ export function getDefaultFormState2(
   return defaults;
 }
 
-type Experimental_ArrayMinItems = {
+export type Experimental_ArrayMinItems = {
   /** Optional enumerated flag controlling how array minItems are populated, defaulting to `all`:
    * - `all`: Legacy behavior, populate minItems entries with default values initially and include an empty array when
    *        no values have been defined.
@@ -168,7 +168,7 @@ type Experimental_ArrayMinItems = {
   mergeExtraDefaults?: boolean;
 };
 
-type Experimental_DefaultFormStateBehavior = {
+export type Experimental_DefaultFormStateBehavior = {
   /** Optional object, that controls how the default form state for arrays with `minItems` is handled. When not provided
    * it defaults to `{ populate: 'all' }`.
    */
