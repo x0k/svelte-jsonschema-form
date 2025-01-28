@@ -137,7 +137,7 @@ export function mergeDefaultsWithFormData<T = any>(
       : defaultsArray;
 
     const mapped = overrideArray.map((value, idx) => {
-      if (overrideOppositeArray[idx]) {
+      if (overrideOppositeArray[idx] !== undefined) {
         return mergeDefaultsWithFormData<any>(
           defaultsArray[idx],
           formData[idx],
