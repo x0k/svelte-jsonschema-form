@@ -1,5 +1,13 @@
 # @sjsf/form
 
+## 1.9.2
+
+### Patch Changes
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/4461 ([#69](https://github.com/x0k/svelte-jsonschema-form/pull/69))
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/4462 ([#70](https://github.com/x0k/svelte-jsonschema-form/pull/70))
+
 ## 1.9.1
 
 ### Patch Changes

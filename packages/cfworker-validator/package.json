@@ -1,6 +1,6 @@
 {
   "name": "@sjsf/cfworker-validator",
-  "version": "1.9.1",
+  "version": "1.9.2",
   "description": "The @cfworker/json-schema based validator for svelte-jsonschema-form",
   "license": "MIT",
   "keywords": [
@@ -37,7 +37,7 @@
     }
   },
   "peerDependencies": {
-    "@sjsf/form": "workspace:^1.9.1",
+    "@sjsf/form": "workspace:^1.9.2",
     "@cfworker/json-schema": "^2.0.0 || ^3.0.0 || ^4.0.0"
   },
   "devDependencies": {
