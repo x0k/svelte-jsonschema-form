@@ -21,7 +21,7 @@
 	{#each options as option, index (option.id)}
 		<input
 			type="radio"
-			class="btn"
+			class={["btn", errors.length > 0 && "btn-error"]}
 			bind:group={mapped.value}
 			value={index}
 			aria-label={option.label}

@@ -1,9 +1,35 @@
 <script lang="ts">
-	import { ComponentsAndWidgets } from 'testing/demo'
+	import { createForm3 } from '@sjsf/form';
+	import { ComponentsAndWidgets, widgets, validator, translation } from 'testing/demo';
 
 	import '../app.css';
 	import { theme } from '../lib/index.js';
-
 </script>
 
-<ComponentsAndWidgets {theme} />
+<ComponentsAndWidgets
+	{theme}
+	createWidgetsForm={() =>
+		createForm3({
+			...theme,
+			schema: {
+				type: 'object',
+				properties: {
+					...widgets.schema.properties,
+					toggle: widgets.states(widgets.boolean),
+					filter: widgets.states(widgets.enumeration)
+				}
+			},
+			uiSchema: {
+				...widgets.uiSchema,
+				toggle: widgets.uiStates({
+					'ui:widget': 'toggle'
+				}),
+				filter: widgets.uiStates({
+					'ui:widget': 'filter'
+				})
+			},
+			initialErrors: widgets.errors(Object.keys(widgets.uiSchema).concat('toggle', 'filter')),
+			translation,
+			validator
+		})}
+/>
