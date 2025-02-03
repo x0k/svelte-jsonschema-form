@@ -1,10 +1,12 @@
 <script lang="ts">
 	import type { ComponentProps } from '@sjsf/form';
 
-	const { title, type, forId, required }: ComponentProps<'title'> = $props();
+	const { title, type, forId, required, config }: ComponentProps<'title'> = $props();
+
+	const widget = $derived(config.uiSchema['ui:widget'])
 </script>
 
-{#if type === 'field'}
+{#if type === 'field' && widget !== 'radio' && widget !== 'checkboxes'}
 	<label class="label" for={forId}>
 		{title}
 		{#if required}
