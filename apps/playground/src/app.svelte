@@ -9,9 +9,10 @@
     AFTER_SUBMITTED,
     AFTER_TOUCHED,
     createForm3,
-    SimpleForm,
+    RawForm,
     ON_ARRAY_CHANGE,
     ON_OBJECT_CHANGE,
+    setFromContext,
   } from "@sjsf/form";
   import {
     translation,
@@ -34,6 +35,7 @@
   import { samples } from "./samples";
   import { validators } from "./validators";
   import Bits from "./bits.svelte";
+  import Popup from "./popup.svelte";
 
   function isSampleName(name: unknown): name is keyof typeof samples {
     return typeof name === "string" && name in samples;
@@ -140,7 +142,7 @@
     get disabled() {
       return disabled;
     },
-    get inputsValidationMode() {
+    get fieldsValidationMode() {
       return validationEvent | validationAfter;
     },
     get icons() {
@@ -156,6 +158,7 @@
       console.log("errors", errors);
     },
   });
+  setFromContext(form.context)
 
   let playgroundTheme = $state<"system" | "light" | "dark">(
     localStorage.theme ?? "system"
@@ -185,8 +188,8 @@
     setValidation("vevent", initialValidationEvent, true)
   );
   $effect(() => {
-    setValidation("vevent", validationEvent)
-  })
+    setValidation("vevent", validationEvent);
+  });
   const urlValidationAfter = Number(url.searchParams.get("vafter") ?? 0);
   const initialValidationAfter =
     [0, AFTER_SUBMITTED, AFTER_TOUCHED, AFTER_CHANGED].find(
@@ -197,7 +200,7 @@
   );
   $effect(() => {
     setValidation("vafter", validationAfter);
-  })
+  });
 
   setThemeContext({ components });
 </script>
@@ -207,20 +210,25 @@
 >
   <div class="pb-6 flex flex-wrap items-center gap-4">
     <h1 class="grow text-3xl font-bold">Playground</h1>
-    <label>
-      <input type="checkbox" bind:checked={disabled} />
-      Disabled
-    </label>
-    <label>
-      <input type="checkbox" bind:checked={html5Validation} />
-      HTML5 validation
-    </label>
-    <label>
-      <input type="checkbox" bind:checked={doFocusOnFirstError} />
-      Focus on first error
-    </label>
+    <Popup>
+      {#snippet label()}
+        Form options ({+disabled + +html5Validation + +doFocusOnFirstError})
+      {/snippet}
+      <label>
+        <input type="checkbox" bind:checked={disabled} />
+        Disabled
+      </label>
+      <label>
+        <input type="checkbox" bind:checked={html5Validation} />
+        HTML5 validation
+      </label>
+      <label>
+        <input type="checkbox" bind:checked={doFocusOnFirstError} />
+        Focus on first error
+      </label>
+    </Popup>
     <Bits
-      title="Validation Events"
+      title="Fields Validation Triggers"
       bind:value={validationEvent}
       flags={[
         [ON_INPUT, "On Input"],
@@ -231,7 +239,7 @@
       ]}
     />
     <Bits
-      title="Validation Modifiers"
+      title="Fields Validation Modifiers"
       bind:value={validationAfter}
       flags={[
         [AFTER_CHANGED, "After Changed"],
@@ -313,7 +321,7 @@
       class="flex-[3] max-h-[770px] overflow-y-auto"
       style={`${themeStyle}\n${iconSetStyle}`}
     >
-      <SimpleForm
+      <RawForm
         {form}
         data-theme={themeName === "skeleton" ? "cerberus" : lightOrDark}
         class={lightOrDark}
