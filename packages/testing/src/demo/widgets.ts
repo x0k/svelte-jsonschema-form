@@ -1,4 +1,3 @@
-import { SvelteMap } from "svelte/reactivity";
 import {
   DEFAULT_ID_PREFIX,
   DEFAULT_ID_SEPARATOR,
@@ -134,27 +133,16 @@ export const uiSchema: UiSchemaRoot = {
   }),
 };
 
-export const errors = [
-  "checkbox",
-  "checkboxes",
-  "file",
-  "multiFile",
-  "number",
-  "range",
-  "radio",
-  "select",
-  "multiSelect",
-  "text",
-  "textarea",
-].map(
-  (key) =>
-    ({
-      error: null,
-      instanceId: pathToId(DEFAULT_ID_PREFIX, DEFAULT_ID_SEPARATOR, [
-        key,
-        "error",
-      ]),
-      propertyTitle: "error",
-      message: `${key} error`,
-    } satisfies ValidationError<null>)
-);
+export const errors = (keys: string[]) =>
+  keys.map(
+    (key) =>
+      ({
+        error: null,
+        instanceId: pathToId(DEFAULT_ID_PREFIX, DEFAULT_ID_SEPARATOR, [
+          key,
+          "error",
+        ]),
+        propertyTitle: "error",
+        message: `${key} error`,
+      } satisfies ValidationError<null>)
+  );
