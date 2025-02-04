@@ -120,6 +120,9 @@ importers:
       '@sjsf/daisyui-theme':
         specifier: workspace:*
         version: link:../../packages/daisyui-theme
+      '@sjsf/daisyui5-theme':
+        specifier: workspace:*
+        version: link:../../packages/daisyui5-theme
       '@sjsf/flowbite-theme':
         specifier: workspace:*
         version: link:../../packages/flowbite-theme
@@ -141,9 +144,15 @@ importers:
       ajv:
         specifier: 'catalog:'
         version: 8.17.1
+      cally:
+        specifier: ^0.7.2
+        version: 0.7.2
       mermaid:
         specifier: ^11.4.1
         version: 11.4.1
+      pikaday:
+        specifier: ^1.8.2
+        version: 1.8.2
       svg-pan-zoom:
         specifier: github:bumbu/svg-pan-zoom
         version: https://codeload.github.com/bumbu/svg-pan-zoom/tar.gz/aaa68d186abab5d782191b66d2582592fe5d3c13
@@ -362,6 +371,9 @@ importers:
       cally:
         specifier: ^0.7.2
         version: 0.7.2
+      pikaday:
+        specifier: ^1.8.2
+        version: 1.8.2
     devDependencies:
       '@playwright/test':
         specifier: 'catalog:'
@@ -411,9 +423,6 @@ importers:
       globals:
         specifier: 'catalog:'
         version: 15.14.0
-      pikaday:
-        specifier: ^1.8.2
-        version: 1.8.2
       prettier:
         specifier: 'catalog:'
         version: 3.4.2
@@ -7465,8 +7474,7 @@ snapshots:
 
   asynckit@0.4.0: {}
 
-  atomico@1.79.2:
-    optional: true
+  atomico@1.79.2: {}
 
   autoprefixer@10.4.20(postcss@8.4.49):
     dependencies:
@@ -7550,7 +7558,6 @@ snapshots:
   cally@0.7.2:
     dependencies:
       atomico: 1.79.2
-    optional: true
 
   camelcase-css@2.0.1: {}
 

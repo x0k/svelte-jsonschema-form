@@ -13,6 +13,7 @@
     "@sjsf/ajv8-validator": "workspace:*",
     "@sjsf/cfworker-validator": "workspace:*",
     "@sjsf/daisyui-theme": "workspace:*",
+    "@sjsf/daisyui5-theme": "workspace:*",
     "@sjsf/flowbite-theme": "workspace:*",
     "@sjsf/form": "workspace:*",
     "@sjsf/shadcn-theme": "workspace:*",
@@ -23,7 +24,9 @@
     "mermaid": "^11.4.1",
     "svg-pan-zoom": "github:bumbu/svg-pan-zoom",
     "zod": "catalog:",
-    "zod-to-json-schema": "^3.24.1"
+    "zod-to-json-schema": "^3.24.1",
+    "cally": "^0.7.2",
+    "pikaday": "^1.8.2"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
