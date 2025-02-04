@@ -19,7 +19,7 @@
 			'calendar-date': CalendarProps;
 		}
 		interface SVGAttributes<T extends EventTarget> {
-			slot?: string;
+			slot?: string | null;
 		}
 	}
 </script>
