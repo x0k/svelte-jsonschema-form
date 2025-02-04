@@ -1,3 +1,5 @@
+export { translation } from '@sjsf/form/translations/en'
+
 export * from "./ajv-validator";
 export * as widgets from "./widgets";
 export * as components from "./components";

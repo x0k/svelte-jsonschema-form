@@ -1,6 +1,4 @@
-import type { HTMLInputAttributes } from 'svelte/elements';
-
-import type { Widget, WidgetCommonProps, Widgets, WidgetType } from '@sjsf/form';
+import type { Widget, Widgets, WidgetType } from '@sjsf/form';
 
 import TextWidget from './text-widget.svelte';
 import TextareaWidget from './textarea-widget.svelte';
@@ -11,16 +9,6 @@ import RadioWidget from './radio-widget.svelte';
 import CheckboxesWidget from './checkboxes-widget.svelte';
 import FileWidget from './file-widget.svelte';
 import ToggleWidget from './toggle-widget.svelte';
-
-declare module '@sjsf/form' {
-	export interface WidgetsAndProps<V> {
-		toggle: WidgetCommonProps<V, HTMLInputAttributes>;
-	}
-
-	export interface WidgetValue {
-		toggle: boolean;
-	}
-}
 
 export const registry: { [T in WidgetType]: Widget<T> } = {
 	text: TextWidget,

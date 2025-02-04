@@ -1,0 +1,86 @@
+{
+	"name": "@sjsf/daisyui5-theme",
+	"version": "0.0.1",
+	"description": "The daisyui v5 based theme for svelte-jsonschema-form",
+	"license": "MIT",
+	"keywords": [
+		"theme",
+		"daisyui",
+		"form"
+	],
+	"type": "module",
+	"files": [
+		"dist",
+		"!dist/**/*.test.*",
+		"!dist/**/*.spec.*"
+	],
+	"publishConfig": {
+		"provenance": true
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/x0k/svelte-jsonschema-form.git",
+		"directory": "packages/daisyui5-theme"
+	},
+	"bugs": "https://github.com/x0k/svelte-jsonschema-form/issues",
+	"homepage": "https://x0k.github.io/svelte-jsonschema-form/",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "svelte-package && vite build && mv $(find .svelte-kit/output/client/_app/immutable/assets/ -name \"_page*.css\" | head -n 1) dist/styles.css && publint",
+		"preview": "vite preview",
+		"test": "pnpm run test:unit",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "prettier --check . && eslint .",
+		"format": "prettier --write .",
+		"test:integration": "playwright test",
+		"test:unit": "vitest"
+	},
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"svelte": "./dist/index.js"
+		},
+		"./styles.css": "./dist/styles.css"
+	},
+	"peerDependencies": {
+		"@sjsf/form": "workspace:^1.9.2",
+		"daisyui": "^5.0.0-beta.6",
+		"svelte": "^5.19.0"
+	},
+	"optionalDependencies": {
+		"cally": "^0.7.2",
+		"pikaday": "^1.8.2"
+	},
+	"devDependencies": {
+		"@playwright/test": "catalog:",
+		"@sjsf/ajv8-validator": "workspace:*",
+		"@sjsf/form": "workspace:*",
+		"@sveltejs/adapter-static": "catalog:",
+		"@sveltejs/kit": "catalog:",
+		"@sveltejs/package": "catalog:",
+		"@sveltejs/vite-plugin-svelte": "catalog:",
+		"@tailwindcss/vite": "catalog:",
+		"@types/eslint": "catalog:",
+		"@types/pikaday": "^1.7.9",
+		"ajv": "catalog:",
+		"cally": "^0.7.2",
+		"daisyui": "^5.0.0-beta.6",
+		"eslint": "catalog:",
+		"eslint-config-prettier": "catalog:",
+		"eslint-plugin-svelte": "catalog:",
+		"globals": "catalog:",
+		"pikaday": "^1.8.2",
+		"prettier": "catalog:",
+		"prettier-plugin-svelte": "catalog:",
+		"svelte": "catalog:",
+		"svelte-check": "catalog:",
+		"tailwindcss": "catalog:next",
+		"testing": "workspace:*",
+		"typescript-eslint": "catalog:",
+		"vite": "catalog:",
+		"vitest": "catalog:"
+	},
+	"svelte": "./dist/index.js",
+	"types": "./dist/index.d.ts"
+}

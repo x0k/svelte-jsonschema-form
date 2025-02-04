@@ -1,35 +1,30 @@
-<script lang="ts" generics="T, E">
+<script lang="ts">
   import type { HTMLAttributes } from "svelte/elements";
-  import {
-    setFromContext,
-    SimpleForm,
-    type FormAPI,
-    type FormContext,
-  } from "@sjsf/form";
+  import Tree from "@sveltejs/svelte-json-tree";
+  import { setFromContext, RawForm, type FormInternals } from "@sjsf/form";
+
+  import { ShadowHost } from "../components/shadow";
 
   interface Props extends HTMLAttributes<HTMLDivElement> {
-    context: FormContext;
-    form: FormAPI<T, E>;
+    form: FormInternals;
   }
 
-  const { context, form }: Props = $props();
-
-  setFromContext(context);
+  const { form }: Props = $props();
+  setFromContext(form.context);
 </script>
 
 <div>
   <div class="code">
-    <pre><code>{JSON.stringify(form.formValue, null, 2)}</code></pre>
+    <ShadowHost>
+      <Tree value={form.formValue} />
+    </ShadowHost>
   </div>
-  <SimpleForm
-    {form}
-    style="display: flex; flex-direction: column; gap: 1rem;"
-  />
+  <RawForm {form} style="display: flex; flex-direction: column; gap: 1rem;" />
 </div>
 
 <style>
   .code {
-    max-height: 40vh;
+    height: 30vh;
     overflow-y: auto;
     position: sticky;
     top: 0;

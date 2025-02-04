@@ -75,6 +75,14 @@ daisy/:
     pnpm run dev
   popd
 
+daisy5/:
+  pushd packages/daisyui5-theme
+  b:
+    pnpm run build
+  d:
+    pnpm run dev
+  popd
+
 skeleton/:
   pushd packages/skeleton-theme
   b:

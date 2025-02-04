@@ -11,8 +11,9 @@
     "svelte": "^5.0.0"
   },
   "dependencies": {
-    "@sjsf/form": "workspace:*",
     "@sjsf/ajv8-validator": "workspace:*",
+    "@sjsf/form": "workspace:*",
+    "@sveltejs/svelte-json-tree": "^2.2.1",
     "ajv": "catalog:"
   },
   "devDependencies": {

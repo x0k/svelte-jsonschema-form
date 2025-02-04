@@ -22,7 +22,8 @@
     "@sjsf/skeleton-theme": "workspace:*",
     "@sjsf/lucide-icons": "workspace:*",
     "@sjsf/shadcn-theme": "workspace:*",
-    "@sjsf/radix-icons": "workspace:*"
+    "@sjsf/radix-icons": "workspace:*",
+    "@sjsf/daisyui5-theme": "workspace:*"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "catalog:",

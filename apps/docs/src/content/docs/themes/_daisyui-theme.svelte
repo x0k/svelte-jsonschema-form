@@ -5,14 +5,25 @@
   import { useAstro } from "@/astro.svelte";
   import { createCustomForm } from "@/components/custom-form";
 
-  import { schema, uiSchema } from "./_demo-schema";
+  import { boolean, schema, uiSchema } from "./_demo-schema";
 
   const astro = useAstro();
 
   const form = createCustomForm({
     ...theme,
-    schema,
-    uiSchema,
+    schema: {
+      ...schema,
+      properties: {
+        ...schema.properties,
+        toggle: boolean,
+      }
+    },
+    uiSchema: {
+      ...uiSchema,
+      toggle: {
+        "ui:widget": "toggle"
+      }
+    },
   });
 </script>
 

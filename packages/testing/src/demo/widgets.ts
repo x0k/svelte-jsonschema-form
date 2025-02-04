@@ -1,9 +1,11 @@
-import { SvelteMap } from "svelte/reactivity";
-import type {
-  Schema,
-  UiSchema,
-  UiSchemaRoot,
-  ValidationError,
+import {
+  DEFAULT_ID_PREFIX,
+  DEFAULT_ID_SEPARATOR,
+  pathToId,
+  type Schema,
+  type UiSchema,
+  type UiSchemaRoot,
+  type ValidationError,
 } from "@sjsf/form";
 
 export const states = (schema: Schema): Schema => ({
@@ -61,7 +63,7 @@ export const schema: Schema = {
     multiSelect: states(uniqueArray),
     text: states(text),
     textarea: states(text),
-    date: states(text)
+    date: states(text),
   },
 };
 
@@ -74,7 +76,7 @@ export const uiStates = (uiSchema: UiSchema): UiSchema => ({
         ...uiSchema["ui:options"]?.input,
         placeholder: "placeholder",
       },
-    }
+    },
   },
   readonly: {
     ...uiSchema,
@@ -82,8 +84,8 @@ export const uiStates = (uiSchema: UiSchema): UiSchema => ({
       input: {
         ...uiSchema["ui:options"]?.input,
         readonly: true,
-      }
-    }
+      },
+    },
   },
   disabled: {
     ...uiSchema,
@@ -126,32 +128,21 @@ export const uiSchema: UiSchemaRoot = {
     "ui:options": {
       input: {
         type: "date",
-      }
-    }
-  })
+      },
+    },
+  }),
 };
 
-export const errors = new SvelteMap(
-  [
-    "checkbox",
-    "checkboxes",
-    "file",
-    "multiFile",
-    "number",
-    "radio",
-    "select",
-    "multiSelect",
-    "text",
-    "textarea",
-  ].map((key) => [
-    key,
-    [
-      {
+export const errors = (keys: string[]) =>
+  keys.map(
+    (key) =>
+      ({
         error: null,
-        instanceId: `root_${key}_error`,
+        instanceId: pathToId(DEFAULT_ID_PREFIX, DEFAULT_ID_SEPARATOR, [
+          key,
+          "error",
+        ]),
         propertyTitle: "error",
         message: `${key} error`,
-      },
-    ] satisfies ValidationError<unknown>[],
-  ])
-);
+      } satisfies ValidationError<null>)
+  );
