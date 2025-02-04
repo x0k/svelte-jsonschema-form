@@ -16,7 +16,8 @@
 				properties: {
 					...widgets.schema.properties,
 					toggle: widgets.states(widgets.boolean),
-					filter: widgets.states(widgets.enumeration)
+					filter: widgets.states(widgets.enumeration),
+					callyCalendar: widgets.states(widgets.text)
 				}
 			},
 			uiSchema: {
@@ -26,9 +27,14 @@
 				}),
 				filter: widgets.uiStates({
 					'ui:widget': 'filter'
+				}),
+				callyCalendar: widgets.uiStates({
+					'ui:widget': 'callyCalendar'
 				})
 			},
-			initialErrors: widgets.errors(Object.keys(widgets.uiSchema).concat('toggle', 'filter')),
+			initialErrors: widgets.errors(
+				Object.keys(widgets.uiSchema).concat('toggle', 'filter', 'callyCalendar')
+			),
 			translation,
 			validator
 		})}

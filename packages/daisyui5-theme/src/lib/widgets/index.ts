@@ -1,29 +1,20 @@
-import type { HTMLInputAttributes } from 'svelte/elements';
+import type {
+	Widget,
+	Widgets,
+	WidgetType
+} from '@sjsf/form';
 
-import type { RadioWidgetProps, SchemaValue, Widget, WidgetCommonProps, Widgets, WidgetType } from '@sjsf/form';
-
-import TextWidget from './text-widget.svelte';
-import TextareaWidget from './textarea-widget.svelte';
-import NumberWidget from './number-widget.svelte';
-import SelectWidget from './select-widget.svelte';
-import CheckBoxWidget from './checkbox-widget.svelte';
-import RadioWidget from './radio-widget.svelte';
-import CheckboxesWidget from './checkboxes-widget.svelte';
-import FileWidget from './file-widget.svelte';
-import ToggleWidget from './toggle-widget.svelte';
-import FilterWidget from './filter-widget.svelte';
-
-declare module '@sjsf/form' {
-	export interface WidgetsAndProps<V> {
-		toggle: WidgetCommonProps<V, HTMLInputAttributes>;
-		filter: RadioWidgetProps<V>;
-	}
-
-	export interface WidgetValue {
-		toggle: boolean;
-		filter: SchemaValue;
-	}
-}
+import TextWidget from './text.svelte';
+import TextareaWidget from './textarea.svelte';
+import NumberWidget from './number.svelte';
+import SelectWidget from './select.svelte';
+import CheckBoxWidget from './checkbox.svelte';
+import RadioWidget from './radio.svelte';
+import CheckboxesWidget from './checkboxes.svelte';
+import FileWidget from './file.svelte';
+import ToggleWidget from './toggle.svelte';
+import FilterWidget from './filter.svelte';
+import { CallyCalendar } from './cally-calendar'
 
 export const registry: { [T in WidgetType]: Widget<T> } = {
 	text: TextWidget,
@@ -36,6 +27,7 @@ export const registry: { [T in WidgetType]: Widget<T> } = {
 	file: FileWidget,
 	toggle: ToggleWidget,
 	filter: FilterWidget,
+	callyCalendar: CallyCalendar
 };
 
 // @ts-expect-error TODO: improve `widgets` type

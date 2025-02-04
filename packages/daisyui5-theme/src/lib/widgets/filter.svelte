@@ -1,7 +1,21 @@
+<script lang="ts" module>
+	import type { RadioWidgetProps, SchemaValue } from '@sjsf/form';
+
+	declare module '@sjsf/form' {
+		interface WidgetsAndProps<V> {
+			filter: RadioWidgetProps<V>;
+		}
+
+		interface WidgetValue {
+			filter: SchemaValue;
+		}
+	}
+</script>
+
 <script lang="ts">
 	import { type WidgetProps, indexMapper, singleOption } from '@sjsf/form';
 
-	let { attributes, value = $bindable(), options, errors }: WidgetProps<'radio'> = $props();
+	let { attributes, value = $bindable(), options, errors }: WidgetProps<'filter'> = $props();
 
 	const mapped = singleOption({
 		mapper: () => indexMapper(options),
@@ -21,7 +35,7 @@
 	{#each options as option, index (option.id)}
 		<input
 			type="radio"
-			class={["btn", errors.length > 0 && "btn-error"]}
+			class={['btn', errors.length > 0 && 'btn-error']}
 			bind:group={mapped.value}
 			value={index}
 			aria-label={option.label}
