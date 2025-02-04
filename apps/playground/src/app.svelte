@@ -12,7 +12,6 @@
     RawForm,
     ON_ARRAY_CHANGE,
     ON_OBJECT_CHANGE,
-    setFromContext,
   } from "@sjsf/form";
   import {
     translation,
@@ -30,12 +29,12 @@
   import OpenBook from "./open-book.svelte";
   import ThemePicker from "./theme-picker.svelte";
   import Editor from "./editor.svelte";
+  import Popup from "./popup.svelte";
+  import Bits from "./bits.svelte";
   import Debug from "./debug.svelte";
 
   import { samples } from "./samples";
   import { validators } from "./validators";
-  import Bits from "./bits.svelte";
-  import Popup from "./popup.svelte";
 
   function isSampleName(name: unknown): name is keyof typeof samples {
     return typeof name === "string" && name in samples;
@@ -158,7 +157,6 @@
       console.log("errors", errors);
     },
   });
-  setFromContext(form.context)
 
   let playgroundTheme = $state<"system" | "light" | "dark">(
     localStorage.theme ?? "system"
