@@ -1,17 +1,3 @@
-<script lang="ts" module>
-	import type { RadioWidgetProps, SchemaValue } from '@sjsf/form';
-
-	declare module '@sjsf/form' {
-		interface WidgetsAndProps<V> {
-			filter: RadioWidgetProps<V>;
-		}
-
-		interface WidgetValue {
-			filter: SchemaValue;
-		}
-	}
-</script>
-
 <script lang="ts">
 	import { type WidgetProps, indexMapper, singleOption } from '@sjsf/form';
 

@@ -1,21 +1,3 @@
-<script lang="ts" module>
-	import type { PikadayOptions } from 'pikaday';
-
-	declare module '@sjsf/form' {
-		interface WidgetsAndProps<V> {
-			pikadayCalendar: WidgetCommonProps<V, HTMLInputAttributes>;
-		}
-
-		interface WidgetValue {
-			pikadayCalendar: string;
-		}
-
-		interface UiOptions {
-			pikaday?: PikadayOptions;
-		}
-	}
-</script>
-
 <script lang="ts">
 	import type { WidgetCommonProps, WidgetProps } from '@sjsf/form';
 	import Pikaday from 'pikaday';

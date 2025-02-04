@@ -10,8 +10,10 @@ import CheckboxesWidget from './checkboxes.svelte';
 import FileWidget from './file.svelte';
 import ToggleWidget from './toggle.svelte';
 import FilterWidget from './filter.svelte';
-import { CallyCalendar } from './cally-calendar';
+import { CallyCalendar, type CalendarProps } from './cally-calendar';
 import { PikadayCalendar } from './pikaday-calendar';
+
+export type { CalendarProps };
 
 export const registry: { [T in WidgetType]: Widget<T> } = {
 	text: TextWidget,

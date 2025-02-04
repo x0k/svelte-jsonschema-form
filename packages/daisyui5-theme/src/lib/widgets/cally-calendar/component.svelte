@@ -1,13 +1,13 @@
 <script lang="ts" module>
-	import type { ClassValue, HTMLButtonAttributes } from 'svelte/elements';
-	import type { WidgetCommonProps, WidgetProps } from '@sjsf/form';
+	import type { ClassValue } from 'svelte/elements';
+	import type { WidgetProps } from '@sjsf/form';
 	import type { CalendarRangeProps, CalendarMonthProps, CalendarDateProps } from 'cally';
 
 	type MapEvents<T> = {
 		[K in keyof T as K extends `on${infer E}` ? `on:${Lowercase<E>}` : K]: T[K];
 	};
 
-	type CalendarProps = MapEvents<CalendarDateProps> & {
+	export type CalendarProps = MapEvents<CalendarDateProps> & {
 		class?: ClassValue | null;
 		placeholder?: string;
 	};
@@ -20,21 +20,6 @@
 		}
 		interface SVGAttributes<T extends EventTarget> {
 			slot?: string;
-		}
-	}
-
-	declare module '@sjsf/form' {
-		interface UiOptions {
-			trigger?: HTMLButtonAttributes;
-			formatDate?: (date: string) => string;
-		}
-
-		interface WidgetsAndProps<V> {
-			callyCalendar: WidgetCommonProps<V, CalendarProps>;
-		}
-
-		interface WidgetValue {
-			callyCalendar: string;
 		}
 	}
 </script>
