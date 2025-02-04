@@ -25,7 +25,7 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			trigger?: HTMLButtonAttributes
+			trigger?: HTMLButtonAttributes;
 			formatDate?: (date: string) => string;
 		}
 
@@ -40,10 +40,10 @@
 </script>
 
 <script lang="ts">
-	import { formatAsCustomPropertyName } from '@sjsf/form/lib/css'
+	import { formatAsCustomPropertyName } from '@sjsf/form/lib/css';
 	import 'cally';
 
-	let { value = $bindable(), attributes, config }: WidgetProps<'callyCalendar'> = $props();
+	let { value = $bindable(), attributes, config, errors }: WidgetProps<'callyCalendar'> = $props();
 
 	const triggerAttributes = $derived(config.uiOptions?.trigger);
 
@@ -66,7 +66,7 @@
 <button
 	type="button"
 	popovertarget="{attributes.id}-popover"
-	class="input input-border"
+	class={['input input-border w-full', errors.length > 0 && 'input-error']}
 	{...triggerAttributes}
 	disabled={attributes.disabled || triggerAttributes?.disabled}
 	style="anchor-name:{anchorName}"
