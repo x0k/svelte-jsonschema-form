@@ -1,8 +1,4 @@
-import type {
-	Widget,
-	Widgets,
-	WidgetType
-} from '@sjsf/form';
+import type { Widget, Widgets, WidgetType } from '@sjsf/form';
 
 import TextWidget from './text.svelte';
 import TextareaWidget from './textarea.svelte';
@@ -14,7 +10,8 @@ import CheckboxesWidget from './checkboxes.svelte';
 import FileWidget from './file.svelte';
 import ToggleWidget from './toggle.svelte';
 import FilterWidget from './filter.svelte';
-import { CallyCalendar } from './cally-calendar'
+import { CallyCalendar } from './cally-calendar';
+import { PikadayCalendar } from './pikaday-calendar';
 
 export const registry: { [T in WidgetType]: Widget<T> } = {
 	text: TextWidget,
@@ -27,7 +24,8 @@ export const registry: { [T in WidgetType]: Widget<T> } = {
 	file: FileWidget,
 	toggle: ToggleWidget,
 	filter: FilterWidget,
-	callyCalendar: CallyCalendar
+	callyCalendar: CallyCalendar,
+	pikadayCalendar: PikadayCalendar
 };
 
 // @ts-expect-error TODO: improve `widgets` type

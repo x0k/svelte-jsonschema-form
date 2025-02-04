@@ -11,13 +11,19 @@
 	createWidgetsForm={() =>
 		createForm3({
 			...theme,
+			initialValue: {
+				pikadayCalendar: {
+					readonly: '2025-02-04'
+				}
+			},
 			schema: {
 				type: 'object',
 				properties: {
 					...widgets.schema.properties,
 					toggle: widgets.states(widgets.boolean),
 					filter: widgets.states(widgets.enumeration),
-					callyCalendar: widgets.states(widgets.text)
+					callyCalendar: widgets.states(widgets.text),
+					pikadayCalendar: widgets.states(widgets.text)
 				}
 			},
 			uiSchema: {
@@ -30,10 +36,13 @@
 				}),
 				callyCalendar: widgets.uiStates({
 					'ui:widget': 'callyCalendar'
+				}),
+				pikadayCalendar: widgets.uiStates({
+					'ui:widget': 'pikadayCalendar'
 				})
 			},
 			initialErrors: widgets.errors(
-				Object.keys(widgets.uiSchema).concat('toggle', 'filter', 'callyCalendar')
+				Object.keys(widgets.uiSchema).concat('toggle', 'filter', 'callyCalendar', 'pikadayCalendar')
 			),
 			translation,
 			validator
