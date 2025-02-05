@@ -1,5 +1,25 @@
 # docs
 
+## 1.7.0
+
+### Minor Changes
+
+- Add `daisyUI v5` theme page ([#71](https://github.com/x0k/svelte-jsonschema-form/pull/71))
+
+### Patch Changes
+
+- Updated dependencies [[`cd3ebbb`](https://github.com/x0k/svelte-jsonschema-form/commit/cd3ebbb3a42ca7c730c1a0592a9325c41b3d2563), [`59196ba`](https://github.com/x0k/svelte-jsonschema-form/commit/59196ba2c479af7d3ff0cb3a8cded268811133e1), [`e4b7e63`](https://github.com/x0k/svelte-jsonschema-form/commit/e4b7e63a3b8ff17c658cf9659bdc58f2dd0f7d19), [`b54d3c4`](https://github.com/x0k/svelte-jsonschema-form/commit/b54d3c42720fa5c55b5aa93aeb09602808da0a28), [`3eaf430`](https://github.com/x0k/svelte-jsonschema-form/commit/3eaf430a9cf4161afafddae2a0ac9bcc05481e87)]:
+  - @sjsf/form@1.10.0
+  - @sjsf/daisyui-theme@1.10.0
+  - @sjsf/daisyui5-theme@1.10.0
+  - @sjsf/flowbite-theme@1.10.0
+  - @sjsf/ajv8-validator@1.10.0
+  - @sjsf/cfworker-validator@1.10.0
+  - @sjsf/shadcn-theme@1.10.0
+  - @sjsf/skeleton-theme@1.10.0
+  - @sjsf/sveltekit@1.10.0
+  - @sjsf/zod-validator@1.10.0
+
 ## 1.6.2
 
 ### Patch Changes
