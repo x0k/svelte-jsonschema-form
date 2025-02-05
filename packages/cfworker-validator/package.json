@@ -42,6 +42,6 @@
   },
   "devDependencies": {
     "@sjsf/form": "workspace:*",
-    "@cfworker/json-schema": "^4.1.0"
+    "@cfworker/json-schema": "^4.1.1"
   }
 }

@@ -11,18 +11,18 @@
     "check": "turbo run check",
     "dev": "turbo run dev",
     "test": "turbo run test",
-    "build": "turbo run build",
+    "build": "turbo run build --concurrency 12",
     "preview": "turbo run preview",
     "ci:build": "turbo run build test",
     "ci:version": "changeset version && pnpm install --no-frozen-lockfile"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.27.11",
+    "@changesets/cli": "^2.27.12",
     "@svitejs/changesets-changelog-github-compact": "^1.2.0",
     "@total-typescript/tsconfig": "^1.0.4",
     "only-allow": "^1.2.1",
-    "publint": "^0.3.0",
-    "turbo": "^2.3.3",
+    "publint": "^0.3.2",
+    "turbo": "^2.4.0",
     "typescript": "^5.7.3"
   }
 }
