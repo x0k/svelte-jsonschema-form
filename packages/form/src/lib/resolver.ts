@@ -1,23 +1,19 @@
 import type { AnyKey } from "./types.js";
 
-export type Resolver<T, C, R> = (type: T, config: C) => R;
+export type Resolver<T extends AnyKey, C, R extends Record<T, any>> = (
+  type: T,
+  config: C
+) => R[T];
 
-export function prepend<T, C, R>(
+export function chain<T extends AnyKey, C, R extends Record<T, any>>(
   source: Resolver<T, C, R>,
-  res: Resolver<T, C, R | undefined>
+  fallback: Resolver<T, C, R>
 ): Resolver<T, C, R> {
-  return (type: T, c: C) => res(type, c) ?? source(type, c);
+  return (type: T, c: C) => source(type, c) ?? fallback(type, c);
 }
 
-export function append<T, C, R>(
-  source: Resolver<T, C, R | undefined>,
-  res: Resolver<T, C, R>
-): Resolver<T, C, R> {
-  return (type: T, c: C) => source(type, c) ?? res(type, c);
-}
-
-export function fromRecord<T extends AnyKey, R>(
-  record: Record<T, R>
+export function fromRecord<T extends AnyKey, R extends Record<T, any>>(
+  record: R
 ): Resolver<T, any, R> {
   return (type) => record[type];
 }
