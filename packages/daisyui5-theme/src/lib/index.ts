@@ -6,6 +6,10 @@ import { components } from './components/index.js';
 import { widgets, type CalendarProps } from './widgets/index.js';
 
 declare module '@sjsf/form' {
+	interface Inputs {
+		daisyui5CallyCalendar: CalendarProps;
+	}
+
 	interface UiOptions {
 		trigger?: HTMLButtonAttributes;
 		formatDate?: (date: string) => string;
