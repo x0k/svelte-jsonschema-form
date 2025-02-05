@@ -1,14 +1,12 @@
 <script lang="ts">
 	import type { WidgetProps } from '@sjsf/form';
-	import { Checkbox } from 'm3-svelte';
+	import { Switch } from 'm3-svelte';
 
 	let { config, value = $bindable(), attributes }: WidgetProps<'checkbox'> = $props();
 </script>
 
 <label class="label">
-	<Checkbox>
-		<input type="checkbox" bind:checked={value} {...attributes} />
-	</Checkbox>
+	<Switch bind:checked={value} extraOptions={attributes} />
 	{config.title}
 </label>
 

@@ -1,12 +1,16 @@
 <script lang="ts">
 	import type { WidgetProps } from '@sjsf/form';
+	import { TextFieldMultiline } from 'm3-svelte';
 
-	let { value = $bindable(), attributes, errors }: WidgetProps<'textarea'> = $props();
+	let { value = $bindable(), attributes, errors, config }: WidgetProps<'textarea'> = $props();
 </script>
 
-<textarea
+<TextFieldMultiline
+	name={config.name}
 	bind:value
-	class="textarea textarea-bordered grow"
-	class:textarea-error={errors.length}
-	{...attributes}
-></textarea>
+	error={errors.length > 0}
+	extraOptions={attributes}
+	extraWrapperOptions={{
+		style: 'flex-grow: 1;'
+	}}
+/>

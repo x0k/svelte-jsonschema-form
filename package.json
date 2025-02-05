@@ -11,8 +11,8 @@
     "check": "turbo run check",
     "dev": "turbo run dev",
     "test": "turbo run test",
-    "build": "turbo run build --concurrency 12",
-    "preview": "turbo run preview",
+    "build": "turbo run build --concurrency 13",
+    "preview": "turbo run preview --concurrency 13",
     "ci:build": "turbo run build test",
     "ci:version": "changeset version && pnpm install --no-frozen-lockfile"
   },

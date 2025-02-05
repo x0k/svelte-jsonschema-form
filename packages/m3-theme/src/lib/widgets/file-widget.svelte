@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { WidgetProps } from '@sjsf/form';
+	import { TextField } from 'm3-svelte';
 
 	let {
 		attributes,
@@ -7,17 +8,29 @@
 		loading,
 		processing,
 		value = $bindable(),
-		errors
+		errors,
+		config
 	}: WidgetProps<'file'> = $props();
+	const { disabled, ...rest } = $derived(attributes);
 </script>
 
-<input
-	type="file"
-	bind:files={value}
-	{multiple}
-	class="file-input grow"
-	class:file-input-error={errors.length}
-	data-loading={loading}
-	data-processing={processing}
-	{...attributes}
+<TextField
+	name={config.title}
+	{disabled}
+	error={errors.length > 0}
+	extraOptions={{
+		type: 'file',
+		multiple,
+		'data-loading': loading,
+		'data-processing': processing,
+		'bind:files': value,
+		...rest,
+		onchange: (e) => {
+			value = e.currentTarget.files ?? undefined;
+			rest.onchange?.(e);
+		}
+	}}
+	extraWrapperOptions={{
+		style: 'flex-grow: 1;'
+	}}
 />

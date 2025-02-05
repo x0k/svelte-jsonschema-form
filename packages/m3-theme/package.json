@@ -44,8 +44,8 @@
 		"./styles.css": "./dist/styles.css"
 	},
 	"peerDependencies": {
-		"@sjsf/form": "workspace:^1.7.0",
-		"svelte": "^5.0.0",
+		"@sjsf/form": "workspace:^1.9.2",
+		"svelte": "^5.19.0",
 		"m3-svelte": "^3.4.0"
 	},
 	"devDependencies": {
@@ -63,7 +63,7 @@
 		"eslint-config-prettier": "catalog:",
 		"eslint-plugin-svelte": "catalog:",
 		"globals": "catalog:",
-		"m3-svelte": "^3.4.5",
+		"m3-svelte": "^3.4.6",
 		"postcss": "catalog:",
 		"prettier": "catalog:",
 		"prettier-plugin-svelte": "catalog:",
