@@ -6,7 +6,9 @@
 </script>
 
 {#if attributes.type === 'date'}
-	<DateField bind:date={value} name={config.name} extraOptions={attributes} />
+	<div class="m3-date-field-wrapper">
+		<DateField bind:date={value} name={config.name} />
+	</div>
 {:else}
 	<TextField
 		name={config.title}
@@ -18,3 +20,12 @@
 		}}
 	/>
 {/if}
+
+<style>
+	.m3-date-field-wrapper {
+		flex-grow: 1;
+		:global(.m3-container) {
+			width: 100%;
+		}
+	}
+</style>
