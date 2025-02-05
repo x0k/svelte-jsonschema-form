@@ -12,9 +12,9 @@ function getComponentInternal<T extends ComponentType>(
   const component = config.uiSchema["ui:components"]?.[type];
   switch (typeof component) {
     case "undefined":
-      return ctx.components(type, config);
+      return ctx.component(type, config);
     case "string":
-      return ctx.components(component as T, config);
+      return ctx.component(component as T, config);
     default:
       return component as Component<T>;
   }

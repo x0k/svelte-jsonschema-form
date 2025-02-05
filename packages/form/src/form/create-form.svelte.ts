@@ -23,7 +23,7 @@ import {
   type ValidationError,
   type ValidationProcessError,
 } from "./validator.js";
-import type { Components } from "./component.js";
+import type { Components, ComponentsResolver } from "./component.js";
 import type { Widgets } from "./widgets.js";
 import type { Translation } from "./translation.js";
 import type { UiSchemaRoot } from "./ui-schema.js";
@@ -59,7 +59,7 @@ export type FormValue = SchemaValue | undefined;
 export interface UseFormOptions<T, E> {
   validator: FormValidator2<E>;
   schema: Schema;
-  components: Components;
+  components: Components | ComponentsResolver;
   translation: Translation;
   widgets: Widgets;
   uiSchema?: UiSchemaRoot;
@@ -522,6 +522,9 @@ export function createForm3<
     },
     get components() {
       return options.components;
+    },
+    get component() {
+      return options.components as ComponentsResolver;
     },
     get widgets() {
       return options.widgets;

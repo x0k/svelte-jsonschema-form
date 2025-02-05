@@ -6,7 +6,7 @@ import type { Mutation } from '@/use-mutation.svelte.js';
 
 import type { Label, Labels, Translation } from "../translation.js";
 import type { UiSchema, UiSchemaRoot } from "../ui-schema.js";
-import type { Components } from "../component.js";
+import type { Components, ComponentsResolver } from "../component.js";
 import type { Widgets } from "../widgets.js";
 import type { Fields } from "../fields/index.js";
 import type { Templates } from "../templates/index.js";
@@ -29,7 +29,9 @@ export interface FormContext {
   validator: FormValidator2;
   merger: FormMerger;
   fields: Fields;
+  /** @deprecated use `component` instead */
   components: Components;
+  component: ComponentsResolver;
   widgets: Widgets;
   translation: Translation;
   templates: Templates;
