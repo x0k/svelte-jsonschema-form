@@ -127,6 +127,7 @@ export type Component<T extends ComponentType> = SvelteComponent<
   ComponentBindings[T]
 >;
 
+/** @deprecated use `ComponentsResolver` instead */
 export type Components = <T extends ComponentType>(
   type: T,
   config: Config
@@ -134,6 +135,13 @@ export type Components = <T extends ComponentType>(
 
 export type Components2 = { [T in ComponentType]: Component<T> };
 
+export type ComponentsResolver = Resolver<
+  ComponentType,
+  Config,
+  Components2,
+  undefined
+>;
+
 export const createComponents = fromRecord as (
   r: Partial<Components2>
-) => Resolver<ComponentType, any, Components2[ComponentType] | undefined>;
+) => ComponentsResolver;
