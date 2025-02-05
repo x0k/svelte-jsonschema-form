@@ -5,13 +5,15 @@ import type {
   HTMLFormAttributes,
 } from "svelte/elements";
 
+import { fromRecord, type Resolver } from "@/lib/resolver.js";
+
 import type { Config } from "./config.js";
 import type { ValidationError } from "./validator.js";
 
 export interface FormComponentProps {
   form?: HTMLFormElement | undefined;
   /** @deprecated */
-  onsubmit?: HTMLFormAttributes['onsubmit'];
+  onsubmit?: HTMLFormAttributes["onsubmit"];
   attributes: HTMLFormAttributes;
   children: Snippet;
 }
@@ -129,3 +131,9 @@ export type Components = <T extends ComponentType>(
   type: T,
   config: Config
 ) => Component<T> | undefined;
+
+export type Components2 = { [T in ComponentType]: Component<T> };
+
+export const createComponents = fromRecord as (
+  r: Partial<Components2>
+) => Resolver<ComponentType, any, Components2[ComponentType] | undefined>;
