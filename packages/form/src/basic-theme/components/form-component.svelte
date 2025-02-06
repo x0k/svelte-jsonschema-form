@@ -1,19 +1,21 @@
 <script lang="ts">
-  import type { FormComponentProps } from "@/form/index.js";
+  import { getFormContext, type ComponentProps } from "@/form/index.js";
 
   let {
     children,
-    ref: form = $bindable(),
-    onsubmit,
-    attributes,
-  }: FormComponentProps = $props();
+    ref = $bindable(),
+    config,
+  }: ComponentProps<"form"> = $props();
+
+  const ctx = getFormContext();
 </script>
 
 <form
-  {onsubmit}
+  bind:this={ref}
+  onsubmit={ctx.submitHandler}
+  onreset={ctx.resetHandler}
   style="display: flex; flex-direction: column; gap: 1rem"
-  {...attributes}
-  bind:this={form}
+  {...config.uiOptions?.form}
 >
   {@render children()}
 </form>

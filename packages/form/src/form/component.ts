@@ -1,18 +1,17 @@
 import type { Snippet, Component as SvelteComponent } from "svelte";
-import type {
-  HTMLAttributes,
-  HTMLButtonAttributes,
-  HTMLFormAttributes,
-} from "svelte/elements";
+import type { HTMLAttributes, HTMLButtonAttributes } from "svelte/elements";
 
 import { fromRecord, type Resolver } from "@/lib/resolver.js";
 
 import type { Config } from "./config.js";
 import type { ValidationError } from "./validator.js";
 
+export interface FormElements {}
+
+export type FormElement = FormElements[keyof FormElements];
+
 export interface FormComponentProps {
-  ref?: HTMLFormElement | undefined;
-  attributes: HTMLFormAttributes;
+  ref?: FormElement | undefined;
   children: Snippet;
 }
 

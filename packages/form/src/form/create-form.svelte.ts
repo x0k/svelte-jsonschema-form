@@ -23,12 +23,12 @@ import {
   type ValidationError,
   type ValidationProcessError,
 } from "./validator.js";
-import type { Components, ComponentsResolver } from "./component.js";
-import type { Widgets, WidgetsResolver } from "./widgets.js";
+import type { ComponentsResolver } from "./component.js";
+import type { WidgetsResolver } from "./widgets.js";
 import type { Translation } from "./translation.js";
 import type { UiSchemaRoot } from "./ui-schema.js";
-import type { Fields, FieldsResolver } from "./fields/index.js";
-import type { Templates, TemplatesResolver } from "./templates/index.js";
+import type { FieldsResolver } from "./fields/index.js";
+import type { TemplatesResolver } from "./templates/index.js";
 import type { Icons } from "./icons.js";
 import type { FieldsValidationMode } from "./validation.js";
 import { groupErrors, type Errors, type FieldErrors } from "./errors.js";
@@ -471,7 +471,36 @@ export function createForm3<
     },
   });
 
+  function submitHandler(e: SubmitEvent) {
+    e.preventDefault();
+    validation.run(e);
+  }
+
+  function reset() {
+    isSubmitted = false;
+    isChanged = false;
+    errors.clear();
+    value = merger.mergeFormDataAndSchemaDefaults(
+      options.initialValue as FormValue,
+      options.schema
+    );
+  }
+
+  // @deprecated
+  // TODO: Call `options.onReset` inside `reset` instead of overwriting it
+  const resetHandler = $derived(
+    options.onReset ??
+      ((e: Event) => {
+        e.preventDefault();
+        reset();
+      })
+  );
+
   const context: FormContext = {
+    submitHandler,
+    get resetHandler() {
+      return resetHandler
+    },
     get fieldsValidationMode() {
       return fieldsValidationMode;
     },
@@ -558,31 +587,6 @@ export function createForm3<
       );
     }) as unknown as Snippet<[IconOrTranslationData]>,
   };
-
-  function submitHandler(e: SubmitEvent) {
-    e.preventDefault();
-    validation.run(e);
-  }
-
-  function reset() {
-    isSubmitted = false;
-    isChanged = false;
-    errors.clear();
-    value = merger.mergeFormDataAndSchemaDefaults(
-      options.initialValue as FormValue,
-      options.schema
-    );
-  }
-
-  // @deprecated
-  // TODO: Call `options.onReset` inside `reset` instead of overwriting it
-  const resetHandler = $derived(
-    options.onReset ??
-      ((e: Event) => {
-        e.preventDefault();
-        reset();
-      })
-  );
 
   const fakeAbortSignal = new AbortController().signal;
 

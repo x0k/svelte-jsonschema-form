@@ -1,7 +1,9 @@
 import { getContext, setContext, type Component, type Snippet } from "svelte";
+import type { EventHandler, FormEventHandler } from "svelte/elements";
 
+import type { DataURLToBlob } from "@/lib/file.js";
 import type { Schema, SchemaValue } from "@/core/index.js";
-import type { Mutation } from '@/use-mutation.svelte.js';
+import type { Mutation } from "@/use-mutation.svelte.js";
 
 import type { Label, Labels, Translation } from "../translation.js";
 import type { UiSchema, UiSchemaRoot } from "../ui-schema.js";
@@ -13,8 +15,7 @@ import type { Errors } from "../errors.js";
 import type { FormValidator2, ValidationError } from "../validator.js";
 import type { Icons } from "../icons.js";
 import type { FormMerger } from "../merger.js";
-import type { Config } from '../config.js';
-import type { DataURLToBlob } from '@/lib/file.js';
+import type { Config } from "../config.js";
 
 export type IconOrTranslationData = {
   [L in Label]: [L, ...Labels[L]];
@@ -24,11 +25,13 @@ export interface FormContext {
   isSubmitted: boolean;
   isChanged: boolean;
   fieldsValidationMode: number;
+  submitHandler: EventHandler<SubmitEvent, HTMLFormElement>;
+  resetHandler: FormEventHandler<HTMLFormElement>;
   schema: Schema;
   uiSchema: UiSchemaRoot;
   validator: FormValidator2;
   merger: FormMerger;
-  field: FieldsResolver
+  field: FieldsResolver;
   component: ComponentsResolver;
   widget: WidgetsResolver;
   translation: Translation;
@@ -43,7 +46,11 @@ export interface FormContext {
   IconOrTranslation: Component<{ data: IconOrTranslationData }>;
   /** @deprecated use `IconOrTranslation` instead */
   iconOrTranslation: Snippet<[IconOrTranslationData]>;
-  validateAdditionalPropertyKey(config: Config, key: string, fieldConfig: Config): boolean;
+  validateAdditionalPropertyKey(
+    config: Config,
+    key: string,
+    fieldConfig: Config
+  ): boolean;
   validation: Mutation<
     [event: SubmitEvent],
     {
