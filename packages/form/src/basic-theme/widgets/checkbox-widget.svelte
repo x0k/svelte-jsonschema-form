@@ -1,11 +1,15 @@
 <script lang="ts">
-  import type { WidgetProps } from "@/form/index.js";
+  import { getFormContext, inputAttributes, type WidgetProps } from "@/form/index.js";
 
   let {
     config,
     value = $bindable(),
-    attributes,
+    handlers,
   }: WidgetProps<"checkbox"> = $props();
+
+  const ctx = getFormContext()
+
+  const attributes = $derived(inputAttributes(ctx, config, handlers))
 </script>
 
 <label>

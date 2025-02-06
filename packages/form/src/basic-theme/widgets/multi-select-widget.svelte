@@ -2,24 +2,24 @@
   import {
     getFormContext,
     indexMapper,
+    multipleOptions,
     selectAttributes,
-    singleOption,
     type WidgetProps,
   } from "@/form/index.js";
 
   let {
-    handlers,
     value = $bindable(),
     options,
     config,
-  }: WidgetProps<"select"> = $props();
+    handlers,
+  }: WidgetProps<"multiSelect"> = $props();
 
   const ctx = getFormContext();
 
   const attributes = $derived(selectAttributes(ctx, config, handlers));
 
   const mapped = $derived(
-    singleOption({
+    multipleOptions({
       mapper: () => indexMapper(options),
       value: () => value,
       update: (v) => (value = v),
@@ -27,10 +27,7 @@
   );
 </script>
 
-<select bind:value={mapped.value} style="flex-grow: 1" {...attributes}>
-  {#if config.schema.default === undefined}
-    <option value={-1}>{attributes.placeholder}</option>
-  {/if}
+<select multiple bind:value={mapped.value} style="flex-grow: 1" {...attributes}>
   {#each options as option, index (option.id)}
     <option value={index} disabled={option.disabled}>
       {option.label}

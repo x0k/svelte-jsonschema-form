@@ -3,13 +3,12 @@
 
   import {
     getTemplate,
-    getWidget,
-    inputAttributes,
     makeEventHandlers,
     getErrors,
     validateField,
     getFormContext,
     makePseudoId,
+    getWidget,
   } from "../context/index.js";
   import { createOptions2, DEFAULT_BOOLEAN_ENUM } from "../enum.js";
 
@@ -47,7 +46,7 @@
         ) ?? []
       );
     }
-    const enumValues = config.schema.enum ?? DEFAULT_BOOLEAN_ENUM
+    const enumValues = config.schema.enum ?? DEFAULT_BOOLEAN_ENUM;
     if (
       enumValues.length === 2 &&
       enumValues.every((v) => typeof v === "boolean") &&
@@ -73,7 +72,6 @@
   const handlers = makeEventHandlers(ctx, () =>
     validateField(ctx, config, value)
   );
-  const attributes = $derived(inputAttributes(ctx, config, handlers));
   const errors = $derived(getErrors(ctx, config.idSchema));
 </script>
 
@@ -83,5 +81,5 @@
   {value}
   {config}
 >
-  <Widget bind:value {errors} {attributes} {options} {config} />
+  <Widget bind:value {errors} {handlers} {options} {config} />
 </Template>

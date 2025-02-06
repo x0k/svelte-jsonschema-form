@@ -16,7 +16,7 @@
   setFromContext(form.context);
 </script>
 
-<FormElement {form} {...rest}>
+<FormElement internals={form} {...rest}>
   <Content {form} />
   <SubmitButton />
 </FormElement>

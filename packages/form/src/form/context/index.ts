@@ -8,3 +8,4 @@ export * from "./components.js";
 export * from "./fields.js";
 export * from "./templates.js";
 export * from "./widgets.js";
+export * from './files.js';

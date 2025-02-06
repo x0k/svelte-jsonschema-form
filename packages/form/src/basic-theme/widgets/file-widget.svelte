@@ -1,13 +1,22 @@
 <script lang="ts">
-  import type { WidgetProps } from "@/form/index.js";
+  import {
+    getFormContext,
+    inputAttributes,
+    type WidgetProps,
+  } from "@/form/index.js";
 
   let {
-    attributes,
+    handlers,
     multiple,
     loading,
     processing,
+    config,
     value = $bindable(),
   }: WidgetProps<"file"> = $props();
+
+  const ctx = getFormContext();
+
+  const attributes = $derived(inputAttributes(ctx, config, handlers));
 </script>
 
 <input

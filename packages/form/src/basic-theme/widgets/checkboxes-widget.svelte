@@ -3,13 +3,20 @@
     multipleOptions,
     indexMapper,
     type WidgetProps,
+    getFormContext,
+    inputAttributes,
   } from "@/form/index.js";
 
   let {
-    attributes,
+    handlers,
+    config,
     value = $bindable(),
     options,
   }: WidgetProps<"checkboxes"> = $props();
+
+  const ctx = getFormContext();
+
+  const attributes = $derived(inputAttributes(ctx, config, handlers));
 
   const mapped = multipleOptions({
     mapper: () => indexMapper(options),

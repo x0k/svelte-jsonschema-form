@@ -8,7 +8,6 @@
   import {
     getWidget,
     getTemplate,
-    inputAttributes,
     getErrors,
     getUiOptions,
     getFormContext,
@@ -51,19 +50,18 @@
 
   const key = proxy<string | undefined>(() => property);
 
-  const attributes = $derived(
-    inputAttributes(ctx, config, {
-      onblur: () => {
-        if (!key.value || key.value === property) {
-          return;
-        }
-        objCtx.renameProperty(property, key.value, config);
-      },
-    })
-  );
+  const handlers = {
+    onblur: () => {
+      if (!key.value || key.value === property) {
+        return;
+      }
+      objCtx.renameProperty(property, key.value, config);
+    },
+  };
+
   const errors = $derived(getErrors(ctx, config.idSchema));
 </script>
 
 <Template {errors} showTitle value={property} {config}>
-  <Widget {errors} {attributes} {config} bind:value={key.value} />
+  <Widget options={[]} {errors} {handlers} {config} bind:value={key.value} />
 </Template>

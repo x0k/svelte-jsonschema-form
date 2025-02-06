@@ -331,7 +331,7 @@
 {/snippet}
 
 <Form
-  bind:form
+  bind:ref: form
   {attributes}
   onsubmit={submitHandler}
   {config}

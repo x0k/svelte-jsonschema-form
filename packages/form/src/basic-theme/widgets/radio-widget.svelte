@@ -1,11 +1,22 @@
 <script lang="ts">
-  import { singleOption, indexMapper, type WidgetProps } from "@/form/index.js";
+  import {
+    singleOption,
+    indexMapper,
+    type WidgetProps,
+    inputAttributes,
+    getFormContext,
+  } from "@/form/index.js";
 
   let {
-    attributes,
+    handlers,
+    config,
     value = $bindable(),
     options,
   }: WidgetProps<"radio"> = $props();
+
+  const ctx = getFormContext();
+
+  const attributes = $derived(inputAttributes(ctx, config, handlers));
 
   const mapped = singleOption({
     mapper: () => indexMapper(options),
@@ -17,10 +28,10 @@
 {#each options as option, index (option.id)}
   <label>
     <input
-      type="radio"
       bind:group={mapped.value}
       value={index}
       {...attributes}
+      type="radio"
       id={option.id}
       disabled={option.disabled || attributes.disabled}
     />

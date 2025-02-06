@@ -12,18 +12,22 @@
 
   import type { FieldProps } from "./model.js";
 
-  let { config, value = $bindable() }: FieldProps<"enum"> = $props();
+  let {
+    config,
+    value = $bindable(),
+    itemSchema,
+  }: FieldProps<"multiEnum"> = $props();
 
   const ctx = getFormContext();
 
   const Template = $derived(getTemplate(ctx, "field", config));
-  const Widget = $derived(getWidget(ctx, "select", config));
+  const Widget = $derived(getWidget(ctx, "multiSelect", config));
 
   const handlers = makeEventHandlers(ctx, () =>
     validateField(ctx, config, value)
   );
   const options = $derived(
-    createOptions2(config.schema, config.idSchema, config.uiOptions, (i) =>
+    createOptions2(itemSchema, config.idSchema, config.uiOptions, (i) =>
       makePseudoId(ctx, config.idSchema.$id, i)
     ) ?? []
   );

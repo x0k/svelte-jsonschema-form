@@ -3,7 +3,7 @@
 
   let {
     children,
-    form = $bindable(),
+    ref: form = $bindable(),
     onsubmit,
     attributes,
   }: FormComponentProps = $props();

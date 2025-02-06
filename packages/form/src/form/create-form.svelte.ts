@@ -24,11 +24,11 @@ import {
   type ValidationProcessError,
 } from "./validator.js";
 import type { Components, ComponentsResolver } from "./component.js";
-import type { Widgets } from "./widgets.js";
+import type { Widgets, WidgetsResolver } from "./widgets.js";
 import type { Translation } from "./translation.js";
 import type { UiSchemaRoot } from "./ui-schema.js";
-import type { Fields } from "./fields/index.js";
-import type { Templates } from "./templates/index.js";
+import type { Fields, FieldsResolver } from "./fields/index.js";
+import type { Templates, TemplatesResolver } from "./templates/index.js";
 import type { Icons } from "./icons.js";
 import type { FieldsValidationMode } from "./validation.js";
 import { groupErrors, type Errors, type FieldErrors } from "./errors.js";
@@ -48,6 +48,7 @@ import {
 } from "./id-schema.js";
 import IconOrTranslation from "./icon-or-translation.svelte";
 import type { Config } from "./config.js";
+import { makeDataURLtoBlob } from "@/lib/file.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
 
@@ -59,13 +60,13 @@ export type FormValue = SchemaValue | undefined;
 export interface UseFormOptions<T, E> {
   validator: FormValidator2<E>;
   schema: Schema;
-  components: Components | ComponentsResolver;
+  fields: FieldsResolver;
+  templates: TemplatesResolver;
+  components: ComponentsResolver;
   translation: Translation;
-  widgets: Widgets;
+  widgets: WidgetsResolver;
   uiSchema?: UiSchemaRoot;
   merger?: FormMerger;
-  fields?: Fields;
-  templates?: Templates;
   icons?: Icons;
   /** @deprecated use `fieldsValidationMode` */
   inputsValidationMode?: FieldsValidationMode;
@@ -337,6 +338,7 @@ export function createForm3<
             }, 0);
           })
   );
+  const dataUrlToBlob = $derived(makeDataURLtoBlob(schedulerYield));
   const additionalPropertyKeyValidator = $derived.by(() => {
     const validator = options.additionalPropertyKeyValidator;
     return validator
@@ -478,6 +480,9 @@ export function createForm3<
     },
     validation,
     fieldsValidation,
+    get dataUrlToBlob() {
+      return dataUrlToBlob;
+    },
     get isSubmitted() {
       return isSubmitted;
     },
@@ -514,19 +519,16 @@ export function createForm3<
     get merger() {
       return merger;
     },
-    get fields() {
+    get field() {
       return fields;
     },
-    get templates() {
+    get template() {
       return templates;
     },
-    get components() {
+    get component() {
       return options.components;
     },
-    get component() {
-      return options.components as ComponentsResolver;
-    },
-    get widgets() {
+    get widget() {
       return options.widgets;
     },
     get translation() {
@@ -534,9 +536,6 @@ export function createForm3<
     },
     get icons() {
       return icons;
-    },
-    get schedulerYield() {
-      return schedulerYield;
     },
     IconOrTranslation,
     iconOrTranslation: ((

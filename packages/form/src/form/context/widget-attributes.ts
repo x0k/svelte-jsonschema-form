@@ -6,22 +6,16 @@ import type {
 } from "svelte/elements";
 
 import type { Nullable } from "@/lib/types.js";
-import type { Schema } from "@/core/index.js";
 
 import type { Config } from "../config.js";
 import type { InputAttributes } from "../ui-schema.js";
+import type { Handlers } from "../widgets.js";
 
 import type { FormContext } from "./context.js";
 import { makePseudoId } from "./id-schema.js";
 
 interface Disabled {
   disabled: boolean;
-}
-
-interface Handlers {
-  onblur?: (e: Event) => void;
-  oninput?: (e: Event) => void;
-  onchange?: (e: Event) => void;
 }
 
 function explicitDisabled<T extends Partial<Nullable<Disabled>>>(
@@ -53,33 +47,34 @@ export function inputAttributes(
   { idSchema, required, schema, uiOptions }: Config,
   handlers: Handlers
 ) {
-  const type = inputType(schema.format);
-  return explicitDisabled(
-    ctx,
-    Object.assign(
-      {
-        id: idSchema.$id,
-        name: idSchema.$id,
-        required,
-        minlength: schema.minLength,
-        maxlength: schema.maxLength,
-        pattern: schema.pattern,
-        min: schema.minimum,
-        max: schema.maximum,
-        step:
-          schema.multipleOf ?? (schema.type === "number" ? "any" : undefined),
-        list: Array.isArray(schema.examples)
-          ? makePseudoId(ctx, idSchema.$id, "examples")
-          : undefined,
-        readonly: schema.readOnly,
-        oninput: handlers.oninput,
-        onchange: handlers.onchange,
-        onblur: handlers.onblur,
-      } satisfies HTMLInputAttributes,
-      type && { type },
-      uiOptions?.input as HTMLInputAttributes | undefined
-    )
+  const data = Object.assign(
+    {
+      id: idSchema.$id,
+      name: idSchema.$id,
+      required,
+      minlength: schema.minLength,
+      maxlength: schema.maxLength,
+      pattern: schema.pattern,
+      min: schema.minimum,
+      max: schema.maximum,
+      step: schema.multipleOf ?? (schema.type === "number" ? "any" : undefined),
+      list: Array.isArray(schema.examples)
+        ? makePseudoId(ctx, idSchema.$id, "examples")
+        : undefined,
+      readonly: schema.readOnly,
+      oninput: handlers.oninput,
+      onchange: handlers.onchange,
+      onblur: handlers.onblur,
+    } satisfies HTMLInputAttributes,
+    uiOptions?.input as HTMLInputAttributes | undefined
   );
+  if (data.type === undefined) {
+    const type = inputType(schema.format);
+    if (type !== undefined) {
+      data.type = type;
+    }
+  }
+  return explicitDisabled(ctx, data);
 }
 
 export function textareaAttributes(

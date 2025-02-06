@@ -11,9 +11,7 @@ import type { Config } from "./config.js";
 import type { ValidationError } from "./validator.js";
 
 export interface FormComponentProps {
-  form?: HTMLFormElement | undefined;
-  /** @deprecated */
-  onsubmit?: HTMLFormAttributes["onsubmit"];
+  ref?: HTMLFormElement | undefined;
   attributes: HTMLFormAttributes;
   children: Snippet;
 }
@@ -104,7 +102,7 @@ export interface ComponentsAndProps {
 }
 
 export interface ComponentBindings {
-  form: "form";
+  form: "ref";
   button: "";
   layout: "";
   title: "";
@@ -127,21 +125,15 @@ export type Component<T extends ComponentType> = SvelteComponent<
   ComponentBindings[T]
 >;
 
-/** @deprecated use `ComponentsResolver` instead */
-export type Components = <T extends ComponentType>(
-  type: T,
-  config: Config
-) => Component<T> | undefined;
-
-export type Components2 = { [T in ComponentType]: Component<T> };
+export type Components = { [T in ComponentType]: Component<T> };
 
 export type ComponentsResolver = Resolver<
   ComponentType,
   Config,
-  Components2,
+  Components,
   undefined
 >;
 
 export const createComponents = fromRecord as (
-  r: Partial<Components2>
+  r: Partial<Components>
 ) => ComponentsResolver;

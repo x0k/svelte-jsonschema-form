@@ -1,5 +1,6 @@
 import type { Component as SvelteComponent } from "svelte";
 
+import { fromRecord, type Resolver } from "@/lib/resolver.js";
 import type {
   SchemaValue,
   ONE_OF_KEY,
@@ -34,7 +35,7 @@ export interface FieldsAndProps<V extends SchemaValue> {
 
   array: FieldCommonProps<V>;
   anotherFieldArray: FieldCommonProps<V> & {
-    field: "enum" | "file";
+    field: "multiEnum" | "files";
   };
   fixedArray: FieldCommonProps<V>;
   normalArray: FieldCommonProps<V>;
@@ -47,12 +48,12 @@ export interface FieldsAndProps<V extends SchemaValue> {
   };
 
   null: FieldCommonProps<V>;
-  enum: FieldCommonProps<V> & {
-    multiple?: Schema;
+  enum: FieldCommonProps<V>;
+  multiEnum: FieldCommonProps<V> & {
+    itemSchema: Schema;
   };
-  file: FieldCommonProps<V> & {
-    multiple?: Schema;
-  };
+  file: FieldCommonProps<V>;
+  files: FieldCommonProps<V>;
   hidden: FieldCommonProps<V>;
 }
 
@@ -72,7 +73,9 @@ export interface FieldBindings {
   arrayItem: "value";
   null: "value";
   enum: "value";
+  multiEnum: "value";
   file: "value";
+  files: "value";
   hidden: "value";
 }
 
@@ -92,7 +95,9 @@ export interface FieldValue {
   arrayItem: SchemaValue;
   null: null;
   enum: SchemaValue;
-  file: string | SchemaArrayValue;
+  multiEnum: SchemaArrayValue;
+  file: string;
+  files: string[];
   hidden: SchemaValue;
 }
 
@@ -106,7 +111,12 @@ export type Field<T extends FieldType> = SvelteComponent<
   FieldBindings[T]
 >;
 
-export type Fields = <T extends FieldType>(
-  type: T,
-  config: Config
-) => Field<T> | undefined;
+export type Fields = {
+  [T in FieldType]: Field<T>;
+};
+
+export type FieldsResolver = Resolver<FieldType, Config, Fields, undefined>;
+
+export const createFields = fromRecord as (
+  r: Partial<Fields>
+) => FieldsResolver;

@@ -102,7 +102,7 @@
 
   const [arrayField, field] = $derived.by(() => {
     if (isMultiSelect(ctx, config.schema)) {
-      return ["anotherFieldArray", "enum"] as const;
+      return ["anotherFieldArray", "multiEnum"] as const;
     }
     if (isFixedItems(config.schema)) {
       return ["fixedArray", undefined] as const;
@@ -111,7 +111,7 @@
       isFilesArray(ctx, config.schema) &&
       config.uiOptions?.orderable !== true
     ) {
-      return ["anotherFieldArray", "file"] as const;
+      return ["anotherFieldArray", "files"] as const;
     }
     return ["normalArray", undefined] as const;
   });

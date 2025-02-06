@@ -14,7 +14,6 @@
     getTemplate,
     getWidget,
     getField,
-    selectAttributes,
     getClosestMatchingOption,
     getDefaultFieldState,
     getErrors,
@@ -152,7 +151,6 @@
       required: true,
     };
   });
-  const attributes = $derived(selectAttributes(ctx, widgetConfig, {}));
   const errors = $derived(getErrors(ctx, config.idSchema));
 </script>
 
@@ -160,11 +158,10 @@
   {#snippet optionSelector()}
     <Widget
       {errors}
-      {attributes}
+      handlers={{}}
       config={widgetConfig}
       options={enumOptions}
       bind:value={selectedOption.value}
-      multiple={false}
     />
   {/snippet}
   {#if optionSchema}

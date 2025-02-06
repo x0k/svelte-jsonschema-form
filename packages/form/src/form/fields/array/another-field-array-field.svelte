@@ -15,13 +15,9 @@
 
   const Field = $derived(getField(ctx, field, config));
 
-  const schemaItems: Schema = $derived(
+  const itemSchema: Schema = $derived(
     isSchemaObjectValue(config.schema.items) ? config.schema.items : {}
   );
 </script>
 
-<Field
-  multiple={schemaItems}
-  bind:value
-  config={config}
-/>
+<Field bind:value {config} {itemSchema} />

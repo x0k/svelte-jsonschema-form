@@ -1,20 +1,20 @@
 import { getContext, setContext, type Component, type Snippet } from "svelte";
 
-import type { SchedulerYield } from "@/lib/scheduler.js";
 import type { Schema, SchemaValue } from "@/core/index.js";
 import type { Mutation } from '@/use-mutation.svelte.js';
 
 import type { Label, Labels, Translation } from "../translation.js";
 import type { UiSchema, UiSchemaRoot } from "../ui-schema.js";
-import type { Components, ComponentsResolver } from "../component.js";
-import type { Widgets } from "../widgets.js";
-import type { Fields } from "../fields/index.js";
-import type { Templates } from "../templates/index.js";
+import type { ComponentsResolver } from "../component.js";
+import type { WidgetsResolver } from "../widgets.js";
+import type { FieldsResolver } from "../fields/index.js";
+import type { TemplatesResolver } from "../templates/index.js";
 import type { Errors } from "../errors.js";
 import type { FormValidator2, ValidationError } from "../validator.js";
 import type { Icons } from "../icons.js";
 import type { FormMerger } from "../merger.js";
 import type { Config } from '../config.js';
+import type { DataURLToBlob } from '@/lib/file.js';
 
 export type IconOrTranslationData = {
   [L in Label]: [L, ...Labels[L]];
@@ -28,20 +28,18 @@ export interface FormContext {
   uiSchema: UiSchemaRoot;
   validator: FormValidator2;
   merger: FormMerger;
-  fields: Fields;
-  /** @deprecated use `component` instead */
-  components: Components;
+  field: FieldsResolver
   component: ComponentsResolver;
-  widgets: Widgets;
+  widget: WidgetsResolver;
   translation: Translation;
-  templates: Templates;
+  template: TemplatesResolver;
   icons: Icons;
   idPrefix: string;
   idSeparator: string;
   idPseudoSeparator: string;
   disabled: boolean;
   errors: Errors;
-  schedulerYield: SchedulerYield;
+  dataUrlToBlob: DataURLToBlob;
   IconOrTranslation: Component<{ data: IconOrTranslationData }>;
   /** @deprecated use `IconOrTranslation` instead */
   iconOrTranslation: Snippet<[IconOrTranslationData]>;

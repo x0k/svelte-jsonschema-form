@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { Snippet } from "svelte";
   import type { HTMLFormAttributes } from "svelte/elements";
+  import type { Snippet } from "svelte";
 
   import {
     getComponent,
@@ -11,16 +11,16 @@
   import type { UiSchema } from "./ui-schema.js";
   import { FAKE_ID_SCHEMA } from "./id-schema.js";
   import { NO_ERRORS } from "./errors.js";
-  import type { FormInternals } from './create-form.svelte.js';
+  import type { FormInternals } from "./create-form.svelte.js";
 
   let {
     ref = $bindable(),
-    form,
+    internals,
     children,
     ...rest
   }: HTMLFormAttributes & {
-    ref?: HTMLFormElement | undefined
-    form: FormInternals
+    ref?: HTMLFormElement | undefined;
+    internals: FormInternals;
     children: Snippet;
   } = $props();
 
@@ -45,11 +45,11 @@
   const attributes: HTMLFormAttributes = $derived({
     // @deprecated
     // TODO: after `attach` release, use it here
-    onsubmit: form.submitHandler,
-    onreset: form.resetHandler,
-    ...rest,
+    onsubmit: internals.submitHandler,
+    onreset: internals.resetHandler,
     ...uiOptions?.form,
+    ...rest,
   });
 </script>
 
-<Form bind:form={ref} {attributes} {children} {config} errors={NO_ERRORS} />
+<Form bind:ref {children} {config} errors={NO_ERRORS} {attributes} />

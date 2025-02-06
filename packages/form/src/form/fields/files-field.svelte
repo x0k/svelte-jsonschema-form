@@ -9,12 +9,12 @@
     getErrors,
     validateField,
     getFormContext,
-    addFile,
+    addFiles,
   } from "../context/index.js";
 
   import type { FieldProps } from "./model.js";
 
-  let { config, value = $bindable() }: FieldProps<"file"> = $props();
+  let { config, value = $bindable() }: FieldProps<"files"> = $props();
 
   const ctx = getFormContext();
 
@@ -31,16 +31,18 @@
         return;
       }
       const data = new DataTransfer();
-      await addFile(ctx, signal, data, value);
+      await addFiles(ctx, signal, data, value);
       return data.files;
     },
     async (v, signal) => {
       if (v === undefined || v.length === 0) {
-        value = undefined;
+        value = [];
         return;
       }
       try {
-        value = await fileToDataURL(signal, v[0]!);
+        value = await Promise.all(
+          Array.from(v).map((f) => fileToDataURL(signal, f))
+        );
       } catch (e) {
         console.error("Failed to read file", e);
       }
@@ -59,6 +61,6 @@
     {handlers}
     {errors}
     {config}
-    multiple={false}
+    multiple
   />
 </Template>

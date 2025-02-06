@@ -1,16 +1,11 @@
-import type { Components, ComponentsResolver } from "./component.js";
-import type { Fields } from "./fields/index.js";
-import type { Templates } from "./templates/index.js";
-import type { Widgets } from "./widgets.js";
+import type { FieldsResolver } from "./fields/index.js";
+import type { TemplatesResolver } from "./templates/index.js";
+import type { ComponentsResolver } from "./component.js";
+import type { WidgetsResolver } from "./widgets.js";
 
-/** @deprecated use `Theme2` instead */
 export interface Theme {
-  components: Components;
-  widgets: Widgets;
-  fields?: Fields;
-  templates?: Templates;
-}
-
-export interface Theme2 {
-  components: ComponentsResolver
+  fields: FieldsResolver;
+  templates: TemplatesResolver;
+  components: ComponentsResolver;
+  widgets: WidgetsResolver;
 }

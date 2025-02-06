@@ -1,5 +1,6 @@
 import type { Snippet, Component as SvelteComponent } from "svelte";
 
+import { fromRecord, type Resolver } from "@/lib/resolver.js";
 import type {
   SchemaArrayValue,
   SchemaObjectValue,
@@ -66,7 +67,17 @@ export type Template<T extends TemplateType> = SvelteComponent<
   ""
 >;
 
-export type Templates = <T extends TemplateType>(
-  type: T,
-  config: Config
-) => Template<T> | undefined;
+export type Templates = {
+  [T in TemplateType]: Template<T>;
+};
+
+export type TemplatesResolver = Resolver<
+  TemplateType,
+  Config,
+  Templates,
+  undefined
+>;
+
+export const createTemplates = fromRecord as (
+  r: Partial<Templates>
+) => TemplatesResolver;

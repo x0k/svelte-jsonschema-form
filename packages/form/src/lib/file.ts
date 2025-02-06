@@ -1,12 +1,24 @@
 // This file was copied and modified from https://github.com/rjsf-team/react-jsonschema-form/blob/f4229bf6e067d31b24de3ef9d3ca754ee52529ac/packages/utils/src/dataURItoBlob.ts
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
-import type { SchedulerYield } from './scheduler.js';
+import type { SchedulerYield } from "./scheduler.js";
 
 const CHUNK_SIZE = 8192;
 
-export function makeDataURLtoBlob(schedulerYield: SchedulerYield) {
-  return async (signal: AbortSignal, dataURILike: string) => {
+export interface NamedBlob {
+  name: string;
+  blob: Blob;
+}
+
+export type DataURLToBlob = (
+  signal: AbortSignal,
+  dataURILike: string
+) => Promise<NamedBlob>;
+
+export function makeDataURLtoBlob(
+  schedulerYield: SchedulerYield
+): DataURLToBlob {
+  return async (signal, dataURILike) => {
     if (!dataURILike.startsWith("data:")) {
       throw new Error("File is invalid: URI must be a dataURI");
     }
@@ -43,7 +55,7 @@ export function makeDataURLtoBlob(schedulerYield: SchedulerYield) {
       }
       throw new Error("File is invalid: " + (error as Error).message);
     }
-  }
+  };
 }
 
 function addNameToDataURL(dataURL: string, name: string) {

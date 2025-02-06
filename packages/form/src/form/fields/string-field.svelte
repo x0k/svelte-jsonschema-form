@@ -2,7 +2,6 @@
   import {
     getTemplate,
     getWidget,
-    inputAttributes,
     makeEventHandlers,
     getErrors,
     validateField,
@@ -10,7 +9,6 @@
   } from "../context/index.js";
 
   import type { FieldProps } from "./model.js";
-  import Datalist, { makeExamples } from "./datalist.svelte";
 
   let { config, value = $bindable() }: FieldProps<"string"> = $props();
 
@@ -22,7 +20,6 @@
   const handlers = makeEventHandlers(ctx, () =>
     validateField(ctx, config, value)
   );
-  const attributes = $derived(inputAttributes(ctx, config, handlers));
 
   const redacted = {
     get value() {
@@ -35,11 +32,14 @@
   };
 
   const errors = $derived(getErrors(ctx, config.idSchema));
-
-  const examples = $derived(makeExamples(config, attributes));
 </script>
 
 <Template showTitle value={redacted.value} {config} {errors}>
-  <Widget {errors} {config} bind:value={redacted.value} {attributes} />
-  <Datalist {examples} />
+  <Widget
+    options={[]}
+    {errors}
+    {config}
+    bind:value={redacted.value}
+    {handlers}
+  />
 </Template>
