@@ -1,6 +1,6 @@
 import type { Theme } from "@/form/index.js";
-import { fields } from '@/form/fields/index.js';
-import { templates } from '@/form/templates/index.js';
+import { fields } from '@/fields/index.js';
+import { templates } from '@/templates/index.js';
 
 import { components } from "./components/index.js";
 import { widgets } from "./widgets/index.js";

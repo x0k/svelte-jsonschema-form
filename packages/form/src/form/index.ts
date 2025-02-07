@@ -13,8 +13,8 @@ export { DefaultMerger };
 
 export * from "./enum.js";
 export * from "./component.js";
-export * from "./fields/index.js";
-export * from "./templates/index.js";
+export * from "./fields.js";
+export * from "./templates.js";
 export * from "./widgets.js";
 export * from "./theme.js";
 export * from "./ui-schema.js";
@@ -35,6 +35,8 @@ export { default as SubmitButton } from "./submit-button.svelte";
 export { default as FormElement } from "./form-element.svelte";
 export { default as RawForm } from "./raw.svelte";
 export { default as Form2 } from "./form2.svelte";
+export { default as ErrorMessage, createMessage } from "./error-message.svelte";
+export { default as Datalist } from "./datalist.svelte";
 
 // Deprecated
 
