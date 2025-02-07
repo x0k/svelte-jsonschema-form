@@ -1,5 +1,4 @@
 import type {
-  HTMLButtonAttributes,
   HTMLInputAttributes,
   HTMLSelectAttributes,
   HTMLTextareaAttributes,
@@ -8,7 +7,6 @@ import type {
 import type { Nullable } from "@/lib/types.js";
 
 import type { Config } from "../config.js";
-import type { InputAttributes } from "../ui-schema.js";
 import type { Handlers } from "../widgets.js";
 
 import type { FormContext } from "./context.js";
@@ -18,7 +16,17 @@ interface Disabled {
   disabled: boolean;
 }
 
-function explicitDisabled<T extends Partial<Nullable<Disabled>>>(
+export function isDisabled(
+  ctx: FormContext,
+  attributes?: Partial<Nullable<Disabled>>
+) {
+  return attributes?.disabled || ctx.disabled;
+}
+
+/**
+ * NOTE: this function mutates `obj` parameter!
+ */
+export function defineDisabled<T extends Partial<Nullable<Disabled>>>(
   ctx: FormContext,
   obj: T
 ) {
@@ -26,7 +34,7 @@ function explicitDisabled<T extends Partial<Nullable<Disabled>>>(
   return obj as T & Disabled;
 }
 
-function inputType(format: string | undefined) {
+export function inputType(format: string | undefined) {
   switch (format) {
     case "date-time":
       return "datetime-local";
@@ -74,7 +82,7 @@ export function inputAttributes(
       data.type = type;
     }
   }
-  return explicitDisabled(ctx, data);
+  return defineDisabled(ctx, data);
 }
 
 export function textareaAttributes(
@@ -82,7 +90,7 @@ export function textareaAttributes(
   { idSchema, required, schema, uiOptions }: Config,
   handlers: Handlers
 ) {
-  return explicitDisabled(
+  return defineDisabled(
     ctx,
     Object.assign(
       {
@@ -106,7 +114,7 @@ export function selectAttributes(
   { idSchema, required, uiOptions }: Config,
   handlers: Handlers
 ) {
-  return explicitDisabled(
+  return defineDisabled(
     ctx,
     Object.assign(
       {
@@ -120,11 +128,4 @@ export function selectAttributes(
       uiOptions?.input as HTMLSelectAttributes | undefined
     )
   );
-}
-
-export function isDisabled(
-  ctx: FormContext,
-  attributes: InputAttributes | HTMLButtonAttributes | undefined
-) {
-  return attributes?.disabled || ctx.disabled;
 }

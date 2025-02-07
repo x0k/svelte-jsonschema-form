@@ -9,19 +9,21 @@ import type { Label, Labels, Translation } from "../translation.js";
 import type { UiSchema, UiSchemaRoot } from "../ui-schema.js";
 import type { ComponentsResolver } from "../component.js";
 import type { WidgetsResolver } from "../widgets.js";
-import type { FieldsResolver } from "../fields/index.js";
-import type { TemplatesResolver } from "../templates/index.js";
+import type { FieldsResolver } from "../fields.js";
+import type { TemplatesResolver } from "../templates.js";
 import type { Errors } from "../errors.js";
 import type { FormValidator2, ValidationError } from "../validator.js";
 import type { Icons } from "../icons.js";
 import type { FormMerger } from "../merger.js";
 import type { Config } from "../config.js";
+import type { FormValue } from '../create-form.svelte.js';
 
 export type IconOrTranslationData = {
   [L in Label]: [L, ...Labels[L]];
 }[Label];
 
 export interface FormContext {
+  value: FormValue
   isSubmitted: boolean;
   isChanged: boolean;
   fieldsValidationMode: number;

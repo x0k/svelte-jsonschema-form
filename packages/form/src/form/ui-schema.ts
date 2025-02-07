@@ -1,7 +1,6 @@
 import type {
   HTMLAttributes,
   HTMLButtonAttributes,
-  HTMLFormAttributes,
   HTMLInputAttributes,
   HTMLSelectAttributes,
   HTMLTextareaAttributes,
@@ -10,8 +9,8 @@ import type {
 import type { SchemaValue } from "@/core/index.js";
 
 import type { Component, ComponentType } from "./component.js";
-import type { Field, FieldType } from "./fields/index.js";
-import type { Template, TemplateType } from "./templates/index.js";
+import type { Field, FieldType } from "./fields.js";
+import type { Template, TemplateType } from "./templates.js";
 import type { Widget, WidgetType } from "./widgets.js";
 
 export type UiSchemaRoot = UiSchemaRootIndex & UiSchemaRootContent;
@@ -74,16 +73,6 @@ export interface UiOptions {
    * Overrides the attributes of the `layout` component that wraps the entire field.
    */
   container?: HTMLAttributes<HTMLDivElement>;
-  /**
-   * Overrides the attributes of the main button component of the field.
-   */
-  button?: HTMLButtonAttributes;
-  /**
-   * Overrides the attributes of the form element
-   */
-  form?: HTMLFormAttributes;
-  // TODO: Clarify the need for this
-  // root?: HTMLAttributes<HTMLDivElement>
   /**
    * Overrides the title of the field.
    */

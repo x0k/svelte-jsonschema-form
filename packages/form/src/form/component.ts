@@ -1,5 +1,5 @@
 import type { Snippet, Component as SvelteComponent } from "svelte";
-import type { HTMLAttributes, HTMLButtonAttributes } from "svelte/elements";
+import type { HTMLAttributes } from "svelte/elements";
 
 import { fromRecord, type Resolver } from "@/lib/resolver.js";
 
@@ -28,10 +28,9 @@ export interface ButtonType {
 
 export interface ButtonComponentProps {
   type: keyof ButtonType;
-  disabled: boolean;
   children: Snippet;
-  onclick?: (e: Event) => void;
-  attributes?: HTMLButtonAttributes | undefined;
+  // No need for a `submit` button
+  onclick?: () => void;
 }
 
 export interface LayoutType {
@@ -60,7 +59,6 @@ export interface LayoutType {
 export interface LayoutComponentProps {
   type: keyof LayoutType;
   children: Snippet;
-  attributes?: HTMLAttributes<HTMLDivElement> | undefined;
 }
 
 export interface ParentTemplateType {

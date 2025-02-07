@@ -1,3 +1,20 @@
+<script lang="ts" module>
+  import type { HTMLFormAttributes } from "svelte/elements";
+
+  declare module "@/form/index.js" {
+    interface FormElements {
+      form: HTMLFormElement;
+    }
+
+    interface UiOptions {
+      /**
+       * Overrides the attributes of the form element
+       */
+      form?: HTMLFormAttributes;
+    }
+  }
+</script>
+
 <script lang="ts">
   import { getFormContext, type ComponentProps } from "@/form/index.js";
 

@@ -1,7 +1,36 @@
+<script lang="ts" module>
+  import type { HTMLButtonAttributes } from "svelte/elements";
+
+  import type { ButtonType } from "@/form/index.js";
+
+  declare module "@/form/index.js" {
+    interface UiOptions {
+      /**
+       * Overrides the attributes of any button component.
+       */
+      button?: HTMLButtonAttributes;
+      /**
+       * Overrides the attributes of a button with a specific type.
+       * This override takes precedence over the `button` override, but does not replace it.
+       */
+      buttons?: {
+        [B in keyof ButtonType]?: HTMLButtonAttributes;
+      };
+    }
+  }
+</script>
+
 <script lang="ts">
-  import type { ComponentProps } from '@/form/index.js';
-  
-  const { children, type, attributes, disabled, onclick }: ComponentProps<"button"> = $props();
+  import {
+    type ComponentProps,
+    defineDisabled,
+    getFormContext,
+  } from "@/form/index.js";
+
+  const { children, type, onclick, config }: ComponentProps<"button"> =
+    $props();
+
+  const ctx = getFormContext();
 
   function getStyle(type: ComponentProps<"button">["type"]) {
     switch (type) {
@@ -11,11 +40,23 @@
       case "array-item-add":
         return "width: 100%; padding: 0.25rem";
       default:
-        return undefined
+        return undefined;
     }
   }
+
+  const attributes = $derived(
+    defineDisabled(ctx, {
+      ...config.uiOptions?.button,
+      ...config.uiOptions?.buttons?.[type],
+    })
+  );
 </script>
 
-<button type={type === "submit" ? "submit" : "button"} style={getStyle(type)} {onclick} {...attributes} {disabled}>
+<button
+  type={type === "submit" ? "submit" : "button"}
+  style={getStyle(type)}
+  {onclick}
+  {...attributes}
+>
   {@render children()}
 </button>

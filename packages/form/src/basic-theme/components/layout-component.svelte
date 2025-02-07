@@ -1,7 +1,29 @@
+<script lang="ts" module>
+  import type { HTMLAttributes } from "svelte/elements";
+
+  import type { LayoutType } from "@/form/index.js";
+
+  declare module "@/form/index.js" {
+    interface UiOptions {
+      /**
+       * Overrides the attributes of any layout component.
+       */
+      layout?: HTMLAttributes<HTMLDivElement>;
+      /**
+       * Overrides the attributes of a layout with a specific type.
+       * This override takes precedence over the `layout` override, but does not replace it.
+       */
+      layouts?: {
+        [L in keyof LayoutType]?: HTMLAttributes<HTMLDivElement>;
+      };
+    }
+  }
+</script>
+
 <script lang="ts">
   import type { ComponentProps } from "@/form/index.js";
 
-  const { type, children, attributes }: ComponentProps<"layout"> = $props();
+  const { type, children, config }: ComponentProps<"layout"> = $props();
 
   function getStyle(type: ComponentProps<"layout">["type"]) {
     switch (type) {
@@ -22,24 +44,29 @@
       case "field":
         return "display: flex; flex-direction: column; gap: 0.2rem;";
       case "field-meta":
-        return "display: block;"
+        return "display: block;";
       case "object-property-key-input":
       case "object-property-content":
         return "flex-grow: 1;";
       // case "object-property-controls":
-        // return "align-self: flex-start;";
+      // return "align-self: flex-start;";
       case "object-field-meta":
       case "array-field-meta":
         return "padding-bottom: 0;";
       default:
-        return undefined
+        return undefined;
     }
   }
 
   const style = $derived(getStyle(type));
+
+  const attributes = $derived({
+    ...config.uiOptions?.layout,
+    ...config.uiOptions?.layouts?.[type],
+  });
 </script>
 
-{#if style || attributes}
+{#if style || Object.keys(attributes).length > 0}
   <div {style} data-layout={type} {...attributes}>
     {@render children()}
   </div>

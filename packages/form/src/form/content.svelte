@@ -7,21 +7,18 @@
     getField,
   } from "./context/index.js";
   import type { Config } from "./config.js";
-  import type { FormInternals } from "./create-form.svelte.js";
-
-  const { form }: { form: FormInternals } = $props();
 
   const ctx = getFormContext();
 
   const retrievedSchema = $derived(
-    retrieveSchema(ctx, ctx.schema, form.formValue)
+    retrieveSchema(ctx, ctx.schema, ctx.value)
   );
   const idSchema = $derived(
     makeIdSchema(
       ctx,
       retrievedSchema,
       ctx.uiSchema["ui:rootFieldId"],
-      form.formValue
+      ctx.value
     )
   );
   const uiOptions = $derived(getUiOptions(ctx, ctx.uiSchema));
@@ -39,4 +36,4 @@
 </script>
 
 <!-- svelte-ignore ownership_invalid_binding -->
-<Field bind:value={form.formValue} {config} />
+<Field bind:value={ctx.value} {config} />

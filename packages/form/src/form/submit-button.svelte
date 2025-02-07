@@ -3,7 +3,6 @@
   import type { UiSchema } from "./ui-schema.js";
   import { FAKE_ID_SCHEMA } from "./id-schema.js";
   import {
-    isDisabled,
     getComponent,
     getUiOptions,
     getFormContext,
@@ -30,17 +29,9 @@
   const Button = $derived(getComponent(ctx, "button", config));
   const label = $derived(uiOptions?.title ?? ctx.translation("submit"));
   const icon = $derived(ctx.icons.submit);
-
-  const disabled = $derived(isDisabled(ctx, uiOptions?.button));
 </script>
 
-<Button
-  type="submit"
-  {config}
-  {disabled}
-  attributes={uiOptions?.button}
-  errors={NO_ERRORS}
->
+<Button type="submit" {config} errors={NO_ERRORS}>
   {#if icon}
     {@render icon(["submit"])}
   {:else}
