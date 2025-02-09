@@ -17,18 +17,18 @@ import shadcnStyles from '@sjsf/shadcn-theme/styles.css?inline';
 
 export const themes = {
   basic,
-  daisy,
-  daisy5,
-  flowbite,
-  skeleton,
-  shadcn
+  // daisy,
+  // daisy5,
+  // flowbite,
+  // skeleton,
+  // shadcn
 };
 
 export const themeStyles = {
   basic: "",
-  daisy: daisyStyles,
-  daisy5: daisy5Styles,
-  flowbite: flowbiteStyles,
-  skeleton: skeletonStyles,
-  shadcn: shadcnStyles
+  // daisy: daisyStyles,
+  // daisy5: daisy5Styles,
+  // flowbite: flowbiteStyles,
+  // skeleton: skeletonStyles,
+  // shadcn: shadcnStyles
 } satisfies Record<keyof typeof themes, string>;

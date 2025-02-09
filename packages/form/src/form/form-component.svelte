@@ -1,3 +1,13 @@
+<script lang="ts" module>
+  declare module "./theme.js" {
+    interface Component {
+      form: CommonComponentProps & {
+        ref?: FormElement
+        
+      }
+    }
+  }
+</script>
 <script lang="ts">
   import type { Snippet } from "svelte";
 

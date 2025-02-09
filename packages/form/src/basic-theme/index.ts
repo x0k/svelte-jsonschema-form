@@ -1,4 +1,4 @@
-import type { Theme } from "@/form/index.js";
+import type { Theme2 } from "@/form/index.js";
 import { fields } from "@/fields/index.js";
 import { templates } from "@/templates/index.js";
 
@@ -10,4 +10,4 @@ export const theme = {
   widgets,
   fields,
   templates,
-} satisfies Theme;
+} satisfies Theme2;

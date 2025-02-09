@@ -82,20 +82,36 @@
       "types": "./dist/translations/*.d.ts",
       "svelte": "./dist/translations/*.js"
     },
+    "./fields/array": {
+      "types": "./dist/fields/array/index.d.ts",
+      "svelte": "./dist/fields/array/index.js"
+    },
     "./fields/array/*": {
-      "types": "./dist/fields/array/*d.ts",
+      "types": "./dist/fields/array/*.d.ts",
       "svelte": "./dist/fields/array/*.js"
     },
+    "./fields/object": {
+      "types": "./dist/fields/object/index.d.ts",
+      "svelte": "./dist/fields/object/index.js"
+    },
     "./fields/object/*": {
-      "types": "./dist/fields/object/*d.ts",
+      "types": "./dist/fields/object/*.d.ts",
       "svelte": "./dist/fields/object/*.js"
     },
+    "./fields": {
+      "types": "./dist/fields/index.d.ts",
+      "svelte": "./dist/fields/index.js"
+    },
     "./fields/*": {
-      "types": "./dist/fields/*d.ts",
+      "types": "./dist/fields/*.d.ts",
       "svelte": "./dist/fields/*.js"
     },
+    "./templates": {
+      "types": "./dist/templates/index.d.ts",
+      "svelte": "./dist/templates/index.js"
+    },
     "./templates/*": {
-      "types": "./dist/templates/*d.ts",
+      "types": "./dist/templates/*.d.ts",
       "svelte": "./dist/templates/*.js"
     },
     "./basic-theme": {

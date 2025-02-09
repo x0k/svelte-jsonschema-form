@@ -123,6 +123,16 @@
     initialValue: samples[initialSampleName].formData,
     initialErrors: samples[initialSampleName].errors ?? new SvelteMap(),
     translation,
+    get templates() {
+      return theme.templates;
+    },
+    get fields() {
+      return theme.fields;
+    },
+    // data-theme={themeName === "skeleton" ? "cerberus" : lightOrDark}
+    // class={lightOrDark}
+    // style="background-color: transparent; display: flex; flex-direction: column; gap: 1rem; padding: 0.3rem;"
+    // novalidate={!html5Validation || undefined}
     get schema() {
       return schema;
     },
@@ -319,13 +329,7 @@
       class="flex-[3] max-h-[770px] overflow-y-auto"
       style={`${themeStyle}\n${iconSetStyle}`}
     >
-      <RawForm
-        {form}
-        data-theme={themeName === "skeleton" ? "cerberus" : lightOrDark}
-        class={lightOrDark}
-        style="background-color: transparent; display: flex; flex-direction: column; gap: 1rem; padding: 0.3rem;"
-        novalidate={!html5Validation || undefined}
-      />
+      <RawForm {form} />
       {#if location.hostname === "localhost"}
         <Debug />
       {/if}

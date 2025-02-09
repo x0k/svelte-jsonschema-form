@@ -1,18 +1,30 @@
+<script lang="ts" module>
+  import type { SchemaValue } from "@/core/index.js";
+
+  declare module "./theme.js" {
+    interface Component {
+      rootField: CommonFieldProps<SchemaValue>;
+    }
+
+    interface ComponentBindings {
+      rootField: "value";
+    }
+  }
+</script>
+
 <script lang="ts">
   import {
     retrieveSchema,
     getFormContext,
     makeIdSchema,
     getUiOptions,
-    getField,
+    getComponent,
   } from "./context/index.js";
   import type { Config } from "./config.js";
 
   const ctx = getFormContext();
 
-  const retrievedSchema = $derived(
-    retrieveSchema(ctx, ctx.schema, ctx.value)
-  );
+  const retrievedSchema = $derived(retrieveSchema(ctx, ctx.schema, ctx.value));
   const idSchema = $derived(
     makeIdSchema(
       ctx,
@@ -32,7 +44,7 @@
     required: false,
   });
 
-  const Field = $derived(getField(ctx, "root", config));
+  const Field = $derived(getComponent(ctx, "rootField", config));
 </script>
 
 <!-- svelte-ignore ownership_invalid_binding -->

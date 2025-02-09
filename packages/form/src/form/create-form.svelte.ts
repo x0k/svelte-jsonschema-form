@@ -14,6 +14,8 @@ import {
   type FailedAction,
 } from "@/create-action.svelte.js";
 
+import { makeDataURLtoBlob } from "@/lib/file.js";
+
 import {
   ADDITIONAL_PROPERTY_KEY_ERROR,
   VALIDATION_PROCESS_ERROR,
@@ -23,12 +25,8 @@ import {
   type ValidationError,
   type ValidationProcessError,
 } from "./validator.js";
-import type { ComponentsResolver } from "./component.js";
-import type { WidgetsResolver } from "./widgets.js";
 import type { Translation } from "./translation.js";
 import type { UiSchemaRoot } from "./ui-schema.js";
-import type { FieldsResolver } from "./fields.js";
-import type { TemplatesResolver } from "./templates.js";
 import type { Icons } from "./icons.js";
 import type { FieldsValidationMode } from "./validation.js";
 import { groupErrors, type Errors, type FieldErrors } from "./errors.js";
@@ -46,7 +44,7 @@ import {
 } from "./id-schema.js";
 import IconOrTranslation from "./icon-or-translation.svelte";
 import type { Config } from "./config.js";
-import { makeDataURLtoBlob } from "@/lib/file.js";
+import type { ThemeResolver } from './theme.js';
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
 
@@ -58,11 +56,8 @@ export type FormValue = SchemaValue | undefined;
 export interface UseFormOptions<T, E> {
   validator: FormValidator2<E>;
   schema: Schema;
-  fields: FieldsResolver;
-  templates: TemplatesResolver;
-  components: ComponentsResolver;
+  theme: ThemeResolver;
   translation: Translation;
-  widgets: WidgetsResolver;
   uiSchema?: UiSchemaRoot;
   merger?: FormMerger;
   icons?: Icons;
@@ -550,17 +545,8 @@ export function createForm3<
     get merger() {
       return merger;
     },
-    get field() {
-      return options.fields
-    },
-    get template() {
-      return options.templates
-    },
-    get component() {
-      return options.components;
-    },
-    get widget() {
-      return options.widgets;
+    get theme() {
+      return options.theme;
     },
     get translation() {
       return options.translation;

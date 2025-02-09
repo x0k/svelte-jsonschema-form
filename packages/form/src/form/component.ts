@@ -1,7 +1,7 @@
 import type { Snippet, Component as SvelteComponent } from "svelte";
-import type { HTMLAttributes } from "svelte/elements";
 
 import { fromRecord, type Resolver } from "@/lib/resolver.js";
+import type { AnyKey } from "@/lib/types.js";
 
 import type { Config } from "./config.js";
 import type { ValidationError } from "./validator.js";
@@ -124,13 +124,9 @@ export type Component<T extends ComponentType> = SvelteComponent<
 
 export type Components = { [T in ComponentType]: Component<T> };
 
-export type ComponentsResolver = Resolver<
-  ComponentType,
-  Config,
-  Components,
-  undefined
->;
+export type ComponentsResolver<C extends Record<AnyKey, any> = Components> =
+  Resolver<ComponentType, Config, C, undefined>;
 
-export const createComponents = fromRecord as (
-  r: Partial<Components>
-) => ComponentsResolver;
+export const createComponents = fromRecord as <C extends Record<AnyKey, any>>(
+  r: C
+) => ComponentsResolver<C>;
