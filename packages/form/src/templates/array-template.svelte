@@ -22,7 +22,6 @@
 
 <Layout
   type="array-field"
-  attributes={config.uiOptions?.container}
   {config}
   {errors}
 >
@@ -45,7 +44,6 @@
   {/if}
   <Layout
     type="array-items"
-    attributes={config.uiOptions?.content}
     {config}
     {errors}
   >

@@ -25,7 +25,6 @@
   const Template = $derived(getTemplate(ctx, "object-property", config));
   const Field = $derived(getField(ctx, "root", config));
   const Button = $derived(getComponent(ctx, "button", config));
-  const disabled = $derived(isDisabled(ctx, config.uiOptions?.input));
   const errors = $derived(getErrors(ctx, config.idSchema));
 </script>
 
@@ -41,10 +40,8 @@
   <Button
     {errors}
     {config}
-    {disabled}
     type="object-property-remove"
-    onclick={(e) => {
-      e.preventDefault();
+    onclick={() => {
       objCtx.removeProperty(property);
     }}
   >

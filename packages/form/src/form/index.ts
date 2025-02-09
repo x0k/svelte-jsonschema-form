@@ -37,25 +37,3 @@ export { default as RawForm } from "./raw.svelte";
 export { default as Form2 } from "./form2.svelte";
 export { default as ErrorMessage, createMessage } from "./error-message.svelte";
 export { default as Datalist } from "./datalist.svelte";
-
-// Deprecated
-
-export { default as FormContent } from "./form-content.svelte";
-export {
-  default as FormBase,
-  type Props as FormProps,
-} from "./form-base.svelte";
-export { default as Form } from "./form.svelte";
-export { default as SimpleForm } from "./simple.svelte";
-/**
- * @deprecated Use `@sjsf/form/get-default-form-state` import instead
- */
-export function getDefaultFormState(
-  validator: Validator,
-  schema: Schema,
-  formData: SchemaValue | undefined = undefined,
-  rootSchema = schema,
-  merger: Merger2 = defaultMerger
-) {
-  return getDefaultFormState2(validator, merger, schema, formData, rootSchema);
-}

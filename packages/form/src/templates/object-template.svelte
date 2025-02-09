@@ -15,7 +15,7 @@
   const { title, description, showMeta } = $derived(getTemplateProps(config))
 </script>
 
-<Layout type="object-field" attributes={config.uiOptions?.container} {config} {errors}>
+<Layout type="object-field" {config} {errors}>
   {#if showMeta && (title || description)}
     <Layout type="object-field-meta" {config} {errors}>
       {#if title}
@@ -26,7 +26,7 @@
       {/if}
     </Layout>
   {/if}
-  <Layout type="object-properties" attributes={config.uiOptions?.content} {config} {errors}>
+  <Layout type="object-properties" {config} {errors}>
     {@render children()}
   </Layout>
   {@render addButton?.()}

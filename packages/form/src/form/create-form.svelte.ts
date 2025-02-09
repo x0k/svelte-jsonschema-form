@@ -27,8 +27,8 @@ import type { ComponentsResolver } from "./component.js";
 import type { WidgetsResolver } from "./widgets.js";
 import type { Translation } from "./translation.js";
 import type { UiSchemaRoot } from "./ui-schema.js";
-import type { FieldsResolver } from "./fields/index.js";
-import type { TemplatesResolver } from "./templates/index.js";
+import type { FieldsResolver } from "./fields.js";
+import type { TemplatesResolver } from "./templates.js";
 import type { Icons } from "./icons.js";
 import type { FieldsValidationMode } from "./validation.js";
 import { groupErrors, type Errors, type FieldErrors } from "./errors.js";
@@ -38,8 +38,6 @@ import {
   type IconOrTranslationData,
 } from "./context/index.js";
 import { DefaultFormMerger, type FormMerger } from "./merger.js";
-import { fields as defaultFields } from "./fields/index.js";
-import { templates as defaultTemplates } from "./templates/index.js";
 import {
   DEFAULT_ID_PREFIX,
   DEFAULT_ID_SEPARATOR,
@@ -320,8 +318,6 @@ export function createForm3<
   const pseudoIdSeparator = $derived(
     options.pseudoIdSeparator ?? DEFAULT_PSEUDO_ID_SEPARATOR
   );
-  const fields = $derived(options.fields ?? defaultFields);
-  const templates = $derived(options.templates ?? defaultTemplates);
   const icons = $derived(options.icons ?? {});
   const schedulerYield: SchedulerYield = $derived(
     (options.schedulerYield ??
@@ -498,6 +494,12 @@ export function createForm3<
 
   const context: FormContext = {
     submitHandler,
+    get value() {
+      return value
+    },
+    set value(v) {
+      value = v
+    },
     get resetHandler() {
       return resetHandler
     },
@@ -549,10 +551,10 @@ export function createForm3<
       return merger;
     },
     get field() {
-      return fields;
+      return options.fields
     },
     get template() {
-      return templates;
+      return options.templates
     },
     get component() {
       return options.components;

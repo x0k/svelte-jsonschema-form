@@ -46,11 +46,8 @@
   <Button
     errors={arrayCtx.errors}
     {config}
-    attributes={config.uiOptions?.button}
     type="array-item-add"
-    disabled={arrayCtx.disabled}
-    onclick={(e) => {
-      e.preventDefault();
+    onclick={() => {
       arrayCtx.pushItem(schemaItems);
     }}
   >

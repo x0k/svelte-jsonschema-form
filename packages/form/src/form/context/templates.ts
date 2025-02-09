@@ -1,6 +1,6 @@
 import type { Config } from "../config.js";
 import { createMessage } from "../error-message.svelte";
-import type { TemplateType, Templates } from "../templates/model.js";
+import type { TemplateType, Templates } from "../templates.js";
 
 import type { FormContext } from "./context.js";
 

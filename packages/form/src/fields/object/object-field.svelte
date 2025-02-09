@@ -126,8 +126,6 @@
   const Template = $derived(getTemplate(ctx, "object", config));
   const Button = $derived(getComponent(ctx, "button", config));
 
-  const disabled = $derived(isDisabled(ctx, config.uiOptions?.input));
-
   const schemaAdditionalProperties = $derived(
     isSchemaObjectValue(retrievedSchema.additionalProperties)
       ? retrieveSchema(ctx, retrievedSchema.additionalProperties, value)
@@ -145,10 +143,7 @@
     type="object-property-add"
     {config}
     {errors}
-    {disabled}
-    attributes={config.uiOptions?.button}
-    onclick={(e) => {
-      e.preventDefault();
+    onclick={() => {
       objCtx.addProperty();
     }}
   >

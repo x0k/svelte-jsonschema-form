@@ -65,10 +65,7 @@
     errors={arrayCtx.errors}
     {config}
     type="array-item-add"
-    attributes={config.uiOptions?.button}
-    disabled={arrayCtx.disabled}
-    onclick={(e) => {
-      e.preventDefault();
+    onclick={() => {
       if (schemaAdditionalItems === false) {
         return;
       }

@@ -3,9 +3,7 @@
     getComponent,
     getTemplate,
     getField,
-    isDisabled,
     getErrors,
-    getUiOptions,
     getFormContext,
     type FieldProps,
   } from "@/form/index.js";
@@ -30,8 +28,6 @@
   const Button = $derived(getComponent(ctx, "button", config));
 
   const toolbar = $derived(canCopy || canRemove || canMoveUp || canMoveDown);
-  const uiOptions = $derived(getUiOptions(ctx, config.uiSchema));
-  const disabled = $derived(isDisabled(ctx, uiOptions?.input));
   const errors = $derived(getErrors(ctx, config.idSchema));
 </script>
 
@@ -41,9 +37,7 @@
       {errors}
       {config}
       type="array-item-move-up"
-      disabled={disabled || !canMoveUp}
-      onclick={(e) => {
-        e.preventDefault();
+      onclick={() => {
         arrayCtx.moveItemUp(index);
       }}
     >
@@ -53,9 +47,7 @@
       {errors}
       {config}
       type="array-item-move-down"
-      disabled={disabled || !canMoveDown}
-      onclick={(e) => {
-        e.preventDefault();
+      onclick={() => {
         arrayCtx.moveItemDown(index);
       }}
     >
@@ -66,10 +58,8 @@
     <Button
       {errors}
       {config}
-      {disabled}
       type="array-item-copy"
-      onclick={(e) => {
-        e.preventDefault();
+      onclick={() => {
         arrayCtx.copyItem(index);
       }}
     >
@@ -81,9 +71,7 @@
       {errors}
       {config}
       type="array-item-remove"
-      {disabled}
-      onclick={(e) => {
-        e.preventDefault();
+      onclick={() => {
         arrayCtx.removeItem(index);
       }}
     >
