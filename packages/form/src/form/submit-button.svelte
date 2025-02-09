@@ -1,3 +1,18 @@
+<script lang="ts" module>
+  import type { Snippet } from "svelte";
+
+  declare module "./theme.js" {
+    interface Component {
+      submitButton: CommonComponentProps & {
+        children: Snippet;
+      };
+    }
+    interface ComponentBindings {
+      submitButton: ""
+    }
+  }
+</script>
+
 <script lang="ts">
   import type { Config } from "./config.js";
   import type { UiSchema } from "./ui-schema.js";
@@ -26,12 +41,12 @@
     required: false,
   });
 
-  const Button = $derived(getComponent(ctx, "button", config));
+  const Button = $derived(getComponent(ctx, "submitButton", config));
   const label = $derived(uiOptions?.title ?? ctx.translation("submit"));
   const icon = $derived(ctx.icons.submit);
 </script>
 
-<Button type="submit" {config} errors={NO_ERRORS}>
+<Button {config} errors={NO_ERRORS}>
   {#if icon}
     {@render icon(["submit"])}
   {:else}

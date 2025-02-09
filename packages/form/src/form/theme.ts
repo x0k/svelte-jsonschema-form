@@ -13,7 +13,12 @@ export interface ComponentBindings {}
 export type ComponentType = keyof Component;
 
 export type Components = {
-  [T in ComponentType]: SvelteComponent<Component[T], {}, ComponentBindings[T]>;
+  [T in ComponentType]: SvelteComponent<
+    Component[T],
+    {},
+    //@ts-expect-error
+    ComponentBindings[T]
+  >;
 };
 
 export type ThemeResolver = Resolver<
@@ -33,4 +38,10 @@ export interface CommonComponentProps {
   errors: ValidationError<unknown>[];
 }
 
-export type FormElement = FormComponent[keyof FormComponent];
+export interface FormElements {}
+
+export type FormElement = FormElements[keyof FormElements];
+
+export interface FormElementsProps {}
+
+export type FormElementProps = FormElementsProps[FormElement];

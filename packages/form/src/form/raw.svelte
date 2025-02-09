@@ -1,24 +1,22 @@
 <script lang="ts">
-  import type { HTMLFormAttributes } from "svelte/elements";
-
-  import { setFromContext } from "./context/context.js";
-  import type { FormElement as FormElementType } from "./component.js";
-  import type { FormInternals } from "./create-form.svelte.js";
+  import { setFromContext, type FormContext } from "./context/context.js";
   import Content from "./content.svelte";
   import SubmitButton from "./submit-button.svelte";
-  import FormElement from "./form-element.svelte";
+  import FormElementComponent from "./form-element.svelte";
+  import type { FormElement, FormElementProps } from "./theme.js";
 
-  interface Props extends HTMLFormAttributes {
-    ref?: FormElementType | undefined;
-    form: FormInternals;
+  interface Props {
+    ref?: FormElement | undefined;
+    attributes?: FormElementProps | undefined;
+    context: FormContext;
   }
 
-  let { ref = $bindable(), form }: Props = $props();
+  let { ref = $bindable(), context, attributes }: Props = $props();
 
-  setFromContext(form.context);
+  setFromContext(context);
 </script>
 
-<FormElement bind:ref>
+<FormElementComponent bind:ref {attributes}>
   <Content />
   <SubmitButton />
-</FormElement>
+</FormElementComponent>

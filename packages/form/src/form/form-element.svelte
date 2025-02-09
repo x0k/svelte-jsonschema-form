@@ -2,12 +2,18 @@
   declare module "./theme.js" {
     interface Component {
       form: CommonComponentProps & {
-        ref?: FormElement
-        
-      }
+        ref?: FormElement | undefined;
+        children: Snippet;
+        attributes?: FormElementProps | undefined;
+      };
+    }
+
+    interface ComponentBindings {
+      form: "ref";
     }
   }
 </script>
+
 <script lang="ts">
   import type { Snippet } from "svelte";
 
@@ -20,13 +26,15 @@
   import type { UiSchema } from "./ui-schema.js";
   import { FAKE_ID_SCHEMA } from "./id-schema.js";
   import { NO_ERRORS } from "./errors.js";
-  import type { FormElement } from "./component.js";
+  import type { FormElement, FormElementProps } from "./theme.js";
 
   let {
     ref = $bindable(),
+    attributes,
     children,
   }: {
     ref?: FormElement | undefined;
+    attributes?: FormElementProps | undefined;
     children: Snippet;
   } = $props();
 
@@ -49,4 +57,4 @@
   const Form = $derived(getComponent(ctx, "form", config));
 </script>
 
-<Form bind:ref {children} {config} errors={NO_ERRORS} />
+<Form bind:ref {children} {config} errors={NO_ERRORS} {attributes} />
