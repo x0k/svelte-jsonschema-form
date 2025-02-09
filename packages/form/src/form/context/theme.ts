@@ -1,6 +1,6 @@
 import type { Config } from "../config.js";
 import { createMessage } from "../error-message.svelte";
-import type { Components, ComponentType } from "../theme.js";
+import type { Definitions, ComponentType } from "../theme.js";
 
 import type { FormContext } from "./context.js";
 
@@ -8,7 +8,7 @@ function getComponentInternal<T extends ComponentType>(
   ctx: FormContext,
   type: T,
   config: Config
-): Components[T] | undefined {
+): Definitions[T] | undefined {
   const component = config.uiSchema["ui:components"]?.[type];
   switch (typeof component) {
     case "undefined":
@@ -27,6 +27,6 @@ export function getComponent<T extends ComponentType>(
 ) {
   return (
     getComponentInternal(ctx, type, config) ??
-    (createMessage(`Component ${type} not found`) as Components[T])
+    (createMessage(`Component ${type} not found`) as Definitions[T])
   );
 }

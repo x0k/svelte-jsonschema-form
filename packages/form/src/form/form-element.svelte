@@ -1,6 +1,6 @@
 <script lang="ts" module>
   declare module "./theme.js" {
-    interface Component {
+    interface Components {
       form: CommonComponentProps & {
         ref?: FormElement | undefined;
         children: Snippet;

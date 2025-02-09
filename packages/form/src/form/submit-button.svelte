@@ -2,7 +2,7 @@
   import type { Snippet } from "svelte";
 
   declare module "./theme.js" {
-    interface Component {
+    interface Components {
       submitButton: CommonComponentProps & {
         children: Snippet;
       };

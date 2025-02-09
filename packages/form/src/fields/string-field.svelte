@@ -1,19 +1,19 @@
 <script lang="ts">
   import {
-    getTemplate,
-    getWidget,
     makeEventHandlers,
     getErrors,
     validateField,
     getFormContext,
-    type FieldProps,
+    getComponent,
   } from "@/form/index.js";
+
+  import type { FieldProps } from './fields.js';
 
   let { config, value = $bindable() }: FieldProps<"string"> = $props();
 
   const ctx = getFormContext();
 
-  const Template = $derived(getTemplate(ctx, "field", config));
+  const Template = $derived(getComponent(ctx, "fieldTemplate", config));
   const Widget = $derived(getWidget(ctx, "text", config));
 
   const handlers = makeEventHandlers(ctx, () =>

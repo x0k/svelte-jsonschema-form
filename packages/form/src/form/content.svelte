@@ -1,9 +1,14 @@
 <script lang="ts" module>
   import type { SchemaValue } from "@/core/index.js";
 
+  import type { Config } from "./config.js";
+
   declare module "./theme.js" {
-    interface Component {
-      rootField: CommonFieldProps<SchemaValue>;
+    interface Components {
+      rootField: {
+        value: SchemaValue | undefined
+        config: Config
+      }
     }
 
     interface ComponentBindings {
@@ -20,7 +25,6 @@
     getUiOptions,
     getComponent,
   } from "./context/index.js";
-  import type { Config } from "./config.js";
 
   const ctx = getFormContext();
 

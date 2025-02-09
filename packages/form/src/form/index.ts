@@ -12,10 +12,6 @@ export type { Schema, SchemaValue } from "@/core/index.js";
 export { DefaultMerger };
 
 export * from "./enum.js";
-export * from "./component.js";
-export * from "./fields.js";
-export * from "./templates.js";
-export * from "./widgets.js";
 export * from "./theme.js";
 export * from "./ui-schema.js";
 export * from "./config.js";
