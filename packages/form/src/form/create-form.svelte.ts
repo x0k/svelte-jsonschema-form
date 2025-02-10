@@ -3,8 +3,9 @@ import type { ComponentInternals, Snippet } from "svelte";
 import type { Action as SvelteAction } from "svelte/action";
 import { SvelteMap } from "svelte/reactivity";
 
+import { makeDataURLtoBlob } from "@/lib/file.js";
 import type { SchedulerYield } from "@/lib/scheduler.js";
-import type { Schema, SchemaValue } from "@/core/schema.js";
+import { type Schema, type SchemaValue, EMPTY_PATH } from "@/core/index.js";
 import {
   abortPrevious,
   createAction,
@@ -13,8 +14,6 @@ import {
   type ActionsCombinator,
   type FailedAction,
 } from "@/create-action.svelte.js";
-
-import { makeDataURLtoBlob } from "@/lib/file.js";
 
 import {
   ADDITIONAL_PROPERTY_KEY_ERROR,
@@ -31,6 +30,8 @@ import type { Icons } from "./icons.js";
 import type { FieldsValidationMode } from "./validation.js";
 import { groupErrors, type Errors, type FieldErrors } from "./errors.js";
 import {
+  createId,
+  getUiOptions,
   setFromContext,
   type FormContext,
   type IconOrTranslationData,
@@ -41,10 +42,11 @@ import {
   DEFAULT_ID_SEPARATOR,
   DEFAULT_PSEUDO_ID_SEPARATOR,
   pathToId,
-} from "./id-schema.js";
+  type Id,
+} from "./id.js";
 import IconOrTranslation from "./icon-or-translation.svelte";
 import type { Config } from "./config.js";
-import type { ThemeResolver } from './theme.js';
+import type { ThemeResolver } from "./theme.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
 
@@ -93,10 +95,7 @@ export interface UseFormOptions<T, E> {
   /**
    * @default debounce(abortPrevious, fieldsValidationDebounceMs)
    */
-  fieldsValidationCombinator?: ActionsCombinator<
-    [Config<unknown>, FormValue],
-    unknown
-  >;
+  fieldsValidationCombinator?: ActionsCombinator<[Config, FormValue], unknown>;
   /**
    * @default 500
    */
@@ -199,7 +198,7 @@ export interface FormState<T, E> {
     unknown
   >;
   fieldsValidation: Action<
-    [config: Config<unknown>, value: FormValue],
+    [config: Config, value: FormValue],
     ValidationError<E>[],
     unknown
   >;
@@ -334,7 +333,7 @@ export function createForm3<
     const validator = options.additionalPropertyKeyValidator;
     return validator
       ? (config: Config, key: string, fieldConfig: Config) => {
-          const instanceId = fieldConfig.idSchema.$id;
+          const instanceId = fieldConfig.id;
           const messages = validator.validateAdditionalPropertyKey(
             key,
             config.schema
@@ -396,7 +395,7 @@ export function createForm3<
         };
         errors.set(idPrefix, [
           {
-            instanceId: idPrefix,
+            instanceId: createId(context, EMPTY_PATH),
             propertyTitle: "",
             message: options.handleValidationProcessError(state),
             error: error as E,
@@ -422,9 +421,9 @@ export function createForm3<
     },
     onSuccess(validationErrors: ValidationError<E>[], config) {
       if (validationErrors.length > 0) {
-        errors.set(config.idSchema.$id, validationErrors);
+        errors.set(config.id, validationErrors);
       } else {
-        errors.delete(config.idSchema.$id);
+        errors.delete(config.id);
       }
     },
     onFailure(state, config, value) {
@@ -433,9 +432,9 @@ export function createForm3<
           type: VALIDATION_PROCESS_ERROR,
           state,
         };
-        errors.set(config.idSchema.$id, [
+        errors.set(config.id, [
           {
-            instanceId: config.idSchema.$id,
+            instanceId: config.id,
             propertyTitle: config.title,
             message: options.handleValidationProcessError(state),
             error: error as E,
@@ -487,16 +486,27 @@ export function createForm3<
       })
   );
 
+  const uiOptions = $derived({
+    ...uiSchema["ui:globalOptions"],
+    ...uiSchema["ui:options"],
+  });
+
   const context: FormContext = {
     submitHandler,
+    get rootId() {
+      return idPrefix as Id;
+    },
+    get uiOptions() {
+      return uiOptions;
+    },
     get value() {
-      return value
+      return value;
     },
     set value(v) {
-      value = v
+      value = v;
     },
     get resetHandler() {
-      return resetHandler
+      return resetHandler;
     },
     get fieldsValidationMode() {
       return fieldsValidationMode;

@@ -1,6 +1,11 @@
 import type { Snippet } from "svelte";
 
-import type { ComponentCommonProps, ValidationError } from "@/form/index.js";
+import type { Config, ValidationError } from "@/form/index.js";
+
+export interface ComponentCommonProps {
+  config: Config;
+  errors: ValidationError<unknown>[];
+}
 
 export interface ButtonType {
   "object-property-add": {};

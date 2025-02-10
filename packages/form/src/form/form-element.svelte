@@ -1,7 +1,13 @@
 <script lang="ts" module>
+  import type { Snippet } from "svelte";
+
+  import type { FormElement, FormElementProps } from "./theme.js";
+  import type { Config } from "./config.js";
+
   declare module "./theme.js" {
     interface Components {
-      form: ComponentCommonProps & {
+      form: {
+        config: Config;
         ref?: FormElement | undefined;
         children: Snippet;
         attributes?: FormElementProps | undefined;
@@ -12,49 +18,44 @@
       form: "ref";
     }
   }
+
+  declare module "./ui-schema.js" {
+    interface UiOptions {
+      form?: FormElementProps;
+    }
+  }
 </script>
 
 <script lang="ts">
-  import type { Snippet } from "svelte";
-
-  import {
-    getComponent,
-    getFormContext,
-    getUiOptions,
-  } from "./context/index.js";
-  import type { Config } from "./config.js";
-  import type { UiSchema } from "./ui-schema.js";
-  import { FAKE_ID_SCHEMA } from "./id-schema.js";
-  import { NO_ERRORS } from "./errors.js";
-  import type { FormElement, FormElementProps } from "./theme.js";
+  import { getComponent, getFormContext } from "./context/index.js";
 
   let {
     ref = $bindable(),
-    attributes,
     children,
+    ...rest
   }: {
     ref?: FormElement | undefined;
-    attributes?: FormElementProps | undefined;
     children: Snippet;
-  } = $props();
+  } & Omit<FormElementProps, "ref" | "children"> = $props();
 
   const ctx = getFormContext();
 
-  const uiSchema: UiSchema = $derived(ctx.uiSchema["ui:formElement"] ?? {});
-
-  const uiOptions = $derived(getUiOptions(ctx, uiSchema));
-
   const config: Config = $derived({
+    id: ctx.rootId,
+    schema: ctx.schema,
+    uiSchema: ctx.uiSchema,
+    uiOptions: ctx.uiOptions,
     name: "form-element",
     title: "",
-    idSchema: FAKE_ID_SCHEMA,
-    schema: {},
-    uiSchema,
-    uiOptions,
     required: false,
   });
 
   const Form = $derived(getComponent(ctx, "form", config));
+
+  const attributes = $derived({
+    ...ctx.uiOptions.form,
+    ...rest,
+  });
 </script>
 
-<Form bind:ref {children} {config} errors={NO_ERRORS} {attributes} />
+<Form bind:ref {config} {children} {attributes} />

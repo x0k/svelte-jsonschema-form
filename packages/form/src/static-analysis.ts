@@ -13,7 +13,7 @@ import {
   DEFAULT_ID_SEPARATOR,
   DEFAULT_ID_PREFIX,
   DEFAULT_PSEUDO_ID_SEPARATOR,
-} from "./form/id-schema.js";
+} from "./form/id.js";
 
 export const SEQUENCE_OF_DIGITS_REGEX = /^\d+$/;
 

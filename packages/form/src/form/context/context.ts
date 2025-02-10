@@ -6,21 +6,23 @@ import type { Schema, SchemaValue } from "@/core/index.js";
 import type { Mutation } from "@/use-mutation.svelte.js";
 
 import type { Label, Labels, Translation } from "../translation.js";
-import type { UiSchema, UiSchemaRoot } from "../ui-schema.js";
+import type { UiOptions, UiSchema, UiSchemaRoot } from "../ui-schema.js";
 import type { Errors } from "../errors.js";
 import type { FormValidator2, ValidationError } from "../validator.js";
 import type { Icons } from "../icons.js";
 import type { FormMerger } from "../merger.js";
 import type { Config } from "../config.js";
-import type { FormValue } from '../create-form.svelte.js';
-import type { ThemeResolver } from '../theme.js';
+import type { FormValue } from "../create-form.svelte.js";
+import type { ThemeResolver } from "../theme.js";
+import type { Id } from "../id.js";
 
 export type IconOrTranslationData = {
   [L in Label]: [L, ...Labels[L]];
 }[Label];
 
 export interface FormContext {
-  value: FormValue
+  rootId: Id;
+  value: FormValue;
   isSubmitted: boolean;
   isChanged: boolean;
   fieldsValidationMode: number;
@@ -28,6 +30,7 @@ export interface FormContext {
   resetHandler: FormEventHandler<HTMLFormElement>;
   schema: Schema;
   uiSchema: UiSchemaRoot;
+  uiOptions: UiOptions;
   validator: FormValidator2;
   merger: FormMerger;
   translation: Translation;
@@ -56,7 +59,7 @@ export interface FormContext {
     unknown
   >;
   fieldsValidation: Mutation<
-    [config: Config<unknown>, value: SchemaValue | undefined],
+    [config: Config, value: SchemaValue | undefined],
     ValidationError<unknown>[],
     unknown
   >;

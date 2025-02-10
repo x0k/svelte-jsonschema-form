@@ -12,7 +12,7 @@ import type { FieldErrors } from "./errors.js";
 
 export interface TemplateCommonProps<V extends SchemaValue> {
   value: V | undefined;
-  config: Config<V>;
+  config: Config;
   errors: FieldErrors;
   children: Snippet;
 }

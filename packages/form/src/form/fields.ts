@@ -14,7 +14,7 @@ import type { Config } from "./config.js";
 
 export interface FieldCommonProps<V extends SchemaValue> {
   value: V | undefined;
-  config: Config<V>;
+  config: Config;
 }
 
 export interface FieldsAndProps<V extends SchemaValue> {

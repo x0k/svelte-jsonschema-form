@@ -10,16 +10,12 @@ import {
   type SchemaValue,
 } from "@/core/index.js";
 
+import type { Id } from "./id.js";
 import type { UiOptions, UiSchema } from "./ui-schema.js";
-import {
-  computePseudoId,
-  DEFAULT_PSEUDO_ID_SEPARATOR,
-  type IdSchema,
-} from "./id-schema.js";
 
-export const DEFAULT_BOOLEAN_ENUM = [true, false]
+export const DEFAULT_BOOLEAN_ENUM = [true, false];
 
-export const NO_OPTIONS: EnumOption<SchemaValue>[] = []
+export const NO_OPTIONS: EnumOption<SchemaValue>[] = [];
 
 function getAltSchemas(
   schema: Schema,
@@ -30,26 +26,11 @@ function getAltSchemas(
     : [schema.oneOf, uiSchema.oneOf];
 }
 
-/**
- * @deprecated use `createOptions2`
- */
-export function createOptions(
-  schema: Schema,
-  idSchema: IdSchema<SchemaValue>,
-  uiSchema: UiSchema,
-  uiOptions: UiOptions | undefined,
-  pseudoIdSeparator = DEFAULT_PSEUDO_ID_SEPARATOR
-): EnumOption<SchemaValue>[] | undefined {
-  return createOptions2(schema, uiSchema, uiOptions, (index) =>
-    computePseudoId(pseudoIdSeparator, idSchema.$id, index)
-  );
-}
-
 export function createOptions2(
   schema: Schema,
   uiSchema: UiSchema,
   uiOptions: UiOptions | undefined,
-  computeId: (index: number) => string
+  computeId: (index: number) => Id
 ): EnumOption<SchemaValue>[] | undefined {
   const enumValues = schema.enum;
   const disabledValues = new Set(uiOptions?.disabledEnumValues);

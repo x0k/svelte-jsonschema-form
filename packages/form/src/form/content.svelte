@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  import type { SchemaValue } from "@/core/index.js";
+  import { EMPTY_PATH, type SchemaValue } from "@/core/index.js";
 
   import type { Config } from "./config.js";
 
@@ -21,29 +21,21 @@
   import {
     retrieveSchema,
     getFormContext,
-    makeIdSchema,
     getUiOptions,
     getComponent,
+    createId,
   } from "./context/index.js";
 
   const ctx = getFormContext();
 
   const retrievedSchema = $derived(retrieveSchema(ctx, ctx.schema, ctx.value));
-  const idSchema = $derived(
-    makeIdSchema(
-      ctx,
-      retrievedSchema,
-      ctx.uiSchema["ui:rootFieldId"],
-      ctx.value
-    )
-  );
   const uiOptions = $derived(getUiOptions(ctx, ctx.uiSchema));
   const config: Config = $derived({
+    id: createId(ctx, EMPTY_PATH),
     name: "",
     title: uiOptions?.title ?? retrievedSchema.title ?? "",
     schema: retrievedSchema,
     uiSchema: ctx.uiSchema,
-    idSchema,
     uiOptions,
     required: false,
   });

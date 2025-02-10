@@ -1,14 +1,14 @@
 import type { Schema } from "@/core/index.js";
 
-import type { IdSchema } from "./id-schema.js";
+import type { Id } from "./id.js";
 import type { UiOptions, UiSchema } from "./ui-schema.js";
 
-export interface Config<V = unknown> {
+export interface Config {
+  id: Id;
   name: string;
   title: string;
   schema: Schema;
   uiSchema: UiSchema;
-  idSchema: IdSchema<V>;
   uiOptions: UiOptions | undefined;
   required: boolean;
 }

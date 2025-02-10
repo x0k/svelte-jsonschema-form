@@ -1,52 +1,48 @@
 <script lang="ts" module>
   import type { Snippet } from "svelte";
 
+  import type { Config } from "./config.js";
+
   declare module "./theme.js" {
     interface Components {
-      submitButton: ComponentCommonProps & {
+      submitButton: {
+        config: Config;
         children: Snippet;
       };
     }
     interface ComponentBindings {
-      submitButton: ""
+      submitButton: "";
+    }
+  }
+
+  declare module "./ui-schema.js" {
+    interface UiOptions {
+      submitButtonTitle?: string
     }
   }
 </script>
 
 <script lang="ts">
-  import type { Config } from "./config.js";
-  import type { UiSchema } from "./ui-schema.js";
-  import { FAKE_ID_SCHEMA } from "./id-schema.js";
-  import {
-    getComponent,
-    getUiOptions,
-    getFormContext,
-  } from "./context/index.js";
-  import { NO_ERRORS } from "./errors.js";
+  import { getComponent, getFormContext } from "./context/index.js";
 
   const ctx = getFormContext();
 
-  const uiSchema: UiSchema = $derived(
-    ctx.uiSchema["ui:submitButton"] ?? ctx.uiSchema.submitButton ?? {}
-  );
-  const uiOptions = $derived(getUiOptions(ctx, uiSchema));
-
   const config: Config = $derived({
+    id: ctx.rootId,
     name: "submit-button",
     title: "",
-    idSchema: FAKE_ID_SCHEMA,
-    schema: {},
-    uiSchema,
-    uiOptions,
+    schema: ctx.schema,
+    uiSchema: ctx.uiSchema,
+    uiOptions: ctx.uiOptions,
     required: false,
   });
 
   const Button = $derived(getComponent(ctx, "submitButton", config));
-  const label = $derived(uiOptions?.title ?? ctx.translation("submit"));
+  const label = $derived(ctx.uiOptions?.submitButtonTitle ?? ctx.translation("submit"));
   const icon = $derived(ctx.icons.submit);
 </script>
 
-<Button {config} errors={NO_ERRORS}>
+<Button {config}>
   {#if icon}
     {@render icon(["submit"])}
   {:else}

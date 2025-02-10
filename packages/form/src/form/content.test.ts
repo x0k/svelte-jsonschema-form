@@ -16,7 +16,7 @@ import {
   DEFAULT_ID_SEPARATOR,
   DEFAULT_PSEUDO_ID_SEPARATOR,
   pathToId,
-} from "./id-schema.js";
+} from "./id.js";
 
 it("should preserve state of multi select field in array", async () => {
   const user = userEvent.setup();

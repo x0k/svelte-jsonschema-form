@@ -3,7 +3,6 @@ import type { Component as SvelteComponent } from "svelte";
 import type { Resolver } from "@/lib/resolver.js";
 
 import type { Config } from "./config.js";
-import type { ValidationError } from "./validator.js";
 
 export interface Components {}
 
@@ -27,18 +26,13 @@ export type ThemeResolver = Resolver<
   undefined
 >;
 
-export interface ComponentCommonProps {
-  config: Config;
-  errors: ValidationError<unknown>[];
-}
-
 export interface FormElements {}
 
 export type FormElement = FormElements[keyof FormElements];
 
 export interface FormElementsProps {}
 
-export type FormElementProps = FormElementsProps[FormElement];
+export type FormElementProps = FormElementsProps[keyof FormElements];
 
 export type CompatibleComponentType<T extends ComponentType> = {
   [C in ComponentType]: Components[C] extends Components[T]

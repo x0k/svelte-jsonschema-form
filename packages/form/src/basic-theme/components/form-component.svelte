@@ -6,11 +6,8 @@
       form: HTMLFormElement;
     }
 
-    interface UiOptions {
-      /**
-       * Overrides the attributes of the form element
-       */
-      form?: HTMLFormAttributes;
+    interface FormElementsProps {
+      form: HTMLFormAttributes
     }
   }
 </script>

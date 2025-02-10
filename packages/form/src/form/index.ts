@@ -20,7 +20,7 @@ export * from "./errors.js";
 export * from "./validation.js";
 export * from "./validator.js";
 export * from "./merger.js";
-export * from "./id-schema.js";
+export * from "./id.js";
 export * from "./icons.js";
 
 export * from "./context/index.js";

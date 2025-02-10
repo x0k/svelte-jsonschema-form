@@ -1,12 +1,12 @@
+import type { MaybePromise } from "@/lib/types.js";
 import type { Schema, SchemaValue, Validator } from "@/core/index.js";
 import type { FailedMutation } from "@/use-mutation.svelte.js";
 
-import type { MaybePromise } from '@/lib/types.js';
-
+import type { Id } from "./id.js";
 import type { Config } from "./config.js";
 
 export interface ValidationError<E> {
-  instanceId: string;
+  instanceId: Id;
   propertyTitle: string;
   message: string;
   error: E;

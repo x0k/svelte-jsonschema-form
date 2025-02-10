@@ -1,6 +1,6 @@
 import type { SchemaValue } from "@/core/index.js";
 
-import type { IdSchema } from "../id-schema.js";
+import type { IdSchema } from "../id.js";
 import type { Config } from "../config.js";
 import { NO_ERRORS } from "../errors.js";
 

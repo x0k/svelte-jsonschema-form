@@ -10,7 +10,7 @@ import type { Config } from "../config.js";
 import type { Handlers } from "../widgets.js";
 
 import type { FormContext } from "./context.js";
-import { makePseudoId } from "./id-schema.js";
+import { makePseudoId } from "./id.js";
 
 interface Disabled {
   disabled: boolean;
