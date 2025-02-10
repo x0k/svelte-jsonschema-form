@@ -32,6 +32,7 @@
   const uiOptions = $derived(getUiOptions(ctx, ctx.uiSchema));
   const config: Config = $derived({
     id: createId(ctx, EMPTY_PATH),
+    path: EMPTY_PATH,
     name: "",
     title: uiOptions?.title ?? retrievedSchema.title ?? "",
     schema: retrievedSchema,

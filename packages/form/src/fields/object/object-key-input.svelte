@@ -1,46 +1,42 @@
 <script lang="ts">
   import { proxy } from "@/lib/svelte.svelte";
-  import type { SchemaValue } from "@/core/index.js";
-
   import {
     type UiSchema,
     type Config,
-    type IdSchema,
     getErrors,
     getUiOptions,
     getFormContext,
     makePseudoId,
     getComponent,
     NO_OPTIONS,
+    type Id,
   } from "@/form/index.js";
 
   import { getObjectContext } from "./context.js";
   import { getWidget } from "../widgets.js";
 
   const {
+    parentId,
     property,
     name,
     uiSchema,
-    idSchema,
   }: {
+    parentId: Id;
     property: string;
     name: string;
     uiSchema: UiSchema;
-    idSchema: IdSchema<SchemaValue>;
   } = $props();
 
   const ctx = getFormContext();
   const objCtx = getObjectContext();
 
-  const id = $derived(
-    makePseudoId(ctx, idSchema?.$id ?? ctx.idPrefix, "key-input")
-  );
+  const id = $derived(makePseudoId(ctx, parentId, "key-input"));
   const uiOptions = $derived(getUiOptions(ctx, uiSchema));
   const config: Config = $derived({
+    id,
     name: id,
     title: `${name} Key`,
     schema: { type: "string" },
-    idSchema: { $id: id },
     uiSchema,
     uiOptions,
     required: true,
@@ -60,7 +56,7 @@
     },
   };
 
-  const errors = $derived(getErrors(ctx, config.idSchema));
+  const errors = $derived(getErrors(ctx, id));
 </script>
 
 <Template {errors} showTitle value={property} {config}>

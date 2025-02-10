@@ -21,10 +21,10 @@
     retrieveSchema,
     getFormContext,
     validateField,
-    makeIdSchema,
     makeObjectPropertyId,
     AFTER_SUBMITTED,
     ON_OBJECT_CHANGE,
+    createId,
   } from "@/form/index.js";
 
   import type { FieldProps } from '../fields.js';
@@ -132,7 +132,7 @@
     config.uiOptions?.expandable !== false &&
       isSchemaExpandable(retrievedSchema, value)
   );
-  const errors = $derived(getErrors(ctx, config.idSchema));
+  const errors = $derived(getErrors(ctx, config.id));
 </script>
 
 {#snippet addButton()}
@@ -164,24 +164,19 @@
           ? config.uiSchema.additionalProperties
           : config.uiSchema[property]) as UiSchema) ?? {}}
       {@const propUiOptions = getUiOptions(ctx, propUiSchema)}
+      {@const path = config.path.concat(property)}
       <ObjectProperty
         {property}
         {isAdditional}
         bind:value={value[property]}
         config={{
+          id: createId(ctx, path),
+          path,
           name: property,
           title: propUiOptions?.title ?? propSchema.title ?? property,
           schema: propSchema,
           uiSchema: propUiSchema,
           uiOptions: propUiOptions,
-          idSchema:
-            config.idSchema[property] ??
-            makeIdSchema(
-              ctx,
-              propSchema,
-              makeObjectPropertyId(ctx, config.idSchema.$id, property),
-              value[property]
-            ),
           required: requiredProperties.has(property),
         }}
       />

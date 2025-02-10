@@ -21,15 +21,15 @@
   );
   const Field = $derived(getComponent(ctx, "rootField", config));
   const Button = $derived(getComponent(ctx, "button", config));
-  const errors = $derived(getErrors(ctx, config.idSchema));
+  const errors = $derived(getErrors(ctx, config.id));
 </script>
 
 {#snippet keyInput()}
   <ObjectKeyInput
     {property}
     name={config.name}
+    parentId={config.id}
     uiSchema={config.uiSchema.additionalPropertyKeyInput ?? {}}
-    idSchema={config.idSchema}
   />
 {/snippet}
 {#snippet removeButton()}

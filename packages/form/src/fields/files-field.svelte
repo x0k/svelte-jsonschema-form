@@ -50,7 +50,7 @@
     (v) => v
   );
 
-  const errors = $derived(getErrors(ctx, config.idSchema));
+  const errors = $derived(getErrors(ctx, config.id));
 </script>
 
 <Template showTitle {value} {config} {errors}>

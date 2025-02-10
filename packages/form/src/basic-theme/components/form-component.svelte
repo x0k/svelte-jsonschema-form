@@ -7,19 +7,24 @@
     }
 
     interface FormElementsProps {
-      form: HTMLFormAttributes
+      form: HTMLFormAttributes;
+    }
+
+    interface UiOptions {
+      form?: HTMLFormAttributes;
     }
   }
 </script>
 
 <script lang="ts">
-  import { getFormContext, type ComponentProps } from "@/form/index.js";
+  import { getFormContext, type Components } from "@/form/index.js";
 
   let {
     children,
     ref = $bindable(),
     config,
-  }: ComponentProps<"form"> = $props();
+    attributes,
+  }: Components["form"] = $props();
 
   const ctx = getFormContext();
 </script>
@@ -30,6 +35,7 @@
   onreset={ctx.resetHandler}
   style="display: flex; flex-direction: column; gap: 1rem"
   {...config.uiOptions?.form}
+  {...attributes}
 >
   {@render children()}
 </form>

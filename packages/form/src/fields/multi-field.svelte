@@ -1,3 +1,11 @@
+<script lang="ts" module>
+  declare module "@/form/index.js" {
+    interface UiSchemaContent {
+      multiFieldOptionSelector?: UiSchema;
+    }
+  }
+</script>
+
 <script lang="ts">
   import { proxy } from "@/lib/svelte.svelte";
   import {
@@ -7,7 +15,6 @@
     type EnumOption,
     type SchemaValue,
   } from "@/core/index.js";
-
   import {
     type Config,
     type UiSchema,
@@ -117,6 +124,7 @@
     }
     return config.uiSchema;
   });
+  const optionUiOptions = $derived(getUiOptions(ctx, optionUiSchema));
 
   const enumOptionLabel = $derived.by(() => {
     const customTitle = config.uiOptions?.title ?? config.schema.title;
@@ -131,7 +139,7 @@
   });
   const enumOptions = $derived<EnumOption<number>[]>(
     retrievedOptions.map((s, i) => ({
-      id: makePseudoId(ctx, config.idSchema.$id, i),
+      id: makePseudoId(ctx, config.id, i),
       label: optionsUiOptions[i]?.title ?? s.title ?? enumOptionLabel(i),
       value: i,
       disabled: false,
@@ -142,15 +150,19 @@
     const suffix = combinationKey.toLowerCase() as Lowercase<
       typeof combinationKey
     >;
+    const uiSchema = config.uiSchema.multiFieldOptionSelector ?? {};
+    const uiOptions = getUiOptions(ctx, uiSchema);
     return {
-      ...config,
-      schema: { type: "integer", default: 0 },
+      id: makePseudoId(ctx, config.id, suffix),
       name: `${config.name}__${suffix}`,
-      idSchema: { $id: makePseudoId(ctx, config.idSchema.$id, suffix) },
       required: true,
+      title: config.title,
+      schema: { type: "integer", default: 0 },
+      uiSchema,
+      uiOptions,
     };
   });
-  const errors = $derived(getErrors(ctx, config.idSchema));
+  const errors = $derived(getErrors(ctx, config.id));
 </script>
 
 <Template {config} {value} {errors}>
@@ -167,10 +179,13 @@
     <Field
       bind:value
       config={{
-        ...config,
+        id: config.id,
+        name: config.name,
+        required: config.required,
+        title: "",
         schema: optionSchema,
         uiSchema: optionUiSchema,
-        title: "",
+        uiOptions: optionUiOptions,
       }}
     />
   {/if}

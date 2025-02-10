@@ -18,12 +18,6 @@
       form: "ref";
     }
   }
-
-  declare module "./ui-schema.js" {
-    interface UiOptions {
-      form?: FormElementProps;
-    }
-  }
 </script>
 
 <script lang="ts">
@@ -32,11 +26,12 @@
   let {
     ref = $bindable(),
     children,
-    ...rest
+    attributes,
   }: {
     ref?: FormElement | undefined;
+    attributes?: FormElementProps | undefined;
     children: Snippet;
-  } & Omit<FormElementProps, "ref" | "children"> = $props();
+  } = $props();
 
   const ctx = getFormContext();
 
@@ -51,11 +46,6 @@
   });
 
   const Form = $derived(getComponent(ctx, "form", config));
-
-  const attributes = $derived({
-    ...ctx.uiOptions.form,
-    ...rest,
-  });
 </script>
 
 <Form bind:ref {config} {children} {attributes} />

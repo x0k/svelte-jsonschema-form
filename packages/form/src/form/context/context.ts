@@ -12,9 +12,9 @@ import type { FormValidator2, ValidationError } from "../validator.js";
 import type { Icons } from "../icons.js";
 import type { FormMerger } from "../merger.js";
 import type { Config } from "../config.js";
-import type { FormValue } from "../create-form.svelte.js";
 import type { ThemeResolver } from "../theme.js";
 import type { Id } from "../id.js";
+import type { FormValue } from "../model.js";
 
 export type IconOrTranslationData = {
   [L in Label]: [L, ...Labels[L]];

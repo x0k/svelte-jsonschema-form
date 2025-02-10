@@ -32,7 +32,7 @@
     },
   };
 
-  const errors = $derived(getErrors(ctx, config.idSchema));
+  const errors = $derived(getErrors(ctx, config.id));
 </script>
 
 <Template {errors} showTitle value={redacted.value} {config}>

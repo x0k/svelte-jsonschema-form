@@ -8,8 +8,8 @@
     createOptions2,
     getComponent,
   } from "@/form/index.js";
-  import type { FieldProps } from './fields.js';
-  import { getWidget } from './widgets.js';
+  import type { FieldProps } from "./fields.js";
+  import { getWidget } from "./widgets.js";
 
   let { config, value = $bindable() }: FieldProps<"enum"> = $props();
 
@@ -22,11 +22,11 @@
     validateField(ctx, config, value)
   );
   const options = $derived(
-    createOptions2(config.schema, config.idSchema, config.uiOptions, (i) =>
-      makePseudoId(ctx, config.idSchema.$id, i)
+    createOptions2(config.schema, config.uiSchema, config.uiOptions, (i) =>
+      makePseudoId(ctx, config.id, i)
     ) ?? []
   );
-  const errors = $derived(getErrors(ctx, config.idSchema));
+  const errors = $derived(getErrors(ctx, config.id));
 </script>
 
 <Template showTitle {value} {config} {errors}>

@@ -24,7 +24,7 @@
   const options = $derived.by(() => {
     const yes = ctx.translation("yes");
     const no = ctx.translation("no");
-    const computeId = (i: number) => makePseudoId(ctx, config.idSchema.$id, i);
+    const computeId = (i: number) => makePseudoId(ctx, config.id, i);
     if (Array.isArray(config.schema.oneOf)) {
       return (
         createOptions2(
@@ -41,7 +41,7 @@
               };
             }),
           },
-          config.idSchema,
+          config.uiSchema,
           config.uiOptions,
           computeId
         ) ?? []
@@ -54,7 +54,7 @@
       config.uiOptions?.enumNames === undefined
     ) {
       return enumValues.map((v, i) => ({
-        id: makePseudoId(ctx, config.idSchema.$id, i),
+        id: makePseudoId(ctx, config.id, i),
         label: v ? yes : no,
         value: v,
         disabled: false,
@@ -63,7 +63,7 @@
     return (
       createOptions2(
         config.schema,
-        config.idSchema,
+        config.uiSchema,
         config.uiOptions,
         computeId
       ) ?? []
@@ -73,7 +73,7 @@
   const handlers = makeEventHandlers(ctx, () =>
     validateField(ctx, config, value)
   );
-  const errors = $derived(getErrors(ctx, config.idSchema));
+  const errors = $derived(getErrors(ctx, config.id));
 </script>
 
 <Template

@@ -1,3 +1,13 @@
+<script lang="ts" module>
+  declare module "@/form/index.js" {
+    interface UiOptions {
+      array?: {
+        disabled?: boolean;
+      };
+    }
+  }
+</script>
+
 <script lang="ts">
   import { createKeyedArray } from "@/lib/keyed-array.svelte.js";
   import {
@@ -42,8 +52,8 @@
       (config.schema.maxItems === undefined ||
         value.length < config.schema.maxItems)
   );
-  const disabled = $derived(isDisabled(ctx, uiOptions?.input));
-  const errors = $derived(getErrors(ctx, config.idSchema));
+  const disabled = $derived(isDisabled(ctx, uiOptions?.array));
+  const errors = $derived(getErrors(ctx, config.id));
 
   function validate() {
     const m = ctx.fieldsValidationMode;

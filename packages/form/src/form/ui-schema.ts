@@ -46,11 +46,6 @@ export type InputAttributes = Inputs[keyof Inputs];
 
 export interface UiOptions {
   /**
-   * Overrides the input attributes.
-   * `readonly` and `disabled` attributes are mixed with the form state.
-   */
-  input?: InputAttributes;
-  /**
    * Overrides the attributes of a `layout` component that wraps around widget component.
    */
   content?: HTMLAttributes<HTMLDivElement>;

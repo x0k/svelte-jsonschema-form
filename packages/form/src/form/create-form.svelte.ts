@@ -5,7 +5,7 @@ import { SvelteMap } from "svelte/reactivity";
 
 import { makeDataURLtoBlob } from "@/lib/file.js";
 import type { SchedulerYield } from "@/lib/scheduler.js";
-import { type Schema, type SchemaValue, EMPTY_PATH } from "@/core/index.js";
+import { type Schema, EMPTY_PATH } from "@/core/index.js";
 import {
   abortPrevious,
   createAction,
@@ -31,7 +31,6 @@ import type { FieldsValidationMode } from "./validation.js";
 import { groupErrors, type Errors, type FieldErrors } from "./errors.js";
 import {
   createId,
-  getUiOptions,
   setFromContext,
   type FormContext,
   type IconOrTranslationData,
@@ -47,10 +46,9 @@ import {
 import IconOrTranslation from "./icon-or-translation.svelte";
 import type { Config } from "./config.js";
 import type { ThemeResolver } from "./theme.js";
+import type { FormValue } from "./model.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
-
-export type FormValue = SchemaValue | undefined;
 
 /**
  * @deprecated use `UseFormOptions2`

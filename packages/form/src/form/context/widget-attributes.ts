@@ -7,13 +7,18 @@ import type {
 import type { Nullable } from "@/lib/types.js";
 
 import type { Config } from "../config.js";
-import type { Handlers } from "../widgets.js";
 
 import type { FormContext } from "./context.js";
 import { makePseudoId } from "./id.js";
 
 interface Disabled {
   disabled: boolean;
+}
+
+interface Handlers {
+  onblur?: (e: Event) => void;
+  oninput?: (e: Event) => void;
+  onchange?: (e: Event) => void;
 }
 
 export function isDisabled(
@@ -52,13 +57,14 @@ export function inputType(format: string | undefined) {
 
 export function inputAttributes(
   ctx: FormContext,
-  { idSchema, required, schema, uiOptions }: Config,
-  handlers: Handlers
+  { id, required, schema }: Config,
+  handlers: Handlers,
+  attributes: HTMLInputAttributes | undefined
 ) {
   const data = Object.assign(
     {
-      id: idSchema.$id,
-      name: idSchema.$id,
+      id,
+      name: id,
       required,
       minlength: schema.minLength,
       maxlength: schema.maxLength,
@@ -67,14 +73,14 @@ export function inputAttributes(
       max: schema.maximum,
       step: schema.multipleOf ?? (schema.type === "number" ? "any" : undefined),
       list: Array.isArray(schema.examples)
-        ? makePseudoId(ctx, idSchema.$id, "examples")
+        ? makePseudoId(ctx, id, "examples")
         : undefined,
       readonly: schema.readOnly,
       oninput: handlers.oninput,
       onchange: handlers.onchange,
       onblur: handlers.onblur,
     } satisfies HTMLInputAttributes,
-    uiOptions?.input as HTMLInputAttributes | undefined
+    attributes
   );
   if (data.type === undefined) {
     const type = inputType(schema.format);
@@ -87,15 +93,16 @@ export function inputAttributes(
 
 export function textareaAttributes(
   ctx: FormContext,
-  { idSchema, required, schema, uiOptions }: Config,
-  handlers: Handlers
+  { id, required, schema }: Config,
+  handlers: Handlers,
+  attributes: HTMLTextareaAttributes | undefined
 ) {
   return defineDisabled(
     ctx,
     Object.assign(
       {
-        id: idSchema.$id,
-        name: idSchema.$id,
+        id,
+        name: id,
         required,
         minlength: schema.minLength,
         maxlength: schema.maxLength,
@@ -104,28 +111,29 @@ export function textareaAttributes(
         onchange: handlers.onchange,
         onblur: handlers.onblur,
       } satisfies HTMLTextareaAttributes,
-      uiOptions?.input as HTMLTextareaAttributes | undefined
+      attributes
     )
   );
 }
 
 export function selectAttributes(
   ctx: FormContext,
-  { idSchema, required, uiOptions }: Config,
-  handlers: Handlers
+  { id, required }: Config,
+  handlers: Handlers,
+  attributes: HTMLSelectAttributes
 ) {
   return defineDisabled(
     ctx,
     Object.assign(
       {
-        id: idSchema.$id,
-        name: idSchema.$id,
+        id,
+        name: id,
         required,
         oninput: handlers.oninput,
         onchange: handlers.onchange,
         onblur: handlers.onblur,
       } satisfies HTMLSelectAttributes,
-      uiOptions?.input as HTMLSelectAttributes | undefined
+      attributes
     )
   );
 }

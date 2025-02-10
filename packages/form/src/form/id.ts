@@ -1,5 +1,5 @@
-import type { Path } from "@/core/index.js";
 import type { Brand } from "@/lib/types.js";
+import type { Path } from "@/core/index.js";
 
 export const DEFAULT_ID_PREFIX = "root";
 

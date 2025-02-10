@@ -27,11 +27,11 @@
     validateField(ctx, config, value)
   );
   const options = $derived(
-    createOptions2(itemSchema, config.idSchema, config.uiOptions, (i) =>
-      makePseudoId(ctx, config.idSchema.$id, i)
+    createOptions2(itemSchema, config.uiSchema, config.uiOptions, (i) =>
+      makePseudoId(ctx, config.id, i)
     ) ?? []
   );
-  const errors = $derived(getErrors(ctx, config.idSchema));
+  const errors = $derived(getErrors(ctx, config.id));
 </script>
 
 <Template showTitle {value} {config} {errors}>

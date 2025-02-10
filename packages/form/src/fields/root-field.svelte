@@ -2,17 +2,13 @@
   import {
     ANY_OF_KEY,
     getSimpleSchemaType,
-    ID_KEY,
     isFileSchema,
-    mergeSchemaObjects,
   } from "@/core/index.js";
 
   import {
-    FAKE_ID_SCHEMA,
     getComponent,
     getErrors,
     isSelect,
-    makeIdSchema,
     getFormContext,
   } from "@/form/index.js";
 
@@ -46,40 +42,15 @@
         )
   );
   const MultiField = $derived(getComponent(ctx, "multiField", config));
-  const fieldIdSchema = $derived.by(() => {
-    const isFake = config.idSchema === FAKE_ID_SCHEMA;
-    const nextIdSchema = makeIdSchema(
-      ctx,
-      config.schema,
-      isFake ? undefined : config.idSchema[ID_KEY],
-      value
-    );
-    return isFake
-      ? nextIdSchema
-      : mergeSchemaObjects(nextIdSchema, config.idSchema);
-  });
 
-  const errors = $derived(getErrors(ctx, fieldIdSchema));
+  const errors = $derived(getErrors(ctx, config.id));
 </script>
 
 <Layout {errors} type="root-field" {config}>
   {#if Field}
-    <Field
-      bind:value={value as undefined}
-      config={{
-        ...config,
-        idSchema: fieldIdSchema,
-      }}
-    />
+    <Field bind:value={value as undefined} {config} />
   {/if}
   {#if combinationKey && !isSelectSchema}
-    <MultiField
-      {combinationKey}
-      bind:value
-      config={{
-        ...config,
-        idSchema: fieldIdSchema,
-      }}
-    />
+    <MultiField {combinationKey} bind:value {config} />
   {/if}
 </Layout>
