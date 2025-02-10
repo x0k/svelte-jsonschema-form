@@ -39,3 +39,11 @@ export type FormElement = FormElements[keyof FormElements];
 export interface FormElementsProps {}
 
 export type FormElementProps = FormElementsProps[FormElement];
+
+export type CompatibleComponentType<T extends ComponentType> = {
+  [C in ComponentType]: Components[C] extends Components[T]
+    ? ComponentBindings[C] extends ComponentBindings[T]
+      ? C
+      : never
+    : never;
+};

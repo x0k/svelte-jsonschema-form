@@ -1,22 +1,22 @@
 <script lang="ts">
   import {
-    getTemplate,
-    getWidget,
     makeEventHandlers,
     getErrors,
     validateField,
     getFormContext,
     makePseudoId,
     createOptions2,
-    type FieldProps,
+    getComponent,
   } from "@/form/index.js";
+  import type { FieldProps } from './fields.js';
+  import { getWidget } from './widgets.js';
 
   let { config, value = $bindable() }: FieldProps<"enum"> = $props();
 
   const ctx = getFormContext();
 
-  const Template = $derived(getTemplate(ctx, "field", config));
-  const Widget = $derived(getWidget(ctx, "select", config));
+  const Template = $derived(getComponent(ctx, "fieldTemplate", config));
+  const Widget = $derived(getWidget(ctx, "selectWidget", config));
 
   const handlers = makeEventHandlers(ctx, () =>
     validateField(ctx, config, value)

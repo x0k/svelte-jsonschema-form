@@ -1,10 +1,7 @@
 <script lang="ts">
-  import {
-    getTemplate,
-    getFormContext,
-    NO_ERRORS,
-    type FieldProps,
-  } from "@/form/index.js";
+  import { getComponent, getFormContext, NO_ERRORS } from "@/form/index.js";
+
+  import type { FieldProps } from "./fields.js";
 
   let { value = $bindable(), config }: FieldProps<"null"> = $props();
 
@@ -16,7 +13,7 @@
 
   const ctx = getFormContext();
 
-  const Template = $derived(getTemplate(ctx, "field", config));
+  const Template = $derived(getComponent(ctx, "fieldTemplate", config));
 </script>
 
 <Template errors={NO_ERRORS} showTitle {value} {config}>

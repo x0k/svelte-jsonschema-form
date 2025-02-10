@@ -1,13 +1,7 @@
 <script lang="ts">
-  import {
-    getField,
-    getTemplate,
-    getComponent,
-    getErrors,
-    getFormContext,
-    isDisabled,
-    type FieldProps,
-  } from "@/form/index.js";
+  import { getComponent, getErrors, getFormContext } from "@/form/index.js";
+
+  import type { FieldProps } from "../fields.js";
 
   import { getObjectContext } from "./context.js";
   import ObjectKeyInput from "./object-key-input.svelte";
@@ -22,8 +16,10 @@
   const ctx = getFormContext();
   const objCtx = getObjectContext();
 
-  const Template = $derived(getTemplate(ctx, "object-property", config));
-  const Field = $derived(getField(ctx, "root", config));
+  const Template = $derived(
+    getComponent(ctx, "objectPropertyTemplate", config)
+  );
+  const Field = $derived(getComponent(ctx, "rootField", config));
   const Button = $derived(getComponent(ctx, "button", config));
   const errors = $derived(getErrors(ctx, config.idSchema));
 </script>

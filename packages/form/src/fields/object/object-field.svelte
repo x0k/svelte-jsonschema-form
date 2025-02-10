@@ -15,10 +15,7 @@
 
   import {
     type UiSchema,
-    getTemplate,
     getComponent,
-    isDisabled,
-    getField,
     getDefaultFieldState,
     getErrors,
     getUiOptions,
@@ -29,8 +26,9 @@
     makeObjectPropertyId,
     AFTER_SUBMITTED,
     ON_OBJECT_CHANGE,
-    type FieldProps,
   } from "@/form/index.js";
+
+  import type { FieldProps } from '../fields.js';
 
   import { setObjectContext, type ObjectContext } from "./context.js";
   import { generateNewKey } from "./generate-new-object-key.js";
@@ -122,8 +120,8 @@
       : []
   );
 
-  const ObjectProperty = $derived(getField(ctx, "objectProperty", config));
-  const Template = $derived(getTemplate(ctx, "object", config));
+  const ObjectProperty = $derived(getComponent(ctx, "objectPropertyField", config));
+  const Template = $derived(getComponent(ctx, "objectTemplate", config));
   const Button = $derived(getComponent(ctx, "button", config));
 
   const schemaAdditionalProperties = $derived(

@@ -2,8 +2,9 @@
   import {
     inputAttributes,
     getFormContext,
-    type FieldProps,
   } from "@/form/index.js";
+  
+  import type { FieldProps } from './fields.js';
 
   const { config, value = $bindable() }: FieldProps<"hidden"> = $props();
 

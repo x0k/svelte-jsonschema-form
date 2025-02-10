@@ -1,11 +1,13 @@
 <script lang="ts">
-  import { getFormContext, getField, type FieldProps } from "@/form/index.js";
+  import { getComponent, getFormContext } from "@/form/index.js";
+
+  import type { FieldProps } from './fields.js';
 
   let { value = $bindable(), config }: FieldProps<"integer"> = $props();
 
   const ctx = getFormContext();
 
-  const Field = $derived(getField(ctx, "number", config));
+  const Field = $derived(getComponent(ctx, "numberField", config));
 
   const integer = {
     get value() {

@@ -65,7 +65,7 @@
 <Layout {errors} type="root-field" {config}>
   {#if Field}
     <Field
-      bind:value
+      bind:value={value as undefined}
       config={{
         ...config,
         idSchema: fieldIdSchema,

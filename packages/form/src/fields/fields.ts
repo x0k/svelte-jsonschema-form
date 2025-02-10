@@ -33,7 +33,7 @@ declare module "@/form/index.js" {
     };
     arrayField: FieldCommonProps<SchemaArrayValue>;
     arrayLikeField: FieldCommonProps<SchemaArrayValue> & {
-      field: "multiEnum" | "files";
+      field: "multiEnumField" | "filesField";
     };
     fixedArrayField: FieldCommonProps<SchemaArrayValue>;
     normalArrayField: FieldCommonProps<SchemaArrayValue>;

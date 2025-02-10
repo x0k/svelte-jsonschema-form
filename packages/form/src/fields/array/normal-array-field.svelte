@@ -6,16 +6,15 @@
   } from "@/core/index.js";
 
   import {
-    getField,
     getComponent,
-    getTemplate,
     getUiOptions,
     retrieveSchema,
     getFormContext,
     makeArrayItemId,
     makeIdSchema,
-    type FieldProps,
   } from "@/form/index.js";
+
+  import type { FieldProps } from '../fields.js';
 
   import { getArrayContext } from "./context.js";
   import {
@@ -28,8 +27,8 @@
   const ctx = getFormContext();
   const arrayCtx = getArrayContext();
 
-  const ArrayItem = $derived(getField(ctx, "arrayItem", config));
-  const Template = $derived(getTemplate(ctx, "array", config));
+  const ArrayItem = $derived(getComponent(ctx, "arrayItemField", config));
+  const Template = $derived(getComponent(ctx, "arrayTemplate", config));
   const Button = $derived(getComponent(ctx, "button", config));
 
   const schemaItems: Schema = $derived(

@@ -1,20 +1,22 @@
 <script lang="ts">
   import {
-    getTemplate,
-    getWidget,
     makeEventHandlers,
     getErrors,
     validateField,
     getFormContext,
-    type FieldProps,
+    getComponent,
+    NO_OPTIONS,
   } from "@/form/index.js";
+  
+  import type { FieldProps } from './fields.js';
+  import { getWidget } from './widgets.js';
 
   const ctx = getFormContext();
 
   let { value = $bindable(), config }: FieldProps<"number"> = $props();
 
-  const Template = $derived(getTemplate(ctx, "field", config));
-  const Widget = $derived(getWidget(ctx, "number", config));
+  const Template = $derived(getComponent(ctx, "fieldTemplate", config));
+  const Widget = $derived(getWidget(ctx, "numberWidget", config));
 
   const handlers = makeEventHandlers(ctx, () =>
     validateField(ctx, config, value)
@@ -35,7 +37,7 @@
 
 <Template {errors} showTitle value={redacted.value} {config}>
   <Widget
-    options={[]}
+    options={NO_OPTIONS}
     {config}
     {errors}
     bind:value={redacted.value}

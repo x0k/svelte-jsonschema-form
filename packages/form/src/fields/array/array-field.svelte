@@ -4,7 +4,6 @@
 
   import {
     isDisabled,
-    getField,
     getErrors,
     getUiOptions,
     isFilesArray,
@@ -15,8 +14,10 @@
     ErrorMessage,
     AFTER_SUBMITTED,
     ON_ARRAY_CHANGE,
-    type FieldProps,
+    getComponent,
   } from "@/form/index.js";
+
+  import type { FieldProps } from '../fields.js';
 
   import { setArrayContext, type ArrayContext } from "./context.js";
 
@@ -102,21 +103,21 @@
 
   const [arrayField, field] = $derived.by(() => {
     if (isMultiSelect(ctx, config.schema)) {
-      return ["anotherFieldArray", "multiEnum"] as const;
+      return ["arrayLikeField", "multiEnumField"] as const;
     }
     if (isFixedItems(config.schema)) {
-      return ["fixedArray", undefined] as const;
+      return ["fixedArrayField", undefined] as const;
     }
     if (
       isFilesArray(ctx, config.schema) &&
       config.uiOptions?.orderable !== true
     ) {
-      return ["anotherFieldArray", "files"] as const;
+      return ["arrayLikeField", "filesField"] as const;
     }
-    return ["normalArray", undefined] as const;
+    return ["normalArrayField", undefined] as const;
   });
 
-  const ArrayField = $derived(getField(ctx, arrayField, config));
+  const ArrayField = $derived(getComponent(ctx, arrayField, config));
 </script>
 
 {#if config.schema.items === undefined}

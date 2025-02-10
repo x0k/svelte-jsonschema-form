@@ -11,10 +11,6 @@
   import {
     type Config,
     type UiSchema,
-    type FieldProps,
-    getTemplate,
-    getWidget,
-    getField,
     getClosestMatchingOption,
     getDefaultFieldState,
     getErrors,
@@ -23,7 +19,11 @@
     sanitizeDataForNewSchema,
     getFormContext,
     makePseudoId,
+    getComponent,
   } from "@/form/index.js";
+
+  import type { FieldProps } from "./fields.js";
+  import { getWidget } from "./widgets.js";
 
   let {
     value = $bindable(),
@@ -33,9 +33,9 @@
 
   const ctx = getFormContext();
 
-  const Template = $derived(getTemplate(ctx, "multi", config));
-  const Field = $derived(getField(ctx, "root", config));
-  const Widget = $derived(getWidget(ctx, "select", config));
+  const Template = $derived(getComponent(ctx, "multiFieldTemplate", config));
+  const Field = $derived(getComponent(ctx, "rootField", config));
+  const Widget = $derived(getWidget(ctx, "selectWidget", config));
 
   const retrievedOptions = $derived(
     (config.schema[combinationKey] ?? []).map((s) =>

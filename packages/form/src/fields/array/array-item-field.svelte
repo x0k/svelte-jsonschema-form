@@ -1,12 +1,7 @@
 <script lang="ts">
-  import {
-    getComponent,
-    getTemplate,
-    getField,
-    getErrors,
-    getFormContext,
-    type FieldProps,
-  } from "@/form/index.js";
+  import { getComponent, getErrors, getFormContext } from "@/form/index.js";
+
+  import type { FieldProps } from "../fields.js";
 
   import { getArrayContext } from "./context.js";
 
@@ -23,8 +18,8 @@
   const ctx = getFormContext();
   const arrayCtx = getArrayContext();
 
-  const Template = $derived(getTemplate(ctx, "array-item", config));
-  const Field = $derived(getField(ctx, "root", config));
+  const Template = $derived(getComponent(ctx, "arrayItemTemplate", config));
+  const Field = $derived(getComponent(ctx, "rootField", config));
   const Button = $derived(getComponent(ctx, "button", config));
 
   const toolbar = $derived(canCopy || canRemove || canMoveUp || canMoveDown);

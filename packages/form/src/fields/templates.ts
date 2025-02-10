@@ -14,7 +14,7 @@ import type {
 
 interface TemplateCommonProps<V extends SchemaValue> {
   value: V | undefined;
-  config: Config<V>;
+  config: Config;
   errors: FieldErrors;
   children: Snippet;
 }
@@ -40,7 +40,7 @@ declare module "@/form/index.js" {
       buttons?: Snippet;
     };
     multiFieldTemplate: TemplateCommonProps<SchemaValue> & {
-      optionsSelector: Snippet;
+      optionSelector: Snippet;
     };
   }
 

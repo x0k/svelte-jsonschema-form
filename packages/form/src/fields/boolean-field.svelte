@@ -2,24 +2,25 @@
   import { type Schema } from "@/core/index.js";
 
   import {
-    getTemplate,
     makeEventHandlers,
     getErrors,
     validateField,
     getFormContext,
     makePseudoId,
-    getWidget,
     createOptions2,
     DEFAULT_BOOLEAN_ENUM,
-    type FieldProps,
+    getComponent,
   } from "@/form/index.js";
+
+  import type { FieldProps } from "./fields.js";
+  import { getWidget } from "./widgets.js";
 
   const ctx = getFormContext();
 
   let { config, value = $bindable() }: FieldProps<"boolean"> = $props();
 
-  const Template = $derived(getTemplate(ctx, "field", config));
-  const Widget = $derived(getWidget(ctx, "checkbox", config));
+  const Template = $derived(getComponent(ctx, "fieldTemplate", config));
+  const Widget = $derived(getWidget(ctx, "checkboxWidget", config));
   const options = $derived.by(() => {
     const yes = ctx.translation("yes");
     const no = ctx.translation("no");

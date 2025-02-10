@@ -3,22 +3,23 @@
   import { asyncProxy } from "@/lib/svelte.svelte";
 
   import {
-    getWidget,
-    getTemplate,
     makeEventHandlers,
     getErrors,
     validateField,
     getFormContext,
     addFiles,
-    type FieldProps,
+    getComponent,
   } from "@/form/index.js";
+
+  import type { FieldProps } from "./fields.js";
+  import { getWidget } from "./widgets.js";
 
   let { config, value = $bindable() }: FieldProps<"files"> = $props();
 
   const ctx = getFormContext();
 
-  const Template = $derived(getTemplate(ctx, "field", config));
-  const Widget = $derived(getWidget(ctx, "file", config));
+  const Template = $derived(getComponent(ctx, "fieldTemplate", config));
+  const Widget = $derived(getWidget(ctx, "fileWidget", config));
 
   const handlers = makeEventHandlers(ctx, () =>
     validateField(ctx, config, value)

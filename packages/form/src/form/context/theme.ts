@@ -16,6 +16,7 @@ function getComponentInternal<T extends ComponentType>(
     case "string":
       return ctx.theme(component as T, config);
     default:
+      // @ts-expect-error TODO
       return component;
   }
 }

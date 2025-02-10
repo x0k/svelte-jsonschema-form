@@ -1,6 +1,5 @@
 import type {
   HTMLAttributes,
-  HTMLButtonAttributes,
   HTMLInputAttributes,
   HTMLSelectAttributes,
   HTMLTextareaAttributes,
@@ -8,40 +7,26 @@ import type {
 
 import type { SchemaValue } from "@/core/index.js";
 
-import type { Component, ComponentType } from "./component.js";
-import type { Field, FieldType } from "./fields.js";
-import type { Template, TemplateType } from "./templates.js";
-import type { Widget, WidgetType } from "./widgets.js";
+import type {
+  CompatibleComponentType,
+  ComponentType,
+  Definitions,
+} from "./theme.js";
 
 export type UiSchemaRoot = UiSchemaRootIndex & UiSchemaRootContent;
 
-interface UiSchemaRootIndex {
+export interface UiSchemaRootIndex {
   [key: string]: UiSchemaRootContent[keyof UiSchemaRootContent];
 }
 
-type UiSchemaRootContent = UiSchemaContent & {
-  /** @deprecated use `idPrefix` option of form instead */
-  "ui:rootFieldId"?: string;
+export interface UiSchemaRootContent extends UiSchemaContent {
   "ui:globalOptions"?: UiOptions;
-  "ui:formElement"?: UiSchema;
-  "ui:submitButton"?: UiSchema;
-  /** @deprecated use `ui:submitButton` property */
-  submitButton?: UiSchema;
-};
+}
 
-type AllFields = {
-  [T in FieldType]: Field<T>;
-};
-
-interface UiSchemaContent {
+export interface UiSchemaContent {
   "ui:options"?: UiOptions;
-  "ui:widget"?: WidgetType | Widget<WidgetType>;
-  "ui:field"?: FieldType | AllFields[FieldType];
-  "ui:templates"?: Partial<{
-    [T in TemplateType]: TemplateType | Template<T>;
-  }>;
   "ui:components"?: Partial<{
-    [T in ComponentType]: ComponentType | Component<T>;
+    [T in ComponentType]: CompatibleComponentType<T> | Definitions[T];
   }>;
   items?: UiSchema | UiSchema[];
   anyOf?: UiSchema[];
@@ -143,6 +128,6 @@ export interface UiOptions {
 
 export type UiSchema = UiSchemaIndex & UiSchemaContent;
 
-interface UiSchemaIndex {
+export interface UiSchemaIndex {
   [key: string]: UiSchemaContent[keyof UiSchemaContent];
 }

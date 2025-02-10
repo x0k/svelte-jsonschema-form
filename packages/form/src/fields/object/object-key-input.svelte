@@ -6,15 +6,16 @@
     type UiSchema,
     type Config,
     type IdSchema,
-    getWidget,
-    getTemplate,
     getErrors,
     getUiOptions,
     getFormContext,
     makePseudoId,
+    getComponent,
+    NO_OPTIONS,
   } from "@/form/index.js";
 
   import { getObjectContext } from "./context.js";
+  import { getWidget } from "../widgets.js";
 
   const {
     property,
@@ -45,8 +46,8 @@
     required: true,
   });
 
-  const Template = $derived(getTemplate(ctx, "field", config));
-  const Widget = $derived(getWidget(ctx, "text", config));
+  const Template = $derived(getComponent(ctx, "fieldTemplate", config));
+  const Widget = $derived(getWidget(ctx, "textWidget", config));
 
   const key = proxy<string | undefined>(() => property);
 
@@ -63,5 +64,11 @@
 </script>
 
 <Template {errors} showTitle value={property} {config}>
-  <Widget options={[]} {errors} {handlers} {config} bind:value={key.value} />
+  <Widget
+    options={NO_OPTIONS}
+    {errors}
+    {handlers}
+    {config}
+    bind:value={key.value}
+  />
 </Template>
