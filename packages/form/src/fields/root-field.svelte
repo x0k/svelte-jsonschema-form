@@ -9,14 +9,14 @@
 
   import {
     FAKE_ID_SCHEMA,
-    type FieldProps,
     getComponent,
-    getField,
     getErrors,
     isSelect,
     makeIdSchema,
     getFormContext,
   } from "@/form/index.js";
+
+  import type { FieldProps } from "./fields.js";
 
   const ctx = getFormContext();
 
@@ -35,17 +35,17 @@
   const Field = $derived(
     combinationKey && schemaType === "null"
       ? null
-      : getField(
+      : getComponent(
           ctx,
           isSelectSchema
-            ? "enum"
+            ? "enumField"
             : isFileSchema(config.schema)
-              ? "file"
-              : schemaType,
+              ? "fileField"
+              : `${schemaType}Field`,
           config
         )
   );
-  const MultiField = $derived(getField(ctx, "multi", config));
+  const MultiField = $derived(getComponent(ctx, "multiField", config));
   const fieldIdSchema = $derived.by(() => {
     const isFake = config.idSchema === FAKE_ID_SCHEMA;
     const nextIdSchema = makeIdSchema(

@@ -3,7 +3,7 @@
 
   declare module "./theme.js" {
     interface Components {
-      submitButton: CommonComponentProps & {
+      submitButton: ComponentCommonProps & {
         children: Snippet;
       };
     }

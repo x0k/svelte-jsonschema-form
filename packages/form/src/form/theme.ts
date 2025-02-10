@@ -27,7 +27,7 @@ export type ThemeResolver = Resolver<
   undefined
 >;
 
-export interface CommonComponentProps {
+export interface ComponentCommonProps {
   config: Config;
   errors: ValidationError<unknown>[];
 }

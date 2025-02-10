@@ -19,6 +19,8 @@ import {
 
 export const DEFAULT_BOOLEAN_ENUM = [true, false]
 
+export const NO_OPTIONS: EnumOption<SchemaValue>[] = []
+
 function getAltSchemas(
   schema: Schema,
   uiSchema: UiSchema

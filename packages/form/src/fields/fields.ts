@@ -1,4 +1,9 @@
-import type { SchemaArrayValue, SchemaObjectValue } from "@/core/index.js";
+import type {
+  ANY_OF_KEY,
+  ONE_OF_KEY,
+  SchemaArrayValue,
+  SchemaObjectValue,
+} from "@/core/index.js";
 import type {
   Schema,
   Components,
@@ -14,7 +19,9 @@ interface FieldCommonProps<V> {
 
 declare module "@/form/index.js" {
   interface Components {
-    multiField: FieldCommonProps<SchemaValue>;
+    multiField: FieldCommonProps<SchemaValue> & {
+      combinationKey: typeof ONE_OF_KEY | typeof ANY_OF_KEY;
+    };
     stringField: FieldCommonProps<string>;
     numberField: FieldCommonProps<number>;
     integerField: FieldCommonProps<number>;

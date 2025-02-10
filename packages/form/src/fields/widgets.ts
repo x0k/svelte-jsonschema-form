@@ -1,4 +1,3 @@
-import type { Resolver } from "@/lib/resolver.js";
 import type { EnumOption, SchemaArrayValue } from "@/core/index.js";
 import {
   getComponent,
@@ -7,6 +6,7 @@ import {
   type Config,
   type Definitions,
   type FieldErrors,
+  type FormContext,
   type SchemaValue,
 } from "@/form/index.js";
 
@@ -79,14 +79,13 @@ export type CompatibleWidgetType<T extends WidgetType> = {
 }[WidgetType];
 
 export type CompatibleWidgets = {
-  [T in WidgetType as `${T}Widget`]: {
+  [T in WidgetType]: {
     [K in CompatibleWidgetType<T>]: Definitions[`${K}Widget`];
   }[CompatibleWidgetType<T>];
 };
 
-export const getWidget = getComponent as Resolver<
-  `${WidgetType}Widget`,
-  Config,
-  CompatibleWidgets,
-  undefined
->;
+export const getWidget = getComponent as <T extends WidgetType>(
+  ctx: FormContext,
+  type: `${T}Widget`,
+  config: Config
+) => CompatibleWidgets[T] | undefined;
