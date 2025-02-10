@@ -1,7 +1,10 @@
 <script lang="ts">
   import { createKeyedArray } from "@/lib/keyed-array.svelte.js";
-  import { isFixedItems, type Schema } from "@/core/index.js";
-
+  import {
+    isFixedItems,
+    isSchemaObjectValue,
+    type Schema,
+  } from "@/core/index.js";
   import {
     isDisabled,
     getErrors,
@@ -17,7 +20,7 @@
     getComponent,
   } from "@/form/index.js";
 
-  import type { FieldProps } from '../fields.js';
+  import type { FieldProps } from "../fields.js";
 
   import { setArrayContext, type ArrayContext } from "./context.js";
 
@@ -101,27 +104,24 @@
   };
   setArrayContext(arrayCtx);
 
-  const [arrayField, field] = $derived.by(() => {
-    if (isMultiSelect(ctx, config.schema)) {
-      return ["arrayLikeField", "multiEnumField"] as const;
-    }
-    if (isFixedItems(config.schema)) {
-      return ["fixedArrayField", undefined] as const;
-    }
-    if (
-      isFilesArray(ctx, config.schema) &&
-      config.uiOptions?.orderable !== true
-    ) {
-      return ["arrayLikeField", "filesField"] as const;
-    }
-    return ["normalArrayField", undefined] as const;
-  });
-
-  const ArrayField = $derived(getComponent(ctx, arrayField, config));
+  const itemSchema: Schema = $derived(
+    isSchemaObjectValue(config.schema.items) ? config.schema.items : {}
+  );
 </script>
 
 {#if config.schema.items === undefined}
   <ErrorMessage message={ctx.translation("array-schema-missing-items")} />
+{:else if isMultiSelect(ctx, config.schema)}
+  {@const Field = getComponent(ctx, "multiEnumField", config)}
+  <Field {config} {itemSchema} bind:value />
+{:else if isFixedItems(config.schema)}
+  {@const Field = getComponent(ctx, "fixedArrayField", config)}
+  <Field {config} bind:value />
+{:else if isFilesArray(ctx, config.schema) && config.uiOptions?.orderable !== true}
+  {@const Field = getComponent(ctx, "filesField", config)}
+  <!-- TODO: Add runtime check in dev env -->
+  <Field {config} bind:value={() => value as string[], (v) => (value = v)} />
 {:else}
-  <ArrayField bind:value {config} {field} />
+  {@const Field = getComponent(ctx, "normalArrayField", config)}
+  <Field {config} bind:value />
 {/if}

@@ -12,7 +12,6 @@
     type Schema,
     type SchemaObjectValue,
   } from "@/core/index.js";
-
   import {
     type UiSchema,
     getComponent,

@@ -4,7 +4,6 @@
     isSchemaObjectValue,
     type Schema,
   } from "@/core/index.js";
-
   import {
     getComponent,
     getUiOptions,
@@ -14,7 +13,7 @@
     makeIdSchema,
   } from "@/form/index.js";
 
-  import type { FieldProps } from '../fields.js';
+  import type { FieldProps } from "../fields.js";
 
   import { getArrayContext } from "./context.js";
   import {

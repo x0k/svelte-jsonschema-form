@@ -4,7 +4,6 @@
     isSchemaObjectValue,
     type Schema,
   } from "@/core/index.js";
-
   import {
     getComponent,
     getUiOptions,

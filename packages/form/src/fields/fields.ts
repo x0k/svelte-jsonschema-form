@@ -32,9 +32,6 @@ declare module "@/form/index.js" {
       isAdditional: boolean;
     };
     arrayField: FieldCommonProps<SchemaArrayValue>;
-    arrayLikeField: FieldCommonProps<SchemaArrayValue> & {
-      field: "multiEnumField" | "filesField";
-    };
     fixedArrayField: FieldCommonProps<SchemaArrayValue>;
     normalArrayField: FieldCommonProps<SchemaArrayValue>;
     arrayItemField: FieldCommonProps<SchemaValue> & {
@@ -62,7 +59,6 @@ declare module "@/form/index.js" {
     objectField: "value";
     objectPropertyField: "value";
     arrayField: "value";
-    arrayLikeField: "value";
     fixedArrayField: "value";
     normalArrayField: "value";
     arrayItemField: "value";
