@@ -1,11 +1,17 @@
+<script lang="ts" module>
+  import type { HTMLSelectAttributes } from "svelte/elements";
+
+  declare module "@/form/index.js" {
+    interface UiOptions {
+      select?: HTMLSelectAttributes;
+    }
+  }
+</script>
+
 <script lang="ts">
-  import {
-    getFormContext,
-    indexMapper,
-    selectAttributes,
-    singleOption,
-    type WidgetProps,
-  } from "@/form/index.js";
+  import { getFormContext, selectAttributes } from "@/form/index.js";
+  import type { WidgetProps } from "@/fields/widgets.js";
+  import { indexMapper, singleOption } from "@/options.svelte.js";
 
   let {
     handlers,
@@ -16,7 +22,9 @@
 
   const ctx = getFormContext();
 
-  const attributes = $derived(selectAttributes(ctx, config, handlers));
+  const attributes = $derived(
+    selectAttributes(ctx, config, handlers, config.uiOptions?.select)
+  );
 
   const mapped = $derived(
     singleOption({

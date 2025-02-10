@@ -120,7 +120,7 @@ export function selectAttributes(
   ctx: FormContext,
   { id, required }: Config,
   handlers: Handlers,
-  attributes: HTMLSelectAttributes
+  attributes: HTMLSelectAttributes | undefined
 ) {
   return defineDisabled(
     ctx,

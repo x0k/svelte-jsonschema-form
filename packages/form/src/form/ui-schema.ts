@@ -46,14 +46,6 @@ export type InputAttributes = Inputs[keyof Inputs];
 
 export interface UiOptions {
   /**
-   * Overrides the attributes of a `layout` component that wraps around widget component.
-   */
-  content?: HTMLAttributes<HTMLDivElement>;
-  /**
-   * Overrides the attributes of the `layout` component that wraps the entire field.
-   */
-  container?: HTMLAttributes<HTMLDivElement>;
-  /**
    * Overrides the title of the field.
    */
   title?: string;
@@ -66,7 +58,7 @@ export interface UiOptions {
    */
   enumNames?: string[];
   /**
-   * List of enum values that are disabled. Values are compared by string equality.
+   * List of enum values that are disabled. Values are compared by strict equality.
    */
   disabledEnumValues?: SchemaValue[];
   /**

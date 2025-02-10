@@ -154,6 +154,7 @@
     const uiOptions = getUiOptions(ctx, uiSchema);
     return {
       id: makePseudoId(ctx, config.id, suffix),
+      path: config.path,
       name: `${config.name}__${suffix}`,
       required: true,
       title: config.title,
@@ -180,6 +181,7 @@
       bind:value
       config={{
         id: config.id,
+        path: config.path,
         name: config.name,
         required: config.required,
         title: "",

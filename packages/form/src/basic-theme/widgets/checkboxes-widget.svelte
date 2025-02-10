@@ -1,11 +1,17 @@
+<script lang="ts" module>
+  import type { HTMLInputAttributes } from "svelte/elements";
+
+  declare module "@/form/index.js" {
+    interface UiOptions {
+      checkboxes?: HTMLInputAttributes;
+    }
+  }
+</script>
+
 <script lang="ts">
-  import {
-    multipleOptions,
-    indexMapper,
-    type WidgetProps,
-    getFormContext,
-    inputAttributes,
-  } from "@/form/index.js";
+  import { getFormContext, inputAttributes } from "@/form/index.js";
+  import type { WidgetProps } from "@/fields/widgets.js";
+  import { indexMapper, multipleOptions } from "@/options.svelte.js";
 
   let {
     handlers,
@@ -16,7 +22,9 @@
 
   const ctx = getFormContext();
 
-  const attributes = $derived(inputAttributes(ctx, config, handlers));
+  const attributes = $derived(
+    inputAttributes(ctx, config, handlers, config.uiOptions?.checkboxes)
+  );
 
   const mapped = multipleOptions({
     mapper: () => indexMapper(options),
