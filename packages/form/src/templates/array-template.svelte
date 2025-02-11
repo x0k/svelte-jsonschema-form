@@ -1,11 +1,11 @@
 <script lang="ts">
   import {
-    type TemplateProps,
     getComponent,
     getFormContext,
   } from "@/form/index.js";
 
   import { getTemplateProps } from "./get-template-props.js";
+  import type { TemplateProps } from '@/fields/templates.js';
 
   const ctx = getFormContext();
 
@@ -32,7 +32,7 @@
           type="array"
           {title}
           required={config.required}
-          forId={config.idSchema.$id}
+          forId={config.id}
           {config}
           {errors}
         />
@@ -51,6 +51,6 @@
   </Layout>
   {@render addButton?.()}
   {#if errors.length > 0}
-    <ErrorsList forId={config.idSchema.$id} {errors} {config} />
+    <ErrorsList forId={config.id} {errors} {config} />
   {/if}
 </Layout>

@@ -1,9 +1,9 @@
 <script lang="ts">
   import {
-    type TemplateProps,
     getComponent,
     getFormContext,
   } from "@/form/index.js";
+  import type { TemplateProps } from '@/fields/templates.js';
 
   const {
     children,
@@ -11,7 +11,7 @@
     removeButton,
     config,
     errors,
-  }: TemplateProps<"object-property"> = $props();
+  }: TemplateProps<"objectProperty"> = $props();
 
   const ctx = getFormContext();
 

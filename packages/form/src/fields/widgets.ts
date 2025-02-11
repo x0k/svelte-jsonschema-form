@@ -28,14 +28,14 @@ export interface Handlers {
   onchange?: (e: Event) => void;
 }
 
-interface WidgetCommonProps<N extends keyof WidgetValue> {
+export interface WidgetCommonProps<N extends keyof WidgetValue> {
   config: Config;
   value: WidgetValue[N] | undefined;
   handlers: Handlers;
   errors: FieldErrors;
 }
 
-interface Options {
+export interface Options {
   options: EnumOption<SchemaValue>[];
 }
 

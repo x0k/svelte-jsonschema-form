@@ -16,7 +16,7 @@
   const validator = createValidator();
 
   const form = createForm3({
-    ...theme,
+    theme,
     schema,
     translation,
     validator,

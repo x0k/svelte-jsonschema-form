@@ -48,7 +48,7 @@ it("should preserve state of multi select field in array", async () => {
   const validator = createValidator();
 
   const form = createForm3({
-    ...theme,
+    theme,
     validator,
     translation,
     schema,

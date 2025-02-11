@@ -1,11 +1,11 @@
 <script lang="ts">
   import {
-    type TemplateProps,
     getComponent,
     getFormContext,
   } from "@/form/index.js";
+  import type { TemplateProps } from '@/fields/templates.js';
 
-  const { children, optionSelector, config, errors }: TemplateProps<"multi"> =
+  const { children, optionSelector, config, errors }: TemplateProps<"multiField"> =
     $props();
 
   const ctx = getFormContext();

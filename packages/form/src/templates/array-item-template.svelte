@@ -1,11 +1,11 @@
 <script lang="ts">
   import {
-    type TemplateProps,
     getComponent,
     getFormContext,
   } from "@/form/index.js";
+  import type { TemplateProps } from '@/fields/templates.js';
 
-  const { children, buttons, config, errors }: TemplateProps<"array-item"> =
+  const { children, buttons, config, errors }: TemplateProps<"arrayItem"> =
     $props();
 
   const ctx = getFormContext();

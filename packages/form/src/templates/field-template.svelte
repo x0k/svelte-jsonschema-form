@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { type TemplateProps, getComponent, getFormContext } from '@/form/index.js';
+  import { getComponent, getFormContext } from '@/form/index.js';
+  import type { TemplateProps } from '@/fields/templates.js';
 
   import { getTemplateProps } from './get-template-props.js';
 
@@ -20,7 +21,7 @@
   {#if showMeta && ((showTitle && title) || description)}
     <Layout type="field-meta" {config} {errors}>
       {#if showTitle && title}
-        <Title type="field" {title} required={config.required} forId={config.idSchema.$id} {config} {errors}/>
+        <Title type="field" {title} required={config.required} forId={config.id} {config} {errors}/>
       {/if}
       {#if description}
         <Description type="field" {description} {config} {errors} />
@@ -31,7 +32,7 @@
     {@render children()}
   </Layout>
   {#if errors.length > 0}
-    <ErrorsList forId={config.idSchema.$id} {errors} {config} />
+    <ErrorsList forId={config.id} {errors} {config} />
   {/if}
   {#if config.uiOptions?.help !== undefined}
     <Help help={config.uiOptions.help} {config} {errors} />

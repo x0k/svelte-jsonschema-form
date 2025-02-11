@@ -12,7 +12,7 @@ import type {
   ComponentType,
 } from "@/form/index.js";
 
-interface FieldCommonProps<V> {
+export interface FieldCommonProps<V> {
   value: V | undefined;
   config: Config;
 }
