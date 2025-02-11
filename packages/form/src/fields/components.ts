@@ -1,6 +1,11 @@
 import type { Snippet } from "svelte";
 
-import type { Config, ValidationError } from "@/form/index.js";
+import type {
+  Components,
+  ComponentType,
+  Config,
+  ValidationError,
+} from "@/form/index.js";
 
 export interface ComponentCommonProps {
   config: Config;
@@ -90,3 +95,5 @@ declare module "@/form/index.js" {
     errorsList: "";
   }
 }
+
+export type ComponentProps<T extends ComponentType> = Components[T];

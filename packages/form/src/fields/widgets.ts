@@ -1,12 +1,9 @@
 import type { EnumOption, SchemaArrayValue } from "@/core/index.js";
 import {
-  getComponent,
   type Components,
   type ComponentType,
   type Config,
-  type Definitions,
   type FieldErrors,
-  type FormContext,
   type SchemaValue,
 } from "@/form/index.js";
 
@@ -73,19 +70,3 @@ export type WidgetType = {
 }[ComponentType];
 
 export type WidgetProps<T extends WidgetType> = Components[`${T}Widget`];
-
-export type CompatibleWidgetType<T extends WidgetType> = {
-  [W in WidgetType]: WidgetValue[T] extends WidgetValue[W] ? W : never;
-}[WidgetType];
-
-export type CompatibleWidgets = {
-  [T in WidgetType]: {
-    [K in CompatibleWidgetType<T>]: Definitions[`${K}Widget`];
-  }[CompatibleWidgetType<T>];
-};
-
-export const getWidget = getComponent as <T extends WidgetType>(
-  ctx: FormContext,
-  type: `${T}Widget`,
-  config: Config
-) => CompatibleWidgets[T] | undefined;

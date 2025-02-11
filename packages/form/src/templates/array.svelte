@@ -5,7 +5,7 @@
   } from "@/form/index.js";
 
   import { getTemplateProps } from "./get-template-props.js";
-  import type { TemplateProps } from '@/fields/templates.js';
+  import type { TemplateProps } from '@/fields/index.js';
 
   const ctx = getFormContext();
 

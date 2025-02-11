@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { HTMLAttributes } from "svelte/elements";
   import Tree from "@sveltejs/svelte-json-tree";
-  import { setFromContext, RawForm, type FormInternals } from "@sjsf/form";
+  import { setFromContext, SimpleForm, type FormInternals } from "@sjsf/form";
 
   import { ShadowHost } from "../components/shadow";
 
@@ -9,17 +9,18 @@
     form: FormInternals;
   }
 
-  const { form }: Props = $props();
+  const { form, ...rest }: Props = $props();
   setFromContext(form.context);
 </script>
 
-<div>
+<div {...rest}>
   <div class="code">
     <ShadowHost>
       <Tree value={form.formValue} />
     </ShadowHost>
   </div>
-  <RawForm {form} style="display: flex; flex-direction: column; gap: 1rem;" />
+  <!-- <SimpleForm style="display: flex; flex-direction: column; gap: 1rem;" /> -->
+  <SimpleForm />
 </div>
 
 <style>

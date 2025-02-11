@@ -3,7 +3,7 @@
     getComponent,
     getFormContext,
   } from "@/form/index.js";
-  import type { TemplateProps } from '@/fields/templates.js';
+  import type { TemplateProps } from '@/fields/index.js';
 
   const { children, optionSelector, config, errors }: TemplateProps<"multiField"> =
     $props();

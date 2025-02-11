@@ -1,10 +1,3 @@
-import type {
-  HTMLAttributes,
-  HTMLInputAttributes,
-  HTMLSelectAttributes,
-  HTMLTextareaAttributes,
-} from "svelte/elements";
-
 import type { SchemaValue } from "@/core/index.js";
 
 import type {
@@ -35,14 +28,6 @@ export interface UiSchemaContent {
   additionalPropertyKeyInput?: UiSchema;
   additionalItems?: UiSchema;
 }
-
-export interface Inputs {
-  input: HTMLInputAttributes;
-  textarea: HTMLTextareaAttributes;
-  select: HTMLSelectAttributes;
-}
-
-export type InputAttributes = Inputs[keyof Inputs];
 
 export interface UiOptions {
   /**

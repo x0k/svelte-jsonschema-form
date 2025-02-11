@@ -67,68 +67,75 @@ export const schema: Schema = {
   },
 };
 
-export const uiStates = (uiSchema: UiSchema): UiSchema => ({
-  default: {
-    ...uiSchema,
-    "ui:options": {
-      ...uiSchema["ui:options"],
-      input: {
-        ...uiSchema["ui:options"]?.input,
-        placeholder: "placeholder",
-      },
-    },
-  },
-  readonly: {
-    ...uiSchema,
-    "ui:options": {
-      input: {
-        ...uiSchema["ui:options"]?.input,
-        readonly: true,
-      },
-    },
-  },
-  disabled: {
-    ...uiSchema,
-    "ui:options": {
-      ...uiSchema["ui:options"],
-      input: {
-        ...uiSchema["ui:options"]?.input,
-        disabled: true,
-      },
-    },
-  },
-  error: uiSchema,
-});
+export const uiStates = (uiSchema: UiSchema) => ({
+  default: uiSchema,
+  readonly: uiSchema,
+  disabled: uiSchema,
+  error: uiSchema
+})
+
+// export const uiStates = (uiSchema: UiSchema): UiSchema => ({
+//   default: {
+//     ...uiSchema,
+//     "ui:options": {
+//       ...uiSchema["ui:options"],
+//       input: {
+//         ...uiSchema["ui:options"]?.input,
+//         placeholder: "placeholder",
+//       },
+//     },
+//   },
+//   readonly: {
+//     ...uiSchema,
+//     "ui:options": {
+//       input: {
+//         ...uiSchema["ui:options"]?.input,
+//         readonly: true,
+//       },
+//     },
+//   },
+//   disabled: {
+//     ...uiSchema,
+//     "ui:options": {
+//       ...uiSchema["ui:options"],
+//       input: {
+//         ...uiSchema["ui:options"]?.input,
+//         disabled: true,
+//       },
+//     },
+//   },
+//   error: uiSchema,
+// });
 
 export const uiSchema: UiSchemaRoot = {
   checkbox: uiStates({}),
   checkboxes: uiStates({
-    "ui:widget": "checkboxes",
+    // "ui:widget": "checkboxes",
   }),
   file: uiStates({}),
   multiFile: uiStates({}),
   number: uiStates({}),
   range: uiStates({
     "ui:options": {
-      input: {
-        type: "range",
-      },
+      // input: {
+      //   type: "range",
+      // },
     },
   }),
   radio: uiStates({
-    "ui:widget": "radio",
+    // "ui:widget": "radio",
   }),
   select: uiStates({}),
   multiSelect: uiStates({}),
   text: uiStates({}),
   textarea: uiStates({
-    "ui:widget": "textarea",
+    // "ui:widget": "textarea",
   }),
   date: uiStates({
     "ui:options": {
-      input: {
-        type: "date",
-      },
+      // input: {
+      //   type: "date",
+      // },
     },
   }),
 };

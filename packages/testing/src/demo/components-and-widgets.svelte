@@ -1,11 +1,12 @@
 <script lang="ts">
+  import type { Snippet } from "svelte";
   import {
     createForm3,
     DEFAULT_ID_PREFIX,
     DEFAULT_ID_SEPARATOR,
     pathToId,
     type FormInternals,
-    type Theme,
+    type ThemeResolver,
   } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
 
@@ -13,30 +14,29 @@
   import * as components from "./components";
   import { validator } from "./ajv-validator";
   import Form from "./form.svelte";
-  import type { Snippet } from 'svelte';
 
   const {
     theme,
     createWidgetsForm = () =>
       createForm3({
-        ...theme,
+        theme,
         schema: widgets.schema,
         uiSchema: widgets.uiSchema,
         initialErrors: widgets.errors(Object.keys(widgets.uiSchema)),
         validator,
         translation,
       }),
-      append,
+    append,
   }: {
-    theme: Theme;
+    theme: ThemeResolver;
     createWidgetsForm?: () => FormInternals;
-    append?: Snippet
+    append?: Snippet;
   } = $props();
 
   const widgetsForm = createWidgetsForm();
 
   const componentsForm = createForm3({
-    ...theme,
+    theme,
     initialValue: {
       array: ["fixed", 123],
       additional: "value",

@@ -162,7 +162,7 @@ export class Validator implements FormValidator2<OutputUnit> {
     field: Config,
     fieldData: SchemaValue | undefined
   ): ValidationError<OutputUnit>[] {
-    const instanceId = field.idSchema.$id;
+    const instanceId = field.id;
     if (instanceId === this.idPrefix) {
       return this.validateFormData(field.schema, fieldData);
     }
@@ -200,10 +200,7 @@ export class Validator implements FormValidator2<OutputUnit> {
     path: string[],
     rootSchema: Schema
   ): string {
-    const instanceUiSchema: UiSchema | undefined = getValueByPath(
-      this.uiSchema,
-      path
-    );
+    const instanceUiSchema = getValueByPath<UiSchema, 0>(this.uiSchema, path)
     const uiTitle = instanceUiSchema?.["ui:options"]?.title;
     if (uiTitle) {
       return uiTitle;

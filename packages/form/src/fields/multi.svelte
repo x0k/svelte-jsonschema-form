@@ -30,7 +30,6 @@
   } from "@/form/index.js";
 
   import type { FieldProps } from "./fields.js";
-  import { getWidget } from "./widgets.js";
 
   let {
     value = $bindable(),
@@ -42,7 +41,7 @@
 
   const Template = $derived(getComponent(ctx, "multiFieldTemplate", config));
   const Field = $derived(getComponent(ctx, "rootField", config));
-  const Widget = $derived(getWidget(ctx, "selectWidget", config));
+  const Widget = $derived(getComponent(ctx, "selectWidget", config));
 
   const retrievedOptions = $derived(
     (config.schema[combinationKey] ?? []).map((s) =>

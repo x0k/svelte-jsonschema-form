@@ -1,6 +1,7 @@
 import type { Component as SvelteComponent } from "svelte";
 
-import type { Resolver } from "@/lib/resolver.js";
+import type { Equal, ExpandAndEqual } from "@/lib/types.js";
+import { fromRecord, type Resolver } from "@/lib/resolver.js";
 
 import type { Config } from "./config.js";
 
@@ -19,13 +20,6 @@ export type Definitions = {
   >;
 };
 
-export type ThemeResolver = Resolver<
-  ComponentType,
-  Config,
-  Definitions,
-  undefined
->;
-
 export interface FormElements {}
 
 export type FormElement = FormElements[keyof FormElements];
@@ -35,9 +29,37 @@ export interface FormProps {}
 export type FormAttributes = FormProps[keyof FormElements];
 
 export type CompatibleComponentType<T extends ComponentType> = {
-  [C in ComponentType]: Components[C] extends Components[T]
-    ? ComponentBindings[C] extends ComponentBindings[T]
-      ? C
-      : never
+  [C in ComponentType]: [
+    ExpandAndEqual<Components[T], Components[C]>,
+    Equal<ComponentBindings[T], ComponentBindings[C]>,
+  ] extends [true, true]
+    ? C
     : never;
+}[ComponentType];
+
+export type CompatibleDefinitions = {
+  [T in ComponentType]: {
+    [K in CompatibleComponentType<T>]: Definitions[K];
+  }[CompatibleComponentType<T>];
 };
+
+export type ThemeResolver = Resolver<
+  ComponentType,
+  Config,
+  CompatibleDefinitions
+>;
+
+export const createTheme = fromRecord as (
+  definitions: Definitions
+) => ThemeResolver;
+
+export type IncompleteThemeResolver = Resolver<
+  ComponentType,
+  Config,
+  CompatibleDefinitions,
+  undefined
+>;
+
+export const createIncompleteTheme = fromRecord as (
+  definitions: Partial<Definitions>
+) => IncompleteThemeResolver;

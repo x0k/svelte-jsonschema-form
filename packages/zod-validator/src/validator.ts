@@ -115,7 +115,7 @@ export class Validator<Async extends boolean>
     config: Config,
     fieldData: SchemaValue | undefined
   ): ValidationResult<Async> {
-    const instanceId = config.idSchema.$id;
+    const instanceId = config.id;
     if (instanceId === this.idPrefix) {
       return this.validateFormData(config.schema, fieldData);
     }
@@ -166,7 +166,7 @@ export class Validator<Async extends boolean>
     }
     return result.error.issues.map((issue) => {
       return {
-        instanceId: config.idSchema.$id,
+        instanceId: config.id,
         propertyTitle: config.title,
         message: issue.message,
         error: issue,

@@ -9,13 +9,10 @@
 </script>
 
 <script lang="ts">
-  import {
-    type Components,
-    defineDisabled,
-    getFormContext,
-  } from "@/form/index.js";
+  import { defineDisabled, getFormContext } from "@/form/index.js";
+  import type { ComponentProps } from "@/fields/index.js";
 
-  const { children, config }: Components["submitButton"] = $props();
+  const { children, config }: ComponentProps<"submitButton"> = $props();
 
   const ctx = getFormContext();
 

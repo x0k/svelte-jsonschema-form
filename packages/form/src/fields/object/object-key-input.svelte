@@ -8,12 +8,10 @@
     getFormContext,
     createPseudoId,
     getComponent,
-    NO_OPTIONS,
     type Id,
   } from "@/form/index.js";
 
   import { getObjectContext } from "./context.js";
-  import { getWidget } from "../widgets.js";
 
   const {
     parentId,
@@ -43,7 +41,7 @@
   });
 
   const Template = $derived(getComponent(ctx, "fieldTemplate", config));
-  const Widget = $derived(getWidget(ctx, "textWidget", config));
+  const Widget = $derived(getComponent(ctx, "textWidget", config));
 
   const key = proxy<string | undefined>(() => property);
 
@@ -60,11 +58,5 @@
 </script>
 
 <Template {errors} showTitle value={property} {config}>
-  <Widget
-    options={NO_OPTIONS}
-    {errors}
-    {handlers}
-    {config}
-    bind:value={key.value}
-  />
+  <Widget {errors} {handlers} {config} bind:value={key.value} />
 </Template>

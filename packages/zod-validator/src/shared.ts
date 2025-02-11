@@ -1,6 +1,7 @@
 import { getValueByPath } from "@sjsf/form/lib/object";
 import {
   pathToId,
+  type UiSchema,
   type FieldErrors,
   type UiSchemaRoot,
   type ValidationError,
@@ -23,12 +24,13 @@ export function makeFormDataValidationResultTransformer(
     return result.error.issues.map((issue) => {
       const instanceId = pathToId(idPrefix, idSeparator, issue.path);
       const propertyTitle =
-        getValueByPath(uiSchema, issue.path)?.["ui:options"]?.title ??
+        getValueByPath<UiSchema, 0>(uiSchema, issue.path)?.["ui:options"]
+          ?.title ??
         issue.path[issue.path.length - 1] ??
         instanceId;
       return {
         instanceId,
-        propertyTitle,
+        propertyTitle: String(propertyTitle),
         message: issue.message,
         error: issue,
       };

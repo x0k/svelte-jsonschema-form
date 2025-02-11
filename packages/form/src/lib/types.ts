@@ -9,16 +9,18 @@ export type ValuesOf<T, D extends number = 3> = D extends 0
       | (T extends Array<infer U>
           ? ValuesOf<U, Decr[D]>
           : T extends Record<string, infer U>
-          ? ValuesOf<U, Decr[D]>
-          : T extends object
-          ? { [k in keyof T]: ValuesOf<T[k], Decr[D]> }[keyof T]
-          : never);
+            ? ValuesOf<U, Decr[D]>
+            : T extends object
+              ? { [k in keyof T]: ValuesOf<T[k], Decr[D]> }[keyof T]
+              : never);
 
 export type Nullable<T> = {
   [P in keyof T]: T[P] | null;
 };
 
-export type Brand<Name extends string, Base = string> = Base & { __brand: Name }
+export type Brand<Name extends string, Base = string> = Base & {
+  __brand: Name;
+};
 
 export type Prettify<T> = {
   [K in keyof T]: T[K];
@@ -26,8 +28,14 @@ export type Prettify<T> = {
 
 export type MaybePromise<T> = T | Promise<T>;
 
-export type Nil = null | undefined
+export type Nil = null | undefined;
 
 export function isNil<T>(v: T | Nil): v is Nil {
-  return v === undefined || v === null
+  return v === undefined || v === null;
 }
+
+export type Equal<A, B> = A extends B ? (B extends A ? true : false) : false;
+
+export type Expand<T> = { [K in keyof T]: T[K] };
+
+export type ExpandAndEqual<A, B> = Equal<Expand<A>, Expand<B>>

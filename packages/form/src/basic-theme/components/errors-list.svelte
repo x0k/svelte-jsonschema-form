@@ -12,9 +12,9 @@
 </script>
 
 <script lang="ts">
-  import type { Components } from "@/form/index.js";
+  import type { ComponentProps } from "@/fields/index.js";
 
-  const { errors, forId, config }: Components["errorsList"] = $props();
+  const { errors, forId, config }: ComponentProps<"errorsList"> = $props();
 </script>
 
 <ui

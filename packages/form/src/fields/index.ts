@@ -1,7 +1,7 @@
-import "./fields.js";
-import "./templates.js";
-import "./components.js";
-import "./widgets.js";
+export * from "./fields.js";
+export * from "./templates.js";
+export * from "./components.js";
+export * from "./widgets.js";
 
 export {
   arrayField,

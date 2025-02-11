@@ -19,6 +19,7 @@ import {
   DEFAULT_ID_PREFIX,
   DEFAULT_ID_SEPARATOR,
   DEFAULT_PSEUDO_ID_SEPARATOR,
+  makeChildId,
   pathToId,
   type Config,
   type FieldErrors,
@@ -178,7 +179,7 @@ export abstract class AbstractValidator implements FormValidator2<ErrorObject> {
 
   protected transformFieldErrors(errors: ErrorObject[], config: Config) {
     return errors.filter(isFieldError).map((error) => ({
-      instanceId: config.idSchema.$id,
+      instanceId: config.id,
       propertyTitle: config.title,
       message: this.errorObjectToMessage(error, () => config.title),
       error,
@@ -199,7 +200,7 @@ export abstract class AbstractValidator implements FormValidator2<ErrorObject> {
           (missingProperty, parentSchema) => {
             // TODO: Write a specific `getValueByPath` function for
             // `items`, `additionalItems` and other cases
-            const uiSchemaTitle = getValueByPath(
+            const uiSchemaTitle = getValueByPath<UiSchema, 0>(
               this.uiSchema,
               path.concat(missingProperty)
             )?.["ui:options"]?.title;
@@ -228,13 +229,13 @@ export abstract class AbstractValidator implements FormValidator2<ErrorObject> {
     let id = pathToId(this.idPrefix, this.idSeparator, path);
     id =
       missingProperty !== undefined
-        ? `${id}${this.idSeparator}${missingProperty}`
+        ? makeChildId(this.idSeparator, id, missingProperty)
         : id;
     id =
       propertyName !== undefined
         ? computePseudoId(
             this.idPseudoSeparator,
-            `${id}${this.idSeparator}${propertyName}`,
+            makeChildId(this.idSeparator, id, propertyName),
             "key-input"
           )
         : id;
@@ -265,10 +266,7 @@ export abstract class AbstractValidator implements FormValidator2<ErrorObject> {
     { parentSchema }: ErrorObject,
     path: string[]
   ): string {
-    const instanceUiSchema: UiSchema | undefined = getValueByPath(
-      this.uiSchema,
-      path
-    );
+    const instanceUiSchema = getValueByPath<UiSchema, 0>(this.uiSchema, path);
     return (
       instanceUiSchema?.["ui:options"]?.title ??
       parentSchema?.title ??
@@ -329,7 +327,7 @@ export class Validator extends AbstractValidator {
     config: Config,
     fieldData: SchemaValue | undefined
   ): FieldErrors<ErrorObject> {
-    const instanceId = config.idSchema.$id;
+    const instanceId = config.id;
     if (instanceId === this.idPrefix) {
       return this.validateFormData(config.schema, fieldData);
     }
@@ -421,7 +419,7 @@ export class AsyncValidator extends AbstractValidator {
     config: Config,
     fieldData: SchemaValue | undefined
   ): Promise<FieldErrors<ErrorObject>> {
-    const instanceId = config.idSchema.$id;
+    const instanceId = config.id;
     if (instanceId === this.idPrefix) {
       return this.validateFormData(config.schema, fieldData);
     }

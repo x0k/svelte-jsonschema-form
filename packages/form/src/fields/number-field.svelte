@@ -5,18 +5,16 @@
     validateField,
     getFormContext,
     getComponent,
-    NO_OPTIONS,
   } from "@/form/index.js";
-  
-  import type { FieldProps } from './fields.js';
-  import { getWidget } from './widgets.js';
+
+  import type { FieldProps } from "./fields.js";
 
   const ctx = getFormContext();
 
   let { value = $bindable(), config }: FieldProps<"number"> = $props();
 
   const Template = $derived(getComponent(ctx, "fieldTemplate", config));
-  const Widget = $derived(getWidget(ctx, "numberWidget", config));
+  const Widget = $derived(getComponent(ctx, "numberWidget", config));
 
   const handlers = makeEventHandlers(ctx, () =>
     validateField(ctx, config, value)
@@ -36,11 +34,5 @@
 </script>
 
 <Template {errors} showTitle value={redacted.value} {config}>
-  <Widget
-    options={NO_OPTIONS}
-    {config}
-    {errors}
-    bind:value={redacted.value}
-    {handlers}
-  />
+  <Widget {config} {errors} bind:value={redacted.value} {handlers} />
 </Template>

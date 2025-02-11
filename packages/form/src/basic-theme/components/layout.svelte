@@ -21,9 +21,9 @@
 </script>
 
 <script lang="ts">
-  import type { Components } from "@/form/index.js";
+  import type { ComponentProps } from "@/fields/index.js";
 
-  const { type, children, config }: Components["layout"] = $props();
+  const { type, children, config }: ComponentProps<"layout"> = $props();
 
   function getStyle(type: LayoutType) {
     switch (type) {
