@@ -24,9 +24,8 @@
     AFTER_SUBMITTED,
     ON_OBJECT_CHANGE,
     createChildId,
+    type ComponentProps,
   } from "@/form/index.js";
-
-  import type { FieldProps } from "../fields.js";
 
   import { setObjectContext, type ObjectContext } from "./context.js";
   import { generateNewKey } from "./generate-new-object-key.js";
@@ -34,7 +33,7 @@
 
   const ctx = getFormContext();
 
-  let { config, value = $bindable() }: FieldProps<"object"> = $props();
+  let { config, value = $bindable() }: ComponentProps["objectField"] = $props();
   const newKeySeparator = $derived(
     config.uiOptions?.duplicateKeySuffixSeparator ?? "-"
   );

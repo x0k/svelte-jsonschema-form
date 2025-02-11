@@ -9,10 +9,17 @@
 </script>
 
 <script lang="ts">
-  import type { WidgetProps } from "@/fields/widgets.js";
-  import { getFormContext, inputAttributes } from "@/form/index.js";
+  import {
+    getFormContext,
+    inputAttributes,
+    type ComponentProps,
+  } from "@/form/index.js";
 
-  let { value = $bindable(), config, handlers }: WidgetProps<"text"> = $props();
+  let {
+    value = $bindable(),
+    config,
+    handlers,
+  }: ComponentProps["textWidget"] = $props();
 
   const ctx = getFormContext();
 

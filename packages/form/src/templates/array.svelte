@@ -2,15 +2,19 @@
   import {
     getComponent,
     getFormContext,
+    type ComponentProps,
   } from "@/form/index.js";
 
   import { getTemplateProps } from "./get-template-props.js";
-  import type { TemplateProps } from '@/fields/index.js';
 
   const ctx = getFormContext();
 
-  const { children, addButton, config, errors }: TemplateProps<"array"> =
-    $props();
+  const {
+    children,
+    addButton,
+    config,
+    errors,
+  }: ComponentProps["arrayTemplate"] = $props();
 
   const Layout = $derived(getComponent(ctx, "layout", config));
   const Title = $derived(getComponent(ctx, "title", config));
@@ -20,11 +24,7 @@
   const { title, description, showMeta } = $derived(getTemplateProps(config));
 </script>
 
-<Layout
-  type="array-field"
-  {config}
-  {errors}
->
+<Layout type="array-field" {config} {errors}>
   {#if showMeta && (title || description)}
     <Layout type="array-field-meta" {config} {errors}>
       {#if title}
@@ -42,11 +42,7 @@
       {/if}
     </Layout>
   {/if}
-  <Layout
-    type="array-items"
-    {config}
-    {errors}
-  >
+  <Layout type="array-items" {config} {errors}>
     {@render children()}
   </Layout>
   {@render addButton?.()}

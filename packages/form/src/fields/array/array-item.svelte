@@ -1,7 +1,10 @@
 <script lang="ts">
-  import { getComponent, getErrors, getFormContext } from "@/form/index.js";
-
-  import type { FieldProps } from "../fields.js";
+  import {
+    getComponent,
+    getErrors,
+    getFormContext,
+    type ComponentProps,
+  } from "@/form/index.js";
 
   import { getArrayContext } from "./context.js";
 
@@ -13,7 +16,7 @@
     canRemove,
     canMoveUp,
     canMoveDown,
-  }: FieldProps<"arrayItem"> = $props();
+  }: ComponentProps["arrayItemField"] = $props();
 
   const ctx = getFormContext();
   const arrayCtx = getArrayContext();

@@ -27,15 +27,14 @@
     getFormContext,
     createPseudoId,
     getComponent,
+    type ComponentProps,
   } from "@/form/index.js";
-
-  import type { FieldProps } from "./fields.js";
 
   let {
     value = $bindable(),
     config,
     combinationKey,
-  }: FieldProps<"multi"> = $props();
+  }: ComponentProps["multiField"] = $props();
 
   const ctx = getFormContext();
 

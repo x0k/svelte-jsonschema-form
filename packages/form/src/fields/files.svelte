@@ -9,11 +9,10 @@
     getFormContext,
     addFiles,
     getComponent,
+    type ComponentProps,
   } from "@/form/index.js";
 
-  import type { FieldProps } from "./fields.js";
-
-  let { config, value = $bindable() }: FieldProps<"files"> = $props();
+  let { config, value = $bindable() }: ComponentProps["filesField"] = $props();
 
   const ctx = getFormContext();
 

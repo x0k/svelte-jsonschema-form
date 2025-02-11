@@ -10,13 +10,12 @@
     getErrors,
     isSelect,
     getFormContext,
+    type ComponentProps,
   } from "@/form/index.js";
-
-  import type { FieldProps } from "./fields.js";
 
   const ctx = getFormContext();
 
-  let { config, value = $bindable() }: FieldProps<"root"> = $props();
+  let { config, value = $bindable() }: ComponentProps["rootField"] = $props();
 
   const Layout = $derived(getComponent(ctx, "layout", config));
   const schemaType = $derived(getSimpleSchemaType(config.schema));

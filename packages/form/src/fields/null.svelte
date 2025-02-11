@@ -1,9 +1,7 @@
 <script lang="ts">
-  import { getComponent, getFormContext, NO_ERRORS } from "@/form/index.js";
+  import { getComponent, getFormContext, NO_ERRORS, type ComponentProps } from "@/form/index.js";
 
-  import type { FieldProps } from "./fields.js";
-
-  let { value = $bindable(), config }: FieldProps<"null"> = $props();
+  let { value = $bindable(), config }: ComponentProps["nullField"] = $props();
 
   $effect(() => {
     if (value === undefined) {

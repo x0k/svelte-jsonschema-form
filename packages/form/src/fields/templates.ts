@@ -6,7 +6,7 @@ import type {
   SchemaArrayValue,
 } from "@/core/schema.js";
 import type {
-  Components,
+  ComponentProps,
   ComponentType,
   Config,
   FieldErrors,
@@ -20,7 +20,7 @@ export interface TemplateCommonProps<V extends SchemaValue> {
 }
 
 declare module "@/form/index.js" {
-  interface Components {
+  interface ComponentProps {
     fieldTemplate: TemplateCommonProps<SchemaValue> & {
       showTitle: boolean;
     };
@@ -53,9 +53,3 @@ declare module "@/form/index.js" {
     multiFieldTemplate: "";
   }
 }
-
-export type TemplateType = {
-  [T in ComponentType]: T extends `${infer K}Template` ? K : never;
-}[ComponentType];
-
-export type TemplateProps<T extends TemplateType> = Components[`${T}Template`]

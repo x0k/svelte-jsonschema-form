@@ -1,9 +1,7 @@
 <script lang="ts">
-  import { inputAttributes, getFormContext } from "@/form/index.js";
+  import { inputAttributes, getFormContext, type ComponentProps } from "@/form/index.js";
 
-  import type { FieldProps } from "./fields.js";
-
-  const { config, value = $bindable() }: FieldProps<"hidden"> = $props();
+  const { config, value = $bindable() }: ComponentProps["hiddenField"] = $props();
 
   const ctx = getFormContext();
 </script>

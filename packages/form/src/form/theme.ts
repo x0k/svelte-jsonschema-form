@@ -1,19 +1,20 @@
 import type { Component as SvelteComponent } from "svelte";
 
 import type { Equal, ExpandAndEqual } from "@/lib/types.js";
-import { fromRecord, type Resolver } from "@/lib/resolver.js";
+import { chain, fromRecord, type Resolver } from "@/lib/resolver.js";
 
 import type { Config } from "./config.js";
+import { createMessage } from "./error-message.svelte";
 
-export interface Components {}
+export interface ComponentProps {}
 
 export interface ComponentBindings {}
 
-export type ComponentType = keyof Components;
+export type ComponentType = keyof ComponentProps;
 
 export type Definitions = {
   [T in ComponentType]: SvelteComponent<
-    Components[T],
+    ComponentProps[T],
     {},
     //@ts-expect-error
     ComponentBindings[T]
@@ -30,7 +31,7 @@ export type FormAttributes = FormProps[keyof FormElements];
 
 export type CompatibleComponentType<T extends ComponentType> = {
   [C in ComponentType]: [
-    ExpandAndEqual<Components[T], Components[C]>,
+    ExpandAndEqual<ComponentProps[T], ComponentProps[C]>,
     Equal<ComponentBindings[T], ComponentBindings[C]>,
   ] extends [true, true]
     ? C
@@ -53,13 +54,10 @@ export const createTheme = fromRecord as (
   definitions: Definitions
 ) => ThemeResolver;
 
-export type IncompleteThemeResolver = Resolver<
-  ComponentType,
-  Config,
-  CompatibleDefinitions,
-  undefined
->;
+export const fallbackComponent: ThemeResolver = <T extends ComponentType>(
+  type: T
+) => createMessage(`Component ${type} not found`) as Definitions[T];
 
-export const createIncompleteTheme = fromRecord as (
-  definitions: Partial<Definitions>
-) => IncompleteThemeResolver;
+export function createIncompleteTheme(definitions: Partial<Definitions>) {
+  return chain(fromRecord(definitions), fallbackComponent);
+}

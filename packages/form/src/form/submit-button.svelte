@@ -4,7 +4,7 @@
   import type { Config } from "./config.js";
 
   declare module "./theme.js" {
-    interface Components {
+    interface ComponentProps {
       submitButton: {
         config: Config;
         children: Snippet;

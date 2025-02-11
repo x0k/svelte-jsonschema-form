@@ -1,7 +1,10 @@
 <script lang="ts">
-  import { getComponent, getErrors, getFormContext } from "@/form/index.js";
-
-  import type { FieldProps } from "../fields.js";
+  import {
+    getComponent,
+    getErrors,
+    getFormContext,
+    type ComponentProps,
+  } from "@/form/index.js";
 
   import { getObjectContext } from "./context.js";
   import ObjectKeyInput from "./object-key-input.svelte";
@@ -11,7 +14,7 @@
     property,
     isAdditional,
     value = $bindable(),
-  }: FieldProps<"objectProperty"> = $props();
+  }: ComponentProps["objectPropertyField"] = $props();
 
   const ctx = getFormContext();
   const objCtx = getObjectContext();

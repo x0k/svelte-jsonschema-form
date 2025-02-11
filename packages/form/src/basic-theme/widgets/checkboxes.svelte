@@ -9,8 +9,11 @@
 </script>
 
 <script lang="ts">
-  import { getFormContext, inputAttributes } from "@/form/index.js";
-  import type { WidgetProps } from "@/fields/widgets.js";
+  import {
+    getFormContext,
+    inputAttributes,
+    type ComponentProps,
+  } from "@/form/index.js";
   import { indexMapper, multipleOptions } from "@/options.svelte.js";
 
   let {
@@ -18,7 +21,7 @@
     config,
     value = $bindable(),
     options,
-  }: WidgetProps<"checkboxes"> = $props();
+  }: ComponentProps["checkboxesWidget"] = $props();
 
   const ctx = getFormContext();
 

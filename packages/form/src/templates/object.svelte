@@ -1,13 +1,20 @@
 <script lang="ts">
-  import { getComponent, getFormContext } from "@/form/index.js";
-  import type { TemplateProps } from "@/fields/index.js";
+  import {
+    getComponent,
+    getFormContext,
+    type ComponentProps,
+  } from "@/form/index.js";
 
   import { getTemplateProps } from "./get-template-props.js";
 
   const ctx = getFormContext();
 
-  const { config, children, addButton, errors }: TemplateProps<"object"> =
-    $props();
+  const {
+    config,
+    children,
+    addButton,
+    errors,
+  }: ComponentProps["objectTemplate"] = $props();
 
   const Layout = $derived(getComponent(ctx, "layout", config));
   const Title = $derived(getComponent(ctx, "title", config));

@@ -1,27 +1,42 @@
 <script lang="ts">
-  import { getComponent, getFormContext } from '@/form/index.js';
-  import type { TemplateProps } from '@/fields/index.js';
+  import {
+    getComponent,
+    getFormContext,
+    type ComponentProps,
+  } from "@/form/index.js";
 
-  import { getTemplateProps } from './get-template-props.js';
+  import { getTemplateProps } from "./get-template-props.js";
 
-  const { children, config, showTitle, errors }: TemplateProps<"field"> = $props();
+  const {
+    children,
+    config,
+    showTitle,
+    errors,
+  }: ComponentProps["fieldTemplate"] = $props();
 
   const ctx = getFormContext();
 
-  const Layout = $derived(getComponent(ctx, "layout", config))
-  const Title = $derived(getComponent(ctx, "title", config))
-  const Description = $derived(getComponent(ctx, "description", config))
-  const ErrorsList = $derived(getComponent(ctx, "errorsList", config))
-  const Help = $derived(getComponent(ctx, "help", config))
+  const Layout = $derived(getComponent(ctx, "layout", config));
+  const Title = $derived(getComponent(ctx, "title", config));
+  const Description = $derived(getComponent(ctx, "description", config));
+  const ErrorsList = $derived(getComponent(ctx, "errorsList", config));
+  const Help = $derived(getComponent(ctx, "help", config));
 
-  const { title, description, showMeta } = $derived(getTemplateProps(config))
+  const { title, description, showMeta } = $derived(getTemplateProps(config));
 </script>
 
 <Layout type="field" {config} {errors}>
   {#if showMeta && ((showTitle && title) || description)}
     <Layout type="field-meta" {config} {errors}>
       {#if showTitle && title}
-        <Title type="field" {title} required={config.required} forId={config.id} {config} {errors}/>
+        <Title
+          type="field"
+          {title}
+          required={config.required}
+          forId={config.id}
+          {config}
+          {errors}
+        />
       {/if}
       {#if description}
         <Description type="field" {description} {config} {errors} />

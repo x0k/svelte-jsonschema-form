@@ -2,11 +2,15 @@
   import {
     getComponent,
     getFormContext,
+    type ComponentProps,
   } from "@/form/index.js";
-  import type { TemplateProps } from '@/fields/index.js';
 
-  const { children, buttons, config, errors }: TemplateProps<"arrayItem"> =
-    $props();
+  const {
+    children,
+    buttons,
+    config,
+    errors,
+  }: ComponentProps["arrayItemTemplate"] = $props();
 
   const ctx = getFormContext();
 

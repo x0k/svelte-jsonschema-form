@@ -9,14 +9,17 @@
 </script>
 
 <script lang="ts">
-  import type { WidgetProps } from "@/fields/widgets.js";
-  import { getFormContext, inputAttributes } from "@/form/index.js";
+  import {
+    getFormContext,
+    inputAttributes,
+    type ComponentProps,
+  } from "@/form/index.js";
 
   let {
     config,
     value = $bindable(),
     handlers,
-  }: WidgetProps<"checkbox"> = $props();
+  }: ComponentProps["checkboxWidget"] = $props();
 
   const ctx = getFormContext();
 

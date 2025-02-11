@@ -10,9 +10,8 @@
     retrieveSchema,
     getFormContext,
     createChildId,
+    type ComponentProps,
   } from "@/form/index.js";
-
-  import type { FieldProps } from "../fields.js";
 
   import { getArrayContext } from "./context.js";
   import {
@@ -20,7 +19,8 @@
     getNormalArrayItemTitle,
   } from "./get-array-item-name.js";
 
-  let { value = $bindable(), config }: FieldProps<"normalArray"> = $props();
+  let { value = $bindable(), config }: ComponentProps["normalArrayField"] =
+    $props();
 
   const ctx = getFormContext();
   const arrayCtx = getArrayContext();

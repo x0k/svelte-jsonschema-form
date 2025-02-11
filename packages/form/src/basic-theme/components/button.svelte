@@ -21,10 +21,13 @@
 </script>
 
 <script lang="ts">
-  import { defineDisabled, getFormContext } from "@/form/index.js";
-  import type { ComponentProps } from "@/fields/index.js";
+  import {
+    defineDisabled,
+    getFormContext,
+    type ComponentProps,
+  } from "@/form/index.js";
 
-  const { children, type, onclick, config }: ComponentProps<"button"> =
+  const { children, type, onclick, config }: ComponentProps["button"] =
     $props();
 
   const ctx = getFormContext();

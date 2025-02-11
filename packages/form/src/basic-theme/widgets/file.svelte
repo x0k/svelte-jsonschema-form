@@ -9,8 +9,11 @@
 </script>
 
 <script lang="ts">
-  import { getFormContext, inputAttributes } from "@/form/index.js";
-  import type { WidgetProps } from "@/fields/widgets.js";
+  import {
+    getFormContext,
+    inputAttributes,
+    type ComponentProps,
+  } from "@/form/index.js";
 
   let {
     handlers,
@@ -19,7 +22,7 @@
     processing,
     config,
     value = $bindable(),
-  }: WidgetProps<"file"> = $props();
+  }: ComponentProps["fileWidget"] = $props();
 
   const ctx = getFormContext();
 

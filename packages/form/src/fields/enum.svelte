@@ -7,10 +7,10 @@
     createPseudoId,
     createOptions2,
     getComponent,
+    type ComponentProps,
   } from "@/form/index.js";
-  import type { FieldProps } from "./fields.js";
 
-  let { config, value = $bindable() }: FieldProps<"enum"> = $props();
+  let { config, value = $bindable() }: ComponentProps["enumField"] = $props();
 
   const ctx = getFormContext();
 

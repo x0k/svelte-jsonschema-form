@@ -5,11 +5,10 @@
     validateField,
     getFormContext,
     getComponent,
+    type ComponentProps,
   } from "@/form/index.js";
 
-  import type { FieldProps } from "./fields.js";
-
-  let { config, value = $bindable() }: FieldProps<"string"> = $props();
+  let { config, value = $bindable() }: ComponentProps["stringField"] = $props();
 
   const ctx = getFormContext();
 

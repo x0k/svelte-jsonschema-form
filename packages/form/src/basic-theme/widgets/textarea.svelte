@@ -9,14 +9,17 @@
 </script>
 
 <script lang="ts">
-  import { getFormContext, textareaAttributes } from "@/form/index.js";
-  import type { WidgetProps } from "@/fields/widgets.js";
+  import {
+    getFormContext,
+    textareaAttributes,
+    type ComponentProps,
+  } from "@/form/index.js";
 
   let {
     value = $bindable(),
     config,
     handlers,
-  }: WidgetProps<"textarea"> = $props();
+  }: ComponentProps["textareaWidget"] = $props();
 
   const ctx = getFormContext();
 

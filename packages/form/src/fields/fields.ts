@@ -6,7 +6,7 @@ import type {
 } from "@/core/index.js";
 import type {
   Schema,
-  Components,
+  ComponentProps,
   Config,
   SchemaValue,
   ComponentType,
@@ -18,7 +18,7 @@ export interface FieldCommonProps<V> {
 }
 
 declare module "@/form/index.js" {
-  interface Components {
+  interface ComponentProps {
     multiField: FieldCommonProps<SchemaValue> & {
       combinationKey: typeof ONE_OF_KEY | typeof ANY_OF_KEY;
     };
@@ -70,9 +70,3 @@ declare module "@/form/index.js" {
     hiddenField: "value";
   }
 }
-
-export type FieldType = {
-  [T in ComponentType]: T extends `${infer K}Field` ? K : never;
-}[ComponentType];
-
-export type FieldProps<T extends FieldType> = Components[`${T}Field`];

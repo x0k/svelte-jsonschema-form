@@ -5,13 +5,12 @@
     validateField,
     getFormContext,
     getComponent,
+    type ComponentProps,
   } from "@/form/index.js";
-
-  import type { FieldProps } from "./fields.js";
 
   const ctx = getFormContext();
 
-  let { value = $bindable(), config }: FieldProps<"number"> = $props();
+  let { value = $bindable(), config }: ComponentProps["numberField"] = $props();
 
   const Template = $derived(getComponent(ctx, "fieldTemplate", config));
   const Widget = $derived(getComponent(ctx, "numberWidget", config));

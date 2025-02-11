@@ -1,7 +1,7 @@
 import type { Snippet } from "svelte";
 
 import type {
-  Components,
+  ComponentProps,
   ComponentType,
   Config,
   ValidationError,
@@ -58,7 +58,7 @@ export interface ParentTemplateTypes {
 export type ParentTemplateType = keyof ParentTemplateTypes;
 
 declare module "@/form/index.js" {
-  interface Components {
+  interface ComponentProps {
     button: ComponentCommonProps & {
       type: ButtonType;
       children: Snippet;
@@ -95,5 +95,3 @@ declare module "@/form/index.js" {
     errorsList: "";
   }
 }
-
-export type ComponentProps<T extends ComponentType> = Components[T];

@@ -17,15 +17,14 @@
 </script>
 
 <script lang="ts">
-  import { getFormContext } from "@/form/index.js";
-  import type { ComponentProps } from "@/fields/index.js";
+  import { getFormContext, type ComponentProps } from "@/form/index.js";
 
   let {
     children,
     ref = $bindable(),
     config,
     attributes,
-  }: ComponentProps<"form"> = $props();
+  }: ComponentProps["form"] = $props();
 
   const ctx = getFormContext();
 </script>

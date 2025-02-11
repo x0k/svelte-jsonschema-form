@@ -28,13 +28,12 @@
     AFTER_SUBMITTED,
     ON_ARRAY_CHANGE,
     getComponent,
+    type ComponentProps,
   } from "@/form/index.js";
-
-  import type { FieldProps } from "../fields.js";
 
   import { setArrayContext, type ArrayContext } from "./context.js";
 
-  let { value = $bindable(), config }: FieldProps<"array"> = $props();
+  let { value = $bindable(), config }: ComponentProps["arrayField"] = $props();
 
   const ctx = getFormContext();
 

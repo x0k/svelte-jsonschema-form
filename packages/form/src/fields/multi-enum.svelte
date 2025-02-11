@@ -7,15 +7,14 @@
     createPseudoId,
     createOptions2,
     getComponent,
+    type ComponentProps,
   } from "@/form/index.js";
-
-  import type { FieldProps } from "./fields.js";
 
   let {
     config,
     value = $bindable(),
     itemSchema,
-  }: FieldProps<"multiEnum"> = $props();
+  }: ComponentProps["multiEnumField"] = $props();
 
   const ctx = getFormContext();
 

@@ -2,11 +2,15 @@
   import {
     getComponent,
     getFormContext,
+    type ComponentProps,
   } from "@/form/index.js";
-  import type { TemplateProps } from '@/fields/index.js';
 
-  const { children, optionSelector, config, errors }: TemplateProps<"multiField"> =
-    $props();
+  const {
+    children,
+    optionSelector,
+    config,
+    errors,
+  }: ComponentProps["multiFieldTemplate"] = $props();
 
   const ctx = getFormContext();
 

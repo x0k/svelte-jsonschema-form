@@ -1,6 +1,6 @@
 import type { EnumOption, SchemaArrayValue } from "@/core/index.js";
 import {
-  type Components,
+  type ComponentProps,
   type ComponentType,
   type Config,
   type FieldErrors,
@@ -37,7 +37,7 @@ export interface Options {
 }
 
 declare module "@/form/index.js" {
-  interface Components {
+  interface ComponentProps {
     textWidget: WidgetCommonProps<"text">;
     textareaWidget: WidgetCommonProps<"textarea">;
     numberWidget: WidgetCommonProps<"number">;
@@ -64,9 +64,3 @@ declare module "@/form/index.js" {
     fileWidget: "value";
   }
 }
-
-export type WidgetType = {
-  [T in ComponentType]: T extends `${infer K}Widget` ? K : never;
-}[ComponentType];
-
-export type WidgetProps<T extends WidgetType> = Components[`${T}Widget`];

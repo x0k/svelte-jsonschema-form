@@ -5,7 +5,7 @@
   import type { Config } from "./config.js";
 
   declare module "./theme.js" {
-    interface Components {
+    interface ComponentProps {
       form: {
         config: Config;
         ref?: FormElement | undefined;

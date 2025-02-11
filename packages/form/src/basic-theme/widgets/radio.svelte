@@ -9,8 +9,11 @@
 </script>
 
 <script lang="ts">
-  import { inputAttributes, getFormContext } from "@/form/index.js";
-  import type { WidgetProps } from "@/fields/widgets.js";
+  import {
+    inputAttributes,
+    getFormContext,
+    type ComponentProps,
+  } from "@/form/index.js";
   import { indexMapper, singleOption } from "@/options.svelte.js";
 
   let {
@@ -18,7 +21,7 @@
     config,
     value = $bindable(),
     options,
-  }: WidgetProps<"radio"> = $props();
+  }: ComponentProps["radioWidget"] = $props();
 
   const ctx = getFormContext();
 
