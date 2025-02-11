@@ -32,3 +32,11 @@ export function computePseudoId(
 ) {
   return `${instanceId}${pseudoIdSeparator}${element}` as Id;
 }
+
+export function makeChildId(
+  idSeparator: string,
+  arrayOrObjectId: Id,
+  indexOrProperty: number | string
+): Id {
+  return `${arrayOrObjectId}${idSeparator}${indexOrProperty}` as Id;
+}

@@ -1,22 +1,51 @@
-<script lang="ts">
-  import { setFromContext, type FormContext } from "./context/context.js";
-  import Content from "./content.svelte";
-  import SubmitButton from "./submit-button.svelte";
-  import FormElementComponent from "./form-element.svelte";
-  import type { FormElement, FormElementProps } from "./theme.js";
+<script lang="ts" module>
+  import type { Snippet } from "svelte";
 
-  interface Props {
-    ref?: FormElement | undefined;
-    attributes?: FormElementProps | undefined;
-    context: FormContext;
+  import type { FormElement, FormAttributes } from "./theme.js";
+  import type { Config } from "./config.js";
+
+  declare module "./theme.js" {
+    interface Components {
+      form: {
+        config: Config;
+        ref?: FormElement | undefined;
+        children: Snippet;
+        attributes?: FormAttributes | undefined;
+      };
+    }
+
+    interface ComponentBindings {
+      form: "ref";
+    }
   }
-
-  let { ref = $bindable(), context, attributes }: Props = $props();
-
-  setFromContext(context);
 </script>
 
-<FormElementComponent bind:ref {attributes}>
-  <Content />
-  <SubmitButton />
-</FormElementComponent>
+<script lang="ts">
+  import { getComponent, getFormContext } from "./context/index.js";
+
+  let {
+    ref = $bindable(),
+    children,
+    attributes,
+  }: {
+    ref?: FormElement | undefined;
+    attributes?: FormAttributes | undefined;
+    children: Snippet;
+  } = $props();
+
+  const ctx = getFormContext();
+
+  const config: Config = $derived({
+    id: ctx.rootId,
+    schema: ctx.schema,
+    uiSchema: ctx.uiSchema,
+    uiOptions: ctx.uiOptions,
+    name: "form-element",
+    title: "",
+    required: false,
+  });
+
+  const Form = $derived(getComponent(ctx, "form", config));
+</script>
+
+<Form bind:ref {config} {children} {attributes} />

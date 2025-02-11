@@ -16,9 +16,9 @@
 </script>
 
 <script lang="ts">
-  import type { ComponentProps } from "@/form/index.js";
+  import type { Components } from "@/form/index.js";
 
-  const { title, type, forId, required, config }: ComponentProps<"title"> =
+  const { title, type, forId, required, config }: Components["title"] =
     $props();
 </script>
 

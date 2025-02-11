@@ -1,21 +1,8 @@
-import { createWidgets } from "@/form/index.js";
-
-import TextWidget from "./text-widget.svelte";
-import TextareaWidget from "./textarea-widget.svelte";
-import NumberWidget from "./number-widget.svelte";
-import SelectWidget from "./select-widget.svelte";
-import CheckBoxWidget from "./checkbox-widget.svelte";
-import RadioWidget from "./radio-widget.svelte";
-import CheckboxesWidget from "./checkboxes-widget.svelte";
-import FileWidget from "./file-widget.svelte";
-
-export const widgets = createWidgets({
-  text: TextWidget,
-  textarea: TextareaWidget,
-  number: NumberWidget,
-  select: SelectWidget,
-  checkbox: CheckBoxWidget,
-  radio: RadioWidget,
-  checkboxes: CheckboxesWidget,
-  file: FileWidget,
-});
+export { default as TextWidget } from "./text.svelte";
+export { default as TextareaWidget } from "./textarea.svelte";
+export { default as NumberWidget } from "./number.svelte";
+export { default as SelectWidget } from "./select.svelte";
+export { default as CheckBoxWidget } from "./checkbox.svelte";
+export { default as RadioWidget } from "./radio.svelte";
+export { default as CheckboxesWidget } from "./checkboxes.svelte";
+export { default as FileWidget } from "./file.svelte";

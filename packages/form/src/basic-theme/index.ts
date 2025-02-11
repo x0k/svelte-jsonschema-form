@@ -1,13 +1,15 @@
-import type { Theme2 } from "@/form/index.js";
-import { fields } from "@/fields/index.js";
-import { templates } from "@/templates/index.js";
+import { fromRecord } from "@/lib/resolver.js";
+import type { ThemeResolver } from "@/form/theme.js";
 
-import { components } from "./components/index.js";
-import { widgets } from "./widgets/index.js";
+import * as fields from "@/fields/index.js";
+import * as templates from "@/templates/index.js";
 
-export const theme = {
-  components,
-  widgets,
-  fields,
-  templates,
-} satisfies Theme2;
+import * as components from "./components/index.js";
+import * as widgets from "./widgets/index.js";
+
+export const theme: ThemeResolver = fromRecord({
+  ...fields,
+  ...templates,
+  ...components,
+  ...widgets,
+});

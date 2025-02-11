@@ -30,9 +30,9 @@ export interface FormElements {}
 
 export type FormElement = FormElements[keyof FormElements];
 
-export interface FormElementsProps {}
+export interface FormProps {}
 
-export type FormElementProps = FormElementsProps[keyof FormElements];
+export type FormAttributes = FormProps[keyof FormElements];
 
 export type CompatibleComponentType<T extends ComponentType> = {
   [C in ComponentType]: Components[C] extends Components[T]

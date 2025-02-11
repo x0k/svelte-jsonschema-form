@@ -21,13 +21,12 @@
     retrieveSchema,
     getFormContext,
     validateField,
-    makeObjectPropertyId,
     AFTER_SUBMITTED,
     ON_OBJECT_CHANGE,
-    createId,
+    createChildId,
   } from "@/form/index.js";
 
-  import type { FieldProps } from '../fields.js';
+  import type { FieldProps } from "../fields.js";
 
   import { setObjectContext, type ObjectContext } from "./context.js";
   import { generateNewKey } from "./generate-new-object-key.js";
@@ -119,7 +118,9 @@
       : []
   );
 
-  const ObjectProperty = $derived(getComponent(ctx, "objectPropertyField", config));
+  const ObjectProperty = $derived(
+    getComponent(ctx, "objectPropertyField", config)
+  );
   const Template = $derived(getComponent(ctx, "objectTemplate", config));
   const Button = $derived(getComponent(ctx, "button", config));
 
@@ -164,14 +165,12 @@
           ? config.uiSchema.additionalProperties
           : config.uiSchema[property]) as UiSchema) ?? {}}
       {@const propUiOptions = getUiOptions(ctx, propUiSchema)}
-      {@const path = config.path.concat(property)}
       <ObjectProperty
         {property}
         {isAdditional}
         bind:value={value[property]}
         config={{
-          id: createId(ctx, path),
-          path,
+          id: createChildId(ctx, config.id, property),
           name: property,
           title: propUiOptions?.title ?? propSchema.title ?? property,
           schema: propSchema,

@@ -1,17 +1,6 @@
-import { createTemplates } from '@/form/index.js';
-
-import FieldTemplate from "./field-template.svelte";
-import ObjectTemplate from "./object-template.svelte";
-import ObjectPropertyTemplate from "./object-property-template.svelte";
-import ArrayTemplate from "./array-template.svelte";
-import ArrayItemTemplate from "./array-item-template.svelte";
-import MultiTemplate from './multi-template.svelte';
-
-export const templates = createTemplates({
-  field: FieldTemplate,
-  object: ObjectTemplate,
-  "object-property": ObjectPropertyTemplate,
-  array: ArrayTemplate,
-  "array-item": ArrayItemTemplate,
-  multi: MultiTemplate,
-})
+export { default as fieldTemplate } from "./field-template.svelte";
+export { default as objectTemplate } from "./object-template.svelte";
+export { default as objectPropertyTemplate } from "./object-property-template.svelte";
+export { default as arrayTemplate } from "./array-template.svelte";
+export { default as arrayItemTemplate } from "./array-item-template.svelte";
+export { default as multiTemplate } from "./multi-template.svelte";

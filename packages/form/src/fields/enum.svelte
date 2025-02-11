@@ -4,7 +4,7 @@
     getErrors,
     validateField,
     getFormContext,
-    makePseudoId,
+    createPseudoId,
     createOptions2,
     getComponent,
   } from "@/form/index.js";
@@ -23,7 +23,7 @@
   );
   const options = $derived(
     createOptions2(config.schema, config.uiSchema, config.uiOptions, (i) =>
-      makePseudoId(ctx, config.id, i)
+      createPseudoId(ctx, config.id, i)
     ) ?? []
   );
   const errors = $derived(getErrors(ctx, config.id));

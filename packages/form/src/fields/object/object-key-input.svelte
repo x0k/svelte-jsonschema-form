@@ -6,7 +6,7 @@
     getErrors,
     getUiOptions,
     getFormContext,
-    makePseudoId,
+    createPseudoId,
     getComponent,
     NO_OPTIONS,
     type Id,
@@ -30,7 +30,7 @@
   const ctx = getFormContext();
   const objCtx = getObjectContext();
 
-  const id = $derived(makePseudoId(ctx, parentId, "key-input"));
+  const id = $derived(createPseudoId(ctx, parentId, "key-input"));
   const uiOptions = $derived(getUiOptions(ctx, uiSchema));
   const config: Config = $derived({
     id,

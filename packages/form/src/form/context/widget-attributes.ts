@@ -9,7 +9,7 @@ import type { Nullable } from "@/lib/types.js";
 import type { Config } from "../config.js";
 
 import type { FormContext } from "./context.js";
-import { makePseudoId } from "./id.js";
+import { createPseudoId } from "./id.js";
 
 interface Disabled {
   disabled: boolean;
@@ -73,7 +73,7 @@ export function inputAttributes(
       max: schema.maximum,
       step: schema.multipleOf ?? (schema.type === "number" ? "any" : undefined),
       list: Array.isArray(schema.examples)
-        ? makePseudoId(ctx, id, "examples")
+        ? createPseudoId(ctx, id, "examples")
         : undefined,
       readonly: schema.readOnly,
       oninput: handlers.oninput,

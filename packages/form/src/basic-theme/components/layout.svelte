@@ -1,7 +1,7 @@
 <script lang="ts" module>
   import type { HTMLAttributes } from "svelte/elements";
 
-  import type { LayoutType } from "@/form/index.js";
+  import type { LayoutType } from "@/fields/components.js";
 
   declare module "@/form/index.js" {
     interface UiOptions {
@@ -14,18 +14,18 @@
        * This override takes precedence over the `layout` override, but does not replace it.
        */
       layouts?: {
-        [L in keyof LayoutType]?: HTMLAttributes<HTMLDivElement>;
+        [L in LayoutType]?: HTMLAttributes<HTMLDivElement>;
       };
     }
   }
 </script>
 
 <script lang="ts">
-  import type { ComponentProps } from "@/form/index.js";
+  import type { Components } from "@/form/index.js";
 
-  const { type, children, config }: ComponentProps<"layout"> = $props();
+  const { type, children, config }: Components["layout"] = $props();
 
-  function getStyle(type: ComponentProps<"layout">["type"]) {
+  function getStyle(type: LayoutType) {
     switch (type) {
       case "array-item":
       case "array-item-controls":

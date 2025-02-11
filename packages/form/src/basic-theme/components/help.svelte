@@ -12,9 +12,9 @@
 </script>
 
 <script lang="ts">
-  import type { ComponentProps } from "@/form/index.js";
+  import type { Components } from "@/form/index.js";
 
-  const { help, config }: ComponentProps<"help"> = $props();
+  const { help, config }: Components["help"] = $props();
 </script>
 
 <div style="font-weight: 300;" {...config.uiOptions?.helpAttributes}>

@@ -9,8 +9,7 @@
     getUiOptions,
     retrieveSchema,
     getFormContext,
-    makeIdSchema,
-    makeArrayItemId,
+    createChildId,
   } from "@/form/index.js";
 
   import type { FieldProps } from "../fields.js";
@@ -93,21 +92,15 @@
           : Array.isArray(uiSchema.items)
             ? uiSchema.items[index]
             : uiSchema.items) ?? {}}
-      {@const itemIdSchema = makeIdSchema(
-        ctx,
-        itemSchema,
-        makeArrayItemId(ctx, config.idSchema.$id, index),
-        item
-      )}
       <ArrayItem
         {index}
         config={{
+          id: createChildId(ctx, config.id, index),
           name: getArrayItemName(config, index),
           title: getFixedArrayItemTitle(config, index),
           schema: itemSchema,
           uiSchema: itemUiSchema,
           uiOptions: getUiOptions(ctx, itemUiSchema),
-          idSchema: itemIdSchema,
           required: !isSchemaNullable(itemSchema),
         }}
         bind:value={value[index]}

@@ -23,7 +23,7 @@
   const Button = $derived(getComponent(ctx, "button", config));
 
   const toolbar = $derived(canCopy || canRemove || canMoveUp || canMoveDown);
-  const errors = $derived(getErrors(ctx, config.idSchema));
+  const errors = $derived(getErrors(ctx, config.id));
 </script>
 
 {#snippet buttons()}

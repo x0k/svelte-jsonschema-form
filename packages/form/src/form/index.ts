@@ -16,7 +16,7 @@ export * from "./context/index.js";
 export * from "./create-form.svelte.js";
 export { default as Content } from "./content.svelte";
 export { default as SubmitButton } from "./submit-button.svelte";
-export { default as FormElement } from "./form-element.svelte";
 export { default as Form } from "./form.svelte";
+export { default as SimpleForm } from "./simple-form.svelte";
 export { default as ErrorMessage, createMessage } from "./error-message.svelte";
 export { default as Datalist } from "./datalist.svelte";

@@ -6,7 +6,7 @@
       form: HTMLFormElement;
     }
 
-    interface FormElementsProps {
+    interface FormProps {
       form: HTMLFormAttributes;
     }
 

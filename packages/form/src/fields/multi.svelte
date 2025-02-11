@@ -25,7 +25,7 @@
     retrieveSchema,
     sanitizeDataForNewSchema,
     getFormContext,
-    makePseudoId,
+    createPseudoId,
     getComponent,
   } from "@/form/index.js";
 
@@ -139,7 +139,7 @@
   });
   const enumOptions = $derived<EnumOption<number>[]>(
     retrievedOptions.map((s, i) => ({
-      id: makePseudoId(ctx, config.id, i),
+      id: createPseudoId(ctx, config.id, i),
       label: optionsUiOptions[i]?.title ?? s.title ?? enumOptionLabel(i),
       value: i,
       disabled: false,
@@ -153,8 +153,7 @@
     const uiSchema = config.uiSchema.multiFieldOptionSelector ?? {};
     const uiOptions = getUiOptions(ctx, uiSchema);
     return {
-      id: makePseudoId(ctx, config.id, suffix),
-      path: config.path,
+      id: createPseudoId(ctx, config.id, suffix),
       name: `${config.name}__${suffix}`,
       required: true,
       title: config.title,
@@ -181,7 +180,6 @@
       bind:value
       config={{
         id: config.id,
-        path: config.path,
         name: config.name,
         required: config.required,
         title: "",

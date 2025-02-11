@@ -1,19 +1,8 @@
-import { createComponents } from "@/form/index.js";
-
-import FormComponent from "./form-component.svelte";
-import ButtonComponent from "./button-component.svelte";
-import LayoutComponent from "./layout-component.svelte";
-import TitleComponent from "./title-component.svelte";
-import DescriptionComponent from "./description-component.svelte";
-import HelpComponent from "./help-component.svelte";
-import ErrorsList from "./errors-list.svelte";
-
-export const components = createComponents({
-  form: FormComponent,
-  button: ButtonComponent,
-  layout: LayoutComponent,
-  title: TitleComponent,
-  description: DescriptionComponent,
-  help: HelpComponent,
-  errorsList: ErrorsList,
-});
+export { default as form } from "./form.svelte";
+export { default as button } from "./button.svelte";
+export { default as layout } from "./layout.svelte";
+export { default as title } from "./title.svelte";
+export { default as description } from "./description.svelte";
+export { default as help } from "./help.svelte";
+export { default as errorsList } from "./errors-list.svelte";
+export { default as submitButton } from "./submit-button.svelte";

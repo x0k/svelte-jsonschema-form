@@ -7,7 +7,7 @@ export interface ComponentCommonProps {
   errors: ValidationError<unknown>[];
 }
 
-export interface ButtonType {
+export interface ButtonTypes {
   "object-property-add": {};
   "object-property-remove": {};
   "array-item-add": {};
@@ -17,7 +17,9 @@ export interface ButtonType {
   "array-item-remove": {};
 }
 
-export interface LayoutType {
+export type ButtonType = keyof ButtonTypes;
+
+export interface LayoutTypes {
   "root-field": {};
   field: {};
   "field-meta": {};
@@ -40,31 +42,35 @@ export interface LayoutType {
   "multi-field-controls": {};
 }
 
-export interface ParentTemplateType {
+export type LayoutType = keyof LayoutTypes;
+
+export interface ParentTemplateTypes {
   field: {};
   object: {};
   array: {};
 }
 
+export type ParentTemplateType = keyof ParentTemplateTypes;
+
 declare module "@/form/index.js" {
   interface Components {
     button: ComponentCommonProps & {
-      type: keyof ButtonType;
+      type: ButtonType;
       children: Snippet;
       onclick: () => void;
     };
     layout: ComponentCommonProps & {
-      type: keyof LayoutType;
+      type: LayoutType;
       children: Snippet;
     };
     title: ComponentCommonProps & {
-      type: keyof ParentTemplateType;
+      type: ParentTemplateType;
       title: string;
       forId: string;
       required: boolean;
     };
     description: ComponentCommonProps & {
-      type: keyof ParentTemplateType;
+      type: ParentTemplateType;
       description: string;
     };
     help: ComponentCommonProps & {

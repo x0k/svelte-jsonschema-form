@@ -6,7 +6,7 @@
     getErrors,
     validateField,
     getFormContext,
-    makePseudoId,
+    createPseudoId,
     createOptions2,
     DEFAULT_BOOLEAN_ENUM,
     getComponent,
@@ -24,7 +24,7 @@
   const options = $derived.by(() => {
     const yes = ctx.translation("yes");
     const no = ctx.translation("no");
-    const computeId = (i: number) => makePseudoId(ctx, config.id, i);
+    const computeId = (i: number) => createPseudoId(ctx, config.id, i);
     if (Array.isArray(config.schema.oneOf)) {
       return (
         createOptions2(
@@ -54,7 +54,7 @@
       config.uiOptions?.enumNames === undefined
     ) {
       return enumValues.map((v, i) => ({
-        id: makePseudoId(ctx, config.id, i),
+        id: createPseudoId(ctx, config.id, i),
         label: v ? yes : no,
         value: v,
         disabled: false,

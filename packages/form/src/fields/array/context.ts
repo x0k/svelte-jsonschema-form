@@ -1,14 +1,8 @@
 import { getContext, setContext } from "svelte";
 
-import type { SchemaArrayValue, Schema, SchemaValue } from "@/core/index.js";
+import type { Schema } from "@/core/index.js";
 
-import {
-  type FormContext,
-  makeArrayItemId,
-  makeIdSchema,
-  type ValidationError,
-  type IdSchema,
-} from "@/form/index.js";
+import type { ValidationError } from "@/form/index.js";
 
 export interface ArrayContext {
   disabled: boolean;
@@ -36,22 +30,4 @@ export function getArrayContext(): ArrayContext {
 
 export function setArrayContext(ctx: ArrayContext) {
   setContext(ARRAY_CONTEXT, ctx);
-}
-
-/**
- * @deprecated use `makeIdSchema`
- */
-export function getArrayItemSchemaId(
-  ctx: FormContext,
-  arrayIdSchema: IdSchema<SchemaArrayValue>,
-  itemSchema: Schema,
-  index: number,
-  value: SchemaValue | undefined
-) {
-  return makeIdSchema(
-    ctx,
-    itemSchema,
-    makeArrayItemId(ctx, arrayIdSchema.$id, index),
-    value
-  );
 }
