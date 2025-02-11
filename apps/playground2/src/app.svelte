@@ -9,9 +9,10 @@
     AFTER_SUBMITTED,
     AFTER_TOUCHED,
     createForm3,
-    RawForm,
+    SimpleForm,
     ON_ARRAY_CHANGE,
     ON_OBJECT_CHANGE,
+    setFromContext,
   } from "@sjsf/form";
   import {
     translation,
@@ -123,17 +124,14 @@
     initialValue: samples[initialSampleName].formData,
     initialErrors: samples[initialSampleName].errors ?? new SvelteMap(),
     translation,
+    get theme() {
+      return theme;
+    },
     get schema() {
       return schema;
     },
     get uiSchema() {
       return uiSchema;
-    },
-    get components() {
-      return theme.components;
-    },
-    get widgets() {
-      return theme.widgets;
     },
     get validator() {
       return validator;
@@ -157,6 +155,7 @@
       console.log("errors", errors);
     },
   });
+  setFromContext(form.context);
 
   let playgroundTheme = $state<"system" | "light" | "dark">(
     localStorage.theme ?? "system"
@@ -319,12 +318,11 @@
       class="flex-[3] max-h-[770px] overflow-y-auto"
       style={`${themeStyle}\n${iconSetStyle}`}
     >
-      <RawForm
-        {form}
-        data-theme={themeName === "skeleton" ? "cerberus" : lightOrDark}
+      <SimpleForm
         class={lightOrDark}
         style="background-color: transparent; display: flex; flex-direction: column; gap: 1rem; padding: 0.3rem;"
         novalidate={!html5Validation || undefined}
+        data-theme={themeName === "skeleton" ? "cerberus" : lightOrDark}
       />
       {#if location.hostname === "localhost"}
         <Debug />

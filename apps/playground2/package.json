@@ -1,8 +1,8 @@
 {
-  "name": "playground",
+  "name": "playground2",
   "private": true,
   "type": "module",
-  "version": "1.2.4",
+  "version": "0.0.1",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -10,19 +10,20 @@
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "dependencies": {
-    "@sjsf/form": "^1.9.2",
-    "@sjsf/ajv8-validator": "^1.9.2",
-    "@sjsf/cfworker-validator": "^1.9.2",
+    "@sjsf/form": "workspace:*",
+    "@sjsf/ajv8-validator": "workspace:*",
+    "@sjsf/cfworker-validator": "workspace:*",
     "ajv": "catalog:",
     "rehype-raw": "^7.0.0",
     "svelte-exmarkdown": "^4.0.2",
-    "@sjsf/daisyui-theme": "^1.9.2",
-    "@sjsf/flowbite-theme": "^1.9.2",
-    "@sjsf/flowbite-icons": "^1.9.2",
-    "@sjsf/skeleton-theme": "^1.9.2",
-    "@sjsf/lucide-icons": "^1.9.2",
-    "@sjsf/shadcn-theme": "^1.9.2",
-    "@sjsf/radix-icons": "^1.9.2"
+    "@sjsf/daisyui-theme": "workspace:*",
+    "@sjsf/flowbite-theme": "workspace:*",
+    "@sjsf/flowbite-icons": "workspace:*",
+    "@sjsf/skeleton-theme": "workspace:*",
+    "@sjsf/lucide-icons": "workspace:*",
+    "@sjsf/shadcn-theme": "workspace:*",
+    "@sjsf/radix-icons": "workspace:*",
+    "@sjsf/daisyui5-theme": "workspace:*"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "catalog:",

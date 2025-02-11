@@ -191,6 +191,73 @@ importers:
   apps/playground:
     dependencies:
       '@sjsf/ajv8-validator':
+        specifier: ^1.9.2
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.19.7))(ajv@8.17.1)
+      '@sjsf/cfworker-validator':
+        specifier: ^1.9.2
+        version: 1.9.2(@cfworker/json-schema@4.1.1)(@sjsf/form@1.9.2(svelte@5.19.7))
+      '@sjsf/daisyui-theme':
+        specifier: ^1.9.2
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.19.7))(daisyui@5.0.0-beta.6)(svelte@5.19.7)
+      '@sjsf/flowbite-icons':
+        specifier: ^1.9.2
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.19.7))(flowbite-svelte-icons@2.0.2(svelte@5.19.7)(tailwind-merge@2.6.0)(tailwindcss@3.4.17))(svelte@5.19.7)
+      '@sjsf/flowbite-theme':
+        specifier: ^1.9.2
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.19.7))(flowbite-svelte@0.47.4(rollup@4.24.0)(svelte@5.19.7))(flowbite@2.5.2(rollup@4.24.0))(svelte@5.19.7)
+      '@sjsf/form':
+        specifier: ^1.9.2
+        version: 1.9.2(svelte@5.19.7)
+      '@sjsf/lucide-icons':
+        specifier: ^1.9.2
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.19.7))(lucide-svelte@0.474.0(svelte@5.19.7))(svelte@5.19.7)
+      '@sjsf/radix-icons':
+        specifier: ^1.9.2
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.19.7))(svelte-radix@2.0.1(svelte@5.19.7))(svelte@5.19.7)
+      '@sjsf/shadcn-theme':
+        specifier: ^1.9.2
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.19.7))(bits-ui@1.0.0-next.86(svelte@5.19.7))(clsx@2.1.1)(lucide-svelte@0.474.0(svelte@5.19.7))(svelte@5.19.7)(tailwind-merge@2.6.0)(tailwind-variants@0.3.1(tailwindcss@3.4.17))
+      '@sjsf/skeleton-theme':
+        specifier: ^1.9.2
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.19.7))(@skeletonlabs/skeleton@3.0.0-next.10(postcss@8.5.1)(tailwindcss@3.4.17))(@tailwindcss/forms@0.5.10(tailwindcss@3.4.17))(svelte@5.19.7)
+      ajv:
+        specifier: 'catalog:'
+        version: 8.17.1
+      rehype-raw:
+        specifier: ^7.0.0
+        version: 7.0.0
+      svelte-exmarkdown:
+        specifier: ^4.0.2
+        version: 4.0.2(svelte@5.19.7)
+    devDependencies:
+      '@sveltejs/vite-plugin-svelte':
+        specifier: 'catalog:'
+        version: 5.0.3(svelte@5.19.7)(vite@6.0.11(@types/node@22.7.5)(jiti@2.4.2)(lightningcss@1.29.1)(yaml@2.5.1))
+      '@tsconfig/svelte':
+        specifier: 'catalog:'
+        version: 5.0.4
+      autoprefixer:
+        specifier: 'catalog:'
+        version: 10.4.20(postcss@8.5.1)
+      postcss:
+        specifier: 'catalog:'
+        version: 8.5.1
+      svelte:
+        specifier: 'catalog:'
+        version: 5.19.7
+      svelte-check:
+        specifier: 'catalog:'
+        version: 4.1.4(picomatch@4.0.2)(svelte@5.19.7)(typescript@5.7.3)
+      tailwindcss:
+        specifier: 'catalog:'
+        version: 3.4.17
+      vite:
+        specifier: 'catalog:'
+        version: 6.0.11(@types/node@22.7.5)(jiti@2.4.2)(lightningcss@1.29.1)(yaml@2.5.1)
+
+  apps/playground2:
+    dependencies:
+      '@sjsf/ajv8-validator':
         specifier: workspace:*
         version: link:../../packages/ajv8-validator
       '@sjsf/cfworker-validator':
@@ -1900,6 +1967,78 @@ packages:
 
   '@shikijs/vscode-textmate@10.0.1':
     resolution: {integrity: sha512-fTIQwLF+Qhuws31iw7Ncl1R3HUDtGwIipiJ9iU+UsDUwMhegFcQKQHd51nZjb7CArq0MvON8rbgCGQYWHUKAdg==}
+
+  '@sjsf/ajv8-validator@1.9.2':
+    resolution: {integrity: sha512-xFllLo6wAk/T9WJ+cX17v6O1ZJTKjCVDd7D4f+NxZ+tz5CWJODgyFOVAc+dt24D7OQnL0j1HjlvZMBHajWD9mA==}
+    peerDependencies:
+      '@sjsf/form': ^1.9.2
+      ajv: ^8.0.0
+
+  '@sjsf/cfworker-validator@1.9.2':
+    resolution: {integrity: sha512-3sVOfWzEAknNR7feJg8l9oQcdglzKzNt7lKUvrg0KTpjRSSgwneYhJPyjnBrXitFhDkhH3NXzF2Q4/ELXrfPtQ==}
+    peerDependencies:
+      '@cfworker/json-schema': ^2.0.0 || ^3.0.0 || ^4.0.0
+      '@sjsf/form': ^1.9.2
+
+  '@sjsf/daisyui-theme@1.9.2':
+    resolution: {integrity: sha512-SXP3WUOg6ptm6NQpiUSrTEbsCphUWvM+WAocmPYG2Wx6CspsrxnWLxSlB3RJmRqrDbv6C271qkHtLVazVhJkEA==}
+    peerDependencies:
+      '@sjsf/form': ^1.9.2
+      daisyui: ^4.0.0
+      svelte: ^5.0.0
+
+  '@sjsf/flowbite-icons@1.9.2':
+    resolution: {integrity: sha512-PZoR6NXVRdMoSWEOtp49GPsYzBOBbO18Gf9Jtjxgc1Yppb2C1kLuLWAN4we4FbYMfQnzrgFuhvo8GCu8j7Yc4g==}
+    peerDependencies:
+      '@sjsf/form': ^1.9.2
+      flowbite-svelte-icons: ^2.0.0-next.1
+      svelte: ^5.0.0
+
+  '@sjsf/flowbite-theme@1.9.2':
+    resolution: {integrity: sha512-emXmy7iJkjUtgs0D1SbUUXseCXcD6Qo1v6wRUt6X2t6LrhGKT5b+JFrCWeTnoeXCnNffjaZiLStuGjRKiV5Wng==}
+    peerDependencies:
+      '@sjsf/form': ^1.9.2
+      flowbite: ^2.5.2
+      flowbite-svelte: ^0.47.1
+      svelte: ^5.0.0
+
+  '@sjsf/form@1.9.2':
+    resolution: {integrity: sha512-2s4EOsYfkf9kLAeGsLM2OPT8I2++Poi0gUwoix2wd5+l8RWuHKMsndM8kBNMJGMQN+S9SaVA5ZbkZNzqRS7v+A==}
+    peerDependencies:
+      svelte: ^5.0.0
+
+  '@sjsf/lucide-icons@1.9.2':
+    resolution: {integrity: sha512-IH4ApX+0m1VGkdHFfEdk/3IGDXFGq+g+dUEKYukAvQVJ7JcQ5XmLC+RZyfub6T3AyxIrh+aP+H2pU7+Fm+bHsg==}
+    peerDependencies:
+      '@sjsf/form': ^1.9.2
+      lucide-svelte: ^0.453.0
+      svelte: ^5.0.0
+
+  '@sjsf/radix-icons@1.9.2':
+    resolution: {integrity: sha512-lD048+S1GQp+ms27Ij9HfxtxfDl2hu5B6HWELpnf+Ulo16YHusZoGcwTZmgYA5hmUfcfBkuirzNpjur517MT1Q==}
+    peerDependencies:
+      '@sjsf/form': ^1.9.2
+      svelte: ^5.0.0
+      svelte-radix: ^2.0.0
+
+  '@sjsf/shadcn-theme@1.9.2':
+    resolution: {integrity: sha512-WKSc7KD3BdkvDWnt4zXDyh/WFxb8L8UMvNRjErQOAWs2avVgtFOPj0XU/yi6bIj4WvYP+zImXYkLEx47Rv5y5Q==}
+    peerDependencies:
+      '@sjsf/form': ^1.9.2
+      bits-ui: ^1.0.0-next.28
+      clsx: ^2.1.1
+      lucide-svelte: ^0.453.0
+      svelte: ^5.0.0
+      tailwind-merge: ^2.5.4
+      tailwind-variants: ^0.2.1
+
+  '@sjsf/skeleton-theme@1.9.2':
+    resolution: {integrity: sha512-nYUWl+lXMtHaO5KDs8FJWArZUctR1W7atjt3Sb3FZeecbT54yJxyWJgpGaQhMEgJH088vnHXnIMU0Xg7OkWdHA==}
+    peerDependencies:
+      '@sjsf/form': ^1.9.2
+      '@skeletonlabs/skeleton': ^3.0.0-next.5
+      '@tailwindcss/forms': ^0.5.9
+      svelte: ^5.0.0
 
   '@skeletonlabs/skeleton@3.0.0-next.10':
     resolution: {integrity: sha512-unxypP2fcCTCo6uSkFurO1x25Y0OJAWJrDZjQazftYr9EMs88fyWnUH5Nbe6Oj0xoKhW0dToArs5MGFdA4fdzg==}
@@ -6472,6 +6611,72 @@ snapshots:
       '@types/hast': 3.0.4
 
   '@shikijs/vscode-textmate@10.0.1': {}
+
+  '@sjsf/ajv8-validator@1.9.2(@sjsf/form@1.9.2(svelte@5.19.7))(ajv@8.17.1)':
+    dependencies:
+      '@sjsf/form': 1.9.2(svelte@5.19.7)
+      ajv: 8.17.1
+
+  '@sjsf/cfworker-validator@1.9.2(@cfworker/json-schema@4.1.1)(@sjsf/form@1.9.2(svelte@5.19.7))':
+    dependencies:
+      '@cfworker/json-schema': 4.1.1
+      '@sjsf/form': 1.9.2(svelte@5.19.7)
+
+  '@sjsf/daisyui-theme@1.9.2(@sjsf/form@1.9.2(svelte@5.19.7))(daisyui@5.0.0-beta.6)(svelte@5.19.7)':
+    dependencies:
+      '@sjsf/form': 1.9.2(svelte@5.19.7)
+      daisyui: 5.0.0-beta.6
+      svelte: 5.19.7
+
+  '@sjsf/flowbite-icons@1.9.2(@sjsf/form@1.9.2(svelte@5.19.7))(flowbite-svelte-icons@2.0.2(svelte@5.19.7)(tailwind-merge@2.6.0)(tailwindcss@3.4.17))(svelte@5.19.7)':
+    dependencies:
+      '@sjsf/form': 1.9.2(svelte@5.19.7)
+      flowbite-svelte-icons: 2.0.2(svelte@5.19.7)(tailwind-merge@2.6.0)(tailwindcss@3.4.17)
+      svelte: 5.19.7
+
+  '@sjsf/flowbite-theme@1.9.2(@sjsf/form@1.9.2(svelte@5.19.7))(flowbite-svelte@0.47.4(rollup@4.24.0)(svelte@5.19.7))(flowbite@2.5.2(rollup@4.24.0))(svelte@5.19.7)':
+    dependencies:
+      '@sjsf/form': 1.9.2(svelte@5.19.7)
+      flowbite: 2.5.2(rollup@4.24.0)
+      flowbite-svelte: 0.47.4(rollup@4.24.0)(svelte@5.19.7)
+      svelte: 5.19.7
+
+  '@sjsf/form@1.9.2(svelte@5.19.7)':
+    dependencies:
+      es-toolkit: 1.32.0
+      fast-equals: 5.2.2
+      json-schema-merge-allof: 0.8.1
+      jsonpointer: 5.0.1
+      svelte: 5.19.7
+
+  '@sjsf/lucide-icons@1.9.2(@sjsf/form@1.9.2(svelte@5.19.7))(lucide-svelte@0.474.0(svelte@5.19.7))(svelte@5.19.7)':
+    dependencies:
+      '@sjsf/form': 1.9.2(svelte@5.19.7)
+      lucide-svelte: 0.474.0(svelte@5.19.7)
+      svelte: 5.19.7
+
+  '@sjsf/radix-icons@1.9.2(@sjsf/form@1.9.2(svelte@5.19.7))(svelte-radix@2.0.1(svelte@5.19.7))(svelte@5.19.7)':
+    dependencies:
+      '@sjsf/form': 1.9.2(svelte@5.19.7)
+      svelte: 5.19.7
+      svelte-radix: 2.0.1(svelte@5.19.7)
+
+  '@sjsf/shadcn-theme@1.9.2(@sjsf/form@1.9.2(svelte@5.19.7))(bits-ui@1.0.0-next.86(svelte@5.19.7))(clsx@2.1.1)(lucide-svelte@0.474.0(svelte@5.19.7))(svelte@5.19.7)(tailwind-merge@2.6.0)(tailwind-variants@0.3.1(tailwindcss@3.4.17))':
+    dependencies:
+      '@sjsf/form': 1.9.2(svelte@5.19.7)
+      bits-ui: 1.0.0-next.86(svelte@5.19.7)
+      clsx: 2.1.1
+      lucide-svelte: 0.474.0(svelte@5.19.7)
+      svelte: 5.19.7
+      tailwind-merge: 2.6.0
+      tailwind-variants: 0.3.1(tailwindcss@3.4.17)
+
+  '@sjsf/skeleton-theme@1.9.2(@sjsf/form@1.9.2(svelte@5.19.7))(@skeletonlabs/skeleton@3.0.0-next.10(postcss@8.5.1)(tailwindcss@3.4.17))(@tailwindcss/forms@0.5.10(tailwindcss@3.4.17))(svelte@5.19.7)':
+    dependencies:
+      '@sjsf/form': 1.9.2(svelte@5.19.7)
+      '@skeletonlabs/skeleton': 3.0.0-next.10(postcss@8.5.1)(tailwindcss@3.4.17)
+      '@tailwindcss/forms': 0.5.10(tailwindcss@3.4.17)
+      svelte: 5.19.7
 
   '@skeletonlabs/skeleton@3.0.0-next.10(postcss@8.5.1)(tailwindcss@3.4.17)':
     dependencies:
