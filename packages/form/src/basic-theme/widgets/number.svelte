@@ -1,7 +1,7 @@
 <script lang="ts" module>
   import type { HTMLInputAttributes } from "svelte/elements";
 
-  declare module "@/form/index.js" {
+  declare module "../../form/index.js" {
     interface UiOptions {
       number?: HTMLInputAttributes;
     }

@@ -36,7 +36,7 @@ export interface Options {
   options: EnumOption<SchemaValue>[];
 }
 
-declare module "@/form/index.js" {
+declare module "../form/index.js" {
   interface ComponentProps {
     textWidget: WidgetCommonProps<"text">;
     textareaWidget: WidgetCommonProps<"textarea">;

@@ -3,7 +3,7 @@
 
   import type { ButtonType } from "@/fields/components.js";
 
-  declare module "@/form/index.js" {
+  declare module "../../form/index.js" {
     interface UiOptions {
       /**
        * Overrides the attributes of any button component.

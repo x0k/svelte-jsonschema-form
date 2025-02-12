@@ -1,7 +1,7 @@
 <script lang="ts" module>
   import type { HTMLSelectAttributes } from "svelte/elements";
 
-  declare module "@/form/index.js" {
+  declare module "../../form/index.js" {
     interface UiOptions {
       multiSelect?: HTMLSelectAttributes;
     }

@@ -19,7 +19,7 @@ export interface TemplateCommonProps<V extends SchemaValue> {
   children: Snippet;
 }
 
-declare module "@/form/index.js" {
+declare module "../form/index.js" {
   interface ComponentProps {
     fieldTemplate: TemplateCommonProps<SchemaValue> & {
       showTitle: boolean;

@@ -1,7 +1,7 @@
 <script lang="ts" module>
   import type { HTMLAttributes } from "svelte/elements";
 
-  declare module "@/form/index.js" {
+  declare module "../../form/index.js" {
     interface UiOptions {
       /**
        * Overrides the attributes of the errors list.

@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  declare module "@/form/index.js" {
+  declare module "../form/index.js" {
     interface UiSchemaContent {
       multiFieldOptionSelector?: UiSchema;
     }

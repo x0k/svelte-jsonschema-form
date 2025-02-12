@@ -17,7 +17,7 @@ export interface FieldCommonProps<V> {
   config: Config;
 }
 
-declare module "@/form/index.js" {
+declare module "../form/index.js" {
   interface ComponentProps {
     multiField: FieldCommonProps<SchemaValue> & {
       combinationKey: typeof ONE_OF_KEY | typeof ANY_OF_KEY;
