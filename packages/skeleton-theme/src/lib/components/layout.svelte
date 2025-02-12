@@ -1,7 +1,29 @@
+<script lang="ts" module>
+	import type { HTMLAttributes } from 'svelte/elements';
+
+	import type { LayoutType } from '@sjsf/form/fields';
+
+	declare module '@sjsf/form' {
+		interface UiOptions {
+			/**
+			 * Overrides the attributes of any layout component.
+			 */
+			skeletonLayout?: HTMLAttributes<HTMLDivElement>;
+			/**
+			 * Overrides the attributes of a layout with a specific type.
+			 * This override takes precedence over the `layout` override, but does not replace it.
+			 */
+			skeletonLayouts?: {
+				[L in LayoutType]?: HTMLAttributes<HTMLDivElement>;
+			};
+		}
+	}
+</script>
+
 <script lang="ts">
 	import type { ComponentProps } from '@sjsf/form';
 
-	const { type, children, attributes }: ComponentProps<'layout'> = $props();
+	const { type, children, config }: ComponentProps['layout'] = $props();
 
 	const isItem = $derived(
 		type === 'array-item' || type === 'object-property' || type === 'field-content'
@@ -20,6 +42,11 @@
 			type === 'object-properties' ||
 			type === 'root-field'
 	);
+
+	const attributes = $derived({
+		...config.uiOptions.skeletonLayout,
+		...config.uiOptions.skeletionLayouts?.[type]
+	});
 </script>
 
 <div

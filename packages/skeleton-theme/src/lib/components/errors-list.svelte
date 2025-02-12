@@ -1,11 +1,24 @@
-<script lang="ts">
-  import type { ComponentProps } from "@sjsf/form";
+<script lang="ts" module>
+	import type { HTMLAttributes } from 'svelte/elements';
 
-  const { errors, forId }: ComponentProps<"errorsList"> = $props();
+	declare module '@sjsf/form' {
+		interface UiOptions {
+			/**
+			 * Overrides the attributes of the errors list.
+			 */
+			skeletonErrorsList?: HTMLAttributes<HTMLUListElement>;
+		}
+	}
 </script>
 
-<ui class="text-error-500" data-errors-for={forId}>
-  {#each errors as err}
-    <li>{err.message}</li>
-  {/each}
+<script lang="ts">
+	import type { ComponentProps } from '@sjsf/form';
+
+	const { errors, forId, config }: ComponentProps['errorsList'] = $props();
+</script>
+
+<ui class="text-error-500" data-errors-for={forId} {...config.uiOptions.skeletonErrorsList}>
+	{#each errors as err}
+		<li>{err.message}</li>
+	{/each}
 </ui>

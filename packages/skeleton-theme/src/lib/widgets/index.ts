@@ -1,24 +1,9 @@
-import type { Widget, Widgets, WidgetType } from '@sjsf/form';
-
-import TextWidget from './text-widget.svelte';
-import TextareaWidget from './textarea-widget.svelte';
-import NumberWidget from './number-widget.svelte';
-import SelectWidget from './select-widget.svelte';
-import CheckBoxWidget from './checkbox-widget.svelte';
-import RadioWidget from './radio-widget.svelte';
-import CheckboxesWidget from './checkboxes-widget.svelte';
-import FileWidget from './file-widget.svelte';
-
-export const registry: { [T in WidgetType]: Widget<T> } = {
-	text: TextWidget,
-	textarea: TextareaWidget,
-	number: NumberWidget,
-	select: SelectWidget,
-	checkbox: CheckBoxWidget,
-	radio: RadioWidget,
-	checkboxes: CheckboxesWidget,
-	file: FileWidget,
-};
-
-// @ts-expect-error TODO: improve `widgets` type
-export const widgets: Widgets = (type) => registry[type];
+export { default as textWidget } from './text.svelte';
+export { default as textareaWidget } from './textarea.svelte';
+export { default as numberWidget } from './number.svelte';
+export { default as selectWidget } from './select.svelte';
+export { default as multiSelectWidget } from './multi-select.svelte';
+export { default as checkBoxWidget } from './checkbox.svelte';
+export { default as radioWidget } from './radio.svelte';
+export { default as checkboxesWidget } from './checkboxes.svelte';
+export { default as fileWidget } from './file.svelte';

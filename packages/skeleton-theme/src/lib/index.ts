@@ -1,9 +1,15 @@
-import type { Theme } from '@sjsf/form';
+import { createTheme } from '@sjsf/form';
+import * as fields from '@sjsf/form/fields';
+import * as templates from '@sjsf/form/templates';
 
-import { components } from './components/index.js';
-import { widgets } from './widgets/index.js';
+import * as components from './components';
+import * as widgets from './widgets';
 
-export const theme = {
-	components,
-	widgets
-} satisfies Theme;
+export { fields, templates, components, widgets };
+
+export const theme = createTheme({
+	...fields,
+	...templates,
+	...components,
+	...widgets
+});
