@@ -8,8 +8,8 @@ export {
   arrayItemField,
   fixedArrayField,
   normalArrayField,
-} from "./array/index.js";
-export { objectField, objectPropertyField } from "./object/index.js";
+} from "./array/export.js";
+export { objectField, objectPropertyField } from "./object/export.js";
 export { default as booleanField } from "./boolean.svelte";
 export { default as enumField } from "./enum.svelte";
 export { default as fileField } from "./file.svelte";
