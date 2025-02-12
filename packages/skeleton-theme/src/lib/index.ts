@@ -1,6 +1,6 @@
 import { createTheme } from '@sjsf/form';
-import * as fields from '@sjsf/form/fields';
-import * as templates from '@sjsf/form/templates';
+import * as fields from '@sjsf/form/fields/export';
+import * as templates from '@sjsf/form/templates/export';
 
 import * as components from './components';
 import * as widgets from './widgets';
