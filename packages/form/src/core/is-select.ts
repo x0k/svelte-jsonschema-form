@@ -6,7 +6,7 @@ import { isSchema, type Schema, type SchemaValue } from "./schema.js";
 import type { Validator } from "./validator.js";
 import { retrieveSchema } from "./resolve.js";
 import { getSchemaConstantValue, isSchemaOfConstantValue } from "./constant-schema.js";
-import { defaultMerger, type Merger } from "./merger.js";
+import type { Merger } from "./merger.js";
 
 export function isSelect(
   validator: Validator,
