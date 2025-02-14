@@ -63,30 +63,7 @@ export function getDefaultValueForType(type: SchemaType) {
   }
 }
 
-/**
- * @deprecated use `getDefaultFormState2`
- */
 export function getDefaultFormState(
-  validator: Validator,
-  theSchema: Schema,
-  formData?: SchemaValue,
-  rootSchema?: Schema,
-  includeUndefinedValues: boolean | "excludeObjectChildren" = false,
-  experimental_defaultFormStateBehavior?: Experimental_DefaultFormStateBehavior,
-  merger: Merger2 = defaultMerger
-): SchemaValue | undefined {
-  return getDefaultFormState2(
-    validator,
-    merger,
-    theSchema,
-    formData,
-    rootSchema,
-    includeUndefinedValues,
-    experimental_defaultFormStateBehavior
-  );
-}
-
-export function getDefaultFormState2(
   validator: Validator,
   merger: Merger2,
   theSchema: Schema,

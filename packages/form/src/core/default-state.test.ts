@@ -24,7 +24,7 @@ import {
   ensureFormDataMatchingSchema,
   getArrayDefaults,
   getDefaultBasedOnSchemaType,
-  getDefaultFormState2,
+  getDefaultFormState,
   getInnerSchemaForArrayItem,
   getObjectDefaults,
   type Experimental_DefaultFormStateBehavior,
@@ -83,7 +83,7 @@ describe("getDefaultFormState2()", () => {
 
       test("getDefaultFormState", () => {
         expect(
-          getDefaultFormState2(
+          getDefaultFormState(
             testValidator,
             defaultMerger,
             schema,
@@ -143,7 +143,7 @@ describe("getDefaultFormState2()", () => {
 
       test("getDefaultFormState", () => {
         expect(
-          getDefaultFormState2(
+          getDefaultFormState(
             testValidator,
             defaultMerger,
             schema,
@@ -195,7 +195,7 @@ describe("getDefaultFormState2()", () => {
 
         test("getDefaultFormState", () => {
           expect(
-            getDefaultFormState2(
+            getDefaultFormState(
               testValidator,
               defaultMerger,
               schema,
@@ -278,7 +278,7 @@ describe("getDefaultFormState2()", () => {
 
       test("getDefaultFormState", () => {
         expect(
-          getDefaultFormState2(
+          getDefaultFormState(
             testValidator,
             defaultMerger,
             schema,
@@ -350,7 +350,7 @@ describe("getDefaultFormState2()", () => {
 
       test("getDefaultFormState", () => {
         expect(
-          getDefaultFormState2(
+          getDefaultFormState(
             testValidator,
             defaultMerger,
             schema,
@@ -431,7 +431,7 @@ describe("getDefaultFormState2()", () => {
 
       test("getDefaultFormState", () => {
         expect(
-          getDefaultFormState2(
+          getDefaultFormState(
             testValidator,
             defaultMerger,
             schema,
@@ -521,7 +521,7 @@ describe("getDefaultFormState2()", () => {
 
       test("getDefaultFormState", () => {
         expect(
-          getDefaultFormState2(
+          getDefaultFormState(
             testValidator,
             defaultMerger,
             schema,
@@ -594,7 +594,7 @@ describe("getDefaultFormState2()", () => {
 
       test("getDefaultFormState", () => {
         expect(
-          getDefaultFormState2(
+          getDefaultFormState(
             testValidator,
             defaultMerger,
             schema,
@@ -670,7 +670,7 @@ describe("getDefaultFormState2()", () => {
 
       test("getDefaultFormState", () => {
         expect(
-          getDefaultFormState2(
+          getDefaultFormState(
             testValidator,
             defaultMerger,
             schema,
@@ -755,7 +755,7 @@ describe("getDefaultFormState2()", () => {
 
       test("getDefaultFormState", () => {
         expect(
-          getDefaultFormState2(
+          getDefaultFormState(
             testValidator,
             defaultMerger,
             schema,
@@ -860,7 +860,7 @@ describe("getDefaultFormState2()", () => {
 
         test("getDefaultFormState", () => {
           expect(
-            getDefaultFormState2(
+            getDefaultFormState(
               testValidator,
               defaultMerger,
               schema,
@@ -955,7 +955,7 @@ describe("getDefaultFormState2()", () => {
 
         test("getDefaultFormState", () => {
           expect(
-            getDefaultFormState2(
+            getDefaultFormState(
               testValidator,
               defaultMerger,
               schema,
@@ -1070,7 +1070,7 @@ describe("getDefaultFormState2()", () => {
 
         test("getDefaultFormState", () => {
           expect(
-            getDefaultFormState2(
+            getDefaultFormState(
               testValidator,
               defaultMerger,
               schema,
@@ -1165,7 +1165,7 @@ describe("getDefaultFormState2()", () => {
 
         test("getDefaultFormState", () => {
           expect(
-            getDefaultFormState2(
+            getDefaultFormState(
               testValidator,
               defaultMerger,
               schema,
@@ -1224,7 +1224,7 @@ describe("getDefaultFormState2()", () => {
         test("getDefaultFormState", () => {
           // NOTE: `includeUndefinedValues` is not used L861
           expect(
-            getDefaultFormState2(
+            getDefaultFormState(
               testValidator,
               defaultMerger,
               schema,
@@ -1286,7 +1286,7 @@ describe("getDefaultFormState2()", () => {
 
         test("getDefaultFormState", () => {
           expect(
-            getDefaultFormState2(
+            getDefaultFormState(
               testValidator,
               defaultMerger,
               schema,
@@ -1336,7 +1336,7 @@ describe("getDefaultFormState2()", () => {
 
         test("getDefaultFormState", () => {
           expect(
-            getDefaultFormState2(
+            getDefaultFormState(
               testValidator,
               defaultMerger,
               schema,
@@ -1422,7 +1422,7 @@ describe("getDefaultFormState2()", () => {
 
         test("getDefaultFormState", () => {
           expect(
-            getDefaultFormState2(
+            getDefaultFormState(
               testValidator,
               defaultMerger,
               schema,
@@ -1520,7 +1520,7 @@ describe("getDefaultFormState2()", () => {
 
           test("getDefaultFormState", () => {
             expect(
-              getDefaultFormState2(
+              getDefaultFormState(
                 testValidator,
                 defaultMerger,
                 schema,
@@ -1648,7 +1648,7 @@ describe("getDefaultFormState2()", () => {
 
       test("getDefaultFormState", () => {
         expect(
-          getDefaultFormState2(
+          getDefaultFormState(
             testValidator,
             defaultMerger,
             schema,
@@ -1728,7 +1728,7 @@ describe("getDefaultFormState2()", () => {
 
         test("getDefaultFormState", () => {
           expect(
-            getDefaultFormState2(
+            getDefaultFormState(
               testValidator,
               defaultMerger,
               schema,
@@ -1827,7 +1827,7 @@ describe("getDefaultFormState2()", () => {
 
         test("getDefaultFormState", () => {
           expect(
-            getDefaultFormState2(
+            getDefaultFormState(
               testValidator,
               defaultMerger,
               schema,
@@ -1892,7 +1892,7 @@ describe("getDefaultFormState2()", () => {
 
         test("getDefaultFormState", () => {
           expect(
-            getDefaultFormState2(
+            getDefaultFormState(
               testValidator,
               defaultMerger,
               schema,
@@ -1957,7 +1957,7 @@ describe("getDefaultFormState2()", () => {
 
         test("getDefaultFormState", () => {
           expect(
-            getDefaultFormState2(
+            getDefaultFormState(
               testValidator,
               defaultMerger,
               schema,
@@ -2037,7 +2037,7 @@ describe("getDefaultFormState2()", () => {
 
       test("getDefaultFormState", () => {
         expect(
-          getDefaultFormState2(
+          getDefaultFormState(
             testValidator,
             defaultMerger,
             schema,
@@ -2112,7 +2112,7 @@ describe("getDefaultFormState2()", () => {
 
       test("getDefaultFormState", () => {
         expect(
-          getDefaultFormState2(
+          getDefaultFormState(
             testValidator,
             defaultMerger,
             schema,
@@ -2178,7 +2178,7 @@ describe("getDefaultFormState2()", () => {
         test("getDefaultFormState", () => {
           expect(
             // NOTE: `rawFormData` is not used L1003
-            getDefaultFormState2(
+            getDefaultFormState(
               testValidator,
               defaultMerger,
               schema,
@@ -2258,7 +2258,7 @@ describe("getDefaultFormState2()", () => {
 
       test("getDefaultFormState", () => {
         expect(
-          getDefaultFormState2(
+          getDefaultFormState(
             testValidator,
             defaultMerger,
             schema,
@@ -2328,7 +2328,7 @@ describe("getDefaultFormState2()", () => {
 
       test("getDefaultFormState", () => {
         expect(
-          getDefaultFormState2(
+          getDefaultFormState(
             testValidator,
             defaultMerger,
             schema,
@@ -2392,7 +2392,7 @@ describe("getDefaultFormState2()", () => {
 
       test("getDefaultFormState", () => {
         expect(
-          getDefaultFormState2(
+          getDefaultFormState(
             testValidator,
             defaultMerger,
             schema,
@@ -2444,7 +2444,7 @@ describe("getDefaultFormState2()", () => {
 
       test("getDefaultFormState", () => {
         expect(
-          getDefaultFormState2(testValidator, defaultMerger, schema)
+          getDefaultFormState(testValidator, defaultMerger, schema)
         ).toEqual(expected);
       });
 
@@ -3802,7 +3802,7 @@ describe("getDefaultFormState2()", () => {
   describe("root default", () => {
     it("should map root schema default to form state, if any", () => {
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, {
+        getDefaultFormState(testValidator, defaultMerger, {
           type: "string",
           default: "foo",
         })
@@ -3810,7 +3810,7 @@ describe("getDefaultFormState2()", () => {
     });
     it("should keep existing form data that is equal to 0", () => {
       expect(
-        getDefaultFormState2(
+        getDefaultFormState(
           testValidator,
           defaultMerger,
           {
@@ -3823,7 +3823,7 @@ describe("getDefaultFormState2()", () => {
     });
     it("should keep existing form data that is equal to false", () => {
       expect(
-        getDefaultFormState2(
+        getDefaultFormState(
           testValidator,
           defaultMerger,
           {
@@ -3838,7 +3838,7 @@ describe("getDefaultFormState2()", () => {
       "should overwrite existing form data that is equal to a %s",
       (noneValue) => {
         expect(
-          getDefaultFormState2(
+          getDefaultFormState(
             testValidator,
             defaultMerger,
             {
@@ -3854,7 +3854,7 @@ describe("getDefaultFormState2()", () => {
   describe("nested default", () => {
     it("should map schema object prop default to form state", () => {
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, {
+        getDefaultFormState(testValidator, defaultMerger, {
           type: "object",
           properties: {
             string: {
@@ -3867,14 +3867,14 @@ describe("getDefaultFormState2()", () => {
     });
     it("should default to empty object if no properties are defined", () => {
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, {
+        getDefaultFormState(testValidator, defaultMerger, {
           type: "object",
         })
       ).toEqual({});
     });
     it("should recursively map schema object default to form state", () => {
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, {
+        getDefaultFormState(testValidator, defaultMerger, {
           type: "object",
           properties: {
             object: {
@@ -3892,7 +3892,7 @@ describe("getDefaultFormState2()", () => {
     });
     it("should map schema array default to form state", () => {
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, {
+        getDefaultFormState(testValidator, defaultMerger, {
           type: "object",
           properties: {
             array: {
@@ -3908,7 +3908,7 @@ describe("getDefaultFormState2()", () => {
     });
     it("should recursively map schema array default to form state", () => {
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, {
+        getDefaultFormState(testValidator, defaultMerger, {
           type: "object",
           properties: {
             object: {
@@ -3950,7 +3950,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, {})
+        getDefaultFormState(testValidator, defaultMerger, schema, {})
       ).toEqual({
         object: { array: ["foo", "bar"], bool: true },
       });
@@ -3989,7 +3989,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, {
+        getDefaultFormState(testValidator, defaultMerger, schema, {
           level1: { level2: { leaf4: 4 } },
         })
       ).toEqual({
@@ -4029,7 +4029,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, formData)
+        getDefaultFormState(testValidator, defaultMerger, schema, formData)
       ).toEqual({
         level1: { level2: { leaf1: "a" } },
       });
@@ -4046,7 +4046,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, {})
+        getDefaultFormState(testValidator, defaultMerger, schema, {})
       ).toEqual({
         level1: [1, 2, 3],
       });
@@ -4063,7 +4063,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, {})
+        getDefaultFormState(testValidator, defaultMerger, schema, {})
       ).toEqual({
         level1: [1, 2, 3],
       });
@@ -4087,7 +4087,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, {})
+        getDefaultFormState(testValidator, defaultMerger, schema, {})
       ).toEqual({
         array: ["foo", undefined],
       });
@@ -4120,7 +4120,7 @@ describe("getDefaultFormState2()", () => {
       };
 
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, {})
+        getDefaultFormState(testValidator, defaultMerger, schema, {})
       ).toEqual({
         level1: { level2: ["child-default-1", "root-default-2"] },
       });
@@ -4155,7 +4155,7 @@ describe("getDefaultFormState2()", () => {
       };
 
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, {})
+        getDefaultFormState(testValidator, defaultMerger, schema, {})
       ).toEqual({
         level1: { level2: [{ item: "parent-default-1" }, {}] },
       });
@@ -4179,7 +4179,7 @@ describe("getDefaultFormState2()", () => {
       };
 
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, {})
+        getDefaultFormState(testValidator, defaultMerger, schema, {})
       ).toEqual({
         level1: ["child-default-1", "property-default-2"],
       });
@@ -4220,7 +4220,7 @@ describe("getDefaultFormState2()", () => {
       };
 
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, {})
+        getDefaultFormState(testValidator, defaultMerger, schema, {})
       ).toEqual({
         level1: [
           { item: "property-default-1" },
@@ -4290,7 +4290,7 @@ describe("getDefaultFormState2()", () => {
       };
 
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, {})
+        getDefaultFormState(testValidator, defaultMerger, schema, {})
       ).toEqual({
         level1: [
           { item: "property-default-1" },
@@ -4319,7 +4319,7 @@ describe("getDefaultFormState2()", () => {
       };
 
       expect(
-        getDefaultFormState2(
+        getDefaultFormState(
           testValidator,
           defaultMerger,
           schema,
@@ -4368,7 +4368,7 @@ describe("getDefaultFormState2()", () => {
         ],
       };
       expect(
-        getDefaultFormState2(
+        getDefaultFormState(
           testValidator,
           defaultMerger,
           schema,
@@ -4380,7 +4380,7 @@ describe("getDefaultFormState2()", () => {
         fooProp2: "fooProp2",
       });
       expect(
-        getDefaultFormState2(
+        getDefaultFormState(
           testValidator,
           defaultMerger,
           schema,
@@ -4408,7 +4408,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, {})
+        getDefaultFormState(testValidator, defaultMerger, schema, {})
       ).toEqual({
         array: ["foo"],
       });
@@ -4429,7 +4429,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, {
+        getDefaultFormState(testValidator, defaultMerger, schema, {
           array: ["bar"],
         })
       ).toEqual({
@@ -4451,7 +4451,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, [{}])
+        getDefaultFormState(testValidator, defaultMerger, schema, [{}])
       ).toEqual([{ item: "foo" }]);
     });
     it("defaults passed along for multiselect arrays when minItems is present", () => {
@@ -4471,7 +4471,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, {})
+        getDefaultFormState(testValidator, defaultMerger, schema, {})
       ).toEqual({
         array: ["foo", "qux"],
       });
@@ -4492,7 +4492,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, {})
+        getDefaultFormState(testValidator, defaultMerger, schema, {})
       ).toEqual({
         array: [],
       });
@@ -4513,7 +4513,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, {})
+        getDefaultFormState(testValidator, defaultMerger, schema, {})
       ).toEqual({
         turtles: ["Raphael", "Michaelangelo", "Unknown", "Unknown"],
       });
@@ -4531,7 +4531,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, {})
+        getDefaultFormState(testValidator, defaultMerger, schema, {})
       ).toEqual({});
     });
     it("should populate defaults for oneOf", () => {
@@ -4548,7 +4548,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, {})
+        getDefaultFormState(testValidator, defaultMerger, schema, {})
       ).toEqual({
         name: "a",
       });
@@ -4566,7 +4566,7 @@ describe("getDefaultFormState2()", () => {
         ],
       };
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, {})
+        getDefaultFormState(testValidator, defaultMerger, schema, {})
       ).toEqual({
         name: "a",
       });
@@ -4590,7 +4590,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, {})
+        getDefaultFormState(testValidator, defaultMerger, schema, {})
       ).toEqual({
         name: {
           first: "First Name",
@@ -4617,7 +4617,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       expect(
-        getDefaultFormState2(
+        getDefaultFormState(
           testValidator,
           defaultMerger,
           schema,
@@ -4656,7 +4656,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       expect(
-        getDefaultFormState2(
+        getDefaultFormState(
           testValidator,
           defaultMerger,
           schema,
@@ -4698,7 +4698,7 @@ describe("getDefaultFormState2()", () => {
         ],
       };
       expect(
-        getDefaultFormState2(
+        getDefaultFormState(
           testValidator,
           defaultMerger,
           schema,
@@ -4741,7 +4741,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, {
+        getDefaultFormState(testValidator, defaultMerger, schema, {
           name: "Name",
         })
       ).toEqual({
@@ -4766,7 +4766,7 @@ describe("getDefaultFormState2()", () => {
         isValid: [false, false, false, true],
       });
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, {
+        getDefaultFormState(testValidator, defaultMerger, schema, {
           test: { b: "b" },
         })
       ).toEqual({
@@ -4786,7 +4786,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, {})
+        getDefaultFormState(testValidator, defaultMerger, schema, {})
       ).toEqual({});
     });
     it("should populate defaults for anyOf", () => {
@@ -4803,7 +4803,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, {})
+        getDefaultFormState(testValidator, defaultMerger, schema, {})
       ).toEqual({
         name: "a",
       });
@@ -4827,7 +4827,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, {})
+        getDefaultFormState(testValidator, defaultMerger, schema, {})
       ).toEqual({
         name: {
           first: "First Name",
@@ -4854,7 +4854,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       expect(
-        getDefaultFormState2(
+        getDefaultFormState(
           testValidator,
           defaultMerger,
           schema,
@@ -4893,7 +4893,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       expect(
-        getDefaultFormState2(
+        getDefaultFormState(
           testValidator,
           defaultMerger,
           schema,
@@ -4935,7 +4935,7 @@ describe("getDefaultFormState2()", () => {
         ],
       };
       expect(
-        getDefaultFormState2(
+        getDefaultFormState(
           testValidator,
           defaultMerger,
           schema,
@@ -4979,7 +4979,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, {
+        getDefaultFormState(testValidator, defaultMerger, schema, {
           name: "Name",
         })
       ).toEqual({
@@ -5004,7 +5004,7 @@ describe("getDefaultFormState2()", () => {
         isValid: [false, false, false, true],
       });
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, {
+        getDefaultFormState(testValidator, defaultMerger, schema, {
           test: { b: "b" },
         })
       ).toEqual({
@@ -5040,7 +5040,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, {
+        getDefaultFormState(testValidator, defaultMerger, schema, {
           name: "Name",
         })
       ).toEqual({
@@ -5080,7 +5080,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, {
+        getDefaultFormState(testValidator, defaultMerger, schema, {
           foo: { name: "Name" },
         })
       ).toEqual({
@@ -5124,7 +5124,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, [
+        getDefaultFormState(testValidator, defaultMerger, schema, [
           { foo: { name: "Name" } },
         ])
       ).toEqual([
@@ -5190,7 +5190,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, [
+        getDefaultFormState(testValidator, defaultMerger, schema, [
           { foo: { name: "first" } },
           { foo: { name: "second" } },
           { foo: { name: "third" } },
@@ -5254,7 +5254,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, {
+        getDefaultFormState(testValidator, defaultMerger, schema, {
           foo: { name: "Name" },
         })
       ).toEqual({
@@ -5345,7 +5345,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema)
+        getDefaultFormState(testValidator, defaultMerger, schema)
       ).toEqual({
         authentication: {
           credentialType: "username",
@@ -5391,7 +5391,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, undefined)
+        getDefaultFormState(testValidator, defaultMerger, schema, undefined)
       ).toEqual({
         can_1: {
           phy: {
@@ -5438,7 +5438,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, {
+        getDefaultFormState(testValidator, defaultMerger, schema, {
           can_1: { phy: null },
         })
       ).toEqual({
@@ -5466,7 +5466,7 @@ describe("getDefaultFormState2()", () => {
         baz: "baz",
       };
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, formData)
+        getDefaultFormState(testValidator, defaultMerger, schema, formData)
       ).toEqual(result);
     });
   });
@@ -5489,19 +5489,19 @@ describe("getDefaultFormState2()", () => {
     it("returns field value of default when formData is empty", () => {
       const formData = {};
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, formData)
+        getDefaultFormState(testValidator, defaultMerger, schema, formData)
       ).toEqual(defaultedFormData);
     });
     it("returns field value of undefined when formData has undefined for field", () => {
       const formData = { field: undefined };
       expect(
-        getDefaultFormState2(testValidator, defaultMerger, schema, formData)
+        getDefaultFormState(testValidator, defaultMerger, schema, formData)
       ).toEqual(formData);
     });
     it("returns field value of default when formData has undefined for field and `useDefaultIfFormDataUndefined`", () => {
       const formData = { field: undefined };
       expect(
-        getDefaultFormState2(
+        getDefaultFormState(
           testValidator,
           defaultMerger,
           schema,
@@ -5527,7 +5527,7 @@ describe("getDefaultFormState2()", () => {
       },
     };
     expect(
-      getDefaultFormState2(
+      getDefaultFormState(
         testValidator,
         defaultMerger,
         schema,
@@ -5551,7 +5551,7 @@ describe("getDefaultFormState2()", () => {
       },
     };
     expect(
-      getDefaultFormState2(
+      getDefaultFormState(
         testValidator,
         defaultMerger,
         schema,
@@ -5575,7 +5575,7 @@ describe("getDefaultFormState2()", () => {
       },
     };
     expect(
-      getDefaultFormState2(
+      getDefaultFormState(
         testValidator,
         defaultMerger,
         schema,
@@ -5603,7 +5603,7 @@ describe("getDefaultFormState2()", () => {
       required: ["requiredArray"],
     };
     expect(
-      getDefaultFormState2(
+      getDefaultFormState(
         testValidator,
         defaultMerger,
         schema,
@@ -5629,7 +5629,7 @@ describe("getDefaultFormState2()", () => {
       required: ["requiredArray"],
     };
     expect(
-      getDefaultFormState2(
+      getDefaultFormState(
         testValidator,
         defaultMerger,
         schema,
@@ -5655,7 +5655,7 @@ describe("getDefaultFormState2()", () => {
       required: ["requiredArray"],
     };
     expect(
-      getDefaultFormState2(
+      getDefaultFormState(
         testValidator,
         defaultMerger,
         schema,
@@ -5686,7 +5686,7 @@ describe("getDefaultFormState2()", () => {
       required: ["stringArray", "numberArray"],
     };
     expect(
-      getDefaultFormState2(
+      getDefaultFormState(
         testValidator,
         defaultMerger,
         schema,

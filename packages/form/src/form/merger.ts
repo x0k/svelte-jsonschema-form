@@ -1,6 +1,6 @@
 import {
   defaultMerger,
-  getDefaultFormState2,
+  getDefaultFormState,
   type Merger2,
   type Schema,
   type SchemaValue,
@@ -31,7 +31,7 @@ export class DefaultFormMerger implements FormMerger {
     formData: SchemaValue | undefined,
     schema: Schema
   ): SchemaValue | undefined {
-    return getDefaultFormState2(
+    return getDefaultFormState(
       this.validator,
       this,
       schema,
