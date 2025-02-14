@@ -20,7 +20,6 @@ export * from "./schema-hash.js";
 export * from "./enum-option.js";
 export * from "./constant-schema.js";
 export * from "./merger.js";
-export * from "./default-merger.js";
 export * from "./schema-traverser.js";
 export * from "./schema-value-traverser.js";
 export * from "./schema-transformer.js";
