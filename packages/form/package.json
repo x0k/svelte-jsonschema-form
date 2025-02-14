@@ -64,10 +64,6 @@
       "types": "./dist/lib/*.d.ts",
       "default": "./dist/lib/*.js"
     },
-    "./lib/svelte.svelte": {
-      "types": "./dist/lib/svelte.svelte.d.ts",
-      "svelte": "./dist/lib/svelte.svelte.js"
-    },
     "./core": {
       "types": "./dist/core/index.d.ts",
       "default": "./dist/core/index.js"
@@ -115,10 +111,6 @@
     "./options.svelte": {
       "types": "./dist/options.svelte.d.ts",
       "svelte": "./dist/options.svelte.js"
-    },
-    "./use-mutation.svelte": {
-      "types": "./dist/use-mutation.svelte.d.ts",
-      "svelte": "./dist/use-mutation.svelte.js"
     },
     "./create-action.svelte": {
       "types": "./dist/create-action.svelte.d.ts",
