@@ -673,9 +673,6 @@ importers:
 
   packages/form:
     dependencies:
-      fast-equals:
-        specifier: ^5.2.2
-        version: 5.2.2
       json-schema-merge-allof:
         specifier: ^0.8.1
         version: 0.8.1
