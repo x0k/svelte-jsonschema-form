@@ -6,7 +6,7 @@ import {
   isMultiSelect as isMultiSelectInternal,
   retrieveSchema2 as retrieveSchemaInternal,
   sanitizeDataForNewSchema2 as sanitizeDataForNewSchemaInternal,
-  getClosestMatchingOption2 as getClosestMatchingOptionInternal,
+  getClosestMatchingOption as getClosestMatchingOptionInternal,
 } from "@/core/index.js";
 
 import type { FormContext } from "./context.js";

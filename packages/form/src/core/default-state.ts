@@ -33,7 +33,7 @@ import {
   isMultiSelect,
   isSelect,
 } from "./is-select.js";
-import { getClosestMatchingOption2 } from "./matching.js";
+import { getClosestMatchingOption } from "./matching.js";
 import type { Merger2 } from "./merger.js";
 import { isSchemaOfConstantValue } from "./constant-schema.js";
 import { isSchemaValueDeepEqual } from "./deep-equal.js";
@@ -320,7 +320,7 @@ export function computeDefaults(
     }
     const nextSchema =
       schemaOneOf[
-        getClosestMatchingOption2(
+        getClosestMatchingOption(
           validator,
           merger,
           rootSchema,
@@ -341,7 +341,7 @@ export function computeDefaults(
     }
     const nextSchema =
       schemaAnyOf[
-        getClosestMatchingOption2(
+        getClosestMatchingOption(
           validator,
           merger,
           rootSchema,

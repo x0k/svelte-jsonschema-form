@@ -13,7 +13,7 @@ import {
 } from "./fixtures/test-data.js";
 
 import type { Schema } from "./schema.js";
-import { calculateIndexScore, getClosestMatchingOption2 } from "./matching.js";
+import { calculateIndexScore, getClosestMatchingOption } from "./matching.js";
 import { beforeEach, describe, expect, it } from "vitest";
 import type { Validator } from "./validator.js";
 import { makeTestValidator } from "./test-validator.js";
@@ -143,7 +143,7 @@ describe("calculateIndexScore", () => {
 describe("oneOfMatchingOption", () => {
   it("oneOfSchema, oneOfData data, no options, returns -1", () => {
     expect(
-      getClosestMatchingOption2(
+      getClosestMatchingOption(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -154,7 +154,7 @@ describe("oneOfMatchingOption", () => {
   });
   it("oneOfSchema, no data, 2 options, returns -1", () => {
     expect(
-      getClosestMatchingOption2(
+      getClosestMatchingOption(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -165,7 +165,7 @@ describe("oneOfMatchingOption", () => {
   });
   it("oneOfSchema, oneOfData, no options, selectedOption 2, returns 2", () => {
     expect(
-      getClosestMatchingOption2(
+      getClosestMatchingOption(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -177,7 +177,7 @@ describe("oneOfMatchingOption", () => {
   });
   it("oneOfSchema, no data, 2 options, returns -1", () => {
     expect(
-      getClosestMatchingOption2(
+      getClosestMatchingOption(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -190,7 +190,7 @@ describe("oneOfMatchingOption", () => {
   it("returns the first option, which kind of matches the data", () => {
     testValidator = makeTestValidator({ isValid: [false] });
     expect(
-      getClosestMatchingOption2(
+      getClosestMatchingOption(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -203,7 +203,7 @@ describe("oneOfMatchingOption", () => {
     // First 3 are mocked false, with the fourth being true for the real second option
     testValidator = makeTestValidator({ isValid: [false, false, false, true] });
     expect(
-      getClosestMatchingOption2(
+      getClosestMatchingOption(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -218,7 +218,7 @@ describe("oneOfMatchingOption", () => {
     });
     const formData = { flag: false };
     expect(
-      getClosestMatchingOption2(
+      getClosestMatchingOption(
         testValidator,
         defaultMerger,
         OPTIONAL_ONE_OF_SCHEMA,
@@ -232,7 +232,7 @@ describe("oneOfMatchingOption", () => {
       isValid: [false, false, false, false, false, true],
     });
     expect(
-      getClosestMatchingOption2(
+      getClosestMatchingOption(
         testValidator,
         defaultMerger,
         OPTIONAL_ONE_OF_SCHEMA,
@@ -288,7 +288,7 @@ describe("oneOfMatchingOption", () => {
       isValid: [false, false, false, false, false, false, false, true],
     });
     expect(
-      getClosestMatchingOption2(
+      getClosestMatchingOption(
         testValidator,
         defaultMerger,
         schema as unknown as Schema,
@@ -343,7 +343,7 @@ describe("oneOfMatchingOption", () => {
       isValid: [false, false, false, false, false, false, false, true],
     });
     expect(
-      getClosestMatchingOption2(
+      getClosestMatchingOption(
         testValidator,
         defaultMerger,
         schema,
@@ -396,7 +396,7 @@ describe("oneOfMatchingOption", () => {
       schema.definitions!.Bar,
     ] as Schema[];
     expect(
-      getClosestMatchingOption2(
+      getClosestMatchingOption(
         testValidator,
         defaultMerger,
         schema,
@@ -452,7 +452,7 @@ describe("oneOfMatchingOption", () => {
     // Use the schemaUtils to verify the discriminator prop gets passed
     // const schemaUtils = createSchemaUtils(testValidator, schema);
     expect(
-      getClosestMatchingOption2(
+      getClosestMatchingOption(
         testValidator,
         defaultMerger,
         oneOfSchema,

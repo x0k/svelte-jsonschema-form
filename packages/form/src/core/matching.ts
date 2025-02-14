@@ -157,7 +157,7 @@ export function calculateIndexScore(
         const altSchemas = propertySchema.oneOf || propertySchema.anyOf;
         if (altSchemas && formValue) {
           const discriminator = getDiscriminatorFieldFromSchema(propertySchema);
-          totalScore += getClosestMatchingOption2(
+          totalScore += getClosestMatchingOption(
             validator,
             merger,
             rootSchema,
@@ -211,30 +211,7 @@ export function calculateIndexScore(
   return totalScore;
 }
 
-/**
- * @deprecated use `getClosestMatchingOption2`
- */
 export function getClosestMatchingOption(
-  validator: Validator,
-  rootSchema: Schema,
-  formData: SchemaValue | undefined,
-  options: Schema[],
-  selectedOption = -1,
-  discriminatorField?: string,
-  merger = defaultMerger
-): number {
-  return getClosestMatchingOption2(
-    validator,
-    merger,
-    rootSchema,
-    formData,
-    options,
-    selectedOption,
-    discriminatorField
-  );
-}
-
-export function getClosestMatchingOption2(
   validator: Validator,
   merger: Merger2,
   rootSchema: Schema,

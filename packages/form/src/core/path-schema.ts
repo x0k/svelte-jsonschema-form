@@ -19,7 +19,7 @@ import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
 import { isSchemaObjectValue } from "./value.js";
 import type { Merger2 } from './merger.js';
 import { defaultMerger } from './merger.js';
-import { getClosestMatchingOption2 } from './matching.js';
+import { getClosestMatchingOption } from './matching.js';
 import { isSchemaDeepEqual } from './deep-equal.js';
 
 export const SJSF_ADDITIONAL_PROPERTIES_FLAG = "__sjsf_additionalProperties";
@@ -106,7 +106,7 @@ function toPathSchemaInternal(
   if (Array.isArray(combinationValue)) {
     const discriminator = getDiscriminatorFieldFromSchema(schema);
     const schemas = combinationValue.filter(isSchema);
-    const index = getClosestMatchingOption2(
+    const index = getClosestMatchingOption(
       validator,
       merger,
       rootSchema,
