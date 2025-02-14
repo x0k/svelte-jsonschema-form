@@ -2,7 +2,7 @@ import {
   type Schema,
   type SchemaValue,
   isSelect2 as isSelectInternal,
-  isFilesArray2 as isFilesArrayInternal,
+  isFilesArray as isFilesArrayInternal,
   isMultiSelect2 as isMultiSelectInternal,
   retrieveSchema2 as retrieveSchemaInternal,
   sanitizeDataForNewSchema2 as sanitizeDataForNewSchemaInternal,

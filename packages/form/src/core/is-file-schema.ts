@@ -2,7 +2,6 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { defaultMerger } from './merger.js';
 import type { Merger2 } from './merger.js';
 import { retrieveSchema2 } from "./resolve.js";
 import { DATA_URL_FORMAT, isNormalArrayItems, type Schema } from "./schema.js";
@@ -12,19 +11,7 @@ export function isFileSchema({ type, format }: Schema) {
   return type === "string" && format === DATA_URL_FORMAT;
 }
 
-/**
- * @deprecated use `isFilesArray2`
- */
 export function isFilesArray(
-  validator: Validator,
-  schema: Schema,
-  rootSchema?: Schema,
-  merger = defaultMerger,
-) {
-  return isFilesArray2(validator, merger, schema, rootSchema);
-}
-
-export function isFilesArray2(
   validator: Validator,
   merger: Merger2,
   schema: Schema,
