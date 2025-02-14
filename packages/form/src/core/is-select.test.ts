@@ -6,7 +6,7 @@ import { beforeEach, describe, it, expect } from "vitest";
 
 import type { Schema } from "./schema.js";
 import type { Validator } from "./validator.js";
-import { isMultiSelect2, isSelect2 } from "./is-select.js";
+import { isMultiSelect2, isSelect } from "./is-select.js";
 import { makeTestValidator } from "./test-validator.js";
 import { defaultMerger } from './merger.js';
 
@@ -19,14 +19,14 @@ beforeEach(() => {
 describe("isSelect2()", () => {
   it("should be false if items is undefined", () => {
     const schema: Schema = {};
-    expect(isSelect2(testValidator, defaultMerger, schema, schema)).toBe(false);
+    expect(isSelect(testValidator, defaultMerger, schema, schema)).toBe(false);
   });
   describe("schema items enum is not an array", () => {
     it("should be false if oneOf/anyOf schemas are not all constants", () => {
       const schema: Schema = {
         anyOf: [{ type: "string", enum: ["Foo"] }, { type: "string" }],
       };
-      expect(isSelect2(testValidator, defaultMerger, schema, schema)).toBe(false);
+      expect(isSelect(testValidator, defaultMerger, schema, schema)).toBe(false);
     });
     it("should be true if oneOf/anyOf schemas are all constants", () => {
       const schema: Schema = {
@@ -35,7 +35,7 @@ describe("isSelect2()", () => {
           { type: "string", enum: ["Foo"] },
         ],
       };
-      expect(isSelect2(testValidator, defaultMerger, schema, schema)).toBe(true);
+      expect(isSelect(testValidator, defaultMerger, schema, schema)).toBe(true);
     });
   });
   it("should retrieve reference schema definitions", () => {
@@ -45,7 +45,7 @@ describe("isSelect2()", () => {
       },
       $ref: "#/definitions/FooItem",
     };
-    expect(isSelect2(testValidator, defaultMerger, schema, schema)).toBe(true);
+    expect(isSelect(testValidator, defaultMerger, schema, schema)).toBe(true);
   });
 });
 

@@ -13,7 +13,7 @@ import {
   type Validator,
   type SchemaArrayValue,
   isSchemaArrayValue,
-  isSelect2,
+  isSelect,
   getClosestMatchingOption2,
   getDiscriminatorFieldFromSchema,
 } from "@/core/index.js";
@@ -136,7 +136,7 @@ export function omitExtraData(
   ) {
     if (
       !Array.isArray(oneOf) ||
-      isSelect2(validator, merger, schema, rootSchema)
+      isSelect(validator, merger, schema, rootSchema)
     ) {
       return target;
     }

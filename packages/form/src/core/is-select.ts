@@ -8,19 +8,7 @@ import { retrieveSchema2 } from "./resolve.js";
 import { getSchemaConstantValue, isSchemaOfConstantValue } from "./constant-schema.js";
 import { defaultMerger, type Merger2 } from "./merger.js";
 
-/**
- * @deprecated use `isSelect2`
- */
 export function isSelect(
-  validator: Validator,
-  theSchema: Schema,
-  rootSchema: Schema,
-  merger = defaultMerger
-) {
-  return isSelect2(validator, merger, theSchema, rootSchema);
-}
-
-export function isSelect2(
   validator: Validator,
   merger: Merger2,
   theSchema: Schema,
@@ -90,5 +78,5 @@ export function isMultiSelect2(
   ) {
     return false;
   }
-  return isSelect2(validator, merger, items, rootSchema);
+  return isSelect(validator, merger, items, rootSchema);
 }

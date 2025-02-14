@@ -31,7 +31,7 @@ import {
 import {
   getSelectOptionValues,
   isMultiSelect2,
-  isSelect2,
+  isSelect,
 } from "./is-select.js";
 import { getClosestMatchingOption2 } from "./matching.js";
 import type { Merger2 } from "./merger.js";
@@ -432,7 +432,7 @@ export function ensureFormDataMatchingSchema(
   const isSelectField =
     formData !== undefined &&
     !isSchemaOfConstantValue(schema) &&
-    isSelect2(validator, merger, schema, rootSchema);
+    isSelect(validator, merger, schema, rootSchema);
   if (isSelectField) {
     const selectOptionValues = getSelectOptionValues(schema);
     const isValid = selectOptionValues?.some((v) =>
