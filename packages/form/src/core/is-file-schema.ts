@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import type { Merger2 } from './merger.js';
+import type { Merger } from './merger.js';
 import { retrieveSchema2 } from "./resolve.js";
 import { DATA_URL_FORMAT, isNormalArrayItems, type Schema } from "./schema.js";
 import type { Validator } from "./validator.js";
@@ -13,7 +13,7 @@ export function isFileSchema({ type, format }: Schema) {
 
 export function isFilesArray(
   validator: Validator,
-  merger: Merger2,
+  merger: Merger,
   schema: Schema,
   rootSchema?: Schema
 ) {

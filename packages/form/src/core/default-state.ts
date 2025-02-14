@@ -34,7 +34,7 @@ import {
   isSelect,
 } from "./is-select.js";
 import { getClosestMatchingOption } from "./matching.js";
-import type { Merger2 } from "./merger.js";
+import type { Merger } from "./merger.js";
 import { isSchemaOfConstantValue } from "./constant-schema.js";
 import { isSchemaValueDeepEqual } from "./deep-equal.js";
 
@@ -61,7 +61,7 @@ export function getDefaultValueForType(type: SchemaType) {
 
 export function getDefaultFormState(
   validator: Validator,
-  merger: Merger2,
+  merger: Merger,
   theSchema: Schema,
   formData: SchemaValue | undefined = undefined,
   rootSchema: Schema = {},
@@ -206,7 +206,7 @@ interface ComputeDefaultsProps<FormData = SchemaValue | undefined> {
 
 export function computeDefaults(
   validator: Validator,
-  merger: Merger2,
+  merger: Merger,
   rawSchema: Schema,
   computeDefaultsProps: ComputeDefaultsProps
 ): SchemaValue | undefined {
@@ -422,7 +422,7 @@ export function computeDefaults(
  */
 export function ensureFormDataMatchingSchema(
   validator: Validator,
-  merger: Merger2,
+  merger: Merger,
   schema: Schema,
   rootSchema: Schema,
   formData: SchemaValue | undefined,
@@ -543,7 +543,7 @@ export function getInnerSchemaForArrayItem(
 
 export function getDefaultBasedOnSchemaType(
   validator: Validator,
-  merger: Merger2,
+  merger: Merger,
   rawSchema: Schema,
   computeDefaultsProps: ComputeDefaultsProps,
   defaults: SchemaValue | undefined
@@ -579,7 +579,7 @@ export function getDefaultBasedOnSchemaType(
 
 export function getObjectDefaults(
   validator: Validator,
-  merger: Merger2,
+  merger: Merger,
   schema: Schema,
   {
     rootSchema,
@@ -696,7 +696,7 @@ export function getObjectDefaults(
 
 export function getArrayDefaults(
   validator: Validator,
-  merger: Merger2,
+  merger: Merger,
   schema: Schema,
   {
     rawFormData,

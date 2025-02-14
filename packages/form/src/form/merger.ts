@@ -1,13 +1,13 @@
 import {
   defaultMerger,
   getDefaultFormState,
-  type Merger2,
+  type Merger,
   type Schema,
   type SchemaValue,
   type Validator,
 } from "@/core/index.js";
 
-export interface FormMerger extends Merger2 {
+export interface FormMerger extends Merger {
   /**
    * Merges defaults of `schema` into `formData`
    */

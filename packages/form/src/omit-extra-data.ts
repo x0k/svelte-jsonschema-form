@@ -5,7 +5,7 @@ import {
   getSimpleSchemaType,
   isSchema,
   isSchemaObjectValue,
-  type Merger2,
+  type Merger,
   type Schema,
   type SchemaDefinition,
   type SchemaObjectValue,
@@ -20,7 +20,7 @@ import {
 
 export function omitExtraData(
   validator: Validator,
-  merger: Merger2,
+  merger: Merger,
   rootSchema: Schema,
   value: SchemaValue | undefined
 ): SchemaValue | undefined {

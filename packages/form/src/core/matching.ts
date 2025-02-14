@@ -6,7 +6,7 @@ import {
   getDiscriminatorFieldFromSchema,
   getOptionMatchingSimpleDiscriminator,
 } from "./discriminator.js";
-import { defaultMerger, type Merger2 } from "./merger.js";
+import type { Merger } from "./merger.js";
 import { resolveAllReferences, retrieveSchema2 } from "./resolve.js";
 import {
   isSchema,
@@ -123,7 +123,7 @@ export function getFirstMatchingOption(
 
 export function calculateIndexScore(
   validator: Validator,
-  merger: Merger2,
+  merger: Merger,
   rootSchema: Schema,
   schema?: Schema,
   formData?: SchemaValue
@@ -213,7 +213,7 @@ export function calculateIndexScore(
 
 export function getClosestMatchingOption(
   validator: Validator,
-  merger: Merger2,
+  merger: Merger,
   rootSchema: Schema,
   formData: SchemaValue | undefined,
   options: Schema[],

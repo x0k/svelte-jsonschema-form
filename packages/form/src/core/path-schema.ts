@@ -17,7 +17,7 @@ import {
 import type { Validator } from "./validator.js";
 import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
 import { isSchemaObjectValue } from "./value.js";
-import type { Merger2 } from './merger.js';
+import type { Merger } from './merger.js';
 import { defaultMerger } from './merger.js';
 import { getClosestMatchingOption } from './matching.js';
 import { isSchemaDeepEqual } from './deep-equal.js';
@@ -58,7 +58,7 @@ export function toPathSchema(
 
 export function toPathSchema2(
   validator: Validator,
-  merger: Merger2,
+  merger: Merger,
   schema: Schema,
   name = "",
   rootSchema: Schema = schema,
@@ -69,7 +69,7 @@ export function toPathSchema2(
 
 function toPathSchemaInternal(
   validator: Validator,
-  merger: Merger2,
+  merger: Merger,
   schema: SchemaDefinition,
   name: string,
   rootSchema: Schema,

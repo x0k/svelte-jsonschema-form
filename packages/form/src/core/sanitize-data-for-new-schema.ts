@@ -12,13 +12,13 @@ import {
 import { retrieveSchema2 } from "./resolve.js";
 import type { Validator } from "./validator.js";
 import { isSchemaObjectValue } from "./value.js";
-import { defaultMerger, type Merger2 } from "./merger.js";
+import { defaultMerger, type Merger } from "./merger.js";
 
 const NO_VALUE = Symbol("no Value");
 
 function retrieveIfNeeded(
   validator: Validator,
-  merger: Merger2,
+  merger: Merger,
   schema: Schema,
   rootSchema: Schema,
   formData?: SchemaValue
@@ -33,7 +33,7 @@ function sanitizeArrays(
   oldSchemaItems: Schema,
   newSchemaItems: Schema,
   validator: Validator,
-  merger: Merger2,
+  merger: Merger,
   rootSchema: Schema,
   data: SchemaArrayValue
 ) {
@@ -91,7 +91,7 @@ export function sanitizeDataForNewSchema(
 
 export function sanitizeDataForNewSchema2(
   validator: Validator,
-  merger: Merger2,
+  merger: Merger,
   rootSchema: Schema,
   newSchema: Schema,
   oldSchema: Schema,

@@ -28,7 +28,7 @@ import { typeOfValue } from "./type.js";
 import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
 import { getFirstMatchingOption } from "./matching.js";
 import { isSchemaObjectValue } from "./value.js";
-import { defaultMerger, type Merger2 } from "./merger.js";
+import { defaultMerger, type Merger } from "./merger.js";
 import { isSchemaDeepEqual } from './deep-equal.js';
 
 /**
@@ -39,14 +39,14 @@ export function retrieveSchema(
   schema: Schema,
   rootSchema: Schema = {},
   formData?: SchemaValue,
-  merger: Merger2 = defaultMerger
+  merger: Merger = defaultMerger
 ): Schema {
   return retrieveSchema2(validator, merger, schema, rootSchema, formData);
 }
 
 export function retrieveSchema2(
   validator: Validator,
-  merger: Merger2,
+  merger: Merger,
   schema: Schema,
   rootSchema: Schema = {},
   formData?: SchemaValue
@@ -149,7 +149,7 @@ export function resolveReference(
 
 export function resolveReference2(
   validator: Validator,
-  merger: Merger2,
+  merger: Merger,
   schema: Schema,
   rootSchema: Schema,
   expandAllBranches: boolean,
@@ -176,7 +176,7 @@ export function resolveReference2(
  */
 export function retrieveSchemaInternal(
   validator: Validator,
-  merger: Merger2,
+  merger: Merger,
   schema: Schema,
   rootSchema: Schema,
   formData?: SchemaValue,
@@ -286,7 +286,7 @@ export function resolveCondition(
 
 export function resolveCondition2(
   validator: Validator,
-  merger: Merger2,
+  merger: Merger,
   schema: Schema,
   rootSchema: Schema,
   expandAllBranches: boolean,
@@ -386,7 +386,7 @@ export function stubExistingAdditionalProperties(
 
 export function stubExistingAdditionalProperties2(
   validator: Validator,
-  merger: Merger2,
+  merger: Merger,
   theSchema: Schema,
   rootSchema?: Schema,
   aFormData?: SchemaValue
@@ -480,7 +480,7 @@ export function resolveSchema(
 
 export function resolveSchema2(
   validator: Validator,
-  merger: Merger2,
+  merger: Merger,
   schema: Schema,
   rootSchema: Schema,
   expandAllBranches: boolean,
@@ -570,7 +570,7 @@ export function resolveDependencies(
 
 export function resolveDependencies2(
   validator: Validator,
-  merger: Merger2,
+  merger: Merger,
   schema: Schema,
   rootSchema: Schema,
   expandAllBranches: boolean,
@@ -666,7 +666,7 @@ export function processDependencies(
 
 export function processDependencies2(
   validator: Validator,
-  merger: Merger2,
+  merger: Merger,
   dependencies: Schema[typeof DEPENDENCIES_KEY],
   resolvedSchema: Schema,
   rootSchema: Schema,
@@ -753,7 +753,7 @@ export function withDependentSchema(
 
 export function withDependentSchema2(
   validator: Validator,
-  merger: Merger2,
+  merger: Merger,
   schema: Schema,
   rootSchema: Schema,
   dependencyKey: string,
@@ -843,7 +843,7 @@ export function withExactlyOneSubSchema(
 
 export function withExactlyOneSubSchema2(
   validator: Validator,
-  merger: Merger2,
+  merger: Merger,
   schema: Schema,
   rootSchema: Schema,
   dependencyKey: string,
