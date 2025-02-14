@@ -1,6 +1,6 @@
 import type { MaybePromise } from "@/lib/types.js";
 import type { Schema, SchemaValue, Validator } from "@/core/index.js";
-import type { FailedMutation } from "@/use-mutation.svelte.js";
+import type { FailedAction } from "@/create-action.svelte.js";
 
 import type { Id } from "./id.js";
 import type { Config } from "./config.js";
@@ -78,5 +78,5 @@ export const VALIDATION_PROCESS_ERROR = Symbol("validation-process-error");
 
 export interface ValidationProcessError {
   type: typeof VALIDATION_PROCESS_ERROR;
-  state: FailedMutation<unknown>;
+  state: FailedAction<unknown>;
 }

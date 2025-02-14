@@ -3,7 +3,7 @@ import type { EventHandler, FormEventHandler } from "svelte/elements";
 
 import type { DataURLToBlob } from "@/lib/file.js";
 import type { Schema, SchemaValue } from "@/core/index.js";
-import type { Mutation } from "@/use-mutation.svelte.js";
+import type { Action } from "@/create-action.svelte.js";
 
 import type { Label, Labels, Translation } from "../translation.js";
 import type { UiOptions, UiSchema, UiSchemaRoot } from "../ui-schema.js";
@@ -50,7 +50,7 @@ export interface FormContext {
     key: string,
     fieldConfig: Config
   ): boolean;
-  validation: Mutation<
+  validation: Action<
     [event: SubmitEvent],
     {
       snapshot: SchemaValue | undefined;
@@ -58,7 +58,7 @@ export interface FormContext {
     },
     unknown
   >;
-  fieldsValidation: Mutation<
+  fieldsValidation: Action<
     [config: Config, value: SchemaValue | undefined],
     ValidationError<unknown>[],
     unknown

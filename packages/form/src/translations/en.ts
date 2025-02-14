@@ -1,5 +1,5 @@
 import { createTranslation } from "@/form/translation.js";
-import type { FailedMutation, MutationFailureReason } from '@/use-mutation.svelte.js';
+import type { FailedAction, ActionFailureReason } from '@/create-action.svelte.js';
 
 export const translation = createTranslation({
   submit: "Submit",
@@ -18,12 +18,12 @@ export const translation = createTranslation({
   "remove-object-property": "Del",
 });
 
-const FAILURE_REASONS: Record<MutationFailureReason, string> = {
+const FAILURE_REASONS: Record<ActionFailureReason, string> = {
   "aborted": "Validation aborted",
   "timeout": "Validation terminated by timeout",
   "error": "Something went wrong during validation",
 }
 
-export function handleValidationProcessError (state: FailedMutation<unknown>) {
+export function handleValidationProcessError (state: FailedAction<unknown>) {
   return FAILURE_REASONS[state.reason]
 }
