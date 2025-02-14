@@ -13,7 +13,7 @@ import {
 } from "./fixtures/test-data.js";
 
 import type { Schema } from "./schema.js";
-import { calculateIndexScore2, getClosestMatchingOption2 } from "./matching.js";
+import { calculateIndexScore, getClosestMatchingOption2 } from "./matching.js";
 import { beforeEach, describe, expect, it } from "vitest";
 import type { Validator } from "./validator.js";
 import { makeTestValidator } from "./test-validator.js";
@@ -31,12 +31,12 @@ beforeEach(() => {
 describe("calculateIndexScore", () => {
   it("returns 0 when schema is not specified", () => {
     expect(
-      calculateIndexScore2(testValidator, defaultMerger, OPTIONAL_ONE_OF_SCHEMA)
+      calculateIndexScore(testValidator, defaultMerger, OPTIONAL_ONE_OF_SCHEMA)
     ).toEqual(0);
   });
   it("returns 0 when schema.properties is undefined", () => {
     expect(
-      calculateIndexScore2(
+      calculateIndexScore(
         testValidator,
         defaultMerger,
         OPTIONAL_ONE_OF_SCHEMA,
@@ -46,7 +46,7 @@ describe("calculateIndexScore", () => {
   });
   it("returns 0 when schema.properties is not an object", () => {
     expect(
-      calculateIndexScore2(
+      calculateIndexScore(
         testValidator,
         defaultMerger,
         OPTIONAL_ONE_OF_SCHEMA,
@@ -58,7 +58,7 @@ describe("calculateIndexScore", () => {
   });
   it("returns 0 when properties type is boolean", () => {
     expect(
-      calculateIndexScore2(
+      calculateIndexScore(
         testValidator,
         defaultMerger,
         OPTIONAL_ONE_OF_SCHEMA,
@@ -70,7 +70,7 @@ describe("calculateIndexScore", () => {
   });
   it("returns 0 when formData is empty object", () => {
     expect(
-      calculateIndexScore2(
+      calculateIndexScore(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -85,7 +85,7 @@ describe("calculateIndexScore", () => {
   //       so falsy default values behavior is changed
   it("returns 1 for first option in oneOf schema", () => {
     expect(
-      calculateIndexScore2(
+      calculateIndexScore(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -97,7 +97,7 @@ describe("calculateIndexScore", () => {
   // NOTE: The same as above (i guess)
   it("returns 9 for second option in oneOf schema", () => {
     expect(
-      calculateIndexScore2(
+      calculateIndexScore(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -108,7 +108,7 @@ describe("calculateIndexScore", () => {
   });
   it("returns 1 for a schema that has a type matching the formData type", () => {
     expect(
-      calculateIndexScore2(
+      calculateIndexScore(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -119,7 +119,7 @@ describe("calculateIndexScore", () => {
   });
   it("returns 2 for a schema that has a const matching the formData value", () => {
     expect(
-      calculateIndexScore2(
+      calculateIndexScore(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -130,7 +130,7 @@ describe("calculateIndexScore", () => {
   });
   it("returns 0 for a schema that has a const that does not match the formData value", () => {
     expect(
-      calculateIndexScore2(
+      calculateIndexScore(
         testValidator,
         defaultMerger,
         oneOfSchema,

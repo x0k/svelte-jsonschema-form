@@ -121,20 +121,7 @@ export function getFirstMatchingOption(
   return 0;
 }
 
-/**
- * @deprecated use `calculateIndexScore2`
- */
 export function calculateIndexScore(
-  validator: Validator,
-  rootSchema: Schema,
-  schema?: Schema,
-  formData?: SchemaValue,
-  merger = defaultMerger
-): number {
-  return calculateIndexScore2(validator, merger, rootSchema, schema, formData);
-}
-
-export function calculateIndexScore2(
   validator: Validator,
   merger: Merger2,
   rootSchema: Schema,
@@ -158,7 +145,7 @@ export function calculateIndexScore2(
             rootSchema,
             formValue
           );
-          totalScore += calculateIndexScore2(
+          totalScore += calculateIndexScore(
             validator,
             merger,
             rootSchema,
@@ -185,7 +172,7 @@ export function calculateIndexScore2(
           if (isSchemaObjectValue(formValue)) {
             totalScore += 1;
           }
-          totalScore += calculateIndexScore2(
+          totalScore += calculateIndexScore(
             validator,
             merger,
             rootSchema,
@@ -308,7 +295,7 @@ export function getClosestMatchingOption2(
   for (let i = 0; i < allValidIndexes.length; i++) {
     const index = allValidIndexes[i]!;
     const option = resolvedOptions[index];
-    const score = calculateIndexScore2(
+    const score = calculateIndexScore(
       validator,
       merger,
       rootSchema,
