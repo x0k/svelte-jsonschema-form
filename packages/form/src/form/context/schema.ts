@@ -5,7 +5,7 @@ import {
   isFilesArray as isFilesArrayInternal,
   isMultiSelect as isMultiSelectInternal,
   retrieveSchema as retrieveSchemaInternal,
-  sanitizeDataForNewSchema2 as sanitizeDataForNewSchemaInternal,
+  sanitizeDataForNewSchema as sanitizeDataForNewSchemaInternal,
   getClosestMatchingOption as getClosestMatchingOptionInternal,
 } from "@/core/index.js";
 

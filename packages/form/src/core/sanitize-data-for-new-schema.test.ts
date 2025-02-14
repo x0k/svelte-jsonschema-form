@@ -11,7 +11,7 @@ import {
   SECOND_ONE_OF,
 } from "./fixtures/test-data.js";
 import type { Validator } from "./validator.js";
-import { sanitizeDataForNewSchema2 } from "./sanitize-data-for-new-schema.js";
+import { sanitizeDataForNewSchema } from "./sanitize-data-for-new-schema.js";
 import { retrieveSchema } from "./resolve.js";
 import type { Schema } from "./schema.js";
 import { makeTestValidator } from "./test-validator.js";
@@ -26,7 +26,7 @@ beforeEach(() => {
 describe("sanitizeDataForNewSchema", () => {
   it('returns undefined when the new schema does not contain a "property" object', () => {
     expect(
-      sanitizeDataForNewSchema2(
+      sanitizeDataForNewSchema(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -48,7 +48,7 @@ describe("sanitizeDataForNewSchema", () => {
       oneOfSchema
     );
     expect(
-      sanitizeDataForNewSchema2(
+      sanitizeDataForNewSchema(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -74,7 +74,7 @@ describe("sanitizeDataForNewSchema", () => {
     // By changing the type, the name will be marked as undefined
     const expected = { ...oneOfData, name: undefined };
     expect(
-      sanitizeDataForNewSchema2(
+      sanitizeDataForNewSchema(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -110,7 +110,7 @@ describe("sanitizeDataForNewSchema", () => {
       },
     };
     expect(
-      sanitizeDataForNewSchema2(
+      sanitizeDataForNewSchema(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -150,7 +150,7 @@ describe("sanitizeDataForNewSchema", () => {
       },
     };
     expect(
-      sanitizeDataForNewSchema2(
+      sanitizeDataForNewSchema(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -189,7 +189,7 @@ describe("sanitizeDataForNewSchema", () => {
       },
     };
     expect(
-      sanitizeDataForNewSchema2(
+      sanitizeDataForNewSchema(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -229,7 +229,7 @@ describe("sanitizeDataForNewSchema", () => {
       },
     };
     expect(
-      sanitizeDataForNewSchema2(
+      sanitizeDataForNewSchema(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -268,7 +268,7 @@ describe("sanitizeDataForNewSchema", () => {
       },
     };
     expect(
-      sanitizeDataForNewSchema2(
+      sanitizeDataForNewSchema(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -308,7 +308,7 @@ describe("sanitizeDataForNewSchema", () => {
       },
     };
     expect(
-      sanitizeDataForNewSchema2(
+      sanitizeDataForNewSchema(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -347,7 +347,7 @@ describe("sanitizeDataForNewSchema", () => {
       },
     };
     expect(
-      sanitizeDataForNewSchema2(
+      sanitizeDataForNewSchema(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -388,7 +388,7 @@ describe("sanitizeDataForNewSchema", () => {
       },
     };
     expect(
-      sanitizeDataForNewSchema2(
+      sanitizeDataForNewSchema(
         testValidator,
         defaultMerger,
         rootSchema,
@@ -408,7 +408,7 @@ describe("sanitizeDataForNewSchema", () => {
       items: true,
     };
     expect(
-      sanitizeDataForNewSchema2(
+      sanitizeDataForNewSchema(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -428,7 +428,7 @@ describe("sanitizeDataForNewSchema", () => {
       items: true,
     };
     expect(
-      sanitizeDataForNewSchema2(
+      sanitizeDataForNewSchema(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -448,7 +448,7 @@ describe("sanitizeDataForNewSchema", () => {
       items: { type: "string" },
     };
     expect(
-      sanitizeDataForNewSchema2(
+      sanitizeDataForNewSchema(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -468,7 +468,7 @@ describe("sanitizeDataForNewSchema", () => {
       items: [{ type: "string" }],
     };
     expect(
-      sanitizeDataForNewSchema2(
+      sanitizeDataForNewSchema(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -488,7 +488,7 @@ describe("sanitizeDataForNewSchema", () => {
       items: [{ type: "string" }],
     };
     expect(
-      sanitizeDataForNewSchema2(
+      sanitizeDataForNewSchema(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -508,7 +508,7 @@ describe("sanitizeDataForNewSchema", () => {
       items: { type: "string" },
     };
     expect(
-      sanitizeDataForNewSchema2(
+      sanitizeDataForNewSchema(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -529,7 +529,7 @@ describe("sanitizeDataForNewSchema", () => {
       items: { type: "string" },
     };
     expect(
-      sanitizeDataForNewSchema2(
+      sanitizeDataForNewSchema(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -557,7 +557,7 @@ describe("sanitizeDataForNewSchema", () => {
       items: { $ref: "#/definitions/string_def" },
     };
     expect(
-      sanitizeDataForNewSchema2(
+      sanitizeDataForNewSchema(
         testValidator,
         defaultMerger,
         rootSchema,
@@ -578,7 +578,7 @@ describe("sanitizeDataForNewSchema", () => {
       items: { type: "object", properties: { foo: { type: "string" } } },
     };
     expect(
-      sanitizeDataForNewSchema2(
+      sanitizeDataForNewSchema(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -599,7 +599,7 @@ describe("sanitizeDataForNewSchema", () => {
       items: { type: "object", properties: { foo: { type: "string" } } },
     };
     expect(
-      sanitizeDataForNewSchema2(
+      sanitizeDataForNewSchema(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -619,7 +619,7 @@ describe("sanitizeDataForNewSchema", () => {
       items: { type: "object", properties: { foo: { type: "number" } } },
     };
     expect(
-      sanitizeDataForNewSchema2(
+      sanitizeDataForNewSchema(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -639,7 +639,7 @@ describe("sanitizeDataForNewSchema", () => {
       properties: { foo: { type: "array", items: { type: "number" } } },
     };
     expect(
-      sanitizeDataForNewSchema2(
+      sanitizeDataForNewSchema(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -662,7 +662,7 @@ describe("sanitizeDataForNewSchema", () => {
     };
     const formData = { foo: "1" };
     expect(
-      sanitizeDataForNewSchema2(
+      sanitizeDataForNewSchema(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -682,7 +682,7 @@ describe("sanitizeDataForNewSchema", () => {
       },
     };
     expect(
-      sanitizeDataForNewSchema2(
+      sanitizeDataForNewSchema(
         testValidator,
         defaultMerger,
         oneOfSchema,
@@ -707,7 +707,7 @@ describe("sanitizeDataForNewSchema", () => {
       },
     };
     expect(
-      sanitizeDataForNewSchema2(
+      sanitizeDataForNewSchema(
         testValidator,
         defaultMerger,
         oneOfSchema,

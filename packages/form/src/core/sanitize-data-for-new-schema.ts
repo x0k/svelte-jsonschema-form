@@ -11,8 +11,8 @@ import {
 } from "./schema.js";
 import { retrieveSchema } from "./resolve.js";
 import type { Validator } from "./validator.js";
+import type { Merger } from "./merger.js";
 import { isSchemaObjectValue } from "./value.js";
-import { defaultMerger, type Merger } from "./merger.js";
 
 const NO_VALUE = Symbol("no Value");
 
@@ -43,7 +43,7 @@ function sanitizeArrays(
     const maxItems = newSchema.maxItems ?? -1;
     if (newSchemaType === "object") {
       return data.reduce((newValue: SchemaArrayValue, aValue) => {
-        const itemValue = sanitizeDataForNewSchema2(
+        const itemValue = sanitizeDataForNewSchema(
           validator,
           merger,
           rootSchema,
@@ -68,28 +68,7 @@ function sanitizeArrays(
   return NO_VALUE;
 }
 
-/**
- * @deprecated use `sanitizeDataForNewSchema2`
- */
 export function sanitizeDataForNewSchema(
-  validator: Validator,
-  rootSchema: Schema,
-  newSchema: Schema,
-  oldSchema: Schema,
-  data: SchemaValue | undefined,
-  merger = defaultMerger
-): SchemaValue | undefined {
-  return sanitizeDataForNewSchema2(
-    validator,
-    merger,
-    rootSchema,
-    newSchema,
-    oldSchema,
-    data
-  );
-}
-
-export function sanitizeDataForNewSchema2(
   validator: Validator,
   merger: Merger,
   rootSchema: Schema,
@@ -145,7 +124,7 @@ export function sanitizeDataForNewSchema2(
           newSchemaTypeForKey === "object" ||
           (newSchemaTypeForKey === "array" && Array.isArray(formValue))
         ) {
-          const itemData = sanitizeDataForNewSchema2(
+          const itemData = sanitizeDataForNewSchema(
             validator,
             merger,
             rootSchema,
