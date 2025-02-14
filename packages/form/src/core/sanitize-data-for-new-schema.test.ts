@@ -12,7 +12,7 @@ import {
 } from "./fixtures/test-data.js";
 import type { Validator } from "./validator.js";
 import { sanitizeDataForNewSchema2 } from "./sanitize-data-for-new-schema.js";
-import { retrieveSchema2 } from "./resolve.js";
+import { retrieveSchema } from "./resolve.js";
 import type { Schema } from "./schema.js";
 import { makeTestValidator } from "./test-validator.js";
 import { defaultMerger } from './merger.js';
@@ -41,7 +41,7 @@ describe("sanitizeDataForNewSchema", () => {
   //   expect(sanitizeDataForNewSchema2(testValidator, defaultMerger, oneOfSchema, newSchema, undefined, oneOfData)).toEqual(oneOfData);
   // });
   it('returns input formData when the old schema does not contain a "property" object', () => {
-    const newSchema = retrieveSchema2(
+    const newSchema = retrieveSchema(
       testValidator,
       defaultMerger,
       SECOND_ONE_OF,
@@ -59,14 +59,14 @@ describe("sanitizeDataForNewSchema", () => {
     ).toEqual(oneOfData);
   });
   it("returns input formData when the new schema matches the data for the new schema rather than the old", () => {
-    const newSchema = retrieveSchema2(
+    const newSchema = retrieveSchema(
       testValidator,
       defaultMerger,
       SECOND_ONE_OF,
       oneOfSchema
     );
     const oldSchema = structuredClone(
-      retrieveSchema2(testValidator, defaultMerger, FIRST_ONE_OF, oneOfSchema)
+      retrieveSchema(testValidator, defaultMerger, FIRST_ONE_OF, oneOfSchema)
     );
     // Change the type of name to trigger a fall-thru
     // @ts-expect-error

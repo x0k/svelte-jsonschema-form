@@ -24,12 +24,12 @@ import {
 import {
   getAllPermutationsOfXxxOf,
   resolveAnyOrOneOfSchemas,
-  resolveCondition2,
-  resolveDependencies2,
-  retrieveSchema2,
+  resolveCondition,
+  resolveDependencies,
+  retrieveSchema,
   retrieveSchemaInternal,
-  stubExistingAdditionalProperties2,
-  withExactlyOneSubSchema2,
+  stubExistingAdditionalProperties,
+  withExactlyOneSubSchema,
 } from "./resolve.js";
 import {
   PROPERTY_DEPENDENCIES,
@@ -105,7 +105,7 @@ describe("resolveDependencies()", () => {
       ],
     });
     expect(
-      resolveDependencies2(
+      resolveDependencies(
         testValidator,
         defaultMerger,
         schema,
@@ -165,7 +165,7 @@ describe("retrieveSchema2()", () => {
     const rootSchema: Schema = { definitions: { address } };
 
     expect(
-      retrieveSchema2(testValidator, defaultMerger, schema, rootSchema)
+      retrieveSchema(testValidator, defaultMerger, schema, rootSchema)
     ).toEqual(address);
   });
   it("should `resolve` a schema which contains definitions not in `#/definitions`", () => {
@@ -184,7 +184,7 @@ describe("retrieveSchema2()", () => {
     };
 
     expect(
-      retrieveSchema2(testValidator, defaultMerger, schema, schema)
+      retrieveSchema(testValidator, defaultMerger, schema, schema)
     ).toEqual({
       definitions: { address },
       ...address,
@@ -206,7 +206,7 @@ describe("retrieveSchema2()", () => {
     };
 
     expect(() =>
-      retrieveSchema2(testValidator, defaultMerger, schema, schema)
+      retrieveSchema(testValidator, defaultMerger, schema, schema)
     ).toThrowError("Invalid reference: ");
   });
   it("should give an error when JSON pointer does not point to anything", () => {
@@ -216,7 +216,7 @@ describe("retrieveSchema2()", () => {
     };
 
     expect(() =>
-      retrieveSchema2(testValidator, defaultMerger, schema, schema)
+      retrieveSchema(testValidator, defaultMerger, schema, schema)
     ).toThrowError("Could not find a definition");
   });
   it("should `resolve` escaped JSON Pointers", () => {
@@ -227,7 +227,7 @@ describe("retrieveSchema2()", () => {
     };
 
     expect(
-      retrieveSchema2(testValidator, defaultMerger, schema, rootSchema)
+      retrieveSchema(testValidator, defaultMerger, schema, rootSchema)
     ).toEqual(address);
   });
   it("should `resolve` and stub out a schema which contains an `additionalProperties` with a definition", () => {
@@ -252,7 +252,7 @@ describe("retrieveSchema2()", () => {
     const formData = { newKey: {} };
 
     expect(
-      retrieveSchema2(
+      retrieveSchema(
         testValidator,
         defaultMerger,
         schema,
@@ -285,7 +285,7 @@ describe("retrieveSchema2()", () => {
     const formData = { newKey: {} };
 
     expect(
-      retrieveSchema2(
+      retrieveSchema(
         testValidator,
         defaultMerger,
         schema,
@@ -320,7 +320,7 @@ describe("retrieveSchema2()", () => {
 
     const formData = { newKey: {} };
     expect(
-      retrieveSchema2(testValidator, defaultMerger, schema, {}, formData)
+      retrieveSchema(testValidator, defaultMerger, schema, {}, formData)
     ).toEqual({
       ...schema,
       properties: {
@@ -350,7 +350,7 @@ describe("retrieveSchema2()", () => {
 
     const formData = { newKey: {} };
     expect(
-      retrieveSchema2(testValidator, defaultMerger, schema, {}, formData)
+      retrieveSchema(testValidator, defaultMerger, schema, {}, formData)
     ).toEqual({
       ...schema,
       properties: {
@@ -372,7 +372,7 @@ describe("retrieveSchema2()", () => {
 
     const formData = null;
     expect(
-      retrieveSchema2(testValidator, defaultMerger, schema, {}, formData)
+      retrieveSchema(testValidator, defaultMerger, schema, {}, formData)
     ).toEqual({
       ...schema,
       properties: {},
@@ -390,14 +390,14 @@ describe("retrieveSchema2()", () => {
     const rootSchema: Schema = { definitions: { address } };
 
     expect(
-      retrieveSchema2(testValidator, defaultMerger, schema, rootSchema)
+      retrieveSchema(testValidator, defaultMerger, schema, rootSchema)
     ).toEqual({
       ...address,
       title: "foo",
     });
   });
   it("recursive ref should resolve once", () => {
-    const result = retrieveSchema2(
+    const result = retrieveSchema(
       testValidator,
       defaultMerger,
       RECURSIVE_REF,
@@ -409,7 +409,7 @@ describe("retrieveSchema2()", () => {
     });
   });
   it("recursive allof ref should resolve once", () => {
-    const result = retrieveSchema2(
+    const result = retrieveSchema(
       testValidator,
       defaultMerger,
       getValueByPath(RECURSIVE_REF_ALLOF, [
@@ -434,7 +434,7 @@ describe("retrieveSchema2()", () => {
       type: "object",
     };
     expect(
-      retrieveSchema2(testValidator, defaultMerger, schema, rootSchema)
+      retrieveSchema(testValidator, defaultMerger, schema, rootSchema)
     ).toEqual(schema);
   });
   it("should `resolve` refs inside of a properties key", () => {
@@ -457,7 +457,7 @@ describe("retrieveSchema2()", () => {
       },
     };
     expect(
-      retrieveSchema2(testValidator, defaultMerger, schema, rootSchema)
+      retrieveSchema(testValidator, defaultMerger, schema, rootSchema)
     ).toEqual({
       type: "object",
       properties: {
@@ -485,7 +485,7 @@ describe("retrieveSchema2()", () => {
       },
     };
     expect(
-      retrieveSchema2(testValidator, defaultMerger, schema, rootSchema)
+      retrieveSchema(testValidator, defaultMerger, schema, rootSchema)
     ).toEqual({
       type: "array",
       items: {
@@ -519,7 +519,7 @@ describe("retrieveSchema2()", () => {
       },
     } satisfies Schema;
     expect(
-      retrieveSchema2(testValidator, defaultMerger, schema, schema)
+      retrieveSchema(testValidator, defaultMerger, schema, schema)
     ).toEqual({
       ...schema,
       properties: {
@@ -540,7 +540,7 @@ describe("retrieveSchema2()", () => {
         const rootSchema: Schema = { definitions: {} };
         const formData = {};
         expect(
-          retrieveSchema2(
+          retrieveSchema(
             testValidator,
             defaultMerger,
             PROPERTY_DEPENDENCIES,
@@ -568,7 +568,7 @@ describe("retrieveSchema2()", () => {
           const rootSchema: Schema = { definitions: {} };
           const formData = { a: "1" };
           expect(
-            retrieveSchema2(
+            retrieveSchema(
               testValidator,
               defaultMerger,
               schema,
@@ -595,7 +595,7 @@ describe("retrieveSchema2()", () => {
           const rootSchema: Schema = { definitions: {} };
           const formData = { a: "1" };
           expect(
-            retrieveSchema2(
+            retrieveSchema(
               testValidator,
               defaultMerger,
               schema,
@@ -617,7 +617,7 @@ describe("retrieveSchema2()", () => {
           const rootSchema: Schema = { definitions: {} };
           const formData = { a: "1" };
           expect(
-            retrieveSchema2(
+            retrieveSchema(
               testValidator,
               defaultMerger,
               PROPERTY_DEPENDENCIES,
@@ -643,7 +643,7 @@ describe("retrieveSchema2()", () => {
           const rootSchema: Schema = { definitions: {} };
           const formData = {};
           expect(
-            retrieveSchema2(
+            retrieveSchema(
               testValidator,
               defaultMerger,
               SCHEMA_DEPENDENCIES,
@@ -664,7 +664,7 @@ describe("retrieveSchema2()", () => {
           const rootSchema: Schema = { definitions: {} };
           const formData = { a: "1" };
           expect(
-            retrieveSchema2(
+            retrieveSchema(
               testValidator,
               defaultMerger,
               SCHEMA_DEPENDENCIES,
@@ -683,7 +683,7 @@ describe("retrieveSchema2()", () => {
           const rootSchema: Schema = { definitions: {} };
           const formData = { a: "1" };
           expect(
-            retrieveSchema2(
+            retrieveSchema(
               testValidator,
               defaultMerger,
               SCHEMA_AND_REQUIRED_DEPENDENCIES,
@@ -720,7 +720,7 @@ describe("retrieveSchema2()", () => {
           const rootSchema: Schema = { definitions: {} };
           const formData = { a: "FOO" };
           expect(
-            retrieveSchema2(
+            retrieveSchema(
               testValidator,
               defaultMerger,
               schema,
@@ -762,7 +762,7 @@ describe("retrieveSchema2()", () => {
           };
           const formData = { a: "1" };
           expect(
-            retrieveSchema2(
+            retrieveSchema(
               testValidator,
               defaultMerger,
               schema,
@@ -820,7 +820,7 @@ describe("retrieveSchema2()", () => {
           };
           const formData = { a: "typeB" };
           expect(
-            retrieveSchema2(
+            retrieveSchema(
               testValidator,
               defaultMerger,
               schema,
@@ -850,7 +850,7 @@ describe("retrieveSchema2()", () => {
           };
           const formData = {};
           expect(
-            retrieveSchema2(
+            retrieveSchema(
               testValidator,
               defaultMerger,
               schema,
@@ -881,7 +881,7 @@ describe("retrieveSchema2()", () => {
           };
           const formData = { a: "int" };
           expect(
-            retrieveSchema2(
+            retrieveSchema(
               testValidator,
               defaultMerger,
               schema,
@@ -911,7 +911,7 @@ describe("retrieveSchema2()", () => {
           };
           const formData = { a: "bool" };
           expect(
-            retrieveSchema2(
+            retrieveSchema(
               testValidator,
               defaultMerger,
               schema,
@@ -950,7 +950,7 @@ describe("retrieveSchema2()", () => {
               update_absences: "BOTH",
             };
             expect(
-              retrieveSchema2(
+              retrieveSchema(
                 testValidator,
                 defaultMerger,
                 schema,
@@ -986,7 +986,7 @@ describe("retrieveSchema2()", () => {
               update_absences: "BOTH",
             };
             expect(
-              retrieveSchema2(
+              retrieveSchema(
                 testValidator,
                 defaultMerger,
                 schema,
@@ -1062,7 +1062,7 @@ describe("retrieveSchema2()", () => {
           };
           const formData = { a: "bool" };
           expect(
-            retrieveSchema2(
+            retrieveSchema(
               testValidator,
               defaultMerger,
               schema,
@@ -1088,7 +1088,7 @@ describe("retrieveSchema2()", () => {
       const rootSchema: Schema = { definitions: {} };
       const formData = {};
       expect(
-        retrieveSchema2(
+        retrieveSchema(
           testValidator,
           defaultMerger,
           schema,
@@ -1140,7 +1140,7 @@ describe("retrieveSchema2()", () => {
       const rootSchema: Schema = { definitions: {} };
       const formData = {};
       expect(
-        retrieveSchema2(
+        retrieveSchema(
           testValidator,
           defaultMerger,
           schema,
@@ -1189,7 +1189,7 @@ describe("retrieveSchema2()", () => {
       const rootSchema: Schema = { definitions: {} };
       const formData = {};
       expect(
-        retrieveSchema2(
+        retrieveSchema(
           testValidator,
           defaultMerger,
           schema,
@@ -1233,7 +1233,7 @@ describe("retrieveSchema2()", () => {
       };
       const formData = {};
       expect(
-        retrieveSchema2(
+        retrieveSchema(
           testValidator,
           defaultMerger,
           schema,
@@ -1261,7 +1261,7 @@ describe("retrieveSchema2()", () => {
       const rootSchema: Schema = { definitions: {} };
       const formData = {};
       expect(
-        retrieveSchema2(
+        retrieveSchema(
           testValidator,
           defaultMerger,
           schema,
@@ -1291,7 +1291,7 @@ describe("retrieveSchema2()", () => {
         postal_code: "20500",
       };
       expect(
-        retrieveSchema2(
+        retrieveSchema(
           testValidator,
           defaultMerger,
           SCHEMA_WITH_SINGLE_CONDITION,
@@ -1322,7 +1322,7 @@ describe("retrieveSchema2()", () => {
         postal_code: "K1M 1M4",
       };
       expect(
-        retrieveSchema2(
+        retrieveSchema(
           testValidator,
           defaultMerger,
           SCHEMA_WITH_SINGLE_CONDITION,
@@ -1396,7 +1396,7 @@ describe("retrieveSchema2()", () => {
       };
 
       expect(
-        retrieveSchema2(
+        retrieveSchema(
           testValidator,
           defaultMerger,
           schema,
@@ -1433,7 +1433,7 @@ describe("retrieveSchema2()", () => {
       };
 
       expect(
-        retrieveSchema2(
+        retrieveSchema(
           testValidator,
           defaultMerger,
           SCHEMA_WITH_MULTIPLE_CONDITIONS,
@@ -1576,7 +1576,7 @@ describe("retrieveSchema2()", () => {
       };
 
       expect(
-        retrieveSchema2(
+        retrieveSchema(
           testValidator,
           defaultMerger,
           schema,
@@ -1602,7 +1602,7 @@ describe("retrieveSchema2()", () => {
       };
 
       expect(
-        retrieveSchema2(
+        retrieveSchema(
           testValidator,
           defaultMerger,
           SCHEMA_WITH_NESTED_CONDITIONS,
@@ -1645,7 +1645,7 @@ describe("retrieveSchema2()", () => {
       const rootSchema: Schema = { definitions: {} };
       const formData = {};
       expect(
-        retrieveSchema2(
+        retrieveSchema(
           testValidator,
           defaultMerger,
           schema,
@@ -1674,7 +1674,7 @@ describe("retrieveSchema2()", () => {
         { properties: { foo: { type: "string" } } },
       ];
       expect(
-        withExactlyOneSubSchema2(
+        withExactlyOneSubSchema(
           testValidator,
           defaultMerger,
           schema,
@@ -1691,7 +1691,7 @@ describe("retrieveSchema2()", () => {
     it("deals with undefined formData", () => {
       const schema: Schema = { type: "string" };
       expect(
-        stubExistingAdditionalProperties2(testValidator, defaultMerger, schema)
+        stubExistingAdditionalProperties(testValidator, defaultMerger, schema)
       ).toEqual({
         ...schema,
         properties: {},
@@ -1700,7 +1700,7 @@ describe("retrieveSchema2()", () => {
     it("deals with non-object formData", () => {
       const schema: Schema = { type: "string" };
       expect(
-        stubExistingAdditionalProperties2(
+        stubExistingAdditionalProperties(
           testValidator,
           defaultMerger,
           schema,
@@ -1718,7 +1718,7 @@ describe("retrieveSchema2()", () => {
       };
       const formData = { bar: 1, baz: false, foo: "str" };
       expect(
-        stubExistingAdditionalProperties2(
+        stubExistingAdditionalProperties(
           testValidator,
           defaultMerger,
           schema,
@@ -1753,7 +1753,7 @@ describe("retrieveSchema2()", () => {
       };
       const formData = { foo: "blah", bar: 1, baz: true };
       expect(
-        stubExistingAdditionalProperties2(
+        stubExistingAdditionalProperties(
           testValidator,
           defaultMerger,
           schema,
@@ -1777,7 +1777,7 @@ describe("retrieveSchema2()", () => {
       };
       const formData = { bar: 1 };
       expect(
-        stubExistingAdditionalProperties2(
+        stubExistingAdditionalProperties(
           testValidator,
           defaultMerger,
           schema,
@@ -1800,7 +1800,7 @@ describe("retrieveSchema2()", () => {
       };
       const formData = { foo: "blah", bar: 1, baz: true };
       expect(
-        stubExistingAdditionalProperties2(
+        stubExistingAdditionalProperties(
           testValidator,
           defaultMerger,
           schema,
@@ -1836,7 +1836,7 @@ describe("retrieveSchema2()", () => {
       };
       const formData = { bar: "blah" };
       expect(
-        stubExistingAdditionalProperties2(
+        stubExistingAdditionalProperties(
           testValidator,
           defaultMerger,
           schema,
@@ -2038,7 +2038,7 @@ describe("retrieveSchema2()", () => {
   describe("resolveCondition2()", () => {
     it("returns both conditi2ons with expandAll", () => {
       expect(
-        resolveCondition2(
+        resolveCondition(
           testValidator,
           defaultMerger,
           SCHEMA_WITH_SINGLE_CONDITION,
@@ -2079,7 +2079,7 @@ describe("retrieveSchema2()", () => {
         else: true,
       };
       expect(
-        resolveCondition2(
+        resolveCondition(
           testValidator,
           defaultMerger,
           schema,

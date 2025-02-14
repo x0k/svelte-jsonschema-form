@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { resolveDependencies2, retrieveSchema2 } from "./resolve.js";
+import { resolveDependencies, retrieveSchema } from "./resolve.js";
 import {
   ALL_OF_KEY,
   DEPENDENCIES_KEY,
@@ -68,7 +68,7 @@ export function getDefaultFormState(
   includeUndefinedValues: boolean | "excludeObjectChildren" = false,
   experimental_defaultFormStateBehavior: Experimental_DefaultFormStateBehavior = {}
 ): SchemaValue | undefined {
-  const schema = retrieveSchema2(
+  const schema = retrieveSchema(
     validator,
     merger,
     theSchema,
@@ -274,7 +274,7 @@ export function computeDefaults(
       ...formData,
     };
     // Get the default if set from properties to ensure the dependencies conditions are resolved based on it
-    const resolvedSchema = resolveDependencies2(
+    const resolvedSchema = resolveDependencies(
       validator,
       merger,
       schema,
@@ -598,7 +598,7 @@ export function getObjectDefaults(
   const retrievedSchema =
     experimental_defaultFormStateBehavior?.allOf === "populateDefaults" &&
     ALL_OF_KEY in schema
-      ? retrieveSchema2(validator, merger, schema, rootSchema, formData)
+      ? retrieveSchema(validator, merger, schema, rootSchema, formData)
       : schema;
   const retrievedSchemaRequired = new Set(retrievedSchema.required);
   const parentConstObject = isSchemaObjectValue(retrievedSchema.const)

@@ -4,7 +4,7 @@
 
 import { isSchema, type Schema, type SchemaValue } from "./schema.js";
 import type { Validator } from "./validator.js";
-import { retrieveSchema2 } from "./resolve.js";
+import { retrieveSchema } from "./resolve.js";
 import { getSchemaConstantValue, isSchemaOfConstantValue } from "./constant-schema.js";
 import { defaultMerger, type Merger } from "./merger.js";
 
@@ -14,7 +14,7 @@ export function isSelect(
   theSchema: Schema,
   rootSchema: Schema
 ) {
-  const schema = retrieveSchema2(validator, merger, theSchema, rootSchema);
+  const schema = retrieveSchema(validator, merger, theSchema, rootSchema);
   if (Array.isArray(schema.enum)) {
     return true;
   }

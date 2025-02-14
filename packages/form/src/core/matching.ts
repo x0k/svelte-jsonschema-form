@@ -7,7 +7,7 @@ import {
   getOptionMatchingSimpleDiscriminator,
 } from "./discriminator.js";
 import type { Merger } from "./merger.js";
-import { resolveAllReferences, retrieveSchema2 } from "./resolve.js";
+import { resolveAllReferences, retrieveSchema } from "./resolve.js";
 import {
   isSchema,
   PROPERTIES_KEY,
@@ -138,7 +138,7 @@ export function calculateIndexScore(
           continue;
         }
         if (propertySchema[REF_KEY] !== undefined) {
-          const newSchema = retrieveSchema2(
+          const newSchema = retrieveSchema(
             validator,
             merger,
             propertySchema,

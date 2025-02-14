@@ -9,7 +9,7 @@ import {
   type SchemaObjectValue,
   type SchemaValue,
 } from "./schema.js";
-import { retrieveSchema2 } from "./resolve.js";
+import { retrieveSchema } from "./resolve.js";
 import type { Validator } from "./validator.js";
 import { isSchemaObjectValue } from "./value.js";
 import { defaultMerger, type Merger } from "./merger.js";
@@ -24,7 +24,7 @@ function retrieveIfNeeded(
   formData?: SchemaValue
 ) {
   return schema[REF_KEY] !== undefined
-    ? retrieveSchema2(validator, merger, schema, rootSchema, formData)
+    ? retrieveSchema(validator, merger, schema, rootSchema, formData)
     : schema;
 }
 
