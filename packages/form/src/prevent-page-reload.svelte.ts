@@ -1,4 +1,4 @@
-export function preventDataLoss(data: { isChanged: boolean }) {
+export function preventPageReload(data: { isChanged: boolean }) {
   function handleBeforeUnload(e: BeforeUnloadEvent) {
     if (data.isChanged) {
       e.preventDefault();

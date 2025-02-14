@@ -130,9 +130,9 @@
       "types": "./dist/create-action.svelte.d.ts",
       "svelte": "./dist/create-action.svelte.js"
     },
-    "./prevent-data-loss.svelte": {
-      "types": "./dist/prevent-data-loss.svelte.d.ts",
-      "svelte": "./dist/prevent-data-loss.svelte.js"
+    "./prevent-page-reload.svelte": {
+      "types": "./dist/prevent-page-reload.svelte.d.ts",
+      "svelte": "./dist/prevent-page-reload.svelte.js"
     },
     "./static-analysis": {
       "types": "./dist/static-analysis.d.ts",
