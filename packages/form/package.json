@@ -34,7 +34,6 @@
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "dependencies": {
-    "es-toolkit": "^1.32.0",
     "fast-equals": "^5.2.2",
     "json-schema-merge-allof": "^0.8.1",
     "jsonpointer": "^5.0.1"
@@ -109,10 +108,6 @@
     "./omit-extra-data": {
       "types": "./dist/omit-extra-data.d.ts",
       "default": "./dist/omit-extra-data.js"
-    },
-    "./legacy-omit-extra-data": {
-      "types": "./dist/legacy-omit-extra-data.d.ts",
-      "default": "./dist/legacy-omit-extra-data.js"
     },
     "./get-default-form-state": {
       "types": "./dist/get-default-form-state.d.ts",

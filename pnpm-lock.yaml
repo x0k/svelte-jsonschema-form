@@ -673,9 +673,6 @@ importers:
 
   packages/form:
     dependencies:
-      es-toolkit:
-        specifier: ^1.32.0
-        version: 1.32.0
       fast-equals:
         specifier: ^5.2.2
         version: 5.2.2
