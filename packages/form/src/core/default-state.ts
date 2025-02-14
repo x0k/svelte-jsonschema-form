@@ -30,7 +30,7 @@ import {
 } from "./type.js";
 import {
   getSelectOptionValues,
-  isMultiSelect2,
+  isMultiSelect,
   isSelect,
 } from "./is-select.js";
 import { getClosestMatchingOption2 } from "./matching.js";
@@ -799,7 +799,7 @@ export function getArrayDefaults(
   const defaultsLength = defaults?.length ?? 0;
   if (
     !schema.minItems ||
-    isMultiSelect2(validator, merger, schema, rootSchema) ||
+    isMultiSelect(validator, merger, schema, rootSchema) ||
     computeSkipPopulate(validator, schema, rootSchema) ||
     schema.minItems <= defaultsLength
   ) {

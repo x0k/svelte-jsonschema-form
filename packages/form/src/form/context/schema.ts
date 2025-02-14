@@ -3,7 +3,7 @@ import {
   type SchemaValue,
   isSelect as isSelectInternal,
   isFilesArray as isFilesArrayInternal,
-  isMultiSelect2 as isMultiSelectInternal,
+  isMultiSelect as isMultiSelectInternal,
   retrieveSchema2 as retrieveSchemaInternal,
   sanitizeDataForNewSchema2 as sanitizeDataForNewSchemaInternal,
   getClosestMatchingOption2 as getClosestMatchingOptionInternal,

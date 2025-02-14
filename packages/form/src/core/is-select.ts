@@ -48,19 +48,7 @@ export function getSelectOptionValues({
   });
 }
 
-/**
- * @deprecated use `isMultiSelect2`
- */
 export function isMultiSelect(
-  validator: Validator,
-  schema: Schema,
-  rootSchema: Schema,
-  merger = defaultMerger
-) {
-  return isMultiSelect2(validator, merger, schema, rootSchema);
-}
-
-export function isMultiSelect2(
   validator: Validator,
   merger: Merger2,
   schema: Schema,
