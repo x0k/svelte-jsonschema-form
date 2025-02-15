@@ -46,14 +46,11 @@
     validateField(ctx, config, value);
   }
   const objCtx: ObjectContext = {
-    get newKeySeparator() {
-      return newKeySeparator;
-    },
-    validate,
     addProperty() {
       if (value === undefined) {
         return;
       }
+      //TODO: internationalization
       const newKey = generateNewKey("newKey", newKeySeparator, value);
       value[newKey] =
         getDefaultFieldState(ctx, schemaAdditionalProperties, undefined) ??

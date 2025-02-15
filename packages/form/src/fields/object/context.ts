@@ -3,10 +3,6 @@ import { getContext, setContext } from "svelte";
 import type { Config } from '@/form/index.js';
 
 export interface ObjectContext {
-  /** @deprecated */
-  newKeySeparator: string;
-  /** @deprecated */
-  validate: () => void;
   addProperty(): void
   renameProperty(oldProp: string, newProp: string, config: Config): void
   removeProperty(prop: string): void
