@@ -5,10 +5,10 @@ import { userEvent } from "@testing-library/user-event";
 import type { Schema } from "@/core/index.js";
 import { theme } from "@/basic-theme/index.js";
 import { createValidator } from "@/fake-validator.js";
-import { translation } from "@/translations/en.js";
+import { translationResolver } from "@/translations/en.js";
 
 import { FORM_CONTEXT } from "./context/index.js";
-import { createForm3 } from "./create-form.svelte.js";
+import { createForm } from "./create-form.svelte.js";
 import Content from "./content.svelte";
 import {
   computePseudoId,
@@ -17,6 +17,7 @@ import {
   DEFAULT_PSEUDO_ID_SEPARATOR,
   pathToId,
 } from "./id.js";
+import { createTranslation } from "./translation.js";
 
 it("should preserve state of multi select field in array", async () => {
   const user = userEvent.setup();
@@ -46,8 +47,9 @@ it("should preserve state of multi select field in array", async () => {
   };
 
   const validator = createValidator();
+  const translation = createTranslation(translationResolver);
 
-  const form = createForm3({
+  const form = createForm({
     theme,
     validator,
     translation,

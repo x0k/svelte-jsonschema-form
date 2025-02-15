@@ -1,4 +1,5 @@
 import type { Resolver } from "@/lib/resolver.js";
+import type { FailedAction } from '@/create-action.svelte.js';
 
 export interface Labels {
   submit: [];
@@ -14,6 +15,7 @@ export interface Labels {
   "move-array-item-up": [];
   "move-array-item-down": [];
   "add-array-item": [];
+  "validation-process-error": [FailedAction<unknown>];
 }
 
 export type Label = keyof Labels;

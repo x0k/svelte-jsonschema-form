@@ -1,5 +1,6 @@
-import { fromRecord } from '@/lib/resolver.js';
+import { fromRecord } from "@/lib/resolver.js";
 import type { Translators } from "@/form/translation.js";
+import type { ActionFailureReason } from "@/create-action.svelte.js";
 
 const translators: Translators = {
   submit: "Submit",
@@ -16,16 +17,13 @@ const translators: Translators = {
   "move-array-item-up": "Up",
   "remove-array-item": "Del",
   "remove-object-property": "Del",
+  "validation-process-error": (state) => FAILURE_REASONS[state.reason],
 };
 
-export const translationResolver = fromRecord(translators)
+const FAILURE_REASONS: Record<ActionFailureReason, string> = {
+  aborted: "Validation aborted",
+  timeout: "Validation terminated by timeout",
+  error: "Something went wrong during validation",
+};
 
-// const FAILURE_REASONS: Record<ActionFailureReason, string> = {
-//   "aborted": "Validation aborted",
-//   "timeout": "Validation terminated by timeout",
-//   "error": "Something went wrong during validation",
-// }
-
-// export function handleValidationProcessError (state: FailedAction<unknown>) {
-//   return FAILURE_REASONS[state.reason]
-// }
+export const translationResolver = fromRecord(translators);

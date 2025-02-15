@@ -1,7 +1,6 @@
-import type { EventHandler, FormEventHandler } from "svelte/elements";
-import type { Action as SvelteAction } from "svelte/action";
 import { SvelteMap } from "svelte/reactivity";
 
+import type { MaybePromise } from "@/lib/types.js";
 import { makeDataURLtoBlob } from "@/lib/file.js";
 import type { SchedulerYield } from "@/lib/scheduler.js";
 import type { Schema } from "@/core/index.js";
@@ -32,7 +31,7 @@ import {
   type FieldErrors,
   NO_FORM_ERRORS,
 } from "./errors.js";
-import { setFromContext, type FormContext } from "./context/index.js";
+import type { FormContext } from "./context/index.js";
 import { DefaultFormMerger, type FormMerger } from "./merger.js";
 import {
   DEFAULT_ID_PREFIX,
@@ -45,14 +44,10 @@ import IconOrTranslation from "./icon-or-translation.svelte";
 import type { Config } from "./config.js";
 import type { ThemeResolver } from "./theme.js";
 import type { FieldValue, FormValue } from "./model.js";
-import type { MaybePromise } from "@/lib/types.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
 
-/**
- * @deprecated use `UseFormOptions2`
- */
-export interface UseFormOptions<T, E> {
+export interface FormOptions<T, E> {
   validator: FormValidator<E>;
   schema: Schema;
   theme: ThemeResolver;
@@ -165,15 +160,6 @@ export type ValidationProcessErrorTranslation = (
   state: FailedAction<unknown>
 ) => string;
 
-export interface FormOptions<T, E> extends UseFormOptions<T, E> {
-  additionalPropertyKeyValidator?: AdditionalPropertyKeyValidator;
-  // @deprecated
-  // TODO: Move translation functionality to `Translation`
-  // and always add `ValidationProcessError` to the errors type
-  // so this can be removed
-  handleValidationProcessError?: ValidationProcessErrorTranslation;
-}
-
 export interface FormState<T, E> {
   context: FormContext<E>;
   value: T | undefined;
@@ -195,7 +181,7 @@ export interface FormState<T, E> {
   >;
   validate(): FormErrors<E>;
   validateAsync(signal: AbortSignal): Promise<FormErrors<E>>;
-  submit(e: SubmitEvent): void;
+  submit(e: SubmitEvent): Promise<void>;
   reset(): void;
   updateErrorsByPath(
     path: Array<string | number>,
@@ -203,16 +189,16 @@ export interface FormState<T, E> {
   ): void;
 }
 
-type FormValueFromOptions<O extends FormOptions<any, any>> =
-  O extends FormOptions<infer T, any> ? T : never;
+export type ExtractAdditionalPropertyKeyError<O extends FormOptions<any, any>> =
+  O["validator"] extends AdditionalPropertyKeyValidator
+    ? AdditionalPropertyKeyError
+    : never;
 
-type ValidatorErrorFromOptions<O extends FormOptions<any, any>> =
-  O extends FormOptions<any, infer E> ? E : never;
-
-export function createForm3<
-  O extends FormOptions<any, any>,
-  T = FormValueFromOptions<O>,
-  E = ValidatorErrorFromOptions<O>,
+export function createForm<
+  T,
+  VE,
+  O extends FormOptions<T, E>,
+  E = VE | ValidationProcessError | ExtractAdditionalPropertyKeyError<O>,
 >(options: O): FormState<T, E> {
   const merger = $derived(
     options.merger ?? new DefaultFormMerger(options.validator, options.schema)
@@ -258,14 +244,11 @@ export function createForm3<
   );
   const dataUrlToBlob = $derived(makeDataURLtoBlob(schedulerYield));
   const additionalPropertyKeyValidator = $derived.by(() => {
-    const validator = options.additionalPropertyKeyValidator;
-    return validator
+    const { validateAdditionalPropertyKey } = options.validator;
+    return validateAdditionalPropertyKey
       ? (config: Config, key: string, fieldConfig: Config) => {
           const instanceId = fieldConfig.id;
-          const messages = validator.validateAdditionalPropertyKey(
-            key,
-            config.schema
-          );
+          const messages = validateAdditionalPropertyKey(key, config.schema);
           errors.set(
             instanceId,
             messages.map((message) => ({
@@ -322,15 +305,13 @@ export function createForm3<
       options.onSubmitError?.(errors, event, snapshot);
     },
     onFailure(state, e) {
-      if (options.handleValidationProcessError) {
-        errors.set(context.rootId, [
-          {
-            propertyTitle: "",
-            message: options.handleValidationProcessError(state),
-            error: new ValidationProcessError(state) as E,
-          },
-        ]);
-      }
+      errors.set(context.rootId, [
+        {
+          propertyTitle: "",
+          message: options.translation("validation-process-error", state),
+          error: new ValidationProcessError(state) as E,
+        },
+      ]);
       options.onValidationFailure?.(state, e);
     },
     get combinator() {
@@ -359,11 +340,11 @@ export function createForm3<
       }
     },
     onFailure(state, config, value) {
-      if (options.handleValidationProcessError && state.reason !== "aborted") {
+      if (state.reason !== "aborted") {
         errors.set(config.id, [
           {
             propertyTitle: config.title,
-            message: options.handleValidationProcessError(state),
+            message: options.translation("validation-process-error", state),
             error: new ValidationProcessError(state) as E,
           },
         ]);
@@ -538,18 +519,13 @@ export function createForm3<
       return validateSnapshot(getSnapshot(), signal);
     },
     submit(e) {
-      // @deprecated
-      // TODO: Maybe we should return this promise in next major version
-      validation.run(e);
+      return validation.run(e);
     },
     reset,
     updateErrorsByPath(path, update) {
       const instanceId = pathToId(idPrefix, idSeparator, path);
       const list = errors.get(instanceId);
-      errors.set(
-        instanceId,
-        update(list ?? []).map((e) => ({ ...e, instanceId }))
-      );
+      errors.set(instanceId, update(list ?? []));
     },
   };
 }

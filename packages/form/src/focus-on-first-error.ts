@@ -43,8 +43,8 @@ export function getFocusAction(
   return null;
 }
 
-export function focusOnFirstError(
-  errors: FormErrors,
+export function focusOnFirstError<E>(
+  errors: FormErrors<E>,
   e: SubmitEvent
 ) {
   if (errors.size === 0) {

@@ -1,7 +1,8 @@
-import { createTranslation } from "@/form/translation.js";
-import type { FailedAction, ActionFailureReason } from '@/create-action.svelte.js';
+import { fromRecord } from "@/lib/resolver.js";
+import type { Translators } from "@/form/translation.js";
+import type { ActionFailureReason } from "@/create-action.svelte.js";
 
-export const translation = createTranslation({
+export const translators: Translators = {
   submit: "Продолжить",
   "array-schema-missing-items": "Отсутствует опция `items`",
   yes: "Да",
@@ -16,14 +17,13 @@ export const translation = createTranslation({
   "move-array-item-up": "Вверх",
   "remove-array-item": "Удалить",
   "remove-object-property": "Удалить",
-});
+  "validation-process-error": (state) => FAILURE_REASONS[state.reason],
+};
 
 const FAILURE_REASONS: Record<ActionFailureReason, string> = {
-  "aborted": "Валидация прервана",
-  "timeout": "Валидация завершена по таймауту",
-  "error": "Что-то пошло не так во время валидации",
-}
+  aborted: "Валидация прервана",
+  timeout: "Валидация завершена по таймауту",
+  error: "Что-то пошло не так во время валидации",
+};
 
-export function handleValidationProcessError (state: FailedAction<unknown>) {
-  return FAILURE_REASONS[state.reason]
-}
+export const translationResolver = fromRecord(translators);

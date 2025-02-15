@@ -1,12 +1,13 @@
 <script lang="ts">
   import {
-    createForm3,
+    createForm,
     SimpleForm,
     setFromContext,
     type Schema,
+    createTranslation,
   } from "./form/index.js";
   import { theme } from "./basic-theme/index.js";
-  import { translation } from "./translations/en.js";
+  import { translationResolver } from "./translations/en.js";
   import { createValidator } from "./fake-validator.js";
 
   const schema: Schema = {
@@ -14,8 +15,9 @@
   };
 
   const validator = createValidator();
+  const translation = createTranslation(translationResolver)
 
-  const form = createForm3({
+  const form = createForm({
     theme,
     schema,
     translation,
