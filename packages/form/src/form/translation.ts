@@ -1,3 +1,5 @@
+import type { Resolver } from "@/lib/resolver.js";
+
 export interface Labels {
   submit: [];
   "array-schema-missing-items": [];
@@ -16,16 +18,29 @@ export interface Labels {
 
 export type Label = keyof Labels;
 
+export type Translator<L extends Label> =
+  | string
+  | ((...params: Labels[L]) => string);
+
+export type Translators = {
+  [L in Label]: Translator<L>;
+};
+
+export type TranslatorResolver = Resolver<Labels, Translators, undefined>;
+
 export type Translation = <L extends Label>(
   label: L,
   ...params: Labels[L]
 ) => string;
 
-export function createTranslation(translations: {
-  [L in Label]: string | ((...params: Labels[L]) => string);
-}): Translation {
+export function createTranslation(
+  translatorResolver: TranslatorResolver
+): Translation {
   return (label, ...params) => {
-    const translation = translations[label];
+    const translation = translatorResolver(label, params);
+    if (translation === undefined) {
+      return `Label "${label}" is not translated`;
+    }
     return typeof translation === "string"
       ? translation
       : translation(...params);

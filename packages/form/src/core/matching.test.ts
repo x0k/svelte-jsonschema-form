@@ -16,7 +16,7 @@ import type { Schema } from "./schema.js";
 import { calculateIndexScore, getClosestMatchingOption } from "./matching.js";
 import { beforeEach, describe, expect, it } from "vitest";
 import type { Validator } from "./validator.js";
-import { makeTestValidator } from "./test-validator.js";
+import { createValidator } from "./test-validator.js";
 import { defaultMerger } from './merger.js';
 
 const firstOption = oneOfSchema.definitions!.first_option_def as Schema;
@@ -25,7 +25,7 @@ const secondOption = oneOfSchema.definitions!.second_option_def as Schema;
 let testValidator: Validator;
 
 beforeEach(() => {
-  testValidator = makeTestValidator();
+  testValidator = createValidator();
 });
 
 describe("calculateIndexScore", () => {
@@ -188,7 +188,7 @@ describe("oneOfMatchingOption", () => {
     ).toEqual(2);
   });
   it("returns the first option, which kind of matches the data", () => {
-    testValidator = makeTestValidator({ isValid: [false] });
+    testValidator = createValidator({ isValid: [false] });
     expect(
       getClosestMatchingOption(
         testValidator,
@@ -201,7 +201,7 @@ describe("oneOfMatchingOption", () => {
   });
   it("returns the second option, which exactly matches the data", () => {
     // First 3 are mocked false, with the fourth being true for the real second option
-    testValidator = makeTestValidator({ isValid: [false, false, false, true] });
+    testValidator = createValidator({ isValid: [false, false, false, true] });
     expect(
       getClosestMatchingOption(
         testValidator,
@@ -213,7 +213,7 @@ describe("oneOfMatchingOption", () => {
     ).toEqual(1);
   });
   it("returns the first matching option (i.e. second index) when data is ambiguous", () => {
-    testValidator = makeTestValidator({
+    testValidator = createValidator({
       isValid: [false, false, false, true, false, true],
     });
     const formData = { flag: false };
@@ -228,7 +228,7 @@ describe("oneOfMatchingOption", () => {
     ).toEqual(1);
   });
   it("returns the third index when data is clear", () => {
-    testValidator = makeTestValidator({
+    testValidator = createValidator({
       isValid: [false, false, false, false, false, true],
     });
     expect(
@@ -284,7 +284,7 @@ describe("oneOfMatchingOption", () => {
     } satisfies Schema;
     const formData = { ipsum: { night: "nicht" } };
     // Mock to return true for the last of the second one-ofs
-    testValidator = makeTestValidator({
+    testValidator = createValidator({
       isValid: [false, false, false, false, false, false, false, true],
     });
     expect(
@@ -339,7 +339,7 @@ describe("oneOfMatchingOption", () => {
     };
     const formData = { ipsum: { night: "nicht" } };
     // Mock to return true for the last of the second anyOfs
-    testValidator = makeTestValidator({
+    testValidator = createValidator({
       isValid: [false, false, false, false, false, false, false, true],
     });
     expect(
@@ -354,7 +354,7 @@ describe("oneOfMatchingOption", () => {
   });
   it("should return 0 when schema has discriminator but no matching data", () => {
     // Mock isValid to fail both values
-    testValidator = makeTestValidator({
+    testValidator = createValidator({
       isValid: [false, false, false, false],
     });
     const schema: Schema = {
@@ -409,7 +409,7 @@ describe("oneOfMatchingOption", () => {
   });
   it("should return Bar when schema has discriminator for bar", () => {
     // Mock isValid to pass the second value
-    testValidator = makeTestValidator({ isValid: [false, false, false, true] });
+    testValidator = createValidator({ isValid: [false, false, false, true] });
     const schema: Schema = {
       type: "object",
       definitions: {

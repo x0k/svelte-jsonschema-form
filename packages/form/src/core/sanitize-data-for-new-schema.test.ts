@@ -14,13 +14,13 @@ import type { Validator } from "./validator.js";
 import { sanitizeDataForNewSchema } from "./sanitize-data-for-new-schema.js";
 import { retrieveSchema } from "./resolve.js";
 import type { Schema } from "./schema.js";
-import { makeTestValidator } from "./test-validator.js";
+import { createValidator } from "./test-validator.js";
 import { defaultMerger } from './merger.js';
 
 let testValidator: Validator;
 
 beforeEach(() => {
-  testValidator = makeTestValidator();
+  testValidator = createValidator();
 });
 
 describe("sanitizeDataForNewSchema", () => {

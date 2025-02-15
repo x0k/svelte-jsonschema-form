@@ -1,7 +1,7 @@
 import type { Snippet, Component as SvelteComponent } from "svelte";
 
 import type { Equal, ExpandAndEqual } from "@/lib/types.js";
-import { chain, fromRecord, type Resolver } from "@/lib/resolver.js";
+import { chain, type Resolver } from "@/lib/resolver.js";
 
 import type { Config } from "./config.js";
 import { createMessage } from "./error-message.svelte";
@@ -61,20 +61,17 @@ export type CompatibleDefinitions = {
   }[CompatibleComponentType<T>];
 };
 
-export type ThemeResolver = Resolver<
-  ComponentType,
-  Config,
-  CompatibleDefinitions
+export type ThemeResolver<NotFound = never> = Resolver<
+  { [T in ComponentType]: Config },
+  CompatibleDefinitions,
+  NotFound
 >;
 
-export const createTheme = fromRecord as (
-  definitions: Definitions
-) => ThemeResolver;
+const fallbackComponent: ThemeResolver = <T extends ComponentType>(type: T) =>
+  createMessage(`Component ${type} not found`) as Definitions[T];
 
-export const fallbackComponent: ThemeResolver = <T extends ComponentType>(
-  type: T
-) => createMessage(`Component ${type} not found`) as Definitions[T];
-
-export function createIncompleteTheme(definitions: Partial<Definitions>) {
-  return chain(fromRecord(definitions), fallbackComponent);
+export function createTheme(
+  definitions: ThemeResolver<undefined>
+): ThemeResolver {
+  return chain(definitions, fallbackComponent);
 }

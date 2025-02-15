@@ -2,7 +2,7 @@ import { describe, expect, it, beforeEach } from "vitest";
 
 import type { Validator } from "./core/validator.js";
 import type { Schema } from "./core/schema.js";
-import { makeTestValidator } from "./core/test-validator.js";
+import { createValidator } from "./core/test-validator.js";
 import { defaultMerger } from "./core/merger.js";
 
 import { omitExtraData } from "./omit-extra-data.js";
@@ -10,7 +10,7 @@ import { omitExtraData } from "./omit-extra-data.js";
 let validator: Validator;
 
 beforeEach(() => {
-  validator = makeTestValidator();
+  validator = createValidator();
 });
 
 // Most of the tests are AI generated and the test cases are duplicated.
@@ -885,7 +885,7 @@ describe("omitExtraData", () => {
       expect(omitExtraData(validator, defaultMerger, schema, "test")).toBe(
         "test"
       );
-      validator = makeTestValidator({
+      validator = createValidator({
         isValid: [
           false, // compare with junk
           false, // compare with string
@@ -898,7 +898,7 @@ describe("omitExtraData", () => {
           extra: true,
         })
       ).toEqual({ age: 25 });
-      validator = makeTestValidator({
+      validator = createValidator({
         isValid: [
           false, // compare with junk
           false, // compare with string

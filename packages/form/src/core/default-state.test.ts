@@ -16,7 +16,7 @@ import {
 
 import type { Schema } from "./schema.js";
 import type { Validator } from "./validator.js";
-import { makeTestValidator } from "./test-validator.js";
+import { createValidator } from "./test-validator.js";
 import { RECURSIVE_REF, RECURSIVE_REF_ALLOF } from "./fixtures/test-data.js";
 import {
   AdditionalItemsHandling,
@@ -34,7 +34,7 @@ import { defaultMerger } from "./merger.js";
 let testValidator: Validator;
 
 beforeEach(() => {
-  testValidator = makeTestValidator();
+  testValidator = createValidator();
 });
 
 const defaults = {
@@ -1003,18 +1003,12 @@ describe("getDefaultFormState2()", () => {
       describe("an object with deep nested dependencies with formData", () => {
         beforeEach(() => {
           // Mock isValid so that withExactlyOneSubschema works as expected
-          testValidator = makeTestValidator({
+          testValidator = createValidator({
             isValid: [
               true, // First oneOf... first === first
               false, // Second oneOf... second !== first
             ],
           });
-        });
-        afterAll(() => {
-          // Reset the testValidator
-          if (typeof testValidator.reset === "function") {
-            testValidator?.reset();
-          }
         });
 
         const schema: Schema = {
@@ -1585,15 +1579,9 @@ describe("getDefaultFormState2()", () => {
     describe("an object with non valid formData for enum properties", () => {
       beforeEach(() => {
         // Mock isValid so that withExactlyOneSubschema works as expected
-        testValidator = makeTestValidator({
+        testValidator = createValidator({
           isValid: [false, true],
         });
-      });
-      afterAll(() => {
-        // Reset the testValidator
-        if (typeof testValidator.reset === "function") {
-          testValidator?.reset();
-        }
       });
 
       const schema: Schema = {
@@ -4762,7 +4750,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       // Mock errors so that getMatchingOption works as expected
-      testValidator = makeTestValidator({
+      testValidator = createValidator({
         isValid: [false, false, false, true],
       });
       expect(
@@ -5000,7 +4988,7 @@ describe("getDefaultFormState2()", () => {
         },
       };
       // Mock errors so that getMatchingOption works as expected
-      testValidator = makeTestValidator({
+      testValidator = createValidator({
         isValid: [false, false, false, true],
       });
       expect(
@@ -5138,7 +5126,7 @@ describe("getDefaultFormState2()", () => {
     });
     it("should populate defaults for nested dependencies in arrays when matching enum values in oneOf", () => {
       // Mock isValid so that withExactlyOneSubschema works as expected
-      testValidator = makeTestValidator({
+      testValidator = createValidator({
         isValid: [
           true, // First oneOf... first === first
           false, // Second oneOf... second !== first

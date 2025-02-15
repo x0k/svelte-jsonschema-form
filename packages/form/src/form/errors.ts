@@ -5,12 +5,14 @@ import type { ValidationError } from "./validator.js";
 
 export type FieldError<T> = Omit<ValidationError<T>, "instanceId">;
 
-export type FieldErrors<T = unknown> = FieldError<T>[];
+export type FieldErrors<T> = FieldError<T>[];
 
-export type FormErrors<T = unknown> = SvelteMap<Id, FieldErrors<T>>;
+export type FormErrors<T> = SvelteMap<Id, FieldErrors<T>>;
 
-export const NO_ERRORS: FieldError<unknown>[] = [];
+export const NO_FIELD_ERRORS: FieldErrors<any> = [];
 
-export function groupErrors<E>(errors: ValidationError<E>[]) {
+export const NO_FORM_ERRORS: FormErrors<any> = new SvelteMap()
+
+export function groupErrors<E>(errors: ValidationError<E>[]): FormErrors<E> {
   return new SvelteMap(SvelteMap.groupBy(errors, (error) => error.instanceId));
 }

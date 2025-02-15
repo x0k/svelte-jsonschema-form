@@ -1,9 +1,13 @@
-import type { MaybePromise } from "@/lib/types.js";
-import type { Schema, SchemaValue, Validator } from "@/core/index.js";
+import type { Schema, Validator } from "@/core/index.js";
 import type { FailedAction } from "@/create-action.svelte.js";
 
 import type { Id } from "./id.js";
 import type { Config } from "./config.js";
+import type { FieldValue, FormValue } from "./model.js";
+
+export class ValidationProcessError {
+  constructor(public state: FailedAction<unknown>) {}
+}
 
 export interface ValidationError<E> {
   instanceId: Id;
@@ -12,71 +16,59 @@ export interface ValidationError<E> {
   error: E;
 }
 
-/**
- * @deprecated use `FormValidator2`
- */
-export interface FormValidator<E = unknown> extends Validator {
-  /**
-   * Full form validation
-   *
-   * Essentially this is the `formData is T` check, but since `T` doesn't
-   * extend `SchemaValue`, we don't declare this as a type guard.
-   */
-  validateFormData(
+export type ValidationErrors<E> = ValidationError<E>[];
+
+export const NO_VALIDATION_ERRORS: ValidationErrors<any> = [];
+
+export interface SyncFormValueValidator<E> {
+  validateFormValue(
     rootSchema: Schema,
-    formData: SchemaValue | undefined
-  ): ValidationError<E>[];
-
-  /**
-   * Individual field validation
-   */
-  validateFieldData(
-    field: Config,
-    fieldData: SchemaValue | undefined
-  ): ValidationError<E>[];
+    formValue: FormValue
+  ): ValidationErrors<E>;
 }
 
-export interface FormValidator2<E = unknown> extends Validator {
-  /**
-   * Full form validation
-   *
-   * Essentially this is the `formData is T` check, but since `T` doesn't
-   * extend `SchemaValue`, we don't declare this as a type guard.
-   */
-  validateFormData(
+export interface AsyncFormValueValidator<E> {
+  validateFormValue(
     rootSchema: Schema,
-    formData: SchemaValue | undefined,
+    formValue: FormValue,
     signal: AbortSignal
-  ): MaybePromise<ValidationError<E>[]>;
+  ): Promise<ValidationErrors<E>>;
+}
 
-  /**
-   * Individual field validation
-   */
-  validateFieldData(
+export type FormValueValidator<E> =
+  | SyncFormValueValidator<E>
+  | AsyncFormValueValidator<E>;
+
+export interface SyncFieldValueValidator<E> {
+  validateFieldValue(
     field: Config,
-    fieldData: SchemaValue | undefined,
+    fieldValue: FieldValue
+  ): ValidationErrors<E>;
+}
+
+export interface AsyncFieldValueValidator<E> {
+  validateFieldValue(
+    field: Config,
+    fieldValue: FieldValue,
     signal: AbortSignal
-  ): MaybePromise<ValidationError<E>[]>;
+  ): Promise<ValidationErrors<E>>;
 }
 
-// @deprecated
-// TODO: Turn errors into classes to make it easier to distinguish them via `instanceof`.
+export type FieldValueValidator<E> =
+  | SyncFieldValueValidator<E>
+  | AsyncFieldValueValidator<E>;
 
-export const ADDITIONAL_PROPERTY_KEY_ERROR = Symbol(
-  "additional-property-key-error"
-);
-export type AdditionalPropertyKeyError = typeof ADDITIONAL_PROPERTY_KEY_ERROR;
+export class AdditionalPropertyKeyError {}
 
-export interface AdditionalPropertyKeyValidator {
-  /**
-   * Additional property key validation
-   */
-  validateAdditionalPropertyKey: (key: string, schema: Schema) => string[];
+export interface SyncAdditionalPropertyKeyValidator {
+  validateAdditionalPropertyKey(key: string, schema: Schema): string[];
 }
 
-export const VALIDATION_PROCESS_ERROR = Symbol("validation-process-error");
+export type AdditionalPropertyKeyValidator = SyncAdditionalPropertyKeyValidator;
 
-export interface ValidationProcessError {
-  type: typeof VALIDATION_PROCESS_ERROR;
-  state: FailedAction<unknown>;
-}
+export type FormValidator<E> = Validator &
+  Partial<
+    FormValueValidator<E> &
+      FieldValueValidator<E> &
+      AdditionalPropertyKeyValidator
+  >;

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getComponent, getFormContext, NO_ERRORS, type ComponentProps } from "@/form/index.js";
+  import { getComponent, getFormContext, NO_FIELD_ERRORS, type ComponentProps } from "@/form/index.js";
 
   let { value = $bindable(), config }: ComponentProps["nullField"] = $props();
 
@@ -14,6 +14,6 @@
   const Template = $derived(getComponent(ctx, "fieldTemplate", config));
 </script>
 
-<Template errors={NO_ERRORS} showTitle {value} {config}>
+<Template errors={NO_FIELD_ERRORS} showTitle {value} {config}>
   {null}
 </Template>

@@ -15,19 +15,23 @@ import {
 } from "@/create-action.svelte.js";
 
 import {
-  ADDITIONAL_PROPERTY_KEY_ERROR,
-  VALIDATION_PROCESS_ERROR,
-  type AdditionalPropertyKeyError,
+  ValidationProcessError,
+  type FormValidator,
+  AdditionalPropertyKeyError,
   type AdditionalPropertyKeyValidator,
-  type FormValidator2,
   type ValidationError,
-  type ValidationProcessError,
+  NO_VALIDATION_ERRORS,
 } from "./validator.js";
 import type { Translation } from "./translation.js";
 import type { UiSchemaRoot } from "./ui-schema.js";
 import type { Icons } from "./icons.js";
 import type { FieldsValidationMode } from "./validation.js";
-import { groupErrors, type FormErrors, type FieldErrors } from "./errors.js";
+import {
+  groupErrors,
+  type FormErrors,
+  type FieldErrors,
+  NO_FORM_ERRORS,
+} from "./errors.js";
 import { setFromContext, type FormContext } from "./context/index.js";
 import { DefaultFormMerger, type FormMerger } from "./merger.js";
 import {
@@ -40,7 +44,8 @@ import {
 import IconOrTranslation from "./icon-or-translation.svelte";
 import type { Config } from "./config.js";
 import type { ThemeResolver } from "./theme.js";
-import type { FormValue } from "./model.js";
+import type { FieldValue, FormValue } from "./model.js";
+import type { MaybePromise } from "@/lib/types.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
 
@@ -48,15 +53,13 @@ export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
  * @deprecated use `UseFormOptions2`
  */
 export interface UseFormOptions<T, E> {
-  validator: FormValidator2<E>;
+  validator: FormValidator<E>;
   schema: Schema;
   theme: ThemeResolver;
   translation: Translation;
   uiSchema?: UiSchemaRoot;
   merger?: FormMerger;
   icons?: Icons;
-  /** @deprecated use `fieldsValidationMode` */
-  inputsValidationMode?: FieldsValidationMode;
   fieldsValidationMode?: FieldsValidationMode;
   disabled?: boolean;
   idPrefix?: string;
@@ -171,13 +174,9 @@ export interface FormOptions<T, E> extends UseFormOptions<T, E> {
   handleValidationProcessError?: ValidationProcessErrorTranslation;
 }
 
-/** @deprecated use `FormOptions` instead */
-export type UseFormOptions2<T, E> = FormOptions<T, E>;
-
 export interface FormState<T, E> {
+  context: FormContext<E>;
   value: T | undefined;
-  /** @deprecated moved to the `FormInternals` */
-  formValue: FormValue;
   errors: FormErrors<E>;
   isSubmitted: boolean;
   isChanged: boolean;
@@ -191,7 +190,7 @@ export interface FormState<T, E> {
   >;
   fieldsValidation: Action<
     [config: Config, value: FormValue],
-    ValidationError<E>[],
+    FieldErrors<E>,
     unknown
   >;
   validate(): FormErrors<E>;
@@ -204,78 +203,17 @@ export interface FormState<T, E> {
   ): void;
 }
 
-export interface FormInternals {
-  // @deprecated
-  // TODO: Replace `enhance` and `*Handler` with `attachment`
-  enhance: SvelteAction;
-  submitHandler: EventHandler<SubmitEvent, HTMLFormElement>;
-  resetHandler: FormEventHandler<HTMLFormElement>;
-  context: FormContext;
-  formValue: FormValue;
-}
+type FormValueFromOptions<O extends FormOptions<any, any>> =
+  O extends FormOptions<infer T, any> ? T : never;
 
-/** @deprecated use `FormInternals` or `FormState` instead */
-export interface FormAPI<T, E> extends FormState<T, E> {
-  enhance: SvelteAction;
-  context: FormContext;
-  submitHandler: EventHandler<SubmitEvent, HTMLFormElement>;
-  resetHandler: FormEventHandler<HTMLFormElement>;
-}
-
-/**
- * @deprecated use `createForm3` instead
- */
-export function createForm<T, E>(
-  options: UseFormOptions<T, E>
-): [FormContext, FormAPI<T, E>] {
-  const [api, ctx] = createForm2(options);
-  return [ctx, api];
-}
-
-type FormValueFromOptions<O extends UseFormOptions2<any, any>> =
-  O extends UseFormOptions2<infer T, any> ? T : never;
-
-type ValidatorErrorFromOptions<O extends UseFormOptions2<any, any>> =
-  O extends UseFormOptions2<any, infer E> ? E : never;
-
-/** @deprecated */
-export type FormApiAndContext<T, E> = [FormAPI<T, E>, FormContext];
-
-/** @deprecated use `createForm3` instead */
-export function createForm2<
-  O extends UseFormOptions2<any, any>,
-  T = FormValueFromOptions<O>,
-  VE = ValidatorErrorFromOptions<O>,
-  E1 = O extends {
-    additionalPropertyKeyValidator: AdditionalPropertyKeyValidator;
-  }
-    ? VE | AdditionalPropertyKeyError
-    : VE,
-  E = O extends {
-    handleValidationProcessError: ValidationProcessErrorTranslation;
-  }
-    ? E1 | ValidationProcessError
-    : E1,
->(options: O): FormApiAndContext<T, E> {
-  const form = createForm3(options);
-  return [form, form.context];
-}
+type ValidatorErrorFromOptions<O extends FormOptions<any, any>> =
+  O extends FormOptions<any, infer E> ? E : never;
 
 export function createForm3<
   O extends FormOptions<any, any>,
   T = FormValueFromOptions<O>,
-  VE = ValidatorErrorFromOptions<O>,
-  E1 = O extends {
-    additionalPropertyKeyValidator: AdditionalPropertyKeyValidator;
-  }
-    ? VE | AdditionalPropertyKeyError
-    : VE,
-  E = O extends {
-    handleValidationProcessError: ValidationProcessErrorTranslation;
-  }
-    ? E1 | ValidationProcessError
-    : E1,
->(options: O): FormState<T, E> & FormInternals {
+  E = ValidatorErrorFromOptions<O>,
+>(options: O): FormState<T, E> {
   const merger = $derived(
     options.merger ?? new DefaultFormMerger(options.validator, options.schema)
   );
@@ -294,9 +232,7 @@ export function createForm3<
   let isSubmitted = $state(false);
   let isChanged = $state(false);
 
-  const fieldsValidationMode = $derived(
-    options.fieldsValidationMode ?? options.inputsValidationMode ?? 0
-  );
+  const fieldsValidationMode = $derived(options.fieldsValidationMode ?? 0);
   const uiSchema = $derived(options.uiSchema ?? {});
   const disabled = $derived(options.disabled ?? false);
   const idPrefix = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX);
@@ -336,7 +272,7 @@ export function createForm3<
               instanceId,
               propertyTitle: fieldConfig.title,
               message,
-              error: ADDITIONAL_PROPERTY_KEY_ERROR as E,
+              error: new AdditionalPropertyKeyError() as E,
             }))
           );
           return messages.length === 0;
@@ -348,12 +284,18 @@ export function createForm3<
     options.getSnapshot ?? (() => $state.snapshot(value))
   );
 
-  function validateSnapshot(snapshot: FormValue, signal: AbortSignal) {
-    const errors = options.validator.validateFormData(
+  function validateSnapshot(
+    snapshot: FormValue,
+    signal: AbortSignal
+  ): MaybePromise<FormErrors<E>> {
+    const errors = options.validator.validateFormValue?.(
       options.schema,
       snapshot,
       signal
     );
+    if (errors === undefined) {
+      return NO_FORM_ERRORS;
+    }
     if (errors instanceof Promise) {
       return errors.then(groupErrors);
     }
@@ -381,15 +323,11 @@ export function createForm3<
     },
     onFailure(state, e) {
       if (options.handleValidationProcessError) {
-        const error: ValidationProcessError = {
-          type: VALIDATION_PROCESS_ERROR,
-          state,
-        };
         errors.set(context.rootId, [
           {
             propertyTitle: "",
             message: options.handleValidationProcessError(state),
-            error: error as E,
+            error: new ValidationProcessError(state) as E,
           },
         ]);
       }
@@ -407,8 +345,11 @@ export function createForm3<
   });
 
   const fieldsValidation = createAction({
-    async execute(signal, config: Config, value: FormValue) {
-      return options.validator.validateFieldData(config, value, signal);
+    async execute(signal, config: Config, value: FieldValue) {
+      return (
+        options.validator.validateFieldValue?.(config, value, signal) ??
+        NO_VALIDATION_ERRORS
+      );
     },
     onSuccess(validationErrors: ValidationError<E>[], config) {
       if (validationErrors.length > 0) {
@@ -419,15 +360,11 @@ export function createForm3<
     },
     onFailure(state, config, value) {
       if (options.handleValidationProcessError && state.reason !== "aborted") {
-        const error: ValidationProcessError = {
-          type: VALIDATION_PROCESS_ERROR,
-          state,
-        };
         errors.set(config.id, [
           {
             propertyTitle: config.title,
             message: options.handleValidationProcessError(state),
-            error: error as E,
+            error: new ValidationProcessError(state) as E,
           },
         ]);
       }
@@ -481,7 +418,7 @@ export function createForm3<
     ...uiSchema["ui:options"],
   });
 
-  const context: FormContext = {
+  const context: FormContext<E> = {
     submitHandler,
     get rootId() {
       return idPrefix as Id;
@@ -569,12 +506,6 @@ export function createForm3<
         options.schema
       );
     },
-    get formValue() {
-      return value;
-    },
-    set formValue(v) {
-      value = v;
-    },
     get errors() {
       return errors;
     },
@@ -620,35 +551,5 @@ export function createForm3<
         update(list ?? []).map((e) => ({ ...e, instanceId }))
       );
     },
-    enhance(node) {
-      $effect(() => {
-        node.addEventListener("submit", submitHandler);
-        node.addEventListener("reset", resetHandler);
-        return () => {
-          node.removeEventListener("submit", submitHandler);
-          node.removeEventListener("reset", resetHandler);
-        };
-      });
-    },
-    submitHandler,
-    resetHandler,
   };
-}
-
-/**
- * Create a FormAPI and set form context
- * @deprecated use `createForm3` instead
- */
-export function useForm<T, E>(options: UseFormOptions<T, E>): FormAPI<T, E> {
-  return useForm2(options);
-}
-
-/**
- * Create a FormAPI and set form context
- * @deprecated use `createForm3` instead
- */
-export function useForm2<O extends UseFormOptions2<any, any>>(options: O) {
-  const [api, ctx] = createForm2(options);
-  setFromContext(ctx);
-  return api;
 }

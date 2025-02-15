@@ -7,13 +7,13 @@ import { beforeEach, describe, it, expect } from "vitest";
 import type { Schema } from "./schema.js";
 import type { Validator } from "./validator.js";
 import { isMultiSelect, isSelect } from "./is-select.js";
-import { makeTestValidator } from "./test-validator.js";
+import { createValidator } from "./test-validator.js";
 import { defaultMerger } from './merger.js';
 
 let testValidator: Validator;
 
 beforeEach(() => {
-  testValidator = makeTestValidator();
+  testValidator = createValidator();
 });
 
 describe("isSelect2()", () => {

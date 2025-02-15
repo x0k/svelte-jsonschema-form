@@ -45,13 +45,13 @@ import {
   SUPER_SCHEMA,
 } from "./fixtures/test-data.js";
 import type { Validator } from "./validator.js";
-import { makeTestValidator } from "./test-validator.js";
+import { createValidator } from "./test-validator.js";
 import { defaultMerger } from "./merger.js";
 
 let testValidator: Validator;
 
 beforeEach(() => {
-  testValidator = makeTestValidator();
+  testValidator = createValidator();
 });
 
 describe("resolveDependencies()", () => {
@@ -98,7 +98,7 @@ describe("resolveDependencies()", () => {
     };
 
     // Mock isValid so that withExactlyOneSubschema works as expected
-    testValidator = makeTestValidator({
+    testValidator = createValidator({
       isValid: [
         true, // First oneOf... first === first
         false, // Second oneOf... second !== first
@@ -782,7 +782,7 @@ describe("retrieveSchema2()", () => {
       describe("with $ref in oneOf", () => {
         it("should retrieve referenced schemas", () => {
           // Mock isValid so that withExactlyOneSubschema works as expected
-          testValidator = makeTestValidator({
+          testValidator = createValidator({
             isValid: [
               false, // First oneOf... second !== first
               true, // Second oneOf... second === second
@@ -869,7 +869,7 @@ describe("retrieveSchema2()", () => {
       describe("true condition", () => {
         it("should add `first` properties given `first` data", () => {
           // Mock isValid so that withExactlyOneSubschema works as expected
-          testValidator = makeTestValidator({
+          testValidator = createValidator({
             isValid: [
               true, // First dependency... first === first
               false, // Second dependency... second !== first
@@ -899,7 +899,7 @@ describe("retrieveSchema2()", () => {
 
         it("should add `second` properties given `second` data", () => {
           // Mock isValid so that withExactlyOneSubschema works as expected
-          testValidator = makeTestValidator({
+          testValidator = createValidator({
             isValid: [
               false, // First dependency... first !== second
               true, // Second dependency... second === second
@@ -937,7 +937,7 @@ describe("retrieveSchema2()", () => {
 
           it("should not include nested dependencies that should be hidden", () => {
             // Mock isValid so that withExactlyOneSubschema works as expected
-            testValidator = makeTestValidator({
+            testValidator = createValidator({
               isValid: [
                 false, // employee_accounts oneOf ... - fail
                 true, // update_absences first oneOf... success
@@ -973,7 +973,7 @@ describe("retrieveSchema2()", () => {
 
           it("should include nested dependencies that should not be hidden", () => {
             // Mock isValid so that withExactlyOneSubschema works as expected
-            testValidator = makeTestValidator({
+            testValidator = createValidator({
               isValid: [
                 true, // employee_accounts oneOf... success
                 true, // update_absences first oneOf... success
@@ -1023,7 +1023,7 @@ describe("retrieveSchema2()", () => {
       describe("with $ref in dependency", () => {
         it("should retrieve the referenced schema", () => {
           // Mock isValid so that withExactlyOneSubschema works as expected
-          testValidator = makeTestValidator({
+          testValidator = createValidator({
             isValid: [
               false, // First oneOf... fail
               true, // Second oneOf... success
@@ -1279,7 +1279,7 @@ describe("retrieveSchema2()", () => {
   describe("Conditional schemas (If, Then, Else)", () => {
     it("should resolve if, then", () => {
       // Mock errors so that resolveCondition2 works as expected
-      testValidator = makeTestValidator({
+      testValidator = createValidator({
         isValid: [
           true, // First condition Country... USA pas2s
           false, // Second condition Countery... Cana2da fail
@@ -1311,7 +1311,7 @@ describe("retrieveSchema2()", () => {
     });
     it("should resolve if, else", () => {
       // Mock errors so that resolveCondition2 works as expected
-      testValidator = makeTestValidator({
+      testValidator = createValidator({
         isValid: [
           false, // First condition Country... USA fai2l
         ],
@@ -1342,7 +1342,7 @@ describe("retrieveSchema2()", () => {
     });
     it("should resolve multiple conditions", () => {
       // Mock errors so that resolveCondition2 works as expected
-      testValidator = makeTestValidator({
+      testValidator = createValidator({
         isValid: [
           true, // First condition animal... Cat pas2s
           false, // Second condition animal... Fish 2fail
@@ -1416,7 +1416,7 @@ describe("retrieveSchema2()", () => {
     });
     it("should resolve multiple conditions in nested allOf blocks", () => {
       // Mock errors so that resolveCondition2 works as expected
-      testValidator = makeTestValidator({
+      testValidator = createValidator({
         isValid: [
           false, // First condition Animal... Cat fai2l
           true, // Second condition Animal... Dog pas2s
@@ -1511,7 +1511,7 @@ describe("retrieveSchema2()", () => {
     });
     it("should resolve $ref", () => {
       // Mock errors so that resolveCondition2 works as expected
-      testValidator = makeTestValidator({
+      testValidator = createValidator({
         isValid: [
           true, // First condition animal... Cat pas2s
           false, // Second condition animal... Fish 2fail

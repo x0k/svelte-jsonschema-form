@@ -4,7 +4,6 @@ export interface Validator {
   isValid(
     schema: SchemaDefinition,
     rootSchema: Schema,
-    formData: SchemaValue | undefined
+    formValue: SchemaValue | undefined
   ): boolean;
-  reset(): void;
 }
