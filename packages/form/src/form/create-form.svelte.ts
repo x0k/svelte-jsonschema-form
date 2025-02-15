@@ -1,5 +1,4 @@
 import type { EventHandler, FormEventHandler } from "svelte/elements";
-import type { ComponentInternals, Snippet } from "svelte";
 import type { Action as SvelteAction } from "svelte/action";
 import { SvelteMap } from "svelte/reactivity";
 
@@ -563,25 +562,6 @@ export function createForm3<
       return icons;
     },
     IconOrTranslation,
-    iconOrTranslation: ((
-      internals: ComponentInternals,
-      data: IconOrTranslationData | (() => IconOrTranslationData)
-    ) => {
-      IconOrTranslation(
-        internals,
-        // Looks like during SSR the `data` is not a getter function
-        // TODO: Clarify how to detect SSR in Svelte (not SvelteKit)
-        typeof data === "function"
-          ? {
-              get data() {
-                return data();
-              },
-            }
-          : {
-              data,
-            }
-      );
-    }) as unknown as Snippet<[IconOrTranslationData]>,
   };
 
   const fakeAbortSignal = new AbortController().signal;

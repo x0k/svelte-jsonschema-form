@@ -43,8 +43,6 @@ export interface FormContext {
   errors: Errors;
   dataUrlToBlob: DataURLToBlob;
   IconOrTranslation: Component<{ data: IconOrTranslationData }>;
-  /** @deprecated use `IconOrTranslation` instead */
-  iconOrTranslation: Snippet<[IconOrTranslationData]>;
   validateAdditionalPropertyKey(
     config: Config,
     key: string,
