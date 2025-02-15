@@ -1,6 +1,3 @@
-/** @deprecated use `FieldsValidationMode` */
-export type InputsValidationMode = number;
-
 export type FieldsValidationMode = number;
 
 /** Validation is triggered on input event */
