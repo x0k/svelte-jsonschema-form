@@ -56,6 +56,7 @@ declare module "../form/index.js" {
   interface ComponentProps {
     button: ComponentCommonProps & {
       type: ButtonType;
+      disabled: boolean;
       children: Snippet;
       onclick: () => void;
     };

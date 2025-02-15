@@ -62,6 +62,7 @@
     errors={arrayCtx.errors}
     {config}
     type="array-item-add"
+    disabled={false}
     onclick={() => {
       if (schemaAdditionalItems === false) {
         return;

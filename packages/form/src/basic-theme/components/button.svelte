@@ -27,7 +27,7 @@
     type ComponentProps,
   } from "@/form/index.js";
 
-  const { children, type, onclick, config }: ComponentProps["button"] =
+  const { children, type, onclick, config, disabled }: ComponentProps["button"] =
     $props();
 
   const ctx = getFormContext();
@@ -44,6 +44,7 @@
 
   const attributes = $derived(
     defineDisabled(ctx, {
+      disabled,
       ...config.uiOptions?.button,
       ...config.uiOptions?.buttons?.[type],
     })

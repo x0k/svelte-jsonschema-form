@@ -1,13 +1,3 @@
-<script lang="ts" module>
-  declare module "../../form/index.js" {
-    interface UiOptions {
-      array?: {
-        disabled?: boolean;
-      };
-    }
-  }
-</script>
-
 <script lang="ts">
   import { createKeyedArray } from "@/lib/keyed-array.svelte.js";
   import {
@@ -16,7 +6,6 @@
     type Schema,
   } from "@/core/index.js";
   import {
-    isDisabled,
     getErrors,
     getUiOptions,
     isFilesArray,
@@ -51,7 +40,6 @@
       (config.schema.maxItems === undefined ||
         value.length < config.schema.maxItems)
   );
-  const disabled = $derived(isDisabled(ctx, uiOptions?.array));
   const errors = $derived(getErrors(ctx, config.id));
 
   function validate() {
@@ -68,9 +56,6 @@
     get errors() {
       return errors;
     },
-    get disabled() {
-      return disabled;
-    },
     get canAdd() {
       return canAdd;
     },
@@ -86,7 +71,6 @@
     get copyable() {
       return copyable;
     },
-    validate,
     key(index) {
       return keyedArray.key(index);
     },

@@ -140,6 +140,7 @@
     type="object-property-add"
     {config}
     {errors}
+    disabled={false}
     onclick={() => {
       objCtx.addProperty();
     }}

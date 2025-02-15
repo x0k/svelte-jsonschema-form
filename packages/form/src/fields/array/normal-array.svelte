@@ -43,6 +43,7 @@
   <Button
     errors={arrayCtx.errors}
     {config}
+    disabled={false}
     type="array-item-add"
     onclick={() => {
       arrayCtx.pushItem(schemaItems);

@@ -40,6 +40,7 @@
     {errors}
     {config}
     type="object-property-remove"
+    disabled={false}
     onclick={() => {
       objCtx.removeProperty(property);
     }}

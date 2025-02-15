@@ -5,15 +5,12 @@ import type { Schema } from "@/core/index.js";
 import type { ValidationError } from "@/form/index.js";
 
 export interface ArrayContext {
-  disabled: boolean;
   canAdd: boolean;
   addable: boolean;
   orderable: boolean;
   removable: boolean;
   copyable: boolean;
   errors: ValidationError<unknown>[];
-  /** @deprecated */
-  validate: () => void;
   key(index: number): number;
   pushItem(itemSchema: Schema): void;
   moveItemUp(index: number): void;

@@ -35,6 +35,7 @@
       {errors}
       {config}
       type="array-item-move-up"
+      disabled={!canMoveUp}
       onclick={() => {
         arrayCtx.moveItemUp(index);
       }}
@@ -44,6 +45,7 @@
     <Button
       {errors}
       {config}
+      disabled={!canMoveDown}
       type="array-item-move-down"
       onclick={() => {
         arrayCtx.moveItemDown(index);
@@ -60,6 +62,7 @@
       onclick={() => {
         arrayCtx.copyItem(index);
       }}
+      disabled={false}
     >
       <ctx.IconOrTranslation data={["copy-array-item"]} />
     </Button>
@@ -68,6 +71,7 @@
     <Button
       {errors}
       {config}
+      disabled={false}
       type="array-item-remove"
       onclick={() => {
         arrayCtx.removeItem(index);
