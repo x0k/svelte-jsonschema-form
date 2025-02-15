@@ -3,8 +3,8 @@ import type { ComponentType, CompatibleDefinitions } from "../theme.js";
 
 import type { FormContext } from "./context.js";
 
-export function getComponent<T extends ComponentType>(
-  ctx: FormContext,
+export function getComponent<T extends ComponentType, E>(
+  ctx: FormContext<E>,
   type: T,
   config: Config
 ): CompatibleDefinitions[T] {

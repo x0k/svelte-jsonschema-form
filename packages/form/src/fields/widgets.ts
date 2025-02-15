@@ -29,7 +29,7 @@ export interface WidgetCommonProps<N extends keyof WidgetValue> {
   config: Config;
   value: WidgetValue[N] | undefined;
   handlers: Handlers;
-  errors: FieldErrors;
+  errors: FieldErrors<unknown>;
 }
 
 export interface Options {

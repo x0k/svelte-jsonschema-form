@@ -1,4 +1,4 @@
-<script lang="ts">
+<script lang="ts" generics="E">
   import { createKeyedArray } from "@/lib/keyed-array.svelte.js";
   import {
     isFixedItems,
@@ -24,7 +24,7 @@
 
   let { value = $bindable(), config }: ComponentProps["arrayField"] = $props();
 
-  const ctx = getFormContext();
+  const ctx = getFormContext<E>();
 
   const uiOptions = $derived(getUiOptions(ctx, config.uiSchema));
   const {
@@ -52,7 +52,7 @@
 
   const keyedArray = createKeyedArray(() => value ?? []);
 
-  const arrayCtx: ArrayContext = {
+  const arrayCtx: ArrayContext<E> = {
     get errors() {
       return errors;
     },

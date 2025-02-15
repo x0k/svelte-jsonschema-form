@@ -11,20 +11,20 @@ import {
 
 import type { FormContext } from "./context.js";
 
-export function isSelect(ctx: FormContext, schema: Schema) {
+export function isSelect<E>(ctx: FormContext<E>, schema: Schema) {
   return isSelectInternal(ctx.validator, ctx.merger, schema, ctx.schema);
 }
 
-export function isMultiSelect(ctx: FormContext, schema: Schema) {
+export function isMultiSelect<E>(ctx: FormContext<E>, schema: Schema) {
   return isMultiSelectInternal(ctx.validator, ctx.merger, schema, ctx.schema);
 }
 
-export function isFilesArray(ctx: FormContext, schema: Schema) {
+export function isFilesArray<E>(ctx: FormContext<E>, schema: Schema) {
   return isFilesArrayInternal(ctx.validator, ctx.merger, schema, ctx.schema);
 }
 
-export function retrieveSchema(
-  ctx: FormContext,
+export function retrieveSchema<E>(
+  ctx: FormContext<E>,
   schema: Schema,
   formData: SchemaValue | undefined
 ) {
@@ -37,8 +37,8 @@ export function retrieveSchema(
   );
 }
 
-export function sanitizeDataForNewSchema(
-  ctx: FormContext,
+export function sanitizeDataForNewSchema<E>(
+  ctx: FormContext<E>,
   newSchema: Schema,
   oldSchema: Schema,
   formData: SchemaValue | undefined
@@ -53,8 +53,8 @@ export function sanitizeDataForNewSchema(
   );
 }
 
-export function getClosestMatchingOption(
-  ctx: FormContext,
+export function getClosestMatchingOption<E>(
+  ctx: FormContext<E>,
   formData: SchemaValue | undefined,
   options: Schema[],
   selectedOption: number,
@@ -71,8 +71,8 @@ export function getClosestMatchingOption(
   );
 }
 
-export function getDefaultFieldState(
-  ctx: FormContext,
+export function getDefaultFieldState<E>(
+  ctx: FormContext<E>,
   schema: Schema,
   formData: SchemaValue | undefined
 ) {

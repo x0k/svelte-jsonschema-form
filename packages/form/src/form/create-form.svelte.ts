@@ -20,6 +20,7 @@ import {
   type AdditionalPropertyKeyValidator,
   type ValidationError,
   NO_VALIDATION_ERRORS,
+  type ValidationErrors,
 } from "./validator.js";
 import type { Translation } from "./translation.js";
 import type { UiSchemaRoot } from "./ui-schema.js";
@@ -30,6 +31,7 @@ import {
   type FormErrors,
   type FieldErrors,
   NO_FORM_ERRORS,
+  NO_FIELD_ERRORS,
 } from "./errors.js";
 import type { FormContext } from "./context/index.js";
 import { DefaultFormMerger, type FormMerger } from "./merger.js";
@@ -100,9 +102,9 @@ export interface FormOptions<T, E> {
    * The snapshot is used to validate the form and passed to
    * `onSubmit` and `onSubmitError` handlers.
    *
-   * @default () => $state.snapshot(formValue)
+   * @default (ctx) => $state.snapshot(ctx.value)
    */
-  getSnapshot?: () => FormValue;
+  getSnapshot?: (ctx: FormContext<E>) => FormValue;
   /**
    * Submit handler
    *
@@ -145,12 +147,7 @@ export interface FormOptions<T, E> {
   /**
    * Reset handler
    *
-   * Will be called on form reset.
-   *
-   * By default it will clear the errors, set `isSubmitted` and `isChanged` state
-   * to `false` and reset the form `value` to the `initialValue`.
-   *
-   * @default (e) => { e.preventDefault(); reset(); }
+   * Will be called when the form is reset and will not be triggered by the `form.reset` call.
    */
   onReset?: (e: Event) => void;
   schedulerYield?: SchedulerYield;
@@ -161,12 +158,8 @@ export type ValidationProcessErrorTranslation = (
 ) => string;
 
 export interface FormState<T, E> {
-  context: FormContext<E>;
-  value: T | undefined;
-  errors: FormErrors<E>;
-  isSubmitted: boolean;
-  isChanged: boolean;
-  validation: Action<
+  readonly context: FormContext<E>;
+  readonly validation: Action<
     [event: SubmitEvent],
     {
       snapshot: FormValue;
@@ -174,18 +167,22 @@ export interface FormState<T, E> {
     },
     unknown
   >;
-  fieldsValidation: Action<
+  readonly fieldsValidation: Action<
     [config: Config, value: FormValue],
     FieldErrors<E>,
     unknown
   >;
+  value: T | undefined;
+  isSubmitted: boolean;
+  isChanged: boolean;
+  errors: FormErrors<E>;
   validate(): FormErrors<E>;
   validateAsync(signal: AbortSignal): Promise<FormErrors<E>>;
   submit(e: SubmitEvent): Promise<void>;
   reset(): void;
   updateErrorsByPath(
     path: Array<string | number>,
-    update: (errors: FieldErrors<E>) => Omit<ValidationError<E>, "instanceId">[]
+    update: (errors: FieldErrors<E>) => FieldErrors<E>
   ): void;
 }
 
@@ -247,12 +244,10 @@ export function createForm<
     const { validateAdditionalPropertyKey } = options.validator;
     return validateAdditionalPropertyKey
       ? (config: Config, key: string, fieldConfig: Config) => {
-          const instanceId = fieldConfig.id;
           const messages = validateAdditionalPropertyKey(key, config.schema);
           errors.set(
-            instanceId,
+            fieldConfig.id,
             messages.map((message) => ({
-              instanceId,
               propertyTitle: fieldConfig.title,
               message,
               error: new AdditionalPropertyKeyError() as E,
@@ -288,7 +283,7 @@ export function createForm<
   const validation = createAction({
     async execute(signal, _event: SubmitEvent) {
       isSubmitted = true;
-      const snapshot = getSnapshot();
+      const snapshot = getSnapshot(context);
       const validationErrors = await validateSnapshot(snapshot, signal);
       return {
         snapshot,
@@ -332,7 +327,7 @@ export function createForm<
         NO_VALIDATION_ERRORS
       );
     },
-    onSuccess(validationErrors: ValidationError<E>[], config) {
+    onSuccess(validationErrors: ValidationErrors<E>, config) {
       if (validationErrors.length > 0) {
         errors.set(config.id, validationErrors);
       } else {
@@ -384,15 +379,11 @@ export function createForm<
     );
   }
 
-  // @deprecated
-  // TODO: Call `options.onReset` inside `reset` instead of overwriting it
-  const resetHandler = $derived(
-    options.onReset ??
-      ((e: Event) => {
-        e.preventDefault();
-        reset();
-      })
-  );
+  function resetHandler(e: Event) {
+    e.preventDefault();
+    reset();
+    options.onReset?.(e);
+  }
 
   const uiOptions = $derived({
     ...uiSchema["ui:globalOptions"],
@@ -479,7 +470,7 @@ export function createForm<
 
   return {
     get value() {
-      return getSnapshot() as T | undefined;
+      return getSnapshot(context) as T | undefined;
     },
     set value(v) {
       value = merger.mergeFormDataAndSchemaDefaults(
@@ -509,14 +500,14 @@ export function createForm<
     validation,
     fieldsValidation,
     validate() {
-      const errors = validateSnapshot(getSnapshot(), fakeAbortSignal);
+      const errors = validateSnapshot(getSnapshot(context), fakeAbortSignal);
       if (errors instanceof Promise) {
         throw new Error("`validate` cannot be called with async validator");
       }
       return errors;
     },
     async validateAsync(signal: AbortSignal) {
-      return validateSnapshot(getSnapshot(), signal);
+      return validateSnapshot(getSnapshot(context), signal);
     },
     submit(e) {
       return validation.run(e);
@@ -525,7 +516,7 @@ export function createForm<
     updateErrorsByPath(path, update) {
       const instanceId = pathToId(idPrefix, idSeparator, path);
       const list = errors.get(instanceId);
-      errors.set(instanceId, update(list ?? []));
+      errors.set(instanceId, update(list ?? NO_FIELD_ERRORS));
     },
   };
 }

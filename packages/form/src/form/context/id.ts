@@ -8,20 +8,20 @@ import {
 
 import type { FormContext } from "./context.js";
 
-export function createId(ctx: FormContext, path: Array<string | number>) {
+export function createId<E>(ctx: FormContext<E>, path: Array<string | number>) {
   return pathToId(ctx.idPrefix, ctx.idSeparator, path);
 }
 
-export function createChildId(
-  ctx: FormContext,
+export function createChildId<E>(
+  ctx: FormContext<E>,
   parentId: Id,
   child: string | number
 ): Id {
   return makeChildId(ctx.idSeparator, parentId, child);
 }
 
-export function createPseudoId(
-  ctx: FormContext,
+export function createPseudoId<E>(
+  ctx: FormContext<E>,
   instanceId: Id,
   element: keyof IdentifiableFieldElement | number
 ) {

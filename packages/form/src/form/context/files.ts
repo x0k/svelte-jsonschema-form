@@ -1,7 +1,7 @@
 import type { FormContext } from "./context.js";
 
-export async function addFile(
-  ctx: FormContext,
+export async function addFile<E>(
+  ctx: FormContext<E>,
   signal: AbortSignal,
   data: DataTransfer,
   value: string
@@ -11,8 +11,8 @@ export async function addFile(
   data.items.add(new File([blob], name, { type: blob.type }));
 }
 
-export function addFiles(
-  ctx: FormContext,
+export function addFiles<E>(
+  ctx: FormContext<E>,
   signal: AbortSignal,
   data: DataTransfer,
   values: string[]

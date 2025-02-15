@@ -9,7 +9,7 @@ import {
 
 import type { FormContext } from "./context.js";
 
-export function makeEventHandlers(ctx: FormContext, validate: () => void) {
+export function makeEventHandlers<E>(ctx: FormContext<E>, validate: () => void) {
   let changed = $state(false);
   let touched = $state(false);
 

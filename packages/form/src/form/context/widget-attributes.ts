@@ -21,8 +21,8 @@ interface Handlers {
   onchange?: (e: Event) => void;
 }
 
-export function isDisabled(
-  ctx: FormContext,
+export function isDisabled<E>(
+  ctx: FormContext<E>,
   attributes?: Partial<Nullable<Disabled>>
 ) {
   return attributes?.disabled || ctx.disabled;
@@ -31,8 +31,8 @@ export function isDisabled(
 /**
  * NOTE: this function mutates `obj` parameter!
  */
-export function defineDisabled<T extends Partial<Nullable<Disabled>>>(
-  ctx: FormContext,
+export function defineDisabled<T extends Partial<Nullable<Disabled>>, E>(
+  ctx: FormContext<E>,
   obj: T
 ) {
   obj.disabled ||= ctx.disabled;
@@ -55,8 +55,8 @@ export function inputType(format: string | undefined) {
   }
 }
 
-export function inputAttributes(
-  ctx: FormContext,
+export function inputAttributes<E>(
+  ctx: FormContext<E>,
   { id, required, schema }: Config,
   handlers: Handlers,
   attributes: HTMLInputAttributes | undefined
@@ -91,8 +91,8 @@ export function inputAttributes(
   return defineDisabled(ctx, data);
 }
 
-export function textareaAttributes(
-  ctx: FormContext,
+export function textareaAttributes<E>(
+  ctx: FormContext<E>,
   { id, required, schema }: Config,
   handlers: Handlers,
   attributes: HTMLTextareaAttributes | undefined
@@ -116,8 +116,8 @@ export function textareaAttributes(
   );
 }
 
-export function selectAttributes(
-  ctx: FormContext,
+export function selectAttributes<E>(
+  ctx: FormContext<E>,
   { id, required }: Config,
   handlers: Handlers,
   attributes: HTMLSelectAttributes | undefined

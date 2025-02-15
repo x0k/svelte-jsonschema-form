@@ -4,13 +4,13 @@ import type { Schema } from "@/core/index.js";
 
 import type { FieldErrors } from "@/form/index.js";
 
-export interface ArrayContext {
+export interface ArrayContext<E> {
   canAdd: boolean;
   addable: boolean;
   orderable: boolean;
   removable: boolean;
   copyable: boolean;
-  errors: FieldErrors;
+  errors: FieldErrors<E>;
   key(index: number): number;
   pushItem(itemSchema: Schema): void;
   moveItemUp(index: number): void;
@@ -21,10 +21,10 @@ export interface ArrayContext {
 
 const ARRAY_CONTEXT = Symbol("array-context");
 
-export function getArrayContext(): ArrayContext {
+export function getArrayContext<E>(): ArrayContext<E> {
   return getContext(ARRAY_CONTEXT);
 }
 
-export function setArrayContext(ctx: ArrayContext) {
+export function setArrayContext<E>(ctx: ArrayContext<E>) {
   setContext(ARRAY_CONTEXT, ctx);
 }

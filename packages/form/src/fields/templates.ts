@@ -10,7 +10,7 @@ import type { Config, FieldErrors } from "@/form/index.js";
 export interface TemplateCommonProps<V extends SchemaValue> {
   value: V | undefined;
   config: Config;
-  errors: FieldErrors;
+  errors: FieldErrors<unknown>;
   children: Snippet;
 }
 

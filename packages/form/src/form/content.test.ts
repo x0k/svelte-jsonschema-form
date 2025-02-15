@@ -3,7 +3,7 @@ import { render, screen, getByText } from "@testing-library/svelte";
 import { userEvent } from "@testing-library/user-event";
 
 import type { Schema } from "@/core/index.js";
-import { theme } from "@/basic-theme/index.js";
+import { themeResolver } from "@/basic-theme/index.js";
 import { createValidator } from "@/fake-validator.js";
 import { translationResolver } from "@/translations/en.js";
 
@@ -18,6 +18,7 @@ import {
   pathToId,
 } from "./id.js";
 import { createTranslation } from "./translation.js";
+import { createTheme } from './theme.js';
 
 it("should preserve state of multi select field in array", async () => {
   const user = userEvent.setup();
@@ -48,6 +49,7 @@ it("should preserve state of multi select field in array", async () => {
 
   const validator = createValidator();
   const translation = createTranslation(translationResolver);
+  const theme = createTheme(themeResolver);
 
   const form = createForm({
     theme,

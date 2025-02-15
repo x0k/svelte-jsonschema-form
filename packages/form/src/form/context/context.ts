@@ -21,34 +21,34 @@ export type IconOrTranslationData = {
 }[Label];
 
 export interface FormContext<E> {
-  rootId: Id;
   value: FormValue;
-  isSubmitted: boolean;
   isChanged: boolean;
-  fieldsValidationMode: number;
-  submitHandler: EventHandler<SubmitEvent, HTMLFormElement>;
-  resetHandler: FormEventHandler<HTMLFormElement>;
-  schema: Schema;
-  uiSchema: UiSchemaRoot;
-  uiOptions: UiOptions;
-  validator: FormValidator<E>;
-  merger: FormMerger;
-  translation: Translation;
-  theme: ThemeResolver;
-  icons: Icons;
-  idPrefix: string;
-  idSeparator: string;
-  idPseudoSeparator: string;
-  disabled: boolean;
-  errors: FormErrors<E>;
-  dataUrlToBlob: DataURLToBlob;
-  IconOrTranslation: Component<{ data: IconOrTranslationData }>;
-  validateAdditionalPropertyKey(
+  readonly rootId: Id;
+  readonly fieldsValidationMode: number;
+  readonly isSubmitted: boolean;
+  readonly schema: Schema;
+  readonly uiSchema: UiSchemaRoot;
+  readonly uiOptions: UiOptions;
+  readonly validator: FormValidator<E>;
+  readonly merger: FormMerger;
+  readonly icons: Icons;
+  readonly idPrefix: string;
+  readonly idSeparator: string;
+  readonly idPseudoSeparator: string;
+  readonly disabled: boolean;
+  readonly errors: FormErrors<E>;
+  readonly dataUrlToBlob: DataURLToBlob;
+  readonly translation: Translation;
+  readonly theme: ThemeResolver;
+  readonly submitHandler: EventHandler<SubmitEvent, HTMLFormElement>;
+  readonly resetHandler: FormEventHandler<HTMLFormElement>;
+  readonly validateAdditionalPropertyKey: (
     config: Config,
     key: string,
     fieldConfig: Config
-  ): boolean;
-  validation: Action<
+  ) => boolean;
+  readonly IconOrTranslation: Component<{ data: IconOrTranslationData }>;
+  readonly validation: Action<
     [event: SubmitEvent],
     {
       snapshot: SchemaValue | undefined;
@@ -56,7 +56,7 @@ export interface FormContext<E> {
     },
     unknown
   >;
-  fieldsValidation: Action<
+  readonly fieldsValidation: Action<
     [config: Config, value: SchemaValue | undefined],
     ValidationError<unknown>[],
     unknown
@@ -65,7 +65,7 @@ export interface FormContext<E> {
 
 export const FORM_CONTEXT = Symbol("form-context");
 
-export function getFormContext(): FormContext<unknown> {
+export function getFormContext<E>(): FormContext<E> {
   return getContext(FORM_CONTEXT);
 }
 

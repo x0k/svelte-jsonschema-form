@@ -5,8 +5,9 @@
     setFromContext,
     type Schema,
     createTranslation,
+    createTheme,
   } from "./form/index.js";
-  import { theme } from "./basic-theme/index.js";
+  import { themeResolver } from "./basic-theme/index.js";
   import { translationResolver } from "./translations/en.js";
   import { createValidator } from "./fake-validator.js";
 
@@ -15,7 +16,8 @@
   };
 
   const validator = createValidator();
-  const translation = createTranslation(translationResolver)
+  const translation = createTranslation(translationResolver);
+  const theme = createTheme(themeResolver);
 
   const form = createForm({
     theme,
