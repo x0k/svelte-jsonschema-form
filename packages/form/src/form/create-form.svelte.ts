@@ -4,7 +4,7 @@ import { SvelteMap } from "svelte/reactivity";
 
 import { makeDataURLtoBlob } from "@/lib/file.js";
 import type { SchedulerYield } from "@/lib/scheduler.js";
-import { type Schema, EMPTY_PATH } from "@/core/index.js";
+import type { Schema } from "@/core/index.js";
 import {
   abortPrevious,
   createAction,
@@ -27,13 +27,8 @@ import type { Translation } from "./translation.js";
 import type { UiSchemaRoot } from "./ui-schema.js";
 import type { Icons } from "./icons.js";
 import type { FieldsValidationMode } from "./validation.js";
-import { groupErrors, type Errors, type FieldErrors } from "./errors.js";
-import {
-  createId,
-  setFromContext,
-  type FormContext,
-  type IconOrTranslationData,
-} from "./context/index.js";
+import { groupErrors, type FormErrors, type FieldErrors } from "./errors.js";
+import { setFromContext, type FormContext } from "./context/index.js";
 import { DefaultFormMerger, type FormMerger } from "./merger.js";
 import {
   DEFAULT_ID_PREFIX,
@@ -70,8 +65,8 @@ export interface UseFormOptions<T, E> {
   //
   initialValue?: T;
   initialErrors?:
-    | Errors<E>
-    | Map<string, FieldErrors<E>>
+    | FormErrors<E>
+    | Map<Id, FieldErrors<E>>
     | ValidationError<E>[];
   /**
    * @default ignoreNewUntilPreviousIsFinished
@@ -128,7 +123,7 @@ export interface UseFormOptions<T, E> {
    * snapshot is not valid
    */
   onSubmitError?: (
-    errors: Errors<E>,
+    errors: FormErrors<E>,
     e: SubmitEvent,
     snapshot: FormValue
   ) => void;
@@ -183,14 +178,14 @@ export interface FormState<T, E> {
   value: T | undefined;
   /** @deprecated moved to the `FormInternals` */
   formValue: FormValue;
-  errors: Errors<E>;
+  errors: FormErrors<E>;
   isSubmitted: boolean;
   isChanged: boolean;
   validation: Action<
     [event: SubmitEvent],
     {
       snapshot: FormValue;
-      validationErrors: Errors<E>;
+      validationErrors: FormErrors<E>;
     },
     unknown
   >;
@@ -199,8 +194,8 @@ export interface FormState<T, E> {
     ValidationError<E>[],
     unknown
   >;
-  validate(): Errors<E>;
-  validateAsync(signal: AbortSignal): Promise<Errors<E>>;
+  validate(): FormErrors<E>;
+  validateAsync(signal: AbortSignal): Promise<FormErrors<E>>;
   submit(e: SubmitEvent): void;
   reset(): void;
   updateErrorsByPath(
@@ -291,7 +286,7 @@ export function createForm3<
       options.schema
     )
   );
-  let errors: Errors<E> = $state(
+  let errors: FormErrors<E> = $state(
     Array.isArray(options.initialErrors)
       ? groupErrors(options.initialErrors)
       : new SvelteMap(options.initialErrors)
@@ -390,9 +385,8 @@ export function createForm3<
           type: VALIDATION_PROCESS_ERROR,
           state,
         };
-        errors.set(idPrefix, [
+        errors.set(context.rootId, [
           {
-            instanceId: createId(context, EMPTY_PATH),
             propertyTitle: "",
             message: options.handleValidationProcessError(state),
             error: error as E,
@@ -431,7 +425,6 @@ export function createForm3<
         };
         errors.set(config.id, [
           {
-            instanceId: config.id,
             propertyTitle: config.title,
             message: options.handleValidationProcessError(state),
             error: error as E,

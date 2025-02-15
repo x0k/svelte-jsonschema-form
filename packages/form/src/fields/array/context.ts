@@ -2,7 +2,7 @@ import { getContext, setContext } from "svelte";
 
 import type { Schema } from "@/core/index.js";
 
-import type { ValidationError } from "@/form/index.js";
+import type { FieldErrors } from "@/form/index.js";
 
 export interface ArrayContext {
   canAdd: boolean;
@@ -10,7 +10,7 @@ export interface ArrayContext {
   orderable: boolean;
   removable: boolean;
   copyable: boolean;
-  errors: ValidationError<unknown>[];
+  errors: FieldErrors;
   key(index: number): number;
   pushItem(itemSchema: Schema): void;
   moveItemUp(index: number): void;

@@ -5,12 +5,7 @@ import type {
   SchemaObjectValue,
   SchemaArrayValue,
 } from "@/core/schema.js";
-import type {
-  ComponentProps,
-  ComponentType,
-  Config,
-  FieldErrors,
-} from "@/form/index.js";
+import type { Config, FieldErrors } from "@/form/index.js";
 
 export interface TemplateCommonProps<V extends SchemaValue> {
   value: V | undefined;

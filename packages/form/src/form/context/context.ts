@@ -7,7 +7,7 @@ import type { Action } from "@/create-action.svelte.js";
 
 import type { Label, Labels, Translation } from "../translation.js";
 import type { UiOptions, UiSchema, UiSchemaRoot } from "../ui-schema.js";
-import type { Errors } from "../errors.js";
+import type { FormErrors } from "../errors.js";
 import type { FormValidator2, ValidationError } from "../validator.js";
 import type { Icons } from "../icons.js";
 import type { FormMerger } from "../merger.js";
@@ -40,7 +40,7 @@ export interface FormContext {
   idSeparator: string;
   idPseudoSeparator: string;
   disabled: boolean;
-  errors: Errors;
+  errors: FormErrors;
   dataUrlToBlob: DataURLToBlob;
   IconOrTranslation: Component<{ data: IconOrTranslationData }>;
   validateAdditionalPropertyKey(
@@ -52,7 +52,7 @@ export interface FormContext {
     [event: SubmitEvent],
     {
       snapshot: SchemaValue | undefined;
-      validationErrors: Errors;
+      validationErrors: FormErrors;
     },
     unknown
   >;

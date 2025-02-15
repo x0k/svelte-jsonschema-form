@@ -1,10 +1,10 @@
 import type { Snippet } from "svelte";
 
-import type { Config, ValidationError } from "@/form/index.js";
+import type { Config, FieldErrors, ValidationError } from "@/form/index.js";
 
 export interface ComponentCommonProps {
   config: Config;
-  errors: ValidationError<unknown>[];
+  errors: FieldErrors;
 }
 
 export interface ButtonTypes {
@@ -79,7 +79,6 @@ declare module "../form/index.js" {
     };
     errorsList: ComponentCommonProps & {
       forId: string;
-      errors: ValidationError<unknown>[];
     };
   }
   interface ComponentBindings {
