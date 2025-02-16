@@ -5,10 +5,11 @@
     validateField,
     getFormContext,
     createPseudoId,
-    createOptions2,
     getComponent,
     type ComponentProps,
   } from "@sjsf/form";
+
+  import { createOptions } from "./enum.js";
 
   let { config, value = $bindable() }: ComponentProps["enumField"] = $props();
 
@@ -21,7 +22,7 @@
     validateField(ctx, config, value)
   );
   const options = $derived(
-    createOptions2(config.schema, config.uiSchema, config.uiOptions, (i) =>
+    createOptions(config.schema, config.uiSchema, config.uiOptions, (i) =>
       createPseudoId(ctx, config.id, i)
     ) ?? []
   );

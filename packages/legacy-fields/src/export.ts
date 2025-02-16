@@ -1,3 +1,5 @@
+import "./ui-options.js";
+
 export * from "./fields.js";
 export * from "./templates.js";
 export * from "./components.js";
