@@ -1,0 +1,61 @@
+{
+  "name": "@sjsf/legacy-fields",
+  "version": "0.0.1",
+  "description": "Legacy fields implementation for svelte-jsonschema-form",
+  "license": "MIT",
+  "keywords": [
+    "svelte",
+    "jsonschema",
+    "fields"
+  ],
+  "type": "module",
+  "files": [
+    "dist",
+    "!dist/**/*.test.*",
+    "!dist/**/*.spec.*"
+  ],
+  "publishConfig": {
+    "provenance": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/x0k/svelte-jsonschema-form.git",
+    "directory": "packages/legacy-fields"
+  },
+  "bugs": "https://github.com/x0k/svelte-jsonschema-form/issues",
+  "homepage": "https://x0k.github.io/svelte-jsonschema-form/",
+  "scripts": {
+    "dev": "vite",
+    "test": "vitest run --exclude '.svelte-kit/**'",
+    "build": "svelte-package && publint",
+    "check": "svelte-check --tsconfig ./tsconfig.json"
+  },
+  "peerDependencies": {
+    "svelte": "^5.0.0",
+    "@sjsf/form": "workspace:^1.9.2"
+  },
+  "devDependencies": {
+    "@sjsf/form": "workspace:*",
+    "@sveltejs/package": "catalog:",
+    "@sveltejs/vite-plugin-svelte": "catalog:",
+    "@tsconfig/svelte": "catalog:",
+    "svelte": "catalog:",
+    "svelte-check": "catalog:",
+    "vite": "catalog:",
+    "vitest": "catalog:"
+  },
+  "exports": {
+    "./array/*": {
+      "types": "./dist/array/*.d.ts",
+      "svelte": "./dist/array/*.js"
+    },
+    "./object/*": {
+      "types": "./dist/object/*.d.ts",
+      "svelte": "./dist/object/*.js"
+    },
+    "./*": {
+      "types": "./dist/*.d.ts",
+      "svelte": "./dist/*.js"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "extends": "@total-typescript/tsconfig/bundler/dom/library-monorepo",
+  "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "lib": [
+      "ES2023",
+      "ESNext.Disposable",
+      "ESNext.Collection",
+      "DOM",
+    ],
+    "rootDir": "./src",
+    "types": [
+      "vite/client",
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+    }
+  },
+  "include": [
+    "./src/**/*.ts",
+    "./src/**/*.js",
+    "./src/**/*.svelte",
+  ],
+}

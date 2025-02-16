@@ -45,6 +45,18 @@ f/:
     pnpm run test:ui
   popd
 
+fl/:
+  pushd packages/legacy-fields
+  d:
+    pnpm run dev
+  b:
+    pnpm run build
+  c:
+    pnpm run check
+  t:
+    pnpm run test $@
+  popd
+
 docs/:
   pushd apps/docs
   c:
