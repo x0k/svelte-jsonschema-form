@@ -105,6 +105,16 @@ pl/:
     pnpm run preview
   popd
 
+basic/:
+  pushd packages/basic-theme
+  c:
+    pnpm run check
+  b:
+    pnpm run build
+  d:
+    pnpm run dev
+  popd
+
 daisy/:
   pushd packages/daisyui-theme
   b:
