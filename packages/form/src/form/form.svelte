@@ -1,9 +1,26 @@
+<script lang="ts" module>
+  declare module "./theme.js" {
+    interface ComponentProps {
+      form: {
+        config: Config;
+        ref?: FormElement | undefined;
+        children: Snippet;
+        attributes?: FormAttributes | undefined;
+      };
+    }
+
+    interface ComponentBindings {
+      form: "ref";
+    }
+  }
+</script>
+
 <script lang="ts">
   import type { Snippet } from "svelte";
 
   import { getComponent, getFormContext } from "./context/index.js";
   import type { FormAttributes, FormElement } from "./theme.js";
-  import type { Config } from './config.js';
+  import type { Config } from "./config.js";
 
   let {
     ref = $bindable(),

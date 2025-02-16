@@ -1,18 +1,27 @@
 <script lang="ts" module>
-  import { EMPTY_PATH, type SchemaValue } from "@/core/index.js";
+  import type { SchemaValue } from "@/core/index.js";
 
   import type { Config } from "./config.js";
 
   declare module "./theme.js" {
     interface ComponentProps {
       rootField: {
-        value: SchemaValue | undefined
-        config: Config
-      }
+        value: SchemaValue | undefined;
+        config: Config;
+      };
     }
 
     interface ComponentBindings {
       rootField: "value";
+    }
+  }
+
+  declare module "./ui-schema.js" {
+    interface UiOptions {
+      /**
+       * Overrides the title of the field.
+       */
+      title?: string;
     }
   }
 </script>
@@ -23,7 +32,6 @@
     getFormContext,
     getUiOptions,
     getComponent,
-    createId,
   } from "./context/index.js";
 
   const ctx = getFormContext();
@@ -31,8 +39,7 @@
   const retrievedSchema = $derived(retrieveSchema(ctx, ctx.schema, ctx.value));
   const uiOptions = $derived(getUiOptions(ctx, ctx.uiSchema));
   const config: Config = $derived({
-    id: createId(ctx, EMPTY_PATH),
-    path: EMPTY_PATH,
+    id: ctx.rootId,
     name: "",
     title: uiOptions?.title ?? retrievedSchema.title ?? "",
     schema: retrievedSchema,

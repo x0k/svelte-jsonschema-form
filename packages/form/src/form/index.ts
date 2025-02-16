@@ -1,6 +1,5 @@
 export type { Schema, SchemaValue } from "@/core/index.js";
 
-export * from "./enum.js";
 export * from "./theme.js";
 export * from "./ui-schema.js";
 export * from "./config.js";

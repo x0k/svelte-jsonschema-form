@@ -4,9 +4,9 @@
   import Form from "./form.svelte";
   import type { FormElement, FormAttributes } from "./theme.js";
 
-  interface Props extends FormAttributes {
+  type Props = FormAttributes & {
     ref?: FormElement | undefined;
-  }
+  };
 
   let { ref = $bindable(), ...attributes }: Props = $props();
 </script>
