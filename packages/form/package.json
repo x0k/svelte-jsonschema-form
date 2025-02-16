@@ -76,26 +76,6 @@
       "types": "./dist/translations/*.d.ts",
       "svelte": "./dist/translations/*.js"
     },
-    "./fields/array/*": {
-      "types": "./dist/fields/array/*.d.ts",
-      "svelte": "./dist/fields/array/*.js"
-    },
-    "./fields/object/*": {
-      "types": "./dist/fields/object/*.d.ts",
-      "svelte": "./dist/fields/object/*.js"
-    },
-    "./fields/*": {
-      "types": "./dist/fields/*.d.ts",
-      "svelte": "./dist/fields/*.js"
-    },
-    "./templates/*": {
-      "types": "./dist/templates/*.d.ts",
-      "svelte": "./dist/templates/*.js"
-    },
-    "./basic-theme": {
-      "types": "./dist/basic-theme/index.d.ts",
-      "svelte": "./dist/basic-theme/index.js"
-    },
     "./focus-on-first-error": {
       "types": "./dist/focus-on-first-error.d.ts",
       "svelte": "./dist/focus-on-first-error.js"
