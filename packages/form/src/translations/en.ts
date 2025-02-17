@@ -7,9 +7,9 @@ const translators: Translators = {
   "array-schema-missing-items": "Missing items definition",
   yes: "Yes",
   no: "No",
-  "multi-schema-option-label-with-title": (title, index) =>
+  "multi-schema-option-label-with-title": ({title, index}) =>
     `${title} option ${index + 1}`,
-  "multi-schema-option-label": (index) => `Option ${index + 1}`,
+  "multi-schema-option-label": ({index}) => `Option ${index + 1}`,
   "add-array-item": "Add item",
   "copy-array-item": "Copy",
   "add-object-property": "Add property",
@@ -17,7 +17,7 @@ const translators: Translators = {
   "move-array-item-up": "Up",
   "remove-array-item": "Del",
   "remove-object-property": "Del",
-  "validation-process-error": (state) => FAILURE_REASONS[state.reason],
+  "validation-process-error": ({ error }) => FAILURE_REASONS[error.reason],
 };
 
 const FAILURE_REASONS: Record<ActionFailureReason, string> = {

@@ -24,7 +24,7 @@ import {
 } from "./validator.js";
 import type { Translation } from "./translation.js";
 import type { UiSchemaRoot } from "./ui-schema.js";
-import type { Icons } from "./icons.js";
+import type { IconsResolver } from "./icons.js";
 import type { FieldsValidationMode } from "./validation.js";
 import {
   groupErrors,
@@ -42,7 +42,6 @@ import {
   pathToId,
   type Id,
 } from "./id.js";
-import IconOrTranslation from "./icon-or-translation.svelte";
 import type { Config } from "./config.js";
 import type { ThemeResolver } from "./theme.js";
 import type { FieldValue, FormValue } from "./model.js";
@@ -56,7 +55,7 @@ export interface FormOptions<T, E> {
   translation: Translation;
   uiSchema?: UiSchemaRoot;
   merger?: FormMerger;
-  icons?: Icons;
+  icons?: IconsResolver;
   fieldsValidationMode?: FieldsValidationMode;
   disabled?: boolean;
   idPrefix?: string;
@@ -223,7 +222,6 @@ export function createForm<
   const pseudoIdSeparator = $derived(
     options.pseudoIdSeparator ?? DEFAULT_PSEUDO_ID_SEPARATOR
   );
-  const icons = $derived(options.icons ?? {});
   const schedulerYield: SchedulerYield = $derived(
     (options.schedulerYield ??
       (typeof scheduler !== "undefined" && "yield" in scheduler))
@@ -299,15 +297,15 @@ export function createForm<
       }
       options.onSubmitError?.(errors, event, snapshot);
     },
-    onFailure(state, e) {
+    onFailure(error, e) {
       errors.set(context.rootId, [
         {
           propertyTitle: "",
-          message: options.translation("validation-process-error", state),
-          error: new ValidationProcessError(state) as E,
+          message: options.translation("validation-process-error", { error }),
+          error: new ValidationProcessError(error) as E,
         },
       ]);
-      options.onValidationFailure?.(state, e);
+      options.onValidationFailure?.(error, e);
     },
     get combinator() {
       return options.validationCombinator;
@@ -334,17 +332,17 @@ export function createForm<
         errors.delete(config.id);
       }
     },
-    onFailure(state, config, value) {
-      if (state.reason !== "aborted") {
+    onFailure(error, config, value) {
+      if (error.reason !== "aborted") {
         errors.set(config.id, [
           {
             propertyTitle: config.title,
-            message: options.translation("validation-process-error", state),
-            error: new ValidationProcessError(state) as E,
+            message: options.translation("validation-process-error", { error }),
+            error: new ValidationProcessError(error) as E,
           },
         ]);
       }
-      options.onFieldsValidationFailure?.(state, config, value);
+      options.onFieldsValidationFailure?.(error, config, value);
     },
     get combinator() {
       return (
@@ -461,9 +459,8 @@ export function createForm<
       return options.translation;
     },
     get icons() {
-      return icons;
+      return options.icons;
     },
-    IconOrTranslation,
   };
 
   const fakeAbortSignal = new AbortController().signal;

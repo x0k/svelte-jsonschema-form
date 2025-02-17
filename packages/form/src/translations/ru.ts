@@ -7,9 +7,9 @@ export const translators: Translators = {
   "array-schema-missing-items": "Отсутствует опция `items`",
   yes: "Да",
   no: "Нет",
-  "multi-schema-option-label-with-title": (title, index) =>
+  "multi-schema-option-label-with-title": ({ title, index }) =>
     `${title} опция ${index + 1}`,
-  "multi-schema-option-label": (index) => `Опция ${index + 1}`,
+  "multi-schema-option-label": ({ index }) => `Опция ${index + 1}`,
   "add-array-item": "Добавить элемент",
   "copy-array-item": "Клонировать",
   "add-object-property": "Добавить свойство",
@@ -17,7 +17,7 @@ export const translators: Translators = {
   "move-array-item-up": "Вверх",
   "remove-array-item": "Удалить",
   "remove-object-property": "Удалить",
-  "validation-process-error": (state) => FAILURE_REASONS[state.reason],
+  "validation-process-error": ({ error }) => FAILURE_REASONS[error.reason],
 };
 
 const FAILURE_REASONS: Record<ActionFailureReason, string> = {

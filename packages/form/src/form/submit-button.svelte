@@ -14,16 +14,11 @@
       submitButton: "";
     }
   }
-
-  declare module "./ui-schema.js" {
-    interface UiOptions {
-      submitButtonTitle?: string;
-    }
-  }
 </script>
 
 <script lang="ts">
   import { getComponent, getFormContext } from "./context/index.js";
+  import Label from "./label.svelte";
 
   const ctx = getFormContext();
 
@@ -38,16 +33,8 @@
   });
 
   const Button = $derived(getComponent(ctx, "submitButton", config));
-  const label = $derived(
-    ctx.uiOptions?.submitButtonTitle ?? ctx.translation("submit")
-  );
-  const icon = $derived(ctx.icons.submit);
 </script>
 
 <Button {config}>
-  {#if icon}
-    {@render icon(["submit"])}
-  {:else}
-    {label}
-  {/if}
+  <Label {config} label="submit" params={{}} />
 </Button>

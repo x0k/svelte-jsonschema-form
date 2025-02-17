@@ -9,16 +9,12 @@ import type { Label, Labels, Translation } from "../translation.js";
 import type { UiOptions, UiSchema, UiSchemaRoot } from "../ui-schema.js";
 import type { FormErrors } from "../errors.js";
 import type { FormValidator, ValidationError } from "../validator.js";
-import type { Icons } from "../icons.js";
+import type { Icons, IconsResolver } from "../icons.js";
 import type { FormMerger } from "../merger.js";
 import type { Config } from "../config.js";
 import type { ThemeResolver } from "../theme.js";
 import type { Id } from "../id.js";
 import type { FormValue } from "../model.js";
-
-export type IconOrTranslationData = {
-  [L in Label]: [L, ...Labels[L]];
-}[Label];
 
 export interface FormContext<E> {
   value: FormValue;
@@ -31,7 +27,7 @@ export interface FormContext<E> {
   readonly uiOptions: UiOptions;
   readonly validator: FormValidator<E>;
   readonly merger: FormMerger;
-  readonly icons: Icons;
+  readonly icons?: IconsResolver;
   readonly idPrefix: string;
   readonly idSeparator: string;
   readonly idPseudoSeparator: string;
@@ -47,7 +43,6 @@ export interface FormContext<E> {
     key: string,
     fieldConfig: Config
   ) => boolean;
-  readonly IconOrTranslation: Component<{ data: IconOrTranslationData }>;
   readonly validation: Action<
     [event: SubmitEvent],
     {

@@ -9,7 +9,7 @@ export * from "./validator.js";
 export * from "./merger.js";
 export * from "./id.js";
 export * from "./icons.js";
-export * from './translation.js'
+export * from "./translation.js";
 
 export * from "./context/index.js";
 
@@ -20,3 +20,4 @@ export { default as Form } from "./form.svelte";
 export { default as SimpleForm } from "./simple-form.svelte";
 export { default as ErrorMessage, createMessage } from "./error-message.svelte";
 export { default as Datalist } from "./datalist.svelte";
+export { default as Label } from "./label.svelte";
