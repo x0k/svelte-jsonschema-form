@@ -144,35 +144,36 @@ const widgets: Sample = {
       },
     },
     secret: {
-      "ui:field": "hidden",
-      "ui:components": {
-        // "stringField": ""
+      "ui:options": {
+        text: {
+          type: "hidden"
+        }
       }
     },
     disabled: {
       "ui:options": {
-        input: {
+        text: {
           disabled: true,
         },
       },
     },
     readonly: {
       "ui:options": {
-        input: {
+        text: {
           readonly: true,
         },
       },
     },
     widgetOptions: {
       "ui:options": {
-        input: {
+        text: {
           style: "flex-grow: 1; background-color: darkorange;",
         },
       },
     },
     selectWidgetOptions: {
       "ui:options": {
-        input: {
+        select: {
           style: "flex-grow: 1; background-color: pink;",
         },
       },

@@ -5,8 +5,7 @@
     type ComponentProps,
   } from "@sjsf/form";
 
-  const { config, type, children, attributes, errors }: ComponentProps<"layout"> =
-    $props();
+  const { config, type, children, errors }: ComponentProps["layout"] = $props();
 
   const ctx = getFormContext();
 
@@ -23,9 +22,12 @@
 </script>
 
 {#if type === "array-items"}
-  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem" data-layout="array-items" {...attributes}>
+  <div
+    style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem"
+    data-layout="array-items"
+  >
     {@render children()}
   </div>
 {:else}
-  <Layout {config} {type} {attributes} {children} {errors} />
+  <Layout {config} {type} {children} {errors} />
 {/if}

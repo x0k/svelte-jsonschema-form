@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { FieldProps } from "@sjsf/form";
+  import type { ComponentProps } from "@sjsf/form";
 
-  let { config, value = $bindable() }: FieldProps<"object"> = $props();
+  let { config, value = $bindable() }: ComponentProps["objectField"] = $props();
 </script>
 
 <div>
@@ -15,7 +15,7 @@
       <label style="flex: 1">
         <b>Latitude</b>
         <input
-          id="{config.idSchema.$id}-lat"
+          id="{config.id}-lat"
           type="number"
           step="0.00001"
           bind:value={value.lat}
@@ -24,7 +24,7 @@
       <label style="flex: 1">
         <b>Longitude</b>
         <input
-          id="{config.idSchema.$id}-lon"
+          id="{config.id}-lon"
           type="number"
           step="0.00001"
           bind:value={value.lon}

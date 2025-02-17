@@ -9,7 +9,7 @@
     { rehypePlugin: [rehypeRaw], renderer: { p: Transparent } },
   ];
 
-  const { description }: ComponentProps<"description"> = $props();
+  const { description }: ComponentProps["description"] = $props();
 </script>
 
 <div>

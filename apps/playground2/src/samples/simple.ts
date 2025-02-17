@@ -45,7 +45,7 @@ const simple: Sample = {
         description:
           "Make text **bold** or *italic*. Take a look at other options [here](https://markdown-to-jsx.quantizor.dev/).",
         emptyValue: "",
-        input: {
+        text: {
           autofocus: true,
           placeholder:
             "ui:emptyValue causes this field to always be valid despite being required",
@@ -60,7 +60,7 @@ const simple: Sample = {
       "ui:options": {
         description:
           "Make things **bold** or *italic*. Embed snippets of `code`. <small>And this is a small texts.</small> ",
-        input: {
+        text: {
           autocomplete: "given-name",
         },
       },
@@ -75,19 +75,21 @@ const simple: Sample = {
       },
     },
     bio: {
-      "ui:widget": "textarea",
+      "ui:components": {
+        "textWidget": "textareaWidget"
+      }
     },
     password: {
       "ui:options": {
         help: "Hint: Make it strong!",
-        input: {
+        text: {
           type: "password",
         },
       },
     },
     telephone: {
       "ui:options": {
-        input: {
+        text: {
           type: "tel",
         },
       },

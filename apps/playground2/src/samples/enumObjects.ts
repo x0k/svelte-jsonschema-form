@@ -1,4 +1,4 @@
-import type { Sample } from './Sample.js';
+import type { Sample } from "./Sample.js";
 
 const enumObjects: Sample = {
   status: "perfect",
@@ -9,47 +9,47 @@ const enumObjects: Sample = {
         // enumNames: ['New York', 'Amsterdam', 'Hong Kong'],
         enum: [
           {
-            name: 'New York',
+            name: "New York",
             lat: 40,
             lon: 74,
           },
           {
-            name: 'Amsterdam',
+            name: "Amsterdam",
             lat: 52,
             lon: 5,
           },
           {
-            name: 'Hong Kong',
+            name: "Hong Kong",
             lat: 22,
             lon: 114,
           },
         ],
       },
     },
-    type: 'object',
+    type: "object",
     properties: {
       location: {
-        title: 'Location',
-        $ref: '#/definitions/locations',
+        title: "Location",
+        $ref: "#/definitions/locations",
       },
       locationRadio: {
-        title: 'Location Radio',
-        $ref: '#/definitions/locations',
+        title: "Location Radio",
+        $ref: "#/definitions/locations",
       },
       multiSelect: {
-        title: 'Locations',
-        type: 'array',
+        title: "Locations",
+        type: "array",
         uniqueItems: true,
         items: {
-          $ref: '#/definitions/locations',
+          $ref: "#/definitions/locations",
         },
       },
       checkboxes: {
-        title: 'Locations Checkboxes',
-        type: 'array',
+        title: "Locations Checkboxes",
+        type: "array",
         uniqueItems: true,
         items: {
-          $ref: '#/definitions/locations',
+          $ref: "#/definitions/locations",
         },
       },
     },
@@ -59,15 +59,19 @@ const enumObjects: Sample = {
       enumNames: ["New York", "Amsterdam", "Hong Kong"],
     },
     locationRadio: {
-      'ui:widget': 'radio',
+      "ui:components": {
+        selectWidget: "radioWidget",
+      },
     },
-    checkboxes: {
-      'ui:widget': 'checkboxes',
+    multiSelect: {
+      "ui:components": {
+        checkboxesWidget: "multiSelectWidget",
+      },
     },
   },
   formData: {
     location: {
-      name: 'Amsterdam',
+      name: "Amsterdam",
       lat: 52,
       lon: 5,
     },
@@ -78,11 +82,11 @@ const enumObjects: Sample = {
     },
     checkboxes: [
       {
-        name: 'Hong Kong',
+        name: "Hong Kong",
         lat: 22,
         lon: 114,
-      }
-    ]
+      },
+    ],
   },
 };
 

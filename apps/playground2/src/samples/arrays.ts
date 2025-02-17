@@ -146,15 +146,22 @@ const arrays: Sample = {
       },
     },
     multipleChoicesList: {
-      "ui:widget": "checkboxes",
       "ui:options": {
-        content: {
-          style: "display: flex; flex-direction: column; gap: 0.2rem",
-        },
+        // TODO: Port this option
+        // content: {
+        //   style: "display: flex; flex-direction: column; gap: 0.2rem",
+        // },
       },
     },
     fixedItemsList: {
-      items: [{ "ui:widget": "textarea" }, { "ui:widget": "select" }],
+      items: [
+        { "ui:components": { textWidget: "textareaWidget" } },
+        {
+          "ui:components": {
+            booleanField: "booleanSelectField",
+          },
+        },
+      ],
     },
     unorderable: {
       "ui:options": {
