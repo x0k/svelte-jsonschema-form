@@ -27,7 +27,7 @@ export type FormElement = FormElements[keyof FormElements];
 
 export interface FormProps {}
 
-export type FormAttributes = never extends FormProps[keyof FormElements]
+export type FormAttributes = FormProps[keyof FormElements] extends never
   ? {}
   : FormProps[keyof FormElements];
 

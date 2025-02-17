@@ -24,6 +24,5 @@
     "src/**/*.ts",
     "src/**/*.js",
     "src/**/*.svelte",
-    "./vitest-setup.ts"
-, "../legacy-fields/src/enum.ts", "../legacy-fields/src/enum.ts"  ],
+  ],
 }
