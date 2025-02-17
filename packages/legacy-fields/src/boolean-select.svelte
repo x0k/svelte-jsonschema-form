@@ -1,0 +1,79 @@
+<script lang="ts">
+  import {
+    makeEventHandlers,
+    getErrors,
+    validateField,
+    getFormContext,
+    getComponent,
+    type ComponentProps,
+    createPseudoId,
+    type Schema,
+  } from "@sjsf/form";
+  import { createOptions } from "./enum.js";
+
+  const ctx = getFormContext();
+
+  let { config, value = $bindable() }: ComponentProps["booleanField"] =
+    $props();
+
+  const Template = $derived(getComponent(ctx, "fieldTemplate", config));
+  const Widget = $derived(getComponent(ctx, "radioWidget", config));
+
+  const options = $derived.by(() => {
+    const yes = ctx.translation("yes");
+    const no = ctx.translation("no");
+    const computeId = (i: number) => createPseudoId(ctx, config.id, i);
+    if (Array.isArray(config.schema.oneOf)) {
+      return (
+        createOptions(
+          {
+            oneOf: config.schema.oneOf.map((option): Schema => {
+              if (typeof option === "boolean") {
+                return option
+                  ? { const: true, title: yes }
+                  : { const: false, title: no };
+              }
+              return {
+                ...option,
+                title: option.title ?? (option.const === true ? yes : no),
+              };
+            }),
+          },
+          config.uiSchema,
+          config.uiOptions,
+          computeId
+        ) ?? []
+      );
+    }
+    const enumValues = config.schema.enum ?? [true, false];
+    if (
+      enumValues.length === 2 &&
+      enumValues.every((v) => typeof v === "boolean") &&
+      config.uiOptions?.enumNames === undefined
+    ) {
+      return enumValues.map((v, i) => ({
+        id: createPseudoId(ctx, config.id, i),
+        label: v ? yes : no,
+        value: v,
+        disabled: false,
+      }));
+    }
+    return (
+      createOptions(
+        config.schema,
+        config.uiSchema,
+        config.uiOptions,
+        computeId
+      ) ?? []
+    );
+  });
+
+  const handlers = makeEventHandlers(ctx, () =>
+    validateField(ctx, config, value)
+  );
+  const errors = $derived(getErrors(ctx, config.id));
+</script>
+
+<Template showTitle {errors} {value} {config}>
+  <Widget {options} bind:value {errors} {handlers} {config} />
+</Template>

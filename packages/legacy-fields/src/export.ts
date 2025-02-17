@@ -13,6 +13,7 @@ export {
 } from "./array/export.js";
 export { objectField, objectPropertyField } from "./object/export.js";
 export { default as booleanField } from "./boolean.svelte";
+export { default as booleanSelectField } from "./boolean-select.svelte";
 export { default as enumField } from "./enum.svelte";
 export { default as fileField } from "./file.svelte";
 export { default as filesField } from "./files.svelte";

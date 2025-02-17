@@ -26,6 +26,7 @@ declare module "@sjsf/form" {
     numberField: FieldCommonProps<number>;
     integerField: FieldCommonProps<number>;
     booleanField: FieldCommonProps<boolean>;
+    booleanSelectField: FieldCommonProps<boolean>;
     objectField: FieldCommonProps<SchemaObjectValue>;
     objectPropertyField: FieldCommonProps<SchemaValue> & {
       property: string;
@@ -56,6 +57,7 @@ declare module "@sjsf/form" {
     numberField: "value";
     integerField: "value";
     booleanField: "value";
+    booleanSelectField: "value";
     objectField: "value";
     objectPropertyField: "value";
     arrayField: "value";
