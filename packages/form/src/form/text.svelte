@@ -7,23 +7,29 @@
   const ctx = getFormContext();
 
   const {
-    label,
+    id,
     config,
-    params,
-  }: {
-    label: L;
-    params: Labels[L];
-    config: Config;
-  } = $props();
+    args = {} as Labels[L],
+  }: {} extends Labels[L]
+    ? {
+        id: L;
+        config: Config;
+        args?: never;
+      }
+    : {
+        id: L;
+        args: Labels[L];
+        config: Config;
+      } = $props();
 
-  const translation = $derived(ctx.translation(label, params));
+  const translation = $derived(ctx.translation(id, args));
   const iconConfig: IconConfig<L> = $derived({
     config,
-    params,
+    params: args,
     translation,
   });
   //@ts-expect-error TODO: Fix this
-  const icon = $derived(ctx.icons?.(label, iconConfig));
+  const icon = $derived(ctx.icons?.(id, iconConfig));
 </script>
 
 {#if icon}

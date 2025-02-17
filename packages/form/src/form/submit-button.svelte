@@ -18,7 +18,7 @@
 
 <script lang="ts">
   import { getComponent, getFormContext } from "./context/index.js";
-  import Label from "./label.svelte";
+  import Text from "./text.svelte";
 
   const ctx = getFormContext();
 
@@ -36,5 +36,5 @@
 </script>
 
 <Button {config}>
-  <Label {config} label="submit" params={{}} />
+  <Text {config} id="submit" />
 </Button>
