@@ -20,7 +20,7 @@
   const ctx = getFormContext();
 
   const Template = $derived(getComponent(ctx, "fieldTemplate", config));
-  const Widget = $derived(getComponent(ctx, "multiSelectWidget", config));
+  const Widget = $derived(getComponent(ctx, "checkboxesWidget", config));
 
   const handlers = makeEventHandlers(ctx, () =>
     validateField(ctx, config, value)
