@@ -36,7 +36,7 @@ const large: Sample = {
   uiSchema: {
     choice1: {
       "ui:options": {
-        input: {
+        select: {
           placeholder: "Choose one",
         },
       },

@@ -116,7 +116,9 @@ const schemaDependencies: Sample = {
     },
     conditional: {
       "Do you want to get rid of any?": {
-        "ui:widget": "radio",
+        "ui:components": {
+          selectWidget: "radioWidget",
+        },
         "ui:options": {
           hideTitle: false,
         },
@@ -125,7 +127,9 @@ const schemaDependencies: Sample = {
     arrayOfConditionals: {
       items: {
         "Do you want to get rid of any?": {
-          "ui:widget": "radio",
+          "ui:components": {
+            selectWidget: "radioWidget",
+          },
           "ui:options": {
             hideTitle: false,
           },
@@ -135,7 +139,9 @@ const schemaDependencies: Sample = {
     fixedArrayOfConditionals: {
       items: {
         "Do you want to get rid of any?": {
-          "ui:widget": "radio",
+          "ui:components": {
+            selectWidget: "radioWidget",
+          },
           "ui:options": {
             hideTitle: false,
           },
@@ -143,7 +149,9 @@ const schemaDependencies: Sample = {
       },
       additionalItems: {
         "Do you want to get rid of any?": {
-          "ui:widget": "radio",
+          "ui:components": {
+            selectWidget: "radioWidget",
+          },
           "ui:options": {
             hideTitle: false,
           },

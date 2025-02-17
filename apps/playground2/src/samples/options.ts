@@ -37,7 +37,7 @@ const optionsSample: Sample = {
     firstName: {
       "ui:options": {
         emptyValue: "",
-        input: {
+        text: {
           autofocus: true,
           autocomplete: "family-name",
         },
@@ -47,14 +47,14 @@ const optionsSample: Sample = {
       "ui:options": {
         emptyValue: "",
         title: "Surname",
-        input: {
+        text: {
           autocomplete: "given-name",
         },
       },
     },
     telephone: {
       "ui:options": {
-        input: {
+        text: {
           type: "tel",
         },
       },

@@ -260,6 +260,9 @@ importers:
       '@sjsf/ajv8-validator':
         specifier: workspace:*
         version: link:../../packages/ajv8-validator
+      '@sjsf/basic-theme':
+        specifier: workspace:*
+        version: link:../../packages/basic-theme
       '@sjsf/cfworker-validator':
         specifier: workspace:*
         version: link:../../packages/cfworker-validator

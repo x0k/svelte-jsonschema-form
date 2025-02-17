@@ -85,7 +85,9 @@ const alternatives: Sample = {
       },
     },
     toggleMask: {
-      "ui:widget": "radio",
+      "ui:components": {
+        selectWidget: "radioWidget",
+      },
     },
   },
   formData: {

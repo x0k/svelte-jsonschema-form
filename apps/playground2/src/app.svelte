@@ -8,16 +8,14 @@
     AFTER_CHANGED,
     AFTER_SUBMITTED,
     AFTER_TOUCHED,
-    createForm3,
+    createForm,
     SimpleForm,
     ON_ARRAY_CHANGE,
     ON_OBJECT_CHANGE,
     setFromContext,
+    createTranslation,
   } from "@sjsf/form";
-  import {
-    translation,
-    handleValidationProcessError,
-  } from "@sjsf/form/translations/en";
+  import { translationResolver } from "@sjsf/form/translations/en";
   import { addFormComponents, DEFAULT_AJV_CONFIG } from "@sjsf/ajv8-validator";
   import { focusOnFirstError } from "@sjsf/form/focus-on-first-error";
   import { setThemeContext } from "@sjsf/shadcn-theme";
@@ -116,11 +114,9 @@
   let html5Validation = $state(false);
   let doFocusOnFirstError = $state(true);
 
-  const form = createForm3({
-    handleValidationProcessError: (state) => {
-      console.error(state);
-      return handleValidationProcessError(state);
-    },
+  const translation = createTranslation(translationResolver);
+
+  const form = createForm({
     initialValue: samples[initialSampleName].formData,
     initialErrors: samples[initialSampleName].errors ?? new SvelteMap(),
     translation,

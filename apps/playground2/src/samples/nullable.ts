@@ -40,7 +40,7 @@ const nullable: Sample = {
   uiSchema: {
     firstName: {
       "ui:options": {
-        input: {
+        text: {
           autofocus: true,
         },
         emptyValue: "",
@@ -54,9 +54,11 @@ const nullable: Sample = {
       },
     },
     bio: {
-      "ui:widget": "textarea",
+      "ui:components": {
+        textWidget: "textareaWidget"
+      },
       "ui:options": {
-        input: {
+        textarea: {
           placeholder:
             "Leaving this field empty will cause formData property to be `null`",
         },
@@ -65,7 +67,7 @@ const nullable: Sample = {
     },
     password: {
       "ui:options": {
-        input: {
+        text: {
           type: "password",
         },
         description: "Hint: Make it strong!",
@@ -77,7 +79,7 @@ const nullable: Sample = {
     // },
     telephone: {
       "ui:options": {
-        input: {
+        text: {
           type: "tel",
         },
       },

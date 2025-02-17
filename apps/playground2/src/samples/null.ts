@@ -24,7 +24,7 @@ const nullField: Sample = {
   uiSchema: {
     firstName: {
       "ui:options": {
-        input: {
+        text: {
           autofocus: true,
         },
         emptyValue: "",

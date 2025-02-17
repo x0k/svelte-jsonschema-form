@@ -1,7 +1,7 @@
 import { SvelteMap } from "svelte/reactivity";
+import { DEFAULT_ID_PREFIX, DEFAULT_ID_SEPARATOR, pathToId } from "@sjsf/form";
 
 import type { Sample } from "./Sample";
-import { DEFAULT_ID_PREFIX, DEFAULT_ID_SEPARATOR, pathToId } from '@sjsf/form';
 
 const errorSchema: Sample = {
   status: "perfect",
@@ -43,7 +43,7 @@ const errorSchema: Sample = {
   uiSchema: {
     firstName: {
       "ui:options": {
-        input: {
+        text: {
           autofocus: true,
         },
         emptyValue: "",
@@ -56,11 +56,13 @@ const errorSchema: Sample = {
       },
     },
     bio: {
-      "ui:widget": "textarea",
+      "ui:components": {
+        textWidget: "textareaWidget",
+      },
     },
     password: {
       "ui:options": {
-        input: {
+        text: {
           type: "password",
         },
         help: "Hint: Make it strong!",
@@ -72,7 +74,7 @@ const errorSchema: Sample = {
     // },
     telephone: {
       "ui:options": {
-        input: {
+        text: {
           type: "tel",
         },
       },

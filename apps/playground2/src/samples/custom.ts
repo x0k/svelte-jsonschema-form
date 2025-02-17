@@ -32,7 +32,9 @@ const custom: Sample = {
   },
   uiSchema: {
     field: {
-      "ui:field": GeoField,
+      "ui:components": {
+        objectField: GeoField
+      },
     },
     layout: {
       "ui:components": {

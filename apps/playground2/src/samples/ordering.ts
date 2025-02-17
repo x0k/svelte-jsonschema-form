@@ -37,11 +37,13 @@ const ordering: Sample = {
     //   'ui:widget': 'updown',
     // },
     bio: {
-      'ui:widget': 'textarea',
+      "ui:components": {
+        textWidget: "textareaWidget"
+      }
     },
     password: {
       "ui:options": {
-        input: {
+        text: {
           type: "password",
         },
       }

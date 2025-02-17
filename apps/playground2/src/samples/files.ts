@@ -37,7 +37,7 @@ const files: Sample = {
   uiSchema: {
     filesAccept: {
       'ui:options': {
-        input: {
+        file: {
           accept: '.pdf'
         }
       },

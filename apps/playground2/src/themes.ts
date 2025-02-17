@@ -1,4 +1,5 @@
-import { theme as basic } from "@sjsf/form/basic-theme";
+import { createTheme } from '@sjsf/form';
+import { themeResolver as basicThemeResolver } from "@sjsf/basic-theme";
 
 // import { theme as daisy } from "@sjsf/daisyui-theme";
 // import daisyStyles from "@sjsf/daisyui-theme/styles.css?inline";
@@ -16,7 +17,7 @@ import { theme as basic } from "@sjsf/form/basic-theme";
 // import shadcnStyles from '@sjsf/shadcn-theme/styles.css?inline';
 
 export const themes = {
-  basic,
+  basic: createTheme(basicThemeResolver),
   // daisy,
   // daisy5,
   // flowbite,

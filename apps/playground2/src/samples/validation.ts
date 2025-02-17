@@ -7,7 +7,7 @@ import {
   type SchemaValue,
   type ValidationError,
 } from "@sjsf/form";
-import { AjvValidator } from "@sjsf/ajv8-validator";
+import { Validator } from "@sjsf/ajv8-validator";
 
 import type { Sample } from "./Sample";
 
@@ -31,7 +31,7 @@ function customValidate(
   return [];
 }
 
-class CustomAjvValidator extends AjvValidator {
+class CustomAjvValidator extends Validator {
   override validateFormData(
     schema: Schema,
     formData: SchemaValue | undefined
@@ -77,8 +77,8 @@ const validation: Sample = {
     },
   },
   uiSchema: {
-    pass1: { "ui:options": { input: { type: "password" } } },
-    pass2: { "ui:options": { input: { type: "password" } } },
+    pass1: { "ui:options": { text: { type: "password" } } },
+    pass2: { "ui:options": { text: { type: "password" } } },
   },
   formData: {},
   Validator: CustomAjvValidator,
