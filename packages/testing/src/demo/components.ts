@@ -27,7 +27,7 @@ export const uiSchema: UiSchemaRoot = {
   array: {
     items: {
       "ui:options": {
-        help: "test help",
+        // help: "test help",
       },
     },
   },

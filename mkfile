@@ -191,6 +191,8 @@ shad/:
 
 ts/:
   pushd packages/testing
+  c:
+    pnpm run check
   b:
     pnpm run build
   popd

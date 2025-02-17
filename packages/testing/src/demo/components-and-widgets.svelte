@@ -1,24 +1,24 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
   import {
-    createForm3,
+    createForm,
     DEFAULT_ID_PREFIX,
     DEFAULT_ID_SEPARATOR,
     pathToId,
-    type FormInternals,
+    type FormState,
     type ThemeResolver,
   } from "@sjsf/form";
-  import { translation } from "@sjsf/form/translations/en";
 
   import * as widgets from "./widgets";
   import * as components from "./components";
   import { validator } from "./ajv-validator";
   import Form from "./form.svelte";
+  import { translation } from "./translation";
 
   const {
     theme,
     createWidgetsForm = () =>
-      createForm3({
+      createForm({
         theme,
         schema: widgets.schema,
         uiSchema: widgets.uiSchema,
@@ -29,13 +29,13 @@
     append,
   }: {
     theme: ThemeResolver;
-    createWidgetsForm?: () => FormInternals;
+    createWidgetsForm?: () => FormState<any, any>;
     append?: Snippet;
   } = $props();
 
   const widgetsForm = createWidgetsForm();
 
-  const componentsForm = createForm3({
+  const componentsForm = createForm({
     theme,
     initialValue: {
       array: ["fixed", 123],
@@ -58,10 +58,10 @@
 
 <div style="display: flex; gap: 2rem; padding: 2rem;">
   <div style="display: flex; flex-direction: column; flex: 1; gap: 1rem">
-    <Form form={widgetsForm} />
+    <Form context={widgetsForm.context} />
   </div>
   <div style="display: flex; flex-direction: column; flex: 1; gap: 1rem">
-    <Form form={componentsForm} />
+    <Form context={componentsForm.context} />
     {@render append?.()}
   </div>
 </div>
