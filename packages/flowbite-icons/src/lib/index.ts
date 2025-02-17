@@ -1,13 +1,11 @@
-import { asSnippet, type Icons } from '@sjsf/form';
-import ArrowUpOutline from 'flowbite-svelte-icons/ArrowUpOutline.svelte'
-import ArrowDownOutline from 'flowbite-svelte-icons/ArrowDownOutline.svelte'
-import TrashBinOutline from 'flowbite-svelte-icons/TrashBinOutline.svelte'
-import FileCopyOutline from 'flowbite-svelte-icons/FileCopyOutline.svelte'
+import type { Icons } from '@sjsf/form';
+
+import { arrowDownOutline, arrowUpOutline, fileCopyOutline, trashBinOutline } from './icons.svelte';
 
 export const icons: Icons = {
-	"move-array-item-up": asSnippet(ArrowUpOutline),
-	"move-array-item-down": asSnippet(ArrowDownOutline),
-	"remove-array-item": asSnippet(TrashBinOutline),
-	"copy-array-item": asSnippet(FileCopyOutline),
-	"remove-object-property": asSnippet(TrashBinOutline),
-}
+	'move-array-item-up': arrowUpOutline,
+	'move-array-item-down': arrowDownOutline,
+	'remove-array-item': trashBinOutline,
+	'copy-array-item': fileCopyOutline,
+	'remove-object-property': trashBinOutline
+};
