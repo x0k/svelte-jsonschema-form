@@ -17,7 +17,6 @@ export { default as booleanSelectField } from "./boolean-select.svelte";
 export { default as enumField } from "./enum.svelte";
 export { default as fileField } from "./file.svelte";
 export { default as filesField } from "./files.svelte";
-export { default as hiddenField } from "./hidden.svelte";
 export { default as integerField } from "./integer.svelte";
 export { default as multiEnumField } from "./multi-enum.svelte";
 export { default as multiField } from "./multi.svelte";

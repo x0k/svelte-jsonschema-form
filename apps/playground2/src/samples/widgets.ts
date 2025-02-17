@@ -113,30 +113,31 @@ const widgets: Sample = {
   uiSchema: {
     boolean: {
       radio: {
-        "ui:widget": "radio",
-        "ui:options": {
-          hideTitle: false,
+        "ui:components": {
+          booleanField: "booleanSelectField"
         }
       },
       select: {
-        "ui:widget": "select",
-        "ui:options": {
-          hideTitle: false,
+        "ui:components": {
+          booleanField: "booleanSelectField",
+          radioWidget: "selectWidget"
         }
       },
     },
     string: {
       textarea: {
-        "ui:widget": "textarea",
+        "ui:components": {
+          textWidget: "textareaWidget"
+        },
         "ui:options": {
-          input: {
+          textarea: {
             rows: 5,
           },
         },
       },
       placeholder: {
         "ui:options": {
-          input: {
+          text: {
             placeholder: "This is a placeholder",
           },
         },
@@ -144,6 +145,9 @@ const widgets: Sample = {
     },
     secret: {
       "ui:field": "hidden",
+      "ui:components": {
+        // "stringField": ""
+      }
     },
     disabled: {
       "ui:options": {

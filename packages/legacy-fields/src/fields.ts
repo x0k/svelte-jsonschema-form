@@ -4,13 +4,7 @@ import type {
   SchemaArrayValue,
   SchemaObjectValue,
 } from "@sjsf/form/core";
-import type {
-  Schema,
-  ComponentProps,
-  Config,
-  SchemaValue,
-  ComponentType,
-} from "@sjsf/form";
+import type { Schema, Config, SchemaValue, CompatibleComponentType } from "@sjsf/form";
 
 export interface FieldCommonProps<V> {
   value: V | undefined;
@@ -49,7 +43,6 @@ declare module "@sjsf/form" {
     };
     fileField: FieldCommonProps<string>;
     filesField: FieldCommonProps<string[]>;
-    hiddenField: FieldCommonProps<SchemaValue>;
   }
   interface ComponentBindings {
     multiField: "value";
@@ -69,6 +62,5 @@ declare module "@sjsf/form" {
     multiEnumField: "value";
     fileField: "value";
     filesField: "value";
-    hiddenField: "value";
   }
 }
