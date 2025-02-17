@@ -13,6 +13,7 @@
     type SchemaObjectValue,
   } from "@sjsf/form/core";
   import {
+    Text,
     type UiSchema,
     getComponent,
     getDefaultFieldState,
@@ -142,7 +143,7 @@
       objCtx.addProperty();
     }}
   >
-    <ctx.IconOrTranslation data={["add-object-property"]} />
+    <Text {config} id="add-object-property" />
   </Button>
 {/snippet}
 <Template

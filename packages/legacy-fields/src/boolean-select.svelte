@@ -20,8 +20,8 @@
   const Widget = $derived(getComponent(ctx, "radioWidget", config));
 
   const options = $derived.by(() => {
-    const yes = ctx.translation("yes");
-    const no = ctx.translation("no");
+    const yes = ctx.translation("yes", {});
+    const no = ctx.translation("no", {});
     const computeId = (i: number) => createPseudoId(ctx, config.id, i);
     if (Array.isArray(config.schema.oneOf)) {
       return (

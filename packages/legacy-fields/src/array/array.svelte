@@ -103,7 +103,7 @@
 </script>
 
 {#if config.schema.items === undefined}
-  <ErrorMessage message={ctx.translation("array-schema-missing-items")} />
+  <ErrorMessage message={ctx.translation("array-schema-missing-items", {})} />
 {:else if isMultiSelect(ctx, config.schema)}
   {@const Field = getComponent(ctx, "multiEnumField", config)}
   <Field {config} {itemSchema} bind:value />

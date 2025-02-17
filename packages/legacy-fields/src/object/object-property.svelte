@@ -3,6 +3,7 @@
     getComponent,
     getErrors,
     getFormContext,
+    Text,
     type ComponentProps,
   } from "@sjsf/form";
 
@@ -45,7 +46,7 @@
       objCtx.removeProperty(property);
     }}
   >
-    <ctx.IconOrTranslation data={["remove-object-property"]} />
+    <Text {config} id="remove-object-property" />
   </Button>
 {/snippet}
 <Template

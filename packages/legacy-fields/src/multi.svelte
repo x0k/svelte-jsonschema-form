@@ -125,15 +125,15 @@
   const optionUiOptions = $derived(getUiOptions(ctx, optionUiSchema));
 
   const enumOptionLabel = $derived.by(() => {
-    const customTitle = config.uiOptions?.title ?? config.schema.title;
-    return customTitle !== undefined
+    const title = config.uiOptions?.title ?? config.schema.title;
+    return title !== undefined
       ? (index: number) =>
-          ctx.translation(
-            "multi-schema-option-label-with-title",
-            customTitle,
-            index
-          )
-      : (index: number) => ctx.translation("multi-schema-option-label", index);
+          ctx.translation("multi-schema-option-label-with-title", {
+            index,
+            title,
+          })
+      : (index: number) =>
+          ctx.translation("multi-schema-option-label", { index });
   });
   const enumOptions = $derived<EnumOption<number>[]>(
     retrievedOptions.map((s, i) => ({

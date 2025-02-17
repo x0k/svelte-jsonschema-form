@@ -11,6 +11,7 @@
     getFormContext,
     createChildId,
     type ComponentProps,
+    Text,
   } from "@sjsf/form";
 
   import { getArrayContext } from "./context.js";
@@ -49,7 +50,7 @@
       arrayCtx.pushItem(schemaItems);
     }}
   >
-    <ctx.IconOrTranslation data={["add-array-item"]} />
+    <Text {config} id="add-array-item" />
   </Button>
 {/snippet}
 <Template

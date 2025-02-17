@@ -3,6 +3,7 @@
     getComponent,
     getErrors,
     getFormContext,
+    Text,
     type ComponentProps,
   } from "@sjsf/form";
 
@@ -40,7 +41,7 @@
         arrayCtx.moveItemUp(index);
       }}
     >
-      <ctx.IconOrTranslation data={["move-array-item-up"]} />
+      <Text {config} id="move-array-item-up" />
     </Button>
     <Button
       {errors}
@@ -51,7 +52,7 @@
         arrayCtx.moveItemDown(index);
       }}
     >
-      <ctx.IconOrTranslation data={["move-array-item-down"]} />
+      <Text {config} id="move-array-item-down" />
     </Button>
   {/if}
   {#if canCopy}
@@ -64,7 +65,7 @@
       }}
       disabled={false}
     >
-      <ctx.IconOrTranslation data={["copy-array-item"]} />
+      <Text {config} id="copy-array-item" />
     </Button>
   {/if}
   {#if canRemove}
@@ -77,7 +78,7 @@
         arrayCtx.removeItem(index);
       }}
     >
-      <ctx.IconOrTranslation data={["remove-array-item"]} />
+      <Text {config} id="remove-array-item" />
     </Button>
   {/if}
 {/snippet}
