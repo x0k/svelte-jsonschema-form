@@ -1,6 +1,5 @@
 import { SvelteMap } from "svelte/reactivity";
 
-import type { MaybePromise } from "@/lib/types.js";
 import { makeDataURLtoBlob } from "@/lib/file.js";
 import type { SchedulerYield } from "@/lib/scheduler.js";
 import {
@@ -19,31 +18,27 @@ import {
   AdditionalPropertyKeyError,
   type AdditionalPropertyKeyValidator,
   type ValidationError,
-  NO_VALIDATION_ERRORS,
   type ValidationErrors,
   isAdditionalPropertyKeyValidator,
-  isFormValueValidator,
-  isFieldValueValidator,
+  isSyncFormValueValidator,
+  isSyncFieldValueValidator,
+  isAsyncFormValueValidator,
+  isAsyncFieldValueValidator,
+  type SyncFormValueValidator,
+  type AsyncFormValueValidator,
 } from "./validator.js";
 import type { Translation } from "./translation.js";
 import type { UiSchemaRoot } from "./ui-schema.js";
 import type { IconsResolver } from "./icons.js";
 import type { FieldsValidationMode } from "./validation.js";
-import {
-  groupErrors,
-  type FormErrors,
-  type FieldErrors,
-  NO_FORM_ERRORS,
-  NO_FIELD_ERRORS,
-} from "./errors.js";
+import { groupErrors, type FormErrors, type FieldErrors } from "./errors.js";
 import type { FormContext } from "./context/index.js";
 import { DefaultFormMerger, type FormMerger } from "./merger.js";
 import {
+  type Id,
   DEFAULT_ID_PREFIX,
   DEFAULT_ID_SEPARATOR,
   DEFAULT_PSEUDO_ID_SEPARATOR,
-  pathToId,
-  type Id,
 } from "./id.js";
 import type { Config } from "./config.js";
 import type { ThemeResolver } from "./theme.js";
@@ -51,8 +46,15 @@ import type { FieldValue, FormValue } from "./model.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
 
-export interface FormOptions<T, E> {
-  validator: FormValidator<E>;
+export type FormError<E, V extends FormValidator<E>> =
+  | E
+  | ValidationProcessError
+  | (V extends AdditionalPropertyKeyValidator
+      ? AdditionalPropertyKeyError
+      : never);
+
+export interface FormOptions<T, VE, V extends FormValidator<VE>> {
+  validator: V;
   schema: Schema;
   theme: ThemeResolver;
   translation: Translation;
@@ -67,9 +69,9 @@ export interface FormOptions<T, E> {
   //
   initialValue?: T;
   initialErrors?:
-    | FormErrors<E>
-    | Map<Id, FieldErrors<E>>
-    | ValidationError<E>[];
+    | FormErrors<FormError<VE, V>>
+    | Map<Id, FieldErrors<FormError<VE, V>>>
+    | ValidationError<FormError<VE, V>>[];
   /**
    * @default ignoreNewUntilPreviousIsFinished
    */
@@ -106,7 +108,7 @@ export interface FormOptions<T, E> {
    *
    * @default (ctx) => $state.snapshot(ctx.value)
    */
-  getSnapshot?: (ctx: FormContext<E>) => FormValue;
+  getSnapshot?: (ctx: FormContext<FormError<VE, V>>) => FormValue;
   /**
    * Submit handler
    *
@@ -125,7 +127,7 @@ export interface FormOptions<T, E> {
    * snapshot is not valid
    */
   onSubmitError?: (
-    errors: FormErrors<E>,
+    errors: FormErrors<VE>,
     e: SubmitEvent,
     snapshot: FormValue
   ) => void;
@@ -149,7 +151,7 @@ export interface FormOptions<T, E> {
   /**
    * Reset handler
    *
-   * Will be called when the form is reset and will not be triggered by the `form.reset` call.
+   * Will be called when the form is reset.
    */
   onReset?: (e: Event) => void;
   schedulerYield?: SchedulerYield;
@@ -159,46 +161,47 @@ export type ValidationProcessErrorTranslation = (
   state: FailedAction<unknown>
 ) => string;
 
-export interface FormState<T, E> {
-  readonly context: FormContext<E>;
+export interface FormValidationResult<VE> {
+  formValue: FormValue;
+  formErrors: FormErrors<VE>;
+}
+
+export type FormState<T, VE, V extends FormValidator<VE>> = {
+  readonly context: FormContext<FormError<VE, V>>;
   readonly validation: Action<
     [event: SubmitEvent],
-    {
-      snapshot: FormValue;
-      validationErrors: FormErrors<E>;
-    },
+    FormValidationResult<VE>,
     unknown
   >;
   readonly fieldsValidation: Action<
     [config: Config, value: FormValue],
-    FieldErrors<E>,
+    FieldErrors<VE>,
     unknown
   >;
   value: T | undefined;
   isSubmitted: boolean;
   isChanged: boolean;
-  errors: FormErrors<E>;
-  validate(): FormErrors<E>;
-  validateAsync(signal: AbortSignal): Promise<FormErrors<E>>;
+  errors: FormErrors<FormError<VE, V>>;
   submit(e: SubmitEvent): Promise<void>;
-  reset(): void;
-  updateErrorsByPath(
-    path: Array<string | number>,
-    update: (errors: FieldErrors<E>) => FieldErrors<E>
-  ): void;
-}
+  reset(e: Event): void;
+} & (V extends SyncFormValueValidator<VE>
+  ? {
+      validate(): FormErrors<VE>;
+    }
+  : {}) &
+  (V extends AsyncFormValueValidator<VE>
+    ? {
+        validateAsync(signal: AbortSignal): Promise<FormErrors<VE>>;
+      }
+    : {});
 
-export type ExtractAdditionalPropertyKeyError<O extends FormOptions<any, any>> =
-  O["validator"] extends AdditionalPropertyKeyValidator
-    ? AdditionalPropertyKeyError
-    : never;
+export function createForm<T, VE, V extends FormValidator<VE>>(
+  options: FormOptions<T, VE, V>
+): FormState<T, VE, V> {
+  type FE = FormError<VE, V>;
 
-export function createForm<
-  T,
-  VE,
-  O extends FormOptions<T, E>,
-  E = VE | ValidationProcessError | ExtractAdditionalPropertyKeyError<O>,
->(options: O): FormState<T, E> {
+  const NO_VALIDATION_ERRORS: ValidationErrors<VE> = [];
+
   const merger = $derived(
     options.merger ?? new DefaultFormMerger(options.validator, options.schema)
   );
@@ -209,7 +212,7 @@ export function createForm<
       options.schema
     )
   );
-  let errors: FormErrors<E> = $state(
+  let errors: FormErrors<FE> = $state(
     Array.isArray(options.initialErrors)
       ? groupErrors(options.initialErrors)
       : new SvelteMap(options.initialErrors)
@@ -251,7 +254,7 @@ export function createForm<
             messages.map((message) => ({
               propertyTitle: fieldConfig.title,
               message,
-              error: new AdditionalPropertyKeyError() as E,
+              error: new AdditionalPropertyKeyError() as FE,
             }))
           );
           return messages.length === 0;
@@ -263,46 +266,43 @@ export function createForm<
     options.getSnapshot ?? (() => $state.snapshot(value))
   );
 
-  function validateSnapshot(
-    snapshot: FormValue,
-    signal: AbortSignal
-  ): MaybePromise<FormErrors<E>> {
+  const validateForm = $derived.by(() => {
     const v = options.validator;
-    if (!isFormValueValidator(v)) {
-      return NO_FORM_ERRORS;
+    if (isAsyncFormValueValidator(v)) {
+      return v.asyncValidateFormValue;
     }
-    const errors = v.validateFormValue?.(options.schema, snapshot, signal);
-    if (errors instanceof Promise) {
-      return errors.then(groupErrors);
+    if (isSyncFormValueValidator(v)) {
+      return (_: AbortSignal, schema: Schema, formValue: FormValue) =>
+        v.validateFormValue(schema, formValue);
     }
-    return groupErrors(errors);
-  }
+    return () => NO_VALIDATION_ERRORS;
+  });
 
   const validation = createAction({
     async execute(signal, _event: SubmitEvent) {
-      isSubmitted = true;
-      const snapshot = getSnapshot(context);
-      const validationErrors = await validateSnapshot(snapshot, signal);
+      const formValue = getSnapshot(context);
       return {
-        snapshot,
-        validationErrors,
+        formValue,
+        formErrors: groupErrors(
+          await validateForm(signal, options.schema, formValue)
+        ),
       };
     },
-    onSuccess({ snapshot, validationErrors }, event) {
-      errors = validationErrors;
+    onSuccess({ formValue, formErrors }: FormValidationResult<VE>, event) {
+      errors = formErrors;
       if (errors.size === 0) {
-        options.onSubmit?.(snapshot as T, event);
+        options.onSubmit?.(formValue as T, event);
         isChanged = false;
         return;
       }
-      options.onSubmitError?.(errors, event, snapshot);
+      options.onSubmitError?.(formErrors, event, formValue);
     },
     onFailure(error, e) {
       errors.set(context.rootId, [
         {
           propertyTitle: "",
           message: options.translation("validation-process-error", { error }),
-          error: new ValidationProcessError(error) as E,
+          error: new ValidationProcessError(error),
         },
       ]);
       options.onValidationFailure?.(error, e);
@@ -320,19 +320,23 @@ export function createForm<
 
   const validateFields = $derived.by(() => {
     const v = options.validator;
-    return isFieldValueValidator(v)
-      ? (signal: AbortSignal, config: Config, value: FieldValue) =>
-          v.validateFieldValue?.(config, value, signal)
-      : () => NO_VALIDATION_ERRORS;
+    if (isAsyncFieldValueValidator(v)) {
+      return v.asyncValidateFieldValue;
+    }
+    if (isSyncFieldValueValidator(v)) {
+      return (_: AbortSignal, config: Config, value: FieldValue) =>
+        v.validateFieldValue(config, value);
+    }
+    return () => NO_VALIDATION_ERRORS;
   });
 
   const fieldsValidation = createAction({
     async execute(signal, config, value) {
       return validateFields(signal, config, value);
     },
-    onSuccess(validationErrors: ValidationErrors<E>, config) {
-      if (validationErrors.length > 0) {
-        errors.set(config.id, validationErrors);
+    onSuccess(fieldErrors: FieldErrors<VE>, config) {
+      if (fieldErrors.length > 0) {
+        errors.set(config.id, fieldErrors);
       } else {
         errors.delete(config.id);
       }
@@ -343,7 +347,7 @@ export function createForm<
           {
             propertyTitle: config.title,
             message: options.translation("validation-process-error", { error }),
-            error: new ValidationProcessError(error) as E,
+            error: new ValidationProcessError(error),
           },
         ]);
       }
@@ -369,10 +373,12 @@ export function createForm<
 
   function submitHandler(e: SubmitEvent) {
     e.preventDefault();
-    validation.run(e);
+    isSubmitted = true;
+    return validation.run(e);
   }
 
-  function reset() {
+  function resetHandler(e: Event) {
+    e.preventDefault();
     isSubmitted = false;
     isChanged = false;
     errors.clear();
@@ -380,11 +386,6 @@ export function createForm<
       options.initialValue as FormValue,
       options.schema
     );
-  }
-
-  function resetHandler(e: Event) {
-    e.preventDefault();
-    reset();
     options.onReset?.(e);
   }
 
@@ -393,8 +394,9 @@ export function createForm<
     ...uiSchema["ui:options"],
   });
 
-  const context: FormContext<E> = {
+  const context: FormContext<FE> = {
     submitHandler,
+    resetHandler,
     get rootId() {
       return idPrefix as Id;
     },
@@ -406,9 +408,6 @@ export function createForm<
     },
     set value(v) {
       value = v;
-    },
-    get resetHandler() {
-      return resetHandler;
     },
     get fieldsValidationMode() {
       return fieldsValidationMode;
@@ -468,8 +467,6 @@ export function createForm<
     },
   };
 
-  const fakeAbortSignal = new AbortController().signal;
-
   return {
     get value() {
       return getSnapshot(context) as T | undefined;
@@ -502,23 +499,32 @@ export function createForm<
     validation,
     fieldsValidation,
     validate() {
-      const errors = validateSnapshot(getSnapshot(context), fakeAbortSignal);
-      if (errors instanceof Promise) {
-        throw new Error("`validate` cannot be called with async validator");
+      const v = options.validator;
+      if (!isSyncFormValueValidator(v)) {
+        throw new Error(
+          `Unsupported validator type, expected sync form value validator`
+        );
       }
-      return errors;
+      return groupErrors(
+        v.validateFormValue(options.schema, getSnapshot(context))
+      );
     },
     async validateAsync(signal: AbortSignal) {
-      return validateSnapshot(getSnapshot(context), signal);
+      const v = options.validator;
+      if (!isAsyncFormValueValidator(v)) {
+        throw new Error(
+          `Unsupported validator type, expected async form value validator`
+        );
+      }
+      return groupErrors(
+        await v.asyncValidateFormValue(
+          signal,
+          options.schema,
+          getSnapshot(context)
+        )
+      );
     },
-    submit(e) {
-      return validation.run(e);
-    },
-    reset,
-    updateErrorsByPath(path, update) {
-      const instanceId = pathToId(idPrefix, idSeparator, path);
-      const list = errors.get(instanceId);
-      errors.set(instanceId, update(list ?? NO_FIELD_ERRORS));
-    },
+    submit: submitHandler,
+    reset: resetHandler,
   };
 }

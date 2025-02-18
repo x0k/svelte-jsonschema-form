@@ -18,8 +18,6 @@ export interface ValidationError<E> {
 
 export type ValidationErrors<E> = ValidationError<E>[];
 
-export const NO_VALIDATION_ERRORS: ValidationErrors<any> = [];
-
 export interface SyncFormValueValidator<E> {
   validateFormValue: (
     rootSchema: Schema,
@@ -28,10 +26,10 @@ export interface SyncFormValueValidator<E> {
 }
 
 export interface AsyncFormValueValidator<E> {
-  validateFormValue: (
+  asyncValidateFormValue: (
+    signal: AbortSignal,
     rootSchema: Schema,
     formValue: FormValue,
-    signal: AbortSignal
   ) => Promise<ValidationErrors<E>>;
 }
 
@@ -47,10 +45,10 @@ export interface SyncFieldValueValidator<E> {
 }
 
 export interface AsyncFieldValueValidator<E> {
-  validateFieldValue: (
+  asyncValidateFieldValue: (
+    signal: AbortSignal,
     field: Config,
     fieldValue: FieldValue,
-    signal: AbortSignal
   ) => Promise<ValidationErrors<E>>;
 }
 
@@ -74,16 +72,28 @@ export type FormValidator<E> = Validator &
     | {}
   );
 
-export function isFormValueValidator<E>(
+export function isSyncFormValueValidator<E>(
   v: FormValidator<E>
-): v is Validator & FormValueValidator<E> {
+): v is Validator & SyncFormValueValidator<E> {
   return "validateFormValue" in v;
 }
 
-export function isFieldValueValidator<E>(
+export function isAsyncFormValueValidator<E>(
+  v:FormValidator<E>
+): v is Validator & AsyncFormValueValidator<E> {
+  return "asyncValidateFormValue" in v
+}
+
+export function isSyncFieldValueValidator<E>(
   v: FormValidator<E>
-): v is Validator & FieldValueValidator<E> {
+): v is Validator & SyncFieldValueValidator<E> {
   return "validateFieldValue" in v;
+}
+
+export function isAsyncFieldValueValidator<E>(
+  v: FormValidator<E>
+): v is Validator & AsyncFieldValueValidator<E> {
+  return "asyncValidateFieldValue" in v
 }
 
 export function isAdditionalPropertyKeyValidator<E>(
