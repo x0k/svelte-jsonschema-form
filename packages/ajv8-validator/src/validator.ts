@@ -241,7 +241,7 @@ export function createAsyncFormValueValidator(
 ): AsyncFormValueValidator<ErrorObject> {
   const transformFormErrors = createFormErrorsTransformer(options);
   return {
-    async validateFormValue(rootSchema, formValue) {
+    async asyncValidateFormValue(_, rootSchema, formValue) {
       const validator = options.compileAsyncSchema(rootSchema, rootSchema);
       try {
         await validator(formValue);
@@ -266,7 +266,7 @@ export function createAsyncFieldValueValidator({
   compileAsyncFieldSchema,
 }: AsyncFieldValueValidatorOptions): AsyncFieldValueValidator<ErrorObject> {
   return {
-    async validateFieldValue(config, fieldValue) {
+    async asyncValidateFieldValue(_, config, fieldValue) {
       const validator = compileAsyncFieldSchema(config);
       const data = { field: fieldValue };
       try {
