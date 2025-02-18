@@ -1,5 +1,5 @@
 import type { Resolver } from "@/lib/resolver.js";
-import type { FailedAction } from "@/create-action.svelte.js";
+import type { FailedAction } from "@/lib/action.svelte.js";
 
 export interface Labels {
   submit: {};

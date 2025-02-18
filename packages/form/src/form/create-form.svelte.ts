@@ -3,7 +3,6 @@ import { SvelteMap } from "svelte/reactivity";
 import type { MaybePromise } from "@/lib/types.js";
 import { makeDataURLtoBlob } from "@/lib/file.js";
 import type { SchedulerYield } from "@/lib/scheduler.js";
-import type { Schema } from "@/core/index.js";
 import {
   abortPrevious,
   createAction,
@@ -11,7 +10,8 @@ import {
   type Action,
   type ActionsCombinator,
   type FailedAction,
-} from "@/create-action.svelte.js";
+} from "@/lib/action.svelte.js";
+import type { Schema } from "@/core/index.js";
 
 import {
   ValidationProcessError,

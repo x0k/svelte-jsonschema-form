@@ -7,7 +7,7 @@ import {
   ignoreNewUntilPreviousIsFinished,
   Status,
   createAction
-} from "./create-action.svelte.js";
+} from "./action.svelte.js";
 
 describe("createAction", () => {
   beforeEach(() => {

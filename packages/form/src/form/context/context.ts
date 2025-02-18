@@ -2,8 +2,8 @@ import { getContext, setContext, type Component } from "svelte";
 import type { EventHandler, FormEventHandler } from "svelte/elements";
 
 import type { DataURLToBlob } from "@/lib/file.js";
+import type { Action } from "@/lib/action.svelte.js";
 import type { Schema, SchemaValue } from "@/core/index.js";
-import type { Action } from "@/create-action.svelte.js";
 
 import type { Label, Labels, Translation } from "../translation.js";
 import type { UiOptions, UiSchema, UiSchemaRoot } from "../ui-schema.js";

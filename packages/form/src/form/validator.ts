@@ -1,5 +1,5 @@
+import type { FailedAction } from "@/lib/action.svelte.js";
 import type { Schema, Validator } from "@/core/index.js";
-import type { FailedAction } from "@/create-action.svelte.js";
 
 import type { Id } from "./id.js";
 import type { Config } from "./config.js";

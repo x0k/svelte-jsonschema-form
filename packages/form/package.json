@@ -86,10 +86,6 @@
       "types": "./dist/options.svelte.d.ts",
       "svelte": "./dist/options.svelte.js"
     },
-    "./create-action.svelte": {
-      "types": "./dist/create-action.svelte.d.ts",
-      "svelte": "./dist/create-action.svelte.js"
-    },
     "./prevent-page-reload.svelte": {
       "types": "./dist/prevent-page-reload.svelte.d.ts",
       "svelte": "./dist/prevent-page-reload.svelte.js"

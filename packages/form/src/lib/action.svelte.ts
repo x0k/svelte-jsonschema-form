@@ -1,4 +1,4 @@
-import type { MaybePromise } from "@/lib/types.js";
+import type { MaybePromise } from "./types.js";
 
 export enum Status {
   IDLE,
