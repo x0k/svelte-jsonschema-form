@@ -1,20 +1,3 @@
-<script lang="ts" module>
-  declare module "./theme.js" {
-    interface ComponentProps {
-      form: {
-        config: Config;
-        ref?: FormElement | undefined;
-        children: Snippet;
-        attributes?: FormAttributes | undefined;
-      };
-    }
-
-    interface ComponentBindings {
-      form: "ref";
-    }
-  }
-</script>
-
 <script lang="ts">
   import type { Snippet } from "svelte";
 

@@ -1,23 +1,6 @@
-<script lang="ts" module>
-  import type { Snippet } from "svelte";
-
-  import type { Config } from "./config.js";
-
-  declare module "./theme.js" {
-    interface ComponentProps {
-      submitButton: {
-        config: Config;
-        children: Snippet;
-      };
-    }
-    interface ComponentBindings {
-      submitButton: "";
-    }
-  }
-</script>
-
 <script lang="ts">
   import { getComponent, getFormContext } from "./context/index.js";
+  import type { Config } from './config.js';
   import Text from "./text.svelte";
 
   const ctx = getFormContext();
