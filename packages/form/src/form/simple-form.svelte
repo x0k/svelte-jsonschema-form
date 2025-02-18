@@ -4,11 +4,13 @@
   import Form from "./form.svelte";
   import type { FormElement, FormAttributes } from "./theme.js";
 
-  type Props = FormAttributes & {
+  let {
+    ref = $bindable(),
+    attributes,
+  }: {
     ref?: FormElement | undefined;
-  };
-
-  let { ref = $bindable(), ...attributes }: Props = $props();
+    attributes?: FormAttributes;
+  } = $props();
 </script>
 
 <Form bind:ref {attributes}>
