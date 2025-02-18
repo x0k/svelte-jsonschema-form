@@ -21,6 +21,9 @@ import {
   type ValidationError,
   NO_VALIDATION_ERRORS,
   type ValidationErrors,
+  isAdditionalPropertyKeyValidator,
+  isFormValueValidator,
+  isFieldValueValidator,
 } from "./validator.js";
 import type { Translation } from "./translation.js";
 import type { UiSchemaRoot } from "./ui-schema.js";
@@ -239,10 +242,10 @@ export function createForm<
   );
   const dataUrlToBlob = $derived(makeDataURLtoBlob(schedulerYield));
   const additionalPropertyKeyValidator = $derived.by(() => {
-    const { validateAdditionalPropertyKey } = options.validator;
-    return validateAdditionalPropertyKey
+    const v = options.validator;
+    return isAdditionalPropertyKeyValidator(v)
       ? (config: Config, key: string, fieldConfig: Config) => {
-          const messages = validateAdditionalPropertyKey(key, config.schema);
+          const messages = v.validateAdditionalPropertyKey(key, config.schema);
           errors.set(
             fieldConfig.id,
             messages.map((message) => ({
@@ -264,14 +267,11 @@ export function createForm<
     snapshot: FormValue,
     signal: AbortSignal
   ): MaybePromise<FormErrors<E>> {
-    const errors = options.validator.validateFormValue?.(
-      options.schema,
-      snapshot,
-      signal
-    );
-    if (errors === undefined) {
+    const v = options.validator;
+    if (!isFormValueValidator(v)) {
       return NO_FORM_ERRORS;
     }
+    const errors = v.validateFormValue?.(options.schema, snapshot, signal);
     if (errors instanceof Promise) {
       return errors.then(groupErrors);
     }
@@ -318,12 +318,17 @@ export function createForm<
     },
   });
 
+  const validateFields = $derived.by(() => {
+    const v = options.validator;
+    return isFieldValueValidator(v)
+      ? (signal: AbortSignal, config: Config, value: FieldValue) =>
+          v.validateFieldValue?.(config, value, signal)
+      : () => NO_VALIDATION_ERRORS;
+  });
+
   const fieldsValidation = createAction({
-    async execute(signal, config: Config, value: FieldValue) {
-      return (
-        options.validator.validateFieldValue?.(config, value, signal) ??
-        NO_VALIDATION_ERRORS
-      );
+    async execute(signal, config, value) {
+      return validateFields(signal, config, value);
     },
     onSuccess(validationErrors: ValidationErrors<E>, config) {
       if (validationErrors.length > 0) {

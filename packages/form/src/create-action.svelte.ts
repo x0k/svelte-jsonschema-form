@@ -24,7 +24,8 @@ export interface ActionFailedByError<E> extends AbstractFailedAction<"error"> {
 
 export type FailedAction<E> =
   | ActionFailedByError<E>
-  | AbstractFailedAction<Exclude<ActionFailureReason, "error">>;
+  | AbstractFailedAction<"timeout">
+  | AbstractFailedAction<"aborted">;
 
 export interface ProcessedAction<T>
   extends AbstractActionState<Status.Processed> {
@@ -33,9 +34,10 @@ export interface ProcessedAction<T>
 }
 
 export type ActionState<T, E> =
-  | FailedAction<E>
+  | AbstractActionState<Status.IDLE>
   | ProcessedAction<T>
-  | AbstractActionState<Exclude<Status, Status.Failed | Status.Processed>>;
+  | AbstractActionState<Status.Success>
+  | FailedAction<E>;
 
 export type ActionsCombinator<T, E> = (
   state: ActionState<T, E>

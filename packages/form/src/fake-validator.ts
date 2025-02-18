@@ -13,6 +13,6 @@ export function createValidator<E>({
 }: ValidatorOptions<E> = {}): FormValidator<E> {
   return {
     ...validator,
-    ...rest
+    ...rest,
   };
 }
