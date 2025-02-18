@@ -6,21 +6,14 @@ import {
   Validator,
   type AsyncValidatorOptions,
   type ValidatorOptions,
-} from "./validator.js";
+} from "./validator-old.js";
 
-/** @deprecated Use `createValidator2` instead */
-export function createValidator(options: Options = DEFAULT_AJV_CONFIG) {
-  return new Validator({
-    ajv: addFormComponents(new Ajv(options)),
-  });
-}
-
-type FactoryOptions<O> = Omit<O, "ajv"> & {
+export type FactoryOptions<O> = Omit<O, "ajv"> & {
   ajvOptions?: Options;
   ajv?: Ajv;
 };
 
-export function createValidator2({
+export function createValidator({
   ajvOptions = DEFAULT_AJV_CONFIG,
   ajv = addFormComponents(new Ajv(ajvOptions)),
   ...rest

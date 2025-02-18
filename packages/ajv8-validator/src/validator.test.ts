@@ -2,7 +2,7 @@ import { Ajv } from "ajv";
 import { describe, it } from "vitest";
 
 import { DEFAULT_AJV_CONFIG } from "./model.js";
-import { Validator } from "./validator.js";
+import { Validator } from "./validator-old.js";
 
 describe("Validator", () => {
   it("Should compile schemas with identical ids", () => {
