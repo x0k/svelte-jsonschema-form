@@ -49,8 +49,8 @@
 	},
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^1.9.2",
-		"flowbite-svelte-icons": "^2.0.0-next.1",
-		"svelte": "^5.20.0"
+		"flowbite-svelte-icons": "^2.0.2",
+		"svelte": "^5.20.2"
 	},
 	"devDependencies": {
 		"@playwright/test": "catalog:",

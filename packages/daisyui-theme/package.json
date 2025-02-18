@@ -48,8 +48,8 @@
 	},
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^1.9.2",
-		"daisyui": "^4.0.0",
-		"svelte": "^5.0.0"
+		"daisyui": "^4.12.23",
+		"svelte": "^5.20.2"
 	},
 	"devDependencies": {
 		"@playwright/test": "catalog:",

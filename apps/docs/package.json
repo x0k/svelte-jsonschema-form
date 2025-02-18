@@ -25,15 +25,15 @@
     "svg-pan-zoom": "github:bumbu/svg-pan-zoom",
     "zod": "catalog:",
     "zod-to-json-schema": "^3.24.1",
-    "cally": "^0.7.2",
+    "cally": "^0.8.0",
     "pikaday": "^1.8.2"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
-    "@astrojs/starlight": "^0.31.1",
+    "@astrojs/starlight": "^0.32.0",
     "@astrojs/svelte": "^7.0.4",
-    "astro": "^5.2.5",
-    "astro-vtbot": "^2.0.5",
+    "astro": "^5.3.0",
+    "astro-vtbot": "^2.0.6",
     "sharp": "^0.33.5",
     "starlight-package-managers": "^0.10.0",
     "svelte": "catalog:"

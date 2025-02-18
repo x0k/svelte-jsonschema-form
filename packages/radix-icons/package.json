@@ -44,8 +44,8 @@
 	},
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^1.9.2",
-		"svelte": "^5.0.0",
-		"svelte-radix": "^2.0.0"
+		"svelte": "^5.20.2",
+		"svelte-radix": "^2.0.1"
 	},
 	"devDependencies": {
 		"@playwright/test": "catalog:",

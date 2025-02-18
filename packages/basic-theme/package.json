@@ -35,7 +35,7 @@
     "@sjsf/legacy-templates": "workspace:^0.0.1"
   },
   "peerDependencies": {
-    "svelte": "^5.0.0",
+    "svelte": "^5.20.2",
     "@sjsf/form": "workspace:^1.9.2"
   },
   "devDependencies": {

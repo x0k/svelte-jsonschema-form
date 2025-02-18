@@ -45,11 +45,11 @@
 	},
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^1.9.2",
-		"daisyui": "^5.0.0-beta.6",
-		"svelte": "^5.19.0"
+		"daisyui": "^5.0.0-beta.8",
+		"svelte": "^5.20.2"
 	},
 	"optionalDependencies": {
-		"cally": "^0.7.2",
+		"cally": "^0.8.0",
 		"pikaday": "^1.8.2"
 	},
 	"devDependencies": {
@@ -64,8 +64,8 @@
 		"@types/eslint": "catalog:",
 		"@types/pikaday": "^1.7.9",
 		"ajv": "catalog:",
-		"cally": "^0.7.2",
-		"daisyui": "^5.0.0-beta.6",
+		"cally": "^0.8.0",
+		"daisyui": "^5.0.0-beta.8",
 		"eslint": "catalog:",
 		"eslint-config-prettier": "catalog:",
 		"eslint-plugin-svelte": "catalog:",

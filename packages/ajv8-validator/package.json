@@ -39,7 +39,7 @@
   },
   "peerDependencies": {
     "@sjsf/form": "workspace:^1.9.2",
-    "ajv": "^8.0.0"
+    "ajv": "^8.17.1"
   },
   "devDependencies": {
     "ajv": "catalog:",

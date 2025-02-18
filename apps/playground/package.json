@@ -15,7 +15,7 @@
     "@sjsf/cfworker-validator": "^1.9.2",
     "ajv": "catalog:",
     "rehype-raw": "^7.0.0",
-    "svelte-exmarkdown": "^4.0.2",
+    "svelte-exmarkdown": "^4.0.3",
     "@sjsf/daisyui-theme": "^1.9.2",
     "@sjsf/flowbite-theme": "^1.9.2",
     "@sjsf/flowbite-icons": "^1.9.2",

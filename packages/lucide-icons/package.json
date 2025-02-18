@@ -44,8 +44,8 @@
 	},
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^1.9.2",
-		"lucide-svelte": "^0.453.0",
-		"svelte": "^5.0.0"
+		"lucide-svelte": "^0.475.0",
+		"svelte": "^5.20.2"
 	},
 	"devDependencies": {
 		"@playwright/test": "catalog:",
@@ -62,7 +62,7 @@
 		"postcss": "catalog:",
 		"prettier": "catalog:",
 		"prettier-plugin-svelte": "catalog:",
-		"lucide-svelte": "^0.474.0",
+		"lucide-svelte": "^0.475.0",
 		"svelte": "catalog:",
 		"svelte-check": "catalog:",
 		"testing": "workspace:*",
