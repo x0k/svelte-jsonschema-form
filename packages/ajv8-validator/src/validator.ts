@@ -1,9 +1,21 @@
-import { type Ajv, type ErrorObject, type ValidateFunction } from "ajv";
+import {
+  Ajv,
+  type AsyncValidateFunction,
+  type ErrorObject,
+  type Options,
+  type ValidateFunction,
+} from "ajv";
+import { getValueByPath } from "@sjsf/form/lib/object";
 import type { SchemaDefinition, Validator } from "@sjsf/form/core";
 import {
   computePseudoId,
+  DEFAULT_ID_PREFIX,
+  DEFAULT_ID_SEPARATOR,
+  DEFAULT_PSEUDO_ID_SEPARATOR,
   makeChildId,
   pathToId,
+  type AsyncFieldValueValidator,
+  type AsyncFormValueValidator,
   type Config,
   type Schema,
   type SyncFieldValueValidator,
@@ -12,10 +24,15 @@ import {
   type UiSchemaRoot,
   type ValidationErrors,
 } from "@sjsf/form";
-import { getValueByPath } from "@sjsf/form/lib/object";
 
-const trueSchema: Schema = {};
-const falseSchema: Schema = {
+import { addFormComponents, DEFAULT_AJV_CONFIG } from "./model.js";
+import {
+  createFieldSchemaCompiler,
+  createSchemaCompiler,
+} from "./schema-compilers.js";
+
+const TRUE_SCHEMA: Schema = {};
+const FALSE_SCHEMA: Schema = {
   not: {},
 };
 const NO_ERRORS: ValidationErrors<ErrorObject> = [];
@@ -27,9 +44,9 @@ export interface ValidatorOptions {
 function transformSchemaDefinition(schema: SchemaDefinition): Schema {
   switch (schema) {
     case true:
-      return trueSchema;
+      return TRUE_SCHEMA;
     case false:
-      return falseSchema;
+      return FALSE_SCHEMA;
     default:
       return schema;
   }
@@ -209,4 +226,124 @@ export function createSyncFieldValueValidator({
       return transformFieldErrors(errors, config);
     },
   };
+}
+
+export interface AsyncFormValueValidatorOptions
+  extends ErrorsTransformerOptions {
+  compileAsyncSchema: (
+    schema: Schema,
+    rootSchema: Schema
+  ) => AsyncValidateFunction;
+}
+
+export function createAsyncFormValueValidator(
+  options: AsyncFormValueValidatorOptions
+): AsyncFormValueValidator<ErrorObject> {
+  const transformFormErrors = createFormErrorsTransformer(options);
+  return {
+    async validateFormValue(rootSchema, formValue) {
+      const validator = options.compileAsyncSchema(rootSchema, rootSchema);
+      try {
+        await validator(formValue);
+      } catch (e) {
+        if (!(e instanceof Ajv.ValidationError)) {
+          throw e;
+        }
+        return transformFormErrors(e.errors as ErrorObject[]);
+      } finally {
+        validator.errors = null;
+      }
+      return NO_ERRORS;
+    },
+  };
+}
+
+export interface AsyncFieldValueValidatorOptions {
+  compileAsyncFieldSchema: (config: Config) => AsyncValidateFunction;
+}
+
+export function createAsyncFieldValueValidator({
+  compileAsyncFieldSchema,
+}: AsyncFieldValueValidatorOptions): AsyncFieldValueValidator<ErrorObject> {
+  return {
+    async validateFieldValue(config, fieldValue) {
+      const validator = compileAsyncFieldSchema(config);
+      const data = { field: fieldValue };
+      try {
+        await validator(data);
+      } catch (e) {
+        if (!(e instanceof Ajv.ValidationError)) {
+          throw e;
+        }
+        return transformFieldErrors(e.errors as ErrorObject[], config);
+      } finally {
+        validator.errors = null;
+      }
+      return NO_ERRORS;
+    },
+  };
+}
+
+export interface SyncFormValidatorOptions
+  extends ValidatorOptions,
+    SyncFormValueValidatorOptions,
+    SyncFieldValueValidatorOptions {}
+
+export function createSyncFormValidator({
+  ajvOptions = DEFAULT_AJV_CONFIG,
+  ajv = addFormComponents(new Ajv(ajvOptions)),
+  compileSchema = createSchemaCompiler(ajv, false),
+  compileFieldSchema = createFieldSchemaCompiler(ajv, false),
+  idPrefix = DEFAULT_ID_PREFIX,
+  idSeparator = DEFAULT_ID_SEPARATOR,
+  idPseudoSeparator = DEFAULT_PSEUDO_ID_SEPARATOR,
+  uiSchema = {},
+}: Partial<SyncFormValidatorOptions> & {
+  ajv?: Ajv;
+  ajvOptions?: Options;
+} = {}) {
+  const options: SyncFormValidatorOptions = {
+    compileSchema,
+    compileFieldSchema,
+    idPrefix,
+    idSeparator,
+    idPseudoSeparator,
+    uiSchema,
+  };
+  return Object.assign(
+    createValidator(options),
+    createSyncFormValueValidator(options),
+    createSyncFieldValueValidator(options)
+  );
+}
+
+export interface AsyncFormValidatorOptions
+  extends ValidatorOptions,
+    AsyncFormValueValidatorOptions,
+    AsyncFieldValueValidatorOptions {}
+
+export function createAsyncFormValidator({
+  ajv,
+  compileSchema = createSchemaCompiler(ajv, false),
+  compileAsyncSchema = createSchemaCompiler(ajv, true),
+  compileAsyncFieldSchema = createFieldSchemaCompiler(ajv, true),
+  idPrefix = DEFAULT_ID_PREFIX,
+  idSeparator = DEFAULT_ID_SEPARATOR,
+  idPseudoSeparator = DEFAULT_PSEUDO_ID_SEPARATOR,
+  uiSchema = {},
+}: Partial<AsyncFormValidatorOptions> & { ajv: Ajv }) {
+  const options: AsyncFormValidatorOptions = {
+    compileSchema,
+    compileAsyncSchema,
+    compileAsyncFieldSchema,
+    idPrefix,
+    idSeparator,
+    idPseudoSeparator,
+    uiSchema,
+  };
+  return Object.assign(
+    createValidator(options),
+    createAsyncFormValueValidator(options),
+    createAsyncFieldValueValidator(options)
+  );
 }

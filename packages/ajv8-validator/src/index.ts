@@ -1,3 +1,3 @@
-export * from './model.js'
-export * from './validator-old.js'
-export * from './factory.js'
+export * from "./model.js";
+export * from "./schema-compilers.js";
+export * from "./validator.js";
