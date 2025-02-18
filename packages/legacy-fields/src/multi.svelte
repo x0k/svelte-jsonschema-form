@@ -1,11 +1,3 @@
-<script lang="ts" module>
-  declare module "@sjsf/form" {
-    interface UiSchemaContent {
-      multiFieldOptionSelector?: UiSchema;
-    }
-  }
-</script>
-
 <script lang="ts">
   import { proxy } from "@sjsf/form/lib/svelte.svelte";
   import {
