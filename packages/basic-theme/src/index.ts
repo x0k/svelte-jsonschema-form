@@ -1,7 +1,7 @@
 import { fromRecord } from "@sjsf/form/lib/resolver";
 import type { Definitions } from "@sjsf/form";
-import * as fields from "@sjsf/legacy-fields/export";
-import * as templates from "@sjsf/legacy-templates/export";
+import * as fields from "@sjsf/legacy-fields";
+import * as templates from "@sjsf/legacy-templates";
 
 import * as components from "./components/index.js";
 import * as widgets from "./widgets/index.js";
