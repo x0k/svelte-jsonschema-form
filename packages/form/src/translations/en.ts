@@ -1,6 +1,6 @@
 import { fromRecord } from "@/lib/resolver.js";
 import type { ActionFailureReason } from "@/lib/action.svelte.js";
-import type { Translators } from "@/form/translation.js";
+import { createTranslation, type Translators } from "@/form/translation.js";
 
 const translators: Translators = {
   submit: "Submit",
@@ -27,3 +27,5 @@ const FAILURE_REASONS: Record<ActionFailureReason, string> = {
 };
 
 export const translationResolver = fromRecord(translators);
+
+export const translation = createTranslation(translationResolver)
