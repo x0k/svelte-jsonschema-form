@@ -83,6 +83,11 @@ catalogs:
       specifier: ^4.0.7
       version: 4.0.7
 
+patchedDependencies:
+  svelte2tsx:
+    hash: embkt6msudwvuvile7eh2eerzi
+    path: patches/svelte2tsx.patch
+
 importers:
 
   .:
@@ -5974,7 +5979,7 @@ snapshots:
       '@sveltejs/vite-plugin-svelte': 5.0.3(svelte@5.20.2)(vite@6.0.11(@types/node@22.7.5)(jiti@2.4.2)(lightningcss@1.29.1)(yaml@2.5.1))
       astro: 5.3.0(@types/node@22.7.5)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.8)(typescript@5.7.3)(yaml@2.5.1)
       svelte: 5.20.2
-      svelte2tsx: 0.7.34(svelte@5.20.2)(typescript@5.7.3)
+      svelte2tsx: 0.7.34(patch_hash=embkt6msudwvuvile7eh2eerzi)(svelte@5.20.2)(typescript@5.7.3)
       typescript: 5.7.3
       vite: 6.0.11(@types/node@22.7.5)(jiti@2.4.2)(lightningcss@1.29.1)(yaml@2.5.1)
     transitivePeerDependencies:
@@ -6900,7 +6905,7 @@ snapshots:
       sade: 1.8.1
       semver: 7.7.1
       svelte: 5.20.2
-      svelte2tsx: 0.7.34(svelte@5.20.2)(typescript@5.7.3)
+      svelte2tsx: 0.7.34(patch_hash=embkt6msudwvuvile7eh2eerzi)(svelte@5.20.2)(typescript@5.7.3)
     transitivePeerDependencies:
       - typescript
 
@@ -10492,7 +10497,7 @@ snapshots:
       style-to-object: 1.0.8
       svelte: 5.20.2
 
-  svelte2tsx@0.7.34(svelte@5.20.2)(typescript@5.7.3):
+  svelte2tsx@0.7.34(patch_hash=embkt6msudwvuvile7eh2eerzi)(svelte@5.20.2)(typescript@5.7.3):
     dependencies:
       dedent-js: 1.0.1
       pascal-case: 3.1.2

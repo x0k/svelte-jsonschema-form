@@ -1,0 +1,30 @@
+diff --git a/index.js b/index.js
+index edfc1854c5ade713b820b6cc7d24fad69845b159..c9a18f0852c89aed9b6a5aa31eff32d3ddf5d529 100644
+--- a/index.js
++++ b/index.js
+@@ -7964,9 +7964,7 @@ function loadTsconfig(config, svelteMap) {
+         options: {
+             ...options,
+             noEmit: false, // Set to true in case of jsconfig, force false, else nothing is emitted
+-            moduleResolution: 
+-            // NodeJS: up to 4.9, Node10: since 5.0
+-            (_a = ts.ModuleResolutionKind.NodeJs) !== null && _a !== void 0 ? _a : ts.ModuleResolutionKind.Node10, // Classic if not set, which gives wrong results
++            moduleResolution: ts.ModuleResolutionKind.NodeNext, // Classic if not set, which gives wrong results
+             declaration: true, // Needed for d.ts file generation
+             emitDeclarationOnly: true, // We only want d.ts file generation
+             declarationDir: config.declarationDir, // Where to put the declarations
+diff --git a/index.mjs b/index.mjs
+index 699f6f02e4bc9e1725730f061a9ed4c8e2778ac1..44553f414cc6b9164492f5b750a0f54d9ec1ff4b 100644
+--- a/index.mjs
++++ b/index.mjs
+@@ -7944,9 +7944,7 @@ function loadTsconfig(config, svelteMap) {
+         options: {
+             ...options,
+             noEmit: false, // Set to true in case of jsconfig, force false, else nothing is emitted
+-            moduleResolution: 
+-            // NodeJS: up to 4.9, Node10: since 5.0
+-            (_a = ts.ModuleResolutionKind.NodeJs) !== null && _a !== void 0 ? _a : ts.ModuleResolutionKind.Node10, // Classic if not set, which gives wrong results
++            moduleResolution: ts.ModuleResolutionKind.NodeNext, // Classic if not set, which gives wrong results
+             declaration: true, // Needed for d.ts file generation
+             emitDeclarationOnly: true, // We only want d.ts file generation
+             declarationDir: config.declarationDir, // Where to put the declarations

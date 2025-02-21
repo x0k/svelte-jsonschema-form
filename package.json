@@ -24,5 +24,10 @@
     "publint": "^0.3.5",
     "turbo": "^2.4.2",
     "typescript": "^5.7.3"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "svelte2tsx": "patches/svelte2tsx.patch"
+    }
   }
 }
