@@ -20,8 +20,8 @@ export function chain<
     source(type, c) ?? fallback(type, c);
 }
 
-export function fromRecord<R extends Record<AnyKey, any>>(
+export function fromRecord<R extends Record<AnyKey, any>, NotFound = never>(
   record: R
-): Resolver<any, R> {
+): Resolver<{ [K in keyof R]: any }, R, NotFound> {
   return (type) => record[type];
 }
