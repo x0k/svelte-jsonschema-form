@@ -1,20 +1,50 @@
 <script lang="ts">
-  import type { Snippet } from 'svelte';
-  import type { Icons } from '@sjsf/form';
+  import type {
+    Config,
+    IconConfig,
+    IconsResolver,
+    Id,
+    Labels,
+  } from "@sjsf/form";
 
-  const { icons }: { icons: Icons } = $props();
+  const { iconsResolver }: { iconsResolver: IconsResolver } = $props();
+  const config: Config = {
+    id: "root" as Id,
+    name: "name",
+    required: false,
+    schema: {},
+    uiSchema: {},
+    uiOptions: {},
+    title: "title",
+  };
+  const labels = {
+    "move-array-item-up": {},
+    "move-array-item-down": {},
+    "remove-array-item": {},
+    "copy-array-item": {},
+    "remove-object-property": {},
+  } satisfies Partial<Labels>;
 </script>
 
 <div
-	style="height: 100vh; width: 100%; display: flex; align-items: center; justify-content: center"
+  style="height: 100vh; width: 100%; display: flex; align-items: center; justify-content: center"
 >
-	<div style="display: flex; flex-direction: column; gap: 1rem">
-		{#each Object.entries(icons) as [key, icon]}
-			<button style="display: flex; gap: 0.5rem; align-items: center; height: 2rem">
-				{@render (icon as Snippet)()}
-				{key}
-			</button>
-		{/each}
-	</div>
+  <div style="display: flex; flex-direction: column; gap: 1rem">
+    {#each Object.entries(labels) as [key, params]}
+      {@const label = key as keyof typeof labels}
+      {@const iconConfig: {
+				[L in keyof typeof labels]:	IconConfig<L>
+			}[keyof typeof labels] = {
+          config,
+          translation: "",
+          params,
+        }}
+      <button
+        style="display: flex; gap: 0.5rem; align-items: center; height: 2rem"
+      >
+        {@render iconsResolver(label, iconConfig)?.(iconConfig as any)}
+        {key}
+      </button>
+    {/each}
+  </div>
 </div>
-

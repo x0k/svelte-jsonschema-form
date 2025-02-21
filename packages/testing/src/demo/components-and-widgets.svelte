@@ -5,14 +5,14 @@
     DEFAULT_ID_PREFIX,
     DEFAULT_ID_SEPARATOR,
     pathToId,
-    type FormState,
+    type FormInternals,
     type ThemeResolver,
   } from "@sjsf/form";
 
+  import Form from "./form.svelte";
   import * as widgets from "./widgets";
   import * as components from "./components";
   import { validator } from "./ajv-validator";
-  import Form from "./form.svelte";
   import { translation } from "./translation";
 
   const {
@@ -29,7 +29,7 @@
     append,
   }: {
     theme: ThemeResolver;
-    createWidgetsForm?: () => FormState<any, any>;
+    createWidgetsForm?: () => FormInternals<any, any>;
     append?: Snippet;
   } = $props();
 
@@ -58,10 +58,10 @@
 
 <div style="display: flex; gap: 2rem; padding: 2rem;">
   <div style="display: flex; flex-direction: column; flex: 1; gap: 1rem">
-    <Form context={widgetsForm.context} />
+    <Form form={widgetsForm} />
   </div>
   <div style="display: flex; flex-direction: column; flex: 1; gap: 1rem">
-    <Form context={componentsForm.context} />
+    <Form form={componentsForm} />
     {@render append?.()}
   </div>
 </div>
