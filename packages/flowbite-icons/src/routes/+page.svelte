@@ -2,7 +2,7 @@
 	import { AllIcons } from 'testing/demo';
 
 	import '../app.css';
-	import { icons } from '../lib';
+	import { iconsResolver } from '../lib';
 </script>
 
-<AllIcons {icons} />
+<AllIcons {iconsResolver} />
