@@ -207,6 +207,7 @@ export function createForm<T, VE, V extends FormValidator<VE>>(
   );
 
   let value = $state(
+    // svelte-ignore state_referenced_locally
     merger.mergeFormDataAndSchemaDefaults(
       options.initialValue as FormValue,
       options.schema

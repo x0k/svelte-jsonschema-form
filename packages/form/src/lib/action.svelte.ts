@@ -131,6 +131,8 @@ export function createAction<
 >(options: ActionOptions<T, R, E>): Action<T, R, E> {
   const delayedMs = $derived(options.delayedMs ?? 500);
   const timeoutMs = $derived(options.timeoutMs ?? 8000);
+
+  // svelte-ignore state_referenced_locally
   if (timeoutMs < delayedMs) {
     throw new Error("timeoutMs must be greater than delayedMs");
   }
