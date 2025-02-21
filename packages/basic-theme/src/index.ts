@@ -1,5 +1,5 @@
 import { fromRecord } from "@sjsf/form/lib/resolver";
-import type { Definitions } from "@sjsf/form";
+import { createTheme, type Definitions } from "@sjsf/form";
 import * as fields from "@sjsf/legacy-fields";
 import * as templates from "@sjsf/legacy-templates";
 
@@ -16,3 +16,5 @@ const definitions: Definitions = {
 };
 
 export const themeResolver = fromRecord(definitions);
+
+export const theme = createTheme(themeResolver)
