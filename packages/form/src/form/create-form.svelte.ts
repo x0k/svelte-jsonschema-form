@@ -164,7 +164,6 @@ export interface FormValidationResult<VE> {
 }
 
 export type FormState<T, VE, V extends FormValidator<VE>> = {
-  readonly context: FormContext<VE, V>;
   readonly validation: Action<
     [event: SubmitEvent],
     FormValidationResult<VE>,
@@ -192,9 +191,13 @@ export type FormState<T, VE, V extends FormValidator<VE>> = {
       }
     : {});
 
+export interface FormInternals<VE, V extends FormValidator<VE>> {
+  readonly context: FormContext<VE, V>;
+}
+
 export function createForm<T, VE, V extends FormValidator<VE>>(
   options: FormOptions<T, VE, V>
-): FormState<T, VE, V> {
+): FormState<T, VE, V> & FormInternals<VE, V> {
   type FE = FormError<VE, V>;
 
   const NO_VALIDATION_ERRORS: ValidationErrors<VE> = [];
