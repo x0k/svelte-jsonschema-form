@@ -5,23 +5,27 @@ import {
   makeChildId,
   pathToId,
 } from "../id.js";
+import type { FormValidator } from "../validator.js";
 
 import type { FormContext } from "./context.js";
 
-export function createId<E>(ctx: FormContext<E>, path: Array<string | number>) {
+export function createId<VE, V extends FormValidator<VE>>(
+  ctx: FormContext<VE, V>,
+  path: Array<string | number>
+) {
   return pathToId(ctx.idPrefix, ctx.idSeparator, path);
 }
 
-export function createChildId<E>(
-  ctx: FormContext<E>,
+export function createChildId<VE, V extends FormValidator<VE>>(
+  ctx: FormContext<VE, V>,
   parentId: Id,
   child: string | number
 ): Id {
   return makeChildId(ctx.idSeparator, parentId, child);
 }
 
-export function createPseudoId<E>(
-  ctx: FormContext<E>,
+export function createPseudoId<VE, V extends FormValidator<VE>>(
+  ctx: FormContext<VE, V>,
   instanceId: Id,
   element: keyof IdentifiableFieldElement | number
 ) {

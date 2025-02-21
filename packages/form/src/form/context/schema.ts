@@ -9,22 +9,33 @@ import {
   getClosestMatchingOption as getClosestMatchingOptionInternal,
 } from "@/core/index.js";
 
+import type { FormValidator } from "../validator.js";
+
 import type { FormContext } from "./context.js";
 
-export function isSelect<E>(ctx: FormContext<E>, schema: Schema) {
+export function isSelect<VE, V extends FormValidator<VE>>(
+  ctx: FormContext<VE, V>,
+  schema: Schema
+) {
   return isSelectInternal(ctx.validator, ctx.merger, schema, ctx.schema);
 }
 
-export function isMultiSelect<E>(ctx: FormContext<E>, schema: Schema) {
+export function isMultiSelect<VE, V extends FormValidator<VE>>(
+  ctx: FormContext<VE, V>,
+  schema: Schema
+) {
   return isMultiSelectInternal(ctx.validator, ctx.merger, schema, ctx.schema);
 }
 
-export function isFilesArray<E>(ctx: FormContext<E>, schema: Schema) {
+export function isFilesArray<VE, V extends FormValidator<VE>>(
+  ctx: FormContext<VE, V>,
+  schema: Schema
+) {
   return isFilesArrayInternal(ctx.validator, ctx.merger, schema, ctx.schema);
 }
 
-export function retrieveSchema<E>(
-  ctx: FormContext<E>,
+export function retrieveSchema<VE, V extends FormValidator<VE>>(
+  ctx: FormContext<VE, V>,
   schema: Schema,
   formData: SchemaValue | undefined
 ) {
@@ -37,8 +48,8 @@ export function retrieveSchema<E>(
   );
 }
 
-export function sanitizeDataForNewSchema<E>(
-  ctx: FormContext<E>,
+export function sanitizeDataForNewSchema<VE, V extends FormValidator<VE>>(
+  ctx: FormContext<VE, V>,
   newSchema: Schema,
   oldSchema: Schema,
   formData: SchemaValue | undefined
@@ -53,8 +64,8 @@ export function sanitizeDataForNewSchema<E>(
   );
 }
 
-export function getClosestMatchingOption<E>(
-  ctx: FormContext<E>,
+export function getClosestMatchingOption<VE, V extends FormValidator<VE>>(
+  ctx: FormContext<VE, V>,
   formData: SchemaValue | undefined,
   options: Schema[],
   selectedOption: number,
@@ -71,8 +82,8 @@ export function getClosestMatchingOption<E>(
   );
 }
 
-export function getDefaultFieldState<E>(
-  ctx: FormContext<E>,
+export function getDefaultFieldState<VE, V extends FormValidator<VE>>(
+  ctx: FormContext<VE, V>,
   schema: Schema,
   formData: SchemaValue | undefined
 ) {

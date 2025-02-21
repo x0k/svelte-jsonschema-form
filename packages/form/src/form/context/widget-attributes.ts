@@ -7,6 +7,7 @@ import type {
 import type { Nullable } from "@/lib/types.js";
 
 import type { Config } from "../config.js";
+import type { FormValidator } from "../validator.js";
 
 import type { FormContext } from "./context.js";
 import { createPseudoId } from "./id.js";
@@ -21,8 +22,8 @@ interface Handlers {
   onchange?: (e: Event) => void;
 }
 
-export function isDisabled<E>(
-  ctx: FormContext<E>,
+export function isDisabled<VE, V extends FormValidator<VE>>(
+  ctx: FormContext<VE, V>,
   attributes?: Partial<Nullable<Disabled>>
 ) {
   return attributes?.disabled || ctx.disabled;
@@ -31,10 +32,11 @@ export function isDisabled<E>(
 /**
  * NOTE: this function mutates `obj` parameter!
  */
-export function defineDisabled<T extends Partial<Nullable<Disabled>>, E>(
-  ctx: FormContext<E>,
-  obj: T
-) {
+export function defineDisabled<
+  T extends Partial<Nullable<Disabled>>,
+  VE,
+  V extends FormValidator<VE>,
+>(ctx: FormContext<VE, V>, obj: T) {
   obj.disabled ||= ctx.disabled;
   return obj as T & Disabled;
 }
@@ -55,8 +57,8 @@ export function inputType(format: string | undefined) {
   }
 }
 
-export function inputAttributes<E>(
-  ctx: FormContext<E>,
+export function inputAttributes<VE, V extends FormValidator<VE>>(
+  ctx: FormContext<VE, V>,
   { id, required, schema }: Config,
   handlers: Handlers,
   attributes: HTMLInputAttributes | undefined
@@ -91,8 +93,8 @@ export function inputAttributes<E>(
   return defineDisabled(ctx, data);
 }
 
-export function textareaAttributes<E>(
-  ctx: FormContext<E>,
+export function textareaAttributes<VE, V extends FormValidator<VE>>(
+  ctx: FormContext<VE, V>,
   { id, required, schema }: Config,
   handlers: Handlers,
   attributes: HTMLTextareaAttributes | undefined
@@ -116,8 +118,8 @@ export function textareaAttributes<E>(
   );
 }
 
-export function selectAttributes<E>(
-  ctx: FormContext<E>,
+export function selectAttributes<VE, V extends FormValidator<VE>>(
+  ctx: FormContext<VE, V>,
   { id, required }: Config,
   handlers: Handlers,
   attributes: HTMLSelectAttributes | undefined

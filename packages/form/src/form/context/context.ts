@@ -1,22 +1,22 @@
-import { getContext, setContext, type Component } from "svelte";
+import { getContext, setContext } from "svelte";
 import type { EventHandler, FormEventHandler } from "svelte/elements";
 
 import type { DataURLToBlob } from "@/lib/file.js";
 import type { Action } from "@/lib/action.svelte.js";
 import type { Schema, SchemaValue } from "@/core/index.js";
 
-import type { Label, Labels, Translation } from "../translation.js";
+import type { Translation } from "../translation.js";
 import type { UiOptions, UiSchema, UiSchemaRoot } from "../ui-schema.js";
-import type { FormErrors } from "../errors.js";
-import type { FormValidator, ValidationError } from "../validator.js";
-import type { Icons, IconsResolver } from "../icons.js";
+import type { FieldErrors, FormError, FormErrors } from "../errors.js";
+import type { FormValidator } from "../validator.js";
+import type { IconsResolver } from "../icons.js";
 import type { FormMerger } from "../merger.js";
 import type { Config } from "../config.js";
 import type { ThemeResolver } from "../theme.js";
 import type { Id } from "../id.js";
 import type { FormValue } from "../model.js";
 
-export interface FormContext<E> {
+export interface FormContext<VE, V extends FormValidator<VE>> {
   value: FormValue;
   isChanged: boolean;
   readonly rootId: Id;
@@ -25,14 +25,14 @@ export interface FormContext<E> {
   readonly schema: Schema;
   readonly uiSchema: UiSchemaRoot;
   readonly uiOptions: UiOptions;
-  readonly validator: FormValidator<E>;
+  readonly validator: V;
   readonly merger: FormMerger;
   readonly icons?: IconsResolver;
   readonly idPrefix: string;
   readonly idSeparator: string;
   readonly idPseudoSeparator: string;
   readonly disabled: boolean;
-  readonly errors: FormErrors<E>;
+  readonly errors: FormErrors<FormError<VE, V>>;
   readonly dataUrlToBlob: DataURLToBlob;
   readonly translation: Translation;
   readonly theme: ThemeResolver;
@@ -47,28 +47,36 @@ export interface FormContext<E> {
     [event: SubmitEvent],
     {
       snapshot: SchemaValue | undefined;
-      validationErrors: FormErrors<E>;
+      validationErrors: FormErrors<VE>;
     },
     unknown
   >;
   readonly fieldsValidation: Action<
     [config: Config, value: SchemaValue | undefined],
-    ValidationError<unknown>[],
+    FieldErrors<VE>,
     unknown
   >;
 }
 
 export const FORM_CONTEXT = Symbol("form-context");
 
-export function getFormContext<E>(): FormContext<E> {
+export function getFormContext<VE, V extends FormValidator<VE>>(): FormContext<
+  VE,
+  V
+> {
   return getContext(FORM_CONTEXT);
 }
 
-export function setFromContext<E>(ctx: FormContext<E>) {
+export function setFromContext<VE, V extends FormValidator<VE>>(
+  ctx: FormContext<VE, V>
+) {
   setContext(FORM_CONTEXT, ctx);
 }
 
-export function getUiOptions<E>(ctx: FormContext<E>, uiSchema: UiSchema) {
+export function getUiOptions<VE, V extends FormValidator<VE>>(
+  ctx: FormContext<VE, V>,
+  uiSchema: UiSchema
+) {
   const globalUiOptions = ctx.uiSchema["ui:globalOptions"];
   const uiOptions = uiSchema["ui:options"];
   return globalUiOptions !== undefined

@@ -6,10 +6,14 @@ import {
   ON_CHANGE,
   ON_BLUR,
 } from "../validation.js";
+import type { FormValidator } from "../validator.js";
 
 import type { FormContext } from "./context.js";
 
-export function makeEventHandlers<E>(ctx: FormContext<E>, validate: () => void) {
+export function makeEventHandlers<VE, V extends FormValidator<VE>>(
+  ctx: FormContext<VE, V>,
+  validate: () => void
+) {
   let changed = $state(false);
   let touched = $state(false);
 

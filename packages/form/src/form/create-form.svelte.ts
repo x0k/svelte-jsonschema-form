@@ -16,7 +16,6 @@ import {
   ValidationProcessError,
   type FormValidator,
   AdditionalPropertyKeyError,
-  type AdditionalPropertyKeyValidator,
   type ValidationError,
   type ValidationErrors,
   isAdditionalPropertyKeyValidator,
@@ -31,7 +30,12 @@ import type { Translation } from "./translation.js";
 import type { UiSchemaRoot } from "./ui-schema.js";
 import type { IconsResolver } from "./icons.js";
 import type { FieldsValidationMode } from "./validation.js";
-import { groupErrors, type FormErrors, type FieldErrors } from "./errors.js";
+import {
+  groupErrors,
+  type FormErrors,
+  type FieldErrors,
+  type FormError,
+} from "./errors.js";
 import type { FormContext } from "./context/index.js";
 import { DefaultFormMerger, type FormMerger } from "./merger.js";
 import {
@@ -45,13 +49,6 @@ import type { ThemeResolver } from "./theme.js";
 import type { FieldValue, FormValue } from "./model.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
-
-export type FormError<E, V extends FormValidator<E>> =
-  | E
-  | ValidationProcessError
-  | (V extends AdditionalPropertyKeyValidator
-      ? AdditionalPropertyKeyError
-      : never);
 
 export interface FormOptions<T, VE, V extends FormValidator<VE>> {
   validator: V;
@@ -108,7 +105,7 @@ export interface FormOptions<T, VE, V extends FormValidator<VE>> {
    *
    * @default (ctx) => $state.snapshot(ctx.value)
    */
-  getSnapshot?: (ctx: FormContext<FormError<VE, V>>) => FormValue;
+  getSnapshot?: (ctx: FormContext<VE, V>) => FormValue;
   /**
    * Submit handler
    *
@@ -167,7 +164,7 @@ export interface FormValidationResult<VE> {
 }
 
 export type FormState<T, VE, V extends FormValidator<VE>> = {
-  readonly context: FormContext<FormError<VE, V>>;
+  readonly context: FormContext<VE, V>;
   readonly validation: Action<
     [event: SubmitEvent],
     FormValidationResult<VE>,
@@ -394,7 +391,7 @@ export function createForm<T, VE, V extends FormValidator<VE>>(
     ...uiSchema["ui:options"],
   });
 
-  const context: FormContext<FE> = {
+  const context: FormContext<VE, V> = {
     submitHandler,
     resetHandler,
     get rootId() {
