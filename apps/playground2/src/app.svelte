@@ -9,10 +9,9 @@
     AFTER_SUBMITTED,
     AFTER_TOUCHED,
     createForm,
-    SimpleForm,
+    CompositeForm,
     ON_ARRAY_CHANGE,
     ON_OBJECT_CHANGE,
-    setFromContext,
     createTranslation,
   } from "@sjsf/form";
   import { translationResolver } from "@sjsf/form/translations/en";
@@ -151,7 +150,6 @@
       console.log("errors", errors);
     },
   });
-  setFromContext(form.context);
 
   let playgroundTheme = $state<"system" | "light" | "dark">(
     localStorage.theme ?? "system"
@@ -314,7 +312,8 @@
       class="flex-[3] max-h-[770px] overflow-y-auto"
       style={`${themeStyle}\n${iconSetStyle}`}
     >
-      <SimpleForm
+      <CompositeForm
+        {form}
         class={lightOrDark}
         style="background-color: transparent; display: flex; flex-direction: column; gap: 1rem; padding: 0.3rem;"
         novalidate={!html5Validation || undefined}
