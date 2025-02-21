@@ -1,4 +1,7 @@
-<script lang="ts">
+<script
+  lang="ts"
+  generics="A extends FormAttributes"
+>
   import Content from "./content.svelte";
   import SubmitButton from "./submit-button.svelte";
   import Form from "./form.svelte";
@@ -6,11 +9,10 @@
 
   let {
     ref = $bindable(),
-    attributes,
+    ...attributes
   }: {
     ref?: FormElement | undefined;
-    attributes?: FormAttributes;
-  } = $props();
+  } & A = $props();
 </script>
 
 <Form bind:ref {attributes}>
