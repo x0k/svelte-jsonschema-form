@@ -44,13 +44,7 @@
     "vite": "catalog:",
     "vitest": "catalog:"
   },
-  "types": "./dist/export.d.ts",
-  "svelte": "./dist/export.js",
   "exports": {
-    ".": {
-      "types": "./dist/export.d.ts",
-      "svelte": "./dist/export.js"
-    },
     "./array/*": {
       "types": "./dist/array/*.d.ts",
       "svelte": "./dist/array/*.js"

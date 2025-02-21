@@ -11,8 +11,8 @@ export {
   arrayItemField,
   fixedArrayField,
   normalArrayField,
-} from "./array/export.js";
-export { objectField, objectPropertyField } from "./object/export.js";
+} from "./array/exports.js";
+export { objectField, objectPropertyField } from "./object/exports.js";
 export { default as booleanField } from "./boolean.svelte";
 export { default as booleanSelectField } from "./boolean-select.svelte";
 export { default as enumField } from "./enum.svelte";
