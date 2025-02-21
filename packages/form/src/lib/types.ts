@@ -18,8 +18,10 @@ export type Nullable<T> = {
   [P in keyof T]: T[P] | null;
 };
 
+declare const brand: unique symbol;
+
 export type Brand<Name extends string, Base = string> = Base & {
-  __brand: Name;
+  readonly [brand]: Name
 };
 
 export type Prettify<T> = {
