@@ -1,7 +1,12 @@
 <script lang="ts">
 	import type { ComponentProps } from '@sjsf/form';
 
-	const { type, children, attributes }: ComponentProps<'layout'> = $props();
+	const { type, children, config }: ComponentProps['layout'] = $props();
+
+	const attributes = $derived({
+		...config.uiOptions?.layout,
+		...config.uiOptions?.layouts?.[type]
+	});
 
 	const isItem = $derived(
 		type === 'array-item' || type === 'object-property' || type === 'field-content'
@@ -23,13 +28,15 @@
 </script>
 
 <div
-	class:flex={isItem || isControls || isField || isColumn}
-	class:gap-2={isItem || isField || isControls}
-	class:gap-4={isColumn}
-	class:items-start={isItem || isControls}
-	class:preset-outlined-surface-200-800={isControls}
-	class:grow={isGrowable}
-	class:flex-col={isColumn || isField}
+	class={{
+		flex: isItem || isControls || isField || isColumn,
+		'gap-2': isItem || isField || isControls,
+		'gap-4': isColumn,
+		'items-start': isItem || isControls,
+		'preset-outlined-surface-200-800': isControls,
+		grow: isGrowable,
+		'flex-col': isColumn || isField
+	}}
 	data-layout={type}
 	{...attributes}
 >

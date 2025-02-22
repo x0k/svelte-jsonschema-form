@@ -55,6 +55,11 @@
 		},
 		"./styles.css": "./dist/styles.css"
 	},
+  "dependencies": {
+    "@sjsf/legacy-fields": "workspace:^0.0.1",
+    "@sjsf/legacy-templates": "workspace:^0.0.1",
+		"@sjsf/basic-theme": "workspace:^0.0.1"
+  },
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^1.9.2",
 		"bits-ui": "^1.3.0",
