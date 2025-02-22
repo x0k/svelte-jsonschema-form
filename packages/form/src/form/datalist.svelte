@@ -1,30 +1,36 @@
-<script lang="ts" module>
+<script lang="ts">
   import type { Config } from "./config.js";
+  import type { Id } from "./id.js";
 
-  export function makeExamples(
-    { schema: { examples, default: defaultValue } }: Config,
-    list: string | undefined | null
+  const {
+    id,
+    config,
+  }: {
+    id: Id | undefined | null;
+    config: Config;
+  } = $props();
+
+  function createExamples(
+    listId: Id | undefined | null,
+    { schema: { examples, default: defaultValue } }: Config
   ) {
-    if (!Array.isArray(examples) || !list) {
-      return
+    if (!Array.isArray(examples) || !listId) {
+      return;
     }
     return {
-      id: list,
-      examples: defaultValue !== undefined && !examples.includes(defaultValue) ? [defaultValue].concat(examples) : examples
-    }
+      listId,
+      examples:
+        defaultValue !== undefined && !examples.includes(defaultValue)
+          ? [defaultValue].concat(examples)
+          : examples,
+    };
   }
-</script>
 
-<script lang="ts">
-  const {
-    examples,
-  }: {
-    examples: ReturnType<typeof makeExamples>
-  } = $props();
+  const examples = $derived(createExamples(id, config));
 </script>
 
 {#if examples}
-  <datalist id={examples.id}>
+  <datalist id={examples.listId}>
     {#each examples.examples as example (example)}
       <option value={example}></option>
     {/each}
