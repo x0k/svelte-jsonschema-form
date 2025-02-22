@@ -78,10 +78,6 @@
       "types": "./dist/omit-extra-data.d.ts",
       "default": "./dist/omit-extra-data.js"
     },
-    "./get-default-form-state": {
-      "types": "./dist/get-default-form-state.d.ts",
-      "default": "./dist/get-default-form-state.js"
-    },
     "./options.svelte": {
       "types": "./dist/options.svelte.d.ts",
       "svelte": "./dist/options.svelte.js"
@@ -93,10 +89,6 @@
     "./static-analysis": {
       "types": "./dist/static-analysis.d.ts",
       "default": "./dist/static-analysis.js"
-    },
-    "./fake-validator": {
-      "types": "./dist/fake-validator.d.ts",
-      "default": "./dist/fake-validator.js"
     }
   }
 }
