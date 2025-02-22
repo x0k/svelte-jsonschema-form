@@ -6,7 +6,7 @@
       /**
        * Overrides the attributes of the description.
        */
-      descriptionContainer?: HTMLAttributes<HTMLDivElement>;
+      descriptionAttributes?: HTMLAttributes<HTMLDivElement>;
     }
   }
 </script>
@@ -17,6 +17,6 @@
   const { description, config }: ComponentProps["description"] = $props();
 </script>
 
-<div style="font-weight: 300;" {...config.uiOptions?.descriptionContainer}>
+<div style="font-weight: 300;" {...config.uiOptions?.descriptionAttributes}>
   {description}
 </div>
