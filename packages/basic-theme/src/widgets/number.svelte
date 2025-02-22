@@ -10,6 +10,7 @@
 
 <script lang="ts">
   import {
+    Datalist,
     getFormContext,
     inputAttributes,
     type ComponentProps,
@@ -29,3 +30,4 @@
 </script>
 
 <input type="number" bind:value style="flex-grow: 1" {...attributes} />
+<Datalist id={attributes.list} {config} />
