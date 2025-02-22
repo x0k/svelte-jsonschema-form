@@ -3,7 +3,7 @@
 
 	import { getThemeContext } from '../context'
 
-	const ctx = getThemeContext();
+	const themeCtx = getThemeContext();
 
 	const { FilesInput } = $derived(ctx.components)
 

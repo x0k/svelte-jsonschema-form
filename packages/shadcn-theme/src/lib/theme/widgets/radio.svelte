@@ -4,7 +4,7 @@
 
 	import { getThemeContext } from '../context';
 
-	const ctx = getThemeContext();
+	const themeCtx = getThemeContext();
 
 	const { RadioGroup, RadioGroupItem, Label } = $derived(ctx.components);
 

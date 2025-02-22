@@ -5,7 +5,7 @@
 
 	import Slider from './slider.svelte';
 
-	const ctx = getThemeContext();
+	const themeCtx = getThemeContext();
 
 	const { Input } = $derived(ctx.components);
 

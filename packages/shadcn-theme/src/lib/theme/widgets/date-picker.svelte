@@ -6,7 +6,7 @@
 
 	import { getThemeContext } from '../context';
 
-	const ctx = getThemeContext();
+	const themeCtx = getThemeContext();
 
 	const { Popover, PopoverTrigger, Button, PopoverContent, Calendar } = $derived(ctx.components);
 

@@ -3,7 +3,7 @@
 
 	import { getThemeContext } from '../context';
 
-	const ctx = getThemeContext();
+	const themeCtx = getThemeContext();
 
 	const { Select, SelectTrigger, SelectContent, SelectItem } = $derived(ctx.components);
 

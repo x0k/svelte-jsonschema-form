@@ -6,7 +6,7 @@
 
 	const { title, type, forId, required, config }: ComponentProps['title'] = $props();
 
-	const ctx = getThemeContext();
+	const themeCtx = getThemeContext();
 
 	const { Label } = $derived(ctx.components);
 </script>

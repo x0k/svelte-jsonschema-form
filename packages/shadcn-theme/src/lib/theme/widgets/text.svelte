@@ -5,7 +5,7 @@
 
 	import DatePicker from './date-picker.svelte';
 
-	const ctx = getThemeContext();
+	const themeCtx = getThemeContext();
 
 	const { Input } = $derived(ctx.components)
 
