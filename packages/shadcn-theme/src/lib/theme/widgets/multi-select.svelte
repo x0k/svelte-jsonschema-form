@@ -1,14 +1,14 @@
 <script lang="ts" module>
-	import type { SelectSingleRootProps } from 'bits-ui';
+	import type { SelectMultipleRootProps } from 'bits-ui';
 
 	declare module "@sjsf/form" {
 		interface UiOptions {
-			shadcnSelect?: Omit<SelectSingleRootProps, 'type'>
+			shadcnMultiSelect?: Omit<SelectMultipleRootProps, 'type'>
 		}
 	}
 </script>
 <script lang="ts">
-	import { singleOption, stringIndexMapper } from '@sjsf/form/options.svelte';
+	import { multipleOptions, stringIndexMapper } from '@sjsf/form/options.svelte';
 
 	import { getThemeContext } from '../context';
 	import { defineDisabled, getFormContext, type ComponentProps } from '@sjsf/form';
@@ -23,10 +23,10 @@
 		value = $bindable(),
 		options,
 		config
-	}: ComponentProps['selectWidget'] = $props();
+	}: ComponentProps['multiSelectWidget'] = $props();
 
 	const mapped = $derived(
-		singleOption({
+		multipleOptions({
 			mapper: () => stringIndexMapper(options),
 			value: () => value,
 			update: (v) => (value = v)
@@ -34,10 +34,10 @@
 	);
 
 	const attributes = $derived.by(() => {
-		const props: SelectSingleRootProps = {
-			type: "single",
+		const props: SelectMultipleRootProps = {
+			type: "multiple",
 			onValueChange: handlers.onchange,
-			...config.uiOptions?.shadcnSelect,
+			...config.uiOptions?.shadcnMultiSelect,
 		}
 		return defineDisabled(ctx, props)
 	})

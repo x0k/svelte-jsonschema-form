@@ -1,19 +1,28 @@
+<script lang="ts" module>
+	import type { HTMLInputAttributes } from 'svelte/elements';
+
+	declare module '@sjsf/form' {
+		interface UiOptions {
+			shadcnNumber?: HTMLInputAttributes;
+		}
+	}
+</script>
+
 <script lang="ts">
-	import type { WidgetProps } from '@sjsf/form';
+	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 
 	import { getThemeContext } from '../context';
 
-	import Slider from './slider.svelte';
-
+	const ctx = getFormContext();
 	const themeCtx = getThemeContext();
 
-	const { Input } = $derived(ctx.components);
+	const { Input } = $derived(themeCtx.components);
 
-	let { value = $bindable(), attributes, ...rest }: WidgetProps<'number'> = $props();
+	let { value = $bindable(), config, handlers }: ComponentProps['numberWidget'] = $props();
+
+	const attributes = $derived(
+		inputAttributes(ctx, config, handlers, config.uiOptions?.shadcnNumber)
+	);
 </script>
 
-{#if attributes.type === 'range'}
-	<Slider {...rest} {attributes} bind:value />
-{:else}
-	<Input type="number" bind:value {...attributes} />
-{/if}
+<Input type="number" bind:value {...attributes} />

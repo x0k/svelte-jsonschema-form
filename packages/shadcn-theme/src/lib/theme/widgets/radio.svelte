@@ -1,31 +1,53 @@
+<script lang="ts" module>
+	import type { RadioGroupItemProps, RadioGroupRootProps, WithoutChildrenOrChild } from 'bits-ui';
+
+	declare module '@sjsf/form' {
+		interface UiOptions {
+			shadcnRadioGroup?: WithoutChildrenOrChild<RadioGroupRootProps>;
+			shadcnRadioItem?: Omit<WithoutChildrenOrChild<RadioGroupItemProps>, 'value'>;
+		}
+	}
+</script>
+
 <script lang="ts">
-	import { type WidgetProps, stringIndexMapper, singleOption } from '@sjsf/form';
-	import type { ComponentProps } from 'svelte';
+	import { type ComponentProps, defineDisabled, getFormContext } from '@sjsf/form';
+	import { stringIndexMapper, singleOption } from '@sjsf/form/options.svelte';
 
 	import { getThemeContext } from '../context';
 
+	const ctx = getFormContext();
 	const themeCtx = getThemeContext();
 
-	const { RadioGroup, RadioGroupItem, Label } = $derived(ctx.components);
+	const { RadioGroup, RadioGroupItem, Label } = $derived(themeCtx.components);
 
-	let { attributes, value = $bindable(), options }: WidgetProps<'radio'> = $props();
+	let { config, handlers, value = $bindable(), options }: ComponentProps['radioWidget'] = $props();
 
 	const mapped = singleOption({
 		mapper: () => stringIndexMapper(options),
 		value: () => value,
 		update: (v) => (value = v)
 	});
+
+	const attributes = $derived.by(() => {
+		const props: RadioGroupRootProps = {
+			onValueChange: handlers.onchange,
+			...config.uiOptions?.shadcnRadioGroup
+		};
+		return defineDisabled(ctx, props);
+	});
 </script>
 
-<RadioGroup bind:value={mapped.value}>
+<RadioGroup bind:value={mapped.value} {...attributes}>
 	{#each options as option, index (option.id)}
 		{@const indexStr = index.toString()}
 		<div class="flex items-center space-x-2">
 			<RadioGroupItem
 				value={indexStr}
-				{...attributes as Omit<ComponentProps<typeof RadioGroupItem>, 'value'>}
+				onclick={handlers.oninput}
+				onblur={handlers.onblur}
+				{...config.uiOptions?.shadcnRadioItem}
 				id={option.id}
-				disabled={option.disabled || attributes.disabled}
+				disabled={option.disabled}
 			/>
 			<Label for={option.id}>{option.label}</Label>
 		</div>

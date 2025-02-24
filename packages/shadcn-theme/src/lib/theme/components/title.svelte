@@ -8,7 +8,7 @@
 
 	const themeCtx = getThemeContext();
 
-	const { Label } = $derived(ctx.components);
+	const { Label } = $derived(themeCtx.components);
 </script>
 
 {#if type === 'field'}

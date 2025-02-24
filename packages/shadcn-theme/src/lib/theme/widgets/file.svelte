@@ -1,19 +1,33 @@
+<script lang="ts" module>
+	import type { HTMLInputAttributes } from 'svelte/elements';
+
+	declare module '@sjsf/form' {
+		interface UiOptions {
+			shadcnFile?: HTMLInputAttributes;
+		}
+	}
+</script>
+
 <script lang="ts">
-	import type { WidgetProps } from '@sjsf/form';
+	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 
-	import { getThemeContext } from '../context'
+	import { getThemeContext } from '../context';
 
+	const ctx = getFormContext();
 	const themeCtx = getThemeContext();
 
-	const { FilesInput } = $derived(ctx.components)
+	const { FilesInput } = $derived(themeCtx.components);
 
 	let {
-		attributes,
+		config,
+		handlers,
 		multiple,
 		loading,
 		processing,
 		value = $bindable()
-	}: WidgetProps<'file'> = $props();
+	}: ComponentProps['fileWidget'] = $props();
+
+	const attributes = $derived(inputAttributes(ctx, config, handlers, config.uiOptions?.shadcnFile));
 </script>
 
 <FilesInput

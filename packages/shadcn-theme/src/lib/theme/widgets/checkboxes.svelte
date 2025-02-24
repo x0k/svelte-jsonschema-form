@@ -1,9 +1,9 @@
 <script lang="ts" module>
-	import type { CheckboxRootProps } from 'bits-ui';
+	import type { CheckboxRootProps, WithoutChildrenOrChild } from 'bits-ui';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			shadcnCheckboxes?: CheckboxRootProps;
+			shadcnCheckboxes?: WithoutChildrenOrChild<CheckboxRootProps>;
 		}
 	}
 </script>

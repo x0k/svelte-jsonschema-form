@@ -1,45 +1,42 @@
-<script lang="ts">
-	import type { HTMLInputAttributes } from 'svelte/elements';
-	import type { WidgetProps } from '@sjsf/form';
-
-	import { getThemeContext } from '../context';
-
-	const themeCtx = getThemeContext();
-
-	const { Slider } = $derived(ctx.components);
-
-	let { value = $bindable(), attributes }: WidgetProps<'number'> = $props();
-	
-	const slider = {
-		get value() {
-			return value ?? 0
-		},
-		set value(v) {
-			value = v
+<script lang="ts" module>
+	import type { SliderSingleRootProps, WithoutChildrenOrChild } from 'bits-ui';
+	declare module '@sjsf/form' {
+		interface UiOptions {
+			shadcnSlider?: Omit<WithoutChildrenOrChild<SliderSingleRootProps>, 'type'>;
 		}
-	};
-
-	function n(value: HTMLInputAttributes['max']) {
-		if (!value) {
-			return undefined;
-		}
-		if (typeof value === 'number') {
-			return value;
-		}
-		const number = Number(value);
-		return isNaN(number) ? undefined : number;
 	}
 </script>
 
-<Slider
-  type="single"
-	bind:value={slider.value}
-	id={attributes.id}
-	max={n(attributes.max)}
-	min={n(attributes.min)}
-	step={n(attributes.step)}
-	onchange={attributes.onchange as any}
-	oninput={attributes.oninput as any}
-	onblur={attributes.onblur as any}
-	disabled={attributes.disabled}
-/>
+<script lang="ts">
+	import { defineDisabled, getFormContext, type ComponentProps } from '@sjsf/form';
+
+	import { getThemeContext } from '../context';
+
+	const ctx = getFormContext();
+	const themeCtx = getThemeContext();
+
+	const { Slider } = $derived(themeCtx.components);
+
+	let { value = $bindable(), config, handlers }: ComponentProps['numberWidget'] = $props();
+
+	const slider = {
+		get value() {
+			return value ?? 0;
+		},
+		set value(v) {
+			value = v;
+		}
+	};
+
+	const attributes = $derived.by(() => {
+		const props: SliderSingleRootProps = {
+			type: 'single',
+			onValueChange: handlers.oninput,
+			onValueCommit: handlers.onchange,
+			...config.uiOptions?.shadcnSlider
+		};
+		return defineDisabled(ctx, props);
+	});
+</script>
+
+<Slider bind:value={slider.value} {...attributes} />
