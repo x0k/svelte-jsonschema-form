@@ -1,3 +1,5 @@
+export * from './components.js'
+
 export { default as fieldTemplate } from "./field.svelte";
 export { default as objectTemplate } from "./object.svelte";
 export { default as objectPropertyTemplate } from "./object-property.svelte";
