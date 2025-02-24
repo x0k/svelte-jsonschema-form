@@ -44,14 +44,6 @@ export interface LayoutTypes {
 
 export type LayoutType = keyof LayoutTypes;
 
-export interface ParentTemplateTypes {
-  field: {};
-  object: {};
-  array: {};
-}
-
-export type ParentTemplateType = keyof ParentTemplateTypes;
-
 declare module "@sjsf/form" {
   interface ComponentProps {
     button: ComponentCommonProps & {
@@ -64,29 +56,10 @@ declare module "@sjsf/form" {
       type: LayoutType;
       children: Snippet;
     };
-    title: ComponentCommonProps & {
-      type: ParentTemplateType;
-      title: string;
-      forId: string;
-      required: boolean;
-    };
-    description: ComponentCommonProps & {
-      type: ParentTemplateType;
-      description: string;
-    };
-    help: ComponentCommonProps & {
-      help: string;
-    };
-    errorsList: ComponentCommonProps & {
-      forId: string;
-    };
   }
   interface ComponentBindings {
     button: "";
     layout: "";
-    title: "";
-    description: "";
-    help: "";
-    errorsList: "";
+
   }
 }

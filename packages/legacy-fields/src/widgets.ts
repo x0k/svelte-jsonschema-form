@@ -33,10 +33,8 @@ export interface Options {
 declare module "@sjsf/form" {
   interface ComponentProps {
     textWidget: WidgetCommonProps<"text">;
-    textareaWidget: WidgetCommonProps<"textarea">;
     numberWidget: WidgetCommonProps<"number">;
     selectWidget: WidgetCommonProps<"select"> & Options;
-    multiSelectWidget: WidgetCommonProps<"multiSelect"> & Options;
     radioWidget: WidgetCommonProps<"radio"> & Options;
     checkboxWidget: WidgetCommonProps<"checkbox">;
     checkboxesWidget: WidgetCommonProps<"checkboxes"> & Options;
@@ -48,10 +46,8 @@ declare module "@sjsf/form" {
   }
   interface ComponentBindings {
     textWidget: "value";
-    textareaWidget: "value";
     numberWidget: "value";
     selectWidget: "value";
-    multiSelectWidget: "value";
     radioWidget: "value";
     checkboxWidget: "value";
     checkboxesWidget: "value";
