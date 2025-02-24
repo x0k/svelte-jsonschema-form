@@ -3,10 +3,8 @@ import { type Config, type FieldErrors, type SchemaValue } from "@sjsf/form";
 
 export interface WidgetValue {
   text: string;
-  textarea: string;
   number: number | null;
   select: SchemaValue;
-  multiSelect: SchemaArrayValue;
   radio: SchemaValue;
   checkbox: boolean;
   checkboxes: SchemaArrayValue;
