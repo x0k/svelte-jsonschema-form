@@ -1,4 +1,4 @@
-<script lang="ts" generics="E">
+<script lang="ts" generics="E, V extends FormValidator<E>">
   import { createKeyedArray } from "@sjsf/form/lib/keyed-array.svelte";
   import {
     isFixedItems,
@@ -18,13 +18,14 @@
     ON_ARRAY_CHANGE,
     getComponent,
     type ComponentProps,
+    type FormValidator,
   } from "@sjsf/form";
 
   import { setArrayContext, type ArrayContext } from "./context.js";
 
   let { value = $bindable(), config }: ComponentProps["arrayField"] = $props();
 
-  const ctx = getFormContext<E>();
+  const ctx = getFormContext<E, V>();
 
   const uiOptions = $derived(getUiOptions(ctx, config.uiSchema));
   const {
@@ -52,7 +53,7 @@
 
   const keyedArray = createKeyedArray(() => value ?? []);
 
-  const arrayCtx: ArrayContext<E> = {
+  const arrayCtx: ArrayContext<E, V> = {
     get errors() {
       return errors;
     },
