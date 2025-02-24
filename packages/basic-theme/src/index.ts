@@ -17,4 +17,4 @@ const definitions: Definitions = {
 
 export const themeResolver = fromRecord(definitions);
 
-export const theme = createTheme(themeResolver)
+export const theme = createTheme(themeResolver);

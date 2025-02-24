@@ -1,9 +1,23 @@
 <script lang="ts" module>
   import type { HTMLSelectAttributes } from "svelte/elements";
+  import type { SchemaArrayValue } from "@sjsf/form/core";
+  import type { WidgetCommonProps, Options } from "@sjsf/legacy-fields/widgets";
 
   declare module "@sjsf/form" {
+    interface ComponentProps {
+      multiSelectWidget: WidgetCommonProps<"multiSelect"> & Options;
+    }
+    interface ComponentBindings {
+      multiSelectWidget: "value";
+    }
     interface UiOptions {
       multiSelect?: HTMLSelectAttributes;
+    }
+  }
+
+  declare module "@sjsf/legacy-fields/exports" {
+    interface WidgetValue {
+      multiSelect: SchemaArrayValue;
     }
   }
 </script>

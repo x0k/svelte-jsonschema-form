@@ -1,9 +1,21 @@
 <script lang="ts" module>
   import type { HTMLTextareaAttributes } from "svelte/elements";
+  import type { WidgetCommonProps } from "@sjsf/legacy-fields/exports";
 
   declare module "@sjsf/form" {
+    interface ComponentProps {
+      textareaWidget: WidgetCommonProps<"textarea">;
+    }
+    interface ComponentBindings {
+      textareaWidget: "value";
+    }
     interface UiOptions {
       textarea?: HTMLTextareaAttributes;
+    }
+  }
+  declare module "@sjsf/legacy-fields/exports" {
+    interface WidgetValue {
+      textarea: string
     }
   }
 </script>
