@@ -17,9 +17,9 @@ interface Disabled {
 }
 
 interface Handlers {
-  onblur?: (e: Event) => void;
-  oninput?: (e: Event) => void;
-  onchange?: (e: Event) => void;
+  onblur?: () => void;
+  oninput?: () => void;
+  onchange?: () => void;
 }
 
 export function isDisabled<VE, V extends FormValidator<VE>>(
