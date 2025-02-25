@@ -1,36 +1,48 @@
-import type { HTMLButtonAttributes, HTMLInputAttributes } from 'svelte/elements';
-import type { RadioWidgetProps, SchemaValue, Theme, WidgetCommonProps } from '@sjsf/form';
-import type { PikadayOptions } from 'pikaday';
+import '@sjsf/basic-theme/components/exports';
+import '@sjsf/basic-theme/widgets/exports';
 
-import { components } from './components/index.js';
-import { widgets, type CalendarProps } from './widgets/index.js';
+import { fromRecord } from '@sjsf/form/lib/resolver';
+import { createTheme, type Definitions } from '@sjsf/form';
+import * as fields from '@sjsf/legacy-fields/exports';
+import * as templates from '@sjsf/legacy-templates/exports';
 
-declare module '@sjsf/form' {
-	interface Inputs {
-		daisyui5CallyCalendar: CalendarProps;
-	}
+import * as components from './components/exports';
+import * as widgets from './widgets/exports';
 
-	interface UiOptions {
-		trigger?: HTMLButtonAttributes;
-		formatDate?: (date: string) => string;
-		pikaday?: PikadayOptions;
-	}
-	interface WidgetsAndProps<V> {
-		toggle: WidgetCommonProps<V, HTMLInputAttributes>;
-		filter: RadioWidgetProps<V>;
-		callyCalendar: WidgetCommonProps<V, CalendarProps>;
-		pikadayCalendar: WidgetCommonProps<V, HTMLInputAttributes>;
-	}
+export { fields, templates, components, widgets };
 
-	interface WidgetValue {
-		toggle: boolean;
-		filter: SchemaValue;
-		callyCalendar: string;
-		pikadayCalendar: string;
-	}
-}
+const definitions: Definitions = {
+	...fields,
+	...templates,
+	...components,
+	...widgets
+};
 
-export const theme = {
-	components,
-	widgets
-} satisfies Theme;
+export const themeResolver = fromRecord(definitions);
+
+export const theme = createTheme(themeResolver);
+
+// declare module '@sjsf/form' {
+// 	interface Inputs {
+// 		daisyui5CallyCalendar: CalendarProps;
+// 	}
+
+// 	interface UiOptions {
+// 		trigger?: HTMLButtonAttributes;
+// 		formatDate?: (date: string) => string;
+// 		pikaday?: PikadayOptions;
+// 	}
+// 	interface WidgetsAndProps<V> {
+// 		toggle: WidgetCommonProps<V, HTMLInputAttributes>;
+// 		filter: RadioWidgetProps<V>;
+// 		callyCalendar: WidgetCommonProps<V, CalendarProps>;
+// 		pikadayCalendar: WidgetCommonProps<V, HTMLInputAttributes>;
+// 	}
+
+// 	interface WidgetValue {
+// 		toggle: boolean;
+// 		filter: SchemaValue;
+// 		callyCalendar: string;
+// 		pikadayCalendar: string;
+// 	}
+// }

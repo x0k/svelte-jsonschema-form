@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { ComponentProps } from "@sjsf/form";
+	import type { ComponentProps } from '@sjsf/form';
 
-  const { help }: ComponentProps<"help"> = $props();
+	const { help, config }: ComponentProps['help'] = $props();
 </script>
 
-<p class="fieldset-label">{help}</p>
+<p class="fieldset-label" {...config.uiOptions?.helpAttributes}>{help}</p>

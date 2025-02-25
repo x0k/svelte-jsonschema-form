@@ -1,8 +1,20 @@
+<script lang="ts" module>
+	import type { HTMLFieldsetAttributes } from 'svelte/elements';
+	import type { LayoutType } from '@sjsf/legacy-fields/exports';
+	declare module '@sjsf/form' {
+		interface UiOptions {
+			daisyui5FieldsLayout?: HTMLFieldsetAttributes;
+			daisyui5FieldsLayouts?: {
+				[L in LayoutType]?: HTMLFieldsetAttributes;
+			};
+		}
+	}
+</script>
+
 <script lang="ts">
-	import type { HTMLAttributes, HTMLFieldsetAttributes } from 'svelte/elements';
 	import type { ComponentProps } from '@sjsf/form';
 
-	const { type, children, attributes }: ComponentProps<'layout'> = $props();
+	const { type, children, config }: ComponentProps['layout'] = $props();
 
 	const isItem = $derived(type === 'array-item' || type === 'object-property');
 	const isControls = $derived(type === 'array-item-controls');
@@ -17,7 +29,8 @@
 	<fieldset
 		class="fieldset gap-y-2"
 		data-layout={type}
-		{...attributes as HTMLAttributes<HTMLDivElement> & HTMLFieldsetAttributes}
+		{...config.uiOptions?.daisyui5FieldsLayout}
+		{...config.uiOptions?.daisyui5FieldsLayouts?.[type]}
 	>
 		{@render children()}
 	</fieldset>
@@ -35,7 +48,8 @@
 			'flex-col': isColumn
 		}}
 		data-layout={type}
-		{...attributes}
+		{...config.uiOptions?.layout}
+		{...config.uiOptions?.layouts?.[type]}
 	>
 		{@render children()}
 	</div>

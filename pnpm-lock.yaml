@@ -486,6 +486,16 @@ importers:
         version: 3.0.6(@types/debug@4.1.12)(@types/node@22.7.5)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.29.1)(yaml@2.5.1)
 
   packages/daisyui5-theme:
+    dependencies:
+      '@sjsf/basic-theme':
+        specifier: workspace:^0.0.1
+        version: link:../basic-theme
+      '@sjsf/legacy-fields':
+        specifier: workspace:^0.0.1
+        version: link:../legacy-fields
+      '@sjsf/legacy-templates':
+        specifier: workspace:^0.0.1
+        version: link:../legacy-templates
     optionalDependencies:
       cally:
         specifier: ^0.8.0
