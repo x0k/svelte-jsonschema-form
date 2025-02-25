@@ -1,17 +1,31 @@
 <script lang="ts" module>
 	import type { SelectMultipleRootProps } from 'bits-ui';
+	import type { SchemaArrayValue } from '@sjsf/form/core';
+	import type { WidgetCommonProps, Options } from '@sjsf/legacy-fields/widgets';
 
-	declare module "@sjsf/form" {
+	declare module '@sjsf/form' {
+		interface ComponentProps {
+			shadcnMultiSelectWidget: WidgetCommonProps<'shadcnMultiSelect'> & Options;
+		}
+		interface ComponentBindings {
+			shadcnMultiSelectWidget: 'value';
+		}
 		interface UiOptions {
-			shadcnMultiSelect?: Omit<SelectMultipleRootProps, 'type'>
+			shadcnMultiSelect?: Omit<SelectMultipleRootProps, 'type'>;
+		}
+	}
+	declare module "@sjsf/legacy-fields/exports" {
+		interface WidgetValue {
+			shadcnMultiSelect: SchemaArrayValue
 		}
 	}
 </script>
+
 <script lang="ts">
+	import { defineDisabled, getFormContext, type ComponentProps } from '@sjsf/form';
 	import { multipleOptions, stringIndexMapper } from '@sjsf/form/options.svelte';
 
 	import { getThemeContext } from '../context';
-	import { defineDisabled, getFormContext, type ComponentProps } from '@sjsf/form';
 
 	const ctx = getFormContext();
 	const themeCtx = getThemeContext();
@@ -23,7 +37,7 @@
 		value = $bindable(),
 		options,
 		config
-	}: ComponentProps['multiSelectWidget'] = $props();
+	}: ComponentProps['shadcnMultiSelectWidget'] = $props();
 
 	const mapped = $derived(
 		multipleOptions({
@@ -35,12 +49,12 @@
 
 	const attributes = $derived.by(() => {
 		const props: SelectMultipleRootProps = {
-			type: "multiple",
+			type: 'multiple',
 			onValueChange: handlers.onchange,
-			...config.uiOptions?.shadcnMultiSelect,
-		}
-		return defineDisabled(ctx, props)
-	})
+			...config.uiOptions?.shadcnMultiSelect
+		};
+		return defineDisabled(ctx, props);
+	});
 
 	const triggerLabel = $derived.by(() => {
 		const v = mapped.value;
