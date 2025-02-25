@@ -54,6 +54,10 @@
   "types": "./dist/form/index.d.ts",
   "svelte": "./dist/form/index.js",
   "exports": {
+    "./lib/*.svelte": {
+      "types": "./dist/lib/*.svelte.d.ts",
+      "svelte": "./dist/lib/*.svelte"
+    },
     "./lib/*": {
       "types": "./dist/lib/*.d.ts",
       "default": "./dist/lib/*.js"

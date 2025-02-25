@@ -59,11 +59,11 @@
     },
     "./components/*": {
       "types": "./dist/components/*.d.ts",
-      "svelte": "./dist/components/*.js"
+      "svelte": "./dist/components/*"
     },
     "./widgets/*": {
       "types": "./dist/widgets/*.d.ts",
-      "svelte": "./dist/widgets/*.js"
+      "svelte": "./dist/widgets/*"
     }
   }
 }

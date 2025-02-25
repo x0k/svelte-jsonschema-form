@@ -47,15 +47,15 @@
   "exports": {
     "./array/*": {
       "types": "./dist/array/*.d.ts",
-      "svelte": "./dist/array/*.js"
+      "svelte": "./dist/array/*"
     },
     "./object/*": {
       "types": "./dist/object/*.d.ts",
-      "svelte": "./dist/object/*.js"
+      "svelte": "./dist/object/*"
     },
     "./*": {
       "types": "./dist/*.d.ts",
-      "svelte": "./dist/*.js"
+      "svelte": "./dist/*"
     }
   }
 }

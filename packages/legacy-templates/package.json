@@ -51,7 +51,7 @@
   "exports": {
     "./*": {
       "types": "./dist/*.d.ts",
-      "svelte": "./dist/*.js"
+      "svelte": "./dist/*"
     }
   }
 }
