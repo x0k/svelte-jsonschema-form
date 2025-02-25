@@ -4,18 +4,13 @@
 
   declare module "@sjsf/form" {
     interface ComponentProps {
-      textareaWidget: WidgetCommonProps<"textarea">;
+      textareaWidget: WidgetCommonProps<string>;
     }
     interface ComponentBindings {
       textareaWidget: "value";
     }
     interface UiOptions {
       textarea?: HTMLTextareaAttributes;
-    }
-  }
-  declare module "@sjsf/legacy-fields/exports" {
-    interface WidgetValue {
-      textarea: string
     }
   }
 </script>
