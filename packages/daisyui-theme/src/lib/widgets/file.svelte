@@ -1,0 +1,27 @@
+<script lang="ts">
+	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
+
+	let {
+		config,
+		handlers,
+		multiple,
+		loading,
+		processing,
+		value = $bindable(),
+		errors
+	}: ComponentProps['fileWidget'] = $props();
+
+	const ctx = getFormContext();
+
+	const attributes = $derived(inputAttributes(ctx, config, handlers, config.uiOptions?.file));
+</script>
+
+<input
+	type="file"
+	bind:files={value}
+	{multiple}
+	class={['file-input grow', errors.length > 0 && 'file-input-error']}
+	data-loading={loading}
+	data-processing={processing}
+	{...attributes}
+/>

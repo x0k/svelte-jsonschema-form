@@ -1,20 +1,19 @@
 <script lang="ts">
-	import type { ComponentProps } from '@sjsf/form';
+	import { defineDisabled, getFormContext, type ComponentProps } from '@sjsf/form';
 
-	const { children, type, attributes, disabled, onclick }: ComponentProps<'button'> = $props();
+	const { children, type, disabled, onclick, config }: ComponentProps['button'] = $props();
 
-	const isSubmit = $derived(type === 'submit');
+	const ctx = getFormContext();
+
+	const attributes = $derived(
+		defineDisabled(ctx, {
+			disabled,
+			...config.uiOptions?.button,
+			...config.uiOptions?.buttons?.[type]
+		})
+	);
 </script>
 
-<button
-	class="btn join-item"
-	class:btn-sm={!isSubmit}
-  class:btn-primary={isSubmit}
-  class:w-full={isSubmit}
-	type={isSubmit ? 'submit' : 'button'}
-	{onclick}
-	{...attributes}
-	{disabled}
->
+<button class="btn join-item btn-sm" type="button" {onclick} {...attributes}>
 	{@render children()}
 </button>

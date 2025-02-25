@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { ComponentProps } from '@sjsf/form';
 
-	const { type, children, attributes }: ComponentProps<'layout'> = $props();
+	const { type, children, config }: ComponentProps['layout'] = $props();
 
 	const isItem = $derived(
 		type === 'array-item' || type === 'object-property' || type === 'field-content'
@@ -21,6 +21,11 @@
 			type === 'root-field'
 	);
 	const isMultiFieldControls = $derived(type === 'multi-field-controls');
+
+	const attributes = $derived({
+		...config.uiOptions?.layout,
+		...config.uiOptions?.layouts?.[type]
+	})
 </script>
 
 <div

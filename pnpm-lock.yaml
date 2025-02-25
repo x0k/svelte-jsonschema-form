@@ -398,6 +398,16 @@ importers:
         version: link:../form
 
   packages/daisyui-theme:
+    dependencies:
+      '@sjsf/basic-theme':
+        specifier: workspace:^0.0.1
+        version: link:../basic-theme
+      '@sjsf/legacy-fields':
+        specifier: workspace:^0.0.1
+        version: link:../legacy-fields
+      '@sjsf/legacy-templates':
+        specifier: workspace:^0.0.1
+        version: link:../legacy-templates
     devDependencies:
       '@playwright/test':
         specifier: 'catalog:'

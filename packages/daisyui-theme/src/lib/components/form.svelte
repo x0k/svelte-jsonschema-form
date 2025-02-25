@@ -1,9 +1,18 @@
 <script lang="ts">
-  import type { FormComponentProps } from '@sjsf/form'
+	import { getFormContext, type ComponentProps } from '@sjsf/form';
 
-  let { children, form = $bindable(), onsubmit, attributes }: FormComponentProps = $props();
+	let { children, attributes, ref = $bindable(), config }: ComponentProps['form'] = $props();
+
+	const ctx = getFormContext();
 </script>
 
-<form class="flex flex-col gap-4" {onsubmit} {...attributes} bind:this={form} >
-  {@render children?.()}
+<form
+	bind:this={ref}
+	onsubmit={ctx.submitHandler}
+	onreset={ctx.resetHandler}
+	class="flex flex-col gap-4"
+	{...config.uiOptions?.form}
+	{...attributes}
+>
+	{@render children?.()}
 </form>
