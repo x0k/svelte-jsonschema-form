@@ -5,18 +5,13 @@
 
 	declare module '@sjsf/form' {
 		interface ComponentProps {
-			shadcnMultiSelectWidget: WidgetCommonProps<'shadcnMultiSelect'> & Options;
+			shadcnMultiSelectWidget: WidgetCommonProps<SchemaArrayValue> & Options;
 		}
 		interface ComponentBindings {
 			shadcnMultiSelectWidget: 'value';
 		}
 		interface UiOptions {
 			shadcnMultiSelect?: Omit<SelectMultipleRootProps, 'type'>;
-		}
-	}
-	declare module "@sjsf/legacy-fields/exports" {
-		interface WidgetValue {
-			shadcnMultiSelect: SchemaArrayValue
 		}
 	}
 </script>
