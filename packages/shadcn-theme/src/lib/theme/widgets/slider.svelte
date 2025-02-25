@@ -1,6 +1,13 @@
 <script lang="ts" module>
 	import type { SliderSingleRootProps, WithoutChildrenOrChild } from 'bits-ui';
+	import type { WidgetCommonProps } from '@sjsf/legacy-fields/widgets';
 	declare module '@sjsf/form' {
+		interface ComponentProps {
+			shadcnSliderWidget: WidgetCommonProps<number>;
+		}
+		interface ComponentBindings {
+			shadcnSliderWidget: 'value';
+		}
 		interface UiOptions {
 			shadcnSlider?: Omit<WithoutChildrenOrChild<SliderSingleRootProps>, 'type'>;
 		}
@@ -17,7 +24,7 @@
 
 	const { Slider } = $derived(themeCtx.components);
 
-	let { value = $bindable(), config, handlers }: ComponentProps['numberWidget'] = $props();
+	let { value = $bindable(), config, handlers }: ComponentProps['shadcnSliderWidget'] = $props();
 
 	const slider = {
 		get value() {

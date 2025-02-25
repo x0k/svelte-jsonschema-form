@@ -10,3 +10,5 @@ export { default as fileWidget } from './file.svelte';
 
 export const shadcnMultiSelectWidget = dynamic(() => import('./multi-select.svelte'));
 export const shadcnTextareaWidget = dynamic(() => import('./textarea.svelte'));
+export const shadcnCalendarWidget = dynamic(() => import('./calendar.svelte'));
+export const shadcnSliderWidget = dynamic(() => import('./slider.svelte'));

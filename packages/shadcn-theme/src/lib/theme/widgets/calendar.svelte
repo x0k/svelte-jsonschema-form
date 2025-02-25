@@ -2,6 +2,12 @@
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 	import type { CalendarSingleRootProps, WithoutChildrenOrChild } from 'bits-ui';
 	declare module '@sjsf/form' {
+		interface ComponentProps {
+			shadcnCalendarWidget: WidgetCommonProps<string>;
+		}
+		interface ComponentBindings {
+			shadcnCalendarWidget: 'value';
+		}
 		interface UiOptions {
 			shadcnCalendar?: Omit<WithoutChildrenOrChild<CalendarSingleRootProps>, 'type'>;
 			shadcnCalendarTrigger?: HTMLButtonAttributes;
@@ -10,10 +16,9 @@
 </script>
 
 <script lang="ts">
-	import { defineDisabled, getFormContext, type ComponentProps } from '@sjsf/form';
 	import { getLocalTimeZone, parseDate } from '@internationalized/date';
-
-	import { cn } from '$lib/utils';
+	import { defineDisabled, getFormContext, type ComponentProps } from '@sjsf/form';
+	import type { WidgetCommonProps } from '@sjsf/legacy-fields/widgets';
 
 	import { getThemeContext } from '../context';
 
@@ -24,7 +29,7 @@
 		themeCtx.components
 	);
 
-	let { value = $bindable(), config, handlers }: ComponentProps['textWidget'] = $props();
+	let { value = $bindable(), config, handlers }: ComponentProps['shadcnCalendarWidget'] = $props();
 
 	const date = {
 		get value() {
@@ -63,7 +68,7 @@
 		{#snippet child({ props })}
 			<Button
 				{...props}
-				class={cn('w-full', date.value === undefined && 'text-muted-foreground')}
+				class={['w-full', date.value === undefined && 'text-muted-foreground']}
 				{...config.uiOptions?.shadcnCalendarTrigger}
 			>
 				{formattedValue}
