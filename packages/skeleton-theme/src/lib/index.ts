@@ -6,8 +6,8 @@ import { createTheme, type Definitions } from '@sjsf/form';
 import * as fields from '@sjsf/legacy-fields/exports';
 import * as templates from '@sjsf/legacy-templates/exports';
 
-import * as components from './components';
-import * as widgets from './widgets';
+import * as components from './components/exports';
+import * as widgets from './widgets/exports';
 
 export { fields, templates, components, widgets };
 
