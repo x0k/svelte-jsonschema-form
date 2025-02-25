@@ -133,6 +133,8 @@ daisy5/:
 
 skeleton/:
   pushd packages/skeleton-theme
+  c:
+    pnpm run check
   b:
     pnpm run build
   d:

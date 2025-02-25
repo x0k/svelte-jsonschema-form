@@ -1,13 +1,3 @@
-<script lang="ts" module>
-	import type { HTMLInputAttributes } from 'svelte/elements';
-
-	declare module '@sjsf/form' {
-		interface UiOptions {
-			skeletonCheckboxes?: HTMLInputAttributes;
-		}
-	}
-</script>
-
 <script lang="ts">
 	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 	import { multipleOptions, indexMapper } from '@sjsf/form/options.svelte';
@@ -28,7 +18,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		inputAttributes(ctx, config, handlers, config.uiOptions?.skeletonCheckboxes)
+		inputAttributes(ctx, config, handlers, config.uiOptions?.checkboxes)
 	);
 </script>
 

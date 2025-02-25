@@ -47,6 +47,11 @@
 		},
 		"./styles.css": "./dist/styles.css"
 	},
+	"dependencies": {
+		"@sjsf/basic-theme": "workspace:^0.0.1",
+		"@sjsf/legacy-fields": "workspace:^0.0.1",
+		"@sjsf/legacy-templates": "workspace:^0.0.1"
+	},
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^1.9.2",
 		"@skeletonlabs/skeleton": "^3.0.0-next.10",

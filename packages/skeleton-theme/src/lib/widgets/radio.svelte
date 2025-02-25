@@ -1,13 +1,3 @@
-<script lang="ts" module>
-	import type { HTMLInputAttributes } from 'svelte/elements';
-
-	declare module '@sjsf/form' {
-		interface UiOptions {
-			skeletonRadio?: HTMLInputAttributes;
-		}
-	}
-</script>
-
 <script lang="ts">
 	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 	import { indexMapper, singleOption } from '@sjsf/form/options.svelte';
@@ -23,7 +13,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		inputAttributes(ctx, config, handlers, config.uiOptions?.skeletonRadio)
+		inputAttributes(ctx, config, handlers, config.uiOptions?.radio)
 	);
 </script>
 

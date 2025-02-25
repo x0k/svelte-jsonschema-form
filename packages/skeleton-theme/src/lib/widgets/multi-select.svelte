@@ -1,16 +1,7 @@
-<script lang="ts" module>
-	import type { HTMLSelectAttributes } from 'svelte/elements';
-
-	declare module '@sjsf/form' {
-		interface UiOptions {
-			skeletonMultiSelect?: HTMLSelectAttributes;
-		}
-	}
-</script>
-
 <script lang="ts">
 	import { getFormContext, selectAttributes, type ComponentProps } from '@sjsf/form';
 	import { indexMapper, multipleOptions } from '@sjsf/form/options.svelte';
+	import "@sjsf/basic-theme/widgets/multi-select.svelte"
 
 	let {
 		value = $bindable(),
@@ -22,7 +13,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		selectAttributes(ctx, config, handlers, config.uiOptions?.skeletonMultiSelect)
+		selectAttributes(ctx, config, handlers, config.uiOptions?.multiSelect)
 	);
 
 	const mapped = $derived(

@@ -1,13 +1,3 @@
-<script lang="ts" module>
-	import type { HTMLSelectAttributes } from 'svelte/elements';
-
-	declare module '@sjsf/form' {
-		interface UiOptions {
-			skeletonSelect?: HTMLSelectAttributes;
-		}
-	}
-</script>
-
 <script lang="ts">
 	import { getFormContext, selectAttributes, type ComponentProps } from '@sjsf/form';
 	import { indexMapper, singleOption } from '@sjsf/form/options.svelte';
@@ -25,7 +15,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		selectAttributes(ctx, config, handlers, config.uiOptions?.skeletonSelect)
+		selectAttributes(ctx, config, handlers, config.uiOptions?.select)
 	);
 </script>
 

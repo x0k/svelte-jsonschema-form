@@ -1,13 +1,3 @@
-<script lang="ts" module>
-	import type { HTMLInputAttributes } from 'svelte/elements';
-
-	declare module '@sjsf/form' {
-		interface UiOptions {
-			skeletonText?: HTMLInputAttributes;
-		}
-	}
-</script>
-
 <script lang="ts">
 	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 
@@ -16,7 +6,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		inputAttributes(ctx, config, handlers, config.uiOptions?.skeletonText)
+		inputAttributes(ctx, config, handlers, config.uiOptions?.text)
 	);
 </script>
 

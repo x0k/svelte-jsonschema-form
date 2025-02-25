@@ -1,21 +1,3 @@
-<script lang="ts" module>
-	import type { HTMLFormAttributes } from 'svelte/elements';
-
-	declare module '@sjsf/form' {
-		interface FormElements {
-			skeletonForm: HTMLFormElement;
-		}
-
-		interface FormProps {
-			skeletonForm: HTMLFormAttributes;
-		}
-
-		interface UiOptions {
-			skeletonForm?: HTMLFormAttributes;
-		}
-	}
-</script>
-
 <script lang="ts">
 	import { getFormContext, type ComponentProps } from '@sjsf/form';
 
@@ -29,7 +11,7 @@
 	onsubmit={ctx.submitHandler}
 	onreset={ctx.resetHandler}
 	class="flex flex-col gap-4"
-	{...config.uiOptions?.skeletonForm}
+	{...config.uiOptions?.form}
 	{...attributes}
 >
 	{@render children?.()}

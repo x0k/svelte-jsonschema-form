@@ -1,22 +1,13 @@
-<script lang="ts" module>
-	import type { HTMLTextareaAttributes } from 'svelte/elements';
-
-	declare module '@sjsf/form' {
-		interface UiOptions {
-			skeletonTextarea?: HTMLTextareaAttributes;
-		}
-	}
-</script>
-
 <script lang="ts">
 	import { getFormContext, textareaAttributes, type ComponentProps } from '@sjsf/form';
+	import '@sjsf/basic-theme/widgets/textarea.svelte';
 
-	let { value = $bindable(), config, handlers }: ComponentProps['textWidget'] = $props();
+	let { value = $bindable(), config, handlers }: ComponentProps['textareaWidget'] = $props();
 
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		textareaAttributes(ctx, config, handlers, config.uiOptions?.skeletonTextarea)
+		textareaAttributes(ctx, config, handlers, config.uiOptions?.textarea)
 	);
 </script>
 
