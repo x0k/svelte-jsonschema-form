@@ -26,15 +26,6 @@
 
 	let { value = $bindable(), config, handlers }: ComponentProps['shadcnSliderWidget'] = $props();
 
-	const slider = {
-		get value() {
-			return value ?? 0;
-		},
-		set value(v) {
-			value = v;
-		}
-	};
-
 	const attributes = $derived.by(() => {
 		const props: SliderSingleRootProps = {
 			type: 'single',
@@ -46,4 +37,4 @@
 	});
 </script>
 
-<Slider bind:value={slider.value} {...attributes} />
+<Slider bind:value={() => value ?? 0, (v) => (value = v)} {...attributes} />
