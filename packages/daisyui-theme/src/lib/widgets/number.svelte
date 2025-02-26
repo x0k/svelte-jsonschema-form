@@ -12,7 +12,7 @@
 
 <input
 	type="number"
-	bind:value
+  bind:value={() => value ?? null, (v) => (value = v ?? undefined)}
 	class={[
 		isRange ? 'range grow' : 'input input-bordered grow',
 		errors.length > 0 && (isRange ? 'range-error' : 'input-error')
