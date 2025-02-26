@@ -17,7 +17,7 @@
       return value;
     },
     set value(v) {
-      if (!Number.isInteger(v) && v !== config.uiOptions?.emptyValue) {
+      if (!Number.isInteger(v) && v !== config.uiOptions?.numberEmptyValue) {
         return;
       }
       value = v;

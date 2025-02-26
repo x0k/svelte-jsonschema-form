@@ -60,9 +60,5 @@ declare module "@sjsf/form" {
      * @default false
      */
     hideTitle?: boolean;
-    /**
-     * Default value to use when an input for a field is empty
-     */
-    emptyValue?: SchemaValue;
   }
 }

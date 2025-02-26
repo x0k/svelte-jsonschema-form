@@ -1,3 +1,11 @@
+<script lang="ts" module>
+  declare module "@sjsf/form" {
+    interface UiOptions {
+      numberEmptyValue?: number;
+    }
+  }
+</script>
+
 <script lang="ts">
   import {
     makeEventHandlers,
@@ -24,8 +32,7 @@
       return value;
     },
     set value(v) {
-      value =
-        v === null ? (config.uiOptions?.emptyValue as number | undefined) : v;
+      value = v === undefined ? config.uiOptions?.numberEmptyValue : v;
     },
   };
 

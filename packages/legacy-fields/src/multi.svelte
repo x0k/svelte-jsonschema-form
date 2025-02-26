@@ -1,3 +1,13 @@
+<script lang="ts" module>
+  import type { UiSchema } from "@sjsf/form";
+
+  declare module "@sjsf/form" {
+    interface UiSchemaContent {
+      multiFieldOptionSelector?: UiSchema;
+    }
+  }
+</script>
+
 <script lang="ts">
   import { proxy } from "@sjsf/form/lib/svelte.svelte";
   import {
@@ -9,7 +19,6 @@
   } from "@sjsf/form/core";
   import {
     type Config,
-    type UiSchema,
     getClosestMatchingOption,
     getDefaultFieldState,
     getErrors,
