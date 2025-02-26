@@ -27,18 +27,15 @@
     validateField(ctx, config, value)
   );
 
-  const redacted = {
-    get value() {
-      return value;
-    },
-    set value(v) {
-      value = v === undefined ? config.uiOptions?.numberEmptyValue : v;
-    },
-  };
-
   const errors = $derived(getErrors(ctx, config.id));
 </script>
 
-<Template {errors} showTitle value={redacted.value} {config}>
-  <Widget {config} {errors} bind:value={redacted.value} {handlers} />
+<Template {errors} showTitle {value} {config}>
+  <Widget
+    {config}
+    {errors}
+    bind:value={() => value,
+    (v) => (value = v === undefined ? config.uiOptions?.numberEmptyValue : v)}
+    {handlers}
+  />
 </Template>
