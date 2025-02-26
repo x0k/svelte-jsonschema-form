@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
+	import { Datalist, getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 
 	let { handlers, value = $bindable(), config, errors }: ComponentProps['textWidget'] = $props();
 
@@ -14,3 +14,4 @@
 	class={['input input-bordered grow', errors.length > 0 && 'input-error']}
 	{...attributes}
 />
+<Datalist id={attributes.list} {config} />
