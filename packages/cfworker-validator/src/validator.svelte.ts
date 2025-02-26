@@ -226,7 +226,7 @@ export function createSyncFormValidator({
   uiSchema = {},
 }: Partial<SyncFormValidatorOptions> & {
   factory?: CfValidatorFactory;
-}) {
+} = {}) {
   const options: SyncFormValidatorOptions = {
     createSchemaValidator,
     createFieldSchemaValidator,
