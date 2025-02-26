@@ -57,11 +57,33 @@ export function inputType(format: string | undefined) {
   }
 }
 
-export function inputAttributes<VE, V extends FormValidator<VE>>(
+export function inputAttributes<
+  T extends Pick<
+    HTMLInputAttributes,
+    | "id"
+    | "name"
+    | "required"
+    | "minlength"
+    | "maxlength"
+    | "pattern"
+    | "min"
+    | "max"
+    | "step"
+    | "list"
+    | "readonly"
+    | "oninput"
+    | "onchange"
+    | "onblur"
+    | "disabled"
+    | "type"
+  >,
+  VE,
+  V extends FormValidator<VE>,
+>(
   ctx: FormContext<VE, V>,
   { id, required, schema }: Config,
   handlers: Handlers,
-  attributes: HTMLInputAttributes | undefined
+  attributes: T | undefined
 ) {
   const data = Object.assign(
     {
@@ -81,7 +103,7 @@ export function inputAttributes<VE, V extends FormValidator<VE>>(
       oninput: handlers.oninput,
       onchange: handlers.onchange,
       onblur: handlers.onblur,
-    } satisfies HTMLInputAttributes,
+    },
     attributes
   );
   if (data.type === undefined) {
@@ -93,11 +115,27 @@ export function inputAttributes<VE, V extends FormValidator<VE>>(
   return defineDisabled(ctx, data);
 }
 
-export function textareaAttributes<VE, V extends FormValidator<VE>>(
+export function textareaAttributes<
+  T extends Pick<
+    HTMLTextareaAttributes,
+    | "id"
+    | "name"
+    | "required"
+    | "minlength"
+    | "maxlength"
+    | "readonly"
+    | "oninput"
+    | "onchange"
+    | "onblur"
+    | "disabled"
+  >,
+  VE,
+  V extends FormValidator<VE>,
+>(
   ctx: FormContext<VE, V>,
   { id, required, schema }: Config,
   handlers: Handlers,
-  attributes: HTMLTextareaAttributes | undefined
+  attributes: T | undefined
 ) {
   return defineDisabled(
     ctx,
@@ -112,17 +150,24 @@ export function textareaAttributes<VE, V extends FormValidator<VE>>(
         oninput: handlers.oninput,
         onchange: handlers.onchange,
         onblur: handlers.onblur,
-      } satisfies HTMLTextareaAttributes,
+      },
       attributes
     )
   );
 }
 
-export function selectAttributes<VE, V extends FormValidator<VE>>(
+export function selectAttributes<
+  T extends Pick<
+    HTMLSelectAttributes,
+    "id" | "name" | "required" | "oninput" | "onchange" | "onblur" | "disabled"
+  >,
+  VE,
+  V extends FormValidator<VE>,
+>(
   ctx: FormContext<VE, V>,
   { id, required }: Config,
   handlers: Handlers,
-  attributes: HTMLSelectAttributes | undefined
+  attributes: T | undefined
 ) {
   return defineDisabled(
     ctx,
@@ -134,7 +179,7 @@ export function selectAttributes<VE, V extends FormValidator<VE>>(
         oninput: handlers.oninput,
         onchange: handlers.onchange,
         onblur: handlers.onblur,
-      } satisfies HTMLSelectAttributes,
+      },
       attributes
     )
   );
