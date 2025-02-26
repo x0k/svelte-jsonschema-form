@@ -1,21 +1,8 @@
-import type { Component, Components, ComponentType } from '@sjsf/form';
-
-import FormComponent from './form.svelte';
-import ButtonComponent from './button.svelte';
-import LayoutComponent from './layout.svelte';
-import TitleComponent from './title.svelte';
-import DescriptionComponent from './description.svelte';
-import HelpComponent from './help.svelte';
-import ErrorsList from './errors-list.svelte';
-
-export const registry: { [T in ComponentType]: Component<T> } = {
-	form: FormComponent,
-	button: ButtonComponent,
-	layout: LayoutComponent,
-	title: TitleComponent,
-	description: DescriptionComponent,
-	help: HelpComponent,
-	errorsList: ErrorsList
-};
-
-export const components: Components = (type) => registry[type];
+export { default as form } from './form.svelte';
+export { default as button } from './button.svelte';
+export { default as layout } from './layout.svelte';
+export { default as title } from './title.svelte';
+export { default as description } from './description.svelte';
+export { default as help } from './help.svelte';
+export { default as errorsList } from './errors-list.svelte';
+export { default as submitButton } from './submit-button.svelte';

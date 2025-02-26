@@ -1,16 +1,53 @@
-<script lang="ts">
-	import { type WidgetProps, indexMapper, singleOption } from '@sjsf/form';
-
-	let { attributes, value = $bindable(), options, errors }: WidgetProps<'filter'> = $props();
-
-	const mapped = singleOption({
-		mapper: () => indexMapper(options),
-		value: () => value,
-		update: (v) => (value = v)
-	});
+<script lang="ts" module>
+	import type { HTMLAttributes, HTMLInputAttributes } from 'svelte/elements';
+	import type { Options, WidgetCommonProps } from '@sjsf/legacy-fields/exports';
+	declare module '@sjsf/form' {
+		interface ComponentProps {
+			daisyui5FilterWidget: WidgetCommonProps<SchemaValue> & Options;
+		}
+		interface ComponentBindings {
+			daisyui5FilterWidget: 'value';
+		}
+		interface UiOptions {
+			daisyui5Filter?: HTMLAttributes<HTMLDivElement>;
+			daisyui5FilterItem?: HTMLInputAttributes;
+		}
+	}
 </script>
 
-<div class="filter">
+<script lang="ts">
+	import {
+		getFormContext,
+		inputAttributes,
+		type ComponentProps,
+		type SchemaValue
+	} from '@sjsf/form';
+	import { singleOption, indexMapper } from '@sjsf/form/options.svelte';
+
+	let {
+		value = $bindable(),
+		options,
+		config,
+		errors,
+		handlers
+	}: ComponentProps['daisyui5FilterWidget'] = $props();
+
+	const mapped = $derived(
+		singleOption({
+			mapper: () => indexMapper(options),
+			value: () => value,
+			update: (v) => (value = v)
+		})
+	);
+
+	const ctx = getFormContext();
+
+	const attributes = $derived(
+		inputAttributes(ctx, config, handlers, config.uiOptions?.daisyui5FilterItem)
+	);
+</script>
+
+<div class="filter" {...config.uiOptions?.daisyui5Filter}>
 	<input
 		class="btn filter-reset"
 		type="radio"

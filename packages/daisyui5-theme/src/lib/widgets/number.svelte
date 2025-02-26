@@ -1,7 +1,13 @@
 <script lang="ts">
-	import type { WidgetProps } from '@sjsf/form';
+	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 
-	let { value = $bindable(), attributes, errors }: WidgetProps<'number'> = $props();
+	let { value = $bindable(), config, handlers, errors }: ComponentProps['numberWidget'] = $props();
+
+	const ctx = getFormContext();
+
+	const attributes = $derived(inputAttributes(ctx, config, handlers, config.uiOptions?.number));
+
+	const isRange = $derived(attributes.type === 'range');
 </script>
 
 <input
@@ -9,9 +15,8 @@
 	bind:value
 	class={[
 		'w-full',
-		attributes.type === 'range'
-			? ['range', errors.length > 0 && 'range-error']
-			: ['input input-bordered', errors.length > 0 && 'input-error']
+		isRange ? 'range' : 'input input-bordered',
+		errors.length > 0 && (isRange ? 'range-error' : 'input-error')
 	]}
 	{...attributes}
 />

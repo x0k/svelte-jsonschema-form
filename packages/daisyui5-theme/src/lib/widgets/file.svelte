@@ -1,14 +1,19 @@
 <script lang="ts">
-	import type { WidgetProps } from '@sjsf/form';
+	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 
 	let {
-		attributes,
+		config,
+		handlers,
 		multiple,
 		loading,
 		processing,
 		value = $bindable(),
 		errors
-	}: WidgetProps<'file'> = $props();
+	}: ComponentProps['fileWidget'] = $props();
+
+	const ctx = getFormContext();
+
+	const attributes = $derived(inputAttributes(ctx, config, handlers, config.uiOptions?.file));
 </script>
 
 <input

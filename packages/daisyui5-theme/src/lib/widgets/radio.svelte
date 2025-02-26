@@ -1,13 +1,24 @@
 <script lang="ts">
-	import { type WidgetProps, indexMapper, singleOption } from '@sjsf/form';
+	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
+	import { indexMapper, singleOption } from '@sjsf/form/options.svelte';
 
-	let { attributes, value = $bindable(), options, errors }: WidgetProps<'radio'> = $props();
+	let {
+		config,
+		handlers,
+		value = $bindable(),
+		options,
+		errors
+	}: ComponentProps['radioWidget'] = $props();
 
 	const mapped = singleOption({
 		mapper: () => indexMapper(options),
 		value: () => value,
-		update: (v) => (value = v),
+		update: (v) => (value = v)
 	});
+
+	const ctx = getFormContext();
+
+	const attributes = $derived(inputAttributes(ctx, config, handlers, config.uiOptions?.radio));
 </script>
 
 {#each options as option, index (option.id)}

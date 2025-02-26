@@ -1,7 +1,16 @@
 <script lang="ts">
-	import type { WidgetProps } from '@sjsf/form';
+	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 
-	let { config, value = $bindable(), attributes, errors }: WidgetProps<'checkbox'> = $props();
+	let {
+		config,
+		value = $bindable(),
+		handlers,
+		errors
+	}: ComponentProps['checkboxWidget'] = $props();
+
+	const ctx = getFormContext();
+
+	const attributes = $derived(inputAttributes(ctx, config, handlers, config.uiOptions?.checkbox));
 </script>
 
 <label class="fieldset-label">

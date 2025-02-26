@@ -21,28 +21,3 @@ const definitions: Definitions = {
 export const themeResolver = fromRecord(definitions);
 
 export const theme = createTheme(themeResolver);
-
-// declare module '@sjsf/form' {
-// 	interface Inputs {
-// 		daisyui5CallyCalendar: CalendarProps;
-// 	}
-
-// 	interface UiOptions {
-// 		trigger?: HTMLButtonAttributes;
-// 		formatDate?: (date: string) => string;
-// 		pikaday?: PikadayOptions;
-// 	}
-// 	interface WidgetsAndProps<V> {
-// 		toggle: WidgetCommonProps<V, HTMLInputAttributes>;
-// 		filter: RadioWidgetProps<V>;
-// 		callyCalendar: WidgetCommonProps<V, CalendarProps>;
-// 		pikadayCalendar: WidgetCommonProps<V, HTMLInputAttributes>;
-// 	}
-
-// 	interface WidgetValue {
-// 		toggle: boolean;
-// 		filter: SchemaValue;
-// 		callyCalendar: string;
-// 		pikadayCalendar: string;
-// 	}
-// }

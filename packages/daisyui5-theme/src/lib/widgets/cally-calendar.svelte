@@ -1,7 +1,7 @@
 <script lang="ts" module>
-	import type { ClassValue } from 'svelte/elements';
-	import type { WidgetProps } from '@sjsf/form';
+	import type { ClassValue, HTMLButtonAttributes } from 'svelte/elements';
 	import type { CalendarRangeProps, CalendarMonthProps, CalendarDateProps } from 'cally';
+	import type { WidgetCommonProps } from '@sjsf/legacy-fields/exports';
 
 	type MapEvents<T> = {
 		[K in keyof T as K extends `on${infer E}` ? `on:${Lowercase<E>}` : K]: T[K];
@@ -22,18 +22,38 @@
 			slot?: string | null;
 		}
 	}
+
+	declare module '@sjsf/form' {
+		interface ComponentProps {
+			daisyui5CallyCalendarWidget: WidgetCommonProps<string>;
+		}
+		interface ComponentBindings {
+			daisyui5CallyCalendarWidget: 'value';
+		}
+		interface UiOptions {
+			daisyui5CallyCalendarDateFormatter?: (date: string) => string;
+			daisyui5CallyCalendarTrigger?: HTMLButtonAttributes;
+			daisyui5CallyCalendar?: CalendarProps;
+		}
+	}
 </script>
 
 <script lang="ts">
 	import { formatAsCustomPropertyName } from '@sjsf/form/lib/css';
+	import { defineDisabled, getFormContext, type ComponentProps } from '@sjsf/form';
 	import 'cally';
 
-	let { value = $bindable(), attributes, config, errors }: WidgetProps<'callyCalendar'> = $props();
+	let {
+		value = $bindable(),
+		config,
+		errors,
+		handlers
+	}: ComponentProps['daisyui5CallyCalendarWidget'] = $props();
 
-	const triggerAttributes = $derived(config.uiOptions?.trigger);
+	const ctx = getFormContext();
 
 	const formatDate = $derived.by(() => {
-		const formatDate = config.uiOptions?.formatDate;
+		const formatDate = config.uiOptions?.daisyui5CallyCalendarDateFormatter;
 		if (formatDate) {
 			return formatDate;
 		}
@@ -45,21 +65,26 @@
 		return (date: string) => format.format(new Date(date));
 	});
 
-	const anchorName = $derived(formatAsCustomPropertyName(attributes.id));
+	const id = $derived(config.id);
+
+	const anchorName = $derived(formatAsCustomPropertyName(id));
+
+	const triggerAttributes = $derived(
+		defineDisabled(ctx, config.uiOptions?.daisyui5CallyCalendarTrigger ?? {})
+	);
 </script>
 
 <button
 	type="button"
-	popovertarget="{attributes.id}-popover"
+	popovertarget="{id}-popover"
 	class={['input input-border w-full', errors.length > 0 && 'input-error']}
-	{...triggerAttributes}
-	disabled={attributes.disabled || triggerAttributes?.disabled}
 	style="anchor-name:{anchorName}"
+	{...triggerAttributes}
 >
-	{value ? formatDate(value) : attributes.placeholder}
+	{value ? formatDate(value) : triggerAttributes.placeholder}
 </button>
 <div
-	id="{attributes.id}-popover"
+	id="{id}-popover"
 	class="dropdown bg-base-100 rounded-box shadow-lg"
 	style="position-anchor:{anchorName}"
 	popover="auto"
@@ -72,9 +97,10 @@
 				return;
 			}
 			value = target.value as string;
+			handlers.onchange?.();
 		}}
 		class="cally"
-		{...attributes}
+		{...config.uiOptions?.daisyui5CallyCalendar}
 	>
 		<svg
 			aria-label="Previous"

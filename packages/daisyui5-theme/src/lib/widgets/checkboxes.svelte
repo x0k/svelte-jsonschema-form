@@ -1,14 +1,27 @@
 <script lang="ts">
-	import { multipleOptions, indexMapper, type WidgetProps } from '@sjsf/form';
+	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
+	import { multipleOptions, indexMapper } from '@sjsf/form/options.svelte';
 
-	let { attributes, value = $bindable(), options, errors }: WidgetProps<'checkboxes'> = $props();
+	let {
+		handlers,
+		config,
+		value = $bindable(),
+		options,
+		errors
+	}: ComponentProps['checkboxesWidget'] = $props();
 
 	const mapped = multipleOptions({
 		mapper: () => indexMapper(options),
 		value: () => value,
-		update: (v) => (value = v),
+		update: (v) => (value = v)
 	});
+
+	const ctx = getFormContext();
+
+	const attributes = $derived(inputAttributes(ctx, config, handlers, config.uiOptions?.checkboxes));
 </script>
+
+
 
 {#each options as option, index (option.id)}
 	<label class="fieldset-label">

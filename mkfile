@@ -125,6 +125,8 @@ daisy/:
 
 daisy5/:
   pushd packages/daisyui5-theme
+  c:
+    pnpm run check
   b:
     pnpm run build
   d:
