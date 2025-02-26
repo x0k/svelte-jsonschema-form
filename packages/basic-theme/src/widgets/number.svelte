@@ -29,5 +29,10 @@
   );
 </script>
 
-<input type="number" bind:value style="flex-grow: 1" {...attributes} />
+<input
+  type="number"
+  bind:value={() => value ?? null, (v) => (value = v ?? undefined)}
+  style="flex-grow: 1"
+  {...attributes}
+/>
 <Datalist id={attributes.list} {config} />
