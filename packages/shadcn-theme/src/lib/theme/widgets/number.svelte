@@ -25,4 +25,8 @@
 	);
 </script>
 
-<Input type="number" bind:value {...attributes} />
+<Input
+	type="number"
+	bind:value={() => value ?? null, (v) => (value = v ?? undefined)}
+	{...attributes}
+/>
