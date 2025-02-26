@@ -1,14 +1,14 @@
-import { asSnippet, type Icons } from '@sjsf/form';
+import { fromRecord } from '@sjsf/form/lib/resolver';
+import type { Icons } from '@sjsf/form';
 
-import ArrowUp from './arrow-up.svelte';
-import ArrowDown from './arrow-down.svelte';
-import Trash from './trash.svelte';
-import Copy from './copy.svelte';
+import { arrowDownOutline, arrowUpOutline, fileCopyOutline, trashBinOutline } from './icons.svelte';
 
-export const icons: Icons = {
-	'move-array-item-up': asSnippet(ArrowUp, { size: 20 }),
-	'move-array-item-down': asSnippet(ArrowDown, { size: 20 }),
-	'remove-array-item': asSnippet(Trash, { size: 20 }),
-	'copy-array-item': asSnippet(Copy, { size: 20 }),
-	'remove-object-property': asSnippet(Trash, { size: 20 })
+const icons: Partial<Icons> = {
+	'move-array-item-up': arrowUpOutline,
+	'move-array-item-down': arrowDownOutline,
+	'remove-array-item': trashBinOutline,
+	'copy-array-item': fileCopyOutline,
+	'remove-object-property': trashBinOutline
 };
+
+export const iconsResolver = fromRecord(icons)
