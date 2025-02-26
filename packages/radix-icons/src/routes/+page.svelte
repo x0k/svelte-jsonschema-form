@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { AllIcons } from 'testing/demo'
 
-	import { icons } from '../lib';
+	import { iconsResolver } from '../lib';
 </script>
 
-<AllIcons {icons} />
+<AllIcons {iconsResolver} />
