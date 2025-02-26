@@ -47,6 +47,10 @@
 		},
 		"./styles.css": "./dist/styles.css"
 	},
+  "dependencies": {
+    "@sjsf/legacy-fields": "workspace:^0.0.1",
+    "@sjsf/legacy-templates": "workspace:^0.0.1"
+  },
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^1.9.2",
 		"flowbite": "^2.5.2",

@@ -1,45 +1,20 @@
-import type { Theme } from '@sjsf/form';
+import { fromRecord } from '@sjsf/form/lib/resolver';
+import { createTheme, type Definitions } from '@sjsf/form';
+import * as fields from '@sjsf/legacy-fields/exports';
+import * as templates from '@sjsf/legacy-templates/exports';
 
-import type { HTMLInputAttributes } from 'svelte/elements';
-import type { WidgetCommonProps } from '@sjsf/form';
-import type { CheckboxProps } from 'flowbite-svelte/Checkbox.svelte';
-import type { FileuploadProps } from 'flowbite-svelte/Fileupload.svelte';
-import type { RangeProps } from 'flowbite-svelte/Range.svelte';
-import type { InputProps } from 'flowbite-svelte/Input.svelte';
-import type { RadioProps } from 'flowbite-svelte/Radio.svelte';
-import type { SelectProps } from 'flowbite-svelte/Select.svelte';
-import type { MultiSelectSlots } from 'flowbite-svelte/MultiSelect.svelte';
-import type { DatepickerProps } from 'flowbite-svelte/Datepicker.svelte';
-import type { TextareaProps } from 'flowbite-svelte/Textarea.svelte';
-import type { ToggleProps } from 'flowbite-svelte/Toggle.svelte';
+import * as components from './components/exports.js';
+import * as widgets from './widgets/exports.js';
 
-import { components } from './components/index.js';
-import { widgets } from './widgets/index.js';
+export { fields, templates, components, widgets };
 
-declare module '@sjsf/form' {
-	export interface Inputs {
-		flowbiteCheckbox: CheckboxProps;
-		flowbiteFileUpload: FileuploadProps;
-		flowbiteRange: RangeProps;
-		flowbiteInput: InputProps;
-		flowbiteRadio: RadioProps;
-		flowbiteSelect: SelectProps;
-		flowbiteMultiSelect: MultiSelectSlots;
-		flowbiteDatepicker: DatepickerProps;
-		flowbiteTextarea: TextareaProps;
-		flowbiteToggle: ToggleProps;
-	}
+const definitions: Definitions = {
+	...fields,
+	...templates,
+	...components,
+	...widgets
+};
 
-	export interface WidgetsAndProps<V> {
-		toggle: WidgetCommonProps<V, HTMLInputAttributes>;
-	}
+export const themeResolver = fromRecord(definitions);
 
-	export interface WidgetValue {
-		toggle: boolean;
-	}
-}
-
-export const theme = {
-	components,
-	widgets
-} satisfies Theme;
+export const theme = createTheme(themeResolver);
