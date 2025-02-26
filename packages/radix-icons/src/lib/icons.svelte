@@ -8,17 +8,17 @@
 </script>
 
 {#snippet arrowUpOutline()}
-	<ArrowUp />
+	<ArrowUp size="20" />
 {/snippet}
 
 {#snippet arrowDownOutline()}
-	<ArrowDown />
+	<ArrowDown size="20" />
 {/snippet}
 
 {#snippet trashBinOutline()}
-	<Trash />
+	<Trash size="20" />
 {/snippet}
 
 {#snippet fileCopyOutline()}
-	<Copy />
+	<Copy size="20" />
 {/snippet}
