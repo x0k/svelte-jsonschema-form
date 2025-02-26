@@ -23,7 +23,11 @@
 	const attributes = $derived(selectAttributes(ctx, config, handlers, config.uiOptions?.select));
 </script>
 
-{#snippet children()}
+<select
+	class={['select select-bordered grow', errors.length > 0 && 'select-error']}
+	bind:value={mapped.value}
+	{...attributes}
+>
 	{#if config.schema.default === undefined}
 		<option value={-1}>{attributes.placeholder}</option>
 	{/if}
@@ -32,11 +36,4 @@
 			{option.label}
 		</option>
 	{/each}
-{/snippet}
-<select
-	class={['select select-bordered grow', errors.length > 0 && 'select-error']}
-	bind:value={mapped.value}
-	{...attributes}
->
-	{@render children()}
 </select>

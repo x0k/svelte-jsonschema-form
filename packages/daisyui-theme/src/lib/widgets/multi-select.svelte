@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getFormContext, selectAttributes, type ComponentProps } from '@sjsf/form';
-	import { singleOption, indexMapper, multipleOptions } from '@sjsf/form/options.svelte';
+	import { indexMapper, multipleOptions } from '@sjsf/form/options.svelte';
 	import '@sjsf/basic-theme/widgets/multi-select.svelte';
 
 	let {
@@ -25,18 +25,15 @@
 	);
 </script>
 
-{#snippet children()}
-	{#each options as option, index (option.id)}
-		<option value={index} disabled={option.disabled}>
-			{option.label}
-		</option>
-	{/each}
-{/snippet}
 <select
 	class={['select select-bordered grow', errors.length > 0 && 'select-error']}
 	bind:value={mapped.value}
 	multiple
 	{...attributes}
 >
-	{@render children()}
+	{#each options as option, index (option.id)}
+		<option value={index} disabled={option.disabled}>
+			{option.label}
+		</option>
+	{/each}
 </select>
