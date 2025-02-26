@@ -9,7 +9,7 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
+	import { Datalist, getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 
 	import { getThemeContext } from '../context';
 
@@ -30,3 +30,4 @@
 	bind:value={() => value ?? null, (v) => (value = v ?? undefined)}
 	{...attributes}
 />
+<Datalist id={attributes.list} {config} />

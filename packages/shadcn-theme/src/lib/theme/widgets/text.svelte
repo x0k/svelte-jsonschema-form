@@ -8,7 +8,7 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
+	import { Datalist, getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 
 	import { getThemeContext } from '../context';
 
@@ -23,3 +23,4 @@
 </script>
 
 <Input bind:value {...attributes} />
+<Datalist id={attributes.list} {config} />
