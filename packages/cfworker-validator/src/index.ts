@@ -1,2 +1,1 @@
-export * from './validator.svelte.js'
-export * from './factory.js'
+export * from "./validator.svelte.js";

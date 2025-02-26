@@ -1,32 +1,35 @@
-import type {
-  Validator as CfValidator,
-  OutputUnit,
-  Schema as CfSchema,
-} from "@cfworker/json-schema";
-
-import { weakMemoize } from "@sjsf/form/lib/memoize";
 import {
-  ID_KEY,
-  prefixSchemaRefs,
-  ROOT_SCHEMA_PREFIX,
-  type SchemaDefinition,
-} from "@sjsf/form/core";
+  Validator as CfValidator,
+  type OutputUnit,
+  type Schema as CfSchema,
+} from "@cfworker/json-schema";
 import {
   DEFAULT_ID_PREFIX,
   DEFAULT_ID_SEPARATOR,
   pathToId,
   type Config,
-  type FormValidator2,
   type Schema,
-  type SchemaValue,
+  type SyncFieldValueValidator,
+  type SyncFormValueValidator,
   type UiSchema,
   type UiSchemaRoot,
-  type ValidationError,
 } from "@sjsf/form";
+import {
+  ID_KEY,
+  prefixSchemaRefs,
+  ROOT_SCHEMA_PREFIX,
+  type SchemaDefinition,
+  type Validator,
+} from "@sjsf/form/core";
+import { weakMemoize } from "@sjsf/form/lib/memoize";
 import { getValueByPath } from "@sjsf/form/lib/object";
 
-const trueSchema: Schema = {};
-const falseSchema: Schema = {
+export interface ValidatorOptions {
+  createSchemaValidator: (schema: Schema, rootSchema: Schema) => CfValidator;
+}
+
+const TRUE_SCHEMA: Schema = {};
+const FALSE_SCHEMA: Schema = {
   not: {},
 };
 
@@ -34,7 +37,7 @@ const FIELD_NOT_REQUIRED: string[] = [];
 
 export type CfValidatorFactory = (schema: Schema) => CfValidator;
 
-export function makeValidatorFactory(factory: CfValidatorFactory) {
+export function createSchemaValidatorFactory(factory: CfValidatorFactory) {
   let rootSchemaId = "";
   let usePrefixSchemaRefs = false;
   let lastRootSchema: WeakRef<Schema> = new WeakRef({});
@@ -65,7 +68,7 @@ export function makeValidatorFactory(factory: CfValidatorFactory) {
   };
 }
 
-export function makeFieldValidatorFactory(factory: CfValidatorFactory) {
+export function createFieldSchemaValidatorFactory(factory: CfValidatorFactory) {
   let fieldTitle = "";
   let isRequired = false;
   const validatorsCache = new WeakMap<Schema, CfValidator>();
@@ -93,114 +96,48 @@ export function makeFieldValidatorFactory(factory: CfValidatorFactory) {
   };
 }
 
-export interface ValidatorOptions {
-  factory: CfValidatorFactory;
-  uiSchema?: UiSchemaRoot;
-  idPrefix?: string;
-  idSeparator?: string;
-  createValidator?: (schema: Schema, rootSchema: Schema) => CfValidator;
-  createFieldValidator?: (config: Config) => CfValidator;
+function transformSchemaDefinition(schema: SchemaDefinition): Schema {
+  switch (schema) {
+    case true:
+      return TRUE_SCHEMA;
+    case false:
+      return FALSE_SCHEMA;
+    default:
+      return schema;
+  }
 }
 
-export class Validator implements FormValidator2<OutputUnit> {
-  private readonly uiSchema: UiSchemaRoot;
-  private readonly idPrefix: string;
-  private readonly idSeparator: string;
-  private readonly createValidator: (
-    schema: Schema,
-    rootSchema: Schema
-  ) => CfValidator;
-  private readonly createFieldValidator: (config: Config) => CfValidator;
-  constructor({
-    factory,
-    uiSchema = {},
-    idPrefix = DEFAULT_ID_PREFIX,
-    idSeparator = DEFAULT_ID_SEPARATOR,
-    createValidator = makeValidatorFactory(factory),
-    createFieldValidator = makeFieldValidatorFactory(factory),
-  }: ValidatorOptions) {
-    this.uiSchema = uiSchema;
-    this.idPrefix = idPrefix;
-    this.idSeparator = idSeparator;
-    this.createValidator = createValidator;
-    this.createFieldValidator = createFieldValidator;
-  }
+export function createValidator({
+  createSchemaValidator,
+}: ValidatorOptions): Validator {
+  return {
+    isValid(schema, rootSchema, formValue) {
+      const validator = createSchemaValidator(
+        transformSchemaDefinition(schema),
+        rootSchema
+      );
+      return validator.validate(formValue).valid;
+    },
+  };
+}
 
-  isValid(
-    schema: SchemaDefinition,
-    rootSchema: Schema,
-    formData: SchemaValue | undefined
-  ): boolean {
-    const validator = this.createValidator(
-      this.transformSchemaDefinition(schema),
-      rootSchema
-    );
-    return validator.validate(formData).valid;
-  }
+interface ErrorsTransformerOptions {
+  idPrefix: string;
+  idSeparator: string;
+  uiSchema: UiSchemaRoot;
+}
 
-  validateFormData(
-    rootSchema: Schema,
-    formData: SchemaValue | undefined
-  ): ValidationError<OutputUnit>[] {
-    const validator = this.createValidator(rootSchema, rootSchema);
-    const errors = validator.validate(formData).errors;
-    return errors.map((unit) => {
-      let path = unit.instanceLocation.split("/");
-      if (path[0] === "#") {
-        path = path.slice(1);
-      }
-      return {
-        instanceId: pathToId(this.idPrefix, this.idSeparator, path),
-        propertyTitle: this.unitToPropertyTitle(unit, path, rootSchema),
-        message: unit.error,
-        error: unit,
-      };
-    });
-  }
-
-  validateFieldData(
-    field: Config,
-    fieldData: SchemaValue | undefined
-  ): ValidationError<OutputUnit>[] {
-    const instanceId = field.id;
-    if (instanceId === this.idPrefix) {
-      return this.validateFormData(field.schema, fieldData);
-    }
-    const validator = this.createFieldValidator(field);
-    const errors = validator.validate(
-      fieldData === undefined ? {} : { [field.title]: fieldData }
-    ).errors;
-    return errors
-      .filter((error) => error.instanceLocation === `#/${field.title}`)
-      .map((unit) => {
-        return {
-          instanceId,
-          propertyTitle: field.title,
-          message: unit.error,
-          error: unit,
-        };
-      });
-  }
-
-  reset(): void {}
-
-  private transformSchemaDefinition(schema: SchemaDefinition): Schema {
-    switch (schema) {
-      case true:
-        return trueSchema;
-      case false:
-        return falseSchema;
-      default:
-        return schema;
-    }
-  }
-
-  private unitToPropertyTitle(
+function createErrorsTransformer({
+  idPrefix,
+  idSeparator,
+  uiSchema,
+}: ErrorsTransformerOptions) {
+  const unitToPropertyTitle = (
     unit: OutputUnit,
     path: string[],
     rootSchema: Schema
-  ): string {
-    const instanceUiSchema = getValueByPath<UiSchema, 0>(this.uiSchema, path)
+  ): string => {
+    const instanceUiSchema = getValueByPath<UiSchema, 0>(uiSchema, path);
     const uiTitle = instanceUiSchema?.["ui:options"]?.title;
     if (uiTitle) {
       return uiTitle;
@@ -213,5 +150,93 @@ export class Validator implements FormValidator2<OutputUnit> {
       return schemaTitle;
     }
     return path.join(".");
-  }
+  };
+  return (rootSchema: Schema, errors: OutputUnit[]) =>
+    errors.map((unit) => {
+      let path = unit.instanceLocation.split("/");
+      if (path[0] === "#") {
+        path = path.slice(1);
+      }
+      return {
+        instanceId: pathToId(idPrefix, idSeparator, path),
+        propertyTitle: unitToPropertyTitle(unit, path, rootSchema),
+        message: unit.error,
+        error: unit,
+      };
+    });
+}
+
+export interface SyncFormValueValidatorOptions
+  extends ValidatorOptions,
+    ErrorsTransformerOptions {}
+
+export function createSyncFormValueValidator(
+  options: SyncFormValueValidatorOptions
+): SyncFormValueValidator<OutputUnit> {
+  return {
+    validateFormValue(rootSchema, formValue) {
+      const validator = options.createSchemaValidator(rootSchema, rootSchema);
+      const errorsTransformer = createErrorsTransformer(options);
+      return errorsTransformer(
+        rootSchema,
+        validator.validate(formValue).errors
+      );
+    },
+  };
+}
+
+export interface SyncFieldValueValidatorOptions {
+  createFieldSchemaValidator: (config: Config) => CfValidator;
+}
+
+export function createSyncFieldValueValidator({
+  createFieldSchemaValidator,
+}: SyncFieldValueValidatorOptions): SyncFieldValueValidator<OutputUnit> {
+  return {
+    validateFieldValue(config, fieldValue) {
+      const validator = createFieldSchemaValidator(config);
+      const errors = validator.validate(
+        fieldValue === undefined ? {} : { [config.title]: fieldValue }
+      ).errors;
+      return errors
+        .filter((error) => error.instanceLocation === `#/${config.title}`)
+        .map((unit) => {
+          return {
+            instanceId: config.id,
+            propertyTitle: config.title,
+            message: unit.error,
+            error: unit,
+          };
+        });
+    },
+  };
+}
+
+export interface SyncFormValidatorOptions
+  extends ValidatorOptions,
+    SyncFormValueValidatorOptions,
+    SyncFieldValueValidatorOptions {}
+
+export function createSyncFormValidator({
+  factory = (schema) => new CfValidator(schema as CfSchema, "7", false),
+  createSchemaValidator = createSchemaValidatorFactory(factory),
+  createFieldSchemaValidator = createFieldSchemaValidatorFactory(factory),
+  idPrefix = DEFAULT_ID_PREFIX,
+  idSeparator = DEFAULT_ID_SEPARATOR,
+  uiSchema = {},
+}: Partial<SyncFormValidatorOptions> & {
+  factory?: CfValidatorFactory;
+}) {
+  const options: SyncFormValidatorOptions = {
+    createSchemaValidator,
+    createFieldSchemaValidator,
+    idPrefix,
+    uiSchema,
+    idSeparator,
+  };
+  return Object.assign(
+    createValidator(options),
+    createSyncFormValueValidator(options),
+    createSyncFieldValueValidator(options)
+  );
 }
