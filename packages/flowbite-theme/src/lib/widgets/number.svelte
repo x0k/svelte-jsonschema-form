@@ -21,5 +21,5 @@
 	);
 </script>
 
-<NumberInput bind:value {...attributes} />
+<NumberInput bind:value={() => value ?? null, (v) => (value = v ?? undefined)} {...attributes} />
 <Datalist id={attributes.list} {config} />
