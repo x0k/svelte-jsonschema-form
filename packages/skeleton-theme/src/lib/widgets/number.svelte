@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
+	import { Datalist, getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 
 	let { value = $bindable(), config, handlers }: ComponentProps['numberWidget'] = $props();
 
@@ -14,3 +14,4 @@
 	class={attributes.type === 'range' ? 'range grow w-0' : 'input'}
 	{...attributes}
 />
+<Datalist id={attributes.list} {config} />
