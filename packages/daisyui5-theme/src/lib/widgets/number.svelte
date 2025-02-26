@@ -12,7 +12,7 @@
 
 <input
 	type="number"
-	bind:value
+  bind:value={() => value ?? null, (v) => (value = v ?? undefined)}
 	class={[
 		'w-full',
 		isRange ? 'range' : 'input input-bordered',
