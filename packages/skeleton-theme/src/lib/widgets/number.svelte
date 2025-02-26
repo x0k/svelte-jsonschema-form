@@ -10,7 +10,7 @@
 
 <input
 	type="number"
-	bind:value
+	bind:value={() => value ?? null, (v) => (value = v ?? undefined)}
 	class={attributes.type === 'range' ? 'range grow w-0' : 'input'}
 	{...attributes}
 />
