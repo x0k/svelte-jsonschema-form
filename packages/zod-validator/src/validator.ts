@@ -1,19 +1,26 @@
-import { type SchemaDefinition, resolveAllReferences } from "@sjsf/form/core";
+import { z, type ZodIssue, type ZodSchema } from "zod";
+import { weakMemoize } from "@sjsf/form/lib/memoize";
+import {
+  resolveAllReferences,
+  type Schema,
+  type Validator,
+} from "@sjsf/form/core";
 import {
   DEFAULT_ID_PREFIX,
   DEFAULT_ID_SEPARATOR,
+  type AsyncFieldValueValidator,
+  type AsyncFormValueValidator,
   type Config,
-  type FormValidator2,
-  type Schema,
-  type SchemaValue,
-  type UiSchemaRoot,
-  type ValidationError,
+  type SyncFieldValueValidator,
+  type SyncFormValueValidator,
 } from "@sjsf/form";
-import { z, type ZodIssue, type ZodSchema } from "zod";
 import { jsonSchemaToZod } from "json-schema-to-zod";
-import { weakMemoize } from "@sjsf/form/lib/memoize";
 
-import { makeFormDataValidationResultTransformer, NO_ERRORS } from './shared.js';
+import {
+  createErrorsTransformer,
+  transformFieldErrors,
+  type ErrorsTransformerOptions,
+} from "./errors.js";
 
 const FIELD_REQUIRED = ["field"];
 const FIELD_NOT_REQUIRED: string[] = [];
@@ -22,7 +29,7 @@ export function evalZodSchema(schema: Schema) {
   return new Function("z", `return ${jsonSchemaToZod(schema)}`)(z);
 }
 
-export function makeZodSchemaFactory() {
+export function createZodSchemaFactory() {
   const cache = new WeakMap<Schema, ZodSchema>();
   let lastRootSchema: Schema;
   const factory = weakMemoize<Schema, ZodSchema>(cache, (schema) =>
@@ -37,7 +44,7 @@ export function makeZodSchemaFactory() {
   };
 }
 
-export function makeFieldZodSchemaFactory() {
+export function createFieldZodSchemaFactory() {
   const cache = new WeakMap<Schema, ZodSchema>();
   const requiredCache = new WeakMap<Schema, boolean>();
   let isRequired = false;
@@ -61,116 +68,129 @@ export function makeFieldZodSchemaFactory() {
   };
 }
 
-export interface ValidatorOptions<Async extends boolean> {
-  async: Async;
-  schema: ZodSchema;
-  uiSchema?: UiSchemaRoot;
-  idPrefix?: string;
-  idSeparator?: string;
-  zodSchemaFactory?: (schema: Schema, rootSchema: Schema) => ZodSchema;
-  fieldZodSchemaFactory?: (config: Config) => ZodSchema;
+export interface ValidatorOptions {
+  createZodSchema: (schema: Schema, rootSchema: Schema) => ZodSchema;
 }
 
-export type ValidationResult<Async extends boolean> = Async extends true
-  ? Promise<ValidationError<ZodIssue>[]>
-  : ValidationError<ZodIssue>[];
+export function createValidator({
+  createZodSchema,
+}: ValidatorOptions): Validator {
+  return {
+    isValid(schema, rootSchema, formValue) {
+      if (typeof schema === "boolean") {
+        return schema;
+      }
+      const zodSchema = createZodSchema(schema, rootSchema);
+      return zodSchema.safeParse(formValue).success;
+    },
+  };
+}
 
-export class Validator<Async extends boolean>
-  implements FormValidator2<ZodIssue>
-{
-  protected readonly async: Async;
-  protected readonly zodSchema: ZodSchema;
-  protected readonly uiSchema: UiSchemaRoot;
-  protected readonly idPrefix: string;
-  protected readonly idSeparator: string;
-  protected readonly zodSchemaFactory: (
-    schema: Schema,
-    rootSchema: Schema
-  ) => ZodSchema;
-  protected readonly fieldZodSchemaFactory: (config: Config) => ZodSchema;
-  protected readonly transformFormDataValidationResult: (
-    result: z.SafeParseReturnType<any, any>
-  ) => ValidationError<ZodIssue>[];
-  constructor({
+export interface FormValueValidatorOptions extends ErrorsTransformerOptions {
+  zodSchema: ZodSchema;
+}
+
+export function createSyncFormValueValidator(
+  options: FormValueValidatorOptions
+): SyncFormValueValidator<ZodIssue> {
+  return {
+    validateFormValue(_, formValue) {
+      const transform = createErrorsTransformer(options);
+      return transform(options.zodSchema.safeParse(formValue));
+    },
+  };
+}
+
+export function createAsyncFormValueValidator(
+  options: FormValueValidatorOptions
+): AsyncFormValueValidator<ZodIssue> {
+  return {
+    async asyncValidateFormValue(_signal, _rootSchema, formValue) {
+      const transform = createErrorsTransformer(options);
+      const result = await options.zodSchema.safeParseAsync(formValue);
+      return transform(result);
+    },
+  };
+}
+
+export interface FieldValueValidatorOptions {
+  createFieldZodSchema: (config: Config) => ZodSchema;
+}
+
+export function createSyncFieldValueValidator({
+  createFieldZodSchema,
+}: FieldValueValidatorOptions): SyncFieldValueValidator<ZodIssue> {
+  return {
+    validateFieldValue(config, fieldValue) {
+      const schema = createFieldZodSchema(config);
+      const result = schema.safeParse({ field: fieldValue });
+      return transformFieldErrors(config, result);
+    },
+  };
+}
+
+export function createAsyncFieldValueValidator({
+  createFieldZodSchema,
+}: FieldValueValidatorOptions): AsyncFieldValueValidator<ZodIssue> {
+  return {
+    async asyncValidateFieldValue(_signal, config, fieldValue) {
+      const schema = createFieldZodSchema(config);
+      const result = await schema.safeParseAsync(fieldValue);
+      return transformFieldErrors(config, result);
+    },
+  };
+}
+
+export interface FormValidatorOptions
+  extends ValidatorOptions,
+    FormValueValidatorOptions,
+    FieldValueValidatorOptions {}
+
+export type SyncZodFormValidator = Validator &
+  SyncFormValueValidator<ZodIssue> &
+  SyncFieldValueValidator<ZodIssue>;
+
+export type AsyncZodFormValidator = Validator &
+  AsyncFormValueValidator<ZodIssue> &
+  AsyncFieldValueValidator<ZodIssue>;
+
+export type ZodFormValidator<Async extends boolean> = Async extends true
+  ? AsyncZodFormValidator
+  : SyncZodFormValidator;
+
+export function createFormValidator<Async extends boolean = false>(
+  zodSchema: ZodSchema,
+  {
     async,
-    schema,
-    uiSchema = {},
+    createZodSchema = createZodSchemaFactory(),
+    createFieldZodSchema = createFieldZodSchemaFactory(),
     idPrefix = DEFAULT_ID_PREFIX,
     idSeparator = DEFAULT_ID_SEPARATOR,
-    zodSchemaFactory = makeZodSchemaFactory(),
-    fieldZodSchemaFactory = makeFieldZodSchemaFactory(),
-  }: ValidatorOptions<Async>) {
-    this.async = async;
-    this.zodSchema = schema;
-    this.uiSchema = uiSchema;
-    this.idPrefix = idPrefix;
-    this.idSeparator = idSeparator;
-    this.zodSchemaFactory = zodSchemaFactory;
-    this.fieldZodSchemaFactory = fieldZodSchemaFactory;
-    this.transformFormDataValidationResult =
-      makeFormDataValidationResultTransformer(idPrefix, idSeparator, uiSchema);
-  }
-
-  validateFieldData(
-    config: Config,
-    fieldData: SchemaValue | undefined
-  ): ValidationResult<Async> {
-    const instanceId = config.id;
-    if (instanceId === this.idPrefix) {
-      return this.validateFormData(config.schema, fieldData);
-    }
-    const schema = this.fieldZodSchemaFactory(config);
-    const result = schema.safeParse({ field: fieldData });
-    const transformed = this.transformFieldDataValidationResult(result, config);
-    return (
-      this.async ? Promise.resolve(transformed) : transformed
-    ) as ValidationResult<Async>;
-  }
-
-  isValid(
-    schema: SchemaDefinition,
-    rootSchema: Schema,
-    formData: SchemaValue | undefined
-  ): boolean {
-    if (typeof schema === "boolean") {
-      return schema;
-    }
-    const zodSchema = this.zodSchemaFactory(schema, rootSchema);
-    const result = zodSchema.safeParse(formData);
-    return result.success;
-  }
-
-  reset(): void {}
-
-  validateFormData(
-    _rootSchema: Schema,
-    formData: SchemaValue | undefined
-  ): ValidationResult<Async> {
-    return (
-      this.async
-        ? this.zodSchema
-            .safeParseAsync(formData)
-            .then(this.transformFormDataValidationResult)
-        : this.transformFormDataValidationResult(
-            this.zodSchema.safeParse(formData)
-          )
-    ) as ValidationResult<Async>;
-  }
-
-  protected transformFieldDataValidationResult = (
-    result: z.SafeParseReturnType<any, any>,
-    config: Config
-  ): ValidationError<ZodIssue>[] => {
-    if (result.success) {
-      return NO_ERRORS;
-    }
-    return result.error.issues.map((issue) => {
-      return {
-        instanceId: config.id,
-        propertyTitle: config.title,
-        message: issue.message,
-        error: issue,
-      };
-    });
+    uiSchema = {},
+  }: Partial<Omit<FormValidatorOptions, "zodSchema">> & {
+    async?: Async;
+  } = {}
+) {
+  const options: FormValidatorOptions = {
+    zodSchema,
+    createZodSchema,
+    createFieldZodSchema,
+    idPrefix,
+    idSeparator,
+    uiSchema,
   };
+  const validator = createValidator(options);
+  return (
+    async
+      ? (Object.assign(
+          validator,
+          createAsyncFormValueValidator(options),
+          createAsyncFieldValueValidator(options)
+        ) satisfies AsyncZodFormValidator)
+      : (Object.assign(
+          validator,
+          createSyncFormValueValidator(options),
+          createSyncFieldValueValidator(options)
+        ) satisfies SyncZodFormValidator)
+  ) as ZodFormValidator<Async>;
 }

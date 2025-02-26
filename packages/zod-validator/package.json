@@ -34,10 +34,6 @@
     ".": {
       "types": "./dist/index.d.ts",
       "svelte": "./dist/index.js"
-    },
-    "./augmentation": {
-      "types": "./dist/augmentation.d.ts",
-      "svelte": "./dist/augmentation.js"
     }
   },
   "peerDependencies": {
