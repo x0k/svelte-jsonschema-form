@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
+	import { Datalist, getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 
 	let { value = $bindable(), config, handlers, errors }: ComponentProps['numberWidget'] = $props();
 
@@ -12,7 +12,7 @@
 
 <input
 	type="number"
-  bind:value={() => value ?? null, (v) => (value = v ?? undefined)}
+	bind:value={() => value ?? null, (v) => (value = v ?? undefined)}
 	class={[
 		'w-full',
 		isRange ? 'range' : 'input input-bordered',
@@ -20,3 +20,4 @@
 	]}
 	{...attributes}
 />
+<Datalist id={attributes.list} {config} />
