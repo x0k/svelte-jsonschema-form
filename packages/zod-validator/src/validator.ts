@@ -105,7 +105,7 @@ export function createAsyncFormValueValidator(
   options: FormValueValidatorOptions
 ): AsyncFormValueValidator<ZodIssue> {
   return {
-    async asyncValidateFormValue(_signal, _rootSchema, formValue) {
+    async validateFormValueAsync(_signal, _rootSchema, formValue) {
       const transform = createErrorsTransformer(options);
       const result = await options.zodSchema.safeParseAsync(formValue);
       return transform(result);
@@ -133,7 +133,7 @@ export function createAsyncFieldValueValidator({
   createFieldZodSchema,
 }: FieldValueValidatorOptions): AsyncFieldValueValidator<ZodIssue> {
   return {
-    async asyncValidateFieldValue(_signal, config, fieldValue) {
+    async validateFieldValueAsync(_signal, config, fieldValue) {
       const schema = createFieldZodSchema(config);
       const result = await schema.safeParseAsync(fieldValue);
       return transformFieldErrors(config, result);
