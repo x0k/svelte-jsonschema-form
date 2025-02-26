@@ -26,7 +26,7 @@ export interface SyncFormValueValidator<E> {
 }
 
 export interface AsyncFormValueValidator<E> {
-  asyncValidateFormValue: (
+  validateFormValueAsync: (
     signal: AbortSignal,
     rootSchema: Schema,
     formValue: FormValue
@@ -45,7 +45,7 @@ export interface SyncFieldValueValidator<E> {
 }
 
 export interface AsyncFieldValueValidator<E> {
-  asyncValidateFieldValue: (
+  validateFieldValueAsync: (
     signal: AbortSignal,
     field: Config,
     fieldValue: FieldValue
@@ -81,7 +81,7 @@ export function isSyncFormValueValidator<E>(
 export function isAsyncFormValueValidator<E>(
   v: FormValidator<E>
 ): v is Validator & AsyncFormValueValidator<E> {
-  return "asyncValidateFormValue" in v;
+  return "validateFormValueAsync" in v;
 }
 
 export function isSyncFieldValueValidator<E>(
@@ -93,7 +93,7 @@ export function isSyncFieldValueValidator<E>(
 export function isAsyncFieldValueValidator<E>(
   v: FormValidator<E>
 ): v is Validator & AsyncFieldValueValidator<E> {
-  return "asyncValidateFieldValue" in v;
+  return "validateFieldValueAsync" in v;
 }
 
 export function isAdditionalPropertyKeyValidator<E>(

@@ -270,7 +270,7 @@ export function createForm<T, VE, V extends FormValidator<VE>>(
   const validateForm = $derived.by(() => {
     const v = options.validator;
     if (isAsyncFormValueValidator(v)) {
-      return v.asyncValidateFormValue;
+      return v.validateFormValueAsync;
     }
     if (isSyncFormValueValidator(v)) {
       return (_: AbortSignal, schema: Schema, formValue: FormValue) =>
@@ -322,7 +322,7 @@ export function createForm<T, VE, V extends FormValidator<VE>>(
   const validateFields = $derived.by(() => {
     const v = options.validator;
     if (isAsyncFieldValueValidator(v)) {
-      return v.asyncValidateFieldValue;
+      return v.validateFieldValueAsync;
     }
     if (isSyncFieldValueValidator(v)) {
       return (_: AbortSignal, config: Config, value: FieldValue) =>
@@ -518,7 +518,7 @@ export function createForm<T, VE, V extends FormValidator<VE>>(
         );
       }
       return groupErrors(
-        await v.asyncValidateFormValue(
+        await v.validateFormValueAsync(
           signal,
           options.schema,
           getSnapshot(context)
