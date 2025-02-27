@@ -8,7 +8,7 @@ import * as components from './components/exports';
 import * as widgets from './widgets/exports';
 
 export const definitions: Definitions = {
-	daisyui5FilterWidget: createMessage('widget "daisyui5FilterWidget" is missing'),
+	radioButtonsWidget: createMessage('widget "radioButtonsWidget" is missing'),
 	datePickerWidget: createMessage('widget "datePickerWidget" is missing'),
 	multiSelectWidget: createMessage('widget "multiSelectWidget" is missing'),
 	switchWidget: createMessage('widget "switchWidget" is missing'),
