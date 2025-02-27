@@ -60,6 +60,7 @@
 	"devDependencies": {
 		"@playwright/test": "catalog:",
 		"@sjsf/ajv8-validator": "workspace:*",
+		"@sjsf/basic-theme": "workspace:*",
 		"@sjsf/form": "workspace:*",
 		"@sveltejs/adapter-static": "catalog:",
 		"@sveltejs/kit": "catalog:",

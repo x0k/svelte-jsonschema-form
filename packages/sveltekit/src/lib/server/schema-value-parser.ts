@@ -3,16 +3,16 @@ import { isObject } from '@sjsf/form/lib/object';
 import { escapeRegex } from '@sjsf/form/lib/reg-exp';
 import { type Trie, getNodeByKeys, insertValue } from '@sjsf/form/lib/trie';
 import {
-  getClosestMatchingOption2,
+  getClosestMatchingOption,
   getDiscriminatorFieldFromSchema,
   getSimpleSchemaType,
   isSchema,
   isSchemaArrayValue,
   isSchemaObjectValue,
-  isSelect2,
+  isSelect,
   resolveRef,
   getKnownProperties,
-  type Merger2,
+  type Merger,
   type SchemaArrayValue,
   type SchemaDefinition,
   type SchemaObjectValue,
@@ -34,7 +34,7 @@ export interface SchemaValueParserOptions<T> {
   idSeparator: string;
   idPseudoSeparator: string;
   validator: Validator;
-  merger: Merger2;
+  merger: Merger;
   convertEntries: EntriesConverter<T>;
   identifiableElementsTrie?: Trie<string, true>;
 }
@@ -283,10 +283,10 @@ export function parseSchemaValue<T>({
     oneOfUiSchema: UiSchema | UiSchema[],
     value: SchemaValue | undefined
   ) {
-    if (!Array.isArray(oneOf) || isSelect2(validator, merger, schema, rootSchema)) {
+    if (!Array.isArray(oneOf) || isSelect(validator, merger, schema, rootSchema)) {
       return value;
     }
-    const bestIndex = getClosestMatchingOption2(
+    const bestIndex = getClosestMatchingOption(
       validator,
       merger,
       rootSchema,

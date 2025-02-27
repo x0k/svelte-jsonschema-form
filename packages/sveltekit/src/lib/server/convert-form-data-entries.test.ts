@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { createValidator2 } from '@sjsf/ajv8-validator';
+import { createSyncFormValidator } from '@sjsf/ajv8-validator';
 import { defaultMerger, type Schema } from '@sjsf/form/core';
 
 import {
@@ -9,7 +9,7 @@ import {
 import type { Entries } from './entry.js';
 
 const defaultOptions: FormDataConverterOptions = {
-  validator: createValidator2(),
+  validator: createSyncFormValidator(),
   merger: defaultMerger,
   rootSchema: {},
   rootUiSchema: {}

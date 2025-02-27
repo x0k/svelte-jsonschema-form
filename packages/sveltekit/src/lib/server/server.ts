@@ -1,11 +1,12 @@
 import { fileToDataURL } from '@sjsf/form/lib/file';
-import { defaultMerger, type Merger2, type Validator } from '@sjsf/form/core';
+import { defaultMerger, type Merger, type Validator } from '@sjsf/form/core';
 import {
   DEFAULT_ID_PREFIX,
   DEFAULT_ID_SEPARATOR,
   DEFAULT_PSEUDO_ID_SEPARATOR,
+  isSyncFormValueValidator,
   type FormValidator,
-  type FormValidator2,
+  type FormValueValidator,
   type Schema,
   type SchemaValue,
   type UiSchemaRoot,
@@ -43,7 +44,7 @@ export function initForm<T, E, SendSchema extends boolean = false>({
 
 export interface FormDataParserOptions {
   validator: Validator;
-  merger?: Merger2;
+  merger?: Merger;
   idPrefix?: string;
   idSeparator?: string;
   idPseudoSeparator?: string;
@@ -99,49 +100,33 @@ export function makeFormDataParser({
   };
 }
 
-export interface ValidateFormOptions<E, SendData extends boolean> {
+export interface ValidateFormOptions<
+  VE,
+  V extends FormValidator<VE> & FormValueValidator<VE>,
+  SendData extends boolean
+> {
+  request: Request;
   data: SchemaValue | undefined;
   schema: Schema;
-  validator: FormValidator<E>;
+  validator: V;
   /** @default false */
   sendData?: SendData;
 }
 
-/** @deprecated use `validateForm2` instead */
-export function validateForm<E, SendData extends boolean = false>({
-  schema,
-  validator,
-  data,
-  sendData
-}: ValidateFormOptions<E, SendData>): ValidatedFormData<E, SendData> {
-  const errors = validator.validateFormData(schema, data);
-  return {
-    isValid: errors.length === 0,
-    sendData,
-    data: (sendData ? data : undefined) as SendData extends true
-      ? SchemaValue | undefined
-      : undefined,
-    errors
-  };
-}
-
-export interface ValidateFormOptions2<E, SendData extends boolean> {
-  request: Request
-  data: SchemaValue | undefined;
-  schema: Schema;
-  validator: FormValidator2<E>;
-  /** @default false */
-  sendData?: SendData;
-}
-
-export async function validateForm2<E, SendData extends boolean = false>({
+export async function validateForm<
+  VE,
+  V extends FormValidator<VE> & FormValueValidator<VE>,
+  SendData extends boolean = false
+>({
   request,
   schema,
   validator,
   data,
   sendData
-}: ValidateFormOptions2<E, SendData>): Promise<ValidatedFormData<E, SendData>> {
-  const errors = await validator.validateFormData(schema, data, request.signal);
+}: ValidateFormOptions<VE, V, SendData>): Promise<ValidatedFormData<VE, SendData>> {
+  const errors = isSyncFormValueValidator(validator)
+    ? validator.validateFormValue(schema, data)
+    : await validator.validateFormValueAsync(request.signal, schema, data);
   return {
     isValid: errors.length === 0,
     sendData,

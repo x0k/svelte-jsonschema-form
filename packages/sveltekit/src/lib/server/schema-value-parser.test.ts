@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { defaultMerger } from '@sjsf/form/core';
 import type { Schema } from '@sjsf/form';
-import { createValidator2 } from '@sjsf/ajv8-validator';
+import { createSyncFormValidator } from '@sjsf/ajv8-validator';
 
 import type { Entries } from './entry.js';
 import { parseSchemaValue, type SchemaValueParserOptions } from './schema-value-parser.js';
@@ -14,7 +14,7 @@ const defaultOptions: SchemaValueParserOptions<string> = {
 	idPrefix: 'root',
 	idSeparator: '.',
 	idPseudoSeparator: '::',
-	validator: createValidator2(),
+	validator: createSyncFormValidator(),
 	merger: defaultMerger,
 	convertEntries: ({ entries }) => entries[0]?.[1]
 };

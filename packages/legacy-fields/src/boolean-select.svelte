@@ -8,6 +8,7 @@
     type ComponentProps,
     createPseudoId,
     type Schema,
+    DEFAULT_BOOLEAN_ENUM,
   } from "@sjsf/form";
   import { createOptions } from "./enum.js";
 
@@ -45,7 +46,7 @@
         ) ?? []
       );
     }
-    const enumValues = config.schema.enum ?? [true, false];
+    const enumValues = config.schema.enum ?? DEFAULT_BOOLEAN_ENUM;
     if (
       enumValues.length === 2 &&
       enumValues.every((v) => typeof v === "boolean") &&

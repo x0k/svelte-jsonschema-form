@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { DEV } from 'esm-env';
 import type { ActionResult } from '@sveltejs/kit';
-import { createAction, type ActionOptions } from '@sjsf/form/create-action.svelte';
+import { createAction, type ActionOptions } from '@sjsf/form/lib/action.svelte';
 
 import { applyAction, deserialize } from '$app/forms';
 import { invalidateAll } from '$app/navigation';

@@ -4,6 +4,7 @@ import "./content.module.js";
 import "./form.module.js";
 import "./submit-button.module.js";
 
+export * from './model.js'
 export * from "./theme.js";
 export * from "./ui-schema.js";
 export * from "./config.js";

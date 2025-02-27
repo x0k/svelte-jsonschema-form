@@ -1182,6 +1182,9 @@ importers:
       '@sjsf/ajv8-validator':
         specifier: workspace:*
         version: link:../ajv8-validator
+      '@sjsf/basic-theme':
+        specifier: workspace:*
+        version: link:../basic-theme
       '@sjsf/form':
         specifier: workspace:*
         version: link:../form

@@ -1,15 +1,18 @@
-<script lang="ts" generics="Meta extends SvelteKitFormMeta<any, any, string, any>">
-  import { RawForm } from '@sjsf/form';
+<script
+  lang="ts"
+  generics="Meta extends SvelteKitFormMeta<any, any, string, any>, V extends FormValidator<Meta['__validationError']>"
+>
+  import { CompositeForm, type FormValidator } from '@sjsf/form';
 
   import type { SvelteKitFormMeta } from './meta.js';
-  import { createSvelteKitForm, type SvelteKitFormOptions2 } from './create-form.svelte.js';
+  import { createSvelteKitForm, type SvelteKitFormOptions } from './create-form.svelte.js';
   import { createSvelteKitRequest, type SveltekitRequestOptions } from './create-request.svelte.js';
 
   type Props = {
     meta: Meta;
   } & SveltekitRequestOptions<Meta['__actionData'], Meta['__formValue']> &
     Omit<
-      SvelteKitFormOptions2<Meta['__formValue'], Meta['__validationError'], Meta['__sendSchema']>,
+      SvelteKitFormOptions<Meta['__formValue'], Meta['__validationError'], V, Meta['__sendSchema']>,
       'onSubmit'
     >;
 
@@ -37,4 +40,4 @@
   );
 </script>
 
-<RawForm {form} method="POST" />
+<CompositeForm {form} method="POST" />
