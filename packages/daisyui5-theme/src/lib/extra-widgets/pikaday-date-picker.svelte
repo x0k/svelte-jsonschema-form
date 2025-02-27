@@ -1,15 +1,9 @@
 <script lang="ts" module>
 	import type { HTMLInputAttributes } from 'svelte/elements';
 	import type { PikadayOptions } from 'pikaday';
-	import type { WidgetCommonProps } from '@sjsf/legacy-fields/exports';
+	import '@sjsf/legacy-fields/extra-widgets/date-picker';
 
 	declare module '@sjsf/form' {
-		interface ComponentProps {
-			daisyui5PikadayCalendarWidget: WidgetCommonProps<string>;
-		}
-		interface ComponentBindings {
-			daisyui5PikadayCalendarWidget: 'value';
-		}
 		interface UiOptions {
 			daisyui5PikadayCalendar?: HTMLInputAttributes;
 			daisyui5PikadayCalendarOptions?: PikadayOptions;
@@ -26,7 +20,7 @@
 		handlers,
 		errors,
 		config
-	}: ComponentProps['daisyui5PikadayCalendarWidget'] = $props();
+	}: ComponentProps['datePickerWidget'] = $props();
 
 	let input: HTMLInputElement | undefined;
 	$effect(() => {

@@ -1,22 +1,7 @@
-import '@sjsf/basic-theme/components/exports';
-import '@sjsf/basic-theme/widgets/exports';
-
 import { fromRecord } from '@sjsf/form/lib/resolver';
-import { createTheme, type Definitions } from '@sjsf/form';
-import * as fields from '@sjsf/legacy-fields/exports';
-import * as templates from '@sjsf/legacy-templates/exports';
+import { createTheme } from '@sjsf/form';
 
-import * as components from './components/exports';
-import * as widgets from './widgets/exports';
-
-export { fields, templates, components, widgets };
-
-const definitions: Definitions = {
-	...fields,
-	...templates,
-	...components,
-	...widgets
-};
+import { definitions } from './definitions';
 
 export const themeResolver = fromRecord(definitions);
 

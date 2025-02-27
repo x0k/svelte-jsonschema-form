@@ -1,7 +1,7 @@
 <script lang="ts" module>
 	import type { ClassValue, HTMLButtonAttributes } from 'svelte/elements';
 	import type { CalendarRangeProps, CalendarMonthProps, CalendarDateProps } from 'cally';
-	import type { WidgetCommonProps } from '@sjsf/legacy-fields/exports';
+	import "@sjsf/legacy-fields/extra-widgets/date-picker"
 
 	type MapEvents<T> = {
 		[K in keyof T as K extends `on${infer E}` ? `on:${Lowercase<E>}` : K]: T[K];
@@ -24,12 +24,6 @@
 	}
 
 	declare module '@sjsf/form' {
-		interface ComponentProps {
-			daisyui5CallyCalendarWidget: WidgetCommonProps<string>;
-		}
-		interface ComponentBindings {
-			daisyui5CallyCalendarWidget: 'value';
-		}
 		interface UiOptions {
 			daisyui5CallyCalendarDateFormatter?: (date: string) => string;
 			daisyui5CallyCalendarTrigger?: HTMLButtonAttributes;
@@ -48,7 +42,7 @@
 		config,
 		errors,
 		handlers
-	}: ComponentProps['daisyui5CallyCalendarWidget'] = $props();
+	}: ComponentProps['datePickerWidget'] = $props();
 
 	const ctx = getFormContext();
 
