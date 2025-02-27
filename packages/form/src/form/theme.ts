@@ -54,7 +54,7 @@ export type ThemeResolver<NotFound = never> = Resolver<
 >;
 
 const fallbackComponent: ThemeResolver = <T extends ComponentType>(type: T) =>
-  createMessage(`Component ${type} not found`) as Definitions[T];
+  createMessage(`Component ${type} not found`);
 
 export function createTheme(
   definitions: ThemeResolver<undefined>

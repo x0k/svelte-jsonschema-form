@@ -1,10 +1,6 @@
 import { untrack, type Component } from "svelte";
 
-import { noop } from "./function.js";
-
 export type AnyComponent = Component<any, any, any>;
-
-export const noopComponent = noop as AnyComponent;
 
 export interface SyncInput<V> {
   /**
