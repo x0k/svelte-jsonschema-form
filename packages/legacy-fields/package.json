@@ -53,6 +53,10 @@
       "types": "./dist/object/*.d.ts",
       "svelte": "./dist/object/*"
     },
+    "./extra-widgets/*": {
+      "types": "./dist/extra-widgets/*.d.ts",
+      "svelte": "./dist/extra-widgets/*"
+    },
     "./*": {
       "types": "./dist/*.d.ts",
       "svelte": "./dist/*"
