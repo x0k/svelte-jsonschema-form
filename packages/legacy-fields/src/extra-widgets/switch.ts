@@ -6,9 +6,9 @@ import type { WidgetCommonProps } from "../widgets.js";
 
 declare module "@sjsf/form" {
   interface ComponentProps {
-    switch: WidgetCommonProps<boolean>;
+    switchWidget: WidgetCommonProps<boolean>;
   }
   interface ComponentBindings {
-    switch: "value";
+    switchWidget: "value";
   }
 }
