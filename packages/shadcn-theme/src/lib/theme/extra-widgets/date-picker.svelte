@@ -1,16 +1,12 @@
 <script lang="ts" module>
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 	import type { CalendarSingleRootProps, WithoutChildrenOrChild } from 'bits-ui';
+	import '@sjsf/legacy-fields/extra-widgets/date-picker';
+
 	declare module '@sjsf/form' {
-		interface ComponentProps {
-			shadcnCalendarWidget: WidgetCommonProps<string>;
-		}
-		interface ComponentBindings {
-			shadcnCalendarWidget: 'value';
-		}
 		interface UiOptions {
-			shadcnCalendar?: Omit<WithoutChildrenOrChild<CalendarSingleRootProps>, 'type'>;
-			shadcnCalendarTrigger?: HTMLButtonAttributes;
+			shadcnDatePicker?: Omit<WithoutChildrenOrChild<CalendarSingleRootProps>, 'type'>;
+			shadcnDatePickerTrigger?: HTMLButtonAttributes;
 		}
 	}
 </script>
@@ -18,7 +14,6 @@
 <script lang="ts">
 	import { getLocalTimeZone, parseDate } from '@internationalized/date';
 	import { defineDisabled, getFormContext, type ComponentProps } from '@sjsf/form';
-	import type { WidgetCommonProps } from '@sjsf/legacy-fields/widgets';
 
 	import { getThemeContext } from '../context';
 
@@ -29,7 +24,7 @@
 		themeCtx.components
 	);
 
-	let { value = $bindable(), config, handlers }: ComponentProps['shadcnCalendarWidget'] = $props();
+	let { value = $bindable(), config, handlers }: ComponentProps['datePickerWidget'] = $props();
 
 	const date = {
 		get value() {
@@ -49,7 +44,7 @@
 			type: 'single',
 			initialFocus: true,
 			onValueChange: handlers.onchange,
-			...config.uiOptions?.shadcnCalendar
+			...config.uiOptions?.shadcnDatePicker
 		};
 		return defineDisabled(ctx, props);
 	});
@@ -69,7 +64,7 @@
 			<Button
 				{...props}
 				class={['w-full', date.value === undefined && 'text-muted-foreground']}
-				{...config.uiOptions?.shadcnCalendarTrigger}
+				{...config.uiOptions?.shadcnDatePickerTrigger}
 			>
 				{formattedValue}
 			</Button>

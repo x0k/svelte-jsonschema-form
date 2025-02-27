@@ -1,15 +1,8 @@
 <script lang="ts" module>
 	import type { SelectMultipleRootProps } from 'bits-ui';
-	import type { SchemaArrayValue } from '@sjsf/form/core';
-	import type { WidgetCommonProps, Options } from '@sjsf/legacy-fields/widgets';
+	import '@sjsf/legacy-fields/extra-widgets/multi-select';
 
 	declare module '@sjsf/form' {
-		interface ComponentProps {
-			shadcnMultiSelectWidget: WidgetCommonProps<SchemaArrayValue> & Options;
-		}
-		interface ComponentBindings {
-			shadcnMultiSelectWidget: 'value';
-		}
 		interface UiOptions {
 			shadcnMultiSelect?: Omit<SelectMultipleRootProps, 'type'>;
 		}
@@ -32,7 +25,7 @@
 		value = $bindable(),
 		options,
 		config
-	}: ComponentProps['shadcnMultiSelectWidget'] = $props();
+	}: ComponentProps['multiSelectWidget'] = $props();
 
 	const mapped = $derived(
 		multipleOptions({
