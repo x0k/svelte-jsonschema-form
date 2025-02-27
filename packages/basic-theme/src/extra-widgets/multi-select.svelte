@@ -1,15 +1,8 @@
 <script lang="ts" module>
   import type { HTMLSelectAttributes } from "svelte/elements";
-  import type { SchemaArrayValue } from "@sjsf/form/core";
-  import type { WidgetCommonProps, Options } from "@sjsf/legacy-fields/widgets";
+  import "@sjsf/legacy-fields/extra-widgets/multi-select";
 
   declare module "@sjsf/form" {
-    interface ComponentProps {
-      multiSelectWidget: WidgetCommonProps<SchemaArrayValue> & Options;
-    }
-    interface ComponentBindings {
-      multiSelectWidget: "value";
-    }
     interface UiOptions {
       multiSelect?: HTMLSelectAttributes;
     }
