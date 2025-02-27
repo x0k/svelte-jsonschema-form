@@ -2,12 +2,11 @@ import type { ErrorObject } from "ajv";
 import {
   DEFAULT_ID_PREFIX,
   DEFAULT_ID_SEPARATOR,
+  isSyncFormValueValidator,
   pathToId,
-  type Schema,
   type SchemaValue,
   type ValidationError,
 } from "@sjsf/form";
-import { Validator } from "@sjsf/ajv8-validator";
 
 import type { Sample } from "./Sample";
 
@@ -22,33 +21,15 @@ function customValidate(
     return [
       {
         error: {} as ErrorObject,
-        instanceId: pathToId(DEFAULT_ID_PREFIX, DEFAULT_ID_SEPARATOR, ["pass2"]),
+        instanceId: pathToId(DEFAULT_ID_PREFIX, DEFAULT_ID_SEPARATOR, [
+          "pass2",
+        ]),
         propertyTitle: "Repeat password",
         message: "Passwords don't match.",
       },
     ];
   }
   return [];
-}
-
-class CustomAjvValidator extends Validator {
-  override validateFormData(
-    schema: Schema,
-    formData: SchemaValue | undefined
-  ): ValidationError<ErrorObject>[] {
-    const errors = super.validateFormData(schema, formData).map((error) => {
-      if (
-        error.error.keyword === "minimum" &&
-        error.error.schemaPath === "#/properties/age/minimum"
-      ) {
-        return Object.assign({}, error, {
-          message: "You need to be 18 because of some legal thing",
-        });
-      }
-      return error;
-    });
-    return errors.concat(customValidate(formData));
-  }
 }
 
 const validation: Sample = {
@@ -81,7 +62,27 @@ const validation: Sample = {
     pass2: { "ui:options": { text: { type: "password" } } },
   },
   formData: {},
-  Validator: CustomAjvValidator,
+  customizeValidator: (v) => {
+    return {
+      ...v,
+      validateFormValue(rootSchema, formValue) {
+        const errors = isSyncFormValueValidator(v)
+          ? v.validateFormValue(rootSchema, formValue).map((error) => {
+              if (
+                error.error.keyword === "minimum" &&
+                error.error.schemaPath === "#/properties/age/minimum"
+              ) {
+                return Object.assign({}, error, {
+                  message: "You need to be 18 because of some legal thing",
+                });
+              }
+              return error;
+            })
+          : [];
+        return errors.concat(customValidate(formValue));
+      },
+    };
+  },
 };
 
 export default validation;

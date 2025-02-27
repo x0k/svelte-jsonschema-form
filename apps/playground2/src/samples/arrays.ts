@@ -141,7 +141,7 @@ const arrays: Sample = {
     listOfStrings: {
       items: {
         "ui:options": {
-          emptyValue: "",
+          stringEmptyValue: "",
         },
       },
     },

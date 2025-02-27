@@ -27,7 +27,7 @@ const nullField: Sample = {
         text: {
           autofocus: true,
         },
-        emptyValue: "",
+        stringEmptyValue: "",
       },
     },
   },

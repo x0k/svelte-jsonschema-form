@@ -43,26 +43,26 @@ const nullable: Sample = {
         text: {
           autofocus: true,
         },
-        emptyValue: "",
+        stringEmptyValue: "",
       },
     },
     age: {
       "ui:options": {
         title: "Age of person",
         description: "(earthian year)",
-        emptyValue: null,
+        numberEmptyValue: null as unknown as undefined,
       },
     },
     bio: {
       "ui:components": {
-        textWidget: "textareaWidget"
+        textWidget: "textareaWidget",
       },
       "ui:options": {
         textarea: {
           placeholder:
             "Leaving this field empty will cause formData property to be `null`",
         },
-        emptyValue: null,
+        stringEmptyValue: null as unknown as undefined,
       },
     },
     password: {

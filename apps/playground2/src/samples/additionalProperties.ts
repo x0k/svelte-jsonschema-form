@@ -27,7 +27,7 @@ const additionalProperties: Sample = {
         text: {
           autofocus: true,
         },
-        emptyValue: "",
+        stringEmptyValue: "",
       },
     },
   },

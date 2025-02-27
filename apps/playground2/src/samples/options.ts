@@ -36,7 +36,7 @@ const optionsSample: Sample = {
     },
     firstName: {
       "ui:options": {
-        emptyValue: "",
+        stringEmptyValue: "",
         text: {
           autofocus: true,
           autocomplete: "family-name",
@@ -45,7 +45,7 @@ const optionsSample: Sample = {
     },
     lastName: {
       "ui:options": {
-        emptyValue: "",
+        stringEmptyValue: "",
         title: "Surname",
         text: {
           autocomplete: "given-name",

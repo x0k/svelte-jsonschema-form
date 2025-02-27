@@ -102,11 +102,9 @@
     : selectValidator("ajv8", true);
   let validatorName = $state(initialValidatorName);
   const validator = $derived.by(() => {
-    const Val = samples[sampleName].Validator;
-    if (Val) {
-      return new Val(addFormComponents(new Ajv(DEFAULT_AJV_CONFIG)), uiSchema);
-    }
-    return validators[validatorName]();
+    const validator = validators[validatorName]();
+    const { customizeValidator } = samples[sampleName];
+    return customizeValidator?.(validator) ?? validator;
   });
 
   let disabled = $state(false);

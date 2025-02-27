@@ -46,7 +46,7 @@ const errorSchema: Sample = {
         text: {
           autofocus: true,
         },
-        emptyValue: "",
+        stringEmptyValue: "",
       },
     },
     age: {
