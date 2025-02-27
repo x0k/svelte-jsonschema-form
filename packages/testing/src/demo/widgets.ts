@@ -12,7 +12,10 @@ export const states = (schema: Schema): Schema => ({
   type: "object",
   properties: {
     default: schema,
-    readonly: schema,
+    readonly: {
+      ...schema,
+      readOnly: true,
+    },
     disabled: schema,
     error: schema,
   },
@@ -67,75 +70,44 @@ export const schema: Schema = {
   },
 };
 
-export const uiStates = (uiSchema: UiSchema) => ({
+export const uiStates = (uiSchema: UiSchema): UiSchema => ({
   default: uiSchema,
   readonly: uiSchema,
   disabled: uiSchema,
-  error: uiSchema
-})
-
-// export const uiStates = (uiSchema: UiSchema): UiSchema => ({
-//   default: {
-//     ...uiSchema,
-//     "ui:options": {
-//       ...uiSchema["ui:options"],
-//       input: {
-//         ...uiSchema["ui:options"]?.input,
-//         placeholder: "placeholder",
-//       },
-//     },
-//   },
-//   readonly: {
-//     ...uiSchema,
-//     "ui:options": {
-//       input: {
-//         ...uiSchema["ui:options"]?.input,
-//         readonly: true,
-//       },
-//     },
-//   },
-//   disabled: {
-//     ...uiSchema,
-//     "ui:options": {
-//       ...uiSchema["ui:options"],
-//       input: {
-//         ...uiSchema["ui:options"]?.input,
-//         disabled: true,
-//       },
-//     },
-//   },
-//   error: uiSchema,
-// });
+  error: uiSchema,
+});
 
 export const uiSchema: UiSchemaRoot = {
   checkbox: uiStates({}),
-  checkboxes: uiStates({
-    // "ui:widget": "checkboxes",
-  }),
+  checkboxes: uiStates({}),
   file: uiStates({}),
   multiFile: uiStates({}),
   number: uiStates({}),
   range: uiStates({
-    "ui:options": {
-      // input: {
-      //   type: "range",
-      // },
+    "ui:components": {
+      numberWidget: "rangeWidget",
     },
   }),
   radio: uiStates({
-    // "ui:widget": "radio",
+    "ui:components": {
+      selectWidget: "radioWidget",
+    },
   }),
   select: uiStates({}),
-  multiSelect: uiStates({}),
+  multiSelect: uiStates({
+    "ui:components": {
+      checkboxesWidget: "multiSelectWidget",
+    },
+  }),
   text: uiStates({}),
   textarea: uiStates({
-    // "ui:widget": "textarea",
+    "ui:components": {
+      textWidget: "textareaWidget",
+    },
   }),
   date: uiStates({
-    "ui:options": {
-      // input: {
-      //   type: "date",
-      // },
+    "ui:components": {
+      textWidget: "datePickerWidget",
     },
   }),
 };
@@ -151,5 +123,5 @@ export const errors = (keys: string[]) =>
         ]),
         propertyTitle: "error",
         message: `${key} error`,
-      } satisfies ValidationError<null>)
+      }) satisfies ValidationError<null>
   );
