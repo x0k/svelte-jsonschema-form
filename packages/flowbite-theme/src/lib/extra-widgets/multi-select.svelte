@@ -1,15 +1,8 @@
 <script lang="ts" module>
 	import type { MultiSelectProps } from 'flowbite-svelte/MultiSelect.svelte';
-	import type { SchemaArrayValue } from '@sjsf/form/core';
-	import type { WidgetCommonProps, Options } from '@sjsf/legacy-fields/widgets';
+	import '@sjsf/legacy-fields/extra-widgets/multi-select';
 
 	declare module '@sjsf/form' {
-		interface ComponentProps {
-			flowbiteMultiSelectWidget: WidgetCommonProps<SchemaArrayValue> & Options;
-		}
-		interface ComponentBindings {
-			flowbiteMultiSelectWidget: 'value';
-		}
 		interface UiOptions {
 			flowbiteMultiSelect?: MultiSelectProps;
 		}
@@ -17,12 +10,7 @@
 </script>
 
 <script lang="ts">
-	import {
-		defineDisabled,
-		getFormContext,
-		selectAttributes,
-		type ComponentProps
-	} from '@sjsf/form';
+	import { getFormContext, selectAttributes, type ComponentProps } from '@sjsf/form';
 	import { multipleOptions, indexMapper } from '@sjsf/form/options.svelte';
 	import MultiSelect from 'flowbite-svelte/MultiSelect.svelte';
 
@@ -31,7 +19,7 @@
 		value = $bindable(),
 		options,
 		config
-	}: ComponentProps['flowbiteMultiSelectWidget'] = $props();
+	}: ComponentProps['multiSelectWidget'] = $props();
 
 	const ctx = getFormContext();
 

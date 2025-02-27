@@ -1,16 +1,10 @@
 <script lang="ts" module>
 	import { type ToggleProps } from 'flowbite-svelte/Toggle.svelte';
-	import type { WidgetCommonProps } from '@sjsf/legacy-fields/exports';
+	import '@sjsf/legacy-fields/extra-widgets/switch';
 
 	declare module '@sjsf/form' {
-		interface ComponentProps {
-			flowbiteToggleWidget: WidgetCommonProps<boolean>;
-		}
-		interface ComponentBindings {
-			flowbiteToggleWidget: 'value';
-		}
 		interface UiOptions {
-			flowbiteToggle?: ToggleProps;
+			flowbiteSwitch?: ToggleProps;
 		}
 	}
 </script>
@@ -19,12 +13,12 @@
 	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 	import Toggle from 'flowbite-svelte/Toggle.svelte';
 
-	let { config, value = $bindable(), handlers }: ComponentProps['flowbiteToggleWidget'] = $props();
+	let { config, value = $bindable(), handlers }: ComponentProps['switchWidget'] = $props();
 
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		inputAttributes(ctx, config, handlers, config.uiOptions?.flowbiteToggle)
+		inputAttributes(ctx, config, handlers, config.uiOptions?.flowbiteSwitch)
 	);
 </script>
 

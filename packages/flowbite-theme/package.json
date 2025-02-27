@@ -37,6 +37,18 @@
 		"test:unit": "vitest"
 	},
 	"exports": {
+		"./components/*": {
+			"types": "./dist/components/*.d.ts",
+			"svelte": "./dist/components/*"
+		},
+		"./widgets/*": {
+			"types": "./dist/widgets/*.d.ts",
+			"svelte": "./dist/widgets/*"
+		},
+		"./extra-widgets/*": {
+			"types": "./dist/extra-widgets/*.d.ts",
+			"svelte": "./dist/extra-widgets/*"
+		},
 		".": {
 			"types": "./dist/index.d.ts",
 			"svelte": "./dist/index.js"
@@ -47,10 +59,10 @@
 		},
 		"./styles.css": "./dist/styles.css"
 	},
-  "dependencies": {
-    "@sjsf/legacy-fields": "workspace:^0.0.1",
-    "@sjsf/legacy-templates": "workspace:^0.0.1"
-  },
+	"dependencies": {
+		"@sjsf/legacy-fields": "workspace:^0.0.1",
+		"@sjsf/legacy-templates": "workspace:^0.0.1"
+	},
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^1.9.2",
 		"flowbite": "^2.5.2",

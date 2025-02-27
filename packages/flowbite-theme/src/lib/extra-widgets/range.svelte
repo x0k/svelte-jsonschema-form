@@ -1,14 +1,8 @@
 <script lang="ts" module>
 	import { type RangeProps } from 'flowbite-svelte/Range.svelte';
-	import type { WidgetCommonProps } from '@sjsf/legacy-fields/widgets';
+	import '@sjsf/legacy-fields/extra-widgets/range-widget';
 
 	declare module '@sjsf/form' {
-		interface ComponentProps {
-			flowbiteRangeWidget: WidgetCommonProps<number | null>;
-		}
-		interface ComponentBindings {
-			flowbiteRangeWidget: 'value';
-		}
 		interface UiOptions {
 			flowbiteRange?: RangeProps;
 		}
@@ -19,7 +13,7 @@
 	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 	import Range from 'flowbite-svelte/Range.svelte';
 
-	let { value = $bindable(), config, handlers }: ComponentProps['flowbiteRangeWidget'] = $props();
+	let { value = $bindable(), config, handlers }: ComponentProps['rangeWidget'] = $props();
 
 	const ctx = getFormContext();
 

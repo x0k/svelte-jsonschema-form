@@ -1,14 +1,8 @@
 <script lang="ts" module>
 	import type { TextareaProps } from 'flowbite-svelte/Textarea.svelte';
-	import type { WidgetCommonProps } from '@sjsf/legacy-fields/exports';
+	import '@sjsf/legacy-fields/extra-widgets/textarea';
 
 	declare module '@sjsf/form' {
-		interface ComponentProps {
-			flowbiteTextareaWidget: WidgetCommonProps<string>;
-		}
-		interface ComponentBindings {
-			flowbiteTextareaWidget: 'value';
-		}
 		interface UiOptions {
 			flowbiteTextarea?: TextareaProps;
 		}
@@ -19,11 +13,7 @@
 	import { getFormContext, textareaAttributes, type ComponentProps } from '@sjsf/form';
 	import Textarea from 'flowbite-svelte/Textarea.svelte';
 
-	let {
-		value = $bindable(),
-		config,
-		handlers
-	}: ComponentProps['flowbiteTextareaWidget'] = $props();
+	let { value = $bindable(), config, handlers }: ComponentProps['textareaWidget'] = $props();
 
 	const ctx = getFormContext();
 

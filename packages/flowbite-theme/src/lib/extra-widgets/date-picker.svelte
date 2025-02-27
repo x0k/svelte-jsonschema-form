@@ -1,5 +1,6 @@
 <script lang="ts" module>
 	import type { DatepickerProps } from 'flowbite-svelte/Datepicker.svelte';
+	import '@sjsf/legacy-fields/extra-widgets/date-picker';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
@@ -12,7 +13,7 @@
 	import { defineDisabled, getFormContext, type ComponentProps } from '@sjsf/form';
 	import Datepicker from 'flowbite-svelte/Datepicker.svelte';
 
-	let { value = $bindable(), config }: ComponentProps['textWidget'] = $props();
+	let { value = $bindable(), config }: ComponentProps['datePickerWidget'] = $props();
 
 	function parseLocalDate(date: string) {
 		const [year, month, day] = date.split('-').map(Number);
