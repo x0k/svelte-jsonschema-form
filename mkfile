@@ -117,6 +117,8 @@ basic/:
 
 daisy/:
   pushd packages/daisyui-theme
+  c:
+    pnpm run check
   b:
     pnpm run build
   d:

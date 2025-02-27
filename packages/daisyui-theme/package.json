@@ -37,6 +37,18 @@
 		"test:unit": "vitest"
 	},
 	"exports": {
+		"./components/*": {
+			"types": "./dist/components/*.d.ts",
+			"svelte": "./dist/components/*"
+		},
+		"./widgets/*": {
+			"types": "./dist/widgets/*.d.ts",
+			"svelte": "./dist/widgets/*"
+		},
+		"./extra-widgets/*": {
+			"types": "./dist/extra-widgets/*.d.ts",
+			"svelte": "./dist/extra-widgets/*"
+		},
 		".": {
 			"types": "./dist/index.d.ts",
 			"svelte": "./dist/index.js"

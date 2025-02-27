@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getFormContext, selectAttributes, type ComponentProps } from '@sjsf/form';
 	import { indexMapper, multipleOptions } from '@sjsf/form/options.svelte';
-	import '@sjsf/basic-theme/widgets/multi-select.svelte';
+	import '@sjsf/basic-theme/extra-widgets/multi-select.svelte';
 
 	let {
 		value = $bindable(),

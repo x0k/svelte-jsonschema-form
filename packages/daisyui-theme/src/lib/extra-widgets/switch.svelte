@@ -1,16 +1,10 @@
 <script lang="ts" module>
 	import type { HTMLInputAttributes } from 'svelte/elements';
-	import type { WidgetCommonProps } from '@sjsf/legacy-fields/exports';
+	import '@sjsf/legacy-fields/extra-widgets/switch';
 
 	declare module '@sjsf/form' {
-		interface ComponentProps {
-			daisyuiToggleWidget: WidgetCommonProps<boolean>;
-		}
-		interface ComponentBindings {
-			daisyuiToggleWidget: 'value';
-		}
 		interface UiOptions {
-			daisyuiToggle?: HTMLInputAttributes;
+			daisyuiSwitch?: HTMLInputAttributes;
 		}
 	}
 </script>
@@ -18,17 +12,12 @@
 <script lang="ts">
 	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 
-	let {
-		config,
-		value = $bindable(),
-		handlers,
-		errors
-	}: ComponentProps['daisyuiToggleWidget'] = $props();
+	let { config, value = $bindable(), handlers, errors }: ComponentProps['switchWidget'] = $props();
 
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		inputAttributes(ctx, config, handlers, config.uiOptions?.daisyuiToggle)
+		inputAttributes(ctx, config, handlers, config.uiOptions?.daisyuiSwitch)
 	);
 </script>
 
