@@ -1,4 +1,10 @@
-import { untrack } from "svelte";
+import { untrack, type Component } from "svelte";
+
+import { noop } from "./function.js";
+
+export type AnyComponent = Component<any, any, any>;
+
+export const noopComponent = noop as AnyComponent;
 
 export interface SyncInput<V> {
   /**
@@ -8,7 +14,10 @@ export interface SyncInput<V> {
   (isDependencyRegistrationOnlyCall: true, currentValue: V | undefined): void;
 }
 
-export function proxy<V>(input: SyncInput<V>, onChange?: (value: V, prev: V) => void) {
+export function proxy<V>(
+  input: SyncInput<V>,
+  onChange?: (value: V, prev: V) => void
+) {
   let ignoreInputUpdate = false;
   let proxyValue = $state.raw<V>();
   const output = $derived.by(() => {

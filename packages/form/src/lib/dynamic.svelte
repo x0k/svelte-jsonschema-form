@@ -1,11 +1,7 @@
 <script lang="ts" module>
-  import type {
-    Component,
-    ComponentInternals,
-    ComponentProps,
-    Snippet,
-  } from "svelte";
+  import type { ComponentInternals, ComponentProps, Snippet } from "svelte";
 
+  import type { AnyComponent } from "./svelte.svelte.js";
   import Dynamic from "./dynamic.svelte";
 
   export interface DynamicOptions<E> {
@@ -13,7 +9,7 @@
     onerror?: Snippet<[E]>;
   }
 
-  export function dynamic<C extends Component<any, any, any>, E>(
+  export function dynamic<C extends AnyComponent, E>(
     loader: () => Promise<{ default: C }>,
     options?: DynamicOptions<E>
   ): C {
