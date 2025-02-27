@@ -4,7 +4,7 @@ import type {
   SchemaArrayValue,
   SchemaObjectValue,
 } from "@sjsf/form/core";
-import type { Schema, Config, SchemaValue, CompatibleComponentType } from "@sjsf/form";
+import type { Schema, Config, SchemaValue } from "@sjsf/form";
 
 export interface FieldCommonProps<V> {
   value: V | undefined;
@@ -20,7 +20,6 @@ declare module "@sjsf/form" {
     numberField: FieldCommonProps<number>;
     integerField: FieldCommonProps<number>;
     booleanField: FieldCommonProps<boolean>;
-    booleanSelectField: FieldCommonProps<boolean>;
     objectField: FieldCommonProps<SchemaObjectValue>;
     objectPropertyField: FieldCommonProps<SchemaValue> & {
       property: string;
@@ -50,7 +49,6 @@ declare module "@sjsf/form" {
     numberField: "value";
     integerField: "value";
     booleanField: "value";
-    booleanSelectField: "value";
     objectField: "value";
     objectPropertyField: "value";
     arrayField: "value";

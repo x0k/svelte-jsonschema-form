@@ -1,3 +1,16 @@
+<script lang="ts" module>
+  import type { FieldCommonProps } from "../fields.js";
+
+  declare module "@sjsf/form" {
+    interface ComponentProps {
+      booleanSelectField: FieldCommonProps<boolean>;
+    }
+    interface ComponentBindings {
+      booleanSelectField: "value";
+    }
+  }
+</script>
+
 <script lang="ts">
   import {
     makeEventHandlers,
@@ -10,11 +23,12 @@
     type Schema,
     DEFAULT_BOOLEAN_ENUM,
   } from "@sjsf/form";
-  import { createOptions } from "./enum.js";
+
+  import { createOptions } from "../enum.js";
 
   const ctx = getFormContext();
 
-  let { config, value = $bindable() }: ComponentProps["booleanField"] =
+  let { config, value = $bindable() }: ComponentProps["booleanSelectField"] =
     $props();
 
   const Template = $derived(getComponent(ctx, "fieldTemplate", config));

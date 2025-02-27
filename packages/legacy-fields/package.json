@@ -57,6 +57,10 @@
       "types": "./dist/extra-widgets/*.d.ts",
       "svelte": "./dist/extra-widgets/*"
     },
+    "./extra-fields/*": {
+      "types": "./dist/extra-fields/*.d.ts",
+      "svelte": "./dist/extra-fields/*"
+    },
     "./*": {
       "types": "./dist/*.d.ts",
       "svelte": "./dist/*"
