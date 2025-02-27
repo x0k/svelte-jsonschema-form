@@ -8,5 +8,7 @@ export { default as radioWidget } from './radio.svelte';
 export { default as checkboxesWidget } from './checkboxes.svelte';
 export { default as fileWidget } from './file.svelte';
 
+import './textarea.svelte';
 export const textareaWidget = dynamic(() => import('./textarea.svelte'));
+import './multi-select.svelte';
 export const multiSelectWidget = dynamic(() => import('./multi-select.svelte'));

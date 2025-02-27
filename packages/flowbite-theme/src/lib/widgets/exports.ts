@@ -8,8 +8,13 @@ export { default as radioWidget } from './radio.svelte';
 export { default as checkboxesWidget } from './checkboxes.svelte';
 export { default as fileWidget } from './file.svelte';
 
+import './multi-select.svelte';
 export const flowbiteMultiSelectWidget = dynamic(() => import('./multi-select.svelte'));
+import './textarea.svelte';
 export const flowbiteTextareaWidget = dynamic(() => import('./textarea.svelte'));
+import './toggle.svelte';
 export const flowbiteToggleWidget = dynamic(() => import('./toggle.svelte'));
+import './range.svelte';
 export const flowbiteRangeWidget = dynamic(() => import('./range.svelte'));
+import './date-picker.svelte';
 export const flowbiteDatepickerWidget = dynamic(() => import('./date-picker.svelte'));
