@@ -7,7 +7,7 @@ import '@sjsf/basic-theme/widgets/exports';
 import * as components from './components/exports';
 import * as widgets from './widgets/exports';
 
-export const definitions: Definitions = {
+export const definitions = {
 	radioButtonsWidget: createMessage('widget "radioButtonsWidget" is missing'),
 	datePickerWidget: createMessage('widget "datePickerWidget" is missing'),
 	multiSelectWidget: createMessage('widget "multiSelectWidget" is missing'),
@@ -17,4 +17,4 @@ export const definitions: Definitions = {
 	...templates,
 	...components,
 	...widgets
-};
+} satisfies Definitions;

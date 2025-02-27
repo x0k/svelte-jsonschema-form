@@ -7,11 +7,11 @@ import '@sjsf/basic-theme/widgets/exports';
 import * as components from './components/exports';
 import * as widgets from './widgets/exports';
 
-export const definitions: Definitions = {
+export const definitions = {
 	multiSelectWidget: createMessage('widget "multiSelectWidget" is missing'),
 	textareaWidget: createMessage('widget "textareaWidget" is missing'),
 	...fields,
 	...templates,
 	...components,
 	...widgets
-};
+} satisfies Definitions;
