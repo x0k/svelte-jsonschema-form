@@ -10,9 +10,11 @@ export default {
     },
     alias: {
       "@/": "./src/",
-    }
+    },
   },
-  compilerOptions: {
-    runes: true,
+  vitePlugin: {
+    dynamicCompileOptions: ({ filename }) => ({
+      runes: !filename.includes("@sveltejs/svelte-json-tree"),
+    }),
   },
 };

@@ -47,6 +47,7 @@
     "@tsconfig/svelte": "catalog:",
     "svelte": "catalog:",
     "svelte-check": "catalog:",
+    "testing": "workspace:*",
     "vite": "catalog:",
     "vitest": "catalog:"
   },
