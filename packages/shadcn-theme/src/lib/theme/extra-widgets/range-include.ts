@@ -1,6 +1,6 @@
-import { definitions } from '../definitions';
+import { extendable } from '../definitions';
 
 import Range from './range.svelte';
 import './range.svelte';
 
-definitions.rangeWidget = Range;
+extendable.rangeWidget = Range;

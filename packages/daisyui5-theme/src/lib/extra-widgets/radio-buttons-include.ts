@@ -1,6 +1,6 @@
-import { definitions } from '../definitions';
+import { extendable } from '../definitions';
 
 import RadioButtons from './radio-buttons.svelte';
 import './radio-buttons.svelte';
 
-definitions.radioButtonsWidget = RadioButtons;
+extendable.radioButtonsWidget = RadioButtons;

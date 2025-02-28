@@ -1,6 +1,6 @@
-import { definitions } from '../definitions';
+import { extendable } from '../definitions';
 
 import Switch from './switch.svelte';
 import './switch.svelte';
 
-definitions.switchWidget = Switch;
+extendable.switchWidget = Switch;
