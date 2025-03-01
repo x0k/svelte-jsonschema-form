@@ -3,6 +3,9 @@ import type { SchemaValue } from "@/core/index.js";
 import type { Config } from "./config.js";
 
 declare module "./theme.js" {
+  interface FoundationalComponents {
+    rootField: {};
+  }
   interface ComponentProps {
     rootField: {
       value: SchemaValue | undefined;

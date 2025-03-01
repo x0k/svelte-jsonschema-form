@@ -1,7 +1,7 @@
 import type {
   CompatibleComponentType,
-  ComponentType,
   Definitions,
+  FoundationalComponent,
 } from "./theme.js";
 
 export type UiSchemaRoot = UiSchemaRootIndex & UiSchemaRootContent;
@@ -17,7 +17,9 @@ export interface UiSchemaRootContent extends UiSchemaContent {
 export interface UiSchemaContent {
   "ui:options"?: UiOptions;
   "ui:components"?: Partial<{
-    [T in ComponentType]: CompatibleComponentType<T> | Definitions[T];
+    [T in FoundationalComponent]:
+      | Exclude<CompatibleComponentType<T>, T>
+      | Definitions[T];
   }>;
   items?: UiSchema | UiSchema[];
   anyOf?: UiSchema[];

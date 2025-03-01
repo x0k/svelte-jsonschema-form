@@ -12,6 +12,11 @@ export interface ComponentBindings {}
 
 export type ComponentType = keyof ComponentProps;
 
+export interface FoundationalComponents {}
+
+export type FoundationalComponent = keyof FoundationalComponents &
+  ComponentType;
+
 export type Definitions = {
   [T in ComponentType]: SvelteComponent<
     ComponentProps[T],
@@ -19,6 +24,12 @@ export type Definitions = {
     //@ts-expect-error
     ComponentBindings[T]
   >;
+};
+
+export type ExtendableDefinitions = {
+  [T in FoundationalComponent]: Definitions[T];
+} & {
+  [T in Exclude<ComponentType, FoundationalComponent>]?: Definitions[T];
 };
 
 export interface FormElements {}
@@ -41,6 +52,8 @@ export type CompatibleComponentType<T extends ComponentType> = {
     : never;
 }[ComponentType];
 
+// NOTE: Currently this type is useless because compatible components have
+// the same definitions
 export type CompatibleDefinitions = {
   [T in ComponentType]: {
     [K in CompatibleComponentType<T>]: Definitions[K];

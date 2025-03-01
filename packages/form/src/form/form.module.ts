@@ -3,6 +3,9 @@ import type { Snippet } from "svelte";
 import type { Config } from "./config.js";
 
 declare module "./theme.js" {
+  interface FoundationalComponents {
+    form: {};
+  }
   interface ComponentProps {
     form: {
       config: Config;
