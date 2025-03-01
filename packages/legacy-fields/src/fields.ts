@@ -12,6 +12,24 @@ export interface FieldCommonProps<V> {
 }
 
 declare module "@sjsf/form" {
+  interface FoundationalComponents {
+    multiField: {};
+    stringField: {};
+    numberField: {};
+    integerField: {};
+    booleanField: {};
+    objectField: {};
+    objectPropertyField: {};
+    arrayField: {};
+    fixedArrayField: {};
+    normalArrayField: {};
+    arrayItemField: {};
+    nullField: {};
+    enumField: {};
+    multiEnumField: {};
+    fileField: {};
+    filesField: {};
+  }
   interface ComponentProps {
     multiField: FieldCommonProps<SchemaValue> & {
       combinationKey: typeof ONE_OF_KEY | typeof ANY_OF_KEY;

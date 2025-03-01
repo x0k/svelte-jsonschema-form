@@ -15,6 +15,14 @@ export interface TemplateCommonProps<V extends SchemaValue> {
 }
 
 declare module "@sjsf/form" {
+  interface FoundationalComponents {
+    fieldTemplate: {};
+    objectTemplate: {};
+    objectPropertyTemplate: {};
+    arrayTemplate: {};
+    arrayItemTemplate: {};
+    multiFieldTemplate: {};
+  }
   interface ComponentProps {
     fieldTemplate: TemplateCommonProps<SchemaValue> & {
       showTitle: boolean;

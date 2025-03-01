@@ -45,6 +45,10 @@ export interface LayoutTypes {
 export type LayoutType = keyof LayoutTypes;
 
 declare module "@sjsf/form" {
+  interface FoundationalComponents {
+    button: {};
+    layout: {};
+  }
   interface ComponentProps {
     button: ComponentCommonProps & {
       type: ButtonType;
@@ -60,6 +64,5 @@ declare module "@sjsf/form" {
   interface ComponentBindings {
     button: "";
     layout: "";
-
   }
 }
