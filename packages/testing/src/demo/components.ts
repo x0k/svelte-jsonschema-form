@@ -33,27 +33,27 @@ export const uiSchema: UiSchemaRoot = {
   },
 };
 
-export const errors = new SvelteMap([
-  [
-    "root",
-    [
-      {
-        instanceId: "root",
-        error: null,
-        message: "test error",
-        propertyTitle: "Title",
-      },
-    ],
-  ],
-  [
-    "root",
-    [
-      {
-        instanceId: "root",
-        error: null,
-        message: "test error 2",
-        propertyTitle: "Title",
-      },
-    ],
-  ],
-]);
+// export const errors = new SvelteMap([
+//   [
+//     "root",
+//     [
+//       {
+//         instanceId: "root",
+//         error: null,
+//         message: "test error",
+//         propertyTitle: "Title",
+//       },
+//     ],
+//   ],
+//   [
+//     "root",
+//     [
+//       {
+//         instanceId: "root",
+//         error: null,
+//         message: "test error 2",
+//         propertyTitle: "Title",
+//       },
+//     ],
+//   ],
+// ]);

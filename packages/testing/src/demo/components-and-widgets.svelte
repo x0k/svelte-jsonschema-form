@@ -17,16 +17,6 @@
 
   const {
     theme,
-    createWidgetsForm = (disabled: boolean) =>
-      createForm({
-        disabled,
-        theme,
-        schema: widgets.schema,
-        uiSchema: widgets.uiSchema,
-        initialErrors: widgets.errors(Object.keys(widgets.uiSchema)),
-        validator,
-        translation,
-      }),
     append,
   }: {
     theme: ThemeResolver;
@@ -34,10 +24,22 @@
     append?: Snippet;
   } = $props();
 
-  const widgetsForm = createWidgetsForm(false);
-  const disabledWidgetsForm = createWidgetsForm(true);
+  const widgetsForm = createForm({
+    ...widgets,
+    theme,
+    validator,
+    translation,
+  });
+  const disabledWidgetsForm = createForm({
+    ...widgets,
+    disabled: true,
+    theme,
+    validator,
+    translation,
+  });
 
   const componentsForm = createForm({
+    ...components,
     theme,
     initialValue: {
       array: ["fixed", 123],
@@ -51,8 +53,6 @@
         error: null,
       },
     ],
-    schema: components.schema,
-    uiSchema: components.uiSchema,
     validator,
     translation,
   });

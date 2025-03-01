@@ -8,7 +8,7 @@ import {
   type ValidationError,
 } from "@sjsf/form";
 
-export const states = (schema: Schema): Schema => ({
+const states = (schema: Schema): Schema => ({
   type: "object",
   properties: {
     default: schema,
@@ -20,31 +20,31 @@ export const states = (schema: Schema): Schema => ({
   },
 });
 
-export const boolean: Schema = {
+const boolean: Schema = {
   type: "boolean",
 };
 
-export const enumeration: Schema = {
+const enumeration: Schema = {
   type: "string",
   enum: ["foo", "bar", "fuzz", "qux"],
 };
 
-export const uniqueArray: Schema = {
+const uniqueArray: Schema = {
   type: "array",
   items: enumeration,
   uniqueItems: true,
 };
 
-export const file: Schema = {
+const file: Schema = {
   type: "string",
   format: "data-url",
 };
 
-export const number: Schema = {
+const number: Schema = {
   type: "number",
 };
 
-export const text: Schema = {
+const text: Schema = {
   type: "string",
 };
 
@@ -52,6 +52,7 @@ export const schema: Schema = {
   type: "object",
   properties: {
     checkbox: states(boolean),
+    switch: states(boolean),
     checkboxes: states(uniqueArray),
     file: states(file),
     multiFile: states({
@@ -61,6 +62,7 @@ export const schema: Schema = {
     number: states(number),
     range: states(number),
     radio: states(enumeration),
+    radioButtons: states(enumeration),
     select: states(enumeration),
     multiSelect: states(uniqueArray),
     text: states(text),
@@ -69,7 +71,7 @@ export const schema: Schema = {
   },
 };
 
-export const uiStates = (uiSchema: UiSchema): UiSchema => ({
+const uiStates = (uiSchema: UiSchema): UiSchema => ({
   default: uiSchema,
   readonly: uiSchema,
   error: uiSchema,
@@ -77,6 +79,11 @@ export const uiStates = (uiSchema: UiSchema): UiSchema => ({
 
 export const uiSchema: UiSchemaRoot = {
   checkbox: uiStates({}),
+  switch: uiStates({
+    "ui:components": {
+      checkboxWidget: "switchWidget",
+    },
+  }),
   checkboxes: uiStates({}),
   file: uiStates({}),
   multiFile: uiStates({}),
@@ -89,6 +96,11 @@ export const uiSchema: UiSchemaRoot = {
   radio: uiStates({
     "ui:components": {
       selectWidget: "radioWidget",
+    },
+  }),
+  radioButtons: uiStates({
+    "ui:components": {
+      selectWidget: "radioButtonsWidget",
     },
   }),
   select: uiStates({}),
@@ -110,7 +122,7 @@ export const uiSchema: UiSchemaRoot = {
   }),
 };
 
-export const errors = (keys: string[]) =>
+const createErrors = (keys: string[]) =>
   keys.map(
     (key) =>
       ({
@@ -123,3 +135,5 @@ export const errors = (keys: string[]) =>
         message: `${key} error`,
       }) satisfies ValidationError<null>
   );
+
+export const errors = createErrors(Object.keys(uiSchema));
