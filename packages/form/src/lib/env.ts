@@ -5,9 +5,7 @@ import { dynamic, type DynamicOptions } from './dynamic.svelte'
 
 export class EnvError {}
 
-const REJECTED = Promise.reject(new EnvError())
-
-const rejected = () => REJECTED
+const rejected = () => Promise.reject(new EnvError())
 
 export function clientOnly<C extends AnyComponent, E>(
   loader: () => Promise<{ default: C }>,
