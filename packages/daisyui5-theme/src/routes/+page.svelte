@@ -1,50 +1,29 @@
 <script lang="ts">
-	import { createForm } from '@sjsf/form';
-	import { ComponentsAndWidgets, widgets, validator, translation } from 'testing/demo';
+	import { clientOnly } from '@sjsf/form/lib/env';
+	import { ComponentsAndWidgets, s } from 'testing/demo';
 
 	import '../app.css';
 	import { theme } from '../lib/index.js';
+	import '../lib/extra-widgets/cally-date-picker-include';
+	import '../lib/extra-widgets/multi-select-include';
+	import '../lib/extra-widgets/radio-buttons-include';
+	import FilterRadioButtons from '../lib/extra-widgets/filter-radio-buttons.svelte';
+	import '../lib/extra-widgets/switch-include';
+	import '../lib/extra-widgets/textarea-include';
+
+	const PikadayDatePicker = clientOnly(
+		() => import('../lib/extra-widgets/pikaday-date-picker.svelte')
+	);
 </script>
 
 <ComponentsAndWidgets
 	{theme}
-	createWidgetsForm={() =>
-		createForm({
-			theme,
-			initialValue: {
-				pikadayCalendar: {
-					readonly: '2025-02-04'
-				}
-			},
-			schema: {
-				type: 'object',
-				properties: {
-					...widgets.schema.properties,
-					toggle: widgets.states(widgets.boolean),
-					filter: widgets.states(widgets.enumeration),
-					callyCalendar: widgets.states(widgets.text),
-					pikadayCalendar: widgets.states(widgets.text)
-				}
-			},
-			uiSchema: {
-				...widgets.uiSchema
-				// toggle: widgets.uiStates({
-				// 	'ui:widget': 'toggle'
-				// }),
-				// filter: widgets.uiStates({
-				// 	'ui:widget': 'filter'
-				// }),
-				// callyCalendar: widgets.uiStates({
-				// 	'ui:widget': 'callyCalendar'
-				// }),
-				// pikadayCalendar: widgets.uiStates({
-				// 	'ui:widget': 'pikadayCalendar'
-				// })
-			},
-			initialErrors: widgets.errors(
-				Object.keys(widgets.uiSchema).concat('toggle', 'filter', 'callyCalendar', 'pikadayCalendar')
-			),
-			translation,
-			validator
-		})}
+	additionalSpecs={{
+		datePicker: [s.text, { 'ui:components': { textWidget: 'datePickerWidget' } }],
+		pikadayDatePicker: [s.text, { 'ui:components': { textWidget: PikadayDatePicker } }],
+		radioButtons: [s.enumeration, { 'ui:components': { selectWidget: 'radioButtonsWidget' } }],
+		filterRadioButtons: [s.enumeration, { 'ui:components': { selectWidget: FilterRadioButtons } }],
+		switch: [s.boolean, { 'ui:components': { checkboxWidget: 'switchWidget' } }],
+		textarea: [s.text, { 'ui:components': { textWidget: 'textareaWidget' } }]
+	}}
 />
