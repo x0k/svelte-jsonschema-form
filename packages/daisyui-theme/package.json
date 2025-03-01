@@ -65,8 +65,8 @@
 	},
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^1.9.2",
-		"daisyui": "^4.12.23",
-		"svelte": "^5.20.2"
+		"daisyui": "^4.12.24",
+		"svelte": "^5.20.5"
 	},
 	"devDependencies": {
 		"@playwright/test": "catalog:",
@@ -79,7 +79,7 @@
 		"@types/eslint": "catalog:",
 		"ajv": "catalog:",
 		"autoprefixer": "catalog:",
-		"daisyui": "^4.12.23",
+		"daisyui": "^4.12.24",
 		"eslint": "catalog:",
 		"eslint-config-prettier": "catalog:",
 		"eslint-plugin-svelte": "catalog:",

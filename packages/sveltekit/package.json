@@ -53,9 +53,9 @@
 	},
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^1.9.2",
-		"@sveltejs/kit": "^2.17.2",
+		"@sveltejs/kit": "^2.17.3",
 		"esm-env": "^1.2.2",
-		"svelte": "^5.20.2"
+		"svelte": "^5.20.5"
 	},
 	"devDependencies": {
 		"@playwright/test": "catalog:",

@@ -34,7 +34,7 @@
     "@sjsf/legacy-fields": "workspace:^0.0.1"
   },
   "peerDependencies": {
-    "svelte": "^5.20.2",
+    "svelte": "^5.20.5",
     "@sjsf/form": "workspace:^1.9.2"
   },
   "devDependencies": {

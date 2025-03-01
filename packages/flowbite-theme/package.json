@@ -66,8 +66,8 @@
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^1.9.2",
 		"flowbite": "^2.5.2",
-		"flowbite-svelte": "^0.47.4",
-		"svelte": "^5.20.2"
+		"flowbite-svelte": "^0.48.4",
+		"svelte": "^5.20.5"
 	},
 	"devDependencies": {
 		"@playwright/test": "catalog:",
@@ -84,7 +84,7 @@
 		"eslint-config-prettier": "catalog:",
 		"eslint-plugin-svelte": "catalog:",
 		"flowbite": "^2.5.2",
-		"flowbite-svelte": "^0.47.4",
+		"flowbite-svelte": "^0.48.4",
 		"globals": "catalog:",
 		"postcss": "catalog:",
 		"prettier": "catalog:",
