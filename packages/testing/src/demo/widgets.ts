@@ -136,4 +136,4 @@ const createErrors = (keys: string[]) =>
       }) satisfies ValidationError<null>
   );
 
-export const errors = createErrors(Object.keys(uiSchema));
+export const initialErrors = createErrors(Object.keys(uiSchema));

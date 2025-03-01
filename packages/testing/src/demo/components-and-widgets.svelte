@@ -8,12 +8,12 @@
     type FormInternals,
     type ThemeResolver,
   } from "@sjsf/form";
+  import { createSyncFormValidator } from "@sjsf/ajv8-validator";
+  import { translation } from "@sjsf/form/translations/en";
 
   import Form from "./form.svelte";
   import * as widgets from "./widgets";
   import * as components from "./components";
-  import { validator } from "./ajv-validator";
-  import { translation } from "./translation";
 
   const {
     theme,
@@ -23,6 +23,8 @@
     createWidgetsForm?: (disabled: boolean) => FormInternals<any, any>;
     append?: Snippet;
   } = $props();
+
+  const validator = createSyncFormValidator();
 
   const widgetsForm = createForm({
     ...widgets,
