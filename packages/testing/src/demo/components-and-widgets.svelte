@@ -36,32 +36,35 @@
 
   const validator = createSyncFormValidator();
 
-  const widgetsSchemas = $derived(
-    createSchemas({
-      checkbox: [boolean, {}],
-      checkboxes: [uniqueArray, {}],
-      file: [file, {}],
-      multiFile: [
-        {
-          type: "array",
-          items: file,
-        },
-        {},
-      ],
-      number: [number, {}],
-      radio: [
-        enumeration,
-        { "ui:components": { selectWidget: "radioWidget" } },
-      ],
-      select: [enumeration, {}],
-      text: [text, {}],
-      ...additionalSpecs,
-    })
-  );
+  const widgetsSchemas = (idPrefix: string) =>
+    createSchemas(
+      {
+        checkbox: [boolean, {}],
+        checkboxes: [uniqueArray, {}],
+        file: [file, {}],
+        multiFile: [
+          {
+            type: "array",
+            items: file,
+          },
+          {},
+        ],
+        number: [number, {}],
+        radio: [
+          enumeration,
+          { "ui:components": { selectWidget: "radioWidget" } },
+        ],
+        select: [enumeration, {}],
+        text: [text, {}],
+        ...additionalSpecs,
+      },
+      { idPrefix }
+    );
 
   const widgetsForm = $derived(
     createForm({
-      ...widgetsSchemas,
+      ...widgetsSchemas("widgets"),
+      idPrefix: "widgets",
       theme,
       validator,
       translation,
@@ -69,7 +72,8 @@
   );
   const disabledWidgetsForm = $derived(
     createForm({
-      ...widgetsSchemas,
+      ...widgetsSchemas("widgetsDisabled"),
+      idPrefix: "widgetsDisabled",
       disabled: true,
       theme,
       validator,

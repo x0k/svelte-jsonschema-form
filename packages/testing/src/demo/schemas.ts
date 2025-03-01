@@ -55,21 +55,32 @@ export const uiStates = (uiSchema: UiSchema): UiSchema => ({
   error: uiSchema,
 });
 
-export const createErrors = (keys: string[]) =>
+export interface Separators {
+  idPrefix?: string;
+  idSeparator?: string;
+}
+
+export const createErrors = (
+  keys: string[],
+  {
+    idPrefix = DEFAULT_ID_PREFIX,
+    idSeparator = DEFAULT_ID_SEPARATOR,
+  }: Separators = {}
+) =>
   keys.map(
     (key) =>
       ({
         error: null,
-        instanceId: pathToId(DEFAULT_ID_PREFIX, DEFAULT_ID_SEPARATOR, [
-          key,
-          "error",
-        ]),
+        instanceId: pathToId(idPrefix, idSeparator, [key, "error"]),
         propertyTitle: "error",
         message: `${key} error`,
       }) satisfies ValidationError<null>
   );
 
-export function createSchemas(specs: Record<string, [Schema, UiSchema]>): {
+export function createSchemas(
+  specs: Record<string, [Schema, UiSchema]>,
+  options?: Separators
+): {
   schema: Schema;
   uiSchema: UiSchemaRoot;
   initialErrors: ValidationErrors<any>;
@@ -84,6 +95,6 @@ export function createSchemas(specs: Record<string, [Schema, UiSchema]>): {
   const uiSchema: UiSchemaRoot = Object.fromEntries(
     keys.map((widget) => [widget, uiStates(specs[widget]![1])])
   );
-  const initialErrors = createErrors(keys);
+  const initialErrors = createErrors(keys, options);
   return { schema, uiSchema, initialErrors };
 }
