@@ -1,10 +1,5 @@
 import type { EnumOption, SchemaArrayValue } from "@sjsf/form/core";
-import {
-  type Definitions,
-  type Config,
-  type FieldErrors,
-  type SchemaValue,
-} from "@sjsf/form";
+import type { Config, FieldErrors, SchemaValue } from "@sjsf/form";
 
 export interface Handlers {
   onblur?: () => void;
@@ -28,7 +23,6 @@ declare module "@sjsf/form" {
     textWidget: {};
     numberWidget: {};
     selectWidget: {};
-    radioWidget: {};
     checkboxWidget: {};
     checkboxesWidget: {};
     fileWidget: {};
@@ -38,7 +32,6 @@ declare module "@sjsf/form" {
     textWidget: WidgetCommonProps<string>;
     numberWidget: WidgetCommonProps<number>;
     selectWidget: WidgetCommonProps<SchemaValue> & Options;
-    radioWidget: WidgetCommonProps<SchemaValue> & Options;
     checkboxWidget: WidgetCommonProps<boolean>;
     checkboxesWidget: WidgetCommonProps<SchemaArrayValue> & Options;
     fileWidget: WidgetCommonProps<FileList> & {
@@ -51,7 +44,6 @@ declare module "@sjsf/form" {
     textWidget: "value";
     numberWidget: "value";
     selectWidget: "value";
-    radioWidget: "value";
     checkboxWidget: "value";
     checkboxesWidget: "value";
     fileWidget: "value";

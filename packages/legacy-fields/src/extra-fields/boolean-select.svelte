@@ -32,7 +32,7 @@
     $props();
 
   const Template = $derived(getComponent(ctx, "fieldTemplate", config));
-  const Widget = $derived(getComponent(ctx, "radioWidget", config));
+  const Widget = $derived(getComponent(ctx, "selectWidget", config));
 
   const options = $derived.by(() => {
     const yes = ctx.translation("yes", {});
