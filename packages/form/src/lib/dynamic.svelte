@@ -13,17 +13,17 @@
     loader: () => Promise<{ default: C }>,
     options?: DynamicOptions<E>
   ): C {
-    let promise: Promise<Snippet> | undefined;
+    let promise: Promise<{ default: C }> | undefined;
     return ((internals, props: ComponentProps<C>) =>
       Dynamic(internals, {
         ...options,
         componentPromise: () =>
-          (promise ??= loader().then(
+          (promise ??= loader()).then(
             (m) =>
               ((internals: ComponentInternals) => {
                 m.default(internals, props);
               }) as unknown as Snippet
-          )),
+          ),
       })) as C;
   }
 </script>
