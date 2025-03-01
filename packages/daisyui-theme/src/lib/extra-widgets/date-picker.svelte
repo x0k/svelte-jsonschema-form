@@ -1,0 +1,22 @@
+<script lang="ts">
+	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
+	import '@sjsf/legacy-fields/extra-widgets/date-picker';
+
+	let {
+		handlers,
+		value = $bindable(),
+		config,
+		errors
+	}: ComponentProps['datePickerWidget'] = $props();
+
+	const ctx = getFormContext();
+
+	const attributes = $derived(inputAttributes(ctx, config, handlers, config.uiOptions?.text));
+</script>
+
+<input
+	type="date"
+	bind:value
+	class={['input input-bordered grow', errors.length > 0 && 'input-error']}
+	{...attributes}
+/>

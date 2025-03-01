@@ -6,17 +6,12 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(inputAttributes(ctx, config, handlers, config.uiOptions?.number));
-
-	const isRange = $derived(attributes.type === 'range');
 </script>
 
 <input
 	type="number"
 	bind:value={() => value ?? null, (v) => (value = v ?? undefined)}
-	class={[
-		isRange ? 'range grow' : 'input input-bordered grow',
-		errors.length > 0 && (isRange ? 'range-error' : 'input-error')
-	]}
+	class={['input input-bordered grow', errors.length > 0 && 'input-error']}
 	{...attributes}
 />
 <Datalist id={attributes.list} {config} />
