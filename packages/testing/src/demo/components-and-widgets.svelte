@@ -5,43 +5,113 @@
     DEFAULT_ID_PREFIX,
     DEFAULT_ID_SEPARATOR,
     pathToId,
-    type FormInternals,
+    type Schema,
     type ThemeResolver,
+    type UiSchema,
+    type UiSchemaRoot,
   } from "@sjsf/form";
   import { createSyncFormValidator } from "@sjsf/ajv8-validator";
   import { translation } from "@sjsf/form/translations/en";
 
   import Form from "./form.svelte";
-  import * as widgets from "./widgets";
-  import * as components from "./components";
+  import {
+    createSchemas,
+    boolean,
+    enumeration,
+    file,
+    number,
+    text,
+    uniqueArray,
+  } from "./schemas";
 
   const {
     theme,
     append,
+    additionalSpecs,
   }: {
     theme: ThemeResolver;
-    createWidgetsForm?: (disabled: boolean) => FormInternals<any, any>;
+    additionalSpecs?: Record<string, [Schema, UiSchema]>;
     append?: Snippet;
   } = $props();
 
   const validator = createSyncFormValidator();
 
-  const widgetsForm = createForm({
-    ...widgets,
-    theme,
-    validator,
-    translation,
-  });
-  const disabledWidgetsForm = createForm({
-    ...widgets,
-    disabled: true,
-    theme,
-    validator,
-    translation,
-  });
+  const widgetsSchemas = $derived(
+    createSchemas({
+      checkbox: [boolean, {}],
+      checkboxes: [uniqueArray, {}],
+      file: [file, {}],
+      multiFile: [
+        {
+          type: "array",
+          items: file,
+        },
+        {},
+      ],
+      number: [number, {}],
+      radio: [
+        enumeration,
+        { "ui:components": { selectWidget: "radioWidget" } },
+      ],
+      select: [enumeration, {}],
+      text: [text, {}],
+      ...additionalSpecs,
+    })
+  );
+
+  const widgetsForm = $derived(
+    createForm({
+      ...widgetsSchemas,
+      theme,
+      validator,
+      translation,
+    })
+  );
+  const disabledWidgetsForm = $derived(
+    createForm({
+      ...widgetsSchemas,
+      disabled: true,
+      theme,
+      validator,
+      translation,
+    })
+  );
+
+  const componentsSchema: Schema = {
+    type: "object",
+    title: "Title",
+    description: "description",
+    properties: {
+      array: {
+        type: "array",
+        items: [
+          {
+            type: "string",
+          },
+        ],
+        additionalItems: {
+          type: "number",
+        },
+      },
+    },
+    additionalProperties: {
+      type: "string",
+    },
+  };
+
+  const componentsUiSchema: UiSchemaRoot = {
+    array: {
+      items: {
+        "ui:options": {
+          help: "test help",
+        },
+      },
+    },
+  };
 
   const componentsForm = createForm({
-    ...components,
+    schema: componentsSchema,
+    uiSchema: componentsUiSchema,
     theme,
     initialValue: {
       array: ["fixed", 123],
