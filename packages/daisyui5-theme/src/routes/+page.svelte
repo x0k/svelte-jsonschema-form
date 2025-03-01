@@ -20,6 +20,7 @@
 <ComponentsAndWidgets
 	{theme}
 	additionalSpecs={{
+		multiSelect: [s.uniqueArray, { 'ui:components': { checkboxesWidget: 'multiSelectWidget' } }],
 		radio: [s.enumeration, { 'ui:components': { selectWidget: 'radioWidget' } }],
 		datePicker: [s.text, { 'ui:components': { textWidget: 'datePickerWidget' } }],
 		pikadayDatePicker: [s.text, { 'ui:components': { textWidget: PikadayDatePicker } }],
