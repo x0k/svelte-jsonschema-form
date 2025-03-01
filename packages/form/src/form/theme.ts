@@ -52,8 +52,10 @@ export type CompatibleComponentType<T extends ComponentType> = {
     : never;
 }[ComponentType];
 
-// NOTE: Currently this type is useless because compatible components have
-// the same definitions
+/**
+ * NOTE: Currently this type is useless because compatible components have
+ * the same definitions
+ */
 export type CompatibleDefinitions = {
   [T in ComponentType]: {
     [K in CompatibleComponentType<T>]: Definitions[K];
