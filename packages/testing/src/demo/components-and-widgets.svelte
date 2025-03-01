@@ -17,8 +17,9 @@
 
   const {
     theme,
-    createWidgetsForm = () =>
+    createWidgetsForm = (disabled: boolean) =>
       createForm({
+        disabled,
         theme,
         schema: widgets.schema,
         uiSchema: widgets.uiSchema,
@@ -29,11 +30,12 @@
     append,
   }: {
     theme: ThemeResolver;
-    createWidgetsForm?: () => FormInternals<any, any>;
+    createWidgetsForm?: (disabled: boolean) => FormInternals<any, any>;
     append?: Snippet;
   } = $props();
 
-  const widgetsForm = createWidgetsForm();
+  const widgetsForm = createWidgetsForm(false);
+  const disabledWidgetsForm = createWidgetsForm(true);
 
   const componentsForm = createForm({
     theme,
@@ -59,6 +61,9 @@
 <div style="display: flex; gap: 2rem; padding: 2rem;">
   <div style="display: flex; flex-direction: column; flex: 1; gap: 1rem">
     <Form form={widgetsForm} />
+  </div>
+  <div style="display: flex; flex-direction: column; flex: 1; gap: 1rem">
+    <Form form={disabledWidgetsForm} />
   </div>
   <div style="display: flex; flex-direction: column; flex: 1; gap: 1rem">
     <Form form={componentsForm} />

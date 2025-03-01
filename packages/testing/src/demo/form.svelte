@@ -18,7 +18,6 @@
       <Tree value={form.context.value} />
     </ShadowHost>
   </div>
-  <!-- <SimpleForm style="display: flex; flex-direction: column; gap: 1rem;" /> -->
   <CompositeForm {form} />
 </div>
 

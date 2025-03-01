@@ -16,7 +16,6 @@ export const states = (schema: Schema): Schema => ({
       ...schema,
       readOnly: true,
     },
-    disabled: schema,
     error: schema,
   },
 });
@@ -73,7 +72,6 @@ export const schema: Schema = {
 export const uiStates = (uiSchema: UiSchema): UiSchema => ({
   default: uiSchema,
   readonly: uiSchema,
-  disabled: uiSchema,
   error: uiSchema,
 });
 
