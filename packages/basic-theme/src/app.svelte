@@ -6,11 +6,16 @@
   import "./extra-widgets/textarea-include.js";
   import "./extra-widgets/date-picker-include.js";
   import "./extra-widgets/range-include.js";
+  import "./extra-widgets/radio-include.js";
 </script>
 
 <ComponentsAndWidgets
   {theme}
   additionalSpecs={{
+    radio: [
+      s.enumeration,
+      { "ui:components": { selectWidget: "radioWidget" } },
+    ],
     multiSelect: [
       s.uniqueArray,
       { "ui:components": { checkboxesWidget: "multiSelectWidget" } },

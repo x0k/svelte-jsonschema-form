@@ -1,7 +1,17 @@
+<script lang="ts" module>
+	import type { HTMLInputAttributes } from 'svelte/elements';
+	import '@sjsf/legacy-fields/extra-widgets/radio-buttons';
+
+	declare module '@sjsf/form' {
+		interface UiOptions {
+			daisyuiRadioButtons?: HTMLInputAttributes;
+		}
+	}
+</script>
+
 <script lang="ts">
 	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 	import { indexMapper, singleOption } from '@sjsf/form/options.svelte';
-	import '@sjsf/legacy-fields/extra-widgets/radio-buttons';
 
 	let {
 		config,
@@ -19,7 +29,9 @@
 
 	const ctx = getFormContext();
 
-	const attributes = $derived(inputAttributes(ctx, config, handlers, config.uiOptions?.radio));
+	const attributes = $derived(
+		inputAttributes(ctx, config, handlers, config.uiOptions?.daisyuiRadioButtons)
+	);
 </script>
 
 <div class="join">

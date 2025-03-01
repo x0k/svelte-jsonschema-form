@@ -1,5 +1,6 @@
 <script lang="ts" module>
 	import type { RadioGroupItemProps, RadioGroupRootProps, WithoutChildrenOrChild } from 'bits-ui';
+	import '@sjsf/legacy-fields/extra-widgets/radio';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {

@@ -4,7 +4,7 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			daisyui5Toggle?: HTMLInputAttributes;
+			daisyui5Switch?: HTMLInputAttributes;
 		}
 	}
 </script>
@@ -17,7 +17,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		inputAttributes(ctx, config, handlers, config.uiOptions?.daisyui5Toggle)
+		inputAttributes(ctx, config, handlers, config.uiOptions?.daisyui5Switch)
 	);
 </script>
 

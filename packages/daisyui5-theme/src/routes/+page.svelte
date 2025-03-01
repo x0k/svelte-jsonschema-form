@@ -4,6 +4,7 @@
 
 	import '../app.css';
 	import { theme } from '../lib/index.js';
+	import '../lib/extra-widgets/radio-include';
 	import '../lib/extra-widgets/cally-date-picker-include';
 	import '../lib/extra-widgets/multi-select-include';
 	import '../lib/extra-widgets/radio-buttons-include';
@@ -19,6 +20,7 @@
 <ComponentsAndWidgets
 	{theme}
 	additionalSpecs={{
+		radio: [s.enumeration, { 'ui:components': { selectWidget: 'radioWidget' } }],
 		datePicker: [s.text, { 'ui:components': { textWidget: 'datePickerWidget' } }],
 		pikadayDatePicker: [s.text, { 'ui:components': { textWidget: PikadayDatePicker } }],
 		radioButtons: [s.enumeration, { 'ui:components': { selectWidget: 'radioButtonsWidget' } }],

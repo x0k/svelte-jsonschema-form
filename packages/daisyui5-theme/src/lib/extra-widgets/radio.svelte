@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 	import { indexMapper, singleOption } from '@sjsf/form/options.svelte';
+	import '@sjsf/basic-theme/extra-widgets/radio.svelte';
 
 	let {
 		config,
@@ -22,7 +23,7 @@
 </script>
 
 {#each options as option, index (option.id)}
-	<label class="label cursor-pointer gap-2">
+	<label class="fieldset-label">
 		<input
 			type="radio"
 			class={['radio', errors.length > 0 && 'radio-error']}
@@ -32,6 +33,6 @@
 			id={option.id}
 			disabled={option.disabled || attributes.disabled}
 		/>
-		<span class="label-text">{option.label}</span>
+		{option.label}
 	</label>
 {/each}

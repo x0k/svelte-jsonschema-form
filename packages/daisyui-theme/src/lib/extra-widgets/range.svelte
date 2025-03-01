@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
-	import '@sjsf/legacy-fields/extra-widgets/range';
+	import '@sjsf/basic-theme/extra-widgets/range.svelte';
 
 	let { value = $bindable(), config, handlers, errors }: ComponentProps['rangeWidget'] = $props();
 
 	const ctx = getFormContext();
 
-	const attributes = $derived(inputAttributes(ctx, config, handlers, config.uiOptions?.number));
+	const attributes = $derived(inputAttributes(ctx, config, handlers, config.uiOptions?.range));
 </script>
 
 <input

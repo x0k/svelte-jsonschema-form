@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
-	import '@sjsf/legacy-fields/extra-widgets/date-picker';
+	import '@sjsf/basic-theme/extra-widgets/date-picker.svelte';
 
 	let {
 		handlers,

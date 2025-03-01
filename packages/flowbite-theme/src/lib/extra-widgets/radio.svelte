@@ -1,5 +1,6 @@
 <script lang="ts" module>
 	import type { RadioProps } from 'flowbite-svelte/Radio.svelte';
+	import '@sjsf/legacy-fields/extra-widgets/radio';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
