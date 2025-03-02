@@ -22,11 +22,11 @@
 	const { Checkbox, Label } = $derived(themeCtx.components);
 
 	// Recreates behavior of standard checkbox
-	// $effect(() => {
-	// 	if (value === undefined) {
-	// 		value = false
-	// 	}
-	// })
+	$effect(() => {
+		if (value === undefined) {
+			value = false;
+		}
+	});
 
 	const attributes = $derived(
 		defineDisabled(ctx, {
@@ -40,7 +40,7 @@
 </script>
 
 <div class="flex items-center space-x-2">
-	<Checkbox bind:checked={value} {...attributes} />
+	<Checkbox bind:checked={() => value ?? false, (v) => (value = v)} {...attributes} />
 	<Label for={attributes.id}>
 		{config.title}
 	</Label>

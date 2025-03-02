@@ -3,6 +3,7 @@ import { type Component, getContext, setContext } from 'svelte';
 import type {
 	HTMLButtonAttributes,
 	HTMLInputAttributes,
+	HTMLInputTypeAttribute,
 	HTMLTextareaAttributes
 } from 'svelte/elements';
 import type {
@@ -21,25 +22,27 @@ import { Popover } from 'bits-ui';
 
 export type CalendarProps = WithoutChildrenOrChild<Calendar.RootProps>;
 
+type InputType = Exclude<HTMLInputTypeAttribute, 'file'>;
+
+export type InputProps = WithElementRef<
+	Omit<HTMLInputAttributes, 'type'> &
+		({ type: 'file'; files?: FileList } | { type?: InputType; files?: undefined })
+>;
+
 export interface ThemeComponents {
 	Button: Component<HTMLButtonAttributes>;
 	// @ts-expect-error too complex
 	Calendar: Component<CalendarProps, {}, 'value' | 'placeholder' | 'ref'>;
-	Checkbox: Component<WithoutChildrenOrChild<Checkbox.RootProps>, {}, 'checked' | 'indeterminate' | 'ref'>;
-	Input: Component<WithElementRef<HTMLInputAttributes>, {}, 'value' | 'ref'>;
-	FilesInput: Component<
-		HTMLInputAttributes & {
-			files?: FileList;
-		},
+	Checkbox: Component<
+		WithoutChildrenOrChild<Checkbox.RootProps>,
 		{},
-		'files'
+		'checked' | 'indeterminate' | 'ref'
 	>;
+	Input: Component<InputProps, {}, 'value' | 'ref' | 'files'>;
 	Label: Component<Label.RootProps>;
 	Popover: Component<Popover.ContentProps>;
-	// @deprecate (for search reasons)
-	// TODO: Make this components required in next major
-	PopoverTrigger?: Component<Popover.TriggerProps>;
-	PopoverContent?: Component<Popover.ContentProps>;
+	PopoverTrigger: Component<Popover.TriggerProps>;
+	PopoverContent: Component<Popover.ContentProps>;
 	RadioGroup: Component<RadioGroup.RootProps, {}, 'value' | 'ref'>;
 	RadioGroupItem: Component<WithoutChildrenOrChild<RadioGroup.ItemProps>>;
 	Select: Component<Select.RootProps, {}, 'value' | 'open'>;

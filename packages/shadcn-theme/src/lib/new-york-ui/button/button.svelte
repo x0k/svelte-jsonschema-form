@@ -32,7 +32,8 @@
 	export type ButtonVariant = VariantProps<typeof buttonVariants>["variant"];
 	export type ButtonSize = VariantProps<typeof buttonVariants>["size"];
 
-	export type ButtonProps = WithElementRef<HTMLButtonAttributes | HTMLAnchorAttributes> & {
+	export type ButtonProps = WithElementRef<HTMLButtonAttributes> &
+		WithElementRef<HTMLAnchorAttributes> & {
 			variant?: ButtonVariant;
 			size?: ButtonSize;
 		};
@@ -46,16 +47,18 @@
 		variant = "default",
 		size = "default",
 		ref = $bindable(null),
+		href = undefined,
 		type = "button",
 		children,
 		...restProps
 	}: ButtonProps = $props();
 </script>
 
-{#if 'href' in restProps}
+{#if href}
 	<a
 		bind:this={ref}
 		class={cn(buttonVariants({ variant, size }), className)}
+		{href}
 		{...restProps}
 	>
 		{@render children?.()}
@@ -64,8 +67,8 @@
 	<button
 		bind:this={ref}
 		class={cn(buttonVariants({ variant, size }), className)}
-		type={type as HTMLButtonAttributes['type']}
-		{...restProps as HTMLButtonAttributes}
+		{type}
+		{...restProps}
 	>
 		{@render children?.()}
 	</button>

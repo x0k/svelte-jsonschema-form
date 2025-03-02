@@ -3,7 +3,7 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			shadcnNumber?: HTMLInputAttributes;
+			shadcnNumber?: Omit<HTMLInputAttributes, 'type'>;
 		}
 	}
 </script>

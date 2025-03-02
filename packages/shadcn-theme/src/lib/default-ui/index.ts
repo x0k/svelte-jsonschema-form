@@ -1,10 +1,12 @@
+import type { Component } from 'svelte';
+import type { HTMLButtonAttributes } from 'svelte/elements';
+
 import type { ThemeComponents } from '../theme';
 
 import { Button } from './button';
 import { Calendar } from './calendar';
 import { Checkbox } from './checkbox';
 import { Input } from './input';
-import { FilesInput } from './files-input';
 import { Label } from './label';
 import { Popover, PopoverTrigger, PopoverContent } from './popover';
 import { RadioGroup, RadioGroupItem } from './radio-group';
@@ -14,11 +16,10 @@ import { Switch } from './switch';
 import { Textarea } from './textarea';
 
 export const components: ThemeComponents = {
-	Button,
+	Button: Button as Component<HTMLButtonAttributes>,
 	Calendar,
 	Checkbox,
 	Input,
-	FilesInput,
 	Label,
 	Popover,
 	PopoverTrigger,

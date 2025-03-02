@@ -3,7 +3,7 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			shadcnFile?: HTMLInputAttributes;
+			shadcnFile?: Omit<HTMLInputAttributes, 'type'>;
 		}
 	}
 </script>
@@ -16,7 +16,7 @@
 	const ctx = getFormContext();
 	const themeCtx = getThemeContext();
 
-	const { FilesInput } = $derived(themeCtx.components);
+	const { Input } = $derived(themeCtx.components);
 
 	let {
 		config,
@@ -30,7 +30,8 @@
 	const attributes = $derived(inputAttributes(ctx, config, handlers, config.uiOptions?.shadcnFile));
 </script>
 
-<FilesInput
+<Input
+	type="file"
 	bind:files={value}
 	{multiple}
 	data-loading={loading}
