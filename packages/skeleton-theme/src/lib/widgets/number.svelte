@@ -11,7 +11,7 @@
 <input
 	type="number"
 	bind:value={() => value ?? null, (v) => (value = v ?? undefined)}
-	class={attributes.type === 'range' ? 'range grow w-0' : 'input'}
+	class="input"
 	{...attributes}
 />
 <Datalist id={attributes.list} {config} />
