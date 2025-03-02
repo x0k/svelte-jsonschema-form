@@ -3,10 +3,12 @@
 
 	const { type, children, config }: ComponentProps['layout'] = $props();
 
-	const isItem = $derived(
-		type === 'array-item' || type === 'object-property' || type === 'field-content'
+	const isItemOrControls = $derived(
+		type === 'array-item' ||
+			type === 'object-property' ||
+			type === 'field-content' ||
+			type === 'array-item-controls'
 	);
-	const isControls = $derived(type === 'array-item-controls');
 	const isGrowable = $derived(
 		type === 'array-item-content' ||
 			type === 'object-property-key-input' ||
@@ -28,12 +30,10 @@
 </script>
 
 <div
-	class:flex={isItem || isControls || isField || isColumn}
-	class:gap-2={isItem || isField}
+	class:flex={isItemOrControls || isField || isColumn}
+	class:gap-2={isItemOrControls || isField}
 	class:gap-4={isColumn}
-	class:items-start={isItem || isControls}
-	class:btn-group={isControls}
-	class:preset-outlined-surface-200-800={isControls}
+	class:items-start={isItemOrControls}
 	class:grow={isGrowable}
 	class:flex-col={isColumn || isField}
 	data-layout={type}
