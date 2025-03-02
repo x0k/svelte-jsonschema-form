@@ -729,8 +729,8 @@ importers:
         specifier: ^2.5.2
         version: 2.5.2(rollup@4.34.8)
       flowbite-svelte:
-        specifier: ^0.48.4
-        version: 0.48.4(rollup@4.34.8)(svelte@5.20.5)
+        specifier: 0.47.4
+        version: 0.47.4(rollup@4.34.8)(svelte@5.20.5)
       globals:
         specifier: 'catalog:'
         version: 16.0.0
@@ -3544,9 +3544,6 @@ packages:
   flowbite-datepicker@1.3.0:
     resolution: {integrity: sha512-CLVqzuoE2vkUvWYK/lJ6GzT0be5dlTbH3uuhVwyB67+PjqJWABm2wv68xhBf5BqjpBxvTSQ3mrmLHpPJ2tvrSQ==}
 
-  flowbite-datepicker@1.3.2:
-    resolution: {integrity: sha512-6Nfm0MCVX3mpaR7YSCjmEO2GO8CDt6CX8ZpQnGdeu03WUCWtEPQ/uy0PUiNtIJjJZWnX0Cm3H55MOhbD1g+E/g==}
-
   flowbite-svelte-icons@2.0.2:
     resolution: {integrity: sha512-Vkmduy2867Rk8R7TziPirsWkixJnToFBEXRaN4ouJabOx62NQjiBbHFe+HTaMOQmdp4FNMI2Nhtk2I2CQ8r3RQ==}
     engines: {node: '>=18.0.0', npm: '>=7.0.0'}
@@ -3560,16 +3557,8 @@ packages:
     peerDependencies:
       svelte: ^3.55.1 || ^4.0.0 || ^5.0.0
 
-  flowbite-svelte@0.48.4:
-    resolution: {integrity: sha512-ivlBxNi2u9+D/nFeHs+vLJU6nYjKq/ooAwdXPP3qIlEnUyIl/hVsH87JtVWwVEgF31NwwQcZeKFkWd8K5DWiGw==}
-    peerDependencies:
-      svelte: ^3.55.1 || ^4.0.0 || ^5.0.0
-
   flowbite@2.5.2:
     resolution: {integrity: sha512-kwFD3n8/YW4EG8GlY3Od9IoKND97kitO+/ejISHSqpn3vw2i5K/+ZI8Jm2V+KC4fGdnfi0XZ+TzYqQb4Q1LshA==}
-
-  flowbite@3.1.2:
-    resolution: {integrity: sha512-MkwSgbbybCYgMC+go6Da5idEKUFfMqc/AmSjm/2ZbdmvoKf5frLPq/eIhXc9P+rC8t9boZtUXzHDgt5whZ6A/Q==}
 
   foreground-child@3.3.0:
     resolution: {integrity: sha512-Ld2g8rrAyMYFXBhEqMz8ZAHBi4J4uS1i/CxGMDnjyFWddMXLVcDp051DZfu+t7+ab7Wv6SMqpWmyFIj5UbfFvg==}
@@ -5103,9 +5092,6 @@ packages:
 
   tailwind-merge@2.6.0:
     resolution: {integrity: sha512-P+Vu1qXfzediirmHOC3xKGAYeZtPcV9g76X+xg2FD4tYgR71ewMA35Y3sCz3zhiN/dwefRpJX0yBcgwi1fXNQA==}
-
-  tailwind-merge@3.0.2:
-    resolution: {integrity: sha512-l7z+OYZ7mu3DTqrL88RiKrKIqO3NcpEO8V/Od04bNpvk0kiIFndGEoqfuzvj4yuhRkHKjRkII2z+KS2HfPcSxw==}
 
   tailwind-variants@0.2.1:
     resolution: {integrity: sha512-2xmhAf4UIc3PijOUcJPA1LP4AbxhpcHuHM2C26xM0k81r0maAO6uoUSHl3APmvHZcY5cZCY/bYuJdfFa4eGoaw==}
@@ -8373,13 +8359,6 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
-  flowbite-datepicker@1.3.2(rollup@4.34.8):
-    dependencies:
-      '@rollup/plugin-node-resolve': 15.3.0(rollup@4.34.8)
-      flowbite: 2.5.2(rollup@4.34.8)
-    transitivePeerDependencies:
-      - rollup
-
   flowbite-svelte-icons@2.0.2(svelte@5.20.5)(tailwind-merge@2.6.0)(tailwindcss@3.4.17):
     dependencies:
       svelte: 5.20.5
@@ -8396,30 +8375,11 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
-  flowbite-svelte@0.48.4(rollup@4.34.8)(svelte@5.20.5):
-    dependencies:
-      '@floating-ui/dom': 1.6.13
-      apexcharts: 3.54.1
-      flowbite: 3.1.2(rollup@4.34.8)
-      svelte: 5.20.5
-      tailwind-merge: 3.0.2
-    transitivePeerDependencies:
-      - rollup
-
   flowbite@2.5.2(rollup@4.34.8):
     dependencies:
       '@popperjs/core': 2.11.8
       flowbite-datepicker: 1.3.0(rollup@4.34.8)
       mini-svg-data-uri: 1.4.4
-    transitivePeerDependencies:
-      - rollup
-
-  flowbite@3.1.2(rollup@4.34.8):
-    dependencies:
-      '@popperjs/core': 2.11.8
-      flowbite-datepicker: 1.3.2(rollup@4.34.8)
-      mini-svg-data-uri: 1.4.4
-      postcss: 8.5.2
     transitivePeerDependencies:
       - rollup
 
@@ -10460,8 +10420,6 @@ snapshots:
   tailwind-merge@2.5.4: {}
 
   tailwind-merge@2.6.0: {}
-
-  tailwind-merge@3.0.2: {}
 
   tailwind-variants@0.2.1(tailwindcss@3.4.17):
     dependencies:

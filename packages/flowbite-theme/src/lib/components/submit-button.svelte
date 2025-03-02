@@ -22,6 +22,6 @@
 	const attributes = $derived(defineDisabled(ctx, config.uiOptions?.flowbiteSubmitButton ?? {}));
 </script>
 
-<Button color="primary" type="submit" size="md" {onclick} {...attributes}>
+<Button color="primary" type="submit" size="md" {...attributes}>
 	{@render children()}
 </Button>
