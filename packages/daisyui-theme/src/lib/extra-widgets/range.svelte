@@ -11,7 +11,7 @@
 
 <input
 	type="range"
-	bind:value={() => value ?? null, (v) => (value = v ?? undefined)}
+	bind:value
 	class={['range grow', errors.length > 0 && 'range-error']}
 	{...attributes}
 />
