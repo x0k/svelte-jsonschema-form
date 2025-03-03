@@ -9,6 +9,12 @@ export interface ParentTemplateTypes {
 export type ParentTemplateType = keyof ParentTemplateTypes;
 
 declare module "@sjsf/form" {
+  interface FoundationalComponents {
+    title: {};
+    description: {};
+    help: {};
+    errorsList: {};
+  }
   interface ComponentProps {
     title: ComponentCommonProps & {
       type: ParentTemplateType;
