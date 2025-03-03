@@ -58,7 +58,7 @@ export function createSvelteKitForm<
       return page.data[meta.name];
     }
   });
-  const defaults = initialFormData ?? {};
+  const defaults = $derived(initialFormData ?? {});
   const form = createForm(
     new Proxy(options, {
       has(target, p) {
