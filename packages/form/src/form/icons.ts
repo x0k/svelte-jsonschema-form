@@ -21,6 +21,5 @@ export type IconsResolver = Resolver<
   {
     [L in Label]: IconConfig<L>;
   },
-  Icons,
-  undefined
+  Icons
 >;

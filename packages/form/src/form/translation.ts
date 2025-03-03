@@ -28,7 +28,7 @@ export type Translators = {
   [L in Label]: Translator<L>;
 };
 
-export type TranslatorResolver = Resolver<Labels, Translators, undefined>;
+export type TranslatorResolver = Resolver<Labels, Translators>;
 
 export type Translation = <L extends Label>(
   label: L,
