@@ -304,6 +304,9 @@ importers:
       '@sjsf/form':
         specifier: workspace:*
         version: link:../../packages/form
+      '@sjsf/legacy-fields':
+        specifier: workspace:*
+        version: link:../../packages/legacy-fields
       '@sjsf/lucide-icons':
         specifier: workspace:*
         version: link:../../packages/lucide-icons

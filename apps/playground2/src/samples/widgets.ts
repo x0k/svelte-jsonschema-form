@@ -114,20 +114,20 @@ const widgets: Sample = {
     boolean: {
       radio: {
         "ui:components": {
-          booleanField: "booleanSelectField"
-        }
+          booleanField: "booleanSelectField",
+          selectWidget: "radioWidget",
+        },
       },
       select: {
         "ui:components": {
           booleanField: "booleanSelectField",
-          radioWidget: "selectWidget"
-        }
+        },
       },
     },
     string: {
       textarea: {
         "ui:components": {
-          textWidget: "textareaWidget"
+          textWidget: "textareaWidget",
         },
         "ui:options": {
           textarea: {
@@ -146,9 +146,9 @@ const widgets: Sample = {
     secret: {
       "ui:options": {
         text: {
-          type: "hidden"
-        }
-      }
+          type: "hidden",
+        },
+      },
     },
     disabled: {
       "ui:options": {

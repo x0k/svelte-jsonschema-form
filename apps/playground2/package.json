@@ -16,6 +16,7 @@
     "ajv": "catalog:",
     "rehype-raw": "^7.0.0",
     "svelte-exmarkdown": "^4.0.3",
+    "@sjsf/legacy-fields": "workspace:*",
     "@sjsf/basic-theme": "workspace:*",
     "@sjsf/daisyui-theme": "workspace:*",
     "@sjsf/flowbite-theme": "workspace:*",

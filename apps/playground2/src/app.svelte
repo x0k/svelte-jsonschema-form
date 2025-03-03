@@ -1,6 +1,6 @@
 <script lang="ts">
   import { SvelteMap } from "svelte/reactivity";
-  import Ajv from "ajv";
+  import { overrideByRecord } from "@sjsf/form/lib/resolver";
   import {
     ON_BLUR,
     ON_CHANGE,
@@ -15,8 +15,8 @@
     createTranslation,
   } from "@sjsf/form";
   import { translationResolver } from "@sjsf/form/translations/en";
-  import { addFormComponents, DEFAULT_AJV_CONFIG } from "@sjsf/ajv8-validator";
   import { focusOnFirstError } from "@sjsf/form/focus-on-first-error";
+  import BooleanSelectField from "@sjsf/legacy-fields/extra-fields/boolean-select.svelte";
   import { setThemeContext } from "@sjsf/shadcn-theme";
   import { components } from "@sjsf/shadcn-theme/default";
 
@@ -75,7 +75,11 @@
     ? parsedThemeName
     : selectTheme("basic", true);
   let themeName = $state(initialThemeName);
-  const theme = $derived(themes[themeName]);
+  const theme = $derived(
+    overrideByRecord(themes[themeName], {
+      booleanSelectField: BooleanSelectField,
+    })
+  );
   const themeStyle = $derived(themeStyles[themeName]);
 
   const parsedIconSetName = url.searchParams.get("icons");
