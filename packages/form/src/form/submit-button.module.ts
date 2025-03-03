@@ -2,7 +2,7 @@ import type { Snippet } from "svelte";
 
 import type { Config } from "./config.js";
 
-declare module "./theme.js" {
+declare module "./components.js" {
   interface FoundationalComponents {
     submitButton: {}
   }

@@ -2,7 +2,7 @@ import type { SchemaValue } from "@/core/index.js";
 
 import type { Config } from "./config.js";
 
-declare module "./theme.js" {
+declare module "./components.js" {
   interface FoundationalComponents {
     rootField: {};
   }

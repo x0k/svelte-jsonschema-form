@@ -4,5 +4,6 @@ export * from "./id.js";
 export * from "./validation.js";
 export * from "./event-handlers.svelte.js";
 export * from "./widget-attributes.js";
-export * from './files.js';
-export * from './theme.js';
+export * from "./files.js";
+export * from "./components.js";
+export * from "./translation.js";

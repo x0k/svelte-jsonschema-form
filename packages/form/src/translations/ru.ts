@@ -1,8 +1,8 @@
 import { fromRecord } from "@/lib/resolver.js";
 import type { ActionFailureReason } from "@/lib/action.svelte.js";
-import { createTranslation, type Translators } from "@/form/translation.js";
+import type { TranslatorDefinitions } from "@/form/translation.js";
 
-export const translators: Translators = {
+export const definitions: TranslatorDefinitions = {
   submit: "Продолжить",
   "array-schema-missing-items": "Отсутствует опция `items`",
   yes: "Да",
@@ -18,6 +18,7 @@ export const translators: Translators = {
   "remove-array-item": "Удалить",
   "remove-object-property": "Удалить",
   "validation-process-error": ({ error }) => FAILURE_REASONS[error.reason],
+  "component-not-found": ({ type }) => `Компонент "${type}" не найден`,
 };
 
 const FAILURE_REASONS: Record<ActionFailureReason, string> = {
@@ -26,6 +27,4 @@ const FAILURE_REASONS: Record<ActionFailureReason, string> = {
   error: "Что-то пошло не так во время валидации",
 };
 
-export const translationResolver = fromRecord(translators);
-
-export const translation = createTranslation(translationResolver)
+export const translation = fromRecord(definitions);

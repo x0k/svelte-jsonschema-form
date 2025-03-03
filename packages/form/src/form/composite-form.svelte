@@ -1,5 +1,5 @@
 <script lang="ts" generics="A extends FormAttributes">
-  import type { FormElement, FormAttributes } from "./theme.js";
+  import type { FormElement, FormAttributes } from "./components.js";
   import type { FormInternals } from "./create-form.svelte.js";
   import { setFromContext } from "./context/context.js";
   import Content from "./content.svelte";

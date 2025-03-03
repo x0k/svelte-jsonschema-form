@@ -18,8 +18,6 @@ export type IconDefinitions = {
 };
 
 export type Icons = Resolver<
-  {
-    [L in Label]: IconConfig<L>;
-  },
-  IconDefinitions
+  { [L in Label]?: IconConfig<L> },
+  Partial<IconDefinitions>
 >;

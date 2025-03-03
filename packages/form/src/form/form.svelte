@@ -2,7 +2,7 @@
   import type { Snippet } from "svelte";
 
   import { getComponent, getFormContext } from "./context/index.js";
-  import type { FormAttributes, FormElement } from "./theme.js";
+  import type { FormAttributes, FormElement } from "./components.js";
   import type { Config } from "./config.js";
 
   let {

@@ -12,7 +12,7 @@ import type { FormValidator } from "../validator.js";
 import type { Icons } from "../icons.js";
 import type { FormMerger } from "../merger.js";
 import type { Config } from "../config.js";
-import type { Theme } from "../theme.js";
+import type { Theme } from "../components.js";
 import type { Id } from "../id.js";
 import type { FormValue } from "../model.js";
 

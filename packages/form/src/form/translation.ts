@@ -16,6 +16,7 @@ export interface Labels {
   "move-array-item-down": {};
   "add-array-item": {};
   "validation-process-error": { error: FailedAction<unknown> };
+  "component-not-found": { type: string };
 }
 
 export type Label = keyof Labels;
@@ -24,25 +25,11 @@ export type Translator<L extends Label> =
   | string
   | ((params: Labels[L]) => string);
 
-export type Translators = {
-  [L in Label]: Translator<L>;
+export type TranslatorDefinitions = {
+  [K in Label]: Translator<K>;
 };
 
-export type TranslatorResolver = Resolver<Labels, Translators>;
-
-export type Translation = <L extends Label>(
-  label: L,
-  params: Labels[L]
-) => string;
-
-export function createTranslation(
-  translatorResolver: TranslatorResolver
-): Translation {
-  return (label, params) => {
-    const translation = translatorResolver(label, params);
-    if (translation === undefined) {
-      return `Label "${label}" is not translated`;
-    }
-    return typeof translation === "string" ? translation : translation(params);
-  };
-}
+export type Translation = Resolver<
+  Partial<Labels>,
+  Partial<TranslatorDefinitions>
+>;

@@ -10,6 +10,7 @@ import {
   type ActionsCombinator,
   type FailedAction,
 } from "@/lib/action.svelte.js";
+import { chain } from "@/lib/resolver.js";
 import type { Schema } from "@/core/index.js";
 
 import {
@@ -36,7 +37,7 @@ import {
   type FieldErrors,
   type FormError,
 } from "./errors.js";
-import type { FormContext } from "./context/index.js";
+import { translate, type FormContext } from "./context/index.js";
 import { DefaultFormMerger, type FormMerger } from "./merger.js";
 import {
   type Id,
@@ -45,8 +46,9 @@ import {
   DEFAULT_PSEUDO_ID_SEPARATOR,
 } from "./id.js";
 import type { Config } from "./config.js";
-import type { Theme } from "./theme.js";
+import type { Theme } from "./components.js";
 import type { FieldValue, FormValue } from "./model.js";
+import { createMessage } from "./error-message.svelte";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
 
@@ -55,9 +57,9 @@ export interface FormOptions<T, VE, V extends FormValidator<VE>> {
   schema: Schema;
   theme: Theme;
   translation: Translation;
+  icons?: Icons;
   uiSchema?: UiSchemaRoot;
   merger?: FormMerger;
-  icons?: Icons;
   fieldsValidationMode?: FieldsValidationMode;
   disabled?: boolean;
   idPrefix?: string;
@@ -302,7 +304,7 @@ export function createForm<T, VE, V extends FormValidator<VE>>(
       errors.set(context.rootId, [
         {
           propertyTitle: "",
-          message: options.translation("validation-process-error", { error }),
+          message: translate(context, "validation-process-error", { error }),
           error: new ValidationProcessError(error),
         },
       ]);
@@ -347,7 +349,7 @@ export function createForm<T, VE, V extends FormValidator<VE>>(
         errors.set(config.id, [
           {
             propertyTitle: config.title,
-            message: options.translation("validation-process-error", { error }),
+            message: translate(context, "validation-process-error", { error }),
             error: new ValidationProcessError(error),
           },
         ]);
@@ -458,7 +460,7 @@ export function createForm<T, VE, V extends FormValidator<VE>>(
       return merger;
     },
     get theme() {
-      return options.theme;
+      return options.theme
     },
     get translation() {
       return options.translation;

@@ -1,15 +1,15 @@
 import { fromRecord } from "@/lib/resolver.js";
 import type { ActionFailureReason } from "@/lib/action.svelte.js";
-import { createTranslation, type Translators } from "@/form/translation.js";
+import type { TranslatorDefinitions } from "@/form/translation.js";
 
-const translators: Translators = {
+const definitions: TranslatorDefinitions = {
   submit: "Submit",
   "array-schema-missing-items": "Missing items definition",
   yes: "Yes",
   no: "No",
-  "multi-schema-option-label-with-title": ({title, index}) =>
+  "multi-schema-option-label-with-title": ({ title, index }) =>
     `${title} option ${index + 1}`,
-  "multi-schema-option-label": ({index}) => `Option ${index + 1}`,
+  "multi-schema-option-label": ({ index }) => `Option ${index + 1}`,
   "add-array-item": "Add item",
   "copy-array-item": "Copy",
   "add-object-property": "Add property",
@@ -18,6 +18,7 @@ const translators: Translators = {
   "remove-array-item": "Del",
   "remove-object-property": "Del",
   "validation-process-error": ({ error }) => FAILURE_REASONS[error.reason],
+  "component-not-found": ({ type }) => `"${type}" component not found`,
 };
 
 const FAILURE_REASONS: Record<ActionFailureReason, string> = {
@@ -26,6 +27,4 @@ const FAILURE_REASONS: Record<ActionFailureReason, string> = {
   error: "Something went wrong during validation",
 };
 
-export const translationResolver = fromRecord(translators);
-
-export const translation = createTranslation(translationResolver)
+export const translation = fromRecord(definitions);

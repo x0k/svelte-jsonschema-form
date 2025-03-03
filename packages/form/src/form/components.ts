@@ -1,16 +1,9 @@
 import type { Component as SvelteComponent } from "svelte";
 
-import type { AnyKey, Equal, ExpandAndEqual } from "@/lib/types.js";
-import {
-  chain,
-  fromRecord,
-  type Resolved,
-  type Resolver,
-} from "@/lib/resolver.js";
-import type { AnyComponent } from "@/lib/svelte.svelte.js";
+import type { Equal, ExpandAndEqual } from "@/lib/types.js";
+import type { Resolver } from "@/lib/resolver.js";
 
 import type { Config } from "./config.js";
-import { createMessage } from "./error-message.svelte";
 
 export interface ComponentProps {}
 
@@ -23,19 +16,24 @@ export interface FoundationalComponents {}
 export type FoundationalComponent = keyof FoundationalComponents &
   ComponentType;
 
-export type Definitions = {
-  [T in ComponentType]: SvelteComponent<
-    ComponentProps[T],
-    {},
-    //@ts-expect-error
-    ComponentBindings[T]
-  >;
+export type ComponentDefinition<T extends ComponentType> = SvelteComponent<
+  ComponentProps[T],
+  {},
+  //@ts-expect-error
+  ComponentBindings[T]
+>;
+
+export type ComponentDefinitions = {
+  [T in ComponentType]: ComponentDefinition<T>;
 };
 
-export type ExtendableDefinitions = {
-  [T in FoundationalComponent]: Definitions[T];
+export type ExtendableComponentDefinitions = {
+  [T in FoundationalComponent]: ComponentDefinitions[T];
 } & {
-  [T in Exclude<ComponentType, FoundationalComponent>]?: Definitions[T];
+  [T in Exclude<
+    ComponentType,
+    FoundationalComponent
+  >]?: ComponentDefinitions[T];
 };
 
 export interface FormElements {}
@@ -62,23 +60,13 @@ export type CompatibleComponentType<T extends ComponentType> = {
  * NOTE: Currently this type is useless because compatible components have
  * the same definitions
  */
-export type CompatibleDefinitions = {
+export type CompatibleComponentDefinitions = {
   [T in ComponentType]: {
-    [K in CompatibleComponentType<T>]: Definitions[K];
+    [K in CompatibleComponentType<T>]: ComponentDefinitions[K];
   }[CompatibleComponentType<T>];
 };
 
 export type Theme = Resolver<
-  Record<ComponentType, Config>,
-  CompatibleDefinitions
+  Partial<Record<ComponentType, Config>>,
+  Partial<CompatibleComponentDefinitions>
 >;
-
-const fallbackComponent = <T extends AnyKey>(type: T) =>
-  createMessage(`Component ${type.toString()} not found`) as Resolved<
-    T,
-    Record<ComponentType, AnyComponent>
-  >;
-
-export function createTheme(definitions: Partial<Definitions>): Theme {
-  return chain(fromRecord(definitions), fallbackComponent);
-}

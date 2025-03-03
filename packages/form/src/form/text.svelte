@@ -1,8 +1,8 @@
 <script lang="ts" generics="L extends Label">
   import type { Label, Labels } from "./translation.js";
-  import { getFormContext } from "./context/context.js";
   import type { Config } from "./config.js";
   import type { IconConfig } from "./icons.js";
+  import { translate, getFormContext } from "./context/index.js";
 
   const ctx = getFormContext();
 
@@ -22,14 +22,19 @@
         config: Config;
       } = $props();
 
-  const translation = $derived(ctx.translation(id, args));
+  const translation = $derived(translate(ctx, id, args));
   const iconConfig: IconConfig<L> = $derived({
     config,
     params: args,
     translation,
   });
-  //@ts-expect-error TODO: Fix this
-  const icon = $derived(ctx.icons?.(id, iconConfig));
+  const icon = $derived(
+    ctx.icons?.(
+      id,
+      //@ts-expect-error
+      iconConfig
+    )
+  );
 </script>
 
 {#if icon}
