@@ -8,8 +8,7 @@ const date: Sample = {
     properties: {
       native: {
         title: "Native",
-        description:
-          "May not work on some browsers, like IE.",
+        description: "May not work on some browsers, like IE.",
         type: "object",
         properties: {
           datetime: {
@@ -25,6 +24,11 @@ const date: Sample = {
             format: "time",
           },
         },
+      },
+      datePicker: {
+        title: "Date picker",
+        description: "May not work because shadow DOM",
+        type: "string",
       },
       // NOTE: Alt date widgets don't supported
       // alternative: {
@@ -44,7 +48,13 @@ const date: Sample = {
       // },
     },
   },
-  uiSchema: {},
+  uiSchema: {
+    datePicker: {
+      "ui:components": {
+        textWidget: "datePickerWidget",
+      },
+    },
+  },
   formData: {},
 };
 
