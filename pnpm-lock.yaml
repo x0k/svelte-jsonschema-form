@@ -117,35 +117,35 @@ importers:
   apps/docs:
     dependencies:
       '@sjsf/ajv8-validator':
-        specifier: workspace:*
-        version: link:../../packages/ajv8-validator
+        specifier: ^1.9.2
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.20.5))(ajv@8.17.1)
       '@sjsf/cfworker-validator':
-        specifier: workspace:*
-        version: link:../../packages/cfworker-validator
+        specifier: ^1.9.2
+        version: 1.9.2(@cfworker/json-schema@4.1.1)(@sjsf/form@1.9.2(svelte@5.20.5))
       '@sjsf/daisyui-theme':
-        specifier: workspace:*
-        version: link:../../packages/daisyui-theme
+        specifier: ^1.9.2
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.20.5))(daisyui@5.0.0)(svelte@5.20.5)
       '@sjsf/daisyui5-theme':
         specifier: workspace:*
         version: link:../../packages/daisyui5-theme
       '@sjsf/flowbite-theme':
-        specifier: workspace:*
-        version: link:../../packages/flowbite-theme
+        specifier: ^1.9.2
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.20.5))(flowbite-svelte@0.47.4(rollup@4.34.8)(svelte@5.20.5))(flowbite@2.5.2(rollup@4.34.8))(svelte@5.20.5)
       '@sjsf/form':
-        specifier: workspace:*
-        version: link:../../packages/form
+        specifier: ^1.9.2
+        version: 1.9.2(svelte@5.20.5)
       '@sjsf/shadcn-theme':
-        specifier: workspace:*
-        version: link:../../packages/shadcn-theme
+        specifier: ^1.9.2
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.20.5))(bits-ui@1.3.5(svelte@5.20.5))(clsx@2.1.1)(lucide-svelte@0.477.0(svelte@5.20.5))(svelte@5.20.5)(tailwind-merge@2.6.0)(tailwind-variants@0.3.1(tailwindcss@4.0.9))
       '@sjsf/skeleton-theme':
-        specifier: workspace:*
-        version: link:../../packages/skeleton-theme
+        specifier: ^1.9.2
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.20.5))(@skeletonlabs/skeleton@3.0.0-next.10(postcss@8.5.2)(tailwindcss@4.0.9))(@tailwindcss/forms@0.5.10(tailwindcss@4.0.9))(svelte@5.20.5)
       '@sjsf/sveltekit':
-        specifier: workspace:*
-        version: link:../../packages/sveltekit
+        specifier: ^1.9.2
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.20.5))(@sveltejs/kit@2.17.3(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.20.5)(vite@6.2.0(@types/node@22.7.5)(jiti@2.4.2)(lightningcss@1.29.1)(yaml@2.5.1)))(svelte@5.20.5)(vite@6.2.0(@types/node@22.7.5)(jiti@2.4.2)(lightningcss@1.29.1)(yaml@2.5.1)))(esm-env@1.2.2)(svelte@5.20.5)
       '@sjsf/zod-validator':
-        specifier: workspace:*
-        version: link:../../packages/zod-validator
+        specifier: ^1.9.2
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.20.5))(json-schema-to-zod@2.6.0)(zod@3.24.2)
       ajv:
         specifier: 'catalog:'
         version: 8.17.1
@@ -2223,6 +2223,21 @@ packages:
       '@skeletonlabs/skeleton': ^3.0.0-next.5
       '@tailwindcss/forms': ^0.5.9
       svelte: ^5.0.0
+
+  '@sjsf/sveltekit@1.9.2':
+    resolution: {integrity: sha512-LwVeiPrGmdQcxhd83jQM/HDHFZ480KSusanAlCCZ+7mM5bKuZaf+toc+w5IR3dqYUX7UnFUax+wNZc/eCdqqMw==}
+    peerDependencies:
+      '@sjsf/form': ^1.9.2
+      '@sveltejs/kit': ^2.12.0
+      esm-env: ^1.0.0
+      svelte: ^5.0.0
+
+  '@sjsf/zod-validator@1.9.2':
+    resolution: {integrity: sha512-JDCt7DnJlQdEXF1wFLsfL3niEw86iWinhzAgupBG82qb49rlna2W2s8BSwF1uBws09gSOJBTOWtLwbQFXp+JqQ==}
+    peerDependencies:
+      '@sjsf/form': ^1.9.2
+      json-schema-to-zod: ^2.0.0
+      zod: ^3.23.0
 
   '@skeletonlabs/skeleton@3.0.0-next.10':
     resolution: {integrity: sha512-unxypP2fcCTCo6uSkFurO1x25Y0OJAWJrDZjQazftYr9EMs88fyWnUH5Nbe6Oj0xoKhW0dToArs5MGFdA4fdzg==}
@@ -6754,6 +6769,12 @@ snapshots:
       daisyui: 4.12.24(postcss@8.5.2)
       svelte: 5.20.5
 
+  '@sjsf/daisyui-theme@1.9.2(@sjsf/form@1.9.2(svelte@5.20.5))(daisyui@5.0.0)(svelte@5.20.5)':
+    dependencies:
+      '@sjsf/form': 1.9.2(svelte@5.20.5)
+      daisyui: 5.0.0
+      svelte: 5.20.5
+
   '@sjsf/flowbite-icons@1.9.2(@sjsf/form@1.9.2(svelte@5.20.5))(flowbite-svelte-icons@2.0.2(svelte@5.20.5)(tailwind-merge@2.6.0)(tailwindcss@3.4.17))(svelte@5.20.5)':
     dependencies:
       '@sjsf/form': 1.9.2(svelte@5.20.5)
@@ -6797,6 +6818,16 @@ snapshots:
       tailwind-merge: 2.6.0
       tailwind-variants: 0.2.1(tailwindcss@3.4.17)
 
+  '@sjsf/shadcn-theme@1.9.2(@sjsf/form@1.9.2(svelte@5.20.5))(bits-ui@1.3.5(svelte@5.20.5))(clsx@2.1.1)(lucide-svelte@0.477.0(svelte@5.20.5))(svelte@5.20.5)(tailwind-merge@2.6.0)(tailwind-variants@0.3.1(tailwindcss@4.0.9))':
+    dependencies:
+      '@sjsf/form': 1.9.2(svelte@5.20.5)
+      bits-ui: 1.3.5(svelte@5.20.5)
+      clsx: 2.1.1
+      lucide-svelte: 0.477.0(svelte@5.20.5)
+      svelte: 5.20.5
+      tailwind-merge: 2.6.0
+      tailwind-variants: 0.3.1(tailwindcss@4.0.9)
+
   '@sjsf/skeleton-theme@1.9.2(@sjsf/form@1.9.2(svelte@5.20.5))(@skeletonlabs/skeleton@3.0.0-next.10(postcss@8.5.2)(tailwindcss@3.4.17))(@tailwindcss/forms@0.5.10(tailwindcss@3.4.17))(svelte@5.20.5)':
     dependencies:
       '@sjsf/form': 1.9.2(svelte@5.20.5)
@@ -6804,11 +6835,39 @@ snapshots:
       '@tailwindcss/forms': 0.5.10(tailwindcss@3.4.17)
       svelte: 5.20.5
 
+  '@sjsf/skeleton-theme@1.9.2(@sjsf/form@1.9.2(svelte@5.20.5))(@skeletonlabs/skeleton@3.0.0-next.10(postcss@8.5.2)(tailwindcss@4.0.9))(@tailwindcss/forms@0.5.10(tailwindcss@4.0.9))(svelte@5.20.5)':
+    dependencies:
+      '@sjsf/form': 1.9.2(svelte@5.20.5)
+      '@skeletonlabs/skeleton': 3.0.0-next.10(postcss@8.5.2)(tailwindcss@4.0.9)
+      '@tailwindcss/forms': 0.5.10(tailwindcss@4.0.9)
+      svelte: 5.20.5
+
+  '@sjsf/sveltekit@1.9.2(@sjsf/form@1.9.2(svelte@5.20.5))(@sveltejs/kit@2.17.3(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.20.5)(vite@6.2.0(@types/node@22.7.5)(jiti@2.4.2)(lightningcss@1.29.1)(yaml@2.5.1)))(svelte@5.20.5)(vite@6.2.0(@types/node@22.7.5)(jiti@2.4.2)(lightningcss@1.29.1)(yaml@2.5.1)))(esm-env@1.2.2)(svelte@5.20.5)':
+    dependencies:
+      '@sjsf/form': 1.9.2(svelte@5.20.5)
+      '@sveltejs/kit': 2.17.3(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.20.5)(vite@6.2.0(@types/node@22.7.5)(jiti@2.4.2)(lightningcss@1.29.1)(yaml@2.5.1)))(svelte@5.20.5)(vite@6.2.0(@types/node@22.7.5)(jiti@2.4.2)(lightningcss@1.29.1)(yaml@2.5.1))
+      esm-env: 1.2.2
+      svelte: 5.20.5
+
+  '@sjsf/zod-validator@1.9.2(@sjsf/form@1.9.2(svelte@5.20.5))(json-schema-to-zod@2.6.0)(zod@3.24.2)':
+    dependencies:
+      '@sjsf/form': 1.9.2(svelte@5.20.5)
+      json-schema-to-zod: 2.6.0
+      zod: 3.24.2
+
   '@skeletonlabs/skeleton@3.0.0-next.10(postcss@8.5.2)(tailwindcss@3.4.17)':
     dependencies:
       postcss-js: 4.0.1(postcss@8.5.2)
       postcss-selector-parser: 7.0.0
       tailwindcss: 3.4.17
+    transitivePeerDependencies:
+      - postcss
+
+  '@skeletonlabs/skeleton@3.0.0-next.10(postcss@8.5.2)(tailwindcss@4.0.9)':
+    dependencies:
+      postcss-js: 4.0.1(postcss@8.5.2)
+      postcss-selector-parser: 7.0.0
+      tailwindcss: 4.0.9
     transitivePeerDependencies:
       - postcss
 
@@ -6885,6 +6944,11 @@ snapshots:
     dependencies:
       mini-svg-data-uri: 1.4.4
       tailwindcss: 3.4.17
+
+  '@tailwindcss/forms@0.5.10(tailwindcss@4.0.9)':
+    dependencies:
+      mini-svg-data-uri: 1.4.4
+      tailwindcss: 4.0.9
 
   '@tailwindcss/node@4.0.9':
     dependencies:
@@ -10433,6 +10497,11 @@ snapshots:
     dependencies:
       tailwind-merge: 2.5.4
       tailwindcss: 3.4.17
+
+  tailwind-variants@0.3.1(tailwindcss@4.0.9):
+    dependencies:
+      tailwind-merge: 2.5.4
+      tailwindcss: 4.0.9
 
   tailwindcss-animate@1.0.7(tailwindcss@3.4.17):
     dependencies:
