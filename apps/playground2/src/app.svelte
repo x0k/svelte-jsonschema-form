@@ -1,6 +1,6 @@
 <script lang="ts">
   import { SvelteMap } from "svelte/reactivity";
-  import { overrideByRecord } from "@sjsf/form/lib/resolver";
+  import { extendByRecord } from "@sjsf/form/lib/resolver";
   import {
     ON_BLUR,
     ON_CHANGE,
@@ -12,9 +12,8 @@
     CompositeForm,
     ON_ARRAY_CHANGE,
     ON_OBJECT_CHANGE,
-    createTranslation,
   } from "@sjsf/form";
-  import { translationResolver } from "@sjsf/form/translations/en";
+  import { translation } from "@sjsf/form/translations/en";
   import { focusOnFirstError } from "@sjsf/form/focus-on-first-error";
   import BooleanSelectField from "@sjsf/legacy-fields/extra-fields/boolean-select.svelte";
   import { setThemeContext } from "@sjsf/shadcn-theme";
@@ -76,7 +75,7 @@
     : selectTheme("basic", true);
   let themeName = $state(initialThemeName);
   const theme = $derived(
-    overrideByRecord(themes[themeName], {
+    extendByRecord(themes[themeName], {
       booleanSelectField: BooleanSelectField,
     })
   );
@@ -115,11 +114,9 @@
   let html5Validation = $state(false);
   let doFocusOnFirstError = $state(true);
 
-  const translation = createTranslation(translationResolver);
-
   const form = createForm({
     initialValue: samples[initialSampleName].formData,
-    initialErrors: samples[initialSampleName].errors ?? new SvelteMap(),
+    initialErrors: samples[initialSampleName].errors,
     translation,
     get theme() {
       return theme;
