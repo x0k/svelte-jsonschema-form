@@ -9,10 +9,10 @@ import type { Translation } from "../translation.js";
 import type { UiOptions, UiSchema, UiSchemaRoot } from "../ui-schema.js";
 import type { FieldErrors, FormError, FormErrors } from "../errors.js";
 import type { FormValidator } from "../validator.js";
-import type { IconsResolver } from "../icons.js";
+import type { Icons } from "../icons.js";
 import type { FormMerger } from "../merger.js";
 import type { Config } from "../config.js";
-import type { ThemeResolver } from "../theme.js";
+import type { Theme } from "../theme.js";
 import type { Id } from "../id.js";
 import type { FormValue } from "../model.js";
 
@@ -27,7 +27,7 @@ export interface FormContext<VE, V extends FormValidator<VE>> {
   readonly uiOptions: UiOptions;
   readonly validator: V;
   readonly merger: FormMerger;
-  readonly icons?: IconsResolver;
+  readonly icons?: Icons;
   readonly idPrefix: string;
   readonly idSeparator: string;
   readonly idPseudoSeparator: string;
@@ -35,7 +35,7 @@ export interface FormContext<VE, V extends FormValidator<VE>> {
   readonly errors: FormErrors<FormError<VE, V>>;
   readonly dataUrlToBlob: DataURLToBlob;
   readonly translation: Translation;
-  readonly theme: ThemeResolver;
+  readonly theme: Theme;
   readonly submitHandler: EventHandler<SubmitEvent, HTMLFormElement>;
   readonly resetHandler: FormEventHandler<HTMLFormElement>;
   readonly validateAdditionalPropertyKey: (

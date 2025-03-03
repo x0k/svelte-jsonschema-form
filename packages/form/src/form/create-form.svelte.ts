@@ -28,7 +28,7 @@ import {
 } from "./validator.js";
 import type { Translation } from "./translation.js";
 import type { UiSchemaRoot } from "./ui-schema.js";
-import type { IconsResolver } from "./icons.js";
+import type { Icons } from "./icons.js";
 import type { FieldsValidationMode } from "./validation.js";
 import {
   groupErrors,
@@ -45,7 +45,7 @@ import {
   DEFAULT_PSEUDO_ID_SEPARATOR,
 } from "./id.js";
 import type { Config } from "./config.js";
-import type { ThemeResolver } from "./theme.js";
+import type { Theme } from "./theme.js";
 import type { FieldValue, FormValue } from "./model.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
@@ -53,11 +53,11 @@ export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
 export interface FormOptions<T, VE, V extends FormValidator<VE>> {
   validator: V;
   schema: Schema;
-  theme: ThemeResolver;
+  theme: Theme;
   translation: Translation;
   uiSchema?: UiSchemaRoot;
   merger?: FormMerger;
-  icons?: IconsResolver;
+  icons?: Icons;
   fieldsValidationMode?: FieldsValidationMode;
   disabled?: boolean;
   idPrefix?: string;

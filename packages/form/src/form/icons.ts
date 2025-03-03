@@ -11,15 +11,15 @@ export interface IconConfig<L extends Label> {
   translation: string;
 }
 
-export type Icon<L extends Label> = Snippet<[IconConfig<L>]>;
+export type IconDefinition<L extends Label> = Snippet<[IconConfig<L>]>;
 
-export type Icons = {
-  [L in Label]: Icon<L>;
+export type IconDefinitions = {
+  [L in Label]: IconDefinition<L>;
 };
 
-export type IconsResolver = Resolver<
+export type Icons = Resolver<
   {
     [L in Label]: IconConfig<L>;
   },
-  Icons
+  IconDefinitions
 >;

@@ -1,7 +1,12 @@
 import type { Component as SvelteComponent } from "svelte";
 
-import type { Equal, ExpandAndEqual } from "@/lib/types.js";
-import { chain, type Resolved, type Resolver } from "@/lib/resolver.js";
+import type { AnyKey, Equal, ExpandAndEqual } from "@/lib/types.js";
+import {
+  chain,
+  fromRecord,
+  type Resolved,
+  type Resolver,
+} from "@/lib/resolver.js";
 import type { AnyComponent } from "@/lib/svelte.svelte.js";
 
 import type { Config } from "./config.js";
@@ -63,17 +68,17 @@ export type CompatibleDefinitions = {
   }[CompatibleComponentType<T>];
 };
 
-export type ThemeResolver = Resolver<
+export type Theme = Resolver<
   Record<ComponentType, Config>,
   CompatibleDefinitions
 >;
 
-const fallbackComponent: ThemeResolver = <T extends ComponentType>(type: T) =>
-  createMessage(`Component ${type} not found`) as Resolved<
+const fallbackComponent = <T extends AnyKey>(type: T) =>
+  createMessage(`Component ${type.toString()} not found`) as Resolved<
     T,
     Record<ComponentType, AnyComponent>
   >;
 
-export function createTheme(definitions: ThemeResolver): ThemeResolver {
-  return chain(definitions, fallbackComponent);
+export function createTheme(definitions: Partial<Definitions>): Theme {
+  return chain(fromRecord(definitions), fallbackComponent);
 }
