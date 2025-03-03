@@ -1,4 +1,4 @@
-import type { ExtendableDefinitions } from "@sjsf/form";
+import type { ExtendableComponentDefinitions } from "@sjsf/form";
 import * as fields from "@sjsf/legacy-fields/exports";
 import * as templates from "@sjsf/legacy-templates/exports";
 
@@ -10,6 +10,6 @@ export const definitions = {
   ...templates,
   ...components,
   ...widgets,
-} satisfies ExtendableDefinitions;
+} satisfies ExtendableComponentDefinitions;
 
-export const extendable: ExtendableDefinitions = definitions;
+export const extendable: ExtendableComponentDefinitions = definitions;
