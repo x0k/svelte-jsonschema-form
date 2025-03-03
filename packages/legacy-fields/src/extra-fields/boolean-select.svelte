@@ -22,6 +22,7 @@
     createPseudoId,
     type Schema,
     DEFAULT_BOOLEAN_ENUM,
+    translate,
   } from "@sjsf/form";
 
   import { createOptions } from "../enum.js";
@@ -35,8 +36,8 @@
   const Widget = $derived(getComponent(ctx, "selectWidget", config));
 
   const options = $derived.by(() => {
-    const yes = ctx.translation("yes", {});
-    const no = ctx.translation("no", {});
+    const yes = translate(ctx, "yes", {});
+    const no = translate(ctx, "no", {});
     const computeId = (i: number) => createPseudoId(ctx, config.id, i);
     if (Array.isArray(config.schema.oneOf)) {
       return (

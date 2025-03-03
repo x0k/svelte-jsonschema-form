@@ -19,6 +19,7 @@
     getComponent,
     type ComponentProps,
     type FormValidator,
+    translate,
   } from "@sjsf/form";
 
   import { setArrayContext, type ArrayContext } from "./context.js";
@@ -104,7 +105,7 @@
 </script>
 
 {#if config.schema.items === undefined}
-  <ErrorMessage message={ctx.translation("array-schema-missing-items", {})} />
+  <ErrorMessage message={translate(ctx, "array-schema-missing-items", {})} />
 {:else if isMultiSelect(ctx, config.schema)}
   {@const Field = getComponent(ctx, "multiEnumField", config)}
   <Field {config} {itemSchema} bind:value />

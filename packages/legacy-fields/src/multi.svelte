@@ -29,6 +29,7 @@
     createPseudoId,
     getComponent,
     type ComponentProps,
+    translate,
   } from "@sjsf/form";
 
   let {
@@ -129,12 +130,12 @@
     const title = config.uiOptions?.title ?? config.schema.title;
     return title !== undefined
       ? (index: number) =>
-          ctx.translation("multi-schema-option-label-with-title", {
+          translate(ctx, "multi-schema-option-label-with-title", {
             index,
             title,
           })
       : (index: number) =>
-          ctx.translation("multi-schema-option-label", { index });
+          translate(ctx, "multi-schema-option-label", { index });
   });
   const enumOptions = $derived<EnumOption<number>[]>(
     retrievedOptions.map((s, i) => ({
