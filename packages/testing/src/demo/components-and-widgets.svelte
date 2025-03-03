@@ -50,10 +50,6 @@
           {},
         ],
         number: [number, {}],
-        radio: [
-          enumeration,
-          { "ui:components": { selectWidget: "radioWidget" } },
-        ],
         select: [enumeration, {}],
         text: [text, {}],
         ...additionalSpecs,
