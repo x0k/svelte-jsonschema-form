@@ -6,7 +6,7 @@
     DEFAULT_ID_SEPARATOR,
     pathToId,
     type Schema,
-    type ThemeResolver,
+    type Theme,
     type UiSchema,
     type UiSchemaRoot,
   } from "@sjsf/form";
@@ -29,7 +29,7 @@
     append,
     additionalSpecs,
   }: {
-    theme: ThemeResolver;
+    theme: Theme;
     additionalSpecs?: Record<string, [Schema, UiSchema]>;
     append?: Snippet;
   } = $props();

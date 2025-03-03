@@ -1,13 +1,7 @@
 <script lang="ts">
-  import type {
-    Config,
-    IconConfig,
-    IconsResolver,
-    Id,
-    Labels,
-  } from "@sjsf/form";
+  import type { Config, IconConfig, Icons, Id, Labels } from "@sjsf/form";
 
-  const { iconsResolver }: { iconsResolver: IconsResolver } = $props();
+  const { icons }: { icons: Icons } = $props();
   const config: Config = {
     id: "root" as Id,
     name: "name",
@@ -42,7 +36,7 @@
       <button
         style="display: flex; gap: 0.5rem; align-items: center; height: 2rem"
       >
-        {@render iconsResolver(label, iconConfig)?.(iconConfig as any)}
+        {@render icons(label, iconConfig)?.(iconConfig as any)}
         {key}
       </button>
     {/each}
