@@ -28,7 +28,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 23
           cache: pnpm
 
       - name: Install dependencies
@@ -46,7 +46,7 @@ jobs:
         run: pnpm run build --filter="./apps/*"
 
       - name: Merge apps build outputs
-        run: mv apps/playground/dist apps/docs/dist/playground
+        run: mv apps/playground/dist apps/docs/dist/playground && mv apps/playground2/dist apps/docs/dist/playground2
 
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
