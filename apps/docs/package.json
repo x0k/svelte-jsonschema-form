@@ -26,7 +26,9 @@
     "zod": "catalog:",
     "zod-to-json-schema": "^3.24.3",
     "cally": "^0.8.0",
-    "pikaday": "^1.8.2"
+    "pikaday": "^1.8.2",
+    "lucide-svelte": "0.453.0",
+    "tailwind-variants": "0.2.1"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
@@ -36,6 +38,7 @@
     "astro-vtbot": "^2.1.0",
     "sharp": "^0.33.5",
     "starlight-package-managers": "^0.10.0",
-    "svelte": "catalog:"
+    "svelte": "catalog:",
+    "daisyui": "4.12.24"
   }
 }

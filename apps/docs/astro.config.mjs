@@ -1,5 +1,5 @@
 // @ts-check
-import { fileURLToPath } from 'node:url'
+import { fileURLToPath } from "node:url";
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import svelte from "@astrojs/svelte";
@@ -27,7 +27,7 @@ export default defineConfig({
             "data-goatcounter": "https://sjsf.counter.x0k.online/count",
             async: true,
             src: "https://sjsf.counter.x0k.online/count.js",
-          }
+          },
         },
       ],
       sidebar: [
@@ -53,7 +53,7 @@ export default defineConfig({
         },
         {
           label: "Migration guides",
-          autogenerate: { directory: "migration-guides" }
+          autogenerate: { directory: "migration-guides" },
         },
         {
           label: "API Reference",
@@ -62,7 +62,7 @@ export default defineConfig({
         {
           label: "Changelogs",
           autogenerate: { directory: "changelogs" },
-        }
+        },
       ],
       components: {
         Head: "./src/components/custom-head.astro",
@@ -76,7 +76,7 @@ export default defineConfig({
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
         "#": fileURLToPath(new URL("../../packages", import.meta.url)),
-        "apps" : fileURLToPath(new URL("..", import.meta.url))
+        apps: fileURLToPath(new URL("..", import.meta.url)),
       },
     },
   },
