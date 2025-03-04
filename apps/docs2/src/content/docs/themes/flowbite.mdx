@@ -1,0 +1,66 @@
+---
+title: Flowbite
+sidebar:
+  order: 2
+---
+
+import { Code, Card, LinkButton, Tabs, TabItem } from '@astrojs/starlight/components';
+
+import Npm from '@/components/npm.astro';
+
+import FlowbiteTheme from './_flowbite-theme.astro';
+import flowbiteThemeCode from './_flowbite-theme.svelte?raw';
+import demoSchemaCode from './_demo-schema.ts?raw';
+
+## Installation
+
+<Npm pkg="@sjsf/flowbite-theme" />
+
+### Install Flowbite Svelte
+
+<LinkButton href="https://flowbite-svelte.com/docs/pages/quickstart" variant='secondary' target="_blank" icon="external" >
+  Quickstart - Flowbite Svelte
+</LinkButton>
+
+### Setup styles
+
+There is two ways to setup styles:
+
+1. Tailwind configuration
+
+```typescript
+import flowbite from 'flowbite/plugin';
+import { THEME_CONTENT, FLOWBITE_CONTENT } from '@sjsf/flowbite-theme/preset'
+
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./src/**/*.{html,js,svelte,ts}', THEME_CONTENT, FLOWBITE_CONTENT],
+  plugins: [flowbite],
+}
+```
+
+2. Inject prepared styles (not recommended)
+
+```typescript
+// Inject them as you like
+import flowbiteStyles from "@sjsf/flowbite-theme/styles.css?inline";
+```
+
+## Additional widgets
+
+- `toggle`
+
+## Demo
+
+<Tabs>
+<TabItem label="Form.svelte">
+  <Code code={flowbiteThemeCode} lang="svelte" />
+</TabItem>
+<TabItem label="_demo-schema.ts">
+  <Code code={demoSchemaCode} lang="typescript" />
+</TabItem>
+</Tabs>
+
+<Card>
+  <FlowbiteTheme />
+</Card>

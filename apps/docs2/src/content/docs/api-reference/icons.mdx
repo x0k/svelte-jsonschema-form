@@ -1,0 +1,21 @@
+---
+title: Icons
+sidebar:
+  order: 12
+---
+
+:::note
+
+See [Translation](../translation/) for `Label` and `Labels` types.
+
+:::
+
+```typescript
+import type { Snippet } from "svelte";
+
+import type { Label, Labels } from "@sjsf/form";
+
+type Icons = {
+  [L in Label]?: Snippet<[[L, ...Labels[L]]]>;
+};
+```

@@ -46,12 +46,12 @@ jobs:
         run: pnpm run build --filter="./apps/*"
 
       - name: Merge apps build outputs
-        run: mv apps/playground/dist apps/docs/dist/playground && mv apps/playground2/dist apps/docs/dist/playground2
+        run: mv apps/docs/dist apps/docs2/dist/v1 mv apps/playground/dist apps/docs2/dist/playground && mv apps/playground2/dist apps/docs2/dist/playground2
 
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "apps/docs/dist/"
+          path: "apps/docs2/dist/"
 
       - name: Deploy to GitHub Pages
         id: deployment

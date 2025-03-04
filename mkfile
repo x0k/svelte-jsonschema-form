@@ -70,7 +70,7 @@ tp/:
   popd
 
 docs/:
-  pushd apps/docs
+  pushd apps/docs2
   c:
     pnpm run check
   d:

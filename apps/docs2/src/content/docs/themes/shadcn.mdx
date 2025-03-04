@@ -1,0 +1,100 @@
+---
+title: Shadcn
+sidebar:
+  order: 4
+---
+
+import { Code, Card, LinkButton, Tabs, TabItem } from '@astrojs/starlight/components';
+
+import Npm from '@/components/npm.astro';
+
+import ShadcnTheme from './_shadcn-theme.astro';
+import shadcnThemeCode from './_shadcn-theme.svelte?raw';
+import demoSchemaCode from './_demo-schema.ts?raw';
+
+## Installation
+
+<Npm pkg="@sjsf/shadcn-theme" />
+
+:::note
+
+This is `shadcn-svelte@next` based theme.
+
+:::
+
+### Install Shadcn Svelte
+
+<LinkButton href="https://next.shadcn-svelte.com/docs/installation" variant='secondary' target="_blank" icon="external">
+  Installation - shadcn-svelte
+</LinkButton>
+
+### Setup styles
+
+There is two ways to setup styles:
+
+1. Use tailwindcss config
+
+```typescript
+import { THEME_CONTENT } from '@sjsf/shadcn-theme/preset'
+
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./src/**/*.{html,js,svelte,ts}', THEME_CONTENT],
+  // other tailwind config
+  ...
+}
+```
+
+2. Inject prepared styles (not recommended)
+
+```typescript
+// Inject them as you like
+import shadcnStyles from '@sjsf/shadcn-theme/styles.css?inline';
+```
+
+## Components
+
+Since `shadcn-svelte` is not a component library you should provide your components via `setThemeContext`.
+
+```typescript
+import { setThemeContext } from '@sjsf/shadcn-theme';
+import { components } from '@sjsf/shadcn-theme/default';
+// or import { components } from '@sjsf/shadcn-theme/new-york';
+
+setThemeContext({ components })
+```
+
+:::caution
+
+You should define `components: ThemeComponents` yourself:
+
+- to reduce final bundle size
+- to avoid https://github.com/x0k/svelte-jsonschema-form/issues/48
+
+  In this case you also should remove `bind:this={ref}` bindings from your components.
+
+:::
+
+## Demo
+
+:::caution
+
+Currently, some `shadcn-svelte` components do not work in the shadow DOM,
+which is used in the documentation and playground.
+
+See https://github.com/huntabyte/bits-ui/issues/828 for more details.
+
+:::
+
+<Tabs>
+<TabItem label="Form.svelte">
+  <Code code={shadcnThemeCode} lang="svelte" />
+</TabItem>
+<TabItem label="_demo-schema.ts">
+  <Code code={demoSchemaCode} lang="typescript" />
+</TabItem>
+</Tabs>
+
+<Card>
+  <ShadcnTheme />
+</Card>

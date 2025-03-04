@@ -1,0 +1,12 @@
+---
+import { ShadowHost } from "@/components/shadow";
+import { Icon } from '@astrojs/starlight/components';
+
+import Form from "./_icons.svelte";
+---
+
+<ShadowHost client:only="svelte">
+  <Form client:only="svelte">
+    Hello <Icon name="seti:svelte" /> from <Icon name="astro" />
+  </Form>
+</ShadowHost>

@@ -1,0 +1,89 @@
+---
+title: Zod
+sidebar:
+  order: 1
+---
+
+import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
+
+import Npm from '@/components/npm.astro';
+
+import Form from './_zod.astro';
+import formCode from './_zod.svelte?raw';
+import sharedCode from './_shared.ts?raw';
+import apiCode from './_zod.api.ts?raw';
+
+:::caution
+
+Zod validator is experimental
+
+:::
+
+You may want to use Zod validator because:
+
+- You can use Zod schema as a source of truth for the form value type (`z.infer`).
+- This is an easy way to add custom error messages
+
+## Installation
+
+<Npm pkg="@sjsf/zod-validator zod zod-to-json-schema json-schema-to-zod" />
+
+References:
+
+- [Zod](https://github.com/colinhacks/zod)
+- [Zod to Json Schema](https://github.com/StefanTerdell/zod-to-json-schema)
+- [Json Schema to Zod](https://github.com/StefanTerdell/json-schema-to-zod)
+
+## Example
+
+<Tabs>
+  <TabItem label="form.svelte">
+    <Code code={formCode} lang='svelte' />
+  </TabItem>
+  <TabItem label="_shared.ts">
+    <Code code={sharedCode} lang='typescript' />
+  </TabItem>
+</Tabs>
+
+<Card>
+  <Form />
+</Card>
+
+## Caveats
+
+- If you using this library only for full form validation (without fields validation mode)
+and your form does not have and `oneOf`, `anyOf`, `dependencies` `if` keywords or recursive references,
+you can use this library pretty safely.
+
+- If you are using fields validation mode then starting from this point
+internally we start to use `json-schema-to-zod`.
+So first of all, please read this warning [about using this library at runtime](https://github.com/StefanTerdell/json-schema-to-zod?tab=readme-ov-file#use-at-runtime).
+However, I believe you are still safe as only small leafy bits of the circuit are transformed with this approach.
+
+- If you use any conditional keyword or recursive references it means with a high probability something can go wrong.
+If you have problems with this approach, try using zod with a different validator using the `augment` submodule.
+So in this case zod validator will be used only for full form validation.
+
+```typescript
+import { createValidator } from "@sjsf/other-validator";
+import { withZod } from "@sjsf/zod-integration/augment";
+
+const validator = withZod(createValidator(), { schema });
+```
+
+## Async validation
+
+This validator supports async validation but only for the full form validation.
+
+```typescript
+import { createValidator } from "@sjsf/zod-validator";
+
+const validator = createValidator({
+  async: true,
+  schema,
+});
+```
+
+## API
+
+<Code code={apiCode} lang='typescript' />

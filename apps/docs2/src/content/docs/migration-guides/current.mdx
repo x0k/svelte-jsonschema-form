@@ -1,0 +1,41 @@
+---
+title: current
+sidebar:
+  order: 0
+---
+
+### @sjsf/form
+
+- Replace `<FormContent bind:value={form.formValue} />` with `<Content {form} />` from `@sjsf/form` package
+
+- Replace `SimpleForm` with `RawForm` from `@sjsf/form` package
+
+  - In most cases you may remove additional styles/classes because `RawForm` uses
+    styled form element from your theme
+
+- Replace `submitButton: <uiSchema>` with `"ui:submitButton": <uiSchema>` in the definitions of `UiSchemaRoot`
+
+- Replace `import { useMutation } from "@sjsf/form/use-mutation.svelte"` with `import { createAction } from "@sjsf/form/create-action.svelte"`
+  
+  - `mutate` is renamed to `execute`
+
+- Replace `import { omitExtraData2 } from "@sjsf/form/legacy-omit-extra-data"`
+  with `import { omitExtraData } from "@sjsf/form/omit-extra-data"`
+
+### @sjsf/sveltekit
+
+- Upgrade SvelteKit package at least up to `2.12.0`
+
+- Migrate from `meta` and `useSvelteKitForm` to `createMeta`, `createSvelteKitRequest` and `createSvelteKitForm`
+  - In simple cases you may use only `createMeta` and `SvelteKitForm` component
+
+- Migrate from `validateForm` to `validateForm2` (support async validators)
+
+## 1.8.0
+
+### @sjsf/form
+
+- Replace `useForm2` with `createForm3`
+
+- If custom form is used it should call `setFormContext(form.context)`
+  before using `FormContent` and `SubmitButton` components.

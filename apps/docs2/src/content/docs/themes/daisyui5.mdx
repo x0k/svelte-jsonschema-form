@@ -1,0 +1,51 @@
+---
+title: DaisyUI v5
+sidebar:
+  hidden: true
+---
+
+import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/components';
+
+import Npm from '@/components/npm.astro';
+import Picker from '@/components/picker.astro';
+
+import DaisyuiTheme from './_daisyui5-theme.astro';
+import daisyuiThemeCode from './_daisyui5-theme.svelte?raw';
+import demoSchemaCode from './_demo-schema.ts?raw';
+
+<Picker>
+  <a href="../daisyui/" data-active={false}>v4</a>
+  <a href="." data-active={true}>v5</a>
+</Picker>
+
+## Installation
+
+<Npm pkg="@sjsf/daisyui5-theme" />
+
+### Install daisyUI v5
+
+<LinkButton href="https://v5.daisyui.com/docs/install/" variant='secondary' target="_blank" icon="external">
+  Install daisyUI as a Tailwind plugin
+</LinkButton>
+
+## Additional widgets
+
+- `toggle`
+- `filter`
+- `callyCalendar` (depends on the npm package `cally`)
+- `pikadayCalendar` (depends on the npm package `pikaday`)
+
+## Demo
+
+<Tabs>
+<TabItem label="Form.svelte">
+  <Code code={daisyuiThemeCode} lang="svelte" />
+</TabItem>
+<TabItem label="_demo-schema.ts">
+  <Code code={demoSchemaCode} lang="typescript" />
+</TabItem>
+</Tabs>
+
+<Card>
+  <DaisyuiTheme />
+</Card>

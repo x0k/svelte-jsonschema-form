@@ -1,0 +1,39 @@
+---
+import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+
+import { THEME_TTITLES, THEMES, type Theme } from "@/shared";
+import { Content, frontmatter } from "@/content/docs/index.mdx";
+
+export function getStaticPaths() {
+  return THEMES.slice(1).map((theme) => ({ params: { theme } }));
+}
+
+function fixGetStartedUrl(
+  frontmatter: Record<string, any>
+): Record<string, any> {
+  const action = frontmatter?.hero?.actions?.[0];
+  if (!action) return frontmatter;
+  return {
+    ...frontmatter,
+    hero: {
+      ...frontmatter.hero,
+      actions: [
+        {
+          ...action,
+          link: `../${action.link}`,
+        },
+        ...frontmatter.hero.actions.slice(1),
+      ],
+    },
+  };
+}
+---
+
+<StarlightPage
+  frontmatter={{
+    ...fixGetStartedUrl(frontmatter),
+    title: `${frontmatter.title} with ${THEME_TTITLES[Astro.params.theme as Theme]}`,
+  }}
+>
+  <Content />
+</StarlightPage>

@@ -1,0 +1,9 @@
+---
+import { ShadowHost } from "@/components/shadow";
+
+import FocusOnFirstErrorForm from './_focus-on-first-error.svelte'
+---
+
+<ShadowHost client:only="svelte">
+  <FocusOnFirstErrorForm client:only="svelte" />
+</ShadowHost>

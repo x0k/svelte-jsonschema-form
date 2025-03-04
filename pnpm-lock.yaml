@@ -202,6 +202,94 @@ importers:
         specifier: 'catalog:'
         version: 5.20.5
 
+  apps/docs2:
+    dependencies:
+      '@sjsf/ajv8-validator':
+        specifier: ^1.9.2
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.20.5))(ajv@8.17.1)
+      '@sjsf/cfworker-validator':
+        specifier: ^1.9.2
+        version: 1.9.2(@cfworker/json-schema@4.1.1)(@sjsf/form@1.9.2(svelte@5.20.5))
+      '@sjsf/daisyui-theme':
+        specifier: ^1.9.2
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.20.5))(daisyui@4.12.24(postcss@8.5.3))(svelte@5.20.5)
+      '@sjsf/daisyui5-theme':
+        specifier: workspace:*
+        version: link:../../packages/daisyui5-theme
+      '@sjsf/flowbite-theme':
+        specifier: ^1.9.2
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.20.5))(flowbite-svelte@0.47.4(rollup@4.34.8)(svelte@5.20.5))(flowbite@2.5.2(rollup@4.34.8))(svelte@5.20.5)
+      '@sjsf/form':
+        specifier: ^1.9.2
+        version: 1.9.2(svelte@5.20.5)
+      '@sjsf/shadcn-theme':
+        specifier: ^1.9.2
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.20.5))(bits-ui@1.3.5(svelte@5.20.5))(clsx@2.1.1)(lucide-svelte@0.453.0(svelte@5.20.5))(svelte@5.20.5)(tailwind-merge@2.6.0)(tailwind-variants@0.2.1(tailwindcss@4.0.9))
+      '@sjsf/skeleton-theme':
+        specifier: ^1.9.2
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.20.5))(@skeletonlabs/skeleton@3.0.0-next.10(postcss@8.5.3)(tailwindcss@4.0.9))(@tailwindcss/forms@0.5.10(tailwindcss@4.0.9))(svelte@5.20.5)
+      '@sjsf/sveltekit':
+        specifier: ^1.9.2
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.20.5))(@sveltejs/kit@2.17.3(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.20.5)(vite@6.2.0(@types/node@22.7.5)(jiti@2.4.2)(lightningcss@1.29.1)(yaml@2.5.1)))(svelte@5.20.5)(vite@6.2.0(@types/node@22.7.5)(jiti@2.4.2)(lightningcss@1.29.1)(yaml@2.5.1)))(esm-env@1.2.2)(svelte@5.20.5)
+      '@sjsf/zod-validator':
+        specifier: ^1.9.2
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.20.5))(json-schema-to-zod@2.6.0)(zod@3.24.2)
+      ajv:
+        specifier: 'catalog:'
+        version: 8.17.1
+      cally:
+        specifier: ^0.8.0
+        version: 0.8.0
+      lucide-svelte:
+        specifier: 0.453.0
+        version: 0.453.0(svelte@5.20.5)
+      mermaid:
+        specifier: ^11.4.1
+        version: 11.4.1
+      pikaday:
+        specifier: ^1.8.2
+        version: 1.8.2
+      svg-pan-zoom:
+        specifier: github:bumbu/svg-pan-zoom
+        version: https://codeload.github.com/bumbu/svg-pan-zoom/tar.gz/aaa68d186abab5d782191b66d2582592fe5d3c13
+      tailwind-variants:
+        specifier: 0.2.1
+        version: 0.2.1(tailwindcss@4.0.9)
+      zod:
+        specifier: 'catalog:'
+        version: 3.24.2
+      zod-to-json-schema:
+        specifier: ^3.24.3
+        version: 3.24.3(zod@3.24.2)
+    devDependencies:
+      '@astrojs/check':
+        specifier: ^0.9.4
+        version: 0.9.4(prettier@3.5.1)(typescript@5.8.2)
+      '@astrojs/starlight':
+        specifier: ^0.32.2
+        version: 0.32.2(astro@5.4.1(@types/node@22.7.5)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.8)(typescript@5.8.2)(yaml@2.5.1))
+      '@astrojs/svelte':
+        specifier: ^7.0.5
+        version: 7.0.5(@types/node@22.7.5)(astro@5.4.1(@types/node@22.7.5)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.8)(typescript@5.8.2)(yaml@2.5.1))(jiti@2.4.2)(lightningcss@1.29.1)(svelte@5.20.5)(typescript@5.8.2)(yaml@2.5.1)
+      astro:
+        specifier: ^5.4.1
+        version: 5.4.1(@types/node@22.7.5)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.8)(typescript@5.8.2)(yaml@2.5.1)
+      astro-vtbot:
+        specifier: ^2.1.0
+        version: 2.1.0
+      daisyui:
+        specifier: 4.12.24
+        version: 4.12.24(postcss@8.5.3)
+      sharp:
+        specifier: ^0.33.5
+        version: 0.33.5
+      starlight-package-managers:
+        specifier: ^0.10.0
+        version: 0.10.0(@astrojs/starlight@0.32.2(astro@5.4.1(@types/node@22.7.5)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.8)(typescript@5.8.2)(yaml@2.5.1)))
+      svelte:
+        specifier: 'catalog:'
+        version: 5.20.5
+
   apps/playground:
     dependencies:
       '@sjsf/ajv8-validator':
@@ -6778,6 +6866,12 @@ snapshots:
       daisyui: 4.12.24(postcss@8.5.2)
       svelte: 5.20.5
 
+  '@sjsf/daisyui-theme@1.9.2(@sjsf/form@1.9.2(svelte@5.20.5))(daisyui@4.12.24(postcss@8.5.3))(svelte@5.20.5)':
+    dependencies:
+      '@sjsf/form': 1.9.2(svelte@5.20.5)
+      daisyui: 4.12.24(postcss@8.5.3)
+      svelte: 5.20.5
+
   '@sjsf/flowbite-icons@1.9.2(@sjsf/form@1.9.2(svelte@5.20.5))(flowbite-svelte-icons@2.0.2(svelte@5.20.5)(tailwind-merge@2.6.0)(tailwindcss@3.4.17))(svelte@5.20.5)':
     dependencies:
       '@sjsf/form': 1.9.2(svelte@5.20.5)
@@ -6845,6 +6939,13 @@ snapshots:
       '@tailwindcss/forms': 0.5.10(tailwindcss@4.0.9)
       svelte: 5.20.5
 
+  '@sjsf/skeleton-theme@1.9.2(@sjsf/form@1.9.2(svelte@5.20.5))(@skeletonlabs/skeleton@3.0.0-next.10(postcss@8.5.3)(tailwindcss@4.0.9))(@tailwindcss/forms@0.5.10(tailwindcss@4.0.9))(svelte@5.20.5)':
+    dependencies:
+      '@sjsf/form': 1.9.2(svelte@5.20.5)
+      '@skeletonlabs/skeleton': 3.0.0-next.10(postcss@8.5.3)(tailwindcss@4.0.9)
+      '@tailwindcss/forms': 0.5.10(tailwindcss@4.0.9)
+      svelte: 5.20.5
+
   '@sjsf/sveltekit@1.9.2(@sjsf/form@1.9.2(svelte@5.20.5))(@sveltejs/kit@2.17.3(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.20.5)(vite@6.2.0(@types/node@22.7.5)(jiti@2.4.2)(lightningcss@1.29.1)(yaml@2.5.1)))(svelte@5.20.5)(vite@6.2.0(@types/node@22.7.5)(jiti@2.4.2)(lightningcss@1.29.1)(yaml@2.5.1)))(esm-env@1.2.2)(svelte@5.20.5)':
     dependencies:
       '@sjsf/form': 1.9.2(svelte@5.20.5)
@@ -6869,6 +6970,14 @@ snapshots:
   '@skeletonlabs/skeleton@3.0.0-next.10(postcss@8.5.2)(tailwindcss@4.0.9)':
     dependencies:
       postcss-js: 4.0.1(postcss@8.5.2)
+      postcss-selector-parser: 7.0.0
+      tailwindcss: 4.0.9
+    transitivePeerDependencies:
+      - postcss
+
+  '@skeletonlabs/skeleton@3.0.0-next.10(postcss@8.5.3)(tailwindcss@4.0.9)':
+    dependencies:
+      postcss-js: 4.0.1(postcss@8.5.3)
       postcss-selector-parser: 7.0.0
       tailwindcss: 4.0.9
     transitivePeerDependencies:
@@ -8027,6 +8136,15 @@ snapshots:
       culori: 3.3.0
       picocolors: 1.1.1
       postcss-js: 4.0.1(postcss@8.5.2)
+    transitivePeerDependencies:
+      - postcss
+
+  daisyui@4.12.24(postcss@8.5.3):
+    dependencies:
+      css-selector-tokenizer: 0.8.0
+      culori: 3.3.0
+      picocolors: 1.1.1
+      postcss-js: 4.0.1(postcss@8.5.3)
     transitivePeerDependencies:
       - postcss
 
@@ -9862,6 +9980,11 @@ snapshots:
     dependencies:
       camelcase-css: 2.0.1
       postcss: 8.5.2
+
+  postcss-js@4.0.1(postcss@8.5.3):
+    dependencies:
+      camelcase-css: 2.0.1
+      postcss: 8.5.3
 
   postcss-load-config@3.1.4(postcss@8.5.3):
     dependencies:

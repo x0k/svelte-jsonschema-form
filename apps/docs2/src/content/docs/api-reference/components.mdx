@@ -1,0 +1,99 @@
+---
+title: Components
+sidebar:
+  order: 5
+---
+
+## Components list
+
+```typescript
+interface FormComponentProps {
+  form?: HTMLFormElement | undefined;
+  attributes: HTMLFormAttributes;
+  children: Snippet;
+}
+
+interface ButtonType {
+  submit: {};
+  "object-property-add": {};
+  "object-property-remove": {};
+  "array-item-add": {};
+  "array-item-move-down": {};
+  "array-item-move-up": {};
+  "array-item-copy": {};
+  "array-item-remove": {};
+}
+
+interface ButtonComponentProps {
+  type: keyof ButtonType;
+  disabled: boolean;
+  children: Snippet;
+  onclick?: (e: Event) => void;
+  attributes?: HTMLButtonAttributes | undefined;
+}
+
+interface LayoutType {
+  "root-field": {};
+  field: {};
+  "field-meta": {};
+  "field-content": {};
+  "object-field": {};
+  "object-field-meta": {};
+  "object-properties": {};
+  "object-property": {};
+  "object-property-key-input": {};
+  "object-property-content": {};
+  "object-property-controls": {};
+  "array-field": {};
+  "array-field-meta": {};
+  "array-items": {};
+  "array-item": {};
+  "array-item-content": {};
+  "array-item-controls": {};
+  "multi-field": {};
+  "multi-field-content": {};
+  "multi-field-controls": {};
+}
+
+interface LayoutComponentProps {
+  type: keyof LayoutType;
+  children: Snippet;
+  attributes?: HTMLAttributes<HTMLDivElement> | undefined;
+}
+
+interface ParentTemplateType {
+  field: {};
+  object: {};
+  array: {};
+}
+
+interface TitleComponentProps {
+  type: keyof ParentTemplateType;
+  title: string;
+  forId: string;
+  required: boolean;
+}
+
+interface DescriptionComponentProps {
+  type: keyof ParentTemplateType;
+  description: string;
+}
+
+interface HelpComponentProps {
+  help: string;
+}
+
+interface ErrorsListProps {
+  errors: ValidationError<unknown>[];
+}
+
+interface ComponentsAndProps {
+  form: FormComponentProps;
+  button: ButtonComponentProps;
+  layout: LayoutComponentProps;
+  title: TitleComponentProps;
+  description: DescriptionComponentProps;
+  help: HelpComponentProps;
+  errorsList: ErrorsListProps;
+}
+```

@@ -1,0 +1,96 @@
+<div
+  id="fields-hierarchy-diagram-container"
+  style="height: 500px; background-color: white;"
+>
+  Loading...
+</div>
+
+<script>
+  import mermaid from "mermaid";
+  import svgPanZoom from "svg-pan-zoom";
+
+  mermaid.initialize({ startOnLoad: false });
+
+  const diagram = `stateDiagram-v2
+  state root_field_choice <<choice>>
+  state root_multi_field_choice <<choice>>
+  state root_fork <<fork>>
+  state milti_fork <<fork>>
+  state object_property_fork <<fork>>
+  state object_property_choice <<choice>>
+  state array_choice <<choice>>
+  state another_field_array_choice <<choice>>
+  [*] --> RootField
+  RootField --> root_fork
+  root_fork --> root_field_choice
+  root_field_choice --> [*] : (anyOf || oneOf) && type === undefined
+  root_field_choice --> EnumField : isSelectSchema
+  root_field_choice --> FileField : isFieleSchema
+  root_field_choice --> NullField : type === 'null'
+  root_field_choice --> StringField : type === 'string'
+  root_field_choice --> NumberField : type === 'number'
+  root_field_choice --> IntegerField : type === 'integer'
+  root_field_choice --> BooleanField : type === 'boolean'
+  root_field_choice --> ObjectField : type === 'object'
+  root_field_choice --> ArrayField : type === 'array'
+  root_fork --> root_multi_field_choice
+  root_multi_field_choice --> MultiField : (anyOf || oneOf) && type === undefined && !isSelectSchema
+  root_multi_field_choice --> [*] : otherwise
+  BooleanField --> CheckboxWidget
+  EnumField --> SelectWidget
+  FileField --> FileWidget
+  IntegerField --> NumberField
+  NullField --> [*]
+  NumberField --> NumberWidget
+  StringField --> TextWidget
+  MultiField --> milti_fork
+  milti_fork --> SelectWidget
+  milti_fork --> RootField
+  ObjectField --> ObjectPropertyField
+  ObjectPropertyField --> object_property_fork
+  object_property_fork --> object_property_choice
+  object_property_choice --> TextWidget : isAdditionalProperty
+  object_property_choice --> [*] : otherwise
+  object_property_fork --> RootField
+  ArrayField --> array_choice
+  array_choice --> [*] : items === undefined
+  array_choice --> AnotherArrayField : isMultiSelectSchema || isFilesArray
+  array_choice --> FixedArrayField : isFixedArray
+  array_choice --> NormalArrayField : otherwise
+  AnotherArrayField --> EnumField : field === 'enum'
+  AnotherArrayField --> FileField : field === 'file'
+  FixedArrayField --> ArrayItemField
+  NormalArrayField --> ArrayItemField
+  ArrayItemField --> RootField
+  CheckboxWidget --> [*]
+  SelectWidget --> [*]
+  FileWidget --> [*]
+  NumberWidget --> [*]
+  TextWidget --> [*]`;
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    async () => {
+      const el = document.getElementById("fields-hierarchy-diagram-container");
+      if (el) {
+        const { svg } = await mermaid.render(
+          "fields-hierarchy-diagram",
+          diagram
+        );
+        el.innerHTML = svg.replace(/[ ]*max-width:[ 0-9\.]*px;/i, "");
+        svgPanZoom("#fields-hierarchy-diagram", {
+          zoomEnabled: true,
+          controlIconsEnabled: true,
+          fit: true,
+          center: true,
+        });
+      }
+    },
+    { once: true }
+  );
+</script>
+<style is:global>
+  #fields-hierarchy-diagram {
+    height: 100%;
+  }
+</style>

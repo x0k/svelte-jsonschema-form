@@ -1,0 +1,74 @@
+---
+title: Quickstart
+sidebar:
+  order: 0
+---
+
+import { Code, Card, LinkCard } from '@astrojs/starlight/components';
+
+import MinimalSetup from './_minimal-setup.astro';
+import minimalSetupCode from './_minimal-setup.svelte?raw';
+
+import UiSchema from './_ui-schema.astro';
+import uiSchemaCode from './_ui-schema.svelte?raw';
+
+import FormData from './_form-data.astro';
+import formDataCode from './_form-data.svelte?raw';
+
+## Minimal setup
+
+Let's explore the most basic setup:
+
+<Code code={minimalSetupCode} lang="svelte" />
+
+<Card>
+  <MinimalSetup />
+</Card>
+
+In the example above, we create a form based on json schema and
+use HTML5 validation to validate the form.
+
+Although this is an extremely simple example, it turned out to be quite verbose, and here's why:
+
+- **Explicit Configuration**: The library favors explicit configuration over "magic" defaults.
+- **Tree-Shakeable Architecture**: Each feature is located in its own [submodule](https://nodejs.org/api/packages.html#subpath-exports)
+so you can import only the functionality you need, keeping your bundle lean and optimized.
+- **Highly Customizable**: We provide extensive customization options so that you can tailor every aspect of the library to your needs.
+
+<LinkCard title="JSON Schema API reference" href="../../api-reference/json-schema/" />
+
+<LinkCard title="Handlers API reference" href="../../api-reference/handlers/" />
+
+## UI Schema
+
+With the `uiSchema` parameter, you can customize the user interface of the form.
+
+:::note
+
+We'll talk about `CustomForm` component in the [Custom form](../../advanced/custom-form/) guide.
+
+:::
+
+<Code code={uiSchemaCode} lang="svelte" />
+
+<Card>
+  <UiSchema />
+</Card>
+
+<LinkCard title="UI Schema API reference" href="../../api-reference/ui-schema/" />
+
+## Form state
+
+To access the state of the form you can use properties such as `value` and `errors`
+
+:::tip
+
+Use getters to pass reactive parameters to the `createForm` (`createCustomForm`) function.
+
+:::
+
+<Code code={formDataCode} lang="svelte" />
+
+<Card>
+  <FormData />
+</Card>

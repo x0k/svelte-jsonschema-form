@@ -1,0 +1,64 @@
+---
+title: Handlers
+sidebar:
+  order: 10
+---
+
+```typescript
+interface FormOptions<T, E> {
+  /**
+   * The function to get the form data snapshot
+   * 
+   * The snapshot is used to validate the form and passed to
+   * `onSubmit` and `onSubmitError` handlers.
+   * 
+   * @default () => $state.snapshot(formValue)
+   */
+  getSnapshot?: () => SchemaValue | undefined
+  /**
+   * Submit handler
+   * 
+   * Will be called when the form is submitted and form data
+   * snapshot is valid
+   */
+  onSubmit?: (value: T | undefined, e: SubmitEvent) => void
+  /**
+   * Submit error handler
+   * 
+   * Will be called when the form is submitted and form data
+   * snapshot is not valid
+   */
+  onSubmitError?: (errors: Errors<E>, e: SubmitEvent, snapshot: SchemaValue | undefined) => void
+  /**
+   * Form validation error handler
+   *
+   * Will be called when the validation fails by a different reasons:
+   * - error during validation
+   * - validation is cancelled
+   * - validation timeout
+   */
+  onValidationFailure?: (
+    state: FailedAction<unknown>,
+    e: SubmitEvent
+  ) => void;
+  /**
+   * Field validation error handler
+   */
+  onFieldsValidationFailure?: (
+    state: FailedAction<unknown>,
+    config: Config,
+    value: SchemaValue | undefined
+  ) => void;
+  /**
+   * Reset handler
+   *
+   * Will be called on form reset.
+   *
+   * By default it will clear the errors, set `isSubmitted` and `isChanged` state
+   * to `false` and reset the form `value` to the `initialValue`.
+   *
+   * @default (e) => { e.preventDefault(); reset(); }
+   */
+  onReset?: (e: Event) => void
+}
+```

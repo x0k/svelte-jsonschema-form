@@ -1,0 +1,49 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { LinkCard } from "@astrojs/starlight/components";
+
+import { THEMES, THEME_TTITLES, type Theme } from "@/shared";
+import { DEFAULT_LOCALE } from "@/i18n";
+import Npm from "@/components/npm.astro";
+import Picker from "@/components/picker.astro";
+
+const theme = (Astro.params.theme ?? "basic") as Theme;
+
+const THEME_PACKAGES = {
+  basic: "",
+  daisyui: "@sjsf/daisyui-theme",
+  flowbite: "@sjsf/flowbite-theme",
+  skeleton: "@sjsf/skeleton-theme",
+  shadcn: "@sjsf/shadcn-theme",
+} satisfies Record<Theme, string>;
+
+const isBasic = theme === "basic";
+function getUrl(isActive: boolean, url: string) {
+  return isActive ? "." : isBasic ? url : `../${url}`;
+}
+
+const locale = Astro.currentLocale ?? DEFAULT_LOCALE;
+---
+
+<Picker>
+  {
+    THEMES.map((t) => {
+      const isActive = t === theme;
+      return (
+        <a
+          href={getUrl(isActive, t === "basic" ? "." : `with-${t}/`)}
+          data-active={isActive}
+        >
+          {THEME_TTITLES[t]}
+        </a>
+      );
+    })
+  }
+</Picker>
+
+<Npm pkg={`@sjsf/form @sjsf/ajv8-validator ajv@8 ${THEME_PACKAGES[theme]}`} />
+
+<LinkCard
+  title={`${THEME_TTITLES[theme]} theme setup`}
+  href={getRelativeLocaleUrl(locale, `/themes/${theme}/`)}
+/>

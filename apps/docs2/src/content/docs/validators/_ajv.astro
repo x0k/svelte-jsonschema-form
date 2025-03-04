@@ -1,0 +1,10 @@
+---
+import { ShadowHost } from '@/components/shadow'
+
+import Form from './_ajv.svelte'
+---
+
+<ShadowHost client:only="svelte">
+  <Form client:only="svelte" />
+</ShadowHost>
+

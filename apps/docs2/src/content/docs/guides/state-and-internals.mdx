@@ -1,0 +1,30 @@
+---
+title: State and internals
+sidebar:
+  order: 5
+---
+
+import { Code } from '@astrojs/starlight/components'
+
+import apiCode from './_create-form-api.ts?raw'
+
+The `createForm3` function returns this type `FormState<T, E> & FormInternals`.
+
+Let's look at the differences between these types using their `value (state)` and
+`formValue (internals)` properties as an example:
+
+`value: T | undefined`
+
+- Intended for use by the user
+- Maintains the consistency of the form state
+  - Returns a snapshot of the form state
+  - The update takes into account the default values from the JSON Schema
+
+`formValue: SchemaValue | undefined`
+
+- Intended for use by the library
+- Direct access to the form state
+
+## API
+
+<Code code={apiCode} lang='typescript' />

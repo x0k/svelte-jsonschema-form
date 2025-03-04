@@ -1,0 +1,181 @@
+---
+title: UI Schema
+sidebar:
+  order: 2
+---
+
+import { Code } from '@astrojs/starlight/components'
+
+import uiSchemaExampleCode from './_ui-schema-example.ts?raw'
+
+UI schema allows you to customize the appearance of the form and influence its behavior.
+
+The UI schema object follows the tree structure of the form field hierarchy, and defines how each property should be rendered.
+
+Each UI schema node may contain the following fields:
+
+- `ui:options`- Set of ui options (see below)
+- `ui:widget` - Widget type or a custom widget component (should have compatible value types)
+- `ui:field` - Field type or a custom field component
+- `ui:templates` - Key value pairs (record) of template type to a different template type or a custom template component
+- `ui:components` - Key value pairs (record) of component type to a different component type or custom component
+- `items` - UI schema or array of UI schema for array items
+- `anyOf`, `oneOf` - Array of UI schema
+- `additionalProperties`, `additionalItems` - UI schema for additional properties and items
+- `additionalPropertyKeyInput` - UI schema for additional property key input 
+
+## UI schema root
+
+Root node of UI schema can have an additional fields:
+
+- `ui:globalOptions` - global ui options that are applied to all fields, are overwritten by `ui:options`.
+- `ui:submitButton` - submit button UI schema
+- `ui:formElement` - form element UI schema
+
+## UI options
+
+```typescript
+interface Inputs {
+  input: HTMLInputAttributes;
+  textarea: HTMLTextareaAttributes;
+  select: HTMLSelectAttributes;
+}
+
+type InputAttributes = Inputs[keyof Inputs];
+
+interface UiOptions {
+  /**
+   * Overrides the input attributes.
+   * `readonly` and `disabled` attributes are mixed with the form state.
+   */
+  input?: InputAttributes;
+  /**
+   * Overrides the attributes of a `layout` component that wraps around widget component.
+   */
+  content?: HTMLAttributes<HTMLDivElement>;
+  /**
+   * Overrides the attributes of the `layout` component that wraps the entire field.
+   */
+  container?: HTMLAttributes<HTMLDivElement>;
+  /**
+   * Overrides the attributes of the main button component of the field.
+   */
+  button?: HTMLButtonAttributes;
+  /**
+   * Overrides the attributes of the form element
+   */
+  form?: HTMLFormAttributes;
+  /**
+   * Overrides the title of the field.
+   */
+  title?: string;
+  /**
+   * Overrides the description of the field (over the widget).
+   */
+  description?: string;
+  /**
+   * List of labels for enum values in the schema.
+   */
+  enumNames?: string[];
+  /**
+   * List of enum values that are disabled. Values are compared by string equality.
+   */
+  disabledEnumValues?: SchemaValue[];
+  /**
+   * Order of properties in the object schema.
+   * You must specify all properties or use the wildcard `*`.
+   */
+  order?: string[];
+  /**
+   * Allow adding new properties to the object schema with `additionalProperties`.
+   * @default true
+   */
+  expandable?: boolean;
+  /**
+   * Allow adding new items to the array schema.
+   * @default true
+   */
+  addable?: boolean;
+  /**
+   * Allow reordering items in the array schema.
+   * If you want an orderable array of file fields, set this to `true` explicitly.
+   * @default true
+   */
+  orderable?: boolean;
+  /**
+   * Allow removing items from the array schema.
+   * @default true
+   */
+  removable?: boolean;
+  /**
+   * Allow duplicating items in the array schema.
+   * @default false
+   */
+  copyable?: boolean;
+  /**
+   * Separator between key and integer suffix in the key of a new property in a schema with `additionalProperties`.
+   * @default '-'
+   */
+  duplicateKeySuffixSeparator?: string;
+  /**
+   * Help text for the field (under the widget).
+   */
+  help?: string;
+  /**
+   * Hide the title of the field.
+   * If you want to show a title of the `boolean` field this should be set to `false` explicitly.
+   * @default false
+   */
+  hideTitle?: boolean;
+  /**
+   * Default value to use when an input for a field is empty
+   */
+  emptyValue?: SchemaValue;
+}
+```
+
+## UI schema evaluation rules
+
+Usually ui schema corresponds to the data structure described by json schema.
+
+For example, with this json schema, the following ui schema would be correct:
+
+<Code code={uiSchemaExampleCode} lang="typescript" />
+
+Special cases:
+
+### Array
+
+Instead of defining indices in the ui schema, the `items` keyword should be used
+to specify the ui schema for the elements of the array.
+
+For a fixed array `items` also can be an array.
+If you have additional items you should use `additionalItems` keyword
+to specify the ui schema for them.
+
+```
+{
+  items: [<uiSchema>, ...],
+  additionalItems: <uiSchema>
+}
+```
+
+### Object
+
+You should use `additionalProperties` keyword to specify the ui schema for
+additional properties.
+
+You can use `additionalPropertyKeyInput` keyword to define an ui schema for
+the additional property key input field.
+
+### oneOf/anyOf
+
+You can define separate ui schemas for each `oneOf/anyOf` branch
+using the corresponding keyword in the ui schema.
+Otherwise the ui schema of the current field will be used.
+
+```
+{
+  oneOf: [<uiSchema>, ...]
+}
+```

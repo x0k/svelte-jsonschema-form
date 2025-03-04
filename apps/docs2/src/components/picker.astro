@@ -1,0 +1,20 @@
+<div class="picker">
+  <slot />
+</div>
+
+<style>
+  .picker {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  .picker :global(a) {
+    flex-grow: 1;
+    padding: 0.5rem;
+    text-align: center;
+    border: 1px solid var(--sl-color-gray-5);
+  }
+  .picker :global(a[data-active="true"]) {
+    background-color: var(--sl-color-gray-5);
+  }
+</style>
