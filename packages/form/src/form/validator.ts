@@ -1,13 +1,8 @@
-import type { FailedAction } from "@/lib/action.svelte.js";
 import type { Schema, Validator } from "@/core/index.js";
 
 import type { Id } from "./id.js";
 import type { Config } from "./config.js";
 import type { FieldValue, FormValue } from "./model.js";
-
-export class ValidationProcessError {
-  constructor(public state: FailedAction<unknown>) {}
-}
 
 export interface ValidationError<E> {
   instanceId: Id;
@@ -16,7 +11,7 @@ export interface ValidationError<E> {
   error: E;
 }
 
-export interface SyncFormValueValidator<E> {
+export interface FormValueValidator<E> {
   validateFormValue: (
     rootSchema: Schema,
     formValue: FormValue
@@ -31,11 +26,11 @@ export interface AsyncFormValueValidator<E> {
   ) => Promise<ValidationError<E>[]>;
 }
 
-export type FormValueValidator<E> =
-  | SyncFormValueValidator<E>
+export type AnyFormValueValidator<E> =
+  | FormValueValidator<E>
   | AsyncFormValueValidator<E>;
 
-export interface SyncFieldValueValidator<E> {
+export interface FieldValueValidator<E> {
   validateFieldValue: (
     field: Config,
     fieldValue: FieldValue
@@ -50,29 +45,27 @@ export interface AsyncFieldValueValidator<E> {
   ) => Promise<ValidationError<E>[]>;
 }
 
-export type FieldValueValidator<E> =
-  | SyncFieldValueValidator<E>
+export type AnyFieldValueValidator<E> =
+  | FieldValueValidator<E>
   | AsyncFieldValueValidator<E>;
 
 export class AdditionalPropertyKeyError {}
 
-export interface SyncAdditionalPropertyKeyValidator {
+export interface AdditionalPropertyKeyValidator {
   validateAdditionalPropertyKey: (key: string, schema: Schema) => string[];
 }
 
-export type AdditionalPropertyKeyValidator = SyncAdditionalPropertyKeyValidator;
-
 export type FormValidator<E> = Validator &
   (
-    | FormValueValidator<E>
-    | FieldValueValidator<E>
+    | AnyFormValueValidator<E>
+    | AnyFieldValueValidator<E>
     | AdditionalPropertyKeyValidator
     | {}
   );
 
-export function isSyncFormValueValidator<E>(
+export function isFormValueValidator<E>(
   v: FormValidator<E>
-): v is Validator & SyncFormValueValidator<E> {
+): v is Validator & FormValueValidator<E> {
   return "validateFormValue" in v;
 }
 
@@ -82,9 +75,9 @@ export function isAsyncFormValueValidator<E>(
   return "validateFormValueAsync" in v;
 }
 
-export function isSyncFieldValueValidator<E>(
+export function isFieldValueValidator<E>(
   v: FormValidator<E>
-): v is Validator & SyncFieldValueValidator<E> {
+): v is Validator & FieldValueValidator<E> {
   return "validateFieldValue" in v;
 }
 

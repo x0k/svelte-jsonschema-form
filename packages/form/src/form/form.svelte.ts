@@ -13,14 +13,13 @@ import {
 import type { Schema } from "@/core/index.js";
 
 import {
-  ValidationProcessError,
   type FormValidator,
   type ValidationError,
-  isSyncFormValueValidator,
-  isSyncFieldValueValidator,
+  isFormValueValidator,
+  isFieldValueValidator,
   isAsyncFormValueValidator,
   isAsyncFieldValueValidator,
-  type SyncFormValueValidator,
+  type FormValueValidator,
   type AsyncFormValueValidator,
 } from "./validator.js";
 import type { Translation } from "./translation.js";
@@ -32,6 +31,7 @@ import {
   type FieldErrorsMap,
   type CombinedError,
   type FieldError,
+  ValidationProcessError,
 } from "./errors.js";
 import { translate, type FormContext } from "./context/index.js";
 import { DefaultFormMerger, type FormMerger } from "./merger.js";
@@ -178,7 +178,7 @@ export type FormState<T, E, FV extends FormValidator<E>> = {
   errors: FieldErrorsMap<CombinedError<E, FV>>;
   submit(e: SubmitEvent): Promise<void>;
   reset(e: Event): void;
-} & (FV extends SyncFormValueValidator<E>
+} & (FV extends FormValueValidator<E>
   ? {
       validate(): FieldErrorsMap<E>;
     }
@@ -253,7 +253,7 @@ export function createForm<T, E, FV extends FormValidator<E>>(
     if (isAsyncFormValueValidator(v)) {
       return v.validateFormValueAsync;
     }
-    if (isSyncFormValueValidator(v)) {
+    if (isFormValueValidator(v)) {
       return (_: AbortSignal, schema: Schema, formValue: FormValue) =>
         v.validateFormValue(schema, formValue);
     }
@@ -305,7 +305,7 @@ export function createForm<T, E, FV extends FormValidator<E>>(
     if (isAsyncFieldValueValidator(v)) {
       return v.validateFieldValueAsync;
     }
-    if (isSyncFieldValueValidator(v)) {
+    if (isFieldValueValidator(v)) {
       return (_: AbortSignal, config: Config, value: FieldValue) =>
         v.validateFieldValue(config, value);
     }
@@ -479,7 +479,7 @@ export function createForm<T, E, FV extends FormValidator<E>>(
     fieldsValidation,
     validate() {
       const v = options.validator;
-      if (!isSyncFormValueValidator(v)) {
+      if (!isFormValueValidator(v)) {
         throw new Error(
           `Unsupported validator type, expected sync form value validator`
         );
