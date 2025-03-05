@@ -47,6 +47,10 @@ import type { FieldValue, FormValue } from "./model.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
 
+export type InitialErrors<E, FV extends FormValidator<E>> =
+  | FieldErrorsMap<CombinedError<E, FV>>
+  | Iterable<readonly [Id, FieldError<CombinedError<E, FV>>[]]>;
+
 export interface FormOptions<T, E, FV extends FormValidator<E>> {
   validator: FV;
   schema: Schema;
@@ -62,9 +66,7 @@ export interface FormOptions<T, E, FV extends FormValidator<E>> {
   pseudoIdSeparator?: string;
   //
   initialValue?: T;
-  initialErrors?:
-    | FieldErrorsMap<CombinedError<E, FV>>
-    | Iterable<readonly [Id, FieldError<CombinedError<E, FV>>[]]>;
+  initialErrors?: InitialErrors<E, FV>;
   /**
    * @default ignoreNewUntilPreviousIsFinished
    */
