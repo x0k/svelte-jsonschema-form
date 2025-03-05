@@ -11,17 +11,15 @@ import type {
 
 export type FieldError<T> = Omit<ValidationError<T>, "instanceId">;
 
-export type FieldErrors<T> = FieldError<T>[];
+export type FieldErrorsMap<T> = SvelteMap<Id, FieldError<T>[]>;
 
-export type FormErrors<T> = SvelteMap<Id, FieldErrors<T>>;
-
-export type FormError<E, V extends FormValidator<E>> =
+export type CombinedError<E, V extends FormValidator<E>> =
   | E
   | ValidationProcessError
   | (V extends AdditionalPropertyKeyValidator
       ? AdditionalPropertyKeyError
       : never);
 
-export function groupErrors<E>(errors: ValidationError<E>[]): FormErrors<E> {
+export function groupErrors<E>(errors: ValidationError<E>[]): FieldErrorsMap<E> {
   return new SvelteMap(SvelteMap.groupBy(errors, (error) => error.instanceId));
 }

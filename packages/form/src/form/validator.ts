@@ -16,13 +16,11 @@ export interface ValidationError<E> {
   error: E;
 }
 
-export type ValidationErrors<E> = ValidationError<E>[];
-
 export interface SyncFormValueValidator<E> {
   validateFormValue: (
     rootSchema: Schema,
     formValue: FormValue
-  ) => ValidationErrors<E>;
+  ) => ValidationError<E>[];
 }
 
 export interface AsyncFormValueValidator<E> {
@@ -30,7 +28,7 @@ export interface AsyncFormValueValidator<E> {
     signal: AbortSignal,
     rootSchema: Schema,
     formValue: FormValue
-  ) => Promise<ValidationErrors<E>>;
+  ) => Promise<ValidationError<E>[]>;
 }
 
 export type FormValueValidator<E> =
@@ -41,7 +39,7 @@ export interface SyncFieldValueValidator<E> {
   validateFieldValue: (
     field: Config,
     fieldValue: FieldValue
-  ) => ValidationErrors<E>;
+  ) => ValidationError<E>[];
 }
 
 export interface AsyncFieldValueValidator<E> {
@@ -49,7 +47,7 @@ export interface AsyncFieldValueValidator<E> {
     signal: AbortSignal,
     field: Config,
     fieldValue: FieldValue
-  ) => Promise<ValidationErrors<E>>;
+  ) => Promise<ValidationError<E>[]>;
 }
 
 export type FieldValueValidator<E> =

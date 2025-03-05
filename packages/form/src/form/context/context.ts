@@ -7,7 +7,7 @@ import type { Schema, SchemaValue } from "@/core/index.js";
 
 import type { Translation } from "../translation.js";
 import type { UiOptions, UiSchema, UiSchemaRoot } from "../ui-schema.js";
-import type { FieldErrors, FormError, FormErrors } from "../errors.js";
+import type { FieldError, CombinedError, FieldErrorsMap } from "../errors.js";
 import type { FormValidator } from "../validator.js";
 import type { Icons } from "../icons.js";
 import type { FormMerger } from "../merger.js";
@@ -16,7 +16,7 @@ import type { Theme } from "../components.js";
 import type { Id } from "../id.js";
 import type { FormValue } from "../model.js";
 
-export interface FormContext<VE, V extends FormValidator<VE>> {
+export interface FormContext<E, FV extends FormValidator<E>> {
   value: FormValue;
   isChanged: boolean;
   readonly rootId: Id;
@@ -25,14 +25,14 @@ export interface FormContext<VE, V extends FormValidator<VE>> {
   readonly schema: Schema;
   readonly uiSchema: UiSchemaRoot;
   readonly uiOptions: UiOptions;
-  readonly validator: V;
+  readonly validator: FV;
   readonly merger: FormMerger;
   readonly icons?: Icons;
   readonly idPrefix: string;
   readonly idSeparator: string;
   readonly idPseudoSeparator: string;
   readonly disabled: boolean;
-  readonly errors: FormErrors<FormError<VE, V>>;
+  readonly errors: FieldErrorsMap<CombinedError<E, FV>>;
   readonly dataUrlToBlob: DataURLToBlob;
   readonly translation: Translation;
   readonly theme: Theme;
@@ -47,13 +47,13 @@ export interface FormContext<VE, V extends FormValidator<VE>> {
     [event: SubmitEvent],
     {
       snapshot: SchemaValue | undefined;
-      validationErrors: FormErrors<VE>;
+      validationErrors: FieldErrorsMap<E>;
     },
     unknown
   >;
   readonly fieldsValidation: Action<
     [config: Config, value: SchemaValue | undefined],
-    FieldErrors<VE>,
+    FieldError<E>[],
     unknown
   >;
 }

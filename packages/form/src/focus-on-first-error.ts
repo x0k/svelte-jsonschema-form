@@ -1,6 +1,6 @@
 import { tick } from "svelte";
 
-import type { FormErrors, Id } from './form/index.js';
+import type { FieldErrorsMap, Id } from './form/index.js';
 
 export function getFocusableElement(
   form: HTMLElement,
@@ -44,7 +44,7 @@ export function getFocusAction(
 }
 
 export function focusOnFirstError<E>(
-  errors: FormErrors<E>,
+  errors: FieldErrorsMap<E>,
   e: SubmitEvent
 ) {
   if (errors.size === 0) {
