@@ -1,4 +1,5 @@
 import type { Snippet } from "svelte";
+import type { HTMLFormAttributes } from "svelte/elements";
 
 import type { Config } from "./config.js";
 
@@ -9,9 +10,9 @@ declare module "./components.js" {
   interface ComponentProps {
     form: {
       config: Config;
-      ref?: FormElement | undefined;
+      ref?: HTMLFormElement | undefined;
       children: Snippet;
-      attributes?: FormAttributes | undefined;
+      attributes?: HTMLFormAttributes | undefined;
     };
   }
 

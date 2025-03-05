@@ -15,9 +15,7 @@ import type { Schema } from "@/core/index.js";
 import {
   ValidationProcessError,
   type FormValidator,
-  AdditionalPropertyKeyError,
   type ValidationError,
-  isAdditionalPropertyKeyValidator,
   isSyncFormValueValidator,
   isSyncFieldValueValidator,
   isAsyncFormValueValidator,
@@ -243,23 +241,6 @@ export function createForm<T, E, FV extends FormValidator<E>>(
           })
   );
   const dataUrlToBlob = $derived(makeDataURLtoBlob(schedulerYield));
-  const additionalPropertyKeyValidator = $derived.by(() => {
-    const v = options.validator;
-    return isAdditionalPropertyKeyValidator(v)
-      ? (config: Config, key: string, fieldConfig: Config) => {
-          const messages = v.validateAdditionalPropertyKey(key, config.schema);
-          errors.set(
-            fieldConfig.id,
-            messages.map((message) => ({
-              propertyTitle: fieldConfig.title,
-              message,
-              error: new AdditionalPropertyKeyError() as CErr,
-            }))
-          );
-          return messages.length === 0;
-        }
-      : () => true;
-  });
 
   const getSnapshot = $derived(
     options.getSnapshot ?? (() => $state.snapshot(value))
@@ -394,8 +375,6 @@ export function createForm<T, E, FV extends FormValidator<E>>(
   });
 
   const context: FormContext<E, FV> = {
-    submitHandler,
-    resetHandler,
     get rootId() {
       return idPrefix as Id;
     },
@@ -410,9 +389,6 @@ export function createForm<T, E, FV extends FormValidator<E>>(
     },
     get fieldsValidationMode() {
       return fieldsValidationMode;
-    },
-    get validateAdditionalPropertyKey() {
-      return additionalPropertyKeyValidator;
     },
     validation,
     fieldsValidation,
@@ -464,6 +440,8 @@ export function createForm<T, E, FV extends FormValidator<E>>(
     get icons() {
       return options.icons;
     },
+    submitHandler,
+    resetHandler,
   };
 
   return {
@@ -526,4 +504,15 @@ export function createForm<T, E, FV extends FormValidator<E>>(
     submit: submitHandler,
     reset: resetHandler,
   };
+}
+
+export function enhance(node: HTMLFormElement, ctx: FormContext<any, any>) {
+  $effect(() => {
+    node.addEventListener("submit", ctx.submitHandler);
+    node.addEventListener("reset", ctx.resetHandler);
+    return () => {
+      node.removeEventListener("submit", ctx.submitHandler);
+      node.removeEventListener("reset", ctx.resetHandler);
+    };
+  });
 }

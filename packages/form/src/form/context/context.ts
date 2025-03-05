@@ -1,5 +1,4 @@
 import { getContext, setContext } from "svelte";
-import type { EventHandler, FormEventHandler } from "svelte/elements";
 
 import type { DataURLToBlob } from "@/lib/file.js";
 import type { Action } from "@/lib/action.svelte.js";
@@ -36,13 +35,8 @@ export interface FormContext<E, FV extends FormValidator<E>> {
   readonly dataUrlToBlob: DataURLToBlob;
   readonly translation: Translation;
   readonly theme: Theme;
-  readonly submitHandler: EventHandler<SubmitEvent, HTMLFormElement>;
-  readonly resetHandler: FormEventHandler<HTMLFormElement>;
-  readonly validateAdditionalPropertyKey: (
-    config: Config,
-    key: string,
-    fieldConfig: Config
-  ) => boolean;
+  readonly submitHandler: (e: SubmitEvent) => void;
+  readonly resetHandler: (e: Event) => void;
   readonly validation: Action<
     [event: SubmitEvent],
     {

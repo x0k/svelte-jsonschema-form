@@ -1,33 +1,25 @@
 <script lang="ts">
-  import type { Snippet } from "svelte";
+  import type { HTMLFormAttributes } from "svelte/elements";
 
-  import { getComponent, getFormContext } from "./context/index.js";
-  import type { FormAttributes, FormElement } from "./components.js";
-  import type { Config } from "./config.js";
+  import type { FormInternals } from "./form.svelte.js";
+  import { setFromContext } from "./context/context.js";
+  import Content from "./content.svelte";
+  import FormTag from "./form-tag.svelte";
+  import SubmitButton from "./submit-button.svelte";
 
   let {
     ref = $bindable(),
-    children,
-    attributes,
+    form,
+    ...attributes
   }: {
-    ref?: FormElement | undefined;
-    attributes?: FormAttributes | undefined;
-    children: Snippet;
-  } = $props();
+    form: FormInternals<any, any>;
+    ref?: HTMLFormElement | undefined;
+  } & HTMLFormAttributes = $props();
 
-  const ctx = getFormContext();
-
-  const config: Config = $derived({
-    id: ctx.rootId,
-    schema: ctx.schema,
-    uiSchema: ctx.uiSchema,
-    uiOptions: ctx.uiOptions,
-    name: "form-element",
-    title: "",
-    required: false,
-  });
-
-  const Form = $derived(getComponent(ctx, "form", config));
+  setFromContext(form.context);
 </script>
 
-<Form bind:ref {config} {children} {attributes} />
+<FormTag bind:ref {attributes}>
+  <Content />
+  <SubmitButton />
+</FormTag>

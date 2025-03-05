@@ -36,16 +36,6 @@ export type ExtendableComponentDefinitions = {
   >]?: ComponentDefinitions[T];
 };
 
-export interface FormElements {}
-
-export type FormElement = FormElements[keyof FormElements];
-
-export interface FormProps {}
-
-export type FormAttributes = FormProps[keyof FormElements] extends never
-  ? {}
-  : FormProps[keyof FormElements];
-
 // TODO: Optional fields in component props should be considered
 export type CompatibleComponentType<T extends ComponentType> = {
   [C in ComponentType]: [
