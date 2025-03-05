@@ -119,7 +119,7 @@
     },
     initialErrors: [
       {
-        instanceId: pathToId(DEFAULT_ID_PREFIX, DEFAULT_ID_SEPARATOR, []),
+        instanceId: pathToId([]),
         message: "message",
         propertyTitle: "Title",
         error: null,

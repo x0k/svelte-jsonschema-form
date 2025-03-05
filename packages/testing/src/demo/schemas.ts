@@ -1,12 +1,10 @@
 import {
-  DEFAULT_ID_PREFIX,
-  DEFAULT_ID_SEPARATOR,
   pathToId,
+  type IdOptions,
   type Schema,
   type UiSchema,
   type UiSchemaRoot,
   type ValidationError,
-  type ValidationErrors,
 } from "@sjsf/form";
 
 export const states = (schema: Schema): Schema => ({
@@ -55,23 +53,12 @@ export const uiStates = (uiSchema: UiSchema): UiSchema => ({
   error: uiSchema,
 });
 
-export interface Separators {
-  idPrefix?: string;
-  idSeparator?: string;
-}
-
-export const createErrors = (
-  keys: string[],
-  {
-    idPrefix = DEFAULT_ID_PREFIX,
-    idSeparator = DEFAULT_ID_SEPARATOR,
-  }: Separators = {}
-) =>
+export const createErrors = (keys: string[], options?: IdOptions) =>
   keys.map(
     (key) =>
       ({
         error: null,
-        instanceId: pathToId(idPrefix, idSeparator, [key, "error"]),
+        instanceId: pathToId([key, "error"], options),
         propertyTitle: "error",
         message: `${key} error`,
       }) satisfies ValidationError<null>
@@ -79,11 +66,11 @@ export const createErrors = (
 
 export function createSchemas(
   specs: Record<string, [Schema, UiSchema]>,
-  options?: Separators
+  options?: IdOptions
 ): {
   schema: Schema;
   uiSchema: UiSchemaRoot;
-  initialErrors: ValidationErrors<any>;
+  initialErrors: ValidationError<any>[];
 } {
   const keys = Object.keys(specs);
   const schema: Schema = {
