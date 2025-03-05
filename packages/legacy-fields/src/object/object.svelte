@@ -26,6 +26,7 @@
     ON_OBJECT_CHANGE,
     createChildId,
     type ComponentProps,
+    validateAdditionalPropertyKey
   } from "@sjsf/form";
 
   import { setObjectContext, type ObjectContext } from "./context.js";
@@ -70,7 +71,7 @@
         return;
       }
       const newKey = generateNewKey(newProp, newKeySeparator, value);
-      if (!ctx.validateAdditionalPropertyKey(config, newKey, fieldConfig)) {
+      if (!validateAdditionalPropertyKey(ctx, config, newKey, fieldConfig)) {
         return;
       }
       value[newKey] = value[oldProp];

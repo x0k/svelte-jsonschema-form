@@ -1,10 +1,10 @@
 import type { Snippet } from "svelte";
 
-import type { Config, FieldErrors } from "@sjsf/form";
+import type { Config, FieldError } from "@sjsf/form";
 
 export interface ComponentCommonProps {
   config: Config;
-  errors: FieldErrors<unknown>;
+  errors: FieldError<unknown>[];
 }
 
 export interface ButtonTypes {

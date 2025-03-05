@@ -1,5 +1,5 @@
 import type { EnumOption, SchemaArrayValue } from "@sjsf/form/core";
-import type { Config, FieldErrors, SchemaValue } from "@sjsf/form";
+import type { Config, FieldError, SchemaValue } from "@sjsf/form";
 
 export interface Handlers {
   onblur?: () => void;
@@ -11,7 +11,7 @@ export interface WidgetCommonProps<V> {
   config: Config;
   value: V | undefined;
   handlers: Handlers;
-  errors: FieldErrors<unknown>;
+  errors: FieldError<unknown>[];
 }
 
 export interface Options {

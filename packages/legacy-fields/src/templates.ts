@@ -5,12 +5,12 @@ import type {
   SchemaObjectValue,
   SchemaArrayValue,
 } from "@sjsf/form/core";
-import type { Config, FieldErrors } from "@sjsf/form";
+import type { Config, FieldError } from "@sjsf/form";
 
 export interface TemplateCommonProps<V extends SchemaValue> {
   value: V | undefined;
   config: Config;
-  errors: FieldErrors<unknown>;
+  errors: FieldError<unknown>[];
   children: Snippet;
 }
 
