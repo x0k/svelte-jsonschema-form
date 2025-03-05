@@ -1,9 +1,10 @@
-<script lang="ts" generics="T, E, FV extends FormValidator<E>">
+<script lang="ts" generics="T, V extends Validator">
+  import type { Validator } from '@/core/index.js';
+
   import { createForm, type FormOptions } from "./form.svelte.js";
-  import type { FormValidator } from "./validator.js";
   import BasicForm from "./basic-form.svelte";
 
-  const options: FormOptions<T, E, FV> = $props();
+  const options: FormOptions<T, V> = $props();
 
   const form = createForm(options);
 </script>

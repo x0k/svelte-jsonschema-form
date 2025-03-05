@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { HTMLFormAttributes } from "svelte/elements";
 
-  import type { FormInternals } from "./form.svelte.js";
+  import type { FormState } from "./form.svelte.js";
   import { setFromContext } from "./context/context.js";
   import Content from "./content.svelte";
   import FormTag from "./form-tag.svelte";
@@ -12,11 +12,11 @@
     form,
     ...attributes
   }: {
-    form: FormInternals<any, any>;
+    form: Pick<FormState<any, any>, "internals">;
     ref?: HTMLFormElement | undefined;
   } & HTMLFormAttributes = $props();
 
-  setFromContext(form.context);
+  setFromContext(form.internals);
 </script>
 
 <FormTag bind:ref {attributes}>

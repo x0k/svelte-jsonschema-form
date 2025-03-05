@@ -5,9 +5,9 @@ import type {
 } from "svelte/elements";
 
 import type { Nullable } from "@/lib/types.js";
+import type { Validator } from "@/core/index.js";
 
 import type { Config } from "../config.js";
-import type { FormValidator } from "../validator.js";
 
 import type { FormContext } from "./context.js";
 import { createPseudoId } from "./id.js";
@@ -22,8 +22,8 @@ interface Handlers {
   onchange?: () => void;
 }
 
-export function isDisabled<VE, V extends FormValidator<VE>>(
-  ctx: FormContext<VE, V>,
+export function isDisabled<V extends Validator>(
+  ctx: FormContext<V>,
   attributes?: Partial<Nullable<Disabled>>
 ) {
   return attributes?.disabled || ctx.disabled;
@@ -34,9 +34,8 @@ export function isDisabled<VE, V extends FormValidator<VE>>(
  */
 export function defineDisabled<
   T extends Partial<Nullable<Disabled>>,
-  VE,
-  V extends FormValidator<VE>,
->(ctx: FormContext<VE, V>, obj: T) {
+  V extends Validator,
+>(ctx: FormContext<V>, obj: T) {
   obj.disabled ||= ctx.disabled;
   return obj as T & Disabled;
 }
@@ -77,10 +76,9 @@ export function inputAttributes<
     | "disabled"
     | "type"
   >,
-  VE,
-  V extends FormValidator<VE>,
+  V extends Validator,
 >(
-  ctx: FormContext<VE, V>,
+  ctx: FormContext<V>,
   { id, required, schema }: Config,
   handlers: Handlers,
   attributes: T | undefined
@@ -129,10 +127,9 @@ export function textareaAttributes<
     | "onblur"
     | "disabled"
   >,
-  VE,
-  V extends FormValidator<VE>,
+  V extends Validator,
 >(
-  ctx: FormContext<VE, V>,
+  ctx: FormContext<V>,
   { id, required, schema }: Config,
   handlers: Handlers,
   attributes: T | undefined
@@ -161,10 +158,9 @@ export function selectAttributes<
     HTMLSelectAttributes,
     "id" | "name" | "required" | "oninput" | "onchange" | "onblur" | "disabled"
   >,
-  VE,
-  V extends FormValidator<VE>,
+  V extends Validator,
 >(
-  ctx: FormContext<VE, V>,
+  ctx: FormContext<V>,
   { id, required }: Config,
   handlers: Handlers,
   attributes: T | undefined

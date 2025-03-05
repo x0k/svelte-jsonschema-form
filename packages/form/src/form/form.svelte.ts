@@ -10,10 +10,9 @@ import {
   type ActionsCombinator,
   type FailedAction,
 } from "@/lib/action.svelte.js";
-import type { Schema } from "@/core/index.js";
+import type { Schema, Validator } from "@/core/index.js";
 
 import {
-  type FormValidator,
   type ValidationError,
   isFormValueValidator,
   isFieldValueValidator,
@@ -29,11 +28,17 @@ import type { FieldsValidationMode } from "./validation.js";
 import {
   groupErrors,
   type FieldErrorsMap,
-  type CombinedError,
+  type PossibleError,
   type FieldError,
   ValidationProcessError,
+  type AnyFormValueValidatorError,
+  type AnyFieldValueValidatorError,
 } from "./errors.js";
-import { translate, type FormContext } from "./context/index.js";
+import {
+  translate,
+  type FormContext,
+  type FormInternals,
+} from "./context/index.js";
 import { DefaultFormMerger, type FormMerger } from "./merger.js";
 import {
   type Id,
@@ -47,12 +52,12 @@ import type { FieldValue, FormValue } from "./model.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
 
-export type InitialErrors<E, FV extends FormValidator<E>> =
-  | FieldErrorsMap<CombinedError<E, FV>>
-  | Iterable<readonly [Id, FieldError<CombinedError<E, FV>>[]]>;
+export type InitialErrors<V extends Validator> =
+  | ValidationError<PossibleError<V>>[]
+  | Iterable<readonly [Id, FieldError<PossibleError<V>>[]]>;
 
-export interface FormOptions<T, E, FV extends FormValidator<E>> {
-  validator: FV;
+export interface FormOptions<T, V extends Validator> {
+  validator: V;
   schema: Schema;
   theme: Theme;
   translation: Translation;
@@ -66,7 +71,7 @@ export interface FormOptions<T, E, FV extends FormValidator<E>> {
   pseudoIdSeparator?: string;
   //
   initialValue?: T;
-  initialErrors?: InitialErrors<E, FV>;
+  initialErrors?: InitialErrors<V>;
   /**
    * @default ignoreNewUntilPreviousIsFinished
    */
@@ -103,7 +108,7 @@ export interface FormOptions<T, E, FV extends FormValidator<E>> {
    *
    * @default (ctx) => $state.snapshot(ctx.value)
    */
-  getSnapshot?: (ctx: FormContext<E, FV>) => FormValue;
+  getSnapshot?: (ctx: FormContext<V>) => FormValue;
   /**
    * Submit handler
    *
@@ -122,7 +127,7 @@ export interface FormOptions<T, E, FV extends FormValidator<E>> {
    * snapshot is not valid
    */
   onSubmitError?: (
-    errors: FieldErrorsMap<E>,
+    errors: FieldErrorsMap<AnyFormValueValidatorError<V>>,
     e: SubmitEvent,
     snapshot: FormValue
   ) => void;
@@ -161,45 +166,44 @@ export interface FormValidationResult<E> {
   formErrors: FieldErrorsMap<E>;
 }
 
-export type FormState<T, E, FV extends FormValidator<E>> = {
+type Validate<V> =
+  V extends FormValueValidator<infer E>
+    ? {
+        validate(): FieldErrorsMap<E>;
+      }
+    : {};
+
+type ValidateAsync<V> =
+  V extends AsyncFormValueValidator<infer E>
+    ? {
+        validateAsync(signal: AbortSignal): Promise<FieldErrorsMap<E>>;
+      }
+    : {};
+
+export type FormState<T, V extends Validator> = {
+  readonly internals: FormInternals;
   readonly validation: Action<
     [event: SubmitEvent],
-    FormValidationResult<E>,
+    FormValidationResult<AnyFormValueValidatorError<V>>,
     unknown
   >;
   readonly fieldsValidation: Action<
     [config: Config, value: FormValue],
-    FieldError<E>[],
+    FieldError<AnyFieldValueValidatorError<V>>[],
     unknown
   >;
   value: T | undefined;
   isSubmitted: boolean;
   isChanged: boolean;
-  errors: FieldErrorsMap<CombinedError<E, FV>>;
+  errors: FieldErrorsMap<PossibleError<V>>;
   submit(e: SubmitEvent): Promise<void>;
   reset(e: Event): void;
-} & (FV extends FormValueValidator<E>
-  ? {
-      validate(): FieldErrorsMap<E>;
-    }
-  : {}) &
-  (FV extends AsyncFormValueValidator<E>
-    ? {
-        validateAsync(signal: AbortSignal): Promise<FieldErrorsMap<E>>;
-      }
-    : {});
+} & Validate<V> &
+  ValidateAsync<V>;
 
-export interface FormInternals<E, FV extends FormValidator<E>> {
-  readonly context: FormContext<E, FV>;
-}
-
-export function createForm<T, E, FV extends FormValidator<E>>(
-  options: FormOptions<T, E, FV>
-): FormState<T, E, FV> & FormInternals<E, FV> {
-  type CErr = CombinedError<E, FV>;
-
-  const NO_VALIDATION_ERRORS: ValidationError<E>[] = [];
-
+export function createForm<T, V extends Validator>(
+  options: FormOptions<T, V>
+): FormState<T, V> {
   const merger = $derived(
     options.merger ?? new DefaultFormMerger(options.validator, options.schema)
   );
@@ -211,7 +215,7 @@ export function createForm<T, E, FV extends FormValidator<E>>(
       options.schema
     )
   );
-  let errors: FieldErrorsMap<CErr> = $state(
+  let errors = $state(
     Array.isArray(options.initialErrors)
       ? groupErrors(options.initialErrors)
       : new SvelteMap(options.initialErrors)
@@ -257,7 +261,7 @@ export function createForm<T, E, FV extends FormValidator<E>>(
       return (_: AbortSignal, schema: Schema, formValue: FormValue) =>
         v.validateFormValue(schema, formValue);
     }
-    return () => NO_VALIDATION_ERRORS;
+    return (): ValidationError<AnyFormValueValidatorError<V>>[] => [];
   });
 
   const validation = createAction({
@@ -270,7 +274,13 @@ export function createForm<T, E, FV extends FormValidator<E>>(
         ),
       };
     },
-    onSuccess({ formValue, formErrors }: FormValidationResult<E>, event) {
+    onSuccess(
+      {
+        formValue,
+        formErrors,
+      }: FormValidationResult<AnyFormValueValidatorError<V>>,
+      event
+    ) {
       errors = formErrors;
       if (errors.size === 0) {
         options.onSubmit?.(formValue as T, event);
@@ -309,14 +319,17 @@ export function createForm<T, E, FV extends FormValidator<E>>(
       return (_: AbortSignal, config: Config, value: FieldValue) =>
         v.validateFieldValue(config, value);
     }
-    return () => NO_VALIDATION_ERRORS;
+    return (): ValidationError<AnyFieldValueValidatorError<V>>[] => [];
   });
 
   const fieldsValidation = createAction({
     async execute(signal, config, value) {
       return validateFields(signal, config, value);
     },
-    onSuccess(fieldErrors: FieldError<E>[], config) {
+    onSuccess(
+      fieldErrors: FieldError<AnyFieldValueValidatorError<V>>[],
+      config
+    ) {
       if (fieldErrors.length > 0) {
         errors.set(config.id, fieldErrors);
       } else {
@@ -376,7 +389,8 @@ export function createForm<T, E, FV extends FormValidator<E>>(
     ...uiSchema["ui:options"],
   });
 
-  const context: FormContext<E, FV> = {
+  const context: FormContext<V> = {
+    ...({} as FormInternals),
     get rootId() {
       return idPrefix as Id;
     },
@@ -446,37 +460,7 @@ export function createForm<T, E, FV extends FormValidator<E>>(
     resetHandler,
   };
 
-  return {
-    get value() {
-      return getSnapshot(context) as T | undefined;
-    },
-    set value(v) {
-      value = merger.mergeFormDataAndSchemaDefaults(
-        v as FormValue,
-        options.schema
-      );
-    },
-    get errors() {
-      return errors;
-    },
-    set errors(v) {
-      errors = v;
-    },
-    get isSubmitted() {
-      return isSubmitted;
-    },
-    set isSubmitted(v) {
-      isSubmitted = v;
-    },
-    get isChanged() {
-      return isChanged;
-    },
-    set isChanged(v) {
-      isChanged = v;
-    },
-    context,
-    validation,
-    fieldsValidation,
+  const validate = {
     validate() {
       const v = options.validator;
       if (!isFormValueValidator(v)) {
@@ -488,6 +472,8 @@ export function createForm<T, E, FV extends FormValidator<E>>(
         v.validateFormValue(options.schema, getSnapshot(context))
       );
     },
+  } as Validate<V>;
+  const validateAsync = {
     async validateAsync(signal: AbortSignal) {
       const v = options.validator;
       if (!isAsyncFormValueValidator(v)) {
@@ -503,13 +489,50 @@ export function createForm<T, E, FV extends FormValidator<E>>(
         )
       );
     },
-    submit: submitHandler,
-    reset: resetHandler,
-  };
+  } as ValidateAsync<V>;
+  return Object.assign(
+    {
+      internals: context,
+      get value() {
+        return getSnapshot(context) as T | undefined;
+      },
+      set value(v) {
+        value = merger.mergeFormDataAndSchemaDefaults(
+          v as FormValue,
+          options.schema
+        );
+      },
+      get errors() {
+        return errors;
+      },
+      set errors(v) {
+        errors = v;
+      },
+      get isSubmitted() {
+        return isSubmitted;
+      },
+      set isSubmitted(v) {
+        isSubmitted = v;
+      },
+      get isChanged() {
+        return isChanged;
+      },
+      set isChanged(v) {
+        isChanged = v;
+      },
+      validation,
+      fieldsValidation,
+      submit: submitHandler,
+      reset: resetHandler,
+    },
+    validate,
+    validateAsync
+  );
 }
 
-export function enhance(node: HTMLFormElement, ctx: FormContext<any, any>) {
+export function enhance(node: HTMLFormElement, internals: FormInternals) {
   $effect(() => {
+    const ctx = internals as FormContext<any>;
     node.addEventListener("submit", ctx.submitHandler);
     node.addEventListener("reset", ctx.resetHandler);
     return () => {

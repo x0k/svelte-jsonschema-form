@@ -7,35 +7,34 @@ import {
   retrieveSchema as retrieveSchemaInternal,
   sanitizeDataForNewSchema as sanitizeDataForNewSchemaInternal,
   getClosestMatchingOption as getClosestMatchingOptionInternal,
+  type Validator,
 } from "@/core/index.js";
-
-import type { FormValidator } from "../validator.js";
 
 import type { FormContext } from "./context.js";
 
-export function isSelect<VE, V extends FormValidator<VE>>(
-  ctx: FormContext<VE, V>,
+export function isSelect<V extends Validator>(
+  ctx: FormContext<V>,
   schema: Schema
 ) {
   return isSelectInternal(ctx.validator, ctx.merger, schema, ctx.schema);
 }
 
-export function isMultiSelect<VE, V extends FormValidator<VE>>(
-  ctx: FormContext<VE, V>,
+export function isMultiSelect<V extends Validator>(
+  ctx: FormContext<V>,
   schema: Schema
 ) {
   return isMultiSelectInternal(ctx.validator, ctx.merger, schema, ctx.schema);
 }
 
-export function isFilesArray<VE, V extends FormValidator<VE>>(
-  ctx: FormContext<VE, V>,
+export function isFilesArray<V extends Validator>(
+  ctx: FormContext<V>,
   schema: Schema
 ) {
   return isFilesArrayInternal(ctx.validator, ctx.merger, schema, ctx.schema);
 }
 
-export function retrieveSchema<VE, V extends FormValidator<VE>>(
-  ctx: FormContext<VE, V>,
+export function retrieveSchema<V extends Validator>(
+  ctx: FormContext<V>,
   schema: Schema,
   formData: SchemaValue | undefined
 ) {
@@ -48,8 +47,8 @@ export function retrieveSchema<VE, V extends FormValidator<VE>>(
   );
 }
 
-export function sanitizeDataForNewSchema<VE, V extends FormValidator<VE>>(
-  ctx: FormContext<VE, V>,
+export function sanitizeDataForNewSchema<V extends Validator>(
+  ctx: FormContext<V>,
   newSchema: Schema,
   oldSchema: Schema,
   formData: SchemaValue | undefined
@@ -64,8 +63,8 @@ export function sanitizeDataForNewSchema<VE, V extends FormValidator<VE>>(
   );
 }
 
-export function getClosestMatchingOption<VE, V extends FormValidator<VE>>(
-  ctx: FormContext<VE, V>,
+export function getClosestMatchingOption<V extends Validator>(
+  ctx: FormContext<V>,
   formData: SchemaValue | undefined,
   options: Schema[],
   selectedOption: number,
@@ -82,8 +81,8 @@ export function getClosestMatchingOption<VE, V extends FormValidator<VE>>(
   );
 }
 
-export function getDefaultFieldState<VE, V extends FormValidator<VE>>(
-  ctx: FormContext<VE, V>,
+export function getDefaultFieldState<V extends Validator>(
+  ctx: FormContext<V>,
   schema: Schema,
   formData: SchemaValue | undefined
 ) {

@@ -1,10 +1,11 @@
+import type { Validator } from '@/core/index.js';
+
 import type { Label, Labels } from "../translation.js";
-import type { FormValidator } from "../validator.js";
 
 import type { FormContext } from "./context.js";
 
-export function translate<VE, V extends FormValidator<VE>, L extends Label>(
-  ctx: FormContext<VE, V>,
+export function translate<V extends Validator, L extends Label>(
+  ctx: FormContext<V>,
   label: L,
   params: Labels[L]
 ) {

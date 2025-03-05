@@ -1,4 +1,4 @@
-import type { Schema, Validator } from "@/core/index.js";
+import type { Schema } from "@/core/index.js";
 
 import type { Id } from "./id.js";
 import type { Config } from "./config.js";
@@ -26,10 +26,6 @@ export interface AsyncFormValueValidator<E> {
   ) => Promise<ValidationError<E>[]>;
 }
 
-export type AnyFormValueValidator<E> =
-  | FormValueValidator<E>
-  | AsyncFormValueValidator<E>;
-
 export interface FieldValueValidator<E> {
   validateFieldValue: (
     field: Config,
@@ -45,50 +41,55 @@ export interface AsyncFieldValueValidator<E> {
   ) => Promise<ValidationError<E>[]>;
 }
 
-export type AnyFieldValueValidator<E> =
-  | FieldValueValidator<E>
-  | AsyncFieldValueValidator<E>;
-
-export class AdditionalPropertyKeyError {}
-
 export interface AdditionalPropertyKeyValidator {
   validateAdditionalPropertyKey: (key: string, schema: Schema) => string[];
 }
 
-export type FormValidator<E> = Validator &
-  (
-    | AnyFormValueValidator<E>
-    | AnyFieldValueValidator<E>
-    | AdditionalPropertyKeyValidator
-    | {}
-  );
+export interface FormValueValidator<E> {
+  validateFormValue: (
+    rootSchema: Schema,
+    formValue: FormValue
+  ) => ValidationError<E>[];
+}
 
-export function isFormValueValidator<E>(
-  v: FormValidator<E>
-): v is Validator & FormValueValidator<E> {
+export type FormValueValidatorError<V> =
+  V extends FormValueValidator<infer E> ? E : never;
+
+export function isFormValueValidator<V extends object>(
+  v: V
+): v is V & FormValueValidator<FormValueValidatorError<V>> {
   return "validateFormValue" in v;
 }
 
-export function isAsyncFormValueValidator<E>(
-  v: FormValidator<E>
-): v is Validator & AsyncFormValueValidator<E> {
+export type AsyncFormValueValidatorError<V> =
+  V extends AsyncFormValueValidator<infer E> ? E : never;
+
+export function isAsyncFormValueValidator<V extends object>(
+  v: V
+): v is V & AsyncFormValueValidator<AsyncFormValueValidatorError<V>> {
   return "validateFormValueAsync" in v;
 }
 
-export function isFieldValueValidator<E>(
-  v: FormValidator<E>
-): v is Validator & FieldValueValidator<E> {
+export type FieldValueValidatorError<V> =
+  V extends FieldValueValidator<infer E> ? E : never;
+
+export function isFieldValueValidator<V extends object>(
+  v: V
+): v is V & FieldValueValidator<FieldValueValidatorError<V>> {
   return "validateFieldValue" in v;
 }
 
-export function isAsyncFieldValueValidator<E>(
-  v: FormValidator<E>
-): v is Validator & AsyncFieldValueValidator<E> {
+export type AsyncFieldValueValidatorError<V> =
+  V extends AsyncFieldValueValidator<infer E> ? E : never;
+
+export function isAsyncFieldValueValidator<V extends object>(
+  v: V
+): v is V & AsyncFieldValueValidator<AsyncFieldValueValidatorError<V>> {
   return "validateFieldValueAsync" in v;
 }
 
-export function isAdditionalPropertyKeyValidator<E>(
-  v: FormValidator<E>
-): v is Validator & AdditionalPropertyKeyValidator {
+export function isAdditionalPropertyKeyValidator(
+  v: object
+): v is AdditionalPropertyKeyValidator {
   return "validateAdditionalPropertyKey" in v;
 }

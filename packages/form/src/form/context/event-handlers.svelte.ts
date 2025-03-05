@@ -1,3 +1,4 @@
+import type { Validator } from "@/core/index.js";
 import {
   AFTER_SUBMITTED,
   AFTER_CHANGED,
@@ -6,12 +7,11 @@ import {
   ON_CHANGE,
   ON_BLUR,
 } from "../validation.js";
-import type { FormValidator } from "../validator.js";
 
 import type { FormContext } from "./context.js";
 
-export function makeEventHandlers<VE, V extends FormValidator<VE>>(
-  ctx: FormContext<VE, V>,
+export function makeEventHandlers<V extends Validator>(
+  ctx: FormContext<V>,
   validate: () => void
 ) {
   let changed = $state(false);

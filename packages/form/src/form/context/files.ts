@@ -1,9 +1,9 @@
-import type { FormValidator } from '../validator.js';
+import type { Validator } from '@/core/index.js';
 
 import type { FormContext } from "./context.js";
 
-export async function addFile<VE, V extends FormValidator<VE>>(
-  ctx: FormContext<VE, V>,
+export async function addFile<V extends Validator>(
+  ctx: FormContext<V>,
   signal: AbortSignal,
   data: DataTransfer,
   value: string
@@ -13,8 +13,8 @@ export async function addFile<VE, V extends FormValidator<VE>>(
   data.items.add(new File([blob], name, { type: blob.type }));
 }
 
-export function addFiles<VE, V extends FormValidator<VE>>(
-  ctx: FormContext<VE, V>,
+export function addFiles<V extends Validator>(
+  ctx: FormContext<V>,
   signal: AbortSignal,
   data: DataTransfer,
   values: string[]

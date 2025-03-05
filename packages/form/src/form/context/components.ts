@@ -1,11 +1,11 @@
 import type { Resolved } from "@/lib/resolver.js";
+import type { Validator } from "@/core/index.js";
 
 import type { Config } from "../config.js";
 import type {
   CompatibleComponentDefinitions,
   FoundationalComponent,
 } from "../components.js";
-import type { FormValidator } from "../validator.js";
 import { createMessage } from "../error-message.svelte";
 
 import type { FormContext } from "./context.js";
@@ -13,9 +13,8 @@ import { translate } from "./translation.js";
 
 function getComponentInner<
   T extends FoundationalComponent,
-  VE,
-  V extends FormValidator<VE>,
->(ctx: FormContext<VE, V>, type: T, config: Config) {
+  V extends Validator,
+>(ctx: FormContext<V>, type: T, config: Config) {
   const component = config.uiSchema["ui:components"]?.[type];
   switch (typeof component) {
     case "undefined":
@@ -33,10 +32,9 @@ function getComponentInner<
 
 export function getComponent<
   T extends FoundationalComponent,
-  VE,
-  V extends FormValidator<VE>,
+  V extends Validator,
 >(
-  ctx: FormContext<VE, V>,
+  ctx: FormContext<V>,
   type: T,
   config: Config
 ): Resolved<T, CompatibleComponentDefinitions> {
