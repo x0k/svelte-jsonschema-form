@@ -15,7 +15,7 @@ export type DataURLToBlob = (
   dataURILike: string
 ) => Promise<NamedBlob>;
 
-export function makeDataURLtoBlob(
+export function createDataURLtoBlob(
   schedulerYield: SchedulerYield
 ): DataURLToBlob {
   return async (signal, dataURILike) => {

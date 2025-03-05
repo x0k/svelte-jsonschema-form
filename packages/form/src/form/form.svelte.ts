@@ -1,6 +1,6 @@
 import { SvelteMap } from "svelte/reactivity";
 
-import { makeDataURLtoBlob } from "@/lib/file.js";
+import { createDataURLtoBlob } from "@/lib/file.js";
 import type { SchedulerYield } from "@/lib/scheduler.js";
 import {
   abortPrevious,
@@ -240,7 +240,7 @@ export function createForm<T, E, FV extends FormValidator<E>>(
             }, 0);
           })
   );
-  const dataUrlToBlob = $derived(makeDataURLtoBlob(schedulerYield));
+  const dataUrlToBlob = $derived(createDataURLtoBlob(schedulerYield));
 
   const getSnapshot = $derived(
     options.getSnapshot ?? (() => $state.snapshot(value))
