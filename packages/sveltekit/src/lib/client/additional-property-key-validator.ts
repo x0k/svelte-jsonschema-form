@@ -7,10 +7,10 @@ import {
 } from '@sjsf/form/core';
 import {
   DEFAULT_ID_SEPARATOR,
-  DEFAULT_PSEUDO_ID_SEPARATOR,
+  DEFAULT_ID_PSEUDO_SEPARATOR,
   type IdentifiableFieldElement,
   type Schema,
-  type SyncAdditionalPropertyKeyValidator
+  type AdditionalPropertyKeyValidator
 } from '@sjsf/form';
 
 import { IDENTIFIABLE_FIELD_ELEMENTS } from '../model.js';
@@ -27,19 +27,19 @@ export interface ErrorFactoryOptions {
   values: string[];
 }
 
-export interface SyncAdditionalPropertyKeyValidatorOptions {
+export interface AdditionalPropertyKeyValidatorOptions {
   idSeparator?: string;
   idPseudoSeparator?: string;
   identifiableFieldElements?: (keyof IdentifiableFieldElement)[];
   error: string | ((ctx: ErrorFactoryOptions) => string);
 }
 
-export function createSyncAdditionalPropertyKeyValidator({
+export function createAdditionalPropertyKeyValidator({
   idSeparator = DEFAULT_ID_SEPARATOR,
-  idPseudoSeparator = DEFAULT_PSEUDO_ID_SEPARATOR,
+  idPseudoSeparator = DEFAULT_ID_PSEUDO_SEPARATOR,
   identifiableFieldElements = IDENTIFIABLE_FIELD_ELEMENTS,
   error
-}: SyncAdditionalPropertyKeyValidatorOptions): SyncAdditionalPropertyKeyValidator {
+}: AdditionalPropertyKeyValidatorOptions): AdditionalPropertyKeyValidator {
   const separators = [idSeparator];
   const suffixes = identifiableFieldElements.map((el) => `${idPseudoSeparator}${el}`);
   return {

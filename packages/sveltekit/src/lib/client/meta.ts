@@ -21,13 +21,24 @@ export interface SvelteKitFormMeta<
   __sendData: SendDataFromValidatedFormData<VFD>;
 }
 
-export function createMeta<
-  ActionData,
-  PageData,
-  Name extends FormNameFromActionDataUnion<ActionData>,
-  FallbackValue = SchemaValue
->(name: Name) {
-  return { name } as SvelteKitFormMeta<ActionData, PageData, Name, FallbackValue>;
+const proxy = new Proxy(
+  {},
+  {
+    get(_, name) {
+      return { name };
+    }
+  }
+);
+
+export function createMeta<ActionData, PageData, FallbackValue = SchemaValue>() {
+  return proxy as {
+    [K in FormNameFromActionDataUnion<ActionData>]: SvelteKitFormMeta<
+      ActionData,
+      PageData,
+      K,
+      FallbackValue
+    >;
+  };
 }
 
 type FormNameFromActionDataBranch<ActionData> = keyof {
@@ -53,7 +64,7 @@ type InitialFromDataFromPageData<PageData, FormName extends AnyKey> = PageData e
   [K in FormName]: InitialFormData<any, any, any>;
 }
   ? PageData[FormName]
-  : unknown
+  : unknown;
 
 type FormValueFromInitialFormData<IFD, FallbackValue> = unknown extends IFD
   ? FallbackValue

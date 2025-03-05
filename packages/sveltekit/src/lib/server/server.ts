@@ -1,16 +1,21 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { fileToDataURL } from '@sjsf/form/lib/file';
 import { defaultMerger, type Merger, type Validator } from '@sjsf/form/core';
 import {
   DEFAULT_ID_PREFIX,
   DEFAULT_ID_SEPARATOR,
-  DEFAULT_PSEUDO_ID_SEPARATOR,
-  isSyncFormValueValidator,
-  type FormValidator,
+  DEFAULT_ID_PSEUDO_SEPARATOR,
+  isFormValueValidator,
   type FormValueValidator,
   type Schema,
   type SchemaValue,
   type UiSchemaRoot,
-  type ValidationError
+  type ValidationError,
+  type IdOptions,
+  type AsyncFormValueValidator,
+  type AnyFormValueValidatorError,
+  type AnyFormValueValidator,
+  isAsyncFormValueValidator
 } from '@sjsf/form';
 
 import { JSON_CHUNKS_KEY, type InitialFormData, type ValidatedFormData } from '../model.js';
@@ -42,12 +47,9 @@ export function initForm<T, E, SendSchema extends boolean = false>({
   };
 }
 
-export interface FormDataParserOptions {
+export interface FormDataParserOptions extends IdOptions {
   validator: Validator;
   merger?: Merger;
-  idPrefix?: string;
-  idSeparator?: string;
-  idPseudoSeparator?: string;
 }
 
 export function makeFormDataParser({
@@ -55,7 +57,7 @@ export function makeFormDataParser({
   merger = defaultMerger,
   idPrefix = DEFAULT_ID_PREFIX,
   idSeparator = DEFAULT_ID_SEPARATOR,
-  idPseudoSeparator = DEFAULT_PSEUDO_ID_SEPARATOR
+  idPseudoSeparator = DEFAULT_ID_PSEUDO_SEPARATOR
 }: FormDataParserOptions) {
   return async ({
     request,
@@ -101,8 +103,7 @@ export function makeFormDataParser({
 }
 
 export interface ValidateFormOptions<
-  VE,
-  V extends FormValidator<VE> & FormValueValidator<VE>,
+  V extends FormValueValidator<any> | AsyncFormValueValidator<any>,
   SendData extends boolean
 > {
   request: Request;
@@ -114,8 +115,7 @@ export interface ValidateFormOptions<
 }
 
 export async function validateForm<
-  VE,
-  V extends FormValidator<VE> & FormValueValidator<VE>,
+  V extends AnyFormValueValidator<any>,
   SendData extends boolean = false
 >({
   request,
@@ -123,10 +123,14 @@ export async function validateForm<
   validator,
   data,
   sendData
-}: ValidateFormOptions<VE, V, SendData>): Promise<ValidatedFormData<VE, SendData>> {
-  const errors = isSyncFormValueValidator(validator)
+}: ValidateFormOptions<V, SendData>): Promise<
+  ValidatedFormData<AnyFormValueValidatorError<V>, SendData>
+> {
+  const errors = isFormValueValidator(validator)
     ? validator.validateFormValue(schema, data)
-    : await validator.validateFormValueAsync(request.signal, schema, data);
+    : isAsyncFormValueValidator(validator)
+      ? await validator.validateFormValueAsync(request.signal, schema, data)
+      : [];
   return {
     isValid: errors.length === 0,
     sendData,

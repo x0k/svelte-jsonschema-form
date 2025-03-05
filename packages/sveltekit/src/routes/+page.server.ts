@@ -1,11 +1,11 @@
 import type { Schema } from '@sjsf/form';
-import { createSyncFormValidator } from '@sjsf/ajv8-validator';
+import { createFormValidator } from '@sjsf/ajv8-validator';
 
 import { initForm, makeFormDataParser, validateForm } from '$lib/server/index.js';
 
 import type { Actions } from './$types.js';
 
-const validator = createSyncFormValidator();
+const validator = createFormValidator();
 
 const parseFormData = makeFormDataParser({
   validator
@@ -58,7 +58,7 @@ export const actions = {
   },
   second: async ({ request }) => {
     return {
-      form2: validateForm({
+      form2: await validateForm({
         request,
         schema,
         validator,

@@ -5,7 +5,7 @@ import {
   type Schema,
   type FormOptions,
   groupErrors,
-  type FormValidator
+  type PossibleError
 } from '@sjsf/form';
 
 import { page } from '$app/state';
@@ -13,13 +13,13 @@ import { page } from '$app/state';
 import type { InitialFormData, ValidatedFormData } from '../model.js';
 
 import type { SvelteKitFormMeta } from './meta.js';
+import { createSvelteKitRequest, type SveltekitRequestOptions } from './request.svelte.js';
+import type { Validator } from '@sjsf/form/core';
 
-export type SvelteKitFormOptions<
-  T,
-  VE,
-  V extends FormValidator<VE>,
-  SendSchema extends boolean
-> = Omit<FormOptions<T, VE, V>, 'schema'> &
+export type SvelteKitFormOptions<T, V extends Validator, SendSchema extends boolean> = Omit<
+  FormOptions<T, V>,
+  'schema'
+> &
   (SendSchema extends true
     ? {
         schema?: Schema;
@@ -30,13 +30,7 @@ export type SvelteKitFormOptions<
 
 export function createSvelteKitForm<
   Meta extends SvelteKitFormMeta<any, any, string, any>,
-  V extends FormValidator<Meta['__validationError']>,
-  Options extends SvelteKitFormOptions<
-    Meta['__formValue'],
-    Meta['__validationError'],
-    V,
-    Meta['__sendSchema']
-  >
+  Options extends SvelteKitFormOptions<Meta['__formValue'], Validator, Meta['__sendSchema']>
 >(meta: Meta, options: Options) {
   const initialFormData:
     | InitialFormData<Meta['__formValue'], Meta['__validationError'], Meta['__sendSchema']>
@@ -70,14 +64,14 @@ export function createSvelteKitForm<
         }
         return Reflect.get(target, p, receiver);
       }
-    }) as unknown as FormOptions<Meta['__formValue'], Meta['__validationError'], V>
+    }) as unknown as FormOptions<Meta['__formValue'], Options['validator']>
   );
   $effect(() => {
     if (!isRecord(page.form)) {
       return;
     }
     const validationData = page.form[meta.name] as
-      | ValidatedFormData<Meta["__validationError"], Meta['__sendData']>
+      | ValidatedFormData<PossibleError<Options['validator']>, Meta['__sendData']>
       | undefined;
     if (validationData === undefined) {
       return;
@@ -88,4 +82,34 @@ export function createSvelteKitForm<
     form.errors = groupErrors(validationData.errors);
   });
   return form;
+}
+
+export type SvelteKitFormSetupOptions<Meta extends SvelteKitFormMeta<any, any, string, any>> =
+  SveltekitRequestOptions<Meta['__actionData'], Meta['__formValue']> &
+    Omit<SvelteKitFormOptions<Meta['__formValue'], Validator, Meta['__sendSchema']>, 'onSubmit'>;
+
+export function setupSvelteKitForm<
+  Meta extends SvelteKitFormMeta<any, any, string, any>,
+  Options extends SvelteKitFormSetupOptions<Meta>
+>(meta: Meta, options: Options) {
+  const request = createSvelteKitRequest(meta, options);
+  const form = createSvelteKitForm(
+    meta,
+    // @ts-expect-error
+    new Proxy(props, {
+      has(target, p) {
+        if (p === 'onSubmit') {
+          return true;
+        }
+        return Reflect.has(target, p);
+      },
+      get(target, p, receiver) {
+        if (p === 'onSubmit') {
+          return request.run;
+        }
+        return Reflect.get(target, p, receiver);
+      }
+    }) as SvelteKitFormOptions<Meta['__formValue'], Options['validator'], Meta['__sendSchema']>
+  );
+  return { request, form };
 }
