@@ -13,7 +13,6 @@
     "@sjsf/ajv8-validator": "^1.9.2",
     "@sjsf/cfworker-validator": "^1.9.2",
     "@sjsf/daisyui-theme": "^1.9.2",
-    "@sjsf/daisyui5-theme": "workspace:*",
     "@sjsf/flowbite-theme": "^1.9.2",
     "@sjsf/form": "^1.9.2",
     "@sjsf/shadcn-theme": "^1.9.2",
