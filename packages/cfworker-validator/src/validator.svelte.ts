@@ -200,7 +200,7 @@ export interface FormValidatorOptions
     FormValueValidatorOptions,
     FieldValueValidatorOptions {}
 
-export function createSyncFormValidator({
+export function createFormValidator({
   factory = (schema) => new CfValidator(schema as CfSchema, "7", false),
   createSchemaValidator = createSchemaValidatorFactory(factory),
   createFieldSchemaValidator = createFieldSchemaValidatorFactory(factory),
