@@ -9,7 +9,7 @@
     AFTER_SUBMITTED,
     AFTER_TOUCHED,
     createForm,
-    CompositeForm,
+    BasicForm,
     ON_ARRAY_CHANGE,
     ON_OBJECT_CHANGE,
   } from "@sjsf/form";
@@ -311,7 +311,7 @@
       class="flex-[3] max-h-[770px] overflow-y-auto"
       style={`${themeStyle}\n${iconSetStyle}`}
     >
-      <CompositeForm
+      <BasicForm
         {form}
         class={lightOrDark}
         style="background-color: transparent; display: flex; flex-direction: column; gap: 1rem; padding: 0.3rem;"

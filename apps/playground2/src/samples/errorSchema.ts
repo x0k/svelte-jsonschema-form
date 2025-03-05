@@ -88,7 +88,7 @@ const errorSchema: Sample = {
   },
   errors: new SvelteMap([
     [
-      pathToId(DEFAULT_ID_PREFIX, DEFAULT_ID_SEPARATOR, ["firstName"]),
+      pathToId(["firstName"]),
       [
         {
           instanceId: "root_firstName",

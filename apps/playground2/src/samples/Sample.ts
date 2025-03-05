@@ -1,10 +1,12 @@
 import type {
+  FieldErrorsMap,
+  FieldValueValidator,
+  FormValueValidator,
   Schema,
   SchemaValue,
   UiSchemaRoot,
-  FormErrors,
-  FormValidator,
 } from "@sjsf/form";
+import type { Validator } from "@sjsf/form/core";
 
 type SampleStatus = "perfect" | "broken" | "warnings" | "skipped";
 
@@ -13,6 +15,8 @@ export interface Sample {
   schema: Schema;
   uiSchema: UiSchemaRoot;
   formData: SchemaValue;
-  errors?: FormErrors<any>;
-  customizeValidator?: (v: FormValidator<any>) => FormValidator<any>;
+  errors?: FieldErrorsMap<any>;
+  customizeValidator?: (
+    v: Validator & FormValueValidator<any> & FieldValueValidator<any>
+  ) => Validator & FormValueValidator<any> & FieldValueValidator<any>;
 }

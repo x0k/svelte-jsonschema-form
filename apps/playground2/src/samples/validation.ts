@@ -1,8 +1,6 @@
 import type { ErrorObject } from "ajv";
 import {
-  DEFAULT_ID_PREFIX,
-  DEFAULT_ID_SEPARATOR,
-  isSyncFormValueValidator,
+  isFormValueValidator,
   pathToId,
   type SchemaValue,
   type ValidationError,
@@ -21,9 +19,7 @@ function customValidate(
     return [
       {
         error: {} as ErrorObject,
-        instanceId: pathToId(DEFAULT_ID_PREFIX, DEFAULT_ID_SEPARATOR, [
-          "pass2",
-        ]),
+        instanceId: pathToId(["pass2"]),
         propertyTitle: "Repeat password",
         message: "Passwords don't match.",
       },
@@ -66,7 +62,7 @@ const validation: Sample = {
     return {
       ...v,
       validateFormValue(rootSchema, formValue) {
-        const errors = isSyncFormValueValidator(v)
+        const errors = isFormValueValidator(v)
           ? v.validateFormValue(rootSchema, formValue).map((error) => {
               if (
                 error.error.keyword === "minimum" &&
