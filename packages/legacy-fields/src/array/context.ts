@@ -1,16 +1,16 @@
 import { getContext, setContext } from "svelte";
 
-import type { Schema } from "@sjsf/form/core";
+import type { Schema, Validator } from "@sjsf/form/core";
 
-import type { FieldError, CombinedError, FormValidator } from "@sjsf/form";
+import type { FieldError, PossibleError } from "@sjsf/form";
 
-export interface ArrayContext<E, V extends FormValidator<E>> {
+export interface ArrayContext<V extends Validator> {
   canAdd: boolean;
   addable: boolean;
   orderable: boolean;
   removable: boolean;
   copyable: boolean;
-  errors: FieldError<CombinedError<E, V>>[];
+  errors: FieldError<PossibleError<V>>[];
   key(index: number): number;
   pushItem(itemSchema: Schema): void;
   moveItemUp(index: number): void;
@@ -21,15 +21,10 @@ export interface ArrayContext<E, V extends FormValidator<E>> {
 
 const ARRAY_CONTEXT = Symbol("array-context");
 
-export function getArrayContext<E, V extends FormValidator<E>>(): ArrayContext<
-  E,
-  V
-> {
+export function getArrayContext<V extends Validator>(): ArrayContext<V> {
   return getContext(ARRAY_CONTEXT);
 }
 
-export function setArrayContext<E, V extends FormValidator<E>>(
-  ctx: ArrayContext<E, V>
-) {
+export function setArrayContext<V extends Validator>(ctx: ArrayContext<V>) {
   setContext(ARRAY_CONTEXT, ctx);
 }

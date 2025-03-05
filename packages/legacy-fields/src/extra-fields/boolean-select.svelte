@@ -38,7 +38,7 @@
   const options = $derived.by(() => {
     const yes = translate(ctx, "yes", {});
     const no = translate(ctx, "no", {});
-    const computeId = (i: number) => createPseudoId(ctx, config.id, i);
+    const computeId = (i: number) => createPseudoId(config.id, i, ctx);
     if (Array.isArray(config.schema.oneOf)) {
       return (
         createOptions(
@@ -68,7 +68,7 @@
       config.uiOptions?.enumNames === undefined
     ) {
       return enumValues.map((v, i) => ({
-        id: createPseudoId(ctx, config.id, i),
+        id: createPseudoId(config.id, i, ctx),
         label: v ? yes : no,
         value: v,
         disabled: false,

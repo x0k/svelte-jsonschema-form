@@ -169,7 +169,7 @@
         {isAdditional}
         bind:value={value[property]}
         config={{
-          id: createChildId(ctx, config.id, property),
+          id: createChildId(config.id, property, ctx),
           name: property,
           title: propUiOptions?.title ?? propSchema.title ?? property,
           schema: propSchema,

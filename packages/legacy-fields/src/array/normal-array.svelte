@@ -65,7 +65,7 @@
       <ArrayItem
         {index}
         config={{
-          id: createChildId(ctx, config.id, index),
+          id: createChildId(config.id, index, ctx),
           name: getArrayItemName(config, index),
           title: getNormalArrayItemTitle(config, index),
           schema: itemSchema,

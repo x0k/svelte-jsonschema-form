@@ -28,7 +28,7 @@
   const ctx = getFormContext();
   const objCtx = getObjectContext();
 
-  const id = $derived(createPseudoId(ctx, parentId, "key-input"));
+  const id = $derived(createPseudoId(parentId, "key-input", ctx));
   const uiOptions = $derived(getUiOptions(ctx, uiSchema));
   const config: Config = $derived({
     id,

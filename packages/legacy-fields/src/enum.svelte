@@ -23,7 +23,7 @@
   );
   const options = $derived(
     createOptions(config.schema, config.uiSchema, config.uiOptions, (i) =>
-      createPseudoId(ctx, config.id, i)
+      createPseudoId(config.id, i, ctx)
     ) ?? []
   );
   const errors = $derived(getErrors(ctx, config.id));

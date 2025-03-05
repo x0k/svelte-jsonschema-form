@@ -5,12 +5,14 @@ export * from "./templates.js";
 export * from "./components.js";
 export * from "./widgets.js";
 
+export type * from "./array/exports.js";
 export {
   arrayField,
   arrayItemField,
   fixedArrayField,
   normalArrayField,
 } from "./array/exports.js";
+export type * from "./object/exports.js";
 export { objectField, objectPropertyField } from "./object/exports.js";
 export { default as booleanField } from "./boolean.svelte";
 export { default as enumField } from "./enum.svelte";

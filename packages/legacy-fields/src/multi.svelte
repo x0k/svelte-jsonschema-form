@@ -139,7 +139,7 @@
   });
   const enumOptions = $derived<EnumOption<number>[]>(
     retrievedOptions.map((s, i) => ({
-      id: createPseudoId(ctx, config.id, i),
+      id: createPseudoId(config.id, i, ctx),
       label: optionsUiOptions[i]?.title ?? s.title ?? enumOptionLabel(i),
       value: i,
       disabled: false,
@@ -153,7 +153,7 @@
     const uiSchema = config.uiSchema.multiFieldOptionSelector ?? {};
     const uiOptions = getUiOptions(ctx, uiSchema);
     return {
-      id: createPseudoId(ctx, config.id, suffix),
+      id: createPseudoId(config.id, suffix, ctx),
       name: `${config.name}__${suffix}`,
       required: true,
       title: config.title,

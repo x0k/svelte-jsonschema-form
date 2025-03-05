@@ -4,6 +4,7 @@
     isFixedItems,
     isSchemaObjectValue,
     type Schema,
+    type Validator,
   } from "@sjsf/form/core";
   import {
     getErrors,
@@ -18,7 +19,6 @@
     ON_ARRAY_CHANGE,
     getComponent,
     type ComponentProps,
-    type FormValidator,
     translate,
   } from "@sjsf/form";
 
@@ -54,7 +54,9 @@
 
   const keyedArray = createKeyedArray(() => value ?? []);
 
-  const arrayCtx: ArrayContext<unknown, FormValidator<unknown>> = {
+  // NOTE: Defining this component as a generic will break packaging
+  // dependant packages
+  const arrayCtx: ArrayContext<Validator> = {
     get errors() {
       return errors;
     },
