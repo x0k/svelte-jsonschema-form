@@ -1,6 +1,6 @@
 import {
   pathToId,
-  type IdOptions,
+  type PathToIdOptions,
   type Schema,
   type UiSchema,
   type UiSchemaRoot,
@@ -53,7 +53,7 @@ export const uiStates = (uiSchema: UiSchema): UiSchema => ({
   error: uiSchema,
 });
 
-export const createErrors = (keys: string[], options?: IdOptions) =>
+export const createErrors = (keys: string[], options?: PathToIdOptions) =>
   keys.map(
     (key) =>
       ({
@@ -66,7 +66,7 @@ export const createErrors = (keys: string[], options?: IdOptions) =>
 
 export function createSchemas(
   specs: Record<string, [Schema, UiSchema]>,
-  options?: IdOptions
+  options?: PathToIdOptions
 ): {
   schema: Schema;
   uiSchema: UiSchemaRoot;

@@ -2,15 +2,13 @@
   import type { Snippet } from "svelte";
   import {
     createForm,
-    DEFAULT_ID_PREFIX,
-    DEFAULT_ID_SEPARATOR,
     pathToId,
     type Schema,
     type Theme,
     type UiSchema,
     type UiSchemaRoot,
   } from "@sjsf/form";
-  import { createSyncFormValidator } from "@sjsf/ajv8-validator";
+  import { createFormValidator } from "@sjsf/ajv8-validator";
   import { translation } from "@sjsf/form/translations/en";
 
   import Form from "./form.svelte";
@@ -34,7 +32,7 @@
     append?: Snippet;
   } = $props();
 
-  const validator = createSyncFormValidator();
+  const validator = createFormValidator();
 
   const widgetsSchemas = (idPrefix: string) =>
     createSchemas(
@@ -122,7 +120,7 @@
         instanceId: pathToId([]),
         message: "message",
         propertyTitle: "Title",
-        error: null,
+        error: null as any,
       },
     ],
     validator,
