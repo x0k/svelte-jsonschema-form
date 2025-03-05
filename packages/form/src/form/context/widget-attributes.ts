@@ -8,9 +8,9 @@ import type { Nullable } from "@/lib/types.js";
 import type { Validator } from "@/core/index.js";
 
 import type { Config } from "../config.js";
+import { createPseudoId } from '../id.js';
 
-import type { FormContext } from "./context.js";
-import { createPseudoId } from "./id.js";
+import type { FormInternalContext } from "./context.js";
 
 interface Disabled {
   disabled: boolean;
@@ -23,7 +23,7 @@ interface Handlers {
 }
 
 export function isDisabled<V extends Validator>(
-  ctx: FormContext<V>,
+  ctx: FormInternalContext<V>,
   attributes?: Partial<Nullable<Disabled>>
 ) {
   return attributes?.disabled || ctx.disabled;
@@ -35,7 +35,7 @@ export function isDisabled<V extends Validator>(
 export function defineDisabled<
   T extends Partial<Nullable<Disabled>>,
   V extends Validator,
->(ctx: FormContext<V>, obj: T) {
+>(ctx: FormInternalContext<V>, obj: T) {
   obj.disabled ||= ctx.disabled;
   return obj as T & Disabled;
 }
@@ -78,7 +78,7 @@ export function inputAttributes<
   >,
   V extends Validator,
 >(
-  ctx: FormContext<V>,
+  ctx: FormInternalContext<V>,
   { id, required, schema }: Config,
   handlers: Handlers,
   attributes: T | undefined
@@ -95,7 +95,7 @@ export function inputAttributes<
       max: schema.maximum,
       step: schema.multipleOf ?? (schema.type === "number" ? "any" : undefined),
       list: Array.isArray(schema.examples)
-        ? createPseudoId(ctx, id, "examples")
+        ? createPseudoId(id, "examples", ctx)
         : undefined,
       readonly: schema.readOnly,
       oninput: handlers.oninput,
@@ -129,7 +129,7 @@ export function textareaAttributes<
   >,
   V extends Validator,
 >(
-  ctx: FormContext<V>,
+  ctx: FormInternalContext<V>,
   { id, required, schema }: Config,
   handlers: Handlers,
   attributes: T | undefined
@@ -160,7 +160,7 @@ export function selectAttributes<
   >,
   V extends Validator,
 >(
-  ctx: FormContext<V>,
+  ctx: FormInternalContext<V>,
   { id, required }: Config,
   handlers: Handlers,
   attributes: T | undefined

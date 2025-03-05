@@ -12,7 +12,7 @@ import {
 import {
   DEFAULT_ID_SEPARATOR,
   DEFAULT_ID_PREFIX,
-  DEFAULT_PSEUDO_ID_SEPARATOR,
+  DEFAULT_ID_PSEUDO_SEPARATOR,
 } from "./form/id.js";
 
 export const SEQUENCE_OF_DIGITS_REGEX = /^\d+$/;
@@ -34,7 +34,7 @@ export interface IdConfig {
 
 export function makeIdConfig({
   prefix = DEFAULT_ID_PREFIX,
-  pseudoSeparator = DEFAULT_PSEUDO_ID_SEPARATOR,
+  pseudoSeparator = DEFAULT_ID_PSEUDO_SEPARATOR,
   separator = DEFAULT_ID_SEPARATOR
 }: Partial<IdConfig> = {}): IdConfig {
   return {

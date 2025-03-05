@@ -48,8 +48,8 @@ export interface ActionOptions<T extends ReadonlyArray<any>, R, E> {
   onSuccess?: (result: R, ...args: T) => void;
   onFailure?: (failure: FailedAction<E>, ...args: T) => void;
   /**
-   * A runtime error `combinator` is interpreted as `false`
-   * @default ignoreNewUntilPreviousIsFinished
+   * The `combinator` runtime error is interpreted as `false`.
+   * @default waitPrevious
    */
   combinator?: ActionsCombinator<T, E>;
   /**
@@ -63,19 +63,19 @@ export interface ActionOptions<T extends ReadonlyArray<any>, R, E> {
 }
 
 /**
- * Forget previous mutation
+ * Forget previous action
  */
 export const forgetPrevious: ActionsCombinator<any, any> = () => true;
 
 /**
- * Abort previous mutation
+ * Abort previous action
  */
 export const abortPrevious: ActionsCombinator<any, any> = () => "abort";
 
 /**
- * Ignore new mutation until the previous mutation is completed
+ * Ignore new action until the previous action is completed
  */
-export const ignoreNewUntilPreviousIsFinished: ActionsCombinator<any, any> = ({
+export const waitPrevious: ActionsCombinator<any, any> = ({
   status,
 }) => status !== Status.Processed;
 
@@ -137,7 +137,7 @@ export function createAction<
     throw new Error("timeoutMs must be greater than delayedMs");
   }
   const combinator = $derived(
-    options.combinator ?? ignoreNewUntilPreviousIsFinished
+    options.combinator ?? waitPrevious
   );
 
   let state = $state.raw<ActionState<T, E>>({
@@ -174,7 +174,7 @@ export function createAction<
     abortController = new AbortController();
     const promise = options.execute(abortController.signal, ...args).then(
       (result) => {
-        // Mutation may have been aborted by user or timeout
+        // action may have been aborted by user or timeout
         if (ref?.deref() !== promise || state.status === Status.Failed) return;
         state = { status: Status.Success };
         clearTimeouts();

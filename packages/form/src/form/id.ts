@@ -5,21 +5,32 @@ export const DEFAULT_ID_PREFIX = "root";
 
 export const DEFAULT_ID_SEPARATOR = ".";
 
-export const DEFAULT_PSEUDO_ID_SEPARATOR = "::";
+export const DEFAULT_ID_PSEUDO_SEPARATOR = "::";
 
 export type Id = Brand<"sjsf-id">;
 
-export interface IdOptions {
+export interface IdPrefixOption {
   idPrefix?: string;
+}
+
+export interface IdSeparatorOption {
   idSeparator?: string;
 }
+
+export interface IdPseudoSeparatorOption {
+  idPseudoSeparator?: string;
+}
+
+export type IdOptions = IdPrefixOption & IdSeparatorOption & IdPseudoSeparatorOption
+
+export type PathToIdOptions = IdPrefixOption & IdSeparatorOption;
 
 export function pathToId(
   path: Path,
   {
     idPrefix = DEFAULT_ID_PREFIX,
     idSeparator = DEFAULT_ID_SEPARATOR,
-  }: IdOptions = {}
+  }: PathToIdOptions = {}
 ) {
   return (
     path.length === 0
@@ -36,18 +47,20 @@ export interface IdentifiableFieldElement {
   anyof: {};
 }
 
-export function computePseudoId(
-  pseudoIdSeparator: string,
+export function createPseudoId(
   instanceId: Id,
-  element: keyof IdentifiableFieldElement | number
+  element: keyof IdentifiableFieldElement | number,
+  {
+    idPseudoSeparator = DEFAULT_ID_PSEUDO_SEPARATOR,
+  }: IdPseudoSeparatorOption = {}
 ) {
-  return `${instanceId}${pseudoIdSeparator}${element}` as Id;
+  return `${instanceId}${idPseudoSeparator}${element}` as Id;
 }
 
-export function makeChildId(
-  idSeparator: string,
+export function createChildId(
   arrayOrObjectId: Id,
-  indexOrProperty: number | string
+  indexOrProperty: number | string,
+  { idSeparator = DEFAULT_ID_SEPARATOR }: IdSeparatorOption = {}
 ): Id {
   return `${arrayOrObjectId}${idSeparator}${indexOrProperty}` as Id;
 }

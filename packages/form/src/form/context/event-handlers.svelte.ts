@@ -8,10 +8,10 @@ import {
   ON_BLUR,
 } from "../validation.js";
 
-import type { FormContext } from "./context.js";
+import type { FormInternalContext } from "./context.js";
 
 export function makeEventHandlers<V extends Validator>(
-  ctx: FormContext<V>,
+  ctx: FormInternalContext<V>,
   validate: () => void
 ) {
   let changed = $state(false);

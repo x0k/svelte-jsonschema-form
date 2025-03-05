@@ -1,6 +1,8 @@
 <script lang="ts">
   import type { HTMLFormAttributes } from "svelte/elements";
 
+  import type { Validator } from "@/core/validator.js";
+
   import type { FormState } from "./form.svelte.js";
   import { setFromContext } from "./context/context.js";
   import Content from "./content.svelte";
@@ -12,14 +14,14 @@
     form,
     ...attributes
   }: {
-    form: Pick<FormState<any, any>, "internals">;
+    form: Pick<FormState<any, any>, "context">;
     ref?: HTMLFormElement | undefined;
   } & HTMLFormAttributes = $props();
 
-  setFromContext(form.internals);
+  setFromContext(form.context);
 </script>
 
 <FormTag bind:ref {attributes}>
   <Content />
   <SubmitButton />
-</FormTag>
+</FormTag>context

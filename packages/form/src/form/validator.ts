@@ -26,6 +26,10 @@ export interface AsyncFormValueValidator<E> {
   ) => Promise<ValidationError<E>[]>;
 }
 
+export type AnyFormValueValidator<E> =
+  | FormValueValidator<E>
+  | AsyncFormValueValidator<E>;
+
 export interface FieldValueValidator<E> {
   validateFieldValue: (
     field: Config,
@@ -40,6 +44,10 @@ export interface AsyncFieldValueValidator<E> {
     fieldValue: FieldValue
   ) => Promise<ValidationError<E>[]>;
 }
+
+export type AnyFieldValueValidator<E> =
+  | FieldValueValidator<E>
+  | AsyncFieldValueValidator<E>;
 
 export interface AdditionalPropertyKeyValidator {
   validateAdditionalPropertyKey: (key: string, schema: Schema) => string[];

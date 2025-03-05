@@ -8,13 +8,13 @@ import type {
 } from "../components.js";
 import { createMessage } from "../error-message.svelte";
 
-import type { FormContext } from "./context.js";
+import type { FormInternalContext } from "./context.js";
 import { translate } from "./translation.js";
 
 function getComponentInner<
   T extends FoundationalComponent,
   V extends Validator,
->(ctx: FormContext<V>, type: T, config: Config) {
+>(ctx: FormInternalContext<V>, type: T, config: Config) {
   const component = config.uiSchema["ui:components"]?.[type];
   switch (typeof component) {
     case "undefined":
@@ -34,7 +34,7 @@ export function getComponent<
   T extends FoundationalComponent,
   V extends Validator,
 >(
-  ctx: FormContext<V>,
+  ctx: FormInternalContext<V>,
   type: T,
   config: Config
 ): Resolved<T, CompatibleComponentDefinitions> {

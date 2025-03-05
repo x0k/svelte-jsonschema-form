@@ -1,9 +1,9 @@
 import type { Validator } from '@/core/index.js';
 
-import type { FormContext } from "./context.js";
+import type { FormInternalContext } from "./context.js";
 
 export async function addFile<V extends Validator>(
-  ctx: FormContext<V>,
+  ctx: FormInternalContext<V>,
   signal: AbortSignal,
   data: DataTransfer,
   value: string
@@ -14,7 +14,7 @@ export async function addFile<V extends Validator>(
 }
 
 export function addFiles<V extends Validator>(
-  ctx: FormContext<V>,
+  ctx: FormInternalContext<V>,
   signal: AbortSignal,
   data: DataTransfer,
   values: string[]

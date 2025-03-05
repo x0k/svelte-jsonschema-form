@@ -10,31 +10,31 @@ import {
   type Validator,
 } from "@/core/index.js";
 
-import type { FormContext } from "./context.js";
+import type { FormInternalContext } from "./context.js";
 
 export function isSelect<V extends Validator>(
-  ctx: FormContext<V>,
+  ctx: FormInternalContext<V>,
   schema: Schema
 ) {
   return isSelectInternal(ctx.validator, ctx.merger, schema, ctx.schema);
 }
 
 export function isMultiSelect<V extends Validator>(
-  ctx: FormContext<V>,
+  ctx: FormInternalContext<V>,
   schema: Schema
 ) {
   return isMultiSelectInternal(ctx.validator, ctx.merger, schema, ctx.schema);
 }
 
 export function isFilesArray<V extends Validator>(
-  ctx: FormContext<V>,
+  ctx: FormInternalContext<V>,
   schema: Schema
 ) {
   return isFilesArrayInternal(ctx.validator, ctx.merger, schema, ctx.schema);
 }
 
 export function retrieveSchema<V extends Validator>(
-  ctx: FormContext<V>,
+  ctx: FormInternalContext<V>,
   schema: Schema,
   formData: SchemaValue | undefined
 ) {
@@ -48,7 +48,7 @@ export function retrieveSchema<V extends Validator>(
 }
 
 export function sanitizeDataForNewSchema<V extends Validator>(
-  ctx: FormContext<V>,
+  ctx: FormInternalContext<V>,
   newSchema: Schema,
   oldSchema: Schema,
   formData: SchemaValue | undefined
@@ -64,7 +64,7 @@ export function sanitizeDataForNewSchema<V extends Validator>(
 }
 
 export function getClosestMatchingOption<V extends Validator>(
-  ctx: FormContext<V>,
+  ctx: FormInternalContext<V>,
   formData: SchemaValue | undefined,
   options: Schema[],
   selectedOption: number,
@@ -82,7 +82,7 @@ export function getClosestMatchingOption<V extends Validator>(
 }
 
 export function getDefaultFieldState<V extends Validator>(
-  ctx: FormContext<V>,
+  ctx: FormInternalContext<V>,
   schema: Schema,
   formData: SchemaValue | undefined
 ) {

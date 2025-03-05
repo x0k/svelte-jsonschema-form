@@ -36,16 +36,11 @@ import {
 } from "./errors.js";
 import {
   translate,
+  type FormInternalContext,
   type FormContext,
-  type FormInternals,
 } from "./context/index.js";
 import { DefaultFormMerger, type FormMerger } from "./merger.js";
-import {
-  type Id,
-  DEFAULT_ID_PREFIX,
-  DEFAULT_ID_SEPARATOR,
-  DEFAULT_PSEUDO_ID_SEPARATOR,
-} from "./id.js";
+import { type Id, DEFAULT_ID_PREFIX } from "./id.js";
 import type { Config } from "./config.js";
 import type { Theme } from "./components.js";
 import type { FieldValue, FormValue } from "./model.js";
@@ -68,12 +63,12 @@ export interface FormOptions<T, V extends Validator> {
   disabled?: boolean;
   idPrefix?: string;
   idSeparator?: string;
-  pseudoIdSeparator?: string;
+  idPseudoSeparator?: string;
   //
   initialValue?: T;
   initialErrors?: InitialErrors<V>;
   /**
-   * @default ignoreNewUntilPreviousIsFinished
+   * @default waitPrevious
    */
   validationCombinator?: ActionsCombinator<[SubmitEvent], unknown>;
   /**
@@ -108,7 +103,7 @@ export interface FormOptions<T, V extends Validator> {
    *
    * @default (ctx) => $state.snapshot(ctx.value)
    */
-  getSnapshot?: (ctx: FormContext<V>) => FormValue;
+  getSnapshot?: (ctx: FormInternalContext<V>) => FormValue;
   /**
    * Submit handler
    *
@@ -157,10 +152,6 @@ export interface FormOptions<T, V extends Validator> {
   schedulerYield?: SchedulerYield;
 }
 
-export type ValidationProcessErrorTranslation = (
-  state: FailedAction<unknown>
-) => string;
-
 export interface FormValidationResult<E> {
   formValue: FormValue;
   formErrors: FieldErrorsMap<E>;
@@ -181,7 +172,7 @@ type ValidateAsync<V> =
     : {};
 
 export type FormState<T, V extends Validator> = {
-  readonly internals: FormInternals;
+  readonly context: FormContext;
   readonly validation: Action<
     [event: SubmitEvent],
     FormValidationResult<AnyFormValueValidatorError<V>>,
@@ -226,11 +217,6 @@ export function createForm<T, V extends Validator>(
   const fieldsValidationMode = $derived(options.fieldsValidationMode ?? 0);
   const uiSchema = $derived(options.uiSchema ?? {});
   const disabled = $derived(options.disabled ?? false);
-  const idPrefix = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX);
-  const idSeparator = $derived(options.idSeparator ?? DEFAULT_ID_SEPARATOR);
-  const pseudoIdSeparator = $derived(
-    options.pseudoIdSeparator ?? DEFAULT_PSEUDO_ID_SEPARATOR
-  );
   const schedulerYield: SchedulerYield = $derived(
     (options.schedulerYield ??
       (typeof scheduler !== "undefined" && "yield" in scheduler))
@@ -389,10 +375,12 @@ export function createForm<T, V extends Validator>(
     ...uiSchema["ui:options"],
   });
 
-  const context: FormContext<V> = {
-    ...({} as FormInternals),
+  const rootId = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX);
+
+  const context: FormInternalContext<V> = {
+    ...({} as FormContext),
     get rootId() {
-      return idPrefix as Id;
+      return rootId as Id;
     },
     get uiOptions() {
       return uiOptions;
@@ -433,13 +421,13 @@ export function createForm<T, V extends Validator>(
       return disabled;
     },
     get idPrefix() {
-      return idPrefix;
+      return options.idPrefix;
     },
     get idSeparator() {
-      return idSeparator;
+      return options.idSeparator;
     },
     get idPseudoSeparator() {
-      return pseudoIdSeparator;
+      return options.idPseudoSeparator;
     },
     get validator() {
       return options.validator;
@@ -492,7 +480,7 @@ export function createForm<T, V extends Validator>(
   } as ValidateAsync<V>;
   return Object.assign(
     {
-      internals: context,
+      context,
       get value() {
         return getSnapshot(context) as T | undefined;
       },
@@ -530,9 +518,9 @@ export function createForm<T, V extends Validator>(
   );
 }
 
-export function enhance(node: HTMLFormElement, internals: FormInternals) {
+export function enhance(node: HTMLFormElement, context: FormContext) {
   $effect(() => {
-    const ctx = internals as FormContext<any>;
+    const ctx = context as FormInternalContext<any>;
     node.addEventListener("submit", ctx.submitHandler);
     node.addEventListener("reset", ctx.resetHandler);
     return () => {

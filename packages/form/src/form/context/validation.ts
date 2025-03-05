@@ -9,17 +9,17 @@ import {
 } from "../errors.js";
 import { isAdditionalPropertyKeyValidator } from "../validator.js";
 
-import type { FormContext } from "./context.js";
+import type { FormInternalContext } from "./context.js";
 
 export function getErrors<V extends Validator>(
-  ctx: FormContext<V>,
+  ctx: FormInternalContext<V>,
   id: Id
 ): FieldError<PossibleError<V>>[] {
   return ctx.errors.get(id) ?? [];
 }
 
 export function validateField<V extends Validator>(
-  ctx: FormContext<V>,
+  ctx: FormInternalContext<V>,
   config: Config,
   value: SchemaValue | undefined
 ) {
@@ -27,7 +27,7 @@ export function validateField<V extends Validator>(
 }
 
 export function validateAdditionalPropertyKey<V extends Validator>(
-  ctx: FormContext<V>,
+  ctx: FormInternalContext<V>,
   config: Config,
   key: string,
   fieldConfig: Config

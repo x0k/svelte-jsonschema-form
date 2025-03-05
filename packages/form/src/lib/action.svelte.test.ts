@@ -4,7 +4,7 @@ import { tick } from 'svelte';
 import {
   abortPrevious,
   forgetPrevious,
-  ignoreNewUntilPreviousIsFinished,
+  waitPrevious,
   Status,
   createAction
 } from "./action.svelte.js";
@@ -87,7 +87,7 @@ describe("createAction", () => {
       );
       const action = createAction({
         execute: impl,
-        combinator: ignoreNewUntilPreviousIsFinished,
+        combinator: waitPrevious,
       });
       action.run();
       action.run();

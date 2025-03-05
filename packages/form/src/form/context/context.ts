@@ -18,12 +18,14 @@ import type { Icons } from "../icons.js";
 import type { FormMerger } from "../merger.js";
 import type { Config } from "../config.js";
 import type { Theme } from "../components.js";
-import type { Id } from "../id.js";
+import type { Id, IdOptions } from "../id.js";
 import type { FormValue } from "../model.js";
 
-export type FormInternals = Brand<"sjsf-internals", {}>;
+export type FormContext = Brand<"sjsf-context", {}>;
 
-export interface FormContext<V extends Validator> extends FormInternals {
+export interface FormInternalContext<V extends Validator>
+  extends FormContext,
+    Readonly<IdOptions> {
   value: FormValue;
   isChanged: boolean;
   readonly rootId: Id;
@@ -35,9 +37,6 @@ export interface FormContext<V extends Validator> extends FormInternals {
   readonly validator: V;
   readonly merger: FormMerger;
   readonly icons?: Icons;
-  readonly idPrefix: string;
-  readonly idSeparator: string;
-  readonly idPseudoSeparator: string;
   readonly disabled: boolean;
   readonly errors: FieldErrorsMap<PossibleError<V>>;
   readonly dataUrlToBlob: DataURLToBlob;
@@ -62,16 +61,16 @@ export interface FormContext<V extends Validator> extends FormInternals {
 
 export const FORM_CONTEXT = Symbol("form-context");
 
-export function getFormContext<V extends Validator>(): FormContext<V> {
+export function getFormContext<V extends Validator>(): FormInternalContext<V> {
   return getContext(FORM_CONTEXT);
 }
 
-export function setFromContext(ctx: FormInternals) {
+export function setFromContext(ctx: FormContext) {
   setContext(FORM_CONTEXT, ctx);
 }
 
 export function getUiOptions<V extends Validator>(
-  ctx: FormContext<V>,
+  ctx: FormInternalContext<V>,
   uiSchema: UiSchema
 ) {
   const globalUiOptions = ctx.uiSchema["ui:globalOptions"];
