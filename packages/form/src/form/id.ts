@@ -9,7 +9,18 @@ export const DEFAULT_PSEUDO_ID_SEPARATOR = "::";
 
 export type Id = Brand<"sjsf-id">;
 
-export function pathToId(idPrefix: string, idSeparator: string, path: Path) {
+export interface IdOptions {
+  idPrefix?: string;
+  idSeparator?: string;
+}
+
+export function pathToId(
+  path: Path,
+  {
+    idPrefix = DEFAULT_ID_PREFIX,
+    idSeparator = DEFAULT_ID_SEPARATOR,
+  }: IdOptions = {}
+) {
   return (
     path.length === 0
       ? idPrefix

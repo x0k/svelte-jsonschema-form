@@ -13,7 +13,7 @@ export function createId<VE, V extends FormValidator<VE>>(
   ctx: FormContext<VE, V>,
   path: Array<string | number>
 ) {
-  return pathToId(ctx.idPrefix, ctx.idSeparator, path);
+  return pathToId(path, ctx);
 }
 
 export function createChildId<VE, V extends FormValidator<VE>>(
