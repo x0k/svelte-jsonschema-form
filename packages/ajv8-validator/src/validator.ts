@@ -6,7 +6,7 @@ import {
   type ValidateFunction,
 } from "ajv";
 import { getValueByPath } from "@sjsf/form/lib/object";
-import type { SchemaDefinition, Validator } from "@sjsf/form/core";
+import type { Validator } from "@sjsf/form/core";
 import {
   computePseudoId,
   DEFAULT_ID_PREFIX,
@@ -18,11 +18,14 @@ import {
   type AsyncFormValueValidator,
   type Config,
   type Schema,
-  type SyncFieldValueValidator,
-  type SyncFormValueValidator,
+  type FieldValueValidator,
+  type FormValueValidator,
   type UiSchema,
   type UiSchemaRoot,
-  type ValidationErrors,
+  type ValidationError,
+  type IdPrefixOption,
+  type IdSeparatorOption,
+  type IdPseudoSeparatorOption,
 } from "@sjsf/form";
 
 import { addFormComponents, DEFAULT_AJV_CONFIG } from "./model.js";
@@ -31,25 +34,10 @@ import {
   createSchemaCompiler,
 } from "./schema-compilers.js";
 
-const TRUE_SCHEMA: Schema = {};
-const FALSE_SCHEMA: Schema = {
-  not: {},
-};
-const NO_ERRORS: ValidationErrors<ErrorObject> = [];
+const NO_ERRORS: ValidationError<ErrorObject>[] = [];
 
 export interface ValidatorOptions {
   compileSchema: (schema: Schema, rootSchema: Schema) => ValidateFunction;
-}
-
-function transformSchemaDefinition(schema: SchemaDefinition): Schema {
-  switch (schema) {
-    case true:
-      return TRUE_SCHEMA;
-    case false:
-      return FALSE_SCHEMA;
-    default:
-      return schema;
-  }
 }
 
 export function createValidator({
@@ -57,10 +45,10 @@ export function createValidator({
 }: ValidatorOptions): Validator {
   return {
     isValid(schemaDef, rootSchema, formValue) {
-      const validator = compileSchema(
-        transformSchemaDefinition(schemaDef),
-        rootSchema
-      );
+      if (typeof schemaDef === "boolean") {
+        return schemaDef;
+      }
+      const validator = compileSchema(schemaDef, rootSchema);
       try {
         return validator(formValue);
       } catch (e) {
@@ -71,11 +59,11 @@ export function createValidator({
   };
 }
 
-interface ErrorsTransformerOptions {
-  idPrefix: string;
-  idSeparator: string;
-  idPseudoSeparator: string;
-  uiSchema: UiSchemaRoot;
+interface ErrorsTransformerOptions
+  extends IdPrefixOption,
+    IdSeparatorOption,
+    IdPseudoSeparatorOption {
+  uiSchema?: UiSchemaRoot;
 }
 
 function errorObjectToMessage(
@@ -98,12 +86,7 @@ function errorObjectToMessage(
   return message.replace(missingProperty, propertyTitle);
 }
 
-function createFormErrorsTransformer({
-  uiSchema,
-  idPrefix,
-  idSeparator,
-  idPseudoSeparator,
-}: ErrorsTransformerOptions) {
+function createFormErrorsTransformer(options: ErrorsTransformerOptions) {
   const instancePathToId = (
     {
       params: { missingProperty, propertyName: propertyNameParam },
@@ -111,17 +94,17 @@ function createFormErrorsTransformer({
     }: ErrorObject,
     path: string[]
   ) => {
-    let id = pathToId(idPrefix, idSeparator, path);
+    let id = pathToId(path, options);
     id =
       missingProperty !== undefined
-        ? makeChildId(idSeparator, id, missingProperty)
+        ? makeChildId(id, missingProperty, options)
         : id;
     id =
       propertyName !== undefined
         ? computePseudoId(
-            idPseudoSeparator,
-            makeChildId(idSeparator, id, propertyName),
-            "key-input"
+            makeChildId(id, propertyName, options),
+            "key-input",
+            options
           )
         : id;
     return id;
@@ -130,7 +113,10 @@ function createFormErrorsTransformer({
     { parentSchema }: ErrorObject,
     path: string[]
   ): string => {
-    const instanceUiSchema = getValueByPath<UiSchema, 0>(uiSchema, path);
+    const instanceUiSchema = getValueByPath<UiSchema | undefined, 0>(
+      options.uiSchema,
+      path
+    );
     return (
       instanceUiSchema?.["ui:options"]?.title ??
       parentSchema?.title ??
@@ -151,8 +137,8 @@ function createFormErrorsTransformer({
           (missingProperty, parentSchema) => {
             // TODO: Write a specific `getValueByPath` function for
             // `items`, `additionalItems` and other cases
-            const uiSchemaTitle = getValueByPath<UiSchema, 0>(
-              uiSchema,
+            const uiSchemaTitle = getValueByPath<UiSchema | undefined, 0>(
+              options.uiSchema,
               path.concat(missingProperty)
             )?.["ui:options"]?.title;
             if (uiSchemaTitle !== undefined) {
@@ -171,13 +157,13 @@ function createFormErrorsTransformer({
   };
 }
 
-export interface SyncFormValueValidatorOptions
+export interface FormValueValidatorOptions
   extends ValidatorOptions,
     ErrorsTransformerOptions {}
 
-export function createSyncFormValueValidator(
-  options: SyncFormValueValidatorOptions
-): SyncFormValueValidator<ErrorObject> {
+export function createFormValueValidator(
+  options: FormValueValidatorOptions
+): FormValueValidator<ErrorObject> {
   const transformFormErrors = createFormErrorsTransformer(options);
   return {
     validateFormValue(rootSchema, formValue) {
@@ -193,7 +179,7 @@ export function createSyncFormValueValidator(
   };
 }
 
-export interface SyncFieldValueValidatorOptions {
+export interface FieldValueValidatorOptions {
   compileFieldSchema: (config: Config) => ValidateFunction;
 }
 
@@ -210,9 +196,9 @@ function transformFieldErrors(errors: ErrorObject[], config: Config) {
   }));
 }
 
-export function createSyncFieldValueValidator({
+export function createFieldValueValidator({
   compileFieldSchema,
-}: SyncFieldValueValidatorOptions): SyncFieldValueValidator<ErrorObject> {
+}: FieldValueValidatorOptions): FieldValueValidator<ErrorObject> {
   return {
     validateFieldValue(config, fieldValue) {
       const validator = compileFieldSchema(config);
@@ -284,36 +270,30 @@ export function createAsyncFieldValueValidator({
   };
 }
 
-export interface SyncFormValidatorOptions
+export interface FormValidatorOptions
   extends ValidatorOptions,
-    SyncFormValueValidatorOptions,
-    SyncFieldValueValidatorOptions {}
+    FormValueValidatorOptions,
+    FieldValueValidatorOptions {}
 
-export function createSyncFormValidator({
+export function createFormValidator({
   ajvOptions = DEFAULT_AJV_CONFIG,
   ajv = addFormComponents(new Ajv(ajvOptions)),
   compileSchema = createSchemaCompiler(ajv, false),
   compileFieldSchema = createFieldSchemaCompiler(ajv, false),
-  idPrefix = DEFAULT_ID_PREFIX,
-  idSeparator = DEFAULT_ID_SEPARATOR,
-  idPseudoSeparator = DEFAULT_PSEUDO_ID_SEPARATOR,
-  uiSchema = {},
-}: Partial<SyncFormValidatorOptions> & {
+  ...rest
+}: Partial<FormValidatorOptions> & {
   ajv?: Ajv;
   ajvOptions?: Options;
 } = {}) {
-  const options: SyncFormValidatorOptions = {
+  const options: FormValidatorOptions = {
+    ...rest,
     compileSchema,
     compileFieldSchema,
-    idPrefix,
-    idSeparator,
-    idPseudoSeparator,
-    uiSchema,
   };
   return Object.assign(
     createValidator(options),
-    createSyncFormValueValidator(options),
-    createSyncFieldValueValidator(options)
+    createFormValueValidator(options),
+    createFieldValueValidator(options)
   );
 }
 

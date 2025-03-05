@@ -2,34 +2,30 @@ import { getValueByPath } from "@sjsf/form/lib/object";
 import {
   pathToId,
   type Config,
+  type PathToIdOptions,
   type UiSchema,
   type UiSchemaRoot,
-  type ValidationErrors,
+  type ValidationError,
 } from "@sjsf/form";
 import type { z, ZodIssue } from "zod";
 
-export interface ErrorsTransformerOptions {
-  idPrefix: string;
-  idSeparator: string;
-  uiSchema: UiSchemaRoot;
+export interface ErrorsTransformerOptions extends PathToIdOptions {
+  uiSchema?: UiSchemaRoot;
 }
 
-export function createErrorsTransformer({
-  idPrefix,
-  idSeparator,
-  uiSchema,
-}: ErrorsTransformerOptions) {
+export function createErrorsTransformer(options: ErrorsTransformerOptions) {
   return (
     result: z.SafeParseReturnType<any, any>
-  ): ValidationErrors<ZodIssue> => {
+  ): ValidationError<ZodIssue>[] => {
     if (result.success) {
       return [];
     }
     return result.error.issues.map((issue) => {
-      const instanceId = pathToId(idPrefix, idSeparator, issue.path);
+      const instanceId = pathToId(issue.path, options);
       const propertyTitle =
-        getValueByPath<UiSchema, 0>(uiSchema, issue.path)?.["ui:options"]
-          ?.title ??
+        getValueByPath<UiSchema | undefined, 0>(options.uiSchema, issue.path)?.[
+          "ui:options"
+        ]?.title ??
         issue.path[issue.path.length - 1] ??
         instanceId;
       return {
@@ -44,8 +40,8 @@ export function createErrorsTransformer({
 
 export function transformFieldErrors(
   config: Config,
-  result: z.SafeParseReturnType<any, any>,
-): ValidationErrors<ZodIssue> {
+  result: z.SafeParseReturnType<any, any>
+): ValidationError<ZodIssue>[] {
   if (result.success) {
     return [];
   }

@@ -6,13 +6,11 @@ import {
   type Validator,
 } from "@sjsf/form/core";
 import {
-  DEFAULT_ID_PREFIX,
-  DEFAULT_ID_SEPARATOR,
   type AsyncFieldValueValidator,
   type AsyncFormValueValidator,
   type Config,
-  type SyncFieldValueValidator,
-  type SyncFormValueValidator,
+  type FieldValueValidator,
+  type FormValueValidator,
 } from "@sjsf/form";
 import { jsonSchemaToZod } from "json-schema-to-zod";
 
@@ -90,9 +88,9 @@ export interface FormValueValidatorOptions extends ErrorsTransformerOptions {
   zodSchema: ZodSchema;
 }
 
-export function createSyncFormValueValidator(
+export function createFormValueValidator(
   options: FormValueValidatorOptions
-): SyncFormValueValidator<ZodIssue> {
+): FormValueValidator<ZodIssue> {
   return {
     validateFormValue(_, formValue) {
       const transform = createErrorsTransformer(options);
@@ -117,9 +115,9 @@ export interface FieldValueValidatorOptions {
   createFieldZodSchema: (config: Config) => ZodSchema;
 }
 
-export function createSyncFieldValueValidator({
+export function createFieldValueValidator({
   createFieldZodSchema,
-}: FieldValueValidatorOptions): SyncFieldValueValidator<ZodIssue> {
+}: FieldValueValidatorOptions): FieldValueValidator<ZodIssue> {
   return {
     validateFieldValue(config, fieldValue) {
       const schema = createFieldZodSchema(config);
@@ -146,17 +144,13 @@ export interface FormValidatorOptions
     FormValueValidatorOptions,
     FieldValueValidatorOptions {}
 
-export type SyncZodFormValidator = Validator &
-  SyncFormValueValidator<ZodIssue> &
-  SyncFieldValueValidator<ZodIssue>;
+export type ZodFormValidator = Validator &
+  FormValueValidator<ZodIssue> &
+  FieldValueValidator<ZodIssue>;
 
 export type AsyncZodFormValidator = Validator &
   AsyncFormValueValidator<ZodIssue> &
   AsyncFieldValueValidator<ZodIssue>;
-
-export type ZodFormValidator<Async extends boolean> = Async extends true
-  ? AsyncZodFormValidator
-  : SyncZodFormValidator;
 
 export function createFormValidator<Async extends boolean = false>(
   zodSchema: ZodSchema,
@@ -164,20 +158,16 @@ export function createFormValidator<Async extends boolean = false>(
     async,
     createZodSchema = createZodSchemaFactory(),
     createFieldZodSchema = createFieldZodSchemaFactory(),
-    idPrefix = DEFAULT_ID_PREFIX,
-    idSeparator = DEFAULT_ID_SEPARATOR,
-    uiSchema = {},
+    ...rest
   }: Partial<Omit<FormValidatorOptions, "zodSchema">> & {
     async?: Async;
   } = {}
 ) {
   const options: FormValidatorOptions = {
+    ...rest,
     zodSchema,
     createZodSchema,
     createFieldZodSchema,
-    idPrefix,
-    idSeparator,
-    uiSchema,
   };
   const validator = createValidator(options);
   return (
@@ -189,8 +179,8 @@ export function createFormValidator<Async extends boolean = false>(
         ) satisfies AsyncZodFormValidator)
       : (Object.assign(
           validator,
-          createSyncFormValueValidator(options),
-          createSyncFieldValueValidator(options)
-        ) satisfies SyncZodFormValidator)
-  ) as ZodFormValidator<Async>;
+          createFormValueValidator(options),
+          createFieldValueValidator(options)
+        ) satisfies ZodFormValidator)
+  ) as Async extends true ? AsyncZodFormValidator : ZodFormValidator;
 }
