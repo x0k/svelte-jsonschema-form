@@ -9,12 +9,9 @@ import {
   ID_KEY,
   prefixSchemaRefs,
   ROOT_SCHEMA_PREFIX,
-  type SchemaDefinition,
   type Validator,
 } from "@sjsf/form/core";
 import {
-  DEFAULT_ID_PREFIX,
-  DEFAULT_ID_SEPARATOR,
   pathToId,
   type Config,
   type Schema,
