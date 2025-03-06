@@ -1,4 +1,4 @@
-export type { Schema, SchemaValue } from "@/core/index.js";
+export type { Schema, SchemaValue, Validator } from "@/core/index.js";
 
 import "./content.module.js";
 import "./form-tag.module.js";
