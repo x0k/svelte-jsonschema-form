@@ -1,7 +1,7 @@
 <script lang="ts">
   import { focusOnFirstError } from "@sjsf/form/focus-on-first-error";
 
-  import CustomForm from '@/components/custom-form.svelte';
+  import CustomForm from '@/components/my-form.svelte';
   
   import { objectSchema, objectUiSchema } from "./_demo-schemas";
 </script>

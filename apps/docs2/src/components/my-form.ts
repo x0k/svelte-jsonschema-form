@@ -1,4 +1,3 @@
-import type { ErrorObject } from "ajv";
 import {
   type FormState,
   type FormOptions,
@@ -9,7 +8,7 @@ import { translation } from "@sjsf/form/translations/en";
 import { theme } from "@sjsf/basic-theme";
 import { createFormValidator } from "@sjsf/ajv8-validator";
 
-type Defaults = "theme" | "validator" | "translation";
+type Defaults = "theme" | "translation" | "validator";
 
 export type MyFormOptions<T, V extends Validator> = Omit<
   FormOptions<T, V>,
@@ -19,10 +18,10 @@ export type MyFormOptions<T, V extends Validator> = Omit<
 
 export function createMyForm<
   T,
-  V extends Validator,
+  V extends Validator = ReturnType<typeof createFormValidator>,
 >(options: MyFormOptions<T, V>): FormState<T, V> {
   // NOTE: we create a separate validator for each form
-  const validator = createFormValidator() as V;
+  const validator = createFormValidator() as unknown as V;
   const defaults: Pick<FormOptions<T, V>, Defaults> = {
     theme,
     validator,

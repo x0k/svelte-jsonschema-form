@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
 
-  import CustomForm from '@/components/custom-form.svelte';
+  import CustomForm from '@/components/my-form.svelte';
 
   const { children }: { children: Snippet } = $props();
 </script>

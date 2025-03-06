@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Schema, UiSchemaRoot } from "@sjsf/form";
 
-  import CustomForm from "@/components/custom-form.svelte";
+  import CustomForm from "@/components/my-form.svelte";
 
   const schema: Schema = {
     type: "string",
