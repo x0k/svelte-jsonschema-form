@@ -21,7 +21,7 @@
     "@svitejs/changesets-changelog-github-compact": "^1.2.0",
     "@total-typescript/tsconfig": "^1.0.4",
     "only-allow": "^1.2.1",
-    "publint": "^0.3.7",
+    "publint": "^0.3.8",
     "turbo": "^2.4.4",
     "typescript": "^5.8.2"
   },

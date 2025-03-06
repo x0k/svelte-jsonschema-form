@@ -68,7 +68,7 @@
 		"@sjsf/form": "workspace:^1.9.2",
 		"@skeletonlabs/skeleton": ">=3.0.0-next.0 <=3.0.0-next.10",
 		"@tailwindcss/forms": "^0.5.10",
-		"svelte": "^5.20.5"
+		"svelte": "^5.22.5"
 	},
 	"devDependencies": {
 		"@playwright/test": "catalog:",

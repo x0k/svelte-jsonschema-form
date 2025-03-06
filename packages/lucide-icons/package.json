@@ -45,7 +45,7 @@
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^1.9.2",
 		"lucide-svelte": "^0.477.0",
-		"svelte": "^5.20.5"
+		"svelte": "^5.22.5"
 	},
 	"devDependencies": {
 		"@playwright/test": "catalog:",

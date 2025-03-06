@@ -51,7 +51,7 @@
 		"@sjsf/form": "workspace:^1.9.2",
 		"flowbite-svelte-icons": "^2.0.2",
 		"tailwind-merge": "^2.6.0",
-		"svelte": "^5.20.5"
+		"svelte": "^5.22.5"
 	},
 	"devDependencies": {
 		"@playwright/test": "catalog:",
