@@ -6,7 +6,7 @@
   import {
     SvelteKitForm,
     createMeta,
-    createSyncAdditionalPropertyKeyValidator
+    createAdditionalPropertyKeyValidator
   } from '$lib/client/index.js';
 
   import type { ActionData, PageData } from './$types.js';
@@ -15,7 +15,7 @@
   const meta = createMeta<ActionData, PageData>().form;
   const validator = Object.assign(
     createFormValidator(),
-    createSyncAdditionalPropertyKeyValidator({
+    createAdditionalPropertyKeyValidator({
       error({ type, values }) {
         return `The presence of these ${ERROR_TYPE_OBJECTS[type]} ("${values.join('", "')}") is prohibited`;
       }
