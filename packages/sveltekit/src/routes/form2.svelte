@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { BasicForm, setFromContext } from '@sjsf/form';
+  import { BasicForm } from '@sjsf/form';
   import { createFormValidator } from '@sjsf/ajv8-validator';
   import { theme } from '@sjsf/basic-theme';
   import { translation } from '@sjsf/form/translations/en';
@@ -23,6 +23,7 @@
     })
   );
   const { form } = setupSvelteKitForm(meta, {
+    idPrefix: "form2",
     theme,
     schema: {
       title: 'Parent',
@@ -39,7 +40,6 @@
     translation,
     onSubmitError: console.warn
   });
-  setFromContext(form.context);
 </script>
 
 <BasicForm {form} method="POST" action="?/second" />

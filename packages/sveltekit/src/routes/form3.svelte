@@ -33,12 +33,10 @@
   onSuccess={console.log}
   onFailure={console.error}
   uiSchema={{
-    'ui:formElement': {
-      'ui:options': {
-        form: {
-          action: '?/first',
-          novalidate: true
-        }
+    'ui:options': {
+      form: {
+        action: '?/first',
+        novalidate: true
       }
     }
   }}
