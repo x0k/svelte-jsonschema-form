@@ -1,14 +1,14 @@
 <script lang="ts">
-  import { RawForm, ON_INPUT } from "@sjsf/form";
+  import { BasicForm, ON_INPUT } from "@sjsf/form";
   import { createValidator } from "@sjsf/cfworker-validator";
 
-  import { createCustomForm } from "@/components/custom-form";
+  import { createMyForm } from "@/components/my-form";
 
   import { schema, uiSchema } from "./_shared";
 
   const validator = createValidator({ uiSchema });
 
-  const form = createCustomForm({
+  const form = createMyForm({
     schema,
     uiSchema,
     validator,
@@ -21,6 +21,6 @@
   });
 </script>
 
-<RawForm {form} novalidate />
+<BasicForm {form} novalidate />
 
 <pre>{JSON.stringify(form.value, null, 2)}</pre>

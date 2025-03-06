@@ -1,18 +1,18 @@
 <script lang="ts">
-  import { RawForm } from "@sjsf/form";
-  import { theme } from "@sjsf/form/basic-theme";
+  import { BasicForm } from "@sjsf/form";
+  import { theme } from "@sjsf/basic-theme";
 
-  import { createCustomForm } from "@/components/custom-form";
+  import { createMyForm } from "@/components/my-form";
 
   import { schema, uiSchema } from "./_demo-schema";
 
-  const form = createCustomForm({
-    ...theme,
+  const form = createMyForm({
+    theme,
     schema,
     uiSchema,
   });
 </script>
 
-<RawForm {form} novalidate />
+<BasicForm {form} novalidate />
 
 <pre>{JSON.stringify(form.value, null, 2)}</pre>

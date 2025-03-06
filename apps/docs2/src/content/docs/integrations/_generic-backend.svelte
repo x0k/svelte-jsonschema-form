@@ -1,8 +1,9 @@
 <script lang="ts">
-  import { Content, FormElement, setFromContext, SubmitButton } from "@sjsf/form";
-  import { Status, createAction } from "@sjsf/form/create-action.svelte";
+  import { Content, FormTag, setFromContext, SubmitButton } from "@sjsf/form";
+  import { Status, createAction } from "@sjsf/form/lib/action.svelte";
+  import "@sjsf/basic-theme/extra-widgets/radio-include";
 
-  import { createCustomForm } from "@/components/custom-form";
+  import { createMyForm } from "@/components/my-form";
 
   let data = $state<string>();
 
@@ -32,7 +33,7 @@
     timeoutMs: 2000,
   });
 
-  const form = createCustomForm({
+  const form = createMyForm({
     schema: {
       properties: {
         delay: {
@@ -50,7 +51,9 @@
     },
     uiSchema: {
       delay: {
-        "ui:widget": "radio",
+        "ui:components": {
+          selectWidget: "radioWidget",
+        },
         "ui:options": {
           enumNames: ["250ms", "1.5s", "2.5s"],
         },
@@ -61,11 +64,11 @@
       return resolve.isProcessed;
     },
   });
-  setFromContext(form.context)
+  setFromContext(form.context);
 </script>
 
-<FormElement {form}>
-  <Content {form} />
+<FormTag>
+  <Content />
   {#if resolve.isDelayed}
     <button style="padding: 0.5rem;" disabled>Processed...</button>
   {:else}
@@ -77,4 +80,4 @@
   {#if resolve.state.status === Status.Failed}
     <p class="text-red-500">Failed: {resolve.state.reason}</p>
   {/if}
-</FormElement>
+</FormTag>

@@ -1,16 +1,16 @@
 <script lang="ts">
-  import { ON_INPUT, RawForm } from "@sjsf/form";
-  import { createValidator2 } from "@sjsf/ajv8-validator";
+  import { ON_INPUT, BasicForm } from "@sjsf/form";
+  import { createFormValidator } from "@sjsf/ajv8-validator";
 
-  import { createCustomForm } from "@/components/custom-form";
+  import { createMyForm } from "@/components/my-form";
 
   import { schema, uiSchema } from "./_shared";
 
-  const validator = createValidator2({
+  const validator = createFormValidator({
     uiSchema,
   });
 
-  const form = createCustomForm({
+  const form = createMyForm({
     schema,
     uiSchema,
     validator,
@@ -23,6 +23,6 @@
   });
 </script>
 
-<RawForm {form} novalidate />
+<BasicForm {form} novalidate />
 
 <pre>{JSON.stringify(form.value, null, 2)}</pre>

@@ -1,7 +1,9 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
 
-  import CustomForm from '@/components/my-form.svelte';
+  import { fromRecord } from "@sjsf/form/lib/resolver";
+
+  import CustomForm from "@/components/my-form.svelte";
 
   const { children }: { children: Snippet } = $props();
 </script>
@@ -10,7 +12,7 @@
   schema={{
     title: "With icons",
   }}
-  icons={{
-    submit: children
-  }}
+  icons={fromRecord({
+    submit: children,
+  })}
 />

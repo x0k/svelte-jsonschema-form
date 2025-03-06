@@ -1,19 +1,14 @@
 <script lang="ts">
-  import {
-    Content,
-    FormElement,
-    setFromContext,
-    type Schema,
-  } from "@sjsf/form";
+  import { Content, FormTag, setFromContext, type Schema } from "@sjsf/form";
 
-  import { createCustomForm } from "@/components/custom-form";
+  import { createMyForm } from "@/components/my-form";
 
   const schema: Schema = {
     type: "string",
     minLength: 10,
   };
 
-  const form = createCustomForm({
+  const form = createMyForm({
     schema,
     initialValue: "initial",
     onSubmit: (v) => window.alert(v),
@@ -23,23 +18,23 @@
   let ref: HTMLFormElement | undefined = $state();
 </script>
 
-<FormElement bind:ref {form}>
-  <Content {form} />
-</FormElement>
+<FormTag bind:ref>
+  <Content />
+</FormTag>
 <button
   onclick={(_e) => {
     ref?.requestSubmit();
     // or
     // form.submit(new SubmitEvent("submit", { submitter: _e.currentTarget }));
-    // (note that the `target` and `currentTarget` will not be properly set)
+    // (`target` and `currentTarget` will not be properly set)
   }}>My submit</button
 >
 <button
   onclick={() => {
     ref?.reset();
     // or
-    // form.reset();
-    // (note that `onReset` handler will not be called)
+    // form.reset(new Event("reset"))
+    // (`target` and `currentTarget` will not be properly set)
   }}
 >
   My reset

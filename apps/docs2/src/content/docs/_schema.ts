@@ -43,14 +43,20 @@ export const schema: Schema = {
 export const uiSchema: UiSchemaRoot = {
   firstName: {
     "ui:options": {
-      input: {
+      text: {
+        autocomplete: "family-name",
+      },
+      flowbiteText: {
         autocomplete: "family-name",
       },
     },
   },
   lastName: {
     "ui:options": {
-      input: {
+      text: {
+        autocomplete: "given-name",
+      },
+      flowbiteText: {
         autocomplete: "given-name",
       },
     },
@@ -62,19 +68,27 @@ export const uiSchema: UiSchemaRoot = {
     },
   },
   bio: {
-    "ui:widget": "textarea",
+    "ui:components": {
+      textWidget: "textareaWidget",
+    },
   },
   password: {
     "ui:options": {
       help: "Hint: Make it strong!",
-      input: {
+      text: {
+        type: "password",
+      },
+      flowbiteText: {
         type: "password",
       },
     },
   },
   telephone: {
     "ui:options": {
-      input: {
+      text: {
+        type: "tel",
+      },
+      flowbiteText: {
         type: "tel",
       },
     },

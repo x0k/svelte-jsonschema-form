@@ -1,21 +1,21 @@
 <script lang="ts">
-  import { RawForm, type Schema } from "@sjsf/form";
+  import { BasicForm, type Schema } from "@sjsf/form";
 
-  import { createCustomForm } from "@/components/custom-form";
+  import { createMyForm } from "@/components/my-form";
 
   const schema: Schema = {
     type: "string",
     minLength: 10,
   };
 
-  const form = createCustomForm({
+  const form = createMyForm({
     initialValue: "initial",
     schema,
     onSubmit: console.log,
   });
 </script>
 
-<RawForm {form} novalidate />
+<BasicForm {form} novalidate />
 
 <pre>{JSON.stringify(
     { value: form.value, errors: Object.fromEntries(form.errors) },

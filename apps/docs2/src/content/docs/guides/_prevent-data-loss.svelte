@@ -1,18 +1,18 @@
 <script lang="ts">
   import { Content, setFromContext } from "@sjsf/form";
-  import { preventDataLoss } from "@sjsf/form/prevent-data-loss.svelte";
+  import { preventPageReload } from "@sjsf/form/prevent-page-reload.svelte";
 
-  import { createCustomForm } from "@/components/custom-form";
+  import { createMyForm } from "@/components/my-form";
 
-  const form = createCustomForm({
+  const form = createMyForm({
     schema: { type: "string" },
   });
-  setFromContext(form.context)
+  setFromContext(form.context);
 
-  preventDataLoss(form);
+  preventPageReload(form);
 </script>
 
-<Content {form} />
+<Content />
 
 <button
   style="width: 100%; padding: 0.5rem;"

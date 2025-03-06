@@ -14,7 +14,7 @@ const loadTheme = (): Theme =>
 const getPreferredColorScheme = (): DarkOrLight =>
   matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
 
-export function useAstro() {
+export function createAstro() {
   let theme = $state(loadTheme());
 
   $effect(() => {

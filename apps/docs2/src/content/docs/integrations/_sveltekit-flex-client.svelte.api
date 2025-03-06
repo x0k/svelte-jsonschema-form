@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { RawForm, setFromContext } from "@sjsf/form";
+  import { BasicForm, setFromContext } from "@sjsf/form";
   import { createValidator2 } from "@sjsf/ajv8-validator";
-  import { theme } from "@sjsf/form/basic-theme";
+  import { theme } from "@sjsf/basic-theme";
   import { translation } from "@sjsf/form/translations/en";
   import {
     createMeta,
@@ -26,4 +26,4 @@
   setFromContext(form.context);
 </script>
 
-<RawForm {form} method="POST" />
+<BasicForm {form} method="POST" />

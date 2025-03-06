@@ -8,9 +8,9 @@ sidebar:
 
 - Replace `<FormContent bind:value={form.formValue} />` with `<Content {form} />` from `@sjsf/form` package
 
-- Replace `SimpleForm` with `RawForm` from `@sjsf/form` package
+- Replace `SimpleForm` with `BasicForm` from `@sjsf/form` package
 
-  - In most cases you may remove additional styles/classes because `RawForm` uses
+  - In most cases you may remove additional styles/classes because `BasicForm` uses
     styled form element from your theme
 
 - Replace `submitButton: <uiSchema>` with `"ui:submitButton": <uiSchema>` in the definitions of `UiSchemaRoot`
@@ -35,7 +35,7 @@ sidebar:
 
 ### @sjsf/form
 
-- Replace `useForm2` with `createForm3`
+- Replace `useForm2` with `createForm`
 
 - If custom form is used it should call `setFormContext(form.context)`
   before using `FormContent` and `SubmitButton` components.

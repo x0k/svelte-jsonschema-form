@@ -12,7 +12,7 @@
     "ui:options": {
       title: "Custom title",
       help: "Help text",
-      input: {
+      text: {
         placeholder: "placeholder",
       },
     },

@@ -1,16 +1,16 @@
 <script lang="ts">
-  import { RawForm } from "@sjsf/form";
+  import { BasicForm } from "@sjsf/form";
 
-  import { createCustomForm } from "@/components/custom-form";
+  import { createMyForm } from "@/components/my-form";
 
   import { objectSchema } from "./_demo-schemas";
 
-  const form = createCustomForm({
+  const form = createMyForm({
     schema: objectSchema,
   });
 </script>
 
-<RawForm {form} novalidate />
+<BasicForm {form} novalidate />
 
 {#if form.errors.size > 0}
   <div style="padding-top: 1rem;">

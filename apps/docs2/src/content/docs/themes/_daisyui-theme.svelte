@@ -1,33 +1,36 @@
 <script lang="ts">
-  import { RawForm } from "@sjsf/form";
+  import { BasicForm } from "@sjsf/form";
   import { theme } from "@sjsf/daisyui-theme";
+  import "@sjsf/daisyui-theme/extra-widgets/switch-include";
 
-  import { useAstro } from "@/astro.svelte";
-  import { createCustomForm } from "@/components/custom-form";
+  import { createAstro } from "@/astro.svelte";
+  import { createMyForm } from "@/components/my-form";
 
   import { boolean, schema, uiSchema } from "./_demo-schema";
 
-  const astro = useAstro();
+  const astro = createAstro();
 
-  const form = createCustomForm({
-    ...theme,
+  const form = createMyForm({
+    theme,
     schema: {
       ...schema,
       properties: {
         ...schema.properties,
         toggle: boolean,
-      }
+      },
     },
     uiSchema: {
       ...uiSchema,
       toggle: {
-        "ui:widget": "toggle"
-      }
+        "ui:components": {
+          checkboxWidget: "switchWidget",
+        },
+      },
     },
   });
 </script>
 
-<RawForm
+<BasicForm
   {form}
   novalidate
   style="background-color: transparent; margin-bottom: 1rem;"

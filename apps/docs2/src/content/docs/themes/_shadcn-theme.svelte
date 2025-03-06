@@ -1,17 +1,17 @@
 <script lang="ts">
-  import { RawForm } from "@sjsf/form";
+  import { BasicForm } from "@sjsf/form";
   import { theme, setThemeContext } from "@sjsf/shadcn-theme";
   import { components } from "@sjsf/shadcn-theme/default";
 
-  import { useAstro } from "@/astro.svelte";
-  import { createCustomForm } from "@/components/custom-form";
+  import { createAstro } from "@/astro.svelte";
+  import { createMyForm } from "@/components/my-form";
 
   import { schema, uiSchema } from "./_demo-schema";
 
-  const astro = useAstro();
+  const astro = createAstro();
 
-  const form = createCustomForm({
-    ...theme,
+  const form = createMyForm({
+    theme,
     schema,
     uiSchema,
   });
@@ -19,7 +19,7 @@
   setThemeContext({ components });
 </script>
 
-<RawForm
+<BasicForm
   {form}
   novalidate
   class="flex flex-col gap-4 {astro.darkOrLight}"

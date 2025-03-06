@@ -23,15 +23,15 @@ The `omitExtraData` function does not perform data validation!
 ```svelte
 <script lang="ts">
   import { defaultMerger } from '@sjsf/form/core'
-  import { createForm3 } from "@sjsf/form";
+  import { createForm } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
-  import { theme } from "@sjsf/form/basic-theme";
+  import { theme } from "@sjsf/basic-theme";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
 
   import { schema, uiSchema, initialValue } from "./schema";
   import { validator } from "./validator";
   
-  const form = createForm3({
+  const form = createForm({
     ...theme,
     initialValue,
     schema,

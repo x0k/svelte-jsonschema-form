@@ -1,12 +1,11 @@
 <script lang="ts">
-  import { Form2 } from "@sjsf/form";
-  import { theme } from '@sjsf/form/basic-theme'
-  import { createValidator } from '@sjsf/form/fake-validator'
-  import { translation } from '@sjsf/form/translations/en'
+  import { SimpleForm } from "@sjsf/form";
+  import { translation } from "@sjsf/form/translations/en";
+  import { theme } from "@sjsf/basic-theme";
 </script>
 
-<Form2
-  {...theme}
+<SimpleForm
+  {theme}
   {translation}
   schema={{
     type: "object",
@@ -18,6 +17,6 @@
     },
     required: ["text"],
   }}
-  validator={createValidator()}
+  validator={{ isValid: () => true }}
   onSubmit={(v: { text: string }) => window.alert(v.text)}
 />

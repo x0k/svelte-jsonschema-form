@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Schema } from "@sjsf/form";
-  import { createValidator2 } from "@sjsf/ajv8-validator";
-  
+  import { createFormValidator } from "@sjsf/ajv8-validator";
+
   import CustomForm from "@/components/my-form.svelte";
 
   const schema: Schema = {
@@ -16,7 +16,7 @@
     {onSubmit}
     initialValue="foo"
     idPrefix="form1"
-    validator={createValidator2({
+    validator={createFormValidator({
       idPrefix: "form1",
     })}
   />
@@ -25,7 +25,7 @@
     {onSubmit}
     initialValue="bar"
     idPrefix="form2"
-    validator={createValidator2({
+    validator={createFormValidator({
       idPrefix: "form2",
     })}
   />

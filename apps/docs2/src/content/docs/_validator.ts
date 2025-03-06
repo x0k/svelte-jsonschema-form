@@ -1,38 +1,34 @@
-import Ajv, { type ErrorObject } from "ajv";
-import {
-  Validator,
-  addFormComponents,
-  DEFAULT_AJV_CONFIG,
-} from "@sjsf/ajv8-validator";
+import { createFormValidator } from "@sjsf/ajv8-validator";
 import { isSchemaObjectValue } from "@sjsf/form/core";
 import {
-  DEFAULT_ID_PREFIX,
-  DEFAULT_ID_SEPARATOR,
+  isFormValueValidator,
   pathToId,
-  type Schema,
-  type SchemaValue,
+  type FormValueValidator,
+  type FormValueValidatorError,
   type ValidationError,
+  type Validator,
 } from "@sjsf/form";
 
-class StarValidator extends Validator {
-  validateFormData(
-    schema: Schema,
-    formData: SchemaValue | undefined
-  ): ValidationError<ErrorObject>[] {
-    const errors = super.validateFormData(schema, formData);
-    return isSchemaObjectValue(formData) && !formData["star"]
-      ? errors.concat({
-          instanceId: pathToId(DEFAULT_ID_PREFIX, DEFAULT_ID_SEPARATOR, [
-            "star",
-          ]),
-          propertyTitle: "Star",
-          message: "I will try my best!",
-          error: {} as ErrorObject,
-        })
-      : errors;
-  }
+class StarError {}
+
+function createStarValidator<V extends Validator>(v: V) {
+  return {
+    ...v,
+    validateFormValue(rootSchema, formValue) {
+      const errors: ValidationError<FormValueValidatorError<V> | StarError>[] =
+        isFormValueValidator(v)
+          ? v.validateFormValue(rootSchema, formValue)
+          : [];
+      return isSchemaObjectValue(formValue) && !formValue["star"]
+        ? errors.concat({
+            instanceId: pathToId(["star"]),
+            propertyTitle: "Star",
+            message: "I think so.",
+            error: new StarError(),
+          })
+        : errors;
+    },
+  } satisfies FormValueValidator<FormValueValidatorError<V> | StarError>;
 }
 
-export const validator = new StarValidator({
-  ajv: addFormComponents(new Ajv(DEFAULT_AJV_CONFIG))
-});
+export const validator = createStarValidator(createFormValidator());

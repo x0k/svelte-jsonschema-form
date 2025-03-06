@@ -1,16 +1,25 @@
 <script lang="ts">
-  import { RawForm } from "@sjsf/form";
+  import { BasicForm } from "@sjsf/form";
   import { theme } from "@sjsf/daisyui5-theme";
+  import "@sjsf/daisyui5-theme/extra-widgets/switch-include";
+  import "@sjsf/daisyui5-theme/extra-widgets/filter-radio-buttons-include";
+  import "@sjsf/daisyui5-theme/extra-widgets/cally-date-picker-include";
 
-  import { useAstro } from "@/astro.svelte";
-  import { createCustomForm } from "@/components/custom-form";
+  import { createAstro } from "@/astro.svelte";
+  import { createMyForm } from "@/components/my-form";
 
-  import { boolean, arrayOfUniqueItems, schema, string, uiSchema } from "./_demo-schema";
-  
-  const astro = useAstro();
+  import {
+    boolean,
+    arrayOfUniqueItems,
+    schema,
+    string,
+    uiSchema,
+  } from "./_demo-schema";
 
-  const form = createCustomForm({
-    ...theme,
+  const astro = createAstro();
+
+  const form = createMyForm({
+    theme,
     schema: {
       ...schema,
       properties: {
@@ -18,28 +27,26 @@
         toggle: boolean,
         filter: arrayOfUniqueItems,
         cally: string,
-        pikaday: string,
       },
     },
     uiSchema: {
       ...uiSchema,
       toggle: {
-        "ui:widget": "toggle",
+        "ui:components": {
+          checkboxWidget: "switchWidget",
+        },
       },
       filter: {
-        "ui:widget": "filter",
+        selectWidget: "radioButtonsWidget",
       },
       cally: {
-        "ui:widget": "callyCalendar",
+        textWidget: "datePickerWidget",
       },
-      pikaday: {
-        'ui:widget': "pikadayCalendar"
-      }
     },
   });
 </script>
 
-<RawForm
+<BasicForm
   {form}
   novalidate
   style="background-color: transparent; margin-bottom: 1rem;"

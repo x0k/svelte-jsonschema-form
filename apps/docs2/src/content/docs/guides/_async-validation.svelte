@@ -2,13 +2,12 @@
   import Ajv, { type AsyncSchema, type SchemaValidateFunction } from "ajv";
   import {
     addFormComponents,
-    createAsyncValidator,
+    createAsyncFormValidator,
   } from "@sjsf/ajv8-validator";
-  import { ON_INPUT, RawForm } from "@sjsf/form";
-  import { handleValidationProcessError } from "@sjsf/form/translations/en";
-  import { Status } from "@sjsf/form/use-mutation.svelte";
+  import { ON_INPUT, BasicForm } from "@sjsf/form";
+  import { Status } from "@sjsf/form/lib/action.svelte";
 
-  import { createCustomForm } from "@/components/custom-form";
+  import { createMyForm } from "@/components/my-form";
 
   const ajv = addFormComponents(new Ajv());
   const validate: SchemaValidateFunction = async (schema, data) => {
@@ -35,9 +34,8 @@
     },
   };
 
-  const form = createCustomForm({
-    validator: createAsyncValidator({ ajv }),
-    handleValidationProcessError,
+  const form = createMyForm({
+    validator: createAsyncFormValidator({ ajv }),
     schema: schema,
     fieldsValidationMode: ON_INPUT,
     onSubmit: console.log,
@@ -54,4 +52,4 @@
 form validation: {statusNames[form.validation.status]}, fields validation: {statusNames[
   form.fieldsValidation.status
 ]}
-<RawForm {form} novalidate />
+<BasicForm {form} novalidate />

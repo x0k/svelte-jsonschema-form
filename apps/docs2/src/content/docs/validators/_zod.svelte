@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { RawForm, ON_INPUT, type Schema } from "@sjsf/form";
+  import { BasicForm, ON_INPUT, type Schema } from "@sjsf/form";
   import { createValidator } from "@sjsf/zod-validator";
   import { zodToJsonSchema } from "zod-to-json-schema";
   import { z } from "zod";
 
-  import { createCustomForm } from "@/components/custom-form";
+  import { createMyForm } from "@/components/my-form";
 
   import { initialValue, uiSchema } from "./_shared";
 
@@ -26,7 +26,7 @@
 
   const validator = createValidator({ schema, uiSchema });
 
-  const form = createCustomForm({
+  const form = createMyForm({
     schema: zodToJsonSchema(schema, { errorMessages: true }) as Schema,
     uiSchema,
     validator,
@@ -35,6 +35,6 @@
   });
 </script>
 
-<RawForm {form} novalidate />
+<BasicForm {form} novalidate />
 
 <pre>{JSON.stringify(form.value, null, 2)}</pre>
