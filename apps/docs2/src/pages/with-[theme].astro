@@ -1,7 +1,7 @@
 ---
 import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
 
-import { THEME_TTITLES, THEMES, type Theme } from "@/shared";
+import { THEME_TITLES, THEMES, type Theme } from "@/shared";
 import { Content, frontmatter } from "@/content/docs/index.mdx";
 
 export function getStaticPaths() {
@@ -32,7 +32,7 @@ function fixGetStartedUrl(
 <StarlightPage
   frontmatter={{
     ...fixGetStartedUrl(frontmatter),
-    title: `${frontmatter.title} with ${THEME_TTITLES[Astro.params.theme as Theme]}`,
+    title: `${frontmatter.title} with ${THEME_TITLES[Astro.params.theme as Theme]}`,
   }}
 >
   <Content />

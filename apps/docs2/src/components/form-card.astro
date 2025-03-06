@@ -1,0 +1,11 @@
+---
+import { Card } from "@astrojs/starlight/components";
+
+import { ShadowHost } from "./shadow";
+---
+
+<Card title="">
+  <ShadowHost client:only="svelte">
+    <slot />
+  </ShadowHost>
+</Card>

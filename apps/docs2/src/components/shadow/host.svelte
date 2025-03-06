@@ -2,7 +2,7 @@
   import { mount, unmount } from "svelte";
   import type { HTMLAttributes } from "svelte/elements";
 
-  import Root from "./shadow-root.svelte";
+  import Root from "./root.svelte";
 
   const { children, style, ...props }: HTMLAttributes<HTMLDivElement> =
     $props();

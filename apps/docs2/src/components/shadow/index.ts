@@ -1,1 +1,1 @@
-export { default as ShadowHost } from './shadow-host.svelte'
+export { default as ShadowHost } from './host.svelte'

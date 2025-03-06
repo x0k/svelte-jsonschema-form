@@ -1,0 +1,70 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { Code, Tabs, TabItem, LinkCard } from "@astrojs/starlight/components";
+
+import {
+  PKG_MANGER_ICONS,
+  PKG_MANGERS,
+  THEME_PACKAGES,
+  THEME_TITLES,
+  THEMES,
+  type Theme,
+} from "@/shared";
+import { DEFAULT_LOCALE } from "@/i18n";
+import { ShowcaseRoot, ShowcaseTheme } from "@/components/showcase";
+
+import schemaCode from "./_schema?raw";
+import validatorCode from "./_validator?raw";
+import withBasicCode from "./_with-basic.svelte?raw";
+import withSkeletonCode from "./_with-skeleton.svelte?raw";
+import withDaisyuiCode from "./_with-daisyui.svelte?raw";
+import withFlowbiteCode from "./_with-flowbite.svelte?raw";
+import withShadcnCode from "./_with-shadcn.svelte?raw";
+
+const CODE = {
+  basic: withBasicCode,
+  daisyui: withDaisyuiCode,
+  flowbite: withFlowbiteCode,
+  skeleton: withSkeletonCode,
+  shadcn: withShadcnCode,
+} satisfies Record<Theme, string>;
+
+const locale = Astro.currentLocale ?? DEFAULT_LOCALE;
+---
+
+<ShowcaseRoot client:only="svelte">
+  {
+    THEMES.map((theme) => (
+      <ShowcaseTheme theme={theme} client:only="svelte">
+        <Tabs>
+          {PKG_MANGERS.map((manager) => (
+            <TabItem icon={PKG_MANGER_ICONS[manager]} label={manager}>
+              <Code
+                lang="sh"
+                code={`add @sjsf/form @sjsf/ajv8-validator ajv@8 ${THEME_PACKAGES[theme]}`}
+              />
+            </TabItem>
+          ))}
+        </Tabs>
+        <LinkCard
+          title={`${THEME_TITLES[theme]} theme setup`}
+          href={getRelativeLocaleUrl(locale, `/themes/${theme}/`)}
+        />
+
+        <h2 id="usage">Usage</h2>
+
+        <Tabs>
+          <TabItem label="Form.svelte">
+            <Code code={CODE[theme]} lang="svelte" />
+          </TabItem>
+          <TabItem label="_schema.ts">
+            <Code code={schemaCode} lang="typescript" />
+          </TabItem>
+          <TabItem label="_validator.ts">
+            <Code code={validatorCode} lang="typescript" />
+          </TabItem>
+        </Tabs>
+      </ShowcaseTheme>
+    ))
+  }
+</ShowcaseRoot>
