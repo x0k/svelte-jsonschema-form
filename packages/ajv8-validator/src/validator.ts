@@ -8,11 +8,8 @@ import {
 import { getValueByPath } from "@sjsf/form/lib/object";
 import type { Validator } from "@sjsf/form/core";
 import {
-  computePseudoId,
-  DEFAULT_ID_PREFIX,
-  DEFAULT_ID_SEPARATOR,
-  DEFAULT_PSEUDO_ID_SEPARATOR,
-  makeChildId,
+  createPseudoId,
+  createChildId,
   pathToId,
   type AsyncFieldValueValidator,
   type AsyncFormValueValidator,
@@ -23,9 +20,7 @@ import {
   type UiSchema,
   type UiSchemaRoot,
   type ValidationError,
-  type IdPrefixOption,
-  type IdSeparatorOption,
-  type IdPseudoSeparatorOption,
+  type IdOptions,
 } from "@sjsf/form";
 
 import { addFormComponents, DEFAULT_AJV_CONFIG } from "./model.js";
@@ -60,9 +55,7 @@ export function createValidator({
 }
 
 interface ErrorsTransformerOptions
-  extends IdPrefixOption,
-    IdSeparatorOption,
-    IdPseudoSeparatorOption {
+  extends IdOptions {
   uiSchema?: UiSchemaRoot;
 }
 
@@ -97,12 +90,12 @@ function createFormErrorsTransformer(options: ErrorsTransformerOptions) {
     let id = pathToId(path, options);
     id =
       missingProperty !== undefined
-        ? makeChildId(id, missingProperty, options)
+        ? createChildId(id, missingProperty, options)
         : id;
     id =
       propertyName !== undefined
-        ? computePseudoId(
-            makeChildId(id, propertyName, options),
+        ? createPseudoId(
+            createChildId(id, propertyName, options),
             "key-input",
             options
           )
@@ -307,19 +300,13 @@ export function createAsyncFormValidator({
   compileSchema = createSchemaCompiler(ajv, false),
   compileAsyncSchema = createSchemaCompiler(ajv, true),
   compileAsyncFieldSchema = createFieldSchemaCompiler(ajv, true),
-  idPrefix = DEFAULT_ID_PREFIX,
-  idSeparator = DEFAULT_ID_SEPARATOR,
-  idPseudoSeparator = DEFAULT_PSEUDO_ID_SEPARATOR,
-  uiSchema = {},
+  ...rest
 }: Partial<AsyncFormValidatorOptions> & { ajv: Ajv }) {
   const options: AsyncFormValidatorOptions = {
+    ...rest,
     compileSchema,
     compileAsyncSchema,
     compileAsyncFieldSchema,
-    idPrefix,
-    idSeparator,
-    idPseudoSeparator,
-    uiSchema,
   };
   return Object.assign(
     createValidator(options),

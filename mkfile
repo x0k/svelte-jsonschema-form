@@ -9,7 +9,7 @@ t:
   pnpm run test $@
 
 b:
-  pnpm run build
+  pnpm run build $@
 
 ajv/:
   pushd packages/ajv8-validator
