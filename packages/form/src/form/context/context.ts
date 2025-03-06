@@ -25,7 +25,7 @@ export type FormContext = Brand<"sjsf-context", {}>;
 
 export interface FormInternalContext<V extends Validator>
   extends FormContext,
-    Readonly<IdOptions> {
+    Readonly<Required<IdOptions>> {
   value: FormValue;
   isChanged: boolean;
   readonly rootId: Id;

@@ -40,7 +40,12 @@ import {
   type FormContext,
 } from "./context/index.js";
 import { DefaultFormMerger, type FormMerger } from "./merger.js";
-import { type Id, DEFAULT_ID_PREFIX } from "./id.js";
+import {
+  type Id,
+  DEFAULT_ID_PREFIX,
+  DEFAULT_ID_PSEUDO_SEPARATOR,
+  DEFAULT_ID_SEPARATOR,
+} from "./id.js";
 import type { Config } from "./config.js";
 import type { Theme } from "./components.js";
 import type { FieldValue, FormValue } from "./model.js";
@@ -61,8 +66,17 @@ export interface FormOptions<T, V extends Validator> {
   merger?: FormMerger;
   fieldsValidationMode?: FieldsValidationMode;
   disabled?: boolean;
+  /**
+   * @default DEFAULT_ID_PREFIX
+   */
   idPrefix?: string;
+  /**
+   * @default DEFAULT_ID_SEPARATOR
+   */
   idSeparator?: string;
+  /**
+   * @default DEFAULT_ID_PSEUDO_SEPARATOR
+   */
   idPseudoSeparator?: string;
   //
   initialValue?: T;
@@ -421,13 +435,13 @@ export function createForm<T, V extends Validator>(
       return disabled;
     },
     get idPrefix() {
-      return options.idPrefix;
+      return options.idPrefix ?? DEFAULT_ID_PREFIX;
     },
     get idSeparator() {
-      return options.idSeparator;
+      return options.idSeparator ?? DEFAULT_ID_SEPARATOR;
     },
     get idPseudoSeparator() {
-      return options.idPseudoSeparator;
+      return options.idPseudoSeparator ?? DEFAULT_ID_PSEUDO_SEPARATOR;
     },
     get validator() {
       return options.validator;
