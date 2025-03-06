@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getFormContext, type ComponentProps } from '@sjsf/form';
+	import { enhance, getFormContext, type ComponentProps } from '@sjsf/form';
 
 	let { children, attributes, ref = $bindable(), config }: ComponentProps['form'] = $props();
 
@@ -8,8 +8,7 @@
 
 <form
 	bind:this={ref}
-	onsubmit={ctx.submitHandler}
-	onreset={ctx.resetHandler}
+	use:enhance={ctx}
 	class="flex flex-col gap-4"
 	{...config.uiOptions?.form}
 	{...attributes}
