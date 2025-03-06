@@ -1,8 +1,6 @@
 <script lang="ts">
   import type { HTMLFormAttributes } from "svelte/elements";
 
-  import type { Validator } from "@/core/validator.js";
-
   import type { FormState } from "./form.svelte.js";
   import { setFromContext } from "./context/context.js";
   import Content from "./content.svelte";
@@ -24,4 +22,4 @@
 <FormTag bind:ref {attributes}>
   <Content />
   <SubmitButton />
-</FormTag>context
+</FormTag>
