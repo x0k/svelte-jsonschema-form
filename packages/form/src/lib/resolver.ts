@@ -43,19 +43,16 @@ export function fromRecord<R extends Record<AnyKey, any>>(
   return (type) => record[type];
 }
 
-export function extendByRecord<
+export function overrideByRecord<
   R extends Resolver<any, any>,
-  O extends Record<AnyKey, any>,
->(resolver: R, extension: O) {
-  return chain(fromRecord(extension), resolver);
+  O extends ResolverResults<R>,
+>(resolver: R, override: O) {
+  return chain(fromRecord(override), resolver);
 }
 
-export const overrideByRecord = extendByRecord as <
+export function extendByRecord<
   R extends Resolver<any, any>,
-  O extends {
-    [K in keyof ResolverConfigs<R>]?: ResolverResults<R>[K];
-  },
->(
-  resolver: R,
-  override: O
-) => Resolver<ResolverConfigs<R>, Chain<O, ResolverResults<R>>>;
+  E extends Record<AnyKey, any>,
+>(resolver: R, extension: E) {
+  return chain(resolver, fromRecord(extension));
+}
