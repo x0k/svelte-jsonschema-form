@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import type { MultiSelectProps } from 'flowbite-svelte/MultiSelect.svelte';
-	import '@sjsf/legacy-fields/extra-widgets/multi-select';
+	import '@sjsf/form/fields/extra-widgets/multi-select';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {

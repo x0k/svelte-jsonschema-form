@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import type { HTMLInputAttributes } from 'svelte/elements';
-	import '@sjsf/legacy-fields/extra-widgets/switch';
+	import '@sjsf/form/fields/extra-widgets/switch';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {

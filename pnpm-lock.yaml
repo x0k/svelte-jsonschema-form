@@ -395,9 +395,6 @@ importers:
       '@sjsf/form':
         specifier: workspace:*
         version: link:../../packages/form
-      '@sjsf/legacy-fields':
-        specifier: workspace:*
-        version: link:../../packages/legacy-fields
       '@sjsf/lucide-icons':
         specifier: workspace:*
         version: link:../../packages/lucide-icons
@@ -467,13 +464,6 @@ importers:
         version: 3.0.7(@types/debug@4.1.12)(@types/node@22.7.5)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.29.1)(yaml@2.5.1)
 
   packages/basic-theme:
-    dependencies:
-      '@sjsf/legacy-fields':
-        specifier: workspace:^0.0.1
-        version: link:../legacy-fields
-      '@sjsf/legacy-templates':
-        specifier: workspace:^0.0.1
-        version: link:../legacy-templates
     devDependencies:
       '@sjsf/form':
         specifier: workspace:*
@@ -513,16 +503,6 @@ importers:
         version: link:../form
 
   packages/daisyui-theme:
-    dependencies:
-      '@sjsf/basic-theme':
-        specifier: workspace:^0.0.1
-        version: link:../basic-theme
-      '@sjsf/legacy-fields':
-        specifier: workspace:^0.0.1
-        version: link:../legacy-fields
-      '@sjsf/legacy-templates':
-        specifier: workspace:^0.0.1
-        version: link:../legacy-templates
     devDependencies:
       '@playwright/test':
         specifier: 'catalog:'
@@ -530,6 +510,9 @@ importers:
       '@sjsf/ajv8-validator':
         specifier: workspace:*
         version: link:../ajv8-validator
+      '@sjsf/basic-theme':
+        specifier: workspace:*
+        version: link:../basic-theme
       '@sjsf/form':
         specifier: workspace:*
         version: link:../form
@@ -601,16 +584,6 @@ importers:
         version: 3.0.7(@types/debug@4.1.12)(@types/node@22.7.5)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.29.1)(yaml@2.5.1)
 
   packages/daisyui5-theme:
-    dependencies:
-      '@sjsf/basic-theme':
-        specifier: workspace:^0.0.1
-        version: link:../basic-theme
-      '@sjsf/legacy-fields':
-        specifier: workspace:^0.0.1
-        version: link:../legacy-fields
-      '@sjsf/legacy-templates':
-        specifier: workspace:^0.0.1
-        version: link:../legacy-templates
     devDependencies:
       '@playwright/test':
         specifier: 'catalog:'
@@ -618,6 +591,9 @@ importers:
       '@sjsf/ajv8-validator':
         specifier: workspace:*
         version: link:../ajv8-validator
+      '@sjsf/basic-theme':
+        specifier: workspace:*
+        version: link:../basic-theme
       '@sjsf/form':
         specifier: workspace:*
         version: link:../form
@@ -772,13 +748,6 @@ importers:
         version: 3.0.7(@types/debug@4.1.12)(@types/node@22.7.5)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.29.1)(yaml@2.5.1)
 
   packages/flowbite-theme:
-    dependencies:
-      '@sjsf/legacy-fields':
-        specifier: workspace:^0.0.1
-        version: link:../legacy-fields
-      '@sjsf/legacy-templates':
-        specifier: workspace:^0.0.1
-        version: link:../legacy-templates
     devDependencies:
       '@playwright/test':
         specifier: 'catalog:'
@@ -889,64 +858,6 @@ importers:
       deep-freeze-es6:
         specifier: ^4.0.0
         version: 4.0.0
-      svelte:
-        specifier: 'catalog:'
-        version: 5.22.5
-      svelte-check:
-        specifier: 'catalog:'
-        version: 4.1.4(picomatch@4.0.2)(svelte@5.22.5)(typescript@5.8.2)
-      vite:
-        specifier: 'catalog:'
-        version: 6.2.0(@types/node@22.7.5)(jiti@2.4.2)(lightningcss@1.29.1)(yaml@2.5.1)
-      vitest:
-        specifier: 'catalog:'
-        version: 3.0.7(@types/debug@4.1.12)(@types/node@22.7.5)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.29.1)(yaml@2.5.1)
-
-  packages/legacy-fields:
-    devDependencies:
-      '@sjsf/form':
-        specifier: workspace:*
-        version: link:../form
-      '@sveltejs/package':
-        specifier: 'catalog:'
-        version: 2.3.10(svelte@5.22.5)(typescript@5.8.2)
-      '@sveltejs/vite-plugin-svelte':
-        specifier: 'catalog:'
-        version: 5.0.3(svelte@5.22.5)(vite@6.2.0(@types/node@22.7.5)(jiti@2.4.2)(lightningcss@1.29.1)(yaml@2.5.1))
-      '@tsconfig/svelte':
-        specifier: 'catalog:'
-        version: 5.0.4
-      svelte:
-        specifier: 'catalog:'
-        version: 5.22.5
-      svelte-check:
-        specifier: 'catalog:'
-        version: 4.1.4(picomatch@4.0.2)(svelte@5.22.5)(typescript@5.8.2)
-      vite:
-        specifier: 'catalog:'
-        version: 6.2.0(@types/node@22.7.5)(jiti@2.4.2)(lightningcss@1.29.1)(yaml@2.5.1)
-      vitest:
-        specifier: 'catalog:'
-        version: 3.0.7(@types/debug@4.1.12)(@types/node@22.7.5)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.29.1)(yaml@2.5.1)
-
-  packages/legacy-templates:
-    dependencies:
-      '@sjsf/legacy-fields':
-        specifier: workspace:^0.0.1
-        version: link:../legacy-fields
-    devDependencies:
-      '@sjsf/form':
-        specifier: workspace:*
-        version: link:../form
-      '@sveltejs/package':
-        specifier: 'catalog:'
-        version: 2.3.10(svelte@5.22.5)(typescript@5.8.2)
-      '@sveltejs/vite-plugin-svelte':
-        specifier: 'catalog:'
-        version: 5.0.3(svelte@5.22.5)(vite@6.2.0(@types/node@22.7.5)(jiti@2.4.2)(lightningcss@1.29.1)(yaml@2.5.1))
-      '@tsconfig/svelte':
-        specifier: 'catalog:'
-        version: 5.0.4
       svelte:
         specifier: 'catalog:'
         version: 5.22.5
@@ -1093,16 +1004,6 @@ importers:
         version: 3.0.7(@types/debug@4.1.12)(@types/node@22.7.5)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.29.1)(yaml@2.5.1)
 
   packages/shadcn-theme:
-    dependencies:
-      '@sjsf/basic-theme':
-        specifier: workspace:^0.0.1
-        version: link:../basic-theme
-      '@sjsf/legacy-fields':
-        specifier: workspace:^0.0.1
-        version: link:../legacy-fields
-      '@sjsf/legacy-templates':
-        specifier: workspace:^0.0.1
-        version: link:../legacy-templates
     devDependencies:
       '@internationalized/date':
         specifier: ^3.7.0
@@ -1113,6 +1014,9 @@ importers:
       '@sjsf/ajv8-validator':
         specifier: workspace:*
         version: link:../ajv8-validator
+      '@sjsf/basic-theme':
+        specifier: workspace:*
+        version: link:../basic-theme
       '@sjsf/form':
         specifier: workspace:*
         version: link:../form
@@ -1199,16 +1103,6 @@ importers:
         version: 3.0.7(@types/debug@4.1.12)(@types/node@22.7.5)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.29.1)(yaml@2.5.1)
 
   packages/skeleton-theme:
-    dependencies:
-      '@sjsf/basic-theme':
-        specifier: workspace:^0.0.1
-        version: link:../basic-theme
-      '@sjsf/legacy-fields':
-        specifier: workspace:^0.0.1
-        version: link:../legacy-fields
-      '@sjsf/legacy-templates':
-        specifier: workspace:^0.0.1
-        version: link:../legacy-templates
     devDependencies:
       '@playwright/test':
         specifier: 'catalog:'
@@ -1216,6 +1110,9 @@ importers:
       '@sjsf/ajv8-validator':
         specifier: workspace:*
         version: link:../ajv8-validator
+      '@sjsf/basic-theme':
+        specifier: workspace:*
+        version: link:../basic-theme
       '@sjsf/form':
         specifier: workspace:*
         version: link:../form
@@ -1372,9 +1269,6 @@ importers:
       '@sjsf/form':
         specifier: workspace:*
         version: link:../form
-      '@sjsf/legacy-fields':
-        specifier: workspace:*
-        version: link:../legacy-fields
       '@sveltejs/svelte-json-tree':
         specifier: ^2.2.1
         version: 2.2.1(svelte@5.22.5)

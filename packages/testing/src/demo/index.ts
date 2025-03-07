@@ -1,4 +1,4 @@
-import "@sjsf/legacy-fields/exports";
+import "@sjsf/form/fields/exports";
 
 export * as s from "./schemas";
 export { default as Form } from "./form.svelte";

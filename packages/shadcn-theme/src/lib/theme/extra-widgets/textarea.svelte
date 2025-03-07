@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import type { HTMLTextareaAttributes } from 'svelte/elements';
-	import '@sjsf/legacy-fields/extra-widgets/textarea';
+	import '@sjsf/form/fields/extra-widgets/textarea';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {

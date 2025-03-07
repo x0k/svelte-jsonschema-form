@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import type { SelectMultipleRootProps } from 'bits-ui';
-	import '@sjsf/legacy-fields/extra-widgets/multi-select';
+	import '@sjsf/form/fields/extra-widgets/multi-select';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {

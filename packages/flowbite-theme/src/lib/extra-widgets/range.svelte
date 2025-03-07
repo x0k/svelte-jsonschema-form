@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import { type RangeProps } from 'flowbite-svelte/Range.svelte';
-	import '@sjsf/legacy-fields/extra-widgets/range';
+	import '@sjsf/form/fields/extra-widgets/range';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {

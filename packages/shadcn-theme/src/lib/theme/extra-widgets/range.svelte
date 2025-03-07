@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import type { SliderSingleRootProps, WithoutChildrenOrChild } from 'bits-ui';
-	import '@sjsf/legacy-fields/extra-widgets/range';
+	import '@sjsf/form/fields/extra-widgets/range';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {

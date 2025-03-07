@@ -15,7 +15,7 @@
   } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { focusOnFirstError } from "@sjsf/form/focus-on-first-error";
-  import BooleanSelectField from "@sjsf/legacy-fields/extra-fields/boolean-select.svelte";
+  import BooleanSelectField from "@sjsf/form/fields/extra-fields/boolean-select.svelte";
   import { setThemeContext } from "@sjsf/shadcn-theme";
   import { components } from "@sjsf/shadcn-theme/default";
 

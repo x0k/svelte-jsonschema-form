@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import type { TextareaProps } from 'flowbite-svelte/Textarea.svelte';
-	import '@sjsf/legacy-fields/extra-widgets/textarea';
+	import '@sjsf/form/fields/extra-widgets/textarea';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {

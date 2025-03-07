@@ -1,7 +1,7 @@
 <script lang="ts" module>
 	import type { HTMLInputAttributes } from 'svelte/elements';
 	import type { PikadayOptions } from 'pikaday';
-	import '@sjsf/legacy-fields/extra-widgets/date-picker';
+	import '@sjsf/form/fields/extra-widgets/date-picker';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {

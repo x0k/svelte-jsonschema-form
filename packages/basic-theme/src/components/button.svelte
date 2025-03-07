@@ -1,7 +1,7 @@
 <script lang="ts" module>
   import type { HTMLButtonAttributes } from "svelte/elements";
 
-  import type { ButtonType } from "@sjsf/legacy-fields/components";
+  import type { ButtonType } from "@sjsf/form/fields/components";
 
   declare module "@sjsf/form" {
     interface UiOptions {

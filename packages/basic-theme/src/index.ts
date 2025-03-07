@@ -1,6 +1,6 @@
 import { fromRecord } from "@sjsf/form/lib/resolver";
-import "@sjsf/legacy-fields/exports";
-import "@sjsf/legacy-templates/exports";
+import "@sjsf/form/fields/exports";
+import "@sjsf/form/templates/exports";
 
 import { definitions } from "./definitions.js";
 

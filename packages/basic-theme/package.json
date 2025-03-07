@@ -30,18 +30,12 @@
     "build": "svelte-package && publint",
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
-  "dependencies": {
-    "@sjsf/legacy-fields": "workspace:^0.0.1",
-    "@sjsf/legacy-templates": "workspace:^0.0.1"
-  },
   "peerDependencies": {
     "svelte": "^5.22.5",
     "@sjsf/form": "workspace:^1.9.2"
   },
   "devDependencies": {
     "@sjsf/form": "workspace:*",
-    "@sjsf/legacy-fields": "workspace:*",
-    "@sjsf/legacy-templates": "workspace:*",
     "@sveltejs/package": "catalog:",
     "@sveltejs/vite-plugin-svelte": "catalog:",
     "@tsconfig/svelte": "catalog:",

@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import type { SwitchRootProps, WithoutChildrenOrChild } from 'bits-ui';
-	import '@sjsf/legacy-fields/extra-widgets/switch';
+	import '@sjsf/form/fields/extra-widgets/switch';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {

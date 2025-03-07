@@ -1,7 +1,7 @@
 <script lang="ts" module>
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 	import type { CalendarSingleRootProps, WithoutChildrenOrChild } from 'bits-ui';
-	import '@sjsf/legacy-fields/extra-widgets/date-picker';
+	import '@sjsf/form/fields/extra-widgets/date-picker';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {

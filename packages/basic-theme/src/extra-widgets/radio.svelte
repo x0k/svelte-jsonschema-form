@@ -1,6 +1,6 @@
 <script lang="ts" module>
   import type { HTMLInputAttributes } from "svelte/elements";
-  import "@sjsf/legacy-fields/extra-widgets/radio";
+  import "@sjsf/form/fields/extra-widgets/radio";
 
   declare module "@sjsf/form" {
     interface UiOptions {

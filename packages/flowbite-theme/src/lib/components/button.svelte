@@ -1,7 +1,7 @@
 <script lang="ts" module>
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 	import type { ButtonProps as ButtonPropsUnion } from 'flowbite-svelte/Button.svelte';
-	import type { ButtonType } from '@sjsf/legacy-fields/exports';
+	import type { ButtonType } from '@sjsf/form/fields/exports';
 
 	type ButtonProps = Extract<ButtonPropsUnion, { type?: HTMLButtonAttributes['type'] }>;
 

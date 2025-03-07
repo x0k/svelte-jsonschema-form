@@ -1,7 +1,7 @@
 <script lang="ts" module>
 	import type { ClassValue, HTMLButtonAttributes } from 'svelte/elements';
 	import type { CalendarRangeProps, CalendarMonthProps, CalendarDateProps } from 'cally';
-	import "@sjsf/legacy-fields/extra-widgets/date-picker"
+	import "@sjsf/form/fields/extra-widgets/date-picker"
 
 	type MapEvents<T> = {
 		[K in keyof T as K extends `on${infer E}` ? `on:${Lowercase<E>}` : K]: T[K];

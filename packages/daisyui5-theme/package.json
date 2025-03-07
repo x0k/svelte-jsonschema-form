@@ -56,9 +56,6 @@
 		"./styles.css": "./dist/styles.css"
 	},
 	"dependencies": {
-		"@sjsf/basic-theme": "workspace:^0.0.1",
-		"@sjsf/legacy-fields": "workspace:^0.0.1",
-		"@sjsf/legacy-templates": "workspace:^0.0.1"
 	},
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^1.9.2",
@@ -72,6 +69,7 @@
 	"devDependencies": {
 		"@playwright/test": "catalog:",
 		"@sjsf/ajv8-validator": "workspace:*",
+		"@sjsf/basic-theme": "workspace:*",
 		"@sjsf/form": "workspace:*",
 		"@sveltejs/adapter-static": "catalog:",
 		"@sveltejs/kit": "catalog:",

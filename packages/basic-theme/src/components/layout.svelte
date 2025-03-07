@@ -1,7 +1,7 @@
 <script lang="ts" module>
   import type { HTMLAttributes } from "svelte/elements";
 
-  import type { LayoutType } from "@sjsf/legacy-fields/components";
+  import type { LayoutType } from "@sjsf/form/fields/components";
 
   declare module "@sjsf/form" {
     interface UiOptions {

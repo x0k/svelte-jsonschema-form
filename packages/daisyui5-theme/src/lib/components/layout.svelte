@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import type { HTMLFieldsetAttributes } from 'svelte/elements';
-	import type { LayoutType } from '@sjsf/legacy-fields/exports';
+	import type { LayoutType } from '@sjsf/form/fields/exports';
 	declare module '@sjsf/form' {
 		interface UiOptions {
 			daisyui5FieldsLayout?: HTMLFieldsetAttributes;

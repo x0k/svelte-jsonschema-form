@@ -33,11 +33,11 @@
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "dependencies": {
-    "esm-env": "^1.2.2",
     "json-schema-merge-allof": "^0.8.1",
     "jsonpointer": "^5.0.1"
   },
   "peerDependencies": {
+    "esm-env": "^1.2.2",
     "svelte": "^5.22.5"
   },
   "devDependencies": {
@@ -70,6 +70,30 @@
     ".": {
       "types": "./dist/form/index.d.ts",
       "svelte": "./dist/form/index.js"
+    },
+    "./fields/array/*": {
+      "types": "./dist/fields/array/*.d.ts",
+      "svelte": "./dist/fields/array/*"
+    },
+    "./fields/object/*": {
+      "types": "./dist/fields/object/*.d.ts",
+      "svelte": "./dist/fields/object/*"
+    },
+    "./fields/extra-widgets/*": {
+      "types": "./dist/fields/extra-widgets/*.d.ts",
+      "svelte": "./dist/fields/extra-widgets/*"
+    },
+    "./fields/extra-fields/*": {
+      "types": "./dist/fields/extra-fields/*.d.ts",
+      "svelte": "./dist/fields/extra-fields/*"
+    },
+    "./fields/*": {
+      "types": "./dist/fields/*.d.ts",
+      "svelte": "./dist/fields/*"
+    },
+    "./templates/*": {
+      "types": "./dist/templates/*.d.ts",
+      "svelte": "./dist/templates/*"
     },
     "./translations/*": {
       "types": "./dist/translations/*.d.ts",

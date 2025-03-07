@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import type { DatepickerProps } from 'flowbite-svelte/Datepicker.svelte';
-	import '@sjsf/legacy-fields/extra-widgets/date-picker';
+	import '@sjsf/form/fields/extra-widgets/date-picker';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
