@@ -9,20 +9,24 @@
     type ComponentProps,
   } from "@/form/index.js";
 
-  import { createOptions } from "./enum.js";
+  import { createOptions } from "../enum.js";
 
-  let { config, value = $bindable() }: ComponentProps["enumField"] = $props();
+  let {
+    config,
+    value = $bindable(),
+    itemSchema,
+  }: ComponentProps["multiEnumField"] = $props();
 
   const ctx = getFormContext();
 
   const Template = $derived(getComponent(ctx, "fieldTemplate", config));
-  const Widget = $derived(getComponent(ctx, "selectWidget", config));
+  const Widget = $derived(getComponent(ctx, "checkboxesWidget", config));
 
   const handlers = makeEventHandlers(ctx, () =>
     validateField(ctx, config, value)
   );
   const options = $derived(
-    createOptions(config.schema, config.uiSchema, config.uiOptions, (i) =>
+    createOptions(itemSchema, config.uiSchema, config.uiOptions, (i) =>
       createPseudoId(config.id, i, ctx)
     ) ?? []
   );

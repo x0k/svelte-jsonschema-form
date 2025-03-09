@@ -100,24 +100,13 @@
     },
   };
   setArrayContext(arrayCtx);
-
-  const itemSchema: Schema = $derived(
-    isSchemaObjectValue(config.schema.items) ? config.schema.items : {}
-  );
 </script>
 
 {#if config.schema.items === undefined}
   <ErrorMessage message={translate(ctx, "array-schema-missing-items", {})} />
-{:else if isMultiSelect(ctx, config.schema)}
-  {@const Field = getComponent(ctx, "multiEnumField", config)}
-  <Field {config} {itemSchema} bind:value />
 {:else if isFixedItems(config.schema)}
   {@const Field = getComponent(ctx, "fixedArrayField", config)}
   <Field {config} bind:value />
-{:else if isFilesArray(ctx, config.schema) && config.uiOptions?.orderable !== true}
-  {@const Field = getComponent(ctx, "filesField", config)}
-  <!-- TODO: Add runtime check in dev env -->
-  <Field {config} bind:value={() => value as string[], (v) => (value = v)} />
 {:else}
   {@const Field = getComponent(ctx, "normalArrayField", config)}
   <Field {config} bind:value />

@@ -21,8 +21,8 @@
     required: false,
   });
 
-  const Field = $derived(getComponent(ctx, "rootField", config));
+  const Root = $derived(getComponent(ctx, "rootField", config));
 </script>
 
 <!-- svelte-ignore ownership_invalid_binding -->
-<Field bind:value={ctx.value} {config} />
+<Root bind:value={ctx.value} {config} />

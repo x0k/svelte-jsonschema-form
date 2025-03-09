@@ -20,7 +20,6 @@ export interface ButtonTypes {
 export type ButtonType = keyof ButtonTypes;
 
 export interface LayoutTypes {
-  "root-field": {};
   field: {};
   "field-meta": {};
   "field-content": {};

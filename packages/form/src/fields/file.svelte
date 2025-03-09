@@ -1,7 +1,6 @@
 <script lang="ts">
   import { fileToDataURL } from "@/lib/file.js";
   import { asyncProxy } from "@/lib/svelte.svelte";
-
   import {
     makeEventHandlers,
     getErrors,
