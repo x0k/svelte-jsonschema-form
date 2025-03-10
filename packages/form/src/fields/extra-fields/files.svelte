@@ -6,12 +6,13 @@
     getErrors,
     validateField,
     getFormContext,
-    addFile,
+    addFiles,
     getComponent,
     type ComponentProps,
   } from "@/form/index.js";
+  import "@/form/extra-fields/files.js";
 
-  let { config, value = $bindable() }: ComponentProps["fileField"] = $props();
+  let { config, value = $bindable() }: ComponentProps["filesField"] = $props();
 
   const ctx = getFormContext();
 
@@ -28,16 +29,18 @@
         return;
       }
       const data = new DataTransfer();
-      await addFile(ctx, signal, data, value);
+      await addFiles(ctx, signal, data, value);
       return data.files;
     },
     async (v, signal) => {
       if (v === undefined || v.length === 0) {
-        value = undefined;
+        value = [];
         return;
       }
       try {
-        value = await fileToDataURL(signal, v[0]!);
+        value = await Promise.all(
+          Array.from(v).map((f) => fileToDataURL(signal, f))
+        );
       } catch (e) {
         console.error("Failed to read file", e);
       }
@@ -56,6 +59,6 @@
     {handlers}
     {errors}
     {config}
-    multiple={false}
+    multiple
   />
 </Template>

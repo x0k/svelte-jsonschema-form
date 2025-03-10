@@ -11,9 +11,12 @@
 <script lang="ts">
   import { proxy } from "@/lib/svelte.svelte";
   import {
+    ANY_OF_KEY,
     getDiscriminatorFieldFromSchema,
+    getSimpleSchemaType,
     isSchemaValueDeepEqual,
     mergeSchemas,
+    ONE_OF_KEY,
     type EnumOption,
     type SchemaValue,
   } from "@/core/index.js";
@@ -30,18 +33,20 @@
     getComponent,
     type ComponentProps,
     translate,
+    getFieldComponent,
   } from "@/form/index.js";
 
   let {
     value = $bindable(),
     config,
     combinationKey,
-  }: ComponentProps["multiField"] = $props();
+  }: ComponentProps["anyOfField" | "oneOfField"] & {
+    combinationKey: typeof ONE_OF_KEY | typeof ANY_OF_KEY;
+  } = $props();
 
   const ctx = getFormContext();
 
   const Template = $derived(getComponent(ctx, "multiFieldTemplate", config));
-  const Field = $derived(getComponent(ctx, "rootField", config));
   const Widget = $derived(getComponent(ctx, "selectWidget", config));
 
   const retrievedOptions = $derived(
@@ -163,9 +168,45 @@
     };
   });
   const errors = $derived(getErrors(ctx, config.id));
+
+  const combinationFieldConfig = $derived(
+    optionSchema && {
+      id: config.id,
+      name: config.name,
+      required: config.required,
+      title: "",
+      schema: optionSchema,
+      uiSchema: optionUiSchema,
+      uiOptions: optionUiOptions,
+    }
+  );
+
+  const CombinationField = $derived(
+    combinationFieldConfig && getFieldComponent(ctx, combinationFieldConfig)
+  );
+
+  const restSchema = $derived.by(() => {
+    const { [combinationKey]: _, ...rest } = config.schema;
+    return rest;
+  });
+  const restSchemaType = $derived(getSimpleSchemaType(restSchema));
+  const restFieldConfig = $derived(
+    restSchemaType !== "null"
+      ? {
+          ...config,
+          schema: restSchema,
+        }
+      : null
+  );
+  const RestSchemaField = $derived(
+    restFieldConfig && getFieldComponent(ctx, restFieldConfig)
+  );
 </script>
 
 <Template {config} {value} {errors}>
+  {#if restFieldConfig}
+    <RestSchemaField bind:value={value as undefined} config={restFieldConfig} />
+  {/if}
   {#snippet optionSelector()}
     <Widget
       {errors}
@@ -175,18 +216,10 @@
       bind:value={selectedOption.value}
     />
   {/snippet}
-  {#if optionSchema}
-    <Field
-      bind:value
-      config={{
-        id: config.id,
-        name: config.name,
-        required: config.required,
-        title: "",
-        schema: optionSchema,
-        uiSchema: optionUiSchema,
-        uiOptions: optionUiOptions,
-      }}
+  {#if combinationFieldConfig}
+    <CombinationField
+      bind:value={value as undefined}
+      config={combinationFieldConfig}
     />
   {/if}
 </Template>

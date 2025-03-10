@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { isSchemaObjectValue } from "@/core/index.js";
   import {
     makeEventHandlers,
     getErrors,
@@ -8,14 +9,12 @@
     getComponent,
     type ComponentProps,
   } from "@/form/index.js";
+  import "@/form/extra-fields/multi-enum.js";
 
   import { createOptions } from "../enum.js";
 
-  let {
-    config,
-    value = $bindable(),
-    itemSchema,
-  }: ComponentProps["multiEnumField"] = $props();
+  let { config, value = $bindable() }: ComponentProps["multiEnumField"] =
+    $props();
 
   const ctx = getFormContext();
 
@@ -25,11 +24,15 @@
   const handlers = makeEventHandlers(ctx, () =>
     validateField(ctx, config, value)
   );
-  const options = $derived(
-    createOptions(itemSchema, config.uiSchema, config.uiOptions, (i) =>
-      createPseudoId(config.id, i, ctx)
-    ) ?? []
-  );
+  const options = $derived.by(() => {
+    const { items } = config.schema;
+    const itemSchema = isSchemaObjectValue(items) ? items : {};
+    return (
+      createOptions(itemSchema, config.uiSchema, config.uiOptions, (i) =>
+        createPseudoId(config.id, i, ctx)
+      ) ?? []
+    );
+  });
   const errors = $derived(getErrors(ctx, config.id));
 </script>
 

@@ -8,6 +8,7 @@
     getComponent,
     type ComponentProps,
   } from "@/form/index.js";
+  import "@/form/extra-fields/enum.js";
 
   import { createOptions } from "../enum.js";
 

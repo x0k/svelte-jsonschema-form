@@ -1,18 +1,18 @@
 <script lang="ts">
   import { fileToDataURL } from "@/lib/file.js";
   import { asyncProxy } from "@/lib/svelte.svelte";
-
   import {
     makeEventHandlers,
     getErrors,
     validateField,
     getFormContext,
-    addFiles,
+    addFile,
     getComponent,
     type ComponentProps,
   } from "@/form/index.js";
+  import '@/form/extra-fields/file.js';
 
-  let { config, value = $bindable() }: ComponentProps["filesField"] = $props();
+  let { config, value = $bindable() }: ComponentProps["fileField"] = $props();
 
   const ctx = getFormContext();
 
@@ -29,18 +29,16 @@
         return;
       }
       const data = new DataTransfer();
-      await addFiles(ctx, signal, data, value);
+      await addFile(ctx, signal, data, value);
       return data.files;
     },
     async (v, signal) => {
       if (v === undefined || v.length === 0) {
-        value = [];
+        value = undefined;
         return;
       }
       try {
-        value = await Promise.all(
-          Array.from(v).map((f) => fileToDataURL(signal, f))
-        );
+        value = await fileToDataURL(signal, v[0]!);
       } catch (e) {
         console.error("Failed to read file", e);
       }
@@ -59,6 +57,6 @@
     {handlers}
     {errors}
     {config}
-    multiple
+    multiple={false}
   />
 </Template>

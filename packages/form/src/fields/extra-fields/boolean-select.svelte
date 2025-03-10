@@ -1,16 +1,3 @@
-<script lang="ts" module>
-  import type { FieldCommonProps } from "../fields.js";
-
-  declare module "../../form/index.js" {
-    interface ComponentProps {
-      booleanSelectField: FieldCommonProps<boolean>;
-    }
-    interface ComponentBindings {
-      booleanSelectField: "value";
-    }
-  }
-</script>
-
 <script lang="ts">
   import {
     makeEventHandlers,
@@ -24,6 +11,7 @@
     DEFAULT_BOOLEAN_ENUM,
     translate,
   } from "@/form/index.js";
+  import "@/form/extra-fields/boolean-select.js";
 
   import { createOptions } from "../enum.js";
 
