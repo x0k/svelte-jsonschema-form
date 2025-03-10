@@ -6,6 +6,7 @@ import "./submit-button.module.js";
 
 export * from "./model.js";
 export * from "./components.js";
+export * from './fields.js';
 export * from "./ui-schema.js";
 export * from "./config.js";
 export * from "./errors.js";

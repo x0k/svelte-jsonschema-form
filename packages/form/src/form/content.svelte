@@ -1,10 +1,10 @@
 <script lang="ts">
-  import type { Config } from './config.js';
+  import type { Config } from "./config.js";
   import {
     retrieveSchema,
     getFormContext,
     getUiOptions,
-    getComponent,
+    getFieldComponent,
   } from "./context/index.js";
 
   const ctx = getFormContext();
@@ -21,8 +21,8 @@
     required: false,
   });
 
-  const Root = $derived(getComponent(ctx, "rootField", config));
+  const Field = $derived(getFieldComponent(ctx, config));
 </script>
 
 <!-- svelte-ignore ownership_invalid_binding -->
-<Root bind:value={ctx.value} {config} />
+<Field bind:value={ctx.value as undefined} {config} />

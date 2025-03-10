@@ -20,6 +20,7 @@ import type { Config } from "../config.js";
 import type { Theme } from "../components.js";
 import type { Id, IdOptions } from "../id.js";
 import type { FormValue } from "../model.js";
+import type { FoundationalFieldType } from '../fields.js';
 
 export type FormContext = Brand<"sjsf-context", {}>;
 
@@ -41,6 +42,7 @@ export interface FormInternalContext<V extends Validator>
   readonly errors: FieldErrorsMap<PossibleError<V>>;
   readonly dataUrlToBlob: DataURLToBlob;
   readonly translation: Translation;
+  readonly fieldTypeResolver: (config: Config) => FoundationalFieldType;
   readonly theme: Theme;
   readonly submitHandler: (e: SubmitEvent) => void;
   readonly resetHandler: (e: Event) => void;

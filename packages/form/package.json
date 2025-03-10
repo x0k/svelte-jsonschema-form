@@ -71,6 +71,14 @@
       "types": "./dist/form/index.d.ts",
       "svelte": "./dist/form/index.js"
     },
+    "./resolvers/*": {
+      "types": "./dist/form/resolvers/*.d.ts",
+      "svelte": "./dist/form/resolvers/*"
+    },
+    "./extra-fields/*": {
+      "types": "./dist/form/extra-fields/*.d.ts",
+      "svelte": "./dist/form/extra-fields/*"
+    },
     "./fields/array/*": {
       "types": "./dist/fields/array/*.d.ts",
       "svelte": "./dist/fields/array/*"

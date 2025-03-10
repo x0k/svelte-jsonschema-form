@@ -44,3 +44,10 @@ export function getComponent<
     createMessage(translate(ctx, "component-not-found", { type }))
   );
 }
+
+export function getFieldComponent<V extends Validator>(
+  ctx: FormInternalContext<V>,
+  config: Config
+) {
+  return getComponent(ctx, ctx.fieldTypeResolver(config), config);
+}
