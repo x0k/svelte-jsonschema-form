@@ -4,15 +4,8 @@ export type * from "./templates.js";
 export type * from "./components.js";
 export type * from "./widgets.js";
 
-export type * from "./array/exports.js";
-export {
-  arrayField,
-  arrayItemField,
-  tupleField as fixedArrayField,
-  arrayField as normalArrayField,
-} from "./array/exports.js";
-export type * from "./object/exports.js";
-export { objectField, objectPropertyField } from "./object/exports.js";
+export * from "./array/exports.js";
+export * from "./object/exports.js";
 export { default as booleanField } from "./boolean.svelte";
 export { default as integerField } from "./integer.svelte";
 export { default as multiField } from "./combination.svelte";
