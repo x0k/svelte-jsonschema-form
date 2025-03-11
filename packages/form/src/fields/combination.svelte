@@ -13,6 +13,7 @@
   import {
     ANY_OF_KEY,
     getDiscriminatorFieldFromSchema,
+    getSimpleSchemaType,
     isSchemaValueDeepEqual,
     mergeSchemas,
     ONE_OF_KEY,
@@ -47,6 +48,20 @@
 
   const Template = $derived(getComponent(ctx, "multiFieldTemplate", config));
   const Widget = $derived(getComponent(ctx, "selectWidget", config));
+
+  const restFieldConfig = $derived.by(() => {
+    const { [combinationKey]: _, ...restSchema } = config.schema;
+    const restSchemaType = getSimpleSchemaType(restSchema);
+    return restSchemaType !== "null"
+      ? {
+          ...config,
+          schema: restSchema,
+        }
+      : null;
+  });
+  const RestSchemaField = $derived(
+    restFieldConfig && getFieldComponent(ctx, restFieldConfig)
+  );
 
   const retrievedOptions = $derived(
     (config.schema[combinationKey] ?? []).map((s) =>
@@ -174,6 +189,9 @@
   );
 </script>
 
+{#if restFieldConfig}
+  <RestSchemaField bind:value={value as undefined} config={restFieldConfig} />
+{/if}
 <Template {config} {value} {errors}>
   {#snippet optionSelector()}
     <Widget
