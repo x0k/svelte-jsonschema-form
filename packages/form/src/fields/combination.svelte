@@ -15,7 +15,6 @@
     getDiscriminatorFieldFromSchema,
     getSimpleSchemaType,
     isSchemaValueDeepEqual,
-    mergeSchemas,
     ONE_OF_KEY,
     type EnumOption,
     type SchemaValue,
@@ -62,10 +61,9 @@
   const RestSchemaField = $derived(
     restFieldConfig && getFieldComponent(ctx, restFieldConfig)
   );
-
   const retrievedOptions = $derived(
     (config.schema[combinationKey] ?? []).map((s) =>
-      typeof s !== "boolean" ? retrieveSchema(ctx, s, undefined) : {}
+      typeof s !== "boolean" ? retrieveSchema(ctx, s, value) : {}
     )
   );
 
@@ -168,7 +166,14 @@
     }
     const schema = retrievedOptions[selected]!;
     const { required } = config.schema;
-    const optionSchema = required ? mergeSchemas({ required }, schema) : schema;
+    const optionSchema = required
+      ? {
+          ...schema,
+          required: schema.required
+            ? required.concat(schema.required)
+            : required,
+        }
+      : schema;
     const optionUiSchema =
       selected < optionsUiSchemas.length
         ? optionsUiSchemas[selected]!
