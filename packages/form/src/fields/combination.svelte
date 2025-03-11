@@ -49,6 +49,20 @@
   const Template = $derived(getComponent(ctx, "multiFieldTemplate", config));
   const Widget = $derived(getComponent(ctx, "selectWidget", config));
 
+  const restFieldConfig = $derived.by(() => {
+    const { [combinationKey]: _, ...restSchema } = config.schema;
+    const restSchemaType = getSimpleSchemaType(restSchema);
+    return restSchemaType !== "null"
+      ? {
+          ...config,
+          schema: restSchema,
+        }
+      : null;
+  });
+  const RestSchemaField = $derived(
+    restFieldConfig && getFieldComponent(ctx, restFieldConfig)
+  );
+
   const retrievedOptions = $derived(
     (config.schema[combinationKey] ?? []).map((s) =>
       typeof s !== "boolean" ? retrieveSchema(ctx, s, undefined) : {}
@@ -101,16 +115,6 @@
     }
   );
 
-  const optionSchema = $derived.by(() => {
-    const selected = selectedOption.value;
-    if (selected < 0) {
-      return null;
-    }
-    const schema = retrievedOptions[selected]!;
-    const { required } = config.schema;
-    return required ? mergeSchemas({ required }, schema) : schema;
-  });
-
   const optionsUiSchemas = $derived.by(() => {
     const schemas = config.uiSchema[combinationKey];
     return Array.isArray(schemas) ? schemas : [];
@@ -118,18 +122,6 @@
   const optionsUiOptions = $derived(
     optionsUiSchemas.map((s) => getUiOptions(ctx, s))
   );
-
-  const optionUiSchema = $derived.by<UiSchema>(() => {
-    const selected = selectedOption.value;
-    if (selected < 0) {
-      return {};
-    }
-    if (selected < optionsUiSchemas.length) {
-      return optionsUiSchemas[selected]!;
-    }
-    return config.uiSchema;
-  });
-  const optionUiOptions = $derived(getUiOptions(ctx, optionUiSchema));
 
   const enumOptionLabel = $derived.by(() => {
     const title = config.uiOptions?.title ?? config.schema.title;
@@ -169,37 +161,31 @@
   });
   const errors = $derived(getErrors(ctx, config.id));
 
-  const combinationFieldConfig = $derived(
-    optionSchema && {
+  const combinationFieldConfig = $derived.by(() => {
+    const selected = selectedOption.value;
+    if (selected < 0) {
+      return null;
+    }
+    const schema = retrievedOptions[selected]!;
+    const { required } = config.schema;
+    const optionSchema = required ? mergeSchemas({ required }, schema) : schema;
+    const optionUiSchema =
+      selected < optionsUiSchemas.length
+        ? optionsUiSchemas[selected]!
+        : config.uiSchema;
+    return {
       id: config.id,
       name: config.name,
       required: config.required,
       title: "",
       schema: optionSchema,
       uiSchema: optionUiSchema,
-      uiOptions: optionUiOptions,
-    }
-  );
+      uiOptions: getUiOptions(ctx, optionUiSchema),
+    };
+  });
 
   const CombinationField = $derived(
     combinationFieldConfig && getFieldComponent(ctx, combinationFieldConfig)
-  );
-
-  const restSchema = $derived.by(() => {
-    const { [combinationKey]: _, ...rest } = config.schema;
-    return rest;
-  });
-  const restSchemaType = $derived(getSimpleSchemaType(restSchema));
-  const restFieldConfig = $derived(
-    restSchemaType !== "null"
-      ? {
-          ...config,
-          schema: restSchema,
-        }
-      : null
-  );
-  const RestSchemaField = $derived(
-    restFieldConfig && getFieldComponent(ctx, restFieldConfig)
   );
 </script>
 
