@@ -14,8 +14,8 @@ export type Resolver<
   __results?: R;
 };
 
-export type ResolverConfigs<R extends Resolver<any, any>> = R["__configs"];
-export type ResolverResults<R extends Resolver<any, any>> = R["__results"];
+export type ResolverConfigs<R extends Resolver<any, any>> = Exclude<R["__configs"], undefined>;
+export type ResolverResults<R extends Resolver<any, any>> = Exclude<R["__results"], undefined>;
 export type Chain<
   R1 extends Record<AnyKey, any>,
   R2 extends Record<AnyKey, any>,
