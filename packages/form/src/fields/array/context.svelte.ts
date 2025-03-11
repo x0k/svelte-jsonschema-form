@@ -53,11 +53,12 @@ export function createArrayContext<V extends Validator>(
     copyable = false,
   } = $derived(uiOptions ?? {});
 
-  let m;
+  let val, maxItems;
   const canAdd = $derived(
     addable &&
-      Array.isArray(value) &&
-      ((m = config().schema.maxItems), m === undefined || value.length < m)
+      ((val = value()), Array.isArray(val)) &&
+      ((maxItems = config().schema.maxItems),
+      maxItems === undefined || val.length < maxItems)
   );
   const errors = $derived(getErrors(ctx, config().id));
 

@@ -50,7 +50,7 @@
     onclick={() => {
       arrayCtx.pushItem(schemaItems);
     }}
-    >getArrayItemTitle
+    >
     <Text {config} id="add-array-item" />
   </Button>
 {/snippet}
