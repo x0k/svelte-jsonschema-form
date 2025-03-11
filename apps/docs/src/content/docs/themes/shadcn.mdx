@@ -64,14 +64,9 @@ import { components } from '@sjsf/shadcn-theme/default';
 setThemeContext({ components })
 ```
 
-:::caution
+:::note
 
-You should define `components: ThemeComponents` yourself:
-
-- to reduce final bundle size
-- to avoid https://github.com/x0k/svelte-jsonschema-form/issues/48
-
-  In this case you also should remove `bind:this={ref}` bindings from your components.
+You can define `components: ThemeComponents` yourself to reduce final bundle size
 
 :::
 
