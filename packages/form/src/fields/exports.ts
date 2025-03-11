@@ -8,8 +8,8 @@ export type * from "./array/exports.js";
 export {
   arrayField,
   arrayItemField,
-  fixedArrayField,
-  normalArrayField,
+  tupleField as fixedArrayField,
+  arrayField as normalArrayField,
 } from "./array/exports.js";
 export type * from "./object/exports.js";
 export { objectField, objectPropertyField } from "./object/exports.js";

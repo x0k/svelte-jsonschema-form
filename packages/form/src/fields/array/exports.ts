@@ -1,5 +1,3 @@
-export * from './context.js'
-export { default as fixedArrayField } from './fixed-array.svelte'
-export { default as normalArrayField } from './normal-array.svelte'
 export { default as arrayField } from './array.svelte'
+export { default as tupleField } from './tuple.svelte'
 export { default as arrayItemField } from './array-item.svelte'

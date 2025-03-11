@@ -26,7 +26,7 @@
     ON_OBJECT_CHANGE,
     createChildId,
     type ComponentProps,
-    validateAdditionalPropertyKey
+    validateAdditionalPropertyKey,
   } from "@/form/index.js";
 
   import { setObjectContext, type ObjectContext } from "./context.js";
@@ -36,8 +36,11 @@
   const ctx = getFormContext();
 
   let { config, value = $bindable() }: ComponentProps["objectField"] = $props();
+  const newKeyPrefix = $derived(
+    config.uiOptions?.additionalPropertyKeyPrefix ?? "newKey"
+  );
   const newKeySeparator = $derived(
-    config.uiOptions?.duplicateKeySuffixSeparator ?? "-"
+    config.uiOptions?.additionalPropertyKeySeparator ?? "-"
   );
 
   function validate() {
@@ -52,8 +55,7 @@
       if (value === undefined) {
         return;
       }
-      //TODO: internationalization
-      const newKey = generateNewKey("newKey", newKeySeparator, value);
+      const newKey = generateNewKey(newKeyPrefix, newKeySeparator, value);
       value[newKey] =
         getDefaultFieldState(ctx, schemaAdditionalProperties, undefined) ??
         getDefaultValueForType(getSimpleSchemaType(schemaAdditionalProperties));

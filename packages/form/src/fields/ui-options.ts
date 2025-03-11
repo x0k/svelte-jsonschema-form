@@ -46,10 +46,15 @@ declare module "../form/index.js" {
      */
     copyable?: boolean;
     /**
-     * Separator between key and integer suffix in the key of a new property in a schema with `additionalProperties`.
+     * Prefix of the new additional property key
+     * @default 'newKey'
+     */
+    additionalPropertyKeyPrefix?: string
+    /**
+     * Separator between the prefix of the optional property key and its integer suffix.
      * @default '-'
      */
-    duplicateKeySuffixSeparator?: string;
+    additionalPropertyKeySeparator?: string;
     /**
      * Help text for the field (under the widget).
      */

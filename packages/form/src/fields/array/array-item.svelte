@@ -1,13 +1,36 @@
+<script lang="ts" module>
+  declare module "../../form/index.js" {
+    interface FoundationalComponents {
+      arrayItemField: {};
+    }
+    interface ComponentProps {
+      arrayItemField: FieldCommonProps<SchemaValue> & {
+        index: number;
+        canCopy: boolean;
+        canRemove: boolean;
+        canMoveUp: boolean;
+        canMoveDown: boolean;
+      };
+    }
+    interface ComponentBindings {
+      arrayItemField: "value"
+    }
+  }
+</script>
+
 <script lang="ts">
   import {
     getComponent,
     getErrors,
+    getFieldComponent,
     getFormContext,
     Text,
     type ComponentProps,
+    type FieldCommonProps,
+    type SchemaValue,
   } from "@/form/index.js";
 
-  import { getArrayContext } from "./context.js";
+  import { getArrayContext } from "./context.svelte.js";
 
   let {
     index,
@@ -23,7 +46,7 @@
   const arrayCtx = getArrayContext();
 
   const Template = $derived(getComponent(ctx, "arrayItemTemplate", config));
-  const Field = $derived(getComponent(ctx, "rootField", config));
+  const Field = $derived(getFieldComponent(ctx, config));
   const Button = $derived(getComponent(ctx, "button", config));
 
   const toolbar = $derived(canCopy || canRemove || canMoveUp || canMoveDown);
@@ -89,5 +112,5 @@
   {errors}
   buttons={toolbar ? buttons : undefined}
 >
-  <Field bind:value {config} />
+  <Field bind:value={value as undefined} {config} />
 </Template>

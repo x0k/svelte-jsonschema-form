@@ -14,17 +14,19 @@
     Text,
   } from "@/form/index.js";
 
-  import { getArrayContext } from "./context.js";
+  import { createArrayContext, setArrayContext } from "./context.svelte.js";
   import {
     getArrayItemName,
     getFixedArrayItemTitle,
   } from "./get-array-item-name.js";
 
-  let { value = $bindable(), config }: ComponentProps["fixedArrayField"] =
+  let { value = $bindable(), config }: ComponentProps["tupleField"] =
     $props();
 
   const ctx = getFormContext();
-  const arrayCtx = getArrayContext();
+  const arrayCtx = createArrayContext(ctx, () => config, () => value)
+  setArrayContext(arrayCtx)
+
   $effect(() => {
     if (value === undefined) {
       value = new Array(schemaItems.length);

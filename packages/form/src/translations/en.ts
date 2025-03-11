@@ -19,6 +19,7 @@ const definitions: TranslatorDefinitions = {
   "remove-object-property": "Del",
   "validation-process-error": ({ error }) => FAILURE_REASONS[error.reason],
   "component-not-found": ({ type }) => `"${type}" component not found`,
+  "key-input-title": ({ name }) => `${name} Key`,
 };
 
 const FAILURE_REASONS: Record<ActionFailureReason, string> = {

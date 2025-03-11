@@ -1,10 +1,30 @@
+<script lang="ts" module>
+  declare module "../../form/index.js" {
+    interface FoundationalComponents {
+      objectPropertyField: {};
+    }
+    interface ComponentProps {
+      objectPropertyField: FieldCommonProps<SchemaValue> & {
+        property: string;
+        isAdditional: boolean;
+      };
+    }
+    interface ComponentBindings {
+      objectPropertyField: "value"
+    }
+  }
+</script>
+
 <script lang="ts">
   import {
     getComponent,
     getErrors,
+    getFieldComponent,
     getFormContext,
     Text,
     type ComponentProps,
+    type FieldCommonProps,
+    type SchemaValue,
   } from "@/form/index.js";
 
   import { getObjectContext } from "./context.js";
@@ -23,7 +43,7 @@
   const Template = $derived(
     getComponent(ctx, "objectPropertyTemplate", config)
   );
-  const Field = $derived(getComponent(ctx, "rootField", config));
+  const Field = $derived(getFieldComponent(ctx, config));
   const Button = $derived(getComponent(ctx, "button", config));
   const errors = $derived(getErrors(ctx, config.id));
 </script>
@@ -57,5 +77,5 @@
   keyInput={isAdditional ? keyInput : undefined}
   removeButton={isAdditional ? removeButton : undefined}
 >
-  <Field bind:value {config} />
+  <Field bind:value={value as undefined} {config} />
 </Template>

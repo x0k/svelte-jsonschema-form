@@ -9,6 +9,7 @@
     createPseudoId,
     getComponent,
     type Id,
+    translate,
   } from "@/form/index.js";
 
   import { getObjectContext } from "./context.js";
@@ -33,7 +34,7 @@
   const config: Config = $derived({
     id,
     name: id,
-    title: `${name} Key`,
+    title: translate(ctx, "key-input-title", { name }),
     schema: { type: "string" },
     uiSchema,
     uiOptions,

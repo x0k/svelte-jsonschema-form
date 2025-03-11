@@ -1,113 +1,85 @@
 <script lang="ts">
-  import { createKeyedArray } from "@/lib/keyed-array.svelte";
   import {
-    isFixedItems,
+    isSchemaNullable,
     isSchemaObjectValue,
     type Schema,
-    type Validator,
   } from "@/core/index.js";
   import {
-    getErrors,
-    getUiOptions,
-    isFilesArray,
-    isMultiSelect,
-    getFormContext,
-    validateField,
-    getDefaultFieldState,
-    ErrorMessage,
-    AFTER_SUBMITTED,
-    ON_ARRAY_CHANGE,
     getComponent,
+    getUiOptions,
+    retrieveSchema,
+    getFormContext,
+    createChildId,
     type ComponentProps,
-    translate,
+    Text,
   } from "@/form/index.js";
 
-  import { setArrayContext, type ArrayContext } from "./context.js";
+  import { createArrayContext, setArrayContext } from "./context.svelte.js";
+  import { getArrayItemName, getNormalArrayItemTitle } from "./get-array-item-name.js";
 
   let { value = $bindable(), config }: ComponentProps["arrayField"] = $props();
 
   const ctx = getFormContext();
-
-  const uiOptions = $derived(getUiOptions(ctx, config.uiSchema));
-  const {
-    addable = true,
-    orderable = true,
-    removable = true,
-    copyable = false,
-  } = $derived(uiOptions ?? {});
-
-  const canAdd = $derived(
-    addable &&
-      Array.isArray(value) &&
-      (config.schema.maxItems === undefined ||
-        value.length < config.schema.maxItems)
+  const arrayCtx = createArrayContext(
+    ctx,
+    () => config,
+    () => value
   );
-  const errors = $derived(getErrors(ctx, config.id));
-
-  function validate() {
-    const m = ctx.fieldsValidationMode;
-    if (!(m & ON_ARRAY_CHANGE) || (m & AFTER_SUBMITTED && !ctx.isSubmitted)) {
-      return;
-    }
-    validateField(ctx, config, value);
-  }
-
-  const keyedArray = createKeyedArray(() => value ?? []);
-
-  // NOTE: Defining this component as a generic will break packaging
-  // dependant packages
-  const arrayCtx: ArrayContext<Validator> = {
-    get errors() {
-      return errors;
-    },
-    get canAdd() {
-      return canAdd;
-    },
-    get addable() {
-      return addable;
-    },
-    get orderable() {
-      return orderable;
-    },
-    get removable() {
-      return removable;
-    },
-    get copyable() {
-      return copyable;
-    },
-    key(index) {
-      return keyedArray.key(index);
-    },
-    pushItem(itemSchema: Schema) {
-      keyedArray.push(getDefaultFieldState(ctx, itemSchema, undefined));
-      validate();
-    },
-    moveItemUp(index) {
-      keyedArray.swap(index, index - 1);
-      validate();
-    },
-    moveItemDown(index) {
-      keyedArray.swap(index, index + 1);
-      validate();
-    },
-    copyItem(index) {
-      keyedArray.insert(index, $state.snapshot(value![index]));
-      validate();
-    },
-    removeItem(index) {
-      keyedArray.remove(index);
-      validate();
-    },
-  };
   setArrayContext(arrayCtx);
+
+  const ArrayItem = $derived(getComponent(ctx, "arrayItemField", config));
+  const Template = $derived(getComponent(ctx, "arrayTemplate", config));
+  const Button = $derived(getComponent(ctx, "button", config));
+
+  const schemaItems: Schema = $derived(
+    isSchemaObjectValue(config.schema.items) ? config.schema.items : {}
+  );
+  const itemUiSchema = $derived(
+    config.uiSchema.items !== undefined && !Array.isArray(config.uiSchema.items)
+      ? config.uiSchema.items
+      : {}
+  );
 </script>
 
-{#if config.schema.items === undefined}
-  <ErrorMessage message={translate(ctx, "array-schema-missing-items", {})} />
-{:else if isFixedItems(config.schema)}
-  {@const Field = getComponent(ctx, "fixedArrayField", config)}
-  <Field {config} bind:value />
-{:else}
-  {@const Field = getComponent(ctx, "normalArrayField", config)}
-  <Field {config} bind:value />
-{/if}
+{#snippet addButton()}
+  <Button
+    errors={arrayCtx.errors}
+    {config}
+    disabled={false}
+    type="array-item-add"
+    onclick={() => {
+      arrayCtx.pushItem(schemaItems);
+    }}
+    >getArrayItemTitle
+    <Text {config} id="add-array-item" />
+  </Button>
+{/snippet}
+<Template
+  errors={arrayCtx.errors}
+  {config}
+  {value}
+  addButton={arrayCtx.canAdd ? addButton : undefined}
+>
+  {#if value}
+    {#each value as item, index (arrayCtx.key(index))}
+      {@const itemSchema = retrieveSchema(ctx, schemaItems, item)}
+      <ArrayItem
+        {index}
+        config={{
+          id: createChildId(config.id, index, ctx),
+          name: getArrayItemName(config, index),
+          title: getNormalArrayItemTitle(config, index),
+          schema: itemSchema,
+          uiSchema: itemUiSchema,
+          uiOptions: getUiOptions(ctx, itemUiSchema),
+          required: !isSchemaNullable(itemSchema),
+        }}
+        bind:value={value[index]}
+        canCopy={arrayCtx.copyable && arrayCtx.canAdd}
+        canRemove={arrayCtx.removable}
+        canMoveUp={arrayCtx.orderable && index > 0}
+        canMoveDown={arrayCtx.orderable && index < value.length - 1}
+      />
+    {/each}
+  {/if}
+</Template>
