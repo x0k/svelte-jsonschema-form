@@ -10,6 +10,7 @@
   } from "@sjsf/form";
   import { createFormValidator } from "@sjsf/ajv8-validator";
   import { translation } from "@sjsf/form/translations/en";
+  import { resolver } from '@sjsf/form/resolvers/basic'
 
   import Form from "./form.svelte";
   import {
@@ -58,6 +59,7 @@
   const widgetsForm = $derived(
     createForm({
       ...widgetsSchemas("widgets"),
+      resolver,
       idPrefix: "widgets",
       theme,
       validator,
@@ -67,6 +69,7 @@
   const disabledWidgetsForm = $derived(
     createForm({
       ...widgetsSchemas("widgetsDisabled"),
+      resolver,
       idPrefix: "widgetsDisabled",
       disabled: true,
       theme,
@@ -108,6 +111,7 @@
   };
 
   const componentsForm = createForm({
+    resolver,
     schema: componentsSchema,
     uiSchema: componentsUiSchema,
     theme,
