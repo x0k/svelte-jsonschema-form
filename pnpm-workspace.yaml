@@ -4,11 +4,11 @@ packages:
 
 catalog:
   "ajv": "^8.17.1"
-  "vite": "6.2.0"
-  "vitest": "3.0.7"
-  "svelte": "^5.22.5"
+  "vite": "6.2.1"
+  "vitest": "3.0.8"
+  "svelte": "^5.22.6"
   "esm-env": "^1.2.2"
-  "@sveltejs/kit": "^2.18.0"
+  "@sveltejs/kit": "^2.19.0"
   "@sveltejs/adapter-static": "^3.0.8"
   "@sveltejs/package": "^2.3.10"
   "@sveltejs/vite-plugin-svelte": "^5.0.3"
