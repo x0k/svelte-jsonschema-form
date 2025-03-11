@@ -4,7 +4,7 @@
 
   import Combination from "./combination.svelte";
 
-  let { config, value }: ComponentProps["anyOfField"] = $props();
+  let { config, value = $bindable() }: ComponentProps["anyOfField"] = $props();
 </script>
 
 <Combination bind:value {config} combinationKey={ANY_OF_KEY} />
