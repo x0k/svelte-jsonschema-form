@@ -2,6 +2,7 @@
   import { BasicForm } from '@sjsf/form';
   import { createFormValidator } from '@sjsf/ajv8-validator';
   import { theme } from '@sjsf/basic-theme';
+  import { resolver } from '@sjsf/form/resolvers/basic';
   import { translation } from '@sjsf/form/translations/en';
 
   import {
@@ -36,6 +37,7 @@
         }
       }
     },
+    resolver,
     validator,
     translation,
     onSubmitError: console.warn

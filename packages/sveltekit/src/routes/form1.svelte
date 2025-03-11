@@ -3,6 +3,7 @@
   import { createFormValidator } from '@sjsf/ajv8-validator';
   import { theme } from '@sjsf/basic-theme';
   import { translation } from '@sjsf/form/translations/en';
+  import { resolver } from '@sjsf/form/resolvers/basic';
 
   import {
     createMeta,
@@ -30,6 +31,7 @@
   const form = createSvelteKitForm(meta, {
     theme,
     validator,
+    resolver,
     translation,
     onSubmit: request.run,
     onSubmitError: console.warn

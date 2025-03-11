@@ -2,6 +2,7 @@
   import { theme } from '@sjsf/basic-theme';
   import { createFormValidator } from '@sjsf/ajv8-validator';
   import { translation } from '@sjsf/form/translations/en';
+  import { resolver } from '@sjsf/form/resolvers/basic'
 
   import {
     SvelteKitForm,
@@ -24,6 +25,7 @@
 </script>
 
 <SvelteKitForm
+  {resolver}
   {theme}
   {meta}
   idPrefix="form3"
