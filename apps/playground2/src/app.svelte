@@ -14,6 +14,7 @@
     ON_OBJECT_CHANGE,
   } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
+  import { resolver } from "@sjsf/form/resolvers/compat";
   import { focusOnFirstError } from "@sjsf/form/focus-on-first-error";
   import BooleanSelectField from "@sjsf/form/fields/extra-fields/boolean-select.svelte";
   import { setThemeContext } from "@sjsf/shadcn-theme";
@@ -74,11 +75,7 @@
     ? parsedThemeName
     : selectTheme("basic", true);
   let themeName = $state(initialThemeName);
-  const theme = $derived(
-    extendByRecord(themes[themeName], {
-      booleanSelectField: BooleanSelectField,
-    })
-  );
+  const theme = $derived(themes[themeName]);
   const themeStyle = $derived(themeStyles[themeName]);
 
   const parsedIconSetName = url.searchParams.get("icons");
@@ -115,6 +112,7 @@
   let doFocusOnFirstError = $state(true);
 
   const form = createForm({
+    resolver,
     initialValue: samples[initialSampleName].formData,
     initialErrors: samples[initialSampleName].errors,
     translation,

@@ -1,3 +1,9 @@
+import "@sjsf/form/fields/extra-fields/boolean-select-include";
+import "@sjsf/form/fields/extra-fields/enum-include";
+import "@sjsf/form/fields/extra-fields/file-include";
+import "@sjsf/form/fields/extra-fields/files-include";
+import "@sjsf/form/fields/extra-fields/multi-enum-include";
+
 import { theme as basic } from "@sjsf/basic-theme";
 import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 import "@sjsf/basic-theme/extra-widgets/textarea-include";
