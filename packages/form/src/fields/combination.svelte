@@ -3,7 +3,7 @@
 
   declare module "../form/index.js" {
     interface UiSchemaContent {
-      multiFieldOptionSelector?: UiSchema;
+      combinationFieldOptionSelector?: UiSchema;
     }
   }
 </script>
@@ -13,7 +13,6 @@
   import {
     ANY_OF_KEY,
     getDiscriminatorFieldFromSchema,
-    getSimpleSchemaType,
     isSchemaValueDeepEqual,
     mergeSchemas,
     ONE_OF_KEY,
@@ -48,20 +47,6 @@
 
   const Template = $derived(getComponent(ctx, "multiFieldTemplate", config));
   const Widget = $derived(getComponent(ctx, "selectWidget", config));
-
-  const restFieldConfig = $derived.by(() => {
-    const { [combinationKey]: _, ...restSchema } = config.schema;
-    const restSchemaType = getSimpleSchemaType(restSchema);
-    return restSchemaType !== "null"
-      ? {
-          ...config,
-          schema: restSchema,
-        }
-      : null;
-  });
-  const RestSchemaField = $derived(
-    restFieldConfig && getFieldComponent(ctx, restFieldConfig)
-  );
 
   const retrievedOptions = $derived(
     (config.schema[combinationKey] ?? []).map((s) =>
@@ -147,7 +132,7 @@
     const suffix = combinationKey.toLowerCase() as Lowercase<
       typeof combinationKey
     >;
-    const uiSchema = config.uiSchema.multiFieldOptionSelector ?? {};
+    const uiSchema = config.uiSchema.combinationFieldOptionSelector ?? {};
     const uiOptions = getUiOptions(ctx, uiSchema);
     return {
       id: createPseudoId(config.id, suffix, ctx),
@@ -190,9 +175,6 @@
 </script>
 
 <Template {config} {value} {errors}>
-  {#if restFieldConfig}
-    <RestSchemaField bind:value={value as undefined} config={restFieldConfig} />
-  {/if}
   {#snippet optionSelector()}
     <Widget
       {errors}
