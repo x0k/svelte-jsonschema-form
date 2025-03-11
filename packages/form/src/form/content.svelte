@@ -22,6 +22,10 @@
   });
 
   const Field = $derived(getFieldComponent(ctx, config));
+  // Force svelte to update component
+  // $effect(() => {
+  //   Field;
+  // })
 </script>
 
 <!-- svelte-ignore ownership_invalid_binding -->

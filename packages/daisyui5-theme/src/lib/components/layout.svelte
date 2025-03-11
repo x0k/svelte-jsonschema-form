@@ -23,7 +23,7 @@
 	);
 </script>
 
-{#if type === 'field-meta' || type === 'field-content' || type === 'root-field' || type === 'array-field-meta' || type === 'object-field-meta'}
+{#if type === 'field-meta' || type === 'field-content' || type === 'array-field-meta' || type === 'object-field-meta'}
 	{@render children()}
 {:else if type === 'field' || type === 'array-field' || type === 'object-field'}
 	<fieldset

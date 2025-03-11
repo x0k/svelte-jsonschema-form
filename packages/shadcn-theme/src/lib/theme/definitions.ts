@@ -1,15 +1,13 @@
-import type { ExtendableComponentDefinitions } from '@sjsf/form';
-import * as fields from '@sjsf/form/fields/exports';
+import type { ExtendableComponentDefinitionsWithoutFields } from '@sjsf/form/fields/resolver';
 import * as templates from '@sjsf/form/templates/exports';
 
 import * as components from './components/exports.js';
 import * as widgets from './widgets/exports.js';
 
 export const definitions = {
-	...fields,
 	...templates,
 	...components,
 	...widgets
-} satisfies ExtendableComponentDefinitions;
+} satisfies ExtendableComponentDefinitionsWithoutFields;
 
-export const extendable: ExtendableComponentDefinitions = definitions;
+export const extendable: ExtendableComponentDefinitionsWithoutFields = definitions;

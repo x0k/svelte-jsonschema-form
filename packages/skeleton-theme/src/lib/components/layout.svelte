@@ -19,8 +19,7 @@
 		type === 'array-field' ||
 			type === 'object-field' ||
 			type === 'array-items' ||
-			type === 'object-properties' ||
-			type === 'root-field'
+			type === 'object-properties'
 	);
 
 	const attributes = $derived({

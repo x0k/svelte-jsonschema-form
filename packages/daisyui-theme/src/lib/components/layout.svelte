@@ -17,15 +17,14 @@
 		type === 'array-field' ||
 			type === 'object-field' ||
 			type === 'array-items' ||
-			type === 'object-properties' ||
-			type === 'root-field'
+			type === 'object-properties'
 	);
 	const isMultiFieldControls = $derived(type === 'multi-field-controls');
 
 	const attributes = $derived({
 		...config.uiOptions?.layout,
 		...config.uiOptions?.layouts?.[type]
-	})
+	});
 </script>
 
 <div

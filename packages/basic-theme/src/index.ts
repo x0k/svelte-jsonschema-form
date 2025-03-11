@@ -4,8 +4,7 @@ import "@sjsf/form/fields/exports";
 import "@sjsf/form/templates/exports";
 
 import { definitions } from "./definitions.js";
-
-export * as components from "./components/exports.js";
-export * as widgets from "./widgets/exports.js";
+import "./components/exports.js";
+import "./widgets/exports.js";
 
 export const theme = extendByRecord(fields, definitions);
