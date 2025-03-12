@@ -1,0 +1,26 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "docs": "1.6.2",
+    "docs2": "1.6.2",
+    "playground": "1.2.4",
+    "playground2": "0.0.1",
+    "@sjsf/ajv8-validator": "1.9.2",
+    "@sjsf/basic-theme": "0.0.1",
+    "@sjsf/cfworker-validator": "1.9.2",
+    "@sjsf/daisyui-theme": "1.9.2",
+    "@sjsf/daisyui5-theme": "0.0.1",
+    "@sjsf/flowbite-icons": "1.9.2",
+    "@sjsf/flowbite-theme": "1.9.2",
+    "@sjsf/form": "1.9.2",
+    "@sjsf/lucide-icons": "1.9.2",
+    "@sjsf/radix-icons": "1.9.2",
+    "@sjsf/shadcn-theme": "1.9.2",
+    "@sjsf/skeleton-theme": "1.9.2",
+    "@sjsf/sveltekit": "1.9.2",
+    "testing": "0.0.12",
+    "@sjsf/zod-validator": "1.9.2"
+  },
+  "changesets": []
+}
