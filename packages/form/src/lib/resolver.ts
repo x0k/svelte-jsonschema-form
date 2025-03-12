@@ -45,7 +45,7 @@ export function fromRecord<R extends Record<AnyKey, any>>(
 
 export function overrideByRecord<
   R extends Resolver<any, any>,
-  O extends ResolverResults<R>,
+  O extends Partial<ResolverResults<R>>,
 >(resolver: R, override: O) {
   return chain(fromRecord(override), resolver);
 }
