@@ -1,10 +1,10 @@
-# @sjsf/daisyui5-theme
+# @sjsf/basic-theme
 
 ## 2.0.0-next.0
 
 ### Minor Changes
 
-- Add `daisyui5-theme` package ([#71](https://github.com/x0k/svelte-jsonschema-form/pull/71))
+- Add `@sjsf/basic-theme` package ([#78](https://github.com/x0k/svelte-jsonschema-form/pull/78))
 
 ### Patch Changes
 

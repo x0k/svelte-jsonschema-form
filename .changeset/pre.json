@@ -22,5 +22,23 @@
     "testing": "0.0.12",
     "@sjsf/zod-validator": "1.9.2"
   },
-  "changesets": []
+  "changesets": [
+    "clever-eagles-turn",
+    "cold-apples-speak",
+    "dull-balloons-rush",
+    "early-suns-enjoy",
+    "empty-birds-learn",
+    "green-items-cheat",
+    "loud-monkeys-jog",
+    "open-clouds-change",
+    "quick-cycles-sniff",
+    "shiny-plums-develop",
+    "slimy-glasses-guess",
+    "slow-berries-beam",
+    "tame-taxis-itch",
+    "thick-carrots-type",
+    "upset-snails-smile",
+    "weak-seals-drum",
+    "wet-cats-agree"
+  ]
 }
