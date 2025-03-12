@@ -1,5 +1,31 @@
 # @sjsf/form
 
+## 2.0.0-next.0
+
+### Major Changes
+
+- Remove `lib/deep-equal` submodule ([#78](https://github.com/x0k/svelte-jsonschema-form/pull/78))
+
+- Remove `use-mutation` submodule ([#78](https://github.com/x0k/svelte-jsonschema-form/pull/78))
+
+- Migrate to `resolver` based providers ([#78](https://github.com/x0k/svelte-jsonschema-form/pull/78))
+
+- Remove `legacy-omit-extra-data` submodule ([#78](https://github.com/x0k/svelte-jsonschema-form/pull/78))
+
+- Remove `asSnippet` function ([#78](https://github.com/x0k/svelte-jsonschema-form/pull/78))
+
+- Rename submodule `prevent-data-loss` to `prevent-page-reload` ([#78](https://github.com/x0k/svelte-jsonschema-form/pull/78))
+
+- Migrate to a new `Validator` type model ([#78](https://github.com/x0k/svelte-jsonschema-form/pull/78))
+
+### Minor Changes
+
+- Add `env` lib ([#71](https://github.com/x0k/svelte-jsonschema-form/pull/71))
+
+- Add `css` lib ([#71](https://github.com/x0k/svelte-jsonschema-form/pull/71))
+
+- Add `resolver` lib ([#78](https://github.com/x0k/svelte-jsonschema-form/pull/78))
+
 ## 1.9.2
 
 ### Patch Changes
