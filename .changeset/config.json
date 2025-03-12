@@ -20,5 +20,6 @@
   "___experimentalUnsafeOptions_WILL_CHANGE_IN_PATCH": {
     "onlyUpdatePeerDependentsWhenOutOfRange": true
   },
-  "bumpVersionsWithWorkspaceProtocolOnly": true
+  "bumpVersionsWithWorkspaceProtocolOnly": true,
+  "privatePackages": false
 }
