@@ -27,15 +27,6 @@ export type ComponentDefinitions = {
   [T in ComponentType]: ComponentDefinition<T>;
 };
 
-export type ExtendableComponentDefinitions = {
-  [T in FoundationalComponent]: ComponentDefinitions[T];
-} & {
-  [T in Exclude<
-    ComponentType,
-    FoundationalComponent
-  >]?: ComponentDefinitions[T];
-};
-
 // TODO: Optional fields in component props should be considered
 export type CompatibleComponentType<T extends ComponentType> = {
   [C in ComponentType]: [
