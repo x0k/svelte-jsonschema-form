@@ -1,5 +1,17 @@
 # testing
 
+## 0.1.0
+
+### Minor Changes
+
+- Allow to enrich the widgets from ([#71](https://github.com/x0k/svelte-jsonschema-form/pull/71))
+
+### Patch Changes
+
+- Updated dependencies [[`cd3ebbb`](https://github.com/x0k/svelte-jsonschema-form/commit/cd3ebbb3a42ca7c730c1a0592a9325c41b3d2563), [`e4b7e63`](https://github.com/x0k/svelte-jsonschema-form/commit/e4b7e63a3b8ff17c658cf9659bdc58f2dd0f7d19)]:
+  - @sjsf/form@1.10.0
+  - @sjsf/ajv8-validator@1.10.0
+
 ## 0.0.12
 
 ### Patch Changes

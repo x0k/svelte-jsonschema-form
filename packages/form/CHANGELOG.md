@@ -1,5 +1,13 @@
 # @sjsf/form
 
+## 1.10.0
+
+### Minor Changes
+
+- Add `env` lib ([#71](https://github.com/x0k/svelte-jsonschema-form/pull/71))
+
+- Add `css` lib ([#71](https://github.com/x0k/svelte-jsonschema-form/pull/71))
+
 ## 1.9.2
 
 ### Patch Changes
