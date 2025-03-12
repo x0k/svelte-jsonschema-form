@@ -49,9 +49,9 @@
 	},
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^1.9.2",
-		"flowbite-svelte-icons": "^2.0.2",
+		"flowbite-svelte-icons": "^2.0.3",
 		"tailwind-merge": "^2.6.0",
-		"svelte": "^5.22.5"
+		"svelte": "^5.23.0"
 	},
 	"devDependencies": {
 		"@playwright/test": "catalog:",
@@ -65,7 +65,7 @@
 		"eslint": "catalog:",
 		"eslint-config-prettier": "catalog:",
 		"eslint-plugin-svelte": "catalog:",
-		"flowbite-svelte-icons": "^2.0.2",
+		"flowbite-svelte-icons": "^2.0.3",
 		"globals": "catalog:",
 		"postcss": "catalog:",
 		"prettier": "catalog:",

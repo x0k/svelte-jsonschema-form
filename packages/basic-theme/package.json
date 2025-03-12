@@ -31,7 +31,7 @@
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "peerDependencies": {
-    "svelte": "^5.22.5",
+    "svelte": "^5.23.0",
     "@sjsf/form": "workspace:^1.9.2"
   },
   "devDependencies": {
