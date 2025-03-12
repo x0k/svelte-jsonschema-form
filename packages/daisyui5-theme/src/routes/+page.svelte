@@ -6,6 +6,8 @@
 	import { theme } from '../lib/index.js';
 
 	import '../lib/extra-widgets/cally-date-picker-include';
+	import '../lib/extra-widgets/checkboxes-include';
+	import '../lib/extra-widgets/file-include';
 	import FilterRadioButtons from '../lib/extra-widgets/filter-radio-buttons.svelte';
 	import '../lib/extra-widgets/multi-select-include';
 	const PikadayDatePicker = clientOnly(
