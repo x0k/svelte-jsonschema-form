@@ -1,5 +1,6 @@
 <script lang="ts" module>
   import type { HTMLInputAttributes } from "svelte/elements";
+  import "@sjsf/form/fields/extra-widgets/file-widget";
 
   declare module "@sjsf/form" {
     interface UiOptions {

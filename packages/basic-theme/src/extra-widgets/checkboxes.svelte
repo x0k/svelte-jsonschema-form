@@ -1,5 +1,6 @@
 <script lang="ts" module>
   import type { HTMLInputAttributes } from "svelte/elements";
+  import '@sjsf/form/fields/extra-widgets/checkboxes';
 
   declare module "@sjsf/form" {
     interface UiOptions {
