@@ -3,7 +3,9 @@
 
 	import { theme, setThemeContext, type ThemeComponents } from '../lib/theme/index.js';
 
+	import '../lib/theme/extra-widgets/checkboxes-include';
 	import '../lib/theme/extra-widgets/date-picker-include';
+	import '../lib/theme/extra-widgets/file-include';
 	import '../lib/theme/extra-widgets/multi-select-include';
 	import '../lib/theme/extra-widgets/radio-include';
 	import '../lib/theme/extra-widgets/range-include';

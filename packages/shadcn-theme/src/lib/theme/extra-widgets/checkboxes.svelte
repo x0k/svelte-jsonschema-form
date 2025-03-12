@@ -1,5 +1,6 @@
 <script lang="ts" module>
 	import type { CheckboxRootProps, WithoutChildrenOrChild } from 'bits-ui';
+	import '@sjsf/form/fields/extra-widgets/checkboxes';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
