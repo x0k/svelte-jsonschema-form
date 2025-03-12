@@ -1,6 +1,5 @@
 <script lang="ts">
   import { SvelteMap } from "svelte/reactivity";
-  import { extendByRecord } from "@sjsf/form/lib/resolver";
   import {
     ON_BLUR,
     ON_CHANGE,
@@ -16,7 +15,6 @@
   import { translation } from "@sjsf/form/translations/en";
   import { resolver } from "@sjsf/form/resolvers/compat";
   import { focusOnFirstError } from "@sjsf/form/focus-on-first-error";
-  import BooleanSelectField from "@sjsf/form/fields/extra-fields/boolean-select.svelte";
   import { setThemeContext } from "@sjsf/shadcn-theme";
   import { components } from "@sjsf/shadcn-theme/default";
 
