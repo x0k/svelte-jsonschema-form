@@ -1,3 +1,11 @@
+<script lang="ts" module>
+  declare module "../../form/index.js" {
+    interface FoundationalComponents {
+      fileWidget: {};
+    }
+  }
+</script>
+
 <script lang="ts">
   import { fileToDataURL } from "@/lib/file.js";
   import { asyncProxy } from "@/lib/svelte.svelte";
@@ -10,7 +18,9 @@
     getComponent,
     type ComponentProps,
   } from "@/form/index.js";
-  import '@/form/extra-fields/file.js';
+  import "@/form/extra-fields/file.js";
+
+  import "../extra-widgets/file-widget.js";
 
   let { config, value = $bindable() }: ComponentProps["fileField"] = $props();
 

@@ -1,4 +1,4 @@
-import type { EnumOption, SchemaArrayValue } from "@/core/index.js";
+import type { EnumOption } from "@/core/index.js";
 import type { Config, FieldError, SchemaValue } from "@/form/index.js";
 
 export interface Handlers {
@@ -24,8 +24,6 @@ declare module "../form/index.js" {
     numberWidget: {};
     selectWidget: {};
     checkboxWidget: {};
-    checkboxesWidget: {};
-    fileWidget: {};
   }
 
   interface ComponentProps {
@@ -33,19 +31,11 @@ declare module "../form/index.js" {
     numberWidget: WidgetCommonProps<number>;
     selectWidget: WidgetCommonProps<SchemaValue> & Options;
     checkboxWidget: WidgetCommonProps<boolean>;
-    checkboxesWidget: WidgetCommonProps<SchemaArrayValue> & Options;
-    fileWidget: WidgetCommonProps<FileList> & {
-      multiple: boolean;
-      loading: boolean;
-      processing: boolean;
-    };
   }
   interface ComponentBindings {
     textWidget: "value";
     numberWidget: "value";
     selectWidget: "value";
     checkboxWidget: "value";
-    checkboxesWidget: "value";
-    fileWidget: "value";
   }
 }

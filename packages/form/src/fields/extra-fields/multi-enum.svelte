@@ -1,3 +1,11 @@
+<script lang="ts" module>
+  declare module "../../form/index.js" {
+    interface FoundationalComponents {
+      checkboxesWidget: {};
+    }
+  }
+</script>
+
 <script lang="ts">
   import { isSchemaObjectValue } from "@/core/index.js";
   import {
@@ -12,6 +20,7 @@
   import "@/form/extra-fields/multi-enum.js";
 
   import { createOptions } from "../enum.js";
+  import "../extra-widgets/checkboxes.js";
 
   let { config, value = $bindable() }: ComponentProps["multiEnumField"] =
     $props();
