@@ -1,8 +1,5 @@
 <script lang="ts" module>
-	import ArrowUp from 'svelte-radix/ArrowUp.svelte';
-	import ArrowDown from 'svelte-radix/ArrowDown.svelte';
-	import Trash from 'svelte-radix/Trash.svelte';
-	import Copy from 'svelte-radix/Copy.svelte';
+	import { ArrowUp, ArrowDown, Trash, Copy } from 'svelte-radix';
 
 	export { arrowDownOutline, arrowUpOutline, trashBinOutline, fileCopyOutline };
 </script>

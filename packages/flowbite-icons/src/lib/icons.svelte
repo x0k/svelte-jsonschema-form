@@ -1,8 +1,10 @@
 <script lang="ts" module>
-	import ArrowUpOutline from 'flowbite-svelte-icons/ArrowUpOutline.svelte';
-	import ArrowDownOutline from 'flowbite-svelte-icons/ArrowDownOutline.svelte';
-	import TrashBinOutline from 'flowbite-svelte-icons/TrashBinOutline.svelte';
-	import FileCopyOutline from 'flowbite-svelte-icons/FileCopyOutline.svelte';
+	import {
+		ArrowDownOutline,
+		TrashBinOutline,
+		FileCopyOutline,
+		ArrowUpOutline
+	} from 'flowbite-svelte-icons';
 
 	export { arrowDownOutline, arrowUpOutline, trashBinOutline, fileCopyOutline };
 </script>
