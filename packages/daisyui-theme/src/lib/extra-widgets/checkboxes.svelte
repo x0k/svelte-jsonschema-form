@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 	import { multipleOptions, indexMapper } from '@sjsf/form/options.svelte';
+	import '@sjsf/basic-theme/extra-widgets/checkboxes.svelte'
 
 	let {
 		handlers,

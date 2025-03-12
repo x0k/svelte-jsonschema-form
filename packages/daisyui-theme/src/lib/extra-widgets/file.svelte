@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
+	import '@sjsf/basic-theme/extra-widgets/file.svelte';
 
 	let {
 		config,
