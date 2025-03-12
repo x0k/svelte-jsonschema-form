@@ -2,4 +2,4 @@
 "testing": minor
 ---
 
-Allow to enrich the widgets from
+Allow to provide additional specs for widgets schemas
