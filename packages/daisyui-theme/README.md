@@ -1,6 +1,6 @@
 # @sjsf/daisyui-theme
 
-The [daisyui](https://github.com/saadeghi/daisyui) based theme for [svelte-jsonschema-form](https://github.com/x0k/svelte-jsonschema-form).
+The [daisyui](https://github.com/saadeghi/daisyui) v4 based theme for [svelte-jsonschema-form](https://github.com/x0k/svelte-jsonschema-form).
 
 - [Documentation](https://x0k.github.io/svelte-jsonschema-form/themes/daisyui/)
 - [Playground](https://x0k.github.io/svelte-jsonschema-form/playground/)
@@ -52,11 +52,12 @@ import themeStyles from "@sjsf/daisyui-theme/styles.css?inline";
 
 ```svelte
 <script lang="ts">
-  import { createForm3 } from '@sjsf/form';
+  import { createForm } from '@sjsf/form';
   import { theme } from '@sjsf/daisyui-theme';
 
-  const form = createForm3({
-    ...theme
+  const form = createForm({
+    theme,
+    ...
   })
 </script>
 ```

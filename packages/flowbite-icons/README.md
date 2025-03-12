@@ -50,11 +50,12 @@ import flowbiteIconsStyles from "@sjsf/flowbite-icons/styles.css?inline";
 
 ```svelte
 <script lang="ts">
-  import { createForm3 } from '@sjsf/form';
+  import { createForm } from '@sjsf/form';
   import { icons } from '@sjsf/flowbite-icons';
 
   const form = createForm3({
-    icons
+    icons,
+    ...
   })
 </script>
 ```

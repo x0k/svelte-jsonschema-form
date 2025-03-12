@@ -50,12 +50,13 @@ import themeStyles from "@sjsf/shadcn-theme/styles.css?inline";
 
 ```svelte
 <script lang="ts">
-  import { createForm3 } from '@sjsf/form';
+  import { createForm } from '@sjsf/form';
   import { theme, setThemeContext } from '@sjsf/shadcn-theme';
   import { components } from '@sjsf/shadcn-theme/default'
 
-  const form = createForm3({
-    ...theme,
+  const form = createForm({
+    theme,
+    ...
   })
 
   setThemeContext({ components })

@@ -1,6 +1,6 @@
 # @sjsf/skeleton-theme
 
-The [skeleton](https://github.com/skeletonlabs/skeleton) based theme for [svelte-jsonschema-form](https://github.com/x0k/svelte-jsonschema-form).
+The [skeleton](https://github.com/skeletonlabs/skeleton) v3 (tailwind v3) based theme for [svelte-jsonschema-form](https://github.com/x0k/svelte-jsonschema-form).
 
 - [Documentation](https://x0k.github.io/svelte-jsonschema-form/themes/skeleton/)
 - [Playground](https://x0k.github.io/svelte-jsonschema-form/playground/)
@@ -66,11 +66,12 @@ Bundled themes:
 
 ```svelte
 <script lang="ts">
-  import { createForm3 } from '@sjsf/form';
+  import { createForm } from '@sjsf/form';
   import { theme } from '@sjsf/skeleton-theme';
 
-  const form = createForm3({
-    ...theme,
+  const form = createForm({
+    theme,
+    ...
   })
 </script>
 ```

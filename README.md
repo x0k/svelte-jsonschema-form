@@ -8,48 +8,54 @@ Unofficial port of [react-jsonschema-form](https://github.com/rjsf-team/react-js
 
 ## Installation
 
-Install the library and `ajv` for validation.
+Install the library, basic theme and `ajv` for validation.
 
 ```shell
-npm install @sjsf/form @sjsf/ajv8-validator ajv@8
+npm install @sjsf/form @sjsf/basic-theme @sjsf/ajv8-validator ajv@8
 ```
 
 ## Usage
 
 ```svelte
 <script lang="ts">
-  import { createForm3, RawForm, type Schema } from '@sjsf/form';
+  import { createForm, BasicForm, type Schema } from '@sjsf/form';
+  import { resolver } from '@sjsf/form/resolvers/basic';
   import { translation } from '@sjsf/form/translations/en';
-  import { theme } from '@sjsf/form/basic-theme';
-  import { createValidator2 } from "@sjsf/ajv8-validator";
+  import { theme } from '@sjsf/basic-theme';
+  import { createFormValidator } from "@sjsf/ajv8-validator";
 
-  const validator = createValidator2();
+  const validator = createFormValidator();
 
   const schema: Schema = {
-    type: 'object',
-    properties: {
-      name: {
-        type: 'string',
-        title: 'Name',
+    title: 'Tasks',
+    type: 'array',
+    items: {
+      type: 'object',
+      properties: {
+        name: {
+          type: 'string',
+          title: 'Name',
+        },
+        description: {
+          type: 'string',
+          title: 'Description',
+        },
       },
-      description: {
-        type: 'string',
-        title: 'Description',
-      },
+      required: ["name"]
     },
-    required: ["name"]
   }
 
-  const form = createForm3({
-    ...theme,
+  const form = createForm({
+    theme,
     schema,
+    resolver
     validator,
     translation,
-    onSubmit: console.log,
+    onSubmit: console.log
   })
 </script>
 
-<RawForm {form} />
+<BasicForm {form} />
 ```
 
 ## License
@@ -57,10 +63,10 @@ npm install @sjsf/form @sjsf/ajv8-validator ajv@8
 This project includes modifications of code from [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form), which is licensed under the Apache License, Version 2.0.
 The rest of the project is under the MIT license.
 
-See [LICENSE-MIT](packages/form/LICENSE-MIT) and [LICENSE-APACHE](packages/form/LICENSE-APACHE) for details.
+See [LICENSE-MIT](LICENSE) and [LICENSE-APACHE](LICENSE-APACHE) for details.
 
 ## See also
 
 - [Other JSON Schema to Web UI tools](https://json-schema.org/tools?query=&sortBy=name&sortOrder=ascending&groupBy=toolingTypes&licenses=&languages=&drafts=&toolingTypes=schema-to-web-UI)
 - [Converting JSON to table](https://github.com/x0k/json-to-table)
-- Simple build automation tool [mk](https://github.com/x0k/mk)
+- [Simple build automation tool - mk](https://github.com/x0k/mk)

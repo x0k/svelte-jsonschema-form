@@ -10,11 +10,16 @@ npm install @sjsf/form @sjsf/basic-theme
 
 ## Usage
 
-```ts
-import { createForm } from '@sjsf/form';
-import { themeResolver } from '@sjsf/basic-theme';
+```svelte
+<script lang="ts">
+  import { createForm } from '@sjsf/form';
+  import { theme } from '@sjsf/basic-theme';
 
-const theme = createTheme(themeResolver);
+  const form = createForm({
+    theme,
+    ...
+  })
+</script>
 ```
 
 ## License

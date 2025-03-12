@@ -15,11 +15,12 @@ npm install @sjsf/form @sjsf/daisyui5-theme
 
 ```svelte
 <script lang="ts">
-  import { createForm3 } from '@sjsf/form';
+  import { createForm } from '@sjsf/form';
   import { theme } from '@sjsf/daisyui5-theme';
 
-  const form = createForm3({
-    ...theme
+  const form = createForm({
+    theme,
+    ...
   })
 </script>
 ```

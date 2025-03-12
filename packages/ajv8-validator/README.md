@@ -14,9 +14,9 @@ npm install @sjsf/ajv8-validator ajv@8
 ## Usage
 
 ```typescript
-import { createValidator2 } from "@sjsf/ajv8-validator";
+import { createFormValidator } from "@sjsf/ajv8-validator";
 
-const validator = createValidator2()
+const validator = createFormValidator()
 ```
 
 ## License

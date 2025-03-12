@@ -1,6 +1,6 @@
 # @sjsf/flowbite-theme
 
-The [flowbite-svelte](https://github.com/themesberg/flowbite-svelte) based theme for [svelte-jsonschema-form](https://github.com/x0k/svelte-jsonschema-form).
+The [flowbite-svelte](https://github.com/themesberg/flowbite-svelte) (tailwind v3) based theme for [svelte-jsonschema-form](https://github.com/x0k/svelte-jsonschema-form).
 
 - [Documentation](https://x0k.github.io/svelte-jsonschema-form/themes/flowbite/)
 - [Playground](https://x0k.github.io/svelte-jsonschema-form/playground/)
@@ -52,11 +52,12 @@ import themeStyles from "@sjsf/flowbite-theme/styles.css?inline";
 
 ```svelte
 <script lang="ts">
-  import { createForm3 } from '@sjsf/form';
+  import { createForm } from '@sjsf/form';
   import { theme } from '@sjsf/flowbite-theme';
 
-  const form = createForm3({
-    ...theme,
+  const form = createForm({
+    theme,
+    ...
   })
 </script>
 ```

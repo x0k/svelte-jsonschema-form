@@ -14,9 +14,9 @@ npm install @sjsf/cfworker-validator @cfworker/json-schema
 ## Usage
 
 ```typescript
-import { createValidator } from "@sjsf/cfworker-validator";
+import { createFormValidator } from "@sjsf/cfworker-validator";
 
-const validator = createValidator()
+const validator = createFormValidator()
 ```
 
 ## License

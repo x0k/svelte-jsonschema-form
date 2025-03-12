@@ -14,8 +14,8 @@ npm install @sjsf/zod-validator zod zod-to-json-schema json-schema-to-zod
 ## Usage
 
 ```typescript
-import { createForm3, type Schema } from '@sjsf/form'
-import { createValidator } from "@sjsf/zod-validator";
+import { createForm, type Schema } from '@sjsf/form'
+import { createFormValidator } from "@sjsf/zod-validator";
 import { zodToJsonSchema } from "zod-to-json-schema";
 import { z } from "zod";
 
@@ -23,13 +23,12 @@ const schema = z.object({
   /* your schema */
 });
 
-const validator = createValidator({
-  schema,
-});
+const validator = createFormValidator(schema);
 
-const form = createForm3({
+const form = createForm({
   schema: zodToJsonSchema(schema) as Schema,
-  validator
+  validator,
+  ...
 })
 ```
 
