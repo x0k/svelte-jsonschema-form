@@ -14,7 +14,7 @@
     "build": "turbo run build --concurrency 12",
     "preview": "turbo run preview",
     "ci:build": "turbo run build test",
-    "ci:version": "pnpm install && changeset version && pnpm install --no-frozen-lockfile"
+    "ci:version": "changeset version && pnpm install --no-frozen-lockfile"
   },
   "devDependencies": {
     "@changesets/cli": "^2.28.1",
