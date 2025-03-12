@@ -1,8 +1,6 @@
-name: Version and Publish
+name: Version and Publish (next)
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -25,7 +23,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 23
           cache: pnpm
 
       - name: Install dependencies
@@ -45,8 +43,8 @@ jobs:
       - name: Create and publish versions
         uses: changesets/action@v1
         with:
-          version: pnpm ci:version
-          publish: pnpm exec changeset publish
+          version: pnpm exec changeset pre enter next && pnpm ci:version
+          publish: pnpm exec changeset publish --tag next
           commit: "[build] release"
           title: "[build] release"
         env:
