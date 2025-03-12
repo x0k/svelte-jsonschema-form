@@ -1,4 +1,4 @@
-import type { ExtendableComponentDefinitionsWithoutFields } from '@sjsf/form/fields/resolver';
+import type { ComponentDefinitions } from '@sjsf/form';
 import * as templates from '@sjsf/form/templates/exports';
 
 import * as components from './components/exports';
@@ -8,6 +8,6 @@ export const definitions = {
 	...templates,
 	...components,
 	...widgets
-} satisfies ExtendableComponentDefinitionsWithoutFields;
+} satisfies Partial<ComponentDefinitions>;
 
-export const extendable: ExtendableComponentDefinitionsWithoutFields = definitions;
+export const extendable: Partial<ComponentDefinitions> = definitions;
