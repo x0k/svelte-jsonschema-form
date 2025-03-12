@@ -23,7 +23,8 @@
     "only-allow": "^1.2.1",
     "publint": "^0.3.8",
     "turbo": "^2.4.4",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.2",
+    "prettier-plugin-svelte": "catalog:"
   },
   "pnpm": {
     "patchedDependencies": {

@@ -107,6 +107,9 @@ importers:
       only-allow:
         specifier: ^1.2.1
         version: 1.2.1
+      prettier-plugin-svelte:
+        specifier: 'catalog:'
+        version: 3.3.3(prettier@3.5.3)(svelte@5.23.0)
       publint:
         specifier: ^0.3.8
         version: 0.3.8
