@@ -43,7 +43,7 @@ jobs:
       - name: Create and publish versions
         uses: changesets/action@v1
         with:
-          version: pnpm exec changeset pre enter next && pnpm ci:version
+          version: pnpm ci:version
           publish: pnpm exec changeset publish --tag next
           commit: "[build] release"
           title: "[build] release"
