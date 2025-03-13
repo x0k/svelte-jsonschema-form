@@ -1,5 +1,19 @@
 # @sjsf/form
 
+## 2.0.0-next.1
+
+### Major Changes
+
+- Make `checkboxes` and `file` widgets optional ([#81](https://github.com/x0k/svelte-jsonschema-form/pull/81))
+
+- Move `checkboxes` and `file` widgets to extra folder ([#81](https://github.com/x0k/svelte-jsonschema-form/pull/81))
+
+### Patch Changes
+
+- Fix theme resolver type ([#81](https://github.com/x0k/svelte-jsonschema-form/pull/81))
+
+- Fix type of `fields` resolver ([#81](https://github.com/x0k/svelte-jsonschema-form/pull/81))
+
 ## 2.0.0-next.0
 
 ### Major Changes
