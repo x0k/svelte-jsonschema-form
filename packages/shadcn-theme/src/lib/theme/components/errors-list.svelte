@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { ComponentProps } from '@sjsf/form';
+	import '@sjsf/basic-theme/components/errors-list.svelte';
 
 	const { errors, forId, config }: ComponentProps['errorsList'] = $props();
 </script>

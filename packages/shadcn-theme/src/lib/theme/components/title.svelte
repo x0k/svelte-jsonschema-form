@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { LabelRootProps } from 'bits-ui';
 	import type { ComponentProps } from '@sjsf/form';
+	import '@sjsf/basic-theme/components/title.svelte';
 
 	import { getThemeContext } from '../context';
 
