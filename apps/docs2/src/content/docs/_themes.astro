@@ -2,16 +2,9 @@
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { Code, Tabs, TabItem, LinkCard } from "@astrojs/starlight/components";
 
-import {
-  PKG_MANGER_ICONS,
-  PKG_MANGERS,
-  THEME_PACKAGES,
-  THEME_TITLES,
-  THEMES,
-  type Theme,
-} from "@/shared";
+import { THEME_PACKAGES, THEME_TITLES, THEMES, type Theme } from "@/shared";
 import { DEFAULT_LOCALE } from "@/i18n";
-import { ShowcaseRoot, ShowcaseTheme } from "@/components/showcase";
+import Npm from "@/components/npm.astro";
 
 import schemaCode from "./_schema?raw";
 import validatorCode from "./_validator?raw";
@@ -32,39 +25,74 @@ const CODE = {
 const locale = Astro.currentLocale ?? DEFAULT_LOCALE;
 ---
 
-<ShowcaseRoot client:only="svelte">
-  {
-    THEMES.map((theme) => (
-      <ShowcaseTheme theme={theme} client:only="svelte">
-        <Tabs>
-          {PKG_MANGERS.map((manager) => (
-            <TabItem icon={PKG_MANGER_ICONS[manager]} label={manager}>
-              <Code
-                lang="sh"
-                code={`add @sjsf/form @sjsf/ajv8-validator ajv@8 ${THEME_PACKAGES[theme]}`}
-              />
-            </TabItem>
-          ))}
-        </Tabs>
-        <LinkCard
-          title={`${THEME_TITLES[theme]} theme setup`}
-          href={getRelativeLocaleUrl(locale, `/themes/${theme}/`)}
-        />
+<div class="theme-tabs">
+{
+  THEMES.map((theme) => (
+    <input type="radio" name="theme-input" class="theme-tab" aria-label={THEME_TITLES[theme]} checked={theme === 'basic'} />
+    <div class="theme-content" >
+      <Npm
+        pkg={`@sjsf/form @sjsf/ajv8-validator ajv@8 ${THEME_PACKAGES[theme]}`}
+      />
 
-        <h2 id="usage">Usage</h2>
+      <LinkCard
+        title={`${THEME_TITLES[theme]} theme setup`}
+        href={getRelativeLocaleUrl(locale, `/themes/${theme}/`)}
+      />
 
-        <Tabs>
-          <TabItem label="Form.svelte">
-            <Code code={CODE[theme]} lang="svelte" />
-          </TabItem>
-          <TabItem label="_schema.ts">
-            <Code code={schemaCode} lang="typescript" />
-          </TabItem>
-          <TabItem label="_validator.ts">
-            <Code code={validatorCode} lang="typescript" />
-          </TabItem>
-        </Tabs>
-      </ShowcaseTheme>
-    ))
+      <h2 id="usage">Usage</h2>
+
+      <Tabs>
+        <TabItem label="Form.svelte">
+          <Code code={CODE[theme]} lang="svelte" />
+        </TabItem>
+        <TabItem label="_schema.ts">
+          <Code code={schemaCode} lang="typescript" />
+        </TabItem>
+        <TabItem label="_validator.ts">
+          <Code code={validatorCode} lang="typescript" />
+        </TabItem>
+      </Tabs>
+    </div>
+  ))
+}
+</div>
+
+<style>
+  .theme-tabs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .5rem;
   }
-</ShowcaseRoot>
+  .theme-tab {
+    min-width: fit-content;
+    appearance: none;
+    cursor: pointer;
+    text-align: center;
+    user-select: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+    padding-inline: 1rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 1rem;
+    &:after {
+      content: attr(aria-label);
+    }
+  }
+  .theme-content {
+    display: none;
+    width: 100%;
+    order: 1;
+    margin-top: 1rem;
+    &:nth-child(2) > :global(:nth-child(2)) {
+      margin-top: 0;
+    }
+  }
+  :is(.theme-tab:checked)+.theme-content{
+    height: 100%;
+    display: block;
+  }
+</style>
