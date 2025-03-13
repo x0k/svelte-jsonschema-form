@@ -1,6 +1,12 @@
-import { extendable } from "../definitions.js";
+import { definitions } from "../definitions.js";
 
 import Textarea from "./textarea.svelte";
 import "./textarea.svelte";
 
-extendable.textareaWidget = Textarea;
+declare module "../definitions.js" {
+  interface ExtraWidgets {
+    textareaWidget: {}
+  }
+}
+
+definitions.textareaWidget = Textarea;

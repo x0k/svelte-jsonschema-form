@@ -1,6 +1,12 @@
-import { extendable } from '../definitions';
+import { definitions } from '../definitions';
 
 import Range from './range.svelte';
 import './range.svelte';
 
-extendable.rangeWidget = Range;
+declare module "../definitions.js" {
+  interface ExtraWidgets {
+    rangeWidget: {}
+  }
+}
+
+definitions.rangeWidget = Range;
