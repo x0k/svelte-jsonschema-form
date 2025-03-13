@@ -1,6 +1,12 @@
-import { extendable } from "../definitions.js";
+import { definitions } from "../definitions.js";
 
 import Checkboxes from "./checkboxes.svelte";
 import "./checkboxes.svelte";
 
-extendable.checkboxesWidget = Checkboxes;
+declare module "../definitions.js" {
+  interface ExtraWidgets {
+    checkboxesWidget: {}
+  }
+}
+
+definitions.checkboxesWidget = Checkboxes;

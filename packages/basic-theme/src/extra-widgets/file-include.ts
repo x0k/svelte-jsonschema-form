@@ -1,6 +1,12 @@
-import { extendable } from "../definitions.js";
+import { definitions } from "../definitions.js";
 
 import File from "./file.svelte";
 import "./file.svelte";
 
-extendable.fileWidget = File;
+declare module "../definitions.js" {
+  interface ExtraWidgets {
+    fileWidget: {};
+  }
+}
+
+definitions.fileWidget = File;
