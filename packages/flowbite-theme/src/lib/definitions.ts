@@ -4,10 +4,13 @@ import * as templates from '@sjsf/form/templates/exports';
 import * as components from './components/exports.js';
 import * as widgets from './widgets/exports.js';
 
+export interface ExtraWidgets {}
+
 export const definitions = {
 	...templates,
 	...components,
 	...widgets
-} satisfies Partial<ComponentDefinitions>;
-
-export const extendable: Partial<ComponentDefinitions> = definitions;
+} satisfies Partial<ComponentDefinitions> as typeof templates &
+	typeof components &
+	typeof widgets &
+	Pick<ComponentDefinitions, keyof ExtraWidgets>;
