@@ -1,6 +1,12 @@
-import { extendable } from "../resolver/definitions.js";
+import { definitions } from "../resolver/definitions.js";
 
 import BooleanSelect from "./boolean-select.svelte";
 import "./boolean-select.svelte";
 
-extendable.booleanSelectField = BooleanSelect;
+declare module "../resolver/definitions.js" {
+  interface ExtraFields {
+    booleanSelectField: {};
+  }
+}
+
+definitions.booleanSelectField = BooleanSelect;

@@ -1,6 +1,12 @@
-import { extendable } from "../resolver/definitions.js";
+import { definitions } from "../resolver/definitions.js";
 
 import File from "./file.svelte";
 import "./file.svelte";
 
-extendable.fileField = File;
+declare module "../resolver/definitions.js" {
+  interface ExtraFields {
+    fileField: {};
+  }
+}
+
+definitions.fileField = File;

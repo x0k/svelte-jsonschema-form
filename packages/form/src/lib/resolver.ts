@@ -39,7 +39,7 @@ export function chain<
 
 export function fromRecord<R extends Record<AnyKey, any>>(
   record: R
-): Resolver<{ [K in keyof R]: any }, R> {
+): Resolver<Record<keyof R, any>, R> {
   return (type) => record[type];
 }
 

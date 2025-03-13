@@ -1,6 +1,12 @@
-import { extendable } from "../resolver/definitions.js";
+import { definitions } from "../resolver/definitions.js";
 
 import Enum from "./enum.svelte";
 import "./enum.svelte";
 
-extendable.enumField = Enum;
+declare module "../resolver/definitions.js" {
+  interface ExtraFields {
+    enumField: {};
+  }
+}
+
+definitions.enumField = Enum;

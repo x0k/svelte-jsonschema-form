@@ -1,6 +1,12 @@
-import { extendable } from "../resolver/definitions.js";
+import { definitions } from "../resolver/definitions.js";
 
 import MultiEnum from "./multi-enum.svelte";
 import "./multi-enum.svelte";
 
-extendable.multiEnumField = MultiEnum;
+declare module "../resolver/definitions.js" {
+  interface ExtraFields {
+    multiEnumField: {};
+  }
+}
+
+definitions.multiEnumField = MultiEnum;
