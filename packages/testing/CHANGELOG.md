@@ -1,5 +1,13 @@
 # testing
 
+## 0.1.0-next.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/ajv8-validator@2.0.0-next.2
+  - @sjsf/form@2.0.0-next.2
+
 ## 0.1.0-next.1
 
 ### Patch Changes
