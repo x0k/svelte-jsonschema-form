@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { ComponentProps } from '@sjsf/form';
+	import '@sjsf/basic-theme/components/title.svelte';
 
 	const { title, type, forId, required, config }: ComponentProps['title'] = $props();
 </script>

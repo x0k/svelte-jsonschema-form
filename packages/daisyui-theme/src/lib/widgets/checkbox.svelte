@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
+	import '@sjsf/basic-theme/widgets/checkbox.svelte';
 
 	let {
 		config,

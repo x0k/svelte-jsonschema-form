@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { ComponentProps } from '@sjsf/form';
+	import '@sjsf/basic-theme/components/layout.svelte';
 
 	const { type, children, config }: ComponentProps['layout'] = $props();
 

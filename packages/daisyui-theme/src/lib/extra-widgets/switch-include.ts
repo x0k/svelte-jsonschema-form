@@ -1,6 +1,12 @@
-import { extendable } from '../definitions';
+import { definitions } from '../definitions.js';
 
 import Switch from './switch.svelte';
 import './switch.svelte';
 
-extendable.switchWidget = Switch;
+declare module '../definitions.js' {
+	interface ExtraWidgets {
+		switchWidget: {};
+	}
+}
+
+definitions.switchWidget = Switch;

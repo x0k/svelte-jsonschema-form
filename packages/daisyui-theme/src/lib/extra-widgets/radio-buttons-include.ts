@@ -1,6 +1,12 @@
-import { extendable } from '../definitions';
+import { definitions } from '../definitions.js';
 
 import RadioButtons from './radio-buttons.svelte';
 import './radio-buttons.svelte';
 
-extendable.radioButtonsWidget = RadioButtons;
+declare module '../definitions.js' {
+	interface ExtraWidgets {
+		radioButtonsWidget: {};
+	}
+}
+
+definitions.radioButtonsWidget = RadioButtons;
