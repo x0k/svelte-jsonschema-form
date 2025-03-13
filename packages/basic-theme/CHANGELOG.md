@@ -1,5 +1,12 @@
 # @sjsf/basic-theme
 
+## 2.0.0-next.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/form@2.0.0-next.2
+
 ## 2.0.0-next.1
 
 ### Major Changes
