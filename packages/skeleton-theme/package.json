@@ -1,6 +1,6 @@
 {
 	"name": "@sjsf/skeleton-theme",
-	"version": "2.0.0-next.0",
+	"version": "2.0.0-next.1",
 	"description": "The skeleton based theme for svelte-jsonschema-form",
 	"license": "MIT",
 	"keywords": [
@@ -60,8 +60,8 @@
 		"./styles.css": "./dist/styles.css"
 	},
 	"peerDependencies": {
-		"@sjsf/form": "workspace:^2.0.0-next.0",
-		"@sjsf/basic-theme": "workspace:^2.0.0-next.0",
+		"@sjsf/form": "workspace:^2.0.0-next.1",
+		"@sjsf/basic-theme": "workspace:^2.0.0-next.1",
 		"@skeletonlabs/skeleton": ">=3.0.0-next.0 <=3.0.0-next.10",
 		"@tailwindcss/forms": "^0.5.10",
 		"svelte": "^5.23.0"

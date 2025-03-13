@@ -1,5 +1,18 @@
 # @sjsf/basic-theme
 
+## 2.0.0-next.1
+
+### Major Changes
+
+- Move `checkboxes` and `file` widgets to extra folder ([#81](https://github.com/x0k/svelte-jsonschema-form/pull/81))
+
+### Patch Changes
+
+- Fix theme resolver type ([#81](https://github.com/x0k/svelte-jsonschema-form/pull/81))
+
+- Updated dependencies [[`8fa706b`](https://github.com/x0k/svelte-jsonschema-form/commit/8fa706b7e69ec3cba54e689a536b1038ff8e5c83), [`b1221f9`](https://github.com/x0k/svelte-jsonschema-form/commit/b1221f9536dec48a26f8d93d4ded8cebe21faf5d), [`701c3fc`](https://github.com/x0k/svelte-jsonschema-form/commit/701c3fc1e01e38c4c7168bdf0f0ab9b17be8cb50), [`8f33350`](https://github.com/x0k/svelte-jsonschema-form/commit/8f33350406c80deb6092f720da99f0045b34f5d7)]:
+  - @sjsf/form@2.0.0-next.1
+
 ## 2.0.0-next.0
 
 ### Minor Changes
