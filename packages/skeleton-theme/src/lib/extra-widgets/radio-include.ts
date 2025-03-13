@@ -1,6 +1,12 @@
-import { extendable } from "../definitions.js";
+import { definitions } from '../definitions.js';
 
-import Radio from "./radio.svelte";
-import "./radio.svelte";
+import Radio from './radio.svelte';
+import './radio.svelte';
 
-extendable.radioWidget = Radio;
+declare module '../definitions.js' {
+	interface ExtraWidgets {
+		radioWidget: {};
+	}
+}
+
+definitions.radioWidget = Radio;

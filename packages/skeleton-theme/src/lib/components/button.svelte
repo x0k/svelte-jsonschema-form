@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { defineDisabled, getFormContext, type ComponentProps } from '@sjsf/form';
+	import '@sjsf/basic-theme/components/button.svelte';
 
 	const { children, onclick, config, disabled, type }: ComponentProps['button'] = $props();
 

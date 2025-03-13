@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Datalist, getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
+	import '@sjsf/basic-theme/widgets/text.svelte';
 
 	let { value = $bindable(), config, handlers }: ComponentProps['textWidget'] = $props();
 

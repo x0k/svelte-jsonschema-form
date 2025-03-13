@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enhance, getFormContext, type ComponentProps } from '@sjsf/form';
+	import '@sjsf/basic-theme/components/form.svelte';
 
 	let { config, children, ref = $bindable(), attributes }: ComponentProps['form'] = $props();
 
