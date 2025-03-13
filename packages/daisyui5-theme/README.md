@@ -13,6 +13,18 @@ npm install @sjsf/form @sjsf/daisyui5-theme
 
 ## Usage
 
+1. Install daisyUI v5
+
+[Install daisyUI as a Tailwind plugin](https://daisyui.com/docs/install/)
+
+2. Configuration
+
+Register the theme source path by adding a line like this to the `app.css` file.
+
+`@source "../node_modules/@sjsf/daisyui5-theme/dist";`
+
+3. Apply theme
+
 ```svelte
 <script lang="ts">
   import { createForm } from '@sjsf/form';
