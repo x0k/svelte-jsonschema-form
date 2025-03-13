@@ -60,6 +60,7 @@
 	},
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^2.0.0-next.0",
+		"@sjsf/basic-theme": "workspace:^2.0.0-next.0",
 		"daisyui": "^4.12.24",
 		"svelte": "^5.23.0"
 	},
