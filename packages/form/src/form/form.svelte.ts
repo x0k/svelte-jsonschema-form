@@ -40,7 +40,10 @@ import {
   type FormInternalContext,
   type FormContext,
 } from "./context/index.js";
-import { DefaultFormMerger, type FormMerger } from "./merger.js";
+import {
+  createFormMerger,
+  type FormMerger,
+} from "./merger.js";
 import {
   type Id,
   DEFAULT_ID_PREFIX,
@@ -49,7 +52,7 @@ import {
 } from "./id.js";
 import type { Config } from "./config.js";
 import type { Theme } from "./components.js";
-import type { FieldValue, FormValue } from "./model.js";
+import type { FormValue } from "./model.js";
 import type { ResolveFieldType } from "./fields.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
@@ -213,7 +216,7 @@ export function createForm<T, V extends Validator>(
   options: FormOptions<T, V>
 ): FormState<T, V> {
   const merger = $derived(
-    options.merger ?? new DefaultFormMerger(options.validator, options.schema)
+    options.merger ?? createFormMerger(options.validator, options.schema)
   );
 
   let value = $state(

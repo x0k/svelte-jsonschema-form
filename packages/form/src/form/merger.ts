@@ -17,26 +17,20 @@ export interface FormMerger extends Merger {
   ): SchemaValue | undefined;
 }
 
-export class DefaultFormMerger implements FormMerger {
-  constructor(
-    protected readonly validator: Validator,
-    protected readonly rootSchema: Schema
-  ) {}
-
-  mergeAllOf(schema: Schema): Schema {
-    return defaultMerger.mergeAllOf(schema);
-  }
-
-  mergeFormDataAndSchemaDefaults(
-    formData: SchemaValue | undefined,
-    schema: Schema
-  ): SchemaValue | undefined {
-    return getDefaultFormState(
-      this.validator,
-      this,
-      schema,
-      formData,
-      this.rootSchema
-    );
-  }
+export function createFormMerger(validator: Validator, rootSchema: Schema) {
+  const merger: FormMerger = {
+    mergeAllOf(schema) {
+      return defaultMerger.mergeAllOf(schema);
+    },
+    mergeFormDataAndSchemaDefaults(formData, schema) {
+      return getDefaultFormState(
+        validator,
+        merger,
+        schema,
+        formData,
+        rootSchema
+      );
+    },
+  };
+  return merger;
 }
