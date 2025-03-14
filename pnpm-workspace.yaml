@@ -4,11 +4,11 @@ packages:
 
 catalog:
   "ajv": "^8.17.1"
-  "vite": "6.2.1"
+  "vite": "6.2.2"
   "vitest": "3.0.8"
   "svelte": "^5.23.0"
   "esm-env": "^1.2.2"
-  "@sveltejs/kit": "^2.19.0"
+  "@sveltejs/kit": "^2.19.1"
   "@sveltejs/adapter-static": "^3.0.8"
   "@sveltejs/package": "^2.3.10"
   "@sveltejs/vite-plugin-svelte": "^5.0.3"
@@ -27,8 +27,8 @@ catalog:
   "tailwindcss": "^3.4.17"
   "typescript-eslint": "^8.26.1"
   "zod": "^3.24.2"
-  "@tailwindcss/vite": "^4.0.13"
+  "@tailwindcss/vite": "^4.0.14"
 
 catalogs:
   next:
-    "tailwindcss": "^4.0.13"
+    "tailwindcss": "^4.0.14"

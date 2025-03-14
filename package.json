@@ -23,7 +23,7 @@
     "@types/node": "^22.13.10",
     "only-allow": "^1.2.1",
     "prettier-plugin-svelte": "catalog:",
-    "publint": "^0.3.8",
+    "publint": "^0.3.9",
     "turbo": "^2.4.4",
     "typescript": "^5.8.2"
   },
