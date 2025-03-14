@@ -1,6 +1,6 @@
 <script lang="ts">
   import { BasicForm, createForm } from "@sjsf/form";
-  import { resolver } from '@sjsf/form/resolvers/basic'
+  import { resolver } from "@sjsf/form/resolvers/basic";
   import { translation } from "@sjsf/form/translations/en";
   import { theme } from "@sjsf/daisyui-theme";
   import "@sjsf/daisyui-theme/extra-widgets/textarea-include";
@@ -11,11 +11,11 @@
   import { createValidator } from "./_validator";
   import { onSubmit } from "./_on-submit";
 
-  const astro = createAstro();
-
+  const idPrefix = "daisyui";
+  const validator = createValidator(idPrefix);
   const form = createForm({
-    idPrefix: "daisyui",
-    validator: createValidator("daisyui"),
+    idPrefix,
+    validator,
     resolver,
     theme,
     initialValue,
@@ -24,6 +24,7 @@
     translation,
     onSubmit,
   });
+  const astro = createAstro();
 </script>
 
 <BasicForm

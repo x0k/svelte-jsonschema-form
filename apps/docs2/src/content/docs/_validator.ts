@@ -22,7 +22,7 @@ function createStarValidator<V extends FormValueValidator<ErrorObject>>(
         ? errors.concat({
             instanceId: pathToId(["star"], { idPrefix }),
             propertyTitle: "Star",
-            message: "That's fine, but I'd love your support!",
+            message: "That's okay, but I would appreciate your support!",
             error: new StarError(),
           })
         : errors;

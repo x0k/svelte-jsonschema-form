@@ -9,9 +9,11 @@
   import { createValidator } from "./_validator";
   import { onSubmit } from "./_on-submit";
 
+  const idPrefix = "basic";
+  const validator = createValidator(idPrefix);
   const form = createForm({
-    idPrefix: "basic",
-    validator: createValidator("basic"),
+    idPrefix,
+    validator,
     theme,
     resolver,
     initialValue,

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { BasicForm, createForm } from "@sjsf/form";
-  import { resolver } from '@sjsf/form/resolvers/basic'
+  import { resolver } from "@sjsf/form/resolvers/basic";
   import { translation } from "@sjsf/form/translations/en";
   import { theme } from "@sjsf/flowbite-theme";
   import "@sjsf/flowbite-theme/extra-widgets/textarea-include";
@@ -11,11 +11,11 @@
   import { createValidator } from "./_validator";
   import { onSubmit } from "./_on-submit";
 
-  const astro = createAstro();
-
+  const idPrefix = "flowbite";
+  const validator = createValidator(idPrefix);
   const form = createForm({
-    idPrefix: "flowbite",
-    validator: createValidator('flowbite'),
+    idPrefix,
+    validator,
     resolver,
     theme,
     initialValue,
@@ -24,6 +24,7 @@
     translation,
     onSubmit,
   });
+  const astro = createAstro();
 </script>
 
 <BasicForm {form} class="flex flex-col gap-4 mb-4 {astro.darkOrLight}" />

@@ -12,11 +12,11 @@
   import { createValidator } from "./_validator";
   import { onSubmit } from "./_on-submit";
 
-  const astro = createAstro();
-
+  const idPrefix = "shadcn";
+  const validator = createValidator(idPrefix);
   const form = createForm({
-    idPrefix: "shadcn",
-    validator: createValidator('shadcn'),
+    idPrefix,
+    validator,
     resolver,
     theme,
     initialValue,
@@ -25,6 +25,7 @@
     translation,
     onSubmit,
   });
+  const astro = createAstro();
 
   setThemeContext({ components });
 </script>

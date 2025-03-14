@@ -11,11 +11,11 @@
   import { createValidator } from "./_validator";
   import { onSubmit } from "./_on-submit";
 
-  const astro = createAstro();
-
+  const idPrefix = "daisyui5";
+  const validator = createValidator(idPrefix);
   const form = createForm({
-    idPrefix: "daisyui5",
-    validator: createValidator('daisyui5'),
+    idPrefix,
+    validator,
     resolver,
     theme,
     initialValue,
@@ -24,6 +24,7 @@
     translation,
     onSubmit,
   });
+  const astro = createAstro();
 </script>
 
 <BasicForm

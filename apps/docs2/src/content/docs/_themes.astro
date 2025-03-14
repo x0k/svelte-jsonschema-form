@@ -5,24 +5,24 @@ import { Code, Tabs, TabItem, LinkCard } from "@astrojs/starlight/components";
 import { THEME_PACKAGES, THEME_TITLES, THEMES, type Theme } from "@/shared";
 import { DEFAULT_LOCALE } from "@/i18n";
 import Npm from "@/components/npm.astro";
-import FormCard from '@/components/form-card.astro';
+import FormCard from "@/components/form-card.astro";
 
-import ThemeForm from './_theme-form.svelte';
+import ThemeForm from "./_theme-form.svelte";
 
 import schemaCode from "./_schema?raw";
 import validatorCode from "./_validator?raw";
 import withBasicCode from "./_with-basic.svelte?raw";
 import withSkeletonCode from "./_with-skeleton.svelte?raw";
 import withDaisyuiCode from "./_with-daisyui.svelte?raw";
-import withDaisyui5Code from './_with-daisyui5.svelte?raw';
+import withDaisyui5Code from "./_with-daisyui5.svelte?raw";
 import withFlowbiteCode from "./_with-flowbite.svelte?raw";
 import withShadcnCode from "./_with-shadcn.svelte?raw";
 
-import daisyuiStyles from '@sjsf/daisyui-theme/styles.css?inline';
-import daisyu5Styles from '@sjsf/daisyui5-theme/styles.css?inline';
-import flowbiteStyles from '@sjsf/flowbite-theme/styles.css?inline';
-import skeletonStyles from '@sjsf/skeleton-theme/styles.css?inline';
-import shadcnStyles from '@sjsf/shadcn-theme/styles.css?inline';
+import daisyuiStyles from "@sjsf/daisyui-theme/styles.css?inline";
+import daisyu5Styles from "@sjsf/daisyui5-theme/styles.css?inline";
+import flowbiteStyles from "@sjsf/flowbite-theme/styles.css?inline";
+import skeletonStyles from "@sjsf/skeleton-theme/styles.css?inline";
+import shadcnStyles from "@sjsf/shadcn-theme/styles.css?inline";
 
 const CODE = {
   basic: withBasicCode,
@@ -39,17 +39,36 @@ const STYLES = {
   daisyui5: daisyu5Styles,
   flowbite: flowbiteStyles,
   skeleton: skeletonStyles,
-  shadcn: shadcnStyles
+  shadcn: shadcnStyles,
 } satisfies Record<Theme, string>;
 
 const locale = Astro.currentLocale ?? DEFAULT_LOCALE;
+
+const styles = THEMES.map(theme =>`
+  .theme-tabs:has(.theme-tab[data-theme="${theme}"]:checked) ~ .theme-content[data-theme="${theme}"] {
+    display: block;
+    height: 100%
+  }
+`).join('\n')
 ---
 
 <div class="theme-tabs">
+  {
+    THEMES.map((theme) => (
+      <input
+        type="radio"
+        name="theme-input"
+        class="theme-tab"
+        aria-label={THEME_TITLES[theme]}
+        checked={theme === "basic"}
+        data-theme={theme}
+      />
+    ))
+  }
+</div>
 {
   THEMES.map((theme) => (
-    <input type="radio" name="theme-input" class="theme-tab" aria-label={THEME_TITLES[theme]} checked={theme === 'basic'} />
-    <div class="theme-content" >
+    <div class="theme-content" data-theme={theme} >
       <Npm
         pkg={`@sjsf/form @sjsf/ajv8-validator ajv@8 ${THEME_PACKAGES[theme]}`}
       />
@@ -79,15 +98,17 @@ const locale = Astro.currentLocale ?? DEFAULT_LOCALE;
     </div>
   ))
 }
-</div>
 
 <style>
   .theme-tabs {
+    z-index: 10;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    gap: .5rem;
+    gap: 0.5rem;
+    position: sticky;
+    top: calc(64px + 1rem);
   }
   .theme-tab {
     min-width: fit-content;
@@ -103,6 +124,9 @@ const locale = Astro.currentLocale ?? DEFAULT_LOCALE;
     padding-block: 0.15rem;
     border: 1px solid var(--sl-color-gray-5);
     border-radius: 2rem;
+    background-color: var(--sl-color-bg);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    /* box-shadow: var(--sl-shadow-md); */
     &:after {
       content: attr(aria-label);
     }
@@ -120,8 +144,6 @@ const locale = Astro.currentLocale ?? DEFAULT_LOCALE;
       margin-top: 0;
     }
   }
-  :is(.theme-tab:checked)+.theme-content{
-    height: 100%;
-    display: block;
-  }
 </style>
+
+<style set:html={styles}></style>
