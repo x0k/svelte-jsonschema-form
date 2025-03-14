@@ -65,10 +65,11 @@ export default defineConfig({
         },
       ],
       components: {
-        Head: "./src/components/custom-head.astro",
+        // Head: "./src/components/custom-head.astro",
         Header: "./src/components/header-with-links.astro",
         MarkdownContent: "./src/components/markdown-content.astro",
       },
+      customCss: ["./src/styles.css"],
     }),
   ],
   vite: {

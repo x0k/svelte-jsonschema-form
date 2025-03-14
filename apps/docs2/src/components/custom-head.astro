@@ -1,11 +1,10 @@
 ---
-import type { Props } from "@astrojs/starlight/props";
 import StarlightHead from "@astrojs/starlight/components/Head.astro";
 import VtbotStarlight from "astro-vtbot/components/starlight/Base.astro";
 import PageOffset from "astro-vtbot/components/PageOffset.astro";
 ---
 
-<VtbotStarlight {...Astro.props} transition:animate="fade">
-  <StarlightHead {...Astro.props}><slot /></StarlightHead>
+<VtbotStarlight transition:animate="fade">
+  <StarlightHead><slot /></StarlightHead>
 </VtbotStarlight>
 <PageOffset name="main" />
