@@ -11,6 +11,10 @@ t:
 b:
   pnpm run build $@
 
+sjsf/:
+  b:
+    pnpm run build --filter="@sjsf/*"
+
 c:
   pnpm run check $@
 
