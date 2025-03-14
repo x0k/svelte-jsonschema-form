@@ -1,12 +1,12 @@
 <script lang="ts">
   import { ON_CHANGE, ON_INPUT, ON_BLUR } from "@sjsf/form";
 
-  import CustomForm from "@/components/my-form.svelte";
+  import MyForm from "@/components/my-form.svelte";
 
   import { objectSchema, objectUiSchema } from "./_demo-schemas";
 </script>
 
-<CustomForm
+<MyForm
   schema={objectSchema}
   uiSchema={objectUiSchema}
   fieldsValidationMode={ON_INPUT | ON_CHANGE | ON_BLUR}

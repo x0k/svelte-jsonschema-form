@@ -24,14 +24,9 @@ export const objectSchema: Schema = {
 };
 
 export const objectUiSchema: UiSchemaRoot = {
-  enum: {
-    "ui:widget": "text",
-  },
-  "ui:formElement": {
-    "ui:options": {
-      "form": {
-        novalidate: true
-      }
+  "ui:options": {
+    form: {
+      novalidate: true
     }
   }
 }

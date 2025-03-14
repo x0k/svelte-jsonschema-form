@@ -3,12 +3,12 @@
 
   import { fromRecord } from "@sjsf/form/lib/resolver";
 
-  import CustomForm from "@/components/my-form.svelte";
+  import MyForm from "@/components/my-form.svelte";
 
   const { children }: { children: Snippet } = $props();
 </script>
 
-<CustomForm
+<MyForm
   schema={{
     title: "With icons",
   }}

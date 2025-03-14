@@ -6,13 +6,15 @@ sidebar:
 
 import { Code, Card, LinkCard } from '@astrojs/starlight/components';
 
-import MinimalSetup from './_minimal-setup.astro';
+import FormCard from '@/components/form-card.astro'
+
+import MinimalSetupForm from "./_minimal-setup.svelte";
 import minimalSetupCode from './_minimal-setup.svelte?raw';
 
-import UiSchema from './_ui-schema.astro';
+import UiSchema from './_ui-schema.svelte';
 import uiSchemaCode from './_ui-schema.svelte?raw';
 
-import FormData from './_form-data.astro';
+import FormData from './_form-data.svelte';
 import formDataCode from './_form-data.svelte?raw';
 
 ## Minimal setup
@@ -21,9 +23,9 @@ Let's explore the most basic setup:
 
 <Code code={minimalSetupCode} lang="svelte" />
 
-<Card>
-  <MinimalSetup />
-</Card>
+<FormCard>
+  <MinimalSetupForm client:only="svelte" />
+</FormCard>
 
 In the example above, we create a form based on json schema and
 use HTML5 validation to validate the form.
@@ -45,15 +47,15 @@ With the `uiSchema` parameter, you can customize the user interface of the form.
 
 :::note
 
-We'll talk about `CustomForm` component in the [Custom form](../../advanced/custom-form/) guide.
+We'll talk about `MyForm` component in the [Custom form](../../advanced/custom-form/) guide.
 
 :::
 
 <Code code={uiSchemaCode} lang="svelte" />
 
-<Card>
-  <UiSchema />
-</Card>
+<FormCard>
+  <UiSchema client:only="svelte" />
+</FormCard>
 
 <LinkCard title="UI Schema API reference" href="../../api-reference/ui-schema/" />
 
@@ -63,12 +65,12 @@ To access the state of the form you can use properties such as `value` and `erro
 
 :::tip
 
-Use getters to pass reactive parameters to the `createForm` (`createCustomForm`) function.
+Use getters to pass reactive parameters to the `createForm` (`createMyForm`) function.
 
 :::
 
 <Code code={formDataCode} lang="svelte" />
 
-<Card>
-  <FormData />
-</Card>
+<FormCard>
+  <FormData client:only="svelte" />
+</FormCard>

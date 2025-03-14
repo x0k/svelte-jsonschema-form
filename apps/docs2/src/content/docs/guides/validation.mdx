@@ -5,22 +5,23 @@ sidebar:
 ---
 
 import { Code, Card, LinkCard } from '@astrojs/starlight/components';
-
 import { DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS } from '@sjsf/form';
 
-import LiveValidation from './_live-validation.astro'
+import FormCard from '@/components/form-card.astro'
+
+import LiveValidation from './_live-validation.svelte'
 import liveValidationCode from './_live-validation.svelte?raw'
 
-import FieldsValidation from './_fields-validation.astro'
+import FieldsValidation from './_fields-validation.svelte'
 import fieldsValidationCode from './_fields-validation.svelte?raw'
 
-import AsyncValidation from './_async-validation.astro'
+import AsyncValidation from './_async-validation.svelte'
 import asyncValidationCode from './_async-validation.svelte?raw'
 
-import FocusOnFirsError from './_focus-on-first-error.astro'
+import FocusOnFirsError from './_focus-on-first-error.svelte'
 import focusOnFirstErrorCode from './_focus-on-first-error.svelte?raw'
 
-import ErrorsList from './_errors-list.astro'
+import ErrorsList from './_errors-list.svelte'
 import errorsListCode from './_errors-list.svelte?raw'
 
 By default, form data when submitted will be validated using HTML5 validation and the provided validator.
@@ -37,9 +38,9 @@ You can easily implement live validation by utilizing Svelte 5 reactivity
 
 <Code code={liveValidationCode} lang="svelte" />
 
-<Card>
-  <LiveValidation />
-</Card>
+<FormCard>
+  <LiveValidation client:only="svelte" />
+</FormCard>
 
 While it is possible, this approach has low efficiency because
 it is usually not meaningful to validate the entire form when only one field is changed.
@@ -60,9 +61,9 @@ This behavior can be changed using the `fieldsValidationDebounceMs` option.
 
 <Code code={fieldsValidationCode} lang="svelte" />
 
-<Card>
-  <FieldsValidation />
-</Card>
+<FormCard>
+  <FieldsValidation client:only="svelte" />
+</FormCard>
 
 The form in the example above, will validate fields on `input`, `blur` and `change` events.
 
@@ -77,25 +78,18 @@ The form supports asynchronous validation.
 By default
 
 - a new form validation process can only be started after the previous one is completed;
-- a new fields validation process aborts the previous one.
+- a new fields validation process aborts the previous one;
+- fields validation abort errors are not displayed.
 
 You can change this behavior by passing the `validationCombinator` and `fieldsValidationCombinator` options.
 
 :::
 
-To correctly display potential validation process errors, the `handleValidationProcessError` option should be used.
-
-:::note
-
-By default, fields validation abort errors are not displayed
-
-:::
-
 <Code code={asyncValidationCode} lang="svelte" />
 
-<Card>
-  <AsyncValidation />
-</Card>
+<FormCard>
+  <AsyncValidation client:only="svelte" />
+</FormCard>
 
 Please see your validator page for more information.
 
@@ -103,17 +97,15 @@ Please see your validator page for more information.
 <LinkCard title="Zod" href="../../validators/zod/#async-validation" />
 <LinkCard title="@cfworker/json-schema" href="../../validators/cfworker/#async-validation" />
 
-
-
 ## Focus on first error
 
 You can achieve focus on the first error by using the `focusOnFirstError` function.
 
 <Code code={focusOnFirstErrorCode} lang="svelte" />
 
-<Card>
-  <FocusOnFirsError />
-</Card>
+<FormCard>
+  <FocusOnFirsError client:only="svelte" />
+</FormCard>
 
 1. `focusOnFirstError` will try to find a focusable element and focus it.
 2. If it's not found, it will try to find an errors list and scroll it into view.
@@ -125,6 +117,6 @@ If necessary, you can create a list of errors
 
 <Code code={errorsListCode} lang="svelte" />
 
-<Card>
-  <ErrorsList />
-</Card>
+<FormCard>
+  <ErrorsList client:only="svelte" />
+</FormCard>

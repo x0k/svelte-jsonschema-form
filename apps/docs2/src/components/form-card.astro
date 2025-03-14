@@ -1,15 +1,14 @@
 ---
 import { Card } from "@astrojs/starlight/components";
 
-import { ShadowHost } from "./shadow";
-
 export interface Props {
   style?: string;
 }
 ---
 
 <Card title="">
-  <ShadowHost style={Astro.props.style} client:only="svelte">
+  <template shadowrootmode="open">
+    {Astro.props.style && <style set:html={Astro.props.style} />}
     <slot />
-  </ShadowHost>
+  </template>
 </Card>

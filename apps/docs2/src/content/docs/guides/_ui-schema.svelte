@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Schema, UiSchemaRoot } from "@sjsf/form";
 
-  import CustomForm from "@/components/my-form.svelte";
+  import MyForm from "@/components/my-form.svelte";
 
   const schema: Schema = {
     type: "string",
@@ -19,4 +19,4 @@
   };
 </script>
 
-<CustomForm {schema} {uiSchema} onSubmit={(v) => window.alert(v)} />
+<MyForm {schema} {uiSchema} onSubmit={(v) => window.alert(v)} />

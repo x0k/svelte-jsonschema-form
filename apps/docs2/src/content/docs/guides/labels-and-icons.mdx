@@ -4,11 +4,12 @@ sidebar:
   order: 2
 ---
 
-import { LinkCard, LinkButton, Code, Card } from '@astrojs/starlight/components'
+import { LinkCard, LinkButton, Code, Card, Icon } from '@astrojs/starlight/components';
 
 import Npm from '@/components/npm.astro';
+import FormCard from '@/components/form-card.astro';
 
-import Icons from './_icons.astro';
+import Icons from './_icons.svelte';
 import iconsCode from './_icons.svelte?raw';
 
 ## Translation
@@ -28,10 +29,9 @@ Text is good, but you can do better by adding icons!
 
 <Code code={iconsCode} lang='svelte' />
 
-<Card>
-  <Icons />
-</Card>
-
+<FormCard>
+  <Icons client:only="svelte">Hello <Icon name="seti:svelte" /> from <Icon name="astro" /></Icons>
+</FormCard>
 
 <LinkCard title="Icons API reference" href="../../api-reference/icons/" />
 
@@ -57,7 +57,7 @@ Usage:
 ```
 
 <LinkButton
-  href="https://x0k.github.io/svelte-jsonschema-form/playground/?sample=Arrays&theme=daisy&icons=lucide&vevent=0&vafter=0"
+  href="https://x0k.github.io/svelte-jsonschema-form/playground2/?sample=Arrays&theme=daisy&icons=lucide&vevent=0&vafter=0"
   variant="secondary"
   icon="external"
   iconPlacement="end"
@@ -97,7 +97,7 @@ Usage:
 ```
 
 <LinkButton
-  href="https://x0k.github.io/svelte-jsonschema-form/playground/?sample=Arrays&theme=flowbite&icons=flowbite&vevent=0&vafter=0"
+  href="https://x0k.github.io/svelte-jsonschema-form/playground2/?sample=Arrays&theme=flowbite&icons=flowbite&vevent=0&vafter=0"
   variant="secondary"
   icon="external"
   iconPlacement="end"
@@ -126,7 +126,7 @@ Usage:
 ```
 
 <LinkButton
-  href="https://x0k.github.io/svelte-jsonschema-form/playground/?sample=Arrays&theme=skeleton&icons=radix&vevent=0&vafter=0"
+  href="https://x0k.github.io/svelte-jsonschema-form/playground2/?sample=Arrays&theme=skeleton&icons=radix&vevent=0&vafter=0"
   variant="secondary"
   icon="external"
   iconPlacement="end"

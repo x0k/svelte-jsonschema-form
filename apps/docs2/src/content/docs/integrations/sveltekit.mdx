@@ -5,7 +5,7 @@ sidebar:
 ---
 
 import { Code, Tabs, TabItem } from "@astrojs/starlight/components";
-import { DEFAULT_ID_SEPARATOR, DEFAULT_PSEUDO_ID_SEPARATOR } from '@sjsf/form';
+import { DEFAULT_ID_SEPARATOR, DEFAULT_ID_PSEUDO_SEPARATOR } from '@sjsf/form';
 import { IDENTIFIABLE_FIELD_ELEMENTS } from '@sjsf/sveltekit'
 
 import Npm from '@/components/npm.astro';
@@ -113,7 +113,7 @@ it may lead to ambiguous results if the following conditions are violated:
     If they do you can change the default separators with `idSeparator` and `isPseudoSeparator` options.
     Default separator values:
       - `idSeparator` - <code>{DEFAULT_ID_SEPARATOR}</code>
-      - `isPseudoSeparator` - <code>{DEFAULT_PSEUDO_ID_SEPARATOR}</code>
+      - `isPseudoSeparator` - <code>{DEFAULT_ID_PSEUDO_SEPARATOR}</code>
   - If your schema contains `additionalProperties`:
     - Keys of initial object values must not contain the separators.
     - If you provide some initial value for `additionalProperties` or `JavaScript` is enabled but the raw `form` element is used (without `use:form.enhance`):
