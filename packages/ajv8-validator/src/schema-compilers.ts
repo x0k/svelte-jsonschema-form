@@ -47,7 +47,7 @@ export function createSchemaCompiler<A extends boolean>(ajv: Ajv, _async: A) {
 
 export function createFieldSchemaCompiler<A extends boolean>(
   ajv: Ajv,
-  _async: A
+  async: A
 ) {
   let isRequired = false;
   const validatorsCache = new WeakMap<Schema, AnyValidateFunction>();
@@ -57,6 +57,7 @@ export function createFieldSchemaCompiler<A extends boolean>(
     (schema) =>
       ajv.compile({
         type: "object",
+        $async: async,
         properties: {
           field: schema,
         },
