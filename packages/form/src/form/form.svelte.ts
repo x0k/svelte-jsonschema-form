@@ -20,6 +20,7 @@ import {
   isAsyncFieldValueValidator,
   type FormValueValidator,
   type AsyncFormValueValidator,
+  type AsyncFieldValueValidator,
 } from "./validator.js";
 import type { Translation } from "./translation.js";
 import type { UiSchemaRoot } from "./ui-schema.js";
@@ -254,16 +255,19 @@ export function createForm<T, V extends Validator>(
     options.getSnapshot ?? (() => $state.snapshot(value))
   );
 
-  const validateForm = $derived.by(() => {
+  const validateForm: AsyncFormValueValidator<
+    AnyFormValueValidatorError<V>
+  >["validateFormValueAsync"] = $derived.by(() => {
     const v = options.validator;
     if (isAsyncFormValueValidator(v)) {
-      return v.validateFormValueAsync;
+      return (signal, schema, formValue) =>
+        v.validateFormValueAsync(signal, schema, formValue);
     }
     if (isFormValueValidator(v)) {
-      return (_: AbortSignal, schema: Schema, formValue: FormValue) =>
-        v.validateFormValue(schema, formValue);
+      return (_, schema, formValue) =>
+        Promise.resolve(v.validateFormValue(schema, formValue));
     }
-    return (): ValidationError<AnyFormValueValidatorError<V>>[] => [];
+    return async () => Promise.resolve([]);
   });
 
   const validation = createAction({
@@ -312,22 +316,23 @@ export function createForm<T, V extends Validator>(
     },
   });
 
-  const validateFields = $derived.by(() => {
+  const validateFields: AsyncFieldValueValidator<
+    AnyFieldValueValidatorError<V>
+  >["validateFieldValueAsync"] = $derived.by(() => {
     const v = options.validator;
     if (isAsyncFieldValueValidator(v)) {
-      return v.validateFieldValueAsync;
+      return (signal, config, value) =>
+        v.validateFieldValueAsync(signal, config, value);
     }
     if (isFieldValueValidator(v)) {
-      return (_: AbortSignal, config: Config, value: FieldValue) =>
-        v.validateFieldValue(config, value);
+      return (_, config, value) =>
+        Promise.resolve(v.validateFieldValue(config, value));
     }
-    return (): ValidationError<AnyFieldValueValidatorError<V>>[] => [];
+    return () => Promise.resolve([]);
   });
 
   const fieldsValidation = createAction({
-    async execute(signal, config, value) {
-      return validateFields(signal, config, value);
-    },
+    execute: validateFields,
     onSuccess(
       fieldErrors: FieldError<AnyFieldValueValidatorError<V>>[],
       config
