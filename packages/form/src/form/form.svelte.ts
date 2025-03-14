@@ -335,7 +335,7 @@ export function createForm<T, V extends Validator>(
   });
 
   const fieldsValidation = createAction({
-    execute: validateFields,
+    execute: (signal, config, value) => validateFields(signal, config, value),
     onSuccess(
       fieldErrors: FieldError<AnyFieldValueValidatorError<V>>[],
       config
