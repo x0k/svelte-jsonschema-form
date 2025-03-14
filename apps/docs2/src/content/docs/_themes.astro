@@ -5,21 +5,41 @@ import { Code, Tabs, TabItem, LinkCard } from "@astrojs/starlight/components";
 import { THEME_PACKAGES, THEME_TITLES, THEMES, type Theme } from "@/shared";
 import { DEFAULT_LOCALE } from "@/i18n";
 import Npm from "@/components/npm.astro";
+import FormCard from '@/components/form-card.astro';
+
+import ThemeForm from './_theme-form.svelte';
 
 import schemaCode from "./_schema?raw";
 import validatorCode from "./_validator?raw";
 import withBasicCode from "./_with-basic.svelte?raw";
 import withSkeletonCode from "./_with-skeleton.svelte?raw";
 import withDaisyuiCode from "./_with-daisyui.svelte?raw";
+import withDaisyui5Code from './_with-daisyui5.svelte?raw';
 import withFlowbiteCode from "./_with-flowbite.svelte?raw";
 import withShadcnCode from "./_with-shadcn.svelte?raw";
+
+import daisyuiStyles from '@sjsf/daisyui-theme/styles.css?inline';
+import daisyu5Styles from '@sjsf/daisyui5-theme/styles.css?inline';
+import flowbiteStyles from '@sjsf/flowbite-theme/styles.css?inline';
+import skeletonStyles from '@sjsf/skeleton-theme/styles.css?inline';
+import shadcnStyles from '@sjsf/shadcn-theme/styles.css?inline';
 
 const CODE = {
   basic: withBasicCode,
   daisyui: withDaisyuiCode,
+  daisyui5: withDaisyui5Code,
   flowbite: withFlowbiteCode,
   skeleton: withSkeletonCode,
   shadcn: withShadcnCode,
+} satisfies Record<Theme, string>;
+
+const STYLES = {
+  basic: "",
+  daisyui: daisyuiStyles,
+  daisyui5: daisyu5Styles,
+  flowbite: flowbiteStyles,
+  skeleton: skeletonStyles,
+  shadcn: shadcnStyles
 } satisfies Record<Theme, string>;
 
 const locale = Astro.currentLocale ?? DEFAULT_LOCALE;
@@ -52,6 +72,10 @@ const locale = Astro.currentLocale ?? DEFAULT_LOCALE;
           <Code code={validatorCode} lang="typescript" />
         </TabItem>
       </Tabs>
+
+      <FormCard style={STYLES[theme]}>
+        <ThemeForm theme={theme} client:only="svelte" />
+      </FormCard>
     </div>
   ))
 }
@@ -75,11 +99,16 @@ const locale = Astro.currentLocale ?? DEFAULT_LOCALE;
     justify-content: center;
     align-items: center;
     display: inline-flex;
-    padding-inline: 1rem;
+    padding-inline: 1.25rem;
+    padding-block: 0.15rem;
     border: 1px solid var(--sl-color-gray-5);
-    border-radius: 1rem;
+    border-radius: 2rem;
     &:after {
       content: attr(aria-label);
+    }
+    &:checked {
+      background-color: var(--sl-color-gray-5);
+      border-color: var(--sl-color-text-accent);
     }
   }
   .theme-content {

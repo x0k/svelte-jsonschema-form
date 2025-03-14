@@ -1,5 +1,6 @@
 <script lang="ts">
   import { BasicForm, createForm } from "@sjsf/form";
+  import { resolver } from "@sjsf/form/resolvers/basic";
   import { translation } from "@sjsf/form/translations/en";
   import { theme, setThemeContext } from "@sjsf/shadcn-theme";
   import { components } from "@sjsf/shadcn-theme/default";
@@ -8,17 +9,19 @@
   import { createAstro } from "@/astro.svelte";
 
   import { schema, uiSchema, initialValue } from "./_schema";
-  import { validator } from "./_validator";
+  import { createValidator } from "./_validator";
   import { onSubmit } from "./_on-submit";
 
   const astro = createAstro();
 
   const form = createForm({
+    idPrefix: "shadcn",
+    validator: createValidator('shadcn'),
+    resolver,
     theme,
     initialValue,
     schema,
     uiSchema,
-    validator,
     translation,
     onSubmit,
   });

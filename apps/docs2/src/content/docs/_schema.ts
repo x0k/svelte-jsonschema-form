@@ -95,7 +95,7 @@ export const uiSchema: UiSchemaRoot = {
   },
   star: {
     "ui:options": {
-      title: "Does this library deserve a star?",
+      title: "Have you starred this project yet?",
     },
   },
 };

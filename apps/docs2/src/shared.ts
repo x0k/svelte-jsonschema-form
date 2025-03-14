@@ -3,6 +3,7 @@ import type { StarlightIcon } from '@astrojs/starlight/types';
 export const THEMES = [
   "basic",
   "daisyui",
+  "daisyui5",
   "flowbite",
   "skeleton",
   "shadcn",
@@ -12,15 +13,17 @@ export type Theme = (typeof THEMES)[number];
 
 export const THEME_TITLES = {
   basic: "Basic",
-  daisyui: "DaisyUI",
+  daisyui: "DaisyUI v4",
+  daisyui5: "DaisyUI v5",
   flowbite: "Flowbite",
   skeleton: "Skeleton",
   shadcn: "Shadcn",
 } satisfies Record<Theme, string>;
 
 export const THEME_PACKAGES = {
-  basic: "",
+  basic: "@sjsf/basic-theme",
   daisyui: "@sjsf/daisyui-theme",
+  daisyui5: "@sjsf/daisyui5-theme",
   flowbite: "@sjsf/flowbite-theme",
   skeleton: "@sjsf/skeleton-theme",
   shadcn: "@sjsf/shadcn-theme",

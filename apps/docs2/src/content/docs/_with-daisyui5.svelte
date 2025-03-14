@@ -1,9 +1,9 @@
 <script lang="ts">
   import { BasicForm, createForm } from "@sjsf/form";
-  import { resolver } from '@sjsf/form/resolvers/basic'
+  import { resolver } from "@sjsf/form/resolvers/basic";
   import { translation } from "@sjsf/form/translations/en";
-  import { theme } from "@sjsf/daisyui-theme";
-  import "@sjsf/daisyui-theme/extra-widgets/textarea-include";
+  import { theme } from "@sjsf/daisyui5-theme";
+  import "@sjsf/daisyui5-theme/extra-widgets/textarea-include";
 
   import { createAstro } from "@/astro.svelte";
 
@@ -14,8 +14,8 @@
   const astro = createAstro();
 
   const form = createForm({
-    idPrefix: "daisyui",
-    validator: createValidator("daisyui"),
+    idPrefix: "daisyui5",
+    validator: createValidator('daisyui5'),
     resolver,
     theme,
     initialValue,
