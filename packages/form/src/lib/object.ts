@@ -1,16 +1,16 @@
-import type { AnyKey, ValuesOf } from "./types.js";
+import type { ValuesOf } from "./types.js";
 
-export type ObjectOf<T> = Record<AnyKey, T>;
+export type ObjectOf<T> = Record<PropertyKey, T>;
 
 export function isObject(value: unknown): value is object {
   return typeof value === "object" && value !== null;
 }
 
-export function isRecord<T>(value: unknown): value is Record<AnyKey, T> {
+export function isRecord<T>(value: unknown): value is Record<PropertyKey, T> {
   return isObject(value) && !Array.isArray(value);
 }
 
-export type PropertyPath = AnyKey[];
+export type PropertyPath = PropertyKey[];
 
 export function getValueByPath<T, D extends number = 3>(
   from: T,

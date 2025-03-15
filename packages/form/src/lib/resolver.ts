@@ -1,13 +1,11 @@
-import type { AnyKey } from "./types.js";
-
 export type Resolved<
-  T extends AnyKey,
-  R extends Record<AnyKey, any>,
+  T extends PropertyKey,
+  R extends Record<PropertyKey, any>,
 > = R[T] extends never ? undefined : R[T];
 
 export type Resolver<
-  C extends Record<AnyKey, any>,
-  R extends Record<AnyKey, any>,
+  C extends Record<PropertyKey, any>,
+  R extends Record<PropertyKey, any>,
 > = {
   <T extends keyof C>(type: T, config: C[T]): Resolved<T, R>;
   __configs?: C;
@@ -17,8 +15,8 @@ export type Resolver<
 export type ResolverConfigs<R extends Resolver<any, any>> = Exclude<R["__configs"], undefined>;
 export type ResolverResults<R extends Resolver<any, any>> = Exclude<R["__results"], undefined>;
 export type Chain<
-  R1 extends Record<AnyKey, any>,
-  R2 extends Record<AnyKey, any>,
+  R1 extends Record<PropertyKey, any>,
+  R2 extends Record<PropertyKey, any>,
 > = R1 & Omit<R2, keyof R1>;
 
 export function chain<
@@ -37,7 +35,7 @@ export function chain<
   ) => source(type, c) ?? fallback(type, c);
 }
 
-export function fromRecord<R extends Record<AnyKey, any>>(
+export function fromRecord<R extends Record<PropertyKey, any>>(
   record: R
 ): Resolver<Record<keyof R, any>, R> {
   return (type) => record[type];
@@ -52,7 +50,7 @@ export function overrideByRecord<
 
 export function extendByRecord<
   R extends Resolver<any, any>,
-  E extends Record<AnyKey, any>,
+  E extends Record<PropertyKey, any>,
 >(resolver: R, extension: E) {
   return chain(resolver, fromRecord(extension));
 }
