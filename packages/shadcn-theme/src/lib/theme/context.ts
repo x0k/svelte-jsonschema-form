@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-object-type */
 import { type Component, getContext, setContext } from 'svelte';
 import type {
 	HTMLButtonAttributes,
