@@ -11,7 +11,7 @@ describe("getSchemaDefinitionByPath", () => {
         foo: { type: "string" },
       },
     };
-    const result = getSchemaDefinitionByPath(schema, ["foo"]);
+    const result = getSchemaDefinitionByPath(schema, schema, ["foo"]);
     expect(result).toEqual({ type: "string" });
   });
 
@@ -20,7 +20,7 @@ describe("getSchemaDefinitionByPath", () => {
       type: "array",
       items: { type: "number" },
     };
-    const result = getSchemaDefinitionByPath(schema, [0]);
+    const result = getSchemaDefinitionByPath(schema, schema, [0]);
     expect(result).toEqual({ type: "number" });
   });
 
@@ -31,7 +31,7 @@ describe("getSchemaDefinitionByPath", () => {
         foo: { type: "string" },
       },
     };
-    const result = getSchemaDefinitionByPath(schema, ["bar"]);
+    const result = getSchemaDefinitionByPath(schema, schema, ["bar"]);
     expect(result).toBeUndefined();
   });
 
@@ -47,7 +47,7 @@ describe("getSchemaDefinitionByPath", () => {
         },
       },
     };
-    const result = getSchemaDefinitionByPath(schema, ["nested", "value"]);
+    const result = getSchemaDefinitionByPath(schema, schema, ["nested", "value"]);
     expect(result).toEqual({ type: "boolean" });
   });
 
@@ -69,7 +69,7 @@ describe("getSchemaDefinitionByPath", () => {
         },
       ],
     };
-    const result = getSchemaDefinitionByPath(schema, ["alt"]);
+    const result = getSchemaDefinitionByPath(schema, schema, ["alt"]);
     expect(result).toEqual({ type: "string" });
   });
 });

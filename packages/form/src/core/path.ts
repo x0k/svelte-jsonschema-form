@@ -7,11 +7,7 @@ export type Path = Array<string | number>;
 /**
  * `patternProperties` keyword is ignored
  */
-export function getSchemaDefinitionByPath(schema: Schema, path: Path) {
-  return internalGetSchemaDefinitionByPath(schema, schema, path);
-}
-
-function internalGetSchemaDefinitionByPath(
+export function getSchemaDefinitionByPath(
   rootSchema: Schema,
   schema: SchemaDefinition | undefined,
   path: Path
@@ -21,7 +17,7 @@ function internalGetSchemaDefinitionByPath(
       return undefined;
     }
     if (schema.$ref) {
-      return internalGetSchemaDefinitionByPath(
+      return getSchemaDefinitionByPath(
         rootSchema,
         resolveRef(schema.$ref, rootSchema),
         path.slice(i)
@@ -36,7 +32,7 @@ function internalGetSchemaDefinitionByPath(
         if (!isSchema(subSchema)) {
           continue;
         }
-        def = internalGetSchemaDefinitionByPath(rootSchema, subSchema, slice);
+        def = getSchemaDefinitionByPath(rootSchema, subSchema, slice);
         if (def === undefined) {
           continue;
         }
