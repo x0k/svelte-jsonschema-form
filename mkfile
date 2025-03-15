@@ -158,6 +158,16 @@ luci/:
     pnpm run dev
   popd
 
+movi/:
+  pushd packages/moving-icons
+  c:
+    pnpm run check
+  b:
+    pnpm run build
+  d:
+    pnpm run dev
+  popd
+
 radi/:
   pushd packages/radix-icons
   c:
