@@ -23,6 +23,7 @@
     "@sjsf/zod-validator": "1.9.2"
   },
   "changesets": [
+    "better-goats-swim",
     "clever-eagles-turn",
     "cold-apples-speak",
     "dull-balloons-rush",
@@ -30,8 +31,10 @@
     "empty-birds-learn",
     "fine-days-follow",
     "fine-glasses-raise",
+    "green-hands-carry",
     "green-items-cheat",
     "huge-planes-learn",
+    "little-otters-carry",
     "loud-monkeys-jog",
     "open-clouds-change",
     "quick-candies-rescue",
@@ -41,10 +44,14 @@
     "slimy-glasses-guess",
     "slow-berries-beam",
     "tame-taxis-itch",
+    "tangy-kings-work",
     "thick-carrots-type",
+    "tough-bears-lose",
+    "tough-ravens-raise",
     "upset-snails-smile",
     "weak-seals-drum",
     "weak-suits-clap",
-    "wet-cats-agree"
+    "wet-cats-agree",
+    "whole-snakes-allow"
   ]
 }

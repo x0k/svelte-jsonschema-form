@@ -1,5 +1,23 @@
 # @sjsf/form
 
+## 2.0.0-next.3
+
+### Major Changes
+
+- The `DefaultFormMerger` class has been replaced by the `createFormMerger` factory. ([#83](https://github.com/x0k/svelte-jsonschema-form/pull/83))
+
+- Remove `AnyKey` type ([#83](https://github.com/x0k/svelte-jsonschema-form/pull/83))
+
+- Remove `getValueByPath` function ([#83](https://github.com/x0k/svelte-jsonschema-form/pull/83))
+
+### Minor Changes
+
+- Add `getSchemaDefinitionByPath` function ([#83](https://github.com/x0k/svelte-jsonschema-form/pull/83))
+
+- Add `getUiSchemaByPath` function ([#83](https://github.com/x0k/svelte-jsonschema-form/pull/83))
+
+- Add options parameter to `createFormMerger` factory ([`0bcf9c6`](https://github.com/x0k/svelte-jsonschema-form/commit/0bcf9c674d9817f4665ef737284ac6e5514055f7))
+
 ## 2.0.0-next.2
 
 ## 2.0.0-next.1
