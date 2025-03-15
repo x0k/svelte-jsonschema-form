@@ -1,7 +1,5 @@
-import { Ajv } from "ajv";
 import { describe, it } from "vitest";
 
-import { DEFAULT_AJV_CONFIG } from "./model.js";
 import { createFormValidator } from "./validator.js";
 
 describe("Validator", () => {

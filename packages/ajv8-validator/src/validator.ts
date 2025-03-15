@@ -5,22 +5,21 @@ import {
   type Options,
   type ValidateFunction,
 } from "ajv";
-import { getValueByPath } from "@sjsf/form/lib/object";
-import type { Validator } from "@sjsf/form/core";
 import {
   createPseudoId,
   createChildId,
   pathToId,
+  getUiSchemaByPath,
   type AsyncFieldValueValidator,
   type AsyncFormValueValidator,
   type Config,
   type Schema,
   type FieldValueValidator,
   type FormValueValidator,
-  type UiSchema,
   type UiSchemaRoot,
   type ValidationError,
   type IdOptions,
+  type Validator,
 } from "@sjsf/form";
 
 import { addFormComponents, DEFAULT_AJV_CONFIG } from "./model.js";
@@ -54,8 +53,7 @@ export function createValidator({
   };
 }
 
-interface ErrorsTransformerOptions
-  extends IdOptions {
+interface ErrorsTransformerOptions extends IdOptions {
   uiSchema?: UiSchemaRoot;
 }
 
@@ -106,10 +104,7 @@ function createFormErrorsTransformer(options: ErrorsTransformerOptions) {
     { parentSchema }: ErrorObject,
     path: string[]
   ): string => {
-    const instanceUiSchema = getValueByPath<UiSchema | undefined, 0>(
-      options.uiSchema,
-      path
-    );
+    const instanceUiSchema = getUiSchemaByPath(options.uiSchema, path);
     return (
       instanceUiSchema?.["ui:options"]?.title ??
       parentSchema?.title ??
@@ -128,9 +123,7 @@ function createFormErrorsTransformer(options: ErrorsTransformerOptions) {
         message: errorObjectToMessage(
           error,
           (missingProperty, parentSchema) => {
-            // TODO: Write a specific `getValueByPath` function for
-            // `items`, `additionalItems` and other cases
-            const uiSchemaTitle = getValueByPath<UiSchema | undefined, 0>(
+            const uiSchemaTitle = getUiSchemaByPath(
               options.uiSchema,
               path.concat(missingProperty)
             )?.["ui:options"]?.title;
