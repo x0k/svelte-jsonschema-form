@@ -1,6 +1,7 @@
 import {
   defaultMerger,
   getDefaultFormState,
+  type Experimental_DefaultFormStateBehavior,
   type Merger,
   type Schema,
   type SchemaValue,
@@ -17,7 +18,15 @@ export interface FormMerger extends Merger {
   ): SchemaValue | undefined;
 }
 
-export function createFormMerger(validator: Validator, rootSchema: Schema) {
+export type FormMergerOptions = Experimental_DefaultFormStateBehavior & {
+  includeUndefinedValues?: boolean | "excludeObjectChildren";
+};
+
+export function createFormMerger(
+  validator: Validator,
+  rootSchema: Schema,
+  options: FormMergerOptions = {}
+) {
   const merger: FormMerger = {
     mergeAllOf(schema) {
       return defaultMerger.mergeAllOf(schema);
@@ -28,7 +37,9 @@ export function createFormMerger(validator: Validator, rootSchema: Schema) {
         merger,
         schema,
         formData,
-        rootSchema
+        rootSchema,
+        options.includeUndefinedValues,
+        options
       );
     },
   };
