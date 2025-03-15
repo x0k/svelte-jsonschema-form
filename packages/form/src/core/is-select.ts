@@ -102,9 +102,9 @@ export function isMultiSelect(
   merger: Merger,
   { items, uniqueItems }: Schema,
   rootSchema: Schema
-) {
+): boolean {
   return (
-    uniqueItems &&
+    uniqueItems === true &&
     isSchemaObjectValue(items) &&
     isSelect(validator, merger, items, rootSchema)
   );
