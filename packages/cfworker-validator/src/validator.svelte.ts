@@ -4,11 +4,11 @@ import {
   type Schema as CfSchema,
 } from "@cfworker/json-schema";
 import { weakMemoize } from "@sjsf/form/lib/memoize";
+import { getValueByPath } from "@sjsf/form/lib/object";
 import {
   ID_KEY,
   prefixSchemaRefs,
   ROOT_SCHEMA_PREFIX,
-  getSchemaDefinitionByPath,
   type Validator,
 } from "@sjsf/form/core";
 import {
@@ -109,22 +109,27 @@ interface ErrorsTransformerOptions extends IdPrefixOption, IdSeparatorOption {
 }
 
 function createErrorsTransformer(options: ErrorsTransformerOptions) {
-  const unitToPropertyTitle = (
+  const extractPropertyTitle = (
     unit: OutputUnit,
-    path: string[],
-    rootSchema: Schema
+    rootSchema: Schema,
+    path: string[]
   ): string => {
     const instanceUiSchema = getUiSchemaByPath(options.uiSchema, path);
     const uiTitle = instanceUiSchema?.["ui:options"]?.title;
     if (uiTitle) {
       return uiTitle;
     }
+    // TODO: Add test case with `$ref`
     let schemaPath = unit.keywordLocation.split("/");
     schemaPath = schemaPath.slice(1, -1);
-    const schema = getSchemaDefinitionByPath(rootSchema, rootSchema, schemaPath);
-    const schemaTitle = typeof schema === 'object' && schema.title;
-    if (schemaTitle) {
-      return schemaTitle;
+    const schema = getValueByPath(rootSchema, schemaPath);
+    if (
+      schema &&
+      typeof schema === "object" &&
+      "title" in schema &&
+      typeof schema.title === "string"
+    ) {
+      return schema.title;
     }
     return path.join(".");
   };
@@ -136,7 +141,7 @@ function createErrorsTransformer(options: ErrorsTransformerOptions) {
       }
       return {
         instanceId: pathToId(path, options),
-        propertyTitle: unitToPropertyTitle(unit, path, rootSchema),
+        propertyTitle: extractPropertyTitle(unit, rootSchema, path),
         message: unit.error,
         error: unit,
       };
