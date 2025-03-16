@@ -27,7 +27,6 @@ export type ComponentDefinitions = {
   [T in ComponentType]: ComponentDefinition<T>;
 };
 
-// TODO: Optional fields in component props should be considered
 export type CompatibleComponentType<T extends ComponentType> = {
   [C in ComponentType]: [
     ExpandAndEqual<ComponentProps[T], ComponentProps[C]>,
@@ -37,10 +36,6 @@ export type CompatibleComponentType<T extends ComponentType> = {
     : never;
 }[ComponentType];
 
-/**
- * NOTE: Currently this type is useless because compatible components have
- * the same definitions
- */
 export type CompatibleComponentDefinitions = {
   [T in ComponentType]: {
     [K in CompatibleComponentType<T>]: ComponentDefinitions[K];
