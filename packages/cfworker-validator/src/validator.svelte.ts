@@ -21,6 +21,7 @@ import {
   type UiSchemaRoot,
   type IdPrefixOption,
   type IdSeparatorOption,
+  getRootSchemaTitleByPath,
 } from "@sjsf/form";
 
 export interface ValidatorOptions {
@@ -112,14 +113,14 @@ function createErrorsTransformer(options: ErrorsTransformerOptions) {
   const extractPropertyTitle = (
     unit: OutputUnit,
     rootSchema: Schema,
-    path: string[]
+    path: string[],
+    instanceId: string
   ): string => {
     const instanceUiSchema = getUiSchemaByPath(options.uiSchema, path);
     const uiTitle = instanceUiSchema?.["ui:options"]?.title;
     if (uiTitle) {
       return uiTitle;
     }
-    // TODO: Add test case with `$ref`
     let schemaPath = unit.keywordLocation.split("/");
     schemaPath = schemaPath.slice(1, -1);
     const schema = getValueByPath(rootSchema, schemaPath);
@@ -131,7 +132,11 @@ function createErrorsTransformer(options: ErrorsTransformerOptions) {
     ) {
       return schema.title;
     }
-    return path.join(".");
+    return (
+      getRootSchemaTitleByPath(rootSchema, path) ??
+      path[path.length - 1] ??
+      instanceId
+    );
   };
   return (rootSchema: Schema, errors: OutputUnit[]) =>
     errors.map((unit) => {
@@ -139,9 +144,10 @@ function createErrorsTransformer(options: ErrorsTransformerOptions) {
       if (path[0] === "#") {
         path = path.slice(1);
       }
+      const instanceId = pathToId(path, options);
       return {
-        instanceId: pathToId(path, options),
-        propertyTitle: extractPropertyTitle(unit, rootSchema, path),
+        instanceId,
+        propertyTitle: extractPropertyTitle(unit, rootSchema, path, instanceId),
         message: unit.error,
         error: unit,
       };

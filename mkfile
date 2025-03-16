@@ -41,6 +41,8 @@ cfw/:
   pushd packages/cfworker-validator
   b:
     pnpm run build
+  t:
+    pnpm run test
   popd
 
 f/:
