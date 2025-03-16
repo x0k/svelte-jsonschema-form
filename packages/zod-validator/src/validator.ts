@@ -91,9 +91,9 @@ export interface FormValueValidatorOptions extends ErrorsTransformerOptions {
 export function createFormValueValidator(
   options: FormValueValidatorOptions
 ): FormValueValidator<ZodIssue> {
+  const transform = createErrorsTransformer(options);
   return {
     validateFormValue(_, formValue) {
-      const transform = createErrorsTransformer(options);
       return transform(options.zodSchema.safeParse(formValue));
     },
   };
@@ -102,9 +102,9 @@ export function createFormValueValidator(
 export function createAsyncFormValueValidator(
   options: FormValueValidatorOptions
 ): AsyncFormValueValidator<ZodIssue> {
+  const transform = createErrorsTransformer(options);
   return {
     async validateFormValueAsync(_signal, _rootSchema, formValue) {
-      const transform = createErrorsTransformer(options);
       const result = await options.zodSchema.safeParseAsync(formValue);
       return transform(result);
     },
