@@ -147,10 +147,11 @@ const arrays: Sample = {
     },
     multipleChoicesList: {
       "ui:options": {
-        // TODO: Port this option
-        // content: {
-        //   style: "display: flex; flex-direction: column; gap: 0.2rem",
-        // },
+        layouts: {
+          "field-content": {
+            style: "display: flex; flex-direction: column; gap: 0.2rem"
+          }
+        }
       },
     },
     fixedItemsList: {

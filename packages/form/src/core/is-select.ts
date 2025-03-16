@@ -5,9 +5,39 @@
 import { isSchema, type Schema, type SchemaValue } from "./schema.js";
 import type { Validator } from "./validator.js";
 import { retrieveSchema } from "./resolve.js";
-import { getSchemaConstantValue, isSchemaOfConstantValue } from "./constant-schema.js";
+import {
+  getSchemaConstantValue,
+  isSchemaOfConstantValue,
+} from "./constant-schema.js";
 import type { Merger } from "./merger.js";
+import { isSchemaObjectValue } from "./value.js";
 
+/**
+ * Detects `select` schema
+ * - Schema contains `enum` property
+ * - Or schemas in `oneOf || anyOf` are `constant`
+ * @example
+ *
+ * ```json
+ * {
+ *   "enum": [
+ *     "foo",
+ *     "bar"
+ *   ]
+ * }
+ * ```
+ *
+ * @example
+ *
+ * ```json
+ * {
+ *   "oneOf": [
+ *     { "const": "foo" },
+ *     { "enum": ["bar"] }
+ *   ]
+ * }
+ * ```
+ */
 export function isSelect(
   validator: Validator,
   merger: Merger,
@@ -48,23 +78,34 @@ export function getSelectOptionValues({
   });
 }
 
+/**
+ * Detects `multi select` schema
+ * - Array with unique items
+ * - Items is `select` schema
+ * @example
+ *
+ * ```json
+ * {
+ *   "type": "array",
+ *   "uniqueItems": true,
+ *   "items": {
+ *     "enum": [
+ *       "foo",
+ *       "bar"
+ *     ]
+ *   }
+ * }
+ * ```
+ */
 export function isMultiSelect(
   validator: Validator,
   merger: Merger,
-  schema: Schema,
+  { items, uniqueItems }: Schema,
   rootSchema: Schema
-) {
-  const items = schema.items;
-  if (
-    !items ||
-    typeof items === "boolean" ||
-    // TODO: This condition is added to satisfy TS and it looks correct.
-    // But this check is missing in the original code.
-    // Therefore, clarify the term `multi-select` schema
-    Array.isArray(items) ||
-    !schema.uniqueItems
-  ) {
-    return false;
-  }
-  return isSelect(validator, merger, items, rootSchema);
+): boolean {
+  return (
+    uniqueItems === true &&
+    isSchemaObjectValue(items) &&
+    isSelect(validator, merger, items, rootSchema)
+  );
 }

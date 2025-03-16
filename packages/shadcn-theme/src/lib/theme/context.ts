@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-object-type */
 import { type Component, getContext, setContext } from 'svelte';
 import type {
 	HTMLButtonAttributes,
@@ -16,9 +15,9 @@ import type {
 	Switch,
 	WithElementRef,
 	WithoutChild,
-	WithoutChildrenOrChild
+	WithoutChildrenOrChild,
+	Popover
 } from 'bits-ui';
-import { Popover } from 'bits-ui';
 
 export type CalendarProps = WithoutChildrenOrChild<Calendar.RootProps>;
 
@@ -70,31 +69,18 @@ export function getThemeContext(): Required<Omit<ThemeContext, 'components'>> & 
 }
 
 export function setThemeContext(ctx: ThemeContext) {
-	// TODO: Remove Proxy in next major
 	const dateTimeFormat = new Intl.DateTimeFormat(undefined, {
 		year: 'numeric',
 		month: '2-digit',
 		day: 'numeric'
 	});
+	const defaultDateFormatter: DateFormatter = (date) => dateTimeFormat.format(date);
 	setContext(THEME_CONTEXT, {
 		get formatDate() {
-			return ctx.formatDate ?? ((date) => dateTimeFormat.format(date));
+			return ctx.formatDate ?? defaultDateFormatter;
 		},
 		get components() {
-			return new Proxy(ctx.components, {
-				get(target, prop, receiver) {
-					switch (prop as keyof ThemeComponents) {
-						case 'PopoverContent': {
-							return target.PopoverContent ?? Popover.Content;
-						}
-						case 'PopoverTrigger': {
-							return target.PopoverTrigger ?? Popover.Trigger;
-						}
-						default:
-							return Reflect.get(target, prop, receiver);
-					}
-				}
-			});
+			return ctx.components;
 		}
 	});
 }

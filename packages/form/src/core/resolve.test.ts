@@ -14,13 +14,7 @@ import {
   type MockInstance,
 } from "vitest";
 
-import { getValueByPath } from "@/lib/object.js";
-
-import {
-  type Schema,
-  ADDITIONAL_PROPERTY_FLAG,
-  PROPERTIES_KEY,
-} from "./schema.js";
+import { type Schema, ADDITIONAL_PROPERTY_FLAG } from "./schema.js";
 import {
   getAllPermutationsOfXxxOf,
   resolveAnyOrOneOfSchemas,
@@ -252,13 +246,7 @@ describe("retrieveSchema2()", () => {
     const formData = { newKey: {} };
 
     expect(
-      retrieveSchema(
-        testValidator,
-        defaultMerger,
-        schema,
-        rootSchema,
-        formData
-      )
+      retrieveSchema(testValidator, defaultMerger, schema, rootSchema, formData)
     ).toEqual({
       ...schema,
       properties: {
@@ -285,13 +273,7 @@ describe("retrieveSchema2()", () => {
     const formData = { newKey: {} };
 
     expect(
-      retrieveSchema(
-        testValidator,
-        defaultMerger,
-        schema,
-        rootSchema,
-        formData
-      )
+      retrieveSchema(testValidator, defaultMerger, schema, rootSchema, formData)
     ).toEqual({
       ...schema,
       properties: {
@@ -412,11 +394,7 @@ describe("retrieveSchema2()", () => {
     const result = retrieveSchema(
       testValidator,
       defaultMerger,
-      getValueByPath(RECURSIVE_REF_ALLOF, [
-        PROPERTIES_KEY,
-        "value",
-        "items",
-      ]) as Schema,
+      (RECURSIVE_REF_ALLOF.properties?.value as Schema).items as Schema,
       RECURSIVE_REF_ALLOF
     );
     expect(result).toEqual({

@@ -1,5 +1,5 @@
 import { SvelteMap } from "svelte/reactivity";
-import { DEFAULT_ID_PREFIX, DEFAULT_ID_SEPARATOR, pathToId } from "@sjsf/form";
+import { pathToId } from "@sjsf/form";
 
 import type { Sample } from "./Sample";
 
@@ -68,10 +68,6 @@ const errorSchema: Sample = {
         help: "Hint: Make it strong!",
       },
     },
-    // TODO: Add `alt-datetime` widget
-    // date: {
-    //   'ui:widget': 'alt-datetime',
-    // },
     telephone: {
       "ui:options": {
         text: {

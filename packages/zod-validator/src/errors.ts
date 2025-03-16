@@ -1,9 +1,8 @@
-import { getValueByPath } from "@sjsf/form/lib/object";
 import {
+  getUiSchemaByPath,
   pathToId,
   type Config,
   type PathToIdOptions,
-  type UiSchema,
   type UiSchemaRoot,
   type ValidationError,
 } from "@sjsf/form";
@@ -23,9 +22,8 @@ export function createErrorsTransformer(options: ErrorsTransformerOptions) {
     return result.error.issues.map((issue) => {
       const instanceId = pathToId(issue.path, options);
       const propertyTitle =
-        getValueByPath<UiSchema | undefined, 0>(options.uiSchema, issue.path)?.[
-          "ui:options"
-        ]?.title ??
+        getUiSchemaByPath(options.uiSchema, issue.path)?.["ui:options"]
+          ?.title ??
         issue.path[issue.path.length - 1] ??
         instanceId;
       return {

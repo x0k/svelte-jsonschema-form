@@ -4,20 +4,20 @@ import {
   type Schema as CfSchema,
 } from "@cfworker/json-schema";
 import { weakMemoize } from "@sjsf/form/lib/memoize";
-import { getValueByPath } from "@sjsf/form/lib/object";
 import {
   ID_KEY,
   prefixSchemaRefs,
   ROOT_SCHEMA_PREFIX,
+  getSchemaDefinitionByPath,
   type Validator,
 } from "@sjsf/form/core";
 import {
+  getUiSchemaByPath,
   pathToId,
   type Config,
   type Schema,
   type FieldValueValidator,
   type FormValueValidator,
-  type UiSchema,
   type UiSchemaRoot,
   type IdPrefixOption,
   type IdSeparatorOption,
@@ -114,18 +114,15 @@ function createErrorsTransformer(options: ErrorsTransformerOptions) {
     path: string[],
     rootSchema: Schema
   ): string => {
-    const instanceUiSchema = getValueByPath<UiSchema | undefined, 0>(
-      options.uiSchema,
-      path
-    );
+    const instanceUiSchema = getUiSchemaByPath(options.uiSchema, path);
     const uiTitle = instanceUiSchema?.["ui:options"]?.title;
     if (uiTitle) {
       return uiTitle;
     }
     let schemaPath = unit.keywordLocation.split("/");
     schemaPath = schemaPath.slice(1, -1);
-    const schema = getValueByPath(rootSchema, schemaPath) as Schema | undefined;
-    const schemaTitle = schema?.title;
+    const schema = getSchemaDefinitionByPath(rootSchema, rootSchema, schemaPath);
+    const schemaTitle = typeof schema === 'object' && schema.title;
     if (schemaTitle) {
       return schemaTitle;
     }

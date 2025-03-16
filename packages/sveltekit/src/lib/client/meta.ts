@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { AnyKey } from '@sjsf/form/lib/types';
 import type { SchemaValue } from '@sjsf/form';
 
 import type { ValidatedFormData, InitialFormData } from '../model.js';
@@ -60,7 +59,7 @@ type ValidatedFormDataFromActionDataUnion<
 type ValidatorErrorFromValidatedFormData<VFD> =
   VFD extends ValidatedFormData<infer E, any> ? E : never;
 
-type InitialFromDataFromPageData<PageData, FormName extends AnyKey> = PageData extends {
+type InitialFromDataFromPageData<PageData, FormName extends PropertyKey> = PageData extends {
   [K in FormName]: InitialFormData<any, any, any>;
 }
   ? PageData[FormName]
