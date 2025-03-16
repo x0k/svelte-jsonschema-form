@@ -1,5 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "ui": "tui",
   "tasks": {
     "check": {
       "dependsOn": [
@@ -9,6 +10,10 @@
     "build": {
       "dependsOn": [
         "check"
+      ],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        ".env*"
       ],
       "outputs": [
         "dist/**"
