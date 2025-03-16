@@ -22,6 +22,7 @@
     "@sjsf/flowbite-icons": "workspace:*",
     "@sjsf/skeleton-theme": "workspace:*",
     "@sjsf/lucide-icons": "workspace:*",
+    "@sjsf/moving-icons": "workspace:*",
     "@sjsf/shadcn-theme": "workspace:*",
     "@sjsf/radix-icons": "workspace:*",
     "@sjsf/daisyui5-theme": "workspace:*"

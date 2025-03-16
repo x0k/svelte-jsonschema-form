@@ -7,5 +7,6 @@ export default {
   compilerOptions: {
     // Because `lucide-icons`
     // runes: true,
+    css: 'injected'
   },
 };
