@@ -33,6 +33,7 @@
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "dependencies": {
+    "@standard-schema/spec": "^1.0.0",
     "json-schema-merge-allof": "^0.8.1",
     "jsonpointer": "^5.0.1"
   },
@@ -110,6 +111,10 @@
     "./translations/*": {
       "types": "./dist/translations/*.d.ts",
       "svelte": "./dist/translations/*.js"
+    },
+    "./validators/*": {
+      "types": "./dist/validators/*.d.ts",
+      "svelte": "./dist/validators/*.js"
     },
     "./focus-on-first-error": {
       "types": "./dist/focus-on-first-error.d.ts",
