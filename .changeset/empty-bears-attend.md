@@ -2,4 +2,4 @@
 "@sjsf/form": minor
 ---
 
-Recover `getValueByPath` function
+The `getValueByPath` function has been returned.
