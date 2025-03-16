@@ -1,5 +1,22 @@
 # docs
 
+## 1.6.3-next.4
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/ajv8-validator@2.0.0-next.4
+  - @sjsf/basic-theme@2.0.0-next.4
+  - @sjsf/cfworker-validator@2.0.0-next.4
+  - @sjsf/daisyui-theme@2.0.0-next.4
+  - @sjsf/daisyui5-theme@2.0.0-next.4
+  - @sjsf/flowbite-theme@2.0.0-next.4
+  - @sjsf/form@2.0.0-next.4
+  - @sjsf/shadcn-theme@2.0.0-next.4
+  - @sjsf/skeleton-theme@2.0.0-next.4
+  - @sjsf/sveltekit@2.0.0-next.4
+  - @sjsf/zod-validator@2.0.0-next.4
+
 ## 1.6.3-next.3
 
 ### Patch Changes

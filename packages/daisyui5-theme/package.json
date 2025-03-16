@@ -1,6 +1,6 @@
 {
 	"name": "@sjsf/daisyui5-theme",
-	"version": "2.0.0-next.3",
+	"version": "2.0.0-next.4",
 	"description": "The daisyui v5 based theme for svelte-jsonschema-form",
 	"license": "MIT",
 	"keywords": [
@@ -58,8 +58,8 @@
 	},
 	"dependencies": {},
 	"peerDependencies": {
-		"@sjsf/form": "workspace:^2.0.0-next.3",
-		"@sjsf/basic-theme": "workspace:^2.0.0-next.3",
+		"@sjsf/form": "workspace:^2.0.0-next.4",
+		"@sjsf/basic-theme": "workspace:^2.0.0-next.4",
 		"daisyui": "^5.0.4",
 		"svelte": "^5.23.0"
 	},

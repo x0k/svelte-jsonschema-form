@@ -20,7 +20,8 @@
     "@sjsf/skeleton-theme": "1.9.2",
     "@sjsf/sveltekit": "1.9.2",
     "testing": "0.0.12",
-    "@sjsf/zod-validator": "1.9.2"
+    "@sjsf/zod-validator": "1.9.2",
+    "@sjsf/moving-icons": "2.0.0-next.2"
   },
   "changesets": [
     "better-goats-swim",
@@ -47,6 +48,7 @@
     "tangy-kings-work",
     "thick-carrots-type",
     "tough-bears-lose",
+    "tough-paths-feel",
     "tough-ravens-raise",
     "upset-snails-smile",
     "weak-seals-drum",
