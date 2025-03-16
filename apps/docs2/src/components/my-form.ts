@@ -1,15 +1,12 @@
-import {
-  type FormState,
-  type FormOptions,
-  type Validator,
-  createForm,
-} from "@sjsf/form";
-import { resolver } from '@sjsf/form/resolvers/basic'
+import { type FormOptions, type Validator, createForm } from "@sjsf/form";
+import { resolver } from "@sjsf/form/resolvers/basic";
 import { translation } from "@sjsf/form/translations/en";
-import { theme } from "@sjsf/basic-theme";
 import { createFormValidator } from "@sjsf/ajv8-validator";
+import { theme } from "@sjsf/basic-theme";
 
 type Defaults = "theme" | "translation" | "validator" | "resolver";
+
+export type MyValidator = ReturnType<typeof createFormValidator>;
 
 export type MyFormOptions<T, V extends Validator> = Omit<
   FormOptions<T, V>,
@@ -19,11 +16,12 @@ export type MyFormOptions<T, V extends Validator> = Omit<
 
 export function createMyForm<
   T,
-  V extends Validator = ReturnType<typeof createFormValidator>,
->(options: MyFormOptions<T, V>): FormState<T, V> {
-  // NOTE: we create a separate validator for each form
-  const validator = createFormValidator() as unknown as V;
-  const defaults: Pick<FormOptions<T, V>, Defaults> = {
+  V extends Validator,
+  O extends MyFormOptions<T, V>,
+>(options: O) {
+  // NOTE: we will create a separate validator for each form
+  const validator = createFormValidator();
+  const defaults: Pick<FormOptions<T, MyValidator>, Defaults> = {
     theme,
     resolver,
     validator,
@@ -37,6 +35,9 @@ export function createMyForm<
         }
         return Reflect.get(target, p, receiver);
       },
-    }) as FormOptions<T, V>
+    }) as unknown as FormOptions<
+      T,
+      O extends { validator: V } ? V : MyValidator
+    >
   );
 }

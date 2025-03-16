@@ -48,12 +48,12 @@ export default defineConfig({
           autogenerate: { directory: "integrations" },
         },
         {
-          label: "Advanced scenarios",
-          autogenerate: { directory: "advanced" },
+          label: "Customization",
+          autogenerate: { directory: "customization" },
         },
         {
-          label: "Migration guides",
-          autogenerate: { directory: "migration-guides" },
+          label: "Misc",
+          autogenerate: { directory: "misc" },
         },
         {
           label: "API Reference",
@@ -62,6 +62,7 @@ export default defineConfig({
         {
           label: "Changelogs",
           autogenerate: { directory: "changelogs" },
+          collapsed: true
         },
       ],
       components: {

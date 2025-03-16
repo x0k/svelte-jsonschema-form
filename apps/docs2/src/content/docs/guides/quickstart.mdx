@@ -11,13 +11,11 @@ import FormCard from '@/components/form-card.astro'
 import MinimalSetupForm from "./_minimal-setup.svelte";
 import minimalSetupCode from './_minimal-setup.svelte?raw';
 
-import UiSchema from './_ui-schema.svelte';
+import UiSchemaForm from './_ui-schema.svelte';
 import uiSchemaCode from './_ui-schema.svelte?raw';
 
-import FormData from './_form-data.svelte';
+import FormDataForm from './_form-data.svelte';
 import formDataCode from './_form-data.svelte?raw';
-
-## Minimal setup
 
 Let's explore the most basic setup:
 
@@ -47,14 +45,14 @@ With the `uiSchema` parameter, you can customize the user interface of the form.
 
 :::note
 
-We'll talk about `MyForm` component in the [Custom form](../../advanced/custom-form/) guide.
+We'll talk about `MyForm` component in the [Reusable defaults](../reusable-defaults/) guide.
 
 :::
 
 <Code code={uiSchemaCode} lang="svelte" />
 
 <FormCard>
-  <UiSchema client:only="svelte" />
+  <UiSchemaForm client:only="svelte" />
 </FormCard>
 
 <LinkCard title="UI Schema API reference" href="../../api-reference/ui-schema/" />
@@ -72,5 +70,5 @@ Use getters to pass reactive parameters to the `createForm` (`createMyForm`) fun
 <Code code={formDataCode} lang="svelte" />
 
 <FormCard>
-  <FormData client:only="svelte" />
+  <FormDataForm client:only="svelte" />
 </FormCard>

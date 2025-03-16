@@ -15,7 +15,7 @@
 <Content />
 
 <button
-  style="width: 100%; padding: 0.5rem;"
+  style="width: 100%; padding: 0.5rem; margin-top: 1rem;"
   onclick={() => {
     window.location.reload();
   }}

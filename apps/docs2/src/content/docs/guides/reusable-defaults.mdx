@@ -1,7 +1,7 @@
 ---
-title: Custom form
+title: Reusable defaults
 sidebar:
-  order: 0
+  order: 4
 ---
 
 import { Code } from '@astrojs/starlight/components';
@@ -9,12 +9,11 @@ import { Code } from '@astrojs/starlight/components';
 import customFormCode from '@/components/my-form.ts?raw';
 import customFormComponentCode from '@/components/my-form.svelte?raw';
 
-## Factory
 
 Even with a simple setup, resulting code is very verbose.
-Therefore, after choosing a theme, validator and translation, it is convenient to create a wrapper around the `createForm`.
+Therefore, after choosing a resolver, theme, validator and translation, it is convenient to create a wrapper around the `createForm`.
 
-<Code code={customFormCode} lang="typescript" title="custom-form.ts" />
+<Code code={customFormCode} lang="typescript" title="my-form.ts" />
 
 :::note
 
