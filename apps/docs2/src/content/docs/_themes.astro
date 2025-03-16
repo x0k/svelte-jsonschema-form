@@ -71,7 +71,7 @@ const styles = THEMES.map(theme =>`
   THEMES.map((theme) => (
     <div class="theme-content" data-theme={theme} >
       <Npm
-        pkg={`@sjsf/form @sjsf/ajv8-validator ajv@8 ${THEME_PACKAGES[theme]}`}
+        pkg={`@sjsf/form@next @sjsf/ajv8-validator@next ajv@8 ${THEME_PACKAGES[theme]}@next`}
       />
 
       <LinkCard

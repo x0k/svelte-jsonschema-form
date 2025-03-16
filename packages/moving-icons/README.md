@@ -8,7 +8,7 @@ The [jis3r/icons](https://github.com/jis3r/icons) based icons set for [svelte-js
 ## Installation
 
 ```shell
-npm install @sjsf/form @sjsf/moving-icons
+npm install @sjsf/form@next @sjsf/moving-icons@next
 ```
 
 ## Usage
@@ -16,7 +16,7 @@ npm install @sjsf/form @sjsf/moving-icons
 ```svelte
 <script lang="ts">
   import { createForm } from '@sjsf/form';
-  import { icons } from '@sjsf/lucide-icons';
+  import { icons } from '@sjsf/moving-icons';
 
   const form = createForm({
     icons,

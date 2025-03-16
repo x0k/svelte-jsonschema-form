@@ -3,12 +3,12 @@
 The [zod](https://github.com/colinhacks/zod) based validator for [svelte-jsonschema-form](https://github.com/x0k/svelte-jsonschema-form).
 
 - [Documentation](https://x0k.github.io/svelte-jsonschema-form/validators/zod/)
-- [Playground](https://x0k.github.io/svelte-jsonschema-form/playground/)
+- [Playground](https://x0k.github.io/svelte-jsonschema-form/playground2/)
 
 ## Installation
 
 ```shell
-npm install @sjsf/zod-validator zod zod-to-json-schema json-schema-to-zod
+npm install @sjsf/zod-validator@next zod zod-to-json-schema json-schema-to-zod
 ```
 
 ## Usage

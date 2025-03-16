@@ -3,12 +3,12 @@
 The [flowbite-svelte](https://github.com/themesberg/flowbite-svelte) (tailwind v3) based theme for [svelte-jsonschema-form](https://github.com/x0k/svelte-jsonschema-form).
 
 - [Documentation](https://x0k.github.io/svelte-jsonschema-form/themes/flowbite/)
-- [Playground](https://x0k.github.io/svelte-jsonschema-form/playground/)
+- [Playground](https://x0k.github.io/svelte-jsonschema-form/playground2/)
 
 ## Installation
 
 ```shell
-npm install @sjsf/form @sjsf/flowbite-theme
+npm install @sjsf/form@next @sjsf/flowbite-theme@next
 ```
 
 ## Usage

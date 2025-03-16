@@ -3,12 +3,12 @@
 The [daisyui](https://github.com/saadeghi/daisyui) v4 based theme for [svelte-jsonschema-form](https://github.com/x0k/svelte-jsonschema-form).
 
 - [Documentation](https://x0k.github.io/svelte-jsonschema-form/themes/daisyui/)
-- [Playground](https://x0k.github.io/svelte-jsonschema-form/playground/)
+- [Playground](https://x0k.github.io/svelte-jsonschema-form/playground2/)
 
 ## Installation
 
 ```shell
-npm install @sjsf/form @sjsf/daisyui-theme
+npm install @sjsf/form@next @sjsf/daisyui-theme@next
 ```
 
 ## Usage

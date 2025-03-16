@@ -5,7 +5,7 @@ Basic theme for [svelte-jsonschema-form](https://github.com/x0k/svelte-jsonschem
 ## Installation
 
 ```shell
-npm install @sjsf/form @sjsf/basic-theme
+npm install @sjsf/form@next @sjsf/basic-theme@next
 ```
 
 ## Usage
