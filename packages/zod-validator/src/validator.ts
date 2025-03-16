@@ -93,8 +93,8 @@ export function createFormValueValidator(
 ): FormValueValidator<ZodIssue> {
   const transform = createErrorsTransformer(options);
   return {
-    validateFormValue(_, formValue) {
-      return transform(options.zodSchema.safeParse(formValue));
+    validateFormValue(rootSchema, formValue) {
+      return transform(options.zodSchema.safeParse(formValue), rootSchema);
     },
   };
 }
@@ -104,9 +104,9 @@ export function createAsyncFormValueValidator(
 ): AsyncFormValueValidator<ZodIssue> {
   const transform = createErrorsTransformer(options);
   return {
-    async validateFormValueAsync(_signal, _rootSchema, formValue) {
+    async validateFormValueAsync(_signal, rootSchema, formValue) {
       const result = await options.zodSchema.safeParseAsync(formValue);
-      return transform(result);
+      return transform(result, rootSchema);
     },
   };
 }

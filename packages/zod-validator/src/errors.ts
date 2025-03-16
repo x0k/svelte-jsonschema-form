@@ -1,8 +1,10 @@
 import {
+  getRootSchemaTitleByPath,
   getUiSchemaByPath,
   pathToId,
   type Config,
   type PathToIdOptions,
+  type Schema,
   type UiSchemaRoot,
   type ValidationError,
 } from "@sjsf/form";
@@ -14,7 +16,8 @@ export interface ErrorsTransformerOptions extends PathToIdOptions {
 
 export function createErrorsTransformer(options: ErrorsTransformerOptions) {
   return (
-    result: z.SafeParseReturnType<any, any>
+    result: z.SafeParseReturnType<any, any>,
+    rootSchema: Schema
   ): ValidationError<ZodIssue>[] => {
     if (result.success) {
       return [];
@@ -24,6 +27,7 @@ export function createErrorsTransformer(options: ErrorsTransformerOptions) {
       const propertyTitle =
         getUiSchemaByPath(options.uiSchema, issue.path)?.["ui:options"]
           ?.title ??
+        getRootSchemaTitleByPath(rootSchema, issue.path) ??
         issue.path[issue.path.length - 1] ??
         instanceId;
       return {
