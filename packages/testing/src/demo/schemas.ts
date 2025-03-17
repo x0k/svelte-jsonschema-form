@@ -11,10 +11,6 @@ export const states = (schema: Schema): Schema => ({
   type: "object",
   properties: {
     default: schema,
-    readonly: {
-      ...schema,
-      readOnly: true,
-    },
     error: schema,
   },
 });
@@ -49,7 +45,6 @@ export const text: Schema = {
 
 export const uiStates = (uiSchema: UiSchema): UiSchema => ({
   default: uiSchema,
-  readonly: uiSchema,
   error: uiSchema,
 });
 
@@ -64,8 +59,10 @@ export const createErrors = (keys: string[], options?: PathToIdOptions) =>
       }) satisfies ValidationError<null>
   );
 
+export type Specs = Record<string, [Schema, UiSchema]>;
+
 export function createSchemas(
-  specs: Record<string, [Schema, UiSchema]>,
+  specs: Specs,
   options?: PathToIdOptions
 ): {
   schema: Schema;

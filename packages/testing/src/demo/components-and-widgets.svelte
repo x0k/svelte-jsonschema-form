@@ -10,10 +10,10 @@
   } from "@sjsf/form";
   import { createFormValidator } from "@sjsf/ajv8-validator";
   import { translation } from "@sjsf/form/translations/en";
-  import { resolver } from '@sjsf/form/resolvers/compat';
-  import '@sjsf/form/fields/extra-fields/enum-include';
-  import '@sjsf/form/fields/extra-fields/multi-enum-include';
-  import '@sjsf/form/fields/extra-fields/file-include';
+  import { resolver } from "@sjsf/form/resolvers/compat";
+  import "@sjsf/form/fields/extra-fields/enum-include";
+  import "@sjsf/form/fields/extra-fields/multi-enum-include";
+  import "@sjsf/form/fields/extra-fields/file-include";
   import "@sjsf/form/fields/extra-fields/files-include";
 
   import Form from "./form.svelte";
@@ -25,6 +25,7 @@
     number,
     text,
     uniqueArray,
+    type Specs,
   } from "./schemas";
 
   const {
@@ -33,7 +34,7 @@
     additionalSpecs,
   }: {
     theme: Theme;
-    additionalSpecs?: Record<string, [Schema, UiSchema]>;
+    additionalSpecs?: Specs;
     append?: Snippet;
   } = $props();
 
