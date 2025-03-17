@@ -1,7 +1,9 @@
 <script lang="ts">
+  import type { HTMLAttributes } from "svelte/elements";
   import type { Config, IconConfig, Icons, Id, Labels } from "@sjsf/form";
 
-  const { icons }: { icons: Icons } = $props();
+  const { icons, ...rest }: { icons: Icons } & HTMLAttributes<HTMLDivElement> =
+    $props();
   const config: Config = {
     id: "root" as Id,
     name: "name",
@@ -22,6 +24,7 @@
 
 <div
   style="height: 100vh; width: 100%; display: flex; align-items: center; justify-content: center"
+  {...rest}
 >
   <div style="display: flex; flex-direction: column; gap: 1rem">
     {#each Object.entries(labels) as [key, params]}
