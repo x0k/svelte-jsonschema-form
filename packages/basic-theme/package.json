@@ -63,6 +63,10 @@
     "./extra-widgets/*": {
       "types": "./dist/extra-widgets/*.d.ts",
       "svelte": "./dist/extra-widgets/*"
+    },
+    "./specs": {
+      "types": "./dist/specs.d.ts",
+      "svelte": "./dist/specs.js"
     }
   }
 }

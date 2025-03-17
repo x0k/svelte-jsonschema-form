@@ -26,8 +26,7 @@
 	"homepage": "https://x0k.github.io/svelte-jsonschema-form/",
 	"scripts": {
 		"dev": "vite dev",
-		"fix-theme-resolver-type": "node --experimental-strip-types ../../scripts/fix-theme-resolver-type.ts",
-		"build": "svelte-package && npm run fix-theme-resolver-type && vite build && mv $(find .svelte-kit/output/client/_app/immutable/assets/ -name \"_page*.css\" | head -n 1) dist/styles.css && publint",
+		"build": "svelte-package && vite build && mv $(find .svelte-kit/output/client/_app/immutable/assets/ -name \"_page*.css\" | head -n 1) dist/styles.css && publint",
 		"preview": "vite preview",
 		"test": "pnpm run test:unit",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -58,7 +57,11 @@
 			"types": "./dist/preset.d.ts",
 			"default": "./dist/preset.js"
 		},
-		"./styles.css": "./dist/styles.css"
+		"./styles.css": "./dist/styles.css",
+    "./specs": {
+      "types": "./dist/specs.d.ts",
+      "svelte": "./dist/specs.js"
+    }
 	},
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^2.0.0-next.3",
