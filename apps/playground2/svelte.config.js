@@ -1,6 +1,6 @@
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
-const nonRunic = ["lucide-svelte", "flowbite-theme", "flowbite-svelte"];
+const nonRunic = ["lucide-svelte", "flowbite-svelte/"];
 
 export default {
   // Consult https://svelte.dev/docs#compile-time-svelte-preprocess
