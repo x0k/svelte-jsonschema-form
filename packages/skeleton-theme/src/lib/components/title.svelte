@@ -13,5 +13,5 @@
 		{/if}
 	</label>
 {:else}
-	<div class="font-bold text-2xl" {...config.uiOptions?.titleAttributes}>{title}</div>
+	<div class="font-bold text-xl" {...config.uiOptions?.titleAttributes}>{title}</div>
 {/if}
