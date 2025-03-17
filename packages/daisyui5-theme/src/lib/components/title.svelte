@@ -13,5 +13,5 @@
 		{/if}
 	</label>
 {:else}
-	<legend class="fieldset-legend" {...config.uiOptions?.titleAttributes}>{title}</legend>
+	<legend class="fieldset-legend text-base" {...config.uiOptions?.titleAttributes}>{title}</legend>
 {/if}
