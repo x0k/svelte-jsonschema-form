@@ -7,7 +7,7 @@ import svelte from "@astrojs/svelte";
 // https://astro.build/config
 export default defineConfig({
   site: "https://x0k.github.io",
-  base: "/svelte-jsonschema-form/",
+  base: "/svelte-jsonschema-form/v2/",
   trailingSlash: "always",
   i18n: {
     defaultLocale: "en",
@@ -46,10 +46,6 @@ export default defineConfig({
         {
           label: "Integrations",
           autogenerate: { directory: "integrations" },
-        },
-        {
-          label: "Customization",
-          autogenerate: { directory: "customization" },
         },
         {
           label: "Misc",
