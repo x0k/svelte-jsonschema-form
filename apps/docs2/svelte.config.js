@@ -2,8 +2,7 @@ import { vitePreprocess } from "@astrojs/svelte";
 
 const nonRunic = [
   "lucide-svelte",
-  "flowbite-theme",
-  "flowbite-svelte",
+  "flowbite-svelte/",
   "svelte-json-tree",
 ];
 
