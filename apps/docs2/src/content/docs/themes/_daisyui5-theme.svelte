@@ -1,48 +1,18 @@
 <script lang="ts">
   import { BasicForm } from "@sjsf/form";
   import { theme } from "@sjsf/daisyui5-theme";
-  import "@sjsf/daisyui5-theme/extra-widgets/switch-include";
-  import "@sjsf/daisyui5-theme/extra-widgets/filter-radio-buttons-include";
-  import "@sjsf/daisyui5-theme/extra-widgets/cally-date-picker-include";
+  import { specs } from "@sjsf/daisyui5-theme/specs";
 
   import { createAstro } from "@/astro.svelte";
   import { createMyForm } from "@/components/my-form";
 
-  import {
-    boolean,
-    arrayOfUniqueItems,
-    schema,
-    string,
-    uiSchema,
-  } from "./_demo-schema";
+  import { createSchemas } from "./_demo-schema";
 
   const astro = createAstro();
 
   const form = createMyForm({
+    ...createSchemas(specs),
     theme,
-    schema: {
-      ...schema,
-      properties: {
-        ...schema.properties,
-        toggle: boolean,
-        filter: arrayOfUniqueItems,
-        cally: string,
-      },
-    },
-    uiSchema: {
-      ...uiSchema,
-      toggle: {
-        "ui:components": {
-          checkboxWidget: "switchWidget",
-        },
-      },
-      filter: {
-        selectWidget: "radioButtonsWidget",
-      },
-      cally: {
-        textWidget: "datePickerWidget",
-      },
-    },
   });
 </script>
 

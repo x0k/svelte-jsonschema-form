@@ -5,12 +5,12 @@ sidebar:
 ---
 
 import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/components';
+import styles from "@sjsf/skeleton-theme/styles.css?inline";
 
 import Npm from '@/components/npm.astro';
+import FormCard from '@/components/form-card.astro';
 
-import SkeletonTheme from './_skeleton-theme.astro';
-import skeletonThemCode from './_skeleton-theme.svelte?raw';
-import demoSchemaCode from './_demo-schema.ts?raw';
+import Form from './_skeleton-theme.svelte';
 
 ## Installation
 
@@ -18,13 +18,13 @@ import demoSchemaCode from './_demo-schema.ts?raw';
 
 :::note
 
-This is Skeleton v3 based theme.
+This is `@skeletonlabs/skeleton@3.0.0-next.10` based theme (Tailwind v3).
 
 :::
 
 ### Install Skeleton
 
-<LinkButton href="https://next.skeleton.dev/docs/get-started/installation/sveltekit" variant='secondary' target="_blank" icon="external" >
+<LinkButton href="https://github.com/skeletonlabs/skeleton/blob/2644995d21a3b6a8341793a9fd64b3a145d0e72e/sites/next.skeleton.dev/src/content/docs/get-started/installation/sveltekit.mdx" variant='secondary' target="_blank" icon="external" >
   SvelteKit - Skeleton
 </LinkButton>
 
@@ -66,17 +66,8 @@ Bundled themes:
 - `pine`
 - `rose`
 
-## Demo
+## Widgets
 
-<Tabs>
-<TabItem label="Form.svelte">
-  <Code code={skeletonThemCode} lang="svelte" />
-</TabItem>
-<TabItem label="_demo-schema.ts">
-  <Code code={demoSchemaCode} lang="typescript" />
-</TabItem>
-</Tabs>
-
-<Card>
-  <SkeletonTheme />
-</Card>
+<FormCard style={styles}>
+  <Form client:only="svelte" />
+</FormCard>

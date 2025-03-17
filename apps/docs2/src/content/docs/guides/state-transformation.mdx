@@ -6,7 +6,7 @@ sidebar:
 
 In some cases it may be necessary to transform the form state before it is passed to the validator.
 
-You can do this by providing `getSnapshot` attribute.
+You can do this by providing `getSnapshot` property.
 
 ## Omit extra data
 
@@ -32,14 +32,14 @@ The `omitExtraData` function does not perform data validation!
   import { validator } from "./validator";
   
   const form = createForm({
-    ...theme,
+    theme,
     initialValue,
     schema,
     uiSchema,
     validator,
     translation,
-    getSnapshot() {
-      return omitExtraData(validator, defaultMerger, schema, $state.snapshot(form.formValue))
+    getSnapshot(ctx) {
+      return omitExtraData(validator, defaultMerger, schema, $state.snapshot(ctx.value))
     },
     onSubmit(value) {
       console.log("transformed", value);

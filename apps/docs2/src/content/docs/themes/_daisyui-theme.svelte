@@ -1,32 +1,18 @@
 <script lang="ts">
   import { BasicForm } from "@sjsf/form";
   import { theme } from "@sjsf/daisyui-theme";
-  import "@sjsf/daisyui-theme/extra-widgets/switch-include";
+  import { specs } from '@sjsf/daisyui-theme/specs'
 
   import { createAstro } from "@/astro.svelte";
   import { createMyForm } from "@/components/my-form";
 
-  import { boolean, schema, uiSchema } from "./_demo-schema";
+  import { createSchemas } from "./_demo-schema";
 
   const astro = createAstro();
 
   const form = createMyForm({
+    ...createSchemas(specs),
     theme,
-    schema: {
-      ...schema,
-      properties: {
-        ...schema.properties,
-        toggle: boolean,
-      },
-    },
-    uiSchema: {
-      ...uiSchema,
-      toggle: {
-        "ui:components": {
-          checkboxWidget: "switchWidget",
-        },
-      },
-    },
   });
 </script>
 

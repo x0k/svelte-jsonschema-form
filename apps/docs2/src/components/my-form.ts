@@ -1,5 +1,5 @@
 import { type FormOptions, type Validator, createForm } from "@sjsf/form";
-import { resolver } from "@sjsf/form/resolvers/basic";
+import { resolver } from "@sjsf/form/resolvers/compat";
 import { translation } from "@sjsf/form/translations/en";
 import { createFormValidator } from "@sjsf/ajv8-validator";
 import { theme } from "@sjsf/basic-theme";

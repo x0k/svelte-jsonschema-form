@@ -5,16 +5,22 @@ sidebar:
 ---
 
 import { Code, Card, LinkButton, Tabs, TabItem } from '@astrojs/starlight/components';
+import styles from '@sjsf/flowbite-theme/styles.css?inline';
 
 import Npm from '@/components/npm.astro';
+import FormCard from '@/components/form-card.astro';
 
-import FlowbiteTheme from './_flowbite-theme.astro';
-import flowbiteThemeCode from './_flowbite-theme.svelte?raw';
-import demoSchemaCode from './_demo-schema.ts?raw';
+import Form from './_flowbite-theme.svelte';
 
 ## Installation
 
 <Npm pkg="@sjsf/flowbite-theme@next" />
+
+:::note
+
+This is `flowbite-svelte@0.47.x` based theme (Tailwind v3).
+
+:::
 
 ### Install Flowbite Svelte
 
@@ -46,21 +52,8 @@ export default {
 import flowbiteStyles from "@sjsf/flowbite-theme/styles.css?inline";
 ```
 
-## Additional widgets
+## Widgets
 
-- `toggle`
-
-## Demo
-
-<Tabs>
-<TabItem label="Form.svelte">
-  <Code code={flowbiteThemeCode} lang="svelte" />
-</TabItem>
-<TabItem label="_demo-schema.ts">
-  <Code code={demoSchemaCode} lang="typescript" />
-</TabItem>
-</Tabs>
-
-<Card>
-  <FlowbiteTheme />
-</Card>
+<FormCard  style={styles} >
+  <Form client:only="svelte" />
+</FormCard>

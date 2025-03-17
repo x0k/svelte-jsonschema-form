@@ -58,7 +58,7 @@ export default defineConfig({
         {
           label: "Changelogs",
           autogenerate: { directory: "changelogs" },
-          collapsed: true
+          collapsed: true,
         },
       ],
       components: {
@@ -73,6 +73,9 @@ export default defineConfig({
     // optimizeDeps: {
     //   exclude: ['flowbite-svelte-icons']
     // },
+    ssr: {
+      noExternal: ["lucide-svelte"],
+    },
     resolve: {
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),

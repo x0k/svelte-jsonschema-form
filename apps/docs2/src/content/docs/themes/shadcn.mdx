@@ -5,12 +5,12 @@ sidebar:
 ---
 
 import { Code, Card, LinkButton, Tabs, TabItem } from '@astrojs/starlight/components';
+import styles from '@sjsf/shadcn-theme/styles.css?inline';
 
 import Npm from '@/components/npm.astro';
+import FormCard from '@/components/form-card.astro';
 
-import ShadcnTheme from './_shadcn-theme.astro';
-import shadcnThemeCode from './_shadcn-theme.svelte?raw';
-import demoSchemaCode from './_demo-schema.ts?raw';
+import Form from './_shadcn-theme.svelte';
 
 ## Installation
 
@@ -64,18 +64,13 @@ import { components } from '@sjsf/shadcn-theme/default';
 setThemeContext({ components })
 ```
 
-:::caution
+:::note
 
-You should define `components: ThemeComponents` yourself:
-
-- to reduce final bundle size
-- to avoid https://github.com/x0k/svelte-jsonschema-form/issues/48
-
-  In this case you also should remove `bind:this={ref}` bindings from your components.
+You can define `components: ThemeComponents` yourself to reduce final bundle size
 
 :::
 
-## Demo
+## Widgets
 
 :::caution
 
@@ -86,15 +81,6 @@ See https://github.com/huntabyte/bits-ui/issues/828 for more details.
 
 :::
 
-<Tabs>
-<TabItem label="Form.svelte">
-  <Code code={shadcnThemeCode} lang="svelte" />
-</TabItem>
-<TabItem label="_demo-schema.ts">
-  <Code code={demoSchemaCode} lang="typescript" />
-</TabItem>
-</Tabs>
-
-<Card>
-  <ShadcnTheme />
-</Card>
+<FormCard style={styles} >
+  <Form client:only="svelte" />
+</FormCard>

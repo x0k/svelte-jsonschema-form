@@ -7,28 +7,15 @@ sidebar:
 import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
 
 import Npm from '@/components/npm.astro';
-
-import BasicTheme from './_basic-theme.astro';
-import basicThemeCode from './_basic-theme.svelte?raw';
-import demoSchemaCode from './_demo-schema.ts?raw';
-
 import FormCard from '@/components/form-card.astro';
+
 import Form from './_basic-theme.svelte';
 
 ## Installation
 
 <Npm pkg="@sjsf/basic-theme@next" />
 
-## Demo
-
-<Tabs>
-  <TabItem label="Form.svelte">
-    <Code code={basicThemeCode} lang="svelte" />
-  </TabItem>
-  <TabItem label="_demo-schema.ts">
-    <Code code={demoSchemaCode} lang="typescript" />
-  </TabItem>
-</Tabs>
+## Widgets
 
 <FormCard>
   <Form client:only="svelte" />

@@ -1,17 +1,17 @@
 ---
-title: DaisyUI
+title: DaisyUI v4
 sidebar:
-  order: 1
+  hidden: true
 ---
 
 import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/components';
+import styles from '@sjsf/daisyui-theme/styles.css?inline';
 
 import Npm from '@/components/npm.astro';
 import Picker from '@/components/picker.astro';
+import FormCard from '@/components/form-card.astro';
 
-import DaisyuiTheme from './_daisyui-theme.astro';
-import daisyuiThemeCode from './_daisyui-theme.svelte?raw';
-import demoSchemaCode from './_demo-schema.ts?raw';
+import Form from './_daisyui-theme.svelte';
 
 <Picker>
   <a href="." data-active={true}>v4</a>
@@ -24,7 +24,7 @@ import demoSchemaCode from './_demo-schema.ts?raw';
 
 ### Install daisyUI
 
-<LinkButton href="https://daisyui.com/docs/install/" variant='secondary' target="_blank" icon="external">
+<LinkButton href="https://v4.daisyui.com/docs/install/" variant='secondary' target="_blank" icon="external">
   Install daisyUI as a Tailwind CSS plugin
 </LinkButton>
 
@@ -52,21 +52,8 @@ export default {
 import daisyStyles from "@sjsf/daisyui-theme/styles.css?inline";
 ```
 
-## Additional widgets
+## Widgets
 
-- `toggle`
-
-## Demo
-
-<Tabs>
-<TabItem label="Form.svelte">
-  <Code code={daisyuiThemeCode} lang="svelte" />
-</TabItem>
-<TabItem label="_demo-schema.ts">
-  <Code code={demoSchemaCode} lang="typescript" />
-</TabItem>
-</Tabs>
-
-<Card>
-  <DaisyuiTheme />
-</Card>
+<FormCard style={styles}>
+  <Form client:only="svelte" />
+</FormCard>
