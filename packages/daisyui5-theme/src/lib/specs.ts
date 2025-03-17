@@ -13,7 +13,7 @@ import './extra-widgets/switch-include';
 import './extra-widgets/textarea-include';
 
 const PikadayDatePicker = clientOnly(
-  () => import('../lib/extra-widgets/pikaday-date-picker.svelte')
+  () => import('./extra-widgets/pikaday-date-picker.svelte')
 );
 
 export const specs: s.Specs = {
