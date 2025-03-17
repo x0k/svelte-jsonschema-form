@@ -225,12 +225,24 @@ importers:
       '@sjsf/daisyui5-theme':
         specifier: workspace:*
         version: link:../../packages/daisyui5-theme
+      '@sjsf/flowbite-icons':
+        specifier: workspace:*
+        version: link:../../packages/flowbite-icons
       '@sjsf/flowbite-theme':
         specifier: workspace:*
         version: link:../../packages/flowbite-theme
       '@sjsf/form':
         specifier: workspace:*
         version: link:../../packages/form
+      '@sjsf/lucide-icons':
+        specifier: workspace:*
+        version: link:../../packages/lucide-icons
+      '@sjsf/moving-icons':
+        specifier: workspace:*
+        version: link:../../packages/moving-icons
+      '@sjsf/radix-icons':
+        specifier: workspace:*
+        version: link:../../packages/radix-icons
       '@sjsf/shadcn-theme':
         specifier: workspace:*
         version: link:../../packages/shadcn-theme
@@ -258,6 +270,9 @@ importers:
       svg-pan-zoom:
         specifier: github:bumbu/svg-pan-zoom
         version: https://codeload.github.com/bumbu/svg-pan-zoom/tar.gz/aaa68d186abab5d782191b66d2582592fe5d3c13
+      testing:
+        specifier: workspace:*
+        version: link:../../packages/testing
       zod:
         specifier: 'catalog:'
         version: 3.24.2

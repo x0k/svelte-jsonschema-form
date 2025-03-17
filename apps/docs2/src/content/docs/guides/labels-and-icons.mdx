@@ -12,9 +12,11 @@ import FormCard from '@/components/form-card.astro';
 import Icons from './_icons.svelte';
 import iconsCode from './_icons.svelte?raw';
 
+import IconsShowCase from './_icons.astro';
+
 ## Translation
 
-One of the mandatory components of a form is `translate`. You can see its use in various places in the form (various buttons and labels).
+A required component of the form is `translate`, which is used in multiple places, including buttons and labels.
 
 Translations are imported from `@sjsf/form/translations/{locale}`, currently supported locales:
 
@@ -35,135 +37,6 @@ Text is good, but you can do better by adding icons!
 
 <LinkCard title="Icons API reference" href="../../api-reference/icons/" />
 
-There are also ready-made sets of icons for control buttons.
+There are also ready-made sets of icons for the control buttons.
 
-### Lucide icons
-
-Installation:
-
-<Npm pkg="@sjsf/lucide-icons@next" />
-
-Usage:
-
-```svelte
-<script lang="ts">
-  import { createForm } from '@sjsf/form';
-  import { icons } from '@sjsf/lucide-icons';
-
-  const form = createForm({
-    icons,
-    ...
-  })
-</script>
-```
-
-<LinkButton
-  href="https://x0k.github.io/svelte-jsonschema-form/playground2/?sample=Arrays&theme=daisy&icons=lucide&vevent=0&vafter=0"
-  variant="secondary"
-  icon="external"
-  iconPlacement="end"
-  target="_blank"
->
-  Playground
-</LinkButton>
-
-### Moving icons
-
-Installation:
-
-<Npm pkg="@sjsf/moving-icons@next" />
-
-Usage:
-
-```svelte
-<script lang="ts">
-  import { createForm } from '@sjsf/form';
-  import { icons } from '@sjsf/moving-icons';
-
-  const form = createForm({
-    icons,
-    ...
-  })
-</script>
-```
-
-<LinkButton
-  href="https://x0k.github.io/svelte-jsonschema-form/playground2/?sample=Arrays&theme=daisy&icons=lucide&vevent=0&vafter=0"
-  variant="secondary"
-  icon="external"
-  iconPlacement="end"
-  target="_blank"
->
-  Playground
-</LinkButton>
-
-### Flowbite icons
-
-Installation:
-
-<Npm pkg="@sjsf/flowbite-icons@next" />
-
-Add icons content to the tailwindcss config:
-
-```typescript
-import { FLOWBITE_ICONS_CONTENT } from '@sjsf/flowbite-icons/preset'
-
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: ['./src/**/*.{html,js,svelte,ts}', FLOWBITE_ICONS_CONTENT],
-}
-```
-
-Usage:
-
-```svelte
-<script lang="ts">
-  import { createForm } from '@sjsf/form';
-  import { icons } from '@sjsf/flowbite-icons';
-
-  const form = createForm({
-    icons,
-    ...
-  })
-</script>
-```
-
-<LinkButton
-  href="https://x0k.github.io/svelte-jsonschema-form/playground2/?sample=Arrays&theme=flowbite&icons=flowbite&vevent=0&vafter=0"
-  variant="secondary"
-  icon="external"
-  iconPlacement="end"
-  target="_blank"
->
-  Playground
-</LinkButton>
-
-### Radix icons
-
-Installation:
-
-<Npm pkg="@sjsf/radix-icons@next" />
-
-Usage:
-
-```svelte
-<script lang="ts">
-  import { createForm } from '@sjsf/form';
-  import { icons } from '@sjsf/radix-icons';
-
-  const form = createForm({
-    icons,
-    ...
-  })
-</script>
-```
-
-<LinkButton
-  href="https://x0k.github.io/svelte-jsonschema-form/playground2/?sample=Arrays&theme=skeleton&icons=radix&vevent=0&vafter=0"
-  variant="secondary"
-  icon="external"
-  iconPlacement="end"
-  target="_blank"
->
-  Playground
-</LinkButton>
+<IconsShowCase />

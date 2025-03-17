@@ -15,7 +15,7 @@
     properties: {
       text: {
         type: "string",
-        title: "Simple text input",
+        title: "Text input",
       },
     },
     required: ["text"],

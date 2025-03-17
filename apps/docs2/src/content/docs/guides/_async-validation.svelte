@@ -11,8 +11,8 @@
 
   const ajv = addFormComponents(new Ajv());
   const validate: SchemaValidateFunction = async (schema, data) => {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    if (Math.random() > 0.5) {
+    await new Promise((resolve) => setTimeout(resolve, 600));
+    if (Math.random() > 0.7) {
       throw new Error("async error");
     }
     return data.length >= schema.minimum && data.length <= schema.maximum;
@@ -30,7 +30,7 @@
     pattern: "^\\d+$",
     asyncLength: {
       minimum: 3,
-      maximum: 7,
+      maximum: 6,
     },
   };
 
@@ -49,7 +49,14 @@
   };
 </script>
 
-form validation: {statusNames[form.validation.status]}, fields validation: {statusNames[
-  form.fieldsValidation.status
-]}
-<BasicForm {form} novalidate />
+<p>
+  The form accepts a sequence of digits (checked synchronously) with the number
+  of digits from 3 to 6 (checked asynchronously, with a 70% chance of successful
+  verification)
+</p>
+<p>
+  form validation: {statusNames[form.validation.status]}, fields validation: {statusNames[
+    form.fieldsValidation.status
+  ]}
+</p>
+<BasicForm {form} novalidate autocomplete="off" />

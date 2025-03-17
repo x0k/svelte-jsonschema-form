@@ -5,7 +5,7 @@
 
   const schema: Schema = {
     type: "string",
-    title: "Simple text input",
+    title: "Text input",
   };
 
   const uiSchema: UiSchemaRoot = {

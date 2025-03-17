@@ -8,21 +8,21 @@ import { Code, Card, LinkCard } from '@astrojs/starlight/components';
 
 import FormCard from '@/components/form-card.astro'
 
-import MinimalSetupForm from "./_minimal-setup.svelte";
-import minimalSetupCode from './_minimal-setup.svelte?raw';
+import SimpleSetupForm from "./_simple-setup.svelte";
+import simpleSetupCode from './_simple-setup.svelte?raw';
 
 import UiSchemaForm from './_ui-schema.svelte';
 import uiSchemaCode from './_ui-schema.svelte?raw';
 
-import FormDataForm from './_form-data.svelte';
-import formDataCode from './_form-data.svelte?raw';
+import FormStateForm from './_form-state.svelte';
+import formStateCode from './_form-state.svelte?raw';
 
-Let's explore the most basic setup:
+Let's start with the simplest setup:
 
-<Code code={minimalSetupCode} lang="svelte" />
+<Code code={simpleSetupCode} lang="svelte" />
 
 <FormCard>
-  <MinimalSetupForm client:only="svelte" />
+  <SimpleSetupForm client:only="svelte" />
 </FormCard>
 
 In the example above, we create a form based on json schema and
@@ -41,7 +41,7 @@ so you can import only the functionality you need, keeping your bundle lean and 
 
 ## UI Schema
 
-With the `uiSchema` parameter, you can customize the user interface of the form.
+With the `uiSchema` parameter you can customize the appearance of the form.
 
 :::note
 
@@ -59,7 +59,7 @@ We'll talk about `MyForm` component in the [Reusable defaults](../reusable-defau
 
 ## Form state
 
-To access the state of the form you can use properties such as `value` and `errors`
+Use a factory to create a form to access its state.
 
 :::tip
 
@@ -67,8 +67,8 @@ Use getters to pass reactive parameters to the `createForm` (`createMyForm`) fun
 
 :::
 
-<Code code={formDataCode} lang="svelte" />
+<Code code={formStateCode} lang="svelte" />
 
 <FormCard>
-  <FormDataForm client:only="svelte" />
+  <FormStateForm client:only="svelte" />
 </FormCard>

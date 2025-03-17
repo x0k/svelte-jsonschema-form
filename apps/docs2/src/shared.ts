@@ -1,4 +1,4 @@
-import type { StarlightIcon } from '@astrojs/starlight/types';
+import type { StarlightIcon } from "@astrojs/starlight/types";
 
 export const THEMES = [
   "basic",
@@ -32,6 +32,24 @@ export const THEME_PACKAGES = {
 export function isTheme(str: string): str is Theme {
   return str in THEME_TITLES;
 }
+
+export const ICONS_PACKAGES = ["lucide", "moving", "flowbite", "radix"] as const;
+
+export type IconsPackage = (typeof ICONS_PACKAGES)[number];
+
+export const ICONS_PACKAGE_NAMES = {
+  flowbite: "@sjsf/flowbite-icons",
+  lucide: "@sjsf/lucide-icons",
+  moving: "@sjsf/moving-icons",
+  radix: "@sjsf/radix-icons",
+} satisfies Record<IconsPackage, string>;
+
+export const ICONS_PACKAGE_TITLES = {
+  flowbite: "Flowbite",
+  lucide: "Lucide",
+  moving: "Moving",
+  radix: "Radix",
+} satisfies Record<IconsPackage, string>;
 
 export const PKG_MANGERS = ["npm", "yarn", "pnpm", "bun"] as const;
 

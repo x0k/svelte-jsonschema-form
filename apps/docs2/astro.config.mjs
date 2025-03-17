@@ -74,6 +74,9 @@ export default defineConfig({
     }),
   ],
   vite: {
+    // optimizeDeps: {
+    //   exclude: ['flowbite-svelte-icons']
+    // },
     resolve: {
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
