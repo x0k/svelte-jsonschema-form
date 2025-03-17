@@ -59,7 +59,9 @@
         },
       },
     },
-    onSubmit: resolve.run,
+    onSubmit(config: Config) {
+      resolve.run(config)
+    },
     get disabled() {
       return resolve.isProcessed;
     },

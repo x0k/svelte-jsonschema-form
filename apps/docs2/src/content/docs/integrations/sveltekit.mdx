@@ -116,12 +116,6 @@ it may lead to ambiguous results if the following conditions are violated:
       - `isPseudoSeparator` - <code>{DEFAULT_ID_PSEUDO_SEPARATOR}</code>
   - If your schema contains `additionalProperties`:
     - Keys of initial object values must not contain the separators.
-    - If you provide some initial value for `additionalProperties` or `JavaScript` is enabled but the raw `form` element is used (without `use:form.enhance`):
-      - You should provide `additionalPropertyKeyValidationError` or `additionalPropertyKeyValidator` options to `useSvelteKitForm` for preventing the user to input invalid keys.
-      Additional property name is invalid if:
-        - `additionalProperties` schema is an object or an array schema and name contains `idSeparator`
-        - `additionalProperties` schema is neither an object schema nor an array schema and name has a suffix consisting of a `isPseudoSeparator`
-        and a keyword: {IDENTIFIABLE_FIELD_ELEMENTS.map(el => <><code>{el}</code><span> </span></>)}
   - You may produce these checks at runtime with the `staticAnalysis` and other functions from `@sjsf/form/static-analysis` submodule.
     Functions from this submodule returns an iterable of errors, so you can:
     - Throw an error on the first error or list all errors (in a dev environment)

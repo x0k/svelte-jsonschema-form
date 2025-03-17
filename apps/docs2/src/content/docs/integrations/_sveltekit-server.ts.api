@@ -1,14 +1,10 @@
 import type { Schema } from "@sjsf/form";
-import { createValidator2 } from "@sjsf/ajv8-validator";
-import {
-  initForm,
-  makeFormDataParser,
-  validateForm2,
-} from "@sjsf/sveltekit/server";
+import { createFormValidator } from "@sjsf/ajv8-validator";
+import { initForm, makeFormDataParser, validateForm } from "@sjsf/sveltekit/server";
 
 import type { Actions } from "./$types";
 
-const validator = createValidator2();
+const validator = createFormValidator();
 
 const parseFormData = makeFormDataParser({
   validator,
@@ -38,11 +34,11 @@ export const load = async () => {
 export const actions = {
   default: async ({ request }) => {
     const data = await parseFormData({
-      schema,
       request,
+      schema,
     });
     return {
-      form: await validateForm2({
+      form: await validateForm({
         request,
         schema,
         validator,

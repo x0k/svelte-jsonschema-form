@@ -1,29 +1,28 @@
 <script lang="ts">
-  import { BasicForm, setFromContext } from "@sjsf/form";
-  import { createValidator2 } from "@sjsf/ajv8-validator";
-  import { theme } from "@sjsf/basic-theme";
+  import { BasicForm } from "@sjsf/form";
+  import { createFormValidator } from "@sjsf/ajv8-validator";
+  import { resolver } from "@sjsf/form/resolvers/basic";
   import { translation } from "@sjsf/form/translations/en";
-  import {
-    createMeta,
-    createSvelteKitForm,
-    createSvelteKitRequest,
-  } from "@sjsf/sveltekit/client";
+  import { theme } from "@sjsf/basic-theme";
+  import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit/client";
 
   import type { PageData, ActionData } from "./$types.js";
 
-  const meta = createMeta<ActionData, PageData, "form">("form");
-  const request = createSvelteKitRequest(meta, {
-    onSuccess: console.log,
-    onFailure: console.error,
-  });
-  const form = createSvelteKitForm(meta, {
-    ...theme,
-    validator: createValidator2(),
-    translation,
-    onSubmit: request.run,
-    onSubmitError: console.warn,
-  });
-  setFromContext(form.context);
+  const meta = createMeta<ActionData, PageData>().form;
+  const { form } = setupSvelteKitForm(
+    meta,
+    {
+      resolver,
+      theme,
+      validator: createFormValidator(),
+      translation,
+      onSubmitError: console.warn,
+    },
+    {
+      onSuccess: console.log,
+      onFailure: console.error,
+    }
+  );
 </script>
 
 <BasicForm {form} method="POST" />
