@@ -7,11 +7,11 @@ sidebar:
 import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
 
 import Npm from '@/components/npm.astro';
+import FormCard from '@/components/form-card.astro';
 
-import Form from './_cfworker.astro';
+import Form from './_cfworker.svelte';
 import formCode from './_cfworker.svelte?raw';
 import sharedCode from './_shared.ts?raw';
-import apiCode from './_cfworker.api.ts?raw';
 
 :::caution
 
@@ -41,14 +41,10 @@ Form validator implementation based on [@cfworker/json-schema](https://github.co
   </TabItem>
 </Tabs>
 
-<Card>
-  <Form />
-</Card>
+<FormCard>
+  <Form client:only="svelte" />
+</FormCard>
 
 ## Async validation
 
 This validator does not support async validation.
-
-## API
-
-<Code code={apiCode} lang="typescript" />

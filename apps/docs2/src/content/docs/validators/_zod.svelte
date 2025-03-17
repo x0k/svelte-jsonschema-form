@@ -1,6 +1,6 @@
 <script lang="ts">
   import { BasicForm, ON_INPUT, type Schema } from "@sjsf/form";
-  import { createValidator } from "@sjsf/zod-validator";
+  import { createFormValidator } from "@sjsf/zod-validator";
   import { zodToJsonSchema } from "zod-to-json-schema";
   import { z } from "zod";
 
@@ -24,7 +24,7 @@
 
   type Value = z.infer<typeof schema>;
 
-  const validator = createValidator({ schema, uiSchema });
+  const validator = createFormValidator(schema, { uiSchema });
 
   const form = createMyForm({
     schema: zodToJsonSchema(schema, { errorMessages: true }) as Schema,

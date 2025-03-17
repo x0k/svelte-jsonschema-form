@@ -3,6 +3,7 @@ import { resolver } from "@sjsf/form/resolvers/compat";
 import { translation } from "@sjsf/form/translations/en";
 import { createFormValidator } from "@sjsf/ajv8-validator";
 import { theme } from "@sjsf/basic-theme";
+import '@sjsf/form/fields/extra-fields/enum-include';
 
 type Defaults = "theme" | "translation" | "validator" | "resolver";
 

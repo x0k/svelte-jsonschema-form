@@ -1,12 +1,12 @@
 <script lang="ts">
   import { BasicForm, ON_INPUT } from "@sjsf/form";
-  import { createValidator } from "@sjsf/cfworker-validator";
+  import { createFormValidator } from "@sjsf/cfworker-validator";
 
   import { createMyForm } from "@/components/my-form";
 
   import { schema, uiSchema } from "./_shared";
 
-  const validator = createValidator({ uiSchema });
+  const validator = createFormValidator({ uiSchema });
 
   const form = createMyForm({
     schema,

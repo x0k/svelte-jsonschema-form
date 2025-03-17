@@ -7,11 +7,11 @@ sidebar:
 import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
 
 import Npm from '@/components/npm.astro';
+import FormCard from '@/components/form-card.astro';
 
-import Form from './_zod.astro';
+import Form from './_zod.svelte';
 import formCode from './_zod.svelte?raw';
 import sharedCode from './_shared.ts?raw';
-import apiCode from './_zod.api.ts?raw';
 
 :::caution
 
@@ -45,9 +45,9 @@ References:
   </TabItem>
 </Tabs>
 
-<Card>
-  <Form />
-</Card>
+<FormCard>
+  <Form client:only="svelte" />
+</FormCard>
 
 ## Caveats
 
@@ -61,14 +61,17 @@ So first of all, please read this warning [about using this library at runtime](
 However, I believe you are still safe as only small leafy bits of the circuit are transformed with this approach.
 
 - If you use any conditional keyword or recursive references it means with a high probability something can go wrong.
-If you have problems with this approach, try using zod with a different validator using the `augment` submodule.
-So in this case zod validator will be used only for full form validation.
+If you have problems with this approach, you can try to use zod with different validator
+(zod validator will be used only for full form validation).
 
 ```typescript
-import { createValidator } from "@sjsf/other-validator";
-import { withZod } from "@sjsf/zod-integration/augment";
+import { createFormValueValidator } from '@sjsf/form/validators/standard-schema'
+import { createFormValidator } from "@sjsf/another-validator";
 
-const validator = withZod(createValidator(), { schema });
+const validator = {
+  ...createFormValidator(),
+  ...createFormValueValidator({ schema: zodSchema })
+}
 ```
 
 ## Async validation
@@ -76,14 +79,10 @@ const validator = withZod(createValidator(), { schema });
 This validator supports async validation but only for the full form validation.
 
 ```typescript
-import { createValidator } from "@sjsf/zod-validator";
+import { createFormValidator } from "@sjsf/zod-validator";
 
-const validator = createValidator({
+const validator = createFormValidator({
   async: true,
   schema,
 });
 ```
-
-## API
-
-<Code code={apiCode} lang='typescript' />

@@ -7,20 +7,13 @@ sidebar:
 import { LinkButton, Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
 
 import Npm from '@/components/npm.astro';
+import FormCard from '@/components/form-card.astro';
 
-import Form from './_ajv.astro';
+import Form from './_ajv.svelte';
 import formCode from './_ajv.svelte?raw';
 import sharedCode from './_shared.ts?raw';
-import apiCode from './_ajv.api.ts?raw'
 
 Form validator implementation based on [Ajv@8 JSON schema validator](https://github.com/ajv-validator/ajv).
-
-:::note
-
-Currently this validator supports in place schema mutations
-but in the next major version it will check only for reference equality by default.
-
-:::
 
 ## Installation
 
@@ -37,9 +30,9 @@ but in the next major version it will check only for reference equality by defau
   </TabItem>
 </Tabs>
 
-<Card>
-  <Form />
-</Card>
+<FormCard>
+  <Form client:only="svelte" />
+</FormCard>
 
 ## Async validation
 
@@ -56,13 +49,9 @@ This validator supports async validation.
 </LinkButton>
 
 ```typescript
-import { createAsyncValidator } from "@sjsf/ajv8-validator";
+import { createAsyncFormValidator } from "@sjsf/ajv8-validator";
 
-const validator = createAsyncValidator({
+const validator = createAsyncFormValidator({
   ajv: yourAjvInstance,
 })
 ```
-
-## API
-
-<Code code={apiCode} lang="typescript" />
