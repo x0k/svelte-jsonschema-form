@@ -1,5 +1,17 @@
 # @sjsf/daisyui5-theme
 
+## 2.0.0-next.4
+
+### Major Changes
+
+- Increase font size in title component ([`d1d5505`](https://github.com/x0k/svelte-jsonschema-form/commit/d1d550579700f413b8b32345ad1c17e5a9b6aaf4))
+
+### Patch Changes
+
+- Updated dependencies [[`f37bf4a`](https://github.com/x0k/svelte-jsonschema-form/commit/f37bf4a9e49eec84bb64b8471ff8f34bc056fdd8), [`c43eb93`](https://github.com/x0k/svelte-jsonschema-form/commit/c43eb932cbb82b4ba802cd1aff4a35ae2a5f0c88), [`84f9ff9`](https://github.com/x0k/svelte-jsonschema-form/commit/84f9ff9cc15bd252da3967e9dcc1755ffa024e06)]:
+  - @sjsf/form@2.0.0-next.4
+  - @sjsf/basic-theme@2.0.0-next.4
+
 ## 2.0.0-next.3
 
 ### Patch Changes

@@ -20,14 +20,18 @@
     "@sjsf/skeleton-theme": "1.9.2",
     "@sjsf/sveltekit": "1.9.2",
     "testing": "0.0.12",
-    "@sjsf/zod-validator": "1.9.2"
+    "@sjsf/zod-validator": "1.9.2",
+    "@sjsf/moving-icons": "2.0.0-next.2"
   },
   "changesets": [
     "better-goats-swim",
+    "clean-states-pump",
     "clever-eagles-turn",
     "cold-apples-speak",
+    "common-rabbits-open",
     "dull-balloons-rush",
     "early-suns-enjoy",
+    "empty-bears-attend",
     "empty-birds-learn",
     "fine-days-follow",
     "fine-glasses-raise",
@@ -36,6 +40,7 @@
     "huge-planes-learn",
     "little-otters-carry",
     "loud-monkeys-jog",
+    "nine-pianos-tie",
     "open-clouds-change",
     "quick-candies-rescue",
     "quick-cycles-sniff",
@@ -47,11 +52,14 @@
     "tangy-kings-work",
     "thick-carrots-type",
     "tough-bears-lose",
+    "tough-paths-feel",
     "tough-ravens-raise",
+    "two-wings-double",
     "upset-snails-smile",
     "weak-seals-drum",
     "weak-suits-clap",
     "wet-cats-agree",
-    "whole-snakes-allow"
+    "whole-snakes-allow",
+    "wise-dodos-ring"
   ]
 }

@@ -1,5 +1,24 @@
 # playground2
 
+## 0.0.2-next.4
+
+### Patch Changes
+
+- Updated dependencies [[`d6913c2`](https://github.com/x0k/svelte-jsonschema-form/commit/d6913c29b15d9ff9cecd3350bc42af583fba0439), [`d1d5505`](https://github.com/x0k/svelte-jsonschema-form/commit/d1d550579700f413b8b32345ad1c17e5a9b6aaf4), [`f37bf4a`](https://github.com/x0k/svelte-jsonschema-form/commit/f37bf4a9e49eec84bb64b8471ff8f34bc056fdd8), [`72bd3fc`](https://github.com/x0k/svelte-jsonschema-form/commit/72bd3fc0422f64134342c257e1d6e8a55bf4a9ac), [`41b184e`](https://github.com/x0k/svelte-jsonschema-form/commit/41b184e3a3836a2315f94d1327d8bd97318ceef4), [`c43eb93`](https://github.com/x0k/svelte-jsonschema-form/commit/c43eb932cbb82b4ba802cd1aff4a35ae2a5f0c88), [`84f9ff9`](https://github.com/x0k/svelte-jsonschema-form/commit/84f9ff9cc15bd252da3967e9dcc1755ffa024e06)]:
+  - @sjsf/skeleton-theme@2.0.0-next.4
+  - @sjsf/daisyui5-theme@2.0.0-next.4
+  - @sjsf/form@2.0.0-next.4
+  - @sjsf/cfworker-validator@2.0.0-next.4
+  - @sjsf/moving-icons@2.0.0-next.4
+  - @sjsf/ajv8-validator@2.0.0-next.4
+  - @sjsf/basic-theme@2.0.0-next.4
+  - @sjsf/daisyui-theme@2.0.0-next.4
+  - @sjsf/flowbite-icons@2.0.0-next.4
+  - @sjsf/flowbite-theme@2.0.0-next.4
+  - @sjsf/lucide-icons@2.0.0-next.4
+  - @sjsf/radix-icons@2.0.0-next.4
+  - @sjsf/shadcn-theme@2.0.0-next.4
+
 ## 0.0.2-next.3
 
 ### Patch Changes
