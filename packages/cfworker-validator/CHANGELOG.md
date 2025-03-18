@@ -1,5 +1,14 @@
 # @sjsf/cfworker-validator
 
+## 2.0.0-next.4
+
+### Patch Changes
+
+- Use `getValueByPath` to extract title from json schema ([`72bd3fc`](https://github.com/x0k/svelte-jsonschema-form/commit/72bd3fc0422f64134342c257e1d6e8a55bf4a9ac))
+
+- Updated dependencies [[`f37bf4a`](https://github.com/x0k/svelte-jsonschema-form/commit/f37bf4a9e49eec84bb64b8471ff8f34bc056fdd8), [`c43eb93`](https://github.com/x0k/svelte-jsonschema-form/commit/c43eb932cbb82b4ba802cd1aff4a35ae2a5f0c88), [`84f9ff9`](https://github.com/x0k/svelte-jsonschema-form/commit/84f9ff9cc15bd252da3967e9dcc1755ffa024e06)]:
+  - @sjsf/form@2.0.0-next.4
+
 ## 2.0.0-next.3
 
 ### Patch Changes
