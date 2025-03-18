@@ -318,7 +318,7 @@ importers:
         version: 1.9.2(@sjsf/form@1.9.2(svelte@5.23.0))(daisyui@4.12.24(postcss@8.5.3))(svelte@5.23.0)
       '@sjsf/flowbite-icons':
         specifier: ^1.9.2
-        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.23.0))(flowbite-svelte-icons@2.0.3(svelte@5.23.0)(tailwind-merge@2.6.0)(tailwindcss@3.4.17))(svelte@5.23.0)
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.23.0))(flowbite-svelte-icons@2.0.2(svelte@5.23.0)(tailwind-merge@2.6.0)(tailwindcss@3.4.17))(svelte@5.23.0)
       '@sjsf/flowbite-theme':
         specifier: ^1.9.2
         version: 1.9.2(@sjsf/form@1.9.2(svelte@5.23.0))(flowbite-svelte@0.47.4(rollup@4.34.8)(svelte@5.23.0))(flowbite@2.5.2(rollup@4.34.8))(svelte@5.23.0)
@@ -349,6 +349,9 @@ importers:
       flowbite-svelte:
         specifier: ^0.47.4
         version: 0.47.4(rollup@4.34.8)(svelte@5.23.0)
+      flowbite-svelte-icons:
+        specifier: 2.0.2
+        version: 2.0.2(svelte@5.23.0)(tailwind-merge@2.6.0)(tailwindcss@3.4.17)
       lucide-svelte:
         specifier: ^0.453.0
         version: 0.453.0(svelte@5.23.0)
@@ -3634,6 +3637,14 @@ packages:
   flowbite-datepicker@1.3.0:
     resolution: {integrity: sha512-CLVqzuoE2vkUvWYK/lJ6GzT0be5dlTbH3uuhVwyB67+PjqJWABm2wv68xhBf5BqjpBxvTSQ3mrmLHpPJ2tvrSQ==}
 
+  flowbite-svelte-icons@2.0.2:
+    resolution: {integrity: sha512-Vkmduy2867Rk8R7TziPirsWkixJnToFBEXRaN4ouJabOx62NQjiBbHFe+HTaMOQmdp4FNMI2Nhtk2I2CQ8r3RQ==}
+    engines: {node: '>=18.0.0', npm: '>=7.0.0'}
+    peerDependencies:
+      svelte: ^5.0.0
+      tailwind-merge: ^2.3.0
+      tailwindcss: ^3.4.3
+
   flowbite-svelte-icons@2.0.3:
     resolution: {integrity: sha512-itIRhTZx+I774iyIj41NJkVlnoQiZ6SF1itc4XFVo887lwu7xlg54ewUXxRmmJHA5vmqhimM49SxXmt7lOjOzw==}
     peerDependencies:
@@ -6846,10 +6857,10 @@ snapshots:
       daisyui: 4.12.24(postcss@8.5.3)
       svelte: 5.23.0
 
-  '@sjsf/flowbite-icons@1.9.2(@sjsf/form@1.9.2(svelte@5.23.0))(flowbite-svelte-icons@2.0.3(svelte@5.23.0)(tailwind-merge@2.6.0)(tailwindcss@3.4.17))(svelte@5.23.0)':
+  '@sjsf/flowbite-icons@1.9.2(@sjsf/form@1.9.2(svelte@5.23.0))(flowbite-svelte-icons@2.0.2(svelte@5.23.0)(tailwind-merge@2.6.0)(tailwindcss@3.4.17))(svelte@5.23.0)':
     dependencies:
       '@sjsf/form': 1.9.2(svelte@5.23.0)
-      flowbite-svelte-icons: 2.0.3(svelte@5.23.0)(tailwind-merge@2.6.0)(tailwindcss@3.4.17)
+      flowbite-svelte-icons: 2.0.2(svelte@5.23.0)(tailwind-merge@2.6.0)(tailwindcss@3.4.17)
       svelte: 5.23.0
 
   '@sjsf/flowbite-theme@1.9.2(@sjsf/form@1.9.2(svelte@5.23.0))(flowbite-svelte@0.47.4(rollup@4.34.8)(svelte@5.23.0))(flowbite@2.5.2(rollup@4.34.8))(svelte@5.23.0)':
@@ -8540,6 +8551,12 @@ snapshots:
       flowbite: 2.5.2(rollup@4.34.8)
     transitivePeerDependencies:
       - rollup
+
+  flowbite-svelte-icons@2.0.2(svelte@5.23.0)(tailwind-merge@2.6.0)(tailwindcss@3.4.17):
+    dependencies:
+      svelte: 5.23.0
+      tailwind-merge: 2.6.0
+      tailwindcss: 3.4.17
 
   flowbite-svelte-icons@2.0.3(svelte@5.23.0)(tailwind-merge@2.6.0)(tailwindcss@3.4.17):
     dependencies:

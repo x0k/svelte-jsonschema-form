@@ -28,7 +28,8 @@
     "flowbite": "^2.5.2",
     "flowbite-svelte": "^0.47.4",
     "lucide-svelte": "^0.453.0",
-    "tailwind-variants": "^0.2.1"
+    "tailwind-variants": "^0.2.1",
+		"flowbite-svelte-icons": "2.0.2"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "catalog:",
