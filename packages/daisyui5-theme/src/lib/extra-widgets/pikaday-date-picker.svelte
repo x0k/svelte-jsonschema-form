@@ -13,7 +13,6 @@
 
 <script lang="ts">
 	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
-	import Pikaday from 'pikaday';
 
 	let {
 		value = $bindable(),
@@ -22,24 +21,23 @@
 		config
 	}: ComponentProps['datePickerWidget'] = $props();
 
-	let input: HTMLInputElement | undefined;
+	let input: HTMLInputElement;
 	$effect(() => {
-		if (!input) {
-			return;
-		}
-		const format = new Intl.DateTimeFormat('en-CA', {
-			year: 'numeric',
-			month: '2-digit',
-			day: '2-digit'
+		import('pikaday').then(({ default: Pikaday }) => {
+			const format = new Intl.DateTimeFormat('en-CA', {
+				year: 'numeric',
+				month: '2-digit',
+				day: '2-digit'
+			});
+			const picker = new Pikaday({
+				field: input,
+				onSelect(date) {
+					value = format.format(date);
+				},
+				...config.uiOptions?.daisyui5PikadayCalendarOptions
+			});
+			return () => picker.destroy();
 		});
-		const picker = new Pikaday({
-			field: input,
-			onSelect(date) {
-				value = format.format(date);
-			},
-			...config.uiOptions?.daisyui5PikadayCalendarOptions
-		});
-		return () => picker.destroy();
 	});
 
 	const ctx = getFormContext();

@@ -1,4 +1,3 @@
-import { clientOnly } from '@sjsf/form/lib/env';
 import { s } from 'testing/demo'
 
 import './extra-widgets/cally-date-picker-include';
@@ -12,9 +11,7 @@ import './extra-widgets/range-include';
 import './extra-widgets/switch-include';
 import './extra-widgets/textarea-include';
 
-const PikadayDatePicker = clientOnly(
-  () => import('./extra-widgets/pikaday-date-picker.svelte')
-);
+import PikadayDatePicker from './extra-widgets/pikaday-date-picker.svelte';
 
 export const specs: s.Specs = {
 		callyDatePicker: [s.text, { 'ui:components': { textWidget: 'datePickerWidget' } }],

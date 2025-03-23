@@ -1,8 +1,7 @@
-import { clientOnly } from '@sjsf/form/lib/env';
-
 import { definitions } from '../definitions';
 
-export type * as __preservePikadayTypes from './pikaday-date-picker.svelte';
+import PikadayDatePicker from './pikaday-date-picker.svelte';
+import './pikaday-date-picker.svelte';
 
 declare module "../definitions.js" {
   interface ExtraWidgets {
@@ -10,4 +9,4 @@ declare module "../definitions.js" {
   }
 }
 
-definitions.datePickerWidget = clientOnly(() => import('./pikaday-date-picker.svelte'));
+definitions.datePickerWidget = PikadayDatePicker
