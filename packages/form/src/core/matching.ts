@@ -19,16 +19,44 @@ import { typeOfValue } from "./type.js";
 import type { Validator } from "./validator.js";
 import { isSchemaObjectValue } from "./value.js";
 
-const JUNK_OPTION_ID = "_$junk_option_schema_id$_";
-const JUNK_OPTION: Schema = {
-  type: "object",
-  $id: JUNK_OPTION_ID,
-  properties: {
-    __not_really_there__: {
-      type: "number",
-    },
-  },
-};
+// Should increase cache hit for validators with cache based on weak map
+const AUGMENTED_SCHEMAS = new WeakMap<Schema, Schema>();
+
+function isOptionMatching(
+  option: Schema,
+  validator: Validator,
+  formData: SchemaValue,
+  rootSchema: Schema,
+  discriminatorField: string | undefined,
+  discriminatorFormData: SchemaValue | undefined
+): boolean {
+  const optionProperties = option[PROPERTIES_KEY];
+  // NOTE: This is possibly a bug since schema can be combinatorial (oneOf, anyOf)
+  if (optionProperties === undefined) {
+    return validator.isValid(option, rootSchema, formData);
+  }
+  const discriminator =
+    discriminatorField !== undefined && optionProperties[discriminatorField];
+  if (discriminator !== undefined) {
+    return validator.isValid(discriminator, rootSchema, discriminatorFormData);
+  }
+  let augmentedSchema = AUGMENTED_SCHEMAS.get(option);
+  if (augmentedSchema === undefined) {
+    const { required, ...shallowCopy } = option;
+    augmentedSchema = {
+      allOf: [
+        shallowCopy,
+        {
+          anyOf: Object.keys(optionProperties).map((key) => ({
+            required: [key],
+          })),
+        },
+      ],
+    };
+    AUGMENTED_SCHEMAS.set(option, augmentedSchema);
+  }
+  return validator.isValid(augmentedSchema, rootSchema, formData);
+}
 
 export function getFirstMatchingOption(
   validator: Validator,
@@ -53,68 +81,18 @@ export function getFirstMatchingOption(
   }
 
   const isDiscriminatorActual =
-    isSchemaObjectValue(formData) && discriminatorField;
+    isSchemaObjectValue(formData) && discriminatorField !== undefined;
   for (let i = 0; i < options.length; i++) {
-    const option = options[i]!;
-    const optionProperties = option[PROPERTIES_KEY];
-    if (optionProperties === undefined) {
-      if (validator.isValid(option, rootSchema, formData)) {
-        return i;
-      }
-      continue;
-    }
     if (
-      isDiscriminatorActual &&
-      optionProperties[discriminatorField] !== undefined
+      isOptionMatching(
+        options[i]!,
+        validator,
+        formData,
+        rootSchema,
+        isDiscriminatorActual ? discriminatorField : undefined,
+        isDiscriminatorActual ? formData[discriminatorField] : undefined
+      )
     ) {
-      const discriminator = optionProperties[discriminatorField];
-      const value = formData[discriminatorField];
-      if (validator.isValid(discriminator, rootSchema, value)) {
-        return i;
-      }
-    }
-    // If the schema describes an object then we need to add slightly more
-    // strict matching to the schema, because unless the schema uses the
-    // "requires" keyword, an object will match the schema as long as it
-    // doesn't have matching keys with a conflicting type. To do this we use an
-    // "anyOf" with an array of requires. This augmentation expresses that the
-    // schema should match if any of the keys in the schema are present on the
-    // object and pass validation.
-    //
-    // Create an "anyOf" schema that requires at least one of the keys in the
-    // "properties" object
-    const requiresAnyOf = {
-      anyOf: Object.keys(optionProperties).map((key) => ({
-        required: [key],
-      })),
-    };
-
-    let augmentedSchema;
-
-    // If the "anyOf" keyword already exists, wrap the augmentation in an "allOf"
-    if (option.anyOf) {
-      // Create a shallow clone of the option
-      const { ...shallowClone } = option;
-
-      if (!shallowClone.allOf) {
-        shallowClone.allOf = [];
-      } else {
-        // If "allOf" already exists, shallow clone the array
-        shallowClone.allOf = shallowClone.allOf.slice();
-      }
-
-      shallowClone.allOf.push(requiresAnyOf);
-
-      augmentedSchema = shallowClone;
-    } else {
-      augmentedSchema = Object.assign({}, option, requiresAnyOf);
-    }
-
-    // Remove the "required" field as it's likely that not all fields have
-    // been filled in yet, which will mean that the schema is not valid
-    delete augmentedSchema.required;
-
-    if (validator.isValid(augmentedSchema, rootSchema, formData)) {
       return i;
     }
   }
@@ -186,15 +164,10 @@ export function calculateIndexScore(
           propertySchema.type === typeOfValue(formValue)
         ) {
           // If the types match, then we bump the score by one
-          totalScore += 1;
-          if (propertySchema.default !== undefined) {
-            // If the schema contains a readonly default value score the value that matches the default higher and
-            // any non-matching value lower
-            totalScore += formValue === propertySchema.default ? 1 : -1;
-          } else if (propertySchema.const !== undefined) {
-            // If the schema contains a const value score the value that matches the default higher and
-            // any non-matching value lower
-            totalScore += formValue === propertySchema.const ? 1 : -1;
+          totalScore += 1
+          const defaultOrConst = propertySchema.default ?? propertySchema.const
+          if (defaultOrConst !== undefined) {
+            totalScore += formValue === defaultOrConst ? 1 : -1;
           }
           // TODO eventually, deal with enums/arrays
           continue;
@@ -237,27 +210,31 @@ export function getClosestMatchingOption(
     return simpleDiscriminatorMatch;
   }
 
-  // Reduce the array of options down to a list of the indexes that are considered matching options
   const allValidIndexes: number[] = [];
-  const testOptions = [JUNK_OPTION, {} as Schema];
-  for (let i = 0; i < resolvedOptions.length; i++) {
-    testOptions[1] = resolvedOptions[i]!;
-    if (
-      getFirstMatchingOption(
-        validator,
-        formData,
-        testOptions,
-        rootSchema,
-        discriminatorField
-      ) === 1
-    ) {
-      allValidIndexes.push(i);
-    }
-  }
 
-  // There is only one valid index, so return it!
-  if (allValidIndexes.length === 1) {
-    return allValidIndexes[0]!;
+  // For performance, skip validating subschemas if formData is undefined.
+  if (formData !== undefined) {
+    const canDiscriminatorBeApplied =
+      isSchemaObjectValue(formData) && discriminatorField !== undefined;
+    for (let i = 0; i < resolvedOptions.length; i++) {
+      if (
+        isOptionMatching(
+          resolvedOptions[i]!,
+          validator,
+          formData,
+          rootSchema,
+          canDiscriminatorBeApplied ? discriminatorField : undefined,
+          canDiscriminatorBeApplied ? formData[discriminatorField] : undefined
+        )
+      ) {
+        allValidIndexes.push(i);
+      }
+    }
+
+    // There is only one valid index, so return it!
+    if (allValidIndexes.length === 1) {
+      return allValidIndexes[0]!;
+    }
   }
   if (allValidIndexes.length === 0) {
     // No indexes were valid, so we'll score all the options, add all the indexes

@@ -887,9 +887,7 @@ describe("omitExtraData", () => {
       );
       validator = createValidator({
         isValid: [
-          false, // compare with junk
           false, // compare with string
-          false, // compare with junk
         ],
       });
       expect(
@@ -900,11 +898,8 @@ describe("omitExtraData", () => {
       ).toEqual({ age: 25 });
       validator = createValidator({
         isValid: [
-          false, // compare with junk
           false, // compare with string
-          false, // compare with junk
           true, // compare with anyOf
-          false, // compare with junk
           false, // compare with age
         ],
       });
