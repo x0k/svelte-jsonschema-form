@@ -1,6 +1,5 @@
 <script lang="ts" generics="T">
   import type { HTMLTextareaAttributes } from "svelte/elements";
-  import { proxy } from "@sjsf/form/lib/svelte.svelte";
 
   let {
     value = $bindable(),
@@ -8,8 +7,12 @@
   }: { value: T } & Omit<HTMLTextareaAttributes, "value"> = $props();
 
   let error = $state(false);
+</script>
 
-  const mapped = proxy(
+<textarea
+  {...rest}
+  data-error={error}
+  bind:value={
     () => JSON.stringify(value, null, 2),
     (str) => {
       try {
@@ -19,7 +22,5 @@
         error = true;
       }
     }
-  );
-</script>
-
-<textarea {...rest} data-error={error} bind:value={mapped.value}></textarea>
+  }
+></textarea>
