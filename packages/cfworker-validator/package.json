@@ -39,7 +39,7 @@
   },
   "peerDependencies": {
     "@sjsf/form": "workspace:^2.0.0-next.4",
-    "@cfworker/json-schema": "^4.1.1"
+    "@cfworker/json-schema": "^4.1.0"
   },
   "devDependencies": {
     "@sjsf/form": "workspace:*",

@@ -38,8 +38,8 @@
     "jsonpointer": "^5.0.1"
   },
   "peerDependencies": {
-    "esm-env": "^1.2.2",
-    "svelte": "^5.23.0"
+    "esm-env": "^1.2.0",
+    "svelte": "^5.25.0"
   },
   "devDependencies": {
     "@sveltejs/package": "catalog:",

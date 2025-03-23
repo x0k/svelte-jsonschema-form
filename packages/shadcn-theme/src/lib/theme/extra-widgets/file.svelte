@@ -33,9 +33,9 @@
 
 <Input
 	type="file"
-	bind:files={value}
 	{multiple}
 	data-loading={loading}
 	data-processing={processing}
 	{...attributes}
+	bind:files={value}
 />

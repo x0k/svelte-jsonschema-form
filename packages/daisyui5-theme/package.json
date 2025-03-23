@@ -63,8 +63,8 @@
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^2.0.0-next.4",
 		"@sjsf/basic-theme": "workspace:^2.0.0-next.4",
-		"daisyui": "^5.0.4",
-		"svelte": "^5.23.0"
+		"daisyui": "^5.0.0",
+		"svelte": "^5.25.0"
 	},
 	"optionalDependencies": {
 		"cally": "^0.8.0",
@@ -84,7 +84,7 @@
 		"@types/pikaday": "^1.7.9",
 		"ajv": "catalog:",
 		"cally": "^0.8.0",
-		"daisyui": "^5.0.4",
+		"daisyui": "^5.0.9",
 		"eslint": "catalog:",
 		"eslint-config-prettier": "catalog:",
 		"eslint-plugin-svelte": "catalog:",

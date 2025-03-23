@@ -65,8 +65,8 @@
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^2.0.0-next.4",
 		"@sjsf/basic-theme": "workspace:^2.0.0-next.4",
-		"daisyui": "^4.12.24",
-		"svelte": "^5.23.0"
+		"daisyui": "^4.12.0",
+		"svelte": "^5.25.0"
 	},
 	"devDependencies": {
 		"@playwright/test": "catalog:",
