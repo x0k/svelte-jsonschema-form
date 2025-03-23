@@ -35,8 +35,11 @@ function isOptionMatching(
   if (optionProperties === undefined) {
     return validator.isValid(option, rootSchema, formData);
   }
+  // NOTE: Do not transform into `&&` expression!
   const discriminator =
-    discriminatorField !== undefined && optionProperties[discriminatorField];
+    discriminatorField !== undefined
+      ? optionProperties[discriminatorField]
+      : undefined;
   if (discriminator !== undefined) {
     return validator.isValid(discriminator, rootSchema, discriminatorFormData);
   }
@@ -164,8 +167,8 @@ export function calculateIndexScore(
           propertySchema.type === typeOfValue(formValue)
         ) {
           // If the types match, then we bump the score by one
-          totalScore += 1
-          const defaultOrConst = propertySchema.default ?? propertySchema.const
+          totalScore += 1;
+          const defaultOrConst = propertySchema.default ?? propertySchema.const;
           if (defaultOrConst !== undefined) {
             totalScore += formValue === defaultOrConst ? 1 : -1;
           }
