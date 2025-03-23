@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { proxy } from "@/lib/svelte.svelte";
   import {
     type UiSchema,
     type Config,
@@ -44,14 +43,14 @@
   const Template = $derived(getComponent(ctx, "fieldTemplate", config));
   const Widget = $derived(getComponent(ctx, "textWidget", config));
 
-  const key = proxy<string | undefined>(() => property);
+  let key = $derived<string | undefined>(property);
 
   const handlers = {
     onblur: () => {
-      if (!key.value || key.value === property) {
+      if (key === undefined || key === property) {
         return;
       }
-      objCtx.renameProperty(property, key.value, config);
+      objCtx.renameProperty(property, key, config);
     },
   };
 
@@ -59,5 +58,5 @@
 </script>
 
 <Template {errors} showTitle value={property} {config}>
-  <Widget {errors} {handlers} {config} bind:value={key.value} />
+  <Widget {errors} {handlers} {config} bind:value={key} />
 </Template>
