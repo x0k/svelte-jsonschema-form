@@ -126,7 +126,7 @@ daisy5/:
   popd
 
 skeleton/:
-  pushd packages/skeleton-theme
+  pushd packages/skeleton3-theme
   c:
     pnpm run check
   b:
