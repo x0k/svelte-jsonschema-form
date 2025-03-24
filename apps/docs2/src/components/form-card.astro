@@ -8,6 +8,13 @@ export interface Props {
 
 <Card title="">
   <template shadowrootmode="open">
+    <style>
+      :host {
+        --tw-inset-shadow: 0 0 #0000;
+        --tw-inset-ring-shadow: 0 0 #0000;
+        --tw-ring-offset-shadow: 0 0 #0000;
+      }
+    </style>
     {Astro.props.style && <style set:html={Astro.props.style} />}
     <slot />
   </template>
