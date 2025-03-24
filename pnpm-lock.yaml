@@ -88,7 +88,7 @@ catalogs:
 
 patchedDependencies:
   svelte2tsx:
-    hash: 17e214571275f4397120ba3ee54ce882b01a0c20bf4ccaf1cc569c0c16a004bd
+    hash: 596fd3494d1b9cea4557645eb76028c09232bcd23408dee456266d3d5f95287c
     path: patches/svelte2tsx.patch
 
 importers:
@@ -6280,7 +6280,7 @@ snapshots:
       '@sveltejs/vite-plugin-svelte': 5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       astro: 5.5.4(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.34.8)(typescript@5.8.2)(yaml@2.5.1)
       svelte: 5.25.3
-      svelte2tsx: 0.7.35(patch_hash=17e214571275f4397120ba3ee54ce882b01a0c20bf4ccaf1cc569c0c16a004bd)(svelte@5.25.3)(typescript@5.8.2)
+      svelte2tsx: 0.7.35(patch_hash=596fd3494d1b9cea4557645eb76028c09232bcd23408dee456266d3d5f95287c)(svelte@5.25.3)(typescript@5.8.2)
       typescript: 5.8.2
       vite: 6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)
     transitivePeerDependencies:
@@ -7244,7 +7244,7 @@ snapshots:
       sade: 1.8.1
       semver: 7.7.1
       svelte: 5.25.3
-      svelte2tsx: 0.7.35(patch_hash=17e214571275f4397120ba3ee54ce882b01a0c20bf4ccaf1cc569c0c16a004bd)(svelte@5.25.3)(typescript@5.8.2)
+      svelte2tsx: 0.7.35(patch_hash=596fd3494d1b9cea4557645eb76028c09232bcd23408dee456266d3d5f95287c)(svelte@5.25.3)(typescript@5.8.2)
     transitivePeerDependencies:
       - typescript
 
@@ -11010,7 +11010,7 @@ snapshots:
       style-to-object: 1.0.8
       svelte: 5.25.3
 
-  svelte2tsx@0.7.35(patch_hash=17e214571275f4397120ba3ee54ce882b01a0c20bf4ccaf1cc569c0c16a004bd)(svelte@5.25.3)(typescript@5.8.2):
+  svelte2tsx@0.7.35(patch_hash=596fd3494d1b9cea4557645eb76028c09232bcd23408dee456266d3d5f95287c)(svelte@5.25.3)(typescript@5.8.2):
     dependencies:
       dedent-js: 1.0.1
       pascal-case: 3.1.2

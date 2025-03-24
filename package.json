@@ -30,6 +30,10 @@
   "pnpm": {
     "patchedDependencies": {
       "svelte2tsx": "patches/svelte2tsx.patch"
-    }
+    },
+    "onlyBuiltDependencies": [
+      "sharp",
+      "esbuild"
+    ]
   }
 }
