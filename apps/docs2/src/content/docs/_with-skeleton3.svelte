@@ -2,8 +2,8 @@
   import { BasicForm, createForm } from "@sjsf/form";
   import { resolver } from "@sjsf/form/resolvers/basic";
   import { translation } from "@sjsf/form/translations/en";
-  import { theme } from "@sjsf/skeleton-theme";
-  import "@sjsf/skeleton-theme/extra-widgets/textarea-include";
+  import { theme } from "@sjsf/skeleton3-theme";
+  import "@sjsf/skeleton3-theme/extra-widgets/textarea-include";
 
   import { createAstro } from "@/astro.svelte";
 

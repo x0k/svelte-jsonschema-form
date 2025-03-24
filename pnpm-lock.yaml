@@ -249,6 +249,9 @@ importers:
       '@sjsf/skeleton-theme':
         specifier: workspace:*
         version: link:../../packages/skeleton-theme
+      '@sjsf/skeleton3-theme':
+        specifier: workspace:*
+        version: link:../../packages/skeleton3-theme
       '@sjsf/sveltekit':
         specifier: workspace:*
         version: link:../../packages/sveltekit

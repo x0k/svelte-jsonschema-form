@@ -1,0 +1,47 @@
+---
+title: Skeleton
+sidebar:
+  order: 3
+---
+
+import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/components';
+import styles from "@sjsf/skeleton3-theme/styles.css?inline";
+
+import Npm from '@/components/npm.astro';
+import Picker from '@/components/picker.astro';
+import FormCard from '@/components/form-card.astro';
+
+import Form from './_skeleton3-theme.svelte';
+
+<Picker>
+  <a href="../skeleton/" data-active={false}>v3 RC1 (deprecated)C</a>
+  <a href="." data-active={true}>v3</a>
+</Picker>
+
+## Installation
+
+<Npm pkg="@sjsf/skeleton-theme@next" />
+
+:::note
+
+This is `@skeletonlabs/skeleton@3` based theme (Tailwind v4).
+
+:::
+
+### Install Skeleton v3
+
+<LinkButton href="https://www.skeleton.dev/docs/get-started/installation/sveltekit" variant='secondary' target="_blank" icon="external">
+  Install and configure Skeleton for SvelteKit
+</LinkButton>
+
+### Configuration
+
+Register the theme source path by adding a line like this to the `app.css` file.
+
+`@source "../node_modules/@sjsf/skeleton3-theme/dist";`
+
+## Widgets
+
+<FormCard style={styles}>
+  <Form client:only="svelte" />
+</FormCard>

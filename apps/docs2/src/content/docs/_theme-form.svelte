@@ -8,7 +8,7 @@
   import WithDaisyui5 from './_with-daisyui5.svelte';
   import WithFlowbite from "./_with-flowbite.svelte";
   import WithShadcn from "./_with-shadcn.svelte";
-  import WithSkeleton from "./_with-skeleton.svelte";
+  import WithSkeleton3 from "./_with-skeleton3.svelte";
 
   let { theme }: { theme: Theme } = $props();
 
@@ -19,7 +19,7 @@
       daisyui5: WithDaisyui5,
       flowbite: WithFlowbite,
       shadcn: WithShadcn,
-      skeleton: WithSkeleton,
+      skeleton3: WithSkeleton3,
     } satisfies Record<Theme, Component>
   )[theme];
 </script>

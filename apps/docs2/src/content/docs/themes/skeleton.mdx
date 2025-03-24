@@ -1,16 +1,22 @@
 ---
-title: Skeleton
+title: Skeleton v3 RC1
 sidebar:
-  order: 3
+  hidden: true
 ---
 
 import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/components';
 import styles from "@sjsf/skeleton-theme/styles.css?inline";
 
 import Npm from '@/components/npm.astro';
+import Picker from '@/components/picker.astro';
 import FormCard from '@/components/form-card.astro';
 
 import Form from './_skeleton-theme.svelte';
+
+<Picker>
+  <a href="." data-active={true}>v3 RC1 (deprecated)C</a>
+  <a href="../skeleton3/" data-active={false}>v3</a>
+</Picker>
 
 ## Installation
 

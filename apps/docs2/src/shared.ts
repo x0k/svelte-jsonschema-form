@@ -5,7 +5,7 @@ export const THEMES = [
   "daisyui",
   "daisyui5",
   "flowbite",
-  "skeleton",
+  "skeleton3",
   "shadcn",
 ] as const;
 
@@ -16,7 +16,7 @@ export const THEME_TITLES = {
   daisyui: "DaisyUI v4",
   daisyui5: "DaisyUI v5",
   flowbite: "Flowbite",
-  skeleton: "Skeleton",
+  skeleton3: "Skeleton v3",
   shadcn: "Shadcn",
 } satisfies Record<Theme, string>;
 
@@ -25,7 +25,7 @@ export const THEME_PACKAGES = {
   daisyui: "@sjsf/daisyui-theme",
   daisyui5: "@sjsf/daisyui5-theme",
   flowbite: "@sjsf/flowbite-theme",
-  skeleton: "@sjsf/skeleton-theme",
+  skeleton3: "@sjsf/skeleton3-theme",
   shadcn: "@sjsf/shadcn-theme",
 } satisfies Record<Theme, string>;
 

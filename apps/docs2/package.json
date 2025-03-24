@@ -23,6 +23,7 @@
     "@sjsf/form": "workspace:*",
     "@sjsf/shadcn-theme": "workspace:*",
     "@sjsf/skeleton-theme": "workspace:*",
+    "@sjsf/skeleton3-theme": "workspace:*",
     "@sjsf/sveltekit": "workspace:*",
     "@sjsf/zod-validator": "workspace:*",
     "testing": "workspace:*",
