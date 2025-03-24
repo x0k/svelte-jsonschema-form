@@ -440,6 +440,9 @@ importers:
       '@sjsf/skeleton-theme':
         specifier: workspace:*
         version: link:../../packages/skeleton-theme
+      '@sjsf/skeleton3-theme':
+        specifier: workspace:*
+        version: link:../../packages/skeleton3-theme
       ajv:
         specifier: 'catalog:'
         version: 8.17.1

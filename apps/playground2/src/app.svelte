@@ -312,7 +312,7 @@
         class={lightOrDark}
         style="background-color: transparent; display: flex; flex-direction: column; gap: 1rem; padding: 0.3rem;"
         novalidate={!html5Validation || undefined}
-        data-theme={themeName === "skeleton" ? "cerberus" : lightOrDark}
+        data-theme={themeName.startsWith("skeleton") ? "cerberus" : lightOrDark}
       />
       {#if location.hostname === "localhost"}
         <Debug />
