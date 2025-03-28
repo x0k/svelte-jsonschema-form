@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import type { CheckboxProps } from 'flowbite-svelte/Checkbox.svelte';
+	import type { CheckboxProps } from 'flowbite-svelte';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
@@ -16,9 +16,18 @@
 
 	const ctx = getFormContext();
 
+	// Recreates behavior of standard checkbox
+	$effect(() => {
+		if (value === undefined) {
+			value = false;
+		}
+	});
+
 	const attributes = $derived(
 		inputAttributes(ctx, config, handlers, config.uiOptions?.flowbiteCheckbox)
 	);
 </script>
 
-<Checkbox bind:checked={value} {...attributes}>{config.title}</Checkbox>
+<Checkbox bind:checked={() => value ?? false, (v) => (value = v)} {...attributes}
+	>{config.title}</Checkbox
+>

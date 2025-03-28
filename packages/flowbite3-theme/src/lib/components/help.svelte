@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import type { HelperProps } from 'flowbite-svelte/Helper.svelte';
+	import type { HelperProps } from 'flowbite-svelte';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {

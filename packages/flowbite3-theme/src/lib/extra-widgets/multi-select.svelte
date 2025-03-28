@@ -1,10 +1,10 @@
 <script lang="ts" module>
-	import type { MultiSelectProps } from 'flowbite-svelte/MultiSelect.svelte';
+	import type { MultiSelectProps } from 'flowbite-svelte';
 	import '@sjsf/form/fields/extra-widgets/multi-select';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			flowbiteMultiSelect?: MultiSelectProps;
+			flowbiteMultiSelect?: MultiSelectProps<number>;
 		}
 	}
 </script>
@@ -44,4 +44,5 @@
 	);
 </script>
 
-<MultiSelect class="grow" bind:value={mapped.value} items={selectOptions} {...attributes} />
+<!-- TODO: this should be `bind:value=` but lib is broken -->
+<MultiSelect class="grow" value={mapped.value} items={selectOptions} {...attributes} />

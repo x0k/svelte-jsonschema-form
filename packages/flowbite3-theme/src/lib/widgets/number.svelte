@@ -1,16 +1,16 @@
 <script lang="ts" module>
-	import type { NumberInputProps } from 'flowbite-svelte/NumberInput.svelte';
+	import type { InputProps, InputValue } from 'flowbite-svelte';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			flowbiteNumber?: NumberInputProps;
+			flowbiteNumber?: InputProps<number | undefined>;
 		}
 	}
 </script>
 
 <script lang="ts">
 	import { Datalist, getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
-	import NumberInput from 'flowbite-svelte/NumberInput.svelte';
+	import Input from 'flowbite-svelte/Input.svelte';
 
 	let { value = $bindable(), config, handlers }: ComponentProps['numberWidget'] = $props();
 
@@ -21,5 +21,10 @@
 	);
 </script>
 
-<NumberInput bind:value={() => value ?? null, (v) => (value = v ?? undefined)} {...attributes} />
+<!-- NOTE: value getter should be `() => value ?? null` but types are incorrect -->
+<Input
+	type="number"
+	bind:value={() => value, (v) => (value = v ?? undefined)}
+	{...attributes as InputProps<InputValue>}
+/>
 <Datalist id={attributes.list} {config} />

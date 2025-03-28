@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import type { HTMLAttributes } from 'svelte/elements';
-	import type { LabelProps } from 'flowbite-svelte/Label.svelte';
+	import type { LabelProps } from 'flowbite-svelte';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {

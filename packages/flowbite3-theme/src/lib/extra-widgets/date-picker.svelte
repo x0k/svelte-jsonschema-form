@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import type { DatepickerProps } from 'flowbite-svelte/Datepicker.svelte';
+	import type { DatepickerProps } from 'flowbite-svelte';
 	import '@sjsf/form/fields/extra-widgets/date-picker';
 
 	declare module '@sjsf/form' {
@@ -44,5 +44,5 @@
 </script>
 
 <div class="w-full">
-	<Datepicker bind:value={date.value} showActionButtons autohide={false} {...attributes} />
+	<Datepicker bind:value={date.value} showActionButtons autohide={false} {...attributes as any} />
 </div>

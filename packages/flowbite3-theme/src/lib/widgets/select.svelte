@@ -1,9 +1,9 @@
 <script lang="ts" module>
-	import type { SelectProps } from 'flowbite-svelte/Select.svelte';
+	import type { SelectProps } from 'flowbite-svelte';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			flowbiteSelect?: SelectProps;
+			flowbiteSelect?: SelectProps<number>;
 		}
 	}
 </script>
@@ -23,11 +23,11 @@
 		})
 	);
 
-	const ctx = getFormContext()
+	const ctx = getFormContext();
 
 	const attributes = $derived(
 		selectAttributes(ctx, config, handlers, config.uiOptions?.flowbiteSelect)
-	)
+	);
 </script>
 
 <Select bind:value={mapped.value} placeholder="" {...attributes}>

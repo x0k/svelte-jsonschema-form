@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import type { CheckboxProps } from 'flowbite-svelte/Checkbox.svelte';
+	import type { CheckboxProps } from 'flowbite-svelte';
 	import '@sjsf/form/fields/extra-widgets/checkboxes';
 
 	declare module '@sjsf/form' {
@@ -11,7 +11,7 @@
 
 <script lang="ts">
 	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
-	import { multipleOptions, stringIndexMapper } from '@sjsf/form/options.svelte';
+	import { multipleOptions, indexMapper } from '@sjsf/form/options.svelte';
 	import Checkbox from 'flowbite-svelte/Checkbox.svelte';
 
 	let {
@@ -22,17 +22,11 @@
 	}: ComponentProps['checkboxesWidget'] = $props();
 
 	const mapped = multipleOptions({
-		mapper: () => stringIndexMapper(options),
+		mapper: () => indexMapper(options),
 		value: () => value,
 		update: (v) => (value = v)
 	});
-
-	const choices = $derived(
-		options.map((option, i) => ({
-			value: String(i),
-			label: option.label
-		}))
-	);
+	const indexes = $derived(new Set(mapped.value));
 
 	const ctx = getFormContext();
 
@@ -41,4 +35,23 @@
 	);
 </script>
 
-<Checkbox {choices} bind:group={mapped.value} groupInputClass="ms-2" {...attributes} />
+{#each options as option, index (option.id)}
+	<Checkbox
+		bind:checked={
+			() => indexes.has(index),
+			(v) => {
+				if (v) {
+					mapped.value = Array.from(indexes.add(index))
+				} else {
+					indexes.delete(index)
+					mapped.value = Array.from(indexes);
+				}
+			}
+		}
+		{...attributes}
+		id={option.id}
+		disabled={option.disabled || attributes.disabled}
+	>
+		{option.label}
+	</Checkbox>
+{/each}

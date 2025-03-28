@@ -1,9 +1,9 @@
 <script lang="ts" module>
-	import type { InputProps } from 'flowbite-svelte/Input.svelte';
+	import type { InputProps, InputValue } from 'flowbite-svelte';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			flowbiteText?: InputProps;
+			flowbiteText?: InputProps<string | undefined>;
 		}
 	}
 </script>
@@ -21,5 +21,5 @@
 	);
 </script>
 
-<Input type="text" bind:value {...attributes} />
+<Input type="text" bind:value {...attributes as InputProps<InputValue>} />
 <Datalist id={attributes.list} {config} />

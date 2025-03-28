@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import type { HTMLAttributes } from 'svelte/elements';
-	import type { ButtonGroupProps } from 'flowbite-svelte/ButtonGroup.svelte';
+	import type { ButtonGroupProps } from 'flowbite-svelte';
 	import type { LayoutType } from '@sjsf/form/fields/components';
 
 	declare module '@sjsf/form' {

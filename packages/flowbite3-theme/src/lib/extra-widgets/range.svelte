@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import { type RangeProps } from 'flowbite-svelte/Range.svelte';
+	import { type RangeProps } from 'flowbite-svelte';
 	import '@sjsf/form/fields/extra-widgets/range';
 
 	declare module '@sjsf/form' {
