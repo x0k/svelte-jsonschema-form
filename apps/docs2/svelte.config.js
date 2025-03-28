@@ -13,7 +13,7 @@ export default {
   vitePlugin: {
     dynamicCompileOptions({ filename }) {
       return {
-        runes: !nonRunic.some((p) => filename.includes(p)),
+        // runes: !nonRunic.some((p) => filename.includes(p)),
         css: filename.includes("moving-icons") ? "injected" : "external",
       };
     },

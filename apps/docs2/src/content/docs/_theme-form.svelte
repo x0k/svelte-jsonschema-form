@@ -6,7 +6,7 @@
   import WithBasic from "./_with-basic.svelte";
   import WithDaisyui from "./_with-daisyui.svelte";
   import WithDaisyui5 from './_with-daisyui5.svelte';
-  import WithFlowbite from "./_with-flowbite.svelte";
+  import WithFlowbite3 from "./_with-flowbite3.svelte";
   import WithShadcn from "./_with-shadcn.svelte";
   import WithSkeleton3 from "./_with-skeleton3.svelte";
 
@@ -17,7 +17,7 @@
       basic: WithBasic,
       daisyui: WithDaisyui,
       daisyui5: WithDaisyui5,
-      flowbite: WithFlowbite,
+      flowbite3: WithFlowbite3,
       shadcn: WithShadcn,
       skeleton3: WithSkeleton3,
     } satisfies Record<Theme, Component>

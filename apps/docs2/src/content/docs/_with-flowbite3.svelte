@@ -2,8 +2,8 @@
   import { BasicForm, createForm } from "@sjsf/form";
   import { resolver } from "@sjsf/form/resolvers/basic";
   import { translation } from "@sjsf/form/translations/en";
-  import { theme } from "@sjsf/flowbite-theme";
-  import "@sjsf/flowbite-theme/extra-widgets/textarea-include";
+  import { theme } from "@sjsf/flowbite3-theme";
+  import "@sjsf/flowbite3-theme/extra-widgets/textarea-include";
 
   import { createAstro } from "@/astro.svelte";
 
@@ -11,7 +11,7 @@
   import { createValidator } from "./_validator";
   import { onSubmit } from "./_on-submit";
 
-  const idPrefix = "flowbite";
+  const idPrefix = "flowbite3";
   const validator = createValidator(idPrefix);
   const form = createForm({
     idPrefix,
