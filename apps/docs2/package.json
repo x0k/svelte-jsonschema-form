@@ -2,7 +2,7 @@
   "name": "docs2",
   "private": true,
   "type": "module",
-  "version": "1.6.3-next.4",
+  "version": "1.6.3-next.5",
   "scripts": {
     "dev": "astro dev",
     "build": " astro build",
