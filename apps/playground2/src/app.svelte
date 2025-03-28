@@ -320,3 +320,12 @@
     </ShadowHost>
   </div>
 </div>
+
+<style>
+  :global(.dark select) {
+    background-color: transparent;
+  }
+  :global(.dark option) {
+    background-color: var(--color-slate-600);
+  }
+</style>

@@ -10,32 +10,32 @@
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "dependencies": {
-    "@sjsf/form": "workspace:*",
     "@sjsf/ajv8-validator": "workspace:*",
-    "@sjsf/cfworker-validator": "workspace:*",
-    "ajv": "catalog:",
-    "rehype-raw": "^7.0.0",
-    "svelte-exmarkdown": "^4.0.3",
     "@sjsf/basic-theme": "workspace:*",
+    "@sjsf/cfworker-validator": "workspace:*",
     "@sjsf/daisyui-theme": "workspace:*",
-    "@sjsf/flowbite-theme": "workspace:*",
+    "@sjsf/daisyui5-theme": "workspace:*",
     "@sjsf/flowbite-icons": "workspace:*",
-    "@sjsf/skeleton-theme": "workspace:*",
-    "@sjsf/skeleton3-theme": "workspace:*",
+    "@sjsf/flowbite-theme": "workspace:*",
+    "@sjsf/flowbite3-theme": "workspace:*",
+    "@sjsf/form": "workspace:*",
     "@sjsf/lucide-icons": "workspace:*",
     "@sjsf/moving-icons": "workspace:*",
-    "@sjsf/shadcn-theme": "workspace:*",
     "@sjsf/radix-icons": "workspace:*",
-    "@sjsf/daisyui5-theme": "workspace:*"
+    "@sjsf/shadcn-theme": "workspace:*",
+    "@sjsf/skeleton-theme": "workspace:*",
+    "@sjsf/skeleton3-theme": "workspace:*",
+    "ajv": "catalog:",
+    "rehype-raw": "^7.0.0",
+    "svelte-exmarkdown": "^4.0.3"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "catalog:",
+    "@tailwindcss/vite": "catalog:",
     "@tsconfig/svelte": "catalog:",
-    "autoprefixer": "catalog:",
-    "postcss": "catalog:",
     "svelte": "catalog:",
     "svelte-check": "catalog:",
-    "tailwindcss": "catalog:",
+    "tailwindcss": "catalog:next",
     "vite": "catalog:"
   }
 }
