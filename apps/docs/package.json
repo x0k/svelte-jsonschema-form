@@ -27,7 +27,8 @@
     "cally": "^0.8.0",
     "pikaday": "^1.8.2",
     "lucide-svelte": "0.453.0",
-    "tailwind-variants": "0.2.1"
+    "tailwind-variants": "0.2.1",
+    "flowbite-svelte": "^0.47.4"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
@@ -38,6 +39,7 @@
     "sharp": "^0.33.5",
     "starlight-package-managers": "^0.10.0",
     "svelte": "catalog:",
-    "daisyui": "4.12.24"
+    "daisyui": "4.12.24",
+    "flowbite": "^2.5.2"
   }
 }

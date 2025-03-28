@@ -1,0 +1,42 @@
+# @sjsf/flowbite3-theme
+
+The [flowbite-svelte](https://github.com/themesberg/flowbite-svelte) (tailwind v4) based theme for [svelte-jsonschema-form](https://github.com/x0k/svelte-jsonschema-form).
+
+- [Documentation](https://x0k.github.io/svelte-jsonschema-form/themes/flowbite/)
+- [Playground](https://x0k.github.io/svelte-jsonschema-form/playground2/)
+
+## Installation
+
+```shell
+npm install @sjsf/form@next @sjsf/flowbite3-theme@next
+```
+
+## Usage
+
+1. Install Flowbite Svelte
+  
+[Flowbite Svelte - UI Component Library](https://next.flowbite-svelte.com/docs/pages/introduction)
+
+2. Configuration
+
+Register the theme source path by adding a line like this to the `app.css` file.
+
+`@source "../node_modules/@sjsf/flowbite3-theme/dist";`
+
+3. Apply theme
+
+```svelte
+<script lang="ts">
+  import { createForm } from '@sjsf/form';
+  import { theme } from '@sjsf/flowbite3-theme';
+
+  const form = createForm({
+    theme,
+    ...
+  })
+</script>
+```
+
+## License
+
+MIT

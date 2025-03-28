@@ -136,7 +136,7 @@ skeleton/:
   popd
 
 flow/:
-  pushd packages/flowbite-theme
+  pushd packages/flowbite3-theme
   c:
     pnpm run check
   b:
