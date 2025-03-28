@@ -1,5 +1,18 @@
 # @sjsf/flowbite-theme
 
+## 2.0.0-next.5
+
+### Major Changes
+
+- Bump svelte to 5.25.0, relax patch versions of peer dependencies. ([`33fcab1`](https://github.com/x0k/svelte-jsonschema-form/commit/33fcab1e99d3da5d464cbd814b4f8445ceb2e4d9))
+
+### Patch Changes
+
+- Fix handling of `undefined` in checkbox widget ([`4cb4994`](https://github.com/x0k/svelte-jsonschema-form/commit/4cb4994f38ec86e836c7b1bd881ccd963b239072))
+
+- Updated dependencies [[`33fcab1`](https://github.com/x0k/svelte-jsonschema-form/commit/33fcab1e99d3da5d464cbd814b4f8445ceb2e4d9), [`69535c3`](https://github.com/x0k/svelte-jsonschema-form/commit/69535c3d53fd2d95b2e02d0fe5e6c309aa4d0df6)]:
+  - @sjsf/form@2.0.0-next.5
+
 ## 2.0.0-next.4
 
 ### Patch Changes

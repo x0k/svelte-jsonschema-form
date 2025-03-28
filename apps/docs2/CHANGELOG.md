@@ -1,5 +1,29 @@
 # docs
 
+## 1.6.3-next.5
+
+### Patch Changes
+
+- Updated dependencies [[`56bafda`](https://github.com/x0k/svelte-jsonschema-form/commit/56bafda368e3729210d15451a76a7d48013ef0b5), [`0f841a6`](https://github.com/x0k/svelte-jsonschema-form/commit/0f841a6f051b1e048df278b7aaf73d2f944a38dd), [`33fcab1`](https://github.com/x0k/svelte-jsonschema-form/commit/33fcab1e99d3da5d464cbd814b4f8445ceb2e4d9), [`69535c3`](https://github.com/x0k/svelte-jsonschema-form/commit/69535c3d53fd2d95b2e02d0fe5e6c309aa4d0df6), [`668eb67`](https://github.com/x0k/svelte-jsonschema-form/commit/668eb67e4c9b927f27d66e10caf3edd7a74b0ced), [`4cb4994`](https://github.com/x0k/svelte-jsonschema-form/commit/4cb4994f38ec86e836c7b1bd881ccd963b239072)]:
+  - @sjsf/flowbite3-theme@2.0.0-next.5
+  - @sjsf/daisyui5-theme@2.0.0-next.5
+  - @sjsf/cfworker-validator@2.0.0-next.5
+  - @sjsf/ajv8-validator@2.0.0-next.5
+  - @sjsf/flowbite-icons@2.0.0-next.5
+  - @sjsf/flowbite-theme@2.0.0-next.5
+  - @sjsf/skeleton-theme@2.0.0-next.5
+  - @sjsf/daisyui-theme@2.0.0-next.5
+  - @sjsf/zod-validator@2.0.0-next.5
+  - @sjsf/lucide-icons@2.0.0-next.5
+  - @sjsf/moving-icons@2.0.0-next.5
+  - @sjsf/shadcn-theme@2.0.0-next.5
+  - @sjsf/basic-theme@2.0.0-next.5
+  - @sjsf/radix-icons@2.0.0-next.5
+  - @sjsf/sveltekit@2.0.0-next.5
+  - @sjsf/form@2.0.0-next.5
+  - @sjsf/skeleton3-theme@2.0.0-next.5
+  - testing@0.1.0-next.5
+
 ## 1.6.3-next.4
 
 ### Patch Changes
