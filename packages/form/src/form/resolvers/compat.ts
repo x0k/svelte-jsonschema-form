@@ -23,6 +23,9 @@ export function resolver<V extends Validator>(
   ctx: FormInternalContext<V>
 ): ResolveFieldType {
   return ({ schema, uiOptions }: Config): FoundationalFieldType => {
+    if (isSelect(ctx, schema)) {
+      return "enumField";
+    }
     if (schema.oneOf !== undefined) {
       return "oneOfField";
     }
@@ -41,9 +44,6 @@ export function resolver<V extends Validator>(
         return "filesField";
       }
       return "arrayField";
-    }
-    if (isSelect(ctx, schema)) {
-      return "enumField";
     }
     if (isFileSchema(schema)) {
       return "fileField";
