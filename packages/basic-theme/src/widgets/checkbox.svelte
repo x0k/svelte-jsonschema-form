@@ -29,6 +29,6 @@
 </script>
 
 <label>
-  <input type="checkbox" bind:checked={value} {...attributes} />
+  <input type="checkbox" bind:checked={() => value ?? false, (v) => (value = v)} {...attributes} />
   {config.title}
 </label>

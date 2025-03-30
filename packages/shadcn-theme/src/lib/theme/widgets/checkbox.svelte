@@ -21,13 +21,6 @@
 
 	const { Checkbox, Label } = $derived(themeCtx.components);
 
-	// Recreates behavior of standard checkbox
-	$effect(() => {
-		if (value === undefined) {
-			value = false;
-		}
-	});
-
 	const attributes = $derived(
 		defineDisabled(ctx, {
 			id: config.id,

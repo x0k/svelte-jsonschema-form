@@ -18,7 +18,7 @@
 	<input
 		type="checkbox"
 		class={['checkbox', errors.length > 0 && 'checkbox-error']}
-		bind:checked={value}
+		bind:checked={() => value ?? false, (v) => (value = v)}
 		{...attributes}
 	/>
 	<span class="label-text">{config.title}</span>
