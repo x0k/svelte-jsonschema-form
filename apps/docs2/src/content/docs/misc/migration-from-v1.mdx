@@ -152,6 +152,14 @@ export function createValidator() {
 }
 ```
 
+## `Checkbox` widget behavior
+
+In `v1` the `checkbox` widget would set its field to `false` if its value was `undefined` (this behavior can be observed when using `<input type=“checkbox” bind:checked ...` )
+
+In `v2` this behavior was removed to keep the behavior uniform with other primitive input elements. 
+
+To reproduce the previous behavior, add `default: false` to the JSON schema.
+
 ## Etc.
 
 There are actually a lot more changes in this release, but considering their
