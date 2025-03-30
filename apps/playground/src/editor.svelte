@@ -7,14 +7,17 @@
   }: { value: T } & Omit<HTMLTextareaAttributes, "value"> = $props();
 
   let error = $state(false);
+
+  let writable = $derived(JSON.stringify(value, null, 2));
 </script>
 
 <textarea
   {...rest}
   data-error={error}
   bind:value={
-    () => JSON.stringify(value, null, 2),
+    () => writable,
     (str) => {
+      writable = str;
       try {
         value = JSON.parse(str);
         error = false;
@@ -24,3 +27,4 @@
     }
   }
 ></textarea>
+
