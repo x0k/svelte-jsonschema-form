@@ -26,6 +26,7 @@
     text,
     uniqueArray,
     type Specs,
+    filesArray,
   } from "./schemas";
 
   const {
@@ -46,13 +47,7 @@
         checkbox: [boolean, {}],
         checkboxes: [uniqueArray, {}],
         file: [file, {}],
-        multiFile: [
-          {
-            type: "array",
-            items: file,
-          },
-          {},
-        ],
+        multiFile: [filesArray, {}],
         number: [number, {}],
         select: [enumeration, {}],
         text: [text, {}],

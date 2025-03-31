@@ -35,6 +35,11 @@ export const file: Schema = {
   format: "data-url",
 };
 
+export const filesArray: Schema = {
+  type: 'array',
+  items: file
+}
+
 export const number: Schema = {
   type: "number",
 };
