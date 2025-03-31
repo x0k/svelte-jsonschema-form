@@ -22,6 +22,6 @@
 	);
 </script>
 
-<Toggle bind:checked={value} {...attributes}>
+<Toggle bind:checked={() => value ?? false, (v) => (value = v)} {...attributes}>
 	{config.title}
 </Toggle>

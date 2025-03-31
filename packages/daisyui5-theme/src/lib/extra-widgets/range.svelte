@@ -11,7 +11,7 @@
 
 <input
 	type="range"
-	bind:value
+	bind:value={() => value ?? 0, (v) => (value = v)}
 	class={['w-full range', errors.length > 0 && 'range-error']}
 	{...attributes}
 />

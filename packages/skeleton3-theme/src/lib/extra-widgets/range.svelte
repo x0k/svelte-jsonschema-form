@@ -9,4 +9,9 @@
 	const attributes = $derived(inputAttributes(ctx, config, handlers, config.uiOptions?.range));
 </script>
 
-<input type="range" bind:value class="range grow w-0" {...attributes} />
+<input
+	type="range"
+	bind:value={() => value ?? 0, (v) => (value = v)}
+	class="range grow w-0"
+	{...attributes}
+/>

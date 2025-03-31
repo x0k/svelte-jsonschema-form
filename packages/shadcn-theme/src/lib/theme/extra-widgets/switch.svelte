@@ -21,13 +21,6 @@
 
 	let { value = $bindable(), config, handlers }: ComponentProps['switchWidget'] = $props();
 
-	// Recreates behavior of standard checkbox
-	$effect(() => {
-		if (value === undefined) {
-			value = false;
-		}
-	});
-
 	const attributes = $derived.by(() => {
 		const props: SwitchRootProps = {
 			id: config.id,

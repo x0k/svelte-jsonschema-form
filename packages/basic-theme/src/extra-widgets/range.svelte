@@ -29,4 +29,9 @@
   );
 </script>
 
-<input type="range" bind:value style="flex-grow: 1" {...attributes} />
+<input
+  type="range"
+  bind:value={() => value ?? 0, (v) => (value = v)}
+  style="flex-grow: 1"
+  {...attributes}
+/>

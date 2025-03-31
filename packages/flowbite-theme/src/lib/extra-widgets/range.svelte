@@ -22,4 +22,4 @@
 	);
 </script>
 
-<Range bind:value {...attributes} />
+<Range bind:value={() => value ?? 0, (v) => (value = v)} {...attributes} />

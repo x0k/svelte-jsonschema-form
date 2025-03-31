@@ -21,13 +21,6 @@
 
 	let { value = $bindable(), config, handlers }: ComponentProps['rangeWidget'] = $props();
 
-	// Recreates behavior of standard range
-	$effect(() => {
-		if (value === undefined) {
-			value = 50;
-		}
-	});
-
 	const attributes = $derived.by(() => {
 		const props: SliderSingleRootProps = {
 			type: 'single',
