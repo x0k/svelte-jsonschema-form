@@ -25,7 +25,7 @@
 	<input
 		type="checkbox"
 		class={['toggle', errors.length > 0 && 'toggle-error']}
-		bind:checked={value}
+		bind:checked={() => value ?? false, (v) => (value = v)}
 		{...attributes}
 	/>
 	{config.title}
