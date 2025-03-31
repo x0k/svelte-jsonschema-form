@@ -19,7 +19,7 @@
 		value = $bindable(),
 		options,
 		errors
-	}: ComponentProps['radioWidget'] = $props();
+	}: ComponentProps['radioButtonsWidget'] = $props();
 
 	const mapped = singleOption({
 		mapper: () => indexMapper(options),
