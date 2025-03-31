@@ -1,5 +1,11 @@
 # @sjsf/form
 
+## 2.0.0-next.6
+
+### Patch Changes
+
+- Fixed `enumField` recognition in `compat` resolver ([`6f4942b`](https://github.com/x0k/svelte-jsonschema-form/commit/6f4942b24f754ad99040f35cbaa2285d4d9d7c27))
+
 ## 2.0.0-next.5
 
 ### Major Changes
