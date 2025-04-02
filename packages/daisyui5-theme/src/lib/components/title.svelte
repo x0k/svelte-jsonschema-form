@@ -6,10 +6,10 @@
 </script>
 
 {#if type === 'field'}
-	<label class="label" for={forId} {...config.uiOptions?.labelAttributes}>
+	<label class="fieldset-legend" for={forId} {...config.uiOptions?.labelAttributes}>
 		{title}
 		{#if required}
-			<span>*</span>
+			*
 		{/if}
 	</label>
 {:else}
