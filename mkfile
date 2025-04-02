@@ -125,7 +125,7 @@ daisy/:
     pnpm run dev
   popd
 
-skeleton/:
+skel/:
   pushd packages/skeleton3-theme
   c:
     pnpm run check
