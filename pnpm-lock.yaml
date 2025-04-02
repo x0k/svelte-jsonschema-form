@@ -61,8 +61,8 @@ catalogs:
       specifier: ^3.3.3
       version: 3.3.3
     svelte:
-      specifier: ^5.25.3
-      version: 5.25.3
+      specifier: ^5.25.6
+      version: 5.25.6
     svelte-check:
       specifier: ^4.1.5
       version: 4.1.5
@@ -112,7 +112,7 @@ importers:
         version: 1.2.1
       prettier-plugin-svelte:
         specifier: 'catalog:'
-        version: 3.3.3(prettier@3.5.3)(svelte@5.25.3)
+        version: 3.3.3(prettier@3.5.3)(svelte@5.25.6)
       publint:
         specifier: ^0.3.9
         version: 0.3.9
@@ -127,31 +127,31 @@ importers:
     dependencies:
       '@sjsf/ajv8-validator':
         specifier: ^1.9.2
-        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.25.3))(ajv@8.17.1)
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.25.6))(ajv@8.17.1)
       '@sjsf/cfworker-validator':
         specifier: ^1.9.2
-        version: 1.9.2(@cfworker/json-schema@4.1.1)(@sjsf/form@1.9.2(svelte@5.25.3))
+        version: 1.9.2(@cfworker/json-schema@4.1.1)(@sjsf/form@1.9.2(svelte@5.25.6))
       '@sjsf/daisyui-theme':
         specifier: ^1.9.2
-        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.25.3))(daisyui@4.12.24(postcss@8.5.3))(svelte@5.25.3)
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.25.6))(daisyui@4.12.24(postcss@8.5.3))(svelte@5.25.6)
       '@sjsf/flowbite-theme':
         specifier: ^1.9.2
-        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.25.3))(flowbite-svelte@0.47.4(rollup@4.34.8)(svelte@5.25.3))(flowbite@2.5.2(rollup@4.34.8))(svelte@5.25.3)
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.25.6))(flowbite-svelte@0.47.4(rollup@4.34.8)(svelte@5.25.6))(flowbite@2.5.2(rollup@4.34.8))(svelte@5.25.6)
       '@sjsf/form':
         specifier: ^1.9.2
-        version: 1.9.2(svelte@5.25.3)
+        version: 1.9.2(svelte@5.25.6)
       '@sjsf/shadcn-theme':
         specifier: ^1.9.2
-        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.25.3))(bits-ui@1.3.13(svelte@5.25.3))(clsx@2.1.1)(lucide-svelte@0.453.0(svelte@5.25.3))(svelte@5.25.3)(tailwind-merge@2.6.0)(tailwind-variants@0.2.1(tailwindcss@4.0.15))
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.25.6))(bits-ui@1.3.13(svelte@5.25.6))(clsx@2.1.1)(lucide-svelte@0.453.0(svelte@5.25.6))(svelte@5.25.6)(tailwind-merge@2.6.0)(tailwind-variants@0.2.1(tailwindcss@4.0.15))
       '@sjsf/skeleton-theme':
         specifier: ^1.9.2
-        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.25.3))(@skeletonlabs/skeleton@3.1.1(tailwindcss@4.0.15))(@tailwindcss/forms@0.5.10(tailwindcss@4.0.15))(svelte@5.25.3)
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.25.6))(@skeletonlabs/skeleton@3.1.1(tailwindcss@4.0.15))(@tailwindcss/forms@0.5.10(tailwindcss@4.0.15))(svelte@5.25.6)
       '@sjsf/sveltekit':
         specifier: ^1.9.2
-        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.25.3))(@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(esm-env@1.2.2)(svelte@5.25.3)
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.25.6))(@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(esm-env@1.2.2)(svelte@5.25.6)
       '@sjsf/zod-validator':
         specifier: ^1.9.2
-        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.25.3))(json-schema-to-zod@2.6.0)(zod@3.24.2)
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.25.6))(json-schema-to-zod@2.6.0)(zod@3.24.2)
       ajv:
         specifier: 'catalog:'
         version: 8.17.1
@@ -160,10 +160,10 @@ importers:
         version: 0.8.0
       flowbite-svelte:
         specifier: ^0.47.4
-        version: 0.47.4(rollup@4.34.8)(svelte@5.25.3)
+        version: 0.47.4(rollup@4.34.8)(svelte@5.25.6)
       lucide-svelte:
         specifier: 0.453.0
-        version: 0.453.0(svelte@5.25.3)
+        version: 0.453.0(svelte@5.25.6)
       mermaid:
         specifier: ^11.5.0
         version: 11.5.0
@@ -191,7 +191,7 @@ importers:
         version: 0.32.4(astro@5.5.4(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.34.8)(typescript@5.8.2)(yaml@2.5.1))
       '@astrojs/svelte':
         specifier: ^7.0.7
-        version: 7.0.7(@types/node@22.13.11)(astro@5.5.4(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.34.8)(typescript@5.8.2)(yaml@2.5.1))(jiti@2.4.2)(lightningcss@1.29.2)(svelte@5.25.3)(typescript@5.8.2)(yaml@2.5.1)
+        version: 7.0.7(@types/node@22.13.11)(astro@5.5.4(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.34.8)(typescript@5.8.2)(yaml@2.5.1))(jiti@2.4.2)(lightningcss@1.29.2)(svelte@5.25.6)(typescript@5.8.2)(yaml@2.5.1)
       astro:
         specifier: ^5.5.4
         version: 5.5.4(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.34.8)(typescript@5.8.2)(yaml@2.5.1)
@@ -212,7 +212,7 @@ importers:
         version: 0.10.0(@astrojs/starlight@0.32.4(astro@5.5.4(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.34.8)(typescript@5.8.2)(yaml@2.5.1)))
       svelte:
         specifier: 'catalog:'
-        version: 5.25.3
+        version: 5.25.6
 
   apps/docs2:
     dependencies:
@@ -300,7 +300,7 @@ importers:
         version: 0.32.4(astro@5.5.4(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.34.8)(typescript@5.8.2)(yaml@2.5.1))
       '@astrojs/svelte':
         specifier: ^7.0.7
-        version: 7.0.7(@types/node@22.13.11)(astro@5.5.4(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.34.8)(typescript@5.8.2)(yaml@2.5.1))(jiti@2.4.2)(lightningcss@1.29.2)(svelte@5.25.3)(typescript@5.8.2)(yaml@2.5.1)
+        version: 7.0.7(@types/node@22.13.11)(astro@5.5.4(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.34.8)(typescript@5.8.2)(yaml@2.5.1))(jiti@2.4.2)(lightningcss@1.29.2)(svelte@5.25.6)(typescript@5.8.2)(yaml@2.5.1)
       astro:
         specifier: ^5.5.4
         version: 5.5.4(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.34.8)(typescript@5.8.2)(yaml@2.5.1)
@@ -315,40 +315,40 @@ importers:
         version: 0.10.0(@astrojs/starlight@0.32.4(astro@5.5.4(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.34.8)(typescript@5.8.2)(yaml@2.5.1)))
       svelte:
         specifier: 'catalog:'
-        version: 5.25.3
+        version: 5.25.6
 
   apps/playground:
     dependencies:
       '@sjsf/ajv8-validator':
         specifier: ^1.9.2
-        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.25.3))(ajv@8.17.1)
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.25.6))(ajv@8.17.1)
       '@sjsf/cfworker-validator':
         specifier: ^1.9.2
-        version: 1.9.2(@cfworker/json-schema@4.1.1)(@sjsf/form@1.9.2(svelte@5.25.3))
+        version: 1.9.2(@cfworker/json-schema@4.1.1)(@sjsf/form@1.9.2(svelte@5.25.6))
       '@sjsf/daisyui-theme':
         specifier: ^1.9.2
-        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.25.3))(daisyui@4.12.24(postcss@8.5.3))(svelte@5.25.3)
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.25.6))(daisyui@4.12.24(postcss@8.5.3))(svelte@5.25.6)
       '@sjsf/flowbite-icons':
         specifier: ^1.9.2
-        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.25.3))(flowbite-svelte-icons@2.0.2(svelte@5.25.3)(tailwind-merge@2.6.0)(tailwindcss@3.4.17))(svelte@5.25.3)
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.25.6))(flowbite-svelte-icons@2.0.2(svelte@5.25.6)(tailwind-merge@2.6.0)(tailwindcss@3.4.17))(svelte@5.25.6)
       '@sjsf/flowbite-theme':
         specifier: ^1.9.2
-        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.25.3))(flowbite-svelte@0.47.4(rollup@4.34.8)(svelte@5.25.3))(flowbite@2.5.2(rollup@4.34.8))(svelte@5.25.3)
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.25.6))(flowbite-svelte@0.47.4(rollup@4.34.8)(svelte@5.25.6))(flowbite@2.5.2(rollup@4.34.8))(svelte@5.25.6)
       '@sjsf/form':
         specifier: ^1.9.2
-        version: 1.9.2(svelte@5.25.3)
+        version: 1.9.2(svelte@5.25.6)
       '@sjsf/lucide-icons':
         specifier: ^1.9.2
-        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.25.3))(lucide-svelte@0.453.0(svelte@5.25.3))(svelte@5.25.3)
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.25.6))(lucide-svelte@0.453.0(svelte@5.25.6))(svelte@5.25.6)
       '@sjsf/radix-icons':
         specifier: ^1.9.2
-        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.25.3))(svelte-radix@2.0.1(svelte@5.25.3))(svelte@5.25.3)
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.25.6))(svelte-radix@2.0.1(svelte@5.25.6))(svelte@5.25.6)
       '@sjsf/shadcn-theme':
         specifier: ^1.9.2
-        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.25.3))(bits-ui@1.3.13(svelte@5.25.3))(clsx@2.1.1)(lucide-svelte@0.453.0(svelte@5.25.3))(svelte@5.25.3)(tailwind-merge@2.6.0)(tailwind-variants@0.2.1(tailwindcss@3.4.17))
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.25.6))(bits-ui@1.3.13(svelte@5.25.6))(clsx@2.1.1)(lucide-svelte@0.453.0(svelte@5.25.6))(svelte@5.25.6)(tailwind-merge@2.6.0)(tailwind-variants@0.2.1(tailwindcss@3.4.17))
       '@sjsf/skeleton-theme':
         specifier: ^1.9.2
-        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.25.3))(@skeletonlabs/skeleton@3.0.0-next.10(postcss@8.5.3)(tailwindcss@3.4.17))(@tailwindcss/forms@0.5.10(tailwindcss@3.4.17))(svelte@5.25.3)
+        version: 1.9.2(@sjsf/form@1.9.2(svelte@5.25.6))(@skeletonlabs/skeleton@3.0.0-next.10(postcss@8.5.3)(tailwindcss@3.4.17))(@tailwindcss/forms@0.5.10(tailwindcss@3.4.17))(svelte@5.25.6)
       '@skeletonlabs/skeleton':
         specifier: 3.0.0-next.10
         version: 3.0.0-next.10(postcss@8.5.3)(tailwindcss@3.4.17)
@@ -363,19 +363,19 @@ importers:
         version: 2.5.2(rollup@4.34.8)
       flowbite-svelte:
         specifier: ^0.47.4
-        version: 0.47.4(rollup@4.34.8)(svelte@5.25.3)
+        version: 0.47.4(rollup@4.34.8)(svelte@5.25.6)
       flowbite-svelte-icons:
         specifier: 2.0.2
-        version: 2.0.2(svelte@5.25.3)(tailwind-merge@2.6.0)(tailwindcss@3.4.17)
+        version: 2.0.2(svelte@5.25.6)(tailwind-merge@2.6.0)(tailwindcss@3.4.17)
       lucide-svelte:
         specifier: ^0.453.0
-        version: 0.453.0(svelte@5.25.3)
+        version: 0.453.0(svelte@5.25.6)
       rehype-raw:
         specifier: ^7.0.0
         version: 7.0.0
       svelte-exmarkdown:
         specifier: ^4.0.3
-        version: 4.0.3(svelte@5.25.3)
+        version: 4.0.3(svelte@5.25.6)
       tailwind-merge:
         specifier: ^2.6.0
         version: 2.6.0
@@ -385,7 +385,7 @@ importers:
     devDependencies:
       '@sveltejs/vite-plugin-svelte':
         specifier: 'catalog:'
-        version: 5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+        version: 5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       '@tsconfig/svelte':
         specifier: 'catalog:'
         version: 5.0.4
@@ -397,10 +397,10 @@ importers:
         version: 8.5.3
       svelte:
         specifier: 'catalog:'
-        version: 5.25.3
+        version: 5.25.6
       svelte-check:
         specifier: 'catalog:'
-        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.3)(typescript@5.8.2)
+        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.6)(typescript@5.8.2)
       tailwindcss:
         specifier: 'catalog:'
         version: 3.4.17
@@ -463,11 +463,11 @@ importers:
         version: 7.0.0
       svelte-exmarkdown:
         specifier: ^4.0.3
-        version: 4.0.3(svelte@5.25.3)
+        version: 4.0.3(svelte@5.25.6)
     devDependencies:
       '@sveltejs/vite-plugin-svelte':
         specifier: 'catalog:'
-        version: 5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+        version: 5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       '@tailwindcss/vite':
         specifier: 'catalog:'
         version: 4.0.15(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
@@ -476,10 +476,10 @@ importers:
         version: 5.0.4
       svelte:
         specifier: 'catalog:'
-        version: 5.25.3
+        version: 5.25.6
       svelte-check:
         specifier: 'catalog:'
-        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.3)(typescript@5.8.2)
+        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.6)(typescript@5.8.2)
       tailwindcss:
         specifier: catalog:next
         version: 4.0.15
@@ -494,13 +494,13 @@ importers:
         version: link:../form
       '@sveltejs/vite-plugin-svelte':
         specifier: 'catalog:'
-        version: 5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+        version: 5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       ajv:
         specifier: 'catalog:'
         version: 8.17.1
       svelte:
         specifier: 'catalog:'
-        version: 5.25.3
+        version: 5.25.6
       vite:
         specifier: 'catalog:'
         version: 6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)
@@ -515,19 +515,19 @@ importers:
         version: link:../form
       '@sveltejs/package':
         specifier: 'catalog:'
-        version: 2.3.10(svelte@5.25.3)(typescript@5.8.2)
+        version: 2.3.10(svelte@5.25.6)(typescript@5.8.2)
       '@sveltejs/vite-plugin-svelte':
         specifier: 'catalog:'
-        version: 5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+        version: 5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       '@tsconfig/svelte':
         specifier: 'catalog:'
         version: 5.0.4
       svelte:
         specifier: 'catalog:'
-        version: 5.25.3
+        version: 5.25.6
       svelte-check:
         specifier: 'catalog:'
-        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.3)(typescript@5.8.2)
+        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.6)(typescript@5.8.2)
       testing:
         specifier: workspace:*
         version: link:../testing
@@ -548,10 +548,10 @@ importers:
         version: link:../form
       '@sveltejs/vite-plugin-svelte':
         specifier: 'catalog:'
-        version: 5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+        version: 5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       svelte:
         specifier: 'catalog:'
-        version: 5.25.3
+        version: 5.25.6
       vite:
         specifier: 'catalog:'
         version: 6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)
@@ -575,16 +575,16 @@ importers:
         version: link:../form
       '@sveltejs/adapter-static':
         specifier: 'catalog:'
-        version: 3.0.8(@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))
+        version: 3.0.8(@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))
       '@sveltejs/kit':
         specifier: 'catalog:'
-        version: 2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+        version: 2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       '@sveltejs/package':
         specifier: 'catalog:'
-        version: 2.3.10(svelte@5.25.3)(typescript@5.8.2)
+        version: 2.3.10(svelte@5.25.6)(typescript@5.8.2)
       '@sveltejs/vite-plugin-svelte':
         specifier: 'catalog:'
-        version: 5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+        version: 5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       '@types/eslint':
         specifier: 'catalog:'
         version: 9.6.1
@@ -605,7 +605,7 @@ importers:
         version: 10.1.1(eslint@9.23.0(jiti@2.4.2))
       eslint-plugin-svelte:
         specifier: 'catalog:'
-        version: 3.3.3(eslint@9.23.0(jiti@2.4.2))(svelte@5.25.3)
+        version: 3.3.3(eslint@9.23.0(jiti@2.4.2))(svelte@5.25.6)
       globals:
         specifier: 'catalog:'
         version: 16.0.0
@@ -617,13 +617,13 @@ importers:
         version: 3.5.3
       prettier-plugin-svelte:
         specifier: 'catalog:'
-        version: 3.3.3(prettier@3.5.3)(svelte@5.25.3)
+        version: 3.3.3(prettier@3.5.3)(svelte@5.25.6)
       svelte:
         specifier: 'catalog:'
-        version: 5.25.3
+        version: 5.25.6
       svelte-check:
         specifier: 'catalog:'
-        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.3)(typescript@5.8.2)
+        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.6)(typescript@5.8.2)
       tailwindcss:
         specifier: 'catalog:'
         version: 3.4.17
@@ -656,16 +656,16 @@ importers:
         version: link:../form
       '@sveltejs/adapter-static':
         specifier: 'catalog:'
-        version: 3.0.8(@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))
+        version: 3.0.8(@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))
       '@sveltejs/kit':
         specifier: 'catalog:'
-        version: 2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+        version: 2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       '@sveltejs/package':
         specifier: 'catalog:'
-        version: 2.3.10(svelte@5.25.3)(typescript@5.8.2)
+        version: 2.3.10(svelte@5.25.6)(typescript@5.8.2)
       '@sveltejs/vite-plugin-svelte':
         specifier: 'catalog:'
-        version: 5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+        version: 5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       '@tailwindcss/vite':
         specifier: 'catalog:'
         version: 4.0.15(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
@@ -689,7 +689,7 @@ importers:
         version: 10.1.1(eslint@9.23.0(jiti@2.4.2))
       eslint-plugin-svelte:
         specifier: 'catalog:'
-        version: 3.3.3(eslint@9.23.0(jiti@2.4.2))(svelte@5.25.3)
+        version: 3.3.3(eslint@9.23.0(jiti@2.4.2))(svelte@5.25.6)
       globals:
         specifier: 'catalog:'
         version: 16.0.0
@@ -698,13 +698,13 @@ importers:
         version: 3.5.3
       prettier-plugin-svelte:
         specifier: 'catalog:'
-        version: 3.3.3(prettier@3.5.3)(svelte@5.25.3)
+        version: 3.3.3(prettier@3.5.3)(svelte@5.25.6)
       svelte:
         specifier: 'catalog:'
-        version: 5.25.3
+        version: 5.25.6
       svelte-check:
         specifier: 'catalog:'
-        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.3)(typescript@5.8.2)
+        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.6)(typescript@5.8.2)
       tailwindcss:
         specifier: catalog:next
         version: 4.0.15
@@ -742,16 +742,16 @@ importers:
         version: link:../form
       '@sveltejs/adapter-static':
         specifier: 'catalog:'
-        version: 3.0.8(@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))
+        version: 3.0.8(@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))
       '@sveltejs/kit':
         specifier: 'catalog:'
-        version: 2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+        version: 2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       '@sveltejs/package':
         specifier: 'catalog:'
-        version: 2.3.10(svelte@5.25.3)(typescript@5.8.2)
+        version: 2.3.10(svelte@5.25.6)(typescript@5.8.2)
       '@sveltejs/vite-plugin-svelte':
         specifier: 'catalog:'
-        version: 5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+        version: 5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       '@types/eslint':
         specifier: 'catalog:'
         version: 9.6.1
@@ -766,10 +766,10 @@ importers:
         version: 10.1.1(eslint@9.23.0(jiti@2.4.2))
       eslint-plugin-svelte:
         specifier: 'catalog:'
-        version: 3.3.3(eslint@9.23.0(jiti@2.4.2))(svelte@5.25.3)
+        version: 3.3.3(eslint@9.23.0(jiti@2.4.2))(svelte@5.25.6)
       flowbite-svelte-icons:
         specifier: ^2.1.0
-        version: 2.1.0(svelte@5.25.3)
+        version: 2.1.0(svelte@5.25.6)
       globals:
         specifier: 'catalog:'
         version: 16.0.0
@@ -781,13 +781,13 @@ importers:
         version: 3.5.3
       prettier-plugin-svelte:
         specifier: 'catalog:'
-        version: 3.3.3(prettier@3.5.3)(svelte@5.25.3)
+        version: 3.3.3(prettier@3.5.3)(svelte@5.25.6)
       svelte:
         specifier: 'catalog:'
-        version: 5.25.3
+        version: 5.25.6
       svelte-check:
         specifier: 'catalog:'
-        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.3)(typescript@5.8.2)
+        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.6)(typescript@5.8.2)
       tailwindcss:
         specifier: 'catalog:'
         version: 3.4.17
@@ -817,16 +817,16 @@ importers:
         version: link:../form
       '@sveltejs/adapter-static':
         specifier: 'catalog:'
-        version: 3.0.8(@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))
+        version: 3.0.8(@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))
       '@sveltejs/kit':
         specifier: 'catalog:'
-        version: 2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+        version: 2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       '@sveltejs/package':
         specifier: 'catalog:'
-        version: 2.3.10(svelte@5.25.3)(typescript@5.8.2)
+        version: 2.3.10(svelte@5.25.6)(typescript@5.8.2)
       '@sveltejs/vite-plugin-svelte':
         specifier: 'catalog:'
-        version: 5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+        version: 5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       '@types/eslint':
         specifier: 'catalog:'
         version: 9.6.1
@@ -844,13 +844,13 @@ importers:
         version: 10.1.1(eslint@9.23.0(jiti@2.4.2))
       eslint-plugin-svelte:
         specifier: 'catalog:'
-        version: 3.3.3(eslint@9.23.0(jiti@2.4.2))(svelte@5.25.3)
+        version: 3.3.3(eslint@9.23.0(jiti@2.4.2))(svelte@5.25.6)
       flowbite:
         specifier: ^2.5.2
         version: 2.5.2(rollup@4.34.8)
       flowbite-svelte:
         specifier: 0.47.4
-        version: 0.47.4(rollup@4.34.8)(svelte@5.25.3)
+        version: 0.47.4(rollup@4.34.8)(svelte@5.25.6)
       globals:
         specifier: 'catalog:'
         version: 16.0.0
@@ -862,13 +862,13 @@ importers:
         version: 3.5.3
       prettier-plugin-svelte:
         specifier: 'catalog:'
-        version: 3.3.3(prettier@3.5.3)(svelte@5.25.3)
+        version: 3.3.3(prettier@3.5.3)(svelte@5.25.6)
       svelte:
         specifier: 'catalog:'
-        version: 5.25.3
+        version: 5.25.6
       svelte-check:
         specifier: 'catalog:'
-        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.3)(typescript@5.8.2)
+        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.6)(typescript@5.8.2)
       tailwindcss:
         specifier: 'catalog:'
         version: 3.4.17
@@ -898,16 +898,16 @@ importers:
         version: link:../form
       '@sveltejs/adapter-static':
         specifier: 'catalog:'
-        version: 3.0.8(@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))
+        version: 3.0.8(@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))
       '@sveltejs/kit':
         specifier: 'catalog:'
-        version: 2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+        version: 2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       '@sveltejs/package':
         specifier: 'catalog:'
-        version: 2.3.10(svelte@5.25.3)(typescript@5.8.2)
+        version: 2.3.10(svelte@5.25.6)(typescript@5.8.2)
       '@sveltejs/vite-plugin-svelte':
         specifier: 'catalog:'
-        version: 5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+        version: 5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       '@tailwindcss/vite':
         specifier: 'catalog:'
         version: 4.0.15(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
@@ -925,13 +925,13 @@ importers:
         version: 10.1.1(eslint@9.23.0(jiti@2.4.2))
       eslint-plugin-svelte:
         specifier: 'catalog:'
-        version: 3.3.3(eslint@9.23.0(jiti@2.4.2))(svelte@5.25.3)
+        version: 3.3.3(eslint@9.23.0(jiti@2.4.2))(svelte@5.25.6)
       flowbite:
         specifier: ^3.1.2
         version: 3.1.2(rollup@4.34.8)
       flowbite-svelte:
         specifier: 1.0.0-next.5
-        version: 1.0.0-next.5(rollup@4.34.8)(svelte@5.25.3)
+        version: 1.0.0-next.5(rollup@4.34.8)(svelte@5.25.6)
       globals:
         specifier: 'catalog:'
         version: 16.0.0
@@ -940,13 +940,13 @@ importers:
         version: 3.5.3
       prettier-plugin-svelte:
         specifier: 'catalog:'
-        version: 3.3.3(prettier@3.5.3)(svelte@5.25.3)
+        version: 3.3.3(prettier@3.5.3)(svelte@5.25.6)
       svelte:
         specifier: 'catalog:'
-        version: 5.25.3
+        version: 5.25.6
       svelte-check:
         specifier: 'catalog:'
-        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.3)(typescript@5.8.2)
+        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.6)(typescript@5.8.2)
       tailwindcss:
         specifier: catalog:next
         version: 4.0.15
@@ -980,10 +980,10 @@ importers:
     devDependencies:
       '@sveltejs/package':
         specifier: 'catalog:'
-        version: 2.3.10(svelte@5.25.3)(typescript@5.8.2)
+        version: 2.3.10(svelte@5.25.6)(typescript@5.8.2)
       '@sveltejs/vite-plugin-svelte':
         specifier: 'catalog:'
-        version: 5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+        version: 5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       '@tsconfig/svelte':
         specifier: 'catalog:'
         version: 5.0.4
@@ -998,10 +998,10 @@ importers:
         version: 4.0.0
       svelte:
         specifier: 'catalog:'
-        version: 5.25.3
+        version: 5.25.6
       svelte-check:
         specifier: 'catalog:'
-        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.3)(typescript@5.8.2)
+        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.6)(typescript@5.8.2)
       vite:
         specifier: 'catalog:'
         version: 6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)
@@ -1019,16 +1019,16 @@ importers:
         version: link:../form
       '@sveltejs/adapter-static':
         specifier: 'catalog:'
-        version: 3.0.8(@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))
+        version: 3.0.8(@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))
       '@sveltejs/kit':
         specifier: 'catalog:'
-        version: 2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+        version: 2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       '@sveltejs/package':
         specifier: 'catalog:'
-        version: 2.3.10(svelte@5.25.3)(typescript@5.8.2)
+        version: 2.3.10(svelte@5.25.6)(typescript@5.8.2)
       '@sveltejs/vite-plugin-svelte':
         specifier: 'catalog:'
-        version: 5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+        version: 5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       '@types/eslint':
         specifier: 'catalog:'
         version: 9.6.1
@@ -1040,13 +1040,13 @@ importers:
         version: 10.1.1(eslint@9.23.0(jiti@2.4.2))
       eslint-plugin-svelte:
         specifier: 'catalog:'
-        version: 3.3.3(eslint@9.23.0(jiti@2.4.2))(svelte@5.25.3)
+        version: 3.3.3(eslint@9.23.0(jiti@2.4.2))(svelte@5.25.6)
       globals:
         specifier: 'catalog:'
         version: 16.0.0
       lucide-svelte:
         specifier: ^0.483.0
-        version: 0.483.0(svelte@5.25.3)
+        version: 0.483.0(svelte@5.25.6)
       postcss:
         specifier: 'catalog:'
         version: 8.5.3
@@ -1055,13 +1055,13 @@ importers:
         version: 3.5.3
       prettier-plugin-svelte:
         specifier: 'catalog:'
-        version: 3.3.3(prettier@3.5.3)(svelte@5.25.3)
+        version: 3.3.3(prettier@3.5.3)(svelte@5.25.6)
       svelte:
         specifier: 'catalog:'
-        version: 5.25.3
+        version: 5.25.6
       svelte-check:
         specifier: 'catalog:'
-        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.3)(typescript@5.8.2)
+        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.6)(typescript@5.8.2)
       testing:
         specifier: workspace:*
         version: link:../testing
@@ -1085,16 +1085,16 @@ importers:
         version: link:../form
       '@sveltejs/adapter-static':
         specifier: 'catalog:'
-        version: 3.0.8(@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))
+        version: 3.0.8(@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))
       '@sveltejs/kit':
         specifier: 'catalog:'
-        version: 2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+        version: 2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       '@sveltejs/package':
         specifier: 'catalog:'
-        version: 2.3.10(svelte@5.25.3)(typescript@5.8.2)
+        version: 2.3.10(svelte@5.25.6)(typescript@5.8.2)
       '@sveltejs/vite-plugin-svelte':
         specifier: 'catalog:'
-        version: 5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+        version: 5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       '@types/eslint':
         specifier: 'catalog:'
         version: 9.6.1
@@ -1106,7 +1106,7 @@ importers:
         version: 10.1.1(eslint@9.23.0(jiti@2.4.2))
       eslint-plugin-svelte:
         specifier: 'catalog:'
-        version: 3.3.3(eslint@9.23.0(jiti@2.4.2))(svelte@5.25.3)
+        version: 3.3.3(eslint@9.23.0(jiti@2.4.2))(svelte@5.25.6)
       globals:
         specifier: 'catalog:'
         version: 16.0.0
@@ -1118,13 +1118,13 @@ importers:
         version: 3.5.3
       prettier-plugin-svelte:
         specifier: 'catalog:'
-        version: 3.3.3(prettier@3.5.3)(svelte@5.25.3)
+        version: 3.3.3(prettier@3.5.3)(svelte@5.25.6)
       svelte:
         specifier: 'catalog:'
-        version: 5.25.3
+        version: 5.25.6
       svelte-check:
         specifier: 'catalog:'
-        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.3)(typescript@5.8.2)
+        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.6)(typescript@5.8.2)
       testing:
         specifier: workspace:*
         version: link:../testing
@@ -1148,16 +1148,16 @@ importers:
         version: link:../form
       '@sveltejs/adapter-static':
         specifier: 'catalog:'
-        version: 3.0.8(@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))
+        version: 3.0.8(@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))
       '@sveltejs/kit':
         specifier: 'catalog:'
-        version: 2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+        version: 2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       '@sveltejs/package':
         specifier: 'catalog:'
-        version: 2.3.10(svelte@5.25.3)(typescript@5.8.2)
+        version: 2.3.10(svelte@5.25.6)(typescript@5.8.2)
       '@sveltejs/vite-plugin-svelte':
         specifier: 'catalog:'
-        version: 5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+        version: 5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       '@types/eslint':
         specifier: 'catalog:'
         version: 9.6.1
@@ -1169,7 +1169,7 @@ importers:
         version: 10.1.1(eslint@9.23.0(jiti@2.4.2))
       eslint-plugin-svelte:
         specifier: 'catalog:'
-        version: 3.3.3(eslint@9.23.0(jiti@2.4.2))(svelte@5.25.3)
+        version: 3.3.3(eslint@9.23.0(jiti@2.4.2))(svelte@5.25.6)
       globals:
         specifier: 'catalog:'
         version: 16.0.0
@@ -1181,16 +1181,16 @@ importers:
         version: 3.5.3
       prettier-plugin-svelte:
         specifier: 'catalog:'
-        version: 3.3.3(prettier@3.5.3)(svelte@5.25.3)
+        version: 3.3.3(prettier@3.5.3)(svelte@5.25.6)
       svelte:
         specifier: 'catalog:'
-        version: 5.25.3
+        version: 5.25.6
       svelte-check:
         specifier: 'catalog:'
-        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.3)(typescript@5.8.2)
+        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.6)(typescript@5.8.2)
       svelte-radix:
         specifier: ^2.0.1
-        version: 2.0.1(svelte@5.25.3)
+        version: 2.0.1(svelte@5.25.6)
       testing:
         specifier: workspace:*
         version: link:../testing
@@ -1220,16 +1220,16 @@ importers:
         version: link:../form
       '@sveltejs/adapter-static':
         specifier: 'catalog:'
-        version: 3.0.8(@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))
+        version: 3.0.8(@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))
       '@sveltejs/kit':
         specifier: 'catalog:'
-        version: 2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+        version: 2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       '@sveltejs/package':
         specifier: 'catalog:'
-        version: 2.3.10(svelte@5.25.3)(typescript@5.8.2)
+        version: 2.3.10(svelte@5.25.6)(typescript@5.8.2)
       '@sveltejs/vite-plugin-svelte':
         specifier: 'catalog:'
-        version: 5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+        version: 5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       '@types/eslint':
         specifier: 'catalog:'
         version: 9.6.1
@@ -1241,7 +1241,7 @@ importers:
         version: 10.4.21(postcss@8.5.3)
       bits-ui:
         specifier: ^1.3.13
-        version: 1.3.13(svelte@5.25.3)
+        version: 1.3.13(svelte@5.25.6)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -1253,13 +1253,13 @@ importers:
         version: 10.1.1(eslint@9.23.0(jiti@2.4.2))
       eslint-plugin-svelte:
         specifier: 'catalog:'
-        version: 3.3.3(eslint@9.23.0(jiti@2.4.2))(svelte@5.25.3)
+        version: 3.3.3(eslint@9.23.0(jiti@2.4.2))(svelte@5.25.6)
       globals:
         specifier: 'catalog:'
         version: 16.0.0
       lucide-svelte:
         specifier: ^0.483.0
-        version: 0.483.0(svelte@5.25.3)
+        version: 0.483.0(svelte@5.25.6)
       postcss:
         specifier: 'catalog:'
         version: 8.5.3
@@ -1268,13 +1268,13 @@ importers:
         version: 3.5.3
       prettier-plugin-svelte:
         specifier: 'catalog:'
-        version: 3.3.3(prettier@3.5.3)(svelte@5.25.3)
+        version: 3.3.3(prettier@3.5.3)(svelte@5.25.6)
       svelte:
         specifier: 'catalog:'
-        version: 5.25.3
+        version: 5.25.6
       svelte-check:
         specifier: 'catalog:'
-        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.3)(typescript@5.8.2)
+        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.6)(typescript@5.8.2)
       tailwind-merge:
         specifier: ^2.6.0
         version: 2.6.0
@@ -1323,16 +1323,16 @@ importers:
         version: 3.0.0-next.10(postcss@8.5.3)(tailwindcss@3.4.17)
       '@sveltejs/adapter-static':
         specifier: 'catalog:'
-        version: 3.0.8(@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))
+        version: 3.0.8(@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))
       '@sveltejs/kit':
         specifier: 'catalog:'
-        version: 2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+        version: 2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       '@sveltejs/package':
         specifier: 'catalog:'
-        version: 2.3.10(svelte@5.25.3)(typescript@5.8.2)
+        version: 2.3.10(svelte@5.25.6)(typescript@5.8.2)
       '@sveltejs/vite-plugin-svelte':
         specifier: 'catalog:'
-        version: 5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+        version: 5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       '@tailwindcss/forms':
         specifier: ^0.5.10
         version: 0.5.10(tailwindcss@3.4.17)
@@ -1353,7 +1353,7 @@ importers:
         version: 10.1.1(eslint@9.23.0(jiti@2.4.2))
       eslint-plugin-svelte:
         specifier: 'catalog:'
-        version: 3.3.3(eslint@9.23.0(jiti@2.4.2))(svelte@5.25.3)
+        version: 3.3.3(eslint@9.23.0(jiti@2.4.2))(svelte@5.25.6)
       globals:
         specifier: 'catalog:'
         version: 16.0.0
@@ -1365,13 +1365,13 @@ importers:
         version: 3.5.3
       prettier-plugin-svelte:
         specifier: 'catalog:'
-        version: 3.3.3(prettier@3.5.3)(svelte@5.25.3)
+        version: 3.3.3(prettier@3.5.3)(svelte@5.25.6)
       svelte:
         specifier: 'catalog:'
-        version: 5.25.3
+        version: 5.25.6
       svelte-check:
         specifier: 'catalog:'
-        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.3)(typescript@5.8.2)
+        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.6)(typescript@5.8.2)
       tailwindcss:
         specifier: 'catalog:'
         version: 3.4.17
@@ -1407,19 +1407,19 @@ importers:
         version: 3.1.1(tailwindcss@4.0.15)
       '@skeletonlabs/skeleton-svelte':
         specifier: ^1.0.0
-        version: 1.0.0(@skeletonlabs/skeleton@3.1.1(tailwindcss@4.0.15))(svelte@5.25.3)
+        version: 1.0.0(@skeletonlabs/skeleton@3.1.1(tailwindcss@4.0.15))(svelte@5.25.6)
       '@sveltejs/adapter-static':
         specifier: 'catalog:'
-        version: 3.0.8(@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))
+        version: 3.0.8(@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))
       '@sveltejs/kit':
         specifier: 'catalog:'
-        version: 2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+        version: 2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       '@sveltejs/package':
         specifier: 'catalog:'
-        version: 2.3.10(svelte@5.25.3)(typescript@5.8.2)
+        version: 2.3.10(svelte@5.25.6)(typescript@5.8.2)
       '@sveltejs/vite-plugin-svelte':
         specifier: 'catalog:'
-        version: 5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+        version: 5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       '@tailwindcss/forms':
         specifier: ^0.5.10
         version: 0.5.10(tailwindcss@4.0.15)
@@ -1440,7 +1440,7 @@ importers:
         version: 10.1.1(eslint@9.23.0(jiti@2.4.2))
       eslint-plugin-svelte:
         specifier: 'catalog:'
-        version: 3.3.3(eslint@9.23.0(jiti@2.4.2))(svelte@5.25.3)
+        version: 3.3.3(eslint@9.23.0(jiti@2.4.2))(svelte@5.25.6)
       globals:
         specifier: 'catalog:'
         version: 16.0.0
@@ -1449,13 +1449,13 @@ importers:
         version: 3.5.3
       prettier-plugin-svelte:
         specifier: 'catalog:'
-        version: 3.3.3(prettier@3.5.3)(svelte@5.25.3)
+        version: 3.3.3(prettier@3.5.3)(svelte@5.25.6)
       svelte:
         specifier: 'catalog:'
-        version: 5.25.3
+        version: 5.25.6
       svelte-check:
         specifier: 'catalog:'
-        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.3)(typescript@5.8.2)
+        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.6)(typescript@5.8.2)
       tailwindcss:
         specifier: catalog:next
         version: 4.0.15
@@ -1488,16 +1488,16 @@ importers:
         version: link:../form
       '@sveltejs/adapter-static':
         specifier: 'catalog:'
-        version: 3.0.8(@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))
+        version: 3.0.8(@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))
       '@sveltejs/kit':
         specifier: 'catalog:'
-        version: 2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+        version: 2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       '@sveltejs/package':
         specifier: 'catalog:'
-        version: 2.3.10(svelte@5.25.3)(typescript@5.8.2)
+        version: 2.3.10(svelte@5.25.6)(typescript@5.8.2)
       '@sveltejs/vite-plugin-svelte':
         specifier: 'catalog:'
-        version: 5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+        version: 5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       '@types/eslint':
         specifier: 'catalog:'
         version: 9.6.1
@@ -1512,7 +1512,7 @@ importers:
         version: 10.1.1(eslint@9.23.0(jiti@2.4.2))
       eslint-plugin-svelte:
         specifier: 'catalog:'
-        version: 3.3.3(eslint@9.23.0(jiti@2.4.2))(svelte@5.25.3)
+        version: 3.3.3(eslint@9.23.0(jiti@2.4.2))(svelte@5.25.6)
       esm-env:
         specifier: 'catalog:'
         version: 1.2.2
@@ -1527,13 +1527,13 @@ importers:
         version: 3.5.3
       prettier-plugin-svelte:
         specifier: 'catalog:'
-        version: 3.3.3(prettier@3.5.3)(svelte@5.25.3)
+        version: 3.3.3(prettier@3.5.3)(svelte@5.25.6)
       svelte:
         specifier: 'catalog:'
-        version: 5.25.3
+        version: 5.25.6
       svelte-check:
         specifier: 'catalog:'
-        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.3)(typescript@5.8.2)
+        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.6)(typescript@5.8.2)
       testing:
         specifier: workspace:*
         version: link:../testing
@@ -1557,26 +1557,26 @@ importers:
         version: link:../form
       '@sveltejs/svelte-json-tree':
         specifier: ^2.2.1
-        version: 2.2.1(svelte@5.25.3)
+        version: 2.2.1(svelte@5.25.6)
       ajv:
         specifier: 'catalog:'
         version: 8.17.1
     devDependencies:
       '@sveltejs/package':
         specifier: 'catalog:'
-        version: 2.3.10(svelte@5.25.3)(typescript@5.8.2)
+        version: 2.3.10(svelte@5.25.6)(typescript@5.8.2)
       '@sveltejs/vite-plugin-svelte':
         specifier: 'catalog:'
-        version: 5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+        version: 5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       '@tsconfig/svelte':
         specifier: 'catalog:'
         version: 5.0.4
       svelte:
         specifier: 'catalog:'
-        version: 5.25.3
+        version: 5.25.6
       svelte-check:
         specifier: 'catalog:'
-        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.3)(typescript@5.8.2)
+        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.6)(typescript@5.8.2)
       vite:
         specifier: 'catalog:'
         version: 6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)
@@ -3856,8 +3856,8 @@ packages:
     resolution: {integrity: sha512-ca9pw9fomFcKPvFLXhBKUK90ZvGibiGOvRJNbjljY7s7uq/5YO4BOzcYtJqExdx99rF6aAcnRxHmcUHcz6sQsg==}
     engines: {node: '>=0.10'}
 
-  esrap@1.4.3:
-    resolution: {integrity: sha512-Xddc1RsoFJ4z9nR7W7BFaEPIp4UXoeQ0+077UdWLxbafMQFyU79sQJMk7kxNgRwQ9/aVgaKacCHC2pUACGwmYw==}
+  esrap@1.4.6:
+    resolution: {integrity: sha512-F/D2mADJ9SHY3IwksD4DAXjTt7qt7GWUf3/8RhCNWmC/67tyb55dpimHmy7EplakFaflV0R/PC+fdSPqrRHAQw==}
 
   esrecurse@4.3.0:
     resolution: {integrity: sha512-KmfKL3b6G+RXvP8N1vr3Tq1kL/oCFgn2NYXEtqP8/L3pKapUA4G8cFVaoF3SU323CD4XypR/ffioHmkti6/Tag==}
@@ -5503,8 +5503,8 @@ packages:
       svelte: ^3.55 || ^4.0.0-next.0 || ^4.0 || ^5.0.0-next.0
       typescript: ^4.9.4 || ^5.0.0
 
-  svelte@5.25.3:
-    resolution: {integrity: sha512-J9rcZ/xVJonAoESqVGHHZhrNdVbrCfkdB41BP6eiwHMoFShD9it3yZXApVYMHdGfCshBsZCKsajwJeBbS/M1zg==}
+  svelte@5.25.6:
+    resolution: {integrity: sha512-RGkaeAXDuJdvhA1fdSM5GgD++vYfJYijZL0uN6kM2s/TRJ663jktBhZlF0qjzAJGR/34PtaeT3G8MKJY1EKeqg==}
     engines: {node: '>=18'}
 
   svg-pan-zoom@https://codeload.github.com/bumbu/svg-pan-zoom/tar.gz/aaa68d186abab5d782191b66d2582592fe5d3c13:
@@ -6404,12 +6404,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/svelte@7.0.7(@types/node@22.13.11)(astro@5.5.4(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.34.8)(typescript@5.8.2)(yaml@2.5.1))(jiti@2.4.2)(lightningcss@1.29.2)(svelte@5.25.3)(typescript@5.8.2)(yaml@2.5.1)':
+  '@astrojs/svelte@7.0.7(@types/node@22.13.11)(astro@5.5.4(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.34.8)(typescript@5.8.2)(yaml@2.5.1))(jiti@2.4.2)(lightningcss@1.29.2)(svelte@5.25.6)(typescript@5.8.2)(yaml@2.5.1)':
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+      '@sveltejs/vite-plugin-svelte': 5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       astro: 5.5.4(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.34.8)(typescript@5.8.2)(yaml@2.5.1)
-      svelte: 5.25.3
-      svelte2tsx: 0.7.35(patch_hash=596fd3494d1b9cea4557645eb76028c09232bcd23408dee456266d3d5f95287c)(svelte@5.25.3)(typescript@5.8.2)
+      svelte: 5.25.6
+      svelte2tsx: 0.7.35(patch_hash=596fd3494d1b9cea4557645eb76028c09232bcd23408dee456266d3d5f95287c)(svelte@5.25.6)(typescript@5.8.2)
       typescript: 5.8.2
       vite: 6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)
     transitivePeerDependencies:
@@ -7210,103 +7210,103 @@ snapshots:
 
   '@shikijs/vscode-textmate@10.0.2': {}
 
-  '@sjsf/ajv8-validator@1.9.2(@sjsf/form@1.9.2(svelte@5.25.3))(ajv@8.17.1)':
+  '@sjsf/ajv8-validator@1.9.2(@sjsf/form@1.9.2(svelte@5.25.6))(ajv@8.17.1)':
     dependencies:
-      '@sjsf/form': 1.9.2(svelte@5.25.3)
+      '@sjsf/form': 1.9.2(svelte@5.25.6)
       ajv: 8.17.1
 
-  '@sjsf/cfworker-validator@1.9.2(@cfworker/json-schema@4.1.1)(@sjsf/form@1.9.2(svelte@5.25.3))':
+  '@sjsf/cfworker-validator@1.9.2(@cfworker/json-schema@4.1.1)(@sjsf/form@1.9.2(svelte@5.25.6))':
     dependencies:
       '@cfworker/json-schema': 4.1.1
-      '@sjsf/form': 1.9.2(svelte@5.25.3)
+      '@sjsf/form': 1.9.2(svelte@5.25.6)
 
-  '@sjsf/daisyui-theme@1.9.2(@sjsf/form@1.9.2(svelte@5.25.3))(daisyui@4.12.24(postcss@8.5.3))(svelte@5.25.3)':
+  '@sjsf/daisyui-theme@1.9.2(@sjsf/form@1.9.2(svelte@5.25.6))(daisyui@4.12.24(postcss@8.5.3))(svelte@5.25.6)':
     dependencies:
-      '@sjsf/form': 1.9.2(svelte@5.25.3)
+      '@sjsf/form': 1.9.2(svelte@5.25.6)
       daisyui: 4.12.24(postcss@8.5.3)
-      svelte: 5.25.3
+      svelte: 5.25.6
 
-  '@sjsf/flowbite-icons@1.9.2(@sjsf/form@1.9.2(svelte@5.25.3))(flowbite-svelte-icons@2.0.2(svelte@5.25.3)(tailwind-merge@2.6.0)(tailwindcss@3.4.17))(svelte@5.25.3)':
+  '@sjsf/flowbite-icons@1.9.2(@sjsf/form@1.9.2(svelte@5.25.6))(flowbite-svelte-icons@2.0.2(svelte@5.25.6)(tailwind-merge@2.6.0)(tailwindcss@3.4.17))(svelte@5.25.6)':
     dependencies:
-      '@sjsf/form': 1.9.2(svelte@5.25.3)
-      flowbite-svelte-icons: 2.0.2(svelte@5.25.3)(tailwind-merge@2.6.0)(tailwindcss@3.4.17)
-      svelte: 5.25.3
+      '@sjsf/form': 1.9.2(svelte@5.25.6)
+      flowbite-svelte-icons: 2.0.2(svelte@5.25.6)(tailwind-merge@2.6.0)(tailwindcss@3.4.17)
+      svelte: 5.25.6
 
-  '@sjsf/flowbite-theme@1.9.2(@sjsf/form@1.9.2(svelte@5.25.3))(flowbite-svelte@0.47.4(rollup@4.34.8)(svelte@5.25.3))(flowbite@2.5.2(rollup@4.34.8))(svelte@5.25.3)':
+  '@sjsf/flowbite-theme@1.9.2(@sjsf/form@1.9.2(svelte@5.25.6))(flowbite-svelte@0.47.4(rollup@4.34.8)(svelte@5.25.6))(flowbite@2.5.2(rollup@4.34.8))(svelte@5.25.6)':
     dependencies:
-      '@sjsf/form': 1.9.2(svelte@5.25.3)
+      '@sjsf/form': 1.9.2(svelte@5.25.6)
       flowbite: 2.5.2(rollup@4.34.8)
-      flowbite-svelte: 0.47.4(rollup@4.34.8)(svelte@5.25.3)
-      svelte: 5.25.3
+      flowbite-svelte: 0.47.4(rollup@4.34.8)(svelte@5.25.6)
+      svelte: 5.25.6
 
-  '@sjsf/form@1.9.2(svelte@5.25.3)':
+  '@sjsf/form@1.9.2(svelte@5.25.6)':
     dependencies:
       es-toolkit: 1.32.0
       fast-equals: 5.2.2
       json-schema-merge-allof: 0.8.1
       jsonpointer: 5.0.1
-      svelte: 5.25.3
+      svelte: 5.25.6
 
-  '@sjsf/lucide-icons@1.9.2(@sjsf/form@1.9.2(svelte@5.25.3))(lucide-svelte@0.453.0(svelte@5.25.3))(svelte@5.25.3)':
+  '@sjsf/lucide-icons@1.9.2(@sjsf/form@1.9.2(svelte@5.25.6))(lucide-svelte@0.453.0(svelte@5.25.6))(svelte@5.25.6)':
     dependencies:
-      '@sjsf/form': 1.9.2(svelte@5.25.3)
-      lucide-svelte: 0.453.0(svelte@5.25.3)
-      svelte: 5.25.3
+      '@sjsf/form': 1.9.2(svelte@5.25.6)
+      lucide-svelte: 0.453.0(svelte@5.25.6)
+      svelte: 5.25.6
 
-  '@sjsf/radix-icons@1.9.2(@sjsf/form@1.9.2(svelte@5.25.3))(svelte-radix@2.0.1(svelte@5.25.3))(svelte@5.25.3)':
+  '@sjsf/radix-icons@1.9.2(@sjsf/form@1.9.2(svelte@5.25.6))(svelte-radix@2.0.1(svelte@5.25.6))(svelte@5.25.6)':
     dependencies:
-      '@sjsf/form': 1.9.2(svelte@5.25.3)
-      svelte: 5.25.3
-      svelte-radix: 2.0.1(svelte@5.25.3)
+      '@sjsf/form': 1.9.2(svelte@5.25.6)
+      svelte: 5.25.6
+      svelte-radix: 2.0.1(svelte@5.25.6)
 
-  '@sjsf/shadcn-theme@1.9.2(@sjsf/form@1.9.2(svelte@5.25.3))(bits-ui@1.3.13(svelte@5.25.3))(clsx@2.1.1)(lucide-svelte@0.453.0(svelte@5.25.3))(svelte@5.25.3)(tailwind-merge@2.6.0)(tailwind-variants@0.2.1(tailwindcss@3.4.17))':
+  '@sjsf/shadcn-theme@1.9.2(@sjsf/form@1.9.2(svelte@5.25.6))(bits-ui@1.3.13(svelte@5.25.6))(clsx@2.1.1)(lucide-svelte@0.453.0(svelte@5.25.6))(svelte@5.25.6)(tailwind-merge@2.6.0)(tailwind-variants@0.2.1(tailwindcss@3.4.17))':
     dependencies:
-      '@sjsf/form': 1.9.2(svelte@5.25.3)
-      bits-ui: 1.3.13(svelte@5.25.3)
+      '@sjsf/form': 1.9.2(svelte@5.25.6)
+      bits-ui: 1.3.13(svelte@5.25.6)
       clsx: 2.1.1
-      lucide-svelte: 0.453.0(svelte@5.25.3)
-      svelte: 5.25.3
+      lucide-svelte: 0.453.0(svelte@5.25.6)
+      svelte: 5.25.6
       tailwind-merge: 2.6.0
       tailwind-variants: 0.2.1(tailwindcss@3.4.17)
 
-  '@sjsf/shadcn-theme@1.9.2(@sjsf/form@1.9.2(svelte@5.25.3))(bits-ui@1.3.13(svelte@5.25.3))(clsx@2.1.1)(lucide-svelte@0.453.0(svelte@5.25.3))(svelte@5.25.3)(tailwind-merge@2.6.0)(tailwind-variants@0.2.1(tailwindcss@4.0.15))':
+  '@sjsf/shadcn-theme@1.9.2(@sjsf/form@1.9.2(svelte@5.25.6))(bits-ui@1.3.13(svelte@5.25.6))(clsx@2.1.1)(lucide-svelte@0.453.0(svelte@5.25.6))(svelte@5.25.6)(tailwind-merge@2.6.0)(tailwind-variants@0.2.1(tailwindcss@4.0.15))':
     dependencies:
-      '@sjsf/form': 1.9.2(svelte@5.25.3)
-      bits-ui: 1.3.13(svelte@5.25.3)
+      '@sjsf/form': 1.9.2(svelte@5.25.6)
+      bits-ui: 1.3.13(svelte@5.25.6)
       clsx: 2.1.1
-      lucide-svelte: 0.453.0(svelte@5.25.3)
-      svelte: 5.25.3
+      lucide-svelte: 0.453.0(svelte@5.25.6)
+      svelte: 5.25.6
       tailwind-merge: 2.6.0
       tailwind-variants: 0.2.1(tailwindcss@4.0.15)
 
-  '@sjsf/skeleton-theme@1.9.2(@sjsf/form@1.9.2(svelte@5.25.3))(@skeletonlabs/skeleton@3.0.0-next.10(postcss@8.5.3)(tailwindcss@3.4.17))(@tailwindcss/forms@0.5.10(tailwindcss@3.4.17))(svelte@5.25.3)':
+  '@sjsf/skeleton-theme@1.9.2(@sjsf/form@1.9.2(svelte@5.25.6))(@skeletonlabs/skeleton@3.0.0-next.10(postcss@8.5.3)(tailwindcss@3.4.17))(@tailwindcss/forms@0.5.10(tailwindcss@3.4.17))(svelte@5.25.6)':
     dependencies:
-      '@sjsf/form': 1.9.2(svelte@5.25.3)
+      '@sjsf/form': 1.9.2(svelte@5.25.6)
       '@skeletonlabs/skeleton': 3.0.0-next.10(postcss@8.5.3)(tailwindcss@3.4.17)
       '@tailwindcss/forms': 0.5.10(tailwindcss@3.4.17)
-      svelte: 5.25.3
+      svelte: 5.25.6
 
-  '@sjsf/skeleton-theme@1.9.2(@sjsf/form@1.9.2(svelte@5.25.3))(@skeletonlabs/skeleton@3.1.1(tailwindcss@4.0.15))(@tailwindcss/forms@0.5.10(tailwindcss@4.0.15))(svelte@5.25.3)':
+  '@sjsf/skeleton-theme@1.9.2(@sjsf/form@1.9.2(svelte@5.25.6))(@skeletonlabs/skeleton@3.1.1(tailwindcss@4.0.15))(@tailwindcss/forms@0.5.10(tailwindcss@4.0.15))(svelte@5.25.6)':
     dependencies:
-      '@sjsf/form': 1.9.2(svelte@5.25.3)
+      '@sjsf/form': 1.9.2(svelte@5.25.6)
       '@skeletonlabs/skeleton': 3.1.1(tailwindcss@4.0.15)
       '@tailwindcss/forms': 0.5.10(tailwindcss@4.0.15)
-      svelte: 5.25.3
+      svelte: 5.25.6
 
-  '@sjsf/sveltekit@1.9.2(@sjsf/form@1.9.2(svelte@5.25.3))(@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(esm-env@1.2.2)(svelte@5.25.3)':
+  '@sjsf/sveltekit@1.9.2(@sjsf/form@1.9.2(svelte@5.25.6))(@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(esm-env@1.2.2)(svelte@5.25.6)':
     dependencies:
-      '@sjsf/form': 1.9.2(svelte@5.25.3)
-      '@sveltejs/kit': 2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+      '@sjsf/form': 1.9.2(svelte@5.25.6)
+      '@sveltejs/kit': 2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       esm-env: 1.2.2
-      svelte: 5.25.3
+      svelte: 5.25.6
 
-  '@sjsf/zod-validator@1.9.2(@sjsf/form@1.9.2(svelte@5.25.3))(json-schema-to-zod@2.6.0)(zod@3.24.2)':
+  '@sjsf/zod-validator@1.9.2(@sjsf/form@1.9.2(svelte@5.25.6))(json-schema-to-zod@2.6.0)(zod@3.24.2)':
     dependencies:
-      '@sjsf/form': 1.9.2(svelte@5.25.3)
+      '@sjsf/form': 1.9.2(svelte@5.25.6)
       json-schema-to-zod: 2.6.0
       zod: 3.24.2
 
-  '@skeletonlabs/skeleton-svelte@1.0.0(@skeletonlabs/skeleton@3.1.1(tailwindcss@4.0.15))(svelte@5.25.3)':
+  '@skeletonlabs/skeleton-svelte@1.0.0(@skeletonlabs/skeleton@3.1.1(tailwindcss@4.0.15))(svelte@5.25.6)':
     dependencies:
       '@skeletonlabs/skeleton': 3.1.1(tailwindcss@4.0.15)
       '@zag-js/accordion': 1.5.0
@@ -7320,12 +7320,12 @@ snapshots:
       '@zag-js/radio-group': 1.5.0
       '@zag-js/rating-group': 1.5.0
       '@zag-js/slider': 1.5.0
-      '@zag-js/svelte': 1.5.0(svelte@5.25.3)
+      '@zag-js/svelte': 1.5.0(svelte@5.25.6)
       '@zag-js/switch': 1.5.0
       '@zag-js/tabs': 1.5.0
       '@zag-js/tags-input': 1.5.0
       '@zag-js/tooltip': 1.5.0
-      svelte: 5.25.3
+      svelte: 5.25.6
 
   '@skeletonlabs/skeleton@3.0.0-next.10(postcss@8.5.3)(tailwindcss@3.4.17)':
     dependencies:
@@ -7345,13 +7345,13 @@ snapshots:
     dependencies:
       acorn: 8.14.1
 
-  '@sveltejs/adapter-static@3.0.8(@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))':
+  '@sveltejs/adapter-static@3.0.8(@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))':
     dependencies:
-      '@sveltejs/kit': 2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+      '@sveltejs/kit': 2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
 
-  '@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))':
+  '@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+      '@sveltejs/vite-plugin-svelte': 5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       '@types/cookie': 0.6.0
       cookie: 0.6.0
       devalue: 5.1.1
@@ -7363,41 +7363,41 @@ snapshots:
       sade: 1.8.1
       set-cookie-parser: 2.7.0
       sirv: 3.0.0
-      svelte: 5.25.3
+      svelte: 5.25.6
       vite: 6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)
 
-  '@sveltejs/package@2.3.10(svelte@5.25.3)(typescript@5.8.2)':
+  '@sveltejs/package@2.3.10(svelte@5.25.6)(typescript@5.8.2)':
     dependencies:
       chokidar: 4.0.3
       kleur: 4.1.5
       sade: 1.8.1
       semver: 7.7.1
-      svelte: 5.25.3
-      svelte2tsx: 0.7.35(patch_hash=596fd3494d1b9cea4557645eb76028c09232bcd23408dee456266d3d5f95287c)(svelte@5.25.3)(typescript@5.8.2)
+      svelte: 5.25.6
+      svelte2tsx: 0.7.35(patch_hash=596fd3494d1b9cea4557645eb76028c09232bcd23408dee456266d3d5f95287c)(svelte@5.25.6)(typescript@5.8.2)
     transitivePeerDependencies:
       - typescript
 
-  '@sveltejs/svelte-json-tree@2.2.1(svelte@5.25.3)':
+  '@sveltejs/svelte-json-tree@2.2.1(svelte@5.25.6)':
     dependencies:
-      svelte: 5.25.3
+      svelte: 5.25.6
 
-  '@sveltejs/vite-plugin-svelte-inspector@4.0.1(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))':
+  '@sveltejs/vite-plugin-svelte-inspector@4.0.1(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+      '@sveltejs/vite-plugin-svelte': 5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       debug: 4.4.0
-      svelte: 5.25.3
+      svelte: 5.25.6
       vite: 6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)
     transitivePeerDependencies:
       - supports-color
 
-  '@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))':
+  '@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte-inspector': 4.0.1(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.3)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
+      '@sveltejs/vite-plugin-svelte-inspector': 4.0.1(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)))(svelte@5.25.6)(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       debug: 4.4.0
       deepmerge: 4.3.1
       kleur: 4.1.5
       magic-string: 0.30.17
-      svelte: 5.25.3
+      svelte: 5.25.6
       vite: 6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)
       vitefu: 1.0.6(vite@6.2.2(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
     transitivePeerDependencies:
@@ -8052,12 +8052,12 @@ snapshots:
     dependencies:
       proxy-compare: 3.0.1
 
-  '@zag-js/svelte@1.5.0(svelte@5.25.3)':
+  '@zag-js/svelte@1.5.0(svelte@5.25.6)':
     dependencies:
       '@zag-js/core': 1.5.0
       '@zag-js/types': 1.5.0
       '@zag-js/utils': 1.5.0
-      svelte: 5.25.3
+      svelte: 5.25.6
 
   '@zag-js/switch@1.5.0':
     dependencies:
@@ -8333,15 +8333,15 @@ snapshots:
 
   binary-extensions@2.3.0: {}
 
-  bits-ui@1.3.13(svelte@5.25.3):
+  bits-ui@1.3.13(svelte@5.25.6):
     dependencies:
       '@floating-ui/core': 1.6.8
       '@floating-ui/dom': 1.6.13
       '@internationalized/date': 3.7.0
       esm-env: 1.2.2
-      runed: 0.23.2(svelte@5.25.3)
-      svelte: 5.25.3
-      svelte-toolbelt: 0.7.1(svelte@5.25.3)
+      runed: 0.23.2(svelte@5.25.6)
+      svelte: 5.25.6
+      svelte-toolbelt: 0.7.1(svelte@5.25.6)
       tabbable: 6.2.0
 
   boolbase@1.0.0: {}
@@ -8924,7 +8924,7 @@ snapshots:
     dependencies:
       eslint: 9.23.0(jiti@2.4.2)
 
-  eslint-plugin-svelte@3.3.3(eslint@9.23.0(jiti@2.4.2))(svelte@5.25.3):
+  eslint-plugin-svelte@3.3.3(eslint@9.23.0(jiti@2.4.2))(svelte@5.25.6):
     dependencies:
       '@eslint-community/eslint-utils': 4.4.1(eslint@9.23.0(jiti@2.4.2))
       '@jridgewell/sourcemap-codec': 1.5.0
@@ -8936,9 +8936,9 @@ snapshots:
       postcss-load-config: 3.1.4(postcss@8.5.3)
       postcss-safe-parser: 7.0.1(postcss@8.5.3)
       semver: 7.7.1
-      svelte-eslint-parser: 1.0.1(svelte@5.25.3)
+      svelte-eslint-parser: 1.0.1(svelte@5.25.6)
     optionalDependencies:
-      svelte: 5.25.3
+      svelte: 5.25.6
     transitivePeerDependencies:
       - ts-node
 
@@ -9007,7 +9007,7 @@ snapshots:
     dependencies:
       estraverse: 5.3.0
 
-  esrap@1.4.3:
+  esrap@1.4.6:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.0
 
@@ -9152,33 +9152,33 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
-  flowbite-svelte-icons@2.0.2(svelte@5.25.3)(tailwind-merge@2.6.0)(tailwindcss@3.4.17):
+  flowbite-svelte-icons@2.0.2(svelte@5.25.6)(tailwind-merge@2.6.0)(tailwindcss@3.4.17):
     dependencies:
-      svelte: 5.25.3
+      svelte: 5.25.6
       tailwind-merge: 2.6.0
       tailwindcss: 3.4.17
 
-  flowbite-svelte-icons@2.1.0(svelte@5.25.3):
+  flowbite-svelte-icons@2.1.0(svelte@5.25.6):
     dependencies:
-      svelte: 5.25.3
+      svelte: 5.25.6
 
-  flowbite-svelte@0.47.4(rollup@4.34.8)(svelte@5.25.3):
+  flowbite-svelte@0.47.4(rollup@4.34.8)(svelte@5.25.6):
     dependencies:
       '@floating-ui/dom': 1.6.13
       apexcharts: 3.54.1
       flowbite: 2.5.2(rollup@4.34.8)
-      svelte: 5.25.3
+      svelte: 5.25.6
       tailwind-merge: 2.6.0
     transitivePeerDependencies:
       - rollup
 
-  flowbite-svelte@1.0.0-next.5(rollup@4.34.8)(svelte@5.25.3):
+  flowbite-svelte@1.0.0-next.5(rollup@4.34.8)(svelte@5.25.6):
     dependencies:
       '@floating-ui/dom': 1.6.13
       '@floating-ui/utils': 0.2.9
       apexcharts: 4.5.0
       flowbite: 3.1.2(rollup@4.34.8)
-      svelte: 5.25.3
+      svelte: 5.25.6
     transitivePeerDependencies:
       - rollup
 
@@ -9828,13 +9828,13 @@ snapshots:
 
   lru-cache@10.4.3: {}
 
-  lucide-svelte@0.453.0(svelte@5.25.3):
+  lucide-svelte@0.453.0(svelte@5.25.6):
     dependencies:
-      svelte: 5.25.3
+      svelte: 5.25.6
 
-  lucide-svelte@0.483.0(svelte@5.25.3):
+  lucide-svelte@0.483.0(svelte@5.25.6):
     dependencies:
-      svelte: 5.25.3
+      svelte: 5.25.6
 
   magic-string@0.30.17:
     dependencies:
@@ -10667,10 +10667,10 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier-plugin-svelte@3.3.3(prettier@3.5.3)(svelte@5.25.3):
+  prettier-plugin-svelte@3.3.3(prettier@3.5.3)(svelte@5.25.6):
     dependencies:
       prettier: 3.5.3
-      svelte: 5.25.3
+      svelte: 5.25.6
 
   prettier@2.8.7:
     optional: true
@@ -10958,10 +10958,10 @@ snapshots:
     dependencies:
       queue-microtask: 1.2.3
 
-  runed@0.23.2(svelte@5.25.3):
+  runed@0.23.2(svelte@5.25.6):
     dependencies:
       esm-env: 1.2.2
-      svelte: 5.25.3
+      svelte: 5.25.6
 
   rw@1.3.3: {}
 
@@ -11149,19 +11149,19 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  svelte-check@4.1.5(picomatch@4.0.2)(svelte@5.25.3)(typescript@5.8.2):
+  svelte-check@4.1.5(picomatch@4.0.2)(svelte@5.25.6)(typescript@5.8.2):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
       chokidar: 4.0.3
       fdir: 6.4.3(picomatch@4.0.2)
       picocolors: 1.1.1
       sade: 1.8.1
-      svelte: 5.25.3
+      svelte: 5.25.6
       typescript: 5.8.2
     transitivePeerDependencies:
       - picomatch
 
-  svelte-eslint-parser@1.0.1(svelte@5.25.3):
+  svelte-eslint-parser@1.0.1(svelte@5.25.6):
     dependencies:
       eslint-scope: 8.3.0
       eslint-visitor-keys: 4.2.0
@@ -11170,37 +11170,37 @@ snapshots:
       postcss-scss: 4.0.9(postcss@8.5.3)
       postcss-selector-parser: 7.0.0
     optionalDependencies:
-      svelte: 5.25.3
+      svelte: 5.25.6
 
-  svelte-exmarkdown@4.0.3(svelte@5.25.3):
+  svelte-exmarkdown@4.0.3(svelte@5.25.6):
     dependencies:
       remark-gfm: 4.0.1
       remark-parse: 11.0.0
       remark-rehype: 11.1.1
-      svelte: 5.25.3
+      svelte: 5.25.6
       unified: 11.0.5
     transitivePeerDependencies:
       - supports-color
 
-  svelte-radix@2.0.1(svelte@5.25.3):
+  svelte-radix@2.0.1(svelte@5.25.6):
     dependencies:
-      svelte: 5.25.3
+      svelte: 5.25.6
 
-  svelte-toolbelt@0.7.1(svelte@5.25.3):
+  svelte-toolbelt@0.7.1(svelte@5.25.6):
     dependencies:
       clsx: 2.1.1
-      runed: 0.23.2(svelte@5.25.3)
+      runed: 0.23.2(svelte@5.25.6)
       style-to-object: 1.0.8
-      svelte: 5.25.3
+      svelte: 5.25.6
 
-  svelte2tsx@0.7.35(patch_hash=596fd3494d1b9cea4557645eb76028c09232bcd23408dee456266d3d5f95287c)(svelte@5.25.3)(typescript@5.8.2):
+  svelte2tsx@0.7.35(patch_hash=596fd3494d1b9cea4557645eb76028c09232bcd23408dee456266d3d5f95287c)(svelte@5.25.6)(typescript@5.8.2):
     dependencies:
       dedent-js: 1.0.1
       pascal-case: 3.1.2
-      svelte: 5.25.3
+      svelte: 5.25.6
       typescript: 5.8.2
 
-  svelte@5.25.3:
+  svelte@5.25.6:
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@jridgewell/sourcemap-codec': 1.5.0
@@ -11211,7 +11211,7 @@ snapshots:
       axobject-query: 4.1.0
       clsx: 2.1.1
       esm-env: 1.2.2
-      esrap: 1.4.3
+      esrap: 1.4.6
       is-reference: 3.0.3
       locate-character: 3.0.0
       magic-string: 0.30.17

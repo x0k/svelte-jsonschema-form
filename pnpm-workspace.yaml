@@ -6,7 +6,7 @@ catalog:
   "ajv": "^8.17.1"
   "vite": "6.2.2"
   "vitest": "3.0.9"
-  "svelte": "^5.25.3"
+  "svelte": "^5.25.6"
   "esm-env": "^1.2.2"
   "@sveltejs/kit": "^2.20.2"
   "@sveltejs/adapter-static": "^3.0.8"
