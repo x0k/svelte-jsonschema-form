@@ -2,44 +2,6 @@ import { untrack, type Component } from "svelte";
 
 export type AnyComponent = Component<any, any, any>;
 
-export interface SyncInput<V> {
-  /**
-   * @param isDependencyRegistrationOnlyCall - when `true`, indicates that function is called only for dependency registration and result will be ignored
-   */
-  (isDependencyRegistrationOnlyCall: false, currentValue: V | undefined): V;
-  (isDependencyRegistrationOnlyCall: true, currentValue: V | undefined): void;
-}
-
-export function proxy<V>(
-  input: SyncInput<V>,
-  onChange?: (value: V, prev: V) => void
-) {
-  let ignoreInputUpdate = false;
-  let proxyValue = $state.raw<V>();
-  const output = $derived.by(() => {
-    const proxyVal = proxyValue;
-    if (ignoreInputUpdate) {
-      ignoreInputUpdate = false;
-      input(true, proxyVal);
-      return proxyVal as V;
-    }
-    return input(false, proxyVal);
-  });
-  return {
-    get value() {
-      return output;
-    },
-    set value(value: V) {
-      if (Object.is(proxyValue, value)) {
-        return;
-      }
-      onChange?.(value, output);
-      ignoreInputUpdate = true;
-      proxyValue = value;
-    },
-  };
-}
-
 export interface AsyncInput<V> {
   /**
    * @param isDependencyRegistrationOnlyCall - when `true`, indicates that function is called only for dependency registration and result will be ignored
