@@ -19,8 +19,6 @@ declare module "../form/index.js" {
     title: ComponentCommonProps & {
       type: ParentTemplateType;
       title: string;
-      forId: string;
-      required: boolean;
     };
     description: ComponentCommonProps & {
       type: ParentTemplateType;

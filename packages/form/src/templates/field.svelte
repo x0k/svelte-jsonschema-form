@@ -29,14 +29,7 @@
   {#if showMeta && ((showTitle && title) || description)}
     <Layout type="field-meta" {config} {errors}>
       {#if showTitle && title}
-        <Title
-          type="field"
-          {title}
-          required={config.required}
-          forId={config.id}
-          {config}
-          {errors}
-        />
+        <Title type="field" {title} {config} {errors} />
       {/if}
       {#if description}
         <Description type="field" {description} {config} {errors} />
