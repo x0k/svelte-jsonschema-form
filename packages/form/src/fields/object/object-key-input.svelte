@@ -41,7 +41,8 @@
   });
 
   const Template = $derived(getComponent(ctx, "fieldTemplate", config));
-  const Widget = $derived(getComponent(ctx, "textWidget", config));
+  const widgetType = "textWidget";
+  const Widget = $derived(getComponent(ctx, widgetType, config));
 
   let key = $derived<string | undefined>(property);
 
@@ -57,6 +58,6 @@
   const errors = $derived(getErrors(ctx, id));
 </script>
 
-<Template {errors} showTitle value={property} {config}>
+<Template showTitle {widgetType} value={property} {config} {errors}>
   <Widget {errors} {handlers} {config} bind:value={key} />
 </Template>

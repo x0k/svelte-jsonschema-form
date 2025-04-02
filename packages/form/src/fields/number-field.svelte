@@ -21,7 +21,8 @@
   let { value = $bindable(), config }: ComponentProps["numberField"] = $props();
 
   const Template = $derived(getComponent(ctx, "fieldTemplate", config));
-  const Widget = $derived(getComponent(ctx, "numberWidget", config));
+  const widgetType = "numberWidget";
+  const Widget = $derived(getComponent(ctx, widgetType, config));
 
   const handlers = makeEventHandlers(ctx, () =>
     validateField(ctx, config, value)
@@ -30,12 +31,14 @@
   const errors = $derived(getErrors(ctx, config.id));
 </script>
 
-<Template {errors} showTitle {value} {config}>
+<Template {widgetType} showTitle {value} {config} {errors}>
   <Widget
     {config}
     {errors}
-    bind:value={() => value,
-    (v) => (value = v === undefined ? config.uiOptions?.numberEmptyValue : v)}
+    bind:value={
+      () => value,
+      (v) => (value = v === undefined ? config.uiOptions?.numberEmptyValue : v)
+    }
     {handlers}
   />
 </Template>

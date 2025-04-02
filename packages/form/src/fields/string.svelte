@@ -21,7 +21,8 @@
   const ctx = getFormContext();
 
   const Template = $derived(getComponent(ctx, "fieldTemplate", config));
-  const Widget = $derived(getComponent(ctx, "textWidget", config));
+  const widgetType = "textWidget";
+  const Widget = $derived(getComponent(ctx, widgetType, config));
 
   const handlers = makeEventHandlers(ctx, () =>
     validateField(ctx, config, value)
@@ -30,12 +31,14 @@
   const errors = $derived(getErrors(ctx, config.id));
 </script>
 
-<Template showTitle {value} {config} {errors}>
+<Template showTitle {widgetType} {value} {config} {errors}>
   <Widget
-    {errors}
     {config}
-    bind:value={() => value,
-    (v) => (value = v === "" ? config.uiOptions?.stringEmptyValue : v)}
+    bind:value={
+      () => value,
+      (v) => (value = v === "" ? config.uiOptions?.stringEmptyValue : v)
+    }
     {handlers}
+    {errors}
   />
 </Template>

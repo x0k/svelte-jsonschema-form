@@ -21,7 +21,8 @@
     $props();
 
   const Template = $derived(getComponent(ctx, "fieldTemplate", config));
-  const Widget = $derived(getComponent(ctx, "selectWidget", config));
+  const widgetType = "selectWidget";
+  const Widget = $derived(getComponent(ctx, widgetType, config));
 
   const options = $derived.by(() => {
     const yes = translate(ctx, "yes", {});
@@ -78,6 +79,6 @@
   const errors = $derived(getErrors(ctx, config.id));
 </script>
 
-<Template showTitle {errors} {value} {config}>
+<Template showTitle {widgetType} {value} {config} {errors}>
   <Widget {options} bind:value {errors} {handlers} {config} />
 </Template>

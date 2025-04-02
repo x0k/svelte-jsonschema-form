@@ -14,6 +14,6 @@
   const Template = $derived(getComponent(ctx, "fieldTemplate", config));
 </script>
 
-<Template errors={[]} showTitle {value} {config}>
+<Template widgetType="nullField" errors={[]} showTitle {value} {config}>
   {null}
 </Template>

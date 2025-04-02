@@ -14,7 +14,8 @@
     $props();
 
   const Template = $derived(getComponent(ctx, "fieldTemplate", config));
-  const Widget = $derived(getComponent(ctx, "checkboxWidget", config));
+  const widgetType = "checkboxWidget";
+  const Widget = $derived(getComponent(ctx, widgetType, config));
 
   const handlers = makeEventHandlers(ctx, () =>
     validateField(ctx, config, value)
@@ -23,10 +24,11 @@
 </script>
 
 <Template
-  {errors}
   showTitle={config.uiOptions?.hideTitle === false}
-  {value}
+  {widgetType}
   {config}
+  {value}
+  {errors}
 >
   <Widget bind:value {errors} {handlers} {config} />
 </Template>

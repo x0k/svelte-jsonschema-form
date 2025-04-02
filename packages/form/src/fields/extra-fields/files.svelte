@@ -27,7 +27,8 @@
   const ctx = getFormContext();
 
   const Template = $derived(getComponent(ctx, "fieldTemplate", config));
-  const Widget = $derived(getComponent(ctx, "fileWidget", config));
+  const widgetType = "fileWidget";
+  const Widget = $derived(getComponent(ctx, widgetType, config));
 
   const handlers = makeEventHandlers(ctx, () =>
     validateField(ctx, config, value)
@@ -61,7 +62,7 @@
   const errors = $derived(getErrors(ctx, config.id));
 </script>
 
-<Template showTitle {value} {config} {errors}>
+<Template showTitle {widgetType} {value} {config} {errors}>
   <Widget
     bind:value={files.value}
     processing={files.inputProcessing}

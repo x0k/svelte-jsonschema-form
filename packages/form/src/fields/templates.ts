@@ -5,7 +5,11 @@ import type {
   SchemaObjectValue,
   SchemaArrayValue,
 } from "@/core/index.js";
-import type { Config, FieldError } from "@/form/index.js";
+import type {
+  Config,
+  FieldError,
+  FoundationalComponent,
+} from "@/form/index.js";
 
 export interface TemplateCommonProps<V extends SchemaValue> {
   value: V | undefined;
@@ -26,6 +30,7 @@ declare module "../form/index.js" {
   interface ComponentProps {
     fieldTemplate: TemplateCommonProps<SchemaValue> & {
       showTitle: boolean;
+      widgetType: FoundationalComponent;
     };
     objectTemplate: TemplateCommonProps<SchemaObjectValue> & {
       addButton?: Snippet;
