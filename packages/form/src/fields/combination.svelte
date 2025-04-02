@@ -9,15 +9,14 @@
 </script>
 
 <script lang="ts">
-  import { proxy } from "@/lib/svelte.svelte";
+  import { untrack } from "svelte";
+
   import {
     ANY_OF_KEY,
     getDiscriminatorFieldFromSchema,
     getSimpleSchemaType,
-    isSchemaValueDeepEqual,
     ONE_OF_KEY,
     type EnumOption,
-    type SchemaValue,
   } from "@/core/index.js";
   import {
     type Config,
@@ -67,51 +66,37 @@
     )
   );
 
-  let lastValue: SchemaValue | undefined;
-  const selectedOption = proxy(
-    (isRegOnly, currentSelected: number | undefined) => {
-      if (isRegOnly) {
-        config.schema;
-        value;
-        retrievedOptions;
-        return -1;
+  let readableSelectedOption = $state(0);
+  let writableSelectedOption = $derived(
+    getClosestMatchingOption(
+      ctx,
+      value,
+      retrievedOptions,
+      readableSelectedOption,
+      getDiscriminatorFieldFromSchema(config.schema)
+    )
+  );
+  $effect(() => {
+    const nextSelected = writableSelectedOption;
+    if (readableSelectedOption === nextSelected) {
+      return;
+    }
+    value = untrack(() => {
+      const nextSchema = retrievedOptions[nextSelected];
+      if (nextSchema === undefined) {
+        return undefined;
       }
-      if (
-        currentSelected !== undefined &&
-        isSchemaValueDeepEqual(lastValue, value)
-      ) {
-        return currentSelected;
-      }
-      lastValue = $state.snapshot(value);
-      return getClosestMatchingOption(
+      const oldSchema = retrievedOptions[readableSelectedOption];
+      return getDefaultFieldState(
         ctx,
-        value,
-        retrievedOptions,
-        0,
-        getDiscriminatorFieldFromSchema(config.schema)
-      );
-    },
-    (newSelected, oldSelected) => {
-      if (oldSelected === undefined) {
-        return;
-      }
-      const newSchema =
-        newSelected < 0 ? undefined : retrievedOptions[newSelected];
-      if (newSchema === undefined) {
-        value = undefined;
-        return;
-      }
-      const oldSchema =
-        oldSelected < 0 ? undefined : retrievedOptions[oldSelected];
-      value = getDefaultFieldState(
-        ctx,
-        newSchema,
+        nextSchema,
         oldSchema !== undefined
-          ? sanitizeDataForNewSchema(ctx, newSchema, oldSchema, value)
+          ? sanitizeDataForNewSchema(ctx, nextSchema, oldSchema, value)
           : value
       );
-    }
-  );
+    });
+    readableSelectedOption = nextSelected;
+  });
 
   const optionsUiSchemas = $derived.by(() => {
     const schemas = config.uiSchema[combinationKey];
@@ -160,7 +145,7 @@
   const errors = $derived(getErrors(ctx, config.id));
 
   const combinationFieldConfig = $derived.by(() => {
-    const selected = selectedOption.value;
+    const selected = readableSelectedOption;
     if (selected < 0) {
       return null;
     }
@@ -204,7 +189,9 @@
       handlers={{}}
       config={widgetConfig}
       options={enumOptions}
-      bind:value={selectedOption.value}
+      bind:value={
+        () => readableSelectedOption, (v) => (writableSelectedOption = v)
+      }
     />
   {/snippet}
   {#if combinationFieldConfig}
