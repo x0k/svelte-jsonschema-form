@@ -105,7 +105,7 @@ basic/:
     pnpm run dev
   popd
 
-daisy/:
+daisy4/:
   pushd packages/daisyui-theme
   c:
     pnpm run check
@@ -115,7 +115,7 @@ daisy/:
     pnpm run dev
   popd
 
-daisy5/:
+daisy/:
   pushd packages/daisyui5-theme
   c:
     pnpm run check
