@@ -19,17 +19,17 @@
 	const attributes: SvelteComponentProps<typeof Rating> = $derived(
 		defineDisabled(ctx, {
 			ids: {
-				root: config.id,
+				hiddenInput: config.id
 			},
 			name: config.name,
 			required: config.required,
 			readOnly: config.schema.readOnly,
 			onHoverChange: handlers.oninput,
 			onValueChange: (details) => {
-        value = details.value
-        handlers.onchange?.()
-      },
-      count: config.schema.maximum,
+				value = details.value;
+				handlers.onchange?.();
+			},
+			count: config.schema.maximum,
 			...config.uiOptions?.skeleton3Rating
 		})
 	);

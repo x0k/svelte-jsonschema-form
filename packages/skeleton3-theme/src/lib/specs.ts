@@ -17,12 +17,24 @@ export const specs: s.Specs = {
 	datePicker: [s.text, { 'ui:components': { textWidget: 'datePickerWidget' } }],
 	fileUpload: [s.file, { 'ui:components': { fileWidget: FileUpload } }],
 	fileUploadMultiple: [s.filesArray, { 'ui:components': { fileWidget: FileUpload } }],
-	multiSelect: [s.uniqueArray, { 'ui:components': { checkboxesWidget: 'multiSelectWidget' } }],
-	radioButtons: [s.enumeration, { 'ui:components': { selectWidget: 'radioButtonsWidget' } }],
-	radio: [s.enumeration, { 'ui:components': { selectWidget: 'radioWidget' } }],
+	multiSelect: [
+		s.uniqueArray,
+		{ 'ui:components': { checkboxesWidget: 'multiSelectWidget' }, 'ui:options': { useLabel: true } }
+	],
+	radioButtons: [
+		s.enumeration,
+		{ 'ui:components': { selectWidget: 'radioButtonsWidget' }, 'ui:options': { useLabel: false } }
+	],
+	radio: [
+		s.enumeration,
+		{ 'ui:components': { selectWidget: 'radioWidget' }, 'ui:options': { useLabel: false } }
+	],
 	range: [s.number, { 'ui:components': { numberWidget: 'rangeWidget' } }],
 	rating: [s.number, { 'ui:components': { numberWidget: 'ratingWidget' } }],
 	slider: [s.number, { 'ui:components': { numberWidget: Slider } }],
-	switch: [s.boolean, { 'ui:components': { checkboxWidget: 'switchWidget' } }],
+	switch: [
+		s.boolean,
+		{ 'ui:components': { checkboxWidget: 'switchWidget' }, 'ui:options': { hideTitle: false } }
+	],
 	textarea: [s.text, { 'ui:components': { textWidget: 'textareaWidget' } }]
 };

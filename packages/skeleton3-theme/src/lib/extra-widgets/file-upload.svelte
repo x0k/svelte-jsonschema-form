@@ -22,7 +22,7 @@
 	const attributes: SvelteComponentProps<typeof FileUpload> = $derived(
 		defineDisabled(ctx, {
 			ids: {
-				root: config.id
+				hiddenInput: config.id
 			},
 			invalid: errors.length > 0,
 			name: config.name,

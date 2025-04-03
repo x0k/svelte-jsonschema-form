@@ -20,7 +20,9 @@
 	const attributes: SvelteComponentProps<typeof Slider> = $derived(
 		defineDisabled(ctx, {
 			ids: {
-				root: config.id
+				hiddenInput() {
+					return config.id;
+				}
 			},
 			name: config.name,
 			readOnly: config.schema.readOnly,

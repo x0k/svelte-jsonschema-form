@@ -20,7 +20,7 @@
 	const attributes: SvelteComponentProps<typeof Switch> = $derived(
 		defineDisabled(ctx, {
 			ids: {
-				root: config.id
+				hiddenInput: config.id,
 			},
 			name: config.name,
 			required: config.required,
