@@ -31,8 +31,6 @@
         <Title
           type="array"
           {title}
-          required={config.required}
-          forId={config.id}
           {config}
           {errors}
         />

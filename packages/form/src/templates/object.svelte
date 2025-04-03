@@ -30,8 +30,6 @@
       {#if title}
         <Title
           type="object"
-          forId={config.id}
-          required={config.required}
           {config}
           {title}
           {errors}
