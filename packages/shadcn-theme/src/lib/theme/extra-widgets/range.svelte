@@ -23,6 +23,10 @@
 
 	const attributes = $derived.by(() => {
 		const props: SliderSingleRootProps = {
+			id: config.id,
+			min: config.schema.minimum,
+			max: config.schema.maximum,
+			step: config.schema.multipleOf,
 			type: 'single',
 			onValueChange: handlers.oninput,
 			onValueCommit: handlers.onchange,

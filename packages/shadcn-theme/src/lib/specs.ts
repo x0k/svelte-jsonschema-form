@@ -10,10 +10,24 @@ import './theme/extra-widgets/switch-include';
 import './theme/extra-widgets/textarea-include';
 
 export const specs: s.Specs = {
-	datePicker: [s.text, { 'ui:components': { textWidget: 'datePickerWidget' } }],
-	multiSelect: [s.uniqueArray, { 'ui:components': { checkboxesWidget: 'multiSelectWidget' } }],
-	radio: [s.enumeration, { 'ui:components': { selectWidget: 'radioWidget' } }],
-	range: [s.number, { 'ui:components': { numberWidget: 'rangeWidget' } }],
+	datePicker: [
+		s.text,
+		// NOTE: DatePicker is a button
+		{ 'ui:components': { textWidget: 'datePickerWidget' }, 'ui:options': { useLabel: false } }
+	],
+	multiSelect: [
+		s.uniqueArray,
+		{ 'ui:components': { checkboxesWidget: 'multiSelectWidget' }, 'ui:options': { useLabel: true } }
+	],
+	radio: [
+		s.enumeration,
+		{ 'ui:components': { selectWidget: 'radioWidget' }, 'ui:options': { useLabel: false } }
+	],
+	range: [
+		s.number,
+		// NOTE: Range is span based
+		{ 'ui:components': { numberWidget: 'rangeWidget' }, 'ui:options': { useLabel: false } }
+	],
 	switch: [s.boolean, { 'ui:components': { checkboxWidget: 'switchWidget' } }],
 	textarea: [s.text, { 'ui:components': { textWidget: 'textareaWidget' } }]
 };

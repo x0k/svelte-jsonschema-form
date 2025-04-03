@@ -1,10 +1,11 @@
 <script lang="ts" module>
-	import type { SelectMultipleRootProps } from 'bits-ui';
+	import type { SelectMultipleRootProps, SelectTriggerProps } from 'bits-ui';
 	import '@sjsf/form/fields/extra-widgets/multi-select';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
 			shadcnMultiSelect?: Omit<SelectMultipleRootProps, 'type'>;
+			shadcnMultiSelectTrigger?: SelectTriggerProps;
 		}
 	}
 </script>
@@ -35,29 +36,36 @@
 		})
 	);
 
-	const attributes = $derived.by(() => {
+	const selectAttributes = $derived.by(() => {
 		const props: SelectMultipleRootProps = {
 			type: 'multiple',
 			onValueChange: handlers.onchange,
+			required: config.required,
 			...config.uiOptions?.shadcnMultiSelect
 		};
 		return defineDisabled(ctx, props);
+	});
+	const triggerAttributes = $derived({
+		id: config.id,
+		name: config.id,
+		required: config.required,
+		...config.uiOptions?.shadcnMultiSelectTrigger
 	});
 
 	const triggerLabel = $derived.by(() => {
 		const v = mapped.value;
 		if (Array.isArray(v)) {
-			return v.map((i) => options[Number(i)].label).join(', ') || attributes.placeholder;
+			return v.map((i) => options[Number(i)].label).join(', ') || selectAttributes.placeholder;
 		}
 		if (v in options) {
 			return options[Number(v)].label;
 		}
-		return attributes.placeholder;
+		return selectAttributes.placeholder;
 	});
 </script>
 
-<Select bind:value={mapped.value} {...attributes}>
-	<SelectTrigger>
+<Select bind:value={mapped.value} {...selectAttributes}>
+	<SelectTrigger {...triggerAttributes}>
 		<span>
 			{triggerLabel}
 		</span>
@@ -66,7 +74,7 @@
 		{#if config.schema.default === undefined}
 			<SelectItem value="-1">
 				<span class="min-h-5">
-					{attributes.placeholder}
+					{selectAttributes.placeholder}
 				</span>
 			</SelectItem>
 		{/if}

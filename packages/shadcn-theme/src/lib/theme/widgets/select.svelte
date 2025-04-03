@@ -1,12 +1,14 @@
 <script lang="ts" module>
-	import type { SelectSingleRootProps } from 'bits-ui';
+	import type { SelectSingleRootProps, SelectTriggerProps } from 'bits-ui';
 
-	declare module "@sjsf/form" {
+	declare module '@sjsf/form' {
 		interface UiOptions {
-			shadcnSelect?: Omit<SelectSingleRootProps, 'type'>
+			shadcnSelect?: Omit<SelectSingleRootProps, 'type'>;
+			shadcnSelectTrigger?: SelectTriggerProps;
 		}
 	}
 </script>
+
 <script lang="ts">
 	import { singleOption, stringIndexMapper } from '@sjsf/form/options.svelte';
 
@@ -18,12 +20,7 @@
 
 	const { Select, SelectTrigger, SelectContent, SelectItem } = $derived(themeCtx.components);
 
-	let {
-		handlers,
-		value = $bindable(),
-		options,
-		config
-	}: ComponentProps['selectWidget'] = $props();
+	let { handlers, value = $bindable(), options, config }: ComponentProps['selectWidget'] = $props();
 
 	const mapped = $derived(
 		singleOption({
@@ -33,29 +30,36 @@
 		})
 	);
 
-	const attributes = $derived.by(() => {
+	const selectAttributes = $derived.by(() => {
 		const props: SelectSingleRootProps = {
-			type: "single",
+			type: 'single',
 			onValueChange: handlers.onchange,
-			...config.uiOptions?.shadcnSelect,
-		}
-		return defineDisabled(ctx, props)
-	})
+			required: config.required,
+			...config.uiOptions?.shadcnSelect
+		};
+		return defineDisabled(ctx, props);
+	});
+	const triggerAttributes = $derived({
+		id: config.id,
+		name: config.id,
+		required: config.required,
+		...config.uiOptions?.shadcnSelectTrigger
+	});
 
 	const triggerLabel = $derived.by(() => {
 		const v = mapped.value;
 		if (Array.isArray(v)) {
-			return v.map((i) => options[Number(i)].label).join(', ') || attributes.placeholder;
+			return v.map((i) => options[Number(i)].label).join(', ') || selectAttributes.placeholder;
 		}
 		if (v in options) {
 			return options[Number(v)].label;
 		}
-		return attributes.placeholder;
+		return selectAttributes.placeholder;
 	});
 </script>
 
-<Select bind:value={mapped.value} {...attributes}>
-	<SelectTrigger>
+<Select bind:value={mapped.value} {...selectAttributes}>
+	<SelectTrigger {...triggerAttributes}>
 		<span>
 			{triggerLabel}
 		</span>
@@ -64,7 +68,7 @@
 		{#if config.schema.default === undefined}
 			<SelectItem value="-1">
 				<span class="min-h-5">
-					{attributes.placeholder}
+					{selectAttributes.placeholder}
 				</span>
 			</SelectItem>
 		{/if}
