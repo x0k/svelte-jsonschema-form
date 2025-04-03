@@ -10,9 +10,19 @@ import './extra-widgets/switch-include';
 import './extra-widgets/textarea-include';
 
 export const specs: s.Specs = {
-	datePicker: [s.text, { 'ui:components': { textWidget: 'datePickerWidget' } }],
-	multiSelect: [s.uniqueArray, { 'ui:components': { checkboxesWidget: 'multiSelectWidget' } }],
-	radio: [s.enumeration, { 'ui:components': { selectWidget: 'radioWidget' } }],
+	datePicker: [
+		s.text,
+		// TODO: Remove `useLabel` as `Datepicker` will be ok
+		{ 'ui:components': { textWidget: 'datePickerWidget' }, 'ui:options': { useLabel: false } }
+	],
+	multiSelect: [
+		s.uniqueArray,
+		{ 'ui:components': { checkboxesWidget: 'multiSelectWidget' }, 'ui:options': { useLabel: true } }
+	],
+	radio: [
+		s.enumeration,
+		{ 'ui:components': { selectWidget: 'radioWidget' }, 'ui:options': { useLabel: false } }
+	],
 	range: [s.number, { 'ui:components': { numberWidget: 'rangeWidget' } }],
 	switch: [s.boolean, { 'ui:components': { checkboxWidget: 'switchWidget' } }],
 	textarea: [s.text, { 'ui:components': { textWidget: 'textareaWidget' } }]
