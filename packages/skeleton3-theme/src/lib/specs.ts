@@ -32,9 +32,6 @@ export const specs: s.Specs = {
 	range: [s.number, { 'ui:components': { numberWidget: 'rangeWidget' } }],
 	rating: [s.number, { 'ui:components': { numberWidget: 'ratingWidget' } }],
 	slider: [s.number, { 'ui:components': { numberWidget: Slider } }],
-	switch: [
-		s.boolean,
-		{ 'ui:components': { checkboxWidget: 'switchWidget' }, 'ui:options': { hideTitle: false } }
-	],
+	switch: [s.boolean, { 'ui:components': { checkboxWidget: 'switchWidget' } }],
 	textarea: [s.text, { 'ui:components': { textWidget: 'textareaWidget' } }]
 };
