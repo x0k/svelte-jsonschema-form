@@ -1,14 +1,10 @@
 <script lang="ts" module>
-  import type { HTMLAttributes, HTMLLabelAttributes } from "svelte/elements";
+  import type { HTMLAttributes } from "svelte/elements";
 
   declare module "@sjsf/form" {
     interface UiOptions {
       /**
-       * Overrides the attributes of the field title.
-       */
-      labelAttributes?: HTMLLabelAttributes;
-      /**
-       * Overrides the attributes if the section title
+       * Overrides the attributes of the field title
        */
       titleAttributes?: HTMLAttributes<HTMLDivElement>;
     }
@@ -18,26 +14,12 @@
 <script lang="ts">
   import type { ComponentProps } from "@sjsf/form";
 
-  const { title, type, config }: ComponentProps["title"] =
-    $props();
+  const { title, config, type }: ComponentProps["title"] = $props();
 </script>
 
-{#if type === "field"}
-  <label
-    style="font-weight: bold;"
-    for={config.id}
-    {...config.uiOptions?.labelAttributes}
-  >
-    {title}
-    {#if config.required}
-      <span>*</span>
-    {/if}
-  </label>
-{:else}
-  <div
-    style="font-weight: bold; font-size: larger;"
-    {...config.uiOptions?.titleAttributes}
-  >
-    {title}
-  </div>
-{/if}
+<div
+  style="font-weight: bold; font-size: {type === 'field' ? 'unset' : 'larger'};"
+  {...config.uiOptions?.titleAttributes}
+>
+  {title}
+</div>
