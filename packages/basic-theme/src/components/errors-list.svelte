@@ -14,12 +14,12 @@
 <script lang="ts">
   import type { ComponentProps } from "@sjsf/form";
 
-  const { errors, forId, config }: ComponentProps["errorsList"] = $props();
+  const { errors, config }: ComponentProps["errorsList"] = $props();
 </script>
 
 <ui
   style="color: red;"
-  data-errors-for={forId}
+  data-errors-for={config.id}
   {...config.uiOptions?.errorsList}
 >
   {#each errors as err}
