@@ -11,6 +11,7 @@ export type ParentTemplateType = keyof ParentTemplateTypes;
 declare module "../form/index.js" {
   interface FoundationalComponents {
     title: {};
+    label: {};
     description: {};
     help: {};
     errorsList: {};
@@ -20,6 +21,9 @@ declare module "../form/index.js" {
       type: ParentTemplateType;
       title: string;
     };
+    label: ComponentCommonProps & {
+      title: string;
+    };
     description: ComponentCommonProps & {
       type: ParentTemplateType;
       description: string;
@@ -27,10 +31,11 @@ declare module "../form/index.js" {
     help: ComponentCommonProps & {
       help: string;
     };
-    errorsList: ComponentCommonProps
+    errorsList: ComponentCommonProps;
   }
   interface ComponentBindings {
     title: "";
+    label: "";
     description: "";
     help: "";
     errorsList: "";

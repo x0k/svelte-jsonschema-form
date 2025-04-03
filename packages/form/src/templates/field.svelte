@@ -11,13 +11,20 @@
     children,
     config,
     showTitle,
+    useLabel,
     errors,
   }: ComponentProps["fieldTemplate"] = $props();
 
   const ctx = getFormContext();
 
   const Layout = $derived(getComponent(ctx, "layout", config));
-  const Title = $derived(getComponent(ctx, "title", config));
+  const TitleOrLabel = $derived(
+    getComponent(
+      ctx,
+      (config.uiOptions?.useLabel ?? useLabel) ? "label" : "title",
+      config
+    )
+  );
   const Description = $derived(getComponent(ctx, "description", config));
   const ErrorsList = $derived(getComponent(ctx, "errorsList", config));
   const Help = $derived(getComponent(ctx, "help", config));
@@ -29,7 +36,7 @@
   {#if showMeta && ((showTitle && title) || description)}
     <Layout type="field-meta" {config} {errors}>
       {#if showTitle && title}
-        <Title type="field" {title} {config} {errors} />
+        <TitleOrLabel type="field" {title} {config} {errors} />
       {/if}
       {#if description}
         <Description type="field" {description} {config} {errors} />
