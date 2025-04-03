@@ -14,13 +14,13 @@
 	import type { ComponentProps } from '@sjsf/form';
 	import Label from 'flowbite-svelte/Label.svelte';
 
-	const { title, type, forId, required, config }: ComponentProps['title'] = $props();
+	const { title, type, config }: ComponentProps['title'] = $props();
 </script>
 
 {#if type === 'field'}
-	<Label for={forId} {...config.uiOptions?.flowbiteLabel}>
+	<Label for={config.id} {...config.uiOptions?.flowbiteLabel}>
 		{title}
-		{#if required}
+		{#if config.required}
 			<span>*</span>
 		{/if}
 	</Label>

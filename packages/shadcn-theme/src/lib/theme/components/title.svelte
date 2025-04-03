@@ -5,7 +5,7 @@
 
 	import { getThemeContext } from '../context';
 
-	const { title, type, forId, required, config }: ComponentProps['title'] = $props();
+	const { title, type, config }: ComponentProps['title'] = $props();
 
 	const themeCtx = getThemeContext();
 
@@ -13,9 +13,9 @@
 </script>
 
 {#if type === 'field'}
-	<Label for={forId} {...config.uiOptions?.labelAttributes as LabelRootProps}>
+	<Label for={config.id} {...config.uiOptions?.labelAttributes as LabelRootProps}>
 		{title}
-		{#if required}
+		{#if config.required}
 			<span>*</span>
 		{/if}
 	</Label>

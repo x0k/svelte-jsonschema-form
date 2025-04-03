@@ -2,13 +2,13 @@
 	import type { ComponentProps } from '@sjsf/form';
 	import '@sjsf/basic-theme/components/title.svelte';
 
-	const { title, type, forId, required, config }: ComponentProps['title'] = $props();
+	const { title, type, config }: ComponentProps['title'] = $props();
 </script>
 
 {#if type === 'field'}
-	<label class="fieldset-legend" for={forId} {...config.uiOptions?.labelAttributes}>
+	<label class="fieldset-legend" for={config.id} {...config.uiOptions?.labelAttributes}>
 		{title}
-		{#if required}
+		{#if config.required}
 			*
 		{/if}
 	</label>

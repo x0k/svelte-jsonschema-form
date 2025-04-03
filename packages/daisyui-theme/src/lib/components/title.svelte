@@ -2,13 +2,13 @@
 	import type { ComponentProps } from '@sjsf/form';
 	import '@sjsf/basic-theme/components/title.svelte';
 
-	const { title, type, forId, required, config }: ComponentProps['title'] = $props();
+	const { title, type, config }: ComponentProps['title'] = $props();
 </script>
 
 {#if type === 'field'}
-	<label class="label-text" for={forId} {...config.uiOptions?.labelAttributes}>
+	<label class="label-text" for={config.id} {...config.uiOptions?.labelAttributes}>
 		{title}
-		{#if required}
+		{#if config.required}
 			<span>*</span>
 		{/if}
 	</label>
