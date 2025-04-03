@@ -1,5 +1,26 @@
 # playground2
 
+## 0.0.2-next.7
+
+### Patch Changes
+
+- Updated dependencies [[`bf0099a`](https://github.com/x0k/svelte-jsonschema-form/commit/bf0099a6334e47b1d488cbb3bf85d5e9778caf9b), [`b215668`](https://github.com/x0k/svelte-jsonschema-form/commit/b215668587f9add91fc848cc579746303f3ba0f7), [`f1c6d71`](https://github.com/x0k/svelte-jsonschema-form/commit/f1c6d713afbcee2de58d78770041c674bc3adc1f), [`e8eaae3`](https://github.com/x0k/svelte-jsonschema-form/commit/e8eaae3d332ced78d87748d56dd0f05117ec92d5), [`f6588ff`](https://github.com/x0k/svelte-jsonschema-form/commit/f6588ff52f88ee9d6f5c1cebdcb80db8b736acea), [`749a333`](https://github.com/x0k/svelte-jsonschema-form/commit/749a3333969401b8758f28672585f1ba7a140984), [`6650513`](https://github.com/x0k/svelte-jsonschema-form/commit/6650513fe68d1e859960483b899b9f8ce049975f), [`ce19144`](https://github.com/x0k/svelte-jsonschema-form/commit/ce19144520e76e8071ae3066a6f41964643e9187), [`1138f61`](https://github.com/x0k/svelte-jsonschema-form/commit/1138f616c30cd6e722bef3a037aed08e92033ac9), [`90e4964`](https://github.com/x0k/svelte-jsonschema-form/commit/90e49648c314c7c79d7d68abb89c824cb056d46c), [`008f685`](https://github.com/x0k/svelte-jsonschema-form/commit/008f685ec375e6f988121d42d31ecef2c83a3d08), [`52676ca`](https://github.com/x0k/svelte-jsonschema-form/commit/52676ca7976f6cff6053bba48d73193881b93405)]:
+  - @sjsf/skeleton3-theme@2.0.0-next.7
+  - @sjsf/form@2.0.0-next.7
+  - @sjsf/flowbite3-theme@2.0.0-next.7
+  - @sjsf/daisyui5-theme@2.0.0-next.7
+  - @sjsf/flowbite-theme@2.0.0-next.7
+  - @sjsf/skeleton-theme@2.0.0-next.7
+  - @sjsf/daisyui-theme@2.0.0-next.7
+  - @sjsf/shadcn-theme@2.0.0-next.7
+  - @sjsf/basic-theme@2.0.0-next.7
+  - @sjsf/ajv8-validator@2.0.0-next.7
+  - @sjsf/cfworker-validator@2.0.0-next.7
+  - @sjsf/flowbite-icons@2.0.0-next.7
+  - @sjsf/lucide-icons@2.0.0-next.7
+  - @sjsf/moving-icons@2.0.0-next.7
+  - @sjsf/radix-icons@2.0.0-next.7
+
 ## 0.0.2-next.6
 
 ### Patch Changes
