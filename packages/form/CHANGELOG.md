@@ -1,5 +1,27 @@
 # @sjsf/form
 
+## 2.0.0-next.7
+
+### Major Changes
+
+- Add `label` component ([`b215668`](https://github.com/x0k/svelte-jsonschema-form/commit/b215668587f9add91fc848cc579746303f3ba0f7))
+
+- Add `useLabel` property for the `fieldTemplate` component ([`e8eaae3`](https://github.com/x0k/svelte-jsonschema-form/commit/e8eaae3d332ced78d87748d56dd0f05117ec92d5))
+
+- Remove `forId` from the `errorList` component props ([`f6588ff`](https://github.com/x0k/svelte-jsonschema-form/commit/f6588ff52f88ee9d6f5c1cebdcb80db8b736acea))
+
+- Remove `proxy` function from `lib/svelte.svelte` ([`1138f61`](https://github.com/x0k/svelte-jsonschema-form/commit/1138f616c30cd6e722bef3a037aed08e92033ac9))
+
+- Remove `required` and `forId` from the `title` component props ([`52676ca`](https://github.com/x0k/svelte-jsonschema-form/commit/52676ca7976f6cff6053bba48d73193881b93405))
+
+### Minor Changes
+
+- Pass `widgetType` property to the `fieldTemplate` component ([`749a333`](https://github.com/x0k/svelte-jsonschema-form/commit/749a3333969401b8758f28672585f1ba7a140984))
+
+### Patch Changes
+
+- Fix <https://github.com/x0k/svelte-jsonschema-form/issues/72> ([`f1c6d71`](https://github.com/x0k/svelte-jsonschema-form/commit/f1c6d713afbcee2de58d78770041c674bc3adc1f))
+
 ## 2.0.0-next.6
 
 ### Patch Changes

@@ -1,5 +1,21 @@
 # @sjsf/skeleton3-theme
 
+## 2.0.0-next.7
+
+### Minor Changes
+
+- Add `label` component, implement two level title ([`ce19144`](https://github.com/x0k/svelte-jsonschema-form/commit/ce19144520e76e8071ae3066a6f41964643e9187))
+
+### Patch Changes
+
+- Fix switch label ([`bf0099a`](https://github.com/x0k/svelte-jsonschema-form/commit/bf0099a6334e47b1d488cbb3bf85d5e9778caf9b))
+
+- Fix extra input ids ([`6650513`](https://github.com/x0k/svelte-jsonschema-form/commit/6650513fe68d1e859960483b899b9f8ce049975f))
+
+- Updated dependencies [[`b215668`](https://github.com/x0k/svelte-jsonschema-form/commit/b215668587f9add91fc848cc579746303f3ba0f7), [`f1c6d71`](https://github.com/x0k/svelte-jsonschema-form/commit/f1c6d713afbcee2de58d78770041c674bc3adc1f), [`e8eaae3`](https://github.com/x0k/svelte-jsonschema-form/commit/e8eaae3d332ced78d87748d56dd0f05117ec92d5), [`f6588ff`](https://github.com/x0k/svelte-jsonschema-form/commit/f6588ff52f88ee9d6f5c1cebdcb80db8b736acea), [`749a333`](https://github.com/x0k/svelte-jsonschema-form/commit/749a3333969401b8758f28672585f1ba7a140984), [`ce19144`](https://github.com/x0k/svelte-jsonschema-form/commit/ce19144520e76e8071ae3066a6f41964643e9187), [`1138f61`](https://github.com/x0k/svelte-jsonschema-form/commit/1138f616c30cd6e722bef3a037aed08e92033ac9), [`52676ca`](https://github.com/x0k/svelte-jsonschema-form/commit/52676ca7976f6cff6053bba48d73193881b93405)]:
+  - @sjsf/form@2.0.0-next.7
+  - @sjsf/basic-theme@2.0.0-next.7
+
 ## 2.0.0-next.6
 
 ### Major Changes
