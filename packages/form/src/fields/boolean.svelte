@@ -25,6 +25,7 @@
 
 <Template
   showTitle={config.uiOptions?.hideTitle === false}
+  useLabel
   {widgetType}
   {config}
   {value}

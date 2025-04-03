@@ -30,6 +30,7 @@ declare module "../form/index.js" {
   interface ComponentProps {
     fieldTemplate: TemplateCommonProps<SchemaValue> & {
       showTitle: boolean;
+      useLabel: boolean;
       widgetType: FoundationalComponent;
     };
     objectTemplate: TemplateCommonProps<SchemaObjectValue> & {

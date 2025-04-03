@@ -46,6 +46,6 @@
   const errors = $derived(getErrors(ctx, config.id));
 </script>
 
-<Template showTitle {widgetType} {value} {config} {errors}>
+<Template showTitle useLabel={false} {widgetType} {value} {config} {errors}>
   <Widget {handlers} {config} {errors} bind:value {options} />
 </Template>

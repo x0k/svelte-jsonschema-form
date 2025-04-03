@@ -65,5 +65,9 @@ declare module "../form/index.js" {
      * @default false
      */
     hideTitle?: boolean;
+    /**
+     * Overrides whether to use the `title` or `label` component in the `field` template
+     */
+    useLabel?: boolean
   }
 }

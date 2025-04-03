@@ -58,6 +58,6 @@
   const errors = $derived(getErrors(ctx, id));
 </script>
 
-<Template showTitle {widgetType} value={property} {config} {errors}>
+<Template showTitle useLabel {widgetType} value={property} {config} {errors}>
   <Widget {errors} {handlers} {config} bind:value={key} />
 </Template>
