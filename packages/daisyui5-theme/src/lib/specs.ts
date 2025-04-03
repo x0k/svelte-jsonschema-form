@@ -15,14 +15,32 @@ import './extra-widgets/textarea-include';
 import PikadayDatePicker from './extra-widgets/pikaday-date-picker.svelte';
 
 export const specs: s.Specs = {
-	callyDatePicker: [s.text, { 'ui:components': { textWidget: 'datePickerWidget' } }],
-	filterRadioButtons: [s.enumeration, { 'ui:components': { selectWidget: FilterRadioButtons } }],
-	multiSelect: [s.uniqueArray, { 'ui:components': { checkboxesWidget: 'multiSelectWidget' } }],
+	callyDatePicker: [
+		s.text,
+		{ 'ui:components': { textWidget: 'datePickerWidget' }, 'ui:options': { useLabel: false } }
+	],
+	filterRadioButtons: [
+		s.enumeration,
+		{ 'ui:components': { selectWidget: FilterRadioButtons }, 'ui:options': { useLabel: false } }
+	],
+	multiSelect: [
+		s.uniqueArray,
+		{ 'ui:components': { checkboxesWidget: 'multiSelectWidget' }, 'ui:options': { useLabel: true } }
+	],
 	pikadayDatePicker: [s.text, { 'ui:components': { textWidget: PikadayDatePicker } }],
-	radioButtons: [s.enumeration, { 'ui:components': { selectWidget: 'radioButtonsWidget' } }],
-	radio: [s.enumeration, { 'ui:components': { selectWidget: 'radioWidget' } }],
+	radioButtons: [
+		s.enumeration,
+		{ 'ui:components': { selectWidget: 'radioButtonsWidget' }, 'ui:options': { useLabel: false } }
+	],
+	radio: [
+		s.enumeration,
+		{ 'ui:components': { selectWidget: 'radioWidget' }, 'ui:options': { useLabel: false } }
+	],
 	range: [s.number, { 'ui:components': { numberWidget: 'rangeWidget' } }],
-	rating: [s.number, { 'ui:components': { numberWidget: 'ratingWidget' } }],
+	rating: [
+		s.number,
+		{ 'ui:components': { numberWidget: 'ratingWidget' }, 'ui:options': { useLabel: false } }
+	],
 	switch: [s.boolean, { 'ui:components': { checkboxWidget: 'switchWidget' } }],
 	textarea: [s.text, { 'ui:components': { textWidget: 'textareaWidget' } }]
 };
