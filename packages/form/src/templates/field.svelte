@@ -40,7 +40,7 @@
     {@render children()}
   </Layout>
   {#if errors.length > 0}
-    <ErrorsList forId={config.id} {errors} {config} />
+    <ErrorsList {errors} {config} />
   {/if}
   {#if config.uiOptions?.help !== undefined}
     <Help help={config.uiOptions.help} {config} {errors} />

@@ -27,9 +27,7 @@ declare module "../form/index.js" {
     help: ComponentCommonProps & {
       help: string;
     };
-    errorsList: ComponentCommonProps & {
-      forId: string;
-    };
+    errorsList: ComponentCommonProps
   }
   interface ComponentBindings {
     title: "";

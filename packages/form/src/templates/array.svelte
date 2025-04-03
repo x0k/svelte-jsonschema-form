@@ -45,6 +45,6 @@
   </Layout>
   {@render addButton?.()}
   {#if errors.length > 0}
-    <ErrorsList forId={config.id} {errors} {config} />
+    <ErrorsList {errors} {config} />
   {/if}
 </Layout>
