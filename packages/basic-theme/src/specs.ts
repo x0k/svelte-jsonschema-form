@@ -9,10 +9,19 @@ import "./extra-widgets/range-include.js";
 import "./extra-widgets/textarea-include.js";
 
 export const specs: s.Specs = {
-  radio: [s.enumeration, { "ui:components": { selectWidget: "radioWidget" } }],
+  radio: [
+    s.enumeration,
+    {
+      "ui:components": { selectWidget: "radioWidget" },
+      "ui:options": { useLabel: false },
+    },
+  ],
   multiSelect: [
     s.uniqueArray,
-    { "ui:components": { checkboxesWidget: "multiSelectWidget" } },
+    {
+      "ui:components": { checkboxesWidget: "multiSelectWidget" },
+      "ui:options": { useLabel: true },
+    },
   ],
   textarea: [s.text, { "ui:components": { textWidget: "textareaWidget" } }],
   datePicker: [s.text, { "ui:components": { textWidget: "datePickerWidget" } }],
