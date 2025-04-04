@@ -8,6 +8,7 @@ import { Code, Card, LinkButton, Tabs, TabItem } from '@astrojs/starlight/compon
 import { specs } from '@sjsf/flowbite3-theme/specs';
 import styles from '@sjsf/flowbite3-theme/styles.css?inline';
 
+import { THEME_PACKAGES } from '@/shared';
 import Npm from '@/components/npm.astro';
 import Picker from '@/components/picker.astro';
 import FormCard from '@/components/form-card.astro';
@@ -24,7 +25,7 @@ export const schemas = createSchemas(specs)
 
 ## Installation
 
-<Npm pkg="@sjsf/flowbite3-theme@next" />
+<Npm pkg={THEME_PACKAGES.flowbite3} />
 
 :::note
 

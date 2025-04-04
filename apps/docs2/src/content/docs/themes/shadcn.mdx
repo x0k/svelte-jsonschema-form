@@ -8,6 +8,7 @@ import { Code, Card, LinkButton, Tabs, TabItem } from '@astrojs/starlight/compon
 import { specs } from '@sjsf/shadcn-theme/specs';
 import styles from '@sjsf/shadcn-theme/styles.css?inline';
 
+import { THEME_PACKAGES } from '@/shared';
 import Npm from '@/components/npm.astro';
 import FormCard from '@/components/form-card.astro';
 
@@ -18,7 +19,7 @@ export const schemas = createSchemas(specs)
 
 ## Installation
 
-<Npm pkg="@sjsf/shadcn-theme@next" />
+<Npm pkg={THEME_PACKAGES.shadcn} />
 
 :::note
 

@@ -45,12 +45,14 @@ const STYLES = {
 const locale = Astro.currentLocale ?? DEFAULT_LOCALE;
 const initialTheme = (Astro.params.theme ?? "basic") as Theme;
 
-const styles = THEMES.map(theme =>`
+const styles = THEMES.map(
+  (theme) => `
   .theme-tabs:has(.theme-tab[data-theme="${theme}"]:checked) ~ .theme-content[data-theme="${theme}"] {
     display: block;
     height: 100%
   }
-`).join('\n')
+`
+).join("\n");
 ---
 
 <div class="theme-tabs">
@@ -69,9 +71,9 @@ const styles = THEMES.map(theme =>`
 </div>
 {
   THEMES.map((theme) => (
-    <div class="theme-content" data-theme={theme} >
+    <div class="theme-content" data-theme={theme}>
       <Npm
-        pkg={`@sjsf/form@next @sjsf/ajv8-validator@next ajv@8 ${THEME_PACKAGES[theme]}@next`}
+        pkg={`@sjsf/form@next @sjsf/ajv8-validator@next ajv@8 ${THEME_PACKAGES[theme]}`}
       />
 
       <LinkCard
