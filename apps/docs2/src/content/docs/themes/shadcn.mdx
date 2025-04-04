@@ -5,7 +5,7 @@ sidebar:
 ---
 
 import { Code, Card, LinkButton, Tabs, TabItem } from '@astrojs/starlight/components';
-import { specs } from '@sjsf/shadcn-theme/specs';
+import { specs, extraWidgets } from '@sjsf/shadcn-theme/specs';
 import styles from '@sjsf/shadcn-theme/styles.css?inline';
 
 import { THEME_PACKAGES } from '@/shared';
@@ -75,7 +75,15 @@ You can define `components: ThemeComponents` yourself to reduce final bundle siz
 
 :::
 
-## Widgets
+## Extra widgets
+
+<ul>
+  {extraWidgets.map((extra) => (
+    <li><code>{extra}</code></li>
+  ))}
+</ul>
+
+## Widgets demo
 
 :::caution
 

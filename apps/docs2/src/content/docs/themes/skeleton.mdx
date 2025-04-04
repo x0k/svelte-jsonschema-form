@@ -5,7 +5,7 @@ sidebar:
 ---
 
 import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/components';
-import { specs } from '@sjsf/skeleton-theme/specs';
+import { specs, extraWidgets } from '@sjsf/skeleton-theme/specs';
 import styles from "@sjsf/skeleton-theme/styles.css?inline";
 
 import Npm from '@/components/npm.astro';
@@ -76,7 +76,15 @@ Bundled themes:
 - `pine`
 - `rose`
 
-## Widgets
+## Extra widgets
+
+<ul>
+  {extraWidgets.map((extra) => (
+    <li><code>{extra}</code></li>
+  ))}
+</ul>
+
+## Widgets demo
 
 <Tabs>
   <TabItem label='Form'>

@@ -5,7 +5,7 @@ sidebar:
 ---
 
 import { Code, Card, LinkButton, Tabs, TabItem } from '@astrojs/starlight/components';
-import { specs } from '@sjsf/flowbite-theme/specs';
+import { specs, extraWidgets } from '@sjsf/flowbite-theme/specs';
 import styles from '@sjsf/flowbite-theme/styles.css?inline';
 
 import Npm from '@/components/npm.astro';
@@ -62,7 +62,15 @@ export default {
 import flowbiteStyles from "@sjsf/flowbite-theme/styles.css?inline";
 ```
 
-## Widgets
+## Extra widgets
+
+<ul>
+  {extraWidgets.map((extra) => (
+    <li><code>{extra}</code></li>
+  ))}
+</ul>
+
+## Widgets demo
 
 <Tabs>
   <TabItem label='Form'>

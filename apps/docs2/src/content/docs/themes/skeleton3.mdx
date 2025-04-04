@@ -5,7 +5,7 @@ sidebar:
 ---
 
 import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/components';
-import { specs } from '@sjsf/skeleton3-theme/specs';
+import { specs, extraWidgets } from '@sjsf/skeleton3-theme/specs';
 import styles from "@sjsf/skeleton3-theme/styles.css?inline";
 
 import { THEME_PACKAGES } from '@/shared';
@@ -45,7 +45,15 @@ Register the theme source path by adding a line like this to the `app.css` file.
 
 `@source "../node_modules/@sjsf/skeleton3-theme/dist";`
 
-## Widgets
+## Extra widgets
+
+<ul>
+  {extraWidgets.map((extra) => (
+    <li><code>{extra}</code></li>
+  ))}
+</ul>
+
+## Widgets demo
 
 <Tabs>
   <TabItem label='Form'>

@@ -5,7 +5,7 @@ sidebar:
 ---
 
 import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/components';
-import { specs } from '@sjsf/daisyui-theme/specs';
+import { specs, extraWidgets } from '@sjsf/daisyui-theme/specs';
 import styles from '@sjsf/daisyui-theme/styles.css?inline';
 
 import { THEME_PACKAGES } from '@/shared';
@@ -57,7 +57,15 @@ export default {
 import daisyStyles from "@sjsf/daisyui-theme/styles.css?inline";
 ```
 
-## Widgets
+## Extra widgets
+
+<ul>
+  {extraWidgets.map((extra) => (
+    <li><code>{extra}</code></li>
+  ))}
+</ul>
+
+## Widgets demo
 
 <Tabs>
   <TabItem label='Form'>
