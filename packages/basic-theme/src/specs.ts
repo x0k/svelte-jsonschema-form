@@ -27,3 +27,7 @@ export const specs: s.Specs = {
   datePicker: [s.text, { "ui:components": { textWidget: "datePickerWidget" } }],
   range: [s.number, { "ui:components": { numberWidget: "rangeWidget" } }],
 };
+
+export const extraWidgets = Object.keys(
+  import.meta.glob("./extra-widgets/*.svelte")
+).map((widget) => widget.substring(16, widget.length - 7));

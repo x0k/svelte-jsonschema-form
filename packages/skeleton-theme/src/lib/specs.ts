@@ -15,3 +15,7 @@ export const specs: s.Specs = {
 	range: [s.number, { 'ui:components': { numberWidget: 'rangeWidget' } }],
 	textarea: [s.text, { 'ui:components': { textWidget: 'textareaWidget' } }]
 };
+
+export const extraWidgets = Object.keys(import.meta.glob('./extra-widgets/*.svelte')).map(
+	(widget) => widget.substring(16, widget.length - 7)
+);

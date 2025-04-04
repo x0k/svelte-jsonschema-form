@@ -31,3 +31,7 @@ export const specs: s.Specs = {
 	switch: [s.boolean, { 'ui:components': { checkboxWidget: 'switchWidget' } }],
 	textarea: [s.text, { 'ui:components': { textWidget: 'textareaWidget' } }]
 };
+
+export const extraWidgets = Object.keys(import.meta.glob('./theme/extra-widgets/*.svelte')).map(
+	(widget) => widget.substring(22, widget.length - 7)
+);
