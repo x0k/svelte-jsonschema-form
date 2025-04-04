@@ -6,12 +6,28 @@ sidebar:
 
 import { Code } from '@astrojs/starlight/components';
 
+import defaultsCode from '@/components/form-defaults.ts?raw';
 import customFormCode from '@/components/my-form.ts?raw';
 import customFormComponentCode from '@/components/my-form.svelte?raw';
 
 
 Even with a simple setup, resulting code is very verbose.
-Therefore, after choosing a resolver, theme, validator and translation, it is convenient to create a wrapper around the `createForm`.
+Therefore, it is convenient to create a file with a re-export of the selected
+resolver, theme, validator and translation. 
+
+<Code code={defaultsCode} lang="typescript" title="form-defaults.ts" />
+
+And use it like this
+
+```typescript
+import * as defaults from '$lib/form-defaults'
+
+const form = createForm({ ...defaults, ... })
+```
+
+## Factory
+
+You could go further and create a wrapper around the `createForm`.
 
 <Code code={customFormCode} lang="typescript" title="my-form.ts" />
 
@@ -25,7 +41,7 @@ Note that you can simplify the above code if certain restrictions are met:
 
 - If you are sure you will not use getters as options, then use `Object.assign` instead of `Proxy`:
 
-`Object.assign(defaults, options)`
+`Object.assign({}, defaults, options)`
 
 :::
 

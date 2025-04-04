@@ -1,13 +1,10 @@
 import { type FormOptions, type Validator, createForm } from "@sjsf/form";
-import { resolver } from "@sjsf/form/resolvers/compat";
-import { translation } from "@sjsf/form/translations/en";
-import { createFormValidator } from "@sjsf/ajv8-validator";
-import { theme } from "@sjsf/basic-theme";
-import '@sjsf/form/fields/extra-fields/enum-include';
 
-type Defaults = "theme" | "translation" | "validator" | "resolver";
+import * as defaults from "./form-defaults";
 
-export type MyValidator = ReturnType<typeof createFormValidator>;
+type Defaults = keyof typeof defaults;
+
+export type MyValidator = (typeof defaults)["validator"];
 
 export type MyFormOptions<T, V extends Validator> = Omit<
   FormOptions<T, V>,
@@ -18,16 +15,8 @@ export type MyFormOptions<T, V extends Validator> = Omit<
 export function createMyForm<
   T,
   V extends Validator,
-  O extends MyFormOptions<T, V>,
+  O extends MyFormOptions<T, V>
 >(options: O) {
-  // NOTE: we will create a separate validator for each form
-  const validator = createFormValidator();
-  const defaults: Pick<FormOptions<T, MyValidator>, Defaults> = {
-    theme,
-    resolver,
-    validator,
-    translation,
-  };
   return createForm(
     new Proxy(options, {
       get(target, p, receiver) {
