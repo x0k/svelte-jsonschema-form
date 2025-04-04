@@ -8,6 +8,7 @@ import type { Config } from "./config.js";
 import type { ComponentProps, FoundationalComponent } from "./components.js";
 
 export interface FieldCommonProps<V> {
+  type: "field"
   value: V | undefined;
   config: Config;
 }

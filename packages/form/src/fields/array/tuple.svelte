@@ -20,12 +20,15 @@
     getFixedArrayItemTitle,
   } from "./get-array-item-name.js";
 
-  let { value = $bindable(), config }: ComponentProps["tupleField"] =
-    $props();
+  let { value = $bindable(), config }: ComponentProps["tupleField"] = $props();
 
   const ctx = getFormContext();
-  const arrayCtx = createArrayContext(ctx, () => config, () => value)
-  setArrayContext(arrayCtx)
+  const arrayCtx = createArrayContext(
+    ctx,
+    () => config,
+    () => value
+  );
+  setArrayContext(arrayCtx);
 
   $effect(() => {
     if (value === undefined) {
@@ -77,6 +80,7 @@
   </Button>
 {/snippet}
 <Template
+  type="template"
   {value}
   {config}
   errors={arrayCtx.errors}
@@ -97,6 +101,7 @@
             ? uiSchema.items[index]
             : uiSchema.items) ?? {}}
       <ArrayItem
+        type="field"
         {index}
         config={{
           id: createChildId(config.id, index, ctx),

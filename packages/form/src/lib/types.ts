@@ -23,5 +23,3 @@ export function isNil<T>(v: T | Nil): v is Nil {
 export type Equal<A, B> = A extends B ? (B extends A ? true : false) : false;
 
 export type Expand<T> = { [K in keyof T]: T[K] };
-
-export type ExpandAndEqual<A, B> = Equal<Expand<A>, Expand<B>>

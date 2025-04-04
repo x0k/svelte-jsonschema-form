@@ -5,7 +5,7 @@
     type ComponentProps,
   } from "@/form/index.js";
 
-  let { value = $bindable(), config }: ComponentProps["integerField"] =
+  let { type, value = $bindable(), config }: ComponentProps["integerField"] =
     $props();
 
   const ctx = getFormContext();
@@ -25,4 +25,4 @@
   };
 </script>
 
-<Field bind:value={integer.value} {config} />
+<Field {type} bind:value={integer.value} {config} />

@@ -31,6 +31,14 @@
   const errors = $derived(getErrors(ctx, config.id));
 </script>
 
-<Template showTitle useLabel {widgetType} {value} {config} {errors}>
-  <Widget {handlers} {config} {errors} bind:value {options} />
+<Template
+  type="template"
+  showTitle
+  useLabel
+  {widgetType}
+  {value}
+  {config}
+  {errors}
+>
+  <Widget type="widget" {handlers} {config} {errors} bind:value {options} />
 </Template>

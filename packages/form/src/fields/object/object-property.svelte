@@ -70,6 +70,7 @@
   </Button>
 {/snippet}
 <Template
+  type="template"
   {property}
   {value}
   {config}
@@ -77,5 +78,5 @@
   keyInput={isAdditional ? keyInput : undefined}
   removeButton={isAdditional ? removeButton : undefined}
 >
-  <Field bind:value={value as undefined} {config} />
+  <Field type="field" bind:value={value as undefined} {config} />
 </Template>

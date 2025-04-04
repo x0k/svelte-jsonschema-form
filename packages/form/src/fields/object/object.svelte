@@ -150,6 +150,7 @@
   </Button>
 {/snippet}
 <Template
+  type="template"
   {value}
   {config}
   {errors}
@@ -167,6 +168,7 @@
           : config.uiSchema[property]) as UiSchema) ?? {}}
       {@const propUiOptions = getUiOptions(ctx, propUiSchema)}
       <ObjectProperty
+        type="field"
         {property}
         {isAdditional}
         bind:value={value[property]}

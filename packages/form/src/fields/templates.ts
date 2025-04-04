@@ -12,6 +12,7 @@ import type {
 } from "@/form/index.js";
 
 export interface TemplateCommonProps<V extends SchemaValue> {
+  type: "template"
   value: V | undefined;
   config: Config;
   errors: FieldError<unknown>[];

@@ -15,7 +15,10 @@
   } from "@/form/index.js";
 
   import { createArrayContext, setArrayContext } from "./context.svelte.js";
-  import { getArrayItemName, getNormalArrayItemTitle } from "./get-array-item-name.js";
+  import {
+    getArrayItemName,
+    getNormalArrayItemTitle,
+  } from "./get-array-item-name.js";
 
   let { value = $bindable(), config }: ComponentProps["arrayField"] = $props();
 
@@ -50,11 +53,12 @@
     onclick={() => {
       arrayCtx.pushItem(schemaItems);
     }}
-    >
+  >
     <Text {config} id="add-array-item" />
   </Button>
 {/snippet}
 <Template
+  type="template"
   errors={arrayCtx.errors}
   {config}
   {value}
@@ -64,6 +68,7 @@
     {#each value as item, index (arrayCtx.key(index))}
       {@const itemSchema = retrieveSchema(ctx, schemaItems, item)}
       <ArrayItem
+        type="field"
         {index}
         config={{
           id: createChildId(config.id, index, ctx),
