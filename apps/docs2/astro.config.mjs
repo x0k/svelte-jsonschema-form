@@ -54,6 +54,11 @@ export default defineConfig({
         {
           label: "API Reference",
           autogenerate: { directory: "api-reference" },
+          collapsed: true,
+          badge: {
+            text: "outdated",
+            variant: "caution"
+          },
         },
         {
           label: "Changelogs",
