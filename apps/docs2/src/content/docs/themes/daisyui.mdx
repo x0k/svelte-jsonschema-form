@@ -5,6 +5,7 @@ sidebar:
 ---
 
 import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/components';
+import { specs } from '@sjsf/daisyui-theme/specs';
 import styles from '@sjsf/daisyui-theme/styles.css?inline';
 
 import Npm from '@/components/npm.astro';
@@ -12,6 +13,9 @@ import Picker from '@/components/picker.astro';
 import FormCard from '@/components/form-card.astro';
 
 import Form from './_daisyui-theme.svelte';
+import { createSchemas } from "./_demo-schema";
+
+export const schemas = createSchemas(specs)
 
 <Picker>
   <a href="." data-active={true}>v4</a>
@@ -54,6 +58,16 @@ import daisyStyles from "@sjsf/daisyui-theme/styles.css?inline";
 
 ## Widgets
 
-<FormCard style={styles}>
-  <Form client:only="svelte" />
-</FormCard>
+<Tabs>
+  <TabItem label='Form'>
+    <FormCard style={styles}>
+      <Form client:only="svelte" />
+    </FormCard>
+  </TabItem>
+  <TabItem label="JSON Schema" >
+    <Code lang="json" code={JSON.stringify(schemas.schema, null, 2)} />
+  </TabItem>
+  <TabItem label="UI Schema">
+    <Code lang="json" code={JSON.stringify(schemas.uiSchema, null, 2)} />
+  </TabItem>
+</Tabs>

@@ -5,12 +5,16 @@ sidebar:
 ---
 
 import { Code, Card, LinkButton, Tabs, TabItem } from '@astrojs/starlight/components';
+import { specs } from '@sjsf/shadcn-theme/specs';
 import styles from '@sjsf/shadcn-theme/styles.css?inline';
 
 import Npm from '@/components/npm.astro';
 import FormCard from '@/components/form-card.astro';
 
 import Form from './_shadcn-theme.svelte';
+import { createSchemas } from "./_demo-schema";
+
+export const schemas = createSchemas(specs)
 
 ## Installation
 
@@ -81,6 +85,17 @@ See https://github.com/huntabyte/bits-ui/issues/828 for more details.
 
 :::
 
-<FormCard style={styles} >
-  <Form client:only="svelte" />
-</FormCard>
+<Tabs>
+  <TabItem label='Form'>
+    <FormCard style={styles}>
+      <Form client:only="svelte" />
+    </FormCard>
+  </TabItem>
+  <TabItem label="JSON Schema" >
+    <Code lang="json" code={JSON.stringify(schemas.schema, null, 2)} />
+  </TabItem>
+  <TabItem label="UI Schema">
+    <Code lang="json" code={JSON.stringify(schemas.uiSchema, null, 2)} />
+  </TabItem>
+</Tabs>
+

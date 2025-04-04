@@ -5,11 +5,15 @@ sidebar:
 ---
 
 import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
+import { specs } from '@sjsf/basic-theme/specs';
 
 import Npm from '@/components/npm.astro';
 import FormCard from '@/components/form-card.astro';
 
 import Form from './_basic-theme.svelte';
+import { createSchemas } from "./_demo-schema";
+
+export const schemas = createSchemas(specs)
 
 ## Installation
 
@@ -17,6 +21,16 @@ import Form from './_basic-theme.svelte';
 
 ## Widgets
 
-<FormCard>
-  <Form client:only="svelte" />
-</FormCard>
+<Tabs>
+  <TabItem label='Form'>
+    <FormCard>
+      <Form client:only="svelte" />
+    </FormCard>
+  </TabItem>
+  <TabItem label="JSON Schema" >
+    <Code lang="json" code={JSON.stringify(schemas.schema, null, 2)} />
+  </TabItem>
+  <TabItem label="UI Schema">
+    <Code lang="json" code={JSON.stringify(schemas.uiSchema, null, 2)} />
+  </TabItem>
+</Tabs>
