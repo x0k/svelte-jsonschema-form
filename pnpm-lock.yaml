@@ -267,6 +267,9 @@ importers:
       '@sjsf/zod-validator':
         specifier: workspace:*
         version: link:../../packages/zod-validator
+      '@skeletonlabs/skeleton-svelte':
+        specifier: ^1.0.0
+        version: 1.0.0(@skeletonlabs/skeleton@3.1.1(tailwindcss@4.0.15))(svelte@5.25.6)
       ajv:
         specifier: 'catalog:'
         version: 8.17.1
