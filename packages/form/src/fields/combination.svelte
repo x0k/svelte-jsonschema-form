@@ -180,11 +180,16 @@
 </script>
 
 {#if restFieldConfig}
-  <RestSchemaField bind:value={value as undefined} config={restFieldConfig} />
+  <RestSchemaField
+    type="field"
+    bind:value={value as undefined}
+    config={restFieldConfig}
+  />
 {/if}
-<Template {config} {value} {errors}>
+<Template type="template" {config} {value} {errors}>
   {#snippet optionSelector()}
     <Widget
+      type="widget"
       {errors}
       handlers={{}}
       config={widgetConfig}
@@ -196,6 +201,7 @@
   {/snippet}
   {#if combinationFieldConfig}
     <CombinationField
+      type="field"
       bind:value={value as undefined}
       config={combinationFieldConfig}
     />

@@ -25,8 +25,8 @@
   // Forces svelte to update component
   $effect(() => {
     Field;
-  })
+  });
 </script>
 
 <!-- svelte-ignore ownership_invalid_binding -->
-<Field bind:value={ctx.value as undefined} {config} />
+<Field type="field" bind:value={ctx.value as undefined} {config} />

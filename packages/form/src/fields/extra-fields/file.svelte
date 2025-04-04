@@ -60,8 +60,17 @@
   const errors = $derived(getErrors(ctx, config.id));
 </script>
 
-<Template showTitle useLabel {widgetType} {value} {config} {errors}>
+<Template
+  type="template"
+  showTitle
+  useLabel
+  {widgetType}
+  {value}
+  {config}
+  {errors}
+>
   <Widget
+    type="widget"
     bind:value={files.value}
     processing={files.inputProcessing}
     loading={files.outputProcessing}

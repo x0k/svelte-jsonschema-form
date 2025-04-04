@@ -22,6 +22,7 @@
 </script>
 
 <Template
+  type="template"
   showTitle
   useLabel={false}
   widgetType="nullField"

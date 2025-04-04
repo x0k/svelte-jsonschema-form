@@ -24,6 +24,7 @@
 </script>
 
 <Template
+  type="template"
   showTitle={config.uiOptions?.hideTitle === false}
   useLabel
   {widgetType}
@@ -31,5 +32,5 @@
   {value}
   {errors}
 >
-  <Widget bind:value {errors} {handlers} {config} />
+  <Widget type="widget" bind:value {errors} {handlers} {config} />
 </Template>

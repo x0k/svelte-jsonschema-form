@@ -13,7 +13,7 @@
       };
     }
     interface ComponentBindings {
-      arrayItemField: "value"
+      arrayItemField: "value";
     }
   }
 </script>
@@ -106,11 +106,12 @@
   {/if}
 {/snippet}
 <Template
+  type="template"
   {index}
   {value}
   {config}
   {errors}
   buttons={toolbar ? buttons : undefined}
 >
-  <Field bind:value={value as undefined} {config} />
+  <Field type="field" bind:value={value as undefined} {config} />
 </Template>

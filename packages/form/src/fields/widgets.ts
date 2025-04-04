@@ -8,6 +8,7 @@ export interface Handlers {
 }
 
 export interface WidgetCommonProps<V> {
+  type: "widget"
   config: Config;
   value: V | undefined;
   handlers: Handlers;
