@@ -1,0 +1,106 @@
+---
+title: Form components
+sidebar:
+  order: 3
+---
+
+import { Code } from '@astrojs/starlight/components'
+
+import basicFromCode from '#/form/src/form/basic-form.svelte?raw'
+
+The `@sjsf/form` package exports several basic ui components for creating forms:
+
+- `Content`
+- `SubmitButton`
+- `FormTag`
+- `BasicForm`
+- `SimpleForm`
+- `ErrorMessage`
+- `Datalist`
+- `Text`
+
+Components are linked through the context of the form, example:
+
+<Code code={basicFromCode} lang="svelte" title="basic-form.svelte" />
+
+## Theme
+
+Essentially theme is a simple function:
+
+```js
+const fromRecord = (record) => (type) => record[type]
+const theme = fromRecord(components)
+```
+
+### Component types
+
+All components can be divided into four **logical** types:
+
+- components
+  - `form`
+  - `submitButton`
+  - `button`
+  - `layout`
+  - `title`
+  - `label`
+  - `description`
+  - `help`
+  - `errorsList`
+- widgets
+  - `textWidget`
+  - `numberWidget`
+  - `selectWidget`
+  - `checkboxWidget`
+- templates
+  - `fieldTemplate`
+  - `objectTemplate`
+  - `objectPropertyTemplate`
+  - `arrayTemplate`
+  - `arrayItemTemplate`
+  - `multiFieldTemplate`
+- fields
+  - `stringField`
+  - `numberField`
+  - `integerField`
+  - `booleanField`
+  - `objectField`
+  - `arrayField`
+  - `tupleField`
+  - `nullField`
+  - `oneOfField`
+  - `anyOfField`
+
+Also found out that the above components are enough to display any JSON schema.
+
+### Extra components
+
+But they may not be enough to get a form that meets your requirements.
+Don't worry, there are extra components for this purpose.
+
+#### Fields
+
+Here is a list of extra fields that can be imported from `@sjsf/form/fields/extra-fields/*`.
+
+- `booleanSelectField`
+- `enumField`
+- `fileField`
+- `filesField`
+- `multiEnumField`
+
+To use them you can import them directly or use an `include` import
+
+```ts
+import "@sjsf/form/fields/extra-fields/enum-include";
+```
+
+and replace the compatible field with it in `uiSchema`
+
+```ts
+const uiSchema: UISchema = {
+  "ui:components": {
+    stringField: "enumField"
+  }
+}
+```
+
+#### Widgets
