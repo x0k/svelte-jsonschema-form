@@ -67,6 +67,21 @@ Use getters to pass reactive parameters to the `createForm` (`createMyForm`) fun
 
 :::
 
+:::note
+
+The `form.value` property is an accessor that maintains form state consistency
+
+- A **snapshot** of the form state is returned on access
+- Default values from JSON Schema are taken into account during assignment
+
+You can gain direct access to the internal state by hacking types:
+
+```typescript
+(form.context as FormInternalContext<typeof validator>).value
+```
+
+:::
+
 <Code code={formStateCode} lang="svelte" />
 
 <FormCard>
