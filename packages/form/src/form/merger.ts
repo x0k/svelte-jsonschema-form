@@ -26,15 +26,15 @@ export function createFormMerger(
   validator: Validator,
   rootSchema: Schema,
   options: FormMergerOptions = {}
-) {
-  const merger: FormMerger = {
+): FormMerger {
+  return {
     mergeAllOf(schema) {
       return defaultMerger.mergeAllOf(schema);
     },
     mergeFormDataAndSchemaDefaults(formData, schema) {
       return getDefaultFormState(
         validator,
-        merger,
+        defaultMerger,
         schema,
         formData,
         rootSchema,
@@ -43,5 +43,4 @@ export function createFormMerger(
       );
     },
   };
-  return merger;
 }
