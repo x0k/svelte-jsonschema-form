@@ -1,5 +1,13 @@
 # @sjsf/form
 
+## 2.0.0-next.8
+
+### Major Changes
+
+- Relax component compatibility checks. ([`cb176ac`](https://github.com/x0k/svelte-jsonschema-form/commit/cb176ac730f085d715dbd68621c597babcf5c3b9))
+  Add a `type` discriminator for field, template, and widget properties.
+  Remove `Equal` and `ExpandAndEqual` types from `lib/types`
+
 ## 2.0.0-next.7
 
 ### Major Changes
