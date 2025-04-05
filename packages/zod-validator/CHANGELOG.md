@@ -1,5 +1,12 @@
 # @sjsf/zod-integration
 
+## 2.0.0-next.8
+
+### Patch Changes
+
+- Updated dependencies [[`cb176ac`](https://github.com/x0k/svelte-jsonschema-form/commit/cb176ac730f085d715dbd68621c597babcf5c3b9)]:
+  - @sjsf/form@2.0.0-next.8
+
 ## 2.0.0-next.7
 
 ### Patch Changes
