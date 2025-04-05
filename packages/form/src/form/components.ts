@@ -1,6 +1,6 @@
 import type { Component as SvelteComponent } from "svelte";
 
-import type { Equal, Expand } from "@/lib/types.js";
+import type { Expand } from "@/lib/types.js";
 import type { Resolver } from "@/lib/resolver.js";
 
 import type { Config } from "./config.js";
@@ -28,11 +28,12 @@ export type ComponentDefinitions = {
 };
 
 export type CompatibleComponentType<T extends ComponentType> = {
-  [C in ComponentType]: [
-    Expand<ComponentProps[T]> extends Expand<ComponentProps[C]> ? true : false,
-    Equal<ComponentBindings[T], ComponentBindings[C]>
-  ] extends [true, true]
-    ? C
+  [C in ComponentType]: Expand<ComponentProps[T]> extends Expand<
+    ComponentProps[C]
+  >
+    ? ComponentBindings[T] extends ComponentBindings[C]
+      ? C
+      : never
     : never;
 }[ComponentType];
 

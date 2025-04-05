@@ -5,7 +5,7 @@ export type Nullable<T> = {
 declare const brand: unique symbol;
 
 export type Brand<Name extends string, Base = string> = Base & {
-  readonly [brand]: Name
+  readonly [brand]: Name;
 };
 
 export type Prettify<T> = {
@@ -19,7 +19,5 @@ export type Nil = null | undefined;
 export function isNil<T>(v: T | Nil): v is Nil {
   return v === undefined || v === null;
 }
-
-export type Equal<A, B> = A extends B ? (B extends A ? true : false) : false;
 
 export type Expand<T> = { [K in keyof T]: T[K] };

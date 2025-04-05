@@ -2,4 +2,6 @@
 "@sjsf/form": major
 ---
 
-Relax components compatibility check, add discriminator field `type` for fields, templates and widgets properties.
+Relax component compatibility checks.
+Add a `type` discriminator for field, template, and widget properties.
+Remove `Equal` and `ExpandAndEqual` types from `lib/types`
