@@ -1,7 +1,7 @@
 <script lang="ts" module>
 	import { untrack, type ComponentProps as SvelteComponentProps } from 'svelte';
 	import { FileUpload } from '@skeletonlabs/skeleton-svelte';
-	import '@sjsf/form/fields/extra-widgets/file-widget';
+	import '@sjsf/form/fields/extra-widgets/file';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {

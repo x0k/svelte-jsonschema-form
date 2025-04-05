@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import type { FileuploadProps } from 'flowbite-svelte';
-	import '@sjsf/form/fields/extra-widgets/file-widget';
+	import '@sjsf/form/fields/extra-widgets/file';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
