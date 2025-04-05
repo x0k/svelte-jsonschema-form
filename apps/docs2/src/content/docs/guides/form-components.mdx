@@ -32,7 +32,7 @@ const fromRecord = (record) => (type) => record[type]
 const theme = fromRecord(components)
 ```
 
-### Component types
+## Component types
 
 All components can be divided into four **logical** types:
 
@@ -72,35 +72,93 @@ All components can be divided into four **logical** types:
 
 Also found out that the above components are enough to display any JSON schema.
 
-### Extra components
+## Resolver
+
+To determine which field to use to display your JSON schema, the form uses `resolver`.
+
+```ts
+interface Config {
+  id: Id;
+  name: string;
+  title: string;
+  schema: Schema;
+  uiSchema: UiSchema;
+  uiOptions: UiOptions | undefined;
+  required: boolean;
+}
+
+type ResolveFieldType = (config: Config) => FoundationalFieldType
+
+type Resolver = (ctx: FormInternalContext<Validator>) => ResolveFieldType
+```
+
+It looks complicated, but let's take a look at the `basic` resolver implementation
+(`@sjsf/form/resolvers/basic`):
+
+```ts
+function resolver(): ResolveFieldType {
+  return ({ schema }) => {
+    if (schema.oneOf !== undefined) {
+      return "oneOfField";
+    }
+    if (schema.anyOf !== undefined) {
+      return "anyOfField";
+    }
+    const type = getSimpleSchemaType(schema);
+    if (type === "array") {
+      return isFixedItems(schema) ? "tupleField" : "arrayField";
+    }
+    return `${type}Field`;
+  }
+}
+```
+
+Yes, it's essentially a direct mapping of schema type to field type, nothing fancy.
+Let's talk about `FoundationalFieldType`.
+
+## Foundational components
+
+The `FoundationalFieldType` type is a subset of the fields from `FoundationalComponent` type.
+
+## Extra components
 
 But they may not be enough to get a form that meets your requirements.
 Don't worry, there are extra components for this purpose.
 
-#### Fields
+### Fields
 
 Here is a list of extra fields that can be imported from `@sjsf/form/fields/extra-fields/*`.
 
-- `booleanSelectField`
-- `enumField`
-- `fileField`
-- `filesField`
-- `multiEnumField`
+- `boolean-select`
+- `enum`
+- `file`
+- `files`
+- `multi-enum`
 
-To use them you can import them directly or use an `include` import
+To use them you can import them directly
+
+```ts
+import EnumField from "@sjsf/form/fields/extra-fields/enum";
+```
+
+or use an `include` import
 
 ```ts
 import "@sjsf/form/fields/extra-fields/enum-include";
 ```
 
-and replace the compatible field with it in `uiSchema`
+and replace the compatible field with it in `uiSchema`.
 
 ```ts
 const uiSchema: UISchema = {
   "ui:components": {
+    stringField: EnumField,
+    // Or if you used the `include` import
     stringField: "enumField"
   }
 }
 ```
 
-#### Widgets
+
+
+### Widgets
