@@ -20,7 +20,7 @@
   } from "@/form/index.js";
   import "@/form/extra-fields/files.js";
 
-  import "../extra-widgets/file-widget.js";
+  import "../extra-widgets/file.js";
 
   let { config, value = $bindable() }: ComponentProps["filesField"] = $props();
 
