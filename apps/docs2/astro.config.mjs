@@ -40,10 +40,6 @@ export default defineConfig({
           autogenerate: { directory: "form" },
         },
         {
-          label: "Concepts",
-          autogenerate: { directory: "concepts" },
-        },
-        {
           label: "Themes",
           autogenerate: { directory: "themes" },
         },
