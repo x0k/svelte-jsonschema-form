@@ -6,7 +6,11 @@ sidebar:
 
 import { Code, Card, LinkCard } from '@astrojs/starlight/components';
 
+import { peerDependencies as formPeerDeps } from '#/form/package.json'
+
+import { THEME_PACKAGES } from '@/shared'
 import FormCard from '@/components/form-card.astro'
+import Npm from "@/components/npm.astro";
 
 import SimpleSetupForm from "./_simple-setup.svelte";
 import simpleSetupCode from './_simple-setup.svelte?raw';
@@ -16,6 +20,16 @@ import uiSchemaCode from './_ui-schema.svelte?raw';
 
 import FormStateForm from './_form-state.svelte';
 import formStateCode from './_form-state.svelte?raw';
+
+## Installation
+
+<Npm
+  pkg={`@sjsf/form@next @sjsf/ajv8-validator@next ajv@8 ${THEME_PACKAGES.basic}`}
+/>
+
+Svelte <code>{formPeerDeps.svelte}</code> is required
+
+## Usage
 
 Let's start with the simplest setup:
 
@@ -35,7 +49,7 @@ Although this is an extremely simple example, it turned out to be quite verbose,
 so you can import only the functionality you need, keeping your bundle lean and optimized.
 - **Highly Customizable**: We provide extensive customization options so that you can tailor every aspect of the library to your needs.
 
-<LinkCard title="JSON Schema API reference" href="../../api-reference/json-schema/" />
+<LinkCard title="JSON Schema" href="../../api-reference/json-schema/" />
 
 <LinkCard title="Handlers API reference" href="../../api-reference/handlers/" />
 
