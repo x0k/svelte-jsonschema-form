@@ -1,0 +1,74 @@
+---
+title: Contributing
+sidebar:
+  order: 1
+---
+
+## Feedback
+
+You can leave feedback on any aspect of the library (features, documentation, etc.)
+in [GitHub discussions](https://github.com/x0k/svelte-jsonschema-form/discussions).
+
+## Development
+
+Personally, I use [nix](https://nixos.wiki/wiki/Nix_package_manager)
+[dev](https://nix.dev/manual/nix/2.26/command-ref/new-cli/nix3-develop)
+environment and [mk](https://github.com/x0k/mk), although `pnpm@10` will suffice
+to perform any action.
+
+### Dev server
+
+To start the playground, you need to execute the following commands
+
+```shell
+pnpm i
+pnpm build
+cd apps/playground2
+pnpm run dev
+```
+
+If you are working on a theme then you can run it dev server, example:
+
+```shell
+cd packages/basic
+pnpm run dev
+```
+
+### Tests
+
+You can run all tests from the root directory using the following command:
+
+```shell
+pnpm run test
+```
+
+Unfortunately, the library does not currently have good test coverage,
+so contributions with tests are extremely welcome.
+
+### Commit style
+
+The commit message should be structured as follows:
+
+```
+[scope] <description>
+```
+
+Scopes:
+- Each package is a separate scope (e.g. package `skeleton3-theme` - `skeleton3` scope)
+- The `form` package is divided into the following scopes:
+  - `lib`
+  - `core`
+  - `form`
+  - `fields`
+  - `templates`
+  - `translations`
+- Scopes for changes affecting multiple packages of the same type
+  - `themes`
+  - `validators`
+- `build`
+
+### Changes
+
+We use [changesets](https://github.com/changesets/changesets/tree/main), so
+don't forget to [add](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md)
+a `changeset` file using the `pnpm changeset` command.
