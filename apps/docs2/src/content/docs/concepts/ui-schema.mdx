@@ -1,0 +1,28 @@
+---
+title: UI Schema
+sidebar:
+  order: 1
+---
+
+import { Code, Card, LinkCard } from '@astrojs/starlight/components';
+
+import FormCard from '@/components/form-card.astro'
+
+import UiSchemaForm from './_ui-schema.svelte';
+import uiSchemaCode from './_ui-schema.svelte?raw';
+
+With the `uiSchema` parameter you can customize the appearance of the form.
+
+:::note
+
+We'll talk about `MyForm` component in the [Reusable defaults](../reusable-defaults/) guide.
+
+:::
+
+<Code code={uiSchemaCode} lang="svelte" />
+
+<FormCard>
+  <UiSchemaForm client:only="svelte" />
+</FormCard>
+
+<LinkCard title="UI Schema API reference" href="../../api-reference/ui-schema/" />

@@ -36,6 +36,10 @@ export default defineConfig({
           autogenerate: { directory: "guides" },
         },
         {
+          label: "Concepts",
+          autogenerate: { directory: "concepts" },
+        },
+        {
           label: "Themes",
           autogenerate: { directory: "themes" },
         },
@@ -57,7 +61,7 @@ export default defineConfig({
           collapsed: true,
           badge: {
             text: "outdated",
-            variant: "caution"
+            variant: "caution",
           },
         },
         {
