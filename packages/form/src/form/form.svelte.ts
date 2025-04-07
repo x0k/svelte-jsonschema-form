@@ -204,6 +204,16 @@ export type FormState<T, V extends Validator> = {
     FieldError<AnyFieldValueValidatorError<V>>[],
     unknown
   >;
+  /**
+   * An accessor that maintains form state consistency:
+   * 
+   * - A snapshot of the form state is returned on access
+   * - Default values from JSON Schema are taken into account during assignment
+   * 
+   * You can gain direct access to the internal state by hacking types:
+   * 
+   * `(form.context as FormInternalContext<typeof validator>).value`
+   */
   value: T | undefined;
   isSubmitted: boolean;
   isChanged: boolean;
@@ -426,6 +436,9 @@ export function createForm<T, V extends Validator>(
     },
     get isSubmitted() {
       return isSubmitted;
+    },
+    set isSubmitted(v) {
+      isSubmitted = v
     },
     get isChanged() {
       return isChanged;
