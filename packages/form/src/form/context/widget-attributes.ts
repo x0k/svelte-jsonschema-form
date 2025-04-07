@@ -8,7 +8,7 @@ import type { Nullable } from "@/lib/types.js";
 import type { Validator } from "@/core/index.js";
 
 import type { Config } from "../config.js";
-import { createPseudoId } from '../id.js';
+import { createPseudoId } from "../id.js";
 
 import type { FormInternalContext } from "./context.js";
 
@@ -34,7 +34,7 @@ export function isDisabled<V extends Validator>(
  */
 export function defineDisabled<
   T extends Partial<Nullable<Disabled>>,
-  V extends Validator,
+  V extends Validator
 >(ctx: FormInternalContext<V>, obj: T) {
   obj.disabled ||= ctx.disabled;
   return obj as T & Disabled;
@@ -76,12 +76,13 @@ export function inputAttributes<
     | "disabled"
     | "type"
   >,
-  V extends Validator,
+  V extends Validator
 >(
   ctx: FormInternalContext<V>,
   { id, required, schema }: Config,
   handlers: Handlers,
-  attributes: T | undefined
+  attributes: T | undefined,
+  extraAttributes: T | undefined
 ) {
   const data = Object.assign(
     {
@@ -102,7 +103,8 @@ export function inputAttributes<
       onchange: handlers.onchange,
       onblur: handlers.onblur,
     },
-    attributes
+    attributes,
+    extraAttributes
   );
   if (data.type === undefined) {
     const type = inputType(schema.format);
@@ -127,12 +129,13 @@ export function textareaAttributes<
     | "onblur"
     | "disabled"
   >,
-  V extends Validator,
+  V extends Validator
 >(
   ctx: FormInternalContext<V>,
   { id, required, schema }: Config,
   handlers: Handlers,
-  attributes: T | undefined
+  attributes: T | undefined,
+  extraAttributes: T | undefined
 ) {
   return defineDisabled(
     ctx,
@@ -148,7 +151,8 @@ export function textareaAttributes<
         onchange: handlers.onchange,
         onblur: handlers.onblur,
       },
-      attributes
+      attributes,
+      extraAttributes
     )
   );
 }
@@ -158,12 +162,13 @@ export function selectAttributes<
     HTMLSelectAttributes,
     "id" | "name" | "required" | "oninput" | "onchange" | "onblur" | "disabled"
   >,
-  V extends Validator,
+  V extends Validator
 >(
   ctx: FormInternalContext<V>,
   { id, required }: Config,
   handlers: Handlers,
-  attributes: T | undefined
+  attributes: T | undefined,
+  extraAttributes: T | undefined
 ) {
   return defineDisabled(
     ctx,
@@ -176,7 +181,8 @@ export function selectAttributes<
         onchange: handlers.onchange,
         onblur: handlers.onblur,
       },
-      attributes
+      attributes,
+      extraAttributes
     )
   );
 }
