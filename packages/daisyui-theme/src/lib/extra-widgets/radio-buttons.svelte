@@ -30,7 +30,13 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		inputAttributes(ctx, config, handlers, config.uiOptions?.daisyuiRadioButtons)
+		inputAttributes(
+			ctx,
+			config,
+			handlers,
+			config.uiOptions?.daisyuiRadioButtons,
+			ctx.extraUiOptions?.('daisyuiRadioButtons', config)
+		)
 	);
 </script>
 

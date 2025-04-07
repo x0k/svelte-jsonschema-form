@@ -17,7 +17,13 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		inputAttributes(ctx, config, handlers, config.uiOptions?.daisyuiSwitch)
+		inputAttributes(
+			ctx,
+			config,
+			handlers,
+			config.uiOptions?.daisyuiSwitch,
+			ctx.extraUiOptions?.('daisyuiSwitch', config)
+		)
 	);
 </script>
 

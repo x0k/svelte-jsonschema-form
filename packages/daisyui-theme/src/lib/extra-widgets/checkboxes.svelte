@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 	import { multipleOptions, indexMapper } from '@sjsf/form/options.svelte';
-	import '@sjsf/basic-theme/extra-widgets/checkboxes.svelte'
+	import '@sjsf/basic-theme/extra-widgets/checkboxes.svelte';
 
 	let {
 		handlers,
@@ -19,7 +19,15 @@
 
 	const ctx = getFormContext();
 
-	const attributes = $derived(inputAttributes(ctx, config, handlers, config.uiOptions?.checkboxes));
+	const attributes = $derived(
+		inputAttributes(
+			ctx,
+			config,
+			handlers,
+			config.uiOptions?.checkboxes,
+			ctx.extraUiOptions?.('checkboxes', config)
+		)
+	);
 </script>
 
 {#each options as option, index (option.id)}
