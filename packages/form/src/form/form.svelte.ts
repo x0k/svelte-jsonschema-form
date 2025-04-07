@@ -52,7 +52,7 @@ import {
 } from "./id.js";
 import type { Config } from "./config.js";
 import type { Theme } from "./components.js";
-import type { FormValue } from "./model.js";
+import type { FieldValue, FormValue } from "./model.js";
 import type { ResolveFieldType } from "./fields.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
@@ -200,7 +200,7 @@ export type FormState<T, V extends Validator> = {
     unknown
   >;
   readonly fieldsValidation: Action<
-    [config: Config, value: FormValue],
+    [config: Config, value: FieldValue],
     FieldError<AnyFieldValueValidatorError<V>>[],
     unknown
   >;
