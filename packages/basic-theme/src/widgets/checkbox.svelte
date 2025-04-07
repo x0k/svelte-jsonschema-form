@@ -24,11 +24,21 @@
   const ctx = getFormContext();
 
   const attributes = $derived(
-    inputAttributes(ctx, config, handlers, config.uiOptions?.checkbox)
+    inputAttributes(
+      ctx,
+      config,
+      handlers,
+      config.uiOptions?.checkbox,
+      ctx.extraUiOptions?.("checkbox", config)
+    )
   );
 </script>
 
 <label>
-  <input type="checkbox" bind:checked={() => value ?? false, (v) => (value = v)} {...attributes} />
+  <input
+    type="checkbox"
+    bind:checked={() => value ?? false, (v) => (value = v)}
+    {...attributes}
+  />
   {config.title}
 </label>

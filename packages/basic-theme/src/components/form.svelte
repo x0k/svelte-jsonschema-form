@@ -26,6 +26,7 @@
   use:enhance={ctx}
   style="display: flex; flex-direction: column; gap: 1rem"
   {...config.uiOptions?.form}
+  {...ctx.extraUiOptions?.('form', config)}
   {...attributes}
 >
   {@render children()}

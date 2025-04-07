@@ -27,8 +27,13 @@
     type ComponentProps,
   } from "@sjsf/form";
 
-  const { children, type, onclick, config, disabled }: ComponentProps["button"] =
-    $props();
+  const {
+    children,
+    type,
+    onclick,
+    config,
+    disabled,
+  }: ComponentProps["button"] = $props();
 
   const ctx = getFormContext();
 
@@ -47,6 +52,7 @@
       disabled,
       ...config.uiOptions?.button,
       ...config.uiOptions?.buttons?.[type],
+      ...ctx.extraUiOptions?.("button", config),
     })
   );
 </script>

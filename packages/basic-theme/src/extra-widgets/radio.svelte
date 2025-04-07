@@ -27,7 +27,13 @@
   const ctx = getFormContext();
 
   const attributes = $derived(
-    inputAttributes(ctx, config, handlers, config.uiOptions?.radio)
+    inputAttributes(
+      ctx,
+      config,
+      handlers,
+      config.uiOptions?.radio,
+      ctx.extraUiOptions?.("radio", config)
+    )
   );
 
   const mapped = singleOption({

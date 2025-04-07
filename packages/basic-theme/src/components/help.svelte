@@ -12,11 +12,17 @@
 </script>
 
 <script lang="ts">
-  import type { ComponentProps } from "@sjsf/form";
+  import { getFormContext, type ComponentProps } from "@sjsf/form";
 
   const { help, config }: ComponentProps["help"] = $props();
+
+  const ctx = getFormContext();
 </script>
 
-<div style="font-weight: 300;" {...config.uiOptions?.helpAttributes}>
+<div
+  style="font-weight: 300;"
+  {...config.uiOptions?.helpAttributes}
+  {...ctx.extraUiOptions?.("helpAttributes", config)}
+>
   {help}
 </div>

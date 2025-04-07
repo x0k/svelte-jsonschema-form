@@ -21,7 +21,7 @@
 </script>
 
 <script lang="ts">
-  import type { ComponentProps } from "@sjsf/form";
+  import { getFormContext, type ComponentProps } from "@sjsf/form";
 
   const { type, children, config }: ComponentProps["layout"] = $props();
 
@@ -60,9 +60,12 @@
 
   const style = $derived(getStyle(type));
 
+  const ctx = getFormContext()
+
   const attributes = $derived({
     ...config.uiOptions?.layout,
     ...config.uiOptions?.layouts?.[type],
+    ...ctx.extraUiOptions?.('layout', config)
   });
 </script>
 

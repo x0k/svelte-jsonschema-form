@@ -1,6 +1,6 @@
 <script lang="ts" module>
   import type { HTMLInputAttributes } from "svelte/elements";
-  import '@sjsf/form/fields/extra-widgets/checkboxes';
+  import "@sjsf/form/fields/extra-widgets/checkboxes";
 
   declare module "@sjsf/form" {
     interface UiOptions {
@@ -27,7 +27,13 @@
   const ctx = getFormContext();
 
   const attributes = $derived(
-    inputAttributes(ctx, config, handlers, config.uiOptions?.checkboxes)
+    inputAttributes(
+      ctx,
+      config,
+      handlers,
+      config.uiOptions?.checkboxes,
+      ctx.extraUiOptions?.("checkboxes", config)
+    )
   );
 
   const mapped = multipleOptions({

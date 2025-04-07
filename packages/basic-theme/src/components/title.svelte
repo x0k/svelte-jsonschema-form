@@ -12,14 +12,17 @@
 </script>
 
 <script lang="ts">
-  import type { ComponentProps } from "@sjsf/form";
+  import { getFormContext, type ComponentProps } from "@sjsf/form";
 
   const { title, config, type }: ComponentProps["title"] = $props();
+
+  const ctx = getFormContext()
 </script>
 
 <div
   style="font-weight: bold; font-size: {type === 'field' ? 'unset' : 'larger'};"
   {...config.uiOptions?.titleAttributes}
+  {...ctx.extraUiOptions?.('titleAttributes', config)}
 >
   {title}
 </div>

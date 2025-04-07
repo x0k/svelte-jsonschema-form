@@ -25,7 +25,13 @@
   const ctx = getFormContext();
 
   const attributes = $derived(
-    inputAttributes(ctx, config, handlers, config.uiOptions?.number)
+    inputAttributes(
+      ctx,
+      config,
+      handlers,
+      config.uiOptions?.number,
+      ctx.extraUiOptions?.("number", config)
+    )
   );
 </script>
 

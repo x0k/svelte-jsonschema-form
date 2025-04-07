@@ -26,7 +26,13 @@
   const ctx = getFormContext();
 
   const attributes = $derived(
-    selectAttributes(ctx, config, handlers, config.uiOptions?.select)
+    selectAttributes(
+      ctx,
+      config,
+      handlers,
+      config.uiOptions?.select,
+      ctx.extraUiOptions?.("select", config)
+    )
   );
 
   const mapped = $derived(
