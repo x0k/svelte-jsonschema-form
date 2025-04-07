@@ -60,12 +60,13 @@
 
   const style = $derived(getStyle(type));
 
-  const ctx = getFormContext()
+  const ctx = getFormContext();
 
   const attributes = $derived({
     ...config.uiOptions?.layout,
     ...config.uiOptions?.layouts?.[type],
-    ...ctx.extraUiOptions?.('layout', config)
+    ...ctx.extraUiOptions?.("layout", config),
+    ...ctx.extraUiOptions?.("layouts", config)?.[type],
   });
 </script>
 
