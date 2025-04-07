@@ -1,3 +1,4 @@
+import type { Resolver } from '@/lib/resolver.js';
 import type { Path } from "@/core/index.js";
 
 import type {
@@ -5,8 +6,14 @@ import type {
   ComponentDefinitions,
   FoundationalComponent,
 } from "./components.js";
+import type { Config } from './config.js';
 
 export interface UiOptions {}
+
+export type ExtraUiOptions = Resolver<
+  Partial<Record<keyof UiOptions, Config>>,
+  Partial<UiOptions>
+>
 
 export interface UiSchemaContent {
   "ui:options"?: UiOptions;

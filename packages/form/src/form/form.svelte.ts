@@ -23,7 +23,7 @@ import {
   type AsyncFieldValueValidator,
 } from "./validator.js";
 import type { Translation } from "./translation.js";
-import type { UiSchemaRoot } from "./ui-schema.js";
+import type { ExtraUiOptions, UiSchemaRoot } from "./ui-schema.js";
 import type { Icons } from "./icons.js";
 import type { FieldsValidationMode } from "./validation.js";
 import {
@@ -69,6 +69,7 @@ export interface FormOptions<T, V extends Validator> {
   resolver: (ctx: FormInternalContext<V>) => ResolveFieldType;
   icons?: Icons;
   uiSchema?: UiSchemaRoot;
+  extraUiOptions?: ExtraUiOptions;
   merger?: FormMerger;
   fieldsValidationMode?: FieldsValidationMode;
   disabled?: boolean;

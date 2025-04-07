@@ -6,7 +6,7 @@ import type { DataURLToBlob } from "@/lib/file.js";
 import type { Schema, SchemaValue, Validator } from "@/core/index.js";
 
 import type { Translation } from "../translation.js";
-import type { UiOptions, UiSchema, UiSchemaRoot } from "../ui-schema.js";
+import type { ExtraUiOptions, UiOptions, UiSchema, UiSchemaRoot } from "../ui-schema.js";
 import type {
   FieldError,
   PossibleError,
@@ -35,6 +35,7 @@ export interface FormInternalContext<V extends Validator>
   readonly schema: Schema;
   readonly uiSchema: UiSchemaRoot;
   readonly uiOptions: UiOptions;
+  readonly extraUiOptions?: ExtraUiOptions;
   readonly validator: V;
   readonly merger: FormMerger;
   readonly icons?: Icons;
