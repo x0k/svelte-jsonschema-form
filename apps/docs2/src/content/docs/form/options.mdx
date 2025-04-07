@@ -5,30 +5,95 @@ sidebar:
 ---
 
 ```typescript
-interface FormOptions<T, E> {
+export type InitialErrors<V extends Validator> =
+  | ValidationError<PossibleError<V>>[]
+  | Iterable<readonly [Id, FieldError<PossibleError<V>>[]]>;
+
+export interface FormOptions<T, V extends Validator> {
+  validator: V;
+  schema: Schema;
+  theme: Theme;
+  translation: Translation;
+  resolver: (ctx: FormInternalContext<V>) => ResolveFieldType;
+  icons?: Icons;
+  uiSchema?: UiSchemaRoot;
+  merger?: FormMerger;
+  fieldsValidationMode?: FieldsValidationMode;
+  disabled?: boolean;
+  /**
+   * @default DEFAULT_ID_PREFIX
+   */
+  idPrefix?: string;
+  /**
+   * @default DEFAULT_ID_SEPARATOR
+   */
+  idSeparator?: string;
+  /**
+   * @default DEFAULT_ID_PSEUDO_SEPARATOR
+   */
+  idPseudoSeparator?: string;
+  //
+  initialValue?: T;
+  initialErrors?: InitialErrors<V>;
+  /**
+   * @default waitPrevious
+   */
+  validationCombinator?: ActionsCombinator<[SubmitEvent], unknown>;
+  /**
+   * @default 500
+   */
+  validationDelayedMs?: number;
+  /**
+   * @default 8000
+   */
+  validationTimeoutMs?: number;
+  /**
+   * @default 300
+   */
+  fieldsValidationDebounceMs?: number;
+  /**
+   * @default debounce(abortPrevious, fieldsValidationDebounceMs)
+   */
+  fieldsValidationCombinator?: ActionsCombinator<[Config, FormValue], unknown>;
+  /**
+   * @default 500
+   */
+  fieldsValidationDelayedMs?: number;
+  /**
+   * @default 8000
+   */
+  fieldsValidationTimeoutMs?: number;
   /**
    * The function to get the form data snapshot
-   * 
+   *
    * The snapshot is used to validate the form and passed to
    * `onSubmit` and `onSubmitError` handlers.
-   * 
-   * @default () => $state.snapshot(formValue)
+   *
+   * @default (ctx) => $state.snapshot(ctx.value)
    */
-  getSnapshot?: () => SchemaValue | undefined
+  getSnapshot?: (ctx: FormInternalContext<V>) => FormValue;
   /**
    * Submit handler
-   * 
+   *
    * Will be called when the form is submitted and form data
    * snapshot is valid
+   *
+   * Note that we rely on `validator.validateFormData` to check that the
+   * `formData is T`. So make sure you provide a `T` type that
+   * matches the validator check result.
    */
-  onSubmit?: (value: T | undefined, e: SubmitEvent) => void
+  onSubmit?: (value: T, e: SubmitEvent) => void;
   /**
    * Submit error handler
-   * 
+   *
    * Will be called when the form is submitted and form data
    * snapshot is not valid
    */
-  onSubmitError?: (errors: Errors<E>, e: SubmitEvent, snapshot: SchemaValue | undefined) => void
+  onSubmitError?: (
+    errors: FieldErrorsMap<AnyFormValueValidatorError<V>>,
+    e: SubmitEvent,
+    snapshot: FormValue
+  ) => void;
   /**
    * Form validation error handler
    *
@@ -37,28 +102,21 @@ interface FormOptions<T, E> {
    * - validation is cancelled
    * - validation timeout
    */
-  onValidationFailure?: (
-    state: FailedAction<unknown>,
-    e: SubmitEvent
-  ) => void;
+  onValidationFailure?: (state: FailedAction<unknown>, e: SubmitEvent) => void;
   /**
    * Field validation error handler
    */
   onFieldsValidationFailure?: (
     state: FailedAction<unknown>,
     config: Config,
-    value: SchemaValue | undefined
+    value: FormValue
   ) => void;
   /**
    * Reset handler
    *
-   * Will be called on form reset.
-   *
-   * By default it will clear the errors, set `isSubmitted` and `isChanged` state
-   * to `false` and reset the form `value` to the `initialValue`.
-   *
-   * @default (e) => { e.preventDefault(); reset(); }
+   * Will be called when the form is reset.
    */
-  onReset?: (e: Event) => void
+  onReset?: (e: Event) => void;
+  schedulerYield?: SchedulerYield;
 }
 ```

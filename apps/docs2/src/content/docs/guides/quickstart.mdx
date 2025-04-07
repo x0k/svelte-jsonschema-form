@@ -49,9 +49,9 @@ Although this is an extremely simple example, it turned out to be quite verbose,
 so you can import only the functionality you need, keeping your bundle lean and optimized.
 - **Highly Customizable**: We provide extensive customization options so that you can tailor every aspect of the library to your needs.
 
-<LinkCard title="JSON Schema" href="../../api-reference/json-schema/" />
+<LinkCard title="JSON Schema" href="../../form/json-schema/" />
 
-<LinkCard title="Handlers API reference" href="../../api-reference/handlers/" />
+<LinkCard title="Form options" href="../../form/options/" />
 
 ## UI Schema
 
@@ -69,7 +69,7 @@ We'll talk about `MyForm` component in the [Reusable defaults](../reusable-defau
   <UiSchemaForm client:only="svelte" />
 </FormCard>
 
-<LinkCard title="UI Schema API reference" href="../../api-reference/ui-schema/" />
+<LinkCard title="UI Schema" href="../../form/ui-schema/" />
 
 ## Form state
 
@@ -81,23 +81,10 @@ Use getters to pass reactive parameters to the `createForm` (`createMyForm`) fun
 
 :::
 
-:::note
-
-The `form.value` property is an accessor that maintains form state consistency
-
-- A **snapshot** of the form state is returned on access
-- Default values from JSON Schema are taken into account during assignment
-
-You can gain direct access to the internal state by hacking types:
-
-```typescript
-(form.context as FormInternalContext<typeof validator>).value
-```
-
-:::
-
 <Code code={formStateCode} lang="svelte" />
 
 <FormCard>
   <FormStateForm client:only="svelte" />
 </FormCard>
+
+<LinkCard title="Form state" href="../../form/state/" />

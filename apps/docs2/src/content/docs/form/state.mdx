@@ -4,39 +4,54 @@ sidebar:
   order: 1
 ---
 
-import { Code, Card, LinkCard } from '@astrojs/starlight/components';
-
-import FormCard from '@/components/form-card.astro'
-
-import FormStateForm from './_form-state.svelte';
-import formStateCode from './_form-state.svelte?raw';
-
-
-Use a factory to create a form to access its state.
-
-:::tip
-
-Use getters to pass reactive parameters to the `createForm` (`createMyForm`) function.
-
-:::
-
-:::note
-
-The `form.value` property is an accessor that maintains form state consistency
-
-- A **snapshot** of the form state is returned on access
-- Default values from JSON Schema are taken into account during assignment
-
-You can gain direct access to the internal state by hacking types:
-
 ```typescript
-(form.context as FormInternalContext<typeof validator>).value
+export interface FormValidationResult<E> {
+  formValue: FormValue;
+  formErrors: FieldErrorsMap<E>;
+}
+
+type Validate<V> =
+  V extends FormValueValidator<infer E>
+    ? {
+        validate(): FieldErrorsMap<E>;
+      }
+    : {};
+
+type ValidateAsync<V> =
+  V extends AsyncFormValueValidator<infer E>
+    ? {
+        validateAsync(signal: AbortSignal): Promise<FieldErrorsMap<E>>;
+      }
+    : {};
+
+export type FormState<T, V extends Validator> = {
+  readonly context: FormContext;
+  readonly validation: Action<
+    [event: SubmitEvent],
+    FormValidationResult<AnyFormValueValidatorError<V>>,
+    unknown
+  >;
+  readonly fieldsValidation: Action<
+    [config: Config, value: FieldValue],
+    FieldError<AnyFieldValueValidatorError<V>>[],
+    unknown
+  >;
+  /**
+   * An accessor that maintains form state consistency:
+   * 
+   * - A snapshot of the form state is returned on access
+   * - Default values from JSON Schema are taken into account during assignment
+   * 
+   * You can gain direct access to the internal state by hacking types:
+   * 
+   * `(form.context as FormInternalContext<typeof validator>).value`
+   */
+  value: T | undefined;
+  isSubmitted: boolean;
+  isChanged: boolean;
+  errors: FieldErrorsMap<PossibleError<V>>;
+  submit(e: SubmitEvent): Promise<void>;
+  reset(e: Event): void;
+} & Validate<V> &
+  ValidateAsync<V>;
 ```
-
-:::
-
-<Code code={formStateCode} lang="svelte" />
-
-<FormCard>
-  <FormStateForm client:only="svelte" />
-</FormCard>
