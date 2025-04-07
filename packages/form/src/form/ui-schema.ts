@@ -6,15 +6,7 @@ import type {
   FoundationalComponent,
 } from "./components.js";
 
-export type UiSchemaRoot = UiSchemaRootIndex & UiSchemaRootContent;
-
-export interface UiSchemaRootIndex {
-  [key: string]: UiSchemaRootContent[keyof UiSchemaRootContent];
-}
-
-export interface UiSchemaRootContent extends UiSchemaContent {
-  "ui:globalOptions"?: UiOptions;
-}
+export interface UiOptions {}
 
 export interface UiSchemaContent {
   "ui:options"?: UiOptions;
@@ -31,13 +23,18 @@ export interface UiSchemaContent {
   additionalItems?: UiSchema;
 }
 
-export interface UiOptions {}
-
-export type UiSchema = UiSchemaIndex & UiSchemaContent;
-
-export interface UiSchemaIndex {
+// https://github.com/microsoft/TypeScript/issues/17867
+export type UiSchema = UiSchemaContent & {
   [key: string]: UiSchemaContent[keyof UiSchemaContent];
+};
+
+export interface UiSchemaRootContent extends UiSchemaContent {
+  "ui:globalOptions"?: UiOptions;
 }
+
+export type UiSchemaRoot = UiSchemaRootContent & {
+  [key: string]: UiSchemaContent[keyof UiSchemaContent];
+};
 
 export function getUiSchemaByPath(
   schema: UiSchema | undefined,
