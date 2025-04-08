@@ -17,6 +17,7 @@ export interface FormOptions<T, V extends Validator> {
   resolver: (ctx: FormInternalContext<V>) => ResolveFieldType;
   icons?: Icons;
   uiSchema?: UiSchemaRoot;
+  extraUiOptions?: ExtraUiOptions;
   merger?: FormMerger;
   fieldsValidationMode?: FieldsValidationMode;
   disabled?: boolean;

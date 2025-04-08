@@ -1,10 +1,22 @@
 ---
-title: JSON Schema
+title: Schema
 sidebar:
   order: 3
 ---
 
 Currently we only support [JSON Schema Draft-07](https://json-schema.org/draft-07#draft-07).
+
+## String formats
+
+Some string formats has special meaning:
+
+- `date-time` - `datetime-local` input type
+- `uri` - `url` input type
+- `color`, `date`, `time`, `email` - corresponding input type
+  - You can use `useDatePickerForDateFormat` function from
+    `@sjsf/form/fields/extra-widgets/date-picker` to  use `datePickerWidget`
+    for `date` format
+- `data-url` - file field (with `compat` resolver)
 
 ## Details and limitations
 
@@ -21,12 +33,3 @@ Currently we only support [JSON Schema Draft-07](https://json-schema.org/draft-0
 - `additionalProperties: false` produces incorrect schemas when used with schema dependencies.
 - Properties declared inside the `anyOf`/`oneOf` should not overlap with properties "outside" of the `anyOf`/`oneOf`.
 - The `allOf` keyword uses [json-schema-merge-allof](https://github.com/mokkabonna/json-schema-merge-allof) to merge subschemas.
-
-## String formats
-
-Some string formats has special meaning:
-
-- `date-time` - `datetime-local` input type
-- `uri` - `url` input type
-- `color`, `date`, `time`, `email` - corresponding input type
-- `data-url` - file field
