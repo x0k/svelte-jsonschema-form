@@ -15,7 +15,7 @@
 </script>
 
 <script lang="ts">
-	import type { ComponentProps } from '@sjsf/form';
+	import { getFormContext, type ComponentProps } from '@sjsf/form';
 	import ButtonGroup from 'flowbite-svelte/ButtonGroup.svelte';
 
 	const { type, children, config }: ComponentProps['layout'] = $props();
@@ -36,10 +36,15 @@
 			type === 'array-items' ||
 			type === 'object-properties'
 	);
+
+	const ctx = getFormContext();
 </script>
 
 {#if isControls}
-	<ButtonGroup {...config.uiOptions?.flowbiteButtonGroup}>
+	<ButtonGroup
+		{...config.uiOptions?.flowbiteButtonGroup}
+		{...ctx.extraUiOptions?.('flowbiteButtonGroup', config)}
+	>
 		{@render children()}
 	</ButtonGroup>
 {:else}
@@ -55,6 +60,8 @@
 		data-layout={type}
 		{...config.uiOptions?.flowbiteLayout}
 		{...config.uiOptions?.flowbiteLayouts?.[type]}
+		{...ctx.extraUiOptions?.('flowbiteLayout', config)}
+		{...ctx.extraUiOptions?.('flowbiteLayouts', config)?.[type]}
 	>
 		{@render children()}
 	</div>

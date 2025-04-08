@@ -17,7 +17,13 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		inputAttributes(ctx, config, handlers, config.uiOptions?.flowbiteText)
+		inputAttributes(
+			ctx,
+			config,
+			handlers,
+			config.uiOptions?.flowbiteText,
+			ctx.extraUiOptions?.('flowbiteText', config)
+		)
 	);
 </script>
 

@@ -31,7 +31,13 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		inputAttributes(ctx, config, handlers, config.uiOptions?.flowbiteCheckboxes)
+		inputAttributes(
+			ctx,
+			config,
+			handlers,
+			config.uiOptions?.flowbiteCheckboxes,
+			ctx.extraUiOptions?.('flowbiteCheckboxes', config)
+		)
 	);
 </script>
 
@@ -41,9 +47,9 @@
 			() => indexes.has(index),
 			(v) => {
 				if (v) {
-					mapped.value = Array.from(indexes.add(index))
+					mapped.value = Array.from(indexes.add(index));
 				} else {
-					indexes.delete(index)
+					indexes.delete(index);
 					mapped.value = Array.from(indexes);
 				}
 			}

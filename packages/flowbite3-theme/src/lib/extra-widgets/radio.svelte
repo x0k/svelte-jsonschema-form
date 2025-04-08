@@ -25,7 +25,13 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		inputAttributes(ctx, config, handlers, config.uiOptions?.flowbiteRadio)
+		inputAttributes(
+			ctx,
+			config,
+			handlers,
+			config.uiOptions?.flowbiteRadio,
+			ctx.extraUiOptions?.('flowbiteRadio', config)
+		)
 	);
 </script>
 

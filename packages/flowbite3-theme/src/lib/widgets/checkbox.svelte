@@ -17,7 +17,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		inputAttributes(ctx, config, handlers, config.uiOptions?.flowbiteCheckbox)
+		inputAttributes(ctx, config, handlers, config.uiOptions?.flowbiteCheckbox, ctx.extraUiOptions?.('flowbiteCheckbox', config))
 	);
 </script>
 

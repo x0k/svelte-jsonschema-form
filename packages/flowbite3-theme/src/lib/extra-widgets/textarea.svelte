@@ -18,7 +18,13 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		textareaAttributes(ctx, config, handlers, config.uiOptions?.flowbiteTextarea)
+		textareaAttributes(
+			ctx,
+			config,
+			handlers,
+			config.uiOptions?.flowbiteTextarea,
+			ctx.extraUiOptions?.('flowbiteTextarea', config)
+		)
 	);
 </script>
 

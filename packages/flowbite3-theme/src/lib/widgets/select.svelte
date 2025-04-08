@@ -26,7 +26,13 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		selectAttributes(ctx, config, handlers, config.uiOptions?.flowbiteSelect)
+		selectAttributes(
+			ctx,
+			config,
+			handlers,
+			config.uiOptions?.flowbiteSelect,
+			ctx.extraUiOptions?.('flowbiteSelect', config)
+		)
 	);
 </script>
 
