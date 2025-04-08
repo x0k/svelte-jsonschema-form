@@ -15,7 +15,15 @@
 
 	const ctx = getFormContext();
 
-	const attributes = $derived(selectAttributes(ctx, config, handlers, config.uiOptions?.select));
+	const attributes = $derived(
+		selectAttributes(
+			ctx,
+			config,
+			handlers,
+			config.uiOptions?.select,
+			ctx.extraUiOptions?.('select', config)
+		)
+	);
 </script>
 
 <select class="select" bind:value={mapped.value} {...attributes}>

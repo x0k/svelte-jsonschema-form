@@ -13,7 +13,13 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		selectAttributes(ctx, config, handlers, config.uiOptions?.multiSelect)
+		selectAttributes(
+			ctx,
+			config,
+			handlers,
+			config.uiOptions?.multiSelect,
+			ctx.extraUiOptions?.('multiSelect', config)
+		)
 	);
 
 	const mapped = $derived(
