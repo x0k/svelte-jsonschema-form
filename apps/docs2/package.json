@@ -43,6 +43,7 @@
     "@astrojs/svelte": "^7.0.7",
     "astro": "^5.5.4",
     "astro-vtbot": "^2.1.2",
+    "json-schema-to-ts": "^3.1.1",
     "sharp": "^0.33.5",
     "starlight-package-managers": "^0.10.0",
     "svelte": "catalog:"

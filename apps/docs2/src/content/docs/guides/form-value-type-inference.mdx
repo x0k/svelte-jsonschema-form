@@ -1,0 +1,20 @@
+---
+title: Form value type inference
+---
+
+import { Code } from '@astrojs/starlight/components'
+
+import Npm from "@/components/npm.astro";
+
+import code from './_form-value-type-inference?raw'
+
+You can use [json-schema-to-ts](https://github.com/ThomasAribart/json-schema-to-ts/tree/main)
+to infer types from JSON schema.
+
+## Installation
+
+<Npm pkg="json-schema-to-ts" dev />
+
+## Usage
+
+<Code code={code} lang="typescript" />
