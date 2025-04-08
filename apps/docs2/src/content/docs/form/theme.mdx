@@ -97,12 +97,35 @@ Let's talk about `FoundationalFieldType`.
 
 ## Foundational components
 
-The `FoundationalFieldType` type is a subset of the fields from `FoundationalComponent` type.
+The `FoundationalFieldType` type is a subset of the fields from the 
+`FoundationalComponentType` type.
+In turn, `FoundationalComponentType` is a subset of all components
+(`ComponentType`) that can be explicitly used in form elements.
+
+For example, this is possible because `form` is a `FoundationalComponentType`
+
+```svelte
+<script lang="ts">
+  ...
+  const Form = $derived(getComponent(ctx, "form", config));
+</script>
+
+<Form bind:ref {config} {children} {attributes} />
+```
+
+The main purpose of this list is to determine which components you can replace
+using the `ui:components` property from `UiSchema`.
+
+This is an extensible list, but by default it corresponds to the components
+listed in [Component types](#component-types).
 
 ## Extra components
 
-But they may not be enough to get a form that meets your requirements.
-Don't worry, there are extra components for this purpose.
+If the default set of components is insufficient, you can add the necessary
+components yourself.
+
+The `sjsf` library provides definitions and implementation of several extra
+fields, as well as a set of definitions for extra widgets.
 
 ### Fields
 
@@ -138,6 +161,21 @@ const uiSchema: UISchema = {
 }
 ```
 
-
-
 ### Widgets
+
+There are several types of extra widgets already defined in the library
+(`@sjsf/form/fields/extra-widgets/*`):
+
+- `checkboxes`
+- `date-picker`
+- `file`
+- `multi-select`
+- `radio-buttons`
+- `radio` (group)
+- `range`
+- `rating`
+- `switch`
+- `textarea`
+
+However, the ability to use them depends on the availability of a corresponding
+implementation in your chosen theme.

@@ -4,25 +4,185 @@ sidebar:
   order: 4
 ---
 
-import { Code, Card, LinkCard } from '@astrojs/starlight/components';
+import { Code } from '@astrojs/starlight/components'
 
-import FormCard from '@/components/form-card.astro'
+import uiSchemaExampleCode from './_ui-schema-example.ts?raw'
+import extraUiOptionsCode from './_extra-ui-options.ts?raw'
 
-import UiSchemaForm from './_ui-schema.svelte';
-import uiSchemaCode from './_ui-schema.svelte?raw';
+UI schema allows you to customize the appearance of the form and influence its
+behavior.
 
-With the `uiSchema` parameter you can customize the appearance of the form.
+The UI schema object follows the tree structure of the form field hierarchy,
+and defines how each property should be rendered.
 
-:::note
+```typescript
+export interface UiSchemaContent {
+  "ui:options"?: UiOptions;
+  "ui:components"?: Partial<{
+    [T in FoundationalComponentType]:
+      | Exclude<CompatibleComponentType<T>, T>
+      | ComponentDefinitions[T];
+  }>;
+  items?: UiSchema | UiSchema[];
+  anyOf?: UiSchema[];
+  oneOf?: UiSchema[];
+  additionalProperties?: UiSchema;
+  additionalPropertyKeyInput?: UiSchema;
+  additionalItems?: UiSchema;
+}
 
-We'll talk about `MyForm` component in the [Reusable defaults](../reusable-defaults/) guide.
+export type UiSchema = UiSchemaContent & {
+  // This is should be `UiSchema` type, but
+  // https://github.com/microsoft/TypeScript/issues/17867
+  [key: string]: UiSchemaContent[keyof UiSchemaContent];
+};
 
-:::
+export type UiSchemaRoot = UiSchemaContent & {
+  "ui:globalOptions"?: UiOptions;
+  // This is also should be `UiSchema`
+  [key: string]: UiSchemaContent[keyof UiSchemaContent];
+};
+```
 
-<Code code={uiSchemaCode} lang="svelte" />
+## UI options
 
-<FormCard>
-  <UiSchemaForm client:only="svelte" />
-</FormCard>
+The `UiOptions` type is an extensible set of components options. By default it
+looks like this:
 
-<LinkCard title="UI Schema API reference" href="../../api-reference/ui-schema/" />
+```typescript
+interface UiOptions {
+  /**
+   * Overrides the title of the field.
+   */
+  title?: string;
+  /**
+   * Overrides the description of the field (over the widget).
+   */
+  description?: string;
+  /**
+   * List of labels for enum values in the schema.
+   */
+  enumNames?: string[];
+  /**
+   * List of enum values that are disabled. Values are compared by strict equality.
+   */
+  disabledEnumValues?: SchemaValue[];
+  /**
+   * Order of properties in the object schema.
+   * You must specify all properties or use the wildcard `*`.
+   */
+  order?: string[];
+  /**
+   * Allow adding new properties to the object schema with `additionalProperties`.
+   * @default true
+   */
+  expandable?: boolean;
+  /**
+   * Allow adding new items to the array schema.
+   * @default true
+   */
+  addable?: boolean;
+  /**
+   * Allow reordering items in the array schema.
+   * If you want an orderable array of file fields, set this to `true` explicitly.
+   * @default true
+   */
+  orderable?: boolean;
+  /**
+   * Allow removing items from the array schema.
+   * @default true
+   */
+  removable?: boolean;
+  /**
+   * Allow duplicating items in the array schema.
+   * @default false
+   */
+  copyable?: boolean;
+  /**
+   * Prefix of the new additional property key
+   * @default 'newKey'
+   */
+  additionalPropertyKeyPrefix?: string
+  /**
+   * Separator between the prefix of the optional property key and its integer suffix.
+   * @default '-'
+   */
+  additionalPropertyKeySeparator?: string;
+  /**
+   * Help text for the field (under the widget).
+   */
+  help?: string;
+  /**
+   * Hide the title of the field.
+   * If you want to show a title of the `boolean` field this should be set to `false` explicitly.
+   * @default false
+   */
+  hideTitle?: boolean;
+  /**
+   * Overrides whether to use the `title` or `label` component in the `field` template
+   */
+  useLabel?: boolean
+}
+```
+
+### Conventions
+
+- Each `component`/`widget` in the theme should define at least one UI option
+  to allow customization of it
+- All parameters must be prefixed by the theme name (e.g. `daisyui5RadioButtons`).
+- Only a `basic` theme can define options without a prefix and other themes
+  can use the `basic` theme UI options for the corresponding `components`/`widgets`
+  if their properties are compatible.
+
+## UI schema evaluation rules
+
+Usually ui schema corresponds to the data structure described by json schema.
+
+For example, with this json schema, the following ui schema would be correct:
+
+<Code code={uiSchemaExampleCode} lang="typescript" />
+
+Special cases:
+
+### Array
+
+Instead of defining indices in the ui schema, the `items` keyword should be used
+to specify the ui schema for the elements of the array.
+
+For a fixed array `items` also can be an array.
+If you have additional items you should use `additionalItems` keyword
+to specify the ui schema for them.
+
+```
+{
+  items: [<uiSchema>, ...],
+  additionalItems: <uiSchema>
+}
+```
+
+### Object
+
+You should use `additionalProperties` keyword to specify the ui schema for
+additional properties.
+
+You can use `additionalPropertyKeyInput` keyword to define an ui schema for
+the additional property key input field.
+
+### oneOf/anyOf
+
+You can define separate ui schemas for each `oneOf/anyOf` branch
+using the corresponding keyword in the ui schema.
+Otherwise the ui schema of the current field will be used.
+
+```
+{
+  oneOf: [<uiSchema>, ...]
+}
+```
+
+## Extra UI options
+
+This property allows you to specify UI options for all components of a certain
+type or set them dynamically.
+
+<Code code={extraUiOptionsCode} lang="typescript" />
