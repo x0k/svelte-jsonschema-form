@@ -21,6 +21,7 @@
 	use:enhance={ctx}
 	class="flex flex-col gap-4"
 	{...config.uiOptions?.flowbiteForm}
+	{...ctx.extraUiOptions?.('flowbiteForm', config)}
 	{...attributes}
 >
 	{@render children?.()}

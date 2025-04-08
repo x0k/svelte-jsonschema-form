@@ -25,7 +25,8 @@
 	const attributes = $derived(
 		defineDisabled(ctx, {
 			required: config.required,
-			...config.uiOptions?.flowbiteDatepicker
+			...config.uiOptions?.flowbiteDatepicker,
+			...ctx.extraUiOptions?.('flowbiteDatepicker', config)
 		})
 	);
 

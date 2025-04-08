@@ -19,7 +19,12 @@
 
 	const ctx = getFormContext();
 
-	const attributes = $derived(defineDisabled(ctx, config.uiOptions?.flowbiteSubmitButton ?? {}));
+	const attributes = $derived(
+		defineDisabled(ctx, {
+			...config.uiOptions?.flowbiteSubmitButton,
+			...ctx.extraUiOptions?.('flowbiteSubmitButton', config)
+		})
+	);
 </script>
 
 <Button color="primary" type="submit" size="md" {...attributes}>

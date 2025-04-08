@@ -40,7 +40,13 @@
 	);
 
 	const attributes = $derived(
-		selectAttributes(ctx, config, handlers, config.uiOptions?.flowbiteMultiSelect)
+		selectAttributes(
+			ctx,
+			config,
+			handlers,
+			config.uiOptions?.flowbiteMultiSelect,
+			ctx.extraUiOptions?.('flowbiteMultiSelect', config)
+		)
 	);
 </script>
 

@@ -28,7 +28,9 @@
 			disabled,
 			onclick,
 			...config.uiOptions?.flowbiteButton,
-			...config.uiOptions?.flowbiteButtons?.[type]
+			...config.uiOptions?.flowbiteButtons?.[type],
+			...ctx.extraUiOptions?.('flowbiteButton', config),
+			...ctx.extraUiOptions?.('flowbiteButtons', config)?.[type]
 		})
 	);
 </script>
