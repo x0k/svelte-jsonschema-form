@@ -35,7 +35,8 @@
 			type: 'single',
 			onValueChange: handlers.onchange,
 			required: config.required,
-			...config.uiOptions?.shadcnSelect
+			...config.uiOptions?.shadcnSelect,
+			...ctx.extraUiOptions?.('shadcnSelect', config)
 		};
 		return defineDisabled(ctx, props);
 	});
@@ -43,7 +44,8 @@
 		id: config.id,
 		name: config.id,
 		required: config.required,
-		...config.uiOptions?.shadcnSelectTrigger
+		...config.uiOptions?.shadcnSelectTrigger,
+		...ctx.extraUiOptions?.('shadcnSelectTrigger', config)
 	});
 
 	const triggerLabel = $derived.by(() => {

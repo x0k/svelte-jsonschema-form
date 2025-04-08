@@ -41,7 +41,8 @@
 			type: 'multiple',
 			onValueChange: handlers.onchange,
 			required: config.required,
-			...config.uiOptions?.shadcnMultiSelect
+			...config.uiOptions?.shadcnMultiSelect,
+			...ctx.extraUiOptions?.('shadcnMultiSelect', config)
 		};
 		return defineDisabled(ctx, props);
 	});
@@ -49,7 +50,8 @@
 		id: config.id,
 		name: config.id,
 		required: config.required,
-		...config.uiOptions?.shadcnMultiSelectTrigger
+		...config.uiOptions?.shadcnMultiSelectTrigger,
+		...ctx.extraUiOptions?.('shadcnMultiSelectTrigger', config)
 	});
 
 	const triggerLabel = $derived.by(() => {

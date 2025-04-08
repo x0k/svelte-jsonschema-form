@@ -28,7 +28,15 @@
 		value = $bindable()
 	}: ComponentProps['fileWidget'] = $props();
 
-	const attributes = $derived(inputAttributes(ctx, config, handlers, config.uiOptions?.shadcnFile));
+	const attributes = $derived(
+		inputAttributes(
+			ctx,
+			config,
+			handlers,
+			config.uiOptions?.shadcnFile,
+			ctx.extraUiOptions?.('shadcnFile', config)
+		)
+	);
 </script>
 
 <Input

@@ -10,7 +10,12 @@
 	const themeCtx = getThemeContext();
 	const { Button } = $derived(themeCtx.components);
 
-	const attributes = $derived(defineDisabled(ctx, config.uiOptions?.submitButton ?? {}));
+	const attributes = $derived(
+		defineDisabled(ctx, {
+			...config.uiOptions?.submitButton,
+			...ctx.extraUiOptions?.('submitButton', config)
+		})
+	);
 </script>
 
 <Button type="submit" {...attributes}>

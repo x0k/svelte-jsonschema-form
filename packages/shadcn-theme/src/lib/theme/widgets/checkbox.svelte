@@ -27,7 +27,8 @@
 			name: config.id,
 			required: config.required,
 			...handlers,
-			...config.uiOptions?.shadcnCheckbox
+			...config.uiOptions?.shadcnCheckbox,
+			...ctx.extraUiOptions?.('shadcnCheckbox', config)
 		} satisfies CheckboxRootProps)
 	);
 </script>

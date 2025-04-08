@@ -32,10 +32,13 @@
 	const attributes = $derived.by(() => {
 		const props: RadioGroupRootProps = {
 			onValueChange: handlers.onchange,
-			...config.uiOptions?.shadcnRadioGroup
+			...config.uiOptions?.shadcnRadioGroup,
+			...ctx.extraUiOptions?.('shadcnRadioGroup', config)
 		};
 		return defineDisabled(ctx, props);
 	});
+
+	const itemAttributes = $derived(ctx.extraUiOptions?.('shadcnRadioItem', config));
 </script>
 
 <RadioGroup bind:value={mapped.value} {...attributes}>
@@ -47,6 +50,7 @@
 				onclick={handlers.oninput}
 				onblur={handlers.onblur}
 				{...config.uiOptions?.shadcnRadioItem}
+				{...itemAttributes}
 				id={option.id}
 				disabled={option.disabled}
 			/>

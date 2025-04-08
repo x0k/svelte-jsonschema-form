@@ -21,7 +21,15 @@
 
 	let { value = $bindable(), config, handlers }: ComponentProps['textWidget'] = $props();
 
-	const attributes = $derived(inputAttributes(ctx, config, handlers, config.uiOptions?.shadcnText));
+	const attributes = $derived(
+		inputAttributes(
+			ctx,
+			config,
+			handlers,
+			config.uiOptions?.shadcnText,
+			ctx.extraUiOptions?.('shadcnText', config)
+		)
+	);
 </script>
 
 <Input bind:value {...attributes} />

@@ -28,7 +28,8 @@
 			required: config.required,
 			onCheckedChange: handlers.onchange,
 			...handlers,
-			...config.uiOptions?.shadcnSwitch
+			...config.uiOptions?.shadcnSwitch,
+			...ctx.extraUiOptions?.('shadcnSwitch', config)
 		};
 		return defineDisabled(ctx, props);
 	});

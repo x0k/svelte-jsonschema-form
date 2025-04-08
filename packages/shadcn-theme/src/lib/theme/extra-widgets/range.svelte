@@ -30,7 +30,8 @@
 			type: 'single',
 			onValueChange: handlers.oninput,
 			onValueCommit: handlers.onchange,
-			...config.uiOptions?.shadcnRange
+			...config.uiOptions?.shadcnRange,
+			...ctx.extraUiOptions?.('shadcnRange', config)
 		};
 		return defineDisabled(ctx, props);
 	});

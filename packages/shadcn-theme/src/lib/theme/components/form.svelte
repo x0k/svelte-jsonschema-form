@@ -12,6 +12,7 @@
 	use:enhance={ctx}
 	class="flex flex-col gap-4"
 	{...config.uiOptions?.form}
+	{...ctx.extraUiOptions?.('form', config)}
 	{...attributes}
 >
 	{@render children?.()}

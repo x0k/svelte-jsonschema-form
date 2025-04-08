@@ -44,7 +44,8 @@
 			type: 'single',
 			initialFocus: true,
 			onValueChange: handlers.onchange,
-			...config.uiOptions?.shadcnDatePicker
+			...config.uiOptions?.shadcnDatePicker,
+			...ctx.extraUiOptions?.('shadcnDatePicker', config)
 		};
 		return defineDisabled(ctx, props);
 	});
@@ -65,6 +66,7 @@
 				{...props}
 				class={['w-full', date.value === undefined && 'text-muted-foreground']}
 				{...config.uiOptions?.shadcnDatePickerTrigger}
+				{...ctx.extraUiOptions?.('shadcnDatePickerTrigger', config)}
 			>
 				{formattedValue}
 			</Button>

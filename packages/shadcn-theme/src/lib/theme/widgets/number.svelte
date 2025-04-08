@@ -21,7 +21,13 @@
 	let { value = $bindable(), config, handlers }: ComponentProps['numberWidget'] = $props();
 
 	const attributes = $derived(
-		inputAttributes(ctx, config, handlers, config.uiOptions?.shadcnNumber)
+		inputAttributes(
+			ctx,
+			config,
+			handlers,
+			config.uiOptions?.shadcnNumber,
+			ctx.extraUiOptions?.('shadcnNumber', config)
+		)
 	);
 </script>
 

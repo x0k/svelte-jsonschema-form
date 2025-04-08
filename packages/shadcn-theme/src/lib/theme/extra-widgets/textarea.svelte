@@ -22,7 +22,13 @@
 	let { value = $bindable(), config, handlers }: ComponentProps['textareaWidget'] = $props();
 
 	const attributes = $derived(
-		textareaAttributes(ctx, config, handlers, config.uiOptions?.shadcnTextarea)
+		textareaAttributes(
+			ctx,
+			config,
+			handlers,
+			config.uiOptions?.shadcnTextarea,
+			ctx.extraUiOptions?.('shadcnTextarea', config)
+		)
 	);
 </script>
 
