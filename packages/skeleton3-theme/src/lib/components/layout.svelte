@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { ComponentProps } from '@sjsf/form';
+	import { getFormContext, type ComponentProps } from '@sjsf/form';
 	import '@sjsf/basic-theme/components/layout.svelte';
 
 	const { type, children, config }: ComponentProps['layout'] = $props();
@@ -23,9 +23,13 @@
 			type === 'object-properties'
 	);
 
+	const ctx = getFormContext();
+
 	const attributes = $derived({
 		...config.uiOptions?.layout,
-		...config.uiOptions?.layouts?.[type]
+		...config.uiOptions?.layouts?.[type],
+		...ctx.extraUiOptions?.('layout', config),
+		...ctx.extraUiOptions?.('layouts', config)?.[type]
 	});
 </script>
 

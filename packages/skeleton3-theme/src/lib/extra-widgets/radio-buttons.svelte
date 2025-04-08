@@ -19,7 +19,7 @@
 		config,
 		handlers,
 		value = $bindable(),
-		options,
+		options
 	}: ComponentProps['radioButtonsWidget'] = $props();
 
 	const mapped = singleOption({
@@ -33,26 +33,28 @@
 	const attributes: SvelteComponentProps<typeof Segment> = $derived(
 		defineDisabled(ctx, {
 			ids: {
-				root: config.id,
+				root: config.id
 			},
 			name: config.name,
 			readOnly: config.schema.readOnly,
 			onValueChange: (details) => {
-				mapped.value = details.value ?? "";
+				mapped.value = details.value ?? '';
 				handlers.onchange?.();
 			},
-			...config.uiOptions?.skeleton3Segment
+			...config.uiOptions?.skeleton3Segment,
+			...ctx.extraUiOptions?.('skeleton3Segment', config)
 		})
 	);
+
+	const itemAttributes = $derived({
+		...config.uiOptions?.skeleton3SegmentItem,
+		...ctx.extraUiOptions?.('skeleton3SegmentItem', config)
+	});
 </script>
 
 <Segment value={mapped.value} {...attributes}>
 	{#each options as option, index (option.id)}
-		<Segment.Item
-			value={index.toString()}
-			{...config.uiOptions?.skeleton3SegmentItem}
-			disabled={option.disabled}
-		>
+		<Segment.Item value={index.toString()} {...itemAttributes} disabled={option.disabled}>
 			{option.label}
 		</Segment.Item>
 	{/each}

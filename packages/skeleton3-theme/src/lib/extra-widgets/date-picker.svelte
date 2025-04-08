@@ -6,7 +6,15 @@
 
 	const ctx = getFormContext();
 
-	const attributes = $derived(inputAttributes(ctx, config, handlers, config.uiOptions?.datePicker));
+	const attributes = $derived(
+		inputAttributes(
+			ctx,
+			config,
+			handlers,
+			config.uiOptions?.datePicker,
+			ctx.extraUiOptions?.('datePicker', config)
+		)
+	);
 </script>
 
 <input type="date" bind:value class="input" {...attributes} />

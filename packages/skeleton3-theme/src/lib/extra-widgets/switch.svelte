@@ -30,7 +30,8 @@
 				value = e.checked;
 				handlers.onchange?.();
 			},
-			...config.uiOptions?.skeleton3Switch
+			...config.uiOptions?.skeleton3Switch,
+			...ctx.extraUiOptions?.('skeleton3Switch', config)
 		})
 	);
 </script>

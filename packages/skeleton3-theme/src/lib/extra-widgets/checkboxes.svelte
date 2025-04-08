@@ -18,7 +18,15 @@
 
 	const ctx = getFormContext();
 
-	const attributes = $derived(inputAttributes(ctx, config, handlers, config.uiOptions?.checkboxes));
+	const attributes = $derived(
+		inputAttributes(
+			ctx,
+			config,
+			handlers,
+			config.uiOptions?.checkboxes,
+			ctx.extraUiOptions?.('checkboxes', config)
+		)
+	);
 </script>
 
 {#each options as option, index (option.id)}

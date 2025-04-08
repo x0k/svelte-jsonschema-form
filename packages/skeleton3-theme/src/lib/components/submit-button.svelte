@@ -6,7 +6,12 @@
 
 	const ctx = getFormContext();
 
-	const attributes = $derived(defineDisabled(ctx, config.uiOptions?.submitButton ?? {}));
+	const attributes = $derived(
+		defineDisabled(ctx, {
+			...config.uiOptions?.submitButton,
+			...ctx.extraUiOptions?.('submitButton', config)
+		})
+	);
 </script>
 
 <button class="btn preset-filled preset-filled-primary-500 w-full" type="submit" {...attributes}>

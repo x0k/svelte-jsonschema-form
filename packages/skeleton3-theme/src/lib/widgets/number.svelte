@@ -6,7 +6,15 @@
 
 	const ctx = getFormContext();
 
-	const attributes = $derived(inputAttributes(ctx, config, handlers, config.uiOptions?.number));
+	const attributes = $derived(
+		inputAttributes(
+			ctx,
+			config,
+			handlers,
+			config.uiOptions?.number,
+			ctx.extraUiOptions?.('number', config)
+		)
+	);
 </script>
 
 <input

@@ -39,7 +39,8 @@
 				}
 				value = lastFiles = data.files;
 			},
-			...config.uiOptions?.skeleton3FileUpload
+			...config.uiOptions?.skeleton3FileUpload,
+			...ctx.extraUiOptions?.('skeleton3FileUpload', config)
 		})
 	);
 

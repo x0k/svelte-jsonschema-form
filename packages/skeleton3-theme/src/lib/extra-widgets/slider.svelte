@@ -35,7 +35,8 @@
 				value = details.value[0];
 				handlers.onchange?.();
 			},
-			...config.uiOptions?.skeleton3Slider
+			...config.uiOptions?.skeleton3Slider,
+			...ctx.extraUiOptions?.('skeleton3Slider', config)
 		})
 	);
 	const boxed = $derived.by(() => {

@@ -30,7 +30,8 @@
 				handlers.onchange?.();
 			},
 			count: config.schema.maximum,
-			...config.uiOptions?.skeleton3Rating
+			...config.uiOptions?.skeleton3Rating,
+			...ctx.extraUiOptions?.('skeleton3Rating', config)
 		})
 	);
 </script>

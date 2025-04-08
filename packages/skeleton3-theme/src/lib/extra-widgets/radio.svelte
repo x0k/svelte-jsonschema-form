@@ -13,7 +13,15 @@
 
 	const ctx = getFormContext();
 
-	const attributes = $derived(inputAttributes(ctx, config, handlers, config.uiOptions?.radio));
+	const attributes = $derived(
+		inputAttributes(
+			ctx,
+			config,
+			handlers,
+			config.uiOptions?.radio,
+			ctx.extraUiOptions?.('radio', config)
+		)
+	);
 </script>
 
 {#each options as option, index (option.id)}
