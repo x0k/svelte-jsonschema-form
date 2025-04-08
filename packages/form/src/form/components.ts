@@ -13,7 +13,7 @@ export type ComponentType = keyof ComponentProps;
 
 export interface FoundationalComponents {}
 
-export type FoundationalComponent = keyof FoundationalComponents &
+export type FoundationalComponentType = keyof FoundationalComponents &
   ComponentType;
 
 export type ComponentDefinition<T extends ComponentType> = SvelteComponent<

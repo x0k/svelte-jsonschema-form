@@ -4,7 +4,7 @@ import type { Path } from "@/core/index.js";
 import type {
   CompatibleComponentType,
   ComponentDefinitions,
-  FoundationalComponent,
+  FoundationalComponentType,
 } from "./components.js";
 import type { Config } from './config.js';
 
@@ -18,7 +18,7 @@ export type ExtraUiOptions = Resolver<
 export interface UiSchemaContent {
   "ui:options"?: UiOptions;
   "ui:components"?: Partial<{
-    [T in FoundationalComponent]:
+    [T in FoundationalComponentType]:
       | Exclude<CompatibleComponentType<T>, T>
       | ComponentDefinitions[T];
   }>;

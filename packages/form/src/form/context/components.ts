@@ -4,7 +4,7 @@ import type { Validator } from "@/core/index.js";
 import type { Config } from "../config.js";
 import type {
   CompatibleComponentDefinitions,
-  FoundationalComponent,
+  FoundationalComponentType,
 } from "../components.js";
 import { createMessage } from "../error-message.svelte";
 
@@ -12,7 +12,7 @@ import type { FormInternalContext } from "./context.js";
 import { translate } from "./translation.js";
 
 function getComponentInner<
-  T extends FoundationalComponent,
+  T extends FoundationalComponentType,
   V extends Validator,
 >(ctx: FormInternalContext<V>, type: T, config: Config) {
   const component = config.uiSchema["ui:components"]?.[type];
@@ -31,7 +31,7 @@ function getComponentInner<
 }
 
 export function getComponent<
-  T extends FoundationalComponent,
+  T extends FoundationalComponentType,
   V extends Validator,
 >(
   ctx: FormInternalContext<V>,
