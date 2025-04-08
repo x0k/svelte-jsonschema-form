@@ -10,17 +10,18 @@ import type { Config } from './config.js';
 
 export interface UiOptions {}
 
-export type ExtraUiOptions = Resolver<
-  Partial<Record<keyof UiOptions, Config>>,
-  Partial<UiOptions>
->
-
 export interface UiSchemaContent {
+  /**
+   * Extendable set of UI options
+   */
   "ui:options"?: UiOptions;
+  /**
+   * Components override
+   */
   "ui:components"?: Partial<{
     [T in FoundationalComponentType]:
-      | Exclude<CompatibleComponentType<T>, T>
-      | ComponentDefinitions[T];
+    | Exclude<CompatibleComponentType<T>, T>
+    | ComponentDefinitions[T];
   }>;
   items?: UiSchema | UiSchema[];
   anyOf?: UiSchema[];
@@ -30,18 +31,22 @@ export interface UiSchemaContent {
   additionalItems?: UiSchema;
 }
 
-// https://github.com/microsoft/TypeScript/issues/17867
 export type UiSchema = UiSchemaContent & {
+  // This is should be `UiSchema` type, but
+  // https://github.com/microsoft/TypeScript/issues/17867
   [key: string]: UiSchemaContent[keyof UiSchemaContent];
 };
 
-export interface UiSchemaRootContent extends UiSchemaContent {
+export type UiSchemaRoot = UiSchemaContent & {
   "ui:globalOptions"?: UiOptions;
-}
-
-export type UiSchemaRoot = UiSchemaRootContent & {
+  // This is also should be `UiSchema`
   [key: string]: UiSchemaContent[keyof UiSchemaContent];
 };
+
+export type ExtraUiOptions = Resolver<
+  Partial<Record<keyof UiOptions, Config>>,
+  Partial<UiOptions>
+>
 
 export function getUiSchemaByPath(
   schema: UiSchema | undefined,
