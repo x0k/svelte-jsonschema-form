@@ -12,7 +12,13 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		textareaAttributes(ctx, config, handlers, config.uiOptions?.textarea)
+		textareaAttributes(
+			ctx,
+			config,
+			handlers,
+			config.uiOptions?.textarea,
+			ctx.extraUiOptions?.('textarea', config)
+		)
 	);
 </script>
 

@@ -12,6 +12,7 @@
 	use:enhance={ctx}
 	bind:this={ref}
 	{...config.uiOptions?.form}
+	{...ctx.extraUiOptions?.('form', config)}
 	{...attributes}
 >
 	{@render children?.()}

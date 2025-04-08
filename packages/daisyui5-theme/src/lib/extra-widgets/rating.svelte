@@ -18,7 +18,13 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		inputAttributes(ctx, config, handlers, config.uiOptions?.daisyui5Rating)
+		inputAttributes(
+			ctx,
+			config,
+			handlers,
+			config.uiOptions?.daisyui5Rating,
+			ctx.extraUiOptions?.('daisyui5Rating', config)
+		)
 	);
 </script>
 

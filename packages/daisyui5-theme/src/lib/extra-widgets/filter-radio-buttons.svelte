@@ -32,17 +32,27 @@
 
 	const ctx = getFormContext();
 
-	const attributes = $derived(
-		inputAttributes(ctx, config, handlers, config.uiOptions?.daisyui5FilterItem)
+	const itemAttributes = $derived(
+		inputAttributes(
+			ctx,
+			config,
+			handlers,
+			config.uiOptions?.daisyui5FilterItem,
+			ctx.extraUiOptions?.('daisyui5FilterItem', config)
+		)
 	);
 </script>
 
-<div class="filter" {...config.uiOptions?.daisyui5Filter}>
+<div
+	class="filter"
+	{...config.uiOptions?.daisyui5Filter}
+	{...ctx.extraUiOptions?.('daisyui5Filter', config)}
+>
 	<input
 		class="btn filter-reset"
 		type="radio"
 		bind:group={mapped.value}
-		{...attributes}
+		{...itemAttributes}
 		aria-label="Reset"
 	/>
 	{#each options as option, index (option.id)}
@@ -52,9 +62,9 @@
 			bind:group={mapped.value}
 			value={index}
 			aria-label={option.label}
-			{...attributes}
+			{...itemAttributes}
 			id={option.id}
-			disabled={option.disabled || attributes.disabled}
+			disabled={option.disabled || itemAttributes.disabled}
 		/>
 	{/each}
 </div>

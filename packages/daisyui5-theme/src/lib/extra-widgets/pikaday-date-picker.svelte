@@ -34,7 +34,8 @@
 				onSelect(date) {
 					value = format.format(date);
 				},
-				...config.uiOptions?.daisyui5PikadayCalendarOptions
+				...config.uiOptions?.daisyui5PikadayCalendarOptions,
+				...ctx.extraUiOptions?.('daisyui5PikadayCalendarOptions', config)
 			});
 			return () => picker.destroy();
 		});
@@ -43,7 +44,13 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		inputAttributes(ctx, config, handlers, config.uiOptions?.daisyui5PikadayCalendar)
+		inputAttributes(
+			ctx,
+			config,
+			handlers,
+			config.uiOptions?.daisyui5PikadayCalendar,
+			ctx.extraUiOptions?.('daisyui5PikadayCalendar', config)
+		)
 	);
 </script>
 

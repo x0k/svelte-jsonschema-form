@@ -11,7 +11,15 @@
 
 	const ctx = getFormContext();
 
-	const attributes = $derived(inputAttributes(ctx, config, handlers, config.uiOptions?.checkbox));
+	const attributes = $derived(
+		inputAttributes(
+			ctx,
+			config,
+			handlers,
+			config.uiOptions?.checkbox,
+			ctx.extraUiOptions?.('checkbox', config)
+		)
+	);
 </script>
 
 <label class="fieldset-label">

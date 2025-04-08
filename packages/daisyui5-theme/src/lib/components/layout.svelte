@@ -13,7 +13,7 @@
 </script>
 
 <script lang="ts">
-	import type { ComponentProps } from '@sjsf/form';
+	import { getFormContext, type ComponentProps } from '@sjsf/form';
 
 	const { type, children, config }: ComponentProps['layout'] = $props();
 
@@ -22,6 +22,8 @@
 	const isColumn = $derived(
 		type === 'array-items' || type === 'object-properties' || type === 'multi-field'
 	);
+
+	const ctx = getFormContext();
 </script>
 
 {#if type === 'field-meta' || type === 'field-content' || type === 'array-field-meta' || type === 'object-field-meta'}
@@ -51,6 +53,8 @@
 		data-layout={type}
 		{...config.uiOptions?.layout}
 		{...config.uiOptions?.layouts?.[type]}
+		{...ctx.extraUiOptions?.('layout', config)}
+		{...ctx.extraUiOptions?.('layouts', config)?.[type]}
 	>
 		{@render children()}
 	</div>

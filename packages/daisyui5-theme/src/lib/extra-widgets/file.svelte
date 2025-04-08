@@ -14,7 +14,15 @@
 
 	const ctx = getFormContext();
 
-	const attributes = $derived(inputAttributes(ctx, config, handlers, config.uiOptions?.file));
+	const attributes = $derived(
+		inputAttributes(
+			ctx,
+			config,
+			handlers,
+			config.uiOptions?.file,
+			ctx.extraUiOptions?.('file', config)
+		)
+	);
 </script>
 
 <input

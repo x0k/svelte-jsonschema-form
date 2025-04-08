@@ -1,7 +1,7 @@
 <script lang="ts" module>
 	import type { ClassValue, HTMLButtonAttributes } from 'svelte/elements';
 	import type { CalendarRangeProps, CalendarMonthProps, CalendarDateProps } from 'cally';
-	import "@sjsf/form/fields/extra-widgets/date-picker"
+	import '@sjsf/form/fields/extra-widgets/date-picker';
 
 	type MapEvents<T> = {
 		[K in keyof T as K extends `on${infer E}` ? `on:${Lowercase<E>}` : K]: T[K];
@@ -64,7 +64,10 @@
 	const anchorName = $derived(formatAsCustomPropertyName(id));
 
 	const triggerAttributes = $derived(
-		defineDisabled(ctx, config.uiOptions?.daisyui5CallyCalendarTrigger ?? {})
+		defineDisabled(ctx, {
+			...config.uiOptions?.daisyui5CallyCalendarTrigger,
+			...ctx.extraUiOptions?.('daisyui5CallyCalendarTrigger', config)
+		})
 	);
 </script>
 
@@ -95,6 +98,7 @@
 		}}
 		class="cally"
 		{...config.uiOptions?.daisyui5CallyCalendar}
+		{...ctx.extraUiOptions?.('daisyui5CallyCalendar', config)}
 	>
 		<svg
 			aria-label="Previous"

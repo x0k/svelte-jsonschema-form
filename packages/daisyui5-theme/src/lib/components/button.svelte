@@ -9,7 +9,9 @@
 		defineDisabled(ctx, {
 			disabled,
 			...config.uiOptions?.button,
-			...config.uiOptions?.buttons?.[type]
+			...config.uiOptions?.buttons?.[type],
+			...ctx.extraUiOptions?.('button', config),
+			...ctx.extraUiOptions?.('buttons', config)?.[type]
 		})
 	);
 </script>
