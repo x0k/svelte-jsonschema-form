@@ -133,12 +133,14 @@ interface UiOptions {
 - Only a `basic` theme can define options without a prefix and other themes
   can use the `basic` theme UI options for the corresponding `components`/`widgets`
   if their properties are compatible.
+- Using UI options of one component in another (even if they are compatible)
+  is forbidden, e.g. `text` and `textarea` widgets must use separate options.
 
-## UI schema evaluation rules
+## Evaluation rules
 
 Usually ui schema corresponds to the data structure described by json schema.
 
-For example, with this json schema, the following ui schema would be correct:
+For example, with this JSON schema, the following UI schema would be correct:
 
 <Code code={uiSchemaExampleCode} lang="typescript" />
 

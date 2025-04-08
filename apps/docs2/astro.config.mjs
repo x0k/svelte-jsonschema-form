@@ -56,15 +56,6 @@ export default defineConfig({
           autogenerate: { directory: "misc" },
         },
         {
-          label: "API Reference",
-          autogenerate: { directory: "api-reference" },
-          collapsed: true,
-          badge: {
-            text: "outdated",
-            variant: "caution",
-          },
-        },
-        {
           label: "Changelogs",
           autogenerate: { directory: "changelogs" },
           collapsed: true,

@@ -1,18 +1,16 @@
 ---
 title: Merger
-sidebar:
-  order: 8
 ---
 
 ```typescript
-interface Merger2 {
+export interface Merger {
   /**
    * Merges schema and its `allOf` schemas into a single schema
    */
   mergeAllOf(schema: Schema): Schema;
 }
 
-interface FormMerger extends Merger2 {
+export interface FormMerger extends Merger {
   /**
    * Merges defaults of `schema` into `formData`
    */
