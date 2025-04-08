@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { getFormContext, type ComponentProps } from '@sjsf/form';
 	import '@sjsf/basic-theme/components/label.svelte';
-	import { createExpect } from 'vitest';
 
 	const { title, config }: ComponentProps['label'] = $props();
 
