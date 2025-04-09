@@ -53,13 +53,6 @@ export interface AdditionalPropertyKeyValidator {
   validateAdditionalPropertyKey: (key: string, schema: Schema) => string[];
 }
 
-export interface FormValueValidator<E> {
-  validateFormValue: (
-    rootSchema: Schema,
-    formValue: FormValue
-  ) => ValidationError<E>[];
-}
-
 export type FormValueValidatorError<V> =
   V extends FormValueValidator<infer E> ? E : never;
 
