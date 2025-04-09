@@ -1,6 +1,94 @@
 ---
 title: Validator
-draft: true
 ---
 
-TODO
+Validator - a set of functions called by the form to check the data:
+
+- `isValid` (called to correctly handle the following keywords `oneOf`, `anyOf` and `if,then,else`, required)
+- `validateFormValue` (optional)
+- `validateFormValueAsync` (optional)
+- `validateFieldValue` (optional)
+- `validateFieldValueAsync` (optional)
+- `validateAdditionalPropertyKey` (optional)
+
+You can easily extend/modify the validator to suit your needs.
+
+```ts
+import type { ErrorObject } from "ajv";
+import { isSchemaObjectValue } from "@sjsf/form/core";
+import type { FormValueValidator } from "@sjsf/form";
+import { createFormValidator } from "@sjsf/ajv8-validator";
+
+export function createValidator() {
+  const validator = createFormValidator();
+  return {
+    ...validator,
+    validateFormValue(rootSchema, formValue) {
+      const errors = validator.validateFormValue(rootSchema, formValue);
+      // Your logic
+      return errors
+    },
+  } satisfies FormValueValidator<ErrorObject>;
+}
+```
+
+## API
+
+```typescript
+export interface Validator {
+  isValid(
+    schema: SchemaDefinition,
+    rootSchema: Schema,
+    formValue: SchemaValue | undefined
+  ): boolean;
+}
+
+export interface ValidationError<E> {
+  instanceId: Id;
+  propertyTitle: string;
+  message: string;
+  error: E;
+}
+
+export interface FormValueValidator<E> {
+  validateFormValue: (
+    rootSchema: Schema,
+    formValue: FormValue
+  ) => ValidationError<E>[];
+}
+
+export interface AsyncFormValueValidator<E> {
+  validateFormValueAsync: (
+    signal: AbortSignal,
+    rootSchema: Schema,
+    formValue: FormValue
+  ) => Promise<ValidationError<E>[]>;
+}
+
+export type AnyFormValueValidator<E> =
+  | FormValueValidator<E>
+  | AsyncFormValueValidator<E>;
+
+export interface FieldValueValidator<E> {
+  validateFieldValue: (
+    field: Config,
+    fieldValue: FieldValue
+  ) => ValidationError<E>[];
+}
+
+export interface AsyncFieldValueValidator<E> {
+  validateFieldValueAsync: (
+    signal: AbortSignal,
+    field: Config,
+    fieldValue: FieldValue
+  ) => Promise<ValidationError<E>[]>;
+}
+
+export type AnyFieldValueValidator<E> =
+  | FieldValueValidator<E>
+  | AsyncFieldValueValidator<E>;
+
+export interface AdditionalPropertyKeyValidator {
+  validateAdditionalPropertyKey: (key: string, schema: Schema) => string[];
+}
+```
