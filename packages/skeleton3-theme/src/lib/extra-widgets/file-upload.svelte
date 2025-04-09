@@ -1,11 +1,11 @@
 <script lang="ts" module>
 	import { untrack, type ComponentProps as SvelteComponentProps } from 'svelte';
-	import { FileUpload } from '@skeletonlabs/skeleton-svelte';
+	import { FileUpload as SkeletonFileUpload } from '@skeletonlabs/skeleton-svelte';
 	import '@sjsf/form/fields/extra-widgets/file';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			skeleton3FileUpload?: SvelteComponentProps<typeof FileUpload>;
+			skeleton3FileUpload?: SvelteComponentProps<typeof SkeletonFileUpload>;
 		}
 	}
 </script>
@@ -14,12 +14,18 @@
 	import { type FileUploadApi } from '@skeletonlabs/skeleton-svelte';
 	import { defineDisabled, getFormContext, type ComponentProps } from '@sjsf/form';
 
-	let { config, handlers, multiple, value = $bindable(), errors }: ComponentProps['fileWidget'] = $props();
+	let {
+		config,
+		handlers,
+		multiple,
+		value = $bindable(),
+		errors
+	}: ComponentProps['fileWidget'] = $props();
 
 	const ctx = getFormContext();
 
 	let lastFiles: FileList | undefined;
-	const attributes: SvelteComponentProps<typeof FileUpload> = $derived(
+	const attributes: SvelteComponentProps<typeof SkeletonFileUpload> = $derived(
 		defineDisabled(ctx, {
 			ids: {
 				hiddenInput: config.id
@@ -83,7 +89,7 @@
 	});
 </script>
 
-<FileUpload
+<SkeletonFileUpload
 	classes="w-full"
 	{...attributes}
 	onApiReady={(a) => {

@@ -1,11 +1,11 @@
 <script lang="ts" module>
 	import type { ComponentProps as SvelteComponentProps } from 'svelte';
-	import { Switch } from '@skeletonlabs/skeleton-svelte';
+	import { Switch as SkeletonSwitch } from '@skeletonlabs/skeleton-svelte';
 	import '@sjsf/form/fields/extra-widgets/switch';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			skeleton3Switch?: SvelteComponentProps<typeof Switch>;
+			skeleton3Switch?: SvelteComponentProps<typeof SkeletonSwitch>;
 		}
 	}
 </script>
@@ -17,7 +17,7 @@
 
 	const ctx = getFormContext();
 
-	const attributes: SvelteComponentProps<typeof Switch> = $derived(
+	const attributes: SvelteComponentProps<typeof SkeletonSwitch> = $derived(
 		defineDisabled(ctx, {
 			ids: {
 				hiddenInput: config.id
@@ -36,6 +36,6 @@
 	);
 </script>
 
-<Switch checked={value} {...attributes}>
+<SkeletonSwitch checked={value} {...attributes}>
 	{config.title}
-</Switch>
+</SkeletonSwitch>

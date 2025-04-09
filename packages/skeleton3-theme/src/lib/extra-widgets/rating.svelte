@@ -1,11 +1,11 @@
 <script lang="ts" module>
 	import type { ComponentProps as SvelteComponentProps } from 'svelte';
-	import { Rating } from '@skeletonlabs/skeleton-svelte';
+	import { Rating as SkeletonRating } from '@skeletonlabs/skeleton-svelte';
 	import '@sjsf/form/fields/extra-widgets/rating';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			skeleton3Rating?: SvelteComponentProps<typeof Rating>;
+			skeleton3Rating?: SvelteComponentProps<typeof SkeletonRating>;
 		}
 	}
 </script>
@@ -16,7 +16,7 @@
 
 	const ctx = getFormContext();
 
-	const attributes: SvelteComponentProps<typeof Rating> = $derived(
+	const attributes: SvelteComponentProps<typeof SkeletonRating> = $derived(
 		defineDisabled(ctx, {
 			ids: {
 				hiddenInput: config.id
@@ -36,4 +36,4 @@
 	);
 </script>
 
-<Rating {value} {...attributes} />
+<SkeletonRating {value} {...attributes} />

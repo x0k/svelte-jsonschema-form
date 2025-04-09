@@ -1,11 +1,12 @@
 <script lang="ts" module>
 	import type { ComponentProps as SvelteComponentProps } from 'svelte';
-	import { Slider } from '@skeletonlabs/skeleton-svelte';
+	// NOTE: avoids types collision
+	import { Slider as SkeletonSlider } from '@skeletonlabs/skeleton-svelte';
 	import '@sjsf/form/fields/extra-widgets/range';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			skeleton3Slider?: SvelteComponentProps<typeof Slider>;
+			skeleton3Slider?: SvelteComponentProps<typeof SkeletonSlider>;
 		}
 	}
 </script>
@@ -17,7 +18,7 @@
 
 	const ctx = getFormContext();
 
-	const attributes: SvelteComponentProps<typeof Slider> = $derived(
+	const attributes: SvelteComponentProps<typeof SkeletonSlider> = $derived(
 		defineDisabled(ctx, {
 			ids: {
 				hiddenInput() {
@@ -47,4 +48,4 @@
 	});
 </script>
 
-<Slider value={boxed} {...attributes} />
+<SkeletonSlider value={boxed} {...attributes} />
