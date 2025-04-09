@@ -27,7 +27,7 @@
     "@sjsf/skeleton3-theme": "workspace:*",
     "ajv": "catalog:",
     "rehype-raw": "^7.0.0",
-    "svelte-exmarkdown": "^4.0.3"
+    "svelte-exmarkdown": "^5.0.0"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "catalog:",

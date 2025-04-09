@@ -17,9 +17,13 @@ export default defineConfig({
     svelte(),
     starlight({
       title: "svelte-jsonschema-form",
-      social: {
-        github: "https://github.com/x0k/svelte-jsonschema-form",
-      },
+      social: [
+        {
+          icon: "github",
+          href: "https://github.com/x0k/svelte-jsonschema-form",
+          label: "GitHub",
+        },
+      ],
       head: [
         {
           tag: "script",

@@ -66,13 +66,16 @@
 		"@tailwindcss/forms": "^0.5.0",
 		"svelte": "^5.25.0"
 	},
+	"optionalDependencies": {
+		"@skeletonlabs/skeleton-svelte": "^1.2.0"
+	},
 	"devDependencies": {
 		"@playwright/test": "catalog:",
 		"@sjsf/ajv8-validator": "workspace:*",
 		"@sjsf/basic-theme": "workspace:*",
 		"@sjsf/form": "workspace:*",
-		"@skeletonlabs/skeleton": "3.1.1",
-		"@skeletonlabs/skeleton-svelte": "^1.0.0",
+		"@skeletonlabs/skeleton": "3.1.2",
+		"@skeletonlabs/skeleton-svelte": "^1.2.0",
 		"@sveltejs/adapter-static": "catalog:",
 		"@sveltejs/kit": "catalog:",
 		"@sveltejs/package": "catalog:",

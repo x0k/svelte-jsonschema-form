@@ -84,7 +84,7 @@
 		"@types/pikaday": "^1.7.9",
 		"ajv": "catalog:",
 		"cally": "^0.8.0",
-		"daisyui": "^5.0.9",
+		"daisyui": "^5.0.17",
 		"eslint": "catalog:",
 		"eslint-config-prettier": "catalog:",
 		"eslint-plugin-svelte": "catalog:",

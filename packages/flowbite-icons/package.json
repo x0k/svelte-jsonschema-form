@@ -50,7 +50,7 @@
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^2.0.0-next.7",
 		"flowbite-svelte-icons": "^2.1.0",
-		"tailwind-merge": "^2.6.0",
+		"tailwind-merge": "^3.2.0",
 		"svelte": "^5.25.0"
 	},
 	"devDependencies": {
@@ -65,7 +65,7 @@
 		"eslint": "catalog:",
 		"eslint-config-prettier": "catalog:",
 		"eslint-plugin-svelte": "catalog:",
-		"flowbite-svelte-icons": "^2.1.0",
+		"flowbite-svelte-icons": "^2.1.1",
 		"globals": "catalog:",
 		"postcss": "catalog:",
 		"prettier": "catalog:",
