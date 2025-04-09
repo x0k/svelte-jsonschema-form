@@ -1,3 +1,4 @@
+import TagsField from '@sjsf/form/fields/extra-fields/tags.svelte';
 import { s } from 'testing/demo';
 
 import './extra-widgets/checkboxes-include';
@@ -11,6 +12,7 @@ import './extra-widgets/range-include';
 import './extra-widgets/rating-include';
 import Slider from './extra-widgets/slider.svelte';
 import './extra-widgets/switch-include';
+import './extra-widgets/tags-include';
 import './extra-widgets/textarea-include';
 
 export const specs: s.Specs = {
@@ -33,6 +35,8 @@ export const specs: s.Specs = {
 	rating: [s.number, { 'ui:components': { numberWidget: 'ratingWidget' } }],
 	slider: [s.number, { 'ui:components': { numberWidget: Slider } }],
 	switch: [s.boolean, { 'ui:components': { checkboxWidget: 'switchWidget' } }],
+	// @ts-expect-error
+	tags: [s.uniqueArray, { 'ui:components': { multiEnumField: TagsField } }],
 	textarea: [s.text, { 'ui:components': { textWidget: 'textareaWidget' } }]
 };
 
