@@ -420,6 +420,9 @@ export function createForm<T, V extends Validator>(
     get uiOptions() {
       return uiOptions;
     },
+    get extraUiOptions() {
+      return options.extraUiOptions
+    },
     get value() {
       return value;
     },
