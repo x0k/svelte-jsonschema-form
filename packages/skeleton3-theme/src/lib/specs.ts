@@ -3,14 +3,20 @@ import { s } from 'testing/demo';
 
 import './extra-widgets/checkboxes-include';
 import './extra-widgets/date-picker-include';
+
 import FileUpload from './extra-widgets/file-upload.svelte';
+import './extra-widgets/file-upload.svelte'
+
 import './extra-widgets/file-include';
 import './extra-widgets/multi-select-include';
 import './extra-widgets/radio-buttons-include';
 import './extra-widgets/radio-include';
 import './extra-widgets/range-include';
 import './extra-widgets/rating-include';
+
 import Slider from './extra-widgets/slider.svelte';
+import './extra-widgets/slider.svelte'
+
 import './extra-widgets/switch-include';
 import './extra-widgets/tags-include';
 import './extra-widgets/textarea-include';

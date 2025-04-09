@@ -3,7 +3,10 @@ import { s } from 'testing/demo';
 import './extra-widgets/cally-date-picker-include';
 import './extra-widgets/checkboxes-include';
 import './extra-widgets/file-include';
+
 import FilterRadioButtons from './extra-widgets/filter-radio-buttons.svelte';
+import './extra-widgets/filter-radio-buttons.svelte';
+
 import './extra-widgets/multi-select-include';
 import './extra-widgets/radio-buttons-include';
 import './extra-widgets/radio-include';
@@ -13,6 +16,7 @@ import './extra-widgets/switch-include';
 import './extra-widgets/textarea-include';
 
 import PikadayDatePicker from './extra-widgets/pikaday-date-picker.svelte';
+import './extra-widgets/pikaday-date-picker.svelte';
 
 export const specs: s.Specs = {
 	callyDatePicker: [
