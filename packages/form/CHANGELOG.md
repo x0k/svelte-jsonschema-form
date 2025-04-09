@@ -1,5 +1,31 @@
 # @sjsf/form
 
+## 2.0.0-next.8
+
+### Major Changes
+
+- Rename `fields/extra-widgets/file-widget` to `fields/extra-widgets/file` ([`d75d847`](https://github.com/x0k/svelte-jsonschema-form/commit/d75d84772fdc7636ddc0862719d69f3f296e15bc))
+
+- Rename `FoundationalComponent` to `FoundationalComponentType` ([`9ca2d7f`](https://github.com/x0k/svelte-jsonschema-form/commit/9ca2d7f7aec5d0dec83f61032a38298d68757f01))
+
+- Relax component compatibility checks. ([`cb176ac`](https://github.com/x0k/svelte-jsonschema-form/commit/cb176ac730f085d715dbd68621c597babcf5c3b9))
+  Add a `type` discriminator for field, template, and widget properties.
+  Remove `Equal` and `ExpandAndEqual` types from `lib/types`
+
+- Add support for extra attributes in input, textarea, and select attribute functions ([`ef7ea00`](https://github.com/x0k/svelte-jsonschema-form/commit/ef7ea0027037457b540bf3534759b9938d0d6620))
+
+- Remove `UiSchemaRootContent` type ([`49e4b89`](https://github.com/x0k/svelte-jsonschema-form/commit/49e4b89f302c54fdb664e0604a316bf6ab02da30))
+
+### Minor Changes
+
+- Add `fromFactories` function to `lib/resolver` ([`61b8dab`](https://github.com/x0k/svelte-jsonschema-form/commit/61b8daba452f2490457a2b6f202c81276705efc4))
+
+- Add `tagsField` extra field and `tagsWidget` extra widget definition ([`cff3574`](https://github.com/x0k/svelte-jsonschema-form/commit/cff3574d8921e4fa09fd55c1c60c2e95a4984297))
+
+- Add `extraUiOptions` property to form options ([`1a552e8`](https://github.com/x0k/svelte-jsonschema-form/commit/1a552e8f43c65a3af595f313739200ca97c69e97))
+
+- Add `useDatePickerForDateFormat` function to `fields/extra-widgets/date-picker` ([`768f8c2`](https://github.com/x0k/svelte-jsonschema-form/commit/768f8c206e475dc6acdeaf8a4db7fa8c4ce4d965))
+
 ## 2.0.0-next.7
 
 ### Major Changes

@@ -1,5 +1,29 @@
 # docs
 
+## 1.6.3-next.8
+
+### Patch Changes
+
+- Updated dependencies [[`61b8dab`](https://github.com/x0k/svelte-jsonschema-form/commit/61b8daba452f2490457a2b6f202c81276705efc4), [`92346b8`](https://github.com/x0k/svelte-jsonschema-form/commit/92346b8f7ba0dc7cddc24eda7839f9d766b0ab31), [`cff3574`](https://github.com/x0k/svelte-jsonschema-form/commit/cff3574d8921e4fa09fd55c1c60c2e95a4984297), [`943b016`](https://github.com/x0k/svelte-jsonschema-form/commit/943b0165716d242a97f328cb829ebcb9ad97cb97), [`29a22fb`](https://github.com/x0k/svelte-jsonschema-form/commit/29a22fbc82a7ce6fb810e2c1d04e4e93188258d9), [`1a552e8`](https://github.com/x0k/svelte-jsonschema-form/commit/1a552e8f43c65a3af595f313739200ca97c69e97), [`d75d847`](https://github.com/x0k/svelte-jsonschema-form/commit/d75d84772fdc7636ddc0862719d69f3f296e15bc), [`768f8c2`](https://github.com/x0k/svelte-jsonschema-form/commit/768f8c206e475dc6acdeaf8a4db7fa8c4ce4d965), [`9ca2d7f`](https://github.com/x0k/svelte-jsonschema-form/commit/9ca2d7f7aec5d0dec83f61032a38298d68757f01), [`cb176ac`](https://github.com/x0k/svelte-jsonschema-form/commit/cb176ac730f085d715dbd68621c597babcf5c3b9), [`ef7ea00`](https://github.com/x0k/svelte-jsonschema-form/commit/ef7ea0027037457b540bf3534759b9938d0d6620), [`7a82413`](https://github.com/x0k/svelte-jsonschema-form/commit/7a82413f237924b6e0d3942f4d988ceb5ca8229c), [`142c5fd`](https://github.com/x0k/svelte-jsonschema-form/commit/142c5fd130f3f880c4d66535c20ee58b15e22630), [`64b29ba`](https://github.com/x0k/svelte-jsonschema-form/commit/64b29ba6e8061ad7fd6e68c55adcca7aaf1ffe5a), [`0abcbc8`](https://github.com/x0k/svelte-jsonschema-form/commit/0abcbc898f5fe8ad8b819a8462da49d9901d9dff), [`49e4b89`](https://github.com/x0k/svelte-jsonschema-form/commit/49e4b89f302c54fdb664e0604a316bf6ab02da30), [`5bac73a`](https://github.com/x0k/svelte-jsonschema-form/commit/5bac73a563fdc3306a96d6317dbeac312bd25aba), [`1d00405`](https://github.com/x0k/svelte-jsonschema-form/commit/1d00405aa38fbb11636b83027433a763fa23c931), [`ca01eea`](https://github.com/x0k/svelte-jsonschema-form/commit/ca01eea796eb5a7e5a56590d77bc0bebef4447b1)]:
+  - @sjsf/form@2.0.0-next.8
+  - @sjsf/basic-theme@2.0.0-next.8
+  - @sjsf/skeleton-theme@2.0.0-next.8
+  - @sjsf/skeleton3-theme@2.0.0-next.8
+  - @sjsf/flowbite-theme@2.0.0-next.8
+  - @sjsf/shadcn-theme@2.0.0-next.8
+  - @sjsf/daisyui-theme@2.0.0-next.8
+  - @sjsf/flowbite3-theme@2.0.0-next.8
+  - @sjsf/daisyui5-theme@2.0.0-next.8
+  - @sjsf/ajv8-validator@2.0.0-next.8
+  - @sjsf/cfworker-validator@2.0.0-next.8
+  - @sjsf/flowbite-icons@2.0.0-next.8
+  - @sjsf/lucide-icons@2.0.0-next.8
+  - @sjsf/moving-icons@2.0.0-next.8
+  - @sjsf/radix-icons@2.0.0-next.8
+  - @sjsf/sveltekit@2.0.0-next.8
+  - testing@0.1.0-next.8
+  - @sjsf/zod-validator@2.0.0-next.8
+
 ## 1.6.3-next.7
 
 ### Patch Changes
