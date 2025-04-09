@@ -28,5 +28,4 @@
   });
 </script>
 
-<!-- svelte-ignore ownership_invalid_binding -->
 <Field type="field" bind:value={ctx.value as undefined} {config} />
