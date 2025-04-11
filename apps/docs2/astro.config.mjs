@@ -45,8 +45,8 @@ export default defineConfig({
           collapsed: true
         },
         {
-          label: "Customization",
-          autogenerate: { directory: "customization" },
+          label: "Examples",
+          autogenerate: { directory: "examples" },
           collapsed: true
         },
         {
