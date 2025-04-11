@@ -30,7 +30,7 @@ export default defineConfig({
           attrs: {
             "data-goatcounter": "https://sjsf.counter.x0k.dev/count",
             async: true,
-            src: "https://sjsf.counter.x0k.devunt.js",
+            src: "https://sjsf.counter.x0k.dev/count.js",
           },
         },
       ],
