@@ -28,9 +28,9 @@ export default defineConfig({
         {
           tag: "script",
           attrs: {
-            "data-goatcounter": "https://sjsf.counter.x0k.online/count",
+            "data-goatcounter": "https://sjsf.counter.x0k.dev/count",
             async: true,
-            src: "https://sjsf.counter.x0k.online/count.js",
+            src: "https://sjsf.counter.x0k.devunt.js",
           },
         },
       ],
