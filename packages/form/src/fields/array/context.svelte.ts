@@ -157,7 +157,7 @@ export function createArrayContext<V extends Validator>(
   // NOTE: It looks like the `undefined` value is always replaced by an array
   // when calculating default values, so this is unnecessary
   _: (v: SchemaArrayValue) => void
-) {
+): ArrayContext<V> {
   const itemsSchema: Schema = $derived.by(() => {
     const conf = config();
     return isSchemaObjectValue(conf.schema.items) ? conf.schema.items : {};
@@ -204,7 +204,7 @@ export function createArrayContext<V extends Validator>(
         required: !isSchemaNullable(schema),
       };
     },
-  } satisfies Partial<ArrayContext<V>>) satisfies ArrayContext<V>;
+  } satisfies Partial<ArrayContext<V>>);
 }
 
 export function createTupleContext<V extends Validator>(
@@ -212,7 +212,7 @@ export function createTupleContext<V extends Validator>(
   config: () => Config,
   value: () => SchemaArrayValue | undefined,
   setValue: (v: SchemaArrayValue) => void
-) {
+): ArrayContext<V> {
   const itemsSchema = $derived.by(() => {
     const conf = config();
     return Array.isArray(conf.schema.items)
@@ -297,5 +297,5 @@ export function createTupleContext<V extends Validator>(
         required: !isSchemaNullable(schema),
       };
     },
-  } satisfies Partial<ArrayContext<V>>) satisfies ArrayContext<V>;
+  } satisfies Partial<ArrayContext<V>>);
 }
