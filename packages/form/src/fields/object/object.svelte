@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { isSchemaObjectValue } from '@/core/value.js';
   import {
     Text,
     getComponent,
@@ -7,7 +8,6 @@
   } from "@/form/index.js";
 
   import { createObjectContext, setObjectContext } from "./context.svelte.js";
-  import { isSchemaObjectValue } from '@/core/value.js';
 
   const ctx = getFormContext();
 
