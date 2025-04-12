@@ -2,11 +2,20 @@
   import { isSchema } from "@sjsf/form/core";
   import type { ComponentProps } from "@sjsf/form";
 
-  import { getTabsContext } from "./context.svelte";
+  import {
+    createTabsNode,
+    getTabsContext,
+    setTabsContext,
+    setTabsNodeContext,
+  } from "./context.svelte";
 
   const { config, children }: ComponentProps["layout"] = $props();
 
-  const tabsCtx = getTabsContext()
+  const tabsCtx = getTabsContext();
+  const node = createTabsNode(0);
+  tabsCtx.set(config.id, node);
+  setTabsContext(node.children);
+  setTabsNodeContext(node);
 
   function getTabTitle(i: number): string {
     // TODO: handle `config.uiOptions`
@@ -25,24 +34,25 @@
 
 {@render children()}
 
-<div class="tabs">
-  {#each tabsCtx.tabs as _, i}
+<div style="display: flex; gap: 1rem;">
+  {#each node.tabs as _, i}
     <button
+      style="width: 100%;"
       onclick={(e) => {
         e.preventDefault();
-        tabsCtx.selectedTab = i
+        node.selectedTab = i;
       }}
     >
       {getTabTitle(i)}
-      {#if tabsCtx.selectedTab === i}
+      {#if node.selectedTab === i}
         (selected)
       {/if}
     </button>
   {/each}
 </div>
 
-{#each tabsCtx.tabs as tab, i}
-  <div class={{ hidden: tabsCtx.selectedTab !== i }}>
+{#each node.tabs as tab, i}
+  <div style:display={node.selectedTab === i ? "unset" : "none"}>
     {@render tab()}
   </div>
 {/each}
@@ -52,16 +62,3 @@
 <!-- {#if tabs.length > 0}
   {@render tabs[selectedTab]()}
 {/if} -->
-
-<style>
-  .tabs {
-    display: flex;
-    gap: 1rem;
-  }
-  .tabs button {
-    width: 100%;
-  }
-  .hidden {
-    display: none;
-  }
-</style>

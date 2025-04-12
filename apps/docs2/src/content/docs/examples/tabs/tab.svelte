@@ -1,11 +1,10 @@
 <script lang="ts">
   import type { ComponentProps } from '@sjsf/form';
   
-  import { getTabsContext } from './context.svelte';
+  import { getTabsNodeContext } from './context.svelte';
 
   const { children }: ComponentProps["layout"] = $props();
+  const node = getTabsNodeContext()
 
-  const tabsCtx = getTabsContext()
-
-  tabsCtx.tabs.push(children)
+  node.tabs.push(children)
 </script>
