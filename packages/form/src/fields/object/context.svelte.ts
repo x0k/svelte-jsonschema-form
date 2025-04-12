@@ -40,7 +40,7 @@ export type ObjectContext<V extends Validator> = {
   renameProperty(oldProp: string, newProp: string, config: Config): void;
   removeProperty(prop: string): void;
   isAdditionalProperty(property: string): boolean;
-  propertyConfig(property: string, isAdditional: boolean): Config;
+  propertyConfig(config: Config, property: string, isAdditional: boolean): Config;
 };
 
 const OBJECT_CONTEXT = Symbol("object-context");
@@ -144,17 +144,16 @@ export function createObjectContext<V extends Validator>(
     isAdditionalProperty(property) {
       return isAdditionalProperty(schemaProperties!, property);
     },
-    propertyConfig(property, isAdditional) {
-      const conf = config();
+    propertyConfig(config, property, isAdditional) {
       const definition = schemaProperties![property] ?? false;
       const schema = typeof definition === "boolean" ? {} : definition;
       const uiSchema =
         (isAdditional
-          ? conf.uiSchema.additionalProperties
-          : (conf.uiSchema[property] as UiSchema)) ?? {};
+          ? config.uiSchema.additionalProperties
+          : (config.uiSchema[property] as UiSchema)) ?? {};
       const uiOptions = getUiOptions(ctx, uiSchema);
       return {
-        id: createChildId(conf.id, property, ctx),
+        id: createChildId(config.id, property, ctx),
         name: property,
         title: uiOptions?.title ?? schema.title ?? property,
         schema,

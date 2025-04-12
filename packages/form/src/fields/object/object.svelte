@@ -54,7 +54,7 @@
         {property}
         {isAdditional}
         bind:value={value[property]}
-        config={objCtx.propertyConfig(property, isAdditional)}
+        config={objCtx.propertyConfig(config, property, isAdditional)}
       />
     {/each}
   {/if}
