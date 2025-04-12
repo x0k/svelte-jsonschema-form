@@ -27,7 +27,7 @@
     type SchemaValue,
   } from "@/form/index.js";
 
-  import { getObjectContext } from "./context.js";
+  import { getObjectContext } from "./context.svelte.js";
   import ObjectKeyInput from "./object-key-input.svelte";
 
   let {

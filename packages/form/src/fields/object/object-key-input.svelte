@@ -11,7 +11,7 @@
     translate,
   } from "@/form/index.js";
 
-  import { getObjectContext } from "./context.js";
+  import { getObjectContext } from "./context.svelte.js";
 
   const {
     parentId,
