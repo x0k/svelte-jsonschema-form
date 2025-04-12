@@ -1,8 +1,6 @@
 <script lang="ts">
-  import { overrideByRecord } from "@sjsf/form/lib/resolver";
-  import { BasicForm } from "@sjsf/form";
+  import { BasicForm, type UiSchemaRoot } from "@sjsf/form";
 
-  import { theme } from "@/components/form-defaults";
   import { createMyForm } from "@/components/my-form";
 
   import {
@@ -13,14 +11,23 @@
     type TabsContext,
   } from "./tabs";
 
+  const uiSchema = {
+    "ui:components": {
+      layout: Layout,
+    },
+    items: {
+      "ui:components": {
+        layout: Layout,
+      },
+    },
+  } satisfies UiSchemaRoot;
+
   const tabsCtx: TabsContext = new Map();
   setTabsContext(tabsCtx);
 
   const form = createMyForm({
     schema,
-    theme: overrideByRecord(theme, {
-      layout: Layout,
-    }),
+    uiSchema,
     onSubmit: console.log,
     onSubmitError: makeTabbedFocusOnFirstError(tabsCtx),
   });

@@ -2,7 +2,7 @@ import type { Id } from '@sjsf/form'
 import { getContext, setContext, type Snippet } from 'svelte'
 
 export interface TabsNode {
-  children: TabsContext
+  readonly children: TabsContext
   readonly tabs: Snippet[]
   selectedTab: number
 }
@@ -30,13 +30,10 @@ export function setTabsNodeContext(ctx: TabsNode) {
 }
 
 export function createTabsNode(initialTab: number): TabsNode {
-  const tabs = $state<Snippet[]>([])
   let selectedTab = $state(initialTab)
   return {
     children: new Map(),
-    get tabs() {
-      return tabs
-    },
+    tabs: [],
     get selectedTab() {
       return selectedTab
     },

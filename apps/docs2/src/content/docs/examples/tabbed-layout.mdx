@@ -8,6 +8,9 @@ import FormCard from '@/components/form-card.astro'
 
 import Form from './_tabbed-layout.svelte'
 import code from './_tabbed-layout.svelte?raw'
+import Form2 from './_tabbed-layout2.svelte'
+import code2 from './_tabbed-layout2.svelte?raw'
+import schemaCode from './tabs/schema?raw'
 import contextCode from './tabs/context.svelte?raw'
 import focusCode from './tabs/focus?raw'
 import indexCode from './tabs/index?raw'
@@ -18,14 +21,25 @@ import tabsCode from './tabs/tabs.svelte?raw'
 <Tabs>
   <TabItem label="Demo">
     <FormCard>
-      <Form client:only="svelte" />
+      <Form2 client:only="svelte" />
     </FormCard>
   </TabItem>
   <TabItem label="form.svelte">
+    <Code code={code2} lang="svelte" />
+  </TabItem>
+  <TabItem label="Demo2">
+    <FormCard>
+      <Form client:only="svelte" />
+    </FormCard>
+  </TabItem>
+  <TabItem label="form2.svelte">
     <Code code={code} lang="svelte" />
   </TabItem>
   <TabItem label="tabs/index.ts">
     <Code code={indexCode} lang='typescript' />
+  </TabItem>
+  <TabItem label="tabs/schema.ts">
+    <Code code={schemaCode} lang='typescript' />
   </TabItem>
   <TabItem label="tabs/context.svelte.ts">
     <Code code={contextCode} lang='typescript' />
