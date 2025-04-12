@@ -1,26 +1,33 @@
 <script lang="ts">
-  import { isSchemaArrayValue } from "@/core/value.js";
+  import { isSchemaArrayValue, type SchemaArrayValue } from "@/core/index.js";
   import {
     getComponent,
     getFormContext,
     type ComponentProps,
     Text,
+    type FormInternalContext,
+    type Validator,
+    type Config,
   } from "@/form/index.js";
 
-  import { createArrayContext, setArrayContext } from "./context.svelte.js";
+  import { setArrayContext, type ArrayContext } from "./context.svelte.js";
 
   let {
     value = $bindable(),
     config,
-    isTuple,
+    createArrayContext,
   }: ComponentProps["arrayField" | "tupleField"] & {
-    isTuple: boolean;
+    createArrayContext: <V extends Validator>(
+      ctx: FormInternalContext<V>,
+      config: () => Config,
+      value: () => SchemaArrayValue | undefined,
+      setValue: (v: SchemaArrayValue) => void
+    ) => ArrayContext<V>;
   } = $props();
 
   const ctx = getFormContext();
   const arrayCtx = createArrayContext(
     ctx,
-    isTuple,
     () => config,
     () => value,
     (v) => (value = v)
@@ -48,7 +55,7 @@
   errors={arrayCtx.errors}
   {config}
   {value}
-  addButton={arrayCtx.addable ? addButton : undefined}
+  addButton={arrayCtx.canAdd() ? addButton : undefined}
 >
   {#if isSchemaArrayValue(value)}
     {#each value as item, index (arrayCtx.key(index))}
@@ -57,10 +64,6 @@
         {index}
         config={arrayCtx.itemConfig(config, item, index)}
         bind:value={value[index]}
-        canCopy={arrayCtx.canCopy(index)}
-        canRemove={arrayCtx.canRemove(index)}
-        canMoveUp={arrayCtx.canMoveUp(index)}
-        canMoveDown={arrayCtx.canMoveDown(value.length, index)}
       />
     {/each}
   {/if}
