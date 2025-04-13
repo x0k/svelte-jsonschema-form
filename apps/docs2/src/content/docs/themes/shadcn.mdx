@@ -12,7 +12,8 @@ import { THEME_PACKAGES } from '@/shared';
 import Npm from '@/components/npm.astro';
 import FormCard from '@/components/form-card.astro';
 
-import Form from './_shadcn-theme.svelte';
+import Form from './shadcn/form.svelte';
+import uiOptionsCode from './shadcn/ui-options?raw';
 import { createSchemas } from "./_demo-schema";
 
 export const schemas = createSchemas(specs)
@@ -108,3 +109,6 @@ See https://github.com/huntabyte/bits-ui/issues/828 for more details.
   </TabItem>
 </Tabs>
 
+## UI options
+
+<Code code={uiOptionsCode} lang="typescript" />

@@ -1,12 +1,12 @@
 <script lang="ts">
   import { BasicForm } from "@sjsf/form";
-  import { theme } from "@sjsf/flowbite-theme";
-  import { specs } from '@sjsf/flowbite-theme/specs'
+  import { theme } from "@sjsf/flowbite3-theme";
+  import { specs } from '@sjsf/flowbite3-theme/specs'
 
   import { createAstro } from "@/astro.svelte";
   import { createMyForm } from "@/components/my-form";
 
-  import { createSchemas } from "./_demo-schema";
+  import { createSchemas } from "../_demo-schema";
 
   const astro = createAstro();
 

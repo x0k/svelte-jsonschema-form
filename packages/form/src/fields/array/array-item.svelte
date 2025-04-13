@@ -6,10 +6,6 @@
     interface ComponentProps {
       arrayItemField: FieldCommonProps<SchemaValue> & {
         index: number;
-        canCopy: boolean;
-        canRemove: boolean;
-        canMoveUp: boolean;
-        canMoveDown: boolean;
       };
     }
     interface ComponentBindings {
@@ -36,10 +32,6 @@
     index,
     value = $bindable(),
     config,
-    canCopy,
-    canRemove,
-    canMoveUp,
-    canMoveDown,
   }: ComponentProps["arrayItemField"] = $props();
 
   const ctx = getFormContext();
@@ -49,6 +41,10 @@
   const Field = $derived(getFieldComponent(ctx, config));
   const Button = $derived(getComponent(ctx, "button", config));
 
+  const canCopy = $derived(arrayCtx.canCopy(index));
+  const canRemove = $derived(arrayCtx.canRemove(index));
+  const canMoveUp = $derived(arrayCtx.canMoveUp(index));
+  const canMoveDown = $derived(arrayCtx.canMoveDown(index));
   const toolbar = $derived(canCopy || canRemove || canMoveUp || canMoveDown);
   const errors = $derived(getErrors(ctx, config.id));
 </script>

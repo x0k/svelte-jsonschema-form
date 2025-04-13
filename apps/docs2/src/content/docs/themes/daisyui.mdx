@@ -13,7 +13,8 @@ import Npm from '@/components/npm.astro';
 import Picker from '@/components/picker.astro';
 import FormCard from '@/components/form-card.astro';
 
-import Form from './_daisyui-theme.svelte';
+import Form from './daisyui/form.svelte';
+import uiOptionsCode from './daisyui/ui-options?raw';
 import { createSchemas } from "./_demo-schema";
 
 export const schemas = createSchemas(specs)
@@ -80,3 +81,7 @@ import daisyStyles from "@sjsf/daisyui-theme/styles.css?inline";
     <Code lang="json" code={JSON.stringify(schemas.uiSchema, null, 2)} />
   </TabItem>
 </Tabs>
+
+## UI options
+
+<Code code={uiOptionsCode} lang="typescript" />

@@ -13,7 +13,8 @@ import Npm from '@/components/npm.astro';
 import Picker from '@/components/picker.astro';
 import FormCard from '@/components/form-card.astro';
 
-import Form from './_flowbite3-theme.svelte';
+import Form from './flowbite3/form.svelte';
+import uiOptionsCode from './flowbite3/ui-options?raw';
 import { createSchemas } from "./_demo-schema";
 
 export const schemas = createSchemas(specs)
@@ -68,3 +69,7 @@ Register the theme source path by adding a line like this to the `app.css` file.
     <Code lang="json" code={JSON.stringify(schemas.uiSchema, null, 2)} />
   </TabItem>
 </Tabs>
+
+## UI options
+
+<Code code={uiOptionsCode} lang="typescript" />

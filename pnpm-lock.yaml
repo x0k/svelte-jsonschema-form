@@ -88,7 +88,7 @@ catalogs:
 
 patchedDependencies:
   svelte2tsx:
-    hash: 596fd3494d1b9cea4557645eb76028c09232bcd23408dee456266d3d5f95287c
+    hash: w2yluhotwii3klssww2wob25iy
     path: patches/svelte2tsx.patch
 
 importers:
@@ -307,12 +307,24 @@ importers:
       '@astrojs/svelte':
         specifier: ^7.0.9
         version: 7.0.9(@types/node@22.13.11)(astro@5.6.1(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.34.8)(typescript@5.8.2)(yaml@2.5.1))(jiti@2.4.2)(lightningcss@1.29.2)(svelte@5.25.9)(typescript@5.8.2)(yaml@2.5.1)
+      '@types/pikaday':
+        specifier: ^1.7.9
+        version: 1.7.9
       astro:
         specifier: ^5.6.1
         version: 5.6.1(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.34.8)(typescript@5.8.2)(yaml@2.5.1)
       astro-vtbot:
         specifier: ^2.1.2
         version: 2.1.2
+      bits-ui:
+        specifier: ^1.3.19
+        version: 1.3.19(svelte@5.25.9)
+      flowbite-svelte2:
+        specifier: npm:flowbite-svelte@0.47
+        version: flowbite-svelte@0.47.4(rollup@4.34.8)(svelte@5.25.9)
+      flowbite-svelte3:
+        specifier: npm:flowbite-svelte@1.0.0-next.9
+        version: flowbite-svelte@1.0.0-next.9(rollup@4.34.8)(svelte@5.25.9)
       json-schema-to-ts:
         specifier: ^3.1.1
         version: 3.1.1
@@ -650,6 +662,13 @@ importers:
         version: 3.1.1(@types/debug@4.1.12)(@types/node@22.13.11)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.29.2)(yaml@2.5.1)
 
   packages/daisyui5-theme:
+    optionalDependencies:
+      cally:
+        specifier: ^0.8.0
+        version: 0.8.0
+      pikaday:
+        specifier: ^1.8.2
+        version: 1.8.2
     devDependencies:
       '@playwright/test':
         specifier: 'catalog:'
@@ -729,13 +748,6 @@ importers:
       vitest:
         specifier: 'catalog:'
         version: 3.1.1(@types/debug@4.1.12)(@types/node@22.13.11)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.29.2)(yaml@2.5.1)
-    optionalDependencies:
-      cally:
-        specifier: ^0.8.0
-        version: 0.8.0
-      pikaday:
-        specifier: ^1.8.2
-        version: 1.8.2
 
   packages/flowbite-icons:
     dependencies:
@@ -1214,6 +1226,10 @@ importers:
         version: 3.1.1(@types/debug@4.1.12)(@types/node@22.13.11)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.29.2)(yaml@2.5.1)
 
   packages/shadcn-theme:
+    optionalDependencies:
+      '@internationalized/date':
+        specifier: ^3.7.0
+        version: 3.7.0
     devDependencies:
       '@playwright/test':
         specifier: 'catalog:'
@@ -1308,10 +1324,6 @@ importers:
       vitest:
         specifier: 'catalog:'
         version: 3.1.1(@types/debug@4.1.12)(@types/node@22.13.11)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.29.2)(yaml@2.5.1)
-    optionalDependencies:
-      '@internationalized/date':
-        specifier: ^3.7.0
-        version: 3.7.0
 
   packages/skeleton-theme:
     devDependencies:
@@ -1398,6 +1410,10 @@ importers:
         version: 3.1.1(@types/debug@4.1.12)(@types/node@22.13.11)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.29.2)(yaml@2.5.1)
 
   packages/skeleton3-theme:
+    optionalDependencies:
+      '@skeletonlabs/skeleton-svelte':
+        specifier: ^1.2.0
+        version: 1.2.0(svelte@5.25.9)
     devDependencies:
       '@playwright/test':
         specifier: 'catalog:'
@@ -1477,10 +1493,6 @@ importers:
       vitest:
         specifier: 'catalog:'
         version: 3.1.1(@types/debug@4.1.12)(@types/node@22.13.11)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.29.2)(yaml@2.5.1)
-    optionalDependencies:
-      '@skeletonlabs/skeleton-svelte':
-        specifier: ^1.2.0
-        version: 1.2.0(svelte@5.25.9)
 
   packages/sveltekit:
     devDependencies:
@@ -2055,9 +2067,6 @@ packages:
 
   '@floating-ui/dom@1.6.13':
     resolution: {integrity: sha512-umqzocjDgNRGTuO7Q8CU32dkHkECqI8ZdMZ5Swb6QAM0t5rnlrN3lGo1hdpscRd3WS8T6DKYK4ephgIH9iRh3w==}
-
-  '@floating-ui/utils@0.2.8':
-    resolution: {integrity: sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==}
 
   '@floating-ui/utils@0.2.9':
     resolution: {integrity: sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg==}
@@ -4117,6 +4126,11 @@ packages:
 
   flowbite-svelte@1.0.0-next.5:
     resolution: {integrity: sha512-ZkCE0utI1nxfUNIaXYl6JPh2POHUYhFpZx0L2gL8mUeysWj5G7/9MdXDw5kDEhNIYBM3KnixzCMVIW1NV0avHg==}
+    peerDependencies:
+      svelte: ^5.0.0
+
+  flowbite-svelte@1.0.0-next.9:
+    resolution: {integrity: sha512-YxysMijILwooW/tdpg9xFgcCGF2e6IAjYlnginmXQByyfhHBOa5MtIXVb+94Jmjy2nTMI527LopGYnl8R+uFSA==}
     peerDependencies:
       svelte: ^5.0.0
 
@@ -6526,7 +6540,7 @@ snapshots:
       '@sveltejs/vite-plugin-svelte': 5.0.3(svelte@5.25.9)(vite@6.2.5(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       astro: 5.6.1(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.34.8)(typescript@5.8.2)(yaml@2.5.1)
       svelte: 5.25.9
-      svelte2tsx: 0.7.35(patch_hash=596fd3494d1b9cea4557645eb76028c09232bcd23408dee456266d3d5f95287c)(svelte@5.25.9)(typescript@5.8.2)
+      svelte2tsx: 0.7.35(patch_hash=w2yluhotwii3klssww2wob25iy)(svelte@5.25.9)(typescript@5.8.2)
       typescript: 5.8.2
       vite: 6.2.5(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)
     transitivePeerDependencies:
@@ -6952,14 +6966,12 @@ snapshots:
 
   '@floating-ui/core@1.6.8':
     dependencies:
-      '@floating-ui/utils': 0.2.8
+      '@floating-ui/utils': 0.2.9
 
   '@floating-ui/dom@1.6.13':
     dependencies:
       '@floating-ui/core': 1.6.8
       '@floating-ui/utils': 0.2.9
-
-  '@floating-ui/utils@0.2.8': {}
 
   '@floating-ui/utils@0.2.9': {}
 
@@ -7571,7 +7583,7 @@ snapshots:
       sade: 1.8.1
       semver: 7.7.1
       svelte: 5.25.9
-      svelte2tsx: 0.7.35(patch_hash=596fd3494d1b9cea4557645eb76028c09232bcd23408dee456266d3d5f95287c)(svelte@5.25.9)(typescript@5.8.2)
+      svelte2tsx: 0.7.35(patch_hash=w2yluhotwii3klssww2wob25iy)(svelte@5.25.9)(typescript@5.8.2)
     transitivePeerDependencies:
       - typescript
 
@@ -9368,6 +9380,16 @@ snapshots:
       - rollup
 
   flowbite-svelte@1.0.0-next.5(rollup@4.34.8)(svelte@5.25.9):
+    dependencies:
+      '@floating-ui/dom': 1.6.13
+      '@floating-ui/utils': 0.2.9
+      apexcharts: 4.5.0
+      flowbite: 3.1.2(rollup@4.34.8)
+      svelte: 5.25.9
+    transitivePeerDependencies:
+      - rollup
+
+  flowbite-svelte@1.0.0-next.9(rollup@4.34.8)(svelte@5.25.9):
     dependencies:
       '@floating-ui/dom': 1.6.13
       '@floating-ui/utils': 0.2.9
@@ -11405,7 +11427,7 @@ snapshots:
       style-to-object: 1.0.8
       svelte: 5.25.9
 
-  svelte2tsx@0.7.35(patch_hash=596fd3494d1b9cea4557645eb76028c09232bcd23408dee456266d3d5f95287c)(svelte@5.25.9)(typescript@5.8.2):
+  svelte2tsx@0.7.35(patch_hash=w2yluhotwii3klssww2wob25iy)(svelte@5.25.9)(typescript@5.8.2):
     dependencies:
       dedent-js: 1.0.1
       pascal-case: 3.1.2

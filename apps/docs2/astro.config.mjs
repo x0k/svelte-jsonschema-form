@@ -42,6 +42,12 @@ export default defineConfig({
         {
           label: "Form",
           autogenerate: { directory: "form" },
+          collapsed: true
+        },
+        {
+          label: "Examples",
+          autogenerate: { directory: "examples" },
+          collapsed: true
         },
         {
           label: "Themes",

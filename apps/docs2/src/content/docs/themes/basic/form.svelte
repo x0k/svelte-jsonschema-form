@@ -5,7 +5,7 @@
 
   import { createMyForm } from "@/components/my-form";
 
-  import { createSchemas } from "./_demo-schema";
+  import { createSchemas } from "../_demo-schema";
 
   const form = createMyForm({
     ...createSchemas(specs),

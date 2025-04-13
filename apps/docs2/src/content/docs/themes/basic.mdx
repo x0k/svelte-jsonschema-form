@@ -10,7 +10,8 @@ import { specs, extraWidgets } from '@sjsf/basic-theme/specs';
 import Npm from '@/components/npm.astro';
 import FormCard from '@/components/form-card.astro';
 
-import Form from './_basic-theme.svelte';
+import Form from './basic/form.svelte';
+import uiOptionsCode from './basic/ui-options?raw';
 import { createSchemas } from "./_demo-schema";
 
 export const schemas = createSchemas(specs)
@@ -42,3 +43,7 @@ export const schemas = createSchemas(specs)
     <Code lang="json" code={JSON.stringify(schemas.uiSchema, null, 2)} />
   </TabItem>
 </Tabs>
+
+## UI options
+
+<Code code={uiOptionsCode} lang="typescript" />

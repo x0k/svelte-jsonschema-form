@@ -1,0 +1,25 @@
+---
+title: Animated array
+---
+
+import { Code, TabItem, Tabs } from '@astrojs/starlight/components'
+
+import FormCard from '@/components/form-card.astro'
+
+import Form from './animated/form.svelte'
+import code from './animated/form.svelte?raw'
+import animatedCode from './animated/animated-array.svelte?raw'
+
+<Tabs>
+  <TabItem label="Demo">
+    <FormCard>
+      <Form client:only="svelte" />
+    </FormCard>
+  </TabItem>
+  <TabItem label="form.svelte">
+    <Code code={code} lang="svelte" />
+  </TabItem>
+  <TabItem label="animated-array.svelte">
+    <Code code={animatedCode} lang="svelte" />
+  </TabItem>
+</Tabs>
