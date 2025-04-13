@@ -12,7 +12,8 @@ import Npm from '@/components/npm.astro';
 import Picker from '@/components/picker.astro';
 import FormCard from '@/components/form-card.astro';
 
-import Form from './_skeleton-theme.svelte';
+import Form from './skeleton/form.svelte';
+import uiOptionsCode from './skeleton/ui-options?raw';
 import { createSchemas } from "./_demo-schema";
 
 export const schemas = createSchemas(specs)
@@ -99,3 +100,7 @@ Bundled themes:
     <Code lang="json" code={JSON.stringify(schemas.uiSchema, null, 2)} />
   </TabItem>
 </Tabs>
+
+## UI options
+
+<Code code={uiOptionsCode} lang="typescript" />

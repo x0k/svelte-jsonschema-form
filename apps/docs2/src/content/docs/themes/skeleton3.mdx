@@ -13,7 +13,8 @@ import Npm from '@/components/npm.astro';
 import Picker from '@/components/picker.astro';
 import FormCard from '@/components/form-card.astro';
 
-import Form from './_skeleton3-theme.svelte';
+import Form from './skeleton3/form.svelte';
+import uiOptionsCode from './skeleton3/ui-options?raw';
 import { createSchemas } from "./_demo-schema";
 
 export const schemas = createSchemas(specs)
@@ -69,3 +70,6 @@ Register the theme source path by adding a line like this to the `app.css` file.
   </TabItem>
 </Tabs>
 
+## UI options
+
+<Code code={uiOptionsCode} lang="typescript" />

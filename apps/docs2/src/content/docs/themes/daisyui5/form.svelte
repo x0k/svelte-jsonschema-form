@@ -1,12 +1,12 @@
 <script lang="ts">
   import { BasicForm } from "@sjsf/form";
-  import { theme } from "@sjsf/daisyui-theme";
-  import { specs } from '@sjsf/daisyui-theme/specs'
+  import { theme } from "@sjsf/daisyui5-theme";
+  import { specs } from "@sjsf/daisyui5-theme/specs";
 
   import { createAstro } from "@/astro.svelte";
   import { createMyForm } from "@/components/my-form";
 
-  import { createSchemas } from "./_demo-schema";
+  import { createSchemas } from "../_demo-schema";
 
   const astro = createAstro();
 
