@@ -9,9 +9,9 @@ import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
 import Npm from '@/components/npm.astro';
 import FormCard from '@/components/form-card.astro';
 
-import Form from './_cfworker.svelte';
-import formCode from './_cfworker.svelte?raw';
-import sharedCode from './_shared.ts?raw';
+import Form from './cfworker/form.svelte';
+import formCode from './cfworker/form.svelte?raw';
+import sharedCode from './shared/index.ts?raw';
 
 :::caution
 
@@ -36,7 +36,7 @@ Form validator implementation based on [@cfworker/json-schema](https://github.co
   <TabItem label="form.svelte">
     <Code code={formCode} lang='svelte' />
   </TabItem>
-  <TabItem label="_shared.ts">
+  <TabItem label="shared.ts">
     <Code code={sharedCode} lang='typescript' />
   </TabItem>
 </Tabs>

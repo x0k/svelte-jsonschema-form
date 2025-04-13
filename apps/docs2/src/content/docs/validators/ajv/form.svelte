@@ -4,7 +4,7 @@
 
   import { createMyForm } from "@/components/my-form";
 
-  import { schema, uiSchema } from "./_shared";
+  import { initialValue, schema, uiSchema } from "../shared";
 
   const validator = createFormValidator({
     uiSchema,
@@ -15,11 +15,7 @@
     uiSchema,
     validator,
     fieldsValidationMode: ON_INPUT,
-    initialValue: {
-      id: "Invalid",
-      skills: ["karate", "budo", "aikido"],
-      multipleChoicesList: ["foo", "bar", "fuzz"],
-    },
+    initialValue
   });
 </script>
 

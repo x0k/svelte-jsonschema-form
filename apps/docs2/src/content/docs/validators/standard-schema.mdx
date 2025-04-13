@@ -4,4 +4,48 @@ sidebar:
   order: 4
 ---
 
-TODO
+import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
+
+import FormCard from '@/components/form-card.astro';
+
+import Form from './standard-schema/form.svelte';
+import formCode from './standard-schema/form.svelte?raw';
+import sharedCode from './shared/index.ts?raw';
+
+You can use any validator that implements [Standard Schema](https://standardschema.dev/)
+spec and can be converted to JSON Schema for the full form validation step.
+
+## Example
+
+<Tabs>
+  <TabItem label="form.svelte">
+    <Code code={formCode} lang='svelte' />
+  </TabItem>
+  <TabItem label="shared.ts">
+    <Code code={sharedCode} lang='typescript' />
+  </TabItem>
+</Tabs>
+
+<FormCard>
+  <Form client:only="svelte" />
+</FormCard>
+
+## Limitations
+
+You can use `isValid: () => true` as long as the generated form does not contain
+the following keywords `oneOf`, `anyOf` and `if,them,else`.
+
+In such cases, you will need a real `Validator` interface implementation
+(You can take it from another validator or write it yourself).
+
+## Async validation
+
+This validator supports async validation.
+
+```typescript
+import { createAsyncFormValueValidator } from "@sjsf/form/validators/standard-schema";
+
+const validator = {
+  ...createAsyncFormValueValidator({ schema }),
+};
+```

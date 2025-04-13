@@ -9,9 +9,9 @@ import { LinkButton, Code, Card, TabItem, Tabs } from '@astrojs/starlight/compon
 import Npm from '@/components/npm.astro';
 import FormCard from '@/components/form-card.astro';
 
-import Form from './_ajv.svelte';
-import formCode from './_ajv.svelte?raw';
-import sharedCode from './_shared.ts?raw';
+import Form from './ajv/form.svelte';
+import formCode from './ajv/form.svelte?raw';
+import sharedCode from './shared/index.ts?raw';
 
 Form validator implementation based on [Ajv@8 JSON schema validator](https://github.com/ajv-validator/ajv).
 
@@ -25,7 +25,7 @@ Form validator implementation based on [Ajv@8 JSON schema validator](https://git
   <TabItem label="form.svelte">
     <Code code={formCode} lang='svelte' />
   </TabItem>
-  <TabItem label="_shared.ts">
+  <TabItem label="shared.ts">
     <Code code={sharedCode} lang='typescript' />
   </TabItem>
 </Tabs>

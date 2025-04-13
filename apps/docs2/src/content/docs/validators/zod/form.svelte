@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { BasicForm, ON_INPUT, type Schema } from "@sjsf/form";
+  import { BasicForm, createForm, ON_INPUT, type Schema } from "@sjsf/form";
   import { createFormValidator } from "@sjsf/zod-validator";
   import { zodToJsonSchema } from "zod-to-json-schema";
   import { z } from "zod";
 
-  import { createMyForm } from "@/components/my-form";
+  import * as defaults from "@/components/form-defaults";
 
-  import { initialValue, uiSchema } from "./_shared";
+  import { initialValue, uiSchema } from "../shared";
 
   const schema = z.object({
     id: z
@@ -26,7 +26,8 @@
 
   const validator = createFormValidator(schema, { uiSchema });
 
-  const form = createMyForm({
+  const form = createForm({
+    ...defaults,
     schema: zodToJsonSchema(schema, { errorMessages: true }) as Schema,
     uiSchema,
     validator,

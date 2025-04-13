@@ -273,6 +273,9 @@ importers:
       '@skeletonlabs/skeleton-svelte':
         specifier: ^1.2.0
         version: 1.2.0(svelte@5.25.9)
+      '@valibot/to-json-schema':
+        specifier: ^1.0.0
+        version: 1.0.0(valibot@1.0.0(typescript@5.8.2))
       ajv:
         specifier: 'catalog:'
         version: 8.17.1
@@ -291,6 +294,9 @@ importers:
       testing:
         specifier: workspace:*
         version: link:../../packages/testing
+      valibot:
+        specifier: ^1.0.0
+        version: 1.0.0(typescript@5.8.2)
       zod:
         specifier: 'catalog:'
         version: 3.24.2
@@ -3050,6 +3056,11 @@ packages:
 
   '@ungap/structured-clone@1.2.0':
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
+
+  '@valibot/to-json-schema@1.0.0':
+    resolution: {integrity: sha512-/9crJgPptVsGCL6X+JPDQyaJwkalSZ/52WuF8DiRUxJgcmpNdzYRfZ+gqMEP8W3CTVfuMWPqqvIgfwJ97f9Etw==}
+    peerDependencies:
+      valibot: ^1.0.0
 
   '@vitest/expect@3.1.1':
     resolution: {integrity: sha512-q/zjrW9lgynctNbwvFtQkGK9+vvHA5UzVi2V8APrp1C6fG6/MuYYkmlx4FubuqLycCeSdHD5aadWfua/Vr0EUA==}
@@ -5993,6 +6004,14 @@ packages:
     resolution: {integrity: sha512-0/A9rDy9P7cJ+8w1c9WD9V//9Wj15Ce2MPz8Ri6032usz+NfePxx5AcN3bN+r6ZL6jEo066/yNYB3tn4pQEx+A==}
     hasBin: true
 
+  valibot@1.0.0:
+    resolution: {integrity: sha512-1Hc0ihzWxBar6NGeZv7fPLY0QuxFMyxwYR2sF1Blu7Wq7EnremwY2W02tit2ij2VJT8HcSkHAQqmFfl77f73Yw==}
+    peerDependencies:
+      typescript: '>=5'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
   validate.io-array@1.0.6:
     resolution: {integrity: sha512-DeOy7CnPEziggrOO5CZhVKJw6S3Yi7e9e65R1Nl/RTN1vTQKnzjfvks0/8kQ40FP/dsjRAOd4hxmJ7uLa6vxkg==}
 
@@ -7985,6 +8004,10 @@ snapshots:
       eslint-visitor-keys: 4.2.0
 
   '@ungap/structured-clone@1.2.0': {}
+
+  '@valibot/to-json-schema@1.0.0(valibot@1.0.0(typescript@5.8.2))':
+    dependencies:
+      valibot: 1.0.0(typescript@5.8.2)
 
   '@vitest/expect@3.1.1':
     dependencies:
@@ -11761,6 +11784,10 @@ snapshots:
   util-deprecate@1.0.2: {}
 
   uuid@11.1.0: {}
+
+  valibot@1.0.0(typescript@5.8.2):
+    optionalDependencies:
+      typescript: 5.8.2
 
   validate.io-array@1.0.6: {}
 
