@@ -21,7 +21,6 @@ import {
   type Config,
   type FieldError,
   type FormInternalContext,
-  type FoundationalFieldType,
   type PossibleError,
 } from "@/form/index.js";
 
@@ -32,7 +31,7 @@ import {
 } from "./get-array-item-name.js";
 
 export interface ArrayContext<V extends Validator> {
-  readonly fieldType: FoundationalFieldType;
+  readonly config: Config;
   readonly addable: boolean;
   readonly removable: boolean;
   readonly orderable: boolean;
@@ -92,6 +91,9 @@ function createItemsAPI<V extends Validator>(
   } = $derived(config().uiOptions ?? {});
 
   return {
+    get config() {
+      return config()
+    },
     get addable() {
       return addable;
     },
@@ -176,7 +178,6 @@ export function createArrayContext<V extends Validator>(
   const canAdd = $derived.by(createCanAdd(config, value, () => api.addable));
 
   return Object.assign(api, {
-    fieldType: "arrayField",
     canAdd() {
       return canAdd;
     },
@@ -256,7 +257,6 @@ export function createTupleContext<V extends Validator>(
   );
 
   return Object.assign(api, {
-    fieldType: "tupleField",
     canAdd() {
       return canAdd;
     },
