@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { isFixedItems } from '@sjsf/form/core'
   import type { ComponentProps } from "@sjsf/form";
   import { getArrayContext } from "@sjsf/form/fields/array/context.svelte";
   import Layout from "@sjsf/basic-theme/components/layout.svelte";
@@ -10,7 +11,7 @@
 
   const arrCtx = getArrayContext();
 
-  const isTuple = $derived(arrCtx.fieldType === "tupleField");
+  const isTuple = $derived(isFixedItems(arrCtx.config.schema));
 </script>
 
 {#if props.type === "array-items" && isTuple}
