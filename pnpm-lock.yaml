@@ -88,7 +88,7 @@ catalogs:
 
 patchedDependencies:
   svelte2tsx:
-    hash: w2yluhotwii3klssww2wob25iy
+    hash: 596fd3494d1b9cea4557645eb76028c09232bcd23408dee456266d3d5f95287c
     path: patches/svelte2tsx.patch
 
 importers:
@@ -662,13 +662,6 @@ importers:
         version: 3.1.1(@types/debug@4.1.12)(@types/node@22.13.11)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.29.2)(yaml@2.5.1)
 
   packages/daisyui5-theme:
-    optionalDependencies:
-      cally:
-        specifier: ^0.8.0
-        version: 0.8.0
-      pikaday:
-        specifier: ^1.8.2
-        version: 1.8.2
     devDependencies:
       '@playwright/test':
         specifier: 'catalog:'
@@ -748,6 +741,13 @@ importers:
       vitest:
         specifier: 'catalog:'
         version: 3.1.1(@types/debug@4.1.12)(@types/node@22.13.11)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.29.2)(yaml@2.5.1)
+    optionalDependencies:
+      cally:
+        specifier: ^0.8.0
+        version: 0.8.0
+      pikaday:
+        specifier: ^1.8.2
+        version: 1.8.2
 
   packages/flowbite-icons:
     dependencies:
@@ -1226,10 +1226,6 @@ importers:
         version: 3.1.1(@types/debug@4.1.12)(@types/node@22.13.11)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.29.2)(yaml@2.5.1)
 
   packages/shadcn-theme:
-    optionalDependencies:
-      '@internationalized/date':
-        specifier: ^3.7.0
-        version: 3.7.0
     devDependencies:
       '@playwright/test':
         specifier: 'catalog:'
@@ -1324,6 +1320,10 @@ importers:
       vitest:
         specifier: 'catalog:'
         version: 3.1.1(@types/debug@4.1.12)(@types/node@22.13.11)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.29.2)(yaml@2.5.1)
+    optionalDependencies:
+      '@internationalized/date':
+        specifier: ^3.7.0
+        version: 3.7.0
 
   packages/skeleton-theme:
     devDependencies:
@@ -1410,10 +1410,6 @@ importers:
         version: 3.1.1(@types/debug@4.1.12)(@types/node@22.13.11)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.29.2)(yaml@2.5.1)
 
   packages/skeleton3-theme:
-    optionalDependencies:
-      '@skeletonlabs/skeleton-svelte':
-        specifier: ^1.2.0
-        version: 1.2.0(svelte@5.25.9)
     devDependencies:
       '@playwright/test':
         specifier: 'catalog:'
@@ -1493,6 +1489,10 @@ importers:
       vitest:
         specifier: 'catalog:'
         version: 3.1.1(@types/debug@4.1.12)(@types/node@22.13.11)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.29.2)(yaml@2.5.1)
+    optionalDependencies:
+      '@skeletonlabs/skeleton-svelte':
+        specifier: ^1.2.0
+        version: 1.2.0(svelte@5.25.9)
 
   packages/sveltekit:
     devDependencies:
@@ -6540,7 +6540,7 @@ snapshots:
       '@sveltejs/vite-plugin-svelte': 5.0.3(svelte@5.25.9)(vite@6.2.5(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       astro: 5.6.1(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.34.8)(typescript@5.8.2)(yaml@2.5.1)
       svelte: 5.25.9
-      svelte2tsx: 0.7.35(patch_hash=w2yluhotwii3klssww2wob25iy)(svelte@5.25.9)(typescript@5.8.2)
+      svelte2tsx: 0.7.35(patch_hash=596fd3494d1b9cea4557645eb76028c09232bcd23408dee456266d3d5f95287c)(svelte@5.25.9)(typescript@5.8.2)
       typescript: 5.8.2
       vite: 6.2.5(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)
     transitivePeerDependencies:
@@ -7583,7 +7583,7 @@ snapshots:
       sade: 1.8.1
       semver: 7.7.1
       svelte: 5.25.9
-      svelte2tsx: 0.7.35(patch_hash=w2yluhotwii3klssww2wob25iy)(svelte@5.25.9)(typescript@5.8.2)
+      svelte2tsx: 0.7.35(patch_hash=596fd3494d1b9cea4557645eb76028c09232bcd23408dee456266d3d5f95287c)(svelte@5.25.9)(typescript@5.8.2)
     transitivePeerDependencies:
       - typescript
 
@@ -11427,7 +11427,7 @@ snapshots:
       style-to-object: 1.0.8
       svelte: 5.25.9
 
-  svelte2tsx@0.7.35(patch_hash=w2yluhotwii3klssww2wob25iy)(svelte@5.25.9)(typescript@5.8.2):
+  svelte2tsx@0.7.35(patch_hash=596fd3494d1b9cea4557645eb76028c09232bcd23408dee456266d3d5f95287c)(svelte@5.25.9)(typescript@5.8.2):
     dependencies:
       dedent-js: 1.0.1
       pascal-case: 3.1.2
