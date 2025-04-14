@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { isNil } from '@/lib/types.js';
+import { isNil } from "@/lib/types.js";
 
 import {
   ARRAYS_OF_SUB_SCHEMAS,
@@ -33,32 +33,70 @@ function mergeRecords<T>(
   return target;
 }
 
-function mergeArrays<T>(left: T[], right: T[], unique = false) {
-  const merged = left.concat(right);
+interface MergeArraysOptions<T> {
+  merge?: (l: T, r: T) => T;
+  /**
+   * @default false
+   */
+  unique?: boolean;
+}
+
+function mergeArrays<T>(
+  left: T[],
+  right: T[],
+  { merge, unique }: MergeArraysOptions<T> = {}
+) {
+  let merged: T[];
+  if (merge) {
+    const [minArr, maxArr] =
+      left.length <= right.length ? [left, right] : [right, left];
+    merged = new Array(maxArr.length);
+    for (let i = 0; i < minArr.length; i++) {
+      merged[i] = merge(left[i]!, right[i]!);
+    }
+    for (let i = minArr.length; i < maxArr.length; i++) {
+      merged[i] = maxArr[i]!;
+    }
+  } else {
+    merged = left.concat(right);
+  }
   return unique ? Array.from(new Set(merged)) : merged;
 }
 
 function mergeSchemaDefinitions(
   left: SchemaDefinition,
-  right: SchemaDefinition
+  right: SchemaDefinition,
+  options: MergeSchemasOptions
 ) {
   if (typeof left === "boolean" || typeof right === "boolean") {
     return right;
   }
-  return mergeSchemas(left, right);
+  return mergeSchemas(left, right, options);
 }
 
 function mergeSchemaDependencies(
   left: SchemaDefinition | string[],
-  right: SchemaDefinition | string[]
+  right: SchemaDefinition | string[],
+  options: MergeSchemasOptions
 ) {
   if (Array.isArray(left) || Array.isArray(right)) {
     return right;
   }
-  return mergeSchemaDefinitions(left, right);
+  return mergeSchemaDefinitions(left, right, options);
 }
 
-export function mergeSchemas(left: Schema, right: Schema): Schema {
+export interface MergeSchemasOptions {
+  /**
+   * @default `concat`
+   */
+  arraySubSchemasMergeType?: "concat" | "override";
+}
+
+export function mergeSchemas(
+  left: Schema,
+  right: Schema,
+  options: MergeSchemasOptions = {}
+): Schema {
   const merged = Object.assign({}, left, right);
   for (const key of RECORDS_OF_SUB_SCHEMAS) {
     if (!(key in merged) || key === DEPENDENCIES_KEY) {
@@ -67,21 +105,23 @@ export function mergeSchemas(left: Schema, right: Schema): Schema {
     const l = left[key];
     const r = right[key];
     if (l && r) {
-      merged[key] = mergeRecords(l, r, mergeSchemaDefinitions);
+      merged[key] = mergeRecords(l, r, (l, r) =>
+        mergeSchemaDefinitions(l, r, options)
+      );
     }
   }
   if (left[ITEMS_KEY] && right[ITEMS_KEY]) {
     merged[ITEMS_KEY] =
       isSchemaObjectValue(left[ITEMS_KEY]) &&
       isSchemaObjectValue(right[ITEMS_KEY])
-        ? mergeSchemas(left[ITEMS_KEY], right[ITEMS_KEY])
+        ? mergeSchemas(left[ITEMS_KEY], right[ITEMS_KEY], options)
         : right[ITEMS_KEY];
   }
   if (left[DEPENDENCIES_KEY] && right[DEPENDENCIES_KEY]) {
     merged[DEPENDENCIES_KEY] = mergeRecords(
       left[DEPENDENCIES_KEY],
       right[DEPENDENCIES_KEY],
-      mergeSchemaDependencies
+      (l, r) => mergeSchemaDependencies(l, r, options)
     );
   }
   for (const key of SUB_SCHEMAS) {
@@ -91,7 +131,7 @@ export function mergeSchemas(left: Schema, right: Schema): Schema {
     const l = left[key];
     const r = right[key];
     if (l && r) {
-      merged[key] = mergeSchemaDefinitions(l, r);
+      merged[key] = mergeSchemaDefinitions(l, r, options);
     }
   }
   for (const key of ARRAYS_OF_SUB_SCHEMAS) {
@@ -101,14 +141,19 @@ export function mergeSchemas(left: Schema, right: Schema): Schema {
     const l = left[key];
     const r = right[key];
     if (l && r) {
-      merged[key] = l.concat(r);
+      merged[key] = mergeArrays(l, r, {
+        merge:
+          options.arraySubSchemasMergeType === "override"
+            ? (l, r) => mergeSchemaDefinitions(l, r, options)
+            : undefined,
+      });
     }
   }
   if (left[REQUIRED_KEY] && right[REQUIRED_KEY]) {
     merged[REQUIRED_KEY] = mergeArrays(
       left[REQUIRED_KEY],
       right[REQUIRED_KEY],
-      true
+      { unique: true }
     );
   }
   return merged;
@@ -199,7 +244,7 @@ export function mergeDefaultsWithFormData<T = any>(
 
 export function mergeSchemaObjects<
   A extends SchemaObjectValue,
-  B extends SchemaObjectValue,
+  B extends SchemaObjectValue
 >(obj1: A, obj2: B, concatArrays: boolean | "preventDuplicates" = false) {
   const acc: SchemaObjectValue = Object.assign({}, obj1);
   for (const [key, right] of Object.entries(obj2)) {
