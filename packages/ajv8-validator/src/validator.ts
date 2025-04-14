@@ -5,21 +5,15 @@ import {
   type Options,
   type ValidateFunction,
 } from "ajv";
-import {
-  createPseudoId,
-  createChildId,
-  pathToId,
-  getUiSchemaByPath,
-  type AsyncFieldValueValidator,
-  type AsyncFormValueValidator,
-  type Config,
-  type Schema,
-  type FieldValueValidator,
-  type FormValueValidator,
-  type UiSchemaRoot,
-  type ValidationError,
-  type IdOptions,
-  type Validator,
+import type {
+  AsyncFieldValueValidator,
+  AsyncFormValueValidator,
+  Config,
+  Schema,
+  FieldValueValidator,
+  FormValueValidator,
+  ValidationError,
+  Validator,
 } from "@sjsf/form";
 
 import { addFormComponents, DEFAULT_AJV_CONFIG } from "./model.js";
@@ -27,6 +21,12 @@ import {
   createFieldSchemaCompiler,
   createSchemaCompiler,
 } from "./schema-compilers.js";
+import {
+  createFormErrorsTransformer,
+  errorObjectToMessage,
+  transformFieldErrors,
+  type ErrorsTransformerOptions,
+} from "./errors.js";
 
 const NO_ERRORS: ValidationError<ErrorObject>[] = [];
 
@@ -50,96 +50,6 @@ export function createValidator({
         return false;
       }
     },
-  };
-}
-
-interface ErrorsTransformerOptions extends IdOptions {
-  uiSchema?: UiSchemaRoot;
-}
-
-function errorObjectToMessage(
-  { params: { missingProperty }, parentSchema, message }: ErrorObject,
-  getPropertyTitle: (
-    missingProperty: string,
-    parentSchema?: Schema
-  ) => string | undefined
-): string {
-  if (!message) {
-    return "";
-  }
-  if (missingProperty === undefined) {
-    return message;
-  }
-  const propertyTitle = getPropertyTitle(missingProperty, parentSchema);
-  if (propertyTitle === undefined) {
-    return message;
-  }
-  return message.replace(missingProperty, propertyTitle);
-}
-
-function createFormErrorsTransformer(options: ErrorsTransformerOptions) {
-  const instancePathToId = (
-    {
-      params: { missingProperty, propertyName: propertyNameParam },
-      propertyName = propertyNameParam,
-    }: ErrorObject,
-    path: string[]
-  ) => {
-    let id = pathToId(path, options);
-    id =
-      missingProperty !== undefined
-        ? createChildId(id, missingProperty, options)
-        : id;
-    id =
-      propertyName !== undefined
-        ? createPseudoId(
-            createChildId(id, propertyName, options),
-            "key-input",
-            options
-          )
-        : id;
-    return id;
-  };
-  const errorObjectToPropertyTitle = (
-    { parentSchema }: ErrorObject,
-    path: string[]
-  ): string => {
-    const instanceUiSchema = getUiSchemaByPath(options.uiSchema, path);
-    return (
-      instanceUiSchema?.["ui:options"]?.title ??
-      parentSchema?.title ??
-      path.join(".")
-    );
-  };
-  return (errors: ErrorObject[]) => {
-    return errors.map((error) => {
-      let path = error.instancePath.split("/");
-      if (path[0] === "") {
-        path = path.slice(1);
-      }
-      return {
-        instanceId: instancePathToId(error, path),
-        propertyTitle: errorObjectToPropertyTitle(error, path),
-        message: errorObjectToMessage(
-          error,
-          (missingProperty, parentSchema) => {
-            const uiSchemaTitle = getUiSchemaByPath(
-              options.uiSchema,
-              path.concat(missingProperty)
-            )?.["ui:options"]?.title;
-            if (uiSchemaTitle !== undefined) {
-              return uiSchemaTitle;
-            }
-            const prop = parentSchema?.properties?.[missingProperty];
-            if (typeof prop === "object") {
-              return prop.title;
-            }
-            return undefined;
-          }
-        ),
-        error,
-      };
-    });
   };
 }
 
@@ -167,19 +77,6 @@ export function createFormValueValidator(
 
 export interface FieldValueValidatorOptions {
   compileFieldSchema: (config: Config) => ValidateFunction;
-}
-
-function isFieldError(error: ErrorObject): boolean {
-  return error.instancePath === "/field";
-}
-
-function transformFieldErrors(errors: ErrorObject[], config: Config) {
-  return errors.filter(isFieldError).map((error) => ({
-    instanceId: config.id,
-    propertyTitle: config.title,
-    message: errorObjectToMessage(error, () => config.title),
-    error,
-  }));
 }
 
 export function createFieldValueValidator({
