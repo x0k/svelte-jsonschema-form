@@ -12,7 +12,6 @@ import type {
   Schema,
   FieldValueValidator,
   FormValueValidator,
-  ValidationError,
   Validator,
 } from "@sjsf/form";
 
@@ -23,12 +22,11 @@ import {
 } from "./schema-compilers.js";
 import {
   createFormErrorsTransformer,
-  errorObjectToMessage,
-  transformFieldErrors,
+  createFieldErrorsTransformer,
   type ErrorsTransformerOptions,
+  validateAndTransformErrors,
+  validateAndTransformErrorsAsync,
 } from "./errors.js";
-
-const NO_ERRORS: ValidationError<ErrorObject>[] = [];
 
 export interface ValidatorOptions {
   compileSchema: (schema: Schema, rootSchema: Schema) => ValidateFunction;
@@ -60,17 +58,14 @@ export interface FormValueValidatorOptions
 export function createFormValueValidator(
   options: FormValueValidatorOptions
 ): FormValueValidator<ErrorObject> {
-  const transformFormErrors = createFormErrorsTransformer(options);
+  const transformErrors = createFormErrorsTransformer(options);
   return {
     validateFormValue(rootSchema, formValue) {
-      const validator = options.compileSchema(rootSchema, rootSchema);
-      validator(formValue);
-      const errors = validator.errors;
-      validator.errors = null;
-      if (!errors) {
-        return NO_ERRORS;
-      }
-      return transformFormErrors(errors);
+      return validateAndTransformErrors(
+        options.compileSchema(rootSchema, rootSchema),
+        formValue,
+        transformErrors
+      );
     },
   };
 }
@@ -84,15 +79,11 @@ export function createFieldValueValidator({
 }: FieldValueValidatorOptions): FieldValueValidator<ErrorObject> {
   return {
     validateFieldValue(config, fieldValue) {
-      const validator = compileFieldSchema(config);
-      const data = { field: fieldValue };
-      validator(data);
-      const errors = validator.errors;
-      validator.errors = null;
-      if (!errors) {
-        return NO_ERRORS;
-      }
-      return transformFieldErrors(errors, config);
+      return validateAndTransformErrors(
+        compileFieldSchema(config),
+        fieldValue,
+        createFieldErrorsTransformer(config)
+      );
     },
   };
 }
@@ -108,21 +99,14 @@ export interface AsyncFormValueValidatorOptions
 export function createAsyncFormValueValidator(
   options: AsyncFormValueValidatorOptions
 ): AsyncFormValueValidator<ErrorObject> {
-  const transformFormErrors = createFormErrorsTransformer(options);
+  const transformErrors = createFormErrorsTransformer(options);
   return {
     async validateFormValueAsync(_, rootSchema, formValue) {
-      const validator = options.compileAsyncSchema(rootSchema, rootSchema);
-      try {
-        await validator(formValue);
-      } catch (e) {
-        if (!(e instanceof Ajv.ValidationError)) {
-          throw e;
-        }
-        return transformFormErrors(e.errors as ErrorObject[]);
-      } finally {
-        validator.errors = null;
-      }
-      return NO_ERRORS;
+      return validateAndTransformErrorsAsync(
+        options.compileAsyncSchema(rootSchema, rootSchema),
+        formValue,
+        transformErrors
+      );
     },
   };
 }
@@ -136,19 +120,11 @@ export function createAsyncFieldValueValidator({
 }: AsyncFieldValueValidatorOptions): AsyncFieldValueValidator<ErrorObject> {
   return {
     async validateFieldValueAsync(_, config, fieldValue) {
-      const validator = compileAsyncFieldSchema(config);
-      const data = { field: fieldValue };
-      try {
-        await validator(data);
-      } catch (e) {
-        if (!(e instanceof Ajv.ValidationError)) {
-          throw e;
-        }
-        return transformFieldErrors(e.errors as ErrorObject[], config);
-      } finally {
-        validator.errors = null;
-      }
-      return NO_ERRORS;
+      return validateAndTransformErrorsAsync(
+        compileAsyncFieldSchema(config),
+        fieldValue,
+        createFieldErrorsTransformer(config)
+      );
     },
   };
 }

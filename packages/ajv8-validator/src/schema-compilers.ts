@@ -9,9 +9,6 @@ import { weakMemoize } from "@sjsf/form/lib/memoize";
 import { ID_KEY, prefixSchemaRefs, ROOT_SCHEMA_PREFIX } from "@sjsf/form/core";
 import type { Config, Schema } from "@sjsf/form";
 
-const FIELD_REQUIRED = ["field"];
-const FIELD_NOT_REQUIRED: string[] = [];
-
 export function createSchemaCompiler<A extends boolean>(ajv: Ajv, _async: A) {
   let rootSchemaId = "";
   let usePrefixSchemaRefs = false;
@@ -49,30 +46,13 @@ export function createFieldSchemaCompiler<A extends boolean>(
   ajv: Ajv,
   async: A
 ) {
-  let isRequired = false;
   const validatorsCache = new WeakMap<Schema, AnyValidateFunction>();
-  const requiredCache = new WeakMap<Schema, boolean>();
   const compile = weakMemoize<Schema, AnyValidateFunction>(
     validatorsCache,
-    (schema) =>
-      ajv.compile({
-        type: "object",
-        $async: async,
-        properties: {
-          field: schema,
-        },
-        required: isRequired ? FIELD_REQUIRED : FIELD_NOT_REQUIRED,
-      })
+    (schema) => ajv.compile({ ...schema, $async: async })
   );
-  return (config: Config) => {
-    isRequired = config.required;
-    const prev = requiredCache.get(config.schema);
-    if (prev !== config.required) {
-      validatorsCache.delete(config.schema);
-      requiredCache.set(config.schema, config.required);
-    }
-    return compile(config.schema) as A extends true
+  return (config: Config) =>
+    compile(config.schema) as A extends true
       ? AsyncValidateFunction
       : ValidateFunction;
-  };
 }

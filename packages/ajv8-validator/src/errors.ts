@@ -7,14 +7,20 @@ import {
   type IdOptions,
   type Schema,
   type UiSchemaRoot,
+  type ValidationError,
 } from "@sjsf/form";
-import type { ErrorObject } from "ajv";
+import {
+  Ajv,
+  type AsyncValidateFunction,
+  type ErrorObject,
+  type ValidateFunction,
+} from "ajv";
 
 export interface ErrorsTransformerOptions extends IdOptions {
   uiSchema?: UiSchemaRoot;
 }
 
-export function errorObjectToMessage(
+function errorObjectToMessage(
   { params: { missingProperty }, parentSchema, message }: ErrorObject,
   getPropertyTitle: (
     missingProperty: string,
@@ -100,23 +106,52 @@ export function createFormErrorsTransformer(options: ErrorsTransformerOptions) {
   };
 }
 
-export function isFieldError(error: ErrorObject): boolean {
-  return error.instancePath === "/field";
-}
-
 export function isRootFieldError(error: ErrorObject): boolean {
-  return error.instancePath === "/"
+  return error.instancePath === "";
 }
 
-export function transformFieldErrors(
-  errors: ErrorObject[],
-  config: Config,
-  errorFilter = isFieldError
+export function createFieldErrorsTransformer(config: Config) {
+  return (errors: ErrorObject[]) =>
+    errors.filter(isRootFieldError).map((error) => ({
+      instanceId: config.id,
+      propertyTitle: config.title,
+      message: errorObjectToMessage(error, () => config.title),
+      error,
+    }));
+}
+
+export type TransformErrors = (
+  errors: ErrorObject[]
+) => ValidationError<ErrorObject>[];
+
+export function validateAndTransformErrors(
+  validate: ValidateFunction,
+  data: any,
+  transformErrors: TransformErrors
 ) {
-  return errors.filter(errorFilter).map((error) => ({
-    instanceId: config.id,
-    propertyTitle: config.title,
-    message: errorObjectToMessage(error, () => config.title),
-    error,
-  }));
+  validate(data);
+  const errors = validate.errors;
+  validate.errors = null;
+  if (!errors) {
+    return [];
+  }
+  return transformErrors(errors);
+}
+
+export async function validateAndTransformErrorsAsync(
+  validate: AsyncValidateFunction,
+  data: any,
+  transformErrors: TransformErrors
+) {
+  try {
+    await validate(data);
+  } catch (e) {
+    if (!(e instanceof Ajv.ValidationError)) {
+      throw e;
+    }
+    return transformErrors(e.errors as ErrorObject[]);
+  } finally {
+    validate.errors = null;
+  }
+  return [];
 }

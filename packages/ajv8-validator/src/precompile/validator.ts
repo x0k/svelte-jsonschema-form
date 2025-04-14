@@ -1,16 +1,19 @@
 import type {
+  AsyncFieldValueValidator,
+  AsyncFormValueValidator,
   FieldValueValidator,
   FormValueValidator,
   Schema,
   Validator,
 } from "@sjsf/form";
-import type { ErrorObject, ValidateFunction } from "ajv";
+import type { AsyncValidateFunction, ErrorObject, ValidateFunction } from "ajv";
 
 import {
   createFormErrorsTransformer,
-  isRootFieldError,
-  transformFieldErrors,
+  createFieldErrorsTransformer,
   type ErrorsTransformerOptions,
+  validateAndTransformErrors,
+  validateAndTransformErrorsAsync,
 } from "../errors.js";
 
 export type ValidateFunctions = {
@@ -62,14 +65,11 @@ export function createFormValueValidator(
   const transformErrors = createFormErrorsTransformer(options);
   return {
     validateFormValue(rootSchema, formValue) {
-      const validate = getValidateFunction(options, rootSchema);
-      validate(formValue);
-      const errors = validate.errors;
-      validate.errors = null;
-      if (!errors) {
-        return [];
-      }
-      return transformErrors(errors);
+      return validateAndTransformErrors(
+        getValidateFunction(options, rootSchema),
+        formValue,
+        transformErrors
+      );
     },
   };
 }
@@ -79,14 +79,40 @@ export function createFieldValueValidator(
 ): FieldValueValidator<ErrorObject> {
   return {
     validateFieldValue(field, fieldValue) {
-      const validate = getValidateFunction(options, field.schema);
-      validate(fieldValue);
-      const errors = validate.errors;
-      validate.errors = null;
-      if (!errors) {
-        return [];
-      }
-      return transformFieldErrors(errors, field, isRootFieldError);
+      return validateAndTransformErrors(
+        getValidateFunction(options, field.schema),
+        fieldValue,
+        createFieldErrorsTransformer(field)
+      );
+    },
+  };
+}
+
+export function createAsyncFormValueValidator(
+  options: FormValidatorOptions
+): AsyncFormValueValidator<ErrorObject> {
+  const transformErrors = createFormErrorsTransformer(options);
+  return {
+    validateFormValueAsync(_, rootSchema, formValue) {
+      return validateAndTransformErrorsAsync(
+        getValidateFunction(options, rootSchema) as AsyncValidateFunction,
+        formValue,
+        transformErrors
+      );
+    },
+  };
+}
+
+export function createAsyncFieldValueValidator(
+  options: ValidatorOptions
+): AsyncFieldValueValidator<ErrorObject> {
+  return {
+    validateFieldValueAsync(_, field, fieldValue) {
+      return validateAndTransformErrorsAsync(
+        getValidateFunction(options, field.schema) as AsyncValidateFunction,
+        fieldValue,
+        createFieldErrorsTransformer(field)
+      );
     },
   };
 }
@@ -100,5 +126,13 @@ export function createFormValidator(options: FormValidatorOptions) {
     createValidator(options),
     createFormValueValidator(options),
     createFieldValueValidator(options)
+  );
+}
+
+export function createAsyncFormValidator(options: FormValidatorOptions) {
+  return Object.assign(
+    createValidator(options),
+    createAsyncFormValueValidator(options),
+    createAsyncFieldValueValidator(options)
   );
 }
