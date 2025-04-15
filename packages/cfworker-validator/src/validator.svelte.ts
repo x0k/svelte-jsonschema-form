@@ -9,6 +9,7 @@ import {
   ID_KEY,
   prefixSchemaRefs,
   ROOT_SCHEMA_PREFIX,
+  type SchemaValue,
   type Validator,
 } from "@sjsf/form/core";
 import {
@@ -22,13 +23,15 @@ import {
   type IdPrefixOption,
   type IdSeparatorOption,
   getRootSchemaTitleByPath,
+  type FormValue,
 } from "@sjsf/form";
 
-export interface ValidatorOptions {
+export interface FixUndefined {
+  fixUndefined: (value: FormValue) => SchemaValue;
+}
+export interface ValidatorOptions extends FixUndefined {
   createSchemaValidator: (schema: Schema, rootSchema: Schema) => CfValidator;
 }
-
-const FIELD_NOT_REQUIRED: string[] = [];
 
 export type CfValidatorFactory = (schema: Schema) => CfValidator;
 
@@ -64,35 +67,14 @@ export function createSchemaValidatorFactory(factory: CfValidatorFactory) {
 }
 
 export function createFieldSchemaValidatorFactory(factory: CfValidatorFactory) {
-  let fieldTitle = "";
-  let isRequired = false;
-  const validatorsCache = new WeakMap<Schema, CfValidator>();
-  const requiredCache = new WeakMap<Schema, boolean>();
-  const makeValidator = weakMemoize<Schema, CfValidator>(
-    validatorsCache,
-    (schema) =>
-      factory({
-        type: "object",
-        properties: {
-          [fieldTitle]: schema,
-        },
-        required: isRequired ? [fieldTitle] : FIELD_NOT_REQUIRED,
-      })
-  );
-  return (config: Config) => {
-    fieldTitle = config.title;
-    isRequired = config.required;
-    const prev = requiredCache.get(config.schema);
-    if (prev !== isRequired) {
-      validatorsCache.delete(config.schema);
-      requiredCache.set(config.schema, isRequired);
-    }
-    return makeValidator(config.schema);
-  };
+  const cache = new WeakMap<Schema, CfValidator>();
+  const makeValidator = weakMemoize<Schema, CfValidator>(cache, factory);
+  return (config: Config) => makeValidator(config.schema);
 }
 
 export function createValidator({
   createSchemaValidator,
+  fixUndefined,
 }: ValidatorOptions): Validator {
   return {
     isValid(schemaDef, rootSchema, formValue) {
@@ -100,7 +82,7 @@ export function createValidator({
         return schemaDef;
       }
       const validator = createSchemaValidator(schemaDef, rootSchema);
-      return validator.validate(formValue).valid;
+      return validator.validate(fixUndefined(formValue)).valid;
     },
   };
 }
@@ -167,35 +149,40 @@ export function createFormValueValidator(
       const errorsTransformer = createErrorsTransformer(options);
       return errorsTransformer(
         rootSchema,
-        validator.validate(formValue).errors
+        validator.validate(options.fixUndefined(formValue)).errors
       );
     },
   };
 }
 
-export interface FieldValueValidatorOptions {
+export interface FieldValueValidatorOptions extends FixUndefined {
   createFieldSchemaValidator: (config: Config) => CfValidator;
+}
+
+function isRootError(error: OutputUnit): boolean {
+  return error.instanceLocation === "#";
+}
+
+function isRootNonTypeError(error: OutputUnit): boolean {
+  return isRootError(error) && error.keyword !== "type";
 }
 
 export function createFieldValueValidator({
   createFieldSchemaValidator,
+  fixUndefined,
 }: FieldValueValidatorOptions): FieldValueValidator<OutputUnit> {
   return {
     validateFieldValue(config, fieldValue) {
       const validator = createFieldSchemaValidator(config);
-      const errors = validator.validate(
-        fieldValue === undefined ? {} : { [config.title]: fieldValue }
-      ).errors;
+      const errors = validator.validate(fixUndefined(fieldValue)).errors;
       return errors
-        .filter((error) => error.instanceLocation === `#/${config.title}`)
-        .map((unit) => {
-          return {
-            instanceId: config.id,
-            propertyTitle: config.title,
-            message: unit.error,
-            error: unit,
-          };
-        });
+        .filter(config.required ? isRootError : isRootNonTypeError)
+        .map((unit) => ({
+          instanceId: config.id,
+          propertyTitle: config.title,
+          message: unit.error,
+          error: unit,
+        }));
     },
   };
 }
@@ -209,12 +196,19 @@ export function createFormValidator({
   factory = (schema) => new CfValidator(schema as CfSchema, "7", false),
   createSchemaValidator = createSchemaValidatorFactory(factory),
   createFieldSchemaValidator = createFieldSchemaValidatorFactory(factory),
+  fixUndefined = (v) =>
+    v === undefined || v === null
+      ? null
+      : typeof v === "object"
+      ? JSON.parse(JSON.stringify(v))
+      : v,
   ...rest
 }: Partial<FormValidatorOptions> & {
   factory?: CfValidatorFactory;
 } = {}) {
   const options: FormValidatorOptions = {
     ...rest,
+    fixUndefined,
     createSchemaValidator,
     createFieldSchemaValidator,
   };
