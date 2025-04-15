@@ -20,9 +20,6 @@ import {
   type ErrorsTransformerOptions,
 } from "./errors.js";
 
-const FIELD_REQUIRED = ["field"];
-const FIELD_NOT_REQUIRED: string[] = [];
-
 export function evalZodSchema(schema: Schema) {
   return new Function("z", `return ${jsonSchemaToZod(schema)}`)(z);
 }
@@ -44,26 +41,8 @@ export function createZodSchemaFactory() {
 
 export function createFieldZodSchemaFactory() {
   const cache = new WeakMap<Schema, ZodSchema>();
-  const requiredCache = new WeakMap<Schema, boolean>();
-  let isRequired = false;
-  const factory = weakMemoize<Schema, ZodSchema>(cache, (schema) =>
-    evalZodSchema({
-      type: "object",
-      properties: {
-        field: schema,
-      },
-      required: isRequired ? FIELD_REQUIRED : FIELD_NOT_REQUIRED,
-    })
-  );
-  return (config: Config) => {
-    isRequired = config.required;
-    const prev = requiredCache.get(config.schema);
-    if (prev !== isRequired) {
-      requiredCache.set(config.schema, isRequired);
-      cache.delete(config.schema);
-    }
-    return factory(config.schema);
-  };
+  const factory = weakMemoize<Schema, ZodSchema>(cache, evalZodSchema);
+  return (config: Config) => factory(config.schema);
 }
 
 export interface ValidatorOptions {
@@ -121,7 +100,7 @@ export function createFieldValueValidator({
   return {
     validateFieldValue(config, fieldValue) {
       const schema = createFieldZodSchema(config);
-      const result = schema.safeParse({ field: fieldValue });
+      const result = schema.safeParse(fieldValue);
       return transformFieldErrors(config, result);
     },
   };

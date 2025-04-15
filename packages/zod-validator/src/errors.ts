@@ -40,6 +40,10 @@ export function createErrorsTransformer(options: ErrorsTransformerOptions) {
   };
 }
 
+function omitInvalidTypeIssues(issue: z.ZodIssue) {
+  return issue.code !== "invalid_type";
+}
+
 export function transformFieldErrors(
   config: Config,
   result: z.SafeParseReturnType<any, any>
@@ -47,12 +51,13 @@ export function transformFieldErrors(
   if (result.success) {
     return [];
   }
-  return result.error.issues.map((issue) => {
-    return {
+  const { issues } = result.error;
+  return (config.required ? issues : issues.filter(omitInvalidTypeIssues)).map(
+    (issue) => ({
       instanceId: config.id,
       propertyTitle: config.title,
       message: issue.message,
       error: issue,
-    };
-  });
+    })
+  );
 }
