@@ -8,12 +8,11 @@ export interface KeyedArray<T> {
 
 const EMPTY: any[] = [];
 
-export function createKeyedArray<T>(
-  array: () => T[]
-): KeyedArray<T> {
+export function createKeyedArray<T>(array: () => T[]): KeyedArray<T> {
   let arrayRef: WeakRef<T[]> = new WeakRef(EMPTY);
   let lastKeys: number[] = EMPTY;
   let lastKey = -1;
+  let changesPropagator = $state.raw(0);
   const keys = $derived.by(() => {
     const arr = array();
     if (arrayRef.deref() === arr) {
@@ -30,6 +29,7 @@ export function createKeyedArray<T>(
   });
   return {
     key(index: number) {
+      changesPropagator;
       return keys[index]!;
     },
     push(value) {
@@ -41,9 +41,13 @@ export function createKeyedArray<T>(
       const key = lastKeys[a];
       lastKeys[a] = lastKeys[b]!;
       lastKeys[b] = key!;
-      const tmp = arr[a]!;
-      arr[a] = arr[b]!;
-      arr[b] = tmp;
+      if (arr[a] === arr[b]) {
+        changesPropagator++;
+      } else {
+        const tmp = arr[a]!;
+        arr[a] = arr[b]!;
+        arr[b] = tmp;
+      }
     },
     insert(index, value) {
       lastKeys.splice(index, 0, ++lastKey);
