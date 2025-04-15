@@ -4,7 +4,7 @@ sidebar:
   order: 4
 ---
 
-import { Code } from '@astrojs/starlight/components'
+import { Code, LinkCard } from '@astrojs/starlight/components'
 
 import uiSchemaExampleCode from './_ui-schema-example.ts?raw'
 import extraUiOptionsCode from './_extra-ui-options.ts?raw'
@@ -135,6 +135,15 @@ interface UiOptions {
   if their properties are compatible.
 - Using UI options of one component in another (even if they are compatible)
   is forbidden, e.g. `text` and `textarea` widgets must use separate options.
+
+
+Check your theme page for an extended list of UI options:
+
+<LinkCard title="Basic" href="../../themes/basic/#ui-options" />
+<LinkCard title="DaisyUI" href="../../themes/daisyui5/#ui-options" />
+<LinkCard title="Flowbite" href="../../themes/flowbite3/#ui-options" />
+<LinkCard title="Skeleton" href="../../themes/skeleton3/#ui-options" />
+<LinkCard title="Shadcn" href="../../themes/shadcn/#ui-options" />
 
 ## Evaluation rules
 
