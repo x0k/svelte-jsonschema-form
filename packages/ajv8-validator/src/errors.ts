@@ -106,18 +106,24 @@ export function createFormErrorsTransformer(options: ErrorsTransformerOptions) {
   };
 }
 
-export function isRootFieldError(error: ErrorObject): boolean {
+function isRootFieldError(error: ErrorObject): boolean {
   return error.instancePath === "";
+}
+
+function isRootAndNonTypeError(error: ErrorObject): boolean {
+  return isRootFieldError(error) && error.keyword !== "type";
 }
 
 export function createFieldErrorsTransformer(config: Config) {
   return (errors: ErrorObject[]) =>
-    errors.filter(isRootFieldError).map((error) => ({
-      instanceId: config.id,
-      propertyTitle: config.title,
-      message: errorObjectToMessage(error, () => config.title),
-      error,
-    }));
+    errors
+      .filter(config.required ? isRootFieldError : isRootAndNonTypeError)
+      .map((error) => ({
+        instanceId: config.id,
+        propertyTitle: config.title,
+        message: errorObjectToMessage(error, () => config.title),
+        error,
+      }));
 }
 
 export type TransformErrors = (
