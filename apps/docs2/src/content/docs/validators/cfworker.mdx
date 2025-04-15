@@ -17,11 +17,6 @@ import sharedCode from './shared/index.ts?raw';
 
 This validator is experimental.
 
-- `data-url` and `color` formats are ignored.
-- By itself this validator does not support `undefined` values. And we don't
-have any additional logic to handle it in this adapter. So you should provide
-custom `merger` instance and/or use `emptyValue` options in your UI schema.
-
 :::
 
 Form validator implementation based on [@cfworker/json-schema](https://github.com/cfworker/cfworker/tree/main/packages/json-schema).
@@ -44,6 +39,28 @@ Form validator implementation based on [@cfworker/json-schema](https://github.co
 <FormCard>
   <Form client:only="svelte" />
 </FormCard>
+
+## Caveats
+
+- `data-url` and `color` formats are ignored.
+
+- By itself this validator does not support undefined values. But we use the
+  `fixUndefined` function with the following default implementation to fix it,
+  consider this overhead.
+
+  ```typescript
+  const fixUndefined = (v: FormValue) =>
+    v === undefined || v === null
+      ? null
+      : typeof v === "object"
+      ? JSON.parse(JSON.stringify(v))
+      : v
+  ```
+
+  It will also lead to incorrect error text (e.g.
+  `Instance type “null” is invalid. Expected “string”`) where you would like to
+  see the text `this field is requred`.
+  This can be fixed using [error transformation](../../form/validator/).
 
 ## Async validation
 
