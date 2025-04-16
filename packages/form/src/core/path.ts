@@ -1,8 +1,34 @@
 import { resolveRef } from "./definitions.js";
-import { isSchema, type Schema, type SchemaDefinition } from "./schema.js";
+import {
+  isSchema,
+  SET_OF_ARRAYS_OF_SUB_SCHEMAS,
+  type Schema,
+  type SchemaDefinition,
+  type SubSchemasArrayKey,
+} from "./schema.js";
 import { getSimpleSchemaType } from "./type.js";
 
 export type Path = Array<string | number>;
+
+export function refToPath(ref: string): Path {
+  if (ref === "#") {
+    return [];
+  }
+  // TODO: Handle escaped `/`
+  const parts = ref.substring(2).split("/");
+  return parts.map((p, i) => {
+    if (
+      i > 0 &&
+      SET_OF_ARRAYS_OF_SUB_SCHEMAS.has(parts[i - 1] as SubSchemasArrayKey)
+    ) {
+      const num = Number(p);
+      if (Number.isInteger(num) && num >= 0) {
+        return num;
+      }
+    }
+    return p;
+  });
+}
 
 /**
  * `patternProperties` keyword is ignored
