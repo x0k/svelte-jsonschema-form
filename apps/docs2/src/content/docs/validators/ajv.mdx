@@ -13,6 +13,12 @@ import Form from './ajv/form.svelte';
 import formCode from './ajv/form.svelte?raw';
 import sharedCode from './shared/index.ts?raw';
 
+import PrecompiledForm from './ajv/precompile/form.svelte'
+import precompiledFormCode from './ajv/precompile/form.svelte?raw'
+import compileSchemaCode from './ajv/precompile/compile-schema-script?raw'
+import inputSchemaCode from './ajv/precompile/input-schema.json?raw'
+import precompiledSchemaCode from './ajv/precompile/patched-schema?raw'
+
 Form validator implementation based on [Ajv@8 JSON schema validator](https://github.com/ajv-validator/ajv).
 
 ## Installation
@@ -55,3 +61,40 @@ const validator = createAsyncFormValidator({
   ajv: yourAjvInstance,
 })
 ```
+
+## Precompiled validation
+
+It is possible to use precompiled validator to avoid  issues with `unsafe-eval`
+warnings from the browser caused by strict Content Security Policy settings.
+
+### Schema precompilation
+
+The first step in the process is to compile a schema into a set of validate functions.
+
+<Tabs>
+  <TabItem label="compile-schema-script.ts">
+    <Code code={compileSchemaCode} lang='typescript' />
+  </TabItem>
+  <TabItem label="input-schema.json">
+    <Code code={inputSchemaCode} lang='json' />
+  </TabItem>
+</Tabs>
+
+```shell
+node --experimental-strip-types compile-schema-script.ts
+```
+
+### Usage
+
+<Tabs>
+  <TabItem label="form.svelte">
+    <Code code={precompiledFormCode} lang='svelte' />
+  </TabItem>
+  <TabItem label="patched-schema.ts">
+    <Code code={precompiledSchemaCode} lang='typescript' />
+  </TabItem>
+</Tabs>
+
+<FormCard>
+  <PrecompiledForm client:only="svelte" />
+</FormCard>
