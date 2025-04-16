@@ -27,3 +27,7 @@ export function getNodeByKeys<T, V>(trie: Trie<T, V>, keys: T[]): Trie<T, V> {
   }
   return trie;
 }
+
+export function getValueByKeys<T, V>(trie: Trie<T, V>, keys: T[]): V | undefined {
+  return getNodeByKeys(trie, keys)?.value
+}
