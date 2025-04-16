@@ -8,7 +8,7 @@ import {
   type Schema,
   type UiSchemaRoot,
   type ValidationError,
-} from "@sjsf/form";
+} from "@sjsf/form/index.js";
 import {
   Ajv,
   type AsyncValidateFunction,

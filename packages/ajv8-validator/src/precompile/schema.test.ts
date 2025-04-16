@@ -1,12 +1,15 @@
-import { mergeSchemas } from "@sjsf/form/core";
+import { describe, expect, it } from "vitest";
+
+import { insertValue } from "@sjsf/form/lib/trie";
+import { mergeSchemas, refToPath } from "@sjsf/form/core";
 import {
   ON_ARRAY_CHANGE,
   ON_INPUT,
   ON_OBJECT_CHANGE,
   type Schema,
 } from "@sjsf/form";
-import { describe, expect, it } from "vitest";
 
+import type { SchemaMeta, SubSchemas } from "./model.js";
 import { fragmentSchema, insertSubSchemaIds } from "./schema.js";
 
 const inputSchema: Schema = {
@@ -56,14 +59,22 @@ const inputSchema: Schema = {
   ],
 };
 
+function subSchemas(data: Record<string, SchemaMeta>): SubSchemas {
+  let trie: SubSchemas;
+  for (const key of Object.keys(data)) {
+    trie = insertValue(trie, refToPath(key), data[key]!);
+  }
+  return trie;
+}
+
 describe("insertSubSchemaIds", () => {
   it("should insert ids properly", () => {
     expect(insertSubSchemaIds(inputSchema)).toEqual({
-      ids: new Map([
-        ["#/", "sjsf__0"],
-        ["#/oneOf/0", "sjsf__1"],
-        ["#/definitions/second", "sjsf__2"],
-      ]),
+      subSchemas: subSchemas({
+        "#": { id: "sjsf__0", combinationBranch: false },
+        "#/oneOf/0": { id: "sjsf__1", combinationBranch: true },
+        "#/definitions/second": { id: "sjsf__2", combinationBranch: true },
+      }),
       schema: mergeSchemas(
         inputSchema,
         {
@@ -87,13 +98,16 @@ describe("insertSubSchemaIds", () => {
     expect(
       insertSubSchemaIds(inputSchema, { fieldsValidationMode: ON_INPUT })
     ).toEqual({
-      ids: new Map([
-        ["#/", "sjsf__0"],
-        ["#/definitions/test", "sjsf__1"],
-        ["#/oneOf/0", "sjsf__2"],
-        ["#/oneOf/0/properties/firstName", "sjsf__3"],
-        ["#/definitions/second", "sjsf__4"],
-      ]),
+      subSchemas: subSchemas({
+        "#": { id: "sjsf__0", combinationBranch: false },
+        "#/definitions/test": { id: "sjsf__1", combinationBranch: false },
+        "#/oneOf/0": { id: "sjsf__2", combinationBranch: true },
+        "#/oneOf/0/properties/firstName": {
+          id: "sjsf__3",
+          combinationBranch: false,
+        },
+        "#/definitions/second": { id: "sjsf__4", combinationBranch: true },
+      }),
       schema: mergeSchemas(
         inputSchema,
         {
@@ -125,12 +139,15 @@ describe("insertSubSchemaIds", () => {
     expect(
       insertSubSchemaIds(inputSchema, { fieldsValidationMode: ON_ARRAY_CHANGE })
     ).toEqual({
-      ids: new Map([
-        ["#/", "sjsf__0"],
-        ["#/definitions/second/properties/items", "sjsf__1"],
-        ["#/oneOf/0", "sjsf__2"],
-        ["#/definitions/second", "sjsf__3"],
-      ]),
+      subSchemas: subSchemas({
+        "#": { id: "sjsf__0", combinationBranch: false },
+        "#/definitions/second/properties/items": {
+          id: "sjsf__1",
+          combinationBranch: false,
+        },
+        "#/oneOf/0": { id: "sjsf__2", combinationBranch: true },
+        "#/definitions/second": { id: "sjsf__3", combinationBranch: true },
+      }),
       schema: mergeSchemas(
         inputSchema,
         {
@@ -161,19 +178,22 @@ describe("insertSubSchemaIds", () => {
         fieldsValidationMode: ON_OBJECT_CHANGE,
       })
     ).toEqual({
-      ids: new Map([
-        ["#/", "sjsf__0"],
-        ["#/definitions/second/properties/props", "sjsf__2"],
-        ["#/oneOf/0", "sjsf__3"],
-        ["#/definitions/second", "sjsf__4"],
-      ]),
+      subSchemas: subSchemas({
+        "#": { id: "sjsf__0", combinationBranch: false },
+        "#/definitions/second/properties/props": {
+          id: "sjsf__2",
+          combinationBranch: false,
+        },
+        "#/oneOf/0": { id: "sjsf__3", combinationBranch: true },
+        "#/definitions/second": { id: "sjsf__1", combinationBranch: true },
+      }),
       schema: mergeSchemas(
         inputSchema,
         {
           $id: "sjsf__0",
           definitions: {
             second: {
-              $id: "sjsf__4",
+              $id: "sjsf__1",
               properties: {
                 props: {
                   $id: "sjsf__2",
@@ -195,8 +215,7 @@ describe("insertSubSchemaIds", () => {
 
 describe("fragmentSchema", () => {
   it("should properly fragment schema", () => {
-    const { schema, ids } = insertSubSchemaIds(inputSchema);
-    expect(fragmentSchema(schema, ids)).toEqual([
+    expect(fragmentSchema(insertSubSchemaIds(inputSchema))).toEqual([
       {
         $id: "sjsf__1",
         properties: {
@@ -209,6 +228,24 @@ describe("fragmentSchema", () => {
           },
         },
         title: "First method of identification",
+      },
+      {
+        $id: "sjsf__1__ag",
+        allOf: [
+          {
+            $ref: "sjsf__1#",
+          },
+          {
+            anyOf: [
+              {
+                required: ["firstName"],
+              },
+              {
+                required: ["lastName"],
+              },
+            ],
+          },
+        ],
       },
       {
         $id: "sjsf__2",
@@ -234,6 +271,27 @@ describe("fragmentSchema", () => {
         title: "Second method of identification",
       },
       {
+        $id: "sjsf__2__ag",
+        allOf: [
+          {
+            $ref: "sjsf__2#",
+          },
+          {
+            anyOf: [
+              {
+                required: ["idCode"],
+              },
+              {
+                required: ["items"],
+              },
+              {
+                required: ["props"],
+              },
+            ],
+          },
+        ],
+      },
+      {
         $id: "sjsf__0",
         definitions: {
           second: {
@@ -255,10 +313,10 @@ describe("fragmentSchema", () => {
     ]);
   });
   it("should properly fragment schema 2", () => {
-    const { schema, ids } = insertSubSchemaIds(inputSchema, {
+    const data = insertSubSchemaIds(inputSchema, {
       fieldsValidationMode: ON_INPUT | ON_ARRAY_CHANGE | ON_OBJECT_CHANGE,
     });
-    expect(fragmentSchema(schema, ids)).toEqual([
+    expect(fragmentSchema(data)).toEqual([
       {
         $id: "sjsf__6",
         title: "First name",
@@ -275,6 +333,24 @@ describe("fragmentSchema", () => {
           },
         },
         title: "First method of identification",
+      },
+      {
+        $id: "sjsf__5__ag",
+        allOf: [
+          {
+            $ref: "sjsf__5#",
+          },
+          {
+            anyOf: [
+              {
+                required: ["firstName"],
+              },
+              {
+                required: ["lastName"],
+              },
+            ],
+          },
+        ],
       },
       {
         $id: "sjsf__1",
@@ -297,7 +373,7 @@ describe("fragmentSchema", () => {
         },
       },
       {
-        $id: "sjsf__7",
+        $id: "sjsf__2",
         properties: {
           idCode: {
             $ref: "sjsf__0#/definitions/test",
@@ -312,10 +388,31 @@ describe("fragmentSchema", () => {
         title: "Second method of identification",
       },
       {
+        $id: "sjsf__2__ag",
+        allOf: [
+          {
+            $ref: "sjsf__2#",
+          },
+          {
+            anyOf: [
+              {
+                required: ["idCode"],
+              },
+              {
+                required: ["items"],
+              },
+              {
+                required: ["props"],
+              },
+            ],
+          },
+        ],
+      },
+      {
         $id: "sjsf__0",
         definitions: {
           second: {
-            $ref: "sjsf__7#",
+            $ref: "sjsf__2#",
           },
           test: {
             $ref: "sjsf__1#",

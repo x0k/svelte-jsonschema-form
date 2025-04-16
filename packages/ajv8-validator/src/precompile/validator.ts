@@ -6,7 +6,12 @@ import type {
   Schema,
   Validator,
 } from "@sjsf/form";
-import type { AsyncValidateFunction, ErrorObject, ValidateFunction } from "ajv";
+import type {
+  Ajv,
+  AsyncValidateFunction,
+  ErrorObject,
+  ValidateFunction,
+} from "ajv";
 
 import {
   createFormErrorsTransformer,
@@ -15,27 +20,41 @@ import {
   validateAndTransformErrors,
   validateAndTransformErrorsAsync,
 } from "../errors.js";
+import { DEFAULT_AUGMENT_SUFFIX } from './model.js';
+
+export type CompiledValidateFunction = {
+  (this: Ajv | any, data: any): boolean;
+} & Pick<ValidateFunction, "errors">;
 
 export type ValidateFunctions = {
-  [key: string]: ValidateFunction;
+  [key: string]: CompiledValidateFunction;
 };
 
 export interface ValidatorOptions {
   validateFunctions: ValidateFunctions;
+  augmentSuffix?: string
 }
 
 function getValidateFunction(
-  { validateFunctions }: ValidatorOptions,
-  { $id: id }: Schema
+  { validateFunctions, augmentSuffix = DEFAULT_AUGMENT_SUFFIX }: ValidatorOptions,
+  { $id: id, allOf }: Schema,
 ): ValidateFunction {
   if (id === undefined) {
-    throw new Error("Schema id not found");
+    const firstAllOfItem = allOf?.[0];
+    if (
+      typeof firstAllOfItem === "object" &&
+      firstAllOfItem.$id !== undefined
+    ) {
+      id = firstAllOfItem.$id + augmentSuffix;
+    } else {
+      throw new Error("Schema id not found");
+    }
   }
   const validate = validateFunctions[id];
   if (validate === undefined) {
     throw new Error(`Validate function with id "${id}" not found`);
   }
-  return validate;
+  return validate as ValidateFunction;
 }
 
 export function createValidator(options: ValidatorOptions): Validator {

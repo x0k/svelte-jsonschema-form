@@ -1,22 +1,22 @@
+import { getValueByKeys, insertValue } from "@sjsf/form/lib/trie";
 import {
-  ON_ARRAY_CHANGE,
-  ON_BLUR,
-  ON_CHANGE,
-  ON_INPUT,
-  ON_OBJECT_CHANGE,
-  type FieldsValidationMode,
-  type Schema,
-} from "@sjsf/form";
-import {
-  isPrimitiveSchemaType,
   makeSchemaDefinitionTraverser,
-  pickSchemaType,
+  refToPath,
   SCHEMA_KEYS,
   transformSchemaDefinition,
   type SchemaDefinition,
   type SchemaKey,
   type SchemaTraverserContext,
 } from "@sjsf/form/core";
+import type { FieldsValidationMode, Schema } from "@sjsf/form/index.js";
+
+import {
+  createIdFactory,
+  DEFAULT_AUGMENT_SUFFIX,
+  isCombinationBranch,
+  isValidatableNode,
+  type SubSchemas,
+} from "./model.js";
 
 export interface InsertSubSchemaIdsOptions {
   fieldsValidationMode?: FieldsValidationMode;
@@ -26,60 +26,6 @@ export interface InsertSubSchemaIdsOptions {
   createId?: (schema: Schema, ctx: SchemaTraverserContext<SchemaKey>) => string;
 }
 
-function createIdFactory() {
-  let id = 0;
-  return () => `sjsf__${id++}`;
-}
-
-const INPUTS_VALIDATION = ON_INPUT | ON_CHANGE | ON_BLUR;
-const ARRAY_VALIDATION = ON_ARRAY_CHANGE;
-const OBJECT_VALIDATION = ON_OBJECT_CHANGE;
-const FIELDS_VALIDATION =
-  INPUTS_VALIDATION | ARRAY_VALIDATION | OBJECT_VALIDATION;
-
-function isValidatableNode(
-  validationMode: FieldsValidationMode,
-  ctx: SchemaTraverserContext<SchemaKey>,
-  node: Schema
-): boolean {
-  if (
-    ctx.type === "root" ||
-    (ctx.type === "sub" && ctx.key === "if") ||
-    (ctx.type === "array" && (ctx.key === "anyOf" || ctx.key === "oneOf"))
-  ) {
-    return true;
-  }
-  if (node.$ref !== undefined || !(validationMode & FIELDS_VALIDATION)) {
-    return false;
-  }
-  let { type } = node;
-  if (type === undefined) {
-    return Boolean(validationMode & OBJECT_VALIDATION);
-  }
-  if (Array.isArray(type)) {
-    type = pickSchemaType(type);
-  }
-  if (isPrimitiveSchemaType(type)) {
-    return Boolean(validationMode & INPUTS_VALIDATION);
-  }
-  if (type === "object") {
-    return (
-      Boolean(validationMode & OBJECT_VALIDATION) &&
-      typeof node.additionalProperties === "object"
-    );
-  }
-  return (
-    Boolean(validationMode & ARRAY_VALIDATION) &&
-    (Array.isArray(node.items)
-      ? typeof node.additionalItems === "object"
-      : true)
-  );
-}
-
-function toPath(ctx: SchemaTraverserContext<SchemaKey>) {
-  return `#/${ctx.path.join("/")}`;
-}
-
 // TODO: Support ref for ref
 export function insertSubSchemaIds(
   schema: Schema,
@@ -87,43 +33,66 @@ export function insertSubSchemaIds(
     createId = createIdFactory(),
     fieldsValidationMode = 0,
   }: InsertSubSchemaIdsOptions = {}
-): { schema: Schema; ids: Map<string, string> } {
-  const ids = new Map<string, string>();
+) {
+  let subSchemas: SubSchemas;
   Array.from(
     makeSchemaDefinitionTraverser(SCHEMA_KEYS, {
       *onEnter(node, ctx) {
+        const combinationBranch = isCombinationBranch(ctx);
         if (
           typeof node === "boolean" ||
-          !isValidatableNode(fieldsValidationMode, ctx, node)
+          !(
+            combinationBranch ||
+            isValidatableNode(fieldsValidationMode, ctx, node)
+          )
         ) {
           return;
         }
-        ids.set(
-          node.$ref !== undefined ? node.$ref : toPath(ctx),
-          createId(node, ctx)
-        );
+        const path =
+          node.$ref !== undefined ? refToPath(node.$ref) : ctx.path.slice();
+        const prev = getValueByKeys(subSchemas, path);
+        if (
+          prev === undefined ||
+          (!prev.combinationBranch && combinationBranch)
+        ) {
+          subSchemas = insertValue(subSchemas, path, {
+            id: prev?.id ?? createId(node, ctx),
+            combinationBranch,
+          });
+        }
       },
     })(schema)
   );
   return {
-    ids,
+    subSchemas,
     schema: transformSchemaDefinition(schema, (copy: SchemaDefinition, ctx) => {
       if (typeof copy === "boolean") {
         return copy;
       }
-      const id = ids.get(toPath(ctx));
-      if (id !== undefined) {
-        copy.$id = id;
+      const meta = getValueByKeys(subSchemas, ctx.path);
+      if (meta !== undefined) {
+        copy.$id = meta.id;
       }
       return copy;
     }) as Schema,
   };
 }
 
-export function fragmentSchema(
-  schema: Schema,
-  ids: Map<string, string>,
-): Schema[] {
+export interface FragmentSchemaOptions {
+  schema: Schema;
+  subSchemas: SubSchemas;
+  augmentSuffix?: string;
+}
+
+function omitRequired({ required, ...rest }: Schema): Schema {
+  return rest;
+}
+
+export function fragmentSchema({
+  schema,
+  subSchemas,
+  augmentSuffix = DEFAULT_AUGMENT_SUFFIX,
+}: FragmentSchemaOptions): Schema[] {
   const schemas: Schema[] = [];
   const rootId = schema.$id!;
   schemas.push(
@@ -131,12 +100,27 @@ export function fragmentSchema(
       if (typeof copy === "boolean") {
         return copy;
       }
-      const id = ids.get(toPath(ctx));
-      if (id !== undefined && id !== rootId) {
+      const meta = getValueByKeys(subSchemas, ctx.path);
+      if (meta !== undefined && meta.id !== rootId) {
         schemas.push(copy);
-        return {
-          $ref: `${id}#`,
+        const refSchema = {
+          $ref: `${meta.id}#`,
         };
+        if (meta.combinationBranch && copy.properties !== undefined) {
+          const len = copy.required?.length ?? 0;
+          schemas.push({
+            $id: meta.id + augmentSuffix,
+            allOf: [
+              len > 0 ? omitRequired(copy) : refSchema,
+              {
+                anyOf: Object.keys(copy.properties).map((key) => ({
+                  required: [key],
+                })),
+              },
+            ],
+          });
+        }
+        return refSchema;
       }
       if (copy.$ref !== undefined) {
         copy.$ref = `${rootId}${copy.$ref}`;
