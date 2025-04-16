@@ -1,7 +1,7 @@
 import { some } from '@sjsf/form/lib/array';
 import { isObject } from '@sjsf/form/lib/object';
 import { escapeRegex } from '@sjsf/form/lib/reg-exp';
-import { type Trie, getNodeByKeys, insertValue } from '@sjsf/form/lib/trie';
+import { type Trie, getValueByKeys, insertValue } from '@sjsf/form/lib/trie';
 import {
   getClosestMatchingOption,
   getDiscriminatorFieldFromSchema,
@@ -71,8 +71,7 @@ function removePseudoElements<T>(
     // if (Number.isInteger(Number(subKey))) {
     //   return false;
     // }
-    const node = getNodeByKeys(blacklist, subKey.split(''));
-    return node?.value !== true;
+    return getValueByKeys(blacklist, subKey.split('')) !== true;
   });
 }
 
