@@ -54,6 +54,7 @@ export const PROPERTY_NAME_KEY = "propertyName";
 
 export const DATA_URL_FORMAT = "data-url";
 
+// WARN: Order is important
 export const RECORDS_OF_SUB_SCHEMAS = [
   DEFS_KEY,
   DEFINITIONS_KEY,
@@ -66,6 +67,7 @@ export const SET_OF_RECORDS_OF_SUB_SCHEMAS = new Set(RECORDS_OF_SUB_SCHEMAS);
 
 export type SubSchemasRecordKey = (typeof RECORDS_OF_SUB_SCHEMAS)[number];
 
+// WARN: Order is important
 export const ARRAYS_OF_SUB_SCHEMAS = [
   ITEMS_KEY,
   ALL_OF_KEY,
@@ -77,6 +79,7 @@ export const SET_OF_ARRAYS_OF_SUB_SCHEMAS = new Set(ARRAYS_OF_SUB_SCHEMAS);
 
 export type SubSchemasArrayKey = (typeof ARRAYS_OF_SUB_SCHEMAS)[number];
 
+// WARN: Order is important
 export const SUB_SCHEMAS = [
   ITEMS_KEY,
   ADDITIONAL_ITEMS_KEY,
@@ -93,6 +96,7 @@ export const SET_OF_SUB_SCHEMAS = new Set(SUB_SCHEMAS);
 
 export type SubSchemaKey = (typeof SUB_SCHEMAS)[number];
 
+// WARN: Order is important
 export const SCHEMA_KEYS = [
   ...RECORDS_OF_SUB_SCHEMAS,
   ...ARRAYS_OF_SUB_SCHEMAS,

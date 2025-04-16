@@ -22,6 +22,8 @@ import { isSchemaObjectValue } from "./value.js";
 // Should increase cache hit for validators with cache based on weak map
 const AUGMENTED_SCHEMAS = new WeakMap<Schema, Schema>();
 
+// WARN: Any change to this function must be synchronized with:
+// - `@sjsf/ajv8-validator/precompile`
 function isOptionMatching(
   option: Schema,
   validator: Validator,
