@@ -72,6 +72,10 @@
       "types": "./dist/form/index.d.ts",
       "svelte": "./dist/form/index.js"
     },
+    "./index.js": {
+      "types": "./dist/form/main.d.ts",
+      "default": "./dist/form/main.js"
+    },
     "./resolvers/*": {
       "types": "./dist/form/resolvers/*.d.ts",
       "svelte": "./dist/form/resolvers/*"
