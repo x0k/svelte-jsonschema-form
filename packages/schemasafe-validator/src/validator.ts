@@ -22,6 +22,7 @@ import {
   transformError,
   type ErrorsTransformerOptions,
 } from "./errors.js";
+import { DEFAULT_VALIDATOR_OPTIONS } from './model.js';
 
 export type ValidateFactory = (schema: Schema, rootSchema: Schema) => Validate;
 
@@ -138,12 +139,10 @@ export interface FormValidatorOptions
 export function createFormValidator({
   factory = (schema, rootSchema) =>
     validator(schema as SafeSchema, {
+      ...DEFAULT_VALIDATOR_OPTIONS,
       schemas: {
         [ROOT_SCHEMA_PREFIX]: rootSchema as SafeSchema,
       },
-      includeErrors: true,
-      allErrors: true,
-      $schemaDefault: "http://json-schema.org/draft-07/schema",
     }),
   createSchemaValidator = createSchemaValidatorFactory(factory),
   createFieldSchemaValidator = createFieldsValidatorFactory(factory),

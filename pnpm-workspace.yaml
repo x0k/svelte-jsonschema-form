@@ -28,6 +28,7 @@ catalog:
   "typescript-eslint": "^8.29.1"
   "zod": "^3.24.2"
   "@tailwindcss/vite": "^4.1.3"
+  "@exodus/schemasafe": "^1.3.0"
 
 catalogs:
   next:

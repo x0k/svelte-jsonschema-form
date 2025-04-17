@@ -1,0 +1,128 @@
+import type { Json, Validate, ValidationError } from "@exodus/schemasafe";
+import type {
+  FieldValueValidator,
+  FormValueValidator,
+  Schema,
+  Validator,
+} from "@sjsf/form";
+import { DEFAULT_AUGMENT_SUFFIX } from "@sjsf/form/validators/precompile";
+
+import type { ValueToJSON } from "../validator.js";
+import {
+  createErrorMessage,
+  createErrorsTransformer,
+  transformError,
+  type ErrorsTransformerOptions,
+} from "../errors.js";
+
+export type CompiledValidateFunction = (data: unknown) => boolean;
+
+export type ValidateFunctions = {
+  [key: string]: CompiledValidateFunction;
+};
+
+export interface ValidatorOptions extends ValueToJSON {
+  validateFunctions: ValidateFunctions;
+  augmentSuffix?: string;
+}
+
+function getValidate(
+  {
+    validateFunctions,
+    augmentSuffix = DEFAULT_AUGMENT_SUFFIX,
+  }: ValidatorOptions,
+  { $id: id, allOf }: Schema
+): Validate {
+  if (id === undefined) {
+    const firstAllOfItem = allOf?.[0];
+    if (
+      typeof firstAllOfItem === "object" &&
+      firstAllOfItem.$id !== undefined
+    ) {
+      id = firstAllOfItem.$id + augmentSuffix;
+    } else {
+      throw new Error("Schema id not found");
+    }
+  }
+  const validate = validateFunctions[id];
+  if (validate === undefined) {
+    throw new Error(`Validate function with id "${id}" not found`);
+  }
+  return validate as Validate;
+}
+
+export function createValidator(options: ValidatorOptions): Validator {
+  return {
+    isValid(schema, _, formValue) {
+      if (typeof schema === "boolean") {
+        return schema;
+      }
+      const validate = getValidate(options, schema);
+      return validate(options.valueToJSON(formValue));
+    },
+  };
+}
+
+export interface FormValueValidatorOptions
+  extends ValidatorOptions,
+    ErrorsTransformerOptions {}
+
+export function createFormValueValidator(
+  options: FormValueValidatorOptions
+): FormValueValidator<ValidationError> {
+  const transform = createErrorsTransformer(options);
+  return {
+    validateFormValue(rootSchema, formValue) {
+      const validate = getValidate(options, rootSchema);
+      validate(options.valueToJSON(formValue));
+      return validate.errors ? transform(rootSchema, validate.errors) : [];
+    },
+  };
+}
+
+export function createFieldValueValidator(
+  options: ValidatorOptions
+): FieldValueValidator<ValidationError> {
+  return {
+    validateFieldValue(field, fieldValue) {
+      const validate = getValidate(options, field.schema);
+      validate(options.valueToJSON(fieldValue));
+      return (
+        validate.errors?.map((error) => {
+          const { keyword } = transformError(error);
+          return {
+            instanceId: field.id,
+            propertyTitle: field.title,
+            message: createErrorMessage(
+              keyword,
+              keyword in field.schema
+                ? String(field.schema[keyword as keyof Schema])
+                : undefined
+            ),
+            error,
+          };
+        }) ?? []
+      );
+    },
+  };
+}
+
+export interface FormValidatorOptions
+  extends ValidatorOptions,
+    FormValueValidatorOptions {}
+
+export function createFormValidator({
+  // `isJSON` validator option is `false` by default
+  valueToJSON = (value) => value as Json,
+  ...rest
+}: Omit<FormValidatorOptions, keyof ValueToJSON> & Partial<ValueToJSON>) {
+  const options: FormValidatorOptions = {
+    ...rest,
+    valueToJSON,
+  };
+  return Object.assign(
+    createValidator(options),
+    createFormValueValidator(options),
+    createFieldValueValidator(options)
+  );
+}

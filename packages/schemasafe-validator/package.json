@@ -34,18 +34,12 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "svelte": "./dist/index.js"
-    },
-    "./index.js": {
-      "types": "./dist/index.d.ts",
+      "svelte": "./dist/index.js",
       "default": "./dist/index.js"
     },
     "./precompile": {
       "types": "./dist/precompile/index.d.ts",
-      "svelte": "./dist/precompile/index.js"
-    },
-    "./precompile/index.js": {
-      "types": "./dist/precompile/index.d.ts",
+      "svelte": "./dist/precompile/index.js",
       "default": "./dist/precompile/index.js"
     }
   },
@@ -54,7 +48,7 @@
     "@sjsf/form": "workspace:^2.0.0-next.8"
   },
   "devDependencies": {
-    "@exodus/schemasafe": "^1.3.0",
+    "@exodus/schemasafe": "catalog:",
     "@sjsf/form": "workspace:*",
     "@sveltejs/vite-plugin-svelte": "catalog:",
     "svelte": "catalog:",
