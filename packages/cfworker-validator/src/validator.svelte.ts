@@ -8,7 +8,9 @@ import { getValueByPath } from "@sjsf/form/lib/object";
 import {
   ID_KEY,
   prefixSchemaRefs,
+  refToPath,
   ROOT_SCHEMA_PREFIX,
+  type Path,
   type SchemaValue,
   type Validator,
 } from "@sjsf/form/core";
@@ -55,7 +57,7 @@ export function createSchemaValidatorFactory(factory: CfValidatorFactory) {
     rootSchemaId = rootSchema[ID_KEY] ?? ROOT_SCHEMA_PREFIX;
     usePrefixSchemaRefs = schema !== rootSchema;
     const validator = makeValidator(schema);
-    if (usePrefixSchemaRefs && lastRootSchema?.deref() !== rootSchema) {
+    if (usePrefixSchemaRefs && lastRootSchema.deref() !== rootSchema) {
       lastRootSchema = new WeakRef(rootSchema);
       validator.addSchema(
         $state.snapshot(rootSchema) as CfSchema,
@@ -95,16 +97,15 @@ function createErrorsTransformer(options: ErrorsTransformerOptions) {
   const extractPropertyTitle = (
     unit: OutputUnit,
     rootSchema: Schema,
-    path: string[],
+    path: Path,
     instanceId: string
   ): string => {
-    const instanceUiSchema = getUiSchemaByPath(options.uiSchema, path);
-    const uiTitle = instanceUiSchema?.["ui:options"]?.title;
-    if (uiTitle) {
-      return uiTitle;
+    const title = getUiSchemaByPath(options.uiSchema, path)?.["ui:options"]
+      ?.title;
+    if (title !== undefined) {
+      return title;
     }
-    let schemaPath = unit.keywordLocation.split("/");
-    schemaPath = schemaPath.slice(1, -1);
+    const schemaPath = refToPath(unit.keywordLocation).slice(0, -1);
     const schema = getValueByPath(rootSchema, schemaPath);
     if (
       schema &&
@@ -116,16 +117,13 @@ function createErrorsTransformer(options: ErrorsTransformerOptions) {
     }
     return (
       getRootSchemaTitleByPath(rootSchema, path) ??
-      path[path.length - 1] ??
+      path[path.length - 1]?.toString() ??
       instanceId
     );
   };
   return (rootSchema: Schema, errors: OutputUnit[]) =>
     errors.map((unit) => {
-      let path = unit.instanceLocation.split("/");
-      if (path[0] === "#") {
-        path = path.slice(1);
-      }
+      const path = refToPath(unit.instanceLocation);
       const instanceId = pathToId(path, options);
       return {
         instanceId,
@@ -143,10 +141,10 @@ export interface FormValueValidatorOptions
 export function createFormValueValidator(
   options: FormValueValidatorOptions
 ): FormValueValidator<OutputUnit> {
+  const errorsTransformer = createErrorsTransformer(options);
   return {
     validateFormValue(rootSchema, formValue) {
       const validator = options.createSchemaValidator(rootSchema, rootSchema);
-      const errorsTransformer = createErrorsTransformer(options);
       return errorsTransformer(
         rootSchema,
         validator.validate(options.fixUndefined(formValue)).errors
