@@ -34,18 +34,12 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "svelte": "./dist/index.js"
-    },
-    "./index.js": {
-      "types": "./dist/index.d.ts",
+      "svelte": "./dist/index.js",
       "default": "./dist/index.js"
     },
     "./precompile": {
       "types": "./dist/precompile/index.d.ts",
-      "svelte": "./dist/precompile/index.js"
-    },
-    "./precompile/index.js": {
-      "types": "./dist/precompile/index.d.ts",
+      "svelte": "./dist/precompile/index.js",
       "default": "./dist/precompile/index.js"
     }
   },

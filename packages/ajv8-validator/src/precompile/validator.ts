@@ -1,4 +1,10 @@
 import type {
+  Ajv,
+  AsyncValidateFunction,
+  ErrorObject,
+  ValidateFunction,
+} from "ajv";
+import type {
   AsyncFieldValueValidator,
   AsyncFormValueValidator,
   FieldValueValidator,
@@ -6,12 +12,7 @@ import type {
   Schema,
   Validator,
 } from "@sjsf/form";
-import type {
-  Ajv,
-  AsyncValidateFunction,
-  ErrorObject,
-  ValidateFunction,
-} from "ajv";
+import { DEFAULT_AUGMENT_SUFFIX } from "@sjsf/form/validators/precompile";
 
 import {
   createFormErrorsTransformer,
@@ -20,7 +21,6 @@ import {
   validateAndTransformErrors,
   validateAndTransformErrorsAsync,
 } from "../errors.js";
-import { DEFAULT_AUGMENT_SUFFIX } from './model.js';
 
 export type CompiledValidateFunction = {
   (this: Ajv | any, data: any): boolean;
@@ -32,12 +32,15 @@ export type ValidateFunctions = {
 
 export interface ValidatorOptions {
   validateFunctions: ValidateFunctions;
-  augmentSuffix?: string
+  augmentSuffix?: string;
 }
 
 function getValidateFunction(
-  { validateFunctions, augmentSuffix = DEFAULT_AUGMENT_SUFFIX }: ValidatorOptions,
-  { $id: id, allOf }: Schema,
+  {
+    validateFunctions,
+    augmentSuffix = DEFAULT_AUGMENT_SUFFIX,
+  }: ValidatorOptions,
+  { $id: id, allOf }: Schema
 ): ValidateFunction {
   if (id === undefined) {
     const firstAllOfItem = allOf?.[0];
