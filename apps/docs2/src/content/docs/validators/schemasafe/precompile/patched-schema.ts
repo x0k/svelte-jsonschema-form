@@ -1,6 +1,7 @@
 import type { Schema } from "@sjsf/form";
 export const fieldsValidationMode = 1
 export const schema = {
+  "$id": "v0",
   "definitions": {
     "test": {
       "type": "string",
@@ -152,6 +153,5 @@ export const schema = {
       },
       "$id": "v20"
     }
-  ],
-  "$id": "v0"
+  ]
 } as const satisfies Schema;

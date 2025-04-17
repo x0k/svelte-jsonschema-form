@@ -6,11 +6,14 @@
   "scripts": {
     "dev": "astro dev",
     "precompile-ajv-validator": "node --experimental-strip-types src/content/docs/validators/ajv/precompile/compile-schema-script.ts",
+    "precompile-schemasafe-validator": "node --experimental-strip-types src/content/docs/validators/schemasafe/precompile/compile-schema-script.ts",
+    "precompile-validators": "pnpm run precompile-ajv-validator && pnpm run precompile-schemasafe-validator",
     "build": " astro build",
     "preview": "astro preview",
-    "check": "pnpm run precompile-ajv-validator && astro check"
+    "check": "pnpm run precompile-validators && astro check"
   },
   "dependencies": {
+    "@exodus/schemasafe": "catalog:",
     "@sjsf/ajv8-validator": "workspace:*",
     "@sjsf/basic-theme": "workspace:*",
     "@sjsf/cfworker-validator": "workspace:*",
@@ -23,6 +26,7 @@
     "@sjsf/lucide-icons": "workspace:*",
     "@sjsf/moving-icons": "workspace:*",
     "@sjsf/radix-icons": "workspace:*",
+    "@sjsf/schemasafe-validator": "workspace:*",
     "@sjsf/shadcn-theme": "workspace:*",
     "@sjsf/skeleton-theme": "workspace:*",
     "@sjsf/skeleton3-theme": "workspace:*",

@@ -1,17 +1,14 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import Ajv from "ajv";
-import standaloneCode from "ajv/dist/standalone/index.js";
+import { validator } from '@exodus/schemasafe'
 
 import { ON_INPUT } from '@sjsf/form';
 import {
   insertSubSchemaIds,
   fragmentSchema,
 } from "@sjsf/form/validators/precompile";
-import { addFormComponents } from "@sjsf/ajv8-validator";
-
-import { build } from "esbuild";
+import { DEFAULT_VALIDATOR_OPTIONS, FORM_FORMATS } from '@sjsf/schemasafe-validator'
 
 import inputSchema from './input-schema.json' with { type: "json" }
 
@@ -30,33 +27,20 @@ export const fieldsValidationMode = ${fieldsValidationMode}
 export const schema = ${JSON.stringify(patch.schema, null, 2)} as const satisfies Schema;`
 );
 
-const ajv = new Ajv({
-  schemas: fragmentSchema(patch),
+const schemas = fragmentSchema(patch)
+
+// @ts-expect-error No typing for `multi` version of function
+const validate = validator(schemas, {
+  ...DEFAULT_VALIDATOR_OPTIONS,
   formats: {
+    ...FORM_FORMATS,
     "phone-us": /\(?\d{3}\)?[\s-]?\d{3}[\s-]?\d{4}$/,
     "area-code": /\d{3}/,
   },
-  code: {
-    source: true,
-    esm: true,
-  },
-});
-const modules = standaloneCode(addFormComponents(ajv));
+  schemas: new Map(schemas.map(schema => [schema.$id, schema])),
+  multi: true,
+})
 
-// https://github.com/ajv-validator/ajv/issues/2209#issuecomment-2580172967
-const { outputFiles } = await build({
-  minify: true,
-  bundle: true,
-  write: false,
-  format: "esm",
-  sourcemap: false,
-  stdin: {
-    contents: modules,
-    resolveDir: "/",
-    sourcefile: "input.js",
-    loader: "js",
-  },
-});
-const bundle = outputFiles[0].text;
+const validateFunctions = `export const [${schemas.map(s => s.$id).join(', ')}] = ${validate.toModule()}`
 
-fs.writeFileSync(path.join(import.meta.dirname, "validate-functions.js"), bundle);
+fs.writeFileSync(path.join(import.meta.dirname, "validate-functions.js"), validateFunctions)

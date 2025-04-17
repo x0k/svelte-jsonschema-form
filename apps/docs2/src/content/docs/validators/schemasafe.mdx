@@ -1,7 +1,7 @@
 ---
-title: Ajv
+title: exodus/schemasafe
 sidebar:
-  order: 0
+  order: 4
 ---
 
 import { LinkButton, Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
@@ -9,22 +9,22 @@ import { LinkButton, Code, Card, TabItem, Tabs } from '@astrojs/starlight/compon
 import Npm from '@/components/npm.astro';
 import FormCard from '@/components/form-card.astro';
 
-import Form from './ajv/form.svelte';
-import formCode from './ajv/form.svelte?raw';
+import Form from './schemasafe/form.svelte';
+import formCode from './schemasafe/form.svelte?raw';
 import sharedCode from './shared/index.ts?raw';
 
-import PrecompiledForm from './ajv/precompile/form.svelte'
-import precompiledFormCode from './ajv/precompile/form.svelte?raw'
-import compileSchemaCode from './ajv/precompile/compile-schema-script?raw'
-import inputSchemaCode from './ajv/precompile/input-schema.json?raw'
-import precompiledSchemaCode from './ajv/precompile/patched-schema?raw'
+import PrecompiledForm from './schemasafe/precompile/form.svelte'
+import precompiledFormCode from './schemasafe/precompile/form.svelte?raw'
+import compileSchemaCode from './schemasafe/precompile/compile-schema-script?raw'
+import inputSchemaCode from './schemasafe/precompile/input-schema.json?raw'
+import precompiledSchemaCode from './schemasafe/precompile/patched-schema?raw'
 
-Form validator implementation based on [Ajv@8](https://github.com/ajv-validator/ajv)
-JSON schema validator.
+Form validator implementation based on [@exodus/schemasafe](https://github.com/ExodusMovement/schemasafe)
+a code-generating JSON Schema validator.
 
 ## Installation
 
-<Npm pkg="@sjsf/ajv8-validator@next ajv@8" />
+<Npm pkg="@sjsf/schemasafe-validator@next ajv@8" />
 
 ## Example
 
@@ -41,32 +41,9 @@ JSON schema validator.
   <Form client:only="svelte" />
 </FormCard>
 
-## Async validation
-
-This validator supports async validation.
-
-<LinkButton
-  href="https://ajv.js.org/guide/async-validation.html"
-  variant="secondary"
-  icon="external"
-  iconPlacement="end"
-  target="_blank"
->
-  Asynchronous validation
-</LinkButton>
-
-```typescript
-import { createAsyncFormValidator } from "@sjsf/ajv8-validator";
-
-const validator = createAsyncFormValidator({
-  ajv: yourAjvInstance,
-})
-```
-
 ## Precompiled validation
 
-It is possible to use precompiled validator to avoid issues with `unsafe-eval`
-warnings from the browser caused by strict Content Security Policy settings.
+It is possible to use precompiled validator.
 
 ### Schema precompilation
 
