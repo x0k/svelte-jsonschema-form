@@ -45,6 +45,14 @@ cfw/:
     pnpm run test
   popd
 
+safe/:
+  pushd packages/schemasafe-validator
+  b:
+    pnpm run build
+  t:
+    pnpm run test
+  popd
+
 f/:
   pushd packages/form
   d:
