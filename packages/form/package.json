@@ -70,10 +70,7 @@
     },
     ".": {
       "types": "./dist/form/index.d.ts",
-      "svelte": "./dist/form/index.js"
-    },
-    "./index.js": {
-      "types": "./dist/form/main.d.ts",
+      "svelte": "./dist/form/index.js",
       "default": "./dist/form/main.js"
     },
     "./resolvers/*": {
@@ -118,7 +115,7 @@
     },
     "./validators/*": {
       "types": "./dist/validators/*.d.ts",
-      "svelte": "./dist/validators/*.js"
+      "default": "./dist/validators/*.js"
     },
     "./focus-on-first-error": {
       "types": "./dist/focus-on-first-error.d.ts",

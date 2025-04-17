@@ -1,14 +1,16 @@
 import type { StandardSchemaV1 } from "@standard-schema/spec";
 
 import type { Path, Schema } from "@/core/index.js";
-import { getRootSchemaTitleByPath } from "@/form/model.js";
-import { pathToId, type PathToIdOptions } from "@/form/id.js";
-import { getUiSchemaByPath, type UiSchemaRoot } from "@/form/ui-schema.js";
-import type {
-  AsyncFormValueValidator,
-  FormValueValidator,
-  ValidationError,
-} from "@/form/validator.js";
+import {
+  getRootSchemaTitleByPath,
+  getUiSchemaByPath,
+  pathToId,
+  type AsyncFormValueValidator,
+  type FormValueValidator,
+  type PathToIdOptions,
+  type UiSchemaRoot,
+  type ValidationError,
+} from "@/form/main.js";
 
 export interface ErrorsTransformerOptions extends PathToIdOptions {
   uiSchema?: UiSchemaRoot;
