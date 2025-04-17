@@ -22,6 +22,7 @@
     "@sjsf/lucide-icons": "workspace:*",
     "@sjsf/moving-icons": "workspace:*",
     "@sjsf/radix-icons": "workspace:*",
+    "@sjsf/schemasafe-validator": "workspace:*",
     "@sjsf/shadcn-theme": "workspace:*",
     "@sjsf/skeleton-theme": "workspace:*",
     "@sjsf/skeleton3-theme": "workspace:*",
