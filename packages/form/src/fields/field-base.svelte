@@ -1,4 +1,4 @@
-<script lang="ts" generics="V extends FormValue, T extends UnifiedWidgetType">
+<script lang="ts" generics="V extends FieldValue, T extends UnifiedWidgetType">
   import {
     makeEventHandlers,
     getErrors,
@@ -7,7 +7,7 @@
     getComponent,
     type ComponentProps,
     type Config,
-    type FormValue,
+    type FieldValue,
   } from "@/form/index.js";
 
   import type { UnifiedWidgetType } from "./widgets.js";
@@ -20,12 +20,16 @@
     fromValue,
     toValue,
     widgetType,
+    showTitle,
+    useLabel,
   }: {
-    widgetType: T;
-    value: V;
     config: Config;
+    value: V;
+    widgetType: T;
     fromValue: (v: V) => ComponentProps[T]["value"];
     toValue: (v: ComponentProps[T]["value"]) => V;
+    showTitle: boolean;
+    useLabel: boolean;
   } = $props();
 
   const Template = $derived(getComponent(ctx, "fieldTemplate", config));
@@ -40,8 +44,8 @@
 
 <Template
   type="template"
-  showTitle
-  useLabel
+  {showTitle}
+  {useLabel}
   {widgetType}
   {value}
   {config}

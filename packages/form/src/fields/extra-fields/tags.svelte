@@ -7,40 +7,21 @@
 </script>
 
 <script lang="ts">
-  import {
-    getComponent,
-    getErrors,
-    getFormContext,
-    makeEventHandlers,
-    validateField,
-    type ComponentProps,
-  } from "@/form/index.js";
+  import { identity } from "@/lib/function.js";
+  import type { ComponentProps } from "@/form/index.js";
 
+  import FieldBase from "../field-base.svelte";
   import "../extra-widgets/tags.js";
 
   let { config, value = $bindable() }: ComponentProps["tagsField"] = $props();
-
-  const ctx = getFormContext();
-
-  const Template = $derived(getComponent(ctx, "fieldTemplate", config));
-  const widgetType = "tagsWidget";
-  const Widget = $derived(getComponent(ctx, widgetType, config));
-
-  const handlers = makeEventHandlers(ctx, () =>
-    validateField(ctx, config, value)
-  );
-
-  const errors = $derived(getErrors(ctx, config.id));
 </script>
 
-<Template
-  type="template"
+<FieldBase
+  {config}
   showTitle
   useLabel
-  {widgetType}
-  {value}
-  {config}
-  {errors}
->
-  <Widget type="widget" bind:value {handlers} {errors} {config} />
-</Template>
+  widgetType="tagsWidget"
+  bind:value
+  fromValue={identity}
+  toValue={identity}
+/>

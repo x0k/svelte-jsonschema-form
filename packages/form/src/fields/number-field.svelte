@@ -7,47 +7,20 @@
 </script>
 
 <script lang="ts">
-  import {
-    makeEventHandlers,
-    getErrors,
-    validateField,
-    getFormContext,
-    getComponent,
-    type ComponentProps,
-  } from "@/form/index.js";
+  import { identity } from "@/lib/function.js";
+  import type { ComponentProps } from "@/form/index.js";
 
-  const ctx = getFormContext();
+  import FieldBase from "./field-base.svelte";
 
   let { value = $bindable(), config }: ComponentProps["numberField"] = $props();
-
-  const Template = $derived(getComponent(ctx, "fieldTemplate", config));
-  const widgetType = "numberWidget";
-  const Widget = $derived(getComponent(ctx, widgetType, config));
-
-  const handlers = makeEventHandlers(ctx, () =>
-    validateField(ctx, config, value)
-  );
-
-  const errors = $derived(getErrors(ctx, config.id));
 </script>
 
-<Template
-  type="template"
+<FieldBase
+  {config}
   showTitle
   useLabel
-  {widgetType}
-  {value}
-  {config}
-  {errors}
->
-  <Widget
-    type="widget"
-    {config}
-    {errors}
-    bind:value={
-      () => value,
-      (v) => (value = v === undefined ? config.uiOptions?.numberEmptyValue : v)
-    }
-    {handlers}
-  />
-</Template>
+  widgetType="numberWidget"
+  bind:value
+  fromValue={identity}
+  toValue={(v) => v ?? config.uiOptions?.numberEmptyValue}
+/>
