@@ -1,5 +1,19 @@
 # @sjsf/form
 
+## 2.0.0-next.9
+
+### Major Changes
+
+- Extract array field logic into `createArrayContext` function ([`99b77fb`](https://github.com/x0k/svelte-jsonschema-form/commit/99b77fb416960e7204154a29826684af1939792a))
+
+- Extract object field logic into `createObjectContext` function ([`73ee1fb`](https://github.com/x0k/svelte-jsonschema-form/commit/73ee1fb8c35b43c00e6e0d1045d3672f05e78842))
+
+### Minor Changes
+
+- Add `validators/precompile` submodule ([`9882dd8`](https://github.com/x0k/svelte-jsonschema-form/commit/9882dd8b84a19be80d47786708379fedcda2db31))
+
+- Add `arraySubSchemasMergeType` option for `mergeSchemas` function ([`b2c896b`](https://github.com/x0k/svelte-jsonschema-form/commit/b2c896b2058b56a4f4ee5794f490f6298a375f94))
+
 ## 2.0.0-next.8
 
 ### Major Changes
