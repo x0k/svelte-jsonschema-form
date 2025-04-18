@@ -2,7 +2,7 @@
 
 The [flowbite-svelte-icons](https://github.com/themesberg/flowbite-svelte-icons) based icons set for [svelte-jsonschema-form](https://github.com/x0k/svelte-jsonschema-form).
 
-- [Documentation](https://x0k.github.io/svelte-jsonschema-form/guides/labels-and-icons/#flowbite-icons)
+- [Documentation](https://x0k.github.io/svelte-jsonschema-form/v2/guides/labels-and-icons/#usage)
 - [Playground](https://x0k.github.io/svelte-jsonschema-form/playground2/)
 
 ## Installation

@@ -2,7 +2,7 @@
 
 The [skeleton](https://github.com/skeletonlabs/skeleton) v3 (tailwind v3) based theme for [svelte-jsonschema-form](https://github.com/x0k/svelte-jsonschema-form).
 
-- [Documentation](https://x0k.github.io/svelte-jsonschema-form/themes/skeleton/)
+- [Documentation](https://x0k.github.io/svelte-jsonschema-form/v2/themes/skeleton/)
 - [Playground](https://x0k.github.io/svelte-jsonschema-form/playground2/)
 
 ## Installation
