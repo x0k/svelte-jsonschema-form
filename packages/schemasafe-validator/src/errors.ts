@@ -9,6 +9,7 @@ import {
   getRootSchemaTitleByPath,
   getUiSchemaByPath,
   pathToId,
+  type Config,
   type IdPrefixOption,
   type IdSeparatorOption,
   type Schema,
@@ -37,7 +38,7 @@ function extractKeywordValue(
   }
 }
 
-export function transformError({
+function transformError({
   instanceLocation,
   keywordLocation,
 }: ValidationError) {
@@ -53,10 +54,7 @@ export function transformError({
   };
 }
 
-export function createErrorMessage(
-  keyword: string,
-  details: string | undefined
-) {
+function createErrorMessage(keyword: string, details: string | undefined) {
   return details ? `${keyword} (${details})` : keyword;
 }
 
@@ -87,8 +85,13 @@ export function createErrorsTransformer(options: ErrorsTransformerOptions) {
       error.instanceLocation
     );
   };
-  return (rootSchema: Schema, errors: ValidationError[]) =>
-    errors.map((error) => {
+  return (rootSchema: Schema, errors: ValidationError[] | undefined) => {
+    // NOTE: According to the compiled output of `schemasafe`
+    // errors can be `null`
+    if (!errors) {
+      return [];
+    }
+    return errors.map((error) => {
       const { instancePath, schemaPath, keyword } = transformError(error);
       return {
         instanceId: pathToId(instancePath, options),
@@ -105,4 +108,42 @@ export function createErrorsTransformer(options: ErrorsTransformerOptions) {
         error,
       };
     });
+  };
+}
+
+function isRootError(error: ValidationError): boolean {
+  return error.instanceLocation === "#";
+}
+
+function isRootNonTypeError(error: ValidationError): boolean {
+  return isRootError(error) && !error.keywordLocation.endsWith("type");
+}
+
+export function transformFieldErrors(
+  field: Config,
+  errors: ValidationError[] | undefined
+) {
+  // NOTE: According to the compiled output of `schemasafe`
+  // errors can be `null`
+  if (!errors) {
+    return [];
+  }
+  return (
+    errors
+      .filter(field.required ? isRootError : isRootNonTypeError)
+      .map((error) => {
+        const { keyword } = transformError(error);
+        return {
+          instanceId: field.id,
+          propertyTitle: field.title,
+          message: createErrorMessage(
+            keyword,
+            keyword in field.schema
+              ? String(field.schema[keyword as keyof Schema])
+              : undefined
+          ),
+          error,
+        };
+      }) ?? []
+  );
 }

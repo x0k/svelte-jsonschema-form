@@ -17,12 +17,11 @@ import type {
 } from "@sjsf/form";
 
 import {
-  createErrorMessage,
   createErrorsTransformer,
-  transformError,
+  transformFieldErrors,
   type ErrorsTransformerOptions,
 } from "./errors.js";
-import { DEFAULT_VALIDATOR_OPTIONS } from './model.js';
+import { DEFAULT_VALIDATOR_OPTIONS } from "./model.js";
 
 export type ValidateFactory = (schema: Schema, rootSchema: Schema) => Validate;
 
@@ -94,7 +93,7 @@ export function createFormValueValidator(
     validateFormValue(rootSchema, formValue) {
       const validator = options.createSchemaValidator(rootSchema, rootSchema);
       validator(options.valueToJSON(formValue));
-      return validator.errors ? transform(rootSchema, validator.errors) : [];
+      return transform(rootSchema, validator.errors);
     },
   };
 }
@@ -111,22 +110,7 @@ export function createFieldValueValidator({
     validateFieldValue(field, fieldValue) {
       const validate = createFieldSchemaValidator(field);
       validate(valueToJSON(fieldValue));
-      return (
-        validate.errors?.map((error) => {
-          const { keyword } = transformError(error);
-          return {
-            instanceId: field.id,
-            propertyTitle: field.title,
-            message: createErrorMessage(
-              keyword,
-              keyword in field.schema
-                ? String(field.schema[keyword as keyof Schema])
-                : undefined
-            ),
-            error,
-          };
-        }) ?? []
-      );
+      return transformFieldErrors(field, validate.errors);
     },
   };
 }

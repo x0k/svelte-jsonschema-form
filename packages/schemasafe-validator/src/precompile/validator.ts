@@ -9,9 +9,8 @@ import { DEFAULT_AUGMENT_SUFFIX } from "@sjsf/form/validators/precompile";
 
 import type { ValueToJSON } from "../validator.js";
 import {
-  createErrorMessage,
   createErrorsTransformer,
-  transformError,
+  transformFieldErrors,
   type ErrorsTransformerOptions,
 } from "../errors.js";
 
@@ -75,7 +74,7 @@ export function createFormValueValidator(
     validateFormValue(rootSchema, formValue) {
       const validate = getValidate(options, rootSchema);
       validate(options.valueToJSON(formValue));
-      return validate.errors ? transform(rootSchema, validate.errors) : [];
+      return transform(rootSchema, validate.errors);
     },
   };
 }
@@ -87,22 +86,7 @@ export function createFieldValueValidator(
     validateFieldValue(field, fieldValue) {
       const validate = getValidate(options, field.schema);
       validate(options.valueToJSON(fieldValue));
-      return (
-        validate.errors?.map((error) => {
-          const { keyword } = transformError(error);
-          return {
-            instanceId: field.id,
-            propertyTitle: field.title,
-            message: createErrorMessage(
-              keyword,
-              keyword in field.schema
-                ? String(field.schema[keyword as keyof Schema])
-                : undefined
-            ),
-            error,
-          };
-        }) ?? []
-      );
+      return transformFieldErrors(field, validate.errors);
     },
   };
 }
