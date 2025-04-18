@@ -1,5 +1,18 @@
 # @sjsf/ajv8-validator
 
+## 2.0.0-next.9
+
+### Minor Changes
+
+- Add `precompile` submodule to support precompiled mode ([`e8f1bf5`](https://github.com/x0k/svelte-jsonschema-form/commit/e8f1bf5cc3462f2b00afa207c53a29b50bf97434))
+
+### Patch Changes
+
+- Remove field value wrapping in `fieldValue` validator ([`2401eee`](https://github.com/x0k/svelte-jsonschema-form/commit/2401eee6d4fa8de6bcff5e7e589b67b8dc511ba5))
+
+- Updated dependencies [[`99b77fb`](https://github.com/x0k/svelte-jsonschema-form/commit/99b77fb416960e7204154a29826684af1939792a), [`9882dd8`](https://github.com/x0k/svelte-jsonschema-form/commit/9882dd8b84a19be80d47786708379fedcda2db31), [`73ee1fb`](https://github.com/x0k/svelte-jsonschema-form/commit/73ee1fb8c35b43c00e6e0d1045d3672f05e78842), [`b2c896b`](https://github.com/x0k/svelte-jsonschema-form/commit/b2c896b2058b56a4f4ee5794f490f6298a375f94)]:
+  - @sjsf/form@2.0.0-next.9
+
 ## 2.0.0-next.8
 
 ### Patch Changes

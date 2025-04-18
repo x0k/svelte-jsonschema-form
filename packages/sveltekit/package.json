@@ -1,6 +1,6 @@
 {
 	"name": "@sjsf/sveltekit",
-	"version": "2.0.0-next.8",
+	"version": "2.0.0-next.9",
 	"description": "The SvelteKit integration for svelte-jsonschema-form",
 	"license": "MIT",
 	"keywords": [
@@ -52,7 +52,7 @@
 		}
 	},
 	"peerDependencies": {
-		"@sjsf/form": "workspace:^2.0.0-next.8",
+		"@sjsf/form": "workspace:^2.0.0-next.9",
 		"@sveltejs/kit": "^2.20.0",
 		"esm-env": "^1.2.0",
 		"svelte": "^5.25.0"

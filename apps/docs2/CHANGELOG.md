@@ -1,5 +1,30 @@
 # docs
 
+## 1.6.3-next.9
+
+### Patch Changes
+
+- Updated dependencies [[`5ef2023`](https://github.com/x0k/svelte-jsonschema-form/commit/5ef202327f6cd8930cafa4504258accacf115e62), [`99b77fb`](https://github.com/x0k/svelte-jsonschema-form/commit/99b77fb416960e7204154a29826684af1939792a), [`9882dd8`](https://github.com/x0k/svelte-jsonschema-form/commit/9882dd8b84a19be80d47786708379fedcda2db31), [`73ee1fb`](https://github.com/x0k/svelte-jsonschema-form/commit/73ee1fb8c35b43c00e6e0d1045d3672f05e78842), [`b2c896b`](https://github.com/x0k/svelte-jsonschema-form/commit/b2c896b2058b56a4f4ee5794f490f6298a375f94), [`2401eee`](https://github.com/x0k/svelte-jsonschema-form/commit/2401eee6d4fa8de6bcff5e7e589b67b8dc511ba5), [`e8f1bf5`](https://github.com/x0k/svelte-jsonschema-form/commit/e8f1bf5cc3462f2b00afa207c53a29b50bf97434), [`a7a8964`](https://github.com/x0k/svelte-jsonschema-form/commit/a7a896410a764801fe1e6d1bf20876b82f9b905f), [`18348cd`](https://github.com/x0k/svelte-jsonschema-form/commit/18348cd214840d7d4d377a32972b384cfc92d942), [`b2ed19b`](https://github.com/x0k/svelte-jsonschema-form/commit/b2ed19bfc0614c785f9eca6f3102757d224e981b), [`b0e8f5e`](https://github.com/x0k/svelte-jsonschema-form/commit/b0e8f5e715a66b31ed9ba40d08bf84091fbc7a61)]:
+  - @sjsf/cfworker-validator@2.0.0-next.9
+  - @sjsf/form@2.0.0-next.9
+  - @sjsf/ajv8-validator@2.0.0-next.9
+  - @sjsf/basic-theme@2.0.0-next.9
+  - @sjsf/flowbite3-theme@2.0.0-next.9
+  - @sjsf/zod-validator@2.0.0-next.9
+  - @sjsf/schemasafe-validator@2.0.0-next.9
+  - @sjsf/daisyui-theme@2.0.0-next.9
+  - @sjsf/daisyui5-theme@2.0.0-next.9
+  - @sjsf/flowbite-icons@2.0.0-next.9
+  - @sjsf/flowbite-theme@2.0.0-next.9
+  - @sjsf/lucide-icons@2.0.0-next.9
+  - @sjsf/moving-icons@2.0.0-next.9
+  - @sjsf/radix-icons@2.0.0-next.9
+  - @sjsf/shadcn-theme@2.0.0-next.9
+  - @sjsf/skeleton-theme@2.0.0-next.9
+  - @sjsf/skeleton3-theme@2.0.0-next.9
+  - @sjsf/sveltekit@2.0.0-next.9
+  - testing@0.1.0-next.9
+
 ## 1.6.3-next.8
 
 ### Patch Changes
