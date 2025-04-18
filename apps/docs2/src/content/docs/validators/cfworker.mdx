@@ -39,11 +39,11 @@ Form validator implementation based on [@cfworker/json-schema](https://github.co
 - `data-url` and `color` formats are ignored.
 
 - By itself this validator does not support undefined values. But we use the
-  `fixUndefined` function with the following default implementation to fix it,
+  `valueToJSON` function with the following default implementation to fix it,
   consider this overhead.
 
   ```typescript
-  const fixUndefined = (v: FormValue) =>
+  const valueToJSON = (v: FormValue) =>
     v === undefined || v === null
       ? null
       : typeof v === "object"
