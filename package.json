@@ -17,23 +17,23 @@
     "ci:version": "changeset version && pnpm install --no-frozen-lockfile"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.28.1",
+    "@changesets/cli": "^2.29.2",
     "@svitejs/changesets-changelog-github-compact": "^1.2.0",
     "@total-typescript/tsconfig": "^1.0.4",
-    "@types/node": "^22.13.11",
+    "@types/node": "^22.14.1",
     "only-allow": "^1.2.1",
     "prettier-plugin-svelte": "catalog:",
-    "publint": "^0.3.9",
-    "turbo": "^2.4.4",
-    "typescript": "^5.8.2"
+    "publint": "^0.3.12",
+    "turbo": "^2.5.0",
+    "typescript": "^5.8.3"
   },
   "pnpm": {
-    "patchedDependencies": {
-      "svelte2tsx": "patches/svelte2tsx.patch"
-    },
     "onlyBuiltDependencies": [
       "sharp",
       "esbuild"
-    ]
+    ],
+    "patchedDependencies": {
+      "svelte2tsx": "patches/svelte2tsx.patch"
+    }
   }
 }
