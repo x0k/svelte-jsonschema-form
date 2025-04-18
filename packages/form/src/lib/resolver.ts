@@ -1,7 +1,7 @@
 export type Resolved<
   T extends PropertyKey,
   R extends Record<PropertyKey, any>
-> = R[T] extends never ? undefined : R[T];
+> = T extends keyof R ? (R[T] extends never ? undefined : R[T]) : undefined;
 
 export type Resolver<
   C extends Record<PropertyKey, any>,

@@ -1,4 +1,4 @@
-import type { SchemaValue, Validator } from "@/core/index.js";
+import type { Validator } from "@/core/index.js";
 
 import type { Id } from "../id.js";
 import type { Config } from "../config.js";
@@ -8,6 +8,7 @@ import {
   type PossibleError,
 } from "../errors.js";
 import { isAdditionalPropertyKeyValidator } from "../validator.js";
+import type { FormValue } from '../model.js';
 
 import type { FormInternalContext } from "./context.js";
 
@@ -21,7 +22,7 @@ export function getErrors<V extends Validator>(
 export function validateField<V extends Validator>(
   ctx: FormInternalContext<V>,
   config: Config,
-  value: SchemaValue | undefined
+  value: FormValue
 ) {
   ctx.fieldsValidation.run(config, value);
 }

@@ -5,21 +5,30 @@ import type {
 } from "@/core/index.js";
 
 import type { Config } from "./config.js";
-import type { ComponentProps, FoundationalComponentType } from "./components.js";
+import type {
+  ComponentProps,
+  FoundationalComponentType,
+} from "./components.js";
 
 export interface FieldCommonProps<V> {
-  type: "field"
+  type: "field";
   value: V | undefined;
   config: Config;
 }
 
 export type FoundationalFieldType = {
-  [K in FoundationalComponentType]: FieldCommonProps<any> extends ComponentProps[K]
+  [K in FoundationalComponentType]: ComponentProps[K] extends FieldCommonProps<any>
     ? K
     : never;
 }[FoundationalComponentType];
 
-export type ResolveFieldType = (config: Config) => FoundationalFieldType
+export type UnifiedFieldType = {
+  [K in FoundationalFieldType]: FieldCommonProps<any> extends ComponentProps[K]
+    ? K
+    : never;
+}[FoundationalFieldType]
+
+export type ResolveFieldType = (config: Config) => UnifiedFieldType;
 
 declare module "./components.js" {
   interface FoundationalComponents {

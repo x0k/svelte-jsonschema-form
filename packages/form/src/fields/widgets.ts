@@ -1,5 +1,11 @@
 import type { EnumOption } from "@/core/index.js";
-import type { Config, FieldError, SchemaValue } from "@/form/index.js";
+import type {
+  ComponentProps,
+  Config,
+  FieldError,
+  FoundationalComponentType,
+  SchemaValue,
+} from "@/form/index.js";
 
 export interface Handlers {
   onblur?: () => void;
@@ -8,12 +14,24 @@ export interface Handlers {
 }
 
 export interface WidgetCommonProps<V> {
-  type: "widget"
+  type: "widget";
   config: Config;
   value: V | undefined;
   handlers: Handlers;
   errors: FieldError<unknown>[];
 }
+
+export type FoundationalWidgetType = {
+  [K in FoundationalComponentType]: ComponentProps[K] extends WidgetCommonProps<any>
+    ? K
+    : never;
+}[FoundationalComponentType];
+
+export type UnifiedWidgetType = {
+  [K in FoundationalWidgetType]: WidgetCommonProps<any> extends ComponentProps[K]
+    ? K
+    : never;
+}[FoundationalWidgetType];
 
 export interface Options {
   options: EnumOption<SchemaValue>[];
