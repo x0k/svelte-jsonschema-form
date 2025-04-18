@@ -25,7 +25,6 @@
   "bugs": "https://github.com/x0k/svelte-jsonschema-form/issues",
   "homepage": "https://x0k.github.io/svelte-jsonschema-form/",
   "scripts": {
-    "test": "vitest run",
     "build": "tsc && publint",
     "dev": "tsc --watch"
   },
