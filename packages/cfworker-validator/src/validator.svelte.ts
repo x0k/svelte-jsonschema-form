@@ -28,10 +28,10 @@ import {
   type FormValue,
 } from "@sjsf/form";
 
-export interface FixUndefined {
-  fixUndefined: (value: FormValue) => SchemaValue;
+export interface ValueToJSON {
+  valueToJSON: (value: FormValue) => SchemaValue;
 }
-export interface ValidatorOptions extends FixUndefined {
+export interface ValidatorOptions extends ValueToJSON {
   createSchemaValidator: (schema: Schema, rootSchema: Schema) => CfValidator;
 }
 
@@ -76,7 +76,7 @@ export function createFieldSchemaValidatorFactory(factory: CfValidatorFactory) {
 
 export function createValidator({
   createSchemaValidator,
-  fixUndefined,
+  valueToJSON,
 }: ValidatorOptions): Validator {
   return {
     isValid(schemaDef, rootSchema, formValue) {
@@ -84,7 +84,7 @@ export function createValidator({
         return schemaDef;
       }
       const validator = createSchemaValidator(schemaDef, rootSchema);
-      return validator.validate(fixUndefined(formValue)).valid;
+      return validator.validate(valueToJSON(formValue)).valid;
     },
   };
 }
@@ -147,13 +147,13 @@ export function createFormValueValidator(
       const validator = options.createSchemaValidator(rootSchema, rootSchema);
       return errorsTransformer(
         rootSchema,
-        validator.validate(options.fixUndefined(formValue)).errors
+        validator.validate(options.valueToJSON(formValue)).errors
       );
     },
   };
 }
 
-export interface FieldValueValidatorOptions extends FixUndefined {
+export interface FieldValueValidatorOptions extends ValueToJSON {
   createFieldSchemaValidator: (config: Config) => CfValidator;
 }
 
@@ -167,12 +167,12 @@ function isRootNonTypeError(error: OutputUnit): boolean {
 
 export function createFieldValueValidator({
   createFieldSchemaValidator,
-  fixUndefined,
+  valueToJSON,
 }: FieldValueValidatorOptions): FieldValueValidator<OutputUnit> {
   return {
     validateFieldValue(config, fieldValue) {
       const validator = createFieldSchemaValidator(config);
-      const errors = validator.validate(fixUndefined(fieldValue)).errors;
+      const errors = validator.validate(valueToJSON(fieldValue)).errors;
       return errors
         .filter(config.required ? isRootError : isRootNonTypeError)
         .map((unit) => ({
@@ -194,7 +194,7 @@ export function createFormValidator({
   factory = (schema) => new CfValidator(schema as CfSchema, "7", false),
   createSchemaValidator = createSchemaValidatorFactory(factory),
   createFieldSchemaValidator = createFieldSchemaValidatorFactory(factory),
-  fixUndefined = (v) =>
+  valueToJSON = (v) =>
     v === undefined || v === null
       ? null
       : typeof v === "object"
@@ -206,7 +206,7 @@ export function createFormValidator({
 } = {}) {
   const options: FormValidatorOptions = {
     ...rest,
-    fixUndefined,
+    valueToJSON,
     createSchemaValidator,
     createFieldSchemaValidator,
   };
