@@ -40,7 +40,7 @@
       case "array-field":
       case "object-field":
       case "multi-field":
-        return "display: flex; flex-direction: column; gap: 0.5rem;";
+        return "display: flex; flex-direction: column; gap: 1rem;";
       case "field":
         return "display: flex; flex-direction: column; gap: 0.2rem;";
       case "field-meta":
