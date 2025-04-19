@@ -4,6 +4,13 @@ sidebar:
   order: 2
 ---
 
+import { Code } from '@astrojs/starlight/components'
+
+import basicResolverCode from '#/form/src/form/resolvers/basic?raw'
+
+export const lines = basicResolverCode.split('\n')
+export const exportIndex = lines.findIndex(l => l.startsWith("export"))
+
 Essentially theme is a simple function:
 
 ```js
@@ -66,7 +73,7 @@ interface Config {
   required: boolean;
 }
 
-type ResolveFieldType = (config: Config) => FoundationalFieldType
+type ResolveFieldType = (config: Config) => UnifiedFieldType
 
 type Resolver = (ctx: FormInternalContext<Validator>) => ResolveFieldType
 ```
@@ -74,31 +81,19 @@ type Resolver = (ctx: FormInternalContext<Validator>) => ResolveFieldType
 It looks complicated, but let's take a look at the `basic` resolver implementation
 (`@sjsf/form/resolvers/basic`):
 
-```ts
-function resolver(): ResolveFieldType {
-  return ({ schema }) => {
-    if (schema.oneOf !== undefined) {
-      return "oneOfField";
-    }
-    if (schema.anyOf !== undefined) {
-      return "anyOfField";
-    }
-    const type = getSimpleSchemaType(schema);
-    if (type === "array") {
-      return isFixedItems(schema) ? "tupleField" : "arrayField";
-    }
-    return `${type}Field`;
-  }
-}
-```
+<Code code={lines.slice(exportIndex).join('\n')} lang='typescript' />
 
 Yes, it's essentially a direct mapping of schema type to field type, nothing fancy.
-Let's talk about `FoundationalFieldType`.
+Let's talk about `UnifiedFieldType`.
 
 ## Foundational components
 
+The `UnifiedFieldType` type is a subset of fields from `FoundationalFieldType`
+that have the same signature (except for the `value` property).
+
 The `FoundationalFieldType` type is a subset of the fields from the 
 `FoundationalComponentType` type.
+
 In turn, `FoundationalComponentType` is a subset of all components
 (`ComponentType`) that can be explicitly used in form elements.
 
