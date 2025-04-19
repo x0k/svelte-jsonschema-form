@@ -11,7 +11,7 @@ import {
   isMultiSelect,
   isSelect,
 } from "../context/index.js";
-import type { FoundationalFieldType, ResolveFieldType } from "../fields.js";
+import type { ResolveFieldType } from "../fields.js";
 import type { Config } from "../config.js";
 
 import "../extra-fields/enum.js";
@@ -22,7 +22,7 @@ import "../extra-fields/files.js";
 export function resolver<V extends Validator>(
   ctx: FormInternalContext<V>
 ): ResolveFieldType {
-  return ({ schema, uiOptions }: Config): FoundationalFieldType => {
+  return ({ schema, uiOptions }: Config) => {
     if (isSelect(ctx, schema)) {
       return "enumField";
     }

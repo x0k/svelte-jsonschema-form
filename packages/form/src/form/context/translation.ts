@@ -1,6 +1,6 @@
-import type { Validator } from '@/core/index.js';
+import type { Validator } from "@/core/index.js";
 
-import type { Label, Labels } from "../translation.js";
+import type { Label, Labels, Translator } from "../translation.js";
 
 import type { FormInternalContext } from "./context.js";
 
@@ -9,7 +9,7 @@ export function translate<V extends Validator, L extends Label>(
   label: L,
   params: Labels[L]
 ) {
-  const translator = ctx.translation(label, params);
+  const translator: Translator<L> | undefined = ctx.translation(label, params);
   if (translator === undefined) {
     return `Label "${label}" is not translated`;
   }

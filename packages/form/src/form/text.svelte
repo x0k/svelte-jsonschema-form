@@ -1,7 +1,7 @@
 <script lang="ts" generics="L extends Label">
   import type { Label, Labels } from "./translation.js";
   import type { Config } from "./config.js";
-  import type { IconConfig } from "./icons.js";
+  import type { IconConfig, IconDefinition } from "./icons.js";
   import { translate, getFormContext } from "./context/index.js";
 
   const ctx = getFormContext();
@@ -28,7 +28,7 @@
     params: args,
     translation,
   });
-  const icon = $derived(
+  const icon: IconDefinition<L> | undefined = $derived(
     ctx.icons?.(
       id,
       //@ts-expect-error
