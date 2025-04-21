@@ -16,7 +16,7 @@
   import { resolver } from "@sjsf/form/resolvers/compat";
   import { focusOnFirstError } from "@sjsf/form/focus-on-first-error";
   import { setThemeContext } from "@sjsf/shadcn-theme";
-  import { components } from "@sjsf/shadcn-theme/default";
+  import * as components from "@sjsf/shadcn-theme/default";
 
   import { themes, themeStyles } from "./themes";
   import { icons, iconsStyles } from "./icons";
