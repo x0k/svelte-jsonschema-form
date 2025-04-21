@@ -1,16 +1,16 @@
+import type { ComponentProps } from "svelte";
 import type {
   HTMLAttributes,
   HTMLButtonAttributes,
   HTMLFormAttributes,
   HTMLInputAttributes,
   HTMLInputTypeAttribute,
-  HTMLLabelAttributes,
   HTMLTextareaAttributes,
 } from "svelte/elements";
-import type { ButtonType, LayoutType } from "@sjsf/form/fields/components";
 import type {
   CalendarSingleRootProps,
   CheckboxRootProps,
+  LabelRootProps,
   RadioGroupItemProps,
   RadioGroupRootProps,
   SelectMultipleRootProps,
@@ -18,22 +18,23 @@ import type {
   SelectTriggerProps,
   SliderSingleRootProps,
   SwitchRootProps,
+  WithElementRef,
   WithoutChildrenOrChild,
 } from "bits-ui";
+import type { ButtonType, LayoutType } from "@sjsf/form/fields/components";
+import type { Button } from "@sjsf/shadcn-theme/default";
 
 type InputType = Exclude<HTMLInputTypeAttribute, "file">;
 
+type InputProps = WithElementRef<
+	Omit<HTMLInputAttributes, 'type'> &
+		({ type: 'file'; files?: FileList } | { type?: InputType; files?: undefined })
+>;
+
 export interface UiOptions {
-  /**
-   * Overrides the attributes of any button component.
-   */
-  button?: HTMLButtonAttributes;
-  /**
-   * Overrides the attributes of a button with a specific type.
-   * This override takes precedence over the `button` override, but does not replace it.
-   */
-  buttons?: {
-    [B in ButtonType]?: HTMLButtonAttributes;
+  shadcnButton?: ComponentProps<typeof Button>;
+  shadcnButtons?: {
+    [B in ButtonType]: ComponentProps<typeof Button>;
   };
   /**
    * Overrides the attributes of the description.
@@ -49,10 +50,8 @@ export interface UiOptions {
    * Overrides the attributes of the help.
    */
   helpAttributes?: HTMLAttributes<HTMLDivElement>;
-  /**
-   * Overrides the attributes of the field label.
-   */
-  labelAttributes?: HTMLLabelAttributes;
+
+  shadcnLabel?: LabelRootProps;
   /**
    * Overrides the attributes of any layout component.
    */
@@ -64,7 +63,7 @@ export interface UiOptions {
   layouts?: {
     [L in LayoutType]?: HTMLAttributes<HTMLDivElement>;
   };
-  submitButton?: HTMLButtonAttributes;
+  shadcnSubmitButton?: ComponentProps<typeof Button>;
   /**
    * Overrides the attributes of the field title
    */
@@ -72,9 +71,9 @@ export interface UiOptions {
 
   shadcnCheckbox?: WithoutChildrenOrChild<CheckboxRootProps>;
 
-  shadcnNumber?: Omit<HTMLInputAttributes, "type" | "files">;
+  shadcnNumber?: InputProps
 
-  shadcnSelect?: Omit<SelectSingleRootProps, "type">;
+  shadcnSelect?: SelectSingleRootProps
   shadcnSelectTrigger?: SelectTriggerProps;
 
   shadcnText?: Omit<HTMLInputAttributes, "type"> & {
