@@ -1,11 +1,26 @@
 <script lang="ts" module>
-	import type { RadioGroupItemProps, RadioGroupRootProps, WithoutChildrenOrChild } from 'bits-ui';
+	import type { Component } from 'svelte';
+	import type {
+		RadioGroup,
+		RadioGroupItemProps,
+		RadioGroupRootProps,
+		WithoutChildrenOrChild
+	} from 'bits-ui';
 	import '@sjsf/form/fields/extra-widgets/radio';
+
+	import '../types/label';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
 			shadcnRadioGroup?: WithoutChildrenOrChild<RadioGroupRootProps>;
 			shadcnRadioItem?: Omit<WithoutChildrenOrChild<RadioGroupItemProps>, 'value'>;
+		}
+	}
+
+	declare module '../context.js' {
+		interface ThemeComponents {
+			RadioGroup: Component<RadioGroup.RootProps, {}, 'value' | 'ref'>;
+			RadioGroupItem: Component<WithoutChildrenOrChild<RadioGroup.ItemProps>>;
 		}
 	}
 </script>
@@ -38,7 +53,10 @@
 		return defineDisabled(ctx, props);
 	});
 
-	const itemAttributes = $derived(ctx.extraUiOptions?.('shadcnRadioItem', config));
+	const itemAttributes = $derived({
+		...config.uiOptions?.shadcnRadioItem,
+		...ctx.extraUiOptions?.('shadcnRadioItem', config)
+	});
 </script>
 
 <RadioGroup bind:value={mapped.value} {...attributes}>
@@ -49,7 +67,6 @@
 				value={indexStr}
 				onclick={handlers.oninput}
 				onblur={handlers.onblur}
-				{...config.uiOptions?.shadcnRadioItem}
 				{...itemAttributes}
 				id={option.id}
 				disabled={option.disabled}

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { components as defaultComponents } from '../lib/default-ui';
-	import { components as newYorkComponents } from '../lib/new-york-ui';
+	import * as defaultComponents from '../lib/default-ui';
+	import * as newYorkComponents from '../lib/new-york-ui';
 
 	import Content from './content.svelte';
 	import '../app.css';

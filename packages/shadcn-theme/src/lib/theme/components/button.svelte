@@ -1,6 +1,20 @@
+<script lang="ts" module>
+	import type { ButtonType } from '@sjsf/form/fields/components';
+
+	import type { ButtonProps } from '../types/button';
+
+	declare module '@sjsf/form' {
+		interface UiOptions {
+			shadcnButton?: ButtonProps;
+			shadcnButtons?: {
+				[B in ButtonType]: ButtonProps;
+			};
+		}
+	}
+</script>
+
 <script lang="ts">
 	import { defineDisabled, getFormContext, type ComponentProps } from '@sjsf/form';
-	import '@sjsf/basic-theme/components/button.svelte';
 
 	import { getThemeContext } from '../context';
 
@@ -15,10 +29,10 @@
 			type: 'button' as const,
 			onclick,
 			disabled,
-			...config.uiOptions?.button,
-			...config.uiOptions?.buttons?.[type],
-			...ctx.extraUiOptions?.('button', config),
-			...ctx.extraUiOptions?.('buttons', config)?.[type]
+			...config.uiOptions?.shadcnButton,
+			...config.uiOptions?.shadcnButtons?.[type],
+			...ctx.extraUiOptions?.('shadcnButton', config),
+			...ctx.extraUiOptions?.('shadcnButtons', config)?.[type]
 		})
 	);
 </script>

@@ -1,10 +1,17 @@
 <script lang="ts" module>
-	import type { SwitchRootProps, WithoutChildrenOrChild } from 'bits-ui';
+	import type { Component } from 'svelte';
+	import type { Switch, SwitchRootProps, WithoutChildrenOrChild } from 'bits-ui';
 	import '@sjsf/form/fields/extra-widgets/switch';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
 			shadcnSwitch?: Omit<WithoutChildrenOrChild<SwitchRootProps>, 'type'>;
+		}
+	}
+
+	declare module '../context.js' {
+		interface ThemeComponents {
+			Switch: Component<WithoutChildrenOrChild<Switch.RootProps>, {}, 'checked' | 'ref'>;
 		}
 	}
 </script>

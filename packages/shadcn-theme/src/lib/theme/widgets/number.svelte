@@ -1,9 +1,9 @@
 <script lang="ts" module>
-	import type { HTMLInputAttributes } from 'svelte/elements';
+	import type { InputProps } from '../types/input';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			shadcnNumber?: Omit<HTMLInputAttributes, 'type' | 'files'>;
+			shadcnNumber?: InputProps;
 		}
 	}
 </script>

@@ -1,10 +1,11 @@
 <script lang="ts" module>
-	import type { SelectMultipleRootProps, SelectTriggerProps } from 'bits-ui';
 	import '@sjsf/form/fields/extra-widgets/multi-select';
+
+	import type { SelectMultipleRootProps, SelectTriggerProps } from '../types/select';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			shadcnMultiSelect?: Omit<SelectMultipleRootProps, 'type'>;
+			shadcnMultiSelect?: SelectMultipleRootProps;
 			shadcnMultiSelectTrigger?: SelectTriggerProps;
 		}
 	}

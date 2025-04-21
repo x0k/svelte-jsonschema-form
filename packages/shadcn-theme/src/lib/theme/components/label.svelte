@@ -1,7 +1,15 @@
+<script lang="ts" module>
+	import type { LabelProps } from '../types/label';
+
+	declare module '@sjsf/form' {
+		interface UiOptions {
+			shadcnLabel?: LabelProps;
+		}
+	}
+</script>
+
 <script lang="ts">
-	import type { LabelRootProps } from 'bits-ui';
 	import { getFormContext, type ComponentProps } from '@sjsf/form';
-	import '@sjsf/basic-theme/components/label.svelte';
 
 	import { getThemeContext } from '../context';
 
@@ -15,8 +23,8 @@
 
 <Label
 	for={config.id}
-	{...config.uiOptions?.labelAttributes as LabelRootProps}
-	{...ctx.extraUiOptions?.('labelAttributes', config) as LabelRootProps}
+	{...config.uiOptions?.shadcnLabel}
+	{...ctx.extraUiOptions?.('shadcnLabel', config) as LabelProps}
 >
 	{title}
 	{#if config.required}

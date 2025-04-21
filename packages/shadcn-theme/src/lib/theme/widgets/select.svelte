@@ -1,19 +1,19 @@
 <script lang="ts" module>
-	import type { SelectSingleRootProps, SelectTriggerProps } from 'bits-ui';
+	import type { SelectSingleRootProps, SelectTriggerProps } from '../types/select';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			shadcnSelect?: Omit<SelectSingleRootProps, 'type'>;
+			shadcnSelect?: SelectSingleRootProps;
 			shadcnSelectTrigger?: SelectTriggerProps;
 		}
 	}
 </script>
 
 <script lang="ts">
+	import { defineDisabled, getFormContext, type ComponentProps } from '@sjsf/form';
 	import { singleOption, stringIndexMapper } from '@sjsf/form/options.svelte';
 
 	import { getThemeContext } from '../context';
-	import { defineDisabled, getFormContext, type ComponentProps } from '@sjsf/form';
 
 	const ctx = getFormContext();
 	const themeCtx = getThemeContext();

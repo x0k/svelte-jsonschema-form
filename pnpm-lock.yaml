@@ -1367,8 +1367,8 @@ importers:
         version: 3.1.1(@types/debug@4.1.12)(@types/node@22.14.1)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.29.2)(yaml@2.5.1)
     optionalDependencies:
       '@internationalized/date':
-        specifier: ^3.8.0
-        version: 3.8.0
+        specifier: 3.7.0
+        version: 3.7.0
 
   packages/skeleton-theme:
     devDependencies:
@@ -2359,9 +2359,6 @@ packages:
 
   '@internationalized/date@3.7.0':
     resolution: {integrity: sha512-VJ5WS3fcVx0bejE/YHfbDKR/yawZgKqn/if+oEeLqNwBtPzVB06olkfcnojTmEMX+gTpH+FlQ69SHNitJ8/erQ==}
-
-  '@internationalized/date@3.8.0':
-    resolution: {integrity: sha512-J51AJ0fEL68hE4CwGPa6E0PO6JDaVLd8aln48xFCSy7CZkZc96dGEGmLs2OEEbBxcsVZtfrqkXJwI2/MSG8yKw==}
 
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
@@ -7278,11 +7275,6 @@ snapshots:
   '@internationalized/date@3.7.0':
     dependencies:
       '@swc/helpers': 0.5.13
-
-  '@internationalized/date@3.8.0':
-    dependencies:
-      '@swc/helpers': 0.5.13
-    optional: true
 
   '@isaacs/cliui@8.0.2':
     dependencies:

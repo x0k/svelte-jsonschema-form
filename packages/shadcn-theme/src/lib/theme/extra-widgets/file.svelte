@@ -2,6 +2,8 @@
 	import type { HTMLInputAttributes } from 'svelte/elements';
 	import '@sjsf/form/fields/extra-widgets/file';
 
+	import '../types/input'
+
 	declare module '@sjsf/form' {
 		interface UiOptions {
 			shadcnFile?: Omit<HTMLInputAttributes, 'type'>;

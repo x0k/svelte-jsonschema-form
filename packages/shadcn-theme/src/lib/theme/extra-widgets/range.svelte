@@ -1,10 +1,17 @@
 <script lang="ts" module>
-	import type { SliderSingleRootProps, WithoutChildrenOrChild } from 'bits-ui';
+	import type { Component } from 'svelte';
+	import type { Slider, SliderSingleRootProps, WithoutChildrenOrChild } from 'bits-ui';
 	import '@sjsf/form/fields/extra-widgets/range';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
 			shadcnRange?: Omit<WithoutChildrenOrChild<SliderSingleRootProps>, 'type'>;
+		}
+	}
+
+	declare module '../context.js' {
+		interface ThemeComponents {
+			Slider: Component<WithoutChildrenOrChild<Slider.RootProps>, {}, 'value' | 'ref'>;
 		}
 	}
 </script>

@@ -1,10 +1,18 @@
 <script lang="ts" module>
+	import type { Component } from 'svelte';
+	import type { WithElementRef } from 'bits-ui';
 	import type { HTMLTextareaAttributes } from 'svelte/elements';
 	import '@sjsf/form/fields/extra-widgets/textarea';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
 			shadcnTextarea?: HTMLTextareaAttributes;
+		}
+	}
+
+	declare module '../context.js' {
+		interface ThemeComponents {
+			Textarea: Component<WithElementRef<HTMLTextareaAttributes>, {}, 'value' | 'ref'>;
 		}
 	}
 </script>
