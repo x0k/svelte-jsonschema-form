@@ -1,7 +1,7 @@
 <script lang="ts">
   import { BasicForm } from "@sjsf/form";
   import { theme, setThemeContext } from "@sjsf/shadcn-theme";
-  import { components } from "@sjsf/shadcn-theme/default";
+  import * as components from "@sjsf/shadcn-theme/default";
   import { specs } from '@sjsf/shadcn-theme/specs'
 
   import { createAstro } from "@/astro.svelte";

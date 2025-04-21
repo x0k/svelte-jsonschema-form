@@ -76,10 +76,7 @@ export interface UiOptions {
   shadcnSelect?: SelectSingleRootProps
   shadcnSelectTrigger?: SelectTriggerProps;
 
-  shadcnText?: Omit<HTMLInputAttributes, "type"> & {
-    type?: InputType;
-    files?: undefined;
-  };
+  shadcnText?: InputProps
 
   shadcnCheckboxes?: WithoutChildrenOrChild<CheckboxRootProps>;
 
@@ -88,10 +85,11 @@ export interface UiOptions {
     "type"
   >;
   shadcnDatePickerTrigger?: HTMLButtonAttributes;
+	shadcnDateFormatter?: (date: Date) => string;
 
   shadcnFile?: Omit<HTMLInputAttributes, "type">;
 
-  shadcnMultiSelect?: Omit<SelectMultipleRootProps, "type">;
+  shadcnMultiSelect?: SelectMultipleRootProps;
   shadcnMultiSelectTrigger?: SelectTriggerProps;
 
   shadcnRadioGroup?: WithoutChildrenOrChild<RadioGroupRootProps>;

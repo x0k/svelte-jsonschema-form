@@ -62,19 +62,19 @@ import shadcnStyles from '@sjsf/shadcn-theme/styles.css?inline';
 
 Since `shadcn-svelte` is not a component library you should provide your components via `setThemeContext`.
 
+:::note
+
+You should prefer to use components from your code base to avoid code duplication
+
+:::
+
 ```typescript
 import { setThemeContext } from '@sjsf/shadcn-theme';
-import { components } from '@sjsf/shadcn-theme/default';
-// or import { components } from '@sjsf/shadcn-theme/new-york';
+import * as components from '@sjsf/shadcn-theme/default';
+// or import * as components from '@sjsf/shadcn-theme/new-york';
 
 setThemeContext({ components })
 ```
-
-:::note
-
-You can define `components: ThemeComponents` yourself to reduce final bundle size
-
-:::
 
 ## Extra widgets
 
