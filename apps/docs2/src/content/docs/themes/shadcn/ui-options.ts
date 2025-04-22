@@ -21,6 +21,11 @@ import type {
   WithElementRef,
   WithoutChildrenOrChild,
   CommandInputProps,
+  SingleToggleGroupRootPropsWithoutHTML,
+  BitsPrimitiveDivAttributes,
+  Without,
+  ToggleGroupRootPropsWithoutHTML,
+  ToggleGroupItemProps,
 } from "bits-ui";
 import type { ButtonType, LayoutType } from "@sjsf/form/fields/components";
 import type { Button } from "@sjsf/shadcn-theme/default";
@@ -28,9 +33,21 @@ import type { Button } from "@sjsf/shadcn-theme/default";
 type InputType = Exclude<HTMLInputTypeAttribute, "file">;
 
 type InputProps = WithElementRef<
-	Omit<HTMLInputAttributes, 'type'> &
-		({ type: 'file'; files?: FileList } | { type?: InputType; files?: undefined })
+  Omit<HTMLInputAttributes, "type"> &
+    (
+      | { type: "file"; files?: FileList }
+      | { type?: InputType; files?: undefined }
+    )
 >;
+
+type ToggleVariants = {
+  variant?: "default" | "outline" | undefined;
+  size?: "default" | "sm" | "lg" | undefined;
+};
+
+type ToggleGroupProps = SingleToggleGroupRootPropsWithoutHTML &
+  Without<BitsPrimitiveDivAttributes, ToggleGroupRootPropsWithoutHTML> &
+  ToggleVariants;
 
 export interface UiOptions {
   shadcnButton?: ComponentProps<typeof Button>;
@@ -72,30 +89,33 @@ export interface UiOptions {
 
   shadcnCheckbox?: WithoutChildrenOrChild<CheckboxRootProps>;
 
-  shadcnNumber?: InputProps
+  shadcnNumber?: InputProps;
 
-  shadcnSelect?: SelectSingleRootProps
+  shadcnSelect?: SelectSingleRootProps;
   shadcnSelectTrigger?: SelectTriggerProps;
 
-  shadcnText?: InputProps
+  shadcnText?: InputProps;
 
   shadcnCheckboxes?: WithoutChildrenOrChild<CheckboxRootProps>;
 
-	shadcnComboboxTrigger?: ComponentProps<typeof Button>;
-	shadcnComboboxInput?: CommandInputProps;
-	shadcnComboboxEmptyText?: string;
+  shadcnComboboxTrigger?: ComponentProps<typeof Button>;
+  shadcnComboboxInput?: CommandInputProps;
+  shadcnComboboxEmptyText?: string;
 
   shadcnDatePicker?: Omit<
     WithoutChildrenOrChild<CalendarSingleRootProps>,
     "type"
   >;
   shadcnDatePickerTrigger?: HTMLButtonAttributes;
-	shadcnDateFormatter?: (date: Date) => string;
+  shadcnDateFormatter?: (date: Date) => string;
 
   shadcnFile?: Omit<HTMLInputAttributes, "type">;
 
   shadcnMultiSelect?: SelectMultipleRootProps;
   shadcnMultiSelectTrigger?: SelectTriggerProps;
+
+  shadcnRadioButtons?: ToggleGroupProps;
+  shadcnRadioButtonsItem?: ToggleGroupItemProps & ToggleVariants;
 
   shadcnRadioGroup?: WithoutChildrenOrChild<RadioGroupRootProps>;
   shadcnRadioItem?: Omit<WithoutChildrenOrChild<RadioGroupItemProps>, "value">;
