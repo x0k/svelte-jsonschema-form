@@ -44,10 +44,11 @@
 	},
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^2.0.0-next.9",
-		"lucide-svelte": "^0.487.0",
+		"@lucide/svelte": "^0.487.0",
 		"svelte": "^5.25.0"
 	},
 	"devDependencies": {
+		"@lucide/svelte": "^0.503.0",
 		"@playwright/test": "catalog:",
 		"@sjsf/form": "workspace:*",
 		"@sveltejs/adapter-static": "catalog:",
@@ -62,7 +63,6 @@
 		"postcss": "catalog:",
 		"prettier": "catalog:",
 		"prettier-plugin-svelte": "catalog:",
-		"lucide-svelte": "^0.487.0",
 		"svelte": "catalog:",
 		"svelte-check": "catalog:",
 		"testing": "workspace:*",

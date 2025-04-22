@@ -1059,6 +1059,9 @@ importers:
 
   packages/lucide-icons:
     devDependencies:
+      '@lucide/svelte':
+        specifier: ^0.501.0
+        version: 0.501.0(svelte@5.27.3)
       '@playwright/test':
         specifier: 'catalog:'
         version: 1.51.1
