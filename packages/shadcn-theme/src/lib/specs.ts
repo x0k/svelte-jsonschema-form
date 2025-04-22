@@ -8,6 +8,7 @@ import './theme/extra-widgets/combobox.svelte';
 import './theme/extra-widgets/date-picker-include';
 import './theme/extra-widgets/file-include';
 import './theme/extra-widgets/multi-select-include';
+import './theme/extra-widgets/radio-buttons-include';
 import './theme/extra-widgets/radio-include';
 import './theme/extra-widgets/range-include';
 import './theme/extra-widgets/switch-include';
@@ -26,6 +27,10 @@ export const specs: s.Specs = {
 	multiSelect: [
 		s.uniqueArray,
 		{ 'ui:components': { checkboxesWidget: 'multiSelectWidget' }, 'ui:options': { useLabel: true } }
+	],
+	radioButtons: [
+		s.enumeration,
+		{ 'ui:components': { selectWidget: 'radioButtonsWidget' }, 'ui:options': { useLabel: false } }
 	],
 	radio: [
 		s.enumeration,

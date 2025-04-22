@@ -17,3 +17,4 @@ export {
 	CommandGroup,
 	CommandItem
 } from './command';
+export { ToggleGroup, ToggleGroupItem } from './toggle-group';
