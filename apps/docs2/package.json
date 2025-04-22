@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@exodus/schemasafe": "catalog:",
+    "@lucide/svelte": "^0.501.0",
     "@sjsf/ajv8-validator": "workspace:*",
     "@sjsf/basic-theme": "workspace:*",
     "@sjsf/cfworker-validator": "workspace:*",
