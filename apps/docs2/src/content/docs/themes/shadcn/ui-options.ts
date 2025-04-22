@@ -20,6 +20,7 @@ import type {
   SwitchRootProps,
   WithElementRef,
   WithoutChildrenOrChild,
+  CommandInputProps,
 } from "bits-ui";
 import type { ButtonType, LayoutType } from "@sjsf/form/fields/components";
 import type { Button } from "@sjsf/shadcn-theme/default";
@@ -79,6 +80,10 @@ export interface UiOptions {
   shadcnText?: InputProps
 
   shadcnCheckboxes?: WithoutChildrenOrChild<CheckboxRootProps>;
+
+	shadcnComboboxTrigger?: ComponentProps<typeof Button>;
+	shadcnComboboxInput?: CommandInputProps;
+	shadcnComboboxEmptyText?: string;
 
   shadcnDatePicker?: Omit<
     WithoutChildrenOrChild<CalendarSingleRootProps>,
