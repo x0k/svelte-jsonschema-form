@@ -62,9 +62,10 @@ export function singleOption<V>({
   update: (value: SchemaValue | undefined) => void;
 }) {
   const { fromValue, toValue } = $derived(mapper());
+  const val = $derived(fromValue(value()));
   return {
     get value() {
-      return fromValue(value());
+      return val;
     },
     set value(v) {
       update(toValue(v));
@@ -82,9 +83,10 @@ export function multipleOptions<V>({
   update: (value: SchemaArrayValue) => void;
 }) {
   const { fromValue, toValue } = $derived(mapper());
+  const val = $derived(value()?.map(fromValue) ?? []);
   return {
     get value() {
-      return value()?.map(fromValue) ?? [];
+      return val;
     },
     set value(v) {
       update(v.map(toValue));
