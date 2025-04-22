@@ -9,3 +9,11 @@ export { Select, SelectContent, SelectItem, SelectTrigger } from './select';
 export { Slider } from './slider';
 export { Switch } from './switch';
 export { Textarea } from './textarea';
+export {
+	Command,
+	CommandInput,
+	CommandList,
+	CommandEmpty,
+	CommandGroup,
+	CommandItem
+} from './command';

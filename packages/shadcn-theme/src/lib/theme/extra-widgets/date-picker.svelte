@@ -1,9 +1,10 @@
 <script lang="ts" module>
 	import type { Component } from 'svelte';
-	import type { Calendar, CalendarSingleRootProps, Popover, WithoutChildrenOrChild } from 'bits-ui';
+	import type { Calendar, CalendarSingleRootProps, WithoutChildrenOrChild } from 'bits-ui';
 	import '@sjsf/form/fields/extra-widgets/date-picker';
 
 	import type { ButtonProps } from '../types/button';
+	import '../types/popover';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
@@ -15,9 +16,6 @@
 
 	declare module '../context.js' {
 		interface ThemeComponents {
-			Popover: Component<Popover.ContentProps>;
-			PopoverTrigger: Component<Popover.TriggerProps>;
-			PopoverContent: Component<Popover.ContentProps>;
 			// @ts-expect-error too complex
 			Calendar: Component<
 				WithoutChildrenOrChild<Calendar.RootProps>,
@@ -68,7 +66,8 @@
 	});
 
 	const formatDate = $derived.by(() => {
-		const formatter = config.uiOptions?.shadcnDateFormatter;
+		const formatter =
+			ctx.extraUiOptions?.('shadcnDateFormatter', config) ?? config.uiOptions?.shadcnDateFormatter;
 		if (formatter !== undefined) {
 			return formatter;
 		}

@@ -1,6 +1,10 @@
 import { s } from 'testing/demo';
 
 import './theme/extra-widgets/checkboxes-include';
+
+import Combobox from './theme/extra-widgets/combobox.svelte';
+import './theme/extra-widgets/combobox.svelte';
+
 import './theme/extra-widgets/date-picker-include';
 import './theme/extra-widgets/file-include';
 import './theme/extra-widgets/multi-select-include';
@@ -10,6 +14,10 @@ import './theme/extra-widgets/switch-include';
 import './theme/extra-widgets/textarea-include';
 
 export const specs: s.Specs = {
+	combobox: [
+		s.enumeration,
+		{ 'ui:components': { selectWidget: Combobox }, 'ui:options': { useLabel: false } }
+	],
 	datePicker: [
 		s.text,
 		// NOTE: DatePicker is a button
