@@ -5,38 +5,45 @@ import {
   type SchemaDefinition,
   type SchemaValue,
 } from "@/core/index.js";
-import type { UiOptions, UiSchema, Id } from "@/form/index.js";
+import {
+  type UiSchema,
+  type UiSchemaDefinition,
+  type Validator,
+  type FormInternalContext,
+  retrieveUiSchema,
+  createPseudoId,
+  type Config,
+} from "@/form/index.js";
 
 function getAltSchemas(
   schema: Schema,
   uiSchema: UiSchema
-): [SchemaDefinition[] | undefined, UiSchema[] | undefined] {
+): [SchemaDefinition[] | undefined, UiSchemaDefinition[] | undefined] {
   return schema.anyOf
     ? [schema.anyOf, uiSchema.anyOf]
     : [schema.oneOf, uiSchema.oneOf];
 }
 
-export function createOptions(
-  schema: Schema,
-  uiSchema: UiSchema,
-  uiOptions: UiOptions | undefined,
-  createItemId: (index: number) => Id
+export function createOptions<V extends Validator>(
+  ctx: FormInternalContext<V>,
+  config: Config,
+  schema: Schema
 ): EnumOption<SchemaValue>[] | undefined {
   const enumValues = schema.enum;
-  const disabledValues = new Set(uiOptions?.disabledEnumValues);
+  const disabledValues = new Set(config.uiOptions?.disabledEnumValues);
   if (enumValues) {
-    const enumNames = uiOptions?.enumNames;
+    const enumNames = config.uiOptions?.enumNames;
     return enumValues.map((value, index) => {
       const label = enumNames?.[index] ?? String(value);
       return {
-        id: createItemId(index),
+        id: createPseudoId(config.id, index, ctx),
         label,
         value,
         disabled: disabledValues.has(value),
       };
     });
   }
-  const [altSchemas, altUiSchemas] = getAltSchemas(schema, uiSchema);
+  const [altSchemas, altUiSchemas] = getAltSchemas(schema, config.uiSchema);
   return (
     altSchemas &&
     altSchemas.map((altSchemaDef, index) => {
@@ -45,11 +52,11 @@ export function createOptions(
       }
       const value = getSchemaConstantValue(altSchemaDef);
       const label =
-        altUiSchemas?.[index]?.["ui:options"]?.title ??
+        retrieveUiSchema(ctx, altUiSchemas?.[index])["ui:options"]?.title ??
         altSchemaDef.title ??
         String(value);
       return {
-        id: createItemId(index),
+        id: createPseudoId(config.id, index, ctx),
         schema: altSchemaDef,
         label,
         value,

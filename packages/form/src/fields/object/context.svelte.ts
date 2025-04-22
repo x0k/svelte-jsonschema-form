@@ -24,9 +24,10 @@ import {
   getErrors,
   type FieldError,
   type PossibleError,
-  type UiSchema,
   getUiOptions,
   createChildId,
+  retrieveUiSchema,
+  type UiSchemaDefinition,
 } from "@/form/index.js";
 
 import { generateNewKey } from "./generate-new-object-key.js";
@@ -40,7 +41,11 @@ export type ObjectContext<V extends Validator> = {
   renameProperty(oldProp: string, newProp: string, config: Config): void;
   removeProperty(prop: string): void;
   isAdditionalProperty(property: string): boolean;
-  propertyConfig(config: Config, property: string, isAdditional: boolean): Config;
+  propertyConfig(
+    config: Config,
+    property: string,
+    isAdditional: boolean
+  ): Config;
 };
 
 const OBJECT_CONTEXT = Symbol("object-context");
@@ -147,10 +152,12 @@ export function createObjectContext<V extends Validator>(
     propertyConfig(config, property, isAdditional) {
       const definition = schemaProperties![property] ?? false;
       const schema = typeof definition === "boolean" ? {} : definition;
-      const uiSchema =
-        (isAdditional
+      const uiSchema = retrieveUiSchema(
+        ctx,
+        isAdditional
           ? config.uiSchema.additionalProperties
-          : (config.uiSchema[property] as UiSchema)) ?? {};
+          : (config.uiSchema[property] as UiSchemaDefinition | undefined)
+      );
       const uiOptions = getUiOptions(ctx, uiSchema);
       return {
         id: createChildId(config.id, property, ctx),

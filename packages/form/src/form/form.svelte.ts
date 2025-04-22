@@ -23,7 +23,11 @@ import {
   type AsyncFieldValueValidator,
 } from "./validator.js";
 import type { Translation } from "./translation.js";
-import type { ExtraUiOptions, UiSchemaRoot } from "./ui-schema.js";
+import {
+  resolveUiRef,
+  type ExtraUiOptions,
+  type UiSchemaRoot,
+} from "./ui-schema.js";
 import type { Icons } from "./icons.js";
 import type { FieldsValidationMode } from "./validation.js";
 import {
@@ -40,10 +44,7 @@ import {
   type FormInternalContext,
   type FormContext,
 } from "./context/index.js";
-import {
-  createFormMerger,
-  type FormMerger,
-} from "./merger.js";
+import { createFormMerger, type FormMerger } from "./merger.js";
 import {
   type Id,
   DEFAULT_ID_PREFIX,
@@ -178,19 +179,17 @@ export interface FormValidationResult<E> {
   formErrors: FieldErrorsMap<E>;
 }
 
-type Validate<V> =
-  V extends FormValueValidator<infer E>
-    ? {
-        validate(): FieldErrorsMap<E>;
-      }
-    : {};
+type Validate<V> = V extends FormValueValidator<infer E>
+  ? {
+      validate(): FieldErrorsMap<E>;
+    }
+  : {};
 
-type ValidateAsync<V> =
-  V extends AsyncFormValueValidator<infer E>
-    ? {
-        validateAsync(signal: AbortSignal): Promise<FieldErrorsMap<E>>;
-      }
-    : {};
+type ValidateAsync<V> = V extends AsyncFormValueValidator<infer E>
+  ? {
+      validateAsync(signal: AbortSignal): Promise<FieldErrorsMap<E>>;
+    }
+  : {};
 
 export type FormState<T, V extends Validator> = {
   readonly context: FormContext;
@@ -206,12 +205,12 @@ export type FormState<T, V extends Validator> = {
   >;
   /**
    * An accessor that maintains form state consistency:
-   * 
+   *
    * - A snapshot of the form state is returned on access
    * - Default values from JSON Schema are taken into account during assignment
-   * 
+   *
    * You can gain direct access to the internal state by hacking types:
-   * 
+   *
    * `(form.context as FormInternalContext<typeof validator>).value`
    */
   value: T | undefined;
@@ -246,11 +245,12 @@ export function createForm<T, V extends Validator>(
   let isChanged = $state(false);
 
   const fieldsValidationMode = $derived(options.fieldsValidationMode ?? 0);
-  const uiSchema = $derived(options.uiSchema ?? {});
+  const uiSchemaRoot = $derived(options.uiSchema ?? {});
+  const uiSchema = $derived(resolveUiRef(uiSchemaRoot, options.uiSchema) ?? {});
   const disabled = $derived(options.disabled ?? false);
   const schedulerYield: SchedulerYield = $derived(
-    (options.schedulerYield ??
-      (typeof scheduler !== "undefined" && "yield" in scheduler))
+    options.schedulerYield ??
+      (typeof scheduler !== "undefined" && "yield" in scheduler)
       ? scheduler.yield.bind(scheduler)
       : ({ signal }: Parameters<SchedulerYield>[0]) =>
           new Promise((resolve, reject) => {
@@ -406,7 +406,7 @@ export function createForm<T, V extends Validator>(
   }
 
   const uiOptions = $derived({
-    ...uiSchema["ui:globalOptions"],
+    ...uiSchemaRoot["ui:globalOptions"],
     ...uiSchema["ui:options"],
   });
 
@@ -416,12 +416,6 @@ export function createForm<T, V extends Validator>(
     ...({} as FormContext),
     get rootId() {
       return rootId as Id;
-    },
-    get uiOptions() {
-      return uiOptions;
-    },
-    get extraUiOptions() {
-      return options.extraUiOptions
     },
     get value() {
       return value;
@@ -441,7 +435,7 @@ export function createForm<T, V extends Validator>(
       return isSubmitted;
     },
     set isSubmitted(v) {
-      isSubmitted = v
+      isSubmitted = v;
     },
     get isChanged() {
       return isChanged;
@@ -455,8 +449,17 @@ export function createForm<T, V extends Validator>(
     get schema() {
       return options.schema;
     },
+    get uiSchemaRoot() {
+      return uiSchemaRoot;
+    },
     get uiSchema() {
       return uiSchema;
+    },
+    get uiOptions() {
+      return uiOptions;
+    },
+    get extraUiOptions() {
+      return options.extraUiOptions;
     },
     get disabled() {
       return disabled;

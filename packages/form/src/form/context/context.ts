@@ -6,7 +6,14 @@ import type { DataURLToBlob } from "@/lib/file.js";
 import type { Schema, SchemaValue, Validator } from "@/core/index.js";
 
 import type { Translation } from "../translation.js";
-import type { ExtraUiOptions, UiOptions, UiSchema, UiSchemaRoot } from "../ui-schema.js";
+import {
+  resolveUiRef,
+  type ExtraUiOptions,
+  type UiOptions,
+  type UiSchema,
+  type UiSchemaDefinition,
+  type UiSchemaRoot,
+} from "../ui-schema.js";
 import type {
   FieldError,
   PossibleError,
@@ -20,7 +27,7 @@ import type { Config } from "../config.js";
 import type { Theme } from "../components.js";
 import type { Id, IdOptions } from "../id.js";
 import type { FormValue } from "../model.js";
-import type { ResolveFieldType } from '../fields.js';
+import type { ResolveFieldType } from "../fields.js";
 
 export type FormContext = Brand<"sjsf-context", {}>;
 
@@ -33,7 +40,8 @@ export interface FormInternalContext<V extends Validator>
   readonly fieldsValidationMode: number;
   readonly isSubmitted: boolean;
   readonly schema: Schema;
-  readonly uiSchema: UiSchemaRoot;
+  readonly uiSchemaRoot: UiSchemaRoot;
+  readonly uiSchema: UiSchema;
   readonly uiOptions: UiOptions;
   readonly extraUiOptions?: ExtraUiOptions;
   readonly validator: V;
@@ -72,11 +80,18 @@ export function setFromContext(ctx: FormContext) {
   setContext(FORM_CONTEXT, ctx);
 }
 
+export function retrieveUiSchema<V extends Validator>(
+  ctx: FormInternalContext<V>,
+  uiSchemaDef: UiSchemaDefinition | undefined
+) {
+  return resolveUiRef(ctx.uiSchemaRoot, uiSchemaDef) ?? {};
+}
+
 export function getUiOptions<V extends Validator>(
   ctx: FormInternalContext<V>,
   uiSchema: UiSchema
 ) {
-  const globalUiOptions = ctx.uiSchema["ui:globalOptions"];
+  const globalUiOptions = ctx.uiSchemaRoot["ui:globalOptions"];
   const uiOptions = uiSchema["ui:options"];
   return globalUiOptions !== undefined
     ? { ...globalUiOptions, ...uiOptions }

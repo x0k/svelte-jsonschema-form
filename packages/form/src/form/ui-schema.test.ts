@@ -1,10 +1,14 @@
 import { describe, it, expect } from "vitest";
 
-import { getUiSchemaByPath, type UiSchema } from "./ui-schema.js";
+import {
+  getUiSchemaByPath,
+  type UiSchema,
+  type UiSchemaRoot,
+} from "./ui-schema.js";
 
 describe("getUiSchemaByPath", () => {
   it("should return undefined if schema is undefined", () => {
-    expect(getUiSchemaByPath(undefined, ["a"])).toBeUndefined();
+    expect(getUiSchemaByPath({}, undefined, ["a"])).toBeUndefined();
   });
 
   it("should return the nested schema for property lookup", () => {
@@ -15,7 +19,7 @@ describe("getUiSchemaByPath", () => {
         },
       },
     };
-    const result = getUiSchemaByPath(schema, ["a", "b"]);
+    const result = getUiSchemaByPath({}, schema, ["a", "b"]);
     expect(result).toEqual({
       "ui:options": { title: "foo" },
     });
@@ -29,7 +33,7 @@ describe("getUiSchemaByPath", () => {
         },
       ],
     };
-    const result = getUiSchemaByPath(schema, [0]);
+    const result = getUiSchemaByPath({}, schema, [0]);
     expect(result).toEqual({
       "ui:options": { title: "foo" },
     });
@@ -41,7 +45,7 @@ describe("getUiSchemaByPath", () => {
         "ui:options": { title: "foo" },
       },
     };
-    const result = getUiSchemaByPath(schema, ["randomKey"]);
+    const result = getUiSchemaByPath({}, schema, ["randomKey"]);
     expect(result).toEqual({
       "ui:options": { title: "foo" },
     });
@@ -53,7 +57,7 @@ describe("getUiSchemaByPath", () => {
         "ui:options": { title: "foo" },
       },
     };
-    const result = getUiSchemaByPath(schema, [0]);
+    const result = getUiSchemaByPath({}, schema, [0]);
     expect(result).toEqual({
       "ui:options": { title: "foo" },
     });
@@ -74,7 +78,7 @@ describe("getUiSchemaByPath", () => {
         },
       ],
     };
-    const result = getUiSchemaByPath(schema, ["a"]);
+    const result = getUiSchemaByPath({}, schema, ["a"]);
     expect(result).toEqual({
       "ui:options": { title: "foo" },
     });
@@ -95,7 +99,7 @@ describe("getUiSchemaByPath", () => {
         },
       ],
     };
-    const result = getUiSchemaByPath(schema, ["b"]);
+    const result = getUiSchemaByPath({}, schema, ["b"]);
     expect(result).toEqual({
       "ui:options": { title: "foo" },
     });
@@ -118,9 +122,39 @@ describe("getUiSchemaByPath", () => {
         ],
       },
     };
-    const result = getUiSchemaByPath(schema, ["a", "b"]);
+    const result = getUiSchemaByPath({}, schema, ["a", "b"]);
     expect(result).toEqual({
       "ui:options": { title: "foo" },
     });
+  });
+
+  it("should resolve root ref", () => {
+    const schema: UiSchemaRoot = {
+      "ui:definitions": {
+        foo: {
+          "ui:options": { title: "foo" },
+        },
+      },
+      $ref: "foo",
+    };
+    expect(getUiSchemaByPath(schema, schema, [])).toEqual({
+      "ui:options": { title: "foo" },
+    });
+  });
+
+  it("should resolve recursive ref", () => {
+    const foo: UiSchema = {
+      "ui:options": { title: "foo" },
+      additionalProperties: {
+        $ref: "foo",
+      },
+    };
+    const schema: UiSchemaRoot = {
+      "ui:definitions": {
+        foo,
+      },
+      $ref: "foo",
+    };
+    expect(getUiSchemaByPath(schema, schema, ["foo", "bar"])).toEqual(foo);
   });
 });

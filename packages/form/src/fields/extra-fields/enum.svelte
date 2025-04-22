@@ -4,7 +4,6 @@
     getErrors,
     validateField,
     getFormContext,
-    createPseudoId,
     getComponent,
     type ComponentProps,
   } from "@/form/index.js";
@@ -23,11 +22,7 @@
   const handlers = makeEventHandlers(ctx, () =>
     validateField(ctx, config, value)
   );
-  const options = $derived(
-    createOptions(config.schema, config.uiSchema, config.uiOptions, (i) =>
-      createPseudoId(config.id, i, ctx)
-    ) ?? []
-  );
+  const options = $derived(createOptions(ctx, config, config.schema) ?? []);
   const errors = $derived(getErrors(ctx, config.id));
 </script>
 

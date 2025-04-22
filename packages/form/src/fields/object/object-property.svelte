@@ -10,7 +10,7 @@
       };
     }
     interface ComponentBindings {
-      objectPropertyField: "value"
+      objectPropertyField: "value";
     }
   }
 </script>
@@ -21,6 +21,7 @@
     getErrors,
     getFieldComponent,
     getFormContext,
+    retrieveUiSchema,
     Text,
     type ComponentProps,
     type FieldCommonProps,
@@ -53,7 +54,7 @@
     {property}
     name={config.name}
     parentId={config.id}
-    uiSchema={config.uiSchema.additionalPropertyKeyInput ?? {}}
+    uiSchema={retrieveUiSchema(ctx, config.uiSchema.additionalPropertyKeyInput)}
   />
 {/snippet}
 {#snippet removeButton()}

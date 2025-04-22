@@ -13,7 +13,6 @@
     getErrors,
     validateField,
     getFormContext,
-    createPseudoId,
     getComponent,
     type ComponentProps,
   } from "@/form/index.js";
@@ -37,11 +36,7 @@
   const options = $derived.by(() => {
     const { items } = config.schema;
     const itemSchema = isSchemaObjectValue(items) ? items : {};
-    return (
-      createOptions(itemSchema, config.uiSchema, config.uiOptions, (i) =>
-        createPseudoId(config.id, i, ctx)
-      ) ?? []
-    );
+    return createOptions(ctx, config, itemSchema) ?? [];
   });
   const errors = $derived(getErrors(ctx, config.id));
 </script>

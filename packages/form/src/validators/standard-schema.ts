@@ -3,7 +3,7 @@ import type { StandardSchemaV1 } from "@standard-schema/spec";
 import type { Path, Schema } from "@/core/index.js";
 import {
   getRootSchemaTitleByPath,
-  getUiSchemaByPath,
+  getRootUiSchemaTitleByPath,
   pathToId,
   type AsyncFormValueValidator,
   type FormValueValidator,
@@ -35,7 +35,7 @@ function createErrorsTransformer(options: ErrorsTransformerOptions) {
       const path = issueToPath(issue);
       const instanceId = pathToId(path, options);
       const propertyTitle =
-        getUiSchemaByPath(options.uiSchema, path)?.["ui:options"]?.title ??
+        getRootUiSchemaTitleByPath(options.uiSchema ?? {}, path) ??
         getRootSchemaTitleByPath(rootSchema, path) ??
         path[path.length - 1] ??
         instanceId;

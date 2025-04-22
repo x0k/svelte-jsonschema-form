@@ -1,4 +1,9 @@
-import type { Config } from "@/form/index.js";
+import {
+  retrieveUiSchema,
+  type Config,
+  type FormInternalContext,
+  type Validator,
+} from "@/form/index.js";
 
 export function getArrayItemName(config: Config, index: number) {
   return `${config.name}__${index}`;
@@ -15,12 +20,13 @@ export function getNormalArrayItemTitle(
   return titleWithIndex(uiOptions?.title ?? schema.title ?? title, index);
 }
 
-export function getFixedArrayItemTitle(
+export function getFixedArrayItemTitle<V extends Validator>(
+  ctx: FormInternalContext<V>,
   { uiSchema: { items: uiItems }, schema: { items }, title }: Config,
   index: number
 ) {
   if (Array.isArray(uiItems)) {
-    const title = uiItems[index]?.["ui:options"]?.title;
+    const title = retrieveUiSchema(ctx, uiItems[index])["ui:options"]?.title;
     if (title) {
       return title;
     }
@@ -34,7 +40,7 @@ export function getFixedArrayItemTitle(
     items = undefined;
   }
   return titleWithIndex(
-    uiItems?.["ui:options"]?.title ||
+    retrieveUiSchema(ctx, uiItems)["ui:options"]?.title ||
       (typeof items === "object" && items?.title) ||
       title,
     index

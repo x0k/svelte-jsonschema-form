@@ -17,6 +17,7 @@ import {
   getUiOptions,
   ON_ARRAY_CHANGE,
   retrieveSchema,
+  retrieveUiSchema,
   validateField,
   type Config,
   type FieldError,
@@ -92,7 +93,7 @@ function createItemsAPI<V extends Validator>(
 
   return {
     get config() {
-      return config()
+      return config();
     },
     get addable() {
       return addable;
@@ -160,20 +161,21 @@ export function createArrayContext<V extends Validator>(
   // when calculating default values, so this is unnecessary
   _: (v: SchemaArrayValue) => void
 ): ArrayContext<V> {
-  const itemsSchema: Schema = $derived.by(() => {
-    const conf = config();
-    return isSchemaObjectValue(conf.schema.items) ? conf.schema.items : {};
+  const itemSchema: Schema = $derived.by(() => {
+    const {
+      schema: { items },
+    } = config();
+    return isSchemaObjectValue(items) ? items : {};
   });
   const itemUiSchema = $derived.by(() => {
-    const conf = config();
-    return conf.uiSchema.items !== undefined &&
-      !Array.isArray(conf.uiSchema.items)
-      ? conf.uiSchema.items
-      : {};
+    const {
+      uiSchema: { items },
+    } = config();
+    return retrieveUiSchema(ctx, !Array.isArray(items) ? items : undefined);
   });
   const itemUiOptions = $derived(getUiOptions(ctx, itemUiSchema));
 
-  const api = createItemsAPI(ctx, config, value, () => itemsSchema);
+  const api = createItemsAPI(ctx, config, value, () => itemSchema);
 
   const canAdd = $derived.by(createCanAdd(config, value, () => api.addable));
 
@@ -194,7 +196,7 @@ export function createArrayContext<V extends Validator>(
       return api.orderable && index < value()!.length - 1;
     },
     itemConfig(config, item, index) {
-      const schema = retrieveSchema(ctx, itemsSchema, item);
+      const schema = retrieveSchema(ctx, itemSchema, item);
       return {
         id: createChildId(config.id, index, ctx),
         name: getArrayItemName(config, index),
@@ -281,16 +283,18 @@ export function createTupleContext<V extends Validator>(
         (additional ? schemaAdditionalItems : itemsSchema[index])!,
         item
       );
-      const uiSchema =
-        (additional
+      const uiSchema = retrieveUiSchema(
+        ctx,
+        additional
           ? config.uiSchema.additionalItems
           : Array.isArray(config.uiSchema.items)
           ? config.uiSchema.items[index]
-          : config.uiSchema.items) ?? {};
+          : config.uiSchema.items
+      );
       return {
         id: createChildId(config.id, index, ctx),
         name: getArrayItemName(config, index),
-        title: getFixedArrayItemTitle(config, index),
+        title: getFixedArrayItemTitle(ctx, config, index),
         schema,
         uiSchema,
         uiOptions: getUiOptions(ctx, uiSchema),

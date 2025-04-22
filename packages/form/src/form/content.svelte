@@ -3,21 +3,19 @@
   import {
     retrieveSchema,
     getFormContext,
-    getUiOptions,
     getFieldComponent,
   } from "./context/index.js";
 
   const ctx = getFormContext();
 
   const retrievedSchema = $derived(retrieveSchema(ctx, ctx.schema, ctx.value));
-  const uiOptions = $derived(getUiOptions(ctx, ctx.uiSchema));
   const config: Config = $derived({
     id: ctx.rootId,
     name: "",
-    title: uiOptions?.title ?? retrievedSchema.title ?? "",
+    title: ctx.uiOptions?.title ?? retrievedSchema.title ?? "",
     schema: retrievedSchema,
     uiSchema: ctx.uiSchema,
-    uiOptions,
+    uiOptions: ctx.uiOptions,
     required: false,
   });
 

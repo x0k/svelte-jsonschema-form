@@ -27,27 +27,21 @@
   const options = $derived.by(() => {
     const yes = translate(ctx, "yes", {});
     const no = translate(ctx, "no", {});
-    const computeId = (i: number) => createPseudoId(config.id, i, ctx);
     if (Array.isArray(config.schema.oneOf)) {
       return (
-        createOptions(
-          {
-            oneOf: config.schema.oneOf.map((option): Schema => {
-              if (typeof option === "boolean") {
-                return option
-                  ? { const: true, title: yes }
-                  : { const: false, title: no };
-              }
-              return {
-                ...option,
-                title: option.title ?? (option.const === true ? yes : no),
-              };
-            }),
-          },
-          config.uiSchema,
-          config.uiOptions,
-          computeId
-        ) ?? []
+        createOptions(ctx, config, {
+          oneOf: config.schema.oneOf.map((option): Schema => {
+            if (typeof option === "boolean") {
+              return option
+                ? { const: true, title: yes }
+                : { const: false, title: no };
+            }
+            return {
+              ...option,
+              title: option.title ?? (option.const === true ? yes : no),
+            };
+          }),
+        }) ?? []
       );
     }
     const enumValues = config.schema.enum ?? DEFAULT_BOOLEAN_ENUM;
@@ -63,14 +57,7 @@
         disabled: false,
       }));
     }
-    return (
-      createOptions(
-        config.schema,
-        config.uiSchema,
-        config.uiOptions,
-        computeId
-      ) ?? []
-    );
+    return createOptions(ctx, config, config.schema) ?? [];
   });
 
   const handlers = makeEventHandlers(ctx, () =>

@@ -1,9 +1,9 @@
 <script lang="ts" module>
-  import type { UiSchema } from "@/form/index.js";
+  import type { UiSchemaDefinition } from "@/form/index.js";
 
   declare module "../form/index.js" {
     interface UiSchemaContent {
-      combinationFieldOptionSelector?: UiSchema;
+      combinationFieldOptionSelector?: UiSchemaDefinition;
     }
   }
 </script>
@@ -32,6 +32,7 @@
     type ComponentProps,
     translate,
     getFieldComponent,
+    retrieveUiSchema,
   } from "@/form/index.js";
 
   let {
@@ -100,7 +101,9 @@
 
   const optionsUiSchemas = $derived.by(() => {
     const schemas = config.uiSchema[combinationKey];
-    return Array.isArray(schemas) ? schemas : [];
+    return Array.isArray(schemas)
+      ? schemas.map((s) => retrieveUiSchema(ctx, s))
+      : [];
   });
   const optionsUiOptions = $derived(
     optionsUiSchemas.map((s) => getUiOptions(ctx, s))
@@ -130,7 +133,10 @@
     const suffix = combinationKey.toLowerCase() as Lowercase<
       typeof combinationKey
     >;
-    const uiSchema = config.uiSchema.combinationFieldOptionSelector ?? {};
+    const uiSchema = retrieveUiSchema(
+      ctx,
+      config.uiSchema.combinationFieldOptionSelector
+    );
     const uiOptions = getUiOptions(ctx, uiSchema);
     return {
       id: createPseudoId(config.id, suffix, ctx),
