@@ -87,7 +87,8 @@
 	);
 
 	const emptyText = $derived(
-		ctx.extraUiOptions?.('shadcnComboboxEmptyText', config) ?? ctx.uiOptions.shadcnComboboxEmptyText
+		ctx.extraUiOptions?.('shadcnComboboxEmptyText', config) ??
+			config.uiOptions?.shadcnComboboxEmptyText
 	);
 </script>
 
