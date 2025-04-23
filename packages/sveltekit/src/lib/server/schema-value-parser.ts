@@ -20,7 +20,15 @@ import {
   typeOfSchema,
   isArrayOrObjectSchemaType
 } from '@sjsf/form/core';
-import type { IdentifiableFieldElement, Schema, SchemaValue, UiSchema } from '@sjsf/form';
+import {
+  resolveUiRef,
+  type IdentifiableFieldElement,
+  type Schema,
+  type SchemaValue,
+  type UiSchema,
+  type UiSchemaDefinition,
+  type UiSchemaRoot
+} from '@sjsf/form';
 
 import { IDENTIFIABLE_FIELD_ELEMENTS } from '../model.js';
 
@@ -28,7 +36,7 @@ import type { Entries, EntriesConverter, Entry } from './entry.js';
 
 export interface SchemaValueParserOptions<T> {
   schema: Schema;
-  uiSchema: UiSchema;
+  uiSchema: UiSchemaRoot;
   entries: Entries<T>;
   idPrefix: string;
   idSeparator: string;
@@ -149,7 +157,11 @@ export function parseSchemaValue<T>({
   }
 
   function parseObject(schema: Schema, uiSchema: UiSchema, value: SchemaObjectValue) {
-    function setProperty(property: string, schemaDef: SchemaDefinition, uiSchema: UiSchema) {
+    function setProperty(
+      property: string,
+      schemaDef: SchemaDefinition,
+      uiSchema: UiSchemaDefinition
+    ) {
       if (value[property] === undefined) {
         const propertyValue = parseSchemaDef(schemaDef, uiSchema);
         if (propertyValue !== undefined) {
@@ -263,7 +275,7 @@ export function parseSchemaValue<T>({
 
   function handleAllOf(
     allOf: Schema['allOf'],
-    allOffUiSchema: UiSchema | UiSchema[],
+    allOffUiSchema: UiSchemaDefinition | UiSchemaDefinition[],
     value: SchemaValue | undefined
   ) {
     if (!Array.isArray(allOf)) {
@@ -279,7 +291,7 @@ export function parseSchemaValue<T>({
   function handleOneOf(
     oneOf: Schema['oneOf'],
     schema: Schema,
-    oneOfUiSchema: UiSchema | UiSchema[],
+    oneOfUiSchema: UiSchemaDefinition | UiSchemaDefinition[],
     value: SchemaValue | undefined
   ) {
     if (!Array.isArray(oneOf) || isSelect(validator, merger, schema, rootSchema)) {
@@ -350,9 +362,10 @@ export function parseSchemaValue<T>({
 
   function parseSchemaDef(
     schema: SchemaDefinition,
-    uiSchema: UiSchema,
+    uiSchema: UiSchemaDefinition,
     value?: SchemaValue
   ): SchemaValue | undefined {
+    uiSchema = resolveUiRef(rootUiSchema, uiSchema) ?? {};
     if (!isSchema(schema)) {
       return schema
         ? convertEntries({ schema, uiSchema, entries: entriesStack[entriesStack.length - 1] })
