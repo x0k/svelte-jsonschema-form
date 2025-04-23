@@ -26,7 +26,12 @@ import type { FormMerger } from "../merger.js";
 import type { Config } from "../config.js";
 import type { Theme } from "../components.js";
 import type { Id, IdOptions } from "../id.js";
-import type { FormValue } from "../model.js";
+import {
+  resolveValue,
+  type FormValue,
+  type Resolvable,
+  type ValuesRegistry,
+} from "../model.js";
 import type { ResolveFieldType } from "../fields.js";
 
 export type FormContext = Brand<"sjsf-context", {}>;
@@ -46,6 +51,7 @@ export interface FormInternalContext<V extends Validator>
   readonly extraUiOptions?: ExtraUiOptions;
   readonly validator: V;
   readonly merger: FormMerger;
+  readonly registry: ValuesRegistry;
   readonly icons?: Icons;
   readonly disabled: boolean;
   readonly errors: FieldErrorsMap<PossibleError<V>>;
@@ -85,6 +91,13 @@ export function retrieveUiSchema<V extends Validator>(
   uiSchemaDef: UiSchemaDefinition | undefined
 ) {
   return resolveUiRef(ctx.uiSchemaRoot, uiSchemaDef) ?? {};
+}
+
+export function retrieveValue<V extends Validator, T>(
+  ctx: FormInternalContext<V>,
+  val: Resolvable<T>
+) {
+  return resolveValue(ctx.registry, val);
 }
 
 export function getUiOptions<V extends Validator>(
