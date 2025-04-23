@@ -28,11 +28,7 @@ import {
   isPrimitiveSchemaType,
   typeOfSchema,
 } from "./type.js";
-import {
-  getSelectOptionValues,
-  isMultiSelect,
-  isSelect,
-} from "./is-select.js";
+import { getSelectOptionValues, isMultiSelect, isSelect } from "./is-select.js";
 import { getClosestMatchingOption } from "./matching.js";
 import type { Merger } from "./merger.js";
 import { isSchemaOfConstantValue } from "./constant-schema.js";
@@ -237,6 +233,7 @@ export function computeDefaults(
     $ref: schemaRef,
     oneOf: schemaOneOf,
     anyOf: schemaAnyOf,
+    allOf: schemaAllOf
   } = schema;
   if (
     isSchemaOfConstantValue(schema) &&
@@ -250,7 +247,11 @@ export function computeDefaults(
     // For object defaults, only override parent defaults that are defined in
     // schema.default.
     defaults = mergeSchemaObjects(defaults, schemaDefault);
-  } else if (schemaDefault !== undefined) {
+  } else if (
+    schemaDefault !== undefined &&
+    schemaOneOf === undefined &&
+    schemaAnyOf === undefined
+  ) {
     defaults = schemaDefault;
   } else if (schemaRef !== undefined) {
     // Use referenced schema defaults for this node.
@@ -324,7 +325,7 @@ export function computeDefaults(
           validator,
           merger,
           rootSchema,
-          rawFormData,
+          rawFormData ?? schemaDefault,
           schemaOneOf.filter(isSchema),
           0,
           getDiscriminatorFieldFromSchema(schema)
@@ -345,7 +346,7 @@ export function computeDefaults(
           validator,
           merger,
           rootSchema,
-          rawFormData,
+          rawFormData ?? schemaDefault,
           schemaAnyOf.filter(isSchema),
           0,
           getDiscriminatorFieldFromSchema(schema)
@@ -397,7 +398,7 @@ export function computeDefaults(
       rawFormData,
       experimental_defaultFormStateBehavior
     );
-    if (!isSchemaObjectValue(rawFormData)) {
+    if (!isSchemaObjectValue(rawFormData) || schemaAllOf !== undefined) {
       defaultsWithFormData = mergeDefaultsWithFormData(
         defaultsWithFormData,
         matchingFormData,

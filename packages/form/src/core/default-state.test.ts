@@ -1330,12 +1330,7 @@ describe("getDefaultFormState2()", () => {
 
         test("getDefaultFormState", () => {
           expect(
-            getDefaultFormState(
-              testValidator,
-              defaultMerger,
-              schema,
-              undefined
-            )
+            getDefaultFormState(testValidator, defaultMerger, schema, undefined)
           ).toEqual(expected);
         });
 
@@ -2740,103 +2735,7 @@ describe("getDefaultFormState2()", () => {
       ).toEqual({ requiredArray: ["default0", "default0"] });
     });
   });
-  describe('default form state behaviour: allOf = "populateDefaults"', () => {
-    it("should populate default values correctly", () => {
-      const schema: Schema = {
-        title: "Example",
-        type: "object",
-        properties: {
-          animalInfo: {
-            properties: {
-              animal: {
-                type: "string",
-                default: "Cat",
-                enum: ["Cat", "Fish"],
-              },
-            },
-            allOf: [
-              {
-                if: {
-                  properties: {
-                    animal: {
-                      const: "Cat",
-                    },
-                  },
-                },
-                then: {
-                  properties: {
-                    food: {
-                      type: "string",
-                      default: "meat",
-                      enum: ["meat", "grass", "fish"],
-                    },
-                  },
-                  required: ["food"],
-                },
-              },
-            ],
-          },
-        },
-      };
 
-      expect(
-        computeDefaults(testValidator, defaultMerger, schema, {
-          ...defaults,
-          rootSchema: schema,
-          experimental_defaultFormStateBehavior: { allOf: "populateDefaults" },
-        })
-      ).toEqual({ animalInfo: { animal: "Cat", food: "meat" } });
-    });
-  });
-
-  describe('default form state behaviour: allOf = "skipDefaults"', () => {
-    it("should populate default values correctly", () => {
-      const schema: Schema = {
-        title: "Example",
-        type: "object",
-        properties: {
-          animalInfo: {
-            properties: {
-              animal: {
-                type: "string",
-                default: "Cat",
-                enum: ["Cat", "Fish"],
-              },
-            },
-            allOf: [
-              {
-                if: {
-                  properties: {
-                    animal: {
-                      const: "Cat",
-                    },
-                  },
-                },
-                then: {
-                  properties: {
-                    food: {
-                      type: "string",
-                      default: "meat",
-                      enum: ["meat", "grass", "fish"],
-                    },
-                  },
-                  required: ["food"],
-                },
-              },
-            ],
-          },
-        },
-      };
-
-      expect(
-        computeDefaults(testValidator, defaultMerger, schema, {
-          ...defaults,
-          rootSchema: schema,
-          experimental_defaultFormStateBehavior: { allOf: "skipDefaults" },
-        })
-      ).toEqual({ animalInfo: { animal: "Cat" } });
-    });
-  });
   describe('default form state behavior: arrayMinItems.populate = "never"', () => {
     it("should not be filled if minItems defined and required", () => {
       const schema: Schema = {
@@ -4507,6 +4406,103 @@ describe("getDefaultFormState2()", () => {
       });
     });
   });
+  describe("defaults with allOf", () => {
+    it("should populate root defaults for allOf", () => {
+      const schema: Schema = {
+        allOf: [
+          {
+            properties: {
+              first: {
+                title: "First",
+                type: "string",
+              },
+            },
+          },
+          {
+            properties: {
+              second: {
+                title: "Second",
+                type: "string",
+              },
+            },
+          },
+        ],
+        default: {
+          second: "Second 2!",
+        },
+        type: "object",
+      };
+
+      expect(
+        getDefaultFormState(testValidator, defaultMerger, schema, {})
+      ).toEqual({
+        second: "Second 2!",
+      });
+    });
+
+    const schema: Schema = {
+      title: "Example",
+      type: "object",
+      properties: {
+        animalInfo: {
+          properties: {
+            animal: {
+              type: "string",
+              default: "Cat",
+              enum: ["Cat", "Fish"],
+            },
+          },
+          allOf: [
+            {
+              if: {
+                properties: {
+                  animal: {
+                    const: "Cat",
+                  },
+                },
+              },
+              then: {
+                properties: {
+                  food: {
+                    type: "string",
+                    default: "meat",
+                    enum: ["meat", "grass", "fish"],
+                  },
+                },
+                required: ["food"],
+              },
+            },
+          ],
+        },
+      },
+    };
+
+    describe('default form state behaviour: allOf = "populateDefaults"', () => {
+      it("should populate default values correctly", () => {
+        expect(
+          computeDefaults(testValidator, defaultMerger, schema, {
+            ...defaults,
+            rootSchema: schema,
+            experimental_defaultFormStateBehavior: {
+              allOf: "populateDefaults",
+            },
+          })
+        ).toEqual({ animalInfo: { animal: "Cat", food: "meat" } });
+      });
+    });
+
+    describe('default form state behaviour: allOf = "skipDefaults"', () => {
+      it("should populate default values correctly", () => {
+        expect(
+          computeDefaults(testValidator, defaultMerger, schema, {
+            ...defaults,
+            rootSchema: schema,
+            experimental_defaultFormStateBehavior: { allOf: "skipDefaults" },
+          })
+        ).toEqual({ animalInfo: { animal: "Cat" } });
+      });
+    });
+  });
   describe("defaults with oneOf", () => {
     it("should not populate defaults for empty oneOf", () => {
       const schema: Schema = {
@@ -4540,6 +4536,43 @@ describe("getDefaultFormState2()", () => {
       ).toEqual({
         name: "a",
       });
+    });
+    it("should populate root defaults for oneOf", () => {
+      const schema: Schema = {
+        oneOf: [
+          {
+            properties: {
+              first: {
+                title: "First",
+                type: "string",
+              },
+            },
+          },
+          {
+            properties: {
+              second: {
+                title: "Second",
+                type: "string",
+              },
+            },
+          },
+        ],
+        default: {
+          second: "Second 2!",
+        },
+        type: "object",
+      };
+
+      // Mock isValid so that withExactlyOneSubschema works as expected
+      testValidator = createValidator({
+        isValid: [false, true],
+      });
+
+      expect(getDefaultFormState(testValidator, defaultMerger, schema)).toEqual(
+        {
+          second: "Second 2!",
+        }
+      );
     });
     it("should populate defaults for oneOf when `type`: `object` is missing", () => {
       const schema: Schema = {
@@ -4795,6 +4828,43 @@ describe("getDefaultFormState2()", () => {
       ).toEqual({
         name: "a",
       });
+    });
+    it("should populate root defaults for anyOf", () => {
+      const schema: Schema = {
+        anyOf: [
+          {
+            properties: {
+              first: {
+                title: "First",
+                type: "string",
+              },
+            },
+          },
+          {
+            properties: {
+              second: {
+                title: "Second",
+                type: "string",
+              },
+            },
+          },
+        ],
+        default: {
+          second: "Second 2!",
+        },
+        type: "object",
+      };
+
+      // Mock isValid so that withExactlyOneSubschema works as expected
+      testValidator = createValidator({
+        isValid: [false, true],
+      });
+
+      expect(getDefaultFormState(testValidator, defaultMerger, schema)).toEqual(
+        {
+          second: "Second 2!",
+        }
+      );
     });
     it("should populate nested default values for anyOf", () => {
       const schema: Schema = {
@@ -5332,14 +5402,14 @@ describe("getDefaultFormState2()", () => {
           },
         },
       };
-      expect(
-        getDefaultFormState(testValidator, defaultMerger, schema)
-      ).toEqual({
-        authentication: {
-          credentialType: "username",
-          usernameAndPassword: {},
-        },
-      });
+      expect(getDefaultFormState(testValidator, defaultMerger, schema)).toEqual(
+        {
+          authentication: {
+            credentialType: "username",
+            usernameAndPassword: {},
+          },
+        }
+      );
     });
     it("should populate defaults for nested dependencies when formData passed to computeDefaults is undefined", () => {
       const schema: Schema = {
