@@ -17,30 +17,41 @@ and defines how each property should be rendered.
 
 ```typescript
 export interface UiSchemaContent {
+  /**
+   * Extendable set of UI options
+   */
   "ui:options"?: UiOptions;
+  /**
+   * Components override
+   */
   "ui:components"?: Partial<{
     [T in FoundationalComponentType]:
       | Exclude<CompatibleComponentType<T>, T>
       | ComponentDefinitions[T];
   }>;
-  items?: UiSchema | UiSchema[];
-  anyOf?: UiSchema[];
-  oneOf?: UiSchema[];
-  additionalProperties?: UiSchema;
-  additionalPropertyKeyInput?: UiSchema;
-  additionalItems?: UiSchema;
+  items?: UiSchemaDefinition | UiSchemaDefinition[];
+  anyOf?: UiSchemaDefinition[];
+  oneOf?: UiSchemaDefinition[];
+  additionalProperties?: UiSchemaDefinition;
+  additionalPropertyKeyInput?: UiSchemaDefinition;
+  additionalItems?: UiSchemaDefinition;
 }
 
 export type UiSchema = UiSchemaContent & {
-  // This is should be `UiSchema` type, but
+  // This is should be `UiSchemaDefinition` type, but
   // https://github.com/microsoft/TypeScript/issues/17867
   [key: string]: UiSchemaContent[keyof UiSchemaContent];
 };
 
-export type UiSchemaRoot = UiSchemaContent & {
+export interface UiSchemaRef {
+  $ref: string;
+}
+
+export type UiSchemaDefinition = UiSchema | UiSchemaRef;
+
+export type UiSchemaRoot = UiSchemaDefinition & {
   "ui:globalOptions"?: UiOptions;
-  // This is also should be `UiSchema`
-  [key: string]: UiSchemaContent[keyof UiSchemaContent];
+  "ui:definitions"?: Record<string, UiSchema>;
 };
 ```
 
@@ -154,6 +165,27 @@ For example, with this JSON schema, the following UI schema would be correct:
 <Code code={uiSchemaExampleCode} lang="typescript" />
 
 Special cases:
+
+### Ref
+
+If the UI Schema contains a `$ref` key with a value of type `string`,
+the `ui:definitions` field of the root UI schema will be searched
+for the value of the `$ref` key, other fields will be ignored.
+
+```
+{
+  "ui:definitions": {
+    "foo": {
+      ...
+    }
+  },
+  properties: {
+    foo: {
+      $ref: "foo"
+    }
+  }
+}
+```
 
 ### Array
 
