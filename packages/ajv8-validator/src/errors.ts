@@ -1,7 +1,7 @@
 import {
   createChildId,
   createPseudoId,
-  getUiSchemaByPath,
+  getRootUiSchemaTitleByPath,
   pathToId,
   type Config,
   type IdOptions,
@@ -63,17 +63,6 @@ export function createFormErrorsTransformer(options: ErrorsTransformerOptions) {
         : id;
     return id;
   };
-  const errorObjectToPropertyTitle = (
-    { parentSchema }: ErrorObject,
-    path: string[]
-  ): string => {
-    const instanceUiSchema = getUiSchemaByPath(options.uiSchema, path);
-    return (
-      instanceUiSchema?.["ui:options"]?.title ??
-      parentSchema?.title ??
-      path.join(".")
-    );
-  };
   return (errors: ErrorObject[]) => {
     return errors.map((error) => {
       let path = error.instancePath.split("/");
@@ -82,14 +71,17 @@ export function createFormErrorsTransformer(options: ErrorsTransformerOptions) {
       }
       return {
         instanceId: instancePathToId(error, path),
-        propertyTitle: errorObjectToPropertyTitle(error, path),
+        propertyTitle:
+          getRootUiSchemaTitleByPath(options.uiSchema ?? {}, path) ??
+          error.parentSchema?.title ??
+          path.join("."),
         message: errorObjectToMessage(
           error,
           (missingProperty, parentSchema) => {
-            const uiSchemaTitle = getUiSchemaByPath(
-              options.uiSchema,
+            const uiSchemaTitle = getRootUiSchemaTitleByPath(
+              options.uiSchema ?? {},
               path.concat(missingProperty)
-            )?.["ui:options"]?.title;
+            );
             if (uiSchemaTitle !== undefined) {
               return uiSchemaTitle;
             }

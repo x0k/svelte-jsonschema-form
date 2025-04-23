@@ -7,19 +7,19 @@ import {
 } from "@sjsf/form/core";
 import {
   getRootSchemaTitleByPath,
-  getUiSchemaByPath,
+  getRootUiSchemaTitleByPath,
   pathToId,
   type Config,
   type IdPrefixOption,
   type IdSeparatorOption,
   type Schema,
-  type UiSchema,
+  type UiSchemaRoot,
 } from "@sjsf/form";
 
 export interface ErrorsTransformerOptions
   extends IdPrefixOption,
     IdSeparatorOption {
-  uiSchema?: UiSchema;
+  uiSchema?: UiSchemaRoot;
 }
 
 function extractKeywordValue(
@@ -65,8 +65,7 @@ export function createErrorsTransformer(options: ErrorsTransformerOptions) {
     schemaPath: Path,
     error: ValidationError
   ): string => {
-    let title = getUiSchemaByPath(options.uiSchema, instance)?.["ui:options"]
-      ?.title;
+    let title = getRootUiSchemaTitleByPath(options.uiSchema ?? {}, instance);
     if (title !== undefined) {
       return title;
     }

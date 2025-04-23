@@ -15,7 +15,6 @@ import {
   type Validator,
 } from "@sjsf/form/core";
 import {
-  getUiSchemaByPath,
   pathToId,
   type Config,
   type Schema,
@@ -26,6 +25,7 @@ import {
   type IdSeparatorOption,
   getRootSchemaTitleByPath,
   type FormValue,
+  getRootUiSchemaTitleByPath,
 } from "@sjsf/form";
 
 export interface ValueToJSON {
@@ -100,8 +100,7 @@ function createErrorsTransformer(options: ErrorsTransformerOptions) {
     path: Path,
     instanceId: string
   ): string => {
-    const title = getUiSchemaByPath(options.uiSchema, path)?.["ui:options"]
-      ?.title;
+    const title = getRootUiSchemaTitleByPath(options.uiSchema ?? {}, path);
     if (title !== undefined) {
       return title;
     }

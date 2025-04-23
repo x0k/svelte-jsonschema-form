@@ -1,6 +1,6 @@
 import {
   getRootSchemaTitleByPath,
-  getUiSchemaByPath,
+  getRootUiSchemaTitleByPath,
   pathToId,
   type Config,
   type PathToIdOptions,
@@ -25,8 +25,7 @@ export function createErrorsTransformer(options: ErrorsTransformerOptions) {
     return result.error.issues.map((issue) => {
       const instanceId = pathToId(issue.path, options);
       const propertyTitle =
-        getUiSchemaByPath(options.uiSchema, issue.path)?.["ui:options"]
-          ?.title ??
+        getRootUiSchemaTitleByPath(options.uiSchema ?? {}, issue.path) ??
         getRootSchemaTitleByPath(rootSchema, issue.path) ??
         issue.path[issue.path.length - 1] ??
         instanceId;
