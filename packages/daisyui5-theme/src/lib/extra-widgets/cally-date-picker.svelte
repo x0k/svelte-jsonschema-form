@@ -1,6 +1,7 @@
 <script lang="ts" module>
 	import type { ClassValue, HTMLButtonAttributes } from 'svelte/elements';
 	import type { CalendarRangeProps, CalendarMonthProps, CalendarDateProps } from 'cally';
+	import type { Resolvable } from '@sjsf/form';
 	import '@sjsf/form/fields/extra-widgets/date-picker';
 
 	type MapEvents<T> = {
@@ -25,7 +26,7 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			daisyui5CallyCalendarDateFormatter?: (date: string) => string;
+			daisyui5CallyCalendarDateFormatter?: Resolvable<(date: string) => string>;
 			daisyui5CallyCalendarTrigger?: HTMLButtonAttributes;
 			daisyui5CallyCalendar?: CalendarProps;
 		}
@@ -34,7 +35,7 @@
 
 <script lang="ts">
 	import { formatAsCustomPropertyName } from '@sjsf/form/lib/css';
-	import { defineDisabled, getFormContext, type ComponentProps } from '@sjsf/form';
+	import { defineDisabled, getFormContext, retrieveUiOption, type ComponentProps } from '@sjsf/form';
 	import 'cally';
 
 	let {
@@ -47,8 +48,8 @@
 	const ctx = getFormContext();
 
 	const formatDate = $derived.by(() => {
-		const formatDate = config.uiOptions?.daisyui5CallyCalendarDateFormatter;
-		if (formatDate) {
+		const formatDate = retrieveUiOption(ctx, config, 'daisyui5CallyCalendarDateFormatter');
+		if (formatDate !== undefined) {
 			return formatDate;
 		}
 		const format = new Intl.DateTimeFormat(undefined, {

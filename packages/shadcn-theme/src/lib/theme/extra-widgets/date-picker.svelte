@@ -1,6 +1,7 @@
 <script lang="ts" module>
 	import type { Component } from 'svelte';
 	import type { Calendar, CalendarSingleRootProps, WithoutChildrenOrChild } from 'bits-ui';
+	import type { Resolvable } from '@sjsf/form';
 	import '@sjsf/form/fields/extra-widgets/date-picker';
 
 	import type { ButtonProps } from '../types/button';
@@ -10,7 +11,7 @@
 		interface UiOptions {
 			shadcnDatePicker?: Omit<WithoutChildrenOrChild<CalendarSingleRootProps>, 'type'>;
 			shadcnDatePickerTrigger?: ButtonProps;
-			shadcnDateFormatter?: (date: Date) => string;
+			shadcnDateFormatter?: Resolvable<(date: Date) => string>;
 		}
 	}
 
@@ -28,7 +29,7 @@
 
 <script lang="ts">
 	import { getLocalTimeZone, parseDate } from '@internationalized/date';
-	import { defineDisabled, getFormContext, type ComponentProps } from '@sjsf/form';
+	import { defineDisabled, getFormContext, retrieveUiOption, type ComponentProps } from '@sjsf/form';
 
 	import { getThemeContext } from '../context';
 
@@ -66,8 +67,7 @@
 	});
 
 	const formatDate = $derived.by(() => {
-		const formatter =
-			ctx.extraUiOptions?.('shadcnDateFormatter', config) ?? config.uiOptions?.shadcnDateFormatter;
+		const formatter = retrieveUiOption(ctx, config, "shadcnDateFormatter")
 		if (formatter !== undefined) {
 			return formatter;
 		}
@@ -79,7 +79,7 @@
 		return (date: Date) => dateTimeFormat.format(date);
 	});
 
-	const formattedValue = $derived.by(() => {
+	const triggerContent = $derived.by(() => {
 		const v = date.value;
 		if (v === undefined) {
 			return attributes.placeholder;
@@ -97,7 +97,7 @@
 				{...config.uiOptions?.shadcnDatePickerTrigger}
 				{...ctx.extraUiOptions?.('shadcnDatePickerTrigger', config)}
 			>
-				{formattedValue}
+				{triggerContent}
 			</Button>
 		{/snippet}
 	</PopoverTrigger>
