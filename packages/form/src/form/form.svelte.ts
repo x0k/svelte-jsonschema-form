@@ -26,6 +26,7 @@ import type { Translation } from "./translation.js";
 import {
   resolveUiRef,
   type ExtraUiOptions,
+  type UiOptionsRegistry,
   type UiSchemaRoot,
 } from "./ui-schema.js";
 import type { Icons } from "./icons.js";
@@ -53,7 +54,7 @@ import {
 } from "./id.js";
 import type { Config } from "./config.js";
 import type { Theme } from "./components.js";
-import type { FieldValue, FormValue, ValuesRegistry } from "./model.js";
+import type { FieldValue, FormValue } from "./model.js";
 import type { ResolveFieldType } from "./fields.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
@@ -62,15 +63,17 @@ export type InitialErrors<V extends Validator> =
   | ValidationError<PossibleError<V>>[]
   | Iterable<readonly [Id, FieldError<PossibleError<V>>[]]>;
 
-export type FormRegistryOption = keyof ValuesRegistry extends never
+const UI_OPTIONS_REGISTRY_KEY = "uiOptionsRegistry";
+
+export type UiOptionsRegistryOption = keyof UiOptionsRegistry extends never
   ? {}
   : {
-      registry: ValuesRegistry;
+      [UI_OPTIONS_REGISTRY_KEY]: UiOptionsRegistry;
     };
 
 // How this `extends` works?
 export interface FormOptions<T, V extends Validator>
-  extends FormRegistryOption {
+  extends UiOptionsRegistryOption {
   validator: V;
   schema: Schema;
   theme: Theme;
@@ -413,16 +416,18 @@ export function createForm<T, V extends Validator>(
     options.onReset?.(e);
   }
 
+  const rootId = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX);
+
+  const uiOptionsRegistry = $derived(
+    (UI_OPTIONS_REGISTRY_KEY in options
+      ? options[UI_OPTIONS_REGISTRY_KEY]
+      : {}) as UiOptionsRegistry
+  );
+
   const uiOptions = $derived({
     ...uiSchemaRoot["ui:globalOptions"],
     ...uiSchema["ui:options"],
   });
-
-  const rootId = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX);
-
-  const registry = $derived(
-    ("registry" in options ? options.registry : {}) as ValuesRegistry
-  );
 
   const context: FormInternalContext<V> = {
     ...({} as FormContext),
@@ -473,8 +478,8 @@ export function createForm<T, V extends Validator>(
     get extraUiOptions() {
       return options.extraUiOptions;
     },
-    get registry() {
-      return registry;
+    get uiOptionsRegistry() {
+      return uiOptionsRegistry;
     },
     get disabled() {
       return disabled;

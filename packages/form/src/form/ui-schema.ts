@@ -10,11 +10,27 @@ import type { Config } from "./config.js";
 
 export interface UiOptions {}
 
+export type UiOption = <O extends keyof UiOptions>(opt: O) => UiOptions[O]
+
+export interface UiOptionsRegistry {}
+
+export type ResolvableUiOption<T> =
+  | {
+      [K in keyof UiOptionsRegistry]: T extends UiOptionsRegistry[K]
+        ? `registry:${K}`
+        : never;
+    }[keyof UiOptionsRegistry]
+  | T;
+
+export type ResolvableUiOptions = {
+  [K in keyof UiOptions]: ResolvableUiOption<UiOptions[K]>;
+};
+
 export interface UiSchemaContent {
   /**
    * Extendable set of UI options
    */
-  "ui:options"?: UiOptions;
+  "ui:options"?: ResolvableUiOptions;
   /**
    * Components override
    */
@@ -66,6 +82,22 @@ export function resolveUiRef(
   return isUiSchemaRef(schemaDef)
     ? rootSchema["ui:definitions"]?.[schemaDef.$ref]
     : schemaDef;
+}
+
+export function resolveUiOption<O extends keyof UiOptions>(
+  uiSchemaRoot: UiSchemaRoot,
+  uiOptionsRegistry: UiOptionsRegistry,
+  uiSchema: UiSchema,
+  option: O
+): UiOptions[O] | undefined {
+  let value = uiSchema["ui:options"]?.[option];
+  if (value === undefined) {
+    value = uiSchemaRoot["ui:globalOptions"]?.[option];
+  }
+  if (typeof value === "string" && value.startsWith("registry:")) {
+    return uiOptionsRegistry[value.substring(9) as keyof UiOptionsRegistry];
+  }
+  return value;
 }
 
 export function getUiSchemaByPath(
