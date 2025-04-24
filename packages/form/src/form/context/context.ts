@@ -93,11 +93,24 @@ export function retrieveUiSchema<V extends Validator>(
   return resolveUiRef(ctx.uiSchemaRoot, uiSchemaDef) ?? {};
 }
 
+
 export function retrieveValue<V extends Validator, T>(
   ctx: FormInternalContext<V>,
   val: Resolvable<T>
 ) {
   return resolveValue(ctx.registry, val);
+}
+
+export function retrieveUiOption<V extends Validator, O extends keyof UiOptions>(
+  ctx: FormInternalContext<V>,
+  config: Config,
+  option: O
+) {
+  const val = ctx.extraUiOptions?.(option, config) ?? config.uiOptions?.[option];
+  if (val === undefined) {
+    return undefined
+  }
+  return retrieveValue(ctx, val)
 }
 
 export function getUiOptions<V extends Validator>(
