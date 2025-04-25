@@ -9,12 +9,14 @@ import type {
   Config,
   FieldError,
   FoundationalComponentType,
+  UiOption,
 } from "@/form/index.js";
 
 export interface TemplateCommonProps<V extends SchemaValue> {
-  type: "template"
+  type: "template";
   value: V | undefined;
   config: Config;
+  uiOption: UiOption;
   errors: FieldError<unknown>[];
   children: Snippet;
 }

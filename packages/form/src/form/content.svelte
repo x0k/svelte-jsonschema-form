@@ -4,6 +4,7 @@
     retrieveSchema,
     getFormContext,
     getFieldComponent,
+    retrieveUiOption,
   } from "./context/index.js";
 
   const ctx = getFormContext();
@@ -12,10 +13,9 @@
   const config: Config = $derived({
     id: ctx.rootId,
     name: "",
-    title: ctx.uiOptions?.title ?? retrievedSchema.title ?? "",
+    _title: retrievedSchema.title ?? "",
     schema: retrievedSchema,
     uiSchema: ctx.uiSchema,
-    uiOptions: ctx.uiOptions,
     required: false,
   });
 
@@ -26,4 +26,9 @@
   });
 </script>
 
-<Field type="field" bind:value={ctx.value as undefined} {config} />
+<Field
+  type="field"
+  bind:value={ctx.value as undefined}
+  {config}
+  uiOption={(opt) => retrieveUiOption(ctx, config, opt)}
+/>

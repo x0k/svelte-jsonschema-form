@@ -10,9 +10,9 @@ import {
   isFilesArray,
   isMultiSelect,
   isSelect,
+  retrieveUiOption,
 } from "../context/index.js";
 import type { ResolveFieldType } from "../fields.js";
-import type { Config } from "../config.js";
 
 import "../extra-fields/enum.js";
 import "../extra-fields/multi-enum.js";
@@ -22,7 +22,8 @@ import "../extra-fields/files.js";
 export function resolver<V extends Validator>(
   ctx: FormInternalContext<V>
 ): ResolveFieldType {
-  return ({ schema, uiOptions }: Config) => {
+  return (config) => {
+    const { schema } = config;
     if (isSelect(ctx, schema)) {
       return "enumField";
     }
@@ -40,7 +41,10 @@ export function resolver<V extends Validator>(
       if (isFixedItems(schema)) {
         return "tupleField";
       }
-      if (isFilesArray(ctx, schema) && uiOptions?.orderable !== true) {
+      if (
+        isFilesArray(ctx, schema) &&
+        retrieveUiOption(ctx, config, "orderable") !== true
+      ) {
         return "filesField";
       }
       return "arrayField";

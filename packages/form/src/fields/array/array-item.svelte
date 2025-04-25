@@ -32,6 +32,7 @@
     index,
     value = $bindable(),
     config,
+    uiOption,
   }: ComponentProps["arrayItemField"] = $props();
 
   const ctx = getFormContext();
@@ -108,6 +109,7 @@
   {config}
   {errors}
   buttons={toolbar ? buttons : undefined}
+  {uiOption}
 >
-  <Field type="field" bind:value={value as undefined} {config} />
+  <Field type="field" bind:value={value as undefined} {config} {uiOption} />
 </Template>

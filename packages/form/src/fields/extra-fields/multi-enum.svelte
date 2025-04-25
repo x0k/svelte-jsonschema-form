@@ -21,7 +21,7 @@
   import { createOptions } from "../enum.js";
   import "../extra-widgets/checkboxes.js";
 
-  let { config, value = $bindable() }: ComponentProps["multiEnumField"] =
+  let { config, uiOption, value = $bindable() }: ComponentProps["multiEnumField"] =
     $props();
 
   const ctx = getFormContext();
@@ -36,7 +36,7 @@
   const options = $derived.by(() => {
     const { items } = config.schema;
     const itemSchema = isSchemaObjectValue(items) ? items : {};
-    return createOptions(ctx, config, itemSchema) ?? [];
+    return createOptions(ctx, config, uiOption, itemSchema) ?? [];
   });
   const errors = $derived(getErrors(ctx, config.id));
 </script>
@@ -45,6 +45,7 @@
   type="template"
   showTitle
   useLabel={false}
+  {uiOption}
   {widgetType}
   {value}
   {config}

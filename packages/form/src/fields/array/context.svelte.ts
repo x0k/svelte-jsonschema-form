@@ -14,22 +14,19 @@ import {
   createChildId,
   getDefaultFieldState,
   getErrors,
-  getUiOptions,
   ON_ARRAY_CHANGE,
   retrieveSchema,
+  retrieveUiOption,
   retrieveUiSchema,
   validateField,
   type Config,
   type FieldError,
   type FormInternalContext,
   type PossibleError,
+  type UiOption,
 } from "@/form/index.js";
 
-import {
-  getArrayItemName,
-  getFixedArrayItemTitle,
-  getNormalArrayItemTitle,
-} from "./get-array-item-name.js";
+import { getArrayItemName, titleWithIndex } from "./get-array-item-name.js";
 
 export interface ArrayContext<V extends Validator> {
   readonly config: Config;
@@ -37,7 +34,9 @@ export interface ArrayContext<V extends Validator> {
   readonly removable: boolean;
   readonly orderable: boolean;
   readonly copyable: boolean;
+  readonly itemTitle: (arrayConfig: Config, index: number) => string;
   readonly errors: FieldError<PossibleError<V>>[];
+  uiOption: UiOption;
   canAdd(): boolean;
   canCopy(index: number): boolean;
   canRemove(index: number): boolean;
@@ -79,19 +78,21 @@ function createItemsAPI<V extends Validator>(
     }
     validateField(ctx, config(), value());
   }
+  const uiOption: UiOption = (opt) => retrieveUiOption(ctx, config(), opt);
 
   const keyedArray = createKeyedArray(() => value() ?? []);
 
   const errors = $derived(getErrors(ctx, config().id));
 
-  const {
-    addable = true,
-    orderable = true,
-    removable = true,
-    copyable = false,
-  } = $derived(config().uiOptions ?? {});
+  const addable = $derived(uiOption("addable") ?? true);
+  const orderable = $derived(uiOption("orderable") ?? true);
+  const removable = $derived(uiOption("removable") ?? true);
+  const copyable = $derived(uiOption("copyable") ?? false);
+  const itemTitle = $derived(uiOption("itemTitle") ?? titleWithIndex);
 
   return {
+    uiOption,
+    itemTitle,
     get config() {
       return config();
     },
@@ -173,7 +174,6 @@ export function createArrayContext<V extends Validator>(
     } = config();
     return retrieveUiSchema(ctx, !Array.isArray(items) ? items : undefined);
   });
-  const itemUiOptions = $derived(getUiOptions(ctx, itemUiSchema));
 
   const api = createItemsAPI(ctx, config, value, () => itemSchema);
 
@@ -200,10 +200,9 @@ export function createArrayContext<V extends Validator>(
       return {
         id: createChildId(config.id, index, ctx),
         name: getArrayItemName(config, index),
-        title: getNormalArrayItemTitle(config, index),
+        _title: api.itemTitle(config, index),
         schema,
         uiSchema: itemUiSchema,
-        uiOptions: itemUiOptions,
         required: !isSchemaNullable(schema),
       };
     },
@@ -294,10 +293,9 @@ export function createTupleContext<V extends Validator>(
       return {
         id: createChildId(config.id, index, ctx),
         name: getArrayItemName(config, index),
-        title: getFixedArrayItemTitle(ctx, config, index),
+        _title: api.itemTitle(config, index),
         schema,
         uiSchema,
-        uiOptions: getUiOptions(ctx, uiSchema),
         required: !isSchemaNullable(schema),
       };
     },

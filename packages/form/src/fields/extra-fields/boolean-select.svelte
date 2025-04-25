@@ -17,8 +17,11 @@
 
   const ctx = getFormContext();
 
-  let { config, value = $bindable() }: ComponentProps["booleanSelectField"] =
-    $props();
+  let {
+    config,
+    value = $bindable(),
+    uiOption,
+  }: ComponentProps["booleanSelectField"] = $props();
 
   const Template = $derived(getComponent(ctx, "fieldTemplate", config));
   const widgetType = "selectWidget";
@@ -29,7 +32,7 @@
     const no = translate(ctx, "no", {});
     if (Array.isArray(config.schema.oneOf)) {
       return (
-        createOptions(ctx, config, {
+        createOptions(ctx, config, uiOption, {
           oneOf: config.schema.oneOf.map((option): Schema => {
             if (typeof option === "boolean") {
               return option
@@ -48,7 +51,7 @@
     if (
       enumValues.length === 2 &&
       enumValues.every((v) => typeof v === "boolean") &&
-      config.uiOptions?.enumNames === undefined
+      uiOption("enumNames") === undefined
     ) {
       return enumValues.map((v, i) => ({
         id: createPseudoId(config.id, i, ctx),
@@ -57,7 +60,7 @@
         disabled: false,
       }));
     }
-    return createOptions(ctx, config, config.schema) ?? [];
+    return createOptions(ctx, config, uiOption, config.schema) ?? [];
   });
 
   const handlers = makeEventHandlers(ctx, () =>
@@ -70,6 +73,7 @@
   type="template"
   showTitle
   useLabel
+  {uiOption}
   {widgetType}
   {value}
   {config}

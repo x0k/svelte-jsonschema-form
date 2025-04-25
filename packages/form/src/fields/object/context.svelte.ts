@@ -24,10 +24,11 @@ import {
   getErrors,
   type FieldError,
   type PossibleError,
-  getUiOptions,
   createChildId,
   retrieveUiSchema,
   type UiSchemaDefinition,
+  type UiOption,
+  retrieveUiOption,
 } from "@/form/index.js";
 
 import { generateNewKey } from "./generate-new-object-key.js";
@@ -95,11 +96,13 @@ export function createObjectContext<V extends Validator>(
     );
   });
 
+  const uiOption: UiOption = (opt) => retrieveUiOption(ctx, config(), opt);
+
   const schemaPropertiesOrder = $derived(
     isSchemaObjectValue(schemaProperties)
       ? orderProperties(
           schemaProperties,
-          config().uiOptions?.order ?? createOriginalKeysOrder(schemaProperties)
+          uiOption("order") ?? createOriginalKeysOrder(schemaProperties)
         )
       : []
   );
@@ -114,18 +117,18 @@ export function createObjectContext<V extends Validator>(
   });
 
   const canExpand = $derived(
-    config().uiOptions?.expandable !== false &&
+    uiOption("expandable") !== false &&
       isSchemaExpandable(retrievedSchema, value())
   );
 
   const errors = $derived(getErrors(ctx, config().id));
 
   const newKeyPrefix = $derived(
-    config().uiOptions?.additionalPropertyKeyPrefix ?? "newKey"
+    uiOption("additionalPropertyKeyPrefix") ?? "newKey"
   );
 
   const newKeySeparator = $derived(
-    config().uiOptions?.additionalPropertyKeySeparator ?? "-"
+    uiOption("additionalPropertyKeySeparator") ?? "-"
   );
 
   function validate(val: SchemaObjectValue) {
@@ -158,14 +161,13 @@ export function createObjectContext<V extends Validator>(
           ? config.uiSchema.additionalProperties
           : (config.uiSchema[property] as UiSchemaDefinition | undefined)
       );
-      const uiOptions = getUiOptions(ctx, uiSchema);
       return {
         id: createChildId(config.id, property, ctx),
         name: property,
-        title: uiOptions?.title ?? schema.title ?? property,
+        // Ui options are ignored
+        _title: schema.title ?? property,
         schema,
         uiSchema,
-        uiOptions,
         required: requiredProperties.has(property),
       };
     },

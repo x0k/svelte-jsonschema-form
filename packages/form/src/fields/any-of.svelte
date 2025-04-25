@@ -5,10 +5,16 @@
   import Combination from "./combination.svelte";
 
   let {
-    type,
     config,
+    uiOption,
     value = $bindable(),
   }: ComponentProps["anyOfField"] = $props();
 </script>
 
-<Combination {type} bind:value {config} combinationKey={ANY_OF_KEY} />
+<Combination
+  type="field"
+  bind:value
+  {config}
+  {uiOption}
+  combinationKey={ANY_OF_KEY}
+/>

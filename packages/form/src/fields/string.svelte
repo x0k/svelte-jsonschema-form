@@ -12,15 +12,20 @@
 
   import FieldBase from "./field-base.svelte";
 
-  let { config, value = $bindable() }: ComponentProps["stringField"] = $props();
+  let {
+    config,
+    value = $bindable(),
+    uiOption,
+  }: ComponentProps["stringField"] = $props();
 </script>
 
 <FieldBase
   {config}
+  {uiOption}
   showTitle
   useLabel
   widgetType="textWidget"
   bind:value
   fromValue={identity}
-  toValue={(v) => v || config.uiOptions?.stringEmptyValue}
+  toValue={(v) => v || uiOption("stringEmptyValue")}
 />

@@ -20,10 +20,9 @@
   const config: Config = $derived({
     id: ctx.rootId,
     name: "form-tag",
-    title: "",
+    _title: "",
     schema: ctx.schema,
     uiSchema: ctx.uiSchema,
-    uiOptions: ctx.uiOptions,
     required: false,
   });
 

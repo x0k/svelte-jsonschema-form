@@ -1,4 +1,4 @@
-import type { SchemaValue } from "@/form/index.js";
+import type { Config, SchemaValue } from "@/form/index.js";
 
 declare module "../form/index.js" {
   interface UiOptions {
@@ -45,6 +45,10 @@ declare module "../form/index.js" {
      * @default false
      */
     copyable?: boolean;
+    /**
+     * Overrides the logic for creating a title for array elements
+     */
+    itemTitle?: (arrayConfig: Config, index: number) => string;
     /**
      * Prefix of the new additional property key
      * @default 'newKey'

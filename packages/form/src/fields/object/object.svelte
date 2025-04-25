@@ -1,9 +1,10 @@
 <script lang="ts">
-  import { isSchemaObjectValue } from '@/core/value.js';
+  import { isSchemaObjectValue } from "@/core/value.js";
   import {
     Text,
     getComponent,
     getFormContext,
+    retrieveUiOption,
     type ComponentProps,
   } from "@/form/index.js";
 
@@ -11,7 +12,11 @@
 
   const ctx = getFormContext();
 
-  let { config, value = $bindable() }: ComponentProps["objectField"] = $props();
+  let {
+    config,
+    value = $bindable(),
+    uiOption,
+  }: ComponentProps["objectField"] = $props();
 
   const objCtx = createObjectContext(
     ctx,
@@ -45,16 +50,19 @@
   {config}
   errors={objCtx.errors}
   addButton={objCtx.canExpand ? addButton : undefined}
+  {uiOption}
 >
   {#if isSchemaObjectValue(value)}
     {#each objCtx.propertiesOrder as property (property)}
       {@const isAdditional = objCtx.isAdditionalProperty(property)}
+      {@const cfg = objCtx.propertyConfig(config, property, isAdditional)}
       <ObjectProperty
         type="field"
         {property}
         {isAdditional}
         bind:value={value[property]}
-        config={objCtx.propertyConfig(config, property, isAdditional)}
+        config={cfg}
+        uiOption={(opt) => retrieveUiOption(ctx, cfg, opt)}
       />
     {/each}
   {/if}

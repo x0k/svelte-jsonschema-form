@@ -11,7 +11,7 @@
 
   import { createOptions } from "../enum.js";
 
-  let { config, value = $bindable() }: ComponentProps["enumField"] = $props();
+  let { config, value = $bindable(), uiOption }: ComponentProps["enumField"] = $props();
 
   const ctx = getFormContext();
 
@@ -22,7 +22,7 @@
   const handlers = makeEventHandlers(ctx, () =>
     validateField(ctx, config, value)
   );
-  const options = $derived(createOptions(ctx, config, config.schema) ?? []);
+  const options = $derived(createOptions(ctx, config, uiOption, config.schema) ?? []);
   const errors = $derived(getErrors(ctx, config.id));
 </script>
 
@@ -30,6 +30,7 @@
   type="template"
   showTitle
   useLabel
+  {uiOption}
   {widgetType}
   {value}
   {config}

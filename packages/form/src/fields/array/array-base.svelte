@@ -8,6 +8,7 @@
     type FormInternalContext,
     type Validator,
     type Config,
+    retrieveUiOption,
   } from "@/form/index.js";
 
   import { setArrayContext, type ArrayContext } from "./context.svelte.js";
@@ -16,6 +17,7 @@
     value = $bindable(),
     config,
     createArrayContext,
+    uiOption,
   }: ComponentProps["arrayField" | "tupleField"] & {
     createArrayContext: <V extends Validator>(
       ctx: FormInternalContext<V>,
@@ -56,14 +58,17 @@
   {config}
   {value}
   addButton={arrayCtx.canAdd() ? addButton : undefined}
+  {uiOption}
 >
   {#if isSchemaArrayValue(value)}
     {#each value as item, index (arrayCtx.key(index))}
+      {@const cfg = arrayCtx.itemConfig(config, item, index)}
       <ArrayItem
         type="field"
         {index}
-        config={arrayCtx.itemConfig(config, item, index)}
+        config={cfg}
         bind:value={value[index]}
+        uiOption={(opt) => retrieveUiOption(ctx, cfg, opt)}
       />
     {/each}
   {/if}

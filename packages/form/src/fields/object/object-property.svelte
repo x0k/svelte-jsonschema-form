@@ -36,6 +36,7 @@
     property,
     isAdditional,
     value = $bindable(),
+    uiOption,
   }: ComponentProps["objectPropertyField"] = $props();
 
   const ctx = getFormContext();
@@ -78,6 +79,7 @@
   {errors}
   keyInput={isAdditional ? keyInput : undefined}
   removeButton={isAdditional ? removeButton : undefined}
+  {uiOption}
 >
-  <Field type="field" bind:value={value as undefined} {config} />
+  <Field type="field" bind:value={value as undefined} {config} {uiOption} />
 </Template>

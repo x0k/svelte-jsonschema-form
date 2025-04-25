@@ -8,6 +8,7 @@
     type ComponentProps,
     type Config,
     type FieldValue,
+    type UiOption,
   } from "@/form/index.js";
 
   import type { UnifiedWidgetType } from "./widgets.js";
@@ -17,6 +18,7 @@
   let {
     value = $bindable(),
     config,
+    uiOption,
     fromValue,
     toValue,
     widgetType,
@@ -24,6 +26,7 @@
     useLabel,
   }: {
     config: Config;
+    uiOption: UiOption;
     value: V;
     widgetType: T;
     fromValue: (v: V) => ComponentProps[T]["value"];
@@ -47,6 +50,7 @@
   {showTitle}
   {useLabel}
   {widgetType}
+  {uiOption}
   {value}
   {config}
   {errors}

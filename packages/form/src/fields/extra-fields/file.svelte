@@ -22,7 +22,7 @@
 
   import "../extra-widgets/file.js";
 
-  let { config, value = $bindable() }: ComponentProps["fileField"] = $props();
+  let { config, value = $bindable(), uiOption }: ComponentProps["fileField"] = $props();
 
   const ctx = getFormContext();
 
@@ -64,6 +64,7 @@
   type="template"
   showTitle
   useLabel
+  {uiOption}
   {widgetType}
   {value}
   {config}

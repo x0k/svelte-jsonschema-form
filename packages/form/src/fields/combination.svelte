@@ -23,7 +23,6 @@
     getClosestMatchingOption,
     getDefaultFieldState,
     getErrors,
-    getUiOptions,
     retrieveSchema,
     sanitizeDataForNewSchema,
     getFormContext,
@@ -33,12 +32,15 @@
     translate,
     getFieldComponent,
     retrieveUiSchema,
+    retrieveUiOptionIgnoreExtra,
+    retrieveUiOption,
   } from "@/form/index.js";
 
   let {
     value = $bindable(),
     config,
     combinationKey,
+    uiOption,
   }: ComponentProps["anyOfField" | "oneOfField"] & {
     combinationKey: typeof ONE_OF_KEY | typeof ANY_OF_KEY;
   } = $props();
@@ -105,12 +107,12 @@
       ? schemas.map((s) => retrieveUiSchema(ctx, s))
       : [];
   });
-  const optionsUiOptions = $derived(
-    optionsUiSchemas.map((s) => getUiOptions(ctx, s))
+  const optionsTitles = $derived(
+    optionsUiSchemas.map((s) => retrieveUiOptionIgnoreExtra(ctx, s, "title"))
   );
 
   const enumOptionLabel = $derived.by(() => {
-    const title = config.uiOptions?.title ?? config.schema.title;
+    const title = uiOption("title") ?? config.schema.title;
     return title !== undefined
       ? (index: number) =>
           translate(ctx, "multi-schema-option-label-with-title", {
@@ -123,7 +125,7 @@
   const enumOptions = $derived<EnumOption<number>[]>(
     retrievedOptions.map((s, i) => ({
       id: createPseudoId(config.id, i, ctx),
-      label: optionsUiOptions[i]?.title ?? s.title ?? enumOptionLabel(i),
+      label: optionsTitles[i] ?? s.title ?? enumOptionLabel(i),
       value: i,
       disabled: false,
     }))
@@ -137,20 +139,18 @@
       ctx,
       config.uiSchema.combinationFieldOptionSelector
     );
-    const uiOptions = getUiOptions(ctx, uiSchema);
     return {
       id: createPseudoId(config.id, suffix, ctx),
       name: `${config.name}__${suffix}`,
-      required: true,
-      title: config.title,
+      _title: config._title,
       schema: { type: "integer", default: 0 },
       uiSchema,
-      uiOptions,
+      required: true,
     };
   });
   const errors = $derived(getErrors(ctx, config.id));
 
-  const combinationFieldConfig = $derived.by(() => {
+  const combinationFieldConfig: Config | null = $derived.by(() => {
     const selected = readableSelectedOption;
     if (selected < 0) {
       return null;
@@ -172,11 +172,10 @@
     return {
       id: config.id,
       name: config.name,
-      required: config.required,
-      title: "",
+      _title: "",
       schema: optionSchema,
       uiSchema: optionUiSchema,
-      uiOptions: getUiOptions(ctx, optionUiSchema),
+      required: config.required,
     };
   });
 
@@ -190,9 +189,10 @@
     type="field"
     bind:value={value as undefined}
     config={restFieldConfig}
+    uiOption={(opt) => retrieveUiOption(ctx, restFieldConfig, opt)}
   />
 {/if}
-<Template type="template" {config} {value} {errors}>
+<Template type="template" {config} {value} {errors} {uiOption}>
   {#snippet optionSelector()}
     <Widget
       type="widget"
@@ -210,6 +210,7 @@
       type="field"
       bind:value={value as undefined}
       config={combinationFieldConfig}
+      uiOption={(opt) => retrieveUiOption(ctx, combinationFieldConfig, opt)}
     />
   {/if}
 </Template>

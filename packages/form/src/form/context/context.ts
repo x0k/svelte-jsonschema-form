@@ -44,7 +44,6 @@ export interface FormInternalContext<V extends Validator>
   readonly schema: Schema;
   readonly uiSchemaRoot: UiSchemaRoot;
   readonly uiSchema: UiSchema;
-  readonly uiOptions: UiOptions;
   readonly uiOptionsRegistry: UiOptionsRegistry;
   readonly extraUiOptions?: ExtraUiOptions;
   readonly validator: V;

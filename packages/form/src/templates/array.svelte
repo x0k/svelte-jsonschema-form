@@ -12,6 +12,7 @@
   const {
     children,
     addButton,
+    uiOption,
     config,
     errors,
   }: ComponentProps["arrayTemplate"] = $props();
@@ -21,7 +22,7 @@
   const Description = $derived(getComponent(ctx, "description", config));
   const ErrorsList = $derived(getComponent(ctx, "errorsList", config));
 
-  const { title, description, showMeta } = $derived(getTemplateProps(config));
+  const { title, description, showMeta } = $derived(getTemplateProps(uiOption, config));
 </script>
 
 <Layout type="array-field" {config} {errors}>

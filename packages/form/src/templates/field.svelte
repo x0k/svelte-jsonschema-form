@@ -10,6 +10,7 @@
   const {
     children,
     config,
+    uiOption,
     showTitle,
     useLabel,
     errors,
@@ -21,7 +22,7 @@
   const TitleOrLabel = $derived(
     getComponent(
       ctx,
-      (config.uiOptions?.useLabel ?? useLabel) ? "label" : "title",
+      (uiOption("useLabel") ?? useLabel) ? "label" : "title",
       config
     )
   );
@@ -29,7 +30,10 @@
   const ErrorsList = $derived(getComponent(ctx, "errorsList", config));
   const Help = $derived(getComponent(ctx, "help", config));
 
-  const { title, description, showMeta } = $derived(getTemplateProps(config));
+  const { title, description, showMeta } = $derived(
+    getTemplateProps(uiOption, config)
+  );
+  const help = $derived(uiOption("help"));
 </script>
 
 <Layout type="field" {config} {errors}>
@@ -49,7 +53,7 @@
   {#if errors.length > 0}
     <ErrorsList {errors} {config} />
   {/if}
-  {#if config.uiOptions?.help !== undefined}
-    <Help help={config.uiOptions.help} {config} {errors} />
+  {#if help !== undefined}
+    <Help {help} {config} {errors} />
   {/if}
 </Layout>

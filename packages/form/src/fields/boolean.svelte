@@ -4,15 +4,19 @@
 
   import FieldBase from "./field-base.svelte";
 
-  let { config, value = $bindable() }: ComponentProps["booleanField"] =
-    $props();
+  let {
+    config,
+    value = $bindable(),
+    uiOption,
+  }: ComponentProps["booleanField"] = $props();
 </script>
 
 <FieldBase
   {config}
+  {uiOption}
   bind:value
   widgetType="checkboxWidget"
-  showTitle={config.uiOptions?.hideTitle === false}
+  showTitle={uiOption("hideTitle") === false}
   useLabel
   fromValue={identity}
   toValue={identity}

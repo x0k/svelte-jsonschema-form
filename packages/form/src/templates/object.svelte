@@ -14,6 +14,7 @@
     children,
     addButton,
     errors,
+    uiOption,
   }: ComponentProps["objectTemplate"] = $props();
 
   const Layout = $derived(getComponent(ctx, "layout", config));
@@ -21,7 +22,7 @@
   const Description = $derived(getComponent(ctx, "description", config));
   const ErrorsList = $derived(getComponent(ctx, "errorsList", config));
 
-  const { title, description, showMeta } = $derived(getTemplateProps(config));
+  const { title, description, showMeta } = $derived(getTemplateProps(uiOption, config));
 </script>
 
 <Layout type="object-field" {config} {errors}>

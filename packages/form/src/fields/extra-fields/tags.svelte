@@ -13,11 +13,12 @@
   import FieldBase from "../field-base.svelte";
   import "../extra-widgets/tags.js";
 
-  let { config, value = $bindable() }: ComponentProps["tagsField"] = $props();
+  let { config, value = $bindable(), uiOption }: ComponentProps["tagsField"] = $props();
 </script>
 
 <FieldBase
   {config}
+  {uiOption}
   showTitle
   useLabel
   widgetType="tagsWidget"

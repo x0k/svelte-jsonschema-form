@@ -372,7 +372,7 @@ export function createForm<T, V extends Validator>(
       if (error.reason !== "aborted") {
         errors.set(config.id, [
           {
-            propertyTitle: config.title,
+            propertyTitle: config._title,
             message: translate(context, "validation-process-error", { error }),
             error: new ValidationProcessError(error),
           },

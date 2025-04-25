@@ -3,12 +3,13 @@
     type UiSchema,
     type Config,
     getErrors,
-    getUiOptions,
     getFormContext,
     createPseudoId,
     getComponent,
     type Id,
     translate,
+    type UiOption,
+    retrieveUiOption,
   } from "@/form/index.js";
 
   import { getObjectContext } from "./context.svelte.js";
@@ -29,14 +30,12 @@
   const objCtx = getObjectContext();
 
   const id = $derived(createPseudoId(parentId, "key-input", ctx));
-  const uiOptions = $derived(getUiOptions(ctx, uiSchema));
   const config: Config = $derived({
     id,
     name: id,
-    title: translate(ctx, "key-input-title", { name }),
+    _title: translate(ctx, "key-input-title", { name }),
     schema: { type: "string" },
     uiSchema,
-    uiOptions,
     required: true,
   });
 
@@ -56,6 +55,7 @@
   };
 
   const errors = $derived(getErrors(ctx, id));
+  const uiOption: UiOption = (opt) => retrieveUiOption(ctx, config, opt);
 </script>
 
 <Template
@@ -66,6 +66,7 @@
   value={property}
   {config}
   {errors}
+  {uiOption}
 >
   <Widget type="widget" {errors} {handlers} {config} bind:value={key} />
 </Template>

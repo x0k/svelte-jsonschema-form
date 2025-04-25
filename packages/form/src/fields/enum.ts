@@ -13,6 +13,7 @@ import {
   retrieveUiSchema,
   createPseudoId,
   type Config,
+  type UiOption,
 } from "@/form/index.js";
 
 function getAltSchemas(
@@ -27,12 +28,13 @@ function getAltSchemas(
 export function createOptions<V extends Validator>(
   ctx: FormInternalContext<V>,
   config: Config,
-  schema: Schema
+  uiOption: UiOption,
+  schema: Schema,
 ): EnumOption<SchemaValue>[] | undefined {
   const enumValues = schema.enum;
-  const disabledValues = new Set(config.uiOptions?.disabledEnumValues);
+  const disabledValues = new Set(uiOption('disabledEnumValues'));
   if (enumValues) {
-    const enumNames = config.uiOptions?.enumNames;
+    const enumNames = uiOption('enumNames');
     return enumValues.map((value, index) => {
       const label = enumNames?.[index] ?? String(value);
       return {

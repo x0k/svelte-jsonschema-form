@@ -1,9 +1,9 @@
-import type { Config } from "@/form/index.js";
+import type { Config, UiOption } from "@/form/index.js";
 
-export function getTemplateProps({ title, uiOptions, schema }: Config) {
+export function getTemplateProps(uiOption: UiOption, config: Config) {
   return {
-    title: uiOptions?.title ?? schema.title ?? title,
-    showMeta: uiOptions?.hideTitle !== true,
-    description: uiOptions?.description ?? schema.description,
+    title: uiOption("title") ?? config.schema.title ?? config._title,
+    showMeta: uiOption("hideTitle") !== true,
+    description: uiOption("description") ?? config.schema.description,
   };
 }

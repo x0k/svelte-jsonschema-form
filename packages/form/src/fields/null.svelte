@@ -6,7 +6,7 @@
     type ComponentProps,
   } from "@/form/index.js";
 
-  let { value = $bindable(), config }: ComponentProps["nullField"] = $props();
+  let { value = $bindable(), config, uiOption }: ComponentProps["nullField"] = $props();
 
   $effect(() => {
     if (value === undefined) {
@@ -26,6 +26,7 @@
   showTitle
   useLabel={false}
   widgetType="nullField"
+  {uiOption}
   {errors}
   {value}
   {config}

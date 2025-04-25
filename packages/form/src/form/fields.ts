@@ -9,11 +9,13 @@ import type {
   ComponentProps,
   FoundationalComponentType,
 } from "./components.js";
+import type { UiOption } from "./ui-schema.js";
 
 export interface FieldCommonProps<V> {
   type: "field";
   value: V | undefined;
   config: Config;
+  uiOption: UiOption;
 }
 
 export type FoundationalFieldType = {
@@ -26,7 +28,7 @@ export type UnifiedFieldType = {
   [K in FoundationalFieldType]: FieldCommonProps<any> extends ComponentProps[K]
     ? K
     : never;
-}[FoundationalFieldType]
+}[FoundationalFieldType];
 
 export type ResolveFieldType = (config: Config) => UnifiedFieldType;
 

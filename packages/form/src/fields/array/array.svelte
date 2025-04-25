@@ -4,7 +4,7 @@
   import ArrayBase from "./array-base.svelte";
   import { createArrayContext } from "./context.svelte.js";
 
-  let { value = $bindable(), config }: ComponentProps["arrayField"] = $props();
+  let { value = $bindable(), config, uiOption }: ComponentProps["arrayField"] = $props();
 </script>
 
-<ArrayBase {createArrayContext} {config} type="field" bind:value />
+<ArrayBase {createArrayContext} {config} {uiOption} type="field" bind:value />
