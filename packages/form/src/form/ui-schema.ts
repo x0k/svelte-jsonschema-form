@@ -10,7 +10,7 @@ import type { Config } from "./config.js";
 
 export interface UiOptions {}
 
-export type UiOption = <O extends keyof UiOptions>(opt: O) => UiOptions[O]
+export type UiOption = <O extends keyof UiOptions>(opt: O) => UiOptions[O];
 
 export interface UiOptionsRegistry {}
 

@@ -5,6 +5,7 @@
     getFormContext,
     getFieldComponent,
     retrieveUiOption,
+    uiTitleOption,
   } from "./context/index.js";
 
   const ctx = getFormContext();
@@ -13,7 +14,10 @@
   const config: Config = $derived({
     id: ctx.rootId,
     name: "",
-    _title: retrievedSchema.title ?? "",
+    title:
+      uiTitleOption(ctx, ctx.uiSchema) ??
+      retrievedSchema.title ??
+      "",
     schema: retrievedSchema,
     uiSchema: ctx.uiSchema,
     required: false,

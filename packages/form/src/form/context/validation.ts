@@ -41,7 +41,7 @@ export function validateAdditionalPropertyKey<V extends Validator>(
   ctx.errors.set(
     fieldConfig.id,
     messages.map((message) => ({
-      propertyTitle: fieldConfig._title,
+      propertyTitle: fieldConfig.title,
       message,
       error: new AdditionalPropertyKeyError() as PossibleError<V>,
     }))

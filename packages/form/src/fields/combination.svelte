@@ -32,8 +32,8 @@
     translate,
     getFieldComponent,
     retrieveUiSchema,
-    retrieveUiOptionIgnoreExtra,
     retrieveUiOption,
+    uiTitleOption,
   } from "@/form/index.js";
 
   let {
@@ -108,7 +108,7 @@
       : [];
   });
   const optionsTitles = $derived(
-    optionsUiSchemas.map((s) => retrieveUiOptionIgnoreExtra(ctx, s, "title"))
+    optionsUiSchemas.map((s) => uiTitleOption(ctx, s))
   );
 
   const enumOptionLabel = $derived.by(() => {
@@ -142,7 +142,7 @@
     return {
       id: createPseudoId(config.id, suffix, ctx),
       name: `${config.name}__${suffix}`,
-      _title: config._title,
+      title: uiTitleOption(ctx, uiSchema) ?? config.title,
       schema: { type: "integer", default: 0 },
       uiSchema,
       required: true,
@@ -172,7 +172,7 @@
     return {
       id: config.id,
       name: config.name,
-      _title: "",
+      title: "",
       schema: optionSchema,
       uiSchema: optionUiSchema,
       required: config.required,

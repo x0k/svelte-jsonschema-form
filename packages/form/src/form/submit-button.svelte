@@ -8,7 +8,7 @@
   const config: Config = $derived({
     id: ctx.rootId,
     name: "submit-button",
-    _title: "",
+    title: "",
     schema: ctx.schema,
     uiSchema: ctx.uiSchema,
     required: false,

@@ -29,6 +29,7 @@ import {
   type UiSchemaDefinition,
   type UiOption,
   retrieveUiOption,
+  uiTitleOption,
 } from "@/form/index.js";
 
 import { generateNewKey } from "./generate-new-object-key.js";
@@ -164,8 +165,7 @@ export function createObjectContext<V extends Validator>(
       return {
         id: createChildId(config.id, property, ctx),
         name: property,
-        // Ui options are ignored
-        _title: schema.title ?? property,
+        title: uiTitleOption(ctx, uiSchema) ?? schema.title ?? property,
         schema,
         uiSchema,
         required: requiredProperties.has(property),

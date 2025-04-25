@@ -7,7 +7,7 @@ import type { Schema, SchemaValue, Validator } from "@/core/index.js";
 
 import type { Translation } from "../translation.js";
 import {
-  resolveUiOption,
+  resolveUiOption as resolveUiOptionInternal,
   resolveUiRef,
   type ExtraUiOptions,
   type UiOptions,
@@ -89,16 +89,24 @@ export function retrieveUiSchema<V extends Validator>(
   return resolveUiRef(ctx.uiSchemaRoot, uiSchemaDef) ?? {};
 }
 
-export function retrieveUiOptionIgnoreExtra<
-  V extends Validator,
-  O extends keyof UiOptions
->(ctx: FormInternalContext<V>, uiSchema: UiSchema, option: O) {
-  return resolveUiOption(
+function resolveUiOption<V extends Validator, O extends keyof UiOptions>(
+  ctx: FormInternalContext<V>,
+  uiSchema: UiSchema,
+  option: O
+) {
+  return resolveUiOptionInternal(
     ctx.uiSchemaRoot,
     ctx.uiOptionsRegistry,
     uiSchema,
     option
   );
+}
+
+export function uiTitleOption<V extends Validator>(
+  ctx: FormInternalContext<V>,
+  uiSchema: UiSchema
+) {
+  return resolveUiOption(ctx, uiSchema, "title");
 }
 
 export function retrieveUiOption<
@@ -107,7 +115,7 @@ export function retrieveUiOption<
 >(ctx: FormInternalContext<V>, config: Config, option: O) {
   return (
     ctx.extraUiOptions?.(option, config) ??
-    retrieveUiOptionIgnoreExtra(ctx, config.uiSchema, option)
+    resolveUiOption(ctx, config.uiSchema, option)
   );
 }
 
@@ -127,12 +135,7 @@ export function retrieveUiProps<
 ): UiOptions[O] {
   return Object.assign(
     props,
-    resolveUiOption(
-      ctx.uiSchemaRoot,
-      ctx.uiOptionsRegistry,
-      config.uiSchema,
-      option
-    ),
+    resolveUiOption(ctx, config.uiSchema, option),
     ctx.extraUiOptions?.(option, config as never),
     extra
   );

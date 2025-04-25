@@ -18,6 +18,7 @@ import {
   retrieveSchema,
   retrieveUiOption,
   retrieveUiSchema,
+  uiTitleOption,
   validateField,
   type Config,
   type FieldError,
@@ -25,6 +26,8 @@ import {
   type PossibleError,
   type UiOption,
 } from "@/form/index.js";
+
+import type { ItemTitle } from '../ui-options.js';
 
 import { getArrayItemName, titleWithIndex } from "./get-array-item-name.js";
 
@@ -34,9 +37,9 @@ export interface ArrayContext<V extends Validator> {
   readonly removable: boolean;
   readonly orderable: boolean;
   readonly copyable: boolean;
-  readonly itemTitle: (arrayConfig: Config, index: number) => string;
+  readonly itemTitle: ItemTitle;
   readonly errors: FieldError<PossibleError<V>>[];
-  uiOption: UiOption;
+  readonly uiOption: UiOption;
   canAdd(): boolean;
   canCopy(index: number): boolean;
   canRemove(index: number): boolean;
@@ -168,6 +171,9 @@ export function createArrayContext<V extends Validator>(
     } = config();
     return isSchemaObjectValue(items) ? items : {};
   });
+
+  const api = createItemsAPI(ctx, config, value, () => itemSchema);
+
   const itemUiSchema = $derived.by(() => {
     const {
       uiSchema: { items },
@@ -175,7 +181,7 @@ export function createArrayContext<V extends Validator>(
     return retrieveUiSchema(ctx, !Array.isArray(items) ? items : undefined);
   });
 
-  const api = createItemsAPI(ctx, config, value, () => itemSchema);
+  const itemUiTitle = $derived(uiTitleOption(ctx, itemUiSchema));
 
   const canAdd = $derived.by(createCanAdd(config, value, () => api.addable));
 
@@ -200,7 +206,11 @@ export function createArrayContext<V extends Validator>(
       return {
         id: createChildId(config.id, index, ctx),
         name: getArrayItemName(config, index),
-        _title: api.itemTitle(config, index),
+        title: api.itemTitle(
+          itemUiTitle ?? schema.title ?? config.title,
+          index,
+          0
+        ),
         schema,
         uiSchema: itemUiSchema,
         required: !isSchemaNullable(schema),
@@ -293,7 +303,11 @@ export function createTupleContext<V extends Validator>(
       return {
         id: createChildId(config.id, index, ctx),
         name: getArrayItemName(config, index),
-        _title: api.itemTitle(config, index),
+        title: api.itemTitle(
+          uiTitleOption(ctx, uiSchema) ?? schema.title ?? config.title,
+          index,
+          itemsSchema.length
+        ),
         schema,
         uiSchema,
         required: !isSchemaNullable(schema),

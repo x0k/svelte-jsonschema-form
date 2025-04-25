@@ -10,6 +10,7 @@
     translate,
     type UiOption,
     retrieveUiOption,
+    uiTitleOption,
   } from "@/form/index.js";
 
   import { getObjectContext } from "./context.svelte.js";
@@ -33,7 +34,7 @@
   const config: Config = $derived({
     id,
     name: id,
-    _title: translate(ctx, "key-input-title", { name }),
+    title: uiTitleOption(ctx, uiSchema) ?? translate(ctx, "key-input-title", { name }),
     schema: { type: "string" },
     uiSchema,
     required: true,

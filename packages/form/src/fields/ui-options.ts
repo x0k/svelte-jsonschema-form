@@ -1,4 +1,10 @@
-import type { Config, SchemaValue } from "@/form/index.js";
+import type { SchemaValue } from "@/form/index.js";
+
+export type ItemTitle = (
+  title: string,
+  index: number,
+  fixedItemsCount: number
+) => string;
 
 declare module "../form/index.js" {
   interface UiOptions {
@@ -48,12 +54,12 @@ declare module "../form/index.js" {
     /**
      * Overrides the logic for creating a title for array elements
      */
-    itemTitle?: (arrayConfig: Config, index: number) => string;
+    itemTitle?: ItemTitle;
     /**
      * Prefix of the new additional property key
      * @default 'newKey'
      */
-    additionalPropertyKeyPrefix?: string
+    additionalPropertyKeyPrefix?: string;
     /**
      * Separator between the prefix of the optional property key and its integer suffix.
      * @default '-'
@@ -72,6 +78,6 @@ declare module "../form/index.js" {
     /**
      * Overrides whether to use the `title` or `label` component in the `field` template
      */
-    useLabel?: boolean
+    useLabel?: boolean;
   }
 }
