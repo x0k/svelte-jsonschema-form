@@ -95,7 +95,9 @@ function createItemsAPI<V extends Validator>(
 
   return {
     uiOption,
-    itemTitle,
+    get itemTitle() {
+      return itemTitle;
+    },
     get config() {
       return config();
     },
