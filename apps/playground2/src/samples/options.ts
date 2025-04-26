@@ -25,13 +25,11 @@ const optionsSample: Sample = {
     },
   },
   uiSchema: {
-    submitButton: {
-      "ui:options": {
-        title: "Confirm Details",
-        button: {
-          style:
-            "width: 100%; background-color: lightgreen; border-radius: 8px; padding: 12px 0; margin: 0;",
-        },
+    "ui:options": {
+      submitButtonText: "Register",
+      submitButton: {
+        style:
+          "width: 100%; background-color: green; border-radius: 8px; padding: 12px 0; margin: 0;",
       },
     },
     firstName: {
