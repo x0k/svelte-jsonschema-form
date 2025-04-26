@@ -21,3 +21,11 @@ export function isNil<T>(v: T | Nil): v is Nil {
 }
 
 export type Expand<T> = { [K in keyof T]: T[K] };
+
+export type IsPlainObject<T> = T extends object
+  ? T extends (...args: any) => any
+    ? false
+    : T extends any[]
+    ? false
+    : true
+  : false;
