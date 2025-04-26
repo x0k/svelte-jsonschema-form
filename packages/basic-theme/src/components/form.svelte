@@ -9,7 +9,12 @@
 </script>
 
 <script lang="ts">
-  import { enhance, getFormContext, type ComponentProps } from "@sjsf/form";
+  import {
+    enhance,
+    getFormContext,
+    retrieveUiProps,
+    type ComponentProps,
+  } from "@sjsf/form";
 
   let {
     children,
@@ -24,9 +29,9 @@
 <form
   bind:this={ref}
   use:enhance={ctx}
-  style="display: flex; flex-direction: column; gap: 1rem"
-  {...config.uiOptions?.form}
-  {...ctx.extraUiOptions?.('form', config)}
+  {...retrieveUiProps(ctx, config, "form", {
+    style: "display: flex; flex-direction: column; gap: 1rem",
+  })}
   {...attributes}
 >
   {@render children()}

@@ -24,6 +24,8 @@
   import {
     defineDisabled,
     getFormContext,
+    retrieveNestedUiProps,
+    retrieveUiProps,
     type ComponentProps,
   } from "@sjsf/form";
 
@@ -48,13 +50,18 @@
   }
 
   const attributes = $derived(
-    defineDisabled(ctx, {
-      disabled,
-      ...config.uiOptions?.button,
-      ...config.uiOptions?.buttons?.[type],
-      ...ctx.extraUiOptions?.("button", config),
-      ...ctx.extraUiOptions?.('buttons', config)?.[type]
-    })
+    defineDisabled(
+      ctx,
+      retrieveNestedUiProps(
+        ctx,
+        config,
+        "buttons",
+        (p) => p[type],
+        retrieveUiProps(ctx, config, "button", {
+          disabled,
+        })
+      )
+    )
   );
 </script>
 

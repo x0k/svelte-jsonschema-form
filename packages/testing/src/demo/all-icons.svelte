@@ -10,7 +10,6 @@
     required: false,
     schema: {},
     uiSchema: {},
-    uiOptions: {},
     title: "title",
   };
   const labels = {

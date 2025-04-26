@@ -11,6 +11,7 @@
 <script lang="ts">
   import {
     getFormContext,
+    retrieveAttributes,
     selectAttributes,
     type ComponentProps,
   } from "@sjsf/form";
@@ -26,13 +27,7 @@
   const ctx = getFormContext();
 
   const attributes = $derived(
-    selectAttributes(
-      ctx,
-      config,
-      handlers,
-      config.uiOptions?.select,
-      ctx.extraUiOptions?.("select", config)
-    )
+    retrieveAttributes(ctx, config, "select", selectAttributes(handlers))
   );
 
   const mapped = $derived(

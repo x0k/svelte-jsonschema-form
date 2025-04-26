@@ -12,18 +12,22 @@
 </script>
 
 <script lang="ts">
-  import { getFormContext, type ComponentProps } from "@sjsf/form";
+  import {
+    getFormContext,
+    retrieveUiProps,
+    type ComponentProps,
+  } from "@sjsf/form";
 
   const { title, config }: ComponentProps["label"] = $props();
 
-  const ctx = getFormContext()
+  const ctx = getFormContext();
 </script>
 
 <label
-  style="font-weight: bold;"
-  for={config.id}
-  {...config.uiOptions?.labelAttributes}
-  {...ctx.extraUiOptions?.('labelAttributes', config)}
+  {...retrieveUiProps(ctx, config, "labelAttributes", {
+    style: "font-weight: bold;",
+    for: config.id,
+  })}
 >
   {title}
   {#if config.required}

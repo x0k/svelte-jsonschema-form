@@ -12,6 +12,7 @@
 <script lang="ts">
   import {
     getFormContext,
+    retrieveAttributes,
     textareaAttributes,
     type ComponentProps,
   } from "@sjsf/form";
@@ -25,13 +26,7 @@
   const ctx = getFormContext();
 
   const attributes = $derived(
-    textareaAttributes(
-      ctx,
-      config,
-      handlers,
-      config.uiOptions?.textarea,
-      ctx.extraUiOptions?.("textarea", config)
-    )
+    retrieveAttributes(ctx, config, "textarea", textareaAttributes(handlers))
   );
 </script>
 

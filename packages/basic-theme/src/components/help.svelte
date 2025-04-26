@@ -12,7 +12,7 @@
 </script>
 
 <script lang="ts">
-  import { getFormContext, type ComponentProps } from "@sjsf/form";
+  import { getFormContext, retrieveUiProps, type ComponentProps } from "@sjsf/form";
 
   const { help, config }: ComponentProps["help"] = $props();
 
@@ -20,9 +20,9 @@
 </script>
 
 <div
-  style="font-weight: 300;"
-  {...config.uiOptions?.helpAttributes}
-  {...ctx.extraUiOptions?.("helpAttributes", config)}
+  {...retrieveUiProps(ctx, config, "helpAttributes", {
+    style: "font-weight: 300;"
+  })}
 >
   {help}
 </div>

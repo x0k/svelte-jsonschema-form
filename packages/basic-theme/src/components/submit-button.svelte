@@ -10,8 +10,8 @@
 
 <script lang="ts">
   import {
-    defineDisabled,
     getFormContext,
+    retrieveAttributes,
     type ComponentProps,
   } from "@sjsf/form";
 
@@ -20,13 +20,13 @@
   const ctx = getFormContext();
 
   const attributes = $derived(
-    defineDisabled(ctx, {
-      ...config.uiOptions?.submitButton,
-      ...ctx.extraUiOptions?.("submitButton", config),
-    })
+    retrieveAttributes(ctx, config, "submitButton", () => ({
+      type: "submit",
+      style: "width: 100%; padding: 0.5rem;",
+    }))
   );
 </script>
 
-<button type="submit" style="width: 100%; padding: 0.5rem" {...attributes}>
+<button {...attributes}>
   {@render children()}
 </button>
