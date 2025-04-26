@@ -8,9 +8,14 @@ import type { Nullable } from "@/lib/types.js";
 import type { Validator } from "@/core/index.js";
 
 import type { Config } from "../config.js";
-import { createPseudoId } from "../id.js";
+import { createPseudoId, type IdPseudoSeparatorOption } from "../id.js";
 
-import type { FormInternalContext } from "./context.js";
+import {
+  retrieveUiProps,
+  type FormInternalContext,
+  type ObjectUiOptions,
+} from "./context.js";
+import type { UiOptions } from "../ui-schema.js";
 
 interface Disabled {
   disabled: boolean;
@@ -33,8 +38,8 @@ export function isDisabled<V extends Validator>(
  * NOTE: this function mutates `obj` parameter!
  */
 export function defineDisabled<
-  T extends Partial<Nullable<Disabled>>,
-  V extends Validator
+  V extends Validator,
+  T extends Partial<Nullable<Disabled>>
 >(ctx: FormInternalContext<V>, obj: T) {
   obj.disabled ||= ctx.disabled;
   return obj as T & Disabled;
@@ -56,38 +61,15 @@ export function inputType(format: string | undefined) {
   }
 }
 
-export function inputAttributes<
-  T extends Pick<
-    HTMLInputAttributes,
-    | "id"
-    | "name"
-    | "required"
-    | "minlength"
-    | "maxlength"
-    | "pattern"
-    | "min"
-    | "max"
-    | "step"
-    | "list"
-    | "readonly"
-    | "oninput"
-    | "onchange"
-    | "onblur"
-    | "disabled"
-    | "type"
-  >,
-  V extends Validator
->(
-  ctx: FormInternalContext<V>,
-  { id, required, schema }: Config,
-  handlers: Handlers,
-  attributes: T | undefined,
-  extraAttributes: T | undefined
-) {
-  const data = Object.assign(
-    {
+export function inputAttributes(handlers: Handlers) {
+  return (
+    { id, required, schema }: Config,
+    idPseudoSeparatorOption: IdPseudoSeparatorOption
+  ) => {
+    const data = {
       id,
       name: id,
+      type: inputType(schema.format),
       required,
       minlength: schema.minLength,
       maxlength: schema.maxLength,
@@ -96,93 +78,61 @@ export function inputAttributes<
       max: schema.maximum,
       step: schema.multipleOf ?? (schema.type === "number" ? "any" : undefined),
       list: Array.isArray(schema.examples)
-        ? createPseudoId(id, "examples", ctx)
+        ? createPseudoId(id, "examples", idPseudoSeparatorOption)
         : undefined,
       readonly: schema.readOnly,
       oninput: handlers.oninput,
       onchange: handlers.onchange,
       onblur: handlers.onblur,
-    },
-    attributes,
-    extraAttributes
-  );
-  if (data.type === undefined) {
-    const type = inputType(schema.format);
-    if (type !== undefined) {
-      data.type = type;
+    } satisfies HTMLInputAttributes;
+    if (data.type === undefined) {
+      delete data.type;
     }
-  }
-  return defineDisabled(ctx, data);
+    return data;
+  };
 }
 
-export function textareaAttributes<
-  T extends Pick<
-    HTMLTextareaAttributes,
-    | "id"
-    | "name"
-    | "required"
-    | "minlength"
-    | "maxlength"
-    | "readonly"
-    | "oninput"
-    | "onchange"
-    | "onblur"
-    | "disabled"
-  >,
-  V extends Validator
+export function textareaAttributes(handlers: Handlers) {
+  return ({ id, required, schema }: Config) =>
+    ({
+      id,
+      name: id,
+      required,
+      minlength: schema.minLength,
+      maxlength: schema.maxLength,
+      readonly: schema.readOnly,
+      oninput: handlers.oninput,
+      onchange: handlers.onchange,
+      onblur: handlers.onblur,
+    } satisfies HTMLTextareaAttributes);
+}
+
+export function selectAttributes(handlers: Handlers) {
+  return ({ id, required }: Config) =>
+    ({
+      id,
+      name: id,
+      required,
+      oninput: handlers.oninput,
+      onchange: handlers.onchange,
+      onblur: handlers.onblur,
+    } satisfies HTMLSelectAttributes);
+}
+
+export function retrieveAttributes<
+  V extends Validator,
+  O extends keyof ObjectUiOptions
 >(
   ctx: FormInternalContext<V>,
-  { id, required, schema }: Config,
-  handlers: Handlers,
-  attributes: T | undefined,
-  extraAttributes: T | undefined
+  config: Config,
+  option: O,
+  attributes: (
+    config: Config,
+    ctx: FormInternalContext<V>
+  ) => Exclude<UiOptions[O], undefined>
 ) {
   return defineDisabled(
     ctx,
-    Object.assign(
-      {
-        id,
-        name: id,
-        required,
-        minlength: schema.minLength,
-        maxlength: schema.maxLength,
-        readonly: schema.readOnly,
-        oninput: handlers.oninput,
-        onchange: handlers.onchange,
-        onblur: handlers.onblur,
-      },
-      attributes,
-      extraAttributes
-    )
-  );
-}
-
-export function selectAttributes<
-  T extends Pick<
-    HTMLSelectAttributes,
-    "id" | "name" | "required" | "oninput" | "onchange" | "onblur" | "disabled"
-  >,
-  V extends Validator
->(
-  ctx: FormInternalContext<V>,
-  { id, required }: Config,
-  handlers: Handlers,
-  attributes: T | undefined,
-  extraAttributes: T | undefined
-) {
-  return defineDisabled(
-    ctx,
-    Object.assign(
-      {
-        id,
-        name: id,
-        required,
-        oninput: handlers.oninput,
-        onchange: handlers.onchange,
-        onblur: handlers.onblur,
-      },
-      attributes,
-      extraAttributes
-    )
+    retrieveUiProps(ctx, config, option, attributes(config, ctx))
   );
 }
