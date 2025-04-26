@@ -1,6 +1,6 @@
 import { tick } from "svelte";
 
-import type { FieldErrorsMap, Id } from './form/index.js';
+import { ERRORS_FOR_KEY, type FieldErrorsMap, type Id } from './form/main.js';
 
 export function getFocusableElement(
   form: HTMLElement,
@@ -24,7 +24,7 @@ export function getErrorsList(
   form: HTMLElement,
   instanceId: Id
 ) {
-  return form.querySelector(`[data-errors-for="${instanceId}"]`);
+  return form.querySelector(`[${ERRORS_FOR_KEY}="${instanceId}"]`);
 }
 
 export function getFocusAction(

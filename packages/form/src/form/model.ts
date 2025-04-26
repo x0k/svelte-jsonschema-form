@@ -11,6 +11,8 @@ export type FormValue = SchemaValue | undefined;
 
 export const DEFAULT_BOOLEAN_ENUM = [true, false];
 
+export const ERRORS_FOR_KEY = "data-errors-for";
+
 export function getRootSchemaTitleByPath(
   rootSchema: Schema,
   path: Path
