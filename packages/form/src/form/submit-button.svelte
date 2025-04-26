@@ -1,6 +1,10 @@
 <script lang="ts">
-  import { getComponent, getFormContext } from "./context/index.js";
-  import type { Config } from './config.js';
+  import {
+    getComponent,
+    getFormContext,
+    retrieveUiOption,
+  } from "./context/index.js";
+  import type { Config } from "./config.js";
   import Text from "./text.svelte";
 
   const ctx = getFormContext();
@@ -15,8 +19,13 @@
   });
 
   const Button = $derived(getComponent(ctx, "submitButton", config));
+  const text = $derived(retrieveUiOption(ctx, config, "submitButtonText"));
 </script>
 
 <Button {config}>
-  <Text {config} id="submit" />
+  {#if text}
+    {text}
+  {:else}
+    <Text {config} id="submit" />
+  {/if}
 </Button>

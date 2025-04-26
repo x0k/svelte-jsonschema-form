@@ -4,7 +4,7 @@ import type { Config } from "./config.js";
 
 declare module "./components.js" {
   interface FoundationalComponents {
-    submitButton: {}
+    submitButton: {};
   }
   interface ComponentProps {
     submitButton: {
@@ -14,5 +14,11 @@ declare module "./components.js" {
   }
   interface ComponentBindings {
     submitButton: "";
+  }
+}
+
+declare module "./ui-schema.js" {
+  interface UiOptions {
+    submitButtonText?: string;
   }
 }
