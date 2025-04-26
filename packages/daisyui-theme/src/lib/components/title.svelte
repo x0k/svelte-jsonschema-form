@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getFormContext, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, retrieveUiProps, type ComponentProps } from '@sjsf/form';
 	import '@sjsf/basic-theme/components/title.svelte';
 
 	const { title, config, type }: ComponentProps['title'] = $props();
@@ -9,8 +9,7 @@
 
 <div
 	class={['font-bold', { 'text-xl': type !== 'field' }]}
-	{...config.uiOptions?.titleAttributes}
-	{...ctx.extraUiOptions?.('titleAttributes', config)}
+	{...retrieveUiProps(ctx, config, 'titleAttributes', {})}
 >
 	{title}
 </div>

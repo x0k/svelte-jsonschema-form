@@ -1,5 +1,10 @@
 <script lang="ts">
-	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
+	import {
+		getFormContext,
+		inputAttributes,
+		retrieveAttributes,
+		type ComponentProps
+	} from '@sjsf/form';
 	import '@sjsf/basic-theme/widgets/checkbox.svelte';
 
 	let {
@@ -12,13 +17,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		inputAttributes(
-			ctx,
-			config,
-			handlers,
-			config.uiOptions?.checkbox,
-			ctx.extraUiOptions?.('checkbox', config)
-		)
+		retrieveAttributes(ctx, config, 'checkbox', inputAttributes(handlers))
 	);
 </script>
 

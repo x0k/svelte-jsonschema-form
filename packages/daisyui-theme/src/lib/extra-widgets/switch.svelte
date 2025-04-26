@@ -10,20 +10,19 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
+	import {
+		getFormContext,
+		inputAttributes,
+		retrieveAttributes,
+		type ComponentProps
+	} from '@sjsf/form';
 
 	let { config, value = $bindable(), handlers, errors }: ComponentProps['switchWidget'] = $props();
 
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		inputAttributes(
-			ctx,
-			config,
-			handlers,
-			config.uiOptions?.daisyuiSwitch,
-			ctx.extraUiOptions?.('daisyuiSwitch', config)
-		)
+		retrieveAttributes(ctx, config, 'daisyuiSwitch', inputAttributes(handlers))
 	);
 </script>
 
