@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getFormContext, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, retrieveUiProps, type ComponentProps } from '@sjsf/form';
 	import '@sjsf/basic-theme/components/help.svelte';
 
 	const { help, config }: ComponentProps['help'] = $props();
@@ -9,8 +9,7 @@
 
 <p
 	class="fieldset-label"
-	{...config.uiOptions?.helpAttributes}
-	{...ctx.extraUiOptions?.('helpAttributes', config)}
+	{...retrieveUiProps(ctx, config, "helpAttributes", {})}
 >
 	{help}
 </p>

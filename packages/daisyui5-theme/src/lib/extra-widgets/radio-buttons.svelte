@@ -10,7 +10,12 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
+	import {
+		getFormContext,
+		inputAttributes,
+		retrieveAttributes,
+		type ComponentProps
+	} from '@sjsf/form';
 	import { indexMapper, singleOption } from '@sjsf/form/options.svelte';
 
 	let {
@@ -30,13 +35,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		inputAttributes(
-			ctx,
-			config,
-			handlers,
-			config.uiOptions?.daisyui5RadioButtons,
-			ctx.extraUiOptions?.('daisyui5RadioButtons', config)
-		)
+		retrieveAttributes(ctx, config, 'daisyui5RadioButtons', inputAttributes(handlers))
 	);
 </script>
 

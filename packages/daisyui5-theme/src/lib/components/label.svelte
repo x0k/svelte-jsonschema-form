@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getFormContext, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, retrieveUiProps, type ComponentProps } from '@sjsf/form';
 	import '@sjsf/basic-theme/components/label.svelte';
 
 	const { title, config }: ComponentProps['label'] = $props();
@@ -9,9 +9,9 @@
 
 <label
 	class="fieldset-legend"
-	for={config.id}
-	{...config.uiOptions?.labelAttributes}
-	{...ctx.extraUiOptions?.('labelAttributes', config)}
+	{...retrieveUiProps(ctx, config, 'labelAttributes', {
+		for: config.id
+	})}
 >
 	{title}
 	{#if config.required}

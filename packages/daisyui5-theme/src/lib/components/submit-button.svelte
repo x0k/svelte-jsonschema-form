@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { defineDisabled, getFormContext, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, retrieveAttributes, type ComponentProps } from '@sjsf/form';
 	import '@sjsf/basic-theme/components/submit-button.svelte';
 
 	const { children, config }: ComponentProps['submitButton'] = $props();
@@ -7,13 +7,12 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		defineDisabled(ctx, {
-			...config.uiOptions?.submitButton,
-			...ctx.extraUiOptions?.('submitButton', config)
-		})
+		retrieveAttributes(ctx, config, 'submitButton', () => ({
+			type: 'submit'
+		}))
 	);
 </script>
 
-<button class="btn btn-primary w-full" type="submit" {...attributes}>
+<button class="btn btn-primary w-full" {...attributes}>
 	{@render children()}
 </button>

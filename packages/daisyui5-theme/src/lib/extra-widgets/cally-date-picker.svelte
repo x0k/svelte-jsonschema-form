@@ -1,7 +1,6 @@
 <script lang="ts" module>
 	import type { ClassValue, HTMLButtonAttributes } from 'svelte/elements';
 	import type { CalendarRangeProps, CalendarMonthProps, CalendarDateProps } from 'cally';
-	import type { Resolvable } from '@sjsf/form';
 	import '@sjsf/form/fields/extra-widgets/date-picker';
 
 	type MapEvents<T> = {
@@ -26,7 +25,7 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			daisyui5CallyCalendarDateFormatter?: Resolvable<(date: string) => string>;
+			daisyui5CallyCalendarDateFormatter?: (date: string) => string;
 			daisyui5CallyCalendarTrigger?: HTMLButtonAttributes;
 			daisyui5CallyCalendar?: CalendarProps;
 		}
@@ -35,7 +34,13 @@
 
 <script lang="ts">
 	import { formatAsCustomPropertyName } from '@sjsf/form/lib/css';
-	import { defineDisabled, getFormContext, retrieveUiOption, type ComponentProps } from '@sjsf/form';
+	import {
+		getFormContext,
+		retrieveAttributes,
+		retrieveUiOption,
+		retrieveUiProps,
+		type ComponentProps
+	} from '@sjsf/form';
 	import 'cally';
 
 	let {
@@ -65,10 +70,11 @@
 	const anchorName = $derived(formatAsCustomPropertyName(id));
 
 	const triggerAttributes = $derived(
-		defineDisabled(ctx, {
-			...config.uiOptions?.daisyui5CallyCalendarTrigger,
-			...ctx.extraUiOptions?.('daisyui5CallyCalendarTrigger', config)
-		})
+		retrieveAttributes(ctx, config, 'daisyui5CallyCalendarTrigger', () => ({
+			type: 'button',
+			popovertarget: `${id}-popover`,
+			style: `anchor-name: ${anchorName};`
+		}))
 	);
 </script>
 
@@ -87,19 +93,18 @@
 	style="position-anchor:{anchorName}"
 	popover="auto"
 >
-	<!-- svelte-ignore event_directive_deprecated -->
 	<calendar-date
-		{value}
-		on:change={({ target }) => {
-			if (target === null || !('value' in target)) {
-				return;
-			}
-			value = target.value as string;
-			handlers.onchange?.();
-		}}
 		class="cally"
-		{...config.uiOptions?.daisyui5CallyCalendar}
-		{...ctx.extraUiOptions?.('daisyui5CallyCalendar', config)}
+		{...retrieveUiProps(ctx, config, 'daisyui5CallyCalendar', {
+			value,
+			'on:change': ({ target }) => {
+				if (target === null || !('value' in target)) {
+					return;
+				}
+				value = target.value as string;
+				handlers.onchange?.();
+			}
+		})}
 	>
 		<svg
 			aria-label="Previous"

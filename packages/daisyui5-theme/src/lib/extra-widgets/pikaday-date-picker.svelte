@@ -12,7 +12,13 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
+	import {
+		getFormContext,
+		inputAttributes,
+		retrieveAttributes,
+		retrieveUiProps,
+		type ComponentProps
+	} from '@sjsf/form';
 
 	let {
 		value = $bindable(),
@@ -29,14 +35,14 @@
 				month: '2-digit',
 				day: '2-digit'
 			});
-			const picker = new Pikaday({
-				field: input,
-				onSelect(date) {
-					value = format.format(date);
-				},
-				...config.uiOptions?.daisyui5PikadayCalendarOptions,
-				...ctx.extraUiOptions?.('daisyui5PikadayCalendarOptions', config)
-			});
+			const picker = new Pikaday(
+				retrieveUiProps(ctx, config, 'daisyui5PikadayCalendarOptions', {
+					field: input,
+					onSelect(date) {
+						value = format.format(date);
+					}
+				})
+			);
 			return () => picker.destroy();
 		});
 	});
@@ -44,13 +50,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		inputAttributes(
-			ctx,
-			config,
-			handlers,
-			config.uiOptions?.daisyui5PikadayCalendar,
-			ctx.extraUiOptions?.('daisyui5PikadayCalendar', config)
-		)
+		retrieveAttributes(ctx, config, 'daisyui5PikadayCalendar', inputAttributes(handlers))
 	);
 </script>
 

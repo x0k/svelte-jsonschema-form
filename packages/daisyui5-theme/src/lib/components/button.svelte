@@ -1,21 +1,35 @@
 <script lang="ts">
-	import { defineDisabled, getFormContext, type ComponentProps } from '@sjsf/form';
+	import {
+		defineDisabled,
+		getFormContext,
+		retrieveNestedUiProps,
+		retrieveUiProps,
+		type ComponentProps
+	} from '@sjsf/form';
 	import '@sjsf/basic-theme/components/button.svelte';
 
-	const { children, type, config, disabled, onclick }: ComponentProps['button'] = $props();
+	const { children, type, disabled, onclick, config }: ComponentProps['button'] = $props();
 
 	const ctx = getFormContext();
+
 	const attributes = $derived(
-		defineDisabled(ctx, {
-			disabled,
-			...config.uiOptions?.button,
-			...config.uiOptions?.buttons?.[type],
-			...ctx.extraUiOptions?.('button', config),
-			...ctx.extraUiOptions?.('buttons', config)?.[type]
-		})
+		defineDisabled(
+			ctx,
+			retrieveNestedUiProps(
+				ctx,
+				config,
+				'buttons',
+				(p) => p[type],
+				retrieveUiProps(ctx, config, 'button', {
+					type: 'button',
+					onclick,
+					disabled
+				})
+			)
+		)
 	);
 </script>
 
-<button class="btn join-item btn-sm" type="button" {onclick} {...attributes}>
+<button class="btn join-item btn-sm" {...attributes}>
 	{@render children()}
 </button>

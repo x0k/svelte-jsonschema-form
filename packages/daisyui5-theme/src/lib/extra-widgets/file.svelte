@@ -1,5 +1,10 @@
 <script lang="ts">
-	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
+	import {
+		getFormContext,
+		inputAttributes,
+		retrieveAttributes,
+		type ComponentProps
+	} from '@sjsf/form';
 	import '@sjsf/basic-theme/extra-widgets/file.svelte';
 
 	let {
@@ -14,15 +19,7 @@
 
 	const ctx = getFormContext();
 
-	const attributes = $derived(
-		inputAttributes(
-			ctx,
-			config,
-			handlers,
-			config.uiOptions?.file,
-			ctx.extraUiOptions?.('file', config)
-		)
-	);
+	const attributes = $derived(retrieveAttributes(ctx, config, 'file', inputAttributes(handlers)));
 </script>
 
 <input

@@ -1,4 +1,4 @@
-import { definitions } from '../definitions';
+import { definitions } from '../definitions.js';
 
 import RadioButtons from './radio-buttons.svelte';
 import './radio-buttons.svelte';

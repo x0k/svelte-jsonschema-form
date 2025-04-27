@@ -1,4 +1,4 @@
-import { definitions } from '../definitions';
+import { definitions } from '../definitions.js';
 
 import PikadayDatePicker from './pikaday-date-picker.svelte';
 import './pikaday-date-picker.svelte';

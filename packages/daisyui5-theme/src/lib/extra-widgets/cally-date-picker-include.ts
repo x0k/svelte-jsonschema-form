@@ -1,6 +1,6 @@
 import { clientOnly } from '@sjsf/form/lib/env';
 
-import { definitions } from '../definitions';
+import { definitions } from '../definitions.js';
 
 export type * as __preserveCallyTypes from './cally-date-picker.svelte';
 
