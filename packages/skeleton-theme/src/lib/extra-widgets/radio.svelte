@@ -1,5 +1,10 @@
 <script lang="ts">
-	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
+	import {
+		getFormContext,
+		inputAttributes,
+		retrieveAttributes,
+		type ComponentProps
+	} from '@sjsf/form';
 	import { indexMapper, singleOption } from '@sjsf/form/options.svelte';
 	import '@sjsf/basic-theme/extra-widgets/radio.svelte';
 
@@ -13,15 +18,7 @@
 
 	const ctx = getFormContext();
 
-	const attributes = $derived(
-		inputAttributes(
-			ctx,
-			config,
-			handlers,
-			config.uiOptions?.radio,
-			ctx.extraUiOptions?.('radio', config)
-		)
-	);
+	const attributes = $derived(retrieveAttributes(ctx, config, 'radio', inputAttributes(handlers)));
 </script>
 
 {#each options as option, index (option.id)}
