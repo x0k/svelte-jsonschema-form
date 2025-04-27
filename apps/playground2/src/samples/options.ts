@@ -29,7 +29,7 @@ const optionsSample: Sample = {
       submitButtonText: "Register",
       submitButton: {
         style:
-          "width: 100%; background-color: green; border-radius: 8px; padding: 12px 0; margin: 0;",
+          "width: 100%; background-color: green; color: white; border-radius: 8px; padding: 12px 0; margin: 0;",
       },
     },
     firstName: {
