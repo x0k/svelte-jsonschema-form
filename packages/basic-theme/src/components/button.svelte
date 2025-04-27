@@ -59,12 +59,15 @@
         (p) => p[type],
         retrieveUiProps(ctx, config, "button", {
           disabled,
+          type: "button",
+          style: getStyle(type),
+          onclick,
         })
       )
     )
   );
 </script>
 
-<button type="button" style={getStyle(type)} {onclick} {...attributes}>
+<button {...attributes}>
   {@render children()}
 </button>
