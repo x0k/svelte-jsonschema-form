@@ -93,17 +93,18 @@
 	style="position-anchor:{anchorName}"
 	popover="auto"
 >
+	<!-- svelte-ignore event_directive_deprecated -->
 	<calendar-date
 		class="cally"
+		on:change={({ target }) => {
+			if (target === null || !('value' in target)) {
+				return;
+			}
+			value = target.value as string;
+			handlers.onchange?.();
+		}}
 		{...retrieveUiProps(ctx, config, 'daisyui5CallyCalendar', {
 			value,
-			'on:change': ({ target }) => {
-				if (target === null || !('value' in target)) {
-					return;
-				}
-				value = target.value as string;
-				handlers.onchange?.();
-			}
 		})}
 	>
 		<svg
