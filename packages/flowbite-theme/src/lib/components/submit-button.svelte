@@ -12,7 +12,7 @@
 </script>
 
 <script lang="ts">
-	import { defineDisabled, getFormContext, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, retrieveAttributes, type ComponentProps } from '@sjsf/form';
 	import Button from 'flowbite-svelte/Button.svelte';
 
 	const { children, config }: ComponentProps['submitButton'] = $props();
@@ -20,13 +20,14 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		defineDisabled(ctx, {
-			...config.uiOptions?.flowbiteSubmitButton,
-			...ctx.extraUiOptions?.('flowbiteSubmitButton', config)
-		})
+		retrieveAttributes(ctx, config, 'flowbiteSubmitButton', () => ({
+			color: 'primary',
+			type: 'submit',
+			size: 'md'
+		}))
 	);
 </script>
 
-<Button color="primary" type="submit" size="md" {...attributes}>
+<Button {...attributes}>
 	{@render children()}
 </Button>

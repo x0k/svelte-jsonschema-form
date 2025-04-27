@@ -9,7 +9,12 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
+	import {
+		getFormContext,
+		inputAttributes,
+		retrieveAttributes,
+		type ComponentProps
+	} from '@sjsf/form';
 	import Checkbox from 'flowbite-svelte/Checkbox.svelte';
 
 	let { config, value = $bindable(), handlers }: ComponentProps['checkboxWidget'] = $props();
@@ -17,13 +22,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		inputAttributes(
-			ctx,
-			config,
-			handlers,
-			config.uiOptions?.flowbiteCheckbox,
-			ctx.extraUiOptions?.('flowbiteCheckbox', config)
-		)
+		retrieveAttributes(ctx, config, 'flowbiteCheckbox', inputAttributes(handlers))
 	);
 </script>
 

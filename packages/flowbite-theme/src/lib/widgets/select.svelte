@@ -9,7 +9,12 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, selectAttributes, type ComponentProps } from '@sjsf/form';
+	import {
+		getFormContext,
+		retrieveAttributes,
+		selectAttributes,
+		type ComponentProps
+	} from '@sjsf/form';
 	import { singleOption, indexMapper } from '@sjsf/form/options.svelte';
 	import Select from 'flowbite-svelte/Select.svelte';
 
@@ -26,13 +31,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		selectAttributes(
-			ctx,
-			config,
-			handlers,
-			config.uiOptions?.flowbiteSelect,
-			ctx.extraUiOptions?.('flowbiteSelect', config)
-		)
+		retrieveAttributes(ctx, config, 'flowbiteSelect', selectAttributes(handlers))
 	);
 </script>
 

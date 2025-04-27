@@ -10,7 +10,12 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
+	import {
+		getFormContext,
+		inputAttributes,
+		retrieveAttributes,
+		type ComponentProps
+	} from '@sjsf/form';
 	import Range from 'flowbite-svelte/Range.svelte';
 
 	let { value = $bindable(), config, handlers }: ComponentProps['rangeWidget'] = $props();
@@ -18,13 +23,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		inputAttributes(
-			ctx,
-			config,
-			handlers,
-			config.uiOptions?.flowbiteRange,
-			ctx.extraUiOptions?.('flowbiteRange', config)
-		)
+		retrieveAttributes(ctx, config, 'flowbiteRange', inputAttributes(handlers))
 	);
 </script>
 

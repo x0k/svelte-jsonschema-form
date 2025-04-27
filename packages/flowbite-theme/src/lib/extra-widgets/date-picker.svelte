@@ -10,7 +10,7 @@
 </script>
 
 <script lang="ts">
-	import { defineDisabled, getFormContext, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, retrieveAttributes, type ComponentProps } from '@sjsf/form';
 	import Datepicker from 'flowbite-svelte/Datepicker.svelte';
 
 	let { value = $bindable(), config }: ComponentProps['datePickerWidget'] = $props();
@@ -23,27 +23,26 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		defineDisabled(ctx, {
-			required: config.required,
-			...config.uiOptions?.flowbiteDatepicker,
-			...ctx.extraUiOptions?.('flowbiteDatepicker', config)
-		})
+		retrieveAttributes(ctx, config, 'flowbiteDatepicker', () => ({
+			showActionButtons: true,
+			autohide: false,
+			required: config.required
+		}))
 	);
-
-	const date = {
-		get value() {
-			return value ? parseLocalDate(value) : null;
-		},
-		set value(v) {
-			if (!v) {
-				value = undefined;
-				return;
-			}
-			value = v.toLocaleDateString('en-CA');
-		}
-	};
 </script>
 
 <div class="w-full">
-	<Datepicker bind:value={date.value} showActionButtons autohide={false} {...attributes} />
+	<Datepicker
+		bind:value={
+			() => (value ? parseLocalDate(value) : null),
+			(v) => {
+				if (!v) {
+					value = undefined;
+					return;
+				}
+				value = v.toLocaleDateString('en-CA');
+			}
+		}
+		{...attributes}
+	/>
 </div>

@@ -8,18 +8,16 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, type ComponentProps } from '@sjsf/form';
+	import { ERRORS_FOR_KEY, getFormContext, retrieveUiProps, type ComponentProps } from '@sjsf/form';
 
 	const { errors, config }: ComponentProps['errorsList'] = $props();
 
-	const ctx = getFormContext()
+	const ctx = getFormContext();
 </script>
 
 <ui
 	class="text-red-700 dark:text-red-500"
-	data-errors-for={config.id}
-	{...config.uiOptions?.flowbiteErrorsList}
-	{...ctx.extraUiOptions?.('flowbiteErrorsList', config)}
+	{...retrieveUiProps(ctx, config, 'flowbiteErrorsList', { [ERRORS_FOR_KEY]: config.id })}
 >
 	{#each errors as err}
 		<li>{err.message}</li>
