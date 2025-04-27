@@ -9,7 +9,13 @@
 </script>
 
 <script lang="ts">
-	import { Datalist, getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
+	import {
+		Datalist,
+		getFormContext,
+		inputAttributes,
+		retrieveAttributes,
+		type ComponentProps
+	} from '@sjsf/form';
 
 	import { getThemeContext } from '../context';
 
@@ -21,13 +27,7 @@
 	let { value = $bindable(), config, handlers }: ComponentProps['numberWidget'] = $props();
 
 	const attributes = $derived(
-		inputAttributes(
-			ctx,
-			config,
-			handlers,
-			config.uiOptions?.shadcnNumber,
-			ctx.extraUiOptions?.('shadcnNumber', config)
-		)
+		retrieveAttributes(ctx, config, 'shadcnNumber', inputAttributes(handlers))
 	);
 </script>
 

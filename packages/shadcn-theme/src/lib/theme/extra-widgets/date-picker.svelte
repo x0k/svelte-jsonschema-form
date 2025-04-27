@@ -1,7 +1,6 @@
 <script lang="ts" module>
 	import type { Component } from 'svelte';
 	import type { Calendar, CalendarSingleRootProps, WithoutChildrenOrChild } from 'bits-ui';
-	import type { Resolvable } from '@sjsf/form';
 	import '@sjsf/form/fields/extra-widgets/date-picker';
 
 	import type { ButtonProps } from '../types/button';
@@ -11,7 +10,7 @@
 		interface UiOptions {
 			shadcnDatePicker?: Omit<WithoutChildrenOrChild<CalendarSingleRootProps>, 'type'>;
 			shadcnDatePickerTrigger?: ButtonProps;
-			shadcnDateFormatter?: Resolvable<(date: Date) => string>;
+			shadcnDateFormatter?: (date: Date) => string;
 		}
 	}
 
@@ -29,7 +28,13 @@
 
 <script lang="ts">
 	import { getLocalTimeZone, parseDate } from '@internationalized/date';
-	import { defineDisabled, getFormContext, retrieveUiOption, type ComponentProps } from '@sjsf/form';
+	import {
+		getFormContext,
+		retrieveAttributes,
+		retrieveUiOption,
+		retrieveUiProps,
+		type ComponentProps
+	} from '@sjsf/form';
 
 	import { getThemeContext } from '../context';
 
@@ -42,32 +47,17 @@
 
 	let { value = $bindable(), config, handlers }: ComponentProps['datePickerWidget'] = $props();
 
-	const date = {
-		get value() {
-			return value ? parseDate(value) : undefined;
-		},
-		set value(v) {
-			if (!v) {
-				value = undefined;
-				return;
-			}
-			value = v.toDate(getLocalTimeZone()).toLocaleDateString('en-CA');
-		}
-	};
-
-	const attributes = $derived.by(() => {
-		const props: CalendarSingleRootProps = {
-			type: 'single',
+	const attributes = $derived(
+		retrieveAttributes(ctx, config, 'shadcnDatePicker', () => ({
 			initialFocus: true,
-			onValueChange: handlers.onchange,
-			...config.uiOptions?.shadcnDatePicker,
-			...ctx.extraUiOptions?.('shadcnDatePicker', config)
-		};
-		return defineDisabled(ctx, props);
-	});
+			onValueChange: handlers.onchange
+		}))
+	);
+
+	const parsedDate = $derived(value !== undefined ? parseDate(value) : undefined);
 
 	const formatDate = $derived.by(() => {
-		const formatter = retrieveUiOption(ctx, config, "shadcnDateFormatter")
+		const formatter = retrieveUiOption(ctx, config, 'shadcnDateFormatter');
 		if (formatter !== undefined) {
 			return formatter;
 		}
@@ -80,7 +70,7 @@
 	});
 
 	const triggerContent = $derived.by(() => {
-		const v = date.value;
+		const v = parsedDate;
 		if (v === undefined) {
 			return attributes.placeholder;
 		}
@@ -93,9 +83,8 @@
 		{#snippet child({ props })}
 			<Button
 				{...props}
-				class={['w-full', date.value === undefined && 'text-muted-foreground']}
-				{...config.uiOptions?.shadcnDatePickerTrigger}
-				{...ctx.extraUiOptions?.('shadcnDatePickerTrigger', config)}
+				class={['w-full', parsedDate === undefined && 'text-muted-foreground']}
+				{...retrieveUiProps(ctx, config, 'shadcnDatePickerTrigger', {})}
 			>
 				{triggerContent}
 			</Button>
@@ -104,12 +93,13 @@
 	<PopoverContent>
 		<Calendar
 			bind:value={
-				() => (value !== undefined ? parseDate(value) : undefined),
+				() => parsedDate,
 				(v) => {
 					value = v?.toDate(getLocalTimeZone()).toLocaleDateString('en-CA');
 				}
 			}
 			{...attributes}
+			type="single"
 		/>
 	</PopoverContent>
 </Popover>

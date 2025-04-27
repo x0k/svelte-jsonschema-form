@@ -1,17 +1,13 @@
 <script lang="ts">
-	import { getFormContext, type ComponentProps } from '@sjsf/form';
+	import {
+		getFormContext,
+		retrieveNestedUiProps,
+		retrieveUiProps,
+		type ComponentProps
+	} from '@sjsf/form';
 	import '@sjsf/basic-theme/components/layout.svelte';
 
 	const { type, children, config }: ComponentProps['layout'] = $props();
-
-	const ctx = getFormContext()
-
-	const attributes = $derived({
-		...config.uiOptions?.layout,
-		...config.uiOptions?.layouts?.[type],
-		...ctx.extraUiOptions?.('layout', config),
-		...ctx.extraUiOptions?.('layouts', config)?.[type]
-	});
 
 	const isItem = $derived(
 		type === 'array-item' || type === 'object-property' || type === 'field-content'
@@ -29,6 +25,20 @@
 			type === 'array-items' ||
 			type === 'object-properties'
 	);
+
+	const ctx = getFormContext();
+
+	const attributes = $derived(
+		retrieveNestedUiProps(
+			ctx,
+			config,
+			'layouts',
+			(l) => l[type],
+			retrieveUiProps(ctx, config, 'layout', {
+				'data-layout': type
+			})
+		)
+	);
 </script>
 
 <div
@@ -41,7 +51,6 @@
 		grow: isGrowable,
 		'flex-col': isColumn || isField
 	}}
-	data-layout={type}
 	{...attributes}
 >
 	{@render children()}

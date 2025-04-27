@@ -14,7 +14,13 @@
 </script>
 
 <script lang="ts">
-	import { defineDisabled, getFormContext, type ComponentProps } from '@sjsf/form';
+	import {
+		defineDisabled,
+		getFormContext,
+		retrieveNestedUiProps,
+		retrieveUiProps,
+		type ComponentProps
+	} from '@sjsf/form';
 
 	import { getThemeContext } from '../context';
 
@@ -25,15 +31,20 @@
 	const { Button } = $derived(themeCtx.components);
 
 	const attributes = $derived(
-		defineDisabled(ctx, {
-			type: 'button' as const,
-			onclick,
-			disabled,
-			...config.uiOptions?.shadcnButton,
-			...config.uiOptions?.shadcnButtons?.[type],
-			...ctx.extraUiOptions?.('shadcnButton', config),
-			...ctx.extraUiOptions?.('shadcnButtons', config)?.[type]
-		})
+		defineDisabled(
+			ctx,
+			retrieveNestedUiProps(
+				ctx,
+				config,
+				'shadcnButtons',
+				(p) => p[type],
+				retrieveUiProps(ctx, config, 'shadcnButton', {
+					type: 'button',
+					disabled,
+					onclick
+				})
+			)
+		)
 	);
 </script>
 

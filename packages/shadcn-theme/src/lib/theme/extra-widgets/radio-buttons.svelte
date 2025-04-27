@@ -31,7 +31,12 @@
 </script>
 
 <script lang="ts">
-	import { defineDisabled, getFormContext, type ComponentProps } from '@sjsf/form';
+	import {
+		getFormContext,
+		retrieveAttributes,
+		retrieveUiProps,
+		type ComponentProps
+	} from '@sjsf/form';
 
 	import { getThemeContext } from '../context';
 	import { singleOption, stringIndexMapper } from '@sjsf/form/options.svelte';
@@ -54,28 +59,25 @@
 		update: (v) => (value = v)
 	});
 
-	const attributes = $derived.by(() => {
-		const props: ToggleGroupProps = {
+	const attributes = $derived(
+		retrieveAttributes(ctx, config, 'shadcnRadioButtons', () => ({
 			type: 'single',
 			id: config.id,
 			'aria-required': config.required,
 			'aria-readonly': config.schema.readOnly,
-			onValueChange: handlers.onchange,
-			...config.uiOptions?.shadcnRadioButtons,
-			...ctx.extraUiOptions?.('shadcnRadioButtons', config)
-		};
-		return defineDisabled(ctx, props);
-	});
-
-	const itemAttributes = $derived({
-		...config.uiOptions?.shadcnRadioButtonsItem,
-		...ctx.extraUiOptions?.('shadcnRadioButtonsItem', config)
-	});
+			onValueChange: handlers.onchange
+		}))
+	);
 </script>
 
 <ToggleGroup bind:value={mapped.value} {...attributes}>
 	{#each options as option, index (option.id)}
-		<ToggleGroupItem value={index.toString()} disabled={option.disabled} {...itemAttributes}>
+		<ToggleGroupItem
+			{...retrieveUiProps(ctx, config, 'shadcnRadioButtonsItem', {
+				value: index.toString(),
+				disabled: option.disabled
+			})}
+		>
 			{option.label}
 		</ToggleGroupItem>
 	{/each}

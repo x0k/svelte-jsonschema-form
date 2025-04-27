@@ -2,7 +2,7 @@
 	import type { HTMLInputAttributes } from 'svelte/elements';
 	import '@sjsf/form/fields/extra-widgets/file';
 
-	import '../types/input'
+	import '../types/input';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
@@ -12,7 +12,12 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
+	import {
+		getFormContext,
+		inputAttributes,
+		retrieveAttributes,
+		type ComponentProps
+	} from '@sjsf/form';
 
 	import { getThemeContext } from '../context';
 
@@ -31,13 +36,7 @@
 	}: ComponentProps['fileWidget'] = $props();
 
 	const attributes = $derived(
-		inputAttributes(
-			ctx,
-			config,
-			handlers,
-			config.uiOptions?.shadcnFile,
-			ctx.extraUiOptions?.('shadcnFile', config)
-		)
+		retrieveAttributes(ctx, config, 'shadcnFile', inputAttributes(handlers))
 	);
 </script>
 

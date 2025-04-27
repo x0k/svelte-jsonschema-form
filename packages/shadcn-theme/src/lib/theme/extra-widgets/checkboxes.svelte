@@ -11,7 +11,12 @@
 </script>
 
 <script lang="ts">
-	import { defineDisabled, getFormContext, type ComponentProps } from '@sjsf/form';
+	import {
+		defineDisabled,
+		getFormContext,
+		retrieveAttributes,
+		type ComponentProps
+	} from '@sjsf/form';
 	import { multipleOptions, stringIndexMapper } from '@sjsf/form/options.svelte';
 
 	import { getThemeContext } from '../context';
@@ -38,13 +43,11 @@
 	const indexes = $derived(new Set(mapped.value));
 
 	const attributes = $derived(
-		defineDisabled(ctx, {
+		retrieveAttributes(ctx, config, 'shadcnCheckboxes', () => ({
+			...handlers,
 			name: config.id,
 			required: config.required,
-			...handlers,
-			...config.uiOptions?.shadcnCheckboxes,
-			...ctx.extraUiOptions?.('shadcnCheckboxes', config)
-		})
+		}))
 	);
 </script>
 

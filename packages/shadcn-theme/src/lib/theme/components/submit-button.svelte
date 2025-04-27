@@ -9,7 +9,7 @@
 </script>
 
 <script lang="ts">
-	import { defineDisabled, getFormContext, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, retrieveAttributes, type ComponentProps } from '@sjsf/form';
 
 	import { getThemeContext } from '../context';
 
@@ -20,10 +20,9 @@
 	const { Button } = $derived(themeCtx.components);
 
 	const attributes = $derived(
-		defineDisabled(ctx, {
-			...config.uiOptions?.shadcnSubmitButton,
-			...ctx.extraUiOptions?.('shadcnSubmitButton', config)
-		})
+		retrieveAttributes(ctx, config, 'shadcnSubmitButton', () => ({
+			type: 'submit'
+		}))
 	);
 </script>
 

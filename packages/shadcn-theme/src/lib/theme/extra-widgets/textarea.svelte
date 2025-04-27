@@ -18,7 +18,12 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, textareaAttributes, type ComponentProps } from '@sjsf/form';
+	import {
+		getFormContext,
+		retrieveAttributes,
+		textareaAttributes,
+		type ComponentProps
+	} from '@sjsf/form';
 
 	import { getThemeContext } from '../context';
 
@@ -30,13 +35,7 @@
 	let { value = $bindable(), config, handlers }: ComponentProps['textareaWidget'] = $props();
 
 	const attributes = $derived(
-		textareaAttributes(
-			ctx,
-			config,
-			handlers,
-			config.uiOptions?.shadcnTextarea,
-			ctx.extraUiOptions?.('shadcnTextarea', config)
-		)
+		retrieveAttributes(ctx, config, 'shadcnTextarea', textareaAttributes(handlers))
 	);
 </script>
 

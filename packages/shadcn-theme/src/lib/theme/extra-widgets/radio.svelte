@@ -26,7 +26,12 @@
 </script>
 
 <script lang="ts">
-	import { type ComponentProps, defineDisabled, getFormContext } from '@sjsf/form';
+	import {
+		type ComponentProps,
+		getFormContext,
+		retrieveAttributes,
+		retrieveUiProps
+	} from '@sjsf/form';
 	import { stringIndexMapper, singleOption } from '@sjsf/form/options.svelte';
 
 	import { getThemeContext } from '../context';
@@ -44,19 +49,18 @@
 		update: (v) => (value = v)
 	});
 
-	const attributes = $derived.by(() => {
-		const props: RadioGroupRootProps = {
-			onValueChange: handlers.onchange,
-			...config.uiOptions?.shadcnRadioGroup,
-			...ctx.extraUiOptions?.('shadcnRadioGroup', config)
-		};
-		return defineDisabled(ctx, props);
-	});
+	const attributes = $derived(
+		retrieveAttributes(ctx, config, 'shadcnRadioGroup', () => ({
+			onValueChange: handlers.onchange
+		}))
+	);
 
-	const itemAttributes = $derived({
-		...config.uiOptions?.shadcnRadioItem,
-		...ctx.extraUiOptions?.('shadcnRadioItem', config)
-	});
+	const itemAttributes = $derived(
+		retrieveUiProps(ctx, config, 'shadcnRadioItem', {
+			onclick: handlers.oninput,
+			onblur: handlers.onblur
+		})
+	);
 </script>
 
 <RadioGroup bind:value={mapped.value} {...attributes}>
@@ -64,10 +68,8 @@
 		{@const indexStr = index.toString()}
 		<div class="flex items-center space-x-2">
 			<RadioGroupItem
-				value={indexStr}
-				onclick={handlers.oninput}
-				onblur={handlers.onblur}
 				{...itemAttributes}
+				value={indexStr}
 				id={option.id}
 				disabled={option.disabled}
 			/>

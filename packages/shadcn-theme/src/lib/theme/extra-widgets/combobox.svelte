@@ -30,7 +30,14 @@
 
 	import Check from '@lucide/svelte/icons/check';
 	import ChevronsUpDown from '@lucide/svelte/icons/chevrons-up-down';
-	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
+	import {
+		getFormContext,
+		inputAttributes,
+		retrieveAttributes,
+		retrieveUiOption,
+		retrieveUiProps,
+		type ComponentProps
+	} from '@sjsf/form';
 	import { indexMapper, singleOption } from '@sjsf/form/options.svelte';
 
 	import { cn } from '$lib/utils.js';
@@ -62,9 +69,6 @@
 			update: (v) => (value = v)
 		})
 	);
-	const triggerContent = $derived(
-		options[Number(mapped.value)]?.label ?? config.uiOptions?.shadcnComboboxInput?.placeholder ?? ''
-	);
 
 	let open = $state(false);
 	let triggerRef = $state<HTMLButtonElement>(null!);
@@ -77,32 +81,27 @@
 	}
 
 	const attributes = $derived(
-		inputAttributes(
-			ctx,
-			config,
-			handlers,
-			config.uiOptions?.shadcnComboboxInput,
-			ctx.extraUiOptions?.('shadcnComboboxInput', config)
-		)
+		retrieveAttributes(ctx, config, 'shadcnComboboxInput', inputAttributes(handlers))
 	);
 
-	const emptyText = $derived(
-		ctx.extraUiOptions?.('shadcnComboboxEmptyText', config) ??
-			config.uiOptions?.shadcnComboboxEmptyText
+	const triggerContent = $derived(
+		options[Number(mapped.value)]?.label ?? attributes.placeholder ?? ''
 	);
+
+	const emptyText = $derived(retrieveUiOption(ctx, config, 'shadcnComboboxEmptyText'));
 </script>
 
 <Popover bind:open>
 	<PopoverTrigger bind:ref={triggerRef} disabled={ctx.disabled}>
 		{#snippet child({ props })}
 			<Button
-				variant="outline"
 				class="w-full justify-between"
-				{...props}
-				role="combobox"
-				aria-expanded={open}
-				{...config.uiOptions?.shadcnComboboxTrigger}
-				{...ctx.extraUiOptions?.('shadcnComboboxTrigger', config)}
+				{...retrieveUiProps(ctx, config, 'shadcnComboboxTrigger', {
+					variant: 'outline',
+					...props,
+					role: 'combobox',
+					'aria-expanded': open
+				})}
 			>
 				{triggerContent}
 				<ChevronsUpDown class="ml-2 size-4 shrink-0 opacity-50" />

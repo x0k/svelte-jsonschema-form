@@ -9,7 +9,7 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, retrieveUiProps, type ComponentProps } from '@sjsf/form';
 
 	import { getThemeContext } from '../context';
 
@@ -22,9 +22,9 @@
 </script>
 
 <Label
-	for={config.id}
-	{...config.uiOptions?.shadcnLabel}
-	{...ctx.extraUiOptions?.('shadcnLabel', config) as LabelProps}
+	{...retrieveUiProps(ctx, config, 'shadcnLabel', {
+		for: config.id
+	})}
 >
 	{title}
 	{#if config.required}

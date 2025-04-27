@@ -10,7 +10,7 @@
 </script>
 
 <script lang="ts">
-	import { defineDisabled, getFormContext, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, retrieveAttributes, type ComponentProps } from '@sjsf/form';
 	import { singleOption, stringIndexMapper } from '@sjsf/form/options.svelte';
 
 	import { getThemeContext } from '../context';
@@ -30,25 +30,22 @@
 		})
 	);
 
-	const selectAttributes = $derived.by(() => {
-		const props: SelectSingleRootProps = {
+	const selectAttributes = $derived(
+		retrieveAttributes(ctx, config, 'shadcnSelect', () => ({
 			type: 'single',
 			onValueChange: handlers.onchange,
-			required: config.required,
-			...config.uiOptions?.shadcnSelect,
-			...ctx.extraUiOptions?.('shadcnSelect', config)
-		};
-		return defineDisabled(ctx, props);
-	});
-	const triggerAttributes = $derived({
-		id: config.id,
-		name: config.id,
-		required: config.required,
-		...config.uiOptions?.shadcnSelectTrigger,
-		...ctx.extraUiOptions?.('shadcnSelectTrigger', config)
-	});
+			required: config.required
+		}))
+	);
+	const triggerAttributes = $derived(
+		retrieveAttributes(ctx, config, 'shadcnSelectTrigger', () => ({
+			id: config.id,
+			name: config.id,
+			required: config.required
+		}))
+	);
 
-	const triggerLabel = $derived.by(() => {
+	const triggerContent = $derived.by(() => {
 		const v = mapped.value;
 		if (Array.isArray(v)) {
 			return v.map((i) => options[Number(i)].label).join(', ') || selectAttributes.placeholder;
@@ -63,7 +60,7 @@
 <Select bind:value={mapped.value} {...selectAttributes}>
 	<SelectTrigger {...triggerAttributes}>
 		<span>
-			{triggerLabel}
+			{triggerContent}
 		</span>
 	</SelectTrigger>
 	<SelectContent>

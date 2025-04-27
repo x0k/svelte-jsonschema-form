@@ -5,7 +5,7 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			shadcnSwitch?: Omit<WithoutChildrenOrChild<SwitchRootProps>, 'type'>;
+			shadcnSwitch?: WithoutChildrenOrChild<SwitchRootProps>;
 		}
 	}
 
@@ -17,7 +17,7 @@
 </script>
 
 <script lang="ts">
-	import { defineDisabled, getFormContext, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, retrieveAttributes, type ComponentProps } from '@sjsf/form';
 
 	import { getThemeContext } from '../context';
 
@@ -28,18 +28,15 @@
 
 	let { value = $bindable(), config, handlers }: ComponentProps['switchWidget'] = $props();
 
-	const attributes = $derived.by(() => {
-		const props: SwitchRootProps = {
+	const attributes = $derived(
+		retrieveAttributes(ctx, config, 'shadcnSwitch', () => ({
+			...handlers,
 			id: config.id,
 			name: config.id,
 			required: config.required,
 			onCheckedChange: handlers.onchange,
-			...handlers,
-			...config.uiOptions?.shadcnSwitch,
-			...ctx.extraUiOptions?.('shadcnSwitch', config)
-		};
-		return defineDisabled(ctx, props);
-	});
+		}))
+	);
 </script>
 
 <Switch bind:checked={() => value ?? false, (v) => (value = v)} {...attributes} />

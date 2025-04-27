@@ -17,7 +17,7 @@
 </script>
 
 <script lang="ts">
-	import { defineDisabled, getFormContext, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, retrieveAttributes, type ComponentProps } from '@sjsf/form';
 
 	import { getThemeContext } from '../context';
 
@@ -28,20 +28,16 @@
 
 	let { value = $bindable(), config, handlers }: ComponentProps['rangeWidget'] = $props();
 
-	const attributes = $derived.by(() => {
-		const props: SliderSingleRootProps = {
+	const attributes = $derived(
+		retrieveAttributes(ctx, config, 'shadcnRange', () => ({
 			id: config.id,
 			min: config.schema.minimum,
 			max: config.schema.maximum,
 			step: config.schema.multipleOf,
-			type: 'single',
 			onValueChange: handlers.oninput,
-			onValueCommit: handlers.onchange,
-			...config.uiOptions?.shadcnRange,
-			...ctx.extraUiOptions?.('shadcnRange', config)
-		};
-		return defineDisabled(ctx, props);
-	});
+			onValueCommit: handlers.onchange
+		}))
+	);
 </script>
 
-<Slider bind:value={() => value ?? 0, (v) => (value = v)} {...attributes} />
+<Slider bind:value={() => value ?? 0, (v) => (value = v)} {...attributes} type="single" />
