@@ -12,7 +12,7 @@
 
 <script lang="ts">
 	import { type FileUploadApi } from '@skeletonlabs/skeleton-svelte';
-	import { defineDisabled, getFormContext, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, retrieveAttributes, type ComponentProps } from '@sjsf/form';
 
 	let {
 		config,
@@ -25,8 +25,8 @@
 	const ctx = getFormContext();
 
 	let lastFiles: FileList | undefined;
-	const attributes: SvelteComponentProps<typeof SkeletonFileUpload> = $derived(
-		defineDisabled(ctx, {
+	const attributes = $derived(
+		retrieveAttributes(ctx, config, 'skeleton3FileUpload', () => ({
 			ids: {
 				hiddenInput: config.id
 			},
@@ -44,10 +44,8 @@
 					data.items.add(file);
 				}
 				value = lastFiles = data.files;
-			},
-			...config.uiOptions?.skeleton3FileUpload,
-			...ctx.extraUiOptions?.('skeleton3FileUpload', config)
-		})
+			}
+		}))
 	);
 
 	function areFilesEqual(fl1: FileList | undefined, fl2: FileList | undefined) {

@@ -12,14 +12,14 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, defineDisabled, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, type ComponentProps, retrieveAttributes } from '@sjsf/form';
 
 	let { value = $bindable(), config, handlers, errors }: ComponentProps['rangeWidget'] = $props();
 
 	const ctx = getFormContext();
 
 	const attributes: SvelteComponentProps<typeof SkeletonSlider> = $derived(
-		defineDisabled(ctx, {
+		retrieveAttributes(ctx, config, 'skeleton3Slider', () => ({
 			ids: {
 				hiddenInput() {
 					return config.id;
@@ -36,16 +36,9 @@
 				value = details.value[0];
 				handlers.onchange?.();
 			},
-			...config.uiOptions?.skeleton3Slider,
-			...ctx.extraUiOptions?.('skeleton3Slider', config)
-		})
+			value: value === undefined ? undefined : [value]
+		}))
 	);
-	const boxed = $derived.by(() => {
-		if (value === undefined) {
-			return undefined;
-		}
-		return [value];
-	});
 </script>
 
-<SkeletonSlider value={boxed} {...attributes} />
+<SkeletonSlider {...attributes} />

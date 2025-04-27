@@ -11,18 +11,14 @@
 </script>
 
 <script lang="ts">
-	import {
-		defineDisabled,
-		type ComponentProps,
-		getFormContext
-	} from '@sjsf/form';
+	import { type ComponentProps, getFormContext, retrieveAttributes } from '@sjsf/form';
 
 	let { value = $bindable(), config, handlers, errors }: ComponentProps['tagsWidget'] = $props();
 
 	const ctx = getFormContext();
 
-	const attributes: SvelteComponentProps<typeof TagsInput> = $derived(
-		defineDisabled(ctx, {
+	const attributes = $derived(
+		retrieveAttributes(ctx, config, 'skeleton3Tags', () => ({
 			ids: {
 				input: config.id
 			},
@@ -37,10 +33,9 @@
 				value = details.value;
 				handlers.onchange?.();
 			},
-			...config.uiOptions?.skeleton3Tags,
-			...ctx.extraUiOptions?.('skeleton3Tags', config)
-		})
+			value
+		}))
 	);
 </script>
 
-<TagsInput {value} {...attributes} />
+<TagsInput {...attributes} />

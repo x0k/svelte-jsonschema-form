@@ -12,7 +12,13 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, type ComponentProps, defineDisabled } from '@sjsf/form';
+	import {
+		getFormContext,
+		type ComponentProps,
+		defineDisabled,
+		retrieveAttributes,
+		retrieveUiProps
+	} from '@sjsf/form';
 	import { stringIndexMapper, singleOption } from '@sjsf/form/options.svelte';
 
 	let {
@@ -31,7 +37,7 @@
 	const ctx = getFormContext();
 
 	const attributes: SvelteComponentProps<typeof Segment> = $derived(
-		defineDisabled(ctx, {
+		retrieveAttributes(ctx, config, 'skeleton3Segment', () => ({
 			ids: {
 				root: config.id
 			},
@@ -40,21 +46,19 @@
 			onValueChange: (details) => {
 				mapped.value = details.value ?? '';
 				handlers.onchange?.();
-			},
-			...config.uiOptions?.skeleton3Segment,
-			...ctx.extraUiOptions?.('skeleton3Segment', config)
-		})
+			}
+		}))
 	);
-
-	const itemAttributes = $derived({
-		...config.uiOptions?.skeleton3SegmentItem,
-		...ctx.extraUiOptions?.('skeleton3SegmentItem', config)
-	});
 </script>
 
 <Segment value={mapped.value} {...attributes}>
 	{#each options as option, index (option.id)}
-		<Segment.Item value={index.toString()} {...itemAttributes} disabled={option.disabled}>
+		<Segment.Item
+			{...retrieveUiProps(ctx, config, 'skeleton3SegmentItem', {
+				value: index.toString(),
+				disabled: option.disabled
+			})}
+		>
 			{option.label}
 		</Segment.Item>
 	{/each}

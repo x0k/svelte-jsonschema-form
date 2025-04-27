@@ -11,13 +11,14 @@
 </script>
 
 <script lang="ts">
-	import { type ComponentProps, defineDisabled, getFormContext } from '@sjsf/form';
+	import { type ComponentProps, getFormContext, retrieveAttributes } from '@sjsf/form';
 	let { value = $bindable(), config, handlers }: ComponentProps['ratingWidget'] = $props();
 
 	const ctx = getFormContext();
 
-	const attributes: SvelteComponentProps<typeof SkeletonRating> = $derived(
-		defineDisabled(ctx, {
+	const attributes = $derived(
+		retrieveAttributes(ctx, config, 'skeleton3Rating', () => ({
+			value,
 			ids: {
 				hiddenInput: config.id
 			},
@@ -29,11 +30,9 @@
 				value = details.value;
 				handlers.onchange?.();
 			},
-			count: config.schema.maximum,
-			...config.uiOptions?.skeleton3Rating,
-			...ctx.extraUiOptions?.('skeleton3Rating', config)
-		})
+			count: config.schema.maximum
+		}))
 	);
 </script>
 
-<SkeletonRating {value} {...attributes} />
+<SkeletonRating {...attributes} />

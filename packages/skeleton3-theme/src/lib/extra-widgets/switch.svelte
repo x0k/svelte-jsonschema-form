@@ -11,14 +11,14 @@
 </script>
 
 <script lang="ts">
-	import { defineDisabled, getFormContext, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, retrieveAttributes, type ComponentProps } from '@sjsf/form';
 
 	let { config, value = $bindable(), handlers, errors }: ComponentProps['switchWidget'] = $props();
 
 	const ctx = getFormContext();
 
 	const attributes: SvelteComponentProps<typeof SkeletonSwitch> = $derived(
-		defineDisabled(ctx, {
+		retrieveAttributes(ctx, config, 'skeleton3Switch', () => ({
 			ids: {
 				hiddenInput: config.id
 			},
@@ -30,12 +30,11 @@
 				value = e.checked;
 				handlers.onchange?.();
 			},
-			...config.uiOptions?.skeleton3Switch,
-			...ctx.extraUiOptions?.('skeleton3Switch', config)
-		})
+			checked: value
+		}))
 	);
 </script>
 
-<SkeletonSwitch checked={value} {...attributes}>
+<SkeletonSwitch {...attributes}>
 	{config.title}
 </SkeletonSwitch>
