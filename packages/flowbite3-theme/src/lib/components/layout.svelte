@@ -5,17 +5,22 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			flowbiteLayout?: HTMLAttributes<HTMLDivElement>;
-			flowbiteLayouts?: {
+			flowbite3Layout?: HTMLAttributes<HTMLDivElement>;
+			flowbite3Layouts?: {
 				[L in LayoutType]?: HTMLAttributes<HTMLDivElement>;
 			};
-			flowbiteButtonGroup?: ButtonGroupProps;
+			flowbite3ButtonGroup?: ButtonGroupProps;
 		}
 	}
 </script>
 
 <script lang="ts">
-	import { getFormContext, type ComponentProps } from '@sjsf/form';
+	import {
+		getFormContext,
+		retrieveNestedUiProps,
+		retrieveUiProps,
+		type ComponentProps
+	} from '@sjsf/form';
 	import ButtonGroup from 'flowbite-svelte/ButtonGroup.svelte';
 
 	const { type, children, config }: ComponentProps['layout'] = $props();
@@ -38,15 +43,22 @@
 	);
 
 	const ctx = getFormContext();
+
+	const attributes = $derived(
+		retrieveNestedUiProps(
+			ctx,
+			config,
+			'flowbite3Layouts',
+			(l) => l[type],
+			retrieveUiProps(ctx, config, 'flowbite3Layout', {
+				'data-layout': type
+			})
+		)
+	);
 </script>
 
 {#if isControls}
-	<ButtonGroup
-		{...config.uiOptions?.flowbiteButtonGroup}
-		{...ctx.extraUiOptions?.('flowbiteButtonGroup', config)}
-	>
-		{@render children()}
-	</ButtonGroup>
+	<ButtonGroup {...retrieveUiProps(ctx, config, 'flowbite3ButtonGroup', { children })} />
 {:else}
 	<div
 		class={{
@@ -57,11 +69,7 @@
 			grow: isGrowable,
 			'flex-col': isField || isColumn
 		}}
-		data-layout={type}
-		{...config.uiOptions?.flowbiteLayout}
-		{...config.uiOptions?.flowbiteLayouts?.[type]}
-		{...ctx.extraUiOptions?.('flowbiteLayout', config)}
-		{...ctx.extraUiOptions?.('flowbiteLayouts', config)?.[type]}
+		{...attributes}
 	>
 		{@render children()}
 	</div>

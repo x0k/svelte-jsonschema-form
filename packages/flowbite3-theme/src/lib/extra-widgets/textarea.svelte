@@ -4,13 +4,18 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			flowbiteTextarea?: TextareaProps;
+			flowbite3Textarea?: TextareaProps;
 		}
 	}
 </script>
 
 <script lang="ts">
-	import { getFormContext, textareaAttributes, type ComponentProps } from '@sjsf/form';
+	import {
+		getFormContext,
+		retrieveAttributes,
+		textareaAttributes,
+		type ComponentProps,
+	} from '@sjsf/form';
 	import Textarea from 'flowbite-svelte/Textarea.svelte';
 
 	let { value = $bindable(), config, handlers }: ComponentProps['textareaWidget'] = $props();
@@ -18,13 +23,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		textareaAttributes(
-			ctx,
-			config,
-			handlers,
-			config.uiOptions?.flowbiteTextarea,
-			ctx.extraUiOptions?.('flowbiteTextarea', config)
-		)
+		retrieveAttributes(ctx, config, 'flowbite3Textarea', textareaAttributes(handlers))
 	);
 </script>
 

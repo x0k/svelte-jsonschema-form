@@ -3,23 +3,19 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			flowbiteDescription?: HTMLAttributes<HTMLDivElement>;
+			flowbite3Description?: HTMLAttributes<HTMLDivElement>;
 		}
 	}
 </script>
 
 <script lang="ts">
-	import { getFormContext, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, retrieveUiProps, type ComponentProps } from '@sjsf/form';
 
 	const { description, config }: ComponentProps['description'] = $props();
 
 	const ctx = getFormContext();
 </script>
 
-<div
-	class="text-sm opacity-70"
-	{...config.uiOptions?.flowbiteDescription}
-	{...ctx.extraUiOptions?.('flowbiteDescription', config)}
->
+<div class="text-sm opacity-70" {...retrieveUiProps(ctx, config, 'flowbite3Description', {})}>
 	{description}
 </div>

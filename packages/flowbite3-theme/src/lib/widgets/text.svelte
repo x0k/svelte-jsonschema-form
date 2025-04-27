@@ -3,13 +3,19 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			flowbiteText?: InputProps<string | undefined>;
+			flowbite3Text?: InputProps<string | undefined>;
 		}
 	}
 </script>
 
 <script lang="ts">
-	import { Datalist, getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
+	import {
+		Datalist,
+		getFormContext,
+		inputAttributes,
+		retrieveAttributes,
+		type ComponentProps
+	} from '@sjsf/form';
 	import Input from 'flowbite-svelte/Input.svelte';
 
 	let { value = $bindable(), config, handlers }: ComponentProps['textWidget'] = $props();
@@ -17,13 +23,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		inputAttributes(
-			ctx,
-			config,
-			handlers,
-			config.uiOptions?.flowbiteText,
-			ctx.extraUiOptions?.('flowbiteText', config)
-		)
+		retrieveAttributes(ctx, config, 'flowbite3Text', inputAttributes(handlers))
 	);
 </script>
 

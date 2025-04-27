@@ -4,13 +4,18 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			flowbiteRadio?: RadioProps<number>;
+			flowbite3Radio?: RadioProps<number>;
 		}
 	}
 </script>
 
 <script lang="ts">
-	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
+	import {
+		getFormContext,
+		inputAttributes,
+		retrieveAttributes,
+		type ComponentProps
+	} from '@sjsf/form';
 	import { indexMapper, singleOption } from '@sjsf/form/options.svelte';
 	import Radio from 'flowbite-svelte/Radio.svelte';
 
@@ -25,13 +30,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		inputAttributes(
-			ctx,
-			config,
-			handlers,
-			config.uiOptions?.flowbiteRadio,
-			ctx.extraUiOptions?.('flowbiteRadio', config)
-		)
+		retrieveAttributes(ctx, config, 'flowbite3Radio', inputAttributes(handlers))
 	);
 </script>
 

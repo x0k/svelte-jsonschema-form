@@ -4,13 +4,18 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			flowbiteCheckboxes?: CheckboxProps;
+			flowbite3Checkboxes?: CheckboxProps;
 		}
 	}
 </script>
 
 <script lang="ts">
-	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
+	import {
+		getFormContext,
+		inputAttributes,
+		retrieveAttributes,
+		type ComponentProps
+	} from '@sjsf/form';
 	import { multipleOptions, indexMapper } from '@sjsf/form/options.svelte';
 	import Checkbox from 'flowbite-svelte/Checkbox.svelte';
 
@@ -31,13 +36,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		inputAttributes(
-			ctx,
-			config,
-			handlers,
-			config.uiOptions?.flowbiteCheckboxes,
-			ctx.extraUiOptions?.('flowbiteCheckboxes', config)
-		)
+		retrieveAttributes(ctx, config, 'flowbite3Checkboxes', inputAttributes(handlers))
 	);
 </script>
 

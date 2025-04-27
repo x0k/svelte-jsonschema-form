@@ -3,13 +3,13 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			flowbiteLabel?: LabelProps;
+			flowbite3Label?: LabelProps;
 		}
 	}
 </script>
 
 <script lang="ts">
-	import { getFormContext, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, retrieveUiProps, type ComponentProps } from '@sjsf/form';
 	import Label from 'flowbite-svelte/Label.svelte';
 
 	const { title, config }: ComponentProps['label'] = $props();
@@ -17,13 +17,15 @@
 	const ctx = getFormContext();
 </script>
 
-<Label
-	for={config.id}
-	{...config.uiOptions?.flowbiteLabel}
-	{...ctx.extraUiOptions?.('flowbiteLabel', config)}
->
+{#snippet children()}
 	{title}
 	{#if config.required}
 		<span>*</span>
 	{/if}
-</Label>
+{/snippet}
+<Label
+	{...retrieveUiProps(ctx, config, 'flowbite3Label', {
+		for: config.id,
+		children
+	})}
+/>

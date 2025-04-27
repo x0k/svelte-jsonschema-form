@@ -3,13 +3,13 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			flowbiteForm?: HTMLFormAttributes;
+			flowbite3Form?: HTMLFormAttributes;
 		}
 	}
 </script>
 
 <script lang="ts">
-	import { enhance, getFormContext, type ComponentProps } from '@sjsf/form';
+	import { enhance, getFormContext, retrieveUiProps, type ComponentProps } from '@sjsf/form';
 
 	let { config, children, ref = $bindable(), attributes }: ComponentProps['form'] = $props();
 
@@ -20,8 +20,7 @@
 	bind:this={ref}
 	use:enhance={ctx}
 	class="flex flex-col gap-4"
-	{...config.uiOptions?.flowbiteForm}
-	{...ctx.extraUiOptions?.('flowbiteForm', config)}
+	{...retrieveUiProps(ctx, config, 'flowbite3Form', {})}
 	{...attributes}
 >
 	{@render children?.()}

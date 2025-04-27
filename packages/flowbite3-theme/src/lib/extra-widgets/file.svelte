@@ -4,13 +4,18 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			flowbiteFile?: FileuploadProps;
+			flowbite3File?: FileuploadProps;
 		}
 	}
 </script>
 
 <script lang="ts">
-	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
+	import {
+		getFormContext,
+		inputAttributes,
+		retrieveAttributes,
+		type ComponentProps
+	} from '@sjsf/form';
 	import FileUpload from 'flowbite-svelte/Fileupload.svelte';
 
 	let {
@@ -25,13 +30,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		inputAttributes(
-			ctx,
-			config,
-			handlers,
-			config.uiOptions?.flowbiteFile,
-			ctx.extraUiOptions?.('flowbiteFile', config)
-		)
+		retrieveAttributes(ctx, config, 'flowbite3File', inputAttributes(handlers))
 	);
 </script>
 

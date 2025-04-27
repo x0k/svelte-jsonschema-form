@@ -4,13 +4,13 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			flowbiteDatepicker?: DatepickerProps;
+			flowbite3Datepicker?: Partial<DatepickerProps>;
 		}
 	}
 </script>
 
 <script lang="ts">
-	import { defineDisabled, getFormContext, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, retrieveAttributes, type ComponentProps } from '@sjsf/form';
 	import Datepicker from 'flowbite-svelte/Datepicker.svelte';
 
 	let { value = $bindable(), config }: ComponentProps['datePickerWidget'] = $props();
@@ -23,11 +23,11 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		defineDisabled(ctx, {
+		retrieveAttributes(ctx, config, 'flowbite3Datepicker', () => ({
 			required: config.required,
-			...config.uiOptions?.flowbiteDatepicker,
-			...ctx.extraUiOptions?.('flowbiteDatepicker', config)
-		})
+			showActionButtons: true,
+			autohide: false
+		}))
 	);
 
 	const date = {
@@ -45,5 +45,5 @@
 </script>
 
 <div class="w-full">
-	<Datepicker bind:value={date.value} showActionButtons autohide={false} {...attributes as any} />
+	<Datepicker bind:value={date.value} {...attributes as any} />
 </div>
