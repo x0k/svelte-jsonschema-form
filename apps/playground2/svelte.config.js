@@ -1,7 +1,5 @@
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
-const nonRunic = ["lucide-svelte", "flowbite-svelte/"];
-
 export default {
   // Consult https://svelte.dev/docs#compile-time-svelte-preprocess
   // for more information about preprocessors
@@ -9,7 +7,6 @@ export default {
   vitePlugin: {
     dynamicCompileOptions({ filename }) {
       return {
-        runes: !nonRunic.some((p) => filename.includes(p)),
         css: filename.includes("moving-icons") ? "injected" : "external",
       };
     },

@@ -470,9 +470,6 @@ importers:
       '@sjsf/flowbite-icons':
         specifier: workspace:*
         version: link:../../packages/flowbite-icons
-      '@sjsf/flowbite-theme':
-        specifier: workspace:*
-        version: link:../../packages/flowbite-theme
       '@sjsf/flowbite3-theme':
         specifier: workspace:*
         version: link:../../packages/flowbite3-theme
@@ -494,9 +491,6 @@ importers:
       '@sjsf/shadcn-theme':
         specifier: workspace:*
         version: link:../../packages/shadcn-theme
-      '@sjsf/skeleton-theme':
-        specifier: workspace:*
-        version: link:../../packages/skeleton-theme
       '@sjsf/skeleton3-theme':
         specifier: workspace:*
         version: link:../../packages/skeleton3-theme
@@ -1060,8 +1054,8 @@ importers:
   packages/lucide-icons:
     devDependencies:
       '@lucide/svelte':
-        specifier: ^0.501.0
-        version: 0.501.0(svelte@5.27.3)
+        specifier: ^0.503.0
+        version: 0.503.0(svelte@5.27.3)
       '@playwright/test':
         specifier: 'catalog:'
         version: 1.51.1
@@ -1095,9 +1089,6 @@ importers:
       globals:
         specifier: 'catalog:'
         version: 16.0.0
-      lucide-svelte:
-        specifier: ^0.487.0
-        version: 0.487.0(svelte@5.27.3)
       postcss:
         specifier: 'catalog:'
         version: 8.5.3
@@ -2390,6 +2381,11 @@ packages:
 
   '@lucide/svelte@0.501.0':
     resolution: {integrity: sha512-W3YWDyANY+Gi1wzf4JKK5bRYGqRQFAIDbNmMR1ujZ/TR+/jT+8rj9txn5XEuxygYn0ioEw5EcaVewDWSUOU/bg==}
+    peerDependencies:
+      svelte: ^5
+
+  '@lucide/svelte@0.503.0':
+    resolution: {integrity: sha512-Y7Q8pHnX2YG8Ef4a/VnYFN9tTAJS33MiS78vQtPiyp5iiWuBlTMoViMiRUxQb7U9Ro46RdJ0kpCADvvha3Z2rA==}
     peerDependencies:
       svelte: ^5
 
@@ -4772,11 +4768,6 @@ packages:
 
   lucide-svelte@0.453.0:
     resolution: {integrity: sha512-K+eE2ZeE00ThIEbAmZB3Hq0sVS+1ZLj+7nqtJvN0Xrh/KZnfnEChG+do80sctqXQEE+iG1dA2T+5fVcJS1awfA==}
-    peerDependencies:
-      svelte: ^3 || ^4 || ^5.0.0-next.42
-
-  lucide-svelte@0.487.0:
-    resolution: {integrity: sha512-ags7npK5Nv6AI9LBpAbijpmHxcO9hOeP0/7yJ72++AOBWmwB0X7LqNQFJk1PBe4wM0UsgklWQdyRZyx8s9xyXg==}
     peerDependencies:
       svelte: ^3 || ^4 || ^5.0.0-next.42
 
@@ -7309,6 +7300,10 @@ snapshots:
       '@jridgewell/sourcemap-codec': 1.5.0
 
   '@lucide/svelte@0.501.0(svelte@5.27.3)':
+    dependencies:
+      svelte: 5.27.3
+
+  '@lucide/svelte@0.503.0(svelte@5.27.3)':
     dependencies:
       svelte: 5.27.3
 
@@ -10227,10 +10222,6 @@ snapshots:
   lru-cache@10.4.3: {}
 
   lucide-svelte@0.453.0(svelte@5.27.3):
-    dependencies:
-      svelte: 5.27.3
-
-  lucide-svelte@0.487.0(svelte@5.27.3):
     dependencies:
       svelte: 5.27.3
 
