@@ -3,7 +3,7 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			shadcnSelect?: SelectSingleRootProps;
+			shadcnSelect?: Omit<SelectSingleRootProps, 'type'>;
 			shadcnSelectTrigger?: SelectTriggerProps;
 		}
 	}
@@ -32,7 +32,6 @@
 
 	const selectAttributes = $derived(
 		retrieveAttributes(ctx, config, 'shadcnSelect', () => ({
-			type: 'single',
 			onValueChange: handlers.onchange,
 			required: config.required
 		}))
@@ -57,7 +56,7 @@
 	});
 </script>
 
-<Select bind:value={mapped.value} {...selectAttributes}>
+<Select bind:value={mapped.value} {...selectAttributes} type="single">
 	<SelectTrigger {...triggerAttributes}>
 		<span>
 			{triggerContent}

@@ -5,18 +5,14 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			shadcnMultiSelect?: SelectMultipleRootProps;
+			shadcnMultiSelect?: Omit<SelectMultipleRootProps, 'type'>;
 			shadcnMultiSelectTrigger?: SelectTriggerProps;
 		}
 	}
 </script>
 
 <script lang="ts">
-	import {
-		getFormContext,
-		retrieveAttributes,
-		type ComponentProps
-	} from '@sjsf/form';
+	import { getFormContext, retrieveAttributes, type ComponentProps } from '@sjsf/form';
 	import { multipleOptions, stringIndexMapper } from '@sjsf/form/options.svelte';
 
 	import { getThemeContext } from '../context';
@@ -43,7 +39,6 @@
 
 	const selectAttributes = $derived(
 		retrieveAttributes(ctx, config, 'shadcnMultiSelect', () => ({
-			type: 'multiple',
 			onValueChange: handlers.onchange,
 			required: config.required
 		}))
@@ -68,7 +63,7 @@
 	});
 </script>
 
-<Select bind:value={mapped.value} {...selectAttributes}>
+<Select bind:value={mapped.value} {...selectAttributes} type="multiple">
 	<SelectTrigger {...triggerAttributes}>
 		<span>
 			{triggerContent}
