@@ -20,7 +20,7 @@ export interface UiSchemaContent {
   /**
    * Extendable set of UI options
    */
-  "ui:options"?: UiOptions;
+  "ui:options"?: ResolvableUiOptions;
   /**
    * Components override
    */
@@ -32,6 +32,7 @@ export interface UiSchemaContent {
   items?: UiSchemaDefinition | UiSchemaDefinition[];
   anyOf?: UiSchemaDefinition[];
   oneOf?: UiSchemaDefinition[];
+  combinationFieldOptionSelector?: UiSchemaDefinition;
   additionalProperties?: UiSchemaDefinition;
   additionalPropertyKeyInput?: UiSchemaDefinition;
   additionalItems?: UiSchemaDefinition;
@@ -54,108 +55,6 @@ export type UiSchemaRoot = UiSchemaDefinition & {
   "ui:definitions"?: Record<string, UiSchema>;
 };
 ```
-
-## UI options
-
-The `UiOptions` type is an extensible set of components options. By default it
-looks like this:
-
-```typescript
-interface UiOptions {
-  /**
-   * Overrides the title of the field.
-   */
-  title?: string;
-  /**
-   * Overrides the description of the field (over the widget).
-   */
-  description?: string;
-  /**
-   * List of labels for enum values in the schema.
-   */
-  enumNames?: string[];
-  /**
-   * List of enum values that are disabled. Values are compared by strict equality.
-   */
-  disabledEnumValues?: SchemaValue[];
-  /**
-   * Order of properties in the object schema.
-   * You must specify all properties or use the wildcard `*`.
-   */
-  order?: string[];
-  /**
-   * Allow adding new properties to the object schema with `additionalProperties`.
-   * @default true
-   */
-  expandable?: boolean;
-  /**
-   * Allow adding new items to the array schema.
-   * @default true
-   */
-  addable?: boolean;
-  /**
-   * Allow reordering items in the array schema.
-   * If you want an orderable array of file fields, set this to `true` explicitly.
-   * @default true
-   */
-  orderable?: boolean;
-  /**
-   * Allow removing items from the array schema.
-   * @default true
-   */
-  removable?: boolean;
-  /**
-   * Allow duplicating items in the array schema.
-   * @default false
-   */
-  copyable?: boolean;
-  /**
-   * Prefix of the new additional property key
-   * @default 'newKey'
-   */
-  additionalPropertyKeyPrefix?: string
-  /**
-   * Separator between the prefix of the optional property key and its integer suffix.
-   * @default '-'
-   */
-  additionalPropertyKeySeparator?: string;
-  /**
-   * Help text for the field (under the widget).
-   */
-  help?: string;
-  /**
-   * Hide the title of the field.
-   * If you want to show a title of the `boolean` field this should be set to `false` explicitly.
-   * @default false
-   */
-  hideTitle?: boolean;
-  /**
-   * Overrides whether to use the `title` or `label` component in the `field` template
-   */
-  useLabel?: boolean
-}
-```
-
-### Conventions
-
-- Each `component`/`widget` in the theme should define at least one UI option
-  to allow customization of it
-- All parameters must be prefixed by the theme name (e.g. `daisyui5RadioButtons`).
-- Only a `basic` theme can define options without a prefix and other themes
-  can use the `basic` theme UI options for the corresponding `components`/`widgets`
-  if their properties are compatible.
-- Using UI options of one component in another (even if they are compatible)
-  is forbidden, e.g. `text` and `textarea` widgets must use separate options.
-
-
-Check your theme page for an extended list of UI options:
-
-<LinkCard title="Basic" href="../../themes/basic/#ui-options" />
-<LinkCard title="DaisyUI" href="../../themes/daisyui5/#ui-options" />
-<LinkCard title="Flowbite" href="../../themes/flowbite3/#ui-options" />
-<LinkCard title="Skeleton" href="../../themes/skeleton3/#ui-options" />
-<LinkCard title="Shadcn" href="../../themes/shadcn/#ui-options" />
-
 ## Evaluation rules
 
 Usually ui schema corresponds to the data structure described by json schema.
@@ -223,9 +122,173 @@ Otherwise the ui schema of the current field will be used.
 }
 ```
 
+## UI options
+
+The `UiOptions` type is an extensible set of components options. By default it
+looks like this:
+
+```typescript
+type ItemTitle = (
+  title: string,
+  index: number,
+  fixedItemsCount: number
+) => string;
+
+type AdditionalPropertyKey = (key: string, attempt: number) => string;
+
+interface UiOptions {
+  /**
+   * Overrides the title of the field.
+   */
+  title?: string;
+  /**
+   * Overrides the description of the field (over the widget).
+   */
+  description?: string;
+  /**
+   * List of labels for enum values in the schema.
+   */
+  enumNames?: string[];
+  /**
+   * List of enum values that are disabled. Values are compared by strict equality.
+   */
+  disabledEnumValues?: SchemaValue[];
+  /**
+   * Order of properties in the object schema.
+   * You must specify all properties or use the wildcard `*`.
+   */
+  order?: string[];
+  /**
+   * Allow adding new properties to the object schema with `additionalProperties`.
+   * @default true
+   */
+  expandable?: boolean;
+  /**
+   * Allow adding new items to the array schema.
+   * @default true
+   */
+  addable?: boolean;
+  /**
+   * Allow reordering items in the array schema.
+   * If you want an orderable array of file fields, set this to `true` explicitly.
+   * @default true
+   */
+  orderable?: boolean;
+  /**
+   * Allow removing items from the array schema.
+   * @default true
+   */
+  removable?: boolean;
+  /**
+   * Allow duplicating items in the array schema.
+   * @default false
+   */
+  copyable?: boolean;
+  /**
+   * Overrides the logic for creating a title for array elements
+   */
+  itemTitle?: ItemTitle;
+  /**
+   * Prefix of the new additional property key
+   */
+  additionalPropertyKeyPrefix?: string;
+  /**
+   * Overrides the logic for creating a new key for an additional property
+   */
+  additionalPropertyKey?: AdditionalPropertyKey;
+  /**
+   * Help text for the field (under the widget).
+   */
+  help?: string;
+  /**
+   * Hide the title of the field.
+   * If you want to show a title of the `boolean` field this should be set to `false` explicitly.
+   * @default false
+   */
+  hideTitle?: boolean;
+  /**
+   * Overrides whether to use the `title` or `label` component in the `field` template
+   */
+  useLabel?: boolean;
+  submitButtonText?: string;
+}
+```
+
+### Registry
+
+You can use UI options registry to ensure serializability of the UI schema.
+
+```typescript
+export interface UiOptionsRegistry {}
+
+export type ResolvableUiOption<T> =
+  | {
+      [K in keyof UiOptionsRegistry]: UiOptionsRegistry[K] extends T
+        ? `registry:${K}`
+        : never;
+    }[keyof UiOptionsRegistry]
+  | T;
+
+export type ResolvableUiOptions = {
+  [K in keyof UiOptions]: ResolvableUiOption<UiOptions[K]>;
+};
+```
+
+To do this, you need to extend the `UiOptionsRegistry` interface and replace
+the non-serializable value with `registry:${key}` in `UiOptions`.
+Example:
+
+```typescript
+import { type ItemTitle, createForm } from "@sjsf/form"
+
+declare module "@sjsf/form" {
+  interface UiOptionsRegistry {
+    myItemTitle: ItemTitle
+  }
+}
+
+const form = createForm({
+  ...,
+  uiSchema: {
+    itemTitle: "registry:myItemTitle"
+  },
+  uiOptionsRegistry: {
+    myItemTitle: (title, index) => `${title} [${index}]`
+  }
+})
+```
+
+### Conventions
+
+- Each `component`/`widget` in the theme should define at least one UI option
+  to allow customization of it
+- All parameters must be prefixed by the theme name (e.g. `daisyui5RadioButtons`).
+- Only a `basic` theme can define options without a prefix and other themes
+  can use the `basic` theme UI options for the corresponding `components`/`widgets`
+  if their properties are compatible.
+- Using UI options of one component in another (even if they are compatible)
+  is forbidden, e.g. `text` and `textarea` widgets must use separate options.
+
+
+Check your theme page for an extended list of UI options:
+
+<LinkCard title="Basic" href="../../themes/basic/#ui-options" />
+<LinkCard title="DaisyUI" href="../../themes/daisyui5/#ui-options" />
+<LinkCard title="Flowbite" href="../../themes/flowbite3/#ui-options" />
+<LinkCard title="Skeleton" href="../../themes/skeleton3/#ui-options" />
+<LinkCard title="Shadcn" href="../../themes/shadcn/#ui-options" />
+
+
+
 ## Extra UI options
 
 This property allows you to specify UI options for all components of a certain
 type or set them dynamically.
+
+:::caution
+
+has no effect on the `title` UI option
+
+:::
 
 <Code code={extraUiOptionsCode} lang="typescript" />
