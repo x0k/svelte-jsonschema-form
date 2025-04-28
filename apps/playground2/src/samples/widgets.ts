@@ -133,11 +133,23 @@ const widgets: Sample = {
           textarea: {
             rows: 5,
           },
+          flowbite3Textarea: {
+            rows: 5,
+          },
+          shadcnTextarea: {
+            rows: 5,
+          },
         },
       },
       placeholder: {
         "ui:options": {
           text: {
+            placeholder: "This is a placeholder",
+          },
+          flowbite3Text: {
+            placeholder: "This is a placeholder",
+          },
+          shadcnText: {
             placeholder: "This is a placeholder",
           },
         },
@@ -148,11 +160,23 @@ const widgets: Sample = {
         text: {
           type: "hidden",
         },
+        flowbite3Text: {
+          type: "hidden",
+        },
+        shadcnText: {
+          type: "hidden",
+        },
       },
     },
     disabled: {
       "ui:options": {
         text: {
+          disabled: true,
+        },
+        flowbite3Text: {
+          disabled: true,
+        },
+        shadcnText: {
           disabled: true,
         },
       },
@@ -162,6 +186,12 @@ const widgets: Sample = {
         text: {
           readonly: true,
         },
+        flowbite3Text: {
+          readonly: true,
+        },
+        shadcnText: {
+          readonly: true,
+        },
       },
     },
     widgetOptions: {
@@ -169,12 +199,24 @@ const widgets: Sample = {
         text: {
           style: "flex-grow: 1; background-color: darkorange;",
         },
+        flowbite3Text: {
+          style: "flex-grow: 1; background-color: darkorange;",
+        },
+        shadcnText: {
+          style: "flex-grow: 1; background-color: darkorange;",
+        },
       },
     },
     selectWidgetOptions: {
       "ui:options": {
         select: {
-          style: "flex-grow: 1; background-color: pink;",
+          style: "flex-grow: 1; background-color: pink; color: black;",
+        },
+        flowbite3Select: {
+          style: "flex-grow: 1; background-color: pink; color: black;",
+        },
+        shadcnSelectTrigger: {
+          style: "flex-grow: 1; background-color: pink; color: black;",
         },
       },
     },

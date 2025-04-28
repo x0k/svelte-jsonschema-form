@@ -54,8 +54,20 @@ const validation: Sample = {
     },
   },
   uiSchema: {
-    pass1: { "ui:options": { text: { type: "password" } } },
-    pass2: { "ui:options": { text: { type: "password" } } },
+    pass1: {
+      "ui:options": {
+        text: { type: "password" },
+        flowbite3Text: { type: "password" },
+        shadcnText: { type: "password" },
+      },
+    },
+    pass2: {
+      "ui:options": {
+        text: { type: "password" },
+        flowbite3Text: { type: "password" },
+        shadcnText: { type: "password" },
+      },
+    },
   },
   formData: {},
   customizeValidator: (v) => {

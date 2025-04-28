@@ -39,6 +39,12 @@ const large: Sample = {
         select: {
           placeholder: "Choose one",
         },
+        flowbite3Select: {
+          placeholder: "Choose one"
+        },
+        shadcnSelect: {
+          placeholder: "Choose one"
+        }
       },
     },
   },

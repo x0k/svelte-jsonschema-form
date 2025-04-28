@@ -10,6 +10,7 @@ import '@sjsf/basic-theme/extra-widgets/file-include';
 import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import "@sjsf/basic-theme/extra-widgets/radio-include";
+import "@sjsf/basic-theme/extra-widgets/range-include";
 import "@sjsf/basic-theme/extra-widgets/date-picker-include";
 
 import { theme as daisy } from "@sjsf/daisyui-theme";
@@ -19,6 +20,7 @@ import '@sjsf/daisyui-theme/extra-widgets/file-include';
 import "@sjsf/daisyui-theme/extra-widgets/multi-select-include";
 import "@sjsf/daisyui-theme/extra-widgets/textarea-include";
 import "@sjsf/daisyui-theme/extra-widgets/radio-include";
+import "@sjsf/daisyui-theme/extra-widgets/range-include";
 import "@sjsf/daisyui-theme/extra-widgets/date-picker-include";
 
 import { theme as daisy5 } from "@sjsf/daisyui5-theme";
@@ -28,6 +30,7 @@ import '@sjsf/daisyui5-theme/extra-widgets/file-include';
 import "@sjsf/daisyui5-theme/extra-widgets/multi-select-include";
 import "@sjsf/daisyui5-theme/extra-widgets/textarea-include";
 import "@sjsf/daisyui5-theme/extra-widgets/radio-include";
+import "@sjsf/daisyui5-theme/extra-widgets/range-include";
 import "@sjsf/daisyui5-theme/extra-widgets/cally-date-picker-include";
 
 import { theme as flowbite3 } from "@sjsf/flowbite3-theme";
@@ -37,6 +40,7 @@ import '@sjsf/flowbite3-theme/extra-widgets/file-include';
 import "@sjsf/flowbite3-theme/extra-widgets/multi-select-include";
 import "@sjsf/flowbite3-theme/extra-widgets/textarea-include";
 import "@sjsf/flowbite3-theme/extra-widgets/radio-include";
+import "@sjsf/flowbite3-theme/extra-widgets/range-include";
 import "@sjsf/flowbite3-theme/extra-widgets/date-picker-include";
 
 import { theme as skeleton3 } from '@sjsf/skeleton3-theme'
@@ -46,6 +50,7 @@ import '@sjsf/skeleton3-theme/extra-widgets/file-include';
 import "@sjsf/skeleton3-theme/extra-widgets/multi-select-include";
 import "@sjsf/skeleton3-theme/extra-widgets/textarea-include";
 import "@sjsf/skeleton3-theme/extra-widgets/radio-include";
+import "@sjsf/skeleton3-theme/extra-widgets/range-include";
 import "@sjsf/skeleton3-theme/extra-widgets/date-picker-include";
 
 import { theme as shadcn } from "@sjsf/shadcn-theme";
@@ -55,6 +60,7 @@ import '@sjsf/shadcn-theme/extra-widgets/file-include';
 import "@sjsf/shadcn-theme/extra-widgets/multi-select-include";
 import "@sjsf/shadcn-theme/extra-widgets/textarea-include";
 import "@sjsf/shadcn-theme/extra-widgets/radio-include";
+import "@sjsf/shadcn-theme/extra-widgets/range-include";
 import "@sjsf/shadcn-theme/extra-widgets/date-picker-include";
 
 export const themes = {

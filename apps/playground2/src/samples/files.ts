@@ -1,27 +1,27 @@
-import type { Sample } from './Sample.js';
+import type { Sample } from "./Sample.js";
 
 const files: Sample = {
   status: "perfect",
   schema: {
-    title: 'Files',
-    type: 'object',
+    title: "Files",
+    type: "object",
     properties: {
       file: {
-        type: 'string',
-        format: 'data-url',
-        title: 'Single file',
+        type: "string",
+        format: "data-url",
+        title: "Single file",
       },
       filesAccept: {
-        type: 'string',
-        format: 'data-url',
-        title: 'Single File with Accept attribute',
+        type: "string",
+        format: "data-url",
+        title: "Single File with Accept attribute",
       },
       files: {
-        type: 'array',
-        title: 'Multiple files',
+        type: "array",
+        title: "Multiple files",
         items: {
-          type: 'string',
-          format: 'data-url',
+          type: "string",
+          format: "data-url",
         },
       },
       orderableFiles: {
@@ -30,23 +30,29 @@ const files: Sample = {
         items: {
           type: "string",
           format: "data-url",
-        }
-      }
+        },
+      },
     },
   },
   uiSchema: {
     filesAccept: {
-      'ui:options': {
+      "ui:options": {
         file: {
-          accept: '.pdf'
-        }
+          accept: ".pdf",
+        },
+        flowbite3File: {
+          accept: ".pdf",
+        },
+        shadcnFile: {
+          accept: ".pdf",
+        },
       },
     },
     orderableFiles: {
       "ui:options": {
-        orderable: true
-      }
-    }
+        orderable: true,
+      },
+    },
   },
   formData: {},
 };

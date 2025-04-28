@@ -27,6 +27,12 @@ const additionalProperties: Sample = {
         text: {
           autofocus: true,
         },
+        flowbite3Text: {
+          autofocus: true,
+        },
+        shadcnText: {
+          autofocus: true,
+        },
         stringEmptyValue: "",
       },
     },

@@ -46,18 +46,14 @@ const numbers: Sample = {
       },
     },
     integerRange: {
-      "ui:options": {
-        number: {
-          type: "range",
-        },
-      },
+      "ui:components": {
+        numberWidget: "rangeWidget"
+      }
     },
     integerRangeSteps: {
-      "ui:options": {
-        number: {
-          type: "range",
-        },
-      },
+      "ui:components": {
+        numberWidget: "rangeWidget"
+      }
     },
   },
   formData: {

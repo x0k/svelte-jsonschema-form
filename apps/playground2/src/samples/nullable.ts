@@ -43,6 +43,12 @@ const nullable: Sample = {
         text: {
           autofocus: true,
         },
+        flowbite3Text: {
+          autofocus: true,
+        },
+        shadcnText: {
+          autofocus: true,
+        },
         stringEmptyValue: "",
       },
     },
@@ -62,6 +68,14 @@ const nullable: Sample = {
           placeholder:
             "Leaving this field empty will cause formData property to be `null`",
         },
+        flowbite3Textarea: {
+          placeholder:
+            "Leaving this field empty will cause formData property to be `null`",
+        },
+        shadcnTextarea: {
+          placeholder:
+            "Leaving this field empty will cause formData property to be `null`",
+        },
         stringEmptyValue: null as unknown as undefined,
       },
     },
@@ -70,12 +84,24 @@ const nullable: Sample = {
         text: {
           type: "password",
         },
+        flowbite3Text: {
+          type: "password",
+        },
+        shadcnText: {
+          type: "password",
+        },
         description: "Hint: Make it strong!",
       },
     },
     telephone: {
       "ui:options": {
         text: {
+          type: "tel",
+        },
+        flowbite3Text: {
+          type: "tel",
+        },
+        shadcnText: {
           type: "tel",
         },
       },

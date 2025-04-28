@@ -39,6 +39,14 @@ const optionsSample: Sample = {
           autofocus: true,
           autocomplete: "family-name",
         },
+        flowbite3Text: {
+          autofocus: true,
+          autocomplete: "family-name",
+        },
+        shadcnText: {
+          autofocus: true,
+          autocomplete: "family-name",
+        },
       },
     },
     lastName: {
@@ -48,11 +56,23 @@ const optionsSample: Sample = {
         text: {
           autocomplete: "given-name",
         },
+        flowbite3Text: {
+          autocomplete: "given-name",
+        },
+        shadcnText: {
+          autocomplete: "given-name",
+        },
       },
     },
     telephone: {
       "ui:options": {
         text: {
+          type: "tel",
+        },
+        flowbite3Text: {
+          type: "tel",
+        },
+        shadcnText: {
           type: "tel",
         },
       },

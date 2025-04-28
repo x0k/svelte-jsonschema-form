@@ -48,7 +48,19 @@ const simple: Sample = {
         text: {
           autofocus: true,
           placeholder:
-            "ui:emptyValue causes this field to always be valid despite being required",
+            "`stringEmptyValue` causes this field to always be valid despite being required",
+          autocomplete: "family-name",
+        },
+        flowbite3Text: {
+          autofocus: true,
+          placeholder:
+            "`stringEmptyValue` causes this field to always be valid despite being required",
+          autocomplete: "family-name",
+        },
+        shadcnText: {
+          autofocus: true,
+          placeholder:
+            "`stringEmptyValue` causes this field to always be valid despite being required",
           autocomplete: "family-name",
         },
       },
@@ -61,6 +73,12 @@ const simple: Sample = {
         description:
           "Make things **bold** or *italic*. Embed snippets of `code`. <small>And this is a small texts.</small> ",
         text: {
+          autocomplete: "given-name",
+        },
+        flowbite3Text: {
+          autocomplete: "given-name",
+        },
+        shadcnText: {
           autocomplete: "given-name",
         },
       },
@@ -76,8 +94,8 @@ const simple: Sample = {
     },
     bio: {
       "ui:components": {
-        "textWidget": "textareaWidget"
-      }
+        textWidget: "textareaWidget",
+      },
     },
     password: {
       "ui:options": {
@@ -85,11 +103,23 @@ const simple: Sample = {
         text: {
           type: "password",
         },
+        flowbite3Text: {
+          type: "password",
+        },
+        shadcnText: {
+          type: "password",
+        },
       },
     },
     telephone: {
       "ui:options": {
         text: {
+          type: "tel",
+        },
+        flowbite3Text: {
+          type: "tel",
+        },
+        shadcnText: {
           type: "tel",
         },
       },

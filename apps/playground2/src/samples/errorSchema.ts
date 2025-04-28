@@ -46,6 +46,12 @@ const errorSchema: Sample = {
         text: {
           autofocus: true,
         },
+        flowbite3Text: {
+          autofocus: true,
+        },
+        shadcnText: {
+          autofocus: true,
+        },
         stringEmptyValue: "",
       },
     },
@@ -65,6 +71,12 @@ const errorSchema: Sample = {
         text: {
           type: "password",
         },
+        flowbite3Text: {
+          type: "password",
+        },
+        shadcnText: {
+          type: "password",
+        },
         help: "Hint: Make it strong!",
       },
     },
@@ -72,6 +84,12 @@ const errorSchema: Sample = {
       "ui:options": {
         text: {
           type: "tel",
+        },
+        flowbite3Text: {
+          type: "tel"
+        },
+        shadcnText: {
+          type: "tel"
         },
       },
     },
