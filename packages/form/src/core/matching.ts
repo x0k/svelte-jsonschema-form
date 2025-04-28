@@ -24,6 +24,7 @@ const AUGMENTED_SCHEMAS = new WeakMap<Schema, Schema>();
 
 // WARN: Any change to this function must be synchronized with:
 // - `@sjsf/ajv8-validator/precompile`
+// - `@sjsf/schemasafe-validator/precompile`
 function isOptionMatching(
   option: Schema,
   validator: Validator,
