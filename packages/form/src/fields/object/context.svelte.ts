@@ -30,10 +30,14 @@ import {
   type UiOption,
   retrieveUiOption,
   uiTitleOption,
+  translate,
 } from "@/form/index.js";
 
-import { generateNewKey } from "./generate-new-object-key.js";
-import { createOriginalKeysOrder } from "./create-original-keys-order.js";
+import {
+  createAdditionalPropertyKey,
+  generateNewKey,
+  createOriginalKeysOrder,
+} from "./model.js";
 
 export type ObjectContext<V extends Validator> = {
   readonly errors: FieldError<PossibleError<V>>[];
@@ -125,11 +129,8 @@ export function createObjectContext<V extends Validator>(
   const errors = $derived(getErrors(ctx, config().id));
 
   const newKeyPrefix = $derived(
-    uiOption("additionalPropertyKeyPrefix") ?? "newKey"
-  );
-
-  const newKeySeparator = $derived(
-    uiOption("additionalPropertyKeySeparator") ?? "-"
+    uiOption("additionalPropertyKeyPrefix") ??
+      translate(ctx, "additional-property", {})
   );
 
   function validate(val: SchemaObjectValue) {
@@ -139,6 +140,10 @@ export function createObjectContext<V extends Validator>(
     }
     validateField(ctx, config(), val);
   }
+
+  const additionalPropertyKey = $derived(
+    uiOption("additionalPropertyKey") ?? createAdditionalPropertyKey
+  );
 
   return {
     get errors() {
@@ -176,7 +181,7 @@ export function createObjectContext<V extends Validator>(
       if (val === undefined) {
         return;
       }
-      const newKey = generateNewKey(newKeyPrefix, newKeySeparator, val);
+      const newKey = generateNewKey(val, newKeyPrefix, additionalPropertyKey);
       val[newKey] =
         getDefaultFieldState(ctx, schemaAdditionalProperties, undefined) ??
         getDefaultValueForType(getSimpleSchemaType(schemaAdditionalProperties));
@@ -195,7 +200,7 @@ export function createObjectContext<V extends Validator>(
       if (val === undefined) {
         return;
       }
-      const newKey = generateNewKey(newProp, newKeySeparator, val);
+      const newKey = generateNewKey(val, newProp, additionalPropertyKey);
       if (!validateAdditionalPropertyKey(ctx, config(), newKey, fieldConfig)) {
         return;
       }

@@ -27,9 +27,7 @@ import {
   type UiOption,
 } from "@/form/index.js";
 
-import type { ItemTitle } from '../ui-options.js';
-
-import { getArrayItemName, titleWithIndex } from "./get-array-item-name.js";
+import { getArrayItemName, titleWithIndex, type ItemTitle } from "./model.js";
 
 export interface ArrayContext<V extends Validator> {
   readonly config: Config;

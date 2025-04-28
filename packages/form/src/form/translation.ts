@@ -18,6 +18,7 @@ export interface Labels {
   "validation-process-error": { error: FailedAction<unknown> };
   "component-not-found": { type: string };
   "key-input-title": { name: string };
+  "additional-property": {};
 }
 
 export type Label = keyof Labels;

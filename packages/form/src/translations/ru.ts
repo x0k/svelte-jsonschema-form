@@ -20,6 +20,7 @@ export const definitions: TranslatorDefinitions = {
   "validation-process-error": ({ error }) => FAILURE_REASONS[error.reason],
   "component-not-found": ({ type }) => `Компонент "${type}" не найден`,
   "key-input-title": ({ name }) => `${name} Ключ`,
+  "additional-property": "Дополнительное свойство",
 };
 
 const FAILURE_REASONS: Record<ActionFailureReason, string> = {
