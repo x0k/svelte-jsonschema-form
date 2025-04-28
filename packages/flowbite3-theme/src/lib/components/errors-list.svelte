@@ -1,14 +1,6 @@
-<script lang="ts" module>
-	import type { HTMLAttributes } from 'svelte/elements';
-	declare module '@sjsf/form' {
-		interface UiOptions {
-			flowbite3ErrorsList?: HTMLAttributes<HTMLUListElement>;
-		}
-	}
-</script>
-
 <script lang="ts">
 	import { ERRORS_FOR_KEY, getFormContext, retrieveUiProps, type ComponentProps } from '@sjsf/form';
+	import '@sjsf/basic-theme/components/errors-list.svelte';
 
 	const { errors, config }: ComponentProps['errorsList'] = $props();
 
@@ -17,7 +9,7 @@
 
 <ui
 	class="text-red-700 dark:text-red-500"
-	{...retrieveUiProps(ctx, config, 'flowbite3ErrorsList', {
+	{...retrieveUiProps(ctx, config, 'errorsList', {
 		[ERRORS_FOR_KEY]: config.id
 	})}
 >

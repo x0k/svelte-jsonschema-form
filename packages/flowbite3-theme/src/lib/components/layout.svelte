@@ -1,14 +1,8 @@
 <script lang="ts" module>
-	import type { HTMLAttributes } from 'svelte/elements';
 	import type { ButtonGroupProps } from 'flowbite-svelte';
-	import type { LayoutType } from '@sjsf/form/fields/components';
-
+	import '@sjsf/basic-theme/components/layout.svelte';
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			flowbite3Layout?: HTMLAttributes<HTMLDivElement>;
-			flowbite3Layouts?: {
-				[L in LayoutType]?: HTMLAttributes<HTMLDivElement>;
-			};
 			flowbite3ButtonGroup?: ButtonGroupProps;
 		}
 	}
@@ -48,9 +42,9 @@
 		retrieveNestedUiProps(
 			ctx,
 			config,
-			'flowbite3Layouts',
+			'layouts',
 			(l) => l[type],
-			retrieveUiProps(ctx, config, 'flowbite3Layout', {
+			retrieveUiProps(ctx, config, 'layout', {
 				'data-layout': type
 			})
 		)

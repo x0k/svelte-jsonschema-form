@@ -1,24 +1,15 @@
-<script lang="ts" module>
-	import type { HTMLAttributes } from 'svelte/elements';
-
-	declare module '@sjsf/form' {
-		interface UiOptions {
-			flowbite3Title?: HTMLAttributes<HTMLParagraphElement>;
-		}
-	}
-</script>
-
 <script lang="ts">
 	import { getFormContext, retrieveUiProps, type ComponentProps } from '@sjsf/form';
+	import '@sjsf/basic-theme/components/title.svelte';
 
 	const { title, type, config }: ComponentProps['title'] = $props();
 
 	const ctx = getFormContext();
 </script>
 
-<p
+<div
 	class={['text-gray-900 dark:text-white', { 'font-semibold': type !== 'field' }]}
-	{...retrieveUiProps(ctx, config, 'flowbite3Title', {})}
+	{...retrieveUiProps(ctx, config, 'titleAttributes', {})}
 >
 	{title}
-</p>
+</div>

@@ -1,21 +1,12 @@
-<script lang="ts" module>
-	import type { HTMLAttributes } from 'svelte/elements';
-
-	declare module '@sjsf/form' {
-		interface UiOptions {
-			flowbite3Description?: HTMLAttributes<HTMLDivElement>;
-		}
-	}
-</script>
-
 <script lang="ts">
 	import { getFormContext, retrieveUiProps, type ComponentProps } from '@sjsf/form';
+	import '@sjsf/basic-theme/components/description.svelte';
 
 	const { description, config }: ComponentProps['description'] = $props();
 
 	const ctx = getFormContext();
 </script>
 
-<div class="text-sm opacity-70" {...retrieveUiProps(ctx, config, 'flowbite3Description', {})}>
+<div class="text-sm opacity-70" {...retrieveUiProps(ctx, config, 'descriptionAttributes', {})}>
 	{description}
 </div>
