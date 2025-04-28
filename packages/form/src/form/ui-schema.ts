@@ -2,6 +2,7 @@ import type { Resolver } from "@/lib/resolver.js";
 import type { Path } from "@/core/index.js";
 
 import type {
+  ComponentCast,
   CompatibleComponentType,
   ComponentDefinitions,
   FoundationalComponentType,
@@ -37,7 +38,8 @@ export interface UiSchemaContent {
   "ui:components"?: Partial<{
     [T in FoundationalComponentType]:
       | Exclude<CompatibleComponentType<T>, T>
-      | ComponentDefinitions[T];
+      | ComponentDefinitions[T]
+      | ComponentCast<T>;
   }>;
   items?: UiSchemaDefinition | UiSchemaDefinition[];
   anyOf?: UiSchemaDefinition[];
