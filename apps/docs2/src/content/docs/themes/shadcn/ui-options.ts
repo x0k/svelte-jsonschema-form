@@ -91,7 +91,7 @@ export interface UiOptions {
 
   shadcnNumber?: InputProps;
 
-  shadcnSelect?: SelectSingleRootProps;
+  shadcnSelect?: Omit<SelectSingleRootProps, "type">;
   shadcnSelectTrigger?: SelectTriggerProps;
 
   shadcnText?: InputProps;
@@ -111,7 +111,7 @@ export interface UiOptions {
 
   shadcnFile?: Omit<HTMLInputAttributes, "type">;
 
-  shadcnMultiSelect?: SelectMultipleRootProps;
+  shadcnMultiSelect?: Omit<SelectMultipleRootProps, "type">;
   shadcnMultiSelectTrigger?: SelectTriggerProps;
 
   shadcnRadioButtons?: ToggleGroupProps;
