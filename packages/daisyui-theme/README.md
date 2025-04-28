@@ -1,6 +1,6 @@
 # @sjsf/daisyui-theme
 
-The [daisyui](https://github.com/saadeghi/daisyui) v4 based theme for [svelte-jsonschema-form](https://github.com/x0k/svelte-jsonschema-form).
+The [daisyUI](https://github.com/saadeghi/daisyui) v4 based theme for [svelte-jsonschema-form](https://github.com/x0k/svelte-jsonschema-form).
 
 - [Documentation](https://x0k.github.io/svelte-jsonschema-form/v2/themes/daisyui/)
 - [Playground](https://x0k.github.io/svelte-jsonschema-form/playground2/)

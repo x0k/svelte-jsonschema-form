@@ -1,11 +1,11 @@
 {
 	"name": "@sjsf/daisyui5-theme",
 	"version": "2.0.0-next.9",
-	"description": "The daisyui v5 based theme for svelte-jsonschema-form",
+	"description": "The daisyUI v5 based theme for svelte-jsonschema-form",
 	"license": "MIT",
 	"keywords": [
 		"theme",
-		"daisyui",
+		"daisyUI",
 		"form"
 	],
 	"type": "module",
