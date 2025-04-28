@@ -18,17 +18,15 @@
   setTabsNodeContext(node);
 
   function getTabTitle(i: number): string {
-    // TODO: handle `config.uiOptions`
+    // TODO: handle `config.uiSchema`
     const { items } = config.schema;
-    const fallback = `Tab ${i + 1}`;
-    if (!Array.isArray(items)) {
-      return fallback;
+    if (Array.isArray(items)) {
+      const item = items[i];
+      if (isSchema(item) && item.title) {
+        return item.title
+      }
     }
-    const item = items[i];
-    if (isSchema(item)) {
-      return item.title ?? fallback;
-    }
-    return fallback;
+    return `Tab ${i + 1}`;
   }
 </script>
 
