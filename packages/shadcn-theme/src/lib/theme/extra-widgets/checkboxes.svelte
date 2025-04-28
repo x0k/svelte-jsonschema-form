@@ -11,12 +11,7 @@
 </script>
 
 <script lang="ts">
-	import {
-		defineDisabled,
-		getFormContext,
-		retrieveAttributes,
-		type ComponentProps
-	} from '@sjsf/form';
+	import { getFormContext, retrieveAttributes, type ComponentProps } from '@sjsf/form';
 	import { multipleOptions, stringIndexMapper } from '@sjsf/form/options.svelte';
 
 	import { getThemeContext } from '../context';
@@ -46,7 +41,7 @@
 		retrieveAttributes(ctx, config, 'shadcnCheckboxes', () => ({
 			...handlers,
 			name: config.id,
-			required: config.required,
+			required: config.required
 		}))
 	);
 </script>
