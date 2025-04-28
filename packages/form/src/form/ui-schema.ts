@@ -16,7 +16,7 @@ export interface UiOptionsRegistry {}
 
 export type ResolvableUiOption<T> =
   | {
-      [K in keyof UiOptionsRegistry]: T extends UiOptionsRegistry[K]
+      [K in keyof UiOptionsRegistry]: UiOptionsRegistry[K] extends T
         ? `registry:${K}`
         : never;
     }[keyof UiOptionsRegistry]
@@ -48,7 +48,7 @@ export interface UiSchemaContent {
 }
 
 export type UiSchema = UiSchemaContent & {
-  // This is should be `UiSchema` type, but
+  // This is should be `UiSchemaDefinition` type, but
   // https://github.com/microsoft/TypeScript/issues/17867
   [key: string]: UiSchemaContent[keyof UiSchemaContent];
 };
