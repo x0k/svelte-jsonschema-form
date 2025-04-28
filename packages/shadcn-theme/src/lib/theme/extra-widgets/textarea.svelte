@@ -2,13 +2,6 @@
 	import type { Component } from 'svelte';
 	import type { WithElementRef } from 'bits-ui';
 	import type { HTMLTextareaAttributes } from 'svelte/elements';
-	import '@sjsf/form/fields/extra-widgets/textarea';
-
-	declare module '@sjsf/form' {
-		interface UiOptions {
-			shadcnTextarea?: HTMLTextareaAttributes;
-		}
-	}
 
 	declare module '../context.js' {
 		interface ThemeComponents {
@@ -24,6 +17,7 @@
 		textareaAttributes,
 		type ComponentProps
 	} from '@sjsf/form';
+	import '@sjsf/basic-theme/extra-widgets/textarea.svelte';
 
 	import { getThemeContext } from '../context';
 
@@ -35,7 +29,7 @@
 	let { value = $bindable(), config, handlers }: ComponentProps['textareaWidget'] = $props();
 
 	const attributes = $derived(
-		retrieveAttributes(ctx, config, 'shadcnTextarea', textareaAttributes(handlers))
+		retrieveAttributes(ctx, config, 'textarea', textareaAttributes(handlers))
 	);
 </script>
 
