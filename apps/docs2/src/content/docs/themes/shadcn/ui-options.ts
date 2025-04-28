@@ -109,7 +109,7 @@ export interface UiOptions {
   shadcnDatePickerTrigger?: ComponentProps<typeof Button>;
   shadcnDateFormatter?: (date: Date) => string;
 
-  shadcnFile?: Omit<HTMLInputAttributes, "type">;
+  file?: HTMLInputAttributes;
 
   shadcnMultiSelect?: Omit<SelectMultipleRootProps, "type">;
   shadcnMultiSelectTrigger?: SelectTriggerProps;
@@ -124,5 +124,5 @@ export interface UiOptions {
 
   shadcnSwitch?: WithoutChildrenOrChild<SwitchRootProps>;
 
-  shadcnTextarea?: HTMLTextareaAttributes;
+  textarea?: HTMLTextareaAttributes;
 }
