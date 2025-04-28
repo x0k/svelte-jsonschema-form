@@ -23,15 +23,11 @@ export interface WidgetCommonProps<V> {
 
 export type FoundationalWidgetType = {
   [K in FoundationalComponentType]: ComponentProps[K] extends WidgetCommonProps<any>
-    ? K
+    ? WidgetCommonProps<any> extends ComponentProps[K]
+      ? K
+      : never
     : never;
 }[FoundationalComponentType];
-
-export type UnifiedWidgetType = {
-  [K in FoundationalWidgetType]: WidgetCommonProps<any> extends ComponentProps[K]
-    ? K
-    : never;
-}[FoundationalWidgetType];
 
 export interface Options {
   options: EnumOption<SchemaValue>[];

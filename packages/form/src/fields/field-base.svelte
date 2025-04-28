@@ -1,4 +1,4 @@
-<script lang="ts" generics="V extends FieldValue, T extends UnifiedWidgetType">
+<script lang="ts" generics="V extends FieldValue, T extends FoundationalWidgetType">
   import {
     makeEventHandlers,
     getErrors,
@@ -11,7 +11,7 @@
     type UiOption,
   } from "@/form/index.js";
 
-  import type { UnifiedWidgetType } from "./widgets.js";
+  import type { FoundationalWidgetType } from "./widgets.js";
 
   const ctx = getFormContext();
 

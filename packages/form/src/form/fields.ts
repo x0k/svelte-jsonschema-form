@@ -19,18 +19,14 @@ export interface FieldCommonProps<V> {
 }
 
 export type FoundationalFieldType = {
-  [K in FoundationalComponentType]: ComponentProps[K] extends FieldCommonProps<any>
-    ? K
+  [K in FoundationalComponentType]: FieldCommonProps<any> extends ComponentProps[K]
+    ? ComponentProps[K] extends FieldCommonProps<any>
+      ? K
+      : never
     : never;
 }[FoundationalComponentType];
 
-export type UnifiedFieldType = {
-  [K in FoundationalFieldType]: FieldCommonProps<any> extends ComponentProps[K]
-    ? K
-    : never;
-}[FoundationalFieldType];
-
-export type ResolveFieldType = (config: Config) => UnifiedFieldType;
+export type ResolveFieldType = (config: Config) => FoundationalFieldType;
 
 declare module "./components.js" {
   interface FoundationalComponents {
