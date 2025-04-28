@@ -303,6 +303,9 @@ importers:
       pikaday:
         specifier: ^1.8.2
         version: 1.8.2
+      svelte-exmarkdown:
+        specifier: ^5.0.0
+        version: 5.0.0(svelte@5.27.3)
       svg-pan-zoom:
         specifier: github:bumbu/svg-pan-zoom
         version: https://codeload.github.com/bumbu/svg-pan-zoom/tar.gz/aaa68d186abab5d782191b66d2582592fe5d3c13

@@ -40,6 +40,7 @@
     "esbuild": "^0.25.2",
     "mermaid": "^11.6.0",
     "pikaday": "^1.8.2",
+    "svelte-exmarkdown": "^5.0.0",
     "svg-pan-zoom": "github:bumbu/svg-pan-zoom",
     "testing": "workspace:*",
     "valibot": "^1.0.0",
