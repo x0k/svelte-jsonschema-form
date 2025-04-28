@@ -2,7 +2,13 @@
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { Code, Tabs, TabItem, LinkCard } from "@astrojs/starlight/components";
 
-import { THEME_PACKAGES, THEME_TITLES, THEMES, type Theme } from "@/shared";
+import {
+  THEME_BRAND,
+  THEME_PACKAGES,
+  THEME_TITLES,
+  THEMES,
+  type Theme,
+} from "@/shared";
 import { DEFAULT_LOCALE } from "@/i18n";
 import Npm from "@/components/npm.astro";
 import FormCard from "@/components/form-card.astro";
@@ -72,6 +78,12 @@ const styles = THEMES.map(
 {
   THEMES.map((theme) => (
     <div class="theme-content" data-theme={theme}>
+      {THEME_BRAND[theme] && (
+        <p>
+          This theme is not affiliated with, endorsed by, or sponsored by
+          "{THEME_BRAND[theme]}" brand.
+        </p>
+      )}
       <Npm
         pkg={`@sjsf/form@next @sjsf/ajv8-validator@next ajv@8 ${THEME_PACKAGES[theme]}`}
       />

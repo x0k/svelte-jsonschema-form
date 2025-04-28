@@ -12,13 +12,22 @@ export const THEMES = [
 export type Theme = (typeof THEMES)[number];
 
 export const THEME_TITLES = {
-  basic: "Basic",
-  daisyui: "DaisyUI v4",
-  daisyui5: "DaisyUI v5",
+  basic: "basic",
+  daisyui: "daisyUI v4",
+  daisyui5: "daisyUI v5",
   flowbite3: "Flowbite v3",
   skeleton3: "Skeleton v3",
-  shadcn: "Shadcn",
+  shadcn: "shadcn-svelte",
 } satisfies Record<Theme, string>;
+
+export const THEME_BRAND = {
+  basic: "",
+  daisyui: "daisyUi",
+  daisyui5: "daisyUI",
+  flowbite3: "Flowbite",
+  skeleton3: "Skeleton",
+  shadcn: "shadcn-svelte"
+} satisfies Record<Theme, string>
 
 export const THEME_PACKAGES = {
   basic: "@sjsf/basic-theme@next",
