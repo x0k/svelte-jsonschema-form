@@ -31,26 +31,38 @@ export interface UiOptions {
   flowbite3Buttons?: {
     [B in ButtonType]?: ButtonProps;
   };
+  /**
+   * Overrides the attributes of the description.
+   */
+  descriptionAttributes?: HTMLAttributes<HTMLDivElement>;
+  /**
+   * Overrides the attributes of the errors list.
+   */
+  errorsList?: HTMLAttributes<HTMLUListElement>;
 
-  flowbite3Description?: HTMLAttributes<HTMLDivElement>;
-
-  flowbite3ErrorsList?: HTMLAttributes<HTMLUListElement>;
-
-  flowbite3Form?: HTMLFormAttributes;
+  form?: HTMLFormAttributes;
 
   flowbite3Help?: HelperProps;
 
   flowbite3Label?: LabelProps;
-
-  flowbite3Layout?: HTMLAttributes<HTMLDivElement>;
-  flowbite3Layouts?: {
+  /**
+   * Overrides the attributes of any layout component.
+   */
+  layout?: HTMLAttributes<HTMLDivElement>;
+  /**
+   * Overrides the attributes of a layout with a specific type.
+   * This override takes precedence over the `layout` override, but does not replace it.
+   */
+  layouts?: {
     [L in LayoutType]?: HTMLAttributes<HTMLDivElement>;
   };
   flowbite3ButtonGroup?: ButtonGroupProps;
 
   flowbite3SubmitButton?: ButtonProps;
-
-  flowbite3Title?: HTMLAttributes<HTMLParagraphElement>;
+  /**
+   * Overrides the attributes of the field title
+   */
+  titleAttributes?: HTMLAttributes<HTMLDivElement>;
 
   flowbite3Checkbox?: CheckboxProps;
 
@@ -62,7 +74,7 @@ export interface UiOptions {
 
   flowbite3Checkboxes?: CheckboxProps;
 
-  flowbite3Datepicker?: DatepickerProps;
+	flowbite3Datepicker?: Partial<DatepickerProps>;
 
   flowbite3File?: FileuploadProps;
 
