@@ -27,52 +27,52 @@ type ButtonProps = Extract<
 >;
 
 export interface UiOptions {
-  flowbiteButton?: ButtonProps;
-  flowbiteButtons?: {
+  flowbite3Button?: ButtonProps;
+  flowbite3Buttons?: {
     [B in ButtonType]?: ButtonProps;
   };
 
-  flowbiteDescription?: HTMLAttributes<HTMLDivElement>;
+  flowbite3Description?: HTMLAttributes<HTMLDivElement>;
 
-  flowbiteErrorsList?: HTMLAttributes<HTMLUListElement>;
+  flowbite3ErrorsList?: HTMLAttributes<HTMLUListElement>;
 
-  flowbiteForm?: HTMLFormAttributes;
+  flowbite3Form?: HTMLFormAttributes;
 
-  flowbiteHelp?: HelperProps;
+  flowbite3Help?: HelperProps;
 
-  flowbiteLabel?: LabelProps;
+  flowbite3Label?: LabelProps;
 
-  flowbiteLayout?: HTMLAttributes<HTMLDivElement>;
-  flowbiteLayouts?: {
+  flowbite3Layout?: HTMLAttributes<HTMLDivElement>;
+  flowbite3Layouts?: {
     [L in LayoutType]?: HTMLAttributes<HTMLDivElement>;
   };
-  flowbiteButtonGroup?: ButtonGroupProps;
+  flowbite3ButtonGroup?: ButtonGroupProps;
 
-  flowbiteSubmitButton?: ButtonProps;
+  flowbite3SubmitButton?: ButtonProps;
 
-  flowbiteTitle?: HTMLAttributes<HTMLParagraphElement>;
+  flowbite3Title?: HTMLAttributes<HTMLParagraphElement>;
 
-  flowbiteCheckbox?: CheckboxProps;
+  flowbite3Checkbox?: CheckboxProps;
 
-  flowbiteNumber?: InputProps<number | undefined>;
+  flowbite3Number?: InputProps<number | undefined>;
 
-  flowbiteSelect?: SelectProps<number>;
+  flowbite3Select?: SelectProps<number>;
 
-  flowbiteText?: InputProps<string | undefined>;
+  flowbite3Text?: InputProps<string | undefined>;
 
-  flowbiteCheckboxes?: CheckboxProps;
+  flowbite3Checkboxes?: CheckboxProps;
 
-  flowbiteDatepicker?: DatepickerProps;
+  flowbite3Datepicker?: DatepickerProps;
 
-  flowbiteFile?: FileuploadProps;
+  flowbite3File?: FileuploadProps;
 
-  flowbiteMultiSelect?: MultiSelectProps<number>;
+  flowbite3MultiSelect?: MultiSelectProps<number>;
 
-  flowbiteRadio?: RadioProps<number>;
+  flowbite3Radio?: RadioProps<number>;
 
-  flowbiteRange?: RangeProps;
+  flowbite3Range?: RangeProps;
 
-  flowbiteSwitch?: ToggleProps;
+  flowbite3Switch?: ToggleProps;
 
-  flowbiteTextarea?: TextareaProps;
+  flowbite3Textarea?: TextareaProps;
 }

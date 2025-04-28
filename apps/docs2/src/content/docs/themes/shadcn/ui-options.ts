@@ -106,7 +106,7 @@ export interface UiOptions {
     WithoutChildrenOrChild<CalendarSingleRootProps>,
     "type"
   >;
-  shadcnDatePickerTrigger?: HTMLButtonAttributes;
+  shadcnDatePickerTrigger?: ComponentProps<typeof Button>;
   shadcnDateFormatter?: (date: Date) => string;
 
   shadcnFile?: Omit<HTMLInputAttributes, "type">;
@@ -122,7 +122,7 @@ export interface UiOptions {
 
   shadcnRange?: Omit<WithoutChildrenOrChild<SliderSingleRootProps>, "type">;
 
-  shadcnSwitch?: Omit<WithoutChildrenOrChild<SwitchRootProps>, "type">;
+  shadcnSwitch?: WithoutChildrenOrChild<SwitchRootProps>;
 
   shadcnTextarea?: HTMLTextareaAttributes;
 }
