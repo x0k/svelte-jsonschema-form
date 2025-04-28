@@ -43,9 +43,6 @@ const files: Sample = {
         flowbite3File: {
           accept: ".pdf",
         },
-        shadcnFile: {
-          accept: ".pdf",
-        },
       },
     },
     orderableFiles: {

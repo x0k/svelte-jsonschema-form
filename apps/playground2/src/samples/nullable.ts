@@ -72,10 +72,6 @@ const nullable: Sample = {
           placeholder:
             "Leaving this field empty will cause formData property to be `null`",
         },
-        shadcnTextarea: {
-          placeholder:
-            "Leaving this field empty will cause formData property to be `null`",
-        },
         stringEmptyValue: null as unknown as undefined,
       },
     },

@@ -136,9 +136,6 @@ const widgets: Sample = {
           flowbite3Textarea: {
             rows: 5,
           },
-          shadcnTextarea: {
-            rows: 5,
-          },
         },
       },
       placeholder: {
