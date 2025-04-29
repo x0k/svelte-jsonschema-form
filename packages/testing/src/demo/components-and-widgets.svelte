@@ -5,7 +5,7 @@
     pathToId,
     type Schema,
     type Theme,
-    type UiSchema,
+    type UiOptionsRegistryOption,
     type UiSchemaRoot,
   } from "@sjsf/form";
   import { createFormValidator } from "@sjsf/ajv8-validator";
@@ -33,11 +33,12 @@
     theme,
     append,
     additionalSpecs,
+    uiOptionsRegistry,
   }: {
     theme: Theme;
     additionalSpecs?: Specs;
     append?: Snippet;
-  } = $props();
+  } & UiOptionsRegistryOption = $props();
 
   const validator = createFormValidator();
 
@@ -64,6 +65,7 @@
       theme,
       validator,
       translation,
+      uiOptionsRegistry,
     })
   );
   const disabledWidgetsForm = $derived(
@@ -75,6 +77,7 @@
       theme,
       validator,
       translation,
+      uiOptionsRegistry,
     })
   );
 
@@ -129,6 +132,7 @@
     ],
     validator,
     translation,
+    uiOptionsRegistry,
   });
 </script>
 
