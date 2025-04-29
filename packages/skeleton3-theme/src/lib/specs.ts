@@ -1,4 +1,6 @@
+import { cast } from '@sjsf/form/lib/component';
 import type { SchemaArrayValue } from '@sjsf/form/core';
+import type { ComponentDefinition } from '@sjsf/form';
 import TagsField from '@sjsf/form/fields/extra-fields/tags.svelte';
 import { s } from 'testing/demo';
 
@@ -46,17 +48,14 @@ export const specs: s.Specs = {
 		s.uniqueArray,
 		{
 			'ui:components': {
-				multiEnumField: {
-					component: TagsField,
-					properties: {
-						value: {
-							transform(props) {
-								assertStrings(props.value);
-								return props.value;
-							}
+				multiEnumField: cast(TagsField, {
+					value: {
+						transform(props) {
+							assertStrings(props.value);
+							return props.value;
 						}
 					}
-				}
+				}) satisfies ComponentDefinition<'multiEnumField'>
 			}
 		}
 	],
