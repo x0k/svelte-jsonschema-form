@@ -5,7 +5,6 @@ import type {
   CompatibleComponentType,
   ComponentDefinitions,
   FoundationalComponentType,
-  ComponentCasts,
 } from "./components.js";
 import type { Config } from "./config.js";
 
@@ -38,8 +37,7 @@ export interface UiSchemaContent {
   "ui:components"?: Partial<{
     [T in FoundationalComponentType]:
       | Exclude<CompatibleComponentType<T>, T>
-      | ComponentDefinitions[T]
-      | ComponentCasts<T>;
+      | ComponentDefinitions[T];
   }>;
   items?: UiSchemaDefinition | UiSchemaDefinition[];
   anyOf?: UiSchemaDefinition[];
@@ -86,16 +84,6 @@ export function resolveUiRef(
     : schemaDef;
 }
 
-export function resolveUiOptionValue<V>(
-  uiOptionsRegistry: UiOptionsRegistry,
-  value: V
-) {
-  if (typeof value === "string" && value.startsWith("registry:")) {
-    return uiOptionsRegistry[value.substring(9) as keyof UiOptionsRegistry];
-  }
-  return value;
-}
-
 export function resolveUiOption<O extends keyof UiOptions>(
   uiSchemaRoot: UiSchemaRoot,
   uiOptionsRegistry: UiOptionsRegistry,
@@ -106,7 +94,10 @@ export function resolveUiOption<O extends keyof UiOptions>(
   if (value === undefined) {
     value = uiSchemaRoot["ui:globalOptions"]?.[option];
   }
-  return resolveUiOptionValue(uiOptionsRegistry, value);
+  if (typeof value === "string" && value.startsWith("registry:")) {
+    return uiOptionsRegistry[value.substring(9) as keyof UiOptionsRegistry];
+  }
+  return value;
 }
 
 export function getUiSchemaByPath(
