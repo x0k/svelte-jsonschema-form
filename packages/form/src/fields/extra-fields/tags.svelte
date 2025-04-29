@@ -9,6 +9,7 @@
 <script lang="ts">
   import { identity } from "@/lib/function.js";
   import type { ComponentProps } from "@/form/index.js";
+  import "@/form/extra-fields/tags.js";
 
   import FieldBase from "../field-base.svelte";
   import "../extra-widgets/tags.js";
