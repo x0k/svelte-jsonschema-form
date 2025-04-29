@@ -2,10 +2,10 @@ import type { Resolver } from "@/lib/resolver.js";
 import type { Path } from "@/core/index.js";
 
 import type {
-  ComponentCast,
   CompatibleComponentType,
   ComponentDefinitions,
   FoundationalComponentType,
+  ComponentCasts,
 } from "./components.js";
 import type { Config } from "./config.js";
 
@@ -39,7 +39,7 @@ export interface UiSchemaContent {
     [T in FoundationalComponentType]:
       | Exclude<CompatibleComponentType<T>, T>
       | ComponentDefinitions[T]
-      | ComponentCast<T>;
+      | ComponentCasts<T>;
   }>;
   items?: UiSchemaDefinition | UiSchemaDefinition[];
   anyOf?: UiSchemaDefinition[];
@@ -86,6 +86,16 @@ export function resolveUiRef(
     : schemaDef;
 }
 
+export function resolveUiOptionValue<V>(
+  uiOptionsRegistry: UiOptionsRegistry,
+  value: V
+) {
+  if (typeof value === "string" && value.startsWith("registry:")) {
+    return uiOptionsRegistry[value.substring(9) as keyof UiOptionsRegistry];
+  }
+  return value;
+}
+
 export function resolveUiOption<O extends keyof UiOptions>(
   uiSchemaRoot: UiSchemaRoot,
   uiOptionsRegistry: UiOptionsRegistry,
@@ -96,10 +106,7 @@ export function resolveUiOption<O extends keyof UiOptions>(
   if (value === undefined) {
     value = uiSchemaRoot["ui:globalOptions"]?.[option];
   }
-  if (typeof value === "string" && value.startsWith("registry:")) {
-    return uiOptionsRegistry[value.substring(9) as keyof UiOptionsRegistry];
-  }
-  return value;
+  return resolveUiOptionValue(uiOptionsRegistry, value);
 }
 
 export function getUiSchemaByPath(
