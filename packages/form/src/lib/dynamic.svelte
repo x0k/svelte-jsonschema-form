@@ -1,7 +1,7 @@
 <script lang="ts" module>
   import type { ComponentInternals, ComponentProps, Snippet } from "svelte";
 
-  import type { AnyComponent } from "./svelte.svelte.js";
+  import type { AnyComponent } from "./component.js";
   import Dynamic from "./dynamic.svelte";
 
   export interface DynamicOptions<E> {

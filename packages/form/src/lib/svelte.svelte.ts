@@ -1,6 +1,4 @@
-import { untrack, type Component } from "svelte";
-
-export type AnyComponent = Component<any, any, any>;
+import { untrack } from "svelte";
 
 export interface AsyncInput<V> {
   /**
