@@ -19,3 +19,9 @@ export function createSchemas(specs: Record<string, [Schema, UiSchema]> = {}) {
     ...specs,
   });
 }
+export function replacer(key: string, value: any) {
+  if (typeof value === "function") {
+    return `<function: ${value.name || "anonymous"}>`;
+  }
+  return value;
+}

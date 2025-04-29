@@ -12,7 +12,7 @@ import FormCard from '@/components/form-card.astro';
 
 import Form from './basic/form.svelte';
 import uiOptionsCode from './basic/ui-options?raw';
-import { createSchemas } from "./_demo-schema";
+import { createSchemas, replacer } from "./_demo-schema";
 
 export const schemas = createSchemas(specs)
 
@@ -41,9 +41,9 @@ export const schemas = createSchemas(specs)
     </FormCard>
   </TabItem>
   <TabItem label="JSON Schema" >
-    <Code lang="json" code={JSON.stringify(schemas.schema, null, 2)} />
+    <Code lang="json" code={JSON.stringify(schemas.schema, replacer, 2)} />
   </TabItem>
   <TabItem label="UI Schema">
-    <Code lang="json" code={JSON.stringify(schemas.uiSchema, null, 2)} />
+    <Code lang="json" code={JSON.stringify(schemas.uiSchema, replacer, 2)} />
   </TabItem>
 </Tabs>
