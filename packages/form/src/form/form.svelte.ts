@@ -66,7 +66,9 @@ export type InitialErrors<V extends Validator> =
 const UI_OPTIONS_REGISTRY_KEY = "uiOptionsRegistry";
 
 export type UiOptionsRegistryOption = keyof UiOptionsRegistry extends never
-  ? {}
+  ? {
+      [UI_OPTIONS_REGISTRY_KEY]?: UiOptionsRegistry;
+    }
   : {
       [UI_OPTIONS_REGISTRY_KEY]: UiOptionsRegistry;
     };
@@ -418,11 +420,7 @@ export function createForm<T, V extends Validator>(
 
   const rootId = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX);
 
-  const uiOptionsRegistry = $derived(
-    (UI_OPTIONS_REGISTRY_KEY in options
-      ? options[UI_OPTIONS_REGISTRY_KEY]
-      : {}) as UiOptionsRegistry
-  );
+  const uiOptionsRegistry = $derived(options[UI_OPTIONS_REGISTRY_KEY] ?? {});
 
   const uiOptions = $derived({
     ...uiSchemaRoot["ui:globalOptions"],
