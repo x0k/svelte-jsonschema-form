@@ -8,14 +8,14 @@ import type { Nullable } from "@/lib/types.js";
 import type { Validator } from "@/core/index.js";
 
 import type { Config } from "../config.js";
-import { createPseudoId, type IdPseudoSeparatorOption } from "../id.js";
+import type { UiOptions } from "../ui-schema.js";
+import { createPseudoId } from "../id.js";
 
 import {
   retrieveUiProps,
   type FormInternalContext,
   type ObjectUiOptions,
 } from "./context.js";
-import type { UiOptions } from "../ui-schema.js";
 
 interface Disabled {
   disabled: boolean;
@@ -62,9 +62,9 @@ export function inputType(format: string | undefined) {
 }
 
 export function inputAttributes(handlers: Handlers) {
-  return (
-    { id, required, schema }: Config,
-    idPseudoSeparatorOption: IdPseudoSeparatorOption
+  return <V extends Validator>(
+    ctx: FormInternalContext<V>,
+    { id, required, schema }: Config
   ) => {
     const data = {
       id,
@@ -78,7 +78,7 @@ export function inputAttributes(handlers: Handlers) {
       max: schema.maximum,
       step: schema.multipleOf ?? (schema.type === "number" ? "any" : undefined),
       list: Array.isArray(schema.examples)
-        ? createPseudoId(id, "examples", idPseudoSeparatorOption)
+        ? createPseudoId(id, "examples", ctx)
         : undefined,
       readonly: schema.readOnly,
       oninput: handlers.oninput,
@@ -93,7 +93,10 @@ export function inputAttributes(handlers: Handlers) {
 }
 
 export function textareaAttributes(handlers: Handlers) {
-  return ({ id, required, schema }: Config) =>
+  return <V extends Validator>(
+    _: FormInternalContext<V>,
+    { id, required, schema }: Config
+  ) =>
     ({
       id,
       name: id,
@@ -108,7 +111,10 @@ export function textareaAttributes(handlers: Handlers) {
 }
 
 export function selectAttributes(handlers: Handlers) {
-  return ({ id, required }: Config) =>
+  return <V extends Validator>(
+    _: FormInternalContext<V>,
+    { id, required }: Config
+  ) =>
     ({
       id,
       name: id,
@@ -119,7 +125,7 @@ export function selectAttributes(handlers: Handlers) {
     } satisfies HTMLSelectAttributes);
 }
 
-export function retrieveAttributes<
+export function retrieveInputAttributes<
   V extends Validator,
   O extends keyof ObjectUiOptions
 >(
@@ -127,12 +133,12 @@ export function retrieveAttributes<
   config: Config,
   option: O,
   attributes: (
-    config: Config,
-    ctx: FormInternalContext<V>
+    ctx: FormInternalContext<V>,
+    config: Config
   ) => Exclude<UiOptions[O], undefined>
 ) {
   return defineDisabled(
     ctx,
-    retrieveUiProps(ctx, config, option, attributes(config, ctx))
+    retrieveUiProps(ctx, config, option, attributes(ctx, config))
   );
 }
