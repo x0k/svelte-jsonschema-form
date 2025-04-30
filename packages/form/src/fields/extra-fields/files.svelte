@@ -22,7 +22,11 @@
 
   import "../extra-widgets/file.js";
 
-  let { config, value = $bindable(), uiOption }: ComponentProps["filesField"] = $props();
+  let {
+    config,
+    value = $bindable(),
+    uiOption,
+  }: ComponentProps["filesField"] = $props();
 
   const ctx = getFormContext();
 
@@ -77,6 +81,7 @@
     bind:value={files.value}
     processing={files.inputProcessing}
     loading={files.outputProcessing}
+    {uiOption}
     {handlers}
     {errors}
     {config}

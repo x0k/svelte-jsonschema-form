@@ -79,5 +79,13 @@
   {config}
   {errors}
 >
-  <Widget type="widget" {options} bind:value {errors} {handlers} {config} />
+  <Widget
+    type="widget"
+    {options}
+    bind:value
+    {errors}
+    {handlers}
+    {uiOption}
+    {config}
+  />
 </Template>

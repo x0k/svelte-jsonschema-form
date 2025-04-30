@@ -75,6 +75,7 @@
     bind:value={files.value}
     processing={files.inputProcessing}
     loading={files.outputProcessing}
+    {uiOption}
     {handlers}
     {errors}
     {config}

@@ -5,6 +5,7 @@ import type {
   FieldError,
   FoundationalComponentType,
   SchemaValue,
+  UiOption,
 } from "@/form/index.js";
 
 export interface Handlers {
@@ -19,6 +20,7 @@ export interface WidgetCommonProps<V> {
   value: V | undefined;
   handlers: Handlers;
   errors: FieldError<unknown>[];
+  uiOption: UiOption;
 }
 
 export type FoundationalWidgetType = {

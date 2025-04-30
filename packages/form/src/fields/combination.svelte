@@ -199,6 +199,7 @@
       {errors}
       handlers={{}}
       config={widgetConfig}
+      uiOption={(opt) => retrieveUiOption(ctx, widgetConfig, opt)}
       options={enumOptions}
       bind:value={
         () => readableSelectedOption, (v) => (writableSelectedOption = v)

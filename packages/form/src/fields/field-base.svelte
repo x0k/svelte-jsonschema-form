@@ -1,4 +1,7 @@
-<script lang="ts" generics="V extends FieldValue, T extends FoundationalWidgetType">
+<script
+  lang="ts"
+  generics="V extends FieldValue, T extends FoundationalWidgetType"
+>
   import {
     makeEventHandlers,
     getErrors,
@@ -59,6 +62,7 @@
     type="widget"
     {config}
     {errors}
+    {uiOption}
     bind:value={
       () => fromValue(value) as undefined, (v) => (value = toValue(v))
     }

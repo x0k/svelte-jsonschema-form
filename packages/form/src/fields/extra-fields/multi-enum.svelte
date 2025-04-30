@@ -21,8 +21,11 @@
   import { createOptions } from "../enum.js";
   import "../extra-widgets/checkboxes.js";
 
-  let { config, uiOption, value = $bindable() }: ComponentProps["multiEnumField"] =
-    $props();
+  let {
+    config,
+    uiOption,
+    value = $bindable(),
+  }: ComponentProps["multiEnumField"] = $props();
 
   const ctx = getFormContext();
 
@@ -51,5 +54,13 @@
   {config}
   {errors}
 >
-  <Widget type="widget" {handlers} {config} {errors} bind:value {options} />
+  <Widget
+    type="widget"
+    {handlers}
+    {config}
+    {errors}
+    bind:value
+    {options}
+    {uiOption}
+  />
 </Template>

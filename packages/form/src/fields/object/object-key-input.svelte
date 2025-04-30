@@ -34,7 +34,9 @@
   const config: Config = $derived({
     id,
     name: id,
-    title: uiTitleOption(ctx, uiSchema) ?? translate(ctx, "key-input-title", { name }),
+    title:
+      uiTitleOption(ctx, uiSchema) ??
+      translate(ctx, "key-input-title", { name }),
     schema: { type: "string" },
     uiSchema,
     required: true,
@@ -69,5 +71,12 @@
   {errors}
   {uiOption}
 >
-  <Widget type="widget" {errors} {handlers} {config} bind:value={key} />
+  <Widget
+    type="widget"
+    {errors}
+    {handlers}
+    {config}
+    {uiOption}
+    bind:value={key}
+  />
 </Template>
