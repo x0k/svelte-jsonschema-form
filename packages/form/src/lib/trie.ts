@@ -5,22 +5,38 @@ export interface Node<T, V> {
 
 export type Trie<T, V> = Node<T, V> | undefined;
 
-export function insertValue<T, V>(trie: Trie<T, V>, keys: T[], value: V): Node<T, V> {
+export interface Seq<T> {
+  [index: number]: T;
+  length: number;
+}
+
+export function insertValue<T, V>(
+  trie: Trie<T, V>,
+  keys: Seq<T>,
+  value: V,
+  index = 0
+): Node<T, V> {
   if (trie === undefined) {
     trie = {
       values: new Map(),
-      value: undefined
+      value: undefined,
     };
   }
-  if (keys.length === 0) {
+  if (keys.length === index) {
     trie.value = value;
-    return trie;
+  } else {
+    trie.values.set(
+      keys[index]!,
+      insertValue(trie.values.get(keys[index]!), keys, value, index + 1)
+    );
   }
-  trie.values.set(keys[0]!, insertValue(trie.values.get(keys[0]!), keys.slice(1), value));
   return trie;
 }
 
-export function getNodeByKeys<T, V>(trie: Trie<T, V>, keys: T[]): Trie<T, V> {
+export function getNodeByKeys<T, V>(
+  trie: Trie<T, V>,
+  keys: Seq<T>
+): Trie<T, V> {
   let i = 0;
   while (trie !== undefined && i < keys.length) {
     trie = trie.values.get(keys[i++]!);
@@ -28,6 +44,9 @@ export function getNodeByKeys<T, V>(trie: Trie<T, V>, keys: T[]): Trie<T, V> {
   return trie;
 }
 
-export function getValueByKeys<T, V>(trie: Trie<T, V>, keys: T[]): V | undefined {
-  return getNodeByKeys(trie, keys)?.value
+export function getValueByKeys<T, V>(
+  trie: Trie<T, V>,
+  keys: Seq<T>
+): V | undefined {
+  return getNodeByKeys(trie, keys)?.value;
 }
