@@ -1,10 +1,10 @@
 <script lang="ts">
   import type { HTMLFormAttributes } from "svelte/elements";
 
-  import type { FormState } from "./form.svelte.js";
+  import type { FormState } from "./create-form.svelte.js";
   import { setFromContext } from "./context/context.js";
+  import Form from "./form.svelte";
   import Content from "./content.svelte";
-  import FormTag from "./form-tag.svelte";
   import SubmitButton from "./submit-button.svelte";
 
   let {
@@ -19,7 +19,7 @@
   setFromContext(form.context);
 </script>
 
-<FormTag bind:ref {attributes}>
+<Form bind:ref {attributes}>
   <Content />
   <SubmitButton />
-</FormTag>
+</Form>

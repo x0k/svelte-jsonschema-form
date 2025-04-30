@@ -1,7 +1,7 @@
 export type { Schema, SchemaValue, Validator } from "@/core/index.js";
 
 import "./content.module.js";
-import "./form-tag.module.js";
+import "./form.module.js";
 import "./submit-button.module.js";
 
 export * from "./model.js";
@@ -19,10 +19,10 @@ export * from "./translation.js";
 
 export * from "./context/index.js";
 
-export * from "./form.svelte.js";
+export * from "./create-form.svelte.js";
 export { default as Content } from "./content.svelte";
 export { default as SubmitButton } from "./submit-button.svelte";
-export { default as FormTag } from "./form-tag.svelte";
+export { default as Form } from "./form.svelte";
 export { default as BasicForm } from "./basic-form.svelte";
 export { default as SimpleForm } from "./simple-form.svelte";
 export { default as ErrorMessage, createMessage } from "./error-message.svelte";
