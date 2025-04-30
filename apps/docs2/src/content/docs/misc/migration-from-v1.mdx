@@ -58,6 +58,7 @@ Therefore, all other fields and widgets are placed in optional `extra` modules.
 You can import them directly or use special imports to connect them automatically.
 
 ```ts
+import { useDatePickerForDateFormat } from "@sjsf/form/fields/extra-widgets/date-picker";
 // Include extra fields
 import "@sjsf/form/fields/extra-fields/boolean-select-include";
 import "@sjsf/form/fields/extra-fields/enum-include";
@@ -65,13 +66,15 @@ import "@sjsf/form/fields/extra-fields/file-include";
 import "@sjsf/form/fields/extra-fields/files-include";
 import "@sjsf/form/fields/extra-fields/multi-enum-include";
 // Include extra widget for basic theme
-import { theme } from "@sjsf/basic-theme";
+import { theme as basicTheme } from "@sjsf/basic-theme";
 import '@sjsf/basic-theme/extra-widgets/checkboxes-include';
 import '@sjsf/basic-theme/extra-widgets/file-include';
 import "@sjsf/basic-theme/extra-widgets/multi-select-include";
 import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import "@sjsf/basic-theme/extra-widgets/radio-include";
 import "@sjsf/basic-theme/extra-widgets/date-picker-include";
+
+const theme = useDatePickerForDateFormat(basicTheme);
 
 const from = createForm({ theme, ... })
 ```
