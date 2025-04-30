@@ -137,9 +137,7 @@ export function transformFieldErrors(
           propertyTitle: field.title,
           message: createErrorMessage(
             keyword,
-            keyword in field.schema
-              ? String(field.schema[keyword as keyof Schema])
-              : undefined
+            field.schema?.[keyword as keyof Schema]?.toString()
           ),
           error,
         };
