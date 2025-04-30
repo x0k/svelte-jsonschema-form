@@ -30,16 +30,12 @@
 	let input: HTMLInputElement;
 	$effect(() => {
 		import('pikaday').then(({ default: Pikaday }) => {
-			const format = new Intl.DateTimeFormat('en-CA', {
-				year: 'numeric',
-				month: '2-digit',
-				day: '2-digit'
-			});
 			const picker = new Pikaday(
 				retrieveUiProps(ctx, config, 'daisyui5PikadayCalendarOptions', {
 					field: input,
+					blurFieldOnSelect: false,
 					onSelect(date) {
-						value = format.format(date);
+						value = date.toLocaleDateString('en-CA');
 					}
 				})
 			);
