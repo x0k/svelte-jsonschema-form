@@ -115,9 +115,15 @@ export function createSvelteKitRequest<Meta extends SvelteKitFormMeta<any, any, 
       }
       return result;
     },
-    onSuccess: options.onSuccess,
-    onFailure: options.onFailure,
-    combinator: options.combinator,
+    get onSuccess() {
+      return options.onSuccess;
+    },
+    get onFailure() {
+      return options.onFailure;
+    },
+    get combinator() {
+      return options.combinator;
+    },
     get delayedMs() {
       return options.delayedMs;
     },
