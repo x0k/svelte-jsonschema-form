@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Content, FormTag, setFromContext, type Schema } from "@sjsf/form";
+  import { Content, Form, setFromContext, type Schema } from "@sjsf/form";
 
   import { createMyForm } from "@/components/my-form";
 
@@ -15,12 +15,12 @@
   });
   setFromContext(form.context);
 
-  let ref: HTMLFormElement | undefined = $state();
+  let ref: HTMLFormElement | undefined;
 </script>
 
-<FormTag bind:ref>
+<Form bind:ref>
   <Content />
-</FormTag>
+</Form>
 <button
   onclick={(_e) => {
     ref?.requestSubmit();

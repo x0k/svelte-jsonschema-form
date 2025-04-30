@@ -32,4 +32,4 @@ Some string formats has special meaning:
 - `additionalItems: true` will be treated as no additional items allowed.
 - `additionalProperties: false` produces incorrect schemas when used with schema dependencies.
 - Properties declared inside the `anyOf`/`oneOf` should not overlap with properties "outside" of the `anyOf`/`oneOf`.
-- The `allOf` keyword uses [json-schema-merge-allof](https://github.com/mokkabonna/json-schema-merge-allof) to merge subschemas.
+- By default the `allOf` keyword uses [json-schema-merge-allof](https://github.com/mokkabonna/json-schema-merge-allof) to merge subschemas.

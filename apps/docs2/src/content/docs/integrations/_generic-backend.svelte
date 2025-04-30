@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Content, FormTag, setFromContext, SubmitButton } from "@sjsf/form";
+  import { Content, Form, setFromContext, SubmitButton } from "@sjsf/form";
   import { Status, createAction } from "@sjsf/form/lib/action.svelte";
   import "@sjsf/basic-theme/extra-widgets/radio-include";
 
@@ -69,7 +69,7 @@
   setFromContext(form.context);
 </script>
 
-<FormTag>
+<Form>
   <Content />
   {#if resolve.isDelayed}
     <button style="padding: 0.5rem;" disabled>Processed...</button>
@@ -82,4 +82,4 @@
   {#if resolve.state.status === Status.Failed}
     <p class="text-red-500">Failed: {resolve.state.reason}</p>
   {/if}
-</FormTag>
+</Form>

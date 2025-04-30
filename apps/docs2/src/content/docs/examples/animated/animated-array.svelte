@@ -8,13 +8,18 @@
     getFormContext,
     type ComponentProps,
     Text,
+    retrieveUiOption,
   } from "@sjsf/form";
   import {
     createArrayContext,
     setArrayContext,
   } from "@sjsf/form/fields/array/context.svelte";
 
-  let { value = $bindable(), config }: ComponentProps["arrayField"] = $props();
+  let {
+    value = $bindable(),
+    config,
+    uiOption,
+  }: ComponentProps["arrayField"] = $props();
 
   const ctx = getFormContext();
   const arrayCtx = createArrayContext(
@@ -46,16 +51,19 @@
   errors={arrayCtx.errors}
   {config}
   {value}
+  {uiOption}
   addButton={arrayCtx.canAdd() ? addButton : undefined}
 >
   {#if isSchemaArrayValue(value)}
     {#each value as item, index (arrayCtx.key(index))}
+      {@const cfg = arrayCtx.itemConfig(config, item, index)}
       <div animate:flip transition:fade>
         <ArrayItem
           type="field"
           {index}
-          config={arrayCtx.itemConfig(config, item, index)}
           bind:value={value[index]}
+          config={cfg}
+          uiOption={(opt) => retrieveUiOption(ctx, cfg, opt)}
         />
       </div>
     {/each}

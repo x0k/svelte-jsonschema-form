@@ -9,7 +9,18 @@ export type InitialErrors<V extends Validator> =
   | ValidationError<PossibleError<V>>[]
   | Iterable<readonly [Id, FieldError<PossibleError<V>>[]]>;
 
-export interface FormOptions<T, V extends Validator> {
+const UI_OPTIONS_REGISTRY_KEY = "uiOptionsRegistry";
+
+export type UiOptionsRegistryOption = keyof UiOptionsRegistry extends never
+  ? {
+      [UI_OPTIONS_REGISTRY_KEY]?: UiOptionsRegistry;
+    }
+  : {
+      [UI_OPTIONS_REGISTRY_KEY]: UiOptionsRegistry;
+    };
+
+export interface FormOptions<T, V extends Validator>
+  extends UiOptionsRegistryOption {
   validator: V;
   schema: Schema;
   theme: Theme;
