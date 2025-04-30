@@ -13,7 +13,7 @@
 		Datalist,
 		getFormContext,
 		inputAttributes,
-		retrieveAttributes,
+		retrieveInputAttributes,
 		type ComponentProps
 	} from '@sjsf/form';
 
@@ -27,7 +27,7 @@
 	let { value = $bindable(), config, handlers }: ComponentProps['numberWidget'] = $props();
 
 	const attributes = $derived(
-		retrieveAttributes(ctx, config, 'shadcnNumber', inputAttributes(handlers))
+		retrieveInputAttributes(ctx, config, 'shadcnNumber', inputAttributes(handlers))
 	);
 </script>
 

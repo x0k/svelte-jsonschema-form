@@ -11,14 +11,14 @@
 </script>
 
 <script lang="ts">
-	import { type ComponentProps, getFormContext, retrieveAttributes } from '@sjsf/form';
+	import { type ComponentProps, getFormContext, retrieveInputAttributes } from '@sjsf/form';
 
 	let { value = $bindable(), config, handlers, errors }: ComponentProps['tagsWidget'] = $props();
 
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		retrieveAttributes(ctx, config, 'skeleton3Tags', () => ({
+		retrieveInputAttributes(ctx, config, 'skeleton3Tags', () => ({
 			ids: {
 				input: config.id
 			},

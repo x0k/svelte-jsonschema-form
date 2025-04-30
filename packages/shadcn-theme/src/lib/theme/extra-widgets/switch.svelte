@@ -17,7 +17,7 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, retrieveAttributes, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, retrieveInputAttributes, type ComponentProps } from '@sjsf/form';
 
 	import { getThemeContext } from '../context';
 
@@ -29,7 +29,7 @@
 	let { value = $bindable(), config, handlers }: ComponentProps['switchWidget'] = $props();
 
 	const attributes = $derived(
-		retrieveAttributes(ctx, config, 'shadcnSwitch', () => ({
+		retrieveInputAttributes(ctx, config, 'shadcnSwitch', () => ({
 			...handlers,
 			id: config.id,
 			name: config.id,

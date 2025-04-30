@@ -12,14 +12,14 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, type ComponentProps, retrieveAttributes } from '@sjsf/form';
+	import { getFormContext, type ComponentProps, retrieveInputAttributes } from '@sjsf/form';
 
 	let { value = $bindable(), config, handlers, errors }: ComponentProps['rangeWidget'] = $props();
 
 	const ctx = getFormContext();
 
 	const attributes: SvelteComponentProps<typeof SkeletonSlider> = $derived(
-		retrieveAttributes(ctx, config, 'skeleton3Slider', () => ({
+		retrieveInputAttributes(ctx, config, 'skeleton3Slider', () => ({
 			ids: {
 				hiddenInput() {
 					return config.id;

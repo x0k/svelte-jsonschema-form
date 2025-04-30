@@ -15,7 +15,7 @@
 	import {
 		getFormContext,
 		inputAttributes,
-		retrieveAttributes,
+		retrieveInputAttributes,
 		retrieveUiProps,
 		type ComponentProps
 	} from '@sjsf/form';
@@ -46,7 +46,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		retrieveAttributes(ctx, config, 'daisyui5PikadayCalendar', inputAttributes(handlers))
+		retrieveInputAttributes(ctx, config, 'daisyui5PikadayCalendar', inputAttributes(handlers))
 	);
 </script>
 

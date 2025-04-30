@@ -33,7 +33,7 @@
 	import {
 		getFormContext,
 		inputAttributes,
-		retrieveAttributes,
+		retrieveInputAttributes,
 		retrieveUiOption,
 		retrieveUiProps,
 		type ComponentProps
@@ -81,7 +81,7 @@
 	}
 
 	const attributes = $derived(
-		retrieveAttributes(ctx, config, 'shadcnComboboxInput', inputAttributes(handlers))
+		retrieveInputAttributes(ctx, config, 'shadcnComboboxInput', inputAttributes(handlers))
 	);
 
 	const triggerContent = $derived(

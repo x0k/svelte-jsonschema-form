@@ -12,7 +12,7 @@
 <script lang="ts">
 	import {
 		getFormContext,
-		retrieveAttributes,
+		retrieveInputAttributes,
 		textareaAttributes,
 		type ComponentProps
 	} from '@sjsf/form';
@@ -23,7 +23,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		retrieveAttributes(ctx, config, 'flowbiteTextarea', textareaAttributes(handlers))
+		retrieveInputAttributes(ctx, config, 'flowbiteTextarea', textareaAttributes(handlers))
 	);
 </script>
 

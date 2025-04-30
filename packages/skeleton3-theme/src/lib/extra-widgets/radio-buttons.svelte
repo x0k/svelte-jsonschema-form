@@ -16,7 +16,7 @@
 		getFormContext,
 		type ComponentProps,
 		defineDisabled,
-		retrieveAttributes,
+		retrieveInputAttributes,
 		retrieveUiProps
 	} from '@sjsf/form';
 	import { stringIndexMapper, singleOption } from '@sjsf/form/options.svelte';
@@ -37,7 +37,7 @@
 	const ctx = getFormContext();
 
 	const attributes: SvelteComponentProps<typeof Segment> = $derived(
-		retrieveAttributes(ctx, config, 'skeleton3Segment', () => ({
+		retrieveInputAttributes(ctx, config, 'skeleton3Segment', () => ({
 			ids: {
 				root: config.id
 			},

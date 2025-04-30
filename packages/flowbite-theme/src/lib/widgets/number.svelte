@@ -13,7 +13,7 @@
 		Datalist,
 		getFormContext,
 		inputAttributes,
-		retrieveAttributes,
+		retrieveInputAttributes,
 		type ComponentProps
 	} from '@sjsf/form';
 	import NumberInput from 'flowbite-svelte/NumberInput.svelte';
@@ -23,7 +23,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		retrieveAttributes(ctx, config, 'flowbiteNumber', inputAttributes(handlers))
+		retrieveInputAttributes(ctx, config, 'flowbiteNumber', inputAttributes(handlers))
 	);
 </script>
 

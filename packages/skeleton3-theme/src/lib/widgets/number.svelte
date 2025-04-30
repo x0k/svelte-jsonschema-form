@@ -3,7 +3,7 @@
 		Datalist,
 		getFormContext,
 		inputAttributes,
-		retrieveAttributes,
+		retrieveInputAttributes,
 		type ComponentProps
 	} from '@sjsf/form';
 	import '@sjsf/basic-theme/widgets/number.svelte';
@@ -12,7 +12,7 @@
 
 	const ctx = getFormContext();
 
-	const attributes = $derived(retrieveAttributes(ctx, config, 'number', inputAttributes(handlers)));
+	const attributes = $derived(retrieveInputAttributes(ctx, config, 'number', inputAttributes(handlers)));
 </script>
 
 <input

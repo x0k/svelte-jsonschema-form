@@ -2,7 +2,7 @@
 	import {
 		getFormContext,
 		inputAttributes,
-		retrieveAttributes,
+		retrieveInputAttributes,
 		type ComponentProps
 	} from '@sjsf/form';
 	import '@sjsf/basic-theme/extra-widgets/range.svelte';
@@ -11,7 +11,7 @@
 
 	const ctx = getFormContext();
 
-	const attributes = $derived(retrieveAttributes(ctx, config, 'range', inputAttributes(handlers)));
+	const attributes = $derived(retrieveInputAttributes(ctx, config, 'range', inputAttributes(handlers)));
 </script>
 
 <input

@@ -11,13 +11,13 @@
 </script>
 
 <script lang="ts">
-	import { type ComponentProps, getFormContext, retrieveAttributes } from '@sjsf/form';
+	import { type ComponentProps, getFormContext, retrieveInputAttributes } from '@sjsf/form';
 	let { value = $bindable(), config, handlers }: ComponentProps['ratingWidget'] = $props();
 
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		retrieveAttributes(ctx, config, 'skeleton3Rating', () => ({
+		retrieveInputAttributes(ctx, config, 'skeleton3Rating', () => ({
 			value,
 			ids: {
 				hiddenInput: config.id

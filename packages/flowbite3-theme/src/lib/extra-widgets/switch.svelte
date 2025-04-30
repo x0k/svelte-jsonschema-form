@@ -13,7 +13,7 @@
 	import {
 		getFormContext,
 		inputAttributes,
-		retrieveAttributes,
+		retrieveInputAttributes,
 		type ComponentProps
 	} from '@sjsf/form';
 	import Toggle from 'flowbite-svelte/Toggle.svelte';
@@ -23,7 +23,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		retrieveAttributes(ctx, config, 'flowbite3Switch', inputAttributes(handlers))
+		retrieveInputAttributes(ctx, config, 'flowbite3Switch', inputAttributes(handlers))
 	);
 </script>
 

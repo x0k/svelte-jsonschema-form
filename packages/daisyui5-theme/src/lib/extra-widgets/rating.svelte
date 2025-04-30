@@ -14,7 +14,7 @@
 		createPseudoId,
 		getFormContext,
 		inputAttributes,
-		retrieveAttributes,
+		retrieveInputAttributes,
 		type ComponentProps
 	} from '@sjsf/form';
 	import '@sjsf/form/fields/extra-widgets/rating';
@@ -24,7 +24,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		retrieveAttributes(ctx, config, 'daisyui5Rating', inputAttributes(handlers))
+		retrieveInputAttributes(ctx, config, 'daisyui5Rating', inputAttributes(handlers))
 	);
 </script>
 

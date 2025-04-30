@@ -1,7 +1,7 @@
 <script lang="ts">
 	import {
 		getFormContext,
-		retrieveAttributes,
+		retrieveInputAttributes,
 		selectAttributes,
 		type ComponentProps
 	} from '@sjsf/form';
@@ -26,7 +26,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		retrieveAttributes(ctx, config, 'multiSelect', selectAttributes(handlers))
+		retrieveInputAttributes(ctx, config, 'multiSelect', selectAttributes(handlers))
 	);
 </script>
 

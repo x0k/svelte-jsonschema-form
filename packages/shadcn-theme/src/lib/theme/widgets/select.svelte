@@ -10,7 +10,7 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, retrieveAttributes, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, retrieveInputAttributes, type ComponentProps } from '@sjsf/form';
 	import { singleOption, stringIndexMapper } from '@sjsf/form/options.svelte';
 
 	import { getThemeContext } from '../context';
@@ -31,13 +31,13 @@
 	);
 
 	const selectAttributes = $derived(
-		retrieveAttributes(ctx, config, 'shadcnSelect', () => ({
+		retrieveInputAttributes(ctx, config, 'shadcnSelect', () => ({
 			onValueChange: handlers.onchange,
 			required: config.required
 		}))
 	);
 	const triggerAttributes = $derived(
-		retrieveAttributes(ctx, config, 'shadcnSelectTrigger', () => ({
+		retrieveInputAttributes(ctx, config, 'shadcnSelectTrigger', () => ({
 			id: config.id,
 			name: config.id,
 			required: config.required

@@ -2,7 +2,7 @@
 	import {
 		getFormContext,
 		inputAttributes,
-		retrieveAttributes,
+		retrieveInputAttributes,
 		type ComponentProps
 	} from '@sjsf/form';
 	import { indexMapper, singleOption } from '@sjsf/form/options.svelte';
@@ -24,7 +24,7 @@
 
 	const ctx = getFormContext();
 
-	const attributes = $derived(retrieveAttributes(ctx, config, 'radio', inputAttributes(handlers)));
+	const attributes = $derived(retrieveInputAttributes(ctx, config, 'radio', inputAttributes(handlers)));
 </script>
 
 {#each options as option, index (option.id)}

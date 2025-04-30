@@ -29,7 +29,7 @@
 	import {
 		type ComponentProps,
 		getFormContext,
-		retrieveAttributes,
+		retrieveInputAttributes,
 		retrieveUiProps
 	} from '@sjsf/form';
 	import { stringIndexMapper, singleOption } from '@sjsf/form/options.svelte';
@@ -50,7 +50,7 @@
 	});
 
 	const attributes = $derived(
-		retrieveAttributes(ctx, config, 'shadcnRadioGroup', () => ({
+		retrieveInputAttributes(ctx, config, 'shadcnRadioGroup', () => ({
 			onValueChange: handlers.onchange
 		}))
 	);

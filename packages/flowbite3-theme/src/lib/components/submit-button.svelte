@@ -12,7 +12,7 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, retrieveAttributes, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, retrieveInputAttributes, type ComponentProps } from '@sjsf/form';
 	import Button from 'flowbite-svelte/Button.svelte';
 
 	const { children, config }: ComponentProps['submitButton'] = $props();
@@ -20,7 +20,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		retrieveAttributes(ctx, config, 'flowbite3SubmitButton', () => ({
+		retrieveInputAttributes(ctx, config, 'flowbite3SubmitButton', () => ({
 			color: 'primary',
 			type: 'submit',
 			size: 'md'

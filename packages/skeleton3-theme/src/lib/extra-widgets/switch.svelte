@@ -11,14 +11,14 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, retrieveAttributes, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, retrieveInputAttributes, type ComponentProps } from '@sjsf/form';
 
 	let { config, value = $bindable(), handlers, errors }: ComponentProps['switchWidget'] = $props();
 
 	const ctx = getFormContext();
 
 	const attributes: SvelteComponentProps<typeof SkeletonSwitch> = $derived(
-		retrieveAttributes(ctx, config, 'skeleton3Switch', () => ({
+		retrieveInputAttributes(ctx, config, 'skeleton3Switch', () => ({
 			ids: {
 				hiddenInput: config.id
 			},

@@ -13,7 +13,7 @@
 	import {
 		getFormContext,
 		inputAttributes,
-		retrieveAttributes,
+		retrieveInputAttributes,
 		type ComponentProps
 	} from '@sjsf/form';
 	import { indexMapper, singleOption } from '@sjsf/form/options.svelte';
@@ -35,7 +35,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		retrieveAttributes(ctx, config, 'daisyui5RadioButtons', inputAttributes(handlers))
+		retrieveInputAttributes(ctx, config, 'daisyui5RadioButtons', inputAttributes(handlers))
 	);
 </script>
 

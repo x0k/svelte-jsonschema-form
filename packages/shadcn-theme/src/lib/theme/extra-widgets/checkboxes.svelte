@@ -11,7 +11,7 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, retrieveAttributes, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, retrieveInputAttributes, type ComponentProps } from '@sjsf/form';
 	import { multipleOptions, stringIndexMapper } from '@sjsf/form/options.svelte';
 
 	import { getThemeContext } from '../context';
@@ -38,7 +38,7 @@
 	const indexes = $derived(new Set(mapped.value));
 
 	const attributes = $derived(
-		retrieveAttributes(ctx, config, 'shadcnCheckboxes', () => ({
+		retrieveInputAttributes(ctx, config, 'shadcnCheckboxes', () => ({
 			...handlers,
 			name: config.id,
 			required: config.required

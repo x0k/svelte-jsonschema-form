@@ -2,7 +2,7 @@
 	import {
 		getFormContext,
 		inputAttributes,
-		retrieveAttributes,
+		retrieveInputAttributes,
 		type ComponentProps
 	} from '@sjsf/form';
 	import '@sjsf/basic-theme/extra-widgets/file.svelte';
@@ -18,7 +18,7 @@
 
 	const ctx = getFormContext();
 
-	const attributes = $derived(retrieveAttributes(ctx, config, 'file', inputAttributes(handlers)));
+	const attributes = $derived(retrieveInputAttributes(ctx, config, 'file', inputAttributes(handlers)));
 </script>
 
 <input

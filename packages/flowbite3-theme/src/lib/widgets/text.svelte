@@ -13,7 +13,7 @@
 		Datalist,
 		getFormContext,
 		inputAttributes,
-		retrieveAttributes,
+		retrieveInputAttributes,
 		type ComponentProps
 	} from '@sjsf/form';
 	import Input from 'flowbite-svelte/Input.svelte';
@@ -23,7 +23,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		retrieveAttributes(ctx, config, 'flowbite3Text', inputAttributes(handlers))
+		retrieveInputAttributes(ctx, config, 'flowbite3Text', inputAttributes(handlers))
 	);
 </script>
 

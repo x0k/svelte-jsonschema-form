@@ -13,7 +13,7 @@
   import {
     getFormContext,
     inputAttributes,
-    retrieveAttributes,
+    retrieveInputAttributes,
     type ComponentProps,
   } from "@sjsf/form";
 
@@ -26,7 +26,7 @@
   const ctx = getFormContext();
 
   const attributes = $derived(
-    retrieveAttributes(ctx, config, "range", inputAttributes(handlers))
+    retrieveInputAttributes(ctx, config, "range", inputAttributes(handlers))
   );
 </script>
 

@@ -36,7 +36,7 @@
 	import { formatAsCustomPropertyName } from '@sjsf/form/lib/css';
 	import {
 		getFormContext,
-		retrieveAttributes,
+		retrieveInputAttributes,
 		retrieveUiOption,
 		retrieveUiProps,
 		type ComponentProps
@@ -70,7 +70,7 @@
 	const anchorName = $derived(formatAsCustomPropertyName(id));
 
 	const triggerAttributes = $derived(
-		retrieveAttributes(ctx, config, 'daisyui5CallyCalendarTrigger', () => ({
+		retrieveInputAttributes(ctx, config, 'daisyui5CallyCalendarTrigger', () => ({
 			type: 'button',
 			popovertarget: `${id}-popover`,
 			style: `anchor-name: ${anchorName};`

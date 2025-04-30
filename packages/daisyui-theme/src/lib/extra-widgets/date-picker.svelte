@@ -2,7 +2,7 @@
 	import {
 		getFormContext,
 		inputAttributes,
-		retrieveAttributes,
+		retrieveInputAttributes,
 		type ComponentProps
 	} from '@sjsf/form';
 	import '@sjsf/basic-theme/extra-widgets/date-picker.svelte';
@@ -17,7 +17,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		retrieveAttributes(ctx, config, 'datePicker', inputAttributes(handlers))
+		retrieveInputAttributes(ctx, config, 'datePicker', inputAttributes(handlers))
 	);
 </script>
 

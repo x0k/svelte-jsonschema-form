@@ -12,7 +12,7 @@
 	import {
 		getFormContext,
 		inputAttributes,
-		retrieveAttributes,
+		retrieveInputAttributes,
 		type ComponentProps
 	} from '@sjsf/form';
 	import Checkbox from 'flowbite-svelte/Checkbox.svelte';
@@ -22,7 +22,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		retrieveAttributes(ctx, config, 'flowbite3Checkbox', inputAttributes(handlers))
+		retrieveInputAttributes(ctx, config, 'flowbite3Checkbox', inputAttributes(handlers))
 	);
 </script>
 

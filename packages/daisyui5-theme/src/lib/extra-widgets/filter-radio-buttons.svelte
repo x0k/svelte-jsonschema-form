@@ -14,7 +14,7 @@
 	import {
 		getFormContext,
 		inputAttributes,
-		retrieveAttributes,
+		retrieveInputAttributes,
 		retrieveUiProps,
 		type ComponentProps
 	} from '@sjsf/form';
@@ -39,7 +39,7 @@
 	const ctx = getFormContext();
 
 	const itemAttributes = $derived(
-		retrieveAttributes(ctx, config, 'daisyui5FilterItem', inputAttributes(handlers))
+		retrieveInputAttributes(ctx, config, 'daisyui5FilterItem', inputAttributes(handlers))
 	);
 </script>
 

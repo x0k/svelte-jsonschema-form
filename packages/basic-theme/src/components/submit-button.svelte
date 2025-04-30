@@ -11,7 +11,7 @@
 <script lang="ts">
   import {
     getFormContext,
-    retrieveAttributes,
+    retrieveInputAttributes,
     type ComponentProps,
   } from "@sjsf/form";
 
@@ -20,7 +20,7 @@
   const ctx = getFormContext();
 
   const attributes = $derived(
-    retrieveAttributes(ctx, config, "submitButton", () => ({
+    retrieveInputAttributes(ctx, config, "submitButton", () => ({
       type: "submit",
       style: "width: 100%; padding: 0.5rem;",
     }))

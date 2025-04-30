@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getFormContext, retrieveAttributes, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, retrieveInputAttributes, type ComponentProps } from '@sjsf/form';
 	import '@sjsf/basic-theme/components/submit-button.svelte';
 
 	const { children, config }: ComponentProps['submitButton'] = $props();
@@ -7,7 +7,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		retrieveAttributes(ctx, config, 'submitButton', () => ({
+		retrieveInputAttributes(ctx, config, 'submitButton', () => ({
 			type: 'submit'
 		}))
 	);

@@ -13,7 +13,7 @@
 		Datalist,
 		getFormContext,
 		inputAttributes,
-		retrieveAttributes,
+		retrieveInputAttributes,
 		type ComponentProps
 	} from '@sjsf/form';
 
@@ -27,7 +27,7 @@
 	let { value = $bindable(), config, handlers }: ComponentProps['textWidget'] = $props();
 
 	const attributes = $derived(
-		retrieveAttributes(ctx, config, 'shadcnText', inputAttributes(handlers))
+		retrieveInputAttributes(ctx, config, 'shadcnText', inputAttributes(handlers))
 	);
 </script>
 

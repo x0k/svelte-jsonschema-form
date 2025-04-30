@@ -13,7 +13,7 @@
 	import {
 		getFormContext,
 		inputAttributes,
-		retrieveAttributes,
+		retrieveInputAttributes,
 		type ComponentProps
 	} from '@sjsf/form';
 
@@ -22,7 +22,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		retrieveAttributes(ctx, config, 'daisyuiSwitch', inputAttributes(handlers))
+		retrieveInputAttributes(ctx, config, 'daisyuiSwitch', inputAttributes(handlers))
 	);
 </script>
 

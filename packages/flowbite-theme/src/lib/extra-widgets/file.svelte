@@ -13,7 +13,7 @@
 	import {
 		getFormContext,
 		inputAttributes,
-		retrieveAttributes,
+		retrieveInputAttributes,
 		type ComponentProps
 	} from '@sjsf/form';
 	import FileUpload from 'flowbite-svelte/Fileupload.svelte';
@@ -30,7 +30,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		retrieveAttributes(ctx, config, 'flowbiteFile', inputAttributes(handlers))
+		retrieveInputAttributes(ctx, config, 'flowbiteFile', inputAttributes(handlers))
 	);
 </script>
 

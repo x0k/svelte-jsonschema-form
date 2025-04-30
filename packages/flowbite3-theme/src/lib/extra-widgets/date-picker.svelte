@@ -10,7 +10,7 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, retrieveAttributes, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, retrieveInputAttributes, type ComponentProps } from '@sjsf/form';
 	import Datepicker from 'flowbite-svelte/Datepicker.svelte';
 
 	let { value = $bindable(), config }: ComponentProps['datePickerWidget'] = $props();
@@ -23,7 +23,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		retrieveAttributes(ctx, config, 'flowbite3Datepicker', () => ({
+		retrieveInputAttributes(ctx, config, 'flowbite3Datepicker', () => ({
 			required: config.required,
 			showActionButtons: true,
 			autohide: false

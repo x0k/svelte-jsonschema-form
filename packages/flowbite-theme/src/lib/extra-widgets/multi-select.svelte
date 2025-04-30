@@ -12,7 +12,7 @@
 <script lang="ts">
 	import {
 		getFormContext,
-		retrieveAttributes,
+		retrieveInputAttributes,
 		selectAttributes,
 		type ComponentProps
 	} from '@sjsf/form';
@@ -45,7 +45,7 @@
 	);
 
 	const attributes = $derived(
-		retrieveAttributes(ctx, config, 'flowbiteMultiSelect', selectAttributes(handlers))
+		retrieveInputAttributes(ctx, config, 'flowbiteMultiSelect', selectAttributes(handlers))
 	);
 </script>
 

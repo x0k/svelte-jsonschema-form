@@ -33,7 +33,7 @@
 <script lang="ts">
 	import {
 		getFormContext,
-		retrieveAttributes,
+		retrieveInputAttributes,
 		retrieveUiProps,
 		type ComponentProps
 	} from '@sjsf/form';
@@ -60,7 +60,7 @@
 	});
 
 	const attributes = $derived(
-		retrieveAttributes(ctx, config, 'shadcnRadioButtons', () => ({
+		retrieveInputAttributes(ctx, config, 'shadcnRadioButtons', () => ({
 			type: 'single',
 			id: config.id,
 			'aria-required': config.required,

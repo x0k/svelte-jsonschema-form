@@ -13,7 +13,7 @@
 <script lang="ts">
 	import {
 		getFormContext,
-		retrieveAttributes,
+		retrieveInputAttributes,
 		textareaAttributes,
 		type ComponentProps
 	} from '@sjsf/form';
@@ -29,7 +29,7 @@
 	let { value = $bindable(), config, handlers }: ComponentProps['textareaWidget'] = $props();
 
 	const attributes = $derived(
-		retrieveAttributes(ctx, config, 'textarea', textareaAttributes(handlers))
+		retrieveInputAttributes(ctx, config, 'textarea', textareaAttributes(handlers))
 	);
 </script>
 

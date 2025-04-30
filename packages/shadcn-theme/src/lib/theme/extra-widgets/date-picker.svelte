@@ -30,7 +30,7 @@
 	import { getLocalTimeZone, parseDate } from '@internationalized/date';
 	import {
 		getFormContext,
-		retrieveAttributes,
+		retrieveInputAttributes,
 		retrieveUiOption,
 		retrieveUiProps,
 		type ComponentProps
@@ -48,7 +48,7 @@
 	let { value = $bindable(), config, handlers }: ComponentProps['datePickerWidget'] = $props();
 
 	const attributes = $derived(
-		retrieveAttributes(ctx, config, 'shadcnDatePicker', () => ({
+		retrieveInputAttributes(ctx, config, 'shadcnDatePicker', () => ({
 			initialFocus: true,
 			onValueChange: handlers.onchange
 		}))

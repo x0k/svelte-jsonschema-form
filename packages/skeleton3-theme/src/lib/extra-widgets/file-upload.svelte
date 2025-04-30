@@ -12,7 +12,7 @@
 
 <script lang="ts">
 	import { type FileUploadApi } from '@skeletonlabs/skeleton-svelte';
-	import { getFormContext, retrieveAttributes, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, retrieveInputAttributes, type ComponentProps } from '@sjsf/form';
 
 	let {
 		config,
@@ -26,7 +26,7 @@
 
 	let lastFiles: FileList | undefined;
 	const attributes = $derived(
-		retrieveAttributes(ctx, config, 'skeleton3FileUpload', () => ({
+		retrieveInputAttributes(ctx, config, 'skeleton3FileUpload', () => ({
 			ids: {
 				hiddenInput: config.id
 			},
