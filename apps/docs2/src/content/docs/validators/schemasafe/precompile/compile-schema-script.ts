@@ -29,7 +29,7 @@ export const schema = ${JSON.stringify(patch.schema, null, 2)} as const satisfie
 
 const schemas = fragmentSchema(patch)
 
-// @ts-expect-error No typing for `multi` version of function
+// @ts-expect-error Typings for `multi` version are missing
 const validate = validator(schemas, {
   ...DEFAULT_VALIDATOR_OPTIONS,
   formats: {
