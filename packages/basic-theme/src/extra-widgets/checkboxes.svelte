@@ -13,7 +13,6 @@
   import {
     getFormContext,
     inputAttributes,
-    retrieveInputAttributes,
     type ComponentProps,
   } from "@sjsf/form";
   import { indexMapper, multipleOptions } from "@sjsf/form/options.svelte";
@@ -28,7 +27,13 @@
   const ctx = getFormContext();
 
   const attributes = $derived(
-    retrieveInputAttributes(ctx, config, "checkboxes", inputAttributes(handlers))
+    inputAttributes("checkboxes", handlers)(
+      {
+        type: "checkbox",
+      },
+      config,
+      ctx
+    )
   );
 
   const mapped = multipleOptions({
@@ -41,7 +46,6 @@
 {#each options as option, index (option.id)}
   <label>
     <input
-      type="checkbox"
       bind:group={mapped.value}
       value={index}
       {...attributes}

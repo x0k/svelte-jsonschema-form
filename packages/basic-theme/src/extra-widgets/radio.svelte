@@ -14,7 +14,6 @@
     inputAttributes,
     getFormContext,
     type ComponentProps,
-    retrieveInputAttributes,
   } from "@sjsf/form";
   import { indexMapper, singleOption } from "@sjsf/form/options.svelte";
 
@@ -28,7 +27,13 @@
   const ctx = getFormContext();
 
   const attributes = $derived(
-    retrieveInputAttributes(ctx, config, "radio", inputAttributes(handlers))
+    inputAttributes("radio", handlers)(
+      {
+        type: "radio",
+      },
+      config,
+      ctx
+    )
   );
 
   const mapped = singleOption({
@@ -44,7 +49,6 @@
       bind:group={mapped.value}
       value={index}
       {...attributes}
-      type="radio"
       id={option.id}
       disabled={option.disabled || attributes.disabled}
     />

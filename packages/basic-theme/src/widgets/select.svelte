@@ -11,7 +11,6 @@
 <script lang="ts">
   import {
     getFormContext,
-    retrieveInputAttributes,
     selectAttributes,
     type ComponentProps,
   } from "@sjsf/form";
@@ -27,7 +26,13 @@
   const ctx = getFormContext();
 
   const attributes = $derived(
-    retrieveInputAttributes(ctx, config, "select", selectAttributes(handlers))
+    selectAttributes("select", handlers)(
+      {
+        style: "flex-grow: 1",
+      },
+      config,
+      ctx
+    )
   );
 
   const mapped = $derived(
@@ -39,7 +44,7 @@
   );
 </script>
 
-<select bind:value={mapped.value} style="flex-grow: 1" {...attributes}>
+<select bind:value={mapped.value} {...attributes}>
   {#if config.schema.default === undefined}
     <option value={-1}>{attributes.placeholder}</option>
   {/if}

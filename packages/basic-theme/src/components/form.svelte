@@ -11,8 +11,8 @@
 <script lang="ts">
   import {
     enhance,
+    formAttributes,
     getFormContext,
-    retrieveUiProps,
     type ComponentProps,
   } from "@sjsf/form";
 
@@ -29,10 +29,13 @@
 <form
   bind:this={ref}
   use:enhance={ctx}
-  {...retrieveUiProps(ctx, config, "form", {
-    style: "display: flex; flex-direction: column; gap: 1rem",
-  })}
-  {...attributes}
+  {...formAttributes("form", attributes)(
+    {
+      style: "display: flex; flex-direction: column; gap: 1rem",
+    },
+    config,
+    ctx
+  )}
 >
   {@render children()}
 </form>

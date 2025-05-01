@@ -14,7 +14,7 @@
 <script lang="ts">
   import {
     getFormContext,
-    retrieveUiProps,
+    titleAttributes,
     type ComponentProps,
   } from "@sjsf/form";
 
@@ -23,10 +23,14 @@
   const ctx = getFormContext();
 </script>
 
-<div
-  {...retrieveUiProps(ctx, config, "titleAttributes", {
-    style: `font-weight: bold; font-size: ${type === "field" ? "unset" : "larger"};`,
-  })}
+<legend
+  {...titleAttributes("titleAttributes")(
+    {
+      style: `font-weight: bold; font-size: ${type === "field" ? "unset" : "larger"};`,
+    },
+    config,
+    ctx
+  )}
 >
   {title}
-</div>
+</legend>

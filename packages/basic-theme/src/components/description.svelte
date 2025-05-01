@@ -13,8 +13,8 @@
 
 <script lang="ts">
   import {
+    descriptionAttributes,
     getFormContext,
-    retrieveUiProps,
     type ComponentProps,
   } from "@sjsf/form";
 
@@ -24,9 +24,13 @@
 </script>
 
 <div
-  {...retrieveUiProps(ctx, config, "descriptionAttributes", {
-    style: "font-weight: 300;",
-  })}
+  {...descriptionAttributes("descriptionAttributes")(
+    {
+      style: "font-weight: 300;",
+    },
+    config,
+    ctx
+  )}
 >
   {description}
 </div>

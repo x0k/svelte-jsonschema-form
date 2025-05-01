@@ -13,7 +13,6 @@
   import {
     getFormContext,
     inputAttributes,
-    retrieveInputAttributes,
     type ComponentProps,
   } from "@sjsf/form";
 
@@ -29,16 +28,17 @@
   const ctx = getFormContext();
 
   const attributes = $derived(
-    retrieveInputAttributes(ctx, config, "file", inputAttributes(handlers))
+    inputAttributes("file", handlers)(
+      {
+        multiple,
+        style: "flex-grow: 1",
+        "data-loading": loading,
+        "data-processing": processing,
+      },
+      config,
+      ctx
+    )
   );
 </script>
 
-<input
-  type="file"
-  bind:files={value}
-  {multiple}
-  style="flex-grow: 1"
-  data-loading={loading}
-  data-processing={processing}
-  {...attributes}
-/>
+<input type="file" bind:files={value} {...attributes} />

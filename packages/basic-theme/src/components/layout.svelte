@@ -22,9 +22,12 @@
 
 <script lang="ts">
   import {
+    composeProps,
     getFormContext,
-    retrieveNestedUiProps,
-    retrieveUiProps,
+    labelAttributes,
+    layoutAttributes,
+    uiOptionNestedProps,
+    uiOptionProps,
     type ComponentProps,
   } from "@sjsf/form";
 
@@ -68,18 +71,12 @@
   const ctx = getFormContext();
 
   const attributes = $derived(
-    retrieveNestedUiProps(
-      ctx,
-      config,
-      "layouts",
-      (l) => l[type],
-      retrieveUiProps(ctx, config, "layout", {})
-    )
+    layoutAttributes("layout", "layouts", type)({}, config, ctx)!
   );
 </script>
 
-{#if style || Object.keys(attributes).length > 0}
-  <div {style} data-layout={type} {...attributes}>
+{#if style || Object.keys(attributes).length > 1}
+  <div {style} {...attributes}>
     {@render children()}
   </div>
 {:else}

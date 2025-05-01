@@ -13,7 +13,6 @@
     Datalist,
     getFormContext,
     inputAttributes,
-    retrieveInputAttributes,
     type ComponentProps,
   } from "@sjsf/form";
 
@@ -26,9 +25,16 @@
   const ctx = getFormContext();
 
   const attributes = $derived(
-    retrieveInputAttributes(ctx, config, "text", inputAttributes(handlers))
+    inputAttributes("text", handlers)(
+      {
+        style: "flex-grow: 1",
+        type: "text",
+      },
+      config,
+      ctx
+    )
   );
 </script>
 
-<input type="text" bind:value style="flex-grow: 1" {...attributes} />
+<input bind:value {...attributes} />
 <Datalist id={attributes.list} {config} />

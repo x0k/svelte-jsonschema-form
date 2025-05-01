@@ -12,7 +12,6 @@
 <script lang="ts">
   import {
     getFormContext,
-    retrieveInputAttributes,
     selectAttributes,
     type ComponentProps,
   } from "@sjsf/form";
@@ -28,7 +27,13 @@
   const ctx = getFormContext();
 
   const attributes = $derived(
-    retrieveInputAttributes(ctx, config, "multiSelect", selectAttributes(handlers))
+    selectAttributes("multiSelect", handlers)(
+      {
+        style: "flex-grow: 1",
+      },
+      config,
+      ctx
+    )
   );
 
   const mapped = $derived(
@@ -40,7 +45,7 @@
   );
 </script>
 
-<select multiple bind:value={mapped.value} style="flex-grow: 1" {...attributes}>
+<select multiple bind:value={mapped.value} {...attributes}>
   {#each options as option, index (option.id)}
     <option value={index} disabled={option.disabled}>
       {option.label}

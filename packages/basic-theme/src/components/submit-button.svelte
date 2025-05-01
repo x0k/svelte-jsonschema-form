@@ -10,23 +10,24 @@
 
 <script lang="ts">
   import {
+    buttonAttributes,
     getFormContext,
-    retrieveInputAttributes,
     type ComponentProps,
   } from "@sjsf/form";
 
   const { children, config }: ComponentProps["submitButton"] = $props();
 
   const ctx = getFormContext();
-
-  const attributes = $derived(
-    retrieveInputAttributes(ctx, config, "submitButton", () => ({
-      type: "submit",
-      style: "width: 100%; padding: 0.5rem;",
-    }))
-  );
 </script>
 
-<button {...attributes}>
+<button
+  {...buttonAttributes("submitButton", "submit")(
+    {
+      style: "width: 100%; padding: 0.5rem;",
+    },
+    config,
+    ctx
+  )}
+>
   {@render children()}
 </button>

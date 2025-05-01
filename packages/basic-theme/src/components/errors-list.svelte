@@ -13,9 +13,8 @@
 
 <script lang="ts">
   import {
-    ERRORS_FOR_KEY,
+    errorsListAttributes,
     getFormContext,
-    retrieveUiProps,
     type ComponentProps,
   } from "@sjsf/form";
 
@@ -25,10 +24,13 @@
 </script>
 
 <ui
-  {...retrieveUiProps(ctx, config, "errorsList", {
-    style: "color: red;",
-    [ERRORS_FOR_KEY]: config.id,
-  })}
+  {...errorsListAttributes("errorsList")(
+    {
+      style: "color: red;",
+    },
+    config,
+    ctx
+  )}
 >
   {#each errors as err}
     <li>{err.message}</li>

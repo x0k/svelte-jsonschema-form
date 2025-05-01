@@ -13,7 +13,6 @@
   import {
     getFormContext,
     inputAttributes,
-    retrieveInputAttributes,
     type ComponentProps,
   } from "@sjsf/form";
 
@@ -26,13 +25,15 @@
   const ctx = getFormContext();
 
   const attributes = $derived(
-    retrieveInputAttributes(ctx, config, "range", inputAttributes(handlers))
+    inputAttributes("range", handlers)(
+      {
+        type: "range",
+        style: "flex-grow: 1",
+      },
+      config,
+      ctx
+    )
   );
 </script>
 
-<input
-  type="range"
-  bind:value={() => value ?? 0, (v) => (value = v)}
-  style="flex-grow: 1"
-  {...attributes}
-/>
+<input bind:value={() => value ?? 0, (v) => (value = v)} {...attributes} />

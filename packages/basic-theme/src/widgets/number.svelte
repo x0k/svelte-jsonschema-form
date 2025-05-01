@@ -13,7 +13,6 @@
     Datalist,
     getFormContext,
     inputAttributes,
-    retrieveInputAttributes,
     type ComponentProps,
   } from "@sjsf/form";
 
@@ -26,14 +25,19 @@
   const ctx = getFormContext();
 
   const attributes = $derived(
-    retrieveInputAttributes(ctx, config, "number", inputAttributes(handlers))
+    inputAttributes("number", handlers)(
+      {
+        type: "number",
+        style: "flex-grow: 1",
+      },
+      config,
+      ctx
+    )
   );
 </script>
 
 <input
-  type="number"
   bind:value={() => value ?? null, (v) => (value = v ?? undefined)}
-  style="flex-grow: 1"
   {...attributes}
 />
 <Datalist id={attributes.list} {config} />

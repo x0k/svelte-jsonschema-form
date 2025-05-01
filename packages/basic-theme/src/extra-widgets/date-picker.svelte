@@ -14,7 +14,6 @@
     Datalist,
     getFormContext,
     inputAttributes,
-    retrieveInputAttributes,
     type ComponentProps,
   } from "@sjsf/form";
 
@@ -27,9 +26,16 @@
   const ctx = getFormContext();
 
   const attributes = $derived(
-    retrieveInputAttributes(ctx, config, "datePicker", inputAttributes(handlers))
+    inputAttributes("datePicker", handlers)(
+      {
+        type: "date",
+        style: "flex-grow: 1",
+      },
+      config,
+      ctx
+    )
   );
 </script>
 
-<input type="date" bind:value style="flex-grow: 1" {...attributes} />
+<input bind:value {...attributes} />
 <Datalist id={attributes.list} {config} />

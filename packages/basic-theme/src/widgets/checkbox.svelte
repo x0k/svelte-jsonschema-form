@@ -12,7 +12,6 @@
   import {
     getFormContext,
     inputAttributes,
-    retrieveInputAttributes,
     type ComponentProps,
   } from "@sjsf/form";
 
@@ -25,7 +24,7 @@
   const ctx = getFormContext();
 
   const attributes = $derived(
-    retrieveInputAttributes(ctx, config, "checkbox", inputAttributes(handlers))
+    inputAttributes("checkbox", handlers)({ type: "checkbox" }, config, ctx)
   );
 </script>
 

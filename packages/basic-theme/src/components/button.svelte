@@ -22,10 +22,11 @@
 
 <script lang="ts">
   import {
-    defineDisabled,
+    composeProps,
+    disabledProp,
     getFormContext,
-    retrieveNestedUiProps,
-    retrieveUiProps,
+    uiOptionProps,
+    uiOptionNestedProps,
     type ComponentProps,
   } from "@sjsf/form";
 
@@ -48,26 +49,22 @@
         return undefined;
     }
   }
-
-  const attributes = $derived(
-    defineDisabled(
-      ctx,
-      retrieveNestedUiProps(
-        ctx,
-        config,
-        "buttons",
-        (p) => p[type],
-        retrieveUiProps(ctx, config, "button", {
-          disabled,
-          type: "button",
-          style: getStyle(type),
-          onclick,
-        })
-      )
-    )
-  );
 </script>
 
-<button {...attributes}>
+<button
+  {...composeProps(
+    ctx,
+    config,
+    {
+      disabled,
+      type: "button",
+      style: getStyle(type),
+      onclick,
+    } satisfies HTMLButtonAttributes,
+    uiOptionProps("button"),
+    uiOptionNestedProps("buttons", (p) => p[type]),
+    disabledProp
+  )}
+>
   {@render children()}
 </button>

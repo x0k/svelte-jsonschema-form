@@ -12,7 +12,6 @@
 <script lang="ts">
   import {
     getFormContext,
-    retrieveInputAttributes,
     textareaAttributes,
     type ComponentProps,
   } from "@sjsf/form";
@@ -26,8 +25,14 @@
   const ctx = getFormContext();
 
   const attributes = $derived(
-    retrieveInputAttributes(ctx, config, "textarea", textareaAttributes(handlers))
+    textareaAttributes("textarea", handlers)(
+      {
+        style: "flex-grow: 1;",
+      },
+      config,
+      ctx
+    )
   );
 </script>
 
-<textarea bind:value style="flex-grow: 1;" {...attributes}></textarea>
+<textarea bind:value {...attributes}></textarea>
