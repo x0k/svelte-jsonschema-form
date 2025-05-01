@@ -250,175 +250,209 @@ export function buttonTypeProp(
   };
 }
 
-export function descriptionAttributes<O extends keyof ObjectUiOptions>(
-  option: O
-) {
-  return <V extends Validator>(
-    props: Exclude<UiOptions[O], undefined>,
-    config: Config,
-    ctx: FormInternalContext<V>
-  ) =>
-    composeProps(
-      ctx,
-      config,
-      props,
-      idProp("description"),
-      uiOptionProps(option)
-    );
-}
-
-export function errorsListAttributes<O extends keyof ObjectUiOptions>(
-  option: O
-) {
-  return <V extends Validator>(
-    props: Exclude<UiOptions[O], undefined>,
-    config: Config,
-    ctx: FormInternalContext<V>
-  ) =>
-    composeProps(
-      ctx,
-      config,
-      props,
-      idProp("errors"),
-      tabindexProp(-1),
-      uiOptionProps(option)
-    );
-}
-
-export function formAttributes<O extends keyof ObjectUiOptions>(
+export function descriptionAttributes<
+  V extends Validator,
+  O extends keyof ObjectUiOptions,
+>(
+  ctx: FormInternalContext<V>,
+  config: Config,
   option: O,
-  attributes: HTMLFormAttributes | undefined
+  props: Exclude<UiOptions[O], undefined>
 ) {
-  return <V extends Validator>(
-    props: Exclude<UiOptions[O], undefined>,
-    config: Config,
-    ctx: FormInternalContext<V>
-  ) =>
-    composeProps(
-      ctx,
-      config,
-      props,
-      uiOptionProps(option),
-      assignProps(attributes)
-    );
+  return composeProps(
+    ctx,
+    config,
+    props,
+    idProp("description"),
+    uiOptionProps(option)
+  );
 }
 
-export function helpAttributes<O extends keyof ObjectUiOptions>(option: O) {
-  return <V extends Validator>(
-    props: Exclude<UiOptions[O], undefined>,
-    config: Config,
-    ctx: FormInternalContext<V>
-  ) => composeProps(ctx, config, props, idProp("help"), uiOptionProps(option));
+export function errorsListAttributes<
+  V extends Validator,
+  O extends keyof ObjectUiOptions,
+>(
+  ctx: FormInternalContext<V>,
+  config: Config,
+  option: O,
+  props: Exclude<UiOptions[O], undefined>
+) {
+  return composeProps(
+    ctx,
+    config,
+    props,
+    idProp("errors"),
+    tabindexProp(-1),
+    uiOptionProps(option)
+  );
 }
 
-export function labelAttributes<O extends keyof ObjectUiOptions>(option: O) {
-  return <V extends Validator>(
-    props: Exclude<UiOptions[O], undefined>,
-    config: Config,
-    ctx: FormInternalContext<V>
-  ) => composeProps(ctx, config, props, forProp, uiOptionProps(option));
+export function formAttributes<
+  V extends Validator,
+  O extends keyof ObjectUiOptions,
+>(
+  ctx: FormInternalContext<V>,
+  config: Config,
+  option: O,
+  attributes: HTMLFormAttributes | undefined,
+  props: Exclude<UiOptions[O], undefined>
+) {
+  return composeProps(
+    ctx,
+    config,
+    props,
+    uiOptionProps(option),
+    assignProps(attributes)
+  );
 }
 
-export function titleAttributes<O extends keyof ObjectUiOptions>(option: O) {
-  return <V extends Validator>(
-    props: Exclude<UiOptions[O], undefined>,
-    config: Config,
-    ctx: FormInternalContext<V>
-  ) => composeProps(ctx, config, props, idProp("title"), uiOptionProps(option));
+export function helpAttributes<
+  V extends Validator,
+  O extends keyof ObjectUiOptions,
+>(
+  ctx: FormInternalContext<V>,
+  config: Config,
+  option: O,
+  props: Exclude<UiOptions[O], undefined>
+) {
+  return composeProps(
+    ctx,
+    config,
+    props,
+    idProp("help"),
+    uiOptionProps(option)
+  );
+}
+
+export function labelAttributes<
+  V extends Validator,
+  O extends keyof ObjectUiOptions,
+>(
+  ctx: FormInternalContext<V>,
+  config: Config,
+  option: O,
+  props: Exclude<UiOptions[O], undefined>
+) {
+  return composeProps(ctx, config, props, forProp, uiOptionProps(option));
+}
+
+export function titleAttributes<
+  V extends Validator,
+  O extends keyof ObjectUiOptions,
+>(
+  ctx: FormInternalContext<V>,
+  config: Config,
+  option: O,
+  props: Exclude<UiOptions[O], undefined>
+) {
+  return composeProps(
+    ctx,
+    config,
+    props,
+    idProp("title"),
+    uiOptionProps(option)
+  );
 }
 
 // WARN: basic layout depends on amount of required props
 export function layoutAttributes<
+  V extends Validator,
   O extends keyof ObjectUiOptions,
-  O2 extends keyof ObjectUiOptions
->(option: O, nestedOption: O2, type: keyof Exclude<UiOptions[O2], undefined>) {
-  return <V extends Validator>(
-    props: Exclude<UiOptions[O], undefined>,
-    config: Config,
-    ctx: FormInternalContext<V>
-  ) =>
-    composeProps(
-      ctx,
-      config,
-      props,
-      dataLayoutProp(type as string),
-      uiOptionProps(option),
-      uiOptionNestedProps(nestedOption, (t) => t[type])
-    );
+  O2 extends keyof ObjectUiOptions,
+>(
+  ctx: FormInternalContext<V>,
+  config: Config,
+  option: O,
+  nestedOption: O2,
+  type: keyof Exclude<UiOptions[O2], undefined>,
+  props: Exclude<UiOptions[O], undefined>
+) {
+  return composeProps(
+    ctx,
+    config,
+    props,
+    dataLayoutProp(type as string),
+    uiOptionProps(option),
+    uiOptionNestedProps(nestedOption, (t) => t[type])
+  );
 }
 
-export function buttonAttributes<O extends keyof ObjectUiOptions>(
+export function buttonAttributes<
+  V extends Validator,
+  O extends keyof ObjectUiOptions,
+>(
+  ctx: FormInternalContext<V>,
+  config: Config,
   option: O,
-  type: Exclude<HTMLButtonAttributes["type"], undefined>
+  type: Exclude<HTMLButtonAttributes["type"], undefined>,
+  props: Exclude<UiOptions[O], undefined>
 ) {
-  return <V extends Validator>(
-    props: Exclude<UiOptions[O], undefined>,
-    config: Config,
-    ctx: FormInternalContext<V>
-  ) =>
-    composeProps(
-      ctx,
-      config,
-      props,
-      buttonTypeProp(type),
-      uiOptionProps(option),
-      disabledProp
-    );
+  return composeProps(
+    ctx,
+    config,
+    props,
+    buttonTypeProp(type),
+    uiOptionProps(option),
+    disabledProp
+  );
 }
 
-export function inputAttributes<O extends keyof ObjectUiOptions>(
+export function inputAttributes<
+  V extends Validator,
+  O extends keyof ObjectUiOptions,
+>(
+  ctx: FormInternalContext<V>,
+  config: Config,
   option: O,
-  handlers: Handlers
+  handlers: Handlers,
+  props: Exclude<UiOptions[O], undefined>
 ) {
-  return <V extends Validator>(
-    props: Exclude<UiOptions[O], undefined>,
-    config: Config,
-    ctx: FormInternalContext<V>
-  ) =>
-    composeProps(
-      ctx,
-      config,
-      props,
-      inputProps(handlers),
-      uiOptionProps(option),
-      disabledProp
-    );
+  return composeProps(
+    ctx,
+    config,
+    props,
+    inputProps(handlers),
+    uiOptionProps(option),
+    disabledProp
+  );
 }
 
-export function selectAttributes<O extends keyof ObjectUiOptions>(
+export function selectAttributes<
+  V extends Validator,
+  O extends keyof ObjectUiOptions,
+>(
+  ctx: FormInternalContext<V>,
+  config: Config,
   option: O,
-  handlers: Handlers
+  handlers: Handlers,
+  props: Exclude<UiOptions[O], undefined>
 ) {
-  return <V extends Validator>(
-    props: Exclude<UiOptions[O], undefined>,
-    config: Config,
-    ctx: FormInternalContext<V>
-  ) =>
-    composeProps(
-      ctx,
-      config,
-      props,
-      selectProps(handlers),
-      uiOptionProps(option),
-      disabledProp
-    );
+  return composeProps(
+    ctx,
+    config,
+    props,
+    selectProps(handlers),
+    uiOptionProps(option),
+    disabledProp
+  );
 }
 
-export function textareaAttributes<O extends keyof ObjectUiOptions>(
+export function textareaAttributes<
+  V extends Validator,
+  O extends keyof ObjectUiOptions,
+>(
+  ctx: FormInternalContext<V>,
+  config: Config,
   option: O,
-  handlers: Handlers
+  handlers: Handlers,
+  props: Exclude<UiOptions[O], undefined>
 ) {
-  return <V extends Validator>(
-    props: Exclude<UiOptions[O], undefined>,
-    config: Config,
-    ctx: FormInternalContext<V>
-  ) =>
-    composeProps(
-      ctx,
-      config,
-      props,
-      textareaProps(handlers),
-      uiOptionProps(option),
-      disabledProp
-    );
+  return composeProps(
+    ctx,
+    config,
+    props,
+    textareaProps(handlers),
+    uiOptionProps(option),
+    disabledProp
+  );
 }
