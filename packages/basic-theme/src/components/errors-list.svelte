@@ -24,13 +24,9 @@
 </script>
 
 <ui
-  {...errorsListAttributes("errorsList")(
-    {
-      style: "color: red;",
-    },
-    config,
-    ctx
-  )}
+  {...errorsListAttributes(ctx, config, "errorsList", {
+    style: "color: red;",
+  })}
 >
   {#each errors as err}
     <li>{err.message}</li>

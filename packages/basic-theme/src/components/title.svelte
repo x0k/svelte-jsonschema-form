@@ -24,13 +24,9 @@
 </script>
 
 <legend
-  {...titleAttributes("titleAttributes")(
-    {
-      style: `font-weight: bold; font-size: ${type === "field" ? "unset" : "larger"};`,
-    },
-    config,
-    ctx
-  )}
+  {...titleAttributes(ctx, config, "titleAttributes", {
+    style: `font-weight: bold; font-size: ${type === "field" ? "unset" : "larger"};`,
+  })}
 >
   {title}
 </legend>

@@ -25,13 +25,9 @@
   const ctx = getFormContext();
 
   const attributes = $derived(
-    textareaAttributes("textarea", handlers)(
-      {
-        style: "flex-grow: 1;",
-      },
-      config,
-      ctx
-    )
+    textareaAttributes(ctx, config, "textarea", handlers, {
+      style: "flex-grow: 1;",
+    })
   );
 </script>
 

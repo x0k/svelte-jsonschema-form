@@ -27,13 +27,9 @@
   const ctx = getFormContext();
 
   const attributes = $derived(
-    inputAttributes("radio", handlers)(
-      {
-        type: "radio",
-      },
-      config,
-      ctx
-    )
+    inputAttributes(ctx, config, "radio", handlers, {
+      type: "radio",
+    })
   );
 
   const mapped = singleOption({

@@ -27,13 +27,9 @@
   const ctx = getFormContext();
 
   const attributes = $derived(
-    selectAttributes("multiSelect", handlers)(
-      {
-        style: "flex-grow: 1",
-      },
-      config,
-      ctx
-    )
+    selectAttributes(ctx, config, "multiSelect", handlers, {
+      style: "flex-grow: 1",
+    })
   );
 
   const mapped = $derived(

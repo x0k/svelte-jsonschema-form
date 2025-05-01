@@ -24,13 +24,9 @@
 </script>
 
 <label
-  {...labelAttributes("labelAttributes")(
-    {
-      style: "font-weight: bold;",
-    },
-    config,
-    ctx
-  )}
+  {...labelAttributes(ctx, config, "labelAttributes", {
+    style: "font-weight: bold;",
+  })}
 >
   {title}
   {#if config.required}

@@ -25,14 +25,10 @@
   const ctx = getFormContext();
 
   const attributes = $derived(
-    inputAttributes("range", handlers)(
-      {
-        type: "range",
-        style: "flex-grow: 1",
-      },
-      config,
-      ctx
-    )
+    inputAttributes(ctx, config, "range", handlers, {
+      type: "range",
+      style: "flex-grow: 1",
+    })
   );
 </script>
 

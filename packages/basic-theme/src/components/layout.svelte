@@ -71,7 +71,7 @@
   const ctx = getFormContext();
 
   const attributes = $derived(
-    layoutAttributes("layout", "layouts", type)({}, config, ctx)!
+    layoutAttributes(ctx, config, "layout", "layouts", type, {})!
   );
 </script>
 

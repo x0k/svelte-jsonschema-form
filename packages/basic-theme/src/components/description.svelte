@@ -24,13 +24,9 @@
 </script>
 
 <div
-  {...descriptionAttributes("descriptionAttributes")(
-    {
-      style: "font-weight: 300;",
-    },
-    config,
-    ctx
-  )}
+  {...descriptionAttributes(ctx, config, "descriptionAttributes", {
+    style: "font-weight: 300;",
+  })}
 >
   {description}
 </div>

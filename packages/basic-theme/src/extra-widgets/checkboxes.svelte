@@ -27,13 +27,9 @@
   const ctx = getFormContext();
 
   const attributes = $derived(
-    inputAttributes("checkboxes", handlers)(
-      {
-        type: "checkbox",
-      },
-      config,
-      ctx
-    )
+    inputAttributes(ctx, config, "checkboxes", handlers, {
+      type: "checkbox",
+    })
   );
 
   const mapped = multipleOptions({

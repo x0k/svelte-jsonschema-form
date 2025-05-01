@@ -24,7 +24,7 @@
   const ctx = getFormContext();
 
   const attributes = $derived(
-    inputAttributes("checkbox", handlers)({ type: "checkbox" }, config, ctx)
+    inputAttributes(ctx, config, "checkbox", handlers, { type: "checkbox" })
   );
 </script>
 

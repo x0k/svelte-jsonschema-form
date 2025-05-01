@@ -29,13 +29,9 @@
 <form
   bind:this={ref}
   use:enhance={ctx}
-  {...formAttributes("form", attributes)(
-    {
-      style: "display: flex; flex-direction: column; gap: 1rem",
-    },
-    config,
-    ctx
-  )}
+  {...formAttributes(ctx, config, "form", attributes, {
+    style: "display: flex; flex-direction: column; gap: 1rem",
+  })}
 >
   {@render children()}
 </form>

@@ -24,13 +24,9 @@
 </script>
 
 <div
-  {...helpAttributes("helpAttributes")(
-    {
-      style: "font-weight: 300;",
-    },
-    config,
-    ctx
-  )}
+  {...helpAttributes(ctx, config, "helpAttributes", {
+    style: "font-weight: 300;",
+  })}
 >
   {help}
 </div>

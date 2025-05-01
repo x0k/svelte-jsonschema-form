@@ -26,13 +26,9 @@
   const ctx = getFormContext();
 
   const attributes = $derived(
-    selectAttributes("select", handlers)(
-      {
-        style: "flex-grow: 1",
-      },
-      config,
-      ctx
-    )
+    selectAttributes(ctx, config, "select", handlers, {
+      style: "flex-grow: 1",
+    })
   );
 
   const mapped = $derived(

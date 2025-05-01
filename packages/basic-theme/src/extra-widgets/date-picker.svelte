@@ -26,14 +26,10 @@
   const ctx = getFormContext();
 
   const attributes = $derived(
-    inputAttributes("datePicker", handlers)(
-      {
-        type: "date",
-        style: "flex-grow: 1",
-      },
-      config,
-      ctx
-    )
+    inputAttributes(ctx, config, "datePicker", handlers, {
+      type: "date",
+      style: "flex-grow: 1",
+    })
   );
 </script>
 

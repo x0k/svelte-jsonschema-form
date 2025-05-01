@@ -28,16 +28,12 @@
   const ctx = getFormContext();
 
   const attributes = $derived(
-    inputAttributes("file", handlers)(
-      {
-        multiple,
-        style: "flex-grow: 1",
-        "data-loading": loading,
-        "data-processing": processing,
-      },
-      config,
-      ctx
-    )
+    inputAttributes(ctx, config, "file", handlers, {
+      multiple,
+      style: "flex-grow: 1",
+      "data-loading": loading,
+      "data-processing": processing,
+    })
   );
 </script>
 

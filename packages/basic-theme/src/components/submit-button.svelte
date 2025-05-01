@@ -21,13 +21,9 @@
 </script>
 
 <button
-  {...buttonAttributes("submitButton", "submit")(
-    {
-      style: "width: 100%; padding: 0.5rem;",
-    },
-    config,
-    ctx
-  )}
+  {...buttonAttributes(ctx, config, "submitButton", "submit", {
+    style: "width: 100%; padding: 0.5rem;",
+  })}
 >
   {@render children()}
 </button>
