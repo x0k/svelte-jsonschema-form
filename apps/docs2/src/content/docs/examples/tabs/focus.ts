@@ -2,16 +2,17 @@ import {
   DEFAULT_ID_SEPARATOR,
   pathToId,
   type FieldErrorsMap,
-  type PathToIdOptions,
+  type IdOptions,
 } from "@sjsf/form";
-import { focusOnFirstError } from "@sjsf/form/focus-on-first-error";
+import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 
 import type { TabsContext } from "./context.svelte";
 
-export function makeTabbedFocusOnFirstError<E>(
+export function createTabbedFocusOnFirstError<E>(
   ctx: TabsContext,
-  options: PathToIdOptions = {}
+  options: IdOptions = {}
 ) {
+  const focus = createFocusOnFirstError(options);
   return (errors: FieldErrorsMap<E>, e: SubmitEvent) => {
     if (errors.size === 0) {
       return;
@@ -32,6 +33,6 @@ export function makeTabbedFocusOnFirstError<E>(
       node.selectedTab = Number(path[i]);
       children = node.children;
     }
-    return focusOnFirstError(errors, e);
+    return focus(errors, e);
   };
 }

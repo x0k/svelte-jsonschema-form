@@ -5,7 +5,7 @@
 
   import {
     Layout,
-    makeTabbedFocusOnFirstError,
+    createTabbedFocusOnFirstError,
     schema,
     setTabsContext,
     type TabsContext,
@@ -29,7 +29,7 @@
     schema,
     uiSchema,
     onSubmit: console.log,
-    onSubmitError: makeTabbedFocusOnFirstError(tabsCtx),
+    onSubmitError: createTabbedFocusOnFirstError(tabsCtx),
   });
 </script>
 
