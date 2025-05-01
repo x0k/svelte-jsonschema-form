@@ -14,7 +14,7 @@
   } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { resolver } from "@sjsf/form/resolvers/compat";
-  import { focusOnFirstError } from "@sjsf/form/focus-on-first-error";
+  import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
   import { setThemeContext } from "@sjsf/shadcn-theme";
   import * as components from "@sjsf/shadcn-theme/default";
 
@@ -140,7 +140,7 @@
     },
     onSubmitError(errors, e) {
       if (doFocusOnFirstError) {
-        focusOnFirstError(errors, e);
+        createFocusOnFirstError()(errors, e);
       }
       console.log("errors", errors);
     },
