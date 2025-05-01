@@ -1,10 +1,5 @@
 <script lang="ts">
-	import {
-		getFormContext,
-		inputAttributes,
-		retrieveInputAttributes,
-		type ComponentProps
-	} from '@sjsf/form';
+	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 	import { multipleOptions, indexMapper } from '@sjsf/form/options.svelte';
 	import '@sjsf/basic-theme/extra-widgets/checkboxes.svelte';
 
@@ -25,14 +20,13 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		retrieveInputAttributes(ctx, config, 'checkboxes', inputAttributes(handlers))
+		inputAttributes('checkboxes', handlers)({ type: 'checkbox' }, config, ctx)
 	);
 </script>
 
 {#each options as option, index (option.id)}
 	<label class="fieldset-label">
 		<input
-			type="checkbox"
 			class={['checkbox', errors.length > 0 && 'checkbox-error']}
 			bind:group={mapped.value}
 			value={index}

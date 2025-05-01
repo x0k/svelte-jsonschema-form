@@ -10,13 +10,7 @@
 </script>
 
 <script lang="ts">
-	import {
-		createPseudoId,
-		getFormContext,
-		inputAttributes,
-		retrieveInputAttributes,
-		type ComponentProps
-	} from '@sjsf/form';
+	import { createPseudoId, getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 	import '@sjsf/form/fields/extra-widgets/rating';
 
 	let { config, handlers, value = $bindable() }: ComponentProps['ratingWidget'] = $props();
@@ -24,14 +18,13 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		retrieveInputAttributes(ctx, config, 'daisyui5Rating', inputAttributes(handlers))
+		inputAttributes('daisyui5Rating', handlers)({ type: 'radio' }, config, ctx)
 	);
 </script>
 
 <div class="rating">
 	{#each { length: config.schema.maximum ?? 5 } as _, index}
 		<input
-			type="radio"
 			class="mask mask-star"
 			bind:group={value}
 			value={index + 1}

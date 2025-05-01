@@ -12,13 +12,7 @@
 </script>
 
 <script lang="ts">
-	import {
-		getFormContext,
-		inputAttributes,
-		retrieveInputAttributes,
-		retrieveUiProps,
-		type ComponentProps
-	} from '@sjsf/form';
+	import { getFormContext, inputAttributes, uiOptionProps, type ComponentProps } from '@sjsf/form';
 
 	let {
 		value = $bindable(),
@@ -31,29 +25,27 @@
 	$effect(() => {
 		import('pikaday').then(({ default: Pikaday }) => {
 			const picker = new Pikaday(
-				retrieveUiProps(ctx, config, 'daisyui5PikadayCalendarOptions', {
-					field: input,
-					blurFieldOnSelect: false,
-					onSelect(date) {
-						value = date.toLocaleDateString('en-CA');
-					}
-				})
+				uiOptionProps('daisyui5PikadayCalendarOptions')(
+					{
+						field: input,
+						blurFieldOnSelect: false,
+						onSelect(date) {
+							value = date.toLocaleDateString('en-CA');
+						}
+					},
+					config,
+					ctx
+				)
 			);
 			return () => picker.destroy();
 		});
 	});
 
 	const ctx = getFormContext();
-
-	const attributes = $derived(
-		retrieveInputAttributes(ctx, config, 'daisyui5PikadayCalendar', inputAttributes(handlers))
-	);
 </script>
 
 <input
 	bind:this={input}
-	type="text"
-	{value}
 	class={['input pika-single w-full', errors.length > 0 && 'input-error']}
-	{...attributes}
+	{...inputAttributes('daisyui5PikadayCalendar', handlers)({ type: 'text', value }, config, ctx)}
 />

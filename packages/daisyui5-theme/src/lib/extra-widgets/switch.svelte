@@ -10,20 +10,11 @@
 </script>
 
 <script lang="ts">
-	import {
-		getFormContext,
-		inputAttributes,
-		retrieveInputAttributes,
-		type ComponentProps
-	} from '@sjsf/form';
+	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 
 	let { config, value = $bindable(), handlers, errors }: ComponentProps['switchWidget'] = $props();
 
 	const ctx = getFormContext();
-
-	const attributes = $derived(
-		retrieveInputAttributes(ctx, config, 'daisyui5Switch', inputAttributes(handlers))
-	);
 </script>
 
 <label class="fieldset-label">
@@ -31,7 +22,7 @@
 		type="checkbox"
 		class={['toggle', errors.length > 0 && 'toggle-error']}
 		bind:checked={() => value ?? false, (v) => (value = v)}
-		{...attributes}
+		{...inputAttributes('daisyui5Switch', handlers)({}, config, ctx)}
 	/>
 	{config.title}
 </label>

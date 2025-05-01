@@ -11,13 +11,7 @@
 </script>
 
 <script lang="ts">
-	import {
-		getFormContext,
-		inputAttributes,
-		retrieveInputAttributes,
-		retrieveUiProps,
-		type ComponentProps
-	} from '@sjsf/form';
+	import { getFormContext, inputAttributes, uiOptionProps, type ComponentProps } from '@sjsf/form';
 	import { singleOption, indexMapper } from '@sjsf/form/options.svelte';
 
 	let {
@@ -39,21 +33,25 @@
 	const ctx = getFormContext();
 
 	const itemAttributes = $derived(
-		retrieveInputAttributes(ctx, config, 'daisyui5FilterItem', inputAttributes(handlers))
+		inputAttributes('daisyui5FilterItem', handlers)(
+			{
+				type: 'radio'
+			},
+			config,
+			ctx
+		)
 	);
 </script>
 
-<div class="filter" {...retrieveUiProps(ctx, config, 'daisyui5Filter', {})}>
+<div class="filter" {...uiOptionProps('daisyui5Filter')({}, config, ctx)}>
 	<input
 		class="btn filter-reset"
-		type="radio"
 		bind:group={mapped.value}
 		{...itemAttributes}
 		aria-label="Reset"
 	/>
 	{#each options as option, index (option.id)}
 		<input
-			type="radio"
 			class={['btn', errors.length > 0 && 'btn-error']}
 			bind:group={mapped.value}
 			value={index}

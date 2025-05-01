@@ -35,10 +35,10 @@
 <script lang="ts">
 	import { formatAsCustomPropertyName } from '@sjsf/form/lib/css';
 	import {
+		buttonAttributes,
 		getFormContext,
-		retrieveInputAttributes,
 		retrieveUiOption,
-		retrieveUiProps,
+		uiOptionProps,
 		type ComponentProps
 	} from '@sjsf/form';
 	import 'cally';
@@ -70,11 +70,14 @@
 	const anchorName = $derived(formatAsCustomPropertyName(id));
 
 	const triggerAttributes = $derived(
-		retrieveInputAttributes(ctx, config, 'daisyui5CallyCalendarTrigger', () => ({
-			type: 'button',
-			popovertarget: `${id}-popover`,
-			style: `anchor-name: ${anchorName};`
-		}))
+		buttonAttributes('daisyui5CallyCalendarTrigger', 'button')(
+			{
+				popovertarget: `${id}-popover`,
+				style: `anchor-name: ${anchorName};`
+			},
+			config,
+			ctx
+		)
 	);
 </script>
 
@@ -103,9 +106,13 @@
 			value = target.value as string;
 			handlers.onchange?.();
 		}}
-		{...retrieveUiProps(ctx, config, 'daisyui5CallyCalendar', {
-			value,
-		})}
+		{...uiOptionProps('daisyui5CallyCalendar')(
+			{
+				value,
+			},
+			config,
+			ctx
+		)}
 	>
 		<svg
 			aria-label="Previous"

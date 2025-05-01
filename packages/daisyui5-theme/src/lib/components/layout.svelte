@@ -13,12 +13,7 @@
 </script>
 
 <script lang="ts">
-	import {
-		getFormContext,
-		retrieveNestedUiProps,
-		retrieveUiProps,
-		type ComponentProps
-	} from '@sjsf/form';
+	import { getFormContext, layoutAttributes, type ComponentProps } from '@sjsf/form';
 
 	const { type, children, config }: ComponentProps['layout'] = $props();
 
@@ -34,28 +29,16 @@
 {#if type === 'field-meta' || type === 'field-content' || type === 'array-field-meta' || type === 'object-field-meta'}
 	{@render children()}
 {:else if type === 'field' || type === 'array-field' || type === 'object-field'}
-	{@const attributes = retrieveNestedUiProps(
-		ctx,
+	{@const attributes = layoutAttributes('daisyui5FieldsLayout', 'daisyui5FieldsLayouts', type)(
+		{},
 		config,
-		'daisyui5FieldsLayouts',
-		(l) => l[type],
-		retrieveUiProps(ctx, config, 'daisyui5FieldsLayout', {
-			'data-layout': type
-		})
+		ctx
 	)}
 	<fieldset class="fieldset gap-y-2" {...attributes}>
 		{@render children()}
 	</fieldset>
 {:else}
-	{@const attributes = retrieveNestedUiProps(
-		ctx,
-		config,
-		'layouts',
-		(l) => l[type],
-		retrieveUiProps(ctx, config, 'layout', {
-			'data-layout': type
-		})
-	)}
+	{@const attributes = layoutAttributes('layout', 'layouts', type)({}, config, ctx)}
 	<div
 		class={{
 			flex: isItem || isControls || isColumn || type === 'multi-field-controls',
