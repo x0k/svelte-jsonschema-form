@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { enhance, getFormContext, retrieveUiProps, type ComponentProps } from '@sjsf/form';
+	import { enhance, formAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
 	import '@sjsf/basic-theme/components/form.svelte';
 
 	let { children, attributes, ref = $bindable(), config }: ComponentProps['form'] = $props();
@@ -11,8 +11,7 @@
 	bind:this={ref}
 	use:enhance={ctx}
 	class="flex flex-col gap-4"
-	{...retrieveUiProps(ctx, config, 'form', {})}
-	{...attributes}
+	{...formAttributes('form', attributes)({}, config, ctx)}
 >
 	{@render children?.()}
 </form>

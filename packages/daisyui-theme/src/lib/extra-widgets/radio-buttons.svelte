@@ -13,7 +13,6 @@
 	import {
 		getFormContext,
 		inputAttributes,
-		retrieveInputAttributes,
 		type ComponentProps
 	} from '@sjsf/form';
 	import { indexMapper, singleOption } from '@sjsf/form/options.svelte';
@@ -35,14 +34,13 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		retrieveInputAttributes(ctx, config, 'daisyuiRadioButtons', inputAttributes(handlers))
+		inputAttributes('daisyuiRadioButtons', handlers)({ type: 'radio' }, config, ctx)
 	);
 </script>
 
 <div class="join">
 	{#each options as option, index (option.id)}
 		<input
-			type="radio"
 			class={['join-item btn', errors.length > 0 && 'btn-error']}
 			bind:group={mapped.value}
 			value={index}

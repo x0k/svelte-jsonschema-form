@@ -1,22 +1,23 @@
 <script lang="ts">
-	import {
-		Datalist,
-		getFormContext,
-		inputAttributes,
-		retrieveInputAttributes,
-		type ComponentProps
-	} from '@sjsf/form';
+	import { Datalist, getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 	import '@sjsf/basic-theme/widgets/text.svelte';
 
 	let { handlers, value = $bindable(), config, errors }: ComponentProps['textWidget'] = $props();
 
 	const ctx = getFormContext();
 
-	const attributes = $derived(retrieveInputAttributes(ctx, config, 'text', inputAttributes(handlers)));
+	const attributes = $derived(
+		inputAttributes('text', handlers)(
+			{
+				type: 'text'
+			},
+			config,
+			ctx
+		)
+	);
 </script>
 
 <input
-	type="text"
 	bind:value
 	class={['input input-bordered grow', errors.length > 0 && 'input-error']}
 	{...attributes}

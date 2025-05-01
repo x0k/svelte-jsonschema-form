@@ -1,10 +1,5 @@
 <script lang="ts">
-	import {
-		getFormContext,
-		inputAttributes,
-		retrieveInputAttributes,
-		type ComponentProps
-	} from '@sjsf/form';
+	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 	import { indexMapper, singleOption } from '@sjsf/form/options.svelte';
 	import '@sjsf/basic-theme/extra-widgets/radio.svelte';
 
@@ -24,13 +19,12 @@
 
 	const ctx = getFormContext();
 
-	const attributes = $derived(retrieveInputAttributes(ctx, config, 'radio', inputAttributes(handlers)));
+	const attributes = $derived(inputAttributes('radio', handlers)({ type: 'radio' }, config, ctx));
 </script>
 
 {#each options as option, index (option.id)}
 	<label class="label cursor-pointer gap-2">
 		<input
-			type="radio"
 			class={['radio', errors.length > 0 && 'radio-error']}
 			bind:group={mapped.value}
 			value={index}
