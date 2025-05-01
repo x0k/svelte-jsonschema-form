@@ -30,7 +30,7 @@ import {
   type UiSchemaRoot
 } from '@sjsf/form';
 
-import { IDENTIFIABLE_FIELD_ELEMENTS } from '../model.js';
+import { IDENTIFIABLE_INPUT_ELEMENTS } from '../model.js';
 
 import type { Entries, EntriesConverter, Entry } from './entry.js';
 
@@ -44,19 +44,19 @@ export interface SchemaValueParserOptions<T> {
   validator: Validator;
   merger: Merger;
   convertEntries: EntriesConverter<T>;
-  identifiableElementsTrie?: Trie<string, true>;
+  identifiableInputElementsTrie?: Trie<string, true>;
 }
 
 const KNOWN_PROPERTIES = Symbol('known-properties');
 
 const KEY_INPUT_KEY: keyof IdentifiableFieldElement = 'key-input';
 
-let DEFAULT_IDENTIFIABLE_ELEMENTS_TRIE: Trie<string, true>;
+let DEFAULT_IDENTIFIABLE_INPUT_ELEMENTS_TRIE: Trie<string, true>;
 
-for (const key of IDENTIFIABLE_FIELD_ELEMENTS) {
-  DEFAULT_IDENTIFIABLE_ELEMENTS_TRIE = insertValue(
-    DEFAULT_IDENTIFIABLE_ELEMENTS_TRIE,
-    key.split(''),
+for (const key of IDENTIFIABLE_INPUT_ELEMENTS) {
+  DEFAULT_IDENTIFIABLE_INPUT_ELEMENTS_TRIE = insertValue(
+    DEFAULT_IDENTIFIABLE_INPUT_ELEMENTS_TRIE,
+    key,
     true
   );
 }
@@ -72,14 +72,16 @@ function removePseudoElements<T>(
       return true;
     }
     const subKey = key.substring(index + idPseudoSeparator.length);
-    if (subKey === KEY_INPUT_KEY) {
-      return true;
-    }
+    // Checked by blacklist
+    // if (subKey === KEY_INPUT_KEY) {
+    //   return true;
+    // }
+
     // Numbers are used for enum option ids, not inputs
     // if (Number.isInteger(Number(subKey))) {
     //   return false;
     // }
-    return getValueByKeys(blacklist, subKey.split('')) !== true;
+    return getValueByKeys(blacklist, subKey) !== true;
   });
 }
 
@@ -93,7 +95,7 @@ export function parseSchemaValue<T>({
   uiSchema: rootUiSchema,
   validator,
   merger,
-  identifiableElementsTrie = DEFAULT_IDENTIFIABLE_ELEMENTS_TRIE
+  identifiableInputElementsTrie = DEFAULT_IDENTIFIABLE_INPUT_ELEMENTS_TRIE
 }: SchemaValueParserOptions<T>) {
   if (entries.length === 0) {
     return undefined;
@@ -104,7 +106,7 @@ export function parseSchemaValue<T>({
   let filter = '';
   const filterLengthStack: number[] = [];
   const entriesStack: Entries<T>[] = [
-    removePseudoElements(entries, idPseudoSeparator, identifiableElementsTrie)
+    removePseudoElements(entries, idPseudoSeparator, identifiableInputElementsTrie)
   ];
 
   const groups = new Map<string | typeof KNOWN_PROPERTIES, Entries<T>>();

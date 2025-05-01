@@ -13,7 +13,7 @@ import {
   type AdditionalPropertyKeyValidator
 } from '@sjsf/form';
 
-import { IDENTIFIABLE_FIELD_ELEMENTS } from '../model.js';
+import { IDENTIFIABLE_INPUT_ELEMENTS } from '../model.js';
 
 export enum AdditionalPropertyKeyValidationErrorType {
   ForbiddenSequence = 'forbidden-sequence',
@@ -37,7 +37,7 @@ export interface AdditionalPropertyKeyValidatorOptions {
 export function createAdditionalPropertyKeyValidator({
   idSeparator = DEFAULT_ID_SEPARATOR,
   idPseudoSeparator = DEFAULT_ID_PSEUDO_SEPARATOR,
-  identifiableFieldElements = IDENTIFIABLE_FIELD_ELEMENTS,
+  identifiableFieldElements = IDENTIFIABLE_INPUT_ELEMENTS,
   error
 }: AdditionalPropertyKeyValidatorOptions): AdditionalPropertyKeyValidator {
   const separators = [idSeparator];

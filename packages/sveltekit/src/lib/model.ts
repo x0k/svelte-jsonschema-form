@@ -15,14 +15,8 @@ export interface ValidatedFormData<E, SendData extends boolean> {
   errors: ValidationError<E>[];
 }
 
-const IDENTIFIABLE_FIELD_ELEMENT: IdentifiableFieldElement = {
-  'key-input': {},
-  anyof: {},
-  examples: {},
-  help: {},
-  oneof: {}
-};
-
-export const IDENTIFIABLE_FIELD_ELEMENTS = Object.keys(
-  IDENTIFIABLE_FIELD_ELEMENT
-) as (keyof IdentifiableFieldElement)[];
+export const IDENTIFIABLE_INPUT_ELEMENTS: (keyof IdentifiableFieldElement)[] = [
+  'anyof',
+  'oneof',
+  'key-input'
+];
