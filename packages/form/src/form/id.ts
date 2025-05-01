@@ -43,6 +43,9 @@ export interface IdentifiableFieldElement {
   help: {};
   "key-input": {};
   examples: {};
+  title: {};
+  description: {};
+  errors: {};
   oneof: {};
   anyof: {};
 }
