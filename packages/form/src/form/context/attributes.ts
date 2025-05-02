@@ -252,7 +252,7 @@ export function buttonTypeProp(
 
 export function descriptionAttributes<
   V extends Validator,
-  O extends keyof ObjectUiOptions,
+  O extends keyof ObjectUiOptions
 >(
   ctx: FormInternalContext<V>,
   config: Config,
@@ -270,7 +270,7 @@ export function descriptionAttributes<
 
 export function errorsListAttributes<
   V extends Validator,
-  O extends keyof ObjectUiOptions,
+  O extends keyof ObjectUiOptions
 >(
   ctx: FormInternalContext<V>,
   config: Config,
@@ -289,7 +289,7 @@ export function errorsListAttributes<
 
 export function formAttributes<
   V extends Validator,
-  O extends keyof ObjectUiOptions,
+  O extends keyof ObjectUiOptions
 >(
   ctx: FormInternalContext<V>,
   config: Config,
@@ -308,7 +308,7 @@ export function formAttributes<
 
 export function helpAttributes<
   V extends Validator,
-  O extends keyof ObjectUiOptions,
+  O extends keyof ObjectUiOptions
 >(
   ctx: FormInternalContext<V>,
   config: Config,
@@ -326,7 +326,7 @@ export function helpAttributes<
 
 export function labelAttributes<
   V extends Validator,
-  O extends keyof ObjectUiOptions,
+  O extends keyof ObjectUiOptions
 >(
   ctx: FormInternalContext<V>,
   config: Config,
@@ -338,7 +338,7 @@ export function labelAttributes<
 
 export function titleAttributes<
   V extends Validator,
-  O extends keyof ObjectUiOptions,
+  O extends keyof ObjectUiOptions
 >(
   ctx: FormInternalContext<V>,
   config: Config,
@@ -358,7 +358,7 @@ export function titleAttributes<
 export function layoutAttributes<
   V extends Validator,
   O extends keyof ObjectUiOptions,
-  O2 extends keyof ObjectUiOptions,
+  O2 extends keyof ObjectUiOptions
 >(
   ctx: FormInternalContext<V>,
   config: Config,
@@ -379,7 +379,7 @@ export function layoutAttributes<
 
 export function buttonAttributes<
   V extends Validator,
-  O extends keyof ObjectUiOptions,
+  O extends keyof ObjectUiOptions
 >(
   ctx: FormInternalContext<V>,
   config: Config,
@@ -397,9 +397,21 @@ export function buttonAttributes<
   );
 }
 
+export function customInputAttributes<
+  V extends Validator,
+  O extends keyof ObjectUiOptions
+>(
+  ctx: FormInternalContext<V>,
+  config: Config,
+  option: O,
+  props: Exclude<UiOptions[O], undefined>
+) {
+  return composeProps(ctx, config, props, uiOptionProps(option), disabledProp);
+}
+
 export function inputAttributes<
   V extends Validator,
-  O extends keyof ObjectUiOptions,
+  O extends keyof ObjectUiOptions
 >(
   ctx: FormInternalContext<V>,
   config: Config,
@@ -419,7 +431,7 @@ export function inputAttributes<
 
 export function selectAttributes<
   V extends Validator,
-  O extends keyof ObjectUiOptions,
+  O extends keyof ObjectUiOptions
 >(
   ctx: FormInternalContext<V>,
   config: Config,
@@ -439,7 +451,7 @@ export function selectAttributes<
 
 export function textareaAttributes<
   V extends Validator,
-  O extends keyof ObjectUiOptions,
+  O extends keyof ObjectUiOptions
 >(
   ctx: FormInternalContext<V>,
   config: Config,
