@@ -1,5 +1,12 @@
 # @sjsf/basic-theme
 
+## 2.0.0-next.10
+
+### Patch Changes
+
+- Updated dependencies [[`0aa1555`](https://github.com/x0k/svelte-jsonschema-form/commit/0aa15554efa7306f0a7d2adcb3b05785c2e0125e), [`1669b70`](https://github.com/x0k/svelte-jsonschema-form/commit/1669b7072ba474f53a0d23cbb27596c44f7397bd), [`c72cbf2`](https://github.com/x0k/svelte-jsonschema-form/commit/c72cbf258fe9f60b3b0462baa758a5a570200124), [`b392c41`](https://github.com/x0k/svelte-jsonschema-form/commit/b392c41b3bc6f3ecfbd65a1481ff01a512db786b), [`3ae493a`](https://github.com/x0k/svelte-jsonschema-form/commit/3ae493a8905e38122fe0a1f996e25c70334cce0d), [`71afdd2`](https://github.com/x0k/svelte-jsonschema-form/commit/71afdd2a32b88ae95b9799902a538b38da0ad7bb)]:
+  - @sjsf/form@2.0.0-next.10
+
 ## 2.0.0-next.9
 
 ### Patch Changes
