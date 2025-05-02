@@ -10,23 +10,17 @@
 </script>
 
 <script lang="ts">
-	import {
-		getFormContext,
-		inputAttributes,
-		retrieveInputAttributes,
-		type ComponentProps
-	} from '@sjsf/form';
+	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 	import Toggle from 'flowbite-svelte/Toggle.svelte';
 
 	let { config, value = $bindable(), handlers }: ComponentProps['switchWidget'] = $props();
 
 	const ctx = getFormContext();
-
-	const attributes = $derived(
-		retrieveInputAttributes(ctx, config, 'flowbite3Switch', inputAttributes(handlers))
-	);
 </script>
 
-<Toggle bind:checked={() => value ?? false, (v) => (value = v)} {...attributes}>
+<Toggle
+	bind:checked={() => value ?? false, (v) => (value = v)}
+	{...inputAttributes(ctx, config, 'flowbite3Switch', handlers, {})}
+>
 	{config.title}
 </Toggle>

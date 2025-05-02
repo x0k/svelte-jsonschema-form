@@ -9,12 +9,7 @@
 </script>
 
 <script lang="ts">
-	import {
-		getFormContext,
-		retrieveInputAttributes,
-		selectAttributes,
-		type ComponentProps
-	} from '@sjsf/form';
+	import { getFormContext, selectAttributes, type ComponentProps } from '@sjsf/form';
 	import { singleOption, indexMapper } from '@sjsf/form/options.svelte';
 	import Select from 'flowbite-svelte/Select.svelte';
 
@@ -31,11 +26,11 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		retrieveInputAttributes(ctx, config, 'flowbite3Select', selectAttributes(handlers))
+		selectAttributes(ctx, config, 'flowbite3Select', handlers, { placeholder: '' })
 	);
 </script>
 
-<Select bind:value={mapped.value} placeholder="" {...attributes}>
+<Select bind:value={mapped.value} {...attributes}>
 	{#if config.schema.default === undefined}
 		<option value={-1}>{attributes.placeholder}</option>
 	{/if}

@@ -9,12 +9,7 @@
 </script>
 
 <script lang="ts">
-	import {
-		getFormContext,
-		retrieveNestedUiProps,
-		retrieveUiProps,
-		type ComponentProps
-	} from '@sjsf/form';
+	import { getFormContext, layoutAttributes, uiOptionProps, type ComponentProps } from '@sjsf/form';
 	import ButtonGroup from 'flowbite-svelte/ButtonGroup.svelte';
 
 	const { type, children, config }: ComponentProps['layout'] = $props();
@@ -37,22 +32,10 @@
 	);
 
 	const ctx = getFormContext();
-
-	const attributes = $derived(
-		retrieveNestedUiProps(
-			ctx,
-			config,
-			'layouts',
-			(l) => l[type],
-			retrieveUiProps(ctx, config, 'layout', {
-				'data-layout': type
-			})
-		)
-	);
 </script>
 
 {#if isControls}
-	<ButtonGroup {...retrieveUiProps(ctx, config, 'flowbite3ButtonGroup', { children })} />
+	<ButtonGroup {...uiOptionProps('flowbite3ButtonGroup')({ children }, config, ctx)} />
 {:else}
 	<div
 		class={{
@@ -63,7 +46,7 @@
 			grow: isGrowable,
 			'flex-col': isField || isColumn
 		}}
-		{...attributes}
+		{...layoutAttributes(ctx, config, 'layout', 'layouts', type, {})}
 	>
 		{@render children()}
 	</div>

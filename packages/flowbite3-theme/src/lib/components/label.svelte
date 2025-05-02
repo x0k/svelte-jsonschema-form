@@ -9,7 +9,7 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, retrieveUiProps, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, labelAttributes, type ComponentProps } from '@sjsf/form';
 	import Label from 'flowbite-svelte/Label.svelte';
 
 	const { title, config }: ComponentProps['label'] = $props();
@@ -24,8 +24,7 @@
 	{/if}
 {/snippet}
 <Label
-	{...retrieveUiProps(ctx, config, 'flowbite3Label', {
-		for: config.id,
+	{...labelAttributes(ctx, config, 'flowbite3Label', {
 		children
 	})}
 />

@@ -17,10 +17,11 @@
 
 <script lang="ts">
 	import {
-		defineDisabled,
+		composeProps,
+		disabledProp,
 		getFormContext,
-		retrieveNestedUiProps,
-		retrieveUiProps,
+		uiOptionNestedProps,
+		uiOptionProps,
 		type ComponentProps
 	} from '@sjsf/form';
 	import Button from 'flowbite-svelte/Button.svelte';
@@ -28,27 +29,23 @@
 	const { children, type, disabled, onclick, config }: ComponentProps['button'] = $props();
 
 	const ctx = getFormContext();
-
-	const attributes = $derived(
-		defineDisabled(
-			ctx,
-			retrieveNestedUiProps(
-				ctx,
-				config,
-				'flowbite3Buttons',
-				(p) => p[type],
-				retrieveUiProps(ctx, config, 'flowbite3Button', {
-					color: 'alternative',
-					type: 'button',
-					size: 'sm',
-					disabled,
-					onclick
-				})
-			)
-		)
-	);
 </script>
 
-<Button {...attributes}>
+<Button
+	{...composeProps(
+		ctx,
+		config,
+		{
+			type: 'button',
+			color: 'alternative',
+			size: 'sm',
+			disabled,
+			onclick
+		} satisfies ButtonProps,
+		uiOptionProps('flowbite3Button'),
+		uiOptionNestedProps('flowbite3Buttons', (b) => b[type]),
+		disabledProp
+	)}
+>
 	{@render children()}
 </Button>

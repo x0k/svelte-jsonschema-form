@@ -9,13 +9,7 @@
 </script>
 
 <script lang="ts">
-	import {
-		Datalist,
-		getFormContext,
-		inputAttributes,
-		retrieveInputAttributes,
-		type ComponentProps
-	} from '@sjsf/form';
+	import { Datalist, getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 	import Input from 'flowbite-svelte/Input.svelte';
 
 	let { value = $bindable(), config, handlers }: ComponentProps['numberWidget'] = $props();
@@ -23,7 +17,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		retrieveInputAttributes(ctx, config, 'flowbite3Number', inputAttributes(handlers))
+		inputAttributes(ctx, config, 'flowbite3Number', handlers, { type: 'number' })
 	);
 </script>
 

@@ -10,12 +10,7 @@
 </script>
 
 <script lang="ts">
-	import {
-		getFormContext,
-		retrieveInputAttributes,
-		selectAttributes,
-		type ComponentProps
-	} from '@sjsf/form';
+	import { getFormContext, selectAttributes, type ComponentProps } from '@sjsf/form';
 	import { multipleOptions, indexMapper } from '@sjsf/form/options.svelte';
 	import MultiSelect from 'flowbite-svelte/MultiSelect.svelte';
 
@@ -43,11 +38,11 @@
 			disabled: option.disabled
 		}))
 	);
-
-	const attributes = $derived(
-		retrieveInputAttributes(ctx, config, 'flowbite3MultiSelect', selectAttributes(handlers))
-	);
 </script>
 
 <!-- TODO: this should be `bind:value=` but lib is broken -->
-<MultiSelect class="grow" value={mapped.value} items={selectOptions} {...attributes} />
+<MultiSelect
+	class="grow"
+	value={mapped.value}
+	{...selectAttributes(ctx, config, 'flowbite3MultiSelect', handlers, { items: selectOptions })}
+/>
