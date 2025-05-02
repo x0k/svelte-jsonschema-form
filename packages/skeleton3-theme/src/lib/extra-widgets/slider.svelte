@@ -12,33 +12,31 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, type ComponentProps, retrieveInputAttributes } from '@sjsf/form';
+	import { getFormContext, type ComponentProps, customInputAttributes } from '@sjsf/form';
 
 	let { value = $bindable(), config, handlers, errors }: ComponentProps['rangeWidget'] = $props();
 
 	const ctx = getFormContext();
-
-	const attributes: SvelteComponentProps<typeof SkeletonSlider> = $derived(
-		retrieveInputAttributes(ctx, config, 'skeleton3Slider', () => ({
-			ids: {
-				hiddenInput() {
-					return config.id;
-				}
-			},
-			name: config.name,
-			readOnly: config.schema.readOnly,
-			min: config.schema.minimum,
-			max: config.schema.maximum,
-			step: config.schema.multipleOf,
-			invalid: errors.length > 0,
-			onFocusChange: handlers.onblur,
-			onValueChange: (details) => {
-				value = details.value[0];
-				handlers.onchange?.();
-			},
-			value: value === undefined ? undefined : [value]
-		}))
-	);
 </script>
 
-<SkeletonSlider {...attributes} />
+<SkeletonSlider
+	{...customInputAttributes(ctx, config, 'skeleton3Slider', {
+		ids: {
+			hiddenInput() {
+				return config.id;
+			}
+		},
+		name: config.name,
+		readOnly: config.schema.readOnly,
+		min: config.schema.minimum,
+		max: config.schema.maximum,
+		step: config.schema.multipleOf,
+		invalid: errors.length > 0,
+		onFocusChange: handlers.onblur,
+		onValueChange: (details) => {
+			value = details.value[0];
+			handlers.onchange?.();
+		},
+		value: value === undefined ? undefined : [value]
+	})}
+/>

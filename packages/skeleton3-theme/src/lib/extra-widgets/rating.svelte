@@ -11,28 +11,26 @@
 </script>
 
 <script lang="ts">
-	import { type ComponentProps, getFormContext, retrieveInputAttributes } from '@sjsf/form';
+	import { type ComponentProps, customInputAttributes, getFormContext } from '@sjsf/form';
 	let { value = $bindable(), config, handlers }: ComponentProps['ratingWidget'] = $props();
 
 	const ctx = getFormContext();
-
-	const attributes = $derived(
-		retrieveInputAttributes(ctx, config, 'skeleton3Rating', () => ({
-			value,
-			ids: {
-				hiddenInput: config.id
-			},
-			name: config.name,
-			required: config.required,
-			readOnly: config.schema.readOnly,
-			onHoverChange: handlers.oninput,
-			onValueChange: (details) => {
-				value = details.value;
-				handlers.onchange?.();
-			},
-			count: config.schema.maximum
-		}))
-	);
 </script>
 
-<SkeletonRating {...attributes} />
+<SkeletonRating
+	{...customInputAttributes(ctx, config, 'skeleton3Rating', {
+		value,
+		ids: {
+			hiddenInput: config.id
+		},
+		name: config.name,
+		required: config.required,
+		readOnly: config.schema.readOnly,
+		onHoverChange: handlers.oninput,
+		onValueChange: (details) => {
+			value = details.value;
+			handlers.onchange?.();
+		},
+		count: config.schema.maximum
+	})}
+/>

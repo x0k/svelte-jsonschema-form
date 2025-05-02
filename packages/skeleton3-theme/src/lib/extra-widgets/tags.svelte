@@ -11,31 +11,29 @@
 </script>
 
 <script lang="ts">
-	import { type ComponentProps, getFormContext, retrieveInputAttributes } from '@sjsf/form';
+	import { type ComponentProps, customInputAttributes, getFormContext } from '@sjsf/form';
 
 	let { value = $bindable(), config, handlers, errors }: ComponentProps['tagsWidget'] = $props();
 
 	const ctx = getFormContext();
-
-	const attributes = $derived(
-		retrieveInputAttributes(ctx, config, 'skeleton3Tags', () => ({
-			ids: {
-				input: config.id
-			},
-			name: config.name,
-			required: config.required,
-			max: config.schema.maxItems,
-			readOnly: config.schema.readOnly,
-			invalid: errors.length > 0,
-			onFocusOutside: handlers.onblur,
-			onInputValueChange: handlers.oninput,
-			onValueChange: (details) => {
-				value = details.value;
-				handlers.onchange?.();
-			},
-			value
-		}))
-	);
 </script>
 
-<TagsInput {...attributes} />
+<TagsInput
+	{...customInputAttributes(ctx, config, 'skeleton3Tags', {
+		ids: {
+			input: config.id
+		},
+		name: config.name,
+		required: config.required,
+		max: config.schema.maxItems,
+		readOnly: config.schema.readOnly,
+		invalid: errors.length > 0,
+		onFocusOutside: handlers.onblur,
+		onInputValueChange: handlers.oninput,
+		onValueChange: (details) => {
+			value = details.value;
+			handlers.onchange?.();
+		},
+		value
+	})}
+/>

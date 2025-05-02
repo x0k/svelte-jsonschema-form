@@ -1,10 +1,5 @@
 <script lang="ts">
-	import {
-		getFormContext,
-		inputAttributes,
-		retrieveInputAttributes,
-		type ComponentProps
-	} from '@sjsf/form';
+	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 	import { indexMapper, singleOption } from '@sjsf/form/options.svelte';
 	import '@sjsf/basic-theme/extra-widgets/radio.svelte';
 
@@ -18,7 +13,7 @@
 
 	const ctx = getFormContext();
 
-	const attributes = $derived(retrieveInputAttributes(ctx, config, 'radio', inputAttributes(handlers)));
+	const attributes = $derived(inputAttributes(ctx, config, 'radio', handlers, { type: 'radio' }));
 </script>
 
 {#each options as option, index (option.id)}
@@ -28,7 +23,6 @@
 			bind:group={mapped.value}
 			value={index}
 			{...attributes}
-			type="radio"
 			id={option.id}
 			disabled={option.disabled || attributes.disabled}
 		/>

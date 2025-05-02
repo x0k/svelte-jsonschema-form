@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getFormContext, retrieveUiProps, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, labelAttributes, type ComponentProps } from '@sjsf/form';
 	import '@sjsf/basic-theme/components/label.svelte';
 
 	const { title, config }: ComponentProps['label'] = $props();
@@ -9,9 +9,7 @@
 
 <label
 	class="label-text"
-	{...retrieveUiProps(ctx, config, 'labelAttributes', {
-		for: config.id
-	})}
+	{...labelAttributes(ctx, config, 'labelAttributes', {})}
 >
 	{title}
 	{#if config.required}

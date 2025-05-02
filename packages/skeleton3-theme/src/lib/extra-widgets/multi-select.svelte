@@ -1,10 +1,5 @@
 <script lang="ts">
-	import {
-		getFormContext,
-		retrieveInputAttributes,
-		selectAttributes,
-		type ComponentProps
-	} from '@sjsf/form';
+	import { getFormContext, selectAttributes, type ComponentProps } from '@sjsf/form';
 	import { indexMapper, multipleOptions } from '@sjsf/form/options.svelte';
 	import '@sjsf/basic-theme/extra-widgets/multi-select.svelte';
 
@@ -17,10 +12,6 @@
 
 	const ctx = getFormContext();
 
-	const attributes = $derived(
-		retrieveInputAttributes(ctx, config, 'multiSelect', selectAttributes(handlers))
-	);
-
 	const mapped = $derived(
 		multipleOptions({
 			mapper: () => indexMapper(options),
@@ -30,7 +21,12 @@
 	);
 </script>
 
-<select multiple bind:value={mapped.value} class="select" {...attributes}>
+<select
+	multiple
+	bind:value={mapped.value}
+	class="select"
+	{...selectAttributes(ctx, config, 'multiSelect', handlers, {})}
+>
 	{#each options as option, index (option.id)}
 		<option value={index} disabled={option.disabled}>
 			{option.label}

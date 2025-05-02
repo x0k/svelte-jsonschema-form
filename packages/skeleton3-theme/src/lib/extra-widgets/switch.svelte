@@ -11,30 +11,28 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, retrieveInputAttributes, type ComponentProps } from '@sjsf/form';
+	import { customInputAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
 
 	let { config, value = $bindable(), handlers, errors }: ComponentProps['switchWidget'] = $props();
 
 	const ctx = getFormContext();
-
-	const attributes: SvelteComponentProps<typeof SkeletonSwitch> = $derived(
-		retrieveInputAttributes(ctx, config, 'skeleton3Switch', () => ({
-			ids: {
-				hiddenInput: config.id
-			},
-			name: config.name,
-			required: config.required,
-			readOnly: config.schema.readOnly,
-			invalid: errors.length > 0,
-			onCheckedChange: (e) => {
-				value = e.checked;
-				handlers.onchange?.();
-			},
-			checked: value
-		}))
-	);
 </script>
 
-<SkeletonSwitch {...attributes}>
+<SkeletonSwitch
+	{...customInputAttributes(ctx, config, 'skeleton3Switch', {
+		ids: {
+			hiddenInput: config.id
+		},
+		name: config.name,
+		required: config.required,
+		readOnly: config.schema.readOnly,
+		invalid: errors.length > 0,
+		onCheckedChange: (e) => {
+			value = e.checked;
+			handlers.onchange?.();
+		},
+		checked: value
+	})}
+>
 	{config.title}
 </SkeletonSwitch>

@@ -13,11 +13,10 @@
 
 <script lang="ts">
 	import {
+		customInputAttributes,
 		getFormContext,
-		type ComponentProps,
-		defineDisabled,
-		retrieveInputAttributes,
-		retrieveUiProps
+		uiOptionProps,
+		type ComponentProps
 	} from '@sjsf/form';
 	import { stringIndexMapper, singleOption } from '@sjsf/form/options.svelte';
 
@@ -35,29 +34,32 @@
 	});
 
 	const ctx = getFormContext();
-
-	const attributes: SvelteComponentProps<typeof Segment> = $derived(
-		retrieveInputAttributes(ctx, config, 'skeleton3Segment', () => ({
-			ids: {
-				root: config.id
-			},
-			name: config.name,
-			readOnly: config.schema.readOnly,
-			onValueChange: (details) => {
-				mapped.value = details.value ?? '';
-				handlers.onchange?.();
-			}
-		}))
-	);
 </script>
 
-<Segment value={mapped.value} {...attributes}>
+<Segment
+	value={mapped.value}
+	{...customInputAttributes(ctx, config, 'skeleton3Segment', {
+		ids: {
+			root: config.id
+		},
+		name: config.name,
+		readOnly: config.schema.readOnly,
+		onValueChange: (details) => {
+			mapped.value = details.value ?? '';
+			handlers.onchange?.();
+		}
+	})}
+>
 	{#each options as option, index (option.id)}
 		<Segment.Item
-			{...retrieveUiProps(ctx, config, 'skeleton3SegmentItem', {
-				value: index.toString(),
-				disabled: option.disabled
-			})}
+			{...uiOptionProps('skeleton3SegmentItem')(
+				{
+					value: index.toString(),
+					disabled: option.disabled
+				},
+				config,
+				ctx
+			)}
 		>
 			{option.label}
 		</Segment.Item>
