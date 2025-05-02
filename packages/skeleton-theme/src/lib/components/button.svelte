@@ -1,9 +1,11 @@
 <script lang="ts">
+	import type { HTMLButtonAttributes } from 'svelte/elements';
 	import {
-		defineDisabled,
+		composeProps,
+		disabledProp,
 		getFormContext,
-		retrieveNestedUiProps,
-		retrieveUiProps,
+		uiOptionNestedProps,
+		uiOptionProps,
 		type ComponentProps
 	} from '@sjsf/form';
 	import '@sjsf/basic-theme/components/button.svelte';
@@ -11,25 +13,22 @@
 	const { children, onclick, config, disabled, type }: ComponentProps['button'] = $props();
 
 	const ctx = getFormContext();
-
-	const attributes = $derived(
-		defineDisabled(
-			ctx,
-			retrieveNestedUiProps(
-				ctx,
-				config,
-				'buttons',
-				(p) => p[type],
-				retrieveUiProps(ctx, config, 'button', {
-					type: 'button',
-					disabled,
-					onclick
-				})
-			)
-		)
-	);
 </script>
 
-<button class="btn preset-filled" {...attributes}>
+<button
+	class="btn preset-filled"
+	{...composeProps(
+		ctx,
+		config,
+		{
+			type: 'button',
+			disabled,
+			onclick
+		} satisfies HTMLButtonAttributes,
+		uiOptionProps('button'),
+		uiOptionNestedProps('buttons', (b) => b[type]),
+		disabledProp
+	)}
+>
 	{@render children()}
 </button>

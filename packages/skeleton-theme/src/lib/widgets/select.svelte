@@ -1,10 +1,5 @@
 <script lang="ts">
-	import {
-		getFormContext,
-		retrieveInputAttributes,
-		selectAttributes,
-		type ComponentProps
-	} from '@sjsf/form';
+	import { getFormContext, selectAttributes, type ComponentProps } from '@sjsf/form';
 	import { indexMapper, singleOption } from '@sjsf/form/options.svelte';
 	import '@sjsf/basic-theme/widgets/select.svelte';
 
@@ -20,9 +15,7 @@
 
 	const ctx = getFormContext();
 
-	const attributes = $derived(
-		retrieveInputAttributes(ctx, config, 'select', selectAttributes(handlers))
-	);
+	const attributes = $derived(selectAttributes(ctx, config, 'select', handlers, {}));
 </script>
 
 <select class="select" bind:value={mapped.value} {...attributes}>
