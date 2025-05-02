@@ -134,12 +134,34 @@ export function inputType(format: string | undefined) {
   }
 }
 
+const DEFAULT_DESCRIBE_ELEMENTS: (keyof IdentifiableFieldElement)[] = [
+  "description",
+  "help",
+  "errors",
+];
+const DEFAULT_DESCRIBE_ELEMENTS_WITH_EXAMPLES =
+  DEFAULT_DESCRIBE_ELEMENTS.concat("examples");
+
+export function describedBy<V extends Validator>(
+  ctx: FormInternalContext<V>,
+  config: Config
+) {
+  return (
+    Array.isArray(config.schema.examples)
+      ? DEFAULT_DESCRIBE_ELEMENTS_WITH_EXAMPLES
+      : DEFAULT_DESCRIBE_ELEMENTS
+  )
+    .map((el) => createPseudoId(config.id, el, ctx))
+    .join(" ");
+}
+
 export function inputProps(handlers: Handlers) {
   return <V extends Validator, T>(
     props: T & HTMLInputAttributes,
-    { id, required, schema }: Config,
+    config: Config,
     ctx: FormInternalContext<V>
   ) => {
+    const { id, required, schema } = config;
     props.id = id;
     props.name = id;
     const type = inputType(schema.format);
@@ -161,15 +183,18 @@ export function inputProps(handlers: Handlers) {
     props.oninput = handlers.oninput;
     props.onchange = handlers.onchange;
     props.onblur = handlers.onblur;
+    props["aria-describedby"] = describedBy(ctx, config);
     return props;
   };
 }
 
 export function textareaProps(handlers: Handlers) {
-  return <T>(
+  return <T, V extends Validator>(
     props: T & HTMLTextareaAttributes,
-    { id, required, schema }: Config
+    config: Config,
+    ctx: FormInternalContext<V>
   ) => {
+    const { id, required, schema } = config;
     props.id = id;
     props.name = id;
     props.required = required;
@@ -179,18 +204,25 @@ export function textareaProps(handlers: Handlers) {
     props.oninput = handlers.oninput;
     props.onchange = handlers.onchange;
     props.onblur = handlers.onblur;
+    props["aria-describedby"] = describedBy(ctx, config);
     return props;
   };
 }
 
 export function selectProps(handlers: Handlers) {
-  return <T>(props: T & HTMLSelectAttributes, { id, required }: Config) => {
+  return <T, V extends Validator>(
+    props: T & HTMLSelectAttributes,
+    config: Config,
+    ctx: FormInternalContext<V>
+  ) => {
+    const { id, required } = config;
     props.id = id;
     props.name = id;
     props.required = required;
     props.oninput = handlers.oninput;
     props.onchange = handlers.onchange;
     props.onblur = handlers.onblur;
+    props["aria-describedby"] = describedBy(ctx, config);
     return props;
   };
 }
