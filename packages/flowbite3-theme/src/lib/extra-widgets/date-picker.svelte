@@ -39,9 +39,8 @@
 			required: config.required,
 			showActionButtons: true,
 			autohide: false,
-			onapply: handlers.onchange,
-			onselect: handlers.oninput,
-			onclear: handlers.oninput,
+			onselect: handlers.onchange,
+			onclear: handlers.onchange,
 			'aria-describedby': describedBy(ctx, config)
 		})}
 	/>

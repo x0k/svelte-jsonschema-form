@@ -12,7 +12,7 @@ import './extra-widgets/textarea-include';
 export const specs: s.Specs = {
 	datePicker: [
 		s.text,
-		{ 'ui:components': { textWidget: 'datePickerWidget' } }
+		{ 'ui:components': { textWidget: 'datePickerWidget' }, 'ui:options': { useLabel: false } }
 	],
 	multiSelect: [
 		s.uniqueArray,
