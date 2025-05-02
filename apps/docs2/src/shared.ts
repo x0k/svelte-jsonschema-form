@@ -31,11 +31,11 @@ export const THEME_BRAND = {
 
 export const THEME_PACKAGES = {
   basic: "@sjsf/basic-theme@next",
-  daisyui: "@sjsf/basic-theme@next @sjsf/daisyui-theme@next",
-  daisyui5: "@sjsf/basic-theme@next @sjsf/daisyui5-theme@next",
-  flowbite3: "@sjsf/basic-theme@next @sjsf/flowbite3-theme@next",
-  skeleton3: "@sjsf/basic-theme@next @sjsf/skeleton3-theme@next",
-  shadcn: "@sjsf/basic-theme@next @sjsf/shadcn-theme@next",
+  daisyui: "@sjsf/daisyui-theme@next",
+  daisyui5: "@sjsf/daisyui5-theme@next",
+  flowbite3: "@sjsf/flowbite3-theme@next",
+  skeleton3: "@sjsf/skeleton3-theme@next",
+  shadcn: "@sjsf/shadcn-theme@next",
 } satisfies Record<Theme, string>;
 
 export function isTheme(str: string): str is Theme {
