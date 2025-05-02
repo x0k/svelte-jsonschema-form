@@ -59,8 +59,10 @@
 			"svelte": "./dist/specs.js"
 		}
 	},
+	"dependencies": {
+		"@sjsf/basic-theme": "workspace:^2.0.0-next.9"
+	},
 	"peerDependencies": {
-		"@sjsf/basic-theme": "workspace:^2.0.0-next.9",
 		"@sjsf/form": "workspace:^2.0.0-next.9",
 		"flowbite": "^3.1.0",
 		"flowbite-svelte": "^1.0.0-next.11",
@@ -69,7 +71,6 @@
 	"devDependencies": {
 		"@playwright/test": "catalog:",
 		"@sjsf/ajv8-validator": "workspace:*",
-		"@sjsf/basic-theme": "workspace:*",
 		"@sjsf/form": "workspace:*",
 		"@sveltejs/adapter-static": "catalog:",
 		"@sveltejs/kit": "catalog:",

@@ -602,6 +602,10 @@ importers:
         version: 3.1.1(@types/debug@4.1.12)(@types/node@22.14.1)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.29.2)(yaml@2.5.1)
 
   packages/daisyui-theme:
+    dependencies:
+      '@sjsf/basic-theme':
+        specifier: workspace:^2.0.0-next.9
+        version: link:../basic-theme
     devDependencies:
       '@playwright/test':
         specifier: 'catalog:'
@@ -609,9 +613,6 @@ importers:
       '@sjsf/ajv8-validator':
         specifier: workspace:*
         version: link:../ajv8-validator
-      '@sjsf/basic-theme':
-        specifier: workspace:*
-        version: link:../basic-theme
       '@sjsf/form':
         specifier: workspace:*
         version: link:../form
@@ -683,6 +684,10 @@ importers:
         version: 3.1.1(@types/debug@4.1.12)(@types/node@22.14.1)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.29.2)(yaml@2.5.1)
 
   packages/daisyui5-theme:
+    dependencies:
+      '@sjsf/basic-theme':
+        specifier: workspace:^2.0.0-next.9
+        version: link:../basic-theme
     devDependencies:
       '@playwright/test':
         specifier: 'catalog:'
@@ -690,9 +695,6 @@ importers:
       '@sjsf/ajv8-validator':
         specifier: workspace:*
         version: link:../ajv8-validator
-      '@sjsf/basic-theme':
-        specifier: workspace:*
-        version: link:../basic-theme
       '@sjsf/form':
         specifier: workspace:*
         version: link:../form
@@ -928,6 +930,10 @@ importers:
         version: 3.1.1(@types/debug@4.1.12)(@types/node@22.14.1)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.29.2)(yaml@2.5.1)
 
   packages/flowbite3-theme:
+    dependencies:
+      '@sjsf/basic-theme':
+        specifier: workspace:^2.0.0-next.9
+        version: link:../basic-theme
     devDependencies:
       '@playwright/test':
         specifier: 'catalog:'
@@ -935,9 +941,6 @@ importers:
       '@sjsf/ajv8-validator':
         specifier: workspace:*
         version: link:../ajv8-validator
-      '@sjsf/basic-theme':
-        specifier: workspace:*
-        version: link:../basic-theme
       '@sjsf/form':
         specifier: workspace:*
         version: link:../form
@@ -1274,6 +1277,10 @@ importers:
         version: 3.1.1(@types/debug@4.1.12)(@types/node@22.14.1)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.29.2)(yaml@2.5.1)
 
   packages/shadcn-theme:
+    dependencies:
+      '@sjsf/basic-theme':
+        specifier: workspace:^2.0.0-next.9
+        version: link:../basic-theme
     devDependencies:
       '@lucide/svelte':
         specifier: ^0.501.0
@@ -1284,9 +1291,6 @@ importers:
       '@sjsf/ajv8-validator':
         specifier: workspace:*
         version: link:../ajv8-validator
-      '@sjsf/basic-theme':
-        specifier: workspace:*
-        version: link:../basic-theme
       '@sjsf/form':
         specifier: workspace:*
         version: link:../form
@@ -1374,6 +1378,13 @@ importers:
         version: 3.7.0
 
   packages/skeleton-theme:
+    dependencies:
+      '@sjsf/basic-theme':
+        specifier: workspace:^2.0.0-next.9
+        version: link:../basic-theme
+      '@sjsf/form':
+        specifier: workspace:^2.0.0-next.9
+        version: link:../form
     devDependencies:
       '@playwright/test':
         specifier: 'catalog:'
@@ -1381,12 +1392,6 @@ importers:
       '@sjsf/ajv8-validator':
         specifier: workspace:*
         version: link:../ajv8-validator
-      '@sjsf/basic-theme':
-        specifier: workspace:*
-        version: link:../basic-theme
-      '@sjsf/form':
-        specifier: workspace:*
-        version: link:../form
       '@skeletonlabs/skeleton':
         specifier: 3.0.0-next.10
         version: 3.0.0-next.10(postcss@8.5.3)(tailwindcss@3.4.17)
@@ -1458,6 +1463,10 @@ importers:
         version: 3.1.1(@types/debug@4.1.12)(@types/node@22.14.1)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.29.2)(yaml@2.5.1)
 
   packages/skeleton3-theme:
+    dependencies:
+      '@sjsf/basic-theme':
+        specifier: workspace:^2.0.0-next.9
+        version: link:../basic-theme
     devDependencies:
       '@playwright/test':
         specifier: 'catalog:'
@@ -1465,9 +1474,6 @@ importers:
       '@sjsf/ajv8-validator':
         specifier: workspace:*
         version: link:../ajv8-validator
-      '@sjsf/basic-theme':
-        specifier: workspace:*
-        version: link:../basic-theme
       '@sjsf/form':
         specifier: workspace:*
         version: link:../form
