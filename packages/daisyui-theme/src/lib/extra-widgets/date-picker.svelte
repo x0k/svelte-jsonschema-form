@@ -16,5 +16,5 @@
 	type="date"
 	bind:value
 	class={['input input-bordered grow', errors.length > 0 && 'input-error']}
-	{...inputAttributes('datePicker', handlers)({ type: 'date' }, config, ctx)}
+	{...inputAttributes(ctx, config, 'datePicker', handlers, { type: 'date' })}
 />

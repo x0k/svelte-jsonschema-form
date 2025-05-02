@@ -9,7 +9,7 @@
 
 <button
 	class="btn btn-primary w-full"
-	{...buttonAttributes('submitButton', 'submit')({}, config, ctx)}
+	{...buttonAttributes(ctx, config, 'submitButton', 'submit', {})}
 >
 	{@render children()}
 </button>

@@ -9,7 +9,7 @@
 
 <div
 	class={['font-bold', { 'text-xl': type !== 'field' }]}
-	{...titleAttributes('titleAttributes')({}, config, ctx)}
+	{...titleAttributes(ctx, config, 'titleAttributes', {})}
 >
 	{title}
 </div>

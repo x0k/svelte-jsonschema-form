@@ -7,6 +7,6 @@
 	const ctx = getFormContext();
 </script>
 
-<div class="label-text-alt" {...descriptionAttributes('descriptionAttributes')({}, config, ctx)}>
+<div class="label-text-alt" {...descriptionAttributes(ctx, config, 'descriptionAttributes', {})}>
 	{description}
 </div>

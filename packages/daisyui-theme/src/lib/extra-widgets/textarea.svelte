@@ -15,5 +15,5 @@
 <textarea
 	bind:value
 	class={['textarea textarea-bordered grow', errors.length > 0 && 'textarea-error']}
-	{...textareaAttributes('textarea', handlers)({}, config, ctx)}
+	{...textareaAttributes(ctx, config, 'textarea', handlers, {})}
 ></textarea>

@@ -7,7 +7,7 @@
 	const ctx = getFormContext();
 </script>
 
-<label class="label-text" {...labelAttributes('labelAttributes')({}, config, ctx)}>
+<label class="label-text" {...labelAttributes(ctx, config, 'labelAttributes', {})}>
 	{title}
 	{#if config.required}
 		<span>*</span>

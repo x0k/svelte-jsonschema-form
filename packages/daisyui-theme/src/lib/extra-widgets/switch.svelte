@@ -22,7 +22,7 @@
 		type="checkbox"
 		class={['toggle', errors.length > 0 && 'toggle-error']}
 		bind:checked={() => value ?? false, (v) => (value = v)}
-		{...inputAttributes('daisyuiSwitch', handlers)({}, config, ctx)}
+		{...inputAttributes(ctx, config, 'daisyuiSwitch', handlers, {})}
 	/>
 	<span class="label-text">{config.title}</span>
 </label>

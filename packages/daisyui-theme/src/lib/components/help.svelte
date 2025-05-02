@@ -7,6 +7,6 @@
 	const ctx = getFormContext();
 </script>
 
-<div class="label-text-alt" {...helpAttributes('helpAttributes')({}, config, ctx)}>
+<div class="label-text-alt" {...helpAttributes(ctx, config, 'helpAttributes', {})}>
 	{help}
 </div>

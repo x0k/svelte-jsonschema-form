@@ -10,11 +10,7 @@
 </script>
 
 <script lang="ts">
-	import {
-		getFormContext,
-		inputAttributes,
-		type ComponentProps
-	} from '@sjsf/form';
+	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 	import { indexMapper, singleOption } from '@sjsf/form/options.svelte';
 
 	let {
@@ -34,7 +30,7 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		inputAttributes('daisyuiRadioButtons', handlers)({ type: 'radio' }, config, ctx)
+		inputAttributes(ctx, config, 'daisyuiRadioButtons', handlers, { type: 'radio' })
 	);
 </script>
 

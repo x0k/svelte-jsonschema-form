@@ -19,13 +19,9 @@
 	type="file"
 	bind:files={value}
 	class={['file-input grow', errors.length > 0 && 'file-input-error']}
-	{...inputAttributes('file', handlers)(
-		{
-			multiple,
-			'data-loading': loading,
-			'data-processing': processing
-		},
-		config,
-		ctx
-	)}
+	{...inputAttributes(ctx, config, 'file', handlers, {
+		multiple,
+		'data-loading': loading,
+		'data-processing': processing
+	})}
 />

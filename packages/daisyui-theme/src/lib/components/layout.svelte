@@ -33,7 +33,7 @@
 	class:join={isControls}
 	class:grow={isGrowable}
 	class:flex-col={isColumn || isField}
-	{...layoutAttributes('layout', 'layouts', type)({}, config, ctx)}
+	{...layoutAttributes(ctx, config, 'layout', 'layouts', type, {})}
 >
 	{@render children()}
 </div>

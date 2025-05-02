@@ -21,7 +21,7 @@
 
 	const ctx = getFormContext();
 
-	const attributes = $derived(selectAttributes('select', handlers)({}, config, ctx));
+	const attributes = $derived(selectAttributes(ctx, config, 'select', handlers, {}));
 </script>
 
 <select

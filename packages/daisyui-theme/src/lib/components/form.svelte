@@ -11,7 +11,7 @@
 	bind:this={ref}
 	use:enhance={ctx}
 	class="flex flex-col gap-4"
-	{...formAttributes('form', attributes)({}, config, ctx)}
+	{...formAttributes(ctx, config, 'form', attributes, {})}
 >
 	{@render children?.()}
 </form>
