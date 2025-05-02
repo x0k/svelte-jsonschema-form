@@ -72,11 +72,6 @@ function removePseudoElements<T>(
       return true;
     }
     const subKey = key.substring(index + idPseudoSeparator.length);
-    // Checked by blacklist
-    // if (subKey === KEY_INPUT_KEY) {
-    //   return true;
-    // }
-
     // Numbers are used for enum option ids, not inputs
     // if (Number.isInteger(Number(subKey))) {
     //   return false;
@@ -90,7 +85,7 @@ export function parseSchemaValue<T>({
   entries,
   idPrefix,
   idPseudoSeparator,
-  idSeparator: originalIdSeparator,
+  idSeparator: idSeparator,
   schema: rootSchema,
   uiSchema: rootUiSchema,
   validator,
@@ -100,9 +95,9 @@ export function parseSchemaValue<T>({
   if (entries.length === 0) {
     return undefined;
   }
-  const idSeparator = escapeRegex(originalIdSeparator);
-  const BOUNDARY = `($|${idSeparator})`;
-  const SEPARATED_KEY_INPUT_KET = `${idPseudoSeparator}${KEY_INPUT_KEY}`;
+  const escapedIdSeparator = escapeRegex(idSeparator);
+  const BOUNDARY = `($|${escapedIdSeparator})`;
+  const SEPARATED_KEY_INPUT_KEY = `${idPseudoSeparator}${KEY_INPUT_KEY}`;
   let filter = '';
   const filterLengthStack: number[] = [];
   const entriesStack: Entries<T>[] = [
@@ -176,7 +171,7 @@ export function parseSchemaValue<T>({
 
     if (properties !== undefined) {
       for (const [property, schema] of Object.entries(properties)) {
-        pushFilterAndEntries(`${idSeparator}${escapeRegex(property)}`);
+        pushFilterAndEntries(`${escapedIdSeparator}${escapeRegex(property)}`);
         setProperty(property, schema, (uiSchema[property] ?? {}) as UiSchema);
         popEntriesAndFilter();
       }
@@ -189,14 +184,14 @@ export function parseSchemaValue<T>({
         some(typeOfSchema(additionalProperties), isArrayOrObjectSchemaType);
       for (const entry of entriesStack[entriesStack.length - 1]) {
         const str = entry[0];
-        let keyEnd: number | undefined = str.indexOf(originalIdSeparator, filter.length);
+        let keyEnd: number | undefined = str.indexOf(idSeparator, filter.length);
         if (keyEnd !== -1 && !isObjectOrArraySchema) {
           keyEnd = -1;
         }
         if (keyEnd === -1) {
           const val = entry[1];
-          if (str.endsWith(SEPARATED_KEY_INPUT_KET) && typeof val === 'string') {
-            const group = str.slice(filter.length, str.length - SEPARATED_KEY_INPUT_KET.length);
+          if (str.endsWith(SEPARATED_KEY_INPUT_KEY) && typeof val === 'string') {
+            const group = str.slice(filter.length, str.length - SEPARATED_KEY_INPUT_KEY.length);
             additionalKeys.set(group, val);
             continue;
           }
@@ -212,7 +207,7 @@ export function parseSchemaValue<T>({
       const { known, unknown } = popGroupEntries();
       entriesStack[entriesStack.length - 1] = known;
       for (const [key, entries] of unknown) {
-        pushFilter(`${idSeparator}${escapeRegex(key)}`);
+        pushFilter(`${escapedIdSeparator}${escapeRegex(key)}`);
         entriesStack.push(entries);
         setProperty(
           additionalKeys.get(key) ?? key,
@@ -233,14 +228,14 @@ export function parseSchemaValue<T>({
         const uiItems = uiSchema.items ?? {};
         const uiIsArray = Array.isArray(uiItems);
         for (let i = 0; i < items.length; i++) {
-          pushFilterAndEntries(`${idSeparator}${i}`);
+          pushFilterAndEntries(`${escapedIdSeparator}${i}`);
           value.push(parseSchemaDef(items[i], uiIsArray ? uiItems[i] : uiItems));
           popEntriesAndFilter();
         }
         if (additionalItems !== undefined) {
           let i = items.length;
           while (entriesStack[entriesStack.length - 1].length > 0) {
-            pushFilterAndEntries(`${idSeparator}${i++}`);
+            pushFilterAndEntries(`${escapedIdSeparator}${i++}`);
             if (i === items.length + 1 && entriesStack[entriesStack.length - 1].length === 0) {
               popEntriesAndFilter();
               break;
@@ -254,7 +249,7 @@ export function parseSchemaValue<T>({
         const uiItems = uiSchema.items ?? {};
         const uiIsArray = Array.isArray(uiItems);
         while (entriesStack[entriesStack.length - 1].length > 0) {
-          pushFilterAndEntries(`${idSeparator}${i++}`);
+          pushFilterAndEntries(`${escapedIdSeparator}${i++}`);
           // Special case: array items have no indexes, but they have the same names
           if (i === 1 && entriesStack[entriesStack.length - 1].length === 0) {
             popEntriesAndFilter();
