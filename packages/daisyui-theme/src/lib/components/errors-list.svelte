@@ -7,8 +7,8 @@
 	const ctx = getFormContext();
 </script>
 
-<ui class="text-error" {...errorsListAttributes(ctx, config, 'errorsList', {})}>
+<ul class="text-error" {...errorsListAttributes(ctx, config, 'errorsList', {})}>
 	{#each errors as err}
 		<li>{err.message}</li>
 	{/each}
-</ui>
+</ul>

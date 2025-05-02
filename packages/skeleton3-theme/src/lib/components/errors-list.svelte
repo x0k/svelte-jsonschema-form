@@ -7,7 +7,7 @@
 	const ctx = getFormContext();
 </script>
 
-<ui
+<ul
 	class="text-error-500"
 	{...retrieveUiProps(ctx, config, 'errorsList', {
 		[ERRORS_FOR_KEY]: config.id
@@ -16,4 +16,4 @@
 	{#each errors as err}
 		<li>{err.message}</li>
 	{/each}
-</ui>
+</ul>

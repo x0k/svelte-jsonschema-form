@@ -23,7 +23,7 @@
   const ctx = getFormContext();
 </script>
 
-<ui
+<ul
   {...errorsListAttributes(ctx, config, "errorsList", {
     style: "color: red;",
   })}
@@ -31,4 +31,4 @@
   {#each errors as err}
     <li>{err.message}</li>
   {/each}
-</ui>
+</ul>
