@@ -10,7 +10,7 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, retrieveInputAttributes, type ComponentProps } from '@sjsf/form';
+	import { customInputAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
 
 	import { getThemeContext } from '../context';
 
@@ -23,12 +23,12 @@
 	const { Checkbox, Label } = $derived(themeCtx.components);
 
 	const attributes = $derived(
-		retrieveInputAttributes(ctx, config, 'shadcnCheckbox', () => ({
+		customInputAttributes(ctx, config, 'shadcnCheckbox', {
 			...handlers,
 			id: config.id,
 			name: config.id,
-			required: config.required,
-		}))
+			required: config.required
+		})
 	);
 </script>
 

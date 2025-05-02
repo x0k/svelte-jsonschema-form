@@ -17,7 +17,7 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, retrieveInputAttributes, type ComponentProps } from '@sjsf/form';
+	import { customInputAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
 
 	import { getThemeContext } from '../context';
 
@@ -27,16 +27,15 @@
 	const { Switch } = $derived(themeCtx.components);
 
 	let { value = $bindable(), config, handlers }: ComponentProps['switchWidget'] = $props();
-
-	const attributes = $derived(
-		retrieveInputAttributes(ctx, config, 'shadcnSwitch', () => ({
-			...handlers,
-			id: config.id,
-			name: config.id,
-			required: config.required,
-			onCheckedChange: handlers.onchange,
-		}))
-	);
 </script>
 
-<Switch bind:checked={() => value ?? false, (v) => (value = v)} {...attributes} />
+<Switch
+	bind:checked={() => value ?? false, (v) => (value = v)}
+	{...customInputAttributes(ctx, config, 'shadcnSwitch', {
+		...handlers,
+		id: config.id,
+		name: config.id,
+		required: config.required,
+		onCheckedChange: handlers.onchange
+	})}
+/>

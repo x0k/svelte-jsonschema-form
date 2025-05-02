@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getFormContext, retrieveUiProps, type ComponentProps } from '@sjsf/form';
+	import { descriptionAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
 	import '@sjsf/basic-theme/components/description.svelte';
 
 	const { description, config }: ComponentProps['description'] = $props();
@@ -9,7 +9,7 @@
 
 <div
 	class="text-muted-foreground"
-	{...retrieveUiProps(ctx, config, "descriptionAttributes", {})}
+	{...descriptionAttributes(ctx, config, 'descriptionAttributes', {})}
 >
 	{description}
 </div>

@@ -33,9 +33,8 @@
 	import {
 		getFormContext,
 		inputAttributes,
-		retrieveInputAttributes,
 		retrieveUiOption,
-		retrieveUiProps,
+		uiOptionProps,
 		type ComponentProps
 	} from '@sjsf/form';
 	import { indexMapper, singleOption } from '@sjsf/form/options.svelte';
@@ -80,9 +79,7 @@
 		});
 	}
 
-	const attributes = $derived(
-		retrieveInputAttributes(ctx, config, 'shadcnComboboxInput', inputAttributes(handlers))
-	);
+	const attributes = $derived(inputAttributes(ctx, config, 'shadcnComboboxInput', handlers, {}));
 
 	const triggerContent = $derived(
 		options[Number(mapped.value)]?.label ?? attributes.placeholder ?? ''
@@ -96,12 +93,16 @@
 		{#snippet child({ props })}
 			<Button
 				class="w-full justify-between"
-				{...retrieveUiProps(ctx, config, 'shadcnComboboxTrigger', {
-					variant: 'outline',
-					...props,
-					role: 'combobox',
-					'aria-expanded': open
-				})}
+				{...uiOptionProps('shadcnComboboxTrigger')(
+					{
+						variant: 'outline',
+						...props,
+						role: 'combobox',
+						'aria-expanded': open
+					},
+					config,
+					ctx
+				)}
 			>
 				{triggerContent}
 				<ChevronsUpDown class="ml-2 size-4 shrink-0 opacity-50" />

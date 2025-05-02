@@ -1,10 +1,5 @@
 <script lang="ts">
-	import {
-		getFormContext,
-		retrieveNestedUiProps,
-		retrieveUiProps,
-		type ComponentProps
-	} from '@sjsf/form';
+	import { getFormContext, layoutAttributes, type ComponentProps } from '@sjsf/form';
 	import '@sjsf/basic-theme/components/layout.svelte';
 
 	const { type, children, config }: ComponentProps['layout'] = $props();
@@ -27,18 +22,6 @@
 	);
 
 	const ctx = getFormContext();
-
-	const attributes = $derived(
-		retrieveNestedUiProps(
-			ctx,
-			config,
-			'layouts',
-			(l) => l[type],
-			retrieveUiProps(ctx, config, 'layout', {
-				'data-layout': type
-			})
-		)
-	);
 </script>
 
 <div
@@ -51,7 +34,7 @@
 		grow: isGrowable,
 		'flex-col': isColumn || isField
 	}}
-	{...attributes}
+	{...layoutAttributes(ctx, config, 'layout', 'layouts', type, {})}
 >
 	{@render children()}
 </div>

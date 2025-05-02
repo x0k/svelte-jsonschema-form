@@ -29,10 +29,10 @@
 <script lang="ts">
 	import { getLocalTimeZone, parseDate } from '@internationalized/date';
 	import {
+		customInputAttributes,
 		getFormContext,
-		retrieveInputAttributes,
 		retrieveUiOption,
-		retrieveUiProps,
+		uiOptionProps,
 		type ComponentProps
 	} from '@sjsf/form';
 
@@ -48,10 +48,10 @@
 	let { value = $bindable(), config, handlers }: ComponentProps['datePickerWidget'] = $props();
 
 	const attributes = $derived(
-		retrieveInputAttributes(ctx, config, 'shadcnDatePicker', () => ({
+		customInputAttributes(ctx, config, 'shadcnDatePicker', {
 			initialFocus: true,
 			onValueChange: handlers.onchange
-		}))
+		})
 	);
 
 	const parsedDate = $derived(value !== undefined ? parseDate(value) : undefined);
@@ -84,7 +84,7 @@
 			<Button
 				{...props}
 				class={['w-full', parsedDate === undefined && 'text-muted-foreground']}
-				{...retrieveUiProps(ctx, config, 'shadcnDatePickerTrigger', {})}
+				{...uiOptionProps('shadcnDatePickerTrigger')({}, config, ctx)}
 			>
 				{triggerContent}
 			</Button>

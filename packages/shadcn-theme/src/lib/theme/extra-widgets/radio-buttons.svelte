@@ -32,9 +32,9 @@
 
 <script lang="ts">
 	import {
+		customInputAttributes,
 		getFormContext,
-		retrieveInputAttributes,
-		retrieveUiProps,
+		uiOptionProps,
 		type ComponentProps
 	} from '@sjsf/form';
 
@@ -60,23 +60,27 @@
 	});
 
 	const attributes = $derived(
-		retrieveInputAttributes(ctx, config, 'shadcnRadioButtons', () => ({
+		customInputAttributes(ctx, config, 'shadcnRadioButtons', {
 			type: 'single',
 			id: config.id,
 			'aria-required': config.required,
 			'aria-readonly': config.schema.readOnly,
 			onValueChange: handlers.onchange
-		}))
+		})
 	);
 </script>
 
 <ToggleGroup bind:value={mapped.value} {...attributes}>
 	{#each options as option, index (option.id)}
 		<ToggleGroupItem
-			{...retrieveUiProps(ctx, config, 'shadcnRadioButtonsItem', {
-				value: index.toString(),
-				disabled: option.disabled
-			})}
+			{...uiOptionProps('shadcnRadioButtonsItem')(
+				{
+					value: index.toString(),
+					disabled: option.disabled
+				},
+				config,
+				ctx
+			)}
 		>
 			{option.label}
 		</ToggleGroupItem>

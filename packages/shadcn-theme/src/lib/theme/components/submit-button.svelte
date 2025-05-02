@@ -9,7 +9,7 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, retrieveInputAttributes, type ComponentProps } from '@sjsf/form';
+	import { buttonAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
 
 	import { getThemeContext } from '../context';
 
@@ -18,14 +18,8 @@
 	const ctx = getFormContext();
 	const themeCtx = getThemeContext();
 	const { Button } = $derived(themeCtx.components);
-
-	const attributes = $derived(
-		retrieveInputAttributes(ctx, config, 'shadcnSubmitButton', () => ({
-			type: 'submit'
-		}))
-	);
 </script>
 
-<Button type="submit" {...attributes}>
+<Button {...buttonAttributes(ctx, config, 'shadcnButton', 'submit', {})}>
 	{@render children()}
 </Button>

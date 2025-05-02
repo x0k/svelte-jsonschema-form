@@ -28,9 +28,9 @@
 <script lang="ts">
 	import {
 		type ComponentProps,
+		customInputAttributes,
 		getFormContext,
-		retrieveInputAttributes,
-		retrieveUiProps
+		uiOptionProps
 	} from '@sjsf/form';
 	import { stringIndexMapper, singleOption } from '@sjsf/form/options.svelte';
 
@@ -50,16 +50,20 @@
 	});
 
 	const attributes = $derived(
-		retrieveInputAttributes(ctx, config, 'shadcnRadioGroup', () => ({
+		customInputAttributes(ctx, config, 'shadcnRadioGroup', {
 			onValueChange: handlers.onchange
-		}))
+		})
 	);
 
 	const itemAttributes = $derived(
-		retrieveUiProps(ctx, config, 'shadcnRadioItem', {
-			onclick: handlers.oninput,
-			onblur: handlers.onblur
-		})
+		uiOptionProps('shadcnRadioItem')(
+			{
+				onclick: handlers.oninput,
+				onblur: handlers.onblur
+			},
+			config,
+			ctx
+		)
 	);
 </script>
 

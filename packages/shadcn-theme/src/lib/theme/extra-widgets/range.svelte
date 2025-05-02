@@ -17,7 +17,7 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, retrieveInputAttributes, type ComponentProps } from '@sjsf/form';
+	import { customInputAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
 
 	import { getThemeContext } from '../context';
 
@@ -27,17 +27,17 @@
 	const { Slider } = $derived(themeCtx.components);
 
 	let { value = $bindable(), config, handlers }: ComponentProps['rangeWidget'] = $props();
-
-	const attributes = $derived(
-		retrieveInputAttributes(ctx, config, 'shadcnRange', () => ({
-			id: config.id,
-			min: config.schema.minimum,
-			max: config.schema.maximum,
-			step: config.schema.multipleOf,
-			onValueChange: handlers.oninput,
-			onValueCommit: handlers.onchange
-		}))
-	);
 </script>
 
-<Slider bind:value={() => value ?? 0, (v) => (value = v)} {...attributes} type="single" />
+<Slider
+	bind:value={() => value ?? 0, (v) => (value = v)}
+	{...customInputAttributes(ctx, config, 'shadcnRange', {
+		id: config.id,
+		min: config.schema.minimum,
+		max: config.schema.maximum,
+		step: config.schema.multipleOf,
+		onValueChange: handlers.oninput,
+		onValueCommit: handlers.onchange
+	})}
+	type="single"
+/>

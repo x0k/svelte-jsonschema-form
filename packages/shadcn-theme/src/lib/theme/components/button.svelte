@@ -15,10 +15,11 @@
 
 <script lang="ts">
 	import {
-		defineDisabled,
+		composeProps,
+		disabledProp,
 		getFormContext,
-		retrieveNestedUiProps,
-		retrieveUiProps,
+		uiOptionNestedProps,
+		uiOptionProps,
 		type ComponentProps
 	} from '@sjsf/form';
 
@@ -29,25 +30,21 @@
 	const ctx = getFormContext();
 	const themeCtx = getThemeContext();
 	const { Button } = $derived(themeCtx.components);
-
-	const attributes = $derived(
-		defineDisabled(
-			ctx,
-			retrieveNestedUiProps(
-				ctx,
-				config,
-				'shadcnButtons',
-				(p) => p[type],
-				retrieveUiProps(ctx, config, 'shadcnButton', {
-					type: 'button',
-					disabled,
-					onclick
-				})
-			)
-		)
-	);
 </script>
 
-<Button {...attributes}>
+<Button
+	{...composeProps(
+		ctx,
+		config,
+		{
+			type: 'button',
+			disabled,
+			onclick
+		} satisfies ButtonProps,
+		uiOptionProps('shadcnButton'),
+		uiOptionNestedProps('shadcnButtons', (b) => b[type]),
+		disabledProp
+	)}
+>
 	{@render children()}
 </Button>

@@ -11,12 +11,7 @@
 </script>
 
 <script lang="ts">
-	import {
-		getFormContext,
-		retrieveInputAttributes,
-		textareaAttributes,
-		type ComponentProps
-	} from '@sjsf/form';
+	import { getFormContext, textareaAttributes, type ComponentProps } from '@sjsf/form';
 	import '@sjsf/basic-theme/extra-widgets/textarea.svelte';
 
 	import { getThemeContext } from '../context';
@@ -27,10 +22,6 @@
 	const { Textarea } = $derived(themeCtx.components);
 
 	let { value = $bindable(), config, handlers }: ComponentProps['textareaWidget'] = $props();
-
-	const attributes = $derived(
-		retrieveInputAttributes(ctx, config, 'textarea', textareaAttributes(handlers))
-	);
 </script>
 
-<Textarea bind:value {...attributes} />
+<Textarea bind:value {...textareaAttributes(ctx, config, 'textarea', handlers, {})} />
