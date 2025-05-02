@@ -4,16 +4,21 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			flowbite3Datepicker?: Partial<DatepickerProps>;
+			flowbite3Datepicker?: DatepickerProps;
 		}
 	}
 </script>
 
 <script lang="ts">
-	import { customInputAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
+	import {
+		customInputAttributes,
+		describedBy,
+		getFormContext,
+		type ComponentProps
+	} from '@sjsf/form';
 	import Datepicker from 'flowbite-svelte/Datepicker.svelte';
 
-	let { value = $bindable(), config }: ComponentProps['datePickerWidget'] = $props();
+	let { value = $bindable(), config, handlers }: ComponentProps['datePickerWidget'] = $props();
 
 	function parseLocalDate(date: string) {
 		const [year, month, day] = date.split('-').map(Number);
@@ -21,28 +26,23 @@
 	}
 
 	const ctx = getFormContext();
-
-	const date = {
-		get value() {
-			return value ? parseLocalDate(value) : null;
-		},
-		set value(v) {
-			if (!v) {
-				value = undefined;
-				return;
-			}
-			value = v.toLocaleDateString('en-CA');
-		}
-	};
 </script>
 
 <div class="w-full">
 	<Datepicker
-		bind:value={date.value}
+		bind:value={
+			() => (value ? parseLocalDate(value) : undefined),
+			(v) => (value = v?.toLocaleDateString('en-CA'))
+		}
 		{...customInputAttributes(ctx, config, 'flowbite3Datepicker', {
+			id: config.id,
 			required: config.required,
 			showActionButtons: true,
-			autohide: false
-		}) as any}
+			autohide: false,
+			onapply: handlers.onchange,
+			onselect: handlers.oninput,
+			onclear: handlers.oninput,
+			'aria-describedby': describedBy(ctx, config)
+		})}
 	/>
 </div>

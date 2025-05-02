@@ -12,8 +12,7 @@ import './extra-widgets/textarea-include';
 export const specs: s.Specs = {
 	datePicker: [
 		s.text,
-		// TODO: Remove `useLabel` as `Datepicker` will be ok
-		{ 'ui:components': { textWidget: 'datePickerWidget' }, 'ui:options': { useLabel: false } }
+		{ 'ui:components': { textWidget: 'datePickerWidget' } }
 	],
 	multiSelect: [
 		s.uniqueArray,
