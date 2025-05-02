@@ -10,21 +10,12 @@
 </script>
 
 <script lang="ts">
-	import {
-		getFormContext,
-		retrieveInputAttributes,
-		textareaAttributes,
-		type ComponentProps
-	} from '@sjsf/form';
+	import { getFormContext, textareaAttributes, type ComponentProps } from '@sjsf/form';
 	import Textarea from 'flowbite-svelte/Textarea.svelte';
 
 	let { value = $bindable(), config, handlers }: ComponentProps['textareaWidget'] = $props();
 
 	const ctx = getFormContext();
-
-	const attributes = $derived(
-		retrieveInputAttributes(ctx, config, 'flowbiteTextarea', textareaAttributes(handlers))
-	);
 </script>
 
-<Textarea bind:value {...attributes} />
+<Textarea bind:value {...textareaAttributes(ctx, config, 'flowbiteTextarea', handlers, {})} />

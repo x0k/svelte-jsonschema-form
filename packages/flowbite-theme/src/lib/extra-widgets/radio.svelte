@@ -10,12 +10,7 @@
 </script>
 
 <script lang="ts">
-	import {
-		getFormContext,
-		inputAttributes,
-		retrieveInputAttributes,
-		type ComponentProps
-	} from '@sjsf/form';
+	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 	import { indexMapper, singleOption } from '@sjsf/form/options.svelte';
 	import Radio from 'flowbite-svelte/Radio.svelte';
 
@@ -29,9 +24,7 @@
 
 	const ctx = getFormContext();
 
-	const attributes = $derived(
-		retrieveInputAttributes(ctx, config, 'flowbiteRadio', inputAttributes(handlers))
-	);
+	const attributes = $derived(inputAttributes(ctx, config, 'flowbiteRadio', handlers, {}));
 </script>
 
 {#each options as option, index (option.id)}

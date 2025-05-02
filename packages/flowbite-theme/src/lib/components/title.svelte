@@ -9,7 +9,7 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, retrieveUiProps, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, titleAttributes, type ComponentProps } from '@sjsf/form';
 
 	const { title, type, config }: ComponentProps['title'] = $props();
 
@@ -18,7 +18,7 @@
 
 <p
 	class={['text-gray-900 dark:text-white', { 'font-semibold': type !== 'field' }]}
-	{...retrieveUiProps(ctx, config, 'flowbiteTitle', {})}
+	{...titleAttributes(ctx, config, 'flowbiteTitle', {})}
 >
 	{title}
 </p>

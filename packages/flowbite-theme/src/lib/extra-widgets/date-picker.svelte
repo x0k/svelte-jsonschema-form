@@ -10,7 +10,7 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, retrieveInputAttributes, type ComponentProps } from '@sjsf/form';
+	import { getFormContext, customInputAttributes, type ComponentProps } from '@sjsf/form';
 	import Datepicker from 'flowbite-svelte/Datepicker.svelte';
 
 	let { value = $bindable(), config }: ComponentProps['datePickerWidget'] = $props();
@@ -21,14 +21,6 @@
 	}
 
 	const ctx = getFormContext();
-
-	const attributes = $derived(
-		retrieveInputAttributes(ctx, config, 'flowbiteDatepicker', () => ({
-			showActionButtons: true,
-			autohide: false,
-			required: config.required
-		}))
-	);
 </script>
 
 <div class="w-full">
@@ -43,6 +35,10 @@
 				value = v.toLocaleDateString('en-CA');
 			}
 		}
-		{...attributes}
+		{...customInputAttributes(ctx, config, 'flowbiteDatepicker', {
+			showActionButtons: true,
+			autohide: false,
+			required: config.required
+		})}
 	/>
 </div>

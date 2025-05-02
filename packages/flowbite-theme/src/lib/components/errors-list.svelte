@@ -8,7 +8,7 @@
 </script>
 
 <script lang="ts">
-	import { ERRORS_FOR_KEY, getFormContext, retrieveUiProps, type ComponentProps } from '@sjsf/form';
+	import { errorsListAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
 
 	const { errors, config }: ComponentProps['errorsList'] = $props();
 
@@ -17,7 +17,7 @@
 
 <ul
 	class="text-red-700 dark:text-red-500"
-	{...retrieveUiProps(ctx, config, 'flowbiteErrorsList', { [ERRORS_FOR_KEY]: config.id })}
+	{...errorsListAttributes(ctx, config, 'flowbiteErrorsList', {})}
 >
 	{#each errors as err}
 		<li>{err.message}</li>

@@ -9,13 +9,13 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, retrieveUiProps, type ComponentProps } from '@sjsf/form';
+	import { descriptionAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
 
 	const { description, config }: ComponentProps['description'] = $props();
 
 	const ctx = getFormContext();
 </script>
 
-<div class="text-sm opacity-70" {...retrieveUiProps(ctx, config, 'flowbiteDescription', {})}>
+<div class="text-sm opacity-70" {...descriptionAttributes(ctx, config, 'flowbiteDescription', {})}>
 	{description}
 </div>

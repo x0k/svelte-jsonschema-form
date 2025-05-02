@@ -10,12 +10,7 @@
 </script>
 
 <script lang="ts">
-	import {
-		getFormContext,
-		inputAttributes,
-		retrieveInputAttributes,
-		type ComponentProps
-	} from '@sjsf/form';
+	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 	import FileUpload from 'flowbite-svelte/Fileupload.svelte';
 
 	let {
@@ -28,16 +23,13 @@
 	}: ComponentProps['fileWidget'] = $props();
 
 	const ctx = getFormContext();
-
-	const attributes = $derived(
-		retrieveInputAttributes(ctx, config, 'flowbiteFile', inputAttributes(handlers))
-	);
 </script>
 
 <FileUpload
 	bind:files={value}
-	{multiple}
-	data-loading={loading}
-	data-processing={processing}
-	{...attributes}
+	{...inputAttributes(ctx, config, 'flowbiteFile', handlers, {
+		multiple,
+		'data-loading': loading,
+		'data-processing': processing
+	})}
 />

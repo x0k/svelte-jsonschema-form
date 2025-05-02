@@ -15,12 +15,7 @@
 </script>
 
 <script lang="ts">
-	import {
-		getFormContext,
-		retrieveNestedUiProps,
-		retrieveUiProps,
-		type ComponentProps
-	} from '@sjsf/form';
+	import { getFormContext, layoutAttributes, uiOptionProps, type ComponentProps } from '@sjsf/form';
 	import ButtonGroup from 'flowbite-svelte/ButtonGroup.svelte';
 
 	const { type, children, config }: ComponentProps['layout'] = $props();
@@ -43,22 +38,10 @@
 	);
 
 	const ctx = getFormContext();
-
-	const attributes = $derived(
-		retrieveNestedUiProps(
-			ctx,
-			config,
-			'flowbiteLayouts',
-			(l) => l[type],
-			retrieveUiProps(ctx, config, 'flowbiteLayout', {
-				'data-layout': type
-			})
-		)
-	);
 </script>
 
 {#if isControls}
-	<ButtonGroup {...retrieveUiProps(ctx, config, 'flowbiteButtonGroup', {})}>
+	<ButtonGroup {...uiOptionProps('flowbiteButtonGroup')({}, config, ctx)}>
 		{@render children()}
 	</ButtonGroup>
 {:else}
@@ -71,7 +54,7 @@
 			grow: isGrowable,
 			'flex-col': isField || isColumn
 		}}
-		{...attributes}
+		{...layoutAttributes(ctx, config, 'flowbiteLayout', 'flowbiteLayouts', type, {})}
 	>
 		{@render children()}
 	</div>

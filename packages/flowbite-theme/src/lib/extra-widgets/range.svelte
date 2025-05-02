@@ -10,21 +10,15 @@
 </script>
 
 <script lang="ts">
-	import {
-		getFormContext,
-		inputAttributes,
-		retrieveInputAttributes,
-		type ComponentProps
-	} from '@sjsf/form';
+	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 	import Range from 'flowbite-svelte/Range.svelte';
 
 	let { value = $bindable(), config, handlers }: ComponentProps['rangeWidget'] = $props();
 
 	const ctx = getFormContext();
-
-	const attributes = $derived(
-		retrieveInputAttributes(ctx, config, 'flowbiteRange', inputAttributes(handlers))
-	);
 </script>
 
-<Range bind:value={() => value ?? 0, (v) => (value = v)} {...attributes} />
+<Range
+	bind:value={() => value ?? 0, (v) => (value = v)}
+	{...inputAttributes(ctx, config, 'flowbiteRange', handlers, {})}
+/>
