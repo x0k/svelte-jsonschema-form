@@ -1,17 +1,21 @@
 <script lang="ts">
-  import Markdown, { Transparent } from "svelte-exmarkdown";
-  import type { Plugin } from "svelte-exmarkdown";
-  import rehypeRaw from "rehype-raw";
+  import Markdown from "svelte-exmarkdown";
 
-  import type { ComponentProps } from "@sjsf/form";
+  import {
+    descriptionAttributes,
+    getFormContext,
+    type ComponentProps,
+  } from "@sjsf/form";
 
-  const plugins: Plugin[] = [
-    { rehypePlugin: [rehypeRaw], renderer: { p: Transparent } },
-  ];
+  const { config, description }: ComponentProps["description"] = $props();
 
-  const { description }: ComponentProps["description"] = $props();
+  const ctx = getFormContext();
 </script>
 
-<div>
-  <Markdown md={description} {plugins} />
-</div>
+<Markdown md={description}>
+  {#snippet p({ children })}
+    <div {...descriptionAttributes(ctx, config, "descriptionAttributes", {})}>
+      {@render children?.()}
+    </div>
+  {/snippet}
+</Markdown>
