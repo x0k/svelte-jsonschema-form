@@ -40,9 +40,8 @@
 	);
 </script>
 
-<!-- TODO: this should be `bind:value=` but lib is broken -->
 <MultiSelect
 	class="grow"
-	value={mapped.value}
+	bind:value={mapped.value}
 	{...selectAttributes(ctx, config, 'flowbite3MultiSelect', handlers, { items: selectOptions })}
 />
