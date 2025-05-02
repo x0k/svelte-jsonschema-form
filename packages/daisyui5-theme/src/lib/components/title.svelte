@@ -9,7 +9,7 @@
 
 <legend
 	class={['fieldset-legend', { 'text-base': type !== 'field' }]}
-	{...titleAttributes("titleAttributes")({}, config, ctx)}
+	{...titleAttributes(ctx, config, 'titleAttributes', {})}
 >
 	{title}
 </legend>

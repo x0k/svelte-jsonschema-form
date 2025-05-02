@@ -11,5 +11,5 @@
 	type="range"
 	bind:value={() => value ?? 0, (v) => (value = v)}
 	class={['w-full range', errors.length > 0 && 'range-error']}
-	{...inputAttributes('range', handlers)({ type: 'range' }, config, ctx)}
+	{...inputAttributes(ctx, config, 'range', handlers, { type: 'range' })}
 />

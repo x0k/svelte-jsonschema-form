@@ -29,16 +29,19 @@
 {#if type === 'field-meta' || type === 'field-content' || type === 'array-field-meta' || type === 'object-field-meta'}
 	{@render children()}
 {:else if type === 'field' || type === 'array-field' || type === 'object-field'}
-	{@const attributes = layoutAttributes('daisyui5FieldsLayout', 'daisyui5FieldsLayouts', type)(
-		{},
+	{@const attributes = layoutAttributes(
+		ctx,
 		config,
-		ctx
+		'daisyui5FieldsLayout',
+		'daisyui5FieldsLayouts',
+		type,
+		{}
 	)}
 	<fieldset class="fieldset gap-y-2" {...attributes}>
 		{@render children()}
 	</fieldset>
 {:else}
-	{@const attributes = layoutAttributes('layout', 'layouts', type)({}, config, ctx)}
+	{@const attributes = layoutAttributes(ctx, config, 'layout', 'layouts', type, {})}
 	<div
 		class={{
 			flex: isItem || isControls || isColumn || type === 'multi-field-controls',

@@ -70,14 +70,10 @@
 	const anchorName = $derived(formatAsCustomPropertyName(id));
 
 	const triggerAttributes = $derived(
-		buttonAttributes('daisyui5CallyCalendarTrigger', 'button')(
-			{
-				popovertarget: `${id}-popover`,
-				style: `anchor-name: ${anchorName};`
-			},
-			config,
-			ctx
-		)
+		buttonAttributes(ctx, config, 'daisyui5CallyCalendarTrigger', 'button', {
+			popovertarget: `${id}-popover`,
+			style: `anchor-name: ${anchorName};`
+		})
 	);
 </script>
 
@@ -108,7 +104,7 @@
 		}}
 		{...uiOptionProps('daisyui5CallyCalendar')(
 			{
-				value,
+				value
 			},
 			config,
 			ctx

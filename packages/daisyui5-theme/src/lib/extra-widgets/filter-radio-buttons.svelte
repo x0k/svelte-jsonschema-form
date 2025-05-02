@@ -33,13 +33,9 @@
 	const ctx = getFormContext();
 
 	const itemAttributes = $derived(
-		inputAttributes('daisyui5FilterItem', handlers)(
-			{
-				type: 'radio'
-			},
-			config,
-			ctx
-		)
+		inputAttributes(ctx, config, 'daisyui5FilterItem', handlers, {
+			type: 'radio'
+		})
 	);
 </script>
 

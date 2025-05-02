@@ -25,7 +25,7 @@
 	class={['select select-bordered w-full', errors.length > 0 && 'select-error']}
 	bind:value={mapped.value}
 	multiple
-	{...selectAttributes('multiSelect', handlers)({}, config, ctx)}
+	{...selectAttributes(ctx, config, 'multiSelect', handlers, {})}
 >
 	{#each options as option, index (option.id)}
 		<option value={index} disabled={option.disabled}>

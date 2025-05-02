@@ -47,5 +47,5 @@
 <input
 	bind:this={input}
 	class={['input pika-single w-full', errors.length > 0 && 'input-error']}
-	{...inputAttributes('daisyui5PikadayCalendar', handlers)({ type: 'text', value }, config, ctx)}
+	{...inputAttributes(ctx, config, 'daisyui5PikadayCalendar', handlers, { type: 'text', value })}
 />

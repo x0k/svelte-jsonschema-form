@@ -6,7 +6,7 @@
 
 	const ctx = getFormContext();
 
-	const attributes = $derived(inputAttributes('text', handlers)({ type: 'text' }, config, ctx));
+	const attributes = $derived(inputAttributes(ctx, config, 'text', handlers, { type: 'text' }));
 </script>
 
 <input
