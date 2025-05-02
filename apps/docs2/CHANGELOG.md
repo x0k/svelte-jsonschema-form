@@ -1,5 +1,30 @@
 # docs
 
+## 1.6.3-next.10
+
+### Patch Changes
+
+- Updated dependencies [[`0aa1555`](https://github.com/x0k/svelte-jsonschema-form/commit/0aa15554efa7306f0a7d2adcb3b05785c2e0125e), [`1669b70`](https://github.com/x0k/svelte-jsonschema-form/commit/1669b7072ba474f53a0d23cbb27596c44f7397bd), [`c5afc64`](https://github.com/x0k/svelte-jsonschema-form/commit/c5afc645948679acf4fa85d6ab7c9da2b89637a1), [`c8237ab`](https://github.com/x0k/svelte-jsonschema-form/commit/c8237ab5a6de878a7018df050893fa3202a8b734), [`d13af25`](https://github.com/x0k/svelte-jsonschema-form/commit/d13af25895cb30fc6d6f574a3e9651daac2d6ba3), [`c72cbf2`](https://github.com/x0k/svelte-jsonschema-form/commit/c72cbf258fe9f60b3b0462baa758a5a570200124), [`b392c41`](https://github.com/x0k/svelte-jsonschema-form/commit/b392c41b3bc6f3ecfbd65a1481ff01a512db786b), [`9d7c54e`](https://github.com/x0k/svelte-jsonschema-form/commit/9d7c54e1429a631fcc8d4ada3666c5cc74ec6061), [`3ae493a`](https://github.com/x0k/svelte-jsonschema-form/commit/3ae493a8905e38122fe0a1f996e25c70334cce0d), [`e21a9c1`](https://github.com/x0k/svelte-jsonschema-form/commit/e21a9c11285c13f0499f91bc6cbddb3e1a4a58f7), [`1557d57`](https://github.com/x0k/svelte-jsonschema-form/commit/1557d572f302b9fbca5d3c70e26f875e5e408005), [`71afdd2`](https://github.com/x0k/svelte-jsonschema-form/commit/71afdd2a32b88ae95b9799902a538b38da0ad7bb)]:
+  - @sjsf/form@2.0.0-next.10
+  - @sjsf/shadcn-theme@2.0.0-next.10
+  - @sjsf/flowbite3-theme@2.0.0-next.10
+  - @sjsf/lucide-icons@2.0.0-next.10
+  - @sjsf/ajv8-validator@2.0.0-next.10
+  - @sjsf/basic-theme@2.0.0-next.10
+  - @sjsf/cfworker-validator@2.0.0-next.10
+  - @sjsf/daisyui-theme@2.0.0-next.10
+  - @sjsf/daisyui5-theme@2.0.0-next.10
+  - @sjsf/flowbite-icons@2.0.0-next.10
+  - @sjsf/flowbite-theme@2.0.0-next.10
+  - @sjsf/moving-icons@2.0.0-next.10
+  - @sjsf/radix-icons@2.0.0-next.10
+  - @sjsf/schemasafe-validator@2.0.0-next.10
+  - @sjsf/skeleton-theme@2.0.0-next.10
+  - @sjsf/skeleton3-theme@2.0.0-next.10
+  - @sjsf/sveltekit@2.0.0-next.10
+  - testing@0.1.0-next.10
+  - @sjsf/zod-validator@2.0.0-next.10
+
 ## 1.6.3-next.9
 
 ### Patch Changes

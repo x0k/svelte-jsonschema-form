@@ -1,5 +1,25 @@
 # @sjsf/form
 
+## 2.0.0-next.10
+
+### Major Changes
+
+- Add support for `$ref` in UI schema ([#100](https://github.com/x0k/svelte-jsonschema-form/pull/100))
+
+- Remove `uiOptions` property from `Config` ([#100](https://github.com/x0k/svelte-jsonschema-form/pull/100))
+
+- Rename `FormTag` to `Form` ([#100](https://github.com/x0k/svelte-jsonschema-form/pull/100))
+
+### Minor Changes
+
+- Add `lib/component` submodule ([#100](https://github.com/x0k/svelte-jsonschema-form/pull/100))
+
+- Add `registry` form option ([#100](https://github.com/x0k/svelte-jsonschema-form/pull/100))
+
+### Patch Changes
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/4570 ([#100](https://github.com/x0k/svelte-jsonschema-form/pull/100))
+
 ## 2.0.0-next.9
 
 ### Major Changes
