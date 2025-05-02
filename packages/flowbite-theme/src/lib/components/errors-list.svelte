@@ -16,7 +16,7 @@
 </script>
 
 <ul
-	class="text-red-700 dark:text-red-500"
+	class="text-red-700 dark:text-red-500 list-disc list-inside"
 	{...errorsListAttributes(ctx, config, 'flowbiteErrorsList', {})}
 >
 	{#each errors as err}

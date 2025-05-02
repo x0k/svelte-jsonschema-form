@@ -25,7 +25,7 @@
 
 <ul
   {...errorsListAttributes(ctx, config, "errorsList", {
-    style: "color: red;",
+    style: "color: red; list-style-position: inside; padding: 0; margin: 0;",
   })}
 >
   {#each errors as err}

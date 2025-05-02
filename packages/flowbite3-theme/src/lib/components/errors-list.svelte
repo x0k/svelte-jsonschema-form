@@ -7,7 +7,10 @@
 	const ctx = getFormContext();
 </script>
 
-<ul class="text-red-700 dark:text-red-500" {...errorsListAttributes(ctx, config, 'errorsList', {})}>
+<ul
+	class="text-red-700 dark:text-red-500 list-disc list-inside"
+	{...errorsListAttributes(ctx, config, 'errorsList', {})}
+>
 	{#each errors as err}
 		<li>{err.message}</li>
 	{/each}

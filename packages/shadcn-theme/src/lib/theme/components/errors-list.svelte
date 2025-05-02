@@ -7,7 +7,10 @@
 	const ctx = getFormContext();
 </script>
 
-<ul class="text-destructive" {...errorsListAttributes(ctx, config, 'errorsList', {})}>
+<ul
+	class="text-destructive list-disc list-inside"
+	{...errorsListAttributes(ctx, config, 'errorsList', {})}
+>
 	{#each errors as err}
 		<li>{err.message}</li>
 	{/each}
