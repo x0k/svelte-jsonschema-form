@@ -20,11 +20,11 @@
     "@changesets/cli": "^2.29.2",
     "@svitejs/changesets-changelog-github-compact": "^1.2.0",
     "@total-typescript/tsconfig": "^1.0.4",
-    "@types/node": "^22.14.1",
+    "@types/node": "^22.15.3",
     "only-allow": "^1.2.1",
     "prettier-plugin-svelte": "catalog:",
     "publint": "^0.3.12",
-    "turbo": "^2.5.0",
+    "turbo": "^2.5.2",
     "typescript": "^5.8.3"
   },
   "pnpm": {
@@ -32,6 +32,9 @@
       "sharp",
       "esbuild"
     ],
+    "overrides": {
+      "svelte2tsx": "0.7.37"
+    },
     "patchedDependencies": {
       "svelte2tsx": "patches/svelte2tsx.patch"
     }

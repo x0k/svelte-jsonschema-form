@@ -75,7 +75,7 @@
 		"@playwright/test": "catalog:",
 		"@sjsf/ajv8-validator": "workspace:*",
 		"@sjsf/form": "workspace:*",
-		"@skeletonlabs/skeleton": "3.1.2",
+		"@skeletonlabs/skeleton": "3.1.3",
 		"@skeletonlabs/skeleton-svelte": "^1.2.1",
 		"@sveltejs/adapter-static": "catalog:",
 		"@sveltejs/kit": "catalog:",

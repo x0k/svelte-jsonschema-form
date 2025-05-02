@@ -1,8 +1,8 @@
 diff --git a/index.js b/index.js
-index 78ac20a6b0f3bbe5ae9242d379b8f4388b2c7bb4..eedbcbd516293e0fcfa4c62b1dd6479e6233090e 100644
+index b36a9debef01c910720fd5c678debc961126a1fc..bcd2c47e1cfd710c60743beda6db5717b84a4fc4 100644
 --- a/index.js
 +++ b/index.js
-@@ -8022,9 +8022,7 @@ function loadTsconfig(config, svelteMap) {
+@@ -8088,9 +8088,7 @@ function loadTsconfig(config, svelteMap) {
          options: {
              ...options,
              noEmit: false, // Set to true in case of jsconfig, force false, else nothing is emitted
@@ -14,10 +14,10 @@ index 78ac20a6b0f3bbe5ae9242d379b8f4388b2c7bb4..eedbcbd516293e0fcfa4c62b1dd6479e
              emitDeclarationOnly: true, // We only want d.ts file generation
              declarationDir: config.declarationDir, // Where to put the declarations
 diff --git a/index.mjs b/index.mjs
-index dda691d65c194fa42b38f813e0ad20106c36bf76..8ee6cb8d1d6e03c2735a9138e9112f684e5dc2af 100644
+index e6d39d1bdeb8df30da84194834736e35e5cea741..e5b2ba29e7b4c83b876353e6cb171ba7191e4c78 100644
 --- a/index.mjs
 +++ b/index.mjs
-@@ -8002,9 +8002,7 @@ function loadTsconfig(config, svelteMap) {
+@@ -8068,9 +8068,7 @@ function loadTsconfig(config, svelteMap) {
          options: {
              ...options,
              noEmit: false, // Set to true in case of jsconfig, force false, else nothing is emitted
