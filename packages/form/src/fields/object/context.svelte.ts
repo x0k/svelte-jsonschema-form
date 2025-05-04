@@ -114,12 +114,35 @@ export function createObjectContext<V extends Validator>(
 
   const requiredProperties = $derived(new Set(retrievedSchema.required));
 
-  const schemaAdditionalProperties = $derived.by(() => {
-    const { additionalProperties } = retrievedSchema;
-    return isSchemaObjectValue(additionalProperties)
-      ? retrieveSchema(ctx, additionalProperties, value())
-      : {};
-  });
+  const getAdditionalPropertySchema = $derived.by(
+    (): ((val: SchemaObjectValue | undefined, key: string) => Schema) => {
+      const { additionalProperties, patternProperties } = retrievedSchema;
+
+      if (isSchemaObjectValue(additionalProperties)) {
+        return (val) => retrieveSchema(ctx, additionalProperties, val);
+      }
+      let patterns: string[];
+      if (
+        patternProperties === undefined ||
+        ((patterns = Object.keys(patternProperties)), patterns.length === 0)
+      ) {
+        return () => ({});
+      }
+      const pairs = patterns.map((pattern) => {
+        const property = patternProperties[pattern]!;
+        return [
+          new RegExp(pattern),
+          typeof property === "boolean" ? {} : property,
+        ] as const;
+      });
+      return (val, key) =>
+        retrieveSchema(
+          ctx,
+          pairs.find(([p]) => p.test(key))?.[1] ?? pairs[0]![1],
+          val
+        );
+    }
+  );
 
   const canExpand = $derived(
     uiOption("expandable") !== false &&
@@ -182,9 +205,10 @@ export function createObjectContext<V extends Validator>(
         return;
       }
       const newKey = generateNewKey(val, newKeyPrefix, additionalPropertyKey);
+      const additionalPropertySchema = getAdditionalPropertySchema(val, newKey);
       val[newKey] =
-        getDefaultFieldState(ctx, schemaAdditionalProperties, undefined) ??
-        getDefaultValueForType(getSimpleSchemaType(schemaAdditionalProperties));
+        getDefaultFieldState(ctx, additionalPropertySchema, undefined) ??
+        getDefaultValueForType(getSimpleSchemaType(additionalPropertySchema));
       validate(val);
     },
     removeProperty(prop) {
