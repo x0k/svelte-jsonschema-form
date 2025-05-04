@@ -169,7 +169,9 @@
   }
   const urlValidationEvent = Number(url.searchParams.get("vevent") ?? 0);
   const initialValidationEvent =
-    urlValidationEvent > 0 && urlValidationEvent < 8 ? urlValidationEvent : 0;
+    urlValidationEvent > 0 && urlValidationEvent <= ON_OBJECT_CHANGE
+      ? urlValidationEvent
+      : 0;
   let validationEvent = $state(
     setValidation("vevent", initialValidationEvent, true)
   );
@@ -178,9 +180,11 @@
   });
   const urlValidationAfter = Number(url.searchParams.get("vafter") ?? 0);
   const initialValidationAfter =
-    [0, AFTER_SUBMITTED, AFTER_TOUCHED, AFTER_CHANGED].find(
-      (v) => v === urlValidationAfter
-    ) ?? 0;
+    urlValidationAfter === 0 ||
+    (urlValidationAfter >= AFTER_CHANGED &&
+      urlValidationAfter <= AFTER_SUBMITTED)
+      ? urlValidationAfter
+      : 0;
   let validationAfter = $state(
     setValidation("vafter", initialValidationAfter, true)
   );
