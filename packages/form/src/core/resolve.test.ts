@@ -134,7 +134,7 @@ describe("resolveDependencies()", () => {
     ]);
   });
 });
-describe("retrieveSchema2()", () => {
+describe("retrieveSchema()", () => {
   let consoleWarnSpy: MockInstance<typeof console.warn>;
   beforeAll(() => {
     consoleWarnSpy = vi.spyOn(console, "warn").mockImplementation(() => {}); // mock this to avoid actually warning in the tests
@@ -1665,9 +1665,54 @@ describe("retrieveSchema2()", () => {
       ).toEqual([schema]);
     });
   });
-  describe("stubExistingAdditionalProperties2()", () => {
+  describe("withPatternProperties()", () => {
+    it("merges all subschemas that match the patternProperties regex", () => {
+      const schema: Schema = {
+        type: "object",
+        properties: {
+          foo: { type: "number" },
+          baz: { type: "boolean" },
+        },
+        patternProperties: {
+          "^foo": {
+            minimum: 10,
+          },
+          "^foo.*": {
+            maximum: 20,
+          },
+          "^bar": {
+            multipleOf: 2,
+          },
+        },
+      };
+      const rootSchema: Schema = { definitions: {} };
+      const formData = {};
+      expect(
+        retrieveSchema(
+          testValidator,
+          defaultMerger,
+          schema,
+          rootSchema,
+          formData
+        )
+      ).toEqual({
+        ...schema,
+        properties: {
+          foo: {
+            type: "number",
+            minimum: 10,
+            maximum: 20,
+          },
+          baz: {
+            type: "boolean",
+          },
+        },
+      });
+    });
+  });
+  describe("stubExistingAdditionalProperties()", () => {
     it("deals with undefined formData", () => {
-      const schema: Schema = { type: "string" };
+      const schema = { type: "string", properties: {} } satisfies Schema;
       expect(
         stubExistingAdditionalProperties(testValidator, defaultMerger, schema)
       ).toEqual({
@@ -1676,7 +1721,7 @@ describe("retrieveSchema2()", () => {
       });
     });
     it("deals with non-object formData", () => {
-      const schema: Schema = { type: "string" };
+      const schema = { type: "string", properties: {} } satisfies Schema;
       expect(
         stubExistingAdditionalProperties(
           testValidator,
@@ -1691,9 +1736,10 @@ describe("retrieveSchema2()", () => {
       });
     });
     it("has property keys that match formData, additionalProperties is boolean", () => {
-      const schema: Schema = {
+      const schema = {
         additionalProperties: true,
-      };
+        properties: {},
+      } satisfies Schema;
       const formData = { bar: 1, baz: false, foo: "str" };
       expect(
         stubExistingAdditionalProperties(
@@ -1722,13 +1768,13 @@ describe("retrieveSchema2()", () => {
       });
     });
     it("has property keys that match schema AND formData, additionalProperties is boolean", () => {
-      const schema: Schema = {
+      const schema = {
         properties: {
           foo: { type: "string" },
           bar: { type: "number" },
         },
         additionalProperties: true,
-      };
+      } satisfies Schema;
       const formData = { foo: "blah", bar: 1, baz: true };
       expect(
         stubExistingAdditionalProperties(
@@ -1750,9 +1796,10 @@ describe("retrieveSchema2()", () => {
       });
     });
     it("has additionalProperties of type number", () => {
-      const schema: Schema = {
+      const schema = {
         additionalProperties: { type: "number" },
-      };
+        properties: {},
+      } satisfies Schema;
       const formData = { bar: 1 };
       expect(
         stubExistingAdditionalProperties(
@@ -1773,9 +1820,10 @@ describe("retrieveSchema2()", () => {
       });
     });
     it("has additionalProperties of empty object", () => {
-      const schema: Schema = {
+      const schema = {
         additionalProperties: {},
-      };
+        properties: {},
+      } satisfies Schema;
       const formData = { foo: "blah", bar: 1, baz: true };
       expect(
         stubExistingAdditionalProperties(
@@ -1804,9 +1852,10 @@ describe("retrieveSchema2()", () => {
       });
     });
     it("has additionalProperties with a ref", () => {
-      const schema: Schema = {
+      const schema = {
         additionalProperties: { $ref: "#/definitions/foo" },
-      };
+        properties: {},
+      } satisfies Schema;
       const rootSchema: Schema = {
         definitions: {
           foo: { type: "string" },
@@ -1826,6 +1875,188 @@ describe("retrieveSchema2()", () => {
         properties: {
           bar: {
             type: "string",
+            [ADDITIONAL_PROPERTY_FLAG]: true,
+          },
+        },
+      });
+    });
+    it("has property keys that does not match patternProperties, no additionalProperties", () => {
+      const schema = {
+        patternProperties: {
+          "^foo": {
+            type: "string",
+          },
+          "^bar": {
+            type: "number",
+          },
+        },
+        properties: {},
+      } satisfies Schema;
+      const formData = { baz: 1 };
+      expect(
+        stubExistingAdditionalProperties(
+          testValidator,
+          defaultMerger,
+          schema,
+          undefined,
+          formData
+        )
+      ).toEqual({
+        ...schema,
+        properties: {
+          baz: {
+            type: "null",
+            [ADDITIONAL_PROPERTY_FLAG]: true,
+          },
+        },
+      });
+    });
+    it("has property keys that match patternProperties", () => {
+      const schema = {
+        patternProperties: {
+          "^foo": {
+            type: "string",
+          },
+          "^bar": {
+            type: "number",
+            minimum: 10,
+          },
+        },
+        properties: {},
+      } satisfies Schema;
+      const formData = { bar: 1 };
+      expect(
+        stubExistingAdditionalProperties(
+          testValidator,
+          defaultMerger,
+          schema,
+          undefined,
+          formData
+        )
+      ).toEqual({
+        ...schema,
+        properties: {
+          bar: {
+            type: "number",
+            minimum: 10,
+            [ADDITIONAL_PROPERTY_FLAG]: true,
+          },
+        },
+      });
+    });
+    it("has property keys that match multiple patternProperties", () => {
+      const schema = {
+        patternProperties: {
+          "^foo": {
+            type: "string",
+          },
+          "^bar": {
+            type: "number",
+            minimum: 10,
+          },
+          "^ba.*": {
+            type: "number",
+            maximum: 20,
+          },
+        },
+        properties: {},
+      } satisfies Schema;
+      const formData = { bar: 1 };
+      expect(
+        stubExistingAdditionalProperties(
+          testValidator,
+          defaultMerger,
+          schema,
+          undefined,
+          formData
+        )
+      ).toEqual({
+        ...schema,
+        properties: {
+          bar: {
+            type: "number",
+            minimum: 10,
+            maximum: 20,
+            [ADDITIONAL_PROPERTY_FLAG]: true,
+          },
+        },
+      });
+    });
+    it("has property keys that match patternProperties, additionalProperties is boolean", () => {
+      const schema = {
+        patternProperties: {
+          "^foo": {
+            type: "string",
+          },
+          "^bar": {
+            type: "number",
+            minimum: 10,
+          },
+        },
+        additionalProperties: true,
+        properties: {},
+      } satisfies Schema;
+      const formData = { bar: 1, baz: true };
+      expect(
+        stubExistingAdditionalProperties(
+          testValidator,
+          defaultMerger,
+          schema,
+          undefined,
+          formData
+        )
+      ).toEqual({
+        ...schema,
+        properties: {
+          bar: {
+            type: "number",
+            minimum: 10,
+            [ADDITIONAL_PROPERTY_FLAG]: true,
+          },
+          baz: {
+            type: "boolean",
+            [ADDITIONAL_PROPERTY_FLAG]: true,
+          },
+        },
+      });
+    });
+    it("has property keys that match patternProperties, additionalProperties is object", () => {
+      const schema = {
+        patternProperties: {
+          "^foo": {
+            type: "string",
+          },
+          "^bar": {
+            type: "number",
+            minimum: 10,
+          },
+        },
+        additionalProperties: {
+          type: "number",
+          maximum: 20,
+        },
+        properties: {},
+      } satisfies Schema;
+      const formData = { bar: 1, baz: 2 };
+      expect(
+        stubExistingAdditionalProperties(
+          testValidator,
+          defaultMerger,
+          schema,
+          undefined,
+          formData
+        )
+      ).toEqual({
+        ...schema,
+        properties: {
+          bar: {
+            type: "number",
+            minimum: 10,
+            [ADDITIONAL_PROPERTY_FLAG]: true,
+          },
+          baz: {
+            type: "number",
+            maximum: 20,
             [ADDITIONAL_PROPERTY_FLAG]: true,
           },
         },

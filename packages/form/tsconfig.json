@@ -7,6 +7,7 @@
       "ES2023",
       "ESNext.Disposable",
       "ESNext.Collection",
+      "ESNext.Iterator",
       "DOM",
     ],
     "rootDir": "src",

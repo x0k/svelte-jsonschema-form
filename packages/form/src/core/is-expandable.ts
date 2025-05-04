@@ -8,7 +8,8 @@ export function isSchemaExpandable(
   additionalProperties: Schema;
 } {
   return (
-    isSchemaObjectValue(schema.additionalProperties) &&
+    (isSchemaObjectValue(schema.additionalProperties) ||
+      schema.patternProperties !== undefined) &&
     isSchemaObjectValue(formData) &&
     (schema.maxProperties === undefined ||
       Object.keys(formData).length < schema.maxProperties)

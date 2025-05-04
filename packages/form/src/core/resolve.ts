@@ -5,7 +5,6 @@
 import { array } from "@/lib/array.js";
 
 import {
-  ADDITIONAL_PROPERTIES_KEY,
   ADDITIONAL_PROPERTY_FLAG,
   ALL_OF_KEY,
   ANY_OF_KEY,
@@ -29,7 +28,7 @@ import { typeOfValue } from "./type.js";
 import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
 import { getFirstMatchingOption } from "./matching.js";
 import { isSchemaObjectValue } from "./value.js";
-import { isSchemaDeepEqual } from './deep-equal.js';
+import { isSchemaDeepEqual } from "./deep-equal.js";
 
 export function retrieveSchema(
   validator: Validator,
@@ -169,11 +168,11 @@ export function retrieveSchemaInternal(
         formData
       );
     }
-    const resolvedAllOf = resolvedSchema[ALL_OF_KEY];
+    const resolvedAllOf = resolvedSchema.allOf;
     if (resolvedAllOf) {
       // resolve allOf schemas
       if (expandAllBranches) {
-        const { [ALL_OF_KEY]: _, ...restOfSchema } = resolvedSchema;
+        const { allOf: _, ...restOfSchema } = resolvedSchema;
         const schemas: Schema[] = [];
         for (let i = 0; i < resolvedAllOf.length; i++) {
           const schema = resolvedAllOf[i]!;
@@ -208,20 +207,43 @@ export function retrieveSchemaInternal(
         return resolvedSchemaWithoutAllOf;
       }
     }
+    const patternProperties = resolvedSchema.patternProperties;
+    const hasPatternProperties = patternProperties !== undefined;
     const hasAdditionalProperties =
-      ADDITIONAL_PROPERTIES_KEY in resolvedSchema &&
+      resolvedSchema.additionalProperties !== undefined &&
       resolvedSchema.additionalProperties !== false;
-    if (hasAdditionalProperties) {
-      return stubExistingAdditionalProperties(
-        validator,
-        merger,
-        resolvedSchema,
-        rootSchema,
-        formData
-      );
+    if (!hasPatternProperties && !hasAdditionalProperties) {
+      return resolvedSchema;
     }
-
-    return resolvedSchema;
+    const properties = { ...resolvedSchema.properties };
+    if (hasPatternProperties) {
+      for (const key of Object.keys(properties)) {
+        const matchingProperties = getMatchingPatternProperties(
+          patternProperties,
+          key
+        );
+        if (matchingProperties.length > 0) {
+          matchingProperties.push(properties[key]!);
+          properties[key] = retrieveSchema(
+            validator,
+            merger,
+            { allOf: matchingProperties },
+            rootSchema,
+            formData
+          );
+        }
+      }
+    }
+    return stubExistingAdditionalProperties(
+      validator,
+      merger,
+      {
+        ...resolvedSchema,
+        properties,
+      },
+      rootSchema,
+      formData
+    );
   });
 }
 
@@ -306,74 +328,93 @@ export function resolveCondition(
   );
 }
 
+/**
+ * WARN: This function will mutate `schema.properties` property
+ */
 export function stubExistingAdditionalProperties(
   validator: Validator,
   merger: Merger,
-  theSchema: Schema,
+  schema: SchemaWithProperties,
   rootSchema?: Schema,
   aFormData?: SchemaValue
 ): Schema {
-  // Clone the schema so that we don't ruin the consumer's original
-  const schema = {
-    ...theSchema,
-    properties: { ...theSchema.properties },
-  };
-
   // make sure formData is an object
   const formData: SchemaObjectValue = isSchemaObjectValue(aFormData)
     ? aFormData
     : {};
-  Object.keys(formData).forEach((key) => {
-    if (key in schema.properties) {
-      // No need to stub, our schema already has the property
-      return;
-    }
 
-    let additionalProperties: Schema["additionalProperties"] = {};
-    const schemaAdditionalProperties = schema.additionalProperties;
-    if (
-      typeof schemaAdditionalProperties !== "boolean" &&
-      schemaAdditionalProperties
-    ) {
-      if (REF_KEY in schemaAdditionalProperties) {
-        additionalProperties = retrieveSchema(
-          validator,
-          merger,
-          { $ref: schemaAdditionalProperties[REF_KEY] },
-          rootSchema,
-          formData
-        );
-      } else if ("type" in schemaAdditionalProperties) {
-        additionalProperties = { ...schemaAdditionalProperties };
-      } else if (
-        ANY_OF_KEY in schemaAdditionalProperties ||
-        ONE_OF_KEY in schemaAdditionalProperties
-      ) {
-        additionalProperties = {
-          type: "object",
-          ...schemaAdditionalProperties,
+  const { additionalProperties, patternProperties } = schema;
+  const isAdditionalProperties =
+    typeof additionalProperties !== "boolean" && additionalProperties;
+  const isArbitraryAdditionalProperty =
+    additionalProperties === true ||
+    (isAdditionalProperties && Object.keys(additionalProperties).length === 0);
+
+  function getAdditionalPropertySchemaShallowClone(key: string): Schema {
+    if (patternProperties !== undefined) {
+      const matchingProperties = getMatchingPatternProperties(
+        patternProperties,
+        key
+      );
+      if (matchingProperties.length > 0) {
+        // TODO: Check if the shallow clone can be returned directly
+        return {
+          ...retrieveSchema(
+            validator,
+            merger,
+            { allOf: matchingProperties },
+            rootSchema,
+            formData
+          ),
         };
-      } else {
-        const value = formData[key];
-        if (value !== undefined) {
-          additionalProperties = { type: typeOfValue(value) };
-        }
       }
-    } else {
+    }
+    if (isAdditionalProperties) {
+      if (REF_KEY in additionalProperties) {
+        return {
+          ...retrieveSchema(
+            validator,
+            merger,
+            { $ref: additionalProperties[REF_KEY] },
+            rootSchema,
+            formData
+          ),
+        };
+      }
+      if ("type" in additionalProperties) {
+        return { ...additionalProperties };
+      }
+      if (
+        ANY_OF_KEY in additionalProperties ||
+        ONE_OF_KEY in additionalProperties
+      ) {
+        return {
+          type: "object",
+          ...additionalProperties,
+        };
+      }
+    }
+    if (isArbitraryAdditionalProperty) {
       const value = formData[key];
       if (value !== undefined) {
-        additionalProperties = { type: typeOfValue(value) };
+        return { type: typeOfValue(value) };
       }
     }
+    return { type: "null" };
+  }
 
+  for (const key of Object.keys(formData)) {
+    if (key in schema.properties) {
+      // No need to stub, our schema already has the property
+      continue;
+    }
+    const propertySchema = getAdditionalPropertySchemaShallowClone(key);
+    // Set our additional property flag so we know it was dynamically added
+    // @ts-expect-error TODO: Remove this hack
+    propertySchema[ADDITIONAL_PROPERTY_FLAG] = true;
     // The type of our new key should match the additionalProperties value;
-    schema.properties[key] = {
-      ...additionalProperties,
-      // Set our additional property flag so we know it was dynamically added
-      // @ts-expect-error TODO: Remove this hack
-      [ADDITIONAL_PROPERTY_FLAG]: true,
-    };
-  });
+    schema.properties[key] = propertySchema;
+  }
   return schema;
 }
 
@@ -717,4 +758,17 @@ export function getAllPermutationsOfXxxOf(listOfLists: SchemaDefinition[][]) {
   );
 
   return allPermutations;
+}
+
+export function getMatchingPatternProperties(
+  patternProperties: Exclude<Schema["patternProperties"], undefined>,
+  key: string
+) {
+  const schemas: SchemaDefinition[] = [];
+  for (const [p, d] of Object.entries(patternProperties)) {
+    if (new RegExp(p).test(key)) {
+      schemas.push(d);
+    }
+  }
+  return schemas;
 }
