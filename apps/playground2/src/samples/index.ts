@@ -28,6 +28,7 @@ import defaults from "./defaults";
 import options from "./options";
 import ifThenElse from "./ifThenElse";
 import oneOfDefaults from './one-of-defaults'
+import patternProperties from './patternProperties';
 import type { Sample } from "./Sample";
 
 const blank: Sample = { status: "perfect", schema: {}, uiSchema: {}, formData: {} };
@@ -54,6 +55,7 @@ export const samples = Object.freeze({
   "Property dependencies": propertyDependencies,
   "Schema dependencies": schemaDependencies,
   "Additional Properties": additionalProperties,
+  'Pattern Properties': patternProperties,
   "Any Of": anyOf,
   "One Of": oneOf,
   "All Of": allOf,
