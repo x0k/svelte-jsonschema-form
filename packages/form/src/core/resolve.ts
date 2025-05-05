@@ -19,6 +19,7 @@ import {
   type SchemaDefinition,
   type SchemaObjectValue,
   type SchemaValue,
+  type SchemaWithProperties,
 } from "./schema.js";
 import { findSchemaDefinition } from "./definitions.js";
 import type { Validator } from "./validator.js";
@@ -674,10 +675,6 @@ export function withDependentSchema(
     );
   });
 }
-
-type SchemaWithProperties = Schema & {
-  properties: Exclude<Schema["properties"], undefined>;
-};
 
 export function withExactlyOneSubSchema(
   validator: Validator,

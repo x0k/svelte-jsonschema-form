@@ -2,6 +2,8 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
+import { weakMemoize } from "@/lib/memoize.js";
+
 import {
   getDiscriminatorFieldFromSchema,
   getOptionMatchingSimpleDiscriminator,
@@ -10,21 +12,36 @@ import type { Merger } from "./merger.js";
 import { resolveAllReferences, retrieveSchema } from "./resolve.js";
 import {
   isSchema,
-  PROPERTIES_KEY,
+  isSchemaWithProperties,
   REF_KEY,
   type Schema,
   type SchemaValue,
+  type SchemaWithProperties,
 } from "./schema.js";
 import { typeOfValue } from "./type.js";
 import type { Validator } from "./validator.js";
 import { isSchemaObjectValue } from "./value.js";
 
-// Should increase cache hit for validators with cache based on weak map
-const AUGMENTED_SCHEMAS = new WeakMap<Schema, Schema>();
-
 // WARN: Any change to this function must be synchronized with:
 // - `@sjsf/ajv8-validator/precompile`
 // - `@sjsf/schemasafe-validator/precompile`
+export function createAugmentSchema({ required, ...rest }: SchemaWithProperties) {
+  return {
+    allOf: [
+      rest,
+      {
+        anyOf: Object.keys(rest.properties).map((key) => ({
+          required: [key],
+        })),
+      },
+    ],
+  };
+}
+
+// Should increase cache hit for validators with cache based on weak map
+export const AUGMENTED_SCHEMAS_CACHE = new WeakMap<SchemaWithProperties, Schema>();
+const memoizedAugmentSchema = weakMemoize(AUGMENTED_SCHEMAS_CACHE, createAugmentSchema);
+
 function isOptionMatching(
   option: Schema,
   validator: Validator,
@@ -33,35 +50,19 @@ function isOptionMatching(
   discriminatorField: string | undefined,
   discriminatorFormData: SchemaValue | undefined
 ): boolean {
-  const optionProperties = option[PROPERTIES_KEY];
   // NOTE: This is possibly a bug since schema can be combinatorial (oneOf, anyOf)
-  if (optionProperties === undefined) {
+  if (!isSchemaWithProperties(option)) {
     return validator.isValid(option, rootSchema, formData);
   }
   // NOTE: Do not transform into `&&` expression!
   const discriminator =
     discriminatorField !== undefined
-      ? optionProperties[discriminatorField]
+      ? option.properties[discriminatorField]
       : undefined;
   if (discriminator !== undefined) {
     return validator.isValid(discriminator, rootSchema, discriminatorFormData);
   }
-  let augmentedSchema = AUGMENTED_SCHEMAS.get(option);
-  if (augmentedSchema === undefined) {
-    const { required, ...shallowCopy } = option;
-    augmentedSchema = {
-      allOf: [
-        shallowCopy,
-        {
-          anyOf: Object.keys(optionProperties).map((key) => ({
-            required: [key],
-          })),
-        },
-      ],
-    };
-    AUGMENTED_SCHEMAS.set(option, augmentedSchema);
-  }
-  return validator.isValid(augmentedSchema, rootSchema, formData);
+  return validator.isValid(memoizedAugmentSchema(option), rootSchema, formData);
 }
 
 export function getFirstMatchingOption(

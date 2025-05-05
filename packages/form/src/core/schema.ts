@@ -2,6 +2,9 @@ import type { JSONSchema7, JSONSchema7TypeName } from "json-schema";
 
 export type Schema = JSONSchema7;
 export type SchemaDefinition = Schema | boolean;
+export type SchemaWithProperties = Schema & {
+  properties: Exclude<Schema["properties"], undefined>;
+};
 
 export type SchemaType = JSONSchema7TypeName;
 
@@ -101,12 +104,18 @@ export const SCHEMA_KEYS = [
   ...RECORDS_OF_SUB_SCHEMAS,
   ...ARRAYS_OF_SUB_SCHEMAS,
   ...SUB_SCHEMAS,
-]
+];
 
 export type SchemaKey = (typeof SCHEMA_KEYS)[number];
 
 export function isSchema(schemaDef: SchemaDefinition): schemaDef is Schema {
   return typeof schemaDef === "object";
+}
+
+export function isSchemaWithProperties(
+  schema: Schema
+): schema is SchemaWithProperties {
+  return schema.properties !== undefined;
 }
 
 export function isNormalArrayItems(items: Schema["items"]): items is Schema {
