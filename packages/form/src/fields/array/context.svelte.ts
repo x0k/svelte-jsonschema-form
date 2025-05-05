@@ -2,6 +2,8 @@ import { getContext, setContext } from "svelte";
 
 import { createKeyedArray } from "@/lib/keyed-array.svelte.js";
 import {
+  getDefaultValueForType,
+  getSimpleSchemaType,
   isSchemaNullable,
   isSchemaObjectValue,
   type Schema,
@@ -122,7 +124,10 @@ function createItemsAPI<V extends Validator>(
       if (schema === undefined) {
         return;
       }
-      keyedArray.push(getDefaultFieldState(ctx, schema, undefined));
+      keyedArray.push(
+        getDefaultFieldState(ctx, schema, undefined) ??
+          getDefaultValueForType(getSimpleSchemaType(schema))
+      );
       validate();
     },
     moveItemUp(index) {
@@ -226,9 +231,9 @@ export function createTupleContext<V extends Validator>(
   setValue: (v: SchemaArrayValue) => void
 ): ArrayContext<V> {
   const itemsSchema = $derived.by(() => {
-    const conf = config();
-    return Array.isArray(conf.schema.items)
-      ? conf.schema.items.map((item, i) => {
+    const { items } = config().schema;
+    return Array.isArray(items)
+      ? items.map((item, i) => {
           if (typeof item === "boolean") {
             throw new Error(
               "Invalid schema: items must be an array of schemas"
@@ -251,10 +256,8 @@ export function createTupleContext<V extends Validator>(
   });
 
   const schemaAdditionalItems = $derived.by(() => {
-    const conf = config();
-    return isSchemaObjectValue(conf.schema?.additionalItems)
-      ? conf.schema.additionalItems
-      : undefined;
+    const { additionalItems } = config().schema;
+    return isSchemaObjectValue(additionalItems) ? additionalItems : undefined;
   });
 
   const api = createItemsAPI(ctx, config, value, () => schemaAdditionalItems);
