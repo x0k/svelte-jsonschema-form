@@ -1,6 +1,8 @@
 import { getValueByKeys, insertValue, type Trie } from "@/lib/trie.js";
 import {
+  createAugmentSchema,
   isPrimitiveSchemaType,
+  isSchemaWithProperties,
   makeSchemaDefinitionTraverser,
   pickSchemaType,
   refToPath,
@@ -146,10 +148,6 @@ export interface FragmentSchemaOptions {
   augmentSuffix?: string;
 }
 
-function omitRequired({ required, ...rest }: Schema): Schema {
-  return rest;
-}
-
 export function fragmentSchema({
   schema,
   subSchemas,
@@ -168,19 +166,10 @@ export function fragmentSchema({
         const refSchema = {
           $ref: `${meta.id}#`,
         };
-        if (meta.combinationBranch && copy.properties !== undefined) {
-          const len = copy.required?.length ?? 0;
-          schemas.push({
-            $id: meta.id + augmentSuffix,
-            allOf: [
-              len > 0 ? omitRequired(copy) : refSchema,
-              {
-                anyOf: Object.keys(copy.properties).map((key) => ({
-                  required: [key],
-                })),
-              },
-            ],
-          });
+        if (meta.combinationBranch && isSchemaWithProperties(copy)) {
+          const augmentedSchema: Schema = createAugmentSchema(copy);
+          augmentedSchema.$id = meta.id + augmentSuffix;
+          schemas.push(augmentedSchema);
         }
         return refSchema;
       }
