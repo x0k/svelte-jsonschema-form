@@ -17,6 +17,7 @@ const patternProperties: Sample = {
         title: "Last name",
       },
     },
+    additionalProperties: false,
     patternProperties: {
       "^[a-z][a-zA-Z0-9-]+$": {
         type: "string",
