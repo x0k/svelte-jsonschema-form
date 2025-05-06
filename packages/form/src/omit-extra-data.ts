@@ -52,31 +52,41 @@ export function omitExtraData(
         setProperty(key, schema, source[key]);
       }
     }
-    if (additionalProperties !== undefined) {
-      const knownProperties = new Set(getKnownProperties(schema, rootSchema));
-      for (const [key, value] of Object.entries(source)) {
-        if (knownProperties.has(key)) {
-          continue;
-        }
-        setProperty(key, additionalProperties, value);
-      }
-    }
+    let patternPropertiesRest: string[] | undefined;
     if (patternProperties !== undefined) {
+      patternPropertiesRest = [];
       const patterns = Object.entries(patternProperties).map(
         ([pattern, schemaDef]): [RegExp, SchemaDefinition] => [
           new RegExp(pattern),
           schemaDef,
         ]
       );
+      const knownProperties = new Set(getKnownProperties(schema, rootSchema));
       for (const [key, value] of Object.entries(source)) {
-        if (key in target) {
+        if (knownProperties.has(key)) {
           continue;
         }
         const found = patterns.find((e) => e[0].test(key));
         if (found === undefined) {
+          patternPropertiesRest.push(key);
           continue;
         }
         setProperty(key, found[1], value);
+      }
+    }
+    if (additionalProperties !== undefined && additionalProperties !== false) {
+      if (patternPropertiesRest !== undefined) {
+        for (const key of patternPropertiesRest) {
+          setProperty(key, additionalProperties, source[key]);
+        }
+      } else {
+        const knownProperties = new Set(getKnownProperties(schema, rootSchema));
+        for (const [key, value] of Object.entries(source)) {
+          if (knownProperties.has(key)) {
+            continue;
+          }
+          setProperty(key, additionalProperties, value);
+        }
       }
     }
     if (propertyNames !== undefined) {
@@ -210,8 +220,11 @@ export function omitExtraData(
     source: SchemaValue | undefined,
     target?: SchemaValue
   ): SchemaValue | undefined {
-    if (source === undefined || !isSchema(schema)) {
+    if (source === undefined || schema === false) {
       return source;
+    }
+    if (schema === true) {
+      return target;
     }
     const { $ref: ref } = schema;
     if (ref !== undefined) {

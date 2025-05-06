@@ -398,6 +398,88 @@ describe("omitExtraData", () => {
         omitExtraData(validator, defaultMerger, schema, { extra: "field" })
       ).toEqual({});
     });
+
+    describe("patternProperties", () => {
+      it("should keep properties matching a pattern", () => {
+        const schema: Schema = {
+          type: "object",
+          patternProperties: {
+            "^foo": { type: "string" },
+          },
+        };
+        const value = { foo1: "a", fooBar: "b", bar: "c" };
+        expect(omitExtraData(validator, defaultMerger, schema, value)).toEqual({
+          foo1: "a",
+          fooBar: "b",
+        });
+      });
+
+      it("should omit properties not matching any pattern", () => {
+        const schema: Schema = {
+          type: "object",
+          patternProperties: {
+            "^foo": { type: "string" },
+          },
+        };
+        const value = { foo1: "a", bar: "b" };
+        expect(omitExtraData(validator, defaultMerger, schema, value)).toEqual({
+          foo1: "a",
+        });
+      });
+
+      it("should handle multiple patterns", () => {
+        const schema: Schema = {
+          type: "object",
+          patternProperties: {
+            "^foo": { type: "string" },
+            "Bar$": { type: "number" },
+          },
+        };
+        const value = { foo1: "a", testBar: 42, fooBar: "b", bar: "c" };
+        expect(omitExtraData(validator, defaultMerger, schema, value)).toEqual({
+          foo1: "a",
+          testBar: 42,
+          fooBar: "b",
+        });
+      });
+
+      it("should combine patternProperties with properties and additionalProperties", () => {
+        const schema: Schema = {
+          type: "object",
+          properties: {
+            fixed: { type: "string" },
+          },
+          patternProperties: {
+            "^dyn": { type: "number" },
+          },
+          additionalProperties: false,
+        };
+        const value = { fixed: "yes", dyn1: 1, dyn2: 2, extra: "no" };
+        expect(omitExtraData(validator, defaultMerger, schema, value)).toEqual({
+          fixed: "yes",
+          dyn1: 1,
+          dyn2: 2,
+        });
+      });
+
+      it("should use patternProperties for matching keys and additionalProperties schema for others", () => {
+        const schema: Schema = {
+          type: "object",
+          patternProperties: {
+            "^foo": { type: "string" },
+          },
+          additionalProperties: { type: "number" },
+        };
+        const value = { foo1: "a", foo2: "b", bar: 42, baz: "not a number" };
+        // 'foo1' and 'foo2' match patternProperties (string), 'bar' matches additionalProperties (number), 'baz' is not a number so should be kept as is (omitExtraData does not validate)
+        expect(omitExtraData(validator, defaultMerger, schema, value)).toEqual({
+          foo1: "a",
+          foo2: "b",
+          bar: 42,
+          baz: "not a number"
+        });
+      });
+    });
   });
 
   describe("array type", () => {
