@@ -1,3 +1,5 @@
+import { createPatternPropertyKeyValidator } from "@sjsf/form/validators/properties";
+
 import type { Sample } from "./Sample";
 
 const patternProperties: Sample = {
@@ -26,7 +28,7 @@ const patternProperties: Sample = {
   },
   uiSchema: {
     "ui:options": {
-      additionalPropertyKeyPrefix: "patternProperty"
+      additionalPropertyKeyPrefix: "patternProperty",
     },
     firstName: {
       "ui:options": {
@@ -45,6 +47,16 @@ const patternProperties: Sample = {
     lastName: "Norris",
     assKickCount: "infinity",
   },
+  customizeValidator: (v) =>
+    Object.assign(
+      v,
+      createPatternPropertyKeyValidator(({ patternProperties }) => {
+        const keys = Object.keys(patternProperties);
+        return `Must match "${
+          keys.length < 2 ? keys[0] : keys.join('" or "')
+        }"`;
+      })
+    ),
 };
 
 export default patternProperties;
