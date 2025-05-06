@@ -23,9 +23,13 @@ import type { Validator } from "./validator.js";
 import { isSchemaObjectValue } from "./value.js";
 
 // WARN: Any change to this function must be synchronized with:
+// - `validators/precompile`
 // - `@sjsf/ajv8-validator/precompile`
 // - `@sjsf/schemasafe-validator/precompile`
-export function createAugmentSchema({ required, ...rest }: SchemaWithProperties) {
+export function createAugmentSchema({
+  required,
+  ...rest
+}: SchemaWithProperties): Schema {
   return {
     allOf: [
       rest,
@@ -39,8 +43,14 @@ export function createAugmentSchema({ required, ...rest }: SchemaWithProperties)
 }
 
 // Should increase cache hit for validators with cache based on weak map
-export const AUGMENTED_SCHEMAS_CACHE = new WeakMap<SchemaWithProperties, Schema>();
-const memoizedAugmentSchema = weakMemoize(AUGMENTED_SCHEMAS_CACHE, createAugmentSchema);
+export const AUGMENTED_SCHEMAS_CACHE = new WeakMap<
+  SchemaWithProperties,
+  Schema
+>();
+const memoizedAugmentSchema = weakMemoize(
+  AUGMENTED_SCHEMAS_CACHE,
+  createAugmentSchema
+);
 
 function isOptionMatching(
   option: Schema,
