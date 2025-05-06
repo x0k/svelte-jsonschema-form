@@ -107,25 +107,59 @@
       ? schemas.map((s) => retrieveUiSchema(ctx, s))
       : [];
   });
-  const optionsTitles = $derived(
-    optionsUiSchemas.map((s) => uiTitleOption(ctx, s))
-  );
-
   const enumOptionLabel = $derived.by(() => {
-    const title = uiOption("title") ?? config.schema.title;
-    return title !== undefined
+    // NOTE: We don't use `config.title` here because we don't want to use
+    // the generated `item-1` type titles as the basis for the new title.
+    const explicitTitle =
+      uiTitleOption(ctx, config.uiSchema) ?? config.schema.title;
+    return explicitTitle
       ? (index: number) =>
           translate(ctx, "multi-schema-option-label-with-title", {
             index,
-            title,
+            title: explicitTitle,
           })
       : (index: number) =>
           translate(ctx, "multi-schema-option-label", { index });
   });
+  const optionTitles = $derived.by(() => {
+    const discriminator = getDiscriminatorFieldFromSchema(config.schema);
+    return retrievedOptions.map((s, i) => {
+      if (discriminator !== undefined) {
+        const uiSchemaDefinition = optionsUiSchemas[i]?.[discriminator];
+        if (
+          typeof uiSchemaDefinition === "object" &&
+          !Array.isArray(uiSchemaDefinition)
+        ) {
+          const title = uiTitleOption(
+            ctx,
+            retrieveUiSchema(ctx, uiSchemaDefinition)
+          );
+          if (title !== undefined) {
+            return title;
+          }
+        }
+        const schemaDef = s.properties?.[discriminator];
+        if (schemaDef !== undefined && typeof schemaDef !== "boolean") {
+          // NOTE: I don't think it's worth adding a `value` dependency here
+          const { title } = retrieveSchema(ctx, schemaDef, undefined);
+          if (title !== undefined) {
+            return title;
+          }
+        }
+      }
+      const uiSchema = optionsUiSchemas[i];
+      return (
+        (uiSchema && uiTitleOption(ctx, uiSchema)) ??
+        s.title ??
+        enumOptionLabel(i)
+      );
+    });
+  });
+
   const enumOptions = $derived<EnumOption<number>[]>(
-    retrievedOptions.map((s, i) => ({
+    optionTitles.map((label, i) => ({
       id: createPseudoId(config.id, i, ctx),
-      label: optionsTitles[i] ?? s.title ?? enumOptionLabel(i),
+      label,
       value: i,
       disabled: false,
     }))

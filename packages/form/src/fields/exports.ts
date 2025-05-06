@@ -1,4 +1,5 @@
 import "./ui-options.js";
+import "./combination.svelte";
 
 export type * from "./templates.js";
 export type * from "./components.js";
