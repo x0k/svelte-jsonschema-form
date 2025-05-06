@@ -54,9 +54,11 @@ export function createPatternPropertyKeyValidator(
       key,
       { patternProperties, additionalProperties }
     ) {
+      let patterns: string[];
       return patternProperties === undefined ||
         additionalProperties !== false ||
-        Object.keys(patternProperties).some((k) => new RegExp(k).test(key))
+        ((patterns = Object.keys(patternProperties)), patterns.length === 0) ||
+        patterns.some((k) => new RegExp(k).test(key))
         ? []
         : [
             typeof error === "string"
