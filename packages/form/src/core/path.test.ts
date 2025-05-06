@@ -51,6 +51,22 @@ describe("getSchemaDefinitionByPath", () => {
     expect(result).toEqual({ type: "boolean" });
   });
 
+  it("should resolve patternProperties", () => {
+    const schema: Schema = {
+      type: "object",
+      patternProperties: {
+        "^foo$": {
+          type: 'string'
+        },
+        "^bar$": {
+          type: "number"
+        }
+      }
+    };
+    const result = getSchemaDefinitionByPath(schema, schema, ["foo"]);
+    expect(result).toEqual({ type: "string" });
+  });
+
   it("should handle alternative keywords (anyOf) and return the first valid schema", () => {
     const schema: Schema = {
       type: "object",

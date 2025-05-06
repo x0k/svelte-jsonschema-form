@@ -30,9 +30,6 @@ export function refToPath(ref: string): Path {
   });
 }
 
-/**
- * `patternProperties` keyword is ignored
- */
 export function getSchemaDefinitionByPath(
   rootSchema: Schema,
   schema: SchemaDefinition | undefined,
@@ -73,7 +70,7 @@ export function getSchemaDefinitionByPath(
       // Alt schema may be mixed with normal schema so
       // no early exit here
     }
-    const k = path[i];
+    const k = path[i]!;
     const type = getSimpleSchemaType(schema);
     if (type === "array") {
       const { items, additionalItems }: Schema = schema;
@@ -82,8 +79,15 @@ export function getSchemaDefinitionByPath(
       continue;
     }
     if (type === "object") {
-      const { properties, additionalProperties }: Schema = schema;
-      schema = (properties && properties[k as string]) ?? additionalProperties;
+      const { properties, patternProperties, additionalProperties }: Schema =
+        schema;
+      schema =
+        (properties && properties[k as string]) ??
+        (patternProperties &&
+          Object.entries(patternProperties).find(([p]) =>
+            new RegExp(p).test(k as string)
+          )?.[1]) ??
+        additionalProperties;
       continue;
     }
     return undefined;
