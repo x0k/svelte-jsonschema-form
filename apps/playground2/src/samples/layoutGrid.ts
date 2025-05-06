@@ -1,10 +1,38 @@
-import type { ComponentDefinition } from '@sjsf/form';
-// import { TransparentLayout } from './components';
+import type { UiOptions, UiSchema, UiSchemaRef } from "@sjsf/form";
+
 import type { Sample } from "./Sample";
+import { TransparentLayout } from "./components";
 
-import TransparentLayout from './components/transparent-layout.svelte';
+function propertyStyles(
+  style: string,
+  layouts?: UiOptions["layouts"]
+): UiSchema {
+  return {
+    "ui:options": {
+      layouts: {
+        ...layouts,
+        "object-property": {
+          style,
+        },
+      },
+    },
+  };
+}
 
-const def: ComponentDefinition<"layout"> = TransparentLayout
+function ref($ref: string): UiSchemaRef {
+  return {
+    $ref,
+  };
+}
+
+const transparent: UiSchema = {
+  "ui:components": {
+    layout: TransparentLayout,
+  },
+  "ui:options": {
+    hideTitle: true,
+  },
+};
 
 const layoutGrid: Sample = {
   status: "perfect",
@@ -289,7 +317,22 @@ const layoutGrid: Sample = {
     },
   },
   uiSchema: {
+    "ui:definitions": {
+      oneSecond: propertyStyles("grid-column: span 6;"),
+      oneThird: propertyStyles("grid-column: span 4;"),
+      oneFourth: propertyStyles("grid-column: span 3;"),
+      jobTitle: {
+        "ui:options": {
+          layouts: {
+            "object-property": {
+              style: "display: none;",
+            },
+          },
+        },
+      },
+    },
     "ui:options": {
+      title: "Person info",
       layouts: {
         "object-properties": {
           style:
@@ -298,10 +341,107 @@ const layoutGrid: Sample = {
       },
     },
     person: {
+      ...transparent,
+      name: {
+        ...transparent,
+        first: ref("oneThird"),
+        middle: ref("oneThird"),
+        last: ref("oneThird"),
+      },
+      birth_date: ref("oneThird"),
+      race: propertyStyles("grid-column: 5/13;", {
+        "field-content": {
+          style: "display: flex; flex-direction: column; gap: 0.3rem;",
+        },
+      }),
+      address: {
+        ...transparent,
+        line_1: ref("oneSecond"),
+        line_2: ref("oneSecond"),
+        city: ref("oneSecond"),
+        state: ref("oneFourth"),
+        postal_code: ref("oneFourth"),
+      },
+    },
+    employment: {
       "ui:components": {
-        "layout": TransparentLayout
-      }
-    }
+        selectWidget: "radioWidget",
+        layout: TransparentLayout,
+      },
+      "ui:options": {
+        layouts: {
+          "multi-field-controls": {
+            style:
+              "grid-area: 3/7/4/13; display: flex; flex-direction: row; gap: 0.5rem;",
+          },
+        },
+      },
+      combinationFieldOptionSelector: {
+        "ui:options": {
+          shadcnRadioGroup: {
+            style: "grid-template-columns: repeat(3, 1fr);",
+          },
+        },
+      },
+      oneOf: [
+        {
+          ...transparent,
+          job_type: ref("jobTitle"),
+          business: propertyStyles("grid-area: 4/7/5/13;"),
+          title: propertyStyles("grid-area: 5/7/6/13;"),
+          location: {
+            ...transparent,
+            city: ref("oneFourth"),
+            state: ref("oneFourth"),
+          },
+        },
+        {
+          ...transparent,
+          job_type: ref("jobTitle"),
+          district: propertyStyles("grid-area: 4/7/5/13;"),
+          school: propertyStyles("grid-area: 5/7/6/13;"),
+          title: propertyStyles("grid-area: 6/7/7/13;"),
+          location: {
+            ...transparent,
+            city: propertyStyles("grid-area: 7/7/8/10"),
+            state: propertyStyles("grid-area: 7/10/8/13;"),
+          },
+        },
+        {
+          ...transparent,
+          job_type: ref("jobTitle"),
+          description: {
+            "ui:components": {
+              textWidget: "textareaWidget",
+            },
+            "ui:options": {
+              // NOTE: Stretching the textarea by the amount of free space
+              // is possible, but we don't do it because a universal version
+              // that takes into account all themes would be too complicated.
+              textarea: {
+                rows: 8,
+              },
+              flowbite3Textarea: {
+                rows: 8,
+              },
+              layouts: {
+                "object-property": {
+                  style:
+                    "grid-area: 4/7/7/13; display: flex; align-items: stretch;",
+                },
+                // field: {
+                //   style:
+                //     "height: 100%; display: flex; flex-direction: column; gap: 0.2rem",
+                // },
+                // "field-content": {
+                //   style: "flex-grow: 1;",
+                // },
+              },
+            },
+          },
+        },
+      ],
+    },
   },
   formData: {},
 };

@@ -1,7 +1,24 @@
 <script lang="ts">
-  import type { ComponentProps } from "@sjsf/form";
+  import {
+    getComponent,
+    getFormContext,
+    type ComponentProps,
+  } from "@sjsf/form";
 
-  const { children }: ComponentProps["layout"] = $props();
+  const props: ComponentProps["layout"] = $props();
+
+  const ctx = getFormContext();
 </script>
 
-{@render children()}
+{#if props.type === "multi-field-controls"}
+  {@const Layout = getComponent(ctx, "layout", {
+    ...props.config,
+    uiSchema: {
+      ...props.config.uiSchema,
+      "ui:components": undefined,
+    },
+  })}
+  <Layout {...props} />
+{:else}
+  {@render props.children()}
+{/if}
