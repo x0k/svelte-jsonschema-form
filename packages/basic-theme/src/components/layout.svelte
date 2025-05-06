@@ -22,12 +22,8 @@
 
 <script lang="ts">
   import {
-    composeProps,
     getFormContext,
-    labelAttributes,
     layoutAttributes,
-    uiOptionNestedProps,
-    uiOptionProps,
     type ComponentProps,
   } from "@sjsf/form";
 
