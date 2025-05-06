@@ -163,12 +163,20 @@ export function fragmentSchema({
       const meta = getValueByKeys(subSchemas, ctx.path);
       if (meta !== undefined && meta.id !== rootId) {
         schemas.push(copy);
-        const refSchema = {
+        const refSchema: Schema = {
           $ref: `${meta.id}#`,
         };
         if (meta.combinationBranch && isSchemaWithProperties(copy)) {
           const augmentedSchema: Schema = createAugmentSchema(copy);
           augmentedSchema.$id = meta.id + augmentSuffix;
+          if (!copy.required?.length) {
+            if (augmentedSchema.allOf?.[0] === undefined) {
+              throw new Error(
+                "Schema augmentation algorithm was changed, but not synchronized with this function, please report this error"
+              );
+            }
+            augmentedSchema.allOf[0] = refSchema;
+          }
           schemas.push(augmentedSchema);
         }
         return refSchema;
