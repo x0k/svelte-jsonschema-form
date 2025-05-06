@@ -6,43 +6,14 @@ import type {
 } from "./schema-traverser.js";
 import {
   type SchemaDefinition,
-  type Schema,
   SUB_SCHEMAS,
   RECORDS_OF_SUB_SCHEMAS,
   ARRAYS_OF_SUB_SCHEMAS,
   isSchema,
-  type SubSchemaKey,
-  type SubSchemasArrayKey,
-  type SubSchemasRecordKey,
   type SchemaKey,
+  type TransformedSchemaDefinition,
+  type TransformedSchema,
 } from "./schema.js";
-
-export type TransformedSchema<R> = Omit<
-  Schema,
-  SubSchemaKey | SubSchemasArrayKey | SubSchemasRecordKey
-> & {
-  items?: R | R[] | undefined;
-  additionalItems?: R | undefined;
-  contains?: R | undefined;
-  additionalProperties?: R | undefined;
-  propertyNames?: R | undefined;
-  if?: R | undefined;
-  then?: R | undefined;
-  else?: R | undefined;
-  not?: R | undefined;
-  // Records
-  $defs?: Record<string, R> | undefined;
-  properties?: Record<string, R> | undefined;
-  patternProperties?: Record<string, R> | undefined;
-  dependencies?: Record<string, R | string[]> | undefined;
-  definitions?: Record<string, R> | undefined;
-  // Arrays
-  allOf?: R[] | undefined;
-  anyOf?: R[] | undefined;
-  oneOf?: R[] | undefined;
-};
-
-export type TransformedSchemaDefinition<R> = TransformedSchema<R> | boolean;
 
 export function transformSchemaDefinition<R>(
   schema: SchemaDefinition,

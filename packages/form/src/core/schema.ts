@@ -1,7 +1,42 @@
 import type { JSONSchema7, JSONSchema7TypeName } from "json-schema";
 
-export type Schema = JSONSchema7;
-export type SchemaDefinition = Schema | boolean;
+export type TransformedSchema<R> = Omit<
+  JSONSchema7,
+  SubSchemaKey | SubSchemasArrayKey | SubSchemasRecordKey
+> & {
+  items?: R | R[] | undefined;
+  additionalItems?: R | undefined;
+  contains?: R | undefined;
+  additionalProperties?: R | undefined;
+  propertyNames?: R | undefined;
+  if?: R | undefined;
+  then?: R | undefined;
+  else?: R | undefined;
+  not?: R | undefined;
+  // Records
+  $defs?: Record<string, R> | undefined;
+  properties?: Record<string, R> | undefined;
+  patternProperties?: Record<string, R> | undefined;
+  dependencies?: Record<string, R | string[]> | undefined;
+  definitions?: Record<string, R> | undefined;
+  // Arrays
+  allOf?: R[] | undefined;
+  anyOf?: R[] | undefined;
+  oneOf?: R[] | undefined;
+};
+
+export type TransformedSchemaDefinition<R> = TransformedSchema<R> | boolean;
+
+export interface OpenAPIDiscriminator {
+  propertyName: string;
+  // mapping?: Record<string, string>;
+};
+
+export interface Schema extends TransformedSchema<SchemaDefinition> {
+  discriminator?: OpenAPIDiscriminator;
+}
+export type SchemaDefinition = boolean | Schema;
+
 export type SchemaWithProperties = Schema & {
   properties: Exclude<Schema["properties"], undefined>;
 };

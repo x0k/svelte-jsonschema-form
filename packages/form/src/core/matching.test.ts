@@ -388,7 +388,6 @@ describe("oneOfMatchingOption", () => {
           },
         },
       },
-      //@ts-expect-error Discriminator field
       discriminator: {
         propertyName: "code",
       },
@@ -441,7 +440,6 @@ describe("oneOfMatchingOption", () => {
           },
         },
       },
-      // @ts-expect-error Discriminator field
       discriminator: {
         propertyName: "code",
       },
