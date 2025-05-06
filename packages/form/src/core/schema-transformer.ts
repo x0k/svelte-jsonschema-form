@@ -13,12 +13,13 @@ import {
   type SchemaKey,
   type TransformedSchemaDefinition,
   type TransformedSchema,
+  type Schema,
 } from "./schema.js";
 
 export function transformSchemaDefinition<R>(
   schema: SchemaDefinition,
   transform: (
-    shallowCopy: TransformedSchemaDefinition<R>,
+    shallowCopy: TransformedSchemaDefinition<R, Schema>,
     ctx: SchemaTraverserContext<SchemaKey>
   ) => R,
   ctx: SchemaTraverserContext<SchemaKey> = { type: "root", path: [] }
@@ -28,7 +29,7 @@ export function transformSchemaDefinition<R>(
   }
   const shallowCopy = {
     ...schema,
-  } as TransformedSchema<R>;
+  } as TransformedSchema<R, Schema>;
   for (const key of ARRAYS_OF_SUB_SCHEMAS) {
     const array = schema[key];
     if (array === undefined || !Array.isArray(array)) {

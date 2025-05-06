@@ -1,7 +1,7 @@
 import type { JSONSchema7, JSONSchema7TypeName } from "json-schema";
 
-export type TransformedSchema<R> = Omit<
-  JSONSchema7,
+export type TransformedSchema<R, S> = Omit<
+  S,
   SubSchemaKey | SubSchemasArrayKey | SubSchemasRecordKey
 > & {
   items?: R | R[] | undefined;
@@ -25,14 +25,17 @@ export type TransformedSchema<R> = Omit<
   oneOf?: R[] | undefined;
 };
 
-export type TransformedSchemaDefinition<R> = TransformedSchema<R> | boolean;
+export type TransformedSchemaDefinition<R, S> =
+  | TransformedSchema<R, S>
+  | boolean;
 
 export interface OpenAPIDiscriminator {
   propertyName: string;
   // mapping?: Record<string, string>;
-};
+}
 
-export interface Schema extends TransformedSchema<SchemaDefinition> {
+export interface Schema
+  extends TransformedSchema<SchemaDefinition, JSONSchema7> {
   discriminator?: OpenAPIDiscriminator;
 }
 export type SchemaDefinition = boolean | Schema;
