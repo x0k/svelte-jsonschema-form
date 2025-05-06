@@ -6,7 +6,7 @@ import enumObjects from "./enumObjects";
 import nested from "./nested";
 import numbers from "./numbers";
 import simple from "./simple";
-import widgets from './widgets';
+import widgets from "./widgets";
 import ordering from "./ordering";
 import references from "./references";
 import custom from "./custom";
@@ -27,11 +27,17 @@ import errorSchema from "./errorSchema";
 import defaults from "./defaults";
 import options from "./options";
 import ifThenElse from "./ifThenElse";
-import oneOfDefaults from './one-of-defaults'
-import patternProperties from './patternProperties';
+import oneOfDefaults from "./one-of-defaults";
+import patternProperties from "./patternProperties";
+import layoutGrid from "./layoutGrid";
 import type { Sample } from "./Sample";
 
-const blank: Sample = { status: "perfect", schema: {}, uiSchema: {}, formData: {} };
+const blank: Sample = {
+  status: "perfect",
+  schema: {},
+  uiSchema: {},
+  formData: {},
+};
 
 export const samples = Object.freeze({
   Blank: blank,
@@ -55,7 +61,7 @@ export const samples = Object.freeze({
   "Property dependencies": propertyDependencies,
   "Schema dependencies": schemaDependencies,
   "Additional Properties": additionalProperties,
-  'Pattern Properties': patternProperties,
+  "Pattern Properties": patternProperties,
   "Any Of": anyOf,
   "One Of": oneOf,
   "All Of": allOf,
@@ -66,4 +72,5 @@ export const samples = Object.freeze({
   ErrorSchema: errorSchema,
   Defaults: defaults,
   OneOfDefaults: oneOfDefaults,
+  "Layout Grid": layoutGrid,
 } satisfies Record<string, Sample>);
