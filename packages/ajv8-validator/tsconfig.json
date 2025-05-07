@@ -1,9 +1,14 @@
 {
-  "extends": "@total-typescript/tsconfig/tsc/dom/library",
+  "extends": "@total-typescript/tsconfig/tsc/no-dom/library",
   "compilerOptions": {
     "moduleResolution": "NodeNext",
     "outDir": "dist",
     "rootDir": "src",
+    "sourceMap": false
   },
-  "exclude": ["vitest.config.ts", "dist", "node_modules"]
+  "exclude": [
+    "vitest.config.ts",
+    "dist",
+    "node_modules"
+  ]
 }
