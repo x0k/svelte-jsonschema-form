@@ -48,7 +48,7 @@
 		"svelte": "^5.25.0"
 	},
 	"devDependencies": {
-		"@lucide/svelte": "^0.503.0",
+		"@lucide/svelte": "^0.507.0",
 		"@playwright/test": "catalog:",
 		"@sjsf/form": "workspace:*",
 		"@sveltejs/adapter-static": "catalog:",

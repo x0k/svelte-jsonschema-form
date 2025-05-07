@@ -99,7 +99,7 @@
 		"@types/eslint": "catalog:",
 		"ajv": "catalog:",
 		"autoprefixer": "catalog:",
-		"bits-ui": "^1.4.3",
+		"bits-ui": "^1.4.6",
 		"clsx": "^2.1.1",
 		"eslint": "catalog:",
 		"eslint-config-prettier": "catalog:",
