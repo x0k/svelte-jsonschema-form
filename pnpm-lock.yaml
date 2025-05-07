@@ -348,8 +348,8 @@ importers:
         specifier: npm:flowbite-svelte@0.47
         version: flowbite-svelte@0.47.4(rollup@4.40.0)(svelte@5.28.2)
       flowbite-svelte3:
-        specifier: npm:flowbite-svelte@1.0.0-next.19
-        version: flowbite-svelte@1.0.0-next.19(rollup@4.40.0)(svelte@5.28.2)(tailwindcss@4.1.5)
+        specifier: npm:flowbite-svelte@1.0.2
+        version: flowbite-svelte@1.0.2(rollup@4.40.0)(svelte@5.28.2)(tailwindcss@4.1.5)
       json-schema-to-ts:
         specifier: ^3.1.1
         version: 3.1.1
@@ -979,8 +979,8 @@ importers:
         specifier: ^3.1.2
         version: 3.1.2(rollup@4.40.0)
       flowbite-svelte:
-        specifier: 1.0.0-next.19
-        version: 1.0.0-next.19(rollup@4.40.0)(svelte@5.28.2)(tailwindcss@4.1.5)
+        specifier: 1.0.2
+        version: 1.0.2(rollup@4.40.0)(svelte@5.28.2)(tailwindcss@4.1.5)
       globals:
         specifier: 'catalog:'
         version: 16.0.0
@@ -4230,8 +4230,8 @@ packages:
     peerDependencies:
       svelte: ^3.55.1 || ^4.0.0 || ^5.0.0
 
-  flowbite-svelte@1.0.0-next.19:
-    resolution: {integrity: sha512-XCHNlIvejEE41SOMhYspG71Mmy7yCqdoliBwTtXg8KTLIdUds49dV0TpSr1Cg9WoH0Y2DHFTpUs7l9iBCSMe5g==}
+  flowbite-svelte@1.0.2:
+    resolution: {integrity: sha512-aaGysDCLebEahQlc/K4TAxMl9mZ7yWkKpL3/uuZMOtLVJtElxjo8Q0H3LFhRDRpHGcmqbJFrHvKXe9XJzr9lPA==}
     peerDependencies:
       svelte: ^5.0.0
       tailwindcss: ^4.1.4
@@ -9510,7 +9510,7 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
-  flowbite-svelte@1.0.0-next.19(rollup@4.40.0)(svelte@5.28.2)(tailwindcss@4.1.5):
+  flowbite-svelte@1.0.2(rollup@4.40.0)(svelte@5.28.2)(tailwindcss@4.1.5):
     dependencies:
       '@floating-ui/dom': 1.6.13
       '@floating-ui/utils': 0.2.9
