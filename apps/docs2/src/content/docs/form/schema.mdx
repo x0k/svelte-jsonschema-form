@@ -4,7 +4,8 @@ sidebar:
   order: 3
 ---
 
-Currently we only support [JSON Schema Draft-07](https://json-schema.org/draft-07#draft-07).
+Currently we only support [JSON Schema Draft-07](https://json-schema.org/draft-07#draft-07)
+and [discriminator.propertyName](https://swagger.io/docs/specification/v3_0/data-models/inheritance-and-polymorphism/#discriminator) keyword.
 
 ## String formats
 
@@ -14,7 +15,7 @@ Some string formats has special meaning:
 - `uri` - `url` input type
 - `color`, `date`, `time`, `email` - corresponding input type
   - You can use `useDatePickerForDateFormat` function from
-    `@sjsf/form/fields/extra-widgets/date-picker` to  use `datePickerWidget`
+    `@sjsf/form/fields/extra-widgets/date-picker` to use `datePickerWidget`
     for `date` format
 - `data-url` - file field (with `compat` resolver)
 
@@ -24,12 +25,10 @@ Some string formats has special meaning:
 - `$schema` keyword is ignored
 - Some keywords are only involved in validation.
   - `contains`
-  - `patternProperties`
   - `propertyNames`
   - `not`
 - `exclusiveMaximum`, `exclusiveMinimum` are not currently passed to input elements.
 - `writeOnly`, `contentMediaType` and `contentEncoding` has no special meaning.
-- `additionalItems: true` will be treated as no additional items allowed.
 - `additionalProperties: false` produces incorrect schemas when used with schema dependencies.
 - Properties declared inside the `anyOf`/`oneOf` should not overlap with properties "outside" of the `anyOf`/`oneOf`.
 - By default the `allOf` keyword uses [json-schema-merge-allof](https://github.com/mokkabonna/json-schema-merge-allof) to merge subschemas.
