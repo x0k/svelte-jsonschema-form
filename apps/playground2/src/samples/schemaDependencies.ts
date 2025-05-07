@@ -107,6 +107,14 @@ const schemaDependencies: Sample = {
     },
   },
   uiSchema: {
+    "ui:definitions": {
+      getRid: {
+        "ui:components": {
+          booleanField: "booleanSelectField",
+          selectWidget: "radioWidget",
+        },
+      },
+    },
     simple: {
       credit_card: {
         "ui:options": {
@@ -116,45 +124,25 @@ const schemaDependencies: Sample = {
     },
     conditional: {
       "Do you want to get rid of any?": {
-        "ui:components": {
-          selectWidget: "radioWidget",
-        },
-        "ui:options": {
-          hideTitle: false,
-        },
+        $ref: "getRid",
       },
     },
     arrayOfConditionals: {
       items: {
         "Do you want to get rid of any?": {
-          "ui:components": {
-            selectWidget: "radioWidget",
-          },
-          "ui:options": {
-            hideTitle: false,
-          },
+          $ref: "getRid",
         },
       },
     },
     fixedArrayOfConditionals: {
       items: {
         "Do you want to get rid of any?": {
-          "ui:components": {
-            selectWidget: "radioWidget",
-          },
-          "ui:options": {
-            hideTitle: false,
-          },
+          $ref: "getRid",
         },
       },
       additionalItems: {
         "Do you want to get rid of any?": {
-          "ui:components": {
-            selectWidget: "radioWidget",
-          },
-          "ui:options": {
-            hideTitle: false,
-          },
+          $ref: "getRid",
         },
       },
     },
