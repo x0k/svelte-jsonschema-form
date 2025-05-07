@@ -9,7 +9,7 @@ import {
 } from "./form/main.js";
 
 export function getFocusableElement(form: HTMLElement, instanceId: Id) {
-  const item = form.querySelector(`#${instanceId}`);
+  const item = form.querySelector(`[id="${instanceId}"]`);
   if (
     !(
       (item instanceof HTMLInputElement && item.type !== "checkbox") ||
