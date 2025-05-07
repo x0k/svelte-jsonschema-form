@@ -1,7 +1,5 @@
 import type { Sample } from "./Sample";
 
-import { GeoField, CustomLayout } from "./components";
-
 const custom: Sample = {
   status: "perfect",
   schema: {
@@ -33,12 +31,12 @@ const custom: Sample = {
   uiSchema: {
     field: {
       "ui:components": {
-        objectField: GeoField
+        objectField: "geoField"
       },
     },
     layout: {
       "ui:components": {
-        layout: CustomLayout,
+        layout: "customLayout",
       },
     },
   },

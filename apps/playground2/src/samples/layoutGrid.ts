@@ -1,7 +1,6 @@
 import type { UiOptions, UiSchema, UiSchemaRef } from "@sjsf/form";
 
 import type { Sample } from "./Sample";
-import { TransparentLayout } from "./components";
 
 function propertyStyles(
   style: string,
@@ -27,7 +26,7 @@ function ref($ref: string): UiSchemaRef {
 
 const transparent: UiSchema = {
   "ui:components": {
-    layout: TransparentLayout,
+    layout: "transparentLayout",
   },
   "ui:options": {
     hideTitle: true,
@@ -366,7 +365,7 @@ const layoutGrid: Sample = {
     employment: {
       "ui:components": {
         selectWidget: "radioWidget",
-        layout: TransparentLayout,
+        layout: "transparentLayout",
       },
       "ui:options": {
         layouts: {

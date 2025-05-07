@@ -1,7 +1,5 @@
 import type { Sample } from "./Sample";
 
-import { MarkdownDescription } from "./components";
-
 const simple: Sample = {
   status: "perfect",
   schema: {
@@ -65,7 +63,7 @@ const simple: Sample = {
         },
       },
       "ui:components": {
-        description: MarkdownDescription,
+        description: "markdownDescription",
       },
     },
     lastName: {
@@ -83,7 +81,7 @@ const simple: Sample = {
         },
       },
       "ui:components": {
-        description: MarkdownDescription,
+        description: "markdownDescription",
       },
     },
     age: {

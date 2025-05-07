@@ -1,5 +1,6 @@
 <script lang="ts">
   import { SvelteMap } from "svelte/reactivity";
+  import { extendByRecord } from "@sjsf/form/lib/resolver";
   import {
     ON_BLUR,
     ON_CHANGE,
@@ -30,6 +31,7 @@
   import Debug from "./debug.svelte";
 
   import { samples } from "./samples";
+  import * as customComponents from "./samples/components";
   import { validators } from "./validators";
 
   function isSampleName(name: unknown): name is keyof typeof samples {
@@ -73,7 +75,7 @@
     ? parsedThemeName
     : selectTheme("basic", true);
   let themeName = $state(initialThemeName);
-  const theme = $derived(themes[themeName]);
+  const theme = $derived(extendByRecord(themes[themeName], customComponents));
   const themeStyle = $derived(themeStyles[themeName]);
 
   const parsedIconSetName = url.searchParams.get("icons");
