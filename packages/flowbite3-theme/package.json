@@ -1,6 +1,6 @@
 {
 	"name": "@sjsf/flowbite3-theme",
-	"version": "2.0.0-next.10",
+	"version": "2.0.0-next.11",
 	"description": "The flowbite v3 based theme for svelte-jsonschema-form",
 	"license": "MIT",
 	"keywords": [
@@ -60,10 +60,10 @@
 		}
 	},
 	"dependencies": {
-		"@sjsf/basic-theme": "workspace:^2.0.0-next.10"
+		"@sjsf/basic-theme": "workspace:^2.0.0-next.11"
 	},
 	"peerDependencies": {
-		"@sjsf/form": "workspace:^2.0.0-next.10",
+		"@sjsf/form": "workspace:^2.0.0-next.11",
 		"flowbite": "^3.1.0",
 		"flowbite-svelte": "^1.0.0",
 		"svelte": "^5.25.0"

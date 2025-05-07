@@ -1,5 +1,15 @@
 # @sjsf/form
 
+## 2.0.0-next.11
+
+### Major Changes
+
+- Add support for `patternProperties` keyword ([`162b001`](https://github.com/x0k/svelte-jsonschema-form/commit/162b0018a630c58e72a775af02d6655cc8e65fab))
+
+### Minor Changes
+
+- Add support for `discriminator` schema property ([`f6fd57c`](https://github.com/x0k/svelte-jsonschema-form/commit/f6fd57c724450da74b26fc63cdb5fdb510203613))
+
 ## 2.0.0-next.10
 
 ### Major Changes

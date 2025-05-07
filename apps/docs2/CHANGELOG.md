@@ -1,5 +1,30 @@
 # docs
 
+## 1.6.3-next.11
+
+### Patch Changes
+
+- Updated dependencies [[`7ac8149`](https://github.com/x0k/svelte-jsonschema-form/commit/7ac8149dca317aed88331de0686399d064d4df90), [`162b001`](https://github.com/x0k/svelte-jsonschema-form/commit/162b0018a630c58e72a775af02d6655cc8e65fab), [`f6fd57c`](https://github.com/x0k/svelte-jsonschema-form/commit/f6fd57c724450da74b26fc63cdb5fdb510203613)]:
+  - @sjsf/flowbite3-theme@2.0.0-next.11
+  - @sjsf/form@2.0.0-next.11
+  - @sjsf/ajv8-validator@2.0.0-next.11
+  - @sjsf/basic-theme@2.0.0-next.11
+  - @sjsf/cfworker-validator@2.0.0-next.11
+  - @sjsf/daisyui-theme@2.0.0-next.11
+  - @sjsf/daisyui5-theme@2.0.0-next.11
+  - @sjsf/flowbite-icons@2.0.0-next.11
+  - @sjsf/flowbite-theme@2.0.0-next.11
+  - @sjsf/lucide-icons@2.0.0-next.11
+  - @sjsf/moving-icons@2.0.0-next.11
+  - @sjsf/radix-icons@2.0.0-next.11
+  - @sjsf/schemasafe-validator@2.0.0-next.11
+  - @sjsf/shadcn-theme@2.0.0-next.11
+  - @sjsf/skeleton-theme@2.0.0-next.11
+  - @sjsf/skeleton3-theme@2.0.0-next.11
+  - @sjsf/sveltekit@2.0.0-next.11
+  - testing@0.1.0-next.11
+  - @sjsf/zod-validator@2.0.0-next.11
+
 ## 1.6.3-next.10
 
 ### Patch Changes

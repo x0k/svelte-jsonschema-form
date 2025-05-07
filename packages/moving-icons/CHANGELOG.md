@@ -1,5 +1,12 @@
 # @sjsf/moving-icons
 
+## 2.0.0-next.11
+
+### Patch Changes
+
+- Updated dependencies [[`162b001`](https://github.com/x0k/svelte-jsonschema-form/commit/162b0018a630c58e72a775af02d6655cc8e65fab), [`f6fd57c`](https://github.com/x0k/svelte-jsonschema-form/commit/f6fd57c724450da74b26fc63cdb5fdb510203613)]:
+  - @sjsf/form@2.0.0-next.11
+
 ## 2.0.0-next.10
 
 ### Patch Changes
