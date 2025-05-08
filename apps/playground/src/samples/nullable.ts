@@ -71,10 +71,6 @@ const nullable: Sample = {
         description: "Hint: Make it strong!",
       },
     },
-    // TODO: Add `alt-datetime` widget
-    // date: {
-    //   "ui:widget": "alt-datetime",
-    // },
     telephone: {
       "ui:options": {
         input: {

@@ -1,5 +1,5 @@
 // @ts-check
-import { fileURLToPath } from 'node:url'
+import { fileURLToPath } from "node:url";
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import svelte from "@astrojs/svelte";
@@ -7,7 +7,7 @@ import svelte from "@astrojs/svelte";
 // https://astro.build/config
 export default defineConfig({
   site: "https://x0k.github.io",
-  base: "/svelte-jsonschema-form/",
+  base: "/svelte-jsonschema-form/v1/",
   trailingSlash: "always",
   i18n: {
     defaultLocale: "en",
@@ -17,17 +17,21 @@ export default defineConfig({
     svelte(),
     starlight({
       title: "svelte-jsonschema-form",
-      social: {
-        github: "https://github.com/x0k/svelte-jsonschema-form",
-      },
+      social: [
+        {
+          icon: "github",
+          href: "https://github.com/x0k/svelte-jsonschema-form",
+          label: "GitHub",
+        },
+      ],
       head: [
         {
           tag: "script",
           attrs: {
-            "data-goatcounter": "https://sjsf.counter.x0k.online/count",
+            "data-goatcounter": "https://sjsf.counter.x0k.dev/count",
             async: true,
-            src: "https://sjsf.counter.x0k.online/count.js",
-          }
+            src: "https://sjsf.counter.x0k.dev/count.js",
+          },
         },
       ],
       sidebar: [
@@ -53,7 +57,7 @@ export default defineConfig({
         },
         {
           label: "Migration guides",
-          autogenerate: { directory: "migration-guides" }
+          autogenerate: { directory: "migration-guides" },
         },
         {
           label: "API Reference",
@@ -62,12 +66,11 @@ export default defineConfig({
         {
           label: "Changelogs",
           autogenerate: { directory: "changelogs" },
-        }
+        },
       ],
       components: {
         Head: "./src/components/custom-head.astro",
         Header: "./src/components/header-with-links.astro",
-        MarkdownContent: "./src/components/markdown-content.astro",
       },
     }),
   ],
@@ -76,7 +79,7 @@ export default defineConfig({
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
         "#": fileURLToPath(new URL("../../packages", import.meta.url)),
-        "apps" : fileURLToPath(new URL("..", import.meta.url))
+        apps: fileURLToPath(new URL("..", import.meta.url)),
       },
     },
   },

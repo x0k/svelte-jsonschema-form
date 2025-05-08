@@ -13,8 +13,13 @@ function fixGetStartedUrl(
 ): Record<string, any> {
   const action = frontmatter?.hero?.actions?.[0];
   if (!action) return frontmatter;
+  const bannerContent = frontmatter?.banner?.content?.replace("../", "../../")
   return {
     ...frontmatter,
+    banner: {
+      ...frontmatter.banner,
+      content: bannerContent,
+    },
     hero: {
       ...frontmatter.hero,
       actions: [
