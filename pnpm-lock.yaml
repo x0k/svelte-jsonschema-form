@@ -367,6 +367,16 @@ importers:
         version: 5.28.2
 
   apps/lab:
+    dependencies:
+      '@xterm/addon-fit':
+        specifier: ^0.10.0
+        version: 0.10.0(@xterm/xterm@5.5.0)
+      '@xterm/xterm':
+        specifier: ^5.5.0
+        version: 5.5.0
+      monaco-editor:
+        specifier: ^0.52.2
+        version: 0.52.2
     devDependencies:
       '@sveltejs/vite-plugin-svelte':
         specifier: 'catalog:'
@@ -377,6 +387,9 @@ importers:
       '@tsconfig/svelte':
         specifier: 'catalog:'
         version: 5.0.4
+      daisyui:
+        specifier: ^5.0.35
+        version: 5.0.35
       svelte:
         specifier: 'catalog:'
         version: 5.28.2
@@ -3103,6 +3116,14 @@ packages:
   '@vtbag/utensil-drawer@1.2.4':
     resolution: {integrity: sha512-UUTrH+IlJqbFRPB8n8L9e0Q9TqUpYGBHIrLpLbU8d0cFgaIrMgs14HWbRMTRkHc6s6f5ugOjcZmUr9LxCW9uiA==}
 
+  '@xterm/addon-fit@0.10.0':
+    resolution: {integrity: sha512-UFYkDm4HUahf2lnEyHvio51TNGiLK66mqP2JoATy7hRZeXaGMRDr00JiSF7m63vR5WKATF605yEggJKsw0JpMQ==}
+    peerDependencies:
+      '@xterm/xterm': ^5.0.0
+
+  '@xterm/xterm@5.5.0':
+    resolution: {integrity: sha512-hqJHYaQb5OptNunnyAnkHyM8aCjZ1MEIDTQu1iIbbTD/xops91NB5yq1ZK/dC2JDbVWtF23zUtl9JE2NqwT87A==}
+
   '@yr/monotone-cubic-spline@1.0.3':
     resolution: {integrity: sha512-FQXkOta0XBSUPHndIKON2Y9JeQz5ZeMqLYZVVK93FliNBFm7LNMIZmY6FrMEB9XPcDbE2bekMbZD6kzDkxwYjA==}
 
@@ -4895,6 +4916,9 @@ packages:
 
   moment@2.30.1:
     resolution: {integrity: sha512-uEmtNhbDOrWPFS+hdjFCBfy9f2YoyzRpwcl+DqpC6taX21FzsTLQVbMV/W7PzNSX6x/bhC1zA3c2UQ5NzH6how==}
+
+  monaco-editor@0.52.2:
+    resolution: {integrity: sha512-GEQWEZmfkOGLdd3XK8ryrfWz3AIP8YymVXiPHEdewrUq7mh0qrKrfHLNCXcbB6sTnMLnOZ3ztSiKcciFUkIJwQ==}
 
   mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
@@ -8087,6 +8111,12 @@ snapshots:
 
   '@vtbag/utensil-drawer@1.2.4': {}
 
+  '@xterm/addon-fit@0.10.0(@xterm/xterm@5.5.0)':
+    dependencies:
+      '@xterm/xterm': 5.5.0
+
+  '@xterm/xterm@5.5.0': {}
+
   '@yr/monotone-cubic-spline@1.0.3': {}
 
   '@zag-js/accordion@1.8.2':
@@ -10609,6 +10639,8 @@ snapshots:
       ufo: 1.5.4
 
   moment@2.30.1: {}
+
+  monaco-editor@0.52.2: {}
 
   mri@1.2.0: {}
 
