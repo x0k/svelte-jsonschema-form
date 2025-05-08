@@ -13,8 +13,14 @@
     "@sveltejs/vite-plugin-svelte": "catalog:",
     "@tailwindcss/vite": "catalog:",
     "@tsconfig/svelte": "catalog:",
+    "daisyui": "^5.0.35",
     "svelte": "catalog:",
     "svelte-check": "catalog:",
     "tailwindcss": "catalog:next"
+  },
+  "dependencies": {
+    "@xterm/addon-fit": "^0.10.0",
+    "@xterm/xterm": "^5.5.0",
+    "monaco-editor": "^0.52.2"
   }
 }
