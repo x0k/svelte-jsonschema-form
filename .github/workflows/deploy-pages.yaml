@@ -1,23 +1,13 @@
 name: Deploy to GitHub Pages
 on:
-  pull_request:
-    types: [closed]
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - v1
   workflow_dispatch: # Adds the manual trigger
-
-permissions:
-  id-token: write
-  contents: write
-  pages: write
 
 jobs:
   deploy:
-    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.merged == true && github.event.pull_request.user.login == 'github-actions[bot]')
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout code repository
         uses: actions/checkout@v4
@@ -28,7 +18,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 23
           cache: pnpm
 
       - name: Install dependencies
@@ -45,14 +35,18 @@ jobs:
       - name: Build
         run: pnpm run build --filter="./apps/*"
 
-      - name: Merge apps build outputs
-        run: mv apps/playground/dist apps/docs/dist/playground
-
-      - name: Upload Pages Artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy docs to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: "apps/docs/dist/"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./apps/docs/dist
+          publish_branch: gh-pages
+          destination_dir: v1
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Deploy playground to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./apps/playground/dist
+          publish_branch: gh-pages
+          destination_dir: playground
