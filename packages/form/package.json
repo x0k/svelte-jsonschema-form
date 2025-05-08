@@ -49,9 +49,7 @@
     "@types/json-schema-merge-allof": "^0.6.5",
     "deep-freeze-es6": "^4.0.0",
     "svelte": "catalog:",
-    "svelte-check": "catalog:",
-    "vite": "catalog:",
-    "vitest": "catalog:"
+    "svelte-check": "catalog:"
   },
   "types": "./dist/form/index.d.ts",
   "svelte": "./dist/form/index.js",

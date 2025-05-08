@@ -16,11 +16,11 @@ c:
 
 sjsf/:
   c:
-    pnpm run check --filter="@sjsf/*"
+    pnpm run check --filter="@sjsf/*" $@
   t:
-    pnpm run test --filter="@sjsf/*"
+    pnpm run test --filter="@sjsf/*" $@
   b:
-    pnpm run build --filter="@sjsf/*"
+    pnpm run build --filter="@sjsf/*" $@
 
 
 ajv/:

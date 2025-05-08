@@ -34,7 +34,6 @@
     "@tsconfig/svelte": "catalog:",
     "svelte": "catalog:",
     "svelte-check": "catalog:",
-    "tailwindcss": "catalog:next",
-    "vite": "catalog:"
+    "tailwindcss": "catalog:next"
   }
 }

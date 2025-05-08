@@ -50,8 +50,6 @@
     "@exodus/schemasafe": "catalog:",
     "@sjsf/form": "workspace:*",
     "@sveltejs/vite-plugin-svelte": "catalog:",
-    "svelte": "catalog:",
-    "vite": "catalog:",
-    "vitest": "catalog:"
+    "svelte": "catalog:"
   }
 }

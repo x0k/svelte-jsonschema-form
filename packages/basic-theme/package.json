@@ -41,9 +41,7 @@
     "@tsconfig/svelte": "catalog:",
     "svelte": "catalog:",
     "svelte-check": "catalog:",
-    "testing": "workspace:*",
-    "vite": "catalog:",
-    "vitest": "catalog:"
+    "testing": "workspace:*"
   },
   "types": "./dist/index.d.ts",
   "svelte": "./dist/index.js",
