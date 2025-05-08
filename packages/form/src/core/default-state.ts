@@ -233,7 +233,7 @@ export function computeDefaults(
     $ref: schemaRef,
     oneOf: schemaOneOf,
     anyOf: schemaAnyOf,
-    allOf: schemaAllOf
+    allOf: schemaAllOf,
   } = schema;
   if (
     isSchemaOfConstantValue(schema) &&
@@ -250,7 +250,8 @@ export function computeDefaults(
   } else if (
     schemaDefault !== undefined &&
     schemaOneOf === undefined &&
-    schemaAnyOf === undefined
+    schemaAnyOf === undefined &&
+    schemaRef === undefined
   ) {
     defaults = schemaDefault;
   } else if (schemaRef !== undefined) {
@@ -258,6 +259,11 @@ export function computeDefaults(
     if (!stack.has(schemaRef)) {
       nextStack = new Set(stack).add(schemaRef);
       schemaToCompute = findSchemaDefinition(schemaRef, rootSchema);
+    }
+    // If the referenced schema exists and parentDefaults is not set
+    // Then set the defaults from the current schema for the referenced schema
+    if (schemaToCompute && defaults === undefined) {
+      defaults = schemaDefault;
     }
   } else if (DEPENDENCIES_KEY in schema) {
     // Get the default if set from properties to ensure the dependencies conditions are resolved based on it
