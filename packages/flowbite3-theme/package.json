@@ -92,9 +92,7 @@
 		"tailwind-variants": "^1.0.0",
 		"tailwindcss": "catalog:next",
 		"testing": "workspace:*",
-		"typescript-eslint": "catalog:",
-		"vite": "catalog:",
-		"vitest": "catalog:"
+		"typescript-eslint": "catalog:"
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts"

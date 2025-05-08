@@ -39,7 +39,6 @@
     "postcss": "catalog:",
     "svelte": "catalog:",
     "svelte-check": "catalog:",
-    "tailwindcss": "catalog:",
-    "vite": "catalog:"
+    "tailwindcss": "catalog:"
   }
 }

@@ -21,9 +21,7 @@
     "@sveltejs/vite-plugin-svelte": "catalog:",
     "@tsconfig/svelte": "catalog:",
     "svelte": "catalog:",
-    "svelte-check": "catalog:",
-    "vite": "catalog:",
-    "vitest": "catalog:"
+    "svelte-check": "catalog:"
   },
   "exports": {
     "./demo": {
