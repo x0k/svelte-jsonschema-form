@@ -1,5 +1,12 @@
 # @sjsf/cfworker-validator
 
+## 2.0.0-next.12
+
+### Patch Changes
+
+- Updated dependencies [[`1e641de`](https://github.com/x0k/svelte-jsonschema-form/commit/1e641de9ce630da729bf295c508371dabaa2e802)]:
+  - @sjsf/form@2.0.0-next.12
+
 ## 2.0.0-next.11
 
 ### Patch Changes
