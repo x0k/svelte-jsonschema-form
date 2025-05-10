@@ -1,5 +1,16 @@
 # @sjsf/ajv8-validator
 
+## 2.0.0-next.12
+
+### Minor Changes
+
+- Add `ajvPlugins` option for `createFormValidator` function ([`bd15f11`](https://github.com/x0k/svelte-jsonschema-form/commit/bd15f119298bab9f8400bf39ed4a813e9ee1fd29))
+
+### Patch Changes
+
+- Updated dependencies [[`1e641de`](https://github.com/x0k/svelte-jsonschema-form/commit/1e641de9ce630da729bf295c508371dabaa2e802)]:
+  - @sjsf/form@2.0.0-next.12
+
 ## 2.0.0-next.11
 
 ### Patch Changes

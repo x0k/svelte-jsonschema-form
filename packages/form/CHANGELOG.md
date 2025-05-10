@@ -1,5 +1,11 @@
 # @sjsf/form
 
+## 2.0.0-next.12
+
+### Patch Changes
+
+- Port <https://github.com/rjsf-team/react-jsonschema-form/pull/4600> ([`1e641de`](https://github.com/x0k/svelte-jsonschema-form/commit/1e641de9ce630da729bf295c508371dabaa2e802))
+
 ## 2.0.0-next.11
 
 ### Major Changes
