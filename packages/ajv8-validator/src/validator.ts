@@ -136,13 +136,21 @@ export interface FormValidatorOptions
 
 export function createFormValidator({
   ajvOptions = DEFAULT_AJV_CONFIG,
-  ajv = addFormComponents(new Ajv(ajvOptions)),
+  ajvPlugins = addFormComponents,
+  ajv = ajvPlugins(new Ajv(ajvOptions)),
   compileSchema = createSchemaCompiler(ajv, false),
   compileFieldSchema = createFieldSchemaCompiler(ajv, false),
   ...rest
 }: Partial<FormValidatorOptions> & {
-  ajv?: Ajv;
+  /**
+   * @default `DEFAULT_AJV_CONFIG`
+   */
   ajvOptions?: Options;
+  /**
+   * @default `addFormComponents`
+   */
+  ajvPlugins?: (ajv: Ajv) => Ajv
+  ajv?: Ajv;
 } = {}) {
   const options: FormValidatorOptions = {
     ...rest,

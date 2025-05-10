@@ -41,6 +41,19 @@ JSON schema validator.
   <Form client:only="svelte" />
 </FormCard>
 
+## Plugins
+
+You can connect AJV plugins as follows:
+
+```ts
+import { createFormValidator, addFormComponents } from "@sjsf/ajv8-validator";
+import addFormats from "ajv-formats"
+
+const validator = createFormValidator({
+  ajvPlugins = (ajv) => addFormComponents(addFormats(ajv))
+})
+```
+
 ## Async validation
 
 This validator supports async validation.
