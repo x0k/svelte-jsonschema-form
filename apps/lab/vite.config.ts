@@ -5,21 +5,21 @@ import { svelte } from "@sveltejs/vite-plugin-svelte";
 import importMetaUrlPlugin from "@codingame/esbuild-import-meta-url-plugin";
 
 export default defineConfig({
-  server: {
-    headers: {
-      "Cross-Origin-Embedder-Policy": "require-corp",
-      "Cross-Origin-Opener-Policy": "same-origin",
-    },
-  },
+  // server: {
+  //   headers: {
+  //     "Cross-Origin-Embedder-Policy": "require-corp",
+  //     "Cross-Origin-Opener-Policy": "same-origin",
+  //   },
+  // },
   worker: {
     format: "es",
   },
   optimizeDeps: {
-    include: [
-      "vscode-textmate",
-      "vscode-oniguruma",
-      "@vscode/vscode-languagedetection",
-    ],
+    // include: [
+    //   "vscode-textmate",
+    //   "vscode-oniguruma",
+    //   "@vscode/vscode-languagedetection",
+    // ],
     esbuildOptions: {
       plugins: [importMetaUrlPlugin],
     },

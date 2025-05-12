@@ -48,4 +48,8 @@ function createThemeManager() {
   } satisfies ThemeManager;
 }
 
-export const themeManager = createThemeManager();
+export let themeManager: ThemeManager;
+
+$effect.root(() => {
+  themeManager = createThemeManager();
+});
