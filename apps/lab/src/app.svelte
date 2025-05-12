@@ -3,17 +3,45 @@
 
   import { createEditorState } from "./editor.svelte.js";
   import { Pane, PaneGroup, PaneResizer } from "paneforge";
+  import { editor } from "monaco-editor";
+  import { themeManager } from "./theme.svelte.js";
+  import Dropdown from "./components/dropdown.svelte";
+  import { THEME_TITLES, THEMES } from "./shared.js";
 
+  let ed = $state<editor.IStandaloneCodeEditor>();
+  function edResize() {
+    ed?.layout(undefined, true);
+  }
+  const edTheme = $derived(themeManager.isDark ? "vs-dark" : "vs-light");
   const editorState = createEditorState();
 </script>
 
+<svelte:window onresize={edResize} />
 <div class="app">
-  <header>Lab</header>
+  <header class="flex p-2 items-center gap-2 z-50">
+    <h1 class="grow text-3xl font-bold">Lab</h1>
+    <Dropdown
+      class="dropdown-center"
+      bind:value={themeManager.theme}
+      options={THEMES}
+    >
+      {#snippet label(theme)}
+        {THEME_TITLES[theme]}
+      {/snippet}
+    </Dropdown>
+  </header>
   <PaneGroup
     direction="horizontal"
     class="flex h-full w-full data-[direction=vertical]:flex-col"
   >
-    <Pane defaultSize={50}>One</Pane>
+    <Pane defaultSize={50} onResize={edResize}
+      ><Editor
+        theme={edTheme}
+        bind:editor={ed}
+        class="h-full w-full"
+        model={editorState.activeTab.model}
+      /></Pane
+    >
     <PaneResizer
       class="bg-secondary/20 focus-visible:ring-ring relative flex w-px items-center justify-center after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 data-[direction=vertical]:h-px data-[direction=vertical]:w-full data-[direction=vertical]:after:left-0 data-[direction=vertical]:after:h-1 data-[direction=vertical]:after:w-full data-[direction=vertical]:after:-translate-y-1/2 data-[direction=vertical]:after:translate-x-0 [&[data-direction=vertical]>div]:rotate-90"
     />
