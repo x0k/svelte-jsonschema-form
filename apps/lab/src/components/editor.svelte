@@ -1,4 +1,9 @@
 <script lang="ts" module>
+  import { initialize } from "vscode";
+  import getLanguagesServiceOverride from "@codingame/monaco-vscode-languages-service-override";
+  import getThemeServiceOverride from "@codingame/monaco-vscode-theme-service-override";
+  import getTextMateServiceOverride from "@codingame/monaco-vscode-textmate-service-override";
+  import "@codingame/monaco-vscode-theme-defaults-default-extension";
   // import EditorWorker from "monaco-editor/esm/vs/editor/editor.worker?worker";
   // import TsWorker from "monaco-editor/esm/vs/language/typescript/ts.worker?worker";
   // import CssWorker from "monaco-editor/esm/vs/language/css/css.worker?worker";
@@ -14,11 +19,18 @@
         ),
         { type: "module" }
       ),
+    TextMateWorker: () =>
+      new Worker(
+        new URL(
+          "@codingame/monaco-vscode-textmate-service-override/worker",
+          import.meta.url
+        ),
+        { type: "module" }
+      ),
   };
 
   window.MonacoEnvironment = {
     getWorker(_, label) {
-      console.log(label)
       const workerFactory = workerLoaders[label];
       if (workerFactory === undefined) {
         throw new Error(`Worker ${label} not found`);
@@ -26,6 +38,15 @@
       return workerFactory();
     },
   };
+
+  const init = initialize(
+    Object.assign(
+      {},
+      getTextMateServiceOverride(),
+      getThemeServiceOverride(),
+      getLanguagesServiceOverride()
+    )
+  );
 </script>
 
 <script lang="ts">
@@ -44,34 +65,44 @@
   let editorElement: HTMLDivElement;
 
   $effect(() => {
-    model;
     if (editor === undefined) {
       return;
     }
     editor.setModel(model);
   });
 
+  let first = true;
   $effect(() => {
-    theme;
     if (editor === undefined) {
       return;
     }
-    monaco.editor.setTheme(theme);
+    if (first) {
+      first = false;
+      theme;
+      setTimeout(() => monaco.editor.setTheme.bind(theme), 160);
+    } else {
+      monaco.editor.setTheme(theme);
+    }
   });
 
   onMount(() => {
-    editor = monaco.editor.create(editorElement, {
-      model,
-      theme,
-      fixedOverflowWidgets: true,
-      wordBasedSuggestions: "currentDocument",
-      lineNumbers: "on",
-      tabSize: 2,
-      insertSpaces: true,
-      fontSize: 16,
-      minimap: {
-        enabled: false,
-      },
+    init.then(() => {
+      editor = monaco.editor.create(editorElement, {
+        model,
+        theme,
+        fixedOverflowWidgets: true,
+        wordBasedSuggestions: "currentDocument",
+        lineNumbers: "on",
+        tabSize: 2,
+        insertSpaces: true,
+        fontSize: 16,
+        bracketPairColorization: {
+          enabled: true,
+        },
+        minimap: {
+          enabled: false,
+        },
+      });
     });
     return () => {
       editor?.dispose();

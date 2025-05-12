@@ -9,14 +9,14 @@
   import { THEME_TITLES, THEMES } from "./shared.js";
 
   let editor = $state<monaco.editor.IStandaloneCodeEditor>();
-  function edResize() {
+  function editorResize() {
     editor?.layout(undefined, true);
   }
-  const edTheme = $derived(themeManager.isDark ? "vs-dark" : "vs-light");
+  const editorTheme = $derived(themeManager.isDark ? "vs-dark" : "vs");
   const editorState = createEditorState();
 </script>
 
-<svelte:window onresize={edResize} />
+<svelte:window onresize={editorResize} />
 <div class="app">
   <header class="flex p-2 items-center gap-2 z-50">
     <h1 class="grow text-3xl font-bold">Lab</h1>
@@ -34,10 +34,10 @@
     direction="horizontal"
     class="flex h-full w-full data-[direction=vertical]:flex-col"
   >
-    <Pane defaultSize={50} onResize={edResize}
+    <Pane defaultSize={50} onResize={editorResize}
       ><Editor
-        theme={edTheme}
-        bind:editor={editor}
+        bind:editor
+        theme={editorTheme}
         class="h-full w-full"
         model={editorState.activeTab.model}
       /></Pane
