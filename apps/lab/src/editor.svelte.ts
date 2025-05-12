@@ -18,7 +18,7 @@ export interface EditorState {
 }
 
 export function createEditorState(): EditorState {
-  const model = editor.createModel("");
+  const model = editor.createModel("", "typescript");
   const tabs: EditorTab[] = $state([
     {
       model,
