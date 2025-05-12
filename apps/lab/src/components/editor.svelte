@@ -1,3 +1,32 @@
+<script lang="ts" module>
+  import EditorWorker from "monaco-editor/esm/vs/editor/editor.worker?worker";
+  import TsWorker from "monaco-editor/esm/vs/language/typescript/ts.worker?worker";
+  import CssWorker from "monaco-editor/esm/vs/language/css/css.worker?worker";
+  import HtmlWorker from "monaco-editor/esm/vs/language/html/html.worker?worker";
+
+  window.MonacoEnvironment = {
+    getWorker(_, name) {
+      switch (name) {
+        case "editorWorkerService":
+          return new EditorWorker({ name });
+        case "javascript":
+        case "typescript":
+          return new TsWorker({ name });
+        case "css":
+        case "scss":
+        case "less":
+          return new CssWorker({ name });
+        case "html":
+        case "handlebars":
+        case "razor":
+          return new HtmlWorker({ name });
+        default:
+          throw new Error(`Unknown label ${name}`);
+      }
+    },
+  };
+</script>
+
 <script lang="ts">
   import { onMount } from "svelte";
   import type { HTMLAttributes } from "svelte/elements";
@@ -34,6 +63,7 @@
       model,
       theme,
       fixedOverflowWidgets: true,
+      wordBasedSuggestions: 'currentDocument',
       lineNumbers: "on",
       tabSize: 2,
       insertSpaces: true,
