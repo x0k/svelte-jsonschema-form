@@ -3,14 +3,14 @@
 
   import { createEditorState } from "./editor.svelte.js";
   import { Pane, PaneGroup, PaneResizer } from "paneforge";
-  import { editor } from "monaco-editor";
+  import * as monaco from "monaco-editor";
   import { themeManager } from "./theme.svelte.js";
   import Dropdown from "./components/dropdown.svelte";
   import { THEME_TITLES, THEMES } from "./shared.js";
 
-  let ed = $state<editor.IStandaloneCodeEditor>();
+  let editor = $state<monaco.editor.IStandaloneCodeEditor>();
   function edResize() {
-    ed?.layout(undefined, true);
+    editor?.layout(undefined, true);
   }
   const edTheme = $derived(themeManager.isDark ? "vs-dark" : "vs-light");
   const editorState = createEditorState();
@@ -37,7 +37,7 @@
     <Pane defaultSize={50} onResize={edResize}
       ><Editor
         theme={edTheme}
-        bind:editor={ed}
+        bind:editor={editor}
         class="h-full w-full"
         model={editorState.activeTab.model}
       /></Pane
