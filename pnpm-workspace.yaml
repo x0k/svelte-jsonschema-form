@@ -4,7 +4,7 @@ packages:
 
 catalog:
   "ajv": "^8.17.1"
-  "vite": "6.3.2"
+  "vite": "6.3.5"
   "svelte": "^5.28.2"
   "esm-env": "^1.2.2"
   "@sveltejs/kit": "^2.20.8"
