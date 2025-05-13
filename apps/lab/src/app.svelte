@@ -12,7 +12,9 @@
   function editorResize() {
     editor?.layout(undefined, true);
   }
-  const editorTheme = $derived(themeManager.isDark ? "vs-dark" : "vs");
+  const editorTheme = $derived(
+    themeManager.isDark ? "Default Dark Modern" : "Default Light Modern"
+  );
   const editorState = createEditorState();
 </script>
 
