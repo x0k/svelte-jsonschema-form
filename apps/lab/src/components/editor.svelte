@@ -53,6 +53,7 @@
   import { onMount } from "svelte";
   import type { HTMLAttributes } from "svelte/elements";
   import * as monaco from "monaco-editor";
+  import { getService, IThemeService } from "vscode/services";
 
   interface Props extends HTMLAttributes<HTMLDivElement> {
     model: monaco.editor.ITextModel;
@@ -63,6 +64,7 @@
   let { model, theme, editor = $bindable(), ...rest }: Props = $props();
 
   let editorElement: HTMLDivElement;
+  let themeService = $state.raw<IThemeService>();
 
   $effect(() => {
     if (editor === undefined) {
@@ -71,39 +73,50 @@
     editor.setModel(model);
   });
 
-  let first = true;
+  let setThemeCallbackId: number
+  function setTheme(themeService: IThemeService, theme: string) {
+    clearTimeout(setThemeCallbackId)
+    monaco.editor.setTheme(theme);
+    setThemeCallbackId = setTimeout(() => {
+      //@ts-expect-error
+      const currentTheme = themeService.getColorTheme().settingsId;
+      if (currentTheme !== theme) {
+        setTheme(themeService, theme);
+      }
+    }, 100);
+  }
+
   $effect(() => {
-    if (editor === undefined) {
+    if (themeService === undefined) {
       return;
     }
-    if (first) {
-      first = false;
-      theme;
-      setTimeout(() => monaco.editor.setTheme.bind(theme), 160);
-    } else {
-      monaco.editor.setTheme(theme);
-    }
+    setTheme(themeService, theme);
   });
 
   onMount(() => {
-    init.then(() => {
-      editor = monaco.editor.create(editorElement, {
-        model,
-        theme,
-        fixedOverflowWidgets: true,
-        wordBasedSuggestions: "currentDocument",
-        lineNumbers: "on",
-        tabSize: 2,
-        insertSpaces: true,
-        fontSize: 16,
-        bracketPairColorization: {
-          enabled: true,
-        },
-        minimap: {
-          enabled: false,
-        },
+    init
+      .then(() => {
+        editor = monaco.editor.create(editorElement, {
+          model,
+          theme,
+          fixedOverflowWidgets: true,
+          wordBasedSuggestions: "currentDocument",
+          lineNumbers: "on",
+          tabSize: 2,
+          insertSpaces: true,
+          fontSize: 16,
+          bracketPairColorization: {
+            enabled: true,
+          },
+          minimap: {
+            enabled: false,
+          },
+        });
+        return getService(IThemeService);
+      })
+      .then((service) => {
+        themeService = service;
       });
-    });
     return () => {
       editor?.dispose();
     };
