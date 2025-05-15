@@ -1,4 +1,5 @@
 import { SvelteMap } from "svelte/reactivity";
+import { on } from "svelte/events";
 
 import { createDataURLtoBlob } from "@/lib/file.js";
 import type { SchedulerYield } from "@/lib/scheduler.js";
@@ -192,17 +193,19 @@ export interface FormValidationResult<E> {
   formErrors: FieldErrorsMap<E>;
 }
 
-type Validate<V> = V extends FormValueValidator<infer E>
-  ? {
-      validate(): FieldErrorsMap<E>;
-    }
-  : {};
+type Validate<V> =
+  V extends FormValueValidator<infer E>
+    ? {
+        validate(): FieldErrorsMap<E>;
+      }
+    : {};
 
-type ValidateAsync<V> = V extends AsyncFormValueValidator<infer E>
-  ? {
-      validateAsync(signal: AbortSignal): Promise<FieldErrorsMap<E>>;
-    }
-  : {};
+type ValidateAsync<V> =
+  V extends AsyncFormValueValidator<infer E>
+    ? {
+        validateAsync(signal: AbortSignal): Promise<FieldErrorsMap<E>>;
+      }
+    : {};
 
 export type FormState<T, V extends Validator> = {
   readonly context: FormContext;
@@ -262,8 +265,8 @@ export function createForm<T, V extends Validator>(
   const uiSchema = $derived(resolveUiRef(uiSchemaRoot, options.uiSchema) ?? {});
   const disabled = $derived(options.disabled ?? false);
   const schedulerYield: SchedulerYield = $derived(
-    options.schedulerYield ??
-      (typeof scheduler !== "undefined" && "yield" in scheduler)
+    (options.schedulerYield ??
+      (typeof scheduler !== "undefined" && "yield" in scheduler))
       ? scheduler.yield.bind(scheduler)
       : ({ signal }: Parameters<SchedulerYield>[0]) =>
           new Promise((resolve, reject) => {
@@ -587,11 +590,11 @@ export function createForm<T, V extends Validator>(
 export function enhance(node: HTMLFormElement, context: FormContext) {
   $effect(() => {
     const ctx = context as FormInternalContext<any>;
-    node.addEventListener("submit", ctx.submitHandler);
-    node.addEventListener("reset", ctx.resetHandler);
+    const disposeSubmit = on(node, "submit", ctx.submitHandler);
+    const disposeReset = on(node, "reset", ctx.resetHandler);
     return () => {
-      node.removeEventListener("submit", ctx.submitHandler);
-      node.removeEventListener("reset", ctx.resetHandler);
+      disposeReset();
+      disposeSubmit();
     };
   });
 }
