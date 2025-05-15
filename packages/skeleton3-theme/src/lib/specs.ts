@@ -1,6 +1,6 @@
 import { cast } from '@sjsf/form/lib/component';
-import type { SchemaArrayValue } from '@sjsf/form/core';
 import type { ComponentDefinition } from '@sjsf/form';
+import FilesField from '@sjsf/form/fields/extra-fields/files.svelte';
 import TagsField from '@sjsf/form/fields/extra-fields/tags.svelte';
 import { s } from 'testing/demo';
 
@@ -24,21 +24,73 @@ import './extra-widgets/switch-include';
 import './extra-widgets/tags-include';
 import './extra-widgets/textarea-include';
 
+const filesAsArrayField = cast(FilesField, {
+	value: {
+		transform(props) {
+			s.assertStrings(props.value);
+			return props.value;
+		}
+	}
+}) satisfies ComponentDefinition<'arrayField'>;
+
+const tagsAsArrayField = cast(TagsField, {
+	value: {
+		transform(props) {
+			s.assertStrings(props.value);
+			return props.value;
+		}
+	}
+}) satisfies ComponentDefinition<'arrayField'>;
+
 export const specs: s.Specs = {
 	datePicker: [s.text, { 'ui:components': { textWidget: 'datePickerWidget' } }],
-	fileUpload: [s.file, { 'ui:components': { fileWidget: FileUpload } }],
-	fileUploadMultiple: [s.filesArray, { 'ui:components': { fileWidget: FileUpload } }],
+	fileUpload: [
+		s.file,
+		{
+			'ui:components': {
+				stringField: 'fileField',
+				fileWidget: FileUpload
+			}
+		}
+	],
+	fileUploadMultiple: [
+		s.filesArray,
+		{
+			'ui:components': {
+				arrayField: filesAsArrayField,
+				fileWidget: FileUpload
+			}
+		}
+	],
 	multiSelect: [
 		s.uniqueArray,
-		{ 'ui:components': { checkboxesWidget: 'multiSelectWidget' }, 'ui:options': { useLabel: true } }
+		{
+			'ui:components': {
+				arrayField: 'multiEnumField',
+				checkboxesWidget: 'multiSelectWidget'
+			},
+			'ui:options': { useLabel: true }
+		}
 	],
 	radioButtons: [
 		s.enumeration,
-		{ 'ui:components': { selectWidget: 'radioButtonsWidget' }, 'ui:options': { useLabel: false } }
+		{
+			'ui:components': {
+				stringField: 'enumField',
+				selectWidget: 'radioButtonsWidget'
+			},
+			'ui:options': { useLabel: false }
+		}
 	],
 	radio: [
 		s.enumeration,
-		{ 'ui:components': { selectWidget: 'radioWidget' }, 'ui:options': { useLabel: false } }
+		{
+			'ui:components': {
+				stringField: 'enumField',
+				selectWidget: 'radioWidget'
+			},
+			'ui:options': { useLabel: false }
+		}
 	],
 	range: [s.number, { 'ui:components': { numberWidget: 'rangeWidget' } }],
 	rating: [s.number, { 'ui:components': { numberWidget: 'ratingWidget' } }],
@@ -48,30 +100,12 @@ export const specs: s.Specs = {
 		s.uniqueArray,
 		{
 			'ui:components': {
-				multiEnumField: cast(TagsField, {
-					value: {
-						transform(props) {
-							assertStrings(props.value);
-							return props.value;
-						}
-					}
-				}) satisfies ComponentDefinition<'multiEnumField'>
+				arrayField: tagsAsArrayField
 			}
 		}
 	],
 	textarea: [s.text, { 'ui:components': { textWidget: 'textareaWidget' } }]
 };
-
-function assertStrings(arr: SchemaArrayValue | undefined): asserts arr is string[] | undefined {
-	if (
-		arr !== undefined &&
-		arr.find((item) => {
-			return item !== undefined && typeof item !== 'string';
-		})
-	) {
-		throw new TypeError('expected array of strings');
-	}
-}
 
 export const extraWidgets = Object.keys(import.meta.glob('./extra-widgets/*.svelte')).map(
 	(widget) => widget.substring(16, widget.length - 7)

@@ -3,6 +3,7 @@
   import {
     createForm,
     pathToId,
+    type ComponentDefinition,
     type Schema,
     type Theme,
     type UiOptionsRegistryOption,
@@ -10,7 +11,8 @@
   } from "@sjsf/form";
   import { createFormValidator } from "@sjsf/ajv8-validator";
   import { translation } from "@sjsf/form/translations/en";
-  import { resolver } from "@sjsf/form/resolvers/compat";
+  import { resolver } from "@sjsf/form/resolvers/basic";
+  import FilesField from "@sjsf/form/fields/extra-fields/files.svelte";
   import "@sjsf/form/fields/extra-fields/enum-include";
   import "@sjsf/form/fields/extra-fields/multi-enum-include";
   import "@sjsf/form/fields/extra-fields/file-include";
@@ -27,7 +29,9 @@
     uniqueArray,
     type Specs,
     filesArray,
+    assertStrings,
   } from "./schemas";
+  import { cast } from "@sjsf/form/lib/component";
 
   const {
     theme,
@@ -42,15 +46,52 @@
 
   const validator = createFormValidator();
 
+  const filesAsArrayField = cast(FilesField, {
+    value: {
+      transform(props) {
+        assertStrings(props.value);
+        return props.value;
+      },
+    },
+  }) satisfies ComponentDefinition<"arrayField">;
+
   const widgetsSchemas = (idPrefix: string) =>
     createSchemas(
       {
         checkbox: [boolean, {}],
-        checkboxes: [uniqueArray, {}],
-        file: [file, {}],
-        multiFile: [filesArray, {}],
+        checkboxes: [
+          uniqueArray,
+          {
+            "ui:components": {
+              arrayField: "multiEnumField",
+            },
+          },
+        ],
+        file: [
+          file,
+          {
+            "ui:components": {
+              stringField: "fileField",
+            },
+          },
+        ],
+        multiFile: [
+          filesArray,
+          {
+            "ui:components": {
+              arrayField: filesAsArrayField,
+            },
+          },
+        ],
         number: [number, {}],
-        select: [enumeration, {}],
+        select: [
+          enumeration,
+          {
+            "ui:components": {
+              stringField: "enumField",
+            },
+          },
+        ],
         text: [text, {}],
         ...additionalSpecs,
       },

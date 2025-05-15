@@ -16,11 +16,23 @@ export const specs: s.Specs = {
 	],
 	multiSelect: [
 		s.uniqueArray,
-		{ 'ui:components': { checkboxesWidget: 'multiSelectWidget' }, 'ui:options': { useLabel: true } }
+		{
+			'ui:components': {
+				arrayField: 'multiEnumField',
+				checkboxesWidget: 'multiSelectWidget'
+			},
+			'ui:options': { useLabel: true }
+		}
 	],
 	radio: [
 		s.enumeration,
-		{ 'ui:components': { selectWidget: 'radioWidget' }, 'ui:options': { useLabel: false } }
+		{
+			'ui:components': {
+				stringField: 'enumField',
+				selectWidget: 'radioWidget'
+			},
+			'ui:options': { useLabel: false }
+		}
 	],
 	range: [s.number, { 'ui:components': { numberWidget: 'rangeWidget' } }],
 	switch: [s.boolean, { 'ui:components': { checkboxWidget: 'switchWidget' } }],

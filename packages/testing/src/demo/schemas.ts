@@ -1,3 +1,4 @@
+import type { SchemaArrayValue } from "@sjsf/form/core";
 import {
   pathToId,
   type PathToIdOptions,
@@ -36,9 +37,9 @@ export const file: Schema = {
 };
 
 export const filesArray: Schema = {
-  type: 'array',
-  items: file
-}
+  type: "array",
+  items: file,
+};
 
 export const number: Schema = {
   type: "number",
@@ -82,8 +83,23 @@ export function createSchemas(
     ),
   };
   const uiSchema: UiSchemaRoot = Object.fromEntries(
-    keys.map((widget) => [widget, uiStates(specs[widget]![1])])
+    keys
+      .map((widget) => [widget, uiStates(specs[widget]![1])] as const)
+      .filter(([, s]) => Object.keys(s).length > 0)
   );
   const initialErrors = createErrors(keys, options);
   return { schema, uiSchema, initialErrors };
+}
+
+export function assertStrings(
+  arr: SchemaArrayValue | undefined
+): asserts arr is string[] | undefined {
+  if (
+    arr !== undefined &&
+    arr.find((item) => {
+      return item !== undefined && typeof item !== "string";
+    })
+  ) {
+    throw new TypeError("expected array of strings");
+  }
 }

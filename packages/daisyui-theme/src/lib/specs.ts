@@ -12,9 +12,18 @@ import './extra-widgets/textarea-include';
 
 export const specs: s.Specs = {
 	datePicker: [s.text, { 'ui:components': { textWidget: 'datePickerWidget' } }],
-	multiSelect: [s.uniqueArray, { 'ui:components': { checkboxesWidget: 'multiSelectWidget' } }],
-	radioButtons: [s.enumeration, { 'ui:components': { selectWidget: 'radioButtonsWidget' } }],
-	radio: [s.enumeration, { 'ui:components': { selectWidget: 'radioWidget' } }],
+	multiSelect: [
+		s.uniqueArray,
+		{ 'ui:components': { arrayField: 'multiEnumField', checkboxesWidget: 'multiSelectWidget' } }
+	],
+	radioButtons: [
+		s.enumeration,
+		{ 'ui:components': { stringField: 'enumField', selectWidget: 'radioButtonsWidget' } }
+	],
+	radio: [
+		s.enumeration,
+		{ 'ui:components': { stringField: 'enumField', selectWidget: 'radioWidget' } }
+	],
 	range: [s.number, { 'ui:components': { numberWidget: 'rangeWidget' } }],
 	switch: [s.boolean, { 'ui:components': { checkboxWidget: 'switchWidget' } }],
 	textarea: [s.text, { 'ui:components': { textWidget: 'textareaWidget' } }]

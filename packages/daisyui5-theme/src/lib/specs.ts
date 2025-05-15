@@ -25,20 +25,44 @@ export const specs: s.Specs = {
 	],
 	filterRadioButtons: [
 		s.enumeration,
-		{ 'ui:components': { selectWidget: FilterRadioButtons }, 'ui:options': { useLabel: false } }
+		{
+			'ui:components': {
+				stringField: 'enumField',
+				selectWidget: FilterRadioButtons
+			},
+			'ui:options': { useLabel: false }
+		}
 	],
 	multiSelect: [
 		s.uniqueArray,
-		{ 'ui:components': { checkboxesWidget: 'multiSelectWidget' }, 'ui:options': { useLabel: true } }
+		{
+			'ui:components': {
+				arrayField: 'multiEnumField',
+				checkboxesWidget: 'multiSelectWidget'
+			},
+			'ui:options': { useLabel: true }
+		}
 	],
 	pikadayDatePicker: [s.text, { 'ui:components': { textWidget: PikadayDatePicker } }],
 	radioButtons: [
 		s.enumeration,
-		{ 'ui:components': { selectWidget: 'radioButtonsWidget' }, 'ui:options': { useLabel: false } }
+		{
+			'ui:components': {
+				stringField: 'enumField',
+				selectWidget: 'radioButtonsWidget'
+			},
+			'ui:options': { useLabel: false }
+		}
 	],
 	radio: [
 		s.enumeration,
-		{ 'ui:components': { selectWidget: 'radioWidget' }, 'ui:options': { useLabel: false } }
+		{
+			'ui:components': {
+				stringField: 'enumField',
+				selectWidget: 'radioWidget'
+			},
+			'ui:options': { useLabel: false }
+		}
 	],
 	range: [s.number, { 'ui:components': { numberWidget: 'rangeWidget' } }],
 	rating: [

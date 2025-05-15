@@ -17,7 +17,13 @@ import './theme/extra-widgets/textarea-include';
 export const specs: s.Specs = {
 	combobox: [
 		s.enumeration,
-		{ 'ui:components': { selectWidget: Combobox }, 'ui:options': { useLabel: false } }
+		{
+			'ui:components': {
+				stringField: 'enumField',
+				selectWidget: Combobox
+			},
+			'ui:options': { useLabel: false }
+		}
 	],
 	datePicker: [
 		s.text,
@@ -26,15 +32,33 @@ export const specs: s.Specs = {
 	],
 	multiSelect: [
 		s.uniqueArray,
-		{ 'ui:components': { checkboxesWidget: 'multiSelectWidget' }, 'ui:options': { useLabel: true } }
+		{
+			'ui:components': {
+				arrayField: 'multiEnumField',
+				checkboxesWidget: 'multiSelectWidget'
+			},
+			'ui:options': { useLabel: true }
+		}
 	],
 	radioButtons: [
 		s.enumeration,
-		{ 'ui:components': { selectWidget: 'radioButtonsWidget' }, 'ui:options': { useLabel: false } }
+		{
+			'ui:components': {
+				stringField: 'enumField',
+				selectWidget: 'radioButtonsWidget'
+			},
+			'ui:options': { useLabel: false }
+		}
 	],
 	radio: [
 		s.enumeration,
-		{ 'ui:components': { selectWidget: 'radioWidget' }, 'ui:options': { useLabel: false } }
+		{
+			'ui:components': {
+				stringField: 'enumField',
+				selectWidget: 'radioWidget'
+			},
+			'ui:options': { useLabel: false }
+		}
 	],
 	range: [
 		s.number,

@@ -12,14 +12,20 @@ export const specs: s.Specs = {
   radio: [
     s.enumeration,
     {
-      "ui:components": { selectWidget: "radioWidget" },
+      "ui:components": {
+        stringField: "enumField",
+        selectWidget: "radioWidget",
+      },
       "ui:options": { useLabel: false },
     },
   ],
   multiSelect: [
     s.uniqueArray,
     {
-      "ui:components": { checkboxesWidget: "multiSelectWidget" },
+      "ui:components": {
+        arrayField: "multiEnumField",
+        checkboxesWidget: "multiSelectWidget",
+      },
       "ui:options": { useLabel: true },
     },
   ],
