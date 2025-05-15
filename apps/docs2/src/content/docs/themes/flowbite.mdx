@@ -14,9 +14,11 @@ import FormCard from '@/components/form-card.astro';
 
 import Form from './flowbite/form.svelte';
 import uiOptionsCode from './flowbite/ui-options?raw';
-import { createSchemas, replacer } from "./_demo-schema";
+import { createSchemas, replacer, createExtraImports } from "./_demo-schema";
 
 export const schemas = createSchemas(specs)
+
+export const THEME_PACKAGE = "@sjsf/flowbite-theme@next"
 
 > Flowbite™ is a registered trademark of Bergside Inc.
 This website is not affiliated with, endorsed by, or sponsored by Bergside Inc.
@@ -29,7 +31,7 @@ All rights to the trademark are owned by Bergside Inc.
 
 ## Installation
 
-<Npm pkg="@sjsf/flowbite-theme@next" />
+<Npm pkg={THEME_PACKAGE} />
 
 :::note
 
@@ -69,11 +71,9 @@ import flowbiteStyles from "@sjsf/flowbite-theme/styles.css?inline";
 
 ## Extra widgets
 
-<ul>
-  {extraWidgets.map((extra) => (
-    <li><code>{extra}</code></li>
-  ))}
-</ul>
+You can connect extra widgets using the following `include` imports:
+
+<Code lang='ts' code={createExtraImports(THEME_PACKAGE, extraWidgets)} />
 
 ## UI options
 

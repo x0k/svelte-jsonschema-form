@@ -14,7 +14,7 @@ import FormCard from '@/components/form-card.astro';
 
 import Form from './shadcn/form.svelte';
 import uiOptionsCode from './shadcn/ui-options?raw';
-import { createSchemas, replacer } from "./_demo-schema";
+import { createSchemas, replacer, createExtraImports } from "./_demo-schema";
 
 export const schemas = createSchemas(specs)
 
@@ -24,7 +24,7 @@ export const schemas = createSchemas(specs)
 
 :::note
 
-This is `shadcn-svelte@next` based theme.
+This is `shadcn-svelte@next` based theme (Tailwind v3).
 
 :::
 
@@ -78,11 +78,16 @@ setThemeContext({ components })
 
 ## Extra widgets
 
-<ul>
-  {extraWidgets.map((extra) => (
-    <li><code>{extra}</code></li>
-  ))}
-</ul>
+You can connect extra widgets using the following `include` imports:
+
+:::note
+
+The following widgets `combobox` and `select` replace each other -
+use one or import the replacement widget directly.
+
+:::
+
+<Code lang='ts' code={createExtraImports(THEME_PACKAGES.basic, extraWidgets)} />
 
 ## UI options
 

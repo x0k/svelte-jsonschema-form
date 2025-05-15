@@ -26,8 +26,8 @@ export const THEME_BRAND = {
   daisyui5: "daisyUI",
   flowbite3: "Flowbite",
   skeleton3: "Skeleton",
-  shadcn: "shadcn-svelte"
-} satisfies Record<Theme, string>
+  shadcn: "shadcn-svelte",
+} satisfies Record<Theme, string>;
 
 export const THEME_PACKAGES = {
   basic: "@sjsf/basic-theme@next",
@@ -42,7 +42,12 @@ export function isTheme(str: string): str is Theme {
   return str in THEME_TITLES;
 }
 
-export const ICONS_PACKAGES = ["lucide", "moving", "flowbite", "radix"] as const;
+export const ICONS_PACKAGES = [
+  "lucide",
+  "moving",
+  "flowbite",
+  "radix",
+] as const;
 
 export type IconsPackage = (typeof ICONS_PACKAGES)[number];
 

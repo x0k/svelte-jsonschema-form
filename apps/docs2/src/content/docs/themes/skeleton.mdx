@@ -14,9 +14,11 @@ import FormCard from '@/components/form-card.astro';
 
 import Form from './skeleton/form.svelte';
 import uiOptionsCode from './skeleton/ui-options?raw';
-import { createSchemas, replacer } from "./_demo-schema";
+import { createSchemas, replacer, createExtraImports } from "./_demo-schema";
 
 export const schemas = createSchemas(specs)
+
+export const THEME_PACKAGE = "@sjsf/skeleton-theme@next"
 
 <Picker>
   <a href="." data-active={true}>v3 RC1</a>
@@ -25,7 +27,7 @@ export const schemas = createSchemas(specs)
 
 ## Installation
 
-<Npm pkg="@sjsf/basic-theme@next @sjsf/skeleton-theme@next" />
+<Npm pkg={THEME_PACKAGE} />
 
 :::note
 
@@ -79,11 +81,9 @@ Bundled themes:
 
 ## Extra widgets
 
-<ul>
-  {extraWidgets.map((extra) => (
-    <li><code>{extra}</code></li>
-  ))}
-</ul>
+You can connect extra widgets using the following `include` imports:
+
+<Code lang='ts' code={createExtraImports(THEME_PACKAGE, extraWidgets)} />
 
 ## UI options
 

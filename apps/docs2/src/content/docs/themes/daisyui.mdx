@@ -15,7 +15,7 @@ import FormCard from '@/components/form-card.astro';
 
 import Form from './daisyui/form.svelte';
 import uiOptionsCode from './daisyui/ui-options?raw';
-import { createSchemas, replacer } from "./_demo-schema";
+import { createSchemas, replacer, createExtraImports } from "./_demo-schema";
 
 export const schemas = createSchemas(specs)
 
@@ -60,11 +60,9 @@ import daisyStyles from "@sjsf/daisyui-theme/styles.css?inline";
 
 ## Extra widgets
 
-<ul>
-  {extraWidgets.map((extra) => (
-    <li><code>{extra}</code></li>
-  ))}
-</ul>
+You can connect extra widgets using the following `include` imports:
+
+<Code lang='ts' code={createExtraImports(THEME_PACKAGES.daisyui, extraWidgets)} />
 
 ## UI options
 

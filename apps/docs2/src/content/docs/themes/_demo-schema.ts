@@ -12,6 +12,14 @@ const filesAsArrayField = cast(FilesField, {
   },
 }) satisfies ComponentDefinition<"arrayField">;
 
+export function createExtraImports(pkg: string, widgets: string[]) {
+  const atIndex = pkg.lastIndexOf("@");
+  const cleanPkg = atIndex > 0 ? pkg.substring(0, atIndex) : pkg;
+  return widgets
+    .map((w) => `import "${cleanPkg}/extra-widgets/${w}-include"`)
+    .join("\n");
+}
+
 export function createSchemas(specs: Record<string, [Schema, UiSchema]> = {}) {
   return s.createSchemas({
     checkbox: [s.boolean, {}],

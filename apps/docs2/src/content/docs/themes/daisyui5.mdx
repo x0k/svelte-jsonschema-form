@@ -15,7 +15,7 @@ import FormCard from '@/components/form-card.astro';
 
 import Form from './daisyui5/form.svelte'
 import uiOptionsCode from './daisyui5/ui-options?raw';
-import { createSchemas, replacer } from "./_demo-schema";
+import { createSchemas, replacer, createExtraImports } from "./_demo-schema";
 
 export const schemas = createSchemas(specs)
 
@@ -42,11 +42,18 @@ Register the theme source path by adding a line like this to the `app.css` file.
 
 ## Extra widgets
 
-<ul>
-  {extraWidgets.map((extra) => (
-    <li><code>{extra}</code></li>
-  ))}
-</ul>
+You can connect extra widgets using the following `include` imports:
+
+:::note
+
+The following widgets `radio-buttons` and `filter-radio-buttons`,
+`cally-date-picker` and `pikaday-date-picker` replace each other -
+use one or import the replacement widget directly.
+
+:::
+
+<Code lang='ts' code={createExtraImports(THEME_PACKAGES.daisyui5, extraWidgets)} />
+
 
 ## UI options
 
