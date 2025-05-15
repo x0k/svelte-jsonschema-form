@@ -62,7 +62,7 @@ export const createErrors = (keys: string[], options?: PathToIdOptions) =>
         instanceId: pathToId([key, "error"], options),
         propertyTitle: "error",
         message: `${key} error`,
-      }) satisfies ValidationError<null>
+      } satisfies ValidationError<null>)
   );
 
 export type Specs = Record<string, [Schema, UiSchema]>;
@@ -83,9 +83,12 @@ export function createSchemas(
     ),
   };
   const uiSchema: UiSchemaRoot = Object.fromEntries(
-    keys
-      .map((widget) => [widget, uiStates(specs[widget]![1])] as const)
-      .filter(([, s]) => Object.keys(s).length > 0)
+    keys.flatMap((widget) => {
+      const uiSchema = specs[widget]![1];
+      return Object.keys(uiSchema).length > 0
+        ? [[widget, uiStates(uiSchema)]]
+        : [];
+    })
   );
   const initialErrors = createErrors(keys, options);
   return { schema, uiSchema, initialErrors };
