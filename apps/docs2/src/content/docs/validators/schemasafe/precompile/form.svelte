@@ -1,6 +1,7 @@
 <script lang="ts">
   import { BasicForm } from "@sjsf/form";
   import { createFormValidator } from "@sjsf/schemasafe-validator/precompile";
+  import { resolver } from "@sjsf/form/resolvers/compat";
 
   import { createMyForm } from "@/components/my-form";
 
@@ -13,6 +14,7 @@
     schema,
     validator,
     fieldsValidationMode,
+    resolver,
   });
 </script>
 

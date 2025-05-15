@@ -1,4 +1,4 @@
-export { resolver } from "@sjsf/form/resolvers/compat";
+export { resolver } from "@sjsf/form/resolvers/basic";
 import "@sjsf/form/fields/extra-fields/enum-include";
 import "@sjsf/form/fields/extra-fields/file-include";
 
