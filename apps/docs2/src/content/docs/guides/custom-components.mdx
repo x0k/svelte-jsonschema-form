@@ -1,0 +1,341 @@
+---
+title: Custom components
+sidebar:
+  order: 10
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+You can create your own form components. Any built-in component can be replaced
+with a custom one, giving you full control over rendering and behavior.
+
+## Component creation
+
+To create a component, you just need to create a Svelte component
+with a compatible `$props` type.
+The easiest way to do this is to use the `ComponentProps` property registry as follows:
+
+```ts
+import type { ComponentProps } from "@sjsf/form";
+
+let {
+  value = $bindable(),
+  config,
+  handlers,
+}: ComponentProps["numberWidget"] = $props();
+```
+
+You will then be able to replace `numberWidget` with your component via the UI schema:
+
+```ts
+import type { Schema, UiSchema } from "@sjsf/form";
+
+import MyNumberWidget from "./my-number-widget";
+
+const schema: Schema = {
+  type: "number"
+}
+
+const uiSchema: UiSchema = {
+  "ui:components": {
+    "numberWidget": MyNumberWidget
+  }
+}
+```
+
+You can also register a new or overwrite an old component in the selected theme as follows:
+
+```ts
+import { extendByRecord, overrideByRecord } from "@sjsf/form/lib/resolver";
+import { theme } from "@sjsf/some-theme";
+
+import MyNumberWidget from "./my-number-widget";
+
+// Register a new component
+
+declare module "@sjsf/form" {
+  interface ComponentProps {
+    // NOTE: Prefer to declare new components using some prefix to avoid
+    // conflicts in the future
+    myNumberWidget: ComponentProps["numberWidget"];
+  }
+  interface ComponentBindings {
+    myNumberWidget: "value";
+  }
+}
+
+export const myTheme = extendByRecord(theme, { myNumberWidget: MyNumberWidget });
+
+// Override the default component
+
+export const myTheme = overrideByRecord(theme, { numberWidget: MyNumberWidget })
+```
+
+## Retrieving attributes
+
+Each component is responsible for constructing the set of attributes it needs.
+This decouples the SJSF from any specific UI library.
+
+In simple cases, you can use information from `config` and the `uiOption` function
+to generate attributes:
+
+```ts
+const { config, uiOption }: ComponentProps["arrayTemplate"] = $props();
+
+const description = $derived(uiOption("description") ?? config.schema.description);
+```
+
+### UI options
+
+You can define new UI options as follows:
+
+```ts
+declare module "@sjsf/form" {
+  interface UiOptions {
+    // NOTE: Prefer to declare new UI options using some prefix to avoid
+    // conflicts in the future
+    myUiOption?: boolean;
+  }
+}
+```
+
+Then use the `uiOption` function to get the value of the UI option:
+
+```ts
+const { uiOption } = $props();
+
+const value = $derived(uiOption("myUiOption") ?? false);
+
+// Equivalent to:
+import { retrieveUiOption } from "@sjsf/form";
+const { config } = $props();
+const ctx = getFormContext();
+const value = $derived(retrieveUiOption(ctx, config, "myUiOption") ?? false);
+```
+
+When `uiOption` is used, the value defined via `extraUiOptions` will replace
+the value from the UI schema.
+You can use the `uiOptionProps` function to merge object values from
+the UI schema and `extraUiOptions`:
+
+```ts
+import type { RadioGroupItemProps, WithoutChildrenOrChild } from 'bits-ui';
+
+import { getFormContext, uiOptionProps, type ComponentProps } from '@sjsf/form';
+
+declare module '@sjsf/form' {
+  interface UiOptions {
+    shadcnRadioItem?: Omit<WithoutChildrenOrChild<RadioGroupItemProps>, 'value'>;
+  }
+}
+
+const ctx = getFormContext();
+const { config, handlers }: ComponentProps['radioWidget'] = $props();
+
+const itemAttributes = $derived(
+  uiOptionProps('shadcnRadioItem')(
+    {
+      onclick: handlers.oninput,
+      onblur: handlers.onblur
+    },
+    config,
+    ctx
+  )
+);
+```
+
+### Helpers
+
+For more complex interactive components, you may need to consider many properties
+and their priorities.
+The library provides a set of functions for forming attributes for both
+standard HTML elements and custom components. These functions can be categorized
+into two categories based on their level of abstraction:
+
+1. **properties**
+
+These functions are designed to form a set of properties by combining them in the
+desired order, have the suffix `Prop` or `Props`. Example:
+
+```ts
+import type { HTMLButtonAttributes } from "svelte/elements";
+
+import {
+  composeProps,
+  disabledProp,
+  getFormContext,
+  uiOptionProps,
+  uiOptionNestedProps,
+  type ComponentProps,
+} from "@sjsf/form";
+import type { ButtonType } from "@sjsf/form/fields/components";
+
+declare module "@sjsf/form" {
+  interface UiOptions {
+    button?: HTMLButtonAttributes;
+    buttons?: {
+      [B in ButtonType]?: HTMLButtonAttributes;
+    };
+  }
+}
+
+const { type, onclick, config, disabled }: ComponentProps["button"] = $props();
+
+const ctx = getFormContext();
+
+const props = $derived(composeProps(
+  ctx,
+  config,
+  {
+    disabled,
+    type: "button",
+    onclick,
+  } satisfies HTMLButtonAttributes,
+  uiOptionProps("button"),
+  uiOptionNestedProps("buttons", (p) => p[type]),
+  disabledProp
+))
+```
+
+2. **attributes**
+
+These functions are pre-prepared compositions of functions from the
+previous category, have the suffix `Attributes`. Examples:
+
+<Tabs>
+  <TabItem label="Number widget">
+    ```ts
+    import type { HTMLInputAttributes } from "svelte/elements";
+
+    declare module "@sjsf/form" {
+      interface UiOptions {
+        number?: HTMLInputAttributes;
+      }
+    }
+
+    import { getFormContext, inputAttributes, type ComponentProps } from "@sjsf/form";
+
+    let {
+      value = $bindable(),
+      config,
+      handlers,
+    }: ComponentProps["numberWidget"] = $props();
+
+    const ctx = getFormContext();
+
+    const attributes = $derived(
+      inputAttributes(ctx, config, "number", handlers, {
+        type: "number",
+        style: "flex-grow: 1",
+      })
+    );
+    ```
+  </TabItem>
+  <TabItem label="Custom widget">
+    ```ts
+    import type { ComponentProps as SvelteComponentProps } from 'svelte';
+    import { Switch as SkeletonSwitch } from '@skeletonlabs/skeleton-svelte';
+    import '@sjsf/form/fields/extra-widgets/switch';
+
+    declare module '@sjsf/form' {
+      interface UiOptions {
+        skeleton3Switch?: SvelteComponentProps<typeof SkeletonSwitch>;
+      }
+    }
+
+    import { customInputAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
+
+    let { config, value = $bindable(), handlers, errors }: ComponentProps['switchWidget'] = $props();
+
+    const ctx = getFormContext();
+
+    const attributes = $derived(customInputAttributes(ctx, config, 'skeleton3Switch', {
+      ids: {
+        hiddenInput: config.id
+      },
+      name: config.name,
+      required: config.required,
+      readOnly: config.schema.readOnly,
+      invalid: errors.length > 0,
+      onCheckedChange: (e) => {
+        value = e.checked;
+        handlers.onchange?.();
+      },
+      checked: value
+    }))
+    ```
+  </TabItem>
+</Tabs>
+
+
+## Retrieving theme components
+
+If you need to use theme components inside your custom component, you have two options:
+
+1. **Import the component directly**
+
+```ts
+import Button from "@sjsf/your-theme/components/button.svelte";
+```
+
+2. **Use the `getComponent` function**
+
+```ts
+import { getComponent, getFormContext } from "@sjsf/form";
+
+const { config } = $props();
+const ctx = getFormContext();
+const Button = $derived(getComponent(ctx, "button", config));
+```
+
+To use `getComponent` with a custom component, add it to the `FoundationalComponents` registry:
+
+```ts
+declare module "@sjsf/form" {
+  interface FoundationalComponents {
+    myNumberWidget: {};
+  }
+}
+
+// Now the following code works:
+import { getComponent, type UiSchema } from "@sjsf/form";
+const Widget = $derived(getComponent(ctx, "myNumberWidget", config));
+
+const uiSchema: UiSchema = {
+  "ui:components": {
+    myNumberWidget: "numberWidget"
+  }
+};
+```
+
+You can also use the `getFieldComponent` function to get the component
+responsible for displaying/processing the current value:
+
+```svelte
+<script lang="ts">
+  import { getFormContext, getFieldComponent } from "@sjsf/form";
+
+  let { value = $bindable(), config, uiOption } = $props();
+  const ctx = getFormContext();
+  const Field = $derived(getFieldComponent(ctx, config));
+</script>
+
+<Field type="field" bind:value={value as undefined} {config} {uiOption} />
+```
+
+## FoundationalFieldType
+
+To use a custom component in a `resolver` function - it must be declared as
+`FoundationalComponentType` (`keyof FoundationalComponents`) and its properties
+must be compatible with the `FieldCommonProps<any>` type.
+
+The compatibility is checked as follows:
+
+```ts
+type IsFoundationalField<T extends FoundationalComponentType> =
+  FieldCommonProps<any> extends ComponentProps[T]
+    ? ComponentProps[T] extends FieldCommonProps<any>
+      ? true
+      : false
+    : false;
+```
