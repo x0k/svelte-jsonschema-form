@@ -197,14 +197,14 @@ importers:
         specifier: ^0.9.4
         version: 0.9.4(prettier@3.5.3)(typescript@5.8.3)
       '@astrojs/starlight':
-        specifier: ^0.34.2
-        version: 0.34.2(astro@5.7.11(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1))
+        specifier: ^0.34.3
+        version: 0.34.3(astro@5.7.13(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1))
       '@astrojs/svelte':
         specifier: ^7.0.13
-        version: 7.0.13(@types/node@22.15.18)(astro@5.7.11(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1))(jiti@2.4.2)(lightningcss@1.30.1)(svelte@5.30.1)(typescript@5.8.3)(yaml@2.5.1)
+        version: 7.0.13(@types/node@22.15.18)(astro@5.7.13(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1))(jiti@2.4.2)(lightningcss@1.30.1)(svelte@5.30.1)(typescript@5.8.3)(yaml@2.5.1)
       astro:
-        specifier: ^5.7.11
-        version: 5.7.11(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1)
+        specifier: ^5.7.13
+        version: 5.7.13(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1)
       astro-vtbot:
         specifier: ^2.1.3
         version: 2.1.3
@@ -219,7 +219,7 @@ importers:
         version: 0.34.1
       starlight-package-managers:
         specifier: ^0.11.0
-        version: 0.11.0(@astrojs/starlight@0.34.2(astro@5.7.11(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1)))
+        version: 0.11.0(@astrojs/starlight@0.34.3(astro@5.7.13(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1)))
       svelte:
         specifier: 'catalog:'
         version: 5.30.1
@@ -230,8 +230,8 @@ importers:
         specifier: 'catalog:'
         version: 1.3.0
       '@lucide/svelte':
-        specifier: ^0.507.0
-        version: 0.507.0(svelte@5.30.1)
+        specifier: ^0.511.0
+        version: 0.511.0(svelte@5.30.1)
       '@sjsf/ajv8-validator':
         specifier: workspace:*
         version: link:../../packages/ajv8-validator
@@ -287,8 +287,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/zod-validator
       '@skeletonlabs/skeleton-svelte':
-        specifier: ^1.2.1
-        version: 1.2.1(svelte@5.30.1)
+        specifier: ^1.2.2
+        version: 1.2.2(svelte@5.30.1)
       '@valibot/to-json-schema':
         specifier: ^1.1.0
         version: 1.1.0(valibot@1.1.0(typescript@5.8.3))
@@ -330,29 +330,29 @@ importers:
         specifier: ^0.9.4
         version: 0.9.4(prettier@3.5.3)(typescript@5.8.3)
       '@astrojs/starlight':
-        specifier: ^0.34.2
-        version: 0.34.2(astro@5.7.11(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1))
+        specifier: ^0.34.3
+        version: 0.34.3(astro@5.7.13(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1))
       '@astrojs/svelte':
         specifier: ^7.0.13
-        version: 7.0.13(@types/node@22.15.18)(astro@5.7.11(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1))(jiti@2.4.2)(lightningcss@1.30.1)(svelte@5.30.1)(typescript@5.8.3)(yaml@2.5.1)
+        version: 7.0.13(@types/node@22.15.18)(astro@5.7.13(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1))(jiti@2.4.2)(lightningcss@1.30.1)(svelte@5.30.1)(typescript@5.8.3)(yaml@2.5.1)
       '@types/pikaday':
         specifier: ^1.7.9
         version: 1.7.9
       astro:
-        specifier: ^5.7.11
-        version: 5.7.11(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1)
+        specifier: ^5.7.13
+        version: 5.7.13(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1)
       astro-vtbot:
         specifier: ^2.1.3
         version: 2.1.3
       bits-ui:
-        specifier: ^1.4.6
-        version: 1.4.6(svelte@5.30.1)
+        specifier: ^1.4.8
+        version: 1.4.8(svelte@5.30.1)
       flowbite-svelte2:
         specifier: npm:flowbite-svelte@0.47
         version: flowbite-svelte@0.47.4(rollup@4.40.0)(svelte@5.30.1)
       flowbite-svelte3:
-        specifier: npm:flowbite-svelte@1.0.2
-        version: flowbite-svelte@1.0.2(rollup@4.40.0)(svelte@5.30.1)(tailwindcss@4.1.7)
+        specifier: npm:flowbite-svelte@1.2.4
+        version: flowbite-svelte@1.2.4(rollup@4.40.0)(svelte@5.30.1)(tailwindcss@4.1.7)
       json-schema-to-ts:
         specifier: ^3.1.1
         version: 3.1.1
@@ -361,7 +361,7 @@ importers:
         version: 0.34.1
       starlight-package-managers:
         specifier: ^0.11.0
-        version: 0.11.0(@astrojs/starlight@0.34.2(astro@5.7.11(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1)))
+        version: 0.11.0(@astrojs/starlight@0.34.3(astro@5.7.13(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1)))
       svelte:
         specifier: 'catalog:'
         version: 5.30.1
@@ -1448,7 +1448,7 @@ importers:
     optionalDependencies:
       '@skeletonlabs/skeleton-svelte':
         specifier: ^1.2.0
-        version: 1.2.1(svelte@5.30.1)
+        version: 1.2.2(svelte@5.30.1)
 
   packages/sveltekit:
     devDependencies:
@@ -1624,8 +1624,8 @@ packages:
   '@astrojs/sitemap@3.3.0':
     resolution: {integrity: sha512-nYE4lKQtk+Kbrw/w0G0TTgT724co0jUsU4tPlHY9au5HmTBKbwiCLwO/15b1/y13aZ4Kr9ZbMeMHlXuwn0ty4Q==}
 
-  '@astrojs/starlight@0.34.2':
-    resolution: {integrity: sha512-/XwBXQ4ZyQBEETZIPw2pa+UsKawkpRVO7CF6QVpOmteGfUxCrsD3n26G0OsnWHh0Gfo67QkAqM0FsGmDuNUVHw==}
+  '@astrojs/starlight@0.34.3':
+    resolution: {integrity: sha512-MAuD3NF+E+QXJJuVKofoR6xcPTP4BJmYWeOBd03udVdubNGVnPnSWVZAi+ZtnTofES4+mJdp8BNGf+ubUxkiiA==}
     peerDependencies:
       astro: ^5.5.0
 
@@ -2297,11 +2297,6 @@ packages:
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
 
-  '@lucide/svelte@0.507.0':
-    resolution: {integrity: sha512-kXIg/2IHEo1bAwZG94fjA9O6+E3Sv5aQrW2yyPf4JvCYIUIF8DGLIQI4vfjoUyNq2dEX4cI33pZarzGOHr0npg==}
-    peerDependencies:
-      svelte: ^5
-
   '@lucide/svelte@0.511.0':
     resolution: {integrity: sha512-aLCSPMUJmHlCuLXzXENXa4Z1NV2mN1iAZAFKk4bEbey+/MdsNlu+/DqwVkgW3Yvj6p8y8Vn5xZ2v9CLmPlA6Vw==}
     peerDependencies:
@@ -2607,8 +2602,8 @@ packages:
       json-schema-to-zod: ^2.0.0
       zod: ^3.23.0
 
-  '@skeletonlabs/skeleton-svelte@1.2.1':
-    resolution: {integrity: sha512-lb0P+qgK1Lgs2EbTHxc2OSkq0Rr9W7Xtm8nyVWHOjM07Mm5OuTmP2ThfUXj8Z76JlrnJPayGrRZz5P+GefF0GQ==}
+  '@skeletonlabs/skeleton-svelte@1.2.2':
+    resolution: {integrity: sha512-+bWCJKArxfHOtrLj6snzMx7DnXT+5atzJq7rzXYfx2Yox5BTIoHzryhjGHuXj0KwKoe0DWrlAfY/LucdYkGq2A==}
     peerDependencies:
       svelte: ^5.20.0
 
@@ -2918,6 +2913,9 @@ packages:
 
   '@types/estree@1.0.7':
     resolution: {integrity: sha512-w28IoSUCJpidD/TGviZwwMJckNESJZXFu7NBZ5YJ4mEUnNraUn9Pm8HSZm/jDF1pDWYKspWE7oVphigUPRakIQ==}
+
+  '@types/fontkit@2.0.8':
+    resolution: {integrity: sha512-wN+8bYxIpJf+5oZdrdtaX04qUuWHcKxcDEgRS9Qm9ZClSHjzEn13SxUC+5eRM+4yXIeTYk8mTzLAWGF64847ew==}
 
   '@types/geojson@7946.0.14':
     resolution: {integrity: sha512-WCfD5Ht3ZesJUsONdhvm84dmzWOiOzOAqOncN0++w0lBw1o8OuDNJF2McvvCef/yBqb/HYRahp1BYtODFQ8bRg==}
@@ -3300,8 +3298,8 @@ packages:
   astro-vtbot@2.1.3:
     resolution: {integrity: sha512-fiKL+/gc3ZNFv8SheYBY1VHGdnOZLtSnzYIb76b68b8yItQH4YIccrHRihWy9Qkybi6q2zsbZ6XgiQSK/09F5A==}
 
-  astro@5.7.11:
-    resolution: {integrity: sha512-9qRVwp8pue3isddLBnTexJsmKFpmms9Fo7Ss+3yrC0aINvbHKpD7q6qf52BtfQEk2xJgyx3SQy3dUsuD90sEqQ==}
+  astro@5.7.13:
+    resolution: {integrity: sha512-cRGq2llKOhV3XMcYwQpfBIUcssN6HEK5CRbcMxAfd9OcFhvWE7KUy50zLioAZVVl3AqgUTJoNTlmZfD2eG0G1w==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=22.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
@@ -3347,12 +3345,6 @@ packages:
   binary-extensions@2.3.0:
     resolution: {integrity: sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==}
     engines: {node: '>=8'}
-
-  bits-ui@1.4.6:
-    resolution: {integrity: sha512-EN2niBF9iBe03GzSJ64I369DA/pRdoC7sCKVAqIxMkxrk/ClfDurzNJkf4RMK6EFOxeqWzTVFJTGyPdmBAy6Lw==}
-    engines: {node: '>=18', pnpm: '>=8.7.0'}
-    peerDependencies:
-      svelte: ^5.11.0
 
   bits-ui@1.4.8:
     resolution: {integrity: sha512-j34GsdSsJ+ZBl9h/70VkufvrlEgTKQSZvm80eM5VvuhLJWvpfEpn9+k0FVmtDQl9NSPgEVtI9imYhm8nW9Nj/w==}
@@ -3906,9 +3898,6 @@ packages:
     resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==}
     engines: {node: '>=0.12'}
 
-  es-module-lexer@1.6.0:
-    resolution: {integrity: sha512-qqnD1yMU6tk/jnaMosogGySTZP8YtUgAffA9nMN+E/rjxcfRQ6IEk7IiozUjgxKoFHBGjTLnrHB/YC45r/59EQ==}
-
   es-module-lexer@1.7.0:
     resolution: {integrity: sha512-jEQoCwk8hyb2AZziIOLhDqpm5+2ww5uIE6lkO/6jcOCusfk6LhMHpXXfBLXTZ7Ydyt0j4VoUQv6uGNYbdW+kBA==}
 
@@ -4141,12 +4130,6 @@ packages:
     peerDependencies:
       svelte: ^3.55.1 || ^4.0.0 || ^5.0.0
 
-  flowbite-svelte@1.0.2:
-    resolution: {integrity: sha512-aaGysDCLebEahQlc/K4TAxMl9mZ7yWkKpL3/uuZMOtLVJtElxjo8Q0H3LFhRDRpHGcmqbJFrHvKXe9XJzr9lPA==}
-    peerDependencies:
-      svelte: ^5.0.0
-      tailwindcss: ^4.1.4
-
   flowbite-svelte@1.2.4:
     resolution: {integrity: sha512-AVGt8lJLI/eqFC6BNg+UCG6UVWEDItlo6jrs0KHOUNk5v6wO7jh+1zXoXEdg+VzhuKctIcovZgkgHLZvsmensg==}
     peerDependencies:
@@ -4158,6 +4141,9 @@ packages:
 
   flowbite@3.1.2:
     resolution: {integrity: sha512-MkwSgbbybCYgMC+go6Da5idEKUFfMqc/AmSjm/2ZbdmvoKf5frLPq/eIhXc9P+rC8t9boZtUXzHDgt5whZ6A/Q==}
+
+  fontace@0.3.0:
+    resolution: {integrity: sha512-czoqATrcnxgWb/nAkfyIrRp6Q8biYj7nGnL6zfhTcX+JKKpWHFBnb8uNMw/kZr7u++3Y3wYSYoZgHkCcsuBpBg==}
 
   fontkit@2.0.4:
     resolution: {integrity: sha512-syetQadaUEDNdxdugga9CpEYVaQIxOwk7GlwZWWZ19//qW4zE5bknOKeMBDYAASwnpaSHKJITRLMF9m1fp3s6g==}
@@ -6540,13 +6526,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/mdx@4.2.4(astro@5.7.11(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1))':
+  '@astrojs/mdx@4.2.4(astro@5.7.13(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1))':
     dependencies:
       '@astrojs/markdown-remark': 6.3.1
       '@mdx-js/mdx': 3.1.0(acorn@8.14.1)
       acorn: 8.14.1
-      astro: 5.7.11(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1)
-      es-module-lexer: 1.6.0
+      astro: 5.7.13(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1)
+      es-module-lexer: 1.7.0
       estree-util-visit: 2.0.0
       hast-util-to-html: 9.0.5
       kleur: 4.1.5
@@ -6569,17 +6555,17 @@ snapshots:
       stream-replace-string: 2.0.0
       zod: 3.24.4
 
-  '@astrojs/starlight@0.34.2(astro@5.7.11(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1))':
+  '@astrojs/starlight@0.34.3(astro@5.7.13(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1))':
     dependencies:
       '@astrojs/markdown-remark': 6.3.1
-      '@astrojs/mdx': 4.2.4(astro@5.7.11(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1))
+      '@astrojs/mdx': 4.2.4(astro@5.7.13(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1))
       '@astrojs/sitemap': 3.3.0
       '@pagefind/default-ui': 1.3.0
       '@types/hast': 3.0.4
       '@types/js-yaml': 4.0.9
       '@types/mdast': 4.0.4
-      astro: 5.7.11(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1)
-      astro-expressive-code: 0.41.1(astro@5.7.11(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1))
+      astro: 5.7.13(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1)
+      astro-expressive-code: 0.41.1(astro@5.7.13(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1))
       bcp-47: 2.1.0
       hast-util-from-html: 2.0.3
       hast-util-select: 6.0.2
@@ -6602,10 +6588,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/svelte@7.0.13(@types/node@22.15.18)(astro@5.7.11(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1))(jiti@2.4.2)(lightningcss@1.30.1)(svelte@5.30.1)(typescript@5.8.3)(yaml@2.5.1)':
+  '@astrojs/svelte@7.0.13(@types/node@22.15.18)(astro@5.7.13(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1))(jiti@2.4.2)(lightningcss@1.30.1)(svelte@5.30.1)(typescript@5.8.3)(yaml@2.5.1)':
     dependencies:
       '@sveltejs/vite-plugin-svelte': 5.0.3(svelte@5.30.1)(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1))
-      astro: 5.7.11(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1)
+      astro: 5.7.13(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1)
       svelte: 5.30.1
       svelte2tsx: 0.7.39(patch_hash=2ced8503d3a6ec129f47f142cd241ea89ac5e9b0e59985543fd9b81e07aefd77)(svelte@5.30.1)(typescript@5.8.3)
       typescript: 5.8.3
@@ -7275,10 +7261,6 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@lucide/svelte@0.507.0(svelte@5.30.1)':
-    dependencies:
-      svelte: 5.30.1
-
   '@lucide/svelte@0.511.0(svelte@5.30.1)':
     dependencies:
       svelte: 5.30.1
@@ -7584,7 +7566,7 @@ snapshots:
       json-schema-to-zod: 2.6.1
       zod: 3.24.4
 
-  '@skeletonlabs/skeleton-svelte@1.2.1(svelte@5.30.1)':
+  '@skeletonlabs/skeleton-svelte@1.2.2(svelte@5.30.1)':
     dependencies:
       '@zag-js/accordion': 1.8.2
       '@zag-js/avatar': 1.8.2
@@ -7936,6 +7918,10 @@ snapshots:
   '@types/estree@1.0.6': {}
 
   '@types/estree@1.0.7': {}
+
+  '@types/fontkit@2.0.8':
+    dependencies:
+      '@types/node': 22.15.18
 
   '@types/geojson@7946.0.14': {}
 
@@ -8485,9 +8471,9 @@ snapshots:
 
   astring@1.9.0: {}
 
-  astro-expressive-code@0.41.1(astro@5.7.11(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1)):
+  astro-expressive-code@0.41.1(astro@5.7.13(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1)):
     dependencies:
-      astro: 5.7.11(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1)
+      astro: 5.7.13(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1)
       rehype-expressive-code: 0.41.1
 
   astro-vtbot@2.1.3:
@@ -8498,7 +8484,7 @@ snapshots:
       '@vtbag/turn-signal': 1.3.1
       '@vtbag/utensil-drawer': 1.2.4
 
-  astro@5.7.11(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1):
+  astro@5.7.13(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1):
     dependencies:
       '@astrojs/compiler': 2.11.0
       '@astrojs/internal-helpers': 0.6.1
@@ -8522,10 +8508,11 @@ snapshots:
       diff: 5.2.0
       dlv: 1.1.3
       dset: 3.1.4
-      es-module-lexer: 1.6.0
+      es-module-lexer: 1.7.0
       esbuild: 0.25.4
       estree-walker: 3.0.3
       flattie: 1.1.1
+      fontace: 0.3.0
       github-slugger: 2.0.0
       html-escaper: 3.0.3
       http-cache-semantics: 4.1.1
@@ -8634,17 +8621,6 @@ snapshots:
       is-windows: 1.0.2
 
   binary-extensions@2.3.0: {}
-
-  bits-ui@1.4.6(svelte@5.30.1):
-    dependencies:
-      '@floating-ui/core': 1.6.8
-      '@floating-ui/dom': 1.6.13
-      '@internationalized/date': 3.7.0
-      esm-env: 1.2.2
-      runed: 0.23.2(svelte@5.30.1)
-      svelte: 5.30.1
-      svelte-toolbelt: 0.7.1(svelte@5.30.1)
-      tabbable: 6.2.0
 
   bits-ui@1.4.8(svelte@5.30.1):
     dependencies:
@@ -9201,8 +9177,6 @@ snapshots:
 
   entities@4.5.0: {}
 
-  es-module-lexer@1.6.0: {}
-
   es-module-lexer@1.7.0: {}
 
   es-toolkit@1.32.0: {}
@@ -9507,19 +9481,6 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
-  flowbite-svelte@1.0.2(rollup@4.40.0)(svelte@5.30.1)(tailwindcss@4.1.7):
-    dependencies:
-      '@floating-ui/dom': 1.6.13
-      '@floating-ui/utils': 0.2.9
-      apexcharts: 4.7.0
-      flowbite: 3.1.2(rollup@4.40.0)
-      svelte: 5.30.1
-      tailwind-merge: 3.2.0
-      tailwind-variants: 1.0.0(tailwindcss@4.1.7)
-      tailwindcss: 4.1.7
-    transitivePeerDependencies:
-      - rollup
-
   flowbite-svelte@1.2.4(rollup@4.40.0)(svelte@5.30.1)(tailwindcss@4.1.7):
     dependencies:
       '@floating-ui/dom': 1.7.0
@@ -9554,6 +9515,11 @@ snapshots:
       postcss: 8.5.3
     transitivePeerDependencies:
       - rollup
+
+  fontace@0.3.0:
+    dependencies:
+      '@types/fontkit': 2.0.8
+      fontkit: 2.0.4
 
   fontkit@2.0.4:
     dependencies:
@@ -11342,7 +11308,7 @@ snapshots:
   sharp@0.33.5:
     dependencies:
       color: 4.2.3
-      detect-libc: 2.0.3
+      detect-libc: 2.0.4
       semver: 7.7.1
     optionalDependencies:
       '@img/sharp-darwin-arm64': 0.33.5
@@ -11452,9 +11418,9 @@ snapshots:
 
   stackback@0.0.2: {}
 
-  starlight-package-managers@0.11.0(@astrojs/starlight@0.34.2(astro@5.7.11(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1))):
+  starlight-package-managers@0.11.0(@astrojs/starlight@0.34.3(astro@5.7.13(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1))):
     dependencies:
-      '@astrojs/starlight': 0.34.2(astro@5.7.11(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1))
+      '@astrojs/starlight': 0.34.3(astro@5.7.13(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1))
 
   std-env@3.9.0: {}
 
