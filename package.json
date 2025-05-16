@@ -20,7 +20,7 @@
     "@changesets/cli": "2.29.4",
     "@svitejs/changesets-changelog-github-compact": "^1.2.0",
     "@total-typescript/tsconfig": "^1.0.4",
-    "@types/node": "^22.15.16",
+    "@types/node": "^22.15.18",
     "only-allow": "^1.2.1",
     "prettier-plugin-svelte": "catalog:",
     "publint": "^0.3.12",
@@ -31,8 +31,9 @@
   },
   "pnpm": {
     "onlyBuiltDependencies": [
-      "sharp",
-      "esbuild"
+      "@tailwindcss/oxide",
+      "esbuild",
+      "sharp"
     ],
     "overrides": {
       "svelte2tsx": "0.7.39",

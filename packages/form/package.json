@@ -33,20 +33,20 @@
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "dependencies": {
+    "@types/json-schema": "^7.0.15",
+    "@types/json-schema-merge-allof": "^0.6.5",
     "@standard-schema/spec": "^1.0.0",
     "json-schema-merge-allof": "^0.8.1",
     "jsonpointer": "^5.0.1"
   },
   "peerDependencies": {
     "esm-env": "^1.2.0",
-    "svelte": "^5.25.0"
+    "svelte": "^5.30.0"
   },
   "devDependencies": {
     "@sveltejs/package": "catalog:",
     "@sveltejs/vite-plugin-svelte": "catalog:",
     "@tsconfig/svelte": "catalog:",
-    "@types/json-schema": "^7.0.15",
-    "@types/json-schema-merge-allof": "^0.6.5",
     "deep-freeze-es6": "^4.0.0",
     "svelte": "catalog:",
     "svelte-check": "catalog:"

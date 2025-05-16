@@ -66,7 +66,7 @@
 		"@sjsf/form": "workspace:^2.0.0-next.11",
 		"flowbite": "^3.1.0",
 		"flowbite-svelte": "^1.0.0",
-		"svelte": "^5.25.0"
+		"svelte": "^5.30.0"
 	},
 	"devDependencies": {
 		"@playwright/test": "catalog:",
@@ -83,7 +83,7 @@
 		"eslint-config-prettier": "catalog:",
 		"eslint-plugin-svelte": "catalog:",
 		"flowbite": "^3.1.2",
-		"flowbite-svelte": "1.0.2",
+		"flowbite-svelte": "1.2.4",
 		"globals": "catalog:",
 		"prettier": "catalog:",
 		"prettier-plugin-svelte": "catalog:",

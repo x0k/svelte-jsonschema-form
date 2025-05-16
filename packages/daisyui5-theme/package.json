@@ -65,7 +65,7 @@
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^2.0.0-next.11",
 		"daisyui": "^5.0.0",
-		"svelte": "^5.25.0"
+		"svelte": "^5.30.0"
 	},
 	"optionalDependencies": {
 		"cally": "^0.8.0",

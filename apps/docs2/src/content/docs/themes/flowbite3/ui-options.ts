@@ -78,7 +78,7 @@ export interface UiOptions {
 
   flowbite3File?: FileuploadProps;
 
-  flowbite3MultiSelect?: MultiSelectProps<number>;
+	flowbite3MultiSelect?: Omit<MultiSelectProps<number>, 'value'>;
 
   flowbite3Radio?: RadioProps<number>;
 

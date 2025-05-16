@@ -4,7 +4,7 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			flowbite3MultiSelect?: MultiSelectProps<number>;
+			flowbite3MultiSelect?: Omit<MultiSelectProps<number>, 'value'>;
 		}
 	}
 </script>
@@ -43,5 +43,7 @@
 <MultiSelect
 	class="grow"
 	bind:value={mapped.value}
-	{...selectAttributes(ctx, config, 'flowbite3MultiSelect', handlers, { items: selectOptions })}
+	{...selectAttributes(ctx, config, 'flowbite3MultiSelect', handlers, {
+		items: selectOptions
+	})}
 />
