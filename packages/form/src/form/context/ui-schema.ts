@@ -1,4 +1,5 @@
 import type { ObjectProperties } from "@/lib/types.js";
+import { overrideByRecord } from "@/lib/resolver.js";
 import type { Validator } from "@/core/index.js";
 
 import type { Config } from "../config.js";
@@ -9,6 +10,7 @@ import {
   resolveUiOption as resolveUiOptionInternal,
   type UiOptions,
 } from "../ui-schema.js";
+import { createTranslate } from "../translation.js";
 
 import type { FormInternalContext } from "./context.js";
 
@@ -82,4 +84,20 @@ export function uiOptionNestedProps<
       extraOptions && selector(extraOptions)
     );
   };
+}
+
+export function retrieveTranslate<V extends Validator>(
+  ctx: FormInternalContext<V>,
+  config: Config
+) {
+  let translation = ctx.translation;
+  const uiOption = resolveUiOption(ctx, config.uiSchema, "translations");
+  translation = uiOption
+    ? overrideByRecord(translation, uiOption)
+    : translation;
+  const extraUiOption = ctx.extraUiOptions?.("translations", config);
+  translation = extraUiOption
+    ? overrideByRecord(translation, extraUiOption)
+    : translation;
+  return createTranslate(translation);
 }
