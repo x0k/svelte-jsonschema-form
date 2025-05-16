@@ -8,6 +8,8 @@ import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/compon
 import { specs, extraWidgets } from '@sjsf/skeleton3-theme/specs';
 import styles from "@sjsf/skeleton3-theme/styles.css?inline";
 
+import { peerDependencies, optionalDependencies } from '#/skeleton3-theme/package.json'
+
 import { THEME_PACKAGES } from '@/shared';
 import Npm from '@/components/npm.astro';
 import Picker from '@/components/picker.astro';
@@ -28,11 +30,8 @@ export const schemas = createSchemas(specs)
 
 <Npm pkg={THEME_PACKAGES.skeleton3} />
 
-:::note
-
-This is `@skeletonlabs/skeleton@3` based theme (Tailwind v4).
-
-:::
+@skeletonlabs/skeleton <code>{peerDependencies['@skeletonlabs/skeleton']}</code> and
+@skeletonlabs/skeleton-svelte <code>{optionalDependencies['@skeletonlabs/skeleton-svelte']}</code> are required.
 
 ### Install Skeleton v3
 

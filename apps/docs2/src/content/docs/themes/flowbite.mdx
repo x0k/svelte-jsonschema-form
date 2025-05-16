@@ -8,6 +8,8 @@ import { Code, Card, LinkButton, Tabs, TabItem } from '@astrojs/starlight/compon
 import { specs, extraWidgets } from '@sjsf/flowbite-theme/specs';
 import styles from '@sjsf/flowbite-theme/styles.css?inline';
 
+import { peerDependencies } from "#/flowbite-theme/package.json"
+
 import Npm from '@/components/npm.astro';
 import Picker from '@/components/picker.astro';
 import FormCard from '@/components/form-card.astro';
@@ -33,11 +35,7 @@ All rights to the trademark are owned by Bergside Inc.
 
 <Npm pkg={THEME_PACKAGE} />
 
-:::note
-
-This is `flowbite-svelte@0.47.x` based theme (Tailwind v3).
-
-:::
+flowbite-svelte <code>{peerDependencies['flowbite-svelte']}</code> is required.
 
 ### Install Flowbite Svelte
 

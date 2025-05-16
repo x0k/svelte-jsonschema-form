@@ -8,6 +8,8 @@ import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/compon
 import { specs, extraWidgets } from '@sjsf/daisyui-theme/specs';
 import styles from '@sjsf/daisyui-theme/styles.css?inline';
 
+import { peerDependencies } from '#/daisyui-theme/package.json'
+
 import { THEME_PACKAGES } from '@/shared';
 import Npm from '@/components/npm.astro';
 import Picker from '@/components/picker.astro';
@@ -27,6 +29,8 @@ export const schemas = createSchemas(specs)
 ## Installation
 
 <Npm pkg={THEME_PACKAGES.daisyui} />
+
+daisyUI <code>{peerDependencies.daisyui}</code> is required.
 
 ### Install daisyUI
 
