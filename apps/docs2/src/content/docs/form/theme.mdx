@@ -1,15 +1,8 @@
 ---
-title: Theme and resolver
+title: Theme
 sidebar:
   order: 2
 ---
-
-import { Code } from '@astrojs/starlight/components'
-
-import basicResolverCode from '#/form/src/form/resolvers/basic?raw'
-
-export const lines = basicResolverCode.split('\n')
-export const exportIndex = lines.findIndex(l => l.startsWith("export"))
 
 Essentially theme is a simple function:
 
@@ -58,42 +51,13 @@ All components can be divided into four **logical** types:
 
 Also found out that the above components are enough to display any JSON schema.
 
-## Resolver
-
-To determine which field to use to display your JSON schema, the form uses `resolver`.
-
-```ts
-interface Config {
-  id: Id;
-  name: string;
-  title: string;
-  schema: Schema;
-  uiSchema: UiSchema;
-  required: boolean;
-}
-
-type ResolveFieldType = (config: Config) => FoundationalFieldType
-
-type Resolver = (ctx: FormInternalContext<Validator>) => ResolveFieldType
-```
-
-It looks complicated, but let's take a look at the `basic` resolver implementation
-(`@sjsf/form/resolvers/basic`):
-
-<Code code={lines.slice(exportIndex).join('\n')} lang='typescript' />
-
-Yes, it's essentially a direct mapping of schema type to field type, nothing fancy.
-Let's talk about `FoundationalFieldType`.
-
 ## Foundational components
 
-The `FoundationalFieldType` type is a subset of the fields from the 
-`FoundationalComponentType` type.
-
-In turn, `FoundationalComponentType` is a subset of all components
+The `FoundationalComponentType` is a subset of all components
 (`ComponentType`) that can be explicitly used in form elements.
 
-For example, this is possible because `form` is a `FoundationalComponentType`
+For example, we can use `form` as an argument for `getComponent` because
+`form` is `FoundationalComponentType`:
 
 ```svelte
 <script lang="ts">

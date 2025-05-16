@@ -1,0 +1,67 @@
+---
+title: Fields resolution
+sidebar:
+  order: 4
+---
+
+import { Code } from '@astrojs/starlight/components'
+
+import basicResolverCode from '#/form/src/form/resolvers/basic?raw'
+import compatResolverCode from '#/form/src/form/resolvers/compat?raw'
+
+To determine which field to use to display your JSON schema,
+the form uses `resolver` function.
+
+Let's take a look at the `basic` resolver implementation
+(`@sjsf/form/resolvers/basic`):
+
+<Code code={basicResolverCode} lang='typescript' />
+
+As you can see `resolver` just selects the field according to the schema type.
+
+This approach is simple and straightforward, but in some cases it can lead to
+additional work.
+Suppose you have the following scheme:
+
+```ts
+const schema: Schema = {
+  enum: ["foo", "bar", "baz"]
+}
+```
+
+For this `basic` scheme, the resolver will select `stringField`,
+and `stringField` will display the `textWidget` widget by default
+although you probably wanted to see select or radio widgets.
+
+To achieve this you need to specify in the UI scheme the field:
+
+```ts
+const uiSchema: UiSchema = {
+  "ui:components": {
+    // The `selectWidget` will now be displayed by default
+    stringField: "enumField",
+    // You can also replace `selectWidget` with `radioWidget`
+    // selectWidget: "radioWidget"
+  }
+}
+```
+
+Or you can modify `resolver` so that `enumField` is always used
+when a scheme with `enum` is detected:
+
+```ts
+return ({ schema }) => {
+  if (schema.enum !== undefined) {
+    return "enumField"
+  }
+  ...
+}
+```
+
+It is recommended that you copy the `basic` resolver code into your project and
+modify it to suit your needs.
+
+As an example (or temporary solution) you can use the `compat` resolver
+(`@sjsf/form/resolvers/compat`) that reproduces resolution logic from v1:
+
+<Code code={compatResolverCode} lang='typescript' />
