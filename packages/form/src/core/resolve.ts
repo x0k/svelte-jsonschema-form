@@ -217,6 +217,7 @@ export function retrieveSchemaInternal(
       return resolvedSchema;
     }
     const properties = { ...resolvedSchema.properties };
+    const formDataIsSchemaObjectValue = isSchemaObjectValue(formData);
     if (hasPatternProperties) {
       for (const key of Object.keys(properties)) {
         const matchingProperties = getMatchingPatternProperties(
@@ -230,7 +231,7 @@ export function retrieveSchemaInternal(
             merger,
             { allOf: matchingProperties },
             rootSchema,
-            formData
+            formDataIsSchemaObjectValue ? formData[key] : undefined
           );
         }
       }
@@ -243,7 +244,7 @@ export function retrieveSchemaInternal(
         properties,
       },
       rootSchema,
-      formData
+      formDataIsSchemaObjectValue ? formData : undefined
     );
   });
 }
@@ -336,14 +337,9 @@ export function stubExistingAdditionalProperties(
   validator: Validator,
   merger: Merger,
   schema: SchemaWithProperties,
-  rootSchema?: Schema,
-  aFormData?: SchemaValue
+  rootSchema: Schema,
+  formData: SchemaObjectValue | undefined
 ): Schema {
-  // make sure formData is an object
-  const formData: SchemaObjectValue = isSchemaObjectValue(aFormData)
-    ? aFormData
-    : {};
-
   const { additionalProperties, patternProperties } = schema;
   const isAdditionalProperties =
     typeof additionalProperties !== "boolean" && additionalProperties;
@@ -365,7 +361,7 @@ export function stubExistingAdditionalProperties(
             merger,
             { allOf: matchingProperties },
             rootSchema,
-            formData
+            formData?.[key]
           ),
         };
       }
@@ -396,7 +392,7 @@ export function stubExistingAdditionalProperties(
       }
     }
     if (isArbitraryAdditionalProperty) {
-      const value = formData[key];
+      const value = formData?.[key];
       if (value !== undefined) {
         return { type: typeOfValue(value) };
       }
@@ -404,17 +400,19 @@ export function stubExistingAdditionalProperties(
     return { type: "null" };
   }
 
-  for (const key of Object.keys(formData)) {
-    if (key in schema.properties) {
-      // No need to stub, our schema already has the property
-      continue;
+  if (formData !== undefined) {
+    for (const key of Object.keys(formData)) {
+      if (key in schema.properties) {
+        // No need to stub, our schema already has the property
+        continue;
+      }
+      const propertySchema = getAdditionalPropertySchemaShallowClone(key);
+      // Set our additional property flag so we know it was dynamically added
+      // @ts-expect-error TODO: Remove this hack
+      propertySchema[ADDITIONAL_PROPERTY_FLAG] = true;
+      // The type of our new key should match the additionalProperties value;
+      schema.properties[key] = propertySchema;
     }
-    const propertySchema = getAdditionalPropertySchemaShallowClone(key);
-    // Set our additional property flag so we know it was dynamically added
-    // @ts-expect-error TODO: Remove this hack
-    propertySchema[ADDITIONAL_PROPERTY_FLAG] = true;
-    // The type of our new key should match the additionalProperties value;
-    schema.properties[key] = propertySchema;
   }
   return schema;
 }

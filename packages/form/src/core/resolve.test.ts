@@ -1666,6 +1666,129 @@ describe("retrieveSchema()", () => {
     });
   });
   describe("withPatternProperties()", () => {
+    it("validates schemas with conditions inside patternProperties", () => {
+      const schema: Schema = {
+        type: "object",
+        properties: {
+          foo: {
+            type: "object",
+          },
+        },
+        patternProperties: {
+          "^[a-z]+$": {
+            type: "object",
+            properties: {
+              isString: { type: "boolean" },
+            },
+            allOf: [
+              {
+                if: {
+                  properties: { isString: { const: true } },
+                },
+                then: {
+                  properties: {
+                    value: {
+                      type: "string",
+                    },
+                  },
+                },
+              },
+              {
+                if: {
+                  properties: { isString: { const: false } },
+                },
+                then: {
+                  properties: {
+                    value: {
+                      type: "number",
+                    },
+                  },
+                },
+              },
+            ],
+          },
+        },
+      };
+      const rootSchema: Schema = { definitions: {} };
+      testValidator = createValidator({
+        cases: [
+          {
+            schema: { properties: { isString: { const: true } } },
+            value: { isString: true },
+            result: true,
+          },
+          {
+            schema: { properties: { isString: { const: false } } },
+            value: { isString: true },
+            result: false,
+          },
+        ],
+      });
+      expect(
+        retrieveSchema(testValidator, defaultMerger, schema, rootSchema, {
+          foo: { isString: true },
+          bar: { isString: true },
+        })
+      ).toEqual({
+        ...schema,
+        properties: {
+          foo: {
+            type: "object",
+            properties: {
+              isString: { type: "boolean" },
+              value: { type: "string" },
+            },
+          },
+          bar: {
+            [ADDITIONAL_PROPERTY_FLAG]: true,
+            type: "object",
+            properties: {
+              isString: { type: "boolean" },
+              value: { type: "string" },
+            },
+          },
+        },
+      });
+      testValidator = createValidator({
+        cases: [
+          {
+            schema: { properties: { isString: { const: true } } },
+            value: { isString: false },
+            result: false,
+          },
+          {
+            schema: { properties: { isString: { const: false } } },
+            value: { isString: false },
+            result: true
+          },
+        ],
+      });
+      expect(
+        retrieveSchema(testValidator, defaultMerger, schema, rootSchema, {
+          foo: { isString: false },
+          bar: { isString: false },
+        })
+      ).toEqual({
+        ...schema,
+        properties: {
+          foo: {
+            type: "object",
+            properties: {
+              isString: { type: "boolean" },
+              value: { type: "number" },
+            },
+          },
+          bar: {
+            [ADDITIONAL_PROPERTY_FLAG]: true,
+            type: "object",
+            properties: {
+              isString: { type: "boolean" },
+              value: { type: "number" },
+            },
+          },
+        },
+      });
+    });
     it("merges all subschemas that match the patternProperties regex", () => {
       const schema: Schema = {
         type: "object",
@@ -1714,27 +1837,33 @@ describe("retrieveSchema()", () => {
     it("deals with undefined formData", () => {
       const schema = { type: "string", properties: {} } satisfies Schema;
       expect(
-        stubExistingAdditionalProperties(testValidator, defaultMerger, schema)
-      ).toEqual({
-        ...schema,
-        properties: {},
-      });
-    });
-    it("deals with non-object formData", () => {
-      const schema = { type: "string", properties: {} } satisfies Schema;
-      expect(
         stubExistingAdditionalProperties(
           testValidator,
           defaultMerger,
           schema,
-          undefined,
-          []
+          schema,
+          {}
         )
       ).toEqual({
         ...schema,
         properties: {},
       });
     });
+    // it("deals with non-object formData", () => {
+    //   const schema = { type: "string", properties: {} } satisfies Schema;
+    //   expect(
+    //     stubExistingAdditionalProperties(
+    //       testValidator,
+    //       defaultMerger,
+    //       schema,
+    //       schema,
+    //       []
+    //     )
+    //   ).toEqual({
+    //     ...schema,
+    //     properties: {},
+    //   });
+    // });
     it("has property keys that match formData, additionalProperties is boolean", () => {
       const schema = {
         additionalProperties: true,
@@ -1746,7 +1875,7 @@ describe("retrieveSchema()", () => {
           testValidator,
           defaultMerger,
           schema,
-          undefined,
+          schema,
           formData
         )
       ).toEqual({
@@ -1781,7 +1910,7 @@ describe("retrieveSchema()", () => {
           testValidator,
           defaultMerger,
           schema,
-          undefined,
+          schema,
           formData
         )
       ).toEqual({
@@ -1806,7 +1935,7 @@ describe("retrieveSchema()", () => {
           testValidator,
           defaultMerger,
           schema,
-          undefined,
+          schema,
           formData
         )
       ).toEqual({
@@ -1830,7 +1959,7 @@ describe("retrieveSchema()", () => {
           testValidator,
           defaultMerger,
           schema,
-          undefined,
+          schema,
           formData
         )
       ).toEqual({
@@ -1898,7 +2027,7 @@ describe("retrieveSchema()", () => {
           testValidator,
           defaultMerger,
           schema,
-          undefined,
+          schema,
           formData
         )
       ).toEqual({
@@ -1930,7 +2059,7 @@ describe("retrieveSchema()", () => {
           testValidator,
           defaultMerger,
           schema,
-          undefined,
+          schema,
           formData
         )
       ).toEqual({
@@ -1967,7 +2096,7 @@ describe("retrieveSchema()", () => {
           testValidator,
           defaultMerger,
           schema,
-          undefined,
+          schema,
           formData
         )
       ).toEqual({
@@ -2002,7 +2131,7 @@ describe("retrieveSchema()", () => {
           testValidator,
           defaultMerger,
           schema,
-          undefined,
+          schema,
           formData
         )
       ).toEqual({
@@ -2043,7 +2172,7 @@ describe("retrieveSchema()", () => {
           testValidator,
           defaultMerger,
           schema,
-          undefined,
+          schema,
           formData
         )
       ).toEqual({
