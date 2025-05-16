@@ -217,14 +217,15 @@ export function computeDefaults(
     isSchemaRoot,
     shouldMergeDefaultsIntoFormData,
   } = computeDefaultsProps;
-  const formData: SchemaObjectValue = isSchemaObjectValue(rawFormData)
-    ? rawFormData
-    : {};
+  const rawDataIsObject = isSchemaObjectValue(rawFormData);
+  const formData: SchemaObjectValue = rawDataIsObject ? rawFormData : {};
   const schema: Schema = isSchemaObjectValue(rawSchema) ? rawSchema : {};
   // Compute the defaults recursively: give highest priority to deepest nodes.
   let defaults = parentDefaults;
   // If we get a new schema, then we need to recompute defaults again for the new schema found.
   let schemaToCompute: Schema | null = null;
+  // CHANGED: introduced to typesafely adapt https://github.com/rjsf-team/react-jsonschema-form/pull/4626
+  let schemaToComputeFormData: SchemaValue | undefined = formData;
   let experimentalBehaviorToCompute = experimental_defaultFormStateBehavior;
   let nextStack = stack;
 
@@ -264,6 +265,16 @@ export function computeDefaults(
     // Then set the defaults from the current schema for the referenced schema
     if (schemaToCompute && defaults === undefined) {
       defaults = schemaDefault;
+    }
+    // If shouldMergeDefaultsIntoFormData is true
+    // And the schemaToCompute is set and the rawFormData is not an object
+    // Then set the formData to the rawFormData
+    if (
+      shouldMergeDefaultsIntoFormData &&
+      schemaToCompute &&
+      !rawDataIsObject
+    ) {
+      schemaToComputeFormData = rawFormData;
     }
   } else if (DEPENDENCIES_KEY in schema) {
     // Get the default if set from properties to ensure the dependencies conditions are resolved based on it
@@ -372,7 +383,7 @@ export function computeDefaults(
       stack: nextStack,
       experimental_defaultFormStateBehavior: experimentalBehaviorToCompute,
       parentDefaults: defaults,
-      rawFormData: formData,
+      rawFormData: schemaToComputeFormData,
       required,
       shouldMergeDefaultsIntoFormData,
     });
