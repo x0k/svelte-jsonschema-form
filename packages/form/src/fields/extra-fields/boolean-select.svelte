@@ -9,7 +9,6 @@
     createPseudoId,
     type Schema,
     DEFAULT_BOOLEAN_ENUM,
-    translate,
   } from "@/form/index.js";
   import "@/form/extra-fields/boolean-select.js";
 
@@ -21,6 +20,7 @@
     config,
     value = $bindable(),
     uiOption,
+    translate,
   }: ComponentProps["booleanSelectField"] = $props();
 
   const Template = $derived(getComponent(ctx, "fieldTemplate", config));
@@ -28,8 +28,8 @@
   const Widget = $derived(getComponent(ctx, widgetType, config));
 
   const options = $derived.by(() => {
-    const yes = translate(ctx, "yes", {});
-    const no = translate(ctx, "no", {});
+    const yes = translate("yes", {});
+    const no = translate("no", {});
     if (Array.isArray(config.schema.oneOf)) {
       return (
         createOptions(ctx, config, uiOption, {

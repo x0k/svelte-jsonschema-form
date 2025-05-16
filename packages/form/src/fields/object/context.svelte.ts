@@ -30,7 +30,7 @@ import {
   type UiOption,
   retrieveUiOption,
   uiTitleOption,
-  translate,
+  type Translate,
 } from "@/form/index.js";
 
 import {
@@ -68,7 +68,8 @@ export function createObjectContext<V extends Validator>(
   ctx: FormInternalContext<V>,
   config: () => Config,
   value: () => SchemaObjectValue | undefined,
-  setValue: (v: SchemaObjectValue) => void
+  setValue: (v: SchemaObjectValue) => void,
+  translate: Translate
 ): ObjectContext<V> {
   // NOTE: This is required for computing a schema which will include all
   // additional properties in the `properties` field with the
@@ -151,10 +152,7 @@ export function createObjectContext<V extends Validator>(
 
   const errors = $derived(getErrors(ctx, config().id));
 
-  const newKeyPrefix = $derived(
-    uiOption("additionalPropertyKeyPrefix") ??
-      translate(ctx, "additional-property", {})
-  );
+  const newKeyPrefix = $derived(translate("additional-property", {}));
 
   function validate(val: SchemaObjectValue) {
     const m = ctx.fieldsValidationMode;

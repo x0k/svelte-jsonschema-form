@@ -37,6 +37,7 @@
     isAdditional,
     value = $bindable(),
     uiOption,
+    translate,
   }: ComponentProps["objectPropertyField"] = $props();
 
   const ctx = getFormContext();
@@ -52,6 +53,7 @@
 
 {#snippet keyInput()}
   <ObjectKeyInput
+    {translate}
     {property}
     name={config.name}
     parentId={config.id}
@@ -68,7 +70,7 @@
       objCtx.removeProperty(property);
     }}
   >
-    <Text {config} id="remove-object-property" />
+    <Text {config} id="remove-object-property" {translate} />
   </Button>
 {/snippet}
 <Template
@@ -81,5 +83,11 @@
   removeButton={isAdditional ? removeButton : undefined}
   {uiOption}
 >
-  <Field type="field" bind:value={value as undefined} {config} {uiOption} />
+  <Field
+    type="field"
+    bind:value={value as undefined}
+    {config}
+    {uiOption}
+    {translate}
+  />
 </Template>

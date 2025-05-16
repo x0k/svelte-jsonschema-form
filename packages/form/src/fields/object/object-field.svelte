@@ -4,6 +4,7 @@
     Text,
     getComponent,
     getFormContext,
+    retrieveTranslate,
     retrieveUiOption,
     type ComponentProps,
   } from "@/form/index.js";
@@ -16,13 +17,15 @@
     config,
     value = $bindable(),
     uiOption,
+    translate,
   }: ComponentProps["objectField"] = $props();
 
   const objCtx = createObjectContext(
     ctx,
     () => config,
     () => value,
-    (v) => (value = v)
+    (v) => (value = v),
+    translate,
   );
   setObjectContext(objCtx);
 
@@ -41,7 +44,7 @@
     disabled={false}
     onclick={objCtx.addProperty}
   >
-    <Text {config} id="add-object-property" />
+    <Text {config} id="add-object-property" {translate} />
   </Button>
 {/snippet}
 <Template
@@ -63,6 +66,7 @@
         bind:value={value[property]}
         config={cfg}
         uiOption={(opt) => retrieveUiOption(ctx, cfg, opt)}
+        translate={retrieveTranslate(ctx, cfg)}
       />
     {/each}
   {/if}

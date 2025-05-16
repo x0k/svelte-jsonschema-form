@@ -1,28 +1,31 @@
 <script lang="ts" generics="L extends Label">
-  import type { Label, Labels } from "./translation.js";
+  import type { Label, Labels, Translate } from "./translation.js";
   import type { Config } from "./config.js";
   import type { IconConfig, IconDefinition } from "./icons.js";
-  import { translate, getFormContext } from "./context/index.js";
+  import { getFormContext } from "./context/index.js";
 
   const ctx = getFormContext();
 
   const {
     id,
     config,
+    translate,
     args = {} as Labels[L],
   }: {} extends Labels[L]
     ? {
         id: L;
         config: Config;
+        translate: Translate;
         args?: never;
       }
     : {
         id: L;
         args: Labels[L];
+        translate: Translate;
         config: Config;
       } = $props();
 
-  const translation = $derived(translate(ctx, id, args));
+  const translation = $derived(translate(id, args));
   const iconConfig: IconConfig<L> = $derived({
     config,
     params: args,

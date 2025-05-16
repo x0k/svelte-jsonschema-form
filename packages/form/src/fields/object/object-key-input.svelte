@@ -7,10 +7,10 @@
     createPseudoId,
     getComponent,
     type Id,
-    translate,
     type UiOption,
     retrieveUiOption,
     uiTitleOption,
+    type Translate,
   } from "@/form/index.js";
 
   import { getObjectContext } from "./context.svelte.js";
@@ -20,11 +20,13 @@
     property,
     name,
     uiSchema,
+    translate,
   }: {
     parentId: Id;
     property: string;
     name: string;
     uiSchema: UiSchema;
+    translate: Translate;
   } = $props();
 
   const ctx = getFormContext();
@@ -35,8 +37,7 @@
     id,
     name: id,
     title:
-      uiTitleOption(ctx, uiSchema) ??
-      translate(ctx, "key-input-title", { name }),
+      uiTitleOption(ctx, uiSchema) ?? translate("key-input-title", { name }),
     schema: { type: "string" },
     uiSchema,
     required: true,

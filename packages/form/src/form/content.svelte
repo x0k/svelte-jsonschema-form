@@ -6,6 +6,7 @@
     getFieldComponent,
     retrieveUiOption,
     uiTitleOption,
+    retrieveTranslate,
   } from "./context/index.js";
 
   const ctx = getFormContext();
@@ -35,4 +36,5 @@
   bind:value={ctx.value as undefined}
   {config}
   uiOption={(opt) => retrieveUiOption(ctx, config, opt)}
+  translate={retrieveTranslate(ctx, config)}
 />

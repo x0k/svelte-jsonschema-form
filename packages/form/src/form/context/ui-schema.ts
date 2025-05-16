@@ -1,4 +1,4 @@
-import type { IsPlainObject } from "@/lib/types.js";
+import type { ObjectProperties } from "@/lib/types.js";
 import type { Validator } from "@/core/index.js";
 
 import type { Config } from "../config.js";
@@ -49,20 +49,14 @@ export function retrieveUiOption<
   );
 }
 
-export type ObjectUiOptions = {
-  [K in keyof UiOptions as IsPlainObject<
-    Exclude<UiOptions[K], undefined>
-  > extends true
-    ? K
-    : never]: UiOptions[K];
-};
+export type ObjectUiOptions = ObjectProperties<UiOptions>;
 
 export function uiOptionProps<O extends keyof ObjectUiOptions>(option: O) {
   return <V extends Validator>(
-    props: Exclude<UiOptions[O], undefined>,
+    props: NonNullable<UiOptions[O]>,
     config: Config,
     ctx: FormInternalContext<V>
-  ): Exclude<UiOptions[O], undefined> => {
+  ): NonNullable<UiOptions[O]> => {
     return Object.assign(
       props,
       resolveUiOption(ctx, config.uiSchema, option),
@@ -74,10 +68,7 @@ export function uiOptionProps<O extends keyof ObjectUiOptions>(option: O) {
 export function uiOptionNestedProps<
   O extends keyof ObjectUiOptions,
   R extends object
->(
-  option: O,
-  selector: (data: Exclude<UiOptions[O], undefined>) => R | undefined
-) {
+>(option: O, selector: (data: NonNullable<UiOptions[O]>) => R | undefined) {
   return <V extends Validator>(
     props: R,
     config: Config,

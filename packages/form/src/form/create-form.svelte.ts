@@ -23,7 +23,7 @@ import {
   type AsyncFormValueValidator,
   type AsyncFieldValueValidator,
 } from "./validator.js";
-import type { Translation } from "./translation.js";
+import { createTranslate, type Translation } from "./translation.js";
 import {
   resolveUiRef,
   type ExtraUiOptions,
@@ -41,11 +41,7 @@ import {
   type AnyFormValueValidatorError,
   type AnyFieldValueValidatorError,
 } from "./errors.js";
-import {
-  translate,
-  type FormInternalContext,
-  type FormContext,
-} from "./context/index.js";
+import { type FormInternalContext, type FormContext } from "./context/index.js";
 import { createFormMerger, type FormMerger } from "./merger.js";
 import {
   type Id,
@@ -193,19 +189,17 @@ export interface FormValidationResult<E> {
   formErrors: FieldErrorsMap<E>;
 }
 
-type Validate<V> =
-  V extends FormValueValidator<infer E>
-    ? {
-        validate(): FieldErrorsMap<E>;
-      }
-    : {};
+type Validate<V> = V extends FormValueValidator<infer E>
+  ? {
+      validate(): FieldErrorsMap<E>;
+    }
+  : {};
 
-type ValidateAsync<V> =
-  V extends AsyncFormValueValidator<infer E>
-    ? {
-        validateAsync(signal: AbortSignal): Promise<FieldErrorsMap<E>>;
-      }
-    : {};
+type ValidateAsync<V> = V extends AsyncFormValueValidator<infer E>
+  ? {
+      validateAsync(signal: AbortSignal): Promise<FieldErrorsMap<E>>;
+    }
+  : {};
 
 export type FormState<T, V extends Validator> = {
   readonly context: FormContext;
@@ -265,8 +259,8 @@ export function createForm<T, V extends Validator>(
   const uiSchema = $derived(resolveUiRef(uiSchemaRoot, options.uiSchema) ?? {});
   const disabled = $derived(options.disabled ?? false);
   const schedulerYield: SchedulerYield = $derived(
-    (options.schedulerYield ??
-      (typeof scheduler !== "undefined" && "yield" in scheduler))
+    options.schedulerYield ??
+      (typeof scheduler !== "undefined" && "yield" in scheduler)
       ? scheduler.yield.bind(scheduler)
       : ({ signal }: Parameters<SchedulerYield>[0]) =>
           new Promise((resolve, reject) => {
@@ -284,6 +278,8 @@ export function createForm<T, V extends Validator>(
   const getSnapshot = $derived(
     options.getSnapshot ?? (() => $state.snapshot(value))
   );
+
+  const translate = $derived(createTranslate(options.translation));
 
   const validateForm: AsyncFormValueValidator<
     AnyFormValueValidatorError<V>
@@ -329,7 +325,7 @@ export function createForm<T, V extends Validator>(
       errors.set(context.rootId, [
         {
           propertyTitle: "",
-          message: translate(context, "validation-process-error", { error }),
+          message: translate("validation-process-error", { error }),
           error: new ValidationProcessError(error),
         },
       ]);
@@ -378,7 +374,7 @@ export function createForm<T, V extends Validator>(
         errors.set(config.id, [
           {
             propertyTitle: config.title,
-            message: translate(context, "validation-process-error", { error }),
+            message: translate("validation-process-error", { error }),
             error: new ValidationProcessError(error),
           },
         ]);
@@ -508,6 +504,9 @@ export function createForm<T, V extends Validator>(
     },
     get translation() {
       return options.translation;
+    },
+    get translate() {
+      return translate;
     },
     get icons() {
       return options.icons;

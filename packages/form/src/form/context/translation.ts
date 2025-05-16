@@ -1,17 +1,16 @@
+import { overrideByRecord } from "@/lib/resolver.js";
 import type { Validator } from "@/core/index.js";
 
-import type { Label, Labels, Translator } from "../translation.js";
+import type { Config } from "../config.js";
+import { createTranslate } from "../translation.js";
 
 import type { FormInternalContext } from "./context.js";
+import { uiOptionProps } from "./ui-schema.js";
 
-export function translate<V extends Validator, L extends Label>(
+export function retrieveTranslate<V extends Validator>(
   ctx: FormInternalContext<V>,
-  label: L,
-  params: Labels[L]
+  config: Config
 ) {
-  const translator: Translator<L> | undefined = ctx.translation(label, params);
-  if (translator === undefined) {
-    return `Label "${label}" is not translated`;
-  }
-  return typeof translator === "string" ? translator : translator(params);
+  const translations = uiOptionProps("translations")({}, config, ctx);
+  return createTranslate(overrideByRecord(ctx.translation, translations));
 }

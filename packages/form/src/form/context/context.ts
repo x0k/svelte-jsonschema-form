@@ -5,7 +5,7 @@ import type { DataURLToBlob } from "@/lib/file.js";
 import type { Action } from "@/lib/action.svelte.js";
 import type { Schema, SchemaValue, Validator } from "@/core/index.js";
 
-import type { Translation } from "../translation.js";
+import type { Translate, Translation } from "../translation.js";
 import {
   type ExtraUiOptions,
   type UiOptionsRegistry,
@@ -49,6 +49,7 @@ export interface FormInternalContext<V extends Validator>
   readonly errors: FieldErrorsMap<PossibleError<V>>;
   readonly dataUrlToBlob: DataURLToBlob;
   readonly translation: Translation;
+  readonly translate: Translate;
   readonly fieldTypeResolver: ResolveFieldType;
   readonly theme: Theme;
   readonly submitHandler: (e: SubmitEvent) => void;

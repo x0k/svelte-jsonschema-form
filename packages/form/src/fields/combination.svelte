@@ -29,11 +29,11 @@
     createPseudoId,
     getComponent,
     type ComponentProps,
-    translate,
     getFieldComponent,
     retrieveUiSchema,
     retrieveUiOption,
     uiTitleOption,
+    retrieveTranslate,
   } from "@/form/index.js";
 
   let {
@@ -41,6 +41,7 @@
     config,
     combinationKey,
     uiOption,
+    translate,
   }: ComponentProps["anyOfField" | "oneOfField"] & {
     combinationKey: typeof ONE_OF_KEY | typeof ANY_OF_KEY;
   } = $props();
@@ -114,12 +115,11 @@
       uiTitleOption(ctx, config.uiSchema) ?? config.schema.title;
     return explicitTitle
       ? (index: number) =>
-          translate(ctx, "multi-schema-option-label-with-title", {
+          translate("multi-schema-option-label-with-title", {
             index,
             title: explicitTitle,
           })
-      : (index: number) =>
-          translate(ctx, "multi-schema-option-label", { index });
+      : (index: number) => translate("multi-schema-option-label", { index });
   });
   const optionTitles = $derived.by(() => {
     const discriminator = getDiscriminatorFieldFromSchema(config.schema);
@@ -224,6 +224,7 @@
     bind:value={value as undefined}
     config={restFieldConfig}
     uiOption={(opt) => retrieveUiOption(ctx, restFieldConfig, opt)}
+    translate={retrieveTranslate(ctx, restFieldConfig)}
   />
 {/if}
 <Template type="template" {config} {value} {errors} {uiOption}>
@@ -246,6 +247,7 @@
       bind:value={value as undefined}
       config={combinationFieldConfig}
       uiOption={(opt) => retrieveUiOption(ctx, combinationFieldConfig, opt)}
+      translate={retrieveTranslate(ctx, combinationFieldConfig)}
     />
   {/if}
 </Template>

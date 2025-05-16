@@ -33,6 +33,7 @@
     value = $bindable(),
     config,
     uiOption,
+    translate,
   }: ComponentProps["arrayItemField"] = $props();
 
   const ctx = getFormContext();
@@ -61,7 +62,7 @@
         arrayCtx.moveItemUp(index);
       }}
     >
-      <Text {config} id="move-array-item-up" />
+      <Text {config} id="move-array-item-up" {translate} />
     </Button>
     <Button
       {errors}
@@ -72,7 +73,7 @@
         arrayCtx.moveItemDown(index);
       }}
     >
-      <Text {config} id="move-array-item-down" />
+      <Text {config} id="move-array-item-down" {translate} />
     </Button>
   {/if}
   {#if canCopy}
@@ -85,7 +86,7 @@
       }}
       disabled={false}
     >
-      <Text {config} id="copy-array-item" />
+      <Text {config} id="copy-array-item" {translate} />
     </Button>
   {/if}
   {#if canRemove}
@@ -98,7 +99,7 @@
         arrayCtx.removeItem(index);
       }}
     >
-      <Text {config} id="remove-array-item" />
+      <Text {config} id="remove-array-item" {translate} />
     </Button>
   {/if}
 {/snippet}
@@ -111,5 +112,11 @@
   buttons={toolbar ? buttons : undefined}
   {uiOption}
 >
-  <Field type="field" bind:value={value as undefined} {config} {uiOption} />
+  <Field
+    type="field"
+    bind:value={value as undefined}
+    {config}
+    {uiOption}
+    {translate}
+  />
 </Template>

@@ -29,3 +29,9 @@ export type IsPlainObject<T> = T extends object
     ? false
     : true
   : false;
+
+export type ObjectProperties<T> = {
+  [K in keyof T as IsPlainObject<NonNullable<T[K]>> extends true
+    ? K
+    : never]: T[K];
+};

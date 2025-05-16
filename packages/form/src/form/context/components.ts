@@ -9,11 +9,10 @@ import type {
 import { createMessage } from "../error-message.svelte";
 
 import type { FormInternalContext } from "./context.js";
-import { translate } from "./translation.js";
 
 function getComponentInner<
   T extends FoundationalComponentType,
-  V extends Validator,
+  V extends Validator
 >(ctx: FormInternalContext<V>, type: T, config: Config) {
   const component = config.uiSchema["ui:components"]?.[type];
   switch (typeof component) {
@@ -32,7 +31,7 @@ function getComponentInner<
 
 export function getComponent<
   T extends FoundationalComponentType,
-  V extends Validator,
+  V extends Validator
 >(
   ctx: FormInternalContext<V>,
   type: T,
@@ -41,7 +40,7 @@ export function getComponent<
   //@ts-expect-error
   return (
     getComponentInner(ctx, type, config) ??
-    createMessage(translate(ctx, "component-not-found", { type }))
+    createMessage(ctx.translate("component-not-found", { type }))
   );
 }
 

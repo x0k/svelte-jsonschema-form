@@ -8,6 +8,7 @@
     config,
     uiOption,
     value = $bindable(),
+    translate,
   }: ComponentProps["oneOfField"] = $props();
 </script>
 
@@ -16,5 +17,6 @@
   bind:value
   {config}
   {uiOption}
+  {translate}
   combinationKey={ONE_OF_KEY}
 />

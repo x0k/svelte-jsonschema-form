@@ -16,9 +16,3 @@ declare module "./components.js" {
     submitButton: "";
   }
 }
-
-declare module "./ui-schema.js" {
-  interface UiOptions {
-    submitButtonText?: string;
-  }
-}

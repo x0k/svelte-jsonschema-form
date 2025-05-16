@@ -2,7 +2,7 @@
   import {
     getComponent,
     getFormContext,
-    retrieveUiOption,
+    retrieveTranslate,
   } from "./context/index.js";
   import type { Config } from "./config.js";
   import Text from "./text.svelte";
@@ -19,13 +19,8 @@
   });
 
   const Button = $derived(getComponent(ctx, "submitButton", config));
-  const text = $derived(retrieveUiOption(ctx, config, "submitButtonText"));
 </script>
 
 <Button {config}>
-  {#if text}
-    {text}
-  {:else}
-    <Text {config} id="submit" />
-  {/if}
+  <Text {config} id="submit" translate={retrieveTranslate(ctx, config)} />
 </Button>

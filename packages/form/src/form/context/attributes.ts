@@ -6,7 +6,7 @@ import type {
   HTMLTextareaAttributes,
 } from "svelte/elements";
 
-import type { Nullable } from "@/lib/types.js";
+import type { Nullable, ObjectProperties } from "@/lib/types.js";
 import type { Validator } from "@/core/index.js";
 
 import type { Config } from "../config.js";
@@ -289,7 +289,7 @@ export function descriptionAttributes<
   ctx: FormInternalContext<V>,
   config: Config,
   option: O,
-  props: Exclude<UiOptions[O], undefined>
+  props: NonNullable<UiOptions[O]>
 ) {
   return composeProps(
     ctx,
@@ -307,7 +307,7 @@ export function errorsListAttributes<
   ctx: FormInternalContext<V>,
   config: Config,
   option: O,
-  props: Exclude<UiOptions[O], undefined>
+  props: NonNullable<UiOptions[O]>
 ) {
   return composeProps(
     ctx,
@@ -327,7 +327,7 @@ export function formAttributes<
   config: Config,
   option: O,
   attributes: HTMLFormAttributes | undefined,
-  props: Exclude<UiOptions[O], undefined>
+  props: NonNullable<UiOptions[O]>
 ) {
   return composeProps(
     ctx,
@@ -345,7 +345,7 @@ export function helpAttributes<
   ctx: FormInternalContext<V>,
   config: Config,
   option: O,
-  props: Exclude<UiOptions[O], undefined>
+  props: NonNullable<UiOptions[O]>
 ) {
   return composeProps(
     ctx,
@@ -363,7 +363,7 @@ export function labelAttributes<
   ctx: FormInternalContext<V>,
   config: Config,
   option: O,
-  props: Exclude<UiOptions[O], undefined>
+  props: NonNullable<UiOptions[O]>
 ) {
   return composeProps(ctx, config, props, forProp, uiOptionProps(option));
 }
@@ -375,7 +375,7 @@ export function titleAttributes<
   ctx: FormInternalContext<V>,
   config: Config,
   option: O,
-  props: Exclude<UiOptions[O], undefined>
+  props: NonNullable<UiOptions[O]>
 ) {
   return composeProps(
     ctx,
@@ -390,14 +390,15 @@ export function titleAttributes<
 export function layoutAttributes<
   V extends Validator,
   O extends keyof ObjectUiOptions,
-  O2 extends keyof ObjectUiOptions
+  O2 extends keyof ObjectUiOptions,
+  T extends keyof ObjectProperties<NonNullable<UiOptions[O2]>>
 >(
   ctx: FormInternalContext<V>,
   config: Config,
   option: O,
   nestedOption: O2,
-  type: keyof Exclude<UiOptions[O2], undefined>,
-  props: Exclude<UiOptions[O], undefined>
+  type: T,
+  props: NonNullable<UiOptions[O]>
 ) {
   return composeProps(
     ctx,
@@ -405,7 +406,10 @@ export function layoutAttributes<
     props,
     dataLayoutProp(type as string),
     uiOptionProps(option),
-    uiOptionNestedProps(nestedOption, (t) => t[type])
+    uiOptionNestedProps<O2, NonNullable<UiOptions[O2]>>(
+      nestedOption,
+      (t) => t[type]
+    )
   );
 }
 
@@ -417,7 +421,7 @@ export function buttonAttributes<
   config: Config,
   option: O,
   type: Exclude<HTMLButtonAttributes["type"], undefined>,
-  props: Exclude<UiOptions[O], undefined>
+  props: NonNullable<UiOptions[O]>
 ) {
   return composeProps(
     ctx,
@@ -436,7 +440,7 @@ export function customInputAttributes<
   ctx: FormInternalContext<V>,
   config: Config,
   option: O,
-  props: Exclude<UiOptions[O], undefined>
+  props: NonNullable<UiOptions[O]>
 ) {
   return composeProps(ctx, config, props, uiOptionProps(option), disabledProp);
 }
@@ -449,7 +453,7 @@ export function inputAttributes<
   config: Config,
   option: O,
   handlers: Handlers,
-  props: Exclude<UiOptions[O], undefined>
+  props: NonNullable<UiOptions[O]>
 ) {
   return composeProps(
     ctx,
@@ -469,7 +473,7 @@ export function selectAttributes<
   config: Config,
   option: O,
   handlers: Handlers,
-  props: Exclude<UiOptions[O], undefined>
+  props: NonNullable<UiOptions[O]>
 ) {
   return composeProps(
     ctx,
@@ -489,7 +493,7 @@ export function textareaAttributes<
   config: Config,
   option: O,
   handlers: Handlers,
-  props: Exclude<UiOptions[O], undefined>
+  props: NonNullable<UiOptions[O]>
 ) {
   return composeProps(
     ctx,

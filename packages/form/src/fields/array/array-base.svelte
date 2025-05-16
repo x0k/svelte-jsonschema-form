@@ -9,6 +9,7 @@
     type Validator,
     type Config,
     retrieveUiOption,
+    retrieveTranslate,
   } from "@/form/index.js";
 
   import { setArrayContext, type ArrayContext } from "./context.svelte.js";
@@ -18,6 +19,7 @@
     config,
     createArrayContext,
     uiOption,
+    translate,
   }: ComponentProps["arrayField" | "tupleField"] & {
     createArrayContext: <V extends Validator>(
       ctx: FormInternalContext<V>,
@@ -49,7 +51,7 @@
     type="array-item-add"
     onclick={arrayCtx.pushItem}
   >
-    <Text {config} id="add-array-item" />
+    <Text {config} id="add-array-item" {translate} />
   </Button>
 {/snippet}
 <Template
@@ -69,6 +71,7 @@
         config={cfg}
         bind:value={value[index]}
         uiOption={(opt) => retrieveUiOption(ctx, cfg, opt)}
+        translate={retrieveTranslate(ctx, cfg)}
       />
     {/each}
   {/if}

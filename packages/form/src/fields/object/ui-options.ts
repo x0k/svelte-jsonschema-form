@@ -13,10 +13,6 @@ declare module "../../form/index.js" {
      */
     expandable?: boolean;
     /**
-     * Prefix of the new additional property key
-     */
-    additionalPropertyKeyPrefix?: string;
-    /**
      * Overrides the logic for creating a new key for an additional property
      */
     additionalPropertyKey?: AdditionalPropertyKey;

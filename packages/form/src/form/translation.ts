@@ -35,3 +35,18 @@ export type Translation = Resolver<
   Partial<Labels>,
   Partial<TranslatorDefinitions>
 >;
+
+export type Translate = <L extends Label>(
+  label: L,
+  params: Labels[L]
+) => string;
+
+export function createTranslate(translation: Translation) {
+  return <L extends Label>(label: L, params: Labels[L]) => {
+    const translator: Translator<L> | undefined = translation(label, params);
+    if (translator === undefined) {
+      return `Label "${label}" is not translated`;
+    }
+    return typeof translator === "string" ? translator : translator(params);
+  };
+}
