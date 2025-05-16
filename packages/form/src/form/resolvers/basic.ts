@@ -4,7 +4,7 @@ import {
   type Validator,
 } from "@/core/index.js";
 
-import type { FormInternalContext } from "../context/context.js";
+import type { FormInternalContext } from "../context/index.js";
 import type { ResolveFieldType } from "../fields.js";
 
 export function resolver<V extends Validator>(
