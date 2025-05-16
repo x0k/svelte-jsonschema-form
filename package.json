@@ -35,7 +35,7 @@
       "esbuild"
     ],
     "overrides": {
-      "svelte2tsx": "0.7.37",
+      "svelte2tsx": "0.7.39",
       "vite": "catalog:"
     },
     "patchedDependencies": {
