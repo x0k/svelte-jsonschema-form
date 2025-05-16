@@ -1,3 +1,6 @@
+import { cast } from '@sjsf/form/lib/component';
+import type { ComponentDefinition } from '@sjsf/form';
+import TagsField from '@sjsf/form/fields/extra-fields/tags.svelte';
 import { s } from 'testing/demo';
 
 import './extra-widgets/checkboxes-include';
@@ -7,7 +10,17 @@ import './extra-widgets/multi-select-include';
 import './extra-widgets/radio-include';
 import './extra-widgets/range-include';
 import './extra-widgets/switch-include';
+import './extra-widgets/tags-include';
 import './extra-widgets/textarea-include';
+
+const tagsAsArrayField = cast(TagsField, {
+	value: {
+		transform(props) {
+			s.assertStrings(props.value);
+			return props.value;
+		}
+	}
+}) satisfies ComponentDefinition<'arrayField'>;
 
 export const specs: s.Specs = {
 	datePicker: [
@@ -36,6 +49,14 @@ export const specs: s.Specs = {
 	],
 	range: [s.number, { 'ui:components': { numberWidget: 'rangeWidget' } }],
 	switch: [s.boolean, { 'ui:components': { checkboxWidget: 'switchWidget' } }],
+	tags: [
+		s.uniqueArray,
+		{
+			'ui:components': {
+				arrayField: tagsAsArrayField
+			}
+		}
+	],
 	textarea: [s.text, { 'ui:components': { textWidget: 'textareaWidget' } }]
 };
 

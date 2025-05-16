@@ -17,6 +17,7 @@ import type {
   RadioProps,
   RangeProps,
   SelectProps,
+  TagsProps,
   TextareaProps,
   ToggleProps,
 } from "flowbite-svelte3";
@@ -74,17 +75,19 @@ export interface UiOptions {
 
   flowbite3Checkboxes?: CheckboxProps;
 
-	flowbite3Datepicker?: DatepickerProps;
+  flowbite3Datepicker?: DatepickerProps;
 
   flowbite3File?: FileuploadProps;
 
-	flowbite3MultiSelect?: Omit<MultiSelectProps<number>, 'value'>;
+  flowbite3MultiSelect?: Omit<MultiSelectProps<number>, "value">;
 
   flowbite3Radio?: RadioProps<number>;
 
   flowbite3Range?: RangeProps;
 
   flowbite3Switch?: ToggleProps;
+
+  flowbite3Tags?: Omit<TagsProps, "value">;
 
   flowbite3Textarea?: TextareaProps;
 }
