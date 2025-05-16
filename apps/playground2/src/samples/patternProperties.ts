@@ -28,7 +28,10 @@ const patternProperties: Sample = {
   },
   uiSchema: {
     "ui:options": {
-      additionalPropertyKeyPrefix: "patternProperty",
+      translations: {
+        "add-object-property": "Add pattern property",
+        "additional-property": "patternProperty",
+      },
     },
     firstName: {
       "ui:options": {

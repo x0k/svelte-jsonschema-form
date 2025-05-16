@@ -139,6 +139,11 @@ const arrays: Sample = {
   },
   uiSchema: {
     listOfStrings: {
+      "ui:options": {
+        translations: {
+          "add-array-item": "Add string",
+        },
+      },
       items: {
         "ui:options": {
           stringEmptyValue: "",
@@ -149,9 +154,9 @@ const arrays: Sample = {
       "ui:options": {
         layouts: {
           "field-content": {
-            style: "display: flex; flex-direction: column; gap: 0.2rem"
-          }
-        }
+            style: "display: flex; flex-direction: column; gap: 0.2rem",
+          },
+        },
       },
     },
     fixedItemsList: {

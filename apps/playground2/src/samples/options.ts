@@ -26,7 +26,9 @@ const optionsSample: Sample = {
   },
   uiSchema: {
     "ui:options": {
-      submitButtonText: "Register",
+      translations: {
+        submit: "Register",
+      },
       submitButton: {
         style:
           "width: 100%; background-color: green; color: white; border-radius: 8px; padding: 12px 0; margin: 0;",
