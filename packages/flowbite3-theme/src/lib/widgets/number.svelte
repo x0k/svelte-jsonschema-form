@@ -17,7 +17,10 @@
 	const ctx = getFormContext();
 
 	const attributes = $derived(
-		inputAttributes(ctx, config, 'flowbite3Number', handlers, { type: 'number' })
+		inputAttributes(ctx, config, 'flowbite3Number', handlers, {
+			type: 'number',
+			wrapperClass: 'w-full'
+		})
 	);
 </script>
 

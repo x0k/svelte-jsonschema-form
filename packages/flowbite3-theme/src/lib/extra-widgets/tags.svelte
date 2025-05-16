@@ -19,6 +19,7 @@
 </script>
 
 <TagsInput
+	class="flex-1"
 	{...customInputAttributes(ctx, config, 'flowbite3Tags', {})}
 	bind:value={() => value ?? [], (v) => (value = v)}
 />

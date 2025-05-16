@@ -30,7 +30,7 @@
 	);
 </script>
 
-<Select bind:value={mapped.value} {...attributes}>
+<Select bind:value={mapped.value} class="flex-1" {...attributes}>
 	{#if config.schema.default === undefined}
 		<option value={-1}>{attributes.placeholder}</option>
 	{/if}

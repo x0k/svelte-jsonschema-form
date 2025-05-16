@@ -18,4 +18,7 @@
 	const ctx = getFormContext();
 </script>
 
-<Textarea bind:value {...textareaAttributes(ctx, config, 'flowbite3Textarea', handlers, {})} />
+<Textarea
+	bind:value
+	{...textareaAttributes(ctx, config, 'flowbite3Textarea', handlers, { divClass: 'w-full' })}
+/>
