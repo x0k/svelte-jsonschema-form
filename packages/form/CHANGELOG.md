@@ -1,5 +1,27 @@
 # @sjsf/form
 
+## 2.0.0-next.12
+
+### Major Changes
+
+- Remove the UI options `submitButtonText` and `additionalPropertyKeyPrefix` in favor of the new `translations` option. ([`f30da6d`](https://github.com/x0k/svelte-jsonschema-form/commit/f30da6d2b9161d848e3ec1be631d555b20783739))
+
+- Fix <https://github.com/x0k/svelte-jsonschema-form/issues/103> ([`1c75328`](https://github.com/x0k/svelte-jsonschema-form/commit/1c753287e206049acec0d19aa60c85f8ef902b4c))
+
+  Renames in the following submodules:
+
+  - `@sjsf/form/fields/array/*`
+  - `@sjsf/form/fields/object/*`
+  - `@sjsf/form/templates/*`
+
+### Patch Changes
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/4617 ([`38ae583`](https://github.com/x0k/svelte-jsonschema-form/commit/38ae58337d6b240a4fda87d4428bd979a952baf7))
+
+- Port <https://github.com/rjsf-team/react-jsonschema-form/pull/4600> ([`1e641de`](https://github.com/x0k/svelte-jsonschema-form/commit/1e641de9ce630da729bf295c508371dabaa2e802))
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/4626 ([`50c357a`](https://github.com/x0k/svelte-jsonschema-form/commit/50c357a57b7819a83ceab99a96d09b21af848b17))
+
 ## 2.0.0-next.11
 
 ### Major Changes

@@ -1,5 +1,17 @@
 # @sjsf/flowbite3-theme
 
+## 2.0.0-next.12
+
+### Minor Changes
+
+- Add `tags` widget ([`bd497f3`](https://github.com/x0k/svelte-jsonschema-form/commit/bd497f3e379b40c8983d2f9f5c8215a004d967ec))
+
+### Patch Changes
+
+- Updated dependencies [[`38ae583`](https://github.com/x0k/svelte-jsonschema-form/commit/38ae58337d6b240a4fda87d4428bd979a952baf7), [`f30da6d`](https://github.com/x0k/svelte-jsonschema-form/commit/f30da6d2b9161d848e3ec1be631d555b20783739), [`1c75328`](https://github.com/x0k/svelte-jsonschema-form/commit/1c753287e206049acec0d19aa60c85f8ef902b4c), [`1e641de`](https://github.com/x0k/svelte-jsonschema-form/commit/1e641de9ce630da729bf295c508371dabaa2e802), [`50c357a`](https://github.com/x0k/svelte-jsonschema-form/commit/50c357a57b7819a83ceab99a96d09b21af848b17)]:
+  - @sjsf/form@2.0.0-next.12
+  - @sjsf/basic-theme@2.0.0-next.12
+
 ## 2.0.0-next.11
 
 ### Major Changes
