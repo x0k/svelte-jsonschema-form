@@ -189,10 +189,6 @@ interface UiOptions {
    */
   itemTitle?: ItemTitle;
   /**
-   * Prefix of the new additional property key
-   */
-  additionalPropertyKeyPrefix?: string;
-  /**
    * Overrides the logic for creating a new key for an additional property
    */
   additionalPropertyKey?: AdditionalPropertyKey;
@@ -210,7 +206,10 @@ interface UiOptions {
    * Overrides whether to use the `title` or `label` component in the `field` template
    */
   useLabel?: boolean;
-  submitButtonText?: string;
+  /**
+   * Overrides form translation
+   */
+  translations?: Partial<TranslatorDefinitions>;
 }
 ```
 
