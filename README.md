@@ -48,7 +48,7 @@ npm install @sjsf/form@next @sjsf/basic-theme@next @sjsf/ajv8-validator@next ajv
   const form = createForm({
     theme,
     schema,
-    resolver
+    resolver,
     validator,
     translation,
     onSubmit: console.log
