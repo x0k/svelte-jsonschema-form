@@ -9,6 +9,7 @@
     type ComponentProps,
     Text,
     retrieveUiOption,
+    retrieveTranslate,
   } from "@sjsf/form";
   import {
     createArrayContext,
@@ -19,6 +20,7 @@
     value = $bindable(),
     config,
     uiOption,
+    translate,
   }: ComponentProps["arrayField"] = $props();
 
   const ctx = getFormContext();
@@ -43,7 +45,7 @@
     type="array-item-add"
     onclick={arrayCtx.pushItem}
   >
-    <Text {config} id="add-array-item" />
+    <Text {config} id="add-array-item" {translate} />
   </Button>
 {/snippet}
 <Template
@@ -64,6 +66,7 @@
           bind:value={value[index]}
           config={cfg}
           uiOption={(opt) => retrieveUiOption(ctx, cfg, opt)}
+          translate={retrieveTranslate(ctx, config)}
         />
       </div>
     {/each}
