@@ -81,6 +81,30 @@ describe("omitExtraData", () => {
   });
 
   it("should allow oneOf data entry", () => {
+    validator = createValidator({
+      cases: [
+        {
+          schema: {
+            allOf: [
+              { properties: { lorem: { type: "string" } } },
+              { anyOf: [{ required: ["lorem"] }] },
+            ],
+          },
+          value: { lorum: "", lorem: "foo" },
+          result: true,
+        },
+        {
+          schema: {
+            allOf: [
+              { properties: { ipsum: { type: "string" } } },
+              { anyOf: [{ required: ["ipsum"] }] },
+            ],
+          },
+          value: { lorum: "", lorem: "foo" },
+          result: false,
+        },
+      ],
+    });
     const schema: Schema = {
       type: "object",
       oneOf: [
@@ -110,6 +134,30 @@ describe("omitExtraData", () => {
   });
 
   it("should allow anyOf data entry", () => {
+    validator = createValidator({
+      cases: [
+        {
+          schema: {
+            allOf: [
+              { properties: { lorem: { type: "string" } } },
+              { anyOf: [{ required: ["lorem"] }] },
+            ],
+          },
+          value: { ipsum: "" },
+          result: false,
+        },
+        {
+          schema: {
+            allOf: [
+              { properties: { ipsum: { type: "string" } } },
+              { anyOf: [{ required: ["ipsum"] }] },
+            ],
+          },
+          value: { ipsum: "" },
+          result: true,
+        },
+      ],
+    });
     const schema: Schema = {
       type: "object",
       anyOf: [
@@ -432,7 +480,7 @@ describe("omitExtraData", () => {
           type: "object",
           patternProperties: {
             "^foo": { type: "string" },
-            "Bar$": { type: "number" },
+            Bar$: { type: "number" },
           },
         };
         const value = { foo1: "a", testBar: 42, fooBar: "b", bar: "c" };
@@ -476,7 +524,7 @@ describe("omitExtraData", () => {
           foo1: "a",
           foo2: "b",
           bar: 42,
-          baz: "not a number"
+          baz: "not a number",
         });
       });
     });
@@ -544,6 +592,36 @@ describe("omitExtraData", () => {
 
   describe("combined schemas", () => {
     it("should handle oneOf", () => {
+      validator = createValidator({
+        cases: [
+          { schema: { type: "string" }, value: "direct string", result: true },
+          {
+            schema: {
+              allOf: [
+                { type: "object", properties: { value: { type: "string" } } },
+                { anyOf: [{ required: ["value"] }] },
+              ],
+            },
+            value: "direct string",
+            result: false,
+          },
+          {
+            schema: { type: "string" },
+            value: { value: "test", extra: true },
+            result: false,
+          },
+          {
+            schema: {
+              allOf: [
+                { type: "object", properties: { value: { type: "string" } } },
+                { anyOf: [{ required: ["value"] }] },
+              ],
+            },
+            value: { value: "test", extra: true },
+            result: true,
+          },
+        ],
+      });
       const schema: Schema = {
         oneOf: [
           { type: "string" },
@@ -627,6 +705,16 @@ describe("omitExtraData", () => {
 
   describe("anyOf", () => {
     it("should handle simple anyOf with primitive types", () => {
+      validator = createValidator({
+        cases: [
+          { schema: { type: "string" }, value: "test", result: true },
+          { schema: { type: "number" }, value: "test", result: false },
+          { schema: { type: "string" }, value: 42, result: false },
+          { schema: { type: "number" }, value: 42, result: true },
+          { schema: { type: "string" }, value: true, result: false },
+          { schema: { type: "number" }, value: true, result: false },
+        ],
+      });
       const schema: Schema = {
         anyOf: [{ type: "string" }, { type: "number" }],
       };
@@ -640,6 +728,70 @@ describe("omitExtraData", () => {
     });
 
     it("should handle anyOf with objects having different properties", () => {
+      validator = createValidator({
+        cases: [
+          {
+            schema: {
+              allOf: [
+                { type: "object", properties: { name: { type: "string" } } },
+                { anyOf: [{ required: ["name"] }] },
+              ],
+            },
+            value: { name: "John", extra: true },
+            result: true,
+          },
+          {
+            schema: {
+              allOf: [
+                { type: "object", properties: { id: { type: "number" } } },
+                { anyOf: [{ required: ["id"] }] },
+              ],
+            },
+            value: { name: "John", extra: true },
+            result: false,
+          },
+          {
+            schema: {
+              allOf: [
+                { type: "object", properties: { name: { type: "string" } } },
+                { anyOf: [{ required: ["name"] }] },
+              ],
+            },
+            value: { id: 123, extra: true },
+            result: false,
+          },
+          {
+            schema: {
+              allOf: [
+                { type: "object", properties: { id: { type: "number" } } },
+                { anyOf: [{ required: ["id"] }] },
+              ],
+            },
+            value: { id: 123, extra: true },
+            result: true,
+          },
+          {
+            schema: {
+              allOf: [
+                { type: "object", properties: { name: { type: "string" } } },
+                { anyOf: [{ required: ["name"] }] },
+              ],
+            },
+            value: { extra: true },
+            result: false,
+          },
+          {
+            schema: {
+              allOf: [
+                { type: "object", properties: { id: { type: "number" } } },
+                { anyOf: [{ required: ["id"] }] },
+              ],
+            },
+            value: { extra: true },
+            result: false,
+          },
+        ],
+      });
       const schema: Schema = {
         anyOf: [
           {
@@ -764,6 +916,74 @@ describe("omitExtraData", () => {
 
   describe("oneOf", () => {
     it("should handle oneOf with exclusive conditions", () => {
+      validator = createValidator({
+        cases: [
+          {
+            schema: {
+              allOf: [
+                {
+                  type: "object",
+                  properties: {
+                    type: { const: "user" },
+                    username: { type: "string" },
+                  },
+                },
+                { anyOf: [{ required: ["type"] }, { required: ["username"] }] },
+              ],
+            },
+            value: { type: "user", username: "john", extra: true },
+            result: true,
+          },
+          {
+            schema: {
+              allOf: [
+                {
+                  type: "object",
+                  properties: {
+                    type: { const: "admin" },
+                    adminId: { type: "number" },
+                  },
+                },
+                { anyOf: [{ required: ["type"] }, { required: ["adminId"] }] },
+              ],
+            },
+            value: { type: "user", username: "john", extra: true },
+            result: false,
+          },
+          {
+            schema: {
+              allOf: [
+                {
+                  type: "object",
+                  properties: {
+                    type: { const: "user" },
+                    username: { type: "string" },
+                  },
+                },
+                { anyOf: [{ required: ["type"] }, { required: ["username"] }] },
+              ],
+            },
+            value: { type: "admin", adminId: 123, extra: true },
+            result: false,
+          },
+          {
+            schema: {
+              allOf: [
+                {
+                  type: "object",
+                  properties: {
+                    type: { const: "admin" },
+                    adminId: { type: "number" },
+                  },
+                },
+                { anyOf: [{ required: ["type"] }, { required: ["adminId"] }] },
+              ],
+            },
+            value: { type: "admin", adminId: 123, extra: true },
+            result: true,
+          },
+        ],
+      });
       const schema: Schema = {
         oneOf: [
           {
@@ -809,6 +1029,40 @@ describe("omitExtraData", () => {
     });
 
     it("should handle oneOf with array variations", () => {
+      validator = createValidator({
+        cases: [
+          {
+            schema: { type: "array", items: { type: "string" } },
+            value: ["a", "b", "c"],
+            result: true,
+          },
+          {
+            schema: { type: "array", items: { type: "number" } },
+            value: ["a", "b", "c"],
+            result: false,
+          },
+          {
+            schema: { type: "array", items: { type: "string" } },
+            value: [1, 2, 3],
+            result: false,
+          },
+          {
+            schema: { type: "array", items: { type: "number" } },
+            value: [1, 2, 3],
+            result: true,
+          },
+          {
+            schema: { type: "array", items: { type: "string" } },
+            value: ["a", 1, "b"],
+            result: false,
+          },
+          {
+            schema: { type: "array", items: { type: "number" } },
+            value: ["a", 1, "b"],
+            result: false,
+          },
+        ],
+      });
       const schema: Schema = {
         oneOf: [
           {
@@ -891,6 +1145,56 @@ describe("omitExtraData", () => {
 
   describe("nested compounds", () => {
     it("should handle anyOf within allOf", () => {
+      validator = createValidator({
+        cases: [
+          {
+            schema: {
+              allOf: [
+                { type: "object", properties: { name: { type: "string" } } },
+                { anyOf: [{ required: ["name"] }] },
+              ],
+            },
+            value: { id: 1, name: "John", extra: true },
+            result: true,
+          },
+          {
+            schema: {
+              allOf: [
+                {
+                  type: "object",
+                  properties: { username: { type: "string" } },
+                },
+                { anyOf: [{ required: ["username"] }] },
+              ],
+            },
+            value: { id: 1, name: "John", extra: true },
+            result: false,
+          },
+          {
+            schema: {
+              allOf: [
+                { type: "object", properties: { name: { type: "string" } } },
+                { anyOf: [{ required: ["name"] }] },
+              ],
+            },
+            value: { id: 2, username: "john_doe", extra: true },
+            result: false,
+          },
+          {
+            schema: {
+              allOf: [
+                {
+                  type: "object",
+                  properties: { username: { type: "string" } },
+                },
+                { anyOf: [{ required: ["username"] }] },
+              ],
+            },
+            value: { id: 2, username: "john_doe", extra: true },
+            result: true,
+          },
+        ],
+      });
       const schema: Schema = {
         allOf: [
           {
@@ -942,6 +1246,22 @@ describe("omitExtraData", () => {
     });
 
     it("should handle oneOf within anyOf", () => {
+      validator = createValidator({
+        cases: [
+          { schema: { type: "string" }, value: "test", result: true },
+
+          {
+            schema: {
+              oneOf: [
+                { type: "object", properties: { age: { type: "number" } } },
+                { type: "object", properties: { year: { type: "number" } } },
+              ],
+            },
+            value: "test",
+            result: false,
+          },
+        ],
+      });
       const schema: Schema = {
         anyOf: [
           { type: "string" },
@@ -968,8 +1288,43 @@ describe("omitExtraData", () => {
         "test"
       );
       validator = createValidator({
-        isValid: [
-          false, // compare with string
+        cases: [
+          {
+            schema: { type: "string" },
+            value: { age: 25, extra: true },
+            result: false,
+          },
+          {
+            schema: {
+              oneOf: [
+                { type: "object", properties: { age: { type: "number" } } },
+                { type: "object", properties: { year: { type: "number" } } },
+              ],
+            },
+            value: { age: 25, extra: true },
+            result: true,
+          },
+          {
+            schema: {
+              allOf: [
+                { type: "object", properties: { age: { type: "number" } } },
+                { anyOf: [{ required: ["age"] }] },
+              ],
+            },
+            value: { age: 25, extra: true },
+            result: true,
+          },
+          // TODO: Why we comparing with this schema?
+          {
+            schema: {
+              allOf: [
+                { type: "object", properties: { year: { type: "number" } } },
+                { anyOf: [{ required: ["year"] }] },
+              ],
+            },
+            value: { age: 25, extra: true },
+            result: false,
+          },
         ],
       });
       expect(
@@ -979,10 +1334,42 @@ describe("omitExtraData", () => {
         })
       ).toEqual({ age: 25 });
       validator = createValidator({
-        isValid: [
-          false, // compare with string
-          true, // compare with anyOf
-          false, // compare with age
+        cases: [
+          {
+            schema: { type: "string" },
+            value: { year: 1990, extra: true },
+            result: false,
+          },
+          {
+            schema: {
+              oneOf: [
+                { type: "object", properties: { age: { type: "number" } } },
+                { type: "object", properties: { year: { type: "number" } } },
+              ],
+            },
+            value: { year: 1990, extra: true },
+            result: true,
+          },
+          {
+            schema: {
+              allOf: [
+                { type: "object", properties: { age: { type: "number" } } },
+                { anyOf: [{ required: ["age"] }] },
+              ],
+            },
+            value: { year: 1990, extra: true },
+            result: false,
+          },
+          {
+            schema: {
+              allOf: [
+                { type: "object", properties: { year: { type: "number" } } },
+                { anyOf: [{ required: ["year"] }] },
+              ],
+            },
+            value: { year: 1990, extra: true },
+            result: true,
+          },
         ],
       });
       expect(
@@ -994,6 +1381,152 @@ describe("omitExtraData", () => {
     });
 
     it("should handle complex nested combinations", () => {
+      validator = createValidator({
+        cases: [
+          {
+            schema: {
+              allOf: [
+                { type: "object", properties: { type: { const: "user" } } },
+                {
+                  anyOf: [
+                    {
+                      type: "object",
+                      properties: { name: { type: "string" } },
+                    },
+                    { type: "object", properties: { id: { type: "number" } } },
+                  ],
+                },
+              ],
+            },
+            value: { type: "user", name: "John", extra: true },
+            result: true,
+          },
+          {
+            schema: {
+              allOf: [
+                {
+                  type: "object",
+                  properties: {
+                    type: { const: "system" },
+                    code: { type: "string" },
+                  },
+                },
+                { anyOf: [{ required: ["type"] }, { required: ["code"] }] },
+              ],
+            },
+            value: { type: "user", name: "John", extra: true },
+            result: false,
+          },
+          {
+            schema: {
+              allOf: [
+                { type: "object", properties: { name: { type: "string" } } },
+                { anyOf: [{ required: ["name"] }] },
+              ],
+            },
+            value: { type: "user", name: "John", extra: true },
+            result: true,
+          },
+          {
+            schema: {
+              allOf: [
+                { type: "object", properties: { id: { type: "number" } } },
+                { anyOf: [{ required: ["id"] }] },
+              ],
+            },
+            value: { type: "user", name: "John", extra: true },
+            result: false,
+          },
+          {
+            schema: {
+              allOf: [
+                { type: "object", properties: { type: { const: "user" } } },
+                {
+                  anyOf: [
+                    {
+                      type: "object",
+                      properties: { name: { type: "string" } },
+                    },
+                    { type: "object", properties: { id: { type: "number" } } },
+                  ],
+                },
+              ],
+            },
+            value: { type: "user", id: 123, extra: true },
+            result: true,
+          },
+          {
+            schema: {
+              allOf: [
+                {
+                  type: "object",
+                  properties: {
+                    type: { const: "system" },
+                    code: { type: "string" },
+                  },
+                },
+                { anyOf: [{ required: ["type"] }, { required: ["code"] }] },
+              ],
+            },
+            value: { type: "user", id: 123, extra: true },
+            result: false,
+          },
+          {
+            schema: {
+              allOf: [
+                { type: "object", properties: { name: { type: "string" } } },
+                { anyOf: [{ required: ["name"] }] },
+              ],
+            },
+            value: { type: "user", id: 123, extra: true },
+            result: false,
+          },
+          {
+            schema: {
+              allOf: [
+                { type: "object", properties: { id: { type: "number" } } },
+                { anyOf: [{ required: ["id"] }] },
+              ],
+            },
+            value: { type: "user", id: 123, extra: true },
+            result: true,
+          },
+          {
+            schema: {
+              allOf: [
+                { type: "object", properties: { type: { const: "user" } } },
+                {
+                  anyOf: [
+                    {
+                      type: "object",
+                      properties: { name: { type: "string" } },
+                    },
+                    { type: "object", properties: { id: { type: "number" } } },
+                  ],
+                },
+              ],
+            },
+            value: { type: "system", code: "ABC", extra: true },
+            result: false,
+          },
+          {
+            schema: {
+              allOf: [
+                {
+                  type: "object",
+                  properties: {
+                    type: { const: "system" },
+                    code: { type: "string" },
+                  },
+                },
+                { anyOf: [{ required: ["type"] }, { required: ["code"] }] },
+              ],
+            },
+            value: { type: "system", code: "ABC", extra: true },
+            result: true,
+          },
+        ],
+      });
       const schema: Schema = {
         oneOf: [
           {

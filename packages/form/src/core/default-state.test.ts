@@ -1004,9 +1004,23 @@ describe("getDefaultFormState2()", () => {
         beforeEach(() => {
           // Mock isValid so that withExactlyOneSubschema works as expected
           testValidator = createValidator({
-            isValid: [
-              true, // First oneOf... first === first
-              false, // Second oneOf... second !== first
+            cases: [
+              {
+                schema: {
+                  type: "object",
+                  properties: { first: { enum: ["yes"] } },
+                },
+                value: { first: "yes" },
+                result: true,
+              },
+              {
+                schema: {
+                  type: "object",
+                  properties: { first: { enum: ["no"] } },
+                },
+                value: { first: "yes" },
+                result: false,
+              },
             ],
           });
         });
@@ -1573,9 +1587,25 @@ describe("getDefaultFormState2()", () => {
 
     describe("an object with non valid formData for enum properties", () => {
       beforeEach(() => {
-        // Mock isValid so that withExactlyOneSubschema works as expected
         testValidator = createValidator({
-          isValid: [false, true],
+          cases: [
+            {
+              schema: {
+                type: "object",
+                properties: { animal: { enum: ["Cat"] } },
+              },
+              value: { animal: "Fish", food: "meat", water: null },
+              result: false,
+            },
+            {
+              schema: {
+                type: "object",
+                properties: { animal: { enum: ["Fish"] } },
+              },
+              value: { animal: "Fish", food: "meat", water: null },
+              result: true,
+            },
+          ],
         });
       });
 
@@ -3886,6 +3916,20 @@ describe("getDefaultFormState2()", () => {
       });
     });
     it("should support nested values in formData", () => {
+      testValidator = createValidator({
+        cases: [
+          {
+            schema: {
+              allOf: [
+                { type: "object", properties: { leaf1: { type: "string" } } },
+                { anyOf: [{ required: ["leaf1"] }] },
+              ],
+            },
+            value: { leaf1: "a" },
+            result: true
+          },
+        ],
+      });
       const schema: Schema = {
         type: "object",
         properties: {
@@ -4218,6 +4262,94 @@ describe("getDefaultFormState2()", () => {
       });
     });
     it("should populate defaults for oneOf + ref", () => {
+      testValidator = createValidator({
+        cases: [
+          {
+            schema: {
+              allOf: [
+                {
+                  type: "object",
+                  properties: {
+                    fooProp: { type: "string" },
+                    fooProp2: { type: "string", default: "fooProp2" },
+                  },
+                },
+                {
+                  anyOf: [
+                    { required: ["fooProp"] },
+                    { required: ["fooProp2"] },
+                  ],
+                },
+              ],
+            },
+            value: { fooProp: "fooProp" },
+            result: true,
+          },
+          {
+            schema: {
+              allOf: [
+                {
+                  type: "object",
+                  properties: {
+                    barProp: { type: "string" },
+                    barProp2: { type: "string", default: "barProp2" },
+                  },
+                },
+                {
+                  anyOf: [
+                    { required: ["barProp"] },
+                    { required: ["barProp2"] },
+                  ],
+                },
+              ],
+            },
+            value: { fooProp: "fooProp" },
+            result: false,
+          },
+          {
+            schema: {
+              allOf: [
+                {
+                  type: "object",
+                  properties: {
+                    fooProp: { type: "string" },
+                    fooProp2: { type: "string", default: "fooProp2" },
+                  },
+                },
+                {
+                  anyOf: [
+                    { required: ["fooProp"] },
+                    { required: ["fooProp2"] },
+                  ],
+                },
+              ],
+            },
+            value: { barProp: "barProp" },
+            result: false,
+          },
+          {
+            schema: {
+              allOf: [
+                {
+                  type: "object",
+                  properties: {
+                    barProp: { type: "string" },
+                    barProp2: { type: "string", default: "barProp2" },
+                  },
+                },
+                {
+                  anyOf: [
+                    { required: ["barProp"] },
+                    { required: ["barProp2"] },
+                  ],
+                },
+              ],
+            },
+            value: { barProp: "barProp" },
+            result: true,
+          },
+        ],
+      });
       const schema: Schema = {
         definitions: {
           foo: {
@@ -4479,6 +4611,15 @@ describe("getDefaultFormState2()", () => {
 
     describe('default form state behaviour: allOf = "populateDefaults"', () => {
       it("should populate default values correctly", () => {
+        testValidator = createValidator({
+          cases: [
+            {
+              schema: { properties: { animal: { const: "Cat" } } },
+              value: {},
+              result: true,
+            },
+          ],
+        });
         expect(
           computeDefaults(testValidator, defaultMerger, schema, {
             ...defaults,
@@ -4563,9 +4704,29 @@ describe("getDefaultFormState2()", () => {
         type: "object",
       };
 
-      // Mock isValid so that withExactlyOneSubschema works as expected
       testValidator = createValidator({
-        isValid: [false, true],
+        cases: [
+          {
+            schema: {
+              allOf: [
+                { properties: { first: { title: "First", type: "string" } } },
+                { anyOf: [{ required: ["first"] }] },
+              ],
+            },
+            value: { second: "Second 2!" },
+            result: false,
+          },
+          {
+            schema: {
+              allOf: [
+                { properties: { second: { title: "Second", type: "string" } } },
+                { anyOf: [{ required: ["second"] }] },
+              ],
+            },
+            value: { second: "Second 2!" },
+            result: true,
+          },
+        ],
       });
 
       expect(getDefaultFormState(testValidator, defaultMerger, schema)).toEqual(
@@ -4575,6 +4736,30 @@ describe("getDefaultFormState2()", () => {
       );
     });
     it("should populate defaults for oneOf when `type`: `object` is missing", () => {
+      testValidator = createValidator({
+        cases: [
+          {
+            schema: {
+              allOf: [
+                { properties: { name: { type: "string", default: "a" } } },
+                { anyOf: [{ required: ["name"] }] },
+              ],
+            },
+            value: {},
+            result: false,
+          },
+          {
+            schema: {
+              allOf: [
+                { properties: { id: { type: "number", default: 13 } } },
+                { anyOf: [{ required: ["id"] }] },
+              ],
+            },
+            value: {},
+            result: false,
+          },
+        ],
+      });
       const schema: Schema = {
         type: "object",
         oneOf: [
@@ -4695,6 +4880,25 @@ describe("getDefaultFormState2()", () => {
       });
     });
     it("should populate nested default values merging required fields", () => {
+      testValidator = createValidator({
+        cases: [
+          {
+            schema: {
+              allOf: [
+                {
+                  properties: {
+                    bar: { type: "number" },
+                    baz: { default: "bazIsRequired" },
+                  },
+                },
+                { anyOf: [{ required: ["bar"] }, { required: ["baz"] }] },
+              ],
+            },
+            value: {},
+            result: false,
+          },
+        ],
+      });
       const schema: Schema = {
         type: "object",
         required: ["foo", "bar"],
@@ -4733,6 +4937,28 @@ describe("getDefaultFormState2()", () => {
       ).toEqual({ foo: "fooVal", baz: "bazIsRequired" });
     });
     it("should populate defaults for oneOf + dependencies", () => {
+      testValidator = createValidator({
+        cases: [
+          {
+            schema: {
+              allOf: [
+                { type: "object", properties: { name: { type: "string" } } },
+                { anyOf: [{ required: ["name"] }] },
+              ],
+            },
+            value: { name: "Name" },
+            result: true,
+          },
+          {
+            schema: {
+              type: "object",
+              properties: { name: { type: "string" } },
+            },
+            value: { name: "Name" },
+            result: true,
+          },
+        ],
+      });
       const schema: Schema = {
         oneOf: [
           {
@@ -4782,9 +5008,29 @@ describe("getDefaultFormState2()", () => {
           },
         },
       };
-      // Mock errors so that getMatchingOption works as expected
       testValidator = createValidator({
-        isValid: [false, false, false, true],
+        cases: [
+          {
+            schema: {
+              allOf: [
+                { properties: { a: { type: "string", default: "a" } } },
+                { anyOf: [{ required: ["a"] }] },
+              ],
+            },
+            value: { b: "b" },
+            result: false,
+          },
+          {
+            schema: {
+              allOf: [
+                { properties: { b: { type: "string", default: "b" } } },
+                { anyOf: [{ required: ["b"] }] },
+              ],
+            },
+            value: { b: "b" },
+            result: true,
+          },
+        ],
       });
       expect(
         getDefaultFormState(testValidator, defaultMerger, schema, {
@@ -4855,9 +5101,29 @@ describe("getDefaultFormState2()", () => {
         type: "object",
       };
 
-      // Mock isValid so that withExactlyOneSubschema works as expected
       testValidator = createValidator({
-        isValid: [false, true],
+        cases: [
+          {
+            schema: {
+              allOf: [
+                { properties: { first: { title: "First", type: "string" } } },
+                { anyOf: [{ required: ["first"] }] },
+              ],
+            },
+            value: { second: "Second 2!" },
+            result: false,
+          },
+          {
+            schema: {
+              allOf: [
+                { properties: { second: { title: "Second", type: "string" } } },
+                { anyOf: [{ required: ["second"] }] },
+              ],
+            },
+            value: { second: "Second 2!" },
+            result: true,
+          },
+        ],
       });
 
       expect(getDefaultFormState(testValidator, defaultMerger, schema)).toEqual(
@@ -4969,6 +5235,25 @@ describe("getDefaultFormState2()", () => {
       });
     });
     it("should populate nested default values merging required fields", () => {
+      testValidator = createValidator({
+        cases: [
+          {
+            schema: {
+              allOf: [
+                {
+                  properties: {
+                    bar: { type: "number" },
+                    baz: { default: "bazIsRequired" },
+                  },
+                },
+                { anyOf: [{ required: ["bar"] }, { required: ["baz"] }] },
+              ],
+            },
+            value: {},
+            result: false,
+          },
+        ],
+      });
       const schema: Schema = {
         type: "object",
         required: ["foo", "bar"],
@@ -5007,6 +5292,28 @@ describe("getDefaultFormState2()", () => {
       ).toEqual({ foo: "fooVal", baz: "bazIsRequired" });
     });
     it("should populate defaults for anyOf + dependencies", () => {
+      testValidator = createValidator({
+        cases: [
+          {
+            schema: {
+              allOf: [
+                { type: "object", properties: { name: { type: "string" } } },
+                { anyOf: [{ required: ["name"] }] },
+              ],
+            },
+            value: { name: "Name" },
+            result: true,
+          },
+          {
+            schema: {
+              type: "object",
+              properties: { name: { type: "string" } },
+            },
+            value: { name: "Name" },
+            result: true,
+          },
+        ],
+      });
       const schema: Schema = {
         anyOf: [
           {
@@ -5057,9 +5364,29 @@ describe("getDefaultFormState2()", () => {
           },
         },
       };
-      // Mock errors so that getMatchingOption works as expected
       testValidator = createValidator({
-        isValid: [false, false, false, true],
+        cases: [
+          {
+            schema: {
+              allOf: [
+                { properties: { a: { type: "string", default: "a" } } },
+                { anyOf: [{ required: ["a"] }] },
+              ],
+            },
+            value: { b: "b" },
+            result: false,
+          },
+          {
+            schema: {
+              allOf: [
+                { properties: { b: { type: "string", default: "b" } } },
+                { anyOf: [{ required: ["b"] }] },
+              ],
+            },
+            value: { b: "b" },
+            result: true,
+          },
+        ],
       });
       expect(
         getDefaultFormState(testValidator, defaultMerger, schema, {
@@ -5072,6 +5399,18 @@ describe("getDefaultFormState2()", () => {
   });
   describe("with dependencies", () => {
     it("should populate defaults for dependencies", () => {
+      testValidator = createValidator({
+        cases: [
+          {
+            schema: {
+              type: "object",
+              properties: { name: { type: "string" } },
+            },
+            value: { name: "Name" },
+            result: true,
+          },
+        ],
+      });
       const schema: Schema = {
         type: "object",
         properties: {
@@ -5107,6 +5446,18 @@ describe("getDefaultFormState2()", () => {
       });
     });
     it("should populate defaults for nested dependencies", () => {
+      testValidator = createValidator({
+        cases: [
+          {
+            schema: {
+              type: "object",
+              properties: { name: { type: "string" } },
+            },
+            value: { name: "Name" },
+            result: true,
+          },
+        ],
+      });
       const schema: Schema = {
         type: "object",
         properties: {
@@ -5149,6 +5500,18 @@ describe("getDefaultFormState2()", () => {
       });
     });
     it("should populate defaults for nested dependencies in arrays", () => {
+      testValidator = createValidator({
+        cases: [
+          {
+            schema: {
+              type: "object",
+              properties: { name: { type: "string" } },
+            },
+            value: { name: "Name" },
+            result: true,
+          },
+        ],
+      });
       const schema: Schema = {
         type: "array",
         items: {
@@ -5195,13 +5558,56 @@ describe("getDefaultFormState2()", () => {
       ]);
     });
     it("should populate defaults for nested dependencies in arrays when matching enum values in oneOf", () => {
-      // Mock isValid so that withExactlyOneSubschema works as expected
       testValidator = createValidator({
-        isValid: [
-          true, // First oneOf... first === first
-          false, // Second oneOf... second !== first
-          false, // First oneOf... first !== second
-          true, // Second oneOf... second === second
+        cases: [
+          {
+            schema: {
+              type: "object",
+              properties: { name: { enum: ["first"] } },
+            },
+            value: { name: "first" },
+            result: true,
+          },
+          {
+            schema: {
+              type: "object",
+              properties: { name: { enum: ["second"] } },
+            },
+            value: { name: "first" },
+            result: false,
+          },
+          {
+            schema: {
+              type: "object",
+              properties: { name: { enum: ["first"] } },
+            },
+            value: { name: "second" },
+            result: false,
+          },
+          {
+            schema: {
+              type: "object",
+              properties: { name: { enum: ["second"] } },
+            },
+            value: { name: "second" },
+            result: true,
+          },
+          {
+            schema: {
+              type: "object",
+              properties: { name: { enum: ["first"] } },
+            },
+            value: { name: "third" },
+            result: false,
+          },
+          {
+            schema: {
+              type: "object",
+              properties: { name: { enum: ["second"] } },
+            },
+            value: { name: "third" },
+            result: false,
+          },
         ],
       });
       const schema: Schema = {
@@ -5277,6 +5683,28 @@ describe("getDefaultFormState2()", () => {
       );
     });
     it("should populate defaults for nested oneOf + dependencies", () => {
+      testValidator = createValidator({
+        cases: [
+          {
+            schema: {
+              allOf: [
+                { type: "object", properties: { name: { type: "string" } } },
+                { anyOf: [{ required: ["name"] }] },
+              ],
+            },
+            value: { name: "Name" },
+            result: true,
+          },
+          {
+            schema: {
+              type: "object",
+              properties: { name: { type: "string" } },
+            },
+            value: { name: "Name" },
+            result: true,
+          },
+        ],
+      });
       const schema: Schema = {
         type: "object",
         properties: {
@@ -5323,6 +5751,30 @@ describe("getDefaultFormState2()", () => {
       });
     });
     it("should populate defaults for properties to ensure the dependencies conditions are resolved based on it", () => {
+      testValidator = createValidator({
+        cases: [
+          {
+            schema: { const: "username", title: "Username and password" },
+            value: "username",
+            result: true,
+          },
+          {
+            schema: { const: "secret", title: "SSO" },
+            value: "username",
+            result: false,
+          },
+          {
+            schema: { properties: { credentialType: { const: "username" } } },
+            value: { credentialType: "username" },
+            result: true,
+          },
+          {
+            schema: { properties: { credentialType: { const: "secret" } } },
+            value: { credentialType: "username" },
+            result: false,
+          },
+        ],
+      });
       const schema: Schema = {
         type: "object",
         required: ["authentication"],
@@ -5412,6 +5864,18 @@ describe("getDefaultFormState2()", () => {
       );
     });
     it("should populate defaults for nested dependencies when formData passed to computeDefaults is undefined", () => {
+      testValidator = createValidator({
+        cases: [
+          {
+            schema: {
+              type: "object",
+              properties: { bit_rate_cfg_mode: { enum: [0] } },
+            },
+            value: { bit_rate_cfg_mode: 0 },
+            result: true,
+          },
+        ],
+      });
       const schema: Schema = {
         type: "object",
         properties: {
@@ -5459,6 +5923,18 @@ describe("getDefaultFormState2()", () => {
       });
     });
     it("should not crash for defaults for nested dependencies when formData passed to computeDefaults is null", () => {
+      testValidator = createValidator({
+        cases: [
+          {
+            schema: {
+              type: "object",
+              properties: { bit_rate_cfg_mode: { enum: [0] } },
+            },
+            value: { bit_rate_cfg_mode: 0 },
+            result: true,
+          },
+        ],
+      });
       const schema: Schema = {
         type: "object",
         properties: {
