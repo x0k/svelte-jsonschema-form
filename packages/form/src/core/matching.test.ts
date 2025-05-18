@@ -17,7 +17,7 @@ import { calculateIndexScore, getClosestMatchingOption } from "./matching.js";
 import { beforeEach, describe, expect, it } from "vitest";
 import type { Validator } from "./validator.js";
 import { createValidator } from "./test-validator.js";
-import { defaultMerger } from './merger.js';
+import { defaultMerger } from "./merger.js";
 
 const firstOption = oneOfSchema.definitions!.first_option_def as Schema;
 const secondOption = oneOfSchema.definitions!.second_option_def as Schema;
@@ -79,10 +79,6 @@ describe("calculateIndexScore", () => {
       )
     ).toEqual(0);
   });
-  // NOTE: This is a bug in original implementation it this condition
-  //       `if (propertySchema.default) {`.
-  //       But we use this `if (propertySchema.default !== undefined) {`
-  //       so falsy default values behavior is changed
   it("returns 1 for first option in oneOf schema", () => {
     expect(
       calculateIndexScore(
@@ -92,9 +88,12 @@ describe("calculateIndexScore", () => {
         firstOption,
         ONE_OF_SCHEMA_DATA
       )
+      // CHANGED: This is a bug in original implementation it this condition
+      // `if (propertySchema.default) {`.
+      // But we use this `if (propertySchema.default !== undefined) {`
+      // so falsy default values behavior is changed
     ).toEqual(0);
   });
-  // NOTE: The same as above (i guess)
   it("returns 9 for second option in oneOf schema", () => {
     expect(
       calculateIndexScore(
@@ -104,6 +103,7 @@ describe("calculateIndexScore", () => {
         secondOption,
         ONE_OF_SCHEMA_DATA
       )
+      // CHANGED: The same as above (i guess)
     ).toEqual(8);
   });
   it("returns 1 for a schema that has a type matching the formData type", () => {
@@ -188,7 +188,140 @@ describe("oneOfMatchingOption", () => {
     ).toEqual(2);
   });
   it("returns the first option, which kind of matches the data", () => {
-    testValidator = createValidator({ isValid: [] });
+    testValidator = createValidator({
+      cases: [
+        {
+          schema: {
+            allOf: [
+              {
+                type: "object",
+                properties: {
+                  name: {
+                    type: "string",
+                    default: "first_option",
+                    readOnly: true,
+                  },
+                  flag: { type: "boolean", default: false },
+                  inner_spec: {
+                    type: "object",
+                    properties: {
+                      name: {
+                        type: "string",
+                        default: "inner_spec_2",
+                        readOnly: true,
+                      },
+                      inner_one_of: {
+                        oneOf: [
+                          {
+                            $ref: "#/definitions/inner_first_choice_def",
+                            title: "inner_first_choice",
+                          },
+                          {
+                            $ref: "#/definitions/inner_second_choice_def",
+                            title: "inner_second_choice",
+                          },
+                        ],
+                      },
+                    },
+                    required: ["name", "inner_one_of"],
+                  },
+                  unlabeled_options: {
+                    oneOf: [
+                      { type: "integer" },
+                      { type: "array", items: { type: "integer" } },
+                    ],
+                  },
+                },
+                additionalProperties: false,
+                title: "first option",
+              },
+              {
+                anyOf: [
+                  { required: ["name"] },
+                  { required: ["flag"] },
+                  { required: ["inner_spec"] },
+                  { required: ["unlabeled_options"] },
+                ],
+              },
+            ],
+          },
+          value: { flag: true },
+          result: true,
+        },
+        {
+          schema: {
+            allOf: [
+              {
+                type: "object",
+                properties: {
+                  name: {
+                    type: "string",
+                    default: "second_option",
+                    readOnly: true,
+                  },
+                  flag: { type: "boolean", default: false },
+                  inner_spec: {
+                    type: "object",
+                    properties: {
+                      name: {
+                        type: "string",
+                        default: "inner_spec",
+                        readOnly: true,
+                      },
+                      inner_one_of: {
+                        oneOf: [
+                          {
+                            $ref: "#/definitions/inner_first_choice_def",
+                            title: "inner_first_choice",
+                          },
+                          {
+                            $ref: "#/definitions/inner_second_choice_def",
+                            title: "inner_second_choice",
+                          },
+                        ],
+                      },
+                      special_spec: {
+                        type: "object",
+                        properties: {
+                          name: {
+                            type: "string",
+                            default: "special_spec",
+                            readOnly: true,
+                          },
+                          cpg_params: { type: "string" },
+                        },
+                        required: ["name"],
+                      },
+                    },
+                    required: ["name"],
+                  },
+                  unique_to_second: { type: "integer" },
+                  labeled_options: {
+                    oneOf: [
+                      { type: "string" },
+                      { type: "array", items: { type: "string" } },
+                    ],
+                  },
+                },
+                additionalProperties: false,
+                title: "second option",
+              },
+              {
+                anyOf: [
+                  { required: ["name"] },
+                  { required: ["flag"] },
+                  { required: ["inner_spec"] },
+                  { required: ["unique_to_second"] },
+                  { required: ["labeled_options"] },
+                ],
+              },
+            ],
+          },
+          value: { flag: true },
+          result: true,
+        },
+      ],
+    });
     expect(
       getClosestMatchingOption(
         testValidator,
@@ -197,14 +330,163 @@ describe("oneOfMatchingOption", () => {
         { flag: true },
         ONE_OF_SCHEMA_OPTIONS
       )
-    // CHANGED: Our implementation of `calculateIndexScore` has fixed
-    // the `falsy` handling of constant values, so different result
-    // ).toEqual(0);
+      // CHANGED: Our implementation of `calculateIndexScore` has fixed
+      // the `falsy` handling of constant values, so different result
+      // ).toEqual(0);
     ).toEqual(-1);
   });
   it("returns the second option, which exactly matches the data", () => {
     // First 3 are mocked false, with the fourth being true for the real second option
-    testValidator = createValidator({ isValid: [false, false, false, true] });
+    testValidator = createValidator({
+      cases: [
+        {
+          schema: {
+            allOf: [
+              {
+                type: "object",
+                properties: {
+                  name: {
+                    type: "string",
+                    default: "first_option",
+                    readOnly: true,
+                  },
+                  flag: { type: "boolean", default: false },
+                  inner_spec: {
+                    type: "object",
+                    properties: {
+                      name: {
+                        type: "string",
+                        default: "inner_spec_2",
+                        readOnly: true,
+                      },
+                      inner_one_of: {
+                        oneOf: [
+                          {
+                            $ref: "#/definitions/inner_first_choice_def",
+                            title: "inner_first_choice",
+                          },
+                          {
+                            $ref: "#/definitions/inner_second_choice_def",
+                            title: "inner_second_choice",
+                          },
+                        ],
+                      },
+                    },
+                    required: ["name", "inner_one_of"],
+                  },
+                  unlabeled_options: {
+                    oneOf: [
+                      { type: "integer" },
+                      { type: "array", items: { type: "integer" } },
+                    ],
+                  },
+                },
+                additionalProperties: false,
+                title: "first option",
+              },
+              {
+                anyOf: [
+                  { required: ["name"] },
+                  { required: ["flag"] },
+                  { required: ["inner_spec"] },
+                  { required: ["unlabeled_options"] },
+                ],
+              },
+            ],
+          },
+          value: {
+            name: "second_option",
+            flag: true,
+            inner_spec: {
+              name: "inner_spec",
+              special_spec: { name: "special_spec", cpg_params: "blah" },
+            },
+            unique_to_second: 5,
+          },
+          result: false,
+        },
+        {
+          schema: {
+            allOf: [
+              {
+                type: "object",
+                properties: {
+                  name: {
+                    type: "string",
+                    default: "second_option",
+                    readOnly: true,
+                  },
+                  flag: { type: "boolean", default: false },
+                  inner_spec: {
+                    type: "object",
+                    properties: {
+                      name: {
+                        type: "string",
+                        default: "inner_spec",
+                        readOnly: true,
+                      },
+                      inner_one_of: {
+                        oneOf: [
+                          {
+                            $ref: "#/definitions/inner_first_choice_def",
+                            title: "inner_first_choice",
+                          },
+                          {
+                            $ref: "#/definitions/inner_second_choice_def",
+                            title: "inner_second_choice",
+                          },
+                        ],
+                      },
+                      special_spec: {
+                        type: "object",
+                        properties: {
+                          name: {
+                            type: "string",
+                            default: "special_spec",
+                            readOnly: true,
+                          },
+                          cpg_params: { type: "string" },
+                        },
+                        required: ["name"],
+                      },
+                    },
+                    required: ["name"],
+                  },
+                  unique_to_second: { type: "integer" },
+                  labeled_options: {
+                    oneOf: [
+                      { type: "string" },
+                      { type: "array", items: { type: "string" } },
+                    ],
+                  },
+                },
+                additionalProperties: false,
+                title: "second option",
+              },
+              {
+                anyOf: [
+                  { required: ["name"] },
+                  { required: ["flag"] },
+                  { required: ["inner_spec"] },
+                  { required: ["unique_to_second"] },
+                  { required: ["labeled_options"] },
+                ],
+              },
+            ],
+          },
+          value: {
+            name: "second_option",
+            flag: true,
+            inner_spec: {
+              name: "inner_spec",
+              special_spec: { name: "special_spec", cpg_params: "blah" },
+            },
+            unique_to_second: 5,
+          },
+          result: true,
+        },
+      ],
+    });
     expect(
       getClosestMatchingOption(
         testValidator,
@@ -217,7 +499,80 @@ describe("oneOfMatchingOption", () => {
   });
   it("returns the first matching option (i.e. second index) when data is ambiguous", () => {
     testValidator = createValidator({
-      isValid: [false, false, false, true, false, true],
+      cases: [
+        {
+          schema: {
+            allOf: [
+              {
+                type: "object",
+                properties: {
+                  name: {
+                    type: "string",
+                    default: "first_option",
+                    readOnly: true,
+                  },
+                },
+                additionalProperties: false,
+              },
+              { anyOf: [{ required: ["name"] }] },
+            ],
+          },
+          value: { flag: false },
+          result: false,
+        },
+        {
+          schema: {
+            allOf: [
+              {
+                type: "object",
+                properties: {
+                  name: {
+                    type: "string",
+                    default: "second_option",
+                    readOnly: true,
+                  },
+                  flag: { type: "boolean", default: false },
+                },
+                additionalProperties: false,
+              },
+              { anyOf: [{ required: ["name"] }, { required: ["flag"] }] },
+            ],
+          },
+          value: { flag: false },
+          result: true,
+        },
+        {
+          schema: {
+            allOf: [
+              {
+                type: "object",
+                properties: {
+                  name: {
+                    type: "string",
+                    default: "third_option",
+                    readOnly: true,
+                  },
+                  flag: { type: "boolean", default: false },
+                  inner_obj: {
+                    type: "object",
+                    properties: { foo: { type: "string" } },
+                  },
+                },
+                additionalProperties: false,
+              },
+              {
+                anyOf: [
+                  { required: ["name"] },
+                  { required: ["flag"] },
+                  { required: ["inner_obj"] },
+                ],
+              },
+            ],
+          },
+          value: { flag: false },
+          result: true,
+        },
+      ],
     });
     const formData = { flag: false };
     expect(
@@ -232,7 +587,80 @@ describe("oneOfMatchingOption", () => {
   });
   it("returns the third index when data is clear", () => {
     testValidator = createValidator({
-      isValid: [false, false, false, false, false, true],
+      cases: [
+        {
+          schema: {
+            allOf: [
+              {
+                type: "object",
+                properties: {
+                  name: {
+                    type: "string",
+                    default: "first_option",
+                    readOnly: true,
+                  },
+                },
+                additionalProperties: false,
+              },
+              { anyOf: [{ required: ["name"] }] },
+            ],
+          },
+          value: { flag: true, inner_obj: { foo: "bar" } },
+          result: false,
+        },
+        {
+          schema: {
+            allOf: [
+              {
+                type: "object",
+                properties: {
+                  name: {
+                    type: "string",
+                    default: "second_option",
+                    readOnly: true,
+                  },
+                  flag: { type: "boolean", default: false },
+                },
+                additionalProperties: false,
+              },
+              { anyOf: [{ required: ["name"] }, { required: ["flag"] }] },
+            ],
+          },
+          value: { flag: true, inner_obj: { foo: "bar" } },
+          result: false,
+        },
+        {
+          schema: {
+            allOf: [
+              {
+                type: "object",
+                properties: {
+                  name: {
+                    type: "string",
+                    default: "third_option",
+                    readOnly: true,
+                  },
+                  flag: { type: "boolean", default: false },
+                  inner_obj: {
+                    type: "object",
+                    properties: { foo: { type: "string" } },
+                  },
+                },
+                additionalProperties: false,
+              },
+              {
+                anyOf: [
+                  { required: ["name"] },
+                  { required: ["flag"] },
+                  { required: ["inner_obj"] },
+                ],
+              },
+            ],
+          },
+          value: { flag: true, inner_obj: { foo: "bar" } },
+          result: true,
+        },
+      ],
     });
     expect(
       getClosestMatchingOption(
@@ -288,7 +716,37 @@ describe("oneOfMatchingOption", () => {
     const formData = { ipsum: { night: "nicht" } };
     // Mock to return true for the last of the second one-ofs
     testValidator = createValidator({
-      isValid: [false, false, false, false, false, false, false, true],
+      cases: [
+        {
+          schema: {
+            allOf: [
+              { properties: { lorem: { type: "string" } } },
+              { anyOf: [{ required: ["lorem"] }] },
+            ],
+          },
+          value: { ipsum: { night: "nicht" } },
+          result: false,
+        },
+        {
+          schema: {
+            allOf: [
+              {
+                properties: {
+                  ipsum: {
+                    oneOf: [
+                      { properties: { day: { type: "string" } } },
+                      { properties: { night: { type: "string" } } },
+                    ],
+                  },
+                },
+              },
+              { anyOf: [{ required: ["ipsum"] }] },
+            ],
+          },
+          value: { ipsum: { night: "nicht" } },
+          result: true,
+        },
+      ],
     });
     expect(
       getClosestMatchingOption(
@@ -343,7 +801,37 @@ describe("oneOfMatchingOption", () => {
     const formData = { ipsum: { night: "nicht" } };
     // Mock to return true for the last of the second anyOfs
     testValidator = createValidator({
-      isValid: [false, false, false, false, false, false, false, true],
+      cases: [
+        {
+          schema: {
+            allOf: [
+              { properties: { lorem: { type: "string" } } },
+              { anyOf: [{ required: ["lorem"] }] },
+            ],
+          },
+          value: { ipsum: { night: "nicht" } },
+          result: false,
+        },
+        {
+          schema: {
+            allOf: [
+              {
+                properties: {
+                  ipsum: {
+                    anyOf: [
+                      { properties: { day: { type: "string" } } },
+                      { properties: { night: { type: "string" } } },
+                    ],
+                  },
+                },
+              },
+              { anyOf: [{ required: ["ipsum"] }] },
+            ],
+          },
+          value: { ipsum: { night: "nicht" } },
+          result: true,
+        },
+      ],
     });
     expect(
       getClosestMatchingOption(
@@ -356,10 +844,6 @@ describe("oneOfMatchingOption", () => {
     ).toEqual(1);
   });
   it("should return 0 when schema has discriminator but no matching data", () => {
-    // Mock isValid to fail both values
-    testValidator = createValidator({
-      isValid: [false, false, false, false],
-    });
     const schema: Schema = {
       type: "object",
       definitions: {
@@ -410,8 +894,6 @@ describe("oneOfMatchingOption", () => {
     ).toEqual(-1);
   });
   it("should return Bar when schema has discriminator for bar", () => {
-    // Mock isValid to pass the second value
-    testValidator = createValidator({ isValid: [false, false, false, true] });
     const schema: Schema = {
       type: "object",
       definitions: {

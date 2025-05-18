@@ -93,9 +93,17 @@ describe("resolveDependencies()", () => {
 
     // Mock isValid so that withExactlyOneSubschema works as expected
     testValidator = createValidator({
-      isValid: [
-        true, // First oneOf... first === first
-        false, // Second oneOf... second !== first
+      cases: [
+        {
+          schema: { type: "object", properties: { first: { enum: ["yes"] } } },
+          value: { first: "yes" },
+          result: true,
+        },
+        {
+          schema: { type: "object", properties: { first: { enum: ["no"] } } },
+          value: { first: "yes" },
+          result: false
+        },
       ],
     });
     expect(
@@ -761,9 +769,23 @@ describe("retrieveSchema()", () => {
         it("should retrieve referenced schemas", () => {
           // Mock isValid so that withExactlyOneSubschema works as expected
           testValidator = createValidator({
-            isValid: [
-              false, // First oneOf... second !== first
-              true, // Second oneOf... second === second
+            cases: [
+              {
+                schema: {
+                  type: "object",
+                  properties: { a: { enum: ["typeA"] } },
+                },
+                value: { a: "typeB" },
+                result: false,
+              },
+              {
+                schema: {
+                  type: "object",
+                  properties: { a: { enum: ["typeB"] } },
+                },
+                value: { a: "typeB" },
+                result: true,
+              },
             ],
           });
           const schema: Schema = {
@@ -848,9 +870,23 @@ describe("retrieveSchema()", () => {
         it("should add `first` properties given `first` data", () => {
           // Mock isValid so that withExactlyOneSubschema works as expected
           testValidator = createValidator({
-            isValid: [
-              true, // First dependency... first === first
-              false, // Second dependency... second !== first
+            cases: [
+              {
+                schema: {
+                  type: "object",
+                  properties: { a: { enum: ["int"] } },
+                },
+                value: { a: "int" },
+                result: true,
+              },
+              {
+                schema: {
+                  type: "object",
+                  properties: { a: { enum: ["bool"] } },
+                },
+                value: { a: "int" },
+                result: false,
+              },
             ],
           });
           const schema: Schema = {
@@ -878,9 +914,23 @@ describe("retrieveSchema()", () => {
         it("should add `second` properties given `second` data", () => {
           // Mock isValid so that withExactlyOneSubschema works as expected
           testValidator = createValidator({
-            isValid: [
-              false, // First dependency... first !== second
-              true, // Second dependency... second === second
+            cases: [
+              {
+                schema: {
+                  type: "object",
+                  properties: { a: { enum: ["int"] } },
+                },
+                value: { a: "bool" },
+                result: false,
+              },
+              {
+                schema: {
+                  type: "object",
+                  properties: { a: { enum: ["bool"] } },
+                },
+                value: { a: "bool" },
+                result: true,
+              },
             ],
           });
           const schema: Schema = {
@@ -916,11 +966,15 @@ describe("retrieveSchema()", () => {
           it("should not include nested dependencies that should be hidden", () => {
             // Mock isValid so that withExactlyOneSubschema works as expected
             testValidator = createValidator({
-              isValid: [
-                false, // employee_accounts oneOf ... - fail
-                true, // update_absences first oneOf... success
-                false, // update_absences second oneOf... fail
-                false, // update_absences third oneOf... fail
+              cases: [
+                {
+                  schema: {
+                    type: "object",
+                    properties: { employee_accounts: { const: true } },
+                  },
+                  value: { employee_accounts: false, update_absences: "BOTH" },
+                  result: false,
+                },
               ],
             });
             const formData = {
@@ -952,11 +1006,41 @@ describe("retrieveSchema()", () => {
           it("should include nested dependencies that should not be hidden", () => {
             // Mock isValid so that withExactlyOneSubschema works as expected
             testValidator = createValidator({
-              isValid: [
-                true, // employee_accounts oneOf... success
-                true, // update_absences first oneOf... success
-                false, // update_absences second oneOf... fail
-                false, // update_absences third oneOf... fail
+              cases: [
+                {
+                  schema: {
+                    type: "object",
+                    properties: { employee_accounts: { const: true } },
+                  },
+                  value: { employee_accounts: true, update_absences: "BOTH" },
+                  result: true,
+                },
+                {
+                  schema: {
+                    type: "object",
+                    properties: { update_absences: { const: "BOTH" } },
+                  },
+                  value: { employee_accounts: true, update_absences: "BOTH" },
+                  result: true,
+                },
+                {
+                  schema: {
+                    type: "object",
+                    properties: { update_absences: { const: "MEDICAL_ONLY" } },
+                  },
+                  value: { employee_accounts: true, update_absences: "BOTH" },
+                  result: false,
+                },
+                {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      update_absences: { const: "NON_MEDICAL_ONLY" },
+                    },
+                  },
+                  value: { employee_accounts: true, update_absences: "BOTH" },
+                  result: false,
+                },
               ],
             });
             const formData = {
@@ -1002,9 +1086,23 @@ describe("retrieveSchema()", () => {
         it("should retrieve the referenced schema", () => {
           // Mock isValid so that withExactlyOneSubschema works as expected
           testValidator = createValidator({
-            isValid: [
-              false, // First oneOf... fail
-              true, // Second oneOf... success
+            cases: [
+              {
+                schema: {
+                  type: "object",
+                  properties: { a: { enum: ["int"] } },
+                },
+                value: { a: "bool" },
+                result: false,
+              },
+              {
+                schema: {
+                  type: "object",
+                  properties: { a: { enum: ["bool"] } },
+                },
+                value: { a: "bool" },
+                result: true,
+              },
             ],
           });
           const schema: Schema = {
@@ -1258,9 +1356,17 @@ describe("retrieveSchema()", () => {
     it("should resolve if, then", () => {
       // Mock errors so that resolveCondition2 works as expected
       testValidator = createValidator({
-        isValid: [
-          true, // First condition Country... USA pas2s
-          false, // Second condition Countery... Cana2da fail
+        cases: [
+          {
+            schema: {
+              properties: { country: { const: "United States of America" } },
+            },
+            value: {
+              country: "United States of America",
+              postal_code: "20500",
+            },
+            result: true,
+          },
         ],
       });
       const rootSchema: Schema = { definitions: {} };
@@ -1290,8 +1396,14 @@ describe("retrieveSchema()", () => {
     it("should resolve if, else", () => {
       // Mock errors so that resolveCondition2 works as expected
       testValidator = createValidator({
-        isValid: [
-          false, // First condition Country... USA fai2l
+        cases: [
+          {
+            schema: {
+              properties: { country: { const: "United States of America" } },
+            },
+            value: { country: "Canada", postal_code: "K1M 1M4" },
+            result: false,
+          },
         ],
       });
       const rootSchema: Schema = { definitions: {} };
@@ -1321,9 +1433,17 @@ describe("retrieveSchema()", () => {
     it("should resolve multiple conditions", () => {
       // Mock errors so that resolveCondition2 works as expected
       testValidator = createValidator({
-        isValid: [
-          true, // First condition animal... Cat pas2s
-          false, // Second condition animal... Fish 2fail
+        cases: [
+          {
+            schema: { properties: { animal: { const: "Cat" } } },
+            value: { animal: "Cat" },
+            result: true,
+          },
+          {
+            schema: { properties: { animal: { const: "Fish" } } },
+            value: { animal: "Cat" },
+            result: false,
+          },
         ],
       });
       const schema: Schema = {
@@ -1395,11 +1515,23 @@ describe("retrieveSchema()", () => {
     it("should resolve multiple conditions in nested allOf blocks", () => {
       // Mock errors so that resolveCondition2 works as expected
       testValidator = createValidator({
-        isValid: [
-          false, // First condition Animal... Cat fai2l
-          true, // Second condition Animal... Dog pas2s
-          false, // Third condition Breed... Alsatian fail
-          true, // Fourth condition Breed... Dalmation pass
+        cases: [
+          {
+            schema: {
+              required: ["Animal"],
+              properties: { Animal: { const: "Cat" } },
+            },
+            value: { Animal: "Dog", Breed: { BreedName: "Dalmation" } },
+            result: false,
+          },
+          {
+            schema: {
+              required: ["Animal"],
+              properties: { Animal: { const: "Dog" } },
+            },
+            value: { Animal: "Dog", Breed: { BreedName: "Dalmation" } },
+            result: true,
+          },
         ],
       });
       const rootSchema: Schema = { definitions: {} };
@@ -1490,9 +1622,17 @@ describe("retrieveSchema()", () => {
     it("should resolve $ref", () => {
       // Mock errors so that resolveCondition2 works as expected
       testValidator = createValidator({
-        isValid: [
-          true, // First condition animal... Cat pas2s
-          false, // Second condition animal... Fish 2fail
+        cases: [
+          {
+            schema: { properties: { animal: { const: "Cat" } } },
+            value: { animal: "Cat" },
+            result: true,
+          },
+          {
+            schema: { properties: { animal: { const: "Fish" } } },
+            value: { animal: "Cat" },
+            result: false,
+          },
         ],
       });
       const schema: Schema = {
@@ -1573,6 +1713,26 @@ describe("retrieveSchema()", () => {
       });
     });
     it("handles nested if then else", () => {
+      testValidator = createValidator({
+        cases: [
+          {
+            schema: {
+              properties: { country: { const: "USA" } },
+              required: ["country"],
+            },
+            value: { country: "USA", state: "New York" },
+            result: true,
+          },
+          {
+            schema: {
+              properties: { state: { const: "New York" } },
+              required: ["state"],
+            },
+            value: { country: "USA", state: "New York" },
+            result: true,
+          },
+        ],
+      });
       const rootSchema: Schema = {};
       const formData = {
         country: "USA",
@@ -1759,7 +1919,7 @@ describe("retrieveSchema()", () => {
           {
             schema: { properties: { isString: { const: false } } },
             value: { isString: false },
-            result: true
+            result: true,
           },
         ],
       });
@@ -2275,6 +2435,20 @@ describe("retrieveSchema()", () => {
   });
   describe("resolveAnyOrOneOfSchemas()", () => {
     it("resolves anyOf with $ref for single element, merging schemas", () => {
+      testValidator = createValidator({
+        cases: [
+          {
+            schema: {
+              allOf: [
+                { type: "object", properties: { name: { type: "string" } } },
+                { anyOf: [{ required: ["name"] }] },
+              ],
+            },
+            value: [],
+            result: false,
+          },
+        ],
+      });
       const anyOfSchema: Schema = SUPER_SCHEMA.properties?.multi as Schema;
       expect(
         resolveAnyOrOneOfSchemas(
@@ -2292,6 +2466,42 @@ describe("retrieveSchema()", () => {
       ]);
     });
     it("resolves oneOf with $ref for expandedAll elements, merging schemas", () => {
+      testValidator = createValidator({
+        cases: [
+          {
+            schema: {
+              allOf: [
+                {
+                  type: "object",
+                  properties: {
+                    choice: { type: "string", const: "one" },
+                    other: { type: "number" },
+                  },
+                },
+                { anyOf: [{ required: ["choice"] }, { required: ["other"] }] },
+              ],
+            },
+            value: [],
+            result: false,
+          },
+          {
+            schema: {
+              allOf: [
+                {
+                  type: "object",
+                  properties: {
+                    choice: { type: "string", const: "two" },
+                    more: { type: "string" },
+                  },
+                },
+                { anyOf: [{ required: ["choice"] }, { required: ["more"] }] },
+              ],
+            },
+            value: [],
+            result: false,
+          },
+        ],
+      });
       const oneOfSchema: Schema = SUPER_SCHEMA.properties?.single as Schema;
       expect(
         resolveAnyOrOneOfSchemas(
@@ -2313,6 +2523,40 @@ describe("retrieveSchema()", () => {
       ]);
     });
     it("resolves oneOf with multiple $refs", () => {
+      testValidator = createValidator({
+        cases: [
+          {
+            schema: {
+              allOf: [
+                {
+                  type: "object",
+                  properties: {
+                    field: {
+                      properties: {
+                        a: { enum: ["typeA"] },
+                        b: { type: "number" },
+                      },
+                    },
+                  },
+                },
+                { anyOf: [{ required: ["field"] }] },
+              ],
+            },
+            value: [],
+            result: false,
+          },
+          {
+            schema: {
+              type: "array",
+              items: {
+                properties: { a: { enum: ["typeB"] }, c: { type: "boolean" } },
+              },
+            },
+            value: [],
+            result: true,
+          },
+        ],
+      });
       const schema: Schema = {
         oneOf: [
           {
@@ -2373,8 +2617,19 @@ describe("retrieveSchema()", () => {
       ]);
     });
   });
-  describe("resolveCondition2()", () => {
-    it("returns both conditi2ons with expandAll", () => {
+  describe("resolveCondition()", () => {
+    it("returns both conditions with expandAll", () => {
+      testValidator = createValidator({
+        cases: [
+          {
+            schema: {
+              properties: { country: { const: "United States of America" } },
+            },
+            value: {},
+            result: true,
+          },
+        ],
+      });
       expect(
         resolveCondition(
           testValidator,
@@ -2402,6 +2657,17 @@ describe("retrieveSchema()", () => {
       ]);
     });
     it("returns neither condition with expandAll, using boolean based then/else", () => {
+      testValidator = createValidator({
+        cases: [
+          {
+            schema: {
+              properties: { country: { const: "United States of America" } },
+            },
+            value: {},
+            result: true,
+          },
+        ],
+      });
       const schema: Schema = {
         type: "object",
         properties: {
