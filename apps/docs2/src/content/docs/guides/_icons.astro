@@ -8,6 +8,8 @@ import {
   ICONS_PACKAGE_NAMES,
   ICONS_PACKAGES,
   type IconsPackage,
+  VERSION,
+  FORM_PACKAGE_V,
 } from "@/shared";
 import FormCard from "@/components/form-card.astro";
 import Npm from "@/components/npm.astro";
@@ -62,7 +64,7 @@ const createUsageCode = (pkg: string) => `<script lang="ts">
       const Additional = ADDITIONAL[pkg];
       return (
         <div class="theme-content" data-theme={pkg}>
-          <Npm pkg={`@sjsf/form@next ${ICONS_PACKAGE_NAMES[pkg]}@next`} />
+          <Npm pkg={`${FORM_PACKAGE_V} ${ICONS_PACKAGE_NAMES[pkg]}@${VERSION}`} />
           {Additional && <Additional />}
 
           <h3 id="usage">Usage</h3>

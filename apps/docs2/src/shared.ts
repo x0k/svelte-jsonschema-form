@@ -1,21 +1,37 @@
 import type { StarlightIcon } from "@astrojs/starlight/types";
 
+import { version } from "#/form/package.json";
+
+export const VERSION = version;
+
+export const FORM_PACKAGE_V = `@sjsf/form@${VERSION}`;
+
+export const AJV_VALIDATOR_PACKAGE_V = `@sjsf/ajv8-validator@${VERSION}`;
+
 export const THEMES = [
   "basic",
   "daisyui",
   "daisyui5",
+  "flowbite",
   "flowbite3",
+  "skeleton",
   "skeleton3",
   "shadcn",
 ] as const;
 
 export type Theme = (typeof THEMES)[number];
 
+export const OUTDATED_THEMES =  new Set(["flowbite", "skeleton"])
+
+export const ACTUAL_THEMES = THEMES.filter(t => !OUTDATED_THEMES.has(t))
+
 export const THEME_TITLES = {
   basic: "basic",
   daisyui: "daisyUI v4",
   daisyui5: "daisyUI v5",
+  flowbite: "Flowbite",
   flowbite3: "Flowbite v3",
+  skeleton: "Skeleton v3 RC1",
   skeleton3: "Skeleton v3",
   shadcn: "shadcn-svelte",
 } satisfies Record<Theme, string>;
@@ -24,22 +40,34 @@ export const THEME_BRAND = {
   basic: "",
   daisyui: "daisyUi",
   daisyui5: "daisyUI",
+  flowbite: "Flowbite",
   flowbite3: "Flowbite",
+  skeleton: "Skeleton",
   skeleton3: "Skeleton",
   shadcn: "shadcn-svelte",
 } satisfies Record<Theme, string>;
 
 export const THEME_PACKAGES = {
-  basic: "@sjsf/basic-theme@next",
-  daisyui: "@sjsf/daisyui-theme@next",
-  daisyui5: "@sjsf/daisyui5-theme@next",
-  flowbite3: "@sjsf/flowbite3-theme@next",
-  skeleton3: "@sjsf/skeleton3-theme@next",
-  shadcn: "@sjsf/shadcn-theme@next",
+  basic: "@sjsf/basic-theme",
+  daisyui: "@sjsf/daisyui-theme",
+  daisyui5: "@sjsf/daisyui5-theme",
+  flowbite: "@sjsf/flowbite-theme",
+  flowbite3: "@sjsf/flowbite3-theme",
+  skeleton: "@sjsf/skeleton-theme",
+  skeleton3: "@sjsf/skeleton3-theme",
+  shadcn: "@sjsf/shadcn-theme",
 } satisfies Record<Theme, string>;
 
 export function isTheme(str: string): str is Theme {
   return str in THEME_TITLES;
+}
+
+export function withTag(theme: Theme) {
+  return `${THEME_PACKAGES[theme]}@${VERSION}`;
+}
+
+export function createThemeInstall(theme: Theme) {
+  return `${FORM_PACKAGE_V} ${AJV_VALIDATOR_PACKAGE_V} ajv@8 ${withTag(theme)}`;
 }
 
 export const ICONS_PACKAGES = [

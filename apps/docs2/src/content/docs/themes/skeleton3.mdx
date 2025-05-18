@@ -10,7 +10,7 @@ import styles from "@sjsf/skeleton3-theme/styles.css?inline";
 
 import { peerDependencies, optionalDependencies } from '#/skeleton3-theme/package.json'
 
-import { THEME_PACKAGES } from '@/shared';
+import { withTag } from '@/shared';
 import Npm from '@/components/npm.astro';
 import Picker from '@/components/picker.astro';
 import FormCard from '@/components/form-card.astro';
@@ -28,7 +28,7 @@ export const schemas = createSchemas(specs)
 
 ## Installation
 
-<Npm pkg={THEME_PACKAGES.skeleton3} />
+<Npm pkg={withTag("skeleton3")} />
 
 @skeletonlabs/skeleton <code>{peerDependencies['@skeletonlabs/skeleton']}</code> and
 @skeletonlabs/skeleton-svelte <code>{optionalDependencies['@skeletonlabs/skeleton-svelte']}</code> are required.
@@ -56,7 +56,7 @@ replace each other - use one or import the replacement widget directly.
 
 :::
 
-<Code lang='ts' code={createExtraImports(THEME_PACKAGES.skeleton3, extraWidgets)} />
+<Code lang='ts' code={createExtraImports("skeleton3", extraWidgets)} />
 
 ## UI options
 

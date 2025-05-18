@@ -10,6 +10,7 @@ import styles from '@sjsf/flowbite-theme/styles.css?inline';
 
 import { peerDependencies } from "#/flowbite-theme/package.json"
 
+import { withTag } from '@/shared';
 import Npm from '@/components/npm.astro';
 import Picker from '@/components/picker.astro';
 import FormCard from '@/components/form-card.astro';
@@ -19,8 +20,6 @@ import uiOptionsCode from './flowbite/ui-options?raw';
 import { createSchemas, replacer, createExtraImports } from "./_demo-schema";
 
 export const schemas = createSchemas(specs)
-
-export const THEME_PACKAGE = "@sjsf/flowbite-theme@next"
 
 > Flowbite™ is a registered trademark of Bergside Inc.
 This website is not affiliated with, endorsed by, or sponsored by Bergside Inc.
@@ -33,7 +32,7 @@ All rights to the trademark are owned by Bergside Inc.
 
 ## Installation
 
-<Npm pkg={THEME_PACKAGE} />
+<Npm pkg={withTag("flowbite")} />
 
 flowbite-svelte <code>{peerDependencies['flowbite-svelte']}</code> is required.
 
@@ -71,7 +70,7 @@ import flowbiteStyles from "@sjsf/flowbite-theme/styles.css?inline";
 
 You can connect extra widgets using the following `include` imports:
 
-<Code lang='ts' code={createExtraImports(THEME_PACKAGE, extraWidgets)} />
+<Code lang='ts' code={createExtraImports("flowbite", extraWidgets)} />
 
 ## UI options
 

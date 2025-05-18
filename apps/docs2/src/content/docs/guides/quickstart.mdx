@@ -8,7 +8,7 @@ import { Code, Card, LinkCard } from '@astrojs/starlight/components';
 
 import { peerDependencies as formPeerDeps } from '#/form/package.json'
 
-import { THEME_PACKAGES } from '@/shared'
+import { createThemeInstall } from '@/shared'
 import FormCard from '@/components/form-card.astro'
 import Npm from "@/components/npm.astro";
 
@@ -23,9 +23,7 @@ import formStateCode from './_form-state.svelte?raw';
 
 ## Installation
 
-<Npm
-  pkg={`@sjsf/form@next @sjsf/ajv8-validator@next ajv@8 ${THEME_PACKAGES.basic}`}
-/>
+<Npm pkg={createThemeInstall("basic")} />
 
 Svelte <code>{formPeerDeps.svelte}</code> is required
 

@@ -3,10 +3,10 @@ import { getRelativeLocaleUrl } from "astro:i18n";
 import { Code, Tabs, TabItem, LinkCard } from "@astrojs/starlight/components";
 
 import {
+  createThemeInstall,
   THEME_BRAND,
-  THEME_PACKAGES,
   THEME_TITLES,
-  THEMES,
+  ACTUAL_THEMES,
   type Theme,
 } from "@/shared";
 import { DEFAULT_LOCALE } from "@/i18n";
@@ -18,7 +18,7 @@ import ThemeForm from "./_theme-form.svelte";
 import schemaCode from "./_schema?raw";
 import validatorCode from "./_validator?raw";
 import withBasicCode from "./_with-basic.svelte?raw";
-import withSkeletonCode from "./_with-skeleton3.svelte?raw";
+import withSkeleton3Code from "./_with-skeleton3.svelte?raw";
 import withDaisyuiCode from "./_with-daisyui.svelte?raw";
 import withDaisyui5Code from "./_with-daisyui5.svelte?raw";
 import withFlowbite3Code from "./_with-flowbite3.svelte?raw";
@@ -34,8 +34,10 @@ const CODE = {
   basic: withBasicCode,
   daisyui: withDaisyuiCode,
   daisyui5: withDaisyui5Code,
+  flowbite: "",
   flowbite3: withFlowbite3Code,
-  skeleton3: withSkeletonCode,
+  skeleton: "",
+  skeleton3: withSkeleton3Code,
   shadcn: withShadcnCode,
 } satisfies Record<Theme, string>;
 
@@ -43,7 +45,9 @@ const STYLES = {
   basic: "",
   daisyui: daisyuiStyles,
   daisyui5: daisyu5Styles,
+  flowbite: "",
   flowbite3: flowbiteStyles,
+  skeleton: "",
   skeleton3: skeleton3Styles,
   shadcn: shadcnStyles,
 } satisfies Record<Theme, string>;
@@ -51,7 +55,7 @@ const STYLES = {
 const locale = Astro.currentLocale ?? DEFAULT_LOCALE;
 const initialTheme = (Astro.params.theme ?? "basic") as Theme;
 
-const styles = THEMES.map(
+const styles = ACTUAL_THEMES.map(
   (theme) => `
   .theme-tabs:has(.theme-tab[data-theme="${theme}"]:checked) ~ .theme-content[data-theme="${theme}"] {
     display: block;
@@ -63,7 +67,7 @@ const styles = THEMES.map(
 
 <div class="theme-tabs">
   {
-    THEMES.map((theme) => (
+    ACTUAL_THEMES.map((theme) => (
       <input
         type="radio"
         name="theme-input"
@@ -76,17 +80,15 @@ const styles = THEMES.map(
   }
 </div>
 {
-  THEMES.map((theme) => (
+  ACTUAL_THEMES.map((theme) => (
     <div class="theme-content" data-theme={theme}>
       {THEME_BRAND[theme] && (
         <p>
-          This theme is not affiliated with, endorsed by, or sponsored by
-          "{THEME_BRAND[theme]}" brand.
+          This theme is not affiliated with, endorsed by, or sponsored by "
+          {THEME_BRAND[theme]}" brand.
         </p>
       )}
-      <Npm
-        pkg={`@sjsf/form@next @sjsf/ajv8-validator@next ajv@8 ${THEME_PACKAGES[theme]}`}
-      />
+      <Npm pkg={createThemeInstall(theme)} />
 
       <LinkCard
         title={`${THEME_TITLES[theme]} theme setup`}

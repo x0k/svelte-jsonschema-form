@@ -10,7 +10,7 @@ import styles from '@sjsf/daisyui-theme/styles.css?inline';
 
 import { peerDependencies } from '#/daisyui-theme/package.json'
 
-import { THEME_PACKAGES } from '@/shared';
+import { withTag } from '@/shared';
 import Npm from '@/components/npm.astro';
 import Picker from '@/components/picker.astro';
 import FormCard from '@/components/form-card.astro';
@@ -28,7 +28,7 @@ export const schemas = createSchemas(specs)
 
 ## Installation
 
-<Npm pkg={THEME_PACKAGES.daisyui} />
+<Npm pkg={withTag('daisyui')} />
 
 daisyUI <code>{peerDependencies.daisyui}</code> is required.
 
@@ -66,7 +66,7 @@ import daisyStyles from "@sjsf/daisyui-theme/styles.css?inline";
 
 You can connect extra widgets using the following `include` imports:
 
-<Code lang='ts' code={createExtraImports(THEME_PACKAGES.daisyui, extraWidgets)} />
+<Code lang='ts' code={createExtraImports("daisyui", extraWidgets)} />
 
 ## UI options
 

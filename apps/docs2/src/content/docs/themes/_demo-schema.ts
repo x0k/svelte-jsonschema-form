@@ -3,6 +3,8 @@ import type { ComponentDefinition, Schema, UiSchema } from "@sjsf/form";
 import FilesField from "@sjsf/form/fields/extra-fields/files.svelte";
 import { s } from "testing/demo";
 
+import { THEME_PACKAGES, type Theme } from '@/shared';
+
 const filesAsArrayField = cast(FilesField, {
   value: {
     transform(props) {
@@ -12,11 +14,9 @@ const filesAsArrayField = cast(FilesField, {
   },
 }) satisfies ComponentDefinition<"arrayField">;
 
-export function createExtraImports(pkg: string, widgets: string[]) {
-  const atIndex = pkg.lastIndexOf("@");
-  const cleanPkg = atIndex > 0 ? pkg.substring(0, atIndex) : pkg;
+export function createExtraImports(theme: Theme, widgets: string[]) {
   return widgets
-    .map((w) => `import "${cleanPkg}/extra-widgets/${w}-include"`)
+    .map((w) => `import "${THEME_PACKAGES[theme]}/extra-widgets/${w}-include"`)
     .join("\n");
 }
 

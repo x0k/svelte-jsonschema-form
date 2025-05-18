@@ -8,6 +8,7 @@ import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/compon
 import { specs, extraWidgets } from '@sjsf/skeleton-theme/specs';
 import styles from "@sjsf/skeleton-theme/styles.css?inline";
 
+import { withTag } from '@/shared';
 import Npm from '@/components/npm.astro';
 import Picker from '@/components/picker.astro';
 import FormCard from '@/components/form-card.astro';
@@ -18,8 +19,6 @@ import { createSchemas, replacer, createExtraImports } from "./_demo-schema";
 
 export const schemas = createSchemas(specs)
 
-export const THEME_PACKAGE = "@sjsf/skeleton-theme@next"
-
 <Picker>
   <a href="." data-active={true}>v3 RC1</a>
   <a href="../skeleton3/" data-active={false}>v3</a>
@@ -27,7 +26,7 @@ export const THEME_PACKAGE = "@sjsf/skeleton-theme@next"
 
 ## Installation
 
-<Npm pkg={THEME_PACKAGE} />
+<Npm pkg={withTag("skeleton")} />
 
 :::note
 
@@ -83,7 +82,7 @@ Bundled themes:
 
 You can connect extra widgets using the following `include` imports:
 
-<Code lang='ts' code={createExtraImports(THEME_PACKAGE, extraWidgets)} />
+<Code lang='ts' code={createExtraImports("skeleton", extraWidgets)} />
 
 ## UI options
 

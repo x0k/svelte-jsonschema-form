@@ -10,7 +10,7 @@ import styles from '@sjsf/daisyui5-theme/styles.css?inline';
 
 import { peerDependencies } from '#/daisyui5-theme/package.json'
 
-import { THEME_PACKAGES } from '@/shared';
+import { withTag } from '@/shared';
 import Npm from '@/components/npm.astro';
 import Picker from '@/components/picker.astro';
 import FormCard from '@/components/form-card.astro';
@@ -28,7 +28,7 @@ export const schemas = createSchemas(specs)
 
 ## Installation
 
-<Npm pkg={THEME_PACKAGES.daisyui5} />
+<Npm pkg={withTag("daisyui5")} />
 
 daisyUI <code>{peerDependencies.daisyui}</code> is required.
 
@@ -56,8 +56,7 @@ use one or import the replacement widget directly.
 
 :::
 
-<Code lang='ts' code={createExtraImports(THEME_PACKAGES.daisyui5, extraWidgets)} />
-
+<Code lang='ts' code={createExtraImports("daisyui5", extraWidgets)} />
 
 ## UI options
 

@@ -10,7 +10,7 @@ import styles from '@sjsf/shadcn-theme/styles.css?inline';
 
 import { peerDependencies, optionalDependencies } from '#/shadcn-theme/package.json'
 
-import { THEME_PACKAGES } from '@/shared';
+import { withTag } from '@/shared';
 import Npm from '@/components/npm.astro';
 import FormCard from '@/components/form-card.astro';
 
@@ -22,7 +22,7 @@ export const schemas = createSchemas(specs)
 
 ## Installation
 
-<Npm pkg={THEME_PACKAGES.shadcn} />
+<Npm pkg={withTag("shadcn")} />
 
 :::note
 
@@ -92,7 +92,7 @@ use one or import the replacement widget directly.
 
 :::
 
-<Code lang='ts' code={createExtraImports(THEME_PACKAGES.basic, extraWidgets)} />
+<Code lang='ts' code={createExtraImports("shadcn", extraWidgets)} />
 
 ## UI options
 

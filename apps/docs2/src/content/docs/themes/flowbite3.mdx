@@ -10,7 +10,7 @@ import styles from '@sjsf/flowbite3-theme/styles.css?inline';
 
 import { peerDependencies } from '#/flowbite3-theme/package.json'
 
-import { THEME_PACKAGES } from '@/shared';
+import { withTag } from '@/shared';
 import Npm from '@/components/npm.astro';
 import Picker from '@/components/picker.astro';
 import FormCard from '@/components/form-card.astro';
@@ -32,7 +32,7 @@ All rights to the trademark are owned by Bergside Inc.
 
 ## Installation
 
-<Npm pkg={THEME_PACKAGES.flowbite3} />
+<Npm pkg={withTag("flowbite3")} />
 
 flowbite-svelte <code>{peerDependencies['flowbite-svelte']}</code> is required.
 
@@ -52,7 +52,7 @@ Register the theme source path by adding a line like this to the `app.css` file.
 
 You can connect extra widgets using the following `include` imports:
 
-<Code lang='ts' code={createExtraImports(THEME_PACKAGES.flowbite3, extraWidgets)} />
+<Code lang='ts' code={createExtraImports("flowbite3", extraWidgets)} />
 
 ## UI options
 
