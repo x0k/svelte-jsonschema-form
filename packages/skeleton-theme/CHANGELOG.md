@@ -1,5 +1,13 @@
 # @sjsf/skeleton-theme
 
+## 2.0.0-next.14
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/basic-theme@2.0.0-next.14
+  - @sjsf/form@2.0.0-next.14
+
 ## 2.0.0-next.13
 
 ### Patch Changes

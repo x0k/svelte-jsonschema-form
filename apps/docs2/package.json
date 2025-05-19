@@ -2,7 +2,7 @@
   "name": "docs2",
   "private": true,
   "type": "module",
-  "version": "1.6.3-next.13",
+  "version": "1.6.3-next.14",
   "scripts": {
     "dev": "astro dev",
     "precompile-ajv-validator": "node --experimental-strip-types src/content/docs/validators/ajv/precompile/compile-schema-script.ts",
