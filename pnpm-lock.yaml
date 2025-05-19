@@ -126,6 +126,9 @@ importers:
       prettier-plugin-svelte:
         specifier: 'catalog:'
         version: 3.4.0(prettier@3.5.3)(svelte@5.30.2)
+      prettier-plugin-tailwindcss:
+        specifier: 'catalog:'
+        version: 0.6.11(prettier-plugin-svelte@3.4.0(prettier@3.5.3)(svelte@5.30.2))(prettier@3.5.3)
       publint:
         specifier: ^0.3.12
         version: 0.3.12
