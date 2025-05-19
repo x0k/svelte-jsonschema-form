@@ -7,6 +7,6 @@
 	const ctx = getFormContext();
 </script>
 
-<div class="text-muted-foreground" {...helpAttributes(ctx, config, 'helpAttributes', {})}>
+<div class="text-muted-foreground text-sm" {...helpAttributes(ctx, config, 'helpAttributes', {})}>
 	{help}
 </div>

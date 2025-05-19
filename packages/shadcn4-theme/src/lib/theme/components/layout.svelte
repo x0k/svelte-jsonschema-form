@@ -27,10 +27,9 @@
 <div
 	class={{
 		flex: isItem || isControls || isField || isColumn,
-		'gap-2': isItem || isField || isControls,
+		'gap-1.5': isItem || isField || isControls,
 		'gap-4': isColumn,
 		'items-start': isItem || isControls,
-		'preset-outlined-surface-200-800': isControls,
 		grow: isGrowable,
 		'flex-col': isColumn || isField
 	}}

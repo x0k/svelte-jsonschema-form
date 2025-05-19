@@ -8,7 +8,7 @@
 </script>
 
 <div
-	class="text-muted-foreground"
+	class="text-muted-foreground text-sm"
 	{...descriptionAttributes(ctx, config, 'descriptionAttributes', {})}
 >
 	{description}
