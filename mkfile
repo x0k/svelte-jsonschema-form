@@ -194,7 +194,7 @@ radi/:
   popd
 
 shad/:
-  pushd packages/shadcn-theme
+  pushd packages/shadcn4-theme
   c:
     pnpm run check
   b:
