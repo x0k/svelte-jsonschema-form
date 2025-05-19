@@ -52,7 +52,7 @@ import themeStyles from "@sjsf/shadcn-theme/styles.css?inline";
 <script lang="ts">
   import { createForm } from '@sjsf/form';
   import { theme, setThemeContext } from '@sjsf/shadcn-theme';
-  import { components } from '@sjsf/shadcn-theme/default'
+  import * as components from '@sjsf/shadcn-theme/default'
 
   const form = createForm({
     theme,
