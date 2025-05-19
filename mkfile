@@ -199,6 +199,8 @@ shad/:
     pnpm run check
   b:
     pnpm run build
+  p:
+    pnpm run preview
   d:
     pnpm run dev
   popd

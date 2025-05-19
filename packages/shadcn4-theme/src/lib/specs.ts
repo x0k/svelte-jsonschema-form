@@ -1,18 +1,18 @@
 import { s } from 'testing/demo';
 
-import './theme/extra-widgets/checkboxes-include';
+import './theme/extra-widgets/checkboxes-include.js';
 
 import Combobox from './theme/extra-widgets/combobox.svelte';
 import './theme/extra-widgets/combobox.svelte';
 
-import './theme/extra-widgets/date-picker-include';
-import './theme/extra-widgets/file-include';
-import './theme/extra-widgets/multi-select-include';
-import './theme/extra-widgets/radio-buttons-include';
-import './theme/extra-widgets/radio-include';
-import './theme/extra-widgets/range-include';
-import './theme/extra-widgets/switch-include';
-import './theme/extra-widgets/textarea-include';
+import './theme/extra-widgets/date-picker-include.js';
+import './theme/extra-widgets/file-include.js';
+import './theme/extra-widgets/multi-select-include.js';
+import './theme/extra-widgets/radio-buttons-include.js';
+import './theme/extra-widgets/radio-include.js';
+import './theme/extra-widgets/range-include.js';
+import './theme/extra-widgets/switch-include.js';
+import './theme/extra-widgets/textarea-include.js';
 
 export const specs: s.Specs = {
 	combobox: [

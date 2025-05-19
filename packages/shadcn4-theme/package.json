@@ -14,9 +14,6 @@
 		"!dist/**/*.test.*",
 		"!dist/**/*.spec.*"
 	],
-	"sideEffects": [
-		"**/*.css"
-	],
 	"publishConfig": {
 		"provenance": true
 	},
