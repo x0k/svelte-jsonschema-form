@@ -1,0 +1,121 @@
+{
+	"name": "@sjsf/shadcn4-theme",
+	"version": "2.0.0-next.12",
+	"description": "The shadcn-svelte based theme for svelte-jsonschema-form",
+	"license": "MIT",
+	"keywords": [
+		"theme",
+		"shadcn-svelte",
+		"form"
+	],
+	"type": "module",
+	"files": [
+		"dist",
+		"!dist/**/*.test.*",
+		"!dist/**/*.spec.*"
+	],
+	"sideEffects": [
+		"**/*.css"
+	],
+	"publishConfig": {
+		"provenance": true
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/x0k/svelte-jsonschema-form.git",
+		"directory": "packages/shadcn4-theme"
+	},
+	"bugs": "https://github.com/x0k/svelte-jsonschema-form/issues",
+	"homepage": "https://x0k.github.io/svelte-jsonschema-form/",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build && npm run prepack",
+		"preview": "vite preview",
+		"prepare": "svelte-kit sync || echo ''",
+		"extract-css": "mv $(find .svelte-kit/output/client/_app/immutable/assets/ -name \"_page*.css\" | head -n 1) dist/styles.css",
+		"prepack": "svelte-kit sync && svelte-package && npm run extract-css && publint",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"format": "prettier --write .",
+		"lint": "prettier --check . && eslint .",
+		"test:unit": "vitest",
+		"test": "npm run test:unit -- --run",
+		"test:e2e": "playwright test"
+	},
+	"svelte": "./dist/theme/index.js",
+	"types": "./dist/theme/index.d.ts",
+	"exports": {
+		"./components/*": {
+			"types": "./dist/theme/components/*.d.ts",
+			"svelte": "./dist/theme/components/*"
+		},
+		"./widgets/*": {
+			"types": "./dist/theme/widgets/*.d.ts",
+			"svelte": "./dist/theme/widgets/*"
+		},
+		"./extra-widgets/*": {
+			"types": "./dist/theme/extra-widgets/*.d.ts",
+			"svelte": "./dist/theme/extra-widgets/*"
+		},
+		".": {
+			"types": "./dist/theme/index.d.ts",
+			"svelte": "./dist/theme/index.js"
+		},
+		"./new-york": {
+			"types": "./dist/components/ui/index.d.ts",
+			"svelte": "./dist/components/ui/index.js"
+		},
+		"./styles.css": "./dist/styles.css",
+		"./specs": {
+			"types": "./dist/specs.d.ts",
+			"svelte": "./dist/specs.js"
+		}
+	},
+	"dependencies": {
+		"@sjsf/basic-theme": "workspace:^2.0.0-next.12"
+	},
+	"optionalDependencies": {
+		"@internationalized/date": "3.7.0"
+	},
+	"peerDependencies": {
+		"@sjsf/form": "workspace:^2.0.0-next.12",
+		"bits-ui": "^1.5.0",
+		"clsx": "^2.1.0",
+		"@lucide/svelte": "^0.501.0",
+		"svelte": "^5.30.0",
+		"tailwind-merge": "^3.3.0",
+		"tailwind-variants": "^1.0.0"
+	},
+	"devDependencies": {
+		"@eslint/compat": "catalog:",
+		"@eslint/js": "catalog:",
+		"@internationalized/date": "3.7.0",
+		"@lucide/svelte": "^0.511.0",
+		"@playwright/test": "catalog:",
+		"@sjsf/ajv8-validator": "workspace:*",
+		"@sjsf/form": "workspace:*",
+		"@sveltejs/adapter-static": "catalog:",
+		"@sveltejs/kit": "catalog:",
+		"@sveltejs/package": "catalog:",
+		"@sveltejs/vite-plugin-svelte": "catalog:",
+		"@tailwindcss/vite": "catalog:",
+		"@testing-library/svelte": "catalog:",
+		"bits-ui": "^1.5.2",
+		"clsx": "^2.1.1",
+		"eslint": "catalog:",
+		"eslint-config-prettier": "catalog:",
+		"eslint-plugin-svelte": "catalog:",
+		"globals": "catalog:",
+		"prettier": "catalog:",
+		"prettier-plugin-svelte": "catalog:",
+		"prettier-plugin-tailwindcss": "catalog:",
+		"svelte": "catalog:",
+		"svelte-check": "catalog:",
+		"tailwind-merge": "^3.3.0",
+		"tailwind-variants": "^1.0.0",
+		"tailwindcss": "catalog:next",
+		"tw-animate-css": "^1.3.0",
+		"testing": "workspace:*",
+		"typescript-eslint": "catalog:"
+	}
+}

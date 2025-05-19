@@ -146,7 +146,7 @@ const widgets: Sample = {
           flowbite3Text: {
             placeholder: "This is a placeholder",
           },
-          shadcnText: {
+          shadcn4Text: {
             placeholder: "This is a placeholder",
           },
         },
@@ -160,7 +160,7 @@ const widgets: Sample = {
         flowbite3Text: {
           type: "hidden",
         },
-        shadcnText: {
+        shadcn4Text: {
           type: "hidden",
         },
       },
@@ -173,7 +173,7 @@ const widgets: Sample = {
         flowbite3Text: {
           disabled: true,
         },
-        shadcnText: {
+        shadcn4Text: {
           disabled: true,
         },
       },
@@ -186,7 +186,7 @@ const widgets: Sample = {
         flowbite3Text: {
           readonly: true,
         },
-        shadcnText: {
+        shadcn4Text: {
           readonly: true,
         },
       },
@@ -199,7 +199,7 @@ const widgets: Sample = {
         flowbite3Text: {
           style: "flex-grow: 1; background-color: darkorange;",
         },
-        shadcnText: {
+        shadcn4Text: {
           style: "flex-grow: 1; background-color: darkorange;",
         },
       },
@@ -212,7 +212,7 @@ const widgets: Sample = {
         flowbite3Select: {
           style: "flex-grow: 1; background-color: pink; color: black;",
         },
-        shadcnSelectTrigger: {
+        shadcn4SelectTrigger: {
           style: "flex-grow: 1; background-color: pink; color: black;",
         },
       },

@@ -49,7 +49,7 @@ const ordering: Sample = {
         flowbite3Text: {
           type: "password",
         },
-        shadcnText: {
+        shadcn4Text: {
           type: "password",
         },
       },

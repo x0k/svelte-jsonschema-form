@@ -1,7 +1,7 @@
 ---
 title: shadcn-svelte
 sidebar:
-  order: 4
+  hidden: true
 ---
 
 import { Code, Card, LinkButton, Tabs, TabItem } from '@astrojs/starlight/components';
@@ -12,6 +12,7 @@ import { peerDependencies, optionalDependencies } from '#/shadcn-theme/package.j
 
 import { withTag } from '@/shared';
 import Npm from '@/components/npm.astro';
+import Picker from '@/components/picker.astro';
 import FormCard from '@/components/form-card.astro';
 
 import Form from './shadcn/form.svelte';
@@ -19,6 +20,12 @@ import uiOptionsCode from './shadcn/ui-options?raw';
 import { createSchemas, replacer, createExtraImports } from "./_demo-schema";
 
 export const schemas = createSchemas(specs)
+
+
+<Picker>
+  <a href="." data-active={true}>tw3</a>
+  <a href="../shadcn4/" data-active={false}>tw4</a>
+</Picker>
 
 ## Installation
 

@@ -2,9 +2,9 @@
   import { BasicForm, createForm } from "@sjsf/form";
   import { resolver } from "@sjsf/form/resolvers/basic";
   import { translation } from "@sjsf/form/translations/en";
-  import { theme, setThemeContext } from "@sjsf/shadcn-theme";
-  import * as components from "@sjsf/shadcn-theme/default";
-  import "@sjsf/shadcn-theme/extra-widgets/textarea-include";
+  import { theme, setThemeContext } from "@sjsf/shadcn4-theme";
+  import * as components from "@sjsf/shadcn4-theme/new-york";
+  import "@sjsf/shadcn4-theme/extra-widgets/textarea-include";
 
   import { createAstro } from "@/astro.svelte";
 

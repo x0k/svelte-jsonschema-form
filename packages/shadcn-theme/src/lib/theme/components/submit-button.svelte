@@ -20,6 +20,6 @@
 	const { Button } = $derived(themeCtx.components);
 </script>
 
-<Button {...buttonAttributes(ctx, config, 'shadcnButton', 'submit', {})}>
+<Button {...buttonAttributes(ctx, config, 'shadcnSubmitButton', 'submit', {})}>
 	{@render children()}
 </Button>

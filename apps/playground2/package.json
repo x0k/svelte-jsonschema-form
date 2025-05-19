@@ -22,7 +22,7 @@
     "@sjsf/moving-icons": "workspace:*",
     "@sjsf/radix-icons": "workspace:*",
     "@sjsf/schemasafe-validator": "workspace:*",
-    "@sjsf/shadcn-theme": "workspace:*",
+    "@sjsf/shadcn4-theme": "workspace:*",
     "@sjsf/skeleton3-theme": "workspace:*",
     "ajv": "catalog:",
     "rehype-raw": "^7.0.0",

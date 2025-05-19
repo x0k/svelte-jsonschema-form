@@ -22,13 +22,13 @@ import withSkeleton3Code from "./_with-skeleton3.svelte?raw";
 import withDaisyuiCode from "./_with-daisyui.svelte?raw";
 import withDaisyui5Code from "./_with-daisyui5.svelte?raw";
 import withFlowbite3Code from "./_with-flowbite3.svelte?raw";
-import withShadcnCode from "./_with-shadcn.svelte?raw";
+import withShadcn4Code from "./_with-shadcn4.svelte?raw";
 
 import daisyuiStyles from "@sjsf/daisyui-theme/styles.css?inline";
 import daisyu5Styles from "@sjsf/daisyui5-theme/styles.css?inline";
 import flowbiteStyles from "@sjsf/flowbite-theme/styles.css?inline";
 import skeleton3Styles from "@sjsf/skeleton3-theme/styles.css?inline";
-import shadcnStyles from "@sjsf/shadcn-theme/styles.css?inline";
+import shadcn4Styles from "@sjsf/shadcn4-theme/styles.css?inline";
 
 const CODE = {
   basic: withBasicCode,
@@ -38,7 +38,8 @@ const CODE = {
   flowbite3: withFlowbite3Code,
   skeleton: "",
   skeleton3: withSkeleton3Code,
-  shadcn: withShadcnCode,
+  shadcn: "",
+  shadcn4: withShadcn4Code,
 } satisfies Record<Theme, string>;
 
 const STYLES = {
@@ -49,7 +50,8 @@ const STYLES = {
   flowbite3: flowbiteStyles,
   skeleton: "",
   skeleton3: skeleton3Styles,
-  shadcn: shadcnStyles,
+  shadcn: "",
+  shadcn4: shadcn4Styles,
 } satisfies Record<Theme, string>;
 
 const locale = Astro.currentLocale ?? DEFAULT_LOCALE;

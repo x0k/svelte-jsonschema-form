@@ -55,7 +55,7 @@ const simple: Sample = {
             "`stringEmptyValue` causes this field to always be valid despite being required",
           autocomplete: "family-name",
         },
-        shadcnText: {
+        shadcn4Text: {
           autofocus: true,
           placeholder:
             "`stringEmptyValue` causes this field to always be valid despite being required",
@@ -69,14 +69,14 @@ const simple: Sample = {
     lastName: {
       "ui:options": {
         description:
-          "Make things **bold** or *italic*. Embed snippets of `code`. <small>And this is a small texts.</small> ",
+          "Make things **bold** or *italic*. Embed snippets of `code`.",
         text: {
           autocomplete: "given-name",
         },
         flowbite3Text: {
           autocomplete: "given-name",
         },
-        shadcnText: {
+        shadcn4Text: {
           autocomplete: "given-name",
         },
       },
@@ -104,7 +104,7 @@ const simple: Sample = {
         flowbite3Text: {
           type: "password",
         },
-        shadcnText: {
+        shadcn4Text: {
           type: "password",
         },
       },
@@ -117,7 +117,7 @@ const simple: Sample = {
         flowbite3Text: {
           type: "tel",
         },
-        shadcnText: {
+        shadcn4Text: {
           type: "tel",
         },
       },
