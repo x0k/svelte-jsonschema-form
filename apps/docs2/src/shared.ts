@@ -17,11 +17,12 @@ export const THEMES = [
   "skeleton",
   "skeleton3",
   "shadcn",
+  "shadcn4"
 ] as const;
 
 export type Theme = (typeof THEMES)[number];
 
-export const OUTDATED_THEMES =  new Set(["flowbite", "skeleton"])
+export const OUTDATED_THEMES = new Set<Theme>(["flowbite", "skeleton", "shadcn"])
 
 export const ACTUAL_THEMES = THEMES.filter(t => !OUTDATED_THEMES.has(t))
 
@@ -34,6 +35,7 @@ export const THEME_TITLES = {
   skeleton: "Skeleton v3 RC1",
   skeleton3: "Skeleton v3",
   shadcn: "shadcn-svelte",
+  shadcn4: "shadcn-svelte",
 } satisfies Record<Theme, string>;
 
 export const THEME_BRAND = {
@@ -45,6 +47,7 @@ export const THEME_BRAND = {
   skeleton: "Skeleton",
   skeleton3: "Skeleton",
   shadcn: "shadcn-svelte",
+  shadcn4: "shadcn-svelte",
 } satisfies Record<Theme, string>;
 
 export const THEME_PACKAGES = {
@@ -56,6 +59,7 @@ export const THEME_PACKAGES = {
   skeleton: "@sjsf/skeleton-theme",
   skeleton3: "@sjsf/skeleton3-theme",
   shadcn: "@sjsf/shadcn-theme",
+  shadcn4: "@sjsf/shadcn4-theme",
 } satisfies Record<Theme, string>;
 
 export function isTheme(str: string): str is Theme {

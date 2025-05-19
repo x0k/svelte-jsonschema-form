@@ -1,39 +1,38 @@
 ---
 title: shadcn-svelte
 sidebar:
-  hidden: true
+  order: 4
 ---
 
 import { Code, Card, LinkButton, Tabs, TabItem } from '@astrojs/starlight/components';
-import { specs, extraWidgets } from '@sjsf/shadcn-theme/specs';
-import styles from '@sjsf/shadcn-theme/styles.css?inline';
+import { specs, extraWidgets } from '@sjsf/shadcn4-theme/specs';
+import styles from '@sjsf/shadcn4-theme/styles.css?inline';
 
-import { peerDependencies, optionalDependencies } from '#/shadcn-theme/package.json'
+import { peerDependencies, optionalDependencies } from '#/shadcn4-theme/package.json'
 
 import { withTag } from '@/shared';
 import Npm from '@/components/npm.astro';
 import Picker from '@/components/picker.astro';
 import FormCard from '@/components/form-card.astro';
 
-import Form from './shadcn/form.svelte';
-import uiOptionsCode from './shadcn/ui-options?raw';
+import Form from './shadcn4/form.svelte';
+import uiOptionsCode from './shadcn4/ui-options?raw';
 import { createSchemas, replacer, createExtraImports } from "./_demo-schema";
 
 export const schemas = createSchemas(specs)
 
-
 <Picker>
-  <a href="." data-active={true}>tw3</a>
-  <a href="../shadcn4/" data-active={false}>tw4</a>
+  <a href="../shadcn/" data-active={false}>tw3</a>
+  <a href="." data-active={true}>tw4</a>
 </Picker>
 
 ## Installation
 
-<Npm pkg={withTag("shadcn")} />
+<Npm pkg={withTag("shadcn4")} />
 
 :::note
 
-This is `shadcn-svelte@next` based theme (Tailwind v3).
+This is `shadcn-svelte@next` based theme (Tailwind v4).
 
 :::
 
@@ -46,29 +45,11 @@ bits-ui <code>{peerDependencies['bits-ui']}</code> and @internationalized/date
   Installation - shadcn-svelte
 </LinkButton>
 
-### Setup styles
+### Configuration
 
-There is two ways to setup styles:
+Register the theme source path by adding a line like this to the `app.css` file.
 
-1. Use tailwindcss config
-
-```typescript
-import { THEME_CONTENT } from '@sjsf/shadcn-theme/preset'
-
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: ['./src/**/*.{html,js,svelte,ts}', THEME_CONTENT],
-  // other tailwind config
-  ...
-}
-```
-
-2. Inject prepared styles (not recommended)
-
-```typescript
-// Inject them as you like
-import shadcnStyles from '@sjsf/shadcn-theme/styles.css?inline';
-```
+`@source "../node_modules/@sjsf/shadcn4-theme/dist";`
 
 ## Components
 
@@ -81,9 +62,8 @@ You should prefer to use components from your code base to avoid code duplicatio
 :::
 
 ```typescript
-import { setThemeContext } from '@sjsf/shadcn-theme';
-import * as components from '@sjsf/shadcn-theme/default';
-// or import * as components from '@sjsf/shadcn-theme/new-york';
+import { setThemeContext } from '@sjsf/shadcn4-theme';
+import * as components from '@sjsf/shadcn4-theme/new-york';
 
 setThemeContext({ components })
 ```
@@ -99,7 +79,7 @@ use one or import the replacement widget directly.
 
 :::
 
-<Code lang='ts' code={createExtraImports("shadcn", extraWidgets)} />
+<Code lang='ts' code={createExtraImports("shadcn4", extraWidgets)} />
 
 ## UI options
 

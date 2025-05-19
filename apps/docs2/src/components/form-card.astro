@@ -10,9 +10,16 @@ export interface Props {
   <template shadowrootmode="open">
     <style>
       :host {
+        /* skeleton */
         --tw-inset-shadow: 0 0 #0000;
         --tw-inset-ring-shadow: 0 0 #0000;
         --tw-ring-offset-shadow: 0 0 #0000;
+        /* shadcn */
+        --tw-ring-shadow: 0 0 #0000;
+        --tw-border-style: solid;
+        /* --tw-shadow-color: inherit;
+        --tw-ease: ease;
+        --tw-duration: 0.15s; */
       }
     </style>
     {Astro.props.style && <style set:html={Astro.props.style} />}
