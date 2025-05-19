@@ -602,7 +602,7 @@ importers:
   packages/daisyui-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^2.0.0-next.12
+        specifier: workspace:^2.0.0-next.13
         version: link:../basic-theme
     devDependencies:
       '@playwright/test':
@@ -678,7 +678,7 @@ importers:
   packages/daisyui5-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^2.0.0-next.12
+        specifier: workspace:^2.0.0-next.13
         version: link:../basic-theme
     devDependencies:
       '@playwright/test':
@@ -906,7 +906,7 @@ importers:
   packages/flowbite3-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^2.0.0-next.12
+        specifier: workspace:^2.0.0-next.13
         version: link:../basic-theme
     devDependencies:
       '@playwright/test':
@@ -1217,7 +1217,7 @@ importers:
   packages/shadcn-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^2.0.0-next.12
+        specifier: workspace:^2.0.0-next.13
         version: link:../basic-theme
     devDependencies:
       '@lucide/svelte':
@@ -1312,7 +1312,7 @@ importers:
   packages/shadcn4-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^2.0.0-next.12
+        specifier: workspace:^2.0.0-next.13
         version: link:../basic-theme
     devDependencies:
       '@eslint/compat':
@@ -1410,7 +1410,7 @@ importers:
   packages/skeleton-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^2.0.0-next.12
+        specifier: workspace:^2.0.0-next.13
         version: link:../basic-theme
     devDependencies:
       '@playwright/test':
@@ -1489,7 +1489,7 @@ importers:
   packages/skeleton3-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^2.0.0-next.12
+        specifier: workspace:^2.0.0-next.13
         version: link:../basic-theme
     devDependencies:
       '@playwright/test':
