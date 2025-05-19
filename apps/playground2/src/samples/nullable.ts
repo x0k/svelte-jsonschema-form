@@ -46,7 +46,7 @@ const nullable: Sample = {
         flowbite3Text: {
           autofocus: true,
         },
-        shadcnText: {
+        shadcn4Text: {
           autofocus: true,
         },
         stringEmptyValue: "",
@@ -83,7 +83,7 @@ const nullable: Sample = {
         flowbite3Text: {
           type: "password",
         },
-        shadcnText: {
+        shadcn4Text: {
           type: "password",
         },
         description: "Hint: Make it strong!",
@@ -97,7 +97,7 @@ const nullable: Sample = {
         flowbite3Text: {
           type: "tel",
         },
-        shadcnText: {
+        shadcn4Text: {
           type: "tel",
         },
       },

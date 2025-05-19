@@ -16,8 +16,8 @@
   import { translation } from "@sjsf/form/translations/en";
   import { resolver } from "@sjsf/form/resolvers/compat";
   import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
-  import { setThemeContext } from "@sjsf/shadcn-theme";
-  import * as components from "@sjsf/shadcn-theme/default";
+  import { setThemeContext } from "@sjsf/shadcn4-theme";
+  import * as components from "@sjsf/shadcn4-theme/new-york";
 
   import { themes, themeStyles } from "./themes";
   import { icons, iconsStyles } from "./icons";

@@ -38,7 +38,7 @@ const patternProperties: Sample = {
         text: {
           autofocus: true,
         },
-        shadcnText: {
+        shadcn4Text: {
           autofocus: true,
         },
         stringEmptyValue: "",

@@ -377,7 +377,7 @@ const layoutGrid: Sample = {
       },
       combinationFieldOptionSelector: {
         "ui:options": {
-          shadcnRadioGroup: {
+          shadcn4RadioGroup: {
             style: "grid-template-columns: repeat(3, 1fr);",
           },
         },

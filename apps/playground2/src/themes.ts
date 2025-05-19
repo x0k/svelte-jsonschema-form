@@ -53,15 +53,15 @@ import "@sjsf/skeleton3-theme/extra-widgets/radio-include";
 import "@sjsf/skeleton3-theme/extra-widgets/range-include";
 import "@sjsf/skeleton3-theme/extra-widgets/date-picker-include";
 
-import { theme as shadcn } from "@sjsf/shadcn-theme";
-import shadcnStyles from "@sjsf/shadcn-theme/styles.css?inline";
-import '@sjsf/shadcn-theme/extra-widgets/checkboxes-include';
-import '@sjsf/shadcn-theme/extra-widgets/file-include';
-import "@sjsf/shadcn-theme/extra-widgets/multi-select-include";
-import "@sjsf/shadcn-theme/extra-widgets/textarea-include";
-import "@sjsf/shadcn-theme/extra-widgets/radio-include";
-import "@sjsf/shadcn-theme/extra-widgets/range-include";
-import "@sjsf/shadcn-theme/extra-widgets/date-picker-include";
+import { theme as shadcn4 } from "@sjsf/shadcn4-theme";
+import shadcn4Styles from "@sjsf/shadcn4-theme/styles.css?inline";
+import '@sjsf/shadcn4-theme/extra-widgets/checkboxes-include';
+import '@sjsf/shadcn4-theme/extra-widgets/file-include';
+import "@sjsf/shadcn4-theme/extra-widgets/multi-select-include";
+import "@sjsf/shadcn4-theme/extra-widgets/textarea-include";
+import "@sjsf/shadcn4-theme/extra-widgets/radio-include";
+import "@sjsf/shadcn4-theme/extra-widgets/range-include";
+import "@sjsf/shadcn4-theme/extra-widgets/date-picker-include";
 
 export const themes = {
   basic,
@@ -69,7 +69,7 @@ export const themes = {
   daisy5,
   flowbite3,
   skeleton3,
-  shadcn,
+  shadcn4
 };
 
 export const themeStyles = {
@@ -78,5 +78,5 @@ export const themeStyles = {
   daisy5: daisy5Styles,
   flowbite3: flowbite3Styles,
   skeleton3: skeleton3Styles,
-  shadcn: shadcnStyles,
+  shadcn4: shadcn4Styles
 } satisfies Record<keyof typeof themes, string>;

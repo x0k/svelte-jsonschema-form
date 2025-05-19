@@ -45,7 +45,7 @@ const optionsSample: Sample = {
           autofocus: true,
           autocomplete: "family-name",
         },
-        shadcnText: {
+        shadcn4Text: {
           autofocus: true,
           autocomplete: "family-name",
         },
@@ -61,7 +61,7 @@ const optionsSample: Sample = {
         flowbite3Text: {
           autocomplete: "given-name",
         },
-        shadcnText: {
+        shadcn4Text: {
           autocomplete: "given-name",
         },
       },
@@ -74,7 +74,7 @@ const optionsSample: Sample = {
         flowbite3Text: {
           type: "tel",
         },
-        shadcnText: {
+        shadcn4Text: {
           type: "tel",
         },
       },

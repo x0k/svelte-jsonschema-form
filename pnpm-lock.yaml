@@ -504,9 +504,9 @@ importers:
       '@sjsf/schemasafe-validator':
         specifier: workspace:*
         version: link:../../packages/schemasafe-validator
-      '@sjsf/shadcn-theme':
+      '@sjsf/shadcn4-theme':
         specifier: workspace:*
-        version: link:../../packages/shadcn-theme
+        version: link:../../packages/shadcn4-theme
       '@sjsf/skeleton3-theme':
         specifier: workspace:*
         version: link:../../packages/skeleton3-theme

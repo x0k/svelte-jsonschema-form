@@ -58,14 +58,14 @@ const validation: Sample = {
       "ui:options": {
         text: { type: "password" },
         flowbite3Text: { type: "password" },
-        shadcnText: { type: "password" },
+        shadcn4Text: { type: "password" },
       },
     },
     pass2: {
       "ui:options": {
         text: { type: "password" },
         flowbite3Text: { type: "password" },
-        shadcnText: { type: "password" },
+        shadcn4Text: { type: "password" },
       },
     },
   },
