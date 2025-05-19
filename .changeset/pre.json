@@ -24,7 +24,8 @@
     "@sjsf/moving-icons": "2.0.0-next.2",
     "@sjsf/flowbite3-theme": "0.0.1",
     "@sjsf/skeleton3-theme": "0.0.1",
-    "@sjsf/schemasafe-validator": "2.0.0-next.8"
+    "@sjsf/schemasafe-validator": "2.0.0-next.8",
+    "@sjsf/shadcn4-theme": "2.0.0-next.12"
   },
   "changesets": [
     "better-goats-swim",
@@ -34,6 +35,7 @@
     "brown-roses-knock",
     "bumpy-clocks-feel",
     "bumpy-parts-scream",
+    "bumpy-windows-mix",
     "clean-states-pump",
     "clean-tips-judge",
     "clear-coats-jam",
