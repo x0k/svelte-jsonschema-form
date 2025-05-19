@@ -3,7 +3,7 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			shadcnNumber?: InputProps;
+			shadcn4Number?: InputProps;
 		}
 	}
 </script>
@@ -21,7 +21,7 @@
 	let { value = $bindable(), config, handlers }: ComponentProps['numberWidget'] = $props();
 
 	const attributes = $derived(
-		inputAttributes(ctx, config, 'shadcnNumber', handlers, { type: 'number' })
+		inputAttributes(ctx, config, 'shadcn4Number', handlers, { type: 'number' })
 	);
 </script>
 

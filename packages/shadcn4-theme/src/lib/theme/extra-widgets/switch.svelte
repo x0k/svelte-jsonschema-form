@@ -5,7 +5,7 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			shadcnSwitch?: WithoutChildrenOrChild<SwitchRootProps>;
+			shadcn4Switch?: WithoutChildrenOrChild<SwitchRootProps>;
 		}
 	}
 
@@ -31,7 +31,7 @@
 
 <Switch
 	bind:checked={() => value ?? false, (v) => (value = v)}
-	{...customInputAttributes(ctx, config, 'shadcnSwitch', {
+	{...customInputAttributes(ctx, config, 'shadcn4Switch', {
 		...handlers,
 		id: config.id,
 		name: config.id,

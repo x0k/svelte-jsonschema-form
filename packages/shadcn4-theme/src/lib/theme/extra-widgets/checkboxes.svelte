@@ -5,7 +5,7 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			shadcnCheckboxes?: CheckboxProps;
+			shadcn4Checkboxes?: CheckboxProps;
 		}
 	}
 </script>
@@ -38,7 +38,7 @@
 	const indexes = $derived(new Set(mapped.value));
 
 	const attributes = $derived(
-		customInputAttributes(ctx, config, 'shadcnCheckboxes', {
+		customInputAttributes(ctx, config, 'shadcn4Checkboxes', {
 			...handlers,
 			name: config.id,
 			required: config.required

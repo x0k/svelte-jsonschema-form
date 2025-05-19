@@ -12,8 +12,8 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			shadcnRadioGroup?: WithoutChildrenOrChild<RadioGroupRootProps>;
-			shadcnRadioItem?: Omit<WithoutChildrenOrChild<RadioGroupItemProps>, 'value'>;
+			shadcn4RadioGroup?: WithoutChildrenOrChild<RadioGroupRootProps>;
+			shadcn4RadioItem?: Omit<WithoutChildrenOrChild<RadioGroupItemProps>, 'value'>;
 		}
 	}
 
@@ -50,13 +50,13 @@
 	});
 
 	const attributes = $derived(
-		customInputAttributes(ctx, config, 'shadcnRadioGroup', {
+		customInputAttributes(ctx, config, 'shadcn4RadioGroup', {
 			onValueChange: handlers.onchange
 		})
 	);
 
 	const itemAttributes = $derived(
-		uiOptionProps('shadcnRadioItem')(
+		uiOptionProps('shadcn4RadioItem')(
 			{
 				onclick: handlers.oninput,
 				onblur: handlers.onblur

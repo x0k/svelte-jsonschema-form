@@ -5,8 +5,8 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			shadcnButton?: ButtonProps;
-			shadcnButtons?: {
+			shadcn4Button?: ButtonProps;
+			shadcn4Buttons?: {
 				[B in ButtonType]: ButtonProps;
 			};
 		}
@@ -41,8 +41,8 @@
 			disabled,
 			onclick
 		} satisfies ButtonProps,
-		uiOptionProps('shadcnButton'),
-		uiOptionNestedProps('shadcnButtons', (b) => b[type]),
+		uiOptionProps('shadcn4Button'),
+		uiOptionNestedProps('shadcn4Buttons', (b) => b[type]),
 		disabledProp
 	)}
 >

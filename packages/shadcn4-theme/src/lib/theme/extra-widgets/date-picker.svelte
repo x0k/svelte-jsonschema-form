@@ -8,9 +8,9 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			shadcnDatePicker?: Omit<WithoutChildrenOrChild<CalendarSingleRootProps>, 'type'>;
-			shadcnDatePickerTrigger?: ButtonProps;
-			shadcnDateFormatter?: (date: Date) => string;
+			shadcn4DatePicker?: Omit<WithoutChildrenOrChild<CalendarSingleRootProps>, 'type'>;
+			shadcn4DatePickerTrigger?: ButtonProps;
+			shadcn4DateFormatter?: (date: Date) => string;
 		}
 	}
 
@@ -48,7 +48,7 @@
 	let { value = $bindable(), config, handlers }: ComponentProps['datePickerWidget'] = $props();
 
 	const attributes = $derived(
-		customInputAttributes(ctx, config, 'shadcnDatePicker', {
+		customInputAttributes(ctx, config, 'shadcn4DatePicker', {
 			initialFocus: true,
 			onValueChange: handlers.onchange
 		})
@@ -57,7 +57,7 @@
 	const parsedDate = $derived(value !== undefined ? parseDate(value) : undefined);
 
 	const formatDate = $derived.by(() => {
-		const formatter = retrieveUiOption(ctx, config, 'shadcnDateFormatter');
+		const formatter = retrieveUiOption(ctx, config, 'shadcn4DateFormatter');
 		if (formatter !== undefined) {
 			return formatter;
 		}
@@ -84,7 +84,7 @@
 			<Button
 				{...props}
 				class={['w-full', parsedDate === undefined && 'text-muted-foreground']}
-				{...uiOptionProps('shadcnDatePickerTrigger')({}, config, ctx)}
+				{...uiOptionProps('shadcn4DatePickerTrigger')({}, config, ctx)}
 			>
 				{triggerContent}
 			</Button>

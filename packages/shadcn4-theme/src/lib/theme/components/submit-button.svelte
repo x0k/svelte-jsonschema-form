@@ -3,7 +3,7 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			shadcnSubmitButton?: ButtonProps;
+			shadcn4SubmitButton?: ButtonProps;
 		}
 	}
 </script>
@@ -20,6 +20,6 @@
 	const { Button } = $derived(themeCtx.components);
 </script>
 
-<Button {...buttonAttributes(ctx, config, 'shadcnButton', 'submit', {})}>
+<Button {...buttonAttributes(ctx, config, 'shadcn4SubmitButton', 'submit', {})}>
 	{@render children()}
 </Button>

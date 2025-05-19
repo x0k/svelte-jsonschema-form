@@ -3,7 +3,7 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			shadcnLabel?: LabelProps;
+			shadcn4Label?: LabelProps;
 		}
 	}
 </script>
@@ -21,7 +21,7 @@
 	const { Label } = $derived(themeCtx.components);
 </script>
 
-<Label {...labelAttributes(ctx, config, 'shadcnLabel', {})}>
+<Label {...labelAttributes(ctx, config, 'shadcn4Label', {})}>
 	{title}
 	{#if config.required}
 		<span>*</span>

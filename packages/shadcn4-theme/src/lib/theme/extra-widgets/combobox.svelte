@@ -7,9 +7,9 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			shadcnComboboxTrigger?: ButtonProps;
-			shadcnComboboxInput?: Command.InputProps;
-			shadcnComboboxEmptyText?: string;
+			shadcn4ComboboxTrigger?: ButtonProps;
+			shadcn4ComboboxInput?: Command.InputProps;
+			shadcn4ComboboxEmptyText?: string;
 		}
 	}
 
@@ -79,20 +79,20 @@
 		});
 	}
 
-	const attributes = $derived(inputAttributes(ctx, config, 'shadcnComboboxInput', handlers, {}));
+	const attributes = $derived(inputAttributes(ctx, config, 'shadcn4ComboboxInput', handlers, {}));
 
 	const triggerContent = $derived(
 		options[Number(mapped.value)]?.label ?? attributes.placeholder ?? ''
 	);
 
-	const emptyText = $derived(retrieveUiOption(ctx, config, 'shadcnComboboxEmptyText'));
+	const emptyText = $derived(retrieveUiOption(ctx, config, 'shadcn4ComboboxEmptyText'));
 </script>
 
 <Popover bind:open>
 	<PopoverTrigger class="w-full justify-between" bind:ref={triggerRef} disabled={ctx.disabled}>
 		{#snippet child({ props })}
 			<Button
-				{...uiOptionProps('shadcnComboboxTrigger')(
+				{...uiOptionProps('shadcn4ComboboxTrigger')(
 					{
 						variant: 'outline',
 						...props,

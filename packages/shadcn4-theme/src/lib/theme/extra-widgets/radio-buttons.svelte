@@ -17,8 +17,8 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			shadcnRadioButtons?: ToggleGroupProps;
-			shadcnRadioButtonsItem?: ToggleGroupItemProps & ToggleVariants;
+			shadcn4RadioButtons?: ToggleGroupProps;
+			shadcn4RadioButtonsItem?: ToggleGroupItemProps & ToggleVariants;
 		}
 	}
 
@@ -60,7 +60,7 @@
 	});
 
 	const attributes = $derived(
-		customInputAttributes(ctx, config, 'shadcnRadioButtons', {
+		customInputAttributes(ctx, config, 'shadcn4RadioButtons', {
 			type: 'single',
 			id: config.id,
 			'aria-required': config.required,
@@ -73,7 +73,7 @@
 <ToggleGroup bind:value={mapped.value} {...attributes}>
 	{#each options as option, index (option.id)}
 		<ToggleGroupItem
-			{...uiOptionProps('shadcnRadioButtonsItem')(
+			{...uiOptionProps('shadcn4RadioButtonsItem')(
 				{
 					value: index.toString(),
 					disabled: option.disabled

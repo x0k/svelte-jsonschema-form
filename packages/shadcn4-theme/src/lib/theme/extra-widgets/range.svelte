@@ -5,7 +5,7 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			shadcnRange?: Omit<WithoutChildrenOrChild<SliderSingleRootProps>, 'type'>;
+			shadcn4Range?: Omit<WithoutChildrenOrChild<SliderSingleRootProps>, 'type'>;
 		}
 	}
 
@@ -31,7 +31,7 @@
 
 <Slider
 	bind:value={() => value ?? 0, (v) => (value = v)}
-	{...customInputAttributes(ctx, config, 'shadcnRange', {
+	{...customInputAttributes(ctx, config, 'shadcn4Range', {
 		id: config.id,
 		min: config.schema.minimum,
 		max: config.schema.maximum,

@@ -5,8 +5,8 @@
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			shadcnMultiSelect?: Omit<SelectMultipleRootProps, 'type'>;
-			shadcnMultiSelectTrigger?: SelectTriggerProps;
+			shadcn4MultiSelect?: Omit<SelectMultipleRootProps, 'type'>;
+			shadcn4MultiSelectTrigger?: SelectTriggerProps;
 		}
 	}
 </script>
@@ -38,7 +38,7 @@
 	);
 
 	const selectAttributes = $derived(
-		customInputAttributes(ctx, config, 'shadcnMultiSelect', {
+		customInputAttributes(ctx, config, 'shadcn4MultiSelect', {
 			onValueChange: handlers.onchange,
 			required: config.required
 		})
@@ -59,7 +59,7 @@
 <Select bind:value={mapped.value} {...selectAttributes} type="multiple">
 	<SelectTrigger
 		class="w-full"
-		{...customInputAttributes(ctx, config, 'shadcnMultiSelectTrigger', {
+		{...customInputAttributes(ctx, config, 'shadcn4MultiSelectTrigger', {
 			id: config.id,
 			name: config.id
 		})}
