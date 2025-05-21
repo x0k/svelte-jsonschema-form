@@ -21,14 +21,19 @@
     "tailwindcss": "catalog:next"
   },
   "dependencies": {
-    "@codingame/monaco-vscode-languages-service-override": "^17.1.0",
-    "@codingame/monaco-vscode-textmate-service-override": "^17.1.0",
-    "@codingame/monaco-vscode-theme-defaults-default-extension": "^17.1.0",
-    "@codingame/monaco-vscode-theme-service-override": "^17.1.0",
+    "@codingame/monaco-vscode-configuration-service-override": "^17.1.1",
+    "@codingame/monaco-vscode-languages-service-override": "^17.1.1",
+    "@codingame/monaco-vscode-textmate-service-override": "^17.1.1",
+    "@codingame/monaco-vscode-theme-defaults-default-extension": "^17.1.1",
+    "@codingame/monaco-vscode-theme-service-override": "^17.1.1",
+    "@codingame/monaco-vscode-workbench-service-override": "^17.1.1",
     "@xterm/addon-fit": "^0.10.0",
     "@xterm/xterm": "^5.5.0",
-    "monaco-editor": "npm:@codingame/monaco-vscode-editor-api@^17.1.0",
+    "monaco-editor": "npm:@codingame/monaco-vscode-editor-api@^17.1.1",
+    "monaco-editor-wrapper": "^6.7.0",
+    "monaco-languageclient": "^9.6.0",
     "paneforge": "^0.0.6",
-    "vscode": "npm:@codingame/monaco-vscode-api@^17.1.0"
+    "vscode": "npm:@codingame/monaco-vscode-api@^17.1.1",
+    "vscode-languageserver": "^9.0.1"
   }
 }

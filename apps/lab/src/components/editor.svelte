@@ -1,8 +1,12 @@
 <script lang="ts" module>
-  import { initialize } from "vscode";
+  import { initialize } from "vscode/services";
   import getLanguagesServiceOverride from "@codingame/monaco-vscode-languages-service-override";
   import getThemeServiceOverride from "@codingame/monaco-vscode-theme-service-override";
   import getTextMateServiceOverride from "@codingame/monaco-vscode-textmate-service-override";
+  import getConfigurationServiceOverride, {
+    updateUserConfiguration,
+  } from "@codingame/monaco-vscode-configuration-service-override";
+  // import getWorkbenchServiceOverride from '@codingame/monaco-vscode-workbench-service-override';
   import "@codingame/monaco-vscode-theme-defaults-default-extension";
   // import EditorWorker from "monaco-editor/esm/vs/editor/editor.worker?worker";
   // import TsWorker from "monaco-editor/esm/vs/language/typescript/ts.worker?worker";
@@ -44,7 +48,8 @@
       {},
       getTextMateServiceOverride(),
       getThemeServiceOverride(),
-      getLanguagesServiceOverride()
+      getLanguagesServiceOverride(),
+      getConfigurationServiceOverride()
     )
   );
 </script>
@@ -53,7 +58,6 @@
   import { onMount } from "svelte";
   import type { HTMLAttributes } from "svelte/elements";
   import * as monaco from "monaco-editor";
-  import { getService, IThemeService } from "vscode/services";
 
   interface Props extends HTMLAttributes<HTMLDivElement> {
     model: monaco.editor.ITextModel;
@@ -64,7 +68,6 @@
   let { model, theme, editor = $bindable(), ...rest }: Props = $props();
 
   let editorElement: HTMLDivElement;
-  let themeService = $state.raw<IThemeService>();
 
   $effect(() => {
     if (editor === undefined) {
@@ -73,50 +76,36 @@
     editor.setModel(model);
   });
 
-  let setThemeCallbackId: number
-  function setTheme(themeService: IThemeService, theme: string) {
-    clearTimeout(setThemeCallbackId)
-    monaco.editor.setTheme(theme);
-    setThemeCallbackId = setTimeout(() => {
-      //@ts-expect-error
-      const currentTheme = themeService.getColorTheme().settingsId;
-      if (currentTheme !== theme) {
-        setTheme(themeService, theme);
-      }
-    }, 100);
-  }
-
   $effect(() => {
-    if (themeService === undefined) {
+    if (editor === undefined) {
       return;
     }
-    setTheme(themeService, theme);
+    updateUserConfiguration(
+      JSON.stringify({
+        "workbench.colorTheme": theme,
+      })
+    );
   });
 
   onMount(() => {
-    init
-      .then(() => {
-        editor = monaco.editor.create(editorElement, {
-          model,
-          theme,
-          fixedOverflowWidgets: true,
-          wordBasedSuggestions: "currentDocument",
-          lineNumbers: "on",
-          tabSize: 2,
-          insertSpaces: true,
-          fontSize: 16,
-          bracketPairColorization: {
-            enabled: true,
-          },
-          minimap: {
-            enabled: false,
-          },
-        });
-        return getService(IThemeService);
-      })
-      .then((service) => {
-        themeService = service;
+    init.then(() => {
+      editor = monaco.editor.create(editorElement, {
+        model,
+        theme,
+        fixedOverflowWidgets: true,
+        wordBasedSuggestions: "currentDocument",
+        lineNumbers: "on",
+        tabSize: 2,
+        insertSpaces: true,
+        fontSize: 16,
+        bracketPairColorization: {
+          enabled: true,
+        },
+        minimap: {
+          enabled: false,
+        },
       });
+    });
     return () => {
       editor?.dispose();
     };
