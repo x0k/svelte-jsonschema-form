@@ -386,7 +386,16 @@ importers:
 
   apps/lab:
     dependencies:
+      '@cfworker/json-schema':
+        specifier: ^4.1.1
+        version: 4.1.1
       '@codingame/monaco-vscode-configuration-service-override':
+        specifier: ^17.1.1
+        version: 17.1.1
+      '@codingame/monaco-vscode-files-service-override':
+        specifier: ^17.1.1
+        version: 17.1.1
+      '@codingame/monaco-vscode-keybindings-service-override':
         specifier: ^17.1.1
         version: 17.1.1
       '@codingame/monaco-vscode-languages-service-override':
@@ -404,12 +413,24 @@ importers:
       '@codingame/monaco-vscode-workbench-service-override':
         specifier: ^17.1.1
         version: 17.1.1
+      '@sjsf/cfworker-validator':
+        specifier: 2.0.0-next.14
+        version: 2.0.0-next.14(@cfworker/json-schema@4.1.1)(@sjsf/form@packages+form)
+      '@sjsf/daisyui5-theme':
+        specifier: workspace:*
+        version: link:../../packages/daisyui5-theme
+      '@sjsf/form':
+        specifier: workspace:*
+        version: link:../../packages/form
       '@xterm/addon-fit':
         specifier: ^0.10.0
         version: 0.10.0(@xterm/xterm@5.5.0)
       '@xterm/xterm':
         specifier: ^5.5.0
         version: 5.5.0
+      idb:
+        specifier: ^8.0.3
+        version: 8.0.3
       monaco-editor:
         specifier: npm:@codingame/monaco-vscode-editor-api@^17.1.1
         version: '@codingame/monaco-vscode-editor-api@17.1.1'
@@ -422,6 +443,9 @@ importers:
       paneforge:
         specifier: ^0.0.6
         version: 0.0.6(svelte@5.30.2)
+      runed:
+        specifier: ^0.28.0
+        version: 0.28.0(svelte@5.30.2)
       vscode:
         specifier: npm:@codingame/monaco-vscode-api@^17.1.1
         version: '@codingame/monaco-vscode-api@17.1.1'
@@ -447,6 +471,9 @@ importers:
       daisyui:
         specifier: ^5.0.35
         version: 5.0.35
+      json-schema-to-ts:
+        specifier: ^3.1.1
+        version: 3.1.1
       svelte:
         specifier: 'catalog:'
         version: 5.30.2
@@ -3478,6 +3505,12 @@ packages:
       '@cfworker/json-schema': ^2.0.0 || ^3.0.0 || ^4.0.0
       '@sjsf/form': ^1.9.2
 
+  '@sjsf/cfworker-validator@2.0.0-next.14':
+    resolution: {integrity: sha512-DpCHsItZh0Z9NUPTbnld6UVvEt4pg0WxWVm59TJgbXRMNwTsfiSvl1ufzhZ48kvbjMOHXuW6BvZM0CLxgAhNhQ==}
+    peerDependencies:
+      '@cfworker/json-schema': ^4.1.0
+      '@sjsf/form': ^2.0.0-next.14
+
   '@sjsf/daisyui-theme@1.9.2':
     resolution: {integrity: sha512-SXP3WUOg6ptm6NQpiUSrTEbsCphUWvM+WAocmPYG2Wx6CspsrxnWLxSlB3RJmRqrDbv6C271qkHtLVazVhJkEA==}
     peerDependencies:
@@ -5342,6 +5375,9 @@ packages:
     resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
     engines: {node: '>=0.10.0'}
 
+  idb@8.0.3:
+    resolution: {integrity: sha512-LtwtVyVYO5BqRvcsKuB2iUMnHwPVByPCXFXOpuU96IZPPoPN6xjOGxZQ74pgSVVLQWtUOYgyeL4GE98BY5D3wg==}
+
   ignore@5.3.2:
     resolution: {integrity: sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==}
     engines: {node: '>= 4'}
@@ -6547,6 +6583,11 @@ packages:
 
   runed@0.23.2:
     resolution: {integrity: sha512-AhHCb5/B+YQW6ar1pzhGQOQy+byfjCH63ofuhrexSWwQKhC0EbQ60Z/wMYwETLo3ZubhwlNryxBt0seOMOrVFQ==}
+    peerDependencies:
+      svelte: ^5.7.0
+
+  runed@0.28.0:
+    resolution: {integrity: sha512-k2xx7RuO9hWcdd9f+8JoBeqWtYrm5CALfgpkg2YDB80ds/QE4w0qqu34A7fqiAwiBBSBQOid7TLxwxVC27ymWQ==}
     peerDependencies:
       svelte: ^5.7.0
 
@@ -10377,6 +10418,11 @@ snapshots:
       '@cfworker/json-schema': 4.1.1
       '@sjsf/form': 1.9.2(svelte@5.30.2)
 
+  '@sjsf/cfworker-validator@2.0.0-next.14(@cfworker/json-schema@4.1.1)(@sjsf/form@packages+form)':
+    dependencies:
+      '@cfworker/json-schema': 4.1.1
+      '@sjsf/form': link:packages/form
+
   '@sjsf/daisyui-theme@1.9.2(@sjsf/form@1.9.2(svelte@5.30.2))(daisyui@4.12.24(postcss@8.5.3))(svelte@5.30.2)':
     dependencies:
       '@sjsf/form': 1.9.2(svelte@5.30.2)
@@ -12825,6 +12871,8 @@ snapshots:
     dependencies:
       safer-buffer: 2.1.2
 
+  idb@8.0.3: {}
+
   ignore@5.3.2: {}
 
   ignore@7.0.4: {}
@@ -14319,6 +14367,11 @@ snapshots:
       queue-microtask: 1.2.3
 
   runed@0.23.2(svelte@5.30.2):
+    dependencies:
+      esm-env: 1.2.2
+      svelte: 5.30.2
+
+  runed@0.28.0(svelte@5.30.2):
     dependencies:
       esm-env: 1.2.2
       svelte: 5.30.2

@@ -20,6 +20,7 @@ export default defineConfig({
     //   "vscode-oniguruma",
     //   "@vscode/vscode-languagedetection",
     // ],
+    exclude: ["@sjsf/cfworker-validator"],
     esbuildOptions: {
       plugins: [importMetaUrlPlugin],
     },
