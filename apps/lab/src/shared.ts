@@ -13,3 +13,4 @@ export const THEME_TITLES: Record<Theme, string> = {
 export const THEMES = Object.values(Theme);
 
 export type DarkOrLight = Theme.Dark | Theme.Light;
+

@@ -8,6 +8,7 @@
   default: true;
   --color-base-100: oklch(28% 0 0);
 } */
+@source "../node_modules/@sjsf/daisyui5-theme/dist";
 
 html,
 body {
