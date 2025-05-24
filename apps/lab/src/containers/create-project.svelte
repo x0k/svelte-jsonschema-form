@@ -1,18 +1,18 @@
 <script lang="ts">
   import { BasicForm, createForm } from "@sjsf/form";
 
-  import type { Resource } from "@/lib/resource.js";
-  import { PROJECT_SETTINGS } from "@/domain/index.js";
+  import { PROJECT_SETTINGS, type ProjectSettings } from "@/domain/index.js";
   import * as defaults from "@/components/form-defaults.js";
 
   interface Props {
-    // projectsService: ProjectsService;
+    createProject: (settings: ProjectSettings) => void;
   }
 
-  const {}: Props = $props();
+  const { createProject }: Props = $props();
 
   const form = createForm({
     ...defaults,
+    onSubmit: createProject,
     schema: PROJECT_SETTINGS,
     uiSchema: {
       "ui:options": {
@@ -35,6 +35,4 @@
   });
 </script>
 
-<div>
-  <BasicForm {form} />
-</div>
+<BasicForm {form} />

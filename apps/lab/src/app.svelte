@@ -3,12 +3,11 @@
   import { Pane, PaneGroup, PaneResizer } from "paneforge";
   import type * as monaco from "monaco-editor";
 
-  import { THEME_TITLES, THEMES } from "./shared.js";
+  import { THEME_TITLES, THEMES } from "./shared/index.js";
   import type { EditorState } from "./editor.svelte.js";
   import { themeManager } from "./theme.svelte.js";
   import Dropdown from "./components/dropdown.svelte";
-  import Projects from "./containers/projects.svelte";
-  import { createTemplatesService } from "./infra/templates-service.js";
+  import CreateProject from "./containers/create-project.svelte";
 
   let editor = $state<monaco.editor.IStandaloneCodeEditor>();
   function editorResize() {
@@ -37,18 +36,15 @@
       return c.default;
     });
 
-  let projectsDialog: HTMLDialogElement;
-  const templatesService = createTemplatesService({
-    templates: [],
-  });
+  let createProjectDialog: HTMLDialogElement;
 </script>
 
 <svelte:window onresize={editorResize} />
 <div class="app">
   <header class="flex p-2 items-center gap-2 z-50">
     <h1 class="text-3xl font-bold">Lab</h1>
-    <button class="btn btn-ghost" onclick={() => projectsDialog.showModal()}>
-      Projects
+    <button class="btn btn-ghost" onclick={() => createProjectDialog.showModal()}>
+      Create
     </button>
     <Dropdown
       class="dropdown-center ml-auto"
@@ -91,10 +87,13 @@
     </Pane>
   </PaneGroup>
 </div>
-<dialog bind:this={projectsDialog} class="modal">
+<dialog bind:this={createProjectDialog} class="modal">
   <div class="modal-box">
     <h3 class="text-lg font-bold">Projects</h3>
-    <Projects allTemplatesMeta={templatesService.allTemplatesMeta} />
+    <CreateProject createProject={(s) => {
+      console.log(s)
+      createProjectDialog.close()
+    }} />
     <div class="modal-action">
       <form method="dialog">
         <!-- if there is a button in form, it will close the modal -->

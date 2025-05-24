@@ -18,5 +18,5 @@
     "src/**/*.ts",
     "src/**/*.js",
     "src/**/*.svelte"
-  ],
+, "src/domain/presets/blank/vite.config.ts.raw"  ],
 }

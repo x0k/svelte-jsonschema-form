@@ -1,6 +1,6 @@
 import { MediaQuery } from "svelte/reactivity";
 
-import { Theme, type DarkOrLight } from "./shared.js";
+import { Theme, type DarkOrLight } from "./shared/index.js";
 
 export interface ThemeManager {
   theme: Theme;
