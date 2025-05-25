@@ -10,3 +10,5 @@ export interface LabDBSchemaV1 extends DBSchema {
 }
 
 export type LabDBSchema = LabDBSchemaV1;
+
+export const LAB_DB = "lab-db";

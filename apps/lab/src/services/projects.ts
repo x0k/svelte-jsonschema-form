@@ -2,7 +2,6 @@ import type { IDBPDatabase } from "idb";
 
 import type { LabDBSchema } from "@/shared/index.js";
 import {
-  blankPreset,
   createProject,
   ProjectPreset,
   type Project,
@@ -10,9 +9,10 @@ import {
   type ProjectSettings,
 } from "@/domain/index.js";
 
-const PRESETS: Record<ProjectPreset, Promise<ProjectFiles>> = {
-  [ProjectPreset.Blank]: blankPreset,
-  [ProjectPreset.Basic]: Promise.resolve({}),
+const PRESETS: Record<ProjectPreset, () => Promise<ProjectFiles>> = {
+  [ProjectPreset.Blank]: () =>
+    import("@/domain/presets/blank/index.js").then((m) => m.files),
+  [ProjectPreset.Basic]: async () => ({}),
 };
 
 export class ProjectsService {
@@ -21,7 +21,7 @@ export class ProjectsService {
   async createProject(settings: ProjectSettings): Promise<Project> {
     const project = createProject({
       title: settings.title,
-      files: await PRESETS[settings.preset],
+      files: await PRESETS[settings.preset](),
     });
     await this.db.put("projects", project);
     return project;

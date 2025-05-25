@@ -2,12 +2,21 @@
   import { initUserConfiguration } from "@codingame/monaco-vscode-configuration-service-override";
   import { Pane, PaneGroup, PaneResizer } from "paneforge";
   import type * as monaco from "monaco-editor";
+  import type { IDBPDatabase } from "idb";
 
-  import { THEME_TITLES, THEMES } from "./shared/index.js";
+  import { THEME_TITLES, THEMES, type LabDBSchema } from "./shared/index.js";
   import type { EditorState } from "./editor.svelte.js";
   import { themeManager } from "./theme.svelte.js";
   import Dropdown from "./components/dropdown.svelte";
   import CreateProject from "./containers/create-project.svelte";
+  import { ProjectsService } from "./services/projects.js";
+  import type { Project } from "./domain/project.js";
+
+  interface Props {
+    db: IDBPDatabase<LabDBSchema>;
+  }
+
+  const { db }: Props = $props();
 
   let editor = $state<monaco.editor.IStandaloneCodeEditor>();
   function editorResize() {
@@ -37,13 +46,19 @@
     });
 
   let createProjectDialog: HTMLDialogElement;
+  const projectsService = new ProjectsService(db);
+
+  let currentProject = $state.raw<Project>();
 </script>
 
 <svelte:window onresize={editorResize} />
 <div class="app">
   <header class="flex p-2 items-center gap-2 z-50">
     <h1 class="text-3xl font-bold">Lab</h1>
-    <button class="btn btn-ghost" onclick={() => createProjectDialog.showModal()}>
+    <button
+      class="btn btn-ghost"
+      onclick={() => createProjectDialog.showModal()}
+    >
       Create
     </button>
     <Dropdown
@@ -87,19 +102,19 @@
     </Pane>
   </PaneGroup>
 </div>
-<dialog bind:this={createProjectDialog} class="modal">
+<dialog
+  bind:this={createProjectDialog}
+  class="modal"
+  open={currentProject === undefined}
+>
   <div class="modal-box">
     <h3 class="text-lg font-bold">Projects</h3>
-    <CreateProject createProject={(s) => {
-      console.log(s)
-      createProjectDialog.close()
-    }} />
-    <div class="modal-action">
-      <form method="dialog">
-        <!-- if there is a button in form, it will close the modal -->
-        <button class="btn">Close</button>
-      </form>
-    </div>
+    <CreateProject
+      createProject={async (s) => {
+        currentProject = await projectsService.createProject(s);
+        // createProjectDialog.close();
+      }}
+    />
   </div>
 </dialog>
 
