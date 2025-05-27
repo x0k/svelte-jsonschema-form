@@ -71,7 +71,7 @@
 		"@sjsf/basic-theme": "workspace:^2.0.0-next.14"
 	},
 	"optionalDependencies": {
-		"@internationalized/date": "3.8.0"
+		"@internationalized/date": "^3.8.1"
 	},
 	"peerDependencies": {
 		"@lucide/svelte": "^0.501.0",
