@@ -1,11 +1,33 @@
 import type { DBSchema } from "idb";
 
-import type { Project } from "@/domain/project.js";
+export interface ProjectSchemaV1 {
+  id: string;
+  title: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export type ProjectSchema = ProjectSchemaV1;
+
+export interface ProjectFileSchemaV1 {
+  projectId: string;
+  filename: string;
+  content: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export type ProjectFileSchema = ProjectFileSchemaV1;
 
 export interface LabDBSchemaV1 extends DBSchema {
   projects: {
     key: string;
-    value: Project;
+    value: ProjectSchemaV1;
+  };
+  projectFiles: {
+    key: string;
+    value: ProjectFileSchemaV1;
+    indexes: Pick<ProjectFileSchemaV1, "projectId">;
   };
 }
 
