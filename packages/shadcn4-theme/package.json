@@ -71,21 +71,21 @@
 		"@sjsf/basic-theme": "workspace:^2.0.0-next.14"
 	},
 	"optionalDependencies": {
-		"@internationalized/date": "3.7.0"
+		"@internationalized/date": "3.8.0"
 	},
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^2.0.0-next.14",
-		"bits-ui": "^1.5.0",
+		"bits-ui": "^2.2.0",
 		"clsx": "^2.1.0",
 		"@lucide/svelte": "^0.501.0",
-		"svelte": "^5.30.0",
+		"svelte": "^5.33.0",
 		"tailwind-merge": "^3.3.0",
 		"tailwind-variants": "^1.0.0"
 	},
 	"devDependencies": {
 		"@eslint/compat": "catalog:",
 		"@eslint/js": "catalog:",
-		"@internationalized/date": "3.7.0",
+		"@internationalized/date": "3.8.1",
 		"@lucide/svelte": "^0.511.0",
 		"@playwright/test": "catalog:",
 		"@sjsf/ajv8-validator": "workspace:*",
@@ -96,7 +96,7 @@
 		"@sveltejs/vite-plugin-svelte": "catalog:",
 		"@tailwindcss/vite": "catalog:",
 		"@testing-library/svelte": "catalog:",
-		"bits-ui": "^1.5.2",
+		"bits-ui": "^2.2.0",
 		"clsx": "^2.1.1",
 		"eslint": "catalog:",
 		"eslint-config-prettier": "catalog:",
