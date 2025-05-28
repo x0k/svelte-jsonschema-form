@@ -7,10 +7,8 @@
 </script>
 
 <script lang="ts">
-  import { untrack } from "svelte";
-
   import { fileToDataURL } from "@/lib/file.js";
-  import { abortPrevious, createAction } from "@/lib/action.svelte.js";
+  import { createAsyncBinding } from "@/lib/svelte.svelte.js";
   import {
     makeEventHandlers,
     getErrors,
@@ -40,46 +38,22 @@
     validateField(ctx, config, value)
   );
 
-  let lastValueUpdate: string | undefined;
-  const toValue = createAction({
-    combinator: abortPrevious,
-    async execute(
-      signal,
-      files: FileList | undefined
-    ) {
-      return files === undefined || files.length === 0
-        ? undefined
-        : fileToDataURL(signal, files[0]!);
-    },
-    onSuccess(result: string | undefined) {
-      lastValueUpdate = result;
-      value = result;
-    },
-  });
-
-  let files = $state.raw<FileList>();
-  const toFiles = createAction({
-    combinator: abortPrevious,
-    async execute(signal, value: string | undefined) {
+  const files = createAsyncBinding({
+    initialOutput: undefined,
+    getInput: () => value,
+    setInput: (v) => (value = v),
+    async toOutput(signal, value) {
       const data = new DataTransfer();
       if (value !== undefined) {
         await addFile(ctx, signal, data, value);
       }
       return data.files;
     },
-    onSuccess(list: FileList) {
-      files = list;
+    async toInput(signal, files) {
+      return files === undefined || files.length === 0
+        ? undefined
+        : fileToDataURL(signal, files[0]!);
     },
-  });
-
-  $effect(() => {
-    if (value === lastValueUpdate) {
-      return;
-    }
-    untrack(() => {
-      toValue.abort();
-      toFiles.run(value);
-    });
   });
 
   const errors = $derived(getErrors(ctx, config.id));
@@ -97,15 +71,9 @@
 >
   <Widget
     type="widget"
-    bind:value={
-      () => files,
-      (files) => {
-        toFiles.abort();
-        toValue.run(files);
-      }
-    }
-    processing={toValue.isProcessed}
-    loading={toFiles.isProcessed}
+    bind:value={files.current}
+    processing={files.inputProcessing}
+    loading={files.outputProcessing}
     {uiOption}
     {handlers}
     {errors}
