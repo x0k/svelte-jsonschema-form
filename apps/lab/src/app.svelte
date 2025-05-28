@@ -10,7 +10,7 @@
   import Dropdown from "./components/dropdown.svelte";
   import CreateProject from "./containers/create-project.svelte";
   import { ProjectsService } from "./services/projects.js";
-  import type { Project } from "./domain/project.js";
+  import { LabService } from "./services/lab.svelte.js";
 
   interface Props {
     db: IDBPDatabase<LabDBSchema>;
@@ -47,8 +47,7 @@
 
   let createProjectDialog: HTMLDialogElement;
   const projectsService = new ProjectsService(db);
-
-  let currentProject = $state.raw<Project>();
+  const labService = new LabService(projectsService);
 </script>
 
 <svelte:window onresize={editorResize} />
@@ -105,14 +104,13 @@
 <dialog
   bind:this={createProjectDialog}
   class="modal"
-  open={currentProject === undefined}
+  open={labService.currentProject === undefined}
 >
   <div class="modal-box">
     <h3 class="text-lg font-bold">Projects</h3>
     <CreateProject
-      createProject={async (s) => {
-        currentProject = await projectsService.createProject(s);
-        // createProjectDialog.close();
+      createProject={(s) => {
+        labService.loadProject(projectsService.createProject(s));
       }}
     />
   </div>

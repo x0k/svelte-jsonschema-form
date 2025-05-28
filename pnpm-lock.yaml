@@ -434,6 +434,9 @@ importers:
       idb:
         specifier: ^8.0.3
         version: 8.0.3
+      lz-string:
+        specifier: ^1.5.0
+        version: 1.5.0
       monaco-editor:
         specifier: npm:@codingame/monaco-vscode-editor-api@^17.1.1
         version: '@codingame/monaco-vscode-editor-api@17.1.2'

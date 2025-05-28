@@ -27,7 +27,9 @@ export interface LabDBSchemaV1 extends DBSchema {
   projectFiles: {
     key: string;
     value: ProjectFileSchemaV1;
-    indexes: Pick<ProjectFileSchemaV1, "projectId">;
+    indexes: {
+      projectIdIndex: ProjectFileSchemaV1["projectId"];
+    };
   };
 }
 

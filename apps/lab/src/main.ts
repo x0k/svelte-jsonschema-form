@@ -11,6 +11,8 @@ const db = await openDB<LabDBSchema>(LAB_DB, 1, {
       db.createObjectStore("projects", {
         keyPath: "id",
       });
+      const files = db.createObjectStore("projectFiles");
+      files.createIndex("projectIdIndex", "projectId");
     }
   },
 });
