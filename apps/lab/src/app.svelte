@@ -1,6 +1,5 @@
 <script lang="ts">
   import { initUserConfiguration } from "@codingame/monaco-vscode-configuration-service-override";
-  import { createAction } from "@sjsf/form/lib/action.svelte";
   import { Pane, PaneGroup, PaneResizer } from "paneforge";
   import type * as monaco from "monaco-editor";
   import type { IDBPDatabase } from "idb";
@@ -12,7 +11,6 @@
   import CreateProject from "./containers/create-project.svelte";
   import { ProjectsService } from "./services/projects.js";
   import { LabService, SubPage } from "./services/lab.svelte.js";
-  import type { ProjectMeta } from "./domain/index.js";
 
   interface Props {
     db: IDBPDatabase<LabDBSchema>;
@@ -49,8 +47,6 @@
 
   const projectsService = new ProjectsService(db);
   const labService = new LabService(projectsService);
-
-  $inspect(labService.currentSubPage)
 </script>
 
 <svelte:window onresize={editorResize} />
@@ -110,6 +106,12 @@
 </div>
 <dialog class="modal" open={labService.currentSubPage === SubPage.Create}>
   <div class="modal-box">
+    {#if labService.currentProject}
+      <button
+        onclick={() => labService.closeSubPage()}
+        class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button
+      >
+    {/if}
     <h3 class="text-lg font-bold">Projects</h3>
     <CreateProject
       createProject={(s) => {
@@ -131,7 +133,10 @@
         </thead>
         <tbody>
           {#each labService.recentProjects as p (p.id)}
-            <tr class="cursor-pointer hover:bg-base-200" onclick={() => labService.openProject(p.id)}>
+            <tr
+              class="cursor-pointer hover:bg-base-200"
+              onclick={() => labService.openProject(p.id)}
+            >
               <td class="w-full">{p.title}</td>
               <td class="text-center">{p.updatedAt.toLocaleString()}</td>
             </tr>

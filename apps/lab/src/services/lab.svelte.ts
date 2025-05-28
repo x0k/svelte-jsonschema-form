@@ -43,8 +43,9 @@ export class LabService {
     combinator: abortPrevious,
     execute: (_, promise: Promise<Project>) => promise,
     onSuccess: (project: Project, _: Promise<Project>) => {
+      this.#currentSubPage = undefined;
       this.#currentProject = project;
-      location.hash = createHash(HashKey.ProjectId, project.id)
+      historyAction("replaceState", HashKey.ProjectId, project.id);
     },
   });
 
@@ -62,7 +63,7 @@ export class LabService {
   }
 
   openProject(projectId: ProjectId) {
-    historyAction("pushState", HashKey.ProjectId, projectId)
+    this.#loadProject.run(this.projectsService.loadProjectById(projectId));
   }
 
   createProject(settings: ProjectSettings) {
@@ -70,11 +71,21 @@ export class LabService {
   }
 
   createImportUrl(code: string) {
-    return createUrl(HashKey.Import, compressToEncodedURIComponent(code));
+    return createUrl(
+      "replaceState",
+      HashKey.Import,
+      compressToEncodedURIComponent(code)
+    );
   }
 
   openSubPage(subPage: SubPage) {
     historyAction("pushState", HashKey.SubPage, subPage);
+    this.processUrl();
+  }
+
+  closeSubPage() {
+    historyAction("pushState", HashKey.SubPage, "");
+    this.processUrl();
   }
 
   get currentSubPage() {
@@ -98,8 +109,6 @@ export class LabService {
   }
 
   private processUrl() {
-    this.#currentSubPage = undefined;
-    this.#currentProject = undefined;
     const params = new URLSearchParams(location.hash.substring(1));
     const code = params.get(HashKey.Import);
     if (code !== null) {
@@ -110,22 +119,30 @@ export class LabService {
       );
       return;
     }
-    const projectId = params.get(HashKey.ProjectId);
-    if (projectId !== null) {
-      this.#loadProject.run(
-        this.projectsService.loadProjectById(projectId as ProjectId)
-      );
-      return;
-    }
     const subPage = params.get(HashKey.SubPage);
     if (subPage !== null) {
-      this.#currentSubPage = subPage as SubPage;
-      if (subPage === SubPage.Create) {
-        this.#loadRecentProjects.run();
+      if (this.#currentSubPage !== subPage) {
+        this.#currentSubPage = subPage as SubPage;
+        if (subPage === SubPage.Create) {
+          this.#loadRecentProjects.run();
+        }
       }
       return;
     }
-    historyAction("replaceState", HashKey.SubPage, SubPage.Create);
+    const projectId = params.get(HashKey.ProjectId);
+    if (projectId !== null) {
+      if (projectId !== this.currentProject?.id) {
+        this.#loadProject.run(
+          this.projectsService.loadProjectById(projectId as ProjectId)
+        );
+      } else {
+        this.#currentSubPage = undefined;
+      }
+      return;
+    }
+    this.#currentSubPage = undefined;
+    this.#currentProject = undefined;
+    this.openSubPage(SubPage.Create);
   }
 }
 
@@ -134,16 +151,24 @@ function historyAction(
   hashKey: HashKey,
   value: string
 ) {
-  history[action](null, "", createUrl(hashKey, value));
+  history[action](null, "", createUrl(action, hashKey, value));
 }
 
-function createUrl(key: HashKey, value: string) {
+function createUrl(
+  action: "pushState" | "replaceState",
+  key: HashKey,
+  value: string
+) {
   const url = new URL(window.location.href);
   // url.pathname = "";
-  url.hash = createHash(key, value);
+  const params = new URLSearchParams(
+    action === "pushState" ? location.hash.substring(1) : undefined
+  );
+  if (value) {
+    params.set(key, value);
+  } else {
+    params.delete(key);
+  }
+  url.hash = params.toString();
   return url;
-}
-
-function createHash(key: HashKey, value: string) {
-  return new URLSearchParams([[key, value]]).toString();
 }
