@@ -7,10 +7,8 @@
 </script>
 
 <script lang="ts">
-  import { untrack } from "svelte";
-
   import { fileToDataURL } from "@/lib/file.js";
-  import { abortPrevious, createAction } from "@/lib/action.svelte.js";
+  import { createAsyncBinding } from "@/lib/svelte.svelte.js";
   import {
     makeEventHandlers,
     getErrors,
@@ -40,51 +38,30 @@
     validateField(ctx, config, value)
   );
 
-  let lastValueUpdate: string[] | undefined;
-  const toValue = createAction({
-    combinator: abortPrevious,
-    async execute(signal, files: FileList | undefined) {
-      if (files === undefined) {
-        return undefined;
-      }
-      return Promise.all(
-        Array.from(files).map((f) => fileToDataURL(signal, f))
-      );
-    },
-    onSuccess(result: string[] | undefined) {
-      lastValueUpdate = result;
-      value = result;
-    },
-  });
-
-  let files = $state.raw<FileList>();
-  const toFiles = createAction({
-    combinator: abortPrevious,
-    async execute(signal, value: string[] | undefined) {
+  const files = createAsyncBinding({
+    initialOutput: undefined,
+    getInput: () => value,
+    setInput: (v) => (value = v),
+    isEqual: (a, b) =>
+      // WARN: Do not optimize, avoid svelte reactive value equality warning
+      (a === undefined && b === undefined) ||
+      (Array.isArray(a) &&
+        Array.isArray(b) &&
+        a.length === b.length &&
+        a.every((v, i) => v === b[i])),
+    async toOutput(signal, value) {
       const data = new DataTransfer();
       if (value !== undefined) {
         await addFiles(ctx, signal, data, value);
       }
       return data.files;
     },
-    onSuccess(list: FileList) {
-      files = list;
+    async toInput(signal, files) {
+      return (
+        files &&
+        Promise.all(Array.from(files).map((f) => fileToDataURL(signal, f)))
+      );
     },
-  });
-
-  $effect(() => {
-    if (
-      Array.isArray(value) &&
-      Array.isArray(lastValueUpdate) &&
-      value.length === lastValueUpdate.length &&
-      value.every((v, i) => v === lastValueUpdate![i])
-    ) {
-      return;
-    }
-    untrack(() => {
-      toValue.abort();
-      toFiles.run(value);
-    });
   });
 
   const errors = $derived(getErrors(ctx, config.id));
@@ -102,15 +79,9 @@
 >
   <Widget
     type="widget"
-    bind:value={
-      () => files,
-      (files) => {
-        toFiles.abort();
-        toValue.run(files);
-      }
-    }
-    processing={toValue.isProcessed}
-    loading={toFiles.isProcessed}
+    bind:value={files.current}
+    processing={files.inputProcessing}
+    loading={files.outputProcessing}
     {uiOption}
     {handlers}
     {errors}
