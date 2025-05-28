@@ -7,8 +7,10 @@
 </script>
 
 <script lang="ts">
+  import { untrack } from "svelte";
+
   import { fileToDataURL } from "@/lib/file.js";
-  import { asyncProxy } from "@/lib/svelte.svelte";
+  import { abortPrevious, createAction } from "@/lib/action.svelte.js";
   import {
     makeEventHandlers,
     getErrors,
@@ -22,7 +24,11 @@
 
   import "../extra-widgets/file.js";
 
-  let { config, value = $bindable(), uiOption }: ComponentProps["fileField"] = $props();
+  let {
+    config,
+    value = $bindable(),
+    uiOption,
+  }: ComponentProps["fileField"] = $props();
 
   const ctx = getFormContext();
 
@@ -34,28 +40,47 @@
     validateField(ctx, config, value)
   );
 
-  const files = asyncProxy(
-    async (isRegOnly, signal) => {
-      if (!value || isRegOnly) {
-        return;
-      }
+  let lastValueUpdate: string | undefined;
+  const toValue = createAction({
+    combinator: abortPrevious,
+    async execute(
+      signal,
+      files: FileList | undefined
+    ) {
+      return files === undefined || files.length === 0
+        ? undefined
+        : fileToDataURL(signal, files[0]!);
+    },
+    onSuccess(result: string | undefined) {
+      lastValueUpdate = result;
+      value = result;
+    },
+  });
+
+  let files = $state.raw<FileList>();
+  const toFiles = createAction({
+    combinator: abortPrevious,
+    async execute(signal, value: string | undefined) {
       const data = new DataTransfer();
-      await addFile(ctx, signal, data, value);
+      if (value !== undefined) {
+        await addFile(ctx, signal, data, value);
+      }
       return data.files;
     },
-    async (v, signal) => {
-      if (v === undefined || v.length === 0) {
-        value = undefined;
-        return;
-      }
-      try {
-        value = await fileToDataURL(signal, v[0]!);
-      } catch (e) {
-        console.error("Failed to read file", e);
-      }
+    onSuccess(list: FileList) {
+      files = list;
     },
-    (v) => v
-  );
+  });
+
+  $effect(() => {
+    if (value === lastValueUpdate) {
+      return;
+    }
+    untrack(() => {
+      toValue.abort();
+      toFiles.run(value);
+    });
+  });
 
   const errors = $derived(getErrors(ctx, config.id));
 </script>
@@ -72,9 +97,15 @@
 >
   <Widget
     type="widget"
-    bind:value={files.value}
-    processing={files.inputProcessing}
-    loading={files.outputProcessing}
+    bind:value={
+      () => files,
+      (files) => {
+        toFiles.abort();
+        toValue.run(files);
+      }
+    }
+    processing={toValue.isProcessed}
+    loading={toFiles.isProcessed}
     {uiOption}
     {handlers}
     {errors}
