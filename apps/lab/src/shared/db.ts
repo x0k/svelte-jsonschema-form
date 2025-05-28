@@ -23,6 +23,9 @@ export interface LabDBSchemaV1 extends DBSchema {
   projects: {
     key: string;
     value: ProjectSchemaV1;
+    indexes: {
+      updatedAtIndex: ProjectSchemaV1["updatedAt"];
+    };
   };
   projectFiles: {
     key: string;

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { initUserConfiguration } from "@codingame/monaco-vscode-configuration-service-override";
+  import { createAction } from "@sjsf/form/lib/action.svelte";
   import { Pane, PaneGroup, PaneResizer } from "paneforge";
   import type * as monaco from "monaco-editor";
   import type { IDBPDatabase } from "idb";
@@ -10,7 +11,8 @@
   import Dropdown from "./components/dropdown.svelte";
   import CreateProject from "./containers/create-project.svelte";
   import { ProjectsService } from "./services/projects.js";
-  import { LabService } from "./services/lab.svelte.js";
+  import { LabService, SubPage } from "./services/lab.svelte.js";
+  import type { ProjectMeta } from "./domain/index.js";
 
   interface Props {
     db: IDBPDatabase<LabDBSchema>;
@@ -45,18 +47,23 @@
       return c.default;
     });
 
-  let createProjectDialog: HTMLDialogElement;
   const projectsService = new ProjectsService(db);
   const labService = new LabService(projectsService);
+
+  $inspect(labService.currentSubPage)
 </script>
 
 <svelte:window onresize={editorResize} />
 <div class="app">
+  {#if labService.delayed}
+    <progress class="z-1000 progress progress-primary w-full absolute"
+    ></progress>
+  {/if}
   <header class="flex p-2 items-center gap-2 z-50">
     <h1 class="text-3xl font-bold">Lab</h1>
     <button
       class="btn btn-ghost"
-      onclick={() => createProjectDialog.showModal()}
+      onclick={() => labService.openSubPage(SubPage.Create)}
     >
       Create
     </button>
@@ -101,23 +108,43 @@
     </Pane>
   </PaneGroup>
 </div>
-<dialog
-  bind:this={createProjectDialog}
-  class="modal"
-  open={labService.currentProject === undefined}
->
+<dialog class="modal" open={labService.currentSubPage === SubPage.Create}>
   <div class="modal-box">
     <h3 class="text-lg font-bold">Projects</h3>
     <CreateProject
       createProject={(s) => {
-        labService.loadProject(projectsService.createProject(s));
+        labService.createProject(s);
       }}
     />
+    <h3 class="text-lg font-bold my-4">Recent projects</h3>
+    {#if labService.loading}
+      <p>Loading...</p>
+    {:else if labService.recentProjects.length === 0}
+      <p>Nothing</p>
+    {:else}
+      <table class="table table-sm">
+        <thead>
+          <tr>
+            <th class="w-full">Title</th>
+            <th>Updated at</th>
+          </tr>
+        </thead>
+        <tbody>
+          {#each labService.recentProjects as p (p.id)}
+            <tr class="cursor-pointer hover:bg-base-200" onclick={() => labService.openProject(p.id)}>
+              <td class="w-full">{p.title}</td>
+              <td class="text-center">{p.updatedAt.toLocaleString()}</td>
+            </tr>
+          {/each}
+        </tbody>
+      </table>
+    {/if}
   </div>
 </dialog>
 
 <style>
   .app {
+    position: relative;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto minmax(0, 1fr);

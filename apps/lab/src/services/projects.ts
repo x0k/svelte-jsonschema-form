@@ -7,6 +7,7 @@ import {
   type Project,
   type ProjectFiles,
   type ProjectId,
+  type ProjectMeta,
   type ProjectSettings,
 } from "@/domain/index.js";
 
@@ -15,6 +16,11 @@ const PRESETS: Record<ProjectPreset, () => Promise<ProjectFiles>> = {
     import("@/domain/presets/blank/index.js").then((m) => m.files),
   [ProjectPreset.Basic]: async () => ({}),
 };
+
+export interface Pagination {
+  limit: number;
+  offset: number;
+}
 
 export class ProjectsService {
   constructor(protected readonly db: IDBPDatabase<LabDBSchema>) {}
@@ -49,6 +55,31 @@ export class ProjectsService {
       updatedAt: projectRecord.updatedAt,
       files,
     };
+  }
+
+  async loadRecentProjects({
+    limit = -1,
+    offset = 0,
+  }: Partial<Pagination> = {}): Promise<ProjectMeta[]> {
+    const recent: ProjectMeta[] = [];
+    let cursor = await this.db
+      .transaction("projects", "readonly")
+      .store.index("updatedAtIndex")
+      .openCursor(null, "prev");
+    if (offset) {
+      cursor = (await cursor?.advance(offset)) ?? null;
+    }
+    while (cursor && recent.length !== limit) {
+      const { id, createdAt, title, updatedAt } = cursor.value;
+      recent.push({
+        id: id as ProjectId,
+        title,
+        createdAt,
+        updatedAt,
+      });
+      cursor = await cursor.continue();
+    }
+    return recent;
   }
 
   protected *saveProjectTx(project: Project): Generator<Promise<any>> {

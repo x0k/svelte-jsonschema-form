@@ -8,9 +8,10 @@ import "./app.css";
 const db = await openDB<LabDBSchema>(LAB_DB, 1, {
   upgrade(db, oldVersion) {
     if (oldVersion < 1) {
-      db.createObjectStore("projects", {
+      const projects = db.createObjectStore("projects", {
         keyPath: "id",
       });
+      projects.createIndex("updatedAtIndex", "updatedAt");
       const files = db.createObjectStore("projectFiles");
       files.createIndex("projectIdIndex", "projectId");
     }
