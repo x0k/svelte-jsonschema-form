@@ -7,6 +7,8 @@
 </script>
 
 <script lang="ts">
+  import { untrack } from "svelte";
+
   import { fileToDataURL } from "@/lib/file.js";
   import { abortPrevious, createAction } from "@/lib/action.svelte.js";
   import {
@@ -44,7 +46,7 @@
     async execute(
       signal,
       files: FileList | undefined
-    ): Promise<string | undefined> {
+    ) {
       return files === undefined || files.length === 0
         ? undefined
         : fileToDataURL(signal, files[0]!);
@@ -74,8 +76,10 @@
     if (value === lastValueUpdate) {
       return;
     }
-    toValue.abort();
-    toFiles.run(value);
+    untrack(() => {
+      toValue.abort();
+      toFiles.run(value);
+    });
   });
 
   const errors = $derived(getErrors(ctx, config.id));
