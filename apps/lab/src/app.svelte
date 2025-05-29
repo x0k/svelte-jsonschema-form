@@ -122,15 +122,9 @@
     {#if labService.loading}
       <p>Loading...</p>
     {:else if labService.recentProjects.length === 0}
-      <p>Nothing</p>
+      <p>You don't have any projects yet</p>
     {:else}
       <table class="table table-sm">
-        <thead>
-          <tr>
-            <th class="w-full">Title</th>
-            <th>Updated at</th>
-          </tr>
-        </thead>
         <tbody>
           {#each labService.recentProjects as p (p.id)}
             <tr
@@ -138,7 +132,9 @@
               onclick={() => labService.openProject(p.id)}
             >
               <td class="w-full">{p.title}</td>
-              <td class="text-center">{p.updatedAt.toLocaleString()}</td>
+              <td class="min-w-25 text-center"
+                >{p.updatedAt.toLocaleString()}</td
+              >
             </tr>
           {/each}
         </tbody>

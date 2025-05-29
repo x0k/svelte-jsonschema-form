@@ -129,18 +129,16 @@ export class LabService {
       }
       return;
     }
+    this.#currentSubPage = undefined;
     const projectId = params.get(HashKey.ProjectId);
     if (projectId !== null) {
       if (projectId !== this.currentProject?.id) {
         this.#loadProject.run(
           this.projectsService.loadProjectById(projectId as ProjectId)
         );
-      } else {
-        this.#currentSubPage = undefined;
       }
       return;
     }
-    this.#currentSubPage = undefined;
     this.#currentProject = undefined;
     this.openSubPage(SubPage.Create);
   }
