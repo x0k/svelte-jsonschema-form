@@ -240,7 +240,7 @@ export function computeDefaults(
     isSchemaOfConstantValue(schema) &&
     experimental_defaultFormStateBehavior.constAsDefaults !== "never"
   ) {
-    defaults = schema.const;
+    defaults = schema.const ?? schema.enum?.[0];
   } else if (
     isSchemaObjectValue(defaults) &&
     isSchemaObjectValue(schemaDefault)
