@@ -1807,6 +1807,32 @@ describe("getDefaultFormState2()", () => {
       });
     });
 
+    describe("an object with a valid formData and enum property with default value", () => {
+      test("getDefaultFormState", () => {
+        const schema: Schema = {
+          type: "object",
+          properties: {
+            test: {
+              type: "string",
+              enum: [
+                { label: "a", value: "a" },
+                { label: "b", value: "b" },
+              ],
+              default: { label: "a", value: "a" },
+            },
+          },
+        };
+
+        expect(
+          getDefaultFormState(testValidator, defaultMerger, schema, {
+            test: { label: "b", value: "b" },
+          })
+        ).toEqual({
+          test: { label: "b", value: "b" },
+        });
+      });
+    });
+
     describe("oneOf with const values", () => {
       const schema: Schema = {
         type: "object",
@@ -2548,6 +2574,26 @@ describe("getDefaultFormState2()", () => {
           "a"
         )
       ).toEqual("a");
+    });
+    it("Test schema with valid formData with an enum and its default value", () => {
+      schema = {
+        type: "string",
+        enum: [
+          { label: "a", value: "a" },
+          { label: "b", value: "b" },
+        ],
+        default: { label: "a", value: "a" },
+      };
+
+      expect(
+        getDefaultFormState(testValidator, defaultMerger, schema, {
+          label: "b",
+          value: "b",
+        })
+      ).toEqual({
+        label: "b",
+        value: "b",
+      });
     });
   });
 
@@ -3926,7 +3972,7 @@ describe("getDefaultFormState2()", () => {
               ],
             },
             value: { leaf1: "a" },
-            result: true
+            result: true,
           },
         ],
       });
