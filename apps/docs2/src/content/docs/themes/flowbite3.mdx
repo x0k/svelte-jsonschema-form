@@ -52,6 +52,14 @@ Register the theme source path by adding a line like this to the `app.css` file.
 
 You can connect extra widgets using the following `include` imports:
 
+:::note
+
+For a widget to be applied, it must be explicitly specified in the
+[UI schema](../../form/ui-schema/#ui-components)
+or used in the field as the default widget.
+
+:::
+
 <Code lang='ts' code={createExtraImports("flowbite3", extraWidgets)} />
 
 ## UI options

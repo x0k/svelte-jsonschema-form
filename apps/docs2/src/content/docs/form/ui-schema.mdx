@@ -57,7 +57,7 @@ export type UiSchemaRoot = UiSchemaDefinition & {
 ```
 ## Evaluation rules
 
-Usually ui schema corresponds to the data structure described by json schema.
+Usually UI schema corresponds to the data structure described by json schema.
 
 For example, with this JSON schema, the following UI schema would be correct:
 
@@ -88,12 +88,12 @@ for the value of the `$ref` key, other fields will be ignored.
 
 ### Array
 
-Instead of defining indices in the ui schema, the `items` keyword should be used
-to specify the ui schema for the elements of the array.
+Instead of defining indices in the UI schema, the `items` keyword should be used
+to specify the UI schema for the elements of the array.
 
 For a fixed array `items` also can be an array.
 If you have additional items you should use `additionalItems` keyword
-to specify the ui schema for them.
+to specify the UI schema for them.
 
 ```
 {
@@ -104,22 +104,44 @@ to specify the ui schema for them.
 
 ### Object
 
-You should use `additionalProperties` keyword to specify the ui schema for
+You should use `additionalProperties` keyword to specify the UI schema for
 additional properties.
 
-You can use `additionalPropertyKeyInput` keyword to define an ui schema for
+You can use `additionalPropertyKeyInput` keyword to define an UI schema for
 the additional property key input field.
 
 ### oneOf/anyOf
 
-You can define separate ui schemas for each `oneOf/anyOf` branch
-using the corresponding keyword in the ui schema.
-Otherwise the ui schema of the current field will be used.
+You can define separate UI schemas for each `oneOf/anyOf` branch
+using the corresponding keyword in the UI schema.
+Otherwise the UI schema of the current field will be used.
 
 ```
 {
   oneOf: [<uiSchema>, ...]
 }
+```
+
+## UI components
+
+Using the `ui:components` property, you can replace any
+[form component](../theme/#component-types) with a compatible one
+using the name of the connected component or
+the component itself directly.
+
+Component `A` is compatible with component `B` if the properties and bindings
+of component `B` extend the properties and bindings of component `A`.
+
+```ts
+export type CompatibleComponentType<T extends ComponentType> = {
+  [C in ComponentType]: Expand<ComponentProps[T]> extends Expand<
+    ComponentProps[C]
+  >
+    ? ComponentBindings[T] extends ComponentBindings[C]
+      ? C
+      : never
+    : never;
+}[ComponentType];
 ```
 
 ## UI options
