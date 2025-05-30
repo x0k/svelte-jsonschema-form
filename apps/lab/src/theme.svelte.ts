@@ -6,6 +6,7 @@ export interface ThemeManager {
   theme: Theme;
   readonly darkOrLight: DarkOrLight;
   readonly isDark: boolean;
+  readonly editorTheme: string;
   sync: () => void;
 }
 
@@ -44,6 +45,11 @@ function createThemeManager() {
     },
     get isDark() {
       return isDark;
+    },
+    get editorTheme() {
+      return themeManager.isDark
+        ? "Default Dark Modern"
+        : "Default Light Modern";
     },
   } satisfies ThemeManager;
 }

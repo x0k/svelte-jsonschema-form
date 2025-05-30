@@ -1,52 +1,44 @@
 <script lang="ts">
-  import { initUserConfiguration } from "@codingame/monaco-vscode-configuration-service-override";
   import { Pane, PaneGroup, PaneResizer } from "paneforge";
   import type * as monaco from "monaco-editor";
-  import type { IDBPDatabase } from "idb";
 
-  import { THEME_TITLES, THEMES, type LabDBSchema } from "./shared/index.js";
-  import type { EditorState } from "./editor.svelte.js";
+  import { THEME_TITLES, THEMES } from "./shared/index.js";
+  import { createEditorState } from "./editor.svelte.js";
   import { themeManager } from "./theme.svelte.js";
   import Dropdown from "./components/dropdown.svelte";
+  import Editor from "./components/editor.svelte";
   import CreateProject from "./containers/create-project.svelte";
-  import { ProjectsService } from "./services/projects.js";
-  import { LabService, SubPage } from "./services/lab.svelte.js";
+  import {
+    LabService,
+    SubPage,
+    type ProjectsService,
+  } from "./services/lab.svelte.js";
+  import { FsService } from "./services/fs.js";
 
   interface Props {
-    db: IDBPDatabase<LabDBSchema>;
+    projectsService: ProjectsService;
   }
 
-  const { db }: Props = $props();
+  const { projectsService }: Props = $props();
 
   let editor = $state<monaco.editor.IStandaloneCodeEditor>();
   function editorResize() {
     editor?.layout(undefined, true);
   }
-  const editorTheme = $derived(
-    themeManager.isDark ? "Default Dark Modern" : "Default Light Modern"
-  );
-  // svelte-ignore non_reactive_update
-  let editorState: EditorState;
+  const editorState = createEditorState();
 
-  const editorPromise = initUserConfiguration(
-    JSON.stringify({
-      // svelte-ignore state_referenced_locally
-      "workbench.colorTheme": editorTheme,
-    })
-  )
-    .then(() =>
-      Promise.all([
-        import("@/components/editor.svelte"),
-        import("./editor.svelte.js"),
-      ])
-    )
-    .then(([c, m]) => {
-      editorState = m.createEditorState();
-      return c.default;
-    });
-
-  const projectsService = new ProjectsService(db);
   const labService = new LabService(projectsService);
+  const fsService = new FsService();
+
+  $effect(() => {
+    if (labService.currentProject === undefined) {
+      return;
+    }
+    fsService.registerProjectFiles(labService.currentProject);
+    return () => {
+      fsService.disposeProjectFiles();
+    };
+  });
 </script>
 
 <svelte:window onresize={editorResize} />
@@ -78,14 +70,12 @@
     class="flex h-full w-full data-[direction=vertical]:flex-col"
   >
     <Pane defaultSize={50} onResize={editorResize}>
-      {#await editorPromise then Editor}
-        <Editor
-          bind:editor
-          theme={editorTheme}
-          class="h-full w-full"
-          model={editorState.activeTab.model}
-        />
-      {/await}
+      <Editor
+        bind:editor
+        theme={themeManager.editorTheme}
+        class="h-full w-full"
+        model={editorState.activeTab.model}
+      />
     </Pane>
     <PaneResizer
       class="bg-secondary/20 focus-visible:ring-ring relative flex w-px items-center justify-center after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 data-[direction=vertical]:h-px data-[direction=vertical]:w-full data-[direction=vertical]:after:left-0 data-[direction=vertical]:after:h-1 data-[direction=vertical]:after:w-full data-[direction=vertical]:after:-translate-y-1/2 data-[direction=vertical]:after:translate-x-0 [&[data-direction=vertical]>div]:rotate-90"
