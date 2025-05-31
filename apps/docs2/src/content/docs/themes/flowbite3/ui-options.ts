@@ -7,6 +7,8 @@ import type { ButtonType, LayoutType } from "@sjsf/form/fields/exports";
 import type {
   ButtonGroupProps,
   ButtonProps as ButtonPropsUnion,
+  ButtonToggleGroupProps,
+  ButtonToggleProps,
   CheckboxProps,
   DatepickerProps,
   FileuploadProps,
@@ -80,6 +82,9 @@ export interface UiOptions {
   flowbite3File?: FileuploadProps;
 
   flowbite3MultiSelect?: Omit<MultiSelectProps<number>, "value">;
+
+  flowbite3RadioButtons?: Omit<ButtonToggleGroupProps, 'children'>;
+  flowbite3RadioButtonsItem?: Partial<ButtonToggleProps>;
 
   flowbite3Radio?: RadioProps<number>;
 
