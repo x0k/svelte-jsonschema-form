@@ -7,6 +7,7 @@ import './extra-widgets/checkboxes-include';
 import './extra-widgets/date-picker-include';
 import './extra-widgets/file-include';
 import './extra-widgets/multi-select-include';
+import './extra-widgets/radio-buttons-include';
 import './extra-widgets/radio-include';
 import './extra-widgets/range-include';
 import './extra-widgets/switch-include';
@@ -35,6 +36,16 @@ export const specs: s.Specs = {
 				checkboxesWidget: 'multiSelectWidget'
 			},
 			'ui:options': { useLabel: true }
+		}
+	],
+	radioButtons: [
+		s.enumeration,
+		{
+			'ui:components': {
+				stringField: 'enumField',
+				selectWidget: 'radioButtonsWidget'
+			},
+			'ui:options': { useLabel: false }
 		}
 	],
 	radio: [
