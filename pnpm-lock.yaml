@@ -958,8 +958,8 @@ importers:
         specifier: ^3.1.2
         version: 3.1.2(rollup@4.40.0)
       flowbite-svelte:
-        specifier: 1.4.3
-        version: 1.4.3(rollup@4.40.0)(svelte@5.33.10)(tailwindcss@4.1.8)
+        specifier: 1.5.0
+        version: 1.5.0(rollup@4.40.0)(svelte@5.33.10)(tailwindcss@4.1.8)
       globals:
         specifier: 'catalog:'
         version: 16.2.0
@@ -4484,6 +4484,12 @@ packages:
 
   flowbite-svelte@1.4.3:
     resolution: {integrity: sha512-g0HTOsf3X+jwjg03yPsRpyR1vyyk+218AW5rruDVJKmSUPDiHXbPf5F3QwE12OHzSaZafkORezU0deX8rY+CUw==}
+    peerDependencies:
+      svelte: ^5.0.0
+      tailwindcss: ^4.1.4
+
+  flowbite-svelte@1.5.0:
+    resolution: {integrity: sha512-G0ge3jaJgzPcemssFRZBi9C2O41ndMfDBPVKrgMQXeKug3XFx3X6ZC8dp9cLKUqsiB9Enia/YKC1HY1cWzlzcA==}
     peerDependencies:
       svelte: ^5.0.0
       tailwindcss: ^4.1.4
@@ -10178,6 +10184,20 @@ snapshots:
       - rollup
       - solid-js
       - vue
+
+  flowbite-svelte@1.5.0(rollup@4.40.0)(svelte@5.33.10)(tailwindcss@4.1.8):
+    dependencies:
+      '@floating-ui/dom': 1.7.0
+      '@floating-ui/utils': 0.2.9
+      apexcharts: 4.7.0
+      clsx: 2.1.1
+      flowbite: 3.1.2(rollup@4.40.0)
+      svelte: 5.33.10
+      tailwind-merge: 3.3.0
+      tailwind-variants: 1.0.0(tailwindcss@4.1.8)
+      tailwindcss: 4.1.8
+    transitivePeerDependencies:
+      - rollup
 
   flowbite@2.5.2(rollup@4.40.0):
     dependencies:
