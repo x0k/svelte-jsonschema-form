@@ -271,7 +271,9 @@ declare module "@sjsf/form" {
 const form = createForm({
   ...,
   uiSchema: {
-    itemTitle: "registry:myItemTitle"
+    "ui:options": {
+      itemTitle: "registry:myItemTitle"
+    }
   },
   uiOptionsRegistry: {
     myItemTitle: (title, index) => `${title} [${index}]`
@@ -297,7 +299,7 @@ Check your theme page for an extended list of UI options:
 <LinkCard title="daisyUI" href="../../themes/daisyui5/#ui-options" />
 <LinkCard title="Flowbite" href="../../themes/flowbite3/#ui-options" />
 <LinkCard title="Skeleton" href="../../themes/skeleton3/#ui-options" />
-<LinkCard title="shadcn-svelte" href="../../themes/shadcn/#ui-options" />
+<LinkCard title="shadcn-svelte" href="../../themes/shadcn4/#ui-options" />
 
 
 
