@@ -35,6 +35,8 @@
 	});
 
 	const ctx = getFormContext();
+
+	const itemAttributes = $derived(uiOptionProps('flowbite3RadioButtonsItem')({}, config, ctx));
 </script>
 
 <ButtonToggleGroup
@@ -48,7 +50,7 @@
 	{#each options as option, index (option.id)}
 		{@const strIndex = index.toString()}
 		<ButtonToggle
-			{...uiOptionProps('flowbite3RadioButtonsItem')({}, config, ctx)}
+			{...itemAttributes}
 			selected={mapper.fromValue(option.value) === strIndex}
 			value={strIndex}>{option.label}</ButtonToggle
 		>
