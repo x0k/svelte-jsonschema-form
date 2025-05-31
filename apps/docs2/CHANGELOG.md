@@ -1,5 +1,11 @@
 # docs
 
+## 1.6.3-next.15
+
+### Patch Changes
+
+- Add a note about the explicit use of `extra` widgets (#120) ([#121](https://github.com/x0k/svelte-jsonschema-form/pull/121))
+
 ## 1.6.3-next.14
 
 ### Patch Changes
