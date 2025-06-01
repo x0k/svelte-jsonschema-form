@@ -5,15 +5,14 @@
   import { EditorView } from "@codemirror/view";
   import Braces from "@lucide/svelte/icons/braces";
   import { Annotation } from "@codemirror/state";
+  import { themeManager } from "./theme.svelte";
 
   let {
     value = $bindable(),
-    lightOrDark,
     class: className,
     ...rest
   }: {
     value: T;
-    lightOrDark: "light" | "dark";
   } & HTMLAttributes<HTMLDivElement> = $props();
 
   let view = $state.raw<EditorView>();
@@ -77,7 +76,7 @@
                 flexDirection: "column",
               },
             },
-            { dark: lightOrDark === "dark" }
+            { dark: themeManager.isDark }
           ),
         ],
       });

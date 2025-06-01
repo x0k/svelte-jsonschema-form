@@ -13,6 +13,10 @@
     BasicForm,
     ON_ARRAY_CHANGE,
     ON_OBJECT_CHANGE,
+    type Schema,
+    type UiSchemaRoot,
+    type FormValue,
+    type InitialErrors,
   } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { resolver } from "@sjsf/form/resolvers/compat";
@@ -29,7 +33,6 @@
   import { ShadowHost } from "./shadow";
   import Github from "./github.svelte";
   import OpenBook from "./open-book.svelte";
-  import ThemePicker from "./theme-picker.svelte";
   import Editor from "./editor.svelte";
   import Popup from "./popup.svelte";
   import Bits from "./bits.svelte";
@@ -38,190 +41,83 @@
   import { samples } from "./samples";
   import * as customComponents from "./samples/components";
   import { validators } from "./validators";
-  import { copyTextToClipboard } from "./copy-to-clipboard";
+  import { themeManager } from "./theme.svelte";
+  import { Theme, THEME_TITLES, THEMES } from "./shared";
 
-  function isSampleName(name: unknown): name is keyof typeof samples {
-    return typeof name === "string" && name in samples;
-  }
+  type Validators = typeof validators;
+  type Themes = typeof themes;
+  type Icons = typeof icons;
 
-  function isThemeName(name: unknown): name is keyof typeof themes {
-    return typeof name === "string" && name in themes;
-  }
-
-  function isIconSetName(name: unknown): name is keyof typeof icons {
-    return typeof name === "string" && name in icons;
-  }
-
-  function isValidatorName(name: unknown): name is keyof typeof validators {
-    return typeof name === "string" && name in validators;
-  }
-
-  const url = new URL(window.location.toString());
-
-  const parsedSampleName = url.searchParams.get("sample");
-  function selectSample(name: keyof typeof samples, replace = false) {
-    url.searchParams.set("sample", name);
-    history[replace ? "replaceState" : "pushState"](null, "", url);
-    return name;
-  }
-  const initialSampleName = isSampleName(parsedSampleName)
-    ? parsedSampleName
-    : selectSample("Simple", true);
-  let sampleName = $state(initialSampleName);
-  let schema = $state(samples[initialSampleName].schema);
-  let uiSchema = $state(samples[initialSampleName].uiSchema);
-
-  const parsedThemeName = url.searchParams.get("theme");
-  function selectTheme(name: keyof typeof themes, replace = false) {
-    url.searchParams.set("theme", name);
-    history[replace ? "replaceState" : "pushState"](null, "", url);
-    return name;
-  }
-  const initialThemeName = isThemeName(parsedThemeName)
-    ? parsedThemeName
-    : selectTheme("basic", true);
-  let themeName = $state(initialThemeName);
-  const theme = $derived(extendByRecord(themes[themeName], customComponents));
-  const themeStyle = $derived(themeStyles[themeName]);
-
-  const parsedIconSetName = url.searchParams.get("icons");
-  function selectIconSet(name: keyof typeof icons, replace = false) {
-    url.searchParams.set("icons", name);
-    history[replace ? "replaceState" : "pushState"](null, "", url);
-    return name;
-  }
-  const initialIconSetName = isIconSetName(parsedIconSetName)
-    ? parsedIconSetName
-    : selectIconSet("none", true);
-  let iconSetName = $state(initialIconSetName);
-  const iconSet = $derived(icons[iconSetName]);
-  const iconSetStyle = $derived(iconsStyles[iconSetName]);
-
-  const parsedValidatorName = url.searchParams.get("validator");
-  function selectValidator(name: keyof typeof validators, replace = false) {
-    url.searchParams.set("validator", name);
-    history[replace ? "replaceState" : "pushState"](null, "", url);
-    return name;
-  }
-  const initialValidatorName = isValidatorName(parsedValidatorName)
-    ? parsedValidatorName
-    : selectValidator("ajv8", true);
-  let validatorName = $state(initialValidatorName);
-  const validator = $derived.by(() => {
-    const validator = validators[validatorName]();
-    const { customizeValidator } = samples[sampleName];
-    return customizeValidator?.(validator) ?? validator;
+  const data = $state<{
+    schema: Schema;
+    uiSchema: UiSchemaRoot;
+    initialValue: FormValue;
+    initialErrors: InitialErrors<
+      { [K in keyof Validators]: ReturnType<Validators[K]> }[keyof Validators]
+    >;
+    disabled: boolean;
+    html5Validation: boolean;
+    focusOnFirstError: boolean;
+    fieldsValidationMode: 0;
+    validator: keyof Validators;
+    theme: keyof Themes;
+    icons: keyof Icons | undefined;
+  }>({
+    schema: {},
+    uiSchema: {},
+    initialValue: {},
+    initialErrors: [],
+    disabled: false,
+    html5Validation: false,
+    focusOnFirstError: true,
+    fieldsValidationMode: 0,
+    validator: "ajv8",
+    theme: "basic",
+    icons: undefined,
   });
 
-  let disabled = $state(false);
-  let html5Validation = $state(false);
-  let doFocusOnFirstError = $state(true);
+  const theme = $derived(extendByRecord(themes[data.theme], customComponents));
+  const themeStyle = $derived(themeStyles[data.theme]);
+  const validator = $derived(validators[data.validator]());
+  const iconsSet = $derived(data.icons && icons[data.icons]);
+  const iconSetStyle = $derived(data.icons && iconsStyles[data.icons]);
 
+  const focusOnFirstError = createFocusOnFirstError();
   const form = createForm({
     resolver,
-    initialValue: samples[initialSampleName].formData,
-    initialErrors: samples[initialSampleName].errors,
+    initialValue: data.initialValue,
+    initialErrors: data.initialErrors,
     translation,
     get theme() {
       return theme;
     },
     get schema() {
-      return schema;
+      return data.schema;
     },
     get uiSchema() {
-      return uiSchema;
+      return data.uiSchema;
     },
     get validator() {
       return validator;
     },
     get disabled() {
-      return disabled;
+      return data.disabled;
     },
     get fieldsValidationMode() {
-      return validationEvent | validationAfter;
+      return data.fieldsValidationMode;
     },
     get icons() {
-      return iconSet;
+      return iconsSet;
     },
     onSubmit(value) {
       console.log("submit", value);
     },
     onSubmitError(errors, e) {
-      if (doFocusOnFirstError) {
-        createFocusOnFirstError()(errors, e);
+      if (data.focusOnFirstError) {
+        focusOnFirstError(errors, e);
       }
       console.log("errors", errors);
     },
-  });
-
-  onMount(() => {
-    if (!location.hash) {
-      return;
-    }
-    let data: any;
-    try {
-      data = JSON.parse(
-        decompressFromEncodedURIComponent(location.hash.substring(1))
-      );
-    } catch (e) {
-      console.error("Failed to decode shared code");
-    }
-    schema = data.schema;
-    uiSchema = data.uiSchema;
-    form.value = data.value;
-    setTimeout(() => {
-      history.replaceState(
-        null,
-        "",
-        window.location.pathname + window.location.search
-      );
-    });
-  });
-
-  let playgroundTheme = $state<"system" | "light" | "dark">(
-    localStorage.theme ?? "system"
-  );
-
-  const lightOrDark = $derived(
-    playgroundTheme === "system"
-      ? window.matchMedia("(prefers-color-scheme: dark)")
-        ? "dark"
-        : "light"
-      : playgroundTheme
-  );
-
-  function setValidation(
-    name: "vevent" | "vafter",
-    value: number,
-    replace = false
-  ) {
-    url.searchParams.set(name, value.toString());
-    history[replace ? "replaceState" : "pushState"](null, "", url);
-    return value;
-  }
-  const urlValidationEvent = Number(url.searchParams.get("vevent") ?? 0);
-  const initialValidationEvent =
-    urlValidationEvent > 0 && urlValidationEvent <= ON_OBJECT_CHANGE
-      ? urlValidationEvent
-      : 0;
-  let validationEvent = $state(
-    setValidation("vevent", initialValidationEvent, true)
-  );
-  $effect(() => {
-    setValidation("vevent", validationEvent);
-  });
-  const urlValidationAfter = Number(url.searchParams.get("vafter") ?? 0);
-  const initialValidationAfter =
-    urlValidationAfter === 0 ||
-    (urlValidationAfter >= AFTER_CHANGED &&
-      urlValidationAfter <= AFTER_SUBMITTED)
-      ? urlValidationAfter
-      : 0;
-  let validationAfter = $state(
-    setValidation("vafter", initialValidationAfter, true)
-  );
-  $effect(() => {
-    setValidation("vafter", validationAfter);
   });
 
   setThemeContext({ components });
@@ -234,24 +130,26 @@
     <h1 class="grow text-3xl font-bold">Playground</h1>
     <Popup>
       {#snippet label()}
-        Form options ({+disabled + +html5Validation + +doFocusOnFirstError})
+        Form options ({+data.disabled +
+          +data.html5Validation +
+          +data.focusOnFirstError})
       {/snippet}
       <label>
-        <input type="checkbox" bind:checked={disabled} />
+        <input type="checkbox" bind:checked={data.disabled} />
         Disabled
       </label>
       <label>
-        <input type="checkbox" bind:checked={html5Validation} />
+        <input type="checkbox" bind:checked={data.html5Validation} />
         HTML5 validation
       </label>
       <label>
-        <input type="checkbox" bind:checked={doFocusOnFirstError} />
+        <input type="checkbox" bind:checked={data.focusOnFirstError} />
         Focus on first error
       </label>
     </Popup>
     <Bits
       title="Fields Validation Triggers"
-      bind:value={validationEvent}
+      bind:value={data.fieldsValidationMode}
       flags={[
         [ON_INPUT, "On Input"],
         [ON_CHANGE, "On Change"],
@@ -262,51 +160,34 @@
     />
     <Bits
       title="Fields Validation Modifiers"
-      bind:value={validationAfter}
+      bind:value={data.fieldsValidationMode}
       flags={[
         [AFTER_CHANGED, "After Changed"],
         [AFTER_TOUCHED, "After Touched"],
         [AFTER_SUBMITTED, "After Submitted"],
       ]}
     />
-    <select
-      bind:value={validatorName}
-      onchange={() => selectValidator(validatorName)}
-    >
+    <select bind:value={data.validator}>
       {#each Object.keys(validators) as name (name)}
         <option value={name}>{name}</option>
       {/each}
     </select>
-    <select bind:value={themeName} onchange={() => selectTheme(themeName)}>
+    <select bind:value={data.theme}>
       {#each Object.keys(themes) as name (name)}
         <option value={name}>{name}</option>
       {/each}
     </select>
-    <select
-      bind:value={iconSetName}
-      onchange={() => selectIconSet(iconSetName)}
-    >
+    <select bind:value={data.icons}>
       {#each Object.keys(icons) as name (name)}
         <option value={name}>{name}</option>
       {/each}
     </select>
-    <ThemePicker bind:theme={playgroundTheme} />
-    <button
-      onclick={() => {
-        const url = new URL(location.href);
-        url.hash = compressToEncodedURIComponent(
-          JSON.stringify({
-            schema,
-            uiSchema,
-            value: form.value,
-          })
-        );
-        void copyTextToClipboard(url.toString());
-        alert("Done");
-      }}
-    >
-      Share
-    </button>
+    <select bind:value={themeManager.theme}>
+      {#each THEMES as theme (theme)}
+        <option value={theme}>{THEME_TITLES[theme]}</option>
+      {/each}
+    </select>
+
     <a href="https://x0k.github.io/svelte-jsonschema-form/v2/">
       <OpenBook class="h-8 w-8" />
     </a>
@@ -318,20 +199,12 @@
     {#each Object.entries(samples) as [name, sample]}
       <button
         type="button"
-        class="rounded shadow p-2"
-        class:bg-green-300={sample.status === "perfect"}
-        class:bg-yellow-300={sample.status === "warnings"}
-        class:bg-red-300={sample.status === "broken" ||
-          sample.status === undefined}
-        class:bg-neutral-300={sample.status === "skipped"}
-        class:font-bold={name === sampleName}
-        disabled={sample.status === "skipped"}
+        class="rounded shadow p-2 bg-green-300"
         onclick={() => {
-          sampleName = selectSample(name as keyof typeof samples);
-          schema = samples[sampleName].schema;
-          uiSchema = samples[sampleName].uiSchema;
-          form.value = samples[sampleName].formData;
-          form.errors = samples[sampleName].errors ?? new SvelteMap();
+          data.schema = sample.schema;
+          data.uiSchema = sample.uiSchema;
+          form.value = sample.formData;
+          form.errors = sample.errors ?? new SvelteMap();
         }}
       >
         {name}
@@ -341,17 +214,14 @@
   <div class="flex gap-8">
     <div class="flex-[4] grid grid-cols-2 grid-rows-[repeat(2,385px)]">
       <Editor
-        {lightOrDark}
         class="col-span-2 border border-b-0 rounded-t data-[error=true]:border-red-500 data-[error=true]:outline-none"
-        bind:value={schema}
+        bind:value={data.schema}
       />
       <Editor
-        {lightOrDark}
         class="border rounded-bl data-[error=true]:border-red-500 data-[error=true]:outline-none"
-        bind:value={uiSchema}
+        bind:value={data.uiSchema}
       />
       <Editor
-        {lightOrDark}
         class="border rounded-br data-[error=true]:border-red-500 data-[error=true]:outline-none"
         bind:value={form.value}
       />
@@ -362,10 +232,12 @@
     >
       <BasicForm
         {form}
-        class={lightOrDark}
+        class={themeManager.darkOrLight}
         style="background-color: transparent; display: flex; flex-direction: column; gap: 1rem; padding: 0.3rem;"
-        novalidate={!html5Validation || undefined}
-        data-theme={themeName.startsWith("skeleton") ? "cerberus" : lightOrDark}
+        novalidate={!data.html5Validation || undefined}
+        data-theme={data.theme.startsWith("skeleton")
+          ? "cerberus"
+          : themeManager.darkOrLight}
       />
       {#if location.hostname === "localhost"}
         <Debug />
