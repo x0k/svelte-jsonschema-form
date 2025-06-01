@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { onMount } from "svelte";
   import { SvelteMap } from "svelte/reactivity";
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import {
@@ -16,7 +15,6 @@
     type Schema,
     type UiSchemaRoot,
     type FormValue,
-    type InitialErrors,
   } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { resolver } from "@sjsf/form/resolvers/compat";
@@ -42,38 +40,71 @@
   import * as customComponents from "./samples/components";
   import { validators } from "./validators";
   import { themeManager } from "./theme.svelte";
-  import { Theme, THEME_TITLES, THEMES } from "./shared";
+  import { THEME_TITLES, THEMES } from "./shared";
 
   type Validators = typeof validators;
   type Themes = typeof themes;
   type Icons = typeof icons;
 
-  const data = $state<{
+  interface PlaygroundState {
     schema: Schema;
     uiSchema: UiSchemaRoot;
     initialValue: FormValue;
-    initialErrors: InitialErrors<
-      { [K in keyof Validators]: ReturnType<Validators[K]> }[keyof Validators]
-    >;
     disabled: boolean;
     html5Validation: boolean;
     focusOnFirstError: boolean;
     fieldsValidationMode: 0;
     validator: keyof Validators;
     theme: keyof Themes;
-    icons: keyof Icons | undefined;
-  }>({
+    icons: keyof Icons;
+  }
+
+  const DEFAULT_PLAYGROUND_STATE: PlaygroundState = {
     schema: {},
     uiSchema: {},
     initialValue: {},
-    initialErrors: [],
     disabled: false,
     html5Validation: false,
     focusOnFirstError: true,
     fieldsValidationMode: 0,
     validator: "ajv8",
     theme: "basic",
-    icons: undefined,
+    icons: "none",
+  };
+
+  function init(): PlaygroundState {
+    if (location.hash) {
+      try {
+        return Object.assign(
+          {},
+          DEFAULT_PLAYGROUND_STATE,
+          JSON.parse(
+            decompressFromEncodedURIComponent(location.hash.substring(1))
+          )
+        );
+      } catch {
+        console.error("Failed to decode initial state");
+      }
+    }
+    return DEFAULT_PLAYGROUND_STATE;
+  }
+
+  const data: PlaygroundState = $state(init());
+
+  let callbackId: number | undefined;
+  const PLAYGROUND_STATE_KEYS = Object.keys(
+    DEFAULT_PLAYGROUND_STATE
+  ) as (keyof PlaygroundState)[];
+  $effect(() => {
+    for (const key of PLAYGROUND_STATE_KEYS) {
+      data[key];
+    }
+    clearTimeout(callbackId);
+    callbackId = setTimeout(() => {
+      const url = new URL(location.href);
+      url.hash = compressToEncodedURIComponent(JSON.stringify(data));
+      history.replaceState(null, "", url);
+    }, 300);
   });
 
   const theme = $derived(extendByRecord(themes[data.theme], customComponents));
@@ -81,12 +112,22 @@
   const validator = $derived(validators[data.validator]());
   const iconsSet = $derived(data.icons && icons[data.icons]);
   const iconSetStyle = $derived(data.icons && iconsStyles[data.icons]);
+  const fieldsValidationCount = $derived.by(() => {
+    let count = 0;
+    let snap = data.fieldsValidationMode;
+    while (snap) {
+      if (snap & 1) {
+        count++;
+      }
+      snap = snap >> 1;
+    }
+    return count;
+  });
 
   const focusOnFirstError = createFocusOnFirstError();
   const form = createForm({
     resolver,
     initialValue: data.initialValue,
-    initialErrors: data.initialErrors,
     translation,
     get theme() {
       return theme;
@@ -120,6 +161,10 @@
     },
   });
 
+  $effect(() => {
+    data.initialValue = form.value;
+  });
+
   setThemeContext({ components });
 </script>
 
@@ -147,26 +192,31 @@
         Focus on first error
       </label>
     </Popup>
-    <Bits
-      title="Fields Validation Triggers"
-      bind:value={data.fieldsValidationMode}
-      flags={[
-        [ON_INPUT, "On Input"],
-        [ON_CHANGE, "On Change"],
-        [ON_BLUR, "On Blur"],
-        [ON_ARRAY_CHANGE, "Array Changed"],
-        [ON_OBJECT_CHANGE, "Object Changed"],
-      ]}
-    />
-    <Bits
-      title="Fields Validation Modifiers"
-      bind:value={data.fieldsValidationMode}
-      flags={[
-        [AFTER_CHANGED, "After Changed"],
-        [AFTER_TOUCHED, "After Touched"],
-        [AFTER_SUBMITTED, "After Submitted"],
-      ]}
-    />
+    <Popup>
+      {#snippet label()}
+        Fields validation ({fieldsValidationCount})
+      {/snippet}
+      <Bits
+        title="Triggers"
+        bind:value={data.fieldsValidationMode}
+        flags={[
+          [ON_INPUT, "On Input"],
+          [ON_CHANGE, "On Change"],
+          [ON_BLUR, "On Blur"],
+          [ON_ARRAY_CHANGE, "Array Changed"],
+          [ON_OBJECT_CHANGE, "Object Changed"],
+        ]}
+      />
+      <Bits
+        title="Modifiers"
+        bind:value={data.fieldsValidationMode}
+        flags={[
+          [AFTER_CHANGED, "After Changed"],
+          [AFTER_TOUCHED, "After Touched"],
+          [AFTER_SUBMITTED, "After Submitted"],
+        ]}
+      />
+    </Popup>
     <select bind:value={data.validator}>
       {#each Object.keys(validators) as name (name)}
         <option value={name}>{name}</option>
