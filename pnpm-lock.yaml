@@ -372,8 +372,8 @@ importers:
         specifier: npm:flowbite-svelte@0.47
         version: flowbite-svelte@0.47.4(rollup@4.40.0)(svelte@5.33.10)
       flowbite-svelte3:
-        specifier: npm:flowbite-svelte@1.4.3
-        version: flowbite-svelte@1.4.3(rollup@4.40.0)(svelte@5.33.10)(tailwindcss@4.1.8)
+        specifier: npm:flowbite-svelte@1.5.1
+        version: flowbite-svelte@1.5.1(rollup@4.40.0)(svelte@5.33.10)(tailwindcss@4.1.8)
       json-schema-to-ts:
         specifier: ^3.1.1
         version: 3.1.1
@@ -958,8 +958,8 @@ importers:
         specifier: ^3.1.2
         version: 3.1.2(rollup@4.40.0)
       flowbite-svelte:
-        specifier: 1.5.0
-        version: 1.5.0(rollup@4.40.0)(svelte@5.33.10)(tailwindcss@4.1.8)
+        specifier: 1.5.1
+        version: 1.5.1(rollup@4.40.0)(svelte@5.33.10)(tailwindcss@4.1.8)
       globals:
         specifier: 'catalog:'
         version: 16.2.0
@@ -4482,14 +4482,8 @@ packages:
     peerDependencies:
       svelte: ^3.55.1 || ^4.0.0 || ^5.0.0
 
-  flowbite-svelte@1.4.3:
-    resolution: {integrity: sha512-g0HTOsf3X+jwjg03yPsRpyR1vyyk+218AW5rruDVJKmSUPDiHXbPf5F3QwE12OHzSaZafkORezU0deX8rY+CUw==}
-    peerDependencies:
-      svelte: ^5.0.0
-      tailwindcss: ^4.1.4
-
-  flowbite-svelte@1.5.0:
-    resolution: {integrity: sha512-G0ge3jaJgzPcemssFRZBi9C2O41ndMfDBPVKrgMQXeKug3XFx3X6ZC8dp9cLKUqsiB9Enia/YKC1HY1cWzlzcA==}
+  flowbite-svelte@1.5.1:
+    resolution: {integrity: sha512-Qa60wb13K4eQG9kgzrwmEeEn514jaHh6Zq9cdo/6JF9g3CiJuL5rovAGqQBi4XnP+uyl5+QBMGAXYu53msnNqg==}
     peerDependencies:
       svelte: ^5.0.0
       tailwindcss: ^4.1.4
@@ -6527,26 +6521,6 @@ packages:
 
   vfile@6.0.3:
     resolution: {integrity: sha512-KzIbH/9tXat2u30jf+smMwFCsno4wHVdNmzFyL+T/L3UGqqk6JKfVqOFOZEpZSHADH1k40ab6NUIXZq422ov3Q==}
-
-  virtua@0.41.2:
-    resolution: {integrity: sha512-48jgdeXKagXEVxalTFf1bJe/5JZq41QG9LcwDweFJwOZgOvIgoHhBR+IMZPOVd0AjtwvLOaS3O7MYNdti9c4VQ==}
-    peerDependencies:
-      react: '>=16.14.0'
-      react-dom: '>=16.14.0'
-      solid-js: '>=1.0'
-      svelte: '>=5.0'
-      vue: '>=3.2'
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
-      solid-js:
-        optional: true
-      svelte:
-        optional: true
-      vue:
-        optional: true
 
   vite-node@3.1.4:
     resolution: {integrity: sha512-6enNwYnpyDo4hEgytbmc6mYWHXDHYEn0D1/rw4Q+tnHUGtKTJsn8T1YkX6Q18wI5LCrS8CTYlBaiCqxOy2kvUA==}
@@ -10167,25 +10141,7 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
-  flowbite-svelte@1.4.3(rollup@4.40.0)(svelte@5.33.10)(tailwindcss@4.1.8):
-    dependencies:
-      '@floating-ui/dom': 1.7.0
-      '@floating-ui/utils': 0.2.9
-      apexcharts: 4.7.0
-      flowbite: 3.1.2(rollup@4.40.0)
-      svelte: 5.33.10
-      tailwind-merge: 3.3.0
-      tailwind-variants: 1.0.0(tailwindcss@4.1.8)
-      tailwindcss: 4.1.8
-      virtua: 0.41.2(svelte@5.33.10)
-    transitivePeerDependencies:
-      - react
-      - react-dom
-      - rollup
-      - solid-js
-      - vue
-
-  flowbite-svelte@1.5.0(rollup@4.40.0)(svelte@5.33.10)(tailwindcss@4.1.8):
+  flowbite-svelte@1.5.1(rollup@4.40.0)(svelte@5.33.10)(tailwindcss@4.1.8):
     dependencies:
       '@floating-ui/dom': 1.7.0
       '@floating-ui/utils': 0.2.9
@@ -12695,10 +12651,6 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.3
       vfile-message: 4.0.2
-
-  virtua@0.41.2(svelte@5.33.10):
-    optionalDependencies:
-      svelte: 5.33.10
 
   vite-node@3.1.4(@types/node@22.15.29)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1):
     dependencies:
