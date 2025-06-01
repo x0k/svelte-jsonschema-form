@@ -1,29 +1,106 @@
 <script lang="ts" generics="T">
-  import type { HTMLTextareaAttributes } from "svelte/elements";
+  import type { HTMLAttributes } from "svelte/elements";
+  import { basicSetup } from "codemirror";
+  import { json } from "@codemirror/lang-json";
+  import { EditorView } from "@codemirror/view";
+  import Braces from "@lucide/svelte/icons/braces";
+  import { Annotation } from "@codemirror/state";
 
   let {
     value = $bindable(),
+    lightOrDark,
+    class: className,
     ...rest
-  }: { value: T } & Omit<HTMLTextareaAttributes, "value"> = $props();
+  }: {
+    value: T;
+    lightOrDark: "light" | "dark";
+  } & HTMLAttributes<HTMLDivElement> = $props();
 
-  let error = $state(false);
-
-  let writable = $derived(JSON.stringify(value, null, 2));
+  let view = $state.raw<EditorView>();
+  let ignore = false;
+  const ExternalChange = Annotation.define();
+  $effect(() => {
+    if (view === undefined) {
+      return;
+    }
+    if (ignore) {
+      value;
+      ignore = false;
+      return;
+    }
+    view.dispatch(
+      view.state.update({
+        changes: {
+          from: 0,
+          to: view.state.doc.length,
+          insert: JSON.stringify(value, null, 2),
+        },
+        annotations: ExternalChange.of(true),
+      })
+    );
+  });
+  let error = $state.raw(false);
 </script>
 
-<textarea
-  {...rest}
-  data-error={error}
-  bind:value={
-    () => writable,
-    (str) => {
-      writable = str;
-      try {
-        value = JSON.parse(str);
-        error = false;
-      } catch (e) {
-        error = true;
+<div {...rest} class={[className, "group relative"]} data-error={error}>
+  <div
+    class="overflow-auto h-full w-full"
+    {@attach (node) => {
+      const onChange = EditorView.updateListener.of((update) => {
+        if (
+          !update.docChanged ||
+          update.transactions.some((t) => t.annotation(ExternalChange))
+        ) {
+          return;
+        }
+        const str = update.state.doc.toString();
+        try {
+          value = JSON.parse(str);
+          ignore = true;
+          error = false;
+        } catch (e) {
+          error = true;
+        }
+      });
+      ignore = false;
+      view = new EditorView({
+        parent: node,
+        extensions: [
+          basicSetup,
+          json(),
+          onChange,
+          EditorView.theme(
+            {
+              "&": {
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+              },
+            },
+            { dark: lightOrDark === "dark" }
+          ),
+        ],
+      });
+      return () => view?.destroy();
+    }}
+  ></div>
+  <button
+    class="absolute top-2 right-2 z-10 p-1 opacity-0 group-hover:opacity-100 transition rounded-sm bg-slate-300 dark:bg-slate-600"
+    onclick={() => {
+      if (view === undefined) {
+        return;
       }
-    }
-  }
-></textarea>
+      view.dispatch(
+        view.state.update({
+          changes: {
+            from: 0,
+            to: view.state.doc.length,
+            insert: JSON.stringify(value, null, 2),
+          },
+        })
+      );
+    }}
+  >
+    <Braces />
+  </button>
+</div>

@@ -293,21 +293,22 @@
     {/each}
   </div>
   <div class="flex gap-8">
-    <div class="flex-[4] flex flex-col">
+    <div class="flex-[4] grid grid-cols-2 grid-rows-[repeat(2,385px)]">
       <Editor
-        class="font-mono h-[385px] border border-b-0 rounded-t p-2 data-[error=true]:border-red-500 data-[error=true]:outline-none bg-transparent"
+        {lightOrDark}
+        class="col-span-2 border border-b-0 rounded-t data-[error=true]:border-red-500 data-[error=true]:outline-none"
         bind:value={schema}
       />
-      <div class="flex">
-        <Editor
-          class="font-mono h-[385px] grow border rounded-bl p-2 data-[error=true]:border-red-500 data-[error=true]:outline-none bg-transparent"
-          bind:value={uiSchema}
-        />
-        <Editor
-          class="font-mono h-[385px] grow border rounded-br p-2 data-[error=true]:border-red-500 data-[error=true]:outline-none bg-transparent"
-          bind:value={form.value}
-        />
-      </div>
+      <Editor
+        {lightOrDark}
+        class="border rounded-bl data-[error=true]:border-red-500 data-[error=true]:outline-none"
+        bind:value={uiSchema}
+      />
+      <Editor
+        {lightOrDark}
+        class="border rounded-br data-[error=true]:border-red-500 data-[error=true]:outline-none"
+        bind:value={form.value}
+      />
     </div>
     <ShadowHost
       class="flex-[3] max-h-[770px] overflow-y-auto"
