@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import { SvelteMap } from "svelte/reactivity";
   import { extendByRecord } from "@sjsf/form/lib/resolver";
   import {
@@ -18,6 +19,10 @@
   import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
   import { setThemeContext } from "@sjsf/shadcn4-theme";
   import * as components from "@sjsf/shadcn4-theme/new-york";
+  import {
+    compressToEncodedURIComponent,
+    decompressFromEncodedURIComponent,
+  } from "lz-string";
 
   import { themes, themeStyles } from "./themes";
   import { icons, iconsStyles } from "./icons";
@@ -33,6 +38,7 @@
   import { samples } from "./samples";
   import * as customComponents from "./samples/components";
   import { validators } from "./validators";
+  import { copyTextToClipboard } from "./copy-to-clipboard";
 
   function isSampleName(name: unknown): name is keyof typeof samples {
     return typeof name === "string" && name in samples;
@@ -148,6 +154,30 @@
     },
   });
 
+  onMount(() => {
+    if (!location.hash) {
+      return;
+    }
+    let data: any;
+    try {
+      data = JSON.parse(
+        decompressFromEncodedURIComponent(location.hash.substring(1))
+      );
+    } catch (e) {
+      console.error("Failed to decode shared code");
+    }
+    schema = data.schema;
+    uiSchema = data.uiSchema;
+    form.value = data.value;
+    setTimeout(() => {
+      history.replaceState(
+        null,
+        "",
+        window.location.pathname + window.location.search
+      );
+    });
+  });
+
   let playgroundTheme = $state<"system" | "light" | "dark">(
     localStorage.theme ?? "system"
   );
@@ -261,6 +291,22 @@
       {/each}
     </select>
     <ThemePicker bind:theme={playgroundTheme} />
+    <button
+      onclick={() => {
+        const url = new URL(location.href);
+        url.hash = compressToEncodedURIComponent(
+          JSON.stringify({
+            schema,
+            uiSchema,
+            value: form.value,
+          })
+        );
+        void copyTextToClipboard(url.toString());
+        alert("Done");
+      }}
+    >
+      Share
+    </button>
     <a href="https://x0k.github.io/svelte-jsonschema-form/v2/">
       <OpenBook class="h-8 w-8" />
     </a>

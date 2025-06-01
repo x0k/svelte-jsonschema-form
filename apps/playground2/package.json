@@ -30,7 +30,7 @@
     "@sjsf/skeleton3-theme": "workspace:*",
     "ajv": "catalog:",
     "codemirror": "^6.0.1",
-    "rehype-raw": "^7.0.0",
+    "lz-string": "^1.5.0",
     "svelte-exmarkdown": "^5.0.1"
   },
   "devDependencies": {
