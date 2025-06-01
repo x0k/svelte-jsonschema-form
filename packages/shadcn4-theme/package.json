@@ -96,7 +96,7 @@
 		"@sveltejs/vite-plugin-svelte": "catalog:",
 		"@tailwindcss/vite": "catalog:",
 		"@testing-library/svelte": "catalog:",
-		"bits-ui": "^2.2.0",
+		"bits-ui": "^2.4.1",
 		"clsx": "^2.1.1",
 		"eslint": "catalog:",
 		"eslint-config-prettier": "catalog:",
