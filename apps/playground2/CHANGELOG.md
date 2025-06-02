@@ -1,5 +1,36 @@
 # playground2
 
+## 1.0.0-next.15
+
+### Major Changes
+
+- - Store playground state in a URL hash ([#125](https://github.com/x0k/svelte-jsonschema-form/pull/125))
+  - Migration to shadcn-svelte UI
+
+### Minor Changes
+
+- Add `Share` button ([`143c0cd`](https://github.com/x0k/svelte-jsonschema-form/commit/143c0cdae85d45fcace09b195baabfa8ef905aec))
+
+- Use CodeMirror editor ([`b4c831d`](https://github.com/x0k/svelte-jsonschema-form/commit/b4c831daa710984f6930d39420e48d2552e54353))
+
+### Patch Changes
+
+- Updated dependencies [[`00a1ea1`](https://github.com/x0k/svelte-jsonschema-form/commit/00a1ea1c431c7f8637cb2cc5e3aa73dd6d94771f), [`e904c7f`](https://github.com/x0k/svelte-jsonschema-form/commit/e904c7f59daf600188ef02ce8c4ee6d7f843656f), [`ba140fb`](https://github.com/x0k/svelte-jsonschema-form/commit/ba140fb1ad3e371cb5c163b869998e20750db939), [`21e47cc`](https://github.com/x0k/svelte-jsonschema-form/commit/21e47cccb6f53c698582db9c3639a33672e21552), [`95e52e6`](https://github.com/x0k/svelte-jsonschema-form/commit/95e52e6e70620007be1b05a7880376b24215d4cb), [`e1832e7`](https://github.com/x0k/svelte-jsonschema-form/commit/e1832e7cdd1769d9e7a1eae2bcaae34b61fcd6c8)]:
+  - @sjsf/form@2.0.0-next.15
+  - @sjsf/flowbite3-theme@2.0.0-next.15
+  - @sjsf/skeleton3-theme@2.0.0-next.15
+  - @sjsf/daisyui5-theme@2.0.0-next.15
+  - @sjsf/flowbite-icons@2.0.0-next.15
+  - @sjsf/daisyui-theme@2.0.0-next.15
+  - @sjsf/shadcn4-theme@2.0.0-next.15
+  - @sjsf/lucide-icons@2.0.0-next.15
+  - @sjsf/moving-icons@2.0.0-next.15
+  - @sjsf/basic-theme@2.0.0-next.15
+  - @sjsf/radix-icons@2.0.0-next.15
+  - @sjsf/ajv8-validator@2.0.0-next.15
+  - @sjsf/cfworker-validator@2.0.0-next.15
+  - @sjsf/schemasafe-validator@2.0.0-next.15
+
 ## 0.0.2-next.14
 
 ### Patch Changes
