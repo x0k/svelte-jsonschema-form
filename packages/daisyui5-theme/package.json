@@ -65,7 +65,7 @@
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^2.0.0-next.14",
 		"daisyui": "^5.0.0",
-		"svelte": "^5.30.0"
+		"svelte": "^5.33.0"
 	},
 	"optionalDependencies": {
 		"cally": "^0.8.0",
@@ -84,7 +84,7 @@
 		"@types/pikaday": "^1.7.9",
 		"ajv": "catalog:",
 		"cally": "^0.8.0",
-		"daisyui": "^5.0.35",
+		"daisyui": "^5.0.38",
 		"eslint": "catalog:",
 		"eslint-config-prettier": "catalog:",
 		"eslint-plugin-svelte": "catalog:",

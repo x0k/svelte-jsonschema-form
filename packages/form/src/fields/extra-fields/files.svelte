@@ -8,7 +8,7 @@
 
 <script lang="ts">
   import { fileToDataURL } from "@/lib/file.js";
-  import { asyncProxy } from "@/lib/svelte.svelte";
+  import { createAsyncBinding } from "@/lib/svelte.svelte.js";
   import {
     makeEventHandlers,
     getErrors,
@@ -38,30 +38,31 @@
     validateField(ctx, config, value)
   );
 
-  const files = asyncProxy(
-    async (isRegOnly, signal) => {
-      if (!value || isRegOnly) {
-        return;
-      }
+  const files = createAsyncBinding({
+    initialOutput: undefined,
+    getInput: () => value,
+    setInput: (v) => (value = v),
+    isEqual: (a, b) =>
+      // WARN: Do not optimize, avoid svelte reactive value equality warning
+      (a === undefined && b === undefined) ||
+      (Array.isArray(a) &&
+        Array.isArray(b) &&
+        a.length === b.length &&
+        a.every((v, i) => v === b[i])),
+    async toOutput(signal, value) {
       const data = new DataTransfer();
-      await addFiles(ctx, signal, data, value);
+      if (value !== undefined) {
+        await addFiles(ctx, signal, data, value);
+      }
       return data.files;
     },
-    async (v, signal) => {
-      if (v === undefined || v.length === 0) {
-        value = [];
-        return;
-      }
-      try {
-        value = await Promise.all(
-          Array.from(v).map((f) => fileToDataURL(signal, f))
-        );
-      } catch (e) {
-        console.error("Failed to read file", e);
-      }
+    async toInput(signal, files) {
+      return (
+        files &&
+        Promise.all(Array.from(files).map((f) => fileToDataURL(signal, f)))
+      );
     },
-    (v) => v
-  );
+  });
 
   const errors = $derived(getErrors(ctx, config.id));
 </script>
@@ -78,7 +79,7 @@
 >
   <Widget
     type="widget"
-    bind:value={files.value}
+    bind:value={files.current}
     processing={files.inputProcessing}
     loading={files.outputProcessing}
     {uiOption}

@@ -1,7 +1,6 @@
-import type { Sample } from "./Sample";
+import type { Sample } from "@/shared/index.js";
 
-const custom: Sample = {
-  status: "perfect",
+export default {
   schema: {
     title: "Custom components",
     type: "object",
@@ -31,7 +30,7 @@ const custom: Sample = {
   uiSchema: {
     field: {
       "ui:components": {
-        objectField: "geoField"
+        objectField: "geoField",
       },
     },
     layout: {
@@ -47,6 +46,4 @@ const custom: Sample = {
     },
     layout: ["svelte", "jsonschema", "form", "array", "of", "strings"],
   },
-};
-
-export default custom;
+} satisfies Sample;

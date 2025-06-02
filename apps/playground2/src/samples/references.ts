@@ -1,7 +1,7 @@
-import type { Sample } from "./Sample.js";
+import type { Sample } from "@/shared/index.js";
 
-const references: Sample = {
-  status: "perfect",
+export default {
+
   schema: {
     definitions: {
       address: {
@@ -80,6 +80,4 @@ const references: Sample = {
       children: [{ name: "leaf" }],
     },
   },
-};
-
-export default references;
+} satisfies Sample;

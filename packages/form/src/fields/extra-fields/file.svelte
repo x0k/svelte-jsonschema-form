@@ -8,7 +8,7 @@
 
 <script lang="ts">
   import { fileToDataURL } from "@/lib/file.js";
-  import { asyncProxy } from "@/lib/svelte.svelte";
+  import { createAsyncBinding } from "@/lib/svelte.svelte.js";
   import {
     makeEventHandlers,
     getErrors,
@@ -22,7 +22,11 @@
 
   import "../extra-widgets/file.js";
 
-  let { config, value = $bindable(), uiOption }: ComponentProps["fileField"] = $props();
+  let {
+    config,
+    value = $bindable(),
+    uiOption,
+  }: ComponentProps["fileField"] = $props();
 
   const ctx = getFormContext();
 
@@ -34,28 +38,23 @@
     validateField(ctx, config, value)
   );
 
-  const files = asyncProxy(
-    async (isRegOnly, signal) => {
-      if (!value || isRegOnly) {
-        return;
-      }
+  const files = createAsyncBinding({
+    initialOutput: undefined,
+    getInput: () => value,
+    setInput: (v) => (value = v),
+    async toOutput(signal, value) {
       const data = new DataTransfer();
-      await addFile(ctx, signal, data, value);
+      if (value !== undefined) {
+        await addFile(ctx, signal, data, value);
+      }
       return data.files;
     },
-    async (v, signal) => {
-      if (v === undefined || v.length === 0) {
-        value = undefined;
-        return;
-      }
-      try {
-        value = await fileToDataURL(signal, v[0]!);
-      } catch (e) {
-        console.error("Failed to read file", e);
-      }
+    async toInput(signal, files) {
+      return files === undefined || files.length === 0
+        ? undefined
+        : fileToDataURL(signal, files[0]!);
     },
-    (v) => v
-  );
+  });
 
   const errors = $derived(getErrors(ctx, config.id));
 </script>
@@ -72,7 +71,7 @@
 >
   <Widget
     type="widget"
-    bind:value={files.value}
+    bind:value={files.current}
     processing={files.inputProcessing}
     loading={files.outputProcessing}
     {uiOption}

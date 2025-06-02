@@ -1,7 +1,7 @@
-import type { Sample } from "./Sample.js";
+import type { Sample } from "@/shared/index.js";
 
-const nested: Sample = {
-  status: "perfect",
+export default {
+
   schema: {
     title: "A list of tasks",
     type: "object",
@@ -66,6 +66,4 @@ const nested: Sample = {
       },
     ],
   },
-};
-
-export default nested;
+} satisfies Sample;

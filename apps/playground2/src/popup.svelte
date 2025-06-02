@@ -1,18 +1,16 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
+  import * as Popover from "$lib/components/ui/popover/index.js";
+  import { buttonVariants } from "./lib/components/ui/button/button.svelte";
 
   const { label, children }: { label: Snippet; children: Snippet } = $props();
 </script>
 
-<div class="relative group">
-  <button class="p-2">
+<Popover.Root>
+  <Popover.Trigger class={buttonVariants({ variant: "outline" })}>
     {@render label()}
-  </button>
-  <div class="absolute z-10 hidden group-hover:block">
-    <div
-      class="p-2 bg-slate-300 dark:bg-slate-600 dark:text-white shadow-lg rounded flex flex-col gap-2 w-max"
-    >
-      {@render children()}
-    </div>
-  </div>
-</div>
+  </Popover.Trigger>
+  <Popover.Content class="flex flex-col gap-2 w-max">
+    {@render children()}
+  </Popover.Content>
+</Popover.Root>

@@ -1,13 +1,11 @@
-import type { Sample } from './Sample.js';
+import type { Sample } from '@/shared/index.js';
 
-const single: Sample = {
-  status: "perfect",
+export default {
+
   schema: {
     title: 'A single-field form',
     type: 'string',
   },
   formData: 'initial value',
   uiSchema: {},
-};
-
-export default single;
+} satisfies Sample;

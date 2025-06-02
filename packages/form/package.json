@@ -41,7 +41,7 @@
   },
   "peerDependencies": {
     "esm-env": "^1.2.0",
-    "svelte": "^5.30.0"
+    "svelte": "^5.33.0"
   },
   "devDependencies": {
     "@sveltejs/package": "catalog:",

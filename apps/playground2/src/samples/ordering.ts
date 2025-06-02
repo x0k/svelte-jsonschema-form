@@ -1,7 +1,7 @@
-import type { Sample } from "./Sample.js";
+import type { Sample } from "@/shared/index.js";
 
-const ordering: Sample = {
-  status: "perfect",
+export default {
+
   schema: {
     title: "A registration form",
     type: "object",
@@ -62,6 +62,4 @@ const ordering: Sample = {
     bio: "Roundhouse kicking asses since 1940",
     password: "noneed",
   },
-};
-
-export default ordering;
+} satisfies Sample;

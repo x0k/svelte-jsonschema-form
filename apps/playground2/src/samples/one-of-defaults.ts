@@ -1,5 +1,5 @@
 import type { Schema, UiSchemaRoot } from "@sjsf/form";
-import type { Sample } from "./Sample";
+import type { Sample } from "@/shared/index.js";
 
 enum TransformPreset {
   Default = "Default",
@@ -204,8 +204,7 @@ const uiSchema: UiSchemaRoot = {
   },
 };
 
-const sample: Sample = {
-  status: "perfect",
+export default {
   schema,
   uiSchema,
   formData: {
@@ -215,6 +214,4 @@ const sample: Sample = {
     paginate: false,
     createOnOpen: true,
   },
-}
-
-export default sample;
+} satisfies Sample;

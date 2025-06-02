@@ -166,10 +166,6 @@ export function mergeDefaultsWithFormData<T = any>(
   defaultsSupersedesUndefined = false,
   overrideFormDataWithDefaults = false
 ): T | undefined {
-  // NOTE: I missed the PR where this line was removed, but it is not present in 5.24.0
-  // if (formData === undefined && defaultsSupersedesUndefined) {
-  //   return defaults;
-  // }
   if (Array.isArray(formData)) {
     const defaultsArray = Array.isArray(defaults) ? defaults : [];
 
@@ -210,7 +206,20 @@ export function mergeDefaultsWithFormData<T = any>(
       : {};
     for (const [key, value] of Object.entries(formData)) {
       const keyExistsInDefaults = key in defaultsObject;
-      const keyExistsInFormData = key in formData;
+      const keyDefault = defaultsObject[key];
+
+      // NOTE: This code is bad, but maintaining compatibility with RSJF > "good" code
+      if (
+        isSchemaObjectValue(keyDefault) &&
+        isSchemaObjectValue(value) &&
+        !Object.values(keyDefault).some(isSchemaObjectValue)
+      ) {
+        acc[key as keyof T] = {
+          ...keyDefault,
+          ...value,
+        };
+        continue;
+      }
 
       acc[key as keyof T] = mergeDefaultsWithFormData(
         defaultsObject[key],
@@ -219,8 +228,10 @@ export function mergeDefaultsWithFormData<T = any>(
         defaultsSupersedesUndefined,
         // overrideFormDataWithDefaults can be true only when the key value exists in defaults
         // Or if the key value doesn't exist in formData
-        overrideFormDataWithDefaults &&
-          (keyExistsInDefaults || !keyExistsInFormData)
+        // CHANGED: key is always in form data, maybe this condition should be value === undefined
+        // overrideFormDataWithDefaults &&
+        //   (keyExistsInDefaults || !keyExistsInFormData)
+        overrideFormDataWithDefaults && keyExistsInDefaults
       );
     }
     return acc;

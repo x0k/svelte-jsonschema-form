@@ -86,6 +86,20 @@ export function getDefaultFormState(
     shouldMergeDefaultsIntoFormData: true,
   });
 
+  // WARN: How about fixed arrays?
+  if (
+    schema.type !== "object" &&
+    isSchemaObjectValue(schema.default) &&
+    // CHANGED: Added those conditions for typesafety, while original intentions is unknown
+    (defaults === undefined || typeof defaults === "object") &&
+    (formData === undefined || typeof formData === "object")
+  ) {
+    return {
+      ...defaults,
+      ...formData,
+    };
+  }
+
   // If the formData is an object or an array, add additional properties from formData and override formData with
   // defaults since the defaults are already merged with formData.
   if (isSchemaObjectValue(formData) || Array.isArray(formData)) {
@@ -240,7 +254,7 @@ export function computeDefaults(
     isSchemaOfConstantValue(schema) &&
     experimental_defaultFormStateBehavior.constAsDefaults !== "never"
   ) {
-    defaults = schema.const;
+    defaults = schema.const ?? schema.enum?.[0];
   } else if (
     isSchemaObjectValue(defaults) &&
     isSchemaObjectValue(schemaDefault)

@@ -1,7 +1,7 @@
-import type { Sample } from "./Sample";
+import type { Sample } from "@/shared/index.js";
 
-const optionsSample: Sample = {
-  status: "perfect",
+export default {
+
   schema: {
     title: "A registration form",
     description: "A simple form example. Demonstrating ui options",
@@ -86,6 +86,4 @@ const optionsSample: Sample = {
     bio: "Roundhouse kicking asses since 1940",
     password: "noneed",
   },
-};
-
-export default optionsSample;
+} satisfies Sample;

@@ -1,7 +1,6 @@
-import type { Sample } from "./Sample";
+import type { Sample } from "@/shared/index.js";
 
-const arrays: Sample = {
-  status: "perfect",
+export default {
   schema: {
     definitions: {
       Thing: {
@@ -210,6 +209,4 @@ const arrays: Sample = {
     noToolbar: ["one", "two"],
     fixedNoToolbar: [42, true, "additional item one", "additional item two"],
   },
-};
-
-export default arrays;
+} satisfies Sample;
