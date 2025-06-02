@@ -1,5 +1,21 @@
 # @sjsf/form
 
+## 2.0.0-next.15
+
+### Major Changes
+
+- Bump peer and dev dependencies ([`21e47cc`](https://github.com/x0k/svelte-jsonschema-form/commit/21e47cccb6f53c698582db9c3639a33672e21552))
+
+- Replace `asyncProxy` with `createAsyncBinding` ([#119](https://github.com/x0k/svelte-jsonschema-form/pull/119))
+
+### Patch Changes
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/4644 ([`00a1ea1`](https://github.com/x0k/svelte-jsonschema-form/commit/00a1ea1c431c7f8637cb2cc5e3aa73dd6d94771f))
+
+- Refactor async logic in file fields ([#118](https://github.com/x0k/svelte-jsonschema-form/pull/118))
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/4637 ([`ba140fb`](https://github.com/x0k/svelte-jsonschema-form/commit/ba140fb1ad3e371cb5c163b869998e20750db939))
+
 ## 2.0.0-next.14
 
 ## 2.0.0-next.13
