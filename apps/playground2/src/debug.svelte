@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { copyTextToClipboard } from "./copy-to-clipboard";
+  import { copyTextToClipboard } from "./copy-to-clipboard.js";
 
   let div: HTMLDivElement;
   let root: ShadowRoot;

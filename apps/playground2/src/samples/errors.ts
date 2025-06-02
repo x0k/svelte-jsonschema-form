@@ -1,7 +1,7 @@
-import type { Sample } from "./Sample";
+import type { Sample } from "@/shared/index.js";
 
-const errors: Sample = {
-  status: "perfect",
+export default {
+
   schema: {
     title: "Contextualized errors",
     type: "object",
@@ -43,6 +43,4 @@ const errors: Sample = {
     skills: ["karate", "budo", "aikido"],
     multipleChoicesList: ["foo", "bar", "fuzz"],
   },
-};
-
-export default errors;
+} satisfies Sample;

@@ -1,7 +1,6 @@
-import type { Sample } from "./Sample";
+import type { Sample } from "@/shared/index.js";
 
-const date: Sample = {
-  status: "perfect",
+export default {
   schema: {
     title: "Date and time widgets",
     type: "object",
@@ -56,6 +55,4 @@ const date: Sample = {
     },
   },
   formData: {},
-};
-
-export default date;
+} satisfies Sample;

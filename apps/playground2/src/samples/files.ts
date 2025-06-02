@@ -1,7 +1,6 @@
-import type { Sample } from "./Sample.js";
+import type { Sample } from "@/shared/index.js";
 
-const files: Sample = {
-  status: "perfect",
+export default {
   schema: {
     title: "Files",
     type: "object",
@@ -52,6 +51,4 @@ const files: Sample = {
     },
   },
   formData: {},
-};
-
-export default files;
+} satisfies Sample;

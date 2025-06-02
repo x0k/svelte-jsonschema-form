@@ -1,7 +1,7 @@
-import type { Sample } from './Sample.js';
+import type { Sample } from '@/shared/index.js';
 
-const examples: Sample = {
-  status: "perfect",
+export default {
+
   schema: {
     title: 'Examples',
     description: 'A text field with example values.',
@@ -16,6 +16,4 @@ const examples: Sample = {
   },
   uiSchema: {},
   formData: {},
-};
-
-export default examples;
+} satisfies Sample;

@@ -1,7 +1,7 @@
-import type { Sample } from "./Sample";
+import type { Sample } from "@/shared/index.js";
 
-const nullable: Sample = {
-  status: "perfect",
+export default {
+
   schema: {
     title: "A registration form (nullable)",
     description: "A simple form example using nullable types",
@@ -109,6 +109,4 @@ const nullable: Sample = {
     bio: null,
     password: "noneed",
   },
-};
-
-export default nullable;
+} satisfies Sample;

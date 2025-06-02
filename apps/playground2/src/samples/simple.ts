@@ -1,7 +1,7 @@
-import type { Sample } from "./Sample";
+import type { Sample } from "@/shared/index.js";
 
-const simple: Sample = {
-  status: "perfect",
+export default {
+
   schema: {
     title: "A registration form",
     description: "A simple form example.",
@@ -130,6 +130,4 @@ const simple: Sample = {
     password: "noneed",
     telephone: "1-800-KICKASS",
   },
-};
-
-export default simple;
+} satisfies Sample;
