@@ -45,10 +45,14 @@ export default defineConfig({
           collapsed: true
         },
         {
-          label: "Examples",
-          autogenerate: { directory: "examples" },
-          collapsed: true
+          // label: "Examples",
+          slug: "examples",
         },
+        // {
+        //   label: "Examples",
+        //   autogenerate: { directory: "examples" },
+        //   collapsed: true
+        // },
         {
           label: "Themes",
           autogenerate: { directory: "themes" },
