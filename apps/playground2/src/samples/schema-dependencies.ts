@@ -1,7 +1,7 @@
-import type { Sample } from "./Sample";
+import type { Sample } from "@/shared/index.js";
 
-const schemaDependencies: Sample = {
-  status: "perfect",
+export default {
+
   schema: {
     title: "Schema dependencies",
     description: "These samples are best viewed without live validation.",
@@ -178,6 +178,4 @@ const schemaDependencies: Sample = {
       },
     ],
   },
-};
-
-export default schemaDependencies;
+} satisfies Sample;

@@ -1,7 +1,6 @@
-import type { Sample } from './Sample.js';
+import type { Sample } from '@/shared/index.js';
 
-const defaults: Sample = {
-  status: "perfect",
+export default {
   schema: {
     title: 'Schema default properties',
     type: 'object',
@@ -70,6 +69,4 @@ const defaults: Sample = {
       array: [{}, {}],
     },
   },
-};
-
-export default defaults;
+} satisfies Sample;

@@ -84,7 +84,7 @@
     }}
   ></div>
   <button
-    class="absolute top-2 right-2 z-10 p-1 opacity-0 group-hover:opacity-100 transition rounded-sm bg-slate-300 dark:bg-slate-600"
+    class="absolute top-2 right-2 z-10 p-1 opacity-0 group-hover:opacity-100 focus:opacity-100 transition rounded-sm bg-slate-300 dark:bg-slate-600"
     onclick={() => {
       if (view === undefined) {
         return;

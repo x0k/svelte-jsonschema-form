@@ -1,7 +1,7 @@
-import type { Sample } from "./Sample.js";
+import type { Sample } from "@/shared/index.js";
 
-const numbers: Sample = {
-  status: "perfect",
+export default {
+
   schema: {
     type: "object",
     title: "Number fields & widgets",
@@ -63,6 +63,4 @@ const numbers: Sample = {
     integerRange: 42,
     integerRangeSteps: 80,
   },
-};
-
-export default numbers;
+} satisfies Sample;

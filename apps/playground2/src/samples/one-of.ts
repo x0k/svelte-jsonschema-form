@@ -1,7 +1,7 @@
-import type { Sample } from './Sample.js';
+import type { Sample } from '@/shared/index.js';
 
-const oneOf: Sample = {
-  status: "perfect",
+export default {
+
   schema: {
     type: 'object',
     oneOf: [
@@ -25,6 +25,4 @@ const oneOf: Sample = {
   },
   uiSchema: {},
   formData: {},
-};
-
-export default oneOf;
+} satisfies Sample;

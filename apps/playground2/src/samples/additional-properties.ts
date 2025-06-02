@@ -1,7 +1,6 @@
-import type { Sample } from "./Sample";
+import type { Sample } from "@/shared/index.js";
 
-const additionalProperties: Sample = {
-  status: "perfect",
+export default {
   schema: {
     title: "A customizable registration form",
     description: "A simple form with additional properties example.",
@@ -42,6 +41,4 @@ const additionalProperties: Sample = {
     lastName: "Norris",
     assKickCount: "infinity",
   },
-};
-
-export default additionalProperties;
+} satisfies Sample;

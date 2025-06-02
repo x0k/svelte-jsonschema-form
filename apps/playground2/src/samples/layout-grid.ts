@@ -1,6 +1,6 @@
 import type { UiOptions, UiSchema, UiSchemaRef } from "@sjsf/form";
 
-import type { Sample } from "./Sample";
+import type { Sample } from "@/shared/index.js";
 
 function propertyStyles(
   style: string,
@@ -33,8 +33,8 @@ const transparent: UiSchema = {
   },
 };
 
-const layoutGrid: Sample = {
-  status: "perfect",
+export default {
+
   schema: {
     type: "object",
     properties: {
@@ -443,6 +443,4 @@ const layoutGrid: Sample = {
     },
   },
   formData: {},
-};
-
-export default layoutGrid;
+} satisfies Sample;

@@ -1,7 +1,6 @@
-import type { Sample } from "./Sample.js";
+import type { Sample } from "@/shared/index.js";
 
-const enumObjects: Sample = {
-  status: "perfect",
+export default {
   schema: {
     definitions: {
       locations: {
@@ -88,6 +87,4 @@ const enumObjects: Sample = {
       },
     ],
   },
-};
-
-export default enumObjects;
+} satisfies Sample;

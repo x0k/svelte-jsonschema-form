@@ -26,9 +26,10 @@
     decompressFromEncodedURIComponent,
   } from "lz-string";
 
-  import { themes, themeStyles } from "./themes";
-  import { icons, iconsStyles } from "./icons";
-  import { ShadowHost } from "./shadow";
+  import { THEME_TITLES, THEMES, type Sample } from "./shared/index.js";
+  import { themes, themeStyles } from "./themes.js";
+  import { icons, iconsStyles } from "./icons.js";
+  import { ShadowHost } from "./shadow/index.js";
   import Github from "./github.svelte";
   import OpenBook from "./open-book.svelte";
   import Editor from "./editor.svelte";
@@ -36,11 +37,14 @@
   import Bits from "./bits.svelte";
   import Debug from "./debug.svelte";
 
-  import { samples } from "./samples";
-  import * as customComponents from "./samples/components";
-  import { validators } from "./validators";
+  import * as customComponents from "./custom-form-components/index.js";
+  import { validators } from "./validators.js";
   import { themeManager } from "./theme.svelte";
-  import { THEME_TITLES, THEMES } from "./shared";
+
+  const samples = import.meta.glob("./samples/*.ts", {
+    import: "default",
+    eager: false,
+  });
 
   type Validators = typeof validators;
   type Themes = typeof themes;
@@ -246,15 +250,17 @@
     </a>
   </div>
   <div class="flex gap-2 flex-wrap pb-6 text-black">
-    {#each Object.entries(samples) as [name, sample]}
+    {#each Object.entries(samples) as [path, getSample]}
+      {@const name = path.substring(10, path.length - 3)}
       <button
         type="button"
         class="rounded shadow p-2 bg-green-300"
-        onclick={() => {
+        onclick={async () => {
+          const sample = (await getSample()) as Sample;
           data.schema = sample.schema;
           data.uiSchema = sample.uiSchema;
           form.value = sample.formData;
-          form.errors = sample.errors ?? new SvelteMap();
+          form.errors = new SvelteMap();
         }}
       >
         {name}

@@ -1,9 +1,6 @@
-import { createPatternPropertyKeyValidator } from "@sjsf/form/validators/properties";
+import type { Sample } from "@/shared/index.js";
 
-import type { Sample } from "./Sample";
-
-const patternProperties: Sample = {
-  status: "perfect",
+export default {
   schema: {
     title: "A customizable registration form",
     description: "A simple form with pattern properties example.",
@@ -50,16 +47,4 @@ const patternProperties: Sample = {
     lastName: "Norris",
     assKickCount: "infinity",
   },
-  customizeValidator: (v) =>
-    Object.assign(
-      v,
-      createPatternPropertyKeyValidator(({ patternProperties }) => {
-        const keys = Object.keys(patternProperties);
-        return `Must match "${
-          keys.length < 2 ? keys[0] : keys.join('" or "')
-        }"`;
-      })
-    ),
-};
-
-export default patternProperties;
+} satisfies Sample;

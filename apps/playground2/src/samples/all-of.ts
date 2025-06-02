@@ -1,14 +1,13 @@
-import type { Sample } from './Sample.js';
+import type { Sample } from "@/shared/index.js";
 
-const allOf: Sample = {
-  status: "perfect",
+export default {
   schema: {
-    type: 'object',
+    type: "object",
     allOf: [
       {
         properties: {
           lorem: {
-            type: ['string', 'boolean'],
+            type: ["string", "boolean"],
             default: true,
           },
         },
@@ -16,10 +15,10 @@ const allOf: Sample = {
       {
         properties: {
           lorem: {
-            type: 'boolean',
+            type: "boolean",
           },
           ipsum: {
-            type: 'string',
+            type: "string",
           },
         },
       },
@@ -27,6 +26,4 @@ const allOf: Sample = {
   },
   uiSchema: {},
   formData: {},
-};
-
-export default allOf;
+} satisfies Sample;

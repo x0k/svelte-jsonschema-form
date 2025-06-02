@@ -1,30 +1,29 @@
-import type { Sample } from './Sample.js';
+import type { Sample } from "@/shared/index.js";
 
-const anyOf: Sample = {
-  status: "perfect",
+export default {
   schema: {
-    type: 'object',
+    type: "object",
     properties: {
       age: {
-        type: 'integer',
-        title: 'Age',
+        type: "integer",
+        title: "Age",
       },
       items: {
-        type: 'array',
+        type: "array",
         items: {
-          type: 'object',
+          type: "object",
           anyOf: [
             {
               properties: {
                 foo: {
-                  type: 'string',
+                  type: "string",
                 },
               },
             },
             {
               properties: {
                 bar: {
-                  type: 'string',
+                  type: "string",
                 },
               },
             },
@@ -34,25 +33,25 @@ const anyOf: Sample = {
     },
     anyOf: [
       {
-        title: 'First method of identification',
+        title: "First method of identification",
         properties: {
           firstName: {
-            type: 'string',
-            title: 'First name',
-            default: 'Chuck',
+            type: "string",
+            title: "First name",
+            default: "Chuck",
           },
           lastName: {
-            type: 'string',
-            title: 'Last name',
+            type: "string",
+            title: "Last name",
           },
         },
       },
       {
-        title: 'Second method of identification',
+        title: "Second method of identification",
         properties: {
           idCode: {
-            type: 'string',
-            title: 'ID code',
+            type: "string",
+            title: "ID code",
           },
         },
       },
@@ -60,6 +59,4 @@ const anyOf: Sample = {
   },
   uiSchema: {},
   formData: {},
-};
-
-export default anyOf;
+} satisfies Sample;

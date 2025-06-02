@@ -1,7 +1,6 @@
-import type { Sample } from "./Sample";
+import type { Sample } from "@/shared/index.js";
 
-const alternatives: Sample = {
-  status: "perfect",
+export default {
   schema: {
     definitions: {
       Color: {
@@ -96,6 +95,4 @@ const alternatives: Sample = {
     colorPalette: ["#ff0000"],
     blendMode: "screen",
   },
-};
-
-export default alternatives;
+} satisfies Sample;

@@ -1,9 +1,9 @@
-import type { Sample } from './Sample.js';
+import type { Sample } from '@/shared/index.js';
 
-const ifThenElse: Sample = {
+export default {
   // NOTE: This sample produces warnings in the console as original project does.
   // Looks like `json-schema-merge-allof` package can't properly handle `if` and `then` in `allOf`.
-  status: "perfect",
+
   schema: {
     type: 'object',
     properties: {
@@ -48,6 +48,4 @@ const ifThenElse: Sample = {
   },
   uiSchema: {},
   formData: {},
-};
-
-export default ifThenElse;
+} satisfies Sample;

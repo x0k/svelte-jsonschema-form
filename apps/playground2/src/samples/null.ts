@@ -1,7 +1,7 @@
-import type { Sample } from "./Sample";
+import type { Sample } from "@/shared/index.js";
 
-const nullField: Sample = {
-  status: "perfect",
+export default {
+
   schema: {
     title: "Null field example",
     description: "A short form with a null field",
@@ -38,6 +38,4 @@ const nullField: Sample = {
     },
   },
   formData: {},
-};
-
-export default nullField;
+} satisfies Sample;

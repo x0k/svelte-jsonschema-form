@@ -1,7 +1,7 @@
-import type { Sample } from "./Sample";
+import type { Sample } from "@/shared/index.js";
 
-const widgets: Sample = {
-  status: "perfect",
+export default {
+
   schema: {
     title: "Widgets",
     type: "object",
@@ -234,6 +234,4 @@ const widgets: Sample = {
     },
     secret: "I'm a hidden string.",
   },
-};
-
-export default widgets;
+} satisfies Sample;

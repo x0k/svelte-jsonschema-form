@@ -1,7 +1,8 @@
 {
   "extends": "@total-typescript/tsconfig/bundler/dom/app",
   "compilerOptions": {
-    "moduleResolution": "Bundler",
+    "moduleResolution": "nodenext",
+    "module": "nodenext",
     "rootDir": "src",
     "types": [
       "vite/client",
