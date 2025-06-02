@@ -5,6 +5,9 @@
   import { EditorView } from "@codemirror/view";
   import Braces from "@lucide/svelte/icons/braces";
   import { Annotation } from "@codemirror/state";
+  
+  import { Button } from '$lib/components/ui/button/index.js';
+
   import { themeManager } from "./theme.svelte";
 
   let {
@@ -41,7 +44,7 @@
   let error = $state.raw(false);
 </script>
 
-<div {...rest} class={[className, "group relative"]} data-error={error}>
+<div {...rest} class={[className, "min-h-0 group relative"]} data-error={error}>
   <div
     class="overflow-auto h-full w-full"
     {@attach (node) => {
@@ -83,8 +86,9 @@
       return () => view?.destroy();
     }}
   ></div>
-  <button
-    class="absolute top-2 right-2 z-10 p-1 opacity-0 group-hover:opacity-100 focus:opacity-100 transition rounded-sm bg-slate-300 dark:bg-slate-600"
+  <Button
+    class="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 focus:opacity-100 transition"
+    size="icon"
     onclick={() => {
       if (view === undefined) {
         return;
@@ -101,5 +105,5 @@
     }}
   >
     <Braces />
-  </button>
+  </Button>
 </div>

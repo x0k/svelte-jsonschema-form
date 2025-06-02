@@ -7,6 +7,6 @@ export default defineConfig({
   base: "/svelte-jsonschema-form/playground2/",
   plugins: [tailwindcss(), svelte()],
   resolve: {
-    alias: { "@": resolve(__dirname, "./src") }
-  }
+    alias: { "@": resolve(__dirname, "./src"), $lib: resolve("./src/lib") },
+  },
 });

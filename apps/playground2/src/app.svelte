@@ -26,7 +26,8 @@
     decompressFromEncodedURIComponent,
   } from "lz-string";
 
-  import { THEME_TITLES, THEMES, type Sample } from "./shared/index.js";
+  import { Button } from "$lib/components/ui/button/index.js";
+  import { THEMES } from "./shared/index.js";
   import { themes, themeStyles } from "./themes.js";
   import { icons, iconsStyles } from "./icons.js";
   import { ShadowHost } from "./shadow/index.js";
@@ -35,16 +36,12 @@
   import Editor from "./editor.svelte";
   import Popup from "./popup.svelte";
   import Bits from "./bits.svelte";
-  import Debug from "./debug.svelte";
+  import Select from "./select.svelte";
 
   import * as customComponents from "./custom-form-components/index.js";
   import { validators } from "./validators.js";
   import { themeManager } from "./theme.svelte";
-
-  const samples = import.meta.glob("./samples/*.ts", {
-    import: "default",
-    eager: false,
-  });
+  import SamplePicker from "./sample-picker.svelte";
 
   type Validators = typeof validators;
   type Themes = typeof themes;
@@ -64,9 +61,21 @@
   }
 
   const DEFAULT_PLAYGROUND_STATE: PlaygroundState = {
-    schema: {},
+    schema: {
+      type: "object",
+      title: "Basic form",
+      properties: {
+        hello: {
+          title: "Hello",
+          type: "string",
+        },
+      },
+      required: ["hello"],
+    },
     uiSchema: {},
-    initialValue: {},
+    initialValue: {
+      hello: "World",
+    },
     disabled: false,
     html5Validation: false,
     focusOnFirstError: true,
@@ -170,13 +179,25 @@
   });
 
   setThemeContext({ components });
+
+  const clearLink = new URL(location.href);
+  clearLink.hash = "";
 </script>
 
 <div
-  class="py-4 px-8 min-h-screen dark:[color-scheme:dark] dark:bg-slate-900 dark:text-white"
+  class="py-4 px-8 gap-4 h-screen grid grid-rows-[auto_1fr_1fr] grid-cols-[repeat(7,1fr)] dark:[color-scheme:dark]"
 >
-  <div class="pb-6 flex flex-wrap items-center gap-4">
-    <h1 class="grow text-3xl font-bold">Playground</h1>
+  <div class="col-span-7 flex flex-wrap items-center gap-2">
+    <a href={clearLink.toString()} class="text-3xl font-bold mr-auto">Playground</a
+    >
+    <SamplePicker
+      onSelect={(sample) => {
+        data.schema = sample.schema;
+        data.uiSchema = sample.uiSchema;
+        form.value = sample.formData;
+        form.errors = new SvelteMap();
+      }}
+    />
     <Popup>
       {#snippet label()}
         Form options ({+data.disabled +
@@ -221,92 +242,54 @@
         ]}
       />
     </Popup>
-    <select bind:value={data.validator}>
-      {#each Object.keys(validators) as name (name)}
-        <option value={name}>{name}</option>
-      {/each}
-    </select>
-    <select bind:value={data.theme}>
-      {#each Object.keys(themes) as name (name)}
-        <option value={name}>{name}</option>
-      {/each}
-    </select>
-    <select bind:value={data.icons}>
-      {#each Object.keys(icons) as name (name)}
-        <option value={name}>{name}</option>
-      {/each}
-    </select>
-    <select bind:value={themeManager.theme}>
-      {#each THEMES as theme (theme)}
-        <option value={theme}>{THEME_TITLES[theme]}</option>
-      {/each}
-    </select>
-
-    <a href="https://x0k.github.io/svelte-jsonschema-form/v2/">
-      <OpenBook class="h-8 w-8" />
-    </a>
-    <a target="_blank" href="https://github.com/x0k/svelte-jsonschema-form/">
-      <Github class="h-8 w-8 bg-white rounded-full" />
-    </a>
-  </div>
-  <div class="flex gap-2 flex-wrap pb-6 text-black">
-    {#each Object.entries(samples) as [path, getSample]}
-      {@const name = path.substring(10, path.length - 3)}
-      <button
-        type="button"
-        class="rounded shadow p-2 bg-green-300"
-        onclick={async () => {
-          const sample = (await getSample()) as Sample;
-          data.schema = sample.schema;
-          data.uiSchema = sample.uiSchema;
-          form.value = sample.formData;
-          form.errors = new SvelteMap();
-        }}
-      >
-        {name}
-      </button>
-    {/each}
-  </div>
-  <div class="flex gap-8">
-    <div class="flex-[4] grid grid-cols-2 grid-rows-[repeat(2,385px)]">
-      <Editor
-        class="col-span-2 border border-b-0 rounded-t data-[error=true]:border-red-500 data-[error=true]:outline-none"
-        bind:value={data.schema}
-      />
-      <Editor
-        class="border rounded-bl data-[error=true]:border-red-500 data-[error=true]:outline-none"
-        bind:value={data.uiSchema}
-      />
-      <Editor
-        class="border rounded-br data-[error=true]:border-red-500 data-[error=true]:outline-none"
-        bind:value={form.value}
-      />
-    </div>
-    <ShadowHost
-      class="flex-[3] max-h-[770px] overflow-y-auto"
-      style={`${themeStyle}\n${iconSetStyle}`}
+    <Select
+      label="Validator"
+      bind:value={data.validator}
+      items={Object.keys(validators)}
+    />
+    <Select label="Theme" bind:value={data.theme} items={Object.keys(themes)} />
+    <Select label="Icons" bind:value={data.icons} items={Object.keys(icons)} />
+    <Select label="App theme" bind:value={themeManager.theme} items={THEMES} />
+    <Button
+      variant="ghost"
+      size="icon"
+      href="https://x0k.github.io/svelte-jsonschema-form/v2/"
     >
-      <BasicForm
-        {form}
-        class={themeManager.darkOrLight}
-        style="background-color: transparent; display: flex; flex-direction: column; gap: 1rem; padding: 0.3rem;"
-        novalidate={!data.html5Validation || undefined}
-        data-theme={data.theme.startsWith("skeleton")
-          ? "cerberus"
-          : themeManager.darkOrLight}
-      />
-      {#if location.hostname === "localhost"}
-        <Debug />
-      {/if}
-    </ShadowHost>
+      <OpenBook class="size-6" />
+    </Button>
+    <Button
+      target="_blank"
+      href="https://github.com/x0k/svelte-jsonschema-form/"
+      size="icon"
+      variant="ghost"
+    >
+      <Github class="size-6" />
+    </Button>
   </div>
+  <Editor
+    class="col-span-4 border rounded-md data-[error=true]:border-red-500 data-[error=true]:outline-none"
+    bind:value={data.schema}
+  />
+  <Editor
+    class="row-start-3 col-span-2 border rounded-md data-[error=true]:border-red-500 data-[error=true]:outline-none"
+    bind:value={data.uiSchema}
+  />
+  <Editor
+    class="row-start-3 col-span-2 border rounded-md data-[error=true]:border-red-500 data-[error=true]:outline-none"
+    bind:value={form.value}
+  />
+  <ShadowHost
+    class="col-span-3 row-span-2 overflow-y-auto border rounded-md"
+    style={`${themeStyle}\n${iconSetStyle}`}
+  >
+    <BasicForm
+      {form}
+      class={themeManager.darkOrLight}
+      style="min-height: 100%; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;"
+      novalidate={!data.html5Validation || undefined}
+      data-theme={data.theme.startsWith("skeleton")
+        ? "cerberus"
+        : themeManager.darkOrLight}
+    />
+  </ShadowHost>
 </div>
-
-<style>
-  :global(.dark select) {
-    background-color: transparent;
-  }
-  :global(.dark option) {
-    background-color: var(--color-slate-600);
-  }
-</style>
