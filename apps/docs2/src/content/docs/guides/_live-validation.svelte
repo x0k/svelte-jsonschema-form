@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { createForm, BasicForm, type Schema } from "@sjsf/form";
-  import { resolver } from '@sjsf/form/resolvers/basic'
+  import { createForm, BasicForm, type Schema, groupErrors } from "@sjsf/form";
+  import { resolver } from "@sjsf/form/resolvers/basic";
   import { translation } from "@sjsf/form/translations/en";
   import { theme } from "@sjsf/basic-theme";
   import { createFormValidator } from "@sjsf/ajv8-validator";
@@ -23,7 +23,7 @@
   });
 
   $effect(() => {
-    form.errors = form.validate();
+    form.errors = groupErrors(validator.validateFormValue(schema, form.value));
   });
 </script>
 
