@@ -17,7 +17,6 @@
     type FormValue,
   } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
-  import { resolver } from "@sjsf/form/resolvers/compat";
   import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
   import { setThemeContext } from "@sjsf/shadcn4-theme";
   import * as components from "@sjsf/shadcn4-theme/new-york";
@@ -30,6 +29,7 @@
   import { THEMES } from "./shared/index.js";
   import { themes, themeStyles } from "./themes.js";
   import { icons, iconsStyles } from "./icons.js";
+  import { resolvers } from "./resolvers.js";
   import { ShadowHost } from "./shadow/index.js";
   import Github from "./github.svelte";
   import OpenBook from "./open-book.svelte";
@@ -46,6 +46,7 @@
   type Validators = typeof validators;
   type Themes = typeof themes;
   type Icons = typeof icons;
+  type Resolvers = typeof resolvers;
 
   interface PlaygroundState {
     schema: Schema;
@@ -58,6 +59,7 @@
     validator: keyof Validators;
     theme: keyof Themes;
     icons: keyof Icons;
+    resolver: keyof Resolvers;
   }
 
   const DEFAULT_PLAYGROUND_STATE: PlaygroundState = {
@@ -83,6 +85,7 @@
     validator: "ajv8",
     theme: "basic",
     icons: "none",
+    resolver: "compat",
   };
 
   function init(): PlaygroundState {
@@ -136,10 +139,13 @@
     }
     return count;
   });
+  const resolver = $derived(resolvers[data.resolver]);
 
   const focusOnFirstError = createFocusOnFirstError();
   const form = createForm({
-    resolver,
+    get resolver() {
+      return resolver;
+    },
     initialValue: data.initialValue,
     translation,
     get theme() {
@@ -188,7 +194,8 @@
   class="py-4 px-8 gap-4 h-screen grid grid-rows-[auto_1fr_1fr] grid-cols-[repeat(7,1fr)] dark:[color-scheme:dark]"
 >
   <div class="col-span-7 flex flex-wrap items-center gap-2">
-    <a href={clearLink.toString()} class="text-3xl font-bold mr-auto">Playground</a
+    <a href={clearLink.toString()} class="text-3xl font-bold mr-auto"
+      >Playground</a
     >
     <SamplePicker
       onSelect={(sample) => {
@@ -242,6 +249,11 @@
         ]}
       />
     </Popup>
+    <Select
+      label="Resolver"
+      bind:value={data.resolver}
+      items={Object.keys(resolvers)}
+    />
     <Select
       label="Validator"
       bind:value={data.validator}
