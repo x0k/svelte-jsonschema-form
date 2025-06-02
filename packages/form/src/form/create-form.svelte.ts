@@ -19,7 +19,6 @@ import {
   isFieldValueValidator,
   isAsyncFormValueValidator,
   isAsyncFieldValueValidator,
-  type FormValueValidator,
   type AsyncFormValueValidator,
   type AsyncFieldValueValidator,
 } from "./validator.js";
@@ -34,10 +33,10 @@ import type { Icons } from "./icons.js";
 import type { FieldsValidationMode } from "./validation.js";
 import {
   groupErrors,
-  type FieldErrorsMap,
-  type PossibleError,
-  type FieldError,
   ValidationProcessError,
+  type FieldError,
+  type PossibleError,
+  type FieldErrorsMap,
   type AnyFormValueValidatorError,
   type AnyFieldValueValidatorError,
 } from "./errors.js";
@@ -189,19 +188,7 @@ export interface FormValidationResult<E> {
   formErrors: FieldErrorsMap<E>;
 }
 
-type Validate<V> = V extends FormValueValidator<infer E>
-  ? {
-      validate(): FieldErrorsMap<E>;
-    }
-  : {};
-
-type ValidateAsync<V> = V extends AsyncFormValueValidator<infer E>
-  ? {
-      validateAsync(signal: AbortSignal): Promise<FieldErrorsMap<E>>;
-    }
-  : {};
-
-export type FormState<T, V extends Validator> = {
+export interface FormState<T, V extends Validator> {
   readonly context: FormContext;
   readonly validation: Action<
     [event: SubmitEvent],
@@ -229,8 +216,7 @@ export type FormState<T, V extends Validator> = {
   errors: FieldErrorsMap<PossibleError<V>>;
   submit(e: SubmitEvent): Promise<void>;
   reset(e: Event): void;
-} & Validate<V> &
-  ValidateAsync<V>;
+}
 
 export function createForm<T, V extends Validator>(
   options: FormOptions<T, V>
@@ -516,74 +502,40 @@ export function createForm<T, V extends Validator>(
   };
   const fieldTypeResolver = $derived(options.resolver(context));
 
-  const validate = {
-    validate() {
-      const v = options.validator;
-      if (!isFormValueValidator(v)) {
-        throw new Error(
-          `Unsupported validator type, expected sync form value validator`
-        );
-      }
-      return groupErrors(
-        v.validateFormValue(options.schema, getSnapshot(context))
+  return {
+    context,
+    get value() {
+      return getSnapshot(context) as T | undefined;
+    },
+    set value(v) {
+      value = merger.mergeFormDataAndSchemaDefaults(
+        v as FormValue,
+        options.schema
       );
     },
-  } as Validate<V>;
-  const validateAsync = {
-    async validateAsync(signal: AbortSignal) {
-      const v = options.validator;
-      if (!isAsyncFormValueValidator(v)) {
-        throw new Error(
-          `Unsupported validator type, expected async form value validator`
-        );
-      }
-      return groupErrors(
-        await v.validateFormValueAsync(
-          signal,
-          options.schema,
-          getSnapshot(context)
-        )
-      );
+    get errors() {
+      return errors;
     },
-  } as ValidateAsync<V>;
-  return Object.assign(
-    {
-      context,
-      get value() {
-        return getSnapshot(context) as T | undefined;
-      },
-      set value(v) {
-        value = merger.mergeFormDataAndSchemaDefaults(
-          v as FormValue,
-          options.schema
-        );
-      },
-      get errors() {
-        return errors;
-      },
-      set errors(v) {
-        errors = v;
-      },
-      get isSubmitted() {
-        return isSubmitted;
-      },
-      set isSubmitted(v) {
-        isSubmitted = v;
-      },
-      get isChanged() {
-        return isChanged;
-      },
-      set isChanged(v) {
-        isChanged = v;
-      },
-      validation,
-      fieldsValidation,
-      submit: submitHandler,
-      reset: resetHandler,
+    set errors(v) {
+      errors = v;
     },
-    validate,
-    validateAsync
-  );
+    get isSubmitted() {
+      return isSubmitted;
+    },
+    set isSubmitted(v) {
+      isSubmitted = v;
+    },
+    get isChanged() {
+      return isChanged;
+    },
+    set isChanged(v) {
+      isChanged = v;
+    },
+    validation,
+    fieldsValidation,
+    submit: submitHandler,
+    reset: resetHandler,
+  };
 }
 
 export function enhance(node: HTMLFormElement, context: FormContext) {
