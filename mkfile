@@ -227,6 +227,21 @@ sv/:
     pnpm run test $@
   popd
 
+e/:
+  pushd examples
+  basic/:
+    pushd basic-starter
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    p:
+      pnpm run preview
+    d:
+      pnpm run dev
+    popd
+  popd
+
 p:
   pnpm run preview
 
