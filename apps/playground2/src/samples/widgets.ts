@@ -1,7 +1,7 @@
-import type { Sample } from "@/shared/index.js";
+import type { Sample } from "@/core/index.js";
 
 export default {
-
+  resolver: "compat",
   schema: {
     title: "Widgets",
     type: "object",
@@ -218,7 +218,7 @@ export default {
       },
     },
   },
-  formData: {
+  initialValue: {
     stringFormats: {
       email: "chuck@norris.net",
       uri: "http://chucknorris.com/",

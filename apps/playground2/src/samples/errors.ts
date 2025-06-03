@@ -1,7 +1,7 @@
-import type { Sample } from "@/shared/index.js";
+import type { Sample } from "@/core/index.js";
 
 export default {
-
+  resolver: "compat",
   schema: {
     title: "Contextualized errors",
     type: "object",
@@ -37,7 +37,7 @@ export default {
     },
   },
   uiSchema: {},
-  formData: {
+  initialValue: {
     firstName: "Chuck",
     active: "wrong",
     skills: ["karate", "budo", "aikido"],

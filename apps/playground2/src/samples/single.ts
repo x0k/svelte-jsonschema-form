@@ -1,4 +1,4 @@
-import type { Sample } from '@/shared/index.js';
+import type { Sample } from '@/core/index.js';
 
 export default {
 
@@ -6,6 +6,6 @@ export default {
     title: 'A single-field form',
     type: 'string',
   },
-  formData: 'initial value',
+  initialValue: 'initial value',
   uiSchema: {},
 } satisfies Sample;

@@ -1,5 +1,5 @@
 import type { Schema, UiSchemaRoot } from "@sjsf/form";
-import type { Sample } from "@/shared/index.js";
+import type { Sample } from "@/core/index.js";
 
 enum TransformPreset {
   Default = "Default",
@@ -205,9 +205,10 @@ const uiSchema: UiSchemaRoot = {
 };
 
 export default {
+  resolver: "compat",
   schema,
   uiSchema,
-  formData: {
+  initialValue: {
     preset: TransformPreset.Default,
     transform: false,
     format: OutputFormat.HTML,

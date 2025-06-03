@@ -1,6 +1,7 @@
-import type { Sample } from "@/shared/index.js";
+import type { Sample } from "@/core/index.js";
 
 export default {
+  resolver: "compat",
   schema: {
     title: "Files",
     type: "object",
@@ -50,5 +51,5 @@ export default {
       },
     },
   },
-  formData: {},
+  initialValue: {},
 } satisfies Sample;

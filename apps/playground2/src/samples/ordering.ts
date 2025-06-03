@@ -1,4 +1,4 @@
-import type { Sample } from "@/shared/index.js";
+import type { Sample } from "@/core/index.js";
 
 export default {
 
@@ -55,7 +55,7 @@ export default {
       },
     },
   },
-  formData: {
+  initialValue: {
     firstName: "Chuck",
     lastName: "Norris",
     age: 75,

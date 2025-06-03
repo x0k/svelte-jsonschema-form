@@ -1,4 +1,4 @@
-import type { Sample } from '@/shared/index.js';
+import type { Sample } from '@/core/index.js';
 
 export default {
 
@@ -15,5 +15,5 @@ export default {
     },
   },
   uiSchema: {},
-  formData: {},
+  initialValue: {},
 } satisfies Sample;

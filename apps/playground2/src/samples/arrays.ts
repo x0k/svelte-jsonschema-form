@@ -1,6 +1,7 @@
-import type { Sample } from "@/shared/index.js";
+import type { Sample } from "@/core/index.js";
 
 export default {
+  resolver: "compat",
   schema: {
     definitions: {
       Thing: {
@@ -198,7 +199,7 @@ export default {
       },
     },
   },
-  formData: {
+  initialValue: {
     listOfStrings: ["foo", "bar"],
     multipleChoicesList: ["foo", "bar"],
     fixedItemsList: ["Some text", true, 123],

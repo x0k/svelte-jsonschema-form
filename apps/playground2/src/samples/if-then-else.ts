@@ -1,9 +1,9 @@
-import type { Sample } from '@/shared/index.js';
+import type { Sample } from '@/core/index.js';
 
 export default {
   // NOTE: This sample produces warnings in the console as original project does.
   // Looks like `json-schema-merge-allof` package can't properly handle `if` and `then` in `allOf`.
-
+  resolver: "compat",
   schema: {
     type: 'object',
     properties: {
@@ -47,5 +47,5 @@ export default {
     ],
   },
   uiSchema: {},
-  formData: {},
+  initialValue: {},
 } satisfies Sample;

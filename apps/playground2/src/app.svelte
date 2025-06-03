@@ -12,9 +12,6 @@
     BasicForm,
     ON_ARRAY_CHANGE,
     ON_OBJECT_CHANGE,
-    type Schema,
-    type UiSchemaRoot,
-    type FormValue,
   } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
@@ -26,10 +23,16 @@
   } from "lz-string";
 
   import { Button } from "$lib/components/ui/button/index.js";
-  import { THEMES } from "./shared/index.js";
-  import { themes, themeStyles } from "./themes.js";
-  import { icons, iconsStyles } from "./icons.js";
-  import { resolvers } from "./resolvers.js";
+  import { THEMES } from "./shared/theme.js";
+  import {
+    icons,
+    iconsStyles,
+    resolvers,
+    themes,
+    themeStyles,
+    validators,
+    type PlaygroundState,
+  } from "./core/index.js";
   import { ShadowHost } from "./shadow/index.js";
   import Github from "./github.svelte";
   import OpenBook from "./open-book.svelte";
@@ -39,28 +42,8 @@
   import Select from "./select.svelte";
 
   import * as customComponents from "./custom-form-components/index.js";
-  import { validators } from "./validators.js";
   import { themeManager } from "./theme.svelte";
   import SamplePicker from "./sample-picker.svelte";
-
-  type Validators = typeof validators;
-  type Themes = typeof themes;
-  type Icons = typeof icons;
-  type Resolvers = typeof resolvers;
-
-  interface PlaygroundState {
-    schema: Schema;
-    uiSchema: UiSchemaRoot;
-    initialValue: FormValue;
-    disabled: boolean;
-    html5Validation: boolean;
-    focusOnFirstError: boolean;
-    fieldsValidationMode: 0;
-    validator: keyof Validators;
-    theme: keyof Themes;
-    icons: keyof Icons;
-    resolver: keyof Resolvers;
-  }
 
   const DEFAULT_PLAYGROUND_STATE: PlaygroundState = {
     schema: {
@@ -199,9 +182,8 @@
     >
     <SamplePicker
       onSelect={(sample) => {
-        data.schema = sample.schema;
-        data.uiSchema = sample.uiSchema;
-        form.value = sample.formData;
+        Object.assign(data, sample);
+        form.value = sample.initialValue;
         form.errors = new SvelteMap();
       }}
     />

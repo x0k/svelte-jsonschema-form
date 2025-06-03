@@ -1,4 +1,4 @@
-import type { Sample } from "@/shared/index.js";
+import type { Sample } from "@/core/index.js";
 
 function largeEnum(n: number) {
   const list = [];
@@ -9,7 +9,7 @@ function largeEnum(n: number) {
 }
 
 export default {
-
+  resolver: "compat",
   schema: {
     definitions: {
       largeEnum: { type: "string", enum: largeEnum(100) },
@@ -48,5 +48,5 @@ export default {
       },
     },
   },
-  formData: {},
+  initialValue: {},
 } satisfies Sample;

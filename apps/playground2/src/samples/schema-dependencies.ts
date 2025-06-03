@@ -1,7 +1,7 @@
-import type { Sample } from "@/shared/index.js";
+import type { Sample } from "@/core/index.js";
 
 export default {
-
+  resolver: "compat",
   schema: {
     title: "Schema dependencies",
     description: "These samples are best viewed without live validation.",
@@ -147,7 +147,7 @@ export default {
       },
     },
   },
-  formData: {
+  initialValue: {
     simple: {
       name: "Randy",
     },

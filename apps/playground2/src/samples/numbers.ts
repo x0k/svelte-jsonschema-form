@@ -1,7 +1,7 @@
-import type { Sample } from "@/shared/index.js";
+import type { Sample } from "@/core/index.js";
 
 export default {
-
+  resolver: "compat",
   schema: {
     type: "object",
     title: "Number fields & widgets",
@@ -56,7 +56,7 @@ export default {
       }
     },
   },
-  formData: {
+  initialValue: {
     number: 3.14,
     integer: 42,
     numberEnum: 2,

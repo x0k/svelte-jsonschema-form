@@ -1,6 +1,7 @@
-import type { Sample } from "@/shared/index.js";
+import type { Sample } from "@/core/index.js";
 
 export default {
+  resolver: "compat",
   schema: {
     definitions: {
       Color: {
@@ -89,7 +90,7 @@ export default {
       },
     },
   },
-  formData: {
+  initialValue: {
     currentColor: "#00ff00",
     colorMask: ["#0000ff"],
     colorPalette: ["#ff0000"],

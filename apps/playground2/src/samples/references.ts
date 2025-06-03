@@ -1,4 +1,4 @@
-import type { Sample } from "@/shared/index.js";
+import type { Sample } from "@/core/index.js";
 
 export default {
 
@@ -47,7 +47,7 @@ export default {
       node: {
         name: {
           "ui:options": {
-            title: "child name",
+            title: "Custom name",
           },
         },
         children: {
@@ -64,7 +64,7 @@ export default {
       $ref: "node",
     },
   },
-  formData: {
+  initialValue: {
     billing_address: {
       street_address: "21, Jump Street",
       city: "Babel",

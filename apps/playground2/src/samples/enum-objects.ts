@@ -1,6 +1,7 @@
-import type { Sample } from "@/shared/index.js";
+import type { Sample } from "@/core/index.js";
 
 export default {
+  resolver: "compat",
   schema: {
     definitions: {
       locations: {
@@ -68,7 +69,7 @@ export default {
       },
     },
   },
-  formData: {
+  initialValue: {
     location: {
       name: "Amsterdam",
       lat: 52,

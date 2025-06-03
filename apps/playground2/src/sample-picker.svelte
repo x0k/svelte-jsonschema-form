@@ -1,7 +1,7 @@
 <script lang="ts">
   import * as Command from "$lib/components/ui/command/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
-  import type { Sample } from "./shared/sample.js";
+  import type { Sample } from "./core/sample.js";
 
   interface Props {
     onSelect: (sample: Sample) => void;

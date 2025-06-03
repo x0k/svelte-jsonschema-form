@@ -1,6 +1,6 @@
 import type { UiOptions, UiSchema, UiSchemaRef } from "@sjsf/form";
 
-import type { Sample } from "@/shared/index.js";
+import type { Sample } from "@/core/index.js";
 
 function propertyStyles(
   style: string,
@@ -34,7 +34,7 @@ const transparent: UiSchema = {
 };
 
 export default {
-
+  resolver: "compat",
   schema: {
     type: "object",
     properties: {
@@ -442,5 +442,5 @@ export default {
       ],
     },
   },
-  formData: {},
+  initialValue: {},
 } satisfies Sample;
