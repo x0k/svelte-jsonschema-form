@@ -1,4 +1,7 @@
 <script lang="ts">
+  import { Label } from "$lib/components/ui/label/index.js";
+  import { Checkbox } from "$lib/components/ui/checkbox/index.js";
+
   let {
     value = $bindable(),
     flags,
@@ -10,12 +13,11 @@
   {title}
 </p>
 {#each flags as [flag, label]}
-  <label>
-    <input
-      type="checkbox"
+  <Label>
+    <Checkbox
       checked={Boolean(value & flag)}
-      onchange={() => (value ^= flag)}
+      onCheckedChange={() => (value ^= flag)}
     />
     {label}
-  </label>
+  </Label>
 {/each}
