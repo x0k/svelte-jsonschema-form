@@ -251,6 +251,17 @@ e/:
     d:
       pnpm run dev
     popd
+  flow/:
+    pushd flowbite3-starter
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    p:
+      pnpm run preview
+    d:
+      pnpm run dev
+    popd
   popd
 
 p:
