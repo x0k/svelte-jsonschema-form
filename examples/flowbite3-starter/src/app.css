@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* Workaround for StackBlitz, use @source in production */
+@import "@sjsf/flowbite3-theme/styles.css";
+/* @source "../node_modules/@sjsf/flowbite3-theme/dist"; */
+
 @plugin 'flowbite/plugin';
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -29,4 +33,3 @@
 }
 
 @source "../node_modules/flowbite-svelte/dist";
-@source "../node_modules/@sjsf/flowbite3-theme/dist";

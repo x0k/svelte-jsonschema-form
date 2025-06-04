@@ -2,9 +2,11 @@
 
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+/* Workaround for StackBlitz, use @source in production */
+@import "@sjsf/shadcn4-theme/styles.css";
+/* @source "../node_modules/@sjsf/shadcn4-theme/dist"; */
 
-@source "../node_modules/@sjsf/shadcn4-theme/dist";
+@custom-variant dark (&:is(.dark *));
 
 :root {
   --radius: 0.625rem;
