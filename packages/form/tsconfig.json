@@ -4,7 +4,7 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "lib": [
-      "ES2023",
+      "ES2024",
       "ESNext.Disposable",
       "ESNext.Collection",
       "ESNext.Iterator",

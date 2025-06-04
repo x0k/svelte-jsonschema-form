@@ -1,7 +1,8 @@
 import { SvelteMap } from "svelte/reactivity";
 
-import type { FailedAction } from "@/lib/action.svelte.js";
+import type { Action, FailedAction } from "@/lib/action.svelte.js";
 
+import type { FieldValue, FormValue } from "./model.js";
 import type { Id } from "./id.js";
 import type {
   AdditionalPropertyKeyValidator,
@@ -11,6 +12,7 @@ import type {
   FormValueValidatorError,
   ValidationError,
 } from "./validator.js";
+import type { Config } from "./config.js";
 
 export class AdditionalPropertyKeyError {}
 
@@ -41,6 +43,23 @@ export type PossibleError<V> =
   | ValidationProcessError
   | AnyValueValidatorError<V>
   | AdditionalPropertyKeyValidatorError<V>;
+
+export interface FormValidationResult<E> {
+  formValue: FormValue;
+  formErrors: FieldErrorsMap<E>;
+}
+
+export type FormSubmission<V> = Action<
+  [event: SubmitEvent],
+  FormValidationResult<AnyFormValueValidatorError<V>>,
+  unknown
+>;
+
+export type FieldsValidation<V> = Action<
+  [config: Config, value: FieldValue],
+  FieldError<AnyFieldValueValidatorError<V>>[],
+  unknown
+>;
 
 export function groupErrors<E>(
   errors: ValidationError<E>[]

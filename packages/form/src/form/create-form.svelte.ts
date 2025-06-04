@@ -7,7 +7,6 @@ import {
   abortPrevious,
   createAction,
   debounce,
-  type Action,
   type ActionsCombinator,
   type FailedAction,
 } from "@/lib/action.svelte.js";
@@ -39,6 +38,8 @@ import {
   type FieldErrorsMap,
   type AnyFormValueValidatorError,
   type AnyFieldValueValidatorError,
+  type FormSubmission,
+  type FieldsValidation,
 } from "./errors.js";
 import { type FormInternalContext, type FormContext } from "./context/index.js";
 import { createFormMerger, type FormMerger } from "./merger.js";
@@ -50,7 +51,7 @@ import {
 } from "./id.js";
 import type { Config } from "./config.js";
 import type { Theme } from "./components.js";
-import type { FieldValue, FormValue } from "./model.js";
+import type { FormValue } from "./model.js";
 import type { ResolveFieldType } from "./fields.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
@@ -101,15 +102,15 @@ export interface FormOptions<T, V extends Validator>
   /**
    * @default waitPrevious
    */
-  validationCombinator?: ActionsCombinator<[SubmitEvent], unknown>;
+  submissionCombinator?: ActionsCombinator<[event: SubmitEvent], unknown>;
   /**
    * @default 500
    */
-  validationDelayedMs?: number;
+  submissionDelayedMs?: number;
   /**
    * @default 8000
    */
-  validationTimeoutMs?: number;
+  submissionTimeoutMs?: number;
   /**
    * @default 300
    */
@@ -158,14 +159,14 @@ export interface FormOptions<T, V extends Validator>
     snapshot: FormValue
   ) => void;
   /**
-   * Form validation error handler
+   * Form submission error handler
    *
-   * Will be called when the validation fails by a different reasons:
+   * Will be called when the submission fails by a different reasons:
+   * - submission is cancelled
    * - error during validation
-   * - validation is cancelled
    * - validation timeout
    */
-  onValidationFailure?: (state: FailedAction<unknown>, e: SubmitEvent) => void;
+  onSubmissionFailure?: (state: FailedAction<unknown>, e: SubmitEvent) => void;
   /**
    * Field validation error handler
    */
@@ -183,23 +184,10 @@ export interface FormOptions<T, V extends Validator>
   schedulerYield?: SchedulerYield;
 }
 
-export interface FormValidationResult<E> {
-  formValue: FormValue;
-  formErrors: FieldErrorsMap<E>;
-}
-
 export interface FormState<T, V extends Validator> {
   readonly context: FormContext;
-  readonly validation: Action<
-    [event: SubmitEvent],
-    FormValidationResult<AnyFormValueValidatorError<V>>,
-    unknown
-  >;
-  readonly fieldsValidation: Action<
-    [config: Config, value: FieldValue],
-    FieldError<AnyFieldValueValidatorError<V>>[],
-    unknown
-  >;
+  readonly submission: FormSubmission<V>;
+  readonly fieldsValidation: FieldsValidation<V>;
   /**
    * An accessor that maintains form state consistency:
    *
@@ -214,7 +202,7 @@ export interface FormState<T, V extends Validator> {
   isSubmitted: boolean;
   isChanged: boolean;
   errors: FieldErrorsMap<PossibleError<V>>;
-  submit(e: SubmitEvent): Promise<void>;
+  submit(e: SubmitEvent): void;
   reset(e: Event): void;
 }
 
@@ -232,13 +220,13 @@ export function createForm<T, V extends Validator>(
       options.schema
     )
   );
-  let errors = $state(
+  let errors = $state.raw(
     Array.isArray(options.initialErrors)
       ? groupErrors(options.initialErrors)
       : new SvelteMap(options.initialErrors)
   );
-  let isSubmitted = $state(false);
-  let isChanged = $state(false);
+  let isSubmitted = $state.raw(false);
+  let isChanged = $state.raw(false);
 
   const fieldsValidationMode = $derived(options.fieldsValidationMode ?? 0);
   const uiSchemaRoot = $derived(options.uiSchema ?? {});
@@ -282,8 +270,9 @@ export function createForm<T, V extends Validator>(
     return async () => Promise.resolve([]);
   });
 
-  const validation = createAction({
+  const submission: FormSubmission<V> = createAction({
     async execute(signal, _event: SubmitEvent) {
+      isSubmitted = true;
       const formValue = getSnapshot(context);
       return {
         formValue,
@@ -292,13 +281,7 @@ export function createForm<T, V extends Validator>(
         ),
       };
     },
-    onSuccess(
-      {
-        formValue,
-        formErrors,
-      }: FormValidationResult<AnyFormValueValidatorError<V>>,
-      event
-    ) {
+    onSuccess({ formValue, formErrors }, event) {
       errors = formErrors;
       if (errors.size === 0) {
         options.onSubmit?.(formValue as T, event);
@@ -315,16 +298,16 @@ export function createForm<T, V extends Validator>(
           error: new ValidationProcessError(error),
         },
       ]);
-      options.onValidationFailure?.(error, e);
+      options.onSubmissionFailure?.(error, e);
     },
     get combinator() {
-      return options.validationCombinator;
+      return options.submissionCombinator;
     },
     get delayedMs() {
-      return options.validationDelayedMs;
+      return options.submissionDelayedMs;
     },
     get timeoutMs() {
-      return options.validationTimeoutMs;
+      return options.submissionTimeoutMs;
     },
   });
 
@@ -343,7 +326,7 @@ export function createForm<T, V extends Validator>(
     return () => Promise.resolve([]);
   });
 
-  const fieldsValidation = createAction({
+  const fieldsValidation: FieldsValidation<V> = createAction({
     execute: (signal, config, value) => validateFields(signal, config, value),
     onSuccess(
       fieldErrors: FieldError<AnyFieldValueValidatorError<V>>[],
@@ -387,8 +370,7 @@ export function createForm<T, V extends Validator>(
 
   function submitHandler(e: SubmitEvent) {
     e.preventDefault();
-    isSubmitted = true;
-    return validation.run(e);
+    submission.run(e);
   }
 
   function resetHandler(e: Event) {
@@ -426,7 +408,7 @@ export function createForm<T, V extends Validator>(
     get fieldsValidationMode() {
       return fieldsValidationMode;
     },
-    validation,
+    submission,
     fieldsValidation,
     get dataUrlToBlob() {
       return dataUrlToBlob;
@@ -531,7 +513,7 @@ export function createForm<T, V extends Validator>(
     set isChanged(v) {
       isChanged = v;
     },
-    validation,
+    submission,
     fieldsValidation,
     submit: submitHandler,
     reset: resetHandler,

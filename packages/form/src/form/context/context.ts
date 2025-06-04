@@ -2,8 +2,7 @@ import { getContext, setContext } from "svelte";
 
 import type { Brand } from "@/lib/types.js";
 import type { DataURLToBlob } from "@/lib/file.js";
-import type { Action } from "@/lib/action.svelte.js";
-import type { Schema, SchemaValue, Validator } from "@/core/index.js";
+import type { Schema, Validator } from "@/core/index.js";
 
 import type { Translate, Translation } from "../translation.js";
 import {
@@ -13,15 +12,13 @@ import {
   type UiSchemaRoot,
 } from "../ui-schema.js";
 import type {
-  FieldError,
   PossibleError,
   FieldErrorsMap,
-  AnyFormValueValidatorError,
-  AnyFieldValueValidatorError,
+  FormSubmission,
+  FieldsValidation,
 } from "../errors.js";
 import type { Icons } from "../icons.js";
 import type { FormMerger } from "../merger.js";
-import type { Config } from "../config.js";
 import type { Theme } from "../components.js";
 import type { Id, IdOptions } from "../id.js";
 import type { FormValue } from "../model.js";
@@ -54,19 +51,8 @@ export interface FormInternalContext<V extends Validator>
   readonly theme: Theme;
   readonly submitHandler: (e: SubmitEvent) => void;
   readonly resetHandler: (e: Event) => void;
-  readonly validation: Action<
-    [event: SubmitEvent],
-    {
-      snapshot: SchemaValue | undefined;
-      validationErrors: FieldErrorsMap<AnyFormValueValidatorError<V>>;
-    },
-    unknown
-  >;
-  readonly fieldsValidation: Action<
-    [config: Config, value: SchemaValue | undefined],
-    FieldError<AnyFieldValueValidatorError<V>>[],
-    unknown
-  >;
+  readonly submission: FormSubmission<V>;
+  readonly fieldsValidation: FieldsValidation<V>;
 }
 
 export const FORM_CONTEXT = Symbol("form-context");
