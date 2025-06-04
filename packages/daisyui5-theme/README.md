@@ -14,14 +14,16 @@ npm install @sjsf/form@next @sjsf/daisyui5-theme@next
 ## Usage
 
 1. Install daisyUI v5
-
+  
 [Install daisyUI as a Tailwind plugin](https://daisyui.com/docs/install/)
 
 2. Configuration
 
-Register the theme source path by adding a line like this to the `app.css` file.
+Register the theme source path by adding the following line to the `app.css` file:.
 
-`@source "../node_modules/@sjsf/daisyui5-theme/dist";`
+```css
+@source "../node_modules/@sjsf/daisyui5-theme/dist";
+```
 
 3. Apply theme
 
