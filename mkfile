@@ -240,6 +240,17 @@ e/:
     d:
       pnpm run dev
     popd
+  daisy/:
+    pushd daisyui5-starter
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    p:
+      pnpm run preview
+    d:
+      pnpm run dev
+    popd
   popd
 
 p:
