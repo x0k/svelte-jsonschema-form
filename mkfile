@@ -284,6 +284,17 @@ e/:
     d:
       pnpm run dev
     popd
+  ani/:
+    pushd animated-array
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    p:
+      pnpm run preview
+    d:
+      pnpm run dev
+    popd
   popd
 
 p:
