@@ -273,6 +273,17 @@ e/:
     d:
       pnpm run dev
     popd
+  shad/:
+    pushd shadcn4-starter
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    p:
+      pnpm run preview
+    d:
+      pnpm run dev
+    popd
   popd
 
 p:
