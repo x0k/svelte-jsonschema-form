@@ -50,15 +50,15 @@ export interface FormOptions<T, V extends Validator>
   /**
    * @default waitPrevious
    */
-  validationCombinator?: ActionsCombinator<[SubmitEvent], unknown>;
+  submissionCombinator?: ActionsCombinator<[event: SubmitEvent], unknown>;
   /**
    * @default 500
    */
-  validationDelayedMs?: number;
+  submissionDelayedMs?: number;
   /**
    * @default 8000
    */
-  validationTimeoutMs?: number;
+  submissionTimeoutMs?: number;
   /**
    * @default 300
    */
@@ -107,14 +107,14 @@ export interface FormOptions<T, V extends Validator>
     snapshot: FormValue
   ) => void;
   /**
-   * Form validation error handler
+   * Form submission error handler
    *
-   * Will be called when the validation fails by a different reasons:
+   * Will be called when the submission fails by a different reasons:
+   * - submission is cancelled
    * - error during validation
-   * - validation is cancelled
    * - validation timeout
    */
-  onValidationFailure?: (state: FailedAction<unknown>, e: SubmitEvent) => void;
+  onSubmissionFailure?: (state: FailedAction<unknown>, e: SubmitEvent) => void;
   /**
    * Field validation error handler
    */

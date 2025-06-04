@@ -10,48 +10,37 @@ export interface FormValidationResult<E> {
   formErrors: FieldErrorsMap<E>;
 }
 
-type Validate<V> =
-  V extends FormValueValidator<infer E>
-    ? {
-        validate(): FieldErrorsMap<E>;
-      }
-    : {};
+export type FormSubmission<V> = Action<
+  [event: SubmitEvent],
+  FormValidationResult<AnyFormValueValidatorError<V>>,
+  unknown
+>;
 
-type ValidateAsync<V> =
-  V extends AsyncFormValueValidator<infer E>
-    ? {
-        validateAsync(signal: AbortSignal): Promise<FieldErrorsMap<E>>;
-      }
-    : {};
+export type FieldsValidation<V> = Action<
+  [config: Config, value: FieldValue],
+  FieldError<AnyFieldValueValidatorError<V>>[],
+  unknown
+>;
 
-export type FormState<T, V extends Validator> = {
+export interface FormState<T, V extends Validator> {
   readonly context: FormContext;
-  readonly validation: Action<
-    [event: SubmitEvent],
-    FormValidationResult<AnyFormValueValidatorError<V>>,
-    unknown
-  >;
-  readonly fieldsValidation: Action<
-    [config: Config, value: FieldValue],
-    FieldError<AnyFieldValueValidatorError<V>>[],
-    unknown
-  >;
+  readonly submission: FormSubmission<V>;
+  readonly fieldsValidation: FieldsValidation<V>;
   /**
    * An accessor that maintains form state consistency:
-   * 
+   *
    * - A snapshot of the form state is returned on access
    * - Default values from JSON Schema are taken into account during assignment
-   * 
+   *
    * You can gain direct access to the internal state by hacking types:
-   * 
+   *
    * `(form.context as FormInternalContext<typeof validator>).value`
    */
   value: T | undefined;
   isSubmitted: boolean;
   isChanged: boolean;
   errors: FieldErrorsMap<PossibleError<V>>;
-  submit(e: SubmitEvent): Promise<void>;
+  submit(e: SubmitEvent): void;
   reset(e: Event): void;
-} & Validate<V> &
-  ValidateAsync<V>;
+}
 ```
