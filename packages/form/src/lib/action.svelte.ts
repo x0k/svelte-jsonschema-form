@@ -1,3 +1,6 @@
+import { DEV } from "esm-env";
+
+import { noop } from "./function.js";
 import type { MaybePromise } from "./types.js";
 
 export enum Status {
@@ -75,9 +78,8 @@ export const abortPrevious: ActionsCombinator<any, any> = () => "abort";
 /**
  * Ignore new action until the previous action is completed
  */
-export const waitPrevious: ActionsCombinator<any, any> = ({
-  status,
-}) => status !== Status.Processed;
+export const waitPrevious: ActionsCombinator<any, any> = ({ status }) =>
+  status !== Status.Processed;
 
 export function throttle<T, E>(
   combinator: ActionsCombinator<T, E>,
@@ -113,6 +115,10 @@ export function debounce<T, E>(
   };
 }
 
+export class CompletionError<E> {
+  constructor(public readonly state: FailedAction<E>) {}
+}
+
 export interface Action<T extends ReadonlyArray<any>, R, E> {
   readonly state: Readonly<ActionState<T, E>>;
   readonly status: Status;
@@ -120,31 +126,48 @@ export interface Action<T extends ReadonlyArray<any>, R, E> {
   readonly isFailed: boolean;
   readonly isProcessed: boolean;
   readonly isDelayed: boolean;
-  run(...args: T): Promise<void>;
+  /**
+   * Initiates the action without waiting for its result.
+   * Any side effects or failures are handled internally.
+   */
+  run(...args: T): void;
+
+  /**
+   * Initiates the action and returns a promise that resolves when the action completes.
+   * Use this method when you need to handle the result or catch errors.
+   * @throws CompletionError if action were aborted or timeouted.
+   */
+  runAsync(...args: T): Promise<R>;
+
+  /**
+   * Aborts the ongoing action if it is currently processing.
+   * The action will fail with an "aborted" reason and trigger any associated failure callbacks.
+   */
   abort(): void;
 }
 
 export function createAction<
   T extends ReadonlyArray<any>,
   R = unknown,
-  E = unknown,
+  E = unknown
 >(options: ActionOptions<T, R, E>): Action<T, R, E> {
   const delayedMs = $derived(options.delayedMs ?? 500);
   const timeoutMs = $derived(options.timeoutMs ?? 8000);
 
-  // svelte-ignore state_referenced_locally
-  if (timeoutMs < delayedMs) {
-    throw new Error("timeoutMs must be greater than delayedMs");
+  if (DEV) {
+    $effect(() => {
+      if (timeoutMs < delayedMs) {
+        throw new Error("timeoutMs must be greater than delayedMs");
+      }
+    });
   }
-  const combinator = $derived(
-    options.combinator ?? waitPrevious
-  );
+  const combinator = $derived(options.combinator ?? waitPrevious);
 
   let state = $state.raw<ActionState<T, E>>({
     status: Status.IDLE,
   });
   let abortController: AbortController | null = null;
-  let ref: WeakRef<Promise<void>> | null = null;
+  let ref: WeakRef<Promise<R>> | null = null;
   let delayedCallbackId: NodeJS.Timeout;
   let timeoutCallbackId: NodeJS.Timeout;
 
@@ -159,9 +182,33 @@ export function createAction<
     clearTimeouts();
   }
 
-  function run(decision: boolean | "abort", args: T) {
+  function runEffect(promise: Promise<R>, effect: () => void) {
+    if (state.status === Status.Failed) {
+      throw new CompletionError(state);
+    }
+    if (ref?.deref() === promise) {
+      clearTimeouts();
+      effect();
+    }
+  }
+
+  async function runAsync(args: T): Promise<R> {
+    let decision: boolean | "abort";
+    try {
+      const dec = combinator(state);
+      if (dec instanceof Promise) {
+        decision = await dec;
+      } else {
+        decision = dec;
+      }
+    } catch (error) {
+      decision = false;
+    }
     if (decision === false) {
-      return Promise.resolve();
+      const promise = ref?.deref();
+      if (promise !== undefined) {
+        return promise;
+      }
     }
     if (decision === "abort") {
       abort();
@@ -174,17 +221,18 @@ export function createAction<
     abortController = new AbortController();
     const promise = options.execute(abortController.signal, ...args).then(
       (result) => {
-        // action may have been aborted by user or timeout
-        if (ref?.deref() !== promise || state.status === Status.Failed) return;
-        state = { status: Status.Success };
-        clearTimeouts();
-        options.onSuccess?.(result, ...args);
+        runEffect(promise, () => {
+          state = { status: Status.Success };
+          options.onSuccess?.(result, ...args);
+        });
+        return result;
       },
       (error) => {
-        if (ref?.deref() !== promise || state.status === Status.Failed) return;
-        state = { status: Status.Failed, reason: "error", error };
-        clearTimeouts();
-        options.onFailure?.(state, ...args);
+        runEffect(promise, () => {
+          state = { status: Status.Failed, reason: "error", error };
+          options.onFailure?.(state, ...args);
+        });
+        return Promise.reject(error);
       }
     );
     ref = new WeakRef(promise);
@@ -221,19 +269,11 @@ export function createAction<
     get isDelayed() {
       return state.status === Status.Processed && state.delayed;
     },
-    async run(...args) {
-      let decision: boolean | "abort";
-      try {
-        const dec = combinator(state);
-        if (dec instanceof Promise) {
-          decision = await dec;
-        } else {
-          decision = dec;
-        }
-      } catch (error) {
-        decision = false;
-      }
-      return run(decision, args);
+    run(...args) {
+      void runAsync(args).catch(noop);
+    },
+    runAsync(...args) {
+      return runAsync(args);
     },
     abort() {
       if (state.status !== Status.Processed) return;

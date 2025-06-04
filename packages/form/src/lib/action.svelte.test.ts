@@ -1,13 +1,15 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { tick } from 'svelte';
+import { tick } from "svelte";
 
 import {
   abortPrevious,
   forgetPrevious,
   waitPrevious,
   Status,
-  createAction
+  createAction,
+  CompletionError,
 } from "./action.svelte.js";
+import { noop } from "./function.js";
 
 describe("createAction", () => {
   beforeEach(() => {
@@ -23,7 +25,7 @@ describe("createAction", () => {
         delayedMs: 50,
         timeoutMs: 100,
       });
-      const promise = action.run();
+      const promise = action.runAsync();
       expect(action.status).toBe(Status.Processed);
       await promise;
       expect(action.status).toBe(Status.Success);
@@ -32,13 +34,14 @@ describe("createAction", () => {
       vi.advanceTimersByTime(50);
       expect(action.status).toBe(Status.Success);
     });
+
     it("Should correctly update status during error flow", async () => {
       const action = createAction({
         execute: () => Promise.reject(),
         delayedMs: 50,
         timeoutMs: 100,
       });
-      const promise = action.run();
+      const promise = action.runAsync().catch(noop);
       expect(action.status).toBe(Status.Processed);
       await promise;
       expect(action.status).toBe(Status.Failed);
@@ -47,6 +50,7 @@ describe("createAction", () => {
       vi.advanceTimersByTime(50);
       expect(action.status).toBe(Status.Failed);
     });
+
     it("Should correctly update statuses: processed -> processed(delayed) -> failed(timeout)", async () => {
       const action = createAction({
         execute: () =>
@@ -68,11 +72,22 @@ describe("createAction", () => {
       if (action.state.status === Status.Failed) {
         expect(action.state.reason).toBe("timeout");
       } else {
-        expect.fail()
+        expect.fail();
       }
       vi.advanceTimersByTime(50);
       await tick();
       expect(action.status).toBe(Status.Failed);
+    });
+
+    it("Should throw `CompletionError` if resolved in failed state", async () => {
+      const p = Promise.withResolvers<boolean>();
+      const action = createAction({
+        execute: () => p.promise,
+      });
+      const actionPromise = action.runAsync();
+      action.abort();
+      p.resolve(true);
+      await expect(actionPromise).rejects.toBeInstanceOf(CompletionError);
     });
   });
   describe("Combinator", () => {
@@ -96,6 +111,7 @@ describe("createAction", () => {
       action.run();
       expect(impl).toBeCalledTimes(2);
     });
+
     it("Should forget previous action with 'forgetPrevious' combinator", async () => {
       let count = 0;
       const onSuccess = vi.fn();
@@ -104,11 +120,13 @@ describe("createAction", () => {
         combinator: forgetPrevious,
         onSuccess,
       });
-      action.run();
-      await action.run();
+      const actionPromise1 = action.runAsync();
+      await expect(action.runAsync()).resolves.toBe(1)
+      await expect(actionPromise1).resolves.toBe(0)
       expect(onSuccess).toBeCalledTimes(1);
       expect(onSuccess).toBeCalledWith(1);
     });
+
     it("Should abort previous action with 'abortPrevious' combinator", async () => {
       const onAbort = vi.fn();
       let count = 0;
@@ -124,7 +142,7 @@ describe("createAction", () => {
       });
       action.run();
       action.run();
-      await action.run();
+      await action.runAsync();
       expect(onAbort).toBeCalledTimes(2);
       expect(impl).toBeCalledTimes(3);
       expect(onSuccess).toBeCalledTimes(1);
