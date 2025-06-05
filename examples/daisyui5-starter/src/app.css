@@ -5,3 +5,7 @@
 /* @source "../node_modules/@sjsf/daisyui5-theme/dist"; */
 
 @plugin "daisyui";
+
+html {
+  padding: 2rem;
+}

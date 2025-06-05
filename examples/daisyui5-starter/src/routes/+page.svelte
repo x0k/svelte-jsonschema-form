@@ -22,4 +22,4 @@
   });
 </script>
 
-<BasicForm class="p-4" {form} />
+<BasicForm {form} />

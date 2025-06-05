@@ -33,3 +33,7 @@
 }
 
 @source "../node_modules/flowbite-svelte/dist";
+
+html {
+  padding: 2rem;
+}

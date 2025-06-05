@@ -22,4 +22,4 @@
   });
 </script>
 
-<BasicForm style="padding: 2rem;" {form} />
+<BasicForm {form} />

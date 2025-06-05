@@ -1,7 +1,7 @@
 <script lang="ts">
   import { createForm, BasicForm, type Schema } from "@sjsf/form";
-  import { setThemeContext } from '@sjsf/shadcn4-theme'
-  import * as components from '@sjsf/shadcn4-theme/new-york'
+  import { setThemeContext } from "@sjsf/shadcn4-theme";
+  import * as components from "@sjsf/shadcn4-theme/new-york";
 
   import * as defaults from "$lib/form-defaults";
 
@@ -23,7 +23,7 @@
     onSubmit: console.log,
   });
 
-  setThemeContext({ components })
+  setThemeContext({ components });
 </script>
 
-<BasicForm style="padding: 2rem;" {form} />
+<BasicForm {form} />
