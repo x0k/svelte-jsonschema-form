@@ -2,6 +2,7 @@ import packageJson from "%/basic-starter/package.json";
 import svelteConfigJs from "%/basic-starter/svelte.config?raw";
 import tsconfigJson from "%/basic-starter/tsconfig.json?raw";
 import appHtml from "%/basic-starter/src/app.html?raw";
+
 import type { Layer } from "../layer";
 
 const files = {
@@ -10,8 +11,16 @@ const files = {
   "src/app.html": appHtml,
 } as const;
 
+const {
+  dependencies: { ajv: _, "@sjsf/ajv8-validator": _1, ...dependencies },
+  ...packageJsonRest
+} = packageJson;
+
 export const layer = {
-  package: packageJson,
+  package: {
+    ...packageJsonRest,
+    dependencies,
+  },
   vite: {
     plugins: {
       "@sveltejs/kit/vite": {
@@ -19,15 +28,6 @@ export const layer = {
         call: "sveltekit()",
       },
     },
-    template: (plugins) => `import { defineConfig } from 'vite';
-${Object.entries(plugins)
-  .map(([pkg, p]) => `import ${p.import} from "${pkg}";`)
-  .join("\n")}
-export default defineConfig({
-  plugins: [${Object.values(plugins)
-    .map((p) => p.call)
-    .join(", ")}]
-})`,
   },
   files,
 } satisfies Layer;

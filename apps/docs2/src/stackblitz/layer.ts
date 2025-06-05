@@ -15,7 +15,6 @@ export interface VitePluginConfig {
 
 export interface ViteConfig {
   plugins?: Record<string, VitePluginConfig>;
-  template?: (plugins: Record<string, VitePluginConfig>) => string;
 }
 
 export interface LayerFiles {
@@ -58,7 +57,6 @@ function mergeViteConfigs(a: ViteConfig, b: ViteConfig): ViteConfig {
       ...a.plugins,
       ...b.plugins,
     },
-    template: b.template ?? a.template,
   };
 }
 
@@ -77,13 +75,13 @@ export function mergeLayers(a: Layer, b: Layer): Layer {
     package:
       a.package && b.package
         ? mergePackageConfigs(a.package, b.package)
-        : b.package ?? a.package,
+        : (b.package ?? a.package),
     vite:
-      a.vite && b.vite ? mergeViteConfigs(a.vite, b.vite) : b.vite ?? a.vite,
+      a.vite && b.vite ? mergeViteConfigs(a.vite, b.vite) : (b.vite ?? a.vite),
     formDefaults:
       a.formDefaults && b.formDefaults
         ? mergeFormDefaultsConfig(a.formDefaults, b.formDefaults)
-        : b.formDefaults ?? a.formDefaults,
+        : (b.formDefaults ?? a.formDefaults),
     files: {
       ...a.files,
       ...b.files,
@@ -92,14 +90,19 @@ export function mergeLayers(a: Layer, b: Layer): Layer {
 }
 
 function buildPackageConfig(config: PackageConfig): string {
-  return JSON.stringify(config);
+  return JSON.stringify(config, null, 2);
 }
 
-function buildViteConfig({ plugins = {}, template }: ViteConfig): string {
-  if (template === undefined) {
-    throw new Error("Vite config template is undefined");
-  }
-  return template(plugins);
+function buildViteConfig({ plugins = {} }: ViteConfig): string {
+  return `import { defineConfig } from 'vite';
+${Object.entries(plugins)
+  .map(([pkg, p]) => `import ${p.import} from "${pkg}";`)
+  .join("\n")}
+export default defineConfig({
+  plugins: [${Object.values(plugins)
+    .map((p) => p.call)
+    .join(", ")}]
+})`;
 }
 
 function buildFormDefaultsConfig({
@@ -136,4 +139,8 @@ export function buildLayer(layer: Layer): LayerFiles {
     );
   }
   return files;
+}
+
+export function buildLayers(layers: Layer[]): LayerFiles {
+  return buildLayer(layers.reduce(mergeLayers))
 }

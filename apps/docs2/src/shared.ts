@@ -16,6 +16,24 @@ export const VALIDATORS = ["ajv8", "cfworker", "schemasafe"] as const;
 
 export type Validator = (typeof VALIDATORS)[number];
 
+export const VALIDATOR_PACKAGES: Record<Validator, string> = {
+  ajv8: "ajv",
+  cfworker: "@cfworker/json-schema",
+  schemasafe: "@exodus/schemasafe",
+};
+
+export const VALIDATOR_VERSIONS: Record<Validator, string> = {
+  ajv8: "^8.17.0",
+  cfworker: "^4.1.0",
+  schemasafe: "^1.3.0"
+}
+
+export enum Example {
+  AnimatedArray = "animated-array",
+}
+
+export const EXAMPLES = Object.values(Example);
+
 export const THEMES = [
   "basic",
   "daisyui",
@@ -37,9 +55,8 @@ export const OUTDATED_THEMES = new Set([
   "shadcn",
 ] as const) satisfies Set<Theme>;
 
-export type OutdatedTheme = typeof OUTDATED_THEMES extends Set<infer T>
-  ? T
-  : never;
+export type OutdatedTheme =
+  typeof OUTDATED_THEMES extends Set<infer T> ? T : never;
 
 export const ACTUAL_THEMES = THEMES.filter(
   (t) => !OUTDATED_THEMES.has(t as OutdatedTheme)

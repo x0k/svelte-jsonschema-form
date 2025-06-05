@@ -1,11 +1,16 @@
 <script lang="ts">
+  import { identity } from "@sjsf/form/lib/function";
+
   import {
     ACTUAL_THEMES,
+    EXAMPLES,
     THEME_TITLES,
     VALIDATORS,
     type ActualTheme,
     type Validator,
   } from "@/shared";
+  import Buttons from "./buttons.svelte";
+  import { openProject } from "@/stackblitz";
 
   let theme: ActualTheme = $state.raw("basic");
   let validator: Validator = $state.raw("ajv8");
@@ -13,16 +18,6 @@
 
 <div class="pickers">
   <button style="display: none;">Avoid starlight styles pollution</button>
-  <label>
-    <span>Theme</span>
-    <select bind:value={theme}>
-      {#each ACTUAL_THEMES as t (t)}
-        <option value={t}>
-          {THEME_TITLES[t]}
-        </option>
-      {/each}
-    </select>
-  </label>
   <label>
     <span>Validator</span>
     <select bind:value={validator}>
@@ -33,7 +28,29 @@
       {/each}
     </select>
   </label>
+  <label>
+    <span>Theme</span>
+    <select bind:value={theme}>
+      {#each ACTUAL_THEMES as t (t)}
+        <option value={t}>
+          {THEME_TITLES[t]}
+        </option>
+      {/each}
+    </select>
+  </label>
 </div>
+
+<Buttons
+  items={EXAMPLES}
+  onClick={(example) => {
+    openProject({
+      example,
+      theme,
+      validator,
+    });
+  }}
+  label={identity}
+/>
 
 <style>
   .pickers {
