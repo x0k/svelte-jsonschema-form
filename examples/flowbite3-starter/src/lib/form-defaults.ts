@@ -1,10 +1,6 @@
 export { resolver } from "@sjsf/form/resolvers/basic";
-import "@sjsf/form/fields/extra-fields/enum-include";
-import "@sjsf/form/fields/extra-fields/file-include";
 
 export { theme } from "@sjsf/flowbite3-theme";
-import "@sjsf/flowbite3-theme/extra-widgets/textarea-include";
-import "@sjsf/flowbite3-theme/extra-widgets/file-include";
 
 export { translation } from "@sjsf/form/translations/en";
 
