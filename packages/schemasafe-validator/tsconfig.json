@@ -4,6 +4,11 @@
     "moduleResolution": "NodeNext",
     "outDir": "dist",
     "rootDir": "src",
+    "sourceMap": false
   },
-  "exclude": ["vitest.config.ts", "dist", "node_modules"]
+  "exclude": [
+    "vitest.config.ts",
+    "dist",
+    "node_modules"
+  ]
 }
