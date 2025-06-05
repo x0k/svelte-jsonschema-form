@@ -30,20 +30,21 @@ export type FailedAction<E> =
   | AbstractFailedAction<"timeout">
   | AbstractFailedAction<"aborted">;
 
-export interface ProcessedAction<T>
+export interface ProcessedAction<T, R>
   extends AbstractActionState<Status.Processed> {
   delayed: boolean;
   args: T;
+  promise: Promise<R>;
 }
 
-export type ActionState<T, E> =
+export type ActionState<T, R, E> =
   | AbstractActionState<Status.IDLE>
-  | ProcessedAction<T>
+  | ProcessedAction<T, R>
   | AbstractActionState<Status.Success>
   | FailedAction<E>;
 
-export type ActionsCombinator<T, E> = (
-  state: ActionState<T, E>
+export type ActionsCombinator<T, R, E> = (
+  state: ActionState<T, R, E>
 ) => MaybePromise<boolean | "abort">;
 
 export interface ActionOptions<T extends ReadonlyArray<any>, R, E> {
@@ -54,7 +55,7 @@ export interface ActionOptions<T extends ReadonlyArray<any>, R, E> {
    * The `combinator` runtime error is interpreted as `false`.
    * @default waitPrevious
    */
-  combinator?: ActionsCombinator<T, E>;
+  combinator?: ActionsCombinator<T, R, E>;
   /**
    * @default 500
    */
@@ -68,23 +69,23 @@ export interface ActionOptions<T extends ReadonlyArray<any>, R, E> {
 /**
  * Forget previous action
  */
-export const forgetPrevious: ActionsCombinator<any, any> = () => true;
+export const forgetPrevious: ActionsCombinator<any, any, any> = () => true;
 
 /**
  * Abort previous action
  */
-export const abortPrevious: ActionsCombinator<any, any> = () => "abort";
+export const abortPrevious: ActionsCombinator<any, any, any> = () => "abort";
 
 /**
  * Ignore new action until the previous action is completed
  */
-export const waitPrevious: ActionsCombinator<any, any> = ({ status }) =>
+export const waitPrevious: ActionsCombinator<any, any, any> = ({ status }) =>
   status !== Status.Processed;
 
-export function throttle<T, E>(
-  combinator: ActionsCombinator<T, E>,
+export function throttle<T, R, E>(
+  combinator: ActionsCombinator<T, R, E>,
   delayedMs: number
-): ActionsCombinator<T, E> {
+): ActionsCombinator<T, R, E> {
   let nextCallAfter = 0;
   return (state) => {
     const now = Date.now();
@@ -96,10 +97,10 @@ export function throttle<T, E>(
   };
 }
 
-export function debounce<T, E>(
-  combinator: ActionsCombinator<T, E>,
+export function debounce<T, R, E>(
+  combinator: ActionsCombinator<T, R, E>,
   delayedMs: number
-): ActionsCombinator<T, E> {
+): ActionsCombinator<T, R, E> {
   let callbackId: NodeJS.Timeout;
   let lastReject: undefined | (() => void);
   return (state) => {
@@ -115,12 +116,15 @@ export function debounce<T, E>(
   };
 }
 
+export class InitializationError<T, R, E> {
+  constructor(public readonly state: ActionState<T, R, E>) {}
+}
 export class CompletionError<E> {
   constructor(public readonly state: FailedAction<E>) {}
 }
 
 export interface Action<T extends ReadonlyArray<any>, R, E> {
-  readonly state: Readonly<ActionState<T, E>>;
+  readonly state: Readonly<ActionState<T, R, E>>;
   readonly status: Status;
   readonly isSuccess: boolean;
   readonly isFailed: boolean;
@@ -135,6 +139,7 @@ export interface Action<T extends ReadonlyArray<any>, R, E> {
   /**
    * Initiates the action and returns a promise that resolves when the action completes.
    * Use this method when you need to handle the result or catch errors.
+   * @throws InitializationError if combinator returns `false`.
    * @throws CompletionError if action were aborted or timeouted.
    */
   runAsync(...args: T): Promise<R>;
@@ -149,7 +154,7 @@ export interface Action<T extends ReadonlyArray<any>, R, E> {
 export function createAction<
   T extends ReadonlyArray<any>,
   R = unknown,
-  E = unknown
+  E = unknown,
 >(options: ActionOptions<T, R, E>): Action<T, R, E> {
   const delayedMs = $derived(options.delayedMs ?? 500);
   const timeoutMs = $derived(options.timeoutMs ?? 8000);
@@ -163,11 +168,10 @@ export function createAction<
   }
   const combinator = $derived(options.combinator ?? waitPrevious);
 
-  let state = $state.raw<ActionState<T, E>>({
+  let state = $state.raw<ActionState<T, R, E>>({
     status: Status.IDLE,
   });
   let abortController: AbortController | null = null;
-  let ref: WeakRef<Promise<R>> | null = null;
   let delayedCallbackId: NodeJS.Timeout;
   let timeoutCallbackId: NodeJS.Timeout;
 
@@ -186,7 +190,7 @@ export function createAction<
     if (state.status === Status.Failed) {
       throw new CompletionError(state);
     }
-    if (ref?.deref() === promise) {
+    if (state.status === Status.Processed && state.promise === promise) {
       clearTimeouts();
       effect();
     }
@@ -205,19 +209,11 @@ export function createAction<
       decision = false;
     }
     if (decision === false) {
-      const promise = ref?.deref();
-      if (promise !== undefined) {
-        return promise;
-      }
+      throw new InitializationError(state);
     }
     if (decision === "abort") {
       abort();
     }
-    state = {
-      status: Status.Processed,
-      delayed: action.isDelayed,
-      args,
-    };
     abortController = new AbortController();
     const promise = options.execute(abortController.signal, ...args).then(
       (result) => {
@@ -235,14 +231,21 @@ export function createAction<
         return Promise.reject(error);
       }
     );
-    ref = new WeakRef(promise);
+    state = {
+      status: Status.Processed,
+      delayed: action.isDelayed,
+      args,
+      promise,
+    };
     clearTimeouts();
     delayedCallbackId = setTimeout(() => {
-      if (ref?.deref() !== promise || state.status !== Status.Processed) return;
-      state = { status: Status.Processed, delayed: true, args };
+      if (state.status !== Status.Processed || state.promise !== promise)
+        return;
+      state = { status: Status.Processed, delayed: true, args, promise };
     }, delayedMs);
     timeoutCallbackId = setTimeout(() => {
-      if (ref?.deref() !== promise || state.status !== Status.Processed) return;
+      if (state.status !== Status.Processed || state.promise !== promise)
+        return;
       state = { status: Status.Failed, reason: "timeout" };
       abort();
       options.onFailure?.(state, ...args);

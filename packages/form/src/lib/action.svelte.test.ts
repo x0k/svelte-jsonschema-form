@@ -8,6 +8,7 @@ import {
   Status,
   createAction,
   CompletionError,
+  InitializationError,
 } from "./action.svelte.js";
 import { noop } from "./function.js";
 
@@ -79,6 +80,16 @@ describe("createAction", () => {
       expect(action.status).toBe(Status.Failed);
     });
 
+    it("Should throw `InitializationError` if combinator returns false", async () => {
+      const action = createAction({
+        execute: () => Promise.resolve(0),
+        combinator: () => false,
+      });
+      await expect(action.runAsync()).rejects.toBeInstanceOf(
+        InitializationError
+      );
+    });
+
     it("Should throw `CompletionError` if resolved in failed state", async () => {
       const p = Promise.withResolvers<boolean>();
       const action = createAction({
@@ -121,8 +132,8 @@ describe("createAction", () => {
         onSuccess,
       });
       const actionPromise1 = action.runAsync();
-      await expect(action.runAsync()).resolves.toBe(1)
-      await expect(actionPromise1).resolves.toBe(0)
+      await expect(action.runAsync()).resolves.toBe(1);
+      await expect(actionPromise1).resolves.toBe(0);
       expect(onSuccess).toBeCalledTimes(1);
       expect(onSuccess).toBeCalledWith(1);
     });
