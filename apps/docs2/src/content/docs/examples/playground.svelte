@@ -1,5 +1,5 @@
 <script lang="ts">
-  import pkg from "lz-string";
+  import lz from "lz-string";
   import { PLAYGROUND_LINK } from "@/i18n";
 
   import Buttons from "./buttons.svelte";
@@ -15,7 +15,7 @@
   onClick={async (key) => {
     const sample = await samples[key]();
     window.open(
-      `${PLAYGROUND_LINK}#${pkg.compressToEncodedURIComponent(JSON.stringify(sample))}`
+      `${PLAYGROUND_LINK}#${lz.compressToEncodedURIComponent(JSON.stringify(sample))}`
     );
   }}
   label={(key) => key.substring(27, key.length - 3)}

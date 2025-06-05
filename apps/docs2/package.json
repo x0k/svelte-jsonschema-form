@@ -55,6 +55,7 @@
     "@astrojs/starlight": "^0.34.3",
     "@astrojs/svelte": "^7.1.0",
     "@types/pikaday": "^1.7.9",
+    "@webcontainer/api": "^1.6.1",
     "astro": "^5.8.0",
     "astro-vtbot": "^2.1.3",
     "bits-ui": "^2.4.1",

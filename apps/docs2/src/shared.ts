@@ -25,10 +25,11 @@ export const VALIDATOR_PACKAGES: Record<Validator, string> = {
 export const VALIDATOR_VERSIONS: Record<Validator, string> = {
   ajv8: "^8.17.0",
   cfworker: "^4.1.0",
-  schemasafe: "^1.3.0"
-}
+  schemasafe: "^1.3.0",
+};
 
 export enum Example {
+  Starter = "starter",
   AnimatedArray = "animated-array",
 }
 
@@ -48,18 +49,19 @@ export const THEMES = [
 
 export type Theme = (typeof THEMES)[number];
 
-export const OUTDATED_THEMES = new Set([
+export const OUTDATED_THEMES = [
   "daisyui",
   "flowbite",
   "skeleton",
   "shadcn",
-] as const) satisfies Set<Theme>;
+] as const satisfies Theme[];
 
-export type OutdatedTheme =
-  typeof OUTDATED_THEMES extends Set<infer T> ? T : never;
+export const OUTDATED_THEMES_SET = new Set<Theme>(OUTDATED_THEMES);
+
+export type OutdatedTheme = (typeof OUTDATED_THEMES)[number];
 
 export const ACTUAL_THEMES = THEMES.filter(
-  (t) => !OUTDATED_THEMES.has(t as OutdatedTheme)
+  (t) => !OUTDATED_THEMES_SET.has(t)
 ) as ActualTheme[];
 
 export type ActualTheme = Exclude<Theme, OutdatedTheme>;

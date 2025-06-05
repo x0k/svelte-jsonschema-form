@@ -9,15 +9,27 @@
     type ActualTheme,
     type Validator,
   } from "@/shared";
-  import Buttons from "./buttons.svelte";
-  import { openProject } from "@/stackblitz";
+  import { openProject, Platform, PLATFORMS } from "@/web-ide";
 
+  import Buttons from "./buttons.svelte";
+
+  let platform: Platform = $state.raw(Platform.StackBlitz);
   let theme: ActualTheme = $state.raw("basic");
   let validator: Validator = $state.raw("ajv8");
 </script>
 
 <div class="pickers">
   <button style="display: none;">Avoid starlight styles pollution</button>
+  <label>
+    <span>Platform</span>
+    <select bind:value={platform}>
+      {#each PLATFORMS as v (v)}
+        <option value={v}>
+          {v}
+        </option>
+      {/each}
+    </select>
+  </label>
   <label>
     <span>Validator</span>
     <select bind:value={validator}>
@@ -44,6 +56,7 @@
   items={EXAMPLES}
   onClick={(example) => {
     openProject({
+      platform,
       example,
       theme,
       validator,
