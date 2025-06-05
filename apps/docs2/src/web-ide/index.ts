@@ -67,6 +67,7 @@ const EXAMPLE_LAYERS: Record<Example, () => LayerPromise> = {
   [Example.AnimatedArray]: () => import("./examples/animated-array"),
   [Example.MarkdownDescription]: () =>
     import("./examples/markdown-description"),
+  [Example.TabbedLayout]: () => import("./examples/tabbed-layout"),
 };
 
 export async function openProject({
