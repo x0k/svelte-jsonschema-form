@@ -1,5 +1,6 @@
 import type { DirectoryNode, FileSystemTree } from "@webcontainer/api";
 import sdk from "@stackblitz/sdk";
+import lz from "lz-string";
 
 import {
   Example,
@@ -12,7 +13,6 @@ import {
 } from "@/shared";
 
 import { buildLayers, type Layer, type LayerFiles } from "./layer";
-import lz from "lz-string";
 
 type LayerPromise = Promise<{ layer: Layer }>;
 
@@ -57,14 +57,16 @@ const VALIDATOR_LAYERS = Object.fromEntries(
 const THEME_LAYERS: Record<ActualTheme, () => LayerPromise[]> = {
   basic: () => [import("./layers/basic")],
   daisyui5: () => [import("./layers/tailwind4"), import("./layers/daisyui5")],
-  flowbite3: () => [import("./layers/tailwind4")],
-  shadcn4: () => [import("./layers/tailwind4")],
-  skeleton3: () => [import("./layers/tailwind4")],
+  flowbite3: () => [import("./layers/tailwind4"), import("./layers/flowbite3")],
+  shadcn4: () => [import("./layers/tailwind4"), import("./layers/shadcn4")],
+  skeleton3: () => [import("./layers/tailwind4"), import("./layers/skeleton3")],
 };
 
 const EXAMPLE_LAYERS: Record<Example, () => LayerPromise> = {
   [Example.Starter]: () => import("./examples/starter"),
   [Example.AnimatedArray]: () => import("./examples/animated-array"),
+  [Example.MarkdownDescription]: () =>
+    import("./examples/markdown-description"),
 };
 
 export async function openProject({

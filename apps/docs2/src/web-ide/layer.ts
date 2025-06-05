@@ -34,6 +34,8 @@ export interface Layer {
   formDefaults?: FormDefaultsConfig;
 }
 
+export const BASE_PACKAGES = ["ajv", "@sjsf/ajv8-validator"];
+
 function mergePackageConfigs(
   a: PackageConfig,
   b: PackageConfig
@@ -75,13 +77,13 @@ export function mergeLayers(a: Layer, b: Layer): Layer {
     package:
       a.package && b.package
         ? mergePackageConfigs(a.package, b.package)
-        : (b.package ?? a.package),
+        : b.package ?? a.package,
     vite:
-      a.vite && b.vite ? mergeViteConfigs(a.vite, b.vite) : (b.vite ?? a.vite),
+      a.vite && b.vite ? mergeViteConfigs(a.vite, b.vite) : b.vite ?? a.vite,
     formDefaults:
       a.formDefaults && b.formDefaults
         ? mergeFormDefaultsConfig(a.formDefaults, b.formDefaults)
-        : (b.formDefaults ?? a.formDefaults),
+        : b.formDefaults ?? a.formDefaults,
     files: {
       ...a.files,
       ...b.files,
@@ -142,5 +144,26 @@ export function buildLayer(layer: Layer): LayerFiles {
 }
 
 export function buildLayers(layers: Layer[]): LayerFiles {
-  return buildLayer(layers.reduce(mergeLayers))
+  return buildLayer(layers.reduce(mergeLayers));
+}
+
+export function omitPackages(
+  config: PackageConfig,
+  packages: string[]
+): PackageConfig {
+  const deps = new Map(Object.entries(config.dependencies ?? {}));
+  const devDeps = new Map(Object.entries(config.devDependencies ?? {}));
+  for (const pkg of packages) {
+    deps.delete(pkg);
+    devDeps.delete(pkg);
+  }
+  return {
+    ...config,
+    dependencies: Object.fromEntries(deps),
+    devDependencies: Object.fromEntries(devDeps),
+  };
+}
+
+export function omitBasePackages(config: PackageConfig): PackageConfig {
+  return omitPackages(config, BASE_PACKAGES);
 }

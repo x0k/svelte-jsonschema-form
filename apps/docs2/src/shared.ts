@@ -31,6 +31,7 @@ export const VALIDATOR_VERSIONS: Record<Validator, string> = {
 export enum Example {
   Starter = "starter",
   AnimatedArray = "animated-array",
+  MarkdownDescription = "markdown-description"
 }
 
 export const EXAMPLES = Object.values(Example);
