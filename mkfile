@@ -227,6 +227,98 @@ sv/:
     pnpm run test $@
   popd
 
+e/:
+  pushd examples
+  basic/:
+    pushd basic-starter
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    p:
+      pnpm run preview
+    d:
+      pnpm run dev
+    popd
+  daisy/:
+    pushd daisyui5-starter
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    p:
+      pnpm run preview
+    d:
+      pnpm run dev
+    popd
+  flow/:
+    pushd flowbite3-starter
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    p:
+      pnpm run preview
+    d:
+      pnpm run dev
+    popd
+  skel/:
+    pushd skeleton3-starter
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    p:
+      pnpm run preview
+    d:
+      pnpm run dev
+    popd
+  shad/:
+    pushd shadcn4-starter
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    p:
+      pnpm run preview
+    d:
+      pnpm run dev
+    popd
+  ani/:
+    pushd animated-array
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    p:
+      pnpm run preview
+    d:
+      pnpm run dev
+    popd
+  mark/:
+    pushd markdown-description
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    p:
+      pnpm run preview
+    d:
+      pnpm run dev
+    popd
+  tabs/:
+    pushd tabbed-layout
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    p:
+      pnpm run preview
+    d:
+      pnpm run dev
+    popd
+  popd
+
 p:
   pnpm run preview
 

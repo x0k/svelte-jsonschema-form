@@ -8,6 +8,35 @@ export const FORM_PACKAGE_V = `@sjsf/form@${VERSION}`;
 
 export const AJV_VALIDATOR_PACKAGE_V = `@sjsf/ajv8-validator@${VERSION}`;
 
+export const RESOLVERS = ["basic", "compat"] as const;
+
+export type Resolver = (typeof RESOLVERS)[number];
+
+export const VALIDATORS = ["ajv8", "cfworker", "schemasafe"] as const;
+
+export type Validator = (typeof VALIDATORS)[number];
+
+export const VALIDATOR_PACKAGES: Record<Validator, string> = {
+  ajv8: "ajv",
+  cfworker: "@cfworker/json-schema",
+  schemasafe: "@exodus/schemasafe",
+};
+
+export const VALIDATOR_VERSIONS: Record<Validator, string> = {
+  ajv8: "^8.17.0",
+  cfworker: "^4.1.0",
+  schemasafe: "^1.3.0",
+};
+
+export enum Example {
+  Starter = "starter",
+  AnimatedArray = "animated-array",
+  MarkdownDescription = "markdown-description",
+  TabbedLayout = "tabbed-layout"
+}
+
+export const EXAMPLES = Object.values(Example);
+
 export const THEMES = [
   "basic",
   "daisyui",
@@ -17,14 +46,27 @@ export const THEMES = [
   "skeleton",
   "skeleton3",
   "shadcn",
-  "shadcn4"
+  "shadcn4",
 ] as const;
 
 export type Theme = (typeof THEMES)[number];
 
-export const OUTDATED_THEMES = new Set<Theme>(["flowbite", "skeleton", "shadcn"])
+export const OUTDATED_THEMES = [
+  "daisyui",
+  "flowbite",
+  "skeleton",
+  "shadcn",
+] as const satisfies Theme[];
 
-export const ACTUAL_THEMES = THEMES.filter(t => !OUTDATED_THEMES.has(t))
+export const OUTDATED_THEMES_SET = new Set<Theme>(OUTDATED_THEMES);
+
+export type OutdatedTheme = (typeof OUTDATED_THEMES)[number];
+
+export const ACTUAL_THEMES = THEMES.filter(
+  (t) => !OUTDATED_THEMES_SET.has(t)
+) as ActualTheme[];
+
+export type ActualTheme = Exclude<Theme, OutdatedTheme>;
 
 export const THEME_TITLES = {
   basic: "basic",

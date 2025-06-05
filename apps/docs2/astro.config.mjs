@@ -45,10 +45,14 @@ export default defineConfig({
           collapsed: true
         },
         {
-          label: "Examples",
-          autogenerate: { directory: "examples" },
-          collapsed: true
+          // label: "Examples",
+          slug: "examples",
         },
+        // {
+        //   label: "Examples",
+        //   autogenerate: { directory: "examples" },
+        //   collapsed: true
+        // },
         {
           label: "Themes",
           autogenerate: { directory: "themes" },
@@ -90,6 +94,7 @@ export default defineConfig({
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
         "#": fileURLToPath(new URL("../../packages", import.meta.url)),
+        "%": fileURLToPath(new URL("../../examples", import.meta.url)),
         apps: fileURLToPath(new URL("..", import.meta.url)),
       },
     },

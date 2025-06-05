@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+/* Workaround for StackBlitz, use @source in production */
+@import "@sjsf/skeleton3-theme/styles.css";
+/* @source "../node_modules/@sjsf/skeleton3-theme/dist"; */
+
+@plugin '@tailwindcss/forms';
+
+@import "@skeletonlabs/skeleton";
+@import "@skeletonlabs/skeleton/optional/presets";
+@import "@skeletonlabs/skeleton/themes/cerberus";
+
+@source '../node_modules/@skeletonlabs/skeleton-svelte/dist';
+
+html {
+  padding: 2rem;
+}

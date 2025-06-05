@@ -7,7 +7,7 @@ import {
   THEME_BRAND,
   THEME_TITLES,
   ACTUAL_THEMES,
-  type Theme,
+  type ActualTheme,
 } from "@/shared";
 import { DEFAULT_LOCALE } from "@/i18n";
 import Npm from "@/components/npm.astro";
@@ -19,43 +19,33 @@ import schemaCode from "./_schema?raw";
 import validatorCode from "./_validator?raw";
 import withBasicCode from "./_with-basic.svelte?raw";
 import withSkeleton3Code from "./_with-skeleton3.svelte?raw";
-import withDaisyuiCode from "./_with-daisyui.svelte?raw";
 import withDaisyui5Code from "./_with-daisyui5.svelte?raw";
 import withFlowbite3Code from "./_with-flowbite3.svelte?raw";
 import withShadcn4Code from "./_with-shadcn4.svelte?raw";
 
-import daisyuiStyles from "@sjsf/daisyui-theme/styles.css?inline";
 import daisyu5Styles from "@sjsf/daisyui5-theme/styles.css?inline";
-import flowbiteStyles from "@sjsf/flowbite-theme/styles.css?inline";
+import flowbiteStyles from "@sjsf/flowbite3-theme/styles.css?inline";
 import skeleton3Styles from "@sjsf/skeleton3-theme/styles.css?inline";
 import shadcn4Styles from "@sjsf/shadcn4-theme/styles.css?inline";
 
 const CODE = {
   basic: withBasicCode,
-  daisyui: withDaisyuiCode,
   daisyui5: withDaisyui5Code,
-  flowbite: "",
   flowbite3: withFlowbite3Code,
-  skeleton: "",
   skeleton3: withSkeleton3Code,
-  shadcn: "",
   shadcn4: withShadcn4Code,
-} satisfies Record<Theme, string>;
+} satisfies Record<ActualTheme, string>;
 
 const STYLES = {
   basic: "",
-  daisyui: daisyuiStyles,
   daisyui5: daisyu5Styles,
-  flowbite: "",
   flowbite3: flowbiteStyles,
-  skeleton: "",
   skeleton3: skeleton3Styles,
-  shadcn: "",
   shadcn4: shadcn4Styles,
-} satisfies Record<Theme, string>;
+} satisfies Record<ActualTheme, string>;
 
 const locale = Astro.currentLocale ?? DEFAULT_LOCALE;
-const initialTheme = (Astro.params.theme ?? "basic") as Theme;
+const initialTheme = (Astro.params.theme ?? "basic") as ActualTheme;
 
 const styles = ACTUAL_THEMES.map(
   (theme) => `

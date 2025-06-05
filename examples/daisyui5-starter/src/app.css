@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+/* Workaround for StackBlitz, use @source in production */
+@import "@sjsf/daisyui5-theme/styles.css";
+/* @source "../node_modules/@sjsf/daisyui5-theme/dist"; */
+
+@plugin "daisyui";
+
+html {
+  padding: 2rem;
+}

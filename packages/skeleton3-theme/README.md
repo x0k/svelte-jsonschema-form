@@ -19,9 +19,11 @@ npm install @sjsf/form@next @sjsf/skeleton3-theme@next
 
 2. Configuration
 
-Register the theme source path by adding a line like this to the `app.css` file.
+Register the theme source path by adding the following line to the `app.css` file:.
 
-`@source "../node_modules/@sjsf/skeleton3-theme/dist";`
+```css
+@source "../node_modules/@sjsf/skeleton3-theme/dist";
+```
 
 3. Apply theme
 
