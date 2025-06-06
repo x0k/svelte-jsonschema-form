@@ -8,8 +8,6 @@ import { Code, Card, LinkButton, Tabs, TabItem } from '@astrojs/starlight/compon
 import { specs, extraWidgets } from '@sjsf/flowbite-theme/specs';
 import styles from '@sjsf/flowbite-theme/styles.css?inline';
 
-import { peerDependencies } from "#/flowbite-theme/package.json"
-
 import { withTag } from '@/shared';
 import Npm from '@/components/npm.astro';
 import Picker from '@/components/picker.astro';
@@ -30,11 +28,17 @@ All rights to the trademark are owned by Bergside Inc.
   <a href="../flowbite3/" data-active={false}>v3</a>
 </Picker>
 
+:::caution
+
+This theme is deprecated and will not receive any updates
+
+:::
+
 ## Installation
 
 <Npm pkg={withTag("flowbite")} />
 
-flowbite-svelte <code>{peerDependencies['flowbite-svelte']}</code> is required.
+flowbite-svelte <code>~0.47.0</code> is required.
 
 ### Install Flowbite Svelte
 
