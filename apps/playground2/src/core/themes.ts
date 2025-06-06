@@ -13,16 +13,6 @@ import "@sjsf/basic-theme/extra-widgets/radio-include";
 import "@sjsf/basic-theme/extra-widgets/range-include";
 import "@sjsf/basic-theme/extra-widgets/date-picker-include";
 
-import { theme as daisy } from "@sjsf/daisyui-theme";
-import daisyStyles from "@sjsf/daisyui-theme/styles.css?inline";
-import '@sjsf/daisyui-theme/extra-widgets/checkboxes-include';
-import '@sjsf/daisyui-theme/extra-widgets/file-include';
-import "@sjsf/daisyui-theme/extra-widgets/multi-select-include";
-import "@sjsf/daisyui-theme/extra-widgets/textarea-include";
-import "@sjsf/daisyui-theme/extra-widgets/radio-include";
-import "@sjsf/daisyui-theme/extra-widgets/range-include";
-import "@sjsf/daisyui-theme/extra-widgets/date-picker-include";
-
 import { theme as daisy5 } from "@sjsf/daisyui5-theme";
 import daisy5Styles from "@sjsf/daisyui5-theme/styles.css?raw";
 import '@sjsf/daisyui5-theme/extra-widgets/checkboxes-include';
@@ -65,7 +55,6 @@ import "@sjsf/shadcn4-theme/extra-widgets/date-picker-include";
 
 export const themes = {
   basic,
-  daisy,
   daisy5,
   flowbite3,
   skeleton3,
@@ -74,7 +63,6 @@ export const themes = {
 
 export const themeStyles = {
   basic: "",
-  daisy: daisyStyles,
   daisy5: daisy5Styles,
   flowbite3: flowbite3Styles,
   skeleton3: skeleton3Styles,
