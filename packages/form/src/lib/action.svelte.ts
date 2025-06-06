@@ -176,18 +176,21 @@ export function createAction<
     }
   }
 
-  async function run(
-    decision: ActionsCombinatorDecision,
-    args: T
-  ): Promise<R> {
+  function initAbortController(decision: ActionsCombinatorDecision) {
+    if (state.status === Status.Processed) {
+      if (decision !== "abort") {
+        return state.abortController;
+      }
+      abort(state);
+    }
+    return new AbortController();
+  }
+
+  async function run(decision: ActionsCombinatorDecision, args: T): Promise<R> {
     if (decision === false) {
       throw new InitializationError(state);
     }
-    if (decision === "abort" && state.status === Status.Processed) {
-      // NOTE: The `clearTimeouts` call will be lower down the code
-      abort(state);
-    }
-    const abortController = new AbortController();
+    const abortController = initAbortController(decision);
     const cleanPromise = options.execute(abortController.signal, ...args);
     if (decision === "untrack") {
       return cleanPromise;
@@ -238,7 +241,7 @@ export function createAction<
   // NOTE: call `combinator` synchronously to propagate possible error even
   // during `run` call
   function decideAndRun(args: T) {
-    return run(combinator(state), args)
+    return run(combinator(state), args);
   }
 
   const action: Action<T, R, E> = {
