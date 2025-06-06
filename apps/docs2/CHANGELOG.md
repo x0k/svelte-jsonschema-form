@@ -1,5 +1,31 @@
 # docs
 
+## 1.6.3-next.16
+
+### Patch Changes
+
+- Updated dependencies [[`daabc32`](https://github.com/x0k/svelte-jsonschema-form/commit/daabc32f7c3db21a763d755abd952a417d0d7e3b), [`d958dfc`](https://github.com/x0k/svelte-jsonschema-form/commit/d958dfc01fb53df12c3942ee778e680e805fcf79), [`49c98e3`](https://github.com/x0k/svelte-jsonschema-form/commit/49c98e3b99405f233ad0cda2f2777b51e5609920)]:
+  - @sjsf/form@2.0.0-next.16
+  - @sjsf/ajv8-validator@2.0.0-next.16
+  - @sjsf/basic-theme@2.0.0-next.16
+  - @sjsf/cfworker-validator@2.0.0-next.16
+  - @sjsf/daisyui-theme@2.0.0-next.16
+  - @sjsf/daisyui5-theme@2.0.0-next.16
+  - @sjsf/flowbite-icons@2.0.0-next.16
+  - @sjsf/flowbite-theme@2.0.0-next.16
+  - @sjsf/flowbite3-theme@2.0.0-next.16
+  - @sjsf/lucide-icons@2.0.0-next.16
+  - @sjsf/moving-icons@2.0.0-next.16
+  - @sjsf/radix-icons@2.0.0-next.16
+  - @sjsf/schemasafe-validator@2.0.0-next.16
+  - @sjsf/shadcn-theme@2.0.0-next.16
+  - @sjsf/shadcn4-theme@2.0.0-next.16
+  - @sjsf/skeleton-theme@2.0.0-next.16
+  - @sjsf/skeleton3-theme@2.0.0-next.16
+  - @sjsf/sveltekit@2.0.0-next.16
+  - testing@1.0.0-next.16
+  - @sjsf/zod-validator@2.0.0-next.16
+
 ## 1.6.3-next.15
 
 ### Patch Changes
