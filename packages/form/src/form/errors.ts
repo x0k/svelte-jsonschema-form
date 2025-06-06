@@ -16,6 +16,8 @@ import type { Config } from "./config.js";
 
 export class AdditionalPropertyKeyError {}
 
+export class CancellationError {}
+
 export class ValidationProcessError {
   constructor(public state: FailedAction<unknown>) {}
 }
