@@ -16,7 +16,6 @@
     "@sjsf/ajv8-validator": "workspace:*",
     "@sjsf/basic-theme": "workspace:*",
     "@sjsf/cfworker-validator": "workspace:*",
-    "@sjsf/daisyui-theme": "workspace:*",
     "@sjsf/daisyui5-theme": "workspace:*",
     "@sjsf/flowbite-icons": "workspace:*",
     "@sjsf/flowbite3-theme": "workspace:*",
