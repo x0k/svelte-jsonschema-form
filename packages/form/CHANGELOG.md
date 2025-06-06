@@ -1,5 +1,26 @@
 # @sjsf/form
 
+## 2.0.0-next.16
+
+### Major Changes
+
+- Refactor form API: ([`daabc32`](https://github.com/x0k/svelte-jsonschema-form/commit/daabc32f7c3db21a763d755abd952a417d0d7e3b))
+
+  - Renames:
+    - `form.validation` -> `form.submission`
+    - `validationCombinator` -> `submissionCombinator`
+    - `validationDelayedMs` -> `submissionDelayedMs`
+    - `validationTimeoutMs` -> `submissionTimeoutMs`
+  - `form.submit` now returns `void`
+
+- Refactor action logic: ([`d958dfc`](https://github.com/x0k/svelte-jsonschema-form/commit/d958dfc01fb53df12c3942ee778e680e805fcf79))
+
+  - `run` methods now returns `void`
+  - Added `runAsync` method that returns `Promise<R>`
+  - Fixed `state_referenced_locally` warning
+
+- Remove `validate` and `validateAsync` form state methods ([#130](https://github.com/x0k/svelte-jsonschema-form/pull/130))
+
 ## 2.0.0-next.15
 
 ### Major Changes
