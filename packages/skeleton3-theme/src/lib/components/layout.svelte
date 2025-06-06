@@ -5,10 +5,7 @@
 	const { type, children, config }: ComponentProps['layout'] = $props();
 
 	const isItemOrControls = $derived(
-		type === 'array-item' ||
-			type === 'object-property' ||
-			type === 'field-content' ||
-			type === 'array-item-controls'
+		type === 'array-item' || type === 'field-content' || type === 'array-item-controls'
 	);
 	const isGrowable = $derived(
 		type === 'array-item-content' ||
@@ -23,16 +20,22 @@
 			type === 'object-properties'
 	);
 
+	const isObjectProperty = $derived(type === 'object-property');
+
 	const ctx = getFormContext();
 </script>
 
 <div
-	class:flex={isItemOrControls || isField || isColumn}
-	class:gap-2={isItemOrControls || isField}
-	class:gap-4={isColumn}
-	class:items-start={isItemOrControls}
-	class:grow={isGrowable}
-	class:flex-col={isColumn || isField}
+	class={{
+		flex: isItemOrControls || isField || isColumn,
+		'gap-2': isItemOrControls || isField,
+		'gap-4': isColumn,
+		'items-start': isItemOrControls,
+		grow: isGrowable,
+		'flex-col': isColumn || isField,
+		'grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start':
+			isObjectProperty
+	}}
 	{...layoutAttributes(ctx, config, 'layout', 'layouts', type, {})}
 >
 	{@render children()}

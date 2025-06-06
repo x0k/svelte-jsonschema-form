@@ -4,9 +4,7 @@
 
 	const { type, children, config }: ComponentProps['layout'] = $props();
 
-	const isItem = $derived(
-		type === 'array-item' || type === 'object-property' || type === 'field-content'
-	);
+	const isItem = $derived(type === 'array-item' || type === 'field-content');
 	const isControls = $derived(type === 'array-item-controls');
 	const isGrowable = $derived(
 		type === 'array-item-content' ||
@@ -20,6 +18,7 @@
 			type === 'array-items' ||
 			type === 'object-properties'
 	);
+	const isObjectProperty = $derived(type === 'object-property');
 
 	const ctx = getFormContext();
 </script>
@@ -31,7 +30,9 @@
 		'gap-4': isColumn,
 		'items-start': isItem || isControls,
 		grow: isGrowable,
-		'flex-col': isColumn || isField
+		'flex-col': isColumn || isField,
+		'grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-1.5 [&>:nth-child(3)]:self-start':
+			isObjectProperty
 	}}
 	{...layoutAttributes(ctx, config, 'layout', 'layouts', type, {})}
 >
