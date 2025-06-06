@@ -4,9 +4,11 @@ import { version } from "#/form/package.json";
 
 export const VERSION = version;
 
-export const FORM_PACKAGE_V = `@sjsf/form@${VERSION}`;
+export const FORM_PACKAGE = `@sjsf/form`;
 
-export const AJV_VALIDATOR_PACKAGE_V = `@sjsf/ajv8-validator@${VERSION}`;
+export const AJV_PACKAGE_V = "ajv@8";
+
+export const AJV_VALIDATOR_PACKAGE = `@sjsf/ajv8-validator`;
 
 export const RESOLVERS = ["basic", "compat"] as const;
 
@@ -32,7 +34,7 @@ export enum Example {
   Starter = "starter",
   AnimatedArray = "animated-array",
   MarkdownDescription = "markdown-description",
-  TabbedLayout = "tabbed-layout"
+  TabbedLayout = "tabbed-layout",
 }
 
 export const EXAMPLES = Object.values(Example);
@@ -51,22 +53,22 @@ export const THEMES = [
 
 export type Theme = (typeof THEMES)[number];
 
-export const OUTDATED_THEMES = [
+export const DEPRECATED_THEMES = [
   "daisyui",
   "flowbite",
   "skeleton",
   "shadcn",
 ] as const satisfies Theme[];
 
-export const OUTDATED_THEMES_SET = new Set<Theme>(OUTDATED_THEMES);
+export const DEPRECATED_THEMES_SET = new Set<Theme>(DEPRECATED_THEMES);
 
-export type OutdatedTheme = (typeof OUTDATED_THEMES)[number];
+export type DeprecatedTheme = (typeof DEPRECATED_THEMES)[number];
 
 export const ACTUAL_THEMES = THEMES.filter(
-  (t) => !OUTDATED_THEMES_SET.has(t)
+  (t) => !DEPRECATED_THEMES_SET.has(t)
 ) as ActualTheme[];
 
-export type ActualTheme = Exclude<Theme, OutdatedTheme>;
+export type ActualTheme = Exclude<Theme, DeprecatedTheme>;
 
 export const THEME_TITLES = {
   basic: "basic",
@@ -109,11 +111,13 @@ export function isTheme(str: string): str is Theme {
 }
 
 export function withTag(theme: Theme) {
-  return `${THEME_PACKAGES[theme]}@${VERSION}`;
+  return THEME_PACKAGES[theme];
 }
 
 export function createThemeInstall(theme: Theme) {
-  return `${FORM_PACKAGE_V} ${AJV_VALIDATOR_PACKAGE_V} ajv@8 ${withTag(theme)}`;
+  return `${FORM_PACKAGE} ${AJV_VALIDATOR_PACKAGE} ${AJV_PACKAGE_V} ${withTag(
+    theme
+  )}`;
 }
 
 export const ICONS_PACKAGES = [

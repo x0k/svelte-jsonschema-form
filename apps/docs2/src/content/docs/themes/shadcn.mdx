@@ -8,8 +8,6 @@ import { Code, Card, LinkButton, Tabs, TabItem } from '@astrojs/starlight/compon
 import { specs, extraWidgets } from '@sjsf/shadcn-theme/specs';
 import styles from '@sjsf/shadcn-theme/styles.css?inline';
 
-import { peerDependencies, optionalDependencies } from '#/shadcn-theme/package.json'
-
 import { withTag } from '@/shared';
 import Npm from '@/components/npm.astro';
 import Picker from '@/components/picker.astro';
@@ -27,6 +25,12 @@ export const schemas = createSchemas(specs)
   <a href="../shadcn4/" data-active={false}>tw4</a>
 </Picker>
 
+:::caution
+
+This theme is deprecated and will not receive any updates
+
+:::
+
 ## Installation
 
 <Npm pkg={withTag("shadcn")} />
@@ -37,8 +41,8 @@ This is `shadcn-svelte@next` based theme (Tailwind v3).
 
 :::
 
-bits-ui <code>{peerDependencies['bits-ui']}</code> and @internationalized/date
-<code>{optionalDependencies['@internationalized/date']}</code> may be required.
+bits-ui <code>^2.2.0</code> and @internationalized/date
+<code>^3.8.1</code> may be required.
 
 ### Install shadcn-svelte
 
