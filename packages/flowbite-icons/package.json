@@ -54,26 +54,13 @@
 		"tailwind-merge": "^3.3.0"
 	},
 	"devDependencies": {
-		"@playwright/test": "catalog:",
 		"@sjsf/form": "workspace:*",
-		"@sveltejs/adapter-static": "catalog:",
-		"@sveltejs/kit": "catalog:",
-		"@sveltejs/package": "catalog:",
-		"@sveltejs/vite-plugin-svelte": "catalog:",
 		"@tailwindcss/vite": "catalog:",
-		"@types/eslint": "catalog:",
-		"eslint": "catalog:",
-		"eslint-config-prettier": "catalog:",
-		"eslint-plugin-svelte": "catalog:",
 		"flowbite-svelte-icons": "^2.2.0",
 		"globals": "catalog:",
-		"prettier": "catalog:",
-		"prettier-plugin-svelte": "catalog:",
 		"svelte": "catalog:",
-		"svelte-check": "catalog:",
-		"tailwindcss": "catalog:next",
-		"testing": "workspace:*",
-		"typescript-eslint": "catalog:"
+		"tailwindcss": "catalog:",
+		"testing": "workspace:*"
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts"

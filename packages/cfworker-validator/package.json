@@ -44,7 +44,6 @@
   "devDependencies": {
     "@sjsf/form": "workspace:*",
     "@cfworker/json-schema": "^4.1.1",
-    "@sveltejs/vite-plugin-svelte": "catalog:",
     "svelte": "catalog:"
   }
 }
