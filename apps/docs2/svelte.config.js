@@ -1,10 +1,6 @@
 import { vitePreprocess } from "@astrojs/svelte";
 
-const nonRunic = [
-  "lucide-svelte",
-  "flowbite-svelte/",
-  "svelte-json-tree",
-];
+const injectedCss = ["moving-icons", "basic"];
 
 export default {
   // Consult https://svelte.dev/docs#compile-time-svelte-preprocess
@@ -14,7 +10,9 @@ export default {
     dynamicCompileOptions({ filename }) {
       return {
         // runes: !nonRunic.some((p) => filename.includes(p)),
-        css: filename.includes("moving-icons") ? "injected" : "external",
+        css: injectedCss.some((i) => filename.includes(i))
+          ? "injected"
+          : "external",
       };
     },
   },
