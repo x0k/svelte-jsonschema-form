@@ -6,7 +6,6 @@ import type { SchedulerYield } from "@/lib/scheduler.js";
 import {
   abortPrevious,
   createAction,
-  debounce,
   type ActionsCombinator,
   type FailedAction,
 } from "@/lib/action.svelte.js";
@@ -41,6 +40,7 @@ import {
   type FormSubmission,
   type FieldsValidation,
   type FormValidationResult,
+  CancellationError,
 } from "./errors.js";
 import { type FormInternalContext, type FormContext } from "./context/index.js";
 import { createFormMerger, type FormMerger } from "./merger.js";
@@ -121,7 +121,7 @@ export interface FormOptions<T, V extends Validator>
    */
   fieldsValidationDebounceMs?: number;
   /**
-   * @default debounce(abortPrevious, fieldsValidationDebounceMs)
+   * @default abortPrevious
    */
   fieldsValidationCombinator?: ActionsCombinator<
     [Config, FormValue],
@@ -336,11 +336,25 @@ export function createForm<T, V extends Validator>(
   });
 
   const fieldsValidation: FieldsValidation<V> = createAction({
-    execute: (signal, config, value) => validateFields(signal, config, value),
-    onSuccess(
-      fieldErrors: FieldError<AnyFieldValueValidatorError<V>>[],
-      config
-    ) {
+    execute(signal, config, value) {
+      const promise =
+        Promise.withResolvers<FieldError<AnyFieldValueValidatorError<V>>[]>();
+
+      const id = setTimeout(() => {
+        promise.resolve(validateFields(signal, config, value));
+      }, options.fieldsValidationDebounceMs ?? 300);
+
+      const onAbort = () => {
+        clearTimeout(id);
+        promise.reject(new CancellationError());
+      };
+
+      signal.addEventListener("abort", onAbort);
+      return promise.promise.finally(() => {
+        signal.removeEventListener("abort", onAbort);
+      });
+    },
+    onSuccess(fieldErrors, config) {
       if (fieldErrors.length > 0) {
         errors.set(config.id, fieldErrors);
       } else {
@@ -360,14 +374,7 @@ export function createForm<T, V extends Validator>(
       options.onFieldsValidationFailure?.(error, config, value);
     },
     get combinator() {
-      return (
-        options.fieldsValidationCombinator ??
-        debounce(
-          abortPrevious,
-          options.fieldsValidationDebounceMs ??
-            DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS
-        )
-      );
+      return options.fieldsValidationCombinator ?? abortPrevious;
     },
     get delayedMs() {
       return options.fieldsValidationDelayedMs;
