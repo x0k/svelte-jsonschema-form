@@ -85,7 +85,7 @@ describe("createAction", () => {
         execute: () => Promise.resolve(0),
         combinator: () => false,
       });
-      await expect(action.runAsync()).rejects.toBeInstanceOf(
+      await expect(action.runAsync()).rejects.toThrow(
         InitializationError
       );
     });
@@ -159,5 +159,15 @@ describe("createAction", () => {
       expect(onSuccess).toBeCalledTimes(1);
       expect(onSuccess).toBeCalledWith(2);
     });
+
+    it("Should not track action with 'untrack' combinator", async () => {
+      const action = createAction({
+        execute: () => Promise.resolve(0),
+        combinator: () => "untrack",
+      })
+      const promise = action.runAsync()
+      expect(action.status).toBe(Status.IDLE)
+      await expect(promise).resolves.toBe(0)
+    })
   });
 });

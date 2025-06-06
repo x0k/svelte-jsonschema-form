@@ -1,7 +1,6 @@
 import { DEV } from "esm-env";
 
 import { noop } from "./function.js";
-import type { MaybePromise } from "./types.js";
 
 export enum Status {
   IDLE,
@@ -44,9 +43,11 @@ export type ActionState<T, R, E> =
   | AbstractActionState<Status.Success>
   | FailedAction<E>;
 
+export type ActionsCombinatorDecision = boolean | "abort" | "untrack";
+
 export type ActionsCombinator<T, R, E> = (
   state: ActionState<T, R, E>
-) => MaybePromise<boolean | "abort">;
+) => ActionsCombinatorDecision;
 
 export interface ActionOptions<T extends ReadonlyArray<any>, R, E> {
   execute: (signal: AbortSignal, ...args: T) => Promise<R>;
@@ -95,25 +96,6 @@ export function throttle<T, R, E>(
     }
     nextCallAfter = now + delayedMs;
     return combinator(state);
-  };
-}
-
-export function debounce<T, R, E>(
-  combinator: ActionsCombinator<T, R, E>,
-  delayedMs: number
-): ActionsCombinator<T, R, E> {
-  let callbackId: NodeJS.Timeout;
-  let lastReject: undefined | (() => void);
-  return (state) => {
-    clearTimeout(callbackId);
-    lastReject?.();
-    return new Promise((resolve, reject) => {
-      lastReject = reject;
-      callbackId = setTimeout(() => {
-        lastReject = undefined;
-        resolve(combinator(state));
-      }, delayedMs);
-    });
   };
 }
 
@@ -194,18 +176,10 @@ export function createAction<
     }
   }
 
-  async function runAsync(args: T): Promise<R> {
-    let decision: boolean | "abort";
-    try {
-      const dec = combinator(state);
-      if (dec instanceof Promise) {
-        decision = await dec;
-      } else {
-        decision = dec;
-      }
-    } catch (error) {
-      decision = false;
-    }
+  async function run(
+    decision: ActionsCombinatorDecision,
+    args: T
+  ): Promise<R> {
     if (decision === false) {
       throw new InitializationError(state);
     }
@@ -214,7 +188,11 @@ export function createAction<
       abort(state);
     }
     const abortController = new AbortController();
-    const promise = options.execute(abortController.signal, ...args).then(
+    const cleanPromise = options.execute(abortController.signal, ...args);
+    if (decision === "untrack") {
+      return cleanPromise;
+    }
+    const promise = cleanPromise.then(
       (result) => {
         runEffect(promise, () => {
           state = { status: Status.Success };
@@ -257,6 +235,12 @@ export function createAction<
     return promise;
   }
 
+  // NOTE: call `combinator` synchronously to propagate possible error even
+  // during `run` call
+  function decideAndRun(args: T) {
+    return run(combinator(state), args)
+  }
+
   const action: Action<T, R, E> = {
     get state() {
       return state;
@@ -277,16 +261,16 @@ export function createAction<
       return state.status === Status.Processed && state.delayed;
     },
     run(...args) {
-      void runAsync(args).catch(noop);
+      void decideAndRun(args).catch(noop);
     },
     runAsync(...args) {
-      return runAsync(args);
+      return decideAndRun(args);
     },
     abort() {
       if (state.status !== Status.Processed) return;
       const { args } = state;
       abort(state);
-      clearTimeouts()
+      clearTimeouts();
       state = { status: Status.Failed, reason: "aborted" };
       options.onFailure?.(state, ...args);
     },
