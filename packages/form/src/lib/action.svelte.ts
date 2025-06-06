@@ -35,6 +35,7 @@ export interface ProcessedAction<T, R>
   delayed: boolean;
   args: T;
   promise: Promise<R>;
+  abortController: AbortController;
 }
 
 export type ActionState<T, R, E> =
@@ -154,7 +155,7 @@ export interface Action<T extends ReadonlyArray<any>, R, E> {
 export function createAction<
   T extends ReadonlyArray<any>,
   R = unknown,
-  E = unknown,
+  E = unknown
 >(options: ActionOptions<T, R, E>): Action<T, R, E> {
   const delayedMs = $derived(options.delayedMs ?? 500);
   const timeoutMs = $derived(options.timeoutMs ?? 8000);
@@ -171,7 +172,6 @@ export function createAction<
   let state = $state.raw<ActionState<T, R, E>>({
     status: Status.IDLE,
   });
-  let abortController: AbortController | null = null;
   let delayedCallbackId: NodeJS.Timeout;
   let timeoutCallbackId: NodeJS.Timeout;
 
@@ -180,10 +180,8 @@ export function createAction<
     clearTimeout(timeoutCallbackId);
   }
 
-  function abort() {
-    abortController?.abort();
-    abortController = null;
-    clearTimeouts();
+  function abort(state: ProcessedAction<T, R>) {
+    state.abortController.abort();
   }
 
   function runEffect(promise: Promise<R>, effect: () => void) {
@@ -211,10 +209,11 @@ export function createAction<
     if (decision === false) {
       throw new InitializationError(state);
     }
-    if (decision === "abort") {
-      abort();
+    if (decision === "abort" && state.status === Status.Processed) {
+      // NOTE: The `clearTimeouts` call will be lower down the code
+      abort(state);
     }
-    abortController = new AbortController();
+    const abortController = new AbortController();
     const promise = options.execute(abortController.signal, ...args).then(
       (result) => {
         runEffect(promise, () => {
@@ -236,18 +235,23 @@ export function createAction<
       delayed: action.isDelayed,
       args,
       promise,
+      abortController,
     };
     clearTimeouts();
     delayedCallbackId = setTimeout(() => {
       if (state.status !== Status.Processed || state.promise !== promise)
         return;
-      state = { status: Status.Processed, delayed: true, args, promise };
+      state = {
+        ...state,
+        delayed: true,
+      };
     }, delayedMs);
     timeoutCallbackId = setTimeout(() => {
       if (state.status !== Status.Processed || state.promise !== promise)
         return;
+      // NOTE: The `clearTimeouts` call is not needed here
+      abort(state);
       state = { status: Status.Failed, reason: "timeout" };
-      abort();
       options.onFailure?.(state, ...args);
     }, timeoutMs);
     return promise;
@@ -281,8 +285,9 @@ export function createAction<
     abort() {
       if (state.status !== Status.Processed) return;
       const { args } = state;
+      abort(state);
+      clearTimeouts()
       state = { status: Status.Failed, reason: "aborted" };
-      abort();
       options.onFailure?.(state, ...args);
     },
   };

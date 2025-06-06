@@ -40,6 +40,7 @@ import {
   type AnyFieldValueValidatorError,
   type FormSubmission,
   type FieldsValidation,
+  type FormValidationResult,
 } from "./errors.js";
 import { type FormInternalContext, type FormContext } from "./context/index.js";
 import { createFormMerger, type FormMerger } from "./merger.js";
@@ -102,7 +103,11 @@ export interface FormOptions<T, V extends Validator>
   /**
    * @default waitPrevious
    */
-  submissionCombinator?: ActionsCombinator<[event: SubmitEvent], unknown>;
+  submissionCombinator?: ActionsCombinator<
+    [event: SubmitEvent],
+    FormValidationResult<AnyFormValueValidatorError<V>>,
+    unknown
+  >;
   /**
    * @default 500
    */
@@ -118,7 +123,11 @@ export interface FormOptions<T, V extends Validator>
   /**
    * @default debounce(abortPrevious, fieldsValidationDebounceMs)
    */
-  fieldsValidationCombinator?: ActionsCombinator<[Config, FormValue], unknown>;
+  fieldsValidationCombinator?: ActionsCombinator<
+    [Config, FormValue],
+    FieldError<AnyFieldValueValidatorError<V>>[],
+    unknown
+  >;
   /**
    * @default 500
    */
