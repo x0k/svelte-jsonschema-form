@@ -3,4 +3,10 @@ import { definitions } from '../definitions.js';
 import Combobox from './combobox.svelte';
 import './combobox.svelte';
 
-definitions.selectWidget = Combobox;
+declare module '../definitions.js' {
+	interface ExtraWidgets {
+		comboboxWidget: {};
+	}
+}
+
+definitions.comboboxWidget = Combobox;

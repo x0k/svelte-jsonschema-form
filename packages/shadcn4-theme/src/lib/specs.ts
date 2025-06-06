@@ -1,10 +1,7 @@
 import { s } from 'testing/demo';
 
 import './theme/extra-widgets/checkboxes-include.js';
-
-import Combobox from './theme/extra-widgets/combobox.svelte';
-import './theme/extra-widgets/combobox.svelte';
-
+import './theme/extra-widgets/combobox-include.js';
 import './theme/extra-widgets/date-picker-include.js';
 import './theme/extra-widgets/file-include.js';
 import './theme/extra-widgets/multi-select-include.js';
@@ -20,7 +17,7 @@ export const specs: s.Specs = {
 		{
 			'ui:components': {
 				stringField: 'enumField',
-				selectWidget: Combobox
+				selectWidget: "comboboxWidget"
 			},
 			'ui:options': { useLabel: false }
 		}

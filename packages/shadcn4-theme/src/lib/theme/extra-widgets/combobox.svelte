@@ -1,6 +1,7 @@
 <script lang="ts" module>
 	import type { Component } from 'svelte';
 	import type { Command } from 'bits-ui';
+	import '@sjsf/form/fields/extra-widgets/combobox';
 
 	import type { ButtonProps } from '../types/button.js';
 	import '../types/popover';
@@ -59,7 +60,12 @@
 		CommandItem
 	} = $derived(themeCtx.components);
 
-	let { value = $bindable(), config, handlers, options }: ComponentProps['selectWidget'] = $props();
+	let {
+		value = $bindable(),
+		config,
+		handlers,
+		options
+	}: ComponentProps['comboboxWidget'] = $props();
 
 	const mapped = $derived(
 		singleOption({
