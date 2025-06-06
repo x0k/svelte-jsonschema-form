@@ -68,7 +68,7 @@ export interface FormOptions<T, V extends Validator>
    */
   fieldsValidationDebounceMs?: number;
   /**
-   * @default debounce(abortPrevious, fieldsValidationDebounceMs)
+   * @default abortPrevious
    */
   fieldsValidationCombinator?: ActionsCombinator<
     [Config, FormValue],
