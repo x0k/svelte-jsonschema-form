@@ -1,5 +1,7 @@
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
+const injectedCss = ["moving-icons", "basic"];
+
 export default {
   // Consult https://svelte.dev/docs#compile-time-svelte-preprocess
   // for more information about preprocessors
@@ -7,8 +9,12 @@ export default {
   vitePlugin: {
     dynamicCompileOptions({ filename }) {
       return {
-        css: filename.includes("moving-icons") ? "injected" : "external",
+        // runes: !nonRunic.some((p) => filename.includes(p)),
+        css: injectedCss.some((i) => filename.includes(i))
+          ? "injected"
+          : "external",
       };
     },
   },
 };
+
