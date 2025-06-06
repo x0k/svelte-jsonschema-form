@@ -48,25 +48,11 @@
 		"svelte-radix": "^2.0.0"
 	},
 	"devDependencies": {
-		"@playwright/test": "catalog:",
 		"@sjsf/form": "workspace:*",
-		"@sveltejs/adapter-static": "catalog:",
-		"@sveltejs/kit": "catalog:",
-		"@sveltejs/package": "catalog:",
-		"@sveltejs/vite-plugin-svelte": "catalog:",
-		"@types/eslint": "catalog:",
-		"eslint": "catalog:",
-		"eslint-config-prettier": "catalog:",
-		"eslint-plugin-svelte": "catalog:",
 		"globals": "catalog:",
-		"postcss": "catalog:",
-		"prettier": "catalog:",
-		"prettier-plugin-svelte": "catalog:",
 		"svelte": "catalog:",
-		"svelte-check": "catalog:",
 		"svelte-radix": "^2.0.1",
-		"testing": "workspace:*",
-		"typescript-eslint": "catalog:"
+		"testing": "workspace:*"
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts"

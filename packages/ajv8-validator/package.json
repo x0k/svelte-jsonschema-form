@@ -50,7 +50,6 @@
   "devDependencies": {
     "ajv": "catalog:",
     "@sjsf/form": "workspace:*",
-    "@sveltejs/vite-plugin-svelte": "catalog:",
     "svelte": "catalog:"
   }
 }

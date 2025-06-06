@@ -83,35 +83,19 @@
 		"tailwind-variants": "^1.0.0"
 	},
 	"devDependencies": {
-		"@eslint/compat": "catalog:",
-		"@eslint/js": "catalog:",
 		"@internationalized/date": "3.8.1",
 		"@lucide/svelte": "^0.511.0",
-		"@playwright/test": "catalog:",
 		"@sjsf/ajv8-validator": "workspace:*",
 		"@sjsf/form": "workspace:*",
-		"@sveltejs/adapter-static": "catalog:",
-		"@sveltejs/kit": "catalog:",
-		"@sveltejs/package": "catalog:",
-		"@sveltejs/vite-plugin-svelte": "catalog:",
 		"@tailwindcss/vite": "catalog:",
-		"@testing-library/svelte": "catalog:",
 		"bits-ui": "^2.4.1",
 		"clsx": "^2.1.1",
-		"eslint": "catalog:",
-		"eslint-config-prettier": "catalog:",
-		"eslint-plugin-svelte": "catalog:",
 		"globals": "catalog:",
-		"prettier": "catalog:",
-		"prettier-plugin-svelte": "catalog:",
-		"prettier-plugin-tailwindcss": "catalog:",
 		"svelte": "catalog:",
-		"svelte-check": "catalog:",
 		"tailwind-merge": "^3.3.0",
 		"tailwind-variants": "^1.0.0",
-		"tailwindcss": "catalog:next",
+		"tailwindcss": "catalog:",
 		"testing": "workspace:*",
-		"tw-animate-css": "^1.3.0",
-		"typescript-eslint": "catalog:"
+		"tw-animate-css": "^1.3.0"
 	}
 }

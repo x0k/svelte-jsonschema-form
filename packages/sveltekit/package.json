@@ -58,28 +58,14 @@
 		"svelte": "^5.33.0"
 	},
 	"devDependencies": {
-		"@playwright/test": "catalog:",
 		"@sjsf/ajv8-validator": "workspace:*",
 		"@sjsf/basic-theme": "workspace:*",
 		"@sjsf/form": "workspace:*",
-		"@sveltejs/adapter-static": "catalog:",
-		"@sveltejs/kit": "catalog:",
-		"@sveltejs/package": "catalog:",
-		"@sveltejs/vite-plugin-svelte": "catalog:",
-		"@types/eslint": "catalog:",
 		"ajv": "catalog:",
-		"eslint": "catalog:",
-		"eslint-config-prettier": "catalog:",
-		"eslint-plugin-svelte": "catalog:",
 		"esm-env": "catalog:",
 		"globals": "catalog:",
-		"postcss": "catalog:",
-		"prettier": "catalog:",
-		"prettier-plugin-svelte": "catalog:",
 		"svelte": "catalog:",
-		"svelte-check": "catalog:",
-		"testing": "workspace:*",
-		"typescript-eslint": "catalog:"
+		"testing": "workspace:*"
 	},
 	"svelte": "./dist/model.js",
 	"types": "./dist/model.d.ts"
