@@ -17,7 +17,8 @@
 
 	const { type, children, config }: ComponentProps['layout'] = $props();
 
-	const isItem = $derived(type === 'array-item' || type === 'object-property');
+	const isItem = $derived(type === 'array-item');
+	const isProperty = $derived(type === 'object-property');
 	const isControls = $derived(type === 'array-item-controls');
 	const isColumn = $derived(
 		type === 'array-items' || type === 'object-properties' || type === 'multi-field'
@@ -52,7 +53,9 @@
 				type === 'array-item-content' ||
 				type === 'object-property-key-input' ||
 				type === 'object-property-content',
-			'flex-col': isColumn
+			'flex-col': isColumn,
+			'grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start':
+				isProperty
 		}}
 		{...attributes}
 	>
