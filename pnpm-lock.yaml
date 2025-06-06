@@ -399,8 +399,8 @@ importers:
         specifier: npm:flowbite-svelte@0.47
         version: flowbite-svelte@0.47.4(rollup@4.40.0)(svelte@5.33.14)
       flowbite-svelte3:
-        specifier: npm:flowbite-svelte@1.5.1
-        version: flowbite-svelte@1.5.1(rollup@4.40.0)(svelte@5.33.14)(tailwindcss@4.1.8)
+        specifier: npm:flowbite-svelte@1.5.5
+        version: flowbite-svelte@1.5.5(rollup@4.40.0)(svelte@5.33.14)(tailwindcss@4.1.8)
       json-schema-to-ts:
         specifier: ^3.1.1
         version: 3.1.1
@@ -1232,8 +1232,8 @@ importers:
         specifier: ^3.1.2
         version: 3.1.2(rollup@4.40.0)
       flowbite-svelte:
-        specifier: 1.5.1
-        version: 1.5.1(rollup@4.40.0)(svelte@5.33.14)(tailwindcss@4.1.8)
+        specifier: 1.5.5
+        version: 1.5.5(rollup@4.40.0)(svelte@5.33.14)(tailwindcss@4.1.8)
       globals:
         specifier: 'catalog:'
         version: 16.2.0
@@ -4726,14 +4726,14 @@ packages:
     peerDependencies:
       svelte: ^3.55.1 || ^4.0.0 || ^5.0.0
 
-  flowbite-svelte@1.5.1:
-    resolution: {integrity: sha512-Qa60wb13K4eQG9kgzrwmEeEn514jaHh6Zq9cdo/6JF9g3CiJuL5rovAGqQBi4XnP+uyl5+QBMGAXYu53msnNqg==}
+  flowbite-svelte@1.5.3:
+    resolution: {integrity: sha512-/iU7zP/4q/fFRRohED084daiez9kCBsWjkklFblnRgaToZjYx2atVRtFOCjKXDlPXxAzb7a7YzhQ+XIklU8MoQ==}
     peerDependencies:
       svelte: ^5.0.0
       tailwindcss: ^4.1.4
 
-  flowbite-svelte@1.5.3:
-    resolution: {integrity: sha512-/iU7zP/4q/fFRRohED084daiez9kCBsWjkklFblnRgaToZjYx2atVRtFOCjKXDlPXxAzb7a7YzhQ+XIklU8MoQ==}
+  flowbite-svelte@1.5.5:
+    resolution: {integrity: sha512-mryq6E7dLrlbWmCZxs61rDrN3RsOLpxRHoq4Y6YvbOMTQQ9hx4talu4YCYgn6xkFvz6O8NjqcC9h+6ZU/f03bQ==}
     peerDependencies:
       svelte: ^5.0.0
       tailwindcss: ^4.1.4
@@ -10554,7 +10554,7 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
-  flowbite-svelte@1.5.1(rollup@4.40.0)(svelte@5.33.14)(tailwindcss@4.1.8):
+  flowbite-svelte@1.5.3(rollup@4.40.0)(svelte@5.33.14)(tailwindcss@4.1.8):
     dependencies:
       '@floating-ui/dom': 1.7.0
       '@floating-ui/utils': 0.2.9
@@ -10568,7 +10568,7 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
-  flowbite-svelte@1.5.3(rollup@4.40.0)(svelte@5.33.14)(tailwindcss@4.1.8):
+  flowbite-svelte@1.5.5(rollup@4.40.0)(svelte@5.33.14)(tailwindcss@4.1.8):
     dependencies:
       '@floating-ui/dom': 1.7.0
       '@floating-ui/utils': 0.2.9
