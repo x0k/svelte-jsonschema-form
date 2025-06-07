@@ -57,6 +57,7 @@
   import * as customComponents from "./custom-form-components/index.js";
   import { themeManager } from "./theme.svelte";
   import SamplePicker from "./sample-picker.svelte";
+  import { BitsConfig } from "bits-ui";
 
   const DEFAULT_PLAYGROUND_STATE: PlaygroundState = {
     schema: {
@@ -206,6 +207,8 @@
 
   const clearLink = new URL(location.href);
   clearLink.hash = "";
+
+  let portalEl = $state.raw() as HTMLDivElement;
 </script>
 
 <div
@@ -355,14 +358,18 @@
     class="col-span-3 row-span-2 overflow-y-auto border rounded-md"
     style={`${themeStyle}\n${iconSetStyle}`}
   >
-    <BasicForm
-      {form}
-      class={themeManager.darkOrLight}
-      style="min-height: 100%; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;"
-      novalidate={!data.html5Validation || undefined}
-      data-theme={data.theme.startsWith("skeleton")
-        ? "cerberus"
-        : themeManager.darkOrLight}
-    />
+    <BitsConfig defaultPortalTo={portalEl}>
+      <BasicForm
+        id="form"
+        {form}
+        class={themeManager.darkOrLight}
+        style="min-height: 100%; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;"
+        novalidate={!data.html5Validation || undefined}
+        data-theme={data.theme.startsWith("skeleton")
+          ? "cerberus"
+          : themeManager.darkOrLight}
+      />
+      <div bind:this={portalEl}></div>
+    </BitsConfig>
   </ShadowHost>
 </div>
