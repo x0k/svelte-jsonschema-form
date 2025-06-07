@@ -1,28 +1,81 @@
 ---
 import { Card } from "@astrojs/starlight/components";
+import { parse, walk, generate } from 'css-tree';
 
 export interface Props {
   style?: string;
 }
+
+/**
+ * Robust CSS parsing using css-tree
+ * Extracts @property declarations from CSS string
+ */
+const extractPropertiesWithCSSTree = (cssContent: string) => {
+  if (!cssContent) return { properties: '', remainingStyles: '' };
+  
+  try {
+    // Parse CSS into AST
+    const ast = parse(cssContent, {
+      parseRulePrelude: false, // More lenient parsing
+      parseCustomProperty: true,
+      parseValue: false
+    });
+    
+    const propertyNodes: any[] = [];
+    const nodesToRemove: any[] = [];
+    
+    // Walk through AST and find @property rules
+    walk(ast, (node, item, list) => {
+      if (node.type === 'Atrule' && node.name === 'property') {
+        propertyNodes.push(node);
+        nodesToRemove.push({ node, item, list });
+      }
+    });
+    
+    // Remove @property nodes from original AST
+    nodesToRemove.forEach(({ item, list }) => {
+      if (list && item) {
+        list.remove(item);
+      }
+    });
+    
+    // Generate CSS strings
+    const properties = propertyNodes
+      .map(node => generate(node))
+      .join('\n\n');
+    
+    const remainingStyles = generate(ast).trim();
+    
+    return {
+      properties,
+      remainingStyles
+    };
+  } catch (error) {
+    console.warn('css-tree parsing failed, using fallback:', error);
+    
+    // Fallback to regex parsing
+    const propertyRegex = /@property\s+[^{]+\{[^}]*\}/g;
+    const properties = cssContent.match(propertyRegex) || [];
+    const remainingStyles = cssContent.replace(propertyRegex, '').trim();
+    
+    return {
+      properties: properties.join('\n'),
+      remainingStyles
+    };
+  }
+};
+
+const { properties, remainingStyles } = extractPropertiesWithCSSTree(Astro.props.style ?? "");
 ---
+
+<!-- Inject @property declarations globally if they exist -->
+{properties && (
+  <style is:global set:html={properties}></style>
+)}
 
 <Card title="">
   <template shadowrootmode="open">
-    <style>
-      :host {
-        /* skeleton */
-        --tw-inset-shadow: 0 0 #0000;
-        --tw-inset-ring-shadow: 0 0 #0000;
-        --tw-ring-offset-shadow: 0 0 #0000;
-        /* shadcn */
-        --tw-ring-shadow: 0 0 #0000;
-        --tw-border-style: solid;
-        /* --tw-shadow-color: inherit;
-        --tw-ease: ease;
-        --tw-duration: 0.15s; */
-      }
-    </style>
-    {Astro.props.style && <style set:html={Astro.props.style} />}
+    {remainingStyles && <style set:html={remainingStyles} />}
     <slot />
   </template>
 </Card>
