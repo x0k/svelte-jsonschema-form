@@ -267,7 +267,7 @@
       {/each}
     </select>
     <ThemePicker bind:theme={playgroundTheme} />
-    <a href="https://x0k.github.io/svelte-jsonschema-form/">
+    <a href="https://x0k.github.io/svelte-jsonschema-form/v1/">
       <OpenBook class="h-8 w-8" />
     </a>
     <a target="_blank" href="https://github.com/x0k/svelte-jsonschema-form/">
