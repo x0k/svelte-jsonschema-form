@@ -339,6 +339,17 @@ e/:
     d:
       pnpm run dev
     popd
+  pattern/:
+    pushd pattern-properties-validator
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    p:
+      pnpm run preview
+    d:
+      pnpm run dev
+    popd
   popd
 
 p:
