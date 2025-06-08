@@ -69,6 +69,7 @@ const EXAMPLE_LAYERS: Record<Example, () => LayerPromise> = {
     import("./examples/markdown-description"),
   [Example.TabbedLayout]: () => import("./examples/tabbed-layout"),
   [Example.AsyncCombobox]: () => import("./examples/async-combobox"),
+  [Example.Formulas]: () => import("./examples/formulas"),
 };
 
 export async function openProject({
