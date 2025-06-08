@@ -11,7 +11,7 @@ Unofficial port of [react-jsonschema-form](https://github.com/rjsf-team/react-js
 Install the library, basic theme and `ajv` for validation.
 
 ```shell
-npm i @sjsf/form@2.0.0-next.14 @sjsf/basic-theme@2.0.0-next.14 @sjsf/ajv8-validator@2.0.0-next.14 ajv@8
+npm i @sjsf/form@2.0.0-next.15 @sjsf/basic-theme@2.0.0-next.15 @sjsf/ajv8-validator@2.0.0-next.15 ajv@8
 ```
 
 ## Usage
