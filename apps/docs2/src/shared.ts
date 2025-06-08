@@ -35,6 +35,7 @@ export enum Example {
   AnimatedArray = "animated-array",
   MarkdownDescription = "markdown-description",
   TabbedLayout = "tabbed-layout",
+  AsyncCombobox = "async-combobox",
 }
 
 export const EXAMPLES = Object.values(Example);
