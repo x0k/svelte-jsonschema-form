@@ -336,20 +336,23 @@ export function createForm<T, V extends Validator>(
 
   const fieldsValidation: FieldsValidation<V> = createAction({
     execute(signal, config, value) {
+      const debounceMs = options.fieldsValidationDebounceMs ?? 300;
+      if (debounceMs < 0) {
+        return validateFields(signal, config, value);
+      }
+
       const promise =
         Promise.withResolvers<FieldError<AnyFieldValueValidatorError<V>>[]>();
-
       const id = setTimeout(() => {
         promise.resolve(validateFields(signal, config, value));
-      }, options.fieldsValidationDebounceMs ?? 300);
-
+      }, debounceMs);
+      
       const onAbort = () => {
         clearTimeout(id);
         promise.reject(
           new DOMException("field validation has been aborted", "AbortError")
         );
       };
-
       signal.addEventListener("abort", onAbort);
       return promise.promise.finally(() => {
         signal.removeEventListener("abort", onAbort);
