@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Content, Form, setFormContext, SubmitButton } from "@sjsf/form";
-  import { Status, createAction } from "@sjsf/form/lib/action.svelte";
+  import { createAction } from "@sjsf/form/lib/action.svelte";
   import "@sjsf/basic-theme/extra-widgets/radio-include";
 
   import { createMyForm } from "@/components/my-form";
@@ -60,7 +60,7 @@
       },
     },
     onSubmit(config: Config) {
-      resolve.run(config)
+      resolve.run(config);
     },
     get disabled() {
       return resolve.isProcessed;
@@ -79,7 +79,7 @@
   {#if data !== undefined}
     <p>Data: {data}</p>
   {/if}
-  {#if resolve.state.status === Status.Failed}
+  {#if resolve.matches("failed")}
     <p class="text-red-500">Failed: {resolve.state.reason}</p>
   {/if}
 </Form>

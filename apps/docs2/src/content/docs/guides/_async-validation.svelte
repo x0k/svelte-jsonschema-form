@@ -5,7 +5,6 @@
     createAsyncFormValidator,
   } from "@sjsf/ajv8-validator";
   import { ON_INPUT, BasicForm } from "@sjsf/form";
-  import { Status } from "@sjsf/form/lib/action.svelte";
 
   import { createMyForm } from "@/components/my-form";
 
@@ -40,13 +39,6 @@
     fieldsValidationMode: ON_INPUT,
     onSubmit: console.log,
   });
-
-  const statusNames: Record<Status, string> = {
-    [Status.IDLE]: "idle",
-    [Status.Processed]: "processed",
-    [Status.Success]: "success",
-    [Status.Failed]: "failed",
-  };
 </script>
 
 <p>
@@ -55,8 +47,7 @@
   verification)
 </p>
 <p>
-  form validation: {statusNames[form.validation.status]}, fields validation: {statusNames[
-    form.fieldsValidation.status
-  ]}
+  form validation: {form.submission.status}, fields validation: {form
+    .fieldsValidation.status}
 </p>
 <BasicForm {form} novalidate autocomplete="off" />
