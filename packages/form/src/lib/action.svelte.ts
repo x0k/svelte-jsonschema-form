@@ -108,6 +108,12 @@ export interface Action<T extends ReadonlyArray<any>, R, E> {
   readonly isFailed: boolean;
   readonly isProcessed: boolean;
   readonly isDelayed: boolean;
+  matches<S extends Status>(
+    status: S
+  ): this is Action<T, R, E> & {
+    status: S;
+    state: Readonly<Extract<ActionState<T, R, E>, AbstractActionState<S>>>;
+  };
   /**
    * Initiates the action without waiting for its result.
    * Any side effects or failures are handled internally.
@@ -255,6 +261,14 @@ export function createAction<
     },
     get isDelayed() {
       return state.status === "processing" && state.delayed;
+    },
+    matches<S extends Status>(
+      status: S
+    ): this is Action<T, R, E> & {
+      status: S;
+      state: Readonly<Extract<ActionState<T, R, E>, AbstractActionState<S>>>;
+    } {
+      return state.status === status;
     },
     run(...args) {
       void decideAndRun(args).catch(noop);
