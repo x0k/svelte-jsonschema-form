@@ -2,12 +2,7 @@ import { DEV } from "esm-env";
 
 import { noop } from "./function.js";
 
-export enum Status {
-  IDLE,
-  Processed,
-  Success,
-  Failed,
-}
+export type Status = "idle" | "processing" | "success" | "failed";
 
 export interface AbstractActionState<S extends Status> {
   status: S;
@@ -16,7 +11,7 @@ export interface AbstractActionState<S extends Status> {
 export type ActionFailureReason = "timeout" | "aborted" | "error";
 
 export interface AbstractFailedAction<R extends ActionFailureReason>
-  extends AbstractActionState<Status.Failed> {
+  extends AbstractActionState<"failed"> {
   reason: R;
 }
 
@@ -29,8 +24,8 @@ export type FailedAction<E> =
   | AbstractFailedAction<"timeout">
   | AbstractFailedAction<"aborted">;
 
-export interface ProcessedAction<T, R>
-  extends AbstractActionState<Status.Processed> {
+export interface ProcessingAction<T, R>
+  extends AbstractActionState<"processing"> {
   delayed: boolean;
   args: T;
   promise: Promise<R>;
@@ -38,9 +33,9 @@ export interface ProcessedAction<T, R>
 }
 
 export type ActionState<T, R, E> =
-  | AbstractActionState<Status.IDLE>
-  | ProcessedAction<T, R>
-  | AbstractActionState<Status.Success>
+  | AbstractActionState<"idle">
+  | ProcessingAction<T, R>
+  | AbstractActionState<"success">
   | FailedAction<E>;
 
 export type ActionsCombinatorDecision = boolean | "abort" | "untrack";
@@ -82,7 +77,7 @@ export const abortPrevious: ActionsCombinator<any, any, any> = () => "abort";
  * Ignore new action until the previous action is completed
  */
 export const waitPrevious: ActionsCombinator<any, any, any> = ({ status }) =>
-  status !== Status.Processed;
+  status !== "processing";
 
 export function throttle<T, R, E>(
   combinator: ActionsCombinator<T, R, E>,
@@ -137,7 +132,7 @@ export interface Action<T extends ReadonlyArray<any>, R, E> {
 export function createAction<
   T extends ReadonlyArray<any>,
   R = unknown,
-  E = unknown
+  E = unknown,
 >(options: ActionOptions<T, R, E>): Action<T, R, E> {
   const delayedMs = $derived(options.delayedMs ?? 500);
   const timeoutMs = $derived(options.timeoutMs ?? 8000);
@@ -152,7 +147,7 @@ export function createAction<
   const combinator = $derived(options.combinator ?? waitPrevious);
 
   let state = $state.raw<ActionState<T, R, E>>({
-    status: Status.IDLE,
+    status: "idle",
   });
   let delayedCallbackId: NodeJS.Timeout;
   let timeoutCallbackId: NodeJS.Timeout;
@@ -162,22 +157,22 @@ export function createAction<
     clearTimeout(timeoutCallbackId);
   }
 
-  function abort(state: ProcessedAction<T, R>) {
+  function abort(state: ProcessingAction<T, R>) {
     state.abortController.abort();
   }
 
   function runEffect(promise: Promise<R>, effect: () => void) {
-    if (state.status === Status.Failed) {
+    if (state.status === "failed") {
       throw new CompletionError(state);
     }
-    if (state.status === Status.Processed && state.promise === promise) {
+    if (state.status === "processing" && state.promise === promise) {
       clearTimeouts();
       effect();
     }
   }
 
   function initAbortController(decision: ActionsCombinatorDecision) {
-    if (state.status === Status.Processed) {
+    if (state.status === "processing") {
       if (decision !== "abort") {
         return state.abortController;
       }
@@ -198,21 +193,21 @@ export function createAction<
     const promise = cleanPromise.then(
       (result) => {
         runEffect(promise, () => {
-          state = { status: Status.Success };
+          state = { status: "success" };
           options.onSuccess?.(result, ...args);
         });
         return result;
       },
       (error) => {
         runEffect(promise, () => {
-          state = { status: Status.Failed, reason: "error", error };
+          state = { status: "failed", reason: "error", error };
           options.onFailure?.(state, ...args);
         });
         return Promise.reject(error);
       }
     );
     state = {
-      status: Status.Processed,
+      status: "processing",
       delayed: action.isDelayed,
       args,
       promise,
@@ -220,19 +215,17 @@ export function createAction<
     };
     clearTimeouts();
     delayedCallbackId = setTimeout(() => {
-      if (state.status !== Status.Processed || state.promise !== promise)
-        return;
+      if (state.status !== "processing" || state.promise !== promise) return;
       state = {
         ...state,
         delayed: true,
       };
     }, delayedMs);
     timeoutCallbackId = setTimeout(() => {
-      if (state.status !== Status.Processed || state.promise !== promise)
-        return;
+      if (state.status !== "processing" || state.promise !== promise) return;
       // NOTE: The `clearTimeouts` call is not needed here
       abort(state);
-      state = { status: Status.Failed, reason: "timeout" };
+      state = { status: "failed", reason: "timeout" };
       options.onFailure?.(state, ...args);
     }, timeoutMs);
     return promise;
@@ -252,16 +245,16 @@ export function createAction<
       return state.status;
     },
     get isSuccess() {
-      return state.status === Status.Success;
+      return state.status === "success";
     },
     get isFailed() {
-      return state.status === Status.Failed;
+      return state.status === "failed";
     },
     get isProcessed() {
-      return state.status === Status.Processed;
+      return state.status === "processing";
     },
     get isDelayed() {
-      return state.status === Status.Processed && state.delayed;
+      return state.status === "processing" && state.delayed;
     },
     run(...args) {
       void decideAndRun(args).catch(noop);
@@ -270,11 +263,11 @@ export function createAction<
       return decideAndRun(args);
     },
     abort() {
-      if (state.status !== Status.Processed) return;
+      if (state.status !== "processing") return;
       const { args } = state;
       abort(state);
       clearTimeouts();
-      state = { status: Status.Failed, reason: "aborted" };
+      state = { status: "failed", reason: "aborted" };
       options.onFailure?.(state, ...args);
     },
   };

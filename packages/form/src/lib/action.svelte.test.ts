@@ -5,7 +5,6 @@ import {
   abortPrevious,
   forgetPrevious,
   waitPrevious,
-  Status,
   createAction,
   CompletionError,
   InitializationError,
@@ -27,13 +26,13 @@ describe("createAction", () => {
         timeoutMs: 100,
       });
       const promise = action.runAsync();
-      expect(action.status).toBe(Status.Processed);
+      expect(action.status).toBe('processing');
       await promise;
-      expect(action.status).toBe(Status.Success);
+      expect(action.status).toBe('success');
       vi.advanceTimersByTime(50);
-      expect(action.status).toBe(Status.Success);
+      expect(action.status).toBe('success');
       vi.advanceTimersByTime(50);
-      expect(action.status).toBe(Status.Success);
+      expect(action.status).toBe('success');
     });
 
     it("Should correctly update status during error flow", async () => {
@@ -43,13 +42,13 @@ describe("createAction", () => {
         timeoutMs: 100,
       });
       const promise = action.runAsync().catch(noop);
-      expect(action.status).toBe(Status.Processed);
+      expect(action.status).toBe('processing');
       await promise;
-      expect(action.status).toBe(Status.Failed);
+      expect(action.status).toBe('failed');
       vi.advanceTimersByTime(50);
-      expect(action.status).toBe(Status.Failed);
+      expect(action.status).toBe('failed');
       vi.advanceTimersByTime(50);
-      expect(action.status).toBe(Status.Failed);
+      expect(action.status).toBe('failed');
     });
 
     it("Should correctly update statuses: processed -> processed(delayed) -> failed(timeout)", async () => {
@@ -64,20 +63,20 @@ describe("createAction", () => {
         timeoutMs: 50,
       });
       action.run();
-      expect(action.status).toBe(Status.Processed);
+      expect(action.status).toBe("processing");
       expect(action.isDelayed).toBe(false);
       vi.advanceTimersByTime(10);
-      expect(action.status).toBe(Status.Processed);
+      expect(action.status).toBe('processing');
       expect(action.isDelayed).toBe(true);
       vi.advanceTimersByTime(40);
-      if (action.state.status === Status.Failed) {
+      if (action.state.status === 'failed') {
         expect(action.state.reason).toBe("timeout");
       } else {
         expect.fail();
       }
       vi.advanceTimersByTime(50);
       await tick();
-      expect(action.status).toBe(Status.Failed);
+      expect(action.status).toBe('failed');
     });
 
     it("Should throw `InitializationError` if combinator returns false", async () => {
@@ -166,7 +165,7 @@ describe("createAction", () => {
         combinator: () => "untrack",
       })
       const promise = action.runAsync()
-      expect(action.status).toBe(Status.IDLE)
+      expect(action.status).toBe('idle')
       await expect(promise).resolves.toBe(0)
     })
   });
