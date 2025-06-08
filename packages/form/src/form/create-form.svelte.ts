@@ -40,7 +40,6 @@ import {
   type FormSubmission,
   type FieldsValidation,
   type FormValidationResult,
-  CancellationError,
 } from "./errors.js";
 import { type FormInternalContext, type FormContext } from "./context/index.js";
 import { createFormMerger, type FormMerger } from "./merger.js";
@@ -242,8 +241,8 @@ export function createForm<T, V extends Validator>(
   const uiSchema = $derived(resolveUiRef(uiSchemaRoot, options.uiSchema) ?? {});
   const disabled = $derived(options.disabled ?? false);
   const schedulerYield: SchedulerYield = $derived(
-    options.schedulerYield ??
-      (typeof scheduler !== "undefined" && "yield" in scheduler)
+    (options.schedulerYield ??
+      (typeof scheduler !== "undefined" && "yield" in scheduler))
       ? scheduler.yield.bind(scheduler)
       : ({ signal }: Parameters<SchedulerYield>[0]) =>
           new Promise((resolve, reject) => {
@@ -346,7 +345,9 @@ export function createForm<T, V extends Validator>(
 
       const onAbort = () => {
         clearTimeout(id);
-        promise.reject(new CancellationError());
+        promise.reject(
+          new DOMException("field validation has been aborted", "AbortError")
+        );
       };
 
       signal.addEventListener("abort", onAbort);
