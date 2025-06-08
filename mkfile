@@ -317,6 +317,17 @@ e/:
     d:
       pnpm run dev
     popd
+  async/:
+    pushd async-combobox
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    p:
+      pnpm run preview
+    d:
+      pnpm run dev
+    popd
   popd
 
 p:
