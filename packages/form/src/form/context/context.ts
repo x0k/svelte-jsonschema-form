@@ -61,6 +61,6 @@ export function getFormContext<V extends Validator>(): FormInternalContext<V> {
   return getContext(FORM_CONTEXT);
 }
 
-export function setFromContext(ctx: FormContext) {
+export function setFormContext(ctx: FormContext) {
   setContext(FORM_CONTEXT, ctx);
 }

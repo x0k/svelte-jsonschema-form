@@ -2,7 +2,7 @@
   import type { HTMLFormAttributes } from "svelte/elements";
 
   import type { FormState } from "./create-form.svelte.js";
-  import { setFromContext } from "./context/context.js";
+  import { setFormContext } from "./context/context.js";
   import Form from "./form.svelte";
   import Content from "./content.svelte";
   import SubmitButton from "./submit-button.svelte";
@@ -16,7 +16,7 @@
     ref?: HTMLFormElement | undefined;
   } & HTMLFormAttributes = $props();
 
-  setFromContext(form.context);
+  setFormContext(form.context);
 </script>
 
 <Form bind:ref {attributes}>
