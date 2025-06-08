@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Content, Form, setFromContext, type Schema } from "@sjsf/form";
+  import { Content, Form, setFormContext, type Schema } from "@sjsf/form";
 
   import { createMyForm } from "@/components/my-form";
 
@@ -13,7 +13,7 @@
     initialValue: "initial",
     onSubmit: (v) => window.alert(v),
   });
-  setFromContext(form.context);
+  setFormContext(form.context);
 
   let ref: HTMLFormElement | undefined;
 </script>

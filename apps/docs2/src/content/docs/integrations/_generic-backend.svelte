@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Content, Form, setFromContext, SubmitButton } from "@sjsf/form";
+  import { Content, Form, setFormContext, SubmitButton } from "@sjsf/form";
   import { Status, createAction } from "@sjsf/form/lib/action.svelte";
   import "@sjsf/basic-theme/extra-widgets/radio-include";
 
@@ -66,7 +66,7 @@
       return resolve.isProcessed;
     },
   });
-  setFromContext(form.context);
+  setFormContext(form.context);
 </script>
 
 <Form>
