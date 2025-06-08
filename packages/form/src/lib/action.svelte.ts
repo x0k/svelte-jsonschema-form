@@ -1,4 +1,5 @@
 import { DEV } from "esm-env";
+import { untrack } from "svelte";
 
 import { noop } from "./function.js";
 
@@ -240,7 +241,7 @@ export function createAction<
   // NOTE: call `combinator` synchronously to propagate possible error even
   // during `run` call
   function decideAndRun(args: T) {
-    return run(combinator(state), args);
+    return untrack(() => run(combinator(state), args));
   }
 
   const action: Action<T, R, E> = {
@@ -277,12 +278,14 @@ export function createAction<
       return decideAndRun(args);
     },
     abort() {
-      if (state.status !== "processing") return;
-      const { args } = state;
-      abort(state);
-      clearTimeouts();
-      state = { status: "failed", reason: "aborted" };
-      options.onFailure?.(state, ...args);
+      untrack(() => {
+        if (state.status !== "processing") return;
+        const { args } = state;
+        abort(state);
+        clearTimeouts();
+        state = { status: "failed", reason: "aborted" };
+        options.onFailure?.(state, ...args);
+      });
     },
   };
   return action;

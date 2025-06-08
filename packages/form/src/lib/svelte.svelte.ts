@@ -1,5 +1,3 @@
-import { untrack } from "svelte";
-
 import { abortPrevious, createAction } from "./action.svelte.js";
 
 export interface AsyncBindingOptions<I, O> {
@@ -43,10 +41,8 @@ export function createAsyncBinding<I, O>({
     if (isEqual(input, lastInputUpdate)) {
       return;
     }
-    untrack(() => {
-      toInputAction.abort();
-      toOutputAction.run(input);
-    });
+    toInputAction.abort();
+    toOutputAction.run(input);
   });
 
   return {
