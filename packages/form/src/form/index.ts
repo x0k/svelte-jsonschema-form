@@ -29,3 +29,4 @@ export { default as SimpleForm } from "./simple-form.svelte";
 export { default as ErrorMessage, createMessage } from "./error-message.svelte";
 export { default as Datalist } from "./datalist.svelte";
 export { default as Text } from "./text.svelte";
+export { default as Field } from "./field.svelte";
