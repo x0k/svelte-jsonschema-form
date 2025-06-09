@@ -10,9 +10,9 @@ export const objectSchema: Schema = {
       const: true,
     },
     number: {
-      title: "number (min 100)",
+      title: "number (min 1000)",
       type: "number",
-      minimum: 100,
+      minimum: 1000,
     },
     text: {
       title: "text (min length 5)",

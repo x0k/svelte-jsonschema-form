@@ -1,9 +1,10 @@
 ---
 import { Card } from "@astrojs/starlight/components";
-import { parse, walk, generate } from 'css-tree';
+import { parse, walk, generate } from "css-tree";
 
 export interface Props {
   style?: string;
+  title?: string;
 }
 
 /**
@@ -11,69 +12,68 @@ export interface Props {
  * Extracts @property declarations from CSS string
  */
 const extractPropertiesWithCSSTree = (cssContent: string) => {
-  if (!cssContent) return { properties: '', remainingStyles: '' };
-  
+  if (!cssContent) return { properties: "", remainingStyles: "" };
+
   try {
     // Parse CSS into AST
     const ast = parse(cssContent, {
       parseRulePrelude: false, // More lenient parsing
       parseCustomProperty: true,
-      parseValue: false
+      parseValue: false,
     });
-    
+
     const propertyNodes: any[] = [];
     const nodesToRemove: any[] = [];
-    
+
     // Walk through AST and find @property rules
     walk(ast, (node, item, list) => {
-      if (node.type === 'Atrule' && node.name === 'property') {
+      if (node.type === "Atrule" && node.name === "property") {
         propertyNodes.push(node);
         nodesToRemove.push({ node, item, list });
       }
     });
-    
+
     // Remove @property nodes from original AST
     nodesToRemove.forEach(({ item, list }) => {
       if (list && item) {
         list.remove(item);
       }
     });
-    
+
     // Generate CSS strings
-    const properties = propertyNodes
-      .map(node => generate(node))
-      .join('\n\n');
-    
+    const properties = propertyNodes.map((node) => generate(node)).join("\n\n");
+
     const remainingStyles = generate(ast).trim();
-    
+
     return {
       properties,
-      remainingStyles
+      remainingStyles,
     };
   } catch (error) {
-    console.warn('css-tree parsing failed, using fallback:', error);
-    
+    console.warn("css-tree parsing failed, using fallback:", error);
+
     // Fallback to regex parsing
     const propertyRegex = /@property\s+[^{]+\{[^}]*\}/g;
     const properties = cssContent.match(propertyRegex) || [];
-    const remainingStyles = cssContent.replace(propertyRegex, '').trim();
-    
+    const remainingStyles = cssContent.replace(propertyRegex, "").trim();
+
     return {
-      properties: properties.join('\n'),
-      remainingStyles
+      properties: properties.join("\n"),
+      remainingStyles,
     };
   }
 };
 
-const { properties, remainingStyles } = extractPropertiesWithCSSTree(Astro.props.style ?? "");
+const { properties, remainingStyles } = extractPropertiesWithCSSTree(
+  Astro.props.style ?? ""
+);
 ---
 
-<!-- Inject @property declarations globally if they exist -->
-{properties && (
-  <style is:global set:html={properties}></style>
-)}
+<!-- Inject @property declarations globally if they exist -->{
+  properties && <style is:global set:html={properties} />
+}
 
-<Card title="">
+<Card title={Astro.props.title ?? ""}>
   <template shadowrootmode="open">
     {remainingStyles && <style set:html={remainingStyles} />}
     <slot />

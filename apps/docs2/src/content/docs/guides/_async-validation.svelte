@@ -36,7 +36,7 @@
   const form = createForm({
     ...defaults,
     validator: createAsyncFormValidator({ ajv }),
-    schema: schema,
+    schema,
     fieldsValidationMode: ON_INPUT,
     onSubmit: console.log,
   });
@@ -49,6 +49,6 @@
 </p>
 <p>
   form validation: {form.submission.status}, fields validation: {form
-    .fieldsValidation.status}
+    .fieldsValidation.status}, errors: {form.errors.size > 0}
 </p>
 <BasicForm {form} novalidate autocomplete="off" />
