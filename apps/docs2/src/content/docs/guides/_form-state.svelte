@@ -1,14 +1,15 @@
 <script lang="ts">
-  import { BasicForm, type Schema } from "@sjsf/form";
+  import { BasicForm, createForm, type Schema } from "@sjsf/form";
 
-  import { createMyForm } from "@/components/my-form";
+  import * as defaults from "@/components/form-defaults";
 
   const schema: Schema = {
     type: "string",
     minLength: 10,
   };
 
-  const form = createMyForm({
+  const form = createForm({
+    ...defaults,
     initialValue: "initial",
     schema,
     onSubmit: console.log,

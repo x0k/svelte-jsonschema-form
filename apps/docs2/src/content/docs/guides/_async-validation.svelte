@@ -4,9 +4,9 @@
     addFormComponents,
     createAsyncFormValidator,
   } from "@sjsf/ajv8-validator";
-  import { ON_INPUT, BasicForm } from "@sjsf/form";
+  import { ON_INPUT, BasicForm, createForm } from "@sjsf/form";
 
-  import { createMyForm } from "@/components/my-form";
+  import * as defaults from "@/components/form-defaults";
 
   const ajv = addFormComponents(new Ajv());
   const validate: SchemaValidateFunction = async (schema, data) => {
@@ -33,7 +33,8 @@
     },
   };
 
-  const form = createMyForm({
+  const form = createForm({
+    ...defaults,
     validator: createAsyncFormValidator({ ajv }),
     schema: schema,
     fieldsValidationMode: ON_INPUT,
