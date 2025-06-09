@@ -3,7 +3,7 @@
 
   import * as defaults from "@/components/form-defaults";
 
-  import { objectSchema } from "./_demo-schemas";
+  import { objectSchema } from "./demo-schemas";
 
   const form = createForm({
     ...defaults,

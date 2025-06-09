@@ -1,0 +1,18 @@
+---
+title: Manual mode
+sidebar:
+  order: 9
+---
+
+import { Code } from '@astrojs/starlight/components';
+
+import FormCard from '@/components/form-card.astro';
+
+import Form from './manual-mode.svelte';
+import formCode from './manual-mode.svelte?raw';
+
+<Code code={formCode} lang="svelte" />
+
+<FormCard>
+  <Form client:only="svelte" />
+</FormCard>

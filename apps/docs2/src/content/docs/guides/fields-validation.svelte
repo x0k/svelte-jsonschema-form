@@ -3,7 +3,7 @@
 
   import MyForm from "@/components/my-form.svelte";
 
-  import { objectSchema, objectUiSchema } from "./_demo-schemas";
+  import { objectSchema, objectUiSchema } from "./demo-schemas";
 </script>
 
 <MyForm
