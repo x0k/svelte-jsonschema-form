@@ -1,17 +1,18 @@
 <script lang="ts">
-  import { BasicForm } from "@sjsf/form";
+  import { BasicForm, createForm } from "@sjsf/form";
   import { theme, setThemeContext } from "@sjsf/shadcn-theme";
   import * as components from "@sjsf/shadcn-theme/default";
   import { specs } from '@sjsf/shadcn-theme/specs'
 
   import { createAstro } from "@/astro.svelte";
-  import { createMyForm } from "@/components/my-form";
+  import * as defaults from "@/components/form-defaults";
 
   import { createSchemas } from "../_demo-schema";
 
   const astro = createAstro();
 
-  const form = createMyForm({
+  const form = createForm({
+    ...defaults,
     ...createSchemas(specs),
     theme,
   });

@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { ON_INPUT, BasicForm } from "@sjsf/form";
+  import { ON_INPUT, BasicForm, createForm } from "@sjsf/form";
   import { createFormValidator } from "@sjsf/schemasafe-validator";
 
-  import { createMyForm } from "@/components/my-form";
+  import * as defaults from "@/components/form-defaults";
 
   import { initialValue, schema, uiSchema } from "../shared";
 
@@ -10,7 +10,8 @@
     uiSchema,
   });
 
-  const form = createMyForm({
+  const form = createForm({
+    ...defaults,
     schema,
     uiSchema,
     validator,

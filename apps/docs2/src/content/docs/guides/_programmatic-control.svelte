@@ -1,14 +1,21 @@
 <script lang="ts">
-  import { Content, Form, setFormContext, type Schema } from "@sjsf/form";
+  import {
+    Content,
+    createForm,
+    Form,
+    setFormContext,
+    type Schema,
+  } from "@sjsf/form";
 
-  import { createMyForm } from "@/components/my-form";
+  import * as defaults from "@/components/form-defaults";
 
   const schema: Schema = {
     type: "string",
     minLength: 10,
   };
 
-  const form = createMyForm({
+  const form = createForm({
+    ...defaults,
     schema,
     initialValue: "initial",
     onSubmit: (v) => window.alert(v),

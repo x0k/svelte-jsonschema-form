@@ -1,9 +1,15 @@
 <script lang="ts">
-  import { Content, Form, setFormContext, SubmitButton } from "@sjsf/form";
+  import {
+    Content,
+    createForm,
+    Form,
+    setFormContext,
+    SubmitButton,
+  } from "@sjsf/form";
   import { createAction } from "@sjsf/form/lib/action.svelte";
   import "@sjsf/basic-theme/extra-widgets/radio-include";
 
-  import { createMyForm } from "@/components/my-form";
+  import * as defaults from "@/components/form-defaults";
 
   let data = $state<string>();
 
@@ -33,7 +39,8 @@
     timeoutMs: 2000,
   });
 
-  const form = createMyForm({
+  const form = createForm({
+    ...defaults,
     schema: {
       properties: {
         delay: {
@@ -52,10 +59,18 @@
     uiSchema: {
       delay: {
         "ui:components": {
+          integerField: "enumField",
           selectWidget: "radioWidget",
         },
         "ui:options": {
           enumNames: ["250ms", "1.5s", "2.5s"],
+        },
+      },
+      "ui:options": {
+        translations: {
+          get submit() {
+            return resolve.isDelayed ? "Processed..." : "Submit";
+          },
         },
       },
     },
@@ -71,11 +86,7 @@
 
 <Form>
   <Content />
-  {#if resolve.isDelayed}
-    <button style="padding: 0.5rem;" disabled>Processed...</button>
-  {:else}
-    <SubmitButton />
-  {/if}
+  <SubmitButton />
   {#if data !== undefined}
     <p>Data: {data}</p>
   {/if}

@@ -1,10 +1,11 @@
 <script lang="ts">
-  import { Content, setFormContext } from "@sjsf/form";
+  import { Content, createForm, setFormContext } from "@sjsf/form";
   import { preventPageReload } from "@sjsf/form/prevent-page-reload.svelte";
 
-  import { createMyForm } from "@/components/my-form";
+  import * as defaults from "@/components/form-defaults";
 
-  const form = createMyForm({
+  const form = createForm({
+    ...defaults,
     schema: { type: "string" },
   });
   setFormContext(form.context);

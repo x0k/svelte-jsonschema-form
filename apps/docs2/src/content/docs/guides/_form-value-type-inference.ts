@@ -1,7 +1,7 @@
-import type { Schema } from "@sjsf/form";
+import { createForm, type Schema } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
-import { createMyForm } from "@/components/my-form";
+import * as defaults from "@/components/form-defaults";
 
 const schema = {
   type: "object",
@@ -16,7 +16,8 @@ const schema = {
   additionalProperties: false
 } as const satisfies Schema;
 
-const form = createMyForm({
+const form = createForm({
+  ...defaults,
   schema,
   onSubmit: (value: FromSchema<typeof schema>) => {
     console.log(value)

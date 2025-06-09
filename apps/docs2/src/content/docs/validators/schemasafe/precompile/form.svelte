@@ -1,16 +1,17 @@
 <script lang="ts">
-  import { BasicForm } from "@sjsf/form";
+  import { BasicForm, createForm } from "@sjsf/form";
   import { createFormValidator } from "@sjsf/schemasafe-validator/precompile";
   import { resolver } from "@sjsf/form/resolvers/compat";
 
-  import { createMyForm } from "@/components/my-form";
+  import * as defaults from "@/components/form-defaults";
 
   import { schema, fieldsValidationMode } from "./patched-schema";
   import * as validateFunctions from "./validate-functions";
 
   const validator = createFormValidator({ validateFunctions });
 
-  const form = createMyForm({
+  const form = createForm({
+    ...defaults,
     schema,
     validator,
     fieldsValidationMode,

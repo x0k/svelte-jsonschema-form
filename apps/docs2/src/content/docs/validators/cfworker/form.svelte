@@ -1,14 +1,15 @@
 <script lang="ts">
-  import { BasicForm, ON_INPUT } from "@sjsf/form";
+  import { BasicForm, createForm, ON_INPUT } from "@sjsf/form";
   import { createFormValidator } from "@sjsf/cfworker-validator";
 
-  import { createMyForm } from "@/components/my-form";
+  import * as defaults from "@/components/form-defaults";
 
   import { initialValue, schema, uiSchema } from "../shared";
 
   const validator = createFormValidator({ uiSchema });
 
-  const form = createMyForm({
+  const form = createForm({
+    ...defaults,
     schema,
     uiSchema,
     validator,

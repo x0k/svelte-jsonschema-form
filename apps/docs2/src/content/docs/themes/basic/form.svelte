@@ -1,13 +1,14 @@
 <script lang="ts">
-  import { BasicForm } from "@sjsf/form";
+  import { BasicForm, createForm } from "@sjsf/form";
   import { theme } from "@sjsf/basic-theme";
   import { specs } from '@sjsf/basic-theme/specs';
 
-  import { createMyForm } from "@/components/my-form";
+  import * as defaults from "@/components/form-defaults";
 
   import { createSchemas } from "../_demo-schema";
 
-  const form = createMyForm({
+  const form = createForm({
+    ...defaults,
     ...createSchemas(specs),
     theme,
   });
