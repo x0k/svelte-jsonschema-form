@@ -13,3 +13,9 @@ catalog:
   "tailwindcss": "^4.1.8"
   "@tailwindcss/vite": "^4.1.8"
   "@exodus/schemasafe": "^1.3.0"
+  "autoprefixer": "10.4.21"
+  "postcss": "8.5.4"
+
+catalogs:
+  legacy:
+    "tailwindcss": "^3.4.17"
