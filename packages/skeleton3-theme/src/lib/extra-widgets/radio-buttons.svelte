@@ -42,7 +42,7 @@
 		ids: {
 			root: config.id
 		},
-		name: config.name,
+		name: config.id,
 		readOnly: config.schema.readOnly,
 		onValueChange: (details) => {
 			mapped.value = details.value ?? '';

@@ -26,7 +26,7 @@
 				return config.id;
 			}
 		},
-		name: config.name,
+		name: config.id,
 		readOnly: config.schema.readOnly,
 		min: config.schema.minimum,
 		max: config.schema.maximum,

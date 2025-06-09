@@ -31,7 +31,7 @@
 				hiddenInput: config.id
 			},
 			invalid: errors.length > 0,
-			name: config.name,
+			name: config.id,
 			required: config.required,
 			maxFiles: config.schema.maxItems ?? (multiple ? Infinity : 1),
 			onFileChange: handlers.onchange,

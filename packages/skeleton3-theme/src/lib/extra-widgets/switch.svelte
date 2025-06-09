@@ -23,7 +23,7 @@
 		ids: {
 			hiddenInput: config.id
 		},
-		name: config.name,
+		name: config.id,
 		required: config.required,
 		readOnly: config.schema.readOnly,
 		invalid: errors.length > 0,

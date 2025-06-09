@@ -23,7 +23,7 @@
 		ids: {
 			input: config.id
 		},
-		name: config.name,
+		name: config.id,
 		required: config.required,
 		max: config.schema.maxItems,
 		readOnly: config.schema.readOnly,
