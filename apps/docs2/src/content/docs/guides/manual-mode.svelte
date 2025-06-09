@@ -2,11 +2,10 @@
   import type { FromSchema } from "json-schema-to-ts";
   import {
     createForm,
-    Form,
     Field,
-    SubmitButton,
     type Schema,
     setFormContext,
+    enhance,
   } from "@sjsf/form";
 
   import * as defaults from "@/components/form-defaults";
@@ -17,7 +16,7 @@
       login: {
         title: "Login",
         type: "string",
-        minLength: 1,
+        minLength: 3,
       },
       password: {
         title: "Password",
@@ -29,26 +28,27 @@
     additionalProperties: false,
   } as const satisfies Schema;
 
-  type Value = FromSchema<typeof schema>;
-
   const form = createForm({
     ...defaults,
     schema,
-    onSubmit(value: Value) {
+    onSubmit(value: FromSchema<typeof schema>) {
       console.log(value);
     },
   });
   setFormContext(form.context);
 </script>
 
-<Form>
+<form
+  novalidate
+  use:enhance={form.context}
+  style="display: flex; flex-direction: column; gap: 1rem;"
+>
   <Field {form} name="login" required />
-  <p>Yes, you can place fields manually!</p>
   <Field
     {form}
     name="password"
     required
     uiSchema={{ "ui:options": { text: { type: "password" } } }}
   />
-  <SubmitButton />
-</Form>
+  <button type="submit">Submit</button>
+</form>
