@@ -5,7 +5,6 @@ import type { UiSchema } from "./ui-schema.js";
 
 export interface Config {
   id: Id;
-  name: string;
   title: string;
   schema: Schema;
   uiSchema: UiSchema;

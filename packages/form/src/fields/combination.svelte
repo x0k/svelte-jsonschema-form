@@ -175,7 +175,6 @@
     );
     return {
       id: createPseudoId(config.id, suffix, ctx),
-      name: `${config.name}__${suffix}`,
       title: uiTitleOption(ctx, uiSchema) ?? config.title,
       schema: { type: "integer", default: 0 },
       uiSchema,
@@ -205,7 +204,6 @@
         : config.uiSchema;
     return {
       id: config.id,
-      name: config.name,
       title: "",
       schema: optionSchema,
       uiSchema: optionUiSchema,

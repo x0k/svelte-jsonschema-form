@@ -18,13 +18,11 @@
   const {
     parentId,
     property,
-    name,
     uiSchema,
     translate,
   }: {
     parentId: Id;
     property: string;
-    name: string;
     uiSchema: UiSchema;
     translate: Translate;
   } = $props();
@@ -37,7 +35,8 @@
     id,
     name: id,
     title:
-      uiTitleOption(ctx, uiSchema) ?? translate("key-input-title", { name }),
+      uiTitleOption(ctx, uiSchema) ??
+      translate("key-input-title", { name: property }),
     schema: { type: "string" },
     uiSchema,
     required: true,

@@ -29,7 +29,7 @@ import {
   type UiOption,
 } from "@/form/index.js";
 
-import { getArrayItemName, titleWithIndex, type ItemTitle } from "./model.js";
+import { titleWithIndex, type ItemTitle } from "./model.js";
 
 export interface ArrayContext<V extends Validator> {
   readonly config: Config;
@@ -210,7 +210,6 @@ export function createArrayContext<V extends Validator>(
       const schema = retrieveSchema(ctx, itemSchema, item);
       return {
         id: createChildId(config.id, index, ctx),
-        name: getArrayItemName(config, index),
         title: api.itemTitle(
           itemUiTitle ?? schema.title ?? config.title,
           index,
@@ -300,12 +299,11 @@ export function createTupleContext<V extends Validator>(
         additional
           ? config.uiSchema.additionalItems
           : Array.isArray(config.uiSchema.items)
-          ? config.uiSchema.items[index]
-          : config.uiSchema.items
+            ? config.uiSchema.items[index]
+            : config.uiSchema.items
       );
       return {
         id: createChildId(config.id, index, ctx),
-        name: getArrayItemName(config, index),
         title: api.itemTitle(
           uiTitleOption(ctx, uiSchema) ?? schema.title ?? config.title,
           index,
