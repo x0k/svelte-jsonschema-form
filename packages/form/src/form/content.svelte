@@ -1,4 +1,6 @@
 <script lang="ts">
+  import type { Schema } from "@/core/index.js";
+
   import type { Config } from "./config.js";
   import {
     retrieveSchema,
@@ -9,19 +11,26 @@
     retrieveTranslate,
   } from "./context/index.js";
 
+  interface Props {
+    name?: string;
+    required?: boolean;
+    schema?: Schema;
+  }
+
+  const { name = "", required = false, schema }: Props = $props();
+
   const ctx = getFormContext();
 
-  const retrievedSchema = $derived(retrieveSchema(ctx, ctx.schema, ctx.value));
+  const retrievedSchema = $derived(
+    retrieveSchema(ctx, schema ?? ctx.schema, ctx.value)
+  );
   const config: Config = $derived({
     id: ctx.rootId,
-    name: "",
-    title:
-      uiTitleOption(ctx, ctx.uiSchema) ??
-      retrievedSchema.title ??
-      "",
+    name,
+    title: uiTitleOption(ctx, ctx.uiSchema) ?? retrievedSchema.title ?? "",
     schema: retrievedSchema,
     uiSchema: ctx.uiSchema,
-    required: false,
+    required,
   });
 
   const Field = $derived(getFieldComponent(ctx, config));
