@@ -8,19 +8,29 @@ import {
   type IdPseudoSeparatorOption,
 } from "./form/main.js";
 
-export function getFocusableElement(form: HTMLElement, instanceId: Id) {
+export interface GetFocusableElementOptions {
+  /**
+   * @default false
+   */
+  checkVisibility?: boolean;
+}
+
+export function getFocusableElement(
+  form: HTMLElement,
+  instanceId: Id,
+  { checkVisibility = false }: GetFocusableElementOptions = {}
+) {
   const item = form.querySelector(`[id="${instanceId}"]`);
   if (
-    !(
-      (item instanceof HTMLInputElement && item.type !== "checkbox") ||
-      item instanceof HTMLTextAreaElement ||
-      item instanceof HTMLSelectElement ||
-      item instanceof HTMLButtonElement
-    )
+    (item instanceof HTMLElement || item instanceof SVGElement) &&
+    item.tabIndex >= 0 &&
+    "disabled" in item &&
+    item.disabled !== true &&
+    (!checkVisibility || window.getComputedStyle(item).visibility !== "hidden")
   ) {
-    return null;
+    return item;
   }
-  return item;
+  return null;
 }
 
 export function getErrorsList(
@@ -33,12 +43,16 @@ export function getErrorsList(
   );
 }
 
+export interface GetFocusActionOptions
+  extends Required<IdPseudoSeparatorOption>,
+    Partial<GetFocusableElementOptions> {}
+
 export function getFocusAction(
   form: HTMLElement,
   instanceId: Id,
-  options: Required<IdPseudoSeparatorOption>
+  options: GetFocusActionOptions
 ) {
-  const focusableElement = getFocusableElement(form, instanceId);
+  const focusableElement = getFocusableElement(form, instanceId, options);
   if (focusableElement !== null) {
     return () => focusableElement.focus();
   }
@@ -52,8 +66,12 @@ export function getFocusAction(
 
 export function createFocusOnFirstError({
   idPseudoSeparator = DEFAULT_ID_SEPARATOR,
-}: IdPseudoSeparatorOption = {}) {
-  const options = { idPseudoSeparator };
+  checkVisibility = false,
+}: Partial<GetFocusActionOptions> = {}) {
+  const options: Required<GetFocusActionOptions> = {
+    idPseudoSeparator,
+    checkVisibility,
+  };
   return <E>(errors: FieldErrorsMap<E>, e: SubmitEvent) => {
     if (errors.size === 0) {
       return false;
