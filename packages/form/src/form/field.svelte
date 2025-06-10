@@ -1,7 +1,8 @@
 <script lang="ts" generics="T, V extends Validator">
+  import type { Snippet } from "svelte";
   import { DEV } from "esm-env";
 
-  import type { JsonPaths } from '@/lib/types.js';
+  import type { JsonPaths } from "@/lib/types.js";
   import { isObject } from "@/lib/object.js";
   import { getSchemaDefinitionByPath, type Validator } from "@/core/index.js";
 
@@ -16,15 +17,28 @@
   } from "./context/index.js";
   import type { FormState } from "./create-form.svelte.js";
   import type { FieldValue } from "./model.js";
-  import { getUiSchemaByPath, type UiSchema } from "./ui-schema.js";
+  import {
+    getUiSchemaByPath,
+    type UiOption,
+    type UiSchema,
+  } from "./ui-schema.js";
   import { pathToId } from "./id.js";
   import type { Config } from "./config.js";
+  import type { ComponentProps } from "./components.js";
+  import type { FoundationalFieldType } from "./fields.js";
 
   interface Props {
     form: FormState<T, V>;
     name: JsonPaths<T>;
     required?: boolean;
     uiSchema?: UiSchema;
+    children?: Snippet<
+      [
+        Omit<ComponentProps[FoundationalFieldType], "value"> & {
+          valueRef: { value: FieldValue };
+        },
+      ]
+    >;
   }
 
   const {
@@ -32,6 +46,7 @@
     name,
     required: requiredOverride,
     uiSchema: uiSchemaOverride,
+    children,
   }: Props = $props();
 
   const ctx = form.context as FormInternalContext<V>;
@@ -48,7 +63,7 @@
 
   const id = $derived(pathToId(valuePath, ctx));
 
-  const ref: { value: FieldValue } = $derived.by(() => {
+  const valueRef: { value: FieldValue } = $derived.by(() => {
     if (valuePath.length === 0) {
       return ctx;
     }
@@ -103,7 +118,7 @@
     return def === undefined || typeof def === "boolean" ? {} : def;
   });
 
-  const retrievedSchema = $derived(retrieveSchema(ctx, schema, ref.value));
+  const retrievedSchema = $derived(retrieveSchema(ctx, schema, valueRef.value));
 
   const uiSchema = $derived(
     uiSchemaOverride ??
@@ -142,16 +157,27 @@
     uiSchema,
     required,
   });
-
-  const Field = $derived(getFieldComponent(ctx, config));
+  const translate = $derived(retrieveTranslate(ctx, config));
+  const uiOption: UiOption = (opt) => retrieveUiOption(ctx, config, opt);
 
   setFormContext(ctx);
 </script>
 
-<Field
-  type="field"
-  bind:value={ref.value as undefined}
-  {config}
-  uiOption={(opt) => retrieveUiOption(ctx, config, opt)}
-  translate={retrieveTranslate(ctx, config)}
-/>
+{#if children}
+  {@render children({
+    type: "field",
+    config,
+    translate,
+    uiOption,
+    valueRef,
+  })}
+{:else}
+  {@const Field = getFieldComponent(ctx, config)};
+  <Field
+    type="field"
+    bind:value={valueRef.value as undefined}
+    {config}
+    {uiOption}
+    {translate}
+  />
+{/if}
