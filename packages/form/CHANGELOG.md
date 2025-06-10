@@ -1,5 +1,13 @@
 # @sjsf/form
 
+## 2.0.1
+
+### Patch Changes
+
+- Deprecate `children` prop in `Field` component ([`d3c05fe`](https://github.com/x0k/svelte-jsonschema-form/commit/d3c05fe33cb0847b4db3422a46e3372988dc40fc))
+
+- Fixed `Field` component template ([`935d414`](https://github.com/x0k/svelte-jsonschema-form/commit/935d41467d0a2d84e9f0c5dd2cf9e8f8b9f6f406))
+
 ## 2.0.0
 
 ### Major Changes

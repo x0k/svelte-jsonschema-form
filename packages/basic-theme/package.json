@@ -1,6 +1,6 @@
 {
   "name": "@sjsf/basic-theme",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Basic theme for svelte-jsonschema-form",
   "license": "MIT",
   "keywords": [
@@ -32,7 +32,7 @@
   },
   "peerDependencies": {
     "svelte": "^5.33.0",
-    "@sjsf/form": "workspace:^2.0.0"
+    "@sjsf/form": "workspace:^2.0.1"
   },
   "devDependencies": {
     "@sjsf/form": "workspace:*",
