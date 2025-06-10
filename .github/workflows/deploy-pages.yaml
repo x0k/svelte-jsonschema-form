@@ -15,9 +15,6 @@ jobs:
   deploy:
     if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.merged == true && github.event.pull_request.user.login == 'github-actions[bot]')
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout code repository
         uses: actions/checkout@v4
