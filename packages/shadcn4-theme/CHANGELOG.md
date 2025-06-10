@@ -1,5 +1,15 @@
 # @sjsf/shadcn4-theme
 
+## 2.0.1
+
+### Patch Changes
+
+- Remove empty option from multi select widget ([`4cb070f`](https://github.com/x0k/svelte-jsonschema-form/commit/4cb070f04883ca9d22bdcfbd1ce393ba15b2eac9))
+
+- Updated dependencies [[`d3c05fe`](https://github.com/x0k/svelte-jsonschema-form/commit/d3c05fe33cb0847b4db3422a46e3372988dc40fc), [`935d414`](https://github.com/x0k/svelte-jsonschema-form/commit/935d41467d0a2d84e9f0c5dd2cf9e8f8b9f6f406)]:
+  - @sjsf/form@2.0.1
+  - @sjsf/basic-theme@2.0.1
+
 ## 2.0.0
 
 ### Major Changes
