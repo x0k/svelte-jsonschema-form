@@ -29,7 +29,7 @@ the `@sjsf/form/lib/resolver` library.
 To make it work you need to remove `...` before `theme`.
 
 ```ts
-import { theme } from 'theme-path'
+import { theme } from '@sjsf/your-theme'
 
 const form = createForm({ theme, ... })
 ```
@@ -38,7 +38,7 @@ Example of field override:
 
 ```ts
 import { overrideByRecord } from "@sjsf/form/lib/resolver";
-import { theme } from 'theme-path';
+import { theme } from '@sjsf/your-theme';
 
 import MyField from './my-field';
 
