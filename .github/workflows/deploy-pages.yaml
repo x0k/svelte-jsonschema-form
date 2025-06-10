@@ -7,7 +7,7 @@ on:
   workflow_dispatch: # Adds the manual trigger
 
 permissions:
-  contents: read
+  contents: write
   pages: write
 
 jobs:
