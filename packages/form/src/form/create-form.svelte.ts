@@ -97,7 +97,7 @@ export interface FormOptions<T, V extends Validator>
    */
   idPseudoSeparator?: string;
   //
-  initialValue?: T;
+  initialValue?: Partial<T>;
   initialErrors?: InitialErrors<V>;
   /**
    * @default waitPrevious

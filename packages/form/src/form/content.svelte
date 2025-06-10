@@ -14,11 +14,7 @@
   const retrievedSchema = $derived(retrieveSchema(ctx, ctx.schema, ctx.value));
   const config: Config = $derived({
     id: ctx.rootId,
-    name: "",
-    title:
-      uiTitleOption(ctx, ctx.uiSchema) ??
-      retrievedSchema.title ??
-      "",
+    title: uiTitleOption(ctx, ctx.uiSchema) ?? retrievedSchema.title ?? "",
     schema: retrievedSchema,
     uiSchema: ctx.uiSchema,
     required: false,

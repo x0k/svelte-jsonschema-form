@@ -12,4 +12,10 @@ export default defineConfig({
       "@": resolve(__dirname, "src"),
     },
   },
+  test: {
+    typecheck: {
+      // `*.svelte` files are not supported by tsc
+      ignoreSourceErrors: true,
+    },
+  },
 });

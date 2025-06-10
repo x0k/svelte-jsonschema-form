@@ -10,24 +10,30 @@ import { getSimpleSchemaType } from "./type.js";
 
 export type Path = Array<string | number>;
 
+export function partsToPath(parts: string[]): Path {
+  let parentIsArrayOfSubSchemas = false;
+  return parts.map((p) => {
+    if (parentIsArrayOfSubSchemas) {
+      const num = Number(p);
+      if (Number.isInteger(num) && num >= 0) {
+        parentIsArrayOfSubSchemas = false;
+        return num;
+      }
+    }
+    parentIsArrayOfSubSchemas = SET_OF_ARRAYS_OF_SUB_SCHEMAS.has(
+      p as SubSchemasArrayKey
+    );
+    return p;
+  });
+}
+
 export function refToPath(ref: string): Path {
   if (ref === "#") {
     return [];
   }
   // TODO: Handle escaped `/`
   const parts = ref.substring(2).split("/");
-  return parts.map((p, i) => {
-    if (
-      i > 0 &&
-      SET_OF_ARRAYS_OF_SUB_SCHEMAS.has(parts[i - 1] as SubSchemasArrayKey)
-    ) {
-      const num = Number(p);
-      if (Number.isInteger(num) && num >= 0) {
-        return num;
-      }
-    }
-    return p;
-  });
+  return partsToPath(parts);
 }
 
 export function getSchemaDefinitionByPath(

@@ -1,0 +1,71 @@
+---
+title: Manual mode
+sidebar:
+  order: 9
+---
+
+import { Code } from '@astrojs/starlight/components';
+
+import FormCard from '@/components/form-card.astro';
+
+import Form from './manual-mode.svelte';
+import formCode from './manual-mode.svelte?raw';
+
+Manual mode gives you complete control over form layout and field placement.
+
+<Code code={formCode} lang="svelte" />
+
+<FormCard>
+  <Form client:only="svelte" />
+</FormCard>
+
+## Caveats
+
+### Field names
+
+To make the field names inference work - it is necessary to define
+the type of form value, for example, like this:
+
+```ts
+const form = createForm<ValueType, typeof validator>(...)
+```
+
+### Nested structures
+
+You must initialize nested structures (objects and arrays).
+In the following example, if you want to display the `foo.bar` field,
+you should initialize the `foo` object through the `initialValue` option.
+
+```ts
+const schema = {
+  type: "object",
+  properties: {
+    foo: {
+      type: "object",
+      properties: {
+        bar: {
+          type: "string",
+        },
+      },
+    },
+  },
+} as const satisfies Schema;
+
+const initialValue = {
+  foo: {}
+}
+```
+
+### Required attribute
+
+Calculating the value of the `required` property from the JSON schema can be tricky,
+if it is calculated incorrectly - specify it manually.
+
+```svelte
+<Field {form} name="foo" required />
+```
+
+### Form context
+
+Unlike other form components (`Form`, `SubmitButton`, etc.),
+`Field` does not require setting the form context.
