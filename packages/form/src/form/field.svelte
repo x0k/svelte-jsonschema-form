@@ -53,6 +53,8 @@
 </script>
 
 <script lang="ts" generics="T, V extends Validator">
+  import { DEV } from "esm-env";
+
   import { isObject } from "@/lib/object.js";
   import { getSchemaDefinitionByPath, type Validator } from "@/core/index.js";
 
@@ -73,7 +75,7 @@
 
   interface Props {
     form: FormState<T, V>;
-    name: DeepPaths<T> | "";
+    name: DeepPaths<T>;
     required?: boolean;
     uiSchema?: UiSchema;
   }
@@ -81,24 +83,31 @@
   const {
     form,
     name,
-    required = false,
+    required: requiredOverride,
     uiSchema: uiSchemaOverride,
   }: Props = $props();
 
   const ctx = form.context as FormInternalContext<V>;
+
+  if (DEV) {
+    $effect(() => {
+      if (name === "") {
+        console.warn('Use `<Content />` instead of `<Field name="" />`');
+      }
+    });
+  }
 
   const valuePath = $derived(name === "" ? [] : name.split("."));
 
   const id = $derived(pathToId(valuePath, ctx));
 
   const ref: { value: FieldValue } = $derived.by(() => {
-    const pLen = valuePath.length;
-    if (pLen === 0) {
+    if (valuePath.length === 0) {
       return ctx;
     }
     let node = ctx.value;
     let i = -1;
-    const lastIndex = pLen - 1;
+    const lastIndex = valuePath.length - 1;
     while (isObject(node) && ++i < lastIndex) {
       // @ts-expect-error
       node = node[valuePath[i]];
@@ -122,8 +131,28 @@
     };
   });
 
+  const parentSchema = $derived.by(() => {
+    const len = valuePath.length;
+    if (len < 2) {
+      return ctx.schema;
+    }
+    const def = getSchemaDefinitionByPath(
+      ctx.schema,
+      ctx.schema,
+      valuePath.slice(0, -1)
+    );
+    return def === undefined || typeof def === "boolean" ? {} : def;
+  });
+
   const schema = $derived.by(() => {
-    const def = getSchemaDefinitionByPath(ctx.schema, ctx.schema, valuePath);
+    if (valuePath.length === 0) {
+      return ctx.schema;
+    }
+    const def = getSchemaDefinitionByPath(
+      ctx.schema,
+      parentSchema,
+      valuePath.slice(-1)
+    );
     return def === undefined || typeof def === "boolean" ? {} : def;
   });
 
@@ -134,6 +163,30 @@
       getUiSchemaByPath(ctx.uiSchemaRoot, ctx.uiSchema, valuePath) ??
       {}
   );
+
+  const required = $derived.by(() => {
+    if (requiredOverride !== undefined) {
+      return requiredOverride;
+    }
+    if (valuePath.length === 0) {
+      return false;
+    }
+    const property = valuePath[valuePath.length - 1]!;
+    const { required, items, minItems } = parentSchema;
+    if (Array.isArray(required)) {
+      return required.includes(property);
+    }
+    const num = Number(property);
+    if (Number.isInteger(num) && num >= 0) {
+      if (minItems !== undefined) {
+        return num < minItems;
+      }
+      if (Array.isArray(items)) {
+        return num < items.length;
+      }
+    }
+    return false;
+  });
 
   const config: Config = $derived({
     id,
