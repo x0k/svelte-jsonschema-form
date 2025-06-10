@@ -69,13 +69,6 @@
 		</span>
 	</SelectTrigger>
 	<SelectContent>
-		{#if config.schema.default === undefined}
-			<SelectItem value="-1">
-				<span class="min-h-5">
-					{selectAttributes.placeholder}
-				</span>
-			</SelectItem>
-		{/if}
 		{#each options as option, index (option.id)}
 			{@const indexStr = index.toString()}
 			<SelectItem value={indexStr} label={option.label} disabled={option.disabled} />
