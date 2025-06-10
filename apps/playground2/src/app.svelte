@@ -13,6 +13,8 @@
     ON_ARRAY_CHANGE,
     ON_OBJECT_CHANGE,
     createFormMerger,
+    type FormValue,
+    type Validator,
   } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
@@ -158,7 +160,7 @@
   );
 
   const focusOnFirstError = createFocusOnFirstError();
-  const form = createForm({
+  const form = createForm<FormValue, Validator>({
     get resolver() {
       return resolver;
     },
@@ -329,7 +331,7 @@
     <Button
       variant="ghost"
       size="icon"
-      href="https://x0k.github.io/svelte-jsonschema-form/v2/"
+      href="https://x0k.github.io/svelte-jsonschema-form/"
     >
       <OpenBook class="size-6" />
     </Button>
