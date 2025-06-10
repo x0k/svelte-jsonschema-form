@@ -44,7 +44,7 @@
     "svelte": "^5.33.0"
   },
   "devDependencies": {
-    "deep-freeze-es6": "^4.0.0",
+    "deep-freeze-es6": "^4.0.1",
     "svelte": "catalog:"
   },
   "types": "./dist/form/index.d.ts",

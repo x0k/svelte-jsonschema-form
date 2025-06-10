@@ -6,10 +6,10 @@ packages:
 catalog:
   "vite": "^6.3.5"
   "ajv": "^8.17.1"
-  "svelte": "^5.33.10"
+  "svelte": "^5.33.18"
   "esm-env": "^1.2.2"
   "globals": "^16.2.0"
-  "zod": "^3.25.42"
+  "zod": "^3.25.57"
   "tailwindcss": "^4.1.8"
   "@tailwindcss/vite": "^4.1.8"
   "@exodus/schemasafe": "^1.3.0"
