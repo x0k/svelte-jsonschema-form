@@ -42,7 +42,7 @@ export default defineConfig({
         {
           label: "Form",
           autogenerate: { directory: "form" },
-          collapsed: true
+          collapsed: true,
         },
         {
           // label: "Examples",
@@ -74,6 +74,7 @@ export default defineConfig({
           autogenerate: { directory: "changelogs" },
           collapsed: true,
         },
+        { label: "Documentation v1", link: "/v1/" },
       ],
       components: {
         // Head: "./src/components/custom-head.astro",
