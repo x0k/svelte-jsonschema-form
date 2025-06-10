@@ -2,13 +2,13 @@
 
 The [lucide](https://github.com/lucide-icons/lucide) based icons set for [svelte-jsonschema-form](https://github.com/x0k/svelte-jsonschema-form).
 
-- [Documentation](https://x0k.github.io/svelte-jsonschema-form/v2/guides/labels-and-icons/#usage)
+- [Documentation](https://x0k.github.io/svelte-jsonschema-form/guides/labels-and-icons/#usage)
 - [Playground](https://x0k.github.io/svelte-jsonschema-form/playground2/)
 
 ## Installation
 
 ```shell
-npm install @sjsf/form@next @sjsf/lucide-icons@next
+npm install @sjsf/form @sjsf/lucide-icons
 ```
 
 ## Usage

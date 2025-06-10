@@ -3,7 +3,7 @@
 Svelte 5 library for creating forms based on JSON schema.
 Unofficial port of [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form).
 
-- [Documentation](https://x0k.github.io/svelte-jsonschema-form/v2/)
+- [Documentation](https://x0k.github.io/svelte-jsonschema-form/)
 - [Playground](https://x0k.github.io/svelte-jsonschema-form/playground2/)
 
 ## Installation
@@ -11,7 +11,7 @@ Unofficial port of [react-jsonschema-form](https://github.com/rjsf-team/react-js
 Install the library, basic theme and `ajv` for validation.
 
 ```shell
-npm i @sjsf/form@2.0.0-next.15 @sjsf/basic-theme@2.0.0-next.15 @sjsf/ajv8-validator@2.0.0-next.15 ajv@8
+npm i @sjsf/form @sjsf/basic-theme @sjsf/ajv8-validator ajv@8
 ```
 
 ## Usage

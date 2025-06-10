@@ -2,13 +2,13 @@
 
 The [shadcn-svelte](https://github.com/huntabyte/shadcn-svelte) based theme for [svelte-jsonschema-form](https://github.com/x0k/svelte-jsonschema-form).
 
-- [Documentation](https://x0k.github.io/svelte-jsonschema-form/v2/themes/shadcn4/)
+- [Documentation](https://x0k.github.io/svelte-jsonschema-form/themes/shadcn4/)
 - [Playground](https://x0k.github.io/svelte-jsonschema-form/playground2/)
 
 ## Installation
 
 ```shell
-npm install @sjsf/form@next @sjsf/shadcn4-theme@next
+npm install @sjsf/form @sjsf/shadcn4-theme
 ```
 
 ## Usage

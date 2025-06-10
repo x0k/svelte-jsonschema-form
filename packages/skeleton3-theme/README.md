@@ -2,13 +2,13 @@
 
 The [skeleton](https://github.com/skeletonlabs/skeleton) v3 (tailwind v4) based theme for [svelte-jsonschema-form](https://github.com/x0k/svelte-jsonschema-form).
 
-- [Documentation](https://x0k.github.io/svelte-jsonschema-form/v2/themes/skeleton3/)
+- [Documentation](https://x0k.github.io/svelte-jsonschema-form/themes/skeleton3/)
 - [Playground](https://x0k.github.io/svelte-jsonschema-form/playground2/)
 
 ## Installation
 
 ```shell
-npm install @sjsf/form@next @sjsf/skeleton3-theme@next
+npm install @sjsf/form @sjsf/skeleton3-theme
 ```
 
 ## Usage
