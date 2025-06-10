@@ -32,6 +32,16 @@
     name: JsonPaths<T>;
     required?: boolean;
     uiSchema?: UiSchema;
+    render?: Snippet<
+      [
+        Omit<ComponentProps[FoundationalFieldType], "value"> & {
+          valueRef: { value: FieldValue };
+        },
+      ]
+    >;
+    /**
+     * @deprecated use `render` instead
+     */
     children?: Snippet<
       [
         Omit<ComponentProps[FoundationalFieldType], "value"> & {
@@ -46,6 +56,7 @@
     name,
     required: requiredOverride,
     uiSchema: uiSchemaOverride,
+    render,
     children,
   }: Props = $props();
 
@@ -160,11 +171,13 @@
   const translate = $derived(retrieveTranslate(ctx, config));
   const uiOption: UiOption = (opt) => retrieveUiOption(ctx, config, opt);
 
+  const renderField = $derived(render ?? children);
+
   setFormContext(ctx);
 </script>
 
-{#if children}
-  {@render children({
+{#if renderField}
+  {@render renderField({
     type: "field",
     config,
     translate,
