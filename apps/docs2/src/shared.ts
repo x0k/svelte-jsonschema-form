@@ -38,6 +38,7 @@ export enum Example {
   AsyncCombobox = "async-combobox",
   Formulas = "formulas",
   PatternPropertiesValidator = "pattern-properties-validator",
+  NativeForm = "native-form",
 }
 
 export const EXAMPLES = Object.values(Example);
