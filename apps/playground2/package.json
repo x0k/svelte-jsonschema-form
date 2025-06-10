@@ -32,15 +32,15 @@
     "svelte-exmarkdown": "^5.0.1"
   },
   "devDependencies": {
-    "@internationalized/date": "^3.8.1",
-    "@lucide/svelte": "^0.511.0",
+    "@internationalized/date": "^3.8.2",
+    "@lucide/svelte": "^0.513.0",
     "@tailwindcss/vite": "catalog:",
-    "bits-ui": "^2.4.1",
+    "bits-ui": "^2.5.0",
     "clsx": "^2.1.1",
     "svelte": "catalog:",
     "tailwind-merge": "^3.3.0",
     "tailwind-variants": "^1.0.0",
     "tailwindcss": "catalog:",
-    "tw-animate-css": "^1.3.3"
+    "tw-animate-css": "^1.3.4"
   }
 }
