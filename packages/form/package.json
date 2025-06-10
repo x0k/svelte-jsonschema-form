@@ -28,7 +28,7 @@
   "homepage": "https://x0k.github.io/svelte-jsonschema-form/",
   "scripts": {
     "dev": "vite",
-    "test": "vitest run --exclude '.svelte-kit/**'",
+    "test": "vitest run --typecheck --exclude '.svelte-kit/**'",
     "build": "svelte-package && publint",
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },

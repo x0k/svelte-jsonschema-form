@@ -1,60 +1,7 @@
-<script lang="ts" module>
-  type JsonPrimitive = string | number | boolean | null;
-  type JsonValue = JsonPrimitive | JsonObject | JsonArray;
-  type JsonObject = { [key: string]: JsonValue };
-  type JsonArray = readonly JsonValue[];
-
-  type Prev = [never, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ...0[]];
-
-  type IsTuple<T> = T extends readonly any[]
-    ? number extends T["length"]
-      ? false
-      : true
-    : false;
-
-  type Indices<T extends readonly any[]> = Exclude<keyof T, keyof any[]>;
-
-  type DeepPaths<T, D extends number = 10> = [D] extends [never]
-    ? never
-    : T extends JsonPrimitive
-      ? never
-      : T extends readonly any[]
-        ? IsTuple<T> extends true
-          ? // Handle tuples
-            {
-              [K in Indices<T>]: K extends `${number}`
-                ? T[K] extends JsonPrimitive
-                  ? K
-                  : T[K] extends JsonValue
-                    ? K | `${K}.${DeepPaths<T[K], Prev[D]>}`
-                    : never
-                : never;
-            }[Indices<T>]
-          : // Handle arrays
-            T extends readonly (infer U)[]
-            ? U extends JsonPrimitive
-              ? `${number}`
-              : U extends JsonValue
-                ? `${number}` | `${number}.${DeepPaths<U, Prev[D]>}`
-                : never
-            : never
-        : T extends object
-          ? // Handle objects
-            {
-              [K in keyof T]: K extends string | number
-                ? T[K] extends JsonPrimitive
-                  ? `${K}`
-                  : T[K] extends JsonValue
-                    ? `${K}` | `${K}.${DeepPaths<T[K], Prev[D]>}`
-                    : never
-                : never;
-            }[keyof T]
-          : never;
-</script>
-
 <script lang="ts" generics="T, V extends Validator">
   import { DEV } from "esm-env";
 
+  import type { JsonPaths } from '@/lib/types.js';
   import { isObject } from "@/lib/object.js";
   import { getSchemaDefinitionByPath, type Validator } from "@/core/index.js";
 
@@ -75,7 +22,7 @@
 
   interface Props {
     form: FormState<T, V>;
-    name: DeepPaths<T>;
+    name: JsonPaths<T>;
     required?: boolean;
     uiSchema?: UiSchema;
   }
