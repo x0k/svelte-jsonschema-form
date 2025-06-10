@@ -45,14 +45,18 @@ jobs:
       - name: Build
         run: pnpm run build --filter="./apps/*"
 
-      - name: Merge apps build outputs
-        run: mv apps/docs2/dist apps/docs/dist/v2 && mv apps/playground/dist apps/docs/dist/playground && mv apps/playground2/dist apps/docs/dist/playground2
-
-      - name: Upload Pages Artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy docs
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: "apps/docs/dist/"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./apps/docs2/dist
+          destination_dir: .
+          publish_branch: gh-pages
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Deploy playground
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./apps/playground2/dist
+          destination_dir: playground2
+          publish_branch: gh-pages
