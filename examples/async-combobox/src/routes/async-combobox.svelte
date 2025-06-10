@@ -16,7 +16,7 @@
     debounceMs?: number;
     timeoutMs?: number;
     maxResults?: number;
-    disabled?: boolean
+    disabled?: boolean;
   }
 </script>
 
@@ -26,7 +26,6 @@
   import {
     abortPrevious,
     createAction,
-    Status,
     type Action,
   } from "@sjsf/form/lib/action.svelte";
 
@@ -320,16 +319,18 @@
     </ul>
   {/if}
 
-  {#if searchAction.state.status === Status.Failed && searchAction.state.reason === "timeout"}
-    <div class="error-message" role="alert">
-      Search timed out. Please try again.
-    </div>
-  {/if}
+  {#if searchAction.matches("failed")}
+    {#if searchAction.state.reason === "timeout"}
+      <div class="error-message" role="alert">
+        Search timed out. Please try again.
+      </div>
+    {/if}
 
-  {#if searchAction.state.status === Status.Failed && searchAction.state.reason === "error"}
-    <div class="error-message" role="alert">
-      Search failed. Please try again.
-    </div>
+    {#if searchAction.state.reason === "error"}
+      <div class="error-message" role="alert">
+        Search failed. Please try again.
+      </div>
+    {/if}
   {/if}
 </div>
 

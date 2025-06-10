@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { setFromContext, Content, SubmitButton } from "@sjsf/form";
+  import { setFormContext, Content, SubmitButton } from "@sjsf/form";
   import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit/client";
 
   import * as defaults from "$lib/form-defaults";
@@ -12,7 +12,7 @@
     ...defaults,
     onSubmit: console.log,
   });
-  setFromContext(form.context);
+  setFormContext(form.context);
 </script>
 
 <form
