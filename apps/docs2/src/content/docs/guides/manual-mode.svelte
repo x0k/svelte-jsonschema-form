@@ -1,12 +1,12 @@
 <script lang="ts">
-  import type { FromSchema } from "json-schema-to-ts";
   import {
-    createForm,
-    Field,
     type Schema,
     setFormContext,
+    createForm,
     enhance,
+    Field,
   } from "@sjsf/form";
+  import type { FromSchema } from "json-schema-to-ts";
 
   import * as defaults from "@/components/form-defaults";
 
@@ -35,7 +35,6 @@
       console.log(value);
     },
   });
-  setFormContext(form.context);
 </script>
 
 <form
@@ -43,11 +42,10 @@
   use:enhance={form.context}
   style="display: flex; flex-direction: column; gap: 1rem;"
 >
-  <Field {form} name="login" required />
+  <Field {form} name="login" />
   <Field
     {form}
     name="password"
-    required
     uiSchema={{ "ui:options": { text: { type: "password" } } }}
   />
   <button type="submit">Submit</button>
