@@ -185,7 +185,7 @@
     valueRef,
   })}
 {:else}
-  {@const Field = getFieldComponent(ctx, config)};
+  {@const Field = getFieldComponent(ctx, config)}
   <Field
     type="field"
     bind:value={valueRef.value as undefined}
