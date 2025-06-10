@@ -11,6 +11,14 @@ t:
 b:
   pnpm run build
 
+sjsf/:
+  c:
+    pnpm run check --filter="@sjsf/*" $@
+  t:
+    pnpm run test --filter="@sjsf/*" $@
+  b:
+    pnpm run build --filter="@sjsf/*" $@
+
 ajv/:
   pushd packages/ajv8-validator
   b:
