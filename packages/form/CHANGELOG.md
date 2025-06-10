@@ -1,5 +1,191 @@
 # @sjsf/form
 
+## 2.0.0
+
+### Major Changes
+
+- Add support for `$ref` in UI schema ([#100](https://github.com/x0k/svelte-jsonschema-form/pull/100))
+
+- Add `label` component ([`b215668`](https://github.com/x0k/svelte-jsonschema-form/commit/b215668587f9add91fc848cc579746303f3ba0f7))
+
+- Remove `lib/deep-equal` submodule ([`3f780ca`](https://github.com/x0k/svelte-jsonschema-form/commit/3f780cab808f9316911d9b13b39b7ce159c8f234))
+
+- Add `useLabel` property for the `fieldTemplate` component ([`e8eaae3`](https://github.com/x0k/svelte-jsonschema-form/commit/e8eaae3d332ced78d87748d56dd0f05117ec92d5))
+
+- Extract array field logic into `createArrayContext` function ([`99b77fb`](https://github.com/x0k/svelte-jsonschema-form/commit/99b77fb416960e7204154a29826684af1939792a))
+
+- Remove `forId` from the `errorList` component props ([`f6588ff`](https://github.com/x0k/svelte-jsonschema-form/commit/f6588ff52f88ee9d6f5c1cebdcb80db8b736acea))
+
+- Remove `uiOptions` property from `Config` ([#100](https://github.com/x0k/svelte-jsonschema-form/pull/100))
+
+- Bump peer and dev dependencies ([`21e47cc`](https://github.com/x0k/svelte-jsonschema-form/commit/21e47cccb6f53c698582db9c3639a33672e21552))
+
+- Rename `fields/extra-widgets/file-widget` to `fields/extra-widgets/file` ([`d75d847`](https://github.com/x0k/svelte-jsonschema-form/commit/d75d84772fdc7636ddc0862719d69f3f296e15bc))
+
+- Remove `name` property from `Config` ([`1da5c84`](https://github.com/x0k/svelte-jsonschema-form/commit/1da5c84e06d61eee970d3149bad2a5bddea16e35))
+
+- Make `checkboxes` and `file` widgets optional ([`8fa706b`](https://github.com/x0k/svelte-jsonschema-form/commit/8fa706b7e69ec3cba54e689a536b1038ff8e5c83))
+
+- Replace `asyncProxy` with `createAsyncBinding` ([#119](https://github.com/x0k/svelte-jsonschema-form/pull/119))
+
+- Refactor action logic: ([`8606f26`](https://github.com/x0k/svelte-jsonschema-form/commit/8606f26c183cdfaf6e37a889412930e59714aad9))
+
+  - Remove `debounce` combinator
+  - Add `untrack` combinator result
+
+- The `DefaultFormMerger` class has been replaced by the `createFormMerger` factory. ([`43c86da`](https://github.com/x0k/svelte-jsonschema-form/commit/43c86da731ee53fbad8da451dcc4c534de39e881))
+
+- Update `initialValue` type in `FormOptions` to be `Partial<T>` ([#135](https://github.com/x0k/svelte-jsonschema-form/pull/135))
+
+- Rename `FoundationalComponent` to `FoundationalComponentType` ([`9ca2d7f`](https://github.com/x0k/svelte-jsonschema-form/commit/9ca2d7f7aec5d0dec83f61032a38298d68757f01))
+
+- Relax component compatibility checks. ([`cb176ac`](https://github.com/x0k/svelte-jsonschema-form/commit/cb176ac730f085d715dbd68621c597babcf5c3b9))
+  Add a `type` discriminator for field, template, and widget properties.
+  Remove `Equal` and `ExpandAndEqual` types from `lib/types`
+
+- Remove `use-mutation` submodule ([`c616f00`](https://github.com/x0k/svelte-jsonschema-form/commit/c616f00b92f321c46e8c37d3eb52be51bb417a4d))
+
+- Remove `proxy` function from `lib/svelte.svelte` ([`1138f61`](https://github.com/x0k/svelte-jsonschema-form/commit/1138f616c30cd6e722bef3a037aed08e92033ac9))
+
+- Migrate to `resolver` based providers ([`dfd96e7`](https://github.com/x0k/svelte-jsonschema-form/commit/dfd96e75abd0c05ee246831e36e1fdd34957a166))
+
+- Bump svelte to 5.25.0, relax patch versions of peer dependencies. ([`33fcab1`](https://github.com/x0k/svelte-jsonschema-form/commit/33fcab1e99d3da5d464cbd814b4f8445ceb2e4d9))
+
+- Refactor form API: ([`daabc32`](https://github.com/x0k/svelte-jsonschema-form/commit/daabc32f7c3db21a763d755abd952a417d0d7e3b))
+
+  - Renames:
+    - `form.validation` -> `form.submission`
+    - `validationCombinator` -> `submissionCombinator`
+    - `validationDelayedMs` -> `submissionDelayedMs`
+    - `validationTimeoutMs` -> `submissionTimeoutMs`
+  - `form.submit` now returns `void`
+
+- Add support for extra attributes in input, textarea, and select attribute functions ([`ef7ea00`](https://github.com/x0k/svelte-jsonschema-form/commit/ef7ea0027037457b540bf3534759b9938d0d6620))
+
+- Move `checkboxes` and `file` widgets to extra folder ([`701c3fc`](https://github.com/x0k/svelte-jsonschema-form/commit/701c3fc1e01e38c4c7168bdf0f0ab9b17be8cb50))
+
+- Remove the UI options `submitButtonText` and `additionalPropertyKeyPrefix` in favor of the new `translations` option. ([`f30da6d`](https://github.com/x0k/svelte-jsonschema-form/commit/f30da6d2b9161d848e3ec1be631d555b20783739))
+
+- Fix <https://github.com/x0k/svelte-jsonschema-form/issues/103> ([`1c75328`](https://github.com/x0k/svelte-jsonschema-form/commit/1c753287e206049acec0d19aa60c85f8ef902b4c))
+
+  Renames in the following submodules:
+
+  - `@sjsf/form/fields/array/*`
+  - `@sjsf/form/fields/object/*`
+  - `@sjsf/form/templates/*`
+
+- Remove `legacy-omit-extra-data` submodule ([`3c865f3`](https://github.com/x0k/svelte-jsonschema-form/commit/3c865f3fbd66d27ad35c6e7df89a9df439400288))
+
+- Refactor action logic: ([`d958dfc`](https://github.com/x0k/svelte-jsonschema-form/commit/d958dfc01fb53df12c3942ee778e680e805fcf79))
+
+  - `run` methods now returns `void`
+  - Added `runAsync` method that returns `Promise<R>`
+  - Fixed `state_referenced_locally` warning
+
+- Remove `asSnippet` function ([`a9dc859`](https://github.com/x0k/svelte-jsonschema-form/commit/a9dc8591f6e7cc240b947cded0dca2fd1280b622))
+
+- Rename `FormTag` to `Form` ([#100](https://github.com/x0k/svelte-jsonschema-form/pull/100))
+
+- Rename `setFromContext` to `setFormContext` ([`e9a861b`](https://github.com/x0k/svelte-jsonschema-form/commit/e9a861bfb77feea2d716c6123ff37580d5b65935))
+
+- Remove `UiSchemaRootContent` type ([`49e4b89`](https://github.com/x0k/svelte-jsonschema-form/commit/49e4b89f302c54fdb664e0604a316bf6ab02da30))
+
+- Extract object field logic into `createObjectContext` function ([`73ee1fb`](https://github.com/x0k/svelte-jsonschema-form/commit/73ee1fb8c35b43c00e6e0d1045d3672f05e78842))
+
+- Add support for `patternProperties` keyword ([`162b001`](https://github.com/x0k/svelte-jsonschema-form/commit/162b0018a630c58e72a775af02d6655cc8e65fab))
+
+- Rename submodule `prevent-data-loss` to `prevent-page-reload` ([`1ae4972`](https://github.com/x0k/svelte-jsonschema-form/commit/1ae49721a3628c6777b772b6c167e9c8343ec1cc))
+
+- Replace action `Status` enum with string literals ([`5e85a87`](https://github.com/x0k/svelte-jsonschema-form/commit/5e85a873fe50283f0a2c09ed30e599c6f28fc6db))
+
+- Remove `validate` and `validateAsync` form state methods ([#130](https://github.com/x0k/svelte-jsonschema-form/pull/130))
+
+- Remove `AnyKey` type ([`d569453`](https://github.com/x0k/svelte-jsonschema-form/commit/d569453b17f4187291dfb319b132dc00de7bf35a))
+
+- Migrate to a new `Validator` type model ([`dfd96e7`](https://github.com/x0k/svelte-jsonschema-form/commit/dfd96e75abd0c05ee246831e36e1fdd34957a166))
+
+- Remove `required` and `forId` from the `title` component props ([`52676ca`](https://github.com/x0k/svelte-jsonschema-form/commit/52676ca7976f6cff6053bba48d73193881b93405))
+
+- Remove `getValueByPath` function ([`1516c2d`](https://github.com/x0k/svelte-jsonschema-form/commit/1516c2dde9256c87118db659d7dd904b370d65ec))
+
+### Minor Changes
+
+- Add `fromFactories` function to `lib/resolver` ([`61b8dab`](https://github.com/x0k/svelte-jsonschema-form/commit/61b8daba452f2490457a2b6f202c81276705efc4))
+
+- Add `tagsField` extra field and `tagsWidget` extra widget definition ([`cff3574`](https://github.com/x0k/svelte-jsonschema-form/commit/cff3574d8921e4fa09fd55c1c60c2e95a4984297))
+
+- Add `env` lib ([#71](https://github.com/x0k/svelte-jsonschema-form/pull/71))
+
+- Add combobox widget type ([`4abf5d6`](https://github.com/x0k/svelte-jsonschema-form/commit/4abf5d6660e27e8986cb0012585920457682eaf9))
+
+- The `getValueByPath` function has been returned. ([`f37bf4a`](https://github.com/x0k/svelte-jsonschema-form/commit/f37bf4a9e49eec84bb64b8471ff8f34bc056fdd8))
+
+- Add `css` lib ([#71](https://github.com/x0k/svelte-jsonschema-form/pull/71))
+
+- Add `extraUiOptions` property to form options ([`1a552e8`](https://github.com/x0k/svelte-jsonschema-form/commit/1a552e8f43c65a3af595f313739200ca97c69e97))
+
+- Pass `widgetType` property to the `fieldTemplate` component ([`749a333`](https://github.com/x0k/svelte-jsonschema-form/commit/749a3333969401b8758f28672585f1ba7a140984))
+
+- Add `useDatePickerForDateFormat` function to `fields/extra-widgets/date-picker` ([`768f8c2`](https://github.com/x0k/svelte-jsonschema-form/commit/768f8c206e475dc6acdeaf8a4db7fa8c4ce4d965))
+
+- Use `untrack` inside the following `Action` methods: `run`, `runAsync`, and `abort`. ([`5206095`](https://github.com/x0k/svelte-jsonschema-form/commit/5206095ce57d9d69b38fc622ac50b72f9bbb5870))
+
+- Export `JsonPaths` type form `@sjsf/form/lib/types` ([#135](https://github.com/x0k/svelte-jsonschema-form/pull/135))
+
+- Add `getSchemaDefinitionByPath` function ([`eb9ad24`](https://github.com/x0k/svelte-jsonschema-form/commit/eb9ad249cec7ff3eb678203948b7e430771af958))
+
+- Add `validators/precompile` submodule ([`9882dd8`](https://github.com/x0k/svelte-jsonschema-form/commit/9882dd8b84a19be80d47786708379fedcda2db31))
+
+- Add `Field` component ([#135](https://github.com/x0k/svelte-jsonschema-form/pull/135))
+
+- Add `lib/component` submodule ([#100](https://github.com/x0k/svelte-jsonschema-form/pull/100))
+
+- Add `matches` method to `Action` for type narrowing ([`f626bd8`](https://github.com/x0k/svelte-jsonschema-form/commit/f626bd8d42000b85d9a170890fadbb1c28ed9009))
+
+- Add `arraySubSchemasMergeType` option for `mergeSchemas` function ([`b2c896b`](https://github.com/x0k/svelte-jsonschema-form/commit/b2c896b2058b56a4f4ee5794f490f6298a375f94))
+
+- Add `getUiSchemaByPath` function ([`283d6de`](https://github.com/x0k/svelte-jsonschema-form/commit/283d6de26b63bbf65ec5d2c2e3c73e42ac43b898))
+
+- Add `resolver` lib ([`d5c93c3`](https://github.com/x0k/svelte-jsonschema-form/commit/d5c93c32811cfb466a8b8c6849b3d215c403330b))
+
+- Add options parameter to `createFormMerger` factory ([`0bcf9c6`](https://github.com/x0k/svelte-jsonschema-form/commit/0bcf9c674d9817f4665ef737284ac6e5514055f7))
+
+- Add support for `discriminator` schema property ([`f6fd57c`](https://github.com/x0k/svelte-jsonschema-form/commit/f6fd57c724450da74b26fc63cdb5fdb510203613))
+
+- Add standard schema form value validator ([`c43eb93`](https://github.com/x0k/svelte-jsonschema-form/commit/c43eb932cbb82b4ba802cd1aff4a35ae2a5f0c88))
+
+- Add `registry` form option ([#100](https://github.com/x0k/svelte-jsonschema-form/pull/100))
+
+- Add function `getRootSchemaTitleByPath` ([`84f9ff9`](https://github.com/x0k/svelte-jsonschema-form/commit/84f9ff9cc15bd252da3967e9dcc1755ffa024e06))
+
+### Patch Changes
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/4617 ([`38ae583`](https://github.com/x0k/svelte-jsonschema-form/commit/38ae58337d6b240a4fda87d4428bd979a952baf7))
+
+- Fix <https://github.com/x0k/svelte-jsonschema-form/issues/72> ([`f1c6d71`](https://github.com/x0k/svelte-jsonschema-form/commit/f1c6d713afbcee2de58d78770041c674bc3adc1f))
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/4644 ([`00a1ea1`](https://github.com/x0k/svelte-jsonschema-form/commit/00a1ea1c431c7f8637cb2cc5e3aa73dd6d94771f))
+
+- Refactor async logic in file fields ([#118](https://github.com/x0k/svelte-jsonschema-form/pull/118))
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/4637 ([`ba140fb`](https://github.com/x0k/svelte-jsonschema-form/commit/ba140fb1ad3e371cb5c163b869998e20750db939))
+
+- Improve focusable element detection ([`ebb8315`](https://github.com/x0k/svelte-jsonschema-form/commit/ebb83153f49052b368b1a5e543f43dc6e3bb8922))
+
+- Fix theme resolver type ([`b1221f9`](https://github.com/x0k/svelte-jsonschema-form/commit/b1221f9536dec48a26f8d93d4ded8cebe21faf5d))
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/4570 ([#100](https://github.com/x0k/svelte-jsonschema-form/pull/100))
+
+- Port <https://github.com/rjsf-team/react-jsonschema-form/pull/4600> ([`1e641de`](https://github.com/x0k/svelte-jsonschema-form/commit/1e641de9ce630da729bf295c508371dabaa2e802))
+
+- Refactor matching logic to improve validation performance and accuracy ([`69535c3`](https://github.com/x0k/svelte-jsonschema-form/commit/69535c3d53fd2d95b2e02d0fe5e6c309aa4d0df6))
+
+- Fixed `enumField` recognition in `compat` resolver ([`6f4942b`](https://github.com/x0k/svelte-jsonschema-form/commit/6f4942b24f754ad99040f35cbaa2285d4d9d7c27))
+
+- Fix type of `fields` resolver ([`8f33350`](https://github.com/x0k/svelte-jsonschema-form/commit/8f33350406c80deb6092f720da99f0045b34f5d7))
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/4626 ([`50c357a`](https://github.com/x0k/svelte-jsonschema-form/commit/50c357a57b7819a83ceab99a96d09b21af848b17))
+
 ## 2.0.0-next.15
 
 ### Major Changes
