@@ -47,7 +47,6 @@ export default defineConfig({
         {
           // label: "Examples",
           slug: "examples",
-          badge: "new",
         },
         // {
         //   label: "Examples",
