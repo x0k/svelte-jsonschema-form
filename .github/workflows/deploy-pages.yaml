@@ -41,18 +41,13 @@ jobs:
       - name: Build
         run: pnpm run build --filter="./apps/*"
 
-      - name: Deploy docs
+      - name: Merge apps build outputs
+        run: mv apps/playground2/dist apps/docs2/dist/playground2
+
+      - name: Deploy apps
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./apps/docs2/dist
           destination_dir: .
-          publish_branch: gh-pages
-
-      - name: Deploy playground
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./apps/playground2/dist
-          destination_dir: playground2
           publish_branch: gh-pages
