@@ -19,9 +19,6 @@
         "dist/**"
       ]
     },
-    "//examples/*#build": {
-      "outputs": []
-    },
     "dev": {
       "dependsOn": [
         "^build"
