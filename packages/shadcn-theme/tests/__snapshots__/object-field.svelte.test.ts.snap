@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`default-ui > object fields > additionalProperties 1`] = `
+exports[`default-ui > object fields > additionalProperties > normal 1`] = `
 <div>
   <!---->
   <form
@@ -58,7 +58,7 @@ exports[`default-ui > object fields > additionalProperties 1`] = `
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.foo::key-input"
-                  id="bits-c3"
+                  id="bits-c4"
                 >
                   foo Key 
                   <span>
@@ -145,7 +145,7 @@ exports[`default-ui > object fields > additionalProperties 1`] = `
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.foo"
-                  id="bits-c4"
+                  id="bits-c5"
                 >
                   foo 
                   <!---->
@@ -276,7 +276,184 @@ exports[`default-ui > object fields > additionalProperties 1`] = `
 </div>
 `;
 
-exports[`default-ui > object fields > object 1`] = `
+exports[`default-ui > object fields > has errors > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  data-label-root=""
+                  for="root.name"
+                  id="bits-c3"
+                >
+                  name 
+                  <!---->
+                  <!---->
+                </label>
+                
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.name::description root.name::help root.name::errors"
+                  class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                  id="root.name"
+                  name="root.name"
+                />
+                
+                <!---->
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-destructive list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`default-ui > object fields > object > normal 1`] = `
 <div>
   <!---->
   <form
@@ -542,7 +719,7 @@ exports[`default-ui > object fields > object 1`] = `
 </div>
 `;
 
-exports[`default-ui > object fields > show add button and fields if additionalProperties is true and not an object 1`] = `
+exports[`default-ui > object fields > show add button and fields if additionalProperties is true and not an object > normal 1`] = `
 <div>
   <!---->
   <form
@@ -600,312 +777,9 @@ exports[`default-ui > object fields > show add button and fields if additionalPr
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.additionalProperty::key-input"
-                  id="bits-c5"
-                >
-                  additionalProperty Key 
-                  <span>
-                    *
-                  </span>
-                  <!---->
-                  <!---->
-                </label>
-                
-                
-                
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <div
-                class="flex gap-2 items-start"
-                data-layout="field-content"
-              >
-                <!---->
-                <!---->
-                <!---->
-                <!---->
-                <input
-                  aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
-                  class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.additionalProperty::key-input"
-                  name="root.additionalProperty::key-input"
-                  required=""
-                />
-                
-                <!---->
-                 
-                <!---->
-                
-                <!---->
-                
-                
-                <!---->
-              </div>
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
-            
-            
-            <!---->
-          </div>
-          
-          <!---->
-           
-          <div
-            class="grow"
-            data-layout="object-property-content"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="flex gap-2 flex-col"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-              <div
-                data-layout="field-meta"
-              >
-                <!---->
-                <!---->
-                <!---->
-                <!---->
-                <!---->
-                <label
-                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  data-label-root=""
-                  for="root.additionalProperty"
                   id="bits-c6"
                 >
-                  additionalProperty 
-                  <!---->
-                  <!---->
-                </label>
-                
-                
-                
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <div
-                class="flex gap-2 items-start"
-                data-layout="field-content"
-              >
-                <!---->
-                <!---->
-                <!---->
-                <!---->
-                <input
-                  aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
-                  class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.additionalProperty"
-                  name="root.additionalProperty"
-                />
-                
-                <!---->
-                 
-                <!---->
-                
-                <!---->
-                
-                
-                <!---->
-              </div>
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
-            
-            
-            
-            <!---->
-          </div>
-          <!---->
-           
-          <!---->
-          <div
-            data-layout="object-property-controls"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <button
-              class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
-              type="button"
-            >
-              <!---->
-              <!---->
-              Del
-              
-              
-              <!---->
-            </button>
-            
-            
-            
-            
-            <!---->
-          </div>
-          
-          <!---->
-          <!---->
-        </div>
-        
-        
-        
-        
-        
-        
-        <!---->
-      </div>
-      <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
-    </div>
-    
-    
-    
-    <!---->
-     
-    <!---->
-    <!---->
-    <!---->
-    <button
-      class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
-      type="submit"
-    >
-      <!---->
-      <!---->
-      Submit
-      
-      
-      <!---->
-    </button>
-    
-    
-    
-    <!---->
-    <!---->
-  </form>
-  
-  
-</div>
-`;
-
-exports[`default-ui > object fields > with title and description > additionalProperties 1`] = `
-<div>
-  <!---->
-  <form
-    class="flex flex-col gap-4"
-  >
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <div
-      class="flex gap-4 flex-col"
-      data-layout="object-field"
-    >
-      <!---->
-      <!---->
-      <div
-        data-layout="object-field-meta"
-      >
-        <!---->
-        <!---->
-        <div
-          class="font-medium text-lg"
-          id="root::title"
-        >
-          Test field
-        </div>
-        
-        <!---->
-         
-        <!---->
-        <div
-          class="text-muted-foreground"
-          id="root::description"
-        >
-          a test description
-        </div>
-        
-        <!---->
-        <!---->
-      </div>
-      
-      <!---->
-       
-      <div
-        class="flex gap-4 flex-col"
-        data-layout="object-properties"
-      >
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <div
-          class="flex gap-2 items-start"
-          data-layout="object-property"
-        >
-          <!---->
-          <!---->
-          <div
-            class="grow"
-            data-layout="object-property-key-input"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="flex gap-2 flex-col"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-              <div
-                data-layout="field-meta"
-              >
-                <!---->
-                <!---->
-                <!---->
-                <!---->
-                <!---->
-                <label
-                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  data-label-root=""
-                  for="root.foo::key-input"
-                  id="bits-c9"
-                >
-                  foo Key 
+                  additionalProperty Key 
                   <span>
                     *
                   </span>
@@ -933,10 +807,10 @@ exports[`default-ui > object fields > with title and description > additionalPro
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                  aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.foo::key-input"
-                  name="root.foo::key-input"
+                  id="root.additionalProperty::key-input"
+                  name="root.additionalProperty::key-input"
                   required=""
                 />
                 
@@ -989,228 +863,10 @@ exports[`default-ui > object fields > with title and description > additionalPro
                 <label
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
-                  for="root.foo"
-                  id="bits-c10"
-                >
-                  foo 
-                  <!---->
-                  <!---->
-                </label>
-                
-                
-                
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <div
-                class="flex gap-2 items-start"
-                data-layout="field-content"
-              >
-                <!---->
-                <!---->
-                <!---->
-                <!---->
-                <input
-                  aria-describedby="root.foo::description root.foo::help root.foo::errors"
-                  class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.foo"
-                  name="root.foo"
-                />
-                
-                <!---->
-                 
-                <!---->
-                
-                <!---->
-                
-                
-                <!---->
-              </div>
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
-            
-            
-            
-            <!---->
-          </div>
-          <!---->
-           
-          <!---->
-          <div
-            data-layout="object-property-controls"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <button
-              class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
-              type="button"
-            >
-              <!---->
-              <!---->
-              Del
-              
-              
-              <!---->
-            </button>
-            
-            
-            
-            
-            <!---->
-          </div>
-          
-          <!---->
-          <!---->
-        </div>
-        
-        
-        
-        
-        
-        
-        <!---->
-      </div>
-      <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
-    </div>
-    
-    
-    
-    <!---->
-     
-    <!---->
-    <!---->
-    <!---->
-    <button
-      class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
-      type="submit"
-    >
-      <!---->
-      <!---->
-      Submit
-      
-      
-      <!---->
-    </button>
-    
-    
-    
-    <!---->
-    <!---->
-  </form>
-  
-  
-</div>
-`;
-
-exports[`default-ui > object fields > with title and description > object 1`] = `
-<div>
-  <!---->
-  <form
-    class="flex flex-col gap-4"
-  >
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <div
-      class="flex gap-4 flex-col"
-      data-layout="object-field"
-    >
-      <!---->
-      <!---->
-      <div
-        data-layout="object-field-meta"
-      >
-        <!---->
-        <!---->
-        <div
-          class="font-medium text-lg"
-          id="root::title"
-        >
-          Test field
-        </div>
-        
-        <!---->
-         
-        <!---->
-        <div
-          class="text-muted-foreground"
-          id="root::description"
-        >
-          a test description
-        </div>
-        
-        <!---->
-        <!---->
-      </div>
-      
-      <!---->
-       
-      <div
-        class="flex gap-4 flex-col"
-        data-layout="object-properties"
-      >
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <div
-          class="flex gap-2 items-start"
-          data-layout="object-property"
-        >
-          <!---->
-          <!---->
-           
-          <div
-            class="grow"
-            data-layout="object-property-content"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="flex gap-2 flex-col"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-              <div
-                data-layout="field-meta"
-              >
-                <!---->
-                <!---->
-                <!---->
-                <!---->
-                <!---->
-                <label
-                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  data-label-root=""
-                  for="root.a"
+                  for="root.additionalProperty"
                   id="bits-c7"
                 >
-                  A 
+                  additionalProperty 
                   <!---->
                   <!---->
                 </label>
@@ -1220,14 +876,6 @@ exports[`default-ui > object fields > with title and description > object 1`] = 
                 
                 <!---->
                  
-                <!---->
-                <div
-                  class="text-muted-foreground"
-                  id="root.a::description"
-                >
-                  A description
-                </div>
-                
                 <!---->
                 <!---->
               </div>
@@ -1243,10 +891,10 @@ exports[`default-ui > object fields > with title and description > object 1`] = 
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.a::description root.a::help root.a::errors"
+                  aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
                   class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.a"
-                  name="root.a"
+                  id="root.additionalProperty"
+                  name="root.additionalProperty"
                 />
                 
                 <!---->
@@ -1274,114 +922,31 @@ exports[`default-ui > object fields > with title and description > object 1`] = 
           <!---->
            
           <!---->
-          <!---->
-        </div>
-        
-        
-        
-        <!---->
-        <!---->
-        <!---->
-        <div
-          class="flex gap-2 items-start"
-          data-layout="object-property"
-        >
-          <!---->
-          <!---->
-           
           <div
-            class="grow"
-            data-layout="object-property-content"
+            data-layout="object-property-controls"
           >
             <!---->
             <!---->
             <!---->
             <!---->
-            <div
-              class="flex gap-2 flex-col"
-              data-layout="field"
+            <button
+              class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+              type="button"
             >
               <!---->
               <!---->
-              <div
-                data-layout="field-meta"
-              >
-                <!---->
-                <!---->
-                <!---->
-                <!---->
-                <!---->
-                <label
-                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  data-label-root=""
-                  for="root.b"
-                  id="bits-c8"
-                >
-                  B 
-                  <!---->
-                  <!---->
-                </label>
-                
-                
-                
-                
-                <!---->
-                 
-                <!---->
-                <div
-                  class="text-muted-foreground"
-                  id="root.b::description"
-                >
-                  B description
-                </div>
-                
-                <!---->
-                <!---->
-              </div>
+              Del
+              
               
               <!---->
-               
-              <div
-                class="flex gap-2 items-start"
-                data-layout="field-content"
-              >
-                <!---->
-                <!---->
-                <!---->
-                <!---->
-                <input
-                  aria-describedby="root.b::description root.b::help root.b::errors"
-                  class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.b"
-                  name="root.b"
-                  step="any"
-                  type="number"
-                />
-                
-                <!---->
-                 
-                <!---->
-                
-                <!---->
-                
-                
-                <!---->
-              </div>
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
+            </button>
             
             
             
             
             <!---->
           </div>
-          <!---->
-           
+          
           <!---->
           <!---->
         </div>
@@ -1430,7 +995,7 @@ exports[`default-ui > object fields > with title and description > object 1`] = 
 </div>
 `;
 
-exports[`default-ui > object fields > with title and description > show add button and fields if additionalProperties is true and not an object 1`] = `
+exports[`default-ui > object fields > with title and description > additionalProperties > normal 1`] = `
 <div>
   <!---->
   <form
@@ -1514,9 +1079,621 @@ exports[`default-ui > object fields > with title and description > show add butt
                 <label
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
-                  for="root.additionalProperty::key-input"
+                  for="root.foo::key-input"
+                  id="bits-c10"
+                >
+                  foo Key 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                  <!---->
+                </label>
+                
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                  class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                  id="root.foo::key-input"
+                  name="root.foo::key-input"
+                  required=""
+                />
+                
+                <!---->
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  data-label-root=""
+                  for="root.foo"
                   id="bits-c11"
                 >
+                  foo 
+                  <!---->
+                  <!---->
+                </label>
+                
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                  class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                  id="root.foo"
+                  name="root.foo"
+                />
+                
+                <!---->
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <div
+            data-layout="object-property-controls"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+              type="button"
+            >
+              <!---->
+              <!---->
+              Del
+              
+              
+              <!---->
+            </button>
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`default-ui > object fields > with title and description > object > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+      <div
+        data-layout="object-field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          class="font-medium text-lg"
+          id="root::title"
+        >
+          Test field
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="text-muted-foreground"
+          id="root::description"
+        >
+          a test description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  data-label-root=""
+                  for="root.a"
+                  id="bits-c8"
+                >
+                  A 
+                  <!---->
+                  <!---->
+                </label>
+                
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="text-muted-foreground"
+                  id="root.a::description"
+                >
+                  A description
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.a::description root.a::help root.a::errors"
+                  class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                  id="root.a"
+                  name="root.a"
+                />
+                
+                <!---->
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  data-label-root=""
+                  for="root.b"
+                  id="bits-c9"
+                >
+                  B 
+                  <!---->
+                  <!---->
+                </label>
+                
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="text-muted-foreground"
+                  id="root.b::description"
+                >
+                  B description
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.b::description root.b::help root.b::errors"
+                  class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                  id="root.b"
+                  name="root.b"
+                  step="any"
+                  type="number"
+                />
+                
+                <!---->
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`default-ui > object fields > with title and description > show add button and fields if additionalProperties is true and not an object > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+      <div
+        data-layout="object-field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          class="font-medium text-lg"
+          id="root::title"
+        >
+          Test field
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="text-muted-foreground"
+          id="root::description"
+        >
+          a test description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-key-input"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  data-label-root=""
+                  for="root.additionalProperty::key-input"
+                  id="bits-c12"
+                >
                   additionalProperty Key 
                   <span>
                     *
@@ -1602,7 +1779,7 @@ exports[`default-ui > object fields > with title and description > show add butt
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.additionalProperty"
-                  id="bits-c12"
+                  id="bits-c13"
                 >
                   additionalProperty 
                   <!---->
@@ -1733,7 +1910,7 @@ exports[`default-ui > object fields > with title and description > show add butt
 </div>
 `;
 
-exports[`default-ui > object fields > with title and description from both > additionalProperties 1`] = `
+exports[`default-ui > object fields > with title and description from both > additionalProperties > normal 1`] = `
 <div>
   <!---->
   <form
@@ -1818,95 +1995,95 @@ exports[`default-ui > object fields > with title and description from both > add
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.foo::key-input"
-                  id="bits-c21"
-                >
-                  foo Key 
-                  <span>
-                    *
-                  </span>
-                  <!---->
-                  <!---->
-                </label>
-                
-                
-                
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <div
-                class="flex gap-2 items-start"
-                data-layout="field-content"
-              >
-                <!---->
-                <!---->
-                <!---->
-                <!---->
-                <input
-                  aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
-                  class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.foo::key-input"
-                  name="root.foo::key-input"
-                  required=""
-                />
-                
-                <!---->
-                 
-                <!---->
-                
-                <!---->
-                
-                
-                <!---->
-              </div>
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
-            
-            
-            <!---->
-          </div>
-          
-          <!---->
-           
-          <div
-            class="grow"
-            data-layout="object-property-content"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="flex gap-2 flex-col"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-              <div
-                data-layout="field-meta"
-              >
-                <!---->
-                <!---->
-                <!---->
-                <!---->
-                <!---->
-                <label
-                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  data-label-root=""
-                  for="root.foo"
                   id="bits-c22"
                 >
+                  foo Key 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                  <!---->
+                </label>
+                
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                  class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                  id="root.foo::key-input"
+                  name="root.foo::key-input"
+                  required=""
+                />
+                
+                <!---->
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  data-label-root=""
+                  for="root.foo"
+                  id="bits-c23"
+                >
                   foo 
                   <!---->
                   <!---->
@@ -2036,7 +2213,7 @@ exports[`default-ui > object fields > with title and description from both > add
 </div>
 `;
 
-exports[`default-ui > object fields > with title and description from both > object 1`] = `
+exports[`default-ui > object fields > with title and description from both > object > normal 1`] = `
 <div>
   <!---->
   <form
@@ -2123,7 +2300,7 @@ exports[`default-ui > object fields > with title and description from both > obj
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.a"
-                  id="bits-c19"
+                  id="bits-c20"
                 >
                   My Item A 
                   <!---->
@@ -2230,7 +2407,7 @@ exports[`default-ui > object fields > with title and description from both > obj
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.b"
-                  id="bits-c20"
+                  id="bits-c21"
                 >
                   My Item B 
                   <!---->
@@ -2345,7 +2522,7 @@ exports[`default-ui > object fields > with title and description from both > obj
 </div>
 `;
 
-exports[`default-ui > object fields > with title and description from uiSchema > additionalProperties 1`] = `
+exports[`default-ui > object fields > with title and description from uiSchema > additionalProperties > normal 1`] = `
 <div>
   <!---->
   <form
@@ -2430,7 +2607,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.foo::key-input"
-                  id="bits-c15"
+                  id="bits-c16"
                 >
                   foo Key 
                   <span>
@@ -2517,7 +2694,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.foo"
-                  id="bits-c16"
+                  id="bits-c17"
                 >
                   foo 
                   <!---->
@@ -2648,7 +2825,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
 </div>
 `;
 
-exports[`default-ui > object fields > with title and description from uiSchema > object 1`] = `
+exports[`default-ui > object fields > with title and description from uiSchema > object > normal 1`] = `
 <div>
   <!---->
   <form
@@ -2735,7 +2912,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.a"
-                  id="bits-c13"
+                  id="bits-c14"
                 >
                   My Item A 
                   <!---->
@@ -2842,7 +3019,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.b"
-                  id="bits-c14"
+                  id="bits-c15"
                 >
                   My Item B 
                   <!---->
@@ -2957,7 +3134,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
 </div>
 `;
 
-exports[`default-ui > object fields > with title and description from uiSchema > show add button and fields if additionalProperties is true and not an object 1`] = `
+exports[`default-ui > object fields > with title and description from uiSchema > show add button and fields if additionalProperties is true and not an object > normal 1`] = `
 <div>
   <!---->
   <form
@@ -3042,7 +3219,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.additionalProperty::key-input"
-                  id="bits-c17"
+                  id="bits-c18"
                 >
                   additionalProperty Key 
                   <span>
@@ -3129,7 +3306,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.additionalProperty"
-                  id="bits-c18"
+                  id="bits-c19"
                 >
                   additionalProperty 
                   <!---->
@@ -3260,7 +3437,7 @@ exports[`default-ui > object fields > with title and description from uiSchema >
 </div>
 `;
 
-exports[`default-ui > object fields > with title and description with global label off > additionalProperties 1`] = `
+exports[`default-ui > object fields > with title and description with global label off > additionalProperties > normal 1`] = `
 <div>
   <!---->
   <form
@@ -3475,7 +3652,7 @@ exports[`default-ui > object fields > with title and description with global lab
 </div>
 `;
 
-exports[`default-ui > object fields > with title and description with global label off > object 1`] = `
+exports[`default-ui > object fields > with title and description with global label off > object > normal 1`] = `
 <div>
   <!---->
   <form
@@ -3683,7 +3860,7 @@ exports[`default-ui > object fields > with title and description with global lab
 </div>
 `;
 
-exports[`default-ui > object fields > with title and description with global label off > show add button and fields if additionalProperties is true and not an object 1`] = `
+exports[`default-ui > object fields > with title and description with global label off > show add button and fields if additionalProperties is true and not an object > normal 1`] = `
 <div>
   <!---->
   <form
@@ -3898,7 +4075,7 @@ exports[`default-ui > object fields > with title and description with global lab
 </div>
 `;
 
-exports[`new-york-ui > object fields > additionalProperties 1`] = `
+exports[`new-york-ui > object fields > additionalProperties > normal 1`] = `
 <div>
   <!---->
   <form
@@ -3956,7 +4133,7 @@ exports[`new-york-ui > object fields > additionalProperties 1`] = `
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.foo::key-input"
-                  id="bits-c25"
+                  id="bits-c27"
                 >
                   foo Key 
                   <span>
@@ -4043,7 +4220,7 @@ exports[`new-york-ui > object fields > additionalProperties 1`] = `
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.foo"
-                  id="bits-c26"
+                  id="bits-c28"
                 >
                   foo 
                   <!---->
@@ -4174,7 +4351,184 @@ exports[`new-york-ui > object fields > additionalProperties 1`] = `
 </div>
 `;
 
-exports[`new-york-ui > object fields > object 1`] = `
+exports[`new-york-ui > object fields > has errors > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  data-label-root=""
+                  for="root.name"
+                  id="bits-c26"
+                >
+                  name 
+                  <!---->
+                  <!---->
+                </label>
+                
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.name::description root.name::help root.name::errors"
+                  class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                  id="root.name"
+                  name="root.name"
+                />
+                
+                <!---->
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-destructive list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`new-york-ui > object fields > object > normal 1`] = `
 <div>
   <!---->
   <form
@@ -4234,7 +4588,7 @@ exports[`new-york-ui > object fields > object 1`] = `
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.a"
-                  id="bits-c23"
+                  id="bits-c24"
                 >
                   A 
                   <!---->
@@ -4333,7 +4687,7 @@ exports[`new-york-ui > object fields > object 1`] = `
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.b"
-                  id="bits-c24"
+                  id="bits-c25"
                 >
                   B 
                   <!---->
@@ -4440,7 +4794,7 @@ exports[`new-york-ui > object fields > object 1`] = `
 </div>
 `;
 
-exports[`new-york-ui > object fields > show add button and fields if additionalProperties is true and not an object 1`] = `
+exports[`new-york-ui > object fields > show add button and fields if additionalProperties is true and not an object > normal 1`] = `
 <div>
   <!---->
   <form
@@ -4498,7 +4852,7 @@ exports[`new-york-ui > object fields > show add button and fields if additionalP
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.additionalProperty::key-input"
-                  id="bits-c27"
+                  id="bits-c29"
                 >
                   additionalProperty Key 
                   <span>
@@ -4585,7 +4939,7 @@ exports[`new-york-ui > object fields > show add button and fields if additionalP
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.additionalProperty"
-                  id="bits-c28"
+                  id="bits-c30"
                 >
                   additionalProperty 
                   <!---->
@@ -4716,7 +5070,7 @@ exports[`new-york-ui > object fields > show add button and fields if additionalP
 </div>
 `;
 
-exports[`new-york-ui > object fields > with title and description > additionalProperties 1`] = `
+exports[`new-york-ui > object fields > with title and description > additionalProperties > normal 1`] = `
 <div>
   <!---->
   <form
@@ -4801,7 +5155,7 @@ exports[`new-york-ui > object fields > with title and description > additionalPr
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.foo::key-input"
-                  id="bits-c31"
+                  id="bits-c33"
                 >
                   foo Key 
                   <span>
@@ -4888,7 +5242,7 @@ exports[`new-york-ui > object fields > with title and description > additionalPr
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.foo"
-                  id="bits-c32"
+                  id="bits-c34"
                 >
                   foo 
                   <!---->
@@ -5019,7 +5373,7 @@ exports[`new-york-ui > object fields > with title and description > additionalPr
 </div>
 `;
 
-exports[`new-york-ui > object fields > with title and description > object 1`] = `
+exports[`new-york-ui > object fields > with title and description > object > normal 1`] = `
 <div>
   <!---->
   <form
@@ -5106,7 +5460,7 @@ exports[`new-york-ui > object fields > with title and description > object 1`] =
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.a"
-                  id="bits-c29"
+                  id="bits-c31"
                 >
                   A 
                   <!---->
@@ -5213,7 +5567,7 @@ exports[`new-york-ui > object fields > with title and description > object 1`] =
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.b"
-                  id="bits-c30"
+                  id="bits-c32"
                 >
                   B 
                   <!---->
@@ -5328,7 +5682,7 @@ exports[`new-york-ui > object fields > with title and description > object 1`] =
 </div>
 `;
 
-exports[`new-york-ui > object fields > with title and description > show add button and fields if additionalProperties is true and not an object 1`] = `
+exports[`new-york-ui > object fields > with title and description > show add button and fields if additionalProperties is true and not an object > normal 1`] = `
 <div>
   <!---->
   <form
@@ -5413,7 +5767,7 @@ exports[`new-york-ui > object fields > with title and description > show add but
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.additionalProperty::key-input"
-                  id="bits-c33"
+                  id="bits-c35"
                 >
                   additionalProperty Key 
                   <span>
@@ -5500,7 +5854,7 @@ exports[`new-york-ui > object fields > with title and description > show add but
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.additionalProperty"
-                  id="bits-c34"
+                  id="bits-c36"
                 >
                   additionalProperty 
                   <!---->
@@ -5631,7 +5985,7 @@ exports[`new-york-ui > object fields > with title and description > show add but
 </div>
 `;
 
-exports[`new-york-ui > object fields > with title and description from both > additionalProperties 1`] = `
+exports[`new-york-ui > object fields > with title and description from both > additionalProperties > normal 1`] = `
 <div>
   <!---->
   <form
@@ -5716,313 +6070,313 @@ exports[`new-york-ui > object fields > with title and description from both > ad
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.foo::key-input"
+                  id="bits-c45"
+                >
+                  foo Key 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                  <!---->
+                </label>
+                
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                  class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                  id="root.foo::key-input"
+                  name="root.foo::key-input"
+                  required=""
+                />
+                
+                <!---->
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  data-label-root=""
+                  for="root.foo"
+                  id="bits-c46"
+                >
+                  foo 
+                  <!---->
+                  <!---->
+                </label>
+                
+                
+                
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                  class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                  id="root.foo"
+                  name="root.foo"
+                />
+                
+                <!---->
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <div
+            data-layout="object-property-controls"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+              type="button"
+            >
+              <!---->
+              <!---->
+              Del
+              
+              
+              <!---->
+            </button>
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`new-york-ui > object fields > with title and description from both > object > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+      <div
+        data-layout="object-field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          class="font-medium text-lg"
+          id="root::title"
+        >
+          My Field
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="text-muted-foreground"
+          id="root::description"
+        >
+          a fancier description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  data-label-root=""
+                  for="root.a"
                   id="bits-c43"
                 >
-                  foo Key 
-                  <span>
-                    *
-                  </span>
-                  <!---->
-                  <!---->
-                </label>
-                
-                
-                
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <div
-                class="flex gap-2 items-start"
-                data-layout="field-content"
-              >
-                <!---->
-                <!---->
-                <!---->
-                <!---->
-                <input
-                  aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
-                  class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.foo::key-input"
-                  name="root.foo::key-input"
-                  required=""
-                />
-                
-                <!---->
-                 
-                <!---->
-                
-                <!---->
-                
-                
-                <!---->
-              </div>
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
-            
-            
-            <!---->
-          </div>
-          
-          <!---->
-           
-          <div
-            class="grow"
-            data-layout="object-property-content"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="flex gap-2 flex-col"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-              <div
-                data-layout="field-meta"
-              >
-                <!---->
-                <!---->
-                <!---->
-                <!---->
-                <!---->
-                <label
-                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  data-label-root=""
-                  for="root.foo"
-                  id="bits-c44"
-                >
-                  foo 
-                  <!---->
-                  <!---->
-                </label>
-                
-                
-                
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <div
-                class="flex gap-2 items-start"
-                data-layout="field-content"
-              >
-                <!---->
-                <!---->
-                <!---->
-                <!---->
-                <input
-                  aria-describedby="root.foo::description root.foo::help root.foo::errors"
-                  class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                  id="root.foo"
-                  name="root.foo"
-                />
-                
-                <!---->
-                 
-                <!---->
-                
-                <!---->
-                
-                
-                <!---->
-              </div>
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
-            
-            
-            
-            <!---->
-          </div>
-          <!---->
-           
-          <!---->
-          <div
-            data-layout="object-property-controls"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <button
-              class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
-              type="button"
-            >
-              <!---->
-              <!---->
-              Del
-              
-              
-              <!---->
-            </button>
-            
-            
-            
-            
-            <!---->
-          </div>
-          
-          <!---->
-          <!---->
-        </div>
-        
-        
-        
-        
-        
-        
-        <!---->
-      </div>
-      <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
-    </div>
-    
-    
-    
-    <!---->
-     
-    <!---->
-    <!---->
-    <!---->
-    <button
-      class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
-      type="submit"
-    >
-      <!---->
-      <!---->
-      Submit
-      
-      
-      <!---->
-    </button>
-    
-    
-    
-    <!---->
-    <!---->
-  </form>
-  
-  
-</div>
-`;
-
-exports[`new-york-ui > object fields > with title and description from both > object 1`] = `
-<div>
-  <!---->
-  <form
-    class="flex flex-col gap-4"
-  >
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <div
-      class="flex gap-4 flex-col"
-      data-layout="object-field"
-    >
-      <!---->
-      <!---->
-      <div
-        data-layout="object-field-meta"
-      >
-        <!---->
-        <!---->
-        <div
-          class="font-medium text-lg"
-          id="root::title"
-        >
-          My Field
-        </div>
-        
-        <!---->
-         
-        <!---->
-        <div
-          class="text-muted-foreground"
-          id="root::description"
-        >
-          a fancier description
-        </div>
-        
-        <!---->
-        <!---->
-      </div>
-      
-      <!---->
-       
-      <div
-        class="flex gap-4 flex-col"
-        data-layout="object-properties"
-      >
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <div
-          class="flex gap-2 items-start"
-          data-layout="object-property"
-        >
-          <!---->
-          <!---->
-           
-          <div
-            class="grow"
-            data-layout="object-property-content"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="flex gap-2 flex-col"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-              <div
-                data-layout="field-meta"
-              >
-                <!---->
-                <!---->
-                <!---->
-                <!---->
-                <!---->
-                <label
-                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  data-label-root=""
-                  for="root.a"
-                  id="bits-c41"
-                >
                   My Item A 
                   <!---->
                   <!---->
@@ -6128,7 +6482,7 @@ exports[`new-york-ui > object fields > with title and description from both > ob
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.b"
-                  id="bits-c42"
+                  id="bits-c44"
                 >
                   My Item B 
                   <!---->
@@ -6243,7 +6597,7 @@ exports[`new-york-ui > object fields > with title and description from both > ob
 </div>
 `;
 
-exports[`new-york-ui > object fields > with title and description from uiSchema > additionalProperties 1`] = `
+exports[`new-york-ui > object fields > with title and description from uiSchema > additionalProperties > normal 1`] = `
 <div>
   <!---->
   <form
@@ -6328,7 +6682,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.foo::key-input"
-                  id="bits-c37"
+                  id="bits-c39"
                 >
                   foo Key 
                   <span>
@@ -6415,7 +6769,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.foo"
-                  id="bits-c38"
+                  id="bits-c40"
                 >
                   foo 
                   <!---->
@@ -6546,7 +6900,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
 </div>
 `;
 
-exports[`new-york-ui > object fields > with title and description from uiSchema > object 1`] = `
+exports[`new-york-ui > object fields > with title and description from uiSchema > object > normal 1`] = `
 <div>
   <!---->
   <form
@@ -6633,7 +6987,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.a"
-                  id="bits-c35"
+                  id="bits-c37"
                 >
                   My Item A 
                   <!---->
@@ -6740,7 +7094,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.b"
-                  id="bits-c36"
+                  id="bits-c38"
                 >
                   My Item B 
                   <!---->
@@ -6855,7 +7209,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
 </div>
 `;
 
-exports[`new-york-ui > object fields > with title and description from uiSchema > show add button and fields if additionalProperties is true and not an object 1`] = `
+exports[`new-york-ui > object fields > with title and description from uiSchema > show add button and fields if additionalProperties is true and not an object > normal 1`] = `
 <div>
   <!---->
   <form
@@ -6940,7 +7294,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.additionalProperty::key-input"
-                  id="bits-c39"
+                  id="bits-c41"
                 >
                   additionalProperty Key 
                   <span>
@@ -7027,7 +7381,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   data-label-root=""
                   for="root.additionalProperty"
-                  id="bits-c40"
+                  id="bits-c42"
                 >
                   additionalProperty 
                   <!---->
@@ -7158,7 +7512,7 @@ exports[`new-york-ui > object fields > with title and description from uiSchema 
 </div>
 `;
 
-exports[`new-york-ui > object fields > with title and description with global label off > additionalProperties 1`] = `
+exports[`new-york-ui > object fields > with title and description with global label off > additionalProperties > normal 1`] = `
 <div>
   <!---->
   <form
@@ -7373,7 +7727,7 @@ exports[`new-york-ui > object fields > with title and description with global la
 </div>
 `;
 
-exports[`new-york-ui > object fields > with title and description with global label off > object 1`] = `
+exports[`new-york-ui > object fields > with title and description with global label off > object > normal 1`] = `
 <div>
   <!---->
   <form
@@ -7581,7 +7935,7 @@ exports[`new-york-ui > object fields > with title and description with global la
 </div>
 `;
 
-exports[`new-york-ui > object fields > with title and description with global label off > show add button and fields if additionalProperties is true and not an object 1`] = `
+exports[`new-york-ui > object fields > with title and description with global label off > show add button and fields if additionalProperties is true and not an object > normal 1`] = `
 <div>
   <!---->
   <form

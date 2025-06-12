@@ -1,4 +1,4 @@
-import { describe } from "vitest";
+import { describe, test } from "vitest";
 import {
   type Schema,
   type Theme,
@@ -9,7 +9,7 @@ import {
 import { DEFAULT_SPECS, type s } from "../demo";
 
 import {
-  testSnapshot,
+  matchSnapshot,
   type MatchSnapshotOptions,
   type SnapshotFormOptions,
 } from "./core";
@@ -20,11 +20,11 @@ export function widgetTests(
   matchOptions?: MatchSnapshotOptions
 ) {
   const snapshot = (
-    title: string,
+    state: string,
     options: Omit<SnapshotFormOptions, "theme">
   ) =>
-    testSnapshot(
-      title,
+    matchSnapshot(
+      state,
       {
         ...options,
         theme,
@@ -33,7 +33,7 @@ export function widgetTests(
     );
 
   function testWidget(widget: string, schema: Schema, uiSchema: UiSchemaRoot) {
-    describe(widget, () => {
+    test(widget, () => {
       snapshot("normal", { schema, uiSchema });
       snapshot("error", {
         schema,
@@ -59,9 +59,11 @@ export function widgetTests(
     });
   }
 
-  for (const [key, [schema, uiSchema]] of Object.entries(
-    Object.assign(DEFAULT_SPECS, additionalSpecs)
-  )) {
-    testWidget(key, schema, uiSchema);
-  }
+  describe("widgets", () => {
+    for (const [key, [schema, uiSchema]] of Object.entries(
+      Object.assign(DEFAULT_SPECS, additionalSpecs)
+    )) {
+      testWidget(key, schema, uiSchema);
+    }
+  });
 }

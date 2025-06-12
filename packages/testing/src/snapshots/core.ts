@@ -1,7 +1,7 @@
 import type { Component } from "svelte";
-import { expect, test } from "vitest";
+import { expect } from "vitest";
 import { render } from "vitest-browser-svelte";
-import { type FormOptions, type Validator } from "@sjsf/form";
+import type { FormOptions, Validator } from "@sjsf/form";
 
 import * as defaults from "../components/form-defaults";
 import DefaultForm from "./form.svelte";
@@ -14,31 +14,24 @@ export type SnapshotFormOptions = Omit<FormOptions<any, Validator>, Defaults> &
 export type TestForm = Component<FormOptions<any, Validator>>;
 
 export interface MatchSnapshotOptions {
+  defaultFormOptions?: Partial<FormOptions<any, Validator>>;
   context?: Map<any, any>;
   Form?: TestForm;
 }
 
 export function matchSnapshot(
+  state: string,
   formOptions: SnapshotFormOptions,
-  { context, Form = DefaultForm }: MatchSnapshotOptions = {}
+  { context, defaultFormOptions, Form = DefaultForm }: MatchSnapshotOptions = {}
 ) {
   const { container } = render(Form, {
     target: document.body.appendChild(document.createElement("div")),
     context,
     props: {
       ...defaults,
+      ...defaultFormOptions,
       ...formOptions,
     },
   });
-  expect(container).toMatchSnapshot();
-}
-
-export function testSnapshot(
-  title: string,
-  options: SnapshotFormOptions,
-  matchOptions?: MatchSnapshotOptions
-) {
-  test(title, () => {
-    matchSnapshot(options, matchOptions);
-  });
+  expect(container).toMatchSnapshot(state);
 }

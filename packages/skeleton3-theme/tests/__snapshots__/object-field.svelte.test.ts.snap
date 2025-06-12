@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`object fields > additionalProperties 1`] = `
+exports[`object fields > additionalProperties > normal 1`] = `
 <div>
   <!---->
   <!---->
@@ -218,7 +218,144 @@ exports[`object fields > additionalProperties 1`] = `
 </div>
 `;
 
-exports[`object fields > object 1`] = `
+exports[`object fields > has errors > normal 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="flex gap-4 flex-col"
+    data-layout="object-field"
+  >
+    <!---->
+    <!---->
+     
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="object-properties"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+        data-layout="object-property"
+      >
+        <!---->
+        <!---->
+         
+        <div
+          class="grow"
+          data-layout="object-property-content"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="flex gap-2 flex-col"
+            data-layout="field"
+          >
+            <!---->
+            <!---->
+            <div
+              data-layout="field-meta"
+            >
+              <!---->
+              <!---->
+              <label
+                class="label-text"
+                for="root.name"
+              >
+                name 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <div
+              class="flex gap-2 items-start"
+              data-layout="field-content"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.name::description root.name::help root.name::errors"
+                class="input"
+                id="root.name"
+                name="root.name"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+        </div>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      
+      
+      
+      <!---->
+    </div>
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <ul
+      class="text-error-500 list-disc list-inside"
+      id="root::errors"
+      tabindex="-1"
+    >
+      <li>
+        error
+      </li>
+      
+    </ul>
+    
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+</div>
+`;
+
+exports[`object fields > object > normal 1`] = `
 <div>
   <!---->
   <!---->
@@ -431,7 +568,7 @@ exports[`object fields > object 1`] = `
 </div>
 `;
 
-exports[`object fields > show add button and fields if additionalProperties is true and not an object 1`] = `
+exports[`object fields > show add button and fields if additionalProperties is true and not an object > normal 1`] = `
 <div>
   <!---->
   <!---->
@@ -649,7 +786,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
 </div>
 `;
 
-exports[`object fields > with title and description > additionalProperties 1`] = `
+exports[`object fields > with title and description > additionalProperties > normal 1`] = `
 <div>
   <!---->
   <!---->
@@ -894,7 +1031,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
 </div>
 `;
 
-exports[`object fields > with title and description > object 1`] = `
+exports[`object fields > with title and description > object > normal 1`] = `
 <div>
   <!---->
   <!---->
@@ -1150,7 +1287,7 @@ exports[`object fields > with title and description > object 1`] = `
 </div>
 `;
 
-exports[`object fields > with title and description > show add button and fields if additionalProperties is true and not an object 1`] = `
+exports[`object fields > with title and description > show add button and fields if additionalProperties is true and not an object > normal 1`] = `
 <div>
   <!---->
   <!---->
@@ -1395,7 +1532,7 @@ exports[`object fields > with title and description > show add button and fields
 </div>
 `;
 
-exports[`object fields > with title and description from both > additionalProperties 1`] = `
+exports[`object fields > with title and description from both > additionalProperties > normal 1`] = `
 <div>
   <!---->
   <!---->
@@ -1640,7 +1777,7 @@ exports[`object fields > with title and description from both > additionalProper
 </div>
 `;
 
-exports[`object fields > with title and description from both > object 1`] = `
+exports[`object fields > with title and description from both > object > normal 1`] = `
 <div>
   <!---->
   <!---->
@@ -1896,7 +2033,7 @@ exports[`object fields > with title and description from both > object 1`] = `
 </div>
 `;
 
-exports[`object fields > with title and description from uiSchema > additionalProperties 1`] = `
+exports[`object fields > with title and description from uiSchema > additionalProperties > normal 1`] = `
 <div>
   <!---->
   <!---->
@@ -2141,7 +2278,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
 </div>
 `;
 
-exports[`object fields > with title and description from uiSchema > object 1`] = `
+exports[`object fields > with title and description from uiSchema > object > normal 1`] = `
 <div>
   <!---->
   <!---->
@@ -2397,7 +2534,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
 </div>
 `;
 
-exports[`object fields > with title and description from uiSchema > show add button and fields if additionalProperties is true and not an object 1`] = `
+exports[`object fields > with title and description from uiSchema > show add button and fields if additionalProperties is true and not an object > normal 1`] = `
 <div>
   <!---->
   <!---->
@@ -2642,7 +2779,7 @@ exports[`object fields > with title and description from uiSchema > show add but
 </div>
 `;
 
-exports[`object fields > with title and description with global label off > additionalProperties 1`] = `
+exports[`object fields > with title and description with global label off > additionalProperties > normal 1`] = `
 <div>
   <!---->
   <!---->
@@ -2817,7 +2954,7 @@ exports[`object fields > with title and description with global label off > addi
 </div>
 `;
 
-exports[`object fields > with title and description with global label off > object 1`] = `
+exports[`object fields > with title and description with global label off > object > normal 1`] = `
 <div>
   <!---->
   <!---->
@@ -2990,7 +3127,7 @@ exports[`object fields > with title and description with global label off > obje
 </div>
 `;
 
-exports[`object fields > with title and description with global label off > show add button and fields if additionalProperties is true and not an object 1`] = `
+exports[`object fields > with title and description with global label off > show add button and fields if additionalProperties is true and not an object > normal 1`] = `
 <div>
   <!---->
   <!---->

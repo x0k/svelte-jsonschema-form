@@ -2,13 +2,15 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import type {
-  Schema,
-  Theme,
-  UiSchema,
-  UiSchemaRoot,
-} from "@sjsf/form";
 import { describe, test } from "vitest";
+import {
+  pathToId,
+  type Schema,
+  type Theme,
+  type UiSchema,
+  type UiSchemaRoot,
+} from "@sjsf/form";
+import { resolver } from "@sjsf/form/resolvers/compat";
 
 import {
   matchSnapshot,
@@ -47,11 +49,15 @@ const labelsOff: UiSchemaRoot = {
 export function objectTests(theme: Theme, matchOptions?: MatchSnapshotOptions) {
   const snapshot = (options: Omit<SnapshotFormOptions, "theme">) =>
     matchSnapshot(
+      "normal",
       {
         ...options,
         theme,
       },
-      matchOptions
+            {
+        ...matchOptions,
+        defaultFormOptions: { ...matchOptions?.defaultFormOptions, resolver },
+      }
     );
 
   describe("object fields", () => {
@@ -64,6 +70,27 @@ export function objectTests(theme: Theme, matchOptions?: MatchSnapshotOptions) {
         },
       };
       snapshot({ schema });
+    });
+    test("has errors", () => {
+      const schema: Schema = {
+        type: "object",
+        properties: {
+          name: {
+            type: "string",
+          },
+        },
+      };
+      snapshot({
+        schema,
+        initialErrors: [
+          {
+            error: null as any,
+            instanceId: pathToId([]),
+            propertyTitle: "title",
+            message: "error",
+          },
+        ],
+      });
     });
     test("additionalProperties", () => {
       const schema: Schema = {

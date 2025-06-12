@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`checkbox > disabled 1`] = `
+exports[`widgets > checkbox > disabled 1`] = `
 <div>
   <!---->
   <!---->
@@ -52,7 +52,7 @@ exports[`checkbox > disabled 1`] = `
 </div>
 `;
 
-exports[`checkbox > error 1`] = `
+exports[`widgets > checkbox > error 1`] = `
 <div>
   <!---->
   <!---->
@@ -115,7 +115,7 @@ exports[`checkbox > error 1`] = `
 </div>
 `;
 
-exports[`checkbox > normal 1`] = `
+exports[`widgets > checkbox > normal 1`] = `
 <div>
   <!---->
   <!---->
@@ -166,7 +166,7 @@ exports[`checkbox > normal 1`] = `
 </div>
 `;
 
-exports[`checkbox > readonly 1`] = `
+exports[`widgets > checkbox > readonly 1`] = `
 <div>
   <!---->
   <!---->
@@ -218,7 +218,7 @@ exports[`checkbox > readonly 1`] = `
 </div>
 `;
 
-exports[`checkboxes > disabled 1`] = `
+exports[`widgets > checkboxes > disabled 1`] = `
 <div>
   <!---->
   <!---->
@@ -306,7 +306,7 @@ exports[`checkboxes > disabled 1`] = `
 </div>
 `;
 
-exports[`checkboxes > error 1`] = `
+exports[`widgets > checkboxes > error 1`] = `
 <div>
   <!---->
   <!---->
@@ -402,7 +402,7 @@ exports[`checkboxes > error 1`] = `
 </div>
 `;
 
-exports[`checkboxes > normal 1`] = `
+exports[`widgets > checkboxes > normal 1`] = `
 <div>
   <!---->
   <!---->
@@ -486,7 +486,7 @@ exports[`checkboxes > normal 1`] = `
 </div>
 `;
 
-exports[`checkboxes > readonly 1`] = `
+exports[`widgets > checkboxes > readonly 1`] = `
 <div>
   <!---->
   <!---->
@@ -574,7 +574,7 @@ exports[`checkboxes > readonly 1`] = `
 </div>
 `;
 
-exports[`datePicker > disabled 1`] = `
+exports[`widgets > datePicker > disabled 1`] = `
 <div>
   <!---->
   <!---->
@@ -628,7 +628,7 @@ exports[`datePicker > disabled 1`] = `
 </div>
 `;
 
-exports[`datePicker > error 1`] = `
+exports[`widgets > datePicker > error 1`] = `
 <div>
   <!---->
   <!---->
@@ -693,7 +693,7 @@ exports[`datePicker > error 1`] = `
 </div>
 `;
 
-exports[`datePicker > normal 1`] = `
+exports[`widgets > datePicker > normal 1`] = `
 <div>
   <!---->
   <!---->
@@ -746,7 +746,7 @@ exports[`datePicker > normal 1`] = `
 </div>
 `;
 
-exports[`datePicker > readonly 1`] = `
+exports[`widgets > datePicker > readonly 1`] = `
 <div>
   <!---->
   <!---->
@@ -800,7 +800,7 @@ exports[`datePicker > readonly 1`] = `
 </div>
 `;
 
-exports[`file > disabled 1`] = `
+exports[`widgets > file > disabled 1`] = `
 <div>
   <!---->
   <!---->
@@ -852,7 +852,7 @@ exports[`file > disabled 1`] = `
 </div>
 `;
 
-exports[`file > error 1`] = `
+exports[`widgets > file > error 1`] = `
 <div>
   <!---->
   <!---->
@@ -915,7 +915,7 @@ exports[`file > error 1`] = `
 </div>
 `;
 
-exports[`file > normal 1`] = `
+exports[`widgets > file > normal 1`] = `
 <div>
   <!---->
   <!---->
@@ -966,7 +966,7 @@ exports[`file > normal 1`] = `
 </div>
 `;
 
-exports[`file > readonly 1`] = `
+exports[`widgets > file > readonly 1`] = `
 <div>
   <!---->
   <!---->
@@ -1018,7 +1018,7 @@ exports[`file > readonly 1`] = `
 </div>
 `;
 
-exports[`multiFile > disabled 1`] = `
+exports[`widgets > multiFile > disabled 1`] = `
 <div>
   <!---->
   <!---->
@@ -1071,7 +1071,7 @@ exports[`multiFile > disabled 1`] = `
 </div>
 `;
 
-exports[`multiFile > error 1`] = `
+exports[`widgets > multiFile > error 1`] = `
 <div>
   <!---->
   <!---->
@@ -1135,7 +1135,7 @@ exports[`multiFile > error 1`] = `
 </div>
 `;
 
-exports[`multiFile > normal 1`] = `
+exports[`widgets > multiFile > normal 1`] = `
 <div>
   <!---->
   <!---->
@@ -1187,7 +1187,7 @@ exports[`multiFile > normal 1`] = `
 </div>
 `;
 
-exports[`multiFile > readonly 1`] = `
+exports[`widgets > multiFile > readonly 1`] = `
 <div>
   <!---->
   <!---->
@@ -1240,7 +1240,7 @@ exports[`multiFile > readonly 1`] = `
 </div>
 `;
 
-exports[`multiSelect > disabled 1`] = `
+exports[`widgets > multiSelect > disabled 1`] = `
 <div>
   <!---->
   <!---->
@@ -1312,7 +1312,7 @@ exports[`multiSelect > disabled 1`] = `
 </div>
 `;
 
-exports[`multiSelect > error 1`] = `
+exports[`widgets > multiSelect > error 1`] = `
 <div>
   <!---->
   <!---->
@@ -1395,7 +1395,7 @@ exports[`multiSelect > error 1`] = `
 </div>
 `;
 
-exports[`multiSelect > normal 1`] = `
+exports[`widgets > multiSelect > normal 1`] = `
 <div>
   <!---->
   <!---->
@@ -1466,7 +1466,7 @@ exports[`multiSelect > normal 1`] = `
 </div>
 `;
 
-exports[`multiSelect > readonly 1`] = `
+exports[`widgets > multiSelect > readonly 1`] = `
 <div>
   <!---->
   <!---->
@@ -1537,7 +1537,7 @@ exports[`multiSelect > readonly 1`] = `
 </div>
 `;
 
-exports[`number > disabled 1`] = `
+exports[`widgets > number > disabled 1`] = `
 <div>
   <!---->
   <!---->
@@ -1592,7 +1592,7 @@ exports[`number > disabled 1`] = `
 </div>
 `;
 
-exports[`number > error 1`] = `
+exports[`widgets > number > error 1`] = `
 <div>
   <!---->
   <!---->
@@ -1658,7 +1658,7 @@ exports[`number > error 1`] = `
 </div>
 `;
 
-exports[`number > normal 1`] = `
+exports[`widgets > number > normal 1`] = `
 <div>
   <!---->
   <!---->
@@ -1712,7 +1712,7 @@ exports[`number > normal 1`] = `
 </div>
 `;
 
-exports[`number > readonly 1`] = `
+exports[`widgets > number > readonly 1`] = `
 <div>
   <!---->
   <!---->
@@ -1767,7 +1767,7 @@ exports[`number > readonly 1`] = `
 </div>
 `;
 
-exports[`radio > disabled 1`] = `
+exports[`widgets > radio > disabled 1`] = `
 <div>
   <!---->
   <!---->
@@ -1855,7 +1855,7 @@ exports[`radio > disabled 1`] = `
 </div>
 `;
 
-exports[`radio > error 1`] = `
+exports[`widgets > radio > error 1`] = `
 <div>
   <!---->
   <!---->
@@ -1951,7 +1951,7 @@ exports[`radio > error 1`] = `
 </div>
 `;
 
-exports[`radio > normal 1`] = `
+exports[`widgets > radio > normal 1`] = `
 <div>
   <!---->
   <!---->
@@ -2035,7 +2035,7 @@ exports[`radio > normal 1`] = `
 </div>
 `;
 
-exports[`radio > readonly 1`] = `
+exports[`widgets > radio > readonly 1`] = `
 <div>
   <!---->
   <!---->
@@ -2123,7 +2123,7 @@ exports[`radio > readonly 1`] = `
 </div>
 `;
 
-exports[`range > disabled 1`] = `
+exports[`widgets > range > disabled 1`] = `
 <div>
   <!---->
   <!---->
@@ -2174,7 +2174,7 @@ exports[`range > disabled 1`] = `
 </div>
 `;
 
-exports[`range > error 1`] = `
+exports[`widgets > range > error 1`] = `
 <div>
   <!---->
   <!---->
@@ -2236,7 +2236,7 @@ exports[`range > error 1`] = `
 </div>
 `;
 
-exports[`range > normal 1`] = `
+exports[`widgets > range > normal 1`] = `
 <div>
   <!---->
   <!---->
@@ -2286,7 +2286,7 @@ exports[`range > normal 1`] = `
 </div>
 `;
 
-exports[`range > readonly 1`] = `
+exports[`widgets > range > readonly 1`] = `
 <div>
   <!---->
   <!---->
@@ -2337,7 +2337,7 @@ exports[`range > readonly 1`] = `
 </div>
 `;
 
-exports[`select > disabled 1`] = `
+exports[`widgets > select > disabled 1`] = `
 <div>
   <!---->
   <!---->
@@ -2414,7 +2414,7 @@ exports[`select > disabled 1`] = `
 </div>
 `;
 
-exports[`select > error 1`] = `
+exports[`widgets > select > error 1`] = `
 <div>
   <!---->
   <!---->
@@ -2502,7 +2502,7 @@ exports[`select > error 1`] = `
 </div>
 `;
 
-exports[`select > normal 1`] = `
+exports[`widgets > select > normal 1`] = `
 <div>
   <!---->
   <!---->
@@ -2578,7 +2578,7 @@ exports[`select > normal 1`] = `
 </div>
 `;
 
-exports[`select > readonly 1`] = `
+exports[`widgets > select > readonly 1`] = `
 <div>
   <!---->
   <!---->
@@ -2654,7 +2654,7 @@ exports[`select > readonly 1`] = `
 </div>
 `;
 
-exports[`text > disabled 1`] = `
+exports[`widgets > text > disabled 1`] = `
 <div>
   <!---->
   <!---->
@@ -2708,7 +2708,7 @@ exports[`text > disabled 1`] = `
 </div>
 `;
 
-exports[`text > error 1`] = `
+exports[`widgets > text > error 1`] = `
 <div>
   <!---->
   <!---->
@@ -2773,7 +2773,7 @@ exports[`text > error 1`] = `
 </div>
 `;
 
-exports[`text > normal 1`] = `
+exports[`widgets > text > normal 1`] = `
 <div>
   <!---->
   <!---->
@@ -2826,7 +2826,7 @@ exports[`text > normal 1`] = `
 </div>
 `;
 
-exports[`text > readonly 1`] = `
+exports[`widgets > text > readonly 1`] = `
 <div>
   <!---->
   <!---->
@@ -2880,7 +2880,7 @@ exports[`text > readonly 1`] = `
 </div>
 `;
 
-exports[`textarea > disabled 1`] = `
+exports[`widgets > textarea > disabled 1`] = `
 <div>
   <!---->
   <!---->
@@ -2929,7 +2929,7 @@ exports[`textarea > disabled 1`] = `
 </div>
 `;
 
-exports[`textarea > error 1`] = `
+exports[`widgets > textarea > error 1`] = `
 <div>
   <!---->
   <!---->
@@ -2989,7 +2989,7 @@ exports[`textarea > error 1`] = `
 </div>
 `;
 
-exports[`textarea > normal 1`] = `
+exports[`widgets > textarea > normal 1`] = `
 <div>
   <!---->
   <!---->
@@ -3037,7 +3037,7 @@ exports[`textarea > normal 1`] = `
 </div>
 `;
 
-exports[`textarea > readonly 1`] = `
+exports[`widgets > textarea > readonly 1`] = `
 <div>
   <!---->
   <!---->

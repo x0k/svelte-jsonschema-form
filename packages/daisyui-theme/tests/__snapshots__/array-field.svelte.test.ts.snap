@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`object fields > additionalProperties > normal 1`] = `
+exports[`array fields > array > normal 1`] = `
 <div>
   <!---->
   <form
@@ -12,14 +12,85 @@ exports[`object fields > additionalProperties > normal 1`] = `
     <!---->
     <div
       class="flex gap-4 flex-col"
-      data-layout="object-field"
+      data-layout="array-field"
     >
       <!---->
       <!---->
        
       <div
         class="flex gap-4 flex-col"
-        data-layout="object-properties"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <button
+        class="btn join-item btn-sm"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`array fields > array icons > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="array-items"
       >
         <!---->
         <!---->
@@ -29,14 +100,14 @@ exports[`object fields > additionalProperties > normal 1`] = `
         <!---->
         <div
           class="flex gap-2 items-start"
-          data-layout="object-property"
+          data-layout="array-item"
         >
-          <!---->
           <!---->
           <div
             class="grow"
-            data-layout="object-property-key-input"
+            data-layout="array-item-content"
           >
+            <!---->
             <!---->
             <!---->
             <!---->
@@ -53,9 +124,9 @@ exports[`object fields > additionalProperties > normal 1`] = `
                 <!---->
                 <label
                   class="label-text"
-                  for="root.foo::key-input"
+                  for="root.0"
                 >
-                  foo Key 
+                  -1 
                   <span>
                     *
                   </span>
@@ -77,10 +148,10 @@ exports[`object fields > additionalProperties > normal 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
-                  class="input"
-                  id="root.foo::key-input"
-                  name="root.foo::key-input"
+                  aria-describedby="root.0::description root.0::help root.0::errors"
+                  class="input input-bordered grow"
+                  id="root.0"
+                  name="root.0"
                   required=""
                   type="text"
                 />
@@ -102,14 +173,89 @@ exports[`object fields > additionalProperties > normal 1`] = `
             
             
             
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <div
+            class="flex items-start join"
+            data-layout="array-item-controls"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
             <!---->
           </div>
           
           <!---->
-           
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="array-item"
+        >
+          <!---->
           <div
             class="grow"
-            data-layout="object-property-content"
+            data-layout="array-item-content"
           >
             <!---->
             <!---->
@@ -128,9 +274,12 @@ exports[`object fields > additionalProperties > normal 1`] = `
                 <!---->
                 <label
                   class="label-text"
-                  for="root.foo"
+                  for="root.1"
                 >
-                  foo 
+                  -2 
+                  <span>
+                    *
+                  </span>
                   <!---->
                 </label>
                 
@@ -149,10 +298,11 @@ exports[`object fields > additionalProperties > normal 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.foo::description root.foo::help root.foo::errors"
-                  class="input"
-                  id="root.foo"
-                  name="root.foo"
+                  aria-describedby="root.1::description root.1::help root.1::errors"
+                  class="input input-bordered grow"
+                  id="root.1"
+                  name="root.1"
+                  required=""
                   type="text"
                 />
                  
@@ -180,12 +330,52 @@ exports[`object fields > additionalProperties > normal 1`] = `
            
           <!---->
           <div
-            data-layout="object-property-controls"
+            class="flex items-start join"
+            data-layout="array-item-controls"
           >
             <!---->
             <!---->
+            <!---->
             <button
-              class="btn preset-filled"
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="btn join-item btn-sm"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
               type="button"
             >
               <!---->
@@ -194,6 +384,7 @@ exports[`object fields > additionalProperties > normal 1`] = `
               <!---->
             </button>
             
+            <!---->
             
             <!---->
           </div>
@@ -212,6 +403,17 @@ exports[`object fields > additionalProperties > normal 1`] = `
       <!---->
        
       <!---->
+      <button
+        class="btn join-item btn-sm"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
+      
+      <!---->
        
       <!---->
       <!---->
@@ -223,7 +425,7 @@ exports[`object fields > additionalProperties > normal 1`] = `
      
     <!---->
     <button
-      class="btn preset-filled preset-filled-primary-500 w-full"
+      class="btn btn-primary w-full"
       type="submit"
     >
       <!---->
@@ -240,7 +442,42 @@ exports[`object fields > additionalProperties > normal 1`] = `
 </div>
 `;
 
-exports[`object fields > has errors > normal 1`] = `
+exports[`array fields > checkboxes > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <pre
+      style="color: red;"
+    >
+      "multiEnumField" component not found
+    </pre>
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`array fields > empty errors array > normal 1`] = `
 <div>
   <!---->
   <form
@@ -317,7 +554,7 @@ exports[`object fields > has errors > normal 1`] = `
                 <!---->
                 <input
                   aria-describedby="root.name::description root.name::help root.name::errors"
-                  class="input"
+                  class="input input-bordered grow"
                   id="root.name"
                   name="root.name"
                   type="text"
@@ -362,7 +599,7 @@ exports[`object fields > has errors > normal 1`] = `
        
       <!---->
       <ul
-        class="text-error-500 list-disc list-inside"
+        class="text-error list-disc list-inside"
         id="root::errors"
         tabindex="-1"
       >
@@ -382,7 +619,7 @@ exports[`object fields > has errors > normal 1`] = `
      
     <!---->
     <button
-      class="btn preset-filled preset-filled-primary-500 w-full"
+      class="btn btn-primary w-full"
       type="submit"
     >
       <!---->
@@ -399,7 +636,7 @@ exports[`object fields > has errors > normal 1`] = `
 </div>
 `;
 
-exports[`object fields > object > normal 1`] = `
+exports[`array fields > fixed array > normal 1`] = `
 <div>
   <!---->
   <form
@@ -411,14 +648,14 @@ exports[`object fields > object > normal 1`] = `
     <!---->
     <div
       class="flex gap-4 flex-col"
-      data-layout="object-field"
+      data-layout="array-field"
     >
       <!---->
       <!---->
        
       <div
         class="flex gap-4 flex-col"
-        data-layout="object-properties"
+        data-layout="array-items"
       >
         <!---->
         <!---->
@@ -428,14 +665,12 @@ exports[`object fields > object > normal 1`] = `
         <!---->
         <div
           class="flex gap-2 items-start"
-          data-layout="object-property"
+          data-layout="array-item"
         >
           <!---->
-          <!---->
-           
           <div
             class="grow"
-            data-layout="object-property-content"
+            data-layout="array-item-content"
           >
             <!---->
             <!---->
@@ -447,26 +682,6 @@ exports[`object fields > object > normal 1`] = `
             >
               <!---->
               <!---->
-              <div
-                data-layout="field-meta"
-              >
-                <!---->
-                <!---->
-                <label
-                  class="label-text"
-                  for="root.a"
-                >
-                  A 
-                  <!---->
-                </label>
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
                
               <div
                 class="flex gap-2 items-start"
@@ -475,10 +690,11 @@ exports[`object fields > object > normal 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.a::description root.a::help root.a::errors"
-                  class="input"
-                  id="root.a"
-                  name="root.a"
+                  aria-describedby="root.0::description root.0::help root.0::errors"
+                  class="input input-bordered grow"
+                  id="root.0"
+                  name="root.0"
+                  required=""
                   type="text"
                 />
                  
@@ -515,14 +731,12 @@ exports[`object fields > object > normal 1`] = `
         <!---->
         <div
           class="flex gap-2 items-start"
-          data-layout="object-property"
+          data-layout="array-item"
         >
           <!---->
-          <!---->
-           
           <div
             class="grow"
-            data-layout="object-property-content"
+            data-layout="array-item-content"
           >
             <!---->
             <!---->
@@ -534,26 +748,6 @@ exports[`object fields > object > normal 1`] = `
             >
               <!---->
               <!---->
-              <div
-                data-layout="field-meta"
-              >
-                <!---->
-                <!---->
-                <label
-                  class="label-text"
-                  for="root.b"
-                >
-                  B 
-                  <!---->
-                </label>
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
                
               <div
                 class="flex gap-2 items-start"
@@ -562,10 +756,11 @@ exports[`object fields > object > normal 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.b::description root.b::help root.b::errors"
-                  class="input"
-                  id="root.b"
-                  name="root.b"
+                  aria-describedby="root.1::description root.1::help root.1::errors"
+                  class="input input-bordered grow"
+                  id="root.1"
+                  name="root.1"
+                  required=""
                   step="any"
                   type="number"
                 />
@@ -617,7 +812,7 @@ exports[`object fields > object > normal 1`] = `
      
     <!---->
     <button
-      class="btn preset-filled preset-filled-primary-500 w-full"
+      class="btn btn-primary w-full"
       type="submit"
     >
       <!---->
@@ -634,7 +829,7 @@ exports[`object fields > object > normal 1`] = `
 </div>
 `;
 
-exports[`object fields > show add button and fields if additionalProperties is true and not an object > normal 1`] = `
+exports[`with title and description > array > normal 1`] = `
 <div>
   <!---->
   <form
@@ -646,252 +841,12 @@ exports[`object fields > show add button and fields if additionalProperties is t
     <!---->
     <div
       class="flex gap-4 flex-col"
-      data-layout="object-field"
-    >
-      <!---->
-      <!---->
-       
-      <div
-        class="flex gap-4 flex-col"
-        data-layout="object-properties"
-      >
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <div
-          class="flex gap-2 items-start"
-          data-layout="object-property"
-        >
-          <!---->
-          <!---->
-          <div
-            class="grow"
-            data-layout="object-property-key-input"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="flex gap-2 flex-col"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-              <div
-                data-layout="field-meta"
-              >
-                <!---->
-                <!---->
-                <label
-                  class="label-text"
-                  for="root.additionalProperty::key-input"
-                >
-                  additionalProperty Key 
-                  <span>
-                    *
-                  </span>
-                  <!---->
-                </label>
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <div
-                class="flex gap-2 items-start"
-                data-layout="field-content"
-              >
-                <!---->
-                <!---->
-                <input
-                  aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
-                  class="input"
-                  id="root.additionalProperty::key-input"
-                  name="root.additionalProperty::key-input"
-                  required=""
-                  type="text"
-                />
-                 
-                <!---->
-                
-                <!---->
-                
-                
-                <!---->
-              </div>
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
-            
-            
-            <!---->
-          </div>
-          
-          <!---->
-           
-          <div
-            class="grow"
-            data-layout="object-property-content"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="flex gap-2 flex-col"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-              <div
-                data-layout="field-meta"
-              >
-                <!---->
-                <!---->
-                <label
-                  class="label-text"
-                  for="root.additionalProperty"
-                >
-                  additionalProperty 
-                  <!---->
-                </label>
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <div
-                class="flex gap-2 items-start"
-                data-layout="field-content"
-              >
-                <!---->
-                <!---->
-                <input
-                  aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
-                  class="input"
-                  id="root.additionalProperty"
-                  name="root.additionalProperty"
-                  type="text"
-                />
-                 
-                <!---->
-                
-                <!---->
-                
-                
-                <!---->
-              </div>
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
-            
-            
-            
-            <!---->
-          </div>
-          <!---->
-           
-          <!---->
-          <div
-            data-layout="object-property-controls"
-          >
-            <!---->
-            <!---->
-            <button
-              class="btn preset-filled"
-              type="button"
-            >
-              <!---->
-              Del
-              
-              <!---->
-            </button>
-            
-            
-            <!---->
-          </div>
-          
-          <!---->
-          <!---->
-        </div>
-        
-        
-        
-        
-        
-        
-        <!---->
-      </div>
-      <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
-    </div>
-    
-    
-    
-    <!---->
-     
-    <!---->
-    <button
-      class="btn preset-filled preset-filled-primary-500 w-full"
-      type="submit"
-    >
-      <!---->
-      Submit
-      
-      <!---->
-    </button>
-    
-    <!---->
-    <!---->
-  </form>
-  
-  
-</div>
-`;
-
-exports[`object fields > with title and description > additionalProperties > normal 1`] = `
-<div>
-  <!---->
-  <form
-    class="flex flex-col gap-4"
-  >
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <div
-      class="flex gap-4 flex-col"
-      data-layout="object-field"
+      data-layout="array-field"
     >
       <!---->
       <!---->
       <div
-        data-layout="object-field-meta"
+        data-layout="array-field-meta"
       >
         <!---->
         <!---->
@@ -906,7 +861,7 @@ exports[`object fields > with title and description > additionalProperties > nor
          
         <!---->
         <div
-          class="opacity-60"
+          class="label-text-alt"
           id="root::description"
         >
           a test description
@@ -920,191 +875,11 @@ exports[`object fields > with title and description > additionalProperties > nor
        
       <div
         class="flex gap-4 flex-col"
-        data-layout="object-properties"
+        data-layout="array-items"
       >
         <!---->
         <!---->
         <!---->
-        <!---->
-        <!---->
-        <!---->
-        <div
-          class="flex gap-2 items-start"
-          data-layout="object-property"
-        >
-          <!---->
-          <!---->
-          <div
-            class="grow"
-            data-layout="object-property-key-input"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="flex gap-2 flex-col"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-              <div
-                data-layout="field-meta"
-              >
-                <!---->
-                <!---->
-                <label
-                  class="label-text"
-                  for="root.foo::key-input"
-                >
-                  foo Key 
-                  <span>
-                    *
-                  </span>
-                  <!---->
-                </label>
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <div
-                class="flex gap-2 items-start"
-                data-layout="field-content"
-              >
-                <!---->
-                <!---->
-                <input
-                  aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
-                  class="input"
-                  id="root.foo::key-input"
-                  name="root.foo::key-input"
-                  required=""
-                  type="text"
-                />
-                 
-                <!---->
-                
-                <!---->
-                
-                
-                <!---->
-              </div>
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
-            
-            
-            <!---->
-          </div>
-          
-          <!---->
-           
-          <div
-            class="grow"
-            data-layout="object-property-content"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="flex gap-2 flex-col"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-              <div
-                data-layout="field-meta"
-              >
-                <!---->
-                <!---->
-                <label
-                  class="label-text"
-                  for="root.foo"
-                >
-                  foo 
-                  <!---->
-                </label>
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <div
-                class="flex gap-2 items-start"
-                data-layout="field-content"
-              >
-                <!---->
-                <!---->
-                <input
-                  aria-describedby="root.foo::description root.foo::help root.foo::errors"
-                  class="input"
-                  id="root.foo"
-                  name="root.foo"
-                  type="text"
-                />
-                 
-                <!---->
-                
-                <!---->
-                
-                
-                <!---->
-              </div>
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
-            
-            
-            
-            <!---->
-          </div>
-          <!---->
-           
-          <!---->
-          <div
-            data-layout="object-property-controls"
-          >
-            <!---->
-            <!---->
-            <button
-              class="btn preset-filled"
-              type="button"
-            >
-              <!---->
-              Del
-              
-              <!---->
-            </button>
-            
-            
-            <!---->
-          </div>
-          
-          <!---->
-          <!---->
-        </div>
-        
-        
-        
         
         
         
@@ -1112,6 +887,17 @@ exports[`object fields > with title and description > additionalProperties > nor
       </div>
       <!---->
        
+      <!---->
+      <button
+        class="btn join-item btn-sm"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
+      
       <!---->
        
       <!---->
@@ -1124,7 +910,7 @@ exports[`object fields > with title and description > additionalProperties > nor
      
     <!---->
     <button
-      class="btn preset-filled preset-filled-primary-500 w-full"
+      class="btn btn-primary w-full"
       type="submit"
     >
       <!---->
@@ -1141,7 +927,7 @@ exports[`object fields > with title and description > additionalProperties > nor
 </div>
 `;
 
-exports[`object fields > with title and description > object > normal 1`] = `
+exports[`with title and description > array icons > normal 1`] = `
 <div>
   <!---->
   <form
@@ -1153,12 +939,12 @@ exports[`object fields > with title and description > object > normal 1`] = `
     <!---->
     <div
       class="flex gap-4 flex-col"
-      data-layout="object-field"
+      data-layout="array-field"
     >
       <!---->
       <!---->
       <div
-        data-layout="object-field-meta"
+        data-layout="array-field-meta"
       >
         <!---->
         <!---->
@@ -1173,7 +959,7 @@ exports[`object fields > with title and description > object > normal 1`] = `
          
         <!---->
         <div
-          class="opacity-60"
+          class="label-text-alt"
           id="root::description"
         >
           a test description
@@ -1187,7 +973,7 @@ exports[`object fields > with title and description > object > normal 1`] = `
        
       <div
         class="flex gap-4 flex-col"
-        data-layout="object-properties"
+        data-layout="array-items"
       >
         <!---->
         <!---->
@@ -1197,14 +983,12 @@ exports[`object fields > with title and description > object > normal 1`] = `
         <!---->
         <div
           class="flex gap-2 items-start"
-          data-layout="object-property"
+          data-layout="array-item"
         >
           <!---->
-          <!---->
-           
           <div
             class="grow"
-            data-layout="object-property-content"
+            data-layout="array-item-content"
           >
             <!---->
             <!---->
@@ -1223,9 +1007,12 @@ exports[`object fields > with title and description > object > normal 1`] = `
                 <!---->
                 <label
                   class="label-text"
-                  for="root.a"
+                  for="root.0"
                 >
-                  A 
+                  Test item-1 
+                  <span>
+                    *
+                  </span>
                   <!---->
                 </label>
                 
@@ -1233,10 +1020,10 @@ exports[`object fields > with title and description > object > normal 1`] = `
                  
                 <!---->
                 <div
-                  class="opacity-60"
-                  id="root.a::description"
+                  class="label-text-alt"
+                  id="root.0::description"
                 >
-                  A description
+                  a test item description
                 </div>
                 
                 <!---->
@@ -1252,10 +1039,11 @@ exports[`object fields > with title and description > object > normal 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.a::description root.a::help root.a::errors"
-                  class="input"
-                  id="root.a"
-                  name="root.a"
+                  aria-describedby="root.0::description root.0::help root.0::errors"
+                  class="input input-bordered grow"
+                  id="root.0"
+                  name="root.0"
+                  required=""
                   type="text"
                 />
                  
@@ -1282,6 +1070,67 @@ exports[`object fields > with title and description > object > normal 1`] = `
           <!---->
            
           <!---->
+          <div
+            class="flex items-start join"
+            data-layout="array-item-controls"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
+            <!---->
+          </div>
+          
+          <!---->
           <!---->
         </div>
         
@@ -1292,14 +1141,12 @@ exports[`object fields > with title and description > object > normal 1`] = `
         <!---->
         <div
           class="flex gap-2 items-start"
-          data-layout="object-property"
+          data-layout="array-item"
         >
           <!---->
-          <!---->
-           
           <div
             class="grow"
-            data-layout="object-property-content"
+            data-layout="array-item-content"
           >
             <!---->
             <!---->
@@ -1318,9 +1165,12 @@ exports[`object fields > with title and description > object > normal 1`] = `
                 <!---->
                 <label
                   class="label-text"
-                  for="root.b"
+                  for="root.1"
                 >
-                  B 
+                  Test item-2 
+                  <span>
+                    *
+                  </span>
                   <!---->
                 </label>
                 
@@ -1328,10 +1178,10 @@ exports[`object fields > with title and description > object > normal 1`] = `
                  
                 <!---->
                 <div
-                  class="opacity-60"
-                  id="root.b::description"
+                  class="label-text-alt"
+                  id="root.1::description"
                 >
-                  B description
+                  a test item description
                 </div>
                 
                 <!---->
@@ -1347,12 +1197,12 @@ exports[`object fields > with title and description > object > normal 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.b::description root.b::help root.b::errors"
-                  class="input"
-                  id="root.b"
-                  name="root.b"
-                  step="any"
-                  type="number"
+                  aria-describedby="root.1::description root.1::help root.1::errors"
+                  class="input input-bordered grow"
+                  id="root.1"
+                  name="root.1"
+                  required=""
+                  type="text"
                 />
                  
                 <!---->
@@ -1378,6 +1228,67 @@ exports[`object fields > with title and description > object > normal 1`] = `
           <!---->
            
           <!---->
+          <div
+            class="flex items-start join"
+            data-layout="array-item-controls"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="btn join-item btn-sm"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
+            <!---->
+          </div>
+          
+          <!---->
           <!---->
         </div>
         
@@ -1391,6 +1302,17 @@ exports[`object fields > with title and description > object > normal 1`] = `
       <!---->
        
       <!---->
+      <button
+        class="btn join-item btn-sm"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
+      
+      <!---->
        
       <!---->
       <!---->
@@ -1402,7 +1324,7 @@ exports[`object fields > with title and description > object > normal 1`] = `
      
     <!---->
     <button
-      class="btn preset-filled preset-filled-primary-500 w-full"
+      class="btn btn-primary w-full"
       type="submit"
     >
       <!---->
@@ -1419,7 +1341,42 @@ exports[`object fields > with title and description > object > normal 1`] = `
 </div>
 `;
 
-exports[`object fields > with title and description > show add button and fields if additionalProperties is true and not an object > normal 1`] = `
+exports[`with title and description > checkboxes > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <pre
+      style="color: red;"
+    >
+      "multiEnumField" component not found
+    </pre>
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`with title and description > fixed array > normal 1`] = `
 <div>
   <!---->
   <form
@@ -1431,12 +1388,12 @@ exports[`object fields > with title and description > show add button and fields
     <!---->
     <div
       class="flex gap-4 flex-col"
-      data-layout="object-field"
+      data-layout="array-field"
     >
       <!---->
       <!---->
       <div
-        data-layout="object-field-meta"
+        data-layout="array-field-meta"
       >
         <!---->
         <!---->
@@ -1451,7 +1408,7 @@ exports[`object fields > with title and description > show add button and fields
          
         <!---->
         <div
-          class="opacity-60"
+          class="label-text-alt"
           id="root::description"
         >
           a test description
@@ -1465,7 +1422,7 @@ exports[`object fields > with title and description > show add button and fields
        
       <div
         class="flex gap-4 flex-col"
-        data-layout="object-properties"
+        data-layout="array-items"
       >
         <!---->
         <!---->
@@ -1475,14 +1432,14 @@ exports[`object fields > with title and description > show add button and fields
         <!---->
         <div
           class="flex gap-2 items-start"
-          data-layout="object-property"
+          data-layout="array-item"
         >
-          <!---->
           <!---->
           <div
             class="grow"
-            data-layout="object-property-key-input"
+            data-layout="array-item-content"
           >
+            <!---->
             <!---->
             <!---->
             <!---->
@@ -1499,9 +1456,9 @@ exports[`object fields > with title and description > show add button and fields
                 <!---->
                 <label
                   class="label-text"
-                  for="root.additionalProperty::key-input"
+                  for="root.0"
                 >
-                  additionalProperty Key 
+                  Test item 
                   <span>
                     *
                   </span>
@@ -1510,6 +1467,14 @@ exports[`object fields > with title and description > show add button and fields
                 
                 <!---->
                  
+                <!---->
+                <div
+                  class="label-text-alt"
+                  id="root.0::description"
+                >
+                  a test item description
+                </div>
+                
                 <!---->
                 <!---->
               </div>
@@ -1523,10 +1488,10 @@ exports[`object fields > with title and description > show add button and fields
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
-                  class="input"
-                  id="root.additionalProperty::key-input"
-                  name="root.additionalProperty::key-input"
+                  aria-describedby="root.0::description root.0::help root.0::errors"
+                  class="input input-bordered grow"
+                  id="root.0"
+                  name="root.0"
                   required=""
                   type="text"
                 />
@@ -1548,208 +1513,30 @@ exports[`object fields > with title and description > show add button and fields
             
             
             
-            <!---->
-          </div>
-          
-          <!---->
-           
-          <div
-            class="grow"
-            data-layout="object-property-content"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="flex gap-2 flex-col"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-              <div
-                data-layout="field-meta"
-              >
-                <!---->
-                <!---->
-                <label
-                  class="label-text"
-                  for="root.additionalProperty"
-                >
-                  additionalProperty 
-                  <!---->
-                </label>
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <div
-                class="flex gap-2 items-start"
-                data-layout="field-content"
-              >
-                <!---->
-                <!---->
-                <input
-                  aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
-                  class="input"
-                  id="root.additionalProperty"
-                  name="root.additionalProperty"
-                  type="text"
-                />
-                 
-                <!---->
-                
-                <!---->
-                
-                
-                <!---->
-              </div>
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
-            
-            
             
             <!---->
           </div>
           <!---->
            
           <!---->
-          <div
-            data-layout="object-property-controls"
-          >
-            <!---->
-            <!---->
-            <button
-              class="btn preset-filled"
-              type="button"
-            >
-              <!---->
-              Del
-              
-              <!---->
-            </button>
-            
-            
-            <!---->
-          </div>
-          
-          <!---->
           <!---->
         </div>
         
         
         
-        
-        
-        
-        <!---->
-      </div>
-      <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
-    </div>
-    
-    
-    
-    <!---->
-     
-    <!---->
-    <button
-      class="btn preset-filled preset-filled-primary-500 w-full"
-      type="submit"
-    >
-      <!---->
-      Submit
-      
-      <!---->
-    </button>
-    
-    <!---->
-    <!---->
-  </form>
-  
-  
-</div>
-`;
-
-exports[`object fields > with title and description from both > additionalProperties > normal 1`] = `
-<div>
-  <!---->
-  <form
-    class="flex flex-col gap-4"
-  >
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <div
-      class="flex gap-4 flex-col"
-      data-layout="object-field"
-    >
-      <!---->
-      <!---->
-      <div
-        data-layout="object-field-meta"
-      >
-        <!---->
-        <!---->
-        <div
-          class="font-bold text-xl"
-          id="root::title"
-        >
-          My Field
-        </div>
-        
-        <!---->
-         
-        <!---->
-        <div
-          class="opacity-60"
-          id="root::description"
-        >
-          a fancier description
-        </div>
-        
-        <!---->
-        <!---->
-      </div>
-      
-      <!---->
-       
-      <div
-        class="flex gap-4 flex-col"
-        data-layout="object-properties"
-      >
-        <!---->
-        <!---->
-        <!---->
         <!---->
         <!---->
         <!---->
         <div
           class="flex gap-2 items-start"
-          data-layout="object-property"
+          data-layout="array-item"
         >
-          <!---->
           <!---->
           <div
             class="grow"
-            data-layout="object-property-key-input"
+            data-layout="array-item-content"
           >
+            <!---->
             <!---->
             <!---->
             <!---->
@@ -1766,9 +1553,9 @@ exports[`object fields > with title and description from both > additionalProper
                 <!---->
                 <label
                   class="label-text"
-                  for="root.foo::key-input"
+                  for="root.1"
                 >
-                  foo Key 
+                  Test item 
                   <span>
                     *
                   </span>
@@ -1778,6 +1565,14 @@ exports[`object fields > with title and description from both > additionalProper
                 <!---->
                  
                 <!---->
+                <div
+                  class="label-text-alt"
+                  id="root.1::description"
+                >
+                  a test item description
+                </div>
+                
+                <!---->
                 <!---->
               </div>
               
@@ -1790,379 +1585,11 @@ exports[`object fields > with title and description from both > additionalProper
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
-                  class="input"
-                  id="root.foo::key-input"
-                  name="root.foo::key-input"
+                  aria-describedby="root.1::description root.1::help root.1::errors"
+                  class="input input-bordered grow"
+                  id="root.1"
+                  name="root.1"
                   required=""
-                  type="text"
-                />
-                 
-                <!---->
-                
-                <!---->
-                
-                
-                <!---->
-              </div>
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
-            
-            
-            <!---->
-          </div>
-          
-          <!---->
-           
-          <div
-            class="grow"
-            data-layout="object-property-content"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="flex gap-2 flex-col"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-              <div
-                data-layout="field-meta"
-              >
-                <!---->
-                <!---->
-                <label
-                  class="label-text"
-                  for="root.foo"
-                >
-                  foo 
-                  <!---->
-                </label>
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <div
-                class="flex gap-2 items-start"
-                data-layout="field-content"
-              >
-                <!---->
-                <!---->
-                <input
-                  aria-describedby="root.foo::description root.foo::help root.foo::errors"
-                  class="input"
-                  id="root.foo"
-                  name="root.foo"
-                  type="text"
-                />
-                 
-                <!---->
-                
-                <!---->
-                
-                
-                <!---->
-              </div>
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
-            
-            
-            
-            <!---->
-          </div>
-          <!---->
-           
-          <!---->
-          <div
-            data-layout="object-property-controls"
-          >
-            <!---->
-            <!---->
-            <button
-              class="btn preset-filled"
-              type="button"
-            >
-              <!---->
-              Del
-              
-              <!---->
-            </button>
-            
-            
-            <!---->
-          </div>
-          
-          <!---->
-          <!---->
-        </div>
-        
-        
-        
-        
-        
-        
-        <!---->
-      </div>
-      <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
-    </div>
-    
-    
-    
-    <!---->
-     
-    <!---->
-    <button
-      class="btn preset-filled preset-filled-primary-500 w-full"
-      type="submit"
-    >
-      <!---->
-      Submit
-      
-      <!---->
-    </button>
-    
-    <!---->
-    <!---->
-  </form>
-  
-  
-</div>
-`;
-
-exports[`object fields > with title and description from both > object > normal 1`] = `
-<div>
-  <!---->
-  <form
-    class="flex flex-col gap-4"
-  >
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <div
-      class="flex gap-4 flex-col"
-      data-layout="object-field"
-    >
-      <!---->
-      <!---->
-      <div
-        data-layout="object-field-meta"
-      >
-        <!---->
-        <!---->
-        <div
-          class="font-bold text-xl"
-          id="root::title"
-        >
-          My Field
-        </div>
-        
-        <!---->
-         
-        <!---->
-        <div
-          class="opacity-60"
-          id="root::description"
-        >
-          a fancier description
-        </div>
-        
-        <!---->
-        <!---->
-      </div>
-      
-      <!---->
-       
-      <div
-        class="flex gap-4 flex-col"
-        data-layout="object-properties"
-      >
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <div
-          class="flex gap-2 items-start"
-          data-layout="object-property"
-        >
-          <!---->
-          <!---->
-           
-          <div
-            class="grow"
-            data-layout="object-property-content"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="flex gap-2 flex-col"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-              <div
-                data-layout="field-meta"
-              >
-                <!---->
-                <!---->
-                <label
-                  class="label-text"
-                  for="root.a"
-                >
-                  My Item A 
-                  <!---->
-                </label>
-                
-                <!---->
-                 
-                <!---->
-                <div
-                  class="opacity-60"
-                  id="root.a::description"
-                >
-                  a fancier item A description
-                </div>
-                
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <div
-                class="flex gap-2 items-start"
-                data-layout="field-content"
-              >
-                <!---->
-                <!---->
-                <input
-                  aria-describedby="root.a::description root.a::help root.a::errors"
-                  class="input"
-                  id="root.a"
-                  name="root.a"
-                  type="text"
-                />
-                 
-                <!---->
-                
-                <!---->
-                
-                
-                <!---->
-              </div>
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
-            
-            
-            
-            <!---->
-          </div>
-          <!---->
-           
-          <!---->
-          <!---->
-        </div>
-        
-        
-        
-        <!---->
-        <!---->
-        <!---->
-        <div
-          class="flex gap-2 items-start"
-          data-layout="object-property"
-        >
-          <!---->
-          <!---->
-           
-          <div
-            class="grow"
-            data-layout="object-property-content"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="flex gap-2 flex-col"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-              <div
-                data-layout="field-meta"
-              >
-                <!---->
-                <!---->
-                <label
-                  class="label-text"
-                  for="root.b"
-                >
-                  My Item B 
-                  <!---->
-                </label>
-                
-                <!---->
-                 
-                <!---->
-                <div
-                  class="opacity-60"
-                  id="root.b::description"
-                >
-                  a fancier item B description
-                </div>
-                
-                <!---->
-                <!---->
-              </div>
-              
-              <!---->
-               
-              <div
-                class="flex gap-2 items-start"
-                data-layout="field-content"
-              >
-                <!---->
-                <!---->
-                <input
-                  aria-describedby="root.b::description root.b::help root.b::errors"
-                  class="input"
-                  id="root.b"
-                  name="root.b"
                   step="any"
                   type="number"
                 />
@@ -2214,7 +1641,7 @@ exports[`object fields > with title and description from both > object > normal 
      
     <!---->
     <button
-      class="btn preset-filled preset-filled-primary-500 w-full"
+      class="btn btn-primary w-full"
       type="submit"
     >
       <!---->
@@ -2231,7 +1658,7 @@ exports[`object fields > with title and description from both > object > normal 
 </div>
 `;
 
-exports[`object fields > with title and description from uiSchema > additionalProperties > normal 1`] = `
+exports[`with title and description from both > array > normal 1`] = `
 <div>
   <!---->
   <form
@@ -2243,12 +1670,12 @@ exports[`object fields > with title and description from uiSchema > additionalPr
     <!---->
     <div
       class="flex gap-4 flex-col"
-      data-layout="object-field"
+      data-layout="array-field"
     >
       <!---->
       <!---->
       <div
-        data-layout="object-field-meta"
+        data-layout="array-field-meta"
       >
         <!---->
         <!---->
@@ -2263,7 +1690,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
          
         <!---->
         <div
-          class="opacity-60"
+          class="label-text-alt"
           id="root::description"
         >
           a fancier description
@@ -2277,7 +1704,105 @@ exports[`object fields > with title and description from uiSchema > additionalPr
        
       <div
         class="flex gap-4 flex-col"
-        data-layout="object-properties"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <button
+        class="btn join-item btn-sm"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`with title and description from both > array icons > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+      <div
+        data-layout="array-field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          class="font-bold text-xl"
+          id="root::title"
+        >
+          My Field
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="label-text-alt"
+          id="root::description"
+        >
+          a fancier description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="array-items"
       >
         <!---->
         <!---->
@@ -2287,14 +1812,14 @@ exports[`object fields > with title and description from uiSchema > additionalPr
         <!---->
         <div
           class="flex gap-2 items-start"
-          data-layout="object-property"
+          data-layout="array-item"
         >
-          <!---->
           <!---->
           <div
             class="grow"
-            data-layout="object-property-key-input"
+            data-layout="array-item-content"
           >
+            <!---->
             <!---->
             <!---->
             <!---->
@@ -2311,9 +1836,9 @@ exports[`object fields > with title and description from uiSchema > additionalPr
                 <!---->
                 <label
                   class="label-text"
-                  for="root.foo::key-input"
+                  for="root.0"
                 >
-                  foo Key 
+                  My Item-1 
                   <span>
                     *
                   </span>
@@ -2322,6 +1847,14 @@ exports[`object fields > with title and description from uiSchema > additionalPr
                 
                 <!---->
                  
+                <!---->
+                <div
+                  class="label-text-alt"
+                  id="root.0::description"
+                >
+                  a fancier item description
+                </div>
+                
                 <!---->
                 <!---->
               </div>
@@ -2335,10 +1868,10 @@ exports[`object fields > with title and description from uiSchema > additionalPr
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
-                  class="input"
-                  id="root.foo::key-input"
-                  name="root.foo::key-input"
+                  aria-describedby="root.0::description root.0::help root.0::errors"
+                  class="input input-bordered grow"
+                  id="root.0"
+                  name="root.0"
                   required=""
                   type="text"
                 />
@@ -2360,14 +1893,89 @@ exports[`object fields > with title and description from uiSchema > additionalPr
             
             
             
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <div
+            class="flex items-start join"
+            data-layout="array-item-controls"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
             <!---->
           </div>
           
           <!---->
-           
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="array-item"
+        >
+          <!---->
           <div
             class="grow"
-            data-layout="object-property-content"
+            data-layout="array-item-content"
           >
             <!---->
             <!---->
@@ -2386,14 +1994,25 @@ exports[`object fields > with title and description from uiSchema > additionalPr
                 <!---->
                 <label
                   class="label-text"
-                  for="root.foo"
+                  for="root.1"
                 >
-                  foo 
+                  My Item-2 
+                  <span>
+                    *
+                  </span>
                   <!---->
                 </label>
                 
                 <!---->
                  
+                <!---->
+                <div
+                  class="label-text-alt"
+                  id="root.1::description"
+                >
+                  a fancier item description
+                </div>
+                
                 <!---->
                 <!---->
               </div>
@@ -2407,10 +2026,11 @@ exports[`object fields > with title and description from uiSchema > additionalPr
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.foo::description root.foo::help root.foo::errors"
-                  class="input"
-                  id="root.foo"
-                  name="root.foo"
+                  aria-describedby="root.1::description root.1::help root.1::errors"
+                  class="input input-bordered grow"
+                  id="root.1"
+                  name="root.1"
+                  required=""
                   type="text"
                 />
                  
@@ -2438,12 +2058,52 @@ exports[`object fields > with title and description from uiSchema > additionalPr
            
           <!---->
           <div
-            data-layout="object-property-controls"
+            class="flex items-start join"
+            data-layout="array-item-controls"
           >
             <!---->
             <!---->
+            <!---->
             <button
-              class="btn preset-filled"
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="btn join-item btn-sm"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
               type="button"
             >
               <!---->
@@ -2452,6 +2112,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
               <!---->
             </button>
             
+            <!---->
             
             <!---->
           </div>
@@ -2470,6 +2131,17 @@ exports[`object fields > with title and description from uiSchema > additionalPr
       <!---->
        
       <!---->
+      <button
+        class="btn join-item btn-sm"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
+      
+      <!---->
        
       <!---->
       <!---->
@@ -2481,7 +2153,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
      
     <!---->
     <button
-      class="btn preset-filled preset-filled-primary-500 w-full"
+      class="btn btn-primary w-full"
       type="submit"
     >
       <!---->
@@ -2498,7 +2170,42 @@ exports[`object fields > with title and description from uiSchema > additionalPr
 </div>
 `;
 
-exports[`object fields > with title and description from uiSchema > object > normal 1`] = `
+exports[`with title and description from both > checkboxes > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <pre
+      style="color: red;"
+    >
+      "multiEnumField" component not found
+    </pre>
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`with title and description from both > fixed array > normal 1`] = `
 <div>
   <!---->
   <form
@@ -2510,12 +2217,12 @@ exports[`object fields > with title and description from uiSchema > object > nor
     <!---->
     <div
       class="flex gap-4 flex-col"
-      data-layout="object-field"
+      data-layout="array-field"
     >
       <!---->
       <!---->
       <div
-        data-layout="object-field-meta"
+        data-layout="array-field-meta"
       >
         <!---->
         <!---->
@@ -2530,7 +2237,7 @@ exports[`object fields > with title and description from uiSchema > object > nor
          
         <!---->
         <div
-          class="opacity-60"
+          class="label-text-alt"
           id="root::description"
         >
           a fancier description
@@ -2544,7 +2251,7 @@ exports[`object fields > with title and description from uiSchema > object > nor
        
       <div
         class="flex gap-4 flex-col"
-        data-layout="object-properties"
+        data-layout="array-items"
       >
         <!---->
         <!---->
@@ -2554,14 +2261,12 @@ exports[`object fields > with title and description from uiSchema > object > nor
         <!---->
         <div
           class="flex gap-2 items-start"
-          data-layout="object-property"
+          data-layout="array-item"
         >
           <!---->
-          <!---->
-           
           <div
             class="grow"
-            data-layout="object-property-content"
+            data-layout="array-item-content"
           >
             <!---->
             <!---->
@@ -2580,9 +2285,12 @@ exports[`object fields > with title and description from uiSchema > object > nor
                 <!---->
                 <label
                   class="label-text"
-                  for="root.a"
+                  for="root.0"
                 >
-                  My Item A 
+                  My Item 
+                  <span>
+                    *
+                  </span>
                   <!---->
                 </label>
                 
@@ -2590,10 +2298,10 @@ exports[`object fields > with title and description from uiSchema > object > nor
                  
                 <!---->
                 <div
-                  class="opacity-60"
-                  id="root.a::description"
+                  class="label-text-alt"
+                  id="root.0::description"
                 >
-                  a fancier item A description
+                  a fancier item description
                 </div>
                 
                 <!---->
@@ -2609,10 +2317,11 @@ exports[`object fields > with title and description from uiSchema > object > nor
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.a::description root.a::help root.a::errors"
-                  class="input"
-                  id="root.a"
-                  name="root.a"
+                  aria-describedby="root.0::description root.0::help root.0::errors"
+                  class="input input-bordered grow"
+                  id="root.0"
+                  name="root.0"
+                  required=""
                   type="text"
                 />
                  
@@ -2649,14 +2358,12 @@ exports[`object fields > with title and description from uiSchema > object > nor
         <!---->
         <div
           class="flex gap-2 items-start"
-          data-layout="object-property"
+          data-layout="array-item"
         >
           <!---->
-          <!---->
-           
           <div
             class="grow"
-            data-layout="object-property-content"
+            data-layout="array-item-content"
           >
             <!---->
             <!---->
@@ -2675,9 +2382,12 @@ exports[`object fields > with title and description from uiSchema > object > nor
                 <!---->
                 <label
                   class="label-text"
-                  for="root.b"
+                  for="root.1"
                 >
-                  My Item B 
+                  My Item 
+                  <span>
+                    *
+                  </span>
                   <!---->
                 </label>
                 
@@ -2685,10 +2395,10 @@ exports[`object fields > with title and description from uiSchema > object > nor
                  
                 <!---->
                 <div
-                  class="opacity-60"
-                  id="root.b::description"
+                  class="label-text-alt"
+                  id="root.1::description"
                 >
-                  a fancier item B description
+                  a fancier item description
                 </div>
                 
                 <!---->
@@ -2704,10 +2414,11 @@ exports[`object fields > with title and description from uiSchema > object > nor
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.b::description root.b::help root.b::errors"
-                  class="input"
-                  id="root.b"
-                  name="root.b"
+                  aria-describedby="root.1::description root.1::help root.1::errors"
+                  class="input input-bordered grow"
+                  id="root.1"
+                  name="root.1"
+                  required=""
                   step="any"
                   type="number"
                 />
@@ -2759,7 +2470,7 @@ exports[`object fields > with title and description from uiSchema > object > nor
      
     <!---->
     <button
-      class="btn preset-filled preset-filled-primary-500 w-full"
+      class="btn btn-primary w-full"
       type="submit"
     >
       <!---->
@@ -2776,7 +2487,7 @@ exports[`object fields > with title and description from uiSchema > object > nor
 </div>
 `;
 
-exports[`object fields > with title and description from uiSchema > show add button and fields if additionalProperties is true and not an object > normal 1`] = `
+exports[`with title and description from uiSchema > array > normal 1`] = `
 <div>
   <!---->
   <form
@@ -2788,12 +2499,12 @@ exports[`object fields > with title and description from uiSchema > show add but
     <!---->
     <div
       class="flex gap-4 flex-col"
-      data-layout="object-field"
+      data-layout="array-field"
     >
       <!---->
       <!---->
       <div
-        data-layout="object-field-meta"
+        data-layout="array-field-meta"
       >
         <!---->
         <!---->
@@ -2808,7 +2519,7 @@ exports[`object fields > with title and description from uiSchema > show add but
          
         <!---->
         <div
-          class="opacity-60"
+          class="label-text-alt"
           id="root::description"
         >
           a fancier description
@@ -2822,7 +2533,105 @@ exports[`object fields > with title and description from uiSchema > show add but
        
       <div
         class="flex gap-4 flex-col"
-        data-layout="object-properties"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <button
+        class="btn join-item btn-sm"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`with title and description from uiSchema > array icons > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+      <div
+        data-layout="array-field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          class="font-bold text-xl"
+          id="root::title"
+        >
+          My Field
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="label-text-alt"
+          id="root::description"
+        >
+          a fancier description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="array-items"
       >
         <!---->
         <!---->
@@ -2832,14 +2641,14 @@ exports[`object fields > with title and description from uiSchema > show add but
         <!---->
         <div
           class="flex gap-2 items-start"
-          data-layout="object-property"
+          data-layout="array-item"
         >
-          <!---->
           <!---->
           <div
             class="grow"
-            data-layout="object-property-key-input"
+            data-layout="array-item-content"
           >
+            <!---->
             <!---->
             <!---->
             <!---->
@@ -2856,9 +2665,9 @@ exports[`object fields > with title and description from uiSchema > show add but
                 <!---->
                 <label
                   class="label-text"
-                  for="root.additionalProperty::key-input"
+                  for="root.0"
                 >
-                  additionalProperty Key 
+                  My Item-1 
                   <span>
                     *
                   </span>
@@ -2868,6 +2677,14 @@ exports[`object fields > with title and description from uiSchema > show add but
                 <!---->
                  
                 <!---->
+                <div
+                  class="label-text-alt"
+                  id="root.0::description"
+                >
+                  a fancier item description
+                </div>
+                
+                <!---->
                 <!---->
               </div>
               
@@ -2880,10 +2697,10 @@ exports[`object fields > with title and description from uiSchema > show add but
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
-                  class="input"
-                  id="root.additionalProperty::key-input"
-                  name="root.additionalProperty::key-input"
+                  aria-describedby="root.0::description root.0::help root.0::errors"
+                  class="input input-bordered grow"
+                  id="root.0"
+                  name="root.0"
                   required=""
                   type="text"
                 />
@@ -2905,14 +2722,89 @@ exports[`object fields > with title and description from uiSchema > show add but
             
             
             
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <div
+            class="flex items-start join"
+            data-layout="array-item-controls"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
             <!---->
           </div>
           
           <!---->
-           
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="array-item"
+        >
+          <!---->
           <div
             class="grow"
-            data-layout="object-property-content"
+            data-layout="array-item-content"
           >
             <!---->
             <!---->
@@ -2931,15 +2823,26 @@ exports[`object fields > with title and description from uiSchema > show add but
                 <!---->
                 <label
                   class="label-text"
-                  for="root.additionalProperty"
+                  for="root.1"
                 >
-                  additionalProperty 
+                  My Item-2 
+                  <span>
+                    *
+                  </span>
                   <!---->
                 </label>
                 
                 <!---->
                  
                 <!---->
+                <div
+                  class="label-text-alt"
+                  id="root.1::description"
+                >
+                  a fancier item description
+                </div>
+                
+                <!---->
                 <!---->
               </div>
               
@@ -2952,155 +2855,10 @@ exports[`object fields > with title and description from uiSchema > show add but
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
-                  class="input"
-                  id="root.additionalProperty"
-                  name="root.additionalProperty"
-                  type="text"
-                />
-                 
-                <!---->
-                
-                <!---->
-                
-                
-                <!---->
-              </div>
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
-            
-            
-            
-            <!---->
-          </div>
-          <!---->
-           
-          <!---->
-          <div
-            data-layout="object-property-controls"
-          >
-            <!---->
-            <!---->
-            <button
-              class="btn preset-filled"
-              type="button"
-            >
-              <!---->
-              Del
-              
-              <!---->
-            </button>
-            
-            
-            <!---->
-          </div>
-          
-          <!---->
-          <!---->
-        </div>
-        
-        
-        
-        
-        
-        
-        <!---->
-      </div>
-      <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
-    </div>
-    
-    
-    
-    <!---->
-     
-    <!---->
-    <button
-      class="btn preset-filled preset-filled-primary-500 w-full"
-      type="submit"
-    >
-      <!---->
-      Submit
-      
-      <!---->
-    </button>
-    
-    <!---->
-    <!---->
-  </form>
-  
-  
-</div>
-`;
-
-exports[`object fields > with title and description with global label off > additionalProperties > normal 1`] = `
-<div>
-  <!---->
-  <form
-    class="flex flex-col gap-4"
-  >
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <div
-      class="flex gap-4 flex-col"
-      data-layout="object-field"
-    >
-      <!---->
-      <!---->
-       
-      <div
-        class="flex gap-4 flex-col"
-        data-layout="object-properties"
-      >
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <div
-          class="flex gap-2 items-start"
-          data-layout="object-property"
-        >
-          <!---->
-          <!---->
-          <div
-            class="grow"
-            data-layout="object-property-key-input"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="flex gap-2 flex-col"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-               
-              <div
-                class="flex gap-2 items-start"
-                data-layout="field-content"
-              >
-                <!---->
-                <!---->
-                <input
-                  aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
-                  class="input"
-                  id="root.foo::key-input"
-                  name="root.foo::key-input"
+                  aria-describedby="root.1::description root.1::help root.1::errors"
+                  class="input input-bordered grow"
+                  id="root.1"
+                  name="root.1"
                   required=""
                   type="text"
                 />
@@ -3122,57 +2880,6 @@ exports[`object fields > with title and description with global label off > addi
             
             
             
-            <!---->
-          </div>
-          
-          <!---->
-           
-          <div
-            class="grow"
-            data-layout="object-property-content"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="flex gap-2 flex-col"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-               
-              <div
-                class="flex gap-2 items-start"
-                data-layout="field-content"
-              >
-                <!---->
-                <!---->
-                <input
-                  aria-describedby="root.foo::description root.foo::help root.foo::errors"
-                  class="input"
-                  id="root.foo"
-                  name="root.foo"
-                  type="text"
-                />
-                 
-                <!---->
-                
-                <!---->
-                
-                
-                <!---->
-              </div>
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </div>
-            
-            
-            
             
             <!---->
           </div>
@@ -3180,12 +2887,52 @@ exports[`object fields > with title and description with global label off > addi
            
           <!---->
           <div
-            data-layout="object-property-controls"
+            class="flex items-start join"
+            data-layout="array-item-controls"
           >
+            <!---->
             <!---->
             <!---->
             <button
-              class="btn preset-filled"
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="btn join-item btn-sm"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
               type="button"
             >
               <!---->
@@ -3194,6 +2941,7 @@ exports[`object fields > with title and description with global label off > addi
               <!---->
             </button>
             
+            <!---->
             
             <!---->
           </div>
@@ -3212,6 +2960,17 @@ exports[`object fields > with title and description with global label off > addi
       <!---->
        
       <!---->
+      <button
+        class="btn join-item btn-sm"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
+      
+      <!---->
        
       <!---->
       <!---->
@@ -3223,7 +2982,7 @@ exports[`object fields > with title and description with global label off > addi
      
     <!---->
     <button
-      class="btn preset-filled preset-filled-primary-500 w-full"
+      class="btn btn-primary w-full"
       type="submit"
     >
       <!---->
@@ -3240,7 +2999,42 @@ exports[`object fields > with title and description with global label off > addi
 </div>
 `;
 
-exports[`object fields > with title and description with global label off > object > normal 1`] = `
+exports[`with title and description from uiSchema > checkboxes > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <pre
+      style="color: red;"
+    >
+      "multiEnumField" component not found
+    </pre>
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`with title and description from uiSchema > fixed array > normal 1`] = `
 <div>
   <!---->
   <form
@@ -3252,14 +3046,41 @@ exports[`object fields > with title and description with global label off > obje
     <!---->
     <div
       class="flex gap-4 flex-col"
-      data-layout="object-field"
+      data-layout="array-field"
     >
       <!---->
+      <!---->
+      <div
+        data-layout="array-field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          class="font-bold text-xl"
+          id="root::title"
+        >
+          My Field
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="label-text-alt"
+          id="root::description"
+        >
+          a fancier description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
       <!---->
        
       <div
         class="flex gap-4 flex-col"
-        data-layout="object-properties"
+        data-layout="array-items"
       >
         <!---->
         <!---->
@@ -3269,14 +3090,12 @@ exports[`object fields > with title and description with global label off > obje
         <!---->
         <div
           class="flex gap-2 items-start"
-          data-layout="object-property"
+          data-layout="array-item"
         >
           <!---->
-          <!---->
-           
           <div
             class="grow"
-            data-layout="object-property-content"
+            data-layout="array-item-content"
           >
             <!---->
             <!---->
@@ -3288,6 +3107,37 @@ exports[`object fields > with title and description with global label off > obje
             >
               <!---->
               <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <label
+                  class="label-text"
+                  for="root.0"
+                >
+                  My Item 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="label-text-alt"
+                  id="root.0::description"
+                >
+                  a fancier item description
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
                
               <div
                 class="flex gap-2 items-start"
@@ -3296,10 +3146,11 @@ exports[`object fields > with title and description with global label off > obje
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.a::description root.a::help root.a::errors"
-                  class="input"
-                  id="root.a"
-                  name="root.a"
+                  aria-describedby="root.0::description root.0::help root.0::errors"
+                  class="input input-bordered grow"
+                  id="root.0"
+                  name="root.0"
+                  required=""
                   type="text"
                 />
                  
@@ -3336,14 +3187,12 @@ exports[`object fields > with title and description with global label off > obje
         <!---->
         <div
           class="flex gap-2 items-start"
-          data-layout="object-property"
+          data-layout="array-item"
         >
           <!---->
-          <!---->
-           
           <div
             class="grow"
-            data-layout="object-property-content"
+            data-layout="array-item-content"
           >
             <!---->
             <!---->
@@ -3355,6 +3204,37 @@ exports[`object fields > with title and description with global label off > obje
             >
               <!---->
               <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <label
+                  class="label-text"
+                  for="root.1"
+                >
+                  My Item 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="label-text-alt"
+                  id="root.1::description"
+                >
+                  a fancier item description
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
                
               <div
                 class="flex gap-2 items-start"
@@ -3363,10 +3243,11 @@ exports[`object fields > with title and description with global label off > obje
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.b::description root.b::help root.b::errors"
-                  class="input"
-                  id="root.b"
-                  name="root.b"
+                  aria-describedby="root.1::description root.1::help root.1::errors"
+                  class="input input-bordered grow"
+                  id="root.1"
+                  name="root.1"
+                  required=""
                   step="any"
                   type="number"
                 />
@@ -3418,7 +3299,7 @@ exports[`object fields > with title and description with global label off > obje
      
     <!---->
     <button
-      class="btn preset-filled preset-filled-primary-500 w-full"
+      class="btn btn-primary w-full"
       type="submit"
     >
       <!---->
@@ -3435,7 +3316,7 @@ exports[`object fields > with title and description with global label off > obje
 </div>
 `;
 
-exports[`object fields > with title and description with global label off > show add button and fields if additionalProperties is true and not an object > normal 1`] = `
+exports[`with title and description with global label off > array > normal 1`] = `
 <div>
   <!---->
   <form
@@ -3447,14 +3328,85 @@ exports[`object fields > with title and description with global label off > show
     <!---->
     <div
       class="flex gap-4 flex-col"
-      data-layout="object-field"
+      data-layout="array-field"
     >
       <!---->
       <!---->
        
       <div
         class="flex gap-4 flex-col"
-        data-layout="object-properties"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <button
+        class="btn join-item btn-sm"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`with title and description with global label off > array icons > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="array-items"
       >
         <!---->
         <!---->
@@ -3464,14 +3416,14 @@ exports[`object fields > with title and description with global label off > show
         <!---->
         <div
           class="flex gap-2 items-start"
-          data-layout="object-property"
+          data-layout="array-item"
         >
-          <!---->
           <!---->
           <div
             class="grow"
-            data-layout="object-property-key-input"
+            data-layout="array-item-content"
           >
+            <!---->
             <!---->
             <!---->
             <!---->
@@ -3489,10 +3441,10 @@ exports[`object fields > with title and description with global label off > show
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
-                  class="input"
-                  id="root.additionalProperty::key-input"
-                  name="root.additionalProperty::key-input"
+                  aria-describedby="root.0::description root.0::help root.0::errors"
+                  class="input input-bordered grow"
+                  id="root.0"
+                  name="root.0"
                   required=""
                   type="text"
                 />
@@ -3514,14 +3466,89 @@ exports[`object fields > with title and description with global label off > show
             
             
             
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <div
+            class="flex items-start join"
+            data-layout="array-item-controls"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
             <!---->
           </div>
           
           <!---->
-           
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="array-item"
+        >
+          <!---->
           <div
             class="grow"
-            data-layout="object-property-content"
+            data-layout="array-item-content"
           >
             <!---->
             <!---->
@@ -3541,10 +3568,11 @@ exports[`object fields > with title and description with global label off > show
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
-                  class="input"
-                  id="root.additionalProperty"
-                  name="root.additionalProperty"
+                  aria-describedby="root.1::description root.1::help root.1::errors"
+                  class="input input-bordered grow"
+                  id="root.1"
+                  name="root.1"
+                  required=""
                   type="text"
                 />
                  
@@ -3572,12 +3600,52 @@ exports[`object fields > with title and description with global label off > show
            
           <!---->
           <div
-            data-layout="object-property-controls"
+            class="flex items-start join"
+            data-layout="array-item-controls"
           >
             <!---->
             <!---->
+            <!---->
             <button
-              class="btn preset-filled"
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="btn join-item btn-sm"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
               type="button"
             >
               <!---->
@@ -3586,10 +3654,250 @@ exports[`object fields > with title and description with global label off > show
               <!---->
             </button>
             
+            <!---->
             
             <!---->
           </div>
           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <button
+        class="btn join-item btn-sm"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`with title and description with global label off > checkboxes > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <pre
+      style="color: red;"
+    >
+      "multiEnumField" component not found
+    </pre>
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`with title and description with global label off > fixed array > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="grow"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.0::description root.0::help root.0::errors"
+                  class="input input-bordered grow"
+                  id="root.0"
+                  name="root.0"
+                  required=""
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="grow"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.1::description root.1::help root.1::errors"
+                  class="input input-bordered grow"
+                  id="root.1"
+                  name="root.1"
+                  required=""
+                  step="any"
+                  type="number"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
           <!---->
           <!---->
         </div>
@@ -3615,7 +3923,7 @@ exports[`object fields > with title and description with global label off > show
      
     <!---->
     <button
-      class="btn preset-filled preset-filled-primary-500 w-full"
+      class="btn btn-primary w-full"
       type="submit"
     >
       <!---->
