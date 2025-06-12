@@ -218,6 +218,1348 @@ exports[`object fields > additionalProperties > normal 1`] = `
 </div>
 `;
 
+exports[`object fields > defaults > oneOfDefaults > manual-preset 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="flex gap-4 flex-col"
+    data-layout="object-field"
+  >
+    <!---->
+    <!---->
+    <div
+      data-layout="object-field-meta"
+    >
+      <!---->
+      <!---->
+      <div
+        class="font-bold text-xl"
+        id="root::title"
+      >
+        Options
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="object-properties"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+        data-layout="object-property"
+      >
+        <!---->
+        <!---->
+         
+        <div
+          class="grow"
+          data-layout="object-property-content"
+        >
+          <!---->
+          <!---->
+          <pre
+            style="color: red;"
+          >
+            "enumField" component not found
+          </pre>
+          
+          
+          <!---->
+        </div>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+        data-layout="object-property"
+      >
+        <!---->
+        <!---->
+         
+        <div
+          class="grow"
+          data-layout="object-property-content"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="flex gap-2 flex-col"
+            data-layout="field"
+          >
+            <!---->
+            <!---->
+            <div
+              data-layout="field-meta"
+            >
+              <!---->
+              <!---->
+               
+              <!---->
+              <div
+                class="opacity-60"
+                id="root.collapseIndexes::description"
+              >
+                Combines hierarchical indexes into one cell (1.1, 1.2, ...)
+              </div>
+              
+              <!---->
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <div
+              class="flex gap-2 items-start"
+              data-layout="field-content"
+            >
+              <!---->
+              <!---->
+              <label
+                class="flex items-center space-x-2 cursor-pointer"
+              >
+                <input
+                  aria-describedby="root.collapseIndexes::description root.collapseIndexes::help root.collapseIndexes::errors"
+                  class="checkbox"
+                  id="root.collapseIndexes"
+                  name="root.collapseIndexes"
+                  type="checkbox"
+                />
+                 
+                <p>
+                  Combine nested indexes
+                </p>
+              </label>
+              
+              
+              <!---->
+            </div>
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+        </div>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+        data-layout="object-property"
+      >
+        <!---->
+        <!---->
+         
+        <div
+          class="grow"
+          data-layout="object-property-content"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="flex gap-2 flex-col"
+            data-layout="field"
+          >
+            <!---->
+            <!---->
+            <div
+              data-layout="field-meta"
+            >
+              <!---->
+              <!---->
+               
+              <!---->
+              <div
+                class="opacity-60"
+                id="root.joinPrimitiveArrayValues::description"
+              >
+                Combines the values of an array of primitives into one cell (separated by ',')
+              </div>
+              
+              <!---->
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <div
+              class="flex gap-2 items-start"
+              data-layout="field-content"
+            >
+              <!---->
+              <!---->
+              <label
+                class="flex items-center space-x-2 cursor-pointer"
+              >
+                <input
+                  aria-describedby="root.joinPrimitiveArrayValues::description root.joinPrimitiveArrayValues::help root.joinPrimitiveArrayValues::errors"
+                  class="checkbox"
+                  id="root.joinPrimitiveArrayValues"
+                  name="root.joinPrimitiveArrayValues"
+                  type="checkbox"
+                />
+                 
+                <p>
+                  Combine simple values
+                </p>
+              </label>
+              
+              
+              <!---->
+            </div>
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+        </div>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+        data-layout="object-property"
+      >
+        <!---->
+        <!---->
+         
+        <div
+          class="grow"
+          data-layout="object-property-content"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="flex gap-2 flex-col"
+            data-layout="field"
+          >
+            <!---->
+            <!---->
+            <div
+              data-layout="field-meta"
+            >
+              <!---->
+              <!---->
+               
+              <!---->
+              <div
+                class="opacity-60"
+                id="root.combineArraysOfObjects::description"
+              >
+                Combine arrays of objects into a single object
+              </div>
+              
+              <!---->
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <div
+              class="flex gap-2 items-start"
+              data-layout="field-content"
+            >
+              <!---->
+              <!---->
+              <label
+                class="flex items-center space-x-2 cursor-pointer"
+              >
+                <input
+                  aria-describedby="root.combineArraysOfObjects::description root.combineArraysOfObjects::help root.combineArraysOfObjects::errors"
+                  class="checkbox"
+                  id="root.combineArraysOfObjects"
+                  name="root.combineArraysOfObjects"
+                  type="checkbox"
+                />
+                 
+                <p>
+                  Combine objects
+                </p>
+              </label>
+              
+              
+              <!---->
+            </div>
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+        </div>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+        data-layout="object-property"
+      >
+        <!---->
+        <!---->
+         
+        <div
+          class="grow"
+          data-layout="object-property-content"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="flex gap-2 flex-col"
+            data-layout="field"
+          >
+            <!---->
+            <!---->
+            <div
+              data-layout="field-meta"
+            >
+              <!---->
+              <!---->
+               
+              <!---->
+              <div
+                class="opacity-60"
+                id="root.stabilizeOrderOfPropertiesInArraysOfObjects::description"
+              >
+                Stabilizing the order in which properties are displayed for arrays of objects
+              </div>
+              
+              <!---->
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <div
+              class="flex gap-2 items-start"
+              data-layout="field-content"
+            >
+              <!---->
+              <!---->
+              <label
+                class="flex items-center space-x-2 cursor-pointer"
+              >
+                <input
+                  aria-describedby="root.stabilizeOrderOfPropertiesInArraysOfObjects::description root.stabilizeOrderOfPropertiesInArraysOfObjects::help root.stabilizeOrderOfPropertiesInArraysOfObjects::errors"
+                  class="checkbox"
+                  id="root.stabilizeOrderOfPropertiesInArraysOfObjects"
+                  name="root.stabilizeOrderOfPropertiesInArraysOfObjects"
+                  type="checkbox"
+                />
+                 
+                <p>
+                  Stabilize order of properties
+                </p>
+              </label>
+              
+              
+              <!---->
+            </div>
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+        </div>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+        data-layout="object-property"
+      >
+        <!---->
+        <!---->
+         
+        <div
+          class="grow"
+          data-layout="object-property-content"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="flex gap-2 flex-col"
+            data-layout="field"
+          >
+            <!---->
+            <!---->
+            <div
+              data-layout="field-meta"
+            >
+              <!---->
+              <!---->
+              <label
+                class="label-text"
+                for="root.proportionalSizeAdjustmentThreshold"
+              >
+                Proportional size adjustment threshold 
+                <span>
+                  *
+                </span>
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <div
+                class="opacity-60"
+                id="root.proportionalSizeAdjustmentThreshold::description"
+              >
+                Specifies the threshold to which the value (height, width) can be increased for a proportional increase. The default is 1 (by 100%).
+              </div>
+              
+              <!---->
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <div
+              class="flex gap-2 items-start"
+              data-layout="field-content"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.proportionalSizeAdjustmentThreshold::description root.proportionalSizeAdjustmentThreshold::help root.proportionalSizeAdjustmentThreshold::errors"
+                class="input"
+                id="root.proportionalSizeAdjustmentThreshold"
+                min="0"
+                name="root.proportionalSizeAdjustmentThreshold"
+                required=""
+                step="any"
+                type="number"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+        </div>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+        data-layout="object-property"
+      >
+        <!---->
+        <!---->
+         
+        <div
+          class="grow"
+          data-layout="object-property-content"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="flex gap-2 flex-col"
+            data-layout="field"
+          >
+            <!---->
+            <!---->
+            <div
+              data-layout="field-meta"
+            >
+              <!---->
+              <!---->
+              <label
+                class="label-text"
+                for="root.cornerCellValue"
+              >
+                Corner cell value 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <div
+                class="opacity-60"
+                id="root.cornerCellValue::description"
+              >
+                The value of the corner cell.
+              </div>
+              
+              <!---->
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <div
+              class="flex gap-2 items-start"
+              data-layout="field-content"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.cornerCellValue::description root.cornerCellValue::help root.cornerCellValue::errors"
+                class="input"
+                id="root.cornerCellValue"
+                name="root.cornerCellValue"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+        </div>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+        data-layout="object-property"
+      >
+        <!---->
+        <!---->
+         
+        <div
+          class="grow"
+          data-layout="object-property-content"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="flex gap-2 flex-col"
+            data-layout="field"
+          >
+            <!---->
+            <!---->
+            <div
+              data-layout="field-meta"
+            >
+              <!---->
+              <!---->
+               
+              <!---->
+              <div
+                class="opacity-60"
+                id="root.transform::description"
+              >
+                Apply a transformation to the output data
+              </div>
+              
+              <!---->
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <div
+              class="flex gap-2 items-start"
+              data-layout="field-content"
+            >
+              <!---->
+              <!---->
+              <label
+                class="flex items-center space-x-2 cursor-pointer"
+              >
+                <input
+                  aria-describedby="root.transform::description root.transform::help root.transform::errors"
+                  class="checkbox"
+                  id="root.transform"
+                  name="root.transform"
+                  type="checkbox"
+                />
+                 
+                <p>
+                  Transform
+                </p>
+              </label>
+              
+              
+              <!---->
+            </div>
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+        </div>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+        data-layout="object-property"
+      >
+        <!---->
+        <!---->
+         
+        <div
+          class="grow"
+          data-layout="object-property-content"
+        >
+          <!---->
+          <!---->
+          <pre
+            style="color: red;"
+          >
+            "enumField" component not found
+          </pre>
+          
+          
+          <!---->
+        </div>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+        data-layout="object-property"
+      >
+        <!---->
+        <!---->
+         
+        <div
+          class="grow"
+          data-layout="object-property-content"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="flex gap-2 flex-col"
+            data-layout="field"
+          >
+            <!---->
+            <!---->
+            <div
+              data-layout="field-meta"
+            >
+              <!---->
+              <!---->
+               
+              <!---->
+              <div
+                class="opacity-60"
+                id="root.paginate::description"
+              >
+                Partitioning the input data (object or array) into pages by their keys
+              </div>
+              
+              <!---->
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <div
+              class="flex gap-2 items-start"
+              data-layout="field-content"
+            >
+              <!---->
+              <!---->
+              <label
+                class="flex items-center space-x-2 cursor-pointer"
+              >
+                <input
+                  aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
+                  class="checkbox"
+                  id="root.paginate"
+                  name="root.paginate"
+                  type="checkbox"
+                />
+                 
+                <p>
+                  Paginate
+                </p>
+              </label>
+              
+              
+              <!---->
+            </div>
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+        </div>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+        data-layout="object-property"
+      >
+        <!---->
+        <!---->
+         
+        <div
+          class="grow"
+          data-layout="object-property-content"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="flex gap-2 flex-col"
+            data-layout="field"
+          >
+            <!---->
+            <!---->
+            <div
+              data-layout="field-meta"
+            >
+              <!---->
+              <!---->
+               
+              <!---->
+              <div
+                class="opacity-60"
+                id="root.createOnOpen::description"
+              >
+                Creating a table when opening a share link
+              </div>
+              
+              <!---->
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <div
+              class="flex gap-2 items-start"
+              data-layout="field-content"
+            >
+              <!---->
+              <!---->
+              <label
+                class="flex items-center space-x-2 cursor-pointer"
+              >
+                <input
+                  aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
+                  class="checkbox"
+                  id="root.createOnOpen"
+                  name="root.createOnOpen"
+                  type="checkbox"
+                />
+                 
+                <p>
+                  Create on open
+                </p>
+              </label>
+              
+              
+              <!---->
+            </div>
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+        </div>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      
+      
+      
+      <!---->
+    </div>
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+</div>
+`;
+
+exports[`object fields > defaults > oneOfDefaults > normal 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="flex gap-4 flex-col"
+    data-layout="object-field"
+  >
+    <!---->
+    <!---->
+    <div
+      data-layout="object-field-meta"
+    >
+      <!---->
+      <!---->
+      <div
+        class="font-bold text-xl"
+        id="root::title"
+      >
+        Options
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="object-properties"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+        data-layout="object-property"
+      >
+        <!---->
+        <!---->
+         
+        <div
+          class="grow"
+          data-layout="object-property-content"
+        >
+          <!---->
+          <!---->
+          <pre
+            style="color: red;"
+          >
+            "enumField" component not found
+          </pre>
+          
+          
+          <!---->
+        </div>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+        data-layout="object-property"
+      >
+        <!---->
+        <!---->
+         
+        <div
+          class="grow"
+          data-layout="object-property-content"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="flex gap-2 flex-col"
+            data-layout="field"
+          >
+            <!---->
+            <!---->
+            <div
+              data-layout="field-meta"
+            >
+              <!---->
+              <!---->
+               
+              <!---->
+              <div
+                class="opacity-60"
+                id="root.transform::description"
+              >
+                Apply a transformation to the output data
+              </div>
+              
+              <!---->
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <div
+              class="flex gap-2 items-start"
+              data-layout="field-content"
+            >
+              <!---->
+              <!---->
+              <label
+                class="flex items-center space-x-2 cursor-pointer"
+              >
+                <input
+                  aria-describedby="root.transform::description root.transform::help root.transform::errors"
+                  class="checkbox"
+                  id="root.transform"
+                  name="root.transform"
+                  type="checkbox"
+                />
+                 
+                <p>
+                  Transform
+                </p>
+              </label>
+              
+              
+              <!---->
+            </div>
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+        </div>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+        data-layout="object-property"
+      >
+        <!---->
+        <!---->
+         
+        <div
+          class="grow"
+          data-layout="object-property-content"
+        >
+          <!---->
+          <!---->
+          <pre
+            style="color: red;"
+          >
+            "enumField" component not found
+          </pre>
+          
+          
+          <!---->
+        </div>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+        data-layout="object-property"
+      >
+        <!---->
+        <!---->
+         
+        <div
+          class="grow"
+          data-layout="object-property-content"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="flex gap-2 flex-col"
+            data-layout="field"
+          >
+            <!---->
+            <!---->
+            <div
+              data-layout="field-meta"
+            >
+              <!---->
+              <!---->
+               
+              <!---->
+              <div
+                class="opacity-60"
+                id="root.paginate::description"
+              >
+                Partitioning the input data (object or array) into pages by their keys
+              </div>
+              
+              <!---->
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <div
+              class="flex gap-2 items-start"
+              data-layout="field-content"
+            >
+              <!---->
+              <!---->
+              <label
+                class="flex items-center space-x-2 cursor-pointer"
+              >
+                <input
+                  aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
+                  class="checkbox"
+                  id="root.paginate"
+                  name="root.paginate"
+                  type="checkbox"
+                />
+                 
+                <p>
+                  Paginate
+                </p>
+              </label>
+              
+              
+              <!---->
+            </div>
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+        </div>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+        data-layout="object-property"
+      >
+        <!---->
+        <!---->
+         
+        <div
+          class="grow"
+          data-layout="object-property-content"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="flex gap-2 flex-col"
+            data-layout="field"
+          >
+            <!---->
+            <!---->
+            <div
+              data-layout="field-meta"
+            >
+              <!---->
+              <!---->
+               
+              <!---->
+              <div
+                class="opacity-60"
+                id="root.createOnOpen::description"
+              >
+                Creating a table when opening a share link
+              </div>
+              
+              <!---->
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <div
+              class="flex gap-2 items-start"
+              data-layout="field-content"
+            >
+              <!---->
+              <!---->
+              <label
+                class="flex items-center space-x-2 cursor-pointer"
+              >
+                <input
+                  aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
+                  class="checkbox"
+                  id="root.createOnOpen"
+                  name="root.createOnOpen"
+                  type="checkbox"
+                />
+                 
+                <p>
+                  Create on open
+                </p>
+              </label>
+              
+              
+              <!---->
+            </div>
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+        </div>
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      
+      
+      
+      <!---->
+    </div>
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+</div>
+`;
+
 exports[`object fields > has errors > normal 1`] = `
 <div>
   <!---->

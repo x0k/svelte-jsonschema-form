@@ -18,6 +18,8 @@ import {
   type SnapshotFormOptions,
 } from "./core";
 
+import * as oneOfDefaults from "./test-data/one-of-defaults";
+
 const titleAndDesc = {
   title: "Test field",
   description: "a test description",
@@ -47,14 +49,17 @@ const labelsOff: UiSchemaRoot = {
 };
 
 export function objectTests(theme: Theme, matchOptions?: MatchSnapshotOptions) {
-  const snapshot = (options: Omit<SnapshotFormOptions, "theme">) =>
+  const snapshot = (
+    options: Omit<SnapshotFormOptions, "theme">,
+    state = "normal"
+  ) =>
     matchSnapshot(
-      "normal",
+      state,
       {
         ...options,
         theme,
       },
-            {
+      {
         ...matchOptions,
         defaultFormOptions: { ...matchOptions?.defaultFormOptions, resolver },
       }
@@ -240,6 +245,29 @@ export function objectTests(theme: Theme, matchOptions?: MatchSnapshotOptions) {
           uiSchema: labelsOff,
           initialValue: formData,
         });
+      });
+    });
+    describe("defaults", () => {
+      test("oneOfDefaults", () => {
+        snapshot(
+          {
+            schema: oneOfDefaults.schema,
+            uiSchema: oneOfDefaults.uiSchema,
+            initialValue: oneOfDefaults.initialValue,
+          },
+          "normal"
+        );
+        snapshot(
+          {
+            schema: oneOfDefaults.schema,
+            uiSchema: oneOfDefaults.uiSchema,
+            initialValue: {
+              ...oneOfDefaults.initialValue,
+              preset: oneOfDefaults.TransformPreset.Manual,
+            },
+          },
+          "manual-preset"
+        );
       });
     });
   });

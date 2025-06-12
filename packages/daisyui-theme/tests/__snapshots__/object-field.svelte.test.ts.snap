@@ -240,6 +240,1412 @@ exports[`object fields > additionalProperties > normal 1`] = `
 </div>
 `;
 
+exports[`object fields > defaults > oneOfDefaults > manual-preset 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+      <div
+        data-layout="object-field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          class="font-bold text-xl"
+          id="root::title"
+        >
+          Options
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <pre
+              style="color: red;"
+            >
+              "enumField" component not found
+            </pre>
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="label-text-alt"
+                  id="root.collapseIndexes::description"
+                >
+                  Combines hierarchical indexes into one cell (1.1, 1.2, ...)
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <label
+                  class="label cursor-pointer gap-2"
+                >
+                  <input
+                    aria-describedby="root.collapseIndexes::description root.collapseIndexes::help root.collapseIndexes::errors"
+                    class="checkbox"
+                    id="root.collapseIndexes"
+                    name="root.collapseIndexes"
+                    type="checkbox"
+                  />
+                   
+                  <span
+                    class="label-text"
+                  >
+                    Combine nested indexes
+                  </span>
+                </label>
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="label-text-alt"
+                  id="root.joinPrimitiveArrayValues::description"
+                >
+                  Combines the values of an array of primitives into one cell (separated by ',')
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <label
+                  class="label cursor-pointer gap-2"
+                >
+                  <input
+                    aria-describedby="root.joinPrimitiveArrayValues::description root.joinPrimitiveArrayValues::help root.joinPrimitiveArrayValues::errors"
+                    class="checkbox"
+                    id="root.joinPrimitiveArrayValues"
+                    name="root.joinPrimitiveArrayValues"
+                    type="checkbox"
+                  />
+                   
+                  <span
+                    class="label-text"
+                  >
+                    Combine simple values
+                  </span>
+                </label>
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="label-text-alt"
+                  id="root.combineArraysOfObjects::description"
+                >
+                  Combine arrays of objects into a single object
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <label
+                  class="label cursor-pointer gap-2"
+                >
+                  <input
+                    aria-describedby="root.combineArraysOfObjects::description root.combineArraysOfObjects::help root.combineArraysOfObjects::errors"
+                    class="checkbox"
+                    id="root.combineArraysOfObjects"
+                    name="root.combineArraysOfObjects"
+                    type="checkbox"
+                  />
+                   
+                  <span
+                    class="label-text"
+                  >
+                    Combine objects
+                  </span>
+                </label>
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="label-text-alt"
+                  id="root.stabilizeOrderOfPropertiesInArraysOfObjects::description"
+                >
+                  Stabilizing the order in which properties are displayed for arrays of objects
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <label
+                  class="label cursor-pointer gap-2"
+                >
+                  <input
+                    aria-describedby="root.stabilizeOrderOfPropertiesInArraysOfObjects::description root.stabilizeOrderOfPropertiesInArraysOfObjects::help root.stabilizeOrderOfPropertiesInArraysOfObjects::errors"
+                    class="checkbox"
+                    id="root.stabilizeOrderOfPropertiesInArraysOfObjects"
+                    name="root.stabilizeOrderOfPropertiesInArraysOfObjects"
+                    type="checkbox"
+                  />
+                   
+                  <span
+                    class="label-text"
+                  >
+                    Stabilize order of properties
+                  </span>
+                </label>
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <label
+                  class="label-text"
+                  for="root.proportionalSizeAdjustmentThreshold"
+                >
+                  Proportional size adjustment threshold 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="label-text-alt"
+                  id="root.proportionalSizeAdjustmentThreshold::description"
+                >
+                  Specifies the threshold to which the value (height, width) can be increased for a proportional increase. The default is 1 (by 100%).
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.proportionalSizeAdjustmentThreshold::description root.proportionalSizeAdjustmentThreshold::help root.proportionalSizeAdjustmentThreshold::errors"
+                  class="input input-bordered grow"
+                  id="root.proportionalSizeAdjustmentThreshold"
+                  min="0"
+                  name="root.proportionalSizeAdjustmentThreshold"
+                  required=""
+                  step="any"
+                  type="number"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <label
+                  class="label-text"
+                  for="root.cornerCellValue"
+                >
+                  Corner cell value 
+                  <!---->
+                </label>
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="label-text-alt"
+                  id="root.cornerCellValue::description"
+                >
+                  The value of the corner cell.
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.cornerCellValue::description root.cornerCellValue::help root.cornerCellValue::errors"
+                  class="input input-bordered grow"
+                  id="root.cornerCellValue"
+                  name="root.cornerCellValue"
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="label-text-alt"
+                  id="root.transform::description"
+                >
+                  Apply a transformation to the output data
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <label
+                  class="label cursor-pointer gap-2"
+                >
+                  <input
+                    aria-describedby="root.transform::description root.transform::help root.transform::errors"
+                    class="checkbox"
+                    id="root.transform"
+                    name="root.transform"
+                    type="checkbox"
+                  />
+                   
+                  <span
+                    class="label-text"
+                  >
+                    Transform
+                  </span>
+                </label>
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <pre
+              style="color: red;"
+            >
+              "enumField" component not found
+            </pre>
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="label-text-alt"
+                  id="root.paginate::description"
+                >
+                  Partitioning the input data (object or array) into pages by their keys
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <label
+                  class="label cursor-pointer gap-2"
+                >
+                  <input
+                    aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
+                    class="checkbox"
+                    id="root.paginate"
+                    name="root.paginate"
+                    type="checkbox"
+                  />
+                   
+                  <span
+                    class="label-text"
+                  >
+                    Paginate
+                  </span>
+                </label>
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="label-text-alt"
+                  id="root.createOnOpen::description"
+                >
+                  Creating a table when opening a share link
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <label
+                  class="label cursor-pointer gap-2"
+                >
+                  <input
+                    aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
+                    class="checkbox"
+                    id="root.createOnOpen"
+                    name="root.createOnOpen"
+                    type="checkbox"
+                  />
+                   
+                  <span
+                    class="label-text"
+                  >
+                    Create on open
+                  </span>
+                </label>
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`object fields > defaults > oneOfDefaults > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+      <div
+        data-layout="object-field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          class="font-bold text-xl"
+          id="root::title"
+        >
+          Options
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <pre
+              style="color: red;"
+            >
+              "enumField" component not found
+            </pre>
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="label-text-alt"
+                  id="root.transform::description"
+                >
+                  Apply a transformation to the output data
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <label
+                  class="label cursor-pointer gap-2"
+                >
+                  <input
+                    aria-describedby="root.transform::description root.transform::help root.transform::errors"
+                    class="checkbox"
+                    id="root.transform"
+                    name="root.transform"
+                    type="checkbox"
+                  />
+                   
+                  <span
+                    class="label-text"
+                  >
+                    Transform
+                  </span>
+                </label>
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <pre
+              style="color: red;"
+            >
+              "enumField" component not found
+            </pre>
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="label-text-alt"
+                  id="root.paginate::description"
+                >
+                  Partitioning the input data (object or array) into pages by their keys
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <label
+                  class="label cursor-pointer gap-2"
+                >
+                  <input
+                    aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
+                    class="checkbox"
+                    id="root.paginate"
+                    name="root.paginate"
+                    type="checkbox"
+                  />
+                   
+                  <span
+                    class="label-text"
+                  >
+                    Paginate
+                  </span>
+                </label>
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="label-text-alt"
+                  id="root.createOnOpen::description"
+                >
+                  Creating a table when opening a share link
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <label
+                  class="label cursor-pointer gap-2"
+                >
+                  <input
+                    aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
+                    class="checkbox"
+                    id="root.createOnOpen"
+                    name="root.createOnOpen"
+                    type="checkbox"
+                  />
+                   
+                  <span
+                    class="label-text"
+                  >
+                    Create on open
+                  </span>
+                </label>
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
 exports[`object fields > has errors > normal 1`] = `
 <div>
   <!---->

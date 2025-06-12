@@ -8,6 +8,9 @@ d:
 t:
   pnpm run test $@
 
+tu:
+  pnpm run test -- -u
+
 b:
   pnpm run build $@
 

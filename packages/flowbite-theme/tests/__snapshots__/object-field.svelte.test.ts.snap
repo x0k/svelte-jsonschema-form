@@ -306,6 +306,1632 @@ exports[`object fields > additionalProperties > normal 1`] = `
 </div>
 `;
 
+exports[`object fields > defaults > oneOfDefaults > manual-preset 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <div
+        data-layout="object-field-meta"
+      >
+        <!---->
+        <!---->
+        <p
+          class="text-gray-900 dark:text-white font-semibold"
+          id="root::title"
+        >
+          Options
+        </p>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <pre
+              style="color: red;"
+            >
+              "enumField" component not found
+            </pre>
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="text-sm opacity-70"
+                  id="root.collapseIndexes::description"
+                >
+                  Combines hierarchical indexes into one cell (1.1, 1.2, ...)
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              
+              <!---->
+               
+              <!---->
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <label
+                  class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+                >
+                  <input
+                    aria-describedby="root.collapseIndexes::description root.collapseIndexes::help root.collapseIndexes::errors"
+                    class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+                    id="root.collapseIndexes"
+                    name="root.collapseIndexes"
+                    type="checkbox"
+                    value="on"
+                  />
+                   
+                  Combine nested indexes
+                  <!---->
+                  <!---->
+                </label>
+                
+                
+                
+                
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="text-sm opacity-70"
+                  id="root.joinPrimitiveArrayValues::description"
+                >
+                  Combines the values of an array of primitives into one cell (separated by ',')
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              
+              <!---->
+               
+              <!---->
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <label
+                  class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+                >
+                  <input
+                    aria-describedby="root.joinPrimitiveArrayValues::description root.joinPrimitiveArrayValues::help root.joinPrimitiveArrayValues::errors"
+                    class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+                    id="root.joinPrimitiveArrayValues"
+                    name="root.joinPrimitiveArrayValues"
+                    type="checkbox"
+                    value="on"
+                  />
+                   
+                  Combine simple values
+                  <!---->
+                  <!---->
+                </label>
+                
+                
+                
+                
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="text-sm opacity-70"
+                  id="root.combineArraysOfObjects::description"
+                >
+                  Combine arrays of objects into a single object
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              
+              <!---->
+               
+              <!---->
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <label
+                  class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+                >
+                  <input
+                    aria-describedby="root.combineArraysOfObjects::description root.combineArraysOfObjects::help root.combineArraysOfObjects::errors"
+                    class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+                    id="root.combineArraysOfObjects"
+                    name="root.combineArraysOfObjects"
+                    type="checkbox"
+                    value="on"
+                  />
+                   
+                  Combine objects
+                  <!---->
+                  <!---->
+                </label>
+                
+                
+                
+                
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="text-sm opacity-70"
+                  id="root.stabilizeOrderOfPropertiesInArraysOfObjects::description"
+                >
+                  Stabilizing the order in which properties are displayed for arrays of objects
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              
+              <!---->
+               
+              <!---->
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <label
+                  class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+                >
+                  <input
+                    aria-describedby="root.stabilizeOrderOfPropertiesInArraysOfObjects::description root.stabilizeOrderOfPropertiesInArraysOfObjects::help root.stabilizeOrderOfPropertiesInArraysOfObjects::errors"
+                    class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+                    id="root.stabilizeOrderOfPropertiesInArraysOfObjects"
+                    name="root.stabilizeOrderOfPropertiesInArraysOfObjects"
+                    type="checkbox"
+                    value="on"
+                  />
+                   
+                  Stabilize order of properties
+                  <!---->
+                  <!---->
+                </label>
+                
+                
+                
+                
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <label
+                  class="text-sm rtl:text-right font-medium block text-gray-900 dark:text-gray-300"
+                  for="root.proportionalSizeAdjustmentThreshold"
+                >
+                  Proportional size adjustment threshold 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                  <!---->
+                </label>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="text-sm opacity-70"
+                  id="root.proportionalSizeAdjustmentThreshold::description"
+                >
+                  Specifies the threshold to which the value (height, width) can be increased for a proportional increase. The default is 1 (by 100%).
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              
+              <!---->
+               
+              <!---->
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                 
+                <input
+                  aria-describedby="root.proportionalSizeAdjustmentThreshold::description root.proportionalSizeAdjustmentThreshold::help root.proportionalSizeAdjustmentThreshold::errors"
+                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 text-sm rounded-lg"
+                  id="root.proportionalSizeAdjustmentThreshold"
+                  min="0"
+                  name="root.proportionalSizeAdjustmentThreshold"
+                  required=""
+                  step="any"
+                  type="number"
+                />
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                
+                
+                <!---->
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <label
+                  class="text-sm rtl:text-right font-medium block text-gray-900 dark:text-gray-300"
+                  for="root.cornerCellValue"
+                >
+                  Corner cell value 
+                  <!---->
+                  <!---->
+                </label>
+                
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="text-sm opacity-70"
+                  id="root.cornerCellValue::description"
+                >
+                  The value of the corner cell.
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              
+              <!---->
+               
+              <!---->
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                 
+                <input
+                  aria-describedby="root.cornerCellValue::description root.cornerCellValue::help root.cornerCellValue::errors"
+                  class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right p-2.5 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 text-sm rounded-lg"
+                  id="root.cornerCellValue"
+                  name="root.cornerCellValue"
+                  type="text"
+                />
+                <!---->
+                 
+                <!---->
+                 
+                <!---->
+                
+                
+                <!---->
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="text-sm opacity-70"
+                  id="root.transform::description"
+                >
+                  Apply a transformation to the output data
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              
+              <!---->
+               
+              <!---->
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <label
+                  class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+                >
+                  <input
+                    aria-describedby="root.transform::description root.transform::help root.transform::errors"
+                    class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+                    id="root.transform"
+                    name="root.transform"
+                    type="checkbox"
+                    value="on"
+                  />
+                   
+                  Transform
+                  <!---->
+                  <!---->
+                </label>
+                
+                
+                
+                
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <pre
+              style="color: red;"
+            >
+              "enumField" component not found
+            </pre>
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="text-sm opacity-70"
+                  id="root.paginate::description"
+                >
+                  Partitioning the input data (object or array) into pages by their keys
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              
+              <!---->
+               
+              <!---->
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <label
+                  class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+                >
+                  <input
+                    aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
+                    class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+                    id="root.paginate"
+                    name="root.paginate"
+                    type="checkbox"
+                    value="on"
+                  />
+                   
+                  Paginate
+                  <!---->
+                  <!---->
+                </label>
+                
+                
+                
+                
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="text-sm opacity-70"
+                  id="root.createOnOpen::description"
+                >
+                  Creating a table when opening a share link
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              
+              <!---->
+               
+              <!---->
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <label
+                  class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+                >
+                  <input
+                    aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
+                    class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+                    id="root.createOnOpen"
+                    name="root.createOnOpen"
+                    type="checkbox"
+                    value="on"
+                  />
+                   
+                  Create on open
+                  <!---->
+                  <!---->
+                </label>
+                
+                
+                
+                
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`object fields > defaults > oneOfDefaults > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <div
+        data-layout="object-field-meta"
+      >
+        <!---->
+        <!---->
+        <p
+          class="text-gray-900 dark:text-white font-semibold"
+          id="root::title"
+        >
+          Options
+        </p>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <pre
+              style="color: red;"
+            >
+              "enumField" component not found
+            </pre>
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="text-sm opacity-70"
+                  id="root.transform::description"
+                >
+                  Apply a transformation to the output data
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              
+              <!---->
+               
+              <!---->
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <label
+                  class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+                >
+                  <input
+                    aria-describedby="root.transform::description root.transform::help root.transform::errors"
+                    class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+                    id="root.transform"
+                    name="root.transform"
+                    type="checkbox"
+                    value="on"
+                  />
+                   
+                  Transform
+                  <!---->
+                  <!---->
+                </label>
+                
+                
+                
+                
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <pre
+              style="color: red;"
+            >
+              "enumField" component not found
+            </pre>
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="text-sm opacity-70"
+                  id="root.paginate::description"
+                >
+                  Partitioning the input data (object or array) into pages by their keys
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              
+              <!---->
+               
+              <!---->
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <label
+                  class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+                >
+                  <input
+                    aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
+                    class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+                    id="root.paginate"
+                    name="root.paginate"
+                    type="checkbox"
+                    value="on"
+                  />
+                   
+                  Paginate
+                  <!---->
+                  <!---->
+                </label>
+                
+                
+                
+                
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                 
+                <!---->
+                <div
+                  class="text-sm opacity-70"
+                  id="root.createOnOpen::description"
+                >
+                  Creating a table when opening a share link
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              
+              <!---->
+               
+              <!---->
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <label
+                  class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+                >
+                  <input
+                    aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
+                    class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+                    id="root.createOnOpen"
+                    name="root.createOnOpen"
+                    type="checkbox"
+                    value="on"
+                  />
+                   
+                  Create on open
+                  <!---->
+                  <!---->
+                </label>
+                
+                
+                
+                
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
 exports[`object fields > has errors > normal 1`] = `
 <div>
   <!---->

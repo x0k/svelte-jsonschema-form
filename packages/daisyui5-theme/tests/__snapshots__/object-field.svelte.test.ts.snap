@@ -248,6 +248,1418 @@ exports[`object fields > additionalProperties > normal 1`] = `
 </div>
 `;
 
+exports[`object fields > defaults > oneOfDefaults > manual-preset 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <legend
+        class="fieldset-legend text-base"
+        id="root::title"
+      >
+        Options
+      </legend>
+      
+      <!---->
+       
+      <!---->
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <pre
+              style="color: red;"
+            >
+              "enumField" component not found
+            </pre>
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.collapseIndexes::description"
+              >
+                Combines hierarchical indexes into one cell (1.1, 1.2, ...)
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-label"
+              >
+                <input
+                  aria-describedby="root.collapseIndexes::description root.collapseIndexes::help root.collapseIndexes::errors"
+                  class="checkbox"
+                  id="root.collapseIndexes"
+                  name="root.collapseIndexes"
+                  type="checkbox"
+                />
+                 Combine nested indexes
+              </label>
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.joinPrimitiveArrayValues::description"
+              >
+                Combines the values of an array of primitives into one cell (separated by ',')
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-label"
+              >
+                <input
+                  aria-describedby="root.joinPrimitiveArrayValues::description root.joinPrimitiveArrayValues::help root.joinPrimitiveArrayValues::errors"
+                  class="checkbox"
+                  id="root.joinPrimitiveArrayValues"
+                  name="root.joinPrimitiveArrayValues"
+                  type="checkbox"
+                />
+                 Combine simple values
+              </label>
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.combineArraysOfObjects::description"
+              >
+                Combine arrays of objects into a single object
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-label"
+              >
+                <input
+                  aria-describedby="root.combineArraysOfObjects::description root.combineArraysOfObjects::help root.combineArraysOfObjects::errors"
+                  class="checkbox"
+                  id="root.combineArraysOfObjects"
+                  name="root.combineArraysOfObjects"
+                  type="checkbox"
+                />
+                 Combine objects
+              </label>
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.stabilizeOrderOfPropertiesInArraysOfObjects::description"
+              >
+                Stabilizing the order in which properties are displayed for arrays of objects
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-label"
+              >
+                <input
+                  aria-describedby="root.stabilizeOrderOfPropertiesInArraysOfObjects::description root.stabilizeOrderOfPropertiesInArraysOfObjects::help root.stabilizeOrderOfPropertiesInArraysOfObjects::errors"
+                  class="checkbox"
+                  id="root.stabilizeOrderOfPropertiesInArraysOfObjects"
+                  name="root.stabilizeOrderOfPropertiesInArraysOfObjects"
+                  type="checkbox"
+                />
+                 Stabilize order of properties
+              </label>
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.proportionalSizeAdjustmentThreshold"
+              >
+                Proportional size adjustment threshold 
+                *
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.proportionalSizeAdjustmentThreshold::description"
+              >
+                Specifies the threshold to which the value (height, width) can be increased for a proportional increase. The default is 1 (by 100%).
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.proportionalSizeAdjustmentThreshold::description root.proportionalSizeAdjustmentThreshold::help root.proportionalSizeAdjustmentThreshold::errors"
+                class="w-full input input-bordered"
+                id="root.proportionalSizeAdjustmentThreshold"
+                min="0"
+                name="root.proportionalSizeAdjustmentThreshold"
+                required=""
+                step="any"
+                type="number"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.cornerCellValue"
+              >
+                Corner cell value 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.cornerCellValue::description"
+              >
+                The value of the corner cell.
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.cornerCellValue::description root.cornerCellValue::help root.cornerCellValue::errors"
+                class="input input-bordered w-full"
+                id="root.cornerCellValue"
+                name="root.cornerCellValue"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.transform::description"
+              >
+                Apply a transformation to the output data
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-label"
+              >
+                <input
+                  aria-describedby="root.transform::description root.transform::help root.transform::errors"
+                  class="checkbox"
+                  id="root.transform"
+                  name="root.transform"
+                  type="checkbox"
+                />
+                 Transform
+              </label>
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <pre
+              style="color: red;"
+            >
+              "enumField" component not found
+            </pre>
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.paginate::description"
+              >
+                Partitioning the input data (object or array) into pages by their keys
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-label"
+              >
+                <input
+                  aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
+                  class="checkbox"
+                  id="root.paginate"
+                  name="root.paginate"
+                  type="checkbox"
+                />
+                 Paginate
+              </label>
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.createOnOpen::description"
+              >
+                Creating a table when opening a share link
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-label"
+              >
+                <input
+                  aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
+                  class="checkbox"
+                  id="root.createOnOpen"
+                  name="root.createOnOpen"
+                  type="checkbox"
+                />
+                 Create on open
+              </label>
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`object fields > defaults > oneOfDefaults > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <legend
+        class="fieldset-legend text-base"
+        id="root::title"
+      >
+        Options
+      </legend>
+      
+      <!---->
+       
+      <!---->
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <pre
+              style="color: red;"
+            >
+              "enumField" component not found
+            </pre>
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.transform::description"
+              >
+                Apply a transformation to the output data
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-label"
+              >
+                <input
+                  aria-describedby="root.transform::description root.transform::help root.transform::errors"
+                  class="checkbox"
+                  id="root.transform"
+                  name="root.transform"
+                  type="checkbox"
+                />
+                 Transform
+              </label>
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <pre
+              style="color: red;"
+            >
+              "enumField" component not found
+            </pre>
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.paginate::description"
+              >
+                Partitioning the input data (object or array) into pages by their keys
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-label"
+              >
+                <input
+                  aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
+                  class="checkbox"
+                  id="root.paginate"
+                  name="root.paginate"
+                  type="checkbox"
+                />
+                 Paginate
+              </label>
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.createOnOpen::description"
+              >
+                Creating a table when opening a share link
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-label"
+              >
+                <input
+                  aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
+                  class="checkbox"
+                  id="root.createOnOpen"
+                  name="root.createOnOpen"
+                  type="checkbox"
+                />
+                 Create on open
+              </label>
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
 exports[`object fields > has errors > normal 1`] = `
 <div>
   <!---->
