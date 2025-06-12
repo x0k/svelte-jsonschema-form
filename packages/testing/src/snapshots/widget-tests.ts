@@ -1,4 +1,4 @@
-import { describe, test } from "vitest";
+import { describe } from "vitest";
 import {
   type Schema,
   type Theme,
@@ -9,7 +9,7 @@ import {
 import { DEFAULT_SPECS, type s } from "../demo";
 
 import {
-  matchSnapshot,
+  testMatchSnapshot,
   type MatchSnapshotOptions,
   type SnapshotFormOptions,
 } from "./core";
@@ -23,7 +23,7 @@ export function widgetTests(
     state: string,
     options: Omit<SnapshotFormOptions, "theme">
   ) =>
-    matchSnapshot(
+    testMatchSnapshot(
       state,
       {
         ...options,
@@ -33,7 +33,7 @@ export function widgetTests(
     );
 
   function testWidget(widget: string, schema: Schema, uiSchema: UiSchemaRoot) {
-    test(widget, () => {
+    describe(widget, () => {
       snapshot("normal", { schema, uiSchema });
       snapshot("error", {
         schema,

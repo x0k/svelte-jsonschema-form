@@ -51,7 +51,6 @@ export function arrayFieldTests(
 ) {
   const snapshot = (options: Omit<SnapshotFormOptions, "theme">) =>
     matchSnapshot(
-      "normal",
       {
         ...options,
         theme,

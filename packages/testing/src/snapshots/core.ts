@@ -1,5 +1,5 @@
 import type { Component } from "svelte";
-import { expect } from "vitest";
+import { expect, test } from "vitest";
 import { render } from "vitest-browser-svelte";
 import type { FormOptions, Validator } from "@sjsf/form";
 
@@ -20,7 +20,6 @@ export interface MatchSnapshotOptions {
 }
 
 export function matchSnapshot(
-  state: string,
   formOptions: SnapshotFormOptions,
   { context, defaultFormOptions, Form = DefaultForm }: MatchSnapshotOptions = {}
 ) {
@@ -33,5 +32,15 @@ export function matchSnapshot(
       ...formOptions,
     },
   });
-  expect(container).toMatchSnapshot(state);
+  expect(container).toMatchSnapshot();
+}
+
+export function testMatchSnapshot(
+  title: string,
+  formOptions: SnapshotFormOptions,
+  matchOptions?: MatchSnapshotOptions
+) {
+  test(title, () => {
+    matchSnapshot(formOptions, matchOptions);
+  });
 }

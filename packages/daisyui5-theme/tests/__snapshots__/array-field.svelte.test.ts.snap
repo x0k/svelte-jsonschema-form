@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`array fields > array > normal 1`] = `
+exports[`array fields > array 1`] = `
 <div>
   <!---->
   <form
@@ -75,7 +75,7 @@ exports[`array fields > array > normal 1`] = `
 </div>
 `;
 
-exports[`array fields > array icons > normal 1`] = `
+exports[`array fields > array icons 1`] = `
 <div>
   <!---->
   <form
@@ -456,7 +456,7 @@ exports[`array fields > array icons > normal 1`] = `
 </div>
 `;
 
-exports[`array fields > checkboxes > normal 1`] = `
+exports[`array fields > checkboxes 1`] = `
 <div>
   <!---->
   <form
@@ -491,7 +491,7 @@ exports[`array fields > checkboxes > normal 1`] = `
 </div>
 `;
 
-exports[`array fields > empty errors array > normal 1`] = `
+exports[`array fields > empty errors array 1`] = `
 <div>
   <!---->
   <form
@@ -657,7 +657,7 @@ exports[`array fields > empty errors array > normal 1`] = `
 </div>
 `;
 
-exports[`array fields > fixed array > normal 1`] = `
+exports[`array fields > fixed array 1`] = `
 <div>
   <!---->
   <form
@@ -862,7 +862,7 @@ exports[`array fields > fixed array > normal 1`] = `
 </div>
 `;
 
-exports[`with title and description > array > normal 1`] = `
+exports[`with title and description > array 1`] = `
 <div>
   <!---->
   <form
@@ -963,7 +963,7 @@ exports[`with title and description > array > normal 1`] = `
 </div>
 `;
 
-exports[`with title and description > array icons > normal 1`] = `
+exports[`with title and description > array icons 1`] = `
 <div>
   <!---->
   <form
@@ -1386,7 +1386,7 @@ exports[`with title and description > array icons > normal 1`] = `
 </div>
 `;
 
-exports[`with title and description > checkboxes > normal 1`] = `
+exports[`with title and description > checkboxes 1`] = `
 <div>
   <!---->
   <form
@@ -1421,7 +1421,7 @@ exports[`with title and description > checkboxes > normal 1`] = `
 </div>
 `;
 
-exports[`with title and description > fixed array > normal 1`] = `
+exports[`with title and description > fixed array 1`] = `
 <div>
   <!---->
   <form
@@ -1708,7 +1708,7 @@ exports[`with title and description > fixed array > normal 1`] = `
 </div>
 `;
 
-exports[`with title and description from both > array > normal 1`] = `
+exports[`with title and description from both > array 1`] = `
 <div>
   <!---->
   <form
@@ -1809,853 +1809,7 @@ exports[`with title and description from both > array > normal 1`] = `
 </div>
 `;
 
-exports[`with title and description from both > array icons > normal 1`] = `
-<div>
-  <!---->
-  <form
-    class="flex flex-col gap-4"
-  >
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <fieldset
-      class="fieldset gap-y-2"
-      data-layout="array-field"
-    >
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <legend
-        class="fieldset-legend text-base"
-        id="root::title"
-      >
-        My Field
-      </legend>
-      
-      <!---->
-       
-      <!---->
-      <p
-        class="fieldset-label"
-        id="root::description"
-      >
-        a fancier description
-      </p>
-      
-      <!---->
-      
-      
-      
-      <!---->
-       
-      <!---->
-      <div
-        class="flex gap-2 flex-col"
-        data-layout="array-items"
-      >
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <div
-          class="flex gap-2 items-start"
-          data-layout="array-item"
-        >
-          <!---->
-          <!---->
-          <div
-            class="grow"
-            data-layout="array-item-content"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <fieldset
-              class="fieldset gap-y-2"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <label
-                class="fieldset-legend"
-                for="root.0"
-              >
-                My Item-1 
-                *
-                <!---->
-              </label>
-              
-              <!---->
-               
-              <!---->
-              <p
-                class="fieldset-label"
-                id="root.0::description"
-              >
-                a fancier item description
-              </p>
-              
-              <!---->
-              
-              
-              
-              <!---->
-               
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
-                class="input input-bordered w-full"
-                id="root.0"
-                name="root.0"
-                required=""
-                type="text"
-              />
-               
-              <!---->
-              
-              <!---->
-              
-              
-              
-              
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </fieldset>
-            
-            
-            
-            
-            
-            <!---->
-          </div>
-          
-          <!---->
-           
-          <!---->
-          <!---->
-          <div
-            class="flex items-start join"
-            data-layout="array-item-controls"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <button
-              class="btn join-item btn-sm"
-              disabled=""
-              type="button"
-            >
-              <!---->
-              Up
-              
-              <!---->
-            </button>
-            <!---->
-             
-            <button
-              class="btn join-item btn-sm"
-              type="button"
-            >
-              <!---->
-              Down
-              
-              <!---->
-            </button>
-            <!---->
-            <!---->
-             
-            <!---->
-            <button
-              class="btn join-item btn-sm"
-              type="button"
-            >
-              <!---->
-              Copy
-              
-              <!---->
-            </button>
-            
-            <!---->
-             
-            <!---->
-            <button
-              class="btn join-item btn-sm"
-              type="button"
-            >
-              <!---->
-              Del
-              
-              <!---->
-            </button>
-            
-            <!---->
-            
-            <!---->
-          </div>
-          
-          
-          <!---->
-          <!---->
-        </div>
-        
-        
-        
-        
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <div
-          class="flex gap-2 items-start"
-          data-layout="array-item"
-        >
-          <!---->
-          <!---->
-          <div
-            class="grow"
-            data-layout="array-item-content"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <fieldset
-              class="fieldset gap-y-2"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <label
-                class="fieldset-legend"
-                for="root.1"
-              >
-                My Item-2 
-                *
-                <!---->
-              </label>
-              
-              <!---->
-               
-              <!---->
-              <p
-                class="fieldset-label"
-                id="root.1::description"
-              >
-                a fancier item description
-              </p>
-              
-              <!---->
-              
-              
-              
-              <!---->
-               
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
-                class="input input-bordered w-full"
-                id="root.1"
-                name="root.1"
-                required=""
-                type="text"
-              />
-               
-              <!---->
-              
-              <!---->
-              
-              
-              
-              
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </fieldset>
-            
-            
-            
-            
-            
-            <!---->
-          </div>
-          
-          <!---->
-           
-          <!---->
-          <!---->
-          <div
-            class="flex items-start join"
-            data-layout="array-item-controls"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <button
-              class="btn join-item btn-sm"
-              type="button"
-            >
-              <!---->
-              Up
-              
-              <!---->
-            </button>
-            <!---->
-             
-            <button
-              class="btn join-item btn-sm"
-              disabled=""
-              type="button"
-            >
-              <!---->
-              Down
-              
-              <!---->
-            </button>
-            <!---->
-            <!---->
-             
-            <!---->
-            <button
-              class="btn join-item btn-sm"
-              type="button"
-            >
-              <!---->
-              Copy
-              
-              <!---->
-            </button>
-            
-            <!---->
-             
-            <!---->
-            <button
-              class="btn join-item btn-sm"
-              type="button"
-            >
-              <!---->
-              Del
-              
-              <!---->
-            </button>
-            
-            <!---->
-            
-            <!---->
-          </div>
-          
-          
-          <!---->
-          <!---->
-        </div>
-        
-        
-        
-        
-        
-        
-        
-        <!---->
-      </div>
-      
-      <!---->
-       
-      <!---->
-      <button
-        class="btn join-item btn-sm"
-        type="button"
-      >
-        <!---->
-        Add item
-        
-        <!---->
-      </button>
-      
-      <!---->
-       
-      <!---->
-      <!---->
-    </fieldset>
-    
-    
-    
-    
-    <!---->
-     
-    <!---->
-    <button
-      class="btn btn-primary w-full"
-      type="submit"
-    >
-      <!---->
-      Submit
-      
-      <!---->
-    </button>
-    
-    <!---->
-    <!---->
-  </form>
-  
-  
-</div>
-`;
-
-exports[`with title and description from both > checkboxes > normal 1`] = `
-<div>
-  <!---->
-  <form
-    class="flex flex-col gap-4"
-  >
-    <!---->
-    <!---->
-    <pre
-      style="color: red;"
-    >
-      "multiEnumField" component not found
-    </pre>
-    
-    <!---->
-     
-    <!---->
-    <button
-      class="btn btn-primary w-full"
-      type="submit"
-    >
-      <!---->
-      Submit
-      
-      <!---->
-    </button>
-    
-    <!---->
-    <!---->
-  </form>
-  
-  
-</div>
-`;
-
-exports[`with title and description from both > fixed array > normal 1`] = `
-<div>
-  <!---->
-  <form
-    class="flex flex-col gap-4"
-  >
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <fieldset
-      class="fieldset gap-y-2"
-      data-layout="array-field"
-    >
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <legend
-        class="fieldset-legend text-base"
-        id="root::title"
-      >
-        My Field
-      </legend>
-      
-      <!---->
-       
-      <!---->
-      <p
-        class="fieldset-label"
-        id="root::description"
-      >
-        a fancier description
-      </p>
-      
-      <!---->
-      
-      
-      
-      <!---->
-       
-      <!---->
-      <div
-        class="flex gap-2 flex-col"
-        data-layout="array-items"
-      >
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <div
-          class="flex gap-2 items-start"
-          data-layout="array-item"
-        >
-          <!---->
-          <!---->
-          <div
-            class="grow"
-            data-layout="array-item-content"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <fieldset
-              class="fieldset gap-y-2"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <label
-                class="fieldset-legend"
-                for="root.0"
-              >
-                My Item 
-                *
-                <!---->
-              </label>
-              
-              <!---->
-               
-              <!---->
-              <p
-                class="fieldset-label"
-                id="root.0::description"
-              >
-                a fancier item description
-              </p>
-              
-              <!---->
-              
-              
-              
-              <!---->
-               
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
-                class="input input-bordered w-full"
-                id="root.0"
-                name="root.0"
-                required=""
-                type="text"
-              />
-               
-              <!---->
-              
-              <!---->
-              
-              
-              
-              
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </fieldset>
-            
-            
-            
-            
-            
-            <!---->
-          </div>
-          
-          <!---->
-           
-          <!---->
-          <!---->
-        </div>
-        
-        
-        
-        
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <div
-          class="flex gap-2 items-start"
-          data-layout="array-item"
-        >
-          <!---->
-          <!---->
-          <div
-            class="grow"
-            data-layout="array-item-content"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <!---->
-            <fieldset
-              class="fieldset gap-y-2"
-              data-layout="field"
-            >
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <label
-                class="fieldset-legend"
-                for="root.1"
-              >
-                My Item 
-                *
-                <!---->
-              </label>
-              
-              <!---->
-               
-              <!---->
-              <p
-                class="fieldset-label"
-                id="root.1::description"
-              >
-                a fancier item description
-              </p>
-              
-              <!---->
-              
-              
-              
-              <!---->
-               
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
-                class="w-full input input-bordered"
-                id="root.1"
-                name="root.1"
-                required=""
-                step="any"
-                type="number"
-              />
-               
-              <!---->
-              
-              <!---->
-              
-              
-              
-              
-              <!---->
-               
-              <!---->
-               
-              <!---->
-              <!---->
-            </fieldset>
-            
-            
-            
-            
-            
-            <!---->
-          </div>
-          
-          <!---->
-           
-          <!---->
-          <!---->
-        </div>
-        
-        
-        
-        
-        
-        
-        
-        <!---->
-      </div>
-      
-      <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
-    </fieldset>
-    
-    
-    
-    
-    <!---->
-     
-    <!---->
-    <button
-      class="btn btn-primary w-full"
-      type="submit"
-    >
-      <!---->
-      Submit
-      
-      <!---->
-    </button>
-    
-    <!---->
-    <!---->
-  </form>
-  
-  
-</div>
-`;
-
-exports[`with title and description from uiSchema > array > normal 1`] = `
-<div>
-  <!---->
-  <form
-    class="flex flex-col gap-4"
-  >
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <fieldset
-      class="fieldset gap-y-2"
-      data-layout="array-field"
-    >
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <legend
-        class="fieldset-legend text-base"
-        id="root::title"
-      >
-        My Field
-      </legend>
-      
-      <!---->
-       
-      <!---->
-      <p
-        class="fieldset-label"
-        id="root::description"
-      >
-        a fancier description
-      </p>
-      
-      <!---->
-      
-      
-      
-      <!---->
-       
-      <!---->
-      <div
-        class="flex gap-2 flex-col"
-        data-layout="array-items"
-      >
-        <!---->
-        <!---->
-        <!---->
-        
-        
-        
-        <!---->
-      </div>
-      
-      <!---->
-       
-      <!---->
-      <button
-        class="btn join-item btn-sm"
-        type="button"
-      >
-        <!---->
-        Add item
-        
-        <!---->
-      </button>
-      
-      <!---->
-       
-      <!---->
-      <!---->
-    </fieldset>
-    
-    
-    
-    
-    <!---->
-     
-    <!---->
-    <button
-      class="btn btn-primary w-full"
-      type="submit"
-    >
-      <!---->
-      Submit
-      
-      <!---->
-    </button>
-    
-    <!---->
-    <!---->
-  </form>
-  
-  
-</div>
-`;
-
-exports[`with title and description from uiSchema > array icons > normal 1`] = `
+exports[`with title and description from both > array icons 1`] = `
 <div>
   <!---->
   <form
@@ -3078,7 +2232,7 @@ exports[`with title and description from uiSchema > array icons > normal 1`] = `
 </div>
 `;
 
-exports[`with title and description from uiSchema > checkboxes > normal 1`] = `
+exports[`with title and description from both > checkboxes 1`] = `
 <div>
   <!---->
   <form
@@ -3113,7 +2267,7 @@ exports[`with title and description from uiSchema > checkboxes > normal 1`] = `
 </div>
 `;
 
-exports[`with title and description from uiSchema > fixed array > normal 1`] = `
+exports[`with title and description from both > fixed array 1`] = `
 <div>
   <!---->
   <form
@@ -3400,7 +2554,853 @@ exports[`with title and description from uiSchema > fixed array > normal 1`] = `
 </div>
 `;
 
-exports[`with title and description with global label off > array > normal 1`] = `
+exports[`with title and description from uiSchema > array 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <legend
+        class="fieldset-legend text-base"
+        id="root::title"
+      >
+        My Field
+      </legend>
+      
+      <!---->
+       
+      <!---->
+      <p
+        class="fieldset-label"
+        id="root::description"
+      >
+        a fancier description
+      </p>
+      
+      <!---->
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <button
+        class="btn join-item btn-sm"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`with title and description from uiSchema > array icons 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <legend
+        class="fieldset-legend text-base"
+        id="root::title"
+      >
+        My Field
+      </legend>
+      
+      <!---->
+       
+      <!---->
+      <p
+        class="fieldset-label"
+        id="root::description"
+      >
+        a fancier description
+      </p>
+      
+      <!---->
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="array-item"
+        >
+          <!---->
+          <!---->
+          <div
+            class="grow"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.0"
+              >
+                My Item-1 
+                *
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.0::description"
+              >
+                a fancier item description
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.0::description root.0::help root.0::errors"
+                class="input input-bordered w-full"
+                id="root.0"
+                name="root.0"
+                required=""
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <div
+            class="flex items-start join"
+            data-layout="array-item-controls"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="array-item"
+        >
+          <!---->
+          <!---->
+          <div
+            class="grow"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.1"
+              >
+                My Item-2 
+                *
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.1::description"
+              >
+                a fancier item description
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.1::description root.1::help root.1::errors"
+                class="input input-bordered w-full"
+                id="root.1"
+                name="root.1"
+                required=""
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <div
+            class="flex items-start join"
+            data-layout="array-item-controls"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="btn join-item btn-sm"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <button
+        class="btn join-item btn-sm"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`with title and description from uiSchema > checkboxes 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <pre
+      style="color: red;"
+    >
+      "multiEnumField" component not found
+    </pre>
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`with title and description from uiSchema > fixed array 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <legend
+        class="fieldset-legend text-base"
+        id="root::title"
+      >
+        My Field
+      </legend>
+      
+      <!---->
+       
+      <!---->
+      <p
+        class="fieldset-label"
+        id="root::description"
+      >
+        a fancier description
+      </p>
+      
+      <!---->
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="array-item"
+        >
+          <!---->
+          <!---->
+          <div
+            class="grow"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.0"
+              >
+                My Item 
+                *
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.0::description"
+              >
+                a fancier item description
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.0::description root.0::help root.0::errors"
+                class="input input-bordered w-full"
+                id="root.0"
+                name="root.0"
+                required=""
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="array-item"
+        >
+          <!---->
+          <!---->
+          <div
+            class="grow"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.1"
+              >
+                My Item 
+                *
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.1::description"
+              >
+                a fancier item description
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.1::description root.1::help root.1::errors"
+                class="w-full input input-bordered"
+                id="root.1"
+                name="root.1"
+                required=""
+                step="any"
+                type="number"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`with title and description with global label off > array 1`] = `
 <div>
   <!---->
   <form
@@ -3475,7 +3475,7 @@ exports[`with title and description with global label off > array > normal 1`] =
 </div>
 `;
 
-exports[`with title and description with global label off > array icons > normal 1`] = `
+exports[`with title and description with global label off > array icons 1`] = `
 <div>
   <!---->
   <form
@@ -3816,7 +3816,7 @@ exports[`with title and description with global label off > array icons > normal
 </div>
 `;
 
-exports[`with title and description with global label off > checkboxes > normal 1`] = `
+exports[`with title and description with global label off > checkboxes 1`] = `
 <div>
   <!---->
   <form
@@ -3851,7 +3851,7 @@ exports[`with title and description with global label off > checkboxes > normal 
 </div>
 `;
 
-exports[`with title and description with global label off > fixed array > normal 1`] = `
+exports[`with title and description with global label off > fixed array 1`] = `
 <div>
   <!---->
   <form

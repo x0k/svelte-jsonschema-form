@@ -25,7 +25,6 @@ sjsf/:
   b:
     pnpm run build --filter="@sjsf/*" $@
 
-
 ajv/:
   pushd packages/ajv8-validator
   b:

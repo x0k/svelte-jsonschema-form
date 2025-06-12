@@ -4,6 +4,7 @@
 
 import { describe, test } from "vitest";
 import {
+  createPseudoId,
   pathToId,
   type Schema,
   type Theme,
@@ -49,12 +50,8 @@ const labelsOff: UiSchemaRoot = {
 };
 
 export function objectTests(theme: Theme, matchOptions?: MatchSnapshotOptions) {
-  const snapshot = (
-    options: Omit<SnapshotFormOptions, "theme">,
-    state = "normal"
-  ) =>
+  const snapshot = (options: Omit<SnapshotFormOptions, "theme">) =>
     matchSnapshot(
-      state,
       {
         ...options,
         theme,
@@ -105,6 +102,24 @@ export function objectTests(theme: Theme, matchOptions?: MatchSnapshotOptions) {
       snapshot({
         schema,
         initialValue: { foo: "foo" },
+      });
+    });
+    test("additionalProperties with error", () => {
+      const schema: Schema = {
+        type: "object",
+        additionalProperties: true,
+      };
+      snapshot({
+        schema,
+        initialValue: { foo: "foo" },
+        initialErrors: [
+          {
+            error: null as any,
+            instanceId: createPseudoId(pathToId(["foo"]), "key-input"),
+            message: "error",
+            propertyTitle: "title",
+          },
+        ],
       });
     });
     test("show add button and fields if additionalProperties is true and not an object", () => {
@@ -247,27 +262,24 @@ export function objectTests(theme: Theme, matchOptions?: MatchSnapshotOptions) {
         });
       });
     });
-    describe("defaults", () => {
-      test("oneOfDefaults", () => {
-        snapshot(
-          {
-            schema: oneOfDefaults.schema,
-            uiSchema: oneOfDefaults.uiSchema,
-            initialValue: oneOfDefaults.initialValue,
+    describe("one of defaults", () => {
+      test("default preset", () => {
+        snapshot({
+          schema: oneOfDefaults.schema,
+          uiSchema: oneOfDefaults.uiSchema,
+          initialValue: oneOfDefaults.initialValue,
+        });
+      });
+
+      test("manual preset", () => {
+        snapshot({
+          schema: oneOfDefaults.schema,
+          uiSchema: oneOfDefaults.uiSchema,
+          initialValue: {
+            ...oneOfDefaults.initialValue,
+            preset: oneOfDefaults.TransformPreset.Manual,
           },
-          "normal"
-        );
-        snapshot(
-          {
-            schema: oneOfDefaults.schema,
-            uiSchema: oneOfDefaults.uiSchema,
-            initialValue: {
-              ...oneOfDefaults.initialValue,
-              preset: oneOfDefaults.TransformPreset.Manual,
-            },
-          },
-          "manual-preset"
-        );
+        });
       });
     });
   });

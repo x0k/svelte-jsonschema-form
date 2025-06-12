@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`array fields > array > normal 1`] = `
+exports[`array fields > array 1`] = `
 <div>
   <!---->
   <!---->
@@ -55,7 +55,7 @@ exports[`array fields > array > normal 1`] = `
 </div>
 `;
 
-exports[`array fields > array icons > normal 1`] = `
+exports[`array fields > array icons 1`] = `
 <div>
   <!---->
   <!---->
@@ -440,7 +440,7 @@ exports[`array fields > array icons > normal 1`] = `
 </div>
 `;
 
-exports[`array fields > checkboxes > normal 1`] = `
+exports[`array fields > checkboxes 1`] = `
 <div>
   <!---->
   <pre
@@ -453,7 +453,7 @@ exports[`array fields > checkboxes > normal 1`] = `
 </div>
 `;
 
-exports[`array fields > empty errors array > normal 1`] = `
+exports[`array fields > empty errors array 1`] = `
 <div>
   <!---->
   <!---->
@@ -612,7 +612,7 @@ exports[`array fields > empty errors array > normal 1`] = `
 </div>
 `;
 
-exports[`array fields > fixed array > normal 1`] = `
+exports[`array fields > fixed array 1`] = `
 <div>
   <!---->
   <!---->
@@ -813,7 +813,7 @@ exports[`array fields > fixed array > normal 1`] = `
 </div>
 `;
 
-exports[`with title and description > array > normal 1`] = `
+exports[`with title and description > array 1`] = `
 <div>
   <!---->
   <!---->
@@ -899,7 +899,7 @@ exports[`with title and description > array > normal 1`] = `
 </div>
 `;
 
-exports[`with title and description > array icons > normal 1`] = `
+exports[`with title and description > array icons 1`] = `
 <div>
   <!---->
   <!---->
@@ -1331,7 +1331,7 @@ exports[`with title and description > array icons > normal 1`] = `
 </div>
 `;
 
-exports[`with title and description > checkboxes > normal 1`] = `
+exports[`with title and description > checkboxes 1`] = `
 <div>
   <!---->
   <pre
@@ -1344,7 +1344,7 @@ exports[`with title and description > checkboxes > normal 1`] = `
 </div>
 `;
 
-exports[`with title and description > fixed array > normal 1`] = `
+exports[`with title and description > fixed array 1`] = `
 <div>
   <!---->
   <!---->
@@ -1646,7 +1646,7 @@ exports[`with title and description > fixed array > normal 1`] = `
 </div>
 `;
 
-exports[`with title and description from both > array > normal 1`] = `
+exports[`with title and description from both > array 1`] = `
 <div>
   <!---->
   <!---->
@@ -1732,840 +1732,7 @@ exports[`with title and description from both > array > normal 1`] = `
 </div>
 `;
 
-exports[`with title and description from both > array icons > normal 1`] = `
-<div>
-  <!---->
-  <!---->
-  <!---->
-  <!---->
-  <div
-    class="svelte-o6qzf9"
-    data-layout="array-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
-  >
-    <!---->
-    <!---->
-    <!---->
-    <div
-      class="svelte-o6qzf9"
-      data-layout="array-field-meta"
-      style="padding-bottom: 0px;"
-    >
-      <!---->
-      <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
-      >
-        My Field
-      </legend>
-      
-      <!---->
-       
-      <!---->
-      <div
-        id="root::description"
-        style="font-weight: 300;"
-      >
-        a fancier description
-      </div>
-      
-      <!---->
-      <!---->
-    </div>
-    
-    
-    <!---->
-     
-    <!---->
-    <div
-      class="svelte-o6qzf9"
-      data-layout="array-items"
-      style="display: flex; flex-direction: column; gap: 1rem;"
-    >
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="array-item"
-        style="display: flex; gap: 0.2rem; align-items: start;"
-      >
-        <!---->
-        <!---->
-        <div
-          class="svelte-o6qzf9"
-          data-layout="array-item-content"
-          style="flex-grow: 1;"
-        >
-          <!---->
-          <!---->
-          <!---->
-          <!---->
-          <!---->
-          <div
-            class="svelte-o6qzf9"
-            data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="svelte-o6qzf9"
-              data-layout="field-meta"
-              style="display: block;"
-            >
-              <!---->
-              <!---->
-              <label
-                for="root.0"
-                style="font-weight: bold;"
-              >
-                My Item-1 
-                <span>
-                  *
-                </span>
-                <!---->
-              </label>
-              
-              <!---->
-               
-              <!---->
-              <div
-                id="root.0::description"
-                style="font-weight: 300;"
-              >
-                a fancier item description
-              </div>
-              
-              <!---->
-              <!---->
-            </div>
-            
-            
-            <!---->
-             
-            <!---->
-            <div
-              class="svelte-o6qzf9"
-              data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-            >
-              <!---->
-              <!---->
-              <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
-                id="root.0"
-                name="root.0"
-                required=""
-                style="flex-grow: 1;"
-                type="text"
-              />
-               
-              <!---->
-              
-              <!---->
-              
-              
-              <!---->
-            </div>
-            
-            <!---->
-             
-            <!---->
-             
-            <!---->
-            <!---->
-          </div>
-          
-          
-          
-          
-          
-          <!---->
-        </div>
-        
-        <!---->
-         
-        <!---->
-        <!---->
-        <div
-          class="svelte-o6qzf9"
-          data-layout="array-item-controls"
-          style="display: flex; gap: 0.2rem; align-items: start;"
-        >
-          <!---->
-          <!---->
-          <!---->
-          <button
-            disabled=""
-            type="button"
-          >
-            <!---->
-            Up
-            
-            <!---->
-          </button>
-          <!---->
-           
-          <button
-            type="button"
-          >
-            <!---->
-            Down
-            
-            <!---->
-          </button>
-          <!---->
-          <!---->
-           
-          <!---->
-          <button
-            type="button"
-          >
-            <!---->
-            Copy
-            
-            <!---->
-          </button>
-          
-          <!---->
-           
-          <!---->
-          <button
-            type="button"
-          >
-            <!---->
-            Del
-            
-            <!---->
-          </button>
-          
-          <!---->
-          
-          <!---->
-        </div>
-        
-        
-        <!---->
-        <!---->
-      </div>
-      
-      
-      
-      
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="array-item"
-        style="display: flex; gap: 0.2rem; align-items: start;"
-      >
-        <!---->
-        <!---->
-        <div
-          class="svelte-o6qzf9"
-          data-layout="array-item-content"
-          style="flex-grow: 1;"
-        >
-          <!---->
-          <!---->
-          <!---->
-          <!---->
-          <!---->
-          <div
-            class="svelte-o6qzf9"
-            data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="svelte-o6qzf9"
-              data-layout="field-meta"
-              style="display: block;"
-            >
-              <!---->
-              <!---->
-              <label
-                for="root.1"
-                style="font-weight: bold;"
-              >
-                My Item-2 
-                <span>
-                  *
-                </span>
-                <!---->
-              </label>
-              
-              <!---->
-               
-              <!---->
-              <div
-                id="root.1::description"
-                style="font-weight: 300;"
-              >
-                a fancier item description
-              </div>
-              
-              <!---->
-              <!---->
-            </div>
-            
-            
-            <!---->
-             
-            <!---->
-            <div
-              class="svelte-o6qzf9"
-              data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-            >
-              <!---->
-              <!---->
-              <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
-                id="root.1"
-                name="root.1"
-                required=""
-                style="flex-grow: 1;"
-                type="text"
-              />
-               
-              <!---->
-              
-              <!---->
-              
-              
-              <!---->
-            </div>
-            
-            <!---->
-             
-            <!---->
-             
-            <!---->
-            <!---->
-          </div>
-          
-          
-          
-          
-          
-          <!---->
-        </div>
-        
-        <!---->
-         
-        <!---->
-        <!---->
-        <div
-          class="svelte-o6qzf9"
-          data-layout="array-item-controls"
-          style="display: flex; gap: 0.2rem; align-items: start;"
-        >
-          <!---->
-          <!---->
-          <!---->
-          <button
-            type="button"
-          >
-            <!---->
-            Up
-            
-            <!---->
-          </button>
-          <!---->
-           
-          <button
-            disabled=""
-            type="button"
-          >
-            <!---->
-            Down
-            
-            <!---->
-          </button>
-          <!---->
-          <!---->
-           
-          <!---->
-          <button
-            type="button"
-          >
-            <!---->
-            Copy
-            
-            <!---->
-          </button>
-          
-          <!---->
-           
-          <!---->
-          <button
-            type="button"
-          >
-            <!---->
-            Del
-            
-            <!---->
-          </button>
-          
-          <!---->
-          
-          <!---->
-        </div>
-        
-        
-        <!---->
-        <!---->
-      </div>
-      
-      
-      
-      
-      
-      
-      
-      <!---->
-    </div>
-    
-    <!---->
-     
-    <!---->
-    <button
-      style="width: 100%; padding: 0.25rem;"
-      type="button"
-    >
-      <!---->
-      Add item
-      
-      <!---->
-    </button>
-    
-    <!---->
-     
-    <!---->
-    <!---->
-  </div>
-  
-  
-  
-  
-  
-</div>
-`;
-
-exports[`with title and description from both > checkboxes > normal 1`] = `
-<div>
-  <!---->
-  <pre
-    style="color: red;"
-  >
-    "multiEnumField" component not found
-  </pre>
-  
-  
-</div>
-`;
-
-exports[`with title and description from both > fixed array > normal 1`] = `
-<div>
-  <!---->
-  <!---->
-  <!---->
-  <!---->
-  <div
-    class="svelte-o6qzf9"
-    data-layout="array-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
-  >
-    <!---->
-    <!---->
-    <!---->
-    <div
-      class="svelte-o6qzf9"
-      data-layout="array-field-meta"
-      style="padding-bottom: 0px;"
-    >
-      <!---->
-      <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
-      >
-        My Field
-      </legend>
-      
-      <!---->
-       
-      <!---->
-      <div
-        id="root::description"
-        style="font-weight: 300;"
-      >
-        a fancier description
-      </div>
-      
-      <!---->
-      <!---->
-    </div>
-    
-    
-    <!---->
-     
-    <!---->
-    <div
-      class="svelte-o6qzf9"
-      data-layout="array-items"
-      style="display: flex; flex-direction: column; gap: 1rem;"
-    >
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="array-item"
-        style="display: flex; gap: 0.2rem; align-items: start;"
-      >
-        <!---->
-        <!---->
-        <div
-          class="svelte-o6qzf9"
-          data-layout="array-item-content"
-          style="flex-grow: 1;"
-        >
-          <!---->
-          <!---->
-          <!---->
-          <!---->
-          <!---->
-          <div
-            class="svelte-o6qzf9"
-            data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="svelte-o6qzf9"
-              data-layout="field-meta"
-              style="display: block;"
-            >
-              <!---->
-              <!---->
-              <label
-                for="root.0"
-                style="font-weight: bold;"
-              >
-                My Item 
-                <span>
-                  *
-                </span>
-                <!---->
-              </label>
-              
-              <!---->
-               
-              <!---->
-              <div
-                id="root.0::description"
-                style="font-weight: 300;"
-              >
-                a fancier item description
-              </div>
-              
-              <!---->
-              <!---->
-            </div>
-            
-            
-            <!---->
-             
-            <!---->
-            <div
-              class="svelte-o6qzf9"
-              data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-            >
-              <!---->
-              <!---->
-              <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
-                id="root.0"
-                name="root.0"
-                required=""
-                style="flex-grow: 1;"
-                type="text"
-              />
-               
-              <!---->
-              
-              <!---->
-              
-              
-              <!---->
-            </div>
-            
-            <!---->
-             
-            <!---->
-             
-            <!---->
-            <!---->
-          </div>
-          
-          
-          
-          
-          
-          <!---->
-        </div>
-        
-        <!---->
-         
-        <!---->
-        <!---->
-      </div>
-      
-      
-      
-      
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="array-item"
-        style="display: flex; gap: 0.2rem; align-items: start;"
-      >
-        <!---->
-        <!---->
-        <div
-          class="svelte-o6qzf9"
-          data-layout="array-item-content"
-          style="flex-grow: 1;"
-        >
-          <!---->
-          <!---->
-          <!---->
-          <!---->
-          <!---->
-          <div
-            class="svelte-o6qzf9"
-            data-layout="field"
-            style="display: flex; flex-direction: column; gap: 0.2rem;"
-          >
-            <!---->
-            <!---->
-            <!---->
-            <div
-              class="svelte-o6qzf9"
-              data-layout="field-meta"
-              style="display: block;"
-            >
-              <!---->
-              <!---->
-              <label
-                for="root.1"
-                style="font-weight: bold;"
-              >
-                My Item 
-                <span>
-                  *
-                </span>
-                <!---->
-              </label>
-              
-              <!---->
-               
-              <!---->
-              <div
-                id="root.1::description"
-                style="font-weight: 300;"
-              >
-                a fancier item description
-              </div>
-              
-              <!---->
-              <!---->
-            </div>
-            
-            
-            <!---->
-             
-            <!---->
-            <div
-              class="svelte-o6qzf9"
-              data-layout="field-content"
-              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-            >
-              <!---->
-              <!---->
-              <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
-                id="root.1"
-                name="root.1"
-                required=""
-                step="any"
-                style="flex-grow: 1;"
-                type="number"
-              />
-               
-              <!---->
-              
-              <!---->
-              
-              
-              <!---->
-            </div>
-            
-            <!---->
-             
-            <!---->
-             
-            <!---->
-            <!---->
-          </div>
-          
-          
-          
-          
-          
-          <!---->
-        </div>
-        
-        <!---->
-         
-        <!---->
-        <!---->
-      </div>
-      
-      
-      
-      
-      
-      
-      
-      <!---->
-    </div>
-    
-    <!---->
-     
-    <!---->
-     
-    <!---->
-    <!---->
-  </div>
-  
-  
-  
-  
-  
-</div>
-`;
-
-exports[`with title and description from uiSchema > array > normal 1`] = `
-<div>
-  <!---->
-  <!---->
-  <!---->
-  <!---->
-  <div
-    class="svelte-o6qzf9"
-    data-layout="array-field"
-    style="display: flex; flex-direction: column; gap: 1rem;"
-  >
-    <!---->
-    <!---->
-    <!---->
-    <div
-      class="svelte-o6qzf9"
-      data-layout="array-field-meta"
-      style="padding-bottom: 0px;"
-    >
-      <!---->
-      <!---->
-      <legend
-        id="root::title"
-        style="font-weight: bold; font-size: larger;"
-      >
-        My Field
-      </legend>
-      
-      <!---->
-       
-      <!---->
-      <div
-        id="root::description"
-        style="font-weight: 300;"
-      >
-        a fancier description
-      </div>
-      
-      <!---->
-      <!---->
-    </div>
-    
-    
-    <!---->
-     
-    <!---->
-    <div
-      class="svelte-o6qzf9"
-      data-layout="array-items"
-      style="display: flex; flex-direction: column; gap: 1rem;"
-    >
-      <!---->
-      <!---->
-      <!---->
-      
-      
-      
-      <!---->
-    </div>
-    
-    <!---->
-     
-    <!---->
-    <button
-      style="width: 100%; padding: 0.25rem;"
-      type="button"
-    >
-      <!---->
-      Add item
-      
-      <!---->
-    </button>
-    
-    <!---->
-     
-    <!---->
-    <!---->
-  </div>
-  
-  
-  
-  
-  
-</div>
-`;
-
-exports[`with title and description from uiSchema > array icons > normal 1`] = `
+exports[`with title and description from both > array icons 1`] = `
 <div>
   <!---->
   <!---->
@@ -2997,7 +2164,7 @@ exports[`with title and description from uiSchema > array icons > normal 1`] = `
 </div>
 `;
 
-exports[`with title and description from uiSchema > checkboxes > normal 1`] = `
+exports[`with title and description from both > checkboxes 1`] = `
 <div>
   <!---->
   <pre
@@ -3010,7 +2177,7 @@ exports[`with title and description from uiSchema > checkboxes > normal 1`] = `
 </div>
 `;
 
-exports[`with title and description from uiSchema > fixed array > normal 1`] = `
+exports[`with title and description from both > fixed array 1`] = `
 <div>
   <!---->
   <!---->
@@ -3312,7 +2479,840 @@ exports[`with title and description from uiSchema > fixed array > normal 1`] = `
 </div>
 `;
 
-exports[`with title and description with global label off > array > normal 1`] = `
+exports[`with title and description from uiSchema > array 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="array-field"
+    style="display: flex; flex-direction: column; gap: 1rem;"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="array-field-meta"
+      style="padding-bottom: 0px;"
+    >
+      <!---->
+      <!---->
+      <legend
+        id="root::title"
+        style="font-weight: bold; font-size: larger;"
+      >
+        My Field
+      </legend>
+      
+      <!---->
+       
+      <!---->
+      <div
+        id="root::description"
+        style="font-weight: 300;"
+      >
+        a fancier description
+      </div>
+      
+      <!---->
+      <!---->
+    </div>
+    
+    
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="array-items"
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <!---->
+      
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+    <button
+      style="width: 100%; padding: 0.25rem;"
+      type="button"
+    >
+      <!---->
+      Add item
+      
+      <!---->
+    </button>
+    
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`with title and description from uiSchema > array icons 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="array-field"
+    style="display: flex; flex-direction: column; gap: 1rem;"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="array-field-meta"
+      style="padding-bottom: 0px;"
+    >
+      <!---->
+      <!---->
+      <legend
+        id="root::title"
+        style="font-weight: bold; font-size: larger;"
+      >
+        My Field
+      </legend>
+      
+      <!---->
+       
+      <!---->
+      <div
+        id="root::description"
+        style="font-weight: 300;"
+      >
+        a fancier description
+      </div>
+      
+      <!---->
+      <!---->
+    </div>
+    
+    
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="array-items"
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-o6qzf9"
+        data-layout="array-item"
+        style="display: flex; gap: 0.2rem; align-items: start;"
+      >
+        <!---->
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="array-item-content"
+          style="flex-grow: 1;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-o6qzf9"
+            data-layout="field"
+            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-meta"
+              style="display: block;"
+            >
+              <!---->
+              <!---->
+              <label
+                for="root.0"
+                style="font-weight: bold;"
+              >
+                My Item-1 
+                <span>
+                  *
+                </span>
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <div
+                id="root.0::description"
+                style="font-weight: 300;"
+              >
+                a fancier item description
+              </div>
+              
+              <!---->
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.0::description root.0::help root.0::errors"
+                id="root.0"
+                name="root.0"
+                required=""
+                style="flex-grow: 1;"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="array-item-controls"
+          style="display: flex; gap: 0.2rem; align-items: start;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <button
+            disabled=""
+            type="button"
+          >
+            <!---->
+            Up
+            
+            <!---->
+          </button>
+          <!---->
+           
+          <button
+            type="button"
+          >
+            <!---->
+            Down
+            
+            <!---->
+          </button>
+          <!---->
+          <!---->
+           
+          <!---->
+          <button
+            type="button"
+          >
+            <!---->
+            Copy
+            
+            <!---->
+          </button>
+          
+          <!---->
+           
+          <!---->
+          <button
+            type="button"
+          >
+            <!---->
+            Del
+            
+            <!---->
+          </button>
+          
+          <!---->
+          
+          <!---->
+        </div>
+        
+        
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-o6qzf9"
+        data-layout="array-item"
+        style="display: flex; gap: 0.2rem; align-items: start;"
+      >
+        <!---->
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="array-item-content"
+          style="flex-grow: 1;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-o6qzf9"
+            data-layout="field"
+            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-meta"
+              style="display: block;"
+            >
+              <!---->
+              <!---->
+              <label
+                for="root.1"
+                style="font-weight: bold;"
+              >
+                My Item-2 
+                <span>
+                  *
+                </span>
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <div
+                id="root.1::description"
+                style="font-weight: 300;"
+              >
+                a fancier item description
+              </div>
+              
+              <!---->
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.1::description root.1::help root.1::errors"
+                id="root.1"
+                name="root.1"
+                required=""
+                style="flex-grow: 1;"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="array-item-controls"
+          style="display: flex; gap: 0.2rem; align-items: start;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <button
+            type="button"
+          >
+            <!---->
+            Up
+            
+            <!---->
+          </button>
+          <!---->
+           
+          <button
+            disabled=""
+            type="button"
+          >
+            <!---->
+            Down
+            
+            <!---->
+          </button>
+          <!---->
+          <!---->
+           
+          <!---->
+          <button
+            type="button"
+          >
+            <!---->
+            Copy
+            
+            <!---->
+          </button>
+          
+          <!---->
+           
+          <!---->
+          <button
+            type="button"
+          >
+            <!---->
+            Del
+            
+            <!---->
+          </button>
+          
+          <!---->
+          
+          <!---->
+        </div>
+        
+        
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+    <button
+      style="width: 100%; padding: 0.25rem;"
+      type="button"
+    >
+      <!---->
+      Add item
+      
+      <!---->
+    </button>
+    
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`with title and description from uiSchema > checkboxes 1`] = `
+<div>
+  <!---->
+  <pre
+    style="color: red;"
+  >
+    "multiEnumField" component not found
+  </pre>
+  
+  
+</div>
+`;
+
+exports[`with title and description from uiSchema > fixed array 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="array-field"
+    style="display: flex; flex-direction: column; gap: 1rem;"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="array-field-meta"
+      style="padding-bottom: 0px;"
+    >
+      <!---->
+      <!---->
+      <legend
+        id="root::title"
+        style="font-weight: bold; font-size: larger;"
+      >
+        My Field
+      </legend>
+      
+      <!---->
+       
+      <!---->
+      <div
+        id="root::description"
+        style="font-weight: 300;"
+      >
+        a fancier description
+      </div>
+      
+      <!---->
+      <!---->
+    </div>
+    
+    
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="array-items"
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-o6qzf9"
+        data-layout="array-item"
+        style="display: flex; gap: 0.2rem; align-items: start;"
+      >
+        <!---->
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="array-item-content"
+          style="flex-grow: 1;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-o6qzf9"
+            data-layout="field"
+            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-meta"
+              style="display: block;"
+            >
+              <!---->
+              <!---->
+              <label
+                for="root.0"
+                style="font-weight: bold;"
+              >
+                My Item 
+                <span>
+                  *
+                </span>
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <div
+                id="root.0::description"
+                style="font-weight: 300;"
+              >
+                a fancier item description
+              </div>
+              
+              <!---->
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.0::description root.0::help root.0::errors"
+                id="root.0"
+                name="root.0"
+                required=""
+                style="flex-grow: 1;"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-o6qzf9"
+        data-layout="array-item"
+        style="display: flex; gap: 0.2rem; align-items: start;"
+      >
+        <!---->
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="array-item-content"
+          style="flex-grow: 1;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-o6qzf9"
+            data-layout="field"
+            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-meta"
+              style="display: block;"
+            >
+              <!---->
+              <!---->
+              <label
+                for="root.1"
+                style="font-weight: bold;"
+              >
+                My Item 
+                <span>
+                  *
+                </span>
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <div
+                id="root.1::description"
+                style="font-weight: 300;"
+              >
+                a fancier item description
+              </div>
+              
+              <!---->
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.1::description root.1::help root.1::errors"
+                id="root.1"
+                name="root.1"
+                required=""
+                step="any"
+                style="flex-grow: 1;"
+                type="number"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`with title and description with global label off > array 1`] = `
 <div>
   <!---->
   <!---->
@@ -3367,7 +3367,7 @@ exports[`with title and description with global label off > array > normal 1`] =
 </div>
 `;
 
-exports[`with title and description with global label off > array icons > normal 1`] = `
+exports[`with title and description with global label off > array icons 1`] = `
 <div>
   <!---->
   <!---->
@@ -3698,7 +3698,7 @@ exports[`with title and description with global label off > array icons > normal
 </div>
 `;
 
-exports[`with title and description with global label off > checkboxes > normal 1`] = `
+exports[`with title and description with global label off > checkboxes 1`] = `
 <div>
   <!---->
   <pre
@@ -3711,7 +3711,7 @@ exports[`with title and description with global label off > checkboxes > normal 
 </div>
 `;
 
-exports[`with title and description with global label off > fixed array > normal 1`] = `
+exports[`with title and description with global label off > fixed array 1`] = `
 <div>
   <!---->
   <!---->
