@@ -1,0 +1,5436 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`object fields > additionalProperties 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-key-input"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.foo::key-input"
+              >
+                foo Key 
+                *
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                class="input input-bordered w-full"
+                id="root.foo::key-input"
+                name="root.foo::key-input"
+                required=""
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.foo"
+              >
+                foo 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                class="input input-bordered w-full"
+                id="root.foo"
+                name="root.foo"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <div
+            data-layout="object-property-controls"
+          >
+            <!---->
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`object fields > additionalProperties with error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-key-input"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.foo::key-input"
+              >
+                foo Key 
+                *
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                class="input input-bordered w-full input-error"
+                id="root.foo::key-input"
+                name="root.foo::key-input"
+                required=""
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <ul
+                class="text-error list-disc list-inside"
+                id="root.foo::key-input::errors"
+                tabindex="-1"
+              >
+                <li>
+                  error
+                </li>
+                
+              </ul>
+              
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.foo"
+              >
+                foo 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                class="input input-bordered w-full"
+                id="root.foo"
+                name="root.foo"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <div
+            data-layout="object-property-controls"
+          >
+            <!---->
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`object fields > has errors 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.name"
+              >
+                name 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.name::description root.name::help root.name::errors"
+                class="input input-bordered w-full"
+                id="root.name"
+                name="root.name"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`object fields > object 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.a"
+              >
+                A 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.a::description root.a::help root.a::errors"
+                class="input input-bordered w-full"
+                id="root.a"
+                name="root.a"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.b"
+              >
+                B 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.b::description root.b::help root.b::errors"
+                class="w-full input input-bordered"
+                id="root.b"
+                name="root.b"
+                step="any"
+                type="number"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`object fields > one of defaults > default preset 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <legend
+        class="fieldset-legend text-base"
+        id="root::title"
+      >
+        Options
+      </legend>
+      
+      <!---->
+       
+      <!---->
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <pre
+              style="color: red;"
+            >
+              "enumField" component not found
+            </pre>
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.transform::description"
+              >
+                Apply a transformation to the output data
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-label"
+              >
+                <input
+                  aria-describedby="root.transform::description root.transform::help root.transform::errors"
+                  class="checkbox"
+                  id="root.transform"
+                  name="root.transform"
+                  type="checkbox"
+                />
+                 Transform
+              </label>
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <pre
+              style="color: red;"
+            >
+              "enumField" component not found
+            </pre>
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.paginate::description"
+              >
+                Partitioning the input data (object or array) into pages by their keys
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-label"
+              >
+                <input
+                  aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
+                  class="checkbox"
+                  id="root.paginate"
+                  name="root.paginate"
+                  type="checkbox"
+                />
+                 Paginate
+              </label>
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.createOnOpen::description"
+              >
+                Creating a table when opening a share link
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-label"
+              >
+                <input
+                  aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
+                  class="checkbox"
+                  id="root.createOnOpen"
+                  name="root.createOnOpen"
+                  type="checkbox"
+                />
+                 Create on open
+              </label>
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`object fields > one of defaults > manual preset 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <legend
+        class="fieldset-legend text-base"
+        id="root::title"
+      >
+        Options
+      </legend>
+      
+      <!---->
+       
+      <!---->
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <pre
+              style="color: red;"
+            >
+              "enumField" component not found
+            </pre>
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.collapseIndexes::description"
+              >
+                Combines hierarchical indexes into one cell (1.1, 1.2, ...)
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-label"
+              >
+                <input
+                  aria-describedby="root.collapseIndexes::description root.collapseIndexes::help root.collapseIndexes::errors"
+                  class="checkbox"
+                  id="root.collapseIndexes"
+                  name="root.collapseIndexes"
+                  type="checkbox"
+                />
+                 Combine nested indexes
+              </label>
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.joinPrimitiveArrayValues::description"
+              >
+                Combines the values of an array of primitives into one cell (separated by ',')
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-label"
+              >
+                <input
+                  aria-describedby="root.joinPrimitiveArrayValues::description root.joinPrimitiveArrayValues::help root.joinPrimitiveArrayValues::errors"
+                  class="checkbox"
+                  id="root.joinPrimitiveArrayValues"
+                  name="root.joinPrimitiveArrayValues"
+                  type="checkbox"
+                />
+                 Combine simple values
+              </label>
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.combineArraysOfObjects::description"
+              >
+                Combine arrays of objects into a single object
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-label"
+              >
+                <input
+                  aria-describedby="root.combineArraysOfObjects::description root.combineArraysOfObjects::help root.combineArraysOfObjects::errors"
+                  class="checkbox"
+                  id="root.combineArraysOfObjects"
+                  name="root.combineArraysOfObjects"
+                  type="checkbox"
+                />
+                 Combine objects
+              </label>
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.stabilizeOrderOfPropertiesInArraysOfObjects::description"
+              >
+                Stabilizing the order in which properties are displayed for arrays of objects
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-label"
+              >
+                <input
+                  aria-describedby="root.stabilizeOrderOfPropertiesInArraysOfObjects::description root.stabilizeOrderOfPropertiesInArraysOfObjects::help root.stabilizeOrderOfPropertiesInArraysOfObjects::errors"
+                  class="checkbox"
+                  id="root.stabilizeOrderOfPropertiesInArraysOfObjects"
+                  name="root.stabilizeOrderOfPropertiesInArraysOfObjects"
+                  type="checkbox"
+                />
+                 Stabilize order of properties
+              </label>
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.proportionalSizeAdjustmentThreshold"
+              >
+                Proportional size adjustment threshold 
+                *
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.proportionalSizeAdjustmentThreshold::description"
+              >
+                Specifies the threshold to which the value (height, width) can be increased for a proportional increase. The default is 1 (by 100%).
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.proportionalSizeAdjustmentThreshold::description root.proportionalSizeAdjustmentThreshold::help root.proportionalSizeAdjustmentThreshold::errors"
+                class="w-full input input-bordered"
+                id="root.proportionalSizeAdjustmentThreshold"
+                min="0"
+                name="root.proportionalSizeAdjustmentThreshold"
+                required=""
+                step="any"
+                type="number"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.cornerCellValue"
+              >
+                Corner cell value 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.cornerCellValue::description"
+              >
+                The value of the corner cell.
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.cornerCellValue::description root.cornerCellValue::help root.cornerCellValue::errors"
+                class="input input-bordered w-full"
+                id="root.cornerCellValue"
+                name="root.cornerCellValue"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.transform::description"
+              >
+                Apply a transformation to the output data
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-label"
+              >
+                <input
+                  aria-describedby="root.transform::description root.transform::help root.transform::errors"
+                  class="checkbox"
+                  id="root.transform"
+                  name="root.transform"
+                  type="checkbox"
+                />
+                 Transform
+              </label>
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <pre
+              style="color: red;"
+            >
+              "enumField" component not found
+            </pre>
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.paginate::description"
+              >
+                Partitioning the input data (object or array) into pages by their keys
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-label"
+              >
+                <input
+                  aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
+                  class="checkbox"
+                  id="root.paginate"
+                  name="root.paginate"
+                  type="checkbox"
+                />
+                 Paginate
+              </label>
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.createOnOpen::description"
+              >
+                Creating a table when opening a share link
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-label"
+              >
+                <input
+                  aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
+                  class="checkbox"
+                  id="root.createOnOpen"
+                  name="root.createOnOpen"
+                  type="checkbox"
+                />
+                 Create on open
+              </label>
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`object fields > show add button and fields if additionalProperties is true and not an object 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-key-input"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.additionalProperty::key-input"
+              >
+                additionalProperty Key 
+                *
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                class="input input-bordered w-full"
+                id="root.additionalProperty::key-input"
+                name="root.additionalProperty::key-input"
+                required=""
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.additionalProperty"
+              >
+                additionalProperty 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                class="input input-bordered w-full"
+                id="root.additionalProperty"
+                name="root.additionalProperty"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <div
+            data-layout="object-property-controls"
+          >
+            <!---->
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description > additionalProperties 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <legend
+        class="fieldset-legend text-base"
+        id="root::title"
+      >
+        Test field
+      </legend>
+      
+      <!---->
+       
+      <!---->
+      <p
+        class="fieldset-label"
+        id="root::description"
+      >
+        a test description
+      </p>
+      
+      <!---->
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-key-input"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.foo::key-input"
+              >
+                foo Key 
+                *
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                class="input input-bordered w-full"
+                id="root.foo::key-input"
+                name="root.foo::key-input"
+                required=""
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.foo"
+              >
+                foo 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                class="input input-bordered w-full"
+                id="root.foo"
+                name="root.foo"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <div
+            data-layout="object-property-controls"
+          >
+            <!---->
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description > object 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <legend
+        class="fieldset-legend text-base"
+        id="root::title"
+      >
+        Test field
+      </legend>
+      
+      <!---->
+       
+      <!---->
+      <p
+        class="fieldset-label"
+        id="root::description"
+      >
+        a test description
+      </p>
+      
+      <!---->
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.a"
+              >
+                A 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.a::description"
+              >
+                A description
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.a::description root.a::help root.a::errors"
+                class="input input-bordered w-full"
+                id="root.a"
+                name="root.a"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.b"
+              >
+                B 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.b::description"
+              >
+                B description
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.b::description root.b::help root.b::errors"
+                class="w-full input input-bordered"
+                id="root.b"
+                name="root.b"
+                step="any"
+                type="number"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description > show add button and fields if additionalProperties is true and not an object 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <legend
+        class="fieldset-legend text-base"
+        id="root::title"
+      >
+        Test field
+      </legend>
+      
+      <!---->
+       
+      <!---->
+      <p
+        class="fieldset-label"
+        id="root::description"
+      >
+        a test description
+      </p>
+      
+      <!---->
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-key-input"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.additionalProperty::key-input"
+              >
+                additionalProperty Key 
+                *
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                class="input input-bordered w-full"
+                id="root.additionalProperty::key-input"
+                name="root.additionalProperty::key-input"
+                required=""
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.additionalProperty"
+              >
+                additionalProperty 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                class="input input-bordered w-full"
+                id="root.additionalProperty"
+                name="root.additionalProperty"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <div
+            data-layout="object-property-controls"
+          >
+            <!---->
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description from both > additionalProperties 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <legend
+        class="fieldset-legend text-base"
+        id="root::title"
+      >
+        My Field
+      </legend>
+      
+      <!---->
+       
+      <!---->
+      <p
+        class="fieldset-label"
+        id="root::description"
+      >
+        a fancier description
+      </p>
+      
+      <!---->
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-key-input"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.foo::key-input"
+              >
+                foo Key 
+                *
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                class="input input-bordered w-full"
+                id="root.foo::key-input"
+                name="root.foo::key-input"
+                required=""
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.foo"
+              >
+                foo 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                class="input input-bordered w-full"
+                id="root.foo"
+                name="root.foo"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <div
+            data-layout="object-property-controls"
+          >
+            <!---->
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description from both > object 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <legend
+        class="fieldset-legend text-base"
+        id="root::title"
+      >
+        My Field
+      </legend>
+      
+      <!---->
+       
+      <!---->
+      <p
+        class="fieldset-label"
+        id="root::description"
+      >
+        a fancier description
+      </p>
+      
+      <!---->
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.a"
+              >
+                My Item A 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.a::description"
+              >
+                a fancier item A description
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.a::description root.a::help root.a::errors"
+                class="input input-bordered w-full"
+                id="root.a"
+                name="root.a"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.b"
+              >
+                My Item B 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.b::description"
+              >
+                a fancier item B description
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.b::description root.b::help root.b::errors"
+                class="w-full input input-bordered"
+                id="root.b"
+                name="root.b"
+                step="any"
+                type="number"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description from uiSchema > additionalProperties 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <legend
+        class="fieldset-legend text-base"
+        id="root::title"
+      >
+        My Field
+      </legend>
+      
+      <!---->
+       
+      <!---->
+      <p
+        class="fieldset-label"
+        id="root::description"
+      >
+        a fancier description
+      </p>
+      
+      <!---->
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-key-input"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.foo::key-input"
+              >
+                foo Key 
+                *
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                class="input input-bordered w-full"
+                id="root.foo::key-input"
+                name="root.foo::key-input"
+                required=""
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.foo"
+              >
+                foo 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                class="input input-bordered w-full"
+                id="root.foo"
+                name="root.foo"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <div
+            data-layout="object-property-controls"
+          >
+            <!---->
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description from uiSchema > object 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <legend
+        class="fieldset-legend text-base"
+        id="root::title"
+      >
+        My Field
+      </legend>
+      
+      <!---->
+       
+      <!---->
+      <p
+        class="fieldset-label"
+        id="root::description"
+      >
+        a fancier description
+      </p>
+      
+      <!---->
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.a"
+              >
+                My Item A 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.a::description"
+              >
+                a fancier item A description
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.a::description root.a::help root.a::errors"
+                class="input input-bordered w-full"
+                id="root.a"
+                name="root.a"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.b"
+              >
+                My Item B 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <p
+                class="fieldset-label"
+                id="root.b::description"
+              >
+                a fancier item B description
+              </p>
+              
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.b::description root.b::help root.b::errors"
+                class="w-full input input-bordered"
+                id="root.b"
+                name="root.b"
+                step="any"
+                type="number"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description from uiSchema > show add button and fields if additionalProperties is true and not an object 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <legend
+        class="fieldset-legend text-base"
+        id="root::title"
+      >
+        My Field
+      </legend>
+      
+      <!---->
+       
+      <!---->
+      <p
+        class="fieldset-label"
+        id="root::description"
+      >
+        a fancier description
+      </p>
+      
+      <!---->
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-key-input"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.additionalProperty::key-input"
+              >
+                additionalProperty Key 
+                *
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                class="input input-bordered w-full"
+                id="root.additionalProperty::key-input"
+                name="root.additionalProperty::key-input"
+                required=""
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <label
+                class="fieldset-legend"
+                for="root.additionalProperty"
+              >
+                additionalProperty 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              
+              
+              
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                class="input input-bordered w-full"
+                id="root.additionalProperty"
+                name="root.additionalProperty"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <div
+            data-layout="object-property-controls"
+          >
+            <!---->
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description with global label off > additionalProperties 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-key-input"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                class="input input-bordered w-full"
+                id="root.foo::key-input"
+                name="root.foo::key-input"
+                required=""
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                class="input input-bordered w-full"
+                id="root.foo"
+                name="root.foo"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <div
+            data-layout="object-property-controls"
+          >
+            <!---->
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description with global label off > object 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.a::description root.a::help root.a::errors"
+                class="input input-bordered w-full"
+                id="root.a"
+                name="root.a"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.b::description root.b::help root.b::errors"
+                class="w-full input input-bordered"
+                id="root.b"
+                name="root.b"
+                step="any"
+                type="number"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description with global label off > show add button and fields if additionalProperties is true and not an object 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-key-input"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                class="input input-bordered w-full"
+                id="root.additionalProperty::key-input"
+                name="root.additionalProperty::key-input"
+                required=""
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+           
+          <!---->
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <fieldset
+              class="fieldset gap-y-2"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+               
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                class="input input-bordered w-full"
+                id="root.additionalProperty"
+                name="root.additionalProperty"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              
+              
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </fieldset>
+            
+            
+            
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <div
+            data-layout="object-property-controls"
+          >
+            <!---->
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            
+            <!---->
+          </div>
+          
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;

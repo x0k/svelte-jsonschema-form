@@ -1,6 +1,7 @@
 {
   "name": "testing",
   "version": "1.0.1",
+  "license": "(MIT AND Apache-2.0)",
   "private": true,
   "type": "module",
   "scripts": {
@@ -23,6 +24,10 @@
     "./demo": {
       "types": "./dist/demo/index.d.ts",
       "svelte": "./dist/demo/index.js"
+    },
+    "./snapshots/*": {
+      "types": "./dist/snapshots/*.d.ts",
+      "default": "./dist/snapshots/*.js"
     }
   }
 }

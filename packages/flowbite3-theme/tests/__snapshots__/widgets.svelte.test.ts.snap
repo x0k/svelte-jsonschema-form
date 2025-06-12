@@ -1,0 +1,6439 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`widgets > checkbox > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center cursor-not-allowed opacity-70"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="w-4 h-4 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 cursor-not-allowed opacity-50 bg-gray-200 border-gray-300"
+            disabled=""
+            id="root"
+            name="root"
+            type="checkbox"
+          />
+           
+          <!---->
+          
+          
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden cursor-not-allowed opacity-50 rounded-lg"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > checkbox > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+            id="root"
+            name="root"
+            type="checkbox"
+          />
+           
+          <!---->
+          
+          
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > checkbox > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+            id="root"
+            name="root"
+            type="checkbox"
+          />
+           
+          <!---->
+          
+          
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > checkbox > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+            id="root"
+            name="root"
+            readonly=""
+            type="checkbox"
+          />
+           
+          <!---->
+          
+          
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > checkboxes > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center cursor-not-allowed opacity-70"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="w-4 h-4 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 cursor-not-allowed opacity-50 bg-gray-200 border-gray-300"
+            disabled=""
+            id="root::0"
+            name="root"
+            type="checkbox"
+          />
+           
+          <!---->
+          foo
+          
+          <!---->
+        </div>
+        
+        <!---->
+        <div
+          class="flex items-center cursor-not-allowed opacity-70"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="w-4 h-4 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 cursor-not-allowed opacity-50 bg-gray-200 border-gray-300"
+            disabled=""
+            id="root::1"
+            name="root"
+            type="checkbox"
+          />
+           
+          <!---->
+          bar
+          
+          <!---->
+        </div>
+        
+        <!---->
+        <div
+          class="flex items-center cursor-not-allowed opacity-70"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="w-4 h-4 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 cursor-not-allowed opacity-50 bg-gray-200 border-gray-300"
+            disabled=""
+            id="root::2"
+            name="root"
+            type="checkbox"
+          />
+           
+          <!---->
+          fuzz
+          
+          <!---->
+        </div>
+        
+        <!---->
+        <div
+          class="flex items-center cursor-not-allowed opacity-70"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="w-4 h-4 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 cursor-not-allowed opacity-50 bg-gray-200 border-gray-300"
+            disabled=""
+            id="root::3"
+            name="root"
+            type="checkbox"
+          />
+           
+          <!---->
+          qux
+          
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden cursor-not-allowed opacity-50 rounded-lg"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > checkboxes > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+            id="root::0"
+            name="root"
+            type="checkbox"
+          />
+           
+          <!---->
+          foo
+          
+          <!---->
+        </div>
+        
+        <!---->
+        <div
+          class="flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+            id="root::1"
+            name="root"
+            type="checkbox"
+          />
+           
+          <!---->
+          bar
+          
+          <!---->
+        </div>
+        
+        <!---->
+        <div
+          class="flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+            id="root::2"
+            name="root"
+            type="checkbox"
+          />
+           
+          <!---->
+          fuzz
+          
+          <!---->
+        </div>
+        
+        <!---->
+        <div
+          class="flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+            id="root::3"
+            name="root"
+            type="checkbox"
+          />
+           
+          <!---->
+          qux
+          
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > checkboxes > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+            id="root::0"
+            name="root"
+            type="checkbox"
+          />
+           
+          <!---->
+          foo
+          
+          <!---->
+        </div>
+        
+        <!---->
+        <div
+          class="flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+            id="root::1"
+            name="root"
+            type="checkbox"
+          />
+           
+          <!---->
+          bar
+          
+          <!---->
+        </div>
+        
+        <!---->
+        <div
+          class="flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+            id="root::2"
+            name="root"
+            type="checkbox"
+          />
+           
+          <!---->
+          fuzz
+          
+          <!---->
+        </div>
+        
+        <!---->
+        <div
+          class="flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+            id="root::3"
+            name="root"
+            type="checkbox"
+          />
+           
+          <!---->
+          qux
+          
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > checkboxes > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+            id="root::0"
+            name="root"
+            readonly=""
+            type="checkbox"
+          />
+           
+          <!---->
+          foo
+          
+          <!---->
+        </div>
+        
+        <!---->
+        <div
+          class="flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+            id="root::1"
+            name="root"
+            readonly=""
+            type="checkbox"
+          />
+           
+          <!---->
+          bar
+          
+          <!---->
+        </div>
+        
+        <!---->
+        <div
+          class="flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+            id="root::2"
+            name="root"
+            readonly=""
+            type="checkbox"
+          />
+           
+          <!---->
+          fuzz
+          
+          <!---->
+        </div>
+        
+        <!---->
+        <div
+          class="flex items-center"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+            id="root::3"
+            name="root"
+            readonly=""
+            type="checkbox"
+          />
+           
+          <!---->
+          qux
+          
+          <!---->
+        </div>
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > datePicker > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="w-full"
+        >
+          <div
+            class="relative"
+          >
+            <div
+              class="relative"
+            >
+              <input
+                aria-haspopup="dialog"
+                class="w-full rounded-md border px-4 py-2 text-sm focus:ring-2 focus:outline-none outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-primary-500 dark:focus:ring-primary-400"
+                disabled=""
+                inputmode="none"
+                placeholder="Select date"
+                type="text"
+              />
+               
+              <button
+                aria-label="Open date picker"
+                class="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500 focus:outline-hidden dark:text-gray-400"
+                disabled=""
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="h-4 w-4 text-gray-500 dark:text-gray-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <!---->
+             
+            <!---->
+          </div>
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden cursor-not-allowed opacity-50 rounded-lg"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > datePicker > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="w-full"
+        >
+          <div
+            class="relative"
+          >
+            <div
+              class="relative"
+            >
+              <input
+                aria-haspopup="dialog"
+                class="w-full rounded-md border px-4 py-2 text-sm focus:ring-2 focus:outline-none outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-primary-500 dark:focus:ring-primary-400"
+                inputmode="none"
+                placeholder="Select date"
+                type="text"
+              />
+               
+              <button
+                aria-label="Open date picker"
+                class="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500 focus:outline-hidden dark:text-gray-400"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="h-4 w-4 text-gray-500 dark:text-gray-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <!---->
+             
+            <!---->
+          </div>
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > datePicker > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="w-full"
+        >
+          <div
+            class="relative"
+          >
+            <div
+              class="relative"
+            >
+              <input
+                aria-haspopup="dialog"
+                class="w-full rounded-md border px-4 py-2 text-sm focus:ring-2 focus:outline-none outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-primary-500 dark:focus:ring-primary-400"
+                inputmode="none"
+                placeholder="Select date"
+                type="text"
+              />
+               
+              <button
+                aria-label="Open date picker"
+                class="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500 focus:outline-hidden dark:text-gray-400"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="h-4 w-4 text-gray-500 dark:text-gray-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <!---->
+             
+            <!---->
+          </div>
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > datePicker > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="w-full"
+        >
+          <div
+            class="relative"
+          >
+            <div
+              class="relative"
+            >
+              <input
+                aria-haspopup="dialog"
+                class="w-full rounded-md border px-4 py-2 text-sm focus:ring-2 focus:outline-none outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-primary-500 dark:focus:ring-primary-400"
+                inputmode="none"
+                placeholder="Select date"
+                type="text"
+              />
+               
+              <button
+                aria-label="Open date picker"
+                class="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500 focus:outline-hidden dark:text-gray-400"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="h-4 w-4 text-gray-500 dark:text-gray-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <!---->
+             
+            <!---->
+          </div>
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > file > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="relative w-full"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:placeholder-gray-400 border-gray-300 dark:border-gray-600 rounded-lg border p-0! dark:text-gray-400 text-sm p-2.5"
+            data-loading="false"
+            data-processing="false"
+            disabled=""
+            id="root"
+            name="root"
+            type="file"
+          />
+           
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden cursor-not-allowed opacity-50 rounded-lg"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > file > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="relative w-full"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:placeholder-gray-400 border-gray-300 dark:border-gray-600 rounded-lg border p-0! dark:text-gray-400 text-sm p-2.5"
+            data-loading="false"
+            data-processing="false"
+            id="root"
+            name="root"
+            type="file"
+          />
+           
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > file > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="relative w-full"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:placeholder-gray-400 border-gray-300 dark:border-gray-600 rounded-lg border p-0! dark:text-gray-400 text-sm p-2.5"
+            data-loading="false"
+            data-processing="false"
+            id="root"
+            name="root"
+            type="file"
+          />
+           
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > file > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="relative w-full"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:placeholder-gray-400 border-gray-300 dark:border-gray-600 rounded-lg border p-0! dark:text-gray-400 text-sm p-2.5"
+            data-loading="false"
+            data-processing="false"
+            id="root"
+            name="root"
+            readonly=""
+            type="file"
+          />
+           
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > multiFile > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="relative w-full"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:placeholder-gray-400 border-gray-300 dark:border-gray-600 rounded-lg border p-0! dark:text-gray-400 text-sm p-2.5"
+            data-loading="true"
+            data-processing="false"
+            disabled=""
+            id="root"
+            multiple=""
+            name="root"
+            type="file"
+          />
+           
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden cursor-not-allowed opacity-50 rounded-lg"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > multiFile > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="relative w-full"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:placeholder-gray-400 border-gray-300 dark:border-gray-600 rounded-lg border p-0! dark:text-gray-400 text-sm p-2.5"
+            data-loading="true"
+            data-processing="false"
+            id="root"
+            multiple=""
+            name="root"
+            type="file"
+          />
+           
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > multiFile > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="relative w-full"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:placeholder-gray-400 border-gray-300 dark:border-gray-600 rounded-lg border p-0! dark:text-gray-400 text-sm p-2.5"
+            data-loading="true"
+            data-processing="false"
+            id="root"
+            multiple=""
+            name="root"
+            type="file"
+          />
+           
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > multiFile > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="relative w-full"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:placeholder-gray-400 border-gray-300 dark:border-gray-600 rounded-lg border p-0! dark:text-gray-400 text-sm p-2.5"
+            data-loading="true"
+            data-processing="false"
+            id="root"
+            multiple=""
+            name="root"
+            readonly=""
+            type="file"
+          />
+           
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > multiSelect > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <select
+          hidden=""
+          multiple=""
+          name="root"
+        >
+          <option
+            value="0"
+          >
+            foo
+          </option>
+          <option
+            value="1"
+          >
+            bar
+          </option>
+          <option
+            value="2"
+          >
+            fuzz
+          </option>
+          <option
+            value="3"
+          >
+            qux
+          </option>
+          
+        </select>
+         
+        <div
+          aria-describedby="root::description root::help root::errors"
+          class="relative border border-gray-300 flex items-center rounded-lg gap-2 dark:border-gray-600 ring-primary-500 dark:ring-primary-500 focus-visible:outline-hidden px-2.5 py-2.5 min-h-[2.7rem] text-sm cursor-not-allowed opacity-50 pointer-events-none grow"
+          id="root"
+          role="listbox"
+          tabindex="0"
+        >
+          <span
+            class="text-gray-400"
+          >
+            
+          </span>
+          <!---->
+           
+          <span
+            class="flex flex-wrap gap-2"
+          >
+            <!---->
+          </span>
+           
+          <div
+            class="ms-auto flex items-center gap-2"
+          >
+            <!---->
+             
+            <svg
+              aria-hidden="true"
+              class="ms-1 h-3 w-3 text-gray-800 dark:text-white cursor-not-allowed"
+              fill="none"
+              viewBox="0 0 10 6"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m9 1-4 4-4-4"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+              />
+            </svg>
+          </div>
+           
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden cursor-not-allowed opacity-50 rounded-lg"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > multiSelect > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <select
+          hidden=""
+          multiple=""
+          name="root"
+        >
+          <option
+            value="0"
+          >
+            foo
+          </option>
+          <option
+            value="1"
+          >
+            bar
+          </option>
+          <option
+            value="2"
+          >
+            fuzz
+          </option>
+          <option
+            value="3"
+          >
+            qux
+          </option>
+          
+        </select>
+         
+        <div
+          aria-describedby="root::description root::help root::errors"
+          class="relative border border-gray-300 flex items-center rounded-lg gap-2 dark:border-gray-600 ring-primary-500 dark:ring-primary-500 focus-visible:outline-hidden px-2.5 py-2.5 min-h-[2.7rem] text-sm focus-within:border-primary-500 dark:focus-within:border-primary-500 focus-within:ring-1 grow"
+          id="root"
+          role="listbox"
+          tabindex="0"
+        >
+          <span
+            class="text-gray-400"
+          >
+            
+          </span>
+          <!---->
+           
+          <span
+            class="flex flex-wrap gap-2"
+          >
+            <!---->
+          </span>
+           
+          <div
+            class="ms-auto flex items-center gap-2"
+          >
+            <!---->
+             
+            <svg
+              aria-hidden="true"
+              class="ms-1 h-3 w-3 cursor-pointer text-gray-800 dark:text-white"
+              fill="none"
+              viewBox="0 0 10 6"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m9 1-4 4-4-4"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+              />
+            </svg>
+          </div>
+           
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > multiSelect > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <select
+          hidden=""
+          multiple=""
+          name="root"
+        >
+          <option
+            value="0"
+          >
+            foo
+          </option>
+          <option
+            value="1"
+          >
+            bar
+          </option>
+          <option
+            value="2"
+          >
+            fuzz
+          </option>
+          <option
+            value="3"
+          >
+            qux
+          </option>
+          
+        </select>
+         
+        <div
+          aria-describedby="root::description root::help root::errors"
+          class="relative border border-gray-300 flex items-center rounded-lg gap-2 dark:border-gray-600 ring-primary-500 dark:ring-primary-500 focus-visible:outline-hidden px-2.5 py-2.5 min-h-[2.7rem] text-sm focus-within:border-primary-500 dark:focus-within:border-primary-500 focus-within:ring-1 grow"
+          id="root"
+          role="listbox"
+          tabindex="0"
+        >
+          <span
+            class="text-gray-400"
+          >
+            
+          </span>
+          <!---->
+           
+          <span
+            class="flex flex-wrap gap-2"
+          >
+            <!---->
+          </span>
+           
+          <div
+            class="ms-auto flex items-center gap-2"
+          >
+            <!---->
+             
+            <svg
+              aria-hidden="true"
+              class="ms-1 h-3 w-3 cursor-pointer text-gray-800 dark:text-white"
+              fill="none"
+              viewBox="0 0 10 6"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m9 1-4 4-4-4"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+              />
+            </svg>
+          </div>
+           
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > multiSelect > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <select
+          hidden=""
+          multiple=""
+          name="root"
+        >
+          <option
+            value="0"
+          >
+            foo
+          </option>
+          <option
+            value="1"
+          >
+            bar
+          </option>
+          <option
+            value="2"
+          >
+            fuzz
+          </option>
+          <option
+            value="3"
+          >
+            qux
+          </option>
+          
+        </select>
+         
+        <div
+          aria-describedby="root::description root::help root::errors"
+          class="relative border border-gray-300 flex items-center rounded-lg gap-2 dark:border-gray-600 ring-primary-500 dark:ring-primary-500 focus-visible:outline-hidden px-2.5 py-2.5 min-h-[2.7rem] text-sm focus-within:border-primary-500 dark:focus-within:border-primary-500 focus-within:ring-1 grow"
+          id="root"
+          role="listbox"
+          tabindex="0"
+        >
+          <span
+            class="text-gray-400"
+          >
+            
+          </span>
+          <!---->
+           
+          <span
+            class="flex flex-wrap gap-2"
+          >
+            <!---->
+          </span>
+           
+          <div
+            class="ms-auto flex items-center gap-2"
+          >
+            <!---->
+             
+            <svg
+              aria-hidden="true"
+              class="ms-1 h-3 w-3 cursor-pointer text-gray-800 dark:text-white"
+              fill="none"
+              viewBox="0 0 10 6"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m9 1-4 4-4-4"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+              />
+            </svg>
+          </div>
+           
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > number > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+         
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+          disabled=""
+          id="root"
+          name="root"
+          step="any"
+          type="number"
+        />
+         
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden cursor-not-allowed opacity-50 rounded-lg"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > number > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+         
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+          id="root"
+          name="root"
+          step="any"
+          type="number"
+        />
+         
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > number > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+         
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+          id="root"
+          name="root"
+          step="any"
+          type="number"
+        />
+         
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > number > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+         
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+          id="root"
+          name="root"
+          readonly=""
+          step="any"
+          type="number"
+        />
+         
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > radio > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 items-center flex"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="flex items-center w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 mr-2 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 relative"
+            disabled=""
+            id="root::0"
+            name="root"
+            type="radio"
+            value="0"
+          />
+           
+          foo
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 items-center flex"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="flex items-center w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 mr-2 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 relative"
+            disabled=""
+            id="root::1"
+            name="root"
+            type="radio"
+            value="1"
+          />
+           
+          bar
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 items-center flex"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="flex items-center w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 mr-2 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 relative"
+            disabled=""
+            id="root::2"
+            name="root"
+            type="radio"
+            value="2"
+          />
+           
+          fuzz
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 items-center flex"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="flex items-center w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 mr-2 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 relative"
+            disabled=""
+            id="root::3"
+            name="root"
+            type="radio"
+            value="3"
+          />
+           
+          qux
+          <!---->
+          <!---->
+        </label>
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden cursor-not-allowed opacity-50 rounded-lg"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > radio > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 items-center flex"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="flex items-center w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 mr-2 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 relative"
+            id="root::0"
+            name="root"
+            type="radio"
+            value="0"
+          />
+           
+          foo
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 items-center flex"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="flex items-center w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 mr-2 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 relative"
+            id="root::1"
+            name="root"
+            type="radio"
+            value="1"
+          />
+           
+          bar
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 items-center flex"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="flex items-center w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 mr-2 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 relative"
+            id="root::2"
+            name="root"
+            type="radio"
+            value="2"
+          />
+           
+          fuzz
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 items-center flex"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="flex items-center w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 mr-2 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 relative"
+            id="root::3"
+            name="root"
+            type="radio"
+            value="3"
+          />
+           
+          qux
+          <!---->
+          <!---->
+        </label>
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > radio > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 items-center flex"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="flex items-center w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 mr-2 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 relative"
+            id="root::0"
+            name="root"
+            type="radio"
+            value="0"
+          />
+           
+          foo
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 items-center flex"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="flex items-center w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 mr-2 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 relative"
+            id="root::1"
+            name="root"
+            type="radio"
+            value="1"
+          />
+           
+          bar
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 items-center flex"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="flex items-center w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 mr-2 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 relative"
+            id="root::2"
+            name="root"
+            type="radio"
+            value="2"
+          />
+           
+          fuzz
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 items-center flex"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="flex items-center w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 mr-2 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 relative"
+            id="root::3"
+            name="root"
+            type="radio"
+            value="3"
+          />
+           
+          qux
+          <!---->
+          <!---->
+        </label>
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > radio > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 items-center flex"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="flex items-center w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 mr-2 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 relative"
+            id="root::0"
+            name="root"
+            readonly=""
+            type="radio"
+            value="0"
+          />
+           
+          foo
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 items-center flex"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="flex items-center w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 mr-2 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 relative"
+            id="root::1"
+            name="root"
+            readonly=""
+            type="radio"
+            value="1"
+          />
+           
+          bar
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 items-center flex"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="flex items-center w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 mr-2 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 relative"
+            id="root::2"
+            name="root"
+            readonly=""
+            type="radio"
+            value="2"
+          />
+           
+          fuzz
+          <!---->
+          <!---->
+        </label>
+        
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 items-center flex"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="flex items-center w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 mr-2 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 relative"
+            id="root::3"
+            name="root"
+            readonly=""
+            type="radio"
+            value="3"
+          />
+           
+          qux
+          <!---->
+          <!---->
+        </label>
+        
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > radioButtons > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="inline"
+        >
+          <div
+            aria-label="toggle-group"
+            class="inline-flex border border-gray-300 overflow-hidden rounded-md"
+            disabled="true"
+            role="radiogroup"
+          >
+            <!---->
+            <button
+              aria-checked="false"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              data-selected="false"
+              role="radio"
+              type="button"
+            >
+              <div
+                class="flex items-center w-full overflow-hidden relative"
+              >
+                <!---->
+                 
+                <span
+                  class="transition-all duration-200 ml-0"
+                >
+                  foo
+                  <!---->
+                </span>
+              </div>
+            </button>
+            <button
+              aria-checked="false"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              data-selected="false"
+              role="radio"
+              type="button"
+            >
+              <div
+                class="flex items-center w-full overflow-hidden relative"
+              >
+                <!---->
+                 
+                <span
+                  class="transition-all duration-200 ml-0"
+                >
+                  bar
+                  <!---->
+                </span>
+              </div>
+            </button>
+            <button
+              aria-checked="false"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              data-selected="false"
+              role="radio"
+              type="button"
+            >
+              <div
+                class="flex items-center w-full overflow-hidden relative"
+              >
+                <!---->
+                 
+                <span
+                  class="transition-all duration-200 ml-0"
+                >
+                  fuzz
+                  <!---->
+                </span>
+              </div>
+            </button>
+            <button
+              aria-checked="false"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              data-selected="false"
+              role="radio"
+              type="button"
+            >
+              <div
+                class="flex items-center w-full overflow-hidden relative"
+              >
+                <!---->
+                 
+                <span
+                  class="transition-all duration-200 ml-0"
+                >
+                  qux
+                  <!---->
+                </span>
+              </div>
+            </button>
+            
+            <!---->
+          </div>
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden cursor-not-allowed opacity-50 rounded-lg"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > radioButtons > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="inline"
+        >
+          <div
+            aria-label="toggle-group"
+            class="inline-flex border border-gray-300 overflow-hidden rounded-md"
+            disabled="false"
+            role="radiogroup"
+          >
+            <!---->
+            <button
+              aria-checked="false"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              data-selected="false"
+              role="radio"
+              type="button"
+            >
+              <div
+                class="flex items-center w-full overflow-hidden relative"
+              >
+                <!---->
+                 
+                <span
+                  class="transition-all duration-200 ml-0"
+                >
+                  foo
+                  <!---->
+                </span>
+              </div>
+            </button>
+            <button
+              aria-checked="false"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              data-selected="false"
+              role="radio"
+              type="button"
+            >
+              <div
+                class="flex items-center w-full overflow-hidden relative"
+              >
+                <!---->
+                 
+                <span
+                  class="transition-all duration-200 ml-0"
+                >
+                  bar
+                  <!---->
+                </span>
+              </div>
+            </button>
+            <button
+              aria-checked="false"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              data-selected="false"
+              role="radio"
+              type="button"
+            >
+              <div
+                class="flex items-center w-full overflow-hidden relative"
+              >
+                <!---->
+                 
+                <span
+                  class="transition-all duration-200 ml-0"
+                >
+                  fuzz
+                  <!---->
+                </span>
+              </div>
+            </button>
+            <button
+              aria-checked="false"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              data-selected="false"
+              role="radio"
+              type="button"
+            >
+              <div
+                class="flex items-center w-full overflow-hidden relative"
+              >
+                <!---->
+                 
+                <span
+                  class="transition-all duration-200 ml-0"
+                >
+                  qux
+                  <!---->
+                </span>
+              </div>
+            </button>
+            
+            <!---->
+          </div>
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > radioButtons > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="inline"
+        >
+          <div
+            aria-label="toggle-group"
+            class="inline-flex border border-gray-300 overflow-hidden rounded-md"
+            disabled="false"
+            role="radiogroup"
+          >
+            <!---->
+            <button
+              aria-checked="false"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              data-selected="false"
+              role="radio"
+              type="button"
+            >
+              <div
+                class="flex items-center w-full overflow-hidden relative"
+              >
+                <!---->
+                 
+                <span
+                  class="transition-all duration-200 ml-0"
+                >
+                  foo
+                  <!---->
+                </span>
+              </div>
+            </button>
+            <button
+              aria-checked="false"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              data-selected="false"
+              role="radio"
+              type="button"
+            >
+              <div
+                class="flex items-center w-full overflow-hidden relative"
+              >
+                <!---->
+                 
+                <span
+                  class="transition-all duration-200 ml-0"
+                >
+                  bar
+                  <!---->
+                </span>
+              </div>
+            </button>
+            <button
+              aria-checked="false"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              data-selected="false"
+              role="radio"
+              type="button"
+            >
+              <div
+                class="flex items-center w-full overflow-hidden relative"
+              >
+                <!---->
+                 
+                <span
+                  class="transition-all duration-200 ml-0"
+                >
+                  fuzz
+                  <!---->
+                </span>
+              </div>
+            </button>
+            <button
+              aria-checked="false"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              data-selected="false"
+              role="radio"
+              type="button"
+            >
+              <div
+                class="flex items-center w-full overflow-hidden relative"
+              >
+                <!---->
+                 
+                <span
+                  class="transition-all duration-200 ml-0"
+                >
+                  qux
+                  <!---->
+                </span>
+              </div>
+            </button>
+            
+            <!---->
+          </div>
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > radioButtons > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="inline"
+        >
+          <div
+            aria-label="toggle-group"
+            class="inline-flex border border-gray-300 overflow-hidden rounded-md"
+            disabled="false"
+            role="radiogroup"
+          >
+            <!---->
+            <button
+              aria-checked="false"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              data-selected="false"
+              role="radio"
+              type="button"
+            >
+              <div
+                class="flex items-center w-full overflow-hidden relative"
+              >
+                <!---->
+                 
+                <span
+                  class="transition-all duration-200 ml-0"
+                >
+                  foo
+                  <!---->
+                </span>
+              </div>
+            </button>
+            <button
+              aria-checked="false"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              data-selected="false"
+              role="radio"
+              type="button"
+            >
+              <div
+                class="flex items-center w-full overflow-hidden relative"
+              >
+                <!---->
+                 
+                <span
+                  class="transition-all duration-200 ml-0"
+                >
+                  bar
+                  <!---->
+                </span>
+              </div>
+            </button>
+            <button
+              aria-checked="false"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              data-selected="false"
+              role="radio"
+              type="button"
+            >
+              <div
+                class="flex items-center w-full overflow-hidden relative"
+              >
+                <!---->
+                 
+                <span
+                  class="transition-all duration-200 ml-0"
+                >
+                  fuzz
+                  <!---->
+                </span>
+              </div>
+            </button>
+            <button
+              aria-checked="false"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              data-selected="false"
+              role="radio"
+              type="button"
+            >
+              <div
+                class="flex items-center w-full overflow-hidden relative"
+              >
+                <!---->
+                 
+                <span
+                  class="transition-all duration-200 ml-0"
+                >
+                  qux
+                  <!---->
+                </span>
+              </div>
+            </button>
+            
+            <!---->
+          </div>
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > range > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="w-full bg-gray-200 rounded-lg cursor-pointer dark:bg-gray-700 h-2 appearance-none"
+          disabled=""
+          id="root"
+          name="root"
+          step="any"
+          type="range"
+        />
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden cursor-not-allowed opacity-50 rounded-lg"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > range > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="w-full bg-gray-200 rounded-lg cursor-pointer dark:bg-gray-700 h-2 appearance-none"
+          id="root"
+          name="root"
+          step="any"
+          type="range"
+        />
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > range > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="w-full bg-gray-200 rounded-lg cursor-pointer dark:bg-gray-700 h-2 appearance-none"
+          id="root"
+          name="root"
+          step="any"
+          type="range"
+        />
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > range > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="w-full bg-gray-200 rounded-lg cursor-pointer dark:bg-gray-700 h-2 appearance-none"
+          id="root"
+          name="root"
+          readonly=""
+          step="any"
+          type="range"
+        />
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > select > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="relative flex-1"
+        >
+          <select
+            aria-describedby="root::description root::help root::errors"
+            class="block w-full rtl:text-right text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:outline-hidden focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 text-sm px-2.5 py-2.5 cursor-not-allowed opacity-50"
+            disabled=""
+            id="root"
+            name="root"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <option
+              value="-1"
+            >
+              
+            </option>
+            <!---->
+             
+            <option
+              value="0"
+            >
+              foo
+            </option>
+            <option
+              value="1"
+            >
+              bar
+            </option>
+            <option
+              value="2"
+            >
+              fuzz
+            </option>
+            <option
+              value="3"
+            >
+              qux
+            </option>
+            <!---->
+            
+            <!---->
+          </select>
+           
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden cursor-not-allowed opacity-50 rounded-lg"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > select > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="relative flex-1"
+        >
+          <select
+            aria-describedby="root::description root::help root::errors"
+            class="block w-full rtl:text-right text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:outline-hidden focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 text-sm px-2.5 py-2.5"
+            id="root"
+            name="root"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <option
+              value="-1"
+            >
+              
+            </option>
+            <!---->
+             
+            <option
+              value="0"
+            >
+              foo
+            </option>
+            <option
+              value="1"
+            >
+              bar
+            </option>
+            <option
+              value="2"
+            >
+              fuzz
+            </option>
+            <option
+              value="3"
+            >
+              qux
+            </option>
+            <!---->
+            
+            <!---->
+          </select>
+           
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > select > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="relative flex-1"
+        >
+          <select
+            aria-describedby="root::description root::help root::errors"
+            class="block w-full rtl:text-right text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:outline-hidden focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 text-sm px-2.5 py-2.5"
+            id="root"
+            name="root"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <option
+              value="-1"
+            >
+              
+            </option>
+            <!---->
+             
+            <option
+              value="0"
+            >
+              foo
+            </option>
+            <option
+              value="1"
+            >
+              bar
+            </option>
+            <option
+              value="2"
+            >
+              fuzz
+            </option>
+            <option
+              value="3"
+            >
+              qux
+            </option>
+            <!---->
+            
+            <!---->
+          </select>
+           
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > select > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="relative flex-1"
+        >
+          <select
+            aria-describedby="root::description root::help root::errors"
+            class="block w-full rtl:text-right text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:outline-hidden focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 text-sm px-2.5 py-2.5"
+            id="root"
+            name="root"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <option
+              value="-1"
+            >
+              
+            </option>
+            <!---->
+             
+            <option
+              value="0"
+            >
+              foo
+            </option>
+            <option
+              value="1"
+            >
+              bar
+            </option>
+            <option
+              value="2"
+            >
+              fuzz
+            </option>
+            <option
+              value="3"
+            >
+              qux
+            </option>
+            <!---->
+            
+            <!---->
+          </select>
+           
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > switch > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center cursor-not-allowed opacity-50"
+        >
+          <!---->
+          <!---->
+           
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 rounded-sm dark:bg-gray-700 dark:border-gray-600 sr-only peer"
+            disabled=""
+            id="root"
+            name="root"
+            type="checkbox"
+          />
+           
+          <span
+            class="me-3 shrink-0 bg-gray-200 rounded-full peer-focus:ring-4 peer-checked:after:translate-x-full peer-checked:rtl:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:bg-white after:border-gray-300 after:border after:rounded-full after:transition-all dark:bg-gray-600 dark:border-gray-500 relative peer-focus:ring-primary-300 dark:peer-focus:ring-primary-800 peer-checked:bg-primary-600 w-11 h-6 after:top-0.5 after:start-[2px] after:h-5 after:w-5"
+          />
+           
+          <!---->
+          
+          
+          <!---->
+          <!---->
+        </label>
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden cursor-not-allowed opacity-50 rounded-lg"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > switch > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center"
+        >
+          <!---->
+          <!---->
+           
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 rounded-sm dark:bg-gray-700 dark:border-gray-600 sr-only peer"
+            id="root"
+            name="root"
+            type="checkbox"
+          />
+           
+          <span
+            class="me-3 shrink-0 bg-gray-200 rounded-full peer-focus:ring-4 peer-checked:after:translate-x-full peer-checked:rtl:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:bg-white after:border-gray-300 after:border after:rounded-full after:transition-all dark:bg-gray-600 dark:border-gray-500 relative peer-focus:ring-primary-300 dark:peer-focus:ring-primary-800 peer-checked:bg-primary-600 w-11 h-6 after:top-0.5 after:start-[2px] after:h-5 after:w-5"
+          />
+           
+          <!---->
+          
+          
+          <!---->
+          <!---->
+        </label>
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > switch > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center"
+        >
+          <!---->
+          <!---->
+           
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 rounded-sm dark:bg-gray-700 dark:border-gray-600 sr-only peer"
+            id="root"
+            name="root"
+            type="checkbox"
+          />
+           
+          <span
+            class="me-3 shrink-0 bg-gray-200 rounded-full peer-focus:ring-4 peer-checked:after:translate-x-full peer-checked:rtl:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:bg-white after:border-gray-300 after:border after:rounded-full after:transition-all dark:bg-gray-600 dark:border-gray-500 relative peer-focus:ring-primary-300 dark:peer-focus:ring-primary-800 peer-checked:bg-primary-600 w-11 h-6 after:top-0.5 after:start-[2px] after:h-5 after:w-5"
+          />
+           
+          <!---->
+          
+          
+          <!---->
+          <!---->
+        </label>
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > switch > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="text-sm rtl:text-right font-medium text-gray-700 dark:text-gray-200 flex items-center"
+        >
+          <!---->
+          <!---->
+           
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 rounded-sm dark:bg-gray-700 dark:border-gray-600 sr-only peer"
+            id="root"
+            name="root"
+            readonly=""
+            type="checkbox"
+          />
+           
+          <span
+            class="me-3 shrink-0 bg-gray-200 rounded-full peer-focus:ring-4 peer-checked:after:translate-x-full peer-checked:rtl:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:bg-white after:border-gray-300 after:border after:rounded-full after:transition-all dark:bg-gray-600 dark:border-gray-500 relative peer-focus:ring-primary-300 dark:peer-focus:ring-primary-800 peer-checked:bg-primary-600 w-11 h-6 after:top-0.5 after:start-[2px] after:h-5 after:w-5"
+          />
+           
+          <!---->
+          
+          
+          <!---->
+          <!---->
+        </label>
+        
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > tags > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="border bg-gray-50 border-gray-300 rounded-lg flex focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 overflow-x-auto scrollbar-hidden flex-1"
+          disabled="true"
+        >
+          <!---->
+           
+          <input
+            autocomplete="new-password"
+            class="block text-sm m-2.5 p-0 bg-transparent border-none outline-none text-gray-900 h-min w-full min-w-fit focus:ring-0 placeholder-gray-400"
+            placeholder="Enter tags"
+            type="text"
+          />
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden cursor-not-allowed opacity-50 rounded-lg"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > tags > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="border bg-gray-50 border-gray-300 rounded-lg flex focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 overflow-x-auto scrollbar-hidden flex-1"
+          disabled="false"
+        >
+          <!---->
+           
+          <input
+            autocomplete="new-password"
+            class="block text-sm m-2.5 p-0 bg-transparent border-none outline-none text-gray-900 h-min w-full min-w-fit focus:ring-0 placeholder-gray-400"
+            placeholder="Enter tags"
+            type="text"
+          />
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > tags > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="border bg-gray-50 border-gray-300 rounded-lg flex focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 overflow-x-auto scrollbar-hidden flex-1"
+          disabled="false"
+        >
+          <!---->
+           
+          <input
+            autocomplete="new-password"
+            class="block text-sm m-2.5 p-0 bg-transparent border-none outline-none text-gray-900 h-min w-full min-w-fit focus:ring-0 placeholder-gray-400"
+            placeholder="Enter tags"
+            type="text"
+          />
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > tags > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="border bg-gray-50 border-gray-300 rounded-lg flex focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 overflow-x-auto scrollbar-hidden flex-1"
+          disabled="false"
+        >
+          <!---->
+           
+          <input
+            autocomplete="new-password"
+            class="block text-sm m-2.5 p-0 bg-transparent border-none outline-none text-gray-900 h-min w-full min-w-fit focus:ring-0 placeholder-gray-400"
+            placeholder="Enter tags"
+            type="text"
+          />
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > text > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+         
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+          disabled=""
+          id="root"
+          name="root"
+          type="text"
+        />
+         
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden cursor-not-allowed opacity-50 rounded-lg"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > text > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+         
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+          id="root"
+          name="root"
+          type="text"
+        />
+         
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > text > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+         
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+          id="root"
+          name="root"
+          type="text"
+        />
+         
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > text > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+         
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
+          id="root"
+          name="root"
+          readonly=""
+          type="text"
+        />
+         
+        <!---->
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > textarea > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="relative w-full"
+        >
+          <textarea
+            aria-describedby="root::description root::help root::errors"
+            class="rounded-lg bg-gray-50 dark:bg-gray-600 text-gray-900 dark:placeholder-gray-400 dark:text-white border dark:border-gray-500 w-full p-2.5 text-sm focus:outline-hidden focus:ring-primary-500 border-gray-300 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 disabled:cursor-not-allowed disabled:opacity-50"
+            disabled=""
+            id="root"
+            name="root"
+          />
+          <!---->
+           
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden cursor-not-allowed opacity-50 rounded-lg"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > textarea > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="relative w-full"
+        >
+          <textarea
+            aria-describedby="root::description root::help root::errors"
+            class="rounded-lg bg-gray-50 dark:bg-gray-600 text-gray-900 dark:placeholder-gray-400 dark:text-white border dark:border-gray-500 w-full p-2.5 text-sm focus:outline-hidden focus:ring-primary-500 border-gray-300 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 disabled:cursor-not-allowed disabled:opacity-50"
+            id="root"
+            name="root"
+          />
+          <!---->
+           
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-red-700 dark:text-red-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > textarea > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="relative w-full"
+        >
+          <textarea
+            aria-describedby="root::description root::help root::errors"
+            class="rounded-lg bg-gray-50 dark:bg-gray-600 text-gray-900 dark:placeholder-gray-400 dark:text-white border dark:border-gray-500 w-full p-2.5 text-sm focus:outline-hidden focus:ring-primary-500 border-gray-300 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 disabled:cursor-not-allowed disabled:opacity-50"
+            id="root"
+            name="root"
+          />
+          <!---->
+           
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > textarea > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="relative w-full"
+        >
+          <textarea
+            aria-describedby="root::description root::help root::errors"
+            class="rounded-lg bg-gray-50 dark:bg-gray-600 text-gray-900 dark:placeholder-gray-400 dark:text-white border dark:border-gray-500 w-full p-2.5 text-sm focus:outline-hidden focus:ring-primary-500 border-gray-300 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 disabled:cursor-not-allowed disabled:opacity-50"
+            id="root"
+            name="root"
+            readonly=""
+          />
+          <!---->
+           
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <button
+      class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;

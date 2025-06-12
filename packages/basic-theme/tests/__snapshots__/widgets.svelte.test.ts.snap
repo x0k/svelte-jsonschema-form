@@ -1,0 +1,3087 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`widgets > checkbox > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          disabled=""
+          id="root"
+          name="root"
+          type="checkbox"
+        />
+         
+      </label>
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > checkbox > error 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root"
+          name="root"
+          type="checkbox"
+        />
+         
+      </label>
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+    <ul
+      id="root::errors"
+      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      tabindex="-1"
+    >
+      <li>
+        error
+      </li>
+      
+    </ul>
+    
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > checkbox > normal 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root"
+          name="root"
+          type="checkbox"
+        />
+         
+      </label>
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > checkbox > readonly 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root"
+          name="root"
+          readonly=""
+          type="checkbox"
+        />
+         
+      </label>
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > checkboxes > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          disabled=""
+          id="root::0"
+          name="root"
+          type="checkbox"
+          value="0"
+        />
+         foo
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          disabled=""
+          id="root::1"
+          name="root"
+          type="checkbox"
+          value="1"
+        />
+         bar
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          disabled=""
+          id="root::2"
+          name="root"
+          type="checkbox"
+          value="2"
+        />
+         fuzz
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          disabled=""
+          id="root::3"
+          name="root"
+          type="checkbox"
+          value="3"
+        />
+         qux
+      </label>
+      
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > checkboxes > error 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::0"
+          name="root"
+          type="checkbox"
+          value="0"
+        />
+         foo
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::1"
+          name="root"
+          type="checkbox"
+          value="1"
+        />
+         bar
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::2"
+          name="root"
+          type="checkbox"
+          value="2"
+        />
+         fuzz
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::3"
+          name="root"
+          type="checkbox"
+          value="3"
+        />
+         qux
+      </label>
+      
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+    <ul
+      id="root::errors"
+      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      tabindex="-1"
+    >
+      <li>
+        error
+      </li>
+      
+    </ul>
+    
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > checkboxes > normal 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::0"
+          name="root"
+          type="checkbox"
+          value="0"
+        />
+         foo
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::1"
+          name="root"
+          type="checkbox"
+          value="1"
+        />
+         bar
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::2"
+          name="root"
+          type="checkbox"
+          value="2"
+        />
+         fuzz
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::3"
+          name="root"
+          type="checkbox"
+          value="3"
+        />
+         qux
+      </label>
+      
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > checkboxes > readonly 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::0"
+          name="root"
+          readonly=""
+          type="checkbox"
+          value="0"
+        />
+         foo
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::1"
+          name="root"
+          readonly=""
+          type="checkbox"
+          value="1"
+        />
+         bar
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::2"
+          name="root"
+          readonly=""
+          type="checkbox"
+          value="2"
+        />
+         fuzz
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::3"
+          name="root"
+          readonly=""
+          type="checkbox"
+          value="3"
+        />
+         qux
+      </label>
+      
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > datePicker > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        disabled=""
+        id="root"
+        name="root"
+        style="flex-grow: 1;"
+        type="date"
+      />
+       
+      <!---->
+      
+      <!---->
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > datePicker > error 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        style="flex-grow: 1;"
+        type="date"
+      />
+       
+      <!---->
+      
+      <!---->
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+    <ul
+      id="root::errors"
+      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      tabindex="-1"
+    >
+      <li>
+        error
+      </li>
+      
+    </ul>
+    
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > datePicker > normal 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        style="flex-grow: 1;"
+        type="date"
+      />
+       
+      <!---->
+      
+      <!---->
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > datePicker > readonly 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        readonly=""
+        style="flex-grow: 1;"
+        type="date"
+      />
+       
+      <!---->
+      
+      <!---->
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > file > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        data-loading="false"
+        data-processing="false"
+        disabled=""
+        id="root"
+        name="root"
+        style="flex-grow: 1;"
+        type="file"
+      />
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > file > error 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        data-loading="false"
+        data-processing="false"
+        id="root"
+        name="root"
+        style="flex-grow: 1;"
+        type="file"
+      />
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+    <ul
+      id="root::errors"
+      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      tabindex="-1"
+    >
+      <li>
+        error
+      </li>
+      
+    </ul>
+    
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > file > normal 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        data-loading="false"
+        data-processing="false"
+        id="root"
+        name="root"
+        style="flex-grow: 1;"
+        type="file"
+      />
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > file > readonly 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        data-loading="false"
+        data-processing="false"
+        id="root"
+        name="root"
+        readonly=""
+        style="flex-grow: 1;"
+        type="file"
+      />
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > multiFile > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        data-loading="true"
+        data-processing="false"
+        disabled=""
+        id="root"
+        multiple=""
+        name="root"
+        style="flex-grow: 1;"
+        type="file"
+      />
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > multiFile > error 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        data-loading="true"
+        data-processing="false"
+        id="root"
+        multiple=""
+        name="root"
+        style="flex-grow: 1;"
+        type="file"
+      />
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+    <ul
+      id="root::errors"
+      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      tabindex="-1"
+    >
+      <li>
+        error
+      </li>
+      
+    </ul>
+    
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > multiFile > normal 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        data-loading="true"
+        data-processing="false"
+        id="root"
+        multiple=""
+        name="root"
+        style="flex-grow: 1;"
+        type="file"
+      />
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > multiFile > readonly 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        data-loading="true"
+        data-processing="false"
+        id="root"
+        multiple=""
+        name="root"
+        readonly=""
+        style="flex-grow: 1;"
+        type="file"
+      />
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > multiSelect > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <select
+        aria-describedby="root::description root::help root::errors"
+        disabled=""
+        id="root"
+        multiple=""
+        name="root"
+        style="flex-grow: 1;"
+      >
+        <option
+          value="0"
+        >
+          foo
+        </option>
+        <option
+          value="1"
+        >
+          bar
+        </option>
+        <option
+          value="2"
+        >
+          fuzz
+        </option>
+        <option
+          value="3"
+        >
+          qux
+        </option>
+        
+      </select>
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > multiSelect > error 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <select
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        multiple=""
+        name="root"
+        style="flex-grow: 1;"
+      >
+        <option
+          value="0"
+        >
+          foo
+        </option>
+        <option
+          value="1"
+        >
+          bar
+        </option>
+        <option
+          value="2"
+        >
+          fuzz
+        </option>
+        <option
+          value="3"
+        >
+          qux
+        </option>
+        
+      </select>
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+    <ul
+      id="root::errors"
+      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      tabindex="-1"
+    >
+      <li>
+        error
+      </li>
+      
+    </ul>
+    
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > multiSelect > normal 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <select
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        multiple=""
+        name="root"
+        style="flex-grow: 1;"
+      >
+        <option
+          value="0"
+        >
+          foo
+        </option>
+        <option
+          value="1"
+        >
+          bar
+        </option>
+        <option
+          value="2"
+        >
+          fuzz
+        </option>
+        <option
+          value="3"
+        >
+          qux
+        </option>
+        
+      </select>
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > multiSelect > readonly 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <select
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        multiple=""
+        name="root"
+        style="flex-grow: 1;"
+      >
+        <option
+          value="0"
+        >
+          foo
+        </option>
+        <option
+          value="1"
+        >
+          bar
+        </option>
+        <option
+          value="2"
+        >
+          fuzz
+        </option>
+        <option
+          value="3"
+        >
+          qux
+        </option>
+        
+      </select>
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > number > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        disabled=""
+        id="root"
+        name="root"
+        step="any"
+        style="flex-grow: 1;"
+        type="number"
+      />
+       
+      <!---->
+      
+      <!---->
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > number > error 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        step="any"
+        style="flex-grow: 1;"
+        type="number"
+      />
+       
+      <!---->
+      
+      <!---->
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+    <ul
+      id="root::errors"
+      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      tabindex="-1"
+    >
+      <li>
+        error
+      </li>
+      
+    </ul>
+    
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > number > normal 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        step="any"
+        style="flex-grow: 1;"
+        type="number"
+      />
+       
+      <!---->
+      
+      <!---->
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > number > readonly 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        readonly=""
+        step="any"
+        style="flex-grow: 1;"
+        type="number"
+      />
+       
+      <!---->
+      
+      <!---->
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > radio > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          disabled=""
+          id="root::0"
+          name="root"
+          type="radio"
+          value="0"
+        />
+         foo
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          disabled=""
+          id="root::1"
+          name="root"
+          type="radio"
+          value="1"
+        />
+         bar
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          disabled=""
+          id="root::2"
+          name="root"
+          type="radio"
+          value="2"
+        />
+         fuzz
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          disabled=""
+          id="root::3"
+          name="root"
+          type="radio"
+          value="3"
+        />
+         qux
+      </label>
+      
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > radio > error 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::0"
+          name="root"
+          type="radio"
+          value="0"
+        />
+         foo
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::1"
+          name="root"
+          type="radio"
+          value="1"
+        />
+         bar
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::2"
+          name="root"
+          type="radio"
+          value="2"
+        />
+         fuzz
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::3"
+          name="root"
+          type="radio"
+          value="3"
+        />
+         qux
+      </label>
+      
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+    <ul
+      id="root::errors"
+      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      tabindex="-1"
+    >
+      <li>
+        error
+      </li>
+      
+    </ul>
+    
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > radio > normal 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::0"
+          name="root"
+          type="radio"
+          value="0"
+        />
+         foo
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::1"
+          name="root"
+          type="radio"
+          value="1"
+        />
+         bar
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::2"
+          name="root"
+          type="radio"
+          value="2"
+        />
+         fuzz
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::3"
+          name="root"
+          type="radio"
+          value="3"
+        />
+         qux
+      </label>
+      
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > radio > readonly 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::0"
+          name="root"
+          readonly=""
+          type="radio"
+          value="0"
+        />
+         foo
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::1"
+          name="root"
+          readonly=""
+          type="radio"
+          value="1"
+        />
+         bar
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::2"
+          name="root"
+          readonly=""
+          type="radio"
+          value="2"
+        />
+         fuzz
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::3"
+          name="root"
+          readonly=""
+          type="radio"
+          value="3"
+        />
+         qux
+      </label>
+      
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > range > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        disabled=""
+        id="root"
+        name="root"
+        step="any"
+        style="flex-grow: 1;"
+        type="range"
+      />
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > range > error 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        step="any"
+        style="flex-grow: 1;"
+        type="range"
+      />
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+    <ul
+      id="root::errors"
+      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      tabindex="-1"
+    >
+      <li>
+        error
+      </li>
+      
+    </ul>
+    
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > range > normal 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        step="any"
+        style="flex-grow: 1;"
+        type="range"
+      />
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > range > readonly 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        readonly=""
+        step="any"
+        style="flex-grow: 1;"
+        type="range"
+      />
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > select > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <select
+        aria-describedby="root::description root::help root::errors"
+        disabled=""
+        id="root"
+        name="root"
+        style="flex-grow: 1;"
+      >
+        <option
+          value="-1"
+        >
+          
+        </option>
+        <!---->
+        <option
+          value="0"
+        >
+          foo
+        </option>
+        <option
+          value="1"
+        >
+          bar
+        </option>
+        <option
+          value="2"
+        >
+          fuzz
+        </option>
+        <option
+          value="3"
+        >
+          qux
+        </option>
+        <!---->
+      </select>
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > select > error 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <select
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        style="flex-grow: 1;"
+      >
+        <option
+          value="-1"
+        >
+          
+        </option>
+        <!---->
+        <option
+          value="0"
+        >
+          foo
+        </option>
+        <option
+          value="1"
+        >
+          bar
+        </option>
+        <option
+          value="2"
+        >
+          fuzz
+        </option>
+        <option
+          value="3"
+        >
+          qux
+        </option>
+        <!---->
+      </select>
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+    <ul
+      id="root::errors"
+      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      tabindex="-1"
+    >
+      <li>
+        error
+      </li>
+      
+    </ul>
+    
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > select > normal 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <select
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        style="flex-grow: 1;"
+      >
+        <option
+          value="-1"
+        >
+          
+        </option>
+        <!---->
+        <option
+          value="0"
+        >
+          foo
+        </option>
+        <option
+          value="1"
+        >
+          bar
+        </option>
+        <option
+          value="2"
+        >
+          fuzz
+        </option>
+        <option
+          value="3"
+        >
+          qux
+        </option>
+        <!---->
+      </select>
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > select > readonly 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <select
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        style="flex-grow: 1;"
+      >
+        <option
+          value="-1"
+        >
+          
+        </option>
+        <!---->
+        <option
+          value="0"
+        >
+          foo
+        </option>
+        <option
+          value="1"
+        >
+          bar
+        </option>
+        <option
+          value="2"
+        >
+          fuzz
+        </option>
+        <option
+          value="3"
+        >
+          qux
+        </option>
+        <!---->
+      </select>
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > text > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        disabled=""
+        id="root"
+        name="root"
+        style="flex-grow: 1;"
+        type="text"
+      />
+       
+      <!---->
+      
+      <!---->
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > text > error 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        style="flex-grow: 1;"
+        type="text"
+      />
+       
+      <!---->
+      
+      <!---->
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+    <ul
+      id="root::errors"
+      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      tabindex="-1"
+    >
+      <li>
+        error
+      </li>
+      
+    </ul>
+    
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > text > normal 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        style="flex-grow: 1;"
+        type="text"
+      />
+       
+      <!---->
+      
+      <!---->
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > text > readonly 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        readonly=""
+        style="flex-grow: 1;"
+        type="text"
+      />
+       
+      <!---->
+      
+      <!---->
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > textarea > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <textarea
+        aria-describedby="root::description root::help root::errors"
+        disabled=""
+        id="root"
+        name="root"
+        style="flex-grow: 1;"
+      />
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > textarea > error 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <textarea
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        style="flex-grow: 1;"
+      />
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+    <ul
+      id="root::errors"
+      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      tabindex="-1"
+    >
+      <li>
+        error
+      </li>
+      
+    </ul>
+    
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > textarea > normal 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <textarea
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        style="flex-grow: 1;"
+      />
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`widgets > textarea > readonly 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+    >
+      <!---->
+      <!---->
+      <textarea
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        readonly=""
+        style="flex-grow: 1;"
+      />
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;

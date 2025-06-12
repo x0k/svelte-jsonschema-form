@@ -1,0 +1,4067 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`widgets > checkbox > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            disabled=""
+            id="root"
+            name="root"
+            type="checkbox"
+          />
+           
+          <p>
+            
+          </p>
+        </label>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > checkbox > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            id="root"
+            name="root"
+            type="checkbox"
+          />
+           
+          <p>
+            
+          </p>
+        </label>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > checkbox > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            id="root"
+            name="root"
+            type="checkbox"
+          />
+           
+          <p>
+            
+          </p>
+        </label>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > checkbox > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            id="root"
+            name="root"
+            readonly=""
+            type="checkbox"
+          />
+           
+          <p>
+            
+          </p>
+        </label>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > checkboxes > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            disabled=""
+            id="root::0"
+            name="root"
+            type="checkbox"
+            value="0"
+          />
+           
+          <p>
+            foo
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            disabled=""
+            id="root::1"
+            name="root"
+            type="checkbox"
+            value="1"
+          />
+           
+          <p>
+            bar
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            disabled=""
+            id="root::2"
+            name="root"
+            type="checkbox"
+            value="2"
+          />
+           
+          <p>
+            fuzz
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            disabled=""
+            id="root::3"
+            name="root"
+            type="checkbox"
+            value="3"
+          />
+           
+          <p>
+            qux
+          </p>
+        </label>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > checkboxes > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            id="root::0"
+            name="root"
+            type="checkbox"
+            value="0"
+          />
+           
+          <p>
+            foo
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            id="root::1"
+            name="root"
+            type="checkbox"
+            value="1"
+          />
+           
+          <p>
+            bar
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            id="root::2"
+            name="root"
+            type="checkbox"
+            value="2"
+          />
+           
+          <p>
+            fuzz
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            id="root::3"
+            name="root"
+            type="checkbox"
+            value="3"
+          />
+           
+          <p>
+            qux
+          </p>
+        </label>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > checkboxes > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            id="root::0"
+            name="root"
+            type="checkbox"
+            value="0"
+          />
+           
+          <p>
+            foo
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            id="root::1"
+            name="root"
+            type="checkbox"
+            value="1"
+          />
+           
+          <p>
+            bar
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            id="root::2"
+            name="root"
+            type="checkbox"
+            value="2"
+          />
+           
+          <p>
+            fuzz
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            id="root::3"
+            name="root"
+            type="checkbox"
+            value="3"
+          />
+           
+          <p>
+            qux
+          </p>
+        </label>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > checkboxes > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            id="root::0"
+            name="root"
+            readonly=""
+            type="checkbox"
+            value="0"
+          />
+           
+          <p>
+            foo
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            id="root::1"
+            name="root"
+            readonly=""
+            type="checkbox"
+            value="1"
+          />
+           
+          <p>
+            bar
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            id="root::2"
+            name="root"
+            readonly=""
+            type="checkbox"
+            value="2"
+          />
+           
+          <p>
+            fuzz
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            id="root::3"
+            name="root"
+            readonly=""
+            type="checkbox"
+            value="3"
+          />
+           
+          <p>
+            qux
+          </p>
+        </label>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > datePicker > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          disabled=""
+          id="root"
+          name="root"
+          type="date"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > datePicker > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          id="root"
+          name="root"
+          type="date"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > datePicker > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          id="root"
+          name="root"
+          type="date"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > datePicker > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          id="root"
+          name="root"
+          readonly=""
+          type="date"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > file > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          data-loading="false"
+          data-processing="false"
+          disabled=""
+          id="root"
+          name="root"
+          type="file"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > file > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          data-loading="false"
+          data-processing="false"
+          id="root"
+          name="root"
+          type="file"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > file > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          data-loading="false"
+          data-processing="false"
+          id="root"
+          name="root"
+          type="file"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > file > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          data-loading="false"
+          data-processing="false"
+          id="root"
+          name="root"
+          readonly=""
+          type="file"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > multiFile > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          data-loading="true"
+          data-processing="false"
+          disabled=""
+          id="root"
+          multiple=""
+          name="root"
+          type="file"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > multiFile > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          data-loading="true"
+          data-processing="false"
+          id="root"
+          multiple=""
+          name="root"
+          type="file"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > multiFile > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          data-loading="true"
+          data-processing="false"
+          id="root"
+          multiple=""
+          name="root"
+          type="file"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > multiFile > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          data-loading="true"
+          data-processing="false"
+          id="root"
+          multiple=""
+          name="root"
+          readonly=""
+          type="file"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > multiSelect > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <select
+          aria-describedby="root::description root::help root::errors"
+          class="select"
+          disabled=""
+          id="root"
+          multiple=""
+          name="root"
+        >
+          <option
+            value="0"
+          >
+            foo
+          </option>
+          <option
+            value="1"
+          >
+            bar
+          </option>
+          <option
+            value="2"
+          >
+            fuzz
+          </option>
+          <option
+            value="3"
+          >
+            qux
+          </option>
+          
+        </select>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > multiSelect > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <select
+          aria-describedby="root::description root::help root::errors"
+          class="select"
+          id="root"
+          multiple=""
+          name="root"
+        >
+          <option
+            value="0"
+          >
+            foo
+          </option>
+          <option
+            value="1"
+          >
+            bar
+          </option>
+          <option
+            value="2"
+          >
+            fuzz
+          </option>
+          <option
+            value="3"
+          >
+            qux
+          </option>
+          
+        </select>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > multiSelect > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <select
+          aria-describedby="root::description root::help root::errors"
+          class="select"
+          id="root"
+          multiple=""
+          name="root"
+        >
+          <option
+            value="0"
+          >
+            foo
+          </option>
+          <option
+            value="1"
+          >
+            bar
+          </option>
+          <option
+            value="2"
+          >
+            fuzz
+          </option>
+          <option
+            value="3"
+          >
+            qux
+          </option>
+          
+        </select>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > multiSelect > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <select
+          aria-describedby="root::description root::help root::errors"
+          class="select"
+          id="root"
+          multiple=""
+          name="root"
+        >
+          <option
+            value="0"
+          >
+            foo
+          </option>
+          <option
+            value="1"
+          >
+            bar
+          </option>
+          <option
+            value="2"
+          >
+            fuzz
+          </option>
+          <option
+            value="3"
+          >
+            qux
+          </option>
+          
+        </select>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > number > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          disabled=""
+          id="root"
+          name="root"
+          step="any"
+          type="number"
+        />
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > number > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          id="root"
+          name="root"
+          step="any"
+          type="number"
+        />
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > number > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          id="root"
+          name="root"
+          step="any"
+          type="number"
+        />
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > number > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          id="root"
+          name="root"
+          readonly=""
+          step="any"
+          type="number"
+        />
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > radio > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="radio"
+            disabled=""
+            id="root::0"
+            name="root"
+            type="radio"
+            value="0"
+          />
+           
+          <p>
+            foo
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="radio"
+            disabled=""
+            id="root::1"
+            name="root"
+            type="radio"
+            value="1"
+          />
+           
+          <p>
+            bar
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="radio"
+            disabled=""
+            id="root::2"
+            name="root"
+            type="radio"
+            value="2"
+          />
+           
+          <p>
+            fuzz
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="radio"
+            disabled=""
+            id="root::3"
+            name="root"
+            type="radio"
+            value="3"
+          />
+           
+          <p>
+            qux
+          </p>
+        </label>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > radio > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="radio"
+            id="root::0"
+            name="root"
+            type="radio"
+            value="0"
+          />
+           
+          <p>
+            foo
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="radio"
+            id="root::1"
+            name="root"
+            type="radio"
+            value="1"
+          />
+           
+          <p>
+            bar
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="radio"
+            id="root::2"
+            name="root"
+            type="radio"
+            value="2"
+          />
+           
+          <p>
+            fuzz
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="radio"
+            id="root::3"
+            name="root"
+            type="radio"
+            value="3"
+          />
+           
+          <p>
+            qux
+          </p>
+        </label>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > radio > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="radio"
+            id="root::0"
+            name="root"
+            type="radio"
+            value="0"
+          />
+           
+          <p>
+            foo
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="radio"
+            id="root::1"
+            name="root"
+            type="radio"
+            value="1"
+          />
+           
+          <p>
+            bar
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="radio"
+            id="root::2"
+            name="root"
+            type="radio"
+            value="2"
+          />
+           
+          <p>
+            fuzz
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="radio"
+            id="root::3"
+            name="root"
+            type="radio"
+            value="3"
+          />
+           
+          <p>
+            qux
+          </p>
+        </label>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > radio > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="radio"
+            id="root::0"
+            name="root"
+            readonly=""
+            type="radio"
+            value="0"
+          />
+           
+          <p>
+            foo
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="radio"
+            id="root::1"
+            name="root"
+            readonly=""
+            type="radio"
+            value="1"
+          />
+           
+          <p>
+            bar
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="radio"
+            id="root::2"
+            name="root"
+            readonly=""
+            type="radio"
+            value="2"
+          />
+           
+          <p>
+            fuzz
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="radio"
+            id="root::3"
+            name="root"
+            readonly=""
+            type="radio"
+            value="3"
+          />
+           
+          <p>
+            qux
+          </p>
+        </label>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > range > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="range grow w-0"
+          disabled=""
+          id="root"
+          name="root"
+          step="any"
+          type="range"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > range > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="range grow w-0"
+          id="root"
+          name="root"
+          step="any"
+          type="range"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > range > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="range grow w-0"
+          id="root"
+          name="root"
+          step="any"
+          type="range"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > range > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="range grow w-0"
+          id="root"
+          name="root"
+          readonly=""
+          step="any"
+          type="range"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > select > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <select
+          aria-describedby="root::description root::help root::errors"
+          class="select"
+          disabled=""
+          id="root"
+          name="root"
+        >
+          <option
+            value="-1"
+          >
+            
+          </option>
+          <!---->
+          <option
+            value="0"
+          >
+            foo
+          </option>
+          <option
+            value="1"
+          >
+            bar
+          </option>
+          <option
+            value="2"
+          >
+            fuzz
+          </option>
+          <option
+            value="3"
+          >
+            qux
+          </option>
+          <!---->
+        </select>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > select > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <select
+          aria-describedby="root::description root::help root::errors"
+          class="select"
+          id="root"
+          name="root"
+        >
+          <option
+            value="-1"
+          >
+            
+          </option>
+          <!---->
+          <option
+            value="0"
+          >
+            foo
+          </option>
+          <option
+            value="1"
+          >
+            bar
+          </option>
+          <option
+            value="2"
+          >
+            fuzz
+          </option>
+          <option
+            value="3"
+          >
+            qux
+          </option>
+          <!---->
+        </select>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > select > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <select
+          aria-describedby="root::description root::help root::errors"
+          class="select"
+          id="root"
+          name="root"
+        >
+          <option
+            value="-1"
+          >
+            
+          </option>
+          <!---->
+          <option
+            value="0"
+          >
+            foo
+          </option>
+          <option
+            value="1"
+          >
+            bar
+          </option>
+          <option
+            value="2"
+          >
+            fuzz
+          </option>
+          <option
+            value="3"
+          >
+            qux
+          </option>
+          <!---->
+        </select>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > select > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <select
+          aria-describedby="root::description root::help root::errors"
+          class="select"
+          id="root"
+          name="root"
+        >
+          <option
+            value="-1"
+          >
+            
+          </option>
+          <!---->
+          <option
+            value="0"
+          >
+            foo
+          </option>
+          <option
+            value="1"
+          >
+            bar
+          </option>
+          <option
+            value="2"
+          >
+            fuzz
+          </option>
+          <option
+            value="3"
+          >
+            qux
+          </option>
+          <!---->
+        </select>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > text > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          disabled=""
+          id="root"
+          name="root"
+          type="text"
+        />
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > text > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          id="root"
+          name="root"
+          type="text"
+        />
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > text > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          id="root"
+          name="root"
+          type="text"
+        />
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > text > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          id="root"
+          name="root"
+          readonly=""
+          type="text"
+        />
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > textarea > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <textarea
+          aria-describedby="root::description root::help root::errors"
+          class="textarea"
+          disabled=""
+          id="root"
+          name="root"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > textarea > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <textarea
+          aria-describedby="root::description root::help root::errors"
+          class="textarea"
+          id="root"
+          name="root"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > textarea > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <textarea
+          aria-describedby="root::description root::help root::errors"
+          class="textarea"
+          id="root"
+          name="root"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > textarea > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <textarea
+          aria-describedby="root::description root::help root::errors"
+          class="textarea"
+          id="root"
+          name="root"
+          readonly=""
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;

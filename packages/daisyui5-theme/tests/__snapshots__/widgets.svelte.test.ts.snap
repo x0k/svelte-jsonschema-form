@@ -1,0 +1,5842 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`widgets > callyDatePicker > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > callyDatePicker > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > callyDatePicker > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > callyDatePicker > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > checkbox > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="checkbox"
+          disabled=""
+          id="root"
+          name="root"
+          type="checkbox"
+        />
+         
+      </label>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > checkbox > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="checkbox checkbox-error"
+          id="root"
+          name="root"
+          type="checkbox"
+        />
+         
+      </label>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > checkbox > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="checkbox"
+          id="root"
+          name="root"
+          type="checkbox"
+        />
+         
+      </label>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > checkbox > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="checkbox"
+          id="root"
+          name="root"
+          readonly=""
+          type="checkbox"
+        />
+         
+      </label>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > checkboxes > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="checkbox"
+          disabled=""
+          id="root::0"
+          name="root"
+          type="checkbox"
+          value="0"
+        />
+         foo
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="checkbox"
+          disabled=""
+          id="root::1"
+          name="root"
+          type="checkbox"
+          value="1"
+        />
+         bar
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="checkbox"
+          disabled=""
+          id="root::2"
+          name="root"
+          type="checkbox"
+          value="2"
+        />
+         fuzz
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="checkbox"
+          disabled=""
+          id="root::3"
+          name="root"
+          type="checkbox"
+          value="3"
+        />
+         qux
+      </label>
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > checkboxes > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="checkbox checkbox-error"
+          id="root::0"
+          name="root"
+          type="checkbox"
+          value="0"
+        />
+         foo
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="checkbox checkbox-error"
+          id="root::1"
+          name="root"
+          type="checkbox"
+          value="1"
+        />
+         bar
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="checkbox checkbox-error"
+          id="root::2"
+          name="root"
+          type="checkbox"
+          value="2"
+        />
+         fuzz
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="checkbox checkbox-error"
+          id="root::3"
+          name="root"
+          type="checkbox"
+          value="3"
+        />
+         qux
+      </label>
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > checkboxes > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="checkbox"
+          id="root::0"
+          name="root"
+          type="checkbox"
+          value="0"
+        />
+         foo
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="checkbox"
+          id="root::1"
+          name="root"
+          type="checkbox"
+          value="1"
+        />
+         bar
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="checkbox"
+          id="root::2"
+          name="root"
+          type="checkbox"
+          value="2"
+        />
+         fuzz
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="checkbox"
+          id="root::3"
+          name="root"
+          type="checkbox"
+          value="3"
+        />
+         qux
+      </label>
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > checkboxes > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="checkbox"
+          id="root::0"
+          name="root"
+          readonly=""
+          type="checkbox"
+          value="0"
+        />
+         foo
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="checkbox"
+          id="root::1"
+          name="root"
+          readonly=""
+          type="checkbox"
+          value="1"
+        />
+         bar
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="checkbox"
+          id="root::2"
+          name="root"
+          readonly=""
+          type="checkbox"
+          value="2"
+        />
+         fuzz
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="checkbox"
+          id="root::3"
+          name="root"
+          readonly=""
+          type="checkbox"
+          value="3"
+        />
+         qux
+      </label>
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > file > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        class="file-input w-full"
+        data-loading="false"
+        data-processing="false"
+        disabled=""
+        id="root"
+        name="root"
+        type="file"
+      />
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > file > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        class="file-input w-full file-input-error"
+        data-loading="false"
+        data-processing="false"
+        id="root"
+        name="root"
+        type="file"
+      />
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > file > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        class="file-input w-full"
+        data-loading="false"
+        data-processing="false"
+        id="root"
+        name="root"
+        type="file"
+      />
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > file > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        class="file-input w-full"
+        data-loading="false"
+        data-processing="false"
+        id="root"
+        name="root"
+        readonly=""
+        type="file"
+      />
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > filterRadioButtons > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="filter"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="Reset"
+          class="btn filter-reset"
+          disabled=""
+          id="root"
+          name="root"
+          type="radio"
+        />
+         
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="foo"
+          class="btn"
+          disabled=""
+          id="root::0"
+          name="root"
+          type="radio"
+          value="0"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="bar"
+          class="btn"
+          disabled=""
+          id="root::1"
+          name="root"
+          type="radio"
+          value="1"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="fuzz"
+          class="btn"
+          disabled=""
+          id="root::2"
+          name="root"
+          type="radio"
+          value="2"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="qux"
+          class="btn"
+          disabled=""
+          id="root::3"
+          name="root"
+          type="radio"
+          value="3"
+        />
+        <!---->
+      </div>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > filterRadioButtons > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="filter"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="Reset"
+          class="btn filter-reset"
+          id="root"
+          name="root"
+          type="radio"
+        />
+         
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="foo"
+          class="btn btn-error"
+          id="root::0"
+          name="root"
+          type="radio"
+          value="0"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="bar"
+          class="btn btn-error"
+          id="root::1"
+          name="root"
+          type="radio"
+          value="1"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="fuzz"
+          class="btn btn-error"
+          id="root::2"
+          name="root"
+          type="radio"
+          value="2"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="qux"
+          class="btn btn-error"
+          id="root::3"
+          name="root"
+          type="radio"
+          value="3"
+        />
+        <!---->
+      </div>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > filterRadioButtons > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="filter"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="Reset"
+          class="btn filter-reset"
+          id="root"
+          name="root"
+          type="radio"
+        />
+         
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="foo"
+          class="btn"
+          id="root::0"
+          name="root"
+          type="radio"
+          value="0"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="bar"
+          class="btn"
+          id="root::1"
+          name="root"
+          type="radio"
+          value="1"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="fuzz"
+          class="btn"
+          id="root::2"
+          name="root"
+          type="radio"
+          value="2"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="qux"
+          class="btn"
+          id="root::3"
+          name="root"
+          type="radio"
+          value="3"
+        />
+        <!---->
+      </div>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > filterRadioButtons > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="filter"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="Reset"
+          class="btn filter-reset"
+          id="root"
+          name="root"
+          readonly=""
+          type="radio"
+        />
+         
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="foo"
+          class="btn"
+          id="root::0"
+          name="root"
+          readonly=""
+          type="radio"
+          value="0"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="bar"
+          class="btn"
+          id="root::1"
+          name="root"
+          readonly=""
+          type="radio"
+          value="1"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="fuzz"
+          class="btn"
+          id="root::2"
+          name="root"
+          readonly=""
+          type="radio"
+          value="2"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="qux"
+          class="btn"
+          id="root::3"
+          name="root"
+          readonly=""
+          type="radio"
+          value="3"
+        />
+        <!---->
+      </div>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > multiFile > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        class="file-input w-full"
+        data-loading="true"
+        data-processing="false"
+        disabled=""
+        id="root"
+        multiple=""
+        name="root"
+        type="file"
+      />
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > multiFile > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        class="file-input w-full file-input-error"
+        data-loading="true"
+        data-processing="false"
+        id="root"
+        multiple=""
+        name="root"
+        type="file"
+      />
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > multiFile > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        class="file-input w-full"
+        data-loading="true"
+        data-processing="false"
+        id="root"
+        multiple=""
+        name="root"
+        type="file"
+      />
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > multiFile > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        class="file-input w-full"
+        data-loading="true"
+        data-processing="false"
+        id="root"
+        multiple=""
+        name="root"
+        readonly=""
+        type="file"
+      />
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > multiSelect > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <select
+        aria-describedby="root::description root::help root::errors"
+        class="select select-bordered w-full"
+        disabled=""
+        id="root"
+        multiple=""
+        name="root"
+      >
+        <option
+          value="0"
+        >
+          foo
+        </option>
+        <option
+          value="1"
+        >
+          bar
+        </option>
+        <option
+          value="2"
+        >
+          fuzz
+        </option>
+        <option
+          value="3"
+        >
+          qux
+        </option>
+        
+      </select>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > multiSelect > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <select
+        aria-describedby="root::description root::help root::errors"
+        class="select select-bordered w-full select-error"
+        id="root"
+        multiple=""
+        name="root"
+      >
+        <option
+          value="0"
+        >
+          foo
+        </option>
+        <option
+          value="1"
+        >
+          bar
+        </option>
+        <option
+          value="2"
+        >
+          fuzz
+        </option>
+        <option
+          value="3"
+        >
+          qux
+        </option>
+        
+      </select>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > multiSelect > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <select
+        aria-describedby="root::description root::help root::errors"
+        class="select select-bordered w-full"
+        id="root"
+        multiple=""
+        name="root"
+      >
+        <option
+          value="0"
+        >
+          foo
+        </option>
+        <option
+          value="1"
+        >
+          bar
+        </option>
+        <option
+          value="2"
+        >
+          fuzz
+        </option>
+        <option
+          value="3"
+        >
+          qux
+        </option>
+        
+      </select>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > multiSelect > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <select
+        aria-describedby="root::description root::help root::errors"
+        class="select select-bordered w-full"
+        id="root"
+        multiple=""
+        name="root"
+      >
+        <option
+          value="0"
+        >
+          foo
+        </option>
+        <option
+          value="1"
+        >
+          bar
+        </option>
+        <option
+          value="2"
+        >
+          fuzz
+        </option>
+        <option
+          value="3"
+        >
+          qux
+        </option>
+        
+      </select>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > number > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        class="w-full input input-bordered"
+        disabled=""
+        id="root"
+        name="root"
+        step="any"
+        type="number"
+      />
+       
+      <!---->
+      
+      <!---->
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > number > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        class="w-full input input-bordered input-error"
+        id="root"
+        name="root"
+        step="any"
+        type="number"
+      />
+       
+      <!---->
+      
+      <!---->
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > number > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        class="w-full input input-bordered"
+        id="root"
+        name="root"
+        step="any"
+        type="number"
+      />
+       
+      <!---->
+      
+      <!---->
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > number > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        class="w-full input input-bordered"
+        id="root"
+        name="root"
+        readonly=""
+        step="any"
+        type="number"
+      />
+       
+      <!---->
+      
+      <!---->
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > pikadayDatePicker > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        class="input pika-single w-full"
+        disabled=""
+        id="root"
+        name="root"
+        type="text"
+      />
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > pikadayDatePicker > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        class="input pika-single w-full input-error"
+        id="root"
+        name="root"
+        type="text"
+      />
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > pikadayDatePicker > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        class="input pika-single w-full"
+        id="root"
+        name="root"
+        type="text"
+      />
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > pikadayDatePicker > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        class="input pika-single w-full"
+        id="root"
+        name="root"
+        readonly=""
+        type="text"
+      />
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > radio > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="radio"
+          disabled=""
+          id="root::0"
+          name="root"
+          type="radio"
+          value="0"
+        />
+         foo
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="radio"
+          disabled=""
+          id="root::1"
+          name="root"
+          type="radio"
+          value="1"
+        />
+         bar
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="radio"
+          disabled=""
+          id="root::2"
+          name="root"
+          type="radio"
+          value="2"
+        />
+         fuzz
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="radio"
+          disabled=""
+          id="root::3"
+          name="root"
+          type="radio"
+          value="3"
+        />
+         qux
+      </label>
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > radio > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="radio radio-error"
+          id="root::0"
+          name="root"
+          type="radio"
+          value="0"
+        />
+         foo
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="radio radio-error"
+          id="root::1"
+          name="root"
+          type="radio"
+          value="1"
+        />
+         bar
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="radio radio-error"
+          id="root::2"
+          name="root"
+          type="radio"
+          value="2"
+        />
+         fuzz
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="radio radio-error"
+          id="root::3"
+          name="root"
+          type="radio"
+          value="3"
+        />
+         qux
+      </label>
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > radio > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="radio"
+          id="root::0"
+          name="root"
+          type="radio"
+          value="0"
+        />
+         foo
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="radio"
+          id="root::1"
+          name="root"
+          type="radio"
+          value="1"
+        />
+         bar
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="radio"
+          id="root::2"
+          name="root"
+          type="radio"
+          value="2"
+        />
+         fuzz
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="radio"
+          id="root::3"
+          name="root"
+          type="radio"
+          value="3"
+        />
+         qux
+      </label>
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > radio > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="radio"
+          id="root::0"
+          name="root"
+          readonly=""
+          type="radio"
+          value="0"
+        />
+         foo
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="radio"
+          id="root::1"
+          name="root"
+          readonly=""
+          type="radio"
+          value="1"
+        />
+         bar
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="radio"
+          id="root::2"
+          name="root"
+          readonly=""
+          type="radio"
+          value="2"
+        />
+         fuzz
+      </label>
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="radio"
+          id="root::3"
+          name="root"
+          readonly=""
+          type="radio"
+          value="3"
+        />
+         qux
+      </label>
+      
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > radioButtons > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="join"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="foo"
+          class="join-item btn"
+          disabled=""
+          id="root::0"
+          name="root"
+          type="radio"
+          value="0"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="bar"
+          class="join-item btn"
+          disabled=""
+          id="root::1"
+          name="root"
+          type="radio"
+          value="1"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="fuzz"
+          class="join-item btn"
+          disabled=""
+          id="root::2"
+          name="root"
+          type="radio"
+          value="2"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="qux"
+          class="join-item btn"
+          disabled=""
+          id="root::3"
+          name="root"
+          type="radio"
+          value="3"
+        />
+        
+      </div>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > radioButtons > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="join"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="foo"
+          class="join-item btn btn-error"
+          id="root::0"
+          name="root"
+          type="radio"
+          value="0"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="bar"
+          class="join-item btn btn-error"
+          id="root::1"
+          name="root"
+          type="radio"
+          value="1"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="fuzz"
+          class="join-item btn btn-error"
+          id="root::2"
+          name="root"
+          type="radio"
+          value="2"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="qux"
+          class="join-item btn btn-error"
+          id="root::3"
+          name="root"
+          type="radio"
+          value="3"
+        />
+        
+      </div>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > radioButtons > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="join"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="foo"
+          class="join-item btn"
+          id="root::0"
+          name="root"
+          type="radio"
+          value="0"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="bar"
+          class="join-item btn"
+          id="root::1"
+          name="root"
+          type="radio"
+          value="1"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="fuzz"
+          class="join-item btn"
+          id="root::2"
+          name="root"
+          type="radio"
+          value="2"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="qux"
+          class="join-item btn"
+          id="root::3"
+          name="root"
+          type="radio"
+          value="3"
+        />
+        
+      </div>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > radioButtons > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="join"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="foo"
+          class="join-item btn"
+          id="root::0"
+          name="root"
+          readonly=""
+          type="radio"
+          value="0"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="bar"
+          class="join-item btn"
+          id="root::1"
+          name="root"
+          readonly=""
+          type="radio"
+          value="1"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="fuzz"
+          class="join-item btn"
+          id="root::2"
+          name="root"
+          readonly=""
+          type="radio"
+          value="2"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          aria-label="qux"
+          class="join-item btn"
+          id="root::3"
+          name="root"
+          readonly=""
+          type="radio"
+          value="3"
+        />
+        
+      </div>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > range > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        class="w-full range"
+        disabled=""
+        id="root"
+        name="root"
+        step="any"
+        type="range"
+      />
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > range > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        class="w-full range range-error"
+        id="root"
+        name="root"
+        step="any"
+        type="range"
+      />
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > range > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        class="w-full range"
+        id="root"
+        name="root"
+        step="any"
+        type="range"
+      />
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > range > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        class="w-full range"
+        id="root"
+        name="root"
+        readonly=""
+        step="any"
+        type="range"
+      />
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > rating > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="rating"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="mask mask-star"
+          disabled=""
+          id="root::0"
+          name="root"
+          step="any"
+          type="radio"
+          value="1"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="mask mask-star"
+          disabled=""
+          id="root::1"
+          name="root"
+          step="any"
+          type="radio"
+          value="2"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="mask mask-star"
+          disabled=""
+          id="root::2"
+          name="root"
+          step="any"
+          type="radio"
+          value="3"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="mask mask-star"
+          disabled=""
+          id="root::3"
+          name="root"
+          step="any"
+          type="radio"
+          value="4"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="mask mask-star"
+          disabled=""
+          id="root::4"
+          name="root"
+          step="any"
+          type="radio"
+          value="5"
+        />
+        
+      </div>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > rating > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="rating"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="mask mask-star"
+          id="root::0"
+          name="root"
+          step="any"
+          type="radio"
+          value="1"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="mask mask-star"
+          id="root::1"
+          name="root"
+          step="any"
+          type="radio"
+          value="2"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="mask mask-star"
+          id="root::2"
+          name="root"
+          step="any"
+          type="radio"
+          value="3"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="mask mask-star"
+          id="root::3"
+          name="root"
+          step="any"
+          type="radio"
+          value="4"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="mask mask-star"
+          id="root::4"
+          name="root"
+          step="any"
+          type="radio"
+          value="5"
+        />
+        
+      </div>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > rating > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="rating"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="mask mask-star"
+          id="root::0"
+          name="root"
+          step="any"
+          type="radio"
+          value="1"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="mask mask-star"
+          id="root::1"
+          name="root"
+          step="any"
+          type="radio"
+          value="2"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="mask mask-star"
+          id="root::2"
+          name="root"
+          step="any"
+          type="radio"
+          value="3"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="mask mask-star"
+          id="root::3"
+          name="root"
+          step="any"
+          type="radio"
+          value="4"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="mask mask-star"
+          id="root::4"
+          name="root"
+          step="any"
+          type="radio"
+          value="5"
+        />
+        
+      </div>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > rating > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="rating"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="mask mask-star"
+          id="root::0"
+          name="root"
+          readonly=""
+          step="any"
+          type="radio"
+          value="1"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="mask mask-star"
+          id="root::1"
+          name="root"
+          readonly=""
+          step="any"
+          type="radio"
+          value="2"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="mask mask-star"
+          id="root::2"
+          name="root"
+          readonly=""
+          step="any"
+          type="radio"
+          value="3"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="mask mask-star"
+          id="root::3"
+          name="root"
+          readonly=""
+          step="any"
+          type="radio"
+          value="4"
+        />
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="mask mask-star"
+          id="root::4"
+          name="root"
+          readonly=""
+          step="any"
+          type="radio"
+          value="5"
+        />
+        
+      </div>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > select > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <select
+        aria-describedby="root::description root::help root::errors"
+        class="select select-bordered w-full"
+        disabled=""
+        id="root"
+        name="root"
+      >
+        <option
+          value="-1"
+        >
+          
+        </option>
+        <!---->
+        <option
+          value="0"
+        >
+          foo
+        </option>
+        <option
+          value="1"
+        >
+          bar
+        </option>
+        <option
+          value="2"
+        >
+          fuzz
+        </option>
+        <option
+          value="3"
+        >
+          qux
+        </option>
+        <!---->
+      </select>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > select > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <select
+        aria-describedby="root::description root::help root::errors"
+        class="select select-bordered w-full select-error"
+        id="root"
+        name="root"
+      >
+        <option
+          value="-1"
+        >
+          
+        </option>
+        <!---->
+        <option
+          value="0"
+        >
+          foo
+        </option>
+        <option
+          value="1"
+        >
+          bar
+        </option>
+        <option
+          value="2"
+        >
+          fuzz
+        </option>
+        <option
+          value="3"
+        >
+          qux
+        </option>
+        <!---->
+      </select>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > select > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <select
+        aria-describedby="root::description root::help root::errors"
+        class="select select-bordered w-full"
+        id="root"
+        name="root"
+      >
+        <option
+          value="-1"
+        >
+          
+        </option>
+        <!---->
+        <option
+          value="0"
+        >
+          foo
+        </option>
+        <option
+          value="1"
+        >
+          bar
+        </option>
+        <option
+          value="2"
+        >
+          fuzz
+        </option>
+        <option
+          value="3"
+        >
+          qux
+        </option>
+        <!---->
+      </select>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > select > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <select
+        aria-describedby="root::description root::help root::errors"
+        class="select select-bordered w-full"
+        id="root"
+        name="root"
+      >
+        <option
+          value="-1"
+        >
+          
+        </option>
+        <!---->
+        <option
+          value="0"
+        >
+          foo
+        </option>
+        <option
+          value="1"
+        >
+          bar
+        </option>
+        <option
+          value="2"
+        >
+          fuzz
+        </option>
+        <option
+          value="3"
+        >
+          qux
+        </option>
+        <!---->
+      </select>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > switch > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="toggle"
+          disabled=""
+          id="root"
+          name="root"
+          type="checkbox"
+        />
+         
+      </label>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > switch > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="toggle toggle-error"
+          id="root"
+          name="root"
+          type="checkbox"
+        />
+         
+      </label>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > switch > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="toggle"
+          id="root"
+          name="root"
+          type="checkbox"
+        />
+         
+      </label>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > switch > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <label
+        class="fieldset-label"
+      >
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="toggle"
+          id="root"
+          name="root"
+          readonly=""
+          type="checkbox"
+        />
+         
+      </label>
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > text > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        class="input input-bordered w-full"
+        disabled=""
+        id="root"
+        name="root"
+        type="text"
+      />
+       
+      <!---->
+      
+      <!---->
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > text > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        class="input input-bordered w-full input-error"
+        id="root"
+        name="root"
+        type="text"
+      />
+       
+      <!---->
+      
+      <!---->
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > text > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        class="input input-bordered w-full"
+        id="root"
+        name="root"
+        type="text"
+      />
+       
+      <!---->
+      
+      <!---->
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > text > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        class="input input-bordered w-full"
+        id="root"
+        name="root"
+        readonly=""
+        type="text"
+      />
+       
+      <!---->
+      
+      <!---->
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > textarea > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <textarea
+        aria-describedby="root::description root::help root::errors"
+        class="textarea textarea-bordered w-full"
+        disabled=""
+        id="root"
+        name="root"
+      />
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > textarea > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <textarea
+        aria-describedby="root::description root::help root::errors"
+        class="textarea textarea-bordered w-full textarea-error"
+        id="root"
+        name="root"
+      />
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > textarea > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <textarea
+        aria-describedby="root::description root::help root::errors"
+        class="textarea textarea-bordered w-full"
+        id="root"
+        name="root"
+      />
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > textarea > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <textarea
+        aria-describedby="root::description root::help root::errors"
+        class="textarea textarea-bordered w-full"
+        id="root"
+        name="root"
+        readonly=""
+      />
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;

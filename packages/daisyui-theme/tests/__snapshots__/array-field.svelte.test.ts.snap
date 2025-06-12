@@ -1,0 +1,3941 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`array fields > array 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <button
+        class="btn join-item btn-sm"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`array fields > array icons 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="grow"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <label
+                  class="label-text"
+                  for="root.0"
+                >
+                  -1 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.0::description root.0::help root.0::errors"
+                  class="input input-bordered grow"
+                  id="root.0"
+                  name="root.0"
+                  required=""
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <div
+            class="flex items-start join"
+            data-layout="array-item-controls"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
+            <!---->
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="grow"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <label
+                  class="label-text"
+                  for="root.1"
+                >
+                  -2 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.1::description root.1::help root.1::errors"
+                  class="input input-bordered grow"
+                  id="root.1"
+                  name="root.1"
+                  required=""
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <div
+            class="flex items-start join"
+            data-layout="array-item-controls"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="btn join-item btn-sm"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
+            <!---->
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <button
+        class="btn join-item btn-sm"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`array fields > checkboxes 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <pre
+      style="color: red;"
+    >
+      "multiEnumField" component not found
+    </pre>
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`array fields > empty errors array 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="object-field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="object-properties"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="object-property"
+        >
+          <!---->
+          <!---->
+           
+          <div
+            class="grow"
+            data-layout="object-property-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <label
+                  class="label-text"
+                  for="root.name"
+                >
+                  name 
+                  <!---->
+                </label>
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.name::description root.name::help root.name::errors"
+                  class="input input-bordered grow"
+                  id="root.name"
+                  name="root.name"
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`array fields > fixed array 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="grow"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.0::description root.0::help root.0::errors"
+                  class="input input-bordered grow"
+                  id="root.0"
+                  name="root.0"
+                  required=""
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="grow"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.1::description root.1::help root.1::errors"
+                  class="input input-bordered grow"
+                  id="root.1"
+                  name="root.1"
+                  required=""
+                  step="any"
+                  type="number"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`with title and description > array 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+      <div
+        data-layout="array-field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          class="font-bold text-xl"
+          id="root::title"
+        >
+          Test field
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="label-text-alt"
+          id="root::description"
+        >
+          a test description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <button
+        class="btn join-item btn-sm"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`with title and description > array icons 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+      <div
+        data-layout="array-field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          class="font-bold text-xl"
+          id="root::title"
+        >
+          Test field
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="label-text-alt"
+          id="root::description"
+        >
+          a test description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="grow"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <label
+                  class="label-text"
+                  for="root.0"
+                >
+                  Test item-1 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="label-text-alt"
+                  id="root.0::description"
+                >
+                  a test item description
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.0::description root.0::help root.0::errors"
+                  class="input input-bordered grow"
+                  id="root.0"
+                  name="root.0"
+                  required=""
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <div
+            class="flex items-start join"
+            data-layout="array-item-controls"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
+            <!---->
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="grow"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <label
+                  class="label-text"
+                  for="root.1"
+                >
+                  Test item-2 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="label-text-alt"
+                  id="root.1::description"
+                >
+                  a test item description
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.1::description root.1::help root.1::errors"
+                  class="input input-bordered grow"
+                  id="root.1"
+                  name="root.1"
+                  required=""
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <div
+            class="flex items-start join"
+            data-layout="array-item-controls"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="btn join-item btn-sm"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
+            <!---->
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <button
+        class="btn join-item btn-sm"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`with title and description > checkboxes 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <pre
+      style="color: red;"
+    >
+      "multiEnumField" component not found
+    </pre>
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`with title and description > fixed array 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+      <div
+        data-layout="array-field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          class="font-bold text-xl"
+          id="root::title"
+        >
+          Test field
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="label-text-alt"
+          id="root::description"
+        >
+          a test description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="grow"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <label
+                  class="label-text"
+                  for="root.0"
+                >
+                  Test item 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="label-text-alt"
+                  id="root.0::description"
+                >
+                  a test item description
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.0::description root.0::help root.0::errors"
+                  class="input input-bordered grow"
+                  id="root.0"
+                  name="root.0"
+                  required=""
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="grow"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <label
+                  class="label-text"
+                  for="root.1"
+                >
+                  Test item 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="label-text-alt"
+                  id="root.1::description"
+                >
+                  a test item description
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.1::description root.1::help root.1::errors"
+                  class="input input-bordered grow"
+                  id="root.1"
+                  name="root.1"
+                  required=""
+                  step="any"
+                  type="number"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`with title and description from both > array 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+      <div
+        data-layout="array-field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          class="font-bold text-xl"
+          id="root::title"
+        >
+          My Field
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="label-text-alt"
+          id="root::description"
+        >
+          a fancier description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <button
+        class="btn join-item btn-sm"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`with title and description from both > array icons 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+      <div
+        data-layout="array-field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          class="font-bold text-xl"
+          id="root::title"
+        >
+          My Field
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="label-text-alt"
+          id="root::description"
+        >
+          a fancier description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="grow"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <label
+                  class="label-text"
+                  for="root.0"
+                >
+                  My Item-1 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="label-text-alt"
+                  id="root.0::description"
+                >
+                  a fancier item description
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.0::description root.0::help root.0::errors"
+                  class="input input-bordered grow"
+                  id="root.0"
+                  name="root.0"
+                  required=""
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <div
+            class="flex items-start join"
+            data-layout="array-item-controls"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
+            <!---->
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="grow"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <label
+                  class="label-text"
+                  for="root.1"
+                >
+                  My Item-2 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="label-text-alt"
+                  id="root.1::description"
+                >
+                  a fancier item description
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.1::description root.1::help root.1::errors"
+                  class="input input-bordered grow"
+                  id="root.1"
+                  name="root.1"
+                  required=""
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <div
+            class="flex items-start join"
+            data-layout="array-item-controls"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="btn join-item btn-sm"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
+            <!---->
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <button
+        class="btn join-item btn-sm"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`with title and description from both > checkboxes 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <pre
+      style="color: red;"
+    >
+      "multiEnumField" component not found
+    </pre>
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`with title and description from both > fixed array 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+      <div
+        data-layout="array-field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          class="font-bold text-xl"
+          id="root::title"
+        >
+          My Field
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="label-text-alt"
+          id="root::description"
+        >
+          a fancier description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="grow"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <label
+                  class="label-text"
+                  for="root.0"
+                >
+                  My Item 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="label-text-alt"
+                  id="root.0::description"
+                >
+                  a fancier item description
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.0::description root.0::help root.0::errors"
+                  class="input input-bordered grow"
+                  id="root.0"
+                  name="root.0"
+                  required=""
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="grow"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <label
+                  class="label-text"
+                  for="root.1"
+                >
+                  My Item 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="label-text-alt"
+                  id="root.1::description"
+                >
+                  a fancier item description
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.1::description root.1::help root.1::errors"
+                  class="input input-bordered grow"
+                  id="root.1"
+                  name="root.1"
+                  required=""
+                  step="any"
+                  type="number"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`with title and description from uiSchema > array 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+      <div
+        data-layout="array-field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          class="font-bold text-xl"
+          id="root::title"
+        >
+          My Field
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="label-text-alt"
+          id="root::description"
+        >
+          a fancier description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <button
+        class="btn join-item btn-sm"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`with title and description from uiSchema > array icons 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+      <div
+        data-layout="array-field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          class="font-bold text-xl"
+          id="root::title"
+        >
+          My Field
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="label-text-alt"
+          id="root::description"
+        >
+          a fancier description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="grow"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <label
+                  class="label-text"
+                  for="root.0"
+                >
+                  My Item-1 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="label-text-alt"
+                  id="root.0::description"
+                >
+                  a fancier item description
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.0::description root.0::help root.0::errors"
+                  class="input input-bordered grow"
+                  id="root.0"
+                  name="root.0"
+                  required=""
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <div
+            class="flex items-start join"
+            data-layout="array-item-controls"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
+            <!---->
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="grow"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <label
+                  class="label-text"
+                  for="root.1"
+                >
+                  My Item-2 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="label-text-alt"
+                  id="root.1::description"
+                >
+                  a fancier item description
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.1::description root.1::help root.1::errors"
+                  class="input input-bordered grow"
+                  id="root.1"
+                  name="root.1"
+                  required=""
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <div
+            class="flex items-start join"
+            data-layout="array-item-controls"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="btn join-item btn-sm"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
+            <!---->
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <button
+        class="btn join-item btn-sm"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`with title and description from uiSchema > checkboxes 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <pre
+      style="color: red;"
+    >
+      "multiEnumField" component not found
+    </pre>
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`with title and description from uiSchema > fixed array 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+      <div
+        data-layout="array-field-meta"
+      >
+        <!---->
+        <!---->
+        <div
+          class="font-bold text-xl"
+          id="root::title"
+        >
+          My Field
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="label-text-alt"
+          id="root::description"
+        >
+          a fancier description
+        </div>
+        
+        <!---->
+        <!---->
+      </div>
+      
+      <!---->
+       
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="grow"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <label
+                  class="label-text"
+                  for="root.0"
+                >
+                  My Item 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="label-text-alt"
+                  id="root.0::description"
+                >
+                  a fancier item description
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.0::description root.0::help root.0::errors"
+                  class="input input-bordered grow"
+                  id="root.0"
+                  name="root.0"
+                  required=""
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="grow"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+              <div
+                data-layout="field-meta"
+              >
+                <!---->
+                <!---->
+                <label
+                  class="label-text"
+                  for="root.1"
+                >
+                  My Item 
+                  <span>
+                    *
+                  </span>
+                  <!---->
+                </label>
+                
+                <!---->
+                 
+                <!---->
+                <div
+                  class="label-text-alt"
+                  id="root.1::description"
+                >
+                  a fancier item description
+                </div>
+                
+                <!---->
+                <!---->
+              </div>
+              
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.1::description root.1::help root.1::errors"
+                  class="input input-bordered grow"
+                  id="root.1"
+                  name="root.1"
+                  required=""
+                  step="any"
+                  type="number"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`with title and description with global label off > array 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <button
+        class="btn join-item btn-sm"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`with title and description with global label off > array icons 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="grow"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.0::description root.0::help root.0::errors"
+                  class="input input-bordered grow"
+                  id="root.0"
+                  name="root.0"
+                  required=""
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <div
+            class="flex items-start join"
+            data-layout="array-item-controls"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
+            <!---->
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="grow"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.1::description root.1::help root.1::errors"
+                  class="input input-bordered grow"
+                  id="root.1"
+                  name="root.1"
+                  required=""
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <div
+            class="flex items-start join"
+            data-layout="array-item-controls"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Up
+              
+              <!---->
+            </button>
+            <!---->
+             
+            <button
+              class="btn join-item btn-sm"
+              disabled=""
+              type="button"
+            >
+              <!---->
+              Down
+              
+              <!---->
+            </button>
+            <!---->
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Copy
+              
+              <!---->
+            </button>
+            
+            <!---->
+             
+            <!---->
+            <button
+              class="btn join-item btn-sm"
+              type="button"
+            >
+              <!---->
+              Del
+              
+              <!---->
+            </button>
+            
+            <!---->
+            
+            <!---->
+          </div>
+          
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <button
+        class="btn join-item btn-sm"
+        type="button"
+      >
+        <!---->
+        Add item
+        
+        <!---->
+      </button>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`with title and description with global label off > checkboxes 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <pre
+      style="color: red;"
+    >
+      "multiEnumField" component not found
+    </pre>
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`with title and description with global label off > fixed array 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-4 flex-col"
+      data-layout="array-field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-4 flex-col"
+        data-layout="array-items"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="grow"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.0::description root.0::help root.0::errors"
+                  class="input input-bordered grow"
+                  id="root.0"
+                  name="root.0"
+                  required=""
+                  type="text"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex gap-2 items-start"
+          data-layout="array-item"
+        >
+          <!---->
+          <div
+            class="grow"
+            data-layout="array-item-content"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="flex gap-2 flex-col"
+              data-layout="field"
+            >
+              <!---->
+              <!---->
+               
+              <div
+                class="flex gap-2 items-start"
+                data-layout="field-content"
+              >
+                <!---->
+                <!---->
+                <input
+                  aria-describedby="root.1::description root.1::help root.1::errors"
+                  class="input input-bordered grow"
+                  id="root.1"
+                  name="root.1"
+                  required=""
+                  step="any"
+                  type="number"
+                />
+                 
+                <!---->
+                
+                <!---->
+                
+                
+                <!---->
+              </div>
+              <!---->
+               
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            
+            
+            <!---->
+          </div>
+          <!---->
+           
+          <!---->
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
