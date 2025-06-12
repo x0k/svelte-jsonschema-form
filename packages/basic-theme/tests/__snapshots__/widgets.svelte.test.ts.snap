@@ -1,85 +1,115 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`checkbox > error 1`] = `
+exports[`checkbox > disabled 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
-       
-      <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-      >
-        <!---->
-        <!---->
-        <label>
-          <input
-            aria-describedby="root::description root::help root::errors"
-            id="root"
-            name="root"
-            type="checkbox"
-          />
-           
-        </label>
-        
-        
-        <!---->
-      </div>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          disabled=""
+          id="root"
+          name="root"
+          type="checkbox"
+        />
+         
+      </label>
       
-      <!---->
-       
-      <!---->
-      <ul
-        id="root::errors"
-        style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
-        tabindex="-1"
-      >
-        <li>
-          error
-        </li>
-        
-      </ul>
       
-      <!---->
-       
-      <!---->
       <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`checkbox > error 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
-      Submit
+      <!---->
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root"
+          name="root"
+          type="checkbox"
+        />
+         
+      </label>
+      
       
       <!---->
-    </button>
+    </div>
     
     <!---->
+     
     <!---->
-  </form>
+    <ul
+      id="root::errors"
+      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      tabindex="-1"
+    >
+      <li>
+        error
+      </li>
+      
+    </ul>
+    
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
   
   
 </div>
@@ -88,71 +118,49 @@ exports[`checkbox > error 1`] = `
 exports[`checkbox > normal 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
-       
-      <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-      >
-        <!---->
-        <!---->
-        <label>
-          <input
-            aria-describedby="root::description root::help root::errors"
-            id="root"
-            name="root"
-            type="checkbox"
-          />
-           
-        </label>
-        
-        
-        <!---->
-      </div>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root"
+          name="root"
+          type="checkbox"
+        />
+         
+      </label>
+      
       
       <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
-    >
-      <!---->
-      Submit
-      
-      <!---->
-    </button>
-    
+     
     <!---->
     <!---->
-  </form>
+  </div>
+  
+  
+  
   
   
 </div>
@@ -161,72 +169,138 @@ exports[`checkbox > normal 1`] = `
 exports[`checkbox > readonly 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
-       
-      <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-      >
-        <!---->
-        <!---->
-        <label>
-          <input
-            aria-describedby="root::description root::help root::errors"
-            id="root"
-            name="root"
-            readonly=""
-            type="checkbox"
-          />
-           
-        </label>
-        
-        
-        <!---->
-      </div>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root"
+          name="root"
+          readonly=""
+          type="checkbox"
+        />
+         
+      </label>
+      
       
       <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`checkboxes > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
-      Submit
+      <!---->
+      <!---->
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          disabled=""
+          id="root::0"
+          name="root"
+          type="checkbox"
+          value="0"
+        />
+         foo
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          disabled=""
+          id="root::1"
+          name="root"
+          type="checkbox"
+          value="1"
+        />
+         bar
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          disabled=""
+          id="root::2"
+          name="root"
+          type="checkbox"
+          value="2"
+        />
+         fuzz
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          disabled=""
+          id="root::3"
+          name="root"
+          type="checkbox"
+          value="3"
+        />
+         qux
+      </label>
+      
+      
       
       <!---->
-    </button>
+    </div>
     
     <!---->
+     
     <!---->
-  </form>
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
   
   
 </div>
@@ -235,116 +309,94 @@ exports[`checkbox > readonly 1`] = `
 exports[`checkboxes > error 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
-       
       <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-      >
-        <!---->
-        <!---->
-        <!---->
-        <label>
-          <input
-            aria-describedby="root::description root::help root::errors"
-            id="root::0"
-            name="root"
-            type="checkbox"
-            value="0"
-          />
-           foo
-        </label>
-        <label>
-          <input
-            aria-describedby="root::description root::help root::errors"
-            id="root::1"
-            name="root"
-            type="checkbox"
-            value="1"
-          />
-           bar
-        </label>
-        <label>
-          <input
-            aria-describedby="root::description root::help root::errors"
-            id="root::2"
-            name="root"
-            type="checkbox"
-            value="2"
-          />
-           fuzz
-        </label>
-        <label>
-          <input
-            aria-describedby="root::description root::help root::errors"
-            id="root::3"
-            name="root"
-            type="checkbox"
-            value="3"
-          />
-           qux
-        </label>
-        
-        
-        
-        <!---->
-      </div>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::0"
+          name="root"
+          type="checkbox"
+          value="0"
+        />
+         foo
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::1"
+          name="root"
+          type="checkbox"
+          value="1"
+        />
+         bar
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::2"
+          name="root"
+          type="checkbox"
+          value="2"
+        />
+         fuzz
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::3"
+          name="root"
+          type="checkbox"
+          value="3"
+        />
+         qux
+      </label>
       
-      <!---->
-       
-      <!---->
-      <ul
-        id="root::errors"
-        style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
-        tabindex="-1"
-      >
-        <li>
-          error
-        </li>
-        
-      </ul>
       
-      <!---->
-       
-      <!---->
+      
       <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
+    <ul
+      id="root::errors"
+      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      tabindex="-1"
     >
-      <!---->
-      Submit
+      <li>
+        error
+      </li>
       
-      <!---->
-    </button>
+    </ul>
     
     <!---->
+     
     <!---->
-  </form>
+    <!---->
+  </div>
+  
+  
+  
   
   
 </div>
@@ -353,104 +405,82 @@ exports[`checkboxes > error 1`] = `
 exports[`checkboxes > normal 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
-       
       <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-      >
-        <!---->
-        <!---->
-        <!---->
-        <label>
-          <input
-            aria-describedby="root::description root::help root::errors"
-            id="root::0"
-            name="root"
-            type="checkbox"
-            value="0"
-          />
-           foo
-        </label>
-        <label>
-          <input
-            aria-describedby="root::description root::help root::errors"
-            id="root::1"
-            name="root"
-            type="checkbox"
-            value="1"
-          />
-           bar
-        </label>
-        <label>
-          <input
-            aria-describedby="root::description root::help root::errors"
-            id="root::2"
-            name="root"
-            type="checkbox"
-            value="2"
-          />
-           fuzz
-        </label>
-        <label>
-          <input
-            aria-describedby="root::description root::help root::errors"
-            id="root::3"
-            name="root"
-            type="checkbox"
-            value="3"
-          />
-           qux
-        </label>
-        
-        
-        
-        <!---->
-      </div>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::0"
+          name="root"
+          type="checkbox"
+          value="0"
+        />
+         foo
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::1"
+          name="root"
+          type="checkbox"
+          value="1"
+        />
+         bar
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::2"
+          name="root"
+          type="checkbox"
+          value="2"
+        />
+         fuzz
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::3"
+          name="root"
+          type="checkbox"
+          value="3"
+        />
+         qux
+      </label>
+      
+      
       
       <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
-    >
-      <!---->
-      Submit
-      
-      <!---->
-    </button>
-    
+     
     <!---->
     <!---->
-  </form>
+  </div>
+  
+  
+  
   
   
 </div>
@@ -459,108 +489,140 @@ exports[`checkboxes > normal 1`] = `
 exports[`checkboxes > readonly 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
-       
       <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-      >
-        <!---->
-        <!---->
-        <!---->
-        <label>
-          <input
-            aria-describedby="root::description root::help root::errors"
-            id="root::0"
-            name="root"
-            readonly=""
-            type="checkbox"
-            value="0"
-          />
-           foo
-        </label>
-        <label>
-          <input
-            aria-describedby="root::description root::help root::errors"
-            id="root::1"
-            name="root"
-            readonly=""
-            type="checkbox"
-            value="1"
-          />
-           bar
-        </label>
-        <label>
-          <input
-            aria-describedby="root::description root::help root::errors"
-            id="root::2"
-            name="root"
-            readonly=""
-            type="checkbox"
-            value="2"
-          />
-           fuzz
-        </label>
-        <label>
-          <input
-            aria-describedby="root::description root::help root::errors"
-            id="root::3"
-            name="root"
-            readonly=""
-            type="checkbox"
-            value="3"
-          />
-           qux
-        </label>
-        
-        
-        
-        <!---->
-      </div>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::0"
+          name="root"
+          readonly=""
+          type="checkbox"
+          value="0"
+        />
+         foo
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::1"
+          name="root"
+          readonly=""
+          type="checkbox"
+          value="1"
+        />
+         bar
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::2"
+          name="root"
+          readonly=""
+          type="checkbox"
+          value="2"
+        />
+         fuzz
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::3"
+          name="root"
+          readonly=""
+          type="checkbox"
+          value="3"
+        />
+         qux
+      </label>
+      
+      
       
       <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`datePicker > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
-      Submit
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        disabled=""
+        id="root"
+        name="root"
+        style="flex-grow: 1;"
+        type="date"
+      />
+       
+      <!---->
       
       <!---->
-    </button>
+      
+      
+      <!---->
+    </div>
     
     <!---->
+     
     <!---->
-  </form>
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
   
   
 </div>
@@ -569,85 +631,63 @@ exports[`checkboxes > readonly 1`] = `
 exports[`datePicker > error 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        style="flex-grow: 1;"
+        type="date"
+      />
        
       <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-      >
-        <!---->
-        <!---->
-        <input
-          aria-describedby="root::description root::help root::errors"
-          id="root"
-          name="root"
-          style="flex-grow: 1;"
-          type="date"
-        />
-         
-        <!---->
-        
-        <!---->
-        
-        
-        <!---->
-      </div>
       
       <!---->
-       
-      <!---->
-      <ul
-        id="root::errors"
-        style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
-        tabindex="-1"
-      >
-        <li>
-          error
-        </li>
-        
-      </ul>
       
-      <!---->
-       
-      <!---->
+      
       <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
+    <ul
+      id="root::errors"
+      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      tabindex="-1"
     >
-      <!---->
-      Submit
+      <li>
+        error
+      </li>
       
-      <!---->
-    </button>
+    </ul>
     
     <!---->
+     
     <!---->
-  </form>
+    <!---->
+  </div>
+  
+  
+  
   
   
 </div>
@@ -656,73 +696,51 @@ exports[`datePicker > error 1`] = `
 exports[`datePicker > normal 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        style="flex-grow: 1;"
+        type="date"
+      />
        
       <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-      >
-        <!---->
-        <!---->
-        <input
-          aria-describedby="root::description root::help root::errors"
-          id="root"
-          name="root"
-          style="flex-grow: 1;"
-          type="date"
-        />
-         
-        <!---->
-        
-        <!---->
-        
-        
-        <!---->
-      </div>
       
       <!---->
-       
-      <!---->
-       
-      <!---->
+      
+      
       <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
-    >
-      <!---->
-      Submit
-      
-      <!---->
-    </button>
-    
+     
     <!---->
     <!---->
-  </form>
+  </div>
+  
+  
+  
   
   
 </div>
@@ -731,74 +749,104 @@ exports[`datePicker > normal 1`] = `
 exports[`datePicker > readonly 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        readonly=""
+        style="flex-grow: 1;"
+        type="date"
+      />
        
       <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-      >
-        <!---->
-        <!---->
-        <input
-          aria-describedby="root::description root::help root::errors"
-          id="root"
-          name="root"
-          readonly=""
-          style="flex-grow: 1;"
-          type="date"
-        />
-         
-        <!---->
-        
-        <!---->
-        
-        
-        <!---->
-      </div>
       
       <!---->
-       
-      <!---->
-       
-      <!---->
+      
+      
       <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`file > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
-      Submit
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        data-loading="false"
+        data-processing="false"
+        disabled=""
+        id="root"
+        name="root"
+        style="flex-grow: 1;"
+        type="file"
+      />
+      
       
       <!---->
-    </button>
+    </div>
     
     <!---->
+     
     <!---->
-  </form>
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
   
   
 </div>
@@ -807,83 +855,61 @@ exports[`datePicker > readonly 1`] = `
 exports[`file > error 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
-       
-      <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-      >
-        <!---->
-        <!---->
-        <input
-          aria-describedby="root::description root::help root::errors"
-          data-loading="false"
-          data-processing="false"
-          id="root"
-          name="root"
-          style="flex-grow: 1;"
-          type="file"
-        />
-        
-        
-        <!---->
-      </div>
+      <input
+        aria-describedby="root::description root::help root::errors"
+        data-loading="false"
+        data-processing="false"
+        id="root"
+        name="root"
+        style="flex-grow: 1;"
+        type="file"
+      />
       
-      <!---->
-       
-      <!---->
-      <ul
-        id="root::errors"
-        style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
-        tabindex="-1"
-      >
-        <li>
-          error
-        </li>
-        
-      </ul>
       
-      <!---->
-       
-      <!---->
       <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
+    <ul
+      id="root::errors"
+      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      tabindex="-1"
     >
-      <!---->
-      Submit
+      <li>
+        error
+      </li>
       
-      <!---->
-    </button>
+    </ul>
     
     <!---->
+     
     <!---->
-  </form>
+    <!---->
+  </div>
+  
+  
+  
   
   
 </div>
@@ -892,71 +918,49 @@ exports[`file > error 1`] = `
 exports[`file > normal 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
-       
-      <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-      >
-        <!---->
-        <!---->
-        <input
-          aria-describedby="root::description root::help root::errors"
-          data-loading="false"
-          data-processing="false"
-          id="root"
-          name="root"
-          style="flex-grow: 1;"
-          type="file"
-        />
-        
-        
-        <!---->
-      </div>
+      <input
+        aria-describedby="root::description root::help root::errors"
+        data-loading="false"
+        data-processing="false"
+        id="root"
+        name="root"
+        style="flex-grow: 1;"
+        type="file"
+      />
+      
       
       <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
-    >
-      <!---->
-      Submit
-      
-      <!---->
-    </button>
-    
+     
     <!---->
     <!---->
-  </form>
+  </div>
+  
+  
+  
   
   
 </div>
@@ -965,72 +969,103 @@ exports[`file > normal 1`] = `
 exports[`file > readonly 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
-       
-      <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-      >
-        <!---->
-        <!---->
-        <input
-          aria-describedby="root::description root::help root::errors"
-          data-loading="false"
-          data-processing="false"
-          id="root"
-          name="root"
-          readonly=""
-          style="flex-grow: 1;"
-          type="file"
-        />
-        
-        
-        <!---->
-      </div>
+      <input
+        aria-describedby="root::description root::help root::errors"
+        data-loading="false"
+        data-processing="false"
+        id="root"
+        name="root"
+        readonly=""
+        style="flex-grow: 1;"
+        type="file"
+      />
+      
       
       <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`multiFile > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
-      Submit
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        data-loading="true"
+        data-processing="false"
+        disabled=""
+        id="root"
+        multiple=""
+        name="root"
+        style="flex-grow: 1;"
+        type="file"
+      />
+      
       
       <!---->
-    </button>
+    </div>
     
     <!---->
+     
     <!---->
-  </form>
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
   
   
 </div>
@@ -1039,84 +1074,62 @@ exports[`file > readonly 1`] = `
 exports[`multiFile > error 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
-       
-      <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-      >
-        <!---->
-        <!---->
-        <input
-          aria-describedby="root::description root::help root::errors"
-          data-loading="true"
-          data-processing="false"
-          id="root"
-          multiple=""
-          name="root"
-          style="flex-grow: 1;"
-          type="file"
-        />
-        
-        
-        <!---->
-      </div>
+      <input
+        aria-describedby="root::description root::help root::errors"
+        data-loading="true"
+        data-processing="false"
+        id="root"
+        multiple=""
+        name="root"
+        style="flex-grow: 1;"
+        type="file"
+      />
       
-      <!---->
-       
-      <!---->
-      <ul
-        id="root::errors"
-        style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
-        tabindex="-1"
-      >
-        <li>
-          error
-        </li>
-        
-      </ul>
       
-      <!---->
-       
-      <!---->
       <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
+    <ul
+      id="root::errors"
+      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      tabindex="-1"
     >
-      <!---->
-      Submit
+      <li>
+        error
+      </li>
       
-      <!---->
-    </button>
+    </ul>
     
     <!---->
+     
     <!---->
-  </form>
+    <!---->
+  </div>
+  
+  
+  
   
   
 </div>
@@ -1125,72 +1138,50 @@ exports[`multiFile > error 1`] = `
 exports[`multiFile > normal 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
-       
-      <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-      >
-        <!---->
-        <!---->
-        <input
-          aria-describedby="root::description root::help root::errors"
-          data-loading="true"
-          data-processing="false"
-          id="root"
-          multiple=""
-          name="root"
-          style="flex-grow: 1;"
-          type="file"
-        />
-        
-        
-        <!---->
-      </div>
+      <input
+        aria-describedby="root::description root::help root::errors"
+        data-loading="true"
+        data-processing="false"
+        id="root"
+        multiple=""
+        name="root"
+        style="flex-grow: 1;"
+        type="file"
+      />
+      
       
       <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
-    >
-      <!---->
-      Submit
-      
-      <!---->
-    </button>
-    
+     
     <!---->
     <!---->
-  </form>
+  </div>
+  
+  
+  
   
   
 </div>
@@ -1199,73 +1190,123 @@ exports[`multiFile > normal 1`] = `
 exports[`multiFile > readonly 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
-       
-      <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-      >
-        <!---->
-        <!---->
-        <input
-          aria-describedby="root::description root::help root::errors"
-          data-loading="true"
-          data-processing="false"
-          id="root"
-          multiple=""
-          name="root"
-          readonly=""
-          style="flex-grow: 1;"
-          type="file"
-        />
-        
-        
-        <!---->
-      </div>
+      <input
+        aria-describedby="root::description root::help root::errors"
+        data-loading="true"
+        data-processing="false"
+        id="root"
+        multiple=""
+        name="root"
+        readonly=""
+        style="flex-grow: 1;"
+        type="file"
+      />
+      
       
       <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`multiSelect > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
-      Submit
+      <!---->
+      <select
+        aria-describedby="root::description root::help root::errors"
+        disabled=""
+        id="root"
+        multiple=""
+        name="root"
+        style="flex-grow: 1;"
+      >
+        <option
+          value="0"
+        >
+          foo
+        </option>
+        <option
+          value="1"
+        >
+          bar
+        </option>
+        <option
+          value="2"
+        >
+          fuzz
+        </option>
+        <option
+          value="3"
+        >
+          qux
+        </option>
+        
+      </select>
+      
       
       <!---->
-    </button>
+    </div>
     
     <!---->
+     
     <!---->
-  </form>
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
   
   
 </div>
@@ -1274,103 +1315,81 @@ exports[`multiFile > readonly 1`] = `
 exports[`multiSelect > error 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
-       
-      <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+      <select
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        multiple=""
+        name="root"
+        style="flex-grow: 1;"
       >
-        <!---->
-        <!---->
-        <select
-          aria-describedby="root::description root::help root::errors"
-          id="root"
-          multiple=""
-          name="root"
-          style="flex-grow: 1;"
+        <option
+          value="0"
         >
-          <option
-            value="0"
-          >
-            foo
-          </option>
-          <option
-            value="1"
-          >
-            bar
-          </option>
-          <option
-            value="2"
-          >
-            fuzz
-          </option>
-          <option
-            value="3"
-          >
-            qux
-          </option>
-          
-        </select>
+          foo
+        </option>
+        <option
+          value="1"
+        >
+          bar
+        </option>
+        <option
+          value="2"
+        >
+          fuzz
+        </option>
+        <option
+          value="3"
+        >
+          qux
+        </option>
         
-        
-        <!---->
-      </div>
+      </select>
       
-      <!---->
-       
-      <!---->
-      <ul
-        id="root::errors"
-        style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
-        tabindex="-1"
-      >
-        <li>
-          error
-        </li>
-        
-      </ul>
       
-      <!---->
-       
-      <!---->
       <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
+    <ul
+      id="root::errors"
+      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      tabindex="-1"
     >
-      <!---->
-      Submit
+      <li>
+        error
+      </li>
       
-      <!---->
-    </button>
+    </ul>
     
     <!---->
+     
     <!---->
-  </form>
+    <!---->
+  </div>
+  
+  
+  
   
   
 </div>
@@ -1379,91 +1398,69 @@ exports[`multiSelect > error 1`] = `
 exports[`multiSelect > normal 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
-       
-      <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+      <select
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        multiple=""
+        name="root"
+        style="flex-grow: 1;"
       >
-        <!---->
-        <!---->
-        <select
-          aria-describedby="root::description root::help root::errors"
-          id="root"
-          multiple=""
-          name="root"
-          style="flex-grow: 1;"
+        <option
+          value="0"
         >
-          <option
-            value="0"
-          >
-            foo
-          </option>
-          <option
-            value="1"
-          >
-            bar
-          </option>
-          <option
-            value="2"
-          >
-            fuzz
-          </option>
-          <option
-            value="3"
-          >
-            qux
-          </option>
-          
-        </select>
+          foo
+        </option>
+        <option
+          value="1"
+        >
+          bar
+        </option>
+        <option
+          value="2"
+        >
+          fuzz
+        </option>
+        <option
+          value="3"
+        >
+          qux
+        </option>
         
-        
-        <!---->
-      </div>
+      </select>
+      
       
       <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
-    >
-      <!---->
-      Submit
-      
-      <!---->
-    </button>
-    
+     
     <!---->
     <!---->
-  </form>
+  </div>
+  
+  
+  
   
   
 </div>
@@ -1472,91 +1469,124 @@ exports[`multiSelect > normal 1`] = `
 exports[`multiSelect > readonly 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
-       
-      <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+      <select
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        multiple=""
+        name="root"
+        style="flex-grow: 1;"
       >
-        <!---->
-        <!---->
-        <select
-          aria-describedby="root::description root::help root::errors"
-          id="root"
-          multiple=""
-          name="root"
-          style="flex-grow: 1;"
+        <option
+          value="0"
         >
-          <option
-            value="0"
-          >
-            foo
-          </option>
-          <option
-            value="1"
-          >
-            bar
-          </option>
-          <option
-            value="2"
-          >
-            fuzz
-          </option>
-          <option
-            value="3"
-          >
-            qux
-          </option>
-          
-        </select>
+          foo
+        </option>
+        <option
+          value="1"
+        >
+          bar
+        </option>
+        <option
+          value="2"
+        >
+          fuzz
+        </option>
+        <option
+          value="3"
+        >
+          qux
+        </option>
         
-        
-        <!---->
-      </div>
+      </select>
+      
       
       <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`number > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
-      Submit
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        disabled=""
+        id="root"
+        name="root"
+        step="any"
+        style="flex-grow: 1;"
+        type="number"
+      />
+       
+      <!---->
       
       <!---->
-    </button>
+      
+      
+      <!---->
+    </div>
     
     <!---->
+     
     <!---->
-  </form>
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
   
   
 </div>
@@ -1565,86 +1595,64 @@ exports[`multiSelect > readonly 1`] = `
 exports[`number > error 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        step="any"
+        style="flex-grow: 1;"
+        type="number"
+      />
        
       <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-      >
-        <!---->
-        <!---->
-        <input
-          aria-describedby="root::description root::help root::errors"
-          id="root"
-          name="root"
-          step="any"
-          style="flex-grow: 1;"
-          type="number"
-        />
-         
-        <!---->
-        
-        <!---->
-        
-        
-        <!---->
-      </div>
       
       <!---->
-       
-      <!---->
-      <ul
-        id="root::errors"
-        style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
-        tabindex="-1"
-      >
-        <li>
-          error
-        </li>
-        
-      </ul>
       
-      <!---->
-       
-      <!---->
+      
       <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
+    <ul
+      id="root::errors"
+      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      tabindex="-1"
     >
-      <!---->
-      Submit
+      <li>
+        error
+      </li>
       
-      <!---->
-    </button>
+    </ul>
     
     <!---->
+     
     <!---->
-  </form>
+    <!---->
+  </div>
+  
+  
+  
   
   
 </div>
@@ -1653,74 +1661,52 @@ exports[`number > error 1`] = `
 exports[`number > normal 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        step="any"
+        style="flex-grow: 1;"
+        type="number"
+      />
        
       <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-      >
-        <!---->
-        <!---->
-        <input
-          aria-describedby="root::description root::help root::errors"
-          id="root"
-          name="root"
-          step="any"
-          style="flex-grow: 1;"
-          type="number"
-        />
-         
-        <!---->
-        
-        <!---->
-        
-        
-        <!---->
-      </div>
       
       <!---->
-       
-      <!---->
-       
-      <!---->
+      
+      
       <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
-    >
-      <!---->
-      Submit
-      
-      <!---->
-    </button>
-    
+     
     <!---->
     <!---->
-  </form>
+  </div>
+  
+  
+  
   
   
 </div>
@@ -1729,75 +1715,141 @@ exports[`number > normal 1`] = `
 exports[`number > readonly 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        readonly=""
+        step="any"
+        style="flex-grow: 1;"
+        type="number"
+      />
        
       <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-      >
-        <!---->
-        <!---->
-        <input
-          aria-describedby="root::description root::help root::errors"
-          id="root"
-          name="root"
-          readonly=""
-          step="any"
-          style="flex-grow: 1;"
-          type="number"
-        />
-         
-        <!---->
-        
-        <!---->
-        
-        
-        <!---->
-      </div>
       
       <!---->
-       
-      <!---->
-       
-      <!---->
+      
+      
       <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`radio > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
-      Submit
+      <!---->
+      <!---->
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          disabled=""
+          id="root::0"
+          name="root"
+          type="radio"
+          value="0"
+        />
+         foo
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          disabled=""
+          id="root::1"
+          name="root"
+          type="radio"
+          value="1"
+        />
+         bar
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          disabled=""
+          id="root::2"
+          name="root"
+          type="radio"
+          value="2"
+        />
+         fuzz
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          disabled=""
+          id="root::3"
+          name="root"
+          type="radio"
+          value="3"
+        />
+         qux
+      </label>
+      
+      
       
       <!---->
-    </button>
+    </div>
     
     <!---->
+     
     <!---->
-  </form>
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
   
   
 </div>
@@ -1806,116 +1858,94 @@ exports[`number > readonly 1`] = `
 exports[`radio > error 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
-       
       <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-      >
-        <!---->
-        <!---->
-        <!---->
-        <label>
-          <input
-            aria-describedby="root::description root::help root::errors"
-            id="root::0"
-            name="root"
-            type="radio"
-            value="0"
-          />
-           foo
-        </label>
-        <label>
-          <input
-            aria-describedby="root::description root::help root::errors"
-            id="root::1"
-            name="root"
-            type="radio"
-            value="1"
-          />
-           bar
-        </label>
-        <label>
-          <input
-            aria-describedby="root::description root::help root::errors"
-            id="root::2"
-            name="root"
-            type="radio"
-            value="2"
-          />
-           fuzz
-        </label>
-        <label>
-          <input
-            aria-describedby="root::description root::help root::errors"
-            id="root::3"
-            name="root"
-            type="radio"
-            value="3"
-          />
-           qux
-        </label>
-        
-        
-        
-        <!---->
-      </div>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::0"
+          name="root"
+          type="radio"
+          value="0"
+        />
+         foo
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::1"
+          name="root"
+          type="radio"
+          value="1"
+        />
+         bar
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::2"
+          name="root"
+          type="radio"
+          value="2"
+        />
+         fuzz
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::3"
+          name="root"
+          type="radio"
+          value="3"
+        />
+         qux
+      </label>
       
-      <!---->
-       
-      <!---->
-      <ul
-        id="root::errors"
-        style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
-        tabindex="-1"
-      >
-        <li>
-          error
-        </li>
-        
-      </ul>
       
-      <!---->
-       
-      <!---->
+      
       <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
+    <ul
+      id="root::errors"
+      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      tabindex="-1"
     >
-      <!---->
-      Submit
+      <li>
+        error
+      </li>
       
-      <!---->
-    </button>
+    </ul>
     
     <!---->
+     
     <!---->
-  </form>
+    <!---->
+  </div>
+  
+  
+  
   
   
 </div>
@@ -1924,104 +1954,82 @@ exports[`radio > error 1`] = `
 exports[`radio > normal 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
-       
       <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-      >
-        <!---->
-        <!---->
-        <!---->
-        <label>
-          <input
-            aria-describedby="root::description root::help root::errors"
-            id="root::0"
-            name="root"
-            type="radio"
-            value="0"
-          />
-           foo
-        </label>
-        <label>
-          <input
-            aria-describedby="root::description root::help root::errors"
-            id="root::1"
-            name="root"
-            type="radio"
-            value="1"
-          />
-           bar
-        </label>
-        <label>
-          <input
-            aria-describedby="root::description root::help root::errors"
-            id="root::2"
-            name="root"
-            type="radio"
-            value="2"
-          />
-           fuzz
-        </label>
-        <label>
-          <input
-            aria-describedby="root::description root::help root::errors"
-            id="root::3"
-            name="root"
-            type="radio"
-            value="3"
-          />
-           qux
-        </label>
-        
-        
-        
-        <!---->
-      </div>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::0"
+          name="root"
+          type="radio"
+          value="0"
+        />
+         foo
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::1"
+          name="root"
+          type="radio"
+          value="1"
+        />
+         bar
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::2"
+          name="root"
+          type="radio"
+          value="2"
+        />
+         fuzz
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::3"
+          name="root"
+          type="radio"
+          value="3"
+        />
+         qux
+      </label>
+      
+      
       
       <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
-    >
-      <!---->
-      Submit
-      
-      <!---->
-    </button>
-    
+     
     <!---->
     <!---->
-  </form>
+  </div>
+  
+  
+  
   
   
 </div>
@@ -2030,108 +2038,137 @@ exports[`radio > normal 1`] = `
 exports[`radio > readonly 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
-       
       <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-      >
-        <!---->
-        <!---->
-        <!---->
-        <label>
-          <input
-            aria-describedby="root::description root::help root::errors"
-            id="root::0"
-            name="root"
-            readonly=""
-            type="radio"
-            value="0"
-          />
-           foo
-        </label>
-        <label>
-          <input
-            aria-describedby="root::description root::help root::errors"
-            id="root::1"
-            name="root"
-            readonly=""
-            type="radio"
-            value="1"
-          />
-           bar
-        </label>
-        <label>
-          <input
-            aria-describedby="root::description root::help root::errors"
-            id="root::2"
-            name="root"
-            readonly=""
-            type="radio"
-            value="2"
-          />
-           fuzz
-        </label>
-        <label>
-          <input
-            aria-describedby="root::description root::help root::errors"
-            id="root::3"
-            name="root"
-            readonly=""
-            type="radio"
-            value="3"
-          />
-           qux
-        </label>
-        
-        
-        
-        <!---->
-      </div>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::0"
+          name="root"
+          readonly=""
+          type="radio"
+          value="0"
+        />
+         foo
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::1"
+          name="root"
+          readonly=""
+          type="radio"
+          value="1"
+        />
+         bar
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::2"
+          name="root"
+          readonly=""
+          type="radio"
+          value="2"
+        />
+         fuzz
+      </label>
+      <label>
+        <input
+          aria-describedby="root::description root::help root::errors"
+          id="root::3"
+          name="root"
+          readonly=""
+          type="radio"
+          value="3"
+        />
+         qux
+      </label>
+      
+      
       
       <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`range > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
-      Submit
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        disabled=""
+        id="root"
+        name="root"
+        step="any"
+        style="flex-grow: 1;"
+        type="range"
+      />
+      
       
       <!---->
-    </button>
+    </div>
     
     <!---->
+     
     <!---->
-  </form>
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
   
   
 </div>
@@ -2140,82 +2177,60 @@ exports[`radio > readonly 1`] = `
 exports[`range > error 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
-       
-      <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-      >
-        <!---->
-        <!---->
-        <input
-          aria-describedby="root::description root::help root::errors"
-          id="root"
-          name="root"
-          step="any"
-          style="flex-grow: 1;"
-          type="range"
-        />
-        
-        
-        <!---->
-      </div>
+      <input
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        step="any"
+        style="flex-grow: 1;"
+        type="range"
+      />
       
-      <!---->
-       
-      <!---->
-      <ul
-        id="root::errors"
-        style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
-        tabindex="-1"
-      >
-        <li>
-          error
-        </li>
-        
-      </ul>
       
-      <!---->
-       
-      <!---->
       <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
+    <ul
+      id="root::errors"
+      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      tabindex="-1"
     >
-      <!---->
-      Submit
+      <li>
+        error
+      </li>
       
-      <!---->
-    </button>
+    </ul>
     
     <!---->
+     
     <!---->
-  </form>
+    <!---->
+  </div>
+  
+  
+  
   
   
 </div>
@@ -2224,70 +2239,48 @@ exports[`range > error 1`] = `
 exports[`range > normal 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
-       
-      <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-      >
-        <!---->
-        <!---->
-        <input
-          aria-describedby="root::description root::help root::errors"
-          id="root"
-          name="root"
-          step="any"
-          style="flex-grow: 1;"
-          type="range"
-        />
-        
-        
-        <!---->
-      </div>
+      <input
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        step="any"
+        style="flex-grow: 1;"
+        type="range"
+      />
+      
       
       <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
-    >
-      <!---->
-      Submit
-      
-      <!---->
-    </button>
-    
+     
     <!---->
     <!---->
-  </form>
+  </div>
+  
+  
+  
   
   
 </div>
@@ -2296,71 +2289,126 @@ exports[`range > normal 1`] = `
 exports[`range > readonly 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
-       
-      <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-      >
-        <!---->
-        <!---->
-        <input
-          aria-describedby="root::description root::help root::errors"
-          id="root"
-          name="root"
-          readonly=""
-          step="any"
-          style="flex-grow: 1;"
-          type="range"
-        />
-        
-        
-        <!---->
-      </div>
+      <input
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        readonly=""
+        step="any"
+        style="flex-grow: 1;"
+        type="range"
+      />
+      
       
       <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`select > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
-      Submit
+      <!---->
+      <select
+        aria-describedby="root::description root::help root::errors"
+        disabled=""
+        id="root"
+        name="root"
+        style="flex-grow: 1;"
+      >
+        <option
+          value="-1"
+        >
+          
+        </option>
+        <!---->
+        <option
+          value="0"
+        >
+          foo
+        </option>
+        <option
+          value="1"
+        >
+          bar
+        </option>
+        <option
+          value="2"
+        >
+          fuzz
+        </option>
+        <option
+          value="3"
+        >
+          qux
+        </option>
+        <!---->
+      </select>
+      
       
       <!---->
-    </button>
+    </div>
     
     <!---->
+     
     <!---->
-  </form>
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
   
   
 </div>
@@ -2369,108 +2417,86 @@ exports[`range > readonly 1`] = `
 exports[`select > error 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
-       
-      <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+      <select
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        style="flex-grow: 1;"
       >
-        <!---->
-        <!---->
-        <select
-          aria-describedby="root::description root::help root::errors"
-          id="root"
-          name="root"
-          style="flex-grow: 1;"
+        <option
+          value="-1"
         >
-          <option
-            value="-1"
-          >
-            
-          </option>
-          <!---->
-          <option
-            value="0"
-          >
-            foo
-          </option>
-          <option
-            value="1"
-          >
-            bar
-          </option>
-          <option
-            value="2"
-          >
-            fuzz
-          </option>
-          <option
-            value="3"
-          >
-            qux
-          </option>
-          <!---->
-        </select>
-        
-        
+          
+        </option>
         <!---->
-      </div>
+        <option
+          value="0"
+        >
+          foo
+        </option>
+        <option
+          value="1"
+        >
+          bar
+        </option>
+        <option
+          value="2"
+        >
+          fuzz
+        </option>
+        <option
+          value="3"
+        >
+          qux
+        </option>
+        <!---->
+      </select>
       
-      <!---->
-       
-      <!---->
-      <ul
-        id="root::errors"
-        style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
-        tabindex="-1"
-      >
-        <li>
-          error
-        </li>
-        
-      </ul>
       
-      <!---->
-       
-      <!---->
       <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
+    <ul
+      id="root::errors"
+      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      tabindex="-1"
     >
-      <!---->
-      Submit
+      <li>
+        error
+      </li>
       
-      <!---->
-    </button>
+    </ul>
     
     <!---->
+     
     <!---->
-  </form>
+    <!---->
+  </div>
+  
+  
+  
   
   
 </div>
@@ -2479,96 +2505,74 @@ exports[`select > error 1`] = `
 exports[`select > normal 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
-       
-      <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+      <select
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        style="flex-grow: 1;"
       >
-        <!---->
-        <!---->
-        <select
-          aria-describedby="root::description root::help root::errors"
-          id="root"
-          name="root"
-          style="flex-grow: 1;"
+        <option
+          value="-1"
         >
-          <option
-            value="-1"
-          >
-            
-          </option>
-          <!---->
-          <option
-            value="0"
-          >
-            foo
-          </option>
-          <option
-            value="1"
-          >
-            bar
-          </option>
-          <option
-            value="2"
-          >
-            fuzz
-          </option>
-          <option
-            value="3"
-          >
-            qux
-          </option>
-          <!---->
-        </select>
-        
-        
+          
+        </option>
         <!---->
-      </div>
+        <option
+          value="0"
+        >
+          foo
+        </option>
+        <option
+          value="1"
+        >
+          bar
+        </option>
+        <option
+          value="2"
+        >
+          fuzz
+        </option>
+        <option
+          value="3"
+        >
+          qux
+        </option>
+        <!---->
+      </select>
+      
       
       <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
-    >
-      <!---->
-      Submit
-      
-      <!---->
-    </button>
-    
+     
     <!---->
     <!---->
-  </form>
+  </div>
+  
+  
+  
   
   
 </div>
@@ -2577,96 +2581,128 @@ exports[`select > normal 1`] = `
 exports[`select > readonly 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
-       
-      <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+      <select
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        style="flex-grow: 1;"
       >
-        <!---->
-        <!---->
-        <select
-          aria-describedby="root::description root::help root::errors"
-          id="root"
-          name="root"
-          style="flex-grow: 1;"
+        <option
+          value="-1"
         >
-          <option
-            value="-1"
-          >
-            
-          </option>
-          <!---->
-          <option
-            value="0"
-          >
-            foo
-          </option>
-          <option
-            value="1"
-          >
-            bar
-          </option>
-          <option
-            value="2"
-          >
-            fuzz
-          </option>
-          <option
-            value="3"
-          >
-            qux
-          </option>
-          <!---->
-        </select>
-        
-        
+          
+        </option>
         <!---->
-      </div>
+        <option
+          value="0"
+        >
+          foo
+        </option>
+        <option
+          value="1"
+        >
+          bar
+        </option>
+        <option
+          value="2"
+        >
+          fuzz
+        </option>
+        <option
+          value="3"
+        >
+          qux
+        </option>
+        <!---->
+      </select>
+      
       
       <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`text > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
-      Submit
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        disabled=""
+        id="root"
+        name="root"
+        style="flex-grow: 1;"
+        type="text"
+      />
+       
+      <!---->
       
       <!---->
-    </button>
+      
+      
+      <!---->
+    </div>
     
     <!---->
+     
     <!---->
-  </form>
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
   
   
 </div>
@@ -2675,85 +2711,63 @@ exports[`select > readonly 1`] = `
 exports[`text > error 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        style="flex-grow: 1;"
+        type="text"
+      />
        
       <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-      >
-        <!---->
-        <!---->
-        <input
-          aria-describedby="root::description root::help root::errors"
-          id="root"
-          name="root"
-          style="flex-grow: 1;"
-          type="text"
-        />
-         
-        <!---->
-        
-        <!---->
-        
-        
-        <!---->
-      </div>
       
       <!---->
-       
-      <!---->
-      <ul
-        id="root::errors"
-        style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
-        tabindex="-1"
-      >
-        <li>
-          error
-        </li>
-        
-      </ul>
       
-      <!---->
-       
-      <!---->
+      
       <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
+    <ul
+      id="root::errors"
+      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      tabindex="-1"
     >
-      <!---->
-      Submit
+      <li>
+        error
+      </li>
       
-      <!---->
-    </button>
+    </ul>
     
     <!---->
+     
     <!---->
-  </form>
+    <!---->
+  </div>
+  
+  
+  
   
   
 </div>
@@ -2762,73 +2776,51 @@ exports[`text > error 1`] = `
 exports[`text > normal 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        style="flex-grow: 1;"
+        type="text"
+      />
        
       <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-      >
-        <!---->
-        <!---->
-        <input
-          aria-describedby="root::description root::help root::errors"
-          id="root"
-          name="root"
-          style="flex-grow: 1;"
-          type="text"
-        />
-         
-        <!---->
-        
-        <!---->
-        
-        
-        <!---->
-      </div>
       
       <!---->
-       
-      <!---->
-       
-      <!---->
+      
+      
       <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
-    >
-      <!---->
-      Submit
-      
-      <!---->
-    </button>
-    
+     
     <!---->
     <!---->
-  </form>
+  </div>
+  
+  
+  
   
   
 </div>
@@ -2837,74 +2829,101 @@ exports[`text > normal 1`] = `
 exports[`text > readonly 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        readonly=""
+        style="flex-grow: 1;"
+        type="text"
+      />
        
       <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-      >
-        <!---->
-        <!---->
-        <input
-          aria-describedby="root::description root::help root::errors"
-          id="root"
-          name="root"
-          readonly=""
-          style="flex-grow: 1;"
-          type="text"
-        />
-         
-        <!---->
-        
-        <!---->
-        
-        
-        <!---->
-      </div>
       
       <!---->
-       
-      <!---->
-       
-      <!---->
+      
+      
       <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`textarea > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
-      Submit
+      <!---->
+      <textarea
+        aria-describedby="root::description root::help root::errors"
+        disabled=""
+        id="root"
+        name="root"
+        style="flex-grow: 1;"
+      />
+      
       
       <!---->
-    </button>
+    </div>
     
     <!---->
+     
     <!---->
-  </form>
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
   
   
 </div>
@@ -2913,80 +2932,58 @@ exports[`text > readonly 1`] = `
 exports[`textarea > error 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
-       
-      <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-      >
-        <!---->
-        <!---->
-        <textarea
-          aria-describedby="root::description root::help root::errors"
-          id="root"
-          name="root"
-          style="flex-grow: 1;"
-        />
-        
-        
-        <!---->
-      </div>
+      <textarea
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        style="flex-grow: 1;"
+      />
       
-      <!---->
-       
-      <!---->
-      <ul
-        id="root::errors"
-        style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
-        tabindex="-1"
-      >
-        <li>
-          error
-        </li>
-        
-      </ul>
       
-      <!---->
-       
-      <!---->
       <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
+    <ul
+      id="root::errors"
+      style="color: red; list-style-position: inside; padding: 0px; margin: 0px;"
+      tabindex="-1"
     >
-      <!---->
-      Submit
+      <li>
+        error
+      </li>
       
-      <!---->
-    </button>
+    </ul>
     
     <!---->
+     
     <!---->
-  </form>
+    <!---->
+  </div>
+  
+  
+  
   
   
 </div>
@@ -2995,68 +2992,46 @@ exports[`textarea > error 1`] = `
 exports[`textarea > normal 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
-       
-      <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-      >
-        <!---->
-        <!---->
-        <textarea
-          aria-describedby="root::description root::help root::errors"
-          id="root"
-          name="root"
-          style="flex-grow: 1;"
-        />
-        
-        
-        <!---->
-      </div>
+      <textarea
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        style="flex-grow: 1;"
+      />
+      
       
       <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
-    >
-      <!---->
-      Submit
-      
-      <!---->
-    </button>
-    
+     
     <!---->
     <!---->
-  </form>
+  </div>
+  
+  
+  
   
   
 </div>
@@ -3065,69 +3040,47 @@ exports[`textarea > normal 1`] = `
 exports[`textarea > readonly 1`] = `
 <div>
   <!---->
-  <form
-    style="display: flex; flex-direction: column; gap: 1rem;"
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="field"
+    style="display: flex; flex-direction: column; gap: 0.2rem;"
   >
     <!---->
     <!---->
-    <!---->
-    <!---->
+     
     <!---->
     <div
       class="svelte-o6qzf9"
-      data-layout="field"
-      style="display: flex; flex-direction: column; gap: 0.2rem;"
+      data-layout="field-content"
+      style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
     >
       <!---->
       <!---->
-       
-      <!---->
-      <div
-        class="svelte-o6qzf9"
-        data-layout="field-content"
-        style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
-      >
-        <!---->
-        <!---->
-        <textarea
-          aria-describedby="root::description root::help root::errors"
-          id="root"
-          name="root"
-          readonly=""
-          style="flex-grow: 1;"
-        />
-        
-        
-        <!---->
-      </div>
+      <textarea
+        aria-describedby="root::description root::help root::errors"
+        id="root"
+        name="root"
+        readonly=""
+        style="flex-grow: 1;"
+      />
+      
       
       <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
     </div>
-    
-    
-    
     
     <!---->
      
     <!---->
-    <button
-      style="width: 100%; padding: 0.5rem;"
-      type="submit"
-    >
-      <!---->
-      Submit
-      
-      <!---->
-    </button>
-    
+     
     <!---->
     <!---->
-  </form>
+  </div>
+  
+  
+  
   
   
 </div>

@@ -1,0 +1,3661 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`object fields > additionalProperties 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="object-field"
+    style="display: flex; flex-direction: column; gap: 1rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="object-properties"
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-o6qzf9"
+        data-layout="object-property"
+        style="display: grid; grid-template-rows: 1fr; align-items: end; column-gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="object-property-key-input"
+          style="flex-grow: 1;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-o6qzf9"
+            data-layout="field"
+            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-meta"
+              style="display: block;"
+            >
+              <!---->
+              <!---->
+              <label
+                for="root.foo::key-input"
+                style="font-weight: bold;"
+              >
+                foo Key 
+                <span>
+                  *
+                </span>
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                id="root.foo::key-input"
+                name="root.foo::key-input"
+                required=""
+                style="flex-grow: 1;"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="object-property-content"
+          style="flex-grow: 1;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-o6qzf9"
+            data-layout="field"
+            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-meta"
+              style="display: block;"
+            >
+              <!---->
+              <!---->
+              <label
+                for="root.foo"
+                style="font-weight: bold;"
+              >
+                foo 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                id="root.foo"
+                name="root.foo"
+                style="flex-grow: 1;"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <button
+          type="button"
+        >
+          <!---->
+          Del
+          
+          <!---->
+        </button>
+        
+        
+        
+        
+        
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`object fields > object 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="object-field"
+    style="display: flex; flex-direction: column; gap: 1rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="object-properties"
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-o6qzf9"
+        data-layout="object-property"
+        style="display: grid; grid-template-rows: 1fr; align-items: end; column-gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="object-property-content"
+          style="flex-grow: 1;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-o6qzf9"
+            data-layout="field"
+            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-meta"
+              style="display: block;"
+            >
+              <!---->
+              <!---->
+              <label
+                for="root.a"
+                style="font-weight: bold;"
+              >
+                A 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.a::description root.a::help root.a::errors"
+                id="root.a"
+                name="root.a"
+                style="flex-grow: 1;"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-o6qzf9"
+        data-layout="object-property"
+        style="display: grid; grid-template-rows: 1fr; align-items: end; column-gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="object-property-content"
+          style="flex-grow: 1;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-o6qzf9"
+            data-layout="field"
+            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-meta"
+              style="display: block;"
+            >
+              <!---->
+              <!---->
+              <label
+                for="root.b"
+                style="font-weight: bold;"
+              >
+                B 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.b::description root.b::help root.b::errors"
+                id="root.b"
+                name="root.b"
+                step="any"
+                style="flex-grow: 1;"
+                type="number"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`object fields > show add button and fields if additionalProperties is true and not an object 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="object-field"
+    style="display: flex; flex-direction: column; gap: 1rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="object-properties"
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-o6qzf9"
+        data-layout="object-property"
+        style="display: grid; grid-template-rows: 1fr; align-items: end; column-gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="object-property-key-input"
+          style="flex-grow: 1;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-o6qzf9"
+            data-layout="field"
+            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-meta"
+              style="display: block;"
+            >
+              <!---->
+              <!---->
+              <label
+                for="root.additionalProperty::key-input"
+                style="font-weight: bold;"
+              >
+                additionalProperty Key 
+                <span>
+                  *
+                </span>
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                id="root.additionalProperty::key-input"
+                name="root.additionalProperty::key-input"
+                required=""
+                style="flex-grow: 1;"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="object-property-content"
+          style="flex-grow: 1;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-o6qzf9"
+            data-layout="field"
+            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-meta"
+              style="display: block;"
+            >
+              <!---->
+              <!---->
+              <label
+                for="root.additionalProperty"
+                style="font-weight: bold;"
+              >
+                additionalProperty 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                id="root.additionalProperty"
+                name="root.additionalProperty"
+                style="flex-grow: 1;"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <button
+          type="button"
+        >
+          <!---->
+          Del
+          
+          <!---->
+        </button>
+        
+        
+        
+        
+        
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description > additionalProperties 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="object-field"
+    style="display: flex; flex-direction: column; gap: 1rem;"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="object-field-meta"
+      style="padding-bottom: 0px;"
+    >
+      <!---->
+      <!---->
+      <legend
+        id="root::title"
+        style="font-weight: bold; font-size: larger;"
+      >
+        Test field
+      </legend>
+      
+      <!---->
+       
+      <!---->
+      <div
+        id="root::description"
+        style="font-weight: 300;"
+      >
+        a test description
+      </div>
+      
+      <!---->
+      <!---->
+    </div>
+    
+    
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="object-properties"
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-o6qzf9"
+        data-layout="object-property"
+        style="display: grid; grid-template-rows: 1fr; align-items: end; column-gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="object-property-key-input"
+          style="flex-grow: 1;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-o6qzf9"
+            data-layout="field"
+            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-meta"
+              style="display: block;"
+            >
+              <!---->
+              <!---->
+              <label
+                for="root.foo::key-input"
+                style="font-weight: bold;"
+              >
+                foo Key 
+                <span>
+                  *
+                </span>
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                id="root.foo::key-input"
+                name="root.foo::key-input"
+                required=""
+                style="flex-grow: 1;"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="object-property-content"
+          style="flex-grow: 1;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-o6qzf9"
+            data-layout="field"
+            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-meta"
+              style="display: block;"
+            >
+              <!---->
+              <!---->
+              <label
+                for="root.foo"
+                style="font-weight: bold;"
+              >
+                foo 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                id="root.foo"
+                name="root.foo"
+                style="flex-grow: 1;"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <button
+          type="button"
+        >
+          <!---->
+          Del
+          
+          <!---->
+        </button>
+        
+        
+        
+        
+        
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description > object 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="object-field"
+    style="display: flex; flex-direction: column; gap: 1rem;"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="object-field-meta"
+      style="padding-bottom: 0px;"
+    >
+      <!---->
+      <!---->
+      <legend
+        id="root::title"
+        style="font-weight: bold; font-size: larger;"
+      >
+        Test field
+      </legend>
+      
+      <!---->
+       
+      <!---->
+      <div
+        id="root::description"
+        style="font-weight: 300;"
+      >
+        a test description
+      </div>
+      
+      <!---->
+      <!---->
+    </div>
+    
+    
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="object-properties"
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-o6qzf9"
+        data-layout="object-property"
+        style="display: grid; grid-template-rows: 1fr; align-items: end; column-gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="object-property-content"
+          style="flex-grow: 1;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-o6qzf9"
+            data-layout="field"
+            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-meta"
+              style="display: block;"
+            >
+              <!---->
+              <!---->
+              <label
+                for="root.a"
+                style="font-weight: bold;"
+              >
+                A 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <div
+                id="root.a::description"
+                style="font-weight: 300;"
+              >
+                A description
+              </div>
+              
+              <!---->
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.a::description root.a::help root.a::errors"
+                id="root.a"
+                name="root.a"
+                style="flex-grow: 1;"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-o6qzf9"
+        data-layout="object-property"
+        style="display: grid; grid-template-rows: 1fr; align-items: end; column-gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="object-property-content"
+          style="flex-grow: 1;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-o6qzf9"
+            data-layout="field"
+            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-meta"
+              style="display: block;"
+            >
+              <!---->
+              <!---->
+              <label
+                for="root.b"
+                style="font-weight: bold;"
+              >
+                B 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <div
+                id="root.b::description"
+                style="font-weight: 300;"
+              >
+                B description
+              </div>
+              
+              <!---->
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.b::description root.b::help root.b::errors"
+                id="root.b"
+                name="root.b"
+                step="any"
+                style="flex-grow: 1;"
+                type="number"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description > show add button and fields if additionalProperties is true and not an object 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="object-field"
+    style="display: flex; flex-direction: column; gap: 1rem;"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="object-field-meta"
+      style="padding-bottom: 0px;"
+    >
+      <!---->
+      <!---->
+      <legend
+        id="root::title"
+        style="font-weight: bold; font-size: larger;"
+      >
+        Test field
+      </legend>
+      
+      <!---->
+       
+      <!---->
+      <div
+        id="root::description"
+        style="font-weight: 300;"
+      >
+        a test description
+      </div>
+      
+      <!---->
+      <!---->
+    </div>
+    
+    
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="object-properties"
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-o6qzf9"
+        data-layout="object-property"
+        style="display: grid; grid-template-rows: 1fr; align-items: end; column-gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="object-property-key-input"
+          style="flex-grow: 1;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-o6qzf9"
+            data-layout="field"
+            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-meta"
+              style="display: block;"
+            >
+              <!---->
+              <!---->
+              <label
+                for="root.additionalProperty::key-input"
+                style="font-weight: bold;"
+              >
+                additionalProperty Key 
+                <span>
+                  *
+                </span>
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                id="root.additionalProperty::key-input"
+                name="root.additionalProperty::key-input"
+                required=""
+                style="flex-grow: 1;"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="object-property-content"
+          style="flex-grow: 1;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-o6qzf9"
+            data-layout="field"
+            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-meta"
+              style="display: block;"
+            >
+              <!---->
+              <!---->
+              <label
+                for="root.additionalProperty"
+                style="font-weight: bold;"
+              >
+                additionalProperty 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                id="root.additionalProperty"
+                name="root.additionalProperty"
+                style="flex-grow: 1;"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <button
+          type="button"
+        >
+          <!---->
+          Del
+          
+          <!---->
+        </button>
+        
+        
+        
+        
+        
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description from both > additionalProperties 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="object-field"
+    style="display: flex; flex-direction: column; gap: 1rem;"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="object-field-meta"
+      style="padding-bottom: 0px;"
+    >
+      <!---->
+      <!---->
+      <legend
+        id="root::title"
+        style="font-weight: bold; font-size: larger;"
+      >
+        My Field
+      </legend>
+      
+      <!---->
+       
+      <!---->
+      <div
+        id="root::description"
+        style="font-weight: 300;"
+      >
+        a fancier description
+      </div>
+      
+      <!---->
+      <!---->
+    </div>
+    
+    
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="object-properties"
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-o6qzf9"
+        data-layout="object-property"
+        style="display: grid; grid-template-rows: 1fr; align-items: end; column-gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="object-property-key-input"
+          style="flex-grow: 1;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-o6qzf9"
+            data-layout="field"
+            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-meta"
+              style="display: block;"
+            >
+              <!---->
+              <!---->
+              <label
+                for="root.foo::key-input"
+                style="font-weight: bold;"
+              >
+                foo Key 
+                <span>
+                  *
+                </span>
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                id="root.foo::key-input"
+                name="root.foo::key-input"
+                required=""
+                style="flex-grow: 1;"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="object-property-content"
+          style="flex-grow: 1;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-o6qzf9"
+            data-layout="field"
+            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-meta"
+              style="display: block;"
+            >
+              <!---->
+              <!---->
+              <label
+                for="root.foo"
+                style="font-weight: bold;"
+              >
+                foo 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                id="root.foo"
+                name="root.foo"
+                style="flex-grow: 1;"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <button
+          type="button"
+        >
+          <!---->
+          Del
+          
+          <!---->
+        </button>
+        
+        
+        
+        
+        
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description from both > object 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="object-field"
+    style="display: flex; flex-direction: column; gap: 1rem;"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="object-field-meta"
+      style="padding-bottom: 0px;"
+    >
+      <!---->
+      <!---->
+      <legend
+        id="root::title"
+        style="font-weight: bold; font-size: larger;"
+      >
+        My Field
+      </legend>
+      
+      <!---->
+       
+      <!---->
+      <div
+        id="root::description"
+        style="font-weight: 300;"
+      >
+        a fancier description
+      </div>
+      
+      <!---->
+      <!---->
+    </div>
+    
+    
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="object-properties"
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-o6qzf9"
+        data-layout="object-property"
+        style="display: grid; grid-template-rows: 1fr; align-items: end; column-gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="object-property-content"
+          style="flex-grow: 1;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-o6qzf9"
+            data-layout="field"
+            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-meta"
+              style="display: block;"
+            >
+              <!---->
+              <!---->
+              <label
+                for="root.a"
+                style="font-weight: bold;"
+              >
+                My Item A 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <div
+                id="root.a::description"
+                style="font-weight: 300;"
+              >
+                a fancier item A description
+              </div>
+              
+              <!---->
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.a::description root.a::help root.a::errors"
+                id="root.a"
+                name="root.a"
+                style="flex-grow: 1;"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-o6qzf9"
+        data-layout="object-property"
+        style="display: grid; grid-template-rows: 1fr; align-items: end; column-gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="object-property-content"
+          style="flex-grow: 1;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-o6qzf9"
+            data-layout="field"
+            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-meta"
+              style="display: block;"
+            >
+              <!---->
+              <!---->
+              <label
+                for="root.b"
+                style="font-weight: bold;"
+              >
+                My Item B 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <div
+                id="root.b::description"
+                style="font-weight: 300;"
+              >
+                a fancier item B description
+              </div>
+              
+              <!---->
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.b::description root.b::help root.b::errors"
+                id="root.b"
+                name="root.b"
+                step="any"
+                style="flex-grow: 1;"
+                type="number"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description from uiSchema > additionalProperties 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="object-field"
+    style="display: flex; flex-direction: column; gap: 1rem;"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="object-field-meta"
+      style="padding-bottom: 0px;"
+    >
+      <!---->
+      <!---->
+      <legend
+        id="root::title"
+        style="font-weight: bold; font-size: larger;"
+      >
+        My Field
+      </legend>
+      
+      <!---->
+       
+      <!---->
+      <div
+        id="root::description"
+        style="font-weight: 300;"
+      >
+        a fancier description
+      </div>
+      
+      <!---->
+      <!---->
+    </div>
+    
+    
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="object-properties"
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-o6qzf9"
+        data-layout="object-property"
+        style="display: grid; grid-template-rows: 1fr; align-items: end; column-gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="object-property-key-input"
+          style="flex-grow: 1;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-o6qzf9"
+            data-layout="field"
+            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-meta"
+              style="display: block;"
+            >
+              <!---->
+              <!---->
+              <label
+                for="root.foo::key-input"
+                style="font-weight: bold;"
+              >
+                foo Key 
+                <span>
+                  *
+                </span>
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                id="root.foo::key-input"
+                name="root.foo::key-input"
+                required=""
+                style="flex-grow: 1;"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="object-property-content"
+          style="flex-grow: 1;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-o6qzf9"
+            data-layout="field"
+            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-meta"
+              style="display: block;"
+            >
+              <!---->
+              <!---->
+              <label
+                for="root.foo"
+                style="font-weight: bold;"
+              >
+                foo 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                id="root.foo"
+                name="root.foo"
+                style="flex-grow: 1;"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <button
+          type="button"
+        >
+          <!---->
+          Del
+          
+          <!---->
+        </button>
+        
+        
+        
+        
+        
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description from uiSchema > object 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="object-field"
+    style="display: flex; flex-direction: column; gap: 1rem;"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="object-field-meta"
+      style="padding-bottom: 0px;"
+    >
+      <!---->
+      <!---->
+      <legend
+        id="root::title"
+        style="font-weight: bold; font-size: larger;"
+      >
+        My Field
+      </legend>
+      
+      <!---->
+       
+      <!---->
+      <div
+        id="root::description"
+        style="font-weight: 300;"
+      >
+        a fancier description
+      </div>
+      
+      <!---->
+      <!---->
+    </div>
+    
+    
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="object-properties"
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-o6qzf9"
+        data-layout="object-property"
+        style="display: grid; grid-template-rows: 1fr; align-items: end; column-gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="object-property-content"
+          style="flex-grow: 1;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-o6qzf9"
+            data-layout="field"
+            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-meta"
+              style="display: block;"
+            >
+              <!---->
+              <!---->
+              <label
+                for="root.a"
+                style="font-weight: bold;"
+              >
+                My Item A 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <div
+                id="root.a::description"
+                style="font-weight: 300;"
+              >
+                a fancier item A description
+              </div>
+              
+              <!---->
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.a::description root.a::help root.a::errors"
+                id="root.a"
+                name="root.a"
+                style="flex-grow: 1;"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-o6qzf9"
+        data-layout="object-property"
+        style="display: grid; grid-template-rows: 1fr; align-items: end; column-gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="object-property-content"
+          style="flex-grow: 1;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-o6qzf9"
+            data-layout="field"
+            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-meta"
+              style="display: block;"
+            >
+              <!---->
+              <!---->
+              <label
+                for="root.b"
+                style="font-weight: bold;"
+              >
+                My Item B 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <div
+                id="root.b::description"
+                style="font-weight: 300;"
+              >
+                a fancier item B description
+              </div>
+              
+              <!---->
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.b::description root.b::help root.b::errors"
+                id="root.b"
+                name="root.b"
+                step="any"
+                style="flex-grow: 1;"
+                type="number"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description from uiSchema > show add button and fields if additionalProperties is true and not an object 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="object-field"
+    style="display: flex; flex-direction: column; gap: 1rem;"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="object-field-meta"
+      style="padding-bottom: 0px;"
+    >
+      <!---->
+      <!---->
+      <legend
+        id="root::title"
+        style="font-weight: bold; font-size: larger;"
+      >
+        My Field
+      </legend>
+      
+      <!---->
+       
+      <!---->
+      <div
+        id="root::description"
+        style="font-weight: 300;"
+      >
+        a fancier description
+      </div>
+      
+      <!---->
+      <!---->
+    </div>
+    
+    
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="object-properties"
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-o6qzf9"
+        data-layout="object-property"
+        style="display: grid; grid-template-rows: 1fr; align-items: end; column-gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="object-property-key-input"
+          style="flex-grow: 1;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-o6qzf9"
+            data-layout="field"
+            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-meta"
+              style="display: block;"
+            >
+              <!---->
+              <!---->
+              <label
+                for="root.additionalProperty::key-input"
+                style="font-weight: bold;"
+              >
+                additionalProperty Key 
+                <span>
+                  *
+                </span>
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                id="root.additionalProperty::key-input"
+                name="root.additionalProperty::key-input"
+                required=""
+                style="flex-grow: 1;"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="object-property-content"
+          style="flex-grow: 1;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-o6qzf9"
+            data-layout="field"
+            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-meta"
+              style="display: block;"
+            >
+              <!---->
+              <!---->
+              <label
+                for="root.additionalProperty"
+                style="font-weight: bold;"
+              >
+                additionalProperty 
+                <!---->
+              </label>
+              
+              <!---->
+               
+              <!---->
+              <!---->
+            </div>
+            
+            
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                id="root.additionalProperty"
+                name="root.additionalProperty"
+                style="flex-grow: 1;"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <button
+          type="button"
+        >
+          <!---->
+          Del
+          
+          <!---->
+        </button>
+        
+        
+        
+        
+        
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description with global label off > additionalProperties 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="object-field"
+    style="display: flex; flex-direction: column; gap: 1rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="object-properties"
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-o6qzf9"
+        data-layout="object-property"
+        style="display: grid; grid-template-rows: 1fr; align-items: end; column-gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="object-property-key-input"
+          style="flex-grow: 1;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-o6qzf9"
+            data-layout="field"
+            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
+                id="root.foo::key-input"
+                name="root.foo::key-input"
+                required=""
+                style="flex-grow: 1;"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="object-property-content"
+          style="flex-grow: 1;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-o6qzf9"
+            data-layout="field"
+            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.foo::description root.foo::help root.foo::errors"
+                id="root.foo"
+                name="root.foo"
+                style="flex-grow: 1;"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <button
+          type="button"
+        >
+          <!---->
+          Del
+          
+          <!---->
+        </button>
+        
+        
+        
+        
+        
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description with global label off > object 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="object-field"
+    style="display: flex; flex-direction: column; gap: 1rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="object-properties"
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-o6qzf9"
+        data-layout="object-property"
+        style="display: grid; grid-template-rows: 1fr; align-items: end; column-gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="object-property-content"
+          style="flex-grow: 1;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-o6qzf9"
+            data-layout="field"
+            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.a::description root.a::help root.a::errors"
+                id="root.a"
+                name="root.a"
+                style="flex-grow: 1;"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-o6qzf9"
+        data-layout="object-property"
+        style="display: grid; grid-template-rows: 1fr; align-items: end; column-gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="object-property-content"
+          style="flex-grow: 1;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-o6qzf9"
+            data-layout="field"
+            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.b::description root.b::help root.b::errors"
+                id="root.b"
+                name="root.b"
+                step="any"
+                style="flex-grow: 1;"
+                type="number"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;
+
+exports[`object fields > with title and description with global label off > show add button and fields if additionalProperties is true and not an object 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div
+    class="svelte-o6qzf9"
+    data-layout="object-field"
+    style="display: flex; flex-direction: column; gap: 1rem;"
+  >
+    <!---->
+    <!---->
+     
+    <!---->
+    <div
+      class="svelte-o6qzf9"
+      data-layout="object-properties"
+      style="display: flex; flex-direction: column; gap: 1rem;"
+    >
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div
+        class="svelte-o6qzf9"
+        data-layout="object-property"
+        style="display: grid; grid-template-rows: 1fr; align-items: end; column-gap: 0.2rem;"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="object-property-key-input"
+          style="flex-grow: 1;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-o6qzf9"
+            data-layout="field"
+            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
+                id="root.additionalProperty::key-input"
+                name="root.additionalProperty::key-input"
+                required=""
+                style="flex-grow: 1;"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        
+        <!---->
+         
+        <!---->
+        <div
+          class="svelte-o6qzf9"
+          data-layout="object-property-content"
+          style="flex-grow: 1;"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <div
+            class="svelte-o6qzf9"
+            data-layout="field"
+            style="display: flex; flex-direction: column; gap: 0.2rem;"
+          >
+            <!---->
+            <!---->
+             
+            <!---->
+            <div
+              class="svelte-o6qzf9"
+              data-layout="field-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+            >
+              <!---->
+              <!---->
+              <input
+                aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
+                id="root.additionalProperty"
+                name="root.additionalProperty"
+                style="flex-grow: 1;"
+                type="text"
+              />
+               
+              <!---->
+              
+              <!---->
+              
+              
+              <!---->
+            </div>
+            
+            <!---->
+             
+            <!---->
+             
+            <!---->
+            <!---->
+          </div>
+          
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <button
+          type="button"
+        >
+          <!---->
+          Del
+          
+          <!---->
+        </button>
+        
+        
+        
+        
+        
+        <!---->
+        <!---->
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      <!---->
+    </div>
+    
+    <!---->
+     
+    <!---->
+     
+    <!---->
+    <!---->
+  </div>
+  
+  
+  
+  
+  
+</div>
+`;

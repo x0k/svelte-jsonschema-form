@@ -29,7 +29,11 @@
       "persistent": true,
       "cache": false
     },
-    "test": {},
+    "test": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
     "preview": {
       "persistent": true,
       "cache": false,

@@ -1,5 +1,152 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`default-ui > checkbox > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="flex items-center space-x-2"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-required="false"
+            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-disabled=""
+            data-state="unchecked"
+            disabled=""
+            id="root"
+            role="checkbox"
+            type="button"
+          >
+            <div
+              class="flex size-4 items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </div>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            disabled=""
+            name="root"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="on"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root"
+            id="bits-c6"
+          >
+            
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
 exports[`default-ui > checkbox > error 1`] = `
 <div>
   <!---->
@@ -391,7 +538,7 @@ exports[`default-ui > checkbox > readonly 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root"
-            id="bits-c6"
+            id="bits-c8"
           >
             
             <!---->
@@ -421,6 +568,401 @@ exports[`default-ui > checkbox > readonly 1`] = `
     <!---->
     <button
       class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`default-ui > checkboxes > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center space-x-2"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-required="false"
+            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-disabled=""
+            data-state="unchecked"
+            disabled=""
+            id="root::0"
+            role="checkbox"
+            type="button"
+          >
+            <div
+              class="flex size-4 items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </div>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            disabled=""
+            name="root"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="0"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root::0"
+            id="bits-c26"
+          >
+            foo
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-2"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-required="false"
+            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-disabled=""
+            data-state="unchecked"
+            disabled=""
+            id="root::1"
+            role="checkbox"
+            type="button"
+          >
+            <div
+              class="flex size-4 items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </div>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            disabled=""
+            name="root"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="1"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root::1"
+            id="bits-c28"
+          >
+            bar
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-2"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-required="false"
+            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-disabled=""
+            data-state="unchecked"
+            disabled=""
+            id="root::2"
+            role="checkbox"
+            type="button"
+          >
+            <div
+              class="flex size-4 items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </div>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            disabled=""
+            name="root"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="2"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root::2"
+            id="bits-c30"
+          >
+            fuzz
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-2"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-required="false"
+            class="border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-disabled=""
+            data-state="unchecked"
+            disabled=""
+            id="root::3"
+            role="checkbox"
+            type="button"
+          >
+            <div
+              class="flex size-4 items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-3.5 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </div>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            disabled=""
+            name="root"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="3"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root::3"
+            id="bits-c32"
+          >
+            qux
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+      disabled=""
       type="submit"
     >
       <!---->
@@ -535,7 +1077,7 @@ exports[`default-ui > checkboxes > error 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root::0"
-            id="bits-c16"
+            id="bits-c18"
           >
             foo
             <!---->
@@ -614,7 +1156,7 @@ exports[`default-ui > checkboxes > error 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root::1"
-            id="bits-c18"
+            id="bits-c20"
           >
             bar
             <!---->
@@ -693,7 +1235,7 @@ exports[`default-ui > checkboxes > error 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root::2"
-            id="bits-c20"
+            id="bits-c22"
           >
             fuzz
             <!---->
@@ -772,7 +1314,7 @@ exports[`default-ui > checkboxes > error 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root::3"
-            id="bits-c22"
+            id="bits-c24"
           >
             qux
             <!---->
@@ -929,7 +1471,7 @@ exports[`default-ui > checkboxes > normal 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root::0"
-            id="bits-c8"
+            id="bits-c10"
           >
             foo
             <!---->
@@ -1008,7 +1550,7 @@ exports[`default-ui > checkboxes > normal 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root::1"
-            id="bits-c10"
+            id="bits-c12"
           >
             bar
             <!---->
@@ -1087,7 +1629,7 @@ exports[`default-ui > checkboxes > normal 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root::2"
-            id="bits-c12"
+            id="bits-c14"
           >
             fuzz
             <!---->
@@ -1166,7 +1708,7 @@ exports[`default-ui > checkboxes > normal 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root::3"
-            id="bits-c14"
+            id="bits-c16"
           >
             qux
             <!---->
@@ -1311,7 +1853,7 @@ exports[`default-ui > checkboxes > readonly 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root::0"
-            id="bits-c24"
+            id="bits-c34"
           >
             foo
             <!---->
@@ -1390,7 +1932,7 @@ exports[`default-ui > checkboxes > readonly 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root::1"
-            id="bits-c26"
+            id="bits-c36"
           >
             bar
             <!---->
@@ -1469,7 +2011,7 @@ exports[`default-ui > checkboxes > readonly 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root::2"
-            id="bits-c28"
+            id="bits-c38"
           >
             fuzz
             <!---->
@@ -1548,7 +2090,7 @@ exports[`default-ui > checkboxes > readonly 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root::3"
-            id="bits-c30"
+            id="bits-c40"
           >
             qux
             <!---->
@@ -1579,6 +2121,141 @@ exports[`default-ui > checkboxes > readonly 1`] = `
     <!---->
     <button
       class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`default-ui > combobox > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <button
+          aria-expanded="false"
+          aria-haspopup="dialog"
+          class="ring-offset-background focus-visible:ring-ring inline-flex items-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border-input bg-background hover:bg-accent hover:text-accent-foreground border h-10 px-4 py-2 w-full justify-between"
+          data-popover-trigger=""
+          data-state="closed"
+          disabled=""
+          id="bits-c53"
+          role="combobox"
+          type="button"
+        >
+           
+          <svg
+            class="lucide-icon lucide lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <!---->
+            <path
+              d="m7 15 5 5 5-5"
+            >
+              
+            </path>
+            
+            <!---->
+            <path
+              d="m7 9 5-5 5 5"
+            >
+              
+            </path>
+            
+            <!---->
+            <!---->
+            
+            <!---->
+          </svg>
+          <!---->
+          <!---->
+        </button>
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        
+        
+        <!---->
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+      disabled=""
       type="submit"
     >
       <!---->
@@ -1637,7 +2314,7 @@ exports[`default-ui > combobox > error 1`] = `
           class="ring-offset-background focus-visible:ring-ring inline-flex items-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border-input bg-background hover:bg-accent hover:text-accent-foreground border h-10 px-4 py-2 w-full justify-between"
           data-popover-trigger=""
           data-state="closed"
-          id="bits-c39"
+          id="bits-c51"
           role="combobox"
           type="button"
         >
@@ -1782,7 +2459,7 @@ exports[`default-ui > combobox > normal 1`] = `
           class="ring-offset-background focus-visible:ring-ring inline-flex items-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border-input bg-background hover:bg-accent hover:text-accent-foreground border h-10 px-4 py-2 w-full justify-between"
           data-popover-trigger=""
           data-state="closed"
-          id="bits-c37"
+          id="bits-c49"
           role="combobox"
           type="button"
         >
@@ -1915,7 +2592,7 @@ exports[`default-ui > combobox > readonly 1`] = `
           class="ring-offset-background focus-visible:ring-ring inline-flex items-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border-input bg-background hover:bg-accent hover:text-accent-foreground border h-10 px-4 py-2 w-full justify-between"
           data-popover-trigger=""
           data-state="closed"
-          id="bits-c41"
+          id="bits-c55"
           role="combobox"
           type="button"
         >
@@ -2010,6 +2687,107 @@ exports[`default-ui > combobox > readonly 1`] = `
 </div>
 `;
 
+exports[`default-ui > datePicker > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <button
+          aria-expanded="false"
+          aria-haspopup="dialog"
+          class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary hover:bg-primary/90 h-10 px-4 py-2 w-full text-muted-foreground"
+          data-popover-trigger=""
+          data-state="closed"
+          id="bits-c61"
+          type="button"
+        >
+          
+          <!---->
+        </button>
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        
+        
+        <!---->
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
 exports[`default-ui > datePicker > error 1`] = `
 <div>
   <!---->
@@ -2048,7 +2826,7 @@ exports[`default-ui > datePicker > error 1`] = `
           class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary hover:bg-primary/90 h-10 px-4 py-2 w-full text-muted-foreground"
           data-popover-trigger=""
           data-state="closed"
-          id="bits-c45"
+          id="bits-c59"
           type="button"
         >
           
@@ -2160,7 +2938,7 @@ exports[`default-ui > datePicker > normal 1`] = `
           class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary hover:bg-primary/90 h-10 px-4 py-2 w-full text-muted-foreground"
           data-popover-trigger=""
           data-state="closed"
-          id="bits-c43"
+          id="bits-c57"
           type="button"
         >
           
@@ -2260,7 +3038,7 @@ exports[`default-ui > datePicker > readonly 1`] = `
           class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary hover:bg-primary/90 h-10 px-4 py-2 w-full text-muted-foreground"
           data-popover-trigger=""
           data-state="closed"
-          id="bits-c47"
+          id="bits-c63"
           type="button"
         >
           
@@ -2302,6 +3080,85 @@ exports[`default-ui > datePicker > readonly 1`] = `
     <!---->
     <button
       class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`default-ui > file > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          data-loading="false"
+          data-processing="false"
+          disabled=""
+          id="root"
+          name="root"
+          type="file"
+        />
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+      disabled=""
       type="submit"
     >
       <!---->
@@ -2566,6 +3423,86 @@ exports[`default-ui > file > readonly 1`] = `
 </div>
 `;
 
+exports[`default-ui > multiFile > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          data-loading="true"
+          data-processing="false"
+          disabled=""
+          id="root"
+          multiple=""
+          name="root"
+          type="file"
+        />
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
 exports[`default-ui > multiFile > error 1`] = `
 <div>
   <!---->
@@ -2793,6 +3730,145 @@ exports[`default-ui > multiFile > readonly 1`] = `
     <!---->
     <button
       class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`default-ui > multiSelect > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <button
+          aria-expanded="false"
+          aria-haspopup="listbox"
+          class="border-input bg-background ring-offset-background data-[placeholder]:text-muted-foreground focus:ring-ring flex h-10 w-full items-center justify-between rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1"
+          data-disabled=""
+          data-placeholder=""
+          data-select-trigger=""
+          data-state="closed"
+          disabled=""
+          id="root"
+          name="root"
+          type="button"
+        >
+          <!---->
+          <span>
+            
+          </span>
+          <!---->
+           
+          <svg
+            class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <!---->
+            <path
+              d="m6 9 6 6 6-6"
+            >
+              
+            </path>
+            
+            <!---->
+            <!---->
+            
+            <!---->
+          </svg>
+          <!---->
+          <!---->
+        </button>
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        
+        
+        <!---->
+        
+        
+        <!---->
+         
+        <!---->
+        
+        <!---->
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+      disabled=""
       type="submit"
     >
       <!---->
@@ -3233,6 +4309,88 @@ exports[`default-ui > multiSelect > readonly 1`] = `
 </div>
 `;
 
+exports[`default-ui > number > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          disabled=""
+          id="root"
+          name="root"
+          step="any"
+          type="number"
+        />
+        
+        <!---->
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
 exports[`default-ui > number > error 1`] = `
 <div>
   <!---->
@@ -3486,6 +4644,274 @@ exports[`default-ui > number > readonly 1`] = `
 </div>
 `;
 
+exports[`default-ui > radio > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          aria-required="false"
+          class="grid gap-2"
+          data-disabled=""
+          data-orientation="vertical"
+          data-radio-group-root=""
+          id="bits-c111"
+          role="radiogroup"
+        >
+          <!---->
+          <div
+            class="flex items-center space-x-2"
+          >
+            <!---->
+            <!---->
+            <button
+              aria-checked="false"
+              class="border-primary text-primary ring-offset-background focus-visible:ring-ring aspect-square size-4 rounded-full border focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              data-disabled=""
+              data-orientation="vertical"
+              data-radio-group-item=""
+              data-state="unchecked"
+              data-value="0"
+              disabled=""
+              id="root::0"
+              role="radio"
+              tabindex="-1"
+              type="button"
+            >
+              <div
+                class="flex items-center justify-center"
+              >
+                <!---->
+              </div>
+              <!---->
+            </button>
+            
+            
+            <!---->
+             
+            <!---->
+            <!---->
+            <label
+              class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              data-label-root=""
+              for="root::0"
+              id="bits-c113"
+            >
+              foo
+              <!---->
+            </label>
+            
+            
+            <!---->
+          </div>
+          <div
+            class="flex items-center space-x-2"
+          >
+            <!---->
+            <!---->
+            <button
+              aria-checked="false"
+              class="border-primary text-primary ring-offset-background focus-visible:ring-ring aspect-square size-4 rounded-full border focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              data-disabled=""
+              data-orientation="vertical"
+              data-radio-group-item=""
+              data-state="unchecked"
+              data-value="1"
+              disabled=""
+              id="root::1"
+              role="radio"
+              tabindex="-1"
+              type="button"
+            >
+              <div
+                class="flex items-center justify-center"
+              >
+                <!---->
+              </div>
+              <!---->
+            </button>
+            
+            
+            <!---->
+             
+            <!---->
+            <!---->
+            <label
+              class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              data-label-root=""
+              for="root::1"
+              id="bits-c115"
+            >
+              bar
+              <!---->
+            </label>
+            
+            
+            <!---->
+          </div>
+          <div
+            class="flex items-center space-x-2"
+          >
+            <!---->
+            <!---->
+            <button
+              aria-checked="false"
+              class="border-primary text-primary ring-offset-background focus-visible:ring-ring aspect-square size-4 rounded-full border focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              data-disabled=""
+              data-orientation="vertical"
+              data-radio-group-item=""
+              data-state="unchecked"
+              data-value="2"
+              disabled=""
+              id="root::2"
+              role="radio"
+              tabindex="-1"
+              type="button"
+            >
+              <div
+                class="flex items-center justify-center"
+              >
+                <!---->
+              </div>
+              <!---->
+            </button>
+            
+            
+            <!---->
+             
+            <!---->
+            <!---->
+            <label
+              class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              data-label-root=""
+              for="root::2"
+              id="bits-c117"
+            >
+              fuzz
+              <!---->
+            </label>
+            
+            
+            <!---->
+          </div>
+          <div
+            class="flex items-center space-x-2"
+          >
+            <!---->
+            <!---->
+            <button
+              aria-checked="false"
+              class="border-primary text-primary ring-offset-background focus-visible:ring-ring aspect-square size-4 rounded-full border focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              data-disabled=""
+              data-orientation="vertical"
+              data-radio-group-item=""
+              data-state="unchecked"
+              data-value="3"
+              disabled=""
+              id="root::3"
+              role="radio"
+              tabindex="-1"
+              type="button"
+            >
+              <div
+                class="flex items-center justify-center"
+              >
+                <!---->
+              </div>
+              <!---->
+            </button>
+            
+            
+            <!---->
+             
+            <!---->
+            <!---->
+            <label
+              class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              data-label-root=""
+              for="root::3"
+              id="bits-c119"
+            >
+              qux
+              <!---->
+            </label>
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+        </div>
+        <!---->
+         
+        <!---->
+        
+        <!---->
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
 exports[`default-ui > radio > error 1`] = `
 <div>
   <!---->
@@ -3517,7 +4943,7 @@ exports[`default-ui > radio > error 1`] = `
           class="grid gap-2"
           data-orientation="vertical"
           data-radio-group-root=""
-          id="bits-c79"
+          id="bits-c102"
           role="radiogroup"
         >
           <!---->
@@ -3555,7 +4981,7 @@ exports[`default-ui > radio > error 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root::0"
-              id="bits-c81"
+              id="bits-c104"
             >
               foo
               <!---->
@@ -3598,7 +5024,7 @@ exports[`default-ui > radio > error 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root::1"
-              id="bits-c83"
+              id="bits-c106"
             >
               bar
               <!---->
@@ -3641,7 +5067,7 @@ exports[`default-ui > radio > error 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root::2"
-              id="bits-c85"
+              id="bits-c108"
             >
               fuzz
               <!---->
@@ -3684,7 +5110,7 @@ exports[`default-ui > radio > error 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root::3"
-              id="bits-c87"
+              id="bits-c110"
             >
               qux
               <!---->
@@ -3787,7 +5213,7 @@ exports[`default-ui > radio > normal 1`] = `
           class="grid gap-2"
           data-orientation="vertical"
           data-radio-group-root=""
-          id="bits-c70"
+          id="bits-c93"
           role="radiogroup"
         >
           <!---->
@@ -3825,7 +5251,7 @@ exports[`default-ui > radio > normal 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root::0"
-              id="bits-c72"
+              id="bits-c95"
             >
               foo
               <!---->
@@ -3868,7 +5294,7 @@ exports[`default-ui > radio > normal 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root::1"
-              id="bits-c74"
+              id="bits-c97"
             >
               bar
               <!---->
@@ -3911,7 +5337,7 @@ exports[`default-ui > radio > normal 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root::2"
-              id="bits-c76"
+              id="bits-c99"
             >
               fuzz
               <!---->
@@ -3954,7 +5380,7 @@ exports[`default-ui > radio > normal 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root::3"
-              id="bits-c78"
+              id="bits-c101"
             >
               qux
               <!---->
@@ -4045,7 +5471,7 @@ exports[`default-ui > radio > readonly 1`] = `
           class="grid gap-2"
           data-orientation="vertical"
           data-radio-group-root=""
-          id="bits-c88"
+          id="bits-c120"
           role="radiogroup"
         >
           <!---->
@@ -4083,7 +5509,7 @@ exports[`default-ui > radio > readonly 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root::0"
-              id="bits-c90"
+              id="bits-c122"
             >
               foo
               <!---->
@@ -4126,7 +5552,7 @@ exports[`default-ui > radio > readonly 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root::1"
-              id="bits-c92"
+              id="bits-c124"
             >
               bar
               <!---->
@@ -4169,7 +5595,7 @@ exports[`default-ui > radio > readonly 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root::2"
-              id="bits-c94"
+              id="bits-c126"
             >
               fuzz
               <!---->
@@ -4212,7 +5638,7 @@ exports[`default-ui > radio > readonly 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root::3"
-              id="bits-c96"
+              id="bits-c128"
             >
               qux
               <!---->
@@ -4252,6 +5678,182 @@ exports[`default-ui > radio > readonly 1`] = `
     <!---->
     <button
       class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`default-ui > radioButtons > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          aria-required="false"
+          class="flex items-center justify-center gap-1"
+          data-disabled=""
+          data-orientation="horizontal"
+          data-toggle-group-root=""
+          id="root"
+          role="group"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            class="ring-offset-background hover:bg-muted hover:text-muted-foreground focus-visible:ring-ring data-[state=on]:bg-accent data-[state=on]:text-accent-foreground inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-transparent h-10 min-w-10 px-3"
+            data-disabled=""
+            data-orientation="horizontal"
+            data-state="off"
+            data-toggle-group-item=""
+            data-value="0"
+            disabled=""
+            id="bits-c84"
+            role="radio"
+            tabindex="-1"
+            type="button"
+          >
+            foo
+            <!---->
+          </button>
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            class="ring-offset-background hover:bg-muted hover:text-muted-foreground focus-visible:ring-ring data-[state=on]:bg-accent data-[state=on]:text-accent-foreground inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-transparent h-10 min-w-10 px-3"
+            data-disabled=""
+            data-orientation="horizontal"
+            data-state="off"
+            data-toggle-group-item=""
+            data-value="1"
+            disabled=""
+            id="bits-c85"
+            role="radio"
+            tabindex="-1"
+            type="button"
+          >
+            bar
+            <!---->
+          </button>
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            class="ring-offset-background hover:bg-muted hover:text-muted-foreground focus-visible:ring-ring data-[state=on]:bg-accent data-[state=on]:text-accent-foreground inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-transparent h-10 min-w-10 px-3"
+            data-disabled=""
+            data-orientation="horizontal"
+            data-state="off"
+            data-toggle-group-item=""
+            data-value="2"
+            disabled=""
+            id="bits-c86"
+            role="radio"
+            tabindex="-1"
+            type="button"
+          >
+            fuzz
+            <!---->
+          </button>
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            class="ring-offset-background hover:bg-muted hover:text-muted-foreground focus-visible:ring-ring data-[state=on]:bg-accent data-[state=on]:text-accent-foreground inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-transparent h-10 min-w-10 px-3"
+            data-disabled=""
+            data-orientation="horizontal"
+            data-state="off"
+            data-toggle-group-item=""
+            data-value="3"
+            disabled=""
+            id="bits-c87"
+            role="radio"
+            tabindex="-1"
+            type="button"
+          >
+            qux
+            <!---->
+          </button>
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+      disabled=""
       type="submit"
     >
       <!---->
@@ -4317,7 +5919,7 @@ exports[`default-ui > radioButtons > error 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="0"
-            id="bits-c61"
+            id="bits-c79"
             role="radio"
             tabindex="0"
             type="button"
@@ -4338,7 +5940,7 @@ exports[`default-ui > radioButtons > error 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="1"
-            id="bits-c62"
+            id="bits-c80"
             role="radio"
             tabindex="-1"
             type="button"
@@ -4359,7 +5961,7 @@ exports[`default-ui > radioButtons > error 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="2"
-            id="bits-c63"
+            id="bits-c81"
             role="radio"
             tabindex="-1"
             type="button"
@@ -4380,7 +5982,7 @@ exports[`default-ui > radioButtons > error 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="3"
-            id="bits-c64"
+            id="bits-c82"
             role="radio"
             tabindex="-1"
             type="button"
@@ -4495,7 +6097,7 @@ exports[`default-ui > radioButtons > normal 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="0"
-            id="bits-c56"
+            id="bits-c74"
             role="radio"
             tabindex="0"
             type="button"
@@ -4516,7 +6118,7 @@ exports[`default-ui > radioButtons > normal 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="1"
-            id="bits-c57"
+            id="bits-c75"
             role="radio"
             tabindex="-1"
             type="button"
@@ -4537,7 +6139,7 @@ exports[`default-ui > radioButtons > normal 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="2"
-            id="bits-c58"
+            id="bits-c76"
             role="radio"
             tabindex="-1"
             type="button"
@@ -4558,7 +6160,7 @@ exports[`default-ui > radioButtons > normal 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="3"
-            id="bits-c59"
+            id="bits-c77"
             role="radio"
             tabindex="-1"
             type="button"
@@ -4662,7 +6264,7 @@ exports[`default-ui > radioButtons > readonly 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="0"
-            id="bits-c66"
+            id="bits-c89"
             role="radio"
             tabindex="0"
             type="button"
@@ -4683,7 +6285,7 @@ exports[`default-ui > radioButtons > readonly 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="1"
-            id="bits-c67"
+            id="bits-c90"
             role="radio"
             tabindex="-1"
             type="button"
@@ -4704,7 +6306,7 @@ exports[`default-ui > radioButtons > readonly 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="2"
-            id="bits-c68"
+            id="bits-c91"
             role="radio"
             tabindex="-1"
             type="button"
@@ -4725,7 +6327,7 @@ exports[`default-ui > radioButtons > readonly 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="3"
-            id="bits-c69"
+            id="bits-c92"
             role="radio"
             tabindex="-1"
             type="button"
@@ -4763,6 +6365,129 @@ exports[`default-ui > radioButtons > readonly 1`] = `
     <!---->
     <button
       class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`default-ui > range > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <span
+          class="relative flex touch-none select-none items-center data-[orientation='vertical']:h-full data-[orientation='vertical']:min-h-44 data-[orientation='horizontal']:w-full data-[orientation='vertical']:w-auto data-[orientation='vertical']:flex-col"
+          data-disabled=""
+          data-orientation="horizontal"
+          data-slider-root=""
+          id="root"
+          style=""
+        >
+          <span
+            class="bg-secondary relative grow overflow-hidden rounded-full data-[orientation='horizontal']:h-2 data-[orientation='vertical']:h-full data-[orientation='horizontal']:w-full data-[orientation='vertical']:w-2"
+            data-orientation="horizontal"
+          >
+            <!---->
+            <span
+              class="bg-primary absolute data-[orientation='horizontal']:h-full data-[orientation='vertical']:w-full"
+              data-disabled=""
+              data-orientation="horizontal"
+              data-slider-range=""
+              id="bits-c136"
+              style="position: absolute; left: 0%; right: 97.5845%;"
+            >
+              <!---->
+            </span>
+            
+            <!---->
+          </span>
+           
+          <!---->
+          <!---->
+          <span
+            aria-disabled="true"
+            aria-orientation="horizontal"
+            aria-valuemax="100"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            class="border-primary bg-background ring-offset-background focus-visible:ring-ring block size-5 rounded-full border-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+            data-disabled=""
+            data-orientation="horizontal"
+            data-slider-thumb=""
+            data-value="0"
+            id="bits-c137"
+            role="slider"
+            style="position: absolute; left: 2.41546%; translate: -50%;"
+            tabindex="-1"
+          >
+            <!---->
+          </span>
+          
+          
+          <!---->
+          <!---->
+        </span>
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+      disabled=""
       type="submit"
     >
       <!---->
@@ -4825,8 +6550,8 @@ exports[`default-ui > range > error 1`] = `
               class="bg-primary absolute data-[orientation='horizontal']:h-full data-[orientation='vertical']:w-full"
               data-orientation="horizontal"
               data-slider-range=""
-              id="bits-c101"
-              style="position: absolute; left: 0%; right: 100%;"
+              id="bits-c133"
+              style="position: absolute; left: 0%; right: 97.5845%;"
             >
               <!---->
             </span>
@@ -4846,9 +6571,9 @@ exports[`default-ui > range > error 1`] = `
             data-orientation="horizontal"
             data-slider-thumb=""
             data-value="0"
-            id="bits-c102"
+            id="bits-c134"
             role="slider"
-            style="position: absolute; left: 0%; translate: -50%;"
+            style="position: absolute; left: 2.41546%; translate: -50%;"
             tabindex="0"
           >
             <!---->
@@ -4956,8 +6681,8 @@ exports[`default-ui > range > normal 1`] = `
               class="bg-primary absolute data-[orientation='horizontal']:h-full data-[orientation='vertical']:w-full"
               data-orientation="horizontal"
               data-slider-range=""
-              id="bits-c98"
-              style="position: absolute; left: 0%; right: 100%;"
+              id="bits-c130"
+              style="position: absolute; left: 0%; right: 97.5845%;"
             >
               <!---->
             </span>
@@ -4977,9 +6702,9 @@ exports[`default-ui > range > normal 1`] = `
             data-orientation="horizontal"
             data-slider-thumb=""
             data-value="0"
-            id="bits-c99"
+            id="bits-c131"
             role="slider"
-            style="position: absolute; left: 0%; translate: -50%;"
+            style="position: absolute; left: 2.41546%; translate: -50%;"
             tabindex="0"
           >
             <!---->
@@ -5075,8 +6800,8 @@ exports[`default-ui > range > readonly 1`] = `
               class="bg-primary absolute data-[orientation='horizontal']:h-full data-[orientation='vertical']:w-full"
               data-orientation="horizontal"
               data-slider-range=""
-              id="bits-c104"
-              style="position: absolute; left: 0%; right: 100%;"
+              id="bits-c139"
+              style="position: absolute; left: 0%; right: 97.5845%;"
             >
               <!---->
             </span>
@@ -5096,9 +6821,9 @@ exports[`default-ui > range > readonly 1`] = `
             data-orientation="horizontal"
             data-slider-thumb=""
             data-value="0"
-            id="bits-c105"
+            id="bits-c140"
             role="slider"
-            style="position: absolute; left: 0%; translate: -50%;"
+            style="position: absolute; left: 2.41546%; translate: -50%;"
             tabindex="0"
           >
             <!---->
@@ -5132,6 +6857,144 @@ exports[`default-ui > range > readonly 1`] = `
     <!---->
     <button
       class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`default-ui > select > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <button
+          aria-expanded="false"
+          aria-haspopup="listbox"
+          class="border-input bg-background ring-offset-background data-[placeholder]:text-muted-foreground focus:ring-ring flex h-10 w-full items-center justify-between rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1"
+          data-disabled=""
+          data-select-trigger=""
+          data-state="closed"
+          disabled=""
+          id="root"
+          name="root"
+          type="button"
+        >
+          <!---->
+          <span>
+            
+          </span>
+          <!---->
+           
+          <svg
+            class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <!---->
+            <path
+              d="m6 9 6 6 6-6"
+            >
+              
+            </path>
+            
+            <!---->
+            <!---->
+            
+            <!---->
+          </svg>
+          <!---->
+          <!---->
+        </button>
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        
+        
+        <!---->
+        
+        
+        <!---->
+         
+        <!---->
+        
+        <!---->
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+      disabled=""
       type="submit"
     >
       <!---->
@@ -5569,6 +7432,119 @@ exports[`default-ui > select > readonly 1`] = `
 </div>
 `;
 
+exports[`default-ui > switch > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <button
+          aria-checked="false"
+          aria-required="false"
+          class="focus-visible:ring-ring focus-visible:ring-offset-background data-[state=checked]:bg-primary data-[state=unchecked]:bg-input peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          data-disabled=""
+          data-state="unchecked"
+          data-switch-root=""
+          disabled=""
+          id="root"
+          role="switch"
+          type="button"
+        >
+          <!---->
+          <!---->
+          <span
+            class="bg-background pointer-events-none block size-5 rounded-full shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
+            data-disabled=""
+            data-state="unchecked"
+            data-switch-thumb=""
+            id="bits-c146"
+          >
+            <!---->
+          </span>
+          
+          
+          <!---->
+        </button>
+        <!---->
+         
+        <!---->
+        <!---->
+        <input
+          aria-hidden="true"
+          disabled=""
+          name="root"
+          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+          tabindex="-1"
+          type="checkbox"
+          value="on"
+        />
+        
+        
+        <!---->
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
 exports[`default-ui > switch > error 1`] = `
 <div>
   <!---->
@@ -5611,7 +7587,7 @@ exports[`default-ui > switch > error 1`] = `
             class="bg-background pointer-events-none block size-5 rounded-full shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
             data-state="unchecked"
             data-switch-thumb=""
-            id="bits-c109"
+            id="bits-c144"
           >
             <!---->
           </span>
@@ -5731,7 +7707,7 @@ exports[`default-ui > switch > normal 1`] = `
             class="bg-background pointer-events-none block size-5 rounded-full shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
             data-state="unchecked"
             data-switch-thumb=""
-            id="bits-c107"
+            id="bits-c142"
           >
             <!---->
           </span>
@@ -5839,7 +7815,7 @@ exports[`default-ui > switch > readonly 1`] = `
             class="bg-background pointer-events-none block size-5 rounded-full shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
             data-state="unchecked"
             data-switch-thumb=""
-            id="bits-c111"
+            id="bits-c148"
           >
             <!---->
           </span>
@@ -5885,6 +7861,86 @@ exports[`default-ui > switch > readonly 1`] = `
     <!---->
     <button
       class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`default-ui > text > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          disabled=""
+          id="root"
+          name="root"
+        />
+        
+        <!---->
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+      disabled=""
       type="submit"
     >
       <!---->
@@ -6152,6 +8208,80 @@ exports[`default-ui > text > readonly 1`] = `
 </div>
 `;
 
+exports[`default-ui > textarea > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <textarea
+          aria-describedby="root::description root::help root::errors"
+          class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex min-h-[80px] w-full rounded-md border px-3 py-2 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          disabled=""
+          id="root"
+          name="root"
+        />
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
 exports[`default-ui > textarea > error 1`] = `
 <div>
   <!---->
@@ -6381,6 +8511,153 @@ exports[`default-ui > textarea > readonly 1`] = `
 </div>
 `;
 
+exports[`new-york-ui > checkbox > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="flex items-center space-x-2"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-required="false"
+            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-disabled=""
+            data-state="unchecked"
+            disabled=""
+            id="root"
+            role="checkbox"
+            type="button"
+          >
+            <span
+              class="flex items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </span>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            disabled=""
+            name="root"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="on"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root"
+            id="bits-c154"
+          >
+            
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
 exports[`new-york-ui > checkbox > error 1`] = `
 <div>
   <!---->
@@ -6474,7 +8751,7 @@ exports[`new-york-ui > checkbox > error 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root"
-            id="bits-c115"
+            id="bits-c152"
           >
             
             <!---->
@@ -6629,7 +8906,7 @@ exports[`new-york-ui > checkbox > normal 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root"
-            id="bits-c113"
+            id="bits-c150"
           >
             
             <!---->
@@ -6772,7 +9049,7 @@ exports[`new-york-ui > checkbox > readonly 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root"
-            id="bits-c117"
+            id="bits-c156"
           >
             
             <!---->
@@ -6802,6 +9079,401 @@ exports[`new-york-ui > checkbox > readonly 1`] = `
     <!---->
     <button
       class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`new-york-ui > checkboxes > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center space-x-2"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-required="false"
+            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-disabled=""
+            data-state="unchecked"
+            disabled=""
+            id="root::0"
+            role="checkbox"
+            type="button"
+          >
+            <span
+              class="flex items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </span>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            disabled=""
+            name="root"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="0"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root::0"
+            id="bits-c174"
+          >
+            foo
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-2"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-required="false"
+            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-disabled=""
+            data-state="unchecked"
+            disabled=""
+            id="root::1"
+            role="checkbox"
+            type="button"
+          >
+            <span
+              class="flex items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </span>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            disabled=""
+            name="root"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="1"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root::1"
+            id="bits-c176"
+          >
+            bar
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-2"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-required="false"
+            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-disabled=""
+            data-state="unchecked"
+            disabled=""
+            id="root::2"
+            role="checkbox"
+            type="button"
+          >
+            <span
+              class="flex items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </span>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            disabled=""
+            name="root"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="2"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root::2"
+            id="bits-c178"
+          >
+            fuzz
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-2"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-required="false"
+            class="border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50"
+            data-checkbox-root=""
+            data-disabled=""
+            data-state="unchecked"
+            disabled=""
+            id="root::3"
+            role="checkbox"
+            type="button"
+          >
+            <span
+              class="flex items-center justify-center text-current"
+            >
+              <svg
+                class="lucide-icon lucide lucide-check size-4 text-transparent"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!---->
+                <path
+                  d="M20 6 9 17l-5-5"
+                >
+                  
+                </path>
+                
+                <!---->
+                <!---->
+                
+                <!---->
+              </svg>
+              <!---->
+            </span>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            disabled=""
+            name="root"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="3"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-label-root=""
+            for="root::3"
+            id="bits-c180"
+          >
+            qux
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+      disabled=""
       type="submit"
     >
       <!---->
@@ -6916,7 +9588,7 @@ exports[`new-york-ui > checkboxes > error 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root::0"
-            id="bits-c127"
+            id="bits-c166"
           >
             foo
             <!---->
@@ -6995,7 +9667,7 @@ exports[`new-york-ui > checkboxes > error 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root::1"
-            id="bits-c129"
+            id="bits-c168"
           >
             bar
             <!---->
@@ -7074,7 +9746,7 @@ exports[`new-york-ui > checkboxes > error 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root::2"
-            id="bits-c131"
+            id="bits-c170"
           >
             fuzz
             <!---->
@@ -7153,7 +9825,7 @@ exports[`new-york-ui > checkboxes > error 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root::3"
-            id="bits-c133"
+            id="bits-c172"
           >
             qux
             <!---->
@@ -7310,7 +9982,7 @@ exports[`new-york-ui > checkboxes > normal 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root::0"
-            id="bits-c119"
+            id="bits-c158"
           >
             foo
             <!---->
@@ -7389,7 +10061,7 @@ exports[`new-york-ui > checkboxes > normal 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root::1"
-            id="bits-c121"
+            id="bits-c160"
           >
             bar
             <!---->
@@ -7468,7 +10140,7 @@ exports[`new-york-ui > checkboxes > normal 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root::2"
-            id="bits-c123"
+            id="bits-c162"
           >
             fuzz
             <!---->
@@ -7547,7 +10219,7 @@ exports[`new-york-ui > checkboxes > normal 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root::3"
-            id="bits-c125"
+            id="bits-c164"
           >
             qux
             <!---->
@@ -7692,7 +10364,7 @@ exports[`new-york-ui > checkboxes > readonly 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root::0"
-            id="bits-c135"
+            id="bits-c182"
           >
             foo
             <!---->
@@ -7771,7 +10443,7 @@ exports[`new-york-ui > checkboxes > readonly 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root::1"
-            id="bits-c137"
+            id="bits-c184"
           >
             bar
             <!---->
@@ -7850,7 +10522,7 @@ exports[`new-york-ui > checkboxes > readonly 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root::2"
-            id="bits-c139"
+            id="bits-c186"
           >
             fuzz
             <!---->
@@ -7929,7 +10601,7 @@ exports[`new-york-ui > checkboxes > readonly 1`] = `
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             data-label-root=""
             for="root::3"
-            id="bits-c141"
+            id="bits-c188"
           >
             qux
             <!---->
@@ -7960,6 +10632,141 @@ exports[`new-york-ui > checkboxes > readonly 1`] = `
     <!---->
     <button
       class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`new-york-ui > combobox > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <button
+          aria-expanded="false"
+          aria-haspopup="dialog"
+          class="focus-visible:ring-ring inline-flex items-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border-input bg-background hover:bg-accent hover:text-accent-foreground border shadow-sm h-9 px-4 py-2 w-full justify-between"
+          data-popover-trigger=""
+          data-state="closed"
+          disabled=""
+          id="bits-c201"
+          role="combobox"
+          type="button"
+        >
+           
+          <svg
+            class="lucide-icon lucide lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <!---->
+            <path
+              d="m7 15 5 5 5-5"
+            >
+              
+            </path>
+            
+            <!---->
+            <path
+              d="m7 9 5-5 5 5"
+            >
+              
+            </path>
+            
+            <!---->
+            <!---->
+            
+            <!---->
+          </svg>
+          <!---->
+          <!---->
+        </button>
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        
+        
+        <!---->
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+      disabled=""
       type="submit"
     >
       <!---->
@@ -8018,7 +10825,7 @@ exports[`new-york-ui > combobox > error 1`] = `
           class="focus-visible:ring-ring inline-flex items-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border-input bg-background hover:bg-accent hover:text-accent-foreground border shadow-sm h-9 px-4 py-2 w-full justify-between"
           data-popover-trigger=""
           data-state="closed"
-          id="bits-c150"
+          id="bits-c199"
           role="combobox"
           type="button"
         >
@@ -8163,7 +10970,7 @@ exports[`new-york-ui > combobox > normal 1`] = `
           class="focus-visible:ring-ring inline-flex items-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border-input bg-background hover:bg-accent hover:text-accent-foreground border shadow-sm h-9 px-4 py-2 w-full justify-between"
           data-popover-trigger=""
           data-state="closed"
-          id="bits-c148"
+          id="bits-c197"
           role="combobox"
           type="button"
         >
@@ -8296,7 +11103,7 @@ exports[`new-york-ui > combobox > readonly 1`] = `
           class="focus-visible:ring-ring inline-flex items-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border-input bg-background hover:bg-accent hover:text-accent-foreground border shadow-sm h-9 px-4 py-2 w-full justify-between"
           data-popover-trigger=""
           data-state="closed"
-          id="bits-c152"
+          id="bits-c203"
           role="combobox"
           type="button"
         >
@@ -8391,6 +11198,107 @@ exports[`new-york-ui > combobox > readonly 1`] = `
 </div>
 `;
 
+exports[`new-york-ui > datePicker > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <button
+          aria-expanded="false"
+          aria-haspopup="dialog"
+          class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary hover:bg-primary/90 shadow h-9 px-4 py-2 w-full text-muted-foreground"
+          data-popover-trigger=""
+          data-state="closed"
+          id="bits-c209"
+          type="button"
+        >
+          
+          <!---->
+        </button>
+        
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        
+        
+        <!---->
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
 exports[`new-york-ui > datePicker > error 1`] = `
 <div>
   <!---->
@@ -8429,7 +11337,7 @@ exports[`new-york-ui > datePicker > error 1`] = `
           class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary hover:bg-primary/90 shadow h-9 px-4 py-2 w-full text-muted-foreground"
           data-popover-trigger=""
           data-state="closed"
-          id="bits-c156"
+          id="bits-c207"
           type="button"
         >
           
@@ -8541,7 +11449,7 @@ exports[`new-york-ui > datePicker > normal 1`] = `
           class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary hover:bg-primary/90 shadow h-9 px-4 py-2 w-full text-muted-foreground"
           data-popover-trigger=""
           data-state="closed"
-          id="bits-c154"
+          id="bits-c205"
           type="button"
         >
           
@@ -8641,7 +11549,7 @@ exports[`new-york-ui > datePicker > readonly 1`] = `
           class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary hover:bg-primary/90 shadow h-9 px-4 py-2 w-full text-muted-foreground"
           data-popover-trigger=""
           data-state="closed"
-          id="bits-c158"
+          id="bits-c211"
           type="button"
         >
           
@@ -8683,6 +11591,85 @@ exports[`new-york-ui > datePicker > readonly 1`] = `
     <!---->
     <button
       class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`new-york-ui > file > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          data-loading="false"
+          data-processing="false"
+          disabled=""
+          id="root"
+          name="root"
+          type="file"
+        />
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+      disabled=""
       type="submit"
     >
       <!---->
@@ -8947,6 +11934,86 @@ exports[`new-york-ui > file > readonly 1`] = `
 </div>
 `;
 
+exports[`new-york-ui > multiFile > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          data-loading="true"
+          data-processing="false"
+          disabled=""
+          id="root"
+          multiple=""
+          name="root"
+          type="file"
+        />
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
 exports[`new-york-ui > multiFile > error 1`] = `
 <div>
   <!---->
@@ -9174,6 +12241,145 @@ exports[`new-york-ui > multiFile > readonly 1`] = `
     <!---->
     <button
       class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`new-york-ui > multiSelect > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <button
+          aria-expanded="false"
+          aria-haspopup="listbox"
+          class="border-input ring-offset-background data-[placeholder]:text-muted-foreground focus:ring-ring flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1"
+          data-disabled=""
+          data-placeholder=""
+          data-select-trigger=""
+          data-state="closed"
+          disabled=""
+          id="root"
+          name="root"
+          type="button"
+        >
+          <!---->
+          <span>
+            
+          </span>
+          <!---->
+           
+          <svg
+            class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <!---->
+            <path
+              d="m6 9 6 6 6-6"
+            >
+              
+            </path>
+            
+            <!---->
+            <!---->
+            
+            <!---->
+          </svg>
+          <!---->
+          <!---->
+        </button>
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        
+        
+        <!---->
+        
+        
+        <!---->
+         
+        <!---->
+        
+        <!---->
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+      disabled=""
       type="submit"
     >
       <!---->
@@ -9614,6 +12820,88 @@ exports[`new-york-ui > multiSelect > readonly 1`] = `
 </div>
 `;
 
+exports[`new-york-ui > number > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          disabled=""
+          id="root"
+          name="root"
+          step="any"
+          type="number"
+        />
+        
+        <!---->
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
 exports[`new-york-ui > number > error 1`] = `
 <div>
   <!---->
@@ -9867,6 +13155,274 @@ exports[`new-york-ui > number > readonly 1`] = `
 </div>
 `;
 
+exports[`new-york-ui > radio > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          aria-required="false"
+          class="grid gap-2"
+          data-disabled=""
+          data-orientation="vertical"
+          data-radio-group-root=""
+          id="bits-c259"
+          role="radiogroup"
+        >
+          <!---->
+          <div
+            class="flex items-center space-x-2"
+          >
+            <!---->
+            <!---->
+            <button
+              aria-checked="false"
+              class="border-primary text-primary focus-visible:ring-ring aspect-square size-4 rounded-full border shadow focus:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50"
+              data-disabled=""
+              data-orientation="vertical"
+              data-radio-group-item=""
+              data-state="unchecked"
+              data-value="0"
+              disabled=""
+              id="root::0"
+              role="radio"
+              tabindex="-1"
+              type="button"
+            >
+              <div
+                class="flex items-center justify-center"
+              >
+                <!---->
+              </div>
+              <!---->
+            </button>
+            
+            
+            <!---->
+             
+            <!---->
+            <!---->
+            <label
+              class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              data-label-root=""
+              for="root::0"
+              id="bits-c261"
+            >
+              foo
+              <!---->
+            </label>
+            
+            
+            <!---->
+          </div>
+          <div
+            class="flex items-center space-x-2"
+          >
+            <!---->
+            <!---->
+            <button
+              aria-checked="false"
+              class="border-primary text-primary focus-visible:ring-ring aspect-square size-4 rounded-full border shadow focus:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50"
+              data-disabled=""
+              data-orientation="vertical"
+              data-radio-group-item=""
+              data-state="unchecked"
+              data-value="1"
+              disabled=""
+              id="root::1"
+              role="radio"
+              tabindex="-1"
+              type="button"
+            >
+              <div
+                class="flex items-center justify-center"
+              >
+                <!---->
+              </div>
+              <!---->
+            </button>
+            
+            
+            <!---->
+             
+            <!---->
+            <!---->
+            <label
+              class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              data-label-root=""
+              for="root::1"
+              id="bits-c263"
+            >
+              bar
+              <!---->
+            </label>
+            
+            
+            <!---->
+          </div>
+          <div
+            class="flex items-center space-x-2"
+          >
+            <!---->
+            <!---->
+            <button
+              aria-checked="false"
+              class="border-primary text-primary focus-visible:ring-ring aspect-square size-4 rounded-full border shadow focus:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50"
+              data-disabled=""
+              data-orientation="vertical"
+              data-radio-group-item=""
+              data-state="unchecked"
+              data-value="2"
+              disabled=""
+              id="root::2"
+              role="radio"
+              tabindex="-1"
+              type="button"
+            >
+              <div
+                class="flex items-center justify-center"
+              >
+                <!---->
+              </div>
+              <!---->
+            </button>
+            
+            
+            <!---->
+             
+            <!---->
+            <!---->
+            <label
+              class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              data-label-root=""
+              for="root::2"
+              id="bits-c265"
+            >
+              fuzz
+              <!---->
+            </label>
+            
+            
+            <!---->
+          </div>
+          <div
+            class="flex items-center space-x-2"
+          >
+            <!---->
+            <!---->
+            <button
+              aria-checked="false"
+              class="border-primary text-primary focus-visible:ring-ring aspect-square size-4 rounded-full border shadow focus:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50"
+              data-disabled=""
+              data-orientation="vertical"
+              data-radio-group-item=""
+              data-state="unchecked"
+              data-value="3"
+              disabled=""
+              id="root::3"
+              role="radio"
+              tabindex="-1"
+              type="button"
+            >
+              <div
+                class="flex items-center justify-center"
+              >
+                <!---->
+              </div>
+              <!---->
+            </button>
+            
+            
+            <!---->
+             
+            <!---->
+            <!---->
+            <label
+              class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              data-label-root=""
+              for="root::3"
+              id="bits-c267"
+            >
+              qux
+              <!---->
+            </label>
+            
+            
+            <!---->
+          </div>
+          
+          <!---->
+        </div>
+        <!---->
+         
+        <!---->
+        
+        <!---->
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
 exports[`new-york-ui > radio > error 1`] = `
 <div>
   <!---->
@@ -9898,7 +13454,7 @@ exports[`new-york-ui > radio > error 1`] = `
           class="grid gap-2"
           data-orientation="vertical"
           data-radio-group-root=""
-          id="bits-c190"
+          id="bits-c250"
           role="radiogroup"
         >
           <!---->
@@ -9936,7 +13492,7 @@ exports[`new-york-ui > radio > error 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root::0"
-              id="bits-c192"
+              id="bits-c252"
             >
               foo
               <!---->
@@ -9979,7 +13535,7 @@ exports[`new-york-ui > radio > error 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root::1"
-              id="bits-c194"
+              id="bits-c254"
             >
               bar
               <!---->
@@ -10022,7 +13578,7 @@ exports[`new-york-ui > radio > error 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root::2"
-              id="bits-c196"
+              id="bits-c256"
             >
               fuzz
               <!---->
@@ -10065,7 +13621,7 @@ exports[`new-york-ui > radio > error 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root::3"
-              id="bits-c198"
+              id="bits-c258"
             >
               qux
               <!---->
@@ -10168,7 +13724,7 @@ exports[`new-york-ui > radio > normal 1`] = `
           class="grid gap-2"
           data-orientation="vertical"
           data-radio-group-root=""
-          id="bits-c181"
+          id="bits-c241"
           role="radiogroup"
         >
           <!---->
@@ -10206,7 +13762,7 @@ exports[`new-york-ui > radio > normal 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root::0"
-              id="bits-c183"
+              id="bits-c243"
             >
               foo
               <!---->
@@ -10249,7 +13805,7 @@ exports[`new-york-ui > radio > normal 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root::1"
-              id="bits-c185"
+              id="bits-c245"
             >
               bar
               <!---->
@@ -10292,7 +13848,7 @@ exports[`new-york-ui > radio > normal 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root::2"
-              id="bits-c187"
+              id="bits-c247"
             >
               fuzz
               <!---->
@@ -10335,7 +13891,7 @@ exports[`new-york-ui > radio > normal 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root::3"
-              id="bits-c189"
+              id="bits-c249"
             >
               qux
               <!---->
@@ -10426,7 +13982,7 @@ exports[`new-york-ui > radio > readonly 1`] = `
           class="grid gap-2"
           data-orientation="vertical"
           data-radio-group-root=""
-          id="bits-c199"
+          id="bits-c268"
           role="radiogroup"
         >
           <!---->
@@ -10464,7 +14020,7 @@ exports[`new-york-ui > radio > readonly 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root::0"
-              id="bits-c201"
+              id="bits-c270"
             >
               foo
               <!---->
@@ -10507,7 +14063,7 @@ exports[`new-york-ui > radio > readonly 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root::1"
-              id="bits-c203"
+              id="bits-c272"
             >
               bar
               <!---->
@@ -10550,7 +14106,7 @@ exports[`new-york-ui > radio > readonly 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root::2"
-              id="bits-c205"
+              id="bits-c274"
             >
               fuzz
               <!---->
@@ -10593,7 +14149,7 @@ exports[`new-york-ui > radio > readonly 1`] = `
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               data-label-root=""
               for="root::3"
-              id="bits-c207"
+              id="bits-c276"
             >
               qux
               <!---->
@@ -10633,6 +14189,182 @@ exports[`new-york-ui > radio > readonly 1`] = `
     <!---->
     <button
       class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`new-york-ui > radioButtons > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div
+          aria-required="false"
+          class="flex items-center justify-center gap-1"
+          data-disabled=""
+          data-orientation="horizontal"
+          data-toggle-group-root=""
+          id="root"
+          role="group"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            class="hover:bg-muted hover:text-muted-foreground focus-visible:ring-ring data-[state=on]:bg-accent data-[state=on]:text-accent-foreground inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-transparent h-9 min-w-9 px-3"
+            data-disabled=""
+            data-orientation="horizontal"
+            data-state="off"
+            data-toggle-group-item=""
+            data-value="0"
+            disabled=""
+            id="bits-c232"
+            role="radio"
+            tabindex="-1"
+            type="button"
+          >
+            foo
+            <!---->
+          </button>
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            class="hover:bg-muted hover:text-muted-foreground focus-visible:ring-ring data-[state=on]:bg-accent data-[state=on]:text-accent-foreground inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-transparent h-9 min-w-9 px-3"
+            data-disabled=""
+            data-orientation="horizontal"
+            data-state="off"
+            data-toggle-group-item=""
+            data-value="1"
+            disabled=""
+            id="bits-c233"
+            role="radio"
+            tabindex="-1"
+            type="button"
+          >
+            bar
+            <!---->
+          </button>
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            class="hover:bg-muted hover:text-muted-foreground focus-visible:ring-ring data-[state=on]:bg-accent data-[state=on]:text-accent-foreground inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-transparent h-9 min-w-9 px-3"
+            data-disabled=""
+            data-orientation="horizontal"
+            data-state="off"
+            data-toggle-group-item=""
+            data-value="2"
+            disabled=""
+            id="bits-c234"
+            role="radio"
+            tabindex="-1"
+            type="button"
+          >
+            fuzz
+            <!---->
+          </button>
+          
+          
+          
+          <!---->
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            class="hover:bg-muted hover:text-muted-foreground focus-visible:ring-ring data-[state=on]:bg-accent data-[state=on]:text-accent-foreground inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-transparent h-9 min-w-9 px-3"
+            data-disabled=""
+            data-orientation="horizontal"
+            data-state="off"
+            data-toggle-group-item=""
+            data-value="3"
+            disabled=""
+            id="bits-c235"
+            role="radio"
+            tabindex="-1"
+            type="button"
+          >
+            qux
+            <!---->
+          </button>
+          
+          
+          
+          
+          <!---->
+        </div>
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+      disabled=""
       type="submit"
     >
       <!---->
@@ -10698,7 +14430,7 @@ exports[`new-york-ui > radioButtons > error 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="0"
-            id="bits-c172"
+            id="bits-c227"
             role="radio"
             tabindex="0"
             type="button"
@@ -10719,7 +14451,7 @@ exports[`new-york-ui > radioButtons > error 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="1"
-            id="bits-c173"
+            id="bits-c228"
             role="radio"
             tabindex="-1"
             type="button"
@@ -10740,7 +14472,7 @@ exports[`new-york-ui > radioButtons > error 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="2"
-            id="bits-c174"
+            id="bits-c229"
             role="radio"
             tabindex="-1"
             type="button"
@@ -10761,7 +14493,7 @@ exports[`new-york-ui > radioButtons > error 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="3"
-            id="bits-c175"
+            id="bits-c230"
             role="radio"
             tabindex="-1"
             type="button"
@@ -10876,7 +14608,7 @@ exports[`new-york-ui > radioButtons > normal 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="0"
-            id="bits-c167"
+            id="bits-c222"
             role="radio"
             tabindex="0"
             type="button"
@@ -10897,7 +14629,7 @@ exports[`new-york-ui > radioButtons > normal 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="1"
-            id="bits-c168"
+            id="bits-c223"
             role="radio"
             tabindex="-1"
             type="button"
@@ -10918,7 +14650,7 @@ exports[`new-york-ui > radioButtons > normal 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="2"
-            id="bits-c169"
+            id="bits-c224"
             role="radio"
             tabindex="-1"
             type="button"
@@ -10939,7 +14671,7 @@ exports[`new-york-ui > radioButtons > normal 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="3"
-            id="bits-c170"
+            id="bits-c225"
             role="radio"
             tabindex="-1"
             type="button"
@@ -11043,7 +14775,7 @@ exports[`new-york-ui > radioButtons > readonly 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="0"
-            id="bits-c177"
+            id="bits-c237"
             role="radio"
             tabindex="0"
             type="button"
@@ -11064,7 +14796,7 @@ exports[`new-york-ui > radioButtons > readonly 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="1"
-            id="bits-c178"
+            id="bits-c238"
             role="radio"
             tabindex="-1"
             type="button"
@@ -11085,7 +14817,7 @@ exports[`new-york-ui > radioButtons > readonly 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="2"
-            id="bits-c179"
+            id="bits-c239"
             role="radio"
             tabindex="-1"
             type="button"
@@ -11106,7 +14838,7 @@ exports[`new-york-ui > radioButtons > readonly 1`] = `
             data-state="off"
             data-toggle-group-item=""
             data-value="3"
-            id="bits-c180"
+            id="bits-c240"
             role="radio"
             tabindex="-1"
             type="button"
@@ -11144,6 +14876,129 @@ exports[`new-york-ui > radioButtons > readonly 1`] = `
     <!---->
     <button
       class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`new-york-ui > range > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <span
+          class="relative flex touch-none select-none items-center data-[orientation='vertical']:h-full data-[orientation='vertical']:min-h-44 data-[orientation='horizontal']:w-full data-[orientation='vertical']:w-auto data-[orientation='vertical']:flex-col"
+          data-disabled=""
+          data-orientation="horizontal"
+          data-slider-root=""
+          id="root"
+          style=""
+        >
+          <span
+            class="bg-primary/20 relative grow overflow-hidden rounded-full data-[orientation='horizontal']:h-1.5 data-[orientation='vertical']:h-full data-[orientation='horizontal']:w-full data-[orientation='vertical']:w-1.5"
+            data-orientation="horizontal"
+          >
+            <!---->
+            <span
+              class="bg-primary absolute data-[orientation='horizontal']:h-full data-[orientation='vertical']:w-full"
+              data-disabled=""
+              data-orientation="horizontal"
+              data-slider-range=""
+              id="bits-c284"
+              style="position: absolute; left: 0%; right: 98.0676%;"
+            >
+              <!---->
+            </span>
+            
+            <!---->
+          </span>
+           
+          <!---->
+          <!---->
+          <span
+            aria-disabled="true"
+            aria-orientation="horizontal"
+            aria-valuemax="100"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            class="border-primary/50 bg-background focus-visible:ring-ring block size-4 rounded-full border shadow transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50"
+            data-disabled=""
+            data-orientation="horizontal"
+            data-slider-thumb=""
+            data-value="0"
+            id="bits-c285"
+            role="slider"
+            style="position: absolute; left: 1.93237%; translate: -50%;"
+            tabindex="-1"
+          >
+            <!---->
+          </span>
+          
+          
+          <!---->
+          <!---->
+        </span>
+        
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+      disabled=""
       type="submit"
     >
       <!---->
@@ -11206,8 +15061,8 @@ exports[`new-york-ui > range > error 1`] = `
               class="bg-primary absolute data-[orientation='horizontal']:h-full data-[orientation='vertical']:w-full"
               data-orientation="horizontal"
               data-slider-range=""
-              id="bits-c212"
-              style="position: absolute; left: 0%; right: 100%;"
+              id="bits-c281"
+              style="position: absolute; left: 0%; right: 98.0676%;"
             >
               <!---->
             </span>
@@ -11227,9 +15082,9 @@ exports[`new-york-ui > range > error 1`] = `
             data-orientation="horizontal"
             data-slider-thumb=""
             data-value="0"
-            id="bits-c213"
+            id="bits-c282"
             role="slider"
-            style="position: absolute; left: 0%; translate: -50%;"
+            style="position: absolute; left: 1.93237%; translate: -50%;"
             tabindex="0"
           >
             <!---->
@@ -11337,8 +15192,8 @@ exports[`new-york-ui > range > normal 1`] = `
               class="bg-primary absolute data-[orientation='horizontal']:h-full data-[orientation='vertical']:w-full"
               data-orientation="horizontal"
               data-slider-range=""
-              id="bits-c209"
-              style="position: absolute; left: 0%; right: 100%;"
+              id="bits-c278"
+              style="position: absolute; left: 0%; right: 98.0676%;"
             >
               <!---->
             </span>
@@ -11358,9 +15213,9 @@ exports[`new-york-ui > range > normal 1`] = `
             data-orientation="horizontal"
             data-slider-thumb=""
             data-value="0"
-            id="bits-c210"
+            id="bits-c279"
             role="slider"
-            style="position: absolute; left: 0%; translate: -50%;"
+            style="position: absolute; left: 1.93237%; translate: -50%;"
             tabindex="0"
           >
             <!---->
@@ -11456,8 +15311,8 @@ exports[`new-york-ui > range > readonly 1`] = `
               class="bg-primary absolute data-[orientation='horizontal']:h-full data-[orientation='vertical']:w-full"
               data-orientation="horizontal"
               data-slider-range=""
-              id="bits-c215"
-              style="position: absolute; left: 0%; right: 100%;"
+              id="bits-c287"
+              style="position: absolute; left: 0%; right: 98.0676%;"
             >
               <!---->
             </span>
@@ -11477,9 +15332,9 @@ exports[`new-york-ui > range > readonly 1`] = `
             data-orientation="horizontal"
             data-slider-thumb=""
             data-value="0"
-            id="bits-c216"
+            id="bits-c288"
             role="slider"
-            style="position: absolute; left: 0%; translate: -50%;"
+            style="position: absolute; left: 1.93237%; translate: -50%;"
             tabindex="0"
           >
             <!---->
@@ -11513,6 +15368,144 @@ exports[`new-york-ui > range > readonly 1`] = `
     <!---->
     <button
       class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`new-york-ui > select > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <button
+          aria-expanded="false"
+          aria-haspopup="listbox"
+          class="border-input ring-offset-background data-[placeholder]:text-muted-foreground focus:ring-ring flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1"
+          data-disabled=""
+          data-select-trigger=""
+          data-state="closed"
+          disabled=""
+          id="root"
+          name="root"
+          type="button"
+        >
+          <!---->
+          <span>
+            
+          </span>
+          <!---->
+           
+          <svg
+            class="lucide-icon lucide lucide-chevron-down size-4 opacity-50"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <!---->
+            <path
+              d="m6 9 6 6 6-6"
+            >
+              
+            </path>
+            
+            <!---->
+            <!---->
+            
+            <!---->
+          </svg>
+          <!---->
+          <!---->
+        </button>
+        
+        
+        
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        
+        
+        <!---->
+        
+        
+        <!---->
+         
+        <!---->
+        
+        <!---->
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+      disabled=""
       type="submit"
     >
       <!---->
@@ -11950,6 +15943,119 @@ exports[`new-york-ui > select > readonly 1`] = `
 </div>
 `;
 
+exports[`new-york-ui > switch > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <button
+          aria-checked="false"
+          aria-required="false"
+          class="focus-visible:ring-ring focus-visible:ring-offset-background data-[state=checked]:bg-primary data-[state=unchecked]:bg-input peer inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          data-disabled=""
+          data-state="unchecked"
+          data-switch-root=""
+          disabled=""
+          id="root"
+          role="switch"
+          type="button"
+        >
+          <!---->
+          <!---->
+          <span
+            class="bg-background pointer-events-none block size-4 rounded-full shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0"
+            data-disabled=""
+            data-state="unchecked"
+            data-switch-thumb=""
+            id="bits-c294"
+          >
+            <!---->
+          </span>
+          
+          
+          <!---->
+        </button>
+        <!---->
+         
+        <!---->
+        <!---->
+        <input
+          aria-hidden="true"
+          disabled=""
+          name="root"
+          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+          tabindex="-1"
+          type="checkbox"
+          value="on"
+        />
+        
+        
+        <!---->
+        
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
 exports[`new-york-ui > switch > error 1`] = `
 <div>
   <!---->
@@ -11992,7 +16098,7 @@ exports[`new-york-ui > switch > error 1`] = `
             class="bg-background pointer-events-none block size-4 rounded-full shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0"
             data-state="unchecked"
             data-switch-thumb=""
-            id="bits-c220"
+            id="bits-c292"
           >
             <!---->
           </span>
@@ -12112,7 +16218,7 @@ exports[`new-york-ui > switch > normal 1`] = `
             class="bg-background pointer-events-none block size-4 rounded-full shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0"
             data-state="unchecked"
             data-switch-thumb=""
-            id="bits-c218"
+            id="bits-c290"
           >
             <!---->
           </span>
@@ -12220,7 +16326,7 @@ exports[`new-york-ui > switch > readonly 1`] = `
             class="bg-background pointer-events-none block size-4 rounded-full shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0"
             data-state="unchecked"
             data-switch-thumb=""
-            id="bits-c222"
+            id="bits-c296"
           >
             <!---->
           </span>
@@ -12266,6 +16372,86 @@ exports[`new-york-ui > switch > readonly 1`] = `
     <!---->
     <button
       class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`new-york-ui > text > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          disabled=""
+          id="root"
+          name="root"
+        />
+        
+        <!---->
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+      disabled=""
       type="submit"
     >
       <!---->
@@ -12513,6 +16699,80 @@ exports[`new-york-ui > text > readonly 1`] = `
     <!---->
     <button
       class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`new-york-ui > textarea > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <textarea
+          aria-describedby="root::description root::help root::errors"
+          class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex min-h-[60px] w-full rounded-md border bg-transparent px-3 py-2 text-base shadow-sm focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          disabled=""
+          id="root"
+          name="root"
+        />
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2"
+      disabled=""
       type="submit"
     >
       <!---->

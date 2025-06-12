@@ -1,5 +1,82 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`checkbox > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <label
+          class="label cursor-pointer gap-2"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            disabled=""
+            id="root"
+            name="root"
+            type="checkbox"
+          />
+           
+          <span
+            class="label-text"
+          >
+            
+          </span>
+        </label>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
 exports[`checkbox > error 1`] = `
 <div>
   <!---->
@@ -222,6 +299,143 @@ exports[`checkbox > readonly 1`] = `
     <!---->
     <button
       class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`checkboxes > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="label cursor-pointer gap-2 justify-start"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            disabled=""
+            id="root::0"
+            name="root"
+            type="checkbox"
+            value="0"
+          />
+           
+          <span
+            class="label-text"
+          >
+            foo
+          </span>
+        </label>
+        <label
+          class="label cursor-pointer gap-2 justify-start"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            disabled=""
+            id="root::1"
+            name="root"
+            type="checkbox"
+            value="1"
+          />
+           
+          <span
+            class="label-text"
+          >
+            bar
+          </span>
+        </label>
+        <label
+          class="label cursor-pointer gap-2 justify-start"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            disabled=""
+            id="root::2"
+            name="root"
+            type="checkbox"
+            value="2"
+          />
+           
+          <span
+            class="label-text"
+          >
+            fuzz
+          </span>
+        </label>
+        <label
+          class="label cursor-pointer gap-2 justify-start"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            disabled=""
+            id="root::3"
+            name="root"
+            type="checkbox"
+            value="3"
+          />
+           
+          <span
+            class="label-text"
+          >
+            qux
+          </span>
+        </label>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      disabled=""
       type="submit"
     >
       <!---->
@@ -650,6 +864,73 @@ exports[`checkboxes > readonly 1`] = `
 </div>
 `;
 
+exports[`datePicker > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input input-bordered grow"
+          disabled=""
+          id="root"
+          name="root"
+          type="date"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
 exports[`datePicker > error 1`] = `
 <div>
   <!---->
@@ -842,6 +1123,75 @@ exports[`datePicker > readonly 1`] = `
     <!---->
     <button
       class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`file > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="file-input grow"
+          data-loading="false"
+          data-processing="false"
+          disabled=""
+          id="root"
+          name="root"
+          type="file"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      disabled=""
       type="submit"
     >
       <!---->
@@ -1072,6 +1422,76 @@ exports[`file > readonly 1`] = `
 </div>
 `;
 
+exports[`multiFile > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="file-input grow"
+          data-loading="true"
+          data-processing="false"
+          disabled=""
+          id="root"
+          multiple=""
+          name="root"
+          type="file"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
 exports[`multiFile > error 1`] = `
 <div>
   <!---->
@@ -1273,6 +1693,95 @@ exports[`multiFile > readonly 1`] = `
     <!---->
     <button
       class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`multiSelect > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <select
+          aria-describedby="root::description root::help root::errors"
+          class="select select-bordered grow"
+          disabled=""
+          id="root"
+          multiple=""
+          name="root"
+        >
+          <option
+            value="0"
+          >
+            foo
+          </option>
+          <option
+            value="1"
+          >
+            bar
+          </option>
+          <option
+            value="2"
+          >
+            fuzz
+          </option>
+          <option
+            value="3"
+          >
+            qux
+          </option>
+          
+        </select>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      disabled=""
       type="submit"
     >
       <!---->
@@ -1562,6 +2071,78 @@ exports[`multiSelect > readonly 1`] = `
 </div>
 `;
 
+exports[`number > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input input-bordered grow"
+          disabled=""
+          id="root"
+          name="root"
+          step="any"
+          type="number"
+        />
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
 exports[`number > error 1`] = `
 <div>
   <!---->
@@ -1769,6 +2350,143 @@ exports[`number > readonly 1`] = `
     <!---->
     <button
       class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`radio > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="label cursor-pointer gap-2"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="radio"
+            disabled=""
+            id="root::0"
+            name="root"
+            type="radio"
+            value="0"
+          />
+           
+          <span
+            class="label-text"
+          >
+            foo
+          </span>
+        </label>
+        <label
+          class="label cursor-pointer gap-2"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="radio"
+            disabled=""
+            id="root::1"
+            name="root"
+            type="radio"
+            value="1"
+          />
+           
+          <span
+            class="label-text"
+          >
+            bar
+          </span>
+        </label>
+        <label
+          class="label cursor-pointer gap-2"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="radio"
+            disabled=""
+            id="root::2"
+            name="root"
+            type="radio"
+            value="2"
+          />
+           
+          <span
+            class="label-text"
+          >
+            fuzz
+          </span>
+        </label>
+        <label
+          class="label cursor-pointer gap-2"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="radio"
+            disabled=""
+            id="root::3"
+            name="root"
+            type="radio"
+            value="3"
+          />
+           
+          <span
+            class="label-text"
+          >
+            qux
+          </span>
+        </label>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      disabled=""
       type="submit"
     >
       <!---->
@@ -2197,6 +2915,110 @@ exports[`radio > readonly 1`] = `
 </div>
 `;
 
+exports[`radioButtons > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="join"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-label="foo"
+            class="join-item btn"
+            disabled=""
+            id="root::0"
+            name="root"
+            type="radio"
+            value="0"
+          />
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-label="bar"
+            class="join-item btn"
+            disabled=""
+            id="root::1"
+            name="root"
+            type="radio"
+            value="1"
+          />
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-label="fuzz"
+            class="join-item btn"
+            disabled=""
+            id="root::2"
+            name="root"
+            type="radio"
+            value="2"
+          />
+          <input
+            aria-describedby="root::description root::help root::errors"
+            aria-label="qux"
+            class="join-item btn"
+            disabled=""
+            id="root::3"
+            name="root"
+            type="radio"
+            value="3"
+          />
+          
+        </div>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
 exports[`radioButtons > error 1`] = `
 <div>
   <!---->
@@ -2510,6 +3332,74 @@ exports[`radioButtons > readonly 1`] = `
 </div>
 `;
 
+exports[`range > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="range grow"
+          disabled=""
+          id="root"
+          name="root"
+          step="any"
+          type="range"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
 exports[`range > error 1`] = `
 <div>
   <!---->
@@ -2705,6 +3595,100 @@ exports[`range > readonly 1`] = `
     <!---->
     <button
       class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`select > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <select
+          aria-describedby="root::description root::help root::errors"
+          class="select select-bordered grow"
+          disabled=""
+          id="root"
+          name="root"
+        >
+          <option
+            value="-1"
+          >
+            
+          </option>
+          <!---->
+          <option
+            value="0"
+          >
+            foo
+          </option>
+          <option
+            value="1"
+          >
+            bar
+          </option>
+          <option
+            value="2"
+          >
+            fuzz
+          </option>
+          <option
+            value="3"
+          >
+            qux
+          </option>
+          <!---->
+        </select>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      disabled=""
       type="submit"
     >
       <!---->
@@ -3009,6 +3993,83 @@ exports[`select > readonly 1`] = `
 </div>
 `;
 
+exports[`switch > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <label
+          class="label cursor-pointer gap-2"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="toggle"
+            disabled=""
+            id="root"
+            name="root"
+            type="checkbox"
+          />
+           
+          <span
+            class="label-text"
+          >
+            
+          </span>
+        </label>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
 exports[`switch > error 1`] = `
 <div>
   <!---->
@@ -3247,6 +4308,77 @@ exports[`switch > readonly 1`] = `
 </div>
 `;
 
+exports[`text > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input input-bordered grow"
+          disabled=""
+          id="root"
+          name="root"
+          type="text"
+        />
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
 exports[`text > error 1`] = `
 <div>
   <!---->
@@ -3451,6 +4583,72 @@ exports[`text > readonly 1`] = `
     <!---->
     <button
       class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`textarea > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <textarea
+          aria-describedby="root::description root::help root::errors"
+          class="textarea textarea-bordered grow"
+          disabled=""
+          id="root"
+          name="root"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      disabled=""
       type="submit"
     >
       <!---->
