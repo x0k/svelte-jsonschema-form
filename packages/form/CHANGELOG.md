@@ -1,5 +1,15 @@
 # @sjsf/form
 
+## 2.0.2
+
+### Patch Changes
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/4665 ([`d06b974`](https://github.com/x0k/svelte-jsonschema-form/commit/d06b974a79b26bb2a6501e72cfe3806331292b56))
+
+- Fix generation of `d.ts` file for `Field` component ([`e9f95fe`](https://github.com/x0k/svelte-jsonschema-form/commit/e9f95fe89ffed00eec7f6ce434f30dbedea117cc))
+
+- Remove the use of `effect.pre` to set the object's default values ([#138](https://github.com/x0k/svelte-jsonschema-form/pull/138))
+
 ## 2.0.1
 
 ### Patch Changes
