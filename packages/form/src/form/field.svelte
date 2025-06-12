@@ -1,4 +1,4 @@
-<script lang="ts" generics="T, V extends Validator">
+<script lang="ts" generics="T, V extends Validator, N extends JsonPaths<T>">
   import type { Snippet } from "svelte";
   import { DEV } from "esm-env";
 
@@ -29,7 +29,7 @@
 
   interface Props {
     form: FormState<T, V>;
-    name: JsonPaths<T>;
+    name: N;
     required?: boolean;
     uiSchema?: UiSchema;
     render?: Snippet<
