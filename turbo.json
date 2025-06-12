@@ -1,6 +1,9 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "ui": "tui",
+  "globalPassThroughEnv": [
+    "PLAYWRIGHT_BROWSERS_PATH"
+  ],
   "tasks": {
     "check": {
       "dependsOn": [
@@ -26,11 +29,7 @@
       "persistent": true,
       "cache": false
     },
-    "test": {
-      "dependsOn": [
-        "^build"
-      ]
-    },
+    "test": {},
     "preview": {
       "persistent": true,
       "cache": false,

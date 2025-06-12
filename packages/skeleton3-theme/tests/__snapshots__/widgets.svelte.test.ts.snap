@@ -1,0 +1,6390 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`checkbox > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            id="root"
+            name="root"
+            type="checkbox"
+          />
+           
+          <p>
+            
+          </p>
+        </label>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`checkbox > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            id="root"
+            name="root"
+            type="checkbox"
+          />
+           
+          <p>
+            
+          </p>
+        </label>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`checkbox > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            id="root"
+            name="root"
+            readonly=""
+            type="checkbox"
+          />
+           
+          <p>
+            
+          </p>
+        </label>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`checkboxes > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            id="root::0"
+            name="root"
+            type="checkbox"
+            value="0"
+          />
+           
+          <p>
+            foo
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            id="root::1"
+            name="root"
+            type="checkbox"
+            value="1"
+          />
+           
+          <p>
+            bar
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            id="root::2"
+            name="root"
+            type="checkbox"
+            value="2"
+          />
+           
+          <p>
+            fuzz
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            id="root::3"
+            name="root"
+            type="checkbox"
+            value="3"
+          />
+           
+          <p>
+            qux
+          </p>
+        </label>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`checkboxes > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            id="root::0"
+            name="root"
+            type="checkbox"
+            value="0"
+          />
+           
+          <p>
+            foo
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            id="root::1"
+            name="root"
+            type="checkbox"
+            value="1"
+          />
+           
+          <p>
+            bar
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            id="root::2"
+            name="root"
+            type="checkbox"
+            value="2"
+          />
+           
+          <p>
+            fuzz
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            id="root::3"
+            name="root"
+            type="checkbox"
+            value="3"
+          />
+           
+          <p>
+            qux
+          </p>
+        </label>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`checkboxes > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            id="root::0"
+            name="root"
+            readonly=""
+            type="checkbox"
+            value="0"
+          />
+           
+          <p>
+            foo
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            id="root::1"
+            name="root"
+            readonly=""
+            type="checkbox"
+            value="1"
+          />
+           
+          <p>
+            bar
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            id="root::2"
+            name="root"
+            readonly=""
+            type="checkbox"
+            value="2"
+          />
+           
+          <p>
+            fuzz
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="checkbox"
+            id="root::3"
+            name="root"
+            readonly=""
+            type="checkbox"
+            value="3"
+          />
+           
+          <p>
+            qux
+          </p>
+        </label>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`datePicker > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          id="root"
+          name="root"
+          type="date"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`datePicker > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          id="root"
+          name="root"
+          type="date"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`datePicker > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          id="root"
+          name="root"
+          readonly=""
+          type="date"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`file > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          data-loading="false"
+          data-processing="false"
+          id="root"
+          name="root"
+          type="file"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`file > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          data-loading="false"
+          data-processing="false"
+          id="root"
+          name="root"
+          type="file"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`file > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          data-loading="false"
+          data-processing="false"
+          id="root"
+          name="root"
+          readonly=""
+          type="file"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`fileUpload > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="  w-full"
+          data-part="root"
+          data-scope="file-upload"
+          data-testid="uploader"
+          id="file:c2"
+          style="display: block;"
+        >
+          <div
+            aria-label="dropzone"
+            data-invalid=""
+            data-part="dropzone"
+            data-scope="file-upload"
+            id="file:c2:dropzone"
+            role="button"
+            tabindex="0"
+          >
+            <input
+              data-testid="uploader-input"
+              id="root"
+              name="root"
+              style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
+              tabindex="-1"
+              type="file"
+            />
+             
+            <div
+              class="flex flex-col items-center gap-2 hover:cursor-pointer hover:preset-tonal border-[1px] border-dashed p-4 py-10 rounded-container border-surface-200-800  "
+              data-testid="uploader-interface"
+            >
+              <!---->
+               
+              <p
+                data-testid="uploader-interface-label"
+              >
+                Select file or drag here
+              </p>
+              <!---->
+               
+              <!---->
+            </div>
+            <!---->
+          </div>
+           
+          <ul
+            class="mt-2 space-y-2 "
+            data-part="item-group"
+            data-scope="file-upload"
+            data-testid="uploader-files-list"
+          >
+            
+          </ul>
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`fileUpload > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="  w-full"
+          data-part="root"
+          data-scope="file-upload"
+          data-testid="uploader"
+          id="file:c1"
+          style="display: block;"
+        >
+          <div
+            aria-label="dropzone"
+            data-part="dropzone"
+            data-scope="file-upload"
+            id="file:c1:dropzone"
+            role="button"
+            tabindex="0"
+          >
+            <input
+              data-testid="uploader-input"
+              id="root"
+              name="root"
+              style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
+              tabindex="-1"
+              type="file"
+            />
+             
+            <div
+              class="flex flex-col items-center gap-2 hover:cursor-pointer hover:preset-tonal border-[1px] border-dashed p-4 py-10 rounded-container border-surface-200-800  "
+              data-testid="uploader-interface"
+            >
+              <!---->
+               
+              <p
+                data-testid="uploader-interface-label"
+              >
+                Select file or drag here
+              </p>
+              <!---->
+               
+              <!---->
+            </div>
+            <!---->
+          </div>
+           
+          <ul
+            class="mt-2 space-y-2 "
+            data-part="item-group"
+            data-scope="file-upload"
+            data-testid="uploader-files-list"
+          >
+            
+          </ul>
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`fileUpload > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="  w-full"
+          data-part="root"
+          data-scope="file-upload"
+          data-testid="uploader"
+          id="file:c3"
+          style="display: block;"
+        >
+          <div
+            aria-label="dropzone"
+            data-part="dropzone"
+            data-scope="file-upload"
+            id="file:c3:dropzone"
+            role="button"
+            tabindex="0"
+          >
+            <input
+              data-testid="uploader-input"
+              id="root"
+              name="root"
+              style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
+              tabindex="-1"
+              type="file"
+            />
+             
+            <div
+              class="flex flex-col items-center gap-2 hover:cursor-pointer hover:preset-tonal border-[1px] border-dashed p-4 py-10 rounded-container border-surface-200-800  "
+              data-testid="uploader-interface"
+            >
+              <!---->
+               
+              <p
+                data-testid="uploader-interface-label"
+              >
+                Select file or drag here
+              </p>
+              <!---->
+               
+              <!---->
+            </div>
+            <!---->
+          </div>
+           
+          <ul
+            class="mt-2 space-y-2 "
+            data-part="item-group"
+            data-scope="file-upload"
+            data-testid="uploader-files-list"
+          >
+            
+          </ul>
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`fileUploadMultiple > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="  w-full"
+          data-part="root"
+          data-scope="file-upload"
+          data-testid="uploader"
+          id="file:c5"
+          style="display: block;"
+        >
+          <div
+            aria-label="dropzone"
+            data-invalid=""
+            data-part="dropzone"
+            data-scope="file-upload"
+            id="file:c5:dropzone"
+            role="button"
+            tabindex="0"
+          >
+            <input
+              data-testid="uploader-input"
+              id="root"
+              multiple=""
+              name="root"
+              style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
+              tabindex="-1"
+              type="file"
+            />
+             
+            <div
+              class="flex flex-col items-center gap-2 hover:cursor-pointer hover:preset-tonal border-[1px] border-dashed p-4 py-10 rounded-container border-surface-200-800  "
+              data-testid="uploader-interface"
+            >
+              <!---->
+               
+              <p
+                data-testid="uploader-interface-label"
+              >
+                Select file or drag here
+              </p>
+              <!---->
+               
+              <!---->
+            </div>
+            <!---->
+          </div>
+           
+          <ul
+            class="mt-2 space-y-2 "
+            data-part="item-group"
+            data-scope="file-upload"
+            data-testid="uploader-files-list"
+          >
+            
+          </ul>
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`fileUploadMultiple > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="  w-full"
+          data-part="root"
+          data-scope="file-upload"
+          data-testid="uploader"
+          id="file:c4"
+          style="display: block;"
+        >
+          <div
+            aria-label="dropzone"
+            data-part="dropzone"
+            data-scope="file-upload"
+            id="file:c4:dropzone"
+            role="button"
+            tabindex="0"
+          >
+            <input
+              data-testid="uploader-input"
+              id="root"
+              multiple=""
+              name="root"
+              style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
+              tabindex="-1"
+              type="file"
+            />
+             
+            <div
+              class="flex flex-col items-center gap-2 hover:cursor-pointer hover:preset-tonal border-[1px] border-dashed p-4 py-10 rounded-container border-surface-200-800  "
+              data-testid="uploader-interface"
+            >
+              <!---->
+               
+              <p
+                data-testid="uploader-interface-label"
+              >
+                Select file or drag here
+              </p>
+              <!---->
+               
+              <!---->
+            </div>
+            <!---->
+          </div>
+           
+          <ul
+            class="mt-2 space-y-2 "
+            data-part="item-group"
+            data-scope="file-upload"
+            data-testid="uploader-files-list"
+          >
+            
+          </ul>
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`fileUploadMultiple > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="  w-full"
+          data-part="root"
+          data-scope="file-upload"
+          data-testid="uploader"
+          id="file:c6"
+          style="display: block;"
+        >
+          <div
+            aria-label="dropzone"
+            data-part="dropzone"
+            data-scope="file-upload"
+            id="file:c6:dropzone"
+            role="button"
+            tabindex="0"
+          >
+            <input
+              data-testid="uploader-input"
+              id="root"
+              multiple=""
+              name="root"
+              style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
+              tabindex="-1"
+              type="file"
+            />
+             
+            <div
+              class="flex flex-col items-center gap-2 hover:cursor-pointer hover:preset-tonal border-[1px] border-dashed p-4 py-10 rounded-container border-surface-200-800  "
+              data-testid="uploader-interface"
+            >
+              <!---->
+               
+              <p
+                data-testid="uploader-interface-label"
+              >
+                Select file or drag here
+              </p>
+              <!---->
+               
+              <!---->
+            </div>
+            <!---->
+          </div>
+           
+          <ul
+            class="mt-2 space-y-2 "
+            data-part="item-group"
+            data-scope="file-upload"
+            data-testid="uploader-files-list"
+          >
+            
+          </ul>
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`multiFile > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          data-loading="true"
+          data-processing="false"
+          id="root"
+          multiple=""
+          name="root"
+          type="file"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`multiFile > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          data-loading="true"
+          data-processing="false"
+          id="root"
+          multiple=""
+          name="root"
+          type="file"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`multiFile > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          data-loading="true"
+          data-processing="false"
+          id="root"
+          multiple=""
+          name="root"
+          readonly=""
+          type="file"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`multiSelect > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <select
+          aria-describedby="root::description root::help root::errors"
+          class="select"
+          id="root"
+          multiple=""
+          name="root"
+        >
+          <option
+            value="0"
+          >
+            foo
+          </option>
+          <option
+            value="1"
+          >
+            bar
+          </option>
+          <option
+            value="2"
+          >
+            fuzz
+          </option>
+          <option
+            value="3"
+          >
+            qux
+          </option>
+          
+        </select>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`multiSelect > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <select
+          aria-describedby="root::description root::help root::errors"
+          class="select"
+          id="root"
+          multiple=""
+          name="root"
+        >
+          <option
+            value="0"
+          >
+            foo
+          </option>
+          <option
+            value="1"
+          >
+            bar
+          </option>
+          <option
+            value="2"
+          >
+            fuzz
+          </option>
+          <option
+            value="3"
+          >
+            qux
+          </option>
+          
+        </select>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`multiSelect > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <select
+          aria-describedby="root::description root::help root::errors"
+          class="select"
+          id="root"
+          multiple=""
+          name="root"
+        >
+          <option
+            value="0"
+          >
+            foo
+          </option>
+          <option
+            value="1"
+          >
+            bar
+          </option>
+          <option
+            value="2"
+          >
+            fuzz
+          </option>
+          <option
+            value="3"
+          >
+            qux
+          </option>
+          
+        </select>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`number > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          id="root"
+          name="root"
+          step="any"
+          type="number"
+        />
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`number > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          id="root"
+          name="root"
+          step="any"
+          type="number"
+        />
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`number > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          id="root"
+          name="root"
+          readonly=""
+          step="any"
+          type="number"
+        />
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`radio > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="radio"
+            id="root::0"
+            name="root"
+            type="radio"
+            value="0"
+          />
+           
+          <p>
+            foo
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="radio"
+            id="root::1"
+            name="root"
+            type="radio"
+            value="1"
+          />
+           
+          <p>
+            bar
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="radio"
+            id="root::2"
+            name="root"
+            type="radio"
+            value="2"
+          />
+           
+          <p>
+            fuzz
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="radio"
+            id="root::3"
+            name="root"
+            type="radio"
+            value="3"
+          />
+           
+          <p>
+            qux
+          </p>
+        </label>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`radio > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="radio"
+            id="root::0"
+            name="root"
+            type="radio"
+            value="0"
+          />
+           
+          <p>
+            foo
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="radio"
+            id="root::1"
+            name="root"
+            type="radio"
+            value="1"
+          />
+           
+          <p>
+            bar
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="radio"
+            id="root::2"
+            name="root"
+            type="radio"
+            value="2"
+          />
+           
+          <p>
+            fuzz
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="radio"
+            id="root::3"
+            name="root"
+            type="radio"
+            value="3"
+          />
+           
+          <p>
+            qux
+          </p>
+        </label>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`radio > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="radio"
+            id="root::0"
+            name="root"
+            readonly=""
+            type="radio"
+            value="0"
+          />
+           
+          <p>
+            foo
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="radio"
+            id="root::1"
+            name="root"
+            readonly=""
+            type="radio"
+            value="1"
+          />
+           
+          <p>
+            bar
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="radio"
+            id="root::2"
+            name="root"
+            readonly=""
+            type="radio"
+            value="2"
+          />
+           
+          <p>
+            fuzz
+          </p>
+        </label>
+        <label
+          class="flex items-center space-x-2 cursor-pointer"
+        >
+          <input
+            aria-describedby="root::description root::help root::errors"
+            class="radio"
+            id="root::3"
+            name="root"
+            readonly=""
+            type="radio"
+            value="3"
+          />
+           
+          <p>
+            qux
+          </p>
+        </label>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`radioButtons > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          aria-labelledby=""
+          aria-orientation="horizontal"
+          class="inline-flex items-stretch overflow-hidden flex-row preset-outlined-surface-200-800  p-2 gap-2 rounded-container    "
+          data-orientation="horizontal"
+          data-part="root"
+          data-scope="radio-group"
+          data-testid="segment"
+          id="root"
+          role="radiogroup"
+          style="position: relative;"
+        >
+          <div
+            class="top-[var(--top)] left-[var(--left)] w-[var(--width)] h-[var(--height)] preset-filled rounded-base "
+            data-orientation="horizontal"
+            data-part="indicator"
+            data-scope="radio-group"
+            data-testid="segment-indicator"
+            id="radio-group:c8:indicator"
+            style="--transition-property: left, top, width, height; position: absolute; will-change: var(--transition-property); transition-property: var(--transition-property); transition-duration: 0ms; transition-timing-function: var(--transition-timing-function); left: var(--left);"
+          />
+           
+          <!---->
+          <!---->
+          <label
+            class="btn cursor-pointer z-[1]   "
+            data-orientation="horizontal"
+            data-part="item"
+            data-scope="radio-group"
+            data-state="unchecked"
+            data-testid="segment-item"
+            for="radio-group:c8:radio:input:0"
+            id="radio-group:c8:radio:0"
+          >
+            <span
+              class="pointer-events-none transition-colors duration-100  "
+              data-orientation="horizontal"
+              data-part="item-text"
+              data-scope="radio-group"
+              data-state="unchecked"
+              data-testid="segment-item-label"
+              id="radio-group:c8:radio:label:0"
+            >
+              foo
+              <!---->
+            </span>
+             
+            <input
+              data-ownedby="root"
+              data-testid="segment-item-input"
+              id="radio-group:c8:radio:input:0"
+              name="root"
+              style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
+              type="radio"
+              value="0"
+            />
+          </label>
+          
+          <!---->
+          <label
+            class="btn cursor-pointer z-[1]   "
+            data-orientation="horizontal"
+            data-part="item"
+            data-scope="radio-group"
+            data-state="unchecked"
+            data-testid="segment-item"
+            for="radio-group:c8:radio:input:1"
+            id="radio-group:c8:radio:1"
+          >
+            <span
+              class="pointer-events-none transition-colors duration-100  "
+              data-orientation="horizontal"
+              data-part="item-text"
+              data-scope="radio-group"
+              data-state="unchecked"
+              data-testid="segment-item-label"
+              id="radio-group:c8:radio:label:1"
+            >
+              bar
+              <!---->
+            </span>
+             
+            <input
+              data-ownedby="root"
+              data-testid="segment-item-input"
+              id="radio-group:c8:radio:input:1"
+              name="root"
+              style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
+              type="radio"
+              value="1"
+            />
+          </label>
+          
+          <!---->
+          <label
+            class="btn cursor-pointer z-[1]   "
+            data-orientation="horizontal"
+            data-part="item"
+            data-scope="radio-group"
+            data-state="unchecked"
+            data-testid="segment-item"
+            for="radio-group:c8:radio:input:2"
+            id="radio-group:c8:radio:2"
+          >
+            <span
+              class="pointer-events-none transition-colors duration-100  "
+              data-orientation="horizontal"
+              data-part="item-text"
+              data-scope="radio-group"
+              data-state="unchecked"
+              data-testid="segment-item-label"
+              id="radio-group:c8:radio:label:2"
+            >
+              fuzz
+              <!---->
+            </span>
+             
+            <input
+              data-ownedby="root"
+              data-testid="segment-item-input"
+              id="radio-group:c8:radio:input:2"
+              name="root"
+              style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
+              type="radio"
+              value="2"
+            />
+          </label>
+          
+          <!---->
+          <label
+            class="btn cursor-pointer z-[1]   "
+            data-orientation="horizontal"
+            data-part="item"
+            data-scope="radio-group"
+            data-state="unchecked"
+            data-testid="segment-item"
+            for="radio-group:c8:radio:input:3"
+            id="radio-group:c8:radio:3"
+          >
+            <span
+              class="pointer-events-none transition-colors duration-100  "
+              data-orientation="horizontal"
+              data-part="item-text"
+              data-scope="radio-group"
+              data-state="unchecked"
+              data-testid="segment-item-label"
+              id="radio-group:c8:radio:label:3"
+            >
+              qux
+              <!---->
+            </span>
+             
+            <input
+              data-ownedby="root"
+              data-testid="segment-item-input"
+              id="radio-group:c8:radio:input:3"
+              name="root"
+              style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
+              type="radio"
+              value="3"
+            />
+          </label>
+          
+          
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`radioButtons > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          aria-labelledby=""
+          aria-orientation="horizontal"
+          class="inline-flex items-stretch overflow-hidden flex-row preset-outlined-surface-200-800  p-2 gap-2 rounded-container    "
+          data-orientation="horizontal"
+          data-part="root"
+          data-scope="radio-group"
+          data-testid="segment"
+          id="root"
+          role="radiogroup"
+          style="position: relative;"
+        >
+          <div
+            class="top-[var(--top)] left-[var(--left)] w-[var(--width)] h-[var(--height)] preset-filled rounded-base "
+            data-orientation="horizontal"
+            data-part="indicator"
+            data-scope="radio-group"
+            data-testid="segment-indicator"
+            id="radio-group:c7:indicator"
+            style="--transition-property: left, top, width, height; position: absolute; will-change: var(--transition-property); transition-property: var(--transition-property); transition-duration: 0ms; transition-timing-function: var(--transition-timing-function); left: var(--left);"
+          />
+           
+          <!---->
+          <!---->
+          <label
+            class="btn cursor-pointer z-[1]   "
+            data-orientation="horizontal"
+            data-part="item"
+            data-scope="radio-group"
+            data-state="unchecked"
+            data-testid="segment-item"
+            for="radio-group:c7:radio:input:0"
+            id="radio-group:c7:radio:0"
+          >
+            <span
+              class="pointer-events-none transition-colors duration-100  "
+              data-orientation="horizontal"
+              data-part="item-text"
+              data-scope="radio-group"
+              data-state="unchecked"
+              data-testid="segment-item-label"
+              id="radio-group:c7:radio:label:0"
+            >
+              foo
+              <!---->
+            </span>
+             
+            <input
+              data-ownedby="root"
+              data-testid="segment-item-input"
+              id="radio-group:c7:radio:input:0"
+              name="root"
+              style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
+              type="radio"
+              value="0"
+            />
+          </label>
+          
+          <!---->
+          <label
+            class="btn cursor-pointer z-[1]   "
+            data-orientation="horizontal"
+            data-part="item"
+            data-scope="radio-group"
+            data-state="unchecked"
+            data-testid="segment-item"
+            for="radio-group:c7:radio:input:1"
+            id="radio-group:c7:radio:1"
+          >
+            <span
+              class="pointer-events-none transition-colors duration-100  "
+              data-orientation="horizontal"
+              data-part="item-text"
+              data-scope="radio-group"
+              data-state="unchecked"
+              data-testid="segment-item-label"
+              id="radio-group:c7:radio:label:1"
+            >
+              bar
+              <!---->
+            </span>
+             
+            <input
+              data-ownedby="root"
+              data-testid="segment-item-input"
+              id="radio-group:c7:radio:input:1"
+              name="root"
+              style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
+              type="radio"
+              value="1"
+            />
+          </label>
+          
+          <!---->
+          <label
+            class="btn cursor-pointer z-[1]   "
+            data-orientation="horizontal"
+            data-part="item"
+            data-scope="radio-group"
+            data-state="unchecked"
+            data-testid="segment-item"
+            for="radio-group:c7:radio:input:2"
+            id="radio-group:c7:radio:2"
+          >
+            <span
+              class="pointer-events-none transition-colors duration-100  "
+              data-orientation="horizontal"
+              data-part="item-text"
+              data-scope="radio-group"
+              data-state="unchecked"
+              data-testid="segment-item-label"
+              id="radio-group:c7:radio:label:2"
+            >
+              fuzz
+              <!---->
+            </span>
+             
+            <input
+              data-ownedby="root"
+              data-testid="segment-item-input"
+              id="radio-group:c7:radio:input:2"
+              name="root"
+              style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
+              type="radio"
+              value="2"
+            />
+          </label>
+          
+          <!---->
+          <label
+            class="btn cursor-pointer z-[1]   "
+            data-orientation="horizontal"
+            data-part="item"
+            data-scope="radio-group"
+            data-state="unchecked"
+            data-testid="segment-item"
+            for="radio-group:c7:radio:input:3"
+            id="radio-group:c7:radio:3"
+          >
+            <span
+              class="pointer-events-none transition-colors duration-100  "
+              data-orientation="horizontal"
+              data-part="item-text"
+              data-scope="radio-group"
+              data-state="unchecked"
+              data-testid="segment-item-label"
+              id="radio-group:c7:radio:label:3"
+            >
+              qux
+              <!---->
+            </span>
+             
+            <input
+              data-ownedby="root"
+              data-testid="segment-item-input"
+              id="radio-group:c7:radio:input:3"
+              name="root"
+              style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
+              type="radio"
+              value="3"
+            />
+          </label>
+          
+          
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`radioButtons > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          aria-labelledby=""
+          aria-orientation="horizontal"
+          class="inline-flex items-stretch overflow-hidden flex-row preset-outlined-surface-200-800  p-2 gap-2 rounded-container   pointer-events-none "
+          data-orientation="horizontal"
+          data-part="root"
+          data-scope="radio-group"
+          data-testid="segment"
+          id="root"
+          role="radiogroup"
+          style="position: relative;"
+        >
+          <div
+            class="top-[var(--top)] left-[var(--left)] w-[var(--width)] h-[var(--height)] preset-filled rounded-base "
+            data-orientation="horizontal"
+            data-part="indicator"
+            data-scope="radio-group"
+            data-testid="segment-indicator"
+            id="radio-group:c9:indicator"
+            style="--transition-property: left, top, width, height; position: absolute; will-change: var(--transition-property); transition-property: var(--transition-property); transition-duration: 0ms; transition-timing-function: var(--transition-timing-function); left: var(--left);"
+          />
+           
+          <!---->
+          <!---->
+          <label
+            class="btn cursor-pointer z-[1]   "
+            data-orientation="horizontal"
+            data-part="item"
+            data-readonly=""
+            data-scope="radio-group"
+            data-state="unchecked"
+            data-testid="segment-item"
+            for="radio-group:c9:radio:input:0"
+            id="radio-group:c9:radio:0"
+          >
+            <span
+              class="pointer-events-none transition-colors duration-100  "
+              data-orientation="horizontal"
+              data-part="item-text"
+              data-readonly=""
+              data-scope="radio-group"
+              data-state="unchecked"
+              data-testid="segment-item-label"
+              id="radio-group:c9:radio:label:0"
+            >
+              foo
+              <!---->
+            </span>
+             
+            <input
+              data-ownedby="root"
+              data-testid="segment-item-input"
+              id="radio-group:c9:radio:input:0"
+              name="root"
+              style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
+              type="radio"
+              value="0"
+            />
+          </label>
+          
+          <!---->
+          <label
+            class="btn cursor-pointer z-[1]   "
+            data-orientation="horizontal"
+            data-part="item"
+            data-readonly=""
+            data-scope="radio-group"
+            data-state="unchecked"
+            data-testid="segment-item"
+            for="radio-group:c9:radio:input:1"
+            id="radio-group:c9:radio:1"
+          >
+            <span
+              class="pointer-events-none transition-colors duration-100  "
+              data-orientation="horizontal"
+              data-part="item-text"
+              data-readonly=""
+              data-scope="radio-group"
+              data-state="unchecked"
+              data-testid="segment-item-label"
+              id="radio-group:c9:radio:label:1"
+            >
+              bar
+              <!---->
+            </span>
+             
+            <input
+              data-ownedby="root"
+              data-testid="segment-item-input"
+              id="radio-group:c9:radio:input:1"
+              name="root"
+              style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
+              type="radio"
+              value="1"
+            />
+          </label>
+          
+          <!---->
+          <label
+            class="btn cursor-pointer z-[1]   "
+            data-orientation="horizontal"
+            data-part="item"
+            data-readonly=""
+            data-scope="radio-group"
+            data-state="unchecked"
+            data-testid="segment-item"
+            for="radio-group:c9:radio:input:2"
+            id="radio-group:c9:radio:2"
+          >
+            <span
+              class="pointer-events-none transition-colors duration-100  "
+              data-orientation="horizontal"
+              data-part="item-text"
+              data-readonly=""
+              data-scope="radio-group"
+              data-state="unchecked"
+              data-testid="segment-item-label"
+              id="radio-group:c9:radio:label:2"
+            >
+              fuzz
+              <!---->
+            </span>
+             
+            <input
+              data-ownedby="root"
+              data-testid="segment-item-input"
+              id="radio-group:c9:radio:input:2"
+              name="root"
+              style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
+              type="radio"
+              value="2"
+            />
+          </label>
+          
+          <!---->
+          <label
+            class="btn cursor-pointer z-[1]   "
+            data-orientation="horizontal"
+            data-part="item"
+            data-readonly=""
+            data-scope="radio-group"
+            data-state="unchecked"
+            data-testid="segment-item"
+            for="radio-group:c9:radio:input:3"
+            id="radio-group:c9:radio:3"
+          >
+            <span
+              class="pointer-events-none transition-colors duration-100  "
+              data-orientation="horizontal"
+              data-part="item-text"
+              data-readonly=""
+              data-scope="radio-group"
+              data-state="unchecked"
+              data-testid="segment-item-label"
+              id="radio-group:c9:radio:label:3"
+            >
+              qux
+              <!---->
+            </span>
+             
+            <input
+              data-ownedby="root"
+              data-testid="segment-item-input"
+              id="radio-group:c9:radio:input:3"
+              name="root"
+              style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
+              type="radio"
+              value="3"
+            />
+          </label>
+          
+          
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`range > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="range grow w-0"
+          id="root"
+          name="root"
+          step="any"
+          type="range"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`range > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="range grow w-0"
+          id="root"
+          name="root"
+          step="any"
+          type="range"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`range > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="range grow w-0"
+          id="root"
+          name="root"
+          readonly=""
+          step="any"
+          type="range"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`rating > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class=" "
+          data-part="root"
+          data-scope="rating-group"
+          data-testid="rating"
+          dir="ltr"
+          id="rating:c11"
+        >
+          <!---->
+           
+          <div
+            aria-labelledby="rating:c11:label"
+            aria-orientation="horizontal"
+            class="flex gap-2   "
+            data-part="control"
+            data-scope="rating-group"
+            data-testid="rating-control"
+            dir="ltr"
+            id="rating:c11:control"
+            role="radiogroup"
+          >
+            <span
+              aria-checked="true"
+              aria-label="1 stars"
+              aria-posinset="1"
+              aria-roledescription="rating"
+              aria-setsize="5"
+              class="cursor-pointer "
+              data-checked=""
+              data-part="item"
+              data-scope="rating-group"
+              data-testid="rating-item"
+              dir="ltr"
+              id="rating:c11:item:1"
+              role="radio"
+              tabindex="0"
+            >
+              <!---->
+              <svg
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                
+                
+                <path
+                  d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                
+	        
+              </svg>
+              
+              <!---->
+            </span>
+            <span
+              aria-label="2 stars"
+              aria-posinset="2"
+              aria-roledescription="rating"
+              aria-setsize="5"
+              class="cursor-pointer "
+              data-part="item"
+              data-scope="rating-group"
+              data-testid="rating-item"
+              dir="ltr"
+              id="rating:c11:item:2"
+              role="radio"
+              tabindex="-1"
+            >
+              <!---->
+              <svg
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                
+                
+                <path
+                  d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                
+	        
+              </svg>
+              
+              <!---->
+            </span>
+            <span
+              aria-label="3 stars"
+              aria-posinset="3"
+              aria-roledescription="rating"
+              aria-setsize="5"
+              class="cursor-pointer "
+              data-part="item"
+              data-scope="rating-group"
+              data-testid="rating-item"
+              dir="ltr"
+              id="rating:c11:item:3"
+              role="radio"
+              tabindex="-1"
+            >
+              <!---->
+              <svg
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                
+                
+                <path
+                  d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                
+	        
+              </svg>
+              
+              <!---->
+            </span>
+            <span
+              aria-label="4 stars"
+              aria-posinset="4"
+              aria-roledescription="rating"
+              aria-setsize="5"
+              class="cursor-pointer "
+              data-part="item"
+              data-scope="rating-group"
+              data-testid="rating-item"
+              dir="ltr"
+              id="rating:c11:item:4"
+              role="radio"
+              tabindex="-1"
+            >
+              <!---->
+              <svg
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                
+                
+                <path
+                  d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                
+	        
+              </svg>
+              
+              <!---->
+            </span>
+            <span
+              aria-label="5 stars"
+              aria-posinset="5"
+              aria-roledescription="rating"
+              aria-setsize="5"
+              class="cursor-pointer "
+              data-part="item"
+              data-scope="rating-group"
+              data-testid="rating-item"
+              dir="ltr"
+              id="rating:c11:item:5"
+              role="radio"
+              tabindex="-1"
+            >
+              <!---->
+              <svg
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                
+                
+                <path
+                  d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                
+	        
+              </svg>
+              
+              <!---->
+            </span>
+            
+          </div>
+           
+          <input
+            data-testid="rating-input"
+            hidden=""
+            id="root"
+            name="root"
+            type="text"
+          />
+        </div>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`rating > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class=" "
+          data-part="root"
+          data-scope="rating-group"
+          data-testid="rating"
+          dir="ltr"
+          id="rating:c10"
+        >
+          <!---->
+           
+          <div
+            aria-labelledby="rating:c10:label"
+            aria-orientation="horizontal"
+            class="flex gap-2   "
+            data-part="control"
+            data-scope="rating-group"
+            data-testid="rating-control"
+            dir="ltr"
+            id="rating:c10:control"
+            role="radiogroup"
+          >
+            <span
+              aria-checked="true"
+              aria-label="1 stars"
+              aria-posinset="1"
+              aria-roledescription="rating"
+              aria-setsize="5"
+              class="cursor-pointer "
+              data-checked=""
+              data-part="item"
+              data-scope="rating-group"
+              data-testid="rating-item"
+              dir="ltr"
+              id="rating:c10:item:1"
+              role="radio"
+              tabindex="0"
+            >
+              <!---->
+              <svg
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                
+                
+                <path
+                  d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                
+	        
+              </svg>
+              
+              <!---->
+            </span>
+            <span
+              aria-label="2 stars"
+              aria-posinset="2"
+              aria-roledescription="rating"
+              aria-setsize="5"
+              class="cursor-pointer "
+              data-part="item"
+              data-scope="rating-group"
+              data-testid="rating-item"
+              dir="ltr"
+              id="rating:c10:item:2"
+              role="radio"
+              tabindex="-1"
+            >
+              <!---->
+              <svg
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                
+                
+                <path
+                  d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                
+	        
+              </svg>
+              
+              <!---->
+            </span>
+            <span
+              aria-label="3 stars"
+              aria-posinset="3"
+              aria-roledescription="rating"
+              aria-setsize="5"
+              class="cursor-pointer "
+              data-part="item"
+              data-scope="rating-group"
+              data-testid="rating-item"
+              dir="ltr"
+              id="rating:c10:item:3"
+              role="radio"
+              tabindex="-1"
+            >
+              <!---->
+              <svg
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                
+                
+                <path
+                  d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                
+	        
+              </svg>
+              
+              <!---->
+            </span>
+            <span
+              aria-label="4 stars"
+              aria-posinset="4"
+              aria-roledescription="rating"
+              aria-setsize="5"
+              class="cursor-pointer "
+              data-part="item"
+              data-scope="rating-group"
+              data-testid="rating-item"
+              dir="ltr"
+              id="rating:c10:item:4"
+              role="radio"
+              tabindex="-1"
+            >
+              <!---->
+              <svg
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                
+                
+                <path
+                  d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                
+	        
+              </svg>
+              
+              <!---->
+            </span>
+            <span
+              aria-label="5 stars"
+              aria-posinset="5"
+              aria-roledescription="rating"
+              aria-setsize="5"
+              class="cursor-pointer "
+              data-part="item"
+              data-scope="rating-group"
+              data-testid="rating-item"
+              dir="ltr"
+              id="rating:c10:item:5"
+              role="radio"
+              tabindex="-1"
+            >
+              <!---->
+              <svg
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                
+                
+                <path
+                  d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                
+	        
+              </svg>
+              
+              <!---->
+            </span>
+            
+          </div>
+           
+          <input
+            data-testid="rating-input"
+            hidden=""
+            id="root"
+            name="root"
+            type="text"
+          />
+        </div>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`rating > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class=" "
+          data-part="root"
+          data-scope="rating-group"
+          data-testid="rating"
+          dir="ltr"
+          id="rating:c12"
+        >
+          <!---->
+           
+          <div
+            aria-labelledby="rating:c12:label"
+            aria-orientation="horizontal"
+            aria-readonly="true"
+            class="flex gap-2   "
+            data-part="control"
+            data-readonly=""
+            data-scope="rating-group"
+            data-testid="rating-control"
+            dir="ltr"
+            id="rating:c12:control"
+            role="radiogroup"
+          >
+            <span
+              aria-checked="true"
+              aria-label="1 stars"
+              aria-posinset="1"
+              aria-roledescription="rating"
+              aria-setsize="5"
+              class="cursor-pointer "
+              data-checked=""
+              data-part="item"
+              data-readonly=""
+              data-scope="rating-group"
+              data-testid="rating-item"
+              dir="ltr"
+              id="rating:c12:item:1"
+              role="radio"
+              tabindex="0"
+            >
+              <!---->
+              <svg
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                
+                
+                <path
+                  d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                
+	        
+              </svg>
+              
+              <!---->
+            </span>
+            <span
+              aria-label="2 stars"
+              aria-posinset="2"
+              aria-roledescription="rating"
+              aria-setsize="5"
+              class="cursor-pointer "
+              data-part="item"
+              data-readonly=""
+              data-scope="rating-group"
+              data-testid="rating-item"
+              dir="ltr"
+              id="rating:c12:item:2"
+              role="radio"
+            >
+              <!---->
+              <svg
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                
+                
+                <path
+                  d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                
+	        
+              </svg>
+              
+              <!---->
+            </span>
+            <span
+              aria-label="3 stars"
+              aria-posinset="3"
+              aria-roledescription="rating"
+              aria-setsize="5"
+              class="cursor-pointer "
+              data-part="item"
+              data-readonly=""
+              data-scope="rating-group"
+              data-testid="rating-item"
+              dir="ltr"
+              id="rating:c12:item:3"
+              role="radio"
+            >
+              <!---->
+              <svg
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                
+                
+                <path
+                  d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                
+	        
+              </svg>
+              
+              <!---->
+            </span>
+            <span
+              aria-label="4 stars"
+              aria-posinset="4"
+              aria-roledescription="rating"
+              aria-setsize="5"
+              class="cursor-pointer "
+              data-part="item"
+              data-readonly=""
+              data-scope="rating-group"
+              data-testid="rating-item"
+              dir="ltr"
+              id="rating:c12:item:4"
+              role="radio"
+            >
+              <!---->
+              <svg
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                
+                
+                <path
+                  d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                
+	        
+              </svg>
+              
+              <!---->
+            </span>
+            <span
+              aria-label="5 stars"
+              aria-posinset="5"
+              aria-roledescription="rating"
+              aria-setsize="5"
+              class="cursor-pointer "
+              data-part="item"
+              data-readonly=""
+              data-scope="rating-group"
+              data-testid="rating-item"
+              dir="ltr"
+              id="rating:c12:item:5"
+              role="radio"
+            >
+              <!---->
+              <svg
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                
+                
+                <path
+                  d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                
+	        
+              </svg>
+              
+              <!---->
+            </span>
+            
+          </div>
+           
+          <input
+            data-testid="rating-input"
+            hidden=""
+            id="root"
+            name="root"
+            readonly=""
+            type="text"
+          />
+        </div>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`select > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <select
+          aria-describedby="root::description root::help root::errors"
+          class="select"
+          id="root"
+          name="root"
+        >
+          <option
+            value="-1"
+          >
+            
+          </option>
+          <!---->
+          <option
+            value="0"
+          >
+            foo
+          </option>
+          <option
+            value="1"
+          >
+            bar
+          </option>
+          <option
+            value="2"
+          >
+            fuzz
+          </option>
+          <option
+            value="3"
+          >
+            qux
+          </option>
+          <!---->
+        </select>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`select > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <select
+          aria-describedby="root::description root::help root::errors"
+          class="select"
+          id="root"
+          name="root"
+        >
+          <option
+            value="-1"
+          >
+            
+          </option>
+          <!---->
+          <option
+            value="0"
+          >
+            foo
+          </option>
+          <option
+            value="1"
+          >
+            bar
+          </option>
+          <option
+            value="2"
+          >
+            fuzz
+          </option>
+          <option
+            value="3"
+          >
+            qux
+          </option>
+          <!---->
+        </select>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`select > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <select
+          aria-describedby="root::description root::help root::errors"
+          class="select"
+          id="root"
+          name="root"
+        >
+          <option
+            value="-1"
+          >
+            
+          </option>
+          <!---->
+          <option
+            value="0"
+          >
+            foo
+          </option>
+          <option
+            value="1"
+          >
+            bar
+          </option>
+          <option
+            value="2"
+          >
+            fuzz
+          </option>
+          <option
+            value="3"
+          >
+            qux
+          </option>
+          <!---->
+        </select>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`slider > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="w-full bg-green h-1.5   "
+          data-invalid=""
+          data-orientation="horizontal"
+          data-part="root"
+          data-scope="slider"
+          data-testid="slider"
+          dir="ltr"
+          id="slider:c14"
+          style="--slider-thumb-offset-0: calc(0% - 0px); --slider-thumb-width: 0px; --slider-thumb-height: 0px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%;"
+        >
+          <div
+            class=" "
+            data-invalid=""
+            data-orientation="horizontal"
+            data-part="control"
+            data-scope="slider"
+            data-testid="slider-control"
+            dir="ltr"
+            id="slider:c14:control"
+            style="touch-action: none; user-select: none; position: relative;"
+          >
+            <div
+              class="overflow-hidden bg-surface-200-800 h-1.5 rounded-full "
+              data-invalid=""
+              data-orientation="horizontal"
+              data-part="track"
+              data-scope="slider"
+              data-testid="slider-track"
+              dir="ltr"
+              id="slider:c14:track"
+              style="position: relative;"
+            >
+              <div
+                class=" h-1.5 bg-surface-950-50 rounded-container "
+                data-invalid=""
+                data-orientation="horizontal"
+                data-part="range"
+                data-scope="slider"
+                data-testid="slider-meter"
+                dir="ltr"
+                id="slider:c14:range"
+                style="position: absolute; left: var(--slider-range-start); right: var(--slider-range-end);"
+              />
+            </div>
+             
+            <div
+              class="h-1.5"
+              data-testid="slider-thumb-wrapper"
+              style="display: flex; align-items: center; transform: translateY(-100%);"
+            >
+              <div
+                aria-labelledby="slider:c14:label"
+                aria-orientation="horizontal"
+                aria-valuemax="100"
+                aria-valuemin="0"
+                aria-valuenow="0"
+                data-index="0"
+                data-orientation="horizontal"
+                data-part="thumb"
+                data-scope="slider"
+                dir="ltr"
+                id="slider:c14:thumb:0"
+                role="slider"
+                style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-0);"
+                tabindex="0"
+              >
+                <div
+                  class="ring-inset transition-scale duration-100 ease-in-out size-8 md:size-5 bg-surface-50-950 ring-2 ring-surface-950-50 rounded-full hover:cursor-pointer "
+                  data-testid="slider-thumb"
+                />
+                 
+                <input
+                  data-testid="slider-input"
+                  hidden=""
+                  id="root"
+                  name="root"
+                  type="text"
+                />
+              </div>
+              
+            </div>
+          </div>
+           
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`slider > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="w-full bg-green h-1.5   "
+          data-orientation="horizontal"
+          data-part="root"
+          data-scope="slider"
+          data-testid="slider"
+          dir="ltr"
+          id="slider:c13"
+          style="--slider-thumb-offset-0: calc(0% - 0px); --slider-thumb-width: 0px; --slider-thumb-height: 0px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%;"
+        >
+          <div
+            class=" "
+            data-orientation="horizontal"
+            data-part="control"
+            data-scope="slider"
+            data-testid="slider-control"
+            dir="ltr"
+            id="slider:c13:control"
+            style="touch-action: none; user-select: none; position: relative;"
+          >
+            <div
+              class="overflow-hidden bg-surface-200-800 h-1.5 rounded-full "
+              data-orientation="horizontal"
+              data-part="track"
+              data-scope="slider"
+              data-testid="slider-track"
+              dir="ltr"
+              id="slider:c13:track"
+              style="position: relative;"
+            >
+              <div
+                class=" h-1.5 bg-surface-950-50 rounded-container "
+                data-orientation="horizontal"
+                data-part="range"
+                data-scope="slider"
+                data-testid="slider-meter"
+                dir="ltr"
+                id="slider:c13:range"
+                style="position: absolute; left: var(--slider-range-start); right: var(--slider-range-end);"
+              />
+            </div>
+             
+            <div
+              class="h-1.5"
+              data-testid="slider-thumb-wrapper"
+              style="display: flex; align-items: center; transform: translateY(-100%);"
+            >
+              <div
+                aria-labelledby="slider:c13:label"
+                aria-orientation="horizontal"
+                aria-valuemax="100"
+                aria-valuemin="0"
+                aria-valuenow="0"
+                data-index="0"
+                data-orientation="horizontal"
+                data-part="thumb"
+                data-scope="slider"
+                dir="ltr"
+                id="slider:c13:thumb:0"
+                role="slider"
+                style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-0);"
+                tabindex="0"
+              >
+                <div
+                  class="ring-inset transition-scale duration-100 ease-in-out size-8 md:size-5 bg-surface-50-950 ring-2 ring-surface-950-50 rounded-full hover:cursor-pointer "
+                  data-testid="slider-thumb"
+                />
+                 
+                <input
+                  data-testid="slider-input"
+                  hidden=""
+                  id="root"
+                  name="root"
+                  type="text"
+                />
+              </div>
+              
+            </div>
+          </div>
+           
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`slider > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="w-full bg-green h-1.5   "
+          data-orientation="horizontal"
+          data-part="root"
+          data-scope="slider"
+          data-testid="slider"
+          dir="ltr"
+          id="slider:c15"
+          style="--slider-thumb-offset-0: calc(0% - 0px); --slider-thumb-width: 0px; --slider-thumb-height: 0px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%;"
+        >
+          <div
+            class=" "
+            data-orientation="horizontal"
+            data-part="control"
+            data-scope="slider"
+            data-testid="slider-control"
+            dir="ltr"
+            id="slider:c15:control"
+            style="touch-action: none; user-select: none; position: relative;"
+          >
+            <div
+              class="overflow-hidden bg-surface-200-800 h-1.5 rounded-full "
+              data-orientation="horizontal"
+              data-part="track"
+              data-scope="slider"
+              data-testid="slider-track"
+              dir="ltr"
+              id="slider:c15:track"
+              style="position: relative;"
+            >
+              <div
+                class=" h-1.5 bg-surface-950-50 rounded-container "
+                data-orientation="horizontal"
+                data-part="range"
+                data-scope="slider"
+                data-testid="slider-meter"
+                dir="ltr"
+                id="slider:c15:range"
+                style="position: absolute; left: var(--slider-range-start); right: var(--slider-range-end);"
+              />
+            </div>
+             
+            <div
+              class="h-1.5"
+              data-testid="slider-thumb-wrapper"
+              style="display: flex; align-items: center; transform: translateY(-100%);"
+            >
+              <div
+                aria-labelledby="slider:c15:label"
+                aria-orientation="horizontal"
+                aria-valuemax="100"
+                aria-valuemin="0"
+                aria-valuenow="0"
+                data-index="0"
+                data-orientation="horizontal"
+                data-part="thumb"
+                data-scope="slider"
+                dir="ltr"
+                id="slider:c15:thumb:0"
+                role="slider"
+                style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-0);"
+                tabindex="0"
+              >
+                <div
+                  class="ring-inset transition-scale duration-100 ease-in-out size-8 md:size-5 bg-surface-50-950 ring-2 ring-surface-950-50 rounded-full cursor-not-allowed "
+                  data-testid="slider-thumb"
+                />
+                 
+                <input
+                  data-testid="slider-input"
+                  hidden=""
+                  id="root"
+                  name="root"
+                  type="text"
+                />
+              </div>
+              
+            </div>
+          </div>
+           
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`switch > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <label
+          class="inline-flex items-center gap-4 "
+          data-invalid=""
+          data-part="root"
+          data-scope="switch"
+          data-state="unchecked"
+          data-testid="switch"
+          for="root"
+          id="switch:c17"
+        >
+          <input
+            aria-invalid="true"
+            aria-labelledby="switch:c17:label"
+            data-testid="switch-input"
+            id="root"
+            name="root"
+            style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
+            type="checkbox"
+            value="on"
+          />
+           
+          <span
+            aria-hidden="true"
+            class="cursor-pointer transition duration-200 preset-filled-surface-200-800  w-10 h-6 p-0.5 rounded-full hover:brightness-90 dark:hover:brightness-110  "
+            data-invalid=""
+            data-part="control"
+            data-scope="switch"
+            data-state="unchecked"
+            data-testid="switch-control"
+            id="switch:c17:control"
+          >
+            <span
+              aria-hidden="true"
+              class="right-0 aspect-square h-full flex justify-center items-center text-right cursor-pointer preset-filled-surface-50-950 rounded-full transition ease-in-out duration-200 "
+              data-invalid=""
+              data-part="thumb"
+              data-scope="switch"
+              data-state="unchecked"
+              data-testid="switch-thumb"
+              id="switch:c17:thumb"
+            >
+              <!---->
+               
+              <!---->
+            </span>
+          </span>
+           
+          <span
+            class=" "
+            data-invalid=""
+            data-part="label"
+            data-scope="switch"
+            data-state="unchecked"
+            data-testid="switch-label"
+            id="switch:c17:label"
+          >
+            
+            <!---->
+          </span>
+          <!---->
+        </label>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`switch > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <label
+          class="inline-flex items-center gap-4 "
+          data-part="root"
+          data-scope="switch"
+          data-state="unchecked"
+          data-testid="switch"
+          for="root"
+          id="switch:c16"
+        >
+          <input
+            aria-labelledby="switch:c16:label"
+            data-testid="switch-input"
+            id="root"
+            name="root"
+            style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
+            type="checkbox"
+            value="on"
+          />
+           
+          <span
+            aria-hidden="true"
+            class="cursor-pointer transition duration-200 preset-filled-surface-200-800  w-10 h-6 p-0.5 rounded-full hover:brightness-90 dark:hover:brightness-110  "
+            data-part="control"
+            data-scope="switch"
+            data-state="unchecked"
+            data-testid="switch-control"
+            id="switch:c16:control"
+          >
+            <span
+              aria-hidden="true"
+              class="right-0 aspect-square h-full flex justify-center items-center text-right cursor-pointer preset-filled-surface-50-950 rounded-full transition ease-in-out duration-200 "
+              data-part="thumb"
+              data-scope="switch"
+              data-state="unchecked"
+              data-testid="switch-thumb"
+              id="switch:c16:thumb"
+            >
+              <!---->
+               
+              <!---->
+            </span>
+          </span>
+           
+          <span
+            class=" "
+            data-part="label"
+            data-scope="switch"
+            data-state="unchecked"
+            data-testid="switch-label"
+            id="switch:c16:label"
+          >
+            
+            <!---->
+          </span>
+          <!---->
+        </label>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`switch > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <label
+          class="inline-flex items-center gap-4 "
+          data-part="root"
+          data-readonly=""
+          data-scope="switch"
+          data-state="unchecked"
+          data-testid="switch"
+          for="root"
+          id="switch:c18"
+        >
+          <input
+            aria-labelledby="switch:c18:label"
+            data-testid="switch-input"
+            id="root"
+            name="root"
+            style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
+            type="checkbox"
+            value="on"
+          />
+           
+          <span
+            aria-hidden="true"
+            class="cursor-pointer transition duration-200 preset-filled-surface-200-800  w-10 h-6 p-0.5 rounded-full hover:brightness-90 dark:hover:brightness-110  "
+            data-part="control"
+            data-readonly=""
+            data-scope="switch"
+            data-state="unchecked"
+            data-testid="switch-control"
+            id="switch:c18:control"
+          >
+            <span
+              aria-hidden="true"
+              class="right-0 aspect-square h-full flex justify-center items-center text-right cursor-pointer preset-filled-surface-50-950 rounded-full transition ease-in-out duration-200 "
+              data-part="thumb"
+              data-readonly=""
+              data-scope="switch"
+              data-state="unchecked"
+              data-testid="switch-thumb"
+              id="switch:c18:thumb"
+            >
+              <!---->
+               
+              <!---->
+            </span>
+          </span>
+           
+          <span
+            class=" "
+            data-part="label"
+            data-readonly=""
+            data-scope="switch"
+            data-state="unchecked"
+            data-testid="switch-label"
+            id="switch:c18:label"
+          >
+            
+            <!---->
+          </span>
+          <!---->
+        </label>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`tags > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="grid input !h-auto p-3 gap-2  "
+          data-empty=""
+          data-invalid=""
+          data-part="root"
+          data-scope="tags-input"
+          data-testid="tags"
+          dir="ltr"
+          id="tags-input:c20"
+        >
+          <input
+            aria-invalid="true"
+            autocapitalize="none"
+            autocomplete="off"
+            autocorrect="off"
+            class="input-ghost "
+            data-invalid=""
+            data-part="input"
+            data-scope="tags-input"
+            data-testid="tags-input-add"
+            dir="ltr"
+            id="root"
+            placeholder=""
+          />
+           
+          <input
+            data-testid="tags-input"
+            hidden=""
+            id="tags-input:c20:hidden-input"
+            name="root"
+            type="text"
+          />
+           
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`tags > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="grid input !h-auto p-3 gap-2  "
+          data-empty=""
+          data-part="root"
+          data-scope="tags-input"
+          data-testid="tags"
+          dir="ltr"
+          id="tags-input:c19"
+        >
+          <input
+            autocapitalize="none"
+            autocomplete="off"
+            autocorrect="off"
+            class="input-ghost "
+            data-part="input"
+            data-scope="tags-input"
+            data-testid="tags-input-add"
+            dir="ltr"
+            id="root"
+            placeholder=""
+          />
+           
+          <input
+            data-testid="tags-input"
+            hidden=""
+            id="tags-input:c19:hidden-input"
+            name="root"
+            type="text"
+          />
+           
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`tags > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <div
+          class="grid input !h-auto p-3 gap-2  "
+          data-empty=""
+          data-part="root"
+          data-readonly=""
+          data-scope="tags-input"
+          data-testid="tags"
+          dir="ltr"
+          id="tags-input:c21"
+        >
+          <input
+            autocapitalize="none"
+            autocomplete="off"
+            autocorrect="off"
+            class="input-ghost "
+            data-part="input"
+            data-readonly=""
+            data-scope="tags-input"
+            data-testid="tags-input-add"
+            dir="ltr"
+            disabled=""
+            id="root"
+            placeholder=""
+          />
+           
+          <input
+            data-testid="tags-input"
+            hidden=""
+            id="tags-input:c21:hidden-input"
+            name="root"
+            readonly=""
+            type="text"
+          />
+           
+          <!---->
+        </div>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`text > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          id="root"
+          name="root"
+          type="text"
+        />
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`text > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          id="root"
+          name="root"
+          type="text"
+        />
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`text > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="input"
+          id="root"
+          name="root"
+          readonly=""
+          type="text"
+        />
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`textarea > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <textarea
+          aria-describedby="root::description root::help root::errors"
+          class="textarea"
+          id="root"
+          name="root"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`textarea > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <textarea
+          aria-describedby="root::description root::help root::errors"
+          class="textarea"
+          id="root"
+          name="root"
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`textarea > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <textarea
+          aria-describedby="root::description root::help root::errors"
+          class="textarea"
+          id="root"
+          name="root"
+          readonly=""
+        />
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;

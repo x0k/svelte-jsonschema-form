@@ -3,35 +3,17 @@
   import {
     createForm,
     pathToId,
-    type ComponentDefinition,
     type Schema,
     type Theme,
     type UiOptionsRegistryOption,
     type UiSchemaRoot,
   } from "@sjsf/form";
-  import { createFormValidator } from "@sjsf/ajv8-validator";
-  import { translation } from "@sjsf/form/translations/en";
-  import { resolver } from "@sjsf/form/resolvers/basic";
-  import FilesField from "@sjsf/form/fields/extra-fields/files.svelte";
-  import "@sjsf/form/fields/extra-fields/enum-include";
-  import "@sjsf/form/fields/extra-fields/multi-enum-include";
-  import "@sjsf/form/fields/extra-fields/file-include";
-  import "@sjsf/form/fields/extra-fields/files-include";
+
+  import * as defaults from "../components/form-defaults";
 
   import Form from "./form.svelte";
-  import {
-    createSchemas,
-    boolean,
-    enumeration,
-    file,
-    number,
-    text,
-    uniqueArray,
-    type Specs,
-    filesArray,
-    assertStrings,
-  } from "./schemas";
-  import { cast } from "@sjsf/form/lib/component";
+  import { createSchemas, type Specs } from "./schemas";
+  import { DEFAULT_SPECS } from "./default-specs";
 
   const {
     theme,
@@ -44,80 +26,25 @@
     append?: Snippet;
   } & UiOptionsRegistryOption = $props();
 
-  const validator = createFormValidator();
-
-  const filesAsArrayField = cast(FilesField, {
-    value: {
-      transform(props) {
-        assertStrings(props.value);
-        return props.value;
-      },
-    },
-  }) satisfies ComponentDefinition<"arrayField">;
-
   const widgetsSchemas = (idPrefix: string) =>
-    createSchemas(
-      {
-        checkbox: [boolean, {}],
-        checkboxes: [
-          uniqueArray,
-          {
-            "ui:components": {
-              arrayField: "multiEnumField",
-            },
-          },
-        ],
-        file: [
-          file,
-          {
-            "ui:components": {
-              stringField: "fileField",
-            },
-          },
-        ],
-        multiFile: [
-          filesArray,
-          {
-            "ui:components": {
-              arrayField: filesAsArrayField,
-            },
-          },
-        ],
-        number: [number, {}],
-        select: [
-          enumeration,
-          {
-            "ui:components": {
-              stringField: "enumField",
-            },
-          },
-        ],
-        text: [text, {}],
-        ...additionalSpecs,
-      },
-      { idPrefix }
-    );
+    createSchemas(Object.assign(DEFAULT_SPECS, additionalSpecs), { idPrefix });
 
   const widgetsForm = $derived(
     createForm({
+      ...defaults,
       ...widgetsSchemas("widgets"),
-      resolver,
       idPrefix: "widgets",
       theme,
-      validator,
-      translation,
       uiOptionsRegistry,
     })
   );
   const disabledWidgetsForm = $derived(
     createForm({
+      ...defaults,
       ...widgetsSchemas("widgetsDisabled"),
-      resolver,
       idPrefix: "widgetsDisabled",
       disabled: true,
       theme,
-      validator,
-      translation,
       uiOptionsRegistry,
     })
   );
@@ -155,7 +82,7 @@
   };
 
   const componentsForm = createForm({
-    resolver,
+    ...defaults,
     schema: componentsSchema,
     uiSchema: componentsUiSchema,
     theme,
@@ -171,8 +98,6 @@
         error: null as any,
       },
     ],
-    validator,
-    translation,
     uiOptionsRegistry,
   });
 </script>

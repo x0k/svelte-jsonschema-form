@@ -79,18 +79,6 @@ docs/:
     pnpm run preview
   popd
 
-pl-old/:
-  pushd apps/playground
-  d:
-    pnpm run dev
-  c:
-    pnpm run check
-  b:
-    pnpm run build
-  p:
-    pnpm run preview
-  popd
-
 pl/:
   pushd apps/playground2
   d:
@@ -111,6 +99,8 @@ basic/:
     pnpm run build
   d:
     pnpm run dev
+  t:
+    pnpm run test $@
   popd
 
 daisy4/:
