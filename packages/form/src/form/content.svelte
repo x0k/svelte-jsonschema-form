@@ -21,10 +21,6 @@
   });
 
   const Field = $derived(getFieldComponent(ctx, config));
-  // Forces svelte to update component
-  $effect(() => {
-    Field;
-  });
 </script>
 
 <Field
