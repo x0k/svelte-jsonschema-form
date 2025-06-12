@@ -37,7 +37,8 @@
   "devDependencies": {
     "@sjsf/form": "workspace:*",
     "svelte": "catalog:",
-    "testing": "workspace:*"
+    "testing": "workspace:*",
+    "vite": "catalog"
   },
   "types": "./dist/index.d.ts",
   "svelte": "./dist/index.js",

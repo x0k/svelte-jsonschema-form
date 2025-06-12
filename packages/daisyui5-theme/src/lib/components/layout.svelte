@@ -54,7 +54,7 @@
 				type === 'object-property-key-input' ||
 				type === 'object-property-content',
 			'flex-col': isColumn,
-			'grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-end gap-x-2 [&>:nth-child(3)]:self-start':
+			'grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2':
 				isProperty
 		}}
 		{...attributes}

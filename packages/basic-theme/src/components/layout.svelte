@@ -32,7 +32,7 @@
   function getStyle(type: LayoutType) {
     switch (type) {
       case "object-property":
-        return "display: grid; grid-template-rows: 1fr; align-items: end; column-gap: 0.2rem;";
+        return "display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;";
       case "array-item":
       case "array-item-controls":
         return "display: flex; gap: 0.2rem; align-items: start;";
@@ -86,8 +86,5 @@
   }
   :global([data-layout="object-property"]:has(> :nth-child(2))) {
     grid-template-columns: 1fr 1fr auto;
-  }
-  :global([data-layout="object-property"] > :nth-child(3)) {
-    align-self: start;
   }
 </style>
