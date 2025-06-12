@@ -88,7 +88,7 @@ export function createObjectContext<V extends Validator>(
 
   // NOTE: This code should populate `defaults` for properties from
   // `dependencies` before new `fields` will populate their `defaults`.
-  $effect.pre(() => {
+  $effect(() => {
     schemaProperties;
     setValue(
       untrack(
