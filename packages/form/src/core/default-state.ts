@@ -397,7 +397,7 @@ export function computeDefaults(
       stack: nextStack,
       experimental_defaultFormStateBehavior: experimentalBehaviorToCompute,
       parentDefaults: defaults,
-      rawFormData: schemaToComputeFormData,
+      rawFormData: rawFormData ?? schemaToComputeFormData,
       required,
       shouldMergeDefaultsIntoFormData,
     });
