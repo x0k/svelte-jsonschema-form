@@ -1,4 +1,4 @@
-# @sjsf/zod-integration
+# @sjsf/zod-validator
 
 ## 2.0.2
 
