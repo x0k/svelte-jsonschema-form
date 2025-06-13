@@ -4,5 +4,6 @@
     "moduleResolution": "NodeNext",
     "outDir": "dist",
     "rootDir": "src",
+    "sourceMap": false
   },
 }
