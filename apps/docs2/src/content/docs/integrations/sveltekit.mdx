@@ -44,9 +44,19 @@ See details in the sections below
 ## Server
 
 On the server side you should implement at least one [action](https://svelte.dev/docs/kit/form-actions)
-which will always return the result of `validateForm2` function (`redirect` and `error` helpers are allowed).
+which will always return the result of `validateForm` function (`redirect` and `error` helpers are allowed).
 
 If the form data is passed as `FormData`, you need to create a parser for it.
+
+:::caution
+
+Serialization of original errors may lead to non-consistent state on the client
+(for example, if the error is represented by an instance of some class).
+
+You can use the [transport](https://svelte.dev/docs/kit/@sveltejs-kit#Transport)
+hook to pass original errors correctly.
+
+:::
 
 <Code code={serverCode} lang="typescript" />
 
@@ -98,7 +108,7 @@ According to Svelte documentation your form should always use `POST` requests.
 
 By default, the form will work even with JavaScript disabled, but you should consider the following limitations of this mode of operation:
 
-- `validateForm2` should be called with `sendData: true` to persist form data between page updates
+- `validateForm` should be called with `sendData: true` to persist form data between page updates
 - Form fields for `oneOf`, `anyOf`, `dependencies`, `additionalProperties` and `additionalItems`
 will not expand/switch their state.
 - Some widgets (like multiselect, depends on the theme) may will not work, because they require `JavaScript`.
