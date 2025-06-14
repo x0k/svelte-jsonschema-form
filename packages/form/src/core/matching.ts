@@ -26,6 +26,7 @@ import { isSchemaObjectValue } from "./value.js";
 // - `validators/precompile`
 // - `@sjsf/ajv8-validator/precompile`
 // - `@sjsf/schemasafe-validator/precompile`
+// - `@sjsf/zod4-validator`
 export function createAugmentSchema({
   required,
   ...rest
