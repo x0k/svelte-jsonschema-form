@@ -1,5 +1,24 @@
 # playground2
 
+## 1.0.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/ajv8-validator@2.1.0
+  - @sjsf/basic-theme@2.1.0
+  - @sjsf/cfworker-validator@2.1.0
+  - @sjsf/daisyui5-theme@2.1.0
+  - @sjsf/flowbite-icons@2.1.0
+  - @sjsf/flowbite3-theme@2.1.0
+  - @sjsf/form@2.1.0
+  - @sjsf/lucide-icons@2.1.0
+  - @sjsf/moving-icons@2.1.0
+  - @sjsf/radix-icons@2.1.0
+  - @sjsf/schemasafe-validator@2.1.0
+  - @sjsf/shadcn4-theme@2.1.0
+  - @sjsf/skeleton3-theme@2.1.0
+
 ## 1.0.2
 
 ### Patch Changes
