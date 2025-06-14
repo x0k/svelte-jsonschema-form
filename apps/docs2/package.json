@@ -34,6 +34,7 @@
     "@sjsf/skeleton3-theme": "workspace:*",
     "@sjsf/sveltekit": "workspace:*",
     "@sjsf/zod-validator": "workspace:*",
+    "@sjsf/zod4-validator": "workspace:*",
     "@skeletonlabs/skeleton": "3.0.0-next.10",
     "@skeletonlabs/skeleton-svelte": "^1.2.3",
     "@stackblitz/sdk": "^1.11.0",

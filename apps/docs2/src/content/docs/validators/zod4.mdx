@@ -1,0 +1,60 @@
+---
+title: Zod
+sidebar:
+  order: 1
+---
+
+import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
+
+import Npm from '@/components/npm.astro';
+import Picker from '@/components/picker.astro';
+import FormCard from '@/components/form-card.astro';
+
+import Form from './zod4/form.svelte';
+import formCode from './zod4/form.svelte?raw';
+import sharedCode from './shared/index.ts?raw';
+
+<Picker>
+  <a href="../zod/" data-active={false}>v3</a>
+  <a href="." data-active={true}>v4</a>
+</Picker>
+
+You may want to use Zod validator because:
+
+- You can use Zod schema as a source of truth for the form value type (`z.infer`).
+- This is an easy way to add custom error messages
+
+## Installation
+
+<Npm pkg="@sjsf/zod4-validator zod" />
+
+## Example
+
+:::tip
+
+Use `@sjsf/zod4-validator/mini` to work with `zod/v4-mini`
+
+:::
+
+<Tabs>
+  <TabItem label="form.svelte">
+    <Code code={formCode} lang='svelte' />
+  </TabItem>
+  <TabItem label="shared.ts">
+    <Code code={sharedCode} lang='typescript' />
+  </TabItem>
+</Tabs>
+
+<FormCard>
+  <Form client:only="svelte" />
+</FormCard>
+
+## Async validation
+
+This validator supports async validation.
+
+```typescript
+import { setupAsyncFormValidator } from "@sjsf/zod-validator/classic";
+
+const { schema, validator } = setupAsyncFormValidator(zodSchema);
+```

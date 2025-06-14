@@ -34,9 +34,11 @@ ajv/:
   popd
 
 zod/:
-  pushd packages/zod-validator
+  pushd packages/zod4-validator
   b:
     pnpm run build
+  t:
+    pnpm run test $@
   popd
 
 cfw/:
