@@ -202,6 +202,9 @@ importers:
       '@sjsf/zod-validator':
         specifier: workspace:*
         version: link:../../packages/zod-validator
+      '@sjsf/zod4-validator':
+        specifier: workspace:*
+        version: link:../../packages/zod4-validator
       '@skeletonlabs/skeleton':
         specifier: 3.0.0-next.10
         version: 3.0.0-next.10(postcss@8.5.4)(tailwindcss@4.1.8)
@@ -1476,6 +1479,18 @@ importers:
       json-schema-to-zod:
         specifier: ^2.6.1
         version: 2.6.1
+      zod:
+        specifier: 'catalog:'
+        version: 3.25.57
+
+  packages/zod4-validator:
+    devDependencies:
+      '@sjsf/form':
+        specifier: workspace:*
+        version: link:../form
+      svelte:
+        specifier: 'catalog:'
+        version: 5.33.19
       zod:
         specifier: 'catalog:'
         version: 3.25.57
