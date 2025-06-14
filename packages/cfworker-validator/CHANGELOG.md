@@ -1,5 +1,12 @@
 # @sjsf/cfworker-validator
 
+## 2.1.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/form@2.1.0
+
 ## 2.0.2
 
 ### Patch Changes

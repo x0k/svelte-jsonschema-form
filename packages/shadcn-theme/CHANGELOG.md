@@ -1,5 +1,13 @@
 # @sjsf/shadcn-theme
 
+## 2.1.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/basic-theme@2.1.0
+  - @sjsf/form@2.1.0
+
 ## 2.0.2
 
 ### Patch Changes
