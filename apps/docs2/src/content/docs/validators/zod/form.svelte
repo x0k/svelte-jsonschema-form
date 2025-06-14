@@ -1,5 +1,12 @@
 <script lang="ts">
-  import { BasicForm, createForm, ON_INPUT, type Schema } from "@sjsf/form";
+  import {
+    BasicForm,
+    createForm,
+    ON_ARRAY_CHANGE,
+    ON_CHANGE,
+    ON_INPUT,
+    type Schema,
+  } from "@sjsf/form";
   import { createFormValidator } from "@sjsf/zod-validator";
   import { zodToJsonSchema } from "zod-to-json-schema";
   import { z } from "zod";
@@ -11,7 +18,7 @@
   const schema = z.object({
     id: z
       .string()
-      .regex(new RegExp("\\d+"), "Must be a number")
+      .regex(new RegExp("^\\d+$"), "Must be a number")
       .min(8)
       .optional(),
     active: z.boolean().optional(),
@@ -31,7 +38,7 @@
     schema: zodToJsonSchema(schema, { errorMessages: true }) as Schema,
     uiSchema,
     validator,
-    fieldsValidationMode: ON_INPUT,
+    fieldsValidationMode: ON_INPUT | ON_CHANGE | ON_ARRAY_CHANGE,
     initialValue: initialValue as Value,
   });
 </script>

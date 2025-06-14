@@ -1,4 +1,4 @@
-export const [v19, v18, v18ag, v20, v20ag, v1, v2, v14, v14ag, v3, v4, v5, v6, v7, v8, v15, v15ag, v9, v10, v16, v16ag, v11, v12, v13, v17, v0] = (function() {
+export const [v20, v19, v19ag, v21, v21ag, v1, v2, v15, v15ag, v3, v4, v5, v7, v6, v8, v9, v16, v16ag, v10, v11, v17, v17ag, v12, v13, v14, v18, v0] = (function() {
 'use strict'
 const ref0 = function validate(data) {
   validate.errors = null
@@ -267,6 +267,31 @@ const ref13 = function validate(data) {
 const ref14 = function validate(data) {
   validate.errors = null
   let errorCount = 0
+  if (!Array.isArray(data)) {
+    if (validate.errors === null) validate.errors = []
+    validate.errors.push({ keywordLocation: "#/type", instanceLocation: "#" })
+    errorCount++
+  }
+  else {
+    for (let i = 0; i < data.length; i++) {
+      if (i in data && hasOwn(data, i)) {
+        const err8 = validate.errors
+        const res8 = ref13(data[i])
+        const suberr9 = ref13.errors
+        validate.errors = err8
+        if (!res8) {
+          if (validate.errors === null) validate.errors = []
+          validate.errors.push(...suberr9.map(e => errorMerge(e, "#/items/$ref", "#/"+i)))
+          errorCount++
+        }
+      }
+    }
+  }
+  return errorCount === 0
+};
+const ref15 = function validate(data) {
+  validate.errors = null
+  let errorCount = 0
   if (!(typeof data === "string")) {
     if (validate.errors === null) validate.errors = []
     validate.errors.push({ keywordLocation: "#/type", instanceLocation: "#" })
@@ -281,7 +306,7 @@ const ref14 = function validate(data) {
   }
   return errorCount === 0
 };
-const ref15 = function validate(data) {
+const ref16 = function validate(data) {
   validate.errors = null
   let errorCount = 0
   if (!(typeof data === "number")) {
@@ -291,7 +316,7 @@ const ref15 = function validate(data) {
   }
   return errorCount === 0
 };
-const ref16 = function validate(data) {
+const ref17 = function validate(data) {
   validate.errors = null
   let errorCount = 0
   if (!(typeof data === "object" && data && !Array.isArray(data))) {
@@ -301,48 +326,48 @@ const ref16 = function validate(data) {
   }
   else {
     if ("choice" in data && hasOwn(data, "choice")) {
-      const err8 = validate.errors
-      const res8 = ref14(data.choice)
-      const suberr9 = ref14.errors
-      validate.errors = err8
-      if (!res8) {
-        if (validate.errors === null) validate.errors = []
-        validate.errors.push(...suberr9.map(e => errorMerge(e, "#/properties/choice/$ref", "#/choice")))
-        errorCount++
-      }
-    }
-    if ("other" in data && hasOwn(data, "other")) {
       const err9 = validate.errors
-      const res9 = ref15(data.other)
+      const res9 = ref15(data.choice)
       const suberr10 = ref15.errors
       validate.errors = err9
       if (!res9) {
         if (validate.errors === null) validate.errors = []
-        validate.errors.push(...suberr10.map(e => errorMerge(e, "#/properties/other/$ref", "#/other")))
+        validate.errors.push(...suberr10.map(e => errorMerge(e, "#/properties/choice/$ref", "#/choice")))
+        errorCount++
+      }
+    }
+    if ("other" in data && hasOwn(data, "other")) {
+      const err10 = validate.errors
+      const res10 = ref16(data.other)
+      const suberr11 = ref16.errors
+      validate.errors = err10
+      if (!res10) {
+        if (validate.errors === null) validate.errors = []
+        validate.errors.push(...suberr11.map(e => errorMerge(e, "#/properties/other/$ref", "#/other")))
         errorCount++
       }
     }
   }
   return errorCount === 0
 };
-const ref17 = function validate(data) {
+const ref18 = function validate(data) {
   validate.errors = null
   let errorCount = 0
-  const err10 = validate.errors
-  const res10 = ref16(data)
-  const suberr11 = ref16.errors
-  validate.errors = err10
-  if (!res10) {
+  const err11 = validate.errors
+  const res11 = ref17(data)
+  const suberr12 = ref17.errors
+  validate.errors = err11
+  if (!res11) {
     if (validate.errors === null) validate.errors = []
-    validate.errors.push(...suberr11.map(e => errorMerge(e, "#/allOf/0/$ref", "#")))
+    validate.errors.push(...suberr12.map(e => errorMerge(e, "#/allOf/0/$ref", "#")))
     errorCount++
   }
-  let suberr12 = null
+  let suberr13 = null
   const sub2 = (() => {
     let errorCount = 0
     if (!("choice" in data && hasOwn(data, "choice"))) {
-      if (suberr12 === null) suberr12 = []
-      suberr12.push({ keywordLocation: "#/allOf/1/anyOf/0/required", instanceLocation: "#/choice" })
+      if (suberr13 === null) suberr13 = []
+      suberr13.push({ keywordLocation: "#/allOf/1/anyOf/0/required", instanceLocation: "#/choice" })
       errorCount++
     }
     return errorCount === 0
@@ -351,8 +376,8 @@ const ref17 = function validate(data) {
     const sub3 = (() => {
       let errorCount = 0
       if (!("other" in data && hasOwn(data, "other"))) {
-        if (suberr12 === null) suberr12 = []
-        suberr12.push({ keywordLocation: "#/allOf/1/anyOf/1/required", instanceLocation: "#/other" })
+        if (suberr13 === null) suberr13 = []
+        suberr13.push({ keywordLocation: "#/allOf/1/anyOf/1/required", instanceLocation: "#/other" })
         errorCount++
       }
       return errorCount === 0
@@ -360,13 +385,13 @@ const ref17 = function validate(data) {
     if (!sub3) {
       if (validate.errors === null) validate.errors = []
       validate.errors.push({ keywordLocation: "#/allOf/1/anyOf", instanceLocation: "#" })
-      if (suberr12) validate.errors.push(...suberr12)
+      if (suberr13) validate.errors.push(...suberr13)
       errorCount++
     }
   }
   return errorCount === 0
 };
-const ref18 = function validate(data) {
+const ref19 = function validate(data) {
   validate.errors = null
   let errorCount = 0
   if (!(typeof data === "string")) {
@@ -383,7 +408,7 @@ const ref18 = function validate(data) {
   }
   return errorCount === 0
 };
-const ref19 = function validate(data) {
+const ref20 = function validate(data) {
   validate.errors = null
   let errorCount = 0
   if (!(typeof data === "string")) {
@@ -393,7 +418,7 @@ const ref19 = function validate(data) {
   }
   return errorCount === 0
 };
-const ref20 = function validate(data) {
+const ref21 = function validate(data) {
   validate.errors = null
   let errorCount = 0
   if (!(typeof data === "object" && data && !Array.isArray(data))) {
@@ -403,48 +428,48 @@ const ref20 = function validate(data) {
   }
   else {
     if ("choice" in data && hasOwn(data, "choice")) {
-      const err11 = validate.errors
-      const res11 = ref18(data.choice)
-      const suberr13 = ref18.errors
-      validate.errors = err11
-      if (!res11) {
-        if (validate.errors === null) validate.errors = []
-        validate.errors.push(...suberr13.map(e => errorMerge(e, "#/properties/choice/$ref", "#/choice")))
-        errorCount++
-      }
-    }
-    if ("more" in data && hasOwn(data, "more")) {
       const err12 = validate.errors
-      const res12 = ref19(data.more)
+      const res12 = ref19(data.choice)
       const suberr14 = ref19.errors
       validate.errors = err12
       if (!res12) {
         if (validate.errors === null) validate.errors = []
-        validate.errors.push(...suberr14.map(e => errorMerge(e, "#/properties/more/$ref", "#/more")))
+        validate.errors.push(...suberr14.map(e => errorMerge(e, "#/properties/choice/$ref", "#/choice")))
+        errorCount++
+      }
+    }
+    if ("more" in data && hasOwn(data, "more")) {
+      const err13 = validate.errors
+      const res13 = ref20(data.more)
+      const suberr15 = ref20.errors
+      validate.errors = err13
+      if (!res13) {
+        if (validate.errors === null) validate.errors = []
+        validate.errors.push(...suberr15.map(e => errorMerge(e, "#/properties/more/$ref", "#/more")))
         errorCount++
       }
     }
   }
   return errorCount === 0
 };
-const ref21 = function validate(data) {
+const ref22 = function validate(data) {
   validate.errors = null
   let errorCount = 0
-  const err13 = validate.errors
-  const res13 = ref20(data)
-  const suberr15 = ref20.errors
-  validate.errors = err13
-  if (!res13) {
+  const err14 = validate.errors
+  const res14 = ref21(data)
+  const suberr16 = ref21.errors
+  validate.errors = err14
+  if (!res14) {
     if (validate.errors === null) validate.errors = []
-    validate.errors.push(...suberr15.map(e => errorMerge(e, "#/allOf/0/$ref", "#")))
+    validate.errors.push(...suberr16.map(e => errorMerge(e, "#/allOf/0/$ref", "#")))
     errorCount++
   }
-  let suberr16 = null
+  let suberr17 = null
   const sub4 = (() => {
     let errorCount = 0
     if (!("choice" in data && hasOwn(data, "choice"))) {
-      if (suberr16 === null) suberr16 = []
-      suberr16.push({ keywordLocation: "#/allOf/1/anyOf/0/required", instanceLocation: "#/choice" })
+      if (suberr17 === null) suberr17 = []
+      suberr17.push({ keywordLocation: "#/allOf/1/anyOf/0/required", instanceLocation: "#/choice" })
       errorCount++
     }
     return errorCount === 0
@@ -453,8 +478,8 @@ const ref21 = function validate(data) {
     const sub5 = (() => {
       let errorCount = 0
       if (!("more" in data && hasOwn(data, "more"))) {
-        if (suberr16 === null) suberr16 = []
-        suberr16.push({ keywordLocation: "#/allOf/1/anyOf/1/required", instanceLocation: "#/more" })
+        if (suberr17 === null) suberr17 = []
+        suberr17.push({ keywordLocation: "#/allOf/1/anyOf/1/required", instanceLocation: "#/more" })
         errorCount++
       }
       return errorCount === 0
@@ -462,13 +487,13 @@ const ref21 = function validate(data) {
     if (!sub5) {
       if (validate.errors === null) validate.errors = []
       validate.errors.push({ keywordLocation: "#/allOf/1/anyOf", instanceLocation: "#" })
-      if (suberr16) validate.errors.push(...suberr16)
+      if (suberr17) validate.errors.push(...suberr17)
       errorCount++
     }
   }
   return errorCount === 0
 };
-const ref22 = function validate(data) {
+const ref23 = function validate(data) {
   validate.errors = null
   let errorCount = 0
   if (!(typeof data === "string")) {
@@ -479,7 +504,7 @@ const ref22 = function validate(data) {
   return errorCount === 0
 };
 const format0 = new RegExp("^data:([a-z]+\\/[a-z0-9-+.]+)?;(?:name=(.*);)?base64,(.*)$", "");
-const ref23 = function validate(data) {
+const ref24 = function validate(data) {
   validate.errors = null
   let errorCount = 0
   if (!(typeof data === "string")) {
@@ -500,7 +525,7 @@ const ref23 = function validate(data) {
   return errorCount === 0
 };
 const format1 = new RegExp("\\(?\\d{3}\\)?[\\s-]?\\d{3}[\\s-]?\\d{4}$", "");
-const ref24 = function validate(data) {
+const ref25 = function validate(data) {
   validate.errors = null
   let errorCount = 0
   if (!(typeof data === "string")) {
@@ -520,7 +545,7 @@ const ref24 = function validate(data) {
   }
   return errorCount === 0
 };
-const ref25 = function validate(data) {
+const ref26 = function validate(data) {
   validate.errors = null
   let errorCount = 0
   if (!(typeof data === "string")) {
@@ -530,21 +555,21 @@ const ref25 = function validate(data) {
   }
   return errorCount === 0
 };
-const ref27 = function validate(data) {
+const ref28 = function validate(data) {
   validate.errors = null
   let errorCount = 0
-  const err15 = validate.errors
-  const res15 = ref10(data)
-  const suberr18 = ref10.errors
-  validate.errors = err15
-  if (!res15) {
+  const err16 = validate.errors
+  const res16 = ref10(data)
+  const suberr19 = ref10.errors
+  validate.errors = err16
+  if (!res16) {
     if (validate.errors === null) validate.errors = []
-    validate.errors.push(...suberr18.map(e => errorMerge(e, "#/$ref", "#")))
+    validate.errors.push(...suberr19.map(e => errorMerge(e, "#/$ref", "#")))
     errorCount++
   }
   return errorCount === 0
 };
-const ref28 = function validate(data) {
+const ref29 = function validate(data) {
   validate.errors = null
   let errorCount = 0
   if (!(typeof data === "object" && data && !Array.isArray(data))) {
@@ -564,79 +589,54 @@ const ref28 = function validate(data) {
       errorCount++
     }
     if ("pass1" in data && hasOwn(data, "pass1")) {
-      const err17 = validate.errors
-      const res17 = ref11(data.pass1)
-      const suberr20 = ref11.errors
-      validate.errors = err17
-      if (!res17) {
+      const err18 = validate.errors
+      const res18 = ref11(data.pass1)
+      const suberr21 = ref11.errors
+      validate.errors = err18
+      if (!res18) {
         if (validate.errors === null) validate.errors = []
-        validate.errors.push(...suberr20.map(e => errorMerge(e, "#/properties/pass1/$ref", "#/pass1")))
+        validate.errors.push(...suberr21.map(e => errorMerge(e, "#/properties/pass1/$ref", "#/pass1")))
         errorCount++
       }
     }
     if ("pass2" in data && hasOwn(data, "pass2")) {
-      const err18 = validate.errors
-      const res18 = ref12(data.pass2)
-      const suberr21 = ref12.errors
-      validate.errors = err18
-      if (!res18) {
+      const err19 = validate.errors
+      const res19 = ref12(data.pass2)
+      const suberr22 = ref12.errors
+      validate.errors = err19
+      if (!res19) {
         if (validate.errors === null) validate.errors = []
-        validate.errors.push(...suberr21.map(e => errorMerge(e, "#/properties/pass2/$ref", "#/pass2")))
+        validate.errors.push(...suberr22.map(e => errorMerge(e, "#/properties/pass2/$ref", "#/pass2")))
         errorCount++
       }
     }
-  }
-  return errorCount === 0
-};
-const ref29 = function validate(data) {
-  validate.errors = null
-  let errorCount = 0
-  const err22 = validate.errors
-  const res22 = ref8(data)
-  const suberr25 = ref8.errors
-  validate.errors = err22
-  if (!res22) {
-    if (validate.errors === null) validate.errors = []
-    validate.errors.push(...suberr25.map(e => errorMerge(e, "#/$ref", "#")))
-    errorCount++
   }
   return errorCount === 0
 };
 const ref30 = function validate(data) {
   validate.errors = null
   let errorCount = 0
-  if (!Array.isArray(data)) {
+  const err23 = validate.errors
+  const res23 = ref8(data)
+  const suberr26 = ref8.errors
+  validate.errors = err23
+  if (!res23) {
     if (validate.errors === null) validate.errors = []
-    validate.errors.push({ keywordLocation: "#/type", instanceLocation: "#" })
+    validate.errors.push(...suberr26.map(e => errorMerge(e, "#/$ref", "#")))
     errorCount++
-  }
-  else {
-    for (let i = 0; i < data.length; i++) {
-      if (i in data && hasOwn(data, i)) {
-        const err24 = validate.errors
-        const res24 = ref13(data[i])
-        const suberr27 = ref13.errors
-        validate.errors = err24
-        if (!res24) {
-          if (validate.errors === null) validate.errors = []
-          validate.errors.push(...suberr27.map(e => errorMerge(e, "#/items/$ref", "#/"+i)))
-          errorCount++
-        }
-      }
-    }
   }
   return errorCount === 0
 };
 const ref31 = function validate(data) {
   validate.errors = null
   let errorCount = 0
-  const err26 = validate.errors
-  const res26 = ref16(data)
-  const suberr30 = ref16.errors
-  validate.errors = err26
-  if (!res26) {
+  const err25 = validate.errors
+  const res25 = ref14(data)
+  const suberr28 = ref14.errors
+  validate.errors = err25
+  if (!res25) {
     if (validate.errors === null) validate.errors = []
-    validate.errors.push(...suberr30.map(e => errorMerge(e, "#/$ref", "#")))
+    validate.errors.push(...suberr28.map(e => errorMerge(e, "#/$ref", "#")))
     errorCount++
   }
   return errorCount === 0
@@ -644,19 +644,33 @@ const ref31 = function validate(data) {
 const ref32 = function validate(data) {
   validate.errors = null
   let errorCount = 0
-  const err28 = validate.errors
-  const res28 = ref20(data)
-  const suberr32 = ref20.errors
-  validate.errors = err28
-  if (!res28) {
+  const err27 = validate.errors
+  const res27 = ref17(data)
+  const suberr31 = ref17.errors
+  validate.errors = err27
+  if (!res27) {
     if (validate.errors === null) validate.errors = []
-    validate.errors.push(...suberr32.map(e => errorMerge(e, "#/$ref", "#")))
+    validate.errors.push(...suberr31.map(e => errorMerge(e, "#/$ref", "#")))
+    errorCount++
+  }
+  return errorCount === 0
+};
+const ref33 = function validate(data) {
+  validate.errors = null
+  let errorCount = 0
+  const err29 = validate.errors
+  const res29 = ref21(data)
+  const suberr33 = ref21.errors
+  validate.errors = err29
+  if (!res29) {
+    if (validate.errors === null) validate.errors = []
+    validate.errors.push(...suberr33.map(e => errorMerge(e, "#/$ref", "#")))
     errorCount++
   }
   return errorCount === 0
 };
 const pointerPart = (s) => (/~\//.test(s) ? `${s}`.replace(/~/g, '~0').replace(/\//g, '~1') : s);
-const ref26 = function validate(data) {
+const ref27 = function validate(data) {
   validate.errors = null
   let errorCount = 0
   if (!(typeof data === "object" && data && !Array.isArray(data))) {
@@ -666,94 +680,94 @@ const ref26 = function validate(data) {
   }
   else {
     if ("foo" in data && hasOwn(data, "foo")) {
-      const err14 = validate.errors
-      const res14 = ref22(data.foo)
-      const suberr17 = ref22.errors
-      validate.errors = err14
-      if (!res14) {
+      const err15 = validate.errors
+      const res15 = ref23(data.foo)
+      const suberr18 = ref23.errors
+      validate.errors = err15
+      if (!res15) {
         if (validate.errors === null) validate.errors = []
-        validate.errors.push(...suberr17.map(e => errorMerge(e, "#/properties/foo/$ref", "#/foo")))
+        validate.errors.push(...suberr18.map(e => errorMerge(e, "#/properties/foo/$ref", "#/foo")))
         errorCount++
       }
     }
     if ("price" in data && hasOwn(data, "price")) {
-      const err16 = validate.errors
-      const res16 = ref27(data.price)
-      const suberr19 = ref27.errors
-      validate.errors = err16
-      if (!res16) {
+      const err17 = validate.errors
+      const res17 = ref28(data.price)
+      const suberr20 = ref28.errors
+      validate.errors = err17
+      if (!res17) {
         if (validate.errors === null) validate.errors = []
-        validate.errors.push(...suberr19.map(e => errorMerge(e, "#/properties/price/$ref", "#/price")))
+        validate.errors.push(...suberr20.map(e => errorMerge(e, "#/properties/price/$ref", "#/price")))
         errorCount++
       }
     }
     if ("passwords" in data && hasOwn(data, "passwords")) {
-      const err19 = validate.errors
-      const res19 = ref28(data.passwords)
-      const suberr22 = ref28.errors
-      validate.errors = err19
-      if (!res19) {
+      const err20 = validate.errors
+      const res20 = ref29(data.passwords)
+      const suberr23 = ref29.errors
+      validate.errors = err20
+      if (!res20) {
         if (validate.errors === null) validate.errors = []
-        validate.errors.push(...suberr22.map(e => errorMerge(e, "#/properties/passwords/$ref", "#/passwords")))
+        validate.errors.push(...suberr23.map(e => errorMerge(e, "#/properties/passwords/$ref", "#/passwords")))
         errorCount++
       }
     }
     if ("dataUrlWithName" in data && hasOwn(data, "dataUrlWithName")) {
-      const err20 = validate.errors
-      const res20 = ref23(data.dataUrlWithName)
-      const suberr23 = ref23.errors
-      validate.errors = err20
-      if (!res20) {
-        if (validate.errors === null) validate.errors = []
-        validate.errors.push(...suberr23.map(e => errorMerge(e, "#/properties/dataUrlWithName/$ref", "#/dataUrlWithName")))
-        errorCount++
-      }
-    }
-    if ("phone" in data && hasOwn(data, "phone")) {
       const err21 = validate.errors
-      const res21 = ref24(data.phone)
+      const res21 = ref24(data.dataUrlWithName)
       const suberr24 = ref24.errors
       validate.errors = err21
       if (!res21) {
         if (validate.errors === null) validate.errors = []
-        validate.errors.push(...suberr24.map(e => errorMerge(e, "#/properties/phone/$ref", "#/phone")))
+        validate.errors.push(...suberr24.map(e => errorMerge(e, "#/properties/dataUrlWithName/$ref", "#/dataUrlWithName")))
+        errorCount++
+      }
+    }
+    if ("phone" in data && hasOwn(data, "phone")) {
+      const err22 = validate.errors
+      const res22 = ref25(data.phone)
+      const suberr25 = ref25.errors
+      validate.errors = err22
+      if (!res22) {
+        if (validate.errors === null) validate.errors = []
+        validate.errors.push(...suberr25.map(e => errorMerge(e, "#/properties/phone/$ref", "#/phone")))
         errorCount++
       }
     }
     if ("multi" in data && hasOwn(data, "multi")) {
-      const err23 = validate.errors
-      const res23 = ref29(data.multi)
-      const suberr26 = ref29.errors
-      validate.errors = err23
-      if (!res23) {
+      const err24 = validate.errors
+      const res24 = ref30(data.multi)
+      const suberr27 = ref30.errors
+      validate.errors = err24
+      if (!res24) {
         if (validate.errors === null) validate.errors = []
-        validate.errors.push(...suberr26.map(e => errorMerge(e, "#/properties/multi/allOf/0/$ref", "#/multi")))
+        validate.errors.push(...suberr27.map(e => errorMerge(e, "#/properties/multi/allOf/0/$ref", "#/multi")))
         errorCount++
       }
     }
     if ("list" in data && hasOwn(data, "list")) {
-      const err25 = validate.errors
-      const res25 = ref30(data.list)
-      const suberr28 = ref30.errors
-      validate.errors = err25
-      if (!res25) {
+      const err26 = validate.errors
+      const res26 = ref31(data.list)
+      const suberr29 = ref31.errors
+      validate.errors = err26
+      if (!res26) {
         if (validate.errors === null) validate.errors = []
-        validate.errors.push(...suberr28.map(e => errorMerge(e, "#/properties/list/$ref", "#/list")))
+        validate.errors.push(...suberr29.map(e => errorMerge(e, "#/properties/list/$ref", "#/list")))
         errorCount++
       }
     }
     if ("single" in data && hasOwn(data, "single")) {
       let passes0 = 0
-      let suberr29 = null
+      let suberr30 = null
       const sub6 = (() => {
         let errorCount = 0
-        const err27 = validate.errors
-        const res27 = ref31(data.single)
-        const suberr31 = ref31.errors
-        validate.errors = err27
-        if (!res27) {
+        const err28 = validate.errors
+        const res28 = ref32(data.single)
+        const suberr32 = ref32.errors
+        validate.errors = err28
+        if (!res28) {
           if (validate.errors === null) validate.errors = []
-          validate.errors.push(...suberr31.map(e => errorMerge(e, "#/properties/single/oneOf/0/$ref", "#/single")))
+          validate.errors.push(...suberr32.map(e => errorMerge(e, "#/properties/single/oneOf/0/$ref", "#/single")))
           errorCount++
         }
         return errorCount === 0
@@ -761,13 +775,13 @@ const ref26 = function validate(data) {
       if (sub6) passes0++
       const sub7 = (() => {
         let errorCount = 0
-        const err29 = validate.errors
-        const res29 = ref32(data.single)
-        const suberr33 = ref32.errors
-        validate.errors = err29
-        if (!res29) {
+        const err30 = validate.errors
+        const res30 = ref33(data.single)
+        const suberr34 = ref33.errors
+        validate.errors = err30
+        if (!res30) {
           if (validate.errors === null) validate.errors = []
-          validate.errors.push(...suberr33.map(e => errorMerge(e, "#/properties/single/oneOf/1/$ref", "#/single")))
+          validate.errors.push(...suberr34.map(e => errorMerge(e, "#/properties/single/oneOf/1/$ref", "#/single")))
           errorCount++
         }
         return errorCount === 0
@@ -779,7 +793,7 @@ const ref26 = function validate(data) {
         errorCount++
       }
       if (passes0 === 0) {
-        if (suberr29) validate.errors.push(...suberr29)
+        if (suberr30) validate.errors.push(...suberr30)
       }
     }
     if ("anything" in data && hasOwn(data, "anything")) {
@@ -791,29 +805,29 @@ const ref26 = function validate(data) {
       else {
         for (const key0 of Object.keys(data.anything)) {
           if (data.anything[key0] !== undefined) {
-            const err30 = validate.errors
-            const res30 = ref25(data.anything[key0])
-            const suberr34 = ref25.errors
-            validate.errors = err30
-            if (!res30) {
+            const err31 = validate.errors
+            const res31 = ref26(data.anything[key0])
+            const suberr35 = ref26.errors
+            validate.errors = err31
+            if (!res31) {
               if (validate.errors === null) validate.errors = []
-              validate.errors.push(...suberr34.map(e => errorMerge(e, "#/properties/anything/additionalProperties/$ref", "#/anything/"+pointerPart(key0))))
+              validate.errors.push(...suberr35.map(e => errorMerge(e, "#/properties/anything/additionalProperties/$ref", "#/anything/"+pointerPart(key0))))
               errorCount++
             }
           }
         }
       }
     }
-    let suberr35 = null
+    let suberr36 = null
     const sub8 = (() => {
       let errorCount = 0
-      const err31 = validate.errors
-      const res31 = ref1(data)
-      const suberr36 = ref1.errors
-      validate.errors = err31
-      if (!res31) {
+      const err32 = validate.errors
+      const res32 = ref1(data)
+      const suberr37 = ref1.errors
+      validate.errors = err32
+      if (!res32) {
         if (validate.errors === null) validate.errors = []
-        validate.errors.push(...suberr36.map(e => errorMerge(e, "#/anyOf/0/$ref", "#")))
+        validate.errors.push(...suberr37.map(e => errorMerge(e, "#/anyOf/0/$ref", "#")))
         errorCount++
       }
       return errorCount === 0
@@ -821,13 +835,13 @@ const ref26 = function validate(data) {
     if (!sub8) {
       const sub9 = (() => {
         let errorCount = 0
-        const err32 = validate.errors
-        const res32 = ref5(data)
-        const suberr37 = ref5.errors
-        validate.errors = err32
-        if (!res32) {
+        const err33 = validate.errors
+        const res33 = ref5(data)
+        const suberr38 = ref5.errors
+        validate.errors = err33
+        if (!res33) {
           if (validate.errors === null) validate.errors = []
-          validate.errors.push(...suberr37.map(e => errorMerge(e, "#/anyOf/1/$ref", "#")))
+          validate.errors.push(...suberr38.map(e => errorMerge(e, "#/anyOf/1/$ref", "#")))
           errorCount++
         }
         return errorCount === 0
@@ -835,7 +849,7 @@ const ref26 = function validate(data) {
       if (!sub9) {
         if (validate.errors === null) validate.errors = []
         validate.errors.push({ keywordLocation: "#/anyOf", instanceLocation: "#" })
-        if (suberr35) validate.errors.push(...suberr35)
+        if (suberr36) validate.errors.push(...suberr36)
         errorCount++
       }
     }
@@ -868,5 +882,6 @@ return ([
   ref23,
   ref24,
   ref25,
-  ref26
+  ref26,
+  ref27
 ])})();

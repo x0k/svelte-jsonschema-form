@@ -12,7 +12,7 @@
     id: v.optional(
       v.pipe(
         v.string(),
-        v.regex(new RegExp("\\d+"), "Must be a number"),
+        v.regex(new RegExp("^\\d+$"), "Must be a number"),
         v.minLength(8)
       )
     ),

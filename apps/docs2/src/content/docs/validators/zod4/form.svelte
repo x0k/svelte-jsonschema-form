@@ -16,7 +16,7 @@
   const zodSchema = z.object({
     id: z
       .string()
-      .regex(new RegExp("\\d+"), "Must be a number")
+      .regex(new RegExp("^\\d+$"), "Must be a number")
       .min(8)
       .optional(),
     active: z.boolean(),

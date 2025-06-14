@@ -4,7 +4,7 @@ import path from "node:path";
 import Ajv from "ajv";
 import standaloneCode from "ajv/dist/standalone/index.js";
 
-import { ON_INPUT } from '@sjsf/form';
+import { ON_ARRAY_CHANGE, ON_CHANGE, ON_INPUT } from '@sjsf/form';
 import {
   insertSubSchemaIds,
   fragmentSchema,
@@ -15,7 +15,7 @@ import { build } from "esbuild";
 
 import inputSchema from './input-schema.json' with { type: "json" }
 
-const fieldsValidationMode = ON_INPUT
+const fieldsValidationMode = ON_INPUT | ON_CHANGE | ON_ARRAY_CHANGE
 
 // NOTE: After calling this function, be sure to save the `schema` and
 // use it to generate the form

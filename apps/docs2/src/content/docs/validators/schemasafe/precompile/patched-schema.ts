@@ -1,5 +1,5 @@
 import type { Schema } from "@sjsf/form";
-export const fieldsValidationMode = 1
+export const fieldsValidationMode = 11
 export const schema = {
   "$id": "v0",
   "definitions": {
@@ -15,7 +15,7 @@ export const schema = {
           "$id": "v2"
         }
       },
-      "$id": "v14"
+      "$id": "v15"
     },
     "price": {
       "title": "Price per task ($)",
@@ -45,8 +45,9 @@ export const schema = {
       "type": "array",
       "items": {
         "type": "string",
-        "$id": "v6"
-      }
+        "$id": "v7"
+      },
+      "$id": "v6"
     },
     "choice1": {
       "type": "object",
@@ -54,14 +55,14 @@ export const schema = {
         "choice": {
           "type": "string",
           "const": "one",
-          "$id": "v7"
+          "$id": "v8"
         },
         "other": {
           "type": "number",
-          "$id": "v8"
+          "$id": "v9"
         }
       },
-      "$id": "v15"
+      "$id": "v16"
     },
     "choice2": {
       "type": "object",
@@ -69,21 +70,21 @@ export const schema = {
         "choice": {
           "type": "string",
           "const": "two",
-          "$id": "v9"
+          "$id": "v10"
         },
         "more": {
           "type": "string",
-          "$id": "v10"
+          "$id": "v11"
         }
       },
-      "$id": "v16"
+      "$id": "v17"
     }
   },
   "type": "object",
   "properties": {
     "foo": {
       "type": "string",
-      "$id": "v11"
+      "$id": "v12"
     },
     "price": {
       "$ref": "#/definitions/price"
@@ -94,12 +95,12 @@ export const schema = {
     "dataUrlWithName": {
       "type": "string",
       "format": "data-url",
-      "$id": "v12"
+      "$id": "v13"
     },
     "phone": {
       "type": "string",
       "format": "phone-us",
-      "$id": "v13"
+      "$id": "v14"
     },
     "multi": {
       "anyOf": [
@@ -125,7 +126,7 @@ export const schema = {
       "type": "object",
       "additionalProperties": {
         "type": "string",
-        "$id": "v17"
+        "$id": "v18"
       }
     }
   },
@@ -136,13 +137,13 @@ export const schema = {
         "firstName": {
           "type": "string",
           "title": "First name",
-          "$id": "v19"
+          "$id": "v20"
         },
         "lastName": {
           "$ref": "#/definitions/test"
         }
       },
-      "$id": "v18"
+      "$id": "v19"
     },
     {
       "title": "Second method of identification",
@@ -151,7 +152,7 @@ export const schema = {
           "$ref": "#/definitions/test"
         }
       },
-      "$id": "v20"
+      "$id": "v21"
     }
   ]
 } as const satisfies Schema;

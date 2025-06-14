@@ -1,5 +1,11 @@
 <script lang="ts">
-  import { ON_INPUT, BasicForm, createForm } from "@sjsf/form";
+  import {
+    ON_INPUT,
+    BasicForm,
+    createForm,
+    ON_CHANGE,
+    ON_ARRAY_CHANGE,
+  } from "@sjsf/form";
   import { createFormValidator } from "@sjsf/ajv8-validator";
 
   import * as defaults from "@/components/form-defaults";
@@ -15,8 +21,8 @@
     schema,
     uiSchema,
     validator,
-    fieldsValidationMode: ON_INPUT,
-    initialValue
+    fieldsValidationMode: ON_INPUT | ON_CHANGE | ON_ARRAY_CHANGE,
+    initialValue,
   });
 </script>
 

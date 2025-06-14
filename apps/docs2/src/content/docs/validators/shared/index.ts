@@ -6,7 +6,7 @@ export const schema: Schema = {
     id: {
       type: "string",
       minLength: 8,
-      pattern: "\\d+",
+      pattern: "^\\d+$",
     },
     active: {
       type: "boolean",

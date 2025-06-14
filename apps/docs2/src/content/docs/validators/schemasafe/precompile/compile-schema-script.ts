@@ -3,7 +3,7 @@ import path from "node:path";
 
 import { validator } from '@exodus/schemasafe'
 
-import { ON_INPUT } from '@sjsf/form';
+import { ON_ARRAY_CHANGE, ON_CHANGE, ON_INPUT } from '@sjsf/form';
 import {
   insertSubSchemaIds,
   fragmentSchema,
@@ -12,7 +12,7 @@ import { DEFAULT_VALIDATOR_OPTIONS, FORM_FORMATS } from '@sjsf/schemasafe-valida
 
 import inputSchema from './input-schema.json' with { type: "json" }
 
-const fieldsValidationMode = ON_INPUT
+const fieldsValidationMode = ON_INPUT | ON_CHANGE | ON_ARRAY_CHANGE
 
 // NOTE: After calling this function, be sure to save the `schema` and
 // use it to generate the form
