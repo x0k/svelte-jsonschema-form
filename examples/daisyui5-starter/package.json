@@ -16,7 +16,7 @@
 		"@sveltejs/vite-plugin-svelte": "^5.0.0",
 		"@tailwindcss/vite": "^4.0.0",
 		"daisyui": "^5.0.43",
-		"svelte": "^5.0.0",
+		"svelte": "~5.33.0",
 		"svelte-check": "^4.0.0",
 		"tailwindcss": "^4.0.0",
 		"typescript": "^5.0.0",
