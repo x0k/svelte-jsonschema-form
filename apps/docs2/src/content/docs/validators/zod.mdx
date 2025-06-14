@@ -1,17 +1,23 @@
 ---
-title: Zod
+title: Zod v3
 sidebar:
-  order: 1
+  hidden: true
 ---
 
 import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
 
 import Npm from '@/components/npm.astro';
+import Picker from '@/components/picker.astro';
 import FormCard from '@/components/form-card.astro';
 
 import Form from './zod/form.svelte';
 import formCode from './zod/form.svelte?raw';
 import sharedCode from './shared/index.ts?raw';
+
+<Picker>
+  <a href="." data-active={true}>v3</a>
+  <a href="../zod4/" data-active={false}>v4</a>
+</Picker>
 
 You may want to use Zod validator because:
 
