@@ -38,7 +38,7 @@
     "@sjsf/form": "workspace:*",
     "svelte": "catalog:",
     "testing": "workspace:*",
-    "vite": "catalog"
+    "vite": "catalog:"
   },
   "types": "./dist/index.d.ts",
   "svelte": "./dist/index.js",

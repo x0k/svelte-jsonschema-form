@@ -56,7 +56,7 @@
 	"devDependencies": {
 		"@sjsf/form": "workspace:*",
 		"@tailwindcss/vite": "catalog:",
-		"flowbite-svelte-icons": "^2.2.0",
+		"flowbite-svelte-icons": "~2.2.1",
 		"globals": "catalog:",
 		"svelte": "catalog:",
 		"tailwindcss": "catalog:",

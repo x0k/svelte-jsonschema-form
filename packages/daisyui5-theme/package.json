@@ -77,10 +77,10 @@
 		"@tailwindcss/vite": "catalog:",
 		"@types/pikaday": "^1.7.9",
 		"ajv": "catalog:",
-		"cally": "^0.8.0",
-		"daisyui": "^5.0.43",
+		"cally": "~0.8.0",
+		"daisyui": "~5.0.43",
 		"globals": "catalog:",
-		"pikaday": "^1.8.2",
+		"pikaday": "~1.8.2",
 		"svelte": "catalog:",
 		"tailwindcss": "catalog:",
 		"testing": "workspace:*"

@@ -5,16 +5,17 @@ packages:
 
 catalog:
   "vite": "^6.3.5"
-  "ajv": "^8.17.1"
-  "svelte": "^5.33.18"
+  "vitest": "^3.2.4"
+  "ajv": "~8.17.1"
+  "svelte": "~5.33.19"
   "esm-env": "^1.2.2"
   "globals": "^16.2.0"
-  "zod": "^3.25.57"
-  "tailwindcss": "^4.1.8"
-  "@tailwindcss/vite": "^4.1.8"
+  "zod": "~3.25.67"
+  "tailwindcss": "^4.1.10"
+  "@tailwindcss/vite": "^4.1.10"
   "@exodus/schemasafe": "^1.3.0"
-  "autoprefixer": "10.4.21"
-  "postcss": "8.5.4"
+  "autoprefixer": "^10.4.21"
+  "postcss": "^8.5.6"
 
 
 catalogs:
