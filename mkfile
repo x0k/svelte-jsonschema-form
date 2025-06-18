@@ -355,6 +355,17 @@ e/:
     d:
       pnpm run dev
     popd
+  decomposed/:
+    pushd decomposed-field
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    p:
+      pnpm run preview
+    d:
+      pnpm run dev
+    popd
   popd
 
 p:
