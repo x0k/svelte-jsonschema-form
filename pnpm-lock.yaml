@@ -440,7 +440,7 @@ importers:
         specifier: ^5.0.0
         version: 5.1.0(svelte@5.33.19)(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1))
       svelte:
-        specifier: ^5.33.0
+        specifier: ~5.33.0
         version: 5.33.19
       svelte-check:
         specifier: ^4.0.0
@@ -480,7 +480,7 @@ importers:
         specifier: ^5.0.0
         version: 5.1.0(svelte@5.33.19)(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1))
       svelte:
-        specifier: ^5.33.0
+        specifier: ~5.33.0
         version: 5.33.19
       svelte-check:
         specifier: ^4.0.0
@@ -517,7 +517,7 @@ importers:
         specifier: ^5.0.0
         version: 5.1.0(svelte@5.33.19)(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1))
       svelte:
-        specifier: ^5.33.0
+        specifier: ~5.33.0
         version: 5.33.19
       svelte-check:
         specifier: ^4.0.0
@@ -563,7 +563,7 @@ importers:
         specifier: ^5.0.43
         version: 5.0.43
       svelte:
-        specifier: ^5.33.0
+        specifier: ~5.33.0
         version: 5.33.19
       svelte-check:
         specifier: ^4.0.0
@@ -603,7 +603,7 @@ importers:
         specifier: ^5.0.0
         version: 5.1.0(svelte@5.33.19)(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1))
       svelte:
-        specifier: ^5.33.0
+        specifier: ~5.33.0
         version: 5.33.19
       svelte-check:
         specifier: ^4.0.0
@@ -652,7 +652,7 @@ importers:
         specifier: ^1.6.0
         version: 1.6.3(rollup@4.40.0)(svelte@5.33.19)(tailwindcss@4.1.8)
       svelte:
-        specifier: ^5.33.0
+        specifier: ~5.33.0
         version: 5.33.19
       svelte-check:
         specifier: ^4.0.0
@@ -695,7 +695,7 @@ importers:
         specifier: ^3.1.1
         version: 3.1.1
       svelte:
-        specifier: ^5.33.0
+        specifier: ~5.33.0
         version: 5.33.19
       svelte-check:
         specifier: ^4.0.0
@@ -735,7 +735,7 @@ importers:
         specifier: ^5.0.0
         version: 5.1.0(svelte@5.33.19)(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1))
       svelte:
-        specifier: ^5.33.0
+        specifier: ~5.33.0
         version: 5.33.19
       svelte-check:
         specifier: ^4.0.0
@@ -775,7 +775,7 @@ importers:
         specifier: ^5.0.0
         version: 5.1.0(svelte@5.33.19)(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1))
       svelte:
-        specifier: ^5.33.0
+        specifier: ~5.33.0
         version: 5.33.19
       svelte-check:
         specifier: ^4.0.0
@@ -812,7 +812,7 @@ importers:
         specifier: ^5.0.0
         version: 5.1.0(svelte@5.33.19)(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1))
       svelte:
-        specifier: ^5.33.0
+        specifier: ~5.33.0
         version: 5.33.19
       svelte-check:
         specifier: ^4.0.0
@@ -864,7 +864,7 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1
       svelte:
-        specifier: ^5.33.0
+        specifier: ~5.33.0
         version: 5.33.19
       svelte-check:
         specifier: ^4.0.0
@@ -928,7 +928,7 @@ importers:
         specifier: ^4.0.0
         version: 4.1.8(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1))
       svelte:
-        specifier: ^5.33.0
+        specifier: ~5.33.0
         version: 5.33.19
       svelte-check:
         specifier: ^4.0.0
@@ -968,7 +968,7 @@ importers:
         specifier: ^5.0.0
         version: 5.1.0(svelte@5.33.19)(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1))
       svelte:
-        specifier: ^5.33.0
+        specifier: ~5.33.0
         version: 5.33.19
       svelte-check:
         specifier: ^4.0.0

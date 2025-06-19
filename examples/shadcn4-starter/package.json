@@ -17,7 +17,7 @@
 		"@sveltejs/vite-plugin-svelte": "^5.0.0",
 		"@tailwindcss/vite": "^4.0.0",
 		"clsx": "^2.1.1",
-		"svelte": "^5.33.0",
+		"svelte": "~5.33.0",
 		"svelte-check": "^4.0.0",
 		"tailwind-merge": "^3.3.0",
 		"tailwind-variants": "^1.0.0",
