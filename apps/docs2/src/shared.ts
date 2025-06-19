@@ -39,6 +39,7 @@ export enum Example {
   Formulas = "formulas",
   PatternPropertiesValidator = "pattern-properties-validator",
   NativeForm = "native-form",
+  DecomposedField = "decomposed-field",
 }
 
 export const EXAMPLES = Object.values(Example);

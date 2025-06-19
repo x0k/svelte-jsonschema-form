@@ -73,6 +73,7 @@ const EXAMPLE_LAYERS: Record<Example, () => LayerPromise> = {
   [Example.PatternPropertiesValidator]: () =>
     import("./examples/pattern-properties-validator"),
   [Example.NativeForm]: () => import("./examples/native-form"),
+  [Example.DecomposedField]: () => import("./examples/decomposed-field"),
 };
 
 export async function openProject({
