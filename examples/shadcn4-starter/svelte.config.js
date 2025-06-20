@@ -16,6 +16,9 @@ const config = {
       "@/*": "./path/to/lib/*",
     },
   },
+  compilerOptions: {
+    runes: true,
+  },
 };
 
 export default config;
