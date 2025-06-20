@@ -10,7 +10,7 @@
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "dependencies": {
-    "@codemirror/lang-json": "^6.0.1",
+    "@codemirror/lang-json": "^6.0.2",
     "@codemirror/state": "^6.5.2",
     "@codemirror/view": "^6.37.2",
     "@sjsf/ajv8-validator": "workspace:*",
@@ -27,15 +27,15 @@
     "@sjsf/shadcn4-theme": "workspace:*",
     "@sjsf/skeleton3-theme": "workspace:*",
     "ajv": "catalog:",
-    "codemirror": "^6.0.1",
+    "codemirror": "^6.0.2",
     "lz-string": "^1.5.0",
     "svelte-exmarkdown": "^5.0.1"
   },
   "devDependencies": {
     "@internationalized/date": "^3.8.2",
-    "@lucide/svelte": "^0.516.0",
+    "@lucide/svelte": "^0.518.0",
     "@tailwindcss/vite": "catalog:",
-    "bits-ui": "^2.8.0",
+    "bits-ui": "^2.8.3",
     "clsx": "^2.1.1",
     "svelte": "catalog:",
     "tailwind-merge": "^3.3.1",
