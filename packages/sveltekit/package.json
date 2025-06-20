@@ -35,7 +35,7 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"test:integration": "playwright test",
-		"test:unit": "vitest run --exclude '.svelte-kit/**'"
+		"test:unit": "vitest"
 	},
 	"exports": {
 		".": {

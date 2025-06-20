@@ -1,10 +1,10 @@
 <script lang="ts">
-  import Form1 from './form1.svelte';
+  import NativeForm from './native-form.svelte';
   import Form2 from './form2.svelte';
   import Form3 from './form3.svelte';
 </script>
 
-<Form1 />
+<NativeForm />
 
 <Form2 />
 

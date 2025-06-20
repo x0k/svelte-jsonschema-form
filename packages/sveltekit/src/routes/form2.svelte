@@ -16,7 +16,7 @@
 
   const meta = createMeta<ActionData, PageData>().form2;
   const validator = Object.assign(
-    createFormValidator(),
+    createFormValidator({ idPrefix: "form2" }),
     createAdditionalPropertyKeyValidator({
       error({ type, values }) {
         return `The presence of these ${ERROR_TYPE_OBJECTS[type]} ("${values.join('", "')}") is prohibited`;
