@@ -1,0 +1,626 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-inhp3cvk"> <head><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/svelte-jsonschema-form/v1/_astro/ClientRouter.astro_astro_type_script_index_0_lang.Ci6Gx3Iy.js"></script>  <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>playground | svelte-jsonschema-form</title><link rel="canonical" href="https://x0k.github.io/svelte-jsonschema-form/v1/changelogs/playground/"/><link rel="sitemap" href="/svelte-jsonschema-form/v1/sitemap-index.xml"/><script data-goatcounter="https://sjsf.counter.x0k.dev/count" async src="https://sjsf.counter.x0k.dev/count.js"></script><link rel="shortcut icon" href="/svelte-jsonschema-form/v1/favicon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v5.9.2"/><meta name="generator" content="Starlight v0.34.3"/><meta property="og:title" content="playground"/><meta property="og:type" content="article"/><meta property="og:url" content="https://x0k.github.io/svelte-jsonschema-form/v1/changelogs/playground/"/><meta property="og:locale" content="en"/><meta property="og:description"/><meta property="og:site_name" content="svelte-jsonschema-form"/><meta name="twitter:card" content="summary_large_image"/>  <meta name="vtbot-replace-swap" content="data-theme"><script type="module" src="/svelte-jsonschema-form/v1/_astro/ReplacementSwap.astro_astro_type_script_index_0_lang.CpmI9fvS.js"></script> <meta name="vtbot-main-transition-scope" content="astro-77mr2l7v-1">   <script type="module" src="/svelte-jsonschema-form/v1/_astro/StarlightConnector.astro_astro_type_script_index_0_lang.Btv4u2xc.js"></script> <script type="module" src="/svelte-jsonschema-form/v1/_astro/PageOffset.astro_astro_type_script_index_0_lang.DtTtxoVF.js"></script> <style>::view-transition-group(main){animation:none}::view-transition-old(main){top:var(--vtbot-page-offset)}</style><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-gqu5bebc" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg><svg aria-hidden="true" class="dark astro-gqu5bebc" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg><svg aria-hidden="true" class="auto astro-gqu5bebc" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg></template><link rel="stylesheet" href="/svelte-jsonschema-form/v1/_astro/print.DNXP8c50.css" media="print"><link rel="stylesheet" href="/svelte-jsonschema-form/v1/_astro/with-_theme_.Bmux50eM.css">
+<style>@layer starlight.components{:root{--sl-badge-default-border: var(--sl-color-accent);--sl-badge-default-bg: var(--sl-color-accent-low);--sl-badge-default-text: #fff;--sl-badge-note-border: var(--sl-color-blue);--sl-badge-note-bg: var(--sl-color-blue-low);--sl-badge-note-text: #fff;--sl-badge-danger-border: var(--sl-color-red);--sl-badge-danger-bg: var(--sl-color-red-low);--sl-badge-danger-text: #fff;--sl-badge-success-border: var(--sl-color-green);--sl-badge-success-bg: var(--sl-color-green-low);--sl-badge-success-text: #fff;--sl-badge-caution-border: var(--sl-color-orange);--sl-badge-caution-bg: var(--sl-color-orange-low);--sl-badge-caution-text: #fff;--sl-badge-tip-border: var(--sl-color-purple);--sl-badge-tip-bg: var(--sl-color-purple-low);--sl-badge-tip-text: #fff}[data-theme=light]:root{--sl-badge-default-bg: var(--sl-color-accent-high);--sl-badge-note-bg: var(--sl-color-blue-high);--sl-badge-danger-bg: var(--sl-color-red-high);--sl-badge-success-bg: var(--sl-color-green-high);--sl-badge-caution-bg: var(--sl-color-orange-high);--sl-badge-tip-bg: var(--sl-color-purple-high)}.sl-badge:where(.astro-t3xbiyad){display:inline-block;border:1px solid var(--sl-color-border-badge);border-radius:.25rem;font-family:var(--sl-font-system-mono);line-height:normal;color:var(--sl-color-text-badge);background-color:var(--sl-color-bg-badge);overflow-wrap:anywhere}.sidebar-content .sl-badge:where(.astro-t3xbiyad){line-height:1;font-size:var(--sl-text-xs);padding:.125rem .375rem}.sidebar-content a[aria-current=page]>.sl-badge:where(.astro-t3xbiyad){--sl-color-bg-badge: transparent;--sl-color-border-badge: currentColor;color:inherit}.default:where(.astro-t3xbiyad){--sl-color-bg-badge: var(--sl-badge-default-bg);--sl-color-border-badge: var(--sl-badge-default-border);--sl-color-text-badge: var(--sl-badge-default-text)}.note:where(.astro-t3xbiyad){--sl-color-bg-badge: var(--sl-badge-note-bg);--sl-color-border-badge: var(--sl-badge-note-border);--sl-color-text-badge: var(--sl-badge-note-text)}.danger:where(.astro-t3xbiyad){--sl-color-bg-badge: var(--sl-badge-danger-bg);--sl-color-border-badge: var(--sl-badge-danger-border);--sl-color-text-badge: var(--sl-badge-danger-text)}.success:where(.astro-t3xbiyad){--sl-color-bg-badge: var(--sl-badge-success-bg);--sl-color-border-badge: var(--sl-badge-success-border);--sl-color-text-badge: var(--sl-badge-success-text)}.tip:where(.astro-t3xbiyad){--sl-color-bg-badge: var(--sl-badge-tip-bg);--sl-color-border-badge: var(--sl-badge-tip-border);--sl-color-text-badge: var(--sl-badge-tip-text)}.caution:where(.astro-t3xbiyad){--sl-color-bg-badge: var(--sl-badge-caution-bg);--sl-color-border-badge: var(--sl-badge-caution-border);--sl-color-text-badge: var(--sl-badge-caution-text)}.small:where(.astro-t3xbiyad){font-size:var(--sl-text-xs);padding:.125rem .25rem}.medium:where(.astro-t3xbiyad){font-size:var(--sl-text-sm);padding:.175rem .35rem}.large:where(.astro-t3xbiyad){font-size:var(--sl-text-base);padding:.225rem .45rem}.sl-markdown-content :is(h1,h2,h3,h4,h5,h6) .sl-badge:where(.astro-t3xbiyad){vertical-align:middle}}
+@layer starlight.components{.card:where(.astro-ale2ivme){--sl-card-border: var(--sl-color-purple);--sl-card-bg: var(--sl-color-purple-low);border:1px solid var(--sl-color-gray-5);background-color:var(--sl-color-black);padding:clamp(1rem,calc(.125rem + 3vw),2.5rem);flex-direction:column;gap:clamp(.5rem,calc(.125rem + 1vw),1rem)}.card:where(.astro-ale2ivme):nth-child(4n+1){--sl-card-border: var(--sl-color-orange);--sl-card-bg: var(--sl-color-orange-low)}.card:where(.astro-ale2ivme):nth-child(4n+3){--sl-card-border: var(--sl-color-green);--sl-card-bg: var(--sl-color-green-low)}.card:where(.astro-ale2ivme):nth-child(4n+4){--sl-card-border: var(--sl-color-red);--sl-card-bg: var(--sl-color-red-low)}.card:where(.astro-ale2ivme):nth-child(4n+5){--sl-card-border: var(--sl-color-blue);--sl-card-bg: var(--sl-color-blue-low)}.title:where(.astro-ale2ivme){font-weight:600;font-size:var(--sl-text-h4);color:var(--sl-color-white);line-height:var(--sl-line-height-headings);gap:1rem;align-items:center}.card:where(.astro-ale2ivme) .icon:where(.astro-ale2ivme){border:1px solid var(--sl-card-border);background-color:var(--sl-card-bg);padding:.2em;border-radius:.25rem}.card:where(.astro-ale2ivme) .body:where(.astro-ale2ivme){margin:0;font-size:clamp(var(--sl-text-sm),calc(.5rem + 1vw),var(--sl-text-body))}}
+@layer starlight.components{svg:where(.astro-gqu5bebc){color:var(--sl-icon-color);font-size:var(--sl-icon-size, 1em);width:1em;height:1em}}
+@layer starlight.components{starlight-tabs:where(.astro-eswtpu7o){display:block}.tablist-wrapper:where(.astro-eswtpu7o){overflow-x:auto}:where(.astro-eswtpu7o)[role=tablist]{display:flex;list-style:none;border-bottom:2px solid var(--sl-color-gray-5);padding:0}.tab:where(.astro-eswtpu7o){margin-bottom:-2px}.tab:where(.astro-eswtpu7o)>:where(.astro-eswtpu7o)[role=tab]{display:flex;align-items:center;gap:.5rem;padding:0 1.25rem;text-decoration:none;border-bottom:2px solid var(--sl-color-gray-5);color:var(--sl-color-gray-3);outline-offset:var(--sl-outline-offset-inside);overflow-wrap:initial}.tab:where(.astro-eswtpu7o) :where(.astro-eswtpu7o)[role=tab][aria-selected=true]{color:var(--sl-color-white);border-color:var(--sl-color-text-accent);font-weight:600}.tablist-wrapper:where(.astro-eswtpu7o)~[role=tabpanel]{margin-top:1rem}}
+@layer starlight.components{.sl-link-card:where(.astro-w65umych){display:grid;grid-template-columns:1fr auto;gap:.5rem;border:1px solid var(--sl-color-gray-5);border-radius:.5rem;padding:1rem;box-shadow:var(--sl-shadow-sm);position:relative}a:where(.astro-w65umych){text-decoration:none;line-height:var(--sl-line-height-headings)}a:where(.astro-w65umych):before{content:"";position:absolute;inset:0}.stack:where(.astro-w65umych){flex-direction:column;gap:.5rem}.title:where(.astro-w65umych){color:var(--sl-color-white);font-weight:600;font-size:var(--sl-text-lg)}.description:where(.astro-w65umych){color:var(--sl-color-gray-3);line-height:1.5}.icon:where(.astro-w65umych){color:var(--sl-color-gray-3)}.sl-link-card:where(.astro-w65umych):hover{background:var(--sl-color-gray-7, var(--sl-color-gray-6));border-color:var(--sl-color-gray-2)}.sl-link-card:where(.astro-w65umych):hover .icon:where(.astro-w65umych){color:var(--sl-color-white)}}
+@layer starlight.components{.sl-steps{--bullet-size: calc(var(--sl-line-height) * 1rem);--bullet-margin: .375rem;list-style:none;counter-reset:steps-counter var(--sl-steps-start, 0);padding-inline-start:0}.sl-steps>li{counter-increment:steps-counter;position:relative;padding-inline-start:calc(var(--bullet-size) + 1rem);padding-bottom:1px;min-height:calc(var(--bullet-size) + var(--bullet-margin))}.sl-steps>li+li{margin-top:0}.sl-steps>li:before{content:counter(steps-counter);position:absolute;top:0;inset-inline-start:0;width:var(--bullet-size);height:var(--bullet-size);line-height:var(--bullet-size);font-size:var(--sl-text-xs);font-weight:600;text-align:center;color:var(--sl-color-white);background-color:var(--sl-color-gray-6);border-radius:99rem;box-shadow:inset 0 0 0 1px var(--sl-color-gray-5)}.sl-steps>li:after{--guide-width: 1px;content:"";position:absolute;top:calc(var(--bullet-size) + var(--bullet-margin));bottom:var(--bullet-margin);inset-inline-start:calc((var(--bullet-size) - var(--guide-width)) / 2);width:var(--guide-width);background-color:var(--sl-color-hairline-light)}}@layer starlight.content{.sl-steps>li>:first-child{--lh: calc(1em * var(--sl-line-height));--shift-y: calc(.5 * (var(--bullet-size) - var(--lh)));transform:translateY(var(--shift-y));margin-bottom:var(--shift-y)}.sl-steps>li>:first-child:where(h1,h2,h3,h4,h5,h6){--lh: calc(1em * var(--sl-line-height-headings))}@supports (--prop: 1lh){.sl-steps>li>:first-child{--lh: 1lh}}}
+@layer starlight.components{.sl-link-button:where(.astro-im4ufd4k){align-items:center;border:1px solid transparent;border-radius:999rem;display:inline-flex;font-size:var(--sl-text-sm);gap:.5em;line-height:1.1875;outline-offset:.25rem;padding:.4375rem 1.125rem;text-decoration:none}.sl-link-button:where(.astro-im4ufd4k).primary{background:var(--sl-color-text-accent);border-color:var(--sl-color-text-accent);color:var(--sl-color-black)}.sl-link-button:where(.astro-im4ufd4k).primary:hover{color:var(--sl-color-black)}.sl-link-button:where(.astro-im4ufd4k).secondary{border-color:inherit;color:var(--sl-color-white)}.sl-link-button:where(.astro-im4ufd4k).minimal{color:var(--sl-color-white);padding-inline:0}.sl-link-button:where(.astro-im4ufd4k) svg{flex-shrink:0}@media (min-width: 50rem){.sl-link-button:where(.astro-im4ufd4k){font-size:var(--sl-text-base);padding:.9375rem 1.25rem}}.sl-markdown-content .sl-link-button:where(.astro-im4ufd4k){margin-inline-end:1rem}.sl-markdown-content .sl-link-button:where(.astro-im4ufd4k):not(:where(p *)){margin-block:1rem}}
+[data-select-viewport],[data-combobox-viewport]{scrollbar-width:none!important;-ms-overflow-style:none!important;-webkit-overflow-scrolling:touch!important}[data-combobox-viewport]::-webkit-scrollbar{display:none!important}[data-select-viewport]::-webkit-scrollbar{display:none!important}
+</style><script type="module" src="/svelte-jsonschema-form/v1/_astro/page.DlXkxCA4.js"></script><style>[data-astro-transition-scope="astro-77mr2l7v-1"] { view-transition-name: astro-77mr2l7v-1; }@layer astro { ::view-transition-old(astro-77mr2l7v-1) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(astro-77mr2l7v-1) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(astro-77mr2l7v-1) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(astro-77mr2l7v-1) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-77mr2l7v-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-77mr2l7v-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-77mr2l7v-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-77mr2l7v-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-77mr2l7v-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-77mr2l7v-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-77mr2l7v-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-77mr2l7v-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body class="astro-inhp3cvk"> <a href="#_top" class="astro-llrkt3r5">Skip to content</a>  <div class="page sl-flex astro-nuipgwoq"> <header class="header astro-nuipgwoq"><div class="header sl-flex astro-wbhz36qw"> <div class="title-wrapper sl-flex astro-wbhz36qw"> <a href="/svelte-jsonschema-form/v1/" class="site-title sl-flex astro-scbr5f5n">  <span class="astro-scbr5f5n" translate="no"> svelte-jsonschema-form </span> </a>  </div> <div class="sl-flex astro-wbhz36qw"> <site-search class="astro-wbhz36qw astro-ybtjvnib" data-translations="{&#34;placeholder&#34;:&#34;Search&#34;}"> <button data-open-modal disabled aria-label="Search" aria-keyshortcuts="Control+K" class="astro-ybtjvnib"> <svg aria-hidden="true" class="astro-ybtjvnib astro-gqu5bebc" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg> <span class="sl-hidden md:sl-block astro-ybtjvnib" aria-hidden="true">Search</span> <kbd class="sl-hidden md:sl-flex astro-ybtjvnib" style="display: none;"> <kbd class="astro-ybtjvnib">Ctrl</kbd><kbd class="astro-ybtjvnib">K</kbd> </kbd> </button> <dialog style="padding:0" aria-label="Search" class="astro-ybtjvnib"> <div class="dialog-frame sl-flex astro-ybtjvnib">  <button data-close-modal class="sl-flex md:sl-hidden astro-ybtjvnib"> Cancel </button> <div class="search-container astro-ybtjvnib"> <div id="starlight__search" class="astro-ybtjvnib"></div> </div> </div> </dialog> </site-search>  <script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script> <script type="module" src="/svelte-jsonschema-form/v1/_astro/Search.astro_astro_type_script_index_0_lang.CKWWD5f7.js"></script>   </div> <div class="sl-hidden md:sl-flex right-group astro-wbhz36qw"> <a class="sl-link-button not-content minimal astro-wbhz36qw astro-im4ufd4k" href="https://x0k.github.io/svelte-jsonschema-form/v1/../playground/">  
+Playground
+ <svg aria-hidden="true" class="astro-im4ufd4k astro-gqu5bebc" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M19.33 10.18a1 1 0 0 1-.77 0 1 1 0 0 1-.62-.93l.01-1.83-8.2 8.2a1 1 0 0 1-1.41-1.42l8.2-8.2H14.7a1 1 0 0 1 0-2h4.25a1 1 0 0 1 1 1v4.25a1 1 0 0 1-.62.93Z"/><path d="M11 4a1 1 0 1 1 0 2H7a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-4a1 1 0 1 1 2 0v4a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h4Z"/></svg> </a>  <div class="sl-flex social-icons astro-wbhz36qw"> <a href="https://github.com/x0k/svelte-jsonschema-form" rel="me" class="sl-flex astro-aiktbkrp"><span class="sr-only astro-aiktbkrp">GitHub</span><svg aria-hidden="true" class="astro-aiktbkrp astro-gqu5bebc" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a> </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-7gut4tmd"> <span class="sr-only astro-7gut4tmd">Select theme</span> <svg aria-hidden="true" class="icon label-icon astro-7gut4tmd astro-gqu5bebc" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg> <select value="auto" autocomplete="off" class="astro-7gut4tmd"> <option value="dark" class="astro-7gut4tmd">Dark</option><option value="light" class="astro-7gut4tmd">Light</option><option value="auto" selected class="astro-7gut4tmd">Auto</option> </select> <svg aria-hidden="true" class="icon caret astro-7gut4tmd astro-gqu5bebc" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script> <script type="module">const r="starlight-theme",o=e=>e==="auto"||e==="dark"||e==="light"?e:"auto",c=()=>o(typeof localStorage<"u"&&localStorage.getItem(r));function n(e){typeof localStorage<"u"&&localStorage.setItem(r,e==="light"||e==="dark"?e:"")}const l=()=>matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";function t(e){StarlightThemeProvider.updatePickers(e),document.documentElement.dataset.theme=e==="auto"?l():e,n(e)}matchMedia("(prefers-color-scheme: light)").addEventListener("change",()=>{c()==="auto"&&t("auto")});class s extends HTMLElement{constructor(){super(),t(c()),this.querySelector("select")?.addEventListener("change",a=>{a.currentTarget instanceof HTMLSelectElement&&t(o(a.currentTarget.value))})}}customElements.define("starlight-theme-select",s);</script> <script type="module">class s extends HTMLElement{constructor(){super();const e=this.querySelector("select");e&&(e.addEventListener("change",t=>{t.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=t.currentTarget.value)}),window.addEventListener("pageshow",t=>{if(!t.persisted)return;const n=e.querySelector("option[selected]")?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}}customElements.define("starlight-lang-select",s);</script> </div> </div> </header> <nav class="sidebar print:hidden astro-nuipgwoq" aria-label="Main"> <starlight-menu-button class="print:hidden astro-dlmc4pbh"> <button aria-expanded="false" aria-label="Menu" aria-controls="starlight__sidebar" class="sl-flex md:sl-hidden astro-dlmc4pbh"> <svg aria-hidden="true" class="open-menu astro-dlmc4pbh astro-gqu5bebc" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg> <svg aria-hidden="true" class="close-menu astro-dlmc4pbh astro-gqu5bebc" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg> </button> </starlight-menu-button> <script type="module">class s extends HTMLElement{constructor(){super(),this.btn=this.querySelector("button"),this.btn.addEventListener("click",()=>this.toggleExpanded());const t=this.closest("nav");t&&t.addEventListener("keyup",e=>this.closeOnEscape(e))}setExpanded(t){this.setAttribute("aria-expanded",String(t)),document.body.toggleAttribute("data-mobile-menu-expanded",t)}toggleExpanded(){this.setExpanded(this.getAttribute("aria-expanded")!=="true")}closeOnEscape(t){t.code==="Escape"&&(this.setExpanded(!1),this.btn.focus())}}customElements.define("starlight-menu-button",s);</script>   <div id="starlight__sidebar" class="sidebar-pane astro-nuipgwoq"> <div class="sidebar-content sl-flex astro-nuipgwoq"> <sl-sidebar-state-persist data-hash="0t9g49q" class="astro-cw7ns72e"> <script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script>  <ul class="top-level astro-44zcwvtt"> <li class="astro-44zcwvtt"> <details open class="astro-44zcwvtt"> <sl-sidebar-restore data-index="0"></sl-sidebar-restore> <summary class="astro-44zcwvtt"> <div class="group-label astro-44zcwvtt"> <span class="large astro-44zcwvtt">Guides</span>  </div> <svg aria-hidden="true" class="caret astro-44zcwvtt astro-gqu5bebc" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <ul class="astro-44zcwvtt"> <li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/guides/quickstart/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">Quickstart</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/guides/validation/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">Validation</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/guides/labels-and-icons/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">Labels and icons</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/guides/programmatic-control/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">Programmatic control</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/guides/prevent-data-loss/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">Prevent data loss</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/guides/state-and-internals/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">State and internals</span>  </a> </li> </ul>  </details> </li><li class="astro-44zcwvtt"> <details open class="astro-44zcwvtt"> <sl-sidebar-restore data-index="1"></sl-sidebar-restore> <summary class="astro-44zcwvtt"> <div class="group-label astro-44zcwvtt"> <span class="large astro-44zcwvtt">Themes</span>  </div> <svg aria-hidden="true" class="caret astro-44zcwvtt astro-gqu5bebc" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <ul class="astro-44zcwvtt"> <li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/themes/basic/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">Basic</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/themes/daisyui/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">DaisyUI</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/themes/flowbite/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">Flowbite</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/themes/skeleton/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">Skeleton</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/themes/shadcn/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">Shadcn</span>  </a> </li> </ul>  </details> </li><li class="astro-44zcwvtt"> <details open class="astro-44zcwvtt"> <sl-sidebar-restore data-index="2"></sl-sidebar-restore> <summary class="astro-44zcwvtt"> <div class="group-label astro-44zcwvtt"> <span class="large astro-44zcwvtt">Validators</span>  </div> <svg aria-hidden="true" class="caret astro-44zcwvtt astro-gqu5bebc" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <ul class="astro-44zcwvtt"> <li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/validators/ajv/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">Ajv</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/validators/zod/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">Zod</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/validators/cfworker/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">cfworker/json-schema</span>  </a> </li> </ul>  </details> </li><li class="astro-44zcwvtt"> <details open class="astro-44zcwvtt"> <sl-sidebar-restore data-index="3"></sl-sidebar-restore> <summary class="astro-44zcwvtt"> <div class="group-label astro-44zcwvtt"> <span class="large astro-44zcwvtt">Integrations</span>  </div> <svg aria-hidden="true" class="caret astro-44zcwvtt astro-gqu5bebc" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <ul class="astro-44zcwvtt"> <li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/integrations/generic-backend/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">Generic backend</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/integrations/sveltekit/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">SvelteKit</span>  </a> </li> </ul>  </details> </li><li class="astro-44zcwvtt"> <details open class="astro-44zcwvtt"> <sl-sidebar-restore data-index="4"></sl-sidebar-restore> <summary class="astro-44zcwvtt"> <div class="group-label astro-44zcwvtt"> <span class="large astro-44zcwvtt">Advanced scenarios</span>  </div> <svg aria-hidden="true" class="caret astro-44zcwvtt astro-gqu5bebc" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <ul class="astro-44zcwvtt"> <li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/advanced/custom-form/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">Custom form</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/advanced/custom-validation/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">Custom validation</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/advanced/custom-widgets/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">Custom widgets</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/advanced/state-transformation/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">State transformation</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/advanced/multiple-forms/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">Multiple forms</span>  </a> </li> </ul>  </details> </li><li class="astro-44zcwvtt"> <details open class="astro-44zcwvtt"> <sl-sidebar-restore data-index="5"></sl-sidebar-restore> <summary class="astro-44zcwvtt"> <div class="group-label astro-44zcwvtt"> <span class="large astro-44zcwvtt">Migration guides</span>  </div> <svg aria-hidden="true" class="caret astro-44zcwvtt astro-gqu5bebc" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <ul class="astro-44zcwvtt"> <li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/migration-guides/current/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">current</span>  </a> </li> </ul>  </details> </li><li class="astro-44zcwvtt"> <details open class="astro-44zcwvtt"> <sl-sidebar-restore data-index="6"></sl-sidebar-restore> <summary class="astro-44zcwvtt"> <div class="group-label astro-44zcwvtt"> <span class="large astro-44zcwvtt">API Reference</span>  </div> <svg aria-hidden="true" class="caret astro-44zcwvtt astro-gqu5bebc" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <ul class="astro-44zcwvtt"> <li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/api-reference/json-schema/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">JSON Schema</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/api-reference/ui-schema/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">UI Schema</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/api-reference/fields/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">Fields</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/api-reference/widgets/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">Widgets</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/api-reference/components/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">Components</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/api-reference/templates/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">Templates</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/api-reference/validator/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">Validator</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/api-reference/merger/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">Merger</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/api-reference/translation/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">Translation</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/api-reference/handlers/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">Handlers</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/api-reference/fields-validation-mode/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">Fields validation mode</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/api-reference/icons/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">Icons</span>  </a> </li> </ul>  </details> </li><li class="astro-44zcwvtt"> <details open class="astro-44zcwvtt"> <sl-sidebar-restore data-index="7"></sl-sidebar-restore> <summary class="astro-44zcwvtt"> <div class="group-label astro-44zcwvtt"> <span class="large astro-44zcwvtt">Changelogs</span>  </div> <svg aria-hidden="true" class="caret astro-44zcwvtt astro-gqu5bebc" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <ul class="astro-44zcwvtt"> <li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/changelogs/ajv8-validator/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">@sjsf/ajv8-validator</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/changelogs/cfworker-validator/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">@sjsf/cfworker-validator</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/changelogs/daisyui-theme/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">@sjsf/daisyui-theme</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/changelogs/docs/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">docs</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/changelogs/flowbite-icons/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">@sjsf/flowbite-icons</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/changelogs/flowbite-theme/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">@sjsf/flowbite-theme</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/changelogs/form/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">@sjsf/form</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/changelogs/lucide-icons/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">@sjsf/lucide-icons</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/changelogs/playground/" aria-current="page" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">playground</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/changelogs/radix-icons/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">@sjsf/radix-icons</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/changelogs/shadcn-theme/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">@sjsf/shadcn-theme</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/changelogs/skeleton-theme/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">@sjsf/skeleton-theme</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/changelogs/sveltekit/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">@sjsf/sveltekit</span>  </a> </li><li class="astro-44zcwvtt"> <a href="/svelte-jsonschema-form/v1/changelogs/zod-validator/" aria-current="false" class="astro-44zcwvtt"> <span class="astro-44zcwvtt">@sjsf/zod-validator</span>  </a> </li> </ul>  </details> </li> </ul>   <script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script> </sl-sidebar-state-persist>  <div class="md:sl-hidden"> <div class="mobile-preferences sl-flex astro-axdgxuhb"> <div class="social-icons astro-axdgxuhb"> <a href="https://github.com/x0k/svelte-jsonschema-form" rel="me" class="sl-flex astro-aiktbkrp"><span class="sr-only astro-aiktbkrp">GitHub</span><svg aria-hidden="true" class="astro-aiktbkrp astro-gqu5bebc" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a> </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-7gut4tmd"> <span class="sr-only astro-7gut4tmd">Select theme</span> <svg aria-hidden="true" class="icon label-icon astro-7gut4tmd astro-gqu5bebc" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg> <select value="auto" autocomplete="off" class="astro-7gut4tmd"> <option value="dark" class="astro-7gut4tmd">Dark</option><option value="light" class="astro-7gut4tmd">Light</option><option value="auto" selected class="astro-7gut4tmd">Auto</option> </select> <svg aria-hidden="true" class="icon caret astro-7gut4tmd astro-gqu5bebc" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script>   </div>  </div> </div> </div> </nav> <div class="main-frame astro-nuipgwoq">  <script type="module">const a=document.getElementById("starlight__sidebar"),n=a?.querySelector("sl-sidebar-state-persist"),o="sl-sidebar-state",i=()=>{let t=[];const e=n?.dataset.hash||"";try{const s=sessionStorage.getItem(o),r=JSON.parse(s||"{}");Array.isArray(r.open)&&r.hash===e&&(t=r.open)}catch{}return{hash:e,open:t,scroll:a?.scrollTop||0}},c=t=>{try{sessionStorage.setItem(o,JSON.stringify(t))}catch{}},d=()=>c(i()),l=(t,e)=>{const s=i();s.open[e]=t,c(s)};n?.addEventListener("click",t=>{if(!(t.target instanceof Element))return;const e=t.target.closest("summary")?.closest("details");if(!e)return;const s=e.querySelector("sl-sidebar-restore"),r=parseInt(s?.dataset.index||"");isNaN(r)||l(!e.open,r)});addEventListener("visibilitychange",()=>{document.visibilityState==="hidden"&&d()});addEventListener("pageHide",d);</script> <div class="lg:sl-flex astro-4be57epg"> <aside class="right-sidebar-container print:hidden astro-4be57epg"> <div class="right-sidebar astro-4be57epg"> <div class="lg:sl-hidden astro-ynx7e3ry"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-szwyqfqv"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-szwyqfqv"><details id="starlight__mobile-toc" class="astro-szwyqfqv"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-szwyqfqv"><div class="toggle sl-flex astro-szwyqfqv">On this page<svg aria-hidden="true" class="caret astro-szwyqfqv astro-gqu5bebc" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></div><span class="display-current astro-szwyqfqv"></span></summary><div class="dropdown astro-szwyqfqv"><ul class="isMobile astro-dp6cdrxy" style="--depth: 0;"> <li class="astro-dp6cdrxy" style="--depth: 0;"> <a href="#_top" class="astro-dp6cdrxy" style="--depth: 0;"> <span class="astro-dp6cdrxy" style="--depth: 0;">Overview</span> </a>  </li> </ul> </div></details></nav></mobile-starlight-toc><script type="module" src="/svelte-jsonschema-form/v1/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.C181hMzK.js"></script></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-ynx7e3ry"><div class="sl-container astro-ynx7e3ry"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-dp6cdrxy" style="--depth: 0;"> <li class="astro-dp6cdrxy" style="--depth: 0;"> <a href="#_top" class="astro-dp6cdrxy" style="--depth: 0;"> <span class="astro-dp6cdrxy" style="--depth: 0;">Overview</span> </a>  </li> </ul> </nav></starlight-toc><script type="module" src="/svelte-jsonschema-form/v1/_astro/TableOfContents.astro_astro_type_script_index_0_lang.CKWWgpjV.js"></script></div></div> </div> </aside> <div class="main-pane astro-4be57epg">  <main data-pagefind-body class="astro-inhp3cvk" lang="en" dir="ltr">    <div class="content-panel astro-rdn4iwg2"> <div class="sl-container astro-rdn4iwg2"> <h1 id="_top" class="astro-grltsold">playground</h1>  </div> </div>  <div class="content-panel astro-rdn4iwg2"> <div class="sl-container astro-rdn4iwg2"> <div class="sl-markdown-content"> <h1 id="playground">playground</h1>
+<h2 id="124">1.2.4</h2>
+<h3 id="patch-changes">Patch Changes</h3>
+<ul>
+<li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/baaee86e23a192cd6d6a863a9247ce887e9a2881"><code dir="auto">baaee86</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/94a28c4294a36788af504f85a489007f3f7f16cc"><code dir="auto">94a28c4</code></a>]:
+<ul>
+<li>@sjsf/form@1.9.2</li>
+<li>@sjsf/ajv8-validator@1.9.2</li>
+<li>@sjsf/cfworker-validator@1.9.2</li>
+<li>@sjsf/daisyui-theme@1.9.2</li>
+<li>@sjsf/flowbite-icons@1.9.2</li>
+<li>@sjsf/flowbite-theme@1.9.2</li>
+<li>@sjsf/lucide-icons@1.9.2</li>
+<li>@sjsf/radix-icons@1.9.2</li>
+<li>@sjsf/shadcn-theme@1.9.2</li>
+<li>@sjsf/skeleton-theme@1.9.2</li>
+</ul>
+</li>
+</ul>
+<h2 id="123">1.2.3</h2>
+<h3 id="patch-changes-1">Patch Changes</h3>
+<ul>
+<li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/01d5f564b6a0865e75fc9d6033255b386086dec1"><code dir="auto">01d5f56</code></a>]:
+<ul>
+<li>@sjsf/form@1.9.1</li>
+<li>@sjsf/ajv8-validator@1.9.1</li>
+<li>@sjsf/cfworker-validator@1.9.1</li>
+<li>@sjsf/daisyui-theme@1.9.1</li>
+<li>@sjsf/flowbite-icons@1.9.1</li>
+<li>@sjsf/flowbite-theme@1.9.1</li>
+<li>@sjsf/lucide-icons@1.9.1</li>
+<li>@sjsf/radix-icons@1.9.1</li>
+<li>@sjsf/shadcn-theme@1.9.1</li>
+<li>@sjsf/skeleton-theme@1.9.1</li>
+</ul>
+</li>
+</ul>
+<h2 id="122">1.2.2</h2>
+<h3 id="patch-changes-2">Patch Changes</h3>
+<ul>
+<li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/3efecb2af58db7aa676bb246e6382c9811a9b943"><code dir="auto">3efecb2</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/1aef3ded9a2ad6b5e11449bf501c99f9dab1bbf2"><code dir="auto">1aef3de</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/7ad876f2608125b3d4aafd602c54d2f56180889d"><code dir="auto">7ad876f</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/f8358f3289b1b40994f9e11a95f4be6a76117e9a"><code dir="auto">f8358f3</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/09dce2442c2d3e68de527462966ff5d5122f09f9"><code dir="auto">09dce24</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/e059b3fbb5b925e7f0343a20fbcc77c080050515"><code dir="auto">e059b3f</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/a8a58d165167c997a587caf238c255e66c6f736b"><code dir="auto">a8a58d1</code></a>]:
+<ul>
+<li>@sjsf/form@1.9.0</li>
+<li>@sjsf/ajv8-validator@1.9.0</li>
+<li>@sjsf/cfworker-validator@1.9.0</li>
+<li>@sjsf/daisyui-theme@1.9.0</li>
+<li>@sjsf/flowbite-icons@1.9.0</li>
+<li>@sjsf/flowbite-theme@1.9.0</li>
+<li>@sjsf/lucide-icons@1.9.0</li>
+<li>@sjsf/radix-icons@1.9.0</li>
+<li>@sjsf/shadcn-theme@1.9.0</li>
+<li>@sjsf/skeleton-theme@1.9.0</li>
+</ul>
+</li>
+</ul>
+<h2 id="121">1.2.1</h2>
+<h3 id="patch-changes-3">Patch Changes</h3>
+<ul>
+<li>
+<p>Migrate to <code dir="auto">createForm3</code> (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/54">#54</a>)</p>
+</li>
+<li>
+<p>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/d68a37f3114688d0d4b9fb4b52ebe1b6cef8763d"><code dir="auto">d68a37f</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/ffc77e73899a8855c6e1be656dc69174343c68c3"><code dir="auto">ffc77e7</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/0943dbce286fe8afcfb520dc540dcb5509153c08"><code dir="auto">0943dbc</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/6ad8a5d37d00346b02bfc512adb3b7b31c03e7b6"><code dir="auto">6ad8a5d</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/01d1b60d2ef46e8e3700625a78978b83e968bf0c"><code dir="auto">01d1b60</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/8b969e9faec87ca482bcc33ed6b14ee3987cd10f"><code dir="auto">8b969e9</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/a7dd2ce220f5cef42b154947ad265d5688feee29"><code dir="auto">a7dd2ce</code></a>]:</p>
+<ul>
+<li>@sjsf/form@1.8.0</li>
+<li>@sjsf/ajv8-validator@1.8.0</li>
+<li>@sjsf/shadcn-theme@1.8.0</li>
+<li>@sjsf/cfworker-validator@1.8.0</li>
+<li>@sjsf/skeleton-theme@1.8.0</li>
+<li>@sjsf/daisyui-theme@1.8.0</li>
+<li>@sjsf/lucide-icons@1.8.0</li>
+<li>@sjsf/flowbite-icons@1.8.0</li>
+<li>@sjsf/flowbite-theme@1.8.0</li>
+<li>@sjsf/radix-icons@1.8.0</li>
+</ul>
+</li>
+</ul>
+<h2 id="120">1.2.0</h2>
+<h3 id="minor-changes">Minor Changes</h3>
+<ul>
+<li>
+<p>Add validators selector (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/38">#38</a>)</p>
+</li>
+<li>
+<p>Allow to customize validation events and modifiers (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/41">#41</a>)</p>
+</li>
+</ul>
+<h3 id="patch-changes-4">Patch Changes</h3>
+<ul>
+<li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/874269c5dbdfa269371117806674275ec40e659f"><code dir="auto">874269c</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/763679fccd8bdd5236e4f15259f76edd280b72d8"><code dir="auto">763679f</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/ca9f9ef4afbbbd0cbf2c30a98ba9c86d71fc497a"><code dir="auto">ca9f9ef</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/5f058fe4dcb7c2ab4fee891374d8e727bcdb0b2c"><code dir="auto">5f058fe</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/bffcb8c67fda2fec965846bac3d4da9569e15e39"><code dir="auto">bffcb8c</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/725e93a43d07303a6952b4ed3e44b96c6afe8f39"><code dir="auto">725e93a</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/bd3b935c4b05b7b192c182bd80f9023a0b24af3c"><code dir="auto">bd3b935</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/419d57c7bf633b1e139c24fedcd2e2ee91ef6444"><code dir="auto">419d57c</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/4470869122547638546739ca5bc8de54afba2bbf"><code dir="auto">4470869</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/a209a667d91642edf6ec75d755c4bd1f022a267b"><code dir="auto">a209a66</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/9cae983d9651fd76c2aed52cac87ef5b9d6483c3"><code dir="auto">9cae983</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/4ba48ec3bd67f1e3c1c57a38011912c02378a1eb"><code dir="auto">4ba48ec</code></a>]:
+<ul>
+<li>@sjsf/ajv8-validator@1.7.0</li>
+<li>@sjsf/form@1.7.0</li>
+<li>@sjsf/cfworker-validator@1.7.0</li>
+<li>@sjsf/shadcn-theme@1.7.0</li>
+<li>@sjsf/daisyui-theme@1.7.0</li>
+<li>@sjsf/flowbite-theme@1.7.0</li>
+<li>@sjsf/skeleton-theme@1.7.0</li>
+<li>@sjsf/flowbite-icons@1.7.0</li>
+<li>@sjsf/lucide-icons@1.7.0</li>
+<li>@sjsf/radix-icons@1.7.0</li>
+</ul>
+</li>
+</ul>
+<h2 id="111">1.1.1</h2>
+<h3 id="patch-changes-5">Patch Changes</h3>
+<ul>
+<li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/753a8bde50408a02f6ec5b77e1bc85f9a599fae3"><code dir="auto">753a8bd</code></a>]:
+<ul>
+<li>@sjsf/form@1.6.1</li>
+<li>@sjsf/ajv8-validator@1.6.1</li>
+<li>@sjsf/daisyui-theme@1.6.1</li>
+<li>@sjsf/flowbite-icons@1.6.1</li>
+<li>@sjsf/flowbite-theme@1.6.1</li>
+<li>@sjsf/lucide-icons@1.6.1</li>
+<li>@sjsf/radix-icons@1.6.1</li>
+<li>@sjsf/shadcn-theme@1.6.1</li>
+<li>@sjsf/skeleton-theme@1.6.1</li>
+</ul>
+</li>
+</ul>
+<h2 id="110">1.1.0</h2>
+<h3 id="minor-changes-1">Minor Changes</h3>
+<ul>
+<li>Add entries dumper (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/28">#28</a>)</li>
+</ul>
+<h3 id="patch-changes-6">Patch Changes</h3>
+<ul>
+<li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/7d479742b4a6e3dc65ac1d5317091f5ffc49e097"><code dir="auto">7d47974</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/5d841645f9ddb5f08164805c7fea9acdc4b287f0"><code dir="auto">5d84164</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/4c6322c4b1c09a15890146f66a15db1f47120ccf"><code dir="auto">4c6322c</code></a>]:
+<ul>
+<li>@sjsf/form@1.6.0</li>
+<li>@sjsf/ajv8-validator@1.6.0</li>
+<li>@sjsf/daisyui-theme@1.6.0</li>
+<li>@sjsf/flowbite-icons@1.6.0</li>
+<li>@sjsf/flowbite-theme@1.6.0</li>
+<li>@sjsf/lucide-icons@1.6.0</li>
+<li>@sjsf/radix-icons@1.6.0</li>
+<li>@sjsf/shadcn-theme@1.6.0</li>
+<li>@sjsf/skeleton-theme@1.6.0</li>
+</ul>
+</li>
+</ul>
+<h2 id="108">1.0.8</h2>
+<h3 id="patch-changes-7">Patch Changes</h3>
+<ul>
+<li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/d8b421173cb2226b82f33a5f78a84c3fca075918"><code dir="auto">d8b4211</code></a>]:
+<ul>
+<li>@sjsf/form@1.5.1</li>
+<li>@sjsf/ajv8-validator@1.5.1</li>
+<li>@sjsf/daisyui-theme@1.5.1</li>
+<li>@sjsf/flowbite-icons@1.5.1</li>
+<li>@sjsf/flowbite-theme@1.5.1</li>
+<li>@sjsf/lucide-icons@1.5.1</li>
+<li>@sjsf/radix-icons@1.5.1</li>
+<li>@sjsf/shadcn-theme@1.5.1</li>
+<li>@sjsf/skeleton-theme@1.5.1</li>
+</ul>
+</li>
+</ul>
+<h2 id="107">1.0.7</h2>
+<h3 id="patch-changes-8">Patch Changes</h3>
+<ul>
+<li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/7553e6e108feb60025800e2e0290273db51f3684"><code dir="auto">7553e6e</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/699362fd1ab96efd78f1ee08374630aab4ab2b5c"><code dir="auto">699362f</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/c75aa31735b7e5bc27ca4a5203339dd4a43cec3d"><code dir="auto">c75aa31</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/34b2481db20a8c633a0317a41a4b4793ac3946fc"><code dir="auto">34b2481</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/385b6369cca368be64c9616fb85fe3c247183439"><code dir="auto">385b636</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/89a3e045206de84ab9fc76f0d2c3125ad26ad105"><code dir="auto">89a3e04</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/dad20e122cb3cfead93e42acf44ea6a6b9d417ec"><code dir="auto">dad20e1</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/a6606d1bae97d7c229b6eaed59ce45201e617ebe"><code dir="auto">a6606d1</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/ad5df2045b771745d1cacadafe5551bd46f1a32e"><code dir="auto">ad5df20</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/0084022fb6e0c3176f76c8bc9579af8b133ef19b"><code dir="auto">0084022</code></a>]:
+<ul>
+<li>@sjsf/ajv8-validator@1.5.0</li>
+<li>@sjsf/skeleton-theme@1.5.0</li>
+<li>@sjsf/form@1.5.0</li>
+<li>@sjsf/shadcn-theme@1.5.0</li>
+<li>@sjsf/daisyui-theme@1.5.0</li>
+<li>@sjsf/flowbite-theme@1.5.0</li>
+<li>@sjsf/flowbite-icons@1.5.0</li>
+<li>@sjsf/lucide-icons@1.5.0</li>
+<li>@sjsf/radix-icons@1.5.0</li>
+</ul>
+</li>
+</ul>
+<h2 id="106">1.0.6</h2>
+<h3 id="patch-changes-9">Patch Changes</h3>
+<ul>
+<li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/a786e8fb4d03bb4e29449c261d7d70828f44686c"><code dir="auto">a786e8f</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/56a406a177adcd22b6e468522cfee7c5d483abb4"><code dir="auto">56a406a</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/5ac9c3f500f050fdafea9712c17fb83915c4b289"><code dir="auto">5ac9c3f</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/d0d7d365264828e1daf38eb56db834b04b9f6a03"><code dir="auto">d0d7d36</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/aed9889350602594187c1e896e2c9dfdc0645030"><code dir="auto">aed9889</code></a>]:
+<ul>
+<li>@sjsf/ajv8-validator@1.4.0</li>
+<li>@sjsf/form@1.4.0</li>
+<li>@sjsf/daisyui-theme@1.4.0</li>
+<li>@sjsf/flowbite-theme@1.4.0</li>
+<li>@sjsf/shadcn-theme@1.4.0</li>
+<li>@sjsf/skeleton-theme@1.4.0</li>
+<li>@sjsf/flowbite-icons@1.4.0</li>
+<li>@sjsf/lucide-icons@1.4.0</li>
+<li>@sjsf/radix-icons@1.4.0</li>
+</ul>
+</li>
+</ul>
+<h2 id="105">1.0.5</h2>
+<h3 id="patch-changes-10">Patch Changes</h3>
+<ul>
+<li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/23f37abf7b928bfef45a45ab4a902660a139bfcd"><code dir="auto">23f37ab</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/b88b944629b7b60ea1063c9b580831d0d1676875"><code dir="auto">b88b944</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/fe35ad2e4a557e4904a055558f10a86319e4ee79"><code dir="auto">fe35ad2</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/6144b9a3583cdf68ba240f663d5d3b6d15cea9d6"><code dir="auto">6144b9a</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/13a1bebd2ecd6cd84e7b8378aa8a713e7db5365c"><code dir="auto">13a1beb</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/e6a37ab84a93324bd80bf776d56db7ad75c56fb3"><code dir="auto">e6a37ab</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/e2c9d61023bef189ee270076776eebc83bef0499"><code dir="auto">e2c9d61</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/b5a9529bfc582e48aa0da2a6df23a61059f11bc6"><code dir="auto">b5a9529</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/59e67f726e8065d8774d080b12d1f6eff90dda61"><code dir="auto">59e67f7</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/19b91f48296ebb6f735a2abc06fdb51831a71e15"><code dir="auto">19b91f4</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/615c5b68c792ae9612c47f24371f732fd1733906"><code dir="auto">615c5b6</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/2b6cc01fbc354ecd88ef82c12cb9c33da6cbbea2"><code dir="auto">2b6cc01</code></a>]:
+<ul>
+<li>@sjsf/form@1.3.0</li>
+<li>@sjsf/radix-icons@1.3.0</li>
+<li>@sjsf/shadcn-theme@1.3.0</li>
+<li>@sjsf/flowbite-icons@1.3.0</li>
+<li>@sjsf/flowbite-theme@1.3.0</li>
+<li>@sjsf/skeleton-theme@1.3.0</li>
+<li>@sjsf/daisyui-theme@1.3.0</li>
+<li>@sjsf/lucide-icons@1.3.0</li>
+<li>@sjsf/ajv8-validator@1.3.0</li>
+</ul>
+</li>
+</ul>
+<h2 id="104">1.0.4</h2>
+<h3 id="patch-changes-11">Patch Changes</h3>
+<ul>
+<li>
+<p><a href="https://github.com/x0k/svelte-jsonschema-form/commit/41980fd7e8d68b603c8311ada162874724b8e2f1"><code dir="auto">41980fd</code></a> Thanks <a href="https://github.com/x0k">@x0k</a>! - Sync dev packages versions</p>
+</li>
+<li>
+<p>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/c80ec86740ca536e948280036e2ecf85164334ca"><code dir="auto">c80ec86</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/41980fd7e8d68b603c8311ada162874724b8e2f1"><code dir="auto">41980fd</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/1a1bfb2c46b5d515a4649073aeef2bc57292fded"><code dir="auto">1a1bfb2</code></a>]:</p>
+<ul>
+<li>@sjsf/form@1.2.0</li>
+<li>@sjsf/flowbite-icons@1.2.0</li>
+<li>@sjsf/flowbite-theme@1.2.0</li>
+<li>@sjsf/skeleton-theme@1.2.0</li>
+<li>@sjsf/daisyui-theme@1.2.0</li>
+<li>@sjsf/lucide-icons@1.2.0</li>
+<li>@sjsf/shadcn-theme@1.2.0</li>
+<li>@sjsf/ajv8-validator@1.2.0</li>
+</ul>
+</li>
+</ul>
+<h2 id="103">1.0.3</h2>
+<h3 id="patch-changes-12">Patch Changes</h3>
+<ul>
+<li>
+<p><a href="https://github.com/x0k/svelte-jsonschema-form/commit/4d629eae03038c3ec25a6a8c794da2812bdd4f92"><code dir="auto">4d629ea</code></a> Thanks <a href="https://github.com/x0k">@x0k</a>! - Add <code dir="auto">OneOfDefaults</code> sample</p>
+</li>
+<li>
+<p>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/4f8c576d6e666b3e091b3e7581552534eb14dae8"><code dir="auto">4f8c576</code></a>]:</p>
+<ul>
+<li>@sjsf/form@1.1.2</li>
+<li>@sjsf/ajv8-validator@1.1.2</li>
+<li>@sjsf/daisyui-theme@1.1.2</li>
+<li>@sjsf/flowbite-icons@1.1.2</li>
+<li>@sjsf/flowbite-theme@1.1.2</li>
+<li>@sjsf/lucide-icons@1.1.2</li>
+<li>@sjsf/skeleton-theme@1.1.2</li>
+</ul>
+</li>
+</ul>
+<h2 id="102">1.0.2</h2>
+<h3 id="patch-changes-13">Patch Changes</h3>
+<ul>
+<li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/985b1ceb1f2a4c5db87f29a559be6d0a143073d2"><code dir="auto">985b1ce</code></a>]:
+<ul>
+<li>@sjsf/form@1.1.1</li>
+<li>@sjsf/ajv8-validator@1.1.1</li>
+<li>@sjsf/daisyui-theme@1.1.1</li>
+<li>@sjsf/flowbite-icons@1.1.1</li>
+<li>@sjsf/flowbite-theme@1.1.1</li>
+<li>@sjsf/lucide-icons@1.1.1</li>
+<li>@sjsf/skeleton-theme@1.1.1</li>
+</ul>
+</li>
+</ul>
+<h2 id="101">1.0.1</h2>
+<h3 id="patch-changes-14">Patch Changes</h3>
+<ul>
+<li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/67ff48cab5055a0167bde46b316d5f6f85f79279"><code dir="auto">67ff48c</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/81b69526ac9fd29d10007c25140b954dc1aecfef"><code dir="auto">81b6952</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/2e08cd4c52cd42fcb082d16175adb991643699ed"><code dir="auto">2e08cd4</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/26a1f69b52c2b2d4dcf803e7bc3ea35671750af7"><code dir="auto">26a1f69</code></a>]:
+<ul>
+<li>@sjsf/form@1.1.0</li>
+<li>@sjsf/ajv8-validator@1.1.0</li>
+<li>@sjsf/daisyui-theme@1.1.0</li>
+<li>@sjsf/flowbite-icons@1.1.0</li>
+<li>@sjsf/flowbite-theme@1.1.0</li>
+<li>@sjsf/lucide-icons@1.1.0</li>
+<li>@sjsf/skeleton-theme@1.1.0</li>
+</ul>
+</li>
+</ul>
+<h2 id="100">1.0.0</h2>
+<h3 id="major-changes">Major Changes</h3>
+<ul>
+<li><a href="https://github.com/x0k/svelte-jsonschema-form/commit/8d51c458acbb3b5299adb2467e47bff78524e895"><code dir="auto">8d51c45</code></a> Thanks <a href="https://github.com/x0k">@x0k</a>! - Bump deps (Svelte 5)</li>
+</ul>
+<h3 id="patch-changes-15">Patch Changes</h3>
+<ul>
+<li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/49e353fe6b7578d078155a22e82651f4e9a08fea"><code dir="auto">49e353f</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/8d51c458acbb3b5299adb2467e47bff78524e895"><code dir="auto">8d51c45</code></a>]:
+<ul>
+<li>@sjsf/form@1.0.0</li>
+<li>@sjsf/flowbite-icons@1.0.0</li>
+<li>@sjsf/flowbite-theme@1.0.0</li>
+<li>@sjsf/skeleton-theme@1.0.0</li>
+<li>@sjsf/daisyui-theme@1.0.0</li>
+<li>@sjsf/lucide-icons@1.0.0</li>
+<li>@sjsf/ajv8-validator@1.0.0</li>
+</ul>
+</li>
+</ul>
+<h2 id="0014">0.0.14</h2>
+<h3 id="patch-changes-16">Patch Changes</h3>
+<ul>
+<li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/080092c53755428e8e9a210ed8e125423c73f7df"><code dir="auto">080092c</code></a>]:
+<ul>
+<li>@sjsf/form@0.2.7</li>
+<li>@sjsf/ajv8-validator@0.2.7</li>
+<li>@sjsf/daisyui-theme@0.2.7</li>
+<li>@sjsf/flowbite-icons@0.2.7</li>
+<li>@sjsf/flowbite-theme@0.2.7</li>
+<li>@sjsf/lucide-icons@0.2.7</li>
+<li>@sjsf/skeleton-theme@0.2.7</li>
+</ul>
+</li>
+</ul>
+<h2 id="0013">0.0.13</h2>
+<h3 id="patch-changes-17">Patch Changes</h3>
+<ul>
+<li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/607a3c3071d5cc8060ae9eb998ab88ee14970dde"><code dir="auto">607a3c3</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/63293f802c7e92c646addfe3dec69906f7f77217"><code dir="auto">63293f8</code></a>]:
+<ul>
+<li>@sjsf/daisyui-theme@0.2.6</li>
+<li>@sjsf/flowbite-theme@0.2.6</li>
+<li>@sjsf/form@0.2.6</li>
+<li>@sjsf/skeleton-theme@0.2.6</li>
+<li>@sjsf/ajv8-validator@0.2.6</li>
+<li>@sjsf/flowbite-icons@0.2.6</li>
+<li>@sjsf/lucide-icons@0.2.6</li>
+</ul>
+</li>
+</ul>
+<h2 id="0012">0.0.12</h2>
+<h3 id="patch-changes-18">Patch Changes</h3>
+<ul>
+<li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/030cf419388411f57d2bdc5ec8e0305bc4008322"><code dir="auto">030cf41</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/6bfbe88253a231c4d0e55631059edd3ea4a60c70"><code dir="auto">6bfbe88</code></a>]:
+<ul>
+<li>@sjsf/form@0.2.5</li>
+<li>@sjsf/ajv8-validator@0.2.5</li>
+<li>@sjsf/daisyui-theme@0.2.5</li>
+<li>@sjsf/flowbite-icons@0.2.5</li>
+<li>@sjsf/flowbite-theme@0.2.5</li>
+<li>@sjsf/lucide-icons@0.2.5</li>
+<li>@sjsf/skeleton-theme@0.2.5</li>
+</ul>
+</li>
+</ul>
+<h2 id="0011">0.0.11</h2>
+<h3 id="patch-changes-19">Patch Changes</h3>
+<ul>
+<li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/2e93326f73c0a1181ef4abadadc04bf86f778044"><code dir="auto">2e93326</code></a>]:
+<ul>
+<li>@sjsf/form@0.2.4</li>
+<li>@sjsf/ajv8-validator@0.2.4</li>
+<li>@sjsf/daisyui-theme@0.2.4</li>
+<li>@sjsf/flowbite-icons@0.2.4</li>
+<li>@sjsf/flowbite-theme@0.2.4</li>
+<li>@sjsf/lucide-icons@0.2.4</li>
+<li>@sjsf/skeleton-theme@0.2.4</li>
+</ul>
+</li>
+</ul>
+<h2 id="0010">0.0.10</h2>
+<h3 id="patch-changes-20">Patch Changes</h3>
+<ul>
+<li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/6f33fcd6c53305a790890e85ba11e0214607876b"><code dir="auto">6f33fcd</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/47193c87bfbd2c70b6295aa435e551cc95516f58"><code dir="auto">47193c8</code></a>]:
+<ul>
+<li>@sjsf/flowbite-icons@0.2.3</li>
+<li>@sjsf/flowbite-theme@0.2.3</li>
+<li>@sjsf/skeleton-theme@0.2.3</li>
+<li>@sjsf/daisyui-theme@0.2.3</li>
+<li>@sjsf/lucide-icons@0.2.3</li>
+<li>@sjsf/ajv8-validator@0.2.3</li>
+<li>@sjsf/form@0.2.3</li>
+</ul>
+</li>
+</ul>
+<h2 id="009">0.0.9</h2>
+<h3 id="patch-changes-21">Patch Changes</h3>
+<ul>
+<li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/0a4bad3d218bd5d30f14aa9349149dcca42e40f2"><code dir="auto">0a4bad3</code></a>]:
+<ul>
+<li>@sjsf/form@0.2.2</li>
+<li>@sjsf/ajv8-validator@0.2.2</li>
+<li>@sjsf/daisyui-theme@0.2.2</li>
+<li>@sjsf/flowbite-icons@0.2.2</li>
+<li>@sjsf/flowbite-theme@0.2.2</li>
+<li>@sjsf/lucide-icons@0.2.2</li>
+<li>@sjsf/skeleton-theme@0.2.2</li>
+</ul>
+</li>
+</ul>
+<h2 id="008">0.0.8</h2>
+<h3 id="patch-changes-22">Patch Changes</h3>
+<ul>
+<li>
+<p><a href="https://github.com/x0k/svelte-jsonschema-form/commit/5fa31313fa4aef7db4c0fb9c159166729a2a3933"><code dir="auto">5fa3131</code></a> Thanks <a href="https://github.com/x0k">@x0k</a>! - Add lucide-icons package</p>
+</li>
+<li>
+<p><a href="https://github.com/x0k/svelte-jsonschema-form/commit/d004016218564202e11f74349e55b6aa156f8e1c"><code dir="auto">d004016</code></a> Thanks <a href="https://github.com/x0k">@x0k</a>! - Add skeleton-theme package</p>
+</li>
+<li>
+<p><a href="https://github.com/x0k/svelte-jsonschema-form/commit/77a8906b68526e3aab82c762d8c18790f9687eb2"><code dir="auto">77a8906</code></a> Thanks <a href="https://github.com/x0k">@x0k</a>! - Add flowbite-icons package</p>
+</li>
+<li>
+<p>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/5fa31313fa4aef7db4c0fb9c159166729a2a3933"><code dir="auto">5fa3131</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/2003fcdeecb859ec6865c2480f14b353d1c8af7d"><code dir="auto">2003fcd</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/ea4180ffd848be1064b2c13e621f7ef0215cebaa"><code dir="auto">ea4180f</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/b89983a095d956f025f6e58546027219ee05678c"><code dir="auto">b89983a</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/d004016218564202e11f74349e55b6aa156f8e1c"><code dir="auto">d004016</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/2dd6c352bf6a3018c8ff0593403860260e1a2ee0"><code dir="auto">2dd6c35</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/da81bf838b24fd4c1edc3c3af01f3afc160b8018"><code dir="auto">da81bf8</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/339f9be504d0866fd69a1628adb5dc5739009744"><code dir="auto">339f9be</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/77a8906b68526e3aab82c762d8c18790f9687eb2"><code dir="auto">77a8906</code></a>]:</p>
+<ul>
+<li>@sjsf/lucide-icons@0.2.1</li>
+<li>@sjsf/form@0.2.1</li>
+<li>@sjsf/daisyui-theme@0.2.1</li>
+<li>@sjsf/flowbite-theme@0.2.1</li>
+<li>@sjsf/skeleton-theme@0.2.1</li>
+<li>@sjsf/flowbite-icons@0.2.1</li>
+<li>@sjsf/ajv8-validator@0.2.1</li>
+</ul>
+</li>
+</ul>
+<h2 id="007">0.0.7</h2>
+<h3 id="patch-changes-23">Patch Changes</h3>
+<ul>
+<li>
+<p><a href="https://github.com/x0k/svelte-jsonschema-form/commit/d36a76c157305e4a62eccc710e5b8f45fa13dbe0"><code dir="auto">d36a76c</code></a> Thanks <a href="https://github.com/x0k">@x0k</a>! - Remove form <code dir="auto">readonly</code> attribute (use <code dir="auto">inert</code> instead)</p>
+</li>
+<li>
+<p>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/d36a76c157305e4a62eccc710e5b8f45fa13dbe0"><code dir="auto">d36a76c</code></a>]:</p>
+<ul>
+<li>@sjsf/form@0.2.0</li>
+<li>@sjsf/flowbite-theme@0.2.0</li>
+<li>@sjsf/daisyui-theme@0.2.0</li>
+<li>@sjsf/ajv8-validator@0.2.0</li>
+</ul>
+</li>
+</ul>
+<h2 id="006">0.0.6</h2>
+<h3 id="patch-changes-24">Patch Changes</h3>
+<ul>
+<li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/ea62b7c8d40d4f8b4e5440c28fd9d81f2201b3ec"><code dir="auto">ea62b7c</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/edc5643f305a6b40bf0875d9ab5e53e439d0f3bb"><code dir="auto">edc5643</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/3ce640406b1000be4097f2f08f21f63caee191e2"><code dir="auto">3ce6404</code></a>]:
+<ul>
+<li>@sjsf/form@0.1.0</li>
+<li>@sjsf/ajv8-validator@0.1.0</li>
+<li>@sjsf/daisyui-theme@0.1.0</li>
+<li>@sjsf/flowbite-theme@0.1.0</li>
+</ul>
+</li>
+</ul>
+<h2 id="005">0.0.5</h2>
+<h3 id="patch-changes-25">Patch Changes</h3>
+<ul>
+<li>
+<p><a href="https://github.com/x0k/svelte-jsonschema-form/commit/cc9055d86012d1ee71968e6b86cbdf8f6247130a"><code dir="auto">cc9055d</code></a> Thanks <a href="https://github.com/x0k">@x0k</a>! - Flowbite-svelte theme release</p>
+</li>
+<li>
+<p>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/cc9055d86012d1ee71968e6b86cbdf8f6247130a"><code dir="auto">cc9055d</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/c0cba768c867177b9414c3e79c906bf630e72a76"><code dir="auto">c0cba76</code></a>]:</p>
+<ul>
+<li>@sjsf/flowbite-theme@0.0.6</li>
+<li>@sjsf/daisyui-theme@0.0.6</li>
+<li>@sjsf/form@0.0.6</li>
+<li>@sjsf/ajv8-validator@0.0.6</li>
+</ul>
+</li>
+</ul>
+<h2 id="004">0.0.4</h2>
+<h3 id="patch-changes-26">Patch Changes</h3>
+<ul>
+<li>
+<p><a href="https://github.com/x0k/svelte-jsonschema-form/commit/34042fa48212bba5154c60bcdcfa3ffef6d66d82"><code dir="auto">34042fa</code></a> Thanks <a href="https://github.com/x0k">@x0k</a>! - Add <code dir="auto">focusOnFirstError</code> feature</p>
+</li>
+<li>
+<p>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/34042fa48212bba5154c60bcdcfa3ffef6d66d82"><code dir="auto">34042fa</code></a>]:</p>
+<ul>
+<li>@sjsf/daisyui-theme@0.0.5</li>
+<li>@sjsf/form@0.0.5</li>
+<li>@sjsf/ajv8-validator@0.0.5</li>
+</ul>
+</li>
+</ul>
+<h2 id="003">0.0.3</h2>
+<h3 id="patch-changes-27">Patch Changes</h3>
+<ul>
+<li>
+<p><a href="https://github.com/x0k/svelte-jsonschema-form/commit/0e7c58f2873399fbba0c9674c5b0248936fa02fe"><code dir="auto">0e7c58f</code></a> Thanks <a href="https://github.com/x0k">@x0k</a>! - Add form theme selector</p>
+</li>
+<li>
+<p>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/0e7c58f2873399fbba0c9674c5b0248936fa02fe"><code dir="auto">0e7c58f</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/8c337bb551090e0ce6af0ded6007fb3c80df8363"><code dir="auto">8c337bb</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/ae990a72ace82096e071a5615f477091ec2dc4b5"><code dir="auto">ae990a7</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/f910d77a5b758edced36b366d025ddf11cf5ce2a"><code dir="auto">f910d77</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/7d0cd8a1235d330d6d1e1efba2ed5ff8ee273a0a"><code dir="auto">7d0cd8a</code></a>]:</p>
+<ul>
+<li>@sjsf/daisyui-theme@0.0.4</li>
+<li>@sjsf/form@0.0.4</li>
+<li>@sjsf/ajv8-validator@0.0.4</li>
+</ul>
+</li>
+</ul>
+<h2 id="002">0.0.2</h2>
+<h3 id="patch-changes-28">Patch Changes</h3>
+<ul>
+<li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/6393f13af1567c6940b1d873936753afb5da68b9"><code dir="auto">6393f13</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/37c116b64d37f80bb408a6dc3a18952ff8f83dfb"><code dir="auto">37c116b</code></a>]:
+<ul>
+<li>@sjsf/ajv8-validator@0.0.3</li>
+<li>@sjsf/form@0.0.3</li>
+</ul>
+</li>
+</ul>
+<h2 id="001">0.0.1</h2>
+<h3 id="patch-changes-29">Patch Changes</h3>
+<ul>
+<li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/f84af687d8006dd938f1c9dfc339c01396f2ee08"><code dir="auto">f84af68</code></a>]:
+<ul>
+<li>@sjsf/ajv8-validator@0.0.2</li>
+<li>@sjsf/form@0.0.2</li>
+</ul>
+</li>
+</ul> </div> <footer class="sl-flex astro-3qiz2u3i"> <div class="meta sl-flex astro-3qiz2u3i">   </div> <div class="pagination-links print:hidden astro-4jhnmkii" dir="ltr"> <a href="/svelte-jsonschema-form/v1/changelogs/lucide-icons/" rel="prev" class="astro-4jhnmkii"> <svg aria-hidden="true" class="astro-4jhnmkii astro-gqu5bebc" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17 11H9.41l3.3-3.29a1.004 1.004 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33 1 1 0 0 0 0 .76 1 1 0 0 0 .21.33l5 5a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095L9.41 13H17a1 1 0 0 0 0-2Z"/></svg> <span class="astro-4jhnmkii"> Previous <br class="astro-4jhnmkii"> <span class="link-title astro-4jhnmkii">@sjsf/lucide-icons</span> </span> </a> <a href="/svelte-jsonschema-form/v1/changelogs/radix-icons/" rel="next" class="astro-4jhnmkii"> <svg aria-hidden="true" class="astro-4jhnmkii astro-gqu5bebc" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg> <span class="astro-4jhnmkii"> Next <br class="astro-4jhnmkii"> <span class="link-title astro-4jhnmkii">@sjsf/radix-icons</span> </span> </a> </div>   </footer>  </div> </div>   </main> </div> </div>  </div> </div>  </body></html>
