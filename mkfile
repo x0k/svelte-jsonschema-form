@@ -366,6 +366,17 @@ e/:
     d:
       pnpm run dev
     popd
+  multi/:
+    pushd multi-step-native-form
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    p:
+      pnpm run preview
+    d:
+      pnpm run dev
+    popd
   popd
 
 p:
