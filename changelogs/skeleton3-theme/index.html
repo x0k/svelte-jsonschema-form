@@ -88,8 +88,18 @@ Playground
 	</script> </sl-sidebar-state-persist>  <div class="md:sl-hidden"> <div class="mobile-preferences sl-flex astro-4et4jmdw"> <div class="social-icons astro-4et4jmdw"> <a href="https://github.com/x0k/svelte-jsonschema-form" rel="me" class="sl-flex astro-nt5ntned"><span class="sr-only astro-nt5ntned">GitHub</span><svg aria-hidden="true" class="astro-nt5ntned astro-cv5w2twh" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a> </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-lrhi6u4g"> <span class="sr-only astro-lrhi6u4g">Select theme</span> <svg aria-hidden="true" class="icon label-icon astro-lrhi6u4g astro-cv5w2twh" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg> <select value="auto" autocomplete="off" class="astro-lrhi6u4g"> <option value="dark" class="astro-lrhi6u4g">Dark</option><option value="light" class="astro-lrhi6u4g">Light</option><option value="auto" selected class="astro-lrhi6u4g">Auto</option> </select> <svg aria-hidden="true" class="icon caret astro-lrhi6u4g astro-cv5w2twh" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label>  </starlight-theme-select>  <script>
 	StarlightThemeProvider.updatePickers();
 </script>   </div>  </div> </div> </div> </nav> <div class="main-frame astro-mntagjuq">  <script type="module">const a=document.getElementById("starlight__sidebar"),n=a?.querySelector("sl-sidebar-state-persist"),o="sl-sidebar-state",i=()=>{let t=[];const e=n?.dataset.hash||"";try{const s=sessionStorage.getItem(o),r=JSON.parse(s||"{}");Array.isArray(r.open)&&r.hash===e&&(t=r.open)}catch{}return{hash:e,open:t,scroll:a?.scrollTop||0}},c=t=>{try{sessionStorage.setItem(o,JSON.stringify(t))}catch{}},d=()=>c(i()),l=(t,e)=>{const s=i();s.open[e]=t,c(s)};n?.addEventListener("click",t=>{if(!(t.target instanceof Element))return;const e=t.target.closest("summary")?.closest("details");if(!e)return;const s=e.querySelector("sl-sidebar-restore"),r=parseInt(s?.dataset.index||"");isNaN(r)||l(!e.open,r)});addEventListener("visibilitychange",()=>{document.visibilityState==="hidden"&&d()});addEventListener("pageHide",d);</script> <div class="lg:sl-flex astro-2sqnj5io"> <aside class="right-sidebar-container print:hidden astro-2sqnj5io"> <div class="right-sidebar astro-2sqnj5io"> <div class="lg:sl-hidden astro-vcwqurht"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-jtzhtony"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-jtzhtony"><details id="starlight__mobile-toc" class="astro-jtzhtony"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-jtzhtony"><div class="toggle sl-flex astro-jtzhtony">On this page<svg aria-hidden="true" class="caret astro-jtzhtony astro-cv5w2twh" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></div><span class="display-current astro-jtzhtony"></span></summary><div class="dropdown astro-jtzhtony"><ul class="isMobile astro-6xccpwj2" style="--depth: 0;"> <li class="astro-6xccpwj2" style="--depth: 0;"> <a href="#_top" class="astro-6xccpwj2" style="--depth: 0;"> <span class="astro-6xccpwj2" style="--depth: 0;">Overview</span> </a>  </li> </ul> </div></details></nav></mobile-starlight-toc><script type="module" src="/svelte-jsonschema-form/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.C181hMzK.js"></script></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-vcwqurht"><div class="sl-container astro-vcwqurht"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-6xccpwj2" style="--depth: 0;"> <li class="astro-6xccpwj2" style="--depth: 0;"> <a href="#_top" class="astro-6xccpwj2" style="--depth: 0;"> <span class="astro-6xccpwj2" style="--depth: 0;">Overview</span> </a>  </li> </ul> </nav></starlight-toc><script type="module" src="/svelte-jsonschema-form/_astro/TableOfContents.astro_astro_type_script_index_0_lang.CKWWgpjV.js"></script></div></div> </div> </aside> <div class="main-pane astro-2sqnj5io">  <main data-pagefind-body class="astro-a2354atu" lang="en" dir="ltr">    <div class="content-panel astro-prritwg4"> <div class="sl-container astro-prritwg4"> <h1 id="_top" class="astro-x2zsdnhq">@sjsf/skeleton3-theme</h1>  </div> </div>  <div class="content-panel astro-prritwg4"> <div class="sl-container astro-prritwg4"> <div class="sl-markdown-content">  <h1 id="sjsfskeleton3-theme">@sjsf/skeleton3-theme</h1>
-<h2 id="210">2.1.0</h2>
+<h2 id="211">2.1.1</h2>
 <h3 id="patch-changes">Patch Changes</h3>
+<ul>
+<li>Updated dependencies []:
+<ul>
+<li>@sjsf/basic-theme@2.1.1</li>
+<li>@sjsf/form@2.1.1</li>
+</ul>
+</li>
+</ul>
+<h2 id="210">2.1.0</h2>
+<h3 id="patch-changes-1">Patch Changes</h3>
 <ul>
 <li>Updated dependencies []:
 <ul>
@@ -99,7 +109,7 @@ Playground
 </li>
 </ul>
 <h2 id="202">2.0.2</h2>
-<h3 id="patch-changes-1">Patch Changes</h3>
+<h3 id="patch-changes-2">Patch Changes</h3>
 <ul>
 <li>
 <p>Fix item alignment in <code dir="auto">object-property</code> layout (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/f8278d1c60bdf954e8455ba7a9009481348f44ab"><code dir="auto">f8278d1</code></a>)</p>
@@ -113,7 +123,7 @@ Playground
 </li>
 </ul>
 <h2 id="201">2.0.1</h2>
-<h3 id="patch-changes-2">Patch Changes</h3>
+<h3 id="patch-changes-3">Patch Changes</h3>
 <ul>
 <li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/d3c05fe33cb0847b4db3422a46e3372988dc40fc"><code dir="auto">d3c05fe</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/935d41467d0a2d84e9f0c5dd2cf9e8f8b9f6f406"><code dir="auto">935d414</code></a>]:
 <ul>
@@ -153,7 +163,7 @@ Playground
 <p>Add skeleton v3 theme package (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/668eb67e4c9b927f27d66e10caf3edd7a74b0ced"><code dir="auto">668eb67</code></a>)</p>
 </li>
 </ul>
-<h3 id="patch-changes-3">Patch Changes</h3>
+<h3 id="patch-changes-4">Patch Changes</h3>
 <ul>
 <li>
 <p>Fix switch label (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/bf0099a6334e47b1d488cbb3bf85d5e9778caf9b"><code dir="auto">bf0099a</code></a>)</p>
@@ -180,7 +190,7 @@ Playground
 <ul>
 <li>Bump peer and dev dependencies (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/21e47cccb6f53c698582db9c3639a33672e21552"><code dir="auto">21e47cc</code></a>)</li>
 </ul>
-<h3 id="patch-changes-4">Patch Changes</h3>
+<h3 id="patch-changes-5">Patch Changes</h3>
 <ul>
 <li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/00a1ea1c431c7f8637cb2cc5e3aa73dd6d94771f"><code dir="auto">00a1ea1</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/e904c7f59daf600188ef02ce8c4ee6d7f843656f"><code dir="auto">e904c7f</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/ba140fb1ad3e371cb5c163b869998e20750db939"><code dir="auto">ba140fb</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/21e47cccb6f53c698582db9c3639a33672e21552"><code dir="auto">21e47cc</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/95e52e6e70620007be1b05a7880376b24215d4cb"><code dir="auto">95e52e6</code></a>]:
 <ul>
@@ -190,7 +200,7 @@ Playground
 </li>
 </ul>
 <h2 id="200-next14">2.0.0-next.14</h2>
-<h3 id="patch-changes-5">Patch Changes</h3>
+<h3 id="patch-changes-6">Patch Changes</h3>
 <ul>
 <li>Updated dependencies []:
 <ul>
@@ -200,7 +210,7 @@ Playground
 </li>
 </ul>
 <h2 id="200-next13">2.0.0-next.13</h2>
-<h3 id="patch-changes-6">Patch Changes</h3>
+<h3 id="patch-changes-7">Patch Changes</h3>
 <ul>
 <li>Updated dependencies []:
 <ul>
@@ -210,7 +220,7 @@ Playground
 </li>
 </ul>
 <h2 id="200-next12">2.0.0-next.12</h2>
-<h3 id="patch-changes-7">Patch Changes</h3>
+<h3 id="patch-changes-8">Patch Changes</h3>
 <ul>
 <li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/38ae58337d6b240a4fda87d4428bd979a952baf7"><code dir="auto">38ae583</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/f30da6d2b9161d848e3ec1be631d555b20783739"><code dir="auto">f30da6d</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/1c753287e206049acec0d19aa60c85f8ef902b4c"><code dir="auto">1c75328</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/1e641de9ce630da729bf295c508371dabaa2e802"><code dir="auto">1e641de</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/50c357a57b7819a83ceab99a96d09b21af848b17"><code dir="auto">50c357a</code></a>]:
 <ul>
@@ -220,7 +230,7 @@ Playground
 </li>
 </ul>
 <h2 id="200-next11">2.0.0-next.11</h2>
-<h3 id="patch-changes-8">Patch Changes</h3>
+<h3 id="patch-changes-9">Patch Changes</h3>
 <ul>
 <li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/162b0018a630c58e72a775af02d6655cc8e65fab"><code dir="auto">162b001</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/f6fd57c724450da74b26fc63cdb5fdb510203613"><code dir="auto">f6fd57c</code></a>]:
 <ul>
@@ -230,7 +240,7 @@ Playground
 </li>
 </ul>
 <h2 id="200-next10">2.0.0-next.10</h2>
-<h3 id="patch-changes-9">Patch Changes</h3>
+<h3 id="patch-changes-10">Patch Changes</h3>
 <ul>
 <li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/0aa15554efa7306f0a7d2adcb3b05785c2e0125e"><code dir="auto">0aa1555</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/1669b7072ba474f53a0d23cbb27596c44f7397bd"><code dir="auto">1669b70</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/c72cbf258fe9f60b3b0462baa758a5a570200124"><code dir="auto">c72cbf2</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/b392c41b3bc6f3ecfbd65a1481ff01a512db786b"><code dir="auto">b392c41</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/3ae493a8905e38122fe0a1f996e25c70334cce0d"><code dir="auto">3ae493a</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/71afdd2a32b88ae95b9799902a538b38da0ad7bb"><code dir="auto">71afdd2</code></a>]:
 <ul>
@@ -240,7 +250,7 @@ Playground
 </li>
 </ul>
 <h2 id="200-next9">2.0.0-next.9</h2>
-<h3 id="patch-changes-10">Patch Changes</h3>
+<h3 id="patch-changes-11">Patch Changes</h3>
 <ul>
 <li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/99b77fb416960e7204154a29826684af1939792a"><code dir="auto">99b77fb</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/9882dd8b84a19be80d47786708379fedcda2db31"><code dir="auto">9882dd8</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/73ee1fb8c35b43c00e6e0d1045d3672f05e78842"><code dir="auto">73ee1fb</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/b2c896b2058b56a4f4ee5794f490f6298a375f94"><code dir="auto">b2c896b</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/a7a896410a764801fe1e6d1bf20876b82f9b905f"><code dir="auto">a7a8964</code></a>]:
 <ul>
@@ -259,7 +269,7 @@ Playground
 <p>Add support for extra ui options (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/7a82413f237924b6e0d3942f4d988ceb5ca8229c"><code dir="auto">7a82413</code></a>)</p>
 </li>
 </ul>
-<h3 id="patch-changes-11">Patch Changes</h3>
+<h3 id="patch-changes-12">Patch Changes</h3>
 <ul>
 <li>
 <p>Fix types collisions (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/64b29ba6e8061ad7fd6e68c55adcca7aaf1ffe5a"><code dir="auto">64b29ba</code></a>)</p>
@@ -277,7 +287,7 @@ Playground
 <ul>
 <li>Add <code dir="auto">label</code> component, implement two level title (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/ce19144520e76e8071ae3066a6f41964643e9187"><code dir="auto">ce19144</code></a>)</li>
 </ul>
-<h3 id="patch-changes-12">Patch Changes</h3>
+<h3 id="patch-changes-13">Patch Changes</h3>
 <ul>
 <li>
 <p>Fix switch label (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/bf0099a6334e47b1d488cbb3bf85d5e9778caf9b"><code dir="auto">bf0099a</code></a>)</p>
@@ -307,7 +317,7 @@ Playground
 <ul>
 <li>Add extra widgets: <code dir="auto">FileUpload</code> (alternative <code dir="auto">fileWidget</code>), <code dir="auto">radioButtonsWidget</code>, <code dir="auto">ratingWidget</code>, <code dir="auto">Slider</code> (alternative <code dir="auto">rangeWidget</code>), <code dir="auto">switchWidget</code> (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/87">#87</a>)</li>
 </ul>
-<h3 id="patch-changes-13">Patch Changes</h3>
+<h3 id="patch-changes-14">Patch Changes</h3>
 <ul>
 <li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/83d88664f65ce9c7cd767503120a4af5a8e4b657"><code dir="auto">83d8866</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/6cfff91a6ed28d82f3337a27f9bbddcd04a279a8"><code dir="auto">6cfff91</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/6f4942b24f754ad99040f35cbaa2285d4d9d7c27"><code dir="auto">6f4942b</code></a>]:
 <ul>
@@ -321,7 +331,7 @@ Playground
 <ul>
 <li>Add skeleton v3 theme package (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/668eb67e4c9b927f27d66e10caf3edd7a74b0ced"><code dir="auto">668eb67</code></a>)</li>
 </ul>
-<h3 id="patch-changes-14">Patch Changes</h3>
+<h3 id="patch-changes-15">Patch Changes</h3>
 <ul>
 <li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/33fcab1e99d3da5d464cbd814b4f8445ceb2e4d9"><code dir="auto">33fcab1</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/69535c3d53fd2d95b2e02d0fe5e6c309aa4d0df6"><code dir="auto">69535c3</code></a>]:
 <ul>
