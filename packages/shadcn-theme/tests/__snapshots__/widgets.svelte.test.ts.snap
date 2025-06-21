@@ -4671,6 +4671,7 @@ exports[`default-ui > widgets > radio > disabled 1`] = `
         <!---->
         <!---->
         <div
+          aria-disabled="true"
           aria-required="false"
           class="grid gap-2"
           data-disabled=""
@@ -4939,6 +4940,7 @@ exports[`default-ui > widgets > radio > error 1`] = `
         <!---->
         <!---->
         <div
+          aria-disabled="false"
           aria-required="false"
           class="grid gap-2"
           data-orientation="vertical"
@@ -5209,6 +5211,7 @@ exports[`default-ui > widgets > radio > normal 1`] = `
         <!---->
         <!---->
         <div
+          aria-disabled="false"
           aria-required="false"
           class="grid gap-2"
           data-orientation="vertical"
@@ -5467,6 +5470,7 @@ exports[`default-ui > widgets > radio > readonly 1`] = `
         <!---->
         <!---->
         <div
+          aria-disabled="false"
           aria-required="false"
           class="grid gap-2"
           data-orientation="vertical"
@@ -13182,6 +13186,7 @@ exports[`new-york-ui > widgets > radio > disabled 1`] = `
         <!---->
         <!---->
         <div
+          aria-disabled="true"
           aria-required="false"
           class="grid gap-2"
           data-disabled=""
@@ -13450,6 +13455,7 @@ exports[`new-york-ui > widgets > radio > error 1`] = `
         <!---->
         <!---->
         <div
+          aria-disabled="false"
           aria-required="false"
           class="grid gap-2"
           data-orientation="vertical"
@@ -13720,6 +13726,7 @@ exports[`new-york-ui > widgets > radio > normal 1`] = `
         <!---->
         <!---->
         <div
+          aria-disabled="false"
           aria-required="false"
           class="grid gap-2"
           data-orientation="vertical"
@@ -13978,6 +13985,7 @@ exports[`new-york-ui > widgets > radio > readonly 1`] = `
         <!---->
         <!---->
         <div
+          aria-disabled="false"
           aria-required="false"
           class="grid gap-2"
           data-orientation="vertical"
