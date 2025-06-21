@@ -39,6 +39,26 @@ describe('convertFormDataEntries', () => {
     const entries: Entries<string> = [['root.fixedNoToolbar.0', '42']];
     expect(convert({ schema, uiSchema: {}, entries })).toEqual(42);
   });
+  it('Should convert enum value', () => {
+    const schema: Schema = {
+      type: 'string',
+      enum: ['foo', 'bar', 'baz']
+    };
+    const entries: Entries<string> = [['root', 'bar']];
+    expect(convert({ schema, uiSchema: {}, entries })).toEqual('bar');
+  });
+  it('Should return correct value from enum of string numbers', () => {
+    const schema: Schema = {
+      type: 'string',
+      enum: ['1', '2', '3']
+    };
+    // First, the value is treated as an index
+    expect(convert({ schema, uiSchema: {}, entries: [['root', '0']] })).toEqual('1');
+    // Then we check if there is a value in the enumeration
+    expect(convert({ schema, uiSchema: {}, entries: [['root', '3']] })).toEqual('3');
+    // If nothing fits, it's an error
+    expect(() => convert({ schema, uiSchema: {}, entries: [['root', '4']] })).toThrow();
+  });
   it('Should return correct value from anyOf', () => {
     const schema: Schema = {
       title: 'Color',

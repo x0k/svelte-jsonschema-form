@@ -38,10 +38,6 @@ export function makeFormDataEntriesConverter({
     }
     const value = entries[0][1];
     if (isSelect(validator, merger, schema, rootSchema)) {
-      const num = Number(value);
-      if (isNaN(num)) {
-        throw new Error(`Invalid select index value: ${value} is not a number`);
-      }
       const altSchemas = schema.oneOf ?? schema.anyOf;
       const options = Array.isArray(altSchemas)
         ? altSchemas.map((s) => (typeof s === 'boolean' ? s : getSchemaConstantValue(s)))
@@ -49,12 +45,14 @@ export function makeFormDataEntriesConverter({
       if (options === undefined) {
         throw new Error(`Invalid select options: ${JSON.stringify(schema)}`);
       }
-      if (num >= options.length) {
-        throw new Error(
-          `Invalid select index: "${value}" is not a valid index for "[${options.join(', ')}]"`
-        );
+      const num = Number(value);
+      if (Number.isInteger(num) && num >= 0 && num < options.length) {
+        return structuredClone(options[num]);
       }
-      return structuredClone(options[num]);
+      if (options.includes(value)) {
+        return value;
+      }
+      throw new Error(`Value "${value}" does not match the schema: ${JSON.stringify(schema)}`);
     }
     switch (type) {
       case 'string':
