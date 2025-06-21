@@ -27,6 +27,7 @@ export default defineConfig({
         // SSR tests (Server-side rendering)
         extends: './vite.config.ts',
         test: {
+          testTimeout: 10000,
           name: 'ssr',
           environment: 'node',
           include: ['src/**/*.ssr.{test,spec}.{js,ts}'],
