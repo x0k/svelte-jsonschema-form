@@ -1,5 +1,5 @@
 import { fail } from "@sveltejs/kit";
-import type { Schema, AnyFormValueValidatorError } from "@sjsf/form";
+import type { AnyFormValueValidatorError } from "@sjsf/form";
 import type { ValidatedFormData } from "@sjsf/sveltekit";
 import {
   initForm,
@@ -9,66 +9,27 @@ import {
 
 import { validator } from "$lib/form-defaults";
 
+import { schema, steps, type CompletedValue, type Value } from "./model";
 import type { Actions } from "./$types";
 
 const parseFormData = makeFormDataParser({
   validator,
 });
 
-function createSteppedSchema(steps: Schema[]): Schema {
-  function createCondition(lvl: number): Schema | undefined {
-    if (lvl >= steps.length) {
-      return;
-    }
-    return {
-      if: { properties: { __step: { const: lvl } } },
-      then: {
-        allOf: steps.slice(0, lvl + 1),
-      },
-      else: createCondition(lvl + 1),
-    };
-  }
-  return {
-    type: "object",
-    properties: {
-      __step: {
-        type: "number",
-        default: 0,
-      },
-    },
-    ...createCondition(0),
-  };
-}
-
-const steps: Schema[] = [
-  {
-    type: "object",
-    properties: {
-      name: {
-        type: "string",
-        title: "Name",
-        minLength: 1,
-      },
-    },
-    required: ["name"],
-  },
-  {
-    type: "object",
-    properties: {
-      email: {
-        type: "string",
-        title: "Email",
-        format: "email",
-      },
-    },
-    required: ["email"],
-  },
-];
-
-const schema = createSteppedSchema(steps);
-
 export const load = async () => {
-  const form = initForm({ schema, sendSchema: true });
+  const form = initForm({
+    schema,
+    sendSchema: true,
+    initialValue: {
+      step: "first",
+      first: {
+        name: "",
+      },
+      second: {
+        email: "",
+      },
+    } satisfies CompletedValue,
+  });
   return { form };
 };
 
@@ -77,8 +38,8 @@ type ValidatedForm = ValidatedFormData<
   true
 >;
 
-function isValidSteppedForm(form: ValidatedForm): form is ValidatedForm & {
-  data: { __step: number };
+function isValidForm(form: ValidatedForm): form is ValidatedForm & {
+  data: Value;
 } {
   return form.isValid;
 }
@@ -89,6 +50,7 @@ export const actions = {
       request,
       schema,
     });
+    console.log(data)
     const form = await validateForm({
       sendData: true,
       request,
@@ -96,12 +58,16 @@ export const actions = {
       validator,
       data,
     });
-    if (!isValidSteppedForm(form)) {
+    if (!isValidForm(form)) {
       return fail(400, { form });
     }
-    if (form.data.__step < steps.length - 1) {
+    const index = steps.indexOf(form.data.step);
+    if (index < steps.length - 1) {
       form.isValid = false;
-      form.data.__step += 1;
+      form.data.step = steps[index + 1];
+    } else {
+      // all steps completed
+      console.log(form.data as CompletedValue);
     }
     return {
       form,
