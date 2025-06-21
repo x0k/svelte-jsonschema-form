@@ -1,5 +1,12 @@
 # @sjsf/flowbite-icons
 
+## 2.1.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/form@2.1.1
+
 ## 2.1.0
 
 ### Patch Changes

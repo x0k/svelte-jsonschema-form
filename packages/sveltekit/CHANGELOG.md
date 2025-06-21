@@ -1,5 +1,14 @@
 # @sjsf/sveltekit
 
+## 2.1.1
+
+### Patch Changes
+
+- Fix conversion of enumerations without conversion to index values ([`c80ae69`](https://github.com/x0k/svelte-jsonschema-form/commit/c80ae69567bd4d317e5e15dcb67a5c24b77ba428))
+
+- Updated dependencies []:
+  - @sjsf/form@2.1.1
+
 ## 2.1.0
 
 ### Patch Changes
