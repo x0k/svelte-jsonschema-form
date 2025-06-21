@@ -1,5 +1,5 @@
 import { fail } from "@sveltejs/kit";
-import type { AnyFormValueValidatorError } from "@sjsf/form";
+import type { AnyFormValueValidatorError, SchemaValue } from "@sjsf/form";
 import type { ValidatedFormData } from "@sjsf/sveltekit";
 import {
   initForm,
@@ -9,7 +9,7 @@ import {
 
 import { validator } from "$lib/form-defaults";
 
-import { schema, steps, type CompletedValue, type Value } from "./model";
+import { schema, STEP_KEY, stepNames, type Stepped } from "./model";
 import type { Actions } from "./$types";
 
 const parseFormData = makeFormDataParser({
@@ -18,17 +18,11 @@ const parseFormData = makeFormDataParser({
 
 export const load = async () => {
   const form = initForm({
-    schema,
+    schema: schema,
     sendSchema: true,
     initialValue: {
-      step: "first",
-      first: {
-        name: "",
-      },
-      second: {
-        email: "",
-      },
-    } satisfies CompletedValue,
+      [STEP_KEY]: "first",
+    } satisfies Stepped & SchemaValue,
   });
   return { form };
 };
@@ -39,7 +33,7 @@ type ValidatedForm = ValidatedFormData<
 >;
 
 function isValidForm(form: ValidatedForm): form is ValidatedForm & {
-  data: Value;
+  data: Stepped;
 } {
   return form.isValid;
 }
@@ -48,26 +42,25 @@ export const actions = {
   default: async ({ request }) => {
     const data = await parseFormData({
       request,
-      schema,
+      schema: schema,
     });
-    console.log(data)
     const form = await validateForm({
       sendData: true,
       request,
-      schema,
+      schema: schema,
       validator,
       data,
     });
     if (!isValidForm(form)) {
       return fail(400, { form });
     }
-    const index = steps.indexOf(form.data.step);
-    if (index < steps.length - 1) {
+    const index = stepNames.indexOf(form.data[STEP_KEY]);
+    if (index < stepNames.length - 1) {
       form.isValid = false;
-      form.data.step = steps[index + 1];
+      form.data[STEP_KEY] = stepNames[index + 1];
     } else {
       // all steps completed
-      console.log(form.data as CompletedValue);
+      console.log(form.data);
     }
     return {
       form,
