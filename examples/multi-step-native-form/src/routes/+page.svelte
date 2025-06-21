@@ -1,11 +1,10 @@
 <script lang="ts">
-  import { extendByRecord } from "@sjsf/form/lib/resolver";
-  import { isSchemaObjectValue } from "@sjsf/form/core";
+  import { fromFactories } from "@sjsf/form/lib/resolver";
   import {
     setFormContext,
     Content,
     SubmitButton,
-    type ComponentType,
+    type Config,
     pathToId,
   } from "@sjsf/form";
   import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit/client";
@@ -13,39 +12,28 @@
   import * as defaults from "$lib/form-defaults";
 
   import type { ActionData, PageData } from "./$types";
-  import HiddenField from "./hidden-field.svelte";
+  import { steps } from "./model";
 
   const meta = createMeta<ActionData, PageData>().form;
 
-  const PRIMITIVE_FIELDS = new Set<ComponentType>([
-    "stringField",
-    "numberField",
-    "integerField",
-    "booleanField",
-    "nullField",
-  ]);
-
   const { form } = setupSvelteKitForm(meta, {
     ...defaults,
-    theme: extendByRecord(defaults.theme, { hiddenField: HiddenField }),
-    resolver: (ctx) => {
-      const original = defaults.resolver(ctx);
-      return (config) => {
-        const type = original(config);
-        if (PRIMITIVE_FIELDS.has(type)) {
-          const step = (
-            isSchemaObjectValue(ctx.value) ? (ctx.value.__step ?? 0) : 0
-          ).toString();
-          const prefix = pathToId([step], ctx);
-          if (!config.id.startsWith(prefix)) {
-            return "hiddenField";
-          }
-        }
-        return type;
-      };
-    },
-    onSubmit: console.log,
+    extraUiOptions: fromFactories({
+      layouts: (config: Config) =>
+        rootPaths.has(config.id)
+          ? {
+              "object-property": {
+                get style(): string {
+                  return `display: ${
+                    config.id.endsWith(form.value?.step!) ? "block" : "none"
+                  }`;
+                },
+              },
+            }
+          : undefined,
+    }),
   });
+  const rootPaths = new Set(["step", ...steps].map((l) => pathToId([l])));
   setFormContext(form.context);
 </script>
 
