@@ -76,6 +76,7 @@ const EXAMPLE_LAYERS: Record<Example, () => LayerPromise> = {
   [Example.DecomposedField]: () => import("./examples/decomposed-field"),
   [Example.MultiStepNativeForm]: () =>
     import("./examples/multi-step-native-form"),
+  [Example.LayoutSlots]: () => import("./examples/layout-slots"),
 };
 
 export async function openProject({
