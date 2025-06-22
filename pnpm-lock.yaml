@@ -707,6 +707,43 @@ importers:
         specifier: ^6.3.5
         version: 6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1)
 
+  examples/layout-slots:
+    dependencies:
+      '@sjsf/ajv8-validator':
+        specifier: ^2.0.0
+        version: 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(ajv@8.17.1)
+      '@sjsf/basic-theme':
+        specifier: ^2.0.0
+        version: 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
+      '@sjsf/form':
+        specifier: ^2.0.0
+        version: 2.1.1(esm-env@1.2.2)(svelte@5.34.7)
+      ajv:
+        specifier: ^8.17.1
+        version: 8.17.1
+    devDependencies:
+      '@sveltejs/adapter-auto':
+        specifier: ^6.0.0
+        version: 6.0.1(@sveltejs/kit@2.21.5(@sveltejs/vite-plugin-svelte@5.1.0(svelte@5.34.7)(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1)))(svelte@5.34.7)(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1)))
+      '@sveltejs/kit':
+        specifier: ^2.16.0
+        version: 2.21.5(@sveltejs/vite-plugin-svelte@5.1.0(svelte@5.34.7)(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1)))(svelte@5.34.7)(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1))
+      '@sveltejs/vite-plugin-svelte':
+        specifier: ^5.0.0
+        version: 5.1.0(svelte@5.34.7)(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1))
+      svelte:
+        specifier: ^5.33.0
+        version: 5.34.7
+      svelte-check:
+        specifier: ^4.0.0
+        version: 4.2.2(picomatch@4.0.2)(svelte@5.34.7)(typescript@5.8.3)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.8.3
+      vite:
+        specifier: ^6.3.5
+        version: 6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1)
+
   examples/markdown-description:
     dependencies:
       '@sjsf/ajv8-validator':

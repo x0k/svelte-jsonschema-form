@@ -377,6 +377,17 @@ e/:
     d:
       pnpm run dev
     popd
+  layout/:
+    pushd layout-slots
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    p:
+      pnpm run preview
+    d:
+      pnpm run dev
+    popd
   popd
 
 p:
