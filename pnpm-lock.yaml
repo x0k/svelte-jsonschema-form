@@ -141,6 +141,10 @@ importers:
         version: 0.1.0(@vitest/browser@3.2.4)(svelte@5.34.7)(vitest@3.2.4)
 
   apps/builder:
+    dependencies:
+      '@dnd-kit/dom':
+        specifier: ^0.1.19
+        version: 0.1.19
     devDependencies:
       '@lucide/svelte':
         specifier: ^0.522.0
@@ -1906,6 +1910,21 @@ packages:
     resolution: {integrity: sha512-WyOx8cJQ+FQus4Mm4uPIZA64gbk3Wxh0so5Lcii0aJifqwoVOlfFtorjLE0Hen4OYyHZMXDWqMmaQemBhgxFRQ==}
     engines: {node: '>=14'}
 
+  '@dnd-kit/abstract@0.1.19':
+    resolution: {integrity: sha512-meZsoPz0gvyUNu73/YaCSYxRFK/+NtChLPnF11mRMOq5smg+ssHCfMLiVzd7XQ/IA5DSpC5zU0f3YSz0qbSfnw==}
+
+  '@dnd-kit/collision@0.1.19':
+    resolution: {integrity: sha512-JFKkXW0bYwznhRkdsqAgr86euOrcHmMddoxSnWvPjswXSjABSYHB77GnIYmmE3xAcrV7+zc97WAj5v+1IonAcg==}
+
+  '@dnd-kit/dom@0.1.19':
+    resolution: {integrity: sha512-BW9AsFNxlpjBCmPXS3Whx6JzXQ2D6N2q9xhxqcA6EV8MyY5a5V7CGxZvfdJUFHf4OsmGCvl5lFoyM61tCFsqHQ==}
+
+  '@dnd-kit/geometry@0.1.19':
+    resolution: {integrity: sha512-+mpLdGgegVLc64dbwYuNRFz/W+llD85gh9NRSCmESp3iMWHZiOWX5dITrKEqIbQIvOzwSX6HtuggjUWnPGMLZQ==}
+
+  '@dnd-kit/state@0.1.19':
+    resolution: {integrity: sha512-uCsB7PuwRmg4x5pqMpALL0kIQPglGG20LKfCJD/LvVMf0nnzboL/n0iFVKIMOlhBzsM9fB3X4bih9LoAnaeRqA==}
+
   '@emmetio/abbreviation@2.3.3':
     resolution: {integrity: sha512-mgv58UrU3rh4YgbE/TzgLQwJ3pFsHHhCLqY20aJq+9comytTXUDNGG/SMtSeMJdkpxgXSXunBGLD8Boka3JyVA==}
 
@@ -2540,6 +2559,9 @@ packages:
 
   '@popperjs/core@2.11.8':
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
+
+  '@preact/signals-core@1.10.0':
+    resolution: {integrity: sha512-qlKeXlfqtlC+sjxCPHt6Sk0/dXBrKZVcPlianqjNc/vW263YBFiP5mRrgKpHoO0q222Thm1TdYQWfCKpbbgvwA==}
 
   '@publint/pack@0.1.2':
     resolution: {integrity: sha512-S+9ANAvUmjutrshV4jZjaiG8XQyuJIZ8a4utWmN/vW1sgQ9IfBnPndwkmQYw53QmouOIytT874u65HEmu6H5jw==}
@@ -7250,6 +7272,36 @@ snapshots:
 
   '@ctrl/tinycolor@4.1.0': {}
 
+  '@dnd-kit/abstract@0.1.19':
+    dependencies:
+      '@dnd-kit/geometry': 0.1.19
+      '@dnd-kit/state': 0.1.19
+      tslib: 2.7.0
+
+  '@dnd-kit/collision@0.1.19':
+    dependencies:
+      '@dnd-kit/abstract': 0.1.19
+      '@dnd-kit/geometry': 0.1.19
+      tslib: 2.7.0
+
+  '@dnd-kit/dom@0.1.19':
+    dependencies:
+      '@dnd-kit/abstract': 0.1.19
+      '@dnd-kit/collision': 0.1.19
+      '@dnd-kit/geometry': 0.1.19
+      '@dnd-kit/state': 0.1.19
+      tslib: 2.7.0
+
+  '@dnd-kit/geometry@0.1.19':
+    dependencies:
+      '@dnd-kit/state': 0.1.19
+      tslib: 2.7.0
+
+  '@dnd-kit/state@0.1.19':
+    dependencies:
+      '@preact/signals-core': 1.10.0
+      tslib: 2.7.0
+
   '@emmetio/abbreviation@2.3.3':
     dependencies:
       '@emmetio/scanner': 1.0.4
@@ -7795,6 +7847,8 @@ snapshots:
   '@polka/url@1.0.0-next.28': {}
 
   '@popperjs/core@2.11.8': {}
+
+  '@preact/signals-core@1.10.0': {}
 
   '@publint/pack@0.1.2': {}
 
