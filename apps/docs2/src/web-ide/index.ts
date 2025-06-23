@@ -1,6 +1,7 @@
 import type { DirectoryNode, FileSystemTree } from "@webcontainer/api";
 import sdk from "@stackblitz/sdk";
 import lz from "lz-string";
+import { getParameters } from "codesandbox/lib/api/define";
 
 import {
   Example,
@@ -21,6 +22,7 @@ const INITIAL_FILE = "src/routes/+page.svelte";
 export enum Platform {
   StackBlitz = "StackBlitz",
   SvelteLab = "SvelteLab",
+  CodeSandbox = "CodeSandbox",
 }
 
 export const PLATFORMS = Object.values(Platform);
@@ -106,6 +108,9 @@ export async function openProject({
       );
     case Platform.SvelteLab:
       return openSvelteLab(files);
+    case Platform.CodeSandbox: {
+      return openCodeSandbox(files);
+    }
   }
 }
 
@@ -145,4 +150,62 @@ function convertToFileSystemTree(
     };
   }
   return tree;
+}
+
+function openCodeSandbox(flatFiles: Record<string, string>) {
+  const form = document.createElement("form");
+  form.action = "https://codesandbox.io/api/v1/sandboxes/define";
+  form.method = "POST";
+  form.target = "_blank";
+  const input = document.createElement("input");
+  input.type = "hidden";
+  input.name = "parameters";
+  input.value = getParameters({
+    files: convertToCodeSandboxFiles(flatFiles),
+    template: "node",
+  });
+  form.appendChild(input);
+  document.body.appendChild(form);
+  form.submit();
+  document.body.removeChild(form);
+}
+
+type CodeSandboxFiles = Parameters<typeof getParameters>["0"]["files"];
+
+function convertToCodeSandboxFiles(
+  flatFiles: Record<string, string>
+): CodeSandboxFiles {
+  return Object.fromEntries(
+    Object.entries(flatFiles).map(([key, content]) => [
+      key,
+      {
+        content:
+          key === "package.json"
+            ? fixPackageJsonForCodeSandbox(content)
+            : content,
+        isBinary: false,
+      },
+    ])
+  );
+}
+
+function fixPackageJsonForCodeSandbox(content: string): string {
+  const {
+    dependencies,
+    devDependencies,
+    scripts: { dev, ...restScripts },
+    ...rest
+  } = JSON.parse(content);
+  return {
+    ...rest,
+    scripts: {
+      ...restScripts,
+      start: dev,
+      dev,
+    },
+    dependencies: {
+      ...devDependencies,
+      ...dependencies,
+    },
+  };
 }
