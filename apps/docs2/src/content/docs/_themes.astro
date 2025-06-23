@@ -76,8 +76,8 @@ const styles = ACTUAL_THEMES.map(
     <div class="theme-content" data-theme={theme}>
       {THEME_BRAND[theme] && (
         <p>
-          This theme is not affiliated with, endorsed by, or sponsored by "
-          {THEME_BRAND[theme]}" brand.
+          This theme is not affiliated with, endorsed by, or sponsored by
+          {/* Prevents incorrect formatting */}"{THEME_BRAND[theme]}" brand.
         </p>
       )}
       <Npm pkg={createThemeInstall(theme)} />
