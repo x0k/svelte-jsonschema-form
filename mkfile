@@ -95,6 +95,18 @@ pl/:
     pnpm run preview
   popd
 
+bl/:
+  pushd apps/builder
+  d:
+    pnpm run dev
+  c:
+    pnpm run check
+  b:
+    pnpm run build
+  p:
+    pnpm run preview
+  popd
+
 basic/:
   pushd packages/basic-theme
   c:
