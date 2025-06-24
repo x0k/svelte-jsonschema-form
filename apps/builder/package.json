@@ -25,6 +25,7 @@
     "vite": "^6.3.5"
   },
   "dependencies": {
-    "@dnd-kit/dom": "^0.1.19"
+    "@dnd-kit/dom": "^0.1.19",
+    "@sjsf/form": "workspace:*"
   }
 }

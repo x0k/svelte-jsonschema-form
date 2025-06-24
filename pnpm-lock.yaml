@@ -145,6 +145,9 @@ importers:
       '@dnd-kit/dom':
         specifier: ^0.1.19
         version: 0.1.19
+      '@sjsf/form':
+        specifier: workspace:*
+        version: link:../../packages/form
     devDependencies:
       '@lucide/svelte':
         specifier: ^0.522.0

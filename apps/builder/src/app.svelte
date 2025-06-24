@@ -6,7 +6,8 @@
     setBuilderContext,
   } from "./builder/index.js";
 
-  setBuilderContext(createBuilderContext());
+  const ctx = createBuilderContext({});
+  setBuilderContext(ctx);
 </script>
 
 <div
@@ -17,7 +18,7 @@
     <Controls />
   </div>
   <div>
-    <DropZone />
+    <DropZone bind:node={ctx.rootNode} />
   </div>
   <div>Settings</div>
 </div>
