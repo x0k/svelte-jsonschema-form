@@ -9,5 +9,5 @@ import { default as TextNode } from "./text.svelte";
 
 export const NODES = {
   [NodeType.Object]: ObjectNode,
-  [NodeType.Text]: TextNode,
+  [NodeType.String]: TextNode,
 } satisfies { [T in NodeType]: Component<NodeProps<T>, {}, "node"> };

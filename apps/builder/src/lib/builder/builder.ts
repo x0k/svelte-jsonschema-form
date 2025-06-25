@@ -2,22 +2,25 @@ import type { Brand } from "@sjsf/form/lib/types";
 
 export enum NodeType {
   Object = "object",
-  Text = "text",
+  String = "string",
 }
 
 export type NodeId = Brand<"node-id">;
 
-export interface AbstractNode<T extends NodeType, O extends {}> {
+export interface AbstractNode<T extends NodeType> {
   id: NodeId;
   type: T;
-  options: O;
 }
 
-export interface ObjectNode extends AbstractNode<NodeType.Object, {}> {
+export interface FieldNode {
+  title: string;
+}
+
+export interface ObjectNode extends AbstractNode<NodeType.Object>, FieldNode {
   children: Node[];
 }
 
-export interface TextNode extends AbstractNode<NodeType.Text, {}> {}
+export interface TextNode extends AbstractNode<NodeType.String>, FieldNode {}
 
 export type Node = ObjectNode | TextNode;
 
@@ -26,15 +29,15 @@ const NODE_FACTORIES = {
     id,
     type: NodeType.Object,
     children: [],
-    options: {},
+    title: "Group title",
   }),
-  [NodeType.Text]: (id) => ({
+  [NodeType.String]: (id) => ({
     id,
-    type: NodeType.Text,
-    options: {},
+    type: NodeType.String,
+    title: "Text field",
   }),
 } satisfies {
-  [T in NodeType]: (id: NodeId) => Extract<Node, AbstractNode<T, any>>;
+  [T in NodeType]: (id: NodeId) => Extract<Node, AbstractNode<T>>;
 };
 
 export function nodeId(): NodeId {

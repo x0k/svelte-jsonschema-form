@@ -18,22 +18,21 @@
   });
 </script>
 
-<div
-  class={[
-    "border-2 border-dashed rounded-lg",
-    droppable.isOver && "border-primary bg-primary/5",
-  ]}
->
-  {#if node}
-    <RootNode bind:node unmount={() => (node = undefined)} />
-  {:else}
-    <div class="p-6" {@attach droppable.attach}>
-      <p class="text-lg text-center font-medium text-foreground">
-        Drop form element here
-      </p>
-      <!-- <p class="text-sm text-muted-foreground">
+{#if node}
+  <RootNode bind:node unmount={() => (node = undefined)} />
+{:else}
+  <div
+    class={[
+      "border-2 border-dashed rounded p-6",
+      droppable.isOver && "border-primary bg-primary/5",
+    ]}
+    {@attach droppable.attach}
+  >
+    <p class="text-lg text-center font-medium text-foreground">
+      Drop form element here
+    </p>
+    <!-- <p class="text-sm text-muted-foreground">
       Drag element from the sidebar to start building your form
     </p> -->
-    </div>
-  {/if}
-</div>
+  </div>
+{/if}

@@ -1,9 +1,12 @@
 <script lang="ts">
-  import type { NodeType } from "@/lib/builder/builder.js";
+  import type { NodeType } from "$lib/builder/builder.js";
 
   import type { NodeProps } from "../model.js";
+  import NodeHeader from "../node-header.svelte";
 
-  let { node = $bindable() }: NodeProps<NodeType.Text> = $props();
+  let { node = $bindable(), unmount }: NodeProps<NodeType.String> = $props();
 </script>
 
-Text {node.type}
+<div class="border rounded p-2 flex flex-col gap-2">
+  <NodeHeader {node} {unmount} />
+</div>

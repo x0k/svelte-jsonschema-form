@@ -10,10 +10,12 @@
     "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json"
   },
   "devDependencies": {
+    "@internationalized/date": "^3.8.2",
     "@lucide/svelte": "^0.522.0",
     "@sveltejs/vite-plugin-svelte": "^5.0.3",
     "@tailwindcss/vite": "^4.0.0",
     "@tsconfig/svelte": "^5.0.4",
+    "bits-ui": "^2.8.8",
     "clsx": "^2.1.1",
     "svelte": "^5.28.1",
     "svelte-check": "^4.1.6",
@@ -25,6 +27,7 @@
     "vite": "^6.3.5"
   },
   "dependencies": {
+    "@dnd-kit/collision": "^0.1.19",
     "@dnd-kit/dom": "^0.1.19",
     "@sjsf/form": "workspace:*"
   }

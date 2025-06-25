@@ -9,4 +9,4 @@
   const NodeComponent = $derived(NODES[node.type]);
 </script>
 
-<NodeComponent node={node as never} {unmount} />
+<NodeComponent bind:node={node as never} {unmount} />

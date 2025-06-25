@@ -1,5 +1,10 @@
 import { getContext, onDestroy, setContext } from "svelte";
-import { DragDropManager, Draggable, Droppable } from "@dnd-kit/dom";
+import {
+  DragDropManager,
+  Draggable,
+  Droppable,
+  type DroppableInput,
+} from "@dnd-kit/dom";
 
 import { type Node } from "$lib/builder/index.js";
 
@@ -76,6 +81,7 @@ export function createBuilderContext(
 
 export interface DroppableOptions {
   onDrop: (node: Node) => void;
+  options?: Partial<DroppableInput<DndData>>;
 }
 
 export function createDroppable(
@@ -83,7 +89,7 @@ export function createDroppable(
   options: DroppableOptions
 ) {
   const id = crypto.randomUUID();
-  const droppable = new Droppable<DndData>({ id }, ctx.dnd);
+  const droppable = new Droppable<DndData>({ ...options.options, id }, ctx.dnd);
   ctx.dropHandlers.set(id, options.onDrop);
   onDestroy(() => {
     ctx.dropHandlers.delete(id);
