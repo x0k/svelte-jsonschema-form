@@ -1,7 +1,11 @@
 <script lang="ts">
   import type { Node } from "$lib/builder/builder.js";
 
-  import { createDroppable, getBuilderContext } from "./context.svelte.js";
+  import {
+    createDroppable,
+    getBuilderContext,
+    setSelectedNode,
+  } from "./context.svelte.js";
   import DropIndicator from "./drop-indicator.svelte";
   import RootNode from "./root-node.svelte";
 
@@ -17,7 +21,8 @@
 {#if nodes.length === 0}
   {@const droppable = createDroppable(ctx, {
     onDrop(node) {
-      nodes.push(node);
+      const l = nodes.push(node);
+      setSelectedNode(ctx, () => nodes[l - 1]);
     },
   })}
   <div
@@ -38,7 +43,9 @@
   {#each nodes as node, i (node.id)}
     <DropIndicator
       onDrop={(node) => {
-        nodes.splice(i, 0, node);
+        const j = i
+        nodes.splice(j, 0, node);
+        setSelectedNode(ctx, () => nodes[j]);
       }}
     />
     <RootNode
@@ -50,7 +57,8 @@
   {/each}
   <DropIndicator
     onDrop={(node) => {
-      nodes.push(node);
+      const l = nodes.push(node);
+      setSelectedNode(ctx, () => nodes[l - 1]);
     }}
   />
 {/if}

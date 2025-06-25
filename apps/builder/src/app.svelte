@@ -3,11 +3,13 @@
     Controls,
     DropZone,
     createBuilderContext,
+    getSelectedNode,
     setBuilderContext,
   } from "./builder/index.js";
 
   const ctx = createBuilderContext({});
   setBuilderContext(ctx);
+  const selected = $derived(getSelectedNode(ctx));
 </script>
 
 <div
@@ -20,5 +22,5 @@
   <div>
     <DropZone bind:node={ctx.rootNode} />
   </div>
-  <div>Settings</div>
+  <div>{selected?.type ?? "no selected"}</div>
 </div>

@@ -7,13 +7,26 @@
 
   import type { NodeProps } from "./model.js";
 
-  const { node, unmount }: NodeProps<NodeType> = $props();
+  const {
+    node,
+    unmount,
+  }: NodeProps<NodeType> & {
+    unmount: () => void;
+  } = $props();
 </script>
 
 <div class="flex gap-2 items-center p-1">
   <GripVertical class="size-6" />
   <span class="text-lg truncate flex-1">{node.title}</span>
-  <Button variant="ghost" size="icon" class="size-8" onclick={unmount}>
+  <Button
+    variant="ghost"
+    size="icon"
+    class="size-8"
+    onclick={(e) => {
+      e.stopPropagation();
+      unmount();
+    }}
+  >
     <Trash />
   </Button>
 </div>

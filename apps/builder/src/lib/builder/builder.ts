@@ -3,6 +3,7 @@ import type { Brand } from "@sjsf/form/lib/types";
 export enum NodeType {
   Object = "object",
   String = "string",
+  Grid = "grid",
 }
 
 export type NodeId = Brand<"node-id">;
@@ -17,12 +18,18 @@ export interface FieldNode {
 }
 
 export interface ObjectNode extends AbstractNode<NodeType.Object>, FieldNode {
-  children: Node[];
+  children: NodeId[];
+}
+
+export interface GridNode extends AbstractNode<NodeType.Grid>, FieldNode {
+  width: number;
+  height: number;
+  children: NodeId[];
 }
 
 export interface TextNode extends AbstractNode<NodeType.String>, FieldNode {}
 
-export type Node = ObjectNode | TextNode;
+export type Node = ObjectNode | GridNode | TextNode;
 
 const NODE_FACTORIES = {
   [NodeType.Object]: (id) => ({
@@ -30,6 +37,14 @@ const NODE_FACTORIES = {
     type: NodeType.Object,
     children: [],
     title: "Group title",
+  }),
+  [NodeType.Grid]: (id) => ({
+    id,
+    type: NodeType.Grid,
+    children: [],
+    title: "Grid title",
+    width: 2,
+    height: 2,
   }),
   [NodeType.String]: (id) => ({
     id,

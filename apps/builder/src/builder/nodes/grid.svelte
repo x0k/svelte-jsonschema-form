@@ -3,6 +3,7 @@
 
   import type { NodeProps } from "../model.js";
 
-  let { node = $bindable() }: NodeProps<NodeType.String> = $props();
+  let { node = $bindable() }: NodeProps<NodeType.Grid> = $props();
 </script>
 
+Grid

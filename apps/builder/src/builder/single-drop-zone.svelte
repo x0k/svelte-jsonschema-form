@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Node } from "$lib/builder/index.js";
 
-  import { createDroppable, getBuilderContext } from "./context.svelte.js";
+  import { createDroppable, getBuilderContext, setSelectedNode } from "./context.svelte.js";
   import RootNode from "./root-node.svelte";
 
   interface Props {
