@@ -5,10 +5,4 @@
   const ctx = getBuilderContext();
 </script>
 
-<SingleDropZone
-  nodeId={ctx.rootNodeId}
-  onDrop={(node) => {
-    ctx.setRootNode(node);
-  }}
-  unmount={() => ctx.reset()}
-/>
+<SingleDropZone bind:node={ctx.rootNode} />

@@ -18,13 +18,13 @@ export interface FieldNode {
 }
 
 export interface ObjectNode extends AbstractNode<NodeType.Object>, FieldNode {
-  children: NodeId[];
+  children: Node[];
 }
 
 export interface GridNode extends AbstractNode<NodeType.Grid>, FieldNode {
   width: number;
   height: number;
-  children: NodeId[];
+  children: Node[];
 }
 
 export interface TextNode extends AbstractNode<NodeType.String>, FieldNode {}

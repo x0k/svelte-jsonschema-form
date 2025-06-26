@@ -3,7 +3,7 @@
 
   import { createNode, NodeType } from "$lib/builder/builder.js";
 
-  import { createDraggable, getBuilderContext } from "./context.svelte.js";
+  import { getBuilderContext } from "./context.svelte.js";
 
   interface Props {
     nodeType: NodeType;
@@ -13,7 +13,7 @@
   const { nodeType, title }: Props = $props();
 
   const ctx = getBuilderContext();
-  const draggable = createDraggable(ctx, {
+  const draggable = ctx.createDraggable({
     get node() {
       return createNode(nodeType);
     },

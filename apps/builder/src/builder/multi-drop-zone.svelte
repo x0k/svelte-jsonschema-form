@@ -1,19 +1,21 @@
 <script lang="ts">
-  import type { NodeId, Node } from "$lib/builder/builder.js";
+  import type { Node } from "$lib/builder/builder.js";
 
   import { getBuilderContext } from "./context.svelte.js";
   import DropIndicator from "./drop-indicator.svelte";
   import RootNode from "./root-node.svelte";
 
   interface Props {
-    nodeIds: NodeId[];
-    onDrop: (node: Node, index: number) => void;
-    unmount: (index: number) => void;
+    nodes: Node[];
   }
 
-  const { nodeIds, onDrop, unmount }: Props = $props();
+  const { nodes = $bindable() }: Props = $props();
 
   const ctx = getBuilderContext();
+  const onDrop = (node: Node, index: number) => {
+    nodes.splice(index, 0, node);
+    ctx.selectedNode = () => nodes.find((n) => n.id === node.id);
+  };
   const droppable = ctx.createDroppable({
     onDrop(node) {
       onDrop(node, 0);
@@ -21,7 +23,7 @@
   });
 </script>
 
-{#if nodeIds.length === 0}
+{#if nodes.length === 0}
   <div
     class={[
       "border-2 border-dashed rounded p-6 ",
@@ -34,22 +36,22 @@
     </p>
   </div>
 {:else}
-  {#each nodeIds as nodeId, i (nodeId)}
+  {#each nodes as nodeId, i (nodeId)}
     <DropIndicator
       onDrop={(node) => {
         onDrop(node, i);
       }}
     />
     <RootNode
-      nodeId={nodeIds[i]}
+      bind:node={nodes[i]}
       unmount={() => {
-        unmount(i);
+        nodes.splice(i, 1);
       }}
     />
   {/each}
   <DropIndicator
     onDrop={(node) => {
-      onDrop(node, nodeIds.length);
+      onDrop(node, nodes.length);
     }}
   />
 {/if}

@@ -1,5 +1,4 @@
 import { getContext, onDestroy, setContext } from "svelte";
-import { SvelteMap } from "svelte/reactivity";
 import {
   DragDropManager,
   Draggable,
@@ -7,7 +6,7 @@ import {
   type DroppableInput,
 } from "@dnd-kit/dom";
 
-import { type Node, type NodeId } from "$lib/builder/index.js";
+import type { Node } from "$lib/builder/index.js";
 
 const BUILDER_CONTEXT = Symbol("builder-context");
 
@@ -25,6 +24,17 @@ export function getBuilderContext(): BuilderContext {
   return getContext(BUILDER_CONTEXT);
 }
 
+export interface DroppableOptions {
+  onDrop: (node: Node) => void;
+  options?: Partial<DroppableInput<DndData>>;
+}
+
+export interface DraggableOptions {
+  node: Node;
+}
+
+const noNode = () => undefined;
+
 export class BuilderContext {
   #dnd = new DragDropManager();
 
@@ -33,9 +43,14 @@ export class BuilderContext {
 
   #dropHandlers = new Map<UniqueId, (node: Node) => void>();
 
-  #nodes = new SvelteMap<NodeId, Node>();
-  #rootNodeId = $state.raw<NodeId>();
-  #selectedNodeId = $state.raw<NodeId>();
+  rootNode = $state<Node>();
+  #selectedNode = $state.raw<() => Node | undefined>(noNode);
+  get selectedNode() {
+    return this.#selectedNode;
+  }
+  set selectedNode(v) {
+    this.#selectedNode = this.#selectedNode === v ? noNode : v;
+  }
 
   constructor() {
     onDestroy(() => this.#dnd.destroy());
@@ -57,47 +72,6 @@ export class BuilderContext {
         this.#dropHandlers.get(tId)?.(source.data.node);
       }
     );
-  }
-
-  get rootNodeId() {
-    return this.#rootNodeId;
-  }
-
-  setRootNode(node: Node | undefined) {
-    this.reset();
-    if (node === undefined) {
-      return;
-    }
-    this.registerNode(node);
-    this.#rootNodeId = node.id;
-  }
-
-  get selectedNode() {
-    return this.#selectedNodeId && this.#nodes.get(this.#selectedNodeId);
-  }
-
-  set selectedNode(v: Node | undefined) {
-    this.#selectedNodeId = v?.id;
-  }
-
-  getNodeById(nodeId: NodeId) {
-    return this.#nodes.get(nodeId);
-  }
-
-  insertNode<N extends Node>(
-    parentNode: Node,
-    newNode: Node,
-    index: number
-  ) {
-
-  }
-
-  reset() {
-    this.#nodes.clear();
-    this.#sourceId = undefined;
-    this.#targetId = undefined;
-    this.#rootNodeId = undefined;
-    this.#selectedNodeId = undefined;
   }
 
   createDroppable(options: DroppableOptions) {
@@ -153,23 +127,4 @@ export class BuilderContext {
       },
     };
   }
-
-  private registerNode(node: Node) {
-    this.#nodes.set(node.id, node);
-    this.#selectedNodeId = node.id;
-  }
 }
-
-export interface DroppableOptions {
-  onDrop: (node: Node) => void;
-  options?: Partial<DroppableInput<DndData>>;
-}
-
-export interface DraggableOptions {
-  node: Node;
-}
-
-export function createDraggable(
-  ctx: BuilderContext,
-  options: DraggableOptions
-) {}

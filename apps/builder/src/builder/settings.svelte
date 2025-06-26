@@ -3,7 +3,7 @@
 
   const ctx = getBuilderContext();
 
-  const selected = $derived(ctx.selectedNode);
+  const selected = $derived(ctx.selectedNode());
 </script>
 
 {selected?.type ?? "no selected"}
