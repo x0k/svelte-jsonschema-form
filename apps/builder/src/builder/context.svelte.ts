@@ -59,12 +59,45 @@ export class BuilderContext {
     );
   }
 
+  get rootNodeId() {
+    return this.#rootNodeId;
+  }
+
+  setRootNode(node: Node | undefined) {
+    this.reset();
+    if (node === undefined) {
+      return;
+    }
+    this.registerNode(node);
+    this.#rootNodeId = node.id;
+  }
+
   get selectedNode() {
     return this.#selectedNodeId && this.#nodes.get(this.#selectedNodeId);
   }
 
-  set selectedNode(v) {
+  set selectedNode(v: Node | undefined) {
     this.#selectedNodeId = v?.id;
+  }
+
+  getNodeById(nodeId: NodeId) {
+    return this.#nodes.get(nodeId);
+  }
+
+  insertNode<N extends Node>(
+    parentNode: Node,
+    newNode: Node,
+    index: number
+  ) {
+
+  }
+
+  reset() {
+    this.#nodes.clear();
+    this.#sourceId = undefined;
+    this.#targetId = undefined;
+    this.#rootNodeId = undefined;
+    this.#selectedNodeId = undefined;
   }
 
   createDroppable(options: DroppableOptions) {
@@ -119,6 +152,11 @@ export class BuilderContext {
         };
       },
     };
+  }
+
+  private registerNode(node: Node) {
+    this.#nodes.set(node.id, node);
+    this.#selectedNodeId = node.id;
   }
 }
 

@@ -1,15 +1,13 @@
 <script lang="ts">
   import {
     Controls,
-    DropZone,
-    createBuilderContext,
-    getSelectedNode,
+    Builder,
+    BuilderContext,
     setBuilderContext,
+    Settings,
   } from "./builder/index.js";
 
-  const ctx = createBuilderContext({});
-  setBuilderContext(ctx);
-  const selected = $derived(getSelectedNode(ctx));
+  setBuilderContext(new BuilderContext());
 </script>
 
 <div
@@ -20,7 +18,9 @@
     <Controls />
   </div>
   <div>
-    <DropZone bind:node={ctx.rootNode} />
+    <Builder />
   </div>
-  <div>{selected?.type ?? "no selected"}</div>
+  <div>
+    <Settings />
+  </div>
 </div>

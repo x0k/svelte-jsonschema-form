@@ -1,3 +1,4 @@
 export * from "./context.svelte.js";
-export { default as DropZone } from "./single-drop-zone.svelte";
 export { default as Controls } from "./controls.svelte";
+export { default as Settings } from "./settings.svelte";
+export { default as Builder } from "./builder.svelte";

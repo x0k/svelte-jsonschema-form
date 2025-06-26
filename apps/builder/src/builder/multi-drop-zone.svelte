@@ -1,30 +1,27 @@
 <script lang="ts">
-  import type { Node } from "$lib/builder/builder.js";
+  import type { NodeId, Node } from "$lib/builder/builder.js";
 
-  import {
-    createDroppable,
-    getBuilderContext,
-    setSelectedNode,
-  } from "./context.svelte.js";
+  import { getBuilderContext } from "./context.svelte.js";
   import DropIndicator from "./drop-indicator.svelte";
   import RootNode from "./root-node.svelte";
 
   interface Props {
-    nodes: Node[];
+    nodeIds: NodeId[];
+    onDrop: (node: Node, index: number) => void;
+    unmount: (index: number) => void;
   }
 
-  const { nodes = $bindable() }: Props = $props();
+  const { nodeIds, onDrop, unmount }: Props = $props();
 
   const ctx = getBuilderContext();
+  const droppable = ctx.createDroppable({
+    onDrop(node) {
+      onDrop(node, 0);
+    },
+  });
 </script>
 
-{#if nodes.length === 0}
-  {@const droppable = createDroppable(ctx, {
-    onDrop(node) {
-      const l = nodes.push(node);
-      setSelectedNode(ctx, () => nodes[l - 1]);
-    },
-  })}
+{#if nodeIds.length === 0}
   <div
     class={[
       "border-2 border-dashed rounded p-6 ",
@@ -35,30 +32,24 @@
     <p class="text-lg text-center font-medium text-foreground">
       Drop form elements here
     </p>
-    <!-- <p class="text-sm text-muted-foreground">
-      Drag element from the sidebar to start building your form
-    </p> -->
   </div>
 {:else}
-  {#each nodes as node, i (node.id)}
+  {#each nodeIds as nodeId, i (nodeId)}
     <DropIndicator
       onDrop={(node) => {
-        const j = i
-        nodes.splice(j, 0, node);
-        setSelectedNode(ctx, () => nodes[j]);
+        onDrop(node, i);
       }}
     />
     <RootNode
-      bind:node={nodes[i]}
+      nodeId={nodeIds[i]}
       unmount={() => {
-        nodes.splice(i, 1);
+        unmount(i);
       }}
     />
   {/each}
   <DropIndicator
     onDrop={(node) => {
-      const l = nodes.push(node);
-      setSelectedNode(ctx, () => nodes[l - 1]);
+      onDrop(node, nodeIds.length);
     }}
   />
 {/if}

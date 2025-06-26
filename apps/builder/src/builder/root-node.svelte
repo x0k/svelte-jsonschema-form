@@ -1,22 +1,27 @@
 <script lang="ts">
-  import { NodeType } from "$lib/builder/index.js";
+  import type { NodeId } from "$lib/builder/index.js";
 
   import { NODES } from "./nodes/index.js";
-  import type { NodeProps } from "./model.js";
   import NodeContainer from "./node-container.svelte";
   import NodeHeader from "./node-header.svelte";
+  import { getBuilderContext } from "./context.svelte.js";
 
-  let {
-    node = $bindable(),
-    unmount,
-  }: NodeProps<NodeType> & {
+  interface Props {
+    nodeId: NodeId;
     unmount: () => void;
-  } = $props();
+  }
 
-  const NodeComponent = $derived(NODES[node.type]);
+  let { nodeId, unmount }: Props = $props();
+
+  const ctx = getBuilderContext();
+
+  const node = $derived(ctx.getNodeById(nodeId));
 </script>
 
-<NodeContainer {node}>
-  <NodeHeader {node} {unmount} />
-  <NodeComponent bind:node={node as never} />
-</NodeContainer>
+{#if node}
+  {@const NodeComponent = NODES[node.type]}
+  <NodeContainer {node}>
+    <NodeHeader {node} {unmount} />
+    <NodeComponent node={node as never} />
+  </NodeContainer>
+{/if}

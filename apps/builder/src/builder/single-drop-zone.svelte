@@ -1,25 +1,25 @@
 <script lang="ts">
-  import type { Node } from "$lib/builder/index.js";
+  import type { Node, NodeId } from "$lib/builder/index.js";
 
-  import { createDroppable, getBuilderContext, setSelectedNode } from "./context.svelte.js";
+  import { getBuilderContext } from "./context.svelte.js";
   import RootNode from "./root-node.svelte";
 
   interface Props {
-    node: Node | undefined;
+    nodeId: NodeId | undefined;
+    onDrop: (node: Node) => void;
+    unmount: () => void;
   }
 
-  let { node = $bindable() }: Props = $props();
+  const { nodeId, onDrop, unmount }: Props = $props();
 
   const ctx = getBuilderContext();
-  const droppable = createDroppable(ctx, {
-    onDrop(newNode) {
-      node = newNode;
-    },
+  const droppable = ctx.createDroppable({
+    onDrop,
   });
 </script>
 
-{#if node}
-  <RootNode bind:node unmount={() => (node = undefined)} />
+{#if nodeId}
+  <RootNode {nodeId} {unmount} />
 {:else}
   <div
     class={[

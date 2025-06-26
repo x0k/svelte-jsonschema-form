@@ -4,7 +4,9 @@
   import type { NodeProps } from "../model.js";
   import MultiDropZone from "../multi-drop-zone.svelte";
 
-  let { node = $bindable() }: NodeProps<NodeType.Object> = $props();
+  const { node }: NodeProps<NodeType.Object> = $props();
 </script>
 
-<MultiDropZone bind:nodes={node.children} />
+<MultiDropZone nodeIds={node.children} onDrop={(node, index) => {
+  
+}} />
