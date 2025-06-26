@@ -1,20 +1,16 @@
-import { getContext, onDestroy, setContext } from "svelte";
+import { flushSync, getContext, onDestroy, setContext } from "svelte";
 import {
   DragDropManager,
   Draggable,
   Droppable,
-  type DroppableInput,
+  type FeedbackType,
 } from "@dnd-kit/dom";
 
 import type { Node } from "$lib/builder/index.js";
 
 const BUILDER_CONTEXT = Symbol("builder-context");
 
-type UniqueId = string | number;
-
-interface DndData {
-  node: Node;
-}
+const NODE_CONTEXT = Symbol("node-context");
 
 export function setBuilderContext(ctx: BuilderContext) {
   setContext(BUILDER_CONTEXT, ctx);
@@ -24,13 +20,32 @@ export function getBuilderContext(): BuilderContext {
   return getContext(BUILDER_CONTEXT);
 }
 
+export interface NodeContext {
+  isDragged: boolean;
+}
+
+export function setNodeContext(ctx: NodeContext) {
+  setContext(NODE_CONTEXT, ctx);
+}
+
+export function getNodeContext(): NodeContext {
+  return getContext(NODE_CONTEXT);
+}
+
+type UniqueId = string | number;
+
+interface DndData {
+  node: Node;
+}
+
 export interface DroppableOptions {
   onDrop: (node: Node) => void;
-  options?: Partial<DroppableInput<DndData>>;
 }
 
 export interface DraggableOptions {
   node: Node;
+  feedback: FeedbackType;
+  beforeDrop?: () => void;
 }
 
 const noNode = () => undefined;
@@ -41,6 +56,7 @@ export class BuilderContext {
   #sourceId = $state.raw<UniqueId>();
   #targetId = $state.raw<UniqueId>();
 
+  #beforeDropHandlers = new Map<UniqueId, () => void>();
   #dropHandlers = new Map<UniqueId, (node: Node) => void>();
 
   rootNode = $state<Node>();
@@ -60,7 +76,7 @@ export class BuilderContext {
 
   constructor() {
     onDestroy(() => this.#dnd.destroy());
-    this.#dnd.monitor.addEventListener("dragstart", (event) => {
+    this.#dnd.monitor.addEventListener("beforedragstart", (event) => {
       this.#sourceId = event.operation.source?.id;
     });
     this.#dnd.monitor.addEventListener("dragover", (event) => {
@@ -75,18 +91,22 @@ export class BuilderContext {
         if (tId === undefined || source === null) {
           return;
         }
-        this.#dropHandlers.get(tId)?.(source.data.node);
+        const { id: sId, data } = source;
+        this.#beforeDropHandlers.get(sId)?.();
+        flushSync(() => {
+          this.#dropHandlers.get(tId)?.(data.node);
+        });
       }
     );
   }
 
-  createDroppable(options: DroppableOptions) {
+  createDroppable(nodeCtx: NodeContext, options: DroppableOptions) {
     const id = crypto.randomUUID();
-    const droppable = new Droppable<DndData>(
-      { ...options.options, id },
-      this.#dnd
-    );
+    const droppable = new Droppable<DndData>({ id }, this.#dnd);
     this.#dropHandlers.set(id, options.onDrop);
+    $effect(() => {
+      droppable.disabled = nodeCtx.isDragged;
+    });
     onDestroy(() => {
       this.#dropHandlers.delete(id);
       droppable.destroy();
@@ -109,17 +129,23 @@ export class BuilderContext {
     const id = crypto.randomUUID();
     const draggable = new Draggable<DndData>(
       {
-        id,
-        feedback: "clone",
         data: {
           get node() {
             return options.node;
           },
         },
+        feedback: options.feedback,
+        id,
       },
       this.#dnd
     );
-    onDestroy(() => draggable.destroy());
+    if (options.beforeDrop) {
+      this.#beforeDropHandlers.set(id, options.beforeDrop);
+    }
+    onDestroy(() => {
+      this.#beforeDropHandlers.delete(id);
+      draggable.destroy();
+    });
     const self = this;
     return {
       get isDragged() {
@@ -129,6 +155,12 @@ export class BuilderContext {
         draggable.element = element;
         return () => {
           draggable.element = undefined;
+        };
+      },
+      attachHandle(element: HTMLElement) {
+        draggable.handle = element;
+        return () => {
+          draggable.handle = undefined;
         };
       },
     };

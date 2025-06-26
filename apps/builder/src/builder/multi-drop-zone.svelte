@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Node } from "$lib/builder/builder.js";
 
-  import { getBuilderContext } from "./context.svelte.js";
+  import { getBuilderContext, getNodeContext } from "./context.svelte.js";
   import DropIndicator from "./drop-indicator.svelte";
   import RootNode from "./root-node.svelte";
 
@@ -12,11 +12,12 @@
   const { nodes = $bindable() }: Props = $props();
 
   const ctx = getBuilderContext();
+  const nodeCtx = getNodeContext()
   const onDrop = (node: Node, index: number) => {
     nodes.splice(index, 0, node);
     ctx.selectNode(() => nodes.find((n) => n.id === node.id));
   };
-  const droppable = ctx.createDroppable({
+  const droppable = ctx.createDroppable(nodeCtx, {
     onDrop(node) {
       onDrop(node, 0);
     },

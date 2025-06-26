@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Node } from "$lib/builder/builder.js";
 
-  import { getBuilderContext } from "./context.svelte.js";
+  import { getBuilderContext, getNodeContext } from "./context.svelte.js";
 
   interface Props {
     onDrop: (node: Node) => void;
@@ -10,8 +10,9 @@
   const { onDrop }: Props = $props();
 
   const ctx = getBuilderContext();
+  const nodeCtx = getNodeContext()
 
-  const droppable = ctx.createDroppable({
+  const droppable = ctx.createDroppable(nodeCtx, {
     onDrop,
   });
 </script>

@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Node } from "$lib/builder/index.js";
 
-  import { getBuilderContext } from "./context.svelte.js";
+  import { getBuilderContext, getNodeContext } from "./context.svelte.js";
   import RootNode from "./root-node.svelte";
 
   interface Props {
@@ -11,7 +11,8 @@
   let { node = $bindable() }: Props = $props();
 
   const ctx = getBuilderContext();
-  const droppable = ctx.createDroppable({
+  const nodeCtx = getNodeContext();
+  const droppable = ctx.createDroppable(nodeCtx, {
     onDrop(newNode) {
       node = newNode;
       ctx.selectNode(() => node);

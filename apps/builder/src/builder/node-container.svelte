@@ -1,16 +1,14 @@
 <script lang="ts">
-  import type { Snippet } from "svelte";
-
   import type { Node } from "$lib/builder/builder.js";
 
   import { getBuilderContext } from "./context.svelte.js";
+  import type { HTMLAttributes } from "svelte/elements";
 
-  interface Props {
-    children: Snippet;
+  interface Props extends HTMLAttributes<HTMLDivElement> {
     node: Node;
   }
 
-  const { children, node }: Props = $props();
+  const { children, node, ...rest }: Props = $props();
 
   const ctx = getBuilderContext();
   const nodeAccessor = () => node;
@@ -30,9 +28,10 @@
   }}
   onclick={selectNode}
   class={[
-    "border rounded p-2 flex flex-col gap-2",
+    "border rounded p-2 flex flex-col gap-1",
     ctx.selectedNode?.id === node.id ? "bg-primary/5" : "bg-background",
   ]}
+  {...rest}
 >
-  {@render children()}
+  {@render children?.()}
 </div>
