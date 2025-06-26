@@ -14,7 +14,7 @@
   const droppable = ctx.createDroppable({
     onDrop(newNode) {
       node = newNode;
-      ctx.selectedNode = () => node;
+      ctx.selectNode(() => node);
     },
   });
 </script>

@@ -14,7 +14,7 @@
   const ctx = getBuilderContext();
   const onDrop = (node: Node, index: number) => {
     nodes.splice(index, 0, node);
-    ctx.selectedNode = () => nodes.find((n) => n.id === node.id);
+    ctx.selectNode(() => nodes.find((n) => n.id === node.id));
   };
   const droppable = ctx.createDroppable({
     onDrop(node) {

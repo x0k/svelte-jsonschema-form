@@ -16,10 +16,8 @@
   const nodeAccessor = () => node;
   const selectNode = (e: Event) => {
     e.stopPropagation();
-    ctx.selectedNode = nodeAccessor;
+    ctx.selectNode(nodeAccessor);
   };
-
-  const selectedNode = $derived(ctx.selectedNode());
 </script>
 
 <div
@@ -33,7 +31,7 @@
   onclick={selectNode}
   class={[
     "border rounded p-2 flex flex-col gap-2",
-    selectedNode?.id === node.id ? "bg-primary/5" : "bg-background",
+    ctx.selectedNode?.id === node.id ? "bg-primary/5" : "bg-background",
   ]}
 >
   {@render children()}

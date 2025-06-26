@@ -44,12 +44,18 @@ export class BuilderContext {
   #dropHandlers = new Map<UniqueId, (node: Node) => void>();
 
   rootNode = $state<Node>();
-  #selectedNode = $state.raw<() => Node | undefined>(noNode);
-  get selectedNode() {
-    return this.#selectedNode;
-  }
-  set selectedNode(v) {
-    this.#selectedNode = this.#selectedNode === v ? noNode : v;
+
+  #selectedNodeAccessor = $state.raw<() => Node | undefined>(noNode);
+  readonly selectedNode = $derived.by(() => {
+    try {
+      return this.#selectedNodeAccessor();
+    } catch {
+      return undefined;
+    }
+  });
+
+  selectNode(v: () => Node | undefined) {
+    this.#selectedNodeAccessor = this.#selectedNodeAccessor === v ? noNode : v;
   }
 
   constructor() {
