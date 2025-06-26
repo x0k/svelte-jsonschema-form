@@ -93,8 +93,9 @@ export class BuilderContext {
         }
         const { id: sId, data } = source;
         this.#beforeDropHandlers.get(sId)?.();
+        const handler = this.#dropHandlers.get(tId);
         flushSync(() => {
-          this.#dropHandlers.get(tId)?.(data.node);
+          handler?.(data.node);
         });
       }
     );

@@ -12,7 +12,7 @@
   const { nodes = $bindable() }: Props = $props();
 
   const ctx = getBuilderContext();
-  const nodeCtx = getNodeContext()
+  const nodeCtx = getNodeContext();
   const onDrop = (node: Node, index: number) => {
     nodes.splice(index, 0, node);
     ctx.selectNode(() => nodes.find((n) => n.id === node.id));
