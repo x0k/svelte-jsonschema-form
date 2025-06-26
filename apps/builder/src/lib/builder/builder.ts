@@ -21,10 +21,18 @@ export interface ObjectNode extends AbstractNode<NodeType.Object>, FieldNode {
   children: Node[];
 }
 
+export interface GridCell {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  node: Node;
+}
+
 export interface GridNode extends AbstractNode<NodeType.Grid>, FieldNode {
   width: number;
   height: number;
-  children: Node[];
+  cells: GridCell[];
 }
 
 export interface TextNode extends AbstractNode<NodeType.String>, FieldNode {}
@@ -41,10 +49,10 @@ const NODE_FACTORIES = {
   [NodeType.Grid]: (id) => ({
     id,
     type: NodeType.Grid,
-    children: [],
+    cells: [],
     title: "Grid title",
-    width: 2,
-    height: 2,
+    width: 3,
+    height: 4,
   }),
   [NodeType.String]: (id) => ({
     id,

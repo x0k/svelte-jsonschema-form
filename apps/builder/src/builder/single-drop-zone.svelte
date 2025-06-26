@@ -6,9 +6,11 @@
 
   interface Props {
     node: Node | undefined;
+    placeholder?: string;
   }
 
-  let { node = $bindable() }: Props = $props();
+  let { node = $bindable(), placeholder = "Drop form element here" }: Props =
+    $props();
 
   const ctx = getBuilderContext();
   const nodeCtx = getNodeContext();
@@ -31,7 +33,7 @@
     {@attach droppable.attach}
   >
     <p class="text-lg text-center font-medium text-foreground">
-      Drop form element here
+      {placeholder}
     </p>
     <!-- <p class="text-sm text-muted-foreground">
       Drag element from the sidebar to start building your form
