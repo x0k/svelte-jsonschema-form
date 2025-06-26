@@ -44,7 +44,6 @@ export interface DroppableOptions {
 
 export interface DraggableOptions {
   node: Node;
-  feedback: FeedbackType;
   beforeDrop?: () => void;
 }
 
@@ -135,7 +134,7 @@ export class BuilderContext {
             return options.node;
           },
         },
-        feedback: options.feedback,
+        feedback: 'clone',
         id,
       },
       this.#dnd

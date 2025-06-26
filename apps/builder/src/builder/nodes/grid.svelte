@@ -1,16 +1,24 @@
 <script lang="ts">
   import { array } from "@sjsf/form/lib/array";
+  import ChevronLeft from "@lucide/svelte/icons/chevron-left";
+  import ChevronRight from "@lucide/svelte/icons/chevron-right";
+  import ChevronUp from "@lucide/svelte/icons/chevron-up";
+  import ChevronDown from "@lucide/svelte/icons/chevron-down";
 
   import type { GridCell, NodeId, NodeType } from "$lib/builder/builder.js";
+  import { Button } from "$lib/components/ui/button/index.js";
 
   import type { NodeProps } from "../model.js";
   import SingleDropZone from "../single-drop-zone.svelte";
+  import { getBuilderContext } from "../context.svelte.js";
 
   let { node = $bindable() }: NodeProps<NodeType.Grid> = $props();
 
+  const id = (x: number, y: number) => `${x}-${y}`;
+
   const { cells, grid, indexes } = $derived.by(() => {
     const cells = new Map<NodeId, GridCell>();
-    const indexes = new Map<NodeId, number>();
+    const indexes = new Map<string, number>();
     const grid: Array<Array<NodeId | null>> = array(node.height, () =>
       new Array(node.width).fill(null)
     );
@@ -18,7 +26,7 @@
       const cell = node.cells[k];
       const n = cell.node;
       cells.set(n.id, cell);
-      indexes.set(n.id, k)
+      indexes.set(id(cell.x, cell.y), k);
       for (let i = cell.y; i < cell.y + cell.h; i++) {
         const row = grid[i];
         for (let j = cell.x; j < cell.x + cell.w; j++) {
@@ -37,7 +45,7 @@
         const v = row[j];
         if (v === null) {
           yield {
-            id: `${i}-${j}`,
+            id: id(j, i),
             cell: {
               x: j,
               y: i,
@@ -48,30 +56,140 @@
           };
         } else if (!seen.has(v)) {
           seen.add(v);
-          yield { id: v, cell: cells.get(v)! };
+          yield { id: id(j, i), cell: cells.get(v)! };
         }
       }
     }
   }
+
+  const DIR = {
+    Left: 0,
+    Top: 1,
+    Right: 2,
+    Bottom: 3,
+  } as const;
+
+  function getCheckRect(
+    { x, y, h, w }: Omit<GridCell, "node">,
+    dir: (typeof DIR)[keyof typeof DIR]
+  ): [x: number, x1: number, y: number, y1: number] {
+    switch (dir) {
+      case DIR.Left:
+        return [x - 1, x, y, y + h];
+      case DIR.Right:
+        return [x + w, x + w + 1, y, y + h];
+      case DIR.Top:
+        return [x, x + w, y - 1, y];
+      case DIR.Bottom:
+        return [x, x + w, y + h, y + h + 1];
+    }
+  }
+
+  function isResizable(
+    cell: Omit<GridCell, "node">,
+    dir: (typeof DIR)[keyof typeof DIR]
+  ): boolean {
+    const [x, x1, y, y1] = getCheckRect(cell, dir);
+    if (x < 0 || x1 > node.width || y < 0 || y1 > node.height) {
+      return false;
+    }
+    for (let i = y; i < y1; i++) {
+      const row = grid[i];
+      for (let j = x; j < x1; j++) {
+        if (row[j] !== null) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
+  const ctx = getBuilderContext();
 </script>
 
 <div
   class="grid gap-2"
-  style="grid-template-columns: repeat({node.width}, 1fr); grid-template-rows: repeat({node.height}, 1fr);"
+  style="grid-template-columns: repeat({node.width}, auto); grid-template-rows: repeat({node.height}, auto);"
 >
   {#each elements() as element (element.id)}
-    <SingleDropZone
-      placeholder="Drop zone"
-      bind:node={
-        () => element.cell.node,
-        (v) => {
-          if (v !== undefined) {
-            node.cells.push({ ...element.cell, node: v });
-          } else {
-            node.cells.splice(indexes.get(element.id as NodeId)!, 1);
+    {@const c = element.cell}
+    {@const isSelected =
+      c.node !== undefined && ctx.selectedNode?.id === c.node.id}
+    <div
+      class="relative flex justify-center items-center"
+      style="grid-column: span {c.w} / span {c.w}; grid-row: span {c.h} / span {c.h};"
+    >
+      <Button
+        class={[
+          "absolute size-8 -left-10",
+          isSelected && isResizable(c, DIR.Left) ? "inline-flex" : "hidden",
+        ]}
+        variant="secondary"
+        size="icon"
+        onclick={(e) => {
+          e.stopPropagation();
+          c.x -= 1;
+          c.w += 1;
+        }}
+      >
+        <ChevronLeft />
+      </Button>
+      <Button
+        class={[
+          "absolute size-8 -right-10",
+          isSelected && isResizable(c, DIR.Right) ? "inline-flex" : "hidden",
+        ]}
+        variant="secondary"
+        size="icon"
+        onclick={(e) => {
+          e.stopPropagation();
+          c.w += 1;
+        }}
+      >
+        <ChevronRight />
+      </Button>
+      <Button
+        class={[
+          "absolute size-8 -top-10",
+          isSelected && isResizable(c, DIR.Top) ? "inline-flex" : "hidden",
+        ]}
+        variant="secondary"
+        size="icon"
+        onclick={(e) => {
+          e.stopPropagation();
+          c.y -= 1;
+          c.h += 1;
+        }}
+      >
+        <ChevronUp />
+      </Button>
+      <Button
+        class={[
+          "absolute size-8 -bottom-10",
+          isSelected && isResizable(c, DIR.Bottom) ? "inline-flex" : "hidden",
+        ]}
+        variant="secondary"
+        size="icon"
+        onclick={(e) => {
+          e.stopPropagation();
+          c.h += 1;
+        }}
+      >
+        <ChevronDown />
+      </Button>
+      <SingleDropZone
+        placeholder="Empty cell"
+        bind:node={
+          () => c.node,
+          (v) => {
+            if (v !== undefined) {
+              node.cells.push({ ...c, node: v });
+            } else {
+              node.cells.splice(indexes.get(element.id)!, 1);
+            }
           }
         }
-      }
-    />
+      />
+    </div>
   {/each}
 </div>

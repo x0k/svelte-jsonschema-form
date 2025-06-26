@@ -1,8 +1,9 @@
 <script lang="ts">
+  import type { HTMLAttributes } from "svelte/elements";
+
   import type { Node } from "$lib/builder/builder.js";
 
   import { getBuilderContext } from "./context.svelte.js";
-  import type { HTMLAttributes } from "svelte/elements";
 
   interface Props extends HTMLAttributes<HTMLDivElement> {
     node: Node;
@@ -28,8 +29,8 @@
   }}
   onclick={selectNode}
   class={[
-    "border rounded p-2 flex flex-col gap-1",
-    ctx.selectedNode?.id === node.id ? "bg-primary/5" : "bg-background",
+    "rounded p-2 flex-1 flex flex-col gap-1 border bg-background",
+    ctx.selectedNode?.id === node.id ? "border-primary" : "",
   ]}
   {...rest}
 >

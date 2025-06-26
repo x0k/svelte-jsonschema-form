@@ -24,7 +24,6 @@
   const ctx = getBuilderContext();
   let nodeSnapshot: Node;
   const draggable = ctx.createDraggable({
-    feedback: "default",
     beforeDrop() {
       nodeSnapshot = $state.snapshot(node);
       unmount();
