@@ -11,6 +11,7 @@
     SelectItem,
     SelectTrigger,
   } from "$lib/components/ui/select/index.js";
+  import { Textarea } from "$lib/components/ui/textarea/index.js";
 
   import {
     Controls,
@@ -32,6 +33,7 @@
       SelectContent,
       SelectItem,
       SelectTrigger,
+      Textarea,
     },
   });
 </script>
@@ -46,7 +48,7 @@
   <div class="mx-auto px-8">
     <div class="grid grid-cols-[1fr_5fr_2fr] gap-4">
       <div
-        class="sticky top-[var(--header-height)] h-[calc(100vh-var(--header-height))] overflow-y-auto pt-4"
+        class="sticky top-[var(--header-height)] h-[calc(100vh-var(--header-height))] overflow-y-auto py-4"
       >
         <Controls />
       </div>
@@ -56,7 +58,7 @@
       </div>
 
       <div
-        class="sticky top-[var(--header-height)] h-[calc(100vh-var(--header-height))] overflow-y-auto pt-4"
+        class="sticky top-[var(--header-height)] h-[calc(100vh-var(--header-height))] overflow-y-auto py-4"
       >
         <Settings />
       </div>

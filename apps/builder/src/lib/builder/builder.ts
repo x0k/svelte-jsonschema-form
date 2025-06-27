@@ -23,6 +23,7 @@ export const COMMON_OPTIONS_SCHEMA = {
       type: "string",
     },
     required: {
+      title: "Required",
       type: "boolean",
     },
   },
@@ -51,35 +52,53 @@ export interface GridCell {
 }
 
 export const GRID_NODE_OPTIONS_SCHEMA = {
-  title: "Grid settings",
+  title: "Grid options",
   type: "object",
   properties: {
-    width: {
-      title: "Columns",
-      type: "number",
-      minimum: 1,
-    },
-    height: {
-      title: "Rows",
-      type: "number",
-      minimum: 1,
+    gap: {
+      title: "Gap",
+      type: "string",
     },
   },
-  required: ["width", "height"],
   additionalProperties: false,
 } as const satisfies Schema;
 
 export type GridNodeOptions = FromSchema<typeof GRID_NODE_OPTIONS_SCHEMA>;
 
-export interface GridNode extends AbstractNode<NodeType.Grid, {}> {
+export interface GridNode extends AbstractNode<NodeType.Grid, GridNodeOptions> {
   width: number;
   height: number;
   cells: GridCell[];
 }
 
-export interface TextNode extends AbstractNode<NodeType.String, {}> {}
+export const STRING_NODE_OPTIONS_SCHEMA = {
+  type: "object",
+  title: "String options",
+  properties: {
+    maxLength: {
+      title: "Max length",
+      type: "number",
+      minimum: 0,
+    },
+    minLength: {
+      title: "Min length",
+      type: "number",
+      minimum: 0,
+    },
+    pattern: {
+      title: "Pattern",
+      type: "string",
+    },
+  },
+  additionalProperties: false,
+} as const satisfies Schema;
 
-export type Node = ObjectNode | GridNode | TextNode;
+export type StringNodeOptions = FromSchema<typeof STRING_NODE_OPTIONS_SCHEMA>;
+
+export interface StringNode
+  extends AbstractNode<NodeType.String, StringNodeOptions> {}
+
+export type Node = ObjectNode | GridNode | StringNode;
 
 const NODE_FACTORIES = {
   [NodeType.Object]: (id) => ({
@@ -115,20 +134,33 @@ const NODE_FACTORIES = {
 };
 
 const NODE_OPTIONS_SCHEMAS = {
-  [NodeType.Object]: {
-    title: "Group settings",
-  },
-  [NodeType.Grid]: {
-    title: "Grid settings",
-  },
-  [NodeType.String]: {
-    title: "String settings",
-  },
+  [NodeType.Object]: mergeSchemas(COMMON_OPTIONS_SCHEMA, {
+    title: "Group options",
+  }),
+  [NodeType.Grid]: mergeSchemas(
+    COMMON_OPTIONS_SCHEMA,
+    GRID_NODE_OPTIONS_SCHEMA
+  ),
+  [NodeType.String]: mergeSchemas(
+    COMMON_OPTIONS_SCHEMA,
+    STRING_NODE_OPTIONS_SCHEMA
+  ),
 } satisfies Record<NodeType, Schema>;
 
+const COMMON_UI_SCHEMA: UiSchemaRoot = {
+  description: {
+    "ui:components": {
+      textWidget: "textareaWidget",
+    },
+  },
+};
+
 const NODE_OPTIONS_UI_SCHEMAS = {
-  [NodeType.Object]: {},
+  [NodeType.Object]: {
+    ...COMMON_UI_SCHEMA,
+  },
   [NodeType.Grid]: {
+    ...COMMON_UI_SCHEMA,
     width: {
       "ui:components": {
         numberWidget: "myStepperWidget",
@@ -140,7 +172,9 @@ const NODE_OPTIONS_UI_SCHEMAS = {
       },
     },
   },
-  [NodeType.String]: {},
+  [NodeType.String]: {
+    ...COMMON_UI_SCHEMA,
+  },
 } satisfies Record<NodeType, UiSchemaRoot>;
 
 export function nodeId(): NodeId {
@@ -151,10 +185,10 @@ export function createNode(type: NodeType): Node {
   return NODE_FACTORIES[type](nodeId());
 }
 
-export function nodeSchema(type: NodeType): Schema {
-  return mergeSchemas(COMMON_OPTIONS_SCHEMA, NODE_OPTIONS_SCHEMAS[type]);
+export function nodeSchema(node: Node): Schema {
+  return NODE_OPTIONS_SCHEMAS[node.type];
 }
 
-export function nodeUiSchema(type: NodeType): UiSchemaRoot {
-  return NODE_OPTIONS_UI_SCHEMAS[type];
+export function nodeUiSchema(node: Node): UiSchemaRoot {
+  return NODE_OPTIONS_UI_SCHEMAS[node.type];
 }
