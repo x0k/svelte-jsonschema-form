@@ -18,7 +18,7 @@
 
   const { cells, grid, indexes } = $derived.by(() => {
     const cells = new Map<NodeId, GridCell>();
-    const indexes = new Map<string, number>();
+    const indexes = new Map<NodeId, number>();
     const grid: Array<Array<NodeId | null>> = array(node.height, () =>
       new Array(node.width).fill(null)
     );
@@ -26,7 +26,7 @@
       const cell = node.cells[k];
       const n = cell.node;
       cells.set(n.id, cell);
-      indexes.set(id(cell.x, cell.y), k);
+      indexes.set(n.id, k);
       for (let i = cell.y; i < cell.y + cell.h; i++) {
         const row = grid[i];
         for (let j = cell.x; j < cell.x + cell.w; j++) {
@@ -37,6 +37,35 @@
     return { grid, cells, indexes };
   });
 
+  const idToCell = new Map<NodeId, string>();
+  const cellToId = new Map<string, NodeId>();
+
+  function emptyCellId(cellId: string) {
+    let index = 0;
+    let cellIdToRegister = cellId;
+    while (cellToId.get(cellIdToRegister) !== undefined) {
+      cellIdToRegister = `${cellId}-${index++}`;
+    }
+    return cellIdToRegister;
+  }
+
+  function allocateId(nodeId: NodeId, cellId: string) {
+    const lastCellId = idToCell.get(nodeId);
+    if (lastCellId !== undefined) {
+      return lastCellId;
+    }
+    let cellIdToRegister = emptyCellId(cellId);
+    idToCell.set(nodeId, cellIdToRegister);
+    cellToId.set(cellIdToRegister, nodeId);
+    return cellIdToRegister;
+  }
+
+  function deallocateId(cellId: string) {
+    const nodeId = cellToId.get(cellId);
+    idToCell.delete(nodeId!);
+    cellToId.delete(cellId);
+  }
+
   function* elements() {
     const seen = new Set<NodeId>();
     for (let i = 0; i < node.height; i++) {
@@ -45,7 +74,7 @@
         const v = row[j];
         if (v === null) {
           yield {
-            id: id(j, i),
+            id: emptyCellId(id(j, i)),
             cell: {
               x: j,
               y: i,
@@ -56,7 +85,7 @@
           };
         } else if (!seen.has(v)) {
           seen.add(v);
-          yield { id: id(j, i), cell: cells.get(v)! };
+          yield { id: allocateId(v, id(j, i)), cell: cells.get(v)! };
         }
       }
     }
@@ -257,7 +286,8 @@
             if (v !== undefined) {
               node.cells.push({ ...c, node: v });
             } else {
-              node.cells.splice(indexes.get(element.id)!, 1);
+              deallocateId(element.id);
+              node.cells.splice(indexes.get(c.node?.id!)!, 1);
             }
           }
         }
