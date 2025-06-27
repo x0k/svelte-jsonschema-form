@@ -2,6 +2,8 @@
 
 @import "tw-animate-css";
 
+@source "../node_modules/@sjsf/shadcn4-theme/dist";
+
 @custom-variant dark (&:is(.dark *));
 
 :root {
@@ -114,6 +116,8 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-secondary) transparent;
   }
   body {
     @apply bg-background text-foreground;

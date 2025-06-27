@@ -14,13 +14,15 @@
 
   let { node = $bindable() }: NodeProps<NodeType.Grid> = $props();
 
+  const { width, height } = $derived(node.options);
+
   const id = (x: number, y: number) => `${x}-${y}`;
 
   const { cells, grid, indexes } = $derived.by(() => {
     const cells = new Map<NodeId, GridCell>();
     const indexes = new Map<NodeId, number>();
-    const grid: Array<Array<NodeId | null>> = array(node.height, () =>
-      new Array(node.width).fill(null)
+    const grid: Array<Array<NodeId | null>> = array(height, () =>
+      new Array(width).fill(null)
     );
     for (let k = 0; k < node.cells.length; k++) {
       const cell = node.cells[k];
@@ -68,9 +70,9 @@
 
   function* elements() {
     const seen = new Set<NodeId>();
-    for (let i = 0; i < node.height; i++) {
+    for (let i = 0; i < height; i++) {
       const row = grid[i];
-      for (let j = 0; j < node.width; j++) {
+      for (let j = 0; j < width; j++) {
         const v = row[j];
         if (v === null) {
           yield {
@@ -119,7 +121,7 @@
     dir: (typeof DIR)[keyof typeof DIR]
   ): boolean {
     const [x, x1, y, y1] = getCheckRect(cell, dir);
-    if (x < 0 || x1 > node.width || y < 0 || y1 > node.height) {
+    if (x < 0 || x1 > width || y < 0 || y1 > height) {
       return false;
     }
     for (let i = y; i < y1; i++) {
@@ -138,7 +140,7 @@
 
 <div
   class="grid gap-2"
-  style="grid-template-columns: repeat({node.width}, auto); grid-template-rows: repeat({node.height}, auto);"
+  style="grid-template-columns: repeat({width}, auto); grid-template-rows: repeat({height}, auto);"
 >
   {#each elements() as element (element.id)}
     {@const c = element.cell}

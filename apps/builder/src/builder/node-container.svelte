@@ -3,19 +3,26 @@
 
   import type { Node } from "$lib/builder/builder.js";
 
-  import { getBuilderContext } from "./context.svelte.js";
+  import { getBuilderContext, type NodeRef } from "./context.svelte.js";
 
   interface Props extends HTMLAttributes<HTMLDivElement> {
     node: Node;
   }
 
-  const { children, node, ...rest }: Props = $props();
+  let { children, node = $bindable(), ...rest }: Props = $props();
 
   const ctx = getBuilderContext();
-  const nodeAccessor = () => node;
+  const nodeRef: NodeRef = {
+    current() {
+      return node;
+    },
+    update(v) {
+      node = v;
+    },
+  };
   const selectNode = (e: Event) => {
     e.stopPropagation();
-    ctx.selectNode(nodeAccessor);
+    ctx.selectNode(nodeRef);
   };
 </script>
 

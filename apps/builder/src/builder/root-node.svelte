@@ -44,12 +44,16 @@
   const NodeComponent = $derived(NODES[node.type]);
 </script>
 
-<NodeContainer {node} {@attach draggable.attach}>
+<NodeContainer bind:node {@attach draggable.attach}>
   <div class="flex gap-2 items-center p-1">
     <div class="cursor-grab" {@attach draggable.attachHandle}>
       <GripVertical class="size-5" />
     </div>
-    <span class="text-md truncate flex-1">{node.title}</span>
+    <div class="text-md truncate flex-1">{node.options.title}
+      {#if node.options.required}
+        <span>*</span>
+      {/if}
+    </div>
     <Button
       variant="ghost"
       size="icon"

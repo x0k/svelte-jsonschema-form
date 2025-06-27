@@ -1,4 +1,7 @@
 import type { Brand } from "@sjsf/form/lib/types";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
+import type { FromSchema } from "json-schema-to-ts";
+import { mergeSchemas } from "@sjsf/form/core";
 
 export enum NodeType {
   Object = "object",
@@ -8,16 +11,34 @@ export enum NodeType {
 
 export type NodeId = Brand<"node-id">;
 
-export interface AbstractNode<T extends NodeType> {
+export const COMMON_OPTIONS_SCHEMA = {
+  type: "object",
+  properties: {
+    title: {
+      title: "Title",
+      type: "string",
+    },
+    description: {
+      title: "Description",
+      type: "string"
+    },
+    required: {
+      type: "boolean",
+    },
+  },
+  required: ["title", "required"],
+  additionalProperties: false,
+} as const satisfies Schema;
+
+export type CommonOptions = FromSchema<typeof COMMON_OPTIONS_SCHEMA>;
+
+export interface AbstractNode<T extends NodeType, O extends {}> {
   id: NodeId;
   type: T;
+  options: CommonOptions & O;
 }
 
-export interface FieldNode {
-  title: string;
-}
-
-export interface ObjectNode extends AbstractNode<NodeType.Object>, FieldNode {
+export interface ObjectNode extends AbstractNode<NodeType.Object, {}> {
   children: Node[];
 }
 
@@ -29,13 +50,32 @@ export interface GridCell {
   node: Node;
 }
 
-export interface GridNode extends AbstractNode<NodeType.Grid>, FieldNode {
-  width: number;
-  height: number;
+export const GRID_NODE_OPTIONS_SCHEMA = {
+  title: "Grid settings",
+  type: "object",
+  properties: {
+    width: {
+      title: "Columns",
+      type: "number",
+      minimum: 1,
+    },
+    height: {
+      title: "Rows",
+      type: "number",
+      minimum: 1
+    },
+  },
+  required: ["width", "height"],
+  additionalProperties: false,
+} as const satisfies Schema;
+
+export type GridNodeOptions = FromSchema<typeof GRID_NODE_OPTIONS_SCHEMA>;
+
+export interface GridNode extends AbstractNode<NodeType.Grid, GridNodeOptions> {
   cells: GridCell[];
 }
 
-export interface TextNode extends AbstractNode<NodeType.String>, FieldNode {}
+export interface TextNode extends AbstractNode<NodeType.String, {}> {}
 
 export type Node = ObjectNode | GridNode | TextNode;
 
@@ -44,24 +84,56 @@ const NODE_FACTORIES = {
     id,
     type: NodeType.Object,
     children: [],
-    title: "Group title",
+    options: {
+      title: "Group title",
+      required: true,
+    },
   }),
   [NodeType.Grid]: (id) => ({
     id,
     type: NodeType.Grid,
     cells: [],
-    title: "Grid title",
-    width: 3,
-    height: 4,
+    options: {
+      title: "Grid title",
+      width: 3,
+      height: 4,
+      required: true,
+    },
   }),
   [NodeType.String]: (id) => ({
     id,
     type: NodeType.String,
-    title: "Text field",
+    options: {
+      title: "Text field",
+      required: true,
+    },
   }),
 } satisfies {
-  [T in NodeType]: (id: NodeId) => Extract<Node, AbstractNode<T>>;
+  [T in NodeType]: (id: NodeId) => Extract<Node, AbstractNode<T, any>>;
 };
+
+const NODE_OPTIONS_SCHEMAS = {
+  [NodeType.Object]: {},
+  [NodeType.Grid]: GRID_NODE_OPTIONS_SCHEMA,
+  [NodeType.String]: {},
+} satisfies Record<NodeType, Schema>;
+
+const NODE_OPTIONS_UI_SCHEMAS = {
+  [NodeType.Object]: {},
+  [NodeType.Grid]: {
+    width: {
+      "ui:components": {
+        numberWidget: "myStepperWidget",
+      },
+    },
+    height: {
+      "ui:components": {
+        numberWidget: "myStepperWidget",
+      },
+    },
+  },
+  [NodeType.String]: {},
+} satisfies Record<NodeType, UiSchemaRoot>;
 
 export function nodeId(): NodeId {
   return crypto.randomUUID() as NodeId;
@@ -69,4 +141,12 @@ export function nodeId(): NodeId {
 
 export function createNode(type: NodeType): Node {
   return NODE_FACTORIES[type](nodeId());
+}
+
+export function nodeSchema(type: NodeType): Schema {
+  return mergeSchemas(COMMON_OPTIONS_SCHEMA, NODE_OPTIONS_SCHEMAS[type]);
+}
+
+export function nodeUiSchema(type: NodeType): UiSchemaRoot {
+  return NODE_OPTIONS_UI_SCHEMAS[type];
 }

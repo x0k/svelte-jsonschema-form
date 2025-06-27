@@ -148,9 +148,18 @@ importers:
       '@dnd-kit/dom':
         specifier: ^0.1.19
         version: 0.1.19
+      '@sjsf/ajv8-validator':
+        specifier: workspace:*
+        version: link:../../packages/ajv8-validator
       '@sjsf/form':
         specifier: workspace:*
         version: link:../../packages/form
+      '@sjsf/shadcn4-theme':
+        specifier: workspace:*
+        version: link:../../packages/shadcn4-theme
+      ajv:
+        specifier: ^8.17.1
+        version: 8.17.1
     devDependencies:
       '@internationalized/date':
         specifier: ^3.8.2
@@ -173,6 +182,9 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      json-schema-to-ts:
+        specifier: ^3.1.1
+        version: 3.1.1
       svelte:
         specifier: ^5.28.1
         version: 5.34.7

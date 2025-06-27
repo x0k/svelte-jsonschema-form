@@ -42,7 +42,17 @@ export interface DraggableOptions {
   beforeDrop?: () => void;
 }
 
-const noNode = () => undefined;
+export interface NodeRef {
+  current: () => Node | undefined;
+  update: (n: Node) => void;
+}
+
+const noopNodeRef: NodeRef = {
+  current() {
+    return undefined;
+  },
+  update() {},
+};
 
 export class BuilderContext {
   #dnd = new DragDropManager();
@@ -55,21 +65,25 @@ export class BuilderContext {
 
   rootNode = $state<Node>();
 
-  #selectedNodeAccessor = $state.raw<() => Node | undefined>(noNode);
+  #selectedNodeRef = $state.raw(noopNodeRef);
   readonly selectedNode = $derived.by(() => {
     try {
-      return this.#selectedNodeAccessor();
+      return this.#selectedNodeRef.current();
     } catch {
       return undefined;
     }
   });
 
-  selectNode(v: () => Node | undefined) {
-    this.#selectedNodeAccessor = v;
+  selectNode(nodeRef: NodeRef) {
+    this.#selectedNodeRef = nodeRef;
+  }
+
+  updateSelectedNode(node: Node) {
+    this.#selectedNodeRef.update(node);
   }
 
   clearSelection() {
-    this.#selectedNodeAccessor = noNode;
+    this.#selectedNodeRef = noopNodeRef;
   }
 
   constructor() {
