@@ -30,7 +30,7 @@
   </div>
   {@render append?.()}
   <Button
-    variant="ghost"
+    variant="outline"
     size="icon"
     class="size-8"
     onclick={(e) => {

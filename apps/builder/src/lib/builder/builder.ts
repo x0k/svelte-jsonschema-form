@@ -20,7 +20,7 @@ export const COMMON_OPTIONS_SCHEMA = {
     },
     description: {
       title: "Description",
-      type: "string"
+      type: "string",
     },
     required: {
       type: "boolean",
@@ -62,7 +62,7 @@ export const GRID_NODE_OPTIONS_SCHEMA = {
     height: {
       title: "Rows",
       type: "number",
-      minimum: 1
+      minimum: 1,
     },
   },
   required: ["width", "height"],
@@ -71,7 +71,9 @@ export const GRID_NODE_OPTIONS_SCHEMA = {
 
 export type GridNodeOptions = FromSchema<typeof GRID_NODE_OPTIONS_SCHEMA>;
 
-export interface GridNode extends AbstractNode<NodeType.Grid, GridNodeOptions> {
+export interface GridNode extends AbstractNode<NodeType.Grid, {}> {
+  width: number;
+  height: number;
   cells: GridCell[];
 }
 
@@ -93,10 +95,10 @@ const NODE_FACTORIES = {
     id,
     type: NodeType.Grid,
     cells: [],
+    width: 3,
+    height: 4,
     options: {
       title: "Grid title",
-      width: 3,
-      height: 4,
       required: true,
     },
   }),
@@ -113,9 +115,15 @@ const NODE_FACTORIES = {
 };
 
 const NODE_OPTIONS_SCHEMAS = {
-  [NodeType.Object]: {},
-  [NodeType.Grid]: GRID_NODE_OPTIONS_SCHEMA,
-  [NodeType.String]: {},
+  [NodeType.Object]: {
+    title: "Group settings",
+  },
+  [NodeType.Grid]: {
+    title: "Grid settings",
+  },
+  [NodeType.String]: {
+    title: "String settings",
+  },
 } satisfies Record<NodeType, Schema>;
 
 const NODE_OPTIONS_UI_SCHEMAS = {

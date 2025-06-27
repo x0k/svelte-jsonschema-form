@@ -7,23 +7,26 @@
 
   import type { GridCell, NodeId, NodeType } from "$lib/builder/builder.js";
   import { Button } from "$lib/components/ui/button/index.js";
+  import Updown from "$lib/components/updown.svelte";
 
   import type { NodeProps } from "../model.js";
   import SingleDropZone from "../single-drop-zone.svelte";
   import { getBuilderContext } from "../context.svelte.js";
-  import NodeHeader from '../node-header.svelte';
+  import NodeHeader from "../node-header.svelte";
 
-  let { node = $bindable(), handle, unmount }: NodeProps<NodeType.Grid> = $props();
-
-  const { width, height } = $derived(node.options);
+  let {
+    node = $bindable(),
+    handle,
+    unmount,
+  }: NodeProps<NodeType.Grid> = $props();
 
   const id = (x: number, y: number) => `${x}-${y}`;
 
   const { cells, grid, indexes } = $derived.by(() => {
     const cells = new Map<NodeId, GridCell>();
     const indexes = new Map<NodeId, number>();
-    const grid: Array<Array<NodeId | null>> = array(height, () =>
-      new Array(width).fill(null)
+    const grid: Array<Array<NodeId | null>> = array(node.height, () =>
+      new Array(node.width).fill(null)
     );
     for (let k = 0; k < node.cells.length; k++) {
       const cell = node.cells[k];
@@ -71,9 +74,9 @@
 
   function* elements() {
     const seen = new Set<NodeId>();
-    for (let i = 0; i < height; i++) {
+    for (let i = 0; i < node.height; i++) {
       const row = grid[i];
-      for (let j = 0; j < width; j++) {
+      for (let j = 0; j < node.width; j++) {
         const v = row[j];
         if (v === null) {
           yield {
@@ -122,7 +125,7 @@
     dir: (typeof DIR)[keyof typeof DIR]
   ): boolean {
     const [x, x1, y, y1] = getCheckRect(cell, dir);
-    if (x < 0 || x1 > width || y < 0 || y1 > height) {
+    if (x < 0 || x1 > node.width || y < 0 || y1 > node.height) {
       return false;
     }
     for (let i = y; i < y1; i++) {
@@ -136,21 +139,181 @@
     return true;
   }
 
+  interface ToShrinkOrMove {
+    toShrink: Set<NodeId>;
+    toMove: Set<NodeId>;
+  }
+
+  function createShrinkOrMove(): ToShrinkOrMove {
+    return {
+      toMove: new Set(),
+      toShrink: new Set(),
+    };
+  }
+
+  function isFailed(data: ToShrinkOrMove) {
+    return data.toMove.size === 0 && data.toShrink.size === 0;
+  }
+
+  function mergeShrinkOrMove(
+    a: ToShrinkOrMove,
+    b: ToShrinkOrMove
+  ): ToShrinkOrMove {
+    return {
+      toShrink: a.toShrink.union(b.toShrink),
+      toMove: a.toMove.union(b.toMove),
+    };
+  }
+
+  function tryXShrinkOrMove(nodeId: NodeId): ToShrinkOrMove {
+    let result = createShrinkOrMove();
+    const cell = cells.get(nodeId)!;
+    if (cell.w > 1) {
+      result.toShrink.add(nodeId);
+      return result;
+    }
+    // is movable
+    if (cell.x <= 0) {
+      return result;
+    }
+    let lastNodeId: NodeId | undefined;
+    const x = cell.x - 1;
+    for (let i = cell.y; i < cell.y + cell.h; i++) {
+      const c = grid[i][x];
+      if (c === null || lastNodeId === c) {
+        continue;
+      }
+      lastNodeId = c;
+      const r = tryXShrinkOrMove(c);
+      if (isFailed(r)) {
+        return r;
+      }
+      result = mergeShrinkOrMove(result, r);
+    }
+    result.toMove.add(nodeId);
+    return result;
+  }
+
+  function xShrink() {
+    let total = createShrinkOrMove();
+    const toRemove = new Set<NodeId>();
+    let lastNodeId: NodeId | undefined;
+    const x = node.width - 1;
+    for (let i = 0; i < node.height; i++) {
+      const nodeId = grid[i][x];
+      if (nodeId === null || lastNodeId === nodeId) {
+        continue;
+      }
+      lastNodeId = nodeId;
+      const result = tryXShrinkOrMove(nodeId);
+      if (isFailed(result)) {
+        toRemove.add(nodeId);
+      } else {
+        total = mergeShrinkOrMove(total, result);
+      }
+    }
+    for (const id of total.toShrink) {
+      cells.get(id)!.w--;
+    }
+    for (const id of total.toMove) {
+      cells.get(id)!.x--;
+    }
+    if (toRemove.size > 0) {
+      node.cells = node.cells.filter((c) => !toRemove.has(c.node.id));
+    }
+    node.width--;
+  }
+
+  function tryYShrinkOrMove(nodeId: NodeId): ToShrinkOrMove {
+    let result = createShrinkOrMove();
+    const cell = cells.get(nodeId)!;
+    if (cell.h > 1) {
+      result.toShrink.add(nodeId);
+      return result;
+    }
+    // is movable
+    if (cell.y <= 0) {
+      return result;
+    }
+    let lastNodeId: NodeId | undefined;
+    const row = grid[cell.y - 1];
+    for (let i = cell.x; i < cell.x + cell.w; i++) {
+      const c = row[i];
+      if (c === null || lastNodeId === c) {
+        continue;
+      }
+      lastNodeId = c;
+      const r = tryYShrinkOrMove(c);
+      if (isFailed(r)) {
+        return r;
+      }
+      result = mergeShrinkOrMove(result, r);
+    }
+    result.toMove.add(nodeId);
+    return result;
+  }
+
+  function yShrink() {
+    let total = createShrinkOrMove();
+    const toRemove = new Set<NodeId>();
+    let lastNodeId: NodeId | undefined;
+    const row = grid[node.height - 1];
+    for (let i = 0; i < node.width; i++) {
+      const nodeId = row[i];
+      if (nodeId === null || lastNodeId === nodeId) {
+        continue;
+      }
+      lastNodeId = nodeId;
+      const result = tryYShrinkOrMove(nodeId);
+      if (isFailed(result)) {
+        toRemove.add(nodeId);
+      } else {
+        total = mergeShrinkOrMove(total, result);
+      }
+    }
+    for (const id of total.toShrink) {
+      cells.get(id)!.h--;
+    }
+    for (const id of total.toMove) {
+      cells.get(id)!.y--;
+    }
+    if (toRemove.size > 0) {
+      node.cells = node.cells.filter((c) => !toRemove.has(c.node.id));
+    }
+    node.height--;
+  }
+
   const ctx = getBuilderContext();
 </script>
 
 {#snippet append()}
-  <div>
-    Columns {node.options.width}
+  <div class="flex items-center gap-2 pr-2">
+    Cols
+    <Updown
+      minimum={1}
+      value={node.width}
+      onUp={() => {
+        node.width++;
+      }}
+      onDown={xShrink}
+    />
   </div>
-  <div>
-    Rows {node.options.height}
+  <div class="flex items-center gap-2 pr-2">
+    Rows
+    <Updown
+      minimum={1}
+      value={node.height}
+      onUp={() => {
+        node.height++;
+      }}
+      onDown={yShrink}
+    />
   </div>
 {/snippet}
 <NodeHeader {node} {handle} {unmount} {append} />
 <div
   class="grid gap-2"
-  style="grid-template-columns: repeat({width}, auto); grid-template-rows: repeat({height}, auto);"
+  style="grid-template-columns: repeat({node.width}, auto); grid-template-rows: repeat({node.height}, auto);"
 >
   {#each elements() as element (element.id)}
     {@const c = element.cell}
