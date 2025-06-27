@@ -115,14 +115,21 @@
     {@const c = element.cell}
     {@const isSelected =
       c.node !== undefined && ctx.selectedNode?.id === c.node.id}
+    {@const rl = isSelected && isResizable(c, DIR.Left)}
+    {@const rr = isSelected && isResizable(c, DIR.Right)}
+    {@const rt = isSelected && isResizable(c, DIR.Top)}
+    {@const rb = isSelected && isResizable(c, DIR.Bottom)}
+    {@const sx = isSelected && c.w > 1}
+    {@const sy = isSelected && c.h > 1}
     <div
       class="relative flex justify-center items-center"
       style="grid-column: span {c.w} / span {c.w}; grid-row: span {c.h} / span {c.h};"
     >
       <Button
         class={[
-          "absolute size-8 -left-10",
-          isSelected && isResizable(c, DIR.Left) ? "inline-flex" : "hidden",
+          "absolute size-8 z-10 -left-10",
+          rl ? "inline-flex" : "hidden",
+          sx && "top-[calc(50%-2.2rem)]",
         ]}
         variant="secondary"
         size="icon"
@@ -136,8 +143,25 @@
       </Button>
       <Button
         class={[
-          "absolute size-8 -right-10",
-          isSelected && isResizable(c, DIR.Right) ? "inline-flex" : "hidden",
+          "absolute size-8 z-10 -left-10",
+          sx ? "inline-flex" : "hidden",
+          rl && "top-[calc(50%+0.2rem)]",
+        ]}
+        variant="secondary"
+        size="icon"
+        onclick={(e) => {
+          e.stopPropagation();
+          c.x += 1;
+          c.w -= 1;
+        }}
+      >
+        <ChevronRight />
+      </Button>
+      <Button
+        class={[
+          "absolute size-8 z-10 -right-10",
+          rr ? "inline-flex" : "hidden",
+          sx && "top-[calc(50%-2.2rem)]",
         ]}
         variant="secondary"
         size="icon"
@@ -150,8 +174,24 @@
       </Button>
       <Button
         class={[
-          "absolute size-8 -top-10",
-          isSelected && isResizable(c, DIR.Top) ? "inline-flex" : "hidden",
+          "absolute size-8 z-10 -right-10",
+          sx ? "inline-flex" : "hidden",
+          rr && "top-[calc(50%+0.2rem)]",
+        ]}
+        variant="secondary"
+        size="icon"
+        onclick={(e) => {
+          e.stopPropagation();
+          c.w -= 1;
+        }}
+      >
+        <ChevronLeft />
+      </Button>
+      <Button
+        class={[
+          "absolute size-8 z-10 -top-10",
+          rt ? "inline-flex" : "hidden",
+          sy && "left-[calc(50%-2.2rem)]",
         ]}
         variant="secondary"
         size="icon"
@@ -165,8 +205,25 @@
       </Button>
       <Button
         class={[
-          "absolute size-8 -bottom-10",
-          isSelected && isResizable(c, DIR.Bottom) ? "inline-flex" : "hidden",
+          "absolute size-8 z-10 -top-10",
+          sy ? "inline-flex" : "hidden",
+          rt && "left-[calc(50%+0.2rem)]",
+        ]}
+        variant="secondary"
+        size="icon"
+        onclick={(e) => {
+          e.stopPropagation();
+          c.y += 1;
+          c.h -= 1;
+        }}
+      >
+        <ChevronDown />
+      </Button>
+      <Button
+        class={[
+          "absolute size-8 z-10 -bottom-10",
+          rb ? "inline-flex" : "hidden",
+          sy && "left-[calc(50%-2.2rem)]",
         ]}
         variant="secondary"
         size="icon"
@@ -176,6 +233,21 @@
         }}
       >
         <ChevronDown />
+      </Button>
+      <Button
+        class={[
+          "absolute size-8 z-10 -bottom-10",
+          sy ? "inline-flex" : "hidden",
+          rb && "left-[calc(50%+0.2rem)]",
+        ]}
+        variant="secondary"
+        size="icon"
+        onclick={(e) => {
+          e.stopPropagation();
+          c.h -= 1;
+        }}
+      >
+        <ChevronUp />
       </Button>
       <SingleDropZone
         placeholder="Empty cell"
