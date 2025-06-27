@@ -29,7 +29,7 @@ export function getNodeContext(): NodeContext {
 
 type UniqueId = string | number;
 
-interface DndData {
+export interface DndData {
   node: Node;
 }
 

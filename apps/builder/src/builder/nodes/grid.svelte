@@ -11,8 +11,9 @@
   import type { NodeProps } from "../model.js";
   import SingleDropZone from "../single-drop-zone.svelte";
   import { getBuilderContext } from "../context.svelte.js";
+  import NodeHeader from '../node-header.svelte';
 
-  let { node = $bindable() }: NodeProps<NodeType.Grid> = $props();
+  let { node = $bindable(), handle, unmount }: NodeProps<NodeType.Grid> = $props();
 
   const { width, height } = $derived(node.options);
 
@@ -138,6 +139,15 @@
   const ctx = getBuilderContext();
 </script>
 
+{#snippet append()}
+  <div>
+    Columns {node.options.width}
+  </div>
+  <div>
+    Rows {node.options.height}
+  </div>
+{/snippet}
+<NodeHeader {node} {handle} {unmount} {append} />
 <div
   class="grid gap-2"
   style="grid-template-columns: repeat({width}, auto); grid-template-rows: repeat({height}, auto);"
