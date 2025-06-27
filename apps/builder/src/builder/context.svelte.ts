@@ -1,10 +1,5 @@
 import { flushSync, getContext, onDestroy, setContext } from "svelte";
-import {
-  DragDropManager,
-  Draggable,
-  Droppable,
-  type FeedbackType,
-} from "@dnd-kit/dom";
+import { DragDropManager, Draggable, Droppable } from "@dnd-kit/dom";
 
 import type { Node } from "$lib/builder/index.js";
 
@@ -70,7 +65,11 @@ export class BuilderContext {
   });
 
   selectNode(v: () => Node | undefined) {
-    this.#selectedNodeAccessor = this.#selectedNodeAccessor === v ? noNode : v;
+    this.#selectedNodeAccessor = v;
+  }
+
+  clearSelection() {
+    this.#selectedNodeAccessor = noNode;
   }
 
   constructor() {
@@ -134,7 +133,7 @@ export class BuilderContext {
             return options.node;
           },
         },
-        feedback: 'clone',
+        feedback: "clone",
         id,
       },
       this.#dnd
