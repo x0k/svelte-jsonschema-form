@@ -44,7 +44,7 @@
     ]}
     {@attach droppable.attach}
   >
-    <p class="text-lg font-medium text-foreground">
+    <p class="text-lg text-center font-medium text-foreground">
       {placeholder}
     </p>
     <!-- <p class="text-sm text-muted-foreground">

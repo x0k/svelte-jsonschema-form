@@ -81,6 +81,7 @@
         if (v === null) {
           yield {
             id: emptyCellId(id(j, i)),
+            index: -1,
             cell: {
               x: j,
               y: i,
@@ -91,7 +92,11 @@
           };
         } else if (!seen.has(v)) {
           seen.add(v);
-          yield { id: allocateId(v, id(j, i)), cell: cells.get(v)! };
+          yield {
+            id: allocateId(v, id(j, i)),
+            index: indexes.get(v)!,
+            cell: cells.get(v)!,
+          };
         }
       }
     }
@@ -456,13 +461,13 @@
       <SingleDropZone
         placeholder="Empty cell"
         bind:node={
-          () => c.node,
+          () => node.cells[element.index]?.node,
           (v) => {
             if (v !== undefined) {
               node.cells.push({ ...c, node: v });
             } else {
               deallocateId(element.id);
-              node.cells.splice(indexes.get(c.node?.id!)!, 1);
+              node.cells.splice(element.index, 1);
             }
           }
         }

@@ -34,32 +34,32 @@
       SelectTrigger,
     },
   });
-
-  let rootEl: HTMLDivElement;
 </script>
 
-<!-- svelte-ignore a11y_click_events_have_key_events -->
-<!-- svelte-ignore a11y_no_static_element_interactions -->
-<div
-  bind:this={rootEl}
-  class="grid grid-cols-[1fr_5fr_2fr] px-2 grid-rows-[auto_1fr] h-screen max-w-[80rem] mx-auto overflow-hidden"
-  onclick={(e) => {
-    if (
-      e.target === rootEl ||
-      (e.target instanceof Node && e.target.parentElement === rootEl)
-    ) {
-      ctx.clearSelection();
-    }
-  }}
->
-  <div class="col-span-3 px-2 py-4">Form builder</div>
-  <div class="overflow-x-hidden overflow-y-auto p-2">
-    <Controls />
+<div class="min-h-screen bg-background" style="--header-height: 60px;">
+  <div class="sticky top-0 z-50 bg-background">
+    <div class="mx-auto px-8 py-4">
+      <h1 class="text-xl font-bold">Form Builder</h1>
+    </div>
   </div>
-  <div class="overflow-x-hidden overflow-y-auto p-2">
-    <Builder />
-  </div>
-  <div class="overflow-x-hidden overflow-y-auto p-2">
-    <Settings />
+
+  <div class="mx-auto px-8">
+    <div class="grid grid-cols-[1fr_5fr_2fr] gap-4">
+      <div
+        class="sticky top-[var(--header-height)] h-[calc(100vh-var(--header-height))] overflow-y-auto pt-4"
+      >
+        <Controls />
+      </div>
+
+      <div class="p-4">
+        <Builder />
+      </div>
+
+      <div
+        class="sticky top-[var(--header-height)] h-[calc(100vh-var(--header-height))] overflow-y-auto pt-4"
+      >
+        <Settings />
+      </div>
+    </div>
   </div>
 </div>

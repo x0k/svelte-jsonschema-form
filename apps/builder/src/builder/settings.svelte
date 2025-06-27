@@ -8,8 +8,7 @@
 </script>
 
 <div class="flex flex-col gap-4">
-  <div class="font-medium text-lg">Form settings</div>
-  <Button>Compile</Button>
+  <Button disabled={ctx.rootNode === undefined}>Build</Button>
   {#if ctx.selectedNode}
     {#key ctx.selectedNode.id}
       <NodeSettings

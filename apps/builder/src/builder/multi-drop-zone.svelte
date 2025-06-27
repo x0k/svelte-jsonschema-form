@@ -35,7 +35,7 @@
 {#if nodes.length === 0}
   <div
     class={[
-      "border-2 border-dashed rounded p-6 ",
+      "border-2 border-dashed rounded p-6",
       droppable.isOver && "border-primary bg-primary/5",
     ]}
     {@attach droppable.attach}

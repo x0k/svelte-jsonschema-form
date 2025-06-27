@@ -22,7 +22,11 @@
   };
   const selectNode = (e: Event) => {
     e.stopPropagation();
-    ctx.selectNode(nodeRef);
+    if (ctx.selectedNode?.id === node.id) {
+      ctx.clearSelection();
+    } else {
+      ctx.selectNode(nodeRef);
+    }
   };
 </script>
 
