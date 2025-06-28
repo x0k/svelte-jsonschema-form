@@ -125,7 +125,7 @@ const NODE_FACTORIES = {
     id,
     type: NodeType.String,
     options: {
-      title: "Text field",
+      title: "String field",
       required: true,
     },
   }),

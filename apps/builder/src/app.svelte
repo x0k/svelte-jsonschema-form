@@ -45,23 +45,21 @@
     </div>
   </div>
 
-  <div class="mx-auto px-8">
-    <div class="grid grid-cols-[1fr_5fr_2fr] gap-4">
-      <div
-        class="sticky top-[var(--header-height)] h-[calc(100vh-var(--header-height))] overflow-y-auto py-4"
-      >
-        <Controls />
-      </div>
+  <div class="grid grid-cols-[1.1fr_5fr_2fr] gap-4 mx-auto">
+    <div
+      class="sticky top-[var(--header-height)] h-[calc(100vh-var(--header-height))] overflow-y-auto py-4 pl-8 min-w-[120px]"
+    >
+      <Controls />
+    </div>
 
-      <div class="p-4">
-        <Builder />
-      </div>
+    <div class="p-4">
+      <Builder />
+    </div>
 
-      <div
-        class="sticky top-[var(--header-height)] h-[calc(100vh-var(--header-height))] overflow-y-auto py-4"
-      >
-        <Settings />
-      </div>
+    <div
+      class="sticky top-[var(--header-height)] h-[calc(100vh-var(--header-height))] overflow-y-auto py-4 pr-8 min-w-[200px]"
+    >
+      <Settings />
     </div>
   </div>
 </div>
