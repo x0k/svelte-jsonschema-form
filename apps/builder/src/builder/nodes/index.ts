@@ -6,9 +6,11 @@ import type { NodeProps } from "../model.js";
 
 import ObjectNode from "./object-node.svelte";
 import GridNode from "./grid.svelte";
+import Enum from "./enum.svelte";
 
 export const NODES: { [T in NodeType]?: Component<NodeProps<T>, {}, "node"> } =
   {
     [NodeType.Object]: ObjectNode,
     [NodeType.Grid]: GridNode,
+    [NodeType.Enum]: Enum,
   };

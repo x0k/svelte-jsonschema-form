@@ -1,7 +1,7 @@
 <script lang="ts">
   import GripVertical from "@lucide/svelte/icons/grip-vertical";
 
-  import { createNode, NodeType } from "$lib/builder/builder.js";
+  import { createNode, NodeType } from "$lib/builder/index.js";
 
   import { getBuilderContext } from "./context.svelte.js";
 

@@ -5,7 +5,7 @@
   import ChevronUp from "@lucide/svelte/icons/chevron-up";
   import ChevronDown from "@lucide/svelte/icons/chevron-down";
 
-  import type { GridCell, NodeId, NodeType } from "$lib/builder/builder.js";
+  import type { GridCell, NodeId, NodeType } from "$lib/builder/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
   import Updown from "$lib/components/updown.svelte";
 

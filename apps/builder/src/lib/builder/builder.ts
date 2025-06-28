@@ -1,12 +1,13 @@
-import type { Brand } from "@sjsf/form/lib/types";
-import type { Schema, UiSchemaRoot } from "@sjsf/form";
+import type { Brand, JsonPaths } from "@sjsf/form/lib/types";
+import type { Schema, SchemaValue, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 import { mergeSchemas } from "@sjsf/form/core";
 
 export enum NodeType {
   Object = "object",
-  String = "string",
   Grid = "grid",
+  Enum = "enum",
+  String = "string",
 }
 
 export type NodeId = Brand<"node-id">;
@@ -71,6 +72,31 @@ export interface GridNode extends AbstractNode<NodeType.Grid, GridNodeOptions> {
   cells: GridCell[];
 }
 
+export enum EnumValueType {
+  String = "string",
+  Number = "number",
+  JSON = "json",
+}
+
+export const ENUM_VALUE_TYPE_TITLES: Record<EnumValueType, string> = {
+  [EnumValueType.String]: "String",
+  [EnumValueType.Number]: "Number",
+  [EnumValueType.JSON]: "JSON",
+};
+
+export const ENUM_VALUE_TYPES = Object.values(EnumValueType);
+
+export interface EnumItem {
+  id: string;
+  label: string;
+  value: string;
+}
+
+export interface EnumNode extends AbstractNode<NodeType.Enum, {}> {
+  valueType: EnumValueType;
+  items: EnumItem[];
+}
+
 export const STRING_NODE_OPTIONS_SCHEMA = {
   type: "object",
   title: "String options",
@@ -98,7 +124,7 @@ export type StringNodeOptions = FromSchema<typeof STRING_NODE_OPTIONS_SCHEMA>;
 export interface StringNode
   extends AbstractNode<NodeType.String, StringNodeOptions> {}
 
-export type Node = ObjectNode | GridNode | StringNode;
+export type Node = ObjectNode | GridNode | EnumNode | StringNode;
 
 const NODE_FACTORIES = {
   [NodeType.Object]: (id) => ({
@@ -118,6 +144,22 @@ const NODE_FACTORIES = {
     height: 4,
     options: {
       title: "Grid title",
+      required: true,
+    },
+  }),
+  [NodeType.Enum]: (id) => ({
+    id,
+    type: NodeType.Enum,
+    valueType: EnumValueType.String,
+    items: [
+      {
+        id: nodeId(),
+        label: "foo",
+        value: "bar",
+      },
+    ],
+    options: {
+      title: "Enum field",
       required: true,
     },
   }),
@@ -141,6 +183,9 @@ const NODE_OPTIONS_SCHEMAS = {
     COMMON_OPTIONS_SCHEMA,
     GRID_NODE_OPTIONS_SCHEMA
   ),
+  [NodeType.Enum]: mergeSchemas(COMMON_OPTIONS_SCHEMA, {
+    title: "Enum options",
+  }),
   [NodeType.String]: mergeSchemas(
     COMMON_OPTIONS_SCHEMA,
     STRING_NODE_OPTIONS_SCHEMA
@@ -161,16 +206,9 @@ const NODE_OPTIONS_UI_SCHEMAS = {
   },
   [NodeType.Grid]: {
     ...COMMON_UI_SCHEMA,
-    width: {
-      "ui:components": {
-        numberWidget: "myStepperWidget",
-      },
-    },
-    height: {
-      "ui:components": {
-        numberWidget: "myStepperWidget",
-      },
-    },
+  },
+  [NodeType.Enum]: {
+    ...COMMON_UI_SCHEMA,
   },
   [NodeType.String]: {
     ...COMMON_UI_SCHEMA,

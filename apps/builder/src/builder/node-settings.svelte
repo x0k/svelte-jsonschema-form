@@ -8,7 +8,7 @@
     setFormContext,
   } from "@sjsf/form";
 
-  import { nodeSchema, nodeUiSchema, type Node } from "$lib/builder/builder.js";
+  import { nodeSchema, nodeUiSchema, type Node } from "$lib/builder/index.js";
   import * as defaults from "$lib/form/defaults.js";
 
   interface Props {
