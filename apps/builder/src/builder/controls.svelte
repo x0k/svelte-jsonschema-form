@@ -6,6 +6,7 @@
 
 <div class="flex flex-col gap-2">
   <NodeFactory nodeType={NodeType.Object} title="Group" />
+  <NodeFactory nodeType={NodeType.Array} title="List" />
   <NodeFactory nodeType={NodeType.Grid} title="Grid" />
   <NodeFactory nodeType={NodeType.Enum} title="Enum" />
   <NodeFactory nodeType={NodeType.String} title="String" />

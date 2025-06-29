@@ -1,10 +1,11 @@
-import type { Brand, JsonPaths } from "@sjsf/form/lib/types";
-import type { Schema, SchemaValue, UiSchemaRoot } from "@sjsf/form";
+import type { Brand } from "@sjsf/form/lib/types";
+import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 import { mergeSchemas } from "@sjsf/form/core";
 
 export enum NodeType {
   Object = "object",
+  Array = "array",
   Grid = "grid",
   Enum = "enum",
   String = "string",
@@ -42,6 +43,29 @@ export interface AbstractNode<T extends NodeType, O extends {}> {
 
 export interface ObjectNode extends AbstractNode<NodeType.Object, {}> {
   children: Node[];
+}
+
+export const ARRAY_NODE_OPTIONS_SCHEMA = {
+  title: "Array options",
+  type: "object",
+  properties: {
+    minItems: {
+      title: "Min items",
+      type: "number",
+    },
+    maxItems: {
+      title: "Max items",
+      type: "number",
+    },
+  },
+  additionalProperties: false,
+} as const satisfies Schema;
+
+export type ArrayNodeOptions = FromSchema<typeof ARRAY_NODE_OPTIONS_SCHEMA>;
+
+export interface ArrayNode
+  extends AbstractNode<NodeType.Array, ArrayNodeOptions> {
+  item: Node | undefined;
 }
 
 export interface GridCell {
@@ -122,7 +146,7 @@ export type StringNodeOptions = FromSchema<typeof STRING_NODE_OPTIONS_SCHEMA>;
 export interface StringNode
   extends AbstractNode<NodeType.String, StringNodeOptions> {}
 
-export type Node = ObjectNode | GridNode | EnumNode | StringNode;
+export type Node = ObjectNode | ArrayNode | GridNode | EnumNode | StringNode;
 
 const NODE_FACTORIES = {
   [NodeType.Object]: (id) => ({
@@ -131,6 +155,15 @@ const NODE_FACTORIES = {
     children: [],
     options: {
       title: "Group title",
+      required: true,
+    },
+  }),
+  [NodeType.Array]: (id) => ({
+    id,
+    type: NodeType.Array,
+    item: undefined,
+    options: {
+      title: "List title",
       required: true,
     },
   }),
@@ -177,6 +210,10 @@ const NODE_OPTIONS_SCHEMAS = {
   [NodeType.Object]: mergeSchemas(COMMON_OPTIONS_SCHEMA, {
     title: "Group options",
   }),
+  [NodeType.Array]: mergeSchemas(
+    COMMON_OPTIONS_SCHEMA,
+    ARRAY_NODE_OPTIONS_SCHEMA
+  ),
   [NodeType.Grid]: mergeSchemas(
     COMMON_OPTIONS_SCHEMA,
     GRID_NODE_OPTIONS_SCHEMA
@@ -200,6 +237,9 @@ const COMMON_UI_SCHEMA: UiSchemaRoot = {
 
 const NODE_OPTIONS_UI_SCHEMAS = {
   [NodeType.Object]: {
+    ...COMMON_UI_SCHEMA,
+  },
+  [NodeType.Array]: {
     ...COMMON_UI_SCHEMA,
   },
   [NodeType.Grid]: {

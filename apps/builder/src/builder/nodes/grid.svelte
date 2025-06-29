@@ -14,6 +14,15 @@
   import { getBuilderContext } from "../context.svelte.js";
   import NodeHeader from "../node-header.svelte";
 
+  import {
+    createShrinkOrMove,
+    isFailed,
+    mergeShrinkOrMove,
+    Rect,
+    type CheckRect,
+    type ToShrinkOrMove,
+  } from "./grid.js";
+
   let {
     node = $bindable(),
     draggable,
@@ -102,34 +111,7 @@
     }
   }
 
-  const DIR = {
-    Left: 0,
-    Top: 1,
-    Right: 2,
-    Bottom: 3,
-  } as const;
-
-  function getCheckRect(
-    { x, y, h, w }: Omit<GridCell, "node">,
-    dir: (typeof DIR)[keyof typeof DIR]
-  ): [x: number, x1: number, y: number, y1: number] {
-    switch (dir) {
-      case DIR.Left:
-        return [x - 1, x, y, y + h];
-      case DIR.Right:
-        return [x + w, x + w + 1, y, y + h];
-      case DIR.Top:
-        return [x, x + w, y - 1, y];
-      case DIR.Bottom:
-        return [x, x + w, y + h, y + h + 1];
-    }
-  }
-
-  function isResizable(
-    cell: Omit<GridCell, "node">,
-    dir: (typeof DIR)[keyof typeof DIR]
-  ): boolean {
-    const [x, x1, y, y1] = getCheckRect(cell, dir);
+  function isAvailable([x, x1, y, y1]: CheckRect): boolean {
     if (x < 0 || x1 > node.width || y < 0 || y1 > node.height) {
       return false;
     }
@@ -142,32 +124,6 @@
       }
     }
     return true;
-  }
-
-  interface ToShrinkOrMove {
-    toShrink: Set<NodeId>;
-    toMove: Set<NodeId>;
-  }
-
-  function createShrinkOrMove(): ToShrinkOrMove {
-    return {
-      toMove: new Set(),
-      toShrink: new Set(),
-    };
-  }
-
-  function isFailed(data: ToShrinkOrMove) {
-    return data.toMove.size === 0 && data.toShrink.size === 0;
-  }
-
-  function mergeShrinkOrMove(
-    a: ToShrinkOrMove,
-    b: ToShrinkOrMove
-  ): ToShrinkOrMove {
-    return {
-      toShrink: a.toShrink.union(b.toShrink),
-      toMove: a.toMove.union(b.toMove),
-    };
   }
 
   function tryXShrinkOrMove(nodeId: NodeId): ToShrinkOrMove {
@@ -324,10 +280,10 @@
     {@const c = element.cell}
     {@const isSelected =
       c.node !== undefined && ctx.selectedNode?.id === c.node.id}
-    {@const rl = isSelected && isResizable(c, DIR.Left)}
-    {@const rr = isSelected && isResizable(c, DIR.Right)}
-    {@const rt = isSelected && isResizable(c, DIR.Top)}
-    {@const rb = isSelected && isResizable(c, DIR.Bottom)}
+    {@const rl = isSelected && isAvailable(Rect.Left(c))}
+    {@const rr = isSelected && isAvailable(Rect.Right(c))}
+    {@const rt = isSelected && isAvailable(Rect.Top(c))}
+    {@const rb = isSelected && isAvailable(Rect.Bottom(c))}
     {@const sx = isSelected && c.w > 1}
     {@const sy = isSelected && c.h > 1}
     <div
