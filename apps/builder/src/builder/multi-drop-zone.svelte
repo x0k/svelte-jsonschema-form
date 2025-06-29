@@ -2,6 +2,7 @@
   import type { Node } from "$lib/builder/index.js";
 
   import { getBuilderContext, getNodeContext } from "./context.svelte.js";
+  import DropZone from "./drop-zone.svelte";
   import DropIndicator from "./node-drop-indicator.svelte";
   import RootNode from "./root-node.svelte";
 
@@ -33,17 +34,7 @@
 </script>
 
 {#if nodes.length === 0}
-  <div
-    class={[
-      "border-2 border-dashed rounded p-6",
-      droppable.isOver && "border-primary bg-primary/5",
-    ]}
-    {@attach droppable.attach}
-  >
-    <p class="text-lg text-center font-medium text-foreground">
-      Drop form elements here
-    </p>
-  </div>
+  <DropZone placeholder="Drop form elements here" {droppable} />
 {:else}
   {#each nodes as nodeId, i (nodeId)}
     <DropIndicator

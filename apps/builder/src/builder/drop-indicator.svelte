@@ -9,5 +9,5 @@
 </script>
 
 <div class="h-2 flex items-center" {@attach droppable.attach}>
-  <div class={["w-full h-0.5 bg-primary", !droppable.isOver && "hidden"]}></div>
+  <div class={["w-full h-0.5 bg-chart-2", !droppable.isOver && "hidden"]}></div>
 </div>

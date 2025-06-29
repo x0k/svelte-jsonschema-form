@@ -6,6 +6,7 @@
     getNodeContext,
     type NodeRef,
   } from "./context.svelte.js";
+  import DropZone from "./drop-zone.svelte";
   import RootNode from "./root-node.svelte";
 
   interface Props {
@@ -37,18 +38,5 @@
 {#if node}
   <RootNode bind:node unmount={() => (node = undefined)} />
 {:else}
-  <div
-    class={[
-      "border-2 border-dashed rounded p-6 w-full h-full flex items-center justify-center",
-      droppable.isOver && "border-primary bg-primary/5",
-    ]}
-    {@attach droppable.attach}
-  >
-    <p class="text-lg text-center font-medium text-foreground">
-      {placeholder}
-    </p>
-    <!-- <p class="text-sm text-muted-foreground">
-      Drag element from the sidebar to start building your form
-    </p> -->
-  </div>
+  <DropZone {placeholder} {droppable} />
 {/if}

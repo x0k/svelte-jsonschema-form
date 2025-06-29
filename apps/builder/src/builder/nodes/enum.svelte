@@ -21,7 +21,7 @@
 
 {#snippet append()}
   <div class="flex gap-2 items-center">
-    <label for={selectId}> Value type </label>
+    <label class="text-muted-foreground" for={selectId}> Value type </label>
     <Select.Root type="single" bind:value={node.valueType}>
       <Select.Trigger id={selectId} size="sm">
         {ENUM_VALUE_TYPE_TITLES[node.valueType]}

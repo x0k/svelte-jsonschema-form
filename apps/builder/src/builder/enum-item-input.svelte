@@ -1,12 +1,11 @@
 <script lang="ts">
   import GripVertical from "@lucide/svelte/icons/grip-vertical";
-  import Trash from "@lucide/svelte/icons/trash-2";
 
   import type { EnumItem } from "$lib/builder/index.js";
-  import { Button } from "$lib/components/ui/button/index.js";
   import { Input } from "$lib/components/ui/input/index.js";
 
   import { getBuilderContext } from "./context.svelte.js";
+  import RemoveButton from "./remove-button.svelte";
 
   interface Props {
     item: EnumItem;
@@ -31,7 +30,7 @@
 </script>
 
 <div
-  class="grid grid-cols-[auto_1fr_1fr_auto] gap-2 items-center"
+  class="grid grid-cols-[auto_1fr_1fr_auto] gap-2 items-center border rounded bg-background p-2"
   {@attach draggable.attach}
 >
   <div class="cursor-grab" {@attach draggable.attachHandle}>
@@ -50,7 +49,5 @@
     }
   />
   <Input placeholder="Value" bind:value={item.value} />
-  <Button variant="outline" size="icon" class="size-8" onclick={unmount}>
-    <Trash />
-  </Button>
+  <RemoveButton onClick={unmount} />
 </div>

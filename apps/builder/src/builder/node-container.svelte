@@ -1,15 +1,21 @@
 <script lang="ts">
-  import type { HTMLAttributes } from "svelte/elements";
+  import type { Snippet } from "svelte";
 
   import type { Node } from "$lib/builder/index.js";
 
-  import { getBuilderContext, type NodeRef } from "./context.svelte.js";
+  import {
+    getBuilderContext,
+    type BuilderDraggable,
+    type NodeRef,
+  } from "./context.svelte.js";
 
-  interface Props extends HTMLAttributes<HTMLDivElement> {
+  interface Props {
     node: Node;
+    draggable: BuilderDraggable;
+    children: Snippet;
   }
 
-  let { children, node = $bindable(), ...rest }: Props = $props();
+  let { children, node = $bindable(), draggable }: Props = $props();
 
   const ctx = getBuilderContext();
   const nodeRef: NodeRef = {
@@ -30,16 +36,16 @@
   role="button"
   tabindex="0"
   onkeydown={(e) => {
-    if (e.key === "Enter" || e.key === " ") {
+    if (e.code === "Enter" || e.code === "Space") {
       selectNode(e);
     }
   }}
   onclick={selectNode}
   class={[
     "rounded p-2 flex-1 flex flex-col gap-2 border bg-background",
-    ctx.selectedNode?.id === node.id ? "border-primary" : "",
+    ctx.selectedNode?.id === node.id && "border-chart-2",
   ]}
-  {...rest}
+  {@attach draggable.attach}
 >
   {@render children?.()}
 </div>

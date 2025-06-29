@@ -1,6 +1,7 @@
 <script lang="ts" module>
-  const JSON_CONSTANTS = new Set(['true', 'false', 'null'])
+  const JSON_CONSTANTS = new Set(["true", "false", "null"]);
 </script>
+
 <script lang="ts">
   import { untrack } from "svelte";
   import { identity } from "@sjsf/form/lib/function";
@@ -21,23 +22,18 @@
 
   let { items = $bindable(), valueType }: Props = $props();
 
-  const { toValue, defaultValue } = $derived.by(() => {
+  const { toValue } = $derived.by(() => {
     if (valueType === EnumValueType.JSON) {
       return {
         toValue(value: string) {
-          if (JSON_CONSTANTS.has(value)) {
-            return value
-          } 
-          const num = Number(value);
-          if (!isNaN(num)) {
-            return num.toString();
+          if (JSON_CONSTANTS.has(value) || Number(value).toString() === value) {
+            return value;
           }
           return JSON.stringify(value);
         },
-        defaultValue: '""',
       };
     }
-    return { toValue: identity, defaultValue: "" };
+    return { toValue: identity };
   });
 
   const TYPE_TO_STRING: Record<EnumValueType, (v: string) => string> = {
@@ -60,6 +56,8 @@
       for (let i = 0; i < strings.length; i++) {
         items[i].value = toValue(strings[i]);
       }
+      const nextValueStr = untrack(() => toString(nextValue));
+      nextValue = toValue(nextValueStr);
     }
     previousValueType = valueType;
   });
@@ -68,9 +66,51 @@
   let nextValue = $state("");
 
   let inputEl = $state.raw<HTMLElement | null>(null);
+
+  function pushItem() {
+    items.push({
+      id: nodeId(),
+      label: nextLabel,
+      value: nextValue,
+    });
+    nextLabel = "";
+    nextValue = toValue("");
+    inputEl?.focus();
+  }
+
+  function onEnter(e: KeyboardEvent) {
+    if (e.code === "Enter") {
+      e.preventDefault();
+      pushItem();
+    }
+  }
 </script>
 
-<div class="flex flex-col gap-0.5 px-2">
+<div class="grid grid-cols-[1fr_1fr_auto] gap-2 items-center px-1">
+  <Input
+    bind:ref={inputEl}
+    placeholder="Enter label..."
+    bind:value={
+      () => nextLabel,
+      (v) => {
+        if (toValue(nextLabel) === nextValue) {
+          nextValue = toValue(v);
+        }
+        nextLabel = v;
+      }
+    }
+    onkeydown={onEnter}
+  />
+  <Input
+    placeholder="Enter value..."
+    bind:value={nextValue}
+    onkeydown={onEnter}
+  />
+  <Button variant="outline" size="icon" class="size-8" onclick={pushItem}>
+    <Plus class="size-4" />
+  </Button>
+</div>
+<div class="flex flex-col gap-0.5">
   {#each items as item, i (item.id)}
     <EnumDropIndicator
       onDrop={(item) => {
@@ -90,37 +130,4 @@
       items.push(item);
     }}
   />
-  <div class="grid grid-cols-[1fr_1fr_auto] gap-2 pb-2 items-center">
-    <Input
-      bind:ref={inputEl}
-      placeholder="Enter label..."
-      bind:value={
-        () => nextLabel,
-        (v) => {
-          if (toValue(nextLabel) === nextValue) {
-            nextValue = toValue(v);
-          }
-          nextLabel = v;
-        }
-      }
-    />
-    <Input placeholder="Enter value..." bind:value={nextValue} />
-    <Button
-      variant="outline"
-      size="icon"
-      class="size-8"
-      onclick={() => {
-        items.push({
-          id: nodeId(),
-          label: nextLabel,
-          value: nextValue,
-        });
-        nextLabel = "";
-        nextValue = defaultValue;
-        inputEl?.focus();
-      }}
-    >
-      <Plus class="size-4" />
-    </Button>
-  </div>
 </div>

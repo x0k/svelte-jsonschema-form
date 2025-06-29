@@ -41,7 +41,7 @@
   const NodeComponent = $derived(NODES[node.type]);
 </script>
 
-<NodeContainer bind:node {@attach draggable.attach}>
+<NodeContainer bind:node {draggable}>
   {#if NodeComponent}
     <NodeComponent bind:node={node as never} {unmount} {draggable} />
   {:else}

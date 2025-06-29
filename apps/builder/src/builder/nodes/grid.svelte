@@ -249,7 +249,7 @@
 
 {#snippet append()}
   <div class="flex items-center gap-2 pr-2">
-    Cols
+    <span class="text-muted-foreground">Cols</span>
     <Updown
       minimum={1}
       value={node.width}
@@ -260,7 +260,7 @@
     />
   </div>
   <div class="flex items-center gap-2 pr-2">
-    Rows
+    <span class="text-muted-foreground">Rows</span>
     <Updown
       minimum={1}
       value={node.height}
