@@ -10,7 +10,7 @@
 
   const {
     node,
-    handle,
+    draggable,
     unmount,
     append,
   }: NodeProps<NodeType> & {
@@ -19,7 +19,7 @@
 </script>
 
 <div class="flex gap-2 items-center p-2">
-  <div class="cursor-grab" {@attach handle}>
+  <div class="cursor-grab" {@attach draggable.attachHandle}>
     <GripVertical class="size-5" />
   </div>
   <div class="text-md truncate flex-1">

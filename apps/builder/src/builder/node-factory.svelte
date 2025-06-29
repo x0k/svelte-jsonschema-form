@@ -13,7 +13,7 @@
   const { nodeType, title }: Props = $props();
 
   const ctx = getBuilderContext();
-  const draggable = ctx.createDraggable({
+  const draggable = ctx.createDraggableNode({
     get node() {
       return createNode(nodeType);
     },

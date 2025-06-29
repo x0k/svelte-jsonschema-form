@@ -20,7 +20,7 @@
 
   const ctx = getBuilderContext();
   let nodeSnapshot: Node;
-  const draggable = ctx.createDraggable({
+  const draggable = ctx.createDraggableNode({
     beforeDrop() {
       nodeSnapshot = $state.snapshot(node);
       unmount();
@@ -43,12 +43,8 @@
 
 <NodeContainer bind:node {@attach draggable.attach}>
   {#if NodeComponent}
-    <NodeComponent
-      bind:node={node as never}
-      {unmount}
-      handle={draggable.attachHandle}
-    />
+    <NodeComponent bind:node={node as never} {unmount} {draggable} />
   {:else}
-    <NodeHeader {node} {unmount} handle={draggable.attachHandle} />
+    <NodeHeader {node} {unmount} {draggable} />
   {/if}
 </NodeContainer>

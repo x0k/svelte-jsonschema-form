@@ -1,7 +1,7 @@
 import { flushSync, getContext, onDestroy, setContext } from "svelte";
 import { DragDropManager, Draggable, Droppable } from "@dnd-kit/dom";
 
-import type { Node } from "$lib/builder/index.js";
+import type { EnumItem, Node } from "$lib/builder/index.js";
 
 const BUILDER_CONTEXT = Symbol("builder-context");
 
@@ -29,16 +29,29 @@ export function getNodeContext(): NodeContext {
 
 type UniqueId = string | number;
 
-export interface DndData {
+export interface NodeDndData {
   node: Node;
 }
 
-export interface DroppableOptions {
+export interface NodeDroppableOptions {
   onDrop: (node: Node) => void;
 }
 
-export interface DraggableOptions {
+export interface NodeDraggableOptions {
   node: Node;
+  beforeDrop?: () => void;
+}
+
+export interface EnumDndData {
+  item: EnumItem;
+}
+
+export interface EnumDroppableOptions {
+  onDrop: (item: EnumItem) => void;
+}
+
+export interface EnumDraggableOptions {
+  item: EnumItem;
   beforeDrop?: () => void;
 }
 
@@ -55,13 +68,15 @@ const noopNodeRef: NodeRef = {
 };
 
 export class BuilderContext {
-  #dnd = new DragDropManager();
+  #nodeDnd = new DragDropManager<NodeDndData>();
+  #enumDnd = new DragDropManager<EnumDndData>();
 
   #sourceId = $state.raw<UniqueId>();
   #targetId = $state.raw<UniqueId>();
 
   #beforeDropHandlers = new Map<UniqueId, () => void>();
-  #dropHandlers = new Map<UniqueId, (node: Node) => void>();
+  #nodeDropHandlers = new Map<UniqueId, (node: Node) => void>();
+  #enumDropHandlers = new Map<UniqueId, (enumItem: EnumItem) => void>();
 
   rootNode = $state<Node>();
 
@@ -87,14 +102,17 @@ export class BuilderContext {
   }
 
   constructor() {
-    onDestroy(() => this.#dnd.destroy());
-    this.#dnd.monitor.addEventListener("beforedragstart", (event) => {
+    onDestroy(() => {
+      this.#nodeDnd.destroy();
+      this.#enumDnd.destroy();
+    });
+    this.#nodeDnd.monitor.addEventListener("beforedragstart", (event) => {
       this.#sourceId = event.operation.source?.id;
     });
-    this.#dnd.monitor.addEventListener("dragover", (event) => {
+    this.#nodeDnd.monitor.addEventListener("dragover", (event) => {
       this.#targetId = event.operation.target?.id;
     });
-    this.#dnd.monitor.addEventListener(
+    this.#nodeDnd.monitor.addEventListener(
       "dragend",
       ({ operation: { target, source } }) => {
         this.#sourceId = undefined;
@@ -105,23 +123,101 @@ export class BuilderContext {
         }
         const { id: sId, data } = source;
         this.#beforeDropHandlers.get(sId)?.();
-        const handler = this.#dropHandlers.get(tId);
+        const handler = this.#nodeDropHandlers.get(tId);
         flushSync(() => {
           handler?.(data.node);
         });
       }
     );
+    this.#enumDnd.monitor.addEventListener("beforedragstart", (event) => [
+      (this.#sourceId = event.operation.source?.id),
+    ]);
+    this.#enumDnd.monitor.addEventListener("dragover", (event) => {
+      this.#targetId = event.operation.target?.id;
+    });
+    this.#enumDnd.monitor.addEventListener(
+      "dragend",
+      ({ operation: { source, target } }) => {
+        this.#sourceId = undefined;
+        this.#targetId = undefined;
+        const tId = target?.id;
+        if (tId === undefined || source === null) {
+          return;
+        }
+        const { id: sId, data } = source;
+        this.#beforeDropHandlers.get(sId)?.();
+        const handler = this.#enumDropHandlers.get(tId);
+        flushSync(() => {
+          handler?.(data.item);
+        });
+      }
+    );
   }
 
-  createDroppable(nodeCtx: NodeContext, options: DroppableOptions) {
+  createNodeDroppable(nodeCtx: NodeContext, options: NodeDroppableOptions) {
     const id = crypto.randomUUID();
-    const droppable = new Droppable<DndData>({ id }, this.#dnd);
-    this.#dropHandlers.set(id, options.onDrop);
+    const droppable = new Droppable<NodeDndData>({ id }, this.#nodeDnd);
+    this.#nodeDropHandlers.set(id, options.onDrop);
     $effect(() => {
       droppable.disabled = nodeCtx.isDragged;
     });
+    return this.createDroppable(id, droppable, this.#nodeDropHandlers);
+  }
+
+  createDraggableNode(options: NodeDraggableOptions) {
+    const id = crypto.randomUUID();
+    const draggable = new Draggable<NodeDndData>(
+      {
+        data: {
+          get node() {
+            return options.node;
+          },
+        },
+        feedback: "clone",
+        id,
+      },
+      this.#nodeDnd
+    );
+    if (options.beforeDrop) {
+      this.#beforeDropHandlers.set(id, options.beforeDrop);
+    }
+    return this.createDraggable(id, draggable);
+  }
+
+  createEnumItemDroppable(options: EnumDroppableOptions) {
+    const id = crypto.randomUUID();
+    const droppable = new Droppable<EnumDndData>({ id }, this.#enumDnd);
+    this.#enumDropHandlers.set(id, options.onDrop);
+    return this.createDroppable(id, droppable, this.#enumDropHandlers);
+  }
+
+  createDraggableEnumItem(options: EnumDraggableOptions) {
+    const id = crypto.randomUUID();
+    const draggable = new Draggable<EnumDndData>(
+      {
+        data: {
+          get item() {
+            return options.item;
+          },
+        },
+        feedback: "clone",
+        id,
+      },
+      this.#enumDnd
+    );
+    if (options.beforeDrop) {
+      this.#beforeDropHandlers.set(id, options.beforeDrop);
+    }
+    return this.createDraggable(id, draggable);
+  }
+
+  private createDroppable(
+    id: UniqueId,
+    droppable: Droppable,
+    handlers: Map<UniqueId, any>
+  ) {
     onDestroy(() => {
-      this.#dropHandlers.delete(id);
+      handlers.delete(id);
       droppable.destroy();
     });
     const self = this;
@@ -138,23 +234,7 @@ export class BuilderContext {
     };
   }
 
-  createDraggable(options: DraggableOptions) {
-    const id = crypto.randomUUID();
-    const draggable = new Draggable<DndData>(
-      {
-        data: {
-          get node() {
-            return options.node;
-          },
-        },
-        feedback: "clone",
-        id,
-      },
-      this.#dnd
-    );
-    if (options.beforeDrop) {
-      this.#beforeDropHandlers.set(id, options.beforeDrop);
-    }
+  private createDraggable(id: UniqueId, draggable: Draggable) {
     onDestroy(() => {
       this.#beforeDropHandlers.delete(id);
       draggable.destroy();
@@ -179,3 +259,6 @@ export class BuilderContext {
     };
   }
 }
+
+export type BuilderDraggable = ReturnType<BuilderContext["createDraggable"]>;
+export type BuilderDroppable = ReturnType<BuilderContext["createDroppable"]>;

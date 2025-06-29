@@ -1,3 +1,6 @@
+<script lang="ts" module>
+  const JSON_CONSTANTS = new Set(['true', 'false', 'null'])
+</script>
 <script lang="ts">
   import { untrack } from "svelte";
   import { identity } from "@sjsf/form/lib/function";
@@ -7,7 +10,9 @@
   import { EnumValueType, nodeId, type EnumItem } from "$lib/builder/index.js";
   import { Input } from "$lib/components/ui/input/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
+
   import EnumItemInput from "./enum-item-input.svelte";
+  import EnumDropIndicator from "./enum-drop-indicator.svelte";
 
   interface Props {
     items: EnumItem[];
@@ -20,6 +25,9 @@
     if (valueType === EnumValueType.JSON) {
       return {
         toValue(value: string) {
+          if (JSON_CONSTANTS.has(value)) {
+            return value
+          } 
           const num = Number(value);
           if (!isNaN(num)) {
             return num.toString();
@@ -41,7 +49,6 @@
         return value;
       }
     },
-    [EnumValueType.Number]: identity,
     [EnumValueType.String]: identity,
   };
 
@@ -63,8 +70,13 @@
   let inputEl = $state.raw<HTMLElement | null>(null);
 </script>
 
-<div class="flex flex-col gap-2 p-2">
+<div class="flex flex-col gap-0.5 px-2">
   {#each items as item, i (item.id)}
+    <EnumDropIndicator
+      onDrop={(item) => {
+        items.splice(i, 0, item);
+      }}
+    />
     <EnumItemInput
       bind:item={items[i]}
       {toValue}
@@ -73,7 +85,12 @@
       }}
     />
   {/each}
-  <div class="grid grid-cols-[1fr_1fr_auto] gap-2 items-center">
+  <EnumDropIndicator
+    onDrop={(item) => {
+      items.push(item);
+    }}
+  />
+  <div class="grid grid-cols-[1fr_1fr_auto] gap-2 pb-2 items-center">
     <Input
       bind:ref={inputEl}
       placeholder="Enter label..."

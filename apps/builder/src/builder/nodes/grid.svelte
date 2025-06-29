@@ -16,7 +16,7 @@
 
   let {
     node = $bindable(),
-    handle,
+    draggable,
     unmount,
   }: NodeProps<NodeType.Grid> = $props();
 
@@ -315,7 +315,7 @@
     />
   </div>
 {/snippet}
-<NodeHeader {node} {handle} {unmount} {append} />
+<NodeHeader {node} {draggable} {unmount} {append} />
 <div
   class="grid gap-2"
   style="grid-template-columns: repeat({node.width}, auto); grid-template-rows: repeat({node.height}, auto);"

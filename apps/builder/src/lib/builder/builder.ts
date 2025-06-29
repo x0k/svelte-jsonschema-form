@@ -74,13 +74,11 @@ export interface GridNode extends AbstractNode<NodeType.Grid, GridNodeOptions> {
 
 export enum EnumValueType {
   String = "string",
-  Number = "number",
   JSON = "json",
 }
 
 export const ENUM_VALUE_TYPE_TITLES: Record<EnumValueType, string> = {
   [EnumValueType.String]: "String",
-  [EnumValueType.Number]: "Number",
   [EnumValueType.JSON]: "JSON",
 };
 

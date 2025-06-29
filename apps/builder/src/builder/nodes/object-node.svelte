@@ -7,10 +7,10 @@
 
   let {
     node = $bindable(),
-    handle,
+    draggable,
     unmount,
   }: NodeProps<NodeType.Object> = $props();
 </script>
 
-<NodeHeader {node} {handle} {unmount} />
+<NodeHeader {node} {draggable} {unmount} />
 <MultiDropZone bind:nodes={node.children} />

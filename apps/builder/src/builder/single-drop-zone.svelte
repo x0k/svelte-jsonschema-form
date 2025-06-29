@@ -26,7 +26,7 @@
       node = n;
     },
   };
-  const droppable = ctx.createDroppable(nodeCtx, {
+  const droppable = ctx.createNodeDroppable(nodeCtx, {
     onDrop(newNode) {
       node = newNode;
       ctx.selectNode(nodeRef);

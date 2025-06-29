@@ -2,7 +2,7 @@
   import type { Node } from "$lib/builder/index.js";
 
   import { getBuilderContext, getNodeContext } from "./context.svelte.js";
-  import DropIndicator from "./drop-indicator.svelte";
+  import DropIndicator from "./node-drop-indicator.svelte";
   import RootNode from "./root-node.svelte";
 
   interface Props {
@@ -25,7 +25,7 @@
       },
     });
   };
-  const droppable = ctx.createDroppable(nodeCtx, {
+  const droppable = ctx.createNodeDroppable(nodeCtx, {
     onDrop(node) {
       onDrop(node, 0);
     },

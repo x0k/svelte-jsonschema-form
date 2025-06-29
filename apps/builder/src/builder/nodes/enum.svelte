@@ -12,16 +12,18 @@
 
   let {
     node = $bindable(),
-    handle,
+    draggable,
     unmount,
   }: NodeProps<NodeType.Enum> = $props();
+
+  const selectId = $props.id();
 </script>
 
 {#snippet append()}
-  <label class="flex gap-2 items-center">
-    Value type
+  <div class="flex gap-2 items-center">
+    <label for={selectId}> Value type </label>
     <Select.Root type="single" bind:value={node.valueType}>
-      <Select.Trigger size="sm">
+      <Select.Trigger id={selectId} size="sm">
         {ENUM_VALUE_TYPE_TITLES[node.valueType]}
       </Select.Trigger>
       <Select.Content>
@@ -30,7 +32,7 @@
         {/each}
       </Select.Content>
     </Select.Root>
-  </label>
+  </div>
 {/snippet}
-<NodeHeader {node} {handle} {unmount} {append} />
+<NodeHeader {node} {draggable} {unmount} {append} />
 <EnumItems bind:items={node.items} valueType={node.valueType} />

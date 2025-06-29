@@ -36,7 +36,7 @@
   }}
   onclick={selectNode}
   class={[
-    "rounded p-2 flex-1 flex flex-col gap-1 border bg-background",
+    "rounded p-2 flex-1 flex flex-col gap-2 border bg-background",
     ctx.selectedNode?.id === node.id ? "border-primary" : "",
   ]}
   {...rest}
