@@ -17,7 +17,7 @@
   } = $props();
 </script>
 
-<div class="flex gap-2 items-center p-1">
+<div class="flex gap-2 items-center py-2">
   <div class="cursor-grab" {@attach draggable.attachHandle}>
     <GripVertical class="size-5" />
   </div>
@@ -28,5 +28,10 @@
     {/if}
   </div>
   {@render append?.()}
-  <RemoveButton onClick={unmount} />
+  <RemoveButton
+    onClick={(e) => {
+      e.stopPropagation();
+      unmount();
+    }}
+  />
 </div>

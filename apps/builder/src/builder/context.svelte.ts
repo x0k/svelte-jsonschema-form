@@ -89,6 +89,10 @@ export class BuilderContext {
     }
   });
 
+  get isDragged() {
+    return this.#sourceId !== undefined;
+  }
+
   selectNode(nodeRef: NodeRef) {
     this.#selectedNodeRef = nodeRef;
   }

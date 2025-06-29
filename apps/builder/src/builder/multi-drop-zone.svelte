@@ -1,16 +1,18 @@
 <script lang="ts">
+  import type { Snippet } from "svelte";
+
   import type { Node } from "$lib/builder/index.js";
 
   import { getBuilderContext, getNodeContext } from "./context.svelte.js";
   import DropZone from "./drop-zone.svelte";
   import DropIndicator from "./node-drop-indicator.svelte";
-  import RootNode from "./root-node.svelte";
 
   interface Props {
     nodes: Node[];
+    item: Snippet<[number]>;
   }
 
-  const { nodes = $bindable() }: Props = $props();
+  const { nodes = $bindable(), item }: Props = $props();
 
   const ctx = getBuilderContext();
   const nodeCtx = getNodeContext();
@@ -42,12 +44,7 @@
         onDrop(node, i);
       }}
     />
-    <RootNode
-      bind:node={nodes[i]}
-      unmount={() => {
-        nodes.splice(i, 1);
-      }}
-    />
+    {@render item(i)}
   {/each}
   <DropIndicator
     onDrop={(node) => {

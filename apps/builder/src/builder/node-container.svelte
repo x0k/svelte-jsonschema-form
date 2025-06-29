@@ -42,8 +42,8 @@
   }}
   onclick={selectNode}
   class={[
-    "rounded p-2 flex-1 flex flex-col gap-2 border bg-background",
-    ctx.selectedNode?.id === node.id && "border-chart-2",
+    "rounded p-2 flex-1 flex flex-col gap-0.5 border bg-background",
+    ctx.selectedNode?.id === node.id && "border-primary",
   ]}
   {@attach draggable.attach}
 >

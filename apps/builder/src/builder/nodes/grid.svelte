@@ -278,14 +278,16 @@
 >
   {#each elements() as element (element.id)}
     {@const c = element.cell}
-    {@const isSelected =
-      c.node !== undefined && ctx.selectedNode?.id === c.node.id}
-    {@const rl = isSelected && isAvailable(Rect.Left(c))}
-    {@const rr = isSelected && isAvailable(Rect.Right(c))}
-    {@const rt = isSelected && isAvailable(Rect.Top(c))}
-    {@const rb = isSelected && isAvailable(Rect.Bottom(c))}
-    {@const sx = isSelected && c.w > 1}
-    {@const sy = isSelected && c.h > 1}
+    {@const isReady =
+      c.node !== undefined &&
+      !ctx.isDragged &&
+      ctx.selectedNode?.id === c.node.id}
+    {@const rl = isReady && isAvailable(Rect.Left(c))}
+    {@const rr = isReady && isAvailable(Rect.Right(c))}
+    {@const rt = isReady && isAvailable(Rect.Top(c))}
+    {@const rb = isReady && isAvailable(Rect.Bottom(c))}
+    {@const sx = isReady && c.w > 1}
+    {@const sy = isReady && c.h > 1}
     <div
       class="relative flex justify-center items-center"
       style="grid-column: span {c.w} / span {c.w}; grid-row: span {c.h} / span {c.h};"

@@ -86,7 +86,7 @@
   }
 </script>
 
-<div class="grid grid-cols-[1fr_1fr_auto] gap-2 items-center px-1">
+<div class="grid grid-cols-[1fr_1fr_auto] gap-2 items-center">
   <Input
     bind:ref={inputEl}
     placeholder="Enter label..."
