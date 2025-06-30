@@ -2,7 +2,7 @@
   import type { Snippet } from "svelte";
   import GripVertical from "@lucide/svelte/icons/grip-vertical";
 
-  import type { NodeType } from "$lib/builder/index.js";
+  import type { SelectableNodeType } from "$lib/builder/index.js";
 
   import type { NodeProps } from "./model.js";
   import RemoveButton from "./remove-button.svelte";
@@ -12,7 +12,7 @@
     draggable,
     unmount,
     append,
-  }: NodeProps<NodeType> & {
+  }: NodeProps<SelectableNodeType> & {
     append?: Snippet;
   } = $props();
 </script>

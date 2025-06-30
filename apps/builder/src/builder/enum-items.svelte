@@ -16,7 +16,8 @@
   import { Button } from "$lib/components/ui/button/index.js";
 
   import EnumItem from "./nodes/enum-item.svelte";
-  import EnumDropIndicator from "./enum-drop-indicator.svelte";
+  import DropIndicator from "./drop-indicator.svelte";
+  import { onlyEnumItemNode } from './context.svelte.js';
 
   interface Props {
     items: EnumItemNode[];
@@ -111,7 +112,8 @@
 </div>
 <div class="flex flex-col gap-0.5">
   {#each items as item, i (item.id)}
-    <EnumDropIndicator
+    <DropIndicator
+      accept={onlyEnumItemNode}
       onDrop={(item) => {
         items.splice(i, 0, item);
       }}
@@ -124,7 +126,8 @@
       }}
     />
   {/each}
-  <EnumDropIndicator
+  <DropIndicator
+    accept={onlyEnumItemNode}
     onDrop={(item) => {
       items.push(item);
     }}

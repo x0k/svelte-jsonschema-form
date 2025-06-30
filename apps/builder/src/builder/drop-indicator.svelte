@@ -1,11 +1,18 @@
-<script lang="ts">
-  import type { BuilderDroppable } from "./context.svelte.js";
+<script lang="ts" generics="T extends NodeType">
+  import { NodeType } from "$lib/builder/builder.js";
 
-  interface Props {
-    droppable: BuilderDroppable;
-  }
+  import {
+    getBuilderContext,
+    getNodeContext,
+    type DroppableOptions,
+  } from "./context.svelte.js";
 
-  const { droppable }: Props = $props();
+  const options: DroppableOptions<T> = $props();
+
+  const ctx = getBuilderContext();
+  const nodeCtx = getNodeContext();
+
+  const droppable = ctx.createDroppable(nodeCtx, options);
 </script>
 
 <div class="h-2 flex items-center" {@attach droppable.attach}>

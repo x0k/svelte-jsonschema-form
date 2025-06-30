@@ -5,7 +5,6 @@ import { mergeSchemas } from "@sjsf/form/core";
 
 export enum NodeType {
   Object = "object",
-  ObjectProperty = "object-property",
   Array = "array",
   Grid = "grid",
   Enum = "enum",
@@ -47,20 +46,15 @@ export interface AbstractSelectableNode<T extends NodeType, O extends {}>
   options: CommonOptions & O;
 }
 
-export interface ObjectNode
-  extends AbstractSelectableNode<NodeType.Object, {}> {
-  properties: SelectableNode[];
-}
-
 export interface ObjectPropertyDependency {
   predicate: Node | undefined;
   properties: Node[];
 }
 
-export interface ObjectPropertyNode
-  extends AbstractNode<NodeType.ObjectProperty> {
-  node: Node;
-  dependencies: ObjectPropertyDependency[];
+export interface ObjectNode
+  extends AbstractSelectableNode<NodeType.Object, {}> {
+  properties: SelectableNode[];
+  dependencies: Record<NodeId, ObjectPropertyDependency[]>;
 }
 
 export const ARRAY_NODE_OPTIONS_SCHEMA = {
@@ -166,7 +160,6 @@ export interface StringNode
 
 export type Node =
   | ObjectNode
-  | ObjectPropertyNode
   | ArrayNode
   | GridNode
   | EnumNode
@@ -185,6 +178,7 @@ const NODE_FACTORIES = {
     id,
     type: NodeType.Object,
     properties: [],
+    dependencies: {},
     options: {
       title: "Group title",
       required: true,

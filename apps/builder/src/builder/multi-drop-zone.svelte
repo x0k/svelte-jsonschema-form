@@ -1,22 +1,27 @@
-<script lang="ts">
-  import type { SelectableNode } from "$lib/builder/index.js";
+<script lang="ts" generics="T extends SelectableNodeType">
+  import type {
+    AbstractNode,
+    Node,
+    SelectableNodeType,
+  } from "$lib/builder/index.js";
 
-  import { getBuilderContext, getNodeContext, selectableNode } from "./context.svelte.js";
+  import { getBuilderContext, getNodeContext } from "./context.svelte.js";
   import DropZone from "./drop-zone.svelte";
-  import DropIndicator from "./node-drop-indicator.svelte";
-  import RootNode from "./root-node.svelte";
+  import DropIndicator from "./drop-indicator.svelte";
+  import Selectable from './selectable.svelte';
 
   interface Props {
-    nodes: SelectableNode[];
-    onDrop: (node: SelectableNode, index: number) => void;
+    nodes: Extract<Node, AbstractNode<T>>[];
+    onDrop: (node: Extract<Node, AbstractNode<T>>, index: number) => void;
+    accept: (node: Node) => node is Extract<Node, AbstractNode<T>>;
   }
 
-  const { nodes = $bindable(), onDrop }: Props = $props();
+  const { nodes = $bindable(), onDrop, accept }: Props = $props();
 
   const ctx = getBuilderContext();
   const nodeCtx = getNodeContext();
   const droppable = ctx.createDroppable(nodeCtx, {
-    accept: selectableNode,
+    accept,
     onDrop(node) {
       onDrop(node, 0);
     },
@@ -28,11 +33,12 @@
 {:else}
   {#each nodes as nodeId, i (nodeId)}
     <DropIndicator
+      {accept}
       onDrop={(node) => {
         onDrop(node, i);
       }}
     />
-    <RootNode
+    <Selectable
       bind:node={nodes[i]}
       unmount={() => {
         nodes.splice(i, 1);
@@ -40,6 +46,7 @@
     />
   {/each}
   <DropIndicator
+    {accept}
     onDrop={(node) => {
       onDrop(node, nodes.length);
     }}

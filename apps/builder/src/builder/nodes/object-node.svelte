@@ -2,7 +2,7 @@
   import type { NodeType, SelectableNode } from "$lib/builder/index.js";
 
   import type { NodeProps } from "../model.js";
-  import { getBuilderContext } from "../context.svelte.js";
+  import { getBuilderContext, selectableNode } from "../context.svelte.js";
   import MultiDropZone from "../multi-drop-zone.svelte";
   import NodeHeader from "../node-header.svelte";
   import NodeContainer from "../node-container.svelte";
@@ -31,5 +31,9 @@
 
 <NodeContainer bind:node {draggable}>
   <NodeHeader {node} {draggable} {unmount} />
-  <MultiDropZone bind:nodes={node.properties} {onDrop} />
+  <MultiDropZone
+    bind:nodes={node.properties}
+    {onDrop}
+    accept={selectableNode}
+  />
 </NodeContainer>

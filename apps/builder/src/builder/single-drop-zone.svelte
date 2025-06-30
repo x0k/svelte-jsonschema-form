@@ -8,7 +8,7 @@
     type NodeRef,
   } from "./context.svelte.js";
   import DropZone from "./drop-zone.svelte";
-  import RootNode from "./root-node.svelte";
+  import Selectable from './selectable.svelte';
 
   interface Props {
     node: SelectableNode | undefined;
@@ -38,7 +38,7 @@
 </script>
 
 {#if node}
-  <RootNode bind:node unmount={() => (node = undefined)} />
+  <Selectable bind:node unmount={() => (node = undefined)} />
 {:else}
   <DropZone {placeholder} {droppable} />
 {/if}
