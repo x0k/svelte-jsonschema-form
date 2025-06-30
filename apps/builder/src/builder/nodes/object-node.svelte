@@ -1,26 +1,35 @@
 <script lang="ts">
-  import type { NodeType } from "$lib/builder/index.js";
+  import type { NodeType, SelectableNode } from "$lib/builder/index.js";
 
   import type { NodeProps } from "../model.js";
+  import { getBuilderContext } from "../context.svelte.js";
   import MultiDropZone from "../multi-drop-zone.svelte";
   import NodeHeader from "../node-header.svelte";
-  import RootNode from "../root-node.svelte";
+  import NodeContainer from "../node-container.svelte";
 
   let {
     node = $bindable(),
     draggable,
     unmount,
   }: NodeProps<NodeType.Object> = $props();
+
+  const ctx = getBuilderContext();
+
+  const onDrop = (newNode: SelectableNode, index: number) => {
+    node.properties.splice(index, 0, newNode);
+    ctx.selectNode({
+      current() {
+        return node.properties.find((n) => n.id === newNode.id);
+      },
+      update(newNode) {
+        const idx = node.properties.findIndex((n) => n.id === newNode.id);
+        node.properties[idx] = newNode;
+      },
+    });
+  };
 </script>
 
-<NodeHeader {node} {draggable} {unmount} />
-<MultiDropZone bind:nodes={node.children}>
-  {#snippet item(i)}
-    <RootNode
-      bind:node={node.children[i]}
-      unmount={() => {
-        node.children.splice(i, 1);
-      }}
-    />
-  {/snippet}
-</MultiDropZone>
+<NodeContainer bind:node {draggable}>
+  <NodeHeader {node} {draggable} {unmount} />
+  <MultiDropZone bind:nodes={node.properties} {onDrop} />
+</NodeContainer>

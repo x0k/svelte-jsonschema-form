@@ -22,6 +22,7 @@
     type CheckRect,
     type ToShrinkOrMove,
   } from "./grid.js";
+  import NodeContainer from "../node-container.svelte";
 
   let {
     node = $bindable(),
@@ -247,189 +248,192 @@
   const ctx = getBuilderContext();
 </script>
 
-{#snippet append()}
-  <div class="flex items-center gap-2 pr-2">
-    <span class="text-muted-foreground">Cols</span>
-    <Updown
-      minimum={1}
-      value={node.width}
-      onUp={() => {
-        node.width++;
-      }}
-      onDown={xShrink}
-    />
-  </div>
-  <div class="flex items-center gap-2 pr-2">
-    <span class="text-muted-foreground">Rows</span>
-    <Updown
-      minimum={1}
-      value={node.height}
-      onUp={() => {
-        node.height++;
-      }}
-      onDown={yShrink}
-    />
-  </div>
-{/snippet}
-<NodeHeader {node} {draggable} {unmount} {append} />
-<div
-  class="grid gap-2"
-  style="grid-template-columns: repeat({node.width}, auto); grid-template-rows: repeat({node.height}, auto);"
->
-  {#each elements() as element (element.id)}
-    {@const c = element.cell}
-    {@const isReady =
-      c.node !== undefined &&
-      !ctx.isDragged &&
-      ctx.selectedNode?.id === c.node.id}
-    {@const rl = isReady && isAvailable(Rect.Left(c))}
-    {@const rr = isReady && isAvailable(Rect.Right(c))}
-    {@const rt = isReady && isAvailable(Rect.Top(c))}
-    {@const rb = isReady && isAvailable(Rect.Bottom(c))}
-    {@const sx = isReady && c.w > 1}
-    {@const sy = isReady && c.h > 1}
-    <div
-      class="relative flex justify-center items-center"
-      style="grid-column: span {c.w} / span {c.w}; grid-row: span {c.h} / span {c.h};"
-    >
-      <Button
-        class={[
-          "absolute size-8 z-10 -left-10",
-          rl ? "inline-flex" : "hidden",
-          sx && "top-[calc(50%-2.2rem)]",
-        ]}
-        variant="secondary"
-        size="icon"
-        onclick={(e) => {
-          e.stopPropagation();
-          c.x -= 1;
-          c.w += 1;
-        }}
+<NodeContainer bind:node {draggable}>
+  <NodeHeader {node} {draggable} {unmount}>
+    {#snippet append()}
+      <div class="flex items-center gap-2 pr-2">
+        <span class="text-muted-foreground">Cols</span>
+        <Updown
+          minimum={1}
+          value={node.width}
+          onUp={() => {
+            node.width++;
+          }}
+          onDown={xShrink}
+        />
+      </div>
+      <div class="flex items-center gap-2 pr-2">
+        <span class="text-muted-foreground">Rows</span>
+        <Updown
+          minimum={1}
+          value={node.height}
+          onUp={() => {
+            node.height++;
+          }}
+          onDown={yShrink}
+        />
+      </div>
+    {/snippet}
+  </NodeHeader>
+  <div
+    class="grid gap-2"
+    style="grid-template-columns: repeat({node.width}, auto); grid-template-rows: repeat({node.height}, auto);"
+  >
+    {#each elements() as element (element.id)}
+      {@const c = element.cell}
+      {@const isReady =
+        c.node !== undefined &&
+        !ctx.isDragged &&
+        ctx.selectedNode?.id === c.node.id}
+      {@const rl = isReady && isAvailable(Rect.Left(c))}
+      {@const rr = isReady && isAvailable(Rect.Right(c))}
+      {@const rt = isReady && isAvailable(Rect.Top(c))}
+      {@const rb = isReady && isAvailable(Rect.Bottom(c))}
+      {@const sx = isReady && c.w > 1}
+      {@const sy = isReady && c.h > 1}
+      <div
+        class="relative flex justify-center items-center"
+        style="grid-column: span {c.w} / span {c.w}; grid-row: span {c.h} / span {c.h};"
       >
-        <ChevronLeft />
-      </Button>
-      <Button
-        class={[
-          "absolute size-8 z-10 -left-10",
-          sx ? "inline-flex" : "hidden",
-          rl && "top-[calc(50%+0.2rem)]",
-        ]}
-        variant="secondary"
-        size="icon"
-        onclick={(e) => {
-          e.stopPropagation();
-          c.x += 1;
-          c.w -= 1;
-        }}
-      >
-        <ChevronRight />
-      </Button>
-      <Button
-        class={[
-          "absolute size-8 z-10 -right-10",
-          rr ? "inline-flex" : "hidden",
-          sx && "top-[calc(50%-2.2rem)]",
-        ]}
-        variant="secondary"
-        size="icon"
-        onclick={(e) => {
-          e.stopPropagation();
-          c.w += 1;
-        }}
-      >
-        <ChevronRight />
-      </Button>
-      <Button
-        class={[
-          "absolute size-8 z-10 -right-10",
-          sx ? "inline-flex" : "hidden",
-          rr && "top-[calc(50%+0.2rem)]",
-        ]}
-        variant="secondary"
-        size="icon"
-        onclick={(e) => {
-          e.stopPropagation();
-          c.w -= 1;
-        }}
-      >
-        <ChevronLeft />
-      </Button>
-      <Button
-        class={[
-          "absolute size-8 z-10 -top-10",
-          rt ? "inline-flex" : "hidden",
-          sy && "left-[calc(50%-2.2rem)]",
-        ]}
-        variant="secondary"
-        size="icon"
-        onclick={(e) => {
-          e.stopPropagation();
-          c.y -= 1;
-          c.h += 1;
-        }}
-      >
-        <ChevronUp />
-      </Button>
-      <Button
-        class={[
-          "absolute size-8 z-10 -top-10",
-          sy ? "inline-flex" : "hidden",
-          rt && "left-[calc(50%+0.2rem)]",
-        ]}
-        variant="secondary"
-        size="icon"
-        onclick={(e) => {
-          e.stopPropagation();
-          c.y += 1;
-          c.h -= 1;
-        }}
-      >
-        <ChevronDown />
-      </Button>
-      <Button
-        class={[
-          "absolute size-8 z-10 -bottom-10",
-          rb ? "inline-flex" : "hidden",
-          sy && "left-[calc(50%-2.2rem)]",
-        ]}
-        variant="secondary"
-        size="icon"
-        onclick={(e) => {
-          e.stopPropagation();
-          c.h += 1;
-        }}
-      >
-        <ChevronDown />
-      </Button>
-      <Button
-        class={[
-          "absolute size-8 z-10 -bottom-10",
-          sy ? "inline-flex" : "hidden",
-          rb && "left-[calc(50%+0.2rem)]",
-        ]}
-        variant="secondary"
-        size="icon"
-        onclick={(e) => {
-          e.stopPropagation();
-          c.h -= 1;
-        }}
-      >
-        <ChevronUp />
-      </Button>
-      <SingleDropZone
-        placeholder="Empty cell"
-        bind:node={
-          () => node.cells[element.index]?.node,
-          (v) => {
-            if (v !== undefined) {
-              node.cells.push({ ...c, node: v });
-            } else {
-              deallocateId(element.id);
-              node.cells.splice(element.index, 1);
+        <Button
+          class={[
+            "absolute size-8 z-10 -left-10",
+            rl ? "inline-flex" : "hidden",
+            sx && "top-[calc(50%-2.2rem)]",
+          ]}
+          variant="secondary"
+          size="icon"
+          onclick={(e) => {
+            e.stopPropagation();
+            c.x -= 1;
+            c.w += 1;
+          }}
+        >
+          <ChevronLeft />
+        </Button>
+        <Button
+          class={[
+            "absolute size-8 z-10 -left-10",
+            sx ? "inline-flex" : "hidden",
+            rl && "top-[calc(50%+0.2rem)]",
+          ]}
+          variant="secondary"
+          size="icon"
+          onclick={(e) => {
+            e.stopPropagation();
+            c.x += 1;
+            c.w -= 1;
+          }}
+        >
+          <ChevronRight />
+        </Button>
+        <Button
+          class={[
+            "absolute size-8 z-10 -right-10",
+            rr ? "inline-flex" : "hidden",
+            sx && "top-[calc(50%-2.2rem)]",
+          ]}
+          variant="secondary"
+          size="icon"
+          onclick={(e) => {
+            e.stopPropagation();
+            c.w += 1;
+          }}
+        >
+          <ChevronRight />
+        </Button>
+        <Button
+          class={[
+            "absolute size-8 z-10 -right-10",
+            sx ? "inline-flex" : "hidden",
+            rr && "top-[calc(50%+0.2rem)]",
+          ]}
+          variant="secondary"
+          size="icon"
+          onclick={(e) => {
+            e.stopPropagation();
+            c.w -= 1;
+          }}
+        >
+          <ChevronLeft />
+        </Button>
+        <Button
+          class={[
+            "absolute size-8 z-10 -top-10",
+            rt ? "inline-flex" : "hidden",
+            sy && "left-[calc(50%-2.2rem)]",
+          ]}
+          variant="secondary"
+          size="icon"
+          onclick={(e) => {
+            e.stopPropagation();
+            c.y -= 1;
+            c.h += 1;
+          }}
+        >
+          <ChevronUp />
+        </Button>
+        <Button
+          class={[
+            "absolute size-8 z-10 -top-10",
+            sy ? "inline-flex" : "hidden",
+            rt && "left-[calc(50%+0.2rem)]",
+          ]}
+          variant="secondary"
+          size="icon"
+          onclick={(e) => {
+            e.stopPropagation();
+            c.y += 1;
+            c.h -= 1;
+          }}
+        >
+          <ChevronDown />
+        </Button>
+        <Button
+          class={[
+            "absolute size-8 z-10 -bottom-10",
+            rb ? "inline-flex" : "hidden",
+            sy && "left-[calc(50%-2.2rem)]",
+          ]}
+          variant="secondary"
+          size="icon"
+          onclick={(e) => {
+            e.stopPropagation();
+            c.h += 1;
+          }}
+        >
+          <ChevronDown />
+        </Button>
+        <Button
+          class={[
+            "absolute size-8 z-10 -bottom-10",
+            sy ? "inline-flex" : "hidden",
+            rb && "left-[calc(50%+0.2rem)]",
+          ]}
+          variant="secondary"
+          size="icon"
+          onclick={(e) => {
+            e.stopPropagation();
+            c.h -= 1;
+          }}
+        >
+          <ChevronUp />
+        </Button>
+        <SingleDropZone
+          placeholder="Empty cell"
+          bind:node={
+            () => node.cells[element.index]?.node,
+            (v) => {
+              if (v !== undefined) {
+                node.cells.push({ ...c, node: v });
+              } else {
+                deallocateId(element.id);
+                node.cells.splice(element.index, 1);
+              }
             }
           }
-        }
-      />
-    </div>
-  {/each}
-</div>
+        />
+      </div>
+    {/each}
+  </div>
+</NodeContainer>

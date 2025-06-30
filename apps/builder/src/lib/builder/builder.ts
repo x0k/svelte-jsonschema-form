@@ -5,9 +5,11 @@ import { mergeSchemas } from "@sjsf/form/core";
 
 export enum NodeType {
   Object = "object",
+  ObjectProperty = "object-property",
   Array = "array",
   Grid = "grid",
   Enum = "enum",
+  EnumItem = "enum-item",
   String = "string",
 }
 
@@ -35,14 +37,30 @@ export const COMMON_OPTIONS_SCHEMA = {
 
 export type CommonOptions = FromSchema<typeof COMMON_OPTIONS_SCHEMA>;
 
-export interface AbstractNode<T extends NodeType, O extends {}> {
+export interface AbstractNode<T extends NodeType> {
   id: NodeId;
   type: T;
+}
+
+export interface AbstractSelectableNode<T extends NodeType, O extends {}>
+  extends AbstractNode<T> {
   options: CommonOptions & O;
 }
 
-export interface ObjectNode extends AbstractNode<NodeType.Object, {}> {
-  children: Node[];
+export interface ObjectNode
+  extends AbstractSelectableNode<NodeType.Object, {}> {
+  properties: SelectableNode[];
+}
+
+export interface ObjectPropertyDependency {
+  predicate: Node | undefined;
+  properties: Node[];
+}
+
+export interface ObjectPropertyNode
+  extends AbstractNode<NodeType.ObjectProperty> {
+  node: Node;
+  dependencies: ObjectPropertyDependency[];
 }
 
 export const ARRAY_NODE_OPTIONS_SCHEMA = {
@@ -64,8 +82,8 @@ export const ARRAY_NODE_OPTIONS_SCHEMA = {
 export type ArrayNodeOptions = FromSchema<typeof ARRAY_NODE_OPTIONS_SCHEMA>;
 
 export interface ArrayNode
-  extends AbstractNode<NodeType.Array, ArrayNodeOptions> {
-  item: Node | undefined;
+  extends AbstractSelectableNode<NodeType.Array, ArrayNodeOptions> {
+  item: SelectableNode | undefined;
 }
 
 export interface GridCell {
@@ -73,7 +91,7 @@ export interface GridCell {
   y: number;
   w: number;
   h: number;
-  node: Node;
+  node: SelectableNode;
 }
 
 export const GRID_NODE_OPTIONS_SCHEMA = {
@@ -90,7 +108,8 @@ export const GRID_NODE_OPTIONS_SCHEMA = {
 
 export type GridNodeOptions = FromSchema<typeof GRID_NODE_OPTIONS_SCHEMA>;
 
-export interface GridNode extends AbstractNode<NodeType.Grid, GridNodeOptions> {
+export interface GridNode
+  extends AbstractSelectableNode<NodeType.Grid, GridNodeOptions> {
   width: number;
   height: number;
   cells: GridCell[];
@@ -108,15 +127,14 @@ export const ENUM_VALUE_TYPE_TITLES: Record<EnumValueType, string> = {
 
 export const ENUM_VALUE_TYPES = Object.values(EnumValueType);
 
-export interface EnumItem {
-  id: string;
+export interface EnumItemNode extends AbstractNode<NodeType.EnumItem> {
   label: string;
   value: string;
 }
 
-export interface EnumNode extends AbstractNode<NodeType.Enum, {}> {
+export interface EnumNode extends AbstractSelectableNode<NodeType.Enum, {}> {
   valueType: EnumValueType;
-  items: EnumItem[];
+  items: EnumItemNode[];
 }
 
 export const STRING_NODE_OPTIONS_SCHEMA = {
@@ -144,15 +162,29 @@ export const STRING_NODE_OPTIONS_SCHEMA = {
 export type StringNodeOptions = FromSchema<typeof STRING_NODE_OPTIONS_SCHEMA>;
 
 export interface StringNode
-  extends AbstractNode<NodeType.String, StringNodeOptions> {}
+  extends AbstractSelectableNode<NodeType.String, StringNodeOptions> {}
 
-export type Node = ObjectNode | ArrayNode | GridNode | EnumNode | StringNode;
+export type Node =
+  | ObjectNode
+  | ObjectPropertyNode
+  | ArrayNode
+  | GridNode
+  | EnumNode
+  | EnumItemNode
+  | StringNode;
+
+export type SelectableNode = Extract<
+  Node,
+  AbstractSelectableNode<NodeType, any>
+>;
+
+export type SelectableNodeType = SelectableNode["type"];
 
 const NODE_FACTORIES = {
   [NodeType.Object]: (id) => ({
     id,
     type: NodeType.Object,
-    children: [],
+    properties: [],
     options: {
       title: "Group title",
       required: true,
@@ -185,6 +217,7 @@ const NODE_FACTORIES = {
     items: [
       {
         id: nodeId(),
+        type: NodeType.EnumItem,
         label: "foo",
         value: "bar",
       },
@@ -202,8 +235,8 @@ const NODE_FACTORIES = {
       required: true,
     },
   }),
-} satisfies {
-  [T in NodeType]: (id: NodeId) => Extract<Node, AbstractNode<T, any>>;
+} as const satisfies {
+  [T in SelectableNode["type"]]: (id: NodeId) => Extract<Node, AbstractNode<T>>;
 };
 
 const NODE_OPTIONS_SCHEMAS = {
@@ -225,7 +258,7 @@ const NODE_OPTIONS_SCHEMAS = {
     COMMON_OPTIONS_SCHEMA,
     STRING_NODE_OPTIONS_SCHEMA
   ),
-} satisfies Record<NodeType, Schema>;
+} satisfies Record<SelectableNodeType, Schema>;
 
 const COMMON_UI_SCHEMA: UiSchemaRoot = {
   description: {
@@ -251,20 +284,35 @@ const NODE_OPTIONS_UI_SCHEMAS = {
   [NodeType.String]: {
     ...COMMON_UI_SCHEMA,
   },
-} satisfies Record<NodeType, UiSchemaRoot>;
+} satisfies Record<SelectableNodeType, UiSchemaRoot>;
 
-export function nodeId(): NodeId {
+function nodeId(): NodeId {
   return crypto.randomUUID() as NodeId;
 }
 
-export function createNode(type: NodeType): Node {
+export function isSelectableNodeType(
+  type: NodeType
+): type is SelectableNodeType {
+  return type in NODE_FACTORIES;
+}
+
+export function createNode(type: SelectableNodeType): SelectableNode {
   return NODE_FACTORIES[type](nodeId());
 }
 
-export function nodeSchema(node: Node): Schema {
+export function createEnumItemNode(label: string, value: string): EnumItemNode {
+  return {
+    id: nodeId(),
+    type: NodeType.EnumItem,
+    label,
+    value,
+  };
+}
+
+export function nodeSchema(node: SelectableNode): Schema {
   return NODE_OPTIONS_SCHEMAS[node.type];
 }
 
-export function nodeUiSchema(node: Node): UiSchemaRoot {
+export function nodeUiSchema(node: SelectableNode): UiSchemaRoot {
   return NODE_OPTIONS_UI_SCHEMAS[node.type];
 }

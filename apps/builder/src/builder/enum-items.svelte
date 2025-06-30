@@ -5,18 +5,21 @@
 <script lang="ts">
   import { untrack } from "svelte";
   import { identity } from "@sjsf/form/lib/function";
-
   import Plus from "@lucide/svelte/icons/plus";
 
-  import { EnumValueType, nodeId, type EnumItem } from "$lib/builder/index.js";
+  import {
+    createEnumItemNode,
+    EnumValueType,
+    type EnumItemNode,
+  } from "$lib/builder/index.js";
   import { Input } from "$lib/components/ui/input/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
 
-  import EnumItemInput from "./enum-item-input.svelte";
+  import EnumItem from "./nodes/enum-item.svelte";
   import EnumDropIndicator from "./enum-drop-indicator.svelte";
 
   interface Props {
-    items: EnumItem[];
+    items: EnumItemNode[];
     valueType: EnumValueType;
   }
 
@@ -68,11 +71,7 @@
   let inputEl = $state.raw<HTMLElement | null>(null);
 
   function pushItem() {
-    items.push({
-      id: nodeId(),
-      label: nextLabel,
-      value: nextValue,
-    });
+    items.push(createEnumItemNode(nextLabel, nextValue));
     nextLabel = "";
     nextValue = toValue("");
     inputEl?.focus();
@@ -117,7 +116,7 @@
         items.splice(i, 0, item);
       }}
     />
-    <EnumItemInput
+    <EnumItem
       bind:item={items[i]}
       {toValue}
       unmount={() => {

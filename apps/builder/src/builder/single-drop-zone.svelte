@@ -1,16 +1,17 @@
 <script lang="ts">
-  import type { Node } from "$lib/builder/index.js";
+  import type { SelectableNode } from "$lib/builder/index.js";
 
   import {
     getBuilderContext,
     getNodeContext,
+    selectableNode,
     type NodeRef,
   } from "./context.svelte.js";
   import DropZone from "./drop-zone.svelte";
   import RootNode from "./root-node.svelte";
 
   interface Props {
-    node: Node | undefined;
+    node: SelectableNode | undefined;
     placeholder?: string;
   }
 
@@ -27,7 +28,8 @@
       node = n;
     },
   };
-  const droppable = ctx.createNodeDroppable(nodeCtx, {
+  const droppable = ctx.createDroppable(nodeCtx, {
+    accept: selectableNode,
     onDrop(newNode) {
       node = newNode;
       ctx.selectNode(nodeRef);

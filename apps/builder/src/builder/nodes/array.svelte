@@ -2,6 +2,7 @@
   import type { NodeType } from "$lib/builder/builder.js";
 
   import type { NodeProps } from "../model.js";
+  import NodeContainer from "../node-container.svelte";
   import NodeHeader from "../node-header.svelte";
   import SingleDropZone from "../single-drop-zone.svelte";
 
@@ -12,5 +13,7 @@
   }: NodeProps<NodeType.Array> = $props();
 </script>
 
-<NodeHeader {node} {draggable} {unmount} />
-<SingleDropZone bind:node={node.item} />
+<NodeContainer bind:node {draggable}>
+  <NodeHeader {node} {draggable} {unmount} />
+  <SingleDropZone bind:node={node.item} />
+</NodeContainer>

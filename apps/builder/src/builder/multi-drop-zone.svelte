@@ -1,34 +1,22 @@
 <script lang="ts">
-  import type { Snippet } from "svelte";
+  import type { SelectableNode } from "$lib/builder/index.js";
 
-  import type { Node } from "$lib/builder/index.js";
-
-  import { getBuilderContext, getNodeContext } from "./context.svelte.js";
+  import { getBuilderContext, getNodeContext, selectableNode } from "./context.svelte.js";
   import DropZone from "./drop-zone.svelte";
   import DropIndicator from "./node-drop-indicator.svelte";
+  import RootNode from "./root-node.svelte";
 
   interface Props {
-    nodes: Node[];
-    item: Snippet<[number]>;
+    nodes: SelectableNode[];
+    onDrop: (node: SelectableNode, index: number) => void;
   }
 
-  const { nodes = $bindable(), item }: Props = $props();
+  const { nodes = $bindable(), onDrop }: Props = $props();
 
   const ctx = getBuilderContext();
   const nodeCtx = getNodeContext();
-  const onDrop = (node: Node, index: number) => {
-    nodes.splice(index, 0, node);
-    ctx.selectNode({
-      current() {
-        return nodes.find((n) => n.id === node.id);
-      },
-      update(newNode) {
-        const idx = nodes.findIndex((n) => n.id === node.id);
-        nodes[idx] = newNode;
-      },
-    });
-  };
-  const droppable = ctx.createNodeDroppable(nodeCtx, {
+  const droppable = ctx.createDroppable(nodeCtx, {
+    accept: selectableNode,
     onDrop(node) {
       onDrop(node, 0);
     },
@@ -44,7 +32,12 @@
         onDrop(node, i);
       }}
     />
-    {@render item(i)}
+    <RootNode
+      bind:node={nodes[i]}
+      unmount={() => {
+        nodes.splice(i, 1);
+      }}
+    />
   {/each}
   <DropIndicator
     onDrop={(node) => {

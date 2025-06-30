@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Node } from "$lib/builder/index.js";
+  import type { SelectableNode } from "$lib/builder/index.js";
 
   import { NODES } from "./nodes/index.js";
   import NodeContainer from "./node-container.svelte";
@@ -12,17 +12,19 @@
   import NodeHeader from "./node-header.svelte";
 
   interface Props {
-    node: Node;
+    node: SelectableNode;
     unmount: () => void;
   }
 
   let { node = $bindable(), unmount }: Props = $props();
 
   const ctx = getBuilderContext();
-  let nodeSnapshot: Node;
-  const draggable = ctx.createDraggableNode({
-    beforeDrop() {
+  let nodeSnapshot: SelectableNode;
+  const draggable = ctx.createDraggable({
+    onDragStart() {
       nodeSnapshot = $state.snapshot(node);
+    },
+    beforeDrop() {
       unmount();
     },
     get node() {
@@ -41,10 +43,10 @@
   const NodeComponent = $derived(NODES[node.type]);
 </script>
 
-<NodeContainer bind:node {draggable}>
-  {#if NodeComponent}
-    <NodeComponent bind:node={node as never} {unmount} {draggable} />
-  {:else}
+{#if NodeComponent}
+  <NodeComponent bind:node={node as never} {unmount} {draggable} />
+{:else}
+  <NodeContainer bind:node {draggable}>
     <NodeHeader {node} {unmount} {draggable} />
-  {/if}
-</NodeContainer>
+  </NodeContainer>
+{/if}

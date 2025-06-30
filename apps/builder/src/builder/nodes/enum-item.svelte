@@ -1,14 +1,14 @@
 <script lang="ts">
   import GripVertical from "@lucide/svelte/icons/grip-vertical";
 
-  import type { EnumItem } from "$lib/builder/index.js";
+  import type { EnumItemNode } from "$lib/builder/index.js";
   import { Input } from "$lib/components/ui/input/index.js";
 
-  import { getBuilderContext } from "./context.svelte.js";
-  import RemoveButton from "./remove-button.svelte";
+  import { getBuilderContext } from "../context.svelte.js";
+  import RemoveButton from "../remove-button.svelte";
 
   interface Props {
-    item: EnumItem;
+    item: EnumItemNode;
     toValue: (v: string) => string;
     unmount: () => void;
   }
@@ -17,13 +17,15 @@
 
   const ctx = getBuilderContext();
 
-  let itemSnapshot: EnumItem;
-  const draggable = ctx.createDraggableEnumItem({
-    beforeDrop() {
+  let itemSnapshot: EnumItemNode;
+  const draggable = ctx.createDraggable({
+    onDragStart() {
       itemSnapshot = $state.snapshot(item);
+    },
+    beforeDrop() {
       unmount();
     },
-    get item() {
+    get node() {
       return itemSnapshot;
     },
   });

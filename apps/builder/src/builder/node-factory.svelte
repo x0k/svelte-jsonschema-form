@@ -1,19 +1,19 @@
 <script lang="ts">
   import GripVertical from "@lucide/svelte/icons/grip-vertical";
 
-  import { createNode, NodeType } from "$lib/builder/index.js";
+  import { createNode, type SelectableNodeType } from "$lib/builder/index.js";
 
   import { getBuilderContext } from "./context.svelte.js";
 
   interface Props {
-    nodeType: NodeType;
+    nodeType: SelectableNodeType;
     title: string;
   }
 
   const { nodeType, title }: Props = $props();
 
   const ctx = getBuilderContext();
-  const draggable = ctx.createDraggableNode({
+  const draggable = ctx.createDraggable({
     get node() {
       return createNode(nodeType);
     },

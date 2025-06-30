@@ -1,11 +1,11 @@
 <script lang="ts">
-  import type { Node } from "$lib/builder/index.js";
+  import type { SelectableNode } from "$lib/builder/index.js";
 
-  import { getBuilderContext, getNodeContext } from "./context.svelte.js";
+  import { getBuilderContext, getNodeContext, selectableNode } from "./context.svelte.js";
   import DropIndicator from "./drop-indicator.svelte";
 
   interface Props {
-    onDrop: (node: Node) => void;
+    onDrop: (node: SelectableNode) => void;
   }
 
   const { onDrop }: Props = $props();
@@ -13,7 +13,8 @@
   const ctx = getBuilderContext();
   const nodeCtx = getNodeContext();
 
-  const droppable = ctx.createNodeDroppable(nodeCtx, {
+  const droppable = ctx.createDroppable(nodeCtx, {
+    accept: selectableNode,
     onDrop,
   });
 </script>

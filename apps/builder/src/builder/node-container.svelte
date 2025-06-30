@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
 
-  import type { Node } from "$lib/builder/index.js";
+  import type { SelectableNode } from "$lib/builder/index.js";
 
   import {
     getBuilderContext,
@@ -10,7 +10,7 @@
   } from "./context.svelte.js";
 
   interface Props {
-    node: Node;
+    node: SelectableNode;
     draggable: BuilderDraggable;
     children: Snippet;
   }
@@ -44,6 +44,7 @@
   class={[
     "rounded p-2 flex-1 flex flex-col gap-0.5 border bg-background",
     ctx.selectedNode?.id === node.id && "border-primary",
+    draggable.isDragged && "opacity-70",
   ]}
   {@attach draggable.attach}
 >

@@ -2,17 +2,20 @@
   import {
     Content,
     createForm,
-    groupErrors,
     ON_CHANGE,
     ON_INPUT,
     setFormContext,
   } from "@sjsf/form";
 
-  import { nodeSchema, nodeUiSchema, type Node } from "$lib/builder/index.js";
+  import {
+    nodeSchema,
+    nodeUiSchema,
+    type SelectableNode,
+  } from "$lib/builder/index.js";
   import * as defaults from "$lib/form/defaults.js";
 
   interface Props {
-    node: Node;
+    node: SelectableNode;
   }
 
   let { node = $bindable() }: Props = $props();
