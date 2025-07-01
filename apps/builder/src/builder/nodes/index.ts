@@ -1,6 +1,6 @@
 import type { Component } from "svelte";
 
-import { NodeType, type SelectableNodeType } from "$lib/builder/index.js";
+import { NodeType, type CustomizableNodeType } from "$lib/builder/index.js";
 
 import type { NodeProps } from "../model.js";
 
@@ -20,7 +20,7 @@ export const NODES: {
   [NodeType.Enum]: EnumNode,
   [NodeType.String]: StringNode,
 } satisfies {
-  [T in SelectableNodeType]: Component<NodeProps<T>, {}, "node">;
+  [T in CustomizableNodeType]: Component<NodeProps<T>, {}, "node">;
 } & {
   [T in NodeType]?: Component<NodeProps<T>, {}, "node">;
 };

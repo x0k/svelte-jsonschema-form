@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
 
-  import type { SelectableNodeType } from "$lib/builder/index.js";
+  import type { CustomizableNodeType } from "$lib/builder/index.js";
 
   import type { NodeProps } from "./model.js";
   import type { BuilderDraggable } from "./context.svelte.js";
@@ -13,7 +13,7 @@
     unmount,
     append,
     disablePadding,
-  }: NodeProps<SelectableNodeType> & {
+  }: NodeProps<CustomizableNodeType> & {
     draggable: BuilderDraggable;
     disablePadding?: boolean;
     append?: Snippet;

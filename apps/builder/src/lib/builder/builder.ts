@@ -43,12 +43,12 @@ export interface AbstractNode<T extends NodeType> {
   type: T;
 }
 
-export interface AbstractSelectableNode<T extends NodeType, O extends {}>
+export interface AbstractCustomizableNode<T extends NodeType, O extends {}>
   extends AbstractNode<T> {
   options: CommonOptions & O;
 }
 
-export interface ObjectPropertyDependency
+export interface ObjectPropertyDependencyNode
   extends AbstractNode<NodeType.ObjectPropertyDependency> {
   complementary: boolean;
   predicate: Node | undefined;
@@ -57,12 +57,12 @@ export interface ObjectPropertyDependency
 
 export interface ObjectPropertyNode
   extends AbstractNode<NodeType.ObjectProperty> {
-  property: SelectableNode;
-  dependencies: ObjectPropertyDependency[];
+  property: Node;
+  dependencies: ObjectPropertyDependencyNode[];
 }
 
 export interface ObjectNode
-  extends AbstractSelectableNode<NodeType.Object, {}> {
+  extends AbstractCustomizableNode<NodeType.Object, {}> {
   properties: ObjectPropertyNode[];
 }
 
@@ -85,8 +85,8 @@ export const ARRAY_NODE_OPTIONS_SCHEMA = {
 export type ArrayNodeOptions = FromSchema<typeof ARRAY_NODE_OPTIONS_SCHEMA>;
 
 export interface ArrayNode
-  extends AbstractSelectableNode<NodeType.Array, ArrayNodeOptions> {
-  item: SelectableNode | undefined;
+  extends AbstractCustomizableNode<NodeType.Array, ArrayNodeOptions> {
+  item: Node | undefined;
 }
 
 export interface GridCell {
@@ -94,7 +94,7 @@ export interface GridCell {
   y: number;
   w: number;
   h: number;
-  node: SelectableNode;
+  node: Node;
 }
 
 export const GRID_NODE_OPTIONS_SCHEMA = {
@@ -112,7 +112,7 @@ export const GRID_NODE_OPTIONS_SCHEMA = {
 export type GridNodeOptions = FromSchema<typeof GRID_NODE_OPTIONS_SCHEMA>;
 
 export interface GridNode
-  extends AbstractSelectableNode<NodeType.Grid, GridNodeOptions> {
+  extends AbstractCustomizableNode<NodeType.Grid, GridNodeOptions> {
   width: number;
   height: number;
   cells: GridCell[];
@@ -135,7 +135,7 @@ export interface EnumItemNode extends AbstractNode<NodeType.EnumItem> {
   value: string;
 }
 
-export interface EnumNode extends AbstractSelectableNode<NodeType.Enum, {}> {
+export interface EnumNode extends AbstractCustomizableNode<NodeType.Enum, {}> {
   valueType: EnumValueType;
   items: EnumItemNode[];
 }
@@ -165,24 +165,24 @@ export const STRING_NODE_OPTIONS_SCHEMA = {
 export type StringNodeOptions = FromSchema<typeof STRING_NODE_OPTIONS_SCHEMA>;
 
 export interface StringNode
-  extends AbstractSelectableNode<NodeType.String, StringNodeOptions> {}
+  extends AbstractCustomizableNode<NodeType.String, StringNodeOptions> {}
 
 export type Node =
   | ObjectNode
   | ObjectPropertyNode
-  | ObjectPropertyDependency
+  | ObjectPropertyDependencyNode
   | ArrayNode
   | GridNode
   | EnumNode
   | EnumItemNode
   | StringNode;
 
-export type SelectableNode = Extract<
+export type CustomizableNode = Extract<
   Node,
-  AbstractSelectableNode<NodeType, any>
+  AbstractCustomizableNode<NodeType, any>
 >;
 
-export type SelectableNodeType = SelectableNode["type"];
+export type CustomizableNodeType = CustomizableNode["type"];
 
 const NODE_FACTORIES = {
   [NodeType.Object]: (id) => ({
@@ -241,7 +241,7 @@ const NODE_FACTORIES = {
     },
   }),
 } as const satisfies {
-  [T in SelectableNode["type"]]: (id: NodeId) => Extract<Node, AbstractNode<T>>;
+  [T in CustomizableNode["type"]]: (id: NodeId) => Extract<Node, AbstractNode<T>>;
 };
 
 const NODE_OPTIONS_SCHEMAS = {
@@ -263,7 +263,7 @@ const NODE_OPTIONS_SCHEMAS = {
     COMMON_OPTIONS_SCHEMA,
     STRING_NODE_OPTIONS_SCHEMA
   ),
-} satisfies Record<SelectableNodeType, Schema>;
+} satisfies Record<CustomizableNodeType, Schema>;
 
 const COMMON_UI_SCHEMA: UiSchemaRoot = {
   description: {
@@ -289,19 +289,19 @@ const NODE_OPTIONS_UI_SCHEMAS = {
   [NodeType.String]: {
     ...COMMON_UI_SCHEMA,
   },
-} satisfies Record<SelectableNodeType, UiSchemaRoot>;
+} satisfies Record<CustomizableNodeType, UiSchemaRoot>;
 
 function nodeId(): NodeId {
   return crypto.randomUUID() as NodeId;
 }
 
-export function isSelectableNodeType(
+export function isCustomizableNodeType(
   type: NodeType
-): type is SelectableNodeType {
+): type is CustomizableNodeType {
   return type in NODE_FACTORIES;
 }
 
-export function createNode(type: SelectableNodeType): SelectableNode {
+export function createNode(type: CustomizableNodeType): CustomizableNode {
   return NODE_FACTORIES[type](nodeId());
 }
 
@@ -315,7 +315,7 @@ export function createEnumItemNode(label: string, value: string): EnumItemNode {
 }
 
 export function createObjectProperty(
-  property: SelectableNode
+  property: CustomizableNode
 ): ObjectPropertyNode {
   return {
     id: nodeId(),
@@ -325,7 +325,7 @@ export function createObjectProperty(
   };
 }
 
-export function createObjectPropertyDependency(): ObjectPropertyDependency {
+export function createObjectPropertyDependency(): ObjectPropertyDependencyNode {
   return {
     id: nodeId(),
     type: NodeType.ObjectPropertyDependency,
@@ -335,10 +335,10 @@ export function createObjectPropertyDependency(): ObjectPropertyDependency {
   };
 }
 
-export function nodeSchema(node: SelectableNode): Schema {
+export function nodeSchema(node: CustomizableNode): Schema {
   return NODE_OPTIONS_SCHEMAS[node.type];
 }
 
-export function nodeUiSchema(node: SelectableNode): UiSchemaRoot {
+export function nodeUiSchema(node: CustomizableNode): UiSchemaRoot {
   return NODE_OPTIONS_UI_SCHEMAS[node.type];
 }

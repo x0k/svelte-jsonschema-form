@@ -3,14 +3,14 @@
     createObjectProperty,
     type NodeType,
     type ObjectPropertyNode,
-    type SelectableNode,
+    type CustomizableNode,
   } from "$lib/builder/index.js";
 
   import type { NodeProps } from "../../model.js";
   import {
     getBuilderContext,
     isObjectPropertyNode,
-    isSelectableOrPropertyNode,
+    isCustomizableOrPropertyNode,
   } from "../../context.svelte.js";
   import MultiDropZone from "../../multi-drop-zone.svelte";
   import NodeHeader from "../../node-header.svelte";
@@ -25,7 +25,7 @@
   const ctx = getBuilderContext();
 
   const onDrop = (
-    newNode: SelectableNode | ObjectPropertyNode,
+    newNode: CustomizableNode | ObjectPropertyNode,
     index: number
   ) => {
     const prop = isObjectPropertyNode(newNode)
@@ -48,7 +48,7 @@
   <NodeHeader {node} {draggable} {unmount} disablePadding />
   <MultiDropZone
     bind:nodes={node.properties}
-    accept={isSelectableOrPropertyNode}
+    accept={isCustomizableOrPropertyNode}
     {onDrop}
   />
 </NodeContainer>

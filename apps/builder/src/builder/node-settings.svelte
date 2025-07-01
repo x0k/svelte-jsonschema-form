@@ -10,12 +10,12 @@
   import {
     nodeSchema,
     nodeUiSchema,
-    type SelectableNode,
+    type CustomizableNode,
   } from "$lib/builder/index.js";
   import * as defaults from "$lib/form/defaults.js";
 
   interface Props {
-    node: SelectableNode;
+    node: CustomizableNode;
   }
 
   let { node = $bindable() }: Props = $props();

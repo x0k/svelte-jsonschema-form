@@ -1,18 +1,18 @@
 <script lang="ts">
-  import type { SelectableNode } from "$lib/builder/index.js";
+  import type { Node } from "$lib/builder/index.js";
 
   import {
     getBuilderContext,
     getNodeContext,
     isObjectPropertyNode,
-    isSelectableOrPropertyNode,
+    isCustomizableOrPropertyNode,
     type NodeRef,
   } from "./context.svelte.js";
   import DropZone from "./drop-zone.svelte";
   import RootNode from "./root-node.svelte";
 
   interface Props {
-    node: SelectableNode | undefined;
+    node: Node | undefined;
     placeholder?: string;
   }
 
@@ -35,7 +35,7 @@
   <RootNode bind:node unmount={() => (node = undefined)} />
 {:else}
   {@const droppable = ctx.createDroppable(nodeCtx, {
-    accept: isSelectableOrPropertyNode,
+    accept: isCustomizableOrPropertyNode,
     onDrop(newNode) {
       node = isObjectPropertyNode(newNode) ? newNode.property : newNode;
       ctx.selectNode(nodeRef);

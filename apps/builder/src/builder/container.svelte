@@ -1,28 +1,66 @@
 <script lang="ts">
-  import type { HTMLAttributes } from "svelte/elements";
+  import type { Snippet } from "svelte";
+  import type { ClassValue } from "svelte/elements";
 
-  import type { BuilderDraggable } from "./context.svelte.js";
+  import type { Node } from "$lib/builder/index.js";
+  import { cn } from "$lib/utils.js";
 
-  interface Props extends HTMLAttributes<HTMLDivElement> {
-    builderDraggable: BuilderDraggable;
+  import {
+    getBuilderContext,
+    type BuilderDraggable,
+    type NodeRef,
+  } from "./context.svelte.js";
+
+  interface Props {
+    class?: ClassValue;
+    node: Node;
+    draggable: BuilderDraggable;
+    children: Snippet;
+    disableSelection?: boolean;
   }
 
-  const {
+  let {
+    node = $bindable(),
     class: className,
-    builderDraggable,
+    draggable,
     children,
-    ...rest
+    disableSelection,
   }: Props = $props();
+
+  const ctx = getBuilderContext();
+  const nodeRef: NodeRef = {
+    current() {
+      return node;
+    },
+    update(v) {
+      node = v;
+    },
+  };
+  const selectNode = (e: Event) => {
+    e.stopPropagation();
+    if (disableSelection) {
+      return;
+    }
+    ctx.selectNode(nodeRef);
+  };
 </script>
 
 <div
-  {@attach builderDraggable.attach}
-  class={[
+  {@attach draggable.attach}
+  class={cn(
     "rounded-md p-2 border bg-background",
-    builderDraggable.isDragged && "opacity-70",
-    className,
-  ]}
-  {...rest}
+    draggable.isDragged && "opacity-70",
+    ctx.selectedNode?.id === node.id && "border-primary",
+    className
+  )}
+  role="button"
+  tabindex={0}
+  onkeydown={(e) => {
+    if (e.code === "Enter" || e.code === "Space") {
+      selectNode(e);
+    }
+  }}
+  onclick={selectNode}
 >
   {@render children?.()}
 </div>

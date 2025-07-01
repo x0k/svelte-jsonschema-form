@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Node } from "$lib/builder/builder.js";
+  import type { Node } from "$lib/builder/index.js";
 
   import {
     getBuilderContext,

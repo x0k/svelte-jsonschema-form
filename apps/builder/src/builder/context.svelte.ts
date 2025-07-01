@@ -4,13 +4,13 @@ import { DragDropManager, Draggable, Droppable } from "@dnd-kit/dom";
 import {
   createNode,
   createObjectProperty,
-  isSelectableNodeType,
+  isCustomizableNodeType,
   NodeType,
   type AbstractNode,
   type Node,
   type ObjectNode,
   type ObjectPropertyNode,
-  type SelectableNode,
+  type CustomizableNode,
 } from "$lib/builder/index.js";
 
 const BUILDER_CONTEXT = Symbol("builder-context");
@@ -54,8 +54,8 @@ export interface DraggableOptions {
 }
 
 export interface NodeRef {
-  current: () => SelectableNode | undefined;
-  update: (n: SelectableNode) => void;
+  current: () => Node | undefined;
+  update: (n: Node) => void;
 }
 
 const noopNodeRef: NodeRef = {
@@ -78,7 +78,7 @@ export class BuilderContext {
   #beforeDropHandlers = new Map<UniqueId, () => void>();
   #dropHandlers = new Map<UniqueId, (node: Node) => void>();
 
-  rootNode = $state<SelectableNode>(obj);
+  rootNode = $state<CustomizableNode>(obj);
 
   #selectedNodeRef = $state.raw(noopNodeRef);
   readonly selectedNode = $derived.by(() => {
@@ -97,7 +97,7 @@ export class BuilderContext {
     this.#selectedNodeRef = nodeRef;
   }
 
-  updateSelectedNode(node: SelectableNode) {
+  updateSelectedNode(node: CustomizableNode) {
     this.#selectedNodeRef.update(node);
   }
 
@@ -228,8 +228,9 @@ export type BuilderDroppable = ReturnType<BuilderContext["createDroppable"]>;
 
 export const anyNode = (node: Node): node is Node => true;
 
-const isSelectableNode = (node: Node): node is SelectableNode =>
-  isSelectableNodeType(node.type);
+export const isCustomizableNode = (node: Node): node is CustomizableNode =>
+  isCustomizableNodeType(node.type);
+
 const onlyNode =
   <T extends NodeType>(type: T) =>
   (node: Node): node is Extract<Node, AbstractNode<T>> =>
@@ -237,9 +238,13 @@ const onlyNode =
 
 export const isObjectPropertyNode = onlyNode(NodeType.ObjectProperty);
 
-export const isSelectableOrPropertyNode = (
+export const isObjectPropertyDependencyNode = onlyNode(
+  NodeType.ObjectPropertyDependency
+);
+
+export const isCustomizableOrPropertyNode = (
   node: Node
-): node is SelectableNode | ObjectPropertyNode =>
-  isSelectableNode(node) || isObjectPropertyNode(node);
+): node is CustomizableNode | ObjectPropertyNode =>
+  isCustomizableNode(node) || isObjectPropertyNode(node);
 
 export const isEnumItemNode = onlyNode(NodeType.EnumItem);

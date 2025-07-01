@@ -19,8 +19,10 @@
 </script>
 
 <Container
-  builderDraggable={draggable}
+  bind:node
+  {draggable}
   class="grid grid-cols-[auto_1fr_1fr_auto] gap-2 items-center"
+  disableSelection
 >
   <div class="cursor-grab" {@attach draggable.attachHandle}>
     <GripVertical class="size-5" />
