@@ -6,18 +6,22 @@
 
   import type { NodeProps } from "./model.js";
   import RemoveButton from "./remove-button.svelte";
+  import type { BuilderDraggable } from "./context.svelte.js";
 
   const {
     node,
     draggable,
     unmount,
     append,
+    disablePadding,
   }: NodeProps<SelectableNodeType> & {
+    draggable: BuilderDraggable;
+    disablePadding?: boolean;
     append?: Snippet;
   } = $props();
 </script>
 
-<div class="flex gap-2 items-center py-2">
+<div class={["flex gap-2 items-center pt-2", disablePadding ? "pb-2" : "pb-4"]}>
   <div class="cursor-grab" {@attach draggable.attachHandle}>
     <GripVertical class="size-5" />
   </div>

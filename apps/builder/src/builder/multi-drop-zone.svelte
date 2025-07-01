@@ -8,7 +8,7 @@
   import { getBuilderContext, getNodeContext } from "./context.svelte.js";
   import DropZone from "./drop-zone.svelte";
   import DropIndicator from "./drop-indicator.svelte";
-  import Selectable from './selectable.svelte';
+  import RootNode from './root-node.svelte';
 
   interface Props {
     nodes: Extract<Node, AbstractNode<T>>[];
@@ -38,7 +38,7 @@
         onDrop(node, i);
       }}
     />
-    <Selectable
+    <RootNode
       bind:node={nodes[i]}
       unmount={() => {
         nodes.splice(i, 1);

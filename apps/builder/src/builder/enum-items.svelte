@@ -17,7 +17,7 @@
 
   import EnumItem from "./nodes/enum-item.svelte";
   import DropIndicator from "./drop-indicator.svelte";
-  import { onlyEnumItemNode } from './context.svelte.js';
+  import { getBuilderContext, onlyEnumItemNode } from "./context.svelte.js";
 
   interface Props {
     items: EnumItemNode[];
@@ -84,6 +84,8 @@
       pushItem();
     }
   }
+
+  const ctx = getBuilderContext();
 </script>
 
 <div class="grid grid-cols-[1fr_1fr_auto] gap-2 items-center">
@@ -112,19 +114,22 @@
 </div>
 <div class="flex flex-col gap-0.5">
   {#each items as item, i (item.id)}
+    {@const unmount = () => {
+      items.splice(i, 1);
+    }}
+    {@const draggable = ctx.createDraggable({
+      unmount,
+      get node() {
+        return items[i];
+      },
+    })}
     <DropIndicator
       accept={onlyEnumItemNode}
       onDrop={(item) => {
         items.splice(i, 0, item);
       }}
     />
-    <EnumItem
-      bind:item={items[i]}
-      {toValue}
-      unmount={() => {
-        items.splice(i, 1);
-      }}
-    />
+    <EnumItem bind:node={items[i]} {draggable} {toValue} {unmount} />
   {/each}
   <DropIndicator
     accept={onlyEnumItemNode}

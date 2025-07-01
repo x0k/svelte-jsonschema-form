@@ -1,34 +1,20 @@
 <script lang="ts">
   import GripVertical from "@lucide/svelte/icons/grip-vertical";
 
-  import type { EnumItemNode } from "$lib/builder/index.js";
+  import type { NodeType } from "$lib/builder/index.js";
   import { Input } from "$lib/components/ui/input/index.js";
 
-  import { getBuilderContext } from "../context.svelte.js";
   import RemoveButton from "../remove-button.svelte";
+  import type { NodeProps } from "../model.js";
 
-  interface Props {
-    item: EnumItemNode;
+  let {
+    node = $bindable(),
+    draggable,
+    unmount,
+    toValue,
+  }: NodeProps<NodeType.EnumItem> & {
     toValue: (v: string) => string;
-    unmount: () => void;
-  }
-
-  let { item = $bindable(), toValue, unmount }: Props = $props();
-
-  const ctx = getBuilderContext();
-
-  let itemSnapshot: EnumItemNode;
-  const draggable = ctx.createDraggable({
-    onDragStart() {
-      itemSnapshot = $state.snapshot(item);
-    },
-    beforeDrop() {
-      unmount();
-    },
-    get node() {
-      return itemSnapshot;
-    },
-  });
+  } = $props();
 </script>
 
 <div
@@ -41,15 +27,15 @@
   <Input
     placeholder="Label"
     bind:value={
-      () => item.label,
+      () => node.label,
       (v) => {
-        if (toValue(item.label) === item.value) {
-          item.value = toValue(v);
+        if (toValue(node.label) === node.value) {
+          node.value = toValue(v);
         }
-        item.label = v;
+        node.label = v;
       }
     }
   />
-  <Input placeholder="Value" bind:value={item.value} />
+  <Input placeholder="Value" bind:value={node.value} />
   <RemoveButton onClick={unmount} />
 </div>

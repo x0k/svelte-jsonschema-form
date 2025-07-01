@@ -30,7 +30,7 @@
 </script>
 
 <NodeContainer bind:node {draggable}>
-  <NodeHeader {node} {draggable} {unmount} />
+  <NodeHeader {node} {draggable} {unmount} disablePadding />
   <MultiDropZone
     bind:nodes={node.properties}
     {onDrop}

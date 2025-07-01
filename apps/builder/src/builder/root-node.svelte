@@ -1,34 +1,27 @@
 <script lang="ts">
-  import type { SelectableNode } from "$lib/builder/index.js";
+  import type { Node } from "$lib/builder/builder.js";
 
-  import { NODES } from "./nodes/index.js";
-  import NodeContainer from "./node-container.svelte";
   import {
     getBuilderContext,
     getNodeContext,
     setNodeContext,
     type NodeContext,
   } from "./context.svelte.js";
-  import NodeHeader from "./node-header.svelte";
+  import { NODES } from "./nodes/index.js";
 
   interface Props {
-    node: SelectableNode;
+    node: Node;
     unmount: () => void;
   }
 
   let { node = $bindable(), unmount }: Props = $props();
 
   const ctx = getBuilderContext();
-  let nodeSnapshot: SelectableNode;
+
   const draggable = ctx.createDraggable({
-    onDragStart() {
-      nodeSnapshot = $state.snapshot(node);
-    },
-    beforeDrop() {
-      unmount();
-    },
+    unmount,
     get node() {
-      return nodeSnapshot;
+      return node;
     },
   });
 
@@ -43,10 +36,4 @@
   const NodeComponent = $derived(NODES[node.type]);
 </script>
 
-{#if NodeComponent}
-  <NodeComponent bind:node={node as never} {unmount} {draggable} />
-{:else}
-  <NodeContainer bind:node {draggable}>
-    <NodeHeader {node} {unmount} {draggable} />
-  </NodeContainer>
-{/if}
+<NodeComponent bind:node={node as never} {draggable} {unmount} />

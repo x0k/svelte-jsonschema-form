@@ -48,8 +48,7 @@ export interface DroppableOptions<T extends NodeType> {
 
 export interface DraggableOptions {
   node: Node;
-  beforeDrop?: () => void;
-  onDragStart?: () => void;
+  unmount: () => void;
 }
 
 export interface NodeRef {
@@ -179,11 +178,12 @@ export class BuilderContext {
 
   createDraggable(options: DraggableOptions) {
     const id = crypto.randomUUID();
+    let nodeSnapshot: Node;
     const draggable = new Draggable<DndData>(
       {
         data: {
           get node() {
-            return options.node;
+            return nodeSnapshot;
           },
         },
         feedback: "clone",
@@ -191,12 +191,10 @@ export class BuilderContext {
       },
       this.#dnd
     );
-    if (options.onDragStart) {
-      this.#onDragStartHandlers.set(id, options.onDragStart);
-    }
-    if (options.beforeDrop) {
-      this.#beforeDropHandlers.set(id, options.beforeDrop);
-    }
+    this.#onDragStartHandlers.set(id, () => {
+      nodeSnapshot = $state.snapshot(options.node);
+    });
+    this.#beforeDropHandlers.set(id, options.unmount);
     onDestroy(() => {
       this.#onDragStartHandlers.delete(id);
       this.#beforeDropHandlers.delete(id);
