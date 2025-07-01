@@ -30,7 +30,9 @@
 
   function pushDependency(e: Event) {
     e.stopPropagation();
-    node.dependencies.push(createObjectPropertyDependency());
+    const n = createObjectPropertyDependency();
+    node.dependencies.push(n);
+    node.complementary = n.id;
   }
 </script>
 
@@ -44,7 +46,7 @@
 >
   <Button
     class={[
-      "absolute -bottom-10 left-1/2 -translate-x-1/2 z-10",
+      "absolute -bottom-11 left-1/2 -translate-x-1/2 z-10",
       isSelected && !hasDeps && !draggable.isDragged ? "inline-flex" : "hidden",
     ]}
     onclick={pushDependency}>Add dependency</Button
@@ -70,6 +72,12 @@
         />
         <ObjectPropertyDependency
           bind:node={node.dependencies[i]}
+          bind:complementary={
+            () => node.complementary === node.dependencies[i].id,
+            (v) => {
+              node.complementary = v ? node.dependencies[i].id : undefined;
+            }
+          }
           {unmount}
           {draggable}
         />

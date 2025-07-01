@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { Button } from "$lib/components/ui/button/index.js";
-
   import Trash from "@lucide/svelte/icons/trash-2";
+  
+  import { Button } from "$lib/components/ui/button/index.js";
 
   interface Props {
     onClick: (e: MouseEvent) => void;

@@ -50,7 +50,6 @@ export interface AbstractCustomizableNode<T extends NodeType, O extends {}>
 
 export interface ObjectPropertyDependencyNode
   extends AbstractNode<NodeType.ObjectPropertyDependency> {
-  complementary: boolean;
   predicate: Node | undefined;
   properties: Node[];
 }
@@ -58,6 +57,7 @@ export interface ObjectPropertyDependencyNode
 export interface ObjectPropertyNode
   extends AbstractNode<NodeType.ObjectProperty> {
   property: Node;
+  complementary: NodeId | undefined;
   dependencies: ObjectPropertyDependencyNode[];
 }
 
@@ -241,7 +241,9 @@ const NODE_FACTORIES = {
     },
   }),
 } as const satisfies {
-  [T in CustomizableNode["type"]]: (id: NodeId) => Extract<Node, AbstractNode<T>>;
+  [T in CustomizableNode["type"]]: (
+    id: NodeId
+  ) => Extract<Node, AbstractNode<T>>;
 };
 
 const NODE_OPTIONS_SCHEMAS = {
@@ -321,6 +323,7 @@ export function createObjectProperty(
     id: nodeId(),
     type: NodeType.ObjectProperty,
     property,
+    complementary: undefined,
     dependencies: [],
   };
 }
@@ -329,7 +332,6 @@ export function createObjectPropertyDependency(): ObjectPropertyDependencyNode {
   return {
     id: nodeId(),
     type: NodeType.ObjectPropertyDependency,
-    complementary: false,
     predicate: undefined,
     properties: [],
   };
