@@ -10,7 +10,7 @@
 </script>
 <div
   class={[
-    "border-2 border-dashed rounded p-6 w-full h-full flex items-center justify-center",
+    "border-2 border-dashed rounded-md p-6 w-full h-full flex items-center justify-center",
     droppable.isOver && "border-chart-2 bg-chart-2/5",
   ]}
   {@attach droppable.attach}

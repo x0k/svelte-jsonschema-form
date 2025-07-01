@@ -5,6 +5,8 @@ import { mergeSchemas } from "@sjsf/form/core";
 
 export enum NodeType {
   Object = "object",
+  ObjectProperty = "object-property",
+  ObjectPropertyDependency = "object-property-dependency",
   Array = "array",
   Grid = "grid",
   Enum = "enum",
@@ -46,15 +48,22 @@ export interface AbstractSelectableNode<T extends NodeType, O extends {}>
   options: CommonOptions & O;
 }
 
-export interface ObjectPropertyDependency {
+export interface ObjectPropertyDependency
+  extends AbstractNode<NodeType.ObjectPropertyDependency> {
+  complementary: boolean;
   predicate: Node | undefined;
   properties: Node[];
 }
 
+export interface ObjectPropertyNode
+  extends AbstractNode<NodeType.ObjectProperty> {
+  property: SelectableNode;
+  dependencies: ObjectPropertyDependency[];
+}
+
 export interface ObjectNode
   extends AbstractSelectableNode<NodeType.Object, {}> {
-  properties: SelectableNode[];
-  dependencies: Record<NodeId, ObjectPropertyDependency[]>;
+  properties: ObjectPropertyNode[];
 }
 
 export const ARRAY_NODE_OPTIONS_SCHEMA = {
@@ -160,6 +169,8 @@ export interface StringNode
 
 export type Node =
   | ObjectNode
+  | ObjectPropertyNode
+  | ObjectPropertyDependency
   | ArrayNode
   | GridNode
   | EnumNode
@@ -300,6 +311,27 @@ export function createEnumItemNode(label: string, value: string): EnumItemNode {
     type: NodeType.EnumItem,
     label,
     value,
+  };
+}
+
+export function createObjectProperty(
+  property: SelectableNode
+): ObjectPropertyNode {
+  return {
+    id: nodeId(),
+    type: NodeType.ObjectProperty,
+    property,
+    dependencies: [],
+  };
+}
+
+export function createObjectPropertyDependency(): ObjectPropertyDependency {
+  return {
+    id: nodeId(),
+    type: NodeType.ObjectPropertyDependency,
+    complementary: false,
+    predicate: undefined,
+    properties: [],
   };
 }
 

@@ -8,6 +8,7 @@
     type BuilderDraggable,
     type NodeRef,
   } from "./context.svelte.js";
+  import Container from "./container.svelte";
 
   interface Props {
     node: SelectableNode;
@@ -32,9 +33,10 @@
   };
 </script>
 
-<div
+<Container
+  builderDraggable={draggable}
   role="button"
-  tabindex="0"
+  tabindex={0}
   onkeydown={(e) => {
     if (e.code === "Enter" || e.code === "Space") {
       selectNode(e);
@@ -42,11 +44,9 @@
   }}
   onclick={selectNode}
   class={[
-    "rounded p-2 flex-1 flex flex-col gap-0.5 border bg-background",
+    "flex-1 flex flex-col gap-0.5",
     ctx.selectedNode?.id === node.id && "border-primary",
-    draggable.isDragged && "opacity-70",
   ]}
-  {@attach draggable.attach}
 >
   {@render children?.()}
-</div>
+</Container>

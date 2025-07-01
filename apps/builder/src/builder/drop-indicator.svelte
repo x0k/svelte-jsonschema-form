@@ -1,5 +1,5 @@
-<script lang="ts" generics="T extends NodeType">
-  import { NodeType } from "$lib/builder/builder.js";
+<script lang="ts" generics="N extends Node">
+  import type { Node } from "$lib/builder/index.js";
 
   import {
     getBuilderContext,
@@ -7,7 +7,7 @@
     type DroppableOptions,
   } from "./context.svelte.js";
 
-  const options: DroppableOptions<T> = $props();
+  const options: DroppableOptions<N> = $props();
 
   const ctx = getBuilderContext();
   const nodeCtx = getNodeContext();

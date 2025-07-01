@@ -3,11 +3,13 @@ import { DragDropManager, Draggable, Droppable } from "@dnd-kit/dom";
 
 import {
   createNode,
+  createObjectProperty,
   isSelectableNodeType,
   NodeType,
   type AbstractNode,
   type Node,
   type ObjectNode,
+  type ObjectPropertyNode,
   type SelectableNode,
 } from "$lib/builder/index.js";
 
@@ -41,9 +43,9 @@ export interface DndData {
   node: Node;
 }
 
-export interface DroppableOptions<T extends NodeType> {
-  accept: (node: Node) => node is Extract<Node, AbstractNode<T>>;
-  onDrop: (node: Extract<Node, AbstractNode<T>>) => void;
+export interface DroppableOptions<N extends Node> {
+  accept: (node: Node) => node is N;
+  onDrop: (node: N) => void;
 }
 
 export interface DraggableOptions {
@@ -64,7 +66,7 @@ const noopNodeRef: NodeRef = {
 };
 
 const obj = createNode(NodeType.Object) as ObjectNode;
-obj.properties.push(createNode(NodeType.String));
+obj.properties.push(createObjectProperty(createNode(NodeType.String)));
 
 export class BuilderContext {
   #dnd = new DragDropManager<DndData>();
@@ -136,9 +138,9 @@ export class BuilderContext {
     );
   }
 
-  createDroppable<T extends NodeType>(
+  createDroppable<N extends Node>(
     nodeCtx: NodeContext,
-    options: DroppableOptions<T>
+    options: DroppableOptions<N>
   ) {
     const id = crypto.randomUUID();
     const droppable = new Droppable<DndData>(
@@ -224,11 +226,20 @@ export class BuilderContext {
 export type BuilderDraggable = ReturnType<BuilderContext["createDraggable"]>;
 export type BuilderDroppable = ReturnType<BuilderContext["createDroppable"]>;
 
-export const selectableNode = (node: Node): node is SelectableNode =>
+export const anyNode = (node: Node): node is Node => true;
+
+const isSelectableNode = (node: Node): node is SelectableNode =>
   isSelectableNodeType(node.type);
 const onlyNode =
   <T extends NodeType>(type: T) =>
   (node: Node): node is Extract<Node, AbstractNode<T>> =>
     node.type === type;
 
-export const onlyEnumItemNode = onlyNode(NodeType.EnumItem);
+export const isObjectPropertyNode = onlyNode(NodeType.ObjectProperty);
+
+export const isSelectableOrPropertyNode = (
+  node: Node
+): node is SelectableNode | ObjectPropertyNode =>
+  isSelectableNode(node) || isObjectPropertyNode(node);
+
+export const isEnumItemNode = onlyNode(NodeType.EnumItem);

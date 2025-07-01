@@ -4,8 +4,9 @@
   import type { NodeType } from "$lib/builder/index.js";
   import { Input } from "$lib/components/ui/input/index.js";
 
-  import RemoveButton from "../remove-button.svelte";
-  import type { NodeProps } from "../model.js";
+  import type { NodeProps } from "../../model.js";
+  import RemoveButton from "../../remove-button.svelte";
+  import Container from "../../container.svelte";
 
   let {
     node = $bindable(),
@@ -17,9 +18,9 @@
   } = $props();
 </script>
 
-<div
-  class="grid grid-cols-[auto_1fr_1fr_auto] gap-2 items-center border rounded bg-background p-2"
-  {@attach draggable.attach}
+<Container
+  builderDraggable={draggable}
+  class="grid grid-cols-[auto_1fr_1fr_auto] gap-2 items-center"
 >
   <div class="cursor-grab" {@attach draggable.attachHandle}>
     <GripVertical class="size-5" />
@@ -38,4 +39,4 @@
   />
   <Input placeholder="Value" bind:value={node.value} />
   <RemoveButton onClick={unmount} />
-</div>
+</Container>

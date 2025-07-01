@@ -15,9 +15,9 @@
   import { Input } from "$lib/components/ui/input/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
 
-  import EnumItem from "./nodes/enum-item.svelte";
-  import DropIndicator from "./drop-indicator.svelte";
-  import { getBuilderContext, onlyEnumItemNode } from "./context.svelte.js";
+  import { getBuilderContext, isEnumItemNode } from "../../context.svelte.js";
+  import DropIndicator from "../../drop-indicator.svelte";
+  import EnumItem from "./enum-item.svelte";
 
   interface Props {
     items: EnumItemNode[];
@@ -124,7 +124,7 @@
       },
     })}
     <DropIndicator
-      accept={onlyEnumItemNode}
+      accept={isEnumItemNode}
       onDrop={(item) => {
         items.splice(i, 0, item);
       }}
@@ -132,7 +132,7 @@
     <EnumItem bind:node={items[i]} {draggable} {toValue} {unmount} />
   {/each}
   <DropIndicator
-    accept={onlyEnumItemNode}
+    accept={isEnumItemNode}
     onDrop={(item) => {
       items.push(item);
     }}

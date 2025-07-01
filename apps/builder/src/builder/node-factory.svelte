@@ -14,6 +14,7 @@
 
   const ctx = getBuilderContext();
   const draggable = ctx.createDraggable({
+    unmount() {},
     get node() {
       return createNode(nodeType);
     },

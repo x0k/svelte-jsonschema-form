@@ -1,34 +1,30 @@
-<script lang="ts" generics="T extends SelectableNodeType">
-  import type {
-    AbstractNode,
-    Node,
-    SelectableNodeType,
-  } from "$lib/builder/index.js";
+<script lang="ts" generics="N extends Node">
+  import type { Node } from "$lib/builder/index.js";
 
   import { getBuilderContext, getNodeContext } from "./context.svelte.js";
   import DropZone from "./drop-zone.svelte";
   import DropIndicator from "./drop-indicator.svelte";
-  import RootNode from './root-node.svelte';
+  import RootNode from "./root-node.svelte";
 
   interface Props {
-    nodes: Extract<Node, AbstractNode<T>>[];
-    onDrop: (node: Extract<Node, AbstractNode<T>>, index: number) => void;
-    accept: (node: Node) => node is Extract<Node, AbstractNode<T>>;
+    nodes: Node[];
+    onDrop: (node: N, index: number) => void;
+    accept: (node: Node) => node is N;
   }
 
   const { nodes = $bindable(), onDrop, accept }: Props = $props();
 
   const ctx = getBuilderContext();
   const nodeCtx = getNodeContext();
-  const droppable = ctx.createDroppable(nodeCtx, {
+</script>
+
+{#if nodes.length === 0}
+  {@const droppable = ctx.createDroppable(nodeCtx, {
     accept,
     onDrop(node) {
       onDrop(node, 0);
     },
-  });
-</script>
-
-{#if nodes.length === 0}
+  })}
   <DropZone placeholder="Drop form elements here" {droppable} />
 {:else}
   {#each nodes as nodeId, i (nodeId)}

@@ -5,11 +5,12 @@
     type NodeType,
   } from "$lib/builder/index.js";
   import * as Select from "$lib/components/ui/select/index.js";
-  
-  import type { NodeProps } from "../model.js";
-  import NodeContainer from "../node-container.svelte";
-  import NodeHeader from "../node-header.svelte";
-  import EnumItems from "../enum-items.svelte";
+
+  import type { NodeProps } from "../../model.js";
+  import NodeContainer from "../../node-container.svelte";
+  import NodeHeader from "../../node-header.svelte";
+
+  import EnumItems from "./enum-items.svelte";
 
   let {
     node = $bindable(),
