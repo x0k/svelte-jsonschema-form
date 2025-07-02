@@ -1,6 +1,7 @@
 <script lang="ts">
-  import type { Node } from "$lib/builder/index.js";
   import type { Snippet } from "svelte";
+
+  import type { Node } from "$lib/builder/index.js";
 
   import {
     getBuilderContext,

@@ -1,13 +1,14 @@
 import type { Brand } from "@sjsf/form/lib/types";
+import { mergeSchemas } from "@sjsf/form/core";
 import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
-import { mergeSchemas } from "@sjsf/form/core";
 
 export enum NodeType {
   Object = "object",
   ObjectProperty = "object-property",
   ObjectPropertyDependency = "object-property-dependency",
   Predicate = "predicate",
+  Operator = "operator",
   Array = "array",
   Grid = "grid",
   Enum = "enum",
@@ -49,15 +50,86 @@ export interface AbstractCustomizableNode<T extends NodeType, O extends {}>
   options: CommonOptions & O;
 }
 
+export interface PredicateNode extends AbstractNode<NodeType.Predicate> {
+  operator: OperatorNode | undefined;
+}
+
 export interface ObjectPropertyDependencyNode
   extends AbstractNode<NodeType.ObjectPropertyDependency> {
   predicate: PredicateNode | undefined;
   properties: Node[];
 }
 
-export interface PredicateNode extends AbstractNode<NodeType.Predicate> {
-  child: Node | undefined;
+export enum OperatorType {
+  And = "and",
+  Or = "or",
+  Xor = "xor",
+  Not = "not",
+  Eq = "eq",
+  In = "in",
+  Less = "less",
+  LessOrEq = "lessOrEq",
+  Greater = "greater",
+  GreaterOrEq = "greaterOrEq",
+  MultipleOf = "multipleOf",
+  MinLength = "minLength",
+  MaxLength = "maxLength",
+  Pattern = "pattern",
 }
+
+export interface AbstractOperator<T extends OperatorType> {
+  op: T;
+}
+
+export interface AbstractNOperator<T extends OperatorType>
+  extends AbstractOperator<T> {
+  operands: OperatorNode[];
+}
+
+export type Comparator =
+  | OperatorType.Greater
+  | OperatorType.GreaterOrEq
+  | OperatorType.Less
+  | OperatorType.LessOrEq
+  | OperatorType.MultipleOf
+  | OperatorType.MinLength
+  | OperatorType.MaxLength;
+
+export interface AbstractComparisonOperator<T extends Comparator>
+  extends AbstractOperator<T> {
+  value: number;
+}
+
+export type AndOperator = AbstractNOperator<OperatorType.And>;
+export type OrOperator = AbstractNOperator<OperatorType.Or>;
+export type XorOperator = AbstractNOperator<OperatorType.Xor>;
+export interface NotOperator extends AbstractOperator<OperatorType.Not> {
+  operand: OperatorNode;
+}
+export interface EqOperator extends AbstractOperator<OperatorType.Eq> {
+  valueType: EnumValueType;
+  value: string;
+}
+export interface InOperator extends AbstractOperator<OperatorType.In> {
+  valueType: EnumValueType;
+  values: string[];
+}
+export interface PatternOperator
+  extends AbstractOperator<OperatorType.Pattern> {
+  value: string;
+}
+
+export type Operator =
+  | AndOperator
+  | OrOperator
+  | XorOperator
+  | NotOperator
+  | EqOperator
+  | InOperator
+  | PatternOperator
+  | AbstractComparisonOperator<Comparator>;
+
+export type OperatorNode = AbstractNode<NodeType.Operator> & Operator;
 
 export interface ObjectPropertyNode
   extends AbstractNode<NodeType.ObjectProperty> {
@@ -181,7 +253,8 @@ export type Node =
   | EnumNode
   | EnumItemNode
   | StringNode
-  | PredicateNode;
+  | PredicateNode
+  | OperatorNode;
 
 export type CustomizableNode = Extract<
   Node,
@@ -338,7 +411,7 @@ export function createPredicate(): PredicateNode {
   return {
     id: nodeId(),
     type: NodeType.Predicate,
-    child: undefined,
+    operator: undefined,
   };
 }
 

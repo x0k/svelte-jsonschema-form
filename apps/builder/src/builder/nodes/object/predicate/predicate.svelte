@@ -6,6 +6,8 @@
   import Container from "../../../container.svelte";
   import Header from "../../../header.svelte";
 
+  import OperatorDropzone from "./operator-dropzone.svelte";
+
   let {
     draggable,
     node = $bindable(),
@@ -21,12 +23,12 @@
   <Header {draggable} {unmount} disablePadding>
     Predicate
     {#snippet append()}
-      {#if !isSelected && node.child === undefined}
+      {#if !isSelected && node.operator === undefined}
         <span class="text-muted-foreground">Select to edit</span>
       {/if}
     {/snippet}
   </Header>
   {#if ctx.selectedNode?.id === node.id}
-    selected
+    <OperatorDropzone bind:node={node.operator} />
   {/if}
 </Container>

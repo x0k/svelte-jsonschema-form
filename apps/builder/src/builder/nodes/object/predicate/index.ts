@@ -1,1 +1,1 @@
-export { default as PredicateNode } from "./predicate.svelte";
+export { default as Predicate } from "./predicate.svelte";

@@ -10,7 +10,7 @@
   import Updown from "$lib/components/updown.svelte";
 
   import type { NodeProps } from "../model.js";
-  import SingleDropZone from "../single-drop-zone.svelte";
+  import SingleDropZone from "../single-dropzone.svelte";
   import { getBuilderContext } from "../context.svelte.js";
   import NodeHeader from "../node-header.svelte";
 

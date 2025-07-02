@@ -12,7 +12,7 @@
     isObjectPropertyNode,
     isCustomizableOrPropertyNode,
   } from "../../context.svelte.js";
-  import MultiDropZone from "../../multi-drop-zone.svelte";
+  import MultiDropZone from "../../multi-dropzone.svelte";
   import NodeHeader from "../../node-header.svelte";
   import NodeContainer from "../../node-container.svelte";
 

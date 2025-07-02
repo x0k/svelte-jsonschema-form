@@ -4,7 +4,7 @@
   import type { NodeProps } from "../model.js";
   import NodeContainer from "../node-container.svelte";
   import NodeHeader from "../node-header.svelte";
-  import SingleDropZone from "../single-drop-zone.svelte";
+  import SingleDropZone from "../single-dropzone.svelte";
 
   let {
     node = $bindable(),

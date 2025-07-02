@@ -2,14 +2,12 @@
   import Info from "@lucide/svelte/icons/info";
 
   import {
-    createPredicate,
     type CustomizableNode,
     type NodeType,
     type ObjectPropertyNode,
   } from "$lib/builder/index.js";
   import { Checkbox } from "$lib/components/ui/checkbox/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
-  import { Button } from "$lib/components/ui/button/index.js";
   import * as Tooltip from "$lib/components/ui/tooltip/index.js";
 
   import type { NodeProps } from "../../model.js";
@@ -17,13 +15,12 @@
     getBuilderContext,
     getNodeContext,
     isCustomizableOrPropertyNode,
-    isPredicateNode,
   } from "../../context.svelte.js";
   import Header from "../../header.svelte";
   import NodeContainer from "../../node-container.svelte";
-  import MultiDropZone from "../../multi-drop-zone.svelte";
-  import DropZone from "../../drop-zone.svelte";
-  import { PredicateNode } from "./predicate/index.js";
+  import MultiDropZone from "../../multi-dropzone.svelte";
+
+  import PredicateDropZone from "./predicate-drop-zone.svelte";
 
   let {
     node = $bindable(),
@@ -37,7 +34,6 @@
   } = $props();
 
   const ctx = getBuilderContext();
-  const nodeCtx = getNodeContext();
 
   const onDrop = (
     newNode: CustomizableNode | ObjectPropertyNode,
@@ -84,36 +80,8 @@
     {/snippet}
   </Header>
   {#if !complementary}
-    {@const droppable = ctx.createDroppable(nodeCtx, {
-      accept: isPredicateNode,
-      onDrop(n) {
-        node.predicate = n;
-      },
-    })}
-    <div class="pb-4">
-      {#if node.predicate}
-        {@const unmount = () => {
-          node.predicate = undefined;
-        }}
-        {@const draggable = ctx.createDraggable({
-          unmount,
-          get node() {
-            return node.predicate!;
-          },
-        })}
-        <PredicateNode {draggable} bind:node={node.predicate} {unmount} />
-      {:else}
-        <DropZone {droppable}>
-          {#snippet placeholder()}
-            Drop predicate here or <Button
-              onclick={(e) => {
-                e.stopPropagation();
-                node.predicate = createPredicate();
-              }}>Create one</Button
-            >
-          {/snippet}
-        </DropZone>
-      {/if}
+    <div class="pb-2">
+      <PredicateDropZone bind:node />
     </div>
   {/if}
   <MultiDropZone

@@ -238,6 +238,8 @@ const onlyNode =
 
 export const isPredicateNode = onlyNode(NodeType.Predicate);
 
+export const isOperatorNode = onlyNode(NodeType.Operator);
+
 export const isObjectPropertyNode = onlyNode(NodeType.ObjectProperty);
 
 export const isObjectPropertyDependencyNode = onlyNode(
