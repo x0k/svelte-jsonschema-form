@@ -1,9 +1,11 @@
 <script lang="ts">
+  import type { Snippet } from 'svelte';
+
   import type { BuilderDroppable } from './context.svelte.js';
 
   interface Props {
     droppable: BuilderDroppable
-    placeholder: string
+    placeholder: Snippet
   }
 
   const { droppable, placeholder }: Props = $props()
@@ -15,7 +17,7 @@
   ]}
   {@attach droppable.attach}
 >
-  <p class="text-lg text-center font-medium text-foreground">
-    {placeholder}
-  </p>
+  <div class="text-lg text-center font-medium text-foreground">
+    {@render placeholder()}
+  </div>
 </div>

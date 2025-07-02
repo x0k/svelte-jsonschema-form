@@ -24,7 +24,11 @@
   } from "./grid.js";
   import NodeContainer from "../node-container.svelte";
 
-  let { node = $bindable(), draggable, unmount }: NodeProps<NodeType.Grid> = $props();
+  let {
+    node = $bindable(),
+    draggable,
+    unmount,
+  }: NodeProps<NodeType.Grid> = $props();
 
   const id = (x: number, y: number) => `${x}-${y}`;
 
@@ -416,7 +420,6 @@
           <ChevronUp />
         </Button>
         <SingleDropZone
-          placeholder="Empty cell"
           bind:node={
             () => node.cells[element.index]?.node,
             (v) => {
@@ -428,7 +431,11 @@
               }
             }
           }
-        />
+        >
+          {#snippet placeholder()}
+            Empty cell
+          {/snippet}
+        </SingleDropZone>
       </div>
     {/each}
   </div>

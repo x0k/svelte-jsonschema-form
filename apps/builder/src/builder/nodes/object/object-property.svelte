@@ -71,6 +71,7 @@
           }}
         />
         <ObjectPropertyDependency
+          index={i}
           bind:node={node.dependencies[i]}
           bind:complementary={
             () => node.complementary === node.dependencies[i].id,

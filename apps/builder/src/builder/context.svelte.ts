@@ -236,6 +236,8 @@ const onlyNode =
   (node: Node): node is Extract<Node, AbstractNode<T>> =>
     node.type === type;
 
+export const isPredicateNode = onlyNode(NodeType.Predicate);
+
 export const isObjectPropertyNode = onlyNode(NodeType.ObjectProperty);
 
 export const isObjectPropertyDependencyNode = onlyNode(

@@ -7,6 +7,7 @@ export enum NodeType {
   Object = "object",
   ObjectProperty = "object-property",
   ObjectPropertyDependency = "object-property-dependency",
+  Predicate = "predicate",
   Array = "array",
   Grid = "grid",
   Enum = "enum",
@@ -50,8 +51,12 @@ export interface AbstractCustomizableNode<T extends NodeType, O extends {}>
 
 export interface ObjectPropertyDependencyNode
   extends AbstractNode<NodeType.ObjectPropertyDependency> {
-  predicate: Node | undefined;
+  predicate: PredicateNode | undefined;
   properties: Node[];
+}
+
+export interface PredicateNode extends AbstractNode<NodeType.Predicate> {
+  child: Node | undefined;
 }
 
 export interface ObjectPropertyNode
@@ -175,7 +180,8 @@ export type Node =
   | GridNode
   | EnumNode
   | EnumItemNode
-  | StringNode;
+  | StringNode
+  | PredicateNode;
 
 export type CustomizableNode = Extract<
   Node,
@@ -328,11 +334,19 @@ export function createObjectProperty(
   };
 }
 
+export function createPredicate(): PredicateNode {
+  return {
+    id: nodeId(),
+    type: NodeType.Predicate,
+    child: undefined,
+  };
+}
+
 export function createObjectPropertyDependency(): ObjectPropertyDependencyNode {
   return {
     id: nodeId(),
     type: NodeType.ObjectPropertyDependency,
-    predicate: undefined,
+    predicate: createPredicate(),
     properties: [],
   };
 }

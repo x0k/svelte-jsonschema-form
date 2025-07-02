@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Node } from "$lib/builder/index.js";
+  import type { Snippet } from "svelte";
 
   import {
     getBuilderContext,
@@ -13,10 +14,10 @@
 
   interface Props {
     node: Node | undefined;
-    placeholder?: string;
+    placeholder?: Snippet;
   }
 
-  let { node = $bindable(), placeholder = "Drop form element here" }: Props =
+  let { node = $bindable(), placeholder = defaultPlaceholder }: Props =
     $props();
 
   const ctx = getBuilderContext();
@@ -43,3 +44,6 @@
   })}
   <DropZone {placeholder} {droppable} />
 {/if}
+{#snippet defaultPlaceholder()}
+  Drop form element here
+{/snippet}

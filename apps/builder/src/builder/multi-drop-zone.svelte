@@ -25,7 +25,11 @@
       onDrop(node, 0);
     },
   })}
-  <DropZone placeholder="Drop form elements here" {droppable} />
+  <DropZone {droppable}>
+    {#snippet placeholder()}
+      Drop form elements here
+    {/snippet}
+  </DropZone>
 {:else}
   {#each nodes as nodeId, i (nodeId)}
     <DropIndicator
