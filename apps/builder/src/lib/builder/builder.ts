@@ -97,14 +97,14 @@ export type Comparator =
 
 export interface AbstractComparisonOperator<T extends Comparator>
   extends AbstractOperator<T> {
-  value: number;
+  value: number | undefined;
 }
 
 export type AndOperator = AbstractNOperator<OperatorType.And>;
 export type OrOperator = AbstractNOperator<OperatorType.Or>;
 export type XorOperator = AbstractNOperator<OperatorType.Xor>;
 export interface NotOperator extends AbstractOperator<OperatorType.Not> {
-  operand: OperatorNode;
+  operand: OperatorNode | undefined;
 }
 export interface EqOperator extends AbstractOperator<OperatorType.Eq> {
   valueType: EnumValueType;
@@ -128,6 +128,8 @@ export type Operator =
   | InOperator
   | PatternOperator
   | AbstractComparisonOperator<Comparator>;
+
+export type NOperator = Extract<Operator, AbstractNOperator<OperatorType>>;
 
 export type OperatorNode = AbstractNode<NodeType.Operator> & Operator;
 
@@ -386,6 +388,59 @@ export function createNode(type: CustomizableNodeType): CustomizableNode {
   return NODE_FACTORIES[type](nodeId());
 }
 
+export function createOperatorNode(op: OperatorType): OperatorNode {
+  const id = nodeId();
+  const type: NodeType = NodeType.Operator;
+  switch (op) {
+    case OperatorType.And:
+    case OperatorType.Or:
+    case OperatorType.Xor:
+      return {
+        id,
+        type,
+        op,
+        operands: [],
+      };
+    case OperatorType.Not:
+      return {
+        id,
+        type,
+        op,
+        operand: undefined,
+      };
+    case OperatorType.Eq:
+      return {
+        id,
+        type,
+        op,
+        value: "",
+        valueType: EnumValueType.String,
+      };
+    case OperatorType.In:
+      return {
+        id,
+        type,
+        op,
+        valueType: EnumValueType.String,
+        values: [],
+      };
+    case OperatorType.Pattern:
+      return {
+        id,
+        type,
+        op,
+        value: "",
+      };
+    default:
+      return {
+        id,
+        type,
+        op,
+        value: undefined,
+      };
+  }
+}
+
 export function createEnumItemNode(label: string, value: string): EnumItemNode {
   return {
     id: nodeId(),
@@ -430,4 +485,13 @@ export function nodeSchema(node: CustomizableNode): Schema {
 
 export function nodeUiSchema(node: CustomizableNode): UiSchemaRoot {
   return NODE_OPTIONS_UI_SCHEMAS[node.type];
+}
+const N_OPERATORS = new Set<OperatorType>([
+  OperatorType.And,
+  OperatorType.Or,
+  OperatorType.Xor,
+]);
+
+export function isNOperator(operator: Operator): operator is NOperator {
+  return N_OPERATORS.has(operator.op);
 }

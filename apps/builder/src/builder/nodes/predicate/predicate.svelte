@@ -1,10 +1,10 @@
 <script lang="ts">
   import type { NodeType } from "$lib/builder/builder.js";
 
-  import type { NodeProps } from "../../../model.js";
-  import { getBuilderContext } from "../../../context.svelte.js";
-  import Container from "../../../container.svelte";
-  import Header from "../../../header.svelte";
+  import type { NodeProps } from "../../model.js";
+  import { getBuilderContext } from "../../context.svelte.js";
+  import Container from "../../container.svelte";
+  import Header from "../../header.svelte";
 
   import OperatorDropzone from "./operator-dropzone.svelte";
 

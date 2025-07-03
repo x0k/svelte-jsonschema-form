@@ -5,8 +5,8 @@
     getBuilderContext,
     getNodeContext,
     isOperatorNode,
-  } from "../../../context.svelte.js";
-  import DropZone from "../../../drop-zone.svelte";
+  } from "../../context.svelte.js";
+  import DropZone from "../../drop-zone.svelte";
 
   import Operator from "./operator.svelte";
 

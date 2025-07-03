@@ -14,7 +14,7 @@
   } from "../../context.svelte.js";
   import DropZone from "../../drop-zone.svelte";
 
-  import { Predicate } from "./predicate/index.js";
+  import { Predicate } from "../predicate/index.js";
 
   interface Props {
     node: ObjectPropertyDependencyNode;
