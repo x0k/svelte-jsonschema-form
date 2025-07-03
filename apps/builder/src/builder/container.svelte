@@ -16,6 +16,7 @@
     node: Node;
     draggable: BuilderDraggable;
     children: Snippet;
+    invalid?: boolean;
     disableSelection?: boolean;
   }
 
@@ -24,6 +25,7 @@
     class: className,
     draggable,
     children,
+    invalid,
     disableSelection,
   }: Props = $props();
 
@@ -50,7 +52,9 @@
   class={cn(
     "rounded-md p-2 border bg-background",
     draggable.isDragged && "opacity-70",
-    ctx.selectedNode?.id === node.id && "border-primary",
+    ctx.selectedNode?.id === node.id
+      ? "border-primary"
+      : invalid && "border-chart-5",
     className
   )}
   role="button"

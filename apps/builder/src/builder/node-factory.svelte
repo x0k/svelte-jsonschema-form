@@ -2,7 +2,7 @@
   import GripVertical from "@lucide/svelte/icons/grip-vertical";
   import { noop } from '@sjsf/form/lib/function';
 
-  import type { Node } from "$lib/builder/builder.js";
+  import type { Node } from "$lib/builder/index.js";
 
   import { getBuilderContext } from "./context.svelte.js";
 

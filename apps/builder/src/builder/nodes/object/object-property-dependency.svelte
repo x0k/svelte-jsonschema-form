@@ -20,7 +20,7 @@
   import NodeContainer from "../../node-container.svelte";
   import MultiDropZone from "../../multi-dropzone.svelte";
 
-  import PredicateDropZone from "./predicate-drop-zone.svelte";
+  import { PredicateDropzone } from "../predicate/index.js";
 
   let {
     node = $bindable(),
@@ -81,7 +81,7 @@
   </Header>
   {#if !complementary}
     <div class="pb-2">
-      <PredicateDropZone bind:node />
+      <PredicateDropzone bind:node />
     </div>
   {/if}
   <MultiDropZone

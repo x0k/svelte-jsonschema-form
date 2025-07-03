@@ -3,6 +3,17 @@ import { mergeSchemas } from "@sjsf/form/core";
 import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
+import {
+  COMPARISON_OPERATORS_SET,
+  N_OPERATORS_SET,
+  OperatorType,
+  type AbstractOperator,
+  type ComparatorOperatorType,
+  type NOperatorType,
+} from "./operator.js";
+import { EnumValueType } from "./enum.js";
+import { isValidRegExp } from "$lib/reg-exp.js";
+
 export enum NodeType {
   Object = "object",
   ObjectProperty = "object-property",
@@ -60,44 +71,14 @@ export interface ObjectPropertyDependencyNode
   properties: Node[];
 }
 
-export enum OperatorType {
-  And = "and",
-  Or = "or",
-  Xor = "xor",
-  Not = "not",
-  Eq = "eq",
-  In = "in",
-  Less = "less",
-  LessOrEq = "lessOrEq",
-  Greater = "greater",
-  GreaterOrEq = "greaterOrEq",
-  MultipleOf = "multipleOf",
-  MinLength = "minLength",
-  MaxLength = "maxLength",
-  Pattern = "pattern",
-}
-
-export interface AbstractOperator<T extends OperatorType> {
-  op: T;
-}
-
-export interface AbstractNOperator<T extends OperatorType>
-  extends AbstractOperator<T> {
-  operands: OperatorNode[];
-}
-
-export type Comparator =
-  | OperatorType.Greater
-  | OperatorType.GreaterOrEq
-  | OperatorType.Less
-  | OperatorType.LessOrEq
-  | OperatorType.MultipleOf
-  | OperatorType.MinLength
-  | OperatorType.MaxLength;
-
-export interface AbstractComparisonOperator<T extends Comparator>
+export interface AbstractComparisonOperator<T extends ComparatorOperatorType>
   extends AbstractOperator<T> {
   value: number | undefined;
+}
+
+export interface AbstractNOperator<T extends NOperatorType>
+  extends AbstractOperator<T> {
+  operands: OperatorNode[];
 }
 
 export type AndOperator = AbstractNOperator<OperatorType.And>;
@@ -127,9 +108,14 @@ export type Operator =
   | EqOperator
   | InOperator
   | PatternOperator
-  | AbstractComparisonOperator<Comparator>;
+  | AbstractComparisonOperator<ComparatorOperatorType>;
 
-export type NOperator = Extract<Operator, AbstractNOperator<OperatorType>>;
+export type NOperator = Extract<Operator, AbstractNOperator<NOperatorType>>;
+
+export type ComparisonOperator = Extract<
+  Operator,
+  AbstractComparisonOperator<ComparatorOperatorType>
+>;
 
 export type OperatorNode = AbstractNode<NodeType.Operator> & Operator;
 
@@ -197,18 +183,6 @@ export interface GridNode
   cells: GridCell[];
 }
 
-export enum EnumValueType {
-  String = "string",
-  JSON = "json",
-}
-
-export const ENUM_VALUE_TYPE_TITLES: Record<EnumValueType, string> = {
-  [EnumValueType.String]: "String",
-  [EnumValueType.JSON]: "JSON",
-};
-
-export const ENUM_VALUE_TYPES = Object.values(EnumValueType);
-
 export interface EnumItemNode extends AbstractNode<NodeType.EnumItem> {
   label: string;
   value: string;
@@ -264,6 +238,18 @@ export type CustomizableNode = Extract<
 >;
 
 export type CustomizableNodeType = CustomizableNode["type"];
+
+export const CUSTOMIZABLE_TYPE_TITLES: Record<CustomizableNodeType, string> = {
+  [NodeType.Object]: "Group",
+  [NodeType.Array]: "List",
+  [NodeType.Grid]: "Grid",
+  [NodeType.Enum]: "Enum",
+  [NodeType.String]: "String",
+};
+
+export const CUSTOMIZABLE_TYPES = Object.keys(
+  CUSTOMIZABLE_TYPE_TITLES
+) as CustomizableNodeType[];
 
 const NODE_FACTORIES = {
   [NodeType.Object]: (id) => ({
@@ -486,12 +472,96 @@ export function nodeSchema(node: CustomizableNode): Schema {
 export function nodeUiSchema(node: CustomizableNode): UiSchemaRoot {
   return NODE_OPTIONS_UI_SCHEMAS[node.type];
 }
-const N_OPERATORS = new Set<OperatorType>([
-  OperatorType.And,
-  OperatorType.Or,
-  OperatorType.Xor,
-]);
 
 export function isNOperator(operator: Operator): operator is NOperator {
-  return N_OPERATORS.has(operator.op);
+  return N_OPERATORS_SET.has(operator.op);
+}
+
+const createOperatorGuard =
+  <T extends OperatorType>(type: T) =>
+  (node: OperatorNode): node is Extract<OperatorNode, AbstractOperator<T>> =>
+    node.op === type;
+
+export const isNotOperator = createOperatorGuard(OperatorType.Not);
+
+export const isEqOperator = createOperatorGuard(OperatorType.Eq);
+
+export const isInOperator = createOperatorGuard(OperatorType.In);
+
+export const isPatternOperator = createOperatorGuard(OperatorType.Pattern);
+
+export function isComparisonOperator(
+  node: Operator
+): node is AbstractComparisonOperator<ComparatorOperatorType> {
+  return COMPARISON_OPERATORS_SET.has(node.op);
+}
+
+export type StringifiedOperator = { ok: boolean; value: string };
+
+export function stringifyOperator(operator: Operator): StringifiedOperator {
+  switch (operator.op) {
+    case OperatorType.And:
+    case OperatorType.Or:
+    case OperatorType.Xor: {
+      if (operator.operands.length === 0) {
+        return { ok: false, value: `${operator.op}(<no args>)` };
+      }
+      const r = operator.operands.reduce(
+        ({ ok, value }: StringifiedOperator, op) => {
+          const r = stringifyOperator(op);
+          return { ok: ok && r.ok, value: `${value}, ${r.value}` };
+        },
+        { ok: true, value: "" }
+      );
+      return {
+        ok: r.ok,
+        value: `${operator.op}(${r.value.substring(2)})`,
+      };
+    }
+    case OperatorType.Not: {
+      if (operator.operand === undefined) {
+        return {
+          ok: false,
+          value: `not(<undefined>)`,
+        };
+      }
+      const r = stringifyOperator(operator.operand);
+      return {
+        ok: r.ok,
+        value: `not(${r.value})`,
+      };
+    }
+    case OperatorType.Eq: {
+      return {
+        ok: true,
+        value: `eq(${operator.valueType === EnumValueType.JSON ? operator.value : JSON.stringify(operator.value)})`,
+      };
+    }
+    case OperatorType.In: {
+      if (operator.values.length === 0) {
+        return {
+          ok:false,
+          value: `in(<no values>)`
+        }
+      }
+      return {
+        ok: true,
+        value: `in(${(operator.valueType === EnumValueType.JSON ? operator.values : operator.values.map((v) => JSON.stringify(v))).join(", ")})`,
+      };
+    }
+    case OperatorType.Pattern: {
+      const ok = isValidRegExp(operator.value);
+      return {
+        ok,
+        value: `pattern(${ok ? operator.value : "<invalid pattern>"})`,
+      };
+    }
+    default: {
+      const ok = operator.value === undefined;
+      return {
+        ok,
+        value: `${operator.op}(${ok ? operator.value : "<undefined>"})`,
+      };
+    }
+  }
 }

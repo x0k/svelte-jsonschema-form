@@ -1,15 +1,19 @@
 <script lang="ts">
   import {
     isNOperator,
+    isNotOperator,
+    OPERATOR_TITLES,
     type NodeType,
     type NOperator,
-  } from "$lib/builder/builder.js";
+  } from "$lib/builder/index.js";
 
   import type { NodeProps } from "../../model.js";
   import { isOperatorNode } from "../../context.svelte.js";
   import Header from "../../header.svelte";
   import Container from "../../container.svelte";
   import MultiDropzone from "../../multi-dropzone.svelte";
+
+  import OperatorDropzone from "./operator-dropzone.svelte";
 
   let {
     node = $bindable(),
@@ -22,7 +26,7 @@
 
 <Container bind:node {draggable}>
   <Header {draggable} {unmount} disablePadding={isMulti}>
-    {node.op}
+    {OPERATOR_TITLES[node.op]}
   </Header>
   {#if isNOperator(node)}
     <MultiDropzone
@@ -32,5 +36,7 @@
         (node as NOperator).operands.splice(index, 0, newNode);
       }}
     />
+  {:else if isNotOperator(node)}
+    <OperatorDropzone bind:node={node.operand} />
   {/if}
 </Container>

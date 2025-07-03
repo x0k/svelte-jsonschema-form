@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { OperatorNode } from "$lib/builder/builder.js";
+  import type { OperatorNode } from "$lib/builder/index.js";
 
   import {
     getBuilderContext,

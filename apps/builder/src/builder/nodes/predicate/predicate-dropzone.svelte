@@ -3,7 +3,7 @@
     createPredicate,
     type ObjectPropertyDependencyNode,
     type PredicateNode,
-  } from "$lib/builder/builder.js";
+  } from "$lib/builder/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
 
   import {
@@ -14,7 +14,7 @@
   } from "../../context.svelte.js";
   import DropZone from "../../drop-zone.svelte";
 
-  import { Predicate } from "../predicate/index.js";
+  import Predicate from "./predicate.svelte";
 
   interface Props {
     node: ObjectPropertyDependencyNode;

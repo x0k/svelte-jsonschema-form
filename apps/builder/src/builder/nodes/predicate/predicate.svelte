@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { NodeType } from "$lib/builder/builder.js";
+  import { stringifyOperator, type NodeType } from "$lib/builder/index.js";
 
   import type { NodeProps } from "../../model.js";
   import { getBuilderContext } from "../../context.svelte.js";
@@ -17,17 +17,19 @@
   const ctx = getBuilderContext();
 
   const isSelected = $derived(ctx.selectedNode?.id === node.id);
+  const r = $derived(node.operator && stringifyOperator(node.operator));
 </script>
 
-<Container bind:node {draggable}>
-  <Header {draggable} {unmount} disablePadding>
-    Predicate
-    {#snippet append()}
-      {#if !isSelected && node.operator === undefined}
-        <span class="text-muted-foreground">Select to edit</span>
-      {/if}
-    {/snippet}
-  </Header>
+{#snippet append()}
+  <span class="text-muted-foreground">{r ? r.value : "Select to edit"}</span>
+{/snippet}
+<Container bind:node {draggable} invalid={r?.ok === false}>
+  <Header
+    {draggable}
+    {unmount}
+    append={isSelected ? undefined : append}
+    disablePadding>Predicate</Header
+  >
   {#if ctx.selectedNode?.id === node.id}
     <OperatorDropzone bind:node={node.operator} />
   {/if}
