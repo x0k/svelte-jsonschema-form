@@ -18,6 +18,7 @@
     children: Snippet;
     invalid?: boolean;
     disableSelection?: boolean;
+    onSelect?: () => void
   }
 
   let {
@@ -27,6 +28,7 @@
     children,
     invalid,
     disableSelection,
+    onSelect,
   }: Props = $props();
 
   const ctx = getBuilderContext();
@@ -44,6 +46,7 @@
       return;
     }
     ctx.selectNode(nodeRef);
+    onSelect?.()
   };
 </script>
 

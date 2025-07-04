@@ -2,7 +2,10 @@
   import { stringifyOperator, type NodeType } from "$lib/builder/index.js";
 
   import type { NodeProps } from "../../model.js";
-  import { getBuilderContext } from "../../context.svelte.js";
+  import {
+    getBuilderContext,
+    type ReadonlyNodeRef,
+  } from "../../context.svelte.js";
   import Container from "../../container.svelte";
   import Header from "../../header.svelte";
 
@@ -18,6 +21,12 @@
   const ctx = getBuilderContext();
   const pCtx = getPredicateContext();
 
+  const nodeRef: ReadonlyNodeRef = {
+    get current() {
+      return pCtx.node;
+    },
+  };
+
   const isSelected = $derived(ctx.selectedNode?.id === node.id);
   const r = $derived(
     node.operator && stringifyOperator(node.operator, pCtx.node)
@@ -27,7 +36,14 @@
 {#snippet append()}
   <span class="text-muted-foreground">{r ? r.value : "Select to edit"}</span>
 {/snippet}
-<Container bind:node {draggable} invalid={r?.ok === false}>
+<Container
+  bind:node
+  {draggable}
+  invalid={r?.ok === false}
+  onSelect={() => {
+    ctx.selectAffectedNode(nodeRef);
+  }}
+>
   <Header
     {draggable}
     {unmount}

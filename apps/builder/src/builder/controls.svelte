@@ -4,6 +4,7 @@
     createOperatorNode,
     CUSTOMIZABLE_TYPE_TITLES,
     CUSTOMIZABLE_TYPES,
+    detectApplicableOperators,
     NodeType,
     OPERATOR_TITLES,
     OPERATOR_TYPES,
@@ -13,19 +14,24 @@
   import NodeFactory from "./node-factory.svelte";
 
   const ctx = getBuilderContext();
-  const entries = $derived(
-    ctx.selectedNode?.type === NodeType.Predicate
-      ? OPERATOR_TYPES.map((t) => ({
-          id: `op::${t}`,
-          factory: () => createOperatorNode(t),
-          title: OPERATOR_TITLES[t],
-        }))
-      : CUSTOMIZABLE_TYPES.map((t) => ({
-          id: `node::${t}`,
-          factory: () => createNode(t),
-          title: CUSTOMIZABLE_TYPE_TITLES[t],
-        }))
-  );
+  const entries = $derived.by(() => {
+    if (ctx.selectedNode?.type === NodeType.Predicate) {
+      // NOTE: Affected node should be always defined
+      const ops = detectApplicableOperators(
+        ctx.affectedNode ?? ctx.selectedNode
+      );
+      return OPERATOR_TYPES.filter((t) => ops.has(t)).map((t) => ({
+        id: `op::${t}`,
+        factory: () => createOperatorNode(t),
+        title: OPERATOR_TITLES[t],
+      }));
+    }
+    return CUSTOMIZABLE_TYPES.map((t) => ({
+      id: `node::${t}`,
+      factory: () => createNode(t),
+      title: CUSTOMIZABLE_TYPE_TITLES[t],
+    }));
+  });
 </script>
 
 <div class="flex flex-col gap-2">

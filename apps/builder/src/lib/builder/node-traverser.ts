@@ -1,12 +1,7 @@
 import type { Visitor } from "$lib/visitor.js";
 
-import {
-  isNOperator,
-  isPropertyOperator,
-  isUOperator,
-  NodeType,
-  type Node,
-} from "./node.js";
+import { NodeType, type Node } from "./node.js";
+import { isUOperator, isNOperator, isPropertyOperator } from "./node-guards.js";
 
 export interface NodeTraverserContext<T extends NodeType> {
   parentType: T | "root";
@@ -18,7 +13,7 @@ export type NodeVisitor<T extends NodeType, R> = Visitor<
   R
 >;
 
-export function makeNodeTraverser<R>(visitor: NodeVisitor<NodeType, R>) {
+export function createNodeTraverser<R>(visitor: NodeVisitor<NodeType, R>) {
   return function* traverse(
     node: Node,
     ctx: NodeTraverserContext<NodeType> = { parentType: "root" }

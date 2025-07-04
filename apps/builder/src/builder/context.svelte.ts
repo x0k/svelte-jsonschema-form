@@ -4,12 +4,9 @@ import { DragDropManager, Draggable, Droppable } from "@dnd-kit/dom";
 import {
   createNode,
   createObjectProperty,
-  isCustomizableNodeType,
   NodeType,
-  type AbstractNode,
   type Node,
   type ObjectNode,
-  type ObjectPropertyNode,
   type CustomizableNode,
   createObjectPropertyDependency,
 } from "$lib/builder/index.js";
@@ -59,18 +56,25 @@ export interface NodeRef {
   update: (n: Node) => void;
 }
 
+export interface ReadonlyNodeRef {
+  current: Node | undefined;
+}
+
 const noopNodeRef: NodeRef = {
   current() {
     return undefined;
   },
   update() {},
 };
+const noopReadonlyNodeRef: ReadonlyNodeRef = {
+  current: undefined,
+};
 
 const obj = createNode(NodeType.Object) as ObjectNode;
-const prop = createObjectProperty(createNode(NodeType.String))
-const dep = createObjectPropertyDependency()
-prop.dependencies.push(dep)
-prop.complementary = undefined
+const prop = createObjectProperty(createNode(NodeType.String));
+const dep = createObjectPropertyDependency();
+prop.dependencies.push(dep);
+prop.complementary = undefined;
 obj.properties.push(prop);
 
 export class BuilderContext {
@@ -94,6 +98,15 @@ export class BuilderContext {
     }
   });
 
+  #affectedNodeRef = $state.raw(noopReadonlyNodeRef);
+  readonly affectedNode = $derived.by(() => {
+    try {
+      return this.#affectedNodeRef.current;
+    } catch {
+      return undefined;
+    }
+  });
+
   get isDragged() {
     return this.#sourceId !== undefined;
   }
@@ -106,8 +119,13 @@ export class BuilderContext {
     this.#selectedNodeRef.update(node);
   }
 
+  selectAffectedNode(nodeRef: ReadonlyNodeRef) {
+    this.#affectedNodeRef = nodeRef;
+  }
+
   clearSelection() {
     this.#selectedNodeRef = noopNodeRef;
+    this.#affectedNodeRef = noopReadonlyNodeRef;
   }
 
   constructor() {
