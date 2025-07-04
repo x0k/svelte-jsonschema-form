@@ -5,6 +5,7 @@ export enum OperatorType {
   Not = "not",
   Eq = "eq",
   In = "in",
+  Pattern = "pattern",
   Less = "less",
   LessOrEq = "lessOrEq",
   Greater = "greater",
@@ -12,7 +13,6 @@ export enum OperatorType {
   MultipleOf = "multipleOf",
   MinLength = "minLength",
   MaxLength = "maxLength",
-  Pattern = "pattern",
 }
 
 export const OPERATOR_TITLES: Record<OperatorType, string> = {
@@ -22,6 +22,7 @@ export const OPERATOR_TITLES: Record<OperatorType, string> = {
   [OperatorType.Not]: "Not",
   [OperatorType.Eq]: "Eq",
   [OperatorType.In]: "In",
+  [OperatorType.Pattern]: "Pattern",
   [OperatorType.Less]: "Less",
   [OperatorType.LessOrEq]: "LessOrEq",
   [OperatorType.Greater]: "Greater",
@@ -29,7 +30,6 @@ export const OPERATOR_TITLES: Record<OperatorType, string> = {
   [OperatorType.MultipleOf]: "MultipleOf",
   [OperatorType.MinLength]: "MinLength",
   [OperatorType.MaxLength]: "MaxLength",
-  [OperatorType.Pattern]: "Pattern",
 }
 
 export const OPERATOR_TYPES = Object.values(OperatorType);

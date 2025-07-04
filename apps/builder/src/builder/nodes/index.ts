@@ -5,8 +5,12 @@ import { NodeType, type CustomizableNodeType } from "$lib/builder/index.js";
 import type { NodeProps } from "../model.js";
 
 import { EnumNode } from "./enum/index.js";
-import { ObjectNode, ObjectPropertyNode } from "./object/index.js";
-import { OperatorNode } from './predicate/index.js';
+import {
+  ObjectNode,
+  ObjectPropertyDependencyNode,
+  ObjectPropertyNode,
+} from "./object/index.js";
+import { OperatorNode, Predicate } from "./predicate/index.js";
 import GridNode from "./grid.svelte";
 import ArrayNode from "./array.svelte";
 import StringNode from "./string.svelte";
@@ -16,11 +20,13 @@ export const NODES: {
 } = {
   [NodeType.Object]: ObjectNode,
   [NodeType.ObjectProperty]: ObjectPropertyNode,
+  [NodeType.ObjectPropertyDependency]: ObjectPropertyDependencyNode,
   [NodeType.Array]: ArrayNode,
   [NodeType.Grid]: GridNode,
   [NodeType.Enum]: EnumNode,
   [NodeType.String]: StringNode,
-  [NodeType.Operator]: OperatorNode
+  [NodeType.Predicate]: Predicate,
+  [NodeType.Operator]: OperatorNode,
 } satisfies {
   [T in CustomizableNodeType]: Component<NodeProps<T>, {}, "node">;
 } & {

@@ -11,10 +11,10 @@
     isObjectPropertyDependencyNode,
   } from "../../context.svelte.js";
   import Container from "../../container.svelte";
-  import DropIndicator from "../../drop-indicator.svelte";
+  import MultiDropzone from "../../multi-dropzone.svelte";
   import { NODES } from "../index.js";
 
-  import ObjectPropertyDependency from "./object-property-dependency.svelte";
+  import { setObjectContext } from "./context.js";
 
   let {
     draggable,
@@ -34,6 +34,15 @@
     node.dependencies.push(n);
     node.complementary = n.id;
   }
+
+  setObjectContext({
+    get complementary() {
+      return node.complementary;
+    },
+    set complementary(v) {
+      node.complementary = v;
+    },
+  });
 </script>
 
 <Container
@@ -54,39 +63,11 @@
   <Property bind:node={node.property as never} {unmount} {draggable} />
   {#if hasDeps}
     <div class="flex flex-col gap-0.5 px-2 pb-4">
-      {#each node.dependencies as dep, i (dep.id)}
-        {@const unmount = () => {
-          node.dependencies.splice(i, 1);
-        }}
-        {@const draggable = ctx.createDraggable({
-          unmount,
-          get node() {
-            return node.dependencies[i];
-          },
-        })}
-        <DropIndicator
-          accept={isObjectPropertyDependencyNode}
-          onDrop={(n) => {
-            node.dependencies.splice(i, 0, n);
-          }}
-        />
-        <ObjectPropertyDependency
-          index={i}
-          bind:node={node.dependencies[i]}
-          bind:complementary={
-            () => node.complementary === node.dependencies[i].id,
-            (v) => {
-              node.complementary = v ? node.dependencies[i].id : undefined;
-            }
-          }
-          {unmount}
-          {draggable}
-        />
-      {/each}
-      <DropIndicator
+      <MultiDropzone
+        bind:nodes={node.dependencies}
         accept={isObjectPropertyDependencyNode}
-        onDrop={(n) => {
-          node.dependencies.push(n);
+        onDrop={(newNode, i) => {
+          node.dependencies.splice(i, 0, newNode);
         }}
       />
       <Button onclick={pushDependency}>Add dependency</Button>

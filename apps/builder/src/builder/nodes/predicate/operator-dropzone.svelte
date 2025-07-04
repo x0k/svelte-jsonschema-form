@@ -7,8 +7,7 @@
     isOperatorNode,
   } from "../../context.svelte.js";
   import DropZone from "../../drop-zone.svelte";
-
-  import Operator from "./operator.svelte";
+  import RootNode from "../../root-node.svelte";
 
   interface Props {
     node: OperatorNode | undefined;
@@ -21,16 +20,12 @@
 </script>
 
 {#if node}
-  {@const unmount = () => {
-    node = undefined;
-  }}
-  {@const draggable = ctx.createDraggable({
-    unmount,
-    get node() {
-      return node!;
-    },
-  })}
-  <Operator bind:node {unmount} {draggable} />
+  <RootNode
+    bind:node
+    unmount={() => {
+      node = undefined;
+    }}
+  />
 {:else}
   {@const droppable = ctx.createDroppable(nodeCtx, {
     accept: isOperatorNode,

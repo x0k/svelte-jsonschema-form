@@ -13,7 +13,6 @@
   import type { NodeProps } from "../../model.js";
   import {
     getBuilderContext,
-    getNodeContext,
     isCustomizableOrPropertyNode,
   } from "../../context.svelte.js";
   import Header from "../../header.svelte";
@@ -21,19 +20,16 @@
   import MultiDropZone from "../../multi-dropzone.svelte";
 
   import { PredicateDropzone } from "../predicate/index.js";
+  import { getObjectContext } from "./context.js";
 
   let {
     node = $bindable(),
-    complementary = $bindable(),
     draggable,
     unmount,
-    index,
-  }: NodeProps<NodeType.ObjectPropertyDependency> & {
-    index: number;
-    complementary: boolean;
-  } = $props();
+  }: NodeProps<NodeType.ObjectPropertyDependency> = $props();
 
   const ctx = getBuilderContext();
+  const objCtx = getObjectContext();
 
   const onDrop = (
     newNode: CustomizableNode | ObjectPropertyNode,
@@ -50,18 +46,27 @@
       },
     });
   };
+
+  const complementary = $derived(objCtx.complementary === node.id);
 </script>
 
 <NodeContainer bind:node {draggable}>
   <Header {draggable} {unmount} disablePadding>
-    Branch {index + 1}
+    Branch
     {#snippet append()}
       <div class="flex items-center gap-2">
         <Label
           class="text-muted-foreground text-base"
           onclick={(e) => e.stopPropagation()}
         >
-          <Checkbox bind:checked={complementary} />
+          <Checkbox
+            bind:checked={
+              () => complementary,
+              (v) => {
+                objCtx.complementary = v ? node.id : undefined;
+              }
+            }
+          />
           Complement
           <Tooltip.Root>
             <Tooltip.Trigger>

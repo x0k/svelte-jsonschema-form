@@ -492,7 +492,7 @@ export const isPatternOperator = createOperatorGuard(OperatorType.Pattern);
 
 export function isComparisonOperator(
   node: Operator
-): node is AbstractComparisonOperator<ComparatorOperatorType> {
+): node is ComparisonOperator {
   return COMPARISON_OPERATORS_SET.has(node.op);
 }
 
@@ -506,16 +506,16 @@ export function stringifyOperator(operator: Operator): StringifiedOperator {
       if (operator.operands.length === 0) {
         return { ok: false, value: `${operator.op}(<no args>)` };
       }
-      const r = operator.operands.reduce(
-        ({ ok, value }: StringifiedOperator, op) => {
-          const r = stringifyOperator(op);
-          return { ok: ok && r.ok, value: `${value}, ${r.value}` };
-        },
-        { ok: true, value: "" }
-      );
+      let ok = true;
+      const values: string[] = [];
+      for (const operand of operator.operands) {
+        const r = stringifyOperator(operand);
+        ok &&= r.ok;
+        values.push(r.value);
+      }
       return {
-        ok: r.ok,
-        value: `${operator.op}(${r.value.substring(2)})`,
+        ok,
+        value: `${operator.op}(${values.join(", ")})`,
       };
     }
     case OperatorType.Not: {
@@ -540,9 +540,9 @@ export function stringifyOperator(operator: Operator): StringifiedOperator {
     case OperatorType.In: {
       if (operator.values.length === 0) {
         return {
-          ok:false,
-          value: `in(<no values>)`
-        }
+          ok: false,
+          value: `in(<no values>)`,
+        };
       }
       return {
         ok: true,
@@ -557,7 +557,7 @@ export function stringifyOperator(operator: Operator): StringifiedOperator {
       };
     }
     default: {
-      const ok = operator.value === undefined;
+      const ok = operator.value !== undefined;
       return {
         ok,
         value: `${operator.op}(${ok ? operator.value : "<undefined>"})`,

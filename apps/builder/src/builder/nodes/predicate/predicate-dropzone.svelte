@@ -5,7 +5,7 @@
     type PredicateNode,
   } from "$lib/builder/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
-
+  
   import {
     getBuilderContext,
     getNodeContext,
@@ -13,8 +13,7 @@
     type NodeRef,
   } from "../../context.svelte.js";
   import DropZone from "../../drop-zone.svelte";
-
-  import Predicate from "./predicate.svelte";
+  import RootNode from "../../root-node.svelte";
 
   interface Props {
     node: ObjectPropertyDependencyNode;
@@ -35,22 +34,18 @@
 </script>
 
 {#if node.predicate}
-  {@const unmount = () => {
-    node.predicate = undefined;
-  }}
-  {@const draggable = ctx.createDraggable({
-    unmount,
-    get node() {
-      return node.predicate!;
-    },
-  })}
-  <Predicate {draggable} bind:node={node.predicate} {unmount} />
+  <RootNode
+    bind:node={node.predicate}
+    unmount={() => {
+      node.predicate = undefined;
+    }}
+  />
 {:else}
   {@const droppable = ctx.createDroppable(nodeCtx, {
     accept: isPredicateNode,
     onDrop(n) {
       node.predicate = n;
-      ctx.selectNode(nodeRef)
+      ctx.selectNode(nodeRef);
     },
   })}
   <DropZone {droppable}>
@@ -59,7 +54,7 @@
         onclick={(e) => {
           e.stopPropagation();
           node.predicate = createPredicate();
-          ctx.selectNode(nodeRef)
+          ctx.selectNode(nodeRef);
         }}>Create one</Button
       >
     {/snippet}

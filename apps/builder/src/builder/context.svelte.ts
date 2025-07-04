@@ -11,6 +11,7 @@ import {
   type ObjectNode,
   type ObjectPropertyNode,
   type CustomizableNode,
+  createObjectPropertyDependency,
 } from "$lib/builder/index.js";
 
 const BUILDER_CONTEXT = Symbol("builder-context");
@@ -66,7 +67,11 @@ const noopNodeRef: NodeRef = {
 };
 
 const obj = createNode(NodeType.Object) as ObjectNode;
-obj.properties.push(createObjectProperty(createNode(NodeType.String)));
+const prop = createObjectProperty(createNode(NodeType.String))
+const dep = createObjectPropertyDependency()
+prop.dependencies.push(dep)
+prop.complementary = undefined
+obj.properties.push(prop);
 
 export class BuilderContext {
   #dnd = new DragDropManager<DndData>();

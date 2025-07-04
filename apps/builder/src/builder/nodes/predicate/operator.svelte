@@ -1,7 +1,9 @@
 <script lang="ts">
   import {
+  isComparisonOperator,
     isNOperator,
     isNotOperator,
+    isPatternOperator,
     OPERATOR_TITLES,
     type NodeType,
     type NOperator,
@@ -14,6 +16,8 @@
   import MultiDropzone from "../../multi-dropzone.svelte";
 
   import OperatorDropzone from "./operator-dropzone.svelte";
+  import PatternOperator from "./pattern-operator.svelte";
+  import ComparisonOperator from './comparison-operator.svelte';
 
   let {
     node = $bindable(),
@@ -24,7 +28,7 @@
   const isMulti = $derived(isNOperator(node));
 </script>
 
-<Container bind:node {draggable}>
+<Container bind:node {draggable} disableSelection>
   <Header {draggable} {unmount} disablePadding={isMulti}>
     {OPERATOR_TITLES[node.op]}
   </Header>
@@ -38,5 +42,9 @@
     />
   {:else if isNotOperator(node)}
     <OperatorDropzone bind:node={node.operand} />
+  {:else if isPatternOperator(node)}
+    <PatternOperator bind:node />
+  {:else if isComparisonOperator(node)}
+    <ComparisonOperator bind:node />
   {/if}
 </Container>
