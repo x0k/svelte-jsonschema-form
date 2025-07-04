@@ -1,19 +1,20 @@
 <script lang="ts">
   import {
     createPredicate,
+    isPredicateNode,
     type ObjectPropertyDependencyNode,
     type PredicateNode,
   } from "$lib/builder/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
-  
+
   import {
     getBuilderContext,
     getNodeContext,
-    isPredicateNode,
     type NodeRef,
   } from "../../context.svelte.js";
   import DropZone from "../../drop-zone.svelte";
   import RootNode from "../../root-node.svelte";
+  import { setPredicateContext } from './context.js';
 
   interface Props {
     node: ObjectPropertyDependencyNode;

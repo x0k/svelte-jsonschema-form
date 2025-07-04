@@ -1,13 +1,15 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
 
-  import type { Node } from "$lib/builder/index.js";
+  import {
+    type Node,
+    isCustomizableOrPropertyNode,
+    isObjectPropertyNode,
+  } from "$lib/builder/index.js";
 
   import {
     getBuilderContext,
     getNodeContext,
-    isObjectPropertyNode,
-    isCustomizableOrPropertyNode,
     type NodeRef,
   } from "./context.svelte.js";
   import DropZone from "./drop-zone.svelte";

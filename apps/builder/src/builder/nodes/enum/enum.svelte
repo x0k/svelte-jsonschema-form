@@ -4,6 +4,7 @@
     ENUM_VALUE_TYPES,
     type NodeType,
   } from "$lib/builder/index.js";
+  import { Label } from "$lib/components/ui/label/index.js";
   import * as Select from "$lib/components/ui/select/index.js";
 
   import type { NodeProps } from "../../model.js";
@@ -11,6 +12,7 @@
   import NodeHeader from "../../node-header.svelte";
 
   import EnumItems from "./enum-items.svelte";
+  import ValueTypeSelect from "./value-type-select.svelte";
 
   let {
     node = $bindable(),
@@ -24,19 +26,7 @@
 <NodeContainer bind:node {draggable}>
   <NodeHeader {node} {draggable} {unmount}>
     {#snippet append()}
-      <div class="flex gap-2 items-center">
-        <label class="text-muted-foreground" for={selectId}> Value type </label>
-        <Select.Root type="single" bind:value={node.valueType}>
-          <Select.Trigger id={selectId} size="sm">
-            {ENUM_VALUE_TYPE_TITLES[node.valueType]}
-          </Select.Trigger>
-          <Select.Content>
-            {#each ENUM_VALUE_TYPES as t (t)}
-              <Select.Item value={t}>{ENUM_VALUE_TYPE_TITLES[t]}</Select.Item>
-            {/each}
-          </Select.Content>
-        </Select.Root>
-      </div>
+      <ValueTypeSelect bind:value={node.valueType} />
     {/snippet}
   </NodeHeader>
   <EnumItems bind:items={node.items} valueType={node.valueType} />

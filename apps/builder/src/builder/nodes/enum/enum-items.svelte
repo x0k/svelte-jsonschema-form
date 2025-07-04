@@ -8,6 +8,7 @@
   import Plus from "@lucide/svelte/icons/plus";
 
   import {
+    isEnumItemNode,
     createEnumItemNode,
     EnumValueType,
     type EnumItemNode,
@@ -15,7 +16,7 @@
   import { Input } from "$lib/components/ui/input/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
 
-  import { getBuilderContext, isEnumItemNode } from "../../context.svelte.js";
+  import { getBuilderContext } from "../../context.svelte.js";
   import DropIndicator from "../../drop-indicator.svelte";
   import EnumItem from "./enum-item.svelte";
 

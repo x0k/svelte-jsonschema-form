@@ -1,8 +1,11 @@
 <script lang="ts">
-  import type { CustomizableNode } from "$lib/builder/index.js";
+  import {
+    type CustomizableNode,
+    isCustomizableNode,
+  } from "$lib/builder/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
 
-  import { getBuilderContext, isCustomizableNode } from "./context.svelte.js";
+  import { getBuilderContext } from "./context.svelte.js";
   import NodeSettings from "./node-settings.svelte";
 
   const ctx = getBuilderContext();

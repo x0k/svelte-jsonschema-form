@@ -1,5 +1,6 @@
-import type { NodeId } from "$lib/builder/node.js";
 import { getContext, setContext } from "svelte";
+
+import type { Node, NodeId } from "$lib/builder/index.js";
 
 const OBJECT_CONTEXT = Symbol("object-context");
 

@@ -3,16 +3,21 @@ import { mergeSchemas } from "@sjsf/form/core";
 import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
+import { isValidRegExp } from "$lib/reg-exp.js";
+
 import {
   COMPARISON_OPERATORS_SET,
   N_OPERATORS_SET,
   OperatorType,
+  S_OPERATORS_SET,
+  U_OPERATORS_SET,
   type AbstractOperator,
   type ComparatorOperatorType,
   type NOperatorType,
+  type SOperatorType,
+  type UOperatorType,
 } from "./operator.js";
 import { EnumValueType } from "./enum.js";
-import { isValidRegExp } from "$lib/reg-exp.js";
 
 export enum NodeType {
   Object = "object",
@@ -76,17 +81,21 @@ export interface AbstractComparisonOperator<T extends ComparatorOperatorType>
   value: number | undefined;
 }
 
+export interface AbstractUOperator<T extends UOperatorType>
+  extends AbstractOperator<T> {
+  operand: OperatorNode | undefined;
+}
+
 export interface AbstractNOperator<T extends NOperatorType>
   extends AbstractOperator<T> {
   operands: OperatorNode[];
 }
 
-export type AndOperator = AbstractNOperator<OperatorType.And>;
-export type OrOperator = AbstractNOperator<OperatorType.Or>;
-export type XorOperator = AbstractNOperator<OperatorType.Xor>;
-export interface NotOperator extends AbstractOperator<OperatorType.Not> {
-  operand: OperatorNode | undefined;
+export interface AbstractSOperator<T extends SOperatorType>
+  extends AbstractOperator<T> {
+  value: string;
 }
+
 export interface EqOperator extends AbstractOperator<OperatorType.Eq> {
   valueType: EnumValueType;
   value: string;
@@ -95,27 +104,42 @@ export interface InOperator extends AbstractOperator<OperatorType.In> {
   valueType: EnumValueType;
   values: string[];
 }
-export interface PatternOperator
-  extends AbstractOperator<OperatorType.Pattern> {
-  value: string;
+
+export interface UniqueItemsOperator
+  extends AbstractOperator<OperatorType.UniqueItems> {}
+
+export interface PropertyOperator
+  extends AbstractOperator<OperatorType.Property> {
+  propertyId: NodeId | undefined;
+  operator: OperatorNode | undefined;
 }
 
+type AbstractOperators = {
+  [T in UOperatorType]: AbstractUOperator<T>;
+} & {
+  [T in NOperatorType]: AbstractNOperator<T>;
+} & {
+  [T in SOperatorType]: AbstractSOperator<T>;
+};
+
+export type UOperator = AbstractOperators[UOperatorType];
+
+export type NOperator = AbstractOperators[NOperatorType];
+
+export type SOperator = AbstractOperators[SOperatorType];
+
+export type ComparisonOperator =
+  AbstractComparisonOperator<ComparatorOperatorType>;
+
 export type Operator =
-  | AndOperator
-  | OrOperator
-  | XorOperator
-  | NotOperator
   | EqOperator
   | InOperator
-  | PatternOperator
-  | AbstractComparisonOperator<ComparatorOperatorType>;
-
-export type NOperator = Extract<Operator, AbstractNOperator<NOperatorType>>;
-
-export type ComparisonOperator = Extract<
-  Operator,
-  AbstractComparisonOperator<ComparatorOperatorType>
->;
+  | UniqueItemsOperator
+  | UOperator
+  | NOperator
+  | SOperator
+  | ComparisonOperator
+  | PropertyOperator;
 
 export type OperatorNode = AbstractNode<NodeType.Operator> & Operator;
 
@@ -387,6 +411,7 @@ export function createOperatorNode(op: OperatorType): OperatorNode {
         op,
         operands: [],
       };
+    case OperatorType.Contains:
     case OperatorType.Not:
       return {
         id,
@@ -410,6 +435,7 @@ export function createOperatorNode(op: OperatorType): OperatorNode {
         valueType: EnumValueType.String,
         values: [],
       };
+    case OperatorType.HasProperty:
     case OperatorType.Pattern:
       return {
         id,
@@ -417,6 +443,22 @@ export function createOperatorNode(op: OperatorType): OperatorNode {
         op,
         value: "",
       };
+    case OperatorType.UniqueItems: {
+      return {
+        id,
+        type,
+        op,
+      };
+    }
+    case OperatorType.Property: {
+      return {
+        id,
+        type,
+        op,
+        propertyId: undefined,
+        operator: undefined,
+      };
+    }
     default:
       return {
         id,
@@ -473,22 +515,17 @@ export function nodeUiSchema(node: CustomizableNode): UiSchemaRoot {
   return NODE_OPTIONS_UI_SCHEMAS[node.type];
 }
 
+export function isUOperator(node: Operator): node is UOperator {
+  return U_OPERATORS_SET.has(node.op);
+}
+
 export function isNOperator(operator: Operator): operator is NOperator {
   return N_OPERATORS_SET.has(operator.op);
 }
 
-const createOperatorGuard =
-  <T extends OperatorType>(type: T) =>
-  (node: OperatorNode): node is Extract<OperatorNode, AbstractOperator<T>> =>
-    node.op === type;
-
-export const isNotOperator = createOperatorGuard(OperatorType.Not);
-
-export const isEqOperator = createOperatorGuard(OperatorType.Eq);
-
-export const isInOperator = createOperatorGuard(OperatorType.In);
-
-export const isPatternOperator = createOperatorGuard(OperatorType.Pattern);
+export function isSOperator(node: Operator): node is SOperator {
+  return S_OPERATORS_SET.has(node.op);
+}
 
 export function isComparisonOperator(
   node: Operator
@@ -496,9 +533,27 @@ export function isComparisonOperator(
   return COMPARISON_OPERATORS_SET.has(node.op);
 }
 
+const createOperatorGuard =
+  <T extends OperatorType>(type: T) =>
+  (node: OperatorNode): node is Extract<OperatorNode, AbstractOperator<T>> =>
+    node.op === type;
+
+export const isEqOperator = createOperatorGuard(OperatorType.Eq);
+
+export const isInOperator = createOperatorGuard(OperatorType.In);
+
+export const isUniqueItemsOperator = createOperatorGuard(
+  OperatorType.UniqueItems
+);
+
+export const isPropertyOperator = createOperatorGuard(OperatorType.Property);
+
 export type StringifiedOperator = { ok: boolean; value: string };
 
-export function stringifyOperator(operator: Operator): StringifiedOperator {
+export function stringifyOperator(
+  operator: Operator,
+  node: Node | undefined
+): StringifiedOperator {
   switch (operator.op) {
     case OperatorType.And:
     case OperatorType.Or:
@@ -509,7 +564,7 @@ export function stringifyOperator(operator: Operator): StringifiedOperator {
       let ok = true;
       const values: string[] = [];
       for (const operand of operator.operands) {
-        const r = stringifyOperator(operand);
+        const r = stringifyOperator(operand, node);
         ok &&= r.ok;
         values.push(r.value);
       }
@@ -518,6 +573,7 @@ export function stringifyOperator(operator: Operator): StringifiedOperator {
         value: `${operator.op}(${values.join(", ")})`,
       };
     }
+    case OperatorType.Contains:
     case OperatorType.Not: {
       if (operator.operand === undefined) {
         return {
@@ -525,10 +581,10 @@ export function stringifyOperator(operator: Operator): StringifiedOperator {
           value: `not(<undefined>)`,
         };
       }
-      const r = stringifyOperator(operator.operand);
+      const r = stringifyOperator(operator.operand, node);
       return {
         ok: r.ok,
-        value: `not(${r.value})`,
+        value: `${operator.op}(${r.value})`,
       };
     }
     case OperatorType.Eq: {
@@ -538,22 +594,46 @@ export function stringifyOperator(operator: Operator): StringifiedOperator {
       };
     }
     case OperatorType.In: {
-      if (operator.values.length === 0) {
-        return {
-          ok: false,
-          value: `in(<no values>)`,
-        };
-      }
+      const haveItems = operator.values.length > 0;
       return {
-        ok: true,
-        value: `in(${(operator.valueType === EnumValueType.JSON ? operator.values : operator.values.map((v) => JSON.stringify(v))).join(", ")})`,
+        ok: haveItems,
+        value: `in(${
+          haveItems
+            ? (operator.valueType === EnumValueType.JSON
+                ? operator.values
+                : operator.values.map((v) => JSON.stringify(v))
+              ).join(", ")
+            : "<no values>"
+        })`,
       };
     }
+    case OperatorType.HasProperty:
     case OperatorType.Pattern: {
-      const ok = isValidRegExp(operator.value);
+      const ok =
+        operator.op !== OperatorType.Pattern || isValidRegExp(operator.value);
       return {
         ok,
-        value: `pattern(${ok ? operator.value : "<invalid pattern>"})`,
+        value: `${operator.op}(${ok ? operator.value : "<invalid value>"})`,
+      };
+    }
+    case OperatorType.UniqueItems: {
+      return {
+        ok: true,
+        value: operator.op,
+      };
+    }
+    case OperatorType.Property: {
+      const prop =
+        node &&
+        isObjectNode(node) &&
+        node.properties.find((p) => p.id === operator.propertyId)?.property;
+      const r =
+        operator.operator &&
+        stringifyOperator(operator.operator, prop || undefined);
+      const propTitle = (prop && getNodeTitle(prop)) ?? operator.propertyId;
+      return {
+        ok: r?.ok === true,
+        value: `property(${propTitle ? `"${propTitle}"` : "<undefined>"}, ${r?.value ?? "<undefined>"})`,
       };
     }
     default: {
@@ -564,4 +644,46 @@ export function stringifyOperator(operator: Operator): StringifiedOperator {
       };
     }
   }
+}
+
+export const isCustomizableNode = (node: Node): node is CustomizableNode =>
+  isCustomizableNodeType(node.type);
+
+const createNodeGuard =
+  <T extends NodeType>(type: T) =>
+  (node: Node): node is Extract<Node, AbstractNode<T>> =>
+    node.type === type;
+
+export const isObjectNode = createNodeGuard(NodeType.Object);
+
+export const isPredicateNode = createNodeGuard(NodeType.Predicate);
+
+export const isOperatorNode = createNodeGuard(NodeType.Operator);
+
+export const isObjectPropertyNode = createNodeGuard(NodeType.ObjectProperty);
+
+export const isObjectPropertyDependencyNode = createNodeGuard(
+  NodeType.ObjectPropertyDependency
+);
+
+export const isCustomizableOrPropertyNode = (
+  node: Node
+): node is CustomizableNode | ObjectPropertyNode =>
+  isCustomizableNode(node) || isObjectPropertyNode(node);
+
+export const isEnumItemNode = createNodeGuard(NodeType.EnumItem);
+
+export function getNodeTitle(node: Node): string | undefined {
+  return isCustomizableNode(node) ? node.options.title : undefined;
+}
+
+export function getNodeProperties(node: Node): Map<NodeId, string> {
+  const map = new Map<NodeId, string>();
+  if (node.type === NodeType.Object) {
+    for (let i = 0; i < node.properties.length; i++) {
+      const { id, property } = node.properties[i];
+      map.set(id, getNodeTitle(property) ?? `Property ${i + 1}`);
+    }
+  }
+  return map;
 }

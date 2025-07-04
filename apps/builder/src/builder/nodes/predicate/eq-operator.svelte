@@ -1,9 +1,9 @@
 <script lang="ts">
-  import type { SOperator } from "$lib/builder/index.js";
+  import type { EqOperator } from "$lib/builder/index.js";
   import { Input } from "$lib/components/ui/input/index.js";
 
   interface Props {
-    node: SOperator
+    node: EqOperator;
   }
 
   let { node = $bindable() }: Props = $props();

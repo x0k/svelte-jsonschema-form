@@ -1,11 +1,7 @@
 <script lang="ts">
-  import type { OperatorNode } from "$lib/builder/index.js";
+  import { type OperatorNode, isOperatorNode } from "$lib/builder/index.js";
 
-  import {
-    getBuilderContext,
-    getNodeContext,
-    isOperatorNode,
-  } from "../../context.svelte.js";
+  import { getBuilderContext, getNodeContext } from "../../context.svelte.js";
   import DropZone from "../../drop-zone.svelte";
   import RootNode from "../../root-node.svelte";
 

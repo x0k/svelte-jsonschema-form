@@ -7,6 +7,7 @@
   import Header from "../../header.svelte";
 
   import OperatorDropzone from "./operator-dropzone.svelte";
+  import { getPredicateContext } from "./context.js";
 
   let {
     draggable,
@@ -15,9 +16,12 @@
   }: NodeProps<NodeType.Predicate> = $props();
 
   const ctx = getBuilderContext();
+  const pCtx = getPredicateContext();
 
   const isSelected = $derived(ctx.selectedNode?.id === node.id);
-  const r = $derived(node.operator && stringifyOperator(node.operator));
+  const r = $derived(
+    node.operator && stringifyOperator(node.operator, pCtx.node)
+  );
 </script>
 
 {#snippet append()}

@@ -5,16 +5,14 @@
     type CustomizableNode,
     type NodeType,
     type ObjectPropertyNode,
+    isCustomizableOrPropertyNode,
   } from "$lib/builder/index.js";
   import { Checkbox } from "$lib/components/ui/checkbox/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
   import * as Tooltip from "$lib/components/ui/tooltip/index.js";
 
   import type { NodeProps } from "../../model.js";
-  import {
-    getBuilderContext,
-    isCustomizableOrPropertyNode,
-  } from "../../context.svelte.js";
+  import { getBuilderContext } from "../../context.svelte.js";
   import Header from "../../header.svelte";
   import NodeContainer from "../../node-container.svelte";
   import MultiDropZone from "../../multi-dropzone.svelte";
@@ -48,6 +46,8 @@
   };
 
   const complementary = $derived(objCtx.complementary === node.id);
+
+  const checkboxId = $props.id();
 </script>
 
 <NodeContainer bind:node {draggable}>
@@ -55,32 +55,34 @@
     Branch
     {#snippet append()}
       <div class="flex items-center gap-2">
+        <Checkbox
+          id={checkboxId}
+          onclick={(e) => e.stopPropagation()}
+          bind:checked={
+            () => complementary,
+            (v) => {
+              objCtx.complementary = v ? node.id : undefined;
+            }
+          }
+        />
         <Label
+          for={checkboxId}
           class="text-muted-foreground text-base"
           onclick={(e) => e.stopPropagation()}
         >
-          <Checkbox
-            bind:checked={
-              () => complementary,
-              (v) => {
-                objCtx.complementary = v ? node.id : undefined;
-              }
-            }
-          />
           Complement
-          <Tooltip.Root>
-            <Tooltip.Trigger>
-              <Info class="size-5" />
-            </Tooltip.Trigger>
-            <Tooltip.Content>
-              <p>Field values must be split between branches without gaps.</p>
-              <p>
-                Mark a branch as <code>Complement</code> to include all remaining
-                values.
-              </p>
-            </Tooltip.Content>
-          </Tooltip.Root>
         </Label>
+        <Tooltip.Root>
+          <Tooltip.Trigger>
+            <Info class="size-5 text-muted-foreground" />
+          </Tooltip.Trigger>
+          <Tooltip.Content>
+            <p>Field values must be split between branches without gaps.</p>
+            <p>
+              Mark a branch as <code>Complement</code> to include all remaining values.
+            </p>
+          </Tooltip.Content>
+        </Tooltip.Root>
       </div>
     {/snippet}
   </Header>

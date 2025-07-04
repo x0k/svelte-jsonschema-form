@@ -230,30 +230,3 @@ export class BuilderContext {
 
 export type BuilderDraggable = ReturnType<BuilderContext["createDraggable"]>;
 export type BuilderDroppable = ReturnType<BuilderContext["createDroppable"]>;
-
-export const anyNode = (node: Node): node is Node => true;
-
-export const isCustomizableNode = (node: Node): node is CustomizableNode =>
-  isCustomizableNodeType(node.type);
-
-const onlyNode =
-  <T extends NodeType>(type: T) =>
-  (node: Node): node is Extract<Node, AbstractNode<T>> =>
-    node.type === type;
-
-export const isPredicateNode = onlyNode(NodeType.Predicate);
-
-export const isOperatorNode = onlyNode(NodeType.Operator);
-
-export const isObjectPropertyNode = onlyNode(NodeType.ObjectProperty);
-
-export const isObjectPropertyDependencyNode = onlyNode(
-  NodeType.ObjectPropertyDependency
-);
-
-export const isCustomizableOrPropertyNode = (
-  node: Node
-): node is CustomizableNode | ObjectPropertyNode =>
-  isCustomizableNode(node) || isObjectPropertyNode(node);
-
-export const isEnumItemNode = onlyNode(NodeType.EnumItem);

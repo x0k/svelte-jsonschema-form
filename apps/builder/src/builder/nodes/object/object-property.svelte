@@ -1,20 +1,19 @@
 <script lang="ts">
   import {
     createObjectPropertyDependency,
+    isObjectPropertyDependencyNode,
     type NodeType,
   } from "$lib/builder/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
 
   import type { NodeProps } from "../../model.js";
-  import {
-    getBuilderContext,
-    isObjectPropertyDependencyNode,
-  } from "../../context.svelte.js";
+  import { getBuilderContext } from "../../context.svelte.js";
   import Container from "../../container.svelte";
   import MultiDropzone from "../../multi-dropzone.svelte";
   import { NODES } from "../index.js";
 
   import { setObjectContext } from "./context.js";
+  import { setPredicateContext } from "../predicate/context.js";
 
   let {
     draggable,
@@ -41,6 +40,11 @@
     },
     set complementary(v) {
       node.complementary = v;
+    },
+  });
+  setPredicateContext({
+    get node() {
+      return node.property;
     },
   });
 </script>
