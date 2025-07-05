@@ -157,7 +157,7 @@ export interface ObjectNode
 }
 
 export const ARRAY_NODE_OPTIONS_SCHEMA = {
-  title: "Array options",
+  title: "List options",
   type: "object",
   properties: {
     minItems: {
@@ -167,6 +167,10 @@ export const ARRAY_NODE_OPTIONS_SCHEMA = {
     maxItems: {
       title: "Max items",
       type: "number",
+    },
+    uniqueItems: {
+      title: "Unique items",
+      type: "boolean",
     },
   },
   additionalProperties: false,
@@ -218,8 +222,26 @@ export interface EnumNode extends AbstractCustomizableNode<NodeType.Enum, {}> {
   items: EnumItemNode[];
 }
 
+export const MULTI_ENUM_OPTIONS_SCHEMA = {
+  title: "Multi choice options",
+  type: "object",
+  properties: {
+    minItems: {
+      title: "Min items",
+      type: "number",
+    },
+    maxItems: {
+      title: "Max items",
+      type: "number",
+    },
+  },
+  additionalProperties: false,
+} as const satisfies Schema;
+
+export type MultiEnumOptions = FromSchema<typeof MULTI_ENUM_OPTIONS_SCHEMA>;
+
 export interface MultiEnumNode
-  extends AbstractCustomizableNode<NodeType.MultiEnum, {}> {
+  extends AbstractCustomizableNode<NodeType.MultiEnum, MultiEnumOptions> {
   valueType: EnumValueType;
   items: EnumItemNode[];
 }
@@ -309,9 +331,10 @@ const NODE_OPTIONS_SCHEMAS = {
   [NodeType.Enum]: mergeSchemas(COMMON_OPTIONS_SCHEMA, {
     title: "Choice options",
   }),
-  [NodeType.MultiEnum]: mergeSchemas(COMMON_OPTIONS_SCHEMA, {
-    title: "Multi choice options",
-  }),
+  [NodeType.MultiEnum]: mergeSchemas(
+    COMMON_OPTIONS_SCHEMA,
+    MULTI_ENUM_OPTIONS_SCHEMA
+  ),
   [NodeType.String]: mergeSchemas(
     COMMON_OPTIONS_SCHEMA,
     STRING_NODE_OPTIONS_SCHEMA
@@ -341,6 +364,13 @@ const NODE_OPTIONS_UI_SCHEMAS = {
   },
   [NodeType.Grid]: {
     ...COMMON_UI_SCHEMA,
+    gap: {
+      "ui:options": {
+        shadcn4Text: {
+          placeholder: "Input CSS unit",
+        },
+      },
+    },
   },
   [NodeType.Enum]: {
     ...COMMON_UI_SCHEMA,

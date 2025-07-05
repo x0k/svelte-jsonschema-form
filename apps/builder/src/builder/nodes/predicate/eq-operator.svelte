@@ -1,9 +1,8 @@
 <script lang="ts">
   import { getNodeOptions, type EqOperator } from "$lib/builder/index.js";
-  import { Input } from "$lib/components/ui/input/index.js";
 
   import { getPredicateContext } from "./context.js";
-  import NodeOptionSelect from "./node-option-select.svelte";
+  import NodeOptionInput from "./node-option-input.svelte";
 
   interface Props {
     node: EqOperator;
@@ -16,8 +15,4 @@
   const options = $derived(getNodeOptions(pCtx.node));
 </script>
 
-{#if options.length > 0}
-  <NodeOptionSelect {options} bind:value={node.value} />
-{:else}
-  <Input placeholder="Input JSON value" bind:value={node.value} />
-{/if}
+<NodeOptionInput bind:value={node.value} {options} />

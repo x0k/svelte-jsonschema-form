@@ -12,6 +12,8 @@ import {
   createPredicate,
   createOperatorNode,
   OperatorType,
+  type MultiEnumNode,
+  createEnumItemNode,
 } from "$lib/builder/index.js";
 
 const BUILDER_CONTEXT = Symbol("builder-context");
@@ -74,13 +76,13 @@ const noopReadonlyNodeRef: ReadonlyNodeRef = {
 };
 
 const obj = createNode(NodeType.Object) as ObjectNode;
-const obj2 = createNode(NodeType.Object) as ObjectNode;
-obj2.properties.push(createObjectProperty(createNode(NodeType.String)));
-obj2.properties.push(createObjectProperty(createNode(NodeType.Number)));
-const prop = createObjectProperty(obj2);
+const menum = createNode(NodeType.MultiEnum) as MultiEnumNode;
+menum.items.push(createEnumItemNode("foo", "foo"))
+menum.items.push(createEnumItemNode("bar", "bar"))
+const prop = createObjectProperty(menum);
 const dep = createObjectPropertyDependency();
 const pred = createPredicate();
-const op = createOperatorNode(OperatorType.Property);
+const op = createOperatorNode(OperatorType.In);
 pred.operator = op;
 dep.predicate = pred;
 prop.dependencies.push(dep);

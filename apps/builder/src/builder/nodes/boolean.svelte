@@ -2,7 +2,7 @@
   import type { NodeType } from "$lib/builder/index.js";
 
   import type { NodeProps } from "../model.js";
-  import NodeContainer from "../node-container.svelte";
+  import Container from "../container.svelte";
   import NodeHeader from "../node-header.svelte";
 
   let {
@@ -12,7 +12,6 @@
   }: NodeProps<NodeType.Boolean> = $props();
 </script>
 
-<NodeContainer bind:node {draggable}>
+<Container bind:node {draggable}>
   <NodeHeader {node} {unmount} {draggable} disablePadding />
-</NodeContainer>
-
+</Container>

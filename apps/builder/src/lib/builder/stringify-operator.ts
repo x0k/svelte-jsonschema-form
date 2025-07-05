@@ -47,7 +47,7 @@ export function stringifyOperator(
     case OperatorType.Eq: {
       return {
         ok: true,
-        value: `${operator.op}(${operator.valueType === EnumValueType.JSON ? operator.value : JSON.stringify(operator.value)})`,
+        value: `${operator.op}(${operator.value})`,
       };
     }
     case OperatorType.In: {
@@ -55,12 +55,7 @@ export function stringifyOperator(
       return {
         ok: haveItems,
         value: `${operator.op}(${
-          haveItems
-            ? (operator.valueType === EnumValueType.JSON
-                ? operator.values
-                : operator.values.map((v) => JSON.stringify(v))
-              ).join(", ")
-            : "<no values>"
+          haveItems ? operator.values.join(", ") : "<no values>"
         })`,
       };
     }

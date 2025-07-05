@@ -27,6 +27,7 @@
   import EqOperator from "./eq-operator.svelte";
   import PropertyOperator from "./property-operator.svelte";
   import HasPropertyOperator from "./has-property-operator.svelte";
+  import InOperator from "./in-operator.svelte";
 
   let {
     node = $bindable(),
@@ -59,6 +60,8 @@
     <ComparisonOperator bind:node />
   {:else if isEqOperator(node)}
     <EqOperator bind:node />
+  {:else if isInOperator(node)}
+    <InOperator bind:node />
   {:else if isPropertyOperator(node)}
     <PropertyOperator bind:node />
   {:else if isHasPropertyOperator(node)}

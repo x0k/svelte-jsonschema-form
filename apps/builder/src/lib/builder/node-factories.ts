@@ -130,14 +130,12 @@ export function createOperatorNode(op: OperatorType): OperatorNode {
         type,
         op,
         value: "",
-        valueType: EnumValueType.String,
       };
     case OperatorType.In:
       return {
         id,
         type,
         op,
-        valueType: EnumValueType.String,
         values: [],
       };
     case OperatorType.Pattern:
