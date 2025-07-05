@@ -1,9 +1,14 @@
 <script lang="ts">
-  import { type OperatorNode, isOperatorNode } from "$lib/builder/index.js";
+  import {
+    type OperatorNode,
+    detectApplicableOperators,
+    isOperatorNode,
+  } from "$lib/builder/index.js";
 
   import { getBuilderContext, getNodeContext } from "../../context.svelte.js";
   import DropZone from "../../drop-zone.svelte";
   import RootNode from "../../root-node.svelte";
+  import { getPredicateContext } from "./context.js";
 
   interface Props {
     node: OperatorNode | undefined;
@@ -13,6 +18,8 @@
 
   const ctx = getBuilderContext();
   const nodeCtx = getNodeContext();
+  const pCtx = getPredicateContext();
+  const applicableOperators = $derived(detectApplicableOperators(pCtx.node));
 </script>
 
 {#if node}
@@ -24,7 +31,8 @@
   />
 {:else}
   {@const droppable = ctx.createDroppable(nodeCtx, {
-    accept: isOperatorNode,
+    accept: (node): node is OperatorNode =>
+      isOperatorNode(node) && applicableOperators.has(node.op),
     onDrop(n) {
       node = n;
     },

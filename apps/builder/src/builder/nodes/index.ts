@@ -28,6 +28,7 @@ export const NODES: {
   [NodeType.Array]: ArrayNode,
   [NodeType.Grid]: GridNode,
   [NodeType.Enum]: EnumNode,
+  [NodeType.MultiEnum]: EnumNode,
   [NodeType.String]: StringNode,
   [NodeType.Number]: NumberNode,
   [NodeType.Boolean]: BooleanNode,

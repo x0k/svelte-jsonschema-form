@@ -1,15 +1,16 @@
 <script lang="ts">
-  import type { Snippet } from 'svelte';
+  import type { Snippet } from "svelte";
 
-  import type { BuilderDroppable } from './context.svelte.js';
+  import type { BuilderDroppable } from "./context.svelte.js";
 
   interface Props {
-    droppable: BuilderDroppable
-    placeholder: Snippet
+    droppable: BuilderDroppable;
+    placeholder: Snippet;
   }
 
-  const { droppable, placeholder }: Props = $props()
+  const { droppable, placeholder }: Props = $props();
 </script>
+
 <div
   class={[
     "border-2 border-dashed rounded-md p-6 w-full h-full flex items-center justify-center",
@@ -17,7 +18,12 @@
   ]}
   {@attach droppable.attach}
 >
-  <div class="text-lg text-center font-medium text-foreground">
+  <div
+    class={[
+      "text-lg text-center font-medium",
+      droppable.isReady ? "text-foreground" : "text-muted-foreground",
+    ]}
+  >
     {@render placeholder()}
   </div>
 </div>

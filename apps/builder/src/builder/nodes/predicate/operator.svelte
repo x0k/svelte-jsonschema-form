@@ -42,11 +42,6 @@
 <Container bind:node {draggable} disableSelection>
   <Header {draggable} {unmount} disablePadding={isMultiOrEmpty}>
     {OPERATOR_TITLES[node.op]}
-    {#snippet append()}
-      {#if isEqOperator(node) || isInOperator(node)}
-        <ValueTypeSelect bind:value={node.valueType} />
-      {/if}
-    {/snippet}
   </Header>
   {#if isNOperator(node)}
     <MultiDropzone

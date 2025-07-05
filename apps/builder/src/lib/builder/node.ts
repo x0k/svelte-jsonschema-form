@@ -22,6 +22,7 @@ export enum NodeType {
   Array = "array",
   Grid = "grid",
   Enum = "enum",
+  MultiEnum = "multi-enum",
   EnumItem = "enum-item",
   String = "string",
   Number = "number",
@@ -93,11 +94,9 @@ export interface AbstractSOperator<T extends SOperatorType>
 }
 
 export interface EqOperator extends AbstractOperator<OperatorType.Eq> {
-  valueType: EnumValueType;
   value: string;
 }
 export interface InOperator extends AbstractOperator<OperatorType.In> {
-  valueType: EnumValueType;
   values: string[];
 }
 
@@ -219,6 +218,12 @@ export interface EnumNode extends AbstractCustomizableNode<NodeType.Enum, {}> {
   items: EnumItemNode[];
 }
 
+export interface MultiEnumNode
+  extends AbstractCustomizableNode<NodeType.MultiEnum, {}> {
+  valueType: EnumValueType;
+  items: EnumItemNode[];
+}
+
 export const STRING_NODE_OPTIONS_SCHEMA = {
   type: "object",
   title: "String options",
@@ -259,6 +264,7 @@ export type Node =
   | ArrayNode
   | GridNode
   | EnumNode
+  | MultiEnumNode
   | EnumItemNode
   | StringNode
   | NumberNode
@@ -277,7 +283,8 @@ export const CUSTOMIZABLE_TYPE_TITLES: Record<CustomizableNodeType, string> = {
   [NodeType.Object]: "Group",
   [NodeType.Array]: "List",
   [NodeType.Grid]: "Grid",
-  [NodeType.Enum]: "Enum",
+  [NodeType.Enum]: "Choice",
+  [NodeType.MultiEnum]: "Multi choice",
   [NodeType.String]: "String",
   [NodeType.Number]: "Number",
   [NodeType.Boolean]: "Boolean",
@@ -300,7 +307,10 @@ const NODE_OPTIONS_SCHEMAS = {
     GRID_NODE_OPTIONS_SCHEMA
   ),
   [NodeType.Enum]: mergeSchemas(COMMON_OPTIONS_SCHEMA, {
-    title: "Enum options",
+    title: "Choice options",
+  }),
+  [NodeType.MultiEnum]: mergeSchemas(COMMON_OPTIONS_SCHEMA, {
+    title: "Multi choice options",
   }),
   [NodeType.String]: mergeSchemas(
     COMMON_OPTIONS_SCHEMA,
@@ -333,6 +343,9 @@ const NODE_OPTIONS_UI_SCHEMAS = {
     ...COMMON_UI_SCHEMA,
   },
   [NodeType.Enum]: {
+    ...COMMON_UI_SCHEMA,
+  },
+  [NodeType.MultiEnum]: {
     ...COMMON_UI_SCHEMA,
   },
   [NodeType.String]: {

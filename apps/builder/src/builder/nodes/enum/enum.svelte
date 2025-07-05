@@ -1,11 +1,5 @@
 <script lang="ts">
-  import {
-    ENUM_VALUE_TYPE_TITLES,
-    ENUM_VALUE_TYPES,
-    type NodeType,
-  } from "$lib/builder/index.js";
-  import { Label } from "$lib/components/ui/label/index.js";
-  import * as Select from "$lib/components/ui/select/index.js";
+  import type { NodeType } from "$lib/builder/index.js";
 
   import type { NodeProps } from "../../model.js";
   import NodeContainer from "../../node-container.svelte";
@@ -18,9 +12,7 @@
     node = $bindable(),
     draggable,
     unmount,
-  }: NodeProps<NodeType.Enum> = $props();
-
-  const selectId = $props.id();
+  }: NodeProps<NodeType.Enum> | NodeProps<NodeType.MultiEnum> = $props();
 </script>
 
 <NodeContainer bind:node {draggable}>

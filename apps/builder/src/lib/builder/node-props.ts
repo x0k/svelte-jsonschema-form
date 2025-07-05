@@ -1,5 +1,15 @@
 import type { Node, NodeId } from "./node.js";
-import { isCustomizableNode, isGridNode, isObjectNode } from "./node-guards.js";
+import {
+  isBooleanNode,
+  isCustomizableNode,
+  isEnumNode,
+  isGridNode,
+  isMultiEnumNode,
+  isObjectNode,
+} from "./node-guards.js";
+import { DEFAULT_BOOLEAN_ENUM } from "@sjsf/form";
+import { label } from "@sjsf/shadcn4-theme/components/exports";
+import { EnumValueType } from "./enum.js";
 
 export function getNodeTitle(node: Node): string | undefined {
   return isCustomizableNode(node) ? node.options.title : undefined;
@@ -29,4 +39,31 @@ export function getNodeProperty(n: Node, propertyId: NodeId) {
     return n.cells.find((c) => c.node.id === propertyId)?.node;
   }
   return undefined;
+}
+
+export interface NodeOption {
+  id: string;
+  label: string;
+  value: string;
+}
+
+const BOOLEAN_OPTIONS: NodeOption[] = DEFAULT_BOOLEAN_ENUM.map((v, i) => ({
+  id: `bool::${i}`,
+  label: String(v),
+  value: JSON.stringify(v),
+}));
+
+export function getNodeOptions(node: Node): NodeOption[] {
+  if (isBooleanNode(node)) {
+    return BOOLEAN_OPTIONS;
+  }
+  if (isEnumNode(node) || isMultiEnumNode(node)) {
+    const isJson = node.valueType === EnumValueType.JSON;
+    return node.items.map((item) => ({
+      id: item.id,
+      label: item.label,
+      value: isJson ? item.value : JSON.stringify(item.value),
+    }));
+  }
+  return [];
 }

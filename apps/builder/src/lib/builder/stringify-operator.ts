@@ -35,7 +35,7 @@ export function stringifyOperator(
       if (operator.operand === undefined) {
         return {
           ok: false,
-          value: `not(<undefined>)`,
+          value: `${operator.op}(<undefined>)`,
         };
       }
       const r = stringifyOperator(operator.operand, node);
@@ -47,14 +47,14 @@ export function stringifyOperator(
     case OperatorType.Eq: {
       return {
         ok: true,
-        value: `eq(${operator.valueType === EnumValueType.JSON ? operator.value : JSON.stringify(operator.value)})`,
+        value: `${operator.op}(${operator.valueType === EnumValueType.JSON ? operator.value : JSON.stringify(operator.value)})`,
       };
     }
     case OperatorType.In: {
       const haveItems = operator.values.length > 0;
       return {
         ok: haveItems,
-        value: `in(${
+        value: `${operator.op}(${
           haveItems
             ? (operator.valueType === EnumValueType.JSON
                 ? operator.values
@@ -64,7 +64,6 @@ export function stringifyOperator(
         })`,
       };
     }
-    case OperatorType.HasProperty:
     case OperatorType.Pattern: {
       const ok =
         operator.op !== OperatorType.Pattern || isValidRegExp(operator.value);
@@ -79,6 +78,17 @@ export function stringifyOperator(
         value: operator.op,
       };
     }
+    case OperatorType.HasProperty: {
+      const prop =
+        node &&
+        operator.propertyId &&
+        getNodeProperty(node, operator.propertyId);
+      const propTitle = (prop && getNodeTitle(prop)) ?? operator.propertyId;
+      return {
+        ok: prop !== undefined,
+        value: `${operator.op}(${propTitle ? `"${propTitle}"` : "<undefined>"})`,
+      };
+    }
     case OperatorType.Property: {
       const prop =
         node &&
@@ -88,7 +98,7 @@ export function stringifyOperator(
       const propTitle = (prop && getNodeTitle(prop)) ?? operator.propertyId;
       return {
         ok: r?.ok === true,
-        value: `property(${propTitle ? `"${propTitle}"` : "<undefined>"}, ${r?.value ?? "<undefined>"})`,
+        value: `${operator.op}(${propTitle ? `"${propTitle}"` : "<undefined>"}, ${r?.value ?? "<undefined>"})`,
       };
     }
     default: {

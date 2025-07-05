@@ -96,6 +96,7 @@ export class BuilderContext {
   #onDragStartHandlers = new Map<UniqueId, () => void>();
   #beforeDropHandlers = new Map<UniqueId, () => void>();
   #dropHandlers = new Map<UniqueId, (node: Node) => void>();
+  #draggedNode = $state.raw<Node>();
 
   rootNode = $state<CustomizableNode>(obj);
 
@@ -142,13 +143,20 @@ export class BuilderContext {
     onDestroy(() => {
       this.#dnd.destroy();
     });
-    this.#dnd.monitor.addEventListener("beforedragstart", (event) => {
-      const sId = event.operation.source?.id;
-      this.#sourceId = sId;
-      if (sId !== undefined) {
-        this.#onDragStartHandlers.get(sId)?.();
+    this.#dnd.monitor.addEventListener(
+      "beforedragstart",
+      ({ operation: { source } }) => {
+        if (source === null) {
+          return;
+        }
+        const { id, data } = source;
+        this.#sourceId = id;
+        if (id !== undefined) {
+          this.#onDragStartHandlers.get(id)?.();
+          this.#draggedNode = data.node;
+        }
       }
-    });
+    );
     this.#dnd.monitor.addEventListener("dragover", (event) => {
       this.#targetId = event.operation.target?.id;
     });
@@ -157,6 +165,7 @@ export class BuilderContext {
       ({ operation: { target, source } }) => {
         this.#sourceId = undefined;
         this.#targetId = undefined;
+        this.#draggedNode = undefined;
         const tId = target?.id;
         if (tId === undefined || source === null) {
           return;
@@ -199,6 +208,11 @@ export class BuilderContext {
     });
     const self = this;
     return {
+      get isReady() {
+        return (
+          self.#draggedNode === undefined || options.accept(self.#draggedNode)
+        );
+      },
       get isOver() {
         return self.#targetId === id;
       },

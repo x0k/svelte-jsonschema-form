@@ -3,20 +3,21 @@ import { OperatorType } from "./operator.js";
 import { createNodeTraverser } from "./node-traverser.js";
 
 const objectOperators = [OperatorType.HasProperty, OperatorType.Property];
+const multiEnumOperators = [
+  OperatorType.Contains,
+  OperatorType.MinItems,
+  OperatorType.MaxItems,
+];
 const NODE_TO_OPERATORS: Record<NodeType, OperatorType[]> = {
   [NodeType.Object]: [OperatorType.HasProperty, OperatorType.Property],
   [NodeType.ObjectProperty]: [],
   [NodeType.ObjectPropertyDependency]: [],
   [NodeType.Predicate]: [],
   [NodeType.Operator]: [],
-  [NodeType.Array]: [
-    OperatorType.Contains,
-    OperatorType.MinItems,
-    OperatorType.MaxItems,
-    OperatorType.UniqueItems,
-  ],
+  [NodeType.Array]: multiEnumOperators.concat(OperatorType.UniqueItems),
   [NodeType.Grid]: objectOperators,
   [NodeType.Enum]: [],
+  [NodeType.MultiEnum]: multiEnumOperators,
   [NodeType.EnumItem]: [],
   [NodeType.String]: [
     OperatorType.Pattern,

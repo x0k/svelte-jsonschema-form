@@ -55,7 +55,17 @@ const NODE_FACTORIES = {
     valueType: EnumValueType.String,
     items: [],
     options: {
-      title: "Enum field",
+      title: "Choice field",
+      required: true,
+    },
+  }),
+  [NodeType.MultiEnum]: (id) => ({
+    id,
+    type: NodeType.MultiEnum,
+    valueType: EnumValueType.String,
+    items: [],
+    options: {
+      title: "Multi choice field",
       required: true,
     },
   }),
@@ -73,16 +83,16 @@ const NODE_FACTORIES = {
     options: {
       title: "Number field",
       required: true,
-    }
+    },
   }),
   [NodeType.Boolean]: (id) => ({
     id,
     type: NodeType.Boolean,
     options: {
       title: "Boolean field",
-      required: true
-    }
-  })
+      required: true,
+    },
+  }),
 } as const satisfies {
   [T in CustomizableNode["type"]]: (
     id: NodeId
@@ -130,7 +140,6 @@ export function createOperatorNode(op: OperatorType): OperatorNode {
         valueType: EnumValueType.String,
         values: [],
       };
-    case OperatorType.HasProperty:
     case OperatorType.Pattern:
       return {
         id,
@@ -143,6 +152,14 @@ export function createOperatorNode(op: OperatorType): OperatorNode {
         id,
         type,
         op,
+      };
+    }
+    case OperatorType.HasProperty: {
+      return {
+        id,
+        type,
+        op,
+        propertyId: undefined,
       };
     }
     case OperatorType.Property: {

@@ -86,3 +86,9 @@ export const isCustomizableOrPropertyNode = (
   isCustomizableNode(node) || isObjectPropertyNode(node);
 
 export const isEnumItemNode = createNodeGuard(NodeType.EnumItem);
+
+export const isEnumNode = createNodeGuard(NodeType.Enum)
+
+export const isMultiEnumNode = createNodeGuard(NodeType.MultiEnum)
+
+export const isBooleanNode = createNodeGuard(NodeType.Boolean)
