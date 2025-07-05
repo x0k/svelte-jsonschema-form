@@ -3,8 +3,7 @@ import { isValidRegExp } from "$lib/reg-exp.js";
 import { EnumValueType } from "./enum.js";
 import { OperatorType } from "./operator.js";
 import { type Node, type Operator } from "./node.js";
-import { isObjectNode } from "./node-guards.js";
-import { getNodeTitle } from "./node-props.js";
+import { getNodeProperty, getNodeTitle } from "./node-props.js";
 
 export type StringifiedOperator = { ok: boolean; value: string };
 
@@ -83,11 +82,9 @@ export function stringifyOperator(
     case OperatorType.Property: {
       const prop =
         node &&
-        isObjectNode(node) &&
-        node.properties.find((p) => p.id === operator.propertyId)?.property;
-      const r =
-        operator.operator &&
-        stringifyOperator(operator.operator, prop || undefined);
+        operator.propertyId &&
+        getNodeProperty(node, operator.propertyId);
+      const r = operator.operator && stringifyOperator(operator.operator, prop);
       const propTitle = (prop && getNodeTitle(prop)) ?? operator.propertyId;
       return {
         ok: r?.ok === true,

@@ -12,6 +12,7 @@
     OPERATOR_TITLES,
     type NodeType,
     type NOperator,
+    isHasPropertyOperator,
   } from "$lib/builder/index.js";
 
   import type { NodeProps } from "../../model.js";
@@ -25,7 +26,7 @@
   import ComparisonOperator from "./comparison-operator.svelte";
   import EqOperator from "./eq-operator.svelte";
   import PropertyOperator from "./property-operator.svelte";
-  import { setPredicateContext } from "./context.js";
+  import HasPropertyOperator from "./has-property-operator.svelte";
 
   let {
     node = $bindable(),
@@ -65,5 +66,7 @@
     <EqOperator bind:node />
   {:else if isPropertyOperator(node)}
     <PropertyOperator bind:node />
+  {:else if isHasPropertyOperator(node)}
+    <HasPropertyOperator bind:node />
   {/if}
 </Container>

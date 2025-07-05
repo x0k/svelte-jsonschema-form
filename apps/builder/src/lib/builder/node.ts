@@ -24,6 +24,8 @@ export enum NodeType {
   Enum = "enum",
   EnumItem = "enum-item",
   String = "string",
+  Number = "number",
+  Boolean = "boolean",
 }
 
 export type NodeId = Brand<"node-id">;
@@ -108,6 +110,11 @@ export interface PropertyOperator
   operator: OperatorNode | undefined;
 }
 
+export interface HasPropertyOperator
+  extends AbstractOperator<OperatorType.HasProperty> {
+  propertyId: NodeId | undefined;
+}
+
 type AbstractOperators = {
   [T in UOperatorType]: AbstractUOperator<T>;
 } & {
@@ -133,6 +140,7 @@ export type Operator =
   | NOperator
   | SOperator
   | ComparisonOperator
+  | HasPropertyOperator
   | PropertyOperator;
 
 export type OperatorNode = AbstractNode<NodeType.Operator> & Operator;
@@ -238,6 +246,12 @@ export type StringNodeOptions = FromSchema<typeof STRING_NODE_OPTIONS_SCHEMA>;
 export interface StringNode
   extends AbstractCustomizableNode<NodeType.String, StringNodeOptions> {}
 
+export interface NumberNode
+  extends AbstractCustomizableNode<NodeType.Number, {}> {}
+
+export interface BooleanNode
+  extends AbstractCustomizableNode<NodeType.Boolean, {}> {}
+
 export type Node =
   | ObjectNode
   | ObjectPropertyNode
@@ -247,6 +261,8 @@ export type Node =
   | EnumNode
   | EnumItemNode
   | StringNode
+  | NumberNode
+  | BooleanNode
   | PredicateNode
   | OperatorNode;
 
@@ -263,6 +279,8 @@ export const CUSTOMIZABLE_TYPE_TITLES: Record<CustomizableNodeType, string> = {
   [NodeType.Grid]: "Grid",
   [NodeType.Enum]: "Enum",
   [NodeType.String]: "String",
+  [NodeType.Number]: "Number",
+  [NodeType.Boolean]: "Boolean",
 };
 
 export const CUSTOMIZABLE_TYPES = Object.keys(
@@ -288,6 +306,12 @@ const NODE_OPTIONS_SCHEMAS = {
     COMMON_OPTIONS_SCHEMA,
     STRING_NODE_OPTIONS_SCHEMA
   ),
+  [NodeType.Number]: mergeSchemas(COMMON_OPTIONS_SCHEMA, {
+    title: "Number options",
+  }),
+  [NodeType.Boolean]: mergeSchemas(COMMON_OPTIONS_SCHEMA, {
+    title: "Boolean options",
+  }),
 } satisfies Record<CustomizableNodeType, Schema>;
 
 const COMMON_UI_SCHEMA: UiSchemaRoot = {
@@ -312,6 +336,12 @@ const NODE_OPTIONS_UI_SCHEMAS = {
     ...COMMON_UI_SCHEMA,
   },
   [NodeType.String]: {
+    ...COMMON_UI_SCHEMA,
+  },
+  [NodeType.Number]: {
+    ...COMMON_UI_SCHEMA,
+  },
+  [NodeType.Boolean]: {
     ...COMMON_UI_SCHEMA,
   },
 } satisfies Record<CustomizableNodeType, UiSchemaRoot>;

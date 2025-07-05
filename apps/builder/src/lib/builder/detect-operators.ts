@@ -23,6 +23,14 @@ const NODE_TO_OPERATORS: Record<NodeType, OperatorType[]> = {
     OperatorType.MinLength,
     OperatorType.MaxLength,
   ],
+  [NodeType.Number]: [
+    OperatorType.Less,
+    OperatorType.LessOrEq,
+    OperatorType.Greater,
+    OperatorType.GreaterOrEq,
+    OperatorType.MultipleOf,
+  ],
+  [NodeType.Boolean]: [],
 };
 
 const COMMON_OPERATORS = [

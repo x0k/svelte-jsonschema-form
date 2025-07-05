@@ -67,6 +67,22 @@ const NODE_FACTORIES = {
       required: true,
     },
   }),
+  [NodeType.Number]: (id) => ({
+    id,
+    type: NodeType.Number,
+    options: {
+      title: "Number field",
+      required: true,
+    }
+  }),
+  [NodeType.Boolean]: (id) => ({
+    id,
+    type: NodeType.Boolean,
+    options: {
+      title: "Boolean field",
+      required: true
+    }
+  })
 } as const satisfies {
   [T in CustomizableNode["type"]]: (
     id: NodeId

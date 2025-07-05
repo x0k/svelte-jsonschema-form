@@ -1,15 +1,15 @@
 <script lang="ts">
+  import { untrack } from "svelte";
+
   import {
     getNodeProperties,
-    getNodeTitle,
-    isObjectNode,
+    getNodeProperty,
     type PropertyOperator,
   } from "$lib/builder/index.js";
-  import * as Select from "$lib/components/ui/select/index.js";
-  import { untrack } from "svelte";
 
   import { getPredicateContext, setPredicateContext } from "./context.js";
   import OperatorDropzone from "./operator-dropzone.svelte";
+  import PropertySelect from "./property-select.svelte";
 
   interface Props {
     node: PropertyOperator;
@@ -19,24 +19,25 @@
 
   const pCtx = getPredicateContext();
 
-  const n = $derived(pCtx.node);
-
-  const properties = $derived(getNodeProperties(n));
-
-  $effect(() => {
-    const pId = node.propertyId;
-    if (pId === undefined || properties.has(pId)) {
-      return;
-    }
-    node.propertyId = undefined;
-    node.operator = undefined;
-  });
-
+  const properties = $derived(getNodeProperties(pCtx.node));
   const selectedNode = $derived(
-    node.propertyId !== undefined && isObjectNode(n)
-      ? n.properties.find((p) => p.id === node.propertyId)?.property
+    node.propertyId !== undefined
+      ? getNodeProperty(pCtx.node, node.propertyId)
       : undefined
   );
+
+  $effect(() => {
+    properties;
+    untrack(() => {
+      const pId = node.propertyId;
+      if (pId === undefined || properties.has(pId)) {
+        return;
+      }
+      node.propertyId = undefined;
+      node.operator = undefined;
+    });
+  });
+
   setPredicateContext({
     get node() {
       return selectedNode!;
@@ -45,20 +46,7 @@
 </script>
 
 <div class="flex flex-col gap-2">
-  <Select.Root
-    type="single"
-    disabled={properties.size === 0}
-    bind:value={node.propertyId}
-  >
-    <Select.Trigger class="w-full">
-      {(selectedNode && getNodeTitle(selectedNode)) ?? "Select some property"}
-    </Select.Trigger>
-    <Select.Content>
-      {#each properties as [id, title] (id)}
-        <Select.Item value={id}>{title}</Select.Item>
-      {/each}
-    </Select.Content>
-  </Select.Root>
+  <PropertySelect bind:value={node.propertyId} {properties} />
   {#if selectedNode}
     <OperatorDropzone bind:node={node.operator} />
   {/if}

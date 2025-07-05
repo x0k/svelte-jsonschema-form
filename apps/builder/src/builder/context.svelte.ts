@@ -9,6 +9,9 @@ import {
   type ObjectNode,
   type CustomizableNode,
   createObjectPropertyDependency,
+  createPredicate,
+  createOperatorNode,
+  OperatorType,
 } from "$lib/builder/index.js";
 
 const BUILDER_CONTEXT = Symbol("builder-context");
@@ -71,8 +74,15 @@ const noopReadonlyNodeRef: ReadonlyNodeRef = {
 };
 
 const obj = createNode(NodeType.Object) as ObjectNode;
-const prop = createObjectProperty(createNode(NodeType.String));
+const obj2 = createNode(NodeType.Object) as ObjectNode;
+obj2.properties.push(createObjectProperty(createNode(NodeType.String)));
+obj2.properties.push(createObjectProperty(createNode(NodeType.Number)));
+const prop = createObjectProperty(obj2);
 const dep = createObjectPropertyDependency();
+const pred = createPredicate();
+const op = createOperatorNode(OperatorType.Property);
+pred.operator = op;
+dep.predicate = pred;
 prop.dependencies.push(dep);
 prop.complementary = undefined;
 obj.properties.push(prop);

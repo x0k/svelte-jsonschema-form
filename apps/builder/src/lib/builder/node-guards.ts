@@ -54,6 +54,10 @@ export const isUniqueItemsOperator = createOperatorGuard(
 
 export const isPropertyOperator = createOperatorGuard(OperatorType.Property);
 
+export const isHasPropertyOperator = createOperatorGuard(
+  OperatorType.HasProperty
+);
+
 export const isCustomizableNode = (node: Node): node is CustomizableNode =>
   node.type in CUSTOMIZABLE_TYPE_TITLES;
 
@@ -63,6 +67,8 @@ const createNodeGuard =
     node.type === type;
 
 export const isObjectNode = createNodeGuard(NodeType.Object);
+
+export const isGridNode = createNodeGuard(NodeType.Grid);
 
 export const isPredicateNode = createNodeGuard(NodeType.Predicate);
 

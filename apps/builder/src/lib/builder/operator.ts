@@ -77,7 +77,7 @@ export const U_OPERATORS_SET = new Set<OperatorType>(U_OPERATORS);
 
 export type UOperatorType = (typeof U_OPERATORS)[number];
 
-const S_OPERATORS = [OperatorType.Pattern, OperatorType.HasProperty] as const;
+const S_OPERATORS = [OperatorType.Pattern] as const;
 
 export const S_OPERATORS_SET = new Set<OperatorType>(S_OPERATORS);
 
