@@ -42,7 +42,7 @@
           role="combobox"
           aria-expanded={open}
         >
-          {selectedValue || "Select some option"}
+          {selectedValue ?? "Select some option"}
           <ChevronsUpDownIcon class="opacity-50" />
         </Button>
       {/snippet}

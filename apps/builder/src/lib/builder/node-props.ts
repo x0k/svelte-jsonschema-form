@@ -1,5 +1,8 @@
+import { DEFAULT_BOOLEAN_ENUM } from "@sjsf/form";
+
 import type { Node, NodeId } from "./node.js";
 import {
+  isArrayNode,
   isBooleanNode,
   isCustomizableNode,
   isEnumNode,
@@ -7,8 +10,6 @@ import {
   isMultiEnumNode,
   isObjectNode,
 } from "./node-guards.js";
-import { DEFAULT_BOOLEAN_ENUM } from "@sjsf/form";
-import { label } from "@sjsf/shadcn4-theme/components/exports";
 import { EnumValueType } from "./enum.js";
 
 export function getNodeTitle(node: Node): string | undefined {
@@ -66,4 +67,14 @@ export function getNodeOptions(node: Node): NodeOption[] {
     }));
   }
   return [];
+}
+
+export function getNodeChild(node: Node) {
+  if (isArrayNode(node)) {
+    return node.item;
+  }
+  if (isMultiEnumNode(node)) {
+    return node;
+  }
+  return undefined;
 }

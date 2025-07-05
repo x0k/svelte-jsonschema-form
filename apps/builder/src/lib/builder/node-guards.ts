@@ -48,6 +48,8 @@ export const isEqOperator = createOperatorGuard(OperatorType.Eq);
 
 export const isInOperator = createOperatorGuard(OperatorType.In);
 
+export const isContainsOperator = createOperatorGuard(OperatorType.Contains);
+
 export const isUniqueItemsOperator = createOperatorGuard(
   OperatorType.UniqueItems
 );
@@ -68,6 +70,8 @@ const createNodeGuard =
 
 export const isObjectNode = createNodeGuard(NodeType.Object);
 
+export const isArrayNode = createNodeGuard(NodeType.Array);
+
 export const isGridNode = createNodeGuard(NodeType.Grid);
 
 export const isPredicateNode = createNodeGuard(NodeType.Predicate);
@@ -87,8 +91,8 @@ export const isCustomizableOrPropertyNode = (
 
 export const isEnumItemNode = createNodeGuard(NodeType.EnumItem);
 
-export const isEnumNode = createNodeGuard(NodeType.Enum)
+export const isEnumNode = createNodeGuard(NodeType.Enum);
 
-export const isMultiEnumNode = createNodeGuard(NodeType.MultiEnum)
+export const isMultiEnumNode = createNodeGuard(NodeType.MultiEnum);
 
-export const isBooleanNode = createNodeGuard(NodeType.Boolean)
+export const isBooleanNode = createNodeGuard(NodeType.Boolean);

@@ -122,6 +122,8 @@ type AbstractOperators = {
   [T in SOperatorType]: AbstractSOperator<T>;
 };
 
+export type ContainsOperator = AbstractOperators[OperatorType.Contains];
+
 export type UOperator = AbstractOperators[UOperatorType];
 
 export type NOperator = AbstractOperators[NOperatorType];

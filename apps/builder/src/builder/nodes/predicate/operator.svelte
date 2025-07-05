@@ -13,6 +13,7 @@
     type NodeType,
     type NOperator,
     isHasPropertyOperator,
+    isContainsOperator,
   } from "$lib/builder/index.js";
 
   import type { NodeProps } from "../../model.js";
@@ -28,6 +29,7 @@
   import PropertyOperator from "./property-operator.svelte";
   import HasPropertyOperator from "./has-property-operator.svelte";
   import InOperator from "./in-operator.svelte";
+  import ContainsOperator from "./contains-operator.svelte";
 
   let {
     node = $bindable(),
@@ -52,6 +54,8 @@
         (node as NOperator).operands.splice(index, 0, newNode);
       }}
     />
+  {:else if isContainsOperator(node)}
+    <ContainsOperator bind:node />
   {:else if isUOperator(node)}
     <OperatorDropzone bind:node={node.operand} />
   {:else if isSOperator(node)}

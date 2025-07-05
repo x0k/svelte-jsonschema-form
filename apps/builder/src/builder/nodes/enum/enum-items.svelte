@@ -72,7 +72,8 @@
 
   let inputEl = $state.raw<HTMLElement | null>(null);
 
-  function pushItem() {
+  function pushItem(e: Event) {
+    e.stopPropagation()
     items.push(createEnumItemNode(nextLabel, nextValue));
     nextLabel = "";
     nextValue = toValue("");
@@ -82,7 +83,7 @@
   function onEnter(e: KeyboardEvent) {
     if (e.code === "Enter") {
       e.preventDefault();
-      pushItem();
+      pushItem(e);
     }
   }
 
