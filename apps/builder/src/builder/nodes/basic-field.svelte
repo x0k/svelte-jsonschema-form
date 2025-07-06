@@ -1,5 +1,5 @@
-<script lang="ts">
-  import type { NodeType } from "$lib/builder/index.js";
+<script lang="ts" generics="T extends CustomizableNodeType">
+  import type { CustomizableNodeType } from "$lib/builder/node.js";
 
   import type { NodeProps } from "../model.js";
   import NodeContainer from "../node-container.svelte";
@@ -10,7 +10,7 @@
     draggable,
     unmount,
     showRequired,
-  }: NodeProps<NodeType.Number> = $props();
+  }: NodeProps<T> = $props();
 </script>
 
 <NodeContainer bind:node {draggable} {showRequired}>

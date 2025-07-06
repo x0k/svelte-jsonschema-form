@@ -27,6 +27,8 @@ export enum NodeType {
   String = "string",
   Number = "number",
   Boolean = "boolean",
+  File = "file",
+  Tags = "tags",
 }
 
 export type NodeId = Brand<"node-id">;
@@ -377,6 +379,56 @@ export type BooleanOptions = FromSchema<typeof BOOLEAN_NODE_OPTIONS_SCHEMA>;
 export interface BooleanNode
   extends AbstractCustomizableNode<NodeType.Boolean, BooleanOptions> {}
 
+export const FILE_NODE_OPTIONS_SCHEMA = {
+  title: "File options",
+  type: "object",
+  properties: {
+    widget: {
+      title: "Widget",
+      type: "string",
+    },
+    multiple: {
+      title: "Multiple",
+      type: "boolean",
+    },
+  },
+  additionalProperties: false,
+} as const satisfies Schema;
+
+export type FileOptions = FromSchema<typeof FILE_NODE_OPTIONS_SCHEMA>;
+
+export interface FileNode
+  extends AbstractCustomizableNode<NodeType.File, FileOptions> {}
+
+export const TAGS_NODE_OPTIONS_SCHEMA = {
+  title: "Tags options",
+  type: "object",
+  properties: {
+    defaultValue: {
+      title: "Default value",
+      type: "array",
+      uniqueItems: true,
+      items: {
+        type: "string",
+      },
+    },
+    minItems: {
+      title: "Min items",
+      type: "number",
+    },
+    maxItems: {
+      title: "Max items",
+      type: "number",
+    },
+  },
+  additionalItems: false,
+} as const satisfies Schema;
+
+export type TagsOptions = FromSchema<typeof TAGS_NODE_OPTIONS_SCHEMA>;
+
+export interface TagsNode
+  extends AbstractCustomizableNode<NodeType.Tags, TagsOptions> {}
+
 export type Node =
   | ObjectNode
   | ObjectPropertyNode
@@ -389,6 +441,8 @@ export type Node =
   | StringNode
   | NumberNode
   | BooleanNode
+  | FileNode
+  | TagsNode
   | PredicateNode
   | OperatorNode;
 
@@ -408,6 +462,8 @@ export const CUSTOMIZABLE_TYPE_TITLES: Record<CustomizableNodeType, string> = {
   [NodeType.String]: "String",
   [NodeType.Number]: "Number",
   [NodeType.Boolean]: "Boolean",
+  [NodeType.File]: "File",
+  [NodeType.Tags]: "Tags",
 };
 
 export const CUSTOMIZABLE_TYPES = Object.keys(
@@ -443,6 +499,14 @@ export const NODE_OPTIONS_SCHEMAS = {
   [NodeType.Boolean]: mergeSchemas(
     COMMON_OPTIONS_SCHEMA,
     BOOLEAN_NODE_OPTIONS_SCHEMA
+  ),
+  [NodeType.File]: mergeSchemas(
+    COMMON_OPTIONS_SCHEMA,
+    FILE_NODE_OPTIONS_SCHEMA
+  ),
+  [NodeType.Tags]: mergeSchemas(
+    COMMON_OPTIONS_SCHEMA,
+    TAGS_NODE_OPTIONS_SCHEMA
   ),
 } satisfies Record<CustomizableNodeType, Schema>;
 
@@ -529,4 +593,11 @@ export const NODE_OPTIONS_UI_SCHEMAS = {
       },
     },
   },
+  [NodeType.File]: {
+    ...COMMON_UI_SCHEMA,
+    "ui:options": {
+      order: ["widget", "*"],
+    },
+  },
+  [NodeType.Tags]: COMMON_UI_SCHEMA,
 } satisfies Record<CustomizableNodeType, UiSchemaRoot>;

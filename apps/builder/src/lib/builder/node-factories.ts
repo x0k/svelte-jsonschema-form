@@ -93,6 +93,22 @@ const NODE_FACTORIES = {
       required: true,
     },
   }),
+  [NodeType.File]: (id) => ({
+    id,
+    type: NodeType.File,
+    options: {
+      title: "File field",
+      required: true,
+    },
+  }),
+  [NodeType.Tags]: (id) => ({
+    id,
+    type: NodeType.Tags,
+    options: {
+      title: "Tags field",
+      required: true,
+    },
+  }),
 } as const satisfies {
   [T in CustomizableNode["type"]]: (
     id: NodeId

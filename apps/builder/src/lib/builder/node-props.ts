@@ -9,6 +9,7 @@ import {
   isGridNode,
   isMultiEnumNode,
   isObjectNode,
+  isTagsNode,
 } from "./node-guards.js";
 import { EnumValueType } from "./enum.js";
 
@@ -73,7 +74,7 @@ export function getNodeChild(node: Node) {
   if (isArrayNode(node)) {
     return node.item;
   }
-  if (isMultiEnumNode(node)) {
+  if (isMultiEnumNode(node) || isTagsNode(node)) {
     return node;
   }
   return undefined;

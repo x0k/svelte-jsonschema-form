@@ -5,7 +5,6 @@
     type Node,
     type OperatorNode,
     isOperatorNode,
-    isMultiEnumNode,
     isContainsOperator,
   } from "$lib/builder/index.js";
 
@@ -36,8 +35,8 @@
       (node: Node): node is OperatorNode =>
         isOperatorNode(node) &&
         applicableOperators.has(node.op) &&
-        (!isMultiEnumNode(child) || !isContainsOperator(node))}
+        (!isContainsOperator(node) || child !== pCtx.node)}
   />
 {:else}
-  <div class="text-chart-5" >First, define the child element of the list</div>
+  <div class="text-chart-5">First, define the child element of the list</div>
 {/if}

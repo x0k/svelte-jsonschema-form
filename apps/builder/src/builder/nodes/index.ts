@@ -13,12 +13,12 @@ import {
 import { OperatorNode, Predicate } from "./predicate/index.js";
 import GridNode from "./grid.svelte";
 import ArrayNode from "./array.svelte";
-import StringNode from "./string.svelte";
-import NumberNode from "./number.svelte";
-import BooleanNode from "./boolean.svelte";
+import BasicField from "./basic-field.svelte";
+
+type NodeComponent<T extends NodeType> = Component<NodeProps<T>, {}, "node">;
 
 export const NODES: {
-  [T in NodeType]?: Component<NodeProps<T>, {}, "node">;
+  [T in NodeType]?: NodeComponent<T>;
 } = {
   [NodeType.Object]: ObjectNode,
   [NodeType.ObjectProperty]: ObjectPropertyNode,
@@ -29,11 +29,13 @@ export const NODES: {
   [NodeType.Grid]: GridNode,
   [NodeType.Enum]: EnumNode,
   [NodeType.MultiEnum]: EnumNode,
-  [NodeType.String]: StringNode,
-  [NodeType.Number]: NumberNode,
-  [NodeType.Boolean]: BooleanNode,
+  [NodeType.String]: BasicField,
+  [NodeType.Number]: BasicField,
+  [NodeType.Boolean]: BasicField,
+  [NodeType.File]: BasicField,
+  [NodeType.Tags]: BasicField,
 } satisfies {
-  [T in CustomizableNodeType]: Component<NodeProps<T>, {}, "node">;
+  [T in CustomizableNodeType]: NodeComponent<T>;
 } & {
-  [T in NodeType]?: Component<NodeProps<T>, {}, "node">;
+  [T in NodeType]?: NodeComponent<T>;
 };

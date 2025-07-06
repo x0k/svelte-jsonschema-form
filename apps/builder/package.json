@@ -32,6 +32,7 @@
     "@dnd-kit/dom": "^0.1.19",
     "@sjsf/ajv8-validator": "workspace:*",
     "@sjsf/form": "workspace:*",
+    "@sjsf/lucide-icons": "^2.1.1",
     "@sjsf/shadcn4-theme": "workspace:*",
     "ajv": "^8.17.1"
   }

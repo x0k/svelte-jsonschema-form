@@ -154,6 +154,9 @@ importers:
       '@sjsf/form':
         specifier: workspace:*
         version: link:../../packages/form
+      '@sjsf/lucide-icons':
+        specifier: ^2.1.1
+        version: 2.1.1(@lucide/svelte@0.522.0(svelte@5.34.7))(@sjsf/form@packages+form)(svelte@5.34.7)
       '@sjsf/shadcn4-theme':
         specifier: workspace:*
         version: link:../../packages/shadcn4-theme
@@ -2761,6 +2764,13 @@ packages:
     resolution: {integrity: sha512-b9hxoC5Be2IBkEhOA57VmN46Q50nfwcMi/xkTrfPiGWrcOf//dA+Za6ieNK/DdAA5teGDT3K+KEek4VpWrvB2A==}
     peerDependencies:
       esm-env: ^1.2.0
+      svelte: ^5.33.0
+
+  '@sjsf/lucide-icons@2.1.1':
+    resolution: {integrity: sha512-tlI+EoSrD2hxThYqDO2/PYYwhmrie1bd9V+prVSsF7yZ5A7oEVu0jK0RQH90M0Ywe8oV65Io6lKurKyXkUptMw==}
+    peerDependencies:
+      '@lucide/svelte': ^0.487.0
+      '@sjsf/form': ^2.1.1
       svelte: ^5.33.0
 
   '@sjsf/shadcn4-theme@2.0.0':
@@ -8023,6 +8033,12 @@ snapshots:
       esm-env: 1.2.2
       json-schema-merge-allof: 0.8.1
       jsonpointer: 5.0.1
+      svelte: 5.34.7
+
+  '@sjsf/lucide-icons@2.1.1(@lucide/svelte@0.522.0(svelte@5.34.7))(@sjsf/form@packages+form)(svelte@5.34.7)':
+    dependencies:
+      '@lucide/svelte': 0.522.0(svelte@5.34.7)
+      '@sjsf/form': link:packages/form
       svelte: 5.34.7
 
   '@sjsf/shadcn4-theme@2.0.0(@lucide/svelte@0.501.0(svelte@5.34.7))(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(bits-ui@2.8.8(@internationalized/date@3.8.2)(svelte@5.34.7))(clsx@2.1.1)(svelte@5.34.7)(tailwind-merge@3.3.1)(tailwind-variants@1.0.0(tailwindcss@4.1.10))':
