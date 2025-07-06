@@ -60,7 +60,14 @@
         disabled: false,
       }));
     }
-    return createOptions(ctx, config, uiOption, config.schema) ?? [];
+    return (
+      createOptions(
+        ctx,
+        config,
+        uiOption,
+        Object.setPrototypeOf({ enum: enumValues }, config.schema)
+      ) ?? []
+    );
   });
 
   const handlers = makeEventHandlers(ctx, () =>
