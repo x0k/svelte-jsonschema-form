@@ -9,11 +9,11 @@
 
   import {
     getBuilderContext,
-    getNodeContext,
     type NodeRef,
   } from "./context.svelte.js";
   import DropZone from "./drop-zone.svelte";
   import RootNode from "./root-node.svelte";
+  import { getNodeContext } from './node-context.js';
 
   interface Props {
     node: Node | undefined;

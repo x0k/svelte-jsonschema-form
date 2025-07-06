@@ -1,7 +1,8 @@
 <script lang="ts" generics="N extends Node">
   import type { Node } from "$lib/builder/index.js";
 
-  import { getBuilderContext, getNodeContext } from "./context.svelte.js";
+  import { getBuilderContext } from "./context.svelte.js";
+  import { getNodeContext } from "./node-context.js";
   import DropZone from "./drop-zone.svelte";
   import DropIndicator from "./drop-indicator.svelte";
   import RootNode from "./root-node.svelte";
@@ -10,7 +11,7 @@
     nodes: Node[];
     onDrop: (node: N, index: number) => void;
     accept: (node: Node) => node is N;
-    showRequired: boolean
+    showRequired: boolean;
   }
 
   const { showRequired, nodes = $bindable(), onDrop, accept }: Props = $props();

@@ -12,6 +12,7 @@ import {
   type UOperatorType,
 } from "./operator.js";
 import { EnumValueType } from "./enum.js";
+import { mergeUiSchemas } from "$lib/sjsf.js";
 
 export enum NodeType {
   Object = "object",
@@ -241,6 +242,7 @@ export const ENUM_OPTIONS_SCHEMA = {
     defaultValue: {
       title: "Default value",
       type: "string",
+      format: "json",
     },
   },
   additionalProperties: false,
@@ -268,6 +270,7 @@ export const MULTI_ENUM_OPTIONS_SCHEMA = {
       uniqueItems: true,
       items: {
         type: "string",
+        format: "json"
       },
     },
     minItems: {
@@ -511,9 +514,21 @@ export const NODE_OPTIONS_SCHEMAS = {
 } satisfies Record<CustomizableNodeType, Schema>;
 
 const COMMON_UI_SCHEMA: UiSchemaRoot = {
+  "ui:options": {
+    titleAttributes: {
+      class: "font-medium text-md py-2",
+    },
+  },
   description: {
     "ui:components": {
       textWidget: "textareaWidget",
+    },
+  },
+  defaultValue: {
+    "ui:options": {
+      titleAttributes: {
+        class: "font-medium text-md",
+      },
     },
   },
 };
@@ -521,8 +536,7 @@ const COMMON_UI_SCHEMA: UiSchemaRoot = {
 export const NODE_OPTIONS_UI_SCHEMAS = {
   [NodeType.Object]: COMMON_UI_SCHEMA,
   [NodeType.Array]: COMMON_UI_SCHEMA,
-  [NodeType.Grid]: {
-    ...COMMON_UI_SCHEMA,
+  [NodeType.Grid]: mergeUiSchemas(COMMON_UI_SCHEMA, {
     gap: {
       "ui:options": {
         shadcn4Text: {
@@ -530,9 +544,8 @@ export const NODE_OPTIONS_UI_SCHEMAS = {
         },
       },
     },
-  },
-  [NodeType.Enum]: {
-    ...COMMON_UI_SCHEMA,
+  }),
+  [NodeType.Enum]: mergeUiSchemas(COMMON_UI_SCHEMA, {
     "ui:options": {
       order: ["widget", "*"],
     },
@@ -543,9 +556,8 @@ export const NODE_OPTIONS_UI_SCHEMAS = {
         },
       },
     },
-  },
-  [NodeType.MultiEnum]: {
-    ...COMMON_UI_SCHEMA,
+  }),
+  [NodeType.MultiEnum]: mergeUiSchemas(COMMON_UI_SCHEMA, {
     "ui:options": {
       order: ["widget", "*"],
     },
@@ -561,21 +573,18 @@ export const NODE_OPTIONS_UI_SCHEMAS = {
         orderable: false,
       },
     },
-  },
-  [NodeType.String]: {
-    ...COMMON_UI_SCHEMA,
+  }),
+  [NodeType.String]: mergeUiSchemas(COMMON_UI_SCHEMA, {
     "ui:options": {
       order: ["widget", "*"],
     },
-  },
-  [NodeType.Number]: {
-    ...COMMON_UI_SCHEMA,
+  }),
+  [NodeType.Number]: mergeUiSchemas(COMMON_UI_SCHEMA, {
     "ui:options": {
       order: ["widget", "*"],
     },
-  },
-  [NodeType.Boolean]: {
-    ...COMMON_UI_SCHEMA,
+  }),
+  [NodeType.Boolean]: mergeUiSchemas(COMMON_UI_SCHEMA, {
     "ui:options": {
       order: ["widget", "*"],
     },
@@ -592,12 +601,11 @@ export const NODE_OPTIONS_UI_SCHEMAS = {
         },
       },
     },
-  },
-  [NodeType.File]: {
-    ...COMMON_UI_SCHEMA,
+  }),
+  [NodeType.File]: mergeUiSchemas(COMMON_UI_SCHEMA, {
     "ui:options": {
       order: ["widget", "*"],
     },
-  },
+  }),
   [NodeType.Tags]: COMMON_UI_SCHEMA,
 } satisfies Record<CustomizableNodeType, UiSchemaRoot>;

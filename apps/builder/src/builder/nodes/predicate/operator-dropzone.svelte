@@ -7,7 +7,8 @@
     isOperatorNode,
   } from "$lib/builder/index.js";
 
-  import { getBuilderContext, getNodeContext } from "../../context.svelte.js";
+  import { getBuilderContext } from "../../context.svelte.js";
+  import { getNodeContext } from "../../node-context.js";
   import DropZone from "../../drop-zone.svelte";
   import RootNode from "../../root-node.svelte";
   import { getPredicateContext } from "./context.js";

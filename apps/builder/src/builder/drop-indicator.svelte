@@ -3,9 +3,9 @@
 
   import {
     getBuilderContext,
-    getNodeContext,
     type DroppableOptions,
   } from "./context.svelte.js";
+  import { getNodeContext } from "./node-context.js";
 
   const options: DroppableOptions<N> = $props();
 

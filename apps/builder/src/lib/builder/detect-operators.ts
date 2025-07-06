@@ -43,14 +43,14 @@ const NODE_TO_OPERATORS: {
   [NodeType.Tags]: () => multiEnumOperators,
 };
 
-const COMMON_OPERATORS = [
+const COMMON_OPERATORS = new Set([
   OperatorType.And,
   OperatorType.Or,
   OperatorType.Xor,
   OperatorType.Not,
   OperatorType.Eq,
   OperatorType.In,
-];
+]);
 
 const detectOperators = createNodeTraverser({
   *onEnter(node) {

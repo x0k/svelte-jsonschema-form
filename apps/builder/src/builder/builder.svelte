@@ -1,5 +1,6 @@
 <script>
-  import { getBuilderContext, setNodeContext } from "./context.svelte.js";
+  import { getBuilderContext } from "./context.svelte.js";
+  import { setNodeContext } from './node-context.js';
   import SingleDropZone from "./single-dropzone.svelte";
 
   const ctx = getBuilderContext();

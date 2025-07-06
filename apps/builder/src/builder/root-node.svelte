@@ -1,11 +1,8 @@
 <script lang="ts">
   import type { Node } from "$lib/builder/index.js";
 
-  import {
-    getBuilderContext,
-    getNodeContext,
-    setNodeContext,
-  } from "./context.svelte.js";
+  import { getBuilderContext } from "./context.svelte.js";
+  import { getNodeContext, setNodeContext } from "./node-context.js";
   import { NODES } from "./nodes/index.js";
 
   interface Props {

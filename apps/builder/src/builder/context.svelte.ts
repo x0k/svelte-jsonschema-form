@@ -18,11 +18,13 @@ import {
   NODE_OPTIONS_SCHEMAS,
   NODE_OPTIONS_UI_SCHEMAS,
 } from "$lib/builder/index.js";
-import { Theme } from "$lib/sjsf.js";
+import { mergeUiSchemas, Theme } from "$lib/sjsf.js";
+
+import type { NodeContext } from "./node-context.js";
+import { THEME_SCHEMAS, THEME_UI_SCHEMAS } from "./theme-schemas.js";
+import { mergeSchemas } from "@sjsf/form/core";
 
 const BUILDER_CONTEXT = Symbol("builder-context");
-
-const NODE_CONTEXT = Symbol("node-context");
 
 export function setBuilderContext(ctx: BuilderContext) {
   setContext(BUILDER_CONTEXT, ctx);
@@ -30,18 +32,6 @@ export function setBuilderContext(ctx: BuilderContext) {
 
 export function getBuilderContext(): BuilderContext {
   return getContext(BUILDER_CONTEXT);
-}
-
-export interface NodeContext {
-  isDragged: boolean;
-}
-
-export function setNodeContext(ctx: NodeContext) {
-  setContext(NODE_CONTEXT, ctx);
-}
-
-export function getNodeContext(): NodeContext {
-  return getContext(NODE_CONTEXT);
 }
 
 type UniqueId = string | number;
@@ -280,13 +270,13 @@ export class BuilderContext {
   }
 
   nodeSchema(node: CustomizableNode) {
-    return NODE_OPTIONS_SCHEMAS[node.type];
+    const original = NODE_OPTIONS_SCHEMAS[node.type];
+    const augmentation = THEME_SCHEMAS[this.theme][node.type]?.(node as never);
+    return augmentation ? mergeSchemas(original, augmentation) : original;
   }
 
   nodeUiSchema(node: CustomizableNode) {
-    const { "ui:options": options, ...rest } = NODE_OPTIONS_UI_SCHEMAS[node.type]
-    return {
-      ...rest,
+    const next = mergeUiSchemas(NODE_OPTIONS_UI_SCHEMAS[node.type], {
       required: {
         "ui:options": {
           layouts: {
@@ -296,18 +286,11 @@ export class BuilderContext {
           },
         },
       },
-      "ui:globalOptions": {
-        titleAttributes: {
-          class: "font-medium text-md"
-        }
-      },
-      "ui:options": {
-        ...options,
-        titleAttributes: {
-          class: "font-medium text-md py-2"
-        }
-      }
-    } satisfies UiSchemaRoot
+    });
+    const augmentation = THEME_UI_SCHEMAS[this.theme][node.type]?.(
+      node as never
+    );
+    return augmentation ? mergeUiSchemas(next, augmentation as UiSchema) : next;
   }
 }
 

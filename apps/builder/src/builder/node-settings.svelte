@@ -9,7 +9,8 @@
 
   import type { CustomizableNode } from "$lib/builder/index.js";
   import * as defaults from "$lib/form/defaults.js";
-  import { getBuilderContext } from './context.svelte.js';
+
+  import { getBuilderContext } from "./context.svelte.js";
 
   interface Props {
     node: CustomizableNode;
@@ -17,15 +18,19 @@
 
   let { node = $bindable() }: Props = $props();
 
-  const ctx = getBuilderContext()
+  const ctx = getBuilderContext();
 
   const schema = ctx.nodeSchema(node);
   const uiSchema = ctx.nodeUiSchema(node);
   const form = createForm({
     ...defaults,
     initialValue: node.options,
-    schema,
-    uiSchema,
+    get schema() {
+      return schema;
+    },
+    get uiSchema() {
+      return uiSchema;
+    },
     fieldsValidationMode: ON_INPUT | ON_CHANGE,
     fieldsValidationDebounceMs: 200,
   });
