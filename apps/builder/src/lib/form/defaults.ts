@@ -8,6 +8,10 @@ import "@sjsf/shadcn4-theme/extra-widgets/radio-include";
 
 export { translation } from "@sjsf/form/translations/en";
 
-import { createFormValidator } from "@sjsf/ajv8-validator";
+import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 
-export const validator = createFormValidator();
+import { addJsonFormat } from "$lib/ajv.js";
+
+export const validator = createFormValidator({
+  ajvPlugins: (ajv) => addFormComponents(addJsonFormat(ajv)),
+});
