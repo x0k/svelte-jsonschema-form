@@ -10,9 +10,10 @@
     nodes: Node[];
     onDrop: (node: N, index: number) => void;
     accept: (node: Node) => node is N;
+    showRequired: boolean
   }
 
-  const { nodes = $bindable(), onDrop, accept }: Props = $props();
+  const { showRequired, nodes = $bindable(), onDrop, accept }: Props = $props();
 
   const ctx = getBuilderContext();
   const nodeCtx = getNodeContext();
@@ -39,6 +40,7 @@
       }}
     />
     <RootNode
+      {showRequired}
       bind:node={nodes[i]}
       unmount={() => {
         nodes.splice(i, 1);

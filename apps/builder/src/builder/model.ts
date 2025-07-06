@@ -5,5 +5,6 @@ import type { BuilderDraggable } from "./context.svelte.js";
 export interface NodeProps<T extends NodeType> {
   node: Extract<Node, AbstractNode<T>>;
   draggable: BuilderDraggable;
+  showRequired: boolean
   unmount: () => void;
 }

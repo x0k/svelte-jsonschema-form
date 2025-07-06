@@ -23,6 +23,7 @@
   {draggable}
   class="grid grid-cols-[auto_1fr_1fr_auto] gap-2 items-center"
   disableSelection
+  showRequired={false}
 >
   <div class="cursor-grab" {@attach draggable.attachHandle}>
     <GripVertical class="size-5" />

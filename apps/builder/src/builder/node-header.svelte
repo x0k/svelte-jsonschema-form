@@ -13,6 +13,7 @@
     unmount,
     append,
     disablePadding,
+    showRequired,
   }: NodeProps<CustomizableNodeType> & {
     draggable: BuilderDraggable;
     disablePadding?: boolean;
@@ -22,7 +23,7 @@
 
 <Header {draggable} {unmount} {disablePadding} {append}>
   {node.options.title}
-  {#if node.options.required}
+  {#if showRequired && node.options.required}
     <span>*</span>
   {/if}
 </Header>

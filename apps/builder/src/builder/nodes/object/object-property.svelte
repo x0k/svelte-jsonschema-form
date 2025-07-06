@@ -56,18 +56,20 @@
     "p-0 border-none relative bg-border flex flex-col gap-1",
     isSelected && "shadow-[inset_0_0_0_1px_var(--primary)]",
   ]}
+  showRequired
 >
   <Button
     class={[
       "absolute -bottom-11 left-1/2 -translate-x-1/2 z-10",
-      isSelected && !hasDeps && !draggable.isDragged ? "inline-flex" : "hidden",
+      isSelected && !hasDeps && !ctx.isDragged ? "inline-flex" : "hidden",
     ]}
     onclick={pushDependency}>Add dependency</Button
   >
-  <Property bind:node={node.property as never} {unmount} {draggable} />
+  <Property showRequired bind:node={node.property as never} {unmount} {draggable} />
   {#if hasDeps}
     <div class="flex flex-col gap-0.5 px-2 pb-4">
       <MultiDropzone
+        showRequired={false}
         bind:nodes={node.dependencies}
         accept={isObjectPropertyDependencyNode}
         onDrop={(newNode, i) => {

@@ -73,7 +73,7 @@
   let inputEl = $state.raw<HTMLElement | null>(null);
 
   function pushItem(e: Event) {
-    e.stopPropagation()
+    e.stopPropagation();
     items.push(createEnumItemNode(nextLabel, nextValue));
     nextLabel = "";
     nextValue = toValue("");
@@ -131,7 +131,13 @@
         items.splice(i, 0, item);
       }}
     />
-    <EnumItem bind:node={items[i]} {draggable} {toValue} {unmount} />
+    <EnumItem
+      showRequired={false}
+      bind:node={items[i]}
+      {draggable}
+      {toValue}
+      {unmount}
+    />
   {/each}
   <DropIndicator
     accept={isEnumItemNode}

@@ -5,16 +5,16 @@
     getBuilderContext,
     getNodeContext,
     setNodeContext,
-    type NodeContext,
   } from "./context.svelte.js";
   import { NODES } from "./nodes/index.js";
 
   interface Props {
     node: Node;
     unmount: () => void;
+    showRequired: boolean;
   }
 
-  let { node = $bindable(), unmount }: Props = $props();
+  let { node = $bindable(), unmount, showRequired }: Props = $props();
 
   const ctx = getBuilderContext();
 
@@ -25,15 +25,14 @@
     },
   });
 
-  const parentNodeCtx = getNodeContext();
-  const nodeCtx: NodeContext = {
+  const nodeCtx = getNodeContext();
+  setNodeContext({
     get isDragged() {
-      return parentNodeCtx.isDragged || draggable.isDragged;
+      return nodeCtx.isDragged || draggable.isDragged;
     },
-  };
-  setNodeContext(nodeCtx);
+  });
 
   const NodeComponent = $derived(NODES[node.type]);
 </script>
 
-<NodeComponent bind:node={node as never} {draggable} {unmount} />
+<NodeComponent bind:node={node as never} {draggable} {unmount} {showRequired} />

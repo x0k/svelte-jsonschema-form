@@ -42,12 +42,13 @@
   );
 </script>
 
-<Container bind:node {draggable} disableSelection>
+<Container bind:node {draggable} showRequired={false} disableSelection>
   <Header {draggable} {unmount} disablePadding={isMultiOrEmpty}>
     {OPERATOR_TITLES[node.op]}
   </Header>
   {#if isNOperator(node)}
     <MultiDropzone
+      showRequired={false}
       bind:nodes={node.operands}
       accept={isOperatorNode}
       onDrop={(newNode, index) => {

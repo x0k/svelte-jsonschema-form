@@ -18,10 +18,14 @@
   interface Props {
     node: Node | undefined;
     placeholder?: Snippet;
+    showRequired: boolean;
   }
 
-  let { node = $bindable(), placeholder = defaultPlaceholder }: Props =
-    $props();
+  let {
+    node = $bindable(),
+    placeholder = defaultPlaceholder,
+    showRequired,
+  }: Props = $props();
 
   const ctx = getBuilderContext();
   const nodeCtx = getNodeContext();
@@ -36,13 +40,13 @@
 </script>
 
 {#if node}
-  <RootNode bind:node unmount={() => (node = undefined)} />
+  <RootNode bind:node unmount={() => (node = undefined)} {showRequired} />
 {:else}
   {@const droppable = ctx.createDroppable(nodeCtx, {
     accept: isCustomizableOrPropertyNode,
     onDrop(newNode) {
       node = isObjectPropertyNode(newNode) ? newNode.property : newNode;
-      ctx.selectNode(nodeRef);
+      ctx.selectNode(nodeRef, showRequired);
     },
   })}
   <DropZone {placeholder} {droppable} />

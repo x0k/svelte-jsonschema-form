@@ -153,8 +153,17 @@ export interface ObjectPropertyNode
   dependencies: ObjectPropertyDependencyNode[];
 }
 
+export const OBJECT_NODE_OPTIONS_SCHEMA = {
+  title: "Group options",
+  type: "object",
+  properties: {},
+  additionalProperties: false,
+} as const satisfies Schema;
+
+export type ObjectOptions = FromSchema<typeof OBJECT_NODE_OPTIONS_SCHEMA>;
+
 export interface ObjectNode
-  extends AbstractCustomizableNode<NodeType.Object, {}> {
+  extends AbstractCustomizableNode<NodeType.Object, ObjectOptions> {
   properties: ObjectPropertyNode[];
 }
 
@@ -219,7 +228,26 @@ export interface EnumItemNode extends AbstractNode<NodeType.EnumItem> {
   value: string;
 }
 
-export interface EnumNode extends AbstractCustomizableNode<NodeType.Enum, {}> {
+export const ENUM_OPTIONS_SCHEMA = {
+  title: "Choice options",
+  type: "object",
+  properties: {
+    widget: {
+      title: "Widget",
+      type: "string",
+    },
+    defaultValue: {
+      title: "Default value",
+      type: "string",
+    },
+  },
+  additionalProperties: false,
+} as const satisfies Schema;
+
+export type EnumOptions = FromSchema<typeof ENUM_OPTIONS_SCHEMA>;
+
+export interface EnumNode
+  extends AbstractCustomizableNode<NodeType.Enum, EnumOptions> {
   valueType: EnumValueType;
   items: EnumItemNode[];
 }
@@ -228,6 +256,18 @@ export const MULTI_ENUM_OPTIONS_SCHEMA = {
   title: "Multi choice options",
   type: "object",
   properties: {
+    widget: {
+      title: "Widget",
+      type: "string",
+    },
+    defaultValue: {
+      title: "Default value",
+      type: "array",
+      uniqueItems: true,
+      items: {
+        type: "string",
+      },
+    },
     minItems: {
       title: "Min items",
       type: "number",
@@ -252,6 +292,14 @@ export const STRING_NODE_OPTIONS_SCHEMA = {
   type: "object",
   title: "String options",
   properties: {
+    widget: {
+      title: "Widget",
+      type: "string",
+    },
+    defaultValue: {
+      title: "Default value",
+      type: "string",
+    },
     maxLength: {
       title: "Max length",
       type: "number",
@@ -275,11 +323,59 @@ export type StringNodeOptions = FromSchema<typeof STRING_NODE_OPTIONS_SCHEMA>;
 export interface StringNode
   extends AbstractCustomizableNode<NodeType.String, StringNodeOptions> {}
 
+export const NUMBER_NODE_OPTIONS_SCHEMA = {
+  title: "Number options",
+  type: "object",
+  properties: {
+    widget: {
+      title: "Widget",
+      type: "string",
+    },
+    defaultValue: {
+      title: "Default value",
+      type: "number",
+    },
+    minimum: {
+      title: "Minimum",
+      type: "number",
+    },
+    maximum: {
+      title: "Maximum",
+      type: "number",
+    },
+    multipleOf: {
+      title: "Multiple of",
+      type: "number",
+    },
+  },
+  additionalProperties: false,
+} as const satisfies Schema;
+
+export type NumberOptions = FromSchema<typeof NUMBER_NODE_OPTIONS_SCHEMA>;
+
 export interface NumberNode
-  extends AbstractCustomizableNode<NodeType.Number, {}> {}
+  extends AbstractCustomizableNode<NodeType.Number, NumberOptions> {}
+
+export const BOOLEAN_NODE_OPTIONS_SCHEMA = {
+  title: "Boolean options",
+  type: "object",
+  properties: {
+    widget: {
+      title: "Widget",
+      type: "string",
+    },
+    defaultValue: {
+      title: "Default value",
+      type: "boolean",
+    },
+  },
+  additionalProperties: false,
+} as const satisfies Schema;
+
+export type BooleanOptions = FromSchema<typeof BOOLEAN_NODE_OPTIONS_SCHEMA>;
 
 export interface BooleanNode
-  extends AbstractCustomizableNode<NodeType.Boolean, {}> {}
+  extends AbstractCustomizableNode<NodeType.Boolean, BooleanOptions> {}
 
 export type Node =
   | ObjectNode
@@ -318,10 +414,11 @@ export const CUSTOMIZABLE_TYPES = Object.keys(
   CUSTOMIZABLE_TYPE_TITLES
 ) as CustomizableNodeType[];
 
-const NODE_OPTIONS_SCHEMAS = {
-  [NodeType.Object]: mergeSchemas(COMMON_OPTIONS_SCHEMA, {
-    title: "Group options",
-  }),
+export const NODE_OPTIONS_SCHEMAS = {
+  [NodeType.Object]: mergeSchemas(
+    COMMON_OPTIONS_SCHEMA,
+    OBJECT_NODE_OPTIONS_SCHEMA
+  ),
   [NodeType.Array]: mergeSchemas(
     COMMON_OPTIONS_SCHEMA,
     ARRAY_NODE_OPTIONS_SCHEMA
@@ -330,9 +427,7 @@ const NODE_OPTIONS_SCHEMAS = {
     COMMON_OPTIONS_SCHEMA,
     GRID_NODE_OPTIONS_SCHEMA
   ),
-  [NodeType.Enum]: mergeSchemas(COMMON_OPTIONS_SCHEMA, {
-    title: "Choice options",
-  }),
+  [NodeType.Enum]: mergeSchemas(COMMON_OPTIONS_SCHEMA, ENUM_OPTIONS_SCHEMA),
   [NodeType.MultiEnum]: mergeSchemas(
     COMMON_OPTIONS_SCHEMA,
     MULTI_ENUM_OPTIONS_SCHEMA
@@ -341,12 +436,14 @@ const NODE_OPTIONS_SCHEMAS = {
     COMMON_OPTIONS_SCHEMA,
     STRING_NODE_OPTIONS_SCHEMA
   ),
-  [NodeType.Number]: mergeSchemas(COMMON_OPTIONS_SCHEMA, {
-    title: "Number options",
-  }),
-  [NodeType.Boolean]: mergeSchemas(COMMON_OPTIONS_SCHEMA, {
-    title: "Boolean options",
-  }),
+  [NodeType.Number]: mergeSchemas(
+    COMMON_OPTIONS_SCHEMA,
+    NUMBER_NODE_OPTIONS_SCHEMA
+  ),
+  [NodeType.Boolean]: mergeSchemas(
+    COMMON_OPTIONS_SCHEMA,
+    BOOLEAN_NODE_OPTIONS_SCHEMA
+  ),
 } satisfies Record<CustomizableNodeType, Schema>;
 
 const COMMON_UI_SCHEMA: UiSchemaRoot = {
@@ -357,13 +454,9 @@ const COMMON_UI_SCHEMA: UiSchemaRoot = {
   },
 };
 
-const NODE_OPTIONS_UI_SCHEMAS = {
-  [NodeType.Object]: {
-    ...COMMON_UI_SCHEMA,
-  },
-  [NodeType.Array]: {
-    ...COMMON_UI_SCHEMA,
-  },
+export const NODE_OPTIONS_UI_SCHEMAS = {
+  [NodeType.Object]: COMMON_UI_SCHEMA,
+  [NodeType.Array]: COMMON_UI_SCHEMA,
   [NodeType.Grid]: {
     ...COMMON_UI_SCHEMA,
     gap: {
@@ -376,25 +469,51 @@ const NODE_OPTIONS_UI_SCHEMAS = {
   },
   [NodeType.Enum]: {
     ...COMMON_UI_SCHEMA,
+    defaultValue: {
+      "ui:options": {
+        shadcn4Text: {
+          placeholder: "Input JSON value",
+        },
+      },
+    },
+    "ui:options": {
+      order: ["widget", "*"],
+    },
   },
   [NodeType.MultiEnum]: {
     ...COMMON_UI_SCHEMA,
+    defaultValue: {
+      items: {
+        "ui:options": {
+          shadcn4Text: {
+            placeholder: "Input JSON value",
+          },
+        },
+      },
+      "ui:options": {
+        orderable: false,
+      },
+    },
+    "ui:options": {
+      order: ["widget", "*"],
+    },
   },
   [NodeType.String]: {
     ...COMMON_UI_SCHEMA,
+    "ui:options": {
+      order: ["widget", "*"],
+    },
   },
   [NodeType.Number]: {
     ...COMMON_UI_SCHEMA,
+    "ui:options": {
+      order: ["widget", "*"],
+    },
   },
   [NodeType.Boolean]: {
     ...COMMON_UI_SCHEMA,
+    "ui:options": {
+      order: ["widget", "*"],
+    },
   },
 } satisfies Record<CustomizableNodeType, UiSchemaRoot>;
-
-export function nodeSchema(node: CustomizableNode): Schema {
-  return NODE_OPTIONS_SCHEMAS[node.type];
-}
-
-export function nodeUiSchema(node: CustomizableNode): UiSchemaRoot {
-  return NODE_OPTIONS_UI_SCHEMAS[node.type];
-}

@@ -8,4 +8,4 @@
   });
 </script>
 
-<SingleDropZone bind:node={ctx.rootNode} />
+<SingleDropZone bind:node={ctx.rootNode} showRequired={false} />

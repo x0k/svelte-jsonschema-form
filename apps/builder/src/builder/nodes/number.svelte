@@ -9,9 +9,10 @@
     node = $bindable(),
     draggable,
     unmount,
+    showRequired,
   }: NodeProps<NodeType.Number> = $props();
 </script>
 
-<Container bind:node {draggable}>
-  <NodeHeader {node} {unmount} {draggable} disablePadding />
+<Container bind:node {draggable} {showRequired}>
+  <NodeHeader {node} {unmount} {draggable} {showRequired} disablePadding />
 </Container>

@@ -48,9 +48,11 @@
       bind:value
       onEnter={pushItem}
     />
-    <Button variant="outline" size="icon" class="size-8" onclick={pushItem}>
-      <Plus class="size-4" />
-    </Button>
+    {#if options.length === 0}
+      <Button variant="outline" size="icon" class="size-8" onclick={pushItem}>
+        <Plus class="size-4" />
+      </Button>
+    {/if}
   </div>
   {#each node.values as _, i}
     <div class="flex items-center gap-2">

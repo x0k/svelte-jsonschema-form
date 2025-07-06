@@ -10,10 +10,11 @@
     node = $bindable(),
     draggable,
     unmount,
+    showRequired
   }: NodeProps<NodeType.Array> = $props();
 </script>
 
-<NodeContainer bind:node {draggable}>
-  <NodeHeader {node} {draggable} {unmount} />
-  <SingleDropZone bind:node={node.item} />
+<NodeContainer bind:node {draggable} {showRequired}>
+  <NodeHeader {node} {draggable} {unmount} {showRequired} />
+  <SingleDropZone bind:node={node.item} showRequired={false} />
 </NodeContainer>

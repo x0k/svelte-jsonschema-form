@@ -12,10 +12,11 @@
   } from "./context.svelte.js";
 
   interface Props {
-    class?: ClassValue;
     node: Node;
     draggable: BuilderDraggable;
+    showRequired: boolean;
     children: Snippet;
+    class?: ClassValue;
     invalid?: boolean;
     disableSelection?: boolean;
     onSelect?: () => void
@@ -29,6 +30,7 @@
     invalid,
     disableSelection,
     onSelect,
+    showRequired,
   }: Props = $props();
 
   const ctx = getBuilderContext();
@@ -45,7 +47,7 @@
     if (disableSelection) {
       return;
     }
-    ctx.selectNode(nodeRef);
+    ctx.selectNode(nodeRef, showRequired);
     onSelect?.()
   };
 </script>

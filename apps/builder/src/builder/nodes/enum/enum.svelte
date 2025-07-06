@@ -12,11 +12,12 @@
     node = $bindable(),
     draggable,
     unmount,
+    showRequired,
   }: NodeProps<NodeType.Enum> | NodeProps<NodeType.MultiEnum> = $props();
 </script>
 
-<NodeContainer bind:node {draggable}>
-  <NodeHeader {node} {draggable} {unmount}>
+<NodeContainer bind:node {draggable} {showRequired}>
+  <NodeHeader {node} {draggable} {unmount} {showRequired}>
     {#snippet append()}
       <ValueTypeSelect bind:value={node.valueType} />
     {/snippet}

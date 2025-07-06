@@ -34,6 +34,7 @@
 
 {#if node}
   <RootNode
+    showRequired={false}
     bind:node
     unmount={() => {
       node = undefined;

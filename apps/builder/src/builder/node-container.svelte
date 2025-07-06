@@ -10,14 +10,16 @@
     node: Node;
     draggable: BuilderDraggable;
     children: Snippet;
+    showRequired: boolean
   }
 
-  let { children, node = $bindable(), draggable }: Props = $props();
+  let { children, node = $bindable(), draggable, showRequired }: Props = $props();
 </script>
 
 <Container
   bind:node
   {children}
   {draggable}
+  {showRequired}
   class="flex-1 flex flex-col gap-0.5"
 />

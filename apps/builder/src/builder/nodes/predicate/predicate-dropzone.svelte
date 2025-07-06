@@ -35,6 +35,7 @@
 
 {#if node.predicate}
   <RootNode
+    showRequired={false}
     bind:node={node.predicate}
     unmount={() => {
       node.predicate = undefined;
@@ -45,7 +46,7 @@
     accept: isPredicateNode,
     onDrop(n) {
       node.predicate = n;
-      ctx.selectNode(nodeRef);
+      ctx.selectNode(nodeRef, false);
     },
   })}
   <DropZone {droppable}>
@@ -54,7 +55,7 @@
         onclick={(e) => {
           e.stopPropagation();
           node.predicate = createPredicate();
-          ctx.selectNode(nodeRef);
+          ctx.selectNode(nodeRef, false);
         }}>Create one</Button
       >
     {/snippet}

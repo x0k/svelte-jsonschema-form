@@ -34,15 +34,18 @@
     index: number
   ) => {
     node.properties.splice(index, 0, newNode);
-    ctx.selectNode({
-      current() {
-        return node.properties.find((n) => n.id === newNode.id);
+    ctx.selectNode(
+      {
+        current() {
+          return node.properties.find((n) => n.id === newNode.id);
+        },
+        update(newNode) {
+          const idx = node.properties.findIndex((n) => n.id === newNode.id);
+          node.properties[idx] = newNode;
+        },
       },
-      update(newNode) {
-        const idx = node.properties.findIndex((n) => n.id === newNode.id);
-        node.properties[idx] = newNode;
-      },
-    });
+      false
+    );
   };
 
   const complementary = $derived(objCtx.complementary === node.id);
@@ -50,7 +53,7 @@
   const checkboxId = $props.id();
 </script>
 
-<NodeContainer bind:node {draggable}>
+<NodeContainer bind:node {draggable} showRequired={false}>
   <Header {draggable} {unmount} disablePadding>
     Branch
     {#snippet append()}
@@ -92,6 +95,7 @@
     </div>
   {/if}
   <MultiDropZone
+    showRequired={false}
     bind:nodes={node.properties}
     accept={isCustomizableOrPropertyNode}
     {onDrop}

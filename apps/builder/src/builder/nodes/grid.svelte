@@ -28,6 +28,7 @@
     node = $bindable(),
     draggable,
     unmount,
+    showRequired,
   }: NodeProps<NodeType.Grid> = $props();
 
   const id = (x: number, y: number) => `${x}-${y}`;
@@ -248,8 +249,8 @@
   const ctx = getBuilderContext();
 </script>
 
-<NodeContainer bind:node {draggable}>
-  <NodeHeader {node} {draggable} {unmount}>
+<NodeContainer bind:node {draggable} {showRequired}>
+  <NodeHeader {node} {draggable} {unmount} {showRequired}>
     {#snippet append()}
       <div class="flex items-center gap-2 pr-2">
         <span class="text-muted-foreground">Cols</span>
@@ -420,6 +421,7 @@
           <ChevronUp />
         </Button>
         <SingleDropZone
+          showRequired
           bind:node={
             () => node.cells[element.index]?.node,
             (v) => {

@@ -40,6 +40,7 @@
   bind:node
   {draggable}
   invalid={r?.ok === false}
+  showRequired={false}
   onSelect={() => {
     ctx.selectAffectedNode(nodeRef);
   }}

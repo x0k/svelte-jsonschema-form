@@ -1,5 +1,6 @@
 import { flushSync, getContext, onDestroy, setContext } from "svelte";
 import { DragDropManager, Draggable, Droppable } from "@dnd-kit/dom";
+import type { UiSchema } from "@sjsf/form";
 
 import {
   createNode,
@@ -14,7 +15,10 @@ import {
   OperatorType,
   type MultiEnumNode,
   createEnumItemNode,
+  NODE_OPTIONS_SCHEMAS,
+  NODE_OPTIONS_UI_SCHEMAS,
 } from "$lib/builder/index.js";
+import { Theme } from "$lib/sjsf.js";
 
 const BUILDER_CONTEXT = Symbol("builder-context");
 
@@ -77,8 +81,8 @@ const noopReadonlyNodeRef: ReadonlyNodeRef = {
 
 const obj = createNode(NodeType.Object) as ObjectNode;
 const menum = createNode(NodeType.MultiEnum) as MultiEnumNode;
-menum.items.push(createEnumItemNode("foo", "foo"))
-menum.items.push(createEnumItemNode("bar", "bar"))
+menum.items.push(createEnumItemNode("foo", "foo"));
+menum.items.push(createEnumItemNode("bar", "bar"));
 const prop = createObjectProperty(menum);
 const dep = createObjectPropertyDependency();
 const pred = createPredicate();
@@ -110,6 +114,7 @@ export class BuilderContext {
       return undefined;
     }
   });
+  #showRequired = $state.raw(true);
 
   #affectedNodeRef = $state.raw(noopReadonlyNodeRef);
   readonly affectedNode = $derived.by(() => {
@@ -120,12 +125,15 @@ export class BuilderContext {
     }
   });
 
+  theme = $state(Theme.Shadcn4);
+
   get isDragged() {
     return this.#sourceId !== undefined;
   }
 
-  selectNode(nodeRef: NodeRef) {
+  selectNode(nodeRef: NodeRef, showRequired: boolean) {
     this.#selectedNodeRef = nodeRef;
+    this.#showRequired = showRequired;
   }
 
   updateSelectedNode(node: CustomizableNode) {
@@ -269,6 +277,27 @@ export class BuilderContext {
         };
       },
     };
+  }
+
+  nodeSchema(node: CustomizableNode) {
+    return NODE_OPTIONS_SCHEMAS[node.type];
+  }
+
+  nodeUiSchema(node: CustomizableNode) {
+    return Object.setPrototypeOf(
+      {
+        required: {
+          "ui:options": {
+            layouts: {
+              "object-property": {
+                hidden: !this.#showRequired,
+              },
+            },
+          },
+        },
+      } satisfies UiSchema,
+      NODE_OPTIONS_UI_SCHEMAS[node.type]
+    );
   }
 }
 

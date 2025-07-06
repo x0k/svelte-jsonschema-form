@@ -18,6 +18,7 @@
     node = $bindable(),
     draggable,
     unmount,
+    showRequired,
   }: NodeProps<NodeType.Object> = $props();
 
   const ctx = getBuilderContext();
@@ -30,21 +31,25 @@
       ? newNode
       : createObjectProperty(newNode);
     node.properties.splice(index, 0, prop);
-    ctx.selectNode({
-      current() {
-        return node.properties.find((n) => n.id === prop.id)?.property;
+    ctx.selectNode(
+      {
+        current() {
+          return node.properties.find((n) => n.id === prop.id)?.property;
+        },
+        update(newNode) {
+          const idx = node.properties.findIndex((n) => n.id === prop.id);
+          node.properties[idx].property = newNode;
+        },
       },
-      update(newNode) {
-        const idx = node.properties.findIndex((n) => n.id === prop.id);
-        node.properties[idx].property = newNode;
-      },
-    });
+      true
+    );
   };
 </script>
 
-<NodeContainer bind:node {draggable}>
-  <NodeHeader {node} {draggable} {unmount} disablePadding />
+<NodeContainer bind:node {draggable} {showRequired}>
+  <NodeHeader {node} {draggable} {unmount} disablePadding {showRequired} />
   <MultiDropZone
+    showRequired
     bind:nodes={node.properties}
     accept={isCustomizableOrPropertyNode}
     {onDrop}

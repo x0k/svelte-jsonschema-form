@@ -1,6 +1,5 @@
 import { isValidRegExp } from "$lib/reg-exp.js";
 
-import { EnumValueType } from "./enum.js";
 import { OperatorType } from "./operator.js";
 import { type Node, type Operator } from "./node.js";
 import { getNodeProperty, getNodeTitle } from "./node-props.js";
@@ -16,7 +15,7 @@ export function stringifyOperator(
     case OperatorType.Or:
     case OperatorType.Xor: {
       if (operator.operands.length === 0) {
-        return { ok: false, value: `${operator.op}(<no args>)` };
+        return { ok: false, value: `${operator.op}(<undefined>)` };
       }
       let ok = true;
       const values: string[] = [];
@@ -54,9 +53,9 @@ export function stringifyOperator(
       const haveItems = operator.values.length > 0;
       return {
         ok: haveItems,
-        value: `${operator.op}(${
-          haveItems ? operator.values.join(", ") : "<no values>"
-        })`,
+        value: `${operator.op}([${
+          haveItems ? operator.values.join(", ") : "<undefined>"
+        }])`,
       };
     }
     case OperatorType.Pattern: {
@@ -64,7 +63,7 @@ export function stringifyOperator(
         operator.op !== OperatorType.Pattern || isValidRegExp(operator.value);
       return {
         ok,
-        value: `${operator.op}(${ok ? operator.value : "<invalid value>"})`,
+        value: `${operator.op}(${ok ? operator.value : "<invalid>"})`,
       };
     }
     case OperatorType.UniqueItems: {
