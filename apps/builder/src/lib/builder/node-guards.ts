@@ -48,6 +48,8 @@ export const isEqOperator = createOperatorGuard(OperatorType.Eq);
 
 export const isInOperator = createOperatorGuard(OperatorType.In);
 
+export const isPatternOperator = createOperatorGuard(OperatorType.Pattern);
+
 export const isContainsOperator = createOperatorGuard(OperatorType.Contains);
 
 export const isUniqueItemsOperator = createOperatorGuard(

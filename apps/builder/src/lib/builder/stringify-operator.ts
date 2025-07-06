@@ -1,13 +1,14 @@
 import { isValidRegExp } from "$lib/reg-exp.js";
 
 import { OperatorType } from "./operator.js";
-import { type Node, type Operator } from "./node.js";
-import { getNodeProperty, getNodeTitle } from "./node-props.js";
+import { type Node, type OperatorNode } from "./node.js";
+import { getNodeChild, getNodeProperty, getNodeTitle } from "./node-props.js";
+import { isContainsOperator } from "./node-guards.js";
 
 export type StringifiedOperator = { ok: boolean; value: string };
 
 export function stringifyOperator(
-  operator: Operator,
+  operator: OperatorNode,
   node: Node | undefined
 ): StringifiedOperator {
   switch (operator.op) {
@@ -37,7 +38,10 @@ export function stringifyOperator(
           value: `${operator.op}(<undefined>)`,
         };
       }
-      const r = stringifyOperator(operator.operand, node);
+      const r = stringifyOperator(
+        operator.operand,
+        node && (isContainsOperator(operator) ? getNodeChild(node) : node)
+      );
       return {
         ok: r.ok,
         value: `${operator.op}(${r.value})`,
@@ -59,8 +63,7 @@ export function stringifyOperator(
       };
     }
     case OperatorType.Pattern: {
-      const ok =
-        operator.op !== OperatorType.Pattern || isValidRegExp(operator.value);
+      const ok = isValidRegExp(operator.value);
       return {
         ok,
         value: `${operator.op}(${ok ? operator.value : "<invalid>"})`,
