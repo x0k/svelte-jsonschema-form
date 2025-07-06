@@ -270,7 +270,7 @@ export const MULTI_ENUM_OPTIONS_SCHEMA = {
       uniqueItems: true,
       items: {
         type: "string",
-        format: "json"
+        format: "json",
       },
     },
     minItems: {
@@ -529,6 +529,11 @@ const COMMON_UI_SCHEMA: UiSchemaRoot = {
       titleAttributes: {
         class: "font-medium text-md",
       },
+    },
+  },
+  widget: {
+    "ui:components": {
+      stringField: "enumField",
     },
   },
 };

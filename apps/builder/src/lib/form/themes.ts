@@ -1,3 +1,7 @@
+import { extendByRecord } from "@sjsf/form/lib/resolver";
+import type { SchemaValue } from "@sjsf/form";
+import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
+
 import "@sjsf/form/fields/extra-fields/boolean-select-include";
 import "@sjsf/form/fields/extra-fields/enum-include";
 import "@sjsf/form/fields/extra-fields/file-include";
@@ -14,7 +18,7 @@ import "@sjsf/basic-theme/extra-widgets/radio-include";
 import "@sjsf/basic-theme/extra-widgets/range-include";
 import "@sjsf/basic-theme/extra-widgets/textarea-include";
 
-export { theme as daisy5 } from "@sjsf/daisyui5-theme";
+import { theme as daisy5base } from "@sjsf/daisyui5-theme";
 export { default as daisy5Styles } from "@sjsf/daisyui5-theme/styles.css?raw";
 
 import "@sjsf/daisyui5-theme/extra-widgets/cally-date-picker-include";
@@ -27,8 +31,24 @@ import "@sjsf/daisyui5-theme/extra-widgets/range-include";
 import "@sjsf/daisyui5-theme/extra-widgets/rating-include";
 import "@sjsf/daisyui5-theme/extra-widgets/switch-include";
 import "@sjsf/daisyui5-theme/extra-widgets/textarea-include";
-export { default as FilterRadioButtons } from "@sjsf/daisyui5-theme/extra-widgets/filter-radio-buttons.svelte";
-export { default as PikadayDatePicker } from "@sjsf/daisyui5-theme/extra-widgets/pikaday-date-picker.svelte";
+import FilterRadioButtons from "@sjsf/daisyui5-theme/extra-widgets/filter-radio-buttons.svelte";
+import PikadayDatePicker from "@sjsf/daisyui5-theme/extra-widgets/pikaday-date-picker.svelte";
+
+declare module "@sjsf/form" {
+  interface ComponentProps {
+    filterRadioButtonsWidget: WidgetCommonProps<SchemaValue> & Options;
+    pikadayDatePickerWidget: WidgetCommonProps<string>;
+  }
+  interface ComponentBinding {
+    filterRadioButtonsWidget: "value";
+    pikadayDatePickerWidget: "value";
+  }
+}
+
+export const daisyui5 = extendByRecord(daisy5base, {
+  filterRadioButtonsWidget: FilterRadioButtons,
+  pikadayDatePickerWidget: PikadayDatePicker,
+});
 
 export { theme as flowbite3 } from "@sjsf/flowbite3-theme";
 export { default as flowbite3Styles } from "@sjsf/flowbite3-theme/styles.css?inline";
@@ -43,7 +63,7 @@ import "@sjsf/flowbite3-theme/extra-widgets/switch-include";
 import "@sjsf/flowbite3-theme/extra-widgets/tags-include";
 import "@sjsf/flowbite3-theme/extra-widgets/textarea-include";
 
-export { theme as skeleton3 } from "@sjsf/skeleton3-theme";
+import { theme as skeleton3base } from "@sjsf/skeleton3-theme";
 export { default as skeleton3Styles } from "@sjsf/skeleton3-theme/styles.css?inline";
 import "@sjsf/skeleton3-theme/extra-widgets/checkboxes-include";
 import "@sjsf/skeleton3-theme/extra-widgets/date-picker-include";
@@ -56,8 +76,28 @@ import "@sjsf/skeleton3-theme/extra-widgets/rating-include";
 import "@sjsf/skeleton3-theme/extra-widgets/switch-include";
 import "@sjsf/skeleton3-theme/extra-widgets/tags-include";
 import "@sjsf/skeleton3-theme/extra-widgets/textarea-include";
-export { default as FileUpload } from "@sjsf/skeleton3-theme/extra-widgets/file-upload.svelte";
-export { default as Slider } from "@sjsf/skeleton3-theme/extra-widgets/slider.svelte";
+import FileUpload from "@sjsf/skeleton3-theme/extra-widgets/file-upload.svelte";
+import Slider from "@sjsf/skeleton3-theme/extra-widgets/slider.svelte";
+
+declare module "@sjsf/form" {
+  interface ComponentProps {
+    fileUploadWidget: WidgetCommonProps<FileList> & {
+      multiple: boolean;
+      loading: boolean;
+      processing: boolean;
+    };
+    sliderWidget: WidgetCommonProps<number>;
+  }
+  interface ComponentBindings {
+    fileUploadWidget: "value";
+    sliderWidget: "value";
+  }
+}
+
+export const skeleton3 = extendByRecord(skeleton3base, {
+  fileUploadWidget: FileUpload,
+  sliderWidget: Slider,
+});
 
 export { theme as shadcn4 } from "@sjsf/shadcn4-theme";
 export { default as shadcn4Styles } from "@sjsf/shadcn4-theme/styles.css?inline";
