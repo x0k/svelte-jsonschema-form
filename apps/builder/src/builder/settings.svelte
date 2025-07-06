@@ -7,6 +7,7 @@
   import { Label } from "$lib/components/ui/label/index.js";
   import * as Select from "$lib/components/ui/select/index.js";
   import { THEME_TITLES, THEMES } from "$lib/sjsf.js";
+  import Container from "./container.svelte";
 
   import { getBuilderContext } from "./context.svelte.js";
   import NodeSettings from "./node-settings.svelte";
@@ -15,20 +16,25 @@
   const themeId = $props.id();
 </script>
 
-<div class="flex flex-col gap-2">
-  <Label for={themeId}>Theme</Label>
-  <Select.Root type="single" bind:value={ctx.theme}>
-    <Select.Trigger id={themeId} class="w-full">
-      {THEME_TITLES[ctx.theme]}
-    </Select.Trigger>
-    <Select.Content>
-      {#each THEMES as t (t)}
-        <Select.Item value={t}>{THEME_TITLES[t]}</Select.Item>
-      {/each}
-    </Select.Content>
-  </Select.Root>
+<Container class="flex flex-col gap-4 mb-4 p-3">
+  <div class="font-medium text-md py-2">Form options</div>
+  <div class="flex flex-col gap-1.5">
+    <Label for={themeId}>Theme</Label>
+    <Select.Root type="single" bind:value={ctx.theme}>
+      <Select.Trigger id={themeId} class="w-full">
+        {THEME_TITLES[ctx.theme]}
+      </Select.Trigger>
+      <Select.Content>
+        {#each THEMES as t (t)}
+          <Select.Item value={t}>{THEME_TITLES[t]}</Select.Item>
+        {/each}
+      </Select.Content>
+    </Select.Root>
+  </div>
   <Button disabled={ctx.rootNode === undefined}>Preview</Button>
-  {#if ctx.selectedNode && isCustomizableNode(ctx.selectedNode)}
+</Container>
+{#if ctx.selectedNode && isCustomizableNode(ctx.selectedNode)}
+  <Container class="p-3">
     {#key ctx.selectedNode.id}
       <NodeSettings
         bind:node={
@@ -37,5 +43,5 @@
         }
       />
     {/key}
-  {/if}
-</div>
+  </Container>
+{/if}

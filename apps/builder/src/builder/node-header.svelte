@@ -1,29 +1,37 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
+  import GripVertical from "@lucide/svelte/icons/grip-vertical";
 
-  import type { CustomizableNodeType } from "$lib/builder/index.js";
-
-  import type { NodeProps } from "./model.js";
+  import RemoveButton from "./remove-button.svelte";
   import type { BuilderDraggable } from "./context.svelte.js";
-  import Header from "./header.svelte";
 
   const {
-    node,
     draggable,
+    children,
     unmount,
     append,
     disablePadding,
-    showRequired,
-  }: NodeProps<CustomizableNodeType> & {
+  }: {
+    unmount: () => void;
     draggable: BuilderDraggable;
+    children: Snippet;
     disablePadding?: boolean;
     append?: Snippet;
   } = $props();
 </script>
 
-<Header {draggable} {unmount} {disablePadding} {append}>
-  {node.options.title}
-  {#if showRequired && node.options.required}
-    <span>*</span>
-  {/if}
-</Header>
+<div class={["flex gap-2 items-center pt-2", disablePadding ? "pb-2" : "pb-4"]}>
+  <div class="cursor-grab" {@attach draggable.attachHandle}>
+    <GripVertical class="size-5" />
+  </div>
+  <div class="text-md truncate flex-1">
+    {@render children()}
+  </div>
+  {@render append?.()}
+  <RemoveButton
+    onClick={(e) => {
+      e.stopPropagation();
+      unmount();
+    }}
+  />
+</div>

@@ -401,8 +401,8 @@ export type CustomizableNodeType = CustomizableNode["type"];
 
 export const CUSTOMIZABLE_TYPE_TITLES: Record<CustomizableNodeType, string> = {
   [NodeType.Object]: "Group",
-  [NodeType.Array]: "List",
   [NodeType.Grid]: "Grid",
+  [NodeType.Array]: "List",
   [NodeType.Enum]: "Choice",
   [NodeType.MultiEnum]: "Multi choice",
   [NodeType.String]: "String",
@@ -522,7 +522,7 @@ export const NODE_OPTIONS_UI_SCHEMAS = {
       },
       "ui:options": {
         useLabel: false,
-        // enumNames: ["true", "false"],
+        enumNames: ["true", "false"],
         shadcn4RadioGroup: {
           style: "display: flex;",
         },

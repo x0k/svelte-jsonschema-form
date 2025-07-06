@@ -17,10 +17,9 @@
   } from "$lib/builder/index.js";
 
   import type { NodeProps } from "../../model.js";
-  import Header from "../../header.svelte";
-  import Container from "../../container.svelte";
+  import NodeContainer from "../../node-container.svelte";
+  import NodeHeader from "../../node-header.svelte";
   import MultiDropzone from "../../multi-dropzone.svelte";
-  import ValueTypeSelect from "../enum/value-type-select.svelte";
 
   import OperatorDropzone from "./operator-dropzone.svelte";
   import PatternOperator from "./pattern-operator.svelte";
@@ -42,10 +41,10 @@
   );
 </script>
 
-<Container bind:node {draggable} showRequired={false} disableSelection>
-  <Header {draggable} {unmount} disablePadding={isMultiOrEmpty}>
+<NodeContainer bind:node {draggable} showRequired={false} disableSelection>
+  <NodeHeader {draggable} {unmount} disablePadding={isMultiOrEmpty}>
     {OPERATOR_TITLES[node.op]}
-  </Header>
+  </NodeHeader>
   {#if isNOperator(node)}
     <MultiDropzone
       showRequired={false}
@@ -72,4 +71,4 @@
   {:else if isHasPropertyOperator(node)}
     <HasPropertyOperator bind:node />
   {/if}
-</Container>
+</NodeContainer>

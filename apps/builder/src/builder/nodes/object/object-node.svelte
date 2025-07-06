@@ -11,7 +11,7 @@
   import type { NodeProps } from "../../model.js";
   import { getBuilderContext } from "../../context.svelte.js";
   import MultiDropZone from "../../multi-dropzone.svelte";
-  import NodeHeader from "../../node-header.svelte";
+  import NodeHeader from "../../customizable-node-header.svelte";
   import NodeContainer from "../../node-container.svelte";
 
   let {
@@ -46,7 +46,12 @@
   };
 </script>
 
-<NodeContainer bind:node {draggable} {showRequired}>
+<NodeContainer
+  bind:node
+  {draggable}
+  {showRequired}
+  class="flex flex-col gap-0.5"
+>
   <NodeHeader {node} {draggable} {unmount} disablePadding {showRequired} />
   <MultiDropZone
     showRequired

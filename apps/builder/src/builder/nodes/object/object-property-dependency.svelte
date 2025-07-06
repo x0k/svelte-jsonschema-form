@@ -13,7 +13,7 @@
 
   import type { NodeProps } from "../../model.js";
   import { getBuilderContext } from "../../context.svelte.js";
-  import Header from "../../header.svelte";
+  import NodeHeader from "../../node-header.svelte";
   import NodeContainer from "../../node-container.svelte";
   import MultiDropZone from "../../multi-dropzone.svelte";
 
@@ -53,8 +53,13 @@
   const checkboxId = $props.id();
 </script>
 
-<NodeContainer bind:node {draggable} showRequired={false}>
-  <Header {draggable} {unmount} disablePadding>
+<NodeContainer
+  bind:node
+  {draggable}
+  showRequired={false}
+  class="flex flex-col gap-0.5"
+>
+  <NodeHeader {draggable} {unmount} disablePadding>
     Branch
     {#snippet append()}
       <div class="flex items-center gap-2">
@@ -88,7 +93,7 @@
         </Tooltip.Root>
       </div>
     {/snippet}
-  </Header>
+  </NodeHeader>
   {#if !complementary}
     <div class="pb-2">
       <PredicateDropzone bind:node />

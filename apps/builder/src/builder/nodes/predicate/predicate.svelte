@@ -6,8 +6,8 @@
     getBuilderContext,
     type ReadonlyNodeRef,
   } from "../../context.svelte.js";
-  import Container from "../../container.svelte";
-  import Header from "../../header.svelte";
+  import NodeHeader from "../../node-header.svelte";
+  import NodeContainer from "../../node-container.svelte";
 
   import OperatorDropzone from "./operator-dropzone.svelte";
   import { getPredicateContext } from "./context.js";
@@ -36,7 +36,7 @@
 {#snippet append()}
   <span class="text-muted-foreground">{r ? r.value : "Select to edit"}</span>
 {/snippet}
-<Container
+<NodeContainer
   bind:node
   {draggable}
   invalid={r?.ok === false}
@@ -45,13 +45,13 @@
     ctx.selectAffectedNode(nodeRef);
   }}
 >
-  <Header
+  <NodeHeader
     {draggable}
     {unmount}
     append={isSelected ? undefined : append}
-    disablePadding>Predicate</Header
+    disablePadding>Predicate</NodeHeader
   >
   {#if ctx.selectedNode?.id === node.id}
     <OperatorDropzone bind:node={node.operator} />
   {/if}
-</Container>
+</NodeContainer>

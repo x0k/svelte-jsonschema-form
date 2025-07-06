@@ -1,6 +1,6 @@
 import { flushSync, getContext, onDestroy, setContext } from "svelte";
 import { DragDropManager, Draggable, Droppable } from "@dnd-kit/dom";
-import type { UiSchema } from "@sjsf/form";
+import type { UiSchema, UiSchemaRoot } from "@sjsf/form";
 
 import {
   createNode,
@@ -284,20 +284,30 @@ export class BuilderContext {
   }
 
   nodeUiSchema(node: CustomizableNode) {
-    return Object.setPrototypeOf(
-      {
-        required: {
-          "ui:options": {
-            layouts: {
-              "object-property": {
-                hidden: !this.#showRequired,
-              },
+    const { "ui:options": options, ...rest } = NODE_OPTIONS_UI_SCHEMAS[node.type]
+    return {
+      ...rest,
+      required: {
+        "ui:options": {
+          layouts: {
+            "object-property": {
+              hidden: !this.#showRequired,
             },
           },
         },
-      } satisfies UiSchema,
-      NODE_OPTIONS_UI_SCHEMAS[node.type]
-    );
+      },
+      "ui:globalOptions": {
+        titleAttributes: {
+          class: "font-medium text-md"
+        }
+      },
+      "ui:options": {
+        ...options,
+        titleAttributes: {
+          class: "font-medium text-md py-2"
+        }
+      }
+    } satisfies UiSchemaRoot
   }
 }
 

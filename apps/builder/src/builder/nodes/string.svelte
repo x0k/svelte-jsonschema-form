@@ -2,8 +2,8 @@
   import type { NodeType } from "$lib/builder/index.js";
 
   import type { NodeProps } from "../model.js";
-  import Container from "../container.svelte";
-  import NodeHeader from "../node-header.svelte";
+  import NodeContainer from "../node-container.svelte";
+  import NodeHeader from "../customizable-node-header.svelte";
 
   let {
     node = $bindable(),
@@ -13,6 +13,6 @@
   }: NodeProps<NodeType.String> = $props();
 </script>
 
-<Container bind:node {draggable} {showRequired}>
+<NodeContainer bind:node {draggable} {showRequired}>
   <NodeHeader {node} {unmount} {draggable} {showRequired} disablePadding />
-</Container>
+</NodeContainer>

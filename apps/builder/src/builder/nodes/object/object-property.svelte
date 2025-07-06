@@ -8,7 +8,7 @@
 
   import type { NodeProps } from "../../model.js";
   import { getBuilderContext } from "../../context.svelte.js";
-  import Container from "../../container.svelte";
+  import NodeContainer from "../../node-container.svelte";
   import MultiDropzone from "../../multi-dropzone.svelte";
   import { NODES } from "../index.js";
 
@@ -49,7 +49,7 @@
   });
 </script>
 
-<Container
+<NodeContainer
   {draggable}
   bind:node={node.property}
   class={[
@@ -79,4 +79,4 @@
       <Button onclick={pushDependency}>Add dependency</Button>
     </div>
   {/if}
-</Container>
+</NodeContainer>

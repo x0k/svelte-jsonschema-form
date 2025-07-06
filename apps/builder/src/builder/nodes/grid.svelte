@@ -12,7 +12,7 @@
   import type { NodeProps } from "../model.js";
   import SingleDropZone from "../single-dropzone.svelte";
   import { getBuilderContext } from "../context.svelte.js";
-  import NodeHeader from "../node-header.svelte";
+  import NodeHeader from "../customizable-node-header.svelte";
 
   import {
     createShrinkOrMove,
@@ -249,7 +249,7 @@
   const ctx = getBuilderContext();
 </script>
 
-<NodeContainer bind:node {draggable} {showRequired}>
+<NodeContainer bind:node {draggable} {showRequired} class="flex flex-col gap-0.5">
   <NodeHeader {node} {draggable} {unmount} {showRequired}>
     {#snippet append()}
       <div class="flex items-center gap-2 pr-2">

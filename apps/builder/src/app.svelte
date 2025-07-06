@@ -65,7 +65,7 @@
       </div>
     </div>
 
-    <div class="grid grid-cols-[1.1fr_5fr_2fr] gap-4 mx-auto">
+    <div class="grid grid-cols-[1fr_6fr_2fr] gap-4 mx-auto">
       <div
         bind:this={rootElements[0]}
         class="sticky top-[var(--header-height)] h-[calc(100vh-var(--header-height))] pb-4 overflow-y-auto pl-8 min-w-[120px]"

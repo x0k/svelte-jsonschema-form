@@ -6,7 +6,7 @@
 
   import type { NodeProps } from "../../model.js";
   import RemoveButton from "../../remove-button.svelte";
-  import Container from "../../container.svelte";
+  import NodeContainer from "../../node-container.svelte";
 
   let {
     node = $bindable(),
@@ -18,7 +18,7 @@
   } = $props();
 </script>
 
-<Container
+<NodeContainer
   bind:node
   {draggable}
   class="grid grid-cols-[auto_1fr_1fr_auto] gap-2 items-center"
@@ -42,4 +42,4 @@
   />
   <Input placeholder="Value" bind:value={node.value} />
   <RemoveButton onClick={unmount} />
-</Container>
+</NodeContainer>
