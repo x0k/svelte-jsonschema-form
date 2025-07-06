@@ -13,6 +13,7 @@
   } from "$lib/components/ui/select/index.js";
   import { Textarea } from "$lib/components/ui/textarea/index.js";
   import { TooltipProvider } from "$lib/components/ui/tooltip/index.js";
+  import { RadioGroup, RadioGroupItem } from '$lib/components/ui/radio-group/index.js';
 
   import {
     Controls,
@@ -36,6 +37,8 @@
       SelectItem,
       SelectTrigger,
       Textarea,
+      RadioGroup,
+      RadioGroupItem
     },
   });
 

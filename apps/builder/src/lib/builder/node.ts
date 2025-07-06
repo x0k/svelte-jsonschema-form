@@ -469,6 +469,9 @@ export const NODE_OPTIONS_UI_SCHEMAS = {
   },
   [NodeType.Enum]: {
     ...COMMON_UI_SCHEMA,
+    "ui:options": {
+      order: ["widget", "*"],
+    },
     defaultValue: {
       "ui:options": {
         shadcn4Text: {
@@ -476,12 +479,12 @@ export const NODE_OPTIONS_UI_SCHEMAS = {
         },
       },
     },
-    "ui:options": {
-      order: ["widget", "*"],
-    },
   },
   [NodeType.MultiEnum]: {
     ...COMMON_UI_SCHEMA,
+    "ui:options": {
+      order: ["widget", "*"],
+    },
     defaultValue: {
       items: {
         "ui:options": {
@@ -493,9 +496,6 @@ export const NODE_OPTIONS_UI_SCHEMAS = {
       "ui:options": {
         orderable: false,
       },
-    },
-    "ui:options": {
-      order: ["widget", "*"],
     },
   },
   [NodeType.String]: {
@@ -514,6 +514,19 @@ export const NODE_OPTIONS_UI_SCHEMAS = {
     ...COMMON_UI_SCHEMA,
     "ui:options": {
       order: ["widget", "*"],
+    },
+    defaultValue: {
+      "ui:components": {
+        booleanField: "booleanSelectField",
+        selectWidget: "radioWidget",
+      },
+      "ui:options": {
+        useLabel: false,
+        // enumNames: ["true", "false"],
+        shadcn4RadioGroup: {
+          style: "display: flex;",
+        },
+      },
     },
   },
 } satisfies Record<CustomizableNodeType, UiSchemaRoot>;

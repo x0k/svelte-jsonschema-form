@@ -1,8 +1,10 @@
 export { resolver } from "@sjsf/form/resolvers/basic";
 import "@sjsf/form/fields/extra-fields/enum-include";
+import "@sjsf/form/fields/extra-fields/boolean-select-include";
 
 export { theme } from "@sjsf/shadcn4-theme";
 import "@sjsf/shadcn4-theme/extra-widgets/textarea-include";
+import "@sjsf/shadcn4-theme/extra-widgets/radio-include";
 
 export { translation } from "@sjsf/form/translations/en";
 
