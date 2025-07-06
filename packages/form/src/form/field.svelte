@@ -64,7 +64,7 @@
 
   if (DEV) {
     $effect(() => {
-      if (name === "") {
+      if (name === "" && render === undefined) {
         console.warn('Use `<Content />` instead of `<Field name="" />`');
       }
     });
