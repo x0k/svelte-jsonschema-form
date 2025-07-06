@@ -65,18 +65,18 @@
     <div class="grid grid-cols-[1.1fr_5fr_2fr] gap-4 mx-auto">
       <div
         bind:this={rootElements[0]}
-        class="sticky top-[var(--header-height)] h-[calc(100vh-var(--header-height))] overflow-y-auto pl-8 min-w-[120px]"
+        class="sticky top-[var(--header-height)] h-[calc(100vh-var(--header-height))] pb-4 overflow-y-auto pl-8 min-w-[120px]"
       >
         <Controls />
       </div>
 
-      <div bind:this={rootElements[1]} class="p-4 py-0">
+      <div bind:this={rootElements[1]} class="p-4 pt-0">
         <Builder />
       </div>
 
       <div
         bind:this={rootElements[2]}
-        class="sticky top-[var(--header-height)] h-[calc(100vh-var(--header-height))] overflow-y-auto pr-8 min-w-[200px]"
+        class="sticky top-[var(--header-height)] h-[calc(100vh-var(--header-height))] pb-4 overflow-y-auto pr-8 min-w-[200px]"
       >
         <Settings />
       </div>
