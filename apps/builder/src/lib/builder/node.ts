@@ -238,6 +238,7 @@ export const ENUM_OPTIONS_SCHEMA = {
     widget: {
       title: "Widget",
       type: "string",
+      default: "radioWidget"
     },
     defaultValue: {
       title: "Default value",
@@ -245,6 +246,7 @@ export const ENUM_OPTIONS_SCHEMA = {
       format: "json",
     },
   },
+  required: ['widget'],
   additionalProperties: false,
 } as const satisfies Schema;
 
@@ -263,6 +265,7 @@ export const MULTI_ENUM_OPTIONS_SCHEMA = {
     widget: {
       title: "Widget",
       type: "string",
+      default: "checkboxesWidget"
     },
     defaultValue: {
       title: "Default value",
@@ -282,6 +285,7 @@ export const MULTI_ENUM_OPTIONS_SCHEMA = {
       type: "number",
     },
   },
+  required: ['widget'],
   additionalProperties: false,
 } as const satisfies Schema;
 
@@ -300,6 +304,7 @@ export const STRING_NODE_OPTIONS_SCHEMA = {
     widget: {
       title: "Widget",
       type: "string",
+      default: "textWidget",
     },
     defaultValue: {
       title: "Default value",
@@ -320,6 +325,7 @@ export const STRING_NODE_OPTIONS_SCHEMA = {
       type: "string",
     },
   },
+  required: ['widget'],
   additionalProperties: false,
 } as const satisfies Schema;
 
@@ -335,6 +341,7 @@ export const NUMBER_NODE_OPTIONS_SCHEMA = {
     widget: {
       title: "Widget",
       type: "string",
+      default: "numberWidget",
     },
     defaultValue: {
       title: "Default value",
@@ -353,6 +360,7 @@ export const NUMBER_NODE_OPTIONS_SCHEMA = {
       type: "number",
     },
   },
+  required: ['widget'],
   additionalProperties: false,
 } as const satisfies Schema;
 
@@ -368,12 +376,14 @@ export const BOOLEAN_NODE_OPTIONS_SCHEMA = {
     widget: {
       title: "Widget",
       type: "string",
+      default: "checkboxWidget",
     },
     defaultValue: {
       title: "Default value",
       type: "boolean",
     },
   },
+  required: ['widget'],
   additionalProperties: false,
 } as const satisfies Schema;
 
@@ -389,12 +399,14 @@ export const FILE_NODE_OPTIONS_SCHEMA = {
     widget: {
       title: "Widget",
       type: "string",
+      default: "fileWidget",
     },
     multiple: {
       title: "Multiple",
       type: "boolean",
     },
   },
+  required: ['widget'],
   additionalProperties: false,
 } as const satisfies Schema;
 

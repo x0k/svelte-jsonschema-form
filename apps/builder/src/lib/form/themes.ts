@@ -1,5 +1,5 @@
 import { extendByRecord } from "@sjsf/form/lib/resolver";
-import type { SchemaValue } from "@sjsf/form";
+import type { ComponentType, SchemaValue } from "@sjsf/form";
 import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
 
 import "@sjsf/form/fields/extra-fields/boolean-select-include";
@@ -50,6 +50,11 @@ export const daisyui5 = extendByRecord(daisy5base, {
   pikadayDatePickerWidget: PikadayDatePicker,
 });
 
+export const daisyui5conflicts: ComponentType[][] = [
+  ["radioButtonsWidget", "filterRadioButtonsWidget"],
+  ["datePickerWidget", "pikadayDatePickerWidget"],
+];
+
 export { theme as flowbite3 } from "@sjsf/flowbite3-theme";
 export { default as flowbite3Styles } from "@sjsf/flowbite3-theme/styles.css?inline";
 import "@sjsf/flowbite3-theme/extra-widgets/checkboxes-include";
@@ -98,6 +103,11 @@ export const skeleton3 = extendByRecord(skeleton3base, {
   fileUploadWidget: FileUpload,
   sliderWidget: Slider,
 });
+
+export const skeleton3conflicts: ComponentType[][] = [
+  ["fileWidget", "fileUploadWidget"],
+  ["rangeWidget", "sliderWidget"],
+];
 
 export { theme as shadcn4 } from "@sjsf/shadcn4-theme";
 export { default as shadcn4Styles } from "@sjsf/shadcn4-theme/styles.css?inline";

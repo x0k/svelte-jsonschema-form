@@ -6,14 +6,15 @@
   import type { NodeProps } from "./model.js";
   import type { BuilderDraggable } from "./context.svelte.js";
   import NodeHeader from "./node-header.svelte";
+  import { WIDGET_NAMES, type WidgetType } from "./theme-schemas.js";
 
   const {
     node,
     draggable,
     unmount,
-    append,
     disablePadding,
     showRequired,
+    append = defaultAppend,
   }: NodeProps<CustomizableNodeType> & {
     draggable: BuilderDraggable;
     disablePadding?: boolean;
@@ -21,6 +22,13 @@
   } = $props();
 </script>
 
+{#snippet defaultAppend()}
+  {#if "widget" in node.options}
+    <span class="text-muted-foreground"
+      >{WIDGET_NAMES[node.options.widget as WidgetType]}</span
+    >
+  {/if}
+{/snippet}
 <NodeHeader {draggable} {unmount} {disablePadding} {append}>
   {node.options.title}
   {#if showRequired && node.options.required}

@@ -11,6 +11,12 @@ import {
   type ObjectPropertyNode,
   type OperatorNode,
   type PredicateNode,
+  ENUM_OPTIONS_SCHEMA,
+  MULTI_ENUM_OPTIONS_SCHEMA,
+  STRING_NODE_OPTIONS_SCHEMA,
+  NUMBER_NODE_OPTIONS_SCHEMA,
+  BOOLEAN_NODE_OPTIONS_SCHEMA,
+  FILE_NODE_OPTIONS_SCHEMA,
 } from "./node.js";
 import { OperatorType } from "./operator.js";
 
@@ -57,6 +63,7 @@ const NODE_FACTORIES = {
     options: {
       title: "Choice field",
       required: true,
+      widget: ENUM_OPTIONS_SCHEMA.properties.widget.default,
     },
   }),
   [NodeType.MultiEnum]: (id) => ({
@@ -67,6 +74,7 @@ const NODE_FACTORIES = {
     options: {
       title: "Multi choice field",
       required: true,
+      widget: MULTI_ENUM_OPTIONS_SCHEMA.properties.widget.default,
     },
   }),
   [NodeType.String]: (id) => ({
@@ -75,6 +83,7 @@ const NODE_FACTORIES = {
     options: {
       title: "String field",
       required: true,
+      widget: STRING_NODE_OPTIONS_SCHEMA.properties.widget.default,
     },
   }),
   [NodeType.Number]: (id) => ({
@@ -83,6 +92,7 @@ const NODE_FACTORIES = {
     options: {
       title: "Number field",
       required: true,
+      widget: NUMBER_NODE_OPTIONS_SCHEMA.properties.widget.default,
     },
   }),
   [NodeType.Boolean]: (id) => ({
@@ -91,6 +101,7 @@ const NODE_FACTORIES = {
     options: {
       title: "Boolean field",
       required: true,
+      widget: BOOLEAN_NODE_OPTIONS_SCHEMA.properties.widget.default,
     },
   }),
   [NodeType.File]: (id) => ({
@@ -99,6 +110,7 @@ const NODE_FACTORIES = {
     options: {
       title: "File field",
       required: true,
+      widget: FILE_NODE_OPTIONS_SCHEMA.properties.widget.default,
     },
   }),
   [NodeType.Tags]: (id) => ({

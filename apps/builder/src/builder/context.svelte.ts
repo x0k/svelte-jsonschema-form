@@ -271,7 +271,7 @@ export class BuilderContext {
 
   nodeSchema(node: CustomizableNode) {
     const original = NODE_OPTIONS_SCHEMAS[node.type];
-    const augmentation = THEME_SCHEMAS[this.theme][node.type]?.(node as never);
+    const augmentation = THEME_SCHEMAS[this.theme][node.type];
     return augmentation ? mergeSchemas(original, augmentation) : original;
   }
 
@@ -287,9 +287,7 @@ export class BuilderContext {
         },
       },
     });
-    const augmentation = THEME_UI_SCHEMAS[this.theme][node.type]?.(
-      node as never
-    );
+    const augmentation = THEME_UI_SCHEMAS[this.theme][node.type];
     return augmentation ? mergeUiSchemas(next, augmentation as UiSchema) : next;
   }
 }
