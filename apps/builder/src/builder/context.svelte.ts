@@ -1,6 +1,7 @@
 import { flushSync, getContext, onDestroy, setContext } from "svelte";
 import { DragDropManager, Draggable, Droppable } from "@dnd-kit/dom";
-import type { UiSchema, UiSchemaRoot } from "@sjsf/form";
+import { mergeSchemas } from "@sjsf/form/core";
+import type { UiSchema } from "@sjsf/form";
 
 import {
   createNode,
@@ -17,12 +18,17 @@ import {
   createEnumItemNode,
   NODE_OPTIONS_SCHEMAS,
   NODE_OPTIONS_UI_SCHEMAS,
+  CUSTOMIZABLE_TYPES,
+  detectApplicableOperators,
 } from "$lib/builder/index.js";
-import { mergeUiSchemas, Theme } from "$lib/sjsf.js";
+import { mergeUiSchemas, Theme } from "$lib/sjsf/theme.js";
 
 import type { NodeContext } from "./node-context.js";
-import { THEME_SCHEMAS, THEME_UI_SCHEMAS } from "./theme-schemas.js";
-import { mergeSchemas } from "@sjsf/form/core";
+import {
+  THEME_MISSING_FIELDS,
+  THEME_SCHEMAS,
+  THEME_UI_SCHEMAS,
+} from "./theme-schemas.js";
 
 const BUILDER_CONTEXT = Symbol("builder-context");
 
@@ -116,6 +122,13 @@ export class BuilderContext {
   });
 
   theme = $state(Theme.Shadcn4);
+
+  readonly availableCustomizableNodeTypes = $derived.by(() => {
+    const missing = THEME_MISSING_FIELDS[this.theme];
+    return missing.size === 0
+      ? CUSTOMIZABLE_TYPES
+      : CUSTOMIZABLE_TYPES.filter((t) => !missing.has(t));
+  });
 
   get isDragged() {
     return this.#sourceId !== undefined;

@@ -25,12 +25,8 @@
   const form = createForm({
     ...defaults,
     initialValue: node.options,
-    get schema() {
-      return schema;
-    },
-    get uiSchema() {
-      return uiSchema;
-    },
+    schema,
+    uiSchema,
     fieldsValidationMode: ON_INPUT | ON_CHANGE,
     fieldsValidationDebounceMs: 200,
   });

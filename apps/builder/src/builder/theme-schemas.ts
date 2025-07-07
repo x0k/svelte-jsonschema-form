@@ -1,16 +1,17 @@
+import { isObject } from "@sjsf/form/lib/object";
 import type {
   CompatibleComponentType,
   ComponentProps,
   ComponentType,
+  FieldCommonProps,
   Schema,
   UiSchema,
   UiSchemaRoot,
 } from "@sjsf/form";
+import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
 
 import { NodeType } from "$lib/builder/index.js";
-import { Theme } from "$lib/sjsf.js";
-import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
-import { isObject } from "@sjsf/form/lib/object";
+import { Theme } from "$lib/sjsf/theme.js";
 
 export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
   [Theme.Basic]: {
@@ -202,6 +203,15 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
         },
       },
     },
+    [NodeType.Tags]: {
+      properties: {
+        widget: {
+          enum: [
+            "tagsWidget",
+          ] satisfies CompatibleComponentType<"tagsWidget">[],
+        },
+      },
+    },
   },
   [Theme.Skeleton3]: {
     [NodeType.Enum]: {
@@ -265,6 +275,15 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
             "fileWidget",
             "fileUploadWidget",
           ] satisfies CompatibleComponentType<"fileWidget">[],
+        },
+      },
+    },
+    [NodeType.Tags]: {
+      properties: {
+        widget: {
+          enum: [
+            "tagsWidget",
+          ] satisfies CompatibleComponentType<"tagsWidget">[],
         },
       },
     },
@@ -406,3 +425,11 @@ function schemasToEnumNames(schemas: Partial<Record<NodeType, Schema>>) {
   }
   return Object.fromEntries(map);
 }
+
+export const THEME_MISSING_FIELDS: Record<Theme, Set<NodeType>> = {
+  [Theme.Basic]: new Set([NodeType.Tags]),
+  [Theme.Daisy5]: new Set([NodeType.Tags]),
+  [Theme.Flowbite3]: new Set([]),
+  [Theme.Skeleton3]: new Set([]),
+  [Theme.Shadcn4]: new Set([NodeType.Tags]),
+};

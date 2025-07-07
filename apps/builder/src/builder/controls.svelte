@@ -3,7 +3,6 @@
     createNode,
     createOperatorNode,
     CUSTOMIZABLE_TYPE_TITLES,
-    CUSTOMIZABLE_TYPES,
     detectApplicableOperators,
     NodeType,
     OPERATOR_TITLES,
@@ -26,7 +25,7 @@
         title: OPERATOR_TITLES[t],
       }));
     }
-    return CUSTOMIZABLE_TYPES.map((t) => ({
+    return ctx.availableCustomizableNodeTypes.map((t) => ({
       id: `node::${t}`,
       factory: () => createNode(t),
       title: CUSTOMIZABLE_TYPE_TITLES[t],

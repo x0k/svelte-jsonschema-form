@@ -97,6 +97,12 @@ export const isEnumNode = createNodeGuard(NodeType.Enum);
 
 export const isMultiEnumNode = createNodeGuard(NodeType.MultiEnum);
 
+export const isStringNode = createNodeGuard(NodeType.String);
+
+export const isNumberNode = createNodeGuard(NodeType.Number);
+
 export const isBooleanNode = createNodeGuard(NodeType.Boolean);
+
+export const isFileNode = createNodeGuard(NodeType.File);
 
 export const isTagsNode = createNodeGuard(NodeType.Tags);

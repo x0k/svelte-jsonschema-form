@@ -3,6 +3,8 @@ import { mergeSchemas } from "@sjsf/form/core";
 import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
+import { mergeUiSchemas } from "$lib/sjsf/theme.js";
+
 import {
   OperatorType,
   type AbstractOperator,
@@ -12,7 +14,6 @@ import {
   type UOperatorType,
 } from "./operator.js";
 import { EnumValueType } from "./enum.js";
-import { mergeUiSchemas } from "$lib/sjsf.js";
 
 export enum NodeType {
   Object = "object",
@@ -123,6 +124,8 @@ type AbstractOperators = {
   [T in NOperatorType]: AbstractNOperator<T>;
 } & {
   [T in SOperatorType]: AbstractSOperator<T>;
+} & {
+  [T in ComparatorOperatorType]: AbstractComparisonOperator<T>;
 };
 
 export type ContainsOperator = AbstractOperators[OperatorType.Contains];
@@ -133,8 +136,7 @@ export type NOperator = AbstractOperators[NOperatorType];
 
 export type SOperator = AbstractOperators[SOperatorType];
 
-export type ComparisonOperator =
-  AbstractComparisonOperator<ComparatorOperatorType>;
+export type ComparisonOperator = AbstractOperators[ComparatorOperatorType];
 
 export type Operator =
   | EqOperator
@@ -238,7 +240,7 @@ export const ENUM_OPTIONS_SCHEMA = {
     widget: {
       title: "Widget",
       type: "string",
-      default: "radioWidget"
+      default: "radioWidget",
     },
     defaultValue: {
       title: "Default value",
@@ -246,7 +248,7 @@ export const ENUM_OPTIONS_SCHEMA = {
       format: "json",
     },
   },
-  required: ['widget'],
+  required: ["widget"],
   additionalProperties: false,
 } as const satisfies Schema;
 
@@ -265,7 +267,7 @@ export const MULTI_ENUM_OPTIONS_SCHEMA = {
     widget: {
       title: "Widget",
       type: "string",
-      default: "checkboxesWidget"
+      default: "checkboxesWidget",
     },
     defaultValue: {
       title: "Default value",
@@ -285,7 +287,7 @@ export const MULTI_ENUM_OPTIONS_SCHEMA = {
       type: "number",
     },
   },
-  required: ['widget'],
+  required: ["widget"],
   additionalProperties: false,
 } as const satisfies Schema;
 
@@ -325,7 +327,7 @@ export const STRING_NODE_OPTIONS_SCHEMA = {
       type: "string",
     },
   },
-  required: ['widget'],
+  required: ["widget"],
   additionalProperties: false,
 } as const satisfies Schema;
 
@@ -360,7 +362,7 @@ export const NUMBER_NODE_OPTIONS_SCHEMA = {
       type: "number",
     },
   },
-  required: ['widget'],
+  required: ["widget"],
   additionalProperties: false,
 } as const satisfies Schema;
 
@@ -383,7 +385,7 @@ export const BOOLEAN_NODE_OPTIONS_SCHEMA = {
       type: "boolean",
     },
   },
-  required: ['widget'],
+  required: ["widget"],
   additionalProperties: false,
 } as const satisfies Schema;
 
@@ -406,7 +408,7 @@ export const FILE_NODE_OPTIONS_SCHEMA = {
       type: "boolean",
     },
   },
-  required: ['widget'],
+  required: ["widget"],
   additionalProperties: false,
 } as const satisfies Schema;
 
@@ -419,6 +421,11 @@ export const TAGS_NODE_OPTIONS_SCHEMA = {
   title: "Tags options",
   type: "object",
   properties: {
+    widget: {
+      title: "Widget",
+      type: "string",
+      default: "tagsWidget",
+    },
     defaultValue: {
       title: "Default value",
       type: "array",
@@ -436,6 +443,7 @@ export const TAGS_NODE_OPTIONS_SCHEMA = {
       type: "number",
     },
   },
+  required: ["widget"],
   additionalItems: false,
 } as const satisfies Schema;
 

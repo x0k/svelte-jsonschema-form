@@ -17,6 +17,7 @@ import {
   NUMBER_NODE_OPTIONS_SCHEMA,
   BOOLEAN_NODE_OPTIONS_SCHEMA,
   FILE_NODE_OPTIONS_SCHEMA,
+  TAGS_NODE_OPTIONS_SCHEMA,
 } from "./node.js";
 import { OperatorType } from "./operator.js";
 
@@ -119,6 +120,7 @@ const NODE_FACTORIES = {
     options: {
       title: "Tags field",
       required: true,
+      widget: TAGS_NODE_OPTIONS_SCHEMA.properties.widget.default,
     },
   }),
 } as const satisfies {

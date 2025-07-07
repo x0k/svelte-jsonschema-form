@@ -6,10 +6,10 @@
   import { Button } from "$lib/components/ui/button/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
   import * as Select from "$lib/components/ui/select/index.js";
-  import { THEME_TITLES, THEMES } from "$lib/sjsf.js";
-  import Container from "./container.svelte";
-
+  import { THEME_TITLES, THEMES } from "$lib/sjsf/theme.js";
+  
   import { getBuilderContext } from "./context.svelte.js";
+  import Container from "./container.svelte";
   import NodeSettings from "./node-settings.svelte";
 
   const ctx = getBuilderContext();
@@ -35,7 +35,7 @@
 </Container>
 {#if ctx.selectedNode && isCustomizableNode(ctx.selectedNode)}
   <Container class="p-3">
-    {#key ctx.selectedNode.id}
+    {#key `${ctx.theme}-${ctx.selectedNode.id}`}
       <NodeSettings
         bind:node={
           () => ctx.selectedNode as CustomizableNode,
