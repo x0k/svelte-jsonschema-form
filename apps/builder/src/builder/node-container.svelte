@@ -11,6 +11,7 @@
     type NodeRef,
   } from "./context.svelte.js";
   import Container from "./container.svelte";
+  import NodeIssues from "./node-issues.svelte";
 
   interface Props {
     node: Node;
@@ -51,6 +52,8 @@
     ctx.selectNode(nodeRef, showRequired);
     onSelect?.();
   };
+  const error = $derived(invalid || ctx.errors[node.id] !== undefined);
+  const warning = $derived(ctx.warnings[node.id] !== undefined);
 </script>
 
 <Container
@@ -59,7 +62,9 @@
     draggable.isDragged && "opacity-70",
     ctx.selectedNode?.id === node.id
       ? "border-primary"
-      : invalid && "border-chart-5",
+      : error
+        ? "border-destructive"
+        : warning && "border-chart-3",
     className
   )}
   role="button"

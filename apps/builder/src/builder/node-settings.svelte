@@ -33,7 +33,7 @@
   setFormContext(form.context);
 
   $effect(() => {
-    if (form.fieldsValidation.isProcessed || form.errors.size > 0) {
+    if (form.fieldsValidation.isProcessed) {
       return;
     }
     node.options = form.value as any;

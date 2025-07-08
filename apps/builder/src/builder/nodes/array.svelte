@@ -5,6 +5,7 @@
   import NodeContainer from "../node-container.svelte";
   import NodeHeader from "../customizable-node-header.svelte";
   import SingleDropZone from "../single-dropzone.svelte";
+  import NodeIssues from "../node-issues.svelte";
 
   let {
     node = $bindable(),
@@ -22,4 +23,5 @@
 >
   <NodeHeader {node} {draggable} {unmount} {showRequired} />
   <SingleDropZone bind:node={node.item} showRequired={false} />
+  <NodeIssues class="pt-3" {node} />
 </NodeContainer>

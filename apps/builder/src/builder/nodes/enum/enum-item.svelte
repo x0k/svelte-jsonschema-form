@@ -7,6 +7,7 @@
   import type { NodeProps } from "../../model.js";
   import RemoveButton from "../../remove-button.svelte";
   import NodeContainer from "../../node-container.svelte";
+  import NodeIssues from '../../node-issues.svelte';
 
   let {
     node = $bindable(),
@@ -42,4 +43,5 @@
   />
   <Input placeholder="Value" bind:value={node.value} />
   <RemoveButton onClick={unmount} />
+  <NodeIssues class="col-span-4" {node} />
 </NodeContainer>

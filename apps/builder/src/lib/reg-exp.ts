@@ -1,6 +1,6 @@
-export function isValidRegExp(pattern: string, flags = "") {
+export function isValidRegExp(pattern: string) {
   try {
-    new RegExp(pattern, flags);
+    new RegExp(pattern);
     return true;
   } catch (e) {
     return false;

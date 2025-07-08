@@ -23,6 +23,7 @@
     type ToShrinkOrMove,
   } from "./grid.js";
   import NodeContainer from "../node-container.svelte";
+  import NodeIssues from '../node-issues.svelte';
 
   let {
     node = $bindable(),
@@ -441,4 +442,5 @@
       </div>
     {/each}
   </div>
+  <NodeIssues class="pt-3" {node} />
 </NodeContainer>

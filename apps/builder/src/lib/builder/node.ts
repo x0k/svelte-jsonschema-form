@@ -325,6 +325,7 @@ export const STRING_NODE_OPTIONS_SCHEMA = {
     pattern: {
       title: "Pattern",
       type: "string",
+      format: "regexp"
     },
   },
   required: ["widget"],

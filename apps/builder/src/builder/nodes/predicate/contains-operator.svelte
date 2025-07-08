@@ -38,5 +38,7 @@
         (!isContainsOperator(node) || child !== pCtx.node)}
   />
 {:else}
-  <div class="text-chart-5">First, define the child element of the list</div>
+  <div class="text-destructive">
+    First, define the child element of the list
+  </div>
 {/if}

@@ -7,7 +7,7 @@ import { isContainsOperator } from "./node-guards.js";
 
 export type StringifiedOperator = { ok: boolean; value: string };
 
-export function stringifyOperator(
+export function summarizeOperator(
   operator: OperatorNode,
   node: Node | undefined
 ): StringifiedOperator {
@@ -21,7 +21,7 @@ export function stringifyOperator(
       let ok = true;
       const values: string[] = [];
       for (const operand of operator.operands) {
-        const r = stringifyOperator(operand, node);
+        const r = summarizeOperator(operand, node);
         ok &&= r.ok;
         values.push(r.value);
       }
@@ -38,7 +38,7 @@ export function stringifyOperator(
           value: `${operator.op}(<undefined>)`,
         };
       }
-      const r = stringifyOperator(
+      const r = summarizeOperator(
         operator.operand,
         node && (isContainsOperator(operator) ? getNodeChild(node) : node)
       );
@@ -91,7 +91,7 @@ export function stringifyOperator(
         node &&
         operator.propertyId &&
         getNodeProperty(node, operator.propertyId);
-      const r = operator.operator && stringifyOperator(operator.operator, prop);
+      const r = operator.operator && summarizeOperator(operator.operator, prop);
       const propTitle = (prop && getNodeTitle(prop)) ?? operator.propertyId;
       return {
         ok: r?.ok === true,

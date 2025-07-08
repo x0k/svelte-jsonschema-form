@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onDestroy } from "svelte";
   import Info from "@lucide/svelte/icons/info";
 
   import {
@@ -16,6 +17,7 @@
   import NodeHeader from "../../node-header.svelte";
   import NodeContainer from "../../node-container.svelte";
   import MultiDropZone from "../../multi-dropzone.svelte";
+  import NodeIssues from "../../node-issues.svelte";
 
   import { PredicateDropzone } from "../predicate/index.js";
   import { getObjectContext } from "./context.js";
@@ -49,6 +51,11 @@
   };
 
   const complementary = $derived(objCtx.complementary === node.id);
+  onDestroy(() => {
+    if (complementary) {
+      objCtx.complementary = undefined;
+    }
+  });
 
   const checkboxId = $props.id();
 </script>
@@ -105,4 +112,5 @@
     accept={isCustomizableOrPropertyNode}
     {onDrop}
   />
+  <NodeIssues class={[node.properties.length === 0 && "pt-4"]} {node} />
 </NodeContainer>

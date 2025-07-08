@@ -1,3 +1,5 @@
+import { noop } from "@sjsf/form/lib/function";
+
 import {
   isJsonValueArray,
   isJsonValueBoolean,
@@ -8,6 +10,22 @@ import {
 } from "$lib/json.js";
 import { isValidRegExp } from "$lib/reg-exp.js";
 
+import { EnumValueType } from "./enum.js";
+import { OperatorType, type AbstractOperator } from "./operator.js";
+import {
+  NodeType,
+  type AbstractNode,
+  type ComparisonOperator,
+  type CustomizableNode,
+  type EnumNode,
+  type MultiEnumNode,
+  type Node,
+  type NodeId,
+  type NOperator,
+  type Operator,
+  type OperatorNode,
+  type UOperator,
+} from "./node.js";
 import {
   isArrayNode,
   isBooleanNode,
@@ -21,53 +39,39 @@ import {
   isStringNode,
   isTagsNode,
 } from "./node-guards.js";
-import { getNodeOptions } from "./node-props.js";
-import {
-  NodeType,
-  type AbstractNode,
-  type ComparisonOperator,
-  type CustomizableNode,
-  type Node,
-  type NodeId,
-  type NOperator,
-  type Operator,
-  type OperatorNode,
-  type UOperator,
-} from "./node.js";
-import { OperatorType, type AbstractOperator } from "./operator.js";
+import { getNodeChild, getNodeOptions } from "./node-props.js";
 
-interface ValidatorRegistries {
+export interface Registries {
   complementary: NodeId | undefined;
   affectedNode: Node;
   parentNode: Node;
+  enumValueType: EnumValueType;
 }
 
-interface ValidatorContext {
+export interface ValidatorContext {
   validateCustomizableNodeOptions: (node: CustomizableNode) => void;
   addError: (node: Node, message: string) => void;
   addWarning: (node: Node, message: string) => void;
-  setContext<K extends keyof ValidatorRegistries>(
+  push<K extends keyof Registries>(
     registry: K,
-    value: ValidatorRegistries[K]
+    value: Registries[K]
   ): Disposable;
-  getContext<K extends keyof ValidatorRegistries>(
-    registry: K
-  ): ValidatorRegistries[K] | undefined;
+  peek<K extends keyof Registries>(registry: K): Registries[K] | undefined;
 }
 
-function checkAffected(
+function checkAffected<R>(
   ctx: ValidatorContext,
   node: Node,
-  check: (node: Node) => void
+  check: (node: Node) => R
 ) {
-  const affected = ctx.getContext("affectedNode");
+  const affected = ctx.peek("affectedNode");
   if (affected === undefined) {
     ctx.addError(
       node,
       "It looks like you deleted the field to which this operator was applied"
     );
   } else {
-    check(affected);
+    return check(affected);
   }
 }
 
@@ -77,21 +81,98 @@ function checkChildren<Args extends ReadonlyArray<any>>(
   check: (ctx: ValidatorContext, ...args: Args) => void,
   ...args: Args
 ) {
-  using _parent = ctx.setContext("parentNode", self);
+  using _parent = ctx.push("parentNode", self);
   check(ctx, ...args);
 }
 
-function checkParent(
+function checkParent<R>(
   ctx: ValidatorContext,
   node: Node,
-  check: (node: Node) => void
+  check: (node: Node) => R
 ) {
-  const parent = ctx.getContext("parentNode");
+  const parent = ctx.peek("parentNode");
   if (parent === undefined) {
     ctx.addError(node, "This node cannot be used in the root of the form");
   } else {
-    check(parent);
+    return check(parent);
   }
+}
+
+enum ExpectedValueType {
+  EnumMember = "enum-member",
+  JsonObject = "json-object",
+  JsonArray = "json-array",
+  JsonString = "json-string",
+  JsonNumber = "json-number",
+  Boolean = "boolean",
+}
+
+const EXPECTED_VALUE_TYPE_ERRORS: Record<ExpectedValueType, string> = {
+  [ExpectedValueType.EnumMember]:
+    "does not correspond to the possible field values",
+  [ExpectedValueType.JsonObject]: "should be a JSON object",
+  [ExpectedValueType.JsonArray]: "should be a JSON array",
+  [ExpectedValueType.JsonString]: "should be a JSON string",
+  [ExpectedValueType.JsonNumber]: "should be a JSON number",
+  [ExpectedValueType.Boolean]: "should be a boolean",
+};
+
+function createValueTypeCheckAgainstAffectedNode(
+  ctx: ValidatorContext,
+  node: Node
+) {
+  return checkAffected(ctx, node, (affected) => {
+    const options = getNodeOptions(affected);
+    return (value: string) => {
+      if (options.length > 0) {
+        if (options.find((o) => o.value === value) === undefined) {
+          return ExpectedValueType.EnumMember;
+        }
+      } else if (isObjectNode(affected) || isGridNode(affected)) {
+        if (!isJsonValueObject(value)) {
+          return ExpectedValueType.JsonObject;
+        }
+      } else if (isArrayNode(affected)) {
+        if (!isJsonValueArray(value)) {
+          return ExpectedValueType.JsonArray;
+        }
+      } else if (isStringNode(affected)) {
+        if (!isJsonValueString(value)) {
+          return ExpectedValueType.JsonString;
+        }
+      } else if (isNumberNode(affected)) {
+        if (!isJsonValueNumber(value)) {
+          return ExpectedValueType.JsonNumber;
+        }
+      } else if (isBooleanNode(affected)) {
+        if (!isJsonValueBoolean(value)) {
+          return ExpectedValueType.Boolean;
+        }
+      } else if (isFileNode(affected)) {
+        if (affected.options.multiple) {
+          if (!isJsonValueArray(value)) {
+            return ExpectedValueType.JsonArray;
+          }
+        } else {
+          if (!isJsonValueString(value)) {
+            return ExpectedValueType.JsonString;
+          }
+        }
+      } else if (isTagsNode(affected)) {
+        return checkParent(ctx, node, (parent) => {
+          if (!isOperatorNode(parent) || !isContainsOperator(parent)) {
+            if (!isJsonValueArray(value)) {
+              return ExpectedValueType.JsonArray;
+            }
+          } else if (isContainsOperator(parent)) {
+            if (!isJsonValueString(value)) {
+              return ExpectedValueType.JsonString;
+            }
+          }
+        });
+      }
+    };
+  });
 }
 
 function validateNOperator(
@@ -121,10 +202,50 @@ function validateUOperator(
   }
 }
 
-function validateComparisonOperator(
-  ctx: ValidatorContext,
-  op: AbstractNode<NodeType.Operator> & ComparisonOperator
-) {}
+function createComparisonOperatorValidator(
+  customAffectedCheck: (
+    ctx: ValidatorContext,
+    op: AbstractNode<NodeType.Operator> & ComparisonOperator,
+    affected: Node
+  ) => void
+) {
+  return (
+    ctx: ValidatorContext,
+    op: AbstractNode<NodeType.Operator> & ComparisonOperator
+  ) => {
+    if (op.value === undefined) {
+      ctx.addError(op, "Missing value");
+    } else {
+      checkAffected(ctx, op, (affected) => {
+        customAffectedCheck(ctx, op, affected);
+      });
+    }
+  };
+}
+
+const validateStringComparisonOperator = createComparisonOperatorValidator(
+  (ctx, op, affected) => {
+    if (!isStringNode(affected)) {
+      ctx.addError(op, "The operator can only be applied to string field");
+    }
+  }
+);
+
+const validateNumberComparisonOperator = createComparisonOperatorValidator(
+  (ctx, op, affected) => {
+    if (!isNumberNode(affected)) {
+      ctx.addError(op, "The operator can only be applied to number field");
+    }
+  }
+);
+
+const validateArrayComparisonOperator = createComparisonOperatorValidator(
+  (ctx, op, affected) => {
+    if (!isArrayNode(affected)) {
+      ctx.addError(op, "The operator can only be applied to list field");
+    }
+  }
+);
 
 const OPERATOR_VALIDATORS: {
   [T in OperatorType]: (
@@ -141,89 +262,48 @@ const OPERATOR_VALIDATORS: {
     if (!isValidJson(op.value)) {
       ctx.addError(op, "The value must be in JSON format");
     } else {
-      checkAffected(ctx, op, (affected) => {
-        const options = getNodeOptions(affected);
-        if (options.length > 0) {
-          if (options.find((o) => o.value === op.value) === undefined) {
-            ctx.addError(
-              op,
-              "The entered value does not correspond to the possible field values"
-            );
-          }
-        } else if (isObjectNode(affected) || isGridNode(affected)) {
-          if (!isJsonValueObject(op.value)) {
-            ctx.addError(op, "The entered value should be a JSON object");
-          }
-        } else if (isArrayNode(affected)) {
-          if (!isJsonValueArray(op.value)) {
-            ctx.addError(op, "The entered value should be a JSON array");
-          }
-        } else if (isStringNode(affected)) {
-          if (!isJsonValueString(op.value)) {
-            ctx.addError(op, "The entered value should be a JSON string");
-          }
-        } else if (isNumberNode(affected)) {
-          if (!isJsonValueNumber(op.value)) {
-            ctx.addError(op, "The entered value should be a JSON number");
-          }
-        } else if (isBooleanNode(affected)) {
-          if (!isJsonValueBoolean(op.value)) {
-            ctx.addError(op, "The entered value should be a boolean");
-          }
-        } else if (isFileNode(affected)) {
-          if (affected.options.multiple) {
-            if (!isJsonValueArray(op.value)) {
-              ctx.addError(op, "The entered value should be a JSON array");
-            }
-          } else {
-            if (!isJsonValueString(op.value)) {
-              ctx.addError(op, "The entered value should be a JSON string");
-            }
-          }
-        } else if (isTagsNode(affected)) {
-          checkParent(ctx, op, (parent) => {
-            if (!isOperatorNode(parent) || !isContainsOperator(parent)) {
-              if (!isJsonValueArray(op.value)) {
-                ctx.addError(op, "The entered value should be a JSON array");
-              }
-            } else if (isContainsOperator(parent)) {
-              if (!isJsonValueString(op.value)) {
-                ctx.addError(op, "The entered value should be a JSON string");
-              }
-            }
-          });
-        }
-      });
+      const expected = createValueTypeCheckAgainstAffectedNode(
+        ctx,
+        op
+      )?.(op.value);
+      if (expected !== undefined) {
+        ctx.addError(
+          op,
+          `The entered value ${EXPECTED_VALUE_TYPE_ERRORS[expected]}`
+        );
+      }
     }
   },
   [OperatorType.In]: (ctx, op) => {
     if (op.values.length === 0) {
       ctx.addError(op, "Add at least one value");
-    } else if (op.values.length === 1) {
-      ctx.addWarning(
-        op,
-        "The `In` operator with one value is redundant, use the `Equal` operator"
-      );
-    }
-    const invalid = op.values.filter((v) => !isValidJson(v));
-    if (invalid.length > 0) {
-      ctx.addError(
-        op,
-        `The following values must be in JSON format: "${invalid.join('", "')}"`
-      );
-    } else if (op.values.length > 0) {
-      checkAffected(ctx, op, (affected) => {
-        const options = getNodeOptions(affected);
-        if (options.length === 0) {
-          return;
+    } else {
+      if (op.values.length === 1) {
+        ctx.addWarning(
+          op,
+          "The `In` operator with one value is redundant, use the `Equal` operator"
+        );
+      }
+      const invalid = op.values.filter((v) => !isValidJson(v));
+      if (invalid.length > 0) {
+        ctx.addError(
+          op,
+          `The following values must be in JSON format: "${invalid.join('", "')}"`
+        );
+      } else {
+        const check = createValueTypeCheckAgainstAffectedNode(ctx, op);
+        if (check !== undefined) {
+          for (let i = 0; i < op.values.length; i++) {
+            const expected = check(op.values[i]);
+            if (expected !== undefined) {
+              ctx.addError(
+                op,
+                `The value "${op.values[i]}" ${EXPECTED_VALUE_TYPE_ERRORS[expected]}`
+              );
+            }
+          }
         }
-        if (options.find((o) => o.value === op.value) === undefined) {
-          ctx.addError(
-            op,
-            "The entered value does not correspond to the possible field values"
-          );
-        }
-      });
+      }
     }
   },
   // String
@@ -242,28 +322,143 @@ const OPERATOR_VALIDATORS: {
       }
     });
   },
-  [OperatorType.MinLength]: (ctx, op) => {},
-  [OperatorType.MaxLength]: (ctx, op) => {},
+  [OperatorType.MinLength]: validateStringComparisonOperator,
+  [OperatorType.MaxLength]: validateStringComparisonOperator,
   // Number
-  [OperatorType.Less]: (ctx, op) => {},
-  [OperatorType.LessOrEq]: (ctx, op) => {},
-  [OperatorType.Greater]: (ctx, op) => {},
-  [OperatorType.GreaterOrEq]: (ctx, op) => {},
-  [OperatorType.MultipleOf]: (ctx, op) => {},
+  [OperatorType.Less]: validateNumberComparisonOperator,
+  [OperatorType.LessOrEq]: validateNumberComparisonOperator,
+  [OperatorType.Greater]: validateNumberComparisonOperator,
+  [OperatorType.GreaterOrEq]: validateNumberComparisonOperator,
+  [OperatorType.MultipleOf]: validateNumberComparisonOperator,
   // Array
-  [OperatorType.Contains]: (ctx, op) => {},
-  [OperatorType.MinItems]: (ctx, op) => {},
-  [OperatorType.MaxItems]: (ctx, op) => {},
-  [OperatorType.UniqueItems]: (ctx, op) => {},
+  [OperatorType.Contains]: (ctx, op) => {
+    const operand = op.operand;
+    if (operand === undefined) {
+      ctx.addError(op, "Missing operand");
+    } else {
+      checkAffected(ctx, op, (affected) => {
+        const child = getNodeChild(affected);
+        if (child === undefined) {
+          ctx.addError(op, "Child element of the applied field not found");
+        } else {
+          using _affected = ctx.push("affectedNode", child);
+          checkChildren(ctx, op, validateOperator, operand);
+        }
+      });
+    }
+  },
+  [OperatorType.MinItems]: validateArrayComparisonOperator,
+  [OperatorType.MaxItems]: validateArrayComparisonOperator,
+  [OperatorType.UniqueItems]: (ctx, op) => {
+    checkAffected(ctx, op, (affected) => {
+      if (!isArrayNode(affected)) {
+        ctx.addError(op, "The operator can only be applied to list field");
+      }
+    });
+  },
   // Object
-  [OperatorType.HasProperty]: (ctx, op) => {},
-  [OperatorType.Property]: (ctx, op) => {},
+  [OperatorType.HasProperty]: (ctx, op) => {
+    const propId = op.propertyId;
+    if (propId === undefined) {
+      ctx.addError(op, "Missing value");
+    } else {
+      checkAffected(ctx, op, (affected) => {
+        let prop: Node | undefined;
+        if (isObjectNode(affected)) {
+          prop = affected.properties.find((p) => p.id === propId);
+        } else if (isGridNode(affected)) {
+          prop = affected.cells.find((c) => c.node.id === propId)?.node;
+        } else {
+          ctx.addError(
+            op,
+            "The operator can only be applied to group or grid field"
+          );
+          return;
+        }
+        if (prop === undefined) {
+          ctx.addError(op, "Specified field not found");
+        }
+      });
+    }
+  },
+  [OperatorType.Property]: (ctx, op) => {
+    const propId = op.propertyId;
+    if (propId === undefined) {
+      ctx.addError(op, "Missing value");
+    } else {
+      checkAffected(ctx, op, (affected) => {
+        let prop: Node | undefined;
+        if (isObjectNode(affected)) {
+          prop = affected.properties.find((p) => p.id === propId)?.property;
+        } else if (isGridNode(affected)) {
+          prop = affected.cells.find((c) => c.node.id === propId)?.node;
+        } else {
+          ctx.addError(
+            op,
+            "The operator can only be applied to group or grid field"
+          );
+          return;
+        }
+        if (prop === undefined) {
+          ctx.addError(op, "Specified field not found");
+        } else if (op.operator === undefined) {
+          ctx.addError(op, "Missing operand");
+        } else {
+          using _affected = ctx.push("affectedNode", prop);
+          checkChildren(ctx, op, validateOperator, op.operator);
+        }
+      });
+    }
+  },
 };
 
 function validateOperator(ctx: ValidatorContext, op: Operator) {
   OPERATOR_VALIDATORS[op.op](ctx, op as never);
 }
 
+function validateEnumNode(
+  ctx: ValidatorContext,
+  node: EnumNode | MultiEnumNode
+) {
+  if (node.items.length === 0) {
+    ctx.addError(node, "Add at least one element");
+  } else {
+    if (node.items.length === 1) {
+      ctx.addWarning(
+        node,
+        "Use the `Boolean` field if you need to select from a single item"
+      );
+    }
+    const labels = new Set<string>();
+    const duplicatedLabels: Node[] = [];
+    const values = new Set<string>();
+    const duplicatedValues: Node[] = [];
+    checkChildren(ctx, node, () => {
+      using _valueType = ctx.push("enumValueType", node.valueType);
+      for (let i = 0; i < node.items.length; i++) {
+        const item = node.items[i];
+        if (labels.has(item.label)) {
+          duplicatedLabels.push(item);
+        } else {
+          labels.add(item.label);
+        }
+        labels.add(item.label);
+        if (values.has(item.value)) {
+          duplicatedValues.push(item);
+        } else {
+          values.add(item.value);
+        }
+        validateNode(ctx, item);
+      }
+    });
+    for (const d of duplicatedValues) {
+      ctx.addError(d, "Duplicated value");
+    }
+    for (const l of duplicatedLabels) {
+      ctx.addWarning(l, "Duplicated label");
+    }
+  }
+}
 const NODE_VALIDATORS: {
   [T in NodeType]: (
     ctx: ValidatorContext,
@@ -274,9 +469,11 @@ const NODE_VALIDATORS: {
     if (node.properties.length === 0) {
       ctx.addError(node, "Properties are missing");
     }
-    for (let i = 0; i < node.properties.length; i++) {
-      validateChildNode(ctx, node.properties[i]);
-    }
+    checkChildren(ctx, node, () => {
+      for (let i = 0; i < node.properties.length; i++) {
+        validateNode(ctx, node.properties[i]);
+      }
+    });
   },
   [NodeType.ObjectProperty]: (ctx, node) => {
     if (
@@ -285,28 +482,30 @@ const NODE_VALIDATORS: {
     ) {
       ctx.addError(
         node,
-        "Invalid `addition` mark, try selecting/unselecting this mark"
+        "Invalid `Complement` mark, try selecting/unselecting this mark"
       );
     } else if (
       node.complementary === undefined &&
       node.dependencies.length === 1
     ) {
       ctx.addError(
-        node,
+        node.dependencies[0],
         "The only dependency should be marked as `Complement`"
       );
     }
-    validateChildNode(ctx, node.property);
-    using _complementary = ctx.setContext("complementary", node.complementary);
-    using _affected = ctx.setContext("affectedNode", node.property);
     const emptyDeps: NodeId[] = [];
-    for (let i = 0; i < node.dependencies.length; i++) {
-      const dep = node.dependencies[i];
-      if (dep.properties.length === 0) {
-        emptyDeps.push(dep.id);
+    checkChildren(ctx, node, () => {
+      validateNode(ctx, node.property);
+      using _complementary = ctx.push("complementary", node.complementary);
+      using _affected = ctx.push("affectedNode", node.property);
+      for (let i = 0; i < node.dependencies.length; i++) {
+        const dep = node.dependencies[i];
+        if (dep.properties.length === 0) {
+          emptyDeps.push(dep.id);
+        }
+        validateNode(ctx, node.dependencies[i]);
       }
-      validateChildNode(ctx, node.dependencies[i]);
-    }
+    });
     if (emptyDeps.length > 1) {
       ctx.addWarning(
         node,
@@ -315,7 +514,7 @@ const NODE_VALIDATORS: {
     }
   },
   [NodeType.ObjectPropertyDependency]: (ctx, node) => {
-    const complementary = ctx.getContext("complementary");
+    const complementary = ctx.peek("complementary");
     if (node.predicate === undefined && complementary !== node.id) {
       ctx.addError(
         node,
@@ -323,31 +522,61 @@ const NODE_VALIDATORS: {
       );
     }
     // NOTE: dependency may not have properties
-    if (node.predicate !== undefined) {
-      validateChildNode(ctx, node.predicate);
-    }
-    for (let i = 0; node.properties.length < i; i++) {
-      validateChildNode(ctx, node.properties[i]);
-    }
+    checkChildren(ctx, node, () => {
+      if (node.predicate !== undefined) {
+        validateNode(ctx, node.predicate);
+      }
+      for (let i = 0; node.properties.length < i; i++) {
+        validateNode(ctx, node.properties[i]);
+      }
+    });
   },
   [NodeType.Predicate]: (ctx, node) => {
     if (node.operator === undefined) {
       ctx.addError(node, "Specify the operator");
     } else {
-      validateChildNode(ctx, node.operator);
+      checkChildren(ctx, node, validateNode, node.operator);
     }
   },
   [NodeType.Operator]: validateOperator,
-  [NodeType.Array]: (ctx, node) => {},
-  [NodeType.Grid]: (ctx, node) => {},
-  [NodeType.Enum]: (ctx, node) => {},
-  [NodeType.MultiEnum]: (ctx, node) => {},
-  [NodeType.EnumItem]: (ctx, node) => {},
-  [NodeType.String]: (ctx, node) => {},
-  [NodeType.Number]: (ctx, node) => {},
-  [NodeType.Boolean]: (ctx, node) => {},
-  [NodeType.File]: (ctx, node) => {},
-  [NodeType.Tags]: (ctx, node) => {},
+  [NodeType.Array]: (ctx, node) => {
+    if (node.item === undefined) {
+      ctx.addError(node, "Missing item definition");
+    } else {
+      checkChildren(ctx, node, validateNode, node.item);
+    }
+  },
+  [NodeType.Grid]: (ctx, node) => {
+    if (node.cells.length === 0) {
+      ctx.addError(node, "Add at least one element");
+    } else {
+      checkChildren(ctx, node, () => {
+        for (let i = 0; i < node.cells.length; i++) {
+          validateNode(ctx, node.cells[i].node);
+        }
+      });
+    }
+  },
+  [NodeType.Enum]: validateEnumNode,
+  [NodeType.MultiEnum]: validateEnumNode,
+  [NodeType.EnumItem]: (ctx, node) => {
+    if (node.label.length === 0) {
+      ctx.addWarning(node, "Try not to create empty labels");
+    }
+    const valueType = ctx.peek("enumValueType");
+    if (valueType === undefined) {
+      ctx.addError(node, "This node appears to be misplaced, remove it");
+    } else {
+      if (valueType === EnumValueType.JSON && !isValidJson(node.value)) {
+        ctx.addError(node, "This value should match JSON format");
+      }
+    }
+  },
+  [NodeType.String]: noop,
+  [NodeType.Number]: noop,
+  [NodeType.Boolean]: noop,
+  [NodeType.File]: noop,
+  [NodeType.Tags]: noop,
 };
 
 export function validateNode(ctx: ValidatorContext, node: Node) {

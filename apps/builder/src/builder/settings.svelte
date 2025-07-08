@@ -7,7 +7,7 @@
   import { Label } from "$lib/components/ui/label/index.js";
   import * as Select from "$lib/components/ui/select/index.js";
   import { THEME_TITLES, THEMES } from "$lib/sjsf/theme.js";
-  
+
   import { getBuilderContext } from "./context.svelte.js";
   import Container from "./container.svelte";
   import NodeSettings from "./node-settings.svelte";
@@ -31,7 +31,12 @@
       </Select.Content>
     </Select.Root>
   </div>
-  <Button disabled={ctx.rootNode === undefined}>Preview</Button>
+  <Button
+    disabled={ctx.rootNode === undefined}
+    onclick={() => {
+      ctx.validate();
+    }}>Preview</Button
+  >
 </Container>
 {#if ctx.selectedNode && isCustomizableNode(ctx.selectedNode)}
   <Container class="p-3">

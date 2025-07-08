@@ -4,6 +4,7 @@
   import type { NodeProps } from "../model.js";
   import NodeContainer from "../node-container.svelte";
   import NodeHeader from "../customizable-node-header.svelte";
+  import NodeIssues from '../node-issues.svelte';
 
   let {
     node = $bindable(),
@@ -15,4 +16,5 @@
 
 <NodeContainer bind:node {draggable} {showRequired}>
   <NodeHeader {node} {unmount} {draggable} {showRequired} disablePadding />
+  <NodeIssues {node} />
 </NodeContainer>

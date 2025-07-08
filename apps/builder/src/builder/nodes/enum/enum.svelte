@@ -4,6 +4,7 @@
   import type { NodeProps } from "../../model.js";
   import NodeContainer from "../../node-container.svelte";
   import NodeHeader from "../../customizable-node-header.svelte";
+  import NodeIssues from '../../node-issues.svelte';
 
   import EnumItems from "./enum-items.svelte";
   import ValueTypeSelect from "./value-type-select.svelte";
@@ -28,4 +29,5 @@
     {/snippet}
   </NodeHeader>
   <EnumItems bind:items={node.items} valueType={node.valueType} />
+  <NodeIssues {node} />
 </NodeContainer>

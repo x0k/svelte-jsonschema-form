@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { stringifyOperator, type NodeType } from "$lib/builder/index.js";
+  import { summarizeOperator, type NodeType } from "$lib/builder/index.js";
 
   import type { NodeProps } from "../../model.js";
   import {
@@ -29,7 +29,7 @@
 
   const isSelected = $derived(ctx.selectedNode?.id === node.id);
   const r = $derived(
-    node.operator && stringifyOperator(node.operator, pCtx.node)
+    node.operator && summarizeOperator(node.operator, pCtx.node)
   );
 </script>
 

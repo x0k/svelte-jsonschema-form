@@ -13,6 +13,7 @@
   import MultiDropZone from "../../multi-dropzone.svelte";
   import NodeHeader from "../../customizable-node-header.svelte";
   import NodeContainer from "../../node-container.svelte";
+  import NodeIssues from "../../node-issues.svelte";
 
   let {
     node = $bindable(),
@@ -52,11 +53,18 @@
   {showRequired}
   class="flex flex-col gap-0.5"
 >
-  <NodeHeader {node} {draggable} {unmount} disablePadding {showRequired} />
+  <NodeHeader
+    {node}
+    {draggable}
+    {unmount}
+    disablePadding={node.properties.length > 0}
+    {showRequired}
+  />
   <MultiDropZone
     showRequired
     bind:nodes={node.properties}
     accept={isCustomizableOrPropertyNode}
     {onDrop}
   />
+  <NodeIssues class={[node.properties.length === 0 && "pt-3"]} {node} />
 </NodeContainer>

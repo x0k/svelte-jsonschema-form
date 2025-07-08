@@ -10,6 +10,8 @@
   import { getBuilderContext } from "../../context.svelte.js";
   import NodeContainer from "../../node-container.svelte";
   import MultiDropzone from "../../multi-dropzone.svelte";
+  import NodeIssues from '../../node-issues.svelte';
+  
   import { NODES } from "../index.js";
 
   import { setObjectContext } from "./context.js";
@@ -79,4 +81,5 @@
       <Button onclick={pushDependency}>Add dependency</Button>
     </div>
   {/if}
+  <NodeIssues class="pb-4" {node} />
 </NodeContainer>

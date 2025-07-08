@@ -1,7 +1,13 @@
 import { flushSync, getContext, onDestroy, setContext } from "svelte";
 import { DragDropManager, Draggable, Droppable } from "@dnd-kit/dom";
 import { mergeSchemas } from "@sjsf/form/core";
-import type { UiSchema } from "@sjsf/form";
+import type {
+  FormValidationResult,
+  FormValue,
+  FormValueValidatorError,
+  UiSchema,
+  ValidationError,
+} from "@sjsf/form";
 
 import {
   createNode,
@@ -19,7 +25,7 @@ import {
   NODE_OPTIONS_SCHEMAS,
   NODE_OPTIONS_UI_SCHEMAS,
   CUSTOMIZABLE_TYPES,
-  detectApplicableOperators,
+  type NodeId,
 } from "$lib/builder/index.js";
 import { mergeUiSchemas, Theme } from "$lib/sjsf/theme.js";
 
@@ -29,6 +35,13 @@ import {
   THEME_SCHEMAS,
   THEME_UI_SCHEMAS,
 } from "./theme-schemas.js";
+import {
+  validateNode,
+  type Registries,
+  type ValidatorContext,
+} from "$lib/builder/node-validate.js";
+import { validator } from "$lib/form/defaults.js";
+import { SvelteMap } from "svelte/reactivity";
 
 const BUILDER_CONTEXT = Symbol("builder-context");
 
@@ -63,6 +76,11 @@ export interface NodeRef {
 
 export interface ReadonlyNodeRef {
   current: Node | undefined;
+}
+
+export interface NodeIssue {
+  nodeId: NodeId;
+  message: string;
 }
 
 const noopNodeRef: NodeRef = {
@@ -100,7 +118,7 @@ export class BuilderContext {
   #dropHandlers = new Map<UniqueId, (node: Node) => void>();
   #draggedNode = $state.raw<Node>();
 
-  rootNode = $state<CustomizableNode>(obj);
+  rootNode = $state<CustomizableNode | undefined>(obj);
 
   #selectedNodeRef = $state.raw(noopNodeRef);
   readonly selectedNode = $derived.by(() => {
@@ -150,6 +168,15 @@ export class BuilderContext {
   clearSelection() {
     this.#selectedNodeRef = noopNodeRef;
     this.#affectedNodeRef = noopReadonlyNodeRef;
+  }
+
+  #errors = $state.raw<Partial<Record<NodeId, NodeIssue[]>>>({});
+  get errors() {
+    return this.#errors;
+  }
+  #warnings = $state.raw<Partial<Record<NodeId, NodeIssue[]>>>({});
+  get warnings() {
+    return this.#warnings;
   }
 
   constructor() {
@@ -302,6 +329,58 @@ export class BuilderContext {
     });
     const augmentation = THEME_UI_SCHEMAS[this.theme][node.type];
     return augmentation ? mergeUiSchemas(next, augmentation as UiSchema) : next;
+  }
+
+  validate() {
+    if (this.rootNode === undefined) {
+      return false;
+    }
+    const registries: { [K in keyof Registries]: Array<Registries[K]> } = {
+      complementary: [],
+      affectedNode: [],
+      parentNode: [],
+      enumValueType: [],
+    };
+    const errors: NodeIssue[] = [];
+    const warnings: NodeIssue[] = [];
+    const self = this;
+    validateNode(
+      {
+        validateCustomizableNodeOptions(node) {
+          const schema = self.nodeSchema(node);
+          const optionsErrors = validator.validateFormValue(
+            schema,
+            node.options as FormValue
+          );
+          if (optionsErrors.length > 0) {
+            errors.push({ nodeId: node.id, message: "Invalid filed options" });
+          }
+        },
+        addError(node, message) {
+          //@ts-expect-error
+          errors.push({ nodeId: node.id, message, node });
+        },
+        addWarning(node, message) {
+          warnings.push({ nodeId: node.id, message });
+        },
+        push(registry, value) {
+          registries[registry].push(value);
+          return {
+            [Symbol.dispose]: () => {
+              registries[registry].pop();
+            },
+          };
+        },
+        peek(registry) {
+          return registries[registry].at(-1);
+        },
+      },
+      this.rootNode
+    );
+    this.#errors = Object.groupBy(errors, (e) => e.nodeId);
+    this.#warnings = Object.groupBy(warnings, (w) => w.nodeId);
+    console.log({ errors, warnings });
+    return true;
   }
 }
 
