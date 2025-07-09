@@ -6,7 +6,9 @@
     type CustomizableNode,
     type NodeType,
     type ObjectPropertyNode,
+    createObjectProperty,
     isCustomizableOrPropertyNode,
+    isObjectPropertyNode,
   } from "$lib/builder/index.js";
   import { Checkbox } from "$lib/components/ui/checkbox/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
@@ -35,15 +37,18 @@
     newNode: CustomizableNode | ObjectPropertyNode,
     index: number
   ) => {
-    node.properties.splice(index, 0, newNode);
+    const prop = isObjectPropertyNode(newNode)
+      ? newNode
+      : createObjectProperty(newNode);
+    node.properties.splice(index, 0, prop);
     ctx.selectNode(
       {
         current() {
-          return node.properties.find((n) => n.id === newNode.id);
+          return node.properties.find((n) => n.id === prop.id)?.property;
         },
         update(newNode) {
-          const idx = node.properties.findIndex((n) => n.id === newNode.id);
-          node.properties[idx] = newNode;
+          const idx = node.properties.findIndex((n) => n.id === prop.id);
+          node.properties[idx].property = newNode;
         },
       },
       false

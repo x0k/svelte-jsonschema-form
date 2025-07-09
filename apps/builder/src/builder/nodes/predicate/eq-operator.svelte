@@ -15,4 +15,6 @@
   const options = $derived(getNodeOptions(pCtx.node));
 </script>
 
-<NodeOptionInput bind:value={node.value} {options} />
+<div class="flex">
+  <NodeOptionInput bind:value={node.value} {options} />
+</div>

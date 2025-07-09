@@ -66,5 +66,5 @@
     accept={isCustomizableOrPropertyNode}
     {onDrop}
   />
-  <NodeIssues class={[node.properties.length === 0 && "pt-3"]} {node} />
+  <NodeIssues class={[node.properties.length === 0 && "pt-4"]} {node} />
 </NodeContainer>

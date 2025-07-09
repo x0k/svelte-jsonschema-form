@@ -41,7 +41,7 @@ import {
 } from "./node-guards.js";
 import { getNodeChild, getNodeOptions } from "./node-props.js";
 
-export interface Registries {
+export interface ValidatorRegistries {
   complementary: NodeId | undefined;
   affectedNode: Node;
   parentNode: Node;
@@ -52,11 +52,13 @@ export interface ValidatorContext {
   validateCustomizableNodeOptions: (node: CustomizableNode) => void;
   addError: (node: Node, message: string) => void;
   addWarning: (node: Node, message: string) => void;
-  push<K extends keyof Registries>(
+  push<K extends keyof ValidatorRegistries>(
     registry: K,
-    value: Registries[K]
+    value: ValidatorRegistries[K]
   ): Disposable;
-  peek<K extends keyof Registries>(registry: K): Registries[K] | undefined;
+  peek<K extends keyof ValidatorRegistries>(
+    registry: K
+  ): ValidatorRegistries[K] | undefined;
 }
 
 function checkAffected<R>(
@@ -531,17 +533,18 @@ const NODE_VALIDATORS: {
     }
   },
   [NodeType.ObjectPropertyDependency]: (ctx, node) => {
-    const complementary = ctx.peek("complementary");
-    if (node.predicate === undefined && complementary !== node.id) {
-      ctx.addError(
-        node,
-        "Specify the predicate or mark the dependency as `Complement`"
-      );
-    }
+    const isComplement = ctx.peek("complementary") === node.id;
     // NOTE: dependency may not have properties
     checkChildren(ctx, node, () => {
-      if (node.predicate !== undefined) {
-        validateNode(ctx, node.predicate);
+      if (!isComplement) {
+        if (node.predicate === undefined) {
+          ctx.addError(
+            node,
+            "Specify the predicate or mark the dependency as `Complement`"
+          );
+        } else {
+          validateNode(ctx, node.predicate);
+        }
       }
       for (let i = 0; node.properties.length < i; i++) {
         validateNode(ctx, node.properties[i]);

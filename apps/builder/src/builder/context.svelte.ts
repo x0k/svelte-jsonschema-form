@@ -31,8 +31,11 @@ import {
   OK_STATUS,
   ERROR_STATUS,
   WARNING_STATUS,
+  validateNode,
+  type ValidatorRegistries,
 } from "$lib/builder/index.js";
 import { mergeUiSchemas, Theme } from "$lib/sjsf/theme.js";
+import { validator } from "$lib/form/defaults.js";
 
 import type { NodeContext } from "./node-context.js";
 import {
@@ -40,13 +43,6 @@ import {
   THEME_SCHEMAS,
   THEME_UI_SCHEMAS,
 } from "./theme-schemas.js";
-import {
-  validateNode,
-  type Registries,
-  type ValidatorContext,
-} from "$lib/builder/node-validate.js";
-import { validator } from "$lib/form/defaults.js";
-import { SvelteMap } from "svelte/reactivity";
 
 const BUILDER_CONTEXT = Symbol("builder-context");
 
@@ -370,7 +366,9 @@ export class BuilderContext {
     if (this.rootNode === undefined) {
       return false;
     }
-    const registries: { [K in keyof Registries]: Array<Registries[K]> } = {
+    const registries: {
+      [K in keyof ValidatorRegistries]: Array<ValidatorRegistries[K]>;
+    } = {
       complementary: [],
       affectedNode: [],
       parentNode: [],
@@ -412,6 +410,7 @@ export class BuilderContext {
       },
       this.rootNode
     );
+    console.log(errors)
     this.setIssues("errors", errors);
     this.setIssues("warnings", warnings);
     return true;

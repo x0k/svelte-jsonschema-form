@@ -68,7 +68,7 @@
 >
   <Button
     class={[
-      "absolute -bottom-11 left-1/2 -translate-x-1/2 z-10",
+      "absolute -bottom-11 left-1/2 -translate-x-1/2 z-20",
       isSelected && !hasDeps && !ctx.isDragged ? "inline-flex" : "hidden",
     ]}
     onclick={pushDependency}>Add dependency</Button

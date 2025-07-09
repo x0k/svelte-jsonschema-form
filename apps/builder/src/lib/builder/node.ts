@@ -71,12 +71,6 @@ export interface PredicateNode extends AbstractNode<NodeType.Predicate> {
   operator: OperatorNode | undefined;
 }
 
-export interface ObjectPropertyDependencyNode
-  extends AbstractNode<NodeType.ObjectPropertyDependency> {
-  predicate: PredicateNode | undefined;
-  properties: Node[];
-}
-
 export interface AbstractComparisonOperator<T extends ComparatorOperatorType>
   extends AbstractOperator<T> {
   value: number | undefined;
@@ -150,6 +144,12 @@ export type Operator =
   | PropertyOperator;
 
 export type OperatorNode = AbstractNode<NodeType.Operator> & Operator;
+
+export interface ObjectPropertyDependencyNode
+  extends AbstractNode<NodeType.ObjectPropertyDependency> {
+  predicate: PredicateNode | undefined;
+  properties: ObjectPropertyNode[];
+}
 
 export interface ObjectPropertyNode
   extends AbstractNode<NodeType.ObjectProperty> {
@@ -325,7 +325,7 @@ export const STRING_NODE_OPTIONS_SCHEMA = {
     pattern: {
       title: "Pattern",
       type: "string",
-      format: "regexp"
+      format: "regexp",
     },
   },
   required: ["widget"],
