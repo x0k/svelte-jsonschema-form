@@ -175,13 +175,29 @@ export class BuilderContext {
     this.#affectedNodeRef = noopReadonlyNodeRef;
   }
 
-  #errors = $state.raw<Partial<Record<NodeId, NodeIssue[]>>>({});
-  get errors() {
-    return this.#errors;
+  ignoreWarnings = $state(false);
+
+  private _errorsCount = $state(0);
+  get errorsCount() {
+    return this._errorsCount;
   }
-  #warnings = $state.raw<Partial<Record<NodeId, NodeIssue[]>>>({});
+  private _errors = $state.raw<Partial<Record<NodeId, NodeIssue[]>>>({});
+  get errors() {
+    return this._errors;
+  }
+
+  private _warningsCount = $state(0);
+  get warningsCount() {
+    return this._warningsCount;
+  }
+  private _warnings = $state.raw<Partial<Record<NodeId, NodeIssue[]>>>({});
   get warnings() {
-    return this.#warnings;
+    return this._warnings;
+  }
+
+  private setIssues(key: "errors" | "warnings", issues: NodeIssue[]) {
+    this[`_${key}Count`] = issues.length;
+    this[`_${key}`] = Object.groupBy(issues, (i) => i.nodeId);
   }
 
   constructor() {
@@ -340,8 +356,8 @@ export class BuilderContext {
     return summarizeOperator(
       {
         operatorStatus: (operator) =>
-          (this.#errors[operator.id] === undefined ? OK_STATUS : ERROR_STATUS) |
-          (this.#warnings[operator.id] === undefined
+          (this._errors[operator.id] === undefined ? OK_STATUS : ERROR_STATUS) |
+          (this._warnings[operator.id] === undefined
             ? OK_STATUS
             : WARNING_STATUS),
       },
@@ -396,8 +412,8 @@ export class BuilderContext {
       },
       this.rootNode
     );
-    this.#errors = Object.groupBy(errors, (e) => e.nodeId);
-    this.#warnings = Object.groupBy(warnings, (w) => w.nodeId);
+    this.setIssues("errors", errors);
+    this.setIssues("warnings", warnings);
     return true;
   }
 }
