@@ -5,28 +5,42 @@ import { type Node, type OperatorNode } from "./node.js";
 import { getNodeChild, getNodeProperty, getNodeTitle } from "./node-props.js";
 import { isContainsOperator } from "./node-guards.js";
 
-export type StringifiedOperator = { ok: boolean; value: string };
+export type OperatorStatus = number;
+
+export const OK_STATUS = 0;
+export const ERROR_STATUS = 1;
+export const WARNING_STATUS = ERROR_STATUS << 1;
+
+export type StringifiedOperator = { status: OperatorStatus; value: string };
+
+export interface SummarizerContext {
+  operatorStatus(operator: OperatorNode): OperatorStatus;
+}
 
 export function summarizeOperator(
+  ctx: SummarizerContext,
   operator: OperatorNode,
   node: Node | undefined
 ): StringifiedOperator {
+  let status = ctx.operatorStatus(operator);
   switch (operator.op) {
     case OperatorType.And:
     case OperatorType.Or:
     case OperatorType.Xor: {
       if (operator.operands.length === 0) {
-        return { ok: false, value: `${operator.op}(<undefined>)` };
+        return {
+          status: status | ERROR_STATUS,
+          value: `${operator.op}(<undefined>)`,
+        };
       }
-      let ok = true;
       const values: string[] = [];
       for (const operand of operator.operands) {
-        const r = summarizeOperator(operand, node);
-        ok &&= r.ok;
+        const r = summarizeOperator(ctx, operand, node);
+        status |= r.status;
         values.push(r.value);
       }
       return {
-        ok,
+        status,
         value: `${operator.op}(${values.join(", ")})`,
       };
     }
@@ -34,29 +48,30 @@ export function summarizeOperator(
     case OperatorType.Not: {
       if (operator.operand === undefined) {
         return {
-          ok: false,
+          status: status | ERROR_STATUS,
           value: `${operator.op}(<undefined>)`,
         };
       }
       const r = summarizeOperator(
+        ctx,
         operator.operand,
         node && (isContainsOperator(operator) ? getNodeChild(node) : node)
       );
       return {
-        ok: r.ok,
+        status: status | r.status,
         value: `${operator.op}(${r.value})`,
       };
     }
     case OperatorType.Eq: {
       return {
-        ok: true,
+        status,
         value: `${operator.op}(${operator.value})`,
       };
     }
     case OperatorType.In: {
       const haveItems = operator.values.length > 0;
       return {
-        ok: haveItems,
+        status: status | (haveItems ? OK_STATUS : ERROR_STATUS),
         value: `${operator.op}([${
           haveItems ? operator.values.join(", ") : "<undefined>"
         }])`,
@@ -65,13 +80,13 @@ export function summarizeOperator(
     case OperatorType.Pattern: {
       const ok = isValidRegExp(operator.value);
       return {
-        ok,
+        status: status | (ok ? OK_STATUS : ERROR_STATUS),
         value: `${operator.op}(${ok ? operator.value : "<invalid>"})`,
       };
     }
     case OperatorType.UniqueItems: {
       return {
-        ok: true,
+        status,
         value: operator.op,
       };
     }
@@ -82,7 +97,7 @@ export function summarizeOperator(
         getNodeProperty(node, operator.propertyId);
       const propTitle = (prop && getNodeTitle(prop)) ?? operator.propertyId;
       return {
-        ok: prop !== undefined,
+        status: status | (prop !== undefined ? OK_STATUS : ERROR_STATUS),
         value: `${operator.op}(${propTitle ? `"${propTitle}"` : "<undefined>"})`,
       };
     }
@@ -91,17 +106,18 @@ export function summarizeOperator(
         node &&
         operator.propertyId &&
         getNodeProperty(node, operator.propertyId);
-      const r = operator.operator && summarizeOperator(operator.operator, prop);
+      const r =
+        operator.operator && summarizeOperator(ctx, operator.operator, prop);
       const propTitle = (prop && getNodeTitle(prop)) ?? operator.propertyId;
       return {
-        ok: r?.ok === true,
+        status: status | (r?.status ?? ERROR_STATUS),
         value: `${operator.op}(${propTitle ? `"${propTitle}"` : "<undefined>"}, ${r?.value ?? "<undefined>"})`,
       };
     }
     default: {
       const ok = operator.value !== undefined;
       return {
-        ok,
+        status: status | (ok ? OK_STATUS : ERROR_STATUS),
         value: `${operator.op}(${ok ? operator.value : "<undefined>"})`,
       };
     }

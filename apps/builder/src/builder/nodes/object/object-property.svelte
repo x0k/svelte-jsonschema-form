@@ -10,8 +10,8 @@
   import { getBuilderContext } from "../../context.svelte.js";
   import NodeContainer from "../../node-container.svelte";
   import MultiDropzone from "../../multi-dropzone.svelte";
-  import NodeIssues from '../../node-issues.svelte';
-  
+  import NodeIssues from "../../node-issues.svelte";
+
   import { NODES } from "../index.js";
 
   import { setObjectContext } from "./context.js";
@@ -49,6 +49,8 @@
       return node.property;
     },
   });
+  const isError = $derived(ctx.errors[node.id] !== undefined);
+  const isWarning = $derived(ctx.warnings[node.id] !== undefined);
 </script>
 
 <NodeContainer
@@ -56,7 +58,11 @@
   bind:node={node.property}
   class={[
     "p-0 border-none relative bg-border flex flex-col gap-1",
-    isSelected && "shadow-[inset_0_0_0_1px_var(--primary)]",
+    isError
+      ? "shadow-[inset_0_0_0_1px_var(--destructive)]"
+      : isWarning
+        ? "shadow-[inset_0_0_0_1px_var(--chart-3)]"
+        : isSelected && "shadow-[inset_0_0_0_1px_var(--primary)]",
   ]}
   showRequired
 >
@@ -67,7 +73,12 @@
     ]}
     onclick={pushDependency}>Add dependency</Button
   >
-  <Property showRequired bind:node={node.property as never} {unmount} {draggable} />
+  <Property
+    showRequired
+    bind:node={node.property as never}
+    {unmount}
+    {draggable}
+  />
   {#if hasDeps}
     <div class="flex flex-col gap-0.5 px-2 pb-4">
       <MultiDropzone

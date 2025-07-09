@@ -293,14 +293,27 @@ const OPERATOR_VALIDATORS: {
       } else {
         const check = createValueTypeCheckAgainstAffectedNode(ctx, op);
         if (check !== undefined) {
+          const values = new Set<string>();
+          const duplicatedValues: string[] = [];
           for (let i = 0; i < op.values.length; i++) {
-            const expected = check(op.values[i]);
+            const value = op.values[i];
+            const expected = check(value);
             if (expected !== undefined) {
               ctx.addError(
                 op,
-                `The value "${op.values[i]}" ${EXPECTED_VALUE_TYPE_ERRORS[expected]}`
+                `The value "${value}" ${EXPECTED_VALUE_TYPE_ERRORS[expected]}`
               );
+            } else if (values.has(value)) {
+              duplicatedValues.push(value);
+            } else {
+              values.add(value);
             }
+          }
+          if (duplicatedValues.length > 0) {
+            ctx.addError(
+              op,
+              `Duplicated values: '${duplicatedValues.join("', '")}'`
+            );
           }
         }
       }
@@ -506,7 +519,11 @@ const NODE_VALIDATORS: {
         validateNode(ctx, node.dependencies[i]);
       }
     });
-    if (emptyDeps.length > 1) {
+    if (emptyDeps.length === 1) {
+      if (node.dependencies.length === 1) {
+        ctx.addWarning(node.dependencies[0], "Redundant dependency");
+      }
+    } else if (emptyDeps.length > 1) {
       ctx.addWarning(
         node,
         "You have more than one empty dependency, perhaps you can merge them using the `Or` operator"

@@ -26,6 +26,11 @@ import {
   NODE_OPTIONS_UI_SCHEMAS,
   CUSTOMIZABLE_TYPES,
   type NodeId,
+  type OperatorNode,
+  summarizeOperator,
+  OK_STATUS,
+  ERROR_STATUS,
+  WARNING_STATUS,
 } from "$lib/builder/index.js";
 import { mergeUiSchemas, Theme } from "$lib/sjsf/theme.js";
 
@@ -331,6 +336,20 @@ export class BuilderContext {
     return augmentation ? mergeUiSchemas(next, augmentation as UiSchema) : next;
   }
 
+  summarizeOperator(operator: OperatorNode, node: Node | undefined) {
+    return summarizeOperator(
+      {
+        operatorStatus: (operator) =>
+          (this.#errors[operator.id] === undefined ? OK_STATUS : ERROR_STATUS) |
+          (this.#warnings[operator.id] === undefined
+            ? OK_STATUS
+            : WARNING_STATUS),
+      },
+      operator,
+      node
+    );
+  }
+
   validate() {
     if (this.rootNode === undefined) {
       return false;
@@ -379,7 +398,6 @@ export class BuilderContext {
     );
     this.#errors = Object.groupBy(errors, (e) => e.nodeId);
     this.#warnings = Object.groupBy(warnings, (w) => w.nodeId);
-    console.log({ errors, warnings });
     return true;
   }
 }

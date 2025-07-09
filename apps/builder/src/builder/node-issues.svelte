@@ -33,7 +33,7 @@
         },
       ]}
     >
-      {#each issues as issue (issue.message)}
+      {#each issues as issue}
         <li>{issue.message}</li>
       {/each}
     </ul>

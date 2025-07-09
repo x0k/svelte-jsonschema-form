@@ -29,7 +29,7 @@
 
   const isSelected = $derived(ctx.selectedNode?.id === node.id);
   const r = $derived(
-    node.operator && summarizeOperator(node.operator, pCtx.node)
+    node.operator && ctx.summarizeOperator(node.operator, pCtx.node)
   );
 </script>
 
@@ -39,7 +39,7 @@
 <NodeContainer
   bind:node
   {draggable}
-  invalid={r?.ok === false}
+  status={r?.status}
   showRequired={false}
   onSelect={() => {
     ctx.selectAffectedNode(nodeRef);

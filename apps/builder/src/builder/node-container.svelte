@@ -2,7 +2,13 @@
   import type { Snippet } from "svelte";
   import type { ClassValue } from "svelte/elements";
 
-  import type { Node } from "$lib/builder/index.js";
+  import {
+    ERROR_STATUS,
+    OK_STATUS,
+    WARNING_STATUS,
+    type Node,
+    type OperatorStatus,
+  } from "$lib/builder/index.js";
   import { cn } from "$lib/utils.js";
 
   import {
@@ -11,7 +17,6 @@
     type NodeRef,
   } from "./context.svelte.js";
   import Container from "./container.svelte";
-  import NodeIssues from "./node-issues.svelte";
 
   interface Props {
     node: Node;
@@ -19,7 +24,7 @@
     showRequired: boolean;
     children: Snippet;
     class?: ClassValue;
-    invalid?: boolean;
+    status?: OperatorStatus;
     disableSelection?: boolean;
     onSelect?: () => void;
   }
@@ -29,10 +34,10 @@
     class: className,
     draggable,
     children,
-    invalid,
     disableSelection,
     onSelect,
     showRequired,
+    status = OK_STATUS,
   }: Props = $props();
 
   const ctx = getBuilderContext();
@@ -52,8 +57,12 @@
     ctx.selectNode(nodeRef, showRequired);
     onSelect?.();
   };
-  const error = $derived(invalid || ctx.errors[node.id] !== undefined);
-  const warning = $derived(ctx.warnings[node.id] !== undefined);
+  const error = $derived(
+    status & ERROR_STATUS || ctx.errors[node.id] !== undefined
+  );
+  const warning = $derived(
+    status & WARNING_STATUS || ctx.warnings[node.id] !== undefined
+  );
 </script>
 
 <Container
