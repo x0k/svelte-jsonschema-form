@@ -341,6 +341,10 @@ export const NUMBER_NODE_OPTIONS_SCHEMA = {
   title: "Number options",
   type: "object",
   properties: {
+    integer: {
+      title: "Integer",
+      type: "boolean",
+    },
     widget: {
       title: "Widget",
       type: "string",
@@ -409,11 +413,46 @@ export const FILE_NODE_OPTIONS_SCHEMA = {
       type: "boolean",
     },
   },
+  dependencies: {
+    multiple: {
+      oneOf: [
+        {
+          type: "object",
+          properties: {
+            multiple: {
+              const: true,
+            },
+            minItems: {
+              title: "Min items",
+              type: "number",
+            },
+            maxItems: {
+              title: "Max items",
+              type: "number",
+            },
+          },
+          additionalProperties: false,
+        },
+        {
+          type: "object",
+          properties: {
+            multiple: {
+              const: false,
+            },
+          },
+          additionalProperties: false,
+        },
+      ],
+    },
+  },
   required: ["widget"],
   additionalProperties: false,
 } as const satisfies Schema;
 
-export type FileOptions = FromSchema<typeof FILE_NODE_OPTIONS_SCHEMA>;
+export type FileOptions = FromSchema<typeof FILE_NODE_OPTIONS_SCHEMA> &
+  FromSchema<
+    (typeof FILE_NODE_OPTIONS_SCHEMA)["dependencies"]["multiple"]["oneOf"][0]
+  >;
 
 export interface FileNode
   extends AbstractCustomizableNode<NodeType.File, FileOptions> {}

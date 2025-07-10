@@ -1,28 +1,51 @@
+import { identity } from "@sjsf/form/lib/function";
+import { mergeSchemas } from "@sjsf/form/core";
 import type { Schema } from "@sjsf/form";
 
 import {
   NodeType,
   type AbstractNode,
+  type EnumItemNode,
   type Node,
   type NodeId,
+  type ObjectNode,
   type ObjectPropertyDependencyNode,
+  type ObjectPropertyNode,
+  type OperatorNode,
 } from "./node.js";
 import { isCustomizableNode } from "./node-guards.js";
+import { EnumValueType } from "./enum.js";
+import { OperatorType, type AbstractOperator } from "./operator.js";
 
-export type Uniquifier = (str: string) => string;
-
-export interface SchemaBuilderRegistries {
-  parent: Node;
-  uniquifier: Uniquifier;
+export interface Scope {
+  id: (str: string) => string;
+  propertyNames: Map<NodeId, string>;
 }
 
-function handleChildren<R>(
-  ctx: SchemaBuilderContext,
-  self: Node,
-  build: () => R
-) {
-  using _parent = ctx.push("parent", self);
-  return build();
+function createScope(): Scope {
+  const counter = new Map<string, number>();
+  return {
+    id(str: string) {
+      let count = counter.get(str);
+      if (count === undefined) {
+        counter.set(str, 1);
+        return str;
+      }
+      counter.set(str, ++count);
+      return `${str}_${count}`;
+    },
+    propertyNames: new Map<NodeId, string>(),
+  };
+}
+
+function assetThing<T>(thing: T | undefined, name: string): asserts thing is T {
+  if (thing === undefined) {
+    throw new Error(`${name} is undefined`);
+  }
+}
+
+export interface SchemaBuilderRegistries {
+  scope: Scope;
 }
 
 export interface SchemaBuilderContext {
@@ -35,29 +58,12 @@ export interface SchemaBuilderContext {
   ): SchemaBuilderRegistries[K] | undefined;
 }
 
-function createUniquifier() {
-  const counter = new Map<string, number>();
-  return (str: string) => {
-    let count = counter.get(str);
-    if (count === undefined) {
-      counter.set(str, 1);
-      return str;
-    }
-    counter.set(str, ++count);
-    return `${str}_${count}`;
-  };
-}
-
-interface BuildDependenciesOptions {
-  triggerPropertyName: string;
-  dependencies: ObjectPropertyDependencyNode[];
-  complementId: NodeId | undefined;
-}
-
+// TODO: Should we merge inner dependencies into root?
 function buildPropertyDependencies(
   ctx: SchemaBuilderContext,
-  { complementId, dependencies, triggerPropertyName }: BuildDependenciesOptions
-) {
+  triggerPropertyName: string,
+  { complementary: complementId, dependencies }: ObjectPropertyNode
+): Schema | undefined {
   if (dependencies.length === 0) {
     return undefined;
   }
@@ -68,6 +74,153 @@ function buildPropertyDependencies(
     return buildSchema(ctx, dependencies[0]);
   }
   let complementIndex = -1;
+  const predicates: Schema[] = [];
+  const oneOf = dependencies.map((d, i): Schema => {
+    if (d.id === complementId) {
+      complementIndex = i;
+      return buildSchema(ctx, d);
+    }
+    assetThing(d.predicate, "predicate");
+    const predicate = buildSchema(ctx, d.predicate);
+    predicates.push(predicate);
+    return mergeSchemas(
+      {
+        properties: {
+          [triggerPropertyName]: predicate,
+        },
+      },
+      buildSchema(ctx, d)
+    );
+  });
+  if (complementIndex >= 0) {
+    const complementSchema = oneOf[complementIndex];
+    const props = (complementSchema.properties ??= {});
+    props[triggerPropertyName] = {
+      not:
+        predicates.length === 1
+          ? predicates[0]
+          : {
+              anyOf: predicates,
+            },
+    };
+  }
+  return { oneOf };
+}
+
+function buildObjectSchema(
+  ctx: SchemaBuilderContext,
+  node: ObjectNode | ObjectPropertyDependencyNode
+): Schema {
+  const scope = ctx.peek("scope");
+  assetThing(scope, "scope");
+  const properties = new Map<string, Schema>();
+  const dependencies = new Map<string, Schema>();
+  const required: string[] = [];
+  for (let i = 0; i < node.properties.length; i++) {
+    const p = node.properties[i];
+    if (!isCustomizableNode(p.property)) {
+      throw new Error();
+    }
+    const name = scope.id(p.property.options.title);
+    properties.set(name, buildSchema(ctx, p.property));
+    scope.propertyNames.set(p.property.id, name);
+    if (p.property.options.required) {
+      required.push(name);
+    }
+    const deps = buildPropertyDependencies(ctx, name, p);
+    if (deps !== undefined) {
+      dependencies.set(name, deps);
+    }
+  }
+  const obj: Schema = {
+    type: "object",
+    properties: Object.fromEntries(properties),
+  };
+  if (required.length > 0) {
+    obj.required = required;
+  }
+  if (dependencies.size > 0) {
+    obj.dependencies = Object.fromEntries(dependencies);
+  }
+  return obj;
+}
+
+const OPERATOR_SCHEMA_BUILDERS: {
+  [T in OperatorType]: (
+    ctx: SchemaBuilderContext,
+    operator: Extract<OperatorNode, AbstractOperator<T>>
+  ) => Schema;
+} = {
+  [OperatorType.And]: (ctx, op) => ({
+    allOf: op.operands.map((o) => buildOperator(ctx, o)),
+  }),
+  [OperatorType.Or]: (ctx, op) => ({
+    anyOf: op.operands.map((o) => buildOperator(ctx, o)),
+  }),
+  [OperatorType.Xor]: (ctx, op) => ({
+    oneOf: op.operands.map((o) => buildOperator(ctx, o)),
+  }),
+  [OperatorType.Not]: (ctx, op) => {
+    assetThing(op.operand, "not operand");
+    return { not: buildOperator(ctx, op.operand) };
+  },
+  // Shared
+  [OperatorType.Eq]: (ctx, op) => ({ const: JSON.parse(op.value) }),
+  [OperatorType.In]: (ctx, op) => ({
+    enum: op.values.map((v) => JSON.parse(v)),
+  }),
+  // String
+  [OperatorType.Pattern]: (ctx, op) => ({ pattern: op.value }),
+  [OperatorType.MinLength]: (ctx, op) => ({ minLength: op.value }),
+  [OperatorType.MaxLength]: (ctx, op) => ({ maxLength: op.value }),
+  // Number
+  [OperatorType.Less]: (ctx, op) => ({ exclusiveMaximum: op.value }),
+  [OperatorType.LessOrEq]: (ctx, op) => ({ maximum: op.value }),
+  [OperatorType.Greater]: (ctx, op) => ({ exclusiveMinimum: op.value }),
+  [OperatorType.GreaterOrEq]: (ctx, op) => ({ minimum: op.value }),
+  [OperatorType.MultipleOf]: (ctx, op) => ({ multipleOf: op.value }),
+  // Array
+  [OperatorType.Contains]: (ctx, op) => {
+    assetThing(op.operand, "contains operant");
+    return { contains: buildOperator(ctx, op.operand) };
+  },
+  [OperatorType.MinItems]: (ctx, op) => ({ minItems: op.value }),
+  [OperatorType.MaxItems]: (ctx, op) => ({ maxItems: op.value }),
+  [OperatorType.UniqueItems]: (ctx, op) => ({ uniqueItems: true }),
+  // Object
+  [OperatorType.HasProperty]: (ctx, op) => {
+    const scope = ctx.peek("scope");
+    assetThing(scope, "scope in hasProperty operator");
+    assetThing(op.propertyId, "property id in hasProperty operator");
+    const name = scope.propertyNames.get(op.propertyId);
+    assetThing(name, "property name in hasProperty operator");
+    return { required: [name] };
+  },
+  [OperatorType.Property]: (ctx, op) => {
+    const scope = ctx.peek("scope");
+    assetThing(scope, "scope in property operator");
+    assetThing(op.propertyId, "property id in property operator");
+    const name = scope.propertyNames.get(op.propertyId);
+    assetThing(name, "property name in property operator");
+    assetThing(op.operator, "nested operator in property operator");
+    return {
+      properties: {
+        [name]: buildOperator(ctx, op.operator),
+      },
+    };
+  },
+};
+
+function buildOperator(ctx: SchemaBuilderContext, node: OperatorNode): Schema {
+  return OPERATOR_SCHEMA_BUILDERS[node.op](ctx, node as never);
+}
+
+function buildEnumItems(type: EnumValueType, items: EnumItemNode[]) {
+  const toConst = type === EnumValueType.JSON ? JSON.parse : identity;
+  return items.map((item) => ({
+    title: item.label,
+    const: toConst(item.label),
+  }));
 }
 
 const NODE_SCHEMA_BUILDERS: {
@@ -77,69 +230,146 @@ const NODE_SCHEMA_BUILDERS: {
   ) => Schema;
 } = {
   [NodeType.Object]: (ctx, node) => {
-    const unique = createUniquifier();
-    using _unique = ctx.push("uniquifier", createUniquifier());
-    const properties = handleChildren(ctx, node, () =>
-      node.properties.map((p) => {
-        if (!isCustomizableNode(p.property)) {
-          throw new Error();
-        }
-        const name = unique(p.property.options.title);
-        return {
-          name,
-          schema: buildSchema(ctx, p.property),
-          dependencies: [],
-        };
-      })
-    );
-    return {
-      type: "object",
-      properties: {},
-    };
+    const scope = createScope();
+    using _scope = ctx.push("scope", scope);
+    return buildObjectSchema(ctx, node);
   },
   [NodeType.ObjectProperty]: () => {
-    throw new Error("Unexpected node");
+    throw new Error("Unexpected object property node");
   },
-  [NodeType.ObjectPropertyDependency]: (ctx, node) => {
-    return {};
-  },
+  [NodeType.ObjectPropertyDependency]: buildObjectSchema,
   [NodeType.Predicate]: (ctx, node) => {
-    return {};
+    assetThing(node.operator, "operator");
+    return buildSchema(ctx, node.operator);
   },
-  [NodeType.Operator]: (ctx, node) => {
-    return {};
-  },
+  [NodeType.Operator]: buildOperator,
   [NodeType.Array]: (ctx, node) => {
-    return {};
+    const {
+      item,
+      options: { required, ...rest },
+    } = node;
+    assetThing(item, "array item");
+    return {
+      type: "array",
+      items: buildSchema(ctx, item),
+      ...rest,
+    };
   },
   [NodeType.Grid]: (ctx, node) => {
-    const unique = createUniquifier();
-    using _unique = ctx.push("uniquifier", unique);
-    return {};
+    const scope = createScope();
+    using _scope = ctx.push("scope", scope);
+    const properties = new Map<string, Schema>();
+    const required: string[] = [];
+    for (let i = 0; i < node.cells.length; i++) {
+      const p = node.cells[i].node;
+      if (!isCustomizableNode(p)) {
+        throw new Error();
+      }
+      const name = scope.id(p.options.title);
+      properties.set(name, buildSchema(ctx, p));
+      if (p.options.required) {
+        required.push(name);
+      }
+    }
+    const obj: Schema = {
+      type: "object",
+      properties: Object.fromEntries(properties),
+    };
+    if (required.length > 0) {
+      obj.required = required;
+    }
+    return obj;
   },
-  [NodeType.Enum]: (ctx, node) => {
-    return {};
+  [NodeType.Enum]: (
+    _,
+    {
+      items,
+      valueType,
+      options: { defaultValue, required: _r, widget: _w, ...rest },
+    }
+  ) => {
+    return {
+      ...rest,
+      oneOf: buildEnumItems(valueType, items),
+      default: defaultValue,
+    };
   },
-  [NodeType.MultiEnum]: (ctx, node) => {
-    return {};
+  [NodeType.MultiEnum]: (
+    ctx,
+    { items, options: { required, widget, defaultValue, ...rest }, valueType }
+  ) => {
+    return {
+      ...rest,
+      type: "array",
+      uniqueItems: true,
+      items: {
+        oneOf: buildEnumItems(valueType, items),
+      },
+      default: defaultValue,
+    };
   },
-  [NodeType.EnumItem]: (ctx, node) => {
-    return {};
+  [NodeType.EnumItem]: () => {
+    throw new Error(`Unexpected enum item node`);
   },
-  [NodeType.String]: (ctx, node) => {
-    return {};
+  [NodeType.String]: (
+    _,
+    { options: { widget: _w, required: _r, defaultValue, ...rest } }
+  ) => {
+    return {
+      type: "string",
+      ...rest,
+      default: defaultValue,
+    };
   },
-  [NodeType.Number]: (ctx, node) => {
-    return {};
+  [NodeType.Number]: (
+    ctx,
+    { options: { widget: _w, required: _r, defaultValue, integer, ...rest } }
+  ) => {
+    return {
+      type: integer ? "integer" : "number",
+      ...rest,
+      default: defaultValue,
+    };
   },
-  [NodeType.Boolean]: (ctx, node) => {
-    return {};
+  [NodeType.Boolean]: (
+    ctx,
+    { options: { widget: _w, required: _r, defaultValue, ...rest } }
+  ) => {
+    return {
+      type: "boolean",
+      ...rest,
+      default: defaultValue,
+    };
   },
-  [NodeType.File]: (ctx, node) => {
-    return {};
+  [NodeType.File]: (
+    _,
+    { options: { widget: _w, required: _r, multiple, ...rest } }
+  ) => {
+    const file: Schema = {
+      type: "string",
+      format: "data-url",
+    };
+    return multiple
+      ? {
+          type: "array",
+          ...rest,
+          items: file,
+        }
+      : Object.assign(file, rest);
   },
-  [NodeType.Tags]: (ctx, node) => {
-    return {};
+  [NodeType.Tags]: (
+    _,
+    { options: { required: _r, widget: _w, defaultValue, ...rest } }
+  ) => {
+    return {
+      type: "array",
+      ...rest,
+      uniqueItems: true,
+      items: {
+        type: "string",
+      },
+      default: defaultValue,
+    };
   },
 };
 
