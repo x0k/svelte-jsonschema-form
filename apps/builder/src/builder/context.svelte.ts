@@ -1,13 +1,7 @@
 import { flushSync, getContext, onDestroy, setContext } from "svelte";
-import { DragDropManager, Draggable, Droppable } from "@dnd-kit/dom";
 import { mergeSchemas } from "@sjsf/form/core";
-import type {
-  FormValidationResult,
-  FormValue,
-  FormValueValidatorError,
-  UiSchema,
-  ValidationError,
-} from "@sjsf/form";
+import type { UiSchemaRoot, FormValue, Schema, UiSchema } from "@sjsf/form";
+import { DragDropManager, Draggable, Droppable } from "@dnd-kit/dom";
 
 import {
   createNode,
@@ -33,6 +27,8 @@ import {
   WARNING_STATUS,
   validateNode,
   type ValidatorRegistries,
+  buildSchema,
+  type SchemaBuilderRegistries,
 } from "$lib/builder/index.js";
 import { mergeUiSchemas, Theme } from "$lib/sjsf/theme.js";
 import { validator } from "$lib/form/defaults.js";
@@ -194,6 +190,18 @@ export class BuilderContext {
   private setIssues(key: "errors" | "warnings", issues: NodeIssue[]) {
     this[`_${key}Count`] = issues.length;
     this[`_${key}`] = Object.groupBy(issues, (i) => i.nodeId);
+  }
+
+  showPreview = $state.raw(false);
+  
+  #schema = $state.raw<Schema>({});
+  get schema() {
+    return this.#schema;
+  }
+
+  #uiSchema = $state.raw<UiSchemaRoot>({});
+  get uiSchema() {
+    return this.#uiSchema;
   }
 
   constructor() {
@@ -410,10 +418,39 @@ export class BuilderContext {
       },
       this.rootNode
     );
-    console.log(errors)
     this.setIssues("errors", errors);
     this.setIssues("warnings", warnings);
-    return true;
+    return (
+      errors.length === 0 && (this.ignoreWarnings || warnings.length === 0)
+    );
+  }
+
+  build() {
+    if (this.rootNode === undefined) {
+      throw new Error("Root node is undefined");
+    }
+    const registries: {
+      [K in keyof SchemaBuilderRegistries]: Array<SchemaBuilderRegistries[K]>;
+    } = {
+      scope: [],
+    };
+    this.#schema = buildSchema(
+      {
+        propertyNames: new Map(),
+        push(registry, value) {
+          registries[registry].push(value);
+          return {
+            [Symbol.dispose]() {
+              registries[registry].pop();
+            },
+          };
+        },
+        peek(registry) {
+          return registries[registry].at(-1);
+        },
+      },
+      this.rootNode
+    );
   }
 }
 

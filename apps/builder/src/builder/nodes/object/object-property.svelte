@@ -68,8 +68,8 @@
 >
   <Button
     class={[
-      "absolute -bottom-11 left-1/2 -translate-x-1/2 z-20",
-      isSelected && !hasDeps && !ctx.isDragged ? "inline-flex" : "hidden",
+      "absolute -bottom-11 left-1/2 -translate-x-1/2 z-50",
+      isSelected && !ctx.isDragged ? "inline-flex" : "hidden",
     ]}
     onclick={pushDependency}>Add dependency</Button
   >
@@ -80,7 +80,7 @@
     {draggable}
   />
   {#if hasDeps}
-    <div class="flex flex-col gap-0.5 px-2 pb-4">
+    <div class="flex flex-col gap-0.5 px-2">
       <MultiDropzone
         showRequired={false}
         bind:nodes={node.dependencies}
@@ -89,8 +89,7 @@
           node.dependencies.splice(i, 0, newNode);
         }}
       />
-      <Button onclick={pushDependency}>Add dependency</Button>
     </div>
   {/if}
-  <NodeIssues class="pb-4" {node} />
+  <NodeIssues class="p-4 pt-0" {node} />
 </NodeContainer>

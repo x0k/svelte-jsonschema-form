@@ -56,11 +56,6 @@
   };
 
   const complementary = $derived(objCtx.complementary === node.id);
-  onDestroy(() => {
-    if (complementary) {
-      objCtx.complementary = undefined;
-    }
-  });
 
   const checkboxId = $props.id();
 </script>
@@ -71,7 +66,14 @@
   showRequired={false}
   class="flex flex-col gap-0.5"
 >
-  <NodeHeader {draggable} {unmount} disablePadding>
+  <NodeHeader
+    {draggable}
+    unmount={() => {
+      objCtx.complementary = undefined;
+      unmount();
+    }}
+    disablePadding
+  >
     Branch
     {#snippet append()}
       <div class="flex items-center gap-2">

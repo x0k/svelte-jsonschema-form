@@ -46,6 +46,10 @@ export const COMMON_OPTIONS_SCHEMA = {
       title: "Description",
       type: "string",
     },
+    help: {
+      title: "Help",
+      type: "string"
+    },
     required: {
       title: "Required",
       type: "boolean",

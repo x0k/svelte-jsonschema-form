@@ -8,6 +8,7 @@
   } from "../../context.svelte.js";
   import NodeHeader from "../../node-header.svelte";
   import NodeContainer from "../../node-container.svelte";
+  import NodeIssues from '../../node-issues.svelte';
 
   import OperatorDropzone from "./operator-dropzone.svelte";
   import { getPredicateContext } from "./context.js";
@@ -53,5 +54,6 @@
   >
   {#if ctx.selectedNode?.id === node.id}
     <OperatorDropzone bind:node={node.operator} />
+    <NodeIssues class="pt-4" {node} />
   {/if}
 </NodeContainer>

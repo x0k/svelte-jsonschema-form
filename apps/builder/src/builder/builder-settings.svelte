@@ -42,7 +42,9 @@
   <Button
     disabled={ctx.rootNode === undefined}
     onclick={() => {
-      ctx.validate();
+      if (ctx.validate()) {
+        ctx.showPreview = true;
+      }
     }}>Preview</Button
   >
   {#if ctx.errorsCount || ctx.warningsCount}

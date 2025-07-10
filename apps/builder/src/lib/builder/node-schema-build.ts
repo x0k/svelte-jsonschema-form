@@ -280,7 +280,7 @@ const NODE_SCHEMA_BUILDERS: {
     {
       items,
       valueType,
-      options: { defaultValue, required: _r, widget: _w, ...rest },
+      options: { defaultValue, required, widget, help, ...rest },
     }
   ) => {
     return {
@@ -291,7 +291,11 @@ const NODE_SCHEMA_BUILDERS: {
   },
   [NodeType.MultiEnum]: (
     ctx,
-    { items, options: { required, widget, defaultValue, ...rest }, valueType }
+    {
+      items,
+      options: { required, widget, defaultValue, help, ...rest },
+      valueType,
+    }
   ) => {
     return {
       ...rest,
@@ -308,7 +312,7 @@ const NODE_SCHEMA_BUILDERS: {
   },
   [NodeType.String]: (
     _,
-    { options: { widget: _w, required: _r, defaultValue, ...rest } }
+    { options: { widget, required, defaultValue, help, ...rest } }
   ) => {
     return {
       type: "string",
@@ -318,7 +322,7 @@ const NODE_SCHEMA_BUILDERS: {
   },
   [NodeType.Number]: (
     ctx,
-    { options: { widget: _w, required: _r, defaultValue, integer, ...rest } }
+    { options: { widget, required, defaultValue, integer, help, ...rest } }
   ) => {
     return {
       type: integer ? "integer" : "number",
@@ -328,7 +332,7 @@ const NODE_SCHEMA_BUILDERS: {
   },
   [NodeType.Boolean]: (
     ctx,
-    { options: { widget: _w, required: _r, defaultValue, ...rest } }
+    { options: { widget, required, defaultValue, help, ...rest } }
   ) => {
     return {
       type: "boolean",
@@ -340,11 +344,12 @@ const NODE_SCHEMA_BUILDERS: {
     _,
     {
       options: {
-        widget: _w,
-        required: _r,
+        widget,
+        required,
         multiple,
         title,
         description,
+        help,
         ...rest
       },
     }
@@ -367,7 +372,7 @@ const NODE_SCHEMA_BUILDERS: {
   },
   [NodeType.Tags]: (
     _,
-    { options: { required: _r, widget: _w, defaultValue, ...rest } }
+    { options: { required, widget, defaultValue, help, ...rest } }
   ) => {
     return {
       type: "array",
