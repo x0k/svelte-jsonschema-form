@@ -9,7 +9,31 @@ import {
 } from "./node.js";
 import { isCustomizableNode } from "./node-guards.js";
 
-export interface SchemaBuilderContext {}
+export type Uniquifier = (str: string) => string;
+
+export interface SchemaBuilderRegistries {
+  parent: Node;
+  uniquifier: Uniquifier;
+}
+
+function handleChildren<R>(
+  ctx: SchemaBuilderContext,
+  self: Node,
+  build: () => R
+) {
+  using _parent = ctx.push("parent", self);
+  return build();
+}
+
+export interface SchemaBuilderContext {
+  push<K extends keyof SchemaBuilderRegistries>(
+    registry: K,
+    value: SchemaBuilderRegistries[K]
+  ): Disposable;
+  peek<K extends keyof SchemaBuilderRegistries>(
+    registry: K
+  ): SchemaBuilderRegistries[K] | undefined;
+}
 
 function createUniquifier() {
   const counter = new Map<string, number>();
@@ -24,23 +48,26 @@ function createUniquifier() {
   };
 }
 
+interface BuildDependenciesOptions {
+  triggerPropertyName: string;
+  dependencies: ObjectPropertyDependencyNode[];
+  complementId: NodeId | undefined;
+}
+
 function buildPropertyDependencies(
   ctx: SchemaBuilderContext,
-  name: string,
-  nodes: ObjectPropertyDependencyNode[],
-  complementId: NodeId | undefined
+  { complementId, dependencies, triggerPropertyName }: BuildDependenciesOptions
 ) {
-  if (nodes.length === 0) {
+  if (dependencies.length === 0) {
     return undefined;
   }
-  if (nodes.length === 1) {
-    if (nodes[0].id !== complementId) {
+  if (dependencies.length === 1) {
+    if (dependencies[0].id !== complementId) {
       throw new Error(`Invalid node dependencies`);
     }
-    return buildSchema(ctx, nodes[0]);
+    return buildSchema(ctx, dependencies[0]);
   }
   let complementIndex = -1;
-  
 }
 
 const NODE_SCHEMA_BUILDERS: {
@@ -51,17 +78,20 @@ const NODE_SCHEMA_BUILDERS: {
 } = {
   [NodeType.Object]: (ctx, node) => {
     const unique = createUniquifier();
-    const properties = node.properties.map((p) => {
-      if (!isCustomizableNode(p.property)) {
-        throw new Error();
-      }
-      const name = unique(p.property.options.title)
-      return {
-        name,
-        schema: buildSchema(ctx, p.property),
-        dependencies: [],
-      };
-    });
+    using _unique = ctx.push("uniquifier", createUniquifier());
+    const properties = handleChildren(ctx, node, () =>
+      node.properties.map((p) => {
+        if (!isCustomizableNode(p.property)) {
+          throw new Error();
+        }
+        const name = unique(p.property.options.title);
+        return {
+          name,
+          schema: buildSchema(ctx, p.property),
+          dependencies: [],
+        };
+      })
+    );
     return {
       type: "object",
       properties: {},
@@ -83,6 +113,8 @@ const NODE_SCHEMA_BUILDERS: {
     return {};
   },
   [NodeType.Grid]: (ctx, node) => {
+    const unique = createUniquifier();
+    using _unique = ctx.push("uniquifier", unique);
     return {};
   },
   [NodeType.Enum]: (ctx, node) => {
