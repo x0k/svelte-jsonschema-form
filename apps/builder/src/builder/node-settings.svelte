@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { defaultMerger } from "@sjsf/form/core";
   import {
     Content,
     createForm,
@@ -7,7 +6,6 @@
     ON_INPUT,
     setFormContext,
   } from "@sjsf/form";
-  import { omitExtraData } from "@sjsf/form/omit-extra-data";
 
   import type { CustomizableNode } from "$lib/builder/index.js";
   import * as defaults from "$lib/form/defaults.js";
@@ -38,12 +36,7 @@
     if (form.fieldsValidation.isProcessed) {
       return;
     }
-    node.options = omitExtraData(
-      defaults.validator,
-      defaultMerger,
-      schema,
-      form.value
-    ) as any;
+    node.options = form.value as any;
   });
 </script>
 

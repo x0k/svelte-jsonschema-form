@@ -430,6 +430,10 @@ export const FILE_NODE_OPTIONS_SCHEMA = {
               title: "Max items",
               type: "number",
             },
+            uniqueItems: {
+              title: "Unique items",
+              type: "boolean",
+            },
           },
           additionalProperties: false,
         },
@@ -484,7 +488,7 @@ export const TAGS_NODE_OPTIONS_SCHEMA = {
     },
   },
   required: ["widget"],
-  additionalItems: false,
+  additionalProperties: false,
 } as const satisfies Schema;
 
 export type TagsOptions = FromSchema<typeof TAGS_NODE_OPTIONS_SCHEMA>;

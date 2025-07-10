@@ -13,13 +13,12 @@ import {
   type ObjectPropertyNode,
   type OperatorNode,
 } from "./node.js";
-import { isCustomizableNode } from "./node-guards.js";
 import { EnumValueType } from "./enum.js";
 import { OperatorType, type AbstractOperator } from "./operator.js";
+import { isCustomizableNode } from "./node-guards.js";
 
 export interface Scope {
   id: (str: string) => string;
-  propertyNames: Map<NodeId, string>;
 }
 
 function createScope(): Scope {
@@ -34,7 +33,6 @@ function createScope(): Scope {
       counter.set(str, ++count);
       return `${str}_${count}`;
     },
-    propertyNames: new Map<NodeId, string>(),
   };
 }
 
@@ -49,6 +47,7 @@ export interface SchemaBuilderRegistries {
 }
 
 export interface SchemaBuilderContext {
+  propertyNames: Map<NodeId, string>;
   push<K extends keyof SchemaBuilderRegistries>(
     registry: K,
     value: SchemaBuilderRegistries[K]
@@ -123,7 +122,7 @@ function buildObjectSchema(
     }
     const name = scope.id(p.property.options.title);
     properties.set(name, buildSchema(ctx, p.property));
-    scope.propertyNames.set(p.property.id, name);
+    ctx.propertyNames.set(p.property.id, name);
     if (p.property.options.required) {
       required.push(name);
     }
@@ -189,18 +188,14 @@ const OPERATOR_SCHEMA_BUILDERS: {
   [OperatorType.UniqueItems]: (ctx, op) => ({ uniqueItems: true }),
   // Object
   [OperatorType.HasProperty]: (ctx, op) => {
-    const scope = ctx.peek("scope");
-    assetThing(scope, "scope in hasProperty operator");
     assetThing(op.propertyId, "property id in hasProperty operator");
-    const name = scope.propertyNames.get(op.propertyId);
+    const name = ctx.propertyNames.get(op.propertyId);
     assetThing(name, "property name in hasProperty operator");
     return { required: [name] };
   },
   [OperatorType.Property]: (ctx, op) => {
-    const scope = ctx.peek("scope");
-    assetThing(scope, "scope in property operator");
     assetThing(op.propertyId, "property id in property operator");
-    const name = scope.propertyNames.get(op.propertyId);
+    const name = ctx.propertyNames.get(op.propertyId);
     assetThing(name, "property name in property operator");
     assetThing(op.operator, "nested operator in property operator");
     return {
@@ -291,7 +286,7 @@ const NODE_SCHEMA_BUILDERS: {
     return {
       ...rest,
       oneOf: buildEnumItems(valueType, items),
-      default: defaultValue,
+      default: defaultValue && JSON.parse(defaultValue),
     };
   },
   [NodeType.MultiEnum]: (
@@ -305,7 +300,7 @@ const NODE_SCHEMA_BUILDERS: {
       items: {
         oneOf: buildEnumItems(valueType, items),
       },
-      default: defaultValue,
+      default: defaultValue?.map((v) => JSON.parse(v)),
     };
   },
   [NodeType.EnumItem]: () => {
@@ -343,19 +338,32 @@ const NODE_SCHEMA_BUILDERS: {
   },
   [NodeType.File]: (
     _,
-    { options: { widget: _w, required: _r, multiple, ...rest } }
+    {
+      options: {
+        widget: _w,
+        required: _r,
+        multiple,
+        title,
+        description,
+        ...rest
+      },
+    }
   ) => {
     const file: Schema = {
       type: "string",
       format: "data-url",
     };
     return multiple
-      ? {
-          type: "array",
-          ...rest,
-          items: file,
-        }
-      : Object.assign(file, rest);
+      ? Object.assign(
+          {
+            type: "array",
+            title,
+            description,
+            items: file,
+          } satisfies Schema,
+          rest
+        )
+      : Object.assign(file, { title, description });
   },
   [NodeType.Tags]: (
     _,
