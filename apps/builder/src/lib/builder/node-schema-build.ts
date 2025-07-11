@@ -300,7 +300,7 @@ const NODE_SCHEMA_BUILDERS: {
   [NodeType.Object]: (ctx, node) => {
     const scope = createScope();
     using _scope = ctx.push("scope", scope);
-    return buildObjectSchema(ctx, node);
+    return assignSchemaOptions(buildObjectSchema(ctx, node), node.options);
   },
   [NodeType.ObjectProperty]: () => {
     throw new Error("Unexpected object property node");
@@ -311,17 +311,15 @@ const NODE_SCHEMA_BUILDERS: {
     return buildSchema(ctx, node.operator);
   },
   [NodeType.Operator]: buildOperator,
-  [NodeType.Array]: (ctx, node) => {
-    const {
-      item,
-      options: { required, ...rest },
-    } = node;
+  [NodeType.Array]: (ctx, { item, options }) => {
     assertThing(item, "array item");
-    return {
-      type: "array",
-      items: buildSchema(ctx, item),
-      ...rest,
-    };
+    return assignSchemaOptions(
+      {
+        type: "array",
+        items: buildSchema(ctx, item),
+      },
+      options
+    );
   },
   [NodeType.Grid]: (ctx, { cells, options }) => {
     const scope = createScope();

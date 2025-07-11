@@ -8,14 +8,13 @@
 
   import type { NodeProps } from "../../model.js";
   import { getBuilderContext } from "../../context.svelte.js";
+  import { setPredicateContext } from "../predicate/context.js";
   import NodeContainer from "../../node-container.svelte";
   import MultiDropzone from "../../multi-dropzone.svelte";
   import NodeIssues from "../../node-issues.svelte";
-
   import { NODES } from "../index.js";
-
+  
   import { setObjectContext } from "./context.js";
-  import { setPredicateContext } from "../predicate/context.js";
 
   let {
     draggable,
@@ -91,5 +90,8 @@
       />
     </div>
   {/if}
-  <NodeIssues class="p-4 pt-0" {node} />
+  <NodeIssues
+    class={["p-4", node.dependencies.length > 0 ? "pt-0" : "pt-2"]}
+    {node}
+  />
 </NodeContainer>

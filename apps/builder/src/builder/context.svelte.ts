@@ -270,15 +270,40 @@ export class BuilderContext {
 
   showPreview = $state.raw(false);
 
-  #schema = $state.raw<Schema>({});
-  get schema() {
-    return this.#schema;
-  }
+  #buildOutput = $state.raw<
+    | {
+        schema: Schema;
+        propertyNames: Map<NodeId, string>;
+      }
+    | undefined
+  >(undefined);
 
-  #uiSchema = $state.raw<UiSchemaRoot | undefined>();
-  get uiSchema() {
-    return this.#uiSchema;
-  }
+  readonly schema = $derived(this.#buildOutput?.schema ?? {});
+  readonly uiSchema = $derived.by(
+    () =>
+      this.rootNode &&
+      this.#buildOutput &&
+      buildUiSchema(
+        {
+          propertyNames: this.#buildOutput.propertyNames,
+          uiComponents: (node) => {
+            const components = Object.assign(
+              {} satisfies UiSchema["ui:components"],
+              DEFAULT_COMPONENTS[this.resolver][node.type](node as never)
+            );
+            const defaultWidget = DEFAULT_WIDGETS[
+              node.type
+            ] as FoundationalComponentType;
+            if (node.options.widget !== defaultWidget) {
+              //@ts-expect-error
+              components[defaultWidget] = node.options.widget;
+            }
+            return components;
+          },
+        },
+        this.rootNode
+      )
+  );
 
   constructor() {
     onDestroy(() => {
@@ -512,7 +537,7 @@ export class BuilderContext {
       affectedNode: [],
     };
     const propertyNames = new Map<NodeId, string>();
-    this.#schema = buildSchema(
+    const schema = buildSchema(
       {
         propertyNames,
         push(registry, value) {
@@ -529,26 +554,10 @@ export class BuilderContext {
       },
       this.rootNode
     );
-    this.#uiSchema = buildUiSchema(
-      {
-        propertyNames,
-        uiComponents: (node) => {
-          const components = Object.assign(
-            {} satisfies UiSchema["ui:components"],
-            DEFAULT_COMPONENTS[this.resolver][node.type](node as never)
-          );
-          const defaultWidget = DEFAULT_WIDGETS[
-            node.type
-          ] as FoundationalComponentType;
-          if (node.options.widget !== defaultWidget) {
-            //@ts-expect-error
-            components[defaultWidget] = node.options.widget;
-          }
-          return components;
-        },
-      },
-      this.rootNode
-    );
+    this.#buildOutput = {
+      propertyNames,
+      schema,
+    };
   }
 }
 
