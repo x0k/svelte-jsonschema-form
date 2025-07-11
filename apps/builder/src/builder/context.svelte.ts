@@ -1,6 +1,12 @@
 import { flushSync, getContext, onDestroy, setContext } from "svelte";
 import { mergeSchemas } from "@sjsf/form/core";
-import type { UiSchemaRoot, FormValue, Schema, UiSchema } from "@sjsf/form";
+import type {
+  UiSchemaRoot,
+  FormValue,
+  Schema,
+  UiSchema,
+  FoundationalComponentType,
+} from "@sjsf/form";
 import { DragDropManager, Draggable, Droppable } from "@dnd-kit/dom";
 
 import {
@@ -29,9 +35,21 @@ import {
   type ValidatorRegistries,
   buildSchema,
   type SchemaBuilderRegistries,
+  buildUiSchema,
+  type WidgetNodeType,
+  ENUM_OPTIONS_SCHEMA,
+  MULTI_ENUM_OPTIONS_SCHEMA,
+  STRING_NODE_OPTIONS_SCHEMA,
+  NUMBER_NODE_OPTIONS_SCHEMA,
+  BOOLEAN_NODE_OPTIONS_SCHEMA,
+  FILE_NODE_OPTIONS_SCHEMA,
+  type WidgetNode,
+  type AbstractNode,
 } from "$lib/builder/index.js";
 import { mergeUiSchemas, Theme } from "$lib/sjsf/theme.js";
 import { validator } from "$lib/form/defaults.js";
+import { Resolver } from "$lib/sjsf/resolver.js";
+import { Icons } from "$lib/sjsf/icons.js";
 
 import type { NodeContext } from "./node-context.js";
 import {
@@ -39,8 +57,7 @@ import {
   THEME_SCHEMAS,
   THEME_UI_SCHEMAS,
 } from "./theme-schemas.js";
-import { Resolver } from "$lib/sjsf/resolver.js";
-import { Icons } from "$lib/sjsf/icons.js";
+import { constant } from "$lib/function.js";
 
 const BUILDER_CONTEXT = Symbol("builder-context");
 
@@ -203,7 +220,7 @@ export class BuilderContext {
     return this.#schema;
   }
 
-  #uiSchema = $state.raw<UiSchemaRoot>({});
+  #uiSchema = $state.raw<UiSchemaRoot | undefined>();
   get uiSchema() {
     return this.#uiSchema;
   }
@@ -437,11 +454,12 @@ export class BuilderContext {
       [K in keyof SchemaBuilderRegistries]: Array<SchemaBuilderRegistries[K]>;
     } = {
       scope: [],
-      affectedNode: []
+      affectedNode: [],
     };
+    const propertyNames = new Map<NodeId, string>();
     this.#schema = buildSchema(
       {
-        propertyNames: new Map(),
+        propertyNames,
         push(registry, value) {
           registries[registry].push(value);
           return {
@@ -452,6 +470,63 @@ export class BuilderContext {
         },
         peek(registry) {
           return registries[registry].at(-1);
+        },
+      },
+      this.rootNode
+    );
+    const DEFAULT_COMPONENTS: {
+      [T in WidgetNodeType]: (
+        node: Extract<WidgetNode, AbstractNode<T>>
+      ) => UiSchema["ui:components"];
+    } = {
+      [NodeType.Enum]: constant({ oneOfField: "enumField" }),
+      [NodeType.MultiEnum]: constant({
+        arrayField: "multiEnumField",
+      }),
+      [NodeType.String]: constant(undefined),
+      [NodeType.Number]: constant(undefined),
+      [NodeType.Boolean]: constant(undefined),
+      [NodeType.File]: (node): UiSchema["ui:components"] => {
+        if (node.options.multiple) {
+          return {
+            //@ts-expect-error
+            arrayField: "filesField",
+          };
+        }
+        return {
+          stringField: "fileField",
+        };
+      },
+      //@ts-expect-error
+      [NodeType.Tags]: constant({
+        arrayField: "tagsField",
+      }),
+    };
+    const DEFAULT_WIDGETS: Record<WidgetNodeType, string> = {
+      [NodeType.Enum]: ENUM_OPTIONS_SCHEMA.properties.widget.default,
+      [NodeType.MultiEnum]: MULTI_ENUM_OPTIONS_SCHEMA.properties.widget.default,
+      [NodeType.String]: STRING_NODE_OPTIONS_SCHEMA.properties.widget.default,
+      [NodeType.Number]: NUMBER_NODE_OPTIONS_SCHEMA.properties.widget.default,
+      [NodeType.Boolean]: BOOLEAN_NODE_OPTIONS_SCHEMA.properties.widget.default,
+      [NodeType.File]: FILE_NODE_OPTIONS_SCHEMA.properties.widget.default,
+      [NodeType.Tags]: FILE_NODE_OPTIONS_SCHEMA.properties.widget.default,
+    };
+    this.#uiSchema = buildUiSchema(
+      {
+        propertyNames,
+        uiComponents(node) {
+          const components: UiSchema["ui:components"] = Object.assign(
+            {},
+            DEFAULT_COMPONENTS[node.type](node as never)
+          );
+          const defaultWidget = DEFAULT_WIDGETS[
+            node.type
+          ] as FoundationalComponentType;
+          if (node.options.widget !== defaultWidget) {
+            //@ts-expect-error
+            components[defaultWidget] = node.options.widget;
+          }
+          return components;
         },
       },
       this.rootNode

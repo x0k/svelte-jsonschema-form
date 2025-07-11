@@ -44,7 +44,10 @@
   let portalEl = $state.raw() as HTMLDivElement;
 </script>
 
-<ShadowHost class="rounded border" style={`${THEME_STYLES[ctx.theme]}\n${ICONS_STYLES[ctx.icons]}`}>
+<ShadowHost
+  class="rounded border"
+  style={`${THEME_STYLES[ctx.theme]}\n${ICONS_STYLES[ctx.icons]}`}
+>
   <BitsConfig defaultPortalTo={portalEl}>
     <BasicForm
       id="form"

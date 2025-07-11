@@ -48,7 +48,7 @@ export const COMMON_OPTIONS_SCHEMA = {
     },
     help: {
       title: "Help",
-      type: "string"
+      type: "string",
     },
     required: {
       title: "Required",
@@ -215,11 +215,16 @@ export const GRID_NODE_OPTIONS_SCHEMA = {
   title: "Grid options",
   type: "object",
   properties: {
+    cellSize: {
+      title: "Cell size",
+      enum: ["1fr", "auto"],
+    },
     gap: {
       title: "Gap",
       type: "string",
     },
   },
+  required: ["cellSize", "gap"],
   additionalProperties: false,
 } as const satisfies Schema;
 
@@ -312,7 +317,7 @@ export const STRING_NODE_OPTIONS_SCHEMA = {
       type: "string",
       default: "textWidget",
     },
-    defaultValue: {
+    default: {
       title: "Default value",
       type: "string",
     },
@@ -354,7 +359,7 @@ export const NUMBER_NODE_OPTIONS_SCHEMA = {
       type: "string",
       default: "numberWidget",
     },
-    defaultValue: {
+    default: {
       title: "Default value",
       type: "number",
     },
@@ -389,7 +394,7 @@ export const BOOLEAN_NODE_OPTIONS_SCHEMA = {
       type: "string",
       default: "checkboxWidget",
     },
-    defaultValue: {
+    default: {
       title: "Default value",
       type: "boolean",
     },
@@ -474,7 +479,7 @@ export const TAGS_NODE_OPTIONS_SCHEMA = {
       type: "string",
       default: "tagsWidget",
     },
-    defaultValue: {
+    default: {
       title: "Default value",
       type: "array",
       uniqueItems: true,
@@ -521,8 +526,10 @@ export type CustomizableNode = Extract<
   Node,
   AbstractCustomizableNode<NodeType, any>
 >;
-
 export type CustomizableNodeType = CustomizableNode["type"];
+
+export type WidgetNode = Extract<Node, { options: { widget: string } }>;
+export type WidgetNodeType = WidgetNode["type"];
 
 export const CUSTOMIZABLE_TYPE_TITLES: Record<CustomizableNodeType, string> = {
   [NodeType.Object]: "Group",

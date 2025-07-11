@@ -1,17 +1,13 @@
 import { isObject } from "@sjsf/form/lib/object";
 import type {
   CompatibleComponentType,
-  ComponentProps,
-  ComponentType,
-  FieldCommonProps,
   Schema,
   UiSchema,
   UiSchemaRoot,
 } from "@sjsf/form";
-import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
 
-import { NodeType } from "$lib/builder/index.js";
 import { Theme } from "$lib/sjsf/theme.js";
+import { NodeType, type WidgetType } from "$lib/builder/index.js";
 
 export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
   [Theme.Basic]: {
@@ -352,12 +348,6 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
     },
   },
 };
-
-export type WidgetType = {
-  [T in ComponentType]: ComponentProps[T] extends WidgetCommonProps<any>
-    ? T
-    : never;
-}[ComponentType];
 
 export const WIDGET_NAMES: Record<WidgetType, string> = {
   textWidget: "Text input",

@@ -54,6 +54,8 @@ const NODE_FACTORIES = {
     options: {
       title: "Grid title",
       required: true,
+      cellSize: "1fr",
+      gap: "1rem",
     },
   }),
   [NodeType.Enum]: (id) => ({

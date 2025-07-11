@@ -2,6 +2,8 @@ import { identity } from "@sjsf/form/lib/function";
 import { mergeSchemas } from "@sjsf/form/core";
 import type { Schema } from "@sjsf/form";
 
+import { assertThing } from "$lib/assert.js";
+
 import {
   NodeType,
   type AbstractNode,
@@ -42,12 +44,6 @@ function createScope(): Scope {
   };
 }
 
-function assetThing<T>(thing: T | undefined, name: string): asserts thing is T {
-  if (thing === undefined) {
-    throw new Error(`${name} is undefined`);
-  }
-}
-
 export interface SchemaBuilderRegistries {
   scope: Scope;
   affectedNode: Node;
@@ -86,7 +82,7 @@ function buildPropertyDependencies(
       complementIndex = i;
       return buildSchema(ctx, d);
     }
-    assetThing(d.predicate, "predicate");
+    assertThing(d.predicate, "predicate");
     const predicate = buildSchema(ctx, d.predicate);
     predicates.push(predicate);
     return mergeSchemas(
@@ -118,7 +114,7 @@ function buildObjectSchema(
   node: ObjectNode | ObjectPropertyDependencyNode
 ): Schema {
   const scope = ctx.peek("scope");
-  assetThing(scope, "scope");
+  assertThing(scope, "scope");
   const properties = new Map<string, Schema>();
   const dependencies = new Map<string, Schema>();
   const required: string[] = [];
@@ -128,8 +124,8 @@ function buildObjectSchema(
       throw new Error();
     }
     const name = scope.id(p.property.options.title);
-    properties.set(name, buildSchema(ctx, p.property));
     ctx.propertyNames.set(p.property.id, name);
+    properties.set(name, buildSchema(ctx, p.property));
     if (p.property.options.required) {
       required.push(name);
     }
@@ -168,14 +164,14 @@ const OPERATOR_SCHEMA_BUILDERS: {
     oneOf: op.operands.map((o) => buildOperator(ctx, o)),
   }),
   [OperatorType.Not]: (ctx, op) => {
-    assetThing(op.operand, "not operand");
+    assertThing(op.operand, "not operand");
     return { not: buildOperator(ctx, op.operand) };
   },
   // Shared
   [OperatorType.Eq]: (ctx, op) => ({ const: JSON.parse(op.value) }),
   [OperatorType.In]: (ctx, op) => {
     const affected = ctx.peek("affectedNode");
-    assetThing(affected, "in affected node");
+    assertThing(affected, "in affected node");
     const schema: Schema = {
       enum: op.values.map((v) => JSON.parse(v)),
     };
@@ -199,9 +195,9 @@ const OPERATOR_SCHEMA_BUILDERS: {
   [OperatorType.MultipleOf]: (ctx, op) => ({ multipleOf: op.value }),
   // Array
   [OperatorType.Contains]: (ctx, { operand }) => {
-    assetThing(operand, "contains operant");
+    assertThing(operand, "contains operant");
     const child = ctx.peek("affectedNode");
-    assetThing(child, "contains affected node");
+    assertThing(child, "contains affected node");
     using _affected = ctx.push("affectedNode", child);
     return { contains: buildOperator(ctx, operand) };
   },
@@ -210,18 +206,18 @@ const OPERATOR_SCHEMA_BUILDERS: {
   [OperatorType.UniqueItems]: (ctx, op) => ({ uniqueItems: true }),
   // Object
   [OperatorType.HasProperty]: (ctx, op) => {
-    assetThing(op.propertyId, "property id in hasProperty operator");
+    assertThing(op.propertyId, "property id in hasProperty operator");
     const name = ctx.propertyNames.get(op.propertyId);
-    assetThing(name, "property name in hasProperty operator");
+    assertThing(name, "property name in hasProperty operator");
     return { required: [name] };
   },
   [OperatorType.Property]: (ctx, { propertyId, operator }) => {
-    assetThing(propertyId, "property id");
+    assertThing(propertyId, "property id");
     const name = ctx.propertyNames.get(propertyId);
-    assetThing(name, "property name");
-    assetThing(operator, "property operator");
+    assertThing(name, "property name");
+    assertThing(operator, "property operator");
     const affected = ctx.peek("affectedNode");
-    assetThing(affected, "property affected node");
+    assertThing(affected, "property affected node");
     let prop: Node | undefined;
     if (isObjectNode(affected)) {
       prop = affected.properties.find((p) => p.id === propertyId)?.property;
@@ -254,6 +250,36 @@ function buildEnumItems(type: EnumValueType, items: EnumItemNode[]) {
   }));
 }
 
+const SCHEMA_OPTIONS_KEYS = [
+  "title",
+  "description",
+  "minItems",
+  "maxItems",
+  "uniqueItems",
+  "default",
+  "minLength",
+  "maxLength",
+  "pattern",
+  "minimum",
+  "exclusiveMinimum",
+  "maximum",
+  "exclusiveMaximum",
+  "multipleOf",
+] as const satisfies (keyof Schema)[];
+
+function assignSchemaOptions<
+  T extends Pick<Schema, (typeof SCHEMA_OPTIONS_KEYS)[number]>,
+>(target: Schema, source: T) {
+  for (const key of SCHEMA_OPTIONS_KEYS) {
+    const v = source[key];
+    if (v !== undefined) {
+      // @ts-expect-error
+      target[key] = v;
+    }
+  }
+  return target;
+}
+
 const NODE_SCHEMA_BUILDERS: {
   [T in NodeType]: (
     ctx: SchemaBuilderContext,
@@ -270,7 +296,7 @@ const NODE_SCHEMA_BUILDERS: {
   },
   [NodeType.ObjectPropertyDependency]: buildObjectSchema,
   [NodeType.Predicate]: (ctx, node) => {
-    assetThing(node.operator, "operator");
+    assertThing(node.operator, "operator");
     return buildSchema(ctx, node.operator);
   },
   [NodeType.Operator]: buildOperator,
@@ -279,7 +305,7 @@ const NODE_SCHEMA_BUILDERS: {
       item,
       options: { required, ...rest },
     } = node;
-    assetThing(item, "array item");
+    assertThing(item, "array item");
     return {
       type: "array",
       items: buildSchema(ctx, item),
@@ -297,6 +323,7 @@ const NODE_SCHEMA_BUILDERS: {
         throw new Error();
       }
       const name = scope.id(p.options.title);
+      ctx.propertyNames.set(p.id, name);
       properties.set(name, buildSchema(ctx, p));
       if (p.options.required) {
         required.push(name);
@@ -311,74 +338,59 @@ const NODE_SCHEMA_BUILDERS: {
     }
     return obj;
   },
-  [NodeType.Enum]: (
-    _,
-    {
-      items,
-      valueType,
-      options: { defaultValue, required, widget, help, ...rest },
-    }
-  ) => {
-    return {
-      ...rest,
-      oneOf: buildEnumItems(valueType, items),
-      default: defaultValue && JSON.parse(defaultValue),
-    };
-  },
-  [NodeType.MultiEnum]: (
-    ctx,
-    {
-      items,
-      options: { required, widget, defaultValue, help, ...rest },
-      valueType,
-    }
-  ) => {
-    return {
-      ...rest,
-      type: "array",
-      uniqueItems: true,
-      items: {
+  [NodeType.Enum]: (_, { items, valueType, options }) => {
+    return assignSchemaOptions(
+      {
         oneOf: buildEnumItems(valueType, items),
+        default: options.defaultValue && JSON.parse(options.defaultValue),
       },
-      default: defaultValue?.map((v) => JSON.parse(v)),
-    };
+      options
+    );
+  },
+  [NodeType.MultiEnum]: (_, { items, options, valueType }) => {
+    return assignSchemaOptions(
+      {
+        type: "array",
+        uniqueItems: true,
+        items: {
+          oneOf: buildEnumItems(valueType, items),
+        },
+        default: options.defaultValue?.map((v) => JSON.parse(v)),
+      },
+      options
+    );
   },
   [NodeType.EnumItem]: () => {
     throw new Error(`Unexpected enum item node`);
   },
-  [NodeType.String]: (
-    _,
-    { options: { widget, required, defaultValue, help, ...rest } }
-  ) => {
-    return {
-      type: "string",
-      ...rest,
-      default: defaultValue,
-    };
+  [NodeType.String]: (_, { options }) => {
+    return assignSchemaOptions(
+      {
+        type: "string",
+      },
+      options
+    );
   },
-  [NodeType.Number]: (
-    ctx,
-    { options: { widget, required, defaultValue, integer, help, ...rest } }
-  ) => {
-    return {
-      type: integer ? "integer" : "number",
-      ...rest,
-      default: defaultValue,
-    };
+  [NodeType.Number]: (_, { options }) => {
+    return assignSchemaOptions(
+      {
+        type: options.integer ? "integer" : "number",
+      },
+      options
+    );
   },
-  [NodeType.Boolean]: (
-    ctx,
-    { options: { widget, required, defaultValue, help, ...rest } }
-  ) => {
-    return {
-      type: "boolean",
-      ...rest,
-      default: defaultValue,
-    };
+  [NodeType.Boolean]: (_, { options }) => {
+    return assignSchemaOptions(
+      {
+        type: "boolean",
+      },
+      options
+    );
   },
   [NodeType.File]: (
     _,
     {
+      // TODO: Use `assignSchemaOptions` here after `omitExtraData` fix
       options: {
         widget,
         required,
@@ -406,19 +418,17 @@ const NODE_SCHEMA_BUILDERS: {
         )
       : Object.assign(file, { title, description });
   },
-  [NodeType.Tags]: (
-    _,
-    { options: { required, widget, defaultValue, help, ...rest } }
-  ) => {
-    return {
-      type: "array",
-      ...rest,
-      uniqueItems: true,
-      items: {
-        type: "string",
+  [NodeType.Tags]: (_, { options }) => {
+    return assignSchemaOptions(
+      {
+        type: "array",
+        uniqueItems: true,
+        items: {
+          type: "string",
+        },
       },
-      default: defaultValue,
-    };
+      options
+    );
   },
 };
 

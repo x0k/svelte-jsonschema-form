@@ -1,12 +1,12 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
 
-  import type { CustomizableNodeType } from "$lib/builder/index.js";
+  import type { CustomizableNodeType, WidgetType } from "$lib/builder/index.js";
 
   import type { NodeProps } from "./model.js";
   import type { BuilderDraggable } from "./context.svelte.js";
   import NodeHeader from "./node-header.svelte";
-  import { WIDGET_NAMES, type WidgetType } from "./theme-schemas.js";
+  import { WIDGET_NAMES } from "./theme-schemas.js";
 
   const {
     node,
