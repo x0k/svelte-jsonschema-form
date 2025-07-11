@@ -503,10 +503,17 @@ const NODE_VALIDATORS: {
       node.complementary === undefined &&
       node.dependencies.length === 1
     ) {
-      ctx.addError(
-        node.dependencies[0],
-        "The only dependency should be marked as `Complement`"
-      );
+      if (node.dependencies[0].predicate?.operator !== undefined) {
+        ctx.addError(
+          node,
+          "Add a dependency with the `Complement` mark to split field values into subsets without gaps"
+        );
+      } else {
+        ctx.addError(
+          node.dependencies[0],
+          "The only dependency should be marked as `Complement`"
+        );
+      }
     }
     const emptyDeps: NodeId[] = [];
     checkChildren(ctx, node, () => {

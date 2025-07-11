@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { onDestroy } from "svelte";
   import Info from "@lucide/svelte/icons/info";
 
   import {
@@ -16,6 +15,7 @@
 
   import type { NodeProps } from "../../model.js";
   import { getBuilderContext } from "../../context.svelte.js";
+  import { getIndexContext } from "../../index.svelte";
   import NodeHeader from "../../node-header.svelte";
   import NodeContainer from "../../node-container.svelte";
   import MultiDropZone from "../../multi-dropzone.svelte";
@@ -32,6 +32,7 @@
 
   const ctx = getBuilderContext();
   const objCtx = getObjectContext();
+  const indexCtx = getIndexContext();
 
   const onDrop = (
     newNode: CustomizableNode | ObjectPropertyNode,
@@ -74,7 +75,7 @@
     }}
     disablePadding
   >
-    Branch
+    Branch {indexCtx.current + 1}
     {#snippet append()}
       <div class="flex items-center gap-2">
         <Checkbox

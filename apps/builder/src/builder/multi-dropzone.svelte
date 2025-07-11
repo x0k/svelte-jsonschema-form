@@ -6,6 +6,7 @@
   import DropZone from "./drop-zone.svelte";
   import DropIndicator from "./drop-indicator.svelte";
   import RootNode from "./root-node.svelte";
+  import Index from "./index.svelte";
 
   interface Props {
     nodes: Node[];
@@ -40,13 +41,15 @@
         onDrop(node, i);
       }}
     />
-    <RootNode
-      {showRequired}
-      bind:node={nodes[i]}
-      unmount={() => {
-        nodes.splice(i, 1);
-      }}
-    />
+    <Index index={i}>
+      <RootNode
+        {showRequired}
+        bind:node={nodes[i]}
+        unmount={() => {
+          nodes.splice(i, 1);
+        }}
+      />
+    </Index>
   {/each}
   <DropIndicator
     {accept}
