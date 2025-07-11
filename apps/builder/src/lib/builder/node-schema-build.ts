@@ -15,7 +15,13 @@ import {
 } from "./node.js";
 import { EnumValueType } from "./enum.js";
 import { OperatorType, type AbstractOperator } from "./operator.js";
-import { isCustomizableNode } from "./node-guards.js";
+import {
+  isCustomizableNode,
+  isFileNode,
+  isGridNode,
+  isMultiEnumNode,
+  isObjectNode,
+} from "./node-guards.js";
 
 export interface Scope {
   id: (str: string) => string;
@@ -44,6 +50,7 @@ function assetThing<T>(thing: T | undefined, name: string): asserts thing is T {
 
 export interface SchemaBuilderRegistries {
   scope: Scope;
+  affectedNode: Node;
 }
 
 export interface SchemaBuilderContext {
@@ -126,6 +133,7 @@ function buildObjectSchema(
     if (p.property.options.required) {
       required.push(name);
     }
+    using _affected = ctx.push("affectedNode", p.property);
     const deps = buildPropertyDependencies(ctx, name, p);
     if (deps !== undefined) {
       dependencies.set(name, deps);
@@ -165,9 +173,20 @@ const OPERATOR_SCHEMA_BUILDERS: {
   },
   // Shared
   [OperatorType.Eq]: (ctx, op) => ({ const: JSON.parse(op.value) }),
-  [OperatorType.In]: (ctx, op) => ({
-    enum: op.values.map((v) => JSON.parse(v)),
-  }),
+  [OperatorType.In]: (ctx, op) => {
+    const affected = ctx.peek("affectedNode");
+    assetThing(affected, "in affected node");
+    const schema: Schema = {
+      enum: op.values.map((v) => JSON.parse(v)),
+    };
+    return isMultiEnumNode(affected) ||
+      (isFileNode(affected) && affected.options.multiple)
+      ? {
+          items: schema,
+          minItems: 1,
+        }
+      : schema;
+  },
   // String
   [OperatorType.Pattern]: (ctx, op) => ({ pattern: op.value }),
   [OperatorType.MinLength]: (ctx, op) => ({ minLength: op.value }),
@@ -179,9 +198,12 @@ const OPERATOR_SCHEMA_BUILDERS: {
   [OperatorType.GreaterOrEq]: (ctx, op) => ({ minimum: op.value }),
   [OperatorType.MultipleOf]: (ctx, op) => ({ multipleOf: op.value }),
   // Array
-  [OperatorType.Contains]: (ctx, op) => {
-    assetThing(op.operand, "contains operant");
-    return { contains: buildOperator(ctx, op.operand) };
+  [OperatorType.Contains]: (ctx, { operand }) => {
+    assetThing(operand, "contains operant");
+    const child = ctx.peek("affectedNode");
+    assetThing(child, "contains affected node");
+    using _affected = ctx.push("affectedNode", child);
+    return { contains: buildOperator(ctx, operand) };
   },
   [OperatorType.MinItems]: (ctx, op) => ({ minItems: op.value }),
   [OperatorType.MaxItems]: (ctx, op) => ({ maxItems: op.value }),
@@ -193,14 +215,28 @@ const OPERATOR_SCHEMA_BUILDERS: {
     assetThing(name, "property name in hasProperty operator");
     return { required: [name] };
   },
-  [OperatorType.Property]: (ctx, op) => {
-    assetThing(op.propertyId, "property id in property operator");
-    const name = ctx.propertyNames.get(op.propertyId);
-    assetThing(name, "property name in property operator");
-    assetThing(op.operator, "nested operator in property operator");
+  [OperatorType.Property]: (ctx, { propertyId, operator }) => {
+    assetThing(propertyId, "property id");
+    const name = ctx.propertyNames.get(propertyId);
+    assetThing(name, "property name");
+    assetThing(operator, "property operator");
+    const affected = ctx.peek("affectedNode");
+    assetThing(affected, "property affected node");
+    let prop: Node | undefined;
+    if (isObjectNode(affected)) {
+      prop = affected.properties.find((p) => p.id === propertyId)?.property;
+    } else if (isGridNode(affected)) {
+      prop = affected.cells.find((c) => c.node.id === propertyId)?.node;
+    }
+    if (prop === undefined) {
+      throw new Error(
+        "The property operator can only be applied to group or grid field"
+      );
+    }
+    using _affected = ctx.push("affectedNode", prop);
     return {
       properties: {
-        [name]: buildOperator(ctx, op.operator),
+        [name]: buildOperator(ctx, operator),
       },
     };
   },

@@ -437,6 +437,7 @@ export class BuilderContext {
       [K in keyof SchemaBuilderRegistries]: Array<SchemaBuilderRegistries[K]>;
     } = {
       scope: [],
+      affectedNode: []
     };
     this.#schema = buildSchema(
       {

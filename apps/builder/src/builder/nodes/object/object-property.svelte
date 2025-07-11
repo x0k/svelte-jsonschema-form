@@ -58,11 +58,11 @@
   bind:node={node.property}
   class={[
     "p-0 border-none relative bg-border flex flex-col gap-1",
-    isError
-      ? "shadow-[inset_0_0_0_1px_var(--destructive)]"
-      : isWarning
-        ? "shadow-[inset_0_0_0_1px_var(--chart-3)]"
-        : isSelected && "shadow-[inset_0_0_0_1px_var(--primary)]",
+    isSelected
+      ? "shadow-[inset_0_0_0_1px_var(--primary)]"
+      : isError
+        ? "shadow-[inset_0_0_0_1px_var(--destructive)]"
+        : isWarning && "shadow-[inset_0_0_0_1px_var(--chart-3)]",
   ]}
   showRequired
 >
