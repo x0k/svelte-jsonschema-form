@@ -123,6 +123,61 @@ prop.dependencies.push(dep);
 prop.complementary = undefined;
 obj.properties.push(prop);
 
+const DEFAULT_COMPONENTS: Record<
+  Resolver,
+  {
+    [T in WidgetNodeType]: (
+      node: Extract<WidgetNode, AbstractNode<T>>
+    ) => UiSchema["ui:components"];
+  }
+> = {
+  [Resolver.Basic]: {
+    [NodeType.Enum]: constant({ oneOfField: "enumField" }),
+    [NodeType.MultiEnum]: constant({
+      arrayField: "multiEnumField",
+    }),
+    [NodeType.String]: constant(undefined),
+    [NodeType.Number]: constant(undefined),
+    [NodeType.Boolean]: constant(undefined),
+    [NodeType.File]: (node): UiSchema["ui:components"] => {
+      if (node.options.multiple) {
+        return {
+          //@ts-expect-error
+          arrayField: "filesField",
+        };
+      }
+      return {
+        stringField: "fileField",
+      };
+    },
+    //@ts-expect-error
+    [NodeType.Tags]: constant({
+      arrayField: "tagsField",
+    }),
+  },
+  [Resolver.Compat]: {
+    [NodeType.Enum]: constant(undefined),
+    [NodeType.MultiEnum]: constant(undefined),
+    [NodeType.String]: constant(undefined),
+    [NodeType.Number]: constant(undefined),
+    [NodeType.Boolean]: constant(undefined),
+    [NodeType.File]: constant(undefined),
+    //@ts-expect-error
+    [NodeType.Tags]: constant({
+      arrayField: "tagsField",
+    }),
+  },
+};
+const DEFAULT_WIDGETS: Record<WidgetNodeType, string> = {
+  [NodeType.Enum]: ENUM_OPTIONS_SCHEMA.properties.widget.default,
+  [NodeType.MultiEnum]: MULTI_ENUM_OPTIONS_SCHEMA.properties.widget.default,
+  [NodeType.String]: STRING_NODE_OPTIONS_SCHEMA.properties.widget.default,
+  [NodeType.Number]: NUMBER_NODE_OPTIONS_SCHEMA.properties.widget.default,
+  [NodeType.Boolean]: BOOLEAN_NODE_OPTIONS_SCHEMA.properties.widget.default,
+  [NodeType.File]: FILE_NODE_OPTIONS_SCHEMA.properties.widget.default,
+  [NodeType.Tags]: FILE_NODE_OPTIONS_SCHEMA.properties.widget.default,
+};
+
 export class BuilderContext {
   #dnd = new DragDropManager<DndData>();
 
@@ -474,50 +529,13 @@ export class BuilderContext {
       },
       this.rootNode
     );
-    const DEFAULT_COMPONENTS: {
-      [T in WidgetNodeType]: (
-        node: Extract<WidgetNode, AbstractNode<T>>
-      ) => UiSchema["ui:components"];
-    } = {
-      [NodeType.Enum]: constant({ oneOfField: "enumField" }),
-      [NodeType.MultiEnum]: constant({
-        arrayField: "multiEnumField",
-      }),
-      [NodeType.String]: constant(undefined),
-      [NodeType.Number]: constant(undefined),
-      [NodeType.Boolean]: constant(undefined),
-      [NodeType.File]: (node): UiSchema["ui:components"] => {
-        if (node.options.multiple) {
-          return {
-            //@ts-expect-error
-            arrayField: "filesField",
-          };
-        }
-        return {
-          stringField: "fileField",
-        };
-      },
-      //@ts-expect-error
-      [NodeType.Tags]: constant({
-        arrayField: "tagsField",
-      }),
-    };
-    const DEFAULT_WIDGETS: Record<WidgetNodeType, string> = {
-      [NodeType.Enum]: ENUM_OPTIONS_SCHEMA.properties.widget.default,
-      [NodeType.MultiEnum]: MULTI_ENUM_OPTIONS_SCHEMA.properties.widget.default,
-      [NodeType.String]: STRING_NODE_OPTIONS_SCHEMA.properties.widget.default,
-      [NodeType.Number]: NUMBER_NODE_OPTIONS_SCHEMA.properties.widget.default,
-      [NodeType.Boolean]: BOOLEAN_NODE_OPTIONS_SCHEMA.properties.widget.default,
-      [NodeType.File]: FILE_NODE_OPTIONS_SCHEMA.properties.widget.default,
-      [NodeType.Tags]: FILE_NODE_OPTIONS_SCHEMA.properties.widget.default,
-    };
     this.#uiSchema = buildUiSchema(
       {
         propertyNames,
-        uiComponents(node) {
-          const components: UiSchema["ui:components"] = Object.assign(
-            {},
-            DEFAULT_COMPONENTS[node.type](node as never)
+        uiComponents: (node) => {
+          const components = Object.assign(
+            {} satisfies UiSchema["ui:components"],
+            DEFAULT_COMPONENTS[this.resolver][node.type](node as never)
           );
           const defaultWidget = DEFAULT_WIDGETS[
             node.type

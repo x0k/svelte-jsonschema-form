@@ -617,6 +617,11 @@ export const NODE_OPTIONS_UI_SCHEMAS = {
   [NodeType.Object]: COMMON_UI_SCHEMA,
   [NodeType.Array]: COMMON_UI_SCHEMA,
   [NodeType.Grid]: mergeUiSchemas(COMMON_UI_SCHEMA, {
+    cellSize: {
+      "ui:components": {
+        stringField: "enumField",
+      },
+    },
     gap: {
       "ui:options": {
         shadcn4Text: {

@@ -168,7 +168,18 @@ const OPERATOR_SCHEMA_BUILDERS: {
     return { not: buildOperator(ctx, op.operand) };
   },
   // Shared
-  [OperatorType.Eq]: (ctx, op) => ({ const: JSON.parse(op.value) }),
+  [OperatorType.Eq]: (ctx, op) => {
+    const affected = ctx.peek("affectedNode");
+    assertThing(affected, "in affected node");
+    const schema = { const: JSON.parse(op.value) };
+    return isMultiEnumNode(affected) ||
+      (isFileNode(affected) && affected.options.multiple)
+      ? {
+          items: schema,
+          minItems: 1,
+        }
+      : schema;
+  },
   [OperatorType.In]: (ctx, op) => {
     const affected = ctx.peek("affectedNode");
     assertThing(affected, "in affected node");
@@ -312,13 +323,13 @@ const NODE_SCHEMA_BUILDERS: {
       ...rest,
     };
   },
-  [NodeType.Grid]: (ctx, node) => {
+  [NodeType.Grid]: (ctx, { cells, options }) => {
     const scope = createScope();
     using _scope = ctx.push("scope", scope);
     const properties = new Map<string, Schema>();
     const required: string[] = [];
-    for (let i = 0; i < node.cells.length; i++) {
-      const p = node.cells[i].node;
+    for (let i = 0; i < cells.length; i++) {
+      const p = cells[i].node;
       if (!isCustomizableNode(p)) {
         throw new Error();
       }
@@ -336,7 +347,7 @@ const NODE_SCHEMA_BUILDERS: {
     if (required.length > 0) {
       obj.required = required;
     }
-    return obj;
+    return assignSchemaOptions(obj, options);
   },
   [NodeType.Enum]: (_, { items, valueType, options }) => {
     return assignSchemaOptions(
