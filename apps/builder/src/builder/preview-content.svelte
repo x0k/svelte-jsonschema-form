@@ -9,11 +9,19 @@
 
   import { themeManager } from "../theme.svelte.js";
   import { getBuilderContext } from "./context.svelte.js";
+  import { SJSF_RESOLVERS } from "$lib/sjsf/resolver.js";
+  import { ICONS_STYLES, SJSF_ICONS } from "$lib/sjsf/icons.js";
 
   const ctx = getBuilderContext();
 
   const form = createForm({
     ...defaults,
+    get resolver() {
+      return SJSF_RESOLVERS[ctx.resolver];
+    },
+    get icons() {
+      return SJSF_ICONS[ctx.icons];
+    },
     get theme() {
       return SJSF_THEMES[ctx.theme];
     },
@@ -27,6 +35,7 @@
 
   $effect(() => {
     ctx.theme;
+    ctx.resolver;
     untrack(() => {
       ctx.build();
     });
@@ -35,7 +44,7 @@
   let portalEl = $state.raw() as HTMLDivElement;
 </script>
 
-<ShadowHost style={THEME_STYLES[ctx.theme]}>
+<ShadowHost class="rounded border" style={`${THEME_STYLES[ctx.theme]}\n${ICONS_STYLES[ctx.icons]}`}>
   <BitsConfig defaultPortalTo={portalEl}>
     <BasicForm
       id="form"

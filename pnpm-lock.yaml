@@ -157,6 +157,9 @@ importers:
       '@sjsf/daisyui5-theme':
         specifier: workspace:*
         version: link:../../packages/daisyui5-theme
+      '@sjsf/flowbite-icons':
+        specifier: workspace:*
+        version: link:../../packages/flowbite-icons
       '@sjsf/flowbite3-theme':
         specifier: workspace:*
         version: link:../../packages/flowbite3-theme
@@ -166,6 +169,12 @@ importers:
       '@sjsf/lucide-icons':
         specifier: workspace:*
         version: link:../../packages/lucide-icons
+      '@sjsf/moving-icons':
+        specifier: workspace:*
+        version: link:../../packages/moving-icons
+      '@sjsf/radix-icons':
+        specifier: workspace:*
+        version: link:../../packages/radix-icons
       '@sjsf/shadcn4-theme':
         specifier: workspace:*
         version: link:../../packages/shadcn4-theme

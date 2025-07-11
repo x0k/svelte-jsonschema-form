@@ -15,6 +15,6 @@
   const droppable = ctx.createDroppable(nodeCtx, options);
 </script>
 
-<div class="h-2 w-full" {@attach droppable.attach}>
+<div class="h-2 w-full flex flex-col justify-center" {@attach droppable.attach}>
   <div class={["w-full h-0.5 bg-chart-2", !droppable.isOver && "hidden"]}></div>
 </div>

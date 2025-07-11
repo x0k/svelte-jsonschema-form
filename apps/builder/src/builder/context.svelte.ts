@@ -39,6 +39,8 @@ import {
   THEME_SCHEMAS,
   THEME_UI_SCHEMAS,
 } from "./theme-schemas.js";
+import { Resolver } from "$lib/sjsf/resolver.js";
+import { Icons } from "$lib/sjsf/icons.js";
 
 const BUILDER_CONTEXT = Symbol("builder-context");
 
@@ -136,7 +138,9 @@ export class BuilderContext {
     }
   });
 
-  theme = $state(Theme.Shadcn4);
+  theme = $state.raw(Theme.Shadcn4);
+  resolver = $state.raw(Resolver.Basic);
+  icons = $state.raw(Icons.None);
 
   readonly availableCustomizableNodeTypes = $derived.by(() => {
     const missing = THEME_MISSING_FIELDS[this.theme];
@@ -193,7 +197,7 @@ export class BuilderContext {
   }
 
   showPreview = $state.raw(false);
-  
+
   #schema = $state.raw<Schema>({});
   get schema() {
     return this.#schema;

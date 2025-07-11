@@ -1,10 +1,9 @@
-
 import { extendByRecord } from "@sjsf/form/lib/resolver";
 import type {
   ComponentType,
   SchemaValue,
   Theme as SJSFTheme,
-  UiSchema
+  UiSchema,
 } from "@sjsf/form";
 import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
 
@@ -128,8 +127,6 @@ import "@sjsf/shadcn4-theme/extra-widgets/range-include";
 import "@sjsf/shadcn4-theme/extra-widgets/switch-include";
 import "@sjsf/shadcn4-theme/extra-widgets/textarea-include";
 
-
-
 export enum Theme {
   Basic = "basic",
   Daisy5 = "daisy5",
@@ -171,7 +168,6 @@ export const THEME_CONFLICTS: Record<Theme, ComponentType[][]> = {
   [Theme.Skeleton3]: skeleton3conflicts,
   [Theme.Shadcn4]: [],
 };
-
 
 interface MergeArraysOptions<T> {
   merge?: (l: T, r: T) => T;

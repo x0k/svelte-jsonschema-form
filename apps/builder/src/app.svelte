@@ -13,6 +13,7 @@
     PreviewSettings,
   } from "./builder/index.js";
   import { setShadcnContext } from "./shadcn-context.js";
+  import PreviewControls from "./builder/preview-controls.svelte";
 
   setShadcnContext();
   const ctx = new BuilderContext();
@@ -44,10 +45,17 @@
       </div>
     </div>
     {#if ctx.showPreview}
-      <div class="grid grid-cols-[7fr_2fr] gap-4 mx-auto">
-        <div class="p-4 pt-0 pl-8">
+      <div class="grid grid-cols-[1fr_6fr_2fr] gap-4 mx-auto">
+        <div
+          class="sticky top-[var(--header-height)] h-[calc(100vh-var(--header-height))] pb-4 overflow-y-auto pl-8 min-w-[120px]"
+        >
+          <PreviewControls />
+        </div>
+
+        <div class="p-4 pt-0">
           <PreviewContent />
         </div>
+
         <div
           class="sticky top-[var(--header-height)] h-[calc(100vh-var(--header-height))] pb-4 overflow-y-auto pr-8 min-w-[200px]"
         >
