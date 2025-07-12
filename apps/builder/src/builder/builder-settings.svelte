@@ -71,6 +71,7 @@
     disabled={ctx.rootNode === undefined}
     onclick={() => {
       if (ctx.validate()) {
+        ctx.build()
         ctx.showPreview = true;
       }
     }}>Preview</Button

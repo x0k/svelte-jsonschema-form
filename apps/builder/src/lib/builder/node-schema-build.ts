@@ -18,11 +18,13 @@ import {
 import { EnumValueType } from "./enum.js";
 import { OperatorType, type AbstractOperator } from "./operator.js";
 import {
+  isArrayNode,
   isCustomizableNode,
   isFileNode,
   isGridNode,
   isMultiEnumNode,
   isObjectNode,
+  isTagsNode,
 } from "./node-guards.js";
 import { getNodeChild } from "./node-props.js";
 
@@ -71,10 +73,69 @@ function buildPropertyDependencies(
     return undefined;
   }
   if (dependencies.length === 1) {
-    if (dependencies[0].id !== complementId) {
+    const dependency = dependencies[0];
+    const schema = buildSchema(ctx, dependency);
+    if (complementId === undefined) {
+      assertThing(dependency.predicate, "property dependency predicate");
+      const predicate = buildSchema(ctx, dependency.predicate);
+      return {
+        oneOf: [
+          mergeSchemas(
+            {
+              properties: {
+                [triggerPropertyName]: predicate,
+              },
+            },
+            schema
+          ),
+          {
+            properties: {
+              [triggerPropertyName]: {
+                not: predicate,
+              },
+            },
+          },
+        ],
+      };
+    }
+    if (dependency.id !== complementId) {
       throw new Error(`Invalid node dependencies`);
     }
-    return buildSchema(ctx, dependencies[0]);
+    const affected = ctx.peek("affectedNode");
+    assertThing(affected, "property dependencies affected node");
+    if (isObjectNode(affected)) {
+      throw new Error(`This dependency on the object does not make sense`);
+    }
+    // field with array schema
+    if (
+      isArrayNode(affected) ||
+      isMultiEnumNode(affected) ||
+      (isFileNode(affected) && affected.options.multiple) ||
+      isTagsNode(affected)
+    ) {
+      return {
+        oneOf: [
+          mergeSchemas(
+            {
+              properties: {
+                [triggerPropertyName]: {
+                  minItems: 1,
+                },
+              },
+            },
+            schema
+          ),
+          {
+            properties: {
+              [triggerPropertyName]: {
+                maxItems: 0,
+              },
+            },
+          },
+        ],
+      };
+    }
+    return schema;
   }
   let complementIndex = -1;
   const predicates: Schema[] = [];
@@ -225,8 +286,6 @@ const OPERATOR_SCHEMA_BUILDERS: {
   },
   [OperatorType.Property]: (ctx, { propertyId, operator }) => {
     assertThing(propertyId, "property operator property id");
-    const name = ctx.propertyNames.get(propertyId);
-    assertThing(name, "property operator property name");
     assertThing(operator, "property operator operand");
     const affected = ctx.peek("affectedNode");
     assertThing(affected, "property operator affected node");
@@ -241,11 +300,14 @@ const OPERATOR_SCHEMA_BUILDERS: {
         "The property operator can only be applied to group or grid field"
       );
     }
+    const name = ctx.propertyNames.get(prop.id);
+    assertThing(name, "property operator property name");
     using _affected = ctx.push("affectedNode", prop);
     return {
       properties: {
         [name]: buildOperator(ctx, operator),
       },
+      required: [name],
     };
   },
 };

@@ -460,19 +460,18 @@ const NODE_VALIDATORS: {
         node,
         "Invalid `Complement` mark, try selecting/unselecting this mark"
       );
-    } else if (
-      node.complementary === undefined &&
-      node.dependencies.length === 1
-    ) {
-      if (node.dependencies[0].predicate?.operator !== undefined) {
-        ctx.addError(
-          node,
-          "Add a dependency with the `Complement` mark to split field values into subsets without gaps"
-        );
-      } else {
+    } else if (node.dependencies.length === 1) {
+      if (node.complementary === undefined) {
+        if (node.dependencies[0].predicate?.operator === undefined) {
+          ctx.addError(
+            node.dependencies[0],
+            "The only dependency should be marked as `Complement`"
+          );
+        }
+      } else if (isObjectNode(node.property)) {
         ctx.addError(
           node.dependencies[0],
-          "The only dependency should be marked as `Complement`"
+          "Dependency on objects without specifying a predicate is meaningless, define a predicate."
         );
       }
     }
