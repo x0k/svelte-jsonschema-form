@@ -380,6 +380,7 @@ const NODE_SCHEMA_BUILDERS: {
       {
         type: "array",
         items: buildSchema(ctx, item),
+        default: options.defaultValue?.map((v) => JSON.parse(v)),
       },
       options
     );

@@ -33,14 +33,6 @@
     },
   });
 
-  $effect(() => {
-    ctx.theme;
-    ctx.resolver;
-    untrack(() => {
-      ctx.build();
-    });
-  });
-
   let portalEl = $state.raw() as HTMLDivElement;
 </script>
 

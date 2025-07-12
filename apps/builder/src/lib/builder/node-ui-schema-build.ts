@@ -31,13 +31,17 @@ export interface UiSchemaBuilderContext {
 const UI_OPTIONS_KEYS = ["help"] as const satisfies (keyof UiOptions)[];
 
 function assignUiOptions<
-  T extends Pick<UiOptions, (typeof UI_OPTIONS_KEYS)[number]>,
+  T extends Pick<UiOptions, (typeof UI_OPTIONS_KEYS)[number]> | {},
 >(target: UiOptions, source: T) {
   for (const key of UI_OPTIONS_KEYS) {
-    const v = source[key];
-    if (v !== undefined) {
-      target[key] = v;
+    if (!(key in source)) {
+      continue;
     }
+    const v = source[key];
+    if (v === undefined) {
+      continue;
+    }
+    target[key] = v;
   }
   return target;
 }

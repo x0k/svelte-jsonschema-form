@@ -1,7 +1,6 @@
 import { flushSync, getContext, onDestroy, setContext } from "svelte";
 import { mergeSchemas } from "@sjsf/form/core";
 import type {
-  UiSchemaRoot,
   FormValue,
   Schema,
   UiSchema,
@@ -36,28 +35,19 @@ import {
   buildSchema,
   type SchemaBuilderRegistries,
   buildUiSchema,
-  type WidgetNodeType,
-  ENUM_OPTIONS_SCHEMA,
-  MULTI_ENUM_OPTIONS_SCHEMA,
-  STRING_NODE_OPTIONS_SCHEMA,
-  NUMBER_NODE_OPTIONS_SCHEMA,
-  BOOLEAN_NODE_OPTIONS_SCHEMA,
-  FILE_NODE_OPTIONS_SCHEMA,
-  type WidgetNode,
-  type AbstractNode,
 } from "$lib/builder/index.js";
 import { mergeUiSchemas, Theme } from "$lib/sjsf/theme.js";
 import { validator } from "$lib/form/defaults.js";
 import { Resolver } from "$lib/sjsf/resolver.js";
 import { Icons } from "$lib/sjsf/icons.js";
 
+import { DEFAULT_COMPONENTS, DEFAULT_WIDGETS, Page } from "./model.js";
 import type { NodeContext } from "./node-context.js";
 import {
   THEME_MISSING_FIELDS,
   THEME_SCHEMAS,
   THEME_UI_SCHEMAS,
 } from "./theme-schemas.js";
-import { constant } from "$lib/function.js";
 
 const BUILDER_CONTEXT = Symbol("builder-context");
 
@@ -122,61 +112,6 @@ dep.predicate = pred;
 prop.dependencies.push(dep);
 prop.complementary = undefined;
 obj.properties.push(prop);
-
-const DEFAULT_COMPONENTS: Record<
-  Resolver,
-  {
-    [T in WidgetNodeType]: (
-      node: Extract<WidgetNode, AbstractNode<T>>
-    ) => UiSchema["ui:components"];
-  }
-> = {
-  [Resolver.Basic]: {
-    [NodeType.Enum]: constant({ oneOfField: "enumField" }),
-    [NodeType.MultiEnum]: constant({
-      arrayField: "multiEnumField",
-    }),
-    [NodeType.String]: constant(undefined),
-    [NodeType.Number]: constant(undefined),
-    [NodeType.Boolean]: constant(undefined),
-    [NodeType.File]: (node): UiSchema["ui:components"] => {
-      if (node.options.multiple) {
-        return {
-          //@ts-expect-error
-          arrayField: "filesField",
-        };
-      }
-      return {
-        stringField: "fileField",
-      };
-    },
-    //@ts-expect-error
-    [NodeType.Tags]: constant({
-      arrayField: "tagsField",
-    }),
-  },
-  [Resolver.Compat]: {
-    [NodeType.Enum]: constant(undefined),
-    [NodeType.MultiEnum]: constant(undefined),
-    [NodeType.String]: constant(undefined),
-    [NodeType.Number]: constant(undefined),
-    [NodeType.Boolean]: constant(undefined),
-    [NodeType.File]: constant(undefined),
-    //@ts-expect-error
-    [NodeType.Tags]: constant({
-      arrayField: "tagsField",
-    }),
-  },
-};
-const DEFAULT_WIDGETS: Record<WidgetNodeType, string> = {
-  [NodeType.Enum]: ENUM_OPTIONS_SCHEMA.properties.widget.default,
-  [NodeType.MultiEnum]: MULTI_ENUM_OPTIONS_SCHEMA.properties.widget.default,
-  [NodeType.String]: STRING_NODE_OPTIONS_SCHEMA.properties.widget.default,
-  [NodeType.Number]: NUMBER_NODE_OPTIONS_SCHEMA.properties.widget.default,
-  [NodeType.Boolean]: BOOLEAN_NODE_OPTIONS_SCHEMA.properties.widget.default,
-  [NodeType.File]: FILE_NODE_OPTIONS_SCHEMA.properties.widget.default,
-  [NodeType.Tags]: FILE_NODE_OPTIONS_SCHEMA.properties.widget.default,
-};
 
 export class BuilderContext {
   #dnd = new DragDropManager<DndData>();
@@ -268,7 +203,7 @@ export class BuilderContext {
     this[`_${key}`] = Object.groupBy(issues, (i) => i.nodeId);
   }
 
-  showPreview = $state.raw(false);
+  currentPage = $state.raw(Page.Builder);
 
   #buildOutput = $state.raw<
     | {

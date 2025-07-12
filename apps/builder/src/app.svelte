@@ -14,6 +14,7 @@
   } from "./builder/index.js";
   import { setShadcnContext } from "./shadcn-context.js";
   import PreviewControls from "./builder/preview-controls.svelte";
+  import { Page } from "./builder/model.js";
 
   setShadcnContext();
   const ctx = new BuilderContext();
@@ -44,25 +45,7 @@
         <h1 class="text-xl font-bold">Form Builder</h1>
       </div>
     </div>
-    {#if ctx.showPreview}
-      <div class="grid grid-cols-[1fr_6fr_2fr] gap-4 mx-auto">
-        <div
-          class="sticky top-[var(--header-height)] h-[calc(100vh-var(--header-height))] pb-4 overflow-y-auto pl-8 min-w-[120px]"
-        >
-          <PreviewControls />
-        </div>
-
-        <div class="p-4 pt-0">
-          <PreviewContent />
-        </div>
-
-        <div
-          class="sticky top-[var(--header-height)] h-[calc(100vh-var(--header-height))] pb-4 overflow-y-auto pr-8 min-w-[200px]"
-        >
-          <PreviewSettings />
-        </div>
-      </div>
-    {:else}
+    {#if ctx.currentPage === Page.Builder}
       <div class="grid grid-cols-[1fr_6fr_2fr] gap-4 mx-auto">
         <div
           bind:this={rootElements[0]}
@@ -80,6 +63,24 @@
           class="sticky top-[var(--header-height)] h-[calc(100vh-var(--header-height))] pb-4 overflow-y-auto pr-8 min-w-[200px]"
         >
           <BuilderSettings />
+        </div>
+      </div>
+    {:else}
+      <div class="grid grid-cols-[1fr_6fr_2fr] gap-4 mx-auto">
+        <div
+          class="sticky top-[var(--header-height)] h-[calc(100vh-var(--header-height))] pb-4 overflow-y-auto pl-8 min-w-[120px]"
+        >
+          <PreviewControls />
+        </div>
+
+        <div class="p-4 pt-0">
+          <PreviewContent />
+        </div>
+
+        <div
+          class="sticky top-[var(--header-height)] h-[calc(100vh-var(--header-height))] pb-4 overflow-y-auto pr-8 min-w-[200px]"
+        >
+          <PreviewSettings />
         </div>
       </div>
     {/if}

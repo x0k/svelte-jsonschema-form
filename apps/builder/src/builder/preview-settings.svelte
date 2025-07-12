@@ -3,11 +3,12 @@
   import { Label } from "$lib/components/ui/label/index.js";
   import * as Select from "$lib/components/ui/select/index.js";
   import { THEME_TITLES, THEMES } from "$lib/sjsf/theme.js";
-  import { RESOLVER_TITLES, RESOLVERS } from '$lib/sjsf/resolver.js';
-  import { ICONS, ICONS_TITLES } from '$lib/sjsf/icons.js';
+  import { RESOLVER_TITLES, RESOLVERS } from "$lib/sjsf/resolver.js";
+  import { ICONS, ICONS_TITLES } from "$lib/sjsf/icons.js";
 
   import { getBuilderContext } from "./context.svelte.js";
   import Container from "./container.svelte";
+  import { Page } from "./model.js";
 
   const ctx = getBuilderContext();
 
@@ -57,7 +58,7 @@
   </div>
   <Button
     onclick={() => {
-      ctx.showPreview = false;
+      ctx.currentPage = Page.Builder;
     }}>Edit</Button
   >
 </Container>

@@ -14,6 +14,7 @@
   import { RESOLVER_TITLES, RESOLVERS } from "$lib/sjsf/resolver.js";
   import { ICONS, ICONS_TITLES } from "$lib/sjsf/icons.js";
 
+  import { Page } from "./model.js";
   import { getBuilderContext } from "./context.svelte.js";
   import Container from "./container.svelte";
   import NodeSettings from "./node-settings.svelte";
@@ -71,8 +72,8 @@
     disabled={ctx.rootNode === undefined}
     onclick={() => {
       if (ctx.validate()) {
-        ctx.build()
-        ctx.showPreview = true;
+        ctx.build();
+        ctx.currentPage = Page.Preview;
       }
     }}>Preview</Button
   >

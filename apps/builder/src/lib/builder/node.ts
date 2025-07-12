@@ -46,10 +46,6 @@ export const COMMON_OPTIONS_SCHEMA = {
       title: "Description",
       type: "string",
     },
-    help: {
-      title: "Help",
-      type: "string",
-    },
     required: {
       title: "Required",
       type: "boolean",
@@ -180,6 +176,14 @@ export const ARRAY_NODE_OPTIONS_SCHEMA = {
   title: "List options",
   type: "object",
   properties: {
+    defaultValue: {
+      title: "Default value",
+      type: "array",
+      items: {
+        type: "string",
+        format: "json",
+      },
+    },
     minItems: {
       title: "Min items",
       type: "number",
@@ -251,6 +255,10 @@ export const ENUM_OPTIONS_SCHEMA = {
       type: "string",
       default: "radioWidget",
     },
+    help: {
+      title: "Help",
+      type: "string",
+    },
     defaultValue: {
       title: "Default value",
       type: "string",
@@ -277,6 +285,10 @@ export const MULTI_ENUM_OPTIONS_SCHEMA = {
       title: "Widget",
       type: "string",
       default: "checkboxesWidget",
+    },
+    help: {
+      title: "Help",
+      type: "string",
     },
     defaultValue: {
       title: "Default value",
@@ -316,6 +328,10 @@ export const STRING_NODE_OPTIONS_SCHEMA = {
       title: "Widget",
       type: "string",
       default: "textWidget",
+    },
+    help: {
+      title: "Help",
+      type: "string",
     },
     default: {
       title: "Default value",
@@ -359,6 +375,10 @@ export const NUMBER_NODE_OPTIONS_SCHEMA = {
       type: "string",
       default: "numberWidget",
     },
+    help: {
+      title: "Help",
+      type: "string",
+    },
     default: {
       title: "Default value",
       type: "number",
@@ -394,6 +414,10 @@ export const BOOLEAN_NODE_OPTIONS_SCHEMA = {
       type: "string",
       default: "checkboxWidget",
     },
+    help: {
+      title: "Help",
+      type: "string",
+    },
     default: {
       title: "Default value",
       type: "boolean",
@@ -416,6 +440,10 @@ export const FILE_NODE_OPTIONS_SCHEMA = {
       title: "Widget",
       type: "string",
       default: "fileWidget",
+    },
+    help: {
+      title: "Help",
+      type: "string",
     },
     multiple: {
       title: "Multiple",
@@ -478,6 +506,10 @@ export const TAGS_NODE_OPTIONS_SCHEMA = {
       title: "Widget",
       type: "string",
       default: "tagsWidget",
+    },
+    help: {
+      title: "Help",
+      type: "string",
     },
     default: {
       title: "Default value",
@@ -615,7 +647,17 @@ const COMMON_UI_SCHEMA: UiSchemaRoot = {
 
 export const NODE_OPTIONS_UI_SCHEMAS = {
   [NodeType.Object]: COMMON_UI_SCHEMA,
-  [NodeType.Array]: COMMON_UI_SCHEMA,
+  [NodeType.Array]: mergeUiSchemas(COMMON_UI_SCHEMA, {
+    defaultValue: {
+      items: {
+        "ui:options": {
+          shadcn4Text: {
+            placeholder: "Input JSON value",
+          },
+        },
+      },
+    },
+  }),
   [NodeType.Grid]: mergeUiSchemas(COMMON_UI_SCHEMA, {
     cellSize: {
       "ui:components": {
