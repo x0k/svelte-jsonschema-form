@@ -511,7 +511,7 @@ const NODE_VALIDATORS: {
         validateNode(ctx, node.predicate);
       }
     }
-    for (let i = 0; node.properties.length < i; i++) {
+    for (let i = 0; i < node.properties.length; i++) {
       validateNode(ctx, node.properties[i]);
     }
   },

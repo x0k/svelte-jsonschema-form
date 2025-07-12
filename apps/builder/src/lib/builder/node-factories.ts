@@ -30,7 +30,6 @@ const NODE_FACTORIES = {
     id,
     type: NodeType.Object,
     properties: [],
-    dependencies: {},
     options: {
       title: "Group title",
       required: true,
