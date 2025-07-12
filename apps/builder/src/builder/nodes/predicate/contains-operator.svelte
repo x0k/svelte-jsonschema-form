@@ -1,12 +1,5 @@
 <script lang="ts">
-  import {
-    getNodeChild,
-    type ContainsOperator,
-    type Node,
-    type OperatorNode,
-    isOperatorNode,
-    isContainsOperator,
-  } from "$lib/builder/index.js";
+  import { getNodeChild, type ContainsOperator } from "$lib/builder/index.js";
 
   import { getPredicateContext, setPredicateContext } from "./context.js";
   import OperatorDropzone from "./operator-dropzone.svelte";
@@ -29,14 +22,7 @@
 </script>
 
 {#if child}
-  <OperatorDropzone
-    bind:node={node.operand}
-    createAccept={(applicableOperators) =>
-      (node: Node): node is OperatorNode =>
-        isOperatorNode(node) &&
-        applicableOperators.has(node.op) &&
-        (!isContainsOperator(node) || child !== pCtx.node)}
-  />
+  <OperatorDropzone bind:node={node.operand} />
 {:else}
   <div class="text-destructive">
     First, define the child element of the list

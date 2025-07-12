@@ -29,13 +29,11 @@ import {
 import {
   isArrayNode,
   isBooleanNode,
-  isContainsOperator,
   isCustomizableNode,
   isFileNode,
   isGridNode,
   isNumberNode,
   isObjectNode,
-  isOperatorNode,
   isStringNode,
   isTagsNode,
 } from "./node-guards.js";
@@ -44,7 +42,6 @@ import { getNodeChild, getNodeOptions } from "./node-props.js";
 export interface ValidatorRegistries {
   complementary: NodeId | undefined;
   affectedNode: Node;
-  parentNode: Node;
   enumValueType: EnumValueType;
 }
 
@@ -74,29 +71,6 @@ function checkAffected<R>(
     );
   } else {
     return check(affected);
-  }
-}
-
-function checkChildren<Args extends ReadonlyArray<any>>(
-  ctx: ValidatorContext,
-  self: Node,
-  check: (ctx: ValidatorContext, ...args: Args) => void,
-  ...args: Args
-) {
-  using _parent = ctx.push("parentNode", self);
-  check(ctx, ...args);
-}
-
-function checkParent<R>(
-  ctx: ValidatorContext,
-  node: Node,
-  check: (node: Node) => R
-) {
-  const parent = ctx.peek("parentNode");
-  if (parent === undefined) {
-    ctx.addError(node, "This node cannot be used in the root of the form");
-  } else {
-    return check(parent);
   }
 }
 
@@ -161,17 +135,9 @@ function createValueTypeCheckAgainstAffectedNode(
           }
         }
       } else if (isTagsNode(affected)) {
-        return checkParent(ctx, node, (parent) => {
-          if (!isOperatorNode(parent) || !isContainsOperator(parent)) {
-            if (!isJsonValueArray(value)) {
-              return ExpectedValueType.JsonArray;
-            }
-          } else if (isContainsOperator(parent)) {
-            if (!isJsonValueString(value)) {
-              return ExpectedValueType.JsonString;
-            }
-          }
-        });
+        if (!isJsonValueArray(value)) {
+          return ExpectedValueType.JsonArray;
+        }
       }
     };
   });
@@ -186,11 +152,10 @@ function validateNOperator(
   } else if (op.operands.length === 1) {
     ctx.addWarning(op, "An operator with one operand is redundant");
   }
-  checkChildren(ctx, op, () => {
-    for (let i = 0; i < op.operands.length; i++) {
-      validateOperator(ctx, op.operands[i]);
-    }
-  });
+
+  for (let i = 0; i < op.operands.length; i++) {
+    validateOperator(ctx, op.operands[i]);
+  }
 }
 
 function validateUOperator(
@@ -200,7 +165,7 @@ function validateUOperator(
   if (op.operand === undefined) {
     ctx.addError(op, "Missing operand");
   } else {
-    checkChildren(ctx, op, validateOperator, op.operand);
+    validateOperator(ctx, op.operand);
   }
 }
 
@@ -357,7 +322,7 @@ const OPERATOR_VALIDATORS: {
           ctx.addError(op, "Child element of the applied field not found");
         } else {
           using _affected = ctx.push("affectedNode", child);
-          checkChildren(ctx, op, validateOperator, operand);
+          validateOperator(ctx, operand);
         }
       });
     }
@@ -420,7 +385,7 @@ const OPERATOR_VALIDATORS: {
           ctx.addError(op, "Missing operand");
         } else {
           using _affected = ctx.push("affectedNode", prop);
-          checkChildren(ctx, op, validateOperator, op.operator);
+          validateOperator(ctx, op.operator);
         }
       });
     }
@@ -448,24 +413,22 @@ function validateEnumNode(
     const duplicatedLabels: Node[] = [];
     const values = new Set<string>();
     const duplicatedValues: Node[] = [];
-    checkChildren(ctx, node, () => {
-      using _valueType = ctx.push("enumValueType", node.valueType);
-      for (let i = 0; i < node.items.length; i++) {
-        const item = node.items[i];
-        if (labels.has(item.label)) {
-          duplicatedLabels.push(item);
-        } else {
-          labels.add(item.label);
-        }
+    using _valueType = ctx.push("enumValueType", node.valueType);
+    for (let i = 0; i < node.items.length; i++) {
+      const item = node.items[i];
+      if (labels.has(item.label)) {
+        duplicatedLabels.push(item);
+      } else {
         labels.add(item.label);
-        if (values.has(item.value)) {
-          duplicatedValues.push(item);
-        } else {
-          values.add(item.value);
-        }
-        validateNode(ctx, item);
       }
-    });
+      labels.add(item.label);
+      if (values.has(item.value)) {
+        duplicatedValues.push(item);
+      } else {
+        values.add(item.value);
+      }
+      validateNode(ctx, item);
+    }
     for (const d of duplicatedValues) {
       ctx.addError(d, "Duplicated value");
     }
@@ -484,11 +447,9 @@ const NODE_VALIDATORS: {
     if (node.properties.length === 0) {
       ctx.addError(node, "Properties are missing");
     }
-    checkChildren(ctx, node, () => {
-      for (let i = 0; i < node.properties.length; i++) {
-        validateNode(ctx, node.properties[i]);
-      }
-    });
+    for (let i = 0; i < node.properties.length; i++) {
+      validateNode(ctx, node.properties[i]);
+    }
   },
   [NodeType.ObjectProperty]: (ctx, node) => {
     if (
@@ -516,18 +477,16 @@ const NODE_VALIDATORS: {
       }
     }
     const emptyDeps: NodeId[] = [];
-    checkChildren(ctx, node, () => {
-      validateNode(ctx, node.property);
-      using _complementary = ctx.push("complementary", node.complementary);
-      using _affected = ctx.push("affectedNode", node.property);
-      for (let i = 0; i < node.dependencies.length; i++) {
-        const dep = node.dependencies[i];
-        if (dep.properties.length === 0) {
-          emptyDeps.push(dep.id);
-        }
-        validateNode(ctx, node.dependencies[i]);
+    validateNode(ctx, node.property);
+    using _complementary = ctx.push("complementary", node.complementary);
+    using _affected = ctx.push("affectedNode", node.property);
+    for (let i = 0; i < node.dependencies.length; i++) {
+      const dep = node.dependencies[i];
+      if (dep.properties.length === 0) {
+        emptyDeps.push(dep.id);
       }
-    });
+      validateNode(ctx, node.dependencies[i]);
+    }
     if (emptyDeps.length === 1) {
       if (node.dependencies.length === 1) {
         ctx.addWarning(node.dependencies[0], "Redundant dependency");
@@ -542,27 +501,25 @@ const NODE_VALIDATORS: {
   [NodeType.ObjectPropertyDependency]: (ctx, node) => {
     const isComplement = ctx.peek("complementary") === node.id;
     // NOTE: dependency may not have properties
-    checkChildren(ctx, node, () => {
-      if (!isComplement) {
-        if (node.predicate === undefined) {
-          ctx.addError(
-            node,
-            "Specify the predicate or mark the dependency as `Complement`"
-          );
-        } else {
-          validateNode(ctx, node.predicate);
-        }
+    if (!isComplement) {
+      if (node.predicate === undefined) {
+        ctx.addError(
+          node,
+          "Specify the predicate or mark the dependency as `Complement`"
+        );
+      } else {
+        validateNode(ctx, node.predicate);
       }
-      for (let i = 0; node.properties.length < i; i++) {
-        validateNode(ctx, node.properties[i]);
-      }
-    });
+    }
+    for (let i = 0; node.properties.length < i; i++) {
+      validateNode(ctx, node.properties[i]);
+    }
   },
   [NodeType.Predicate]: (ctx, node) => {
     if (node.operator === undefined) {
       ctx.addError(node, "Specify the operator");
     } else {
-      checkChildren(ctx, node, validateNode, node.operator);
+      validateNode(ctx, node.operator);
     }
   },
   [NodeType.Operator]: validateOperator,
@@ -570,18 +527,16 @@ const NODE_VALIDATORS: {
     if (node.item === undefined) {
       ctx.addError(node, "Missing item definition");
     } else {
-      checkChildren(ctx, node, validateNode, node.item);
+      validateNode(ctx, node.item);
     }
   },
   [NodeType.Grid]: (ctx, node) => {
     if (node.cells.length === 0) {
       ctx.addError(node, "Add at least one element");
     } else {
-      checkChildren(ctx, node, () => {
-        for (let i = 0; i < node.cells.length; i++) {
-          validateNode(ctx, node.cells[i].node);
-        }
-      });
+      for (let i = 0; i < node.cells.length; i++) {
+        validateNode(ctx, node.cells[i].node);
+      }
     }
   },
   [NodeType.Enum]: validateEnumNode,

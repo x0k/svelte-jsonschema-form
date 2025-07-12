@@ -11,15 +11,12 @@ const objectOperators = constant([
   OperatorType.Property,
 ]);
 const multiEnumOperators = [
-  OperatorType.Contains,
   OperatorType.MinItems,
   OperatorType.MaxItems,
 ];
 const multiEnumOperatorsConstant = constant(multiEnumOperators);
-const arrayOperators = multiEnumOperators.concat(OperatorType.UniqueItems);
-const filesOperators = arrayOperators.filter(
-  (t) => t !== OperatorType.Contains
-);
+const filesOperators = multiEnumOperators.concat(OperatorType.UniqueItems);
+const arrayOperators = filesOperators.concat(OperatorType.Contains);
 const NODE_TO_OPERATORS: {
   [T in NodeType]: (node: Extract<Node, AbstractNode<T>>) => OperatorType[];
 } = {

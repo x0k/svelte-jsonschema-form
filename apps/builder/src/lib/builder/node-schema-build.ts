@@ -24,6 +24,7 @@ import {
   isMultiEnumNode,
   isObjectNode,
 } from "./node-guards.js";
+import { getNodeChild } from "./node-props.js";
 
 export interface Scope {
   id: (str: string) => string;
@@ -82,7 +83,7 @@ function buildPropertyDependencies(
       complementIndex = i;
       return buildSchema(ctx, d);
     }
-    assertThing(d.predicate, "predicate");
+    assertThing(d.predicate, "dependency predicate");
     const predicate = buildSchema(ctx, d.predicate);
     predicates.push(predicate);
     return mergeSchemas(
@@ -114,7 +115,7 @@ function buildObjectSchema(
   node: ObjectNode | ObjectPropertyDependencyNode
 ): Schema {
   const scope = ctx.peek("scope");
-  assertThing(scope, "scope");
+  assertThing(scope, "object scope");
   const properties = new Map<string, Schema>();
   const dependencies = new Map<string, Schema>();
   const required: string[] = [];
@@ -164,16 +165,15 @@ const OPERATOR_SCHEMA_BUILDERS: {
     oneOf: op.operands.map((o) => buildOperator(ctx, o)),
   }),
   [OperatorType.Not]: (ctx, op) => {
-    assertThing(op.operand, "not operand");
+    assertThing(op.operand, "not operator operand");
     return { not: buildOperator(ctx, op.operand) };
   },
   // Shared
   [OperatorType.Eq]: (ctx, op) => {
     const affected = ctx.peek("affectedNode");
-    assertThing(affected, "in affected node");
+    assertThing(affected, "eq operator affected node");
     const schema = { const: JSON.parse(op.value) };
-    return isMultiEnumNode(affected) ||
-      (isFileNode(affected) && affected.options.multiple)
+    return isMultiEnumNode(affected)
       ? {
           items: schema,
           minItems: 1,
@@ -182,12 +182,11 @@ const OPERATOR_SCHEMA_BUILDERS: {
   },
   [OperatorType.In]: (ctx, op) => {
     const affected = ctx.peek("affectedNode");
-    assertThing(affected, "in affected node");
+    assertThing(affected, "in operator affected node");
     const schema: Schema = {
       enum: op.values.map((v) => JSON.parse(v)),
     };
-    return isMultiEnumNode(affected) ||
-      (isFileNode(affected) && affected.options.multiple)
+    return isMultiEnumNode(affected)
       ? {
           items: schema,
           minItems: 1,
@@ -195,20 +194,22 @@ const OPERATOR_SCHEMA_BUILDERS: {
       : schema;
   },
   // String
-  [OperatorType.Pattern]: (ctx, op) => ({ pattern: op.value }),
-  [OperatorType.MinLength]: (ctx, op) => ({ minLength: op.value }),
-  [OperatorType.MaxLength]: (ctx, op) => ({ maxLength: op.value }),
+  [OperatorType.Pattern]: (_, op) => ({ pattern: op.value }),
+  [OperatorType.MinLength]: (_, op) => ({ minLength: op.value }),
+  [OperatorType.MaxLength]: (_, op) => ({ maxLength: op.value }),
   // Number
-  [OperatorType.Less]: (ctx, op) => ({ exclusiveMaximum: op.value }),
-  [OperatorType.LessOrEq]: (ctx, op) => ({ maximum: op.value }),
-  [OperatorType.Greater]: (ctx, op) => ({ exclusiveMinimum: op.value }),
-  [OperatorType.GreaterOrEq]: (ctx, op) => ({ minimum: op.value }),
-  [OperatorType.MultipleOf]: (ctx, op) => ({ multipleOf: op.value }),
+  [OperatorType.Less]: (_, op) => ({ exclusiveMaximum: op.value }),
+  [OperatorType.LessOrEq]: (_, op) => ({ maximum: op.value }),
+  [OperatorType.Greater]: (_, op) => ({ exclusiveMinimum: op.value }),
+  [OperatorType.GreaterOrEq]: (_, op) => ({ minimum: op.value }),
+  [OperatorType.MultipleOf]: (_, op) => ({ multipleOf: op.value }),
   // Array
   [OperatorType.Contains]: (ctx, { operand }) => {
-    assertThing(operand, "contains operant");
-    const child = ctx.peek("affectedNode");
-    assertThing(child, "contains affected node");
+    assertThing(operand, "contains operator operand");
+    const affected = ctx.peek("affectedNode");
+    assertThing(affected, "contains operator affected node");
+    const child = getNodeChild(affected);
+    assertThing(child, "contains operator affected node child");
     using _affected = ctx.push("affectedNode", child);
     return { contains: buildOperator(ctx, operand) };
   },
@@ -216,19 +217,19 @@ const OPERATOR_SCHEMA_BUILDERS: {
   [OperatorType.MaxItems]: (ctx, op) => ({ maxItems: op.value }),
   [OperatorType.UniqueItems]: (ctx, op) => ({ uniqueItems: true }),
   // Object
-  [OperatorType.HasProperty]: (ctx, op) => {
-    assertThing(op.propertyId, "property id in hasProperty operator");
-    const name = ctx.propertyNames.get(op.propertyId);
-    assertThing(name, "property name in hasProperty operator");
+  [OperatorType.HasProperty]: (ctx, { propertyId }) => {
+    assertThing(propertyId, "has property operator property id");
+    const name = ctx.propertyNames.get(propertyId);
+    assertThing(name, "has property operator property name");
     return { required: [name] };
   },
   [OperatorType.Property]: (ctx, { propertyId, operator }) => {
-    assertThing(propertyId, "property id");
+    assertThing(propertyId, "property operator property id");
     const name = ctx.propertyNames.get(propertyId);
-    assertThing(name, "property name");
-    assertThing(operator, "property operator");
+    assertThing(name, "property operator property name");
+    assertThing(operator, "property operator operand");
     const affected = ctx.peek("affectedNode");
-    assertThing(affected, "property affected node");
+    assertThing(affected, "property operator affected node");
     let prop: Node | undefined;
     if (isObjectNode(affected)) {
       prop = affected.properties.find((p) => p.id === propertyId)?.property;
@@ -307,7 +308,7 @@ const NODE_SCHEMA_BUILDERS: {
   },
   [NodeType.ObjectPropertyDependency]: buildObjectSchema,
   [NodeType.Predicate]: (ctx, node) => {
-    assertThing(node.operator, "operator");
+    assertThing(node.operator, "predicate operator");
     return buildSchema(ctx, node.operator);
   },
   [NodeType.Operator]: buildOperator,

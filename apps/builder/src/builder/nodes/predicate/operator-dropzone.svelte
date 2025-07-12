@@ -1,8 +1,6 @@
 <script lang="ts">
   import {
-    type Node,
     type OperatorNode,
-    OperatorType,
     detectApplicableOperators,
     isOperatorNode,
   } from "$lib/builder/index.js";
@@ -15,17 +13,9 @@
 
   interface Props {
     node: OperatorNode | undefined;
-    createAccept?: (
-      applicableOperators: Set<OperatorType>
-    ) => (node: Node) => node is OperatorNode;
   }
 
-  let {
-    node = $bindable(),
-    createAccept = (applicableOperators) =>
-      (node): node is OperatorNode =>
-        isOperatorNode(node) && applicableOperators.has(node.op),
-  }: Props = $props();
+  let { node = $bindable() }: Props = $props();
 
   const ctx = getBuilderContext();
   const nodeCtx = getNodeContext();
@@ -43,7 +33,8 @@
   />
 {:else}
   {@const droppable = ctx.createDroppable(nodeCtx, {
-    accept: createAccept(applicableOperators),
+    accept: (node): node is OperatorNode =>
+      isOperatorNode(node) && applicableOperators.has(node.op),
     onDrop(n) {
       node = n;
     },

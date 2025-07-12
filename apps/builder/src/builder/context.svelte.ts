@@ -480,7 +480,6 @@ export class BuilderContext {
     } = {
       complementary: [],
       affectedNode: [],
-      parentNode: [],
       enumValueType: [],
     };
     const errors: NodeIssue[] = [];

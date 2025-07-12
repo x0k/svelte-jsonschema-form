@@ -74,8 +74,5 @@ export function getNodeChild(node: Node) {
   if (isArrayNode(node)) {
     return node.item;
   }
-  if (isMultiEnumNode(node) || isTagsNode(node)) {
-    return node;
-  }
   return undefined;
 }
