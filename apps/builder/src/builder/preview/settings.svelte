@@ -6,9 +6,9 @@
   import { RESOLVER_TITLES, RESOLVERS } from "$lib/sjsf/resolver.js";
   import { ICONS, ICONS_TITLES } from "$lib/sjsf/icons.js";
 
-  import { getBuilderContext } from "./context.svelte.js";
-  import Container from "./container.svelte";
-  import { Page } from "./model.js";
+  import { getBuilderContext } from "../context.svelte.js";
+  import Container from "../container.svelte";
+  import { RouteName } from "../model.js";
 
   const ctx = getBuilderContext();
 
@@ -58,7 +58,7 @@
   </div>
   <Button
     onclick={() => {
-      ctx.currentPage = Page.Builder;
+      ctx.route = { name: RouteName.Editor };
     }}>Edit</Button
   >
 </Container>

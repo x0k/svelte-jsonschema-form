@@ -9,8 +9,8 @@
     OPERATOR_TYPES,
   } from "$lib/builder/index.js";
 
-  import { getBuilderContext } from "./context.svelte.js";
-  import NodeFactory from "./node-factory.svelte";
+  import { getBuilderContext } from "../context.svelte.js";
+  import NodeFactory from "../node-factory.svelte";
 
   const ctx = getBuilderContext();
   const entries = $derived.by(() => {

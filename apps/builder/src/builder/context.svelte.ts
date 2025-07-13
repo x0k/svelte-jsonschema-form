@@ -41,7 +41,12 @@ import { validator } from "$lib/form/defaults.js";
 import { Resolver } from "$lib/sjsf/resolver.js";
 import { Icons } from "$lib/sjsf/icons.js";
 
-import { DEFAULT_COMPONENTS, DEFAULT_WIDGETS, Page } from "./model.js";
+import {
+  type Route,
+  DEFAULT_COMPONENTS,
+  DEFAULT_WIDGETS,
+  RouteName,
+} from "./model.js";
 import type { NodeContext } from "./node-context.js";
 import {
   THEME_MISSING_FIELDS,
@@ -203,7 +208,7 @@ export class BuilderContext {
     this[`_${key}`] = Object.groupBy(issues, (i) => i.nodeId);
   }
 
-  currentPage = $state.raw(Page.Builder);
+  route = $state.raw<Route>({ name: RouteName.Editor });
 
   #buildOutput = $state.raw<
     | {

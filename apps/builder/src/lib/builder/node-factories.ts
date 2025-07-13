@@ -53,7 +53,7 @@ const NODE_FACTORIES = {
     options: {
       title: "Grid title",
       required: true,
-      cellSize: "1fr",
+      cellSize: "auto",
       gap: "1rem",
     },
   }),

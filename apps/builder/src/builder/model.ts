@@ -25,12 +25,27 @@ export interface NodeProps<T extends NodeType> {
   unmount: () => void;
 }
 
-export enum Page {
-  Builder = "builder",
+export enum RouteName {
+  Editor = "editor",
   Preview = "preview",
-  Schemas = "schemas",
-  Code = "code",
 }
+
+export interface AbstractRoute<N extends RouteName> {
+  name: N;
+}
+
+export interface EditorRoute extends AbstractRoute<RouteName.Editor> {}
+
+export enum PreviewSubRouteName {
+  Code = "code",
+  Schema = "schema",
+}
+
+export interface PreviewRoute extends AbstractRoute<RouteName.Preview> {
+  subRoute?: PreviewSubRouteName;
+}
+
+export type Route = EditorRoute | PreviewRoute;
 
 export const DEFAULT_COMPONENTS: Record<
   Resolver,

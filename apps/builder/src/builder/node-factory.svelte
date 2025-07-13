@@ -24,7 +24,7 @@
 
 <div
   class={[
-    "group flex items-center gap-2 p-2 rounded-md cursor-grab border hover:bg-accent",
+    "flex items-center gap-2 p-2 rounded-md cursor-grab border hover:bg-accent",
     draggable.isDragged && "bg-accent",
   ]}
   {@attach draggable.attach}
