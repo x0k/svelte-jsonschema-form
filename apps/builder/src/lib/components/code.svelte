@@ -24,11 +24,15 @@
 
 <div class="rounded-md border">
   {#if selected}
-    <div class="flex gap-2 p-2 border border-b">
+    <div class="flex gap-2 p-2 border-b">
       {#each files as file (file.title)}
         <Button
           size="sm"
           variant="ghost"
+          class={[
+            selected.title === file.title &&
+              "bg-accent text-accent-foreground dark:bg-accent/50",
+          ]}
           onclick={() => {
             selected = file;
           }}>{file.title}</Button

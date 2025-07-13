@@ -143,5 +143,20 @@ export function buildUiSchema(
   ctx: UiSchemaBuilderContext,
   node: Node
 ): UiSchema | undefined {
-  return NODE_UI_SCHEMA_BUILDERS[node.type](ctx, node as never);
+  const schema = NODE_UI_SCHEMA_BUILDERS[node.type](ctx, node as never);
+  if (schema) {
+    if (
+      schema["ui:options"] &&
+      Object.keys(schema["ui:options"]).length === 0
+    ) {
+      delete schema["ui:options"];
+    }
+    if (
+      schema["ui:components"] &&
+      Object.keys(schema["ui:components"]).length === 0
+    ) {
+      delete schema["ui:components"];
+    }
+  }
+  return schema;
 }

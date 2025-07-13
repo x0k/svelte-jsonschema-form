@@ -3,6 +3,7 @@ import type {
   ComponentType,
   SchemaValue,
   Theme as SJSFTheme,
+  UiOptions,
   UiSchema,
 } from "@sjsf/form";
 import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
@@ -215,6 +216,11 @@ function mergeUiSchemaItems(
   return mergeUiSchemas(lItems as UiSchema, rItems as UiSchema);
 }
 
+const COMMON_NESTED_KEYS = [
+  "layouts",
+  "buttons",
+] as const satisfies (keyof UiOptions)[];
+
 export function mergeUiSchemas(left: UiSchema, right: UiSchema): UiSchema {
   const merged = Object.assign({}, left, right);
   const commonKeys = new Set(Object.keys(left)).intersection(
@@ -228,7 +234,14 @@ export function mergeUiSchemas(left: UiSchema, right: UiSchema): UiSchema {
       key === "ui:components" ||
       key === "ui:globalOptions"
     ) {
-      Object.assign(merged[key]!, l, r);
+      //@ts-expect-error
+      merged[key] = Object.assign({}, l, r);
+      for (const nestedKey of COMMON_NESTED_KEYS) {
+        if (l && r && nestedKey in l && nestedKey in r) {
+          //@ts-expect-error
+          merged[key][nestedKey] = Object.assign({}, l[nestedKey], r[nestedKey]);
+        }
+      }
     } else if (key === "items") {
       merged["items"] = mergeUiSchemaItems(l as UiSchema[], r as UiSchema[]);
     } else if (key === "anyOf" || key === "oneOf") {

@@ -10,7 +10,11 @@
   const ctx = getBuilderContext();
 
   const ROUTE_FILES: Record<PreviewSubRouteName, CodeFile[]> = {
-    [PreviewSubRouteName.Code]: [],
+    [PreviewSubRouteName.Code]: [{
+      title: "defaults.ts",
+      content: ctx.formDefaults,
+      lang: "typescript"
+    }],
     [PreviewSubRouteName.Schema]: [
       {
         title: "schema.json",

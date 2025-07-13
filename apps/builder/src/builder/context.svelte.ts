@@ -35,6 +35,7 @@ import {
   buildSchema,
   type SchemaBuilderRegistries,
   buildUiSchema,
+  type WidgetType,
 } from "$lib/builder/index.js";
 import { mergeUiSchemas, Theme } from "$lib/sjsf/theme.js";
 import { validator } from "$lib/form/defaults.js";
@@ -219,14 +220,17 @@ export class BuilderContext {
   >(undefined);
 
   readonly schema = $derived(this.#buildOutput?.schema ?? {});
-  readonly uiSchema = $derived.by(
-    () =>
+  #uiSchemaOutput = $derived.by(() => {
+    const widgets = new Set<WidgetType>();
+    const uiSchema =
       this.rootNode &&
       this.#buildOutput &&
       buildUiSchema(
         {
           propertyNames: this.#buildOutput.propertyNames,
           uiComponents: (node) => {
+            const widget = node.options.widget as WidgetType;
+            widgets.add(widget);
             const components = Object.assign(
               {} satisfies UiSchema["ui:components"],
               DEFAULT_COMPONENTS[this.resolver][node.type](node as never)
@@ -236,14 +240,24 @@ export class BuilderContext {
             ] as FoundationalComponentType;
             if (node.options.widget !== defaultWidget) {
               //@ts-expect-error
-              components[defaultWidget] = node.options.widget;
+              components[defaultWidget] = widget;
             }
             return components;
           },
         },
         this.rootNode
-      )
-  );
+      );
+    return { uiSchema, widgets };
+  });
+  readonly uiSchema = $derived(this.#uiSchemaOutput.uiSchema);
+
+  readonly formDefaults = $derived.by(() => {
+    const { uiSchema, widgets } = this.#uiSchemaOutput;
+    if (uiSchema === undefined) {
+      return "";
+    }
+    return "const foo = 'bar';";
+  });
 
   constructor() {
     onDestroy(() => {
