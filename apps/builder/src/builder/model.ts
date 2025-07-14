@@ -1,4 +1,4 @@
-import type { UiSchema } from "@sjsf/form";
+import type { UiOptions, UiSchema } from "@sjsf/form";
 
 import { constant } from "$lib/function.js";
 import { Resolver } from "$lib/sjsf/resolver.js";
@@ -12,9 +12,11 @@ import {
   STRING_NODE_OPTIONS_SCHEMA,
   type AbstractNode,
   type Node,
+  type TextWidgetParams,
   type WidgetNode,
   type WidgetNodeType,
 } from "$lib/builder/index.js";
+import { Theme } from "$lib/sjsf/theme.js";
 
 import type { BuilderDraggable } from "./context.svelte.js";
 
@@ -46,6 +48,92 @@ export interface PreviewRoute extends AbstractRoute<RouteName.Preview> {
 }
 
 export type Route = EditorRoute | PreviewRoute;
+
+function basicTextOptions(params: TextWidgetParams): UiOptions {
+  return { text: { ...params } };
+}
+
+export const TEXT_WIDGET_OPTIONS: Record<
+  Theme,
+  (params: TextWidgetParams) => UiOptions
+> = {
+  [Theme.Basic]: basicTextOptions,
+  [Theme.Daisy5]: basicTextOptions,
+  [Theme.Flowbite3]: (params) => ({ flowbite3Text: params }),
+  [Theme.Skeleton3]: basicTextOptions,
+  [Theme.Shadcn4]: (params) => ({ shadcn4Text: { ...params } }),
+};
+
+export const CHECKBOXES_WIDGET_OPTIONS: Record<
+  Theme,
+  (inline: boolean) => UiOptions
+> = {
+  [Theme.Basic]: (inline) =>
+    inline
+      ? {}
+      : {
+          layouts: {
+            "field-content": {
+              style: "display: flex; flex-direction: column; gap: 0.2rem;",
+            },
+          },
+        },
+  [Theme.Daisy5]: (inline) =>
+    inline
+      ? {
+          layouts: {
+            "field-content": {
+              style: "display: flex; gap: 0.5rem;",
+            },
+          },
+        }
+      : {},
+  [Theme.Flowbite3]: (inline) =>
+    inline
+      ? {}
+      : {
+          layouts: {
+            "field-content": {
+              style: "flex-direction: column; gap: 0.2rem;",
+            },
+          },
+        },
+  [Theme.Skeleton3]: (inline) =>
+    inline
+      ? {}
+      : {
+          layouts: {
+            "field-content": {
+              style: "flex-direction: column; gap: 0.2rem;",
+            },
+          },
+        },
+  [Theme.Shadcn4]: (inline) =>
+    inline
+      ? {}
+      : {
+          layouts: {
+            "field-content": {
+              style: "flex-direction: column;",
+            },
+          },
+        },
+};
+
+export const RADIO_WIDGET_OPTIONS: Record<
+  Theme,
+  (inline: boolean) => UiOptions
+> = {
+  ...CHECKBOXES_WIDGET_OPTIONS,
+  [Theme.Shadcn4]: (inline) =>
+    inline
+      ? {
+          shadcn4RadioGroup: {
+            style: "grid-auto-flow: column; grid-auto-columns: max-content;",
+          },
+        }
+      : {},
+};
 
 export const DEFAULT_COMPONENTS: Record<
   Resolver,

@@ -23,9 +23,17 @@ export type WidgetType = {
     : never;
 }[ComponentType];
 
+export interface TextWidgetParams {
+  type: string | undefined;
+  placeholder: string | undefined;
+}
+
 export interface UiSchemaBuilderContext {
   propertyNames: Map<NodeId, string>;
   uiComponents: (node: WidgetNode) => UiSchema["ui:components"];
+  textWidgetOptions: (params: TextWidgetParams) => UiOptions;
+  radioWidgetOptions: (inline: boolean) => UiOptions;
+  checkboxesWidgetOptions: (inline: boolean) => UiOptions;
 }
 
 const UI_OPTIONS_KEYS = ["help"] as const satisfies (keyof UiOptions)[];
@@ -50,10 +58,14 @@ const invalidNode = () => {
   throw new Error("Invalid node");
 };
 
-function leafNode(ctx: UiSchemaBuilderContext, node: WidgetNode) {
+function leafNode(
+  ctx: UiSchemaBuilderContext,
+  node: WidgetNode,
+  options: UiOptions = {}
+) {
   return {
     "ui:components": ctx.uiComponents(node),
-    "ui:options": assignUiOptions({}, node.options),
+    "ui:options": assignUiOptions(options, node.options),
   };
 }
 
@@ -129,10 +141,34 @@ const NODE_UI_SCHEMA_BUILDERS: {
         );
       })
     ),
-  [NodeType.Enum]: leafNode,
-  [NodeType.MultiEnum]: leafNode,
+  [NodeType.Enum]: (ctx, node) =>
+    leafNode(
+      ctx,
+      node,
+      node.options.widget == "radioWidget"
+        ? ctx.radioWidgetOptions(node.options.inline ?? false)
+        : {}
+    ),
+  [NodeType.MultiEnum]: (ctx, node) =>
+    leafNode(
+      ctx,
+      node,
+      node.options.widget === "checkboxesWidget"
+        ? ctx.checkboxesWidgetOptions(node.options.inline ?? false)
+        : {}
+    ),
   [NodeType.EnumItem]: invalidNode,
-  [NodeType.String]: leafNode,
+  [NodeType.String]: (ctx, node) =>
+    leafNode(
+      ctx,
+      node,
+      node.options.widget === "textWidget"
+        ? ctx.textWidgetOptions({
+            type: node.options.inputType,
+            placeholder: node.options.placeholder,
+          })
+        : {}
+    ),
   [NodeType.Number]: leafNode,
   [NodeType.Boolean]: leafNode,
   [NodeType.File]: leafNode,

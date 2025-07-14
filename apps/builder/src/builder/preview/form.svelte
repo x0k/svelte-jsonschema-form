@@ -31,6 +31,8 @@
     get icons() {
       return SJSF_ICONS[ctx.icons];
     },
+    onSubmit: console.log,
+    onSubmitError: console.error,
   });
 
   let portalEl = $state.raw() as HTMLDivElement;

@@ -7,6 +7,7 @@ import { assertThing } from "$lib/assert.js";
 import {
   NodeType,
   type AbstractNode,
+  type CustomizableNode,
   type EnumItemNode,
   type Node,
   type NodeId,
@@ -29,22 +30,7 @@ import {
 import { getNodeChild } from "./node-props.js";
 
 export interface Scope {
-  id: (str: string) => string;
-}
-
-function createScope(): Scope {
-  const counter = new Map<string, number>();
-  return {
-    id(str: string) {
-      let count = counter.get(str);
-      if (count === undefined) {
-        counter.set(str, 1);
-        return str;
-      }
-      counter.set(str, ++count);
-      return `${str}_${count}`;
-    },
-  };
+  id: (node: CustomizableNode) => string;
 }
 
 export interface SchemaBuilderRegistries {
@@ -54,6 +40,7 @@ export interface SchemaBuilderRegistries {
 
 export interface SchemaBuilderContext {
   propertyNames: Map<NodeId, string>;
+  createAndPushScope(): Scope & Disposable;
   push<K extends keyof SchemaBuilderRegistries>(
     registry: K,
     value: SchemaBuilderRegistries[K]
@@ -185,8 +172,7 @@ function buildObjectSchema(
     if (!isCustomizableNode(p.property)) {
       throw new Error();
     }
-    const name = scope.id(p.property.options.title);
-    ctx.propertyNames.set(p.property.id, name);
+    const name = scope.id(p.property);
     properties.set(name, buildSchema(ctx, p.property));
     if (p.property.options.required) {
       required.push(name);
@@ -361,8 +347,7 @@ const NODE_SCHEMA_BUILDERS: {
   ) => Schema;
 } = {
   [NodeType.Object]: (ctx, node) => {
-    const scope = createScope();
-    using _scope = ctx.push("scope", scope);
+    using _scope = ctx.createAndPushScope();
     return assignSchemaOptions(buildObjectSchema(ctx, node), node.options);
   },
   [NodeType.ObjectProperty]: () => {
@@ -386,8 +371,7 @@ const NODE_SCHEMA_BUILDERS: {
     );
   },
   [NodeType.Grid]: (ctx, { cells, options }) => {
-    const scope = createScope();
-    using _scope = ctx.push("scope", scope);
+    using scope = ctx.createAndPushScope();
     const properties = new Map<string, Schema>();
     const required: string[] = [];
     for (let i = 0; i < cells.length; i++) {
@@ -395,8 +379,7 @@ const NODE_SCHEMA_BUILDERS: {
       if (!isCustomizableNode(p)) {
         throw new Error();
       }
-      const name = scope.id(p.options.title);
-      ctx.propertyNames.set(p.id, name);
+      const name = scope.id(p);
       properties.set(name, buildSchema(ctx, p));
       if (p.options.required) {
         required.push(name);

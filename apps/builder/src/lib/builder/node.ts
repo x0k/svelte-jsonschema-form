@@ -52,7 +52,6 @@ export const COMMON_OPTIONS_SCHEMA = {
     },
   },
   required: ["title", "required"],
-  additionalProperties: false,
 } as const satisfies Schema;
 
 export type CommonOptions = FromSchema<typeof COMMON_OPTIONS_SCHEMA>;
@@ -253,7 +252,7 @@ export const ENUM_OPTIONS_SCHEMA = {
     widget: {
       title: "Widget",
       type: "string",
-      default: "radioWidget",
+      default: "selectWidget",
     },
     help: {
       title: "Help",
@@ -266,10 +265,39 @@ export const ENUM_OPTIONS_SCHEMA = {
     },
   },
   required: ["widget"],
-  additionalProperties: false,
+  dependencies: {
+    widget: {
+      oneOf: [
+        {
+          type: "object",
+          properties: {
+            widget: {
+              const: "radioWidget",
+            },
+            inline: {
+              title: "Inline",
+              type: "boolean",
+            },
+          },
+        },
+        {
+          properties: {
+            widget: {
+              not: {
+                const: "radioWidget",
+              },
+            },
+          },
+        },
+      ],
+    },
+  },
 } as const satisfies Schema;
 
-export type EnumOptions = FromSchema<typeof ENUM_OPTIONS_SCHEMA>;
+export type EnumOptions = FromSchema<typeof ENUM_OPTIONS_SCHEMA> &
+  FromSchema<
+    (typeof ENUM_OPTIONS_SCHEMA)["dependencies"]["widget"]["oneOf"][0]
+  >;
 
 export interface EnumNode
   extends AbstractCustomizableNode<NodeType.Enum, EnumOptions> {
@@ -309,10 +337,39 @@ export const MULTI_ENUM_OPTIONS_SCHEMA = {
     },
   },
   required: ["widget"],
-  additionalProperties: false,
+  dependencies: {
+    widget: {
+      oneOf: [
+        {
+          type: "object",
+          properties: {
+            widget: {
+              const: "checkboxesWidget",
+            },
+            inline: {
+              title: "Inline",
+              type: "boolean",
+            },
+          },
+        },
+        {
+          properties: {
+            widget: {
+              not: {
+                const: "checkboxesWidget",
+              },
+            },
+          },
+        },
+      ],
+    },
+  },
 } as const satisfies Schema;
 
-export type MultiEnumOptions = FromSchema<typeof MULTI_ENUM_OPTIONS_SCHEMA>;
+export type MultiEnumOptions = FromSchema<typeof MULTI_ENUM_OPTIONS_SCHEMA> &
+  FromSchema<
+    (typeof MULTI_ENUM_OPTIONS_SCHEMA)["dependencies"]["widget"]["oneOf"][0]
+  >;
 
 export interface MultiEnumNode
   extends AbstractCustomizableNode<NodeType.MultiEnum, MultiEnumOptions> {
@@ -354,10 +411,56 @@ export const STRING_NODE_OPTIONS_SCHEMA = {
     },
   },
   required: ["widget"],
-  additionalProperties: false,
+  dependencies: {
+    widget: {
+      oneOf: [
+        {
+          type: "object",
+          properties: {
+            widget: {
+              const: "textWidget",
+            },
+            inputType: {
+              title: "Input type",
+              enum: [
+                "color",
+                "date",
+                "datetime-local",
+                "email",
+                "hidden",
+                "month",
+                "password",
+                "tel",
+                "text",
+                "time",
+                "url",
+                "week",
+              ],
+            },
+            placeholder: {
+              title: "Placeholder",
+              type: "string",
+            },
+          },
+        },
+        {
+          properties: {
+            widget: {
+              not: {
+                const: "textWidget",
+              },
+            },
+          },
+        },
+      ],
+    },
+  },
 } as const satisfies Schema;
 
-export type StringNodeOptions = FromSchema<typeof STRING_NODE_OPTIONS_SCHEMA>;
+export type StringNodeOptions = FromSchema<typeof STRING_NODE_OPTIONS_SCHEMA> &
+  FromSchema<
+    (typeof STRING_NODE_OPTIONS_SCHEMA)["dependencies"]["widget"]["oneOf"][0]
+  >;
 
 export interface StringNode
   extends AbstractCustomizableNode<NodeType.String, StringNodeOptions> {}
@@ -472,7 +575,6 @@ export const FILE_NODE_OPTIONS_SCHEMA = {
               type: "boolean",
             },
           },
-          additionalProperties: false,
         },
         {
           type: "object",
@@ -481,13 +583,11 @@ export const FILE_NODE_OPTIONS_SCHEMA = {
               const: false,
             },
           },
-          additionalProperties: false,
         },
       ],
     },
   },
   required: ["widget"],
-  additionalProperties: false,
 } as const satisfies Schema;
 
 export type FileOptions = FromSchema<typeof FILE_NODE_OPTIONS_SCHEMA> &
@@ -674,7 +774,7 @@ export const NODE_OPTIONS_UI_SCHEMAS = {
   }),
   [NodeType.Enum]: mergeUiSchemas(COMMON_UI_SCHEMA, {
     "ui:options": {
-      order: ["widget", "*"],
+      order: ["widget", "inline", "*"],
     },
     defaultValue: {
       "ui:options": {
@@ -686,7 +786,7 @@ export const NODE_OPTIONS_UI_SCHEMAS = {
   }),
   [NodeType.MultiEnum]: mergeUiSchemas(COMMON_UI_SCHEMA, {
     "ui:options": {
-      order: ["widget", "*"],
+      order: ["widget", "inline", "*"],
     },
     defaultValue: {
       items: {
@@ -703,7 +803,19 @@ export const NODE_OPTIONS_UI_SCHEMAS = {
   }),
   [NodeType.String]: mergeUiSchemas(COMMON_UI_SCHEMA, {
     "ui:options": {
-      order: ["widget", "*"],
+      order: [
+        "widget",
+        "inputType",
+        "title",
+        "description",
+        "placeholder",
+        "*",
+      ],
+    },
+    inputType: {
+      "ui:components": {
+        stringField: "enumField",
+      },
     },
   }),
   [NodeType.Number]: mergeUiSchemas(COMMON_UI_SCHEMA, {

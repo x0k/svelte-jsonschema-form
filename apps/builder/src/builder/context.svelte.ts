@@ -5,6 +5,7 @@ import type {
   Schema,
   UiSchema,
   FoundationalComponentType,
+  UiOptions,
 } from "@sjsf/form";
 import { DragDropManager, Draggable, Droppable } from "@dnd-kit/dom";
 
@@ -36,6 +37,8 @@ import {
   type SchemaBuilderRegistries,
   buildUiSchema,
   type WidgetType,
+  type Scope,
+  type SchemaBuilderContext,
 } from "$lib/builder/index.js";
 import { mergeUiSchemas, Theme } from "$lib/sjsf/theme.js";
 import { validator } from "$lib/form/defaults.js";
@@ -44,9 +47,12 @@ import { Icons } from "$lib/sjsf/icons.js";
 
 import {
   type Route,
+  CHECKBOXES_WIDGET_OPTIONS,
   DEFAULT_COMPONENTS,
   DEFAULT_WIDGETS,
+  RADIO_WIDGET_OPTIONS,
   RouteName,
+  TEXT_WIDGET_OPTIONS,
 } from "./model.js";
 import type { NodeContext } from "./node-context.js";
 import {
@@ -105,19 +111,9 @@ const noopReadonlyNodeRef: ReadonlyNodeRef = {
   current: undefined,
 };
 
-const obj = createNode(NodeType.Object) as ObjectNode;
-const menum = createNode(NodeType.MultiEnum) as MultiEnumNode;
+const menum = createNode(NodeType.Enum) as MultiEnumNode;
 menum.items.push(createEnumItemNode("foo", "foo"));
 menum.items.push(createEnumItemNode("bar", "bar"));
-const prop = createObjectProperty(menum);
-const dep = createObjectPropertyDependency();
-const pred = createPredicate();
-const op = createOperatorNode(OperatorType.In);
-pred.operator = op;
-dep.predicate = pred;
-prop.dependencies.push(dep);
-prop.complementary = undefined;
-obj.properties.push(prop);
 
 export class BuilderContext {
   #dnd = new DragDropManager<DndData>();
@@ -130,7 +126,7 @@ export class BuilderContext {
   #dropHandlers = new Map<UniqueId, (node: Node) => void>();
   #draggedNode = $state.raw<Node>();
 
-  rootNode = $state<CustomizableNode | undefined>(obj);
+  rootNode = $state<CustomizableNode | undefined>(menum);
 
   #selectedNodeRef = $state.raw(noopNodeRef);
   readonly selectedNode = $derived.by(() => {
@@ -243,6 +239,18 @@ export class BuilderContext {
               components[defaultWidget] = widget;
             }
             return components;
+          },
+          textWidgetOptions: (params) => {
+            if (Object.values(params).every((v) => v === undefined)) {
+              return {};
+            }
+            return TEXT_WIDGET_OPTIONS[this.theme](params);
+          },
+          checkboxesWidgetOptions: (inline) => {
+            return CHECKBOXES_WIDGET_OPTIONS[this.theme](inline);
+          },
+          radioWidgetOptions: (inline) => {
+            return RADIO_WIDGET_OPTIONS[this.theme](inline);
           },
         },
         this.rootNode
@@ -449,6 +457,7 @@ export class BuilderContext {
           );
           if (optionsErrors.length > 0) {
             errors.push({ nodeId: node.id, message: "Invalid filed options" });
+            console.error(optionsErrors);
           }
         },
         addError(node, message) {
@@ -490,23 +499,37 @@ export class BuilderContext {
       affectedNode: [],
     };
     const propertyNames = new Map<NodeId, string>();
-    const schema = buildSchema(
-      {
-        propertyNames,
-        push(registry, value) {
-          registries[registry].push(value);
-          return {
-            [Symbol.dispose]() {
-              registries[registry].pop();
-            },
-          };
-        },
-        peek(registry) {
-          return registries[registry].at(-1);
-        },
+    const ctx: SchemaBuilderContext = {
+      propertyNames,
+      createAndPushScope() {
+        const counter = new Map<string, number>();
+        const scope: Scope = {
+          id({ id, options: { title: str } }) {
+            let count = counter.get(str) ?? 0;
+            const v = count === 0 ? str : `${str}_${count}`;
+            counter.set(str, count++);
+            propertyNames.set(id, v);
+            return v;
+          },
+        };
+        return {
+          ...scope,
+          ...ctx.push("scope", scope),
+        };
       },
-      this.rootNode
-    );
+      push(registry, value) {
+        registries[registry].push(value);
+        return {
+          [Symbol.dispose]() {
+            registries[registry].pop();
+          },
+        };
+      },
+      peek(registry) {
+        return registries[registry].at(-1);
+      },
+    };
+    const schema = buildSchema(ctx, this.rootNode);
     this.#buildOutput = {
       propertyNames,
       schema,
