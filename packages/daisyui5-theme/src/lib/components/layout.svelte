@@ -25,9 +25,11 @@
 	);
 
 	const ctx = getFormContext();
+
+	const attributes = $derived(layoutAttributes(ctx, config, 'layout', 'layouts', type, {}));
 </script>
 
-{#if type === 'field-meta' || type === 'field-content' || type === 'array-field-meta' || type === 'object-field-meta'}
+{#if (type === 'field-meta' || type === 'field-content' || type === 'array-field-meta' || type === 'object-field-meta') && Object.keys(attributes).length < 2}
 	{@render children()}
 {:else if type === 'field' || type === 'array-field' || type === 'object-field'}
 	{@const attributes = layoutAttributes(
@@ -42,7 +44,6 @@
 		{@render children()}
 	</fieldset>
 {:else}
-	{@const attributes = layoutAttributes(ctx, config, 'layout', 'layouts', type, {})}
 	<div
 		class={{
 			flex: isItem || isControls || isColumn || type === 'multi-field-controls',
