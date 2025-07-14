@@ -160,6 +160,9 @@ importers:
       '@sjsf/basic-theme':
         specifier: workspace:*
         version: link:../../packages/basic-theme
+      '@sjsf/cfworker-validator':
+        specifier: workspace:*
+        version: link:../../packages/cfworker-validator
       '@sjsf/daisyui5-theme':
         specifier: workspace:*
         version: link:../../packages/daisyui5-theme
@@ -181,6 +184,9 @@ importers:
       '@sjsf/radix-icons':
         specifier: workspace:*
         version: link:../../packages/radix-icons
+      '@sjsf/schemasafe-validator':
+        specifier: workspace:*
+        version: link:../../packages/schemasafe-validator
       '@sjsf/shadcn4-theme':
         specifier: workspace:*
         version: link:../../packages/shadcn4-theme

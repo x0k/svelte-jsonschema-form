@@ -13,7 +13,8 @@
   import SingleDropZone from "../single-dropzone.svelte";
   import { getBuilderContext } from "../context.svelte.js";
   import NodeHeader from "../customizable-node-header.svelte";
-
+  import NodeContainer from "../node-container.svelte";
+  import NodeIssues from "../node-issues.svelte";
   import {
     createShrinkOrMove,
     isFailed,
@@ -22,8 +23,6 @@
     type CheckRect,
     type ToShrinkOrMove,
   } from "./grid.js";
-  import NodeContainer from "../node-container.svelte";
-  import NodeIssues from '../node-issues.svelte';
 
   let {
     node = $bindable(),
@@ -250,7 +249,12 @@
   const ctx = getBuilderContext();
 </script>
 
-<NodeContainer bind:node {draggable} {showRequired} class="flex flex-col gap-0.5">
+<NodeContainer
+  bind:node
+  {draggable}
+  {showRequired}
+  class="flex flex-col gap-0.5"
+>
   <NodeHeader {node} {draggable} {unmount} {showRequired}>
     {#snippet append()}
       <div class="flex items-center gap-2 pr-2">

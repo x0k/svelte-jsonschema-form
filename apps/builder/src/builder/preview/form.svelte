@@ -3,10 +3,11 @@
   import { BitsConfig } from "bits-ui";
 
   import { ShadowHost } from "$lib/components/shadow/index.js";
-  import { THEME_STYLES, SJSF_THEMES, Theme } from "$lib/sjsf/theme.js";
+  import { THEME_STYLES, sjsfTheme, Theme } from "$lib/sjsf/theme.js";
   import * as defaults from "$lib/form/defaults.js";
   import { SJSF_RESOLVERS } from "$lib/sjsf/resolver.js";
   import { ICONS_STYLES, SJSF_ICONS } from "$lib/sjsf/icons.js";
+  import { SJSF_VALIDATORS } from "$lib/sjsf/validators.js";
 
   import { themeManager } from "../../theme.svelte.js";
 
@@ -23,13 +24,16 @@
       return ctx.uiSchema;
     },
     get theme() {
-      return SJSF_THEMES[ctx.theme];
+      return sjsfTheme(ctx.theme);
     },
     get resolver() {
       return SJSF_RESOLVERS[ctx.resolver];
     },
     get icons() {
       return SJSF_ICONS[ctx.icons];
+    },
+    get validator() {
+      return SJSF_VALIDATORS[ctx.validator];
     },
     onSubmit: console.log,
     onSubmitError: console.error,
@@ -39,7 +43,7 @@
 </script>
 
 <ShadowHost
-  class="rounded border"
+  class="rounded border border-[var(--global-border)]"
   style={`${THEME_STYLES[ctx.theme]}\n${ICONS_STYLES[ctx.icons]}`}
 >
   <BitsConfig defaultPortalTo={portalEl}>

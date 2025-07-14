@@ -9,6 +9,7 @@
   import { getBuilderContext } from "../context.svelte.js";
   import Container from "../container.svelte";
   import { RouteName } from "../model.js";
+  import { VALIDATOR_TITLES, VALIDATORS } from "$lib/sjsf/validators.js";
 
   const ctx = getBuilderContext();
 
@@ -39,6 +40,19 @@
       <Select.Content>
         {#each RESOLVERS as r (r)}
           <Select.Item value={r}>{RESOLVER_TITLES[r]}</Select.Item>
+        {/each}
+      </Select.Content>
+    </Select.Root>
+  </div>
+  <div class="flex flex-col gap-1.5">
+    <Label for={`${uniqueId}-validator`}>Validator</Label>
+    <Select.Root type="single" bind:value={ctx.validator}>
+      <Select.Trigger id={`${uniqueId}-validator`} class="w-full">
+        {VALIDATOR_TITLES[ctx.validator]}
+      </Select.Trigger>
+      <Select.Content>
+        {#each VALIDATORS as v (v)}
+          <Select.Item value={v}>{VALIDATOR_TITLES[v]}</Select.Item>
         {/each}
       </Select.Content>
     </Select.Root>

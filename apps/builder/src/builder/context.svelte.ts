@@ -5,21 +5,14 @@ import type {
   Schema,
   UiSchema,
   FoundationalComponentType,
-  UiOptions,
 } from "@sjsf/form";
 import { DragDropManager, Draggable, Droppable } from "@dnd-kit/dom";
 
 import {
   createNode,
-  createObjectProperty,
   NodeType,
   type Node,
-  type ObjectNode,
   type CustomizableNode,
-  createObjectPropertyDependency,
-  createPredicate,
-  createOperatorNode,
-  OperatorType,
   type MultiEnumNode,
   createEnumItemNode,
   NODE_OPTIONS_SCHEMAS,
@@ -36,7 +29,6 @@ import {
   buildSchema,
   type SchemaBuilderRegistries,
   buildUiSchema,
-  type WidgetType,
   type Scope,
   type SchemaBuilderContext,
 } from "$lib/builder/index.js";
@@ -46,6 +38,7 @@ import { Resolver } from "$lib/sjsf/resolver.js";
 import { Icons } from "$lib/sjsf/icons.js";
 
 import {
+  type WidgetType,
   type Route,
   CHECKBOXES_WIDGET_OPTIONS,
   DEFAULT_COMPONENTS,
@@ -60,6 +53,8 @@ import {
   THEME_SCHEMAS,
   THEME_UI_SCHEMAS,
 } from "./theme-schemas.js";
+import { buildFormDefaults } from "./form-defaults-build.js";
+import { Validator } from "$lib/sjsf/validators.js";
 
 const BUILDER_CONTEXT = Symbol("builder-context");
 
@@ -150,6 +145,7 @@ export class BuilderContext {
   theme = $state.raw(Theme.Shadcn4);
   resolver = $state.raw(Resolver.Basic);
   icons = $state.raw(Icons.None);
+  validator = $state.raw(Validator.Ajv);
 
   readonly availableCustomizableNodeTypes = $derived.by(() => {
     const missing = THEME_MISSING_FIELDS[this.theme];
@@ -264,7 +260,13 @@ export class BuilderContext {
     if (uiSchema === undefined) {
       return "";
     }
-    return "const foo = 'bar';";
+    return buildFormDefaults({
+      widgets,
+      resolver: this.resolver,
+      theme: this.theme,
+      icons: this.icons,
+      validator: this.validator,
+    });
   });
 
   constructor() {

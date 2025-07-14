@@ -1,6 +1,9 @@
 import { extendByRecord } from "@sjsf/form/lib/resolver";
+import { cast } from "@sjsf/form/lib/component";
+import type { SchemaArrayValue } from "@sjsf/form/core";
 import type {
-  ComponentType,
+  ComponentDefinition,
+  FieldCommonProps,
   SchemaValue,
   Theme as SJSFTheme,
   UiOptions,
@@ -11,9 +14,20 @@ import type { Options, WidgetCommonProps } from "@sjsf/form/fields/widgets";
 import "@sjsf/form/fields/extra-fields/boolean-select-include";
 import "@sjsf/form/fields/extra-fields/enum-include";
 import "@sjsf/form/fields/extra-fields/file-include";
-import "@sjsf/form/fields/extra-fields/files-include";
 import "@sjsf/form/fields/extra-fields/multi-enum-include";
-import "@sjsf/form/fields/extra-fields/tags-include";
+import FilesField from "@sjsf/form/fields/extra-fields/files.svelte";
+import TagsField from "@sjsf/form/fields/extra-fields/tags.svelte";
+
+declare module "@sjsf/form" {
+  interface ComponentProps {
+    filesFieldWrapper: FieldCommonProps<SchemaArrayValue>;
+    tagsFieldWrapper: FieldCommonProps<SchemaArrayValue>;
+  }
+  interface ComponentBinding {
+    filesFieldWrapper: "value";
+    tagsFieldWrapper: "value";
+  }
+}
 
 import { theme as basic } from "@sjsf/basic-theme";
 import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
@@ -55,11 +69,6 @@ const daisy5 = extendByRecord(daisy5base, {
   filterRadioButtonsWidget: FilterRadioButtons,
   pikadayDatePickerWidget: PikadayDatePicker,
 });
-
-const daisyui5conflicts: ComponentType[][] = [
-  ["radioButtonsWidget", "filterRadioButtonsWidget"],
-  ["datePickerWidget", "pikadayDatePickerWidget"],
-];
 
 import { theme as flowbite3 } from "@sjsf/flowbite3-theme";
 import { default as flowbite3Styles } from "@sjsf/flowbite3-theme/styles.css?inline";
@@ -110,11 +119,6 @@ const skeleton3 = extendByRecord(skeleton3base, {
   sliderWidget: Slider,
 });
 
-const skeleton3conflicts: ComponentType[][] = [
-  ["fileWidget", "fileUploadWidget"],
-  ["rangeWidget", "sliderWidget"],
-];
-
 import { theme as shadcn4 } from "@sjsf/shadcn4-theme";
 import { default as shadcn4Styles } from "@sjsf/shadcn4-theme/styles.css?inline";
 import "@sjsf/shadcn4-theme/extra-widgets/checkboxes-include";
@@ -130,7 +134,7 @@ import "@sjsf/shadcn4-theme/extra-widgets/textarea-include";
 
 export enum Theme {
   Basic = "basic",
-  Daisy5 = "daisy5",
+  Daisy5 = "daisyui5",
   Flowbite3 = "flowbite3",
   Skeleton3 = "skeleton3",
   Shadcn4 = "shadcn4",
@@ -146,7 +150,7 @@ export const THEME_TITLES: Record<Theme, string> = {
   [Theme.Shadcn4]: "shadcn-svelte",
 };
 
-export const SJSF_THEMES: Record<Theme, SJSFTheme> = {
+const SJSF_THEMES: Record<Theme, SJSFTheme> = {
   [Theme.Basic]: basic,
   [Theme.Daisy5]: daisy5,
   [Theme.Flowbite3]: flowbite3,
@@ -154,20 +158,50 @@ export const SJSF_THEMES: Record<Theme, SJSFTheme> = {
   [Theme.Shadcn4]: shadcn4,
 };
 
+function assertStrings(
+  arr: SchemaArrayValue | undefined
+): asserts arr is string[] | undefined {
+  if (
+    arr !== undefined &&
+    arr.find((item) => {
+      return item !== undefined && typeof item !== "string";
+    })
+  ) {
+    throw new TypeError("expected array of strings");
+  }
+}
+
+const filesFieldWrapper = cast(FilesField, {
+  value: {
+    transform(props) {
+      assertStrings(props.value);
+      return props.value;
+    },
+  },
+}) satisfies ComponentDefinition<"arrayField">;
+
+const tagsFieldWrapper = cast(TagsField, {
+  value: {
+    transform(props) {
+      assertStrings(props.value);
+      return props.value;
+    },
+  },
+}) satisfies ComponentDefinition<"arrayField">;
+
+export function sjsfTheme(theme: Theme): SJSFTheme {
+  return extendByRecord(SJSF_THEMES[theme], {
+    filesFieldWrapper,
+    tagsFieldWrapper,
+  });
+}
+
 export const THEME_STYLES: Record<Theme, string> = {
   [Theme.Basic]: "",
   [Theme.Daisy5]: daisy5Styles,
   [Theme.Flowbite3]: flowbite3Styles,
   [Theme.Skeleton3]: skeleton3Styles,
   [Theme.Shadcn4]: shadcn4Styles,
-};
-
-export const THEME_CONFLICTS: Record<Theme, ComponentType[][]> = {
-  [Theme.Basic]: [],
-  [Theme.Daisy5]: daisyui5conflicts,
-  [Theme.Flowbite3]: [],
-  [Theme.Skeleton3]: skeleton3conflicts,
-  [Theme.Shadcn4]: [],
 };
 
 interface MergeArraysOptions<T> {
@@ -236,10 +270,10 @@ export function mergeUiSchemas(left: UiSchema, right: UiSchema): UiSchema {
     ) {
       //@ts-expect-error
       merged[key] = Object.assign({}, l, r);
-      for (const nestedKey of COMMON_NESTED_KEYS) {
-        if (l && r && nestedKey in l && nestedKey in r) {
+      for (const k of COMMON_NESTED_KEYS) {
+        if (l && r && k in l && k in r) {
           //@ts-expect-error
-          merged[key][nestedKey] = Object.assign({}, l[nestedKey], r[nestedKey]);
+          merged[key][k] = Object.assign({}, l[k], r[k]);
         }
       }
     } else if (key === "items") {

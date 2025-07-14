@@ -7,7 +7,9 @@ import type {
 } from "@sjsf/form";
 
 import { Theme } from "$lib/sjsf/theme.js";
-import { NodeType, type WidgetType } from "$lib/builder/index.js";
+import { NodeType } from "$lib/builder/index.js";
+
+import { WIDGET_NAMES, type WidgetType } from "./model.js";
 
 export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
   [Theme.Basic]: {
@@ -347,29 +349,6 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
       },
     },
   },
-};
-
-export const WIDGET_NAMES: Record<WidgetType, string> = {
-  textWidget: "Text input",
-  numberWidget: "Number input",
-  selectWidget: "Select",
-  checkboxWidget: "Checkbox",
-  fileWidget: "File input",
-  checkboxesWidget: "Checkboxes",
-  tagsWidget: "Tags",
-  datePickerWidget: "Date picker",
-  multiSelectWidget: "Multi Select",
-  radioWidget: "Radio group",
-  sliderWidget: "Slider",
-  rangeWidget: "Range",
-  textareaWidget: "Textarea",
-  radioButtonsWidget: "Radio buttons",
-  ratingWidget: "Rating",
-  switchWidget: "Switch",
-  comboboxWidget: "Combobox",
-  filterRadioButtonsWidget: "Radio buttons 2",
-  pikadayDatePickerWidget: "Pikaday date picker",
-  fileUploadWidget: "Drop zone",
 };
 
 export const THEME_UI_SCHEMAS: Record<

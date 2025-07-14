@@ -1,4 +1,10 @@
-import type { UiOptions, UiSchema } from "@sjsf/form";
+import type {
+  ComponentProps,
+  ComponentType,
+  UiOptions,
+  UiSchema,
+} from "@sjsf/form";
+import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
 
 import { constant } from "$lib/function.js";
 import { Resolver } from "$lib/sjsf/resolver.js";
@@ -154,17 +160,15 @@ export const DEFAULT_COMPONENTS: Record<
     [NodeType.File]: (node): UiSchema["ui:components"] => {
       if (node.options.multiple) {
         return {
-          //@ts-expect-error
-          arrayField: "filesField",
+          arrayField: "filesFieldWrapper",
         };
       }
       return {
         stringField: "fileField",
       };
     },
-    //@ts-expect-error
     [NodeType.Tags]: constant({
-      arrayField: "tagsField",
+      arrayField: "tagsFieldWrapper",
     }),
   },
   [Resolver.Compat]: {
@@ -174,9 +178,8 @@ export const DEFAULT_COMPONENTS: Record<
     [NodeType.Number]: constant(undefined),
     [NodeType.Boolean]: constant(undefined),
     [NodeType.File]: constant(undefined),
-    //@ts-expect-error
     [NodeType.Tags]: constant({
-      arrayField: "tagsField",
+      arrayField: "tagsFieldWrapper",
     }),
   },
 };
@@ -190,3 +193,134 @@ export const DEFAULT_WIDGETS: Record<WidgetNodeType, string> = {
   [NodeType.File]: FILE_NODE_OPTIONS_SCHEMA.properties.widget.default,
   [NodeType.Tags]: FILE_NODE_OPTIONS_SCHEMA.properties.widget.default,
 };
+
+export type WidgetType = {
+  [T in ComponentType]: ComponentProps[T] extends WidgetCommonProps<any>
+    ? T
+    : never;
+}[ComponentType];
+
+const BASE_WIDGETS = [
+  "textWidget",
+  "numberWidget",
+  "checkboxWidget",
+  "selectWidget",
+] as const satisfies WidgetType[];
+
+export type BaseWidgetType = (typeof BASE_WIDGETS)[number];
+
+const BASE_WIDGETS_SET = new Set<WidgetType>(BASE_WIDGETS);
+
+export function isBaseWidget(w: WidgetType): w is BaseWidgetType {
+  return BASE_WIDGETS_SET.has(w);
+}
+
+const EPHEMERAL_WIDGETS = [
+  "filterRadioButtonsWidget",
+  "pikadayDatePickerWidget",
+  "fileUploadWidget",
+  "sliderWidget",
+] as const satisfies WidgetType[];
+
+export type EphemeralWidgetType = (typeof EPHEMERAL_WIDGETS)[number];
+
+export type ExtraWidgetType = Exclude<
+  WidgetType,
+  BaseWidgetType | EphemeralWidgetType
+>;
+
+const EPHEMERAL_WIDGETS_SET = new Set<WidgetType>(EPHEMERAL_WIDGETS);
+
+export function isEphemeralWidget(w: WidgetType): w is EphemeralWidgetType {
+  return EPHEMERAL_WIDGETS_SET.has(w);
+}
+
+const EPHEMERAL_FIELDS = ["files", "tags"] as const;
+
+export type EphemeralFieldType = (typeof EPHEMERAL_FIELDS)[number];
+
+const EPHEMERAL_FIELDS_SET = new Set<string>(EPHEMERAL_FIELDS);
+
+export function isEphemeralField(field: string): field is EphemeralFieldType {
+  return EPHEMERAL_FIELDS_SET.has(field);
+}
+
+export const WIDGET_EXTRA_FIELDS: Record<WidgetType, string[]> = {
+  textWidget: [],
+  numberWidget: [],
+  selectWidget: ["enum"],
+  checkboxWidget: [],
+  fileWidget: ["file", "files"],
+  checkboxesWidget: ["multi-enum"],
+  tagsWidget: ["tags"],
+  datePickerWidget: [],
+  multiSelectWidget: ["multi-enum"],
+  radioWidget: ["enum"],
+  sliderWidget: [],
+  rangeWidget: [],
+  textareaWidget: [],
+  radioButtonsWidget: ["enum"],
+  ratingWidget: [],
+  switchWidget: [],
+  comboboxWidget: ["enum"],
+  filterRadioButtonsWidget: ["enum"],
+  pikadayDatePickerWidget: [],
+  fileUploadWidget: ["file", "files"],
+};
+
+export const WIDGET_NAMES: Record<WidgetType, string> = {
+  textWidget: "Text input",
+  numberWidget: "Number input",
+  selectWidget: "Select",
+  checkboxWidget: "Checkbox",
+  fileWidget: "File input",
+  checkboxesWidget: "Checkboxes",
+  tagsWidget: "Tags",
+  datePickerWidget: "Date picker",
+  multiSelectWidget: "Multi Select",
+  radioWidget: "Radio group",
+  sliderWidget: "Slider",
+  rangeWidget: "Range",
+  textareaWidget: "Textarea",
+  radioButtonsWidget: "Radio buttons",
+  ratingWidget: "Rating",
+  switchWidget: "Switch",
+  comboboxWidget: "Combobox",
+  filterRadioButtonsWidget: "Radio buttons 2",
+  pikadayDatePickerWidget: "Pikaday date picker",
+  fileUploadWidget: "Drop zone",
+};
+
+export const EXTRA_WIDGET_IMPORTS: Record<ExtraWidgetType, string> = {
+  fileWidget: "file",
+  checkboxesWidget: "checkboxes",
+  tagsWidget: "tags",
+  datePickerWidget: "date-picker",
+  multiSelectWidget: "multi-select",
+  radioWidget: "radio",
+  rangeWidget: "range",
+  textareaWidget: "textarea",
+  radioButtonsWidget: "radio-buttons",
+  ratingWidget: "rating",
+  switchWidget: "switch",
+  comboboxWidget: "combobox",
+};
+
+export const EPHEMERAL_WIDGET_IMPORTS: Record<EphemeralWidgetType, string> = {
+  filterRadioButtonsWidget: "filter-radio-buttons",
+  pikadayDatePickerWidget: "pikaday-date-picker",
+  fileUploadWidget: "file-upload",
+  sliderWidget: "slider",
+};
+
+export const EPHEMERAL_WIDGET_DEFINITIONS: Record<EphemeralWidgetType, string> =
+  {
+    filterRadioButtonsWidget: "WidgetCommonProps<SchemaValue> & Options",
+    pikadayDatePickerWidget: "WidgetCommonProps<string>",
+    fileUploadWidget: `WidgetCommonProps<FileList> & {
+      multiple: boolean;
+      loading: boolean;
+      processing: boolean;
+    }`,
+    sliderWidget: "WidgetCommonProps<number>",
+  };

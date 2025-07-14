@@ -17,12 +17,6 @@ import {
   type WidgetNode,
 } from "./node.js";
 
-export type WidgetType = {
-  [T in ComponentType]: ComponentProps[T] extends WidgetCommonProps<any>
-    ? T
-    : never;
-}[ComponentType];
-
 export interface TextWidgetParams {
   type: string | undefined;
   placeholder: string | undefined;
