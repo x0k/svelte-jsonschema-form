@@ -47,6 +47,7 @@
     "@sjsf/skeleton3-theme": "workspace:*",
     "ajv": "^8.17.1",
     "dompurify": "^3.2.6",
+    "lz-string": "^1.5.0",
     "shiki": "^3.7.0"
   }
 }

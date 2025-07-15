@@ -6,6 +6,11 @@
 
   const ctx = new BuilderContext();
   setBuilderContext(ctx);
+
+  const hash = location.hash.substring(1);
+  if (hash !== "") {
+    ctx.importState(hash);
+  }
 </script>
 
 {#if ctx.route.name === RouteName.Preview}

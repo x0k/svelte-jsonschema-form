@@ -7,6 +7,7 @@
     isCustomizableNode,
   } from "$lib/builder/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
+  import { CopyButton } from "$lib/components/copy-button/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
   import { Checkbox } from "$lib/components/ui/checkbox/index.js";
   import * as Select from "$lib/components/ui/select/index.js";
@@ -65,6 +66,14 @@
       {/if}
     </div>
   {/if}
+  <CopyButton
+    text={() => {
+      const url = new URL(window.location.href);
+      url.search = "";
+      url.hash = ctx.exportState();
+      return url.toString();
+    }}>Share</CopyButton
+  >
 </Container>
 {#if ctx.selectedNode && isCustomizableNode(ctx.selectedNode)}
   <Container class="p-3">

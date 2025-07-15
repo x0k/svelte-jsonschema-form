@@ -7,7 +7,7 @@ import type { ButtonProps } from '$lib/components/ui/button/button.svelte';
 export type CopyButtonPropsWithoutHTML = WithChildren<
 	Pick<ButtonProps, 'size' | 'variant'> & {
 		ref?: HTMLButtonElement | null;
-		text: string;
+		text: () => string;
 		icon?: Snippet<[]>;
 		animationDuration?: number;
 		onCopy?: (status: "success" | "failure" | "idle") => void;

@@ -7,6 +7,10 @@ import type {
   FoundationalComponentType,
 } from "@sjsf/form";
 import { DragDropManager, Draggable, Droppable } from "@dnd-kit/dom";
+import {
+  compressToEncodedURIComponent,
+  decompressFromEncodedURIComponent,
+} from "lz-string";
 
 import {
   createNode,
@@ -94,6 +98,16 @@ export interface ReadonlyNodeRef {
 export interface NodeIssue {
   nodeId: NodeId;
   message: string;
+}
+
+interface InternalState {
+  rootNode?: CustomizableNode;
+  theme: Theme;
+  resolver: Resolver;
+  icons: Icons;
+  validator: Validator;
+  ignoreWarnings: boolean;
+  route: Route;
 }
 
 const noopNodeRef: NodeRef = {
@@ -314,6 +328,30 @@ export class BuilderContext {
           handler?.(data.node);
         });
       }
+    );
+  }
+
+  importState(encodedData: string) {
+    const data: InternalState = JSON.parse(
+      decompressFromEncodedURIComponent(encodedData)
+    );
+    Object.assign(this, data);
+    if (this.route.name === RouteName.Preview) {
+      this.build();
+    }
+  }
+
+  exportState() {
+    return compressToEncodedURIComponent(
+      JSON.stringify({
+        rootNode: this.rootNode,
+        icons: this.icons,
+        ignoreWarnings: this.ignoreWarnings,
+        resolver: this.resolver,
+        route: this.route,
+        theme: this.theme,
+        validator: this.validator,
+      } satisfies InternalState)
     );
   }
 

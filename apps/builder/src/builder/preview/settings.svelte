@@ -1,15 +1,16 @@
 <script lang="ts">
   import { Button } from "$lib/components/ui/button/index.js";
+  import { CopyButton } from "$lib/components/copy-button/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
   import * as Select from "$lib/components/ui/select/index.js";
   import { THEME_TITLES, THEMES } from "$lib/sjsf/theme.js";
   import { RESOLVER_TITLES, RESOLVERS } from "$lib/sjsf/resolver.js";
   import { ICONS, ICONS_TITLES } from "$lib/sjsf/icons.js";
+  import { VALIDATOR_TITLES, VALIDATORS } from "$lib/sjsf/validators.js";
 
   import { getBuilderContext } from "../context.svelte.js";
   import Container from "../container.svelte";
   import { RouteName } from "../model.js";
-  import { VALIDATOR_TITLES, VALIDATORS } from "$lib/sjsf/validators.js";
 
   const ctx = getBuilderContext();
 
@@ -74,5 +75,13 @@
     onclick={() => {
       ctx.route = { name: RouteName.Editor };
     }}>Edit</Button
+  >
+  <CopyButton
+    text={() => {
+      const url = new URL(window.location.href);
+      url.search = "";
+      url.hash = ctx.exportState();
+      return url.toString();
+    }}>Share</CopyButton
   >
 </Container>

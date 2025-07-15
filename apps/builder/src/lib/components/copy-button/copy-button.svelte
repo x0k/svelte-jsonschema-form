@@ -4,11 +4,11 @@
   import CheckIcon from "@lucide/svelte/icons/check";
   import CopyIcon from "@lucide/svelte/icons/copy";
 
+  import { copyTextToClipboard } from "$lib/copy-to-clipboard.js";
   import { Button } from "$lib/components/ui/button/index.js";
   import { cn } from "$lib/utils.js";
 
   import type { CopyButtonProps } from "./types.js";
-  import { copyTextToClipboard } from "$lib/copy-to-clipboard.js";
 
   let {
     ref = $bindable(null),
@@ -41,7 +41,7 @@
   type="button"
   name="copy"
   onclick={() => {
-    copyTextToClipboard(text)
+    copyTextToClipboard(text())
       .then(
         () => {
           status = "success";
