@@ -34,6 +34,7 @@ import {
 } from "$lib/builder/index.js";
 import { mergeUiSchemas, Theme } from "$lib/sjsf/theme.js";
 import { validator } from "$lib/form/defaults.js";
+import { Validator } from "$lib/sjsf/validators.js";
 import { Resolver } from "$lib/sjsf/resolver.js";
 import { Icons } from "$lib/sjsf/icons.js";
 
@@ -53,8 +54,7 @@ import {
   THEME_SCHEMAS,
   THEME_UI_SCHEMAS,
 } from "./theme-schemas.js";
-import { buildFormDefaults } from "./form-defaults-build.js";
-import { Validator } from "$lib/sjsf/validators.js";
+import { buildFormDefaults, buildFormDotSvelte } from "./code-builders.js";
 
 const BUILDER_CONTEXT = Symbol("builder-context");
 
@@ -255,6 +255,13 @@ export class BuilderContext {
   });
   readonly uiSchema = $derived(this.#uiSchemaOutput.uiSchema);
 
+  readonly formDotSvelte = $derived(
+    buildFormDotSvelte({
+      theme: this.theme,
+      schema: JSON.stringify(this.schema, null, 2),
+      uiSchema: JSON.stringify(this.uiSchema, null, 2),
+    })
+  );
   readonly formDefaults = $derived.by(() => {
     const { uiSchema, widgets } = this.#uiSchemaOutput;
     if (uiSchema === undefined) {

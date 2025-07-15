@@ -1,6 +1,6 @@
 import { Icons } from "$lib/sjsf/icons.js";
 import type { Resolver } from "$lib/sjsf/resolver.js";
-import type { Theme } from "$lib/sjsf/theme.js";
+import { Theme } from "$lib/sjsf/theme.js";
 import type { Validator } from "$lib/sjsf/validators.js";
 
 import {
@@ -143,99 +143,139 @@ function defineEphemeralFields(ephemeralFields: Set<EphemeralFieldType>) {
   );
 }
 
-function defineEphemeralWidgets(ephemeralWidgets: EphemeralWidgetType[]) {
-  if (ephemeralWidgets.length === 0) {
-    return createDefinition("");
-  }
-  return createDefinition(
-    declareModule(
-      ephemeralWidgets.map((w) => `${w}: ${EPHEMERAL_WIDGET_DEFINITIONS[w]};`),
-      ephemeralWidgets.map((w) => `${w}: "value";`)
-    )
-  );
-}
-
-export function buildFormDefaults(options: FormDefaultsOptions): string {
+export function buildFormDefaults({
+  widgets,
+  icons,
+  resolver,
+  theme,
+  validator,
+}: FormDefaultsOptions): string {
   const extraFields = new Set<string>();
-  const ephemeralFields = new Set<EphemeralFieldType>();
-  const extraWidgets: ExtraWidgetType[] = [];
-  const ephemeralWidgets: EphemeralWidgetType[] = [];
-  for (const w of options.widgets) {
+  const ephemeralFieldTypes = new Set<EphemeralFieldType>();
+  const extraWidgetTypes: ExtraWidgetType[] = [];
+  const ephemeralWidgetTypes: EphemeralWidgetType[] = [];
+  for (const w of widgets) {
     if (!isBaseWidget(w)) {
       if (isEphemeralWidget(w)) {
-        ephemeralWidgets.push(w);
+        ephemeralWidgetTypes.push(w);
       } else {
-        extraWidgets.push(w);
+        extraWidgetTypes.push(w);
       }
     }
     for (const f of WIDGET_EXTRA_FIELDS[w]) {
       if (isEphemeralField(f)) {
-        ephemeralFields.add(f);
+        ephemeralFieldTypes.add(f);
       } else {
         extraFields.add(f);
       }
     }
   }
 
-  const hasEphemeral = ephemeralWidgets.length > 0 || ephemeralFields.size > 0;
+  const hasEphemeral =
+    ephemeralWidgetTypes.length > 0 || ephemeralFieldTypes.size > 0;
 
-  const ephemeralFieldsDefinition = defineEphemeralFields(ephemeralFields);
-  const ephemeralWidgetsDefinition = defineEphemeralWidgets(ephemeralWidgets);
+  const ephemeralFields = defineEphemeralFields(ephemeralFieldTypes);
+  const ephemeralWidgets = createDefinition(
+    ephemeralWidgetTypes.length > 0
+      ? declareModule(
+          ephemeralWidgetTypes.map(
+            (w) => `${w}: ${EPHEMERAL_WIDGET_DEFINITIONS[w]};`
+          ),
+          ephemeralWidgetTypes.map((w) => `${w}: "value";`)
+        )
+      : ""
+  );
 
   const themeExport = hasEphemeral
     ? `export const theme = extendByRecord(base, {
   ${[
-    ...Array.from(ephemeralFields).map((f) => `${f}FieldWrapper`),
-    ...ephemeralWidgets,
+    ...Array.from(ephemeralFieldTypes).map((f) => `${f}FieldWrapper`),
+    ...ephemeralWidgetTypes,
   ].join(",\n  ")}
 })`
     : "";
 
   const iconsExport =
-    Icons.None === options.icons
+    Icons.None === icons
       ? ""
-      : `export { icons } from "@sjsf/${options.icons}-icons";\n`;
+      : `export { icons } from "@sjsf/${icons}-icons";\n`;
 
   return join2(
-    defineTypeImports(
-      ephemeralFieldsDefinition.imports.union(
-        ephemeralWidgetsDefinition.imports
-      )
-    ),
+    defineTypeImports(ephemeralFields.imports.union(ephemeralWidgets.imports)),
     join(
       hasEphemeral &&
         'import { extendByRecord } from "@sjsf/form/lib/resolver";',
-      ephemeralFields.size > 0 &&
+      ephemeralFieldTypes.size > 0 &&
         'import { cast } from "@sjsf/form/lib/component";'
     ),
     join(
-      `export { resolver } from "@sjsf/form/resolvers/${options.resolver}";`,
+      `export { resolver } from "@sjsf/form/resolvers/${resolver}";`,
       ...Array.from(extraFields).map(
         (f) => `import "@sjsf/form/fields/extra-fields/${f}-include";`
       ),
-      ...Array.from(ephemeralFields).map(
+      ...Array.from(ephemeralFieldTypes).map(
         (f) =>
           `import ${f}Field from "@sjsf/form/fields/extra-fields/${f}.svelte";`
       )
     ),
-    ephemeralFieldsDefinition.definition,
+    ephemeralFields.definition,
     join(
-      `${hasEphemeral ? "import { theme as base" : "export { theme"} } from "@sjsf/${options.theme}-theme";`,
-      ...extraWidgets.map(
+      `${hasEphemeral ? "import { theme as base" : "export { theme"} } from "@sjsf/${theme}-theme";`,
+      ...extraWidgetTypes.map(
         (w) =>
-          `import "@sjsf/${options.theme}-theme/extra-widgets/${EXTRA_WIDGET_IMPORTS[w]}-include";`
+          `import "@sjsf/${theme}-theme/extra-widgets/${EXTRA_WIDGET_IMPORTS[w]}-include";`
       ),
-      ...ephemeralWidgets.map(
+      ...ephemeralWidgetTypes.map(
         (w) =>
-          `import ${w} from "@sjsf/${options.theme}-theme/extra-widgets/${EPHEMERAL_WIDGET_IMPORTS[w]}.svelte";`
+          `import ${w} from "@sjsf/${theme}-theme/extra-widgets/${EPHEMERAL_WIDGET_IMPORTS[w]}.svelte";`
       )
     ),
-    ephemeralWidgetsDefinition.definition,
+    ephemeralWidgets.definition,
     themeExport,
     'export { translation } from "@sjsf/form/translations/en";',
     iconsExport,
-    `import { createFormValidator } from "@sjsf/${options.validator}-validator";
+    `import { createFormValidator } from "@sjsf/${validator}-validator";
 
 export const validator = createFormValidator();`
+  );
+}
+
+export interface FormDotSvelteOptions {
+  theme: Theme;
+  schema: string;
+  uiSchema: string;
+}
+
+export function buildFormDotSvelte({
+  theme,
+  schema,
+  uiSchema,
+}: FormDotSvelteOptions): string {
+  const isShadcn = theme === Theme.Shadcn4;
+  const schemaLines = schema.split("\n");
+  const uiSchemaLines = uiSchema.split("\n");
+  return join(
+    `<script lang="ts">
+  import { createForm, BasicForm, type Schema, type UiSchemaRoot } from "@sjsf/form";`,
+    isShadcn &&
+      `  import { setThemeContext } from "@sjsf/shadcn4-theme";
+  import * as components from "@sjsf/shadcn4-theme/new-york";`,
+    `
+  import * as defaults from "$lib/form/defaults.js";
+
+  const schema = ${schemaLines.join("\n  ")} as const satisfies Schema;
+
+  const uiSchema: UiSchemaRoot = ${uiSchemaLines.join("\n  ")}
+
+  const form = createForm({
+    ...defaults,
+    schema,
+    uiSchema,
+    onSubmit: console.log
+  })`,
+    isShadcn &&
+      `
+  setThemeContext({ components })`,
+    `</script>`
   );
 }

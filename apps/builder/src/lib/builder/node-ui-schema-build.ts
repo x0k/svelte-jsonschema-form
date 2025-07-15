@@ -1,10 +1,4 @@
-import type {
-  ComponentProps,
-  ComponentType,
-  UiOptions,
-  UiSchema,
-} from "@sjsf/form";
-import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
+import type { UiOptions, UiSchema } from "@sjsf/form";
 
 import { assertThing } from "$lib/assert.js";
 import { mergeUiSchemas } from "$lib/sjsf/theme.js";
@@ -12,10 +6,13 @@ import { mergeUiSchemas } from "$lib/sjsf/theme.js";
 import {
   NodeType,
   type AbstractNode,
+  type EnumItemNode,
   type Node,
   type NodeId,
   type WidgetNode,
 } from "./node.js";
+import { EnumValueType } from "./enum.js";
+import { identity } from "@sjsf/form/lib/function";
 
 export interface TextWidgetParams {
   type: string | undefined;
@@ -60,6 +57,16 @@ function leafNode(
   return {
     "ui:components": ctx.uiComponents(node),
     "ui:options": assignUiOptions(options, node.options),
+  };
+}
+
+function buildEnumNames(type: EnumValueType, items: EnumItemNode[]): UiOptions {
+  const toValue = type === EnumValueType.JSON ? JSON.stringify : identity;
+  if (items.every((item) => toValue(item.label) === item.value)) {
+    return {};
+  }
+  return {
+    enumNames: items.map((item) => item.label),
   };
 }
 
@@ -139,18 +146,27 @@ const NODE_UI_SCHEMA_BUILDERS: {
     leafNode(
       ctx,
       node,
-      node.options.widget == "radioWidget"
-        ? ctx.radioWidgetOptions(node.options.inline ?? false)
-        : {}
+      Object.assign(
+        buildEnumNames(node.valueType, node.items),
+        node.options.widget == "radioWidget"
+          ? ctx.radioWidgetOptions(node.options.inline ?? false)
+          : undefined
+      )
     ),
-  [NodeType.MultiEnum]: (ctx, node) =>
-    leafNode(
+  [NodeType.MultiEnum]: (ctx, node) => {
+    const schema: UiSchema = leafNode(
       ctx,
       node,
       node.options.widget === "checkboxesWidget"
         ? ctx.checkboxesWidgetOptions(node.options.inline ?? false)
         : {}
-    ),
+    );
+    const itemsOptions = buildEnumNames(node.valueType, node.items);
+    if (Object.keys(itemsOptions).length > 0) {
+      schema.items = { "ui:options": itemsOptions };
+    }
+    return schema;
+  },
   [NodeType.EnumItem]: invalidNode,
   [NodeType.String]: (ctx, node) =>
     leafNode(

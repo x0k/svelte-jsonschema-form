@@ -10,6 +10,7 @@ import { constant } from "$lib/function.js";
 import { Resolver } from "$lib/sjsf/resolver.js";
 import {
   BOOLEAN_NODE_OPTIONS_SCHEMA,
+  buildEnumValues,
   ENUM_OPTIONS_SCHEMA,
   FILE_NODE_OPTIONS_SCHEMA,
   MULTI_ENUM_OPTIONS_SCHEMA,
@@ -25,6 +26,7 @@ import {
 import { Theme } from "$lib/sjsf/theme.js";
 
 import type { BuilderDraggable } from "./context.svelte.js";
+import { pickSchemaType, typeOfValue } from "@sjsf/form/core";
 
 export interface NodeProps<T extends NodeType> {
   node: Extract<Node, AbstractNode<T>>;
@@ -150,7 +152,13 @@ export const DEFAULT_COMPONENTS: Record<
   }
 > = {
   [Resolver.Basic]: {
-    [NodeType.Enum]: constant({ oneOfField: "enumField" }),
+    [NodeType.Enum]: (node) => {
+      const items = buildEnumValues(node.valueType, node.items);
+      const type = pickSchemaType(items.map(typeOfValue));
+      return {
+        [`${type}Field`]: "enumField",
+      };
+    },
     [NodeType.MultiEnum]: constant({
       arrayField: "multiEnumField",
     }),

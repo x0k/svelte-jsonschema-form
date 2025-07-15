@@ -302,12 +302,18 @@ function buildOperator(ctx: SchemaBuilderContext, node: OperatorNode): Schema {
   return OPERATOR_SCHEMA_BUILDERS[node.op](ctx, node as never);
 }
 
-function buildEnumItems(type: EnumValueType, items: EnumItemNode[]) {
-  const toConst = type === EnumValueType.JSON ? JSON.parse : identity;
-  return items.map((item) => ({
-    title: item.label,
-    const: toConst(item.label),
-  }));
+export function buildEnumValues(type: EnumValueType, items: EnumItemNode[]) {
+  if (type === EnumValueType.JSON) {
+    return items.map((i) => JSON.parse(i.value));
+  }
+  return items.map((i) => i.value);
+}
+
+function defaultArrayValue(values: string[] | undefined) {
+  if (values === undefined || values.length === 0) {
+    return undefined;
+  }
+  return values.map((v) => JSON.parse(v));
 }
 
 const SCHEMA_OPTIONS_KEYS = [
@@ -335,6 +341,8 @@ function assignSchemaOptions<
     if (v !== undefined) {
       // @ts-expect-error
       target[key] = v;
+    } else if (target[key] === undefined) {
+      delete target[key];
     }
   }
   return target;
@@ -365,7 +373,7 @@ const NODE_SCHEMA_BUILDERS: {
       {
         type: "array",
         items: buildSchema(ctx, item),
-        default: options.defaultValue?.map((v) => JSON.parse(v)),
+        default: defaultArrayValue(options.defaultValue),
       },
       options
     );
@@ -397,7 +405,7 @@ const NODE_SCHEMA_BUILDERS: {
   [NodeType.Enum]: (_, { items, valueType, options }) => {
     return assignSchemaOptions(
       {
-        oneOf: buildEnumItems(valueType, items),
+        enum: buildEnumValues(valueType, items),
         default: options.defaultValue && JSON.parse(options.defaultValue),
       },
       options
@@ -409,9 +417,9 @@ const NODE_SCHEMA_BUILDERS: {
         type: "array",
         uniqueItems: true,
         items: {
-          oneOf: buildEnumItems(valueType, items),
+          enum: buildEnumValues(valueType, items),
         },
-        default: options.defaultValue?.map((v) => JSON.parse(v)),
+        default: defaultArrayValue(options.defaultValue),
       },
       options
     );

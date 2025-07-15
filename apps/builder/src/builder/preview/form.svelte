@@ -36,7 +36,8 @@
       return SJSF_VALIDATORS[ctx.validator];
     },
     onSubmit: console.log,
-    onSubmitError: console.error,
+    onSubmitError: console.warn,
+    onSubmissionFailure: console.error,
   });
 
   let portalEl = $state.raw() as HTMLDivElement;
