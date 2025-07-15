@@ -14,21 +14,18 @@
       const files: CodeFile[] = [
         {
           title: "form.svelte",
-          lang: "svelte",
           get content() {
             return ctx.formDotSvelte;
           },
         },
         {
           title: "defaults.ts",
-          lang: "typescript",
           get content() {
             return ctx.formDefaults;
           },
         },
         {
           title: "install.sh",
-          lang: "bash",
           get content() {
             return ctx.installSh;
           },
@@ -37,7 +34,6 @@
       if (ctx.appCss.length > 0) {
         files.push({
           title: "app.css",
-          lang: "css",
           get content() {
             return ctx.appCss;
           },
@@ -48,16 +44,17 @@
     [PreviewSubRouteName.Schema]: () => [
       {
         title: "schema.json",
-        lang: "json",
         get content() {
-          return JSON.stringify(ctx.schema, null, 2);
+          return ctx.highlight("json", JSON.stringify(ctx.schema, null, 2));
         },
       },
       {
         title: "ui-schema.json",
-        lang: "json",
         get content() {
-          return JSON.stringify(ctx.uiSchema ?? {}, null, 2);
+          return ctx.highlight(
+            "json",
+            JSON.stringify(ctx.uiSchema ?? {}, null, 2)
+          );
         },
       },
     ],

@@ -1,6 +1,6 @@
 // Follows the best practices established in https://shiki.matsu.io/guide/best-performance
 import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
-import { createHighlighterCore } from "shiki/core";
+import { createHighlighterCore, type HighlighterCore } from "shiki/core";
 import DOMPurify from "dompurify";
 
 const bundledLanguages = {
@@ -15,7 +15,7 @@ const bundledLanguages = {
 export type SupportedLanguage = keyof typeof bundledLanguages;
 
 /** A preloaded highlighter instance. */
-const highlighter = await createHighlighterCore({
+export const highlighterPromise = createHighlighterCore({
   themes: [
     import("@shikijs/themes/github-light-default"),
     import("@shikijs/themes/github-dark-default"),
@@ -24,7 +24,11 @@ const highlighter = await createHighlighterCore({
   engine: createJavaScriptRegexEngine(),
 });
 
-export function highlight(lang: SupportedLanguage, code: string) {
+export function highlight(
+  highlighter: HighlighterCore,
+  lang: SupportedLanguage,
+  code: string
+) {
   return DOMPurify.sanitize(
     highlighter.codeToHtml(code, {
       lang,

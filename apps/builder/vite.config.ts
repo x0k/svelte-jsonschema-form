@@ -6,9 +6,6 @@ import { svelte } from "@sveltejs/vite-plugin-svelte";
 
 export default defineConfig({
   base: "/svelte-jsonschema-form/builder/",
-  build: {
-    target: "esnext",
-  },
   plugins: [tailwindcss(), svelte()],
   resolve: {
     alias: {

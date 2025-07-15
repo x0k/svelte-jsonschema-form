@@ -1,17 +1,13 @@
 <script lang="ts" module>
-  import type { SupportedLanguage } from "$lib/shiki.js";
-
   export interface CodeFile {
     title: string;
     content: string;
-    lang: SupportedLanguage;
   }
 </script>
 
 <script lang="ts">
   import { untrack } from "svelte";
 
-  import { highlight } from "$lib/shiki.js";
   import { Button } from "$lib/components/ui/button/index.js";
   import { CopyButton } from "$lib/components/copy-button/index.js";
 
@@ -57,7 +53,7 @@
       />
     </div>
     <div>
-      {@html highlight(selected.lang, selected.content)}
+      {@html selected.content}
     </div>
   {:else}
     <p class="p-4 text-center text-muted-foreground">No files</p>

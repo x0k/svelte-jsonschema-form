@@ -10,6 +10,7 @@
   import { setShadcnContext } from "./shadcn-context.js";
   import { themeManager } from "./theme.svelte.js";
   import { THEME_TITLES, THEMES } from "./shared/index.js";
+  import { highlighterPromise } from "$lib/shiki.js";
 
   setShadcnContext();
 
@@ -50,6 +51,8 @@
         </Button>
       </div>
     </div>
-    <Builder />
+    {#await highlighterPromise then highlighter}
+      <Builder {highlighter} />
+    {/await}
   </div>
 </TooltipProvider>

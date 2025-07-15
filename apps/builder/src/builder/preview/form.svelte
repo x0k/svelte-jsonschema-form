@@ -9,7 +9,6 @@
   import { SJSF_RESOLVERS } from "$lib/sjsf/resolver.js";
   import { ICONS_STYLES, SJSF_ICONS } from "$lib/sjsf/icons.js";
   import { SJSF_VALIDATORS } from "$lib/sjsf/validators.js";
-  import { highlight } from "$lib/shiki.js";
 
   import { themeManager } from "../../theme.svelte.js";
 
@@ -83,7 +82,7 @@
   </ShadowHost>
   {#if form.value !== undefined}
     <div class="rounded-md border">
-      {@html highlight("json", JSON.stringify(form.value, null, 2))}
+      {@html ctx.highlight("json", JSON.stringify(form.value, null, 2))}
     </div>
   {/if}
 </div>

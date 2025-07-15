@@ -62,6 +62,8 @@ import {
   buildInstallSh,
   join,
 } from "./code-builders.js";
+import type { HighlighterCore } from "shiki/core";
+import { highlight, type SupportedLanguage } from "$lib/shiki.js";
 
 const BUILDER_CONTEXT = Symbol("builder-context");
 
@@ -283,33 +285,43 @@ export class BuilderContext {
   readonly uiSchema = $derived(this.#uiSchemaOutput.uiSchema);
 
   readonly formDotSvelte = $derived(
-    buildFormDotSvelte({
-      theme: this.theme,
-      schema: this.schema,
-      uiSchema: this.uiSchema,
-    })
+    this.highlight(
+      "svelte",
+      buildFormDotSvelte({
+        theme: this.theme,
+        schema: this.schema,
+        uiSchema: this.uiSchema,
+      })
+    )
   );
-  readonly formDefaults = $derived.by(() => {
-    return buildFormDefaults({
-      widgets: this.#uiSchemaOutput.widgets,
-      resolver: this.resolver,
-      theme: this.theme,
-      icons: this.icons,
-      validator: this.validator,
-    });
+  readonly formDefaults = $derived(
+    this.highlight(
+      "typescript",
+      buildFormDefaults({
+        widgets: this.#uiSchemaOutput.widgets,
+        resolver: this.resolver,
+        theme: this.theme,
+        icons: this.icons,
+        validator: this.validator,
+      })
+    )
+  );
+  readonly appCss = $derived.by(() => {
+    const content = join(THEME_APP_CSS[this.theme], ICONS_APP_CSS[this.icons]);
+    return content && this.highlight("css", content);
   });
-  readonly appCss = $derived(
-    join(THEME_APP_CSS[this.theme], ICONS_APP_CSS[this.icons])
-  );
   readonly installSh = $derived(
-    buildInstallSh({
-      theme: this.theme,
-      icons: this.icons,
-      validator: this.validator,
-    })
+    this.highlight(
+      "bash",
+      buildInstallSh({
+        theme: this.theme,
+        icons: this.icons,
+        validator: this.validator,
+      })
+    )
   );
 
-  constructor() {
+  constructor(private readonly highlighter: HighlighterCore) {
     onDestroy(() => {
       this.#dnd.destroy();
     });
@@ -616,6 +628,10 @@ export class BuilderContext {
       propertyNames,
       schema,
     };
+  }
+
+  highlight(lang: SupportedLanguage, str: string) {
+    return highlight(this.highlighter, lang, str);
   }
 }
 
