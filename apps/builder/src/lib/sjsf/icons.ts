@@ -9,7 +9,7 @@ import flowbiteStyles from "@sjsf/flowbite-icons/styles.css?inline";
 import { icons as radix } from "@sjsf/radix-icons";
 
 export enum Icons {
-  None = "node",
+  None = "none",
   Flowbite = "flowbite",
   Moving = "moving",
   Lucide = "lucide",

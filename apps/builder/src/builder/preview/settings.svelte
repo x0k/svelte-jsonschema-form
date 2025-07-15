@@ -1,4 +1,6 @@
 <script lang="ts">
+  import ExternalLink from "@lucide/svelte/icons/external-link";
+
   import { Button } from "$lib/components/ui/button/index.js";
   import { CopyButton } from "$lib/components/copy-button/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
@@ -7,11 +9,11 @@
   import { ICONS, ICONS_TITLES } from "$lib/sjsf/icons.js";
   import { VALIDATOR_TITLES, VALIDATORS } from "$lib/sjsf/validators.js";
   import Select from "$lib/components/select.svelte";
+  import { Checkbox } from "$lib/components/ui/checkbox/index.js";
 
   import { RouteName } from "../model.js";
   import { getBuilderContext } from "../context.svelte.js";
   import Container from "../container.svelte";
-  import { Checkbox } from "$lib/components/ui/checkbox/index.js";
 
   const ctx = getBuilderContext();
 
@@ -69,12 +71,23 @@
       ctx.route = { name: RouteName.Editor };
     }}>Edit</Button
   >
-  <CopyButton
-    text={() => {
-      const url = new URL(window.location.href);
-      url.search = "";
-      url.hash = ctx.exportState();
-      return url.toString();
-    }}>Share</CopyButton
-  >
+  <div class="flex flex-col gap-2">
+    <Button
+      variant="ghost"
+      class="flex items-center gap-2"
+      onclick={() => {
+        const url = `https://x0k.github.io/svelte-jsonschema-form/playground2#${ctx.createPlaygroundState()}`;
+        window.open(url);
+      }}
+      >Playground <div><ExternalLink tabindex={-1} /></div></Button
+    >
+    <CopyButton
+      text={() => {
+        const url = new URL(window.location.href);
+        url.search = "";
+        url.hash = ctx.exportState();
+        return url.toString();
+      }}>Share</CopyButton
+    >
+  </div>
 </Container>

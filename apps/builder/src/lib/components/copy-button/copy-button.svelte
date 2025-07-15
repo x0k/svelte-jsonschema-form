@@ -59,6 +59,7 @@
       });
   }}
 >
+  {@render children?.()}
   {#if status === "success"}
     <div in:scale={{ duration: animationDuration, start: 0.85 }}>
       <CheckIcon tabindex={-1} />
@@ -79,5 +80,4 @@
       <span class="sr-only">Copy</span>
     </div>
   {/if}
-  {@render children?.()}
 </Button>

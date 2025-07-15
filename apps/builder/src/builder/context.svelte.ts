@@ -1,16 +1,13 @@
 import { flushSync, getContext, onDestroy, setContext } from "svelte";
 import { mergeSchemas } from "@sjsf/form/core";
-import type {
-  FormValue,
-  Schema,
-  UiSchema,
-  FoundationalComponentType,
-} from "@sjsf/form";
+import type { FormValue, Schema, UiSchema } from "@sjsf/form";
 import { DragDropManager, Draggable, Droppable } from "@dnd-kit/dom";
 import {
   compressToEncodedURIComponent,
   decompressFromEncodedURIComponent,
 } from "lz-string";
+
+import type { Sample } from "$apps/playground2/src/core/sample.js";
 
 import {
   createNode,
@@ -375,6 +372,21 @@ export class BuilderContext {
         validator: this.validator,
         html5Validation: this.html5Validation,
       } satisfies BuilderState)
+    );
+  }
+
+  createPlaygroundState() {
+    return compressToEncodedURIComponent(
+      JSON.stringify({
+        schema: this.schema,
+        uiSchema: this.uiSchema ?? {},
+        initialValue: null,
+        validator: this.validator,
+        theme: this.theme === Theme.Daisy5 ? "daisy5" : this.theme,
+        resolver: this.resolver,
+        icons: this.icons,
+        html5Validation: this.html5Validation,
+      } satisfies Sample)
     );
   }
 
