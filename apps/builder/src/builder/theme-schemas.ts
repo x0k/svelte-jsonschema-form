@@ -402,3 +402,11 @@ export const THEME_MISSING_FIELDS: Record<Theme, Set<NodeType>> = {
   [Theme.Skeleton3]: new Set([]),
   [Theme.Shadcn4]: new Set([NodeType.Tags]),
 };
+
+export const THEME_APP_CSS: Record<Theme, string> = {
+  [Theme.Basic]: "",
+  [Theme.Daisy5]: '@source "../node_modules/@sjsf/daisyui5-theme/dist";',
+  [Theme.Flowbite3]: '@source "../node_modules/@sjsf/flowbite3-theme/dist";',
+  [Theme.Skeleton3]: '@source "../node_modules/@sjsf/skeleton3-theme/dist";',
+  [Theme.Shadcn4]: '@source "../node_modules/@sjsf/shadcn4-theme/dist";',
+};

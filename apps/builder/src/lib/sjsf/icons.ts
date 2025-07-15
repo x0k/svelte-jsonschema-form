@@ -19,11 +19,11 @@ export enum Icons {
 export const ICONS = Object.values(Icons);
 
 export const ICONS_TITLES: Record<Icons, string> = {
-  [Icons.None]: 'None',
-  [Icons.Flowbite]: 'Flowbite',
-  [Icons.Moving]: 'Moving',
-  [Icons.Lucide]: 'Lucide',
-  [Icons.Radix]: 'Radix',
+  [Icons.None]: "None",
+  [Icons.Flowbite]: "Flowbite",
+  [Icons.Moving]: "Moving",
+  [Icons.Lucide]: "Lucide",
+  [Icons.Radix]: "Radix",
 };
 
 export const SJSF_ICONS: Record<Icons, SJSFIcons | undefined> = {
@@ -37,6 +37,14 @@ export const SJSF_ICONS: Record<Icons, SJSFIcons | undefined> = {
 export const ICONS_STYLES: Record<Icons, string> = {
   [Icons.None]: "",
   [Icons.Flowbite]: flowbiteStyles,
+  [Icons.Lucide]: "",
+  [Icons.Moving]: "",
+  [Icons.Radix]: "",
+};
+
+export const ICONS_APP_CSS: Record<Icons, string> = {
+  [Icons.None]: "",
+  [Icons.Flowbite]: '@source "../node_modules/@sjsf/flowbite-icons/dist";',
   [Icons.Lucide]: "",
   [Icons.Moving]: "",
   [Icons.Radix]: "",

@@ -9,24 +9,43 @@
 
   const ctx = getBuilderContext();
 
-  const ROUTE_FILES: Record<PreviewSubRouteName, CodeFile[]> = {
-    [PreviewSubRouteName.Code]: [
-      {
-        title: "form.svelte",
-        lang: "svelte",
-        get content() {
-          return ctx.formDotSvelte;
+  const ROUTE_FILES: Record<PreviewSubRouteName, () => CodeFile[]> = {
+    [PreviewSubRouteName.Code]: () => {
+      const files: CodeFile[] = [
+        {
+          title: "form.svelte",
+          lang: "svelte",
+          get content() {
+            return ctx.formDotSvelte;
+          },
         },
-      },
-      {
-        title: "defaults.ts",
-        lang: "typescript",
-        get content() {
-          return ctx.formDefaults;
+        {
+          title: "defaults.ts",
+          lang: "typescript",
+          get content() {
+            return ctx.formDefaults;
+          },
         },
-      },
-    ],
-    [PreviewSubRouteName.Schema]: [
+        {
+          title: "install.sh",
+          lang: "bash",
+          get content() {
+            return ctx.installSh;
+          },
+        },
+      ];
+      if (ctx.appCss.length > 0) {
+        files.push({
+          title: "app.css",
+          lang: "css",
+          get content() {
+            return ctx.appCss;
+          },
+        });
+      }
+      return files;
+    },
+    [PreviewSubRouteName.Schema]: () => [
       {
         title: "schema.json",
         lang: "json",
@@ -48,5 +67,5 @@
 {#if route.subRoute === undefined}
   <Form />
 {:else}
-  <Code files={ROUTE_FILES[route.subRoute]} />
+  <Code files={ROUTE_FILES[route.subRoute]()} />
 {/if}

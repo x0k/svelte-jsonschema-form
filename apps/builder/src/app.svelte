@@ -4,9 +4,12 @@
   import Github from "$lib/components/github.svelte";
   import { Button } from "$lib/components/ui/button/index.js";
   import { TooltipProvider } from "$lib/components/ui/tooltip/index.js";
+  import Select from "$lib/components/select.svelte";
 
   import Builder from "./builder/builder.svelte";
   import { setShadcnContext } from "./shadcn-context.js";
+  import { themeManager } from "./theme.svelte.js";
+  import { THEME_TITLES, THEMES } from "./shared/index.js";
 
   setShadcnContext();
 
@@ -25,6 +28,11 @@
         <a href={clearLink.toString()} class="text-xl font-bold mr-auto"
           >Form Builder</a
         >
+        <Select
+          bind:value={themeManager.theme}
+          items={THEMES}
+          labels={THEME_TITLES}
+        />
         <Button
           variant="ghost"
           size="icon"

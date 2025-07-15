@@ -10,13 +10,13 @@
   import { CopyButton } from "$lib/components/copy-button/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
   import { Checkbox } from "$lib/components/ui/checkbox/index.js";
-  import * as Select from "$lib/components/ui/select/index.js";
   import { THEME_TITLES, THEMES } from "$lib/sjsf/theme.js";
 
   import { getBuilderContext } from "../context.svelte.js";
   import Container from "../container.svelte";
   import NodeSettings from "../node-settings.svelte";
   import { RouteName } from "../model.js";
+  import Select from "$lib/components/select.svelte";
 
   const ctx = getBuilderContext();
   const uniqueId = $props.id();
@@ -26,16 +26,13 @@
   <div class="font-medium text-md py-2">Form options</div>
   <div class="flex flex-col gap-1.5">
     <Label for={`${uniqueId}-theme`}>Theme</Label>
-    <Select.Root type="single" bind:value={ctx.theme}>
-      <Select.Trigger id={`${uniqueId}-theme`} class="w-full">
-        {THEME_TITLES[ctx.theme]}
-      </Select.Trigger>
-      <Select.Content>
-        {#each THEMES as t (t)}
-          <Select.Item value={t}>{THEME_TITLES[t]}</Select.Item>
-        {/each}
-      </Select.Content>
-    </Select.Root>
+    <Select
+      class="w-full"
+      labelId="{uniqueId}-theme"
+      bind:value={ctx.theme}
+      items={THEMES}
+      labels={THEME_TITLES}
+    />
   </div>
   <div class="flex items-center gap-2">
     <Checkbox id={`${uniqueId}-ignore`} bind:checked={ctx.ignoreWarnings} />

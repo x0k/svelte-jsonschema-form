@@ -9,6 +9,8 @@
 </script>
 
 <script lang="ts">
+  import { untrack } from "svelte";
+
   import { highlight } from "$lib/shiki.js";
   import { Button } from "$lib/components/ui/button/index.js";
   import { CopyButton } from "$lib/components/copy-button/index.js";
@@ -19,22 +21,31 @@
 
   const { files }: Props = $props();
 
-  let selected = $derived(files[0]);
+  let selectedIndex = $derived(0);
+  $effect(() => {
+    files.length;
+    untrack(() => {
+      if (selectedIndex >= files.length) {
+        selectedIndex = files.length - 1;
+      }
+    });
+  });
+  let selected = $derived(files[selectedIndex]);
 </script>
 
 <div class="rounded-md border">
   {#if selected}
     <div class="flex gap-2 p-2 border-b">
-      {#each files as file (file.title)}
+      {#each files as file, i (file.title)}
         <Button
           size="sm"
           variant="ghost"
           class={[
-            selected.title === file.title &&
+            selectedIndex === i &&
               "bg-accent text-accent-foreground dark:bg-accent/50",
           ]}
           onclick={() => {
-            selected = file;
+            selectedIndex = i;
           }}>{file.title}</Button
         >
       {/each}

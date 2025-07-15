@@ -12,6 +12,7 @@
   import { themeManager } from "../../theme.svelte.js";
 
   import { getBuilderContext } from "../context.svelte.js";
+  import { highlight } from "$lib/shiki.js";
 
   const ctx = getBuilderContext();
 
@@ -43,20 +44,26 @@
   let portalEl = $state.raw() as HTMLDivElement;
 </script>
 
-<ShadowHost
-  class="rounded border border-[var(--global-border)]"
-  style={`${THEME_STYLES[ctx.theme]}\n${ICONS_STYLES[ctx.icons]}`}
->
-  <BitsConfig defaultPortalTo={portalEl}>
-    <BasicForm
-      id="form"
-      {form}
-      class={themeManager.darkOrLight}
-      style="padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;"
-      data-theme={ctx.theme.startsWith(Theme.Skeleton3)
-        ? "cerberus"
-        : themeManager.darkOrLight}
-    />
-    <div bind:this={portalEl}></div>
-  </BitsConfig>
-</ShadowHost>
+<div class="flex flex-col gap-2">
+  <ShadowHost
+    class="rounded border border-[var(--global-border)]"
+    style={`${THEME_STYLES[ctx.theme]}\n${ICONS_STYLES[ctx.icons]}`}
+  >
+    <BitsConfig defaultPortalTo={portalEl}>
+      <BasicForm
+        id="form"
+        {form}
+        novalidate={!ctx.html5Validation}
+        class={themeManager.darkOrLight}
+        style="padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;"
+        data-theme={ctx.theme.startsWith(Theme.Skeleton3)
+          ? "cerberus"
+          : themeManager.darkOrLight}
+      />
+      <div bind:this={portalEl}></div>
+    </BitsConfig>
+  </ShadowHost>
+  <div class="rounded-md border p-2">
+    {@html highlight("json", JSON.stringify(form.value, null, 2))}
+  </div>
+</div>

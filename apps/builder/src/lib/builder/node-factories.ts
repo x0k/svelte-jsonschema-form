@@ -11,7 +11,6 @@ import {
   type ObjectPropertyNode,
   type OperatorNode,
   type PredicateNode,
-  ENUM_OPTIONS_SCHEMA,
   MULTI_ENUM_OPTIONS_SCHEMA,
   STRING_NODE_OPTIONS_SCHEMA,
   NUMBER_NODE_OPTIONS_SCHEMA,
@@ -55,6 +54,7 @@ const NODE_FACTORIES = {
       required: true,
       cellSize: "auto",
       gap: "1rem",
+      additionalStyles: "align-items: center;",
     },
   }),
   [NodeType.Enum]: (id) => ({
@@ -65,7 +65,7 @@ const NODE_FACTORIES = {
     options: {
       title: "Choice field",
       required: true,
-      widget: ENUM_OPTIONS_SCHEMA.properties.widget.default,
+      widget: "radioWidget",
     },
   }),
   [NodeType.MultiEnum]: (id) => ({

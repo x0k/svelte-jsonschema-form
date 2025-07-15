@@ -116,7 +116,7 @@ const NODE_UI_SCHEMA_BUILDERS: {
           {
             layouts: {
               "object-properties": {
-                style: `display: grid; grid-template-columns: repeat(${width}, ${options.cellSize}); grid-template-rows: repeat(${height}, ${options.cellSize}); gap: ${options.gap};`,
+                style: `display: grid; grid-template-columns: repeat(${width}, ${options.cellSize}); grid-template-rows: repeat(${height}, ${options.cellSize}); gap: ${options.gap};${options.additionalStyles ?? ""}`,
               },
             },
           },

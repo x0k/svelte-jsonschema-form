@@ -7,6 +7,8 @@ const bundledLanguages = {
   json: () => import("@shikijs/langs/json"),
   svelte: () => import("@shikijs/langs/svelte"),
   typescript: () => import("@shikijs/langs/typescript"),
+  bash: () => import("@shikijs/langs/bash"),
+  css: () => import("@shikijs/langs/css"),
 };
 
 /** The languages configured for the highlighter */

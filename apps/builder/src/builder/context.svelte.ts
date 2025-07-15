@@ -17,8 +17,7 @@ import {
   NodeType,
   type Node,
   type CustomizableNode,
-  type MultiEnumNode,
-  createEnumItemNode,
+  type ObjectNode,
   NODE_OPTIONS_SCHEMAS,
   NODE_OPTIONS_UI_SCHEMAS,
   CUSTOMIZABLE_TYPES,
@@ -40,7 +39,7 @@ import { mergeUiSchemas, Theme } from "$lib/sjsf/theme.js";
 import { validator } from "$lib/form/defaults.js";
 import { Validator } from "$lib/sjsf/validators.js";
 import { Resolver } from "$lib/sjsf/resolver.js";
-import { Icons } from "$lib/sjsf/icons.js";
+import { Icons, ICONS_APP_CSS } from "$lib/sjsf/icons.js";
 
 import {
   type WidgetType,
@@ -54,11 +53,17 @@ import {
 } from "./model.js";
 import type { NodeContext } from "./node-context.js";
 import {
+  THEME_APP_CSS,
   THEME_MISSING_FIELDS,
   THEME_SCHEMAS,
   THEME_UI_SCHEMAS,
 } from "./theme-schemas.js";
-import { buildFormDefaults, buildFormDotSvelte } from "./code-builders.js";
+import {
+  buildFormDefaults,
+  buildFormDotSvelte,
+  buildInstallSh,
+  join,
+} from "./code-builders.js";
 
 const BUILDER_CONTEXT = Symbol("builder-context");
 
@@ -100,13 +105,14 @@ export interface NodeIssue {
   message: string;
 }
 
-interface InternalState {
+interface BuilderState {
   rootNode?: CustomizableNode;
   theme: Theme;
   resolver: Resolver;
   icons: Icons;
   validator: Validator;
   ignoreWarnings: boolean;
+  html5Validation: boolean;
   route: Route;
 }
 
@@ -120,9 +126,8 @@ const noopReadonlyNodeRef: ReadonlyNodeRef = {
   current: undefined,
 };
 
-const menum = createNode(NodeType.Enum) as MultiEnumNode;
-menum.items.push(createEnumItemNode("foo", "foo"));
-menum.items.push(createEnumItemNode("bar", "bar"));
+const obj = createNode(NodeType.Object) as ObjectNode;
+obj.options.title = "Form title";
 
 export class BuilderContext {
   #dnd = new DragDropManager<DndData>();
@@ -135,7 +140,7 @@ export class BuilderContext {
   #dropHandlers = new Map<UniqueId, (node: Node) => void>();
   #draggedNode = $state.raw<Node>();
 
-  rootNode = $state<CustomizableNode | undefined>(menum);
+  rootNode = $state<CustomizableNode | undefined>(obj);
 
   #selectedNodeRef = $state.raw(noopNodeRef);
   readonly selectedNode = $derived.by(() => {
@@ -191,6 +196,7 @@ export class BuilderContext {
   }
 
   ignoreWarnings = $state(false);
+  html5Validation = $state(false);
 
   private _errorsCount = $state(0);
   get errorsCount() {
@@ -272,8 +278,8 @@ export class BuilderContext {
   readonly formDotSvelte = $derived(
     buildFormDotSvelte({
       theme: this.theme,
-      schema: JSON.stringify(this.schema, null, 2),
-      uiSchema: JSON.stringify(this.uiSchema, null, 2),
+      schema: this.schema,
+      uiSchema: this.uiSchema,
     })
   );
   readonly formDefaults = $derived.by(() => {
@@ -289,6 +295,16 @@ export class BuilderContext {
       validator: this.validator,
     });
   });
+  readonly appCss = $derived(
+    join(THEME_APP_CSS[this.theme], ICONS_APP_CSS[this.icons])
+  );
+  readonly installSh = $derived(
+    buildInstallSh({
+      theme: this.theme,
+      icons: this.icons,
+      validator: this.validator,
+    })
+  );
 
   constructor() {
     onDestroy(() => {
@@ -332,7 +348,7 @@ export class BuilderContext {
   }
 
   importState(encodedData: string) {
-    const data: InternalState = JSON.parse(
+    const data: BuilderState = JSON.parse(
       decompressFromEncodedURIComponent(encodedData)
     );
     Object.assign(this, data);
@@ -351,7 +367,8 @@ export class BuilderContext {
         route: this.route,
         theme: this.theme,
         validator: this.validator,
-      } satisfies InternalState)
+        html5Validation: this.html5Validation,
+      } satisfies BuilderState)
     );
   }
 
@@ -554,7 +571,7 @@ export class BuilderContext {
           id({ id, options: { title: str } }) {
             let count = counter.get(str) ?? 0;
             const v = count === 0 ? str : `${str}_${count}`;
-            counter.set(str, count++);
+            counter.set(str, count + 1);
             propertyNames.set(id, v);
             return v;
           },

@@ -2,6 +2,7 @@ import { Icons } from "$lib/sjsf/icons.js";
 import type { Resolver } from "$lib/sjsf/resolver.js";
 import { Theme } from "$lib/sjsf/theme.js";
 import type { Validator } from "$lib/sjsf/validators.js";
+import type { Schema, UiSchema } from "@sjsf/form";
 
 import {
   EPHEMERAL_WIDGET_IMPORTS,
@@ -25,7 +26,7 @@ export interface FormDefaultsOptions {
   validator: Validator;
 }
 
-function join(...args: (string | boolean)[]) {
+export function join(...args: (string | boolean)[]) {
   return args.filter(Boolean).join("\n");
 }
 
@@ -242,8 +243,8 @@ export const validator = createFormValidator();`
 
 export interface FormDotSvelteOptions {
   theme: Theme;
-  schema: string;
-  uiSchema: string;
+  schema: Schema;
+  uiSchema: UiSchema | undefined;
 }
 
 export function buildFormDotSvelte({
@@ -252,8 +253,8 @@ export function buildFormDotSvelte({
   uiSchema,
 }: FormDotSvelteOptions): string {
   const isShadcn = theme === Theme.Shadcn4;
-  const schemaLines = schema.split("\n");
-  const uiSchemaLines = uiSchema.split("\n");
+  const schemaLines = JSON.stringify(schema, null, 2).split("\n");
+  const uiSchemaLines = JSON.stringify(uiSchema, null, 2).split("\n");
   return join(
     `<script lang="ts">
   import { createForm, BasicForm, type Schema, type UiSchemaRoot } from "@sjsf/form";`,
@@ -278,4 +279,15 @@ export function buildFormDotSvelte({
   setThemeContext({ components })`,
     `</script>`
   );
+}
+
+export interface InstallShOptions {
+  theme: Theme
+  validator: Validator
+  icons: Icons
+}
+
+export function buildInstallSh({ theme, validator, icons }: InstallShOptions) {
+  const cmd = `npm i @sjsf/form @sjsf/${theme}-theme @sjsf/${validator}-validator`
+  return icons === Icons.None ? cmd : `${cmd} @sjsf/${icons}-icons`
 }

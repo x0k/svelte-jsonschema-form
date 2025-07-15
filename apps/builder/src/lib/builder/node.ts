@@ -226,6 +226,10 @@ export const GRID_NODE_OPTIONS_SCHEMA = {
       title: "Gap",
       type: "string",
     },
+    additionalStyles: {
+      title: "Additional styles",
+      type: "string"
+    }
   },
   required: ["cellSize", "gap"],
   additionalProperties: false,

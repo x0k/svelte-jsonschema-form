@@ -157,7 +157,7 @@ export const DEFAULT_COMPONENTS: Record<
       const type = pickSchemaType(items.map(typeOfValue));
       return {
         [`${type}Field`]: "enumField",
-      };
+      } satisfies UiSchema["ui:components"];
     },
     [NodeType.MultiEnum]: constant({
       arrayField: "multiEnumField",
