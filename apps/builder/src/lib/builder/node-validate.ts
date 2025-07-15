@@ -468,8 +468,16 @@ const NODE_VALIDATORS: {
             "The only dependency should be marked as `Complement`"
           );
         }
+      } else if (
+        isCustomizableNode(node.property) &&
+        node.property.options.required
+      ) {
+        ctx.addWarning(
+          node.dependencies[0],
+          "Redundant dependency, because the condition (presence of a value in the parent field) is always true for required field"
+        );
       } else if (isObjectNode(node.property)) {
-        ctx.addError(
+        ctx.addWarning(
           node.dependencies[0],
           "Dependency on objects without specifying a predicate is meaningless, define a predicate."
         );
