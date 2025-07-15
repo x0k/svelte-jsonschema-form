@@ -10,7 +10,7 @@ import SiteTitle from "@astrojs/starlight/components/SiteTitle.astro";
 import SocialIcons from "@astrojs/starlight/components/SocialIcons.astro";
 import ThemeSelect from "@astrojs/starlight/components/ThemeSelect.astro";
 
-import { PLAYGROUND_LINK } from "@/i18n";
+import { BUILDER_LINK, PLAYGROUND_LINK } from "@/i18n";
 
 export type Props = ComponentProps<typeof Header>;
 /**
@@ -36,6 +36,14 @@ const shouldRenderSearch =
       iconPlacement="end"
     >
       Playground
+    </LinkButton>
+    <LinkButton
+      href={BUILDER_LINK}
+      variant="minimal"
+      icon="external"
+      iconPlacement="end"
+    >
+      Form Builder
     </LinkButton>
     <div class="sl-flex social-icons">
       <SocialIcons {...Astro.props} />
@@ -87,7 +95,8 @@ const shouldRenderSearch =
               var(--__toc-width, var(--sl-sidebar-width)) -
               (2 * var(--__toc-width, var(--sl-nav-pad-x))) -
               var(--sl-content-inline-start, 0rem) - var(--sl-content-width)
-          ) / 2
+          ) /
+          2
       );
       display: grid;
       grid-template-columns:
