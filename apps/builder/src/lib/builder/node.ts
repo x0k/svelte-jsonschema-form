@@ -1,6 +1,6 @@
 import type { Brand } from "@sjsf/form/lib/types";
 import { mergeSchemas } from "@sjsf/form/core";
-import type { Schema, UiSchemaRoot } from "@sjsf/form";
+import type { Schema, UiOptions, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
 import { mergeUiSchemas } from "$lib/sjsf/theme.js";
@@ -749,6 +749,14 @@ const COMMON_UI_SCHEMA: UiSchemaRoot = {
   },
 };
 
+const ORDER = Object.keys(COMMON_OPTIONS_SCHEMA.properties);
+
+function order(...titles: string[]): UiOptions {
+  return {
+    order: ORDER.concat(titles),
+  };
+}
+
 export const NODE_OPTIONS_UI_SCHEMAS = {
   [NodeType.Object]: COMMON_UI_SCHEMA,
   [NodeType.Array]: mergeUiSchemas(COMMON_UI_SCHEMA, {
@@ -777,9 +785,7 @@ export const NODE_OPTIONS_UI_SCHEMAS = {
     },
   }),
   [NodeType.Enum]: mergeUiSchemas(COMMON_UI_SCHEMA, {
-    "ui:options": {
-      order: ["widget", "inline", "*"],
-    },
+    "ui:options": order("widget", "inline", "*"),
     defaultValue: {
       "ui:options": {
         shadcn4Text: {
@@ -789,9 +795,7 @@ export const NODE_OPTIONS_UI_SCHEMAS = {
     },
   }),
   [NodeType.MultiEnum]: mergeUiSchemas(COMMON_UI_SCHEMA, {
-    "ui:options": {
-      order: ["widget", "inline", "*"],
-    },
+    "ui:options": order("widget", "inline", "*"),
     defaultValue: {
       items: {
         "ui:options": {
@@ -806,16 +810,7 @@ export const NODE_OPTIONS_UI_SCHEMAS = {
     },
   }),
   [NodeType.String]: mergeUiSchemas(COMMON_UI_SCHEMA, {
-    "ui:options": {
-      order: [
-        "widget",
-        "inputType",
-        "title",
-        "description",
-        "placeholder",
-        "*",
-      ],
-    },
+    "ui:options": order("widget", "inputType", "placeholder", "*"),
     inputType: {
       "ui:components": {
         stringField: "enumField",
@@ -823,14 +818,10 @@ export const NODE_OPTIONS_UI_SCHEMAS = {
     },
   }),
   [NodeType.Number]: mergeUiSchemas(COMMON_UI_SCHEMA, {
-    "ui:options": {
-      order: ["widget", "*"],
-    },
+    "ui:options": order("widget", "*"),
   }),
   [NodeType.Boolean]: mergeUiSchemas(COMMON_UI_SCHEMA, {
-    "ui:options": {
-      order: ["widget", "*"],
-    },
+    "ui:options": order("widget", "*"),
     defaultValue: {
       "ui:components": {
         booleanField: "booleanSelectField",
@@ -846,9 +837,7 @@ export const NODE_OPTIONS_UI_SCHEMAS = {
     },
   }),
   [NodeType.File]: mergeUiSchemas(COMMON_UI_SCHEMA, {
-    "ui:options": {
-      order: ["widget", "multiple", "*"],
-    },
+    "ui:options": order("widget", "multiple", "*"),
   }),
   [NodeType.Tags]: COMMON_UI_SCHEMA,
 } satisfies Record<CustomizableNodeType, UiSchemaRoot>;
