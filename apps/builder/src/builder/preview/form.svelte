@@ -55,7 +55,7 @@
         {form}
         novalidate={!ctx.html5Validation}
         class={themeManager.darkOrLight}
-        style="padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;"
+        style="padding: 1rem; display: flex; flex-direction: column; gap: 1rem;"
         data-theme={ctx.theme.startsWith(Theme.Skeleton3)
           ? "cerberus"
           : themeManager.darkOrLight}
@@ -63,7 +63,9 @@
       <div bind:this={portalEl}></div>
     </BitsConfig>
   </ShadowHost>
-  <div class="rounded-md border p-2">
-    {@html highlight("json", JSON.stringify(form.value, null, 2))}
-  </div>
+  {#if form.value !== undefined}
+    <div class="rounded-md border">
+      {@html highlight("json", JSON.stringify(form.value, null, 2))}
+    </div>
+  {/if}
 </div>

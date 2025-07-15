@@ -228,8 +228,8 @@ export const GRID_NODE_OPTIONS_SCHEMA = {
     },
     additionalStyles: {
       title: "Additional styles",
-      type: "string"
-    }
+      type: "string",
+    },
   },
   required: ["cellSize", "gap"],
   additionalProperties: false,
@@ -847,7 +847,7 @@ export const NODE_OPTIONS_UI_SCHEMAS = {
   }),
   [NodeType.File]: mergeUiSchemas(COMMON_UI_SCHEMA, {
     "ui:options": {
-      order: ["widget", "*"],
+      order: ["widget", "multiple", "*"],
     },
   }),
   [NodeType.Tags]: COMMON_UI_SCHEMA,

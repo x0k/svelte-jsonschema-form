@@ -50,6 +50,7 @@ import {
   RADIO_WIDGET_OPTIONS,
   RouteName,
   TEXT_WIDGET_OPTIONS,
+  WIDGET_USE_LABEL,
 } from "./model.js";
 import type { NodeContext } from "./node-context.js";
 import {
@@ -247,9 +248,7 @@ export class BuilderContext {
               {} satisfies UiSchema["ui:components"],
               DEFAULT_COMPONENTS[this.resolver][node.type](node as never)
             );
-            const defaultWidget = DEFAULT_WIDGETS[
-              node.type
-            ] as FoundationalComponentType;
+            const defaultWidget = DEFAULT_WIDGETS[node.type];
             if (node.options.widget !== defaultWidget) {
               //@ts-expect-error
               components[defaultWidget] = widget;
@@ -268,6 +267,17 @@ export class BuilderContext {
           radioWidgetOptions: (inline) => {
             return RADIO_WIDGET_OPTIONS[this.theme](inline);
           },
+          useLabelOptions: ({ type, options }) => {
+            const widget = options.widget as WidgetType;
+            const defaultWidget = DEFAULT_WIDGETS[type];
+            if (defaultWidget !== widget) {
+              const useLabel = WIDGET_USE_LABEL[widget];
+              if (WIDGET_USE_LABEL[defaultWidget] !== useLabel) {
+                return { useLabel };
+              }
+            }
+            return {};
+          },
         },
         this.rootNode
       );
@@ -283,12 +293,8 @@ export class BuilderContext {
     })
   );
   readonly formDefaults = $derived.by(() => {
-    const { uiSchema, widgets } = this.#uiSchemaOutput;
-    if (uiSchema === undefined) {
-      return "";
-    }
     return buildFormDefaults({
-      widgets,
+      widgets: this.#uiSchemaOutput.widgets,
       resolver: this.resolver,
       theme: this.theme,
       icons: this.icons,

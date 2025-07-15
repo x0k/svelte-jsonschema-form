@@ -25,6 +25,7 @@ export interface UiSchemaBuilderContext {
   textWidgetOptions: (params: TextWidgetParams) => UiOptions;
   radioWidgetOptions: (inline: boolean) => UiOptions;
   checkboxesWidgetOptions: (inline: boolean) => UiOptions;
+  useLabelOptions: (node: WidgetNode) => UiOptions;
 }
 
 const UI_OPTIONS_KEYS = ["help"] as const satisfies (keyof UiOptions)[];
@@ -56,7 +57,10 @@ function leafNode(
 ) {
   return {
     "ui:components": ctx.uiComponents(node),
-    "ui:options": assignUiOptions(options, node.options),
+    "ui:options": assignUiOptions(
+      Object.assign(ctx.useLabelOptions(node), options),
+      node.options
+    ),
   };
 }
 
@@ -191,18 +195,10 @@ export function buildUiSchema(
 ): UiSchema | undefined {
   const schema = NODE_UI_SCHEMA_BUILDERS[node.type](ctx, node as never);
   if (schema) {
-    if (
-      schema["ui:options"] &&
-      Object.keys(schema["ui:options"]).length === 0
-    ) {
-      delete schema["ui:options"];
-    }
-    if (
-      schema["ui:components"] &&
-      Object.keys(schema["ui:components"]).length === 0
-    ) {
-      delete schema["ui:components"];
-    }
+    const entries = Object.entries(schema).filter(
+      ([_, v]) => v !== undefined && Object.keys(v as {}).length > 0
+    );
+    return entries.length > 0 ? Object.fromEntries(entries) : undefined;
   }
   return schema;
 }

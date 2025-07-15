@@ -26,6 +26,14 @@ export const ICONS_TITLES: Record<Icons, string> = {
   [Icons.Radix]: "Radix",
 };
 
+export const ICONS_PEER_DEPS: Record<Icons, string> = {
+  [Icons.None]: "",
+  [Icons.Flowbite]: "flowbite-svelte-icons",
+  [Icons.Moving]: "",
+  [Icons.Lucide]: "@lucide/svelte",
+  [Icons.Radix]: "svelte-radix",
+}
+
 export const SJSF_ICONS: Record<Icons, SJSFIcons | undefined> = {
   [Icons.None]: undefined,
   [Icons.Flowbite]: flowbite,

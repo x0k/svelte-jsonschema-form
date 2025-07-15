@@ -57,7 +57,7 @@
         title: "ui-schema.json",
         lang: "json",
         get content() {
-          return JSON.stringify(ctx.uiSchema, null, 2);
+          return JSON.stringify(ctx.uiSchema ?? {}, null, 2);
         },
       },
     ],

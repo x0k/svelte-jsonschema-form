@@ -192,7 +192,7 @@ export const DEFAULT_COMPONENTS: Record<
   },
 };
 
-export const DEFAULT_WIDGETS: Record<WidgetNodeType, string> = {
+export const DEFAULT_WIDGETS: Record<WidgetNodeType, WidgetType> = {
   [NodeType.Enum]: ENUM_OPTIONS_SCHEMA.properties.widget.default,
   [NodeType.MultiEnum]: MULTI_ENUM_OPTIONS_SCHEMA.properties.widget.default,
   [NodeType.String]: STRING_NODE_OPTIONS_SCHEMA.properties.widget.default,
@@ -297,6 +297,29 @@ export const WIDGET_NAMES: Record<WidgetType, string> = {
   filterRadioButtonsWidget: "Radio buttons 2",
   pikadayDatePickerWidget: "Pikaday date picker",
   fileUploadWidget: "Drop zone",
+};
+
+export const WIDGET_USE_LABEL: Record<WidgetType, boolean> = {
+  textWidget: true,
+  numberWidget: true,
+  selectWidget: true,
+  checkboxWidget: true,
+  fileWidget: true,
+  checkboxesWidget: false,
+  tagsWidget: true,
+  datePickerWidget: true,
+  multiSelectWidget: true,
+  radioWidget: false,
+  sliderWidget: true,
+  rangeWidget: true,
+  textareaWidget: true,
+  radioButtonsWidget: false,
+  ratingWidget: false,
+  switchWidget: true,
+  comboboxWidget: true,
+  filterRadioButtonsWidget: false,
+  pikadayDatePickerWidget: true,
+  fileUploadWidget: true,
 };
 
 export const EXTRA_WIDGET_IMPORTS: Record<ExtraWidgetType, string> = {

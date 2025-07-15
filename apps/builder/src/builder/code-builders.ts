@@ -1,7 +1,11 @@
-import { Icons } from "$lib/sjsf/icons.js";
+import { ICONS, Icons, ICONS_PEER_DEPS } from "$lib/sjsf/icons.js";
 import type { Resolver } from "$lib/sjsf/resolver.js";
-import { Theme } from "$lib/sjsf/theme.js";
-import type { Validator } from "$lib/sjsf/validators.js";
+import {
+  Theme,
+  THEME_OPTIONAL_DEPS,
+  THEME_PEER_DEPS,
+} from "$lib/sjsf/theme.js";
+import { VALIDATOR_PEER_DEPS, type Validator } from "$lib/sjsf/validators.js";
 import type { Schema, UiSchema } from "@sjsf/form";
 
 import {
@@ -250,7 +254,7 @@ export interface FormDotSvelteOptions {
 export function buildFormDotSvelte({
   theme,
   schema,
-  uiSchema,
+  uiSchema = {},
 }: FormDotSvelteOptions): string {
   const isShadcn = theme === Theme.Shadcn4;
   const schemaLines = JSON.stringify(schema, null, 2).split("\n");
@@ -282,12 +286,29 @@ export function buildFormDotSvelte({
 }
 
 export interface InstallShOptions {
-  theme: Theme
-  validator: Validator
-  icons: Icons
+  theme: Theme;
+  validator: Validator;
+  icons: Icons;
 }
 
 export function buildInstallSh({ theme, validator, icons }: InstallShOptions) {
-  const cmd = `npm i @sjsf/form @sjsf/${theme}-theme @sjsf/${validator}-validator`
-  return icons === Icons.None ? cmd : `${cmd} @sjsf/${icons}-icons`
+  let cmd = `npm i @sjsf/form @sjsf/${theme}-theme @sjsf/${validator}-validator`;
+  cmd = icons === Icons.None ? cmd : `${cmd} @sjsf/${icons}-icons`;
+  const optional = THEME_OPTIONAL_DEPS[theme];
+  const peer = Array.from(
+    new Set(
+      [
+        VALIDATOR_PEER_DEPS[validator],
+        THEME_PEER_DEPS[theme],
+        ICONS_PEER_DEPS[icons],
+      ]
+        .filter(Boolean)
+        .flatMap((s) => s.split(" "))
+    )
+  );
+  return join(
+    peer.length > 0 && `# peer deps: ${peer.join(" ")}`,
+    optional && `# optional deps: ${optional}`,
+    cmd
+  );
 }

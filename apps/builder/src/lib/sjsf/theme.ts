@@ -150,6 +150,23 @@ export const THEME_TITLES: Record<Theme, string> = {
   [Theme.Shadcn4]: "shadcn-svelte",
 };
 
+export const THEME_OPTIONAL_DEPS: Record<Theme, string> = {
+  [Theme.Basic]: "",
+  [Theme.Daisy5]: "",
+  [Theme.Flowbite3]: "",
+  [Theme.Skeleton3]: "@skeletonlabs/skeleton-svelte",
+  [Theme.Shadcn4]: "@internationalized/date",
+};
+
+export const THEME_PEER_DEPS: Record<Theme, string> = {
+  [Theme.Basic]: "",
+  [Theme.Daisy5]: "daisyui",
+  [Theme.Flowbite3]: "flowbite flowbite-svelte",
+  [Theme.Skeleton3]: "@skeletonlabs/skeleton @tailwindcss/forms",
+  [Theme.Shadcn4]:
+    "@lucide/svelte bits-ui clsx tailwind-merge tailwind-variants",
+};
+
 const SJSF_THEMES: Record<Theme, SJSFTheme> = {
   [Theme.Basic]: basic,
   [Theme.Daisy5]: daisy5,

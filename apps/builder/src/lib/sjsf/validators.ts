@@ -23,3 +23,9 @@ export const VALIDATOR_TITLES: Record<Validator, string> = {
   [Validator.SchemaSafe]: "schemasafe",
   [Validator.CfWorker]: "cfworker",
 };
+
+export const VALIDATOR_PEER_DEPS: Record<Validator, string> = {
+  [Validator.Ajv]: "ajv",
+  [Validator.SchemaSafe]: "@exodus/schemasafe",
+  [Validator.CfWorker]: "@cfworker/json-schema",
+}
