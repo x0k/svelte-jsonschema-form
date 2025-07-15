@@ -1,0 +1,53 @@
+{
+  "name": "builder",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json"
+  },
+  "devDependencies": {
+    "@internationalized/date": "^3.8.2",
+    "@lucide/svelte": "^0.515.0",
+    "@sveltejs/vite-plugin-svelte": "^5.0.3",
+    "@tailwindcss/vite": "^4.0.0",
+    "@tsconfig/svelte": "^5.0.4",
+    "bits-ui": "^2.8.8",
+    "clsx": "^2.1.1",
+    "json-schema-to-ts": "^3.1.1",
+    "svelte": "^5.28.1",
+    "svelte-check": "^4.1.6",
+    "tailwind-merge": "^3.3.1",
+    "tailwind-variants": "^1.0.0",
+    "tailwindcss": "^4.0.0",
+    "tw-animate-css": "^1.3.4",
+    "typescript": "~5.8.3",
+    "vite": "^6.3.5"
+  },
+  "dependencies": {
+    "@dnd-kit/collision": "^0.1.19",
+    "@dnd-kit/dom": "^0.1.19",
+    "@shikijs/langs": "^3.7.0",
+    "@shikijs/themes": "^3.7.0",
+    "@sjsf/ajv8-validator": "workspace:*",
+    "@sjsf/basic-theme": "workspace:*",
+    "@sjsf/cfworker-validator": "workspace:*",
+    "@sjsf/daisyui5-theme": "workspace:*",
+    "@sjsf/flowbite-icons": "workspace:*",
+    "@sjsf/flowbite3-theme": "workspace:*",
+    "@sjsf/form": "workspace:*",
+    "@sjsf/lucide-icons": "workspace:*",
+    "@sjsf/moving-icons": "workspace:*",
+    "@sjsf/radix-icons": "workspace:*",
+    "@sjsf/schemasafe-validator": "workspace:*",
+    "@sjsf/shadcn4-theme": "workspace:*",
+    "@sjsf/skeleton3-theme": "workspace:*",
+    "ajv": "^8.17.1",
+    "dompurify": "^3.2.6",
+    "lz-string": "^1.5.0",
+    "shiki": "^3.7.0"
+  }
+}

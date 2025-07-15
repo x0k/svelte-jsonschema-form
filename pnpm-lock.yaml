@@ -135,10 +135,125 @@ importers:
         version: 6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1)
       vitest:
         specifier: 'catalog:'
-        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.0.3)(@vitest/browser@3.2.4)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.30.1)(yaml@2.5.1)
+        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.0.3)(@vitest/browser@3.2.4)(jiti@2.4.2)(jsdom@26.1.0)(lightningcss@1.30.1)(yaml@2.5.1)
       vitest-browser-svelte:
         specifier: ^0.1.0
         version: 0.1.0(@vitest/browser@3.2.4)(svelte@5.34.7)(vitest@3.2.4)
+
+  apps/builder:
+    dependencies:
+      '@dnd-kit/collision':
+        specifier: ^0.1.19
+        version: 0.1.19
+      '@dnd-kit/dom':
+        specifier: ^0.1.19
+        version: 0.1.19
+      '@shikijs/langs':
+        specifier: ^3.7.0
+        version: 3.7.0
+      '@shikijs/themes':
+        specifier: ^3.7.0
+        version: 3.7.0
+      '@sjsf/ajv8-validator':
+        specifier: workspace:*
+        version: link:../../packages/ajv8-validator
+      '@sjsf/basic-theme':
+        specifier: workspace:*
+        version: link:../../packages/basic-theme
+      '@sjsf/cfworker-validator':
+        specifier: workspace:*
+        version: link:../../packages/cfworker-validator
+      '@sjsf/daisyui5-theme':
+        specifier: workspace:*
+        version: link:../../packages/daisyui5-theme
+      '@sjsf/flowbite-icons':
+        specifier: workspace:*
+        version: link:../../packages/flowbite-icons
+      '@sjsf/flowbite3-theme':
+        specifier: workspace:*
+        version: link:../../packages/flowbite3-theme
+      '@sjsf/form':
+        specifier: workspace:*
+        version: link:../../packages/form
+      '@sjsf/lucide-icons':
+        specifier: workspace:*
+        version: link:../../packages/lucide-icons
+      '@sjsf/moving-icons':
+        specifier: workspace:*
+        version: link:../../packages/moving-icons
+      '@sjsf/radix-icons':
+        specifier: workspace:*
+        version: link:../../packages/radix-icons
+      '@sjsf/schemasafe-validator':
+        specifier: workspace:*
+        version: link:../../packages/schemasafe-validator
+      '@sjsf/shadcn4-theme':
+        specifier: workspace:*
+        version: link:../../packages/shadcn4-theme
+      '@sjsf/skeleton3-theme':
+        specifier: workspace:*
+        version: link:../../packages/skeleton3-theme
+      ajv:
+        specifier: ^8.17.1
+        version: 8.17.1
+      dompurify:
+        specifier: ^3.2.6
+        version: 3.2.6
+      lz-string:
+        specifier: ^1.5.0
+        version: 1.5.0
+      shiki:
+        specifier: ^3.7.0
+        version: 3.7.0
+    devDependencies:
+      '@internationalized/date':
+        specifier: ^3.8.2
+        version: 3.8.2
+      '@lucide/svelte':
+        specifier: ^0.515.0
+        version: 0.515.0(svelte@5.34.7)
+      '@sveltejs/vite-plugin-svelte':
+        specifier: ^5.0.3
+        version: 5.1.0(svelte@5.34.7)(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1))
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.1.10(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1))
+      '@tsconfig/svelte':
+        specifier: ^5.0.4
+        version: 5.0.4
+      bits-ui:
+        specifier: ^2.8.8
+        version: 2.8.8(@internationalized/date@3.8.2)(svelte@5.34.7)
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
+      json-schema-to-ts:
+        specifier: ^3.1.1
+        version: 3.1.1
+      svelte:
+        specifier: ^5.28.1
+        version: 5.34.7
+      svelte-check:
+        specifier: ^4.1.6
+        version: 4.2.2(picomatch@4.0.2)(svelte@5.34.7)(typescript@5.8.3)
+      tailwind-merge:
+        specifier: ^3.3.1
+        version: 3.3.1
+      tailwind-variants:
+        specifier: ^1.0.0
+        version: 1.0.0(tailwindcss@4.1.10)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.1.10
+      tw-animate-css:
+        specifier: ^1.3.4
+        version: 1.3.4
+      typescript:
+        specifier: ~5.8.3
+        version: 5.8.3
+      vite:
+        specifier: ^6.3.5
+        version: 6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1)
 
   apps/docs2:
     dependencies:
@@ -298,7 +413,7 @@ importers:
         version: 2.1.5
       bits-ui:
         specifier: ^2.8.3
-        version: 2.8.3(@internationalized/date@3.8.2)(svelte@5.34.7)
+        version: 2.8.8(@internationalized/date@3.8.2)(svelte@5.34.7)
       css-tree:
         specifier: ^3.1.0
         version: 3.1.0
@@ -395,7 +510,7 @@ importers:
         version: 4.1.10(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1))
       bits-ui:
         specifier: ^2.8.3
-        version: 2.8.3(@internationalized/date@3.8.2)(svelte@5.34.7)
+        version: 2.8.8(@internationalized/date@3.8.2)(svelte@5.34.7)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -419,13 +534,13 @@ importers:
     dependencies:
       '@sjsf/ajv8-validator':
         specifier: ^2.0.0
-        version: 2.1.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(ajv@8.17.1)
+        version: 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(ajv@8.17.1)
       '@sjsf/basic-theme':
         specifier: ^2.0.0
-        version: 2.1.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
+        version: 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
       '@sjsf/form':
         specifier: ^2.0.0
-        version: 2.1.0(esm-env@1.2.2)(svelte@5.34.7)
+        version: 2.1.1(esm-env@1.2.2)(svelte@5.34.7)
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
@@ -456,13 +571,13 @@ importers:
     dependencies:
       '@sjsf/ajv8-validator':
         specifier: ^2.0.0
-        version: 2.1.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(ajv@8.17.1)
+        version: 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(ajv@8.17.1)
       '@sjsf/basic-theme':
         specifier: ^2.0.0
-        version: 2.1.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
+        version: 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
       '@sjsf/form':
         specifier: ^2.0.0
-        version: 2.1.0(esm-env@1.2.2)(svelte@5.34.7)
+        version: 2.1.1(esm-env@1.2.2)(svelte@5.34.7)
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
@@ -496,13 +611,13 @@ importers:
     dependencies:
       '@sjsf/ajv8-validator':
         specifier: ^2.0.0
-        version: 2.1.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(ajv@8.17.1)
+        version: 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(ajv@8.17.1)
       '@sjsf/basic-theme':
         specifier: ^2.0.0
-        version: 2.1.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
+        version: 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
       '@sjsf/form':
         specifier: ^2.0.0
-        version: 2.1.0(esm-env@1.2.2)(svelte@5.34.7)
+        version: 2.1.1(esm-env@1.2.2)(svelte@5.34.7)
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
@@ -533,16 +648,16 @@ importers:
     dependencies:
       '@sjsf/ajv8-validator':
         specifier: ^2.0.0
-        version: 2.1.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(ajv@8.17.1)
+        version: 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(ajv@8.17.1)
       '@sjsf/basic-theme':
         specifier: ^2.0.0
-        version: 2.1.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
+        version: 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
       '@sjsf/daisyui5-theme':
         specifier: ^2.0.0
-        version: 2.0.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(daisyui@5.0.43)(svelte@5.34.7)
+        version: 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(daisyui@5.0.43)(svelte@5.34.7)
       '@sjsf/form':
         specifier: ^2.0.0
-        version: 2.1.0(esm-env@1.2.2)(svelte@5.34.7)
+        version: 2.1.1(esm-env@1.2.2)(svelte@5.34.7)
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
@@ -582,13 +697,13 @@ importers:
     dependencies:
       '@sjsf/ajv8-validator':
         specifier: ^2.1.0
-        version: 2.1.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(ajv@8.17.1)
+        version: 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(ajv@8.17.1)
       '@sjsf/basic-theme':
         specifier: ^2.1.0
-        version: 2.1.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
+        version: 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
       '@sjsf/form':
         specifier: ^2.1.0
-        version: 2.1.0(esm-env@1.2.2)(svelte@5.34.7)
+        version: 2.1.1(esm-env@1.2.2)(svelte@5.34.7)
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
@@ -619,16 +734,16 @@ importers:
     dependencies:
       '@sjsf/ajv8-validator':
         specifier: ^2.0.0
-        version: 2.1.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(ajv@8.17.1)
+        version: 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(ajv@8.17.1)
       '@sjsf/basic-theme':
         specifier: ^2.0.0
-        version: 2.1.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
+        version: 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
       '@sjsf/flowbite3-theme':
         specifier: ^2.0.0
-        version: 2.0.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(flowbite-svelte@1.6.8(rollup@4.40.0)(svelte@5.34.7)(tailwindcss@4.1.10))(flowbite@3.1.2(rollup@4.40.0))(svelte@5.34.7)
+        version: 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(flowbite-svelte@1.6.8(rollup@4.40.0)(svelte@5.34.7)(tailwindcss@4.1.10))(flowbite@3.1.2(rollup@4.40.0))(svelte@5.34.7)
       '@sjsf/form':
         specifier: ^2.0.0
-        version: 2.1.0(esm-env@1.2.2)(svelte@5.34.7)
+        version: 2.1.1(esm-env@1.2.2)(svelte@5.34.7)
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
@@ -671,13 +786,13 @@ importers:
     dependencies:
       '@sjsf/ajv8-validator':
         specifier: ^2.0.0
-        version: 2.1.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(ajv@8.17.1)
+        version: 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(ajv@8.17.1)
       '@sjsf/basic-theme':
         specifier: ^2.0.0
-        version: 2.1.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
+        version: 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
       '@sjsf/form':
         specifier: ^2.0.0
-        version: 2.1.0(esm-env@1.2.2)(svelte@5.34.7)
+        version: 2.1.1(esm-env@1.2.2)(svelte@5.34.7)
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
@@ -748,13 +863,13 @@ importers:
     dependencies:
       '@sjsf/ajv8-validator':
         specifier: ^2.0.0
-        version: 2.1.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(ajv@8.17.1)
+        version: 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(ajv@8.17.1)
       '@sjsf/basic-theme':
         specifier: ^2.0.0
-        version: 2.1.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
+        version: 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
       '@sjsf/form':
         specifier: ^2.0.0
-        version: 2.1.0(esm-env@1.2.2)(svelte@5.34.7)
+        version: 2.1.1(esm-env@1.2.2)(svelte@5.34.7)
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
@@ -828,16 +943,16 @@ importers:
     dependencies:
       '@sjsf/ajv8-validator':
         specifier: ^2.0.0
-        version: 2.1.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(ajv@8.17.1)
+        version: 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(ajv@8.17.1)
       '@sjsf/basic-theme':
         specifier: ^2.0.0
-        version: 2.1.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
+        version: 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
       '@sjsf/form':
         specifier: ^2.0.0
-        version: 2.1.0(esm-env@1.2.2)(svelte@5.34.7)
+        version: 2.1.1(esm-env@1.2.2)(svelte@5.34.7)
       '@sjsf/sveltekit':
         specifier: ^2.0.0
-        version: 2.0.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(@sveltejs/kit@2.21.5(@sveltejs/vite-plugin-svelte@5.1.0(svelte@5.34.7)(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1)))(svelte@5.34.7)(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1)))(esm-env@1.2.2)(svelte@5.34.7)
+        version: 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(@sveltejs/kit@2.21.5(@sveltejs/vite-plugin-svelte@5.1.0(svelte@5.34.7)(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1)))(svelte@5.34.7)(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1)))(esm-env@1.2.2)(svelte@5.34.7)
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
@@ -868,13 +983,13 @@ importers:
     dependencies:
       '@sjsf/ajv8-validator':
         specifier: ^2.0.0
-        version: 2.1.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(ajv@8.17.1)
+        version: 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(ajv@8.17.1)
       '@sjsf/basic-theme':
         specifier: ^2.0.0
-        version: 2.1.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
+        version: 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
       '@sjsf/form':
         specifier: ^2.0.0
-        version: 2.1.0(esm-env@1.2.2)(svelte@5.34.7)
+        version: 2.1.1(esm-env@1.2.2)(svelte@5.34.7)
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
@@ -905,22 +1020,22 @@ importers:
     dependencies:
       '@sjsf/ajv8-validator':
         specifier: ^2.0.0
-        version: 2.1.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(ajv@8.17.1)
+        version: 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(ajv@8.17.1)
       '@sjsf/basic-theme':
         specifier: ^2.0.0
-        version: 2.1.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
+        version: 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
       '@sjsf/form':
         specifier: ^2.0.0
-        version: 2.1.0(esm-env@1.2.2)(svelte@5.34.7)
+        version: 2.1.1(esm-env@1.2.2)(svelte@5.34.7)
       '@sjsf/shadcn4-theme':
         specifier: ^2.0.0
-        version: 2.0.0(@lucide/svelte@0.501.0(svelte@5.34.7))(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(bits-ui@2.8.3(@internationalized/date@3.8.2)(svelte@5.34.7))(clsx@2.1.1)(svelte@5.34.7)(tailwind-merge@3.3.1)(tailwind-variants@1.0.0(tailwindcss@4.1.10))
+        version: 2.0.0(@lucide/svelte@0.501.0(svelte@5.34.7))(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(bits-ui@2.8.8(@internationalized/date@3.8.2)(svelte@5.34.7))(clsx@2.1.1)(svelte@5.34.7)(tailwind-merge@3.3.1)(tailwind-variants@1.0.0(tailwindcss@4.1.10))
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
       bits-ui:
         specifier: ^2.5.0
-        version: 2.8.3(@internationalized/date@3.8.2)(svelte@5.34.7)
+        version: 2.8.8(@internationalized/date@3.8.2)(svelte@5.34.7)
     devDependencies:
       '@lucide/svelte':
         specifier: ^0.501.0
@@ -969,16 +1084,16 @@ importers:
     dependencies:
       '@sjsf/ajv8-validator':
         specifier: ^2.0.0
-        version: 2.1.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(ajv@8.17.1)
+        version: 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(ajv@8.17.1)
       '@sjsf/basic-theme':
         specifier: ^2.0.0
-        version: 2.1.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
+        version: 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
       '@sjsf/form':
         specifier: ^2.0.0
-        version: 2.1.0(esm-env@1.2.2)(svelte@5.34.7)
+        version: 2.1.1(esm-env@1.2.2)(svelte@5.34.7)
       '@sjsf/skeleton3-theme':
         specifier: ^2.0.0
-        version: 2.0.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(@skeletonlabs/skeleton@3.1.3(tailwindcss@4.1.10))(@tailwindcss/forms@0.5.10(tailwindcss@4.1.10))(svelte@5.34.7)
+        version: 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(@skeletonlabs/skeleton@3.1.3(tailwindcss@4.1.10))(@tailwindcss/forms@0.5.10(tailwindcss@4.1.10))(svelte@5.34.7)
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
@@ -1024,13 +1139,13 @@ importers:
     dependencies:
       '@sjsf/ajv8-validator':
         specifier: ^2.0.0
-        version: 2.1.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(ajv@8.17.1)
+        version: 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(ajv@8.17.1)
       '@sjsf/basic-theme':
         specifier: ^2.0.0
-        version: 2.1.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
+        version: 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
       '@sjsf/form':
         specifier: ^2.0.0
-        version: 2.1.0(esm-env@1.2.2)(svelte@5.34.7)
+        version: 2.1.1(esm-env@1.2.2)(svelte@5.34.7)
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
@@ -1377,7 +1492,7 @@ importers:
         version: 10.4.21(postcss@8.5.6)
       bits-ui:
         specifier: ^2.2.0
-        version: 2.8.3(@internationalized/date@3.8.2)(svelte@5.34.7)
+        version: 2.8.8(@internationalized/date@3.8.2)(svelte@5.34.7)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -1457,7 +1572,7 @@ importers:
         version: 1.3.4
       vitest:
         specifier: 'catalog:'
-        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.0.3)(@vitest/browser@3.2.4)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.30.1)(yaml@2.5.1)
+        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.0.3)(@vitest/browser@3.2.4)(jiti@2.4.2)(jsdom@26.1.0)(lightningcss@1.30.1)(yaml@2.5.1)
     optionalDependencies:
       '@internationalized/date':
         specifier: ^3.8.1
@@ -1863,6 +1978,21 @@ packages:
   '@ctrl/tinycolor@4.1.0':
     resolution: {integrity: sha512-WyOx8cJQ+FQus4Mm4uPIZA64gbk3Wxh0so5Lcii0aJifqwoVOlfFtorjLE0Hen4OYyHZMXDWqMmaQemBhgxFRQ==}
     engines: {node: '>=14'}
+
+  '@dnd-kit/abstract@0.1.19':
+    resolution: {integrity: sha512-meZsoPz0gvyUNu73/YaCSYxRFK/+NtChLPnF11mRMOq5smg+ssHCfMLiVzd7XQ/IA5DSpC5zU0f3YSz0qbSfnw==}
+
+  '@dnd-kit/collision@0.1.19':
+    resolution: {integrity: sha512-JFKkXW0bYwznhRkdsqAgr86euOrcHmMddoxSnWvPjswXSjABSYHB77GnIYmmE3xAcrV7+zc97WAj5v+1IonAcg==}
+
+  '@dnd-kit/dom@0.1.19':
+    resolution: {integrity: sha512-BW9AsFNxlpjBCmPXS3Whx6JzXQ2D6N2q9xhxqcA6EV8MyY5a5V7CGxZvfdJUFHf4OsmGCvl5lFoyM61tCFsqHQ==}
+
+  '@dnd-kit/geometry@0.1.19':
+    resolution: {integrity: sha512-+mpLdGgegVLc64dbwYuNRFz/W+llD85gh9NRSCmESp3iMWHZiOWX5dITrKEqIbQIvOzwSX6HtuggjUWnPGMLZQ==}
+
+  '@dnd-kit/state@0.1.19':
+    resolution: {integrity: sha512-uCsB7PuwRmg4x5pqMpALL0kIQPglGG20LKfCJD/LvVMf0nnzboL/n0iFVKIMOlhBzsM9fB3X4bih9LoAnaeRqA==}
 
   '@emmetio/abbreviation@2.3.3':
     resolution: {integrity: sha512-mgv58UrU3rh4YgbE/TzgLQwJ3pFsHHhCLqY20aJq+9comytTXUDNGG/SMtSeMJdkpxgXSXunBGLD8Boka3JyVA==}
@@ -2421,6 +2551,11 @@ packages:
     peerDependencies:
       svelte: ^5
 
+  '@lucide/svelte@0.515.0':
+    resolution: {integrity: sha512-CEAyqcZmNBfYzVgaRmK2RFJP5tnbXxekRyDk0XX/eZQRfsJmkDvmQwXNX8C869BgNeryzmrRyjHhUL6g9ZOHNA==}
+    peerDependencies:
+      svelte: ^5
+
   '@lucide/svelte@0.518.0':
     resolution: {integrity: sha512-vhSikVKVZnz7eVa70WsWh/ySqdcb7Mn2R/XhG16fCfqgpMKzdu5GCHPRLaHcGaUCaM9cPDMWG8FeBXk0QY1PEg==}
     peerDependencies:
@@ -2493,6 +2628,9 @@ packages:
 
   '@popperjs/core@2.11.8':
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
+
+  '@preact/signals-core@1.10.0':
+    resolution: {integrity: sha512-qlKeXlfqtlC+sjxCPHt6Sk0/dXBrKZVcPlianqjNc/vW263YBFiP5mRrgKpHoO0q222Thm1TdYQWfCKpbbgvwA==}
 
   '@publint/pack@0.1.2':
     resolution: {integrity: sha512-S+9ANAvUmjutrshV4jZjaiG8XQyuJIZ8a4utWmN/vW1sgQ9IfBnPndwkmQYw53QmouOIytT874u65HEmu6H5jw==}
@@ -2619,29 +2757,41 @@ packages:
   '@shikijs/core@3.2.2':
     resolution: {integrity: sha512-yvlSKVMLjddAGBa2Yu+vUZxuu3sClOWW1AG+UtJkvejYuGM5BVL35s6Ijiwb75O9QdEx6IkMxinHZSi8ZyrBaA==}
 
+  '@shikijs/core@3.7.0':
+    resolution: {integrity: sha512-yilc0S9HvTPyahHpcum8eonYrQtmGTU0lbtwxhA6jHv4Bm1cAdlPFRCJX4AHebkCm75aKTjjRAW+DezqD1b/cg==}
+
   '@shikijs/engine-javascript@3.2.2':
     resolution: {integrity: sha512-tlDKfhWpF4jKLUyVAnmL+ggIC+0VyteNsUpBzh1iwWLZu4i+PelIRr0TNur6pRRo5UZIv3ss/PLMuwahg9S2hg==}
+
+  '@shikijs/engine-javascript@3.7.0':
+    resolution: {integrity: sha512-0t17s03Cbv+ZcUvv+y33GtX75WBLQELgNdVghnsdhTgU3hVcWcMsoP6Lb0nDTl95ZJfbP1mVMO0p3byVh3uuzA==}
 
   '@shikijs/engine-oniguruma@3.2.2':
     resolution: {integrity: sha512-vyXRnWVCSvokwbaUD/8uPn6Gqsf5Hv7XwcW4AgiU4Z2qwy19sdr6VGzMdheKKN58tJOOe5MIKiNb901bgcUXYQ==}
 
+  '@shikijs/engine-oniguruma@3.7.0':
+    resolution: {integrity: sha512-5BxcD6LjVWsGu4xyaBC5bu8LdNgPCVBnAkWTtOCs/CZxcB22L8rcoWfv7Hh/3WooVjBZmFtyxhgvkQFedPGnFw==}
+
   '@shikijs/langs@3.2.2':
     resolution: {integrity: sha512-NY0Urg2dV9ETt3JIOWoMPuoDNwte3geLZ4M1nrPHbkDS8dWMpKcEwlqiEIGqtwZNmt5gKyWpR26ln2Bg2ecPgw==}
+
+  '@shikijs/langs@3.7.0':
+    resolution: {integrity: sha512-1zYtdfXLr9xDKLTGy5kb7O0zDQsxXiIsw1iIBcNOO8Yi5/Y1qDbJ+0VsFoqTlzdmneO8Ij35g7QKF8kcLyznCQ==}
 
   '@shikijs/themes@3.2.2':
     resolution: {integrity: sha512-Zuq4lgAxVKkb0FFdhHSdDkALuRpsj1so1JdihjKNQfgM78EHxV2JhO10qPsMrm01FkE3mDRTdF68wfmsqjt6HA==}
 
+  '@shikijs/themes@3.7.0':
+    resolution: {integrity: sha512-VJx8497iZPy5zLiiCTSIaOChIcKQwR0FebwE9S3rcN0+J/GTWwQ1v/bqhTbpbY3zybPKeO8wdammqkpXc4NVjQ==}
+
   '@shikijs/types@3.2.2':
     resolution: {integrity: sha512-a5TiHk7EH5Lso8sHcLHbVNNhWKP0Wi3yVnXnu73g86n3WoDgEra7n3KszyeCGuyoagspQ2fzvy4cpSc8pKhb0A==}
 
+  '@shikijs/types@3.7.0':
+    resolution: {integrity: sha512-MGaLeaRlSWpnP0XSAum3kP3a8vtcTsITqoEPYdt3lQG3YCdQH4DnEhodkYcNMcU0uW0RffhoD1O3e0vG5eSBBg==}
+
   '@shikijs/vscode-textmate@10.0.2':
     resolution: {integrity: sha512-83yeghZ2xxin3Nj8z1NMd/NCuca+gsYXswywDy5bHvwlWL8tpTQmzGeUuHd9FC3E/SBEMvzJRwWEOz5gGes9Qg==}
-
-  '@sjsf/ajv8-validator@2.1.0':
-    resolution: {integrity: sha512-pUcBx8zo1uMOZMCAr4U1svAXYZKwUsGIo9FfxEkeGlcVZhM5onUB6UdlyqDzn6NMqa4hkIdCI5EpM8Qy5hWThA==}
-    peerDependencies:
-      '@sjsf/form': ^2.1.0
-      ajv: ^8.17.0
 
   '@sjsf/ajv8-validator@2.1.1':
     resolution: {integrity: sha512-S5nlyEjB8O/F5e0qDmmQSlTyeBFn8SStSeExbvIKYqMoVaAQm6G4DHfldPwc3gypf65kaPL0vzds+SKfP+Vl9w==}
@@ -2649,37 +2799,25 @@ packages:
       '@sjsf/form': ^2.1.1
       ajv: ^8.17.0
 
-  '@sjsf/basic-theme@2.1.0':
-    resolution: {integrity: sha512-ysiG2UWdzutlYpyNVtlf/j7jDAOPLHAlmwKTYcNRObxoplHVNYA75c2hGA6jLVpISiFkQLkU0qt54PsoDzhcgQ==}
-    peerDependencies:
-      '@sjsf/form': ^2.1.0
-      svelte: ^5.33.0
-
   '@sjsf/basic-theme@2.1.1':
     resolution: {integrity: sha512-AuQyuvtjHeKoHas1mY/ophpgdPjRn8guYTV//AXPFNuh6qhQyJsNkUZswnZsauMR3qlCL8tsEph8h6E+fybJkg==}
     peerDependencies:
       '@sjsf/form': ^2.1.1
       svelte: ^5.33.0
 
-  '@sjsf/daisyui5-theme@2.0.0':
-    resolution: {integrity: sha512-PgbvmDJIS3pB2dYGnZr34NLntxgBq7r8mwWU6zd5jcDbpm4pFqSjtLQS9dHnqCpZ23L2solFXtm5LJjUxwxj/A==}
+  '@sjsf/daisyui5-theme@2.1.1':
+    resolution: {integrity: sha512-rZddxSHguhN35Ldi3HF3fAV3RpZiCiAhWWtPP2SGPvb1Hj7z1i9m3WbIgc6N11E7bjeuSPVDc6bExnpGv2ItQg==}
     peerDependencies:
-      '@sjsf/form': ^2.0.0
+      '@sjsf/form': ^2.1.1
       daisyui: ^5.0.0
       svelte: ^5.33.0
 
-  '@sjsf/flowbite3-theme@2.0.0':
-    resolution: {integrity: sha512-qJRIQHQKPxkgeHJKXetV1wMDU3XCsSKqoNKhaBWefCJieZnGMGq1KjZU+ZVrMcY0lVs8Cz08QEhIrWMBZ+j0PA==}
+  '@sjsf/flowbite3-theme@2.1.1':
+    resolution: {integrity: sha512-vqo3mYWenK6DLezk16lLJtkyEbus46ibtm0APImIESAgVItCYU5BBb7AO2020n0uTZw5b0ntBdMiYDpi0ozbeA==}
     peerDependencies:
-      '@sjsf/form': ^2.0.0
+      '@sjsf/form': ^2.1.1
       flowbite: ^3.1.0
       flowbite-svelte: ^1.6.0
-      svelte: ^5.33.0
-
-  '@sjsf/form@2.1.0':
-    resolution: {integrity: sha512-Z+YrsUcwj3zB5ZgD6kwJotapQNnaH3mEI1a1gpWIif5lZLvH9A6ZsgtRkCbMiHvfAs5Y46tS5ijHn8x9QFIYrQ==}
-    peerDependencies:
-      esm-env: ^1.2.0
       svelte: ^5.33.0
 
   '@sjsf/form@2.1.1':
@@ -2699,20 +2837,12 @@ packages:
       tailwind-merge: ^3.3.0
       tailwind-variants: ^1.0.0
 
-  '@sjsf/skeleton3-theme@2.0.0':
-    resolution: {integrity: sha512-dhWZEo/SrOA+LOdS41aM2QtUEykyETrgOgfRANAWA/N0VUv96bZQ5+LGp1cyq8Nd3gRTqFT9+qgkxg6CkKXHOA==}
+  '@sjsf/skeleton3-theme@2.1.1':
+    resolution: {integrity: sha512-VGmG930es4kX1mwtnZ32zFzHTJacHzlnHvvWpP0+e7QlEUMMpOrMWK0vXRzZwSeDwuiqUu8fXhtjwDYG1OoriA==}
     peerDependencies:
-      '@sjsf/form': ^2.0.0
+      '@sjsf/form': ^2.1.1
       '@skeletonlabs/skeleton': ^3.1.0
       '@tailwindcss/forms': ^0.5.0
-      svelte: ^5.33.0
-
-  '@sjsf/sveltekit@2.0.0':
-    resolution: {integrity: sha512-hy/NboPCn+2kXfG2FONKZURXJ5xQgFUN3zRnNcehrGVs1IpNhdIhdFKp9RK0akDeOKgJzVK3wTqZUAWg6jeoMA==}
-    peerDependencies:
-      '@sjsf/form': ^2.0.0
-      '@sveltejs/kit': ^2.20.0
-      esm-env: ^1.2.0
       svelte: ^5.33.0
 
   '@sjsf/sveltekit@2.1.1':
@@ -2950,6 +3080,9 @@ packages:
 
   '@total-typescript/tsconfig@1.0.4':
     resolution: {integrity: sha512-fO4ctMPGz1kOFOQ4RCPBRBfMy3gDn+pegUfrGyUFRMv/Rd0ZM3/SHH3hFCYG4u6bPLG8OlmOGcBLDexvyr3A5w==}
+
+  '@tsconfig/svelte@5.0.4':
+    resolution: {integrity: sha512-BV9NplVgLmSi4mwKzD8BD/NQ8erOY/nUE/GpgWe2ckx+wIQF5RyRirn/QsSSCPeulVpc3RA/iJt6DpfTIZps0Q==}
 
   '@types/acorn@4.0.6':
     resolution: {integrity: sha512-veQTnWP+1D/xbxVrPC3zHnCZRjSrKfhbMUlEA43iMZLu7EsnTtkJklIuwrCPbOi8YkvDQAiW05VQQFvvz9oieQ==}
@@ -3502,9 +3635,6 @@ packages:
     engines: {node: 18.20.8 || ^20.3.0 || >=22.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
-  asynckit@0.4.0:
-    resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
-
   atomico@1.79.2:
     resolution: {integrity: sha512-mshhLRMeIltNYbnQnqgnrvJ/uDa8XDfTQcjw3ymOygQqwHIQ4Sp0LcNYMCbACkV3DtV+eDXb9szwU4qMUuGwYQ==}
 
@@ -3552,8 +3682,8 @@ packages:
       '@internationalized/date': ^3.8.1
       svelte: ^5.33.0
 
-  bits-ui@2.8.3:
-    resolution: {integrity: sha512-czV3+lAC7/WOq+h0Q9fT1THVtEPIT7HE6RaVF8pBTX/fUr6pUpZzALPoWZ7Ddxh7n0l/hYWYynqZvKgiSAYYsg==}
+  bits-ui@2.8.8:
+    resolution: {integrity: sha512-SFBFztROZf04e/zUsOlsbm4l6Nn5rBKAXS1nTWYJDxgbcFA+8DtjlZgbr03oFEkTcVZ5GAmLDIjbZ/KNg5GFxw==}
     engines: {node: '>=20'}
     peerDependencies:
       '@internationalized/date': ^3.8.1
@@ -3710,10 +3840,6 @@ packages:
   color@4.2.3:
     resolution: {integrity: sha512-1rXeuUUiGGrykh+CeBdu5Ie7OJwinCgQY0bc7GCRxy5xVHy+moaqkpL/jqQq0MtQOeYcrqEz4abc5f0KtU7W4A==}
     engines: {node: '>=12.5.0'}
-
-  combined-stream@1.0.8:
-    resolution: {integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==}
-    engines: {node: '>= 0.8'}
 
   comma-separated-tokens@2.0.3:
     resolution: {integrity: sha512-Fu4hJdvzeylCfQPp9SGWidpzrMs7tTrlu6Vb8XGaRGck8QSNZJJp538Wrb60Lax4fPwR64ViY468OIUTbRlGZg==}
@@ -3986,8 +4112,8 @@ packages:
       supports-color:
         optional: true
 
-  decimal.js@10.4.3:
-    resolution: {integrity: sha512-VBBaLc1MgL5XpzgIP7ny5Z6Nx3UrRkIViUkPUdtl9aya5amy3De1gsUUSB1g3+3sExYNjCAsAznmukyxCb1GRA==}
+  decimal.js@10.6.0:
+    resolution: {integrity: sha512-YpgQiITW3JXGntzdUmyUR1V812Hn8T1YVXhCu+wO3OpS4eU9l4YdD3qjyiKdV6mvV29zapkMeD390UVEf2lkUg==}
 
   decode-named-character-reference@1.0.2:
     resolution: {integrity: sha512-O8x12RzrUF8xyVcY0KJowWsmaJxQbmy0/EtnNtHRpsOcT7dFk5W598coHqBVpmWo1oQQfsCqfCmkZN5DJrZVdg==}
@@ -4015,10 +4141,6 @@ packages:
 
   delaunator@5.0.1:
     resolution: {integrity: sha512-8nvh+XBe96aCESrGOqMp/84b13H9cdKbG5P2ejQCh4d4sK9RL4371qou9drQjMhvnPmhWl5hnmqbEE0fXr9Xnw==}
-
-  delayed-stream@1.0.0:
-    resolution: {integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==}
-    engines: {node: '>=0.4.0'}
 
   dequal@2.0.3:
     resolution: {integrity: sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==}
@@ -4069,8 +4191,8 @@ packages:
   dom-accessibility-api@0.5.16:
     resolution: {integrity: sha512-X7BJ2yElsnOJ30pZF4uIIDfBEVgF4XEBxL9Bxhy6dnrm5hkzqmsWHGTiHqRiITNhMyFLyAiWndIJP7Z1NTteDg==}
 
-  dompurify@3.2.4:
-    resolution: {integrity: sha512-ysFSFEDVduQpyhzAob/kkuJjf5zWkZD8/A9ywSp1byueyuCfHamrCBa14/Oc2iiB0e51B+NpxSl5gmzn+Ms/mg==}
+  dompurify@3.2.6:
+    resolution: {integrity: sha512-/2GogDQlohXPZe6D6NOgQvXLPSYBqIWMnZ8zzOhn09REE4eyAzb+Hed3jhoM9OkuaJ8P6ZGTTVWQKAi8ieIzfQ==}
 
   dotenv@16.4.5:
     resolution: {integrity: sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==}
@@ -4365,10 +4487,6 @@ packages:
   foreground-child@3.3.1:
     resolution: {integrity: sha512-gIXjKqtFuWEgzFRJA9WCQeSJLZDjgJUOMCMzxtvFq/37KojM1BFGufqsCy0r4qSQmYLsZYMeyRqzIWOMup03sw==}
     engines: {node: '>=14'}
-
-  form-data@4.0.1:
-    resolution: {integrity: sha512-tzN8e4TX8+kkxGPK8D5u0FNmjPUjw3lwC9lSLxxoB/+GtsJG91CO8bSWy73APlgAZzZbXEYZJuxjkHH2w+Ezhw==}
-    engines: {node: '>= 6'}
 
   fraction.js@4.3.7:
     resolution: {integrity: sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==}
@@ -4688,8 +4806,8 @@ packages:
     resolution: {integrity: sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==}
     hasBin: true
 
-  jsdom@26.0.0:
-    resolution: {integrity: sha512-BZYDGVAIriBWTpIxYzrXjv3E/4u8+/pSG5bQdIYCbNCGOvsPkDQfTVLAIXAf9ETdCpduCVTkDe2NNZ8NIwUVzw==}
+  jsdom@26.1.0:
+    resolution: {integrity: sha512-Cvc9WUhxSMEo4McES3P7oK3QaXldCfNWp7pl2NNeiIFlCoLr3kfq9kb1fxftiwk1FLV7CvpvDfonxtzUDeSOPg==}
     engines: {node: '>=18'}
     peerDependencies:
       canvas: ^3.0.0
@@ -5094,14 +5212,6 @@ packages:
     resolution: {integrity: sha512-PXwfBhYu0hBCPw8Dn0E+WDYb7af3dSLVWKi3HGv84IdF4TyFoC0ysxFd0Goxw7nSv4T/PzEJQxsYsEiFCKo2BA==}
     engines: {node: '>=8.6'}
 
-  mime-db@1.52.0:
-    resolution: {integrity: sha512-sPU4uV7dYlvtWJxwwxHD0PuihVNiE7TyAbQ5SWxDCB9mUYvOgroQOwYQQOKPJ8CIbE+1ETVlOoK1UC2nU3gYvg==}
-    engines: {node: '>= 0.6'}
-
-  mime-types@2.1.35:
-    resolution: {integrity: sha512-ZDY+bPm5zTTF+YpCrAU9nK0UgICYPT0QtT1NZWFv4s++TNkcgVaT0g6+4R2uI4MjQjzysHB1zxuWL50hzaeXiw==}
-    engines: {node: '>= 0.6'}
-
   mini-svg-data-uri@1.4.4:
     resolution: {integrity: sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==}
     hasBin: true
@@ -5216,11 +5326,17 @@ packages:
   ohash@2.0.11:
     resolution: {integrity: sha512-RdR9FQrFwNBNXAr4GixM8YaRZRJ5PUWbKYbE5eOsrwAjJW0q2REGcf79oYPsLyskQCZG1PLN+S/K1V00joZAoQ==}
 
+  oniguruma-parser@0.12.1:
+    resolution: {integrity: sha512-8Unqkvk1RYc6yq2WBYRj4hdnsAxVze8i7iPfQr8e4uSP3tRv0rpZcbGUDvxfQQcdwHt/e9PrMvGCsa8OqG9X3w==}
+
   oniguruma-parser@0.5.4:
     resolution: {integrity: sha512-yNxcQ8sKvURiTwP0mV6bLQCYE7NKfKRRWunhbZnXgxSmB1OXa1lHrN3o4DZd+0Si0kU5blidK7BcROO8qv5TZA==}
 
   oniguruma-to-es@4.1.0:
     resolution: {integrity: sha512-SNwG909cSLo4vPyyPbU/VJkEc9WOXqu2ycBlfd1UCXLqk1IijcQktSBb2yRQ2UFPsDhpkaf+C1dtT3PkLK/yWA==}
+
+  oniguruma-to-es@4.3.3:
+    resolution: {integrity: sha512-rPiZhzC3wXwE59YQMRDodUwwT9FZ9nNBwQQfsd1wfdtlKEyCdRV0avrTcSZ5xlIvGRVPd/cx6ZN45ECmS39xvg==}
 
   only-allow@1.2.1:
     resolution: {integrity: sha512-M7CJbmv7UCopc0neRKdzfoGWaVZC+xC1925GitKH9EAqYFzX9//25Q7oX4+jw0tiCCj+t5l6VZh8UPH23NZkMA==}
@@ -5779,6 +5895,9 @@ packages:
   shiki@3.2.2:
     resolution: {integrity: sha512-0qWBkM2t/0NXPRcVgtLhtHv6Ak3Q5yI4K/ggMqcgLRKm4+pCs3namgZlhlat/7u2CuqNtlShNs9lENOG6n7UaQ==}
 
+  shiki@3.7.0:
+    resolution: {integrity: sha512-ZcI4UT9n6N2pDuM2n3Jbk0sR4Swzq43nLPgS/4h0E3B/NrFn2HKElrDtceSf8Zx/OWYOo7G1SAtBLypCp+YXqg==}
+
   siginfo@2.0.0:
     resolution: {integrity: sha512-ybx0WO1/8bSBLEWXZvEd7gMW3Sn3JFlW3TvX1nREbDLRNQNaeNN8WK0meBwPdAaOI7TtRRRJn/Es1zhrrCHu7g==}
 
@@ -6095,15 +6214,15 @@ packages:
     resolution: {integrity: sha512-sf4i37nQ2LBx4m3wB74y+ubopq6W/dIzXg0FDGjsYnZHVa1Da8FH853wlL2gtUhg+xJXjfk3kUZS3BRoQeoQBQ==}
     engines: {node: '>=6'}
 
-  tough-cookie@5.1.0:
-    resolution: {integrity: sha512-rvZUv+7MoBYTiDmFPBrhL7Ujx9Sk+q9wwm22x8c8T5IJaR+Wsyc7TNxbVxo84kZoRJZZMazowFLqpankBEQrGg==}
+  tough-cookie@5.1.2:
+    resolution: {integrity: sha512-FVDYdxtnj0G6Qm/DhNPSb8Ju59ULcup3tuJxkFb5K8Bv2pUXILbf0xZWU8PX8Ov19OXljbUyveOFwRMwkXzO+A==}
     engines: {node: '>=16'}
 
   tr46@0.0.3:
     resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
 
-  tr46@5.0.0:
-    resolution: {integrity: sha512-tk2G5R2KRwBd+ZN0zaEXpmzdKyOYksXwywulIX95MBODjSzMIuQnQ3m8JxgbhnL1LeVo7lqQKsYa1O3Htl7K5g==}
+  tr46@5.1.1:
+    resolution: {integrity: sha512-hdF5ZgjTqgAntKkklYw0R03MG2x/bSzTtkxmIRw/sTNV8YXsCJ1tfLAX23lhxhHJlEf3CRCOCGGWw3vI3GaSPw==}
     engines: {node: '>=18'}
 
   trim-lines@3.0.1:
@@ -6592,8 +6711,8 @@ packages:
     resolution: {integrity: sha512-QaKxh0eNIi2mE9p2vEdzfagOKHCcj1pJ56EEHGQOVxp8r9/iszLUUV7v89x9O1p/T+NlTM5W7jW6+cz4Fq1YVg==}
     engines: {node: '>=18'}
 
-  whatwg-url@14.1.0:
-    resolution: {integrity: sha512-jlf/foYIKywAt3x/XWKZ/3rz8OSJPiWktjmk891alJUEjiVxKX9LEO92qH3hv4aJ0mN3MWPvGMCy8jQi95xK4w==}
+  whatwg-url@14.2.0:
+    resolution: {integrity: sha512-De72GdQZzNTUBBChsXueQUnPKDkg/5A5zp7pFDuQAj5UFoENpiACU0wlCvzpAGnTkj++ihpKwKyYewn/XNUbKw==}
     engines: {node: '>=18'}
 
   whatwg-url@5.0.0:
@@ -7226,6 +7345,36 @@ snapshots:
 
   '@ctrl/tinycolor@4.1.0': {}
 
+  '@dnd-kit/abstract@0.1.19':
+    dependencies:
+      '@dnd-kit/geometry': 0.1.19
+      '@dnd-kit/state': 0.1.19
+      tslib: 2.7.0
+
+  '@dnd-kit/collision@0.1.19':
+    dependencies:
+      '@dnd-kit/abstract': 0.1.19
+      '@dnd-kit/geometry': 0.1.19
+      tslib: 2.7.0
+
+  '@dnd-kit/dom@0.1.19':
+    dependencies:
+      '@dnd-kit/abstract': 0.1.19
+      '@dnd-kit/collision': 0.1.19
+      '@dnd-kit/geometry': 0.1.19
+      '@dnd-kit/state': 0.1.19
+      tslib: 2.7.0
+
+  '@dnd-kit/geometry@0.1.19':
+    dependencies:
+      '@dnd-kit/state': 0.1.19
+      tslib: 2.7.0
+
+  '@dnd-kit/state@0.1.19':
+    dependencies:
+      '@preact/signals-core': 1.10.0
+      tslib: 2.7.0
+
   '@emmetio/abbreviation@2.3.3':
     dependencies:
       '@emmetio/scanner': 1.0.4
@@ -7419,7 +7568,7 @@ snapshots:
 
   '@floating-ui/dom@1.7.0':
     dependencies:
-      '@floating-ui/core': 1.7.0
+      '@floating-ui/core': 1.7.1
       '@floating-ui/utils': 0.2.9
 
   '@floating-ui/dom@1.7.1':
@@ -7674,6 +7823,10 @@ snapshots:
     dependencies:
       svelte: 5.34.7
 
+  '@lucide/svelte@0.515.0(svelte@5.34.7)':
+    dependencies:
+      svelte: 5.34.7
+
   '@lucide/svelte@0.518.0(svelte@5.34.7)':
     dependencies:
       svelte: 5.34.7
@@ -7768,6 +7921,8 @@ snapshots:
 
   '@popperjs/core@2.11.8': {}
 
+  '@preact/signals-core@1.10.0': {}
+
   '@publint/pack@0.1.2': {}
 
   '@rollup/plugin-node-resolve@15.3.0(rollup@4.40.0)':
@@ -7855,83 +8010,89 @@ snapshots:
       '@types/hast': 3.0.4
       hast-util-to-html: 9.0.5
 
+  '@shikijs/core@3.7.0':
+    dependencies:
+      '@shikijs/types': 3.7.0
+      '@shikijs/vscode-textmate': 10.0.2
+      '@types/hast': 3.0.4
+      hast-util-to-html: 9.0.5
+
   '@shikijs/engine-javascript@3.2.2':
     dependencies:
       '@shikijs/types': 3.2.2
       '@shikijs/vscode-textmate': 10.0.2
       oniguruma-to-es: 4.1.0
 
+  '@shikijs/engine-javascript@3.7.0':
+    dependencies:
+      '@shikijs/types': 3.7.0
+      '@shikijs/vscode-textmate': 10.0.2
+      oniguruma-to-es: 4.3.3
+
   '@shikijs/engine-oniguruma@3.2.2':
     dependencies:
       '@shikijs/types': 3.2.2
+      '@shikijs/vscode-textmate': 10.0.2
+
+  '@shikijs/engine-oniguruma@3.7.0':
+    dependencies:
+      '@shikijs/types': 3.7.0
       '@shikijs/vscode-textmate': 10.0.2
 
   '@shikijs/langs@3.2.2':
     dependencies:
       '@shikijs/types': 3.2.2
 
+  '@shikijs/langs@3.7.0':
+    dependencies:
+      '@shikijs/types': 3.7.0
+
   '@shikijs/themes@3.2.2':
     dependencies:
       '@shikijs/types': 3.2.2
+
+  '@shikijs/themes@3.7.0':
+    dependencies:
+      '@shikijs/types': 3.7.0
 
   '@shikijs/types@3.2.2':
     dependencies:
       '@shikijs/vscode-textmate': 10.0.2
       '@types/hast': 3.0.4
 
-  '@shikijs/vscode-textmate@10.0.2': {}
-
-  '@sjsf/ajv8-validator@2.1.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(ajv@8.17.1)':
+  '@shikijs/types@3.7.0':
     dependencies:
-      '@sjsf/form': 2.1.0(esm-env@1.2.2)(svelte@5.34.7)
-      ajv: 8.17.1
+      '@shikijs/vscode-textmate': 10.0.2
+      '@types/hast': 3.0.4
+
+  '@shikijs/vscode-textmate@10.0.2': {}
 
   '@sjsf/ajv8-validator@2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(ajv@8.17.1)':
     dependencies:
       '@sjsf/form': 2.1.1(esm-env@1.2.2)(svelte@5.34.7)
       ajv: 8.17.1
 
-  '@sjsf/basic-theme@2.1.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)':
-    dependencies:
-      '@sjsf/form': 2.1.0(esm-env@1.2.2)(svelte@5.34.7)
-      svelte: 5.34.7
-
-  '@sjsf/basic-theme@2.1.1(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)':
-    dependencies:
-      '@sjsf/form': 2.1.0(esm-env@1.2.2)(svelte@5.34.7)
-      svelte: 5.34.7
-
   '@sjsf/basic-theme@2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)':
     dependencies:
       '@sjsf/form': 2.1.1(esm-env@1.2.2)(svelte@5.34.7)
       svelte: 5.34.7
 
-  '@sjsf/daisyui5-theme@2.0.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(daisyui@5.0.43)(svelte@5.34.7)':
+  '@sjsf/daisyui5-theme@2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(daisyui@5.0.43)(svelte@5.34.7)':
     dependencies:
-      '@sjsf/basic-theme': 2.1.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
-      '@sjsf/form': 2.1.0(esm-env@1.2.2)(svelte@5.34.7)
+      '@sjsf/basic-theme': 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
+      '@sjsf/form': 2.1.1(esm-env@1.2.2)(svelte@5.34.7)
       daisyui: 5.0.43
       svelte: 5.34.7
     optionalDependencies:
       cally: 0.8.0
       pikaday: 1.8.2
 
-  '@sjsf/flowbite3-theme@2.0.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(flowbite-svelte@1.6.8(rollup@4.40.0)(svelte@5.34.7)(tailwindcss@4.1.10))(flowbite@3.1.2(rollup@4.40.0))(svelte@5.34.7)':
+  '@sjsf/flowbite3-theme@2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(flowbite-svelte@1.6.8(rollup@4.40.0)(svelte@5.34.7)(tailwindcss@4.1.10))(flowbite@3.1.2(rollup@4.40.0))(svelte@5.34.7)':
     dependencies:
-      '@sjsf/basic-theme': 2.1.1(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
-      '@sjsf/form': 2.1.0(esm-env@1.2.2)(svelte@5.34.7)
+      '@sjsf/basic-theme': 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
+      '@sjsf/form': 2.1.1(esm-env@1.2.2)(svelte@5.34.7)
       flowbite: 3.1.2(rollup@4.40.0)
       flowbite-svelte: 1.6.8(rollup@4.40.0)(svelte@5.34.7)(tailwindcss@4.1.10)
-      svelte: 5.34.7
-
-  '@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7)':
-    dependencies:
-      '@standard-schema/spec': 1.0.0
-      '@types/json-schema': 7.0.15
-      '@types/json-schema-merge-allof': 0.6.5
-      esm-env: 1.2.2
-      json-schema-merge-allof: 0.8.1
-      jsonpointer: 5.0.1
       svelte: 5.34.7
 
   '@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7)':
@@ -7944,12 +8105,12 @@ snapshots:
       jsonpointer: 5.0.1
       svelte: 5.34.7
 
-  '@sjsf/shadcn4-theme@2.0.0(@lucide/svelte@0.501.0(svelte@5.34.7))(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(bits-ui@2.8.3(@internationalized/date@3.8.2)(svelte@5.34.7))(clsx@2.1.1)(svelte@5.34.7)(tailwind-merge@3.3.1)(tailwind-variants@1.0.0(tailwindcss@4.1.10))':
+  '@sjsf/shadcn4-theme@2.0.0(@lucide/svelte@0.501.0(svelte@5.34.7))(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(bits-ui@2.8.8(@internationalized/date@3.8.2)(svelte@5.34.7))(clsx@2.1.1)(svelte@5.34.7)(tailwind-merge@3.3.1)(tailwind-variants@1.0.0(tailwindcss@4.1.10))':
     dependencies:
       '@lucide/svelte': 0.501.0(svelte@5.34.7)
-      '@sjsf/basic-theme': 2.1.1(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
-      '@sjsf/form': 2.1.0(esm-env@1.2.2)(svelte@5.34.7)
-      bits-ui: 2.8.3(@internationalized/date@3.8.2)(svelte@5.34.7)
+      '@sjsf/basic-theme': 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
+      '@sjsf/form': 2.1.1(esm-env@1.2.2)(svelte@5.34.7)
+      bits-ui: 2.8.8(@internationalized/date@3.8.2)(svelte@5.34.7)
       clsx: 2.1.1
       svelte: 5.34.7
       tailwind-merge: 3.3.1
@@ -7957,22 +8118,15 @@ snapshots:
     optionalDependencies:
       '@internationalized/date': 3.8.2
 
-  '@sjsf/skeleton3-theme@2.0.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(@skeletonlabs/skeleton@3.1.3(tailwindcss@4.1.10))(@tailwindcss/forms@0.5.10(tailwindcss@4.1.10))(svelte@5.34.7)':
+  '@sjsf/skeleton3-theme@2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(@skeletonlabs/skeleton@3.1.3(tailwindcss@4.1.10))(@tailwindcss/forms@0.5.10(tailwindcss@4.1.10))(svelte@5.34.7)':
     dependencies:
-      '@sjsf/basic-theme': 2.1.1(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
-      '@sjsf/form': 2.1.0(esm-env@1.2.2)(svelte@5.34.7)
+      '@sjsf/basic-theme': 2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(svelte@5.34.7)
+      '@sjsf/form': 2.1.1(esm-env@1.2.2)(svelte@5.34.7)
       '@skeletonlabs/skeleton': 3.1.3(tailwindcss@4.1.10)
       '@tailwindcss/forms': 0.5.10(tailwindcss@4.1.10)
       svelte: 5.34.7
     optionalDependencies:
       '@skeletonlabs/skeleton-svelte': 1.2.3(svelte@5.34.7)
-
-  '@sjsf/sveltekit@2.0.0(@sjsf/form@2.1.0(esm-env@1.2.2)(svelte@5.34.7))(@sveltejs/kit@2.21.5(@sveltejs/vite-plugin-svelte@5.1.0(svelte@5.34.7)(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1)))(svelte@5.34.7)(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1)))(esm-env@1.2.2)(svelte@5.34.7)':
-    dependencies:
-      '@sjsf/form': 2.1.0(esm-env@1.2.2)(svelte@5.34.7)
-      '@sveltejs/kit': 2.21.5(@sveltejs/vite-plugin-svelte@5.1.0(svelte@5.34.7)(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1)))(svelte@5.34.7)(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1))
-      esm-env: 1.2.2
-      svelte: 5.34.7
 
   '@sjsf/sveltekit@2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(@sveltejs/kit@2.21.5(@sveltejs/vite-plugin-svelte@5.1.0(svelte@5.34.7)(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1)))(svelte@5.34.7)(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1)))(esm-env@1.2.2)(svelte@5.34.7)':
     dependencies:
@@ -8266,6 +8420,8 @@ snapshots:
       '@testing-library/dom': 10.4.0
 
   '@total-typescript/tsconfig@1.0.4': {}
+
+  '@tsconfig/svelte@5.0.4': {}
 
   '@types/acorn@4.0.6':
     dependencies:
@@ -8572,7 +8728,7 @@ snapshots:
       magic-string: 0.30.17
       sirv: 3.0.1
       tinyrainbow: 2.0.0
-      vitest: 3.2.4(@types/debug@4.1.12)(@types/node@24.0.3)(@vitest/browser@3.2.4)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.30.1)(yaml@2.5.1)
+      vitest: 3.2.4(@types/debug@4.1.12)(@types/node@24.0.3)(@vitest/browser@3.2.4)(jiti@2.4.2)(jsdom@26.1.0)(lightningcss@1.30.1)(yaml@2.5.1)
       ws: 8.18.2
     optionalDependencies:
       playwright: 1.52.0
@@ -9125,9 +9281,6 @@ snapshots:
       - uploadthing
       - yaml
 
-  asynckit@0.4.0:
-    optional: true
-
   atomico@1.79.2: {}
 
   autoprefixer@10.4.21(postcss@8.5.6):
@@ -9176,12 +9329,11 @@ snapshots:
       svelte-toolbelt: 0.9.1(svelte@5.34.7)
       tabbable: 6.2.0
 
-  bits-ui@2.8.3(@internationalized/date@3.8.2)(svelte@5.34.7):
+  bits-ui@2.8.8(@internationalized/date@3.8.2)(svelte@5.34.7):
     dependencies:
       '@floating-ui/core': 1.7.1
       '@floating-ui/dom': 1.7.1
       '@internationalized/date': 3.8.2
-      css.escape: 1.5.1
       esm-env: 1.2.2
       runed: 0.28.0(svelte@5.34.7)
       svelte: 5.34.7
@@ -9349,11 +9501,6 @@ snapshots:
     dependencies:
       color-convert: 2.0.1
       color-string: 1.9.1
-
-  combined-stream@1.0.8:
-    dependencies:
-      delayed-stream: 1.0.0
-    optional: true
 
   comma-separated-tokens@2.0.3: {}
 
@@ -9647,7 +9794,7 @@ snapshots:
   data-urls@5.0.0:
     dependencies:
       whatwg-mimetype: 4.0.0
-      whatwg-url: 14.1.0
+      whatwg-url: 14.2.0
     optional: true
 
   dataloader@1.4.0: {}
@@ -9658,7 +9805,7 @@ snapshots:
     dependencies:
       ms: 2.1.3
 
-  decimal.js@10.4.3:
+  decimal.js@10.6.0:
     optional: true
 
   decode-named-character-reference@1.0.2:
@@ -9680,9 +9827,6 @@ snapshots:
   delaunator@5.0.1:
     dependencies:
       robust-predicates: 3.0.2
-
-  delayed-stream@1.0.0:
-    optional: true
 
   dequal@2.0.3: {}
 
@@ -9718,7 +9862,7 @@ snapshots:
 
   dom-accessibility-api@0.5.16: {}
 
-  dompurify@3.2.4:
+  dompurify@3.2.6:
     optionalDependencies:
       '@types/trusted-types': 2.0.7
 
@@ -10123,13 +10267,6 @@ snapshots:
     dependencies:
       cross-spawn: 7.0.6
       signal-exit: 4.1.0
-
-  form-data@4.0.1:
-    dependencies:
-      asynckit: 0.4.0
-      combined-stream: 1.0.8
-      mime-types: 2.1.35
-    optional: true
 
   fraction.js@4.3.7: {}
 
@@ -10560,12 +10697,11 @@ snapshots:
     dependencies:
       argparse: 2.0.1
 
-  jsdom@26.0.0:
+  jsdom@26.1.0:
     dependencies:
       cssstyle: 4.2.1
       data-urls: 5.0.0
-      decimal.js: 10.4.3
-      form-data: 4.0.1
+      decimal.js: 10.6.0
       html-encoding-sniffer: 4.0.0
       http-proxy-agent: 7.0.2
       https-proxy-agent: 7.0.6
@@ -10575,12 +10711,12 @@ snapshots:
       rrweb-cssom: 0.8.0
       saxes: 6.0.0
       symbol-tree: 3.2.4
-      tough-cookie: 5.1.0
+      tough-cookie: 5.1.2
       w3c-xmlserializer: 5.0.0
       webidl-conversions: 7.0.0
       whatwg-encoding: 3.1.1
       whatwg-mimetype: 4.0.0
-      whatwg-url: 14.1.0
+      whatwg-url: 14.2.0
       ws: 8.18.2
       xml-name-validator: 5.0.0
     transitivePeerDependencies:
@@ -10963,7 +11099,7 @@ snapshots:
       d3-sankey: 0.12.3
       dagre-d3-es: 7.0.11
       dayjs: 1.11.13
-      dompurify: 3.2.4
+      dompurify: 3.2.6
       katex: 0.16.11
       khroma: 2.1.0
       lodash-es: 4.17.21
@@ -11256,14 +11392,6 @@ snapshots:
       braces: 3.0.3
       picomatch: 2.3.1
 
-  mime-db@1.52.0:
-    optional: true
-
-  mime-types@2.1.35:
-    dependencies:
-      mime-db: 1.52.0
-    optional: true
-
   mini-svg-data-uri@1.4.4: {}
 
   minimatch@3.1.2:
@@ -11355,12 +11483,20 @@ snapshots:
 
   ohash@2.0.11: {}
 
+  oniguruma-parser@0.12.1: {}
+
   oniguruma-parser@0.5.4: {}
 
   oniguruma-to-es@4.1.0:
     dependencies:
       emoji-regex-xs: 1.0.0
       oniguruma-parser: 0.5.4
+      regex: 6.0.1
+      regex-recursion: 6.0.2
+
+  oniguruma-to-es@4.3.3:
+    dependencies:
+      oniguruma-parser: 0.12.1
       regex: 6.0.1
       regex-recursion: 6.0.2
 
@@ -11997,6 +12133,17 @@ snapshots:
       '@shikijs/vscode-textmate': 10.0.2
       '@types/hast': 3.0.4
 
+  shiki@3.7.0:
+    dependencies:
+      '@shikijs/core': 3.7.0
+      '@shikijs/engine-javascript': 3.7.0
+      '@shikijs/engine-oniguruma': 3.7.0
+      '@shikijs/langs': 3.7.0
+      '@shikijs/themes': 3.7.0
+      '@shikijs/types': 3.7.0
+      '@shikijs/vscode-textmate': 10.0.2
+      '@types/hast': 3.0.4
+
   siginfo@2.0.0: {}
 
   signal-exit@4.1.0: {}
@@ -12344,14 +12491,14 @@ snapshots:
 
   totalist@3.0.1: {}
 
-  tough-cookie@5.1.0:
+  tough-cookie@5.1.2:
     dependencies:
       tldts: 6.1.74
     optional: true
 
   tr46@0.0.3: {}
 
-  tr46@5.0.0:
+  tr46@5.1.1:
     dependencies:
       punycode: 2.3.1
     optional: true
@@ -12613,9 +12760,9 @@ snapshots:
     dependencies:
       '@vitest/browser': 3.2.4(playwright@1.52.0)(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1))(vitest@3.2.4)
       svelte: 5.34.7
-      vitest: 3.2.4(@types/debug@4.1.12)(@types/node@24.0.3)(@vitest/browser@3.2.4)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.30.1)(yaml@2.5.1)
+      vitest: 3.2.4(@types/debug@4.1.12)(@types/node@24.0.3)(@vitest/browser@3.2.4)(jiti@2.4.2)(jsdom@26.1.0)(lightningcss@1.30.1)(yaml@2.5.1)
 
-  vitest@3.2.4(@types/debug@4.1.12)(@types/node@24.0.3)(@vitest/browser@3.2.4)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.30.1)(yaml@2.5.1):
+  vitest@3.2.4(@types/debug@4.1.12)(@types/node@24.0.3)(@vitest/browser@3.2.4)(jiti@2.4.2)(jsdom@26.1.0)(lightningcss@1.30.1)(yaml@2.5.1):
     dependencies:
       '@types/chai': 5.2.2
       '@vitest/expect': 3.2.4
@@ -12644,7 +12791,7 @@ snapshots:
       '@types/debug': 4.1.12
       '@types/node': 24.0.3
       '@vitest/browser': 3.2.4(playwright@1.52.0)(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1))(vitest@3.2.4)
-      jsdom: 26.0.0
+      jsdom: 26.1.0
     transitivePeerDependencies:
       - jiti
       - less
@@ -12793,9 +12940,9 @@ snapshots:
   whatwg-mimetype@4.0.0:
     optional: true
 
-  whatwg-url@14.1.0:
+  whatwg-url@14.2.0:
     dependencies:
-      tr46: 5.0.0
+      tr46: 5.1.1
       webidl-conversions: 7.0.0
     optional: true
 
