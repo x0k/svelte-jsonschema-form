@@ -42,7 +42,7 @@ jobs:
         run: pnpm run build --filter="./apps/*"
 
       - name: Merge apps build outputs
-        run: mv apps/playground2/dist apps/docs2/dist/playground2
+        run: mv apps/playground2/dist apps/docs2/dist/playground2 && mv apps/builder/dist apps/docs2/dist/builder
 
       - name: Deploy apps
         uses: peaceiris/actions-gh-pages@v4
