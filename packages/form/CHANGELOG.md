@@ -1,5 +1,13 @@
 # @sjsf/form
 
+## 2.1.2
+
+### Patch Changes
+
+- Clarify the empty field name warning in the `Field` component ([`35afc7b`](https://github.com/x0k/svelte-jsonschema-form/commit/35afc7b801026f64fe2d9f278c2a31fd714fec48))
+
+- Fix display of custom enum names in `booleanSelectField` ([`f2f1cbc`](https://github.com/x0k/svelte-jsonschema-form/commit/f2f1cbcfcdcfe7e5999a69c5d21903f24a0be978))
+
 ## 2.1.1
 
 ## 2.1.0
