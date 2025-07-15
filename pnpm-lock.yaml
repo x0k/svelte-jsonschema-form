@@ -447,6 +447,9 @@ importers:
       '@codemirror/view':
         specifier: ^6.37.2
         version: 6.37.2
+      '@ddietr/codemirror-themes':
+        specifier: ^1.5.1
+        version: 1.5.1
       '@sjsf/ajv8-validator':
         specifier: workspace:*
         version: link:../../packages/ajv8-validator
@@ -1978,6 +1981,9 @@ packages:
   '@ctrl/tinycolor@4.1.0':
     resolution: {integrity: sha512-WyOx8cJQ+FQus4Mm4uPIZA64gbk3Wxh0so5Lcii0aJifqwoVOlfFtorjLE0Hen4OYyHZMXDWqMmaQemBhgxFRQ==}
     engines: {node: '>=14'}
+
+  '@ddietr/codemirror-themes@1.5.1':
+    resolution: {integrity: sha512-Io0zoWp0PSbDIsnBQOwaf2AIPAk/cnKI2Yc0bS8LYFQRIw5piruxj7ZlSELUCNey+g8iyRDF3j8Ef67ID7QuEA==}
 
   '@dnd-kit/abstract@0.1.19':
     resolution: {integrity: sha512-meZsoPz0gvyUNu73/YaCSYxRFK/+NtChLPnF11mRMOq5smg+ssHCfMLiVzd7XQ/IA5DSpC5zU0f3YSz0qbSfnw==}
@@ -7344,6 +7350,13 @@ snapshots:
     optional: true
 
   '@ctrl/tinycolor@4.1.0': {}
+
+  '@ddietr/codemirror-themes@1.5.1':
+    dependencies:
+      '@codemirror/language': 6.11.0
+      '@codemirror/state': 6.5.2
+      '@codemirror/view': 6.37.2
+      '@lezer/highlight': 1.2.1
 
   '@dnd-kit/abstract@0.1.19':
     dependencies:

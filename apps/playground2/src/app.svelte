@@ -357,7 +357,7 @@
     bind:value={form.value}
   />
   <ShadowHost
-    class="col-span-3 row-span-2 overflow-y-auto border rounded-md"
+    class="col-span-3 row-span-2 overflow-y-auto border border-[var(--global-border)] rounded-md"
     style={`${themeStyle}\n${iconSetStyle}`}
   >
     <BitsConfig defaultPortalTo={portalEl}>

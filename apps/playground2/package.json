@@ -13,6 +13,7 @@
     "@codemirror/lang-json": "^6.0.2",
     "@codemirror/state": "^6.5.2",
     "@codemirror/view": "^6.37.2",
+    "@ddietr/codemirror-themes": "^1.5.1",
     "@sjsf/ajv8-validator": "workspace:*",
     "@sjsf/basic-theme": "workspace:*",
     "@sjsf/cfworker-validator": "workspace:*",
