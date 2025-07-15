@@ -14,7 +14,7 @@ permissions:
 
 env:
   PLAYWRIGHT_VERSION: "1.52.0"
-  NODE_OPTIONS: "--max-old-space-size=4096"
+  NODE_OPTIONS: "--max-old-space-size=2048"
 
 jobs:
   version:
