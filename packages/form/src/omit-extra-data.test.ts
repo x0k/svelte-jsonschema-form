@@ -915,6 +915,81 @@ describe("omitExtraData", () => {
   });
 
   describe("oneOf", () => {
+    it("should handle oneOf inside dependencies definitions", () => {
+      validator = createValidator({
+        cases: [
+          {
+            schema: {
+              allOf: [
+                {
+                  properties: {
+                    multiple: { const: true },
+                    uniqueItems: { type: "boolean" },
+                  },
+                },
+                {
+                  anyOf: [
+                    { required: ["multiple"] },
+                    { required: ["uniqueItems"] },
+                  ],
+                },
+              ],
+            },
+            value: { multiple: false, uniqueItems: true },
+            result: false,
+          },
+          {
+            schema: {
+              allOf: [
+                { properties: { multiple: { const: false } } },
+                { anyOf: [{ required: ["multiple"] }] },
+              ],
+            },
+            value: { multiple: false, uniqueItems: true },
+            result: true,
+          },
+        ],
+      });
+      const schema: Schema = {
+        type: "object",
+        properties: {
+          multiple: {
+            type: "boolean",
+          },
+        },
+        dependencies: {
+          multiple: {
+            oneOf: [
+              {
+                properties: {
+                  multiple: {
+                    const: true,
+                  },
+                  uniqueItems: {
+                    type: "boolean",
+                  },
+                },
+              },
+              {
+                properties: {
+                  multiple: {
+                    const: false,
+                  },
+                },
+              },
+            ],
+          },
+        },
+      };
+      expect(
+        omitExtraData(validator, defaultMerger, schema, {
+          multiple: false,
+          uniqueItems: true,
+        })
+      ).toEqual({
+        multiple: false,
+      });
+    });
     it("should handle oneOf with exclusive conditions", () => {
       validator = createValidator({
         cases: [
