@@ -451,36 +451,20 @@ const NODE_SCHEMA_BUILDERS: {
       options
     );
   },
-  [NodeType.File]: (
-    _,
-    {
-      // TODO: Use `assignSchemaOptions` here after `omitExtraData` fix
-      options: {
-        widget,
-        required,
-        multiple,
-        title,
-        description,
-        help,
-        ...rest
-      },
-    }
-  ) => {
+  [NodeType.File]: (_, { options }) => {
     const file: Schema = {
       type: "string",
       format: "data-url",
     };
-    return multiple
-      ? Object.assign(
-          {
+    return assignSchemaOptions(
+      options.multiple
+        ? {
             type: "array",
-            title,
-            description,
             items: file,
-          } satisfies Schema,
-          rest
-        )
-      : Object.assign(file, { title, description });
+          }
+        : file,
+      options
+    );
   },
   [NodeType.Tags]: (_, { options }) => {
     return assignSchemaOptions(

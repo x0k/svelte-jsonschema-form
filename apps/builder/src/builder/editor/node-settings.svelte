@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { defaultMerger } from "@sjsf/form/core";
   import {
     Content,
     createForm,
@@ -6,11 +7,12 @@
     ON_INPUT,
     setFormContext,
   } from "@sjsf/form";
+  import { omitExtraData } from "@sjsf/form/omit-extra-data";
 
   import type { CustomizableNode } from "$lib/builder/index.js";
   import * as defaults from "$lib/form/defaults.js";
 
-  import { getBuilderContext } from "./context.svelte.js";
+  import { getBuilderContext } from "../context.svelte.js";
 
   interface Props {
     node: CustomizableNode;
@@ -36,7 +38,12 @@
     if (form.fieldsValidation.isProcessed) {
       return;
     }
-    node.options = form.value as any;
+    node.options = omitExtraData(
+      defaults.validator,
+      defaultMerger,
+      schema,
+      form.value as any
+    ) as any;
   });
 </script>
 

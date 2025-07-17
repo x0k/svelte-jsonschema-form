@@ -11,12 +11,13 @@
   import { Label } from "$lib/components/ui/label/index.js";
   import { Checkbox } from "$lib/components/ui/checkbox/index.js";
   import { THEME_TITLES, THEMES } from "$lib/sjsf/theme.js";
+  import Select from "$lib/components/select.svelte";
 
+  import { RouteName } from "../model.js";
   import { getBuilderContext } from "../context.svelte.js";
   import Container from "../container.svelte";
-  import NodeSettings from "../node-settings.svelte";
-  import { RouteName } from "../model.js";
-  import Select from "$lib/components/select.svelte";
+  
+  import NodeSettings from "./node-settings.svelte";
 
   const ctx = getBuilderContext();
   const uniqueId = $props.id();
