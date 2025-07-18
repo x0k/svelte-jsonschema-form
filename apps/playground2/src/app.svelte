@@ -1,6 +1,7 @@
 <script lang="ts">
   import { SvelteMap } from "svelte/reactivity";
-  import { extendByRecord } from "@sjsf/form/lib/resolver";
+  import { BitsConfig } from "bits-ui";
+  import { extendByRecord, fromRecord } from "@sjsf/form/lib/resolver";
   import {
     ON_BLUR,
     ON_CHANGE,
@@ -59,7 +60,6 @@
   import * as customComponents from "./custom-form-components/index.js";
   import { themeManager } from "./theme.svelte";
   import SamplePicker from "./sample-picker.svelte";
-  import { BitsConfig } from "bits-ui";
 
   const DEFAULT_PLAYGROUND_STATE: PlaygroundState = {
     schema: {
@@ -159,6 +159,15 @@
     })
   );
 
+  let portalEl = $state.raw() as HTMLDivElement;
+  const rootNode = $derived(portalEl?.getRootNode());
+
+  const options = {
+    getRootNode() {
+      return rootNode;
+    },
+  };
+
   const focusOnFirstError = createFocusOnFirstError();
   const form = createForm<FormValue, Validator>({
     get resolver() {
@@ -190,6 +199,14 @@
     get icons() {
       return iconsSet;
     },
+    extraUiOptions: fromRecord({
+      skeleton3Slider: options,
+      skeleton3FileUpload: options,
+      skeleton3Rating: options,
+      skeleton3Segment: options,
+      skeleton3Switch: options,
+      skeleton3Tags: options,
+    }),
     onSubmit(value) {
       console.log("submit", value);
     },
@@ -209,8 +226,6 @@
 
   const clearLink = new URL(location.href);
   clearLink.hash = "";
-
-  let portalEl = $state.raw() as HTMLDivElement;
 </script>
 
 <div
@@ -360,18 +375,20 @@
     class="col-span-3 row-span-2 overflow-y-auto border border-[var(--global-border)] rounded-md"
     style={`${themeStyle}\n${iconSetStyle}`}
   >
-    <BitsConfig defaultPortalTo={portalEl}>
-      <BasicForm
-        id="form"
-        {form}
-        class={themeManager.darkOrLight}
-        style="min-height: 100%; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;"
-        novalidate={!data.html5Validation || undefined}
-        data-theme={data.theme.startsWith("skeleton")
-          ? "cerberus"
-          : themeManager.darkOrLight}
-      />
-      <div bind:this={portalEl}></div>
-    </BitsConfig>
+    {#if portalEl}
+      <BitsConfig defaultPortalTo={portalEl}>
+        <BasicForm
+          id="form"
+          {form}
+          class={themeManager.darkOrLight}
+          style="min-height: 100%; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;"
+          novalidate={!data.html5Validation || undefined}
+          data-theme={data.theme.startsWith("skeleton")
+            ? "cerberus"
+            : themeManager.darkOrLight}
+        />
+      </BitsConfig>
+    {/if}
+    <div bind:this={portalEl}></div>
   </ShadowHost>
 </div>
