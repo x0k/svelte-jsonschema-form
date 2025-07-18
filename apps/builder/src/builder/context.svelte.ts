@@ -240,6 +240,7 @@ export class BuilderContext {
       buildUiSchema(
         {
           propertyNames: this.#buildOutput.propertyNames,
+          propertiesOrder: [],
           uiComponents: (node) => {
             const widget = node.options.widget as WidgetType;
             widgets.add(widget);
