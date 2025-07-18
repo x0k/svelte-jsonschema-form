@@ -21,7 +21,6 @@
   import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
   import { setThemeContext } from "@sjsf/shadcn4-theme";
-  import * as components from "@sjsf/shadcn4-theme/new-york";
   import {
     compressToEncodedURIComponent,
     decompressFromEncodedURIComponent,
@@ -61,6 +60,7 @@
   import * as customComponents from "./custom-form-components/index.js";
   import { themeManager } from "./theme.svelte";
   import SamplePicker from "./sample-picker.svelte";
+  import { setShadcnContext } from "./shadcn-context.js";
 
   const DEFAULT_PLAYGROUND_STATE: PlaygroundState = {
     schema: {
@@ -223,7 +223,7 @@
     data.initialValue = form.value;
   });
 
-  setThemeContext({ components });
+  setShadcnContext();
 
   const clearLink = new URL(location.href);
   clearLink.hash = "";

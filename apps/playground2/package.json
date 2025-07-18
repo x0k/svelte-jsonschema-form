@@ -34,9 +34,9 @@
   },
   "devDependencies": {
     "@internationalized/date": "^3.8.2",
-    "@lucide/svelte": "^0.518.0",
+    "@lucide/svelte": "^0.515.0",
     "@tailwindcss/vite": "catalog:",
-    "bits-ui": "^2.8.3",
+    "bits-ui": "^2.8.8",
     "clsx": "^2.1.1",
     "svelte": "catalog:",
     "tailwind-merge": "^3.3.1",
