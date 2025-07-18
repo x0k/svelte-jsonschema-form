@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@sjsf/form": "workspace:*",
-    "zod": "catalog:",
+    "zod": "catalog:legacy",
     "json-schema-to-zod": "^2.6.1"
   }
 }

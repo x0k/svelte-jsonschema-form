@@ -1,14 +1,16 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ],
+  "extends": "@total-typescript/tsconfig/bundler/dom/app",
   "compilerOptions": {
+    "target": "esnext",
+    "lib": [
+      "ESNext"
+    ],
+    "noUncheckedIndexedAccess": false,
+    "moduleResolution": "nodenext",
+    "module": "nodenext",
+    "types": [
+      "vite/client",
+    ],
     "baseUrl": ".",
     "paths": {
       "$lib": [
@@ -21,5 +23,10 @@
         "../*"
       ]
     }
-  }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.js",
+    "src/**/*.svelte"
+  ],
 }
