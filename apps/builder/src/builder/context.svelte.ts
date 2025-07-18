@@ -2,6 +2,7 @@ import { flushSync, getContext, onDestroy, setContext } from "svelte";
 import { mergeSchemas } from "@sjsf/form/core";
 import type { FormValue, Schema, UiSchema } from "@sjsf/form";
 import { DragDropManager, Draggable, Droppable } from "@dnd-kit/dom";
+import type { HighlighterCore } from "shiki/core";
 import {
   compressToEncodedURIComponent,
   decompressFromEncodedURIComponent,
@@ -37,6 +38,7 @@ import { validator } from "$lib/form/defaults.js";
 import { Validator } from "$lib/sjsf/validators.js";
 import { Resolver } from "$lib/sjsf/resolver.js";
 import { Icons, ICONS_APP_CSS } from "$lib/sjsf/icons.js";
+import { highlight, type SupportedLanguage } from "$lib/shiki.js";
 
 import {
   type WidgetType,
@@ -62,8 +64,6 @@ import {
   buildInstallSh,
   join,
 } from "./code-builders.js";
-import type { HighlighterCore } from "shiki/core";
-import { highlight, type SupportedLanguage } from "$lib/shiki.js";
 
 const BUILDER_CONTEXT = Symbol("builder-context");
 

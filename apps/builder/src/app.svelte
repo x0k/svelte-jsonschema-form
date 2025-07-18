@@ -5,12 +5,12 @@
   import { Button } from "$lib/components/ui/button/index.js";
   import { TooltipProvider } from "$lib/components/ui/tooltip/index.js";
   import Select from "$lib/components/select.svelte";
+  import { highlighterPromise } from "$lib/shiki.js";
 
   import Builder from "./builder/builder.svelte";
   import { setShadcnContext } from "./shadcn-context.js";
   import { themeManager } from "./theme.svelte.js";
   import { THEME_TITLES, THEMES } from "./shared/index.js";
-  import { highlighterPromise } from "$lib/shiki.js";
 
   setShadcnContext();
 
