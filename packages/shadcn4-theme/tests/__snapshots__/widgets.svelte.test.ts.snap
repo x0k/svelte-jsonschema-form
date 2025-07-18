@@ -46,6 +46,8 @@ exports[`widgets > checkbox > disabled 1`] = `
               data-slot="checkbox-indicator"
             >
               <!---->
+              
+              <!---->
             </div>
             <!---->
           </button>
@@ -170,6 +172,8 @@ exports[`widgets > checkbox > error 1`] = `
               class="text-current transition-none"
               data-slot="checkbox-indicator"
             >
+              <!---->
+              
               <!---->
             </div>
             <!---->
@@ -306,6 +310,8 @@ exports[`widgets > checkbox > normal 1`] = `
               data-slot="checkbox-indicator"
             >
               <!---->
+              
+              <!---->
             </div>
             <!---->
           </button>
@@ -428,6 +434,8 @@ exports[`widgets > checkbox > readonly 1`] = `
               class="text-current transition-none"
               data-slot="checkbox-indicator"
             >
+              <!---->
+              
               <!---->
             </div>
             <!---->
@@ -555,6 +563,8 @@ exports[`widgets > checkboxes > disabled 1`] = `
               data-slot="checkbox-indicator"
             >
               <!---->
+              
+              <!---->
             </div>
             <!---->
           </button>
@@ -615,6 +625,8 @@ exports[`widgets > checkboxes > disabled 1`] = `
               class="text-current transition-none"
               data-slot="checkbox-indicator"
             >
+              <!---->
+              
               <!---->
             </div>
             <!---->
@@ -677,6 +689,8 @@ exports[`widgets > checkboxes > disabled 1`] = `
               data-slot="checkbox-indicator"
             >
               <!---->
+              
+              <!---->
             </div>
             <!---->
           </button>
@@ -737,6 +751,8 @@ exports[`widgets > checkboxes > disabled 1`] = `
               class="text-current transition-none"
               data-slot="checkbox-indicator"
             >
+              <!---->
+              
               <!---->
             </div>
             <!---->
@@ -865,6 +881,8 @@ exports[`widgets > checkboxes > error 1`] = `
               data-slot="checkbox-indicator"
             >
               <!---->
+              
+              <!---->
             </div>
             <!---->
           </button>
@@ -922,6 +940,8 @@ exports[`widgets > checkboxes > error 1`] = `
               class="text-current transition-none"
               data-slot="checkbox-indicator"
             >
+              <!---->
+              
               <!---->
             </div>
             <!---->
@@ -981,6 +1001,8 @@ exports[`widgets > checkboxes > error 1`] = `
               data-slot="checkbox-indicator"
             >
               <!---->
+              
+              <!---->
             </div>
             <!---->
           </button>
@@ -1038,6 +1060,8 @@ exports[`widgets > checkboxes > error 1`] = `
               class="text-current transition-none"
               data-slot="checkbox-indicator"
             >
+              <!---->
+              
               <!---->
             </div>
             <!---->
@@ -1176,6 +1200,8 @@ exports[`widgets > checkboxes > normal 1`] = `
               data-slot="checkbox-indicator"
             >
               <!---->
+              
+              <!---->
             </div>
             <!---->
           </button>
@@ -1233,6 +1259,8 @@ exports[`widgets > checkboxes > normal 1`] = `
               class="text-current transition-none"
               data-slot="checkbox-indicator"
             >
+              <!---->
+              
               <!---->
             </div>
             <!---->
@@ -1292,6 +1320,8 @@ exports[`widgets > checkboxes > normal 1`] = `
               data-slot="checkbox-indicator"
             >
               <!---->
+              
+              <!---->
             </div>
             <!---->
           </button>
@@ -1349,6 +1379,8 @@ exports[`widgets > checkboxes > normal 1`] = `
               class="text-current transition-none"
               data-slot="checkbox-indicator"
             >
+              <!---->
+              
               <!---->
             </div>
             <!---->
@@ -1475,6 +1507,8 @@ exports[`widgets > checkboxes > readonly 1`] = `
               data-slot="checkbox-indicator"
             >
               <!---->
+              
+              <!---->
             </div>
             <!---->
           </button>
@@ -1532,6 +1566,8 @@ exports[`widgets > checkboxes > readonly 1`] = `
               class="text-current transition-none"
               data-slot="checkbox-indicator"
             >
+              <!---->
+              
               <!---->
             </div>
             <!---->
@@ -1591,6 +1627,8 @@ exports[`widgets > checkboxes > readonly 1`] = `
               data-slot="checkbox-indicator"
             >
               <!---->
+              
+              <!---->
             </div>
             <!---->
           </button>
@@ -1648,6 +1686,8 @@ exports[`widgets > checkboxes > readonly 1`] = `
               class="text-current transition-none"
               data-slot="checkbox-indicator"
             >
+              <!---->
+              
               <!---->
             </div>
             <!---->
@@ -4327,6 +4367,7 @@ exports[`widgets > radio > disabled 1`] = `
         <!---->
         <!---->
         <div
+          aria-disabled="true"
           aria-required="false"
           class="grid gap-3"
           data-disabled=""
@@ -4609,6 +4650,7 @@ exports[`widgets > radio > error 1`] = `
         <!---->
         <!---->
         <div
+          aria-disabled="false"
           aria-required="false"
           class="grid gap-3"
           data-orientation="vertical"
@@ -4893,6 +4935,7 @@ exports[`widgets > radio > normal 1`] = `
         <!---->
         <!---->
         <div
+          aria-disabled="false"
           aria-required="false"
           class="grid gap-3"
           data-orientation="vertical"
@@ -5165,6 +5208,7 @@ exports[`widgets > radio > readonly 1`] = `
         <!---->
         <!---->
         <div
+          aria-disabled="false"
           aria-required="false"
           class="grid gap-3"
           data-orientation="vertical"

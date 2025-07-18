@@ -66,6 +66,8 @@ exports[`widgets > checkbox > disabled 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg cursor-not-allowed opacity-50"
       disabled=""
@@ -78,6 +80,8 @@ exports[`widgets > checkbox > disabled 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -165,6 +169,8 @@ exports[`widgets > checkbox > error 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -176,6 +182,8 @@ exports[`widgets > checkbox > error 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -251,6 +259,8 @@ exports[`widgets > checkbox > normal 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -262,6 +272,8 @@ exports[`widgets > checkbox > normal 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -338,6 +350,8 @@ exports[`widgets > checkbox > readonly 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -349,6 +363,8 @@ exports[`widgets > checkbox > readonly 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -488,6 +504,8 @@ exports[`widgets > checkboxes > disabled 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg cursor-not-allowed opacity-50"
       disabled=""
@@ -500,6 +518,8 @@ exports[`widgets > checkboxes > disabled 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -647,6 +667,8 @@ exports[`widgets > checkboxes > error 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -658,6 +680,8 @@ exports[`widgets > checkboxes > error 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -793,6 +817,8 @@ exports[`widgets > checkboxes > normal 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -804,6 +830,8 @@ exports[`widgets > checkboxes > normal 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -943,6 +971,8 @@ exports[`widgets > checkboxes > readonly 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -954,6 +984,8 @@ exports[`widgets > checkboxes > readonly 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -1051,6 +1083,8 @@ exports[`widgets > datePicker > disabled 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg cursor-not-allowed opacity-50"
       disabled=""
@@ -1063,6 +1097,8 @@ exports[`widgets > datePicker > disabled 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -1170,6 +1206,8 @@ exports[`widgets > datePicker > error 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -1181,6 +1219,8 @@ exports[`widgets > datePicker > error 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -1276,6 +1316,8 @@ exports[`widgets > datePicker > normal 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -1287,6 +1329,8 @@ exports[`widgets > datePicker > normal 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -1382,6 +1426,8 @@ exports[`widgets > datePicker > readonly 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -1393,6 +1439,8 @@ exports[`widgets > datePicker > readonly 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -1472,6 +1520,8 @@ exports[`widgets > file > disabled 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg cursor-not-allowed opacity-50"
       disabled=""
@@ -1484,6 +1534,8 @@ exports[`widgets > file > disabled 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -1574,6 +1626,8 @@ exports[`widgets > file > error 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -1585,6 +1639,8 @@ exports[`widgets > file > error 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -1663,6 +1719,8 @@ exports[`widgets > file > normal 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -1674,6 +1732,8 @@ exports[`widgets > file > normal 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -1753,6 +1813,8 @@ exports[`widgets > file > readonly 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -1764,6 +1826,8 @@ exports[`widgets > file > readonly 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -1844,6 +1908,8 @@ exports[`widgets > multiFile > disabled 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg cursor-not-allowed opacity-50"
       disabled=""
@@ -1856,6 +1922,8 @@ exports[`widgets > multiFile > disabled 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -1947,6 +2015,8 @@ exports[`widgets > multiFile > error 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -1958,6 +2028,8 @@ exports[`widgets > multiFile > error 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -2037,6 +2109,8 @@ exports[`widgets > multiFile > normal 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -2048,6 +2122,8 @@ exports[`widgets > multiFile > normal 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -2128,6 +2204,8 @@ exports[`widgets > multiFile > readonly 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -2139,6 +2217,8 @@ exports[`widgets > multiFile > readonly 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -2271,6 +2351,8 @@ exports[`widgets > multiSelect > disabled 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg cursor-not-allowed opacity-50"
       disabled=""
@@ -2283,6 +2365,8 @@ exports[`widgets > multiSelect > disabled 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -2427,6 +2511,8 @@ exports[`widgets > multiSelect > error 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -2438,6 +2524,8 @@ exports[`widgets > multiSelect > error 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -2570,6 +2658,8 @@ exports[`widgets > multiSelect > normal 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -2581,6 +2671,8 @@ exports[`widgets > multiSelect > normal 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -2713,6 +2805,8 @@ exports[`widgets > multiSelect > readonly 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -2724,6 +2818,8 @@ exports[`widgets > multiSelect > readonly 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -2806,6 +2902,8 @@ exports[`widgets > number > disabled 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg cursor-not-allowed opacity-50"
       disabled=""
@@ -2818,6 +2916,8 @@ exports[`widgets > number > disabled 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -2911,6 +3011,8 @@ exports[`widgets > number > error 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -2922,6 +3024,8 @@ exports[`widgets > number > error 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -3003,6 +3107,8 @@ exports[`widgets > number > normal 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -3014,6 +3120,8 @@ exports[`widgets > number > normal 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -3096,6 +3204,8 @@ exports[`widgets > number > readonly 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -3107,6 +3217,8 @@ exports[`widgets > number > readonly 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -3240,6 +3352,8 @@ exports[`widgets > radio > disabled 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg cursor-not-allowed opacity-50"
       disabled=""
@@ -3252,6 +3366,8 @@ exports[`widgets > radio > disabled 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -3393,6 +3509,8 @@ exports[`widgets > radio > error 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -3404,6 +3522,8 @@ exports[`widgets > radio > error 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -3533,6 +3653,8 @@ exports[`widgets > radio > normal 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -3544,6 +3666,8 @@ exports[`widgets > radio > normal 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -3677,6 +3801,8 @@ exports[`widgets > radio > readonly 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -3688,6 +3814,8 @@ exports[`widgets > radio > readonly 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -3752,6 +3880,8 @@ exports[`widgets > range > disabled 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg cursor-not-allowed opacity-50"
       disabled=""
@@ -3764,6 +3894,8 @@ exports[`widgets > range > disabled 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -3839,6 +3971,8 @@ exports[`widgets > range > error 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -3850,6 +3984,8 @@ exports[`widgets > range > error 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -3913,6 +4049,8 @@ exports[`widgets > range > normal 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -3924,6 +4062,8 @@ exports[`widgets > range > normal 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -3988,6 +4128,8 @@ exports[`widgets > range > readonly 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -3999,6 +4141,8 @@ exports[`widgets > range > readonly 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -4095,6 +4239,8 @@ exports[`widgets > select > disabled 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg cursor-not-allowed opacity-50"
       disabled=""
@@ -4107,6 +4253,8 @@ exports[`widgets > select > disabled 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -4214,6 +4362,8 @@ exports[`widgets > select > error 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -4225,6 +4375,8 @@ exports[`widgets > select > error 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -4320,6 +4472,8 @@ exports[`widgets > select > normal 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -4331,6 +4485,8 @@ exports[`widgets > select > normal 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -4426,6 +4582,8 @@ exports[`widgets > select > readonly 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -4437,6 +4595,8 @@ exports[`widgets > select > readonly 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -4521,6 +4681,8 @@ exports[`widgets > switch > disabled 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg cursor-not-allowed opacity-50"
       disabled=""
@@ -4533,6 +4695,8 @@ exports[`widgets > switch > disabled 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -4628,6 +4792,8 @@ exports[`widgets > switch > error 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -4639,6 +4805,8 @@ exports[`widgets > switch > error 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -4722,6 +4890,8 @@ exports[`widgets > switch > normal 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -4733,6 +4903,8 @@ exports[`widgets > switch > normal 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -4817,6 +4989,8 @@ exports[`widgets > switch > readonly 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -4828,6 +5002,8 @@ exports[`widgets > switch > readonly 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -4909,6 +5085,8 @@ exports[`widgets > text > disabled 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg cursor-not-allowed opacity-50"
       disabled=""
@@ -4921,6 +5099,8 @@ exports[`widgets > text > disabled 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -5013,6 +5193,8 @@ exports[`widgets > text > error 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -5024,6 +5206,8 @@ exports[`widgets > text > error 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -5104,6 +5288,8 @@ exports[`widgets > text > normal 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -5115,6 +5301,8 @@ exports[`widgets > text > normal 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -5196,6 +5384,8 @@ exports[`widgets > text > readonly 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -5207,6 +5397,8 @@ exports[`widgets > text > readonly 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -5283,6 +5475,8 @@ exports[`widgets > textarea > disabled 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg cursor-not-allowed opacity-50"
       disabled=""
@@ -5295,6 +5489,8 @@ exports[`widgets > textarea > disabled 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -5382,6 +5578,8 @@ exports[`widgets > textarea > error 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -5393,6 +5591,8 @@ exports[`widgets > textarea > error 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -5468,6 +5668,8 @@ exports[`widgets > textarea > normal 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -5479,6 +5681,8 @@ exports[`widgets > textarea > normal 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->
@@ -5555,6 +5759,8 @@ exports[`widgets > textarea > readonly 1`] = `
      
     <!---->
     <!---->
+    <!---->
+    <!---->
     <button
       class="text-center font-medium focus-within:ring-4 focus-within:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 rounded-lg"
       type="submit"
@@ -5566,6 +5772,8 @@ exports[`widgets > textarea > readonly 1`] = `
       
       <!---->
     </button>
+    
+    
     
     
     <!---->

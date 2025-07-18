@@ -29,17 +29,25 @@ exports[`widgets > checkbox > disabled 1`] = `
         <div
           class="flex items-center cursor-not-allowed opacity-70"
         >
-          <input
-            aria-describedby="root::description root::help root::errors"
-            class="w-4 h-4 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 cursor-not-allowed opacity-50 bg-gray-200 border-gray-300"
-            disabled=""
-            id="root"
-            name="root"
-            type="checkbox"
-          />
-           
           <!---->
-          
+          <label
+            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+          >
+            <input
+              aria-describedby="root::description root::help root::errors"
+              class="w-4 h-4 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 cursor-not-allowed opacity-50 bg-gray-200 border-gray-300"
+              disabled=""
+              id="root"
+              name="root"
+              type="checkbox"
+            />
+             
+            <!---->
+            
+            
+            <!---->
+            <!---->
+          </label>
           
           <!---->
         </div>
@@ -115,16 +123,24 @@ exports[`widgets > checkbox > error 1`] = `
         <div
           class="flex items-center"
         >
-          <input
-            aria-describedby="root::description root::help root::errors"
-            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-            id="root"
-            name="root"
-            type="checkbox"
-          />
-           
           <!---->
-          
+          <label
+            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+          >
+            <input
+              aria-describedby="root::description root::help root::errors"
+              class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+              id="root"
+              name="root"
+              type="checkbox"
+            />
+             
+            <!---->
+            
+            
+            <!---->
+            <!---->
+          </label>
           
           <!---->
         </div>
@@ -211,16 +227,24 @@ exports[`widgets > checkbox > normal 1`] = `
         <div
           class="flex items-center"
         >
-          <input
-            aria-describedby="root::description root::help root::errors"
-            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-            id="root"
-            name="root"
-            type="checkbox"
-          />
-           
           <!---->
-          
+          <label
+            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+          >
+            <input
+              aria-describedby="root::description root::help root::errors"
+              class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+              id="root"
+              name="root"
+              type="checkbox"
+            />
+             
+            <!---->
+            
+            
+            <!---->
+            <!---->
+          </label>
           
           <!---->
         </div>
@@ -295,17 +319,25 @@ exports[`widgets > checkbox > readonly 1`] = `
         <div
           class="flex items-center"
         >
-          <input
-            aria-describedby="root::description root::help root::errors"
-            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-            id="root"
-            name="root"
-            readonly=""
-            type="checkbox"
-          />
-           
           <!---->
-          
+          <label
+            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+          >
+            <input
+              aria-describedby="root::description root::help root::errors"
+              class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+              id="root"
+              name="root"
+              readonly=""
+              type="checkbox"
+            />
+             
+            <!---->
+            
+            
+            <!---->
+            <!---->
+          </label>
           
           <!---->
         </div>
@@ -381,17 +413,25 @@ exports[`widgets > checkboxes > disabled 1`] = `
         <div
           class="flex items-center cursor-not-allowed opacity-70"
         >
-          <input
-            aria-describedby="root::description root::help root::errors"
-            class="w-4 h-4 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 cursor-not-allowed opacity-50 bg-gray-200 border-gray-300"
-            disabled=""
-            id="root::0"
-            name="root"
-            type="checkbox"
-          />
-           
           <!---->
-          foo
+          <label
+            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+          >
+            <input
+              aria-describedby="root::description root::help root::errors"
+              class="w-4 h-4 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 cursor-not-allowed opacity-50 bg-gray-200 border-gray-300"
+              disabled=""
+              id="root::0"
+              name="root"
+              type="checkbox"
+            />
+             
+            <!---->
+            foo
+            
+            <!---->
+            <!---->
+          </label>
           
           <!---->
         </div>
@@ -400,17 +440,25 @@ exports[`widgets > checkboxes > disabled 1`] = `
         <div
           class="flex items-center cursor-not-allowed opacity-70"
         >
-          <input
-            aria-describedby="root::description root::help root::errors"
-            class="w-4 h-4 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 cursor-not-allowed opacity-50 bg-gray-200 border-gray-300"
-            disabled=""
-            id="root::1"
-            name="root"
-            type="checkbox"
-          />
-           
           <!---->
-          bar
+          <label
+            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+          >
+            <input
+              aria-describedby="root::description root::help root::errors"
+              class="w-4 h-4 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 cursor-not-allowed opacity-50 bg-gray-200 border-gray-300"
+              disabled=""
+              id="root::1"
+              name="root"
+              type="checkbox"
+            />
+             
+            <!---->
+            bar
+            
+            <!---->
+            <!---->
+          </label>
           
           <!---->
         </div>
@@ -419,17 +467,25 @@ exports[`widgets > checkboxes > disabled 1`] = `
         <div
           class="flex items-center cursor-not-allowed opacity-70"
         >
-          <input
-            aria-describedby="root::description root::help root::errors"
-            class="w-4 h-4 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 cursor-not-allowed opacity-50 bg-gray-200 border-gray-300"
-            disabled=""
-            id="root::2"
-            name="root"
-            type="checkbox"
-          />
-           
           <!---->
-          fuzz
+          <label
+            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+          >
+            <input
+              aria-describedby="root::description root::help root::errors"
+              class="w-4 h-4 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 cursor-not-allowed opacity-50 bg-gray-200 border-gray-300"
+              disabled=""
+              id="root::2"
+              name="root"
+              type="checkbox"
+            />
+             
+            <!---->
+            fuzz
+            
+            <!---->
+            <!---->
+          </label>
           
           <!---->
         </div>
@@ -438,17 +494,25 @@ exports[`widgets > checkboxes > disabled 1`] = `
         <div
           class="flex items-center cursor-not-allowed opacity-70"
         >
-          <input
-            aria-describedby="root::description root::help root::errors"
-            class="w-4 h-4 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 cursor-not-allowed opacity-50 bg-gray-200 border-gray-300"
-            disabled=""
-            id="root::3"
-            name="root"
-            type="checkbox"
-          />
-           
           <!---->
-          qux
+          <label
+            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+          >
+            <input
+              aria-describedby="root::description root::help root::errors"
+              class="w-4 h-4 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 cursor-not-allowed opacity-50 bg-gray-200 border-gray-300"
+              disabled=""
+              id="root::3"
+              name="root"
+              type="checkbox"
+            />
+             
+            <!---->
+            qux
+            
+            <!---->
+            <!---->
+          </label>
           
           <!---->
         </div>
@@ -526,16 +590,24 @@ exports[`widgets > checkboxes > error 1`] = `
         <div
           class="flex items-center"
         >
-          <input
-            aria-describedby="root::description root::help root::errors"
-            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-            id="root::0"
-            name="root"
-            type="checkbox"
-          />
-           
           <!---->
-          foo
+          <label
+            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+          >
+            <input
+              aria-describedby="root::description root::help root::errors"
+              class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+              id="root::0"
+              name="root"
+              type="checkbox"
+            />
+             
+            <!---->
+            foo
+            
+            <!---->
+            <!---->
+          </label>
           
           <!---->
         </div>
@@ -544,16 +616,24 @@ exports[`widgets > checkboxes > error 1`] = `
         <div
           class="flex items-center"
         >
-          <input
-            aria-describedby="root::description root::help root::errors"
-            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-            id="root::1"
-            name="root"
-            type="checkbox"
-          />
-           
           <!---->
-          bar
+          <label
+            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+          >
+            <input
+              aria-describedby="root::description root::help root::errors"
+              class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+              id="root::1"
+              name="root"
+              type="checkbox"
+            />
+             
+            <!---->
+            bar
+            
+            <!---->
+            <!---->
+          </label>
           
           <!---->
         </div>
@@ -562,16 +642,24 @@ exports[`widgets > checkboxes > error 1`] = `
         <div
           class="flex items-center"
         >
-          <input
-            aria-describedby="root::description root::help root::errors"
-            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-            id="root::2"
-            name="root"
-            type="checkbox"
-          />
-           
           <!---->
-          fuzz
+          <label
+            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+          >
+            <input
+              aria-describedby="root::description root::help root::errors"
+              class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+              id="root::2"
+              name="root"
+              type="checkbox"
+            />
+             
+            <!---->
+            fuzz
+            
+            <!---->
+            <!---->
+          </label>
           
           <!---->
         </div>
@@ -580,16 +668,24 @@ exports[`widgets > checkboxes > error 1`] = `
         <div
           class="flex items-center"
         >
-          <input
-            aria-describedby="root::description root::help root::errors"
-            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-            id="root::3"
-            name="root"
-            type="checkbox"
-          />
-           
           <!---->
-          qux
+          <label
+            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+          >
+            <input
+              aria-describedby="root::description root::help root::errors"
+              class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+              id="root::3"
+              name="root"
+              type="checkbox"
+            />
+             
+            <!---->
+            qux
+            
+            <!---->
+            <!---->
+          </label>
           
           <!---->
         </div>
@@ -678,16 +774,24 @@ exports[`widgets > checkboxes > normal 1`] = `
         <div
           class="flex items-center"
         >
-          <input
-            aria-describedby="root::description root::help root::errors"
-            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-            id="root::0"
-            name="root"
-            type="checkbox"
-          />
-           
           <!---->
-          foo
+          <label
+            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+          >
+            <input
+              aria-describedby="root::description root::help root::errors"
+              class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+              id="root::0"
+              name="root"
+              type="checkbox"
+            />
+             
+            <!---->
+            foo
+            
+            <!---->
+            <!---->
+          </label>
           
           <!---->
         </div>
@@ -696,16 +800,24 @@ exports[`widgets > checkboxes > normal 1`] = `
         <div
           class="flex items-center"
         >
-          <input
-            aria-describedby="root::description root::help root::errors"
-            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-            id="root::1"
-            name="root"
-            type="checkbox"
-          />
-           
           <!---->
-          bar
+          <label
+            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+          >
+            <input
+              aria-describedby="root::description root::help root::errors"
+              class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+              id="root::1"
+              name="root"
+              type="checkbox"
+            />
+             
+            <!---->
+            bar
+            
+            <!---->
+            <!---->
+          </label>
           
           <!---->
         </div>
@@ -714,16 +826,24 @@ exports[`widgets > checkboxes > normal 1`] = `
         <div
           class="flex items-center"
         >
-          <input
-            aria-describedby="root::description root::help root::errors"
-            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-            id="root::2"
-            name="root"
-            type="checkbox"
-          />
-           
           <!---->
-          fuzz
+          <label
+            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+          >
+            <input
+              aria-describedby="root::description root::help root::errors"
+              class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+              id="root::2"
+              name="root"
+              type="checkbox"
+            />
+             
+            <!---->
+            fuzz
+            
+            <!---->
+            <!---->
+          </label>
           
           <!---->
         </div>
@@ -732,16 +852,24 @@ exports[`widgets > checkboxes > normal 1`] = `
         <div
           class="flex items-center"
         >
-          <input
-            aria-describedby="root::description root::help root::errors"
-            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-            id="root::3"
-            name="root"
-            type="checkbox"
-          />
-           
           <!---->
-          qux
+          <label
+            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+          >
+            <input
+              aria-describedby="root::description root::help root::errors"
+              class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+              id="root::3"
+              name="root"
+              type="checkbox"
+            />
+             
+            <!---->
+            qux
+            
+            <!---->
+            <!---->
+          </label>
           
           <!---->
         </div>
@@ -818,17 +946,25 @@ exports[`widgets > checkboxes > readonly 1`] = `
         <div
           class="flex items-center"
         >
-          <input
-            aria-describedby="root::description root::help root::errors"
-            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-            id="root::0"
-            name="root"
-            readonly=""
-            type="checkbox"
-          />
-           
           <!---->
-          foo
+          <label
+            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+          >
+            <input
+              aria-describedby="root::description root::help root::errors"
+              class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+              id="root::0"
+              name="root"
+              readonly=""
+              type="checkbox"
+            />
+             
+            <!---->
+            foo
+            
+            <!---->
+            <!---->
+          </label>
           
           <!---->
         </div>
@@ -837,17 +973,25 @@ exports[`widgets > checkboxes > readonly 1`] = `
         <div
           class="flex items-center"
         >
-          <input
-            aria-describedby="root::description root::help root::errors"
-            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-            id="root::1"
-            name="root"
-            readonly=""
-            type="checkbox"
-          />
-           
           <!---->
-          bar
+          <label
+            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+          >
+            <input
+              aria-describedby="root::description root::help root::errors"
+              class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+              id="root::1"
+              name="root"
+              readonly=""
+              type="checkbox"
+            />
+             
+            <!---->
+            bar
+            
+            <!---->
+            <!---->
+          </label>
           
           <!---->
         </div>
@@ -856,17 +1000,25 @@ exports[`widgets > checkboxes > readonly 1`] = `
         <div
           class="flex items-center"
         >
-          <input
-            aria-describedby="root::description root::help root::errors"
-            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-            id="root::2"
-            name="root"
-            readonly=""
-            type="checkbox"
-          />
-           
           <!---->
-          fuzz
+          <label
+            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+          >
+            <input
+              aria-describedby="root::description root::help root::errors"
+              class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+              id="root::2"
+              name="root"
+              readonly=""
+              type="checkbox"
+            />
+             
+            <!---->
+            fuzz
+            
+            <!---->
+            <!---->
+          </label>
           
           <!---->
         </div>
@@ -875,17 +1027,25 @@ exports[`widgets > checkboxes > readonly 1`] = `
         <div
           class="flex items-center"
         >
-          <input
-            aria-describedby="root::description root::help root::errors"
-            class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-            id="root::3"
-            name="root"
-            readonly=""
-            type="checkbox"
-          />
-           
           <!---->
-          qux
+          <label
+            class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+          >
+            <input
+              aria-describedby="root::description root::help root::errors"
+              class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+              id="root::3"
+              name="root"
+              readonly=""
+              type="checkbox"
+            />
+             
+            <!---->
+            qux
+            
+            <!---->
+            <!---->
+          </label>
           
           <!---->
         </div>
@@ -968,7 +1128,7 @@ exports[`widgets > datePicker > disabled 1`] = `
             >
               <input
                 aria-haspopup="dialog"
-                class="w-full rounded-md border px-4 py-2 text-sm focus:ring-2 focus:outline-none outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-primary-500 dark:focus:ring-primary-400"
+                class="w-full rounded-md border px-4 py-2 text-sm focus:ring-2 focus:outline-none outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white disabled:cursor-not-allowed disabled:opacity-50 focus:ring-primary-500 dark:focus:ring-primary-400"
                 disabled=""
                 inputmode="none"
                 placeholder="Select date"
@@ -1078,7 +1238,7 @@ exports[`widgets > datePicker > error 1`] = `
             >
               <input
                 aria-haspopup="dialog"
-                class="w-full rounded-md border px-4 py-2 text-sm focus:ring-2 focus:outline-none outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-primary-500 dark:focus:ring-primary-400"
+                class="w-full rounded-md border px-4 py-2 text-sm focus:ring-2 focus:outline-none outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white disabled:cursor-not-allowed disabled:opacity-50 focus:ring-primary-500 dark:focus:ring-primary-400"
                 inputmode="none"
                 placeholder="Select date"
                 type="text"
@@ -1197,7 +1357,7 @@ exports[`widgets > datePicker > normal 1`] = `
             >
               <input
                 aria-haspopup="dialog"
-                class="w-full rounded-md border px-4 py-2 text-sm focus:ring-2 focus:outline-none outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-primary-500 dark:focus:ring-primary-400"
+                class="w-full rounded-md border px-4 py-2 text-sm focus:ring-2 focus:outline-none outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white disabled:cursor-not-allowed disabled:opacity-50 focus:ring-primary-500 dark:focus:ring-primary-400"
                 inputmode="none"
                 placeholder="Select date"
                 type="text"
@@ -1304,7 +1464,7 @@ exports[`widgets > datePicker > readonly 1`] = `
             >
               <input
                 aria-haspopup="dialog"
-                class="w-full rounded-md border px-4 py-2 text-sm focus:ring-2 focus:outline-none outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-primary-500 dark:focus:ring-primary-400"
+                class="w-full rounded-md border px-4 py-2 text-sm focus:ring-2 focus:outline-none outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white disabled:cursor-not-allowed disabled:opacity-50 focus:ring-primary-500 dark:focus:ring-primary-400"
                 inputmode="none"
                 placeholder="Select date"
                 type="text"
@@ -2137,7 +2297,7 @@ exports[`widgets > multiSelect > disabled 1`] = `
              
             <svg
               aria-hidden="true"
-              class="ms-1 h-3 w-3 text-gray-800 dark:text-white cursor-not-allowed"
+              class="ms-1 h-3 w-3 cursor-pointer text-gray-800 dark:text-white cursor-not-allowed"
               fill="none"
               viewBox="0 0 10 6"
               xmlns="http://www.w3.org/2000/svg"
@@ -2653,6 +2813,8 @@ exports[`widgets > number > disabled 1`] = `
          
         <!---->
         <!---->
+        <!---->
+        <!---->
          
         <input
           aria-describedby="root::description root::help root::errors"
@@ -2668,6 +2830,8 @@ exports[`widgets > number > disabled 1`] = `
         <!---->
          
         <!---->
+        
+        
         <!---->
         <!---->
          
@@ -2747,6 +2911,8 @@ exports[`widgets > number > error 1`] = `
          
         <!---->
         <!---->
+        <!---->
+        <!---->
          
         <input
           aria-describedby="root::description root::help root::errors"
@@ -2761,6 +2927,8 @@ exports[`widgets > number > error 1`] = `
         <!---->
          
         <!---->
+        
+        
         <!---->
         <!---->
          
@@ -2851,6 +3019,8 @@ exports[`widgets > number > normal 1`] = `
          
         <!---->
         <!---->
+        <!---->
+        <!---->
          
         <input
           aria-describedby="root::description root::help root::errors"
@@ -2865,6 +3035,8 @@ exports[`widgets > number > normal 1`] = `
         <!---->
          
         <!---->
+        
+        
         <!---->
         <!---->
          
@@ -2943,6 +3115,8 @@ exports[`widgets > number > readonly 1`] = `
          
         <!---->
         <!---->
+        <!---->
+        <!---->
          
         <input
           aria-describedby="root::description root::help root::errors"
@@ -2958,6 +3132,8 @@ exports[`widgets > number > readonly 1`] = `
         <!---->
          
         <!---->
+        
+        
         <!---->
         <!---->
          
@@ -5759,6 +5935,8 @@ exports[`widgets > text > disabled 1`] = `
          
         <!---->
         <!---->
+        <!---->
+        <!---->
          
         <input
           aria-describedby="root::description root::help root::errors"
@@ -5773,6 +5951,8 @@ exports[`widgets > text > disabled 1`] = `
         <!---->
          
         <!---->
+        
+        
         <!---->
         <!---->
          
@@ -5852,6 +6032,8 @@ exports[`widgets > text > error 1`] = `
          
         <!---->
         <!---->
+        <!---->
+        <!---->
          
         <input
           aria-describedby="root::description root::help root::errors"
@@ -5865,6 +6047,8 @@ exports[`widgets > text > error 1`] = `
         <!---->
          
         <!---->
+        
+        
         <!---->
         <!---->
          
@@ -5955,6 +6139,8 @@ exports[`widgets > text > normal 1`] = `
          
         <!---->
         <!---->
+        <!---->
+        <!---->
          
         <input
           aria-describedby="root::description root::help root::errors"
@@ -5968,6 +6154,8 @@ exports[`widgets > text > normal 1`] = `
         <!---->
          
         <!---->
+        
+        
         <!---->
         <!---->
          
@@ -6046,6 +6234,8 @@ exports[`widgets > text > readonly 1`] = `
          
         <!---->
         <!---->
+        <!---->
+        <!---->
          
         <input
           aria-describedby="root::description root::help root::errors"
@@ -6060,6 +6250,8 @@ exports[`widgets > text > readonly 1`] = `
         <!---->
          
         <!---->
+        
+        
         <!---->
         <!---->
          

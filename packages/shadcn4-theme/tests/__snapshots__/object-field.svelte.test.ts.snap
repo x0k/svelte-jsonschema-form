@@ -1174,6 +1174,8 @@ exports[`object fields > one of defaults > default preset 1`] = `
                       data-slot="checkbox-indicator"
                     >
                       <!---->
+                      
+                      <!---->
                     </div>
                     <!---->
                   </button>
@@ -1339,6 +1341,8 @@ exports[`object fields > one of defaults > default preset 1`] = `
                       class="text-current transition-none"
                       data-slot="checkbox-indicator"
                     >
+                      <!---->
+                      
                       <!---->
                     </div>
                     <!---->
@@ -2063,6 +2067,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                       data-slot="checkbox-indicator"
                     >
                       <!---->
+                      
+                      <!---->
                     </div>
                     <!---->
                   </button>
@@ -2578,6 +2584,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                       data-slot="checkbox-indicator"
                     >
                       <!---->
+                      
+                      <!---->
                     </div>
                     <!---->
                   </button>
@@ -2743,6 +2751,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                       class="text-current transition-none"
                       data-slot="checkbox-indicator"
                     >
+                      <!---->
+                      
                       <!---->
                     </div>
                     <!---->

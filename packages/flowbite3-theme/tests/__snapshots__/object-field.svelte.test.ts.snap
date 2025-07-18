@@ -93,6 +93,8 @@ exports[`object fields > additionalProperties 1`] = `
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
@@ -107,6 +109,8 @@ exports[`object fields > additionalProperties 1`] = `
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
@@ -190,6 +194,8 @@ exports[`object fields > additionalProperties 1`] = `
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.foo::description root.foo::help root.foo::errors"
@@ -203,6 +209,8 @@ exports[`object fields > additionalProperties 1`] = `
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
@@ -399,6 +407,8 @@ exports[`object fields > additionalProperties with error 1`] = `
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
@@ -413,6 +423,8 @@ exports[`object fields > additionalProperties with error 1`] = `
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
@@ -508,6 +520,8 @@ exports[`object fields > additionalProperties with error 1`] = `
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.foo::description root.foo::help root.foo::errors"
@@ -521,6 +535,8 @@ exports[`object fields > additionalProperties with error 1`] = `
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
@@ -716,6 +732,8 @@ exports[`object fields > has errors 1`] = `
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.name::description root.name::help root.name::errors"
@@ -729,6 +747,8 @@ exports[`object fields > has errors 1`] = `
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
@@ -910,6 +930,8 @@ exports[`object fields > object 1`] = `
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.a::description root.a::help root.a::errors"
@@ -923,6 +945,8 @@ exports[`object fields > object 1`] = `
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
@@ -1024,6 +1048,8 @@ exports[`object fields > object 1`] = `
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.b::description root.b::help root.b::errors"
@@ -1038,6 +1064,8 @@ exports[`object fields > object 1`] = `
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
@@ -1259,16 +1287,24 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 <div
                   class="flex items-center"
                 >
-                  <input
-                    aria-describedby="root.transform::description root.transform::help root.transform::errors"
-                    class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-                    id="root.transform"
-                    name="root.transform"
-                    type="checkbox"
-                  />
-                   
                   <!---->
-                  Transform
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                  >
+                    <input
+                      aria-describedby="root.transform::description root.transform::help root.transform::errors"
+                      class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+                      id="root.transform"
+                      name="root.transform"
+                      type="checkbox"
+                    />
+                     
+                    <!---->
+                    Transform
+                    
+                    <!---->
+                    <!---->
+                  </label>
                   
                   <!---->
                 </div>
@@ -1399,16 +1435,24 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 <div
                   class="flex items-center"
                 >
-                  <input
-                    aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
-                    class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-                    id="root.paginate"
-                    name="root.paginate"
-                    type="checkbox"
-                  />
-                   
                   <!---->
-                  Paginate
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                  >
+                    <input
+                      aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
+                      class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+                      id="root.paginate"
+                      name="root.paginate"
+                      type="checkbox"
+                    />
+                     
+                    <!---->
+                    Paginate
+                    
+                    <!---->
+                    <!---->
+                  </label>
                   
                   <!---->
                 </div>
@@ -1502,16 +1546,24 @@ exports[`object fields > one of defaults > default preset 1`] = `
                 <div
                   class="flex items-center"
                 >
-                  <input
-                    aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
-                    class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-                    id="root.createOnOpen"
-                    name="root.createOnOpen"
-                    type="checkbox"
-                  />
-                   
                   <!---->
-                  Create on open
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                  >
+                    <input
+                      aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
+                      class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+                      id="root.createOnOpen"
+                      name="root.createOnOpen"
+                      type="checkbox"
+                    />
+                     
+                    <!---->
+                    Create on open
+                    
+                    <!---->
+                    <!---->
+                  </label>
                   
                   <!---->
                 </div>
@@ -1731,16 +1783,24 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <div
                   class="flex items-center"
                 >
-                  <input
-                    aria-describedby="root.collapseIndexes::description root.collapseIndexes::help root.collapseIndexes::errors"
-                    class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-                    id="root.collapseIndexes"
-                    name="root.collapseIndexes"
-                    type="checkbox"
-                  />
-                   
                   <!---->
-                  Combine nested indexes
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                  >
+                    <input
+                      aria-describedby="root.collapseIndexes::description root.collapseIndexes::help root.collapseIndexes::errors"
+                      class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+                      id="root.collapseIndexes"
+                      name="root.collapseIndexes"
+                      type="checkbox"
+                    />
+                     
+                    <!---->
+                    Combine nested indexes
+                    
+                    <!---->
+                    <!---->
+                  </label>
                   
                   <!---->
                 </div>
@@ -1834,16 +1894,24 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <div
                   class="flex items-center"
                 >
-                  <input
-                    aria-describedby="root.joinPrimitiveArrayValues::description root.joinPrimitiveArrayValues::help root.joinPrimitiveArrayValues::errors"
-                    class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-                    id="root.joinPrimitiveArrayValues"
-                    name="root.joinPrimitiveArrayValues"
-                    type="checkbox"
-                  />
-                   
                   <!---->
-                  Combine simple values
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                  >
+                    <input
+                      aria-describedby="root.joinPrimitiveArrayValues::description root.joinPrimitiveArrayValues::help root.joinPrimitiveArrayValues::errors"
+                      class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+                      id="root.joinPrimitiveArrayValues"
+                      name="root.joinPrimitiveArrayValues"
+                      type="checkbox"
+                    />
+                     
+                    <!---->
+                    Combine simple values
+                    
+                    <!---->
+                    <!---->
+                  </label>
                   
                   <!---->
                 </div>
@@ -1937,16 +2005,24 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <div
                   class="flex items-center"
                 >
-                  <input
-                    aria-describedby="root.combineArraysOfObjects::description root.combineArraysOfObjects::help root.combineArraysOfObjects::errors"
-                    class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-                    id="root.combineArraysOfObjects"
-                    name="root.combineArraysOfObjects"
-                    type="checkbox"
-                  />
-                   
                   <!---->
-                  Combine objects
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                  >
+                    <input
+                      aria-describedby="root.combineArraysOfObjects::description root.combineArraysOfObjects::help root.combineArraysOfObjects::errors"
+                      class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+                      id="root.combineArraysOfObjects"
+                      name="root.combineArraysOfObjects"
+                      type="checkbox"
+                    />
+                     
+                    <!---->
+                    Combine objects
+                    
+                    <!---->
+                    <!---->
+                  </label>
                   
                   <!---->
                 </div>
@@ -2040,16 +2116,24 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <div
                   class="flex items-center"
                 >
-                  <input
-                    aria-describedby="root.stabilizeOrderOfPropertiesInArraysOfObjects::description root.stabilizeOrderOfPropertiesInArraysOfObjects::help root.stabilizeOrderOfPropertiesInArraysOfObjects::errors"
-                    class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-                    id="root.stabilizeOrderOfPropertiesInArraysOfObjects"
-                    name="root.stabilizeOrderOfPropertiesInArraysOfObjects"
-                    type="checkbox"
-                  />
-                   
                   <!---->
-                  Stabilize order of properties
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                  >
+                    <input
+                      aria-describedby="root.stabilizeOrderOfPropertiesInArraysOfObjects::description root.stabilizeOrderOfPropertiesInArraysOfObjects::help root.stabilizeOrderOfPropertiesInArraysOfObjects::errors"
+                      class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+                      id="root.stabilizeOrderOfPropertiesInArraysOfObjects"
+                      name="root.stabilizeOrderOfPropertiesInArraysOfObjects"
+                      type="checkbox"
+                    />
+                     
+                    <!---->
+                    Stabilize order of properties
+                    
+                    <!---->
+                    <!---->
+                  </label>
                   
                   <!---->
                 </div>
@@ -2160,6 +2244,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.proportionalSizeAdjustmentThreshold::description root.proportionalSizeAdjustmentThreshold::help root.proportionalSizeAdjustmentThreshold::errors"
@@ -2176,6 +2262,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
@@ -2285,6 +2373,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.cornerCellValue::description root.cornerCellValue::help root.cornerCellValue::errors"
@@ -2298,6 +2388,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
@@ -2393,16 +2485,24 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <div
                   class="flex items-center"
                 >
-                  <input
-                    aria-describedby="root.transform::description root.transform::help root.transform::errors"
-                    class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-                    id="root.transform"
-                    name="root.transform"
-                    type="checkbox"
-                  />
-                   
                   <!---->
-                  Transform
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                  >
+                    <input
+                      aria-describedby="root.transform::description root.transform::help root.transform::errors"
+                      class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+                      id="root.transform"
+                      name="root.transform"
+                      type="checkbox"
+                    />
+                     
+                    <!---->
+                    Transform
+                    
+                    <!---->
+                    <!---->
+                  </label>
                   
                   <!---->
                 </div>
@@ -2533,16 +2633,24 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <div
                   class="flex items-center"
                 >
-                  <input
-                    aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
-                    class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-                    id="root.paginate"
-                    name="root.paginate"
-                    type="checkbox"
-                  />
-                   
                   <!---->
-                  Paginate
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                  >
+                    <input
+                      aria-describedby="root.paginate::description root.paginate::help root.paginate::errors"
+                      class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+                      id="root.paginate"
+                      name="root.paginate"
+                      type="checkbox"
+                    />
+                     
+                    <!---->
+                    Paginate
+                    
+                    <!---->
+                    <!---->
+                  </label>
                   
                   <!---->
                 </div>
@@ -2636,16 +2744,24 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <div
                   class="flex items-center"
                 >
-                  <input
-                    aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
-                    class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
-                    id="root.createOnOpen"
-                    name="root.createOnOpen"
-                    type="checkbox"
-                  />
-                   
                   <!---->
-                  Create on open
+                  <label
+                    class="text-sm rtl:text-right font-medium block text-gray-700 dark:text-gray-200"
+                  >
+                    <input
+                      aria-describedby="root.createOnOpen::description root.createOnOpen::help root.createOnOpen::errors"
+                      class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 me-2 rounded-sm text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600"
+                      id="root.createOnOpen"
+                      name="root.createOnOpen"
+                      type="checkbox"
+                    />
+                     
+                    <!---->
+                    Create on open
+                    
+                    <!---->
+                    <!---->
+                  </label>
                   
                   <!---->
                 </div>
@@ -2814,6 +2930,8 @@ exports[`object fields > show add button and fields if additionalProperties is t
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
@@ -2828,6 +2946,8 @@ exports[`object fields > show add button and fields if additionalProperties is t
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
@@ -2911,6 +3031,8 @@ exports[`object fields > show add button and fields if additionalProperties is t
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
@@ -2924,6 +3046,8 @@ exports[`object fields > show add button and fields if additionalProperties is t
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
@@ -3149,6 +3273,8 @@ exports[`object fields > with title and description > additionalProperties 1`] =
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
@@ -3163,6 +3289,8 @@ exports[`object fields > with title and description > additionalProperties 1`] =
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
@@ -3246,6 +3374,8 @@ exports[`object fields > with title and description > additionalProperties 1`] =
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.foo::description root.foo::help root.foo::errors"
@@ -3259,6 +3389,8 @@ exports[`object fields > with title and description > additionalProperties 1`] =
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
@@ -3491,6 +3623,8 @@ exports[`object fields > with title and description > object 1`] = `
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.a::description root.a::help root.a::errors"
@@ -3504,6 +3638,8 @@ exports[`object fields > with title and description > object 1`] = `
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
@@ -3613,6 +3749,8 @@ exports[`object fields > with title and description > object 1`] = `
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.b::description root.b::help root.b::errors"
@@ -3627,6 +3765,8 @@ exports[`object fields > with title and description > object 1`] = `
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
@@ -3826,6 +3966,8 @@ exports[`object fields > with title and description > show add button and fields
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
@@ -3840,6 +3982,8 @@ exports[`object fields > with title and description > show add button and fields
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
@@ -3923,6 +4067,8 @@ exports[`object fields > with title and description > show add button and fields
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
@@ -3936,6 +4082,8 @@ exports[`object fields > with title and description > show add button and fields
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
@@ -4161,6 +4309,8 @@ exports[`object fields > with title and description from both > additionalProper
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
@@ -4175,6 +4325,8 @@ exports[`object fields > with title and description from both > additionalProper
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
@@ -4258,6 +4410,8 @@ exports[`object fields > with title and description from both > additionalProper
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.foo::description root.foo::help root.foo::errors"
@@ -4271,6 +4425,8 @@ exports[`object fields > with title and description from both > additionalProper
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
@@ -4503,6 +4659,8 @@ exports[`object fields > with title and description from both > object 1`] = `
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.a::description root.a::help root.a::errors"
@@ -4516,6 +4674,8 @@ exports[`object fields > with title and description from both > object 1`] = `
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
@@ -4625,6 +4785,8 @@ exports[`object fields > with title and description from both > object 1`] = `
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.b::description root.b::help root.b::errors"
@@ -4639,6 +4801,8 @@ exports[`object fields > with title and description from both > object 1`] = `
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
@@ -4838,6 +5002,8 @@ exports[`object fields > with title and description from uiSchema > additionalPr
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
@@ -4852,6 +5018,8 @@ exports[`object fields > with title and description from uiSchema > additionalPr
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
@@ -4935,6 +5103,8 @@ exports[`object fields > with title and description from uiSchema > additionalPr
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.foo::description root.foo::help root.foo::errors"
@@ -4948,6 +5118,8 @@ exports[`object fields > with title and description from uiSchema > additionalPr
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
@@ -5180,6 +5352,8 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.a::description root.a::help root.a::errors"
@@ -5193,6 +5367,8 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
@@ -5302,6 +5478,8 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.b::description root.b::help root.b::errors"
@@ -5316,6 +5494,8 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
@@ -5515,6 +5695,8 @@ exports[`object fields > with title and description from uiSchema > show add but
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
@@ -5529,6 +5711,8 @@ exports[`object fields > with title and description from uiSchema > show add but
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
@@ -5612,6 +5796,8 @@ exports[`object fields > with title and description from uiSchema > show add but
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
@@ -5625,6 +5811,8 @@ exports[`object fields > with title and description from uiSchema > show add but
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
@@ -5793,6 +5981,8 @@ exports[`object fields > with title and description with global label off > addi
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
@@ -5807,6 +5997,8 @@ exports[`object fields > with title and description with global label off > addi
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
@@ -5865,6 +6057,8 @@ exports[`object fields > with title and description with global label off > addi
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.foo::description root.foo::help root.foo::errors"
@@ -5878,6 +6072,8 @@ exports[`object fields > with title and description with global label off > addi
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
@@ -6048,6 +6244,8 @@ exports[`object fields > with title and description with global label off > obje
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.a::description root.a::help root.a::errors"
@@ -6061,6 +6259,8 @@ exports[`object fields > with title and description with global label off > obje
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
@@ -6137,6 +6337,8 @@ exports[`object fields > with title and description with global label off > obje
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.b::description root.b::help root.b::errors"
@@ -6151,6 +6353,8 @@ exports[`object fields > with title and description with global label off > obje
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
@@ -6293,6 +6497,8 @@ exports[`object fields > with title and description with global label off > show
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
@@ -6307,6 +6513,8 @@ exports[`object fields > with title and description with global label off > show
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
@@ -6365,6 +6573,8 @@ exports[`object fields > with title and description with global label off > show
                  
                 <!---->
                 <!---->
+                <!---->
+                <!---->
                  
                 <input
                   aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
@@ -6378,6 +6588,8 @@ exports[`object fields > with title and description with global label off > show
                 <!---->
                  
                 <!---->
+                
+                
                 <!---->
                 <!---->
                  
