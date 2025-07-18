@@ -98,7 +98,7 @@
     size="icon"
     variant="ghost"
     onclick={() => {
-      if (view === undefined) {
+      if (view === undefined || error) {
         return;
       }
       view.dispatch(
@@ -112,6 +112,6 @@
       );
     }}
   >
-     <AlignLeft />
+    <AlignLeft />
   </Button>
 </div>
