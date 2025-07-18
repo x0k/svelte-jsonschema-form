@@ -19,6 +19,7 @@
   } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
+  import { omitExtraData } from "@sjsf/form/omit-extra-data";
   import { setThemeContext } from "@sjsf/shadcn4-theme";
   import * as components from "@sjsf/shadcn4-theme/new-york";
   import {
@@ -74,12 +75,11 @@
       required: ["hello"],
     },
     uiSchema: {},
-    initialValue: {
-      hello: "World",
-    },
+    initialValue: undefined,
     disabled: false,
     html5Validation: false,
     focusOnFirstError: true,
+    omitExtraData: false,
     fieldsValidationMode: 0,
     validator: "ajv8",
     theme: "basic",
@@ -114,13 +114,8 @@
   const data: PlaygroundState = $state(init());
 
   let callbackId: number | undefined;
-  const PLAYGROUND_STATE_KEYS = Object.keys(
-    DEFAULT_PLAYGROUND_STATE
-  ) as (keyof PlaygroundState)[];
   $effect(() => {
-    for (const key of PLAYGROUND_STATE_KEYS) {
-      data[key];
-    }
+    Object.values(data);
     clearTimeout(callbackId);
     callbackId = setTimeout(() => {
       const url = new URL(location.href);
@@ -199,6 +194,12 @@
     get icons() {
       return iconsSet;
     },
+    getSnapshot(ctx) {
+      const snap = $state.snapshot(ctx.value);
+      return data.omitExtraData
+        ? omitExtraData(validator, merger, data.schema, snap)
+        : snap;
+    },
     extraUiOptions: fromRecord({
       skeleton3Slider: options,
       skeleton3FileUpload: options,
@@ -259,6 +260,10 @@
       <Label>
         <Checkbox bind:checked={data.focusOnFirstError} />
         Focus on first error
+      </Label>
+      <Label>
+        <Checkbox bind:checked={data.omitExtraData} />
+        Omit extra data
       </Label>
     </Popup>
     <Popup>

@@ -112,6 +112,7 @@ export interface PlaygroundState {
   disabled: boolean;
   html5Validation: boolean;
   focusOnFirstError: boolean;
+  omitExtraData: boolean;
   fieldsValidationMode: 0;
   validator: keyof Validators;
   theme: keyof Themes;
