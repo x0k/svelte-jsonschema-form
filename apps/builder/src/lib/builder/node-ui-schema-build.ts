@@ -1,3 +1,4 @@
+import { identity } from "@sjsf/form/lib/function";
 import type { UiOptions, UiSchema } from "@sjsf/form";
 
 import { assertThing } from "$lib/assert.js";
@@ -12,7 +13,6 @@ import {
   type WidgetNode,
 } from "./node.js";
 import { EnumValueType } from "./enum.js";
-import { identity } from "@sjsf/form/lib/function";
 
 export interface TextWidgetParams {
   type: string | undefined;
@@ -20,7 +20,8 @@ export interface TextWidgetParams {
 }
 
 export interface UiSchemaBuilderContext {
-  propertyNames: Map<NodeId, string>;
+  readonly propertyNames: Map<NodeId, string>;
+  propertiesOrder: string[];
   uiComponents: (node: WidgetNode) => UiSchema["ui:components"];
   textWidgetOptions: (params: TextWidgetParams) => UiOptions;
   radioWidgetOptions: (inline: boolean) => UiOptions;
@@ -81,21 +82,34 @@ const NODE_UI_SCHEMA_BUILDERS: {
   ) => UiSchema | undefined;
 } = {
   [NodeType.Object]: (ctx, { options, properties }) => {
-    const schema: UiSchema = {
-      "ui:options": assignUiOptions({}, options),
-    };
+    const prevOrder = ctx.propertiesOrder;
+    ctx.propertiesOrder = [];
+    const schema: UiSchema = {};
+    let haveDependencies = false;
     for (const prop of properties) {
+      haveDependencies ||= prop.dependencies.length > 0;
       Object.assign(schema, buildUiSchema(ctx, prop));
     }
+    schema["ui:options"] = assignUiOptions(
+      haveDependencies
+        ? {
+            order: ctx.propertiesOrder,
+          }
+        : {},
+      options
+    );
+    ctx.propertiesOrder = prevOrder;
     return schema;
   },
   [NodeType.ObjectProperty]: (ctx, { dependencies, property }) => {
     const name = ctx.propertyNames.get(property.id);
     assertThing(name, "object property name");
-    return Object.assign(
-      { [name]: buildUiSchema(ctx, property) },
-      ...dependencies.map((d) => buildUiSchema(ctx, d))
-    );
+    ctx.propertiesOrder.push(name);
+    const schema: UiSchema = { [name]: buildUiSchema(ctx, property) };
+    for (const dep of dependencies) {
+      Object.assign(schema, buildUiSchema(ctx, dep));
+    }
+    return schema;
   },
   [NodeType.ObjectPropertyDependency]: (ctx, { properties }) => {
     const schema: UiSchema = {};
