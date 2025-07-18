@@ -1,5 +1,5 @@
 import type { Resolver } from "@/lib/resolver.js";
-import type { FailedAction } from "@/lib/action.svelte.js";
+import type { FailedTask } from "@/lib/task.svelte.js";
 
 export interface Labels {
   submit: {};
@@ -15,7 +15,7 @@ export interface Labels {
   "move-array-item-up": {};
   "move-array-item-down": {};
   "add-array-item": {};
-  "validation-process-error": { error: FailedAction<unknown> };
+  "validation-process-error": { error: FailedTask<unknown> };
   "component-not-found": { type: string };
   "key-input-title": { name: string };
   "additional-property": {};

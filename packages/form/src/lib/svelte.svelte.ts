@@ -1,4 +1,4 @@
-import { abortPrevious, createAction } from "./action.svelte.js";
+import { abortPrevious, createTask } from "./task.svelte.js";
 
 export interface AsyncBindingOptions<I, O> {
   initialOutput: O;
@@ -18,7 +18,7 @@ export function createAsyncBinding<I, O>({
   isEqual = Object.is,
 }: AsyncBindingOptions<I, O>) {
   let lastInputUpdate: I | undefined;
-  const toInputAction = createAction({
+  const toInputTask = createTask({
     combinator: abortPrevious,
     execute: toInput,
     onSuccess(result: I) {
@@ -28,7 +28,7 @@ export function createAsyncBinding<I, O>({
   });
 
   let output = $state.raw(initialOutput);
-  const toOutputAction = createAction({
+  const toOutputTask = createTask({
     combinator: abortPrevious,
     execute: toOutput,
     onSuccess(result: O) {
@@ -41,8 +41,8 @@ export function createAsyncBinding<I, O>({
     if (isEqual(input, lastInputUpdate)) {
       return;
     }
-    toInputAction.abort();
-    toOutputAction.run(input);
+    toInputTask.abort();
+    toOutputTask.run(input);
   });
 
   return {
@@ -50,14 +50,14 @@ export function createAsyncBinding<I, O>({
       return output;
     },
     set current(v) {
-      toOutputAction.abort();
-      toInputAction.run(v);
+      toOutputTask.abort();
+      toInputTask.run(v);
     },
     get inputProcessing() {
-      return toInputAction.isProcessed;
+      return toInputTask.isProcessed;
     },
     get outputProcessing() {
-      return toOutputAction.isProcessed;
+      return toOutputTask.isProcessed;
     },
   };
 }

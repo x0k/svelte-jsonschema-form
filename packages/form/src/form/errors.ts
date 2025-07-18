@@ -1,6 +1,6 @@
 import { SvelteMap } from "svelte/reactivity";
 
-import type { Action, FailedAction } from "@/lib/action.svelte.js";
+import type { Task, FailedTask } from "@/lib/task.svelte.js";
 
 import type { FieldValue, FormValue } from "./model.js";
 import type { Id } from "./id.js";
@@ -17,7 +17,7 @@ import type { Config } from "./config.js";
 export class AdditionalPropertyKeyError {}
 
 export class ValidationProcessError {
-  constructor(public state: FailedAction<unknown>) {}
+  constructor(public state: FailedTask<unknown>) {}
 }
 
 export type FieldError<T> = Omit<ValidationError<T>, "instanceId">;
@@ -49,13 +49,13 @@ export interface FormValidationResult<E> {
   formErrors: FieldErrorsMap<E>;
 }
 
-export type FormSubmission<V> = Action<
+export type FormSubmission<V> = Task<
   [event: SubmitEvent],
   FormValidationResult<AnyFormValueValidatorError<V>>,
   unknown
 >;
 
-export type FieldsValidation<V> = Action<
+export type FieldsValidation<V> = Task<
   [config: Config, value: FieldValue],
   FieldError<AnyFieldValueValidatorError<V>>[],
   unknown

@@ -5,10 +5,10 @@ import { createDataURLtoBlob } from "@/lib/file.js";
 import type { SchedulerYield } from "@/lib/scheduler.js";
 import {
   abortPrevious,
-  createAction,
-  type ActionsCombinator,
-  type FailedAction,
-} from "@/lib/action.svelte.js";
+  createTask,
+  type TasksCombinator,
+  type FailedTask,
+} from "@/lib/task.svelte.js";
 import type { Schema, Validator } from "@/core/index.js";
 
 import {
@@ -102,7 +102,7 @@ export interface FormOptions<T, V extends Validator>
   /**
    * @default waitPrevious
    */
-  submissionCombinator?: ActionsCombinator<
+  submissionCombinator?: TasksCombinator<
     [event: SubmitEvent],
     FormValidationResult<AnyFormValueValidatorError<V>>,
     unknown
@@ -122,7 +122,7 @@ export interface FormOptions<T, V extends Validator>
   /**
    * @default abortPrevious
    */
-  fieldsValidationCombinator?: ActionsCombinator<
+  fieldsValidationCombinator?: TasksCombinator<
     [Config, FormValue],
     FieldError<AnyFieldValueValidatorError<V>>[],
     unknown
@@ -174,12 +174,12 @@ export interface FormOptions<T, V extends Validator>
    * - error during validation
    * - validation timeout
    */
-  onSubmissionFailure?: (state: FailedAction<unknown>, e: SubmitEvent) => void;
+  onSubmissionFailure?: (state: FailedTask<unknown>, e: SubmitEvent) => void;
   /**
    * Field validation error handler
    */
   onFieldsValidationFailure?: (
-    state: FailedAction<unknown>,
+    state: FailedTask<unknown>,
     config: Config,
     value: FormValue
   ) => void;
@@ -278,7 +278,7 @@ export function createForm<T, V extends Validator>(
     return async () => Promise.resolve([]);
   });
 
-  const submission: FormSubmission<V> = createAction({
+  const submission: FormSubmission<V> = createTask({
     async execute(signal, _event: SubmitEvent) {
       isSubmitted = true;
       const formValue = getSnapshot(context);
@@ -334,7 +334,7 @@ export function createForm<T, V extends Validator>(
     return () => Promise.resolve([]);
   });
 
-  const fieldsValidation: FieldsValidation<V> = createAction({
+  const fieldsValidation: FieldsValidation<V> = createTask({
     execute(signal, config, value) {
       const debounceMs = options.fieldsValidationDebounceMs ?? 300;
       if (debounceMs < 0) {

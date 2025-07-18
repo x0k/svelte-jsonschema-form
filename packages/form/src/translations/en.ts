@@ -1,5 +1,5 @@
 import { fromRecord } from "@/lib/resolver.js";
-import type { ActionFailureReason } from "@/lib/action.svelte.js";
+import type { TaskFailureReason } from "@/lib/task.svelte.js";
 import type { TranslatorDefinitions } from "@/form/translation.js";
 
 const definitions: TranslatorDefinitions = {
@@ -23,7 +23,7 @@ const definitions: TranslatorDefinitions = {
   "additional-property": "Additional property",
 };
 
-const FAILURE_REASONS: Record<ActionFailureReason, string> = {
+const FAILURE_REASONS: Record<TaskFailureReason, string> = {
   aborted: "Validation aborted",
   timeout: "Validation terminated by timeout",
   error: "Something went wrong during validation",

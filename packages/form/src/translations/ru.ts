@@ -1,5 +1,5 @@
 import { fromRecord } from "@/lib/resolver.js";
-import type { ActionFailureReason } from "@/lib/action.svelte.js";
+import type { TaskFailureReason } from "@/lib/task.svelte.js";
 import type { TranslatorDefinitions } from "@/form/translation.js";
 
 export const definitions: TranslatorDefinitions = {
@@ -23,7 +23,7 @@ export const definitions: TranslatorDefinitions = {
   "additional-property": "Дополнительное свойство",
 };
 
-const FAILURE_REASONS: Record<ActionFailureReason, string> = {
+const FAILURE_REASONS: Record<TaskFailureReason, string> = {
   aborted: "Валидация прервана",
   timeout: "Валидация завершена по таймауту",
   error: "Что-то пошло не так во время валидации",
