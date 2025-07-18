@@ -247,7 +247,8 @@
       {#snippet label()}
         Form options ({+data.disabled +
           +data.html5Validation +
-          +data.focusOnFirstError})
+          +data.focusOnFirstError +
+          +data.omitExtraData})
       {/snippet}
       <Label>
         <Checkbox bind:checked={data.disabled} />
