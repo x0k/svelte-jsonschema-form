@@ -15,11 +15,11 @@ npm install @sjsf/form @sjsf/shadcn4-theme
 
 1. Install shadcn-svelte
   
-    [Installation - shadcn-svelte](https://next.shadcn-svelte.com/docs/installation)
+    [Installation - shadcn-svelte](https://shadcn-svelte.com/docs/installation)
 
 2. Configuration
 
-    Register the theme source path by adding the following line to the `app.css` file:.
+    Register the theme source path by adding the following line to the `app.css` file:
 
     ```css
     @source "../node_modules/@sjsf/shadcn4-theme/dist";
