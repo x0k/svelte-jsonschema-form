@@ -19,6 +19,10 @@ export type UiOptionsRegistryOption = keyof UiOptionsRegistry extends never
       [UI_OPTIONS_REGISTRY_KEY]: UiOptionsRegistry;
     };
 
+export interface ValueRef<T> {
+  current: T;
+}
+
 export interface FormOptions<T, V extends Validator>
   extends UiOptionsRegistryOption {
   validator: V;
@@ -45,6 +49,7 @@ export interface FormOptions<T, V extends Validator>
    */
   idPseudoSeparator?: string;
   //
+  value?: [() => T, (v: T) => void];
   initialValue?: Partial<T>;
   initialErrors?: InitialErrors<V>;
   /**

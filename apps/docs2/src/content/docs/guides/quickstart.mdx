@@ -21,6 +21,9 @@ import uiSchemaCode from './ui-schema.svelte?raw';
 import FormStateForm from './form-state.svelte';
 import formStateCode from './form-state.svelte?raw';
 
+import ControlledForm from './controlled-form.svelte';
+import controlledFormCode from './controlled-form.svelte?raw';
+
 ## Installation
 
 <Npm pkg={createThemeInstall("basic")} />
@@ -86,3 +89,24 @@ Use getters to pass reactive parameters to the `createForm` function.
 </FormCard>
 
 <LinkCard title="Form state" href="../../form/state/" />
+
+### "Controlled" form
+
+You can also specify the `value` option instead of the `initialValue`
+to access the internal state of the form.
+
+:::note
+
+I believe that such use of the library should be limited,
+so here is a list of situations in which this approach can be used
+(if you doubt it, welcome to the [discussions](https://github.com/x0k/svelte-jsonschema-form/discussions)):
+
+- Simultaneous editing of data from multiple locations (e.g., form + sidebar)
+
+:::
+
+<Code code={controlledFormCode} lang="svelte" />
+
+<FormCard>
+  <ControlledForm client:only="svelte" />
+</FormCard>

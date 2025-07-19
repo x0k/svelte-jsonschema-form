@@ -51,10 +51,12 @@ import {
 } from "./id.js";
 import type { Config } from "./config.js";
 import type { Theme } from "./components.js";
-import type { FormValue } from "./model.js";
+import type { FormValue, ValueRef } from "./model.js";
 import type { ResolveFieldType } from "./fields.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
+
+export type InitialValue<T> = T extends Record<string, any> ? Partial<T> : T;
 
 export type InitialErrors<V extends Validator> =
   | ValidationError<PossibleError<V>>[]
@@ -69,6 +71,38 @@ export type UiOptionsRegistryOption = keyof UiOptionsRegistry extends never
   : {
       [UI_OPTIONS_REGISTRY_KEY]: UiOptionsRegistry;
     };
+
+function createValueRef<T>(
+  merger: FormMerger,
+  schema: Schema,
+  initialValue?: T | Partial<T>
+): ValueRef<FormValue> {
+  let value = $state(
+    merger.mergeFormDataAndSchemaDefaults(initialValue as FormValue, schema)
+  );
+  return {
+    get current() {
+      return value;
+    },
+    set current(v) {
+      value = v;
+    },
+  };
+}
+
+function toValueRef<T>([get, set]: [
+  () => T,
+  (v: T) => void,
+]): ValueRef<FormValue> {
+  return {
+    get current() {
+      return get() as FormValue;
+    },
+    set current(v) {
+      set(v as T);
+    },
+  };
+}
 
 // How this `extends` works?
 export interface FormOptions<T, V extends Validator>
@@ -97,7 +131,8 @@ export interface FormOptions<T, V extends Validator>
    */
   idPseudoSeparator?: string;
   //
-  initialValue?: Partial<T>;
+  value?: [() => T, (v: T) => void];
+  initialValue?: InitialValue<T>;
   initialErrors?: InitialErrors<V>;
   /**
    * @default waitPrevious
@@ -201,10 +236,6 @@ export interface FormState<T, V extends Validator> {
    *
    * - A snapshot of the form state is returned on access
    * - Default values from JSON Schema are taken into account during assignment
-   *
-   * You can gain direct access to the internal state by hacking types:
-   *
-   * `(form.context as FormInternalContext<typeof validator>).value`
    */
   value: T | undefined;
   isSubmitted: boolean;
@@ -221,13 +252,10 @@ export function createForm<T, V extends Validator>(
     options.merger ?? createFormMerger(options.validator, options.schema)
   );
 
-  let value = $state(
-    // svelte-ignore state_referenced_locally
-    merger.mergeFormDataAndSchemaDefaults(
-      options.initialValue as FormValue,
-      options.schema
-    )
-  );
+  const valueRef = options.value
+    ? toValueRef(options.value)
+    : // svelte-ignore state_referenced_locally
+      createValueRef(merger, options.schema, options.initialValue);
   let errors = $state.raw(
     Array.isArray(options.initialErrors)
       ? groupErrors(options.initialErrors)
@@ -258,7 +286,7 @@ export function createForm<T, V extends Validator>(
   const dataUrlToBlob = $derived(createDataURLtoBlob(schedulerYield));
 
   const getSnapshot = $derived(
-    options.getSnapshot ?? (() => $state.snapshot(value))
+    options.getSnapshot ?? (() => $state.snapshot(valueRef.current))
   );
 
   const translate = $derived(createTranslate(options.translation));
@@ -346,7 +374,7 @@ export function createForm<T, V extends Validator>(
       const id = setTimeout(() => {
         promise.resolve(validateFields(signal, config, value));
       }, debounceMs);
-      
+
       const onAbort = () => {
         clearTimeout(id);
         promise.reject(
@@ -398,7 +426,7 @@ export function createForm<T, V extends Validator>(
     isSubmitted = false;
     isChanged = false;
     errors.clear();
-    value = merger.mergeFormDataAndSchemaDefaults(
+    valueRef.current = merger.mergeFormDataAndSchemaDefaults(
       options.initialValue as FormValue,
       options.schema
     );
@@ -420,10 +448,10 @@ export function createForm<T, V extends Validator>(
       return rootId as Id;
     },
     get value() {
-      return value;
+      return valueRef.current;
     },
     set value(v) {
-      value = v;
+      valueRef.current = v;
     },
     get fieldsValidationMode() {
       return fieldsValidationMode;
@@ -510,7 +538,7 @@ export function createForm<T, V extends Validator>(
       return getSnapshot(context) as T | undefined;
     },
     set value(v) {
-      value = merger.mergeFormDataAndSchemaDefaults(
+      valueRef.current = merger.mergeFormDataAndSchemaDefaults(
         v as FormValue,
         options.schema
       );
