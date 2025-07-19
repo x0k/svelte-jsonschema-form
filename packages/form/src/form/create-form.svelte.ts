@@ -56,6 +56,8 @@ import type { ResolveFieldType } from "./fields.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
 
+export type InitialValue<T> = T extends Record<string, any> ? Partial<T> : T;
+
 export type InitialErrors<V extends Validator> =
   | ValidationError<PossibleError<V>>[]
   | Iterable<readonly [Id, FieldError<PossibleError<V>>[]]>;
@@ -70,10 +72,10 @@ export type UiOptionsRegistryOption = keyof UiOptionsRegistry extends never
       [UI_OPTIONS_REGISTRY_KEY]: UiOptionsRegistry;
     };
 
-export function createValueRef<T>(
+function createValueRef<T>(
   merger: FormMerger,
   schema: Schema,
-  initialValue?: Partial<T>
+  initialValue?: T | Partial<T>
 ): ValueRef<FormValue> {
   let value = $state(
     merger.mergeFormDataAndSchemaDefaults(initialValue as FormValue, schema)
@@ -84,6 +86,20 @@ export function createValueRef<T>(
     },
     set current(v) {
       value = v;
+    },
+  };
+}
+
+function toValueRef<T>([get, set]: [
+  () => T,
+  (v: T) => void,
+]): ValueRef<FormValue> {
+  return {
+    get current() {
+      return get() as FormValue;
+    },
+    set current(v) {
+      set(v as T);
     },
   };
 }
@@ -115,8 +131,8 @@ export interface FormOptions<T, V extends Validator>
    */
   idPseudoSeparator?: string;
   //
-  valueRef?: ValueRef<T>;
-  initialValue?: Partial<T>;
+  value?: [() => T, (v: T) => void];
+  initialValue?: InitialValue<T>;
   initialErrors?: InitialErrors<V>;
   /**
    * @default waitPrevious
@@ -220,10 +236,6 @@ export interface FormState<T, V extends Validator> {
    *
    * - A snapshot of the form state is returned on access
    * - Default values from JSON Schema are taken into account during assignment
-   *
-   * You can gain direct access to the internal state by hacking types:
-   *
-   * `(form.context as FormInternalContext<typeof validator>).value`
    */
   value: T | undefined;
   isSubmitted: boolean;
@@ -240,10 +252,10 @@ export function createForm<T, V extends Validator>(
     options.merger ?? createFormMerger(options.validator, options.schema)
   );
 
-  const valueRef =
-    (options.valueRef as ValueRef<FormValue>) ??
-    // svelte-ignore state_referenced_locally
-    createValueRef(merger, options.schema, options.initialValue);
+  const valueRef = options.value
+    ? toValueRef(options.value)
+    : // svelte-ignore state_referenced_locally
+      createValueRef(merger, options.schema, options.initialValue);
   let errors = $state.raw(
     Array.isArray(options.initialErrors)
       ? groupErrors(options.initialErrors)
