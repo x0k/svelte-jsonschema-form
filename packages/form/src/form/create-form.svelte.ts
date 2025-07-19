@@ -51,7 +51,7 @@ import {
 } from "./id.js";
 import type { Config } from "./config.js";
 import type { Theme } from "./components.js";
-import type { FormValue } from "./model.js";
+import type { FormValue, ValueRef } from "./model.js";
 import type { ResolveFieldType } from "./fields.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
@@ -69,6 +69,24 @@ export type UiOptionsRegistryOption = keyof UiOptionsRegistry extends never
   : {
       [UI_OPTIONS_REGISTRY_KEY]: UiOptionsRegistry;
     };
+
+export function createValueRef<T>(
+  merger: FormMerger,
+  schema: Schema,
+  initialValue?: Partial<T>
+): ValueRef<FormValue> {
+  let value = $state(
+    merger.mergeFormDataAndSchemaDefaults(initialValue as FormValue, schema)
+  );
+  return {
+    get current() {
+      return value;
+    },
+    set current(v) {
+      value = v;
+    },
+  };
+}
 
 // How this `extends` works?
 export interface FormOptions<T, V extends Validator>
@@ -97,6 +115,7 @@ export interface FormOptions<T, V extends Validator>
    */
   idPseudoSeparator?: string;
   //
+  valueRef?: ValueRef<T>;
   initialValue?: Partial<T>;
   initialErrors?: InitialErrors<V>;
   /**
@@ -221,13 +240,10 @@ export function createForm<T, V extends Validator>(
     options.merger ?? createFormMerger(options.validator, options.schema)
   );
 
-  let value = $state(
+  const valueRef =
+    (options.valueRef as ValueRef<FormValue>) ??
     // svelte-ignore state_referenced_locally
-    merger.mergeFormDataAndSchemaDefaults(
-      options.initialValue as FormValue,
-      options.schema
-    )
-  );
+    createValueRef(merger, options.schema, options.initialValue);
   let errors = $state.raw(
     Array.isArray(options.initialErrors)
       ? groupErrors(options.initialErrors)
@@ -258,7 +274,7 @@ export function createForm<T, V extends Validator>(
   const dataUrlToBlob = $derived(createDataURLtoBlob(schedulerYield));
 
   const getSnapshot = $derived(
-    options.getSnapshot ?? (() => $state.snapshot(value))
+    options.getSnapshot ?? (() => $state.snapshot(valueRef.current))
   );
 
   const translate = $derived(createTranslate(options.translation));
@@ -346,7 +362,7 @@ export function createForm<T, V extends Validator>(
       const id = setTimeout(() => {
         promise.resolve(validateFields(signal, config, value));
       }, debounceMs);
-      
+
       const onAbort = () => {
         clearTimeout(id);
         promise.reject(
@@ -398,7 +414,7 @@ export function createForm<T, V extends Validator>(
     isSubmitted = false;
     isChanged = false;
     errors.clear();
-    value = merger.mergeFormDataAndSchemaDefaults(
+    valueRef.current = merger.mergeFormDataAndSchemaDefaults(
       options.initialValue as FormValue,
       options.schema
     );
@@ -420,10 +436,10 @@ export function createForm<T, V extends Validator>(
       return rootId as Id;
     },
     get value() {
-      return value;
+      return valueRef.current;
     },
     set value(v) {
-      value = v;
+      valueRef.current = v;
     },
     get fieldsValidationMode() {
       return fieldsValidationMode;
@@ -510,7 +526,7 @@ export function createForm<T, V extends Validator>(
       return getSnapshot(context) as T | undefined;
     },
     set value(v) {
-      value = merger.mergeFormDataAndSchemaDefaults(
+      valueRef.current = merger.mergeFormDataAndSchemaDefaults(
         v as FormValue,
         options.schema
       );
