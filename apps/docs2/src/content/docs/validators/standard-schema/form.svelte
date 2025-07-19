@@ -1,31 +1,25 @@
 <script lang="ts">
-  import { BasicForm, createForm, type Validator } from "@sjsf/form";
+  import {
+    BasicForm,
+    createForm,
+    type Schema,
+    type Validator,
+  } from "@sjsf/form";
   import { createFormValueValidator } from "@sjsf/form/validators/standard-schema";
-  import { toJsonSchema } from "@valibot/to-json-schema";
-  import * as v from "valibot";
+  import { type } from "arktype";
 
   import * as defaults from "@/components/form-defaults";
 
   import { initialValue, uiSchema } from "../shared";
 
-  const schema = v.object({
-    id: v.optional(
-      v.pipe(
-        v.string(),
-        v.regex(new RegExp("^\\d+$"), "Must be a number"),
-        v.minLength(8)
-      )
-    ),
-    active: v.optional(v.boolean()),
-    skills: v.optional(
-      v.pipe(v.array(v.pipe(v.string(), v.minLength(5))), v.minLength(4))
-    ),
-    multipleChoicesList: v.optional(
-      v.pipe(v.array(v.picklist(["foo", "bar", "fuzz"])), v.maxLength(2))
-    ),
+  const schema = type({
+    "id?": "string>=8&/^\\d+$/",
+    "active?": "boolean",
+    "skills?": "(string>=5)[]>=4",
+    "multipleChoicesList?": "('foo'|'bar'|'fuzz')[]<=2",
   });
 
-  type Value = v.InferInput<typeof schema>;
+  type Value = typeof schema.infer;
 
   const validator = {
     ...createFormValueValidator({ schema, uiSchema }),
@@ -34,10 +28,12 @@
 
   const form = createForm({
     ...defaults,
-    schema: toJsonSchema(schema, {}),
+    schema: schema.toJsonSchema({
+      dialect: "https://json-schema.org/draft-07/schema",
+    }) as Schema,
     uiSchema,
     validator,
-    initialValue: initialValue as Value
+    initialValue: initialValue as Value,
   });
 </script>
 
