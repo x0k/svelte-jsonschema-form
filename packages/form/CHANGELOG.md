@@ -1,5 +1,17 @@
 # @sjsf/form
 
+## 2.2.0
+
+### Minor Changes
+
+- Add `value` option ([#158](https://github.com/x0k/svelte-jsonschema-form/pull/158))
+
+- Add a `task.svelte` submodule to replace `action.svelte` ([`3488450`](https://github.com/x0k/svelte-jsonschema-form/commit/3488450e7b26e285a17f86996beb32e7dbdc7b66))
+
+### Patch Changes
+
+- Migrate to `task.svelte` lib ([`803d56d`](https://github.com/x0k/svelte-jsonschema-form/commit/803d56dcb8dd0fe135d104ecbdb54eb529a83401))
+
 ## 2.1.2
 
 ### Patch Changes
@@ -59,7 +71,6 @@
 - Replace `asyncProxy` with `createAsyncBinding` ([#119](https://github.com/x0k/svelte-jsonschema-form/pull/119))
 
 - Refactor action logic: ([`8606f26`](https://github.com/x0k/svelte-jsonschema-form/commit/8606f26c183cdfaf6e37a889412930e59714aad9))
-
   - Remove `debounce` combinator
   - Add `untrack` combinator result
 
@@ -82,7 +93,6 @@
 - Bump svelte to 5.25.0, relax patch versions of peer dependencies. ([`33fcab1`](https://github.com/x0k/svelte-jsonschema-form/commit/33fcab1e99d3da5d464cbd814b4f8445ceb2e4d9))
 
 - Refactor form API: ([`daabc32`](https://github.com/x0k/svelte-jsonschema-form/commit/daabc32f7c3db21a763d755abd952a417d0d7e3b))
-
   - Renames:
     - `form.validation` -> `form.submission`
     - `validationCombinator` -> `submissionCombinator`
@@ -99,7 +109,6 @@
 - Fix <https://github.com/x0k/svelte-jsonschema-form/issues/103> ([`1c75328`](https://github.com/x0k/svelte-jsonschema-form/commit/1c753287e206049acec0d19aa60c85f8ef902b4c))
 
   Renames in the following submodules:
-
   - `@sjsf/form/fields/array/*`
   - `@sjsf/form/fields/object/*`
   - `@sjsf/form/templates/*`
@@ -107,7 +116,6 @@
 - Remove `legacy-omit-extra-data` submodule ([`3c865f3`](https://github.com/x0k/svelte-jsonschema-form/commit/3c865f3fbd66d27ad35c6e7df89a9df439400288))
 
 - Refactor action logic: ([`d958dfc`](https://github.com/x0k/svelte-jsonschema-form/commit/d958dfc01fb53df12c3942ee778e680e805fcf79))
-
   - `run` methods now returns `void`
   - Added `runAsync` method that returns `Promise<R>`
   - Fixed `state_referenced_locally` warning
@@ -245,7 +253,6 @@
 - Fix <https://github.com/x0k/svelte-jsonschema-form/issues/103> ([`1c75328`](https://github.com/x0k/svelte-jsonschema-form/commit/1c753287e206049acec0d19aa60c85f8ef902b4c))
 
   Renames in the following submodules:
-
   - `@sjsf/form/fields/array/*`
   - `@sjsf/form/fields/object/*`
   - `@sjsf/form/templates/*`
@@ -479,7 +486,6 @@
 - Add `createForm3` function ([#54](https://github.com/x0k/svelte-jsonschema-form/pull/54))
 
   ## Migration
-
   - Replace `useForm2` with `createForm3`.
   - If custom form is used it should call `setFormContext(form.context)` before using `FormContent` and `SubmitButton` components.
 
@@ -518,7 +524,6 @@
 ### Patch Changes
 
 - Port fix for `getArrayDefaults` ([`753a8bd`](https://github.com/x0k/svelte-jsonschema-form/commit/753a8bde50408a02f6ec5b77e1bc85f9a599fae3))
-
   - [Bug: Issue with array schema defaults not applying properly when formData is an empty array](https://github.com/rjsf-team/react-jsonschema-form/pull/4359)
 
 ## 1.6.0
@@ -584,7 +589,6 @@
 ### Patch Changes
 
 - [`23f37ab`](https://github.com/x0k/svelte-jsonschema-form/commit/23f37abf7b928bfef45a45ab4a902660a139bfcd) Thanks [@x0k](https://github.com/x0k)! - Port a bunch of fixes for `getDefaultFormState`:
-
   - [Bug: issue with dependencies computeDefaults](https://github.com/rjsf-team/react-jsonschema-form/pull/4282)
   - [Make fields with const pre-fiiled and readonly](https://github.com/rjsf-team/react-jsonschema-form/pull/4326)
   - [Bug: Deep nested dependencies issue with assigning values to formData](https://github.com/rjsf-team/react-jsonschema-form/pull/4356)

@@ -1,6 +1,6 @@
 {
 	"name": "@sjsf/shadcn4-theme",
-	"version": "2.1.2",
+	"version": "2.2.0",
 	"description": "The shadcn-svelte based theme for svelte-jsonschema-form",
 	"license": "MIT",
 	"keywords": [
@@ -68,14 +68,14 @@
 		}
 	},
 	"dependencies": {
-		"@sjsf/basic-theme": "workspace:^2.1.2"
+		"@sjsf/basic-theme": "workspace:^2.2.0"
 	},
 	"optionalDependencies": {
 		"@internationalized/date": "^3.8.1"
 	},
 	"peerDependencies": {
 		"@lucide/svelte": "^0.501.0",
-		"@sjsf/form": "workspace:^2.1.2",
+		"@sjsf/form": "workspace:^2.2.0",
 		"bits-ui": "^2.5.0",
 		"clsx": "^2.1.0",
 		"svelte": "^5.33.0",
