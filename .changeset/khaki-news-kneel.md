@@ -2,4 +2,4 @@
 "@sjsf/form": minor
 ---
 
-Add `valueRef` option
+Add `value` option
