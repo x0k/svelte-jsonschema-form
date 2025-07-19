@@ -9,14 +9,30 @@ import { Code } from '@astrojs/starlight/components'
 import Npm from "@/components/npm.astro";
 
 import code from './form-value-type-inference?raw'
+import typebox from './form-value-type-inference-typebox?raw'
+
+## json-schema-to-ts
 
 You can use [json-schema-to-ts](https://github.com/ThomasAribart/json-schema-to-ts/tree/main)
 to infer types from JSON schema.
 
-## Installation
+### Installation
 
 <Npm pkg="json-schema-to-ts" dev />
 
-## Usage
+### Usage
 
 <Code code={code} lang="typescript" />
+
+## TypeBox
+
+[TypeBox](https://github.com/sinclairzx81/typebox) offers a unified type that can be statically checked by TypeScript and
+runtime asserted using standard Json Schema validation.
+
+### Installation
+
+<Npm pkg="@sinclair/typebox" />
+
+### Usage
+
+<Code code={typebox} lang="typescript" />

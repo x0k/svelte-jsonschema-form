@@ -15,6 +15,7 @@
   "dependencies": {
     "@exodus/schemasafe": "catalog:",
     "@lucide/svelte": "^0.525.0",
+    "@sinclair/typebox": "^0.34.38",
     "@sjsf/ajv8-validator": "workspace:*",
     "@sjsf/basic-theme": "workspace:*",
     "@sjsf/cfworker-validator": "workspace:*",

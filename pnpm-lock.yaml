@@ -251,6 +251,9 @@ importers:
       '@lucide/svelte':
         specifier: ^0.525.0
         version: 0.525.0(svelte@5.36.7)
+      '@sinclair/typebox':
+        specifier: ^0.34.38
+        version: 0.34.38
       '@sjsf/ajv8-validator':
         specifier: workspace:*
         version: link:../../packages/ajv8-validator
@@ -2822,6 +2825,9 @@ packages:
 
   '@shikijs/vscode-textmate@10.0.2':
     resolution: {integrity: sha512-83yeghZ2xxin3Nj8z1NMd/NCuca+gsYXswywDy5bHvwlWL8tpTQmzGeUuHd9FC3E/SBEMvzJRwWEOz5gGes9Qg==}
+
+  '@sinclair/typebox@0.34.38':
+    resolution: {integrity: sha512-HpkxMmc2XmZKhvaKIZZThlHmx1L0I/V1hWK1NubtlFnr6ZqdiOpV72TKudZUNQjZNsyDBay72qFEhEvb+bcwcA==}
 
   '@sjsf/ajv8-validator@2.1.1':
     resolution: {integrity: sha512-S5nlyEjB8O/F5e0qDmmQSlTyeBFn8SStSeExbvIKYqMoVaAQm6G4DHfldPwc3gypf65kaPL0vzds+SKfP+Vl9w==}
@@ -8402,6 +8408,8 @@ snapshots:
       '@types/hast': 3.0.4
 
   '@shikijs/vscode-textmate@10.0.2': {}
+
+  '@sinclair/typebox@0.34.38': {}
 
   '@sjsf/ajv8-validator@2.1.1(@sjsf/form@2.1.1(esm-env@1.2.2)(svelte@5.34.7))(ajv@8.17.1)':
     dependencies:
