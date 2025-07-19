@@ -33,6 +33,7 @@
     "@sjsf/skeleton-theme": "workspace:*",
     "@sjsf/skeleton3-theme": "workspace:*",
     "@sjsf/sveltekit": "workspace:*",
+    "@sjsf/valibot-validator": "workspace:*",
     "@sjsf/zod-validator": "workspace:*",
     "@sjsf/zod4-validator": "workspace:*",
     "@skeletonlabs/skeleton": "3.0.0-next.10",
