@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { DEV } from 'esm-env';
 import type { ActionResult } from '@sveltejs/kit';
-import { createAction, type ActionOptions } from '@sjsf/form/lib/action.svelte';
+import { createTask, type TaskOptions } from '@sjsf/form/lib/task.svelte';
 
 import { applyAction, deserialize } from '$app/forms';
 import { invalidateAll } from '$app/navigation';
@@ -11,7 +11,7 @@ import { JSON_CHUNKS_KEY } from '../model.js';
 import type { SvelteKitFormMeta } from './meta.js';
 
 export type SveltekitRequestOptions<ActionData, V> = Omit<
-  ActionOptions<[V, SubmitEvent], ActionResult<NonNullable<ActionData>>, unknown>,
+  TaskOptions<[V, SubmitEvent], ActionResult<NonNullable<ActionData>>, unknown>,
   'execute'
 > & {
   /** @default 500000 */
@@ -27,7 +27,7 @@ export function createSvelteKitRequest<Meta extends SvelteKitFormMeta<any, any, 
   options: SveltekitRequestOptions<Meta['__actionData'], Meta['__formValue']>
 ) {
   const jsonChunkSize = $derived(options.jsonChunkSize ?? 500000);
-  return createAction({
+  return createTask({
     // Based on https://github.com/sveltejs/kit/blob/92b2686314a7dbebee1761c3da7719d599f003c7/packages/kit/src/runtime/app/forms.js
     async execute(signal: AbortSignal, data: Meta['__formValue'], e: SubmitEvent) {
       const formElement = e.currentTarget;
