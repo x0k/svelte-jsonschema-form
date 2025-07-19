@@ -50,7 +50,7 @@ export interface FormOptions<T, V extends Validator>
   /**
    * @default waitPrevious
    */
-  submissionCombinator?: ActionsCombinator<
+  submissionCombinator?: TasksCombinator<
     [event: SubmitEvent],
     FormValidationResult<AnyFormValueValidatorError<V>>,
     unknown
@@ -70,7 +70,7 @@ export interface FormOptions<T, V extends Validator>
   /**
    * @default abortPrevious
    */
-  fieldsValidationCombinator?: ActionsCombinator<
+  fieldsValidationCombinator?: TasksCombinator<
     [Config, FormValue],
     FieldError<AnyFieldValueValidatorError<V>>[],
     unknown
@@ -122,12 +122,12 @@ export interface FormOptions<T, V extends Validator>
    * - error during validation
    * - validation timeout
    */
-  onSubmissionFailure?: (state: FailedAction<unknown>, e: SubmitEvent) => void;
+  onSubmissionFailure?: (state: FailedTask<unknown>, e: SubmitEvent) => void;
   /**
    * Field validation error handler
    */
   onFieldsValidationFailure?: (
-    state: FailedAction<unknown>,
+    state: FailedTask<unknown>,
     config: Config,
     value: FormValue
   ) => void;

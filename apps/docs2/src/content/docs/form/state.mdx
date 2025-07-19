@@ -10,13 +10,13 @@ export interface FormValidationResult<E> {
   formErrors: FieldErrorsMap<E>;
 }
 
-export type FormSubmission<V> = Action<
+export type FormSubmission<V> = Task<
   [event: SubmitEvent],
   FormValidationResult<AnyFormValueValidatorError<V>>,
   unknown
 >;
 
-export type FieldsValidation<V> = Action<
+export type FieldsValidation<V> = Task<
   [config: Config, value: FieldValue],
   FieldError<AnyFieldValueValidatorError<V>>[],
   unknown
