@@ -6,7 +6,7 @@
     setFormContext,
     SubmitButton,
   } from "@sjsf/form";
-  import { createAction } from "@sjsf/form/lib/action.svelte";
+  import { createTask } from "@sjsf/form/lib/task.svelte";
   import "@sjsf/basic-theme/extra-widgets/radio-include";
 
   import * as defaults from "@/components/form-defaults";
@@ -19,7 +19,7 @@
     value: string;
   }
 
-  const resolve = createAction({
+  const resolve = createTask({
     execute: (_signal, { reject: isError, delay, value }: Config) =>
       new Promise<string>((resolve, reject) => {
         data = undefined;
