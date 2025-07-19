@@ -49,7 +49,7 @@ export interface FormOptions<T, V extends Validator>
    */
   idPseudoSeparator?: string;
   //
-  valueRef?: ValueRef<T>;
+  value?: [() => T, (v: T) => void];
   initialValue?: Partial<T>;
   initialErrors?: InitialErrors<V>;
   /**

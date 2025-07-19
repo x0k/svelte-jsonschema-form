@@ -5,7 +5,6 @@
 
   const schema: Schema = {
     type: "string",
-    minLength: 10,
   };
 
   let value = $state("initial");
@@ -13,22 +12,11 @@
   const form = createForm({
     ...defaults,
     schema,
-    valueRef: {
-      get current() {
-        return value;
-      },
-      set current(v) {
-        value = v;
-      },
-    },
+    value: [() => value, (v) => (value = v)],
     onSubmit: console.log,
   });
 </script>
 
-<BasicForm {form} novalidate />
+<BasicForm {form} />
 
-<pre>{JSON.stringify(
-    { value: form.value, errors: Object.fromEntries(form.errors) },
-    null,
-    2
-  )}</pre>
+<pre>{JSON.stringify(value, null, 2)}</pre>
