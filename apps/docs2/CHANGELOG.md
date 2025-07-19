@@ -1,5 +1,39 @@
 # docs
 
+## 1.7.0
+
+### Minor Changes
+
+- Add Valibot validator package ([#156](https://github.com/x0k/svelte-jsonschema-form/pull/156))
+
+### Patch Changes
+
+- Migrate to `task.svelte` lib ([`9610914`](https://github.com/x0k/svelte-jsonschema-form/commit/9610914a1d13d532dcd31f40986521edcbcae590))
+
+- Updated dependencies [[`803d56d`](https://github.com/x0k/svelte-jsonschema-form/commit/803d56dcb8dd0fe135d104ecbdb54eb529a83401), [`d03234b`](https://github.com/x0k/svelte-jsonschema-form/commit/d03234b8247eda3c03b3c11076f9dd0409e75d22), [`3488450`](https://github.com/x0k/svelte-jsonschema-form/commit/3488450e7b26e285a17f86996beb32e7dbdc7b66), [`890e80b`](https://github.com/x0k/svelte-jsonschema-form/commit/890e80bc5474ed5d10f520bb8736bc9c17fa5109), [`9b184a6`](https://github.com/x0k/svelte-jsonschema-form/commit/9b184a61bb298a4b95382c8db93ec950f02ca6ab), [`9ff178c`](https://github.com/x0k/svelte-jsonschema-form/commit/9ff178ca6e4cb98e771cccef583c07c9369992e2)]:
+  - @sjsf/form@2.2.0
+  - @sjsf/sveltekit@2.2.0
+  - @sjsf/zod4-validator@2.2.0
+  - @sjsf/valibot-validator@2.2.0
+  - @sjsf/ajv8-validator@2.2.0
+  - @sjsf/basic-theme@2.2.0
+  - @sjsf/cfworker-validator@2.2.0
+  - @sjsf/daisyui-theme@2.2.0
+  - @sjsf/daisyui5-theme@2.2.0
+  - @sjsf/flowbite-icons@2.2.0
+  - @sjsf/flowbite-theme@2.2.0
+  - @sjsf/flowbite3-theme@2.2.0
+  - @sjsf/lucide-icons@2.2.0
+  - @sjsf/moving-icons@2.2.0
+  - @sjsf/radix-icons@2.2.0
+  - @sjsf/schemasafe-validator@2.2.0
+  - @sjsf/shadcn-theme@2.2.0
+  - @sjsf/shadcn4-theme@2.2.0
+  - @sjsf/skeleton-theme@2.2.0
+  - @sjsf/skeleton3-theme@2.2.0
+  - testing@1.0.6
+  - @sjsf/zod-validator@2.2.0
+
 ## 1.6.8
 
 ### Patch Changes
@@ -627,7 +661,6 @@
 - Add information about async validation ([#39](https://github.com/x0k/svelte-jsonschema-form/pull/39))
 
 - Add validators section: ([#36](https://github.com/x0k/svelte-jsonschema-form/pull/36))
-
   - Ajv validator page
   - Zod validator page
 

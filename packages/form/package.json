@@ -1,6 +1,6 @@
 {
   "name": "@sjsf/form",
-  "version": "2.1.2",
+  "version": "2.2.0",
   "description": "Svelte 5 library for creating forms based on JSON schema.",
   "license": "(MIT AND Apache-2.0)",
   "keywords": [
