@@ -1,0 +1,22 @@
+@import 'tailwindcss';
+@import '@layerstack/tailwind/core.css';
+@import '@layerstack/tailwind/utils.css';
+@import '@layerstack/tailwind/themes/basic.css'; /* Note: Theme choice explained below */
+
+@source '../../node_modules/svelte-ux/dist';
+
+/*
+You can customize your theme as you see fit using CSS variables.
+Dark mode is targeted using with .dark class on :root/<html>
+*/
+:root {
+  --color-primary: var(--color-purple-700);
+  --color-secondary: var(--color-orange-500);
+
+  &.dark {
+    --color-primary: var(--color-purple-400);
+    --color-surface-100: var(--color-zinc-900);
+    --color-surface-200: var(--color-zinc-950);
+    --color-surface-300: var(--color-black);
+  }
+}

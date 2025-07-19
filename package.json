@@ -49,7 +49,8 @@
     "onlyBuiltDependencies": [
       "@tailwindcss/oxide",
       "esbuild",
-      "sharp"
+      "sharp",
+      "svelte-preprocess"
     ],
     "overrides": {
       "svelte2tsx": "0.7.41",

@@ -219,6 +219,18 @@ shad/:
     pnpm run dev
   popd
 
+sux/:
+  pushd packages/svelte-ux-theme
+  c:
+    pnpm run check
+  b:
+    pnpm run build
+  p:
+    pnpm run preview
+  d:
+    pnpm run dev
+  popd
+
 ts/:
   pushd packages/testing
   c:
