@@ -7,6 +7,6 @@
 	const ctx = getFormContext();
 </script>
 
-<div class="opacity-60" {...helpAttributes(ctx, config, 'helpAttributes', {})}>
+<p class="fieldset-label" {...helpAttributes(ctx, config, 'helpAttributes', {})}>
 	{help}
-</div>
+</p>

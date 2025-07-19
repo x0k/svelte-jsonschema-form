@@ -1,65 +1,28 @@
-import { cast } from '@sjsf/form/lib/component';
-import type { ComponentDefinition } from '@sjsf/form';
-import FilesField from '@sjsf/form/fields/extra-fields/files.svelte';
-import TagsField from '@sjsf/form/fields/extra-fields/tags.svelte';
 import { s } from 'testing/demo';
 
 import './extra-widgets/checkboxes-include';
-import './extra-widgets/date-picker-include';
-
-import FileUpload from './extra-widgets/file-upload.svelte';
-import './extra-widgets/file-upload.svelte';
-
 import './extra-widgets/file-include';
+
+import FilterRadioButtons from './extra-widgets/filter-radio-buttons.svelte';
+import './extra-widgets/filter-radio-buttons.svelte';
+
 import './extra-widgets/multi-select-include';
 import './extra-widgets/radio-buttons-include';
 import './extra-widgets/radio-include';
 import './extra-widgets/range-include';
 import './extra-widgets/rating-include';
-
-import Slider from './extra-widgets/slider.svelte';
-import './extra-widgets/slider.svelte';
-
 import './extra-widgets/switch-include';
-import './extra-widgets/tags-include';
 import './extra-widgets/textarea-include';
 
-const filesAsArrayField = cast(FilesField, {
-	value: {
-		transform(props) {
-			s.assertStrings(props.value);
-			return props.value;
-		}
-	}
-}) satisfies ComponentDefinition<'arrayField'>;
-
-const tagsAsArrayField = cast(TagsField, {
-	value: {
-		transform(props) {
-			s.assertStrings(props.value);
-			return props.value;
-		}
-	}
-}) satisfies ComponentDefinition<'arrayField'>;
-
 export const specs: s.Specs = {
-	datePicker: [s.text, { 'ui:components': { textWidget: 'datePickerWidget' } }],
-	fileUpload: [
-		s.file,
+	filterRadioButtons: [
+		s.enumeration,
 		{
 			'ui:components': {
-				stringField: 'fileField',
-				fileWidget: FileUpload
-			}
-		}
-	],
-	fileUploadMultiple: [
-		s.filesArray,
-		{
-			'ui:components': {
-				arrayField: filesAsArrayField,
-				fileWidget: FileUpload
-			}
+				stringField: 'enumField',
+				selectWidget: FilterRadioButtons
+			},
+			'ui:options': { useLabel: false }
 		}
 	],
 	multiSelect: [
@@ -93,17 +56,11 @@ export const specs: s.Specs = {
 		}
 	],
 	range: [s.number, { 'ui:components': { numberWidget: 'rangeWidget' } }],
-	rating: [s.number, { 'ui:components': { numberWidget: 'ratingWidget' } }],
-	slider: [s.number, { 'ui:components': { numberWidget: Slider } }],
-	switch: [s.boolean, { 'ui:components': { checkboxWidget: 'switchWidget' } }],
-	tags: [
-		s.uniqueArray,
-		{
-			'ui:components': {
-				arrayField: tagsAsArrayField
-			}
-		}
+	rating: [
+		s.number,
+		{ 'ui:components': { numberWidget: 'ratingWidget' }, 'ui:options': { useLabel: false } }
 	],
+	switch: [s.boolean, { 'ui:components': { checkboxWidget: 'switchWidget' } }],
 	textarea: [s.text, { 'ui:components': { textWidget: 'textareaWidget' } }]
 };
 

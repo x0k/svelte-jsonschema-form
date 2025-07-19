@@ -5,10 +5,11 @@
 	const { children, config }: ComponentProps['submitButton'] = $props();
 
 	const ctx = getFormContext();
-
-	const attributes = $derived(buttonAttributes(ctx, config, 'submitButton', 'submit', {}));
 </script>
 
-<button class="btn preset-filled preset-filled-primary-500 w-full" {...attributes}>
+<button
+	class="btn btn-primary w-full"
+	{...buttonAttributes(ctx, config, 'submitButton', 'submit', {})}
+>
 	{@render children()}
 </button>

@@ -1,67 +1,49 @@
 <script lang="ts" module>
-	import type { ComponentProps as SvelteComponentProps } from 'svelte';
-	import { Segment } from '@skeletonlabs/skeleton-svelte';
+	import type { HTMLInputAttributes } from 'svelte/elements';
 	import '@sjsf/form/fields/extra-widgets/radio-buttons';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			skeleton3Segment?: SvelteComponentProps<typeof Segment>;
-			skeleton3SegmentItem?: SvelteComponentProps<typeof Segment.Item>;
+			daisyui5RadioButtons?: HTMLInputAttributes;
 		}
 	}
 </script>
 
 <script lang="ts">
-	import {
-		customInputAttributes,
-		getFormContext,
-		uiOptionProps,
-		type ComponentProps
-	} from '@sjsf/form';
-	import { stringIndexMapper, singleOption } from '@sjsf/form/options.svelte';
+	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
+	import { indexMapper, singleOption } from '@sjsf/form/options.svelte';
 
 	let {
 		config,
 		handlers,
 		value = $bindable(),
-		options
+		options,
+		errors
 	}: ComponentProps['radioButtonsWidget'] = $props();
 
 	const mapped = singleOption({
-		mapper: () => stringIndexMapper(options),
+		mapper: () => indexMapper(options),
 		value: () => value,
 		update: (v) => (value = v)
 	});
 
 	const ctx = getFormContext();
+
+	const attributes = $derived(
+		inputAttributes(ctx, config, 'daisyui5RadioButtons', handlers, { type: 'radio' })
+	);
 </script>
 
-<Segment
-	value={mapped.value}
-	{...customInputAttributes(ctx, config, 'skeleton3Segment', {
-		ids: {
-			root: config.id
-		},
-		name: config.id,
-		readOnly: config.schema.readOnly,
-		onValueChange: (details) => {
-			mapped.value = details.value ?? '';
-			handlers.onchange?.();
-		}
-	})}
->
+<div class="join">
 	{#each options as option, index (option.id)}
-		<Segment.Item
-			{...uiOptionProps('skeleton3SegmentItem')(
-				{
-					value: index.toString(),
-					disabled: option.disabled
-				},
-				config,
-				ctx
-			)}
-		>
-			{option.label}
-		</Segment.Item>
+		<input
+			class={['join-item btn', errors.length > 0 && 'btn-error']}
+			bind:group={mapped.value}
+			value={index}
+			aria-label={option.label}
+			{...attributes}
+			id={option.id}
+			disabled={option.disabled || attributes.disabled}
+		/>
 	{/each}
-</Segment>
+</div>

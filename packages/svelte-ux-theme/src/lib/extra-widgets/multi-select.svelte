@@ -7,10 +7,9 @@
 		value = $bindable(),
 		options,
 		config,
+		errors,
 		handlers
 	}: ComponentProps['multiSelectWidget'] = $props();
-
-	const ctx = getFormContext();
 
 	const mapped = $derived(
 		multipleOptions({
@@ -19,12 +18,13 @@
 			update: (v) => (value = v)
 		})
 	);
+	const ctx = getFormContext();
 </script>
 
 <select
-	multiple
+	class={['select select-bordered w-full', errors.length > 0 && 'select-error']}
 	bind:value={mapped.value}
-	class="select"
+	multiple
 	{...selectAttributes(ctx, config, 'multiSelect', handlers, {})}
 >
 	{#each options as option, index (option.id)}

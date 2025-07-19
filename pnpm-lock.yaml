@@ -1653,6 +1653,9 @@ importers:
         specifier: workspace:^2.1.2
         version: link:../basic-theme
     devDependencies:
+      '@layerstack/tailwind':
+        specifier: ^2.0.0-next.16
+        version: 2.0.0-next.16
       '@sjsf/ajv8-validator':
         specifier: workspace:*
         version: link:../ajv8-validator
@@ -1669,7 +1672,7 @@ importers:
         specifier: 'catalog:'
         version: 5.36.7
       svelte-ux:
-        specifier: 2.0.0-next.14
+        specifier: ^2.0.0-next.14
         version: 2.0.0-next.14(postcss-load-config@4.0.2(postcss@8.5.6))(postcss@8.5.6)(svelte@5.36.7)
       tailwindcss:
         specifier: 'catalog:'
@@ -2619,8 +2622,14 @@ packages:
   '@layerstack/tailwind@2.0.0-next.15':
     resolution: {integrity: sha512-7tqKE3OV7/ybeDOORX++USYYCBJa7IgTya2czFpzbgXGo7CQDVyuv+0J1DggjRcEqhhXQA4MUhgnhcRaZvHxWg==}
 
+  '@layerstack/tailwind@2.0.0-next.16':
+    resolution: {integrity: sha512-NEHHF04ZetiKHUCXwTbm5AaiLF/rHYuaHIe8PVpAeoVq6PbbEPCU8BQk4TldnZcDoNNfX1sXrmfgFINqwvuE5w==}
+
   '@layerstack/utils@2.0.0-next.12':
     resolution: {integrity: sha512-fhGZUlSr3N+D44BYm37WKMGSEFyZBW+dwIqtGU8Cl54mR4TLQ/UwyGhdpgIHyH/x/8q1abE0fP0Dn6ZsrDE3BA==}
+
+  '@layerstack/utils@2.0.0-next.13':
+    resolution: {integrity: sha512-jkoiAnnWZAOZuarCreYxwNBa0oqyje6wU4/bwpZgDwszNEG36e7VPDIgVcDHaK+43T5qG0CJ6bSxA6zsEflJEQ==}
 
   '@lezer/common@1.2.3':
     resolution: {integrity: sha512-w7ojc8ejBqr2REPsWxJjrMFsA/ysDCFICn8zEOR9mrqzOu2amhITYuLD8ag6XZf0CFXDrhKqw7+tW8cX66NaDA==}
@@ -8354,7 +8363,22 @@ snapshots:
       lodash-es: 4.17.21
       tailwind-merge: 3.3.1
 
+  '@layerstack/tailwind@2.0.0-next.16':
+    dependencies:
+      '@layerstack/utils': 2.0.0-next.13
+      clsx: 2.1.1
+      d3-array: 3.2.4
+      lodash-es: 4.17.21
+      tailwind-merge: 3.3.1
+
   '@layerstack/utils@2.0.0-next.12':
+    dependencies:
+      d3-array: 3.2.4
+      d3-time: 3.1.0
+      d3-time-format: 4.1.0
+      lodash-es: 4.17.21
+
+  '@layerstack/utils@2.0.0-next.13':
     dependencies:
       d3-array: 3.2.4
       d3-time: 3.1.0

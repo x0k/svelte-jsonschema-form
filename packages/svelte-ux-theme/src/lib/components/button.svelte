@@ -1,3 +1,10 @@
+<script lang="ts" module>
+	declare module "@sjsf/form" {
+		interface UiOptions {
+			// svelteUxButton: 
+		}
+	}
+</script>
 <script lang="ts">
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 	import {
@@ -8,27 +15,26 @@
 		uiOptionProps,
 		type ComponentProps
 	} from '@sjsf/form';
-	import '@sjsf/basic-theme/components/button.svelte';
+	import { Button } from 'svelte-ux';
 
-	const { children, onclick, config, disabled, type }: ComponentProps['button'] = $props();
+	const { children, type, disabled, onclick, config }: ComponentProps['button'] = $props();
 
 	const ctx = getFormContext();
 </script>
 
-<button
-	class="btn preset-filled"
+<!-- <button
+	class="btn join-item btn-sm"
 	{...composeProps(
 		ctx,
 		config,
-		{
-			type: 'button',
-			disabled,
-			onclick
-		} satisfies HTMLButtonAttributes,
+		{ type: 'button', onclick, disabled } satisfies HTMLButtonAttributes,
 		uiOptionProps('button'),
 		uiOptionNestedProps('buttons', (b) => b[type]),
 		disabledProp
 	)}
 >
 	{@render children()}
-</button>
+</button> -->
+<Button>
+	{@render children()}
+</Button>

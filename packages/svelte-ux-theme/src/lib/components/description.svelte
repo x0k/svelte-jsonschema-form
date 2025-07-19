@@ -7,6 +7,6 @@
 	const ctx = getFormContext();
 </script>
 
-<div class="opacity-60" {...descriptionAttributes(ctx, config, 'descriptionAttributes', {})}>
+<p class="fieldset-label" {...descriptionAttributes(ctx, config, 'descriptionAttributes', {})}>
 	{description}
-</div>
+</p>

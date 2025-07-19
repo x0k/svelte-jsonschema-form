@@ -5,9 +5,10 @@
 
 	let {
 		handlers,
+		config,
 		value = $bindable(),
 		options,
-		config
+		errors
 	}: ComponentProps['checkboxesWidget'] = $props();
 
 	const mapped = multipleOptions({
@@ -24,15 +25,15 @@
 </script>
 
 {#each options as option, index (option.id)}
-	<label class="flex items-center space-x-2 cursor-pointer">
+	<label class="fieldset-label">
 		<input
-			class="checkbox"
+			class={['checkbox', errors.length > 0 && 'checkbox-error']}
 			bind:group={mapped.value}
 			value={index}
 			{...attributes}
 			id={option.id}
 			disabled={option.disabled || attributes.disabled}
 		/>
-		<p>{option.label}</p>
+		{option.label}
 	</label>
 {/each}

@@ -3,7 +3,13 @@
 	import { indexMapper, singleOption } from '@sjsf/form/options.svelte';
 	import '@sjsf/basic-theme/extra-widgets/radio.svelte';
 
-	let { config, handlers, value = $bindable(), options }: ComponentProps['radioWidget'] = $props();
+	let {
+		config,
+		handlers,
+		value = $bindable(),
+		options,
+		errors
+	}: ComponentProps['radioWidget'] = $props();
 
 	const mapped = singleOption({
 		mapper: () => indexMapper(options),
@@ -17,15 +23,15 @@
 </script>
 
 {#each options as option, index (option.id)}
-	<label class="flex items-center space-x-2 cursor-pointer">
+	<label class="fieldset-label">
 		<input
-			class="radio"
+			class={['radio', errors.length > 0 && 'radio-error']}
 			bind:group={mapped.value}
 			value={index}
 			{...attributes}
 			id={option.id}
 			disabled={option.disabled || attributes.disabled}
 		/>
-		<p>{option.label}</p>
+		{option.label}
 	</label>
 {/each}

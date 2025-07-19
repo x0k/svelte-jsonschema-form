@@ -2,17 +2,22 @@
 	import { getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 	import '@sjsf/basic-theme/widgets/checkbox.svelte';
 
-	let { config, value = $bindable(), handlers }: ComponentProps['checkboxWidget'] = $props();
+	let {
+		config,
+		value = $bindable(),
+		handlers,
+		errors
+	}: ComponentProps['checkboxWidget'] = $props();
 
 	const ctx = getFormContext();
 </script>
 
-<label class="flex items-center space-x-2 cursor-pointer">
+<label class="fieldset-label">
 	<input
 		type="checkbox"
-		class="checkbox"
+		class={['checkbox', errors.length > 0 && 'checkbox-error']}
 		bind:checked={() => value ?? false, (v) => (value = v)}
 		{...inputAttributes(ctx, config, 'checkbox', handlers, {})}
 	/>
-	<p>{config.title}</p>
+	{config.title}
 </label>

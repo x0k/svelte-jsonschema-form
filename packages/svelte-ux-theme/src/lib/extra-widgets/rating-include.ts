@@ -1,12 +1,12 @@
-import { definitions } from '../definitions.js'
+import { definitions } from '../definitions.js';
 
-import Rating from './rating.svelte'
-import './rating.svelte'
+import Rating from './rating.svelte';
+import './rating.svelte';
 
-declare module "../definitions.js" {
-  interface ExtraWidgets {
-    ratingWidget: {}
-  }
+declare module '../definitions.js' {
+	interface ExtraWidgets {
+		ratingWidget: {};
+	}
 }
 
-definitions.ratingWidget = Rating
+definitions.ratingWidget = Rating;

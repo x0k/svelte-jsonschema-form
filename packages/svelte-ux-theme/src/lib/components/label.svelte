@@ -7,12 +7,9 @@
 	const ctx = getFormContext();
 </script>
 
-<label
-	class="label-text"
-	{...labelAttributes(ctx, config, 'labelAttributes', {})}
->
+<label class="fieldset-legend" {...labelAttributes(ctx, config, 'labelAttributes', {})}>
 	{title}
 	{#if config.required}
-		<span>*</span>
+		*
 	{/if}
 </label>
