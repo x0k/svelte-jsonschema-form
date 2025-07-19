@@ -41,6 +41,14 @@ zod/:
     pnpm run test $@
   popd
 
+val/:
+  pushd packages/valibot-validator
+  b:
+    pnpm run build
+  t:
+    pnpm run test $@
+  popd
+
 cfw/:
   pushd packages/cfworker-validator
   b:

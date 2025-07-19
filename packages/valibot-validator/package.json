@@ -1,0 +1,52 @@
+{
+  "name": "@sjsf/valibot-validator",
+  "version": "2.1.2",
+  "description": "The Valibot based validator for svelte-jsonschema-form",
+  "license": "MIT",
+  "keywords": [
+    "validator",
+    "jsonschema",
+    "valibot"
+  ],
+  "type": "module",
+  "files": [
+    "dist",
+    "!dist/**/*.test.*",
+    "!dist/**/*.spec.*"
+  ],
+  "publishConfig": {
+    "provenance": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/x0k/svelte-jsonschema-form.git",
+    "directory": "packages/valibot-validator"
+  },
+  "bugs": "https://github.com/x0k/svelte-jsonschema-form/issues",
+  "homepage": "https://x0k.github.io/svelte-jsonschema-form/",
+  "scripts": {
+    "test": "vitest run",
+    "build": "tsc && publint",
+    "dev": "tsc --watch"
+  },
+  "types": "dist/index.d.ts",
+  "main": "dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "svelte": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "peerDependencies": {
+    "@sjsf/form": "workspace:^2.1.2",
+    "@valibot/to-json-schema": "^1.3.0",
+    "valibot": "^1.1.0"
+  },
+  "devDependencies": {
+    "@sjsf/form": "workspace:*",
+    "@valibot/to-json-schema": "^1.3.0",
+    "valibot": "^1.1.0",
+    "svelte": "catalog:"
+  }
+}
