@@ -23,7 +23,7 @@ import {
   type WidgetNode,
   type WidgetNodeType,
 } from "$lib/builder/index.js";
-import { Theme } from "$lib/sjsf/theme.js";
+import { Theme, type WidgetType } from "$lib/sjsf/theme.js";
 
 import type { BuilderDraggable } from "./context.svelte.js";
 import { pickSchemaType, typeOfValue } from "@sjsf/form/core";
@@ -201,12 +201,6 @@ export const DEFAULT_WIDGETS: Record<WidgetNodeType, WidgetType> = {
   [NodeType.File]: FILE_NODE_OPTIONS_SCHEMA.properties.widget.default,
   [NodeType.Tags]: FILE_NODE_OPTIONS_SCHEMA.properties.widget.default,
 };
-
-export type WidgetType = {
-  [T in ComponentType]: ComponentProps[T] extends WidgetCommonProps<any>
-    ? T
-    : never;
-}[ComponentType];
 
 const BASE_WIDGETS = [
   "textWidget",

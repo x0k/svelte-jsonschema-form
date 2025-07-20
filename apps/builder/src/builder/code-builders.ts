@@ -1,12 +1,14 @@
-import { ICONS, Icons, ICONS_PEER_DEPS } from "$lib/sjsf/icons.js";
+import type { Schema, UiSchema } from "@sjsf/form";
+
+import { Icons, ICONS_PEER_DEPS } from "$lib/sjsf/icons.js";
 import type { Resolver } from "$lib/sjsf/resolver.js";
 import {
   Theme,
   THEME_OPTIONAL_DEPS,
   THEME_PEER_DEPS,
+  type WidgetType,
 } from "$lib/sjsf/theme.js";
 import { VALIDATOR_PEER_DEPS, type Validator } from "$lib/sjsf/validators.js";
-import type { Schema, UiSchema } from "@sjsf/form";
 
 import {
   EPHEMERAL_WIDGET_IMPORTS,
@@ -17,7 +19,6 @@ import {
   type EphemeralWidgetType,
   type EphemeralFieldType,
   type ExtraWidgetType,
-  type WidgetType,
   EXTRA_WIDGET_IMPORTS,
   EPHEMERAL_WIDGET_DEFINITIONS,
 } from "./model.js";
@@ -289,12 +290,15 @@ export interface InstallShOptions {
   theme: Theme;
   validator: Validator;
   icons: Icons;
+  widgets: Set<WidgetType>;
 }
 
-export function buildInstallSh({ theme, validator, icons }: InstallShOptions) {
-  let cmd = `npm i @sjsf/form @sjsf/${theme}-theme @sjsf/${validator}-validator`;
-  cmd = icons === Icons.None ? cmd : `${cmd} @sjsf/${icons}-icons`;
-  const optional = THEME_OPTIONAL_DEPS[theme];
+export function buildInstallSh({
+  theme,
+  validator,
+  icons,
+  widgets,
+}: InstallShOptions) {
   const peer = Array.from(
     new Set(
       [
@@ -306,9 +310,22 @@ export function buildInstallSh({ theme, validator, icons }: InstallShOptions) {
         .flatMap((s) => s.split(" "))
     )
   );
-  return join(
-    peer.length > 0 && `# peer deps: ${peer.join(" ")}`,
-    optional && `# optional deps: ${optional}`,
-    cmd
-  );
+  let cmd = `npm i @sjsf/form @sjsf/${theme}-theme @sjsf/${validator}-validator`;
+  if (icons !== Icons.None) {
+    cmd += ` @sjsf/${icons}-icons`;
+  }
+  const optional = Object.entries(THEME_OPTIONAL_DEPS[theme])
+    .filter(([_, libWidgets]) => {
+      for (const w of libWidgets) {
+        if (widgets.has(w)) {
+          return true;
+        }
+      }
+      return false;
+    })
+    .map(([lib]) => lib);
+  if (optional.length > 0) {
+    cmd += ` ${optional.join(" ")}`;
+  }
+  return join(peer.length > 0 && `# peer deps: ${peer.join(" ")}`, cmd);
 }

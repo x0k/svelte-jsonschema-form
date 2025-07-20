@@ -33,7 +33,7 @@ import {
   type Scope,
   type SchemaBuilderContext,
 } from "$lib/builder/index.js";
-import { mergeUiSchemas, Theme } from "$lib/sjsf/theme.js";
+import { mergeUiSchemas, Theme, type WidgetType } from "$lib/sjsf/theme.js";
 import { validator } from "$lib/form/defaults.js";
 import { Validator } from "$lib/sjsf/validators.js";
 import { Resolver } from "$lib/sjsf/resolver.js";
@@ -41,7 +41,6 @@ import { Icons, ICONS_APP_CSS } from "$lib/sjsf/icons.js";
 import { highlight, type SupportedLanguage } from "$lib/shiki.js";
 
 import {
-  type WidgetType,
   type Route,
   CHECKBOXES_WIDGET_OPTIONS,
   DEFAULT_COMPONENTS,
@@ -315,6 +314,7 @@ export class BuilderContext {
     this.highlight(
       "bash",
       buildInstallSh({
+        widgets: this.#uiSchemaOutput.widgets,
         theme: this.theme,
         icons: this.icons,
         validator: this.validator,

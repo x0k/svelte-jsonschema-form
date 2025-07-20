@@ -3,6 +3,8 @@ import { cast } from "@sjsf/form/lib/component";
 import type { SchemaArrayValue } from "@sjsf/form/core";
 import type {
   ComponentDefinition,
+  ComponentProps,
+  ComponentType,
   FieldCommonProps,
   SchemaValue,
   Theme as SJSFTheme,
@@ -132,6 +134,12 @@ import "@sjsf/shadcn4-theme/extra-widgets/range-include";
 import "@sjsf/shadcn4-theme/extra-widgets/switch-include";
 import "@sjsf/shadcn4-theme/extra-widgets/textarea-include";
 
+export type WidgetType = {
+  [T in ComponentType]: ComponentProps[T] extends WidgetCommonProps<any>
+    ? T
+    : never;
+}[ComponentType];
+
 export enum Theme {
   Basic = "basic",
   Daisy5 = "daisyui5",
@@ -150,12 +158,24 @@ export const THEME_TITLES: Record<Theme, string> = {
   [Theme.Shadcn4]: "shadcn-svelte",
 };
 
-export const THEME_OPTIONAL_DEPS: Record<Theme, string> = {
-  [Theme.Basic]: "",
-  [Theme.Daisy5]: "",
-  [Theme.Flowbite3]: "",
-  [Theme.Skeleton3]: "@skeletonlabs/skeleton-svelte",
-  [Theme.Shadcn4]: "@internationalized/date",
+export const THEME_OPTIONAL_DEPS: Record<
+  Theme,
+  Record<string, Set<WidgetType>>
+> = {
+  [Theme.Basic]: {},
+  [Theme.Daisy5]: {},
+  [Theme.Flowbite3]: {},
+  [Theme.Skeleton3]: {
+    "@skeletonlabs/skeleton-svelte": new Set([
+      "fileUploadWidget",
+      "radioButtonsWidget",
+      "ratingWidget",
+      "rangeWidget",
+      "switchWidget",
+      "tagsWidget",
+    ]),
+  },
+  [Theme.Shadcn4]: { "@internationalized/date": new Set(["datePickerWidget"]) },
 };
 
 export const THEME_PEER_DEPS: Record<Theme, string> = {

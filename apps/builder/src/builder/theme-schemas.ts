@@ -6,10 +6,10 @@ import type {
   UiSchemaRoot,
 } from "@sjsf/form";
 
-import { Theme } from "$lib/sjsf/theme.js";
+import { Theme, type WidgetType } from "$lib/sjsf/theme.js";
 import { NodeType } from "$lib/builder/index.js";
 
-import { WIDGET_NAMES, type WidgetType } from "./model.js";
+import { WIDGET_NAMES } from "./model.js";
 
 export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
   [Theme.Basic]: {

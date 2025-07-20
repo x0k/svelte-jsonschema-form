@@ -2,8 +2,9 @@
   import type { Snippet } from "svelte";
 
   import type { CustomizableNodeType } from "$lib/builder/index.js";
+  import type { WidgetType } from '$lib/sjsf/theme.js';
 
-  import { type NodeProps, type WidgetType, WIDGET_NAMES } from "./model.js";
+  import { type NodeProps, WIDGET_NAMES } from "./model.js";
   import type { BuilderDraggable } from "./context.svelte.js";
   import NodeHeader from "./node-header.svelte";
 
