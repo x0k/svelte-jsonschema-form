@@ -32,6 +32,7 @@ import {
   buildUiSchema,
   type Scope,
   type SchemaBuilderContext,
+  isFileNode,
 } from "$lib/builder/index.js";
 import { mergeUiSchemas, Theme, type WidgetType } from "$lib/sjsf/theme.js";
 import { validator } from "$lib/form/defaults.js";
@@ -45,6 +46,8 @@ import {
   CHECKBOXES_WIDGET_OPTIONS,
   DEFAULT_COMPONENTS,
   DEFAULT_WIDGETS,
+  FILE_FIELD_MULTIPLE_MODE,
+  FILE_FIELD_SINGLE_MODE,
   RADIO_WIDGET_OPTIONS,
   RouteName,
   TEXT_WIDGET_OPTIONS,
@@ -232,6 +235,7 @@ export class BuilderContext {
 
   readonly schema = $derived(this.#buildOutput?.schema ?? {});
   #uiSchemaOutput = $derived.by(() => {
+    let fileFieldMode = 0;
     const widgets = new Set<WidgetType>();
     const uiSchema =
       this.rootNode &&
@@ -241,6 +245,11 @@ export class BuilderContext {
           propertyNames: this.#buildOutput.propertyNames,
           propertiesOrder: [],
           uiComponents: (node) => {
+            if (isFileNode(node)) {
+              fileFieldMode |= node.options.multiple
+                ? FILE_FIELD_MULTIPLE_MODE
+                : FILE_FIELD_SINGLE_MODE;
+            }
             const widget = node.options.widget as WidgetType;
             widgets.add(widget);
             const components = Object.assign(
@@ -280,7 +289,7 @@ export class BuilderContext {
         },
         this.rootNode
       );
-    return { uiSchema, widgets };
+    return { uiSchema, widgets, fileFieldMode };
   });
   readonly uiSchema = $derived(this.#uiSchemaOutput.uiSchema);
 
@@ -299,6 +308,7 @@ export class BuilderContext {
       "typescript",
       buildFormDefaults({
         widgets: this.#uiSchemaOutput.widgets,
+        fileFieldMode: this.#uiSchemaOutput.fileFieldMode,
         resolver: this.resolver,
         theme: this.theme,
         icons: this.icons,
@@ -607,10 +617,7 @@ export class BuilderContext {
             return v;
           },
         };
-        return {
-          ...scope,
-          ...ctx.push("scope", scope),
-        };
+        return Object.assign(scope, ctx.push("scope", scope));
       },
       push(registry, value) {
         registries[registry].push(value);

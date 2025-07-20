@@ -15,12 +15,14 @@ import {
   isBaseWidget,
   isEphemeralField,
   isEphemeralWidget,
-  WIDGET_EXTRA_FIELDS,
+  WIDGET_EXTRA_FIELD,
   type EphemeralWidgetType,
   type EphemeralFieldType,
   type ExtraWidgetType,
   EXTRA_WIDGET_IMPORTS,
   EPHEMERAL_WIDGET_DEFINITIONS,
+  type FileFieldMode,
+  fileFieldModeToFields,
 } from "./model.js";
 
 export interface FormDefaultsOptions {
@@ -29,6 +31,7 @@ export interface FormDefaultsOptions {
   theme: Theme;
   icons: Icons;
   validator: Validator;
+  fileFieldMode: FileFieldMode;
 }
 
 export function join(...args: (string | boolean)[]) {
@@ -155,6 +158,7 @@ export function buildFormDefaults({
   resolver,
   theme,
   validator,
+  fileFieldMode,
 }: FormDefaultsOptions): string {
   const extraFields = new Set<string>();
   const ephemeralFieldTypes = new Set<EphemeralFieldType>();
@@ -168,7 +172,12 @@ export function buildFormDefaults({
         extraWidgetTypes.push(w);
       }
     }
-    for (const f of WIDGET_EXTRA_FIELDS[w]) {
+    const fields = fileFieldModeToFields(fileFieldMode);
+    const f = WIDGET_EXTRA_FIELD[w];
+    if (f !== undefined) {
+      fields.push(f);
+    }
+    for (const f of fields) {
       if (isEphemeralField(f)) {
         ephemeralFieldTypes.add(f);
       } else {

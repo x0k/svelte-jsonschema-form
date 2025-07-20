@@ -247,27 +247,42 @@ export function isEphemeralField(field: string): field is EphemeralFieldType {
   return EPHEMERAL_FIELDS_SET.has(field);
 }
 
-export const WIDGET_EXTRA_FIELDS: Record<WidgetType, string[]> = {
-  textWidget: [],
-  numberWidget: [],
-  selectWidget: ["enum"],
-  checkboxWidget: [],
-  fileWidget: ["file", "files"],
-  checkboxesWidget: ["multi-enum"],
-  tagsWidget: ["tags"],
-  datePickerWidget: [],
-  multiSelectWidget: ["multi-enum"],
-  radioWidget: ["enum"],
-  sliderWidget: [],
-  rangeWidget: [],
-  textareaWidget: [],
-  radioButtonsWidget: ["enum"],
-  ratingWidget: [],
-  switchWidget: [],
-  comboboxWidget: ["enum"],
-  filterRadioButtonsWidget: ["enum"],
-  pikadayDatePickerWidget: [],
-  fileUploadWidget: ["file", "files"],
+export type FileFieldMode = number;
+export const FILE_FIELD_SINGLE_MODE = 1;
+export const FILE_FIELD_MULTIPLE_MODE = FILE_FIELD_SINGLE_MODE << 1;
+
+export function fileFieldModeToFields(mode: FileFieldMode): string[] {
+  const fields: string[] = [];
+  if (mode & FILE_FIELD_SINGLE_MODE) {
+    fields.push("file");
+  }
+  if (mode & FILE_FIELD_MULTIPLE_MODE) {
+    fields.push("files");
+  }
+  return fields;
+}
+
+export const WIDGET_EXTRA_FIELD: Record<WidgetType, string | undefined> = {
+  textWidget: undefined,
+  numberWidget: undefined,
+  selectWidget: "enum",
+  checkboxWidget: undefined,
+  fileWidget: undefined,
+  checkboxesWidget: "multi-enum",
+  tagsWidget: "tags",
+  datePickerWidget: undefined,
+  multiSelectWidget: "multi-enum",
+  radioWidget: "enum",
+  sliderWidget: undefined,
+  rangeWidget: undefined,
+  textareaWidget: undefined,
+  radioButtonsWidget: "enum",
+  ratingWidget: undefined,
+  switchWidget: undefined,
+  comboboxWidget: "enum",
+  filterRadioButtonsWidget: "enum",
+  pikadayDatePickerWidget: undefined,
+  fileUploadWidget: undefined,
 };
 
 export const WIDGET_NAMES: Record<WidgetType, string> = {
