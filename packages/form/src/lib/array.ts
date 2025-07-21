@@ -7,3 +7,5 @@ export function some<T>(
 ): boolean {
   return Array.isArray(data) ? data.some(predicate) : predicate(data);
 }
+
+export const unique = <T>(items: Array<T>): Array<T> => Array.from(new Set(items))
