@@ -3,6 +3,7 @@
 // Modifications made by Roman Krasilnikov.
 
 import { isNil } from "@/lib/types.js";
+import { unique as uniqueItems } from "@/lib/array.js";
 
 import {
   ARRAYS_OF_SUB_SCHEMAS,
@@ -60,7 +61,7 @@ function mergeArrays<T>(
   } else {
     merged = left.concat(right);
   }
-  return unique ? Array.from(new Set(merged)) : merged;
+  return unique ? uniqueItems(merged) : merged;
 }
 
 function mergeSchemaDefinitions(
@@ -255,7 +256,7 @@ export function mergeDefaultsWithFormData<T = any>(
 
 export function mergeSchemaObjects<
   A extends SchemaObjectValue,
-  B extends SchemaObjectValue
+  B extends SchemaObjectValue,
 >(obj1: A, obj2: B, concatArrays: boolean | "preventDuplicates" = false) {
   const acc: SchemaObjectValue = Object.assign({}, obj1);
   for (const [key, right] of Object.entries(obj2)) {
