@@ -754,7 +754,7 @@ describe("comparison", () => {
       ).toBe(true);
     });
 
-    it.only("handles complex dependencies", () => {
+    it("handles complex dependencies", () => {
       expect(
         isEqual(
           {
