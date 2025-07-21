@@ -7,6 +7,8 @@ import { isSchema, type Schema, type SchemaDefinition } from "../schema.js";
 
 const constZero = () => 0;
 
+const isUndefined = <T>(v: T | undefined): v is undefined => v === undefined;
+
 const isEmptyArray = <T>(arr: T[]): arr is [] => arr.length === 0;
 
 const isEmptyRecord = <R extends Record<string, any>>(
@@ -19,6 +21,20 @@ const isEmptyRecord = <R extends Record<string, any>>(
   }
   return true;
 };
+
+function uniqueKeys<K>(aKeys: K[], bKeys: K[]): K[] {
+  if (aKeys.length === 0) return bKeys;
+  if (bKeys.length === 0) return aKeys;
+
+  const seen = new Set(aKeys);
+
+  for (const key of bKeys) {
+    if (!seen.has(key)) {
+      aKeys.push(key);
+    }
+  }
+  return aKeys;
+}
 
 const isEmptySchemaDef = (
   def: SchemaDefinition
@@ -78,29 +94,38 @@ function createArrayComparator<T>(compare: (a: T, b: T) => number) {
       return d;
     }
     for (let i = 0; i < a.length; i++) {
-      if (a[i] === b[i]) {
-        continue;
-      }
-      const d = compare(a[i]!, b[i]!);
-      if (d !== 0) {
-        return d;
+      if (a[i] !== b[i]) {
+        const d = compare(a[i]!, b[i]!);
+        if (d !== 0) {
+          return d;
+        }
       }
     }
     return 0;
   };
 }
 
+const deduplicationCache = new WeakMap<Array<any>, Array<any>>();
+
 function deduplicate<T>(arr: T[], compare: (a: T, b: T) => number) {
-  const sorted = arr.toSorted(compare);
-  let shift = 0;
-  for (let i = 1; i < arr.length; i++) {
-    if (compare(sorted[i - 1]!, sorted[i]!) === 0) {
-      shift++;
-    } else {
-      sorted[i - shift] = sorted[i]!;
+  const cached = deduplicationCache.get(arr);
+  if (cached !== undefined) {
+    return cached;
+  }
+
+  const sorted = arr.slice().sort(compare);
+  let wIndex = 0;
+
+  for (let rIndex = 1; rIndex < arr.length; rIndex++) {
+    if (compare(sorted[wIndex]!, sorted[rIndex]!) !== 0) {
+      if (++wIndex !== rIndex) {
+        sorted[wIndex] = sorted[rIndex]!;
+      }
     }
   }
-  sorted.length -= shift;
+
+  sorted.length = wIndex + 1;
+  deduplicationCache.set(arr, sorted);
   return sorted;
 }
 
@@ -122,9 +147,8 @@ function createRecordsComparator<K extends string, T>(
     if (d !== 0) {
       return d;
     }
-    const aKeysSet = new Set(aKeys);
-    const uniqKeys = aKeys.concat(bKeys.filter((k) => !aKeysSet.has(k))).sort();
-    for (const key of uniqKeys) {
+    const allKeys = uniqueKeys(aKeys, bKeys).sort();
+    for (const key of allKeys) {
       if (a[key] === b[key]) {
         continue;
       }
@@ -157,8 +181,8 @@ function createNarrowingComparator<T, E extends T>(
 }
 
 function createOptionalComparator<T>(compare: (l: T, r: T) => number) {
-  return createNarrowingComparator(
-    (v: T | undefined): v is undefined => v === undefined,
+  return createNarrowingComparator<T | undefined, undefined>(
+    isUndefined,
     compare
   );
 }
@@ -253,23 +277,23 @@ function compareSchemaDefinitions(
   if (!isBSchema) {
     return b === true && isEmptyRecord(a) ? 0 : 1;
   }
-  let keys = Object.keys(a) as (keyof Schema)[];
-  const bClone = { ...b };
-  do {
-    for (const key of keys) {
-      delete bClone[key];
-      if (a[key] === b[key]) {
-        continue;
-      }
-      const cmp = COMPARATORS[key] ?? compareOptionalSchemaValues;
-      // @ts-expect-error
-      const d = cmp(a[key], b[key]);
-      if (d !== 0) {
-        return d;
-      }
+
+  const aKeys = Object.keys(a) as (keyof Schema)[];
+  const bKeys = Object.keys(b) as (keyof Schema)[];
+  const allKeys = uniqueKeys(aKeys, bKeys);
+
+  for (const key of allKeys) {
+    if (a[key] === b[key]) {
+      continue;
     }
-    keys = Object.keys(bClone) as (keyof Schema)[];
-  } while (keys.length);
+    const cmp = COMPARATORS[key] ?? compareOptionalSchemaValues;
+    // @ts-expect-error
+    const d = cmp(a[key], b[key]);
+    if (d !== 0) {
+      return d;
+    }
+  }
+
   return 0;
 }
 
