@@ -12,7 +12,7 @@ const isEmptyArray = <T>(arr: T[]): arr is [] => arr.length === 0;
 const isEmptyRecord = <R extends Record<string, any>>(
   rec: R | Record<string, never>
 ): rec is Record<string, never> => {
-  for (let key in rec) {
+  for (const key in rec) {
     if (rec.hasOwnProperty(key)) {
       return false;
     }
@@ -235,19 +235,6 @@ const compareOptionalArrayOfSchemasWithDeduplication = createOptionalComparator(
   createArrayComparatorWithDeduplication(compareSchemaDefinitions)
 );
 
-function* allUniqKeys<T>(mutableUniqItems: T[], mutableOtherItems: T[]) {
-  const seen = new Set<T>();
-  for (const k of mutableUniqItems.sort()) {
-    seen.add(k);
-    yield k;
-  }
-  for (const k of mutableOtherItems.sort()) {
-    if (!seen.has(k)) {
-      yield k;
-    }
-  }
-}
-
 function compareSchemaDefinitions(
   a: SchemaDefinition,
   b: SchemaDefinition
@@ -266,19 +253,23 @@ function compareSchemaDefinitions(
   if (!isBSchema) {
     return b === true && isEmptyRecord(a) ? 0 : 1;
   }
-  const aKeys = Object.keys(a) as (keyof Schema)[];
-  const bKeys = Object.keys(b) as (keyof Schema)[];
-  for (const key of allUniqKeys(aKeys, bKeys)) {
-    if (a[key] === b[key]) {
-      continue;
+  let keys = Object.keys(a) as (keyof Schema)[];
+  const bClone = { ...b };
+  do {
+    for (const key of keys) {
+      delete bClone[key];
+      if (a[key] === b[key]) {
+        continue;
+      }
+      const cmp = COMPARATORS[key] ?? compareOptionalSchemaValues;
+      // @ts-expect-error
+      const d = cmp(a[key], b[key]);
+      if (d !== 0) {
+        return d;
+      }
     }
-    const cmp = COMPARATORS[key] ?? compareOptionalSchemaValues;
-    // @ts-expect-error
-    const d = cmp(a[key], b[key]);
-    if (d !== 0) {
-      return d;
-    }
-  }
+    keys = Object.keys(bClone) as (keyof Schema)[];
+  } while (keys.length);
   return 0;
 }
 

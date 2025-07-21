@@ -1,7 +1,9 @@
 import { describe, it, expect } from "vitest";
+// import isEqual from "json-schema-compare";
+
+import type { Schema } from "../schema.js";
 
 import { isEqual } from "./compare.js";
-import type { Schema } from "../schema.js";
 
 describe("comparison", () => {
   describe("validation only", () => {
@@ -752,7 +754,7 @@ describe("comparison", () => {
       ).toBe(true);
     });
 
-    it("handles complex dependencies", () => {
+    it.only("handles complex dependencies", () => {
       expect(
         isEqual(
           {

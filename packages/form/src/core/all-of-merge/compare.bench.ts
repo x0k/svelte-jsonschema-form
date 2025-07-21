@@ -1,4 +1,4 @@
-import { bench, describe } from "vitest";
+import { bench, describe, expect } from "vitest";
 import jsonSchemaCompare from "json-schema-compare";
 
 import type {
@@ -11,6 +11,7 @@ import { isEqual } from "./compare.js";
 
 interface TestCase {
   name: string;
+  expected: boolean;
   a: SchemaDefinition;
   b: SchemaDefinition;
 }
@@ -23,6 +24,10 @@ const largeSchema: SchemaWithProperties = {
 for (let i = 0; i < 100; i++) {
   largeSchema.properties[`prop${i}`] = { type: "string", minLength: i };
 }
+
+const largeSchema2 = structuredClone(largeSchema);
+// @ts-expect-error
+largeSchema2.properties.prop50.minLength = 999;
 
 enum TransformPreset {
   Default = "Default",
@@ -40,7 +45,7 @@ enum ASCIITableFormat {
   MarkdownLike = "Markdown Like",
 }
 
-const realSchema: Schema = {
+const realSchema = {
   type: "object",
   title: "Options",
   properties: {
@@ -203,11 +208,16 @@ const realSchema: Schema = {
       ],
     },
   },
-};
+} as const satisfies Schema;
+
+const realSchema2 = structuredClone(realSchema);
+// @ts-expect-error
+realSchema2.dependencies.preset.oneOf[1].properties.proportionalSizeAdjustmentThreshold.default = 10;
 
 const cases: TestCase[] = [
   {
     name: "simple",
+    expected: false,
     a: {
       title: "title 1",
       type: ["object"],
@@ -233,6 +243,7 @@ const cases: TestCase[] = [
   },
   {
     name: "deduplication",
+    expected: true,
     a: {
       anyOf: [{ type: "string" }, { type: "number" }, { type: "string" }],
     },
@@ -242,24 +253,38 @@ const cases: TestCase[] = [
   },
   {
     name: "large",
+    expected: true,
     a: largeSchema,
-    b: largeSchema,
+    b: structuredClone(largeSchema),
+  },
+  {
+    name: "large (negative)",
+    expected: false,
+    a: largeSchema,
+    b: largeSchema2,
   },
   {
     name: "real",
+    expected: true,
     a: realSchema,
-    b: realSchema,
+    b: structuredClone(realSchema),
+  },
+  {
+    name: "real (negative)",
+    expected: false,
+    a: realSchema,
+    b: realSchema2,
   },
 ];
 
 describe("isEqual vs json-schema-compare", () => {
-  for (const { name, a, b } of cases) {
+  for (const { name, a, b, expected } of cases) {
     describe(name, () => {
       bench("isEqual", () => {
-        isEqual(a, b);
+        expect(isEqual(a, b)).toBe(expected);
       });
       bench("json-schema-compare", () => {
-        jsonSchemaCompare(a, b);
+        expect(jsonSchemaCompare(a, b)).toBe(expected);
       });
     });
   }
