@@ -13,6 +13,7 @@
     "dist",
     "LICENSE-APACHE",
     "!app.*",
+    "!dist/**/*.bench.*",
     "!dist/**/*.test.*",
     "!dist/**/*.spec.*"
   ],
