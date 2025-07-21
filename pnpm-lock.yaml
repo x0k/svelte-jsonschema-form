@@ -1405,9 +1405,15 @@ importers:
         specifier: ^5.0.1
         version: 5.0.1
     devDependencies:
+      '@types/json-schema-compare':
+        specifier: ^0.2.4
+        version: 0.2.4
       deep-freeze-es6:
         specifier: ^4.0.1
         version: 4.0.1
+      json-schema-compare:
+        specifier: ^0.2.2
+        version: 0.2.2
       svelte:
         specifier: 'catalog:'
         version: 5.38.1
@@ -3272,6 +3278,9 @@ packages:
 
   '@types/js-yaml@4.0.9':
     resolution: {integrity: sha512-k4MGaQl5TGo/iipqb2UDG2UwjXziSWkh0uysQelTlJpX1qGlpUZYm8PnO4DxG1qBomtJUdYJ6qR6xdIah10JLg==}
+
+  '@types/json-schema-compare@0.2.4':
+    resolution: {integrity: sha512-wIGb4xs3nC56PfxOVuvXi3mDEC6yv+XLTH26NftvZTa4KQoLkFOIBzxLMrJg2zqXgik5U5d0D8E5tpNYO16psQ==}
 
   '@types/json-schema-merge-allof@0.6.5':
     resolution: {integrity: sha512-5mS11ZUTyFNUVEMpK3uKoPb6BWL/nLgW/ln2VOiI8OOxKEYC4Gl9O3WjS5P49yqVTfkcbCAPKw3T1O4erUah5g==}
@@ -8879,6 +8888,10 @@ snapshots:
       '@types/unist': 3.0.3
 
   '@types/js-yaml@4.0.9': {}
+
+  '@types/json-schema-compare@0.2.4':
+    dependencies:
+      '@types/json-schema': 7.0.15
 
   '@types/json-schema-merge-allof@0.6.5':
     dependencies:

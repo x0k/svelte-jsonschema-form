@@ -11,7 +11,7 @@
         "<node_internals>/**",
         "**/node_modules/**"
       ],
-      "program": "${workspaceRoot}/packages/form/node_modules/vitest/vitest.mjs",
+      "program": "${workspaceRoot}/node_modules/vitest/vitest.mjs",
       "args": [
         "run",
         "${relativeFile}",
