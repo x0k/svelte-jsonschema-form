@@ -1,8 +1,4 @@
-import type {
-  JSONSchema7Object,
-  JSONSchema7Type,
-  JSONSchema7TypeName,
-} from "json-schema";
+import type { JSONSchema7Type, JSONSchema7TypeName } from "json-schema";
 import {
   DEPENDENCIES_KEY,
   isSchema,
@@ -11,7 +7,6 @@ import {
   isSubSchemasRecordKey,
   ITEMS_KEY,
   type Schema,
-  type SchemaArrayValue,
   type SchemaDefinition,
 } from "../schema.js";
 
@@ -42,78 +37,12 @@ function* allUniqKeys<T>(mutableUniqItems: T[], mutableOtherItems: T[]) {
   }
 }
 
-function createRecordsComparator<T>(compare: (l: T, r: T) => number) {
-  return (a: Record<string, T>, b: Record<string, T>) => {
-    const aKeys = Object.keys(a);
-    const bKeys = Object.keys(b);
-    const d = aKeys.length - bKeys.length;
-    if (d !== 0) {
-      return d;
-    }
-    for (const key of allUniqKeys(aKeys, bKeys)) {
-      const l = a[key];
-      const r = b[key];
-      if (l === r) {
-        continue;
-      }
-      if (l === undefined) {
-        return -1;
-      }
-      if (r === undefined) {
-        return 1;
-      }
-      const d = compare(l, r);
-      if (d !== 0) {
-        return d;
-      }
-    }
-    return 0;
-  };
-}
+const constFalse = () => false;
 
-function createArrayOrItemComparator<T, T1>(
-  compare: (a: T, b: T) => number,
-  compareArray: (a: T1[], b: T1[]) => number
-) {
-  return (a: T | T1[], b: T | T1[]) => {
-    const isAArr = Array.isArray(a);
-    const isBArr = Array.isArray(b);
-    if (isAArr) {
-      if (isBArr) {
-        return compareArray(a, b);
-      }
-      return 1;
-    }
-    if (isBArr) {
-      return -1;
-    }
-    return compare(a, b);
-  };
-}
+const isEmptyArray = <T>(arr: T[]) => arr.length === 0;
 
-function createArrayComparator<T>(compare: (a: T, b: T) => number) {
-  return (a: T[], b: T[]) => {
-    a = deduplicate(a, compare);
-    b = deduplicate(b, compare);
-    const d = a.length - b.length;
-    if (d !== 0) {
-      return d;
-    }
-    for (let i = 0; i < a.length; i++) {
-      const d = compare(a[i]!, b[i]!);
-      if (d !== 0) {
-        return d;
-      }
-    }
-    return 0;
-  };
-}
-
-function comparePrimitive<T>(a: T, b: T) {
-  if (a < b) return -1;
-  if (a > b) return 1;
-  return 0;
-}
+const isSchemaDefEmpty = (def: SchemaDefinition) =>
+  isSchema(def) ? Object.keys(def).length === 0 : def === true;
 
 type SchemaPrimitiveTypeExceptNullType = Extract<
   JSONSchema7TypeName,
@@ -142,6 +71,12 @@ const CMP_TABLE: [CmpRow, CmpRow, CmpRow] = [
   [1, 1, 0],
 ];
 
+function comparePrimitive<T extends SchemaPrimitiveTypeExceptNull>(a: T, b: T) {
+  if (a < b) return -1;
+  if (a > b) return 1;
+  return 0;
+}
+
 function compareSchemaPrimitive(
   a: SchemaPrimitiveTypeExceptNull,
   b: SchemaPrimitiveTypeExceptNull
@@ -153,12 +88,108 @@ function compareSchemaPrimitive(
     : CMP_TABLE[PRIMITIVE_TYPE_ORDER[ta]][PRIMITIVE_TYPE_ORDER[tb]];
 }
 
-const compareSchemaObjects = createArrayOrItemComparator(
-  createRecordsComparator(compareSchemaValue),
-  createArrayComparator(compareSchemaValue)
+function createArrayComparator<T>(compare: (a: T, b: T) => number) {
+  return (a: T[], b: T[]) => {
+    a = deduplicate(a, compare);
+    b = deduplicate(b, compare);
+    const d = a.length - b.length;
+    if (d !== 0) {
+      return d;
+    }
+    for (let i = 0; i < a.length; i++) {
+      if (a[i] === b[i]) {
+        continue;
+      }
+      const d = compare(a[i]!, b[i]!);
+      if (d !== 0) {
+        return d;
+      }
+    }
+    return 0;
+  };
+}
+
+function createRecordsComparator<T>(
+  compare: (l: T | undefined, r: T | undefined) => number
+) {
+  return (a: Record<string, T>, b: Record<string, T>) => {
+    const aKeys = Object.keys(a);
+    const bKeys = Object.keys(b);
+    const d = aKeys.length - bKeys.length;
+    if (d !== 0) {
+      return d;
+    }
+    for (const key of allUniqKeys(aKeys, bKeys)) {
+      if (a[key] === b[key]) {
+        continue;
+      }
+      const d = compare(a[key], b[key]);
+      if (d !== 0) {
+        return d;
+      }
+    }
+    return 0;
+  };
+}
+
+function createOptionalComparator<T>(
+  compare: (l: T, r: T) => number,
+  isEmpty: (v: T) => boolean
+) {
+  return (a: T | undefined, b: T | undefined) => {
+    if (a === undefined) {
+      if (isEmpty(b!)) {
+        return 0;
+      }
+      return -1;
+    }
+    if (b === undefined) {
+      if (isEmpty(a!)) {
+        return 0;
+      }
+      return 1;
+    }
+    return compare(a, b);
+  };
+}
+
+function createArrayOrItemComparator<T, T1>(
+  compare: (a: T, b: T) => number,
+  compareArray: (a: T1[], b: T1[]) => number
+) {
+  return (a: T | T1[], b: T | T1[]) => {
+    const isAArr = Array.isArray(a);
+    const isBArr = Array.isArray(b);
+    if (isAArr) {
+      if (isBArr) {
+        return compareArray(a, b);
+      }
+      return 1;
+    }
+    if (isBArr) {
+      return -1;
+    }
+    return compare(a, b);
+  };
+}
+
+const compareOptionalSchemaValue = createOptionalComparator(
+  compareSchemaValue,
+  constFalse
 );
 
-function compareSchemaValue(a: JSONSchema7Type, b: JSONSchema7Type) {
+const compareSchemaArray = createArrayComparator(compareSchemaValue);
+
+const compareRecordOfOptionalSchemaValue = createRecordsComparator(
+  compareOptionalSchemaValue
+);
+
+const compareSchemaObjects = createArrayOrItemComparator(
+  compareRecordOfOptionalSchemaValue,
+  compareSchemaArray
+);
+
+function compareSchemaValue(a: JSONSchema7Type, b: JSONSchema7Type): number {
   if (a === null) {
     return -1;
   }
@@ -184,6 +215,19 @@ const compareSchemaOrArrayOfPrimitives = createArrayOrItemComparator(
   compareArrayOfPrimitives
 );
 
+const compareOptionalSchemaOrArrayOfPrimitives = createOptionalComparator(
+  compareSchemaOrArrayOfPrimitives,
+  constFalse
+);
+
+const compareSchemasOrArrayOfPrimitivesRecord = createRecordsComparator(
+  compareOptionalSchemaOrArrayOfPrimitives
+);
+
+const compareOptionalSchema = createOptionalComparator(compare, constFalse);
+
+const compareRecordOfSchemas = createRecordsComparator(compareOptionalSchema);
+
 const compareArrayOfSchemas = createArrayComparator(compare);
 
 const compareSchemaOrArrayOfSchemas = createArrayOrItemComparator(
@@ -191,64 +235,35 @@ const compareSchemaOrArrayOfSchemas = createArrayOrItemComparator(
   compareArrayOfSchemas
 );
 
-function compareNumbers(a: number | undefined, b: number | undefined) {
-  if (a === undefined) {
-    if (b === 0) {
-      return 0;
-    }
-    return -1;
-  }
-  if (b === undefined) {
-    if (a === 0) {
-      return 0;
-    }
-    return 1;
-  }
-  return a - b;
-}
-
-function createArraysComparator<T>(compare: (a: T[], b: T[]) => number) {
-  return (a: T[] | undefined, b: T[] | undefined) => {
-    if (a === undefined) {
-      if (b!.length === 0) {
-        return 0;
-      }
-      return -1;
-    }
-    if (b === undefined) {
-      if (a!.length === 0) {
-        return 0;
-      }
-      return 1;
-    }
-    return compare(a, b);
-  };
-}
+const compareOptionalNumbers = createOptionalComparator(
+  (a: number, b: number) => a - b,
+  (v) => v === 0
+);
 
 const COMPARATORS: {
   [K in keyof Schema]: (a: Schema[K], b: Schema[K]) => number;
 } = {
-  uniqueItems: (a, b) => {
-    if (a === undefined) {
-      if (b === false) {
-        return 0;
-      }
-      return -1;
-    }
-    if (b === undefined) {
-      if (a === false) {
-        return 0;
-      }
-      return 1;
-    }
-    return 0;
-  },
-  minLength: compareNumbers,
-  minItems: compareNumbers,
-  minProperties: compareNumbers,
-  required: createArraysComparator(comparePrimitive),
-  enum: createArraysComparator(compareSchemaValue),
-  type: (a, b) => {},
+  uniqueItems: createOptionalComparator(
+    () => 0,
+    (v) => v === false
+  ),
+  minLength: compareOptionalNumbers,
+  minItems: compareOptionalNumbers,
+  minProperties: compareOptionalNumbers,
+  required: createOptionalComparator(compareArrayOfPrimitives, isEmptyArray),
+  enum: createOptionalComparator(compareSchemaArray, isEmptyArray),
+  type: createOptionalComparator(
+    (a, b) =>
+      compareArrayOfPrimitives(
+        Array.isArray(a) ? a : [a],
+        Array.isArray(b) ? b : [b]
+      ),
+    constFalse
+  ),
+  items: createOptionalComparator(
+    compareSchemaOrArrayOfSchemas,
+    (v) => !Array.isArray(v) && isSchemaDefEmpty(v)
+  ),
 };
 
 function compare(a: SchemaDefinition, b: SchemaDefinition): number {
@@ -305,7 +320,7 @@ function compare(a: SchemaDefinition, b: SchemaDefinition): number {
         }
         continue;
       }
-      return createRecordsComparator(l, r, compareSchemaOrArrayOfPrimitives);
+      return compareSchemasOrArrayOfPrimitivesRecord(l, r);
     } else if (isSubSchemaKey(key)) {
       const l = a[key] ?? true;
       const r = b[key] ?? true;
@@ -343,7 +358,7 @@ function compare(a: SchemaDefinition, b: SchemaDefinition): number {
       if (r === undefined) {
         return 1;
       }
-      return createRecordsComparator(l, r, compare);
+      return compareRecordOfSchemas(l, r);
     } else if (key === "uniqueItems") {
       const l = a[key];
       const r = b[key];
