@@ -3,7 +3,14 @@ import type {
   JSONSchema7TypeName as SchemaType,
 } from "json-schema";
 
-import { isSchema, type Schema, type SchemaDefinition } from "../schema.js";
+import { isEmptyRecord } from "@/lib/object.js";
+
+import {
+  isTruthySchemaDefinition,
+  isSchema,
+  type Schema,
+  type SchemaDefinition,
+} from "../schema.js";
 
 const constZero = () => 0;
 
@@ -11,35 +18,24 @@ const isUndefined = <T>(v: T | undefined): v is undefined => v === undefined;
 
 const isEmptyArray = <T>(arr: T[]): arr is [] => arr.length === 0;
 
-const isEmptyRecord = <R extends Record<string, any>>(
-  rec: R | Record<string, never>
-): rec is Record<string, never> => {
-  for (const key in rec) {
-    if (rec.hasOwnProperty(key)) {
-      return false;
-    }
+function uniqueKeys<K>(target: K[], source: K[]): K[] {
+  const tl = target.length;
+  if (tl === 0) return source;
+  let sl = source.length;
+  if (sl === 0) return target;
+  if (sl > tl) {
+    const t = target;
+    target = source;
+    source = t;
   }
-  return true;
-};
-
-function uniqueKeys<K>(aKeys: K[], bKeys: K[]): K[] {
-  if (aKeys.length === 0) return bKeys;
-  if (bKeys.length === 0) return aKeys;
-
-  const seen = new Set(aKeys);
-
-  for (const key of bKeys) {
+  const seen = new Set(target);
+  for (const key of source) {
     if (!seen.has(key)) {
-      aKeys.push(key);
+      target.push(key);
     }
   }
-  return aKeys;
+  return target;
 }
-
-const isEmptySchemaDef = (
-  def: SchemaDefinition
-): def is true | Record<string, never> =>
-  isSchema(def) ? isEmptyRecord(def) : def === true;
 
 type SchemaPrimitiveTypeExceptNullType = Extract<
   SchemaType,
@@ -298,7 +294,10 @@ function compareSchemaDefinitions(
 }
 
 const compareSchemaDefinitionsWithEmptyDefinitionDefault =
-  createNarrowingOptionalComparator(isEmptySchemaDef, compareSchemaDefinitions);
+  createNarrowingOptionalComparator(
+    isTruthySchemaDefinition,
+    compareSchemaDefinitions
+  );
 
 const COMPARATORS: {
   [K in keyof Schema]-?: (a: Schema[K], b: Schema[K]) => number;
@@ -364,7 +363,7 @@ const COMPARATORS: {
     );
   }),
   items: createNarrowingOptionalComparator(
-    (v): v is true | Schema => !Array.isArray(v) && isEmptySchemaDef(v),
+    (v): v is true | Schema => !Array.isArray(v) && isTruthySchemaDefinition(v),
     createArrayOrItemComparator(
       compareSchemaDefinitions,
       createArrayComparator(compareSchemaDefinitions)

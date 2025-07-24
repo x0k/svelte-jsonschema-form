@@ -1,5 +1,7 @@
 import type { JSONSchema7, JSONSchema7TypeName } from "json-schema";
 
+import { isEmptyRecord } from "@/lib/object.js";
+
 export type TransformedSchema<R, S> = Omit<
   S,
   SubSchemaKey | SubSchemasArrayKey | SubSchemasRecordKey
