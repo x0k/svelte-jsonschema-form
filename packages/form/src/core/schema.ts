@@ -1,5 +1,7 @@
 import type { JSONSchema7, JSONSchema7TypeName } from "json-schema";
 
+import { isEmptyRecord } from "@/lib/object.js";
+
 export type TransformedSchema<R, S> = Omit<
   S,
   SubSchemaKey | SubSchemasArrayKey | SubSchemasRecordKey
@@ -170,4 +172,10 @@ export function isSubSchemasArrayKey(key: string): key is SubSchemasArrayKey {
 
 export function isSubSchemasRecordKey(key: string): key is SubSchemasRecordKey {
   return SET_OF_RECORDS_OF_SUB_SCHEMAS.has(key as SubSchemasRecordKey);
+}
+
+export function isTruthySchemaDefinition(
+  def: SchemaDefinition
+): def is true | Record<string, never> {
+  return isSchema(def) ? isEmptyRecord(def) : def === true;
 }
