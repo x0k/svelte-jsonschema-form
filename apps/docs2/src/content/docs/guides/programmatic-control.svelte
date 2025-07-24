@@ -3,7 +3,7 @@
     Content,
     createForm,
     Form,
-    setFormContext,
+    setFormContext2,
     type Schema,
   } from "@sjsf/form";
 
@@ -20,7 +20,7 @@
     initialValue: "initial",
     onSubmit: (v) => window.alert(v),
   });
-  setFormContext(form.context);
+  setFormContext2(form);
 
   let ref: HTMLFormElement | undefined;
 </script>
