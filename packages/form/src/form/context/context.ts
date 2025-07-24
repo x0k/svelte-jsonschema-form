@@ -24,6 +24,7 @@ import type { Id, IdOptions } from "../id.js";
 import type { FormValue } from "../model.js";
 import type { ResolveFieldType } from "../fields.js";
 
+/** @deprecated don't use this type */
 export type FormContext = Brand<"sjsf-context", {}>;
 
 export interface FormInternalContext<V extends Validator>
@@ -55,12 +56,15 @@ export interface FormInternalContext<V extends Validator>
   readonly fieldsValidation: FieldsValidation<V>;
 }
 
+// TODO: Do not export this symbol
+/** @deprecated this symbol will become internal */
 export const FORM_CONTEXT = Symbol("form-context");
 
 export function getFormContext<V extends Validator>(): FormInternalContext<V> {
   return getContext(FORM_CONTEXT);
 }
 
+/** @deprecated use `setFormContext2` */
 export function setFormContext(ctx: FormContext) {
   setContext(FORM_CONTEXT, ctx);
 }

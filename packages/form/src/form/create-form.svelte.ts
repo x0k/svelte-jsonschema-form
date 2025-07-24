@@ -1,3 +1,5 @@
+import { setContext } from "svelte";
+import type { Attachment } from "svelte/attachments";
 import { SvelteMap } from "svelte/reactivity";
 import { on } from "svelte/events";
 
@@ -41,7 +43,11 @@ import {
   type FieldsValidation,
   type FormValidationResult,
 } from "./errors.js";
-import { type FormInternalContext, type FormContext } from "./context/index.js";
+import {
+  type FormInternalContext,
+  type FormContext,
+  FORM_CONTEXT,
+} from "./context/index.js";
 import { createFormMerger, type FormMerger } from "./merger.js";
 import {
   type Id,
@@ -228,7 +234,9 @@ export interface FormOptions<T, V extends Validator>
 }
 
 export interface FormState<T, V extends Validator> {
+  /** @deprecated don't use this property */
   readonly context: FormContext;
+  readonly [FORM_CONTEXT]: FormInternalContext<V>;
   readonly submission: FormSubmission<V>;
   readonly fieldsValidation: FieldsValidation<V>;
   /**
@@ -243,6 +251,10 @@ export interface FormState<T, V extends Validator> {
   errors: FieldErrorsMap<PossibleError<V>>;
   submit(e: SubmitEvent): void;
   reset(e: Event): void;
+}
+
+export function setFormContext2(form: FormState<any, any>) {
+  setContext(FORM_CONTEXT, form[FORM_CONTEXT]);
 }
 
 export function createForm<T, V extends Validator>(
@@ -534,6 +546,7 @@ export function createForm<T, V extends Validator>(
 
   return {
     context,
+    [FORM_CONTEXT]: context,
     get value() {
       return getSnapshot(context) as T | undefined;
     },
@@ -568,6 +581,7 @@ export function createForm<T, V extends Validator>(
   };
 }
 
+/** @deprecated use `formHandlers` */
 export function enhance(node: HTMLFormElement, context: FormContext) {
   $effect(() => {
     const ctx = context as FormInternalContext<any>;
@@ -578,4 +592,19 @@ export function enhance(node: HTMLFormElement, context: FormContext) {
       disposeSubmit();
     };
   });
+}
+
+export function formHandlers(
+  ctxOrState: FormState<any, any> | FormInternalContext<any>
+): Attachment<HTMLFormElement> {
+  const ctx =
+    FORM_CONTEXT in ctxOrState ? ctxOrState[FORM_CONTEXT] : ctxOrState;
+  return (node) => {
+    const disposeSubmit = on(node, "submit", ctx.submitHandler);
+    const disposeReset = on(node, "reset", ctx.resetHandler);
+    return () => {
+      disposeReset();
+      disposeSubmit();
+    };
+  };
 }
