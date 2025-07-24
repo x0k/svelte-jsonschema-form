@@ -6,6 +6,17 @@ export function isRecord<T>(value: unknown): value is Record<PropertyKey, T> {
   return isObject(value) && !Array.isArray(value);
 }
 
+export function isEmptyRecord<R extends Record<string, any>>(
+  rec: R | Record<string, never>
+): rec is Record<string, never> {
+  for (const key in rec) {
+    if (rec.hasOwnProperty(key)) {
+      return false;
+    }
+  }
+  return true;
+}
+
 export function getValueByPath<T, R>(
   from: T,
   path: PropertyKey[],
