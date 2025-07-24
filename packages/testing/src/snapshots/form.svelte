@@ -2,7 +2,7 @@
   import {
     Content,
     createForm,
-    setFormContext,
+    setFormContext2,
     type FormOptions,
     type Validator,
   } from "@sjsf/form";
@@ -10,7 +10,7 @@
   const props: FormOptions<any, Validator> = $props();
 
   const form = createForm(props);
-  setFormContext(form.context);
+  setFormContext2(form);
 </script>
 
 <Content />

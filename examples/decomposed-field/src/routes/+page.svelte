@@ -1,10 +1,10 @@
 <script lang="ts">
   import {
-    type FormInternalContext,
     type Schema,
     createForm,
     Field,
     getErrors,
+    getFormContext,
     makeEventHandlers,
     validateField,
   } from "@sjsf/form";
@@ -32,11 +32,11 @@
   });
 
   const t = defaults.theme;
-  const ctx = form.context as FormInternalContext<typeof defaults.validator>;
 </script>
 
 <Field {form} name="hello">
   {#snippet render({ config, uiOption, valueRef })}
+    {@const ctx = getFormContext()}
     <!--
       NOTE: We use the `theme` call because the example needs to be generic,
       but you can use importing a component directly from your theme, for example:

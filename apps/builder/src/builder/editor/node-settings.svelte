@@ -5,7 +5,7 @@
     createForm,
     ON_CHANGE,
     ON_INPUT,
-    setFormContext,
+    setFormContext2,
   } from "@sjsf/form";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
 
@@ -32,7 +32,7 @@
     fieldsValidationMode: ON_INPUT | ON_CHANGE,
     fieldsValidationDebounceMs: 200,
   });
-  setFormContext(form.context);
+  setFormContext2(form);
 
   $effect(() => {
     if (form.fieldsValidation.isProcessed) {
