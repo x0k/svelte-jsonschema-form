@@ -1,22 +1,21 @@
 <script lang="ts">
   import type { HTMLAttributes } from "svelte/elements";
   import Tree from "@sveltejs/svelte-json-tree";
-  import { BasicForm, type FormInternalContext, type FormState } from "@sjsf/form";
+  import { BasicForm, type FormState } from "@sjsf/form";
 
   import { ShadowHost } from "../components/shadow";
 
   interface Props extends HTMLAttributes<HTMLDivElement> {
-    form: Pick<FormState<any, any>, 'context'>
+    form: FormState<any, any>
   }
 
   const { form, ...rest }: Props = $props();
-  const ctx = $derived(form.context as FormInternalContext<any>)
 </script>
 
 <div {...rest}>
   <div class="code">
     <ShadowHost>
-      <Tree value={ctx.value} />
+      <Tree value={form.value} />
     </ShadowHost>
   </div>
   <BasicForm {form} />

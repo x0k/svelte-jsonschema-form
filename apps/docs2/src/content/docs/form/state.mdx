@@ -23,7 +23,6 @@ export type FieldsValidation<V> = Task<
 >;
 
 export interface FormState<T, V extends Validator> {
-  readonly context: FormContext;
   readonly submission: FormSubmission<V>;
   readonly fieldsValidation: FieldsValidation<V>;
   /**

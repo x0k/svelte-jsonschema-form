@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { enhance, formAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
+	import { formHandlers, formAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
 	import '@sjsf/basic-theme/components/form.svelte';
 
 	let { children, ref = $bindable(), config, attributes }: ComponentProps['form'] = $props();
@@ -9,7 +9,7 @@
 
 <form
 	bind:this={ref}
-	use:enhance={ctx}
+	{@attach formHandlers(ctx)}
 	class="flex flex-col gap-4"
 	{...formAttributes(ctx, config, 'form', attributes, {})}
 >

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Content, createForm, setFormContext } from "@sjsf/form";
+  import { Content, createForm, setFormContext2 } from "@sjsf/form";
   import { preventPageReload } from "@sjsf/form/prevent-page-reload.svelte";
 
   import * as defaults from "@/components/form-defaults";
@@ -8,7 +8,7 @@
     ...defaults,
     schema: { type: "string" },
   });
-  setFormContext(form.context);
+  setFormContext2(form);
 
   preventPageReload(form);
 </script>

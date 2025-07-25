@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Content, setFormContext } from '@sjsf/form';
+  import { Content, setFormContext2 } from '@sjsf/form';
   import { createFormValidator } from '@sjsf/ajv8-validator';
   import { theme } from '@sjsf/basic-theme';
   import { translation } from '@sjsf/form/translations/en';
@@ -36,7 +36,7 @@
     onSubmit: request.run,
     onSubmitError: console.warn
   });
-  setFormContext(form.context);
+  setFormContext2(form);
 </script>
 
 <form

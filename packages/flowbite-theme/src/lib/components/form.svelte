@@ -9,7 +9,7 @@
 </script>
 
 <script lang="ts">
-	import { enhance, formAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
+	import { formHandlers, formAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
 
 	let { config, children, ref = $bindable(), attributes }: ComponentProps['form'] = $props();
 
@@ -18,7 +18,7 @@
 
 <form
 	bind:this={ref}
-	use:enhance={ctx}
+	{@attach formHandlers(ctx)}
 	class="flex flex-col gap-4"
 	{...formAttributes(ctx, config, 'flowbiteForm', attributes, {})}
 >

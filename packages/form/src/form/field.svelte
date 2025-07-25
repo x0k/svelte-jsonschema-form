@@ -7,15 +7,14 @@
   import { getSchemaDefinitionByPath, type Validator } from "@/core/index.js";
 
   import {
+    FORM_CONTEXT,
     getFieldComponent,
     retrieveSchema,
     retrieveTranslate,
     retrieveUiOption,
-    setFormContext,
     uiTitleOption,
-    type FormInternalContext,
   } from "./context/index.js";
-  import type { FormState } from "./create-form.svelte.js";
+  import { setFormContext2, type FormState } from "./create-form.svelte.js";
   import type { FieldValue } from "./model.js";
   import {
     getUiSchemaByPath,
@@ -60,7 +59,7 @@
     children,
   }: Props = $props();
 
-  const ctx = form.context as FormInternalContext<V>;
+  const ctx = form[FORM_CONTEXT];
 
   if (DEV) {
     $effect(() => {
@@ -173,7 +172,7 @@
 
   const renderField = $derived(render ?? children);
 
-  setFormContext(ctx);
+  setFormContext2(form);
 </script>
 
 {#if renderField}

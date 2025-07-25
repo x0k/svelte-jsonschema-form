@@ -1,10 +1,5 @@
 <script lang="ts">
-  import {
-    type Schema,
-    createForm,
-    enhance,
-    Field,
-  } from "@sjsf/form";
+  import { type Schema, createForm, Field, formHandlers } from "@sjsf/form";
   import type { FromSchema } from "json-schema-to-ts";
 
   import * as defaults from "@/components/form-defaults";
@@ -38,7 +33,7 @@
 
 <form
   novalidate
-  use:enhance={form.context}
+  {@attach formHandlers(form)}
   style="display: flex; flex-direction: column; gap: 1rem;"
 >
   <Field {form} name="login" />
