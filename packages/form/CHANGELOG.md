@@ -1,5 +1,11 @@
 # @sjsf/form
 
+## 2.2.1
+
+### Patch Changes
+
+- Deprecate `from.context` property ([#159](https://github.com/x0k/svelte-jsonschema-form/pull/159))
+
 ## 2.2.0
 
 ### Minor Changes

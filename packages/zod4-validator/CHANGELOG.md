@@ -1,5 +1,12 @@
 # @sjsf/zod4-validator
 
+## 2.2.1
+
+### Patch Changes
+
+- Updated dependencies [[`5bb7db6`](https://github.com/x0k/svelte-jsonschema-form/commit/5bb7db6fdbab2a3dcba2a84465c1207a12c10d16)]:
+  - @sjsf/form@2.2.1
+
 ## 2.2.0
 
 ### Patch Changes
