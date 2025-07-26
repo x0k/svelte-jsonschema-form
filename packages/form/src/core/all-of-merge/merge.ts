@@ -1,8 +1,10 @@
-import { unique as uniqueItems } from "@/lib/array.js";
+import { unique } from "@/lib/array.js";
 
 import {
   ARRAYS_OF_SUB_SCHEMAS,
   DEPENDENCIES_KEY,
+  isSchema,
+  isTruthySchemaDefinition,
   ITEMS_KEY,
   RECORDS_OF_SUB_SCHEMAS,
   REQUIRED_KEY,
@@ -10,7 +12,17 @@ import {
   type Schema,
   type SchemaDefinition,
 } from "../schema.js";
-import { isSchemaObjectValue } from "../value.js";
+import { isSchemaArrayValue, isSchemaObjectValue } from "../value.js";
+
+function getCombinations<T>(l: T[], r: T[]) {
+  const combinations = [];
+  for (const left of l) {
+    for (const right of r) {
+      combinations.push([left, right]);
+    }
+  }
+  return combinations;
+}
 
 function mergeRecords<T>(
   left: Record<string, T>,
@@ -28,128 +40,163 @@ function mergeRecords<T>(
   return target;
 }
 
-interface MergeArraysOptions<T> {
-  merge?: (l: T, r: T) => T;
-  /**
-   * @default false
-   */
-  unique?: boolean;
+type Assigner<R extends {}, T extends R[keyof R]> = (
+  target: R,
+  l: T,
+  r: T
+) => void;
+
+const ASSIGNERS = {} as const satisfies {
+  [K in keyof Schema]?: Assigner<Schema, Exclude<Schema[K], undefined>>;
+};
+
+type Merger<T> = (a: T, b: T) => T;
+
+function first<T>(l: T) {
+  return l;
 }
 
-function mergeArrays<T>(
-  left: T[],
-  right: T[],
-  { merge, unique }: MergeArraysOptions<T> = {}
-) {
-  let merged: T[];
-  if (merge) {
-    const [minArr, maxArr] =
-      left.length <= right.length ? [left, right] : [right, left];
-    merged = new Array(maxArr.length);
-    for (let i = 0; i < minArr.length; i++) {
-      merged[i] = merge(left[i]!, right[i]!);
-    }
-    for (let i = minArr.length; i < maxArr.length; i++) {
-      merged[i] = maxArr[i]!;
-    }
-  } else {
-    merged = left.concat(right);
-  }
-  return unique ? uniqueItems(merged) : merged;
+function mergeCombinations(l: SchemaDefinition[], r: SchemaDefinition[]) {
+  return getCombinations(l, r).map(mergeAllOfSchemas);
 }
 
-function mergeSchemaDefinitions(
-  left: SchemaDefinition,
-  right: SchemaDefinition,
-  options: MergeSchemasOptions
-) {
-  if (typeof left === "boolean" || typeof right === "boolean") {
-    return right;
-  }
-  return mergeSchemas(left, right, options);
-}
-
-function mergeSchemaDependencies(
-  left: SchemaDefinition | string[],
-  right: SchemaDefinition | string[],
-  options: MergeSchemasOptions
-) {
-  if (Array.isArray(left) || Array.isArray(right)) {
-    return right;
-  }
-  return mergeSchemaDefinitions(left, right, options);
-}
-
-export interface MergeSchemasOptions {
-  /**
-   * @default `concat`
-   */
-  arraySubSchemasMergeType?: "concat" | "override";
-}
-
-export function mergeSchemas(
-  left: Schema,
-  right: Schema,
-  options: MergeSchemasOptions = {}
-): Schema {
+function mergeSchemas(left: Schema, right: Schema): Schema {
   const merged = Object.assign({}, left, right);
-  for (const key of RECORDS_OF_SUB_SCHEMAS) {
-    if (!(key in merged) || key === DEPENDENCIES_KEY) {
-      continue;
+  return merged;
+}
+
+function mergeSchemaDefinitions(l: SchemaDefinition, r: SchemaDefinition) {
+  if (l === false || r === false) {
+    return false;
+  }
+  const isLTruth = isTruthySchemaDefinition(l);
+  const isRTruth = isTruthySchemaDefinition(r);
+  if (isLTruth) {
+    if (isRTruth) {
+      return true;
     }
-    const l = left[key];
-    const r = right[key];
-    if (l && r) {
-      merged[key] = mergeRecords(l, r, (l, r) =>
-        mergeSchemaDefinitions(l, r, options)
+    return r;
+  }
+  if (isRTruth) {
+    return l;
+  }
+  return mergeSchemas(l, r);
+}
+
+function mergeRecordsOfSchemaDefinitions(
+  l: Record<string, SchemaDefinition>,
+  r: Record<string, SchemaDefinition>
+) {
+  return mergeRecords(l, r, mergeSchemaDefinitions);
+}
+
+function mergeSchemaDefinitionsOrArrayOfString(
+  l: SchemaDefinition | string[],
+  r: SchemaDefinition | string[]
+) {
+  const isLArr = Array.isArray(l);
+  const isRArr = Array.isArray(r);
+  if (isLArr) {
+    if (isRArr) {
+      return unique(l.concat(r));
+    }
+    return mergeSchemaDefinitions({ required: l }, r);
+  }
+  if (isRArr) {
+    return mergeSchemaDefinitions(l, { required: r });
+  }
+  return mergeSchemaDefinitions(l, r);
+}
+
+function mergeRecordsOfSchemaDefinitionsOrArrayOfString(
+  l: Record<string, SchemaDefinition | string[]>,
+  r: Record<string, SchemaDefinition | string[]>
+) {
+  return mergeRecords(l, r, mergeSchemaDefinitionsOrArrayOfString);
+}
+
+function mergeArraysWithUniq<T>(l: T[], r: T[]) {
+  return unique(l.concat(r));
+}
+
+const MERGERS: {
+  [K in Exclude<keyof Schema, keyof typeof ASSIGNERS>]-?: Merger<
+    Exclude<Schema[K], undefined>
+  >;
+} = {
+  $id: first,
+  $ref: first,
+  $schema: first,
+  default: first,
+  description: first,
+  title: first,
+  anyOf: mergeCombinations,
+  oneOf: mergeCombinations,
+  additionalItems: mergeSchemaDefinitions,
+  additionalProperties: mergeSchemaDefinitions,
+  propertyNames: mergeSchemaDefinitions,
+  contains: mergeSchemaDefinitions,
+  definitions: mergeRecordsOfSchemaDefinitions,
+  dependencies: mergeRecordsOfSchemaDefinitionsOrArrayOfString,
+  examples: (l, r) => {
+    // https://datatracker.ietf.org/doc/html/draft-handrews-json-schema-validation-01#section-10.4
+    if (!isSchemaArrayValue(l) || !isSchemaArrayValue(r)) {
+      throw new Error(
+        `Value of the 'examples' field should be an array, but got "${JSON.stringify(l)}" and "${JSON.stringify(r)}"`
       );
     }
+    return mergeArraysWithUniq(l, r);
+  },
+  exclusiveMaximum: Math.min,
+  maximum: Math.min,
+  maxItems: Math.min,
+  maxLength: Math.min,
+  maxProperties: Math.min,
+  exclusiveMinimum: Math.max,
+  minimum: Math.max,
+  minItems: Math.max,
+  minLength: Math.max,
+  minProperties: Math.max,
+  required: mergeArraysWithUniq,
+  uniqueItems: (l, r) => l || r,
+};
+
+export function getAllOfSchemas(schema: SchemaDefinition): SchemaDefinition[] {
+  if (!isSchema(schema) || schema.allOf === undefined) {
+    return [schema];
   }
-  if (left[ITEMS_KEY] && right[ITEMS_KEY]) {
-    merged[ITEMS_KEY] =
-      isSchemaObjectValue(left[ITEMS_KEY]) &&
-      isSchemaObjectValue(right[ITEMS_KEY])
-        ? mergeSchemas(left[ITEMS_KEY], right[ITEMS_KEY], options)
-        : right[ITEMS_KEY];
-  }
-  if (left[DEPENDENCIES_KEY] && right[DEPENDENCIES_KEY]) {
-    merged[DEPENDENCIES_KEY] = mergeRecords(
-      left[DEPENDENCIES_KEY],
-      right[DEPENDENCIES_KEY],
-      (l, r) => mergeSchemaDependencies(l, r, options)
-    );
-  }
-  for (const key of SUB_SCHEMAS) {
-    if (!(key in merged) || key === ITEMS_KEY) {
-      continue;
+  const { allOf, ...rest } = schema;
+  const array = allOf.flatMap((s) => getAllOfSchemas(s));
+  array.push(rest);
+  return array;
+}
+
+function mergeAllOfSchemas(schemas: SchemaDefinition[]): SchemaDefinition {
+  let allTrue = true;
+  let wIndex = 0;
+  for (let i = 0; i < schemas.length; i++) {
+    const item = schemas[i]!;
+    if (item === false) {
+      return false;
     }
-    const l = left[key];
-    const r = right[key];
-    if (l && r) {
-      merged[key] = mergeSchemaDefinitions(l, r, options);
+    if (!isTruthySchemaDefinition(item)) {
+      allTrue = false;
+      if (wIndex !== i) {
+        schemas[wIndex] = item;
+      }
+      wIndex++;
     }
   }
-  for (const key of ARRAYS_OF_SUB_SCHEMAS) {
-    if (!(key in merged) || key === ITEMS_KEY) {
-      continue;
-    }
-    const l = left[key];
-    const r = right[key];
-    if (l && r) {
-      merged[key] = mergeArrays(l, r, {
-        merge:
-          options.arraySubSchemasMergeType === "override"
-            ? (l, r) => mergeSchemaDefinitions(l, r, options)
-            : undefined,
-      });
-    }
+  if (wIndex === 0) {
+    return schemas[0]!;
   }
-  if (left[REQUIRED_KEY] && right[REQUIRED_KEY]) {
-    merged[REQUIRED_KEY] = mergeArrays(
-      left[REQUIRED_KEY],
-      right[REQUIRED_KEY],
-      { unique: true }
-    );
+  let result = schemas[0] as Schema;
+  for (let i = 1; i < wIndex; i++) {
+    result = mergeSchemas(result, schemas[i] as Schema);
   }
-  return merged;
+  return result;
+}
+
+export function mergeAllOf(schema: Schema) {
+  return mergeAllOfSchemas(getAllOfSchemas(schema));
 }
