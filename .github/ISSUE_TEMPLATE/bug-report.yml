@@ -1,0 +1,36 @@
+name: "Bug report"
+description: Report an issue with SJSF
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what the bug is. If you intend to submit a PR for this issue, tell us in the description. Thanks!
+      placeholder: Bug description
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: |
+        Please provide a link to a repo or REPL or instructions that can reproduce the problem you ran into.
+        You can use the `starter` example on [this page](https://x0k.dev/svelte-jsonschema-form/examples/#online-code-editor) to create a REPL.
+      placeholder: Reproduction
+    validations:
+      required: true
+  - type: textarea
+    id: system-info
+    attributes:
+      label: System Info
+      description: Output of `npx envinfo --npmPackages "{svelte,vite,@sveltejs/*,@sjsf/*}" --binaries --browsers`
+      render: shell
+      placeholder: Packages, Binaries, Browsers
+    validations:
+      required: true
