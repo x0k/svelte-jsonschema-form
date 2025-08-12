@@ -145,19 +145,18 @@ const NODE_UI_SCHEMA_BUILDERS: {
         const schema = buildUiSchema(ctx, node);
         const name = ctx.propertyNames.get(node.id);
         assertThing(name, "grid cell name");
-        return (
-          schema && {
-            [name]: mergeUiSchemas(schema, {
-              "ui:options": {
-                layouts: {
-                  "object-property": {
-                    style: `grid-column: ${x + 1} / span ${w}; grid-row: ${y + 1} / span ${h};`,
-                  },
-                },
+        const uiSchema = {
+          "ui:options": {
+            layouts: {
+              "object-property": {
+                style: `grid-column: ${x + 1} / span ${w}; grid-row: ${y + 1} / span ${h};`,
               },
-            }),
-          }
-        );
+            },
+          },
+        };
+        return {
+          [name]: schema ? mergeUiSchemas(schema, uiSchema) : uiSchema,
+        };
       })
     ),
   [NodeType.Enum]: (ctx, node) =>
