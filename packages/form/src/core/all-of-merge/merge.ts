@@ -1,18 +1,17 @@
 import { unique } from "@/lib/array.js";
 
 import {
-  ARRAYS_OF_SUB_SCHEMAS,
-  DEPENDENCIES_KEY,
   isSchema,
   isTruthySchemaDefinition,
-  ITEMS_KEY,
-  RECORDS_OF_SUB_SCHEMAS,
-  REQUIRED_KEY,
-  SUB_SCHEMAS,
   type Schema,
   type SchemaDefinition,
 } from "../schema.js";
-import { isSchemaArrayValue, isSchemaObjectValue } from "../value.js";
+import { isSchemaArrayValue } from "../value.js";
+import { createConditionMapper } from "./shared.js";
+
+function mergeArraysWithUniq<T>(l: T[], r: T[]) {
+  return unique(l.concat(r));
+}
 
 function getCombinations<T>(l: T[], r: T[]) {
   const combinations = [];
@@ -52,8 +51,8 @@ const ASSIGNERS = {} as const satisfies {
 
 type Merger<T> = (a: T, b: T) => T;
 
-function first<T>(l: T) {
-  return l;
+function last<T>(_: T, r: T) {
+  return r;
 }
 
 function mergeCombinations(l: SchemaDefinition[], r: SchemaDefinition[]) {
@@ -62,6 +61,21 @@ function mergeCombinations(l: SchemaDefinition[], r: SchemaDefinition[]) {
 
 function mergeSchemas(left: Schema, right: Schema): Schema {
   const merged = Object.assign({}, left, right);
+  for (const key of Object.keys(left)) {
+    if (key in right) {
+      const lv = left[key as keyof Schema];
+      if (lv !== undefined) {
+        const rv = right[key as keyof Schema];
+        if (rv === undefined) {
+          // @ts-expect-error
+          merged[key] = lv;
+        } else {
+          // @ts-expect-error
+          merged[key] = (MERGERS[key] ?? last)(lv, rv);
+        }
+      }
+    }
+  }
   return merged;
 }
 
@@ -90,23 +104,17 @@ function mergeRecordsOfSchemaDefinitions(
   return mergeRecords(l, r, mergeSchemaDefinitions);
 }
 
-function mergeSchemaDefinitionsOrArrayOfString(
-  l: SchemaDefinition | string[],
-  r: SchemaDefinition | string[]
-) {
-  const isLArr = Array.isArray(l);
-  const isRArr = Array.isArray(r);
-  if (isLArr) {
-    if (isRArr) {
-      return unique(l.concat(r));
-    }
-    return mergeSchemaDefinitions({ required: l }, r);
-  }
-  if (isRArr) {
-    return mergeSchemaDefinitions(l, { required: r });
-  }
-  return mergeSchemaDefinitions(l, r);
-}
+const mergeSchemaDefinitionsOrArrayOfString = createConditionMapper<
+  SchemaDefinition | string[],
+  string[],
+  SchemaDefinition | string[]
+>(
+  Array.isArray,
+  mergeArraysWithUniq,
+  (l, r) => mergeSchemaDefinitions({ required: l }, r),
+  (l, r) => mergeSchemaDefinitions(l, { required: r }),
+  mergeSchemaDefinitions
+);
 
 function mergeRecordsOfSchemaDefinitionsOrArrayOfString(
   l: Record<string, SchemaDefinition | string[]>,
@@ -115,21 +123,17 @@ function mergeRecordsOfSchemaDefinitionsOrArrayOfString(
   return mergeRecords(l, r, mergeSchemaDefinitionsOrArrayOfString);
 }
 
-function mergeArraysWithUniq<T>(l: T[], r: T[]) {
-  return unique(l.concat(r));
-}
-
 const MERGERS: {
   [K in Exclude<keyof Schema, keyof typeof ASSIGNERS>]-?: Merger<
     Exclude<Schema[K], undefined>
   >;
 } = {
-  $id: first,
-  $ref: first,
-  $schema: first,
-  default: first,
-  description: first,
-  title: first,
+  $id: last,
+  $ref: last,
+  $schema: last,
+  default: last,
+  description: last,
+  title: last,
   anyOf: mergeCombinations,
   oneOf: mergeCombinations,
   additionalItems: mergeSchemaDefinitions,
@@ -172,7 +176,6 @@ export function getAllOfSchemas(schema: SchemaDefinition): SchemaDefinition[] {
 }
 
 function mergeAllOfSchemas(schemas: SchemaDefinition[]): SchemaDefinition {
-  let allTrue = true;
   let wIndex = 0;
   for (let i = 0; i < schemas.length; i++) {
     const item = schemas[i]!;
@@ -180,7 +183,6 @@ function mergeAllOfSchemas(schemas: SchemaDefinition[]): SchemaDefinition {
       return false;
     }
     if (!isTruthySchemaDefinition(item)) {
-      allTrue = false;
       if (wIndex !== i) {
         schemas[wIndex] = item;
       }

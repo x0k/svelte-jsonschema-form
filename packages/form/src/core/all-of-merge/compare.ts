@@ -11,8 +11,11 @@ import {
   type Schema,
   type SchemaDefinition,
 } from "../schema.js";
+import { createConditionMapper } from "./shared.js";
 
-const constZero = () => 0;
+const zero = () => 0;
+const one = () => 1;
+const negOne = () => -1;
 
 const isUndefined = <T>(v: T | undefined): v is undefined => v === undefined;
 
@@ -160,20 +163,9 @@ function createRecordsComparator<K extends string, T>(
 function createNarrowingComparator<T, E extends T>(
   isEmpty: (v: T) => v is E,
   compare: (l: Exclude<T, E>, r: Exclude<T, E>) => number,
-  compareEmpty: (l: E, r: E) => number = constZero
+  compareEmpty: (l: E, r: E) => number = zero
 ) {
-  return (a: T, b: T) => {
-    if (isEmpty(a)) {
-      if (isEmpty(b)) {
-        return compareEmpty(a, b);
-      }
-      return -1;
-    }
-    if (isEmpty(b)) {
-      return 1;
-    }
-    return compare(a as Exclude<T, E>, b as Exclude<T, E>);
-  };
+  return createConditionMapper(isEmpty, compareEmpty, negOne, one, compare);
 }
 
 function createOptionalComparator<T>(compare: (l: T, r: T) => number) {
@@ -236,6 +228,30 @@ function compareSchemaValues(a: SchemaValue, b: SchemaValue): number {
 const compareArrayOfSameTypePrimitivesWithDeduplication =
   createArrayComparatorWithDeduplication(compareSameTypeSchemaPrimitives);
 
+const compareSchemaDefinitions = createConditionMapper(
+  isSchema,
+  (a, b) => {
+    const aKeys = Object.keys(a) as (keyof Schema)[];
+    const bKeys = Object.keys(b) as (keyof Schema)[];
+    const allKeys = uniqueKeys(aKeys, bKeys);
+    for (const key of allKeys) {
+      if (a[key] === b[key]) {
+        continue;
+      }
+      const cmp = COMPARATORS[key] ?? compareOptionalSchemaValues;
+      // @ts-expect-error
+      const d = cmp(a[key], b[key]);
+      if (d !== 0) {
+        return d;
+      }
+    }
+    return 0;
+  },
+  (a, b) => (b === true && isEmptyRecord(a) ? 0 : 1),
+  (a, b) => (a === true && isEmptyRecord(b) ? 0 : -1),
+  compareSameTypeSchemaPrimitives
+);
+
 const compareOptionalSchemaDefinitions = createOptionalComparator(
   compareSchemaDefinitions
 );
@@ -254,44 +270,6 @@ const compareNumbersWithZeroDefault = createNarrowingOptionalComparator(
 const compareOptionalArrayOfSchemasWithDeduplication = createOptionalComparator(
   createArrayComparatorWithDeduplication(compareSchemaDefinitions)
 );
-
-function compareSchemaDefinitions(
-  a: SchemaDefinition,
-  b: SchemaDefinition
-): number {
-  if (a === b) {
-    return 0;
-  }
-  const isASchema = isSchema(a);
-  const isBSchema = isSchema(b);
-  if (!isASchema) {
-    if (!isBSchema) {
-      return compareSameTypeSchemaPrimitives(a, b);
-    }
-    return a === true && isEmptyRecord(b) ? 0 : -1;
-  }
-  if (!isBSchema) {
-    return b === true && isEmptyRecord(a) ? 0 : 1;
-  }
-
-  const aKeys = Object.keys(a) as (keyof Schema)[];
-  const bKeys = Object.keys(b) as (keyof Schema)[];
-  const allKeys = uniqueKeys(aKeys, bKeys);
-
-  for (const key of allKeys) {
-    if (a[key] === b[key]) {
-      continue;
-    }
-    const cmp = COMPARATORS[key] ?? compareOptionalSchemaValues;
-    // @ts-expect-error
-    const d = cmp(a[key], b[key]);
-    if (d !== 0) {
-      return d;
-    }
-  }
-
-  return 0;
-}
 
 const compareSchemaDefinitionsWithEmptyDefinitionDefault =
   createNarrowingOptionalComparator(
@@ -338,7 +316,7 @@ const COMPARATORS: {
   writeOnly: compareOptionalSameTypeSchemaPrimitives,
   uniqueItems: createNarrowingOptionalComparator(
     (v): v is false => v === false,
-    constZero
+    zero
   ),
   minLength: compareNumbersWithZeroDefault,
   minItems: compareNumbersWithZeroDefault,
