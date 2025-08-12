@@ -318,7 +318,13 @@ export class BuilderContext {
   );
   readonly appCss = $derived.by(() => {
     const content = join(THEME_APP_CSS[this.theme], ICONS_APP_CSS[this.icons]);
-    return content && this.highlight("css", content);
+    return (
+      content &&
+      this.highlight(
+        "css",
+        `/* Add these lines to the app.css file */\n${content}`
+      )
+    );
   });
   readonly installSh = $derived(
     this.highlight(
