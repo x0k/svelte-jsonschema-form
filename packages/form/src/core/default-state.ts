@@ -2,6 +2,8 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
+import { isEmptyRecord, isObject } from "@/lib/object.js";
+
 import { resolveDependencies, retrieveSchema } from "./resolve.js";
 import {
   ALL_OF_KEY,
@@ -485,7 +487,7 @@ export function ensureFormDataMatchingSchema(
 }
 
 function maybeAddDefaultToObject(
-  obj: Map<string, SchemaValue>,
+  obj: Map<string, SchemaValue | undefined>,
   key: string,
   computedDefault: SchemaValue | undefined,
   includeUndefinedValues: boolean | "excludeObjectChildren",
@@ -497,10 +499,21 @@ function maybeAddDefaultToObject(
 ) {
   const { emptyObjectFields = "populateAllDefaults" } =
     experimental_defaultFormStateBehavior;
-  if (includeUndefinedValues || isConst) {
-    if (computedDefault !== undefined) {
+  if (includeUndefinedValues === true || isConst) {
+    // If includeUndefinedValues is explicitly true
+    // Or if the schema has a const property defined, then we should always return the computedDefault since it's coming from the const.
+    obj.set(key, computedDefault);
+  } else if (includeUndefinedValues === "excludeObjectChildren") {
+    // Fix for Issue #4709: When in 'excludeObjectChildren' mode, don't set primitive fields to empty objects
+    // Only add the computed default if it's not an empty object placeholder for a primitive field
+    if (
+      Array.isArray(computedDefault)
+        ? computedDefault.length > 0
+        : !isObject(computedDefault) || !isEmptyRecord(computedDefault)
+    ) {
       obj.set(key, computedDefault);
     }
+    // If computedDefault is an empty object {}, don't add it - let the field stay undefined
   } else if (emptyObjectFields !== "skipDefaults") {
     // If isParentRequired is undefined, then we are at the root level of the schema so defer to the requiredness of
     // the field key itself in the `requiredField` list
@@ -636,7 +649,7 @@ export function getObjectDefaults(
   const parentConstObject = isSchemaObjectValue(retrievedSchema.const)
     ? retrievedSchema.const
     : {};
-  const objDefaults = new Map<string, SchemaValue>();
+  const objDefaults = new Map<string, SchemaValue | undefined>();
   const schemaProperties = retrievedSchema.properties;
   const defaultsAsObject = isSchemaObjectValue(defaults) ? defaults : undefined;
   const formDataAsObject = isSchemaObjectValue(formData) ? formData : undefined;

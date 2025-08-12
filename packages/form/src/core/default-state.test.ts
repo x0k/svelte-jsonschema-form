@@ -3330,7 +3330,6 @@ describe("getDefaultFormState2()", () => {
         })
       ).toEqual({
         optionalNumberProperty: undefined,
-        optionalObjectProperty: {},
         requiredProperty: "foo",
       });
     });
@@ -3479,7 +3478,6 @@ describe("getDefaultFormState2()", () => {
         })
       ).toEqual({
         optionalNumberProperty: undefined,
-        optionalObjectProperty: {},
         requiredProperty: "foo",
       });
     });
@@ -3710,7 +3708,6 @@ describe("getDefaultFormState2()", () => {
         })
       ).toEqual({
         optionalNumberProperty: undefined,
-        optionalObjectProperty: {},
         requiredProperty: "foo",
       });
     });
