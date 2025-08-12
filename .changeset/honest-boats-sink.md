@@ -2,4 +2,4 @@
 "builder": patch
 ---
 
-Fix grid UI schema builder (#167)
+Fix grid UI schema builder (#162)
