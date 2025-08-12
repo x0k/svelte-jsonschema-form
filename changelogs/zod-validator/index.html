@@ -88,8 +88,17 @@ Form Builder
 	</script> </sl-sidebar-state-persist>  <div class="md:sl-hidden"> <div class="mobile-preferences sl-flex astro-dnoiruft"> <div class="social-icons astro-dnoiruft"> <a href="https://github.com/x0k/svelte-jsonschema-form" rel="me" class="sl-flex astro-fauxndgk"><span class="sr-only astro-fauxndgk">GitHub</span><svg aria-hidden="true" class="astro-fauxndgk astro-7pwawc2w" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a> </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-krc65tb4"> <span class="sr-only astro-krc65tb4">Select theme</span> <svg aria-hidden="true" class="icon label-icon astro-krc65tb4 astro-7pwawc2w" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg> <select value="auto" autocomplete="off" class="astro-krc65tb4"> <option value="dark" class="astro-krc65tb4">Dark</option><option value="light" class="astro-krc65tb4">Light</option><option value="auto" selected class="astro-krc65tb4">Auto</option> </select> <svg aria-hidden="true" class="icon caret astro-krc65tb4 astro-7pwawc2w" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label>  </starlight-theme-select>  <script>
 	StarlightThemeProvider.updatePickers();
 </script>   </div>  </div> </div> </div> </nav> <div class="main-frame astro-jjd3imgl">  <script type="module">const a=document.getElementById("starlight__sidebar"),n=a?.querySelector("sl-sidebar-state-persist"),o="sl-sidebar-state",i=()=>{let t=[];const e=n?.dataset.hash||"";try{const s=sessionStorage.getItem(o),r=JSON.parse(s||"{}");Array.isArray(r.open)&&r.hash===e&&(t=r.open)}catch{}return{hash:e,open:t,scroll:a?.scrollTop||0}},c=t=>{try{sessionStorage.setItem(o,JSON.stringify(t))}catch{}},d=()=>c(i()),l=(t,e)=>{const s=i();s.open[e]=t,c(s)};n?.addEventListener("click",t=>{if(!(t.target instanceof Element))return;const e=t.target.closest("summary")?.closest("details");if(!e)return;const s=e.querySelector("sl-sidebar-restore"),r=parseInt(s?.dataset.index||"");isNaN(r)||l(!e.open,r)});addEventListener("visibilitychange",()=>{document.visibilityState==="hidden"&&d()});addEventListener("pageHide",d);</script> <div class="lg:sl-flex astro-lymk64x4"> <aside class="right-sidebar-container print:hidden astro-lymk64x4"> <div class="right-sidebar astro-lymk64x4"> <div class="lg:sl-hidden astro-cjggoddu"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-enpdqcna"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-enpdqcna"><details id="starlight__mobile-toc" class="astro-enpdqcna"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-enpdqcna"><div class="toggle sl-flex astro-enpdqcna">On this page<svg aria-hidden="true" class="caret astro-enpdqcna astro-7pwawc2w" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></div><span class="display-current astro-enpdqcna"></span></summary><div class="dropdown astro-enpdqcna"><ul class="isMobile astro-a674qqya" style="--depth: 0;"> <li class="astro-a674qqya" style="--depth: 0;"> <a href="#_top" class="astro-a674qqya" style="--depth: 0;"> <span class="astro-a674qqya" style="--depth: 0;">Overview</span> </a>  </li> </ul> </div></details></nav></mobile-starlight-toc><script type="module" src="/svelte-jsonschema-form/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.C181hMzK.js"></script></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-cjggoddu"><div class="sl-container astro-cjggoddu"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-a674qqya" style="--depth: 0;"> <li class="astro-a674qqya" style="--depth: 0;"> <a href="#_top" class="astro-a674qqya" style="--depth: 0;"> <span class="astro-a674qqya" style="--depth: 0;">Overview</span> </a>  </li> </ul> </nav></starlight-toc><script type="module" src="/svelte-jsonschema-form/_astro/TableOfContents.astro_astro_type_script_index_0_lang.CKWWgpjV.js"></script></div></div> </div> </aside> <div class="main-pane astro-lymk64x4">  <main data-pagefind-body class="astro-cgshvlad" lang="en" dir="ltr">    <div class="content-panel astro-ndrto5wk"> <div class="sl-container astro-ndrto5wk"> <h1 id="_top" class="astro-kphde7r3">@sjsf/zod4-validator</h1>  </div> </div>  <div class="content-panel astro-ndrto5wk"> <div class="sl-container astro-ndrto5wk"> <div class="sl-markdown-content">  <h1 id="sjsfzod4-validator">@sjsf/zod4-validator</h1>
-<h2 id="220">2.2.0</h2>
+<h2 id="221">2.2.1</h2>
 <h3 id="patch-changes">Patch Changes</h3>
+<ul>
+<li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/9cf65bdfc54bc5a3da432fd1d2e01501c31e0993"><code>9cf65bd</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/5bb7db6fdbab2a3dcba2a84465c1207a12c10d16"><code>5bb7db6</code></a>]:
+<ul>
+<li>@sjsf/form@2.2.1</li>
+</ul>
+</li>
+</ul>
+<h2 id="220">2.2.0</h2>
+<h3 id="patch-changes-1">Patch Changes</h3>
 <ul>
 <li>
 <p>Add support for zod@4 package (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/9b184a61bb298a4b95382c8db93ec950f02ca6ab"><code>9b184a6</code></a>)</p>
@@ -102,7 +111,7 @@ Form Builder
 </li>
 </ul>
 <h2 id="212">2.1.2</h2>
-<h3 id="patch-changes-1">Patch Changes</h3>
+<h3 id="patch-changes-2">Patch Changes</h3>
 <ul>
 <li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/35afc7b801026f64fe2d9f278c2a31fd714fec48"><code>35afc7b</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/f2f1cbcfcdcfe7e5999a69c5d21903f24a0be978"><code>f2f1cbc</code></a>]:
 <ul>
@@ -111,7 +120,7 @@ Form Builder
 </li>
 </ul>
 <h2 id="211">2.1.1</h2>
-<h3 id="patch-changes-2">Patch Changes</h3>
+<h3 id="patch-changes-3">Patch Changes</h3>
 <ul>
 <li>Updated dependencies []:
 <ul>
@@ -124,7 +133,7 @@ Form Builder
 <ul>
 <li>Add <code>@sjsf/zod4-validator</code> package (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/140">#140</a>)</li>
 </ul>
-<h3 id="patch-changes-3">Patch Changes</h3>
+<h3 id="patch-changes-4">Patch Changes</h3>
 <ul>
 <li>Updated dependencies []:
 <ul>
