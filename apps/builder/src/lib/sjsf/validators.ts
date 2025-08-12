@@ -20,8 +20,8 @@ export const SJSF_VALIDATORS: Record<Validator, SJSFValidator> = {
 
 export const VALIDATOR_TITLES: Record<Validator, string> = {
   [Validator.Ajv]: "Ajv",
-  [Validator.SchemaSafe]: "schemasafe",
-  [Validator.CfWorker]: "cfworker",
+  [Validator.SchemaSafe]: "@exodus/schemasafe",
+  [Validator.CfWorker]: "@cfworker/json-schema",
 };
 
 export const VALIDATOR_PEER_DEPS: Record<Validator, string> = {
