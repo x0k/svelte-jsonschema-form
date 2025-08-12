@@ -1,5 +1,35 @@
 # docs
 
+## 1.7.1
+
+### Patch Changes
+
+- Deprecate `from.context` property ([#159](https://github.com/x0k/svelte-jsonschema-form/pull/159))
+
+- Updated dependencies [[`9cf65bd`](https://github.com/x0k/svelte-jsonschema-form/commit/9cf65bdfc54bc5a3da432fd1d2e01501c31e0993), [`5bb7db6`](https://github.com/x0k/svelte-jsonschema-form/commit/5bb7db6fdbab2a3dcba2a84465c1207a12c10d16)]:
+  - @sjsf/form@2.2.1
+  - @sjsf/flowbite3-theme@2.2.1
+  - @sjsf/skeleton3-theme@2.2.1
+  - @sjsf/daisyui5-theme@2.2.1
+  - @sjsf/flowbite-theme@2.2.1
+  - @sjsf/skeleton-theme@2.2.1
+  - @sjsf/daisyui-theme@2.2.1
+  - @sjsf/shadcn4-theme@2.2.1
+  - @sjsf/shadcn-theme@2.2.1
+  - @sjsf/basic-theme@2.2.1
+  - @sjsf/sveltekit@2.2.1
+  - testing@1.0.7
+  - @sjsf/ajv8-validator@2.2.1
+  - @sjsf/cfworker-validator@2.2.1
+  - @sjsf/flowbite-icons@2.2.1
+  - @sjsf/lucide-icons@2.2.1
+  - @sjsf/moving-icons@2.2.1
+  - @sjsf/radix-icons@2.2.1
+  - @sjsf/schemasafe-validator@2.2.1
+  - @sjsf/valibot-validator@2.2.1
+  - @sjsf/zod-validator@2.2.1
+  - @sjsf/zod4-validator@2.2.1
+
 ## 1.7.0
 
 ### Minor Changes

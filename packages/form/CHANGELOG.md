@@ -1,5 +1,13 @@
 # @sjsf/form
 
+## 2.2.1
+
+### Patch Changes
+
+- Port <https://github.com/rjsf-team/react-jsonschema-form/pull/4710> ([`9cf65bd`](https://github.com/x0k/svelte-jsonschema-form/commit/9cf65bdfc54bc5a3da432fd1d2e01501c31e0993))
+
+- Deprecate `from.context` property ([#159](https://github.com/x0k/svelte-jsonschema-form/pull/159))
+
 ## 2.2.0
 
 ### Minor Changes
