@@ -48,7 +48,7 @@
 		"svelte": "^5.33.0"
 	},
 	"devDependencies": {
-		"@lucide/svelte": "^0.525.0",
+		"@lucide/svelte": "^0.539.0",
 		"@sjsf/form": "workspace:*",
 		"globals": "catalog:",
 		"svelte": "catalog:",

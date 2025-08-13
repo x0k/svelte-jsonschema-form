@@ -83,6 +83,8 @@ exports[`widgets > checkbox > disabled 1`] = `
       
       
       <!---->
+       
+      <!---->
     </button>
     
     
@@ -187,6 +189,8 @@ exports[`widgets > checkbox > error 1`] = `
       
       
       <!---->
+       
+      <!---->
     </button>
     
     
@@ -278,6 +282,8 @@ exports[`widgets > checkbox > normal 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -371,6 +377,8 @@ exports[`widgets > checkbox > readonly 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -548,6 +556,8 @@ exports[`widgets > checkboxes > disabled 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -733,6 +743,8 @@ exports[`widgets > checkboxes > error 1`] = `
       
       
       <!---->
+       
+      <!---->
     </button>
     
     
@@ -904,6 +916,8 @@ exports[`widgets > checkboxes > normal 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -1081,6 +1095,8 @@ exports[`widgets > checkboxes > readonly 1`] = `
       
       
       <!---->
+       
+      <!---->
     </button>
     
     
@@ -1190,6 +1206,8 @@ exports[`widgets > datePicker > disabled 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -1310,6 +1328,8 @@ exports[`widgets > datePicker > error 1`] = `
       
       
       <!---->
+       
+      <!---->
     </button>
     
     
@@ -1416,6 +1436,8 @@ exports[`widgets > datePicker > normal 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -1524,6 +1546,8 @@ exports[`widgets > datePicker > readonly 1`] = `
       
       
       <!---->
+       
+      <!---->
     </button>
     
     
@@ -1606,6 +1630,8 @@ exports[`widgets > file > disabled 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -1700,6 +1726,8 @@ exports[`widgets > file > error 1`] = `
       
       
       <!---->
+       
+      <!---->
     </button>
     
     
@@ -1780,6 +1808,8 @@ exports[`widgets > file > normal 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -1862,6 +1892,8 @@ exports[`widgets > file > readonly 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -1946,6 +1978,8 @@ exports[`widgets > multiFile > disabled 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -2041,6 +2075,8 @@ exports[`widgets > multiFile > error 1`] = `
       
       
       <!---->
+       
+      <!---->
     </button>
     
     
@@ -2122,6 +2158,8 @@ exports[`widgets > multiFile > normal 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -2205,6 +2243,8 @@ exports[`widgets > multiFile > readonly 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -2344,6 +2384,8 @@ exports[`widgets > multiSelect > disabled 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -2495,6 +2537,8 @@ exports[`widgets > multiSelect > error 1`] = `
       
       
       <!---->
+       
+      <!---->
     </button>
     
     
@@ -2632,6 +2676,8 @@ exports[`widgets > multiSelect > normal 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -2771,6 +2817,8 @@ exports[`widgets > multiSelect > readonly 1`] = `
       
       
       <!---->
+       
+      <!---->
     </button>
     
     
@@ -2868,6 +2916,8 @@ exports[`widgets > number > disabled 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -2977,6 +3027,8 @@ exports[`widgets > number > error 1`] = `
       
       
       <!---->
+       
+      <!---->
     </button>
     
     
@@ -3072,6 +3124,8 @@ exports[`widgets > number > normal 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -3169,6 +3223,8 @@ exports[`widgets > number > readonly 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -3314,6 +3370,8 @@ exports[`widgets > radio > disabled 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -3467,6 +3525,8 @@ exports[`widgets > radio > error 1`] = `
       
       
       <!---->
+       
+      <!---->
     </button>
     
     
@@ -3606,6 +3666,8 @@ exports[`widgets > radio > normal 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -3750,6 +3812,8 @@ exports[`widgets > radio > readonly 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -3911,6 +3975,8 @@ exports[`widgets > radioButtons > disabled 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -4084,6 +4150,8 @@ exports[`widgets > radioButtons > error 1`] = `
       
       
       <!---->
+       
+      <!---->
     </button>
     
     
@@ -4243,6 +4311,8 @@ exports[`widgets > radioButtons > normal 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -4404,6 +4474,8 @@ exports[`widgets > radioButtons > readonly 1`] = `
       
       
       <!---->
+       
+      <!---->
     </button>
     
     
@@ -4479,6 +4551,8 @@ exports[`widgets > range > disabled 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -4566,6 +4640,8 @@ exports[`widgets > range > error 1`] = `
       
       
       <!---->
+       
+      <!---->
     </button>
     
     
@@ -4639,6 +4715,8 @@ exports[`widgets > range > normal 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -4714,6 +4792,8 @@ exports[`widgets > range > readonly 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -4829,6 +4909,8 @@ exports[`widgets > select > disabled 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -4955,6 +5037,8 @@ exports[`widgets > select > error 1`] = `
       
       
       <!---->
+       
+      <!---->
     </button>
     
     
@@ -5067,6 +5151,8 @@ exports[`widgets > select > normal 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -5181,6 +5267,8 @@ exports[`widgets > select > readonly 1`] = `
       
       
       <!---->
+       
+      <!---->
     </button>
     
     
@@ -5274,6 +5362,8 @@ exports[`widgets > switch > disabled 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -5379,6 +5469,8 @@ exports[`widgets > switch > error 1`] = `
       
       
       <!---->
+       
+      <!---->
     </button>
     
     
@@ -5470,6 +5562,8 @@ exports[`widgets > switch > normal 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -5564,6 +5658,8 @@ exports[`widgets > switch > readonly 1`] = `
       
       
       <!---->
+       
+      <!---->
     </button>
     
     
@@ -5600,18 +5696,29 @@ exports[`widgets > tags > disabled 1`] = `
       >
         <!---->
         <!---->
+        <!---->
+        <!---->
+         
+        <!---->
+         
         <div
-          class="border bg-gray-50 border-gray-300 rounded-lg flex focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 overflow-x-auto scrollbar-hidden flex-1"
+          class="border bg-gray-50 border-gray-300 rounded-lg flex focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 scrollbar-hidden flex-1"
           disabled="true"
         >
           <!---->
            
-          <input
-            autocomplete="new-password"
-            class="block text-sm m-2.5 p-0 bg-transparent border-none outline-none text-gray-900 h-min w-full min-w-fit focus:ring-0 placeholder-gray-400"
-            placeholder="Enter tags"
-            type="text"
-          />
+          <div
+            class="relative w-full"
+          >
+            <input
+              autocomplete="off"
+              class="block text-sm m-2.5 p-0 bg-transparent border-none outline-none text-gray-900 h-min w-full min-w-fit focus:ring-0 placeholder-gray-400"
+              placeholder="Enter tags"
+              type="text"
+            />
+             
+            <!---->
+          </div>
         </div>
         
         
@@ -5643,6 +5750,8 @@ exports[`widgets > tags > disabled 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -5680,18 +5789,29 @@ exports[`widgets > tags > error 1`] = `
       >
         <!---->
         <!---->
+        <!---->
+        <!---->
+         
+        <!---->
+         
         <div
-          class="border bg-gray-50 border-gray-300 rounded-lg flex focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 overflow-x-auto scrollbar-hidden flex-1"
+          class="border bg-gray-50 border-gray-300 rounded-lg flex focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 scrollbar-hidden flex-1"
           disabled="false"
         >
           <!---->
            
-          <input
-            autocomplete="new-password"
-            class="block text-sm m-2.5 p-0 bg-transparent border-none outline-none text-gray-900 h-min w-full min-w-fit focus:ring-0 placeholder-gray-400"
-            placeholder="Enter tags"
-            type="text"
-          />
+          <div
+            class="relative w-full"
+          >
+            <input
+              autocomplete="off"
+              class="block text-sm m-2.5 p-0 bg-transparent border-none outline-none text-gray-900 h-min w-full min-w-fit focus:ring-0 placeholder-gray-400"
+              placeholder="Enter tags"
+              type="text"
+            />
+             
+            <!---->
+          </div>
         </div>
         
         
@@ -5735,6 +5855,8 @@ exports[`widgets > tags > error 1`] = `
       
       
       <!---->
+       
+      <!---->
     </button>
     
     
@@ -5771,18 +5893,29 @@ exports[`widgets > tags > normal 1`] = `
       >
         <!---->
         <!---->
+        <!---->
+        <!---->
+         
+        <!---->
+         
         <div
-          class="border bg-gray-50 border-gray-300 rounded-lg flex focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 overflow-x-auto scrollbar-hidden flex-1"
+          class="border bg-gray-50 border-gray-300 rounded-lg flex focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 scrollbar-hidden flex-1"
           disabled="false"
         >
           <!---->
            
-          <input
-            autocomplete="new-password"
-            class="block text-sm m-2.5 p-0 bg-transparent border-none outline-none text-gray-900 h-min w-full min-w-fit focus:ring-0 placeholder-gray-400"
-            placeholder="Enter tags"
-            type="text"
-          />
+          <div
+            class="relative w-full"
+          >
+            <input
+              autocomplete="off"
+              class="block text-sm m-2.5 p-0 bg-transparent border-none outline-none text-gray-900 h-min w-full min-w-fit focus:ring-0 placeholder-gray-400"
+              placeholder="Enter tags"
+              type="text"
+            />
+             
+            <!---->
+          </div>
         </div>
         
         
@@ -5813,6 +5946,8 @@ exports[`widgets > tags > normal 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -5850,18 +5985,29 @@ exports[`widgets > tags > readonly 1`] = `
       >
         <!---->
         <!---->
+        <!---->
+        <!---->
+         
+        <!---->
+         
         <div
-          class="border bg-gray-50 border-gray-300 rounded-lg flex focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 overflow-x-auto scrollbar-hidden flex-1"
+          class="border bg-gray-50 border-gray-300 rounded-lg flex focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 scrollbar-hidden flex-1"
           disabled="false"
         >
           <!---->
            
-          <input
-            autocomplete="new-password"
-            class="block text-sm m-2.5 p-0 bg-transparent border-none outline-none text-gray-900 h-min w-full min-w-fit focus:ring-0 placeholder-gray-400"
-            placeholder="Enter tags"
-            type="text"
-          />
+          <div
+            class="relative w-full"
+          >
+            <input
+              autocomplete="off"
+              class="block text-sm m-2.5 p-0 bg-transparent border-none outline-none text-gray-900 h-min w-full min-w-fit focus:ring-0 placeholder-gray-400"
+              placeholder="Enter tags"
+              type="text"
+            />
+             
+            <!---->
+          </div>
         </div>
         
         
@@ -5892,6 +6038,8 @@ exports[`widgets > tags > readonly 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -5989,6 +6137,8 @@ exports[`widgets > text > disabled 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -6097,6 +6247,8 @@ exports[`widgets > text > error 1`] = `
       
       
       <!---->
+       
+      <!---->
     </button>
     
     
@@ -6191,6 +6343,8 @@ exports[`widgets > text > normal 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -6288,6 +6442,8 @@ exports[`widgets > text > readonly 1`] = `
       
       
       <!---->
+       
+      <!---->
     </button>
     
     
@@ -6329,7 +6485,7 @@ exports[`widgets > textarea > disabled 1`] = `
         >
           <textarea
             aria-describedby="root::description root::help root::errors"
-            class="rounded-lg bg-gray-50 dark:bg-gray-600 text-gray-900 dark:placeholder-gray-400 dark:text-white border dark:border-gray-500 w-full p-2.5 text-sm focus:outline-hidden focus:ring-primary-500 border-gray-300 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 disabled:cursor-not-allowed disabled:opacity-50"
+            class="rounded-lg bg-gray-50 dark:bg-gray-600 text-gray-900 dark:placeholder-gray-400 dark:text-white border dark:border-gray-500 p-2.5 text-sm focus:outline-hidden focus:ring-primary-500 border-gray-300 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 disabled:cursor-not-allowed disabled:opacity-50 w-full"
             disabled=""
             id="root"
             name="root"
@@ -6368,6 +6524,8 @@ exports[`widgets > textarea > disabled 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -6410,7 +6568,7 @@ exports[`widgets > textarea > error 1`] = `
         >
           <textarea
             aria-describedby="root::description root::help root::errors"
-            class="rounded-lg bg-gray-50 dark:bg-gray-600 text-gray-900 dark:placeholder-gray-400 dark:text-white border dark:border-gray-500 w-full p-2.5 text-sm focus:outline-hidden focus:ring-primary-500 border-gray-300 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 disabled:cursor-not-allowed disabled:opacity-50"
+            class="rounded-lg bg-gray-50 dark:bg-gray-600 text-gray-900 dark:placeholder-gray-400 dark:text-white border dark:border-gray-500 p-2.5 text-sm focus:outline-hidden focus:ring-primary-500 border-gray-300 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 disabled:cursor-not-allowed disabled:opacity-50 w-full"
             id="root"
             name="root"
           />
@@ -6460,6 +6618,8 @@ exports[`widgets > textarea > error 1`] = `
       
       
       <!---->
+       
+      <!---->
     </button>
     
     
@@ -6501,7 +6661,7 @@ exports[`widgets > textarea > normal 1`] = `
         >
           <textarea
             aria-describedby="root::description root::help root::errors"
-            class="rounded-lg bg-gray-50 dark:bg-gray-600 text-gray-900 dark:placeholder-gray-400 dark:text-white border dark:border-gray-500 w-full p-2.5 text-sm focus:outline-hidden focus:ring-primary-500 border-gray-300 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 disabled:cursor-not-allowed disabled:opacity-50"
+            class="rounded-lg bg-gray-50 dark:bg-gray-600 text-gray-900 dark:placeholder-gray-400 dark:text-white border dark:border-gray-500 p-2.5 text-sm focus:outline-hidden focus:ring-primary-500 border-gray-300 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 disabled:cursor-not-allowed disabled:opacity-50 w-full"
             id="root"
             name="root"
           />
@@ -6538,6 +6698,8 @@ exports[`widgets > textarea > normal 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -6580,7 +6742,7 @@ exports[`widgets > textarea > readonly 1`] = `
         >
           <textarea
             aria-describedby="root::description root::help root::errors"
-            class="rounded-lg bg-gray-50 dark:bg-gray-600 text-gray-900 dark:placeholder-gray-400 dark:text-white border dark:border-gray-500 w-full p-2.5 text-sm focus:outline-hidden focus:ring-primary-500 border-gray-300 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 disabled:cursor-not-allowed disabled:opacity-50"
+            class="rounded-lg bg-gray-50 dark:bg-gray-600 text-gray-900 dark:placeholder-gray-400 dark:text-white border dark:border-gray-500 p-2.5 text-sm focus:outline-hidden focus:ring-primary-500 border-gray-300 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 disabled:cursor-not-allowed disabled:opacity-50 w-full"
             id="root"
             name="root"
             readonly=""
@@ -6618,6 +6780,8 @@ exports[`widgets > textarea > readonly 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     

@@ -257,6 +257,8 @@ exports[`object fields > additionalProperties 1`] = `
               
               
               <!---->
+               
+              <!---->
             </button>
             
             
@@ -302,6 +304,8 @@ exports[`object fields > additionalProperties 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -583,6 +587,8 @@ exports[`object fields > additionalProperties with error 1`] = `
               
               
               <!---->
+               
+              <!---->
             </button>
             
             
@@ -628,6 +634,8 @@ exports[`object fields > additionalProperties with error 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -826,6 +834,8 @@ exports[`object fields > has errors 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -1131,6 +1141,8 @@ exports[`object fields > object 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -1627,6 +1639,8 @@ exports[`object fields > one of defaults > default preset 1`] = `
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -2826,6 +2840,8 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       
       
       <!---->
+       
+      <!---->
     </button>
     
     
@@ -3094,6 +3110,8 @@ exports[`object fields > show add button and fields if additionalProperties is t
               
               
               <!---->
+               
+              <!---->
             </button>
             
             
@@ -3139,6 +3157,8 @@ exports[`object fields > show add button and fields if additionalProperties is t
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -3437,6 +3457,8 @@ exports[`object fields > with title and description > additionalProperties 1`] =
               
               
               <!---->
+               
+              <!---->
             </button>
             
             
@@ -3482,6 +3504,8 @@ exports[`object fields > with title and description > additionalProperties 1`] =
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -3833,6 +3857,8 @@ exports[`object fields > with title and description > object 1`] = `
       
       
       <!---->
+       
+      <!---->
     </button>
     
     
@@ -4130,6 +4156,8 @@ exports[`object fields > with title and description > show add button and fields
               
               
               <!---->
+               
+              <!---->
             </button>
             
             
@@ -4175,6 +4203,8 @@ exports[`object fields > with title and description > show add button and fields
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -4473,6 +4503,8 @@ exports[`object fields > with title and description from both > additionalProper
               
               
               <!---->
+               
+              <!---->
             </button>
             
             
@@ -4518,6 +4550,8 @@ exports[`object fields > with title and description from both > additionalProper
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -4869,6 +4903,8 @@ exports[`object fields > with title and description from both > object 1`] = `
       
       
       <!---->
+       
+      <!---->
     </button>
     
     
@@ -5166,6 +5202,8 @@ exports[`object fields > with title and description from uiSchema > additionalPr
               
               
               <!---->
+               
+              <!---->
             </button>
             
             
@@ -5211,6 +5249,8 @@ exports[`object fields > with title and description from uiSchema > additionalPr
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -5562,6 +5602,8 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
       
       
       <!---->
+       
+      <!---->
     </button>
     
     
@@ -5859,6 +5901,8 @@ exports[`object fields > with title and description from uiSchema > show add but
               
               
               <!---->
+               
+              <!---->
             </button>
             
             
@@ -5904,6 +5948,8 @@ exports[`object fields > with title and description from uiSchema > show add but
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -6120,6 +6166,8 @@ exports[`object fields > with title and description with global label off > addi
               
               
               <!---->
+               
+              <!---->
             </button>
             
             
@@ -6165,6 +6213,8 @@ exports[`object fields > with title and description with global label off > addi
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
@@ -6421,6 +6471,8 @@ exports[`object fields > with title and description with global label off > obje
       
       
       <!---->
+       
+      <!---->
     </button>
     
     
@@ -6636,6 +6688,8 @@ exports[`object fields > with title and description with global label off > show
               
               
               <!---->
+               
+              <!---->
             </button>
             
             
@@ -6681,6 +6735,8 @@ exports[`object fields > with title and description with global label off > show
       Submit
       
       
+      <!---->
+       
       <!---->
     </button>
     
