@@ -1,4 +1,5 @@
 import { unique } from "@/lib/array.js";
+import { lcm } from "@/lib/math.js";
 
 import {
   isSchema,
@@ -8,6 +9,10 @@ import {
 } from "../schema.js";
 import { isSchemaArrayValue } from "../value.js";
 import { createConditionMapper } from "./shared.js";
+
+function last<T>(_: T, r: T) {
+  return r;
+}
 
 function mergeArraysWithUniq<T>(l: T[], r: T[]) {
   return unique(l.concat(r));
@@ -21,6 +26,10 @@ function getCombinations<T>(l: T[], r: T[]) {
     }
   }
   return combinations;
+}
+
+function mergeBooleans(l: boolean, r: boolean) {
+  return l || r
 }
 
 function mergeRecords<T>(
@@ -45,15 +54,7 @@ type Assigner<R extends {}, T extends R[keyof R]> = (
   r: T
 ) => void;
 
-const ASSIGNERS = {} as const satisfies {
-  [K in keyof Schema]?: Assigner<Schema, Exclude<Schema[K], undefined>>;
-};
-
 type Merger<T> = (a: T, b: T) => T;
-
-function last<T>(_: T, r: T) {
-  return r;
-}
 
 function mergeCombinations(l: SchemaDefinition[], r: SchemaDefinition[]) {
   return getCombinations(l, r).map(mergeAllOfSchemas);
@@ -79,22 +80,23 @@ function mergeSchemas(left: Schema, right: Schema): Schema {
   return merged;
 }
 
+const mergeSchemaOrTrue = createConditionMapper<
+  true | Schema,
+  true | Record<string, never>,
+  true | Schema
+>(
+  isTruthySchemaDefinition,
+  () => true,
+  (_, r) => r,
+  (l) => l,
+  mergeSchemas
+);
+
 function mergeSchemaDefinitions(l: SchemaDefinition, r: SchemaDefinition) {
   if (l === false || r === false) {
     return false;
   }
-  const isLTruth = isTruthySchemaDefinition(l);
-  const isRTruth = isTruthySchemaDefinition(r);
-  if (isLTruth) {
-    if (isRTruth) {
-      return true;
-    }
-    return r;
-  }
-  if (isRTruth) {
-    return l;
-  }
-  return mergeSchemas(l, r);
+  return mergeSchemaOrTrue(l, r);
 }
 
 function mergeRecordsOfSchemaDefinitions(
@@ -123,21 +125,60 @@ function mergeRecordsOfSchemaDefinitionsOrArrayOfString(
   return mergeRecords(l, r, mergeSchemaDefinitionsOrArrayOfString);
 }
 
+type PropertiesResolverKey =
+  | "properties"
+  | "patternProperties"
+  | "additionalProperties";
+type ItemsResolverKey = "items" | "additionalItems";
+type ConditionResolverKey = "if" | "then" | "else";
+type ComplexResolverKey =
+  | PropertiesResolverKey
+  | ItemsResolverKey
+  | ConditionResolverKey;
+
 const MERGERS: {
-  [K in Exclude<keyof Schema, keyof typeof ASSIGNERS>]-?: Merger<
+  [K in Exclude<keyof Schema, ComplexResolverKey>]-?: Merger<
     Exclude<Schema[K], undefined>
   >;
 } = {
   $id: last,
   $ref: last,
   $schema: last,
+  $comment: last,
+  $defs: mergeRecordsOfSchemaDefinitions,
+  type: (a, b) => {
+    if (a === b) {
+      return a
+    }
+    const isAArr = Array.isArray(a);
+    const isBArr = Array.isArray(b);
+    if (!isAArr && !isBArr) {
+      return [a, b]
+    }
+    return mergeArraysWithUniq(
+      isAArr ? a : [a],
+      isBArr ? b : [b]
+    )
+  },
   default: last,
   description: last,
   title: last,
+  const: last,
+  format: last,
+  contentEncoding: last,
+  contentMediaType: last,
+  discriminator: last,
+  // TODO: Equality check to result
+  not: (a, b) => ({ anyOf: [a, b] }),
+  pattern: (a, b) => (a === b ? a : `(?=${a})(?=${b})`),
+  readOnly: mergeBooleans,
+  writeOnly: mergeBooleans,
+  // TODO: Proper deduplication
+  enum: mergeArraysWithUniq,
   anyOf: mergeCombinations,
   oneOf: mergeCombinations,
-  additionalItems: mergeSchemaDefinitions,
-  additionalProperties: mergeSchemaDefinitions,
+  // TODO: Proper deduplication
+  allOf: (l, r) => l.concat(r),
   propertyNames: mergeSchemaDefinitions,
   contains: mergeSchemaDefinitions,
   definitions: mergeRecordsOfSchemaDefinitions,
@@ -149,7 +190,17 @@ const MERGERS: {
         `Value of the 'examples' field should be an array, but got "${JSON.stringify(l)}" and "${JSON.stringify(r)}"`
       );
     }
+    // TODO: Proper deduplication
     return mergeArraysWithUniq(l, r);
+  },
+  multipleOf: (a, b) => {
+    let factor = 1;
+    while (!Number.isInteger(a) || !Number.isInteger(b)) {
+      factor *= 10;
+      a *= 10;
+      b *= 10;
+    }
+    return lcm(a, b) / factor;
   },
   exclusiveMaximum: Math.min,
   maximum: Math.min,
@@ -162,7 +213,7 @@ const MERGERS: {
   minLength: Math.max,
   minProperties: Math.max,
   required: mergeArraysWithUniq,
-  uniqueItems: (l, r) => l || r,
+  uniqueItems: mergeBooleans,
 };
 
 export function getAllOfSchemas(schema: SchemaDefinition): SchemaDefinition[] {
