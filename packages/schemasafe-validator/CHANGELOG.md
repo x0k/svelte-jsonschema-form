@@ -1,5 +1,12 @@
 # @sjsf/schemasafe
 
+## 2.2.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/form@2.2.2
+
 ## 2.2.1
 
 ### Patch Changes

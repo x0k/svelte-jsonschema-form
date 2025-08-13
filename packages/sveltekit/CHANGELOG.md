@@ -1,5 +1,14 @@
 # @sjsf/sveltekit
 
+## 2.2.2
+
+### Patch Changes
+
+- Remove usage of `FileReader` from server code ([`5459194`](https://github.com/x0k/svelte-jsonschema-form/commit/5459194fe7d0dee45f9b78348835ccc9f5519680))
+
+- Updated dependencies []:
+  - @sjsf/form@2.2.2
+
 ## 2.2.1
 
 ### Patch Changes

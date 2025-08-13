@@ -1,5 +1,13 @@
 # @sjsf/daisyui5-theme
 
+## 2.2.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/basic-theme@2.2.2
+  - @sjsf/form@2.2.2
+
 ## 2.2.1
 
 ### Patch Changes
