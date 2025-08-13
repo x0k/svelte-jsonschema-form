@@ -59,6 +59,23 @@ npm i @sjsf/form @sjsf/basic-theme @sjsf/ajv8-validator ajv@8
 <BasicForm {form} />
 ```
 
+## Supported Themes
+
+- [Basic](https://x0k.dev/svelte-jsonschema-form/themes/basic/)
+- [daisyUI v5](https://x0k.dev/svelte-jsonschema-form/themes/daisyui5/)
+- [Flowbite Svelte](https://x0k.dev/svelte-jsonschema-form/themes/flowbite3/)
+- [Skeleton v3](https://x0k.dev/svelte-jsonschema-form/themes/skeleton3/)
+- [shadcn-svelte](https://x0k.dev/svelte-jsonschema-form/themes/shadcn4/)
+
+## Supported Validators
+
+- [Ajv v8](https://x0k.dev/svelte-jsonschema-form/validators/ajv/)
+- [Zod v4](https://x0k.dev/svelte-jsonschema-form/validators/zod4/)
+- [Valibot](https://x0k.dev/svelte-jsonschema-form/validators/valibot/)
+- [@cfworker/json-schema](https://x0k.dev/svelte-jsonschema-form/validators/cfworker/)
+- [@exodus/schemasafe](https://x0k.dev/svelte-jsonschema-form/validators/schemasafe/)
+- [Standard Schema](https://x0k.dev/svelte-jsonschema-form/validators/standard-schema/)
+
 ## License
 
 This project includes modifications of code from [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form), which is licensed under the Apache License, Version 2.0.
