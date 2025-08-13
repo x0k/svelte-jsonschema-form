@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { fileToDataURL } from '@sjsf/form/lib/file';
 import { defaultMerger, type Merger, type Validator } from '@sjsf/form/core';
 import {
   DEFAULT_ID_PREFIX,
@@ -23,6 +22,7 @@ import { JSON_CHUNKS_KEY, type InitialFormData, type ValidatedFormData } from '.
 import type { Entry } from './entry.js';
 import { parseSchemaValue } from './schema-value-parser.js';
 import { makeFormDataEntriesConverter } from './convert-form-data-entries.js';
+import { fileToDataURL } from './file-to-data-url.js';
 
 export type InitFormOptions<T, E, SendSchema extends boolean> = {
   sendSchema?: SendSchema;
@@ -84,7 +84,7 @@ export function makeFormDataParser({
           .entries()
           .map((entry) =>
             entry[1] instanceof File
-              ? fileToDataURL(request.signal, entry[1]).then(
+              ? fileToDataURL(entry[1]).then(
                   (data): Entry<string> => [entry[0], data]
                 )
               : (entry as Entry<Exclude<FormDataEntryValue, File>>)
