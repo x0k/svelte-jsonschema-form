@@ -1,7 +1,7 @@
 <script lang="ts">
   import { fromFactories } from "@sjsf/form/lib/resolver";
   import {
-    setFormContext,
+    setFormContext2,
     Content,
     SubmitButton,
     type Config,
@@ -50,7 +50,7 @@
           : undefined,
     }),
   });
-  setFormContext(form.context);
+  setFormContext2(form);
 </script>
 
 <form
