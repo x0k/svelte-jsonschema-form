@@ -1,5 +1,33 @@
 # docs
 
+## 1.7.2
+
+### Patch Changes
+
+- Updated dependencies [[`5459194`](https://github.com/x0k/svelte-jsonschema-form/commit/5459194fe7d0dee45f9b78348835ccc9f5519680), [`40009f4`](https://github.com/x0k/svelte-jsonschema-form/commit/40009f4f93f678fda95d8a0c1405577b75086d62), [`6daec53`](https://github.com/x0k/svelte-jsonschema-form/commit/6daec532a3c5faf0c52248833be427e4ff0638c9)]:
+  - @sjsf/sveltekit@2.2.2
+  - @sjsf/shadcn4-theme@2.2.2
+  - @sjsf/ajv8-validator@2.2.2
+  - @sjsf/basic-theme@2.2.2
+  - @sjsf/cfworker-validator@2.2.2
+  - @sjsf/daisyui-theme@2.2.2
+  - @sjsf/daisyui5-theme@2.2.2
+  - @sjsf/flowbite-icons@2.2.2
+  - @sjsf/flowbite-theme@2.2.2
+  - @sjsf/flowbite3-theme@2.2.2
+  - @sjsf/form@2.2.2
+  - @sjsf/lucide-icons@2.2.2
+  - @sjsf/moving-icons@2.2.2
+  - @sjsf/radix-icons@2.2.2
+  - @sjsf/schemasafe-validator@2.2.2
+  - @sjsf/shadcn-theme@2.2.2
+  - @sjsf/skeleton-theme@2.2.2
+  - @sjsf/skeleton3-theme@2.2.2
+  - @sjsf/valibot-validator@2.2.2
+  - @sjsf/zod-validator@2.2.2
+  - @sjsf/zod4-validator@2.2.2
+  - testing@1.0.8
+
 ## 1.7.1
 
 ### Patch Changes

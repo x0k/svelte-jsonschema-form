@@ -1,5 +1,17 @@
 # @sjsf/shadcn4-theme
 
+## 2.2.2
+
+### Patch Changes
+
+- Allow usage of `tailwind-variants` v2 ([`40009f4`](https://github.com/x0k/svelte-jsonschema-form/commit/40009f4f93f678fda95d8a0c1405577b75086d62))
+
+- Update default components (13.08.2025) ([`6daec53`](https://github.com/x0k/svelte-jsonschema-form/commit/6daec532a3c5faf0c52248833be427e4ff0638c9))
+
+- Updated dependencies []:
+  - @sjsf/basic-theme@2.2.2
+  - @sjsf/form@2.2.2
+
 ## 2.2.1
 
 ### Patch Changes

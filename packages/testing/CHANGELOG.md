@@ -1,5 +1,13 @@
 # testing
 
+## 1.0.8
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/ajv8-validator@2.2.2
+  - @sjsf/form@2.2.2
+
 ## 1.0.7
 
 ### Patch Changes
