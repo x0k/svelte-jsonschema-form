@@ -48,14 +48,14 @@ catalogs:
       version: 3.25.76
 
 overrides:
-  svelte2tsx: 0.7.41
+  svelte2tsx: 0.7.42
   vite: ^7.1.2
   playwright: ~1.52.0
 
 patchedDependencies:
-  svelte2tsx@0.7.41:
-    hash: aa65afb73e981f34a9e39f4e5e8e5f9c5b5c3d35e4a0e3c4618d527fa0a6c58f
-    path: patches/svelte2tsx@0.7.41.patch
+  svelte2tsx:
+    hash: 257a4b0738494e427eaaa5e6e703e39d9ed24c0f64914377183bd879956d3485
+    path: patches/svelte2tsx.patch
 
 importers:
 
@@ -6369,8 +6369,8 @@ packages:
     peerDependencies:
       svelte: ^5.30.2
 
-  svelte2tsx@0.7.41:
-    resolution: {integrity: sha512-/TUwpyn/Qc1wcGuayf2GSwvZ7htdAOzpo0JFFm96srKnRXoTD0gy4n06g+XgH8w016S3lPtyFVtFAm+0yJ0BZw==}
+  svelte2tsx@0.7.42:
+    resolution: {integrity: sha512-PSNrKS16aVdAajoFjpF5M0t6TA7ha7GcKbBajD9RG3M+vooAuvLnWAGUSC6eJL4zEOVbOWKtcS2BuY4rxPljoA==}
     peerDependencies:
       svelte: ^3.55 || ^4.0.0-next.0 || ^4.0 || ^5.0.0-next.0
       typescript: ^4.9.4 || ^5.0.0
@@ -7422,7 +7422,7 @@ snapshots:
       '@sveltejs/vite-plugin-svelte': 5.1.0(svelte@5.38.1)(vite@7.1.2(@types/node@24.2.1)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1))
       astro: 5.12.9(@types/node@24.2.1)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.45.1)(typescript@5.9.2)(yaml@2.5.1)
       svelte: 5.38.1
-      svelte2tsx: 0.7.41(patch_hash=aa65afb73e981f34a9e39f4e5e8e5f9c5b5c3d35e4a0e3c4618d527fa0a6c58f)(svelte@5.38.1)(typescript@5.9.2)
+      svelte2tsx: 0.7.42(patch_hash=257a4b0738494e427eaaa5e6e703e39d9ed24c0f64914377183bd879956d3485)(svelte@5.38.1)(typescript@5.9.2)
       typescript: 5.9.2
       vite: 7.1.2(@types/node@24.2.1)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.5.1)
     transitivePeerDependencies:
@@ -8738,7 +8738,7 @@ snapshots:
       sade: 1.8.1
       semver: 7.7.2
       svelte: 5.38.1
-      svelte2tsx: 0.7.41(patch_hash=aa65afb73e981f34a9e39f4e5e8e5f9c5b5c3d35e4a0e3c4618d527fa0a6c58f)(svelte@5.38.1)(typescript@5.9.2)
+      svelte2tsx: 0.7.42(patch_hash=257a4b0738494e427eaaa5e6e703e39d9ed24c0f64914377183bd879956d3485)(svelte@5.38.1)(typescript@5.9.2)
     transitivePeerDependencies:
       - typescript
 
@@ -13193,7 +13193,7 @@ snapshots:
       style-to-object: 1.0.8
       svelte: 5.38.1
 
-  svelte2tsx@0.7.41(patch_hash=aa65afb73e981f34a9e39f4e5e8e5f9c5b5c3d35e4a0e3c4618d527fa0a6c58f)(svelte@5.38.1)(typescript@5.9.2):
+  svelte2tsx@0.7.42(patch_hash=257a4b0738494e427eaaa5e6e703e39d9ed24c0f64914377183bd879956d3485)(svelte@5.38.1)(typescript@5.9.2):
     dependencies:
       dedent-js: 1.0.1
       pascal-case: 3.1.2

@@ -52,12 +52,12 @@
       "sharp"
     ],
     "overrides": {
-      "svelte2tsx": "0.7.41",
+      "svelte2tsx": "0.7.42",
       "vite": "catalog:",
       "playwright": "~1.52.0"
     },
     "patchedDependencies": {
-      "svelte2tsx@0.7.41": "patches/svelte2tsx@0.7.41.patch"
+      "svelte2tsx": "patches/svelte2tsx.patch"
     }
   }
 }
