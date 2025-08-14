@@ -11,7 +11,7 @@ import {
   type Schema,
   type SchemaDefinition,
 } from "../schema.js";
-import { createConditionMapper } from "./shared.js";
+import { createConditionMapper, insertUniqueValues } from "./shared.js";
 
 const zero = () => 0;
 const one = () => 1;
@@ -20,25 +20,6 @@ const negOne = () => -1;
 const isUndefined = <T>(v: T | undefined): v is undefined => v === undefined;
 
 const isEmptyArray = <T>(arr: T[]): arr is [] => arr.length === 0;
-
-function uniqueKeys<K>(target: K[], source: K[]): K[] {
-  const tl = target.length;
-  if (tl === 0) return source;
-  let sl = source.length;
-  if (sl === 0) return target;
-  if (sl > tl) {
-    const t = target;
-    target = source;
-    source = t;
-  }
-  const seen = new Set(target);
-  for (const key of source) {
-    if (!seen.has(key)) {
-      target.push(key);
-    }
-  }
-  return target;
-}
 
 type SchemaPrimitiveTypeExceptNullType = Extract<
   SchemaType,
@@ -146,8 +127,10 @@ function createRecordsComparator<K extends string, T>(
     if (d !== 0) {
       return d;
     }
-    const allKeys = uniqueKeys(aKeys, bKeys).sort();
-    for (const key of allKeys) {
+    const allKeys = insertUniqueValues(aKeys, bKeys).sort();
+    const l = allKeys.length;
+    for (let i = 0; i < l; i++) {
+      const key = allKeys[i]!;
       if (a[key] === b[key]) {
         continue;
       }
@@ -233,8 +216,10 @@ const compareSchemaDefinitions = createConditionMapper(
   (a, b) => {
     const aKeys = Object.keys(a) as (keyof Schema)[];
     const bKeys = Object.keys(b) as (keyof Schema)[];
-    const allKeys = uniqueKeys(aKeys, bKeys);
-    for (const key of allKeys) {
+    const allKeys = insertUniqueValues(aKeys, bKeys);
+    const l = allKeys.length;
+    for (let i = 0; i < l; i++) {
+      const key = allKeys[i]!;
       if (a[key] === b[key]) {
         continue;
       }
