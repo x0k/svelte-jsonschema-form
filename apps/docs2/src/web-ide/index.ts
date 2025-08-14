@@ -4,8 +4,7 @@ import lz from "lz-string";
 
 import {
   Example,
-  VALIDATOR_PACKAGES,
-  VALIDATOR_VERSIONS,
+  VALIDATOR_DEPENDENCIES,
   VALIDATORS,
   VERSION,
   type ActualTheme,
@@ -44,7 +43,7 @@ const VALIDATOR_LAYERS = Object.fromEntries(
             },
             package: {
               dependencies: {
-                [VALIDATOR_PACKAGES[validator]]: VALIDATOR_VERSIONS[validator],
+                ...VALIDATOR_DEPENDENCIES[validator],
                 [`@sjsf/${validator}-validator`]: VERSION,
               },
             },

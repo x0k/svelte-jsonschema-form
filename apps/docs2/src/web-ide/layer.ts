@@ -1,6 +1,11 @@
 import type { SchemaValue } from "@sjsf/form";
 
-import type { ActualTheme, Resolver, Validator } from "@/shared";
+import {
+  isCustomValidator,
+  type ActualTheme,
+  type Resolver,
+  type Validator,
+} from "@/shared";
 
 export interface PackageConfig {
   [key: string]: SchemaValue | undefined;
@@ -77,13 +82,13 @@ export function mergeLayers(a: Layer, b: Layer): Layer {
     package:
       a.package && b.package
         ? mergePackageConfigs(a.package, b.package)
-        : b.package ?? a.package,
+        : (b.package ?? a.package),
     vite:
-      a.vite && b.vite ? mergeViteConfigs(a.vite, b.vite) : b.vite ?? a.vite,
+      a.vite && b.vite ? mergeViteConfigs(a.vite, b.vite) : (b.vite ?? a.vite),
     formDefaults:
       a.formDefaults && b.formDefaults
         ? mergeFormDefaultsConfig(a.formDefaults, b.formDefaults)
-        : b.formDefaults ?? a.formDefaults,
+        : (b.formDefaults ?? a.formDefaults),
     files: {
       ...a.files,
       ...b.files,
@@ -112,17 +117,19 @@ function buildFormDefaultsConfig({
   theme = "basic",
   validator = "ajv8",
 }: FormDefaultsConfig): string {
+  const validatorCode = isCustomValidator(validator)
+    ? ""
+    : `\nimport { createFormValidator } from "@sjsf/${validator}-validator";
+
+// NOTE: One validator will be used for all forms
+export const validator = createFormValidator();
+`;
   return `export { resolver } from "@sjsf/form/resolvers/${resolver}";
 
 export { theme } from "@sjsf/${theme}-theme";
 
 export { translation } from "@sjsf/form/translations/en";
-
-import { createFormValidator } from "@sjsf/${validator}-validator";
-
-// NOTE: One validator will be used for all forms
-export const validator = createFormValidator();
-`;
+${validatorCode}`;
 }
 
 export function buildLayer(layer: Layer): LayerFiles {

@@ -14,20 +14,38 @@ export const RESOLVERS = ["basic", "compat"] as const;
 
 export type Resolver = (typeof RESOLVERS)[number];
 
-export const VALIDATORS = ["ajv8", "cfworker", "schemasafe"] as const;
+export const VALIDATORS = [
+  "ajv8",
+  "cfworker",
+  "schemasafe",
+  "zod4",
+  "valibot",
+] as const;
 
 export type Validator = (typeof VALIDATORS)[number];
 
-export const VALIDATOR_PACKAGES: Record<Validator, string> = {
-  ajv8: "ajv",
-  cfworker: "@cfworker/json-schema",
-  schemasafe: "@exodus/schemasafe",
-};
+const CUSTOM_VALIDATORS = ["valibot", "zod4"] as const satisfies Validator[];
 
-export const VALIDATOR_VERSIONS: Record<Validator, string> = {
-  ajv8: "^8.17.0",
-  cfworker: "^4.1.0",
-  schemasafe: "^1.3.0",
+const CUSTOM_VALIDATORS_SET = new Set<Validator>(CUSTOM_VALIDATORS);
+
+export function isCustomValidator(
+  v: Validator
+): v is (typeof CUSTOM_VALIDATORS)[number] {
+  return CUSTOM_VALIDATORS_SET.has(v);
+}
+
+export const VALIDATOR_DEPENDENCIES: Record<
+  Validator,
+  Record<string, string>
+> = {
+  ajv8: { ajv: "^8.17.0" },
+  cfworker: { "@cfworker/json-schema": "^4.1.0" },
+  schemasafe: { "@exodus/schemasafe": "^1.3.0" },
+  zod4: { zod: "^4.0.0" },
+  valibot: {
+    valibot: "^1.1.0",
+    "@valibot/to-json-schema": "^1.3.0",
+  },
 };
 
 export enum Example {
@@ -40,8 +58,8 @@ export enum Example {
   PatternPropertiesValidator = "pattern-properties-validator",
   NativeForm = "native-form",
   DecomposedField = "decomposed-field",
-  MultiStepNativeForm = 'multi-step-native-form',
-  LayoutSlots = 'layout-slots'
+  MultiStepNativeForm = "multi-step-native-form",
+  LayoutSlots = "layout-slots",
 }
 
 export const EXAMPLES = Object.values(Example);
