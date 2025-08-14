@@ -1,5 +1,17 @@
 # docs
 
+## 1.8.0
+
+### Minor Changes
+
+- Add `zod` and ` valibot` options for online code editor ([`39e3b2f`](https://github.com/x0k/svelte-jsonschema-form/commit/39e3b2f64b8e4f2a0a1b219ab04fa5c621f3a997))
+
+### Patch Changes
+
+- Split examples into two pages ([`0cfde6e`](https://github.com/x0k/svelte-jsonschema-form/commit/0cfde6e151619f7b2b26b45dcf1c3df057b48a8f))
+
+- Fix links src and target ([`ce218b5`](https://github.com/x0k/svelte-jsonschema-form/commit/ce218b5670fffe0fc53d948ab80388d082461b67))
+
 ## 1.7.2
 
 ### Patch Changes
