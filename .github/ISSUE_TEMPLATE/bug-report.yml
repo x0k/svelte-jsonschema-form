@@ -21,7 +21,7 @@ body:
       label: Reproduction
       description: |
         Please provide a link to a repo or REPL or instructions that can reproduce the problem you ran into.
-        You can use the `starter` example on [this page](https://x0k.dev/svelte-jsonschema-form/examples/#online-code-editor) to create a REPL.
+        You can use the `starter` example on [this page](https://x0k.dev/svelte-jsonschema-form/examples/online-code-editor/) to create a REPL.
       placeholder: Reproduction
     validations:
       required: true

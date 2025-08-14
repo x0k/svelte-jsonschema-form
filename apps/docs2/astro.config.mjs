@@ -45,8 +45,8 @@ export default defineConfig({
           collapsed: true,
         },
         {
-          // label: "Examples",
-          slug: "examples",
+          label: "Examples",
+          autogenerate: { directory: "examples" }
         },
         // {
         //   label: "Examples",
