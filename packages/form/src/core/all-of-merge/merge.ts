@@ -1,3 +1,4 @@
+import { getValueByKeys, insertValue, type Trie } from "@/lib/trie.js";
 import { unique } from "@/lib/array.js";
 import { lcm } from "@/lib/math.js";
 
@@ -7,8 +8,9 @@ import {
   type Schema,
   type SchemaDefinition,
 } from "../schema.js";
-import { isSchemaArrayValue } from "../value.js";
-import { createConditionMapper } from "./shared.js";
+import { createConditionMapper, insertUniqueValues } from "./shared.js";
+
+type SchemaKey = keyof Schema;
 
 function last<T>(_: T, r: T) {
   return r;
@@ -18,8 +20,8 @@ function mergeArraysWithUniq<T>(l: T[], r: T[]) {
   return unique(l.concat(r));
 }
 
-function getCombinations<T>(l: T[], r: T[]) {
-  const combinations = [];
+function getCombinations<T>(l: T[], r: T[]): [T, T][] {
+  const combinations: [T, T][] = [];
   for (const left of l) {
     for (const right of r) {
       combinations.push([left, right]);
@@ -29,30 +31,196 @@ function getCombinations<T>(l: T[], r: T[]) {
 }
 
 function mergeBooleans(l: boolean, r: boolean) {
-  return l || r
+  return l || r;
 }
 
-function mergeRecords<T>(
-  left: Record<string, T>,
-  right: Record<string, T>,
-  merge: (l: T, r: T) => T
-) {
-  const target = Object.assign({}, left);
-  for (const [key, value] of Object.entries(right)) {
-    if (left[key] === undefined) {
-      target[key] = value;
-      continue;
+function mergePatterns(a: string, b: string) {
+  return a === b ? a : `(?=${a})(?=${b})`;
+}
+
+function createRecordsMerge<T>(merge: (l: T, r: T) => T) {
+  return (left: Record<string, T>, right: Record<string, T>) => {
+    const target = { ...left };
+    const keys = Object.keys(right);
+    const l = keys.length;
+    for (let i = 0; i < l; i++) {
+      const key = keys[i]!;
+      target[key] =
+        left[key] === undefined ? right[key]! : merge(left[key], right[key]!);
     }
-    target[key] = merge(left[key], value);
-  }
-  return target;
+    return target;
+  };
 }
 
-type Assigner<R extends {}, T extends R[keyof R]> = (
-  target: R,
-  l: T,
-  r: T
-) => void;
+type Assigner<R extends {}> = (target: R, l: R, r: R) => void;
+
+function createAssignersTrie(
+  assigners: Iterable<[SchemaKey[], Assigner<Schema>]>
+) {
+  let trie: Trie<string, Assigner<Schema>> = undefined;
+  for (const pair of assigners) {
+    for (const key of pair[0]) {
+      trie = insertValue(trie, key, pair[1]);
+    }
+  }
+  return trie;
+}
+
+function assignAdditional(
+  target: Schema,
+  key: "Items" | "Properties",
+  additional: SchemaDefinition | undefined
+) {
+  const k = `additional${key}` as const;
+  if (additional === undefined || isTruthySchemaDefinition(additional)) {
+    delete target[k];
+  } else {
+    target[k] = additional;
+  }
+}
+
+const PROPERTIES_ASSIGNER_KEYS = [
+  "properties",
+  "patternProperties",
+  "additionalProperties",
+] as const satisfies SchemaKey[];
+
+const propertiesAssigner: Assigner<Schema> = (
+  target,
+  {
+    properties: lProps = {},
+    patternProperties: lPatterns,
+    additionalProperties: lAdditional,
+  },
+  {
+    properties: rProps = {},
+    patternProperties: rPatterns,
+    additionalProperties: rAdditional,
+  }
+) => {
+  const isLAddFalse = lAdditional === false;
+  const isRAddFalse = rAdditional === false;
+  let properties: Record<string, SchemaDefinition> | undefined;
+  let patterns: Record<string, SchemaDefinition> | undefined;
+  if (isLAddFalse && isRAddFalse) {
+    const lKeys = Object.keys(lProps);
+    const rKeys = Object.keys(rProps);
+    if (lKeys.length > 0) {
+      if (rKeys.length > 0) {
+        properties = {};
+        const keys = insertUniqueValues(lKeys, rKeys);
+        const l = keys.length;
+        for (let i = 0; i < l; i++) {
+          const key = keys[i]!;
+          properties[key] = mergeSchemaDefinitions(lProps[key]!, rProps[key]!);
+        }
+      } else {
+        properties = lProps;
+      }
+    } else if (rKeys.length > 0) {
+      properties = rProps;
+    }
+    patterns =
+      lPatterns && rPatterns
+        ? mergeRecordsOfSchemaDefinitions(lPatterns, rPatterns)
+        : (lPatterns ?? rPatterns);
+  } else if (isLAddFalse || isRAddFalse) {
+    // TODO: Merge patterns schemas into properties
+  } else {
+    properties = mergeRecordsOfSchemaDefinitions(lProps, rProps);
+  }
+  if (properties) {
+    target.properties = properties;
+  } else {
+    delete target.properties;
+  }
+  if (patterns) {
+    target.patternProperties = patterns;
+  } else {
+    delete target.patternProperties;
+  }
+  assignAdditional(
+    target,
+    "Properties",
+    lAdditional !== undefined && rAdditional !== undefined
+      ? mergeSchemaDefinitions(lAdditional, rAdditional)
+      : (lAdditional ?? rAdditional)
+  );
+};
+
+const ITEMS_ASSIGNER_KEYS = [
+  "items",
+  "additionalItems",
+] as const satisfies SchemaKey[];
+
+const itemsAssigner: Assigner<Schema> = (
+  target,
+  // NOTE: Schema that has `additionalItems` without an `items` keyword is invalid
+  // so the assigner should be triggered only be colliding `items` properties
+  // so default values are used only for type narrowing
+  { items: lItems = [], additionalItems: lAdditional },
+  { items: rItems = [], additionalItems: rAdditional }
+) => {
+  const isLArr = Array.isArray(lItems);
+  const isRArr = Array.isArray(rItems);
+  let itemsArray: SchemaDefinition[] = [];
+  target.items = itemsArray;
+  if (isLArr && isRArr) {
+    const [l, additional, tail] =
+      lItems.length < rItems.length
+        ? [lItems.length, lAdditional, rItems]
+        : [rItems.length, rAdditional, lItems];
+    let i = 0;
+    for (; i < l; i++) {
+      itemsArray.push(mergeSchemaDefinitions(lItems[i]!, rItems[i]!));
+    }
+    if (additional === false) {
+      target.additionalItems = false;
+    } else {
+      const isAdditionalTruthy =
+        additional === undefined || isTruthySchemaDefinition(additional);
+      for (; i < tail.length; i++) {
+        itemsArray.push(
+          isAdditionalTruthy
+            ? tail[i]!
+            : mergeSchemaDefinitions(tail[i]!, additional)
+        );
+      }
+      assignAdditional(
+        target,
+        "Items",
+        lAdditional !== undefined && rAdditional !== undefined
+          ? mergeSchemaDefinitions(lAdditional, rAdditional)
+          : (lAdditional ?? rAdditional)
+      );
+    }
+  } else if (isLArr || isRArr) {
+    const [arr, item, additional] = (
+      isLArr ? [lItems, rItems, lAdditional] : [rItems, lItems, rAdditional]
+    ) as [SchemaDefinition[], SchemaDefinition, SchemaDefinition | undefined];
+    assignAdditional(target, "Items", additional);
+    for (let i = 0; i < arr.length; i++) {
+      itemsArray.push(mergeSchemaDefinitions(arr[i]!, item));
+    }
+  } else {
+    delete target.additionalItems;
+    target.items = mergeSchemaDefinitions(lItems, rItems);
+  }
+};
+
+const CONDITION_ASSIGNER_KEYS = [
+  "if",
+  "then",
+  "else",
+] as const satisfies SchemaKey[];
+
+const conditionAssigner: Assigner<Schema> = (target, l, r) => {};
+
+const ASSIGNERS_TRIE = createAssignersTrie([
+  [PROPERTIES_ASSIGNER_KEYS, propertiesAssigner],
+  [ITEMS_ASSIGNER_KEYS, itemsAssigner],
+  [CONDITION_ASSIGNER_KEYS, conditionAssigner],
+]);
 
 type Merger<T> = (a: T, b: T) => T;
 
@@ -61,23 +229,37 @@ function mergeCombinations(l: SchemaDefinition[], r: SchemaDefinition[]) {
 }
 
 function mergeSchemas(left: Schema, right: Schema): Schema {
-  const merged = Object.assign({}, left, right);
-  for (const key of Object.keys(left)) {
-    if (key in right) {
-      const lv = left[key as keyof Schema];
-      if (lv !== undefined) {
-        const rv = right[key as keyof Schema];
-        if (rv === undefined) {
-          // @ts-expect-error
-          merged[key] = lv;
-        } else {
-          // @ts-expect-error
-          merged[key] = (MERGERS[key] ?? last)(lv, rv);
-        }
-      }
+  const assigners = new Set<Assigner<Schema>>();
+  const target = { ...left };
+  const keys = Object.keys(right) as SchemaKey[];
+  const l = keys.length;
+  for (let i = 0; i < l; i++) {
+    const key = keys[i]!;
+    const rv = right[key];
+    if (rv === undefined) {
+      continue;
+    }
+    const lv = left[key];
+    if (lv === undefined) {
+      // @ts-expect-error
+      target[key] = value;
+      continue;
+    }
+    const assign = getValueByKeys(ASSIGNERS_TRIE, key);
+    if (assign) {
+      assigners.add(assign);
+      continue;
+    }
+    const merge = MERGERS[key as keyof typeof MERGERS];
+    if (merge) {
+      // @ts-expect-error
+      target[key] = merge(lv, value);
     }
   }
-  return merged;
+  for (const assign of assigners) {
+    assign(target, left, right);
+  }
+  return target;
 }
 
 const mergeSchemaOrTrue = createConditionMapper<
@@ -99,12 +281,9 @@ function mergeSchemaDefinitions(l: SchemaDefinition, r: SchemaDefinition) {
   return mergeSchemaOrTrue(l, r);
 }
 
-function mergeRecordsOfSchemaDefinitions(
-  l: Record<string, SchemaDefinition>,
-  r: Record<string, SchemaDefinition>
-) {
-  return mergeRecords(l, r, mergeSchemaDefinitions);
-}
+const mergeRecordsOfSchemaDefinitions = createRecordsMerge(
+  mergeSchemaDefinitions
+);
 
 const mergeSchemaDefinitionsOrArrayOfString = createConditionMapper<
   SchemaDefinition | string[],
@@ -118,26 +297,13 @@ const mergeSchemaDefinitionsOrArrayOfString = createConditionMapper<
   mergeSchemaDefinitions
 );
 
-function mergeRecordsOfSchemaDefinitionsOrArrayOfString(
-  l: Record<string, SchemaDefinition | string[]>,
-  r: Record<string, SchemaDefinition | string[]>
-) {
-  return mergeRecords(l, r, mergeSchemaDefinitionsOrArrayOfString);
-}
-
-type PropertiesResolverKey =
-  | "properties"
-  | "patternProperties"
-  | "additionalProperties";
-type ItemsResolverKey = "items" | "additionalItems";
-type ConditionResolverKey = "if" | "then" | "else";
-type ComplexResolverKey =
-  | PropertiesResolverKey
-  | ItemsResolverKey
-  | ConditionResolverKey;
+type AssignerKey =
+  | (typeof PROPERTIES_ASSIGNER_KEYS)[number]
+  | (typeof ITEMS_ASSIGNER_KEYS)[number]
+  | (typeof CONDITION_ASSIGNER_KEYS)[number];
 
 const MERGERS: {
-  [K in Exclude<keyof Schema, ComplexResolverKey>]-?: Merger<
+  [K in Exclude<SchemaKey, AssignerKey>]-?: Merger<
     Exclude<Schema[K], undefined>
   >;
 } = {
@@ -148,17 +314,14 @@ const MERGERS: {
   $defs: mergeRecordsOfSchemaDefinitions,
   type: (a, b) => {
     if (a === b) {
-      return a
+      return a;
     }
     const isAArr = Array.isArray(a);
     const isBArr = Array.isArray(b);
     if (!isAArr && !isBArr) {
-      return [a, b]
+      return [a, b];
     }
-    return mergeArraysWithUniq(
-      isAArr ? a : [a],
-      isBArr ? b : [b]
-    )
+    return mergeArraysWithUniq(isAArr ? a : [a], isBArr ? b : [b]);
   },
   default: last,
   description: last,
@@ -168,9 +331,9 @@ const MERGERS: {
   contentEncoding: last,
   contentMediaType: last,
   discriminator: last,
-  // TODO: Equality check to result
+  // TODO: Perform equality check to simplify result
   not: (a, b) => ({ anyOf: [a, b] }),
-  pattern: (a, b) => (a === b ? a : `(?=${a})(?=${b})`),
+  pattern: mergePatterns,
   readOnly: mergeBooleans,
   writeOnly: mergeBooleans,
   // TODO: Proper deduplication
@@ -182,10 +345,10 @@ const MERGERS: {
   propertyNames: mergeSchemaDefinitions,
   contains: mergeSchemaDefinitions,
   definitions: mergeRecordsOfSchemaDefinitions,
-  dependencies: mergeRecordsOfSchemaDefinitionsOrArrayOfString,
+  dependencies: createRecordsMerge(mergeSchemaDefinitionsOrArrayOfString),
   examples: (l, r) => {
     // https://datatracker.ietf.org/doc/html/draft-handrews-json-schema-validation-01#section-10.4
-    if (!isSchemaArrayValue(l) || !isSchemaArrayValue(r)) {
+    if (!Array.isArray(l) || !Array.isArray(r)) {
       throw new Error(
         `Value of the 'examples' field should be an array, but got "${JSON.stringify(l)}" and "${JSON.stringify(r)}"`
       );

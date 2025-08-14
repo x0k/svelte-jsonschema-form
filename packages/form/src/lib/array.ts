@@ -8,4 +8,5 @@ export function some<T>(
   return Array.isArray(data) ? data.some(predicate) : predicate(data);
 }
 
-export const unique = <T>(items: Array<T>): Array<T> => Array.from(new Set(items))
+export const unique = <T>(items: Array<T>): Array<T> =>
+  Array.from(new Set(items));
