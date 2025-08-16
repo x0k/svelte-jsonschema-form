@@ -1,4 +1,5 @@
 import { getValueByKeys, insertValue, type Trie } from "@/lib/trie.js";
+import { weakMemoize } from "@/lib/memoize.js";
 import { unique } from "@/lib/array.js";
 import { lcm } from "@/lib/math.js";
 
@@ -8,7 +9,7 @@ import {
   type Schema,
   type SchemaDefinition,
 } from "../schema.js";
-import { createConditionMapper, insertUniqueValues } from "./shared.js";
+import { createConditionMapper } from "./shared.js";
 
 type SchemaKey = keyof Schema;
 
@@ -20,11 +21,11 @@ function mergeArraysWithUniq<T>(l: T[], r: T[]) {
   return unique(l.concat(r));
 }
 
-function getCombinations<T>(l: T[], r: T[]): [T, T][] {
-  const combinations: [T, T][] = [];
+function getCombinations<T, R>(l: T[], r: T[], action: (a: T, b: T) => R): R[] {
+  const combinations: R[] = [];
   for (const left of l) {
     for (const right of r) {
-      combinations.push([left, right]);
+      combinations.push(action(left, right));
     }
   }
   return combinations;
@@ -34,8 +35,9 @@ function mergeBooleans(l: boolean, r: boolean) {
   return l || r;
 }
 
-function mergePatterns(a: string, b: string) {
-  return a === b ? a : `(?=${a})(?=${b})`;
+function mergePatterns(p: string, q: string): string {
+  if (p === q) return p;
+  return `^(?=${p})(?=${q}).*$`;
 }
 
 function createRecordsMerge<T>(merge: (l: T, r: T) => T) {
@@ -66,16 +68,20 @@ function createAssignersTrie(
   return trie;
 }
 
-function assignAdditional(
-  target: Schema,
-  key: "Items" | "Properties",
-  additional: SchemaDefinition | undefined
-) {
-  const k = `additional${key}` as const;
-  if (additional === undefined || isTruthySchemaDefinition(additional)) {
-    delete target[k];
+function assignSchemaDefinitionOrRecordOfSchemaDefinitions<
+  K extends {
+    [T in SchemaKey]: Schema[T] extends
+      | SchemaDefinition
+      | Record<string, SchemaDefinition>
+      | undefined
+      ? T
+      : never;
+  }[SchemaKey],
+>(target: Schema, key: K, value: Schema[K]) {
+  if (value === undefined || isTruthySchemaDefinition(value)) {
+    delete target[key];
   } else {
-    target[k] = additional;
+    target[key] = value;
   }
 }
 
@@ -85,66 +91,234 @@ const PROPERTIES_ASSIGNER_KEYS = [
   "additionalProperties",
 ] as const satisfies SchemaKey[];
 
+interface CompiledPattern {
+  regExp: RegExp;
+  schema: SchemaDefinition;
+}
+
+function compilePatterns(patterns: Record<string, SchemaDefinition>) {
+  const keys = Object.keys(patterns);
+  const l = keys.length;
+  const result: CompiledPattern[] = [];
+  for (let i = 0; i < l; i++) {
+    const source = keys[i]!;
+    result.push({
+      regExp: new RegExp(source),
+      schema: patterns[source]!,
+    });
+  }
+  return [result, keys] as const;
+}
+
+const EMPTY_PATTERNS_AND_KEYS: [CompiledPattern[], string[]] = [[], []];
+
+/**
+ * @returns `true` when `false` schema occurred
+ */
+function appendKeyConstraints(
+  target: (Schema | true)[],
+  key: string,
+  patterns: CompiledPattern[]
+): boolean {
+  const l = patterns.length;
+  for (let i = 0; i < l; i++) {
+    const p = patterns[i]!;
+    if (!p.regExp.test(key)) {
+      continue;
+    }
+    const s = p.schema;
+    if (s === false) {
+      return true;
+    }
+    target.push(s);
+  }
+  return false;
+}
+
+function createProperty(
+  constraints: (Schema | true)[],
+  key: string,
+  value: SchemaDefinition,
+  patterns: CompiledPattern[],
+  oppositeValue: SchemaDefinition | undefined,
+  oppositePatterns: CompiledPattern[],
+  oppositeAdditional: Schema | false | undefined
+): SchemaDefinition | undefined {
+  constraints.length = 0;
+  if (value === false) {
+    return false;
+  }
+  constraints.push(value);
+  if (oppositeValue !== undefined) {
+    if (oppositeValue === false) {
+      return false;
+    }
+    constraints.push(oppositeValue);
+  }
+  if (appendKeyConstraints(constraints, key, oppositePatterns)) {
+    return false;
+  }
+  if (oppositeAdditional === false) {
+    // There are no allowing constraints from opposite side -> drop property
+    if (constraints.length < 2) {
+      return undefined;
+    }
+    if (appendKeyConstraints(constraints, key, patterns)) {
+      return false;
+    }
+  } else if (oppositeAdditional !== undefined) {
+    constraints.push(oppositeAdditional);
+  }
+  return mergeArrayOfSchemaDefinitions(constraints);
+}
+
+function assignPatternPropertiesAndAdditionalPropertiesMerge(
+  target: Record<string, SchemaDefinition>,
+  patterns: Record<string, SchemaDefinition> | undefined,
+  patternKeys: string[],
+  oppositeAdditional: SchemaDefinition,
+  isOppositeTruthy: boolean
+) {
+  const l = patternKeys.length;
+  if (l > 0 && oppositeAdditional !== false) {
+    if (isOppositeTruthy) {
+      // TODO: in some cases we can just assign new value instead of cloning
+      Object.assign(target, patterns);
+    } else {
+      for (let i = 0; i < l; i++) {
+        const pattern = patternKeys[i]!;
+        target[pattern] = mergeSchemaDefinitions(
+          patterns![pattern]!,
+          oppositeAdditional
+        );
+      }
+    }
+  }
+  return target;
+}
+
 const propertiesAssigner: Assigner<Schema> = (
   target,
   {
     properties: lProps = {},
     patternProperties: lPatterns,
-    additionalProperties: lAdditional,
+    additionalProperties: lAdditional = true,
   },
   {
     properties: rProps = {},
     patternProperties: rPatterns,
-    additionalProperties: rAdditional,
+    additionalProperties: rAdditional = true,
   }
 ) => {
-  const isLAddFalse = lAdditional === false;
-  const isRAddFalse = rAdditional === false;
-  let properties: Record<string, SchemaDefinition> | undefined;
-  let patterns: Record<string, SchemaDefinition> | undefined;
-  if (isLAddFalse && isRAddFalse) {
-    const lKeys = Object.keys(lProps);
-    const rKeys = Object.keys(rProps);
-    if (lKeys.length > 0) {
-      if (rKeys.length > 0) {
-        properties = {};
-        const keys = insertUniqueValues(lKeys, rKeys);
-        const l = keys.length;
-        for (let i = 0; i < l; i++) {
-          const key = keys[i]!;
-          properties[key] = mergeSchemaDefinitions(lProps[key]!, rProps[key]!);
-        }
-      } else {
-        properties = lProps;
-      }
-    } else if (rKeys.length > 0) {
-      properties = rProps;
-    }
-    patterns =
+  const isLAddTruthy = isTruthySchemaDefinition(lAdditional);
+  const isRAddTruthy = isTruthySchemaDefinition(rAdditional);
+  if (isLAddTruthy && isRAddTruthy) {
+    assignSchemaDefinitionOrRecordOfSchemaDefinitions(
+      target,
+      "properties",
+      mergeRecordsOfSchemaDefinitions(lProps, rProps)
+    );
+    assignSchemaDefinitionOrRecordOfSchemaDefinitions(
+      target,
+      "patternProperties",
       lPatterns && rPatterns
         ? mergeRecordsOfSchemaDefinitions(lPatterns, rPatterns)
-        : (lPatterns ?? rPatterns);
-  } else if (isLAddFalse || isRAddFalse) {
-    // TODO: Merge patterns schemas into properties
-  } else {
-    properties = mergeRecordsOfSchemaDefinitions(lProps, rProps);
+        : (lPatterns ?? rPatterns)
+    );
+    delete target.additionalProperties;
+    return;
   }
-  if (properties) {
-    target.properties = properties;
-  } else {
-    delete target.properties;
-  }
-  if (patterns) {
-    target.patternProperties = patterns;
-  } else {
-    delete target.patternProperties;
-  }
-  assignAdditional(
+  // Additional Properties
+  const additionalProperties = mergeSchemaDefinitions(lAdditional, rAdditional);
+  assignSchemaDefinitionOrRecordOfSchemaDefinitions(
     target,
-    "Properties",
-    lAdditional !== undefined && rAdditional !== undefined
-      ? mergeSchemaDefinitions(lAdditional, rAdditional)
-      : (lAdditional ?? rAdditional)
+    "additionalProperties",
+    additionalProperties
+  );
+  // Properties
+  const properties: Record<string, SchemaDefinition> = {};
+  const lKeys = Object.keys(lProps);
+  const lKeysLen = lKeys.length;
+  const [lCompiledPatterns, lPatternKeys] = lPatterns
+    ? compilePatterns(lPatterns)
+    : EMPTY_PATTERNS_AND_KEYS;
+  const [rCompiledPatterns, rPatternKeys] = rPatterns
+    ? compilePatterns(rPatterns)
+    : EMPTY_PATTERNS_AND_KEYS;
+  const constraints: (Schema | true)[] = [];
+  const lKeysSet = new Set<string>();
+  const mappedRAdditional = isRAddTruthy ? undefined : rAdditional;
+  for (let i = 0; i < lKeysLen; i++) {
+    const key = lKeys[i]!;
+    lKeysSet.add(key);
+    const prop = createProperty(
+      constraints,
+      key,
+      lProps[key]!,
+      lCompiledPatterns,
+      rProps[key],
+      rCompiledPatterns,
+      mappedRAdditional
+    );
+    if (prop !== undefined) {
+      properties[key] = prop;
+    }
+  }
+  const rKeys = Object.keys(rProps);
+  const rKeysLen = rKeys.length;
+  const mappedLAdditional = isLAddTruthy ? undefined : lAdditional;
+  for (let i = 0; i < rKeysLen; i++) {
+    const key = rKeys[i]!;
+    if (lKeysSet.has(key)) {
+      continue;
+    }
+    const prop = createProperty(
+      constraints,
+      key,
+      rProps[key]!,
+      rCompiledPatterns,
+      undefined,
+      lCompiledPatterns,
+      mappedLAdditional
+    );
+    if (prop !== undefined) {
+      properties[key] = prop;
+    }
+  }
+  assignSchemaDefinitionOrRecordOfSchemaDefinitions(
+    target,
+    "properties",
+    properties
+  );
+  // patternProperties
+  // (lPatterns and rPatterns) or (lPatterns and rAdditional) or (rPatterns and lAdditional)
+  let patterns: Record<string, SchemaDefinition> = {};
+  if (lPatternKeys.length > 0 && rPatternKeys.length > 0) {
+    getCombinations(lPatternKeys, rPatternKeys, (lKey, rKey) => {
+      patterns[mergePatterns(lKey, rKey)] = mergeSchemaDefinitions(
+        lPatterns![lKey]!,
+        rPatterns![rKey]!
+      );
+    });
+  }
+  patterns = assignPatternPropertiesAndAdditionalPropertiesMerge(
+    patterns,
+    lPatterns,
+    lPatternKeys,
+    rAdditional,
+    isRAddTruthy
+  );
+  patterns = assignPatternPropertiesAndAdditionalPropertiesMerge(
+    patterns,
+    rPatterns,
+    rPatternKeys,
+    lAdditional,
+    isLAddTruthy
+  );
+  assignSchemaDefinitionOrRecordOfSchemaDefinitions(
+    target,
+    "patternProperties",
+    patterns
   );
 };
 
@@ -186,9 +360,9 @@ const itemsAssigner: Assigner<Schema> = (
             : mergeSchemaDefinitions(tail[i]!, additional)
         );
       }
-      assignAdditional(
+      assignSchemaDefinitionOrRecordOfSchemaDefinitions(
         target,
-        "Items",
+        "additionalItems",
         lAdditional !== undefined && rAdditional !== undefined
           ? mergeSchemaDefinitions(lAdditional, rAdditional)
           : (lAdditional ?? rAdditional)
@@ -198,7 +372,11 @@ const itemsAssigner: Assigner<Schema> = (
     const [arr, item, additional] = (
       isLArr ? [lItems, rItems, lAdditional] : [rItems, lItems, rAdditional]
     ) as [SchemaDefinition[], SchemaDefinition, SchemaDefinition | undefined];
-    assignAdditional(target, "Items", additional);
+    assignSchemaDefinitionOrRecordOfSchemaDefinitions(
+      target,
+      "additionalItems",
+      additional
+    );
     for (let i = 0; i < arr.length; i++) {
       itemsArray.push(mergeSchemaDefinitions(arr[i]!, item));
     }
@@ -224,8 +402,11 @@ const ASSIGNERS_TRIE = createAssignersTrie([
 
 type Merger<T> = (a: T, b: T) => T;
 
-function mergeCombinations(l: SchemaDefinition[], r: SchemaDefinition[]) {
-  return getCombinations(l, r).map(mergeAllOfSchemas);
+function mergeArraysOfSchemaDefinition(
+  l: SchemaDefinition[],
+  r: SchemaDefinition[]
+) {
+  return getCombinations(l, r, mergeSchemaDefinitions);
 }
 
 function mergeSchemas(left: Schema, right: Schema): Schema {
@@ -338,8 +519,10 @@ const MERGERS: {
   writeOnly: mergeBooleans,
   // TODO: Proper deduplication
   enum: mergeArraysWithUniq,
-  anyOf: mergeCombinations,
-  oneOf: mergeCombinations,
+  // TODO: Proper deduplication
+  anyOf: mergeArraysOfSchemaDefinition,
+  // TODO: Proper deduplication
+  oneOf: mergeArraysOfSchemaDefinition,
   // TODO: Proper deduplication
   allOf: (l, r) => l.concat(r),
   propertyNames: mergeSchemaDefinitions,
@@ -389,7 +572,9 @@ export function getAllOfSchemas(schema: SchemaDefinition): SchemaDefinition[] {
   return array;
 }
 
-function mergeAllOfSchemas(schemas: SchemaDefinition[]): SchemaDefinition {
+function mergeArrayOfSchemaDefinitions(
+  schemas: SchemaDefinition[]
+): SchemaDefinition {
   let wIndex = 0;
   for (let i = 0; i < schemas.length; i++) {
     const item = schemas[i]!;
@@ -414,5 +599,5 @@ function mergeAllOfSchemas(schemas: SchemaDefinition[]): SchemaDefinition {
 }
 
 export function mergeAllOf(schema: Schema) {
-  return mergeAllOfSchemas(getAllOfSchemas(schema));
+  return mergeArrayOfSchemaDefinitions(getAllOfSchemas(schema));
 }
