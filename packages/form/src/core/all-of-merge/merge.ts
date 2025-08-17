@@ -1,5 +1,5 @@
 import { getValueByKeys, insertValue, type Trie } from "@/lib/trie.js";
-import { weakMemoize } from "@/lib/memoize.js";
+import { createPairMatcher } from "@/lib/function.js";
 import { unique } from "@/lib/array.js";
 import { lcm } from "@/lib/math.js";
 
@@ -9,7 +9,6 @@ import {
   type Schema,
   type SchemaDefinition,
 } from "../schema.js";
-import { createConditionMapper } from "./shared.js";
 
 type SchemaKey = keyof Schema;
 
@@ -36,8 +35,7 @@ function mergeBooleans(l: boolean, r: boolean) {
 }
 
 function mergePatterns(p: string, q: string): string {
-  if (p === q) return p;
-  return `^(?=${p})(?=${q}).*$`;
+  return p === q ? p : `^(?=${p})(?=${q}).*$`;
 }
 
 function createRecordsMerge<T>(merge: (l: T, r: T) => T) {
@@ -392,7 +390,28 @@ const CONDITION_ASSIGNER_KEYS = [
   "else",
 ] as const satisfies SchemaKey[];
 
-const conditionAssigner: Assigner<Schema> = (target, l, r) => {};
+function assignCondition(target: Schema, source: Schema) {
+  if (source.if !== undefined) {
+    target.if = source.if;
+  }
+  if (source.then !== undefined) {
+    target.then = source.then;
+  }
+  if (source.else !== undefined) {
+    target.else = source.else;
+  }
+  return target;
+}
+
+const conditionAssigner: Assigner<Schema> = (target, l, r) => {
+  assignCondition(target, l);
+  const cond = assignCondition({}, r);
+  if (target.allOf === undefined) {
+    target.allOf = [cond];
+  } else {
+    target.allOf = target.allOf.concat(cond);
+  }
+};
 
 const ASSIGNERS_TRIE = createAssignersTrie([
   [PROPERTIES_ASSIGNER_KEYS, propertiesAssigner],
@@ -423,7 +442,7 @@ function mergeSchemas(left: Schema, right: Schema): Schema {
     const lv = left[key];
     if (lv === undefined) {
       // @ts-expect-error
-      target[key] = value;
+      target[key] = rv;
       continue;
     }
     const assign = getValueByKeys(ASSIGNERS_TRIE, key);
@@ -434,7 +453,7 @@ function mergeSchemas(left: Schema, right: Schema): Schema {
     const merge = MERGERS[key as keyof typeof MERGERS];
     if (merge) {
       // @ts-expect-error
-      target[key] = merge(lv, value);
+      target[key] = merge(lv, rv);
     }
   }
   for (const assign of assigners) {
@@ -443,7 +462,7 @@ function mergeSchemas(left: Schema, right: Schema): Schema {
   return target;
 }
 
-const mergeSchemaOrTrue = createConditionMapper<
+const mergeSchemaOrTrue = createPairMatcher<
   true | Schema,
   true | Record<string, never>,
   true | Schema
@@ -466,7 +485,7 @@ const mergeRecordsOfSchemaDefinitions = createRecordsMerge(
   mergeSchemaDefinitions
 );
 
-const mergeSchemaDefinitionsOrArrayOfString = createConditionMapper<
+const mergeSchemaDefinitionsOrArrayOfString = createPairMatcher<
   SchemaDefinition | string[],
   string[],
   SchemaDefinition | string[]
