@@ -1,6 +1,6 @@
 import type { JSONSchema7, JSONSchema7TypeName } from "json-schema";
 
-import { isEmptyRecord } from "@/lib/object.js";
+import { isAllowAnySchema, isSchemaObject } from "@/lib/json-schema.js";
 
 export type TransformedSchema<R, S> = Omit<
   S,
@@ -148,9 +148,8 @@ export const SCHEMA_KEYS = [
 
 export type SchemaKey = (typeof SCHEMA_KEYS)[number];
 
-export function isSchema(schemaDef: SchemaDefinition): schemaDef is Schema {
-  return typeof schemaDef === "object";
-}
+/** @deprecated use `isSchemaObject` from `lib/json-schema` */
+export const isSchema = isSchemaObject as (d: SchemaDefinition) => d is Schema;
 
 export function isSchemaWithProperties(
   schema: Schema

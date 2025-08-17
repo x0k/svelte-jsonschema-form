@@ -1,20 +1,20 @@
 import { bench, describe, expect } from "vitest";
+import type { JSONSchema7, JSONSchema7Definition } from "json-schema";
+// @ts-expect-error
 import jsonSchemaCompare from "json-schema-compare";
 
-import type {
-  Schema,
-  SchemaDefinition,
-  SchemaWithProperties,
-} from "../schema.js";
-
-import { isEqual } from "./compare.js";
+import { isEqual } from "./json-schema-compare.js";
 
 interface TestCase {
   name: string;
   expected: boolean;
-  a: SchemaDefinition;
-  b: SchemaDefinition;
+  a: JSONSchema7Definition;
+  b: JSONSchema7Definition;
 }
+
+type SchemaWithProperties = JSONSchema7 & {
+  properties: Exclude<JSONSchema7["properties"], undefined>;
+};
 
 const largeSchema: SchemaWithProperties = {
   type: "object",
@@ -208,7 +208,7 @@ const realSchema = {
       ],
     },
   },
-} as const satisfies Schema;
+} as const satisfies JSONSchema7;
 
 const realSchema2 = structuredClone(realSchema);
 // @ts-expect-error

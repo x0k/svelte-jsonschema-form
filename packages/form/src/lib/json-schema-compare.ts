@@ -1,17 +1,13 @@
 import type {
   JSONSchema7Type as SchemaValue,
   JSONSchema7TypeName as SchemaType,
+  JSONSchema7Definition,
+  JSONSchema7,
 } from "json-schema";
 
 import { isEmptyRecord } from "@/lib/object.js";
-
-import {
-  isTruthySchemaDefinition,
-  isSchema,
-  type Schema,
-  type SchemaDefinition,
-} from "../schema.js";
-import { createConditionMapper, insertUniqueValues } from "./shared.js";
+import { isAllowAnySchema, isSchemaObject } from "@/lib/json-schema.js";
+import { createPairMatcher } from "@/lib/function.js";
 
 const zero = () => 0;
 const one = () => 1;
@@ -85,6 +81,27 @@ function createArrayComparator<T>(compare: (a: T, b: T) => number) {
   };
 }
 
+function insertUniqueValues<K>(mutableTarget: K[], mutableSource: K[]): K[] {
+  const tl = mutableTarget.length;
+  if (tl === 0) return mutableSource;
+  let sl = mutableSource.length;
+  if (sl === 0) return mutableTarget;
+  if (sl > tl) {
+    const t = mutableTarget;
+    mutableTarget = mutableSource;
+    mutableSource = t;
+  }
+  const seen = new Set(mutableTarget);
+  const l = mutableSource.length;
+  for (let i = 0; i < l; i++) {
+    const key = mutableSource[i]!;
+    if (!seen.has(key)) {
+      mutableTarget.push(key);
+    }
+  }
+  return mutableTarget;
+}
+
 const deduplicationCache = new WeakMap<Array<any>, Array<any>>();
 
 function deduplicate<T>(arr: T[], compare: (a: T, b: T) => number) {
@@ -143,19 +160,16 @@ function createRecordsComparator<K extends string, T>(
   };
 }
 
-function createNarrowingComparator<T, E extends T>(
+function createCmpMatcher<T, E extends T>(
   isEmpty: (v: T) => v is E,
   compare: (l: Exclude<T, E>, r: Exclude<T, E>) => number,
   compareEmpty: (l: E, r: E) => number = zero
 ) {
-  return createConditionMapper(isEmpty, compareEmpty, negOne, one, compare);
+  return createPairMatcher(isEmpty, compareEmpty, negOne, one, compare);
 }
 
 function createOptionalComparator<T>(compare: (l: T, r: T) => number) {
-  return createNarrowingComparator<T | undefined, undefined>(
-    isUndefined,
-    compare
-  );
+  return createCmpMatcher<T | undefined, undefined>(isUndefined, compare);
 }
 
 function createNarrowingOptionalComparator<T, E extends T>(
@@ -165,7 +179,7 @@ function createNarrowingOptionalComparator<T, E extends T>(
     r: Exclude<T, E | undefined>
   ) => number
 ) {
-  return createNarrowingComparator<T | undefined, E | undefined>(
+  return createCmpMatcher<T | undefined, E | undefined>(
     (v: T | undefined): v is undefined | E => v === undefined || isEmpty(v),
     compare
   );
@@ -175,11 +189,7 @@ function createArrayOrItemComparator<T, T1>(
   compare: (a: T, b: T) => number,
   compareArray: (a: T1[], b: T1[]) => number
 ) {
-  return createNarrowingComparator<T | T1[], T1[]>(
-    Array.isArray,
-    compare,
-    compareArray
-  );
+  return createCmpMatcher<T | T1[], T1[]>(Array.isArray, compare, compareArray);
 }
 
 const compareOptionalSameTypeSchemaPrimitives = createOptionalComparator(
@@ -189,7 +199,7 @@ const compareOptionalSameTypeSchemaPrimitives = createOptionalComparator(
 const compareOptionalSchemaValues =
   createOptionalComparator(compareSchemaValues);
 
-const compareNonNullSchemaValue = createNarrowingComparator(
+const compareNonNullSchemaValue = createCmpMatcher(
   isSchemaPrimitiveExceptNull,
   createArrayOrItemComparator(
     createRecordsComparator(compareOptionalSchemaValues),
@@ -211,11 +221,15 @@ function compareSchemaValues(a: SchemaValue, b: SchemaValue): number {
 const compareArrayOfSameTypePrimitivesWithDeduplication =
   createArrayComparatorWithDeduplication(compareSameTypeSchemaPrimitives);
 
-const compareSchemaDefinitions = createConditionMapper(
-  isSchema,
+const compareSchemaDefinitions = createPairMatcher<
+  JSONSchema7Definition,
+  JSONSchema7,
+  number
+>(
+  isSchemaObject,
   (a, b) => {
-    const aKeys = Object.keys(a) as (keyof Schema)[];
-    const bKeys = Object.keys(b) as (keyof Schema)[];
+    const aKeys = Object.keys(a) as (keyof JSONSchema7)[];
+    const bKeys = Object.keys(b) as (keyof JSONSchema7)[];
     const allKeys = insertUniqueValues(aKeys, bKeys);
     const l = allKeys.length;
     for (let i = 0; i < l; i++) {
@@ -257,13 +271,10 @@ const compareOptionalArrayOfSchemasWithDeduplication = createOptionalComparator(
 );
 
 const compareSchemaDefinitionsWithEmptyDefinitionDefault =
-  createNarrowingOptionalComparator(
-    isTruthySchemaDefinition,
-    compareSchemaDefinitions
-  );
+  createNarrowingOptionalComparator(isAllowAnySchema, compareSchemaDefinitions);
 
 const COMPARATORS: {
-  [K in keyof Schema]-?: (a: Schema[K], b: Schema[K]) => number;
+  [K in keyof JSONSchema7]-?: (a: JSONSchema7[K], b: JSONSchema7[K]) => number;
 } = {
   $id: compareOptionalSameTypeSchemaPrimitives,
   $comment: compareOptionalSameTypeSchemaPrimitives,
@@ -277,9 +288,6 @@ const COMPARATORS: {
   default: compareOptionalSchemaValues,
   definitions: compareRecordOfOptionalSchemasWithEmptyRecordDefault,
   description: compareOptionalSameTypeSchemaPrimitives,
-  discriminator: createOptionalComparator((a, b) =>
-    compareSameTypeSchemaPrimitives(a.propertyName, b.propertyName)
-  ),
   else: compareOptionalSchemaDefinitions,
   examples: compareOptionalSchemaValues,
   exclusiveMaximum: compareOptionalSameTypeSchemaPrimitives,
@@ -326,7 +334,7 @@ const COMPARATORS: {
     );
   }),
   items: createNarrowingOptionalComparator(
-    (v): v is true | Schema => !Array.isArray(v) && isTruthySchemaDefinition(v),
+    (v): v is true | JSONSchema7 => !Array.isArray(v) && isAllowAnySchema(v),
     createArrayOrItemComparator(
       compareSchemaDefinitions,
       createArrayComparator(compareSchemaDefinitions)
@@ -352,6 +360,6 @@ const COMPARATORS: {
   ),
 };
 
-export function isEqual(a: SchemaDefinition, b: SchemaDefinition) {
+export function isEqual(a: JSONSchema7Definition, b: JSONSchema7Definition) {
   return compareSchemaDefinitions(a, b) === 0;
 }
