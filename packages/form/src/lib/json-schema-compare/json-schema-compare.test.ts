@@ -1,13 +1,20 @@
 import { describe, it, expect } from "vitest";
 import type { JSONSchema7, JSONSchema7Definition } from "json-schema";
 import legacyIsEqual from "json-schema-compare";
+
 import type { Brand } from "@/lib/types.js";
 
-import { isEqual } from "./json-schema-compare.js";
+import { createComparator } from "./json-schema-compare.js";
 
 type Match = Brand<"Match", boolean>;
 
 const DOES_NOT_MATCH = false as Match;
+
+const { compareSchemaDefinitions } = createComparator()
+
+function isEqual(a: JSONSchema7Definition, b: JSONSchema7Definition) {
+  return compareSchemaDefinitions(a, b) === 0;
+}
 
 function compare(
   a: JSONSchema7Definition,
@@ -16,7 +23,7 @@ function compare(
   match: Match = true as Match
 ) {
   expect(isEqual(a, b)).toBe(expected);
-  expect(legacyIsEqual(a, b)).toBe(match ? expected : !expected)
+  expect(legacyIsEqual(a, b)).toBe(match ? expected : !expected);
 }
 
 describe("comparison", () => {

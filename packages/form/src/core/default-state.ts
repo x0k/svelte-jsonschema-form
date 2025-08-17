@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { isEmptyRecord, isObject } from "@/lib/object.js";
+import { isRecordEmpty, isObject } from "@/lib/object.js";
 
 import { resolveDependencies, retrieveSchema } from "./resolve.js";
 import {
@@ -509,7 +509,7 @@ function maybeAddDefaultToObject(
     if (
       Array.isArray(computedDefault)
         ? computedDefault.length > 0
-        : !isObject(computedDefault) || !isEmptyRecord(computedDefault)
+        : !isObject(computedDefault) || !isRecordEmpty(computedDefault)
     ) {
       obj.set(key, computedDefault);
     }

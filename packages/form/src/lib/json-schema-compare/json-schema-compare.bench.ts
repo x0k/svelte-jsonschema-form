@@ -1,9 +1,8 @@
 import { bench, describe, expect } from "vitest";
 import type { JSONSchema7, JSONSchema7Definition } from "json-schema";
-// @ts-expect-error
 import jsonSchemaCompare from "json-schema-compare";
 
-import { isEqual } from "./json-schema-compare.js";
+import { createComparator } from "./json-schema-compare.js";
 
 interface TestCase {
   name: string;
@@ -276,6 +275,12 @@ const cases: TestCase[] = [
     b: realSchema2,
   },
 ];
+
+const { compareSchemaDefinitions } = createComparator()
+
+function isEqual(a: JSONSchema7Definition, b: JSONSchema7Definition) {
+  return compareSchemaDefinitions(a, b) === 0;
+}
 
 describe("isEqual vs json-schema-compare", () => {
   for (const { name, a, b, expected } of cases) {
