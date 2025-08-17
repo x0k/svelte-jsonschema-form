@@ -13,7 +13,7 @@ catalogs:
       specifier: ^4.1.11
       version: 4.1.11
     ajv:
-      specifier: ^8.17.1
+      specifier: 8.17.1
       version: 8.17.1
     autoprefixer:
       specifier: ^10.4.21
@@ -1408,6 +1408,9 @@ importers:
       '@types/json-schema-compare':
         specifier: ^0.2.4
         version: 0.2.4
+      ajv:
+        specifier: 'catalog:'
+        version: 8.17.1
       deep-freeze-es6:
         specifier: ^4.0.1
         version: 4.0.1
