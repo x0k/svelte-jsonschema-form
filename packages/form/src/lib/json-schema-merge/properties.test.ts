@@ -1,14 +1,22 @@
+// This file was copied and modified from https://github.com/mokkabonna/json-schema-merge-allof/blob/1cc2aa53a5d33c17d0e9c59b13eed77d86ad91c3/test/specs/properties.spec.js
+// MIT © Martin Hansen
+// Modifications made by Roman Krasilnikov.
+
 import type { JSONSchema7Definition } from "json-schema";
 import { describe, expect, it } from "vitest";
 import { Ajv } from "ajv";
 
 import { createMerger } from "./json-schema-merge.js";
+import { createMergeAllOf } from "./all-of-merge.js";
 
 const testPatternsMerger = (a: string, b: string) =>
   a === b ? a : `(?=${a})(?=${b})`;
-const { mergeAllOf, mergeSchemaDefinitions } = createMerger({
+
+const { mergeSchemas, mergeSchemaDefinitions } = createMerger({
   mergePatterns: testPatternsMerger,
 });
+
+const mergeAllOf = createMergeAllOf(mergeSchemas);
 
 function testMerger(
   a: JSONSchema7Definition,
@@ -499,118 +507,122 @@ describe("properties", () => {
       });
     });
 
-    // it("considers patternProperties before merging additionalProperties to other schemas properties if they have any", () => {
-    //   const result = merger({
-    //     properties: {
-    //       common: true,
-    //       root: true,
-    //     },
-    //     patternProperties: {
-    //       ".+\\d{2,}$": {
-    //         minLength: 7,
-    //       },
-    //     },
-    //     additionalProperties: false,
-    //     allOf: [
-    //       {
-    //         properties: {
-    //           common: {
-    //             type: "string",
-    //           },
-    //           allof1: true,
-    //         },
-    //         additionalProperties: {
-    //           type: ["string", "null", "integer"],
-    //           maxLength: 10,
-    //         },
-    //       },
-    //       {
-    //         properties: {
-    //           common: {
-    //             minLength: 1,
-    //           },
-    //           allof2: true,
-    //           allowed123: {
-    //             type: "string",
-    //           },
-    //         },
-    //         patternProperties: {
-    //           ".+\\d{2,}$": {
-    //             minLength: 9,
-    //           },
-    //         },
-    //         additionalProperties: {
-    //           type: ["string", "integer", "null"],
-    //           maxLength: 8,
-    //         },
-    //       },
-    //       {
-    //         properties: {
-    //           common: {
-    //             minLength: 6,
-    //           },
-    //           allof3: true,
-    //           allowed456: {
-    //             type: "integer",
-    //           },
-    //         },
-    //       },
-    //     ],
-    //   });
+    it("considers patternProperties before merging additionalProperties to other schemas properties if they have any", () => {
+      const result = mergeAllOf({
+        properties: {
+          common: true,
+          root: true,
+        },
+        patternProperties: {
+          ".+\\d{2,}$": {
+            minLength: 7,
+          },
+        },
+        additionalProperties: false,
+        allOf: [
+          {
+            properties: {
+              common: {
+                type: "string",
+              },
+              allof1: true,
+            },
+            additionalProperties: {
+              type: ["string", "null", "integer"],
+              maxLength: 10,
+            },
+          },
+          {
+            properties: {
+              common: {
+                minLength: 1,
+              },
+              allof2: true,
+              allowed123: {
+                type: "string",
+              },
+            },
+            patternProperties: {
+              ".+\\d{2,}$": {
+                minLength: 9,
+              },
+            },
+            additionalProperties: {
+              type: ["string", "integer", "null"],
+              maxLength: 8,
+            },
+          },
+          {
+            properties: {
+              common: {
+                minLength: 6,
+              },
+              allof3: true,
+              allowed456: {
+                type: "integer",
+              },
+            },
+          },
+        ],
+      });
 
-    //   expect(result).to.eql({
-    //     properties: {
-    //       common: {
-    //         type: "string",
-    //         minLength: 6,
-    //       },
-    //       root: {
-    //         type: ["string", "null", "integer"],
-    //         maxLength: 8,
-    //       },
-    //       allowed123: {
-    //         type: "string",
-    //         maxLength: 10,
-    //       },
-    //       allowed456: {
-    //         type: "integer",
-    //         maxLength: 10,
-    //       },
-    //     },
-    //     patternProperties: {
-    //       ".+\\d{2,}$": {
-    //         minLength: 9,
-    //       },
-    //     },
-    //     additionalProperties: false,
-    //   });
-    // });
+      expect(result).toEqual({
+        properties: {
+          common: {
+            type: "string",
+            minLength: 6,
+          },
+          root: {
+            type: ["string", "null", "integer"],
+            maxLength: 8,
+          },
+          allowed123: {
+            type: "string",
+            minLength: 9,
+            maxLength: 10,
+          },
+          allowed456: {
+            type: "integer",
+            minLength: 9,
+            maxLength: 10,
+          },
+        },
+        patternProperties: {
+          ".+\\d{2,}$": {
+            type: ["string", "null", "integer"],
+            minLength: 9,
+            maxLength: 10,
+          },
+        },
+        additionalProperties: false,
+      });
+    });
 
-    // it("combines additionalProperties when schemas", () => {
-    //   const result = merger({
-    //     additionalProperties: true,
-    //     allOf: [
-    //       {
-    //         additionalProperties: {
-    //           type: ["string", "null"],
-    //           maxLength: 10,
-    //         },
-    //       },
-    //       {
-    //         additionalProperties: {
-    //           type: ["string", "integer", "null"],
-    //           maxLength: 8,
-    //         },
-    //       },
-    //     ],
-    //   });
+    it("combines additionalProperties when schemas", () => {
+      const result = mergeAllOf({
+        additionalProperties: true,
+        allOf: [
+          {
+            additionalProperties: {
+              type: ["string", "null"],
+              maxLength: 10,
+            },
+          },
+          {
+            additionalProperties: {
+              type: ["string", "integer", "null"],
+              maxLength: 8,
+            },
+          },
+        ],
+      });
 
-    //   expect(result).to.eql({
-    //     additionalProperties: {
-    //       type: ["string", "null"],
-    //       maxLength: 8,
-    //     },
-    //   });
-    // });
+      expect(result).toEqual({
+        additionalProperties: {
+          type: ["string", "null"],
+          maxLength: 8,
+        },
+      });
+    });
   });
 });

@@ -13,6 +13,28 @@ export function unique<T>(items: Array<T>): Array<T> {
   return Array.from(new Set(items));
 }
 
+export function union<T>(larger: T[], smaller: T[]): T[] {
+  const ll = larger.length;
+  if (ll === 0) {
+    return smaller
+  }
+  let sl = smaller.length;
+  if (sl === 0) {
+    return larger
+  }
+  if (ll < sl) {
+    const tmp = larger;
+    larger = smaller;
+    smaller = tmp;
+    sl = ll;
+  }
+  const data = new Set(larger)
+  for (let i = 0; i < sl; i++) {
+    data.add(smaller[i]!)
+  }
+  return Array.from(data)
+}
+
 export function intersection<T>(a: T[], b: T[]): T[] {
   const result: T[] = [];
 
