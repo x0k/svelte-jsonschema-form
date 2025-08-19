@@ -1,7 +1,7 @@
 import type { SchemaValue } from "@sjsf/form";
 
 import {
-  isCustomValidator,
+  validatorPackage,
   type ActualTheme,
   type Resolver,
   type Validator,
@@ -115,15 +115,17 @@ export default defineConfig({
 function buildFormDefaultsConfig({
   resolver = "basic",
   theme = "basic",
-  validator = "ajv8",
+  validator = "Ajv",
 }: FormDefaultsConfig): string {
-  const validatorCode = isCustomValidator(validator)
-    ? ""
-    : `\nimport { createFormValidator } from "@sjsf/${validator}-validator";
+  const pkg = validatorPackage(validator);
+  const validatorCode = pkg
+    ? `
+import { createFormValidator } from "${pkg}";
 
 // NOTE: One validator will be used for all forms
 export const validator = createFormValidator();
-`;
+`
+    : "";
   return `export { resolver } from "@sjsf/form/resolvers/${resolver}";
 
 export { theme } from "@sjsf/${theme}-theme";

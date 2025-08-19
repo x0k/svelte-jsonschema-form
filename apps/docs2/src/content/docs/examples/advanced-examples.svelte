@@ -15,7 +15,7 @@
 
   let platform: Platform = $state.raw(Platform.StackBlitz);
   let theme: ActualTheme = $state.raw("basic");
-  let validator: Validator = $state.raw("ajv8");
+  let validator: Validator = $state.raw("Ajv");
 </script>
 
 <div class="pickers">
@@ -69,6 +69,7 @@
   .pickers {
     display: grid;
     grid-auto-flow: column;
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr;
     column-gap: 2rem;
     & select {

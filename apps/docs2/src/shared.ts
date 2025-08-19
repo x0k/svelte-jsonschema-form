@@ -15,37 +15,46 @@ export const RESOLVERS = ["basic", "compat"] as const;
 export type Resolver = (typeof RESOLVERS)[number];
 
 export const VALIDATORS = [
-  "ajv8",
-  "cfworker",
-  "schemasafe",
-  "zod4",
-  "valibot",
+  "Ajv",
+  "@cfworker/json-schema",
+  "@exodus/schemasafe",
+  "Zod",
+  "Valibot",
+  "Standard Schema",
 ] as const;
 
 export type Validator = (typeof VALIDATORS)[number];
 
-const CUSTOM_VALIDATORS = ["valibot", "zod4"] as const satisfies Validator[];
+const VALIDATOR_TO_PACKAGE_PREFIX: Partial<Record<Validator, string>> = {
+  Ajv: "ajv8",
+  "@cfworker/json-schema": "cfworker",
+  "@exodus/schemasafe": "schemasafe",
+  Zod: "zod4",
+  Valibot: "valibot",
+};
 
-const CUSTOM_VALIDATORS_SET = new Set<Validator>(CUSTOM_VALIDATORS);
-
-export function isCustomValidator(
-  v: Validator
-): v is (typeof CUSTOM_VALIDATORS)[number] {
-  return CUSTOM_VALIDATORS_SET.has(v);
+export function validatorPackage(validator: Validator): string | undefined {
+  const prefix = VALIDATOR_TO_PACKAGE_PREFIX[validator];
+  return prefix && `@sjsf/${prefix}-validator`;
 }
 
 export const VALIDATOR_DEPENDENCIES: Record<
   Validator,
   Record<string, string>
 > = {
-  ajv8: { ajv: "^8.17.0" },
-  cfworker: { "@cfworker/json-schema": "^4.1.0" },
-  schemasafe: { "@exodus/schemasafe": "^1.3.0" },
-  zod4: { zod: "^4.0.0" },
-  valibot: {
+  Ajv: { ajv: "^8.17.0" },
+  "@cfworker/json-schema": {
+    "@cfworker/json-schema": "^4.1.0",
+  },
+  "@exodus/schemasafe": {
+    "@exodus/schemasafe": "^1.3.0",
+  },
+  Zod: { zod: "^4.0.0" },
+  Valibot: {
     valibot: "^1.1.0",
     "@valibot/to-json-schema": "^1.3.0",
   },
+  "Standard Schema": {},
 };
 
 export enum Example {

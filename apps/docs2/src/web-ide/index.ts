@@ -5,6 +5,7 @@ import lz from "lz-string";
 import {
   Example,
   VALIDATOR_DEPENDENCIES,
+  validatorPackage,
   VALIDATORS,
   VERSION,
   type ActualTheme,
@@ -32,25 +33,27 @@ export interface ProjectOptions {
 }
 
 const VALIDATOR_LAYERS = Object.fromEntries(
-  VALIDATORS.map(
-    (validator) =>
-      [
-        validator,
-        Promise.resolve({
-          layer: {
-            formDefaults: {
-              validator,
-            },
-            package: {
-              dependencies: {
-                ...VALIDATOR_DEPENDENCIES[validator],
-                [`@sjsf/${validator}-validator`]: VERSION,
-              },
-            },
+  VALIDATORS.map((validator) => {
+    const pkg = validatorPackage(validator);
+    return [
+      validator,
+      Promise.resolve({
+        layer: {
+          formDefaults: {
+            validator,
           },
-        }),
-      ] as const
-  )
+          package: {
+            dependencies: pkg
+              ? {
+                  [pkg]: VERSION,
+                  ...VALIDATOR_DEPENDENCIES[validator],
+                }
+              : VALIDATOR_DEPENDENCIES[validator],
+          },
+        },
+      }),
+    ] as const;
+  })
 ) as Record<Validator, LayerPromise>;
 
 const THEME_LAYERS: Record<ActualTheme, () => LayerPromise[]> = {
