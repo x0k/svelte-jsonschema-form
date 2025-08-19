@@ -3,10 +3,14 @@ import { createFormValidator } from "@sjsf/ajv8-validator";
 import { isSchemaObjectValue } from "@sjsf/form/core";
 import { pathToId, type FormValueValidator } from "@sjsf/form";
 
-class StarError {}
+export class StarError {}
 
-export function createValidator(idPrefix: string) {
-  const validator = createFormValidator({ idPrefix });
+export interface MyValidatorOptions {
+  idPrefix?: string
+}
+
+export function createMyValidator(options: MyValidatorOptions) {
+  const validator = createFormValidator(options);
   return {
     ...validator,
     validateFormValue(rootSchema, formValue) {
@@ -15,7 +19,7 @@ export function createValidator(idPrefix: string) {
         ? [
             ...errors,
             {
-              instanceId: pathToId(["star"], { idPrefix }),
+              instanceId: pathToId(["star"], options),
               propertyTitle: "Star",
               message: "That's okay, but I would appreciate your support!",
               error: new StarError(),

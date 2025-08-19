@@ -13,15 +13,21 @@ import { DEFAULT_LOCALE } from "@/i18n";
 import Npm from "@/components/npm.astro";
 import FormCard from "@/components/form-card.astro";
 
-import ThemeForm from "./_theme-form.svelte";
+import Form from "./form.svelte";
 
-import schemaCode from "./_schema?raw";
-import validatorCode from "./_validator?raw";
-import withBasicCode from "./_with-basic.svelte?raw";
-import withSkeleton3Code from "./_with-skeleton3.svelte?raw";
-import withDaisyui5Code from "./_with-daisyui5.svelte?raw";
-import withFlowbite3Code from "./_with-flowbite3.svelte?raw";
-import withShadcn4Code from "./_with-shadcn4.svelte?raw";
+import schemaCode from "./schema?raw";
+import validatorCode from "./validator?raw";
+import withBasicCode from "./basic/form.svelte?raw";
+import withSkeleton3Code from "./skeleton/form.svelte?raw";
+import withDaisyui5Code from "./daisyui/form.svelte?raw";
+import withFlowbite3Code from "./flowbite/form.svelte?raw";
+import withShadcn4Code from "./shadcn/form.svelte?raw";
+
+import basicDefaultsCode from "./basic/defaults.ts?raw";
+import skeleton3DefaultsCode from "./skeleton/defaults.ts?raw";
+import daisyui5DefaultsCode from "./daisyui/defaults.ts?raw";
+import flowbite3DefaultsCode from "./flowbite/defaults.ts?raw";
+import shadcn4DefaultsCode from "./shadcn/defaults.ts?raw";
 
 import daisyu5Styles from "@sjsf/daisyui5-theme/styles.css?inline";
 import flowbiteStyles from "@sjsf/flowbite3-theme/styles.css?inline";
@@ -34,6 +40,14 @@ const CODE = {
   flowbite3: withFlowbite3Code,
   skeleton3: withSkeleton3Code,
   shadcn4: withShadcn4Code,
+} satisfies Record<ActualTheme, string>;
+
+const DEFAULTS = {
+  basic: basicDefaultsCode,
+  daisyui5: skeleton3DefaultsCode,
+  flowbite3: daisyui5DefaultsCode,
+  skeleton3: flowbite3DefaultsCode,
+  shadcn4: shadcn4DefaultsCode,
 } satisfies Record<ActualTheme, string>;
 
 const STYLES = {
@@ -90,19 +104,22 @@ const styles = ACTUAL_THEMES.map(
       <h2 id="usage">Usage</h2>
 
       <Tabs>
-        <TabItem label="Form.svelte">
+        <TabItem label="form.svelte">
           <Code code={CODE[theme]} lang="svelte" />
         </TabItem>
-        <TabItem label="_schema.ts">
+        <TabItem label="schema.ts">
           <Code code={schemaCode} lang="typescript" />
         </TabItem>
-        <TabItem label="_validator.ts">
+        <TabItem label="validator.ts">
           <Code code={validatorCode} lang="typescript" />
+        </TabItem>
+        <TabItem label="defaults.ts">
+          <Code code={DEFAULTS[theme]} lang="typescript" />
         </TabItem>
       </Tabs>
 
       <FormCard style={STYLES[theme]}>
-        <ThemeForm theme={theme} client:only="svelte" />
+        <Form theme={theme} client:only="svelte" />
       </FormCard>
     </div>
   ))

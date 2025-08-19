@@ -3,11 +3,11 @@
 
   import type { ActualTheme } from "@/shared";
 
-  import WithBasic from "./_with-basic.svelte";
-  import WithDaisyui5 from "./_with-daisyui5.svelte";
-  import WithFlowbite3 from "./_with-flowbite3.svelte";
-  import WithShadcn from "./_with-shadcn4.svelte";
-  import WithSkeleton3 from "./_with-skeleton3.svelte";
+  import WithBasic from "./basic/form.svelte";
+  import WithDaisyui5 from "./daisyui/form.svelte";
+  import WithFlowbite3 from "./flowbite/form.svelte";
+  import WithShadcn from "./shadcn/form.svelte";
+  import WithSkeleton3 from "./skeleton/form.svelte";
 
   let { theme }: { theme: ActualTheme } = $props();
 
