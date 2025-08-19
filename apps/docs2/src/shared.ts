@@ -109,7 +109,7 @@ export const THEME_TITLES = {
   daisyui: "daisyUI v4",
   daisyui5: "daisyUI v5",
   flowbite: "Flowbite",
-  flowbite3: "Flowbite v3",
+  flowbite3: "Flowbite Svelte",
   skeleton: "Skeleton v3 RC1",
   skeleton3: "Skeleton v3",
   shadcn: "shadcn-svelte",
