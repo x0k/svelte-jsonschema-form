@@ -8,6 +8,7 @@ import { getValueByKeys, insertValue, type Trie } from "@/lib/trie.js";
 import { intersection, union } from "@/lib/array.js";
 import { createPairMatcher } from "@/lib/function.js";
 import { isAllowAnySchema } from "@/lib/json-schema.js";
+import { isRecordEmpty } from "@/lib/object.js";
 import { lcm } from "@/lib/math.js";
 
 import { simplePatternsMerger } from "./merge-patterns.js";
@@ -193,6 +194,9 @@ export interface MergeOptions {
   mergePatterns?: (a: string, b: string) => string;
 }
 
+const isAllowAnySchemaShort = (def: true | JSONSchema7) =>
+  def === true || isRecordEmpty(def);
+
 export function createMerger({
   mergePatterns = simplePatternsMerger,
   isSubRegExp = Object.is,
@@ -239,7 +243,7 @@ export function createMerger({
       return constraints[0];
     }
     let i = 0;
-    while (i < l && constraints[i]! === true) {
+    while (i < l && isAllowAnySchemaShort(constraints[i]!)) {
       i++;
     }
     if (i === l) {
@@ -248,7 +252,7 @@ export function createMerger({
     let result = constraints[i++]! as JSONSchema7;
     for (; i < l; i++) {
       const c = constraints[i]!;
-      if (c === true) {
+      if (isAllowAnySchemaShort(c)) {
         continue;
       }
       result = mergeSchemas(result, c);

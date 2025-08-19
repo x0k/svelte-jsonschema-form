@@ -1,19 +1,27 @@
 import type { JSONSchema7, JSONSchema7Definition } from "json-schema";
 
-import { isAllowAnySchema, isSchemaObject } from "@/lib/json-schema.js";
+import { isAllowAnySchema } from "@/lib/json-schema.js";
 
 import type { Merger } from "./json-schema-merge.js";
 
 function getAllOfSchemas(
   schema: JSONSchema7Definition
 ): JSONSchema7Definition[] {
-  if (!isSchemaObject(schema) || schema.allOf === undefined) {
-    return [schema];
+  const result: JSONSchema7Definition[] = [];
+  const stack: JSONSchema7Definition[] = [schema];
+  while (stack.length > 0) {
+    const current = stack.pop()!;
+    if (typeof current === "boolean" || current.allOf === undefined) {
+      result.push(current);
+      continue;
+    }
+    const { allOf, ...rest } = current;
+    result.push(rest);
+    for (let i = allOf.length - 1; i >= 0; i--) {
+      stack.push(allOf[i]!);
+    }
   }
-  const { allOf, ...rest } = schema;
-  const array = allOf.flatMap((s) => getAllOfSchemas(s));
-  array.push(rest);
-  return array;
+  return result;
 }
 
 export function createMergeAllOf(mergeSchemas: Merger<JSONSchema7>) {
