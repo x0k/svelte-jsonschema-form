@@ -1,12 +1,19 @@
 import type {
   JSONSchema7,
   JSONSchema7Definition,
+  JSONSchema7Type,
   JSONSchema7TypeName,
 } from "json-schema";
 
+import type { Comparator } from "@/lib/ord.js";
 import { getValueByKeys, insertValue, type Trie } from "@/lib/trie.js";
-import { intersection, union } from "@/lib/array.js";
-import { createPairMatcher } from "@/lib/function.js";
+import {
+  intersection,
+  union,
+  type Deduplicator,
+  type Intersector,
+} from "@/lib/array.js";
+import { createPairMatcher, identity } from "@/lib/function.js";
 import { isAllowAnySchema } from "@/lib/json-schema.js";
 import { isRecordEmpty } from "@/lib/object.js";
 import { lcm } from "@/lib/math.js";
@@ -54,7 +61,7 @@ function createRecordsMerge<T>(merge: (l: T, r: T) => T) {
   };
 }
 
-type Assigner<R extends {}> = (target: R, l: R, r: R) => void;
+export type Assigner<R extends {}> = (target: R, l: R, r: R) => void;
 
 function createAssignersTrie(
   assigners: Iterable<[SchemaKey[], Assigner<JSONSchema7>]>
@@ -191,7 +198,9 @@ export type Merger<T> = (a: T, b: T) => T;
 
 export interface MergeOptions {
   isSubRegExp?: (subExpr: string, superExpr: string) => boolean;
-  mergePatterns?: (a: string, b: string) => string;
+  mergePatterns?: Merger<string>;
+  intersectJson?: Intersector<JSONSchema7Type>;
+  deduplicateJsonSchemaDef?: Deduplicator<JSONSchema7Definition>;
 }
 
 const isAllowAnySchemaShort = (def: true | JSONSchema7) =>
@@ -200,6 +209,8 @@ const isAllowAnySchemaShort = (def: true | JSONSchema7) =>
 export function createMerger({
   mergePatterns = simplePatternsMerger,
   isSubRegExp = Object.is,
+  intersectJson = intersection,
+  deduplicateJsonSchemaDef = identity,
 }: MergeOptions = {}) {
   function createProperty(
     constraints: (JSONSchema7 | true)[],
@@ -271,7 +282,7 @@ export function createMerger({
     const l = patternKeys.length;
     if (l > 0 && oppositeAdditional !== false) {
       if (isOppositeTruthy) {
-        // TODO: in some cases we can just assign new value instead of cloning
+        // TODO: in some cases we can just assign new value instead of copying
         Object.assign(target, patterns);
       } else {
         for (let i = 0; i < l; i++) {
@@ -386,7 +397,7 @@ export function createMerger({
       "properties",
       properties
     );
-    // patternProperties
+    // Pattern Properties
     // (lPatterns and rPatterns) or (lPatterns and rAdditional) or (rPatterns and lAdditional)
     let patterns: Record<string, JSONSchema7Definition> = {};
     const matchedPatterns = new Set<string>();
@@ -509,7 +520,9 @@ export function createMerger({
     l: JSONSchema7Definition[],
     r: JSONSchema7Definition[]
   ) {
-    return Array.from(createPairCombinations(l, r, mergeSchemaDefinitions));
+    return deduplicateJsonSchemaDef(
+      Array.from(createPairCombinations(l, r, mergeSchemaDefinitions))
+    );
   }
 
   const ASSIGNERS_TRIE = createAssignersTrie([
@@ -641,7 +654,7 @@ export function createMerger({
         }
       }
       throw new Error(
-        `It is not possible to create an intersection of the following types: ${a}, ${b}`
+        `It is not possible to create an intersection of the following incompatible types: ${a}, ${b}`
       );
     },
     default: last,
@@ -656,12 +669,16 @@ export function createMerger({
     pattern: mergePatterns,
     readOnly: mergeBooleans,
     writeOnly: mergeBooleans,
-    // TODO: Proper deduplication
-    // TODO: Proper intersection
-    enum: intersection,
-    // TODO: Proper deduplication
+    enum: (a, b) => {
+      const data = intersectJson(a, b);
+      if (data.length === 0) {
+        throw new Error(
+          `Intersection of the following enums is empty: "${JSON.stringify(a)}", "${JSON.stringify(b)}"`
+        );
+      }
+      return data;
+    },
     anyOf: mergeArraysOfSchemaDefinition,
-    // TODO: Proper deduplication
     oneOf: mergeArraysOfSchemaDefinition,
     // TODO: Proper deduplication
     allOf: (l, r) => l.concat(r),

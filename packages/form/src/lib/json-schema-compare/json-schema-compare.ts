@@ -6,13 +6,12 @@ import type {
   JSONSchema7Object,
 } from "json-schema";
 
+import type { Comparator } from "@/lib/ord.js";
 import { isAllowAnySchema, isSchemaObject } from "@/lib/json-schema.js";
 import { createPairMatcher } from "@/lib/function.js";
 import { createDeduplicator, isArrayEmpty } from "@/lib/array.js";
 import { isRecordEmpty } from "@/lib/object.js";
 import { weakMemoize } from "@/lib/memoize.js";
-
-export type Comparator<T> = (a: T, b: T) => number;
 
 const zero = () => 0;
 const one = () => 1;
@@ -99,22 +98,19 @@ function insertUniqueValues<K>(mutableTarget: K[], mutableSource: K[]): K[] {
 
 function createCmpMatcher<T, E extends T>(
   isEmpty: (v: T) => v is E,
-  compare: (l: Exclude<T, E>, r: Exclude<T, E>) => number,
-  compareEmpty: (l: E, r: E) => number = zero
+  compare: Comparator<Exclude<T, E>>,
+  compareEmpty: Comparator<E> = zero
 ) {
   return createPairMatcher(isEmpty, compareEmpty, negOne, one, compare);
 }
 
-function createOptionalComparator<T>(compare: (l: T, r: T) => number) {
+function createOptionalComparator<T>(compare: Comparator<T>) {
   return createCmpMatcher<T | undefined, undefined>(isUndefined, compare);
 }
 
 function createNarrowingOptionalComparator<T, E extends T>(
   isEmpty: (v: T) => v is E,
-  compare: (
-    l: Exclude<T, E | undefined>,
-    r: Exclude<T, E | undefined>
-  ) => number
+  compare: Comparator<Exclude<T, E | undefined>>
 ) {
   return createCmpMatcher<T | undefined, E | undefined>(
     (v: T | undefined): v is undefined | E => v === undefined || isEmpty(v),
@@ -123,8 +119,8 @@ function createNarrowingOptionalComparator<T, E extends T>(
 }
 
 function createArrayOrItemComparator<T, T1>(
-  compare: (a: T, b: T) => number,
-  compareArray: (a: T1[], b: T1[]) => number
+  compare: Comparator<T>,
+  compareArray: Comparator<T1[]>
 ) {
   return createCmpMatcher<T | T1[], T1[]>(Array.isArray, compare, compareArray);
 }
@@ -152,7 +148,7 @@ export function createComparator({
   );
 
   function createRecordsComparator<R extends Record<string, any>>(
-    compare: <K extends keyof R>(a: R[K], b: R[K], key: K) => number
+    compare: <K extends keyof R>(a: R[K], b: R[K]) => number
   ) {
     return (a: R, b: R) => {
       const aKeys = getSortedKeys(a);
@@ -169,7 +165,7 @@ export function createComparator({
       }
       for (let i = 0; i < l; i++) {
         const key = aKeys[i]!;
-        const cmp = compare(a[key]!, b[key]!, key);
+        const cmp = compare(a[key]!, b[key]!);
         if (cmp !== 0) {
           return cmp;
         }
@@ -178,13 +174,12 @@ export function createComparator({
     };
   }
 
-  function createArrayComparatorWithDeduplication<T>(
-    compare: (a: T, b: T) => number
-  ) {
+  function createArrayComparatorWithDeduplication<T>(compare: Comparator<T>) {
     const cmp = createArrayComparator(compare);
     const deduplicate = weakMemoize(
       deduplicationCache as WeakMap<T[], T[]>,
-      createDeduplicator(compare)
+      // NOTE: Always sort output
+      createDeduplicator(compare, { threshold: 0 })
     );
     return (a: T[], b: T[]) => cmp(deduplicate(a), deduplicate(b));
   }
@@ -269,10 +264,7 @@ export function createComparator({
     );
 
   const COMPARATORS: {
-    [K in keyof JSONSchema7]-?: (
-      a: JSONSchema7[K],
-      b: JSONSchema7[K]
-    ) => number;
+    [K in keyof JSONSchema7]-?: Comparator<JSONSchema7[K]>;
   } = {
     $id: compareOptionalSameTypeSchemaPrimitives,
     $comment: compareOptionalSameTypeSchemaPrimitives,
@@ -359,6 +351,7 @@ export function createComparator({
   };
 
   return {
+    compareSchemaValues,
     compareSchemaDefinitions,
   };
 }
