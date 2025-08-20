@@ -5,10 +5,10 @@
 import { describe, it, expect } from "vitest";
 
 import { createMerger } from "./json-schema-merge.js";
-import { createMergeAllOf } from "./all-of-merge.js";
+import { createAllOfMerger } from "./all-of-merge.js";
 
-const { mergeSchemas } = createMerger();
-const mergeAllOf = createMergeAllOf(mergeSchemas);
+const { mergeArrayOfSchemaDefinitions } = createMerger();
+const { mergeAllOf } = createAllOfMerger(mergeArrayOfSchemaDefinitions);
 
 describe("if then else", function () {
   it("moves the if then else to the base schema if none there", () => {
@@ -208,56 +208,60 @@ describe("if then else", function () {
   //   })
   // })
 
-  it('works with undefined value, it is as if not there. NOT the same as empty schema', () => {
+  it("works with undefined value, it is as if not there. NOT the same as empty schema", () => {
     const result = mergeAllOf({
       if: undefined,
       then: undefined,
       else: undefined,
-      allOf: [{
-        if: {
-          required: ['prop1']
+      allOf: [
+        {
+          if: {
+            required: ["prop1"],
+          },
+          then: {},
+          else: {},
         },
-        then: {},
-        else: {}
-      }]
-    })
+      ],
+    });
 
     expect(result).toEqual({
       if: {
-        required: ['prop1']
-      },
-      then: {},
-      else: {}
-    })
-  })
-
-  it('removes empty allOf', () => {
-    const result = mergeAllOf({
-      if: {
-        required: ['prop1']
+        required: ["prop1"],
       },
       then: {},
       else: {},
-      allOf: [{
-        properties: {
-          name: {
-            type: 'string'
-          }
-        }
-      }]
-    })
+    });
+  });
+
+  it("removes empty allOf", () => {
+    const result = mergeAllOf({
+      if: {
+        required: ["prop1"],
+      },
+      then: {},
+      else: {},
+      allOf: [
+        {
+          properties: {
+            name: {
+              type: "string",
+            },
+          },
+        },
+      ],
+    });
 
     expect(result).toEqual({
       properties: {
         name: {
-          type: 'string'
-        }
+          type: "string",
+        },
       },
       if: {
-        required: ['prop1']
+        required: ["prop1"],
       },
       then: {},
-      else: {}
-    })
-  })
+      else: {},
+    });
+  });
 });

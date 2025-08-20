@@ -5,7 +5,6 @@ import type {
   JSONSchema7TypeName,
 } from "json-schema";
 
-import type { Comparator } from "@/lib/ord.js";
 import { getValueByKeys, insertValue, type Trie } from "@/lib/trie.js";
 import {
   intersection,
@@ -15,7 +14,6 @@ import {
 } from "@/lib/array.js";
 import { createPairMatcher, identity } from "@/lib/function.js";
 import { isAllowAnySchema } from "@/lib/json-schema.js";
-import { isRecordEmpty } from "@/lib/object.js";
 import { lcm } from "@/lib/math.js";
 
 import { simplePatternsMerger } from "./merge-patterns.js";
@@ -203,15 +201,30 @@ export interface MergeOptions {
   deduplicateJsonSchemaDef?: Deduplicator<JSONSchema7Definition>;
 }
 
-const isAllowAnySchemaShort = (def: true | JSONSchema7) =>
-  def === true || isRecordEmpty(def);
-
 export function createMerger({
   mergePatterns = simplePatternsMerger,
   isSubRegExp = Object.is,
   intersectJson = intersection,
   deduplicateJsonSchemaDef = identity,
 }: MergeOptions = {}) {
+  function mergeArrayOfSchemaDefinitions(
+    schemas: JSONSchema7Definition[]
+  ): JSONSchema7Definition {
+    const l = schemas.length;
+    let result = schemas[0]!;
+    for (let i = 1; i < l; i++) {
+      const r = mergeSchemaDefinitions(result, schemas[i]!);
+      if (r === false) {
+        return false;
+      }
+      if (isAllowAnySchema(r)) {
+        continue;
+      }
+      result = r;
+    }
+    return result;
+  }
+
   function createProperty(
     constraints: (JSONSchema7 | true)[],
     key: string,
@@ -253,22 +266,7 @@ export function createMerger({
     if (l === 1) {
       return constraints[0];
     }
-    let i = 0;
-    while (i < l && isAllowAnySchemaShort(constraints[i]!)) {
-      i++;
-    }
-    if (i === l) {
-      return true;
-    }
-    let result = constraints[i++]! as JSONSchema7;
-    for (; i < l; i++) {
-      const c = constraints[i]!;
-      if (isAllowAnySchemaShort(c)) {
-        continue;
-      }
-      result = mergeSchemas(result, c);
-    }
-    return result;
+    return mergeArrayOfSchemaDefinitions(constraints);
   }
 
   function assignPatternPropertiesAndAdditionalPropertiesMerge(
@@ -531,8 +529,25 @@ export function createMerger({
     [CONDITION_ASSIGNER_KEYS, conditionAssigner],
   ]);
 
-  function mergeSchemas(left: JSONSchema7, right: JSONSchema7): JSONSchema7 {
-    const target = { ...left };
+  function mergeSchemaDefinitions(
+    left: JSONSchema7Definition,
+    right: JSONSchema7Definition
+  ) {
+    if (left === false || right === false) {
+      return false;
+    }
+    const la = isAllowAnySchema(left);
+    const ra = isAllowAnySchema(right);
+    if (la) {
+      if (ra) {
+        return true;
+      }
+      return right;
+    }
+    if (ra) {
+      return left;
+    }
+    let target = { ...left };
     const assigners = new Set<Assigner<JSONSchema7>>();
     const rKeys = Object.keys(right) as SchemaKey[];
     const l = rKeys.length;
@@ -561,28 +576,6 @@ export function createMerger({
       assign(target, left, right);
     }
     return target;
-  }
-
-  const mergeSchemaOrTrue = createPairMatcher<
-    true | JSONSchema7,
-    true | Record<string, never>,
-    true | JSONSchema7
-  >(
-    isAllowAnySchema,
-    () => true,
-    (_, r) => r,
-    (l) => l,
-    mergeSchemas
-  );
-
-  function mergeSchemaDefinitions(
-    l: JSONSchema7Definition,
-    r: JSONSchema7Definition
-  ) {
-    if (l === false || r === false) {
-      return false;
-    }
-    return mergeSchemaOrTrue(l, r);
   }
 
   const mergeRecordsOfSchemaDefinitions = createRecordsMerge(
@@ -720,7 +713,7 @@ export function createMerger({
   };
 
   return {
-    mergeSchemas,
     mergeSchemaDefinitions,
+    mergeArrayOfSchemaDefinitions,
   };
 }

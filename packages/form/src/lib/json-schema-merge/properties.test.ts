@@ -7,16 +7,16 @@ import { describe, expect, it } from "vitest";
 import { Ajv } from "ajv";
 
 import { createMerger } from "./json-schema-merge.js";
-import { createMergeAllOf } from "./all-of-merge.js";
+import { createAllOfMerger } from "./all-of-merge.js";
 
 const testPatternsMerger = (a: string, b: string) =>
   a === b ? a : `(?=${a})(?=${b})`;
 
-const { mergeSchemas, mergeSchemaDefinitions } = createMerger({
+const { mergeSchemaDefinitions, mergeArrayOfSchemaDefinitions } = createMerger({
   mergePatterns: testPatternsMerger,
 });
 
-const mergeAllOf = createMergeAllOf(mergeSchemas);
+const { mergeAllOf } = createAllOfMerger(mergeArrayOfSchemaDefinitions);
 
 function testMerger(
   a: JSONSchema7Definition,

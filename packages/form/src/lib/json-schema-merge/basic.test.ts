@@ -1,25 +1,29 @@
+// This file was copied and modified from https://github.com/mokkabonna/json-schema-merge-allof/blob/1cc2aa53a5d33c17d0e9c59b13eed77d86ad91c3/test/specs/index.spec.js
+// MIT © Martin Hansen
+// Modifications made by Roman Krasilnikov.
+
 import { Ajv } from "ajv";
-import type { JSONSchema7, JSONSchema7Definition } from "json-schema";
+import type { JSONSchema7Definition } from "json-schema";
 import { describe, expect, it } from "vitest";
 
 import { createDeduplicator, createIntersector } from "@/lib/array.js";
 import { createComparator } from "@/lib/json-schema-compare/index.js";
 
 import { createMerger } from "./json-schema-merge.js";
-import { createMergeAllOf } from "./all-of-merge.js";
+import { createAllOfMerger } from "./all-of-merge.js";
 
 const testPatternsMerger = (a: string, b: string) =>
   a === b ? a : `(?=${a})(?=${b})`;
 
 const { compareSchemaValues, compareSchemaDefinitions } = createComparator();
 
-const { mergeSchemas } = createMerger({
+const { mergeArrayOfSchemaDefinitions } = createMerger({
   mergePatterns: testPatternsMerger,
   intersectJson: createIntersector(compareSchemaValues),
   deduplicateJsonSchemaDef: createDeduplicator(compareSchemaDefinitions),
 });
 
-const mergeAllOf = createMergeAllOf(mergeSchemas);
+const { mergeAllOf } = createAllOfMerger(mergeArrayOfSchemaDefinitions);
 
 const ajv = new Ajv();
 
@@ -38,6 +42,7 @@ function merger(schema: JSONSchema7Definition) {
 }
 
 describe("basic", () => {
+  // CHANGED: We don't support `deep` merge right now
   it("merges schema with same object reference multiple places", () => {
     const commonSchema = {
       allOf: [
@@ -130,6 +135,7 @@ describe("basic", () => {
   });
 
   describe("simple resolve functionality", () => {
+    // CHANGED: We use `last` strategy for `title` merging
     it("merges with default resolver if not defined resolver", () => {
       const result = merger({
         title: "schema1",
@@ -399,6 +405,7 @@ describe("basic", () => {
       }).to.throw(/incompatible/);
     });
 
+    // CHANGED: We use different sorting algorithm
     it("merges enum", () => {
       const result = merger({
         allOf: [
@@ -420,6 +427,7 @@ describe("basic", () => {
       });
     });
 
+    // CHANGED: we use different error text
     it("throws if enum is incompatible", () => {
       expect(() => {
         merger({
@@ -503,6 +511,7 @@ describe("basic", () => {
       });
     });
 
+    // CHANGED: we use different sorting algorithm
     it("merges anyOf by finding valid combinations", () => {
       const result = merger({
         allOf: [
@@ -749,7 +758,7 @@ describe("basic", () => {
       });
     });
 
-    // CHANGED: Nested allOf removed
+    // CHANGED: we don't support `deep` merge right now
     it("merges nested allOf if inside singular oneOf", () => {
       const result = merger({
         allOf: [
@@ -782,6 +791,8 @@ describe("basic", () => {
       });
     });
 
+    // CHANGED: i don't see how `array` and `object` types
+    // in the first schema can be compatible
     it("merges nested allOf if inside multiple oneOf", () => {
       expect(() => {
         merger({
@@ -824,603 +835,749 @@ describe("basic", () => {
       // });
     });
 
-      it.skip('throws if no compatible when merging oneOf', () => {
-        expect(() => {
-          merger({
-            allOf: [{}, {
-              oneOf: [{
-                required: ['123']
-              }]
-            }, {
-              oneOf: [{
-                required: ['fdasfd']
-              }]
-            }]
-          })
-        }).to.throw(/incompatible/)
+    // NOTE: Don't see why this schemas are incompatible
+    it.skip("throws if no compatible when merging oneOf", () => {
+      expect(() => {
+        merger({
+          allOf: [
+            {},
+            {
+              oneOf: [
+                {
+                  required: ["123"],
+                },
+              ],
+            },
+            {
+              oneOf: [
+                {
+                  required: ["fdasfd"],
+                },
+              ],
+            },
+          ],
+        });
+      }).to.throw(/incompatible/);
 
-        expect(() => {
-          merger({
-            allOf: [{}, {
-              oneOf: [{
-                required: ['123']
-              }, {
+      expect(() => {
+        merger({
+          allOf: [
+            {},
+            {
+              oneOf: [
+                {
+                  required: ["123"],
+                },
+                {
+                  properties: {
+                    name: {
+                      type: "string",
+                    },
+                  },
+                },
+              ],
+            },
+            {
+              oneOf: [
+                {
+                  required: ["fdasfd"],
+                },
+              ],
+            },
+          ],
+        });
+      }).to.throw(/incompatible/);
+    });
+
+    // not ready to implement this yet
+    it.skip("merges singular oneOf", () => {
+      const result = merger({
+        properties: {
+          name: {
+            type: "string",
+          },
+        },
+        allOf: [
+          {
+            properties: {
+              name: {
+                type: "string",
+                minLength: 10,
+              },
+            },
+          },
+          {
+            oneOf: [
+              {
+                required: ["123"],
+              },
+              {
                 properties: {
                   name: {
-                    type: 'string'
-                  }
-                }
-              }]
-            }, {
-              oneOf: [{
-                required: ['fdasfd']
-              }]
-            }]
-          })
-        }).to.throw(/incompatible/)
-      })
+                    type: "string",
+                    minLength: 15,
+                  },
+                },
+              },
+            ],
+          },
+          {
+            oneOf: [
+              {
+                required: ["abc"],
+              },
+              {
+                properties: {
+                  name: {
+                    type: "string",
+                    minLength: 15,
+                  },
+                },
+              },
+            ],
+          },
+        ],
+      });
 
-    //   // not ready to implement this yet
-    //   it.skip('merges singular oneOf', () => {
-    //     const result = merger({
-    //       properties: {
-    //         name: {
-    //           type: 'string'
-    //         }
-    //       },
-    //       allOf: [{
-    //         properties: {
-    //           name: {
-    //             type: 'string',
-    //             minLength: 10
-    //           }
-    //         }
-    //       }, {
-    //         oneOf: [{
-    //           required: ['123']
-    //         }, {
-    //           properties: {
-    //             name: {
-    //               type: 'string',
-    //               minLength: 15
-    //             }
-    //           }
-    //         }]
-    //       }, {
-    //         oneOf: [{
-    //           required: ['abc']
-    //         }, {
-    //           properties: {
-    //             name: {
-    //               type: 'string',
-    //               minLength: 15
-    //             }
-    //           }
-    //         }]
-    //       }]
-    //     })
+      expect(result).toEqual({
+        properties: {
+          name: {
+            type: "string",
+            minLength: 15,
+          },
+        },
+      });
+    });
 
-    //     expect(result).toEqual({
-    //       properties: {
-    //         name: {
-    //           type: 'string',
-    //           minLength: 15
-    //         }
-    //       }
-    //     })
-    //   })
+    it("merges not using allOf", () => {
+      const result = merger({
+        allOf: [
+          {
+            not: {
+              properties: {
+                name: {
+                  type: "string",
+                },
+              },
+            },
+          },
+          {
+            not: {
+              properties: {
+                name: {
+                  type: ["string", "null"],
+                },
+              },
+            },
+          },
+        ],
+      });
 
-    //   it('merges not using allOf', () => {
-    //     const result = merger({
-    //       allOf: [{
-    //         not: {
-    //           properties: {
-    //             name: {
-    //               type: 'string'
-    //             }
-    //           }
-    //         }
-    //       }, {
-    //         not: {
-    //           properties: {
-    //             name: {
-    //               type: ['string', 'null']
-    //             }
-    //           }
-    //         }
-    //       }]
-    //     })
+      expect(result).toEqual({
+        not: {
+          anyOf: [
+            {
+              properties: {
+                name: {
+                  type: "string",
+                },
+              },
+            },
+            {
+              properties: {
+                name: {
+                  type: ["string", "null"],
+                },
+              },
+            },
+          ],
+        },
+      });
+    });
 
-    //     expect(result).toEqual({
-    //       not: {
-    //         anyOf: [{
-    //           properties: {
-    //             name: {
-    //               type: 'string'
-    //             }
-    //           }
-    //         },
-    //         {
-    //           properties: {
-    //             name: {
-    //               type: ['string', 'null']
-    //             }
-    //           }
-    //         }
-    //         ]
-    //       }
-    //     })
-    //   })
+    it("merges contains", () => {
+      const result = merger({
+        allOf: [
+          {},
+          {
+            contains: {
+              properties: {
+                name: {
+                  type: "string",
+                  pattern: "bar",
+                },
+              },
+            },
+          },
+          {
+            contains: {
+              properties: {
+                name: {
+                  type: "string",
+                  pattern: "foo",
+                },
+              },
+            },
+          },
+        ],
+      });
 
-    //   it('merges contains', () => {
-    //     const result = merger({
-    //       allOf: [{}, {
-    //         contains: {
-    //           properties: {
-    //             name: {
-    //               type: 'string',
-    //               pattern: 'bar'
-    //             }
-    //           }
-    //         }
-    //       }, {
-    //         contains: {
-    //           properties: {
-    //             name: {
-    //               type: 'string',
-    //               pattern: 'foo'
-    //             }
-    //           }
-    //         }
-    //       }]
-    //     })
+      expect(result).toEqual({
+        contains: {
+          properties: {
+            name: {
+              type: "string",
+              pattern: testPatternsMerger("bar", "foo"),
+            },
+          },
+        },
+      });
+    });
 
-    //     expect(result).toEqual({
-    //       contains: {
-    //         properties: {
-    //           name: {
-    //             type: 'string',
-    //             pattern: '(?=bar)(?=foo)'
-    //           }
-    //         }
-    //       }
-    //     })
-    //   })
+    it("merges pattern using allOf", () => {
+      const result = merger({
+        allOf: [
+          {},
+          {
+            pattern: "fdsaf",
+          },
+          {
+            pattern: "abba",
+          },
+        ],
+      });
 
-    //   it('merges pattern using allOf', () => {
-    //     const result = merger({
-    //       allOf: [{}, {
-    //         pattern: 'fdsaf'
-    //       }, {
-    //         pattern: 'abba'
-    //       }]
-    //     })
+      expect(result).toEqual({
+        pattern: testPatternsMerger("fdsaf", "abba"),
+      });
 
-    //     expect(result).toEqual({
-    //       pattern: '(?=fdsaf)(?=abba)'
-    //     })
+      const result2 = merger({
+        allOf: [
+          {
+            pattern: "abba",
+          },
+        ],
+      });
 
-    //     const result2 = merger({
-    //       allOf: [{
-    //         pattern: 'abba'
-    //       }]
-    //     })
+      expect(result2).toEqual({
+        pattern: "abba",
+      });
+    });
 
-    //     expect(result2).toEqual({
-    //       pattern: 'abba'
-    //     })
-    //   })
+    it("extracts pattern from anyOf and oneOf using | operator in regexp");
 
-    //   it('extracts pattern from anyOf and oneOf using | operator in regexp')
+    // CHANGED: why `allOf` is not merged in the original test ???
+    it("merges multipleOf using allOf or direct assignment", () => {
+      const result = merger({
+        allOf: [
+          {
+            title: "foo",
+            type: ["number", "integer"],
+            multipleOf: 2,
+          },
+          {
+            type: "integer",
+            multipleOf: 3,
+          },
+        ],
+      });
 
-    //   it.skip('merges multipleOf using allOf or direct assignment', () => {
-    //     const result = merger({
-    //       allOf: [{
-    //         title: 'foo',
-    //         type: [
-    //           'number', 'integer'
-    //         ],
-    //         multipleOf: 2
-    //       }, {
-    //         type: 'integer',
-    //         multipleOf: 3
-    //       }]
-    //     })
+      expect(result).toEqual({
+        type: "integer",
+        title: "foo",
+        multipleOf: 6,
+      });
 
-    //     expect(result).toEqual({
-    //       type: 'integer',
-    //       title: 'foo',
-    //       allOf: [{
-    //         multipleOf: 2
-    //       }, {
-    //         multipleOf: 3
-    //       }]
-    //     })
+      const result2 = merger({
+        allOf: [
+          {
+            multipleOf: 1,
+          },
+        ],
+      });
 
-    //     const result2 = merger({
-    //       allOf: [{
-    //         multipleOf: 1
-    //       }]
-    //     })
+      expect(result2).toEqual({
+        multipleOf: 1,
+      });
+    });
 
-    //     expect(result2).toEqual({
-    //       multipleOf: 1
-    //     })
-    //   })
+    it("merges multipleOf by finding lowest common multiple (LCM)", () => {
+      const result = merger({
+        allOf: [
+          {},
+          {
+            multipleOf: 0.2,
+            allOf: [
+              {
+                multipleOf: 2,
+                allOf: [
+                  {
+                    multipleOf: 2,
+                    allOf: [
+                      {
+                        multipleOf: 2,
+                        allOf: [
+                          {
+                            multipleOf: 3,
+                            allOf: [
+                              {
+                                multipleOf: 1.5,
+                                allOf: [
+                                  {
+                                    multipleOf: 0.5,
+                                  },
+                                ],
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            multipleOf: 0.3,
+          },
+        ],
+      });
 
-    //   it('merges multipleOf by finding lowest common multiple (LCM)', () => {
-    //     const result = merger({
-    //       allOf: [{}, {
-    //         multipleOf: 0.2,
-    //         allOf: [{
-    //           multipleOf: 2,
-    //           allOf: [{
-    //             multipleOf: 2,
-    //             allOf: [{
-    //               multipleOf: 2,
-    //               allOf: [{
-    //                 multipleOf: 3,
-    //                 allOf: [{
-    //                   multipleOf: 1.5,
-    //                   allOf: [{
-    //                     multipleOf: 0.5
-    //                   }]
-    //                 }]
-    //               }]
-    //             }]
-    //           }]
-    //         }]
-    //       }, {
-    //         multipleOf: 0.3
-    //       }]
-    //     })
+      expect(result).toEqual({
+        multipleOf: 6,
+      });
 
-    //     expect(result).toEqual({
-    //       multipleOf: 6
-    //     })
+      expect(
+        merger({
+          allOf: [
+            {
+              multipleOf: 4,
+            },
+            {
+              multipleOf: 15,
+            },
+            {
+              multipleOf: 3,
+            },
+          ],
+        })
+      ).toEqual({
+        multipleOf: 60,
+      });
 
-    //     expect(merger({
-    //       allOf: [{
-    //         multipleOf: 4
-    //       }, {
-    //         multipleOf: 15
-    //       }, {
-    //         multipleOf: 3
-    //       }]
-    //     })).toEqual({
-    //       multipleOf: 60
-    //     })
+      expect(
+        merger({
+          allOf: [
+            {
+              multipleOf: 0.3,
+            },
+            {
+              multipleOf: 0.7,
+            },
+            {
+              multipleOf: 1,
+            },
+          ],
+        })
+      ).toEqual({
+        multipleOf: 21,
+      });
 
-    //     expect(merger({
-    //       allOf: [{
-    //         multipleOf: 0.3
-    //       }, {
-    //         multipleOf: 0.7
-    //       }, {
-    //         multipleOf: 1
-    //       }]
-    //     })).toEqual({
-    //       multipleOf: 21
-    //     })
+      expect(
+        merger({
+          allOf: [
+            {
+              multipleOf: 0.5,
+            },
+            {
+              multipleOf: 2,
+            },
+          ],
+        })
+      ).toEqual({
+        multipleOf: 2,
+      });
 
-    //     expect(merger({
-    //       allOf: [{
-    //         multipleOf: 0.5
-    //       }, {
-    //         multipleOf: 2
-    //       }]
-    //     })).toEqual({
-    //       multipleOf: 2
-    //     })
+      expect(
+        merger({
+          allOf: [
+            {
+              multipleOf: 0.3,
+            },
+            {
+              multipleOf: 0.5,
+            },
+            {
+              multipleOf: 1,
+            },
+          ],
+        })
+      ).toEqual({
+        multipleOf: 3,
+      });
 
-    //     expect(merger({
-    //       allOf: [{
-    //         multipleOf: 0.3
-    //       }, {
-    //         multipleOf: 0.5
-    //       }, {
-    //         multipleOf: 1
-    //       }]
-    //     })).toEqual({
-    //       multipleOf: 3
-    //     })
+      expect(
+        merger({
+          allOf: [
+            {
+              multipleOf: 0.3,
+            },
+            {
+              multipleOf: 0.7,
+            },
+            {
+              multipleOf: 1,
+            },
+          ],
+        })
+      ).toEqual({
+        multipleOf: 21,
+      });
 
-    //     expect(merger({
-    //       allOf: [{
-    //         multipleOf: 0.3
-    //       }, {
-    //         multipleOf: 0.7
-    //       }, {
-    //         multipleOf: 1
-    //       }]
-    //     })).toEqual({
-    //       multipleOf: 21
-    //     })
+      expect(
+        merger({
+          allOf: [
+            {
+              multipleOf: 0.4,
+            },
+            {
+              multipleOf: 0.7,
+            },
+            {
+              multipleOf: 3,
+            },
+          ],
+        })
+      ).toEqual({
+        multipleOf: 42,
+      });
 
-    //     expect(merger({
-    //       allOf: [{
-    //         multipleOf: 0.4
-    //       }, {
-    //         multipleOf: 0.7
-    //       }, {
-    //         multipleOf: 3
-    //       }]
-    //     })).toEqual({
-    //       multipleOf: 42
-    //     })
+      expect(
+        merger({
+          allOf: [
+            {
+              multipleOf: 0.2,
+            },
+            {
+              multipleOf: 0.65,
+            },
+            {
+              multipleOf: 1,
+            },
+          ],
+        })
+      ).toEqual({
+        multipleOf: 13,
+      });
 
-    //     expect(merger({
-    //       allOf: [{
-    //         multipleOf: 0.2
-    //       }, {
-    //         multipleOf: 0.65
-    //       }, {
-    //         multipleOf: 1
-    //       }]
-    //     })).toEqual({
-    //       multipleOf: 13
-    //     })
-
-    //     expect(merger({
-    //       allOf: [{
-    //         multipleOf: 100000
-    //       }, {
-    //         multipleOf: 1000000
-    //       }, {
-    //         multipleOf: 500000
-    //       }]
-    //     })).toEqual({
-    //       multipleOf: 1000000
-    //     })
-    //   })
+      expect(
+        merger({
+          allOf: [
+            {
+              multipleOf: 100000,
+            },
+            {
+              multipleOf: 1000000,
+            },
+            {
+              multipleOf: 500000,
+            },
+          ],
+        })
+      ).toEqual({
+        multipleOf: 1000000,
+      });
+    });
   });
 
-  // describe('merging arrays', () => {
-  //   it('merges required object', () => {
-  //     expect(merger({
-  //       required: ['prop2'],
-  //       allOf: [{
-  //         required: ['prop2', 'prop1']
-  //       }]
-  //     })).toEqual({
-  //       required: ['prop1', 'prop2']
-  //     })
-  //   })
+  describe("merging arrays", () => {
+    // CHANGED: we use `last` strategy for default merging
+    it("merges required object", () => {
+      expect(
+        merger({
+          required: ["prop2"],
+          allOf: [
+            {
+              required: ["prop2", "prop1"],
+            },
+          ],
+        })
+      ).toEqual({
+        required: ["prop2", "prop1"],
+      });
+    });
 
-  //   it('merges default value', () => {
-  //     expect(merger({
-  //       default: [
-  //         'prop2', {
-  //           prop1: 'foo'
-  //         }
-  //       ],
-  //       allOf: [{
-  //         default: ['prop2', 'prop1']
-  //       }]
-  //     })).toEqual({
-  //       default: [
-  //         'prop2', {
-  //           prop1: 'foo'
-  //         }
-  //       ]
-  //     })
-  //   })
+    // CHANGED: we use `last` strategy for default merging
+    it("merges default value", () => {
+      expect(
+        merger({
+          default: [
+            "prop2",
+            {
+              prop1: "foo",
+            },
+          ],
+          allOf: [
+            {
+              default: ["prop2", "prop1"],
+            },
+          ],
+        })
+      ).toEqual({
+        default: ["prop2", "prop1"],
+      });
+    });
 
-  //   it('merges default value', () => {
-  //     expect(merger({
-  //       default: {
-  //         foo: 'bar'
-  //       },
-  //       allOf: [{
-  //         default: ['prop2', 'prop1']
-  //       }]
-  //     })).toEqual({
-  //       default: {
-  //         foo: 'bar'
-  //       }
-  //     })
-  //   })
-  // })
+    // CHANGED: we use `last` strategy for default merging
+    it("merges default value", () => {
+      expect(
+        merger({
+          default: {
+            foo: "bar",
+          },
+          allOf: [
+            {
+              default: ["prop2", "prop1"],
+            },
+          ],
+        })
+      ).toEqual({
+        default: ["prop2", "prop1"],
+      });
+    });
+  });
 
-  // describe('merging objects', () => {
-  //   it('merges child objects', () => {
-  //     expect(merger({
-  //       properties: {
-  //         name: {
-  //           title: 'Name',
-  //           type: 'string'
-  //         }
-  //       },
-  //       allOf: [{
-  //         properties: {
-  //           name: {
-  //             title: 'allof1',
-  //             type: 'string'
-  //           },
-  //           added: {
-  //             type: 'integer'
-  //           }
-  //         }
-  //       }, {
-  //         properties: {
-  //           name: {
-  //             type: 'string'
-  //           }
-  //         }
-  //       }]
-  //     })).toEqual({
-  //       properties: {
-  //         name: {
-  //           title: 'Name',
-  //           type: 'string'
-  //         },
-  //         added: {
-  //           type: 'integer'
-  //         }
-  //       }
-  //     })
-  //   })
-
-  //   it('merges boolean schemas', () => {
-  //     expect(merger({
-  //       properties: {
-  //         name: true
-  //       },
-  //       allOf: [{
-  //         properties: {
-  //           name: {
-  //             title: 'allof1',
-  //             type: 'string'
-  //           },
-  //           added: {
-  //             type: 'integer'
-  //           }
-  //         }
-  //       }, {
-  //         properties: {
-  //           name: {
-  //             type: 'string',
-  //             minLength: 5
-  //           }
-  //         }
-  //       }]
-  //     })).toEqual({
-  //       properties: {
-  //         name: {
-  //           title: 'allof1',
-  //           type: 'string',
-  //           minLength: 5
-  //         },
-  //         added: {
-  //           type: 'integer'
-  //         }
-  //       }
-  //     })
-
-  //     expect(merger({
-  //       properties: {
-  //         name: false
-  //       },
-  //       allOf: [{
-  //         properties: {
-  //           name: {
-  //             title: 'allof1',
-  //             type: 'string'
-  //           },
-  //           added: {
-  //             type: 'integer'
-  //           }
-  //         }
-  //       }, {
-  //         properties: {
-  //           name: true
-  //         }
-  //       }]
-  //     })).toEqual({
-  //       properties: {
-  //         name: false,
-  //         added: {
-  //           type: 'integer'
-  //         }
-  //       }
-  //     })
-
-  //     expect(merger({
-  //       allOf: [true, false]
-  //     })).toEqual(false)
-
-  //     expect(merger({
-  //       properties: {
-  //         name: true
-  //       },
-  //       allOf: [{
-  //         properties: {
-  //           name: false,
-  //           added: {
-  //             type: 'integer'
-  //           }
-  //         }
-  //       }, {
-  //         properties: {
-  //           name: true
-  //         }
-  //       }]
-  //     })).toEqual({
-  //       properties: {
-  //         name: false,
-  //         added: {
-  //           type: 'integer'
-  //         }
-  //       }
-  //     })
-  //   })
-
-  //   it('merges all allOf', () => {
-  //     expect(merger({
-  //       properties: {
-  //         name: {
-  //           allOf: [{
-  //             pattern: '^.+$'
-  //           }]
-  //         }
-  //       },
-  //       allOf: [{
-  //         properties: {
-  //           name: true,
-  //           added: {
-  //             type: 'integer',
-  //             title: 'pri1',
-  //             allOf: [{
-  //               title: 'pri2',
-  //               type: [
-  //                 'string', 'integer'
-  //               ],
-  //               minimum: 15,
-  //               maximum: 10
-  //             }]
-  //           }
-  //         },
-  //         allOf: [{
-  //           properties: {
-  //             name: true,
-  //             added: {
-  //               type: 'integer',
-  //               minimum: 5
-  //             }
-  //           },
-  //           allOf: [{
-  //             properties: {
-  //               added: {
-  //                 title: 'pri3',
-  //                 type: 'integer',
-  //                 minimum: 10
-  //               }
-  //             }
-  //           }]
-  //         }]
-  //       }, {
-  //         properties: {
-  //           name: true,
-  //           added: {
-  //             minimum: 7
-  //           }
-  //         }
-  //       }]
-  //     })).toEqual({
-  //       properties: {
-  //         name: {
-  //           pattern: '^.+$'
-  //         },
-  //         added: {
-  //           type: 'integer',
-  //           title: 'pri1',
-  //           minimum: 15,
-  //           maximum: 10
-  //         }
-  //       }
-  //     })
-  //   })
-  // })
+  describe("merging objects", () => {
+    // CHANGED: we use `last` strategy for title merging
+    it("merges child objects", () => {
+      expect(
+        merger({
+          properties: {
+            name: {
+              title: "Name",
+              type: "string",
+            },
+          },
+          allOf: [
+            {
+              properties: {
+                name: {
+                  title: "allof1",
+                  type: "string",
+                },
+                added: {
+                  type: "integer",
+                },
+              },
+            },
+            {
+              properties: {
+                name: {
+                  type: "string",
+                },
+              },
+            },
+          ],
+        })
+      ).toEqual({
+        properties: {
+          name: {
+            title: "allof1",
+            type: "string",
+          },
+          added: {
+            type: "integer",
+          },
+        },
+      });
+    });
+    it("merges boolean schemas", () => {
+      expect(
+        merger({
+          properties: {
+            name: true,
+          },
+          allOf: [
+            {
+              properties: {
+                name: {
+                  title: "allof1",
+                  type: "string",
+                },
+                added: {
+                  type: "integer",
+                },
+              },
+            },
+            {
+              properties: {
+                name: {
+                  type: "string",
+                  minLength: 5,
+                },
+              },
+            },
+          ],
+        })
+      ).toEqual({
+        properties: {
+          name: {
+            title: "allof1",
+            type: "string",
+            minLength: 5,
+          },
+          added: {
+            type: "integer",
+          },
+        },
+      });
+      expect(
+        merger({
+          properties: {
+            name: false,
+          },
+          allOf: [
+            {
+              properties: {
+                name: {
+                  title: "allof1",
+                  type: "string",
+                },
+                added: {
+                  type: "integer",
+                },
+              },
+            },
+            {
+              properties: {
+                name: true,
+              },
+            },
+          ],
+        })
+      ).toEqual({
+        properties: {
+          name: false,
+          added: {
+            type: "integer",
+          },
+        },
+      });
+      expect(
+        merger({
+          allOf: [true, false],
+        })
+      ).toEqual(false);
+      expect(
+        merger({
+          properties: {
+            name: true,
+          },
+          allOf: [
+            {
+              properties: {
+                name: false,
+                added: {
+                  type: "integer",
+                },
+              },
+            },
+            {
+              properties: {
+                name: true,
+              },
+            },
+          ],
+        })
+      ).toEqual({
+        properties: {
+          name: false,
+          added: {
+            type: "integer",
+          },
+        },
+      });
+    });
+    // CHANGED: we don't support `deep` merge right now,
+    // we use `last` strategy for the `title` property
+    it("merges all allOf", () => {
+      expect(
+        merger({
+          properties: {
+            name: mergeAllOf({
+              allOf: [
+                {
+                  pattern: "^.+$",
+                },
+              ],
+            }),
+          },
+          allOf: [
+            {
+              properties: {
+                name: true,
+                added: mergeAllOf({
+                  type: "integer",
+                  title: "pri1",
+                  allOf: [
+                    {
+                      title: "pri2",
+                      type: ["string", "integer"],
+                      minimum: 15,
+                      maximum: 10,
+                    },
+                  ],
+                }),
+              },
+              allOf: [
+                {
+                  properties: {
+                    name: true,
+                    added: {
+                      type: "integer",
+                      minimum: 5,
+                    },
+                  },
+                  allOf: [
+                    {
+                      properties: {
+                        added: {
+                          title: "pri3",
+                          type: "integer",
+                          minimum: 10,
+                        },
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              properties: {
+                name: true,
+                added: {
+                  minimum: 7,
+                },
+              },
+            },
+          ],
+        })
+      ).toEqual({
+        properties: {
+          name: {
+            pattern: "^.+$",
+          },
+          added: {
+            type: "integer",
+            title: "pri3",
+            minimum: 15,
+            maximum: 10,
+          },
+        },
+      });
+    });
+  });
 
   // describe.skip('merging definitions', () => {
   //   it('merges circular', () => {
@@ -1548,106 +1705,112 @@ describe("basic", () => {
   //   })
   // })
 
-  // describe('dependencies', () => {
-  //   it('merges simliar schemas', () => {
-  //     const result = merger({
-  //       dependencies: {
-  //         foo: {
-  //           type: [
-  //             'string', 'null', 'integer'
-  //           ],
-  //           allOf: [{
-  //             minimum: 5
-  //           }]
-  //         },
-  //         bar: ['prop1', 'prop2']
-  //       },
-  //       allOf: [{
-  //         dependencies: {
-  //           foo: {
-  //             type: [
-  //               'string', 'null'
-  //             ],
-  //             allOf: [{
-  //               minimum: 7
-  //             }]
-  //           },
-  //           bar: ['prop4']
-  //         }
-  //       }]
-  //     })
+  describe("dependencies", () => {
+    // CHANGED: we don't support `deep` merge right now
+    it("merges simliar schemas", () => {
+      const result = merger({
+        dependencies: {
+          foo: mergeAllOf({
+            type: ["string", "null", "integer"],
+            allOf: [
+              {
+                minimum: 5,
+              },
+            ],
+          }),
+          bar: ["prop1", "prop2"],
+        },
+        allOf: [
+          {
+            dependencies: {
+              foo: mergeAllOf({
+                type: ["string", "null"],
+                allOf: [
+                  {
+                    minimum: 7,
+                  },
+                ],
+              }),
+              bar: ["prop4"],
+            },
+          },
+        ],
+      });
 
-  //     expect(result).toEqual({
-  //       dependencies: {
-  //         foo: {
-  //           type: [
-  //             'string', 'null'
-  //           ],
-  //           minimum: 7
-  //         },
-  //         bar: ['prop1', 'prop2', 'prop4']
-  //       }
-  //     })
-  //   })
+      expect(result).toEqual({
+        dependencies: {
+          foo: {
+            type: ["string", "null"],
+            minimum: 7,
+          },
+          bar: ["prop1", "prop2", "prop4"],
+        },
+      });
+    });
 
-  //   it('merges mixed mode dependency', () => {
-  //     const result = merger({
-  //       dependencies: {
-  //         bar: {
-  //           type: [
-  //             'string', 'null', 'integer'
-  //           ],
-  //           required: ['abc']
-  //         }
-  //       },
-  //       allOf: [{
-  //         dependencies: {
-  //           bar: ['prop4']
-  //         }
-  //       }]
-  //     })
+    it("merges mixed mode dependency", () => {
+      const result = merger({
+        dependencies: {
+          bar: {
+            type: ["string", "null", "integer"],
+            required: ["abc"],
+          },
+        },
+        allOf: [
+          {
+            dependencies: {
+              bar: ["prop4"],
+            },
+          },
+        ],
+      });
 
-  //     expect(result).toEqual({
-  //       dependencies: {
-  //         bar: {
-  //           type: [
-  //             'string', 'null', 'integer'
-  //           ],
-  //           required: ['abc', 'prop4']
-  //         }
-  //       }
-  //     })
-  //   })
-  // })
+      expect(result).toEqual({
+        dependencies: {
+          bar: {
+            type: ["string", "null", "integer"],
+            required: ["abc", "prop4"],
+          },
+        },
+      });
+    });
+  });
 
-  // describe('propertyNames', () => {
-  //   it('merges simliar schemas', () => {
-  //     const result = merger({
-  //       propertyNames: {
-  //         type: 'string',
-  //         allOf: [{
-  //           minLength: 5
-  //         }]
-  //       },
-  //       allOf: [{
-  //         propertyNames: {
-  //           type: 'string',
-  //           pattern: 'abc.*',
-  //           allOf: [{
-  //             maxLength: 7
-  //           }]
-  //         }
-  //       }]
-  //     })
+  describe("propertyNames", () => {
+    // CHANGED: we don't support `deep` merging right now
+    it("merges simliar schemas", () => {
+      const result = merger({
+        propertyNames: mergeAllOf({
+          type: "string",
+          allOf: [
+            {
+              minLength: 5,
+            },
+          ],
+        }),
+        allOf: [
+          {
+            propertyNames: mergeAllOf({
+              type: "string",
+              pattern: "abc.*",
+              allOf: [
+                {
+                  maxLength: 7,
+                },
+              ],
+            }),
+          },
+        ],
+      });
 
-  //     expect(result).toEqual({
-  //       propertyNames: {
-  //         type: 'string',
-  //         pattern: 'abc.*',
-  //         minLength: 5,
-  //         maxLength: 7
-  //       }
-  //     })
-  //   })
-  // })
+      expect(result).toEqual({
+        propertyNames: {
+          type: "string",
+          pattern: "abc.*",
+          minLength: 5,
+          maxLength: 7,
+        },
+      });
+    });
+  });
 });
