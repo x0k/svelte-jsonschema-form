@@ -8,9 +8,11 @@ import {
   type TransformedSchema,
 } from "@/lib/json-schema/index.js";
 
+// TODO: Remove in v4
 /** @deprecated use `ALL_SUB_SCHEMA_KEYS` from 'lib/json-schema` */
 export const SCHEMA_KEYS = ALL_SUB_SCHEMA_KEYS;
 
+// TODO: Remove in v4
 export {
   /** @deprecated use `SubSchemaKey` from `lib/json-schema` */
   type SubSchemaKey,
@@ -108,9 +110,11 @@ export const PROPERTY_NAME_KEY = "propertyName";
 
 export const DATA_URL_FORMAT = "data-url";
 
+// TODO: Remove in v4
 /** @deprecated use `AnySubSchemaKey` from `lib/json-schema` */
 export type SchemaKey = AnySubSchemaKey;
 
+// TODO: Remove in v4
 /** @deprecated use `isSchemaObject` from `lib/json-schema` */
 export const isSchema = isSchemaObject as (d: SchemaDefinition) => d is Schema;
 
@@ -174,5 +178,6 @@ export function reconcileSchemaValues(
   }
   return source;
 }
+// TODO: Remove in v4
 /** @deprecated use `isAllowAnySchema` from `lib/json-schema` */
 export const isTruthySchemaDefinition = isAllowAnySchema;

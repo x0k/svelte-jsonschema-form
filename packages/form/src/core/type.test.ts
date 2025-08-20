@@ -5,7 +5,7 @@
 import { expect, describe, it } from "vitest";
 
 import type { Schema } from "./schema.js";
-import { getSimpleSchemaType, typeOfSchema } from "./type.js";
+import { getSimpleSchemaType } from "./type.js";
 
 const cases: { schema: Schema; expected: string }[] = [
   {

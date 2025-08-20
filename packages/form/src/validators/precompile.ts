@@ -1,17 +1,19 @@
 import { getValueByKeys, insertValue, type Trie } from "@/lib/trie.js";
 import {
+  makeSchemaDefinitionTraverser,
+  ALL_SUB_SCHEMA_KEYS,
+  type AnySubSchemaKey,
+  type SchemaTraverserContext,
+  transformSchemaDefinition,
+} from "@/lib/json-schema/index.js";
+import {
   createAugmentSchema,
   isPrimitiveSchemaType,
   isSchemaWithProperties,
-  makeSchemaDefinitionTraverser,
   pickSchemaType,
   refToPath,
-  SCHEMA_KEYS,
-  transformSchemaDefinition,
   type Path,
   type SchemaDefinition,
-  type SchemaKey,
-  type SchemaTraverserContext,
 } from "@/core/index.js";
 import {
   ON_ARRAY_CHANGE,
@@ -43,13 +45,15 @@ const OBJECT_VALIDATION = ON_OBJECT_CHANGE;
 const FIELDS_VALIDATION =
   INPUTS_VALIDATION | ARRAY_VALIDATION | OBJECT_VALIDATION;
 
-export function isCombinationBranch(ctx: SchemaTraverserContext<SchemaKey>) {
+export function isCombinationBranch(
+  ctx: SchemaTraverserContext<AnySubSchemaKey>
+) {
   return ctx.type === "array" && (ctx.key === "anyOf" || ctx.key === "oneOf");
 }
 
 export function isValidatableNode(
   validationMode: FieldsValidationMode,
-  ctx: SchemaTraverserContext<SchemaKey>,
+  ctx: SchemaTraverserContext<AnySubSchemaKey>,
   node: Schema
 ): boolean {
   if (ctx.type === "root" || (ctx.type === "sub" && ctx.key === "if")) {
@@ -87,7 +91,10 @@ export interface InsertSubSchemaIdsOptions {
   /**
    * Created id should be valid ESM export name
    */
-  createId?: (schema: Schema, ctx: SchemaTraverserContext<SchemaKey>) => string;
+  createId?: (
+    schema: Schema,
+    ctx: SchemaTraverserContext<AnySubSchemaKey>
+  ) => string;
 }
 
 // TODO: Support ref for ref
@@ -100,7 +107,7 @@ export function insertSubSchemaIds(
 ) {
   let subSchemas: SubSchemas;
   Array.from(
-    makeSchemaDefinitionTraverser(SCHEMA_KEYS, {
+    makeSchemaDefinitionTraverser(ALL_SUB_SCHEMA_KEYS, {
       *onEnter(node, ctx) {
         const combinationBranch = isCombinationBranch(ctx);
         if (

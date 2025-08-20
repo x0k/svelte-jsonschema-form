@@ -4,14 +4,16 @@
 
 import { isNil } from "@/lib/types.js";
 import { unique as uniqueItems } from "@/lib/array.js";
-
 import {
   ARRAYS_OF_SUB_SCHEMAS,
+  RECORDS_OF_SUB_SCHEMAS,
+  SUB_SCHEMAS,
+} from "@/lib/json-schema/index.js";
+
+import {
   DEPENDENCIES_KEY,
   ITEMS_KEY,
-  RECORDS_OF_SUB_SCHEMAS,
   REQUIRED_KEY,
-  SUB_SCHEMAS,
   type Schema,
   type SchemaDefinition,
   type SchemaObjectValue,

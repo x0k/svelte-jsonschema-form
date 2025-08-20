@@ -3,7 +3,7 @@ import type { JSONSchema7, JSONSchema7Definition } from "json-schema";
 
 import { identity } from "@/lib/function.js";
 
-import { transformSchemaDefinition } from "./schema-transformer.js";
+import { transformSchemaDefinition } from "./transform.js";
 
 describe("transformSchemaDefinition", () => {
   it("Should keep all elements", () => {

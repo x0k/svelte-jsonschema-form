@@ -1,11 +1,11 @@
-import { resolveRef } from "./definitions.js";
 import {
-  isSchema,
-  SET_OF_ARRAYS_OF_SUB_SCHEMAS,
-  type Schema,
-  type SchemaDefinition,
   type SubSchemasArrayKey,
-} from "./schema.js";
+  SET_OF_ARRAYS_OF_SUB_SCHEMAS,
+  isSchemaObject,
+} from "@/lib/json-schema/index.js";
+
+import { resolveRef } from "./definitions.js";
+import { type Schema, type SchemaDefinition } from "./schema.js";
 import { getSimpleSchemaType } from "./type.js";
 
 export type Path = Array<string | number>;
@@ -42,7 +42,7 @@ export function getSchemaDefinitionByPath(
   path: Path
 ): SchemaDefinition | undefined {
   for (let i = 0; i < path.length; i++) {
-    if (schema === undefined || !isSchema(schema)) {
+    if (schema === undefined || !isSchemaObject(schema)) {
       return undefined;
     }
     if (schema.$ref) {
@@ -58,14 +58,14 @@ export function getSchemaDefinitionByPath(
       let def: SchemaDefinition | undefined;
       let lastBool: boolean | undefined;
       for (const subSchema of alt) {
-        if (!isSchema(subSchema)) {
+        if (!isSchemaObject(subSchema)) {
           continue;
         }
         def = getSchemaDefinitionByPath(rootSchema, subSchema, slice);
         if (def === undefined) {
           continue;
         }
-        if (isSchema(def)) {
+        if (isSchemaObject(def)) {
           return def;
         }
         lastBool = def;

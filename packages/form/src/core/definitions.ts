@@ -4,12 +4,9 @@
 
 import jsonpointer from "jsonpointer";
 
-import {
-  isSchema,
-  REF_KEY,
-  type Schema,
-  type SchemaDefinition,
-} from "./schema.js";
+import { isSchemaObject } from "@/lib/json-schema/index.js";
+
+import { REF_KEY, type Schema, type SchemaDefinition } from "./schema.js";
 import { mergeSchemas } from "./merge.js";
 
 export function resolveRef(ref: string, rootSchema: Schema) {
@@ -32,7 +29,7 @@ export function findSchemaDefinition(
   stack = new Set<string>()
 ): Schema {
   const current = resolveRef(ref, rootSchema);
-  if (!isSchema(current)) {
+  if (!isSchemaObject(current)) {
     throw new Error(`Definition for ${ref} should be a schema (object)`);
   }
   const nextRef = current[REF_KEY];

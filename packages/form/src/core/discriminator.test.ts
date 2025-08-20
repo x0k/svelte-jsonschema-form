@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { afterAll, beforeAll, describe, expect, it, test, vi, type MockInstance } from 'vitest';
+import { describe, expect, it, test } from 'vitest';
 
 import { getDiscriminatorFieldFromSchema, getOptionMatchingSimpleDiscriminator } from './discriminator.js';
 import type { Schema } from './schema.js';

@@ -1,3 +1,4 @@
+// TODO: Remove in v4
 export {
   /** @deprecated use `AbstractSchemaTraverserContext` from `lib/json-schema` */
   type AbstractSchemaTraverserContext,

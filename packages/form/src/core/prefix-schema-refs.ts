@@ -1,14 +1,13 @@
 import {
-  type SchemaDefinition,
-  type Schema,
-  isSchema,
-  REF_KEY,
-} from "./schema.js";
-import { transformSchemaDefinition } from "./schema-transformer.js";
+  isSchemaObject,
+  transformSchemaDefinition,
+} from "@/lib/json-schema/index.js";
+
+import { type SchemaDefinition, type Schema, REF_KEY } from "./schema.js";
 
 export function prefixSchemaRefs(schema: Schema, prefix: string): Schema {
   return transformSchemaDefinition<SchemaDefinition>(schema, (node) => {
-    if (!isSchema(node)) {
+    if (!isSchemaObject(node)) {
       return node;
     }
     const ref = node[REF_KEY];
