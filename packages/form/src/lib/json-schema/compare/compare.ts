@@ -8,15 +8,11 @@ import type {
 
 import type { Comparator } from "@/lib/ord.js";
 import { isAllowAnySchema, isSchemaObject } from "@/lib/json-schema/index.js";
-import { createPairMatcher } from "@/lib/function.js";
 import { createDeduplicator, isArrayEmpty } from "@/lib/array.js";
 import { isRecordEmpty } from "@/lib/object.js";
 import { weakMemoize } from "@/lib/memoize.js";
 
 const zero = () => 0;
-const one = () => 1;
-const negOne = () => -1;
-
 const isUndefined = <T>(v: T | undefined): v is undefined => v === undefined;
 
 type SchemaPrimitiveTypeExceptNullType = Extract<
@@ -101,7 +97,18 @@ function createCmpMatcher<T, E extends T>(
   compare: Comparator<Exclude<T, E>>,
   compareEmpty: Comparator<E> = zero
 ) {
-  return createPairMatcher(isEmpty, compareEmpty, negOne, one, compare);
+  return (a: T, b: T) => {
+    if (isEmpty(a)) {
+      if (isEmpty(b)) {
+        return compareEmpty(a, b);
+      }
+      return -1;
+    }
+    if (isEmpty(b)) {
+      return 1;
+    }
+    return compare(a as Exclude<T, E>, b as Exclude<T, E>);
+  };
 }
 
 function createOptionalComparator<T>(compare: Comparator<T>) {
@@ -187,36 +194,37 @@ export function createComparator({
   const compareArrayOfSameTypePrimitivesWithDeduplication =
     createArrayComparatorWithDeduplication(compareSameTypeSchemaPrimitives);
 
-  const compareSchemaDefinitions = createPairMatcher<
-    JSONSchema7Definition,
-    JSONSchema7,
-    number
-  >(
-    isSchemaObject,
-    // NOTE: There we compare even non existed properties
-    (a, b) => {
-      const aKeys = Object.keys(a) as (keyof JSONSchema7)[];
-      const bKeys = Object.keys(b) as (keyof JSONSchema7)[];
-      const allKeys = insertUniqueValues(aKeys, bKeys);
-      const l = allKeys.length;
-      for (let i = 0; i < l; i++) {
-        const key = allKeys[i]!;
-        if (a[key] === b[key]) {
-          continue;
+  function compareSchemaDefinitions(
+    a: JSONSchema7Definition,
+    b: JSONSchema7Definition
+  ) {
+    if (isSchemaObject(a)) {
+      if (isSchemaObject(b)) {
+        const aKeys = Object.keys(a) as (keyof JSONSchema7)[];
+        const bKeys = Object.keys(b) as (keyof JSONSchema7)[];
+        const allKeys = insertUniqueValues(aKeys, bKeys);
+        const l = allKeys.length;
+        for (let i = 0; i < l; i++) {
+          const key = allKeys[i]!;
+          if (a[key] === b[key]) {
+            continue;
+          }
+          const cmp = COMPARATORS[key] ?? compareOptionalSchemaValues;
+          // @ts-expect-error
+          const d = cmp(a[key], b[key]);
+          if (d !== 0) {
+            return d;
+          }
         }
-        const cmp = COMPARATORS[key] ?? compareOptionalSchemaValues;
-        // @ts-expect-error
-        const d = cmp(a[key], b[key]);
-        if (d !== 0) {
-          return d;
-        }
+        return 0;
       }
-      return 0;
-    },
-    (a, b) => (b === true && isRecordEmpty(a) ? 0 : 1),
-    (a, b) => (a === true && isRecordEmpty(b) ? 0 : -1),
-    compareSameTypeSchemaPrimitives
-  );
+      return b === true && isRecordEmpty(a) ? 0 : 1;
+    }
+    if (isSchemaObject(b)) {
+      return a === true && isRecordEmpty(b) ? 0 : -1;
+    }
+    return compareSameTypeSchemaPrimitives(a, b);
+  }
 
   const compareOptionalSchemaValues =
     createOptionalComparator(compareSchemaValues);

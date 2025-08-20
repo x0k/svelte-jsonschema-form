@@ -20,10 +20,6 @@ import { simplePatternsMerger } from "./merge-patterns.js";
 
 type SchemaKey = keyof JSONSchema7;
 
-function last<T>(_: T, r: T) {
-  return r;
-}
-
 function* createPairCombinations<T, R>(
   l: T[],
   r: T[],
@@ -207,7 +203,7 @@ export function createMerger({
   isSubRegExp = Object.is,
   intersectJson = intersection,
   deduplicateJsonSchemaDef = identity,
-  defaultMerger = last
+  defaultMerger = identity,
 }: MergeOptions = {}) {
   function mergeArrayOfSchemaDefinitions(
     schemas: JSONSchema7Definition[]
@@ -538,15 +534,13 @@ export function createMerger({
     if (left === false || right === false) {
       return false;
     }
-    const la = isAllowAnySchema(left);
-    const ra = isAllowAnySchema(right);
-    if (la) {
-      if (ra) {
+    if (isAllowAnySchema(left)) {
+      if (isAllowAnySchema(right)) {
         return true;
       }
       return right;
     }
-    if (ra) {
+    if (isAllowAnySchema(right)) {
       return left;
     }
     let target = { ...left };
@@ -594,6 +588,7 @@ export function createMerger({
     $schema: defaultMerger,
     $comment: defaultMerger,
     $defs: mergeRecordsOfSchemaDefinitions,
+    definitions: mergeRecordsOfSchemaDefinitions,
     type: (a, b) => {
       if (a === b) {
         return a;
@@ -647,8 +642,10 @@ export function createMerger({
     format: defaultMerger,
     contentEncoding: defaultMerger,
     contentMediaType: defaultMerger,
-    // TODO: Perform equality check to simplify result
-    not: (a, b) => ({ anyOf: [a, b] }),
+    not: (a, b) => {
+      const items = deduplicateJsonSchemaDef([a, b]);
+      return items.length === 1 ? items[0]! : { anyOf: items };
+    },
     pattern: mergePatterns,
     readOnly: mergeBooleans,
     writeOnly: mergeBooleans,
@@ -663,21 +660,17 @@ export function createMerger({
     },
     anyOf: mergeArraysOfSchemaDefinition,
     oneOf: mergeArraysOfSchemaDefinition,
-    // TODO: Proper deduplication
-    allOf: (l, r) => l.concat(r),
+    allOf: (l, r) => deduplicateJsonSchemaDef(l.concat(r)),
     propertyNames: mergeSchemaDefinitions,
     contains: mergeSchemaDefinitions,
-    definitions: mergeRecordsOfSchemaDefinitions,
     dependencies: createRecordsMerge((a, b) => {
-      const isAArr = Array.isArray(a);
-      const isBArr = Array.isArray(b);
-      if (isAArr) {
-        if (isBArr) {
+      if (Array.isArray(a)) {
+        if (Array.isArray(b)) {
           return union(a, b);
         }
         return mergeSchemaDefinitions(b, { required: a });
       }
-      if (isBArr) {
+      if (Array.isArray(b)) {
         return mergeSchemaDefinitions(a, { required: b });
       }
       return mergeSchemaDefinitions(a, b);

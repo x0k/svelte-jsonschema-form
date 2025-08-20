@@ -8,7 +8,6 @@ import { describe, expect, it } from "vitest";
 
 import { createDeduplicator, createIntersector } from "@/lib/array.js";
 import { createComparator } from "@/lib/json-schema/compare/index.js";
-import { identity } from "@/lib/function.js";
 
 import { createMerger } from "./merge.js";
 import {
@@ -25,7 +24,6 @@ const { mergeArrayOfSchemaDefinitions } = createMerger({
   mergePatterns: testPatternsMerger,
   intersectJson: createIntersector(compareSchemaValues),
   deduplicateJsonSchemaDef: createDeduplicator(compareSchemaDefinitions),
-  defaultMerger: identity,
 });
 
 const shallowAllOfMerge = createShallowAllOfMerge(
