@@ -4,7 +4,7 @@ import legacyIsEqual from "json-schema-compare";
 
 import type { Brand } from "@/lib/types.js";
 
-import { createComparator } from "./json-schema-compare.js";
+import { createComparator } from "./compare.js";
 
 type Match = Brand<"Match", boolean>;
 

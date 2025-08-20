@@ -7,7 +7,7 @@ import type {
 } from "json-schema";
 
 import type { Comparator } from "@/lib/ord.js";
-import { isAllowAnySchema, isSchemaObject } from "@/lib/json-schema.js";
+import { isAllowAnySchema, isSchemaObject } from "@/lib/json-schema/index.js";
 import { createPairMatcher } from "@/lib/function.js";
 import { createDeduplicator, isArrayEmpty } from "@/lib/array.js";
 import { isRecordEmpty } from "@/lib/object.js";

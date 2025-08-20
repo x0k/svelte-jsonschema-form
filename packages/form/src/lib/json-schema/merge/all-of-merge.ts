@@ -1,5 +1,7 @@
 import type { JSONSchema7Definition } from "json-schema";
 
+import { transformSchemaDefinition } from "@/lib/json-schema/transform.js";
+
 function getAllOfSchemas(
   schema: JSONSchema7Definition
 ): JSONSchema7Definition[] {
@@ -20,13 +22,23 @@ function getAllOfSchemas(
   return result;
 }
 
-export function createAllOfMerger(
+export function createShallowAllOfMerge(
   mergeArrayOfSchemaDefinitions: (
     defs: JSONSchema7Definition[]
   ) => JSONSchema7Definition
 ) {
-  return {
-    mergeAllOf: (schema: JSONSchema7Definition) =>
-      mergeArrayOfSchemaDefinitions(getAllOfSchemas(schema)),
-  };
+  return (schema: JSONSchema7Definition) =>
+    mergeArrayOfSchemaDefinitions(getAllOfSchemas(schema));
+}
+
+export function createDeepAllOfMerge(
+  shallowMerge: (def: JSONSchema7Definition) => JSONSchema7Definition
+) {
+  return (schemaDef: JSONSchema7Definition) =>
+    transformSchemaDefinition<JSONSchema7Definition>(schemaDef, (def) => {
+      if (typeof def === "boolean" || def.allOf === undefined) {
+        return def;
+      }
+      return shallowMerge(def);
+    });
 }

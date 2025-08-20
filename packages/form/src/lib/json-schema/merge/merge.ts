@@ -12,8 +12,8 @@ import {
   type Deduplicator,
   type Intersector,
 } from "@/lib/array.js";
-import { createPairMatcher, identity } from "@/lib/function.js";
-import { isAllowAnySchema } from "@/lib/json-schema.js";
+import { identity } from "@/lib/function.js";
+import { isAllowAnySchema } from "@/lib/json-schema/index.js";
 import { lcm } from "@/lib/math.js";
 
 import { simplePatternsMerger } from "./merge-patterns.js";
@@ -199,6 +199,7 @@ export interface MergeOptions {
   mergePatterns?: Merger<string>;
   intersectJson?: Intersector<JSONSchema7Type>;
   deduplicateJsonSchemaDef?: Deduplicator<JSONSchema7Definition>;
+  defaultMerger?: Merger<any>;
 }
 
 export function createMerger({
@@ -206,6 +207,7 @@ export function createMerger({
   isSubRegExp = Object.is,
   intersectJson = intersection,
   deduplicateJsonSchemaDef = identity,
+  defaultMerger = last
 }: MergeOptions = {}) {
   function mergeArrayOfSchemaDefinitions(
     schemas: JSONSchema7Definition[]
@@ -568,7 +570,7 @@ export function createMerger({
         assigners.add(assign);
         continue;
       }
-      const merge = MERGERS[rKey as keyof typeof MERGERS] ?? last;
+      const merge = MERGERS[rKey as keyof typeof MERGERS] ?? defaultMerger;
       // @ts-expect-error
       target[rKey] = merge(lv, rv);
     }
@@ -582,27 +584,15 @@ export function createMerger({
     mergeSchemaDefinitions
   );
 
-  const mergeSchemaDefinitionsOrArrayOfString = createPairMatcher<
-    JSONSchema7Definition | string[],
-    string[],
-    JSONSchema7Definition | string[]
-  >(
-    Array.isArray,
-    union,
-    (l, r) => mergeSchemaDefinitions({ required: l }, r),
-    (l, r) => mergeSchemaDefinitions(l, { required: r }),
-    mergeSchemaDefinitions
-  );
-
   const MERGERS: {
     [K in Exclude<SchemaKey, AssignerKey>]-?: Merger<
       Exclude<JSONSchema7[K], undefined>
     >;
   } = {
-    $id: last,
-    $ref: last,
-    $schema: last,
-    $comment: last,
+    $id: defaultMerger,
+    $ref: defaultMerger,
+    $schema: defaultMerger,
+    $comment: defaultMerger,
     $defs: mergeRecordsOfSchemaDefinitions,
     type: (a, b) => {
       if (a === b) {
@@ -650,13 +640,13 @@ export function createMerger({
         `It is not possible to create an intersection of the following incompatible types: ${a}, ${b}`
       );
     },
-    default: last,
-    description: last,
-    title: last,
-    const: last,
-    format: last,
-    contentEncoding: last,
-    contentMediaType: last,
+    default: defaultMerger,
+    description: defaultMerger,
+    title: defaultMerger,
+    const: defaultMerger,
+    format: defaultMerger,
+    contentEncoding: defaultMerger,
+    contentMediaType: defaultMerger,
     // TODO: Perform equality check to simplify result
     not: (a, b) => ({ anyOf: [a, b] }),
     pattern: mergePatterns,
@@ -678,7 +668,20 @@ export function createMerger({
     propertyNames: mergeSchemaDefinitions,
     contains: mergeSchemaDefinitions,
     definitions: mergeRecordsOfSchemaDefinitions,
-    dependencies: createRecordsMerge(mergeSchemaDefinitionsOrArrayOfString),
+    dependencies: createRecordsMerge((a, b) => {
+      const isAArr = Array.isArray(a);
+      const isBArr = Array.isArray(b);
+      if (isAArr) {
+        if (isBArr) {
+          return union(a, b);
+        }
+        return mergeSchemaDefinitions(b, { required: a });
+      }
+      if (isBArr) {
+        return mergeSchemaDefinitions(a, { required: b });
+      }
+      return mergeSchemaDefinitions(a, b);
+    }),
     examples: (l, r) => {
       // https://datatracker.ietf.org/doc/html/draft-handrews-json-schema-validation-01#section-10.4
       if (!Array.isArray(l) || !Array.isArray(r)) {

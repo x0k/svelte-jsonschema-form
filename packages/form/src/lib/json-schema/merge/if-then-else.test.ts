@@ -4,11 +4,11 @@
 
 import { describe, it, expect } from "vitest";
 
-import { createMerger } from "./json-schema-merge.js";
-import { createAllOfMerger } from "./all-of-merge.js";
+import { createMerger } from "./merge.js";
+import { createShallowAllOfMerge } from "./all-of-merge.js";
 
 const { mergeArrayOfSchemaDefinitions } = createMerger();
-const { mergeAllOf } = createAllOfMerger(mergeArrayOfSchemaDefinitions);
+const mergeAllOf = createShallowAllOfMerge(mergeArrayOfSchemaDefinitions);
 
 describe("if then else", function () {
   it("moves the if then else to the base schema if none there", () => {

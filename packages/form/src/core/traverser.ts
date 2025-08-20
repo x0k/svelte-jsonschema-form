@@ -1,4 +1,4 @@
-export interface Visitor<Node, Context, R> {
-  onEnter?: (node: Node, ctx: Context) => Generator<R>;
-  onLeave?: (node: Node, ctx: Context) => Generator<R>;
-}
+export type {
+  /** @deprecated use `Visitor` from `lib/traverser` */
+  Visitor,
+} from "@/lib/traverser.js";

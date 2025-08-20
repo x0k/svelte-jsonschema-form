@@ -2,7 +2,7 @@ import { bench, describe, expect } from "vitest";
 import type { JSONSchema7, JSONSchema7Definition } from "json-schema";
 import jsonSchemaCompare from "json-schema-compare";
 
-import { createComparator } from "./json-schema-compare.js";
+import { createComparator } from "./compare.js";
 
 interface TestCase {
   name: string;

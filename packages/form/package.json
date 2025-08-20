@@ -55,13 +55,9 @@
   "types": "./dist/form/index.d.ts",
   "svelte": "./dist/form/index.js",
   "exports": {
-    "./lib/json-schema-compare": {
-      "types": "./dist/lib/json-schema-compare/index.d.ts",
-      "default": "./dist/lib/json-schema-compare/index.js"
-    },
-    "./lib/json-schema-merge": {
-      "types": "./dist/lib/json-schema-merge/index.d.ts",
-      "default": "./dist/lib/json-schema-merge/index.js"
+    "./lib/json-schema": {
+      "types": "./dist/lib/json-schema/index.d.ts",
+      "default": "./dist/lib/json-schema/index.js"
     },
     "./lib/*.svelte": {
       "types": "./dist/lib/*.svelte.d.ts",
