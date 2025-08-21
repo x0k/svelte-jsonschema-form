@@ -12,6 +12,7 @@
   "files": [
     "dist",
     "LICENSE-APACHE",
+    "!fixtures",
     "!app.*",
     "!dist/**/*.bench.*",
     "!dist/**/*.test.*",
