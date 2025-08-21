@@ -1411,6 +1411,9 @@ importers:
       ajv:
         specifier: 'catalog:'
         version: 8.17.1
+      allof-merge:
+        specifier: ^0.6.7
+        version: 0.6.7
       deep-freeze-es6:
         specifier: ^4.0.1
         version: 4.0.1
@@ -3722,6 +3725,9 @@ packages:
   ajv@8.17.1:
     resolution: {integrity: sha512-B/gBuNg5SiMTrPkC+A2+cW0RszwxYmn6VYxB/inlBStS5nx6xHIt/ehKRhIMhqusl7a8LjQoZnjCs5vhwxOQ1g==}
 
+  allof-merge@0.6.7:
+    resolution: {integrity: sha512-slvjkM56OdeVkm1tllrnaumtSHwqyHrepXkAe6Am+CW4WdbHkNqdOKPF6cvY3/IouzvXk1BoLICT5LY7sCoFGw==}
+
   ansi-align@3.0.1:
     resolution: {integrity: sha512-IOfwwBF5iczOjp/WeY4YxyjqAFMQoZufdQWDd19SEExbVLNXqvpzSJ/M7Za4/sCPmQ0+GRquoA7bGcINcxew6w==}
 
@@ -4977,6 +4983,10 @@ packages:
 
   json-buffer@3.0.1:
     resolution: {integrity: sha512-4bV5BfR2mqfQTJm+V5tPPdf+ZpuhiIvTuAB5g8kcrXOZpTT/QwwVRWBywX1ozr6lEuPdbHxwaJlm9G6mI2sfSQ==}
+
+  json-crawl@0.5.3:
+    resolution: {integrity: sha512-BEjjCw8c7SxzNK4orhlWD5cXQh8vCk2LqDr4WgQq4CV+5dvopeYwt1Tskg67SuSLKvoFH5g0yuYtg7rcfKV6YA==}
+    engines: {node: '>=14.0.0'}
 
   json-schema-compare@0.2.2:
     resolution: {integrity: sha512-c4WYmDKyJXhs7WWvAWm3uIYnfyWFoIp+JEoX34rctVvEkMYCPGhXtvmFFXiffBbxfZsvQ0RNnV5H7GvDF5HCqQ==}
@@ -9679,6 +9689,10 @@ snapshots:
       json-schema-traverse: 1.0.0
       require-from-string: 2.0.2
 
+  allof-merge@0.6.7:
+    dependencies:
+      json-crawl: 0.5.3
+
   ansi-align@3.0.1:
     dependencies:
       string-width: 4.2.3
@@ -11280,6 +11294,8 @@ snapshots:
     optional: true
 
   json-buffer@3.0.1: {}
+
+  json-crawl@0.5.3: {}
 
   json-schema-compare@0.2.2:
     dependencies:

@@ -48,6 +48,7 @@
   "devDependencies": {
     "@types/json-schema-compare": "^0.2.4",
     "ajv": "catalog:",
+    "allof-merge": "^0.6.7",
     "deep-freeze-es6": "^4.0.1",
     "json-schema-compare": "^0.2.2",
     "svelte": "catalog:"

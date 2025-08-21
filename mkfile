@@ -72,7 +72,7 @@ f/:
   b:
     pnpm run build
   ben:
-    pnpm run bench
+    pnpm run bench $@
   c:
     pnpm run check
   t:

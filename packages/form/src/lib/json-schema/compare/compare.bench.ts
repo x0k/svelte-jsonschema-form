@@ -1,4 +1,4 @@
-import { bench, describe, expect } from "vitest";
+import { bench, describe } from "vitest";
 import type { JSONSchema7, JSONSchema7Definition } from "json-schema";
 import jsonSchemaCompare from "json-schema-compare";
 
@@ -6,7 +6,6 @@ import { createComparator } from "./compare.js";
 
 interface TestCase {
   name: string;
-  expected: boolean;
   a: JSONSchema7Definition;
   b: JSONSchema7Definition;
 }
@@ -216,7 +215,6 @@ realSchema2.dependencies.preset.oneOf[1].properties.proportionalSizeAdjustmentTh
 const cases: TestCase[] = [
   {
     name: "simple",
-    expected: false,
     a: {
       title: "title 1",
       type: ["object"],
@@ -242,7 +240,6 @@ const cases: TestCase[] = [
   },
   {
     name: "deduplication",
-    expected: true,
     a: {
       anyOf: [{ type: "string" }, { type: "number" }, { type: "string" }],
     },
@@ -252,44 +249,40 @@ const cases: TestCase[] = [
   },
   {
     name: "large",
-    expected: true,
     a: largeSchema,
     b: structuredClone(largeSchema),
   },
   {
     name: "large (negative)",
-    expected: false,
     a: largeSchema,
     b: largeSchema2,
   },
   {
     name: "real",
-    expected: true,
     a: realSchema,
     b: structuredClone(realSchema),
   },
   {
     name: "real (negative)",
-    expected: false,
     a: realSchema,
     b: realSchema2,
   },
 ];
 
-const { compareSchemaDefinitions } = createComparator()
+const { compareSchemaDefinitions } = createComparator();
 
 function isEqual(a: JSONSchema7Definition, b: JSONSchema7Definition) {
   return compareSchemaDefinitions(a, b) === 0;
 }
 
 describe("isEqual vs json-schema-compare", () => {
-  for (const { name, a, b, expected } of cases) {
+  for (const { name, a, b } of cases) {
     describe(name, () => {
       bench("isEqual", () => {
-        expect(isEqual(a, b)).toBe(expected);
+        isEqual(a, b);
       });
       bench("json-schema-compare", () => {
-        expect(jsonSchemaCompare(a, b)).toBe(expected);
+        jsonSchemaCompare(a, b);
       });
     });
   }
