@@ -55,7 +55,7 @@ function createRecordsMerge<T>(merge: (l: T, r: T) => T) {
   };
 }
 
-export type Assigner<R extends {}> = (target: R, l: R, r: R) => void;
+export type Assigner<R extends {}> = (target: R, l: R, r: R) => R;
 
 function createAssignersTrie(
   assigners: Iterable<[SchemaKey[], Assigner<JSONSchema7>]>
@@ -196,6 +196,7 @@ export interface MergeOptions {
   intersectJson?: Intersector<JSONSchema7Type>;
   deduplicateJsonSchemaDef?: Deduplicator<JSONSchema7Definition>;
   defaultMerger?: Merger<any>;
+  assigners?: Iterable<[SchemaKey[], Assigner<JSONSchema7>]>
 }
 
 export function createMerger({
@@ -204,6 +205,7 @@ export function createMerger({
   intersectJson = intersection,
   deduplicateJsonSchemaDef = identity,
   defaultMerger = identity,
+  assigners = [],
 }: MergeOptions = {}) {
   function mergeArrayOfSchemaDefinitions(
     schemas: JSONSchema7Definition[]
@@ -326,7 +328,7 @@ export function createMerger({
           : (lPatterns ?? rPatterns)
       );
       delete target.additionalProperties;
-      return;
+      return target
     }
     // Additional Properties
     const additionalProperties = mergeSchemaDefinitions(
@@ -437,6 +439,7 @@ export function createMerger({
       "patternProperties",
       patterns
     );
+    return target
   };
 
   const itemsAssigner: Assigner<JSONSchema7> = (
@@ -491,7 +494,7 @@ export function createMerger({
       assignSchemaDefinitionOrRecordOfSchemaDefinitions(
         target,
         "additionalItems",
-        additional
+        additional && mergeSchemaDefinitions(additional, item)
       );
       for (let i = 0; i < arr.length; i++) {
         itemsArray.push(mergeSchemaDefinitions(arr[i]!, item));
@@ -500,6 +503,7 @@ export function createMerger({
       delete target.additionalItems;
       target.items = mergeSchemaDefinitions(lItems, rItems);
     }
+    return target
   };
 
   const conditionAssigner: Assigner<JSONSchema7> = (target, l, r) => {
@@ -510,6 +514,7 @@ export function createMerger({
     } else {
       target.allOf = target.allOf.concat(cond);
     }
+    return target
   };
 
   function mergeArraysOfSchemaDefinition(
@@ -525,6 +530,7 @@ export function createMerger({
     [PROPERTIES_ASSIGNER_KEYS, propertiesAssigner],
     [ITEMS_ASSIGNER_KEYS, itemsAssigner],
     [CONDITION_ASSIGNER_KEYS, conditionAssigner],
+    ...assigners,
   ]);
 
   function mergeSchemaDefinitions(
@@ -569,7 +575,7 @@ export function createMerger({
       target[rKey] = merge(lv, rv);
     }
     for (const assign of assigners) {
-      assign(target, left, right);
+      target = assign(target, left, right);
     }
     return target;
   }
