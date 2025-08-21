@@ -48,7 +48,7 @@ export function transformSchemaDefinition<R>(
       return transformSchemaDefinition(item, transform, c);
     });
   }
-  const map = new Map<string, R>();
+  const map = new Map<string, R | string[]>();
   for (const key of RECORDS_OF_SUB_SCHEMAS) {
     const record = schema[key];
     if (record === undefined) {
@@ -61,15 +61,20 @@ export function transformSchemaDefinition<R>(
       property: "",
       path: ctx.path.concat(key, ""),
     };
-    for (const [property, value] of Object.entries(record)) {
+    const keys = Object.keys(record);
+    const keysLen = keys.length;
+    for (let i = 0; i < keysLen; i++) {
+      const property = keys[i]!;
+      const value = record[property]!;
       if (Array.isArray(value)) {
+        map.set(property, value);
         continue;
       }
       c.property = property;
       c.path[c.path.length - 1] = property;
       map.set(property, transformSchemaDefinition(value, transform, c));
     }
-    shallowCopy[key] = Object.fromEntries(map);
+    shallowCopy[key] = Object.fromEntries(map) as Record<string, R>;
     map.clear();
   }
   const c: SubSchemaTraverserContext<SchemaKey> = {
