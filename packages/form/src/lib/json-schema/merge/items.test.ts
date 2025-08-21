@@ -1,3 +1,7 @@
+// This file was copied and modified from https://github.com/mokkabonna/json-schema-merge-allof/blob/1cc2aa53a5d33c17d0e9c59b13eed77d86ad91c3/test/specs/items.spec.js
+// MIT © Martin Hansen
+// Modifications made by Roman Krasilnikov.
+
 import { describe, expect, it } from "vitest";
 
 import { createDeduplicator, createIntersector } from "@/lib/array.js";
