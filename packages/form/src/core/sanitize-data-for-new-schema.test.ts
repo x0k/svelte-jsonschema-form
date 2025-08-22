@@ -15,12 +15,15 @@ import { sanitizeDataForNewSchema } from "./sanitize-data-for-new-schema.js";
 import { retrieveSchema } from "./resolve.js";
 import type { Schema } from "./schema.js";
 import { createValidator } from "./test-validator.js";
-import { defaultMerger } from './merger.js';
+import type { Merger } from "./merger.js";
+import { createMerger } from "./test-merger.js";
 
 let testValidator: Validator;
+let defaultMerger: Merger;
 
 beforeEach(() => {
   testValidator = createValidator();
+  defaultMerger = createMerger();
 });
 
 describe("sanitizeDataForNewSchema", () => {
@@ -43,7 +46,56 @@ describe("sanitizeDataForNewSchema", () => {
   it('returns input formData when the old schema does not contain a "property" object', () => {
     const newSchema = retrieveSchema(
       testValidator,
-      defaultMerger,
+      createMerger({
+        merges: [
+          {
+            left: {
+              type: "object",
+              properties: {
+                name: {
+                  type: "string",
+                  default: "second_option",
+                  readOnly: true,
+                },
+                flag: { type: "boolean", default: false },
+                inner_spec: { $ref: "#/definitions/inner_spec_def" },
+                unique_to_second: { type: "integer" },
+                labeled_options: {
+                  oneOf: [
+                    { type: "string" },
+                    { type: "array", items: { type: "string" } },
+                  ],
+                },
+              },
+              required: ["name", "inner_spec"],
+              additionalProperties: false,
+            },
+            right: { title: "second option" },
+            result: {
+              type: "object",
+              title: "second option",
+              properties: {
+                name: {
+                  type: "string",
+                  default: "second_option",
+                  readOnly: true,
+                },
+                flag: { type: "boolean", default: false },
+                inner_spec: { $ref: "#/definitions/inner_spec_def" },
+                unique_to_second: { type: "integer" },
+                labeled_options: {
+                  oneOf: [
+                    { type: "string" },
+                    { type: "array", items: { type: "string" } },
+                  ],
+                },
+              },
+              required: ["name", "inner_spec"],
+              additionalProperties: false,
+            },
+          },
+        ],
+      }),
       SECOND_ONE_OF,
       oneOfSchema
     );
@@ -61,12 +113,113 @@ describe("sanitizeDataForNewSchema", () => {
   it("returns input formData when the new schema matches the data for the new schema rather than the old", () => {
     const newSchema = retrieveSchema(
       testValidator,
-      defaultMerger,
+      createMerger({
+        merges: [
+          {
+            left: {
+              type: "object",
+              properties: {
+                name: {
+                  type: "string",
+                  default: "second_option",
+                  readOnly: true,
+                },
+                flag: { type: "boolean", default: false },
+                inner_spec: { $ref: "#/definitions/inner_spec_def" },
+                unique_to_second: { type: "integer" },
+                labeled_options: {
+                  oneOf: [
+                    { type: "string" },
+                    { type: "array", items: { type: "string" } },
+                  ],
+                },
+              },
+              required: ["name", "inner_spec"],
+              additionalProperties: false,
+            },
+            right: { title: "second option" },
+            result: {
+              type: "object",
+              title: "second option",
+              properties: {
+                name: {
+                  type: "string",
+                  default: "second_option",
+                  readOnly: true,
+                },
+                flag: { type: "boolean", default: false },
+                inner_spec: { $ref: "#/definitions/inner_spec_def" },
+                unique_to_second: { type: "integer" },
+                labeled_options: {
+                  oneOf: [
+                    { type: "string" },
+                    { type: "array", items: { type: "string" } },
+                  ],
+                },
+              },
+              required: ["name", "inner_spec"],
+              additionalProperties: false,
+            },
+          },
+        ],
+      }),
       SECOND_ONE_OF,
       oneOfSchema
     );
     const oldSchema = structuredClone(
-      retrieveSchema(testValidator, defaultMerger, FIRST_ONE_OF, oneOfSchema)
+      retrieveSchema(
+        testValidator,
+        createMerger({
+          merges: [
+            {
+              left: {
+                type: "object",
+                properties: {
+                  name: {
+                    type: "string",
+                    default: "first_option",
+                    readOnly: true,
+                  },
+                  flag: { type: "boolean", default: false },
+                  inner_spec: { $ref: "#/definitions/inner_spec_2_def" },
+                  unlabeled_options: {
+                    oneOf: [
+                      { type: "integer" },
+                      { type: "array", items: { type: "integer" } },
+                    ],
+                  },
+                },
+                required: ["name", "inner_spec"],
+                additionalProperties: false,
+              },
+              right: { title: "first option" },
+              result: {
+                type: "object",
+                title: "first option",
+                properties: {
+                  name: {
+                    type: "string",
+                    default: "first_option",
+                    readOnly: true,
+                  },
+                  flag: { type: "boolean", default: false },
+                  inner_spec: { $ref: "#/definitions/inner_spec_2_def" },
+                  unlabeled_options: {
+                    oneOf: [
+                      { type: "integer" },
+                      { type: "array", items: { type: "integer" } },
+                    ],
+                  },
+                },
+                required: ["name", "inner_spec"],
+                additionalProperties: false,
+              },
+            },
+          ],
+        }),
+        FIRST_ONE_OF,
+        oneOfSchema
+      )
     );
     // Change the type of name to trigger a fall-thru
     // @ts-expect-error

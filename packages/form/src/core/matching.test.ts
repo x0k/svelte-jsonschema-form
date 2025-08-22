@@ -17,15 +17,18 @@ import { calculateIndexScore, getClosestMatchingOption } from "./matching.js";
 import { beforeEach, describe, expect, it } from "vitest";
 import type { Validator } from "./validator.js";
 import { createValidator } from "./test-validator.js";
-import { defaultMerger } from "./merger.js";
+import type { Merger } from "./merger.js";
+import { createMerger } from "./test-merger.js";
 
 const firstOption = oneOfSchema.definitions!.first_option_def as Schema;
 const secondOption = oneOfSchema.definitions!.second_option_def as Schema;
 
 let testValidator: Validator;
+let defaultMerger: Merger;
 
 beforeEach(() => {
   testValidator = createValidator();
+  defaultMerger = createMerger();
 });
 
 describe("calculateIndexScore", () => {
@@ -322,6 +325,92 @@ describe("oneOfMatchingOption", () => {
         },
       ],
     });
+    defaultMerger = createMerger({
+      merges: [
+        {
+          left: {
+            type: "object",
+            properties: {
+              name: { type: "string", default: "first_option", readOnly: true },
+              flag: { type: "boolean", default: false },
+              inner_spec: { $ref: "#/definitions/inner_spec_2_def" },
+              unlabeled_options: {
+                oneOf: [
+                  { type: "integer" },
+                  { type: "array", items: { type: "integer" } },
+                ],
+              },
+            },
+            required: ["name", "inner_spec"],
+            additionalProperties: false,
+          },
+          right: { title: "first option" },
+          result: {
+            title: "first option",
+            type: "object",
+            properties: {
+              name: { type: "string", default: "first_option", readOnly: true },
+              flag: { type: "boolean", default: false },
+              inner_spec: { $ref: "#/definitions/inner_spec_2_def" },
+              unlabeled_options: {
+                oneOf: [
+                  { type: "integer" },
+                  { type: "array", items: { type: "integer" } },
+                ],
+              },
+            },
+            required: ["name", "inner_spec"],
+            additionalProperties: false,
+          },
+        },
+        {
+          left: {
+            type: "object",
+            properties: {
+              name: {
+                type: "string",
+                default: "second_option",
+                readOnly: true,
+              },
+              flag: { type: "boolean", default: false },
+              inner_spec: { $ref: "#/definitions/inner_spec_def" },
+              unique_to_second: { type: "integer" },
+              labeled_options: {
+                oneOf: [
+                  { type: "string" },
+                  { type: "array", items: { type: "string" } },
+                ],
+              },
+            },
+            required: ["name", "inner_spec"],
+            additionalProperties: false,
+          },
+          right: { title: "second option" },
+          result: {
+            title: "second option",
+            type: "object",
+            properties: {
+              name: {
+                type: "string",
+                default: "second_option",
+                readOnly: true,
+              },
+              flag: { type: "boolean", default: false },
+              inner_spec: { $ref: "#/definitions/inner_spec_def" },
+              unique_to_second: { type: "integer" },
+              labeled_options: {
+                oneOf: [
+                  { type: "string" },
+                  { type: "array", items: { type: "string" } },
+                ],
+              },
+            },
+            required: ["name", "inner_spec"],
+            additionalProperties: false,
+          },
+        },
+      ],
+    });
     expect(
       getClosestMatchingOption(
         testValidator,
@@ -484,6 +573,92 @@ describe("oneOfMatchingOption", () => {
             unique_to_second: 5,
           },
           result: true,
+        },
+      ],
+    });
+    defaultMerger = createMerger({
+      merges: [
+        {
+          left: {
+            type: "object",
+            properties: {
+              name: { type: "string", default: "first_option", readOnly: true },
+              flag: { type: "boolean", default: false },
+              inner_spec: { $ref: "#/definitions/inner_spec_2_def" },
+              unlabeled_options: {
+                oneOf: [
+                  { type: "integer" },
+                  { type: "array", items: { type: "integer" } },
+                ],
+              },
+            },
+            required: ["name", "inner_spec"],
+            additionalProperties: false,
+          },
+          right: { title: "first option" },
+          result: {
+            title: "first option",
+            type: "object",
+            properties: {
+              name: { type: "string", default: "first_option", readOnly: true },
+              flag: { type: "boolean", default: false },
+              inner_spec: { $ref: "#/definitions/inner_spec_2_def" },
+              unlabeled_options: {
+                oneOf: [
+                  { type: "integer" },
+                  { type: "array", items: { type: "integer" } },
+                ],
+              },
+            },
+            required: ["name", "inner_spec"],
+            additionalProperties: false,
+          },
+        },
+        {
+          left: {
+            type: "object",
+            properties: {
+              name: {
+                type: "string",
+                default: "second_option",
+                readOnly: true,
+              },
+              flag: { type: "boolean", default: false },
+              inner_spec: { $ref: "#/definitions/inner_spec_def" },
+              unique_to_second: { type: "integer" },
+              labeled_options: {
+                oneOf: [
+                  { type: "string" },
+                  { type: "array", items: { type: "string" } },
+                ],
+              },
+            },
+            required: ["name", "inner_spec"],
+            additionalProperties: false,
+          },
+          right: { title: "second option" },
+          result: {
+            title: "second option",
+            type: "object",
+            properties: {
+              name: {
+                type: "string",
+                default: "second_option",
+                readOnly: true,
+              },
+              flag: { type: "boolean", default: false },
+              inner_spec: { $ref: "#/definitions/inner_spec_def" },
+              unique_to_second: { type: "integer" },
+              labeled_options: {
+                oneOf: [
+                  { type: "string" },
+                  { type: "array", items: { type: "string" } },
+                ],
+              },
+            },
+            required: ["name", "inner_spec"],
+            additionalProperties: false,
+          },
         },
       ],
     });

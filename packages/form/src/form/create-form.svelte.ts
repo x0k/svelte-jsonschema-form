@@ -53,7 +53,7 @@ import {
   type FormContext,
   FORM_CONTEXT,
 } from "./context/index.js";
-import { createFormMerger, type FormMerger } from "./merger.js";
+import type { FormMerger } from "./merger.js";
 import {
   type Id,
   DEFAULT_ID_PREFIX,
@@ -122,11 +122,11 @@ export interface FormOptions<T, V extends Validator>
   schema: Schema;
   theme: Theme;
   translation: Translation;
+  merger: FormMerger;
   resolver: (ctx: FormInternalContext<V>) => ResolveFieldType;
   icons?: Icons;
   uiSchema?: UiSchemaRoot;
   extraUiOptions?: ExtraUiOptions;
-  merger?: FormMerger;
   fieldsValidationMode?: FieldsValidationMode;
   disabled?: boolean;
   /**
@@ -265,14 +265,11 @@ export function setFormContext2(form: FormState<any, any>) {
 export function createForm<T, V extends Validator>(
   options: FormOptions<T, V>
 ): FormState<T, V> {
-  const merger = $derived(
-    options.merger ?? createFormMerger(options.validator, options.schema)
-  );
 
   const valueRef = options.value
     ? toValueRef(options.value)
     : // svelte-ignore state_referenced_locally
-      createValueRef(merger, options.schema, options.initialValue);
+      createValueRef(options.merger, options.schema, options.initialValue);
   let errors = $state.raw(
     Array.isArray(options.initialErrors)
       ? groupErrors(options.initialErrors)
@@ -443,7 +440,7 @@ export function createForm<T, V extends Validator>(
     isSubmitted = false;
     isChanged = false;
     errors.clear();
-    valueRef.current = merger.mergeFormDataAndSchemaDefaults(
+    valueRef.current = options.merger.mergeFormDataAndSchemaDefaults(
       options.initialValue as FormValue,
       options.schema
     );
@@ -527,7 +524,7 @@ export function createForm<T, V extends Validator>(
       return options.validator;
     },
     get merger() {
-      return merger;
+      return options.merger;
     },
     get fieldTypeResolver() {
       return fieldTypeResolver;
@@ -574,7 +571,7 @@ export function createForm<T, V extends Validator>(
       return getSnapshot(context) as T | undefined;
     },
     set value(v) {
-      valueRef.current = merger.mergeFormDataAndSchemaDefaults(
+      valueRef.current = options.merger.mergeFormDataAndSchemaDefaults(
         v as FormValue,
         options.schema
       );

@@ -196,7 +196,10 @@ export interface MergeOptions {
   intersectJson?: Intersector<JSONSchema7Type>;
   deduplicateJsonSchemaDef?: Deduplicator<JSONSchema7Definition>;
   defaultMerger?: Merger<any>;
-  assigners?: Iterable<[SchemaKey[], Assigner<JSONSchema7>]>
+  mergers?: Partial<{
+    [K in SchemaKey]: Merger<Exclude<JSONSchema7[K], undefined>>;
+  }>;
+  assigners?: Iterable<[SchemaKey[], Assigner<JSONSchema7>]>;
 }
 
 export function createMerger({
@@ -206,6 +209,7 @@ export function createMerger({
   deduplicateJsonSchemaDef = identity,
   defaultMerger = identity,
   assigners = [],
+  mergers,
 }: MergeOptions = {}) {
   function mergeArrayOfSchemaDefinitions(
     schemas: JSONSchema7Definition[]
@@ -328,7 +332,7 @@ export function createMerger({
           : (lPatterns ?? rPatterns)
       );
       delete target.additionalProperties;
-      return target
+      return target;
     }
     // Additional Properties
     const additionalProperties = mergeSchemaDefinitions(
@@ -439,7 +443,7 @@ export function createMerger({
       "patternProperties",
       patterns
     );
-    return target
+    return target;
   };
 
   const itemsAssigner: Assigner<JSONSchema7> = (
@@ -503,7 +507,7 @@ export function createMerger({
       delete target.additionalItems;
       target.items = mergeSchemaDefinitions(lItems, rItems);
     }
-    return target
+    return target;
   };
 
   const conditionAssigner: Assigner<JSONSchema7> = (target, l, r) => {
@@ -514,7 +518,7 @@ export function createMerger({
     } else {
       target.allOf = target.allOf.concat(cond);
     }
-    return target
+    return target;
   };
 
   function mergeArraysOfSchemaDefinition(
@@ -571,7 +575,6 @@ export function createMerger({
         continue;
       }
       const merge = MERGERS[rKey as keyof typeof MERGERS] ?? defaultMerger;
-      // @ts-expect-error
       target[rKey] = merge(lv, rv);
     }
     for (const assign of assigners) {
@@ -585,9 +588,7 @@ export function createMerger({
   );
 
   const MERGERS: {
-    [K in Exclude<SchemaKey, AssignerKey>]-?: Merger<
-      Exclude<JSONSchema7[K], undefined>
-    >;
+    [K in SchemaKey]?: Merger<Exclude<JSONSchema7[K], undefined>>;
   } = {
     $id: defaultMerger,
     $ref: defaultMerger,
@@ -712,6 +713,11 @@ export function createMerger({
     minProperties: Math.max,
     uniqueItems: mergeBooleans,
     required: union,
+    ...mergers,
+  } satisfies {
+    [K in Exclude<SchemaKey, AssignerKey>]-?: Merger<
+      Exclude<JSONSchema7[K], undefined>
+    >;
   };
 
   return {

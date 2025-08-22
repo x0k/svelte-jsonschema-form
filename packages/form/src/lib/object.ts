@@ -17,6 +17,7 @@ export function isRecordEmpty<R extends Record<string, any>>(
   return true;
 }
 
+// TODO: Remove in v4
 /** @deprecated use `isRecordEmpty` */
 export const isEmptyRecord = isRecordEmpty
 
