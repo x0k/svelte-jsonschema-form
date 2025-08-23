@@ -1,4 +1,4 @@
-import { setContext } from "svelte";
+import { setContext, untrack } from "svelte";
 import type { Attachment } from "svelte/attachments";
 import { SvelteMap } from "svelte/reactivity";
 import { on } from "svelte/events";
@@ -11,7 +11,12 @@ import {
   type TasksCombinator,
   type FailedTask,
 } from "@/lib/task.svelte.js";
-import type { Schema, Validator } from "@/core/index.js";
+import {
+  UNCHANGED,
+  reconcileSchemaValues,
+  type Schema,
+  type Validator,
+} from "@/core/index.js";
 
 import {
   type ValidationError,
@@ -541,8 +546,26 @@ export function createForm<T, V extends Validator>(
     },
     submitHandler,
     resetHandler,
+    markSchemaChange() {
+      if (isDefaultsInjectionQueued) return;
+      isDefaultsInjectionQueued = true;
+      queueMicrotask(injectSchemaDefaults);
+    },
   };
   const fieldTypeResolver = $derived(options.resolver(context));
+
+  let isDefaultsInjectionQueued = false;
+  function injectSchemaDefaults() {
+    isDefaultsInjectionQueued = false;
+    const nextValue = merger.mergeFormDataAndSchemaDefaults(
+      valueRef.current,
+      options.schema
+    );
+    const change = reconcileSchemaValues(valueRef.current, nextValue);
+    if (change !== UNCHANGED) {
+      valueRef.current = change;
+    }
+  }
 
   return {
     context,
