@@ -1,5 +1,13 @@
 # @sjsf/form
 
+## 2.2.3
+
+### Patch Changes
+
+- Fix omitting dependency arrays in the schema transformer ([`8be9383`](https://github.com/x0k/svelte-jsonschema-form/commit/8be93831dfcda3716067dc02349f6c4011489967))
+
+- Preserve array keys by injecting default values instead of state replacing ([#170](https://github.com/x0k/svelte-jsonschema-form/pull/170))
+
 ## 2.2.2
 
 ## 2.2.1
