@@ -87,7 +87,7 @@ export function createObjectContext<V extends Validator>(
     return lastSchemaProperties;
   });
 
-  // NOTE: This code should populate `defaults`
+  // NOTE: `defaults` population
   $effect(() => {
     schemaProperties;
     markSchemaChange(ctx);

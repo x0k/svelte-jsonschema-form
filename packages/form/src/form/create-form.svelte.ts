@@ -1,4 +1,4 @@
-import { setContext, untrack } from "svelte";
+import { setContext } from "svelte";
 import type { Attachment } from "svelte/attachments";
 import { SvelteMap } from "svelte/reactivity";
 import { on } from "svelte/events";
