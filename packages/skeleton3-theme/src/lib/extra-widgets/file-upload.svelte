@@ -63,14 +63,13 @@
 		return true;
 	}
 
-	let isApiReady = $state.raw(false);
 	let api: FileUploadApi;
 	$effect(() => {
-		if (isApiReady === false || areFilesEqual(value, lastFiles)) {
+		if (areFilesEqual(value, lastFiles)) {
 			return;
 		}
 		untrack(() => {
-			if (value == undefined) {
+			if (value === undefined) {
 				lastFiles = undefined;
 				api.clearFiles();
 			} else {
@@ -92,7 +91,6 @@
 	{...attributes}
 	onApiReady={(a) => {
 		api = a;
-		isApiReady = true;
 		attributes.onApiReady?.(a);
 	}}
 />
