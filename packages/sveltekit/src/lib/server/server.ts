@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { defaultMerger, type Merger, type Validator } from '@sjsf/form/core';
+import type { Merger, Validator } from '@sjsf/form/core';
 import {
   DEFAULT_ID_PREFIX,
   DEFAULT_ID_SEPARATOR,
@@ -16,6 +16,7 @@ import {
   type AnyFormValueValidator,
   isAsyncFormValueValidator
 } from '@sjsf/form';
+import { createMerger } from '@sjsf/form/mergers/modern';
 
 import { JSON_CHUNKS_KEY, type InitialFormData, type ValidatedFormData } from '../model.js';
 
@@ -54,7 +55,7 @@ export interface FormDataParserOptions extends IdOptions {
 
 export function makeFormDataParser({
   validator,
-  merger = defaultMerger,
+  merger = createMerger(),
   idPrefix = DEFAULT_ID_PREFIX,
   idSeparator = DEFAULT_ID_SEPARATOR,
   idPseudoSeparator = DEFAULT_ID_PSEUDO_SEPARATOR

@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { identity } from '@sjsf/form/lib/function';
 
 import { makeFormDataParser } from './server.js';
 
@@ -13,6 +14,10 @@ describe('makeFormDataParser', () => {
     const parse = makeFormDataParser({
       validator: {
         isValid: () => true
+      },
+      merger: {
+        mergeAllOf: identity,
+        mergeSchemas: identity
       }
     });
     const data = await parse({

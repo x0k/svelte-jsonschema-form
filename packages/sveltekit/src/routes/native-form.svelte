@@ -4,6 +4,7 @@
   import { theme } from '@sjsf/basic-theme';
   import { translation } from '@sjsf/form/translations/en';
   import { resolver } from '@sjsf/form/resolvers/basic';
+  import { createFormMerger } from '@sjsf/form/mergers/modern';
 
   import {
     createMeta,
@@ -34,7 +35,8 @@
     resolver,
     translation,
     onSubmit: request.run,
-    onSubmitError: console.warn
+    onSubmitError: console.warn,
+    createMerger: ({ schema }) => createFormMerger(validator, schema)
   });
   setFormContext2(form);
 </script>

@@ -3,10 +3,15 @@ import { isRecord } from '@sjsf/form/lib/object';
 import type { Validator } from '@sjsf/form/core';
 import {
   createForm,
+  groupErrors,
   type Schema,
   type FormOptions,
-  groupErrors,
-  type PossibleError
+  type PossibleError,
+  type ValidatorFactoryOptions,
+  type CommonFormOptions,
+  type MergerFormOptions,
+  type ValidatorFormOptions,
+  type UiOptionsRegistryOption
 } from '@sjsf/form';
 
 import { page } from '$app/state';
@@ -24,11 +29,23 @@ type SchemaOption<SendSchema> = SendSchema extends true
       schema: Schema;
     };
 
-export type SvelteKitFormOptions<T, V extends Validator, SendSchema extends boolean> = Omit<
-  FormOptions<T, V>,
-  'schema'
-> &
-  SchemaOption<SendSchema>;
+export type SvelteKitFormOptions<
+  T,
+  V extends Validator,
+  SendSchema extends boolean,
+  ToOmit extends keyof CommonFormOptions<T, V> = never
+> = Omit<CommonFormOptions<T, V>, 'schema' | ToOmit> &
+  ValidatorFormOptions<V> &
+  MergerFormOptions<V> &
+  SchemaOption<SendSchema> &
+  UiOptionsRegistryOption;
+
+type ValidatorType<O> = O extends { validator: infer V }
+  ? V
+  : O extends { createValidator: (options: ValidatorFactoryOptions) => infer V }
+    ? V
+    : Validator;
+
 function initialFormData<Meta extends SvelteKitFormMeta<any, any, string, any>>(
   meta: Meta
 ):
@@ -68,14 +85,14 @@ export function createSvelteKitForm<
         }
         return Reflect.get(target, p, receiver);
       }
-    }) as unknown as FormOptions<Meta['__formValue'], Options['validator']>
+    }) as unknown as FormOptions<Meta['__formValue'], ValidatorType<Options>>
   );
   $effect(() => {
     if (!isRecord(page.form)) {
       return;
     }
     const validationData = page.form[meta.name] as
-      | ValidatedFormData<PossibleError<Options['validator']>, Meta['__sendData']>
+      | ValidatedFormData<PossibleError<ValidatorType<Options>>, Meta['__sendData']>
       | undefined;
     if (validationData === undefined) {
       return;
@@ -88,15 +105,15 @@ export function createSvelteKitForm<
   return form;
 }
 
-export type SvelteKitFormSetupOptions<Meta extends SvelteKitFormMeta<any, any, string, any>> = Omit<
-  SvelteKitFormOptions<Meta['__formValue'], Validator, Meta['__sendSchema']>,
-  'onSubmit'
->;
+export type SvelteKitFormSetupOptions<Meta extends SvelteKitFormMeta<any, any, string, any>> =
+  SvelteKitFormOptions<Meta['__formValue'], Validator, Meta['__sendSchema'], 'onSubmit'>;
 
 export function setupSvelteKitForm<
   Meta extends SvelteKitFormMeta<any, any, string, any>,
-  FormOptions extends Omit<
-    SvelteKitFormOptions<Meta['__formValue'], Validator, Meta['__sendSchema']>,
+  FormOptions extends SvelteKitFormOptions<
+    Meta['__formValue'],
+    Validator,
+    Meta['__sendSchema'],
     'onSubmit'
   >
 >(
