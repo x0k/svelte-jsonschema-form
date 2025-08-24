@@ -13,6 +13,7 @@ import {
   ITEMS_KEY,
   REQUIRED_KEY,
   type Experimental_DefaultFormStateBehavior,
+  type Merger,
   type Schema,
   type SchemaDefinition,
   type Validator,
@@ -161,6 +162,15 @@ export function mergeSchemas(
   return merged;
 }
 
+export function createMerger(): Merger {
+  return {
+    mergeSchemas,
+    mergeAllOf(schema) {
+      return mergeAllOf(schema, { deep: false } as Options) as Schema;
+    },
+  };
+}
+
 export type FormMergerOptions = Experimental_DefaultFormStateBehavior & {
   includeUndefinedValues?: boolean | "excludeObjectChildren";
 };
@@ -170,11 +180,9 @@ export function createFormMerger(
   rootSchema: Schema,
   options: FormMergerOptions = {}
 ): FormMerger {
-  const merger: FormMerger = {
-    mergeSchemas,
-    mergeAllOf(schema) {
-      return mergeAllOf(schema, { deep: false } as Options) as Schema;
-    },
+  const merger = createMerger();
+  return {
+    ...merger,
     mergeFormDataAndSchemaDefaults(formData, schema) {
       return getDefaultFormState(
         validator,
@@ -187,5 +195,4 @@ export function createFormMerger(
       );
     },
   };
-  return merger;
 }
