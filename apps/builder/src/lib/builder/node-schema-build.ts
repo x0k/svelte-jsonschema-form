@@ -1,8 +1,7 @@
-import { identity } from "@sjsf/form/lib/function";
-import { mergeSchemas } from "@sjsf/form/core";
 import type { Schema } from "@sjsf/form";
 
 import { assertThing } from "$lib/assert.js";
+import { mergeSchemas } from '$lib/json-schema.js';
 
 import {
   NodeType,
