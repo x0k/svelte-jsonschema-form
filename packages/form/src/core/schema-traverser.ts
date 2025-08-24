@@ -1,4 +1,16 @@
 // TODO: Remove in v4
+import {
+  type AbstractSchemaTraverserContext,
+  type ArraySchemaTraverserContext,
+  type RecordSchemaTraverserContext,
+  type RootSchemaTraverserContext,
+  type SchemaDefinitionVisitor,
+  type SchemaTraverserContext,
+  type SchemaTraverserContextType,
+  type SubSchemaTraverserContext,
+  makeSchemaDefinitionTraverser,
+} from "@/lib/json-schema/traverse.js";
+
 export {
   /** @deprecated use `AbstractSchemaTraverserContext` from `lib/json-schema` */
   type AbstractSchemaTraverserContext,
@@ -18,4 +30,4 @@ export {
   type SubSchemaTraverserContext,
   /** @deprecated use `makeSchemaDefinitionTraverser` from `lib/json-schema` */
   makeSchemaDefinitionTraverser,
-} from "@/lib/json-schema/traverse.js";
+};

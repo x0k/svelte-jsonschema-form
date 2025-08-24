@@ -5,7 +5,6 @@ import {
   isSchemaObject,
   type AnySubSchemaKey,
   ALL_SUB_SCHEMA_KEYS,
-  type TransformedSchema,
 } from "@/lib/json-schema/index.js";
 
 // TODO: Remove in v4
@@ -13,6 +12,22 @@ import {
 export const SCHEMA_KEYS = ALL_SUB_SCHEMA_KEYS;
 
 // TODO: Remove in v4
+import {
+  type SubSchemaKey,
+  type SubSchemasArrayKey,
+  type SubSchemasRecordKey,
+  type TransformedSchema,
+  type TransformedSchemaDefinition,
+  RECORDS_OF_SUB_SCHEMAS,
+  ARRAYS_OF_SUB_SCHEMAS,
+  SUB_SCHEMAS,
+  SET_OF_ARRAYS_OF_SUB_SCHEMAS,
+  SET_OF_RECORDS_OF_SUB_SCHEMAS,
+  SET_OF_SUB_SCHEMAS,
+  isSubSchemaKey,
+  isSubSchemasArrayKey,
+  isSubSchemasRecordKey,
+} from "@/lib/json-schema/index.js";
 export {
   /** @deprecated use `SubSchemaKey` from `lib/json-schema` */
   type SubSchemaKey,
@@ -42,7 +57,7 @@ export {
   isSubSchemasArrayKey,
   /** @deprecated use `isSubSchemasRecordKey` from `lib/json-schema` */
   isSubSchemasRecordKey,
-} from "@/lib/json-schema/index.js";
+};
 
 export interface OpenAPIDiscriminator {
   propertyName: string;
