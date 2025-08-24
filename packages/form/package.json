@@ -122,6 +122,10 @@
       "types": "./dist/validators/*.d.ts",
       "default": "./dist/validators/*.js"
     },
+    "./mergers/*": {
+      "types": "./dist/mergers/*.d.ts",
+      "default": "./dist/mergers/*.js"
+    },
     "./focus-on-first-error": {
       "types": "./dist/focus-on-first-error.d.ts",
       "svelte": "./dist/focus-on-first-error.js"
