@@ -2,6 +2,7 @@ import { z, type ZodIssue, type ZodSchema } from "zod";
 import { weakMemoize } from "@sjsf/form/lib/memoize";
 import {
   resolveAllReferences,
+  type Merger,
   type Schema,
   type Validator,
 } from "@sjsf/form/core";
@@ -12,6 +13,7 @@ import {
   type FieldValueValidator,
   type FormValueValidator,
 } from "@sjsf/form";
+import { createMerger } from "@sjsf/form/mergers/modern";
 import { jsonSchemaToZod } from "json-schema-to-zod";
 
 import {
@@ -24,11 +26,13 @@ export function evalZodSchema(schema: Schema) {
   return new Function("z", `return ${jsonSchemaToZod(schema)}`)(z);
 }
 
-export function createZodSchemaFactory() {
+export type MergerAccessor = () => Merger;
+
+export function createZodSchemaFactory(merger: MergerAccessor) {
   const cache = new WeakMap<Schema, ZodSchema>();
   let lastRootSchema: Schema;
   const factory = weakMemoize<Schema, ZodSchema>(cache, (schema) =>
-    evalZodSchema(resolveAllReferences(schema, lastRootSchema))
+    evalZodSchema(resolveAllReferences(merger(), schema, lastRootSchema))
   );
   return (schema: Schema, rootSchema: Schema) => {
     if (lastRootSchema !== rootSchema) {
@@ -131,15 +135,22 @@ export type AsyncZodFormValidator = Validator &
   AsyncFormValueValidator<ZodIssue> &
   AsyncFieldValueValidator<ZodIssue>;
 
+function createMergerAccessor(): MergerAccessor {
+  const merger = createMerger();
+  return () => merger;
+}
+
 export function createFormValidator<Async extends boolean = false>(
   zodSchema: ZodSchema,
   {
     async,
-    createZodSchema = createZodSchemaFactory(),
+    merger = createMergerAccessor(),
+    createZodSchema = createZodSchemaFactory(merger),
     createFieldZodSchema = createFieldZodSchemaFactory(),
     ...rest
   }: Partial<Omit<FormValidatorOptions, "zodSchema">> & {
     async?: Async;
+    merger?: MergerAccessor;
   } = {}
 ) {
   const options: FormValidatorOptions = {
