@@ -144,146 +144,149 @@ export interface ValidatorFactoryOptions {
   merger: FormMerger;
 }
 
-type ValidatorFormOptions<V extends Validator> = AtLeastOne<{
+export type ValidatorFormOptions<V extends Validator> = AtLeastOne<{
   validator: V;
   createValidator: (options: ValidatorFactoryOptions) => V;
 }>;
 
 export interface MergerFactoryOptions<V extends Validator> {
   validator: V;
-  schema: Schema
+  schema: Schema;
   uiSchema: UiSchemaRoot;
 }
 
-type MergerFormOptions<V extends Validator> = AtLeastOne<{
+export type MergerFormOptions<V extends Validator> = AtLeastOne<{
   merger: FormMerger;
   createMerger: (options: MergerFactoryOptions<V>) => FormMerger;
 }>;
 
+export interface CommonFormOptions<T, V extends Validator> {
+  schema: Schema;
+  theme: Theme;
+  translation: Translation;
+  resolver: (ctx: FormInternalContext<V>) => ResolveFieldType;
+  icons?: Icons;
+  uiSchema?: UiSchemaRoot;
+  extraUiOptions?: ExtraUiOptions;
+  fieldsValidationMode?: FieldsValidationMode;
+  disabled?: boolean;
+  /**
+   * @default DEFAULT_ID_PREFIX
+   */
+  idPrefix?: string;
+  /**
+   * @default DEFAULT_ID_SEPARATOR
+   */
+  idSeparator?: string;
+  /**
+   * @default DEFAULT_ID_PSEUDO_SEPARATOR
+   */
+  idPseudoSeparator?: string;
+  //
+  initialValue?: InitialValue<T>;
+  value?: [() => T, (v: T) => void];
+  initialErrors?: InitialErrors<V>;
+  errors?: [
+    () => FieldErrorsMap<PossibleError<V>>,
+    (v: FieldErrorsMap<PossibleError<V>>) => void,
+  ];
+  /**
+   * @default waitPrevious
+   */
+  submissionCombinator?: TasksCombinator<
+    [event: SubmitEvent],
+    FormValidationResult<AnyFormValueValidatorError<V>>,
+    unknown
+  >;
+  /**
+   * @default 500
+   */
+  submissionDelayedMs?: number;
+  /**
+   * @default 8000
+   */
+  submissionTimeoutMs?: number;
+  /**
+   * @default 300
+   */
+  fieldsValidationDebounceMs?: number;
+  /**
+   * @default abortPrevious
+   */
+  fieldsValidationCombinator?: TasksCombinator<
+    [Config, FormValue],
+    FieldError<AnyFieldValueValidatorError<V>>[],
+    unknown
+  >;
+  /**
+   * @default 500
+   */
+  fieldsValidationDelayedMs?: number;
+  /**
+   * @default 8000
+   */
+  fieldsValidationTimeoutMs?: number;
+  /**
+   * The function to get the form data snapshot
+   *
+   * The snapshot is used to validate the form and passed to
+   * `onSubmit` and `onSubmitError` handlers.
+   *
+   * @default (ctx) => $state.snapshot(ctx.value)
+   */
+  getSnapshot?: (ctx: FormInternalContext<V>) => FormValue;
+  /**
+   * Submit handler
+   *
+   * Will be called when the form is submitted and form data
+   * snapshot is valid
+   *
+   * Note that we rely on `validator.validateFormData` to check that the
+   * `formData is T`. So make sure you provide a `T` type that
+   * matches the validator check result.
+   */
+  onSubmit?: (value: T, e: SubmitEvent) => void;
+  /**
+   * Submit error handler
+   *
+   * Will be called when the form is submitted and form data
+   * snapshot is not valid
+   */
+  onSubmitError?: (
+    errors: FieldErrorsMap<AnyFormValueValidatorError<V>>,
+    e: SubmitEvent,
+    snapshot: FormValue
+  ) => void;
+  /**
+   * Form submission error handler
+   *
+   * Will be called when the submission fails by a different reasons:
+   * - submission is cancelled
+   * - error during validation
+   * - validation timeout
+   */
+  onSubmissionFailure?: (state: FailedTask<unknown>, e: SubmitEvent) => void;
+  /**
+   * Field validation error handler
+   */
+  onFieldsValidationFailure?: (
+    state: FailedTask<unknown>,
+    config: Config,
+    value: FormValue
+  ) => void;
+  /**
+   * Reset handler
+   *
+   * Will be called when the form is reset.
+   */
+  onReset?: (e: Event) => void;
+  schedulerYield?: SchedulerYield;
+}
+
 export type FormOptions<T, V extends Validator> = UiOptionsRegistryOption &
   ValidatorFormOptions<V> &
-  MergerFormOptions<V> & {
-    schema: Schema;
-    theme: Theme;
-    translation: Translation;
-    resolver: (ctx: FormInternalContext<V>) => ResolveFieldType;
-    icons?: Icons;
-    uiSchema?: UiSchemaRoot;
-    extraUiOptions?: ExtraUiOptions;
-    fieldsValidationMode?: FieldsValidationMode;
-    disabled?: boolean;
-    /**
-     * @default DEFAULT_ID_PREFIX
-     */
-    idPrefix?: string;
-    /**
-     * @default DEFAULT_ID_SEPARATOR
-     */
-    idSeparator?: string;
-    /**
-     * @default DEFAULT_ID_PSEUDO_SEPARATOR
-     */
-    idPseudoSeparator?: string;
-    //
-    initialValue?: InitialValue<T>;
-    value?: [() => T, (v: T) => void];
-    initialErrors?: InitialErrors<V>;
-    errors?: [
-      () => FieldErrorsMap<PossibleError<V>>,
-      (v: FieldErrorsMap<PossibleError<V>>) => void,
-    ];
-    /**
-     * @default waitPrevious
-     */
-    submissionCombinator?: TasksCombinator<
-      [event: SubmitEvent],
-      FormValidationResult<AnyFormValueValidatorError<V>>,
-      unknown
-    >;
-    /**
-     * @default 500
-     */
-    submissionDelayedMs?: number;
-    /**
-     * @default 8000
-     */
-    submissionTimeoutMs?: number;
-    /**
-     * @default 300
-     */
-    fieldsValidationDebounceMs?: number;
-    /**
-     * @default abortPrevious
-     */
-    fieldsValidationCombinator?: TasksCombinator<
-      [Config, FormValue],
-      FieldError<AnyFieldValueValidatorError<V>>[],
-      unknown
-    >;
-    /**
-     * @default 500
-     */
-    fieldsValidationDelayedMs?: number;
-    /**
-     * @default 8000
-     */
-    fieldsValidationTimeoutMs?: number;
-    /**
-     * The function to get the form data snapshot
-     *
-     * The snapshot is used to validate the form and passed to
-     * `onSubmit` and `onSubmitError` handlers.
-     *
-     * @default (ctx) => $state.snapshot(ctx.value)
-     */
-    getSnapshot?: (ctx: FormInternalContext<V>) => FormValue;
-    /**
-     * Submit handler
-     *
-     * Will be called when the form is submitted and form data
-     * snapshot is valid
-     *
-     * Note that we rely on `validator.validateFormData` to check that the
-     * `formData is T`. So make sure you provide a `T` type that
-     * matches the validator check result.
-     */
-    onSubmit?: (value: T, e: SubmitEvent) => void;
-    /**
-     * Submit error handler
-     *
-     * Will be called when the form is submitted and form data
-     * snapshot is not valid
-     */
-    onSubmitError?: (
-      errors: FieldErrorsMap<AnyFormValueValidatorError<V>>,
-      e: SubmitEvent,
-      snapshot: FormValue
-    ) => void;
-    /**
-     * Form submission error handler
-     *
-     * Will be called when the submission fails by a different reasons:
-     * - submission is cancelled
-     * - error during validation
-     * - validation timeout
-     */
-    onSubmissionFailure?: (state: FailedTask<unknown>, e: SubmitEvent) => void;
-    /**
-     * Field validation error handler
-     */
-    onFieldsValidationFailure?: (
-      state: FailedTask<unknown>,
-      config: Config,
-      value: FormValue
-    ) => void;
-    /**
-     * Reset handler
-     *
-     * Will be called when the form is reset.
-     */
-    onReset?: (e: Event) => void;
-    schedulerYield?: SchedulerYield;
-  };
+  MergerFormOptions<V> &
+  CommonFormOptions<T, V>;
 
 export interface FormState<T, V extends Validator> {
   /** @deprecated don't use this property */
