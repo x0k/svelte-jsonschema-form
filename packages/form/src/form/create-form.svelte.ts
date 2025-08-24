@@ -3,8 +3,9 @@ import type { Attachment } from "svelte/attachments";
 import { SvelteMap } from "svelte/reactivity";
 import { on } from "svelte/events";
 
-import { createDataURLtoBlob } from "@/lib/file.js";
+import type { AtLeastOne } from "@/lib/types.js";
 import type { SchedulerYield } from "@/lib/scheduler.js";
+import { createDataURLtoBlob } from "@/lib/file.js";
 import {
   abortPrevious,
   createTask,
@@ -86,7 +87,7 @@ export type UiOptionsRegistryOption = keyof UiOptionsRegistry extends never
 function createValueRef<T>(
   merger: FormMerger,
   schema: Schema,
-  initialValue?: T | Partial<T>
+  initialValue: T | Partial<T>
 ): ValueRef<FormValue> {
   let value = $state(
     merger.mergeFormDataAndSchemaDefaults(initialValue as FormValue, schema)
@@ -101,142 +102,182 @@ function createValueRef<T>(
   };
 }
 
-function toValueRef<T>([get, set]: [
-  () => T,
-  (v: T) => void,
-]): ValueRef<FormValue> {
+function createErrorsRef<V extends Validator>(
+  initialErrors: InitialErrors<V> | undefined
+): ValueRef<FieldErrorsMap<PossibleError<V>>> {
+  let value = $state.raw(
+    Array.isArray(initialErrors)
+      ? groupErrors(initialErrors)
+      : new SvelteMap(initialErrors)
+  );
   return {
     get current() {
-      return get() as FormValue;
+      return value;
     },
     set current(v) {
-      set(v as T);
+      value = v;
     },
   };
 }
 
-// How this `extends` works?
-export interface FormOptions<T, V extends Validator>
-  extends UiOptionsRegistryOption {
-  validator: V;
-  schema: Schema;
-  theme: Theme;
-  translation: Translation;
-  merger: FormMerger;
-  resolver: (ctx: FormInternalContext<V>) => ResolveFieldType;
-  icons?: Icons;
-  uiSchema?: UiSchemaRoot;
-  extraUiOptions?: ExtraUiOptions;
-  fieldsValidationMode?: FieldsValidationMode;
-  disabled?: boolean;
-  /**
-   * @default DEFAULT_ID_PREFIX
-   */
-  idPrefix?: string;
-  /**
-   * @default DEFAULT_ID_SEPARATOR
-   */
-  idSeparator?: string;
-  /**
-   * @default DEFAULT_ID_PSEUDO_SEPARATOR
-   */
-  idPseudoSeparator?: string;
-  //
-  value?: [() => T, (v: T) => void];
-  initialValue?: InitialValue<T>;
-  initialErrors?: InitialErrors<V>;
-  /**
-   * @default waitPrevious
-   */
-  submissionCombinator?: TasksCombinator<
-    [event: SubmitEvent],
-    FormValidationResult<AnyFormValueValidatorError<V>>,
-    unknown
-  >;
-  /**
-   * @default 500
-   */
-  submissionDelayedMs?: number;
-  /**
-   * @default 8000
-   */
-  submissionTimeoutMs?: number;
-  /**
-   * @default 300
-   */
-  fieldsValidationDebounceMs?: number;
-  /**
-   * @default abortPrevious
-   */
-  fieldsValidationCombinator?: TasksCombinator<
-    [Config, FormValue],
-    FieldError<AnyFieldValueValidatorError<V>>[],
-    unknown
-  >;
-  /**
-   * @default 500
-   */
-  fieldsValidationDelayedMs?: number;
-  /**
-   * @default 8000
-   */
-  fieldsValidationTimeoutMs?: number;
-  /**
-   * The function to get the form data snapshot
-   *
-   * The snapshot is used to validate the form and passed to
-   * `onSubmit` and `onSubmitError` handlers.
-   *
-   * @default (ctx) => $state.snapshot(ctx.value)
-   */
-  getSnapshot?: (ctx: FormInternalContext<V>) => FormValue;
-  /**
-   * Submit handler
-   *
-   * Will be called when the form is submitted and form data
-   * snapshot is valid
-   *
-   * Note that we rely on `validator.validateFormData` to check that the
-   * `formData is T`. So make sure you provide a `T` type that
-   * matches the validator check result.
-   */
-  onSubmit?: (value: T, e: SubmitEvent) => void;
-  /**
-   * Submit error handler
-   *
-   * Will be called when the form is submitted and form data
-   * snapshot is not valid
-   */
-  onSubmitError?: (
-    errors: FieldErrorsMap<AnyFormValueValidatorError<V>>,
-    e: SubmitEvent,
-    snapshot: FormValue
-  ) => void;
-  /**
-   * Form submission error handler
-   *
-   * Will be called when the submission fails by a different reasons:
-   * - submission is cancelled
-   * - error during validation
-   * - validation timeout
-   */
-  onSubmissionFailure?: (state: FailedTask<unknown>, e: SubmitEvent) => void;
-  /**
-   * Field validation error handler
-   */
-  onFieldsValidationFailure?: (
-    state: FailedTask<unknown>,
-    config: Config,
-    value: FormValue
-  ) => void;
-  /**
-   * Reset handler
-   *
-   * Will be called when the form is reset.
-   */
-  onReset?: (e: Event) => void;
-  schedulerYield?: SchedulerYield;
+function toRef<T, R = T>([get, set]: [() => T, (v: T) => void]): ValueRef<R> {
+  return {
+    get current() {
+      return get() as unknown as R;
+    },
+    set current(v) {
+      set(v as unknown as T);
+    },
+  };
 }
+
+export interface ValidatorFactoryOptions {
+  schema: Schema;
+  uiSchema: UiSchemaRoot;
+  idPrefix: string;
+  idSeparator: string;
+  idPseudoSeparator: string;
+}
+
+type ValidatorFormOptions<V extends Validator> = AtLeastOne<{
+  validator: V;
+  createValidator: (options: ValidatorFactoryOptions) => V;
+}>;
+
+export interface MergerFactoryOptions<V extends Validator> {
+  validator: V;
+  uiSchema: UiSchemaRoot;
+}
+
+type MergerFormOptions<V extends Validator> = AtLeastOne<{
+  merger: FormMerger;
+  createMerger: (options: MergerFactoryOptions<V>) => FormMerger;
+}>;
+
+export type FormOptions<T, V extends Validator> = UiOptionsRegistryOption &
+  ValidatorFormOptions<V> &
+  MergerFormOptions<V> & {
+    schema: Schema;
+    theme: Theme;
+    translation: Translation;
+    resolver: (ctx: FormInternalContext<V>) => ResolveFieldType;
+    icons?: Icons;
+    uiSchema?: UiSchemaRoot;
+    extraUiOptions?: ExtraUiOptions;
+    fieldsValidationMode?: FieldsValidationMode;
+    disabled?: boolean;
+    /**
+     * @default DEFAULT_ID_PREFIX
+     */
+    idPrefix?: string;
+    /**
+     * @default DEFAULT_ID_SEPARATOR
+     */
+    idSeparator?: string;
+    /**
+     * @default DEFAULT_ID_PSEUDO_SEPARATOR
+     */
+    idPseudoSeparator?: string;
+    //
+    initialValue?: InitialValue<T>;
+    value?: [() => T, (v: T) => void];
+    initialErrors?: InitialErrors<V>;
+    errors?: [
+      () => FieldErrorsMap<PossibleError<V>>,
+      (v: FieldErrorsMap<PossibleError<V>>) => void,
+    ];
+    /**
+     * @default waitPrevious
+     */
+    submissionCombinator?: TasksCombinator<
+      [event: SubmitEvent],
+      FormValidationResult<AnyFormValueValidatorError<V>>,
+      unknown
+    >;
+    /**
+     * @default 500
+     */
+    submissionDelayedMs?: number;
+    /**
+     * @default 8000
+     */
+    submissionTimeoutMs?: number;
+    /**
+     * @default 300
+     */
+    fieldsValidationDebounceMs?: number;
+    /**
+     * @default abortPrevious
+     */
+    fieldsValidationCombinator?: TasksCombinator<
+      [Config, FormValue],
+      FieldError<AnyFieldValueValidatorError<V>>[],
+      unknown
+    >;
+    /**
+     * @default 500
+     */
+    fieldsValidationDelayedMs?: number;
+    /**
+     * @default 8000
+     */
+    fieldsValidationTimeoutMs?: number;
+    /**
+     * The function to get the form data snapshot
+     *
+     * The snapshot is used to validate the form and passed to
+     * `onSubmit` and `onSubmitError` handlers.
+     *
+     * @default (ctx) => $state.snapshot(ctx.value)
+     */
+    getSnapshot?: (ctx: FormInternalContext<V>) => FormValue;
+    /**
+     * Submit handler
+     *
+     * Will be called when the form is submitted and form data
+     * snapshot is valid
+     *
+     * Note that we rely on `validator.validateFormData` to check that the
+     * `formData is T`. So make sure you provide a `T` type that
+     * matches the validator check result.
+     */
+    onSubmit?: (value: T, e: SubmitEvent) => void;
+    /**
+     * Submit error handler
+     *
+     * Will be called when the form is submitted and form data
+     * snapshot is not valid
+     */
+    onSubmitError?: (
+      errors: FieldErrorsMap<AnyFormValueValidatorError<V>>,
+      e: SubmitEvent,
+      snapshot: FormValue
+    ) => void;
+    /**
+     * Form submission error handler
+     *
+     * Will be called when the submission fails by a different reasons:
+     * - submission is cancelled
+     * - error during validation
+     * - validation timeout
+     */
+    onSubmissionFailure?: (state: FailedTask<unknown>, e: SubmitEvent) => void;
+    /**
+     * Field validation error handler
+     */
+    onFieldsValidationFailure?: (
+      state: FailedTask<unknown>,
+      config: Config,
+      value: FormValue
+    ) => void;
+    /**
+     * Reset handler
+     *
+     * Will be called when the form is reset.
+     */
+    onReset?: (e: Event) => void;
+    schedulerYield?: SchedulerYield;
+  };
 
 export interface FormState<T, V extends Validator> {
   /** @deprecated don't use this property */
@@ -265,23 +306,52 @@ export function setFormContext2(form: FormState<any, any>) {
 export function createForm<T, V extends Validator>(
   options: FormOptions<T, V>
 ): FormState<T, V> {
-
-  const valueRef = options.value
-    ? toValueRef(options.value)
-    : // svelte-ignore state_referenced_locally
-      createValueRef(options.merger, options.schema, options.initialValue);
-  let errors = $state.raw(
-    Array.isArray(options.initialErrors)
-      ? groupErrors(options.initialErrors)
-      : new SvelteMap(options.initialErrors)
+  /** STATE BEGIN */
+  const idPrefix = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX);
+  const idSeparator = $derived(options.idSeparator ?? DEFAULT_ID_SEPARATOR);
+  const idPseudoSeparator = $derived(
+    options.idPseudoSeparator ?? DEFAULT_ID_PSEUDO_SEPARATOR
   );
-  let isSubmitted = $state.raw(false);
-  let isChanged = $state.raw(false);
-
-  const fieldsValidationMode = $derived(options.fieldsValidationMode ?? 0);
   const uiSchemaRoot = $derived(options.uiSchema ?? {});
   const uiSchema = $derived(resolveUiRef(uiSchemaRoot, options.uiSchema) ?? {});
+  const validator = $derived.by(
+    () =>
+      options.validator ??
+      options.createValidator!({
+        idPrefix,
+        idSeparator,
+        idPseudoSeparator,
+        uiSchema: uiSchemaRoot,
+        schema: options.schema,
+      })
+  );
+  const merger = $derived.by(
+    () =>
+      options.merger ??
+      options.createMerger!({
+        validator,
+        uiSchema: uiSchemaRoot,
+      })
+  );
+  const valueRef = $derived(
+    options.value
+      ? toRef<T, FormValue>(options.value)
+      : createValueRef(merger, options.schema, options.initialValue)
+  );
+  let errorsRef = $derived(
+    options.errors
+      ? toRef(options.errors)
+      : createErrorsRef(options.initialErrors)
+  );
   const disabled = $derived(options.disabled ?? false);
+  let isSubmitted = $state.raw(false);
+  let isChanged = $state.raw(false);
+  const fieldsValidationMode = $derived(options.fieldsValidationMode ?? 0);
+  const uiOptionsRegistry = $derived(options[UI_OPTIONS_REGISTRY_KEY] ?? {});
+  const uiOptions = $derived({
+    ...uiSchemaRoot["ui:globalOptions"],
+    ...uiSchema["ui:options"],
+  });
   const schedulerYield: SchedulerYield = $derived(
     (options.schedulerYield ??
       (typeof scheduler !== "undefined" && "yield" in scheduler))
@@ -298,24 +368,22 @@ export function createForm<T, V extends Validator>(
           })
   );
   const dataUrlToBlob = $derived(createDataURLtoBlob(schedulerYield));
-
   const getSnapshot = $derived(
     options.getSnapshot ?? (() => $state.snapshot(valueRef.current))
   );
-
   const translate = $derived(createTranslate(options.translation));
+  /** STATE END */
 
   const validateForm: AsyncFormValueValidator<
     AnyFormValueValidatorError<V>
   >["validateFormValueAsync"] = $derived.by(() => {
-    const v = options.validator;
-    if (isAsyncFormValueValidator(v)) {
+    if (isAsyncFormValueValidator(validator)) {
       return (signal, schema, formValue) =>
-        v.validateFormValueAsync(signal, schema, formValue);
+        validator.validateFormValueAsync(signal, schema, formValue);
     }
-    if (isFormValueValidator(v)) {
+    if (isFormValueValidator(validator)) {
       return (_, schema, formValue) =>
-        Promise.resolve(v.validateFormValue(schema, formValue));
+        Promise.resolve(validator.validateFormValue(schema, formValue));
     }
     return async () => Promise.resolve([]);
   });
@@ -332,8 +400,8 @@ export function createForm<T, V extends Validator>(
       };
     },
     onSuccess({ formValue, formErrors }, event) {
-      errors = formErrors;
-      if (errors.size === 0) {
+      errorsRef.current = formErrors;
+      if (formErrors.size === 0) {
         options.onSubmit?.(formValue as T, event);
         isChanged = false;
         return;
@@ -341,7 +409,7 @@ export function createForm<T, V extends Validator>(
       options.onSubmitError?.(formErrors, event, formValue);
     },
     onFailure(error, e) {
-      errors.set(context.rootId, [
+      errorsRef.current.set(context.rootId, [
         {
           propertyTitle: "",
           message: translate("validation-process-error", { error }),
@@ -365,13 +433,13 @@ export function createForm<T, V extends Validator>(
     AnyFieldValueValidatorError<V>
   >["validateFieldValueAsync"] = $derived.by(() => {
     const v = options.validator;
-    if (isAsyncFieldValueValidator(v)) {
+    if (isAsyncFieldValueValidator(validator)) {
       return (signal, config, value) =>
-        v.validateFieldValueAsync(signal, config, value);
+        validator.validateFieldValueAsync(signal, config, value);
     }
-    if (isFieldValueValidator(v)) {
+    if (isFieldValueValidator(validator)) {
       return (_, config, value) =>
-        Promise.resolve(v.validateFieldValue(config, value));
+        Promise.resolve(validator.validateFieldValue(config, value));
     }
     return () => Promise.resolve([]);
   });
@@ -401,6 +469,7 @@ export function createForm<T, V extends Validator>(
       });
     },
     onSuccess(fieldErrors, config) {
+      const errors = errorsRef.current;
       if (fieldErrors.length > 0) {
         errors.set(config.id, fieldErrors);
       } else {
@@ -409,7 +478,7 @@ export function createForm<T, V extends Validator>(
     },
     onFailure(error, config, value) {
       if (error.reason !== "aborted") {
-        errors.set(config.id, [
+        errorsRef.current.set(config.id, [
           {
             propertyTitle: config.title,
             message: translate("validation-process-error", { error }),
@@ -439,27 +508,18 @@ export function createForm<T, V extends Validator>(
     e.preventDefault();
     isSubmitted = false;
     isChanged = false;
-    errors.clear();
-    valueRef.current = options.merger.mergeFormDataAndSchemaDefaults(
+    errorsRef.current.clear();
+    valueRef.current = merger.mergeFormDataAndSchemaDefaults(
       options.initialValue as FormValue,
       options.schema
     );
     options.onReset?.(e);
   }
 
-  const rootId = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX);
-
-  const uiOptionsRegistry = $derived(options[UI_OPTIONS_REGISTRY_KEY] ?? {});
-
-  const uiOptions = $derived({
-    ...uiSchemaRoot["ui:globalOptions"],
-    ...uiSchema["ui:options"],
-  });
-
   const context: FormInternalContext<V> = {
     ...({} as FormContext),
     get rootId() {
-      return rootId as Id;
+      return idPrefix as Id;
     },
     get value() {
       return valueRef.current;
@@ -488,7 +548,7 @@ export function createForm<T, V extends Validator>(
       isChanged = v;
     },
     get errors() {
-      return errors;
+      return errorsRef.current;
     },
     get schema() {
       return options.schema;
@@ -521,10 +581,10 @@ export function createForm<T, V extends Validator>(
       return options.idPseudoSeparator ?? DEFAULT_ID_PSEUDO_SEPARATOR;
     },
     get validator() {
-      return options.validator;
+      return validator;
     },
     get merger() {
-      return options.merger;
+      return merger;
     },
     get fieldTypeResolver() {
       return fieldTypeResolver;
@@ -571,16 +631,16 @@ export function createForm<T, V extends Validator>(
       return getSnapshot(context) as T | undefined;
     },
     set value(v) {
-      valueRef.current = options.merger.mergeFormDataAndSchemaDefaults(
+      valueRef.current = merger.mergeFormDataAndSchemaDefaults(
         v as FormValue,
         options.schema
       );
     },
     get errors() {
-      return errors;
+      return errorsRef.current;
     },
     set errors(v) {
-      errors = v;
+      errorsRef.current = v;
     },
     get isSubmitted() {
       return isSubmitted;
@@ -601,7 +661,8 @@ export function createForm<T, V extends Validator>(
   };
 }
 
-/** @deprecated use `formHandlers` */
+// TODO: Remove in v3
+/** @deprecated use `handlers` attachment */
 export function enhance(node: HTMLFormElement, context: FormContext) {
   $effect(() => {
     const ctx = context as FormInternalContext<any>;
@@ -614,7 +675,7 @@ export function enhance(node: HTMLFormElement, context: FormContext) {
   });
 }
 
-export function formHandlers(
+export function handlers(
   ctxOrState: FormState<any, any> | FormInternalContext<any>
 ): Attachment<HTMLFormElement> {
   const ctx =
@@ -628,3 +689,7 @@ export function formHandlers(
     };
   };
 }
+
+// TODO: Remove in v4
+/** @deprecated use `handlers` */
+export const formHandlers = handlers;
