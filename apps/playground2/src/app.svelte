@@ -2,6 +2,8 @@
   import { SvelteMap } from "svelte/reactivity";
   import { BitsConfig } from "bits-ui";
   import { extendByRecord, fromRecord } from "@sjsf/form/lib/resolver";
+  import { createComparator, createMerger } from "@sjsf/form/lib/json-schema";
+  import { createDeduplicator, createIntersector } from "@sjsf/form/lib/array";
   import {
     ON_BLUR,
     ON_CHANGE,
@@ -13,14 +15,11 @@
     BasicForm,
     ON_ARRAY_CHANGE,
     ON_OBJECT_CHANGE,
-    createFormMerger,
-    type FormValue,
-    type Validator,
   } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
-  import { setThemeContext } from "@sjsf/shadcn4-theme";
+  import { createFormMerger } from "@sjsf/form/mergers/modern";
   import {
     compressToEncodedURIComponent,
     decompressFromEncodedURIComponent,
@@ -141,8 +140,13 @@
     return count;
   });
   const resolver = $derived(resolvers[data.resolver]);
+  const { compareSchemaDefinitions, compareSchemaValues } = createComparator();
   const merger = $derived(
     createFormMerger(validator, data.schema, {
+      jsonSchemaMerger: createMerger({
+        intersectJson: createIntersector(compareSchemaValues),
+        deduplicateJsonSchemaDef: createDeduplicator(compareSchemaDefinitions),
+      }),
       allOf: data.allOf,
       arrayMinItems: {
         populate: data.arrayMinItemsPopulate,
@@ -164,11 +168,11 @@
   };
 
   const focusOnFirstError = createFocusOnFirstError();
-  const form = createForm<FormValue, Validator>({
+  const form = createForm({
     get resolver() {
       return resolver;
     },
-    initialValue: data.initialValue,
+    value: [() => data.initialValue, (v) => (data.initialValue = v)],
     translation,
     get theme() {
       return theme;
@@ -219,10 +223,6 @@
     },
   });
 
-  $effect(() => {
-    data.initialValue = form.value;
-  });
-
   setShadcnContext();
 
   const clearLink = new URL(location.href);
@@ -239,7 +239,6 @@
     <SamplePicker
       onSelect={(sample) => {
         Object.assign(data, sample);
-        form.value = sample.initialValue;
         form.errors = new SvelteMap();
       }}
     />
@@ -375,7 +374,7 @@
   />
   <Editor
     class="row-start-3 col-span-2 border rounded-md data-[error=true]:border-red-500 data-[error=true]:outline-none"
-    bind:value={form.value}
+    bind:value={data.initialValue}
   />
   <ShadowHost
     class="col-span-3 row-span-2 overflow-y-auto border border-[var(--global-border)] rounded-md"
