@@ -213,7 +213,7 @@ export function buildFormDefaults({
   const iconsExport =
     Icons.None === icons
       ? ""
-      : `export { icons } from "@sjsf/${icons}-icons";\n`;
+      : `export { icons } from "@sjsf/${icons}-icons";`;
 
   return join2(
     defineTypeImports(ephemeralFields.imports.union(ephemeralWidgets.imports)),
@@ -249,9 +249,14 @@ export function buildFormDefaults({
     themeExport,
     'export { translation } from "@sjsf/form/translations/en";',
     iconsExport,
-    `import { createFormValidator } from "@sjsf/${validator}-validator";
+    join(
+      `import type { ValidatorFactoryOptions, MergerFactoryOptions } from "@sjsf/form"`,
+      `import { createFormMerger } from "@sjsf/form/mergers/modern";`,
+      `import { createFormValidator } from "@sjsf/${validator}-validator";`
+    ),
+    `export const createValidator = (options: ValidatorFactoryOptions) => createFormValidator(options);
 
-export const validator = createFormValidator();`
+export const createMerger = ({ validator, schema }: MergerFactoryOptions) => createFormMerger(validator, schema);`
   );
 }
 

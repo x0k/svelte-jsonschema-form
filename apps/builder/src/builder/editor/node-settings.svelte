@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onDestroy, untrack } from "svelte";
+  import { untrack } from "svelte";
   import {
     Content,
     createForm,
@@ -48,17 +48,11 @@
   });
   setFormContext2(form);
 
-  onDestroy(() => {
-    form.fieldsValidation.abort();
-  });
-
   $effect(() => {
     if (form.fieldsValidation.isProcessed) {
       return;
     }
-    untrack(() => {
-      node.options = form.value as any;
-    });
+    node.options = form.value as any;
   });
 </script>
 

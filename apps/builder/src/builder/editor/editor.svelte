@@ -3,9 +3,9 @@
 
   import { getBuilderContext } from "../context.svelte.js";
 
-  import Content from './content.svelte';
-  import Settings from './settings.svelte';
-  import Controls from './controls.svelte';
+  import Content from "./content.svelte";
+  import Settings from "./settings.svelte";
+  import Controls from "./controls.svelte";
 
   const ctx = getBuilderContext();
 
@@ -19,7 +19,12 @@
       ) {
         return;
       }
-      ctx.clearSelection();
+      // NOTE: `setTimeout` is required for correct operation of the conditions
+      // in `settings.svelte` for the `NodeSettings` component.
+      // And i can't explain why
+      setTimeout(() => {
+        ctx.clearSelection();
+      });
     })
   );
 </script>
