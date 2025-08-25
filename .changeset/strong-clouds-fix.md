@@ -2,4 +2,5 @@
 "@sjsf/form": major
 ---
 
-Transform `FormOptions` interface into intersection type, consider all options as reactive.
+Replace `validator` and `merger` with required `createValidator` and `createMerger` options.
+Consider all options as reactive.

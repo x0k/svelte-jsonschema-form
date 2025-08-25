@@ -3,7 +3,6 @@ import type { Attachment } from "svelte/attachments";
 import { SvelteMap } from "svelte/reactivity";
 import { on } from "svelte/events";
 
-import type { AtLeastOne } from "@/lib/types.js";
 import type { SchedulerYield } from "@/lib/scheduler.js";
 import { createDataURLtoBlob } from "@/lib/file.js";
 import {
@@ -142,28 +141,19 @@ export interface ValidatorFactoryOptions {
    */
   merger: () => FormMerger;
 }
-
-export type ValidatorFormOptions<V extends Validator> = AtLeastOne<{
-  validator: V;
-  createValidator: (options: ValidatorFactoryOptions) => V;
-}>;
-
 export interface MergerFactoryOptions<V extends Validator> {
   validator: V;
   schema: Schema;
   uiSchema: UiSchemaRoot;
 }
 
-export type MergerFormOptions<V extends Validator> = AtLeastOne<{
-  merger: FormMerger;
-  createMerger: (options: MergerFactoryOptions<V>) => FormMerger;
-}>;
-
-export interface CommonFormOptions<T, V extends Validator> {
+export interface FormOptions<T, V extends Validator> extends UiOptionsRegistryOption {
   schema: Schema;
   theme: Theme;
   translation: Translation;
   resolver: (ctx: FormInternalContext<V>) => ResolveFieldType;
+  createValidator: (options: ValidatorFactoryOptions) => V;
+  createMerger: (options: MergerFactoryOptions<V>) => FormMerger;
   icons?: Icons;
   uiSchema?: UiSchemaRoot;
   extraUiOptions?: ExtraUiOptions;
@@ -282,11 +272,6 @@ export interface CommonFormOptions<T, V extends Validator> {
   schedulerYield?: SchedulerYield;
 }
 
-export type FormOptions<T, V extends Validator> = UiOptionsRegistryOption &
-  ValidatorFormOptions<V> &
-  MergerFormOptions<V> &
-  CommonFormOptions<T, V>;
-
 export interface FormState<T, V extends Validator> {
   /** @deprecated don't use this property */
   readonly context: FormContext;
@@ -322,26 +307,22 @@ export function createForm<T, V extends Validator>(
   );
   const uiSchemaRoot = $derived(options.uiSchema ?? {});
   const uiSchema = $derived(resolveUiRef(uiSchemaRoot, options.uiSchema) ?? {});
-  const validator = $derived.by(
-    () =>
-      options.validator ??
-      options.createValidator!({
-        idPrefix,
-        idSeparator,
-        idPseudoSeparator,
-        uiSchema: uiSchemaRoot,
-        schema: options.schema,
-        merger: (): FormMerger => merger,
-      })
+  const validator = $derived(
+    options.createValidator({
+      idPrefix,
+      idSeparator,
+      idPseudoSeparator,
+      uiSchema: uiSchemaRoot,
+      schema: options.schema,
+      merger: (): FormMerger => merger,
+    })
   );
-  const merger = $derived.by(
-    () =>
-      options.merger ??
-      options.createMerger!({
-        validator,
-        schema: options.schema,
-        uiSchema: uiSchemaRoot,
-      })
+  const merger = $derived(
+    options.createMerger({
+      validator,
+      schema: options.schema,
+      uiSchema: uiSchemaRoot,
+    })
   );
   const valueRef = $derived(
     options.value
@@ -442,7 +423,6 @@ export function createForm<T, V extends Validator>(
   const validateFields: AsyncFieldValueValidator<
     AnyFieldValueValidatorError<V>
   >["validateFieldValueAsync"] = $derived.by(() => {
-    const v = options.validator;
     if (isAsyncFieldValueValidator(validator)) {
       return (signal, config, value) =>
         validator.validateFieldValueAsync(signal, config, value);

@@ -2,9 +2,6 @@ export type Nullable<T> = {
   [P in keyof T]: T[P] | null;
 };
 
-export type AtLeastOne<T, K extends keyof T = keyof T> =
-  Partial<T> & { [P in K]: Required<Pick<T, P>> }[K];
-
 declare const brand: unique symbol;
 
 export type Brand<Name extends string, Base = string> = Base & {
