@@ -35,24 +35,22 @@ export function createMerger({
 export interface FormMergerOptions
   extends Experimental_DefaultFormStateBehavior,
     MergerOptions {
+  validator: Validator;
+  schema: Schema;
   includeUndefinedValues?: boolean | "excludeObjectChildren";
 }
 
-export function createFormMerger(
-  validator: Validator,
-  rootSchema: Schema,
-  options: FormMergerOptions = {}
-): FormMerger {
+export function createFormMerger(options: FormMergerOptions): FormMerger {
   const merger = createMerger(options);
   return {
     ...merger,
     mergeFormDataAndSchemaDefaults(formData, schema) {
       return getDefaultFormState(
-        validator,
+        options.validator,
         merger,
         schema,
         formData,
-        rootSchema,
+        options.schema,
         options.includeUndefinedValues,
         options
       );
