@@ -250,13 +250,14 @@ export function buildFormDefaults({
     'export { translation } from "@sjsf/form/translations/en";',
     iconsExport,
     join(
-      `import type { ValidatorFactoryOptions, MergerFactoryOptions } from "@sjsf/form"`,
+      `import type { Validator, ValidatorFactoryOptions, MergerFactoryOptions } from "@sjsf/form"`,
       `import { createFormMerger } from "@sjsf/form/mergers/modern";`,
       `import { createFormValidator } from "@sjsf/${validator}-validator";`
     ),
     `export const createValidator = (options: ValidatorFactoryOptions) => createFormValidator(options);
 
-export const createMerger = ({ validator, schema }: MergerFactoryOptions) => createFormMerger(validator, schema);`
+export const createMerger = <V extends Validator>({ validator, schema }: MergerFactoryOptions<V>) =>
+  createFormMerger(validator, schema);`
   );
 }
 
