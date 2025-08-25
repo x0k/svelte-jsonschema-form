@@ -139,9 +139,8 @@ export interface ValidatorFactoryOptions {
   idPseudoSeparator: string;
   /**
    * This is a getter that can be used to access the Merger lazily.
-   * DO NOT destructurize options if you plan to use it.
    */
-  merger: FormMerger;
+  merger: () => FormMerger;
 }
 
 export type ValidatorFormOptions<V extends Validator> = AtLeastOne<{
@@ -332,9 +331,7 @@ export function createForm<T, V extends Validator>(
         idPseudoSeparator,
         uiSchema: uiSchemaRoot,
         schema: options.schema,
-        get merger(): FormMerger {
-          return merger;
-        },
+        merger: (): FormMerger => merger,
       })
   );
   const merger = $derived.by(
