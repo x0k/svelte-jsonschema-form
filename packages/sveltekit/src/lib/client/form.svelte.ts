@@ -7,11 +7,7 @@ import {
   type Schema,
   type FormOptions,
   type PossibleError,
-  type ValidatorFactoryOptions,
-  type CommonFormOptions,
-  type MergerFormOptions,
-  type ValidatorFormOptions,
-  type UiOptionsRegistryOption
+  type ValidatorFactoryOptions
 } from '@sjsf/form';
 
 import { page } from '$app/state';
@@ -33,18 +29,8 @@ export type SvelteKitFormOptions<
   T,
   V extends Validator,
   SendSchema extends boolean,
-  ToOmit extends keyof CommonFormOptions<T, V> = never
-> = Omit<CommonFormOptions<T, V>, 'schema' | ToOmit> &
-  ValidatorFormOptions<V> &
-  MergerFormOptions<V> &
-  SchemaOption<SendSchema> &
-  UiOptionsRegistryOption;
-
-type ValidatorType<O> = O extends { validator: infer V }
-  ? V
-  : O extends { createValidator: (options: ValidatorFactoryOptions) => infer V }
-    ? V
-    : Validator;
+  ToOmit extends keyof FormOptions<T, V> = never
+> = Omit<FormOptions<T, V>, 'schema' | ToOmit> & SchemaOption<SendSchema>;
 
 function initialFormData<Meta extends SvelteKitFormMeta<any, any, string, any>>(
   meta: Meta
@@ -85,14 +71,14 @@ export function createSvelteKitForm<
         }
         return Reflect.get(target, p, receiver);
       }
-    }) as unknown as FormOptions<Meta['__formValue'], ValidatorType<Options>>
+    }) as unknown as FormOptions<Meta['__formValue'], ReturnType<Options['createValidator']>>
   );
   $effect(() => {
     if (!isRecord(page.form)) {
       return;
     }
     const validationData = page.form[meta.name] as
-      | ValidatedFormData<PossibleError<ValidatorType<Options>>, Meta['__sendData']>
+      | ValidatedFormData<PossibleError<ReturnType<Options['createValidator']>>, Meta['__sendData']>
       | undefined;
     if (validationData === undefined) {
       return;

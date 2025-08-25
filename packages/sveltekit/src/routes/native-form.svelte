@@ -21,22 +21,22 @@
     onSuccess: console.log,
     onFailure: console.error
   });
-  const validator = Object.assign(
-    createFormValidator(),
-    createAdditionalPropertyKeyValidator({
-      error({ type, values }) {
-        return `The presence of these ${ERROR_TYPE_OBJECTS[type]} ("${values.join('", "')}") is prohibited`;
-      }
-    })
-  );
   const form = createSvelteKitForm(meta, {
     theme,
-    validator,
     resolver,
     translation,
     onSubmit: request.run,
     onSubmitError: console.warn,
-    createMerger: ({ schema }) => createFormMerger(validator, schema)
+    createValidator: (options) =>
+      Object.assign(
+        createFormValidator(options),
+        createAdditionalPropertyKeyValidator({
+          error({ type, values }) {
+            return `The presence of these ${ERROR_TYPE_OBJECTS[type]} ("${values.join('", "')}") is prohibited`;
+          }
+        })
+      ),
+    createMerger: ({ schema, validator }) => createFormMerger(validator, schema)
   });
   setFormContext2(form);
 </script>
