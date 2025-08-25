@@ -1,14 +1,15 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
-
+  import { SimpleForm } from "@sjsf/form";
   import { fromRecord } from "@sjsf/form/lib/resolver";
 
-  import MyForm from "@/components/my-form.svelte";
+  import * as defaults from "@/lib/form/defaults";
 
   const { children }: { children: Snippet } = $props();
 </script>
 
-<MyForm
+<SimpleForm
+  {...defaults}
   schema={{
     title: "With icons",
   }}

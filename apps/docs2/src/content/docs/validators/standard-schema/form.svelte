@@ -8,7 +8,7 @@
   import { createFormValueValidator } from "@sjsf/form/validators/standard-schema";
   import { type } from "arktype";
 
-  import * as defaults from "@/components/form-defaults";
+  import * as defaults from "@/lib/form/defaults";
 
   import { initialValue, uiSchema } from "../shared";
 

@@ -11,7 +11,7 @@
   import { zodToJsonSchema } from "zod-to-json-schema";
   import { z } from "zod";
 
-  import * as defaults from "@/components/form-defaults";
+  import * as defaults from "@/lib/form/defaults";
 
   import { initialValue, uiSchema } from "../shared";
 

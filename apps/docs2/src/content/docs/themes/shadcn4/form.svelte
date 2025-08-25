@@ -6,7 +6,7 @@
   import { BitsConfig } from "bits-ui";
 
   import { createAstro } from "@/astro.svelte";
-  import * as defaults from "@/components/form-defaults";
+  import * as defaults from "@/lib/form/defaults";
 
   import { createSchemas } from "../_demo-schema";
 

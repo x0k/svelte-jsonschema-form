@@ -7,7 +7,7 @@
     type Schema,
   } from "@sjsf/form";
 
-  import * as defaults from "@/components/form-defaults";
+  import * as defaults from "@/lib/form/defaults";
 
   const schema: Schema = {
     type: "string",

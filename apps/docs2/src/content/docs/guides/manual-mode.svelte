@@ -2,7 +2,7 @@
   import { type Schema, createForm, Field, formHandlers } from "@sjsf/form";
   import type { FromSchema } from "json-schema-to-ts";
 
-  import * as defaults from "@/components/form-defaults";
+  import * as defaults from "@/lib/form/defaults";
 
   const schema = {
     type: "object",

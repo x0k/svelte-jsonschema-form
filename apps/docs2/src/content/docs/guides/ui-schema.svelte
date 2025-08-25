@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { Schema, UiSchemaRoot } from "@sjsf/form";
+  import { type Schema, type UiSchemaRoot, SimpleForm } from "@sjsf/form";
 
-  import MyForm from "@/components/my-form.svelte";
+  import * as defaults from "@/lib/form/defaults";
 
   const schema: Schema = {
     type: "string",
@@ -19,4 +19,9 @@
   };
 </script>
 
-<MyForm {schema} {uiSchema} onSubmit={(v) => window.alert(v)} />
+<SimpleForm
+  {...defaults}
+  {schema}
+  {uiSchema}
+  onSubmit={(v) => window.alert(v)}
+/>

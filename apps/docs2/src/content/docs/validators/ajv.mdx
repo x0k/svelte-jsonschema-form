@@ -50,7 +50,7 @@ import { createFormValidator, addFormComponents } from "@sjsf/ajv8-validator";
 import addFormats from "ajv-formats"
 
 const validator = createFormValidator({
-  ajvPlugins = (ajv) => addFormComponents(addFormats(ajv))
+  ajvPlugins: (ajv) => addFormComponents(addFormats(ajv))
 })
 ```
 

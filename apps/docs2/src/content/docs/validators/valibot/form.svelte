@@ -9,7 +9,7 @@
   import { setupFormValidator } from "@sjsf/valibot-validator";
   import * as v from "valibot";
 
-  import * as defaults from "@/components/form-defaults";
+  import * as defaults from "@/lib/form/defaults";
 
   import { initialValue, uiSchema } from "../shared";
 

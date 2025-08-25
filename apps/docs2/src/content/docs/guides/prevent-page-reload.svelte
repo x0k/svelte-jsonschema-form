@@ -2,7 +2,7 @@
   import { Content, createForm, setFormContext2 } from "@sjsf/form";
   import { preventPageReload } from "@sjsf/form/prevent-page-reload.svelte";
 
-  import * as defaults from "@/components/form-defaults";
+  import * as defaults from "@/lib/form/defaults";
 
   const form = createForm({
     ...defaults,

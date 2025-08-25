@@ -6,10 +6,7 @@ sidebar:
 
 import { Code } from '@astrojs/starlight/components';
 
-import defaultsCode from '@/components/form-defaults.ts?raw';
-import customFormCode from '@/components/my-form.ts?raw';
-import customFormComponentCode from '@/components/my-form.svelte?raw';
-
+import defaultsCode from '@/lib/form/defaults.ts?raw';
 
 Even with a simple setup, resulting code is very verbose.
 Therefore, it is convenient to create a file with a re-export of the selected
@@ -24,29 +21,3 @@ import * as defaults from '$lib/form-defaults'
 
 const form = createForm({ ...defaults, ... })
 ```
-
-## Factory
-
-You could go further and create a wrapper around the `createForm`.
-
-<Code code={customFormCode} lang="typescript" title="my-form.ts" />
-
-:::note
-
-Note that you can simplify the above code if certain restrictions are met:
-
-- If you are sure that you will always call the `createForm` function with passing the object literal, you can use the following code instead of `Proxy`:
-
-`Object.setPrototypeOf(options, defaults)`
-
-- If you are sure you will not use getters as options, then use `Object.assign` instead of `Proxy`:
-
-`Object.assign({}, defaults, options)`
-
-:::
-
-## Component
-
-You also can create your own form component.
-
-<Code code={customFormComponentCode} lang="svelte" title="my-form.svelte" />
