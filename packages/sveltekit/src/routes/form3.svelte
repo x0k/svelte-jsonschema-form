@@ -32,7 +32,7 @@
         }
       })
     )}
-  createMerger={({ validator, schema }) => createFormMerger(validator, schema)}
+  createMerger={createFormMerger}
   onSubmitError={console.warn}
   onSuccess={console.log}
   onFailure={console.error}

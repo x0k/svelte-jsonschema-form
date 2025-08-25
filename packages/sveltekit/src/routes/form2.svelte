@@ -42,7 +42,7 @@
           }
         })
       ),
-    createMerger: ({ validator, schema }) => createFormMerger(validator, schema)
+    createMerger: createFormMerger
   });
 </script>
 

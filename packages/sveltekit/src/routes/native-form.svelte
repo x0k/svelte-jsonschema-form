@@ -36,7 +36,7 @@
           }
         })
       ),
-    createMerger: ({ schema, validator }) => createFormMerger(validator, schema)
+    createMerger: createFormMerger
   });
   setFormContext2(form);
 </script>
