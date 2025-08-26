@@ -29,6 +29,11 @@ export const schema = {
       title: "Country",
       enum: ["US", "CA", "UK", "DE", "FR"],
     },
+    experience: {
+      type: "string",
+      title: "Work Experience",
+      enum: ["beginner", "intermediate", "advanced"],
+    },
     skills: {
       type: "array",
       title: "Skills",
@@ -43,6 +48,16 @@ export const schema = {
       type: "string",
       title: "About You",
       maxLength: 200,
+    },
+    startDate: {
+      type: "string",
+      title: "Available Start Date",
+      format: "date",
+    },
+    resume: {
+      type: "string",
+      title: "Upload Resume",
+      format: "data-url",
     },
   },
 } as const satisfies Schema;
@@ -71,16 +86,6 @@ export const uiSchema: UiSchemaRoot = {
       },
     },
   },
-  email: {
-    "ui:options": {
-      text: {
-        type: "email",
-      },
-      flowbiteText: {
-        type: "email",
-      },
-    },
-  },
   country: {
     "ui:components": {
       stringField: "enumField",
@@ -102,7 +107,7 @@ export const uiSchema: UiSchemaRoot = {
     "ui:options": {
       layouts: {
         "field-content": {
-          style: "display: flex; gap: 0.5rem;",
+          style: "display: flex; flex-wrap: wrap; gap: 0.5rem;",
         },
       },
     },
@@ -111,14 +116,56 @@ export const uiSchema: UiSchemaRoot = {
     "ui:components": {
       textWidget: "textareaWidget",
     },
+    "ui:options": {
+      layouts: {
+        "object-property": {
+          style: "grid-row: span 2;",
+        },
+      },
+      textarea: {
+        rows: 5,
+      },
+      flowbiteTextarea: {
+        rows: 5,
+      },
+    },
+  },
+  experience: {
+    "ui:components": {
+      stringField: "enumField",
+      selectWidget: "radioWidget",
+    },
+    "ui:options": {
+      layouts: {
+        "field-content": {
+          style: "display: flex; flex-wrap: wrap; gap: 0.5rem;",
+        },
+      },
+      shadcn4RadioGroup: {
+        style: "grid-auto-flow: column; grid-auto-columns: max-content;",
+      },
+      enumNames: ["0-2 years", "3-7 years", "8+ years"],
+    },
+  },
+  startDate: {
+    "ui:components": {
+      textWidget: "datePickerWidget",
+    },
+  },
+  resume: {
+    "ui:components": {
+      stringField: "fileField",
+    },
   },
 };
 
 export const initialValue: FormValue = {
   name: "Sarah Johnson",
-  email: "sarah.johnson@example.com",
+  email: "sarah.johnson@invalid",
   age: 28,
   country: "CA",
   skills: ["Svelte"],
-  bio: "Passionate Svelte developer",
+  experience: "intermediate",
+  startDate: new Date().toLocaleDateString("en-CA"),
+  bio: "Bio",
 };
