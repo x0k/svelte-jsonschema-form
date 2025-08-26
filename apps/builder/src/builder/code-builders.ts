@@ -212,7 +212,7 @@ export function buildFormDefaults({
 
   const iconsExport =
     Icons.None === icons
-      ? ""
+      ? false
       : `export { icons } from "@sjsf/${icons}-icons";`;
 
   return join2(
@@ -247,17 +247,10 @@ export function buildFormDefaults({
     ),
     ephemeralWidgets.definition,
     themeExport,
-    'export { translation } from "@sjsf/form/translations/en";',
     iconsExport,
-    join(
-      `import type { Validator, ValidatorFactoryOptions, MergerFactoryOptions } from "@sjsf/form"`,
-      `import { createFormMerger } from "@sjsf/form/mergers/modern";`,
-      `import { createFormValidator } from "@sjsf/${validator}-validator";`
-    ),
-    `export const createValidator = (options: ValidatorFactoryOptions) => createFormValidator(options);
-
-export const createMerger = <V extends Validator>({ validator, schema }: MergerFactoryOptions<V>) =>
-  createFormMerger(validator, schema);`
+    'export { translation } from "@sjsf/form/translations/en";',
+    `export { createFormValidator as createValidator } from "@sjsf/${validator}-validator";`,
+    `export { createFormMerger as createMerger } from "@sjsf/form/mergers/modern";`,
   );
 }
 
