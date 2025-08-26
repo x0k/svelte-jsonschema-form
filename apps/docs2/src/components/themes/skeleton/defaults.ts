@@ -8,12 +8,9 @@ export { theme } from "@sjsf/skeleton3-theme";
 import "@sjsf/skeleton3-theme/extra-widgets/textarea-include";
 import "@sjsf/skeleton3-theme/extra-widgets/checkboxes-include";
 
-import type {
-  MergerFactoryOptions,
-  Validator,
-  ValidatorFactoryOptions,
-} from "@sjsf/form";
-import { createFormMerger } from "@sjsf/form/mergers/modern";
+export { createFormMerger as createMerger } from "@sjsf/form/mergers/modern";
+
+import type { ValidatorFactoryOptions } from "@sjsf/form";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import addFormats from "ajv-formats";
 
@@ -22,8 +19,3 @@ export const createValidator = (options: ValidatorFactoryOptions) =>
     ...options,
     ajvPlugins: (ajv) => addFormComponents(addFormats(ajv)),
   });
-
-export const createMerger = <V extends Validator>({
-  validator,
-  schema,
-}: MergerFactoryOptions<V>) => createFormMerger(validator, schema);
