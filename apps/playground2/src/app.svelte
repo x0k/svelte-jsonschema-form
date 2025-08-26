@@ -142,7 +142,9 @@
   const resolver = $derived(resolvers[data.resolver]);
   const { compareSchemaDefinitions, compareSchemaValues } = createComparator();
   const merger = $derived(
-    createFormMerger(validator, data.schema, {
+    createFormMerger({
+      validator,
+      schema: data.schema,
       jsonSchemaMerger: createMerger({
         intersectJson: createIntersector(compareSchemaValues),
         deduplicateJsonSchemaDef: createDeduplicator(compareSchemaDefinitions),
@@ -183,12 +185,8 @@
     get uiSchema() {
       return data.uiSchema;
     },
-    get validator() {
-      return validator;
-    },
-    get merger() {
-      return merger;
-    },
+    createValidator: () => validator,
+    createMerger: () => merger,
     get disabled() {
       return data.disabled;
     },
