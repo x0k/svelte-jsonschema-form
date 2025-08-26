@@ -31,13 +31,11 @@
 
   type Value = z.infer<typeof schema>;
 
-  const validator = createFormValidator(schema, { uiSchema });
-
   const form = createForm({
     ...defaults,
     schema: zodToJsonSchema(schema, { errorMessages: true }) as Schema,
     uiSchema,
-    validator,
+    createValidator: (options) => createFormValidator(schema, options),
     fieldsValidationMode: ON_INPUT | ON_CHANGE | ON_ARRAY_CHANGE,
     initialValue: initialValue as Value,
   });

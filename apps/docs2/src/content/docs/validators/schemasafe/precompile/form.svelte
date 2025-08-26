@@ -8,12 +8,11 @@
   import { schema, fieldsValidationMode } from "./patched-schema";
   import * as validateFunctions from "./validate-functions";
 
-  const validator = createFormValidator({ validateFunctions });
-
   const form = createForm({
     ...defaults,
     schema,
-    validator,
+    createValidator: (options) =>
+      createFormValidator({ ...options, validateFunctions }),
     fieldsValidationMode,
     resolver,
   });

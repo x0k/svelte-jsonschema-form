@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { type Schema, createForm, Field, formHandlers } from "@sjsf/form";
+  import { type Schema, createForm, Field, handlers } from "@sjsf/form";
   import type { FromSchema } from "json-schema-to-ts";
 
   import * as defaults from "@/lib/form/defaults";
@@ -33,7 +33,7 @@
 
 <form
   novalidate
-  {@attach formHandlers(form)}
+  {@attach handlers(form)}
   style="display: flex; flex-direction: column; gap: 1rem;"
 >
   <Field {form} name="login" />

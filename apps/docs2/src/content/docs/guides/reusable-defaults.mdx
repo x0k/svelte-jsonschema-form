@@ -9,15 +9,15 @@ import { Code } from '@astrojs/starlight/components';
 import defaultsCode from '@/lib/form/defaults.ts?raw';
 
 Even with a simple setup, resulting code is very verbose.
-Therefore, it is convenient to create a file with a re-export of the selected
-resolver, theme, validator and translation. 
+Therefore, it is convenient to create a file that re-exports the selected
+resolver, theme, validator, merger and translation.
 
 <Code code={defaultsCode} lang="typescript" title="form-defaults.ts" />
 
 And use it like this:
 
 ```typescript
-import * as defaults from '$lib/form-defaults'
+import * as defaults from '$lib/form/defaults'
 
-const form = createForm({ ...defaults, ... })
+const form = createForm({ ...defaults, <your-options> })
 ```

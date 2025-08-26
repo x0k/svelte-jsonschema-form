@@ -4,6 +4,7 @@ title: Merger
 
 ```typescript
 export interface Merger {
+  mergeSchemas(a: Schema, b: Schema): Schema;
   /**
    * Merges schema and its `allOf` schemas into a single schema
    */

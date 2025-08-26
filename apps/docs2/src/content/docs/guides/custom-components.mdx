@@ -51,7 +51,7 @@ import { theme } from "@sjsf/some-theme";
 
 import MyNumberWidget from "./my-number-widget";
 
-// Register a new component
+/** Register a new component **/
 
 declare module "@sjsf/form" {
   interface ComponentProps {
@@ -66,7 +66,7 @@ declare module "@sjsf/form" {
 
 export const myTheme = extendByRecord(theme, { myNumberWidget: MyNumberWidget });
 
-// Override the default component
+/** Override the default component **/
 
 export const myTheme = overrideByRecord(theme, { numberWidget: MyNumberWidget })
 ```

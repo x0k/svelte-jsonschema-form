@@ -36,7 +36,7 @@
     ...defaults,
     schema,
     uiSchema,
-    validator,
+    createValidator: () => validator,
     fieldsValidationMode: ON_INPUT | ON_CHANGE | ON_ARRAY_CHANGE,
     initialValue: initialValue,
   });

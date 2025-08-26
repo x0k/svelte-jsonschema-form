@@ -12,15 +12,11 @@
 
   import { initialValue, schema, uiSchema } from "../shared";
 
-  const validator = createFormValidator({
-    uiSchema,
-  });
-
   const form = createForm({
     ...defaults,
     schema,
     uiSchema,
-    validator,
+    createValidator: createFormValidator,
     fieldsValidationMode: ON_INPUT | ON_CHANGE | ON_ARRAY_CHANGE,
     initialValue,
   });

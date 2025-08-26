@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
-  import { SimpleForm } from "@sjsf/form";
   import { fromRecord } from "@sjsf/form/lib/resolver";
+  import { SimpleForm } from "@sjsf/form";
 
   import * as defaults from "@/lib/form/defaults";
 

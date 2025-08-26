@@ -27,19 +27,26 @@ The `omitExtraData` function does not perform data validation!
   import { translation } from "@sjsf/form/translations/en";
   import { theme } from "@sjsf/basic-theme";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
+  import { createFormMerger } from "@sjsf/form/mergers/modern";
+  import { createFormValidator } from '@sjsf/your-validator'
 
   import { schema, uiSchema, initialValue } from "./schema";
-  import { validator } from "./validator";
   
   const form = createForm({
     theme,
     initialValue,
     schema,
     uiSchema,
-    validator,
     translation,
+    createValidator: createFormValidator,
+    createMerger: createFormMerger,
     getSnapshot(ctx) {
-      return omitExtraData(validator, defaultMerger, schema, $state.snapshot(ctx.value))
+      return omitExtraData(
+        ctx.validator,
+        ctx.merger,
+        schema,
+        $state.snapshot(ctx.value),
+      )
     },
     onSubmit(value) {
       console.log("transformed", value);
@@ -49,5 +56,7 @@ The `omitExtraData` function does not perform data validation!
       console.log("transformed", value);
     }
   })
+
+  console.log("transformed", form.value);
 </script>
 ```
