@@ -1,5 +1,11 @@
 # @sjsf/form
 
+## 2.2.4
+
+### Patch Changes
+
+- Revert "[form] Preserve array keys by injecting default values instead of state replacing" ([`bab9bce`](https://github.com/x0k/svelte-jsonschema-form/commit/bab9bce095f75884fb7444f9c8a6640599c861e1))
+
 ## 2.2.3
 
 ### Patch Changes
