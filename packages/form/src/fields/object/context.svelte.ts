@@ -1,4 +1,4 @@
-import { getContext, setContext } from "svelte";
+import { getContext, setContext, untrack } from "svelte";
 
 import {
   getDefaultValueForType,
@@ -31,7 +31,6 @@ import {
   retrieveUiOption,
   uiTitleOption,
   type Translate,
-  markSchemaChange,
 } from "@/form/index.js";
 
 import {
@@ -90,7 +89,16 @@ export function createObjectContext<V extends Validator>(
   // NOTE: `defaults` population
   $effect(() => {
     schemaProperties;
-    markSchemaChange(ctx);
+    setValue(
+      untrack(
+        () =>
+          getDefaultFieldState(
+            ctx,
+            retrievedSchema,
+            value()
+          ) as SchemaObjectValue
+      )
+    );
   });
 
   const uiOption: UiOption = (opt) => retrieveUiOption(ctx, config(), opt);

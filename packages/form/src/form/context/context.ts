@@ -32,7 +32,6 @@ export interface FormInternalContext<V extends Validator>
     Readonly<Required<IdOptions>> {
   value: FormValue;
   isChanged: boolean;
-  readonly markSchemaChange: () => void;
   readonly rootId: Id;
   readonly fieldsValidationMode: number;
   readonly isSubmitted: boolean;
