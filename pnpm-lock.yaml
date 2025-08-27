@@ -1395,15 +1395,9 @@ importers:
       '@types/json-schema':
         specifier: ^7.0.15
         version: 7.0.15
-      '@types/json-schema-merge-allof':
-        specifier: ^0.6.5
-        version: 0.6.5
       esm-env:
         specifier: ^1.2.0
         version: 1.2.2
-      json-schema-merge-allof:
-        specifier: ^0.8.1
-        version: 0.8.1
       jsonpointer:
         specifier: ^5.0.1
         version: 5.0.1
@@ -1426,6 +1420,13 @@ importers:
       svelte:
         specifier: 'catalog:'
         version: 5.38.1
+    optionalDependencies:
+      '@types/json-schema-merge-allof':
+        specifier: ^0.6.0
+        version: 0.6.5
+      json-schema-merge-allof:
+        specifier: ^0.8.0
+        version: 0.8.1
 
   packages/lucide-icons:
     devDependencies:
