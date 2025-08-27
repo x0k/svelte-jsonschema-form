@@ -196,12 +196,6 @@
     get icons() {
       return iconsSet;
     },
-    getSnapshot(ctx) {
-      const snap = $state.snapshot(ctx.value);
-      return data.omitExtraData
-        ? omitExtraData(validator, merger, data.schema, snap)
-        : snap;
-    },
     extraUiOptions: fromRecord({
       skeleton3Slider: options,
       skeleton3FileUpload: options,
@@ -220,6 +214,11 @@
       console.log("errors", errors);
     },
   });
+  const formValue = $derived(
+    data.omitExtraData
+      ? omitExtraData(validator, merger, data.schema, data.initialValue)
+      : data.initialValue
+  );
 
   setShadcnContext();
 
@@ -372,7 +371,7 @@
   />
   <Editor
     class="row-start-3 col-span-2 border rounded-md data-[error=true]:border-red-500 data-[error=true]:outline-none"
-    bind:value={data.initialValue}
+    bind:value={() => formValue, (v) => (data.initialValue = v)}
   />
   <ShadowHost
     class="col-span-3 row-span-2 overflow-y-auto border border-[var(--global-border)] rounded-md"
