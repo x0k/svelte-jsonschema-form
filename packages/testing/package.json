@@ -1,6 +1,6 @@
 {
   "name": "testing",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "license": "(MIT AND Apache-2.0)",
   "private": true,
   "type": "module",
