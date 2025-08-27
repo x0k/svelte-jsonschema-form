@@ -16,7 +16,7 @@ import { identity } from "@/lib/function.js";
 import { isAllowAnySchema } from "@/lib/json-schema/index.js";
 import { lcm } from "@/lib/math.js";
 
-import { simplePatternsMerger } from "./merge-patterns.js";
+import { simplePatternsMerger } from "./patterns.js";
 
 type SchemaKey = keyof JSONSchema7;
 

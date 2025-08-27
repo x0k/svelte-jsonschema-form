@@ -8,12 +8,10 @@ import { Ajv } from "ajv";
 
 import { createMerger } from "./merge.js";
 import { createShallowAllOfMerge } from "./all-of-merge.js";
-
-const testPatternsMerger = (a: string, b: string) =>
-  a === b ? a : `(?=${a})(?=${b})`;
+import { legacyPatternsMerger } from "./patterns.js";
 
 const { mergeSchemaDefinitions, mergeArrayOfSchemaDefinitions } = createMerger({
-  mergePatterns: testPatternsMerger,
+  mergePatterns: legacyPatternsMerger,
 });
 
 const mergeAllOf = createShallowAllOfMerge(mergeArrayOfSchemaDefinitions);
@@ -251,7 +249,7 @@ describe("properties", () => {
             bar123: true,
           },
           patternProperties: {
-            [testPatternsMerger(lPattern, rPattern)]: true,
+            [legacyPatternsMerger(lPattern, rPattern)]: true,
           },
           additionalProperties: false,
         }

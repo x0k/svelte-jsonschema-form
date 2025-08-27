@@ -14,14 +14,12 @@ import {
   createDeepAllOfMerge,
   createShallowAllOfMerge,
 } from "./all-of-merge.js";
-
-const testPatternsMerger = (a: string, b: string) =>
-  a === b ? a : `(?=${a})(?=${b})`;
+import { legacyPatternsMerger } from './patterns.js';
 
 const { compareSchemaValues, compareSchemaDefinitions } = createComparator();
 
 const { mergeArrayOfSchemaDefinitions } = createMerger({
-  mergePatterns: testPatternsMerger,
+  mergePatterns: legacyPatternsMerger,
   intersectJson: createIntersector(compareSchemaValues),
   deduplicateJsonSchemaDef: createDeduplicator(compareSchemaDefinitions),
 });
@@ -1052,7 +1050,7 @@ describe("basic", () => {
           properties: {
             name: {
               type: "string",
-              pattern: testPatternsMerger("bar", "foo"),
+              pattern: legacyPatternsMerger("bar", "foo"),
             },
           },
         },
@@ -1073,7 +1071,7 @@ describe("basic", () => {
       });
 
       expect(result).toEqual({
-        pattern: testPatternsMerger("fdsaf", "abba"),
+        pattern: legacyPatternsMerger("fdsaf", "abba"),
       });
 
       const result2 = merger({

@@ -13,14 +13,12 @@ import {
   createShallowAllOfMerge,
 } from "./all-of-merge.js";
 import { createMerger } from "./merge.js";
-
-const testPatternsMerger = (a: string, b: string) =>
-  a === b ? a : `(?=${a})(?=${b})`;
+import { legacyPatternsMerger } from './patterns.js';
 
 const { compareSchemaValues, compareSchemaDefinitions } = createComparator();
 
 const { mergeArrayOfSchemaDefinitions } = createMerger({
-  mergePatterns: testPatternsMerger,
+  mergePatterns: legacyPatternsMerger,
   intersectJson: createIntersector(compareSchemaValues),
   deduplicateJsonSchemaDef: createDeduplicator(compareSchemaDefinitions),
   assigners: [[["additionalItems"], identity]],
@@ -74,7 +72,7 @@ describe("items", () => {
         properties: {
           name: {
             type: "string",
-            pattern: testPatternsMerger("bar", "foo"),
+            pattern: legacyPatternsMerger("bar", "foo"),
           },
         },
       },
