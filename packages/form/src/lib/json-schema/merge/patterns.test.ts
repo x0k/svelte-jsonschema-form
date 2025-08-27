@@ -181,16 +181,14 @@ const cases: TestCase[] = [
       {
         value: "prefix start middle end",
         expected: {
-          // TODO: fix
-          simplePatternsMerger: true,
+          simplePatternsMerger: false,
           legacyPatternsMerger: false,
         },
       },
       {
         value: "start middle end suffix",
         expected: {
-          // TODO: fix
-          simplePatternsMerger: true,
+          simplePatternsMerger: false,
           legacyPatternsMerger: false,
         },
       },
@@ -491,15 +489,14 @@ const cases: TestCase[] = [
       {
         value: "blue dog",
         expected: {
-          // TODO: fix
-          simplePatternsMerger: false,
+          simplePatternsMerger: true,
           legacyPatternsMerger: false,
         },
       },
       {
         value: "cat blue",
         expected: {
-          simplePatternsMerger: false,
+          simplePatternsMerger: true,
           legacyPatternsMerger: false,
         },
       },
