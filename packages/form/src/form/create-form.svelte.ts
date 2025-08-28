@@ -3,6 +3,7 @@ import type { Attachment } from "svelte/attachments";
 import { SvelteMap } from "svelte/reactivity";
 import { on } from "svelte/events";
 
+import { type Ref, type Lens, refFromLens } from "@/lib/svelte.svelte.js";
 import type { SchedulerYield } from "@/lib/scheduler.js";
 import { createDataURLtoBlob } from "@/lib/file.js";
 import {
@@ -62,7 +63,7 @@ import {
 } from "./id.js";
 import type { Config } from "./config.js";
 import type { Theme } from "./components.js";
-import type { FormValue, ValueRef } from "./model.js";
+import type { FormValue } from "./model.js";
 import type { ResolveFieldType } from "./fields.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
@@ -87,7 +88,7 @@ function createValueRef<T>(
   merger: FormMerger,
   schema: Schema,
   initialValue: T | Partial<T>
-): ValueRef<FormValue> {
+): Ref<FormValue> {
   let value = $state(
     merger.mergeFormDataAndSchemaDefaults(initialValue as FormValue, schema)
   );
@@ -103,7 +104,7 @@ function createValueRef<T>(
 
 function createErrorsRef<V extends Validator>(
   initialErrors: InitialErrors<V> | undefined
-): ValueRef<FieldErrorsMap<PossibleError<V>>> {
+): Ref<FieldErrorsMap<PossibleError<V>>> {
   let value = $state.raw(
     Array.isArray(initialErrors)
       ? groupErrors(initialErrors)
@@ -115,17 +116,6 @@ function createErrorsRef<V extends Validator>(
     },
     set current(v) {
       value = v;
-    },
-  };
-}
-
-function toRef<T, R = T>([get, set]: [() => T, (v: T) => void]): ValueRef<R> {
-  return {
-    get current() {
-      return get() as unknown as R;
-    },
-    set current(v) {
-      set(v as unknown as T);
     },
   };
 }
@@ -147,7 +137,8 @@ export interface MergerFactoryOptions<V extends Validator> {
   uiSchema: UiSchemaRoot;
 }
 
-export interface FormOptions<T, V extends Validator> extends UiOptionsRegistryOption {
+export interface FormOptions<T, V extends Validator>
+  extends UiOptionsRegistryOption {
   schema: Schema;
   theme: Theme;
   translation: Translation;
@@ -173,12 +164,9 @@ export interface FormOptions<T, V extends Validator> extends UiOptionsRegistryOp
   idPseudoSeparator?: string;
   //
   initialValue?: InitialValue<T>;
-  value?: [() => T, (v: T) => void];
+  value?: Lens<T>;
   initialErrors?: InitialErrors<V>;
-  errors?: [
-    () => FieldErrorsMap<PossibleError<V>>,
-    (v: FieldErrorsMap<PossibleError<V>>) => void,
-  ];
+  errors?: Lens<FieldErrorsMap<PossibleError<V>>>;
   /**
    * @default waitPrevious
    */
@@ -326,12 +314,12 @@ export function createForm<T, V extends Validator>(
   );
   const valueRef = $derived(
     options.value
-      ? toRef<T, FormValue>(options.value)
+      ? refFromLens(options.value as unknown as Lens<FormValue>)
       : createValueRef(merger, options.schema, options.initialValue)
   );
   let errorsRef = $derived(
     options.errors
-      ? toRef(options.errors)
+      ? refFromLens(options.errors)
       : createErrorsRef(options.initialErrors)
   );
   const disabled = $derived(options.disabled ?? false);
