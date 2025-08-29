@@ -1,34 +1,39 @@
 ---
-title: Merger setup
+title: Merger Setup
 sidebar:
   order: 4
 ---
 
-import { Code, Card, LinkCard, Tabs, TabItem } from '@astrojs/starlight/components';
+import { LinkCard } from '@astrojs/starlight/components';
+import Npm from "@/components/npm.astro";
 
-Starting with the third version, you must provide `createMerger` option to the form
-for `FormMerger` instantiation.
+## Overview
 
-<LinkCard title="Form merger API" href="../../form/merger/" />
+Starting with version 3, you must provide a `createMerger` option when creating forms to enable `FormMerger` instantiation.
+This merger handles the combination and processing of JSON schemas within your forms.
 
-The following configuration will be sufficient for most projects:
+<LinkCard title="Form Merger API Reference" href="../../form/merger/" />
+
+## Basic Configuration
+
+The following configuration will work for most projects:
 
 ```ts
 import { createFormMerger } from "@sjsf/form/mergers/modern";
 
 const form = createForm({
-  createMerger: createFromMerger,
-  ...
+  createMerger: createFormMerger,
+  // ... other form options
 });
 ```
 
-But in some cases you can/must tweak `createFromMerger` options to aspire
-desired/correct behavior.
+For projects with specific requirements, you may need to customize the `createFormMerger` options to achieve the desired behavior.
 
-## $ref properties override
+## Advanced Configurations
 
-In some cases you may want to override some properties of referenced schema,
-for example:
+### $ref Properties Override
+
+Sometimes you need to override properties of a referenced schema. For example, when you have a schema like this:
 
 ```json
 {
@@ -37,42 +42,97 @@ for example:
 }
 ```
 
-You can achieve this by overriding `mergeSchemas` method of `modern` merger:
+**Option 1: Override the `mergeSchemas` method**
 
 ```ts
 import { createFormMerger } from "@sjsf/form/mergers/modern";
-import { mergeSchemas } from "@sjsf/from/mergers/legacy";
-
+import { mergeSchemas } from "@sjsf/form/mergers/legacy";
 
 const createMerger = (options: MergerFactoryOptions) => {
   return {
-    ...createFromMerger(options),
+    ...createFormMerger(options),
     mergeSchemas,
   }
 }
 ```
 
-Or by providing custom merger for `title` property:
-
-:::caution
-
-When using this approach, `title` will always receive the last non-`undefined` value.
-
-:::
+**Option 2: Provide a custom merger for specific properties**
 
 ```ts
-import { createMerger } from "@sjsf/lib/json-schema"
+import { createMerger as createJsonSchemaMerger } from "@sjsf/lib/json-schema";
 import { createFormMerger } from "@sjsf/form/mergers/modern";
 
-const createMerger = (options: MergerFactoryOptions) => createFormMerger({
+export const createMerger = (options: MergerFactoryOptions) => createFormMerger({
   ...options,
-  jsonSchemaMerger = createMerger({
+  jsonSchemaMerger: createJsonSchemaMerger({
     mergers: {
-      title: (_, r) => r,
+      title: (_, r) => r, // Always use the rightmost non-undefined value
     }
   })
 })
 ```
 
-## allOf keyword
+:::caution[Property Override Behavior]
+When using the custom property merger approach, the `title` property will always receive the last non-`undefined` value in the merge chain.
+:::
 
+### Handling `allOf` Keyword
+
+The modern merger (recommended since v3) can be extended to handle specific scenarios involving the `allOf` keyword.
+
+**Deduplication for Complex Schemas**
+
+When merging schemas containing `oneOf`, `anyOf`, or `not` within `allOf` keywords, you may encounter duplicates in the merged result. The same issue can occur with `enum` keywords containing non-primitive values.
+
+To resolve this, configure JSON schema deduplication and intersection functions:
+
+```ts
+import { createDeduplicator, createIntersector } from "@sjsf/form/lib/array";
+import { createComparator, createMerger as createJsonSchemaMerger } from "@sjsf/lib/json-schema";
+import { createFormMerger } from "@sjsf/form/mergers/modern";
+
+const { compareSchemaValues, compareSchemaDefinitions } = createComparator();
+
+export const createMerger = (options: MergerFactoryOptions) => createFormMerger({
+  ...options,
+  jsonSchemaMerger: createJsonSchemaMerger({
+    intersectJson: createIntersector(compareSchemaValues),
+    deduplicateJsonSchemaDef: createDeduplicator(compareSchemaDefinitions),
+  })
+})
+```
+
+**What this configuration does:**
+- `intersectJson`: Handles intersection of JSON values
+- `deduplicateJsonSchemaDef`: Removes duplicate schema definitions
+
+### Form State Behavior
+
+To customize how default values are handled in your forms, you can configure the default form state behavior:
+
+<LinkCard
+  target="_blank"
+  title="experimental_defaultFormStateBehavior"
+  href="https://rjsf-team.github.io/react-jsonschema-form/docs/api-reference/form-props/#experimental_defaultformstatebehavior"
+  description="Learn about configuring default form state behavior in React JSON Schema Form"
+/>
+
+## Legacy Merger
+
+If you need to preserve v2 behavior during migration or have compatibility requirements,
+you can use the legacy merger. However, this approach is not recommended for new projects.
+
+### Setup
+
+The legacy merger requires additional dependencies:
+
+<Npm pkg="json-schema-merge-allof @types/json-schema-merge-allof" />
+
+```ts
+import { createFormMerger } from "@sjsf/form/mergers/legacy";
+
+const form = createForm({
+  createMerger: createFormMerger,
+  // ... other form options
+});
+```
