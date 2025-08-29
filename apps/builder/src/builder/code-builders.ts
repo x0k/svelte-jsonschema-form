@@ -212,8 +212,8 @@ export function buildFormDefaults({
 
   const iconsExport =
     Icons.None === icons
-      ? ""
-      : `export { icons } from "@sjsf/${icons}-icons";\n`;
+      ? false
+      : `export { icons } from "@sjsf/${icons}-icons";`;
 
   return join2(
     defineTypeImports(ephemeralFields.imports.union(ephemeralWidgets.imports)),
@@ -247,11 +247,10 @@ export function buildFormDefaults({
     ),
     ephemeralWidgets.definition,
     themeExport,
-    'export { translation } from "@sjsf/form/translations/en";',
     iconsExport,
-    `import { createFormValidator } from "@sjsf/${validator}-validator";
-
-export const validator = createFormValidator();`
+    'export { translation } from "@sjsf/form/translations/en";',
+    `export { createFormValidator as createValidator } from "@sjsf/${validator}-validator";`,
+    `export { createFormMerger as createMerger } from "@sjsf/form/mergers/modern";`,
   );
 }
 

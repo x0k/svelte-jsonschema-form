@@ -1,16 +1,17 @@
 import { describe, expect, it, beforeEach } from "vitest";
 
-import type { Validator } from "./core/validator.js";
-import type { Schema } from "./core/schema.js";
+import type { Merger, Schema, Validator } from "./core/index.js";
 import { createValidator } from "./core/test-validator.js";
-import { defaultMerger } from "./core/merger.js";
 
 import { omitExtraData } from "./omit-extra-data.js";
+import { createMerger } from "./core/test-merger.js";
 
 let validator: Validator;
+let defaultMerger: Merger;
 
 beforeEach(() => {
   validator = createValidator();
+  defaultMerger = createMerger();
 });
 
 // Most of the tests are AI generated and the test cases are duplicated.

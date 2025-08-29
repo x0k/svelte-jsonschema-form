@@ -3,15 +3,21 @@ import type { Attachment } from "svelte/attachments";
 import { SvelteMap } from "svelte/reactivity";
 import { on } from "svelte/events";
 
-import { createDataURLtoBlob } from "@/lib/file.js";
+import { type Ref, type Lens, refFromLens } from "@/lib/svelte.svelte.js";
 import type { SchedulerYield } from "@/lib/scheduler.js";
+import { createDataURLtoBlob } from "@/lib/file.js";
 import {
   abortPrevious,
   createTask,
   type TasksCombinator,
   type FailedTask,
 } from "@/lib/task.svelte.js";
-import type { Schema, Validator } from "@/core/index.js";
+import {
+  UNCHANGED,
+  reconcileSchemaValues,
+  type Schema,
+  type Validator,
+} from "@/core/index.js";
 
 import {
   type ValidationError,
@@ -48,7 +54,7 @@ import {
   type FormContext,
   FORM_CONTEXT,
 } from "./context/index.js";
-import { createFormMerger, type FormMerger } from "./merger.js";
+import type { FormMerger } from "./merger.js";
 import {
   type Id,
   DEFAULT_ID_PREFIX,
@@ -57,7 +63,7 @@ import {
 } from "./id.js";
 import type { Config } from "./config.js";
 import type { Theme } from "./components.js";
-import type { FormValue, ValueRef } from "./model.js";
+import type { FormValue } from "./model.js";
 import type { ResolveFieldType } from "./fields.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
@@ -81,8 +87,8 @@ export type UiOptionsRegistryOption = keyof UiOptionsRegistry extends never
 function createValueRef<T>(
   merger: FormMerger,
   schema: Schema,
-  initialValue?: T | Partial<T>
-): ValueRef<FormValue> {
+  initialValue: T | Partial<T>
+): Ref<FormValue> {
   let value = $state(
     merger.mergeFormDataAndSchemaDefaults(initialValue as FormValue, schema)
   );
@@ -96,32 +102,52 @@ function createValueRef<T>(
   };
 }
 
-function toValueRef<T>([get, set]: [
-  () => T,
-  (v: T) => void,
-]): ValueRef<FormValue> {
+function createErrorsRef<V extends Validator>(
+  initialErrors: InitialErrors<V> | undefined
+): Ref<FieldErrorsMap<PossibleError<V>>> {
+  let value = $state.raw(
+    Array.isArray(initialErrors)
+      ? groupErrors(initialErrors)
+      : new SvelteMap(initialErrors)
+  );
   return {
     get current() {
-      return get() as FormValue;
+      return value;
     },
     set current(v) {
-      set(v as T);
+      value = v;
     },
   };
 }
 
-// How this `extends` works?
+export interface ValidatorFactoryOptions {
+  schema: Schema;
+  uiSchema: UiSchemaRoot;
+  idPrefix: string;
+  idSeparator: string;
+  idPseudoSeparator: string;
+  /**
+   * This is a getter that can be used to access the Merger lazily.
+   */
+  merger: () => FormMerger;
+}
+export interface MergerFactoryOptions<V extends Validator> {
+  validator: V;
+  schema: Schema;
+  uiSchema: UiSchemaRoot;
+}
+
 export interface FormOptions<T, V extends Validator>
   extends UiOptionsRegistryOption {
-  validator: V;
   schema: Schema;
   theme: Theme;
   translation: Translation;
   resolver: (ctx: FormInternalContext<V>) => ResolveFieldType;
+  createValidator: (options: ValidatorFactoryOptions) => V;
+  createMerger: (options: MergerFactoryOptions<V>) => FormMerger;
   icons?: Icons;
   uiSchema?: UiSchemaRoot;
   extraUiOptions?: ExtraUiOptions;
-  merger?: FormMerger;
   fieldsValidationMode?: FieldsValidationMode;
   disabled?: boolean;
   /**
@@ -137,9 +163,10 @@ export interface FormOptions<T, V extends Validator>
    */
   idPseudoSeparator?: string;
   //
-  value?: [() => T, (v: T) => void];
   initialValue?: InitialValue<T>;
+  value?: Lens<T>;
   initialErrors?: InitialErrors<V>;
+  errors?: Lens<FieldErrorsMap<PossibleError<V>>>;
   /**
    * @default waitPrevious
    */
@@ -260,26 +287,50 @@ export function setFormContext2(form: FormState<any, any>) {
 export function createForm<T, V extends Validator>(
   options: FormOptions<T, V>
 ): FormState<T, V> {
-  const merger = $derived(
-    options.merger ?? createFormMerger(options.validator, options.schema)
+  /** STATE BEGIN */
+  const idPrefix = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX);
+  const idSeparator = $derived(options.idSeparator ?? DEFAULT_ID_SEPARATOR);
+  const idPseudoSeparator = $derived(
+    options.idPseudoSeparator ?? DEFAULT_ID_PSEUDO_SEPARATOR
   );
-
-  const valueRef = options.value
-    ? toValueRef(options.value)
-    : // svelte-ignore state_referenced_locally
-      createValueRef(merger, options.schema, options.initialValue);
-  let errors = $state.raw(
-    Array.isArray(options.initialErrors)
-      ? groupErrors(options.initialErrors)
-      : new SvelteMap(options.initialErrors)
-  );
-  let isSubmitted = $state.raw(false);
-  let isChanged = $state.raw(false);
-
-  const fieldsValidationMode = $derived(options.fieldsValidationMode ?? 0);
   const uiSchemaRoot = $derived(options.uiSchema ?? {});
   const uiSchema = $derived(resolveUiRef(uiSchemaRoot, options.uiSchema) ?? {});
+  const validator = $derived(
+    options.createValidator({
+      idPrefix,
+      idSeparator,
+      idPseudoSeparator,
+      uiSchema: uiSchemaRoot,
+      schema: options.schema,
+      merger: (): FormMerger => merger,
+    })
+  );
+  const merger = $derived(
+    options.createMerger({
+      validator,
+      schema: options.schema,
+      uiSchema: uiSchemaRoot,
+    })
+  );
+  const valueRef = $derived(
+    options.value
+      ? refFromLens(options.value as unknown as Lens<FormValue>)
+      : createValueRef(merger, options.schema, options.initialValue)
+  );
+  let errorsRef = $derived(
+    options.errors
+      ? refFromLens(options.errors)
+      : createErrorsRef(options.initialErrors)
+  );
   const disabled = $derived(options.disabled ?? false);
+  let isSubmitted = $state.raw(false);
+  let isChanged = $state.raw(false);
+  const fieldsValidationMode = $derived(options.fieldsValidationMode ?? 0);
+  const uiOptionsRegistry = $derived(options[UI_OPTIONS_REGISTRY_KEY] ?? {});
+  const uiOptions = $derived({
+    ...uiSchemaRoot["ui:globalOptions"],
+    ...uiSchema["ui:options"],
+  });
   const schedulerYield: SchedulerYield = $derived(
     (options.schedulerYield ??
       (typeof scheduler !== "undefined" && "yield" in scheduler))
@@ -296,24 +347,22 @@ export function createForm<T, V extends Validator>(
           })
   );
   const dataUrlToBlob = $derived(createDataURLtoBlob(schedulerYield));
-
   const getSnapshot = $derived(
     options.getSnapshot ?? (() => $state.snapshot(valueRef.current))
   );
-
   const translate = $derived(createTranslate(options.translation));
+  /** STATE END */
 
   const validateForm: AsyncFormValueValidator<
     AnyFormValueValidatorError<V>
   >["validateFormValueAsync"] = $derived.by(() => {
-    const v = options.validator;
-    if (isAsyncFormValueValidator(v)) {
+    if (isAsyncFormValueValidator(validator)) {
       return (signal, schema, formValue) =>
-        v.validateFormValueAsync(signal, schema, formValue);
+        validator.validateFormValueAsync(signal, schema, formValue);
     }
-    if (isFormValueValidator(v)) {
+    if (isFormValueValidator(validator)) {
       return (_, schema, formValue) =>
-        Promise.resolve(v.validateFormValue(schema, formValue));
+        Promise.resolve(validator.validateFormValue(schema, formValue));
     }
     return async () => Promise.resolve([]);
   });
@@ -330,8 +379,8 @@ export function createForm<T, V extends Validator>(
       };
     },
     onSuccess({ formValue, formErrors }, event) {
-      errors = formErrors;
-      if (errors.size === 0) {
+      errorsRef.current = formErrors;
+      if (formErrors.size === 0) {
         options.onSubmit?.(formValue as T, event);
         isChanged = false;
         return;
@@ -339,7 +388,7 @@ export function createForm<T, V extends Validator>(
       options.onSubmitError?.(formErrors, event, formValue);
     },
     onFailure(error, e) {
-      errors.set(context.rootId, [
+      errorsRef.current.set(context.rootId, [
         {
           propertyTitle: "",
           message: translate("validation-process-error", { error }),
@@ -362,14 +411,13 @@ export function createForm<T, V extends Validator>(
   const validateFields: AsyncFieldValueValidator<
     AnyFieldValueValidatorError<V>
   >["validateFieldValueAsync"] = $derived.by(() => {
-    const v = options.validator;
-    if (isAsyncFieldValueValidator(v)) {
+    if (isAsyncFieldValueValidator(validator)) {
       return (signal, config, value) =>
-        v.validateFieldValueAsync(signal, config, value);
+        validator.validateFieldValueAsync(signal, config, value);
     }
-    if (isFieldValueValidator(v)) {
+    if (isFieldValueValidator(validator)) {
       return (_, config, value) =>
-        Promise.resolve(v.validateFieldValue(config, value));
+        Promise.resolve(validator.validateFieldValue(config, value));
     }
     return () => Promise.resolve([]);
   });
@@ -399,6 +447,7 @@ export function createForm<T, V extends Validator>(
       });
     },
     onSuccess(fieldErrors, config) {
+      const errors = errorsRef.current;
       if (fieldErrors.length > 0) {
         errors.set(config.id, fieldErrors);
       } else {
@@ -407,7 +456,7 @@ export function createForm<T, V extends Validator>(
     },
     onFailure(error, config, value) {
       if (error.reason !== "aborted") {
-        errors.set(config.id, [
+        errorsRef.current.set(config.id, [
           {
             propertyTitle: config.title,
             message: translate("validation-process-error", { error }),
@@ -437,7 +486,7 @@ export function createForm<T, V extends Validator>(
     e.preventDefault();
     isSubmitted = false;
     isChanged = false;
-    errors.clear();
+    errorsRef.current.clear();
     valueRef.current = merger.mergeFormDataAndSchemaDefaults(
       options.initialValue as FormValue,
       options.schema
@@ -445,19 +494,10 @@ export function createForm<T, V extends Validator>(
     options.onReset?.(e);
   }
 
-  const rootId = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX);
-
-  const uiOptionsRegistry = $derived(options[UI_OPTIONS_REGISTRY_KEY] ?? {});
-
-  const uiOptions = $derived({
-    ...uiSchemaRoot["ui:globalOptions"],
-    ...uiSchema["ui:options"],
-  });
-
   const context: FormInternalContext<V> = {
     ...({} as FormContext),
     get rootId() {
-      return rootId as Id;
+      return idPrefix as Id;
     },
     get value() {
       return valueRef.current;
@@ -486,7 +526,7 @@ export function createForm<T, V extends Validator>(
       isChanged = v;
     },
     get errors() {
-      return errors;
+      return errorsRef.current;
     },
     get schema() {
       return options.schema;
@@ -519,7 +559,7 @@ export function createForm<T, V extends Validator>(
       return options.idPseudoSeparator ?? DEFAULT_ID_PSEUDO_SEPARATOR;
     },
     get validator() {
-      return options.validator;
+      return validator;
     },
     get merger() {
       return merger;
@@ -541,8 +581,26 @@ export function createForm<T, V extends Validator>(
     },
     submitHandler,
     resetHandler,
+    markSchemaChange() {
+      if (isDefaultsInjectionQueued) return;
+      isDefaultsInjectionQueued = true;
+      queueMicrotask(injectSchemaDefaults);
+    },
   };
   const fieldTypeResolver = $derived(options.resolver(context));
+
+  let isDefaultsInjectionQueued = false;
+  function injectSchemaDefaults() {
+    isDefaultsInjectionQueued = false;
+    const nextValue = merger.mergeFormDataAndSchemaDefaults(
+      valueRef.current,
+      options.schema
+    );
+    const change = reconcileSchemaValues(valueRef.current, nextValue);
+    if (change !== UNCHANGED) {
+      valueRef.current = change;
+    }
+  }
 
   return {
     context,
@@ -557,10 +615,10 @@ export function createForm<T, V extends Validator>(
       );
     },
     get errors() {
-      return errors;
+      return errorsRef.current;
     },
     set errors(v) {
-      errors = v;
+      errorsRef.current = v;
     },
     get isSubmitted() {
       return isSubmitted;
@@ -581,7 +639,8 @@ export function createForm<T, V extends Validator>(
   };
 }
 
-/** @deprecated use `formHandlers` */
+// TODO: Remove in v3
+/** @deprecated use `handlers` attachment */
 export function enhance(node: HTMLFormElement, context: FormContext) {
   $effect(() => {
     const ctx = context as FormInternalContext<any>;
@@ -594,7 +653,7 @@ export function enhance(node: HTMLFormElement, context: FormContext) {
   });
 }
 
-export function formHandlers(
+export function handlers(
   ctxOrState: FormState<any, any> | FormInternalContext<any>
 ): Attachment<HTMLFormElement> {
   const ctx =
@@ -608,3 +667,7 @@ export function formHandlers(
     };
   };
 }
+
+// TODO: Remove in v4
+/** @deprecated use `handlers` */
+export const formHandlers = handlers;

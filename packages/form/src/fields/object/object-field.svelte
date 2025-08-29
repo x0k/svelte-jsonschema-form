@@ -25,7 +25,7 @@
     () => config,
     () => value,
     (v) => (value = v),
-    translate,
+    translate
   );
   setObjectContext(objCtx);
 
@@ -55,19 +55,27 @@
   addButton={objCtx.canExpand ? addButton : undefined}
   {uiOption}
 >
-  {#if isSchemaObjectValue(value)}
-    {#each objCtx.propertiesOrder as property (property)}
-      {@const isAdditional = objCtx.isAdditionalProperty(property)}
-      {@const cfg = objCtx.propertyConfig(config, property, isAdditional)}
-      <ObjectProperty
-        type="field"
-        {property}
-        {isAdditional}
-        bind:value={value[property]}
-        config={cfg}
-        uiOption={(opt) => retrieveUiOption(ctx, cfg, opt)}
-        translate={retrieveTranslate(ctx, cfg)}
-      />
-    {/each}
-  {/if}
+  {#each objCtx.propertiesOrder as property (property)}
+    {@const isAdditional = objCtx.isAdditionalProperty(property)}
+    {@const cfg = objCtx.propertyConfig(config, property, isAdditional)}
+    <ObjectProperty
+      type="field"
+      {property}
+      {isAdditional}
+      bind:value={
+        () => value?.[property],
+        (v) => {
+          const c = value;
+          if (c === undefined) {
+            value = { [property]: v };
+          } else {
+            c[property] = v;
+          }
+        }
+      }
+      config={cfg}
+      uiOption={(opt) => retrieveUiOption(ctx, cfg, opt)}
+      translate={retrieveTranslate(ctx, cfg)}
+    />
+  {/each}
 </Template>

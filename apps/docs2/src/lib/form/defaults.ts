@@ -6,9 +6,8 @@ export { theme } from "@sjsf/basic-theme";
 import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import "@sjsf/basic-theme/extra-widgets/file-include";
 
+export { createFormValidator as createValidator } from "@sjsf/ajv8-validator";
+
+export { createFormMerger as createMerger } from "@sjsf/form/mergers/modern";
+
 export { translation } from "@sjsf/form/translations/en";
-
-import { createFormValidator } from "@sjsf/ajv8-validator";
-
-// NOTE: One validator will be used for all forms
-export const validator = createFormValidator();

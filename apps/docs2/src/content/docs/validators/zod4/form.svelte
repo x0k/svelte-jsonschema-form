@@ -10,7 +10,7 @@
   import { z } from "zod/v4";
   import en from "zod/v4/locales/en.js"
 
-  import * as defaults from "@/components/form-defaults";
+  import * as defaults from "@/lib/form/defaults";
 
   import { initialValue, uiSchema } from "../shared";
 
@@ -36,7 +36,7 @@
     ...defaults,
     schema,
     uiSchema,
-    validator,
+    createValidator: () => validator,
     fieldsValidationMode: ON_INPUT | ON_CHANGE | ON_ARRAY_CHANGE,
     initialValue: initialValue,
   });

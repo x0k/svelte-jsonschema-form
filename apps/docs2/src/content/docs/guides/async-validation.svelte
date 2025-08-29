@@ -6,7 +6,7 @@
   } from "@sjsf/ajv8-validator";
   import { ON_INPUT, BasicForm, createForm } from "@sjsf/form";
 
-  import * as defaults from "@/components/form-defaults";
+  import * as defaults from "@/lib/form/defaults";
 
   const ajv = addFormComponents(new Ajv());
   const validate: SchemaValidateFunction = async (schema, data) => {

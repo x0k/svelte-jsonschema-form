@@ -4,6 +4,7 @@
   import { theme } from '@sjsf/basic-theme';
   import { translation } from '@sjsf/form/translations/en';
   import { resolver } from '@sjsf/form/resolvers/basic';
+  import { createFormMerger } from '@sjsf/form/mergers/modern';
 
   import {
     createMeta,
@@ -20,21 +21,22 @@
     onSuccess: console.log,
     onFailure: console.error
   });
-  const validator = Object.assign(
-    createFormValidator(),
-    createAdditionalPropertyKeyValidator({
-      error({ type, values }) {
-        return `The presence of these ${ERROR_TYPE_OBJECTS[type]} ("${values.join('", "')}") is prohibited`;
-      }
-    })
-  );
   const form = createSvelteKitForm(meta, {
     theme,
-    validator,
     resolver,
     translation,
     onSubmit: request.run,
-    onSubmitError: console.warn
+    onSubmitError: console.warn,
+    createValidator: (options) =>
+      Object.assign(
+        createFormValidator(options),
+        createAdditionalPropertyKeyValidator({
+          error({ type, values }) {
+            return `The presence of these ${ERROR_TYPE_OBJECTS[type]} ("${values.join('", "')}") is prohibited`;
+          }
+        })
+      ),
+    createMerger: createFormMerger
   });
   setFormContext2(form);
 </script>

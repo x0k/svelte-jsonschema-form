@@ -120,10 +120,7 @@ function buildFormDefaultsConfig({
   const pkg = validatorPackage(validator);
   const validatorCode = pkg
     ? `
-import { createFormValidator } from "${pkg}";
-
-// NOTE: One validator will be used for all forms
-export const validator = createFormValidator();
+export { createFormValidator as createValidator } from "${pkg}";
 `
     : "";
   return `export { resolver } from "@sjsf/form/resolvers/${resolver}";
@@ -131,6 +128,8 @@ export const validator = createFormValidator();
 export { theme } from "@sjsf/${theme}-theme";
 
 export { translation } from "@sjsf/form/translations/en";
+
+export { createFormMerger as createMerger } from "@sjsf/form/mergers/modern";
 ${validatorCode}`;
 }
 

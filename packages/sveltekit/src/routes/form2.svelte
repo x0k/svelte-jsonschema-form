@@ -4,6 +4,7 @@
   import { theme } from '@sjsf/basic-theme';
   import { resolver } from '@sjsf/form/resolvers/basic';
   import { translation } from '@sjsf/form/translations/en';
+  import { createFormMerger } from '@sjsf/form/mergers/modern';
 
   import {
     createMeta,
@@ -15,17 +16,8 @@
   import { ERROR_TYPE_OBJECTS } from './model.js';
 
   const meta = createMeta<ActionData, PageData>().form2;
-  const validator = Object.assign(
-    createFormValidator({ idPrefix: "form2" }),
-    createAdditionalPropertyKeyValidator({
-      error({ type, values }) {
-        return `The presence of these ${ERROR_TYPE_OBJECTS[type]} ("${values.join('", "')}") is prohibited`;
-      }
-    })
-  );
   const { form } = setupSvelteKitForm(meta, {
-    idPrefix: "form2",
-    theme,
+    idPrefix: 'form2',
     schema: {
       title: 'Parent',
       additionalProperties: {
@@ -37,10 +29,20 @@
         }
       }
     },
+    theme,
     resolver,
-    validator,
     translation,
-    onSubmitError: console.warn
+    onSubmitError: console.warn,
+    createValidator: (options) =>
+      Object.assign(
+        createFormValidator(options),
+        createAdditionalPropertyKeyValidator({
+          error({ type, values }) {
+            return `The presence of these ${ERROR_TYPE_OBJECTS[type]} ("${values.join('", "')}") is prohibited`;
+          }
+        })
+      ),
+    createMerger: createFormMerger
   });
 </script>
 

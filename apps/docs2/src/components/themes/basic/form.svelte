@@ -1,20 +1,17 @@
 <script lang="ts">
   import { createForm, BasicForm } from "@sjsf/form";
 
-  import { schema, uiSchema, initialValue } from "../schema";
-  import { createMyValidator } from "../validator";
-  import { onSubmit } from "../on-submit";
-
+  import { schema, uiSchema, initialValue } from "../data";
   import * as defaults from "./defaults";
 
-  const validator = createMyValidator(defaults);
   const form = createForm({
     ...defaults,
-    validator,
+    // required due to several forms on the page
+    idPrefix: "basic",
     initialValue,
     schema,
     uiSchema,
-    onSubmit,
+    onSubmit: ({ name }) => window.alert(`Hello, ${name}`),
   });
 </script>
 

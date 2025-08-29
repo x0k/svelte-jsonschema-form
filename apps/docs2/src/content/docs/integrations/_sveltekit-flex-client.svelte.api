@@ -1,6 +1,7 @@
 <script lang="ts">
   import { BasicForm } from "@sjsf/form";
   import { createFormValidator } from "@sjsf/ajv8-validator";
+  import { createFormMerger } from "@sjsf/form/mergers/modern";
   import { resolver } from "@sjsf/form/resolvers/basic";
   import { translation } from "@sjsf/form/translations/en";
   import { theme } from "@sjsf/basic-theme";
@@ -14,9 +15,10 @@
     {
       resolver,
       theme,
-      validator: createFormValidator(),
       translation,
       onSubmitError: console.warn,
+      createValidator: createFormValidator,
+      createMerger: createFormMerger,
     },
     {
       onSuccess: console.log,

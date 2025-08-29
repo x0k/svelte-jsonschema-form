@@ -19,21 +19,39 @@ export type UiOptionsRegistryOption = keyof UiOptionsRegistry extends never
       [UI_OPTIONS_REGISTRY_KEY]: UiOptionsRegistry;
     };
 
+export interface ValidatorFactoryOptions {
+  schema: Schema;
+  uiSchema: UiSchemaRoot;
+  idPrefix: string;
+  idSeparator: string;
+  idPseudoSeparator: string;
+  /**
+   * This is a getter that can be used to access the Merger lazily.
+   */
+  merger: () => FormMerger;
+}
+
+export interface MergerFactoryOptions<V extends Validator> {
+  validator: V;
+  schema: Schema;
+  uiSchema: UiSchemaRoot;
+}
+
 export interface ValueRef<T> {
   current: T;
 }
 
 export interface FormOptions<T, V extends Validator>
   extends UiOptionsRegistryOption {
-  validator: V;
   schema: Schema;
   theme: Theme;
   translation: Translation;
   resolver: (ctx: FormInternalContext<V>) => ResolveFieldType;
+  createValidator: (options: ValidatorFactoryOptions) => V;
+  createMerger: (options: MergerFactoryOptions<V>) => FormMerger;
   icons?: Icons;
   uiSchema?: UiSchemaRoot;
   extraUiOptions?: ExtraUiOptions;
-  merger?: FormMerger;
   fieldsValidationMode?: FieldsValidationMode;
   disabled?: boolean;
   /**
@@ -49,9 +67,13 @@ export interface FormOptions<T, V extends Validator>
    */
   idPseudoSeparator?: string;
   //
+  initialValue?: InitialValue<T>;
   value?: [() => T, (v: T) => void];
-  initialValue?: Partial<T>;
   initialErrors?: InitialErrors<V>;
+  errors?: [
+    () => FieldErrorsMap<PossibleError<V>>,
+    (v: FieldErrorsMap<PossibleError<V>>) => void,
+  ];
   /**
    * @default waitPrevious
    */

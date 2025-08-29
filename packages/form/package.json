@@ -12,7 +12,9 @@
   "files": [
     "dist",
     "LICENSE-APACHE",
+    "!fixtures",
     "!app.*",
+    "!dist/**/*.bench.*",
     "!dist/**/*.test.*",
     "!dist/**/*.spec.*"
   ],
@@ -29,27 +31,40 @@
   "scripts": {
     "dev": "vite",
     "test": "vitest run --typecheck --exclude '.svelte-kit/**'",
+    "bench": "vitest bench",
     "build": "svelte-package && publint",
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "dependencies": {
-    "@types/json-schema": "^7.0.15",
-    "@types/json-schema-merge-allof": "^0.6.5",
     "@standard-schema/spec": "^1.0.0",
-    "json-schema-merge-allof": "^0.8.1",
+    "@types/json-schema": "^7.0.15",
     "jsonpointer": "^5.0.1"
   },
   "peerDependencies": {
     "esm-env": "^1.2.0",
     "svelte": "^5.33.0"
   },
+  "optionalDependencies": {
+    "@types/json-schema-merge-allof": "^0.6.0",
+    "json-schema-merge-allof": "^0.8.0"
+  },
   "devDependencies": {
+    "@types/json-schema-merge-allof": "^0.6.5",
+    "@types/json-schema-compare": "^0.2.4",
+    "ajv": "catalog:",
+    "allof-merge": "^0.6.7",
     "deep-freeze-es6": "^4.0.1",
+    "json-schema-compare": "^0.2.2",
+    "json-schema-merge-allof": "^0.8.1",
     "svelte": "catalog:"
   },
   "types": "./dist/form/index.d.ts",
   "svelte": "./dist/form/index.js",
   "exports": {
+    "./lib/json-schema": {
+      "types": "./dist/lib/json-schema/index.d.ts",
+      "default": "./dist/lib/json-schema/index.js"
+    },
     "./lib/*.svelte": {
       "types": "./dist/lib/*.svelte.d.ts",
       "svelte": "./dist/lib/*.svelte"
@@ -110,6 +125,10 @@
     "./validators/*": {
       "types": "./dist/validators/*.d.ts",
       "default": "./dist/validators/*.js"
+    },
+    "./mergers/*": {
+      "types": "./dist/mergers/*.d.ts",
+      "default": "./dist/mergers/*.js"
     },
     "./focus-on-first-error": {
       "types": "./dist/focus-on-first-error.d.ts",

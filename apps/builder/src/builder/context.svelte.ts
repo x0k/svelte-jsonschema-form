@@ -1,5 +1,4 @@
 import { flushSync, getContext, onDestroy, setContext } from "svelte";
-import { mergeSchemas } from "@sjsf/form/core";
 import type { FormValue, Schema, UiSchema } from "@sjsf/form";
 import { DragDropManager, Draggable, Droppable } from "@dnd-kit/dom";
 import type { HighlighterCore } from "shiki/core";
@@ -40,6 +39,7 @@ import { Validator } from "$lib/sjsf/validators.js";
 import { Resolver } from "$lib/sjsf/resolver.js";
 import { Icons, ICONS_APP_CSS } from "$lib/sjsf/icons.js";
 import { highlight, type SupportedLanguage } from "$lib/shiki.js";
+import { mergeSchemas } from '$lib/json-schema.js';
 
 import {
   type Route,
@@ -511,7 +511,9 @@ export class BuilderContext {
   nodeSchema(node: CustomizableNode) {
     const original = NODE_OPTIONS_SCHEMAS[node.type];
     const augmentation = THEME_SCHEMAS[this.theme][node.type];
-    return augmentation ? mergeSchemas(original, augmentation) : original;
+    return augmentation
+      ? mergeSchemas(original, augmentation)
+      : original;
   }
 
   nodeUiSchema(node: CustomizableNode) {

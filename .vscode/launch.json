@@ -7,11 +7,7 @@
       "request": "launch",
       "name": "Debug Form Test File",
       "autoAttachChildProcesses": true,
-      "skipFiles": [
-        "<node_internals>/**",
-        "**/node_modules/**"
-      ],
-      "program": "${workspaceRoot}/packages/form/node_modules/vitest/vitest.mjs",
+      "program": "${workspaceRoot}/node_modules/vitest/vitest.mjs",
       "args": [
         "run",
         "${relativeFile}",

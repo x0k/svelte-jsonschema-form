@@ -71,6 +71,8 @@ f/:
     pnpm run dev
   b:
     pnpm run build
+  ben:
+    pnpm run bench $@
   c:
     pnpm run check
   t:

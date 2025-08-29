@@ -1,9 +1,8 @@
 import { weakMemoize } from "@/lib/memoize.js";
 import {
   transformSchemaDefinition,
-  type Schema,
-  type SchemaDefinition,
-} from "@/core/index.js";
+} from "@/lib/json-schema/index.js";
+import type { SchemaDefinition, Schema } from '@/core/index.js';
 import type { AdditionalPropertyKeyValidator, Config } from "@/form/main.js";
 
 // This is an attempt to restore the original scheme for correct field validation

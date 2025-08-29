@@ -1,9 +1,9 @@
 import { isObject } from "@/lib/object.js";
+import { isSchemaObject } from '@/lib/json-schema/index.js';
 import {
   getKnownProperties,
   resolveRef,
   getSimpleSchemaType,
-  isSchema,
   isSchemaObjectValue,
   type Merger,
   type Schema,
@@ -131,7 +131,7 @@ export function omitExtraData(
     if (condition === undefined) {
       return target;
     }
-    const isThenBranch = isSchema(condition)
+    const isThenBranch = isSchemaObject(condition)
       ? validator.isValid(condition, rootSchema, source)
       : condition;
     const branch = isThenBranch ? then : otherwise;
@@ -155,7 +155,7 @@ export function omitExtraData(
       merger,
       rootSchema,
       source,
-      oneOf.map((d) => (isSchema(d) ? d : d ? {} : { not: {} })),
+      oneOf.map((d) => (isSchemaObject(d) ? d : d ? {} : { not: {} })),
       0,
       getDiscriminatorFieldFromSchema(schema)
     );

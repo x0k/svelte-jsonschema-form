@@ -2,13 +2,13 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { isEmptyRecord, isObject } from "@/lib/object.js";
+import { isRecordEmpty, isObject } from "@/lib/object.js";
+import { isSchemaObject } from "@/lib/json-schema/index.js";
 
 import { resolveDependencies, retrieveSchema } from "./resolve.js";
 import {
   ALL_OF_KEY,
   DEPENDENCIES_KEY,
-  isSchema,
   type Schema,
   type SchemaArrayValue,
   type SchemaObjectValue,
@@ -20,11 +20,7 @@ import { findSchemaDefinition } from "./definitions.js";
 import { isFixedItems } from "./is-fixed-items.js";
 import { getDiscriminatorFieldFromSchema } from "./discriminator.js";
 import { isSchemaObjectValue, isSchemaValueEmpty } from "./value.js";
-import {
-  mergeDefaultsWithFormData,
-  mergeSchemaObjects,
-  mergeSchemas,
-} from "./merge.js";
+import { mergeDefaultsWithFormData, mergeSchemaObjects } from "./merge.js";
 import {
   getSimpleSchemaType,
   isPrimitiveSchemaType,
@@ -275,7 +271,7 @@ export function computeDefaults(
     // Use referenced schema defaults for this node.
     if (!stack.has(schemaRef)) {
       nextStack = new Set(stack).add(schemaRef);
-      schemaToCompute = findSchemaDefinition(schemaRef, rootSchema);
+      schemaToCompute = findSchemaDefinition(merger, schemaRef, rootSchema);
     }
     // If the referenced schema exists and parentDefaults is not set
     // Then set the defaults from the current schema for the referenced schema
@@ -359,7 +355,7 @@ export function computeDefaults(
           merger,
           rootSchema,
           rawFormData ?? schemaDefault,
-          schemaOneOf.filter(isSchema),
+          schemaOneOf.filter(isSchemaObject),
           0,
           getDiscriminatorFieldFromSchema(schema)
         )
@@ -367,7 +363,9 @@ export function computeDefaults(
     if (typeof nextSchema === "boolean") {
       return undefined;
     }
-    schemaToCompute = mergeSchemas(remaining, nextSchema);
+    schemaToCompute = isRecordEmpty(remaining)
+      ? nextSchema
+      : merger.mergeSchemas(remaining, nextSchema);
   } else if (schemaAnyOf !== undefined) {
     const { anyOf: _, ...remaining } = schema;
     if (schemaAnyOf.length === 0) {
@@ -380,7 +378,7 @@ export function computeDefaults(
           merger,
           rootSchema,
           rawFormData ?? schemaDefault,
-          schemaAnyOf.filter(isSchema),
+          schemaAnyOf.filter(isSchemaObject),
           0,
           getDiscriminatorFieldFromSchema(schema)
         )
@@ -388,7 +386,9 @@ export function computeDefaults(
     if (typeof nextSchema === "boolean") {
       return undefined;
     }
-    schemaToCompute = mergeSchemas(remaining, nextSchema);
+    schemaToCompute = isRecordEmpty(remaining)
+      ? nextSchema
+      : merger.mergeSchemas(remaining, nextSchema);
   }
 
   if (schemaToCompute) {
@@ -509,7 +509,7 @@ function maybeAddDefaultToObject(
     if (
       Array.isArray(computedDefault)
         ? computedDefault.length > 0
-        : !isObject(computedDefault) || !isEmptyRecord(computedDefault)
+        : !isObject(computedDefault) || !isRecordEmpty(computedDefault)
     ) {
       obj.set(key, computedDefault);
     }

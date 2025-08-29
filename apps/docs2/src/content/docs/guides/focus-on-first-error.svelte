@@ -1,12 +1,14 @@
 <script lang="ts">
+  import { SimpleForm } from "@sjsf/form";
   import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
 
-  import MyForm from '@/components/my-form.svelte';
-  
+  import * as defaults from "@/lib/form/defaults";
+
   import { objectSchema, objectUiSchema } from "./demo-schemas";
 </script>
 
-<MyForm
+<SimpleForm
+  {...defaults}
   schema={objectSchema}
   uiSchema={objectUiSchema}
   onSubmitError={createFocusOnFirstError()}

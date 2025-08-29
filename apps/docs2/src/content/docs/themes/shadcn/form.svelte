@@ -5,7 +5,7 @@
   import { specs } from '@sjsf/shadcn-theme/specs'
 
   import { createAstro } from "@/astro.svelte";
-  import * as defaults from "@/components/form-defaults";
+  import * as defaults from "@/lib/form/defaults";
 
   import { createSchemas } from "../_demo-schema";
 

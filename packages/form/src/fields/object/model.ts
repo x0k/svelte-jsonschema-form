@@ -1,6 +1,6 @@
+import { isSchemaObject } from '@/lib/json-schema/index.js';
 import {
   ADDITIONAL_PROPERTY_FLAG,
-  isSchema,
   type Schema,
   type SchemaObjectValue,
 } from "@/core/index.js";
@@ -34,7 +34,7 @@ export function createOriginalKeysOrder(
   const keys = Object.keys(properties);
   for (const key of keys) {
     const property = properties[key]!;
-    if (!isSchema(property) || ADDITIONAL_PROPERTY_FLAG in property) {
+    if (!isSchemaObject(property) || ADDITIONAL_PROPERTY_FLAG in property) {
       continue;
     }
     order.push(key);

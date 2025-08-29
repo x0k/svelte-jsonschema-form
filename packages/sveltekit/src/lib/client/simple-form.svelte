@@ -7,9 +7,9 @@
   import type { SvelteKitFormMeta } from './meta.js';
   import { setupSvelteKitForm, type SvelteKitFormSetupOptions } from './form.svelte.js';
 
-  type Props = {
+  type Props = Options & {
     meta: Meta;
-  } & Options;
+  };
 
   const props: Props = $props();
 

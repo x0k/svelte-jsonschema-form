@@ -88,3 +88,9 @@ export function getDefaultFieldState<V extends Validator>(
 ) {
   return ctx.merger.mergeFormDataAndSchemaDefaults(formData, schema);
 }
+
+export function markSchemaChange<V extends Validator>(
+  ctx: FormInternalContext<V>
+) {
+  ctx.markSchemaChange();
+}

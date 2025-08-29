@@ -11,7 +11,7 @@
   import { zodToJsonSchema } from "zod-to-json-schema";
   import { z } from "zod";
 
-  import * as defaults from "@/components/form-defaults";
+  import * as defaults from "@/lib/form/defaults";
 
   import { initialValue, uiSchema } from "../shared";
 
@@ -31,13 +31,11 @@
 
   type Value = z.infer<typeof schema>;
 
-  const validator = createFormValidator(schema, { uiSchema });
-
   const form = createForm({
     ...defaults,
     schema: zodToJsonSchema(schema, { errorMessages: true }) as Schema,
     uiSchema,
-    validator,
+    createValidator: (options) => createFormValidator(schema, options),
     fieldsValidationMode: ON_INPUT | ON_CHANGE | ON_ARRAY_CHANGE,
     initialValue: initialValue as Value,
   });

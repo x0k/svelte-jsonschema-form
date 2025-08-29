@@ -1,4 +1,7 @@
-import { isSchema, type Schema, type SchemaType } from "./schema.js";
+import { unique } from "@/lib/array.js";
+import { isSchemaObject } from "@/lib/json-schema/index.js";
+
+import { type Schema, type SchemaType } from "./schema.js";
 
 export function typeOfValue(
   value: null | boolean | number | string | object
@@ -38,19 +41,19 @@ export function typeOfSchema(schema: Schema): SchemaType | SchemaType[] {
     return "object";
   }
   if (Array.isArray(schema.enum) && schema.enum.length > 0) {
-    return Array.from(new Set(schema.enum.map(typeOfValue)));
+    return unique(schema.enum.map(typeOfValue));
   }
   const alt = schema.allOf ?? schema.anyOf ?? schema.oneOf;
   if (alt) {
     let types: SchemaType[] = [];
     for (let i = 0; i < alt.length; i++) {
       const item = alt[i]!;
-      if (!isSchema(item)) {
+      if (!isSchemaObject(item)) {
         continue;
       }
       types = types.concat(typeOfSchema(item));
     }
-    return Array.from(new Set(types));
+    return unique(types);
   }
   return "null";
 }

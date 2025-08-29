@@ -8,19 +8,15 @@
   } from "@sjsf/form";
   import { createFormValidator } from "@sjsf/schemasafe-validator";
 
-  import * as defaults from "@/components/form-defaults";
+  import * as defaults from "@/lib/form/defaults";
 
   import { initialValue, schema, uiSchema } from "../shared";
-
-  const validator = createFormValidator({
-    uiSchema,
-  });
 
   const form = createForm({
     ...defaults,
     schema,
     uiSchema,
-    validator,
+    createValidator: createFormValidator,
     fieldsValidationMode: ON_INPUT | ON_CHANGE | ON_ARRAY_CHANGE,
     initialValue,
   });

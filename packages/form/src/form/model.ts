@@ -1,3 +1,4 @@
+import type { Ref } from '@/lib/svelte.svelte.js';
 import {
   getSchemaDefinitionByPath,
   type Path,
@@ -9,9 +10,9 @@ export type FieldValue = SchemaValue | undefined;
 
 export type FormValue = SchemaValue | undefined;
 
-export interface ValueRef<T> {
-  current: T;
-}
+// TODO: Remove in v4
+/** @deprecated use `Ref` from `lib/types` */
+export type ValueRef<T> = Ref<T>
 
 export const DEFAULT_BOOLEAN_ENUM = [true, false];
 

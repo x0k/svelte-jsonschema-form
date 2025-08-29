@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { defaultMerger } from "@sjsf/form/core";
+  import { untrack } from "svelte";
   import {
     Content,
     createForm,
@@ -22,13 +22,27 @@
 
   const ctx = getBuilderContext();
 
-  const schema = ctx.nodeSchema(node);
-  const uiSchema = ctx.nodeUiSchema(node);
+  const schema = $derived(ctx.nodeSchema(node));
+  const uiSchema = $derived(ctx.nodeUiSchema(node));
   const form = createForm({
     ...defaults,
-    initialValue: node.options,
-    schema,
-    uiSchema,
+    getSnapshot(ctx) {
+      return omitExtraData(
+        ctx.validator,
+        ctx.merger,
+        schema,
+        $state.snapshot(ctx.value)
+      );
+    },
+    get initialValue() {
+      return untrack(() => $state.snapshot(node.options));
+    },
+    get schema() {
+      return schema;
+    },
+    get uiSchema() {
+      return uiSchema;
+    },
     fieldsValidationMode: ON_INPUT | ON_CHANGE,
     fieldsValidationDebounceMs: 200,
   });
@@ -38,12 +52,7 @@
     if (form.fieldsValidation.isProcessed) {
       return;
     }
-    node.options = omitExtraData(
-      defaults.validator,
-      defaultMerger,
-      schema,
-      form.value as any
-    ) as any;
+    node.options = form.value as any;
   });
 </script>
 
