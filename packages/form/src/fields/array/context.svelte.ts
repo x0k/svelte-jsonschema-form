@@ -56,6 +56,7 @@ export interface ArrayContext<V extends Validator> {
   moveItemDown(index: number): void;
   copyItem(index: number): void;
   removeItem(index: number): void;
+  ensureArrayLength(length: number): void;
 }
 
 const ARRAY_CONTEXT = Symbol("array-context");
@@ -145,6 +146,15 @@ function createItemsAPI<V extends Validator>(
     removeItem(index) {
       keyedArray.remove(index);
       validate();
+    },
+    ensureArrayLength(length) {
+      let l = value()?.length;
+      if (l === undefined) {
+        return;
+      }
+      for (; l < length; l++) {
+        keyedArray.push(undefined);
+      }
     },
   } satisfies Partial<ArrayContext<V>>;
 }
@@ -249,9 +259,7 @@ export function createTupleContext<V extends Validator>(
       setValue(new Array(itemsSchema.length));
       return;
     }
-    if (val.length < itemsSchema.length) {
-      val.push(...new Array(itemsSchema.length - value.length));
-    }
+    api.ensureArrayLength(itemsSchema.length);
   });
 
   const schemaAdditionalItems = $derived.by(() => {
