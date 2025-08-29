@@ -1,5 +1,33 @@
 # docs
 
+## 1.8.3
+
+### Patch Changes
+
+- Updated dependencies [[`66ca1a5`](https://github.com/x0k/svelte-jsonschema-form/commit/66ca1a5001a65fa794e8fcb6b1362c8365ff6686)]:
+  - @sjsf/form@2.2.5
+  - @sjsf/ajv8-validator@2.2.5
+  - @sjsf/basic-theme@2.2.5
+  - @sjsf/cfworker-validator@2.2.5
+  - @sjsf/daisyui-theme@2.2.5
+  - @sjsf/daisyui5-theme@2.2.5
+  - @sjsf/flowbite-icons@2.2.5
+  - @sjsf/flowbite-theme@2.2.5
+  - @sjsf/flowbite3-theme@2.2.5
+  - @sjsf/lucide-icons@2.2.5
+  - @sjsf/moving-icons@2.2.5
+  - @sjsf/radix-icons@2.2.5
+  - @sjsf/schemasafe-validator@2.2.5
+  - @sjsf/shadcn-theme@2.2.5
+  - @sjsf/shadcn4-theme@2.2.5
+  - @sjsf/skeleton-theme@2.2.5
+  - @sjsf/skeleton3-theme@2.2.5
+  - @sjsf/sveltekit@2.2.5
+  - testing@1.0.11
+  - @sjsf/valibot-validator@2.2.5
+  - @sjsf/zod-validator@2.2.5
+  - @sjsf/zod4-validator@2.2.5
+
 ## 1.8.2
 
 ### Patch Changes
