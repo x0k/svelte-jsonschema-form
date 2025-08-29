@@ -1,4 +1,4 @@
-import type { Ref } from '@/lib/types.js';
+import type { Ref } from '@/lib/svelte.svelte.js';
 import {
   getSchemaDefinitionByPath,
   type Path,
