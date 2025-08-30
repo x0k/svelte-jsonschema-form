@@ -1,7 +1,11 @@
+import type { SchemaValue } from '@/core/schema.js';
+
 export type ItemTitle = (
   title: string,
   index: number,
-  fixedItemsCount: number
+  fixedItemsCount: number,
+  // TODO: Make required in v3
+  itemValue?: SchemaValue | undefined
 ) => string;
 
 export function titleWithIndex(

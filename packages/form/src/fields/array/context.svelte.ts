@@ -223,7 +223,8 @@ export function createArrayContext<V extends Validator>(
         title: api.itemTitle(
           itemUiTitle ?? schema.title ?? config.title,
           index,
-          0
+          0,
+          item
         ),
         schema,
         uiSchema: itemUiSchema,
@@ -315,7 +316,8 @@ export function createTupleContext<V extends Validator>(
         title: api.itemTitle(
           uiTitleOption(ctx, uiSchema) ?? schema.title ?? config.title,
           index,
-          itemsSchema.length
+          itemsSchema.length,
+          item
         ),
         schema,
         uiSchema,

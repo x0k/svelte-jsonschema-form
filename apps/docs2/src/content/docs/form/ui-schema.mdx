@@ -153,7 +153,8 @@ looks like this:
 type ItemTitle = (
   title: string,
   index: number,
-  fixedItemsCount: number
+  fixedItemsCount: number,
+  itemValue?: SchemaValue | undefined
 ) => string;
 
 type AdditionalPropertyKey = (key: string, attempt: number) => string;
