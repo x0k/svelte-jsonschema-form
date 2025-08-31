@@ -13,7 +13,7 @@
     "@codemirror/lang-json": "^6.0.2",
     "@codemirror/state": "^6.5.2",
     "@codemirror/view": "^6.38.1",
-    "@ddietr/codemirror-themes": "^1.5.1",
+    "@ddietr/codemirror-themes": "^1.5.2",
     "@sjsf/ajv8-validator": "workspace:*",
     "@sjsf/basic-theme": "workspace:*",
     "@sjsf/cfworker-validator": "workspace:*",
@@ -33,15 +33,15 @@
     "svelte-exmarkdown": "^5.0.2"
   },
   "devDependencies": {
-    "@internationalized/date": "^3.8.2",
-    "@lucide/svelte": "^0.539.0",
+    "@internationalized/date": "~3.8.2",
+    "@lucide/svelte": "^0.542.0",
     "@tailwindcss/vite": "catalog:",
-    "bits-ui": "^2.9.2",
+    "bits-ui": "^2.9.4",
     "clsx": "^2.1.1",
     "svelte": "catalog:",
     "tailwind-merge": "^3.3.1",
     "tailwind-variants": "^2.1.0",
     "tailwindcss": "catalog:",
-    "tw-animate-css": "^1.3.6"
+    "tw-animate-css": "^1.3.7"
   }
 }
