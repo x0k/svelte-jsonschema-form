@@ -26,7 +26,7 @@
 	"homepage": "https://x0k.github.io/svelte-jsonschema-form/",
 	"scripts": {
 		"dev": "vite dev",
-		"build": "svelte-package && vite build && mv $(find .svelte-kit/output/client/_app/immutable/assets/ -name \"_page*.css\" | head -n 1) dist/styles.css && sed -i 's/:root \\[data-theme=/:host \\[data-theme=/g' dist/styles.css && publint",
+		"build": "svelte-package && vite build && mv $(find .svelte-kit/output/server/_app/immutable/assets/ -name \"_page*.css\" | head -n 1) dist/styles.css && sed -i 's/:root \\[data-theme=/:host \\[data-theme=/g' dist/styles.css && publint",
 		"preview": "vite preview",
 		"test": "npm run test:unit -- --run",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
