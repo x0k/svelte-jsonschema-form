@@ -1,3 +1,5 @@
+// TODO: Remove in v3
+/** @deprecated use `KeyedArray2` */
 export interface KeyedArray<T> {
   key(index: number): number;
   push(value: T): void;
@@ -8,6 +10,8 @@ export interface KeyedArray<T> {
 
 const EMPTY: any[] = [];
 
+// TODO: Remove in v3
+/** @deprecated migrate to `KeyedArray2` */
 export function createKeyedArray<T>(array: () => T[]): KeyedArray<T> {
   let arrayRef: WeakRef<T[]> = new WeakRef(EMPTY);
   let lastKeys: number[] = EMPTY;
@@ -58,4 +62,80 @@ export function createKeyedArray<T>(array: () => T[]): KeyedArray<T> {
       array().splice(index, 1);
     },
   };
+}
+
+export interface KeyedArray2<K, V> {
+  key(index: number): K;
+  push(value: V): void;
+  swap(a: number, b: number): void;
+  insert(index: number, value: V): void;
+  remove(index: number): void;
+  splice(index: number, count: number, ...items: V[]): V[];
+}
+
+export class SimpleKeyedArray<K, T> implements KeyedArray2<K, T> {
+  protected changesPropagator = $state.raw(0);
+
+  protected keys: K[];
+
+  constructor(
+    protected readonly array: T[],
+    protected readonly nextKey: () => K
+  ) {
+    const keys = new Array(array.length);
+    for (let i = 0; i < array.length; i++) {
+      keys[i] = nextKey();
+    }
+    this.keys = keys;
+  }
+
+  key(index: number): K {
+    this.changesPropagator;
+    return this.keys[index]!;
+  }
+
+  push(value: T): void {
+    const v = this.nextKey();
+
+    this.keys.push(this.nextKey());
+    this.array.push(value);
+  }
+
+  swap(a: number, b: number): void {
+    const key = this.keys[a];
+    this.keys[a] = this.keys[b]!;
+    this.keys[b] = key!;
+    if (this.array[a] === this.array[b]) {
+      this.changesPropagator++;
+    } else {
+      const tmp = this.array[a]!;
+      this.array[a] = this.array[b]!;
+      this.array[b] = tmp;
+    }
+  }
+
+  insert(index: number, value: T): void {
+    this.keys.splice(index, 0, this.nextKey());
+    this.array.splice(index, 0, value);
+  }
+
+  remove(index: number): void {
+    this.keys.splice(index, 1);
+    this.array.splice(index, 1);
+  }
+
+  splice(start: number, count: number, ...items: T[]): T[] {
+    const l = items.length;
+    if (l > 0) {
+      const newKeys = new Array(items.length);
+      for (let i = 0; i < l; i++) {
+        newKeys[i] = this.nextKey();
+      }
+      this.keys.splice(start, count, ...newKeys);
+      return this.array.splice(start, count, ...items);
+    } else {
+      this.keys.splice(start, count);
+      return this.array.splice(start, count);
+    }
+  }
 }
