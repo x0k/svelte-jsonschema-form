@@ -1,6 +1,5 @@
 import { getContext, setContext } from "svelte";
 
-import { createKeyedArray } from "@/lib/keyed-array.svelte.js";
 import {
   getDefaultValueForType,
   getSimpleSchemaType,
@@ -14,6 +13,7 @@ import {
 import {
   AFTER_SUBMITTED,
   createChildId,
+  createKeyedArrayDeriver,
   getDefaultFieldState,
   getErrors,
   ON_ARRAY_CHANGE,
@@ -73,6 +73,7 @@ function createItemsAPI<V extends Validator>(
   ctx: FormInternalContext<V>,
   config: () => Config,
   value: () => SchemaArrayValue | undefined,
+  setValue: (v: SchemaArrayValue) => void,
   itemSchema: () => Schema | undefined
 ) {
   function validate() {
@@ -84,7 +85,7 @@ function createItemsAPI<V extends Validator>(
   }
   const uiOption: UiOption = (opt) => retrieveUiOption(ctx, config(), opt);
 
-  const keyedArray = createKeyedArray(() => value() ?? []);
+  const keyedArray = $derived.by(createKeyedArrayDeriver(ctx, value, setValue));
 
   const errors = $derived(getErrors(ctx, config().id));
 
@@ -176,9 +177,7 @@ export function createArrayContext<V extends Validator>(
   ctx: FormInternalContext<V>,
   config: () => Config,
   value: () => SchemaArrayValue | undefined,
-  // NOTE: It looks like the `undefined` value is always replaced by an array
-  // when calculating default values, so this is unnecessary
-  _: (v: SchemaArrayValue) => void
+  setValue: (v: SchemaArrayValue) => void
 ): ArrayContext<V> {
   const itemSchema: Schema = $derived.by(() => {
     const {
@@ -187,7 +186,7 @@ export function createArrayContext<V extends Validator>(
     return isSchemaObjectValue(items) ? items : {};
   });
 
-  const api = createItemsAPI(ctx, config, value, () => itemSchema);
+  const api = createItemsAPI(ctx, config, value, setValue, () => itemSchema);
 
   const itemUiSchema = $derived.by(() => {
     const {
@@ -267,7 +266,13 @@ export function createTupleContext<V extends Validator>(
     return isSchemaObjectValue(additionalItems) ? additionalItems : undefined;
   });
 
-  const api = createItemsAPI(ctx, config, value, () => schemaAdditionalItems);
+  const api = createItemsAPI(
+    ctx,
+    config,
+    value,
+    setValue,
+    () => schemaAdditionalItems
+  );
 
   const canAdd = $derived.by(
     createCanAdd(
