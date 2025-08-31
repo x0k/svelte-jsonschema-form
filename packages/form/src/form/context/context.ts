@@ -21,7 +21,7 @@ import type { Icons } from "../icons.js";
 import type { FormMerger } from "../merger.js";
 import type { Theme } from "../components.js";
 import type { Id, IdOptions } from "../id.js";
-import type { FormValue } from "../model.js";
+import type { FormValue, KeyedArraysMap } from "../model.js";
 import type { ResolveFieldType } from "../fields.js";
 
 /** @deprecated don't use this type */
@@ -32,6 +32,7 @@ export interface FormInternalContext<V extends Validator>
     Readonly<Required<IdOptions>> {
   value: FormValue;
   isChanged: boolean;
+  readonly keyedArrays: KeyedArraysMap;
   readonly rootId: Id;
   readonly fieldsValidationMode: number;
   readonly isSubmitted: boolean;
