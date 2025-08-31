@@ -50,7 +50,7 @@ export interface FormOptions<T, V extends Validator>
   idPseudoSeparator?: string;
   //
   value?: [() => T, (v: T) => void];
-  initialValue?: Partial<T>;
+  initialValue?: InitialValue<T>;
   initialErrors?: InitialErrors<V>;
   /**
    * @default waitPrevious
@@ -143,5 +143,6 @@ export interface FormOptions<T, V extends Validator>
    */
   onReset?: (e: Event) => void;
   schedulerYield?: SchedulerYield;
+  keyedArraysMap?: KeyedArraysMap;
 }
 ```
