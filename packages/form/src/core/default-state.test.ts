@@ -6281,4 +6281,20 @@ describe("getDefaultFormState2()", () => {
       )
     ).toEqual({ stringArray: [undefined], numberArray: [] });
   });
+  it("handles a `null` default value", () => {
+    const schema: Schema = {
+      type: "object",
+      properties: {
+        empty: {
+          type: "null",
+          default: null,
+        },
+      },
+    };
+    expect(
+      getDefaultFormState(testValidator, defaultMerger, schema, {}, schema)
+    ).toEqual({
+      empty: null,
+    });
+  });
 });

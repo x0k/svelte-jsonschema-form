@@ -239,7 +239,7 @@ export function mergeDefaultsWithFormData<T = any>(
 
   if (
     (defaultsSupersedesUndefined &&
-      ((!isNil(defaults) && isNil(formData)) ||
+      ((!(defaults === undefined) && isNil(formData)) ||
         (typeof formData === "number" && isNaN(formData)))) ||
     (overrideFormDataWithDefaults && !isNil(formData))
     // NOTE: The above condition is inherited from RJSF to maintain tests compatibility
@@ -255,7 +255,7 @@ export function mergeDefaultsWithFormData<T = any>(
 
 export function mergeSchemaObjects<
   A extends SchemaObjectValue,
-  B extends SchemaObjectValue
+  B extends SchemaObjectValue,
 >(obj1: A, obj2: B, concatArrays: boolean | "preventDuplicates" = false) {
   const acc: SchemaObjectValue = Object.assign({}, obj1);
   for (const [key, right] of Object.entries(obj2)) {
