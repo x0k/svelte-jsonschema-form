@@ -1146,6 +1146,7 @@ exports[`widgets > fileUpload > error 1`] = `
         style="display: block;"
       >
         <div
+          aria-disabled="false"
           aria-label="dropzone"
           data-invalid=""
           data-part="dropzone"
@@ -1248,6 +1249,7 @@ exports[`widgets > fileUpload > normal 1`] = `
         style="display: block;"
       >
         <div
+          aria-disabled="false"
           aria-label="dropzone"
           data-part="dropzone"
           data-scope="file-upload"
@@ -1337,6 +1339,7 @@ exports[`widgets > fileUpload > readonly 1`] = `
         style="display: block;"
       >
         <div
+          aria-disabled="false"
           aria-label="dropzone"
           data-part="dropzone"
           data-scope="file-upload"
@@ -1520,6 +1523,7 @@ exports[`widgets > fileUploadMultiple > error 1`] = `
         style="display: block;"
       >
         <div
+          aria-disabled="false"
           aria-label="dropzone"
           data-invalid=""
           data-part="dropzone"
@@ -1623,6 +1627,7 @@ exports[`widgets > fileUploadMultiple > normal 1`] = `
         style="display: block;"
       >
         <div
+          aria-disabled="false"
           aria-label="dropzone"
           data-part="dropzone"
           data-scope="file-upload"
@@ -1713,6 +1718,7 @@ exports[`widgets > fileUploadMultiple > readonly 1`] = `
         style="display: block;"
       >
         <div
+          aria-disabled="false"
           aria-label="dropzone"
           data-part="dropzone"
           data-scope="file-upload"
@@ -3994,6 +4000,7 @@ exports[`widgets > rating > disabled 1`] = `
             <!---->
           </span>
           <span
+            aria-checked="false"
             aria-disabled="true"
             aria-label="2 stars"
             aria-posinset="2"
@@ -4032,6 +4039,7 @@ exports[`widgets > rating > disabled 1`] = `
             <!---->
           </span>
           <span
+            aria-checked="false"
             aria-disabled="true"
             aria-label="3 stars"
             aria-posinset="3"
@@ -4070,6 +4078,7 @@ exports[`widgets > rating > disabled 1`] = `
             <!---->
           </span>
           <span
+            aria-checked="false"
             aria-disabled="true"
             aria-label="4 stars"
             aria-posinset="4"
@@ -4108,6 +4117,7 @@ exports[`widgets > rating > disabled 1`] = `
             <!---->
           </span>
           <span
+            aria-checked="false"
             aria-disabled="true"
             aria-label="5 stars"
             aria-posinset="5"
@@ -4216,6 +4226,7 @@ exports[`widgets > rating > error 1`] = `
         >
           <span
             aria-checked="true"
+            aria-disabled="false"
             aria-label="1 stars"
             aria-posinset="1"
             aria-roledescription="rating"
@@ -4254,6 +4265,8 @@ exports[`widgets > rating > error 1`] = `
             <!---->
           </span>
           <span
+            aria-checked="false"
+            aria-disabled="false"
             aria-label="2 stars"
             aria-posinset="2"
             aria-roledescription="rating"
@@ -4291,6 +4304,8 @@ exports[`widgets > rating > error 1`] = `
             <!---->
           </span>
           <span
+            aria-checked="false"
+            aria-disabled="false"
             aria-label="3 stars"
             aria-posinset="3"
             aria-roledescription="rating"
@@ -4328,6 +4343,8 @@ exports[`widgets > rating > error 1`] = `
             <!---->
           </span>
           <span
+            aria-checked="false"
+            aria-disabled="false"
             aria-label="4 stars"
             aria-posinset="4"
             aria-roledescription="rating"
@@ -4365,6 +4382,8 @@ exports[`widgets > rating > error 1`] = `
             <!---->
           </span>
           <span
+            aria-checked="false"
+            aria-disabled="false"
             aria-label="5 stars"
             aria-posinset="5"
             aria-roledescription="rating"
@@ -4483,6 +4502,7 @@ exports[`widgets > rating > normal 1`] = `
         >
           <span
             aria-checked="true"
+            aria-disabled="false"
             aria-label="1 stars"
             aria-posinset="1"
             aria-roledescription="rating"
@@ -4521,6 +4541,8 @@ exports[`widgets > rating > normal 1`] = `
             <!---->
           </span>
           <span
+            aria-checked="false"
+            aria-disabled="false"
             aria-label="2 stars"
             aria-posinset="2"
             aria-roledescription="rating"
@@ -4558,6 +4580,8 @@ exports[`widgets > rating > normal 1`] = `
             <!---->
           </span>
           <span
+            aria-checked="false"
+            aria-disabled="false"
             aria-label="3 stars"
             aria-posinset="3"
             aria-roledescription="rating"
@@ -4595,6 +4619,8 @@ exports[`widgets > rating > normal 1`] = `
             <!---->
           </span>
           <span
+            aria-checked="false"
+            aria-disabled="false"
             aria-label="4 stars"
             aria-posinset="4"
             aria-roledescription="rating"
@@ -4632,6 +4658,8 @@ exports[`widgets > rating > normal 1`] = `
             <!---->
           </span>
           <span
+            aria-checked="false"
+            aria-disabled="false"
             aria-label="5 stars"
             aria-posinset="5"
             aria-roledescription="rating"
@@ -4740,6 +4768,7 @@ exports[`widgets > rating > readonly 1`] = `
         >
           <span
             aria-checked="true"
+            aria-disabled="false"
             aria-label="1 stars"
             aria-posinset="1"
             aria-roledescription="rating"
@@ -4779,6 +4808,8 @@ exports[`widgets > rating > readonly 1`] = `
             <!---->
           </span>
           <span
+            aria-checked="false"
+            aria-disabled="false"
             aria-label="2 stars"
             aria-posinset="2"
             aria-roledescription="rating"
@@ -4816,6 +4847,8 @@ exports[`widgets > rating > readonly 1`] = `
             <!---->
           </span>
           <span
+            aria-checked="false"
+            aria-disabled="false"
             aria-label="3 stars"
             aria-posinset="3"
             aria-roledescription="rating"
@@ -4853,6 +4886,8 @@ exports[`widgets > rating > readonly 1`] = `
             <!---->
           </span>
           <span
+            aria-checked="false"
+            aria-disabled="false"
             aria-label="4 stars"
             aria-posinset="4"
             aria-roledescription="rating"
@@ -4890,6 +4925,8 @@ exports[`widgets > rating > readonly 1`] = `
             <!---->
           </span>
           <span
+            aria-checked="false"
+            aria-disabled="false"
             aria-label="5 stars"
             aria-posinset="5"
             aria-roledescription="rating"
@@ -5331,6 +5368,7 @@ exports[`widgets > slider > disabled 1`] = `
               data-part="thumb"
               data-scope="slider"
               dir="ltr"
+              draggable="false"
               id="slider:c19:thumb:0"
               role="slider"
               style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-0);"
@@ -5452,6 +5490,7 @@ exports[`widgets > slider > error 1`] = `
               data-part="thumb"
               data-scope="slider"
               dir="ltr"
+              draggable="false"
               id="slider:c18:thumb:0"
               role="slider"
               style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-0);"
@@ -5582,6 +5621,7 @@ exports[`widgets > slider > normal 1`] = `
               data-part="thumb"
               data-scope="slider"
               dir="ltr"
+              draggable="false"
               id="slider:c17:thumb:0"
               role="slider"
               style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-0);"
@@ -5700,6 +5740,7 @@ exports[`widgets > slider > readonly 1`] = `
               data-part="thumb"
               data-scope="slider"
               dir="ltr"
+              draggable="false"
               id="slider:c20:thumb:0"
               role="slider"
               style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-0);"
@@ -5771,6 +5812,7 @@ exports[`widgets > switch > disabled 1`] = `
         id="switch:c23"
       >
         <input
+          aria-invalid="false"
           aria-labelledby="switch:c23:label"
           data-testid="switch-input"
           disabled=""
@@ -5976,6 +6018,7 @@ exports[`widgets > switch > normal 1`] = `
         id="switch:c21"
       >
         <input
+          aria-invalid="false"
           aria-labelledby="switch:c21:label"
           data-testid="switch-input"
           id="root"
@@ -6069,6 +6112,7 @@ exports[`widgets > switch > readonly 1`] = `
         id="switch:c24"
       >
         <input
+          aria-invalid="false"
           aria-labelledby="switch:c24:label"
           data-testid="switch-input"
           id="root"
