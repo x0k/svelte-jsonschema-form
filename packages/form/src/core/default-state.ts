@@ -858,18 +858,20 @@ export function getArrayDefaults(
   const fillerDefault = fillerSchema.default;
 
   // Calculate filler entries for remaining items (minItems - existing raw data/defaults)
-  const fillerEntries = new Array(schema.minItems - defaultsLength).fill(
-    computeDefaults(validator, merger, fillerSchema, {
-      parentDefaults: fillerDefault,
-      rootSchema,
-      stack: stack,
-      experimental_defaultFormStateBehavior,
-      required,
-      includeUndefinedValues: false,
-      rawFormData: undefined,
-      isSchemaRoot: false,
-      shouldMergeDefaultsIntoFormData,
-    })
+  const fillerEntries = Array.from(
+    { length: schema.minItems - defaultsLength },
+    () =>
+      computeDefaults(validator, merger, fillerSchema, {
+        parentDefaults: fillerDefault,
+        rootSchema,
+        stack: stack,
+        experimental_defaultFormStateBehavior,
+        required,
+        includeUndefinedValues: false,
+        rawFormData: undefined,
+        isSchemaRoot: false,
+        shouldMergeDefaultsIntoFormData,
+      })
   );
   // then fill up the rest with either the item default or empty, up to minItems
   return defaultsLength ? defaults!.concat(fillerEntries) : fillerEntries;
