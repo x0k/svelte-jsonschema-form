@@ -74,10 +74,8 @@
 	"dependencies": {
 		"@sjsf/basic-theme": "workspace:^2.2.4"
 	},
-	"optionalDependencies": {
-		"@internationalized/date": "^3.8.1"
-	},
 	"peerDependencies": {
+		"@internationalized/date": "^3.8.1",
 		"@sjsf/form": "workspace:^2.2.4",
 		"bits-ui": "^2.2.0",
 		"clsx": "^2.1.0",
@@ -85,6 +83,11 @@
 		"svelte": "^5.33.0",
 		"tailwind-merge": "^2.6.0",
 		"tailwind-variants": "^0.3.0"
+	},
+	"peerDependenciesMeta": {
+		"@internationalized/date": {
+			"optional": true
+		}
 	},
 	"devDependencies": {
 		"@internationalized/date": "3.8.1",
