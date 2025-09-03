@@ -8,7 +8,7 @@ import { Code, Card, LinkButton, Tabs, TabItem } from '@astrojs/starlight/compon
 import { specs, extraWidgets } from '@sjsf/shadcn4-theme/specs';
 import styles from '@sjsf/shadcn4-theme/styles.css?inline';
 
-import { peerDependencies, optionalDependencies } from '#/shadcn4-theme/package.json'
+import { peerDependencies } from '#/shadcn4-theme/package.json'
 
 import { withTag } from '@/shared';
 import Npm from '@/components/npm.astro';
@@ -37,7 +37,7 @@ This is `shadcn-svelte` based theme (Tailwind v4).
 :::
 
 bits-ui <code>{peerDependencies['bits-ui']}</code> and @internationalized/date
-<code>{optionalDependencies['@internationalized/date']}</code> may be required.
+<code>{peerDependencies['@internationalized/date']}</code> may be required.
 
 ### Install shadcn-svelte
 

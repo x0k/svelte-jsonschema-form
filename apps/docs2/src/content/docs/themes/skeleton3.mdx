@@ -8,7 +8,7 @@ import { Code, Card, TabItem, Tabs, LinkButton } from '@astrojs/starlight/compon
 import { specs, extraWidgets } from '@sjsf/skeleton3-theme/specs';
 import styles from "@sjsf/skeleton3-theme/styles.css?inline";
 
-import { peerDependencies, optionalDependencies } from '#/skeleton3-theme/package.json'
+import { peerDependencies } from '#/skeleton3-theme/package.json'
 
 import { withTag } from '@/shared';
 import Npm from '@/components/npm.astro';
@@ -31,7 +31,7 @@ export const schemas = createSchemas(specs)
 <Npm pkg={withTag("skeleton3")} />
 
 @skeletonlabs/skeleton <code>{peerDependencies['@skeletonlabs/skeleton']}</code> and
-@skeletonlabs/skeleton-svelte <code>{optionalDependencies['@skeletonlabs/skeleton-svelte']}</code> are required.
+@skeletonlabs/skeleton-svelte <code>{peerDependencies['@skeletonlabs/skeleton-svelte']}</code> are required.
 
 ### Install Skeleton v3
 
