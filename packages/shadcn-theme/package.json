@@ -26,7 +26,7 @@
 	"homepage": "https://x0k.github.io/svelte-jsonschema-form/",
 	"scripts": {
 		"dev": "vite dev",
-		"build": "svelte-package && vite build && mv $(find .svelte-kit/output/client/_app/immutable/assets/ -name \"_page*.css\" | head -n 1) dist/styles.css && sed -i 's/:root \\[data-theme=/:host \\[data-theme=/g' dist/styles.css && sed -i 's/:root{/:host{/g' dist/styles.css && publint",
+		"build": "svelte-package && vite build && mv $(find .svelte-kit/output/server/_app/immutable/assets/ -name \"_page*.css\" | head -n 1) dist/styles.css && sed -i 's/:root \\[data-theme=/:host \\[data-theme=/g' dist/styles.css && sed -i 's/:root{/:host{/g' dist/styles.css && publint",
 		"preview": "vite preview",
 		"test": "npm run test:unit -- --run",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -74,10 +74,8 @@
 	"dependencies": {
 		"@sjsf/basic-theme": "workspace:^2.2.4"
 	},
-	"optionalDependencies": {
-		"@internationalized/date": "^3.8.1"
-	},
 	"peerDependencies": {
+		"@internationalized/date": "^3.8.1",
 		"@sjsf/form": "workspace:^2.2.4",
 		"bits-ui": "^2.2.0",
 		"clsx": "^2.1.0",
@@ -85,6 +83,11 @@
 		"svelte": "^5.33.0",
 		"tailwind-merge": "^2.6.0",
 		"tailwind-variants": "^0.3.0"
+	},
+	"peerDependenciesMeta": {
+		"@internationalized/date": {
+			"optional": true
+		}
 	},
 	"devDependencies": {
 		"@internationalized/date": "3.8.1",
