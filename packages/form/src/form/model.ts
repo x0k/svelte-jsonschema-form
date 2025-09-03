@@ -11,7 +11,9 @@ export type FieldValue = SchemaValue | undefined;
 
 export type FormValue = SchemaValue | undefined;
 
-export type KeyedArraysMap = WeakMap<SchemaArrayValue, KeyedArray2<number, FieldValue>>;
+export type KeyedFieldValues = KeyedArray2<number, FieldValue>
+
+export type KeyedArraysMap = WeakMap<SchemaArrayValue, KeyedFieldValues>;
 
 export interface ValueRef<T> {
   current: T;
