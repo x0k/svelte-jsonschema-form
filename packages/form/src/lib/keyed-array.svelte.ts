@@ -66,10 +66,11 @@ export function createKeyedArray<T>(array: () => T[]): KeyedArray<T> {
 
 export interface KeyedArray2<K, V> {
   key(index: number): K;
-  push(value: V): void;
+  push(value: V): number;
   swap(a: number, b: number): void;
   insert(index: number, value: V): void;
-  remove(index: number): void;
+  remove(index: number): V | undefined;
+  splice(index: number, count?: number): V[];
   splice(index: number, count: number, ...items: V[]): V[];
 }
 
@@ -94,11 +95,9 @@ export class SimpleKeyedArray<K, T> implements KeyedArray2<K, T> {
     return this.keys[index]!;
   }
 
-  push(value: T): void {
-    const v = this.nextKey();
-
+  push(value: T) {
     this.keys.push(this.nextKey());
-    this.array.push(value);
+    return this.array.push(value);
   }
 
   swap(a: number, b: number): void {
@@ -119,9 +118,9 @@ export class SimpleKeyedArray<K, T> implements KeyedArray2<K, T> {
     this.array.splice(index, 0, value);
   }
 
-  remove(index: number): void {
+  remove(index: number) {
     this.keys.splice(index, 1);
-    this.array.splice(index, 1);
+    return this.array.splice(index, 1)[0];
   }
 
   splice(start: number, count: number, ...items: T[]): T[] {
