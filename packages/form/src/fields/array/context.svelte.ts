@@ -1,6 +1,5 @@
 import { getContext, setContext } from "svelte";
 
-import { SimpleKeyedArray } from "@/lib/keyed-array.svelte.js";
 import {
   getDefaultValueForType,
   getSimpleSchemaType,
@@ -14,7 +13,6 @@ import {
 import {
   AFTER_SUBMITTED,
   createChildId,
-  createKeyedArrayDeriver,
   getDefaultFieldState,
   getErrors,
   ON_ARRAY_CHANGE,
@@ -32,7 +30,6 @@ import {
 } from "@/form/index.js";
 
 import { titleWithIndex, type ItemTitle } from "./model.js";
-import { VirtualKeyedArray } from "./virtual-keyed-array.js";
 
 export interface ArrayContext<V extends Validator> {
   readonly config: Config;
@@ -43,6 +40,8 @@ export interface ArrayContext<V extends Validator> {
   readonly itemTitle: ItemTitle;
   readonly errors: FieldError<PossibleError<V>>[];
   readonly uiOption: UiOption;
+  length(): number;
+  set(index: number, value: SchemaValue | undefined): void;
   canAdd(): boolean;
   canCopy(index: number): boolean;
   canRemove(index: number): boolean;
@@ -59,6 +58,7 @@ export interface ArrayContext<V extends Validator> {
   moveItemDown(index: number): void;
   copyItem(index: number): void;
   removeItem(index: number): void;
+  validate(): void;
 }
 
 const ARRAY_CONTEXT = Symbol("array-context");
@@ -71,13 +71,21 @@ export function setArrayContext<V extends Validator>(ctx: ArrayContext<V>) {
   setContext(ARRAY_CONTEXT, ctx);
 }
 
-function createItemsAPI<V extends Validator>(
-  ctx: FormInternalContext<V>,
-  config: () => Config,
-  value: () => SchemaArrayValue | undefined,
-  keyedArray: () => KeyedFieldValues,
-  itemSchema: () => Schema | undefined
-) {
+interface ItemsOptions<V extends Validator> {
+  ctx: FormInternalContext<V>;
+  config: () => Config;
+  value: () => SchemaArrayValue | undefined;
+  keyedArray: () => KeyedFieldValues;
+  itemSchema: () => Schema | undefined;
+}
+
+function createItems<V extends Validator>({
+  ctx,
+  config,
+  itemSchema,
+  keyedArray,
+  value,
+}: ItemsOptions<V>) {
   function validate() {
     const m = ctx.fieldsValidationMode;
     if (!(m & ON_ARRAY_CHANGE) || (m & AFTER_SUBMITTED && !ctx.isSubmitted)) {
@@ -99,6 +107,7 @@ function createItemsAPI<V extends Validator>(
 
   return {
     uiOption,
+    validate,
     get itemTitle() {
       return itemTitle;
     },
@@ -166,18 +175,21 @@ function createCanAdd(
     maxItems === undefined || val.length < maxItems);
 }
 
-export function createArrayContext<V extends Validator>(
-  ctx: FormInternalContext<V>,
-  config: () => Config,
-  value: () => SchemaArrayValue | undefined,
-  setValue: (v: SchemaArrayValue) => void,
-  keyedArray = createKeyedArrayDeriver(
-    ctx,
-    value,
-    () => new VirtualKeyedArray(setValue),
-    (v, g) => new SimpleKeyedArray(v, g)
-  )
-): ArrayContext<V> {
+export interface ArrayContextOptions<V extends Validator> {
+  ctx: FormInternalContext<V>;
+  config: () => Config;
+  value: () => SchemaArrayValue | undefined;
+  keyedArray: () => KeyedFieldValues;
+}
+
+export function createArrayContext<V extends Validator>({
+  ctx,
+  config,
+  value,
+  keyedArray,
+}: ArrayContextOptions<V>): ArrayContext<V> {
+  const arr = $derived.by(value);
+
   const itemSchema: Schema = $derived.by(() => {
     const {
       schema: { items },
@@ -185,7 +197,13 @@ export function createArrayContext<V extends Validator>(
     return isSchemaObjectValue(items) ? items : {};
   });
 
-  const api = createItemsAPI(ctx, config, value, keyedArray, () => itemSchema);
+  const items = createItems({
+    ctx,
+    config,
+    value,
+    keyedArray,
+    itemSchema: () => itemSchema,
+  });
 
   const itemUiSchema = $derived.by(() => {
     const {
@@ -196,29 +214,35 @@ export function createArrayContext<V extends Validator>(
 
   const itemUiTitle = $derived(uiTitleOption(ctx, itemUiSchema));
 
-  const canAdd = $derived.by(createCanAdd(config, value, () => api.addable));
+  const canAdd = $derived.by(createCanAdd(config, value, () => items.addable));
 
-  return Object.assign(api, {
+  return Object.assign(items, {
+    length() {
+      return arr?.length ?? 0;
+    },
+    set(index, itemValue) {
+      arr![index] = itemValue;
+    },
     canAdd() {
       return canAdd;
     },
     canCopy() {
-      return api.copyable && canAdd;
+      return items.copyable && canAdd;
     },
     canRemove() {
-      return api.removable;
+      return items.removable;
     },
     canMoveUp(index) {
-      return api.orderable && index > 0;
+      return items.orderable && index > 0;
     },
     canMoveDown(index) {
-      return api.orderable && index < value()!.length - 1;
+      return items.orderable && index < arr!.length - 1;
     },
     itemConfig(config, item, index) {
       const schema = retrieveSchema(ctx, itemSchema, item);
       return {
         id: createChildId(config.id, index, ctx),
-        title: api.itemTitle(
+        title: items.itemTitle(
           itemUiTitle ?? schema.title ?? config.title,
           index,
           0,
@@ -232,19 +256,13 @@ export function createArrayContext<V extends Validator>(
   } satisfies Partial<ArrayContext<V>>);
 }
 
-export function createTupleContext<V extends Validator>(
-  ctx: FormInternalContext<V>,
-  config: () => Config,
-  value: () => SchemaArrayValue | undefined,
-  setValue: (v: SchemaArrayValue) => void,
-  keyedArray = createKeyedArrayDeriver(
-    ctx,
-    value,
-    () => new VirtualKeyedArray(setValue),
-    (v, g) => new SimpleKeyedArray(v, g)
-  )
-): ArrayContext<V> {
-  const keyed = $derived.by(keyedArray);
+export function createTupleContext<V extends Validator>({
+  ctx,
+  config,
+  value,
+  keyedArray,
+}: ArrayContextOptions<V>): ArrayContext<V> {
+  const arr = $derived.by(value);
 
   const itemsSchema = $derived.by(() => {
     const { items } = config().schema;
@@ -255,62 +273,64 @@ export function createTupleContext<V extends Validator>(
               "Invalid schema: items must be an array of schemas"
             );
           }
-          return retrieveSchema(ctx, item, value()?.[i]);
+          return retrieveSchema(ctx, item, arr?.[i]);
         })
       : [];
   });
   const isAdditional = (index: number) => index >= itemsSchema.length;
-
-  $effect(() => {
-    const val = value();
-    if (val === undefined) {
-      setValue(new Array(itemsSchema.length));
-      return;
-    }
-    let l = val.length;
-    for (; l < length; l++) {
-      keyed.push(undefined);
-    }
-  });
 
   const schemaAdditionalItems = $derived.by(() => {
     const { additionalItems } = config().schema;
     return isSchemaObjectValue(additionalItems) ? additionalItems : undefined;
   });
 
-  const api = createItemsAPI(
+  const keyed = $derived.by(keyedArray);
+
+  const items = createItems({
     ctx,
     config,
     value,
-    () => keyed,
-    () => schemaAdditionalItems
-  );
+    keyedArray: () => keyed,
+    itemSchema: () => schemaAdditionalItems,
+  });
 
   const canAdd = $derived.by(
     createCanAdd(
       config,
       value,
-      () => api.addable && schemaAdditionalItems !== undefined
+      () => items.addable && schemaAdditionalItems !== undefined
     )
   );
 
-  return Object.assign(api, {
+  const length = $derived(Math.max(arr?.length ?? 0, itemsSchema.length));
+
+  return Object.assign(items, {
+    length() {
+      return length;
+    },
+    set(index, itemValue) {
+      if (arr !== undefined) {
+        arr[index] = itemValue;
+      } else {
+        const items = new Array(length);
+        items[index] = itemValue;
+        keyed.splice(0, 0, ...items);
+      }
+    },
     canAdd() {
       return canAdd;
     },
     canCopy(index) {
-      return api.copyable && canAdd && isAdditional(index);
+      return items.copyable && canAdd && isAdditional(index);
     },
     canRemove(index) {
-      return api.removable && isAdditional(index);
+      return items.removable && isAdditional(index);
     },
     canMoveUp(index) {
-      return api.orderable && index > itemsSchema.length;
+      return items.orderable && index > itemsSchema.length;
     },
     canMoveDown(index) {
-      return (
-        api.orderable && index < value()!.length - 1 && isAdditional(index)
-      );
+      return items.orderable && index < arr!.length - 1 && isAdditional(index);
     },
     itemConfig(config, item, index) {
       const additional = isAdditional(index);
@@ -329,7 +349,7 @@ export function createTupleContext<V extends Validator>(
       );
       return {
         id: createChildId(config.id, index, ctx),
-        title: api.itemTitle(
+        title: items.itemTitle(
           uiTitleOption(ctx, uiSchema) ?? schema.title ?? config.title,
           index,
           itemsSchema.length,
