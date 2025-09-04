@@ -12,12 +12,7 @@ import {
   type TasksCombinator,
   type FailedTask,
 } from "@/lib/task.svelte.js";
-import {
-  UNCHANGED,
-  reconcileSchemaValues,
-  type Schema,
-  type Validator,
-} from "@/core/index.js";
+import type { Schema, Validator } from "@/core/index.js";
 
 import {
   type ValidationError,
@@ -65,6 +60,7 @@ import type { Config } from "./config.js";
 import type { Theme } from "./components.js";
 import type { FormValue, KeyedArraysMap, ValueRef } from "./model.js";
 import type { ResolveFieldType } from "./fields.js";
+import { createSchemaValuesReconciler, UNCHANGED } from "./reconcile.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
 
@@ -335,6 +331,9 @@ export function createForm<T, V extends Validator>(
   const keyedArrays: KeyedArraysMap = $derived(
     options.keyedArraysMap ?? new WeakMap()
   );
+  const reconcileSchemaValues = $derived(
+    createSchemaValuesReconciler(keyedArrays)
+  );
   const schedulerYield: SchedulerYield = $derived(
     (options.schedulerYield ??
       (typeof scheduler !== "undefined" && "yield" in scheduler))
@@ -557,13 +556,13 @@ export function createForm<T, V extends Validator>(
       return disabled;
     },
     get idPrefix() {
-      return options.idPrefix ?? DEFAULT_ID_PREFIX;
+      return idPrefix;
     },
     get idSeparator() {
-      return options.idSeparator ?? DEFAULT_ID_SEPARATOR;
+      return idSeparator;
     },
     get idPseudoSeparator() {
-      return options.idPseudoSeparator ?? DEFAULT_ID_PSEUDO_SEPARATOR;
+      return idPseudoSeparator;
     },
     get validator() {
       return validator;
