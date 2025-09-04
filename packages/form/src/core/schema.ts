@@ -143,56 +143,6 @@ export function isNormalArrayItems(items: Schema["items"]): items is Schema {
   return typeof items === "object" && !Array.isArray(items);
 }
 
-export const UNCHANGED = Symbol("unchanged");
-
-export function reconcileSchemaValues(
-  target: SchemaValue | undefined,
-  source: SchemaValue | undefined
-): SchemaValue | undefined | typeof UNCHANGED {
-  if (target === source) {
-    return UNCHANGED;
-  }
-  if (typeof target === "object" && typeof source === "object") {
-    const isTArr = Array.isArray(target);
-    const isSArr = Array.isArray(source);
-    if (isTArr && isSArr) {
-      const l = Math.min(target.length, source.length);
-      let i = 0;
-      for (; i < l; i++) {
-        const v = reconcileSchemaValues(target[i], source[i]);
-        if (v !== UNCHANGED) {
-          target[i] = v;
-        }
-      }
-      for (; i < source.length; i++) {
-        target.push(source[i]);
-      }
-      target.splice(source.length);
-      return UNCHANGED;
-    }
-    if (!isTArr && !isSArr && target !== null && source !== null) {
-      const tKeys = Object.keys(target);
-      let l = tKeys.length;
-      for (let i = 0; i < l; i++) {
-        const key = tKeys[i]!;
-        if (!(key in source)) {
-          delete target[key];
-        }
-      }
-      const sKeys = Object.keys(source);
-      l = sKeys.length;
-      for (let i = 0; i < l; i++) {
-        const key = sKeys[i]!;
-        const v = reconcileSchemaValues(target[key], source[key]);
-        if (v !== UNCHANGED) {
-          target[key] = v;
-        }
-      }
-      return UNCHANGED;
-    }
-  }
-  return source;
-}
 // TODO: Remove in v4
 /** @deprecated use `isAllowAnySchema` from `lib/json-schema` */
 export const isTruthySchemaDefinition = isAllowAnySchema;
