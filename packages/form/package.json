@@ -41,12 +41,18 @@
     "jsonpointer": "^5.0.1"
   },
   "peerDependencies": {
+    "@types/json-schema-merge-allof": "^0.6.0",
     "esm-env": "^1.2.0",
+    "json-schema-merge-allof": "^0.8.0",
     "svelte": "^5.33.0"
   },
-  "optionalDependencies": {
-    "@types/json-schema-merge-allof": "^0.6.0",
-    "json-schema-merge-allof": "^0.8.0"
+  "peerDependenciesMeta": {
+    "@types/json-schema-merge-allof": {
+      "optional": true
+    },
+    "json-schema-merge-allof": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@types/json-schema-merge-allof": "^0.6.5",

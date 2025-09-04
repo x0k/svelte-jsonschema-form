@@ -1404,6 +1404,9 @@ importers:
       '@types/json-schema-compare':
         specifier: ^0.2.4
         version: 0.2.4
+      '@types/json-schema-merge-allof':
+        specifier: ^0.6.5
+        version: 0.6.5
       ajv:
         specifier: 'catalog:'
         version: 8.17.1
@@ -1416,16 +1419,12 @@ importers:
       json-schema-compare:
         specifier: ^0.2.2
         version: 0.2.2
+      json-schema-merge-allof:
+        specifier: ^0.8.1
+        version: 0.8.1
       svelte:
         specifier: 'catalog:'
         version: 5.38.6
-    optionalDependencies:
-      '@types/json-schema-merge-allof':
-        specifier: ^0.6.0
-        version: 0.6.5
-      json-schema-merge-allof:
-        specifier: ^0.8.0
-        version: 0.8.1
 
   packages/lucide-icons:
     devDependencies:
