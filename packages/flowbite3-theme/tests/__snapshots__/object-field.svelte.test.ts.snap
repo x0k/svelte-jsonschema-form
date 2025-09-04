@@ -247,6 +247,7 @@ exports[`object fields > additionalProperties 1`] = `
             <!---->
             <!---->
             <!---->
+            <!---->
             <button
               class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
               type="button"
@@ -260,6 +261,7 @@ exports[`object fields > additionalProperties 1`] = `
                
               <!---->
             </button>
+            
             
             
             
@@ -295,6 +297,7 @@ exports[`object fields > additionalProperties 1`] = `
      
     <!---->
     <!---->
+    <!---->
     <button
       class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
       type="submit"
@@ -308,6 +311,7 @@ exports[`object fields > additionalProperties 1`] = `
        
       <!---->
     </button>
+    
     
     
     <!---->
@@ -577,6 +581,7 @@ exports[`object fields > additionalProperties with error 1`] = `
             <!---->
             <!---->
             <!---->
+            <!---->
             <button
               class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
               type="button"
@@ -590,6 +595,7 @@ exports[`object fields > additionalProperties with error 1`] = `
                
               <!---->
             </button>
+            
             
             
             
@@ -625,6 +631,7 @@ exports[`object fields > additionalProperties with error 1`] = `
      
     <!---->
     <!---->
+    <!---->
     <button
       class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
       type="submit"
@@ -638,6 +645,7 @@ exports[`object fields > additionalProperties with error 1`] = `
        
       <!---->
     </button>
+    
     
     
     <!---->
@@ -825,6 +833,7 @@ exports[`object fields > has errors 1`] = `
      
     <!---->
     <!---->
+    <!---->
     <button
       class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
       type="submit"
@@ -838,6 +847,7 @@ exports[`object fields > has errors 1`] = `
        
       <!---->
     </button>
+    
     
     
     <!---->
@@ -1132,6 +1142,7 @@ exports[`object fields > object 1`] = `
      
     <!---->
     <!---->
+    <!---->
     <button
       class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
       type="submit"
@@ -1145,6 +1156,7 @@ exports[`object fields > object 1`] = `
        
       <!---->
     </button>
+    
     
     
     <!---->
@@ -1630,6 +1642,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
      
     <!---->
     <!---->
+    <!---->
     <button
       class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
       type="submit"
@@ -1643,6 +1656,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
        
       <!---->
     </button>
+    
     
     
     <!---->
@@ -2830,6 +2844,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
      
     <!---->
     <!---->
+    <!---->
     <button
       class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
       type="submit"
@@ -2843,6 +2858,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
        
       <!---->
     </button>
+    
     
     
     <!---->
@@ -3100,6 +3116,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
             <!---->
             <!---->
             <!---->
+            <!---->
             <button
               class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
               type="button"
@@ -3113,6 +3130,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
                
               <!---->
             </button>
+            
             
             
             
@@ -3148,6 +3166,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
      
     <!---->
     <!---->
+    <!---->
     <button
       class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
       type="submit"
@@ -3161,6 +3180,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
        
       <!---->
     </button>
+    
     
     
     <!---->
@@ -3447,6 +3467,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
             <!---->
             <!---->
             <!---->
+            <!---->
             <button
               class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
               type="button"
@@ -3460,6 +3481,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
                
               <!---->
             </button>
+            
             
             
             
@@ -3495,6 +3517,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
      
     <!---->
     <!---->
+    <!---->
     <button
       class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
       type="submit"
@@ -3508,6 +3531,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
        
       <!---->
     </button>
+    
     
     
     <!---->
@@ -3847,6 +3871,7 @@ exports[`object fields > with title and description > object 1`] = `
      
     <!---->
     <!---->
+    <!---->
     <button
       class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
       type="submit"
@@ -3860,6 +3885,7 @@ exports[`object fields > with title and description > object 1`] = `
        
       <!---->
     </button>
+    
     
     
     <!---->
@@ -4146,6 +4172,7 @@ exports[`object fields > with title and description > show add button and fields
             <!---->
             <!---->
             <!---->
+            <!---->
             <button
               class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
               type="button"
@@ -4159,6 +4186,7 @@ exports[`object fields > with title and description > show add button and fields
                
               <!---->
             </button>
+            
             
             
             
@@ -4194,6 +4222,7 @@ exports[`object fields > with title and description > show add button and fields
      
     <!---->
     <!---->
+    <!---->
     <button
       class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
       type="submit"
@@ -4207,6 +4236,7 @@ exports[`object fields > with title and description > show add button and fields
        
       <!---->
     </button>
+    
     
     
     <!---->
@@ -4493,6 +4523,7 @@ exports[`object fields > with title and description from both > additionalProper
             <!---->
             <!---->
             <!---->
+            <!---->
             <button
               class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
               type="button"
@@ -4506,6 +4537,7 @@ exports[`object fields > with title and description from both > additionalProper
                
               <!---->
             </button>
+            
             
             
             
@@ -4541,6 +4573,7 @@ exports[`object fields > with title and description from both > additionalProper
      
     <!---->
     <!---->
+    <!---->
     <button
       class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
       type="submit"
@@ -4554,6 +4587,7 @@ exports[`object fields > with title and description from both > additionalProper
        
       <!---->
     </button>
+    
     
     
     <!---->
@@ -4893,6 +4927,7 @@ exports[`object fields > with title and description from both > object 1`] = `
      
     <!---->
     <!---->
+    <!---->
     <button
       class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
       type="submit"
@@ -4906,6 +4941,7 @@ exports[`object fields > with title and description from both > object 1`] = `
        
       <!---->
     </button>
+    
     
     
     <!---->
@@ -5192,6 +5228,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
             <!---->
             <!---->
             <!---->
+            <!---->
             <button
               class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
               type="button"
@@ -5205,6 +5242,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
                
               <!---->
             </button>
+            
             
             
             
@@ -5240,6 +5278,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
      
     <!---->
     <!---->
+    <!---->
     <button
       class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
       type="submit"
@@ -5253,6 +5292,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
        
       <!---->
     </button>
+    
     
     
     <!---->
@@ -5592,6 +5632,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
      
     <!---->
     <!---->
+    <!---->
     <button
       class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
       type="submit"
@@ -5605,6 +5646,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
        
       <!---->
     </button>
+    
     
     
     <!---->
@@ -5891,6 +5933,7 @@ exports[`object fields > with title and description from uiSchema > show add but
             <!---->
             <!---->
             <!---->
+            <!---->
             <button
               class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
               type="button"
@@ -5904,6 +5947,7 @@ exports[`object fields > with title and description from uiSchema > show add but
                
               <!---->
             </button>
+            
             
             
             
@@ -5939,6 +5983,7 @@ exports[`object fields > with title and description from uiSchema > show add but
      
     <!---->
     <!---->
+    <!---->
     <button
       class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
       type="submit"
@@ -5952,6 +5997,7 @@ exports[`object fields > with title and description from uiSchema > show add but
        
       <!---->
     </button>
+    
     
     
     <!---->
@@ -6156,6 +6202,7 @@ exports[`object fields > with title and description with global label off > addi
             <!---->
             <!---->
             <!---->
+            <!---->
             <button
               class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
               type="button"
@@ -6169,6 +6216,7 @@ exports[`object fields > with title and description with global label off > addi
                
               <!---->
             </button>
+            
             
             
             
@@ -6204,6 +6252,7 @@ exports[`object fields > with title and description with global label off > addi
      
     <!---->
     <!---->
+    <!---->
     <button
       class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
       type="submit"
@@ -6217,6 +6266,7 @@ exports[`object fields > with title and description with global label off > addi
        
       <!---->
     </button>
+    
     
     
     <!---->
@@ -6461,6 +6511,7 @@ exports[`object fields > with title and description with global label off > obje
      
     <!---->
     <!---->
+    <!---->
     <button
       class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
       type="submit"
@@ -6474,6 +6525,7 @@ exports[`object fields > with title and description with global label off > obje
        
       <!---->
     </button>
+    
     
     
     <!---->
@@ -6678,6 +6730,7 @@ exports[`object fields > with title and description with global label off > show
             <!---->
             <!---->
             <!---->
+            <!---->
             <button
               class="text-center font-medium inline-flex items-center justify-center text-gray-900 bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-gray-700 focus-within:ring-gray-200 dark:focus-within:ring-gray-700 px-4 py-2 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
               type="button"
@@ -6691,6 +6744,7 @@ exports[`object fields > with title and description with global label off > show
                
               <!---->
             </button>
+            
             
             
             
@@ -6726,6 +6780,7 @@ exports[`object fields > with title and description with global label off > show
      
     <!---->
     <!---->
+    <!---->
     <button
       class="text-center font-medium inline-flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 focus-within:ring-primary-300 dark:focus-within:ring-primary-800 px-5 py-2.5 text-sm focus-within:ring-4 focus-within:outline-hidden rounded-lg"
       type="submit"
@@ -6739,6 +6794,7 @@ exports[`object fields > with title and description with global label off > show
        
       <!---->
     </button>
+    
     
     
     <!---->

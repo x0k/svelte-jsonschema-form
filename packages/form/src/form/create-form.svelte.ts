@@ -63,7 +63,7 @@ import {
 } from "./id.js";
 import type { Config } from "./config.js";
 import type { Theme } from "./components.js";
-import type { FormValue } from "./model.js";
+import type { FormValue, KeyedArraysMap, ValueRef } from "./model.js";
 import type { ResolveFieldType } from "./fields.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
@@ -258,6 +258,7 @@ export interface FormOptions<T, V extends Validator>
    */
   onReset?: (e: Event) => void;
   schedulerYield?: SchedulerYield;
+  keyedArraysMap?: KeyedArraysMap;
 }
 
 export interface FormState<T, V extends Validator> {
@@ -331,6 +332,9 @@ export function createForm<T, V extends Validator>(
     ...uiSchemaRoot["ui:globalOptions"],
     ...uiSchema["ui:options"],
   });
+  const keyedArrays: KeyedArraysMap = $derived(
+    options.keyedArraysMap ?? new WeakMap()
+  );
   const schedulerYield: SchedulerYield = $derived(
     (options.schedulerYield ??
       (typeof scheduler !== "undefined" && "yield" in scheduler))
@@ -512,6 +516,9 @@ export function createForm<T, V extends Validator>(
     fieldsValidation,
     get dataUrlToBlob() {
       return dataUrlToBlob;
+    },
+    get keyedArrays() {
+      return keyedArrays;
     },
     get isSubmitted() {
       return isSubmitted;

@@ -87,7 +87,7 @@ export function mergeDefaultsWithFormData<T = any>(
 
   if (
     (defaultsSupersedesUndefined &&
-      ((!isNil(defaults) && isNil(formData)) ||
+      ((!(defaults === undefined) && isNil(formData)) ||
         (typeof formData === "number" && isNaN(formData)))) ||
     (overrideFormDataWithDefaults && !isNil(formData))
     // NOTE: The above condition is inherited from RJSF to maintain tests compatibility

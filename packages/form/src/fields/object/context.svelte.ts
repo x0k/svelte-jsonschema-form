@@ -81,8 +81,11 @@ export function createObjectContext<V extends Validator>(
 
   let lastSchemaProperties: Schema["properties"] = undefined;
   const schemaProperties = $derived.by(() => {
-    if (!isSchemaDeepEqual(lastSchemaProperties, retrievedSchema.properties)) {
-      lastSchemaProperties = $state.snapshot(retrievedSchema.properties);
+    // TODO: Remove unnecessary allocations after this issue will be resolved
+    // https://github.com/sveltejs/svelte/issues/16658
+    const snap = $state.snapshot(retrievedSchema.properties);
+    if (!isSchemaDeepEqual(lastSchemaProperties, snap)) {
+      lastSchemaProperties = snap;
     }
     return lastSchemaProperties;
   });

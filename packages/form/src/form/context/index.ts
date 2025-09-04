@@ -6,3 +6,4 @@ export * from "./event-handlers.svelte.js";
 export * from "./attributes.js";
 export * from "./files.js";
 export * from "./components.js";
+export * from "./array.js";

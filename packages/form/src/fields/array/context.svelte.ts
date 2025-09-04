@@ -1,6 +1,6 @@
 import { getContext, setContext } from "svelte";
 
-import { createKeyedArray } from "@/lib/keyed-array.svelte.js";
+import { SimpleKeyedArray } from "@/lib/keyed-array.svelte.js";
 import {
   getDefaultValueForType,
   getSimpleSchemaType,
@@ -14,6 +14,7 @@ import {
 import {
   AFTER_SUBMITTED,
   createChildId,
+  createKeyedArrayDeriver,
   getDefaultFieldState,
   getErrors,
   ON_ARRAY_CHANGE,
@@ -25,11 +26,13 @@ import {
   type Config,
   type FieldError,
   type FormInternalContext,
+  type KeyedFieldValues,
   type PossibleError,
   type UiOption,
 } from "@/form/index.js";
 
 import { titleWithIndex, type ItemTitle } from "./model.js";
+import { VirtualKeyedArray } from "./virtual-keyed-array.js";
 
 export interface ArrayContext<V extends Validator> {
   readonly config: Config;
@@ -72,6 +75,7 @@ function createItemsAPI<V extends Validator>(
   ctx: FormInternalContext<V>,
   config: () => Config,
   value: () => SchemaArrayValue | undefined,
+  keyedArray: () => KeyedFieldValues,
   itemSchema: () => Schema | undefined
 ) {
   function validate() {
@@ -83,7 +87,7 @@ function createItemsAPI<V extends Validator>(
   }
   const uiOption: UiOption = (opt) => retrieveUiOption(ctx, config(), opt);
 
-  const keyedArray = createKeyedArray(() => value() ?? []);
+  const keyed = $derived.by(keyedArray);
 
   const errors = $derived(getErrors(ctx, config().id));
 
@@ -117,33 +121,33 @@ function createItemsAPI<V extends Validator>(
       return errors;
     },
     key(index) {
-      return keyedArray.key(index);
+      return keyed.key(index);
     },
     pushItem() {
       const schema = itemSchema();
       if (schema === undefined) {
         return;
       }
-      keyedArray.push(
+      keyed.push(
         getDefaultFieldState(ctx, schema, undefined) ??
           getDefaultValueForType(getSimpleSchemaType(schema))
       );
       validate();
     },
     moveItemUp(index) {
-      keyedArray.swap(index, index - 1);
+      keyed.swap(index, index - 1);
       validate();
     },
     moveItemDown(index) {
-      keyedArray.swap(index, index + 1);
+      keyed.swap(index, index + 1);
       validate();
     },
     copyItem(index) {
-      keyedArray.insert(index, $state.snapshot(value()![index]));
+      keyed.insert(index, $state.snapshot(value()![index]));
       validate();
     },
     removeItem(index) {
-      keyedArray.remove(index);
+      keyed.remove(index);
       validate();
     },
   } satisfies Partial<ArrayContext<V>>;
@@ -166,9 +170,13 @@ export function createArrayContext<V extends Validator>(
   ctx: FormInternalContext<V>,
   config: () => Config,
   value: () => SchemaArrayValue | undefined,
-  // NOTE: It looks like the `undefined` value is always replaced by an array
-  // when calculating default values, so this is unnecessary
-  _: (v: SchemaArrayValue) => void
+  setValue: (v: SchemaArrayValue) => void,
+  keyedArray = createKeyedArrayDeriver(
+    ctx,
+    value,
+    () => new VirtualKeyedArray(setValue),
+    (v, g) => new SimpleKeyedArray(v, g)
+  )
 ): ArrayContext<V> {
   const itemSchema: Schema = $derived.by(() => {
     const {
@@ -177,7 +185,7 @@ export function createArrayContext<V extends Validator>(
     return isSchemaObjectValue(items) ? items : {};
   });
 
-  const api = createItemsAPI(ctx, config, value, () => itemSchema);
+  const api = createItemsAPI(ctx, config, value, keyedArray, () => itemSchema);
 
   const itemUiSchema = $derived.by(() => {
     const {
@@ -213,7 +221,8 @@ export function createArrayContext<V extends Validator>(
         title: api.itemTitle(
           itemUiTitle ?? schema.title ?? config.title,
           index,
-          0
+          0,
+          item
         ),
         schema,
         uiSchema: itemUiSchema,
@@ -227,8 +236,16 @@ export function createTupleContext<V extends Validator>(
   ctx: FormInternalContext<V>,
   config: () => Config,
   value: () => SchemaArrayValue | undefined,
-  setValue: (v: SchemaArrayValue) => void
+  setValue: (v: SchemaArrayValue) => void,
+  keyedArray = createKeyedArrayDeriver(
+    ctx,
+    value,
+    () => new VirtualKeyedArray(setValue),
+    (v, g) => new SimpleKeyedArray(v, g)
+  )
 ): ArrayContext<V> {
+  const keyed = $derived.by(keyedArray);
+
   const itemsSchema = $derived.by(() => {
     const { items } = config().schema;
     return Array.isArray(items)
@@ -243,14 +260,16 @@ export function createTupleContext<V extends Validator>(
       : [];
   });
   const isAdditional = (index: number) => index >= itemsSchema.length;
+
   $effect(() => {
     const val = value();
     if (val === undefined) {
       setValue(new Array(itemsSchema.length));
       return;
     }
-    if (val.length < itemsSchema.length) {
-      val.push(...new Array(itemsSchema.length - value.length));
+    let l = val.length;
+    for (; l < length; l++) {
+      keyed.push(undefined);
     }
   });
 
@@ -259,7 +278,13 @@ export function createTupleContext<V extends Validator>(
     return isSchemaObjectValue(additionalItems) ? additionalItems : undefined;
   });
 
-  const api = createItemsAPI(ctx, config, value, () => schemaAdditionalItems);
+  const api = createItemsAPI(
+    ctx,
+    config,
+    value,
+    () => keyed,
+    () => schemaAdditionalItems
+  );
 
   const canAdd = $derived.by(
     createCanAdd(
@@ -307,7 +332,8 @@ export function createTupleContext<V extends Validator>(
         title: api.itemTitle(
           uiTitleOption(ctx, uiSchema) ?? schema.title ?? config.title,
           index,
-          itemsSchema.length
+          itemsSchema.length,
+          item
         ),
         schema,
         uiSchema,

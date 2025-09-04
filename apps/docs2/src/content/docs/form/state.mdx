@@ -39,3 +39,47 @@ export interface FormState<T, V extends Validator> {
   reset(e: Event): void;
 }
 ```
+
+## Direct modification of form state
+
+If you are using a [controlled form](../../guides/quickstart/#controlled-form), 
+you should consider the following aspects:
+
+### Initialization
+
+It is recommended to initialize the state as follows:
+
+```ts
+let value = $state(
+  merger.mergeFormDataAndSchemaDefaults(initialValue, schema)
+);
+```
+
+### Arrays
+
+To modify arrays, use one of the following methods:
+
+1. Reassign
+
+```ts
+value.array = value.array.concat(123)
+```
+
+2. Use `KeyedArray` API
+
+```ts
+import { createForm, type KeyedArraysMap } from "@sjsf/form";
+
+const keyedArraysMap: KeyedArraysMap = new WeakMap()
+let value = $state({ array: [] })
+const form = createForm({
+  keyedArraysMap,
+  value: [() => value, (v) => (value = v)],
+  // ...otherOptions
+})
+
+const api = keyedArraysMap.get(value.array)
+if (api) {
+  api.push(123)
+}
+```

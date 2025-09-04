@@ -1,5 +1,23 @@
 # @sjsf/form
 
+## 2.3.0
+
+### Minor Changes
+
+- Pass item value to `itemTitle` function ([#178](https://github.com/x0k/svelte-jsonschema-form/pull/178))
+
+- Add `keyedArraysMap` form option ([#180](https://github.com/x0k/svelte-jsonschema-form/pull/180))
+
+- Add `keyedArray` option to `createArrayContext`, `createTupleContext` functions. ([#182](https://github.com/x0k/svelte-jsonschema-form/pull/182))
+
+### Patch Changes
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/4757 ([`8772516`](https://github.com/x0k/svelte-jsonschema-form/commit/877251689dc60c91b7d2a257c3f05665d9a7ea96))
+
+- Fix population of missing tuple items ([`66ca1a5`](https://github.com/x0k/svelte-jsonschema-form/commit/66ca1a5001a65fa794e8fcb6b1362c8365ff6686))
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/4745 ([`123fc70`](https://github.com/x0k/svelte-jsonschema-form/commit/123fc70c1e7ef7ad1d045584790d48c957b6f03c))
+
 ## 2.2.4
 
 ### Patch Changes
