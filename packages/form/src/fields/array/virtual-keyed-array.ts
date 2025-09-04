@@ -10,8 +10,9 @@ export class VirtualKeyedArray implements KeyedFieldValues {
     );
   }
 
-  push(value: FieldValue): void {
+  push(value: FieldValue) {
     this.setValue([value]);
+    return 1
   }
 
   swap(): void {
@@ -29,7 +30,7 @@ export class VirtualKeyedArray implements KeyedFieldValues {
     this.setValue([value]);
   }
 
-  remove(): void {
+  remove(index: number): FieldValue {
     throw new Error(
       'Method "remove" cannot be called on "VirtualKeyedArray" instance'
     );
