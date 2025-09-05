@@ -1,5 +1,6 @@
 import { getContext, setContext } from "svelte";
 
+import { noop } from "@/lib/function.js";
 import {
   getDefaultValueForType,
   getSimpleSchemaType,
@@ -164,15 +165,14 @@ function createItems<V extends Validator>({
 
 function createCanAdd(
   config: () => Config,
-  value: () => SchemaArrayValue | undefined,
+  length: () => number,
   addable: () => boolean
 ) {
-  let val, maxItems;
+  let maxItems;
   return () =>
     addable() &&
-    ((val = value()), Array.isArray(val)) &&
     ((maxItems = config().schema.maxItems),
-    maxItems === undefined || val.length < maxItems);
+    maxItems === undefined || length() < maxItems);
 }
 
 export interface ArrayContextOptions<V extends Validator> {
@@ -214,12 +214,12 @@ export function createArrayContext<V extends Validator>({
 
   const itemUiTitle = $derived(uiTitleOption(ctx, itemUiSchema));
 
-  const canAdd = $derived.by(createCanAdd(config, value, () => items.addable));
+  const length = () => arr?.length ?? 0;
+
+  const canAdd = $derived.by(createCanAdd(config, length, () => items.addable));
 
   return Object.assign(items, {
-    length() {
-      return arr?.length ?? 0;
-    },
+    length,
     set(index, itemValue) {
       arr![index] = itemValue;
     },
@@ -294,27 +294,40 @@ export function createTupleContext<V extends Validator>({
     itemSchema: () => schemaAdditionalItems,
   });
 
+  const arrLen = $derived(Math.max(arr?.length ?? 0, itemsSchema.length));
+
+  const length = () => arrLen;
+
   const canAdd = $derived.by(
     createCanAdd(
       config,
-      value,
+      length,
       () => items.addable && schemaAdditionalItems !== undefined
     )
   );
 
-  const length = $derived(Math.max(arr?.length ?? 0, itemsSchema.length));
+  function initTuple(onInit: (arr: SchemaArrayValue) => void = noop) {
+    const arr = new Array(arrLen);
+    onInit(arr);
+    keyed.splice(0, 0, ...arr);
+  }
 
+  const pushItem = items.pushItem;
   return Object.assign(items, {
-    length() {
-      return length;
+    length,
+    pushItem() {
+      if (arr === undefined) {
+        initTuple();
+      }
+      pushItem();
     },
     set(index, itemValue) {
       if (arr !== undefined) {
         arr[index] = itemValue;
       } else {
-        const items = new Array(length);
-        items[index] = itemValue;
-        keyed.splice(0, 0, ...items);
+        initTuple((items) => {
+          items[index] = itemValue;
+        });
       }
     },
     canAdd() {
@@ -330,7 +343,7 @@ export function createTupleContext<V extends Validator>({
       return items.orderable && index > itemsSchema.length;
     },
     canMoveDown(index) {
-      return items.orderable && index < arr!.length - 1 && isAdditional(index);
+      return items.orderable && index < arrLen - 1 && isAdditional(index);
     },
     itemConfig(config, item, index) {
       const additional = isAdditional(index);
