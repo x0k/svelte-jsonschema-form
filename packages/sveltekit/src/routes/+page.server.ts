@@ -15,7 +15,7 @@ export const load = async () => {
   const form = initForm({
     initialValue: { 'newKey::123': 'foo', 'also.333': 'bar' },
     sendSchema: true,
-    schema
+    schema,
   });
   return { form };
 };

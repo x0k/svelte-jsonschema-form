@@ -4,6 +4,7 @@ import type { Validator } from '@sjsf/form/core';
 import {
   createForm,
   type Schema,
+  type UiSchemaRoot,
   type FormOptions,
   groupErrors,
   type PossibleError
@@ -19,9 +20,11 @@ import { createSvelteKitRequest, type SveltekitRequestOptions } from './request.
 type SchemaOption<SendSchema> = SendSchema extends true
   ? {
       schema?: Schema;
+      uiSchema?: UiSchemaRoot;
     }
   : {
       schema: Schema;
+      uiSchema?: UiSchemaRoot;
     };
 
 export type SvelteKitFormOptions<T, V extends Validator, SendSchema extends boolean> = Omit<
@@ -43,6 +46,7 @@ function initialFormData<Meta extends SvelteKitFormMeta<any, any, string, any>>(
         ? page.data[meta.name]
         : {
             schema: page.data[meta.name].schema,
+            uiSchema: page.data[meta.name].uiSchema, // I'm not sure if this does anything.
             initialValue: validationData.data,
             initialErrors: validationData.errors
           };

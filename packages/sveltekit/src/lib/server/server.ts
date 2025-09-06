@@ -29,13 +29,15 @@ export type InitFormOptions<T, E, SendSchema extends boolean> = {
   initialValue?: T;
   initialErrors?: ValidationError<E>[];
 } & (SendSchema extends true
-  ? { schema: Schema }
+  ? { schema: Schema, uiSchema?: UiSchemaRoot }
   : {
       schema?: never;
-    });
+      uiSchema?: never;
+    }) 
 
 export function initForm<T, E, SendSchema extends boolean = false>({
   schema,
+  uiSchema = undefined,
   initialValue,
   initialErrors = [],
   sendSchema
@@ -43,7 +45,8 @@ export function initForm<T, E, SendSchema extends boolean = false>({
   return {
     initialValue,
     initialErrors,
-    schema: (sendSchema ? schema : undefined) as SendSchema extends true ? Schema : undefined
+    schema: (sendSchema ? schema : undefined) as SendSchema extends true ? Schema : undefined,
+    uiSchema: (sendSchema ? uiSchema : undefined) as SendSchema extends true ? UiSchemaRoot : undefined
   };
 }
 

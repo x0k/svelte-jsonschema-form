@@ -74,7 +74,7 @@ import { initForm } from '@sjsf/sveltekit/server';
 
 export const load = async () => {
   const data = await getData();
-  const form = initForm({ schema, validator, initialValue: data });
+  const form = initForm({ schema, uiSchema, validator, initialValue: data });
   return { form };
 };
 ```
