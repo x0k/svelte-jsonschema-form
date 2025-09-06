@@ -3,7 +3,7 @@ import { createFormValidator } from '@sjsf/ajv8-validator';
 import { initForm, makeFormDataParser, validateForm } from '$lib/server/index.js';
 
 import type { Actions } from './$types.js';
-import { schema } from './model.js'
+import { schema } from './model.js';
 
 const validator = createFormValidator();
 
@@ -15,7 +15,14 @@ export const load = async () => {
   const form = initForm({
     initialValue: { 'newKey::123': 'foo', 'also.333': 'bar' },
     sendSchema: true,
-    schema
+    schema,
+    uiSchema: {
+      firstName: {
+        'ui:options': {
+          description: 'First name description'
+        }
+      }
+    }
   });
   return { form };
 };
