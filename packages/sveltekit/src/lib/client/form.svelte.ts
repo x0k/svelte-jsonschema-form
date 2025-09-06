@@ -45,8 +45,7 @@ function initialFormData<Meta extends SvelteKitFormMeta<any, any, string, any>>(
       return validationData.isValid
         ? page.data[meta.name]
         : {
-            schema: page.data[meta.name].schema,
-            uiSchema: page.data[meta.name].uiSchema,
+            ...page.data[meta.name],
             initialValue: validationData.data,
             initialErrors: validationData.errors
           };

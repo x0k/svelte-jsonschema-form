@@ -18,37 +18,42 @@ import {
 } from '@sjsf/form';
 import { createMerger } from '@sjsf/form/mergers/modern';
 
-import { JSON_CHUNKS_KEY, type InitialFormData, type ValidatedFormData } from '../model.js';
+import {
+  JSON_CHUNKS_KEY,
+  type InitialFormData,
+  type SerializableOptionalFormOptions,
+  type ValidatedFormData
+} from '../model.js';
 
 import type { Entry } from './entry.js';
 import { parseSchemaValue } from './schema-value-parser.js';
 import { makeFormDataEntriesConverter } from './convert-form-data-entries.js';
 import { fileToDataURL } from './file-to-data-url.js';
 
-export type InitFormOptions<T, E, SendSchema extends boolean> = {
+export type InitFormOptions<
+  T,
+  E,
+  SendSchema extends boolean
+> = SerializableOptionalFormOptions<T> & {
   sendSchema?: SendSchema;
-  initialValue?: T;
   initialErrors?: ValidationError<E>[];
-  uiSchema?: UiSchemaRoot;
 } & (SendSchema extends true
-  ? { schema: Schema }
-  : {
-      schema?: never;
-    });
+    ? { schema: Schema }
+    : {
+        schema?: never;
+      });
 
-export function initForm<T, E, SendSchema extends boolean = false>({
-  schema,
-  initialErrors = [],
-  sendSchema,
-  initialValue,
-  uiSchema,
-}: InitFormOptions<T, E, SendSchema>): InitialFormData<T, E, SendSchema> {
-  return {
-    initialValue,
-    initialErrors,
-    schema: (sendSchema ? schema : undefined) as SendSchema extends true ? Schema : undefined,
-    uiSchema,
-  }
+export function initForm<T, E, SendSchema extends boolean = false>(
+  options: InitFormOptions<T, E, SendSchema>
+): InitialFormData<T, E, SendSchema> {
+  const data = {
+    ...options,
+    schema: (options.sendSchema ? options.schema : undefined) as SendSchema extends true
+      ? Schema
+      : undefined
+  };
+  delete data['sendSchema'];
+  return data;
 }
 
 export interface FormDataParserOptions extends IdOptions {

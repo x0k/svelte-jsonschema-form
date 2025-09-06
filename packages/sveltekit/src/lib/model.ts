@@ -1,19 +1,52 @@
 import type {
+  FormOptions,
   IdentifiableFieldElement,
   Schema,
   SchemaValue,
   UiSchemaRoot,
-  ValidationError
+  ValidationError,
+  Validator
 } from '@sjsf/form';
 
 export const JSON_CHUNKS_KEY = '__sjsf_sveltekit_json_chunks';
 
-export interface InitialFormData<T, E, SendSchema extends boolean> {
-  initialValue: T | undefined;
-  initialErrors: ValidationError<E>[];
+type SerializablePrimitive = string | number | boolean | null | undefined | bigint;
+
+type SerializableSpecial =
+  | Date
+  | RegExp
+  | Map<Serializable, Serializable>
+  | Set<Serializable>
+  | URL
+  | URLSearchParams;
+
+type Serializable =
+  | SerializablePrimitive
+  | SerializableSpecial
+  | Serializable[]
+  | { [key: string | number]: Serializable };
+
+type OptionalKeys<T> = {
+  [K in keyof T]-?: undefined extends T[K] ? K : never;
+}[keyof T];
+
+type SerializableKeys<T> = {
+  [K in keyof T]: NonNullable<T[K]> extends Serializable ? K : never;
+}[keyof T];
+
+type PickOptionalSerializable<T> = Pick<T, Extract<OptionalKeys<T>, SerializableKeys<T>>>;
+
+export type SerializableOptionalFormOptions<T> = PickOptionalSerializable<FormOptions<T, Validator>>;
+
+export type InitialFormData<
+  T,
+  E,
+  SendSchema extends boolean
+> = SerializableOptionalFormOptions<T> & {
   schema: SendSchema extends true ? Schema : undefined;
-  uiSchema: UiSchemaRoot | undefined;
-}
+  initialErrors?: ValidationError<E>[];
+  uiSchema?: UiSchemaRoot;
+};
 
 export interface ValidatedFormData<E, SendData extends boolean> {
   isValid: boolean;
