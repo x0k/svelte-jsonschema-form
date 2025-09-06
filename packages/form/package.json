@@ -31,12 +31,14 @@
     "test": "vitest run --typecheck --exclude '.svelte-kit/**'",
     "bench": "vitest bench --exclude '.svelte-kit/**'",
     "build": "svelte-package && publint",
-    "check": "svelte-check --tsconfig ./tsconfig.json"
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "format": "prettier --write .",
+    "lint": "prettier --check && eslint ."
   },
   "dependencies": {
+    "@standard-schema/spec": "^1.0.0",
     "@types/json-schema": "^7.0.15",
     "@types/json-schema-merge-allof": "^0.6.5",
-    "@standard-schema/spec": "^1.0.0",
     "json-schema-merge-allof": "^0.8.1",
     "jsonpointer": "^5.0.1"
   },
@@ -49,6 +51,7 @@
     "ajv": "catalog:",
     "allof-merge": "^0.6.7",
     "deep-freeze-es6": "^4.0.1",
+    "globals": "catalog:",
     "json-schema-compare": "^0.2.2",
     "svelte": "catalog:"
   },
