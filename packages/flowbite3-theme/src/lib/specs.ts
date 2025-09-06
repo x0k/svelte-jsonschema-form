@@ -35,7 +35,7 @@ export const specs: s.Specs = {
 				arrayField: 'multiEnumField',
 				checkboxesWidget: 'multiSelectWidget'
 			},
-			'ui:options': { useLabel: true }
+			'ui:options': { useLabel: false }
 		}
 	],
 	radioButtons: [
@@ -65,6 +65,9 @@ export const specs: s.Specs = {
 		{
 			'ui:components': {
 				arrayField: tagsAsArrayField
+			},
+			"ui:options": {
+				useLabel: false
 			}
 		}
 	],
