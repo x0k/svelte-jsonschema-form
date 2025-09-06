@@ -49,7 +49,7 @@ npm install @sjsf/form @sjsf/basic-theme @sjsf/ajv8-validator ajv@8
   const form = createForm({
     theme,
     schema,
-    resolver
+    resolver,
     validator,
     translation,
     onSubmit: console.log
