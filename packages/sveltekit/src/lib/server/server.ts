@@ -37,6 +37,7 @@ export type InitFormOptions<
 > = SerializableOptionalFormOptions<T> & {
   sendSchema?: SendSchema;
   initialErrors?: ValidationError<E>[];
+  uiSchema?: UiSchemaRoot;
 } & (SendSchema extends true
     ? { schema: Schema }
     : {
