@@ -15,6 +15,7 @@ export interface OptionsMapper<V> {
 export function indexMapper(
   options: EnumOption<SchemaValue>[]
 ): OptionsMapper<number> {
+  // eslint-disable-next-line svelte/prefer-svelte-reactivity
   const map = new Map(options.map((option, index) => [option.value, index]));
   return {
     fromValue(value: SchemaValue | undefined) {

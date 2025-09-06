@@ -10,8 +10,8 @@ import {
   createAugmentSchema,
   isPrimitiveSchemaType,
   isSchemaWithProperties,
+  pathFromRef,
   pickSchemaType,
-  refToPath,
   type Path,
   type SchemaDefinition,
 } from "@/core/index.js";
@@ -120,7 +120,7 @@ export function insertSubSchemaIds(
           return;
         }
         const path =
-          node.$ref !== undefined ? refToPath(node.$ref) : ctx.path.slice();
+          node.$ref !== undefined ? pathFromRef(node.$ref) : ctx.path.slice();
         const prev = getValueByKeys(subSchemas, path);
         if (
           prev === undefined ||

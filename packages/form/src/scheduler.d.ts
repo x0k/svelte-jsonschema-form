@@ -73,7 +73,7 @@ declare global {
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Scheduler/postTask)
      */
-    postTask<T extends unknown>(
+    postTask<T>(
       callback: () => T,
       options?: SchedulerPostTaskOptions
     ): Promise<T>;

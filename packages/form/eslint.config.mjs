@@ -21,7 +21,9 @@ export default defineConfig(
   {
     languageOptions: {
       parserOptions: {
-        projectService: true,
+        projectService: {
+          allowDefaultProject: ["*.ts", "*.js", "*.mjs"],
+        },
         tsconfigRootDir: import.meta.dirname,
       },
     },
@@ -39,10 +41,10 @@ export default defineConfig(
     files: ["**/*.svelte", "**/*.svelte.ts", "**/*.svelte.js"],
     languageOptions: {
       parserOptions: {
-        projectService: true,
         extraFileExtensions: [".svelte"],
         parser: ts.parser,
         svelteConfig,
+        tsconfigRootDir: import.meta.dirname,
       },
     },
   },
@@ -50,6 +52,8 @@ export default defineConfig(
     rules: {
       "@typescript-eslint/no-empty-object-type": "off",
       "@typescript-eslint/no-deprecated": "warn",
+      "require-yield": "off",
+      "@typescript-eslint/no-unused-expressions": "warn"
     },
   }
 );

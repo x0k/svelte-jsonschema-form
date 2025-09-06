@@ -1,6 +1,10 @@
 import { weakMemoize } from "@/lib/memoize.js";
 import { transformSchemaDefinition } from "@/lib/json-schema/index.js";
-import type { Schema, SchemaDefinition } from "@/core/index.js";
+import {
+  ADDITIONAL_PROPERTY_FLAG,
+  type Schema,
+  type SchemaDefinition,
+} from "@/core/index.js";
 import type { AdditionalPropertyKeyValidator, Config } from "@/form/main.js";
 
 // This is an attempt to restore the original scheme for correct field validation
@@ -19,7 +23,6 @@ export function removeVirtualAdditionalProperties(schema: Schema): Schema {
       if (typeof property === "boolean") {
         continue;
       }
-      //@ts-expect-error
       if (property[ADDITIONAL_PROPERTY_FLAG]) {
         // NOTE: properties also a copy
         delete properties[key];

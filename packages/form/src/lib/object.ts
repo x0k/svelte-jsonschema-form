@@ -6,11 +6,12 @@ export function isRecord<T>(value: unknown): value is Record<PropertyKey, T> {
   return isObject(value) && !Array.isArray(value);
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isRecordEmpty<R extends Record<string, any>>(
   rec: R | Record<string, never>
 ): rec is Record<string, never> {
   for (const key in rec) {
-    if (rec.hasOwnProperty(key)) {
+    if (Object.prototype.hasOwnProperty.call(rec, key)) {
       return false;
     }
   }

@@ -49,7 +49,8 @@ export function makeIdConfig({
 export type IdSeparatorEntries = [string, string][];
 
 export function makeIdSeparatorEntries(idConfig: IdConfig): [string, string][] {
-  return Object.entries(idConfig).filter((e) => e[0] !== "prefix");
+  const entries = Object.entries(idConfig) as [string, string][];
+  return entries.filter((e) => e[0] !== "prefix");
 }
 
 export function* idConfigAnalysis(idConfig: IdConfig): Generator<SchemaIssue> {
