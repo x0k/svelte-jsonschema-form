@@ -4,9 +4,9 @@ export interface Ref<T> {
   current: T;
 }
 
-export type Lens<T> = [get: () => T, set: (v: T) => void];
+export type Bind<T> = [get: () => T, set: (v: T) => void];
 
-export function refFromLens<T>([get, set]: Lens<T>): Ref<T> {
+export function refFromBind<T>([get, set]: Bind<T>): Ref<T> {
   return {
     get current() {
       return get();

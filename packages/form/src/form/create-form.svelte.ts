@@ -3,7 +3,7 @@ import type { Attachment } from "svelte/attachments";
 import { SvelteMap } from "svelte/reactivity";
 import { on } from "svelte/events";
 
-import { refFromLens, type Lens, type Ref } from "@/lib/svelte.svelte.js";
+import { refFromBind, type Bind, type Ref } from "@/lib/svelte.svelte.js";
 import type { SchedulerYield } from "@/lib/scheduler.js";
 import { createDataURLtoBlob } from "@/lib/file.js";
 import {
@@ -124,7 +124,7 @@ export interface FormOptions<T, V extends Validator>
    */
   idPseudoSeparator?: string;
   //
-  value?: Lens<T>;
+  value?: Bind<T>;
   initialValue?: InitialValue<T>;
   initialErrors?: InitialErrors<V>;
   /**
@@ -253,7 +253,7 @@ export function createForm<T, V extends Validator>(
   );
 
   const valueRef = options.value
-    ? refFromLens(options.value as unknown as Lens<FormValue>)
+    ? refFromBind(options.value as unknown as Bind<FormValue>)
     : // svelte-ignore state_referenced_locally
       createValueRef(merger, options.schema, options.initialValue);
   let errors = $state.raw(
