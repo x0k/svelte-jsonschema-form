@@ -19,7 +19,9 @@
 	const attributes = $derived(
 		inputAttributes(ctx, config, 'flowbite3Number', handlers, {
 			type: 'number',
-			wrapperClass: 'w-full',
+			classes: {
+				wrapper: 'w-full'
+			},
 			onBlur: handlers.onblur,
 			onInput: handlers.oninput,
 		})

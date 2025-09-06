@@ -21,5 +21,7 @@
 <Textarea
 	bind:value
 	class="w-full"
-	{...textareaAttributes(ctx, config, 'flowbite3Textarea', handlers, { divClass: 'w-full' })}
+	{...textareaAttributes(ctx, config, 'flowbite3Textarea', handlers, {
+		classes: { div: 'w-full' }
+	})}
 />

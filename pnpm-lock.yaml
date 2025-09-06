@@ -1368,8 +1368,8 @@ importers:
         specifier: ^3.1.2
         version: 3.1.2(rollup@4.46.2)
       flowbite-svelte:
-        specifier: ~1.13.4
-        version: 1.13.4(rollup@4.46.2)(svelte@5.38.6)(tailwindcss@4.1.12)
+        specifier: ^1.13.7
+        version: 1.13.7(rollup@4.46.2)(svelte@5.38.6)(tailwindcss@4.1.12)
       globals:
         specifier: 'catalog:'
         version: 16.3.0
@@ -4719,14 +4719,14 @@ packages:
       svelte: ^5.29.0
       tailwindcss: ^4.1.4
 
-  flowbite-svelte@1.13.4:
-    resolution: {integrity: sha512-kTDEzLoWWVoTv9ZvIGlxiQrmUgQ3kMEIFnBV5yXPL0BBn3NKe6tfbjrkc3jWK2yykSxfkRROooCrXvpkQmfPmw==}
+  flowbite-svelte@1.13.5:
+    resolution: {integrity: sha512-hvM/X6rw733iHgTuy2RjSdOflcrbYwP4e7z7TP00iAS9SFkK1rOlfoPfos+R9I7RIV5phUEQIxRPC9RKteJBJw==}
     peerDependencies:
       svelte: ^5.29.0
       tailwindcss: ^4.1.4
 
-  flowbite-svelte@1.13.5:
-    resolution: {integrity: sha512-hvM/X6rw733iHgTuy2RjSdOflcrbYwP4e7z7TP00iAS9SFkK1rOlfoPfos+R9I7RIV5phUEQIxRPC9RKteJBJw==}
+  flowbite-svelte@1.13.7:
+    resolution: {integrity: sha512-P18k7zTW9vC/5PfCjdtHCQKgX2lir6y6c4LTOtFz1+DxKjyttglNzxYlB3/xogtU6Gka9oTvQ5xe1iMw4UL4Xg==}
     peerDependencies:
       svelte: ^5.29.0
       tailwindcss: ^4.1.4
@@ -10933,7 +10933,7 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
-  flowbite-svelte@1.13.4(rollup@4.46.2)(svelte@5.38.6)(tailwindcss@4.1.12):
+  flowbite-svelte@1.13.5(rollup@4.46.2)(svelte@5.38.6)(tailwindcss@4.1.12):
     dependencies:
       '@floating-ui/dom': 1.7.4
       '@floating-ui/utils': 0.2.10
@@ -10948,7 +10948,7 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
-  flowbite-svelte@1.13.5(rollup@4.46.2)(svelte@5.38.6)(tailwindcss@4.1.12):
+  flowbite-svelte@1.13.7(rollup@4.46.2)(svelte@5.38.6)(tailwindcss@4.1.12):
     dependencies:
       '@floating-ui/dom': 1.7.4
       '@floating-ui/utils': 0.2.10

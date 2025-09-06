@@ -19,9 +19,11 @@
 	const attributes = $derived(
 		inputAttributes(ctx, config, 'flowbite3Text', handlers, {
 			type: 'text',
-			wrapperClass: 'w-full',
+			classes: {
+				wrapper: 'w-full'
+			},
 			onBlur: handlers.onblur,
-			onInput: handlers.oninput,
+			onInput: handlers.oninput
 		})
 	);
 </script>
