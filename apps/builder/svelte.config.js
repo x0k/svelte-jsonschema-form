@@ -1,6 +1,6 @@
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
-const injectedCss = ["moving-icons", "basic"];
+const injectedCss = ["@jis3r/icons", "basic"];
 
 export default {
   // Consult https://svelte.dev/docs#compile-time-svelte-preprocess
@@ -17,5 +17,3 @@ export default {
     },
   },
 };
-
-
