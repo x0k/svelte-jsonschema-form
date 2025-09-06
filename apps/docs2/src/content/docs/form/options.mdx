@@ -19,6 +19,9 @@ export type UiOptionsRegistryOption = keyof UiOptionsRegistry extends never
       [UI_OPTIONS_REGISTRY_KEY]: UiOptionsRegistry;
     };
 
+// from '@sjsf/form/lib/svelte.svelte'
+type Bind<T> = [get: () => T, set: (v: T) => void];
+
 export interface FormOptions<T, V extends Validator>
   extends UiOptionsRegistryOption {
   validator: V;
@@ -45,7 +48,7 @@ export interface FormOptions<T, V extends Validator>
    */
   idPseudoSeparator?: string;
   //
-  value?: Lens<T>;
+  value?: Bind<T>;
   initialValue?: InitialValue<T>;
   initialErrors?: InitialErrors<V>;
   /**
