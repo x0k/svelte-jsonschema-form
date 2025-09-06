@@ -46,6 +46,7 @@ function initialFormData<Meta extends SvelteKitFormMeta<any, any, string, any>>(
         ? page.data[meta.name]
         : {
             schema: page.data[meta.name].schema,
+            uiSchema: page.data[meta.name].uiSchema,
             initialValue: validationData.data,
             initialErrors: validationData.errors
           };

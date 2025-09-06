@@ -29,6 +29,7 @@ export type InitFormOptions<T, E, SendSchema extends boolean> = {
   sendSchema?: SendSchema;
   initialValue?: T;
   initialErrors?: ValidationError<E>[];
+  uiSchema?: UiSchemaRoot;
 } & (SendSchema extends true
   ? { schema: Schema }
   : {
@@ -37,15 +38,17 @@ export type InitFormOptions<T, E, SendSchema extends boolean> = {
 
 export function initForm<T, E, SendSchema extends boolean = false>({
   schema,
-  initialValue,
   initialErrors = [],
-  sendSchema
+  sendSchema,
+  initialValue,
+  uiSchema,
 }: InitFormOptions<T, E, SendSchema>): InitialFormData<T, E, SendSchema> {
   return {
     initialValue,
     initialErrors,
-    schema: (sendSchema ? schema : undefined) as SendSchema extends true ? Schema : undefined
-  };
+    schema: (sendSchema ? schema : undefined) as SendSchema extends true ? Schema : undefined,
+    uiSchema,
+  }
 }
 
 export interface FormDataParserOptions extends IdOptions {
@@ -85,9 +88,7 @@ export function makeFormDataParser({
           .entries()
           .map((entry) =>
             entry[1] instanceof File
-              ? fileToDataURL(entry[1]).then(
-                  (data): Entry<string> => [entry[0], data]
-                )
+              ? fileToDataURL(entry[1]).then((data): Entry<string> => [entry[0], data])
               : (entry as Entry<Exclude<FormDataEntryValue, File>>)
           )
       ),
