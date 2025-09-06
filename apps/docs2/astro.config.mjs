@@ -46,7 +46,7 @@ export default defineConfig({
         },
         {
           label: "Examples",
-          autogenerate: { directory: "examples" }
+          autogenerate: { directory: "examples" },
         },
         // {
         //   label: "Examples",
@@ -85,9 +85,9 @@ export default defineConfig({
     }),
   ],
   vite: {
-    // optimizeDeps: {
-    //   exclude: ['flowbite-svelte-icons']
-    // },
+    optimizeDeps: {
+      exclude: ["@jis3r/icons"],
+    },
     ssr: {
       noExternal: ["lucide-svelte"],
     },

@@ -13,4 +13,7 @@ export default defineConfig({
       $apps: fileURLToPath(new URL("..", import.meta.url)),
     },
   },
+  optimizeDeps: {
+    exclude: ["@jis3r/icons"],
+  },
 });
