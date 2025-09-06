@@ -14,7 +14,11 @@
   import FieldBase from "../field-base.svelte";
   import "../extra-widgets/tags.js";
 
-  let { config, value = $bindable(), uiOption }: ComponentProps["tagsField"] = $props();
+  let {
+    config,
+    value = $bindable(),
+    uiOption,
+  }: ComponentProps["tagsField"] = $props();
 </script>
 
 <FieldBase

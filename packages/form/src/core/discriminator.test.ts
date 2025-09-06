@@ -2,21 +2,28 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { describe, expect, it, test } from 'vitest';
+import { describe, expect, it, test } from "vitest";
 
-import { getDiscriminatorFieldFromSchema, getOptionMatchingSimpleDiscriminator } from './discriminator.js';
-import type { Schema } from './schema.js';
+import {
+  getDiscriminatorFieldFromSchema,
+  getOptionMatchingSimpleDiscriminator,
+} from "./discriminator.js";
+import type { Schema } from "./schema.js";
 
-const PROPERTY_NAME = 'testProp';
+const PROPERTY_NAME = "testProp";
 // const BAD_DISCRIMINATOR: Schema = { discriminator: { propertyName: 5 } };
-const GOOD_DISCRIMINATOR: Schema = { discriminator: { propertyName: PROPERTY_NAME } };
+const GOOD_DISCRIMINATOR: Schema = {
+  discriminator: { propertyName: PROPERTY_NAME },
+};
 
-describe('getDiscriminatorFieldFromSchema()', () => {
-  it('returns undefined when no discriminator is present', () => {
+describe("getDiscriminatorFieldFromSchema()", () => {
+  it("returns undefined when no discriminator is present", () => {
     expect(getDiscriminatorFieldFromSchema({})).toBeUndefined();
   });
-  it('returns the propertyName when discriminator is present', () => {
-    expect(getDiscriminatorFieldFromSchema(GOOD_DISCRIMINATOR)).toEqual(PROPERTY_NAME);
+  it("returns the propertyName when discriminator is present", () => {
+    expect(getDiscriminatorFieldFromSchema(GOOD_DISCRIMINATOR)).toEqual(
+      PROPERTY_NAME
+    );
   });
   // describe('bad discriminator', () => {
   //   let consoleWarnSpy: MockInstance<typeof console.warn>;
@@ -35,80 +42,91 @@ describe('getDiscriminatorFieldFromSchema()', () => {
   // });
 });
 
-describe('getOptionMatchingSimpleDiscriminator()', () => {
-  describe('returns undefined if no option matches discriminator', () => {
-    test('no options with no data', () => {
-      expect(getOptionMatchingSimpleDiscriminator({}, [], 'id')).toEqual(undefined);
+describe("getOptionMatchingSimpleDiscriminator()", () => {
+  describe("returns undefined if no option matches discriminator", () => {
+    test("no options with no data", () => {
+      expect(getOptionMatchingSimpleDiscriminator({}, [], "id")).toEqual(
+        undefined
+      );
     });
 
-    test('no options with data', () => {
-      expect(getOptionMatchingSimpleDiscriminator({ foo: 'foo' }, [], 'id')).toEqual(undefined);
-    });
-
-    test('options with no data', () => {
+    test("no options with data", () => {
       expect(
-        getOptionMatchingSimpleDiscriminator({}, [{ type: 'object', properties: { foo: { const: 'foo' } } }], 'id')
+        getOptionMatchingSimpleDiscriminator({ foo: "foo" }, [], "id")
       ).toEqual(undefined);
     });
 
-    test('matching property, but no discriminatorField', () => {
+    test("options with no data", () => {
       expect(
-        getOptionMatchingSimpleDiscriminator({ foo: 'foo' }, [
-          { type: 'object', properties: { foo: { const: 'foo' } } },
+        getOptionMatchingSimpleDiscriminator(
+          {},
+          [{ type: "object", properties: { foo: { const: "foo" } } }],
+          "id"
+        )
+      ).toEqual(undefined);
+    });
+
+    test("matching property, but no discriminatorField", () => {
+      expect(
+        getOptionMatchingSimpleDiscriminator({ foo: "foo" }, [
+          { type: "object", properties: { foo: { const: "foo" } } },
         ])
       ).toEqual(undefined);
     });
 
-    test('matching property different from discriminatorField', () => {
+    test("matching property different from discriminatorField", () => {
       expect(
         getOptionMatchingSimpleDiscriminator(
-          { foo: 'foo' },
-          [{ type: 'object', properties: { foo: { const: 'foo' } } }],
-          'bar'
+          { foo: "foo" },
+          [{ type: "object", properties: { foo: { const: "foo" } } }],
+          "bar"
         )
       ).toEqual(undefined);
     });
   });
 
-  describe('returns option index if option matches discriminator', () => {
-    test('const discriminator', () => {
+  describe("returns option index if option matches discriminator", () => {
+    test("const discriminator", () => {
       expect(
         getOptionMatchingSimpleDiscriminator(
-          { foo: 'foo' },
-          [{}, { type: 'object', properties: { foo: { const: 'foo' } } }],
-          'foo'
+          { foo: "foo" },
+          [{}, { type: "object", properties: { foo: { const: "foo" } } }],
+          "foo"
         )
       ).toEqual(1);
     });
 
-    test('enum discriminator', () => {
+    test("enum discriminator", () => {
       expect(
         getOptionMatchingSimpleDiscriminator(
-          { foo: 'foo' },
-          [{}, { type: 'object', properties: { foo: { enum: ['bar', 'foo'] } } }],
-          'foo'
+          { foo: "foo" },
+          [
+            {},
+            { type: "object", properties: { foo: { enum: ["bar", "foo"] } } },
+          ],
+          "foo"
         )
       ).toEqual(1);
     });
   });
 
-  describe('unsupported (non-simple) discriminator returns undefined', () => {
-    test('object discriminator', () => {
+  describe("unsupported (non-simple) discriminator returns undefined", () => {
+    test("object discriminator", () => {
       expect(
         getOptionMatchingSimpleDiscriminator(
-          { foo: 'foo' },
-          [{}, { type: 'object', properties: { foo: { type: 'object' } } }],
-          'foo'
+          { foo: "foo" },
+          [{}, { type: "object", properties: { foo: { type: "object" } } }],
+          "foo"
         )
       ).toEqual(undefined);
     });
 
-    test('array discriminator', () => {
+    test("array discriminator", () => {
       expect(
         getOptionMatchingSimpleDiscriminator(
-          { foo: 'foo' },
-          [{}, { type: 'object', properties: { foo: { type: 'array' } } }],
-          'foo'
+          { foo: "foo" },
+          [{}, { type: "object", properties: { foo: { type: "array" } } }],
+          "foo"
         )
       ).toEqual(undefined);
     });

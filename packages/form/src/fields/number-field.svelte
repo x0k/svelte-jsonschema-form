@@ -12,7 +12,11 @@
 
   import FieldBase from "./field-base.svelte";
 
-  let { value = $bindable(), config, uiOption }: ComponentProps["numberField"] = $props();
+  let {
+    value = $bindable(),
+    config,
+    uiOption,
+  }: ComponentProps["numberField"] = $props();
 </script>
 
 <FieldBase
@@ -23,5 +27,5 @@
   widgetType="numberWidget"
   bind:value
   fromValue={identity}
-  toValue={(v) => v ?? uiOption('numberEmptyValue')}
+  toValue={(v) => v ?? uiOption("numberEmptyValue")}
 />

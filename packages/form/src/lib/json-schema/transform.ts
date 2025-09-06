@@ -64,13 +64,13 @@ export function transformSchemaDefinition<R>(
       property: "",
       path: ctx.path.concat(key, ""),
     };
-    const keys = Object.keys(record)
+    const keys = Object.keys(record);
     const keysLen = keys.length;
     for (let i = 0; i < keysLen; i++) {
       const property = keys[i]!;
       const value = record[property]!;
       if (Array.isArray(value)) {
-        map.set(property, value)
+        map.set(property, value);
         continue;
       }
       c.property = property;

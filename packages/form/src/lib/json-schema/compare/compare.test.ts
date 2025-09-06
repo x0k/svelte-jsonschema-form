@@ -10,7 +10,7 @@ type Match = Brand<"Match", boolean>;
 
 const DOES_NOT_MATCH = false as Match;
 
-const { compareSchemaDefinitions } = createComparator()
+const { compareSchemaDefinitions } = createComparator();
 
 function isEqual(a: JSONSchema7Definition, b: JSONSchema7Definition) {
   return compareSchemaDefinitions(a, b) === 0;

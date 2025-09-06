@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { isSchemaObject } from '@/lib/json-schema/index.js';
+import { isSchemaObject } from "@/lib/json-schema/index.js";
 
 import type { Schema, SchemaValue } from "./schema.js";
 import type { Validator } from "./validator.js";

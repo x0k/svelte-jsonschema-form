@@ -15,7 +15,7 @@ import { sanitizeDataForNewSchema } from "./sanitize-data-for-new-schema.js";
 import { retrieveSchema } from "./resolve.js";
 import type { Schema } from "./schema.js";
 import { createValidator } from "./test-validator.js";
-import { defaultMerger } from './merger.js';
+import { defaultMerger } from "./merger.js";
 
 let testValidator: Validator;
 

@@ -5,5 +5,5 @@
 // Custom properties must start with --.
 
 export function formatAsCustomPropertyName(name: string): string {
-  return `--${name.replaceAll(/[^A-Za-z0-9_-]/g, '-')}`
+  return `--${name.replaceAll(/[^A-Za-z0-9_-]/g, "-")}`;
 }

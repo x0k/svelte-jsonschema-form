@@ -25,8 +25,7 @@ export type FailedTask<E> =
   | AbstractFailedTask<"timeout">
   | AbstractFailedTask<"aborted">;
 
-export interface ProcessingTask<T, R>
-  extends AbstractTaskState<"processing"> {
+export interface ProcessingTask<T, R> extends AbstractTaskState<"processing"> {
   delayed: boolean;
   args: T;
   promise: Promise<R>;

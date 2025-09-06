@@ -38,7 +38,7 @@ export function isSchemaValueDeepEqual(
     }
     return Object.keys(b).length === aKeys.length;
   }
-  return a !== a && b !== b
+  return a !== a && b !== b;
 }
 
 export const isSchemaDeepEqual = isSchemaValueDeepEqual as (

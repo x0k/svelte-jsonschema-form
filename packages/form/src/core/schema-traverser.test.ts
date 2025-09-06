@@ -1,6 +1,12 @@
 import { describe, expect, it } from "vitest";
 import { makeSchemaDefinitionTraverser } from "./schema-traverser.js";
-import { ALL_OF_KEY, IF_KEY, PROPERTIES_KEY, THEN_KEY, type Schema } from "./schema.js";
+import {
+  ALL_OF_KEY,
+  IF_KEY,
+  PROPERTIES_KEY,
+  THEN_KEY,
+  type Schema,
+} from "./schema.js";
 
 describe("traverseSchemaDefinition", () => {
   it("Should traverse schema definitions in correct order", () => {
@@ -59,14 +65,17 @@ describe("traverseSchemaDefinition", () => {
     };
     expect(
       Array.from(
-        makeSchemaDefinitionTraverser([PROPERTIES_KEY, ALL_OF_KEY, IF_KEY, THEN_KEY], {
-          *onEnter(_, ctx) {
-            yield `enter::${ctx.path.join("/")}`;
-          },
-          *onLeave(_, ctx) {
-            yield `leave::${ctx.path.join("/")}`;
-          },
-        })(schema)
+        makeSchemaDefinitionTraverser(
+          [PROPERTIES_KEY, ALL_OF_KEY, IF_KEY, THEN_KEY],
+          {
+            *onEnter(_, ctx) {
+              yield `enter::${ctx.path.join("/")}`;
+            },
+            *onLeave(_, ctx) {
+              yield `leave::${ctx.path.join("/")}`;
+            },
+          }
+        )(schema)
       )
     ).toEqual([
       "enter::",

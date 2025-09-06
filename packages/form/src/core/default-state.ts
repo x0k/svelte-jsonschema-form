@@ -3,7 +3,7 @@
 // Modifications made by Roman Krasilnikov.
 
 import { isRecordEmpty, isObject } from "@/lib/object.js";
-import { isSchemaObject } from '@/lib/json-schema/index.js'
+import { isSchemaObject } from "@/lib/json-schema/index.js";
 
 import { resolveDependencies, retrieveSchema } from "./resolve.js";
 import {

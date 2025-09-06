@@ -1,8 +1,8 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import type { Schema } from '@/core/index.js';
+import type { Schema } from "@/core/index.js";
 
-import { mergeSchemas } from './legacy.js';
+import { mergeSchemas } from "./legacy.js";
 
 describe("mergeSchemas()", () => {
   it("shouldn`t mutate the provided objects", () => {

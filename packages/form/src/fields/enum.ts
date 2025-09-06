@@ -29,12 +29,12 @@ export function createOptions<V extends Validator>(
   ctx: FormInternalContext<V>,
   config: Config,
   uiOption: UiOption,
-  schema: Schema,
+  schema: Schema
 ): EnumOption<SchemaValue>[] | undefined {
   const enumValues = schema.enum;
-  const disabledValues = new Set(uiOption('disabledEnumValues'));
+  const disabledValues = new Set(uiOption("disabledEnumValues"));
   if (enumValues) {
-    const enumNames = uiOption('enumNames');
+    const enumNames = uiOption("enumNames");
     return enumValues.map((value, index) => {
       const label = enumNames?.[index] ?? String(value);
       return {

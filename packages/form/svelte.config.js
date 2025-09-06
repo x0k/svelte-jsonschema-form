@@ -10,7 +10,7 @@ export default {
     },
     alias: {
       "@/": "./src/",
-    }
+    },
   },
   compilerOptions: {
     runes: true,

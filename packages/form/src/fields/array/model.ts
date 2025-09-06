@@ -1,4 +1,4 @@
-import type { SchemaValue } from '@/core/schema.js';
+import type { SchemaValue } from "@/core/schema.js";
 
 export type ItemTitle = (
   title: string,

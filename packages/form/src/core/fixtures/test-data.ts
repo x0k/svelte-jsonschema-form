@@ -5,7 +5,7 @@
 import deepFreeze from "deep-freeze-es6";
 
 import { ONE_OF_KEY, ID_KEY, type Schema } from "../schema.js";
-import type { EnumOption } from '../enum-option.js';
+import type { EnumOption } from "../enum-option.js";
 
 export const oneOfData = {
   name: "second_option",
@@ -680,142 +680,157 @@ export const SCHEMA_WITH_SINGLE_CONDITION: Schema = deepFreeze({
   },
 });
 
-export const SCHEMA_WITH_MULTIPLE_CONDITIONS: Schema =
-  deepFreeze<Schema>({
-    type: "object",
-    properties: {
-      Animal: {
-        default: "Cat",
-        enum: ["Cat", "Dog"],
-        title: "Animal",
-        type: "string",
+export const SCHEMA_WITH_MULTIPLE_CONDITIONS: Schema = deepFreeze<Schema>({
+  type: "object",
+  properties: {
+    Animal: {
+      default: "Cat",
+      enum: ["Cat", "Dog"],
+      title: "Animal",
+      type: "string",
+    },
+  },
+  allOf: [
+    {
+      if: {
+        required: ["Animal"],
+        properties: {
+          Animal: {
+            const: "Cat",
+          },
+        },
+      },
+      then: {
+        properties: {
+          Tail: {
+            default: "Long",
+            enum: ["Long", "Short", "None"],
+            title: "Tail length",
+            type: "string",
+          },
+        },
+        required: ["Tail"],
       },
     },
-    allOf: [
-      {
-        if: {
-          required: ["Animal"],
-          properties: {
-            Animal: {
-              const: "Cat",
-            },
+    {
+      if: {
+        required: ["Animal"],
+        properties: {
+          Animal: {
+            const: "Dog",
           },
-        },
-        then: {
-          properties: {
-            Tail: {
-              default: "Long",
-              enum: ["Long", "Short", "None"],
-              title: "Tail length",
-              type: "string",
-            },
-          },
-          required: ["Tail"],
         },
       },
-      {
-        if: {
-          required: ["Animal"],
-          properties: {
-            Animal: {
-              const: "Dog",
+      then: {
+        properties: {
+          Breed: {
+            title: "Breed",
+            properties: {
+              BreedName: {
+                default: "Alsatian",
+                enum: ["Alsatian", "Dalmation"],
+                title: "Breed name",
+                type: "string",
+              },
             },
-          },
-        },
-        then: {
-          properties: {
-            Breed: {
-              title: "Breed",
-              properties: {
-                BreedName: {
-                  default: "Alsatian",
-                  enum: ["Alsatian", "Dalmation"],
-                  title: "Breed name",
-                  type: "string",
+            allOf: [
+              {
+                if: {
+                  required: ["BreedName"],
+                  properties: {
+                    BreedName: {
+                      const: "Alsatian",
+                    },
+                  },
+                },
+                then: {
+                  properties: {
+                    Fur: {
+                      default: "brown",
+                      enum: ["black", "brown"],
+                      title: "Fur",
+                      type: "string",
+                    },
+                  },
+                  required: ["Fur"],
                 },
               },
-              allOf: [
-                {
-                  if: {
-                    required: ["BreedName"],
-                    properties: {
-                      BreedName: {
-                        const: "Alsatian",
-                      },
+              {
+                if: {
+                  required: ["BreedName"],
+                  properties: {
+                    BreedName: {
+                      const: "Dalmation",
                     },
-                  },
-                  then: {
-                    properties: {
-                      Fur: {
-                        default: "brown",
-                        enum: ["black", "brown"],
-                        title: "Fur",
-                        type: "string",
-                      },
-                    },
-                    required: ["Fur"],
                   },
                 },
-                {
-                  if: {
-                    required: ["BreedName"],
-                    properties: {
-                      BreedName: {
-                        const: "Dalmation",
-                      },
+                then: {
+                  properties: {
+                    Spots: {
+                      default: "small",
+                      enum: ["large", "small"],
+                      title: "Spots",
+                      type: "string",
                     },
                   },
-                  then: {
-                    properties: {
-                      Spots: {
-                        default: "small",
-                        enum: ["large", "small"],
-                        title: "Spots",
-                        type: "string",
-                      },
-                    },
-                    required: ["Spots"],
-                  },
+                  required: ["Spots"],
                 },
-              ],
-              required: ["BreedName"],
-            },
+              },
+            ],
+            required: ["BreedName"],
           },
         },
       },
-    ],
-    required: ["Animal"],
-  });
+    },
+  ],
+  required: ["Animal"],
+});
 
-export const SCHEMA_WITH_NESTED_CONDITIONS: Schema = deepFreeze<Schema>(
-  {
-    type: "object",
+export const SCHEMA_WITH_NESTED_CONDITIONS: Schema = deepFreeze<Schema>({
+  type: "object",
+  properties: {
+    country: {
+      enum: ["USA"],
+    },
+  },
+  required: ["country"],
+  if: {
     properties: {
       country: {
-        enum: ["USA"],
+        const: "USA",
       },
     },
     required: ["country"],
+  },
+  then: {
+    properties: {
+      state: {
+        type: "string",
+        enum: ["California", "New York"],
+      },
+    },
+    required: ["state"],
     if: {
       properties: {
-        country: {
-          const: "USA",
-        },
-      },
-      required: ["country"],
-    },
-    then: {
-      properties: {
         state: {
-          type: "string",
-          enum: ["California", "New York"],
+          const: "New York",
         },
       },
       required: ["state"],
+    },
+    then: {
+      properties: {
+        city: {
+          type: "string",
+          enum: ["New York City", "Buffalo", "Rochester"],
+        },
+      },
+    },
+    else: {
       if: {
         properties: {
           state: {
-            const: "New York",
+            const: "California",
           },
         },
         required: ["state"],
@@ -824,31 +839,13 @@ export const SCHEMA_WITH_NESTED_CONDITIONS: Schema = deepFreeze<Schema>(
         properties: {
           city: {
             type: "string",
-            enum: ["New York City", "Buffalo", "Rochester"],
-          },
-        },
-      },
-      else: {
-        if: {
-          properties: {
-            state: {
-              const: "California",
-            },
-          },
-          required: ["state"],
-        },
-        then: {
-          properties: {
-            city: {
-              type: "string",
-              enum: ["Los Angeles", "San Diego", "San Jose"],
-            },
+            enum: ["Los Angeles", "San Diego", "San Jose"],
           },
         },
       },
     },
-  }
-);
+  },
+});
 
 export const SCHEMA_WITH_ARRAY_CONDITION: Schema = deepFreeze<Schema>({
   type: "object",
@@ -860,57 +857,56 @@ export const SCHEMA_WITH_ARRAY_CONDITION: Schema = deepFreeze<Schema>({
   },
 });
 
-export const SCHEMA_WITH_ALLOF_CANNOT_MERGE: Schema =
-  deepFreeze<Schema>({
-    type: "object",
-    properties: {
-      animal: {
-        enum: ["Cat", "Fish"],
+export const SCHEMA_WITH_ALLOF_CANNOT_MERGE: Schema = deepFreeze<Schema>({
+  type: "object",
+  properties: {
+    animal: {
+      enum: ["Cat", "Fish"],
+    },
+  },
+  allOf: [
+    {
+      if: {
+        properties: {
+          animal: {
+            const: "Cat",
+          },
+        },
+      },
+      then: {
+        properties: {
+          food: {
+            type: "string",
+            enum: ["meat", "grass", "fish"],
+          },
+        },
+        required: ["food"],
       },
     },
-    allOf: [
-      {
-        if: {
-          properties: {
-            animal: {
-              const: "Cat",
-            },
+    {
+      if: {
+        properties: {
+          animal: {
+            const: "Fish",
           },
-        },
-        then: {
-          properties: {
-            food: {
-              type: "string",
-              enum: ["meat", "grass", "fish"],
-            },
-          },
-          required: ["food"],
         },
       },
-      {
-        if: {
-          properties: {
-            animal: {
-              const: "Fish",
-            },
+      then: {
+        properties: {
+          food: {
+            type: "string",
+            enum: ["insect", "worms"],
+          },
+          water: {
+            type: "string",
+            enum: ["lake", "sea"],
           },
         },
-        then: {
-          properties: {
-            food: {
-              type: "string",
-              enum: ["insect", "worms"],
-            },
-            water: {
-              type: "string",
-              enum: ["lake", "sea"],
-            },
-          },
-          required: ["food", "water"],
-        },
+        required: ["food", "water"],
       },
-      {
-        required: ["animal"],
-      },
-    ],
-  });
+    },
+    {
+      required: ["animal"],
+    },
+  ],
+});

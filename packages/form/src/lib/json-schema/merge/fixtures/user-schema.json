@@ -79,7 +79,18 @@
             },
             "country": {
               "type": "string",
-              "enum": ["US", "CA", "GB", "DE", "FR", "AU", "JP", "BR", "IN", "MX"]
+              "enum": [
+                "US",
+                "CA",
+                "GB",
+                "DE",
+                "FR",
+                "AU",
+                "JP",
+                "BR",
+                "IN",
+                "MX"
+              ]
             }
           },
           "required": ["street", "city", "country"]
@@ -188,7 +199,13 @@
             "properties": {
               "platform": {
                 "type": "string",
-                "enum": ["twitter", "linkedin", "github", "facebook", "instagram"]
+                "enum": [
+                  "twitter",
+                  "linkedin",
+                  "github",
+                  "facebook",
+                  "instagram"
+                ]
               },
               "url": {
                 "type": "string",

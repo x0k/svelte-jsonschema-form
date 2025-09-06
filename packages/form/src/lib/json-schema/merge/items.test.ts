@@ -13,7 +13,7 @@ import {
   createShallowAllOfMerge,
 } from "./all-of-merge.js";
 import { createMerger } from "./merge.js";
-import { legacyPatternsMerger } from './patterns.js';
+import { legacyPatternsMerger } from "./patterns.js";
 
 const { compareSchemaValues, compareSchemaDefinitions } = createComparator();
 

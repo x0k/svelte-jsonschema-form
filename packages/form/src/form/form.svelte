@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
-  import type { HTMLFormAttributes } from 'svelte/elements';
+  import type { HTMLFormAttributes } from "svelte/elements";
 
   import { getComponent, getFormContext } from "./context/index.js";
   import type { Config } from "./config.js";

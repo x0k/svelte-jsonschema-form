@@ -3,7 +3,7 @@
 // Modifications made by Roman Krasilnikov.
 
 import { array } from "@/lib/array.js";
-import { isSchemaObject } from '@/lib/json-schema/index.js';
+import { isSchemaObject } from "@/lib/json-schema/index.js";
 
 import {
   ADDITIONAL_PROPERTY_FLAG,

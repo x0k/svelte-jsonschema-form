@@ -31,4 +31,3 @@ export {
   /** @deprecated use `makeSchemaDefinitionTraverser` from `lib/json-schema` */
   makeSchemaDefinitionTraverser,
 };
-

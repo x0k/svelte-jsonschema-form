@@ -1,4 +1,4 @@
-import type { Validator } from '@/core/index.js';
+import type { Validator } from "@/core/index.js";
 
 import type { FormInternalContext } from "./context.js";
 
