@@ -1,5 +1,7 @@
+import { isSchemaObject } from '@/lib/json-schema/index.js'
+
 import { resolveRef } from "./definitions.js";
-import { isSchema, type Schema } from "./schema.js";
+import type { Schema } from "./schema.js";
 
 export function* getKnownProperties(
   { $ref: ref, properties, dependencies, oneOf, allOf, anyOf }: Schema,
@@ -12,7 +14,7 @@ export function* getKnownProperties(
     }
     stack.add(ref);
     const resolved = resolveRef(ref, rootSchema);
-    if (isSchema(resolved)) {
+    if (isSchemaObject(resolved)) {
       yield* getKnownProperties(resolved, rootSchema, stack);
     }
     return;
@@ -25,7 +27,7 @@ export function* getKnownProperties(
   for (const alternatives of [oneOf, allOf, anyOf]) {
     if (Array.isArray(alternatives)) {
       for (const alternative of alternatives) {
-        if (isSchema(alternative)) {
+        if (isSchemaObject(alternative)) {
           yield* getKnownProperties(alternative, rootSchema, stack);
         }
       }
@@ -33,7 +35,7 @@ export function* getKnownProperties(
   }
   if (dependencies !== undefined) {
     for (const dependency of Object.values(dependencies)) {
-      if (!Array.isArray(dependency) && isSchema(dependency)) {
+      if (!Array.isArray(dependency) && isSchemaObject(dependency)) {
         yield* getKnownProperties(dependency, rootSchema, stack);
       }
     }

@@ -3,6 +3,7 @@
 // Modifications made by Roman Krasilnikov.
 
 import { array } from "@/lib/array.js";
+import { isSchemaObject } from '@/lib/json-schema/index.js';
 
 import {
   ADDITIONAL_PROPERTY_FLAG,
@@ -10,7 +11,6 @@ import {
   ANY_OF_KEY,
   DEPENDENCIES_KEY,
   IF_KEY,
-  isSchema,
   ITEMS_KEY,
   ONE_OF_KEY,
   PROPERTIES_KEY,
@@ -189,7 +189,7 @@ export function retrieveSchemaInternal(
         const withContainsSchemas: SchemaDefinition[] = [];
         const withoutContainsSchemas: SchemaDefinition[] = [];
         resolvedSchema.allOf?.forEach((s) => {
-          if (isSchema(s) && s.contains) {
+          if (isSchemaObject(s) && s.contains) {
             withContainsSchemas.push(s);
           } else {
             withoutContainsSchemas.push(s);

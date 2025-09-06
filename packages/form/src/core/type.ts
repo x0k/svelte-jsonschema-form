@@ -1,4 +1,6 @@
-import { isSchema, type Schema, type SchemaType } from "./schema.js";
+import { isSchemaObject } from "@/lib/json-schema/index.js";
+
+import type { Schema, SchemaType } from "./schema.js";
 
 export function typeOfValue(
   value: null | boolean | number | string | object
@@ -45,7 +47,7 @@ export function typeOfSchema(schema: Schema): SchemaType | SchemaType[] {
     let types: SchemaType[] = [];
     for (let i = 0; i < alt.length; i++) {
       const item = alt[i]!;
-      if (!isSchema(item)) {
+      if (!isSchemaObject(item)) {
         continue;
       }
       types = types.concat(typeOfSchema(item));
