@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { insertValue } from "@/lib/trie.js";
-import { mergeSchemas, refToPath } from "@/core/index.js";
+import { mergeSchemas, pathFromRef } from "@/core/index.js";
 import {
   ON_ARRAY_CHANGE,
   ON_INPUT,
@@ -66,7 +66,7 @@ const inputSchema: Schema = {
 function subSchemas(data: Record<string, SchemaMeta>): SubSchemas {
   let trie: SubSchemas;
   for (const key of Object.keys(data)) {
-    trie = insertValue(trie, refToPath(key), data[key]!);
+    trie = insertValue(trie, pathFromRef(key), data[key]!);
   }
   return trie;
 }

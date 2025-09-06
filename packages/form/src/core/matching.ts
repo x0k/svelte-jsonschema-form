@@ -3,6 +3,7 @@
 // Modifications made by Roman Krasilnikov.
 
 import { weakMemoize } from "@/lib/memoize.js";
+import { isSchemaObject } from '@/lib/json-schema/index.js'
 
 import {
   getDiscriminatorFieldFromSchema,
@@ -11,7 +12,6 @@ import {
 import type { Merger } from "./merger.js";
 import { resolveAllReferences, retrieveSchema } from "./resolve.js";
 import {
-  isSchema,
   isSchemaWithProperties,
   REF_KEY,
   type Schema,
@@ -158,7 +158,7 @@ export function calculateIndexScore(
             merger,
             rootSchema,
             formValue,
-            altSchemas.filter(isSchema),
+            altSchemas.filter(isSchemaObject),
             -1,
             discriminator
           );

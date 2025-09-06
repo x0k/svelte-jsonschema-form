@@ -6,7 +6,7 @@ export function isRecord<T>(value: unknown): value is Record<PropertyKey, T> {
   return isObject(value) && !Array.isArray(value);
 }
 
-export function isEmptyRecord<R extends Record<string, any>>(
+export function isRecordEmpty<R extends Record<string, any>>(
   rec: R | Record<string, never>
 ): rec is Record<string, never> {
   for (const key in rec) {
@@ -16,6 +16,10 @@ export function isEmptyRecord<R extends Record<string, any>>(
   }
   return true;
 }
+
+// TODO: Remove in v3
+/** @deprecated use `isRecordEmpty` */
+export const isEmptyRecord = isRecordEmpty;
 
 export function getValueByPath<T, R>(
   from: T,

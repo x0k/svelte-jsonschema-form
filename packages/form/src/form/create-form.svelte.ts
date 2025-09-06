@@ -576,7 +576,8 @@ export function createForm<T, V extends Validator>(
   };
 }
 
-/** @deprecated use `formHandlers` */
+// TODO: Remove in v3
+/** @deprecated use `handlers` attachment */
 export function enhance(node: HTMLFormElement, context: FormContext) {
   $effect(() => {
     const ctx = context as FormInternalContext<any>;
@@ -589,7 +590,7 @@ export function enhance(node: HTMLFormElement, context: FormContext) {
   });
 }
 
-export function formHandlers(
+export function handlers(
   ctxOrState: FormState<any, any> | FormInternalContext<any>
 ): Attachment<HTMLFormElement> {
   const ctx =
@@ -603,3 +604,7 @@ export function formHandlers(
     };
   };
 }
+
+// TODO: Remove in v3
+/** @deprecated use `handlers` */
+export const formHandlers = handlers;

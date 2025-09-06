@@ -1,33 +1,63 @@
 import type { JSONSchema7, JSONSchema7TypeName } from "json-schema";
 
-export type TransformedSchema<R, S> = Omit<
-  S,
-  SubSchemaKey | SubSchemasArrayKey | SubSchemasRecordKey
-> & {
-  items?: R | R[] | undefined;
-  additionalItems?: R | undefined;
-  contains?: R | undefined;
-  additionalProperties?: R | undefined;
-  propertyNames?: R | undefined;
-  if?: R | undefined;
-  then?: R | undefined;
-  else?: R | undefined;
-  not?: R | undefined;
-  // Records
-  $defs?: Record<string, R> | undefined;
-  properties?: Record<string, R> | undefined;
-  patternProperties?: Record<string, R> | undefined;
-  dependencies?: Record<string, R | string[]> | undefined;
-  definitions?: Record<string, R> | undefined;
-  // Arrays
-  allOf?: R[] | undefined;
-  anyOf?: R[] | undefined;
-  oneOf?: R[] | undefined;
-};
+import {
+  isAllowAnySchema,
+  isSchemaObject,
+  type AnySubSchemaKey,
+  ALL_SUB_SCHEMA_KEYS,
+} from "@/lib/json-schema/index.js";
 
-export type TransformedSchemaDefinition<R, S> =
-  | TransformedSchema<R, S>
-  | boolean;
+// TODO: Remove in v3
+/** @deprecated use `ALL_SUB_SCHEMA_KEYS` from 'lib/json-schema` */
+export const SCHEMA_KEYS = ALL_SUB_SCHEMA_KEYS;
+
+// TODO: Remove in v3
+import {
+  type SubSchemaKey,
+  type SubSchemasArrayKey,
+  type SubSchemasRecordKey,
+  type TransformedSchema,
+  type TransformedSchemaDefinition,
+  RECORDS_OF_SUB_SCHEMAS,
+  ARRAYS_OF_SUB_SCHEMAS,
+  SUB_SCHEMAS,
+  SET_OF_ARRAYS_OF_SUB_SCHEMAS,
+  SET_OF_RECORDS_OF_SUB_SCHEMAS,
+  SET_OF_SUB_SCHEMAS,
+  isSubSchemaKey,
+  isSubSchemasArrayKey,
+  isSubSchemasRecordKey,
+} from "@/lib/json-schema/index.js";
+export {
+  /** @deprecated use `SubSchemaKey` from `lib/json-schema` */
+  type SubSchemaKey,
+  /** @deprecated use `SubSchemasArrayKey` from `lib/json-schema` */
+  type SubSchemasArrayKey,
+  /** @deprecated use `SubSchemasRecordKey` from `lib/json-schema` */
+  type SubSchemasRecordKey,
+  /** @deprecated use `TransformedSchema` from `lib/json-schema` */
+  type TransformedSchema,
+  /** @deprecated use `TransformedSchemaDefinition` from `lib/json-schema` */
+  type TransformedSchemaDefinition,
+  /** @deprecated use `RECORDS_OF_SUB_SCHEMAS` from `lib/json-schema` */
+  RECORDS_OF_SUB_SCHEMAS,
+  /** @deprecated use `ARRAYS_OF_SUB_SCHEMAS` from `lib/json-schema` */
+  ARRAYS_OF_SUB_SCHEMAS,
+  /** @deprecated use `SUB_SCHEMAS` from `lib/json-schema` */
+  SUB_SCHEMAS,
+  /** @deprecated use `SET_OF_ARRAYS_OF_SUB_SCHEMAS` from `lib/json-schema` */
+  SET_OF_ARRAYS_OF_SUB_SCHEMAS,
+  /** @deprecated use `SET_OF_RECORDS_OF_SUB_SCHEMAS` from `lib/json-schema` */
+  SET_OF_RECORDS_OF_SUB_SCHEMAS,
+  /** @deprecated use `SET_OF_SUB_SCHEMAS` from `lib/json-schema` */
+  SET_OF_SUB_SCHEMAS,
+  /** @deprecated use `isSubSchemaKey` from `lib/json-schema` */
+  isSubSchemaKey,
+  /** @deprecated use `isSubSchemasArrayKey` from `lib/json-schema` */
+  isSubSchemasArrayKey,
+  /** @deprecated use `isSubSchemasRecordKey` from `lib/json-schema` */
+  isSubSchemasRecordKey,
+};
 
 export interface OpenAPIDiscriminator {
   propertyName: string;
@@ -95,60 +125,13 @@ export const PROPERTY_NAME_KEY = "propertyName";
 
 export const DATA_URL_FORMAT = "data-url";
 
-// WARN: Order is important
-export const RECORDS_OF_SUB_SCHEMAS = [
-  DEFS_KEY,
-  DEFINITIONS_KEY,
-  PROPERTIES_KEY,
-  PATTERN_PROPERTIES_KEY,
-  DEPENDENCIES_KEY,
-] as const;
+// TODO: Remove in v3
+/** @deprecated use `AnySubSchemaKey` from `lib/json-schema` */
+export type SchemaKey = AnySubSchemaKey;
 
-export const SET_OF_RECORDS_OF_SUB_SCHEMAS = new Set(RECORDS_OF_SUB_SCHEMAS);
-
-export type SubSchemasRecordKey = (typeof RECORDS_OF_SUB_SCHEMAS)[number];
-
-// WARN: Order is important
-export const ARRAYS_OF_SUB_SCHEMAS = [
-  ITEMS_KEY,
-  ALL_OF_KEY,
-  ONE_OF_KEY,
-  ANY_OF_KEY,
-] as const;
-
-export const SET_OF_ARRAYS_OF_SUB_SCHEMAS = new Set(ARRAYS_OF_SUB_SCHEMAS);
-
-export type SubSchemasArrayKey = (typeof ARRAYS_OF_SUB_SCHEMAS)[number];
-
-// WARN: Order is important
-export const SUB_SCHEMAS = [
-  ITEMS_KEY,
-  ADDITIONAL_ITEMS_KEY,
-  ADDITIONAL_PROPERTIES_KEY,
-  PROPERTY_NAMES_KEY,
-  CONTAINS_KEY,
-  IF_KEY,
-  THEN_KEY,
-  ELSE_KEY,
-  NOT_KEY,
-] as const;
-
-export const SET_OF_SUB_SCHEMAS = new Set(SUB_SCHEMAS);
-
-export type SubSchemaKey = (typeof SUB_SCHEMAS)[number];
-
-// WARN: Order is important
-export const SCHEMA_KEYS = [
-  ...RECORDS_OF_SUB_SCHEMAS,
-  ...ARRAYS_OF_SUB_SCHEMAS,
-  ...SUB_SCHEMAS,
-];
-
-export type SchemaKey = (typeof SCHEMA_KEYS)[number];
-
-export function isSchema(schemaDef: SchemaDefinition): schemaDef is Schema {
-  return typeof schemaDef === "object";
-}
+// TODO: Remove in v3
+/** @deprecated use `isSchemaObject` from `lib/json-schema` */
+export const isSchema = isSchemaObject as (d: SchemaDefinition) => d is Schema;
 
 export function isSchemaWithProperties(
   schema: Schema
@@ -160,14 +143,6 @@ export function isNormalArrayItems(items: Schema["items"]): items is Schema {
   return typeof items === "object" && !Array.isArray(items);
 }
 
-export function isSubSchemaKey(key: string): key is SubSchemaKey {
-  return SET_OF_SUB_SCHEMAS.has(key as SubSchemaKey);
-}
-
-export function isSubSchemasArrayKey(key: string): key is SubSchemasArrayKey {
-  return SET_OF_ARRAYS_OF_SUB_SCHEMAS.has(key as SubSchemasArrayKey);
-}
-
-export function isSubSchemasRecordKey(key: string): key is SubSchemasRecordKey {
-  return SET_OF_RECORDS_OF_SUB_SCHEMAS.has(key as SubSchemasRecordKey);
-}
+// TODO: Remove in v3
+/** @deprecated use `isAllowAnySchema` from `lib/json-schema` */
+export const isTruthySchemaDefinition = isAllowAnySchema;

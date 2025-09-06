@@ -1,8 +1,10 @@
 import { isObject } from "@/lib/object.js";
 import {
-  isSchema,
+  ALL_SUB_SCHEMA_KEYS,
+  isSchemaObject,
   makeSchemaDefinitionTraverser,
-  SCHEMA_KEYS,
+} from "@/lib/json-schema/index.js";
+import {
   traverseSchemaValue,
   type Path,
   type Schema,
@@ -35,12 +37,12 @@ export interface IdConfig {
 export function makeIdConfig({
   prefix = DEFAULT_ID_PREFIX,
   pseudoSeparator = DEFAULT_ID_PSEUDO_SEPARATOR,
-  separator = DEFAULT_ID_SEPARATOR
+  separator = DEFAULT_ID_SEPARATOR,
 }: Partial<IdConfig> = {}): IdConfig {
   return {
     prefix,
     separator,
-    pseudoSeparator
+    pseudoSeparator,
   };
 }
 
@@ -53,7 +55,7 @@ export function makeIdSeparatorEntries(idConfig: IdConfig): [string, string][] {
 export function* idConfigAnalysis(idConfig: IdConfig): Generator<SchemaIssue> {
   const keys = Object.keys(idConfig) as (keyof IdConfig)[];
   for (const key of keys) {
-    const value = idConfig[key]!;
+    const value = idConfig[key];
     if (value.length === 0) {
       yield {
         issuer: ID_CONFIG_ISSUER,
@@ -74,7 +76,7 @@ export function* idConfigAnalysis(idConfig: IdConfig): Generator<SchemaIssue> {
       if (key === key2) {
         continue;
       }
-      const value2 = idConfig[key2]!;
+      const value2 = idConfig[key2];
       if (value.includes(value2)) {
         yield {
           issuer: ID_CONFIG_ISSUER,
@@ -128,9 +130,9 @@ export function* schemaAnalysis(
   idSeparatorEntries: IdSeparatorEntries,
   schema: Schema
 ): Generator<SchemaIssue> {
-  yield* makeSchemaDefinitionTraverser(SCHEMA_KEYS, {
+  yield* makeSchemaDefinitionTraverser(ALL_SUB_SCHEMA_KEYS, {
     *onEnter(node, ctx) {
-      if (!isSchema(node)) {
+      if (!isSchemaObject(node)) {
         return;
       }
       const { properties, default: defaultValue } = node;

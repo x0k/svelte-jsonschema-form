@@ -1,16 +1,16 @@
-import { resolveRef } from "./definitions.js";
 import {
-  isSchema,
+  isSchemaObject,
   SET_OF_ARRAYS_OF_SUB_SCHEMAS,
-  type Schema,
-  type SchemaDefinition,
   type SubSchemasArrayKey,
-} from "./schema.js";
+} from "@/lib/json-schema/index.js";
+
+import { resolveRef } from "./definitions.js";
+import { type Schema, type SchemaDefinition } from "./schema.js";
 import { getSimpleSchemaType } from "./type.js";
 
 export type Path = Array<string | number>;
 
-export function partsToPath(parts: string[]): Path {
+export function pathFromParts(parts: string[]): Path {
   let parentIsArrayOfSubSchemas = false;
   return parts.map((p) => {
     if (parentIsArrayOfSubSchemas) {
@@ -27,14 +27,22 @@ export function partsToPath(parts: string[]): Path {
   });
 }
 
-export function refToPath(ref: string): Path {
+// TODO: Remove in v3
+/** @deprecated use `pathFromParts` */
+export const partsToPath = pathFromParts;
+
+export function pathFromRef(ref: string): Path {
   if (ref === "#") {
     return [];
   }
   // TODO: Handle escaped `/`
   const parts = ref.substring(2).split("/");
-  return partsToPath(parts);
+  return pathFromParts(parts);
 }
+
+// TODO: Remove in v3
+/** @deprecated use `pathFromRef` */
+export const refToPath = pathFromRef;
 
 export function getSchemaDefinitionByPath(
   rootSchema: Schema,
@@ -42,7 +50,7 @@ export function getSchemaDefinitionByPath(
   path: Path
 ): SchemaDefinition | undefined {
   for (let i = 0; i < path.length; i++) {
-    if (schema === undefined || !isSchema(schema)) {
+    if (schema === undefined || !isSchemaObject(schema)) {
       return undefined;
     }
     if (schema.$ref) {
@@ -58,14 +66,14 @@ export function getSchemaDefinitionByPath(
       let def: SchemaDefinition | undefined;
       let lastBool: boolean | undefined;
       for (const subSchema of alt) {
-        if (!isSchema(subSchema)) {
+        if (!isSchemaObject(subSchema)) {
           continue;
         }
         def = getSchemaDefinitionByPath(rootSchema, subSchema, slice);
         if (def === undefined) {
           continue;
         }
-        if (isSchema(def)) {
+        if (isSchemaObject(def)) {
           return def;
         }
         lastBool = def;

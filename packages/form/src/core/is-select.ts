@@ -2,7 +2,9 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import { isSchema, type Schema, type SchemaValue } from "./schema.js";
+import { isSchemaObject } from '@/lib/json-schema/index.js';
+
+import type { Schema, SchemaValue } from "./schema.js";
 import type { Validator } from "./validator.js";
 import { retrieveSchema } from "./resolve.js";
 import {
@@ -71,7 +73,7 @@ export function getSelectOptionValues({
     return undefined;
   }
   return altSchema.map((schemaDef, i) => {
-    if (!isSchema(schemaDef)) {
+    if (!isSchemaObject(schemaDef)) {
       throw new Error(`Invalid enum definition in altSchema.${i}`);
     }
     return getSchemaConstantValue(schemaDef);
