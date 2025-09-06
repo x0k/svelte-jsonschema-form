@@ -33,7 +33,7 @@
     "build": "svelte-package && publint",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "format": "prettier --write .",
-    "lint": "prettier --check && eslint ."
+    "lint": "prettier --check . && eslint ."
   },
   "dependencies": {
     "@standard-schema/spec": "^1.0.0",
