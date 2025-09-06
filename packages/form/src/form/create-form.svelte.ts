@@ -3,8 +3,9 @@ import type { Attachment } from "svelte/attachments";
 import { SvelteMap } from "svelte/reactivity";
 import { on } from "svelte/events";
 
-import { createDataURLtoBlob } from "@/lib/file.js";
+import { refFromLens, type Lens, type Ref } from "@/lib/svelte.svelte.js";
 import type { SchedulerYield } from "@/lib/scheduler.js";
+import { createDataURLtoBlob } from "@/lib/file.js";
 import {
   abortPrevious,
   createTask,
@@ -57,7 +58,7 @@ import {
 } from "./id.js";
 import type { Config } from "./config.js";
 import type { Theme } from "./components.js";
-import type { FormValue, KeyedArraysMap, ValueRef } from "./model.js";
+import type { FormValue, KeyedArraysMap } from "./model.js";
 import type { ResolveFieldType } from "./fields.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
@@ -82,7 +83,7 @@ function createValueRef<T>(
   merger: FormMerger,
   schema: Schema,
   initialValue?: T | Partial<T>
-): ValueRef<FormValue> {
+): Ref<FormValue> {
   let value = $state(
     merger.mergeFormDataAndSchemaDefaults(initialValue as FormValue, schema)
   );
@@ -92,20 +93,6 @@ function createValueRef<T>(
     },
     set current(v) {
       value = v;
-    },
-  };
-}
-
-function toValueRef<T>([get, set]: [
-  () => T,
-  (v: T) => void,
-]): ValueRef<FormValue> {
-  return {
-    get current() {
-      return get() as FormValue;
-    },
-    set current(v) {
-      set(v as T);
     },
   };
 }
@@ -137,7 +124,7 @@ export interface FormOptions<T, V extends Validator>
    */
   idPseudoSeparator?: string;
   //
-  value?: [() => T, (v: T) => void];
+  value?: Lens<T>;
   initialValue?: InitialValue<T>;
   initialErrors?: InitialErrors<V>;
   /**
@@ -266,7 +253,7 @@ export function createForm<T, V extends Validator>(
   );
 
   const valueRef = options.value
-    ? toValueRef(options.value)
+    ? refFromLens(options.value as unknown as Lens<FormValue>)
     : // svelte-ignore state_referenced_locally
       createValueRef(merger, options.schema, options.initialValue);
   let errors = $state.raw(

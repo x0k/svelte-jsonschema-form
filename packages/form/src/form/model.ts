@@ -1,3 +1,4 @@
+import type { Ref } from '@/lib/svelte.svelte.js'
 import type { KeyedArray2 } from "@/lib/keyed-array.svelte.js";
 import {
   getSchemaDefinitionByPath,
@@ -15,9 +16,9 @@ export type KeyedFieldValues = KeyedArray2<number, FieldValue>
 
 export type KeyedArraysMap = WeakMap<SchemaArrayValue, KeyedFieldValues>;
 
-export interface ValueRef<T> {
-  current: T;
-}
+// TODO: Remove in v3
+/** @deprecated use `Ref` from `lib/svelte.svelte` */
+export type ValueRef<T> = Ref<T>
 
 export const DEFAULT_BOOLEAN_ENUM = [true, false];
 

@@ -1,5 +1,22 @@
 import { abortPrevious, createTask } from "./task.svelte.js";
 
+export interface Ref<T> {
+  current: T;
+}
+
+export type Lens<T> = [get: () => T, set: (v: T) => void];
+
+export function refFromLens<T>([get, set]: Lens<T>): Ref<T> {
+  return {
+    get current() {
+      return get();
+    },
+    set current(v) {
+      set(v);
+    },
+  };
+}
+
 export interface AsyncBindingOptions<I, O> {
   initialOutput: O;
   toOutput: (signal: AbortSignal, input: I) => Promise<O>;
