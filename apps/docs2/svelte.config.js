@@ -1,6 +1,6 @@
 import { vitePreprocess } from "@astrojs/svelte";
 
-const injectedCss = ["moving-icons", "basic"];
+const injectedCss = ["@jis3r/icons", "basic"];
 const nonRunic = ["svelte-json-tree", "flowbite-svelte@0.47"];
 
 export default {

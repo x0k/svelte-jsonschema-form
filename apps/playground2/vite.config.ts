@@ -9,4 +9,7 @@ export default defineConfig({
   resolve: {
     alias: { "@": resolve(__dirname, "./src"), $lib: resolve("./src/lib") },
   },
+  optimizeDeps: {
+    exclude: ["@jis3r/icons"],
+  },
 });
