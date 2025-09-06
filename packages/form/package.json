@@ -29,6 +29,7 @@
   "scripts": {
     "dev": "vite",
     "test": "vitest run --typecheck --exclude '.svelte-kit/**'",
+    "bench": "vitest bench --exclude '.svelte-kit/**'",
     "build": "svelte-package && publint",
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
@@ -44,12 +45,20 @@
     "svelte": "^5.33.0"
   },
   "devDependencies": {
+    "@types/json-schema-compare": "^0.2.4",
+    "ajv": "catalog:",
+    "allof-merge": "^0.6.7",
     "deep-freeze-es6": "^4.0.1",
+    "json-schema-compare": "^0.2.2",
     "svelte": "catalog:"
   },
   "types": "./dist/form/index.d.ts",
   "svelte": "./dist/form/index.js",
   "exports": {
+    "./lib/json-schema": {
+      "types": "./dist/lib/json-schema/index.d.ts",
+      "default": "./dist/lib/json-schema/index.js"
+    },
     "./lib/*.svelte": {
       "types": "./dist/lib/*.svelte.d.ts",
       "svelte": "./dist/lib/*.svelte"

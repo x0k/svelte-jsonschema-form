@@ -1,0 +1,271 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/user-profile.json",
+  "title": "User Profile Schema",
+  "description": "A comprehensive user profile schema using allOf with multiple constraints",
+  "type": "object",
+  "allOf": [
+    {
+      "description": "Basic user information constraints",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "username": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 30
+        }
+      },
+      "required": ["id", "username"]
+    },
+    {
+      "description": "Personal details constraints",
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "lastName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "age": {
+          "type": "integer",
+          "minimum": 13,
+          "maximum": 120
+        }
+      },
+      "required": ["firstName", "lastName"]
+    },
+    {
+      "description": "Contact information constraints",
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "phone": {
+          "type": "string",
+          "pattern": "^\\+?[1-9]\\d{1,14}$"
+        }
+      },
+      "required": ["email"]
+    },
+    {
+      "description": "Address constraints",
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "object",
+          "properties": {
+            "street": {
+              "type": "string",
+              "minLength": 1
+            },
+            "city": {
+              "type": "string",
+              "minLength": 1
+            },
+            "postalCode": {
+              "type": "string",
+              "pattern": "^[A-Z0-9\\s-]{3,10}$"
+            },
+            "country": {
+              "type": "string",
+              "enum": ["US", "CA", "GB", "DE", "FR", "AU", "JP", "BR", "IN", "MX"]
+            }
+          },
+          "required": ["street", "city", "country"]
+        }
+      }
+    },
+    {
+      "description": "Account status and role constraints",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["active", "inactive", "suspended", "pending"]
+        },
+        "role": {
+          "type": "string",
+          "enum": ["user", "moderator", "admin", "superuser"]
+        },
+        "verified": {
+          "type": "boolean"
+        }
+      },
+      "required": ["status", "role"]
+    },
+    {
+      "description": "Timestamps constraints",
+      "type": "object",
+      "properties": {
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lastLoginAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["createdAt"]
+    },
+    {
+      "description": "Preferences and settings constraints",
+      "type": "object",
+      "properties": {
+        "preferences": {
+          "type": "object",
+          "properties": {
+            "theme": {
+              "type": "string",
+              "enum": ["light", "dark", "auto"]
+            },
+            "language": {
+              "type": "string",
+              "pattern": "^[a-z]{2}(-[A-Z]{2})?$"
+            },
+            "timezone": {
+              "type": "string",
+              "pattern": "^[A-Za-z_/]+$"
+            },
+            "notifications": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "boolean"
+                },
+                "sms": {
+                  "type": "boolean"
+                },
+                "push": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "description": "Profile completeness constraints",
+      "type": "object",
+      "properties": {
+        "profileCompletion": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "avatar": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
+    {
+      "description": "Social media links constraints",
+      "type": "object",
+      "properties": {
+        "socialLinks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "platform": {
+                "type": "string",
+                "enum": ["twitter", "linkedin", "github", "facebook", "instagram"]
+              },
+              "url": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "required": ["platform", "url"],
+            "additionalProperties": false
+          },
+          "maxItems": 5,
+          "uniqueItems": true
+        }
+      }
+    },
+    {
+      "description": "Security constraints",
+      "type": "object",
+      "properties": {
+        "twoFactorEnabled": {
+          "type": "boolean"
+        },
+        "lastPasswordChange": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "loginAttempts": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        }
+      }
+    },
+    {
+      "description": "Subscription and billing constraints",
+      "type": "object",
+      "properties": {
+        "subscription": {
+          "type": "object",
+          "properties": {
+            "plan": {
+              "type": "string",
+              "enum": ["free", "basic", "premium", "enterprise"]
+            },
+            "status": {
+              "type": "string",
+              "enum": ["active", "cancelled", "expired", "trialing"]
+            },
+            "expiresAt": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "required": ["plan", "status"]
+        }
+      }
+    },
+    {
+      "description": "Activity tracking constraints",
+      "type": "object",
+      "properties": {
+        "activityScore": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 20
+          },
+          "maxItems": 10,
+          "uniqueItems": true
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

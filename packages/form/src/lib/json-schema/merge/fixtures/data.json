@@ -1,0 +1,848 @@
+{
+  "type": "object",
+  "properties": {
+    "a1": {
+      "allOf": [
+        {
+          "additionalProperties": true
+        },
+        {
+          "additionalProperties": false
+        }
+      ]
+    },
+    "a2": {
+      "allOf": [
+        {
+          "properties": {
+            "foo": true
+          },
+          "additionalProperties": true
+        },
+        {
+          "properties": {
+            "bar": true
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "a3": {
+      "allOf": [
+        {
+          "properties": {
+            "foo": true,
+            "foo123": true
+          },
+          "additionalProperties": true
+        },
+        {
+          "properties": {
+            "bar": true
+          },
+          "patternProperties": {
+            ".+\\d+$": true
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "a4": {
+      "allOf": [
+        {
+          "properties": {
+            "foo": true,
+            "foo123": true
+          },
+          "additionalProperties": false
+        },
+        {
+          "properties": {
+            "bar": true
+          },
+          "patternProperties": {
+            ".+\\d+$": true
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "a5": {
+      "allOf": [
+        {
+          "properties": {
+            "foo": true,
+            "foo123": true
+          },
+          "patternProperties": {
+            ".+\\d+$": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "properties": {
+            "bar": true,
+            "bar123": true
+          },
+          "patternProperties": {
+            ".+\\d+$": true
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "a6": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "foo": true,
+            "foo123": true
+          },
+          "patternProperties": {
+            "^bar": true
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "bar": true,
+            "bar123": true
+          },
+          "patternProperties": {
+            ".+\\d+$": true
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "a7": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "foo": true,
+            "foo123": true
+          },
+          "patternProperties": {
+            "^bar": true
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "bar": true,
+            "bar123": true
+          },
+          "patternProperties": {
+            ".+\\d+$": true
+          }
+        }
+      ]
+    },
+    "a8": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "foo": true,
+            "foo123": true
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "bar": true,
+            "bar123": true
+          },
+          "patternProperties": {
+            ".+\\d+$": true
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "a9": {
+      "allOf": [
+        {
+          "properties": {
+            "foo": true,
+            "foo123": true
+          },
+          "additionalProperties": false
+        },
+        {
+          "properties": {
+            "bar": true
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "a10": {
+      "properties": {
+        "common": true,
+        "root": true
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "properties": {
+            "common": {
+              "type": "string"
+            },
+            "allof1": true
+          },
+          "additionalProperties": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 10
+          }
+        },
+        {
+          "properties": {
+            "common": {
+              "minLength": 1
+            },
+            "allof2": true
+          },
+          "additionalProperties": {
+            "type": [
+              "string",
+              "integer",
+              "null"
+            ],
+            "maxLength": 8
+          }
+        },
+        {
+          "properties": {
+            "common": {
+              "minLength": 6
+            },
+            "allof3": true
+          }
+        }
+      ]
+    },
+    "a11": {
+      "properties": {
+        "common": true,
+        "root": true
+      },
+      "patternProperties": {
+        ".+\\d{2,}$": {
+          "minLength": 7
+        }
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "properties": {
+            "common": {
+              "type": "string"
+            },
+            "allof1": true
+          },
+          "additionalProperties": {
+            "type": [
+              "string",
+              "null",
+              "integer"
+            ],
+            "maxLength": 10
+          }
+        },
+        {
+          "properties": {
+            "common": {
+              "minLength": 1
+            },
+            "allof2": true,
+            "allowed123": {
+              "type": "string"
+            }
+          },
+          "patternProperties": {
+            ".+\\d{2,}$": {
+              "minLength": 9
+            }
+          },
+          "additionalProperties": {
+            "type": [
+              "string",
+              "integer",
+              "null"
+            ],
+            "maxLength": 8
+          }
+        },
+        {
+          "properties": {
+            "common": {
+              "minLength": 6
+            },
+            "allof3": true,
+            "allowed456": {
+              "type": "integer"
+            }
+          }
+        }
+      ]
+    },
+    "a12": {
+      "additionalProperties": true,
+      "allOf": [
+        {
+          "additionalProperties": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 10
+          }
+        },
+        {
+          "additionalProperties": {
+            "type": [
+              "string",
+              "integer",
+              "null"
+            ],
+            "maxLength": 8
+          }
+        }
+      ]
+    },
+    "a13": {
+      "patternProperties": {
+        "^\\$.+": {
+          "type": [
+            "string",
+            "null",
+            "integer"
+          ],
+          "allOf": [
+            {
+              "minimum": 5
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "patternProperties": {
+            "^\\$.+": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "allOf": [
+                {
+                  "minimum": 7
+                }
+              ]
+            },
+            ".*": {
+              "type": "null"
+            }
+          }
+        }
+      ]
+    },
+    "a14": {
+      "allOf": [
+        {
+          "patternProperties": {
+            ".*": {
+              "type": "string",
+              "minLength": 5
+            }
+          }
+        },
+        {
+          "patternProperties": {
+            ".*": {
+              "type": "string",
+              "minLength": 7
+            }
+          }
+        }
+      ]
+    },
+    "a15": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "patternProperties": {
+            "_long$": {
+              "type": "string",
+              "minLength": 7
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "foo_long": {
+              "type": "string",
+              "minLength": 9
+            }
+          },
+          "patternProperties": {
+            "^name.*": {
+              "type": "string",
+              "minLength": 8
+            }
+          }
+        }
+      ]
+    },
+    "a16": {
+      "items": {
+        "type": "object"
+      },
+      "allOf": [
+        {
+          "items": [
+            true
+          ],
+          "additionalItems": {
+            "properties": {
+              "name": {
+                "type": "string",
+                "pattern": "bar"
+              }
+            }
+          }
+        },
+        {
+          "items": [
+            true
+          ],
+          "additionalItems": {
+            "properties": {
+              "name": {
+                "type": "string",
+                "pattern": "foo"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "a17": {
+      "items": {
+        "type": "string",
+        "allOf": [
+          {
+            "minLength": 5
+          }
+        ]
+      },
+      "allOf": [
+        {
+          "items": {
+            "type": "string",
+            "pattern": "abc.*",
+            "allOf": [
+              {
+                "maxLength": 7
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "a18": {
+      "items": [
+        {
+          "type": "string",
+          "allOf": [
+            {
+              "minLength": 5
+            }
+          ]
+        }
+      ],
+      "allOf": [
+        {
+          "items": [
+            {
+              "type": "string",
+              "allOf": [
+                {
+                  "minLength": 5
+                }
+              ]
+            },
+            {
+              "type": "integer"
+            }
+          ]
+        }
+      ]
+    },
+    "a19": {
+      "allOf": [
+        {
+          "items": [
+            {
+              "type": "string",
+              "minLength": 10,
+              "allOf": [
+                {
+                  "minLength": 5
+                }
+              ]
+            },
+            {
+              "type": "integer"
+            }
+          ]
+        },
+        {
+          "additionalItems": false,
+          "items": [
+            {
+              "type": "string",
+              "allOf": [
+                {
+                  "minLength": 7
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "a20": {
+      "allOf": [
+        {
+          "items": [
+            {
+              "type": "string",
+              "minLength": 10,
+              "allOf": [
+                {
+                  "minLength": 5
+                }
+              ]
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "additionalItems": false
+        },
+        {
+          "additionalItems": false,
+          "items": [
+            {
+              "type": "string",
+              "allOf": [
+                {
+                  "minLength": 7
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "a21": {
+      "allOf": [
+        {
+          "items": [
+            {
+              "type": "string",
+              "minLength": 10,
+              "allOf": [
+                {
+                  "minLength": 5
+                }
+              ]
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "additionalItems": {
+            "type": "integer",
+            "minimum": 15
+          }
+        },
+        {
+          "additionalItems": {
+            "type": "integer",
+            "minimum": 10
+          },
+          "items": [
+            {
+              "type": "string",
+              "allOf": [
+                {
+                  "minLength": 7
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "a22": {
+      "additionalItems": {
+        "type": "integer",
+        "minimum": 50
+      },
+      "allOf": [
+        {
+          "items": {
+            "type": "integer",
+            "minimum": 5,
+            "maximum": 30,
+            "allOf": [
+              {
+                "minimum": 9
+              }
+            ]
+          },
+          "additionalItems": {
+            "type": "integer",
+            "minimum": 15
+          }
+        },
+        {
+          "additionalItems": {
+            "type": "integer",
+            "minimum": 10
+          },
+          "items": [
+            {
+              "type": "integer",
+              "allOf": [
+                {
+                  "minimum": 7,
+                  "maximum": 20
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "a24": {
+      "allOf": [
+        {},
+        {
+          "multipleOf": 0.2,
+          "allOf": [
+            {
+              "multipleOf": 2,
+              "allOf": [
+                {
+                  "multipleOf": 2,
+                  "allOf": [
+                    {
+                      "multipleOf": 2,
+                      "allOf": [
+                        {
+                          "multipleOf": 3,
+                          "allOf": [
+                            {
+                              "multipleOf": 1.5,
+                              "allOf": [
+                                {
+                                  "multipleOf": 0.5
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "multipleOf": 0.3
+        }
+      ]
+    },
+    "a26": {
+      "properties": {
+        "name": true
+      },
+      "allOf": [
+        {
+          "properties": {
+            "name": {
+              "title": "allof1",
+              "type": "string"
+            },
+            "added": {
+              "type": "integer"
+            }
+          }
+        },
+        {
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 5
+            }
+          }
+        }
+      ]
+    },
+    "a27": {
+      "properties": {
+        "name": {
+          "allOf": [
+            {
+              "pattern": "^.+$"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "properties": {
+            "name": true,
+            "added": {
+              "type": "integer",
+              "title": "pri1",
+              "allOf": [
+                {
+                  "title": "pri2",
+                  "type": [
+                    "string",
+                    "integer"
+                  ],
+                  "minimum": 15,
+                  "maximum": 10
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "properties": {
+                "name": true,
+                "added": {
+                  "type": "integer",
+                  "minimum": 5
+                }
+              },
+              "allOf": [
+                {
+                  "properties": {
+                    "added": {
+                      "title": "pri3",
+                      "type": "integer",
+                      "minimum": 10
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "properties": {
+            "name": true,
+            "added": {
+              "minimum": 7
+            }
+          }
+        }
+      ]
+    },
+    "a28": {
+      "allOf": [
+        {
+          "oneOf": [
+            {
+              "type": [
+                "array",
+                "string",
+                "object"
+              ],
+              "required": [
+                "123"
+              ]
+            },
+            {
+              "required": [
+                "abc"
+              ]
+            }
+          ]
+        },
+        {
+          "oneOf": [
+            {
+              "type": [
+                "string"
+              ]
+            },
+            {
+              "type": [
+                "object",
+                "array"
+              ],
+              "required": [
+                "abc"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "a29": {
+      "allOf": [
+        {
+          "type": [
+            "array",
+            "string",
+            "number"
+          ],
+          "oneOf": [
+            {
+              "required": [
+                "123"
+              ],
+              "allOf": [
+                {
+                  "required": [
+                    "768"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": [
+            "array",
+            "string"
+          ]
+        }
+      ]
+    }
+  }
+}
