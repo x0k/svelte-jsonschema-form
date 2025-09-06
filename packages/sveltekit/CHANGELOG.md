@@ -1,5 +1,16 @@
 # @sjsf/sveltekit
 
+## 2.4.0
+
+### Minor Changes
+
+- Add `uiSchema` option to `InitialFormData` type ([#185](https://github.com/x0k/svelte-jsonschema-form/pull/185))
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sjsf/form@2.4.0
+
 ## 2.3.0
 
 ### Patch Changes
