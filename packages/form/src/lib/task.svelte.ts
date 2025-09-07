@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { DEV } from "esm-env";
 import { untrack } from "svelte";
 

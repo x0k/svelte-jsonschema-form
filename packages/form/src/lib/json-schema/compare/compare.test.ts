@@ -235,7 +235,7 @@ describe("comparison", () => {
             {
               type: ["string"],
               minLength: 5,
-              // @ts-expect-error
+              // @ts-expect-error test with unexpected property
               fdsafads: "34534",
             },
           ],
@@ -342,7 +342,7 @@ describe("comparison", () => {
             {
               type: ["string"],
               minLength: 5,
-              //@ts-expect-error
+              //@ts-expect-error test with unexpected property
               fdsafads: "34534",
             },
           ],
@@ -449,7 +449,7 @@ describe("comparison", () => {
             {
               type: ["string"],
               minLength: 5,
-              //@ts-expect-error
+              //@ts-expect-error test with unexpected property
               fdsafads: "34534",
             },
           ],
@@ -1148,14 +1148,14 @@ describe("comparison", () => {
     });
 
     it("handles very large schemas", () => {
-      const largeSchema1: any = {
+      const largeSchema1 = {
         type: "object",
-        properties: {},
-      };
-      const largeSchema2: any = {
+        properties: {} as Record<`prop${number}`, JSONSchema7>,
+      } as const;
+      const largeSchema2 = {
         type: "object",
-        properties: {},
-      };
+        properties: {} as Record<`prop${number}`, JSONSchema7>,
+      } as const;
 
       // Generate 100 properties
       for (let i = 0; i < 100; i++) {
@@ -1166,7 +1166,7 @@ describe("comparison", () => {
       compare(largeSchema1, largeSchema2, true);
 
       // Change one property
-      largeSchema2.properties.prop50.minLength = 999;
+      largeSchema2.properties.prop50!.minLength = 999;
       compare(largeSchema1, largeSchema2, false);
     });
 

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 export type Nullable<T> = {
   [P in keyof T]: T[P] | null;
 };

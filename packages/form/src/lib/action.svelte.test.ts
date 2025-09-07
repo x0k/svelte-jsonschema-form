@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-deprecated */
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { tick } from "svelte";
 
@@ -37,6 +38,7 @@ describe("createAction", () => {
 
     it("Should correctly update status during error flow", async () => {
       const action = createAction({
+        // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors
         execute: () => Promise.reject(),
         delayedMs: 50,
         timeoutMs: 100,

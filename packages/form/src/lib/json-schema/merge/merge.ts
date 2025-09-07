@@ -197,7 +197,6 @@ export interface MergeOptions {
   mergePatterns?: Merger<string>;
   intersectJson?: Intersector<JSONSchema7Type>;
   deduplicateJsonSchemaDef?: Deduplicator<JSONSchema7Definition>;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   defaultMerger?: Merger<any>;
   mergers?: Partial<{
     [K in SchemaKey]: Merger<Exclude<JSONSchema7[K], undefined>>;
@@ -423,7 +422,9 @@ export function createMerger({
           );
         }
       );
-      while (!gen.next().done) { /* empty */ }
+      while (!gen.next().done) {
+        /* empty */
+      }
     }
     patterns = assignPatternPropertiesAndAdditionalPropertiesMerge(
       patterns,

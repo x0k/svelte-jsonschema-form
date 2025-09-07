@@ -12,6 +12,7 @@ const EMPTY: never[] = [];
 
 // TODO: Remove in v3
 /** @deprecated migrate to `KeyedArray2` */
+// eslint-disable-next-line @typescript-eslint/no-deprecated
 export function createKeyedArray<T>(array: () => T[]): KeyedArray<T> {
   let arrayRef: WeakRef<T[]> = new WeakRef(EMPTY);
   let lastKeys: number[] = EMPTY;
@@ -33,6 +34,7 @@ export function createKeyedArray<T>(array: () => T[]): KeyedArray<T> {
   });
   return {
     key(index: number) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       changesPropagator;
       return keys[index]!;
     },
@@ -90,6 +92,7 @@ export class SimpleKeyedArray<K, T> implements KeyedArray2<K, T> {
   }
 
   key(index: number): K {
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     this.changesPropagator;
     return this.keys[index]!;
   }

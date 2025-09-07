@@ -12,7 +12,7 @@ export function memoize<Arg, Return>(
     if (cache.has(arg)) {
       return cache.get(arg)!;
     }
-    let ret = func(arg);
+    const ret = func(arg);
     cache.set(arg, ret);
     return ret;
   };
