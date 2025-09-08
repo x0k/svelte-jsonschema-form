@@ -3,7 +3,7 @@
     Content,
     createForm,
     Form,
-    setFormContext2,
+    setFormContext,
     SubmitButton,
   } from "@sjsf/form";
   import { createTask } from "@sjsf/form/lib/task.svelte";
@@ -81,7 +81,7 @@
       return resolve.isProcessed;
     },
   });
-  setFormContext2(form);
+  setFormContext(form);
 </script>
 
 <Form>
