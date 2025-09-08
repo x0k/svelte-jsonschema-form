@@ -1,8 +1,8 @@
 import { some } from '@sjsf/form/lib/array';
+import { isSchemaObject } from '@sjsf/form/lib/json-schema';
 import {
   isArrayOrObjectSchemaType,
   isPrimitiveSchemaType,
-  isSchema,
   typeOfSchema
 } from '@sjsf/form/core';
 import {
@@ -64,7 +64,7 @@ export function createAdditionalPropertyKeyValidator({
               })
         );
       // TODO: handle `$ref` in `additionalProperties`
-      const types = isSchema(additionalProperties) ? typeOfSchema(additionalProperties) : [];
+      const types = isSchemaObject(additionalProperties) ? typeOfSchema(additionalProperties) : [];
       for (const separator of separators) {
         if (!key.includes(separator)) {
           continue;
