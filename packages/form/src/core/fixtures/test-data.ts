@@ -18,7 +18,7 @@ export const oneOfData = {
     },
   },
 };
-export const oneOfSchema: Schema = deepFreeze({
+export const oneOfSchema = deepFreeze({
   type: "object",
   title: "Testing OneOfs",
   definitions: {
@@ -198,10 +198,10 @@ export const oneOfSchema: Schema = deepFreeze({
       title: "second option",
     },
   ],
-});
-export const ONE_OF_SCHEMA_OPTIONS = oneOfSchema[ONE_OF_KEY]! as Schema[];
-export const FIRST_ONE_OF: Schema = ONE_OF_SCHEMA_OPTIONS[0]!;
-export const SECOND_ONE_OF: Schema = ONE_OF_SCHEMA_OPTIONS[1]!;
+} as const satisfies Schema);
+export const ONE_OF_SCHEMA_OPTIONS = oneOfSchema[ONE_OF_KEY] satisfies Schema[];
+export const FIRST_ONE_OF: Schema = ONE_OF_SCHEMA_OPTIONS[0];
+export const SECOND_ONE_OF: Schema = ONE_OF_SCHEMA_OPTIONS[1];
 export const OPTIONAL_ONE_OF_SCHEMA: Schema = deepFreeze<Schema>({
   oneOf: [
     {

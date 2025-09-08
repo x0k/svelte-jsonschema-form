@@ -52,7 +52,7 @@ function mergeArrays<T>(
   if (merge) {
     const [minArr, maxArr] =
       left.length <= right.length ? [left, right] : [right, left];
-    merged = new Array(maxArr.length);
+    merged = new Array<T>(maxArr.length);
     for (let i = 0; i < minArr.length; i++) {
       merged[i] = merge(left[i]!, right[i]!);
     }
@@ -169,19 +169,19 @@ export function mergeDefaultsWithFormData<T = any>(
   overrideFormDataWithDefaults = false
 ): T | undefined {
   if (Array.isArray(formData)) {
-    const defaultsArray = Array.isArray(defaults) ? defaults : [];
+    const defaultsArray: unknown[] = Array.isArray(defaults) ? defaults : [];
 
     // If overrideFormDataWithDefaults is true, we want to override the formData with the defaults
-    const overrideArray = overrideFormDataWithDefaults
+    const overrideArray: unknown[] = overrideFormDataWithDefaults
       ? defaultsArray
       : formData;
-    const overrideOppositeArray = overrideFormDataWithDefaults
+    const overrideOppositeArray: unknown[] = overrideFormDataWithDefaults
       ? formData
       : defaultsArray;
 
     const mapped = overrideArray.map((value, idx) => {
       if (overrideOppositeArray[idx] !== undefined) {
-        return mergeDefaultsWithFormData<any>(
+        return mergeDefaultsWithFormData<unknown>(
           defaultsArray[idx],
           formData[idx],
           mergeExtraArrayDefaults,

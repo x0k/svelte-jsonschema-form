@@ -5,7 +5,7 @@ export type ItemTitle = (
   index: number,
   fixedItemsCount: number,
   // TODO: Make required in v3
-  itemValue?: SchemaValue | undefined
+  itemValue?: SchemaValue
 ) => string;
 
 export function titleWithIndex(

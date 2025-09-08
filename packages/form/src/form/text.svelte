@@ -34,7 +34,7 @@
   const icon: IconDefinition<L> | undefined = $derived(
     ctx.icons?.(
       id,
-      //@ts-expect-error
+      //@ts-expect-error TODO: fix if possible
       iconConfig
     )
   );

@@ -100,15 +100,18 @@ export function cast<From extends AnyComponent, To extends AnyComponent>(
   propsCast: PropertiesCast<From, To>
 ): From {
   return function (internals, props) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const proxy = new Proxy(props, {
       get(target, p, receiver) {
         const cast = propsCast[p as keyof typeof propsCast];
         if (cast !== undefined) {
           const { transform } = cast;
           if (transform !== undefined) {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-return
             return transform(target);
           }
         }
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         return Reflect.get(target, p, receiver);
       },
       set(target, p, newValue, receiver) {
@@ -124,12 +127,14 @@ export function cast<From extends AnyComponent, To extends AnyComponent>(
       },
       has(target, p) {
         return (
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
           Reflect.has(target, p) ||
           propsCast?.[p as keyof typeof propsCast]?.transform !== undefined
         );
       },
       // TODO: ownKeys
     });
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return Component(internals, proxy);
   } as From;
 }

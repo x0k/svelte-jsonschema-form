@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-deprecated */
 import { getContext, setContext } from "svelte";
 
 import type { Brand } from "@/lib/types.js";

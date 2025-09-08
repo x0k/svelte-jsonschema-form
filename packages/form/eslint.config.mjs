@@ -18,16 +18,6 @@ export default defineConfig(
   includeIgnoreFile(gitignorePath),
   js.configs.recommended,
   ts.configs.recommendedTypeChecked,
-  {
-    languageOptions: {
-      parserOptions: {
-        projectService: {
-          allowDefaultProject: ["*.ts", "*.js", "*.mjs"],
-        },
-        tsconfigRootDir: import.meta.dirname,
-      },
-    },
-  },
   ...svelte.configs.recommended,
   prettier,
   ...svelte.configs.prettier,
@@ -38,13 +28,15 @@ export default defineConfig(
     rules: { "no-undef": "off" },
   },
   {
-    files: ["**/*.svelte", "**/*.svelte.ts", "**/*.svelte.js"],
     languageOptions: {
       parserOptions: {
+        tsconfigRootDir: import.meta.dirname,
+        projectService: {
+          allowDefaultProject: ["*.ts", "*.js", "*.mjs"],
+        },
         extraFileExtensions: [".svelte"],
         parser: ts.parser,
         svelteConfig,
-        tsconfigRootDir: import.meta.dirname,
       },
     },
   },
@@ -53,8 +45,21 @@ export default defineConfig(
       "require-yield": "off",
       "@typescript-eslint/no-empty-object-type": "off",
       "@typescript-eslint/no-explicit-any": "off",
+      "svelte/prefer-svelte-reactivity": "off",
       "@typescript-eslint/no-deprecated": "warn",
       "@typescript-eslint/no-unused-expressions": "warn",
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          args: "all",
+          argsIgnorePattern: "^_",
+          caughtErrors: "all",
+          caughtErrorsIgnorePattern: "^_",
+          destructuredArrayIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+          ignoreRestSiblings: true,
+        },
+      ],
     },
   }
 );

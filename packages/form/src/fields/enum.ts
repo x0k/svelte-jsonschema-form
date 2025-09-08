@@ -1,5 +1,6 @@
 import {
   getSchemaConstantValue,
+  schemaValueToString,
   type EnumOption,
   type Schema,
   type SchemaDefinition,
@@ -36,7 +37,7 @@ export function createOptions<V extends Validator>(
   if (enumValues) {
     const enumNames = uiOption("enumNames");
     return enumValues.map((value, index) => {
-      const label = enumNames?.[index] ?? String(value);
+      const label = enumNames?.[index] ?? schemaValueToString(value);
       return {
         id: createPseudoId(config.id, index, ctx),
         label,
@@ -56,7 +57,7 @@ export function createOptions<V extends Validator>(
       const label =
         retrieveUiSchema(ctx, altUiSchemas?.[index])["ui:options"]?.title ??
         altSchemaDef.title ??
-        String(value);
+        schemaValueToString(value);
       return {
         id: createPseudoId(config.id, index, ctx),
         schema: altSchemaDef,

@@ -16,9 +16,9 @@ export interface UiOptionsRegistry {}
 
 export type ResolvableUiOption<T> =
   | {
-      [K in keyof UiOptionsRegistry]: UiOptionsRegistry[K] extends T
-        ? `registry:${K}`
-        : never;
+      [K in keyof UiOptionsRegistry as UiOptionsRegistry[K] extends T
+        ? K
+        : never]: `registry:${K}`;
     }[keyof UiOptionsRegistry]
   | T;
 

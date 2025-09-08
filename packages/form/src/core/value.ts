@@ -25,3 +25,7 @@ export function isSchemaValueEmpty<V extends SchemaValue>(value: V) {
   }
   return Object.keys(value).length === 0;
 }
+
+export function schemaValueToString(v: SchemaValue) {
+  return typeof v === "string" ? v : JSON.stringify(v);
+}

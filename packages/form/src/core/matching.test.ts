@@ -19,8 +19,8 @@ import type { Validator } from "./validator.js";
 import { createValidator } from "./test-validator.js";
 import { defaultMerger } from "./merger.js";
 
-const firstOption = oneOfSchema.definitions!.first_option_def as Schema;
-const secondOption = oneOfSchema.definitions!.second_option_def as Schema;
+const firstOption = oneOfSchema.definitions.first_option_def satisfies Schema;
+const secondOption = oneOfSchema.definitions.second_option_def satisfies Schema;
 
 let testValidator: Validator;
 

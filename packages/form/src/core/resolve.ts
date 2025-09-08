@@ -93,6 +93,7 @@ export function resolveAllReferences(
       if (copy.size === stackSize) {
         continue;
       }
+      // eslint-disable-next-line @typescript-eslint/unbound-method
       copy.forEach(stack.add, stack);
     }
     resolvedSchema = {

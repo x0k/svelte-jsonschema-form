@@ -22,14 +22,16 @@ export function getComponent<
   switch (typeof component) {
     case "undefined":
       return (ctx.theme(type, config) ??
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         createMessage(
           ctx.translate("component-not-found", { type })
         )) as Resolved<T, CompatibleComponentDefinitions>;
     case "string":
       return (ctx.theme(component as T, config) ??
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         createMessage(
           ctx.translate("component-not-found", {
-            // @ts-expect-error
+            // @ts-expect-error ts cannot infer type properly by some reason
             type: component as string,
           })
         )) as Resolved<T, CompatibleComponentDefinitions>;

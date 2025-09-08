@@ -19,7 +19,7 @@ export type FoundationalComponentType = keyof FoundationalComponents &
 export type ComponentDefinition<T extends ComponentType> = SvelteComponent<
   ComponentProps[T],
   {},
-  //@ts-expect-error
+  //@ts-expect-error TODO: fix if possible
   ComponentBindings[T]
 >;
 
