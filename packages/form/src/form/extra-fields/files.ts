@@ -2,7 +2,7 @@ import type { FieldCommonProps } from "../fields.js";
 
 declare module "../components.js" {
   interface FoundationalComponents {
-    filesField: {}
+    filesField: {};
   }
   interface ComponentProps {
     filesField: FieldCommonProps<string[]>;

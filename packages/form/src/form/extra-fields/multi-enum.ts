@@ -4,7 +4,7 @@ import type { FieldCommonProps } from "../fields.js";
 
 declare module "../components.js" {
   interface FoundationalComponents {
-    multiEnumField: {}
+    multiEnumField: {};
   }
   interface ComponentProps {
     multiEnumField: FieldCommonProps<SchemaArrayValue>;

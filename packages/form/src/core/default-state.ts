@@ -3,7 +3,7 @@
 // Modifications made by Roman Krasilnikov.
 
 import { isRecordEmpty, isObject } from "@/lib/object.js";
-import { isSchemaObject } from '@/lib/json-schema/index.js'
+import { isSchemaObject } from "@/lib/json-schema/index.js";
 
 import { resolveDependencies, retrieveSchema } from "./resolve.js";
 import {
@@ -51,9 +51,11 @@ export function getDefaultValueForType(type: SchemaType) {
       return "";
     case "null":
       return null;
-    default:
+    default: {
       const n: never = type;
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       throw new Error(`Unsupported schema type: ${n}`);
+    }
   }
 }
 

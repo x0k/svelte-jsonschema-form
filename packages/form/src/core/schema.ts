@@ -67,6 +67,7 @@ export interface OpenAPIDiscriminator {
 export interface Schema
   extends TransformedSchema<SchemaDefinition, JSONSchema7> {
   discriminator?: OpenAPIDiscriminator;
+  [ADDITIONAL_PROPERTY_FLAG]?: boolean;
 }
 export type SchemaDefinition = boolean | Schema;
 
@@ -115,6 +116,7 @@ export const ONE_OF_KEY = "oneOf";
 export const NOT_KEY = "not";
 
 export const ROOT_SCHEMA_PREFIX = "__sjsf_rootSchema";
+// TODO: Turn into a Symbol
 export const ADDITIONAL_PROPERTY_FLAG = "__additional_property";
 export const ADDITIONAL_PROPERTIES_KEY = "additionalProperties";
 export const ADDITIONAL_ITEMS_KEY = "additionalItems";

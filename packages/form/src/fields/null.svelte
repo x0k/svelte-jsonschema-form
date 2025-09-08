@@ -6,7 +6,11 @@
     type ComponentProps,
   } from "@/form/index.js";
 
-  let { value = $bindable(), config, uiOption }: ComponentProps["nullField"] = $props();
+  let {
+    value = $bindable(),
+    config,
+    uiOption,
+  }: ComponentProps["nullField"] = $props();
 
   $effect(() => {
     if (value === undefined) {

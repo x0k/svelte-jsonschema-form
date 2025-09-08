@@ -91,6 +91,7 @@ export function createObjectContext<V extends Validator>(
 
   // NOTE: `defaults` population
   $effect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     schemaProperties;
     setValue(
       untrack(

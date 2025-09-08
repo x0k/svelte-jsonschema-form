@@ -102,7 +102,7 @@ describe("resolveDependencies()", () => {
         {
           schema: { type: "object", properties: { first: { enum: ["no"] } } },
           value: { first: "yes" },
-          result: false
+          result: false,
         },
       ],
     });

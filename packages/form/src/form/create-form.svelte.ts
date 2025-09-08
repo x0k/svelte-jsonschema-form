@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-deprecated */
 import { setContext } from "svelte";
 import type { Attachment } from "svelte/attachments";
 import { SvelteMap } from "svelte/reactivity";
@@ -276,6 +277,7 @@ export function createForm<T, V extends Validator>(
           new Promise((resolve, reject) => {
             setTimeout(() => {
               if (signal.aborted) {
+                // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors
                 reject(signal.reason);
               } else {
                 resolve();

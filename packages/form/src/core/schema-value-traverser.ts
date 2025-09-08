@@ -1,5 +1,5 @@
 import { isObject } from "@/lib/object.js";
-import type { Visitor } from '@/lib/traverser.js';
+import type { Visitor } from "@/lib/traverser.js";
 
 import type { SchemaValue } from "./schema.js";
 import type { Path } from "./path.js";

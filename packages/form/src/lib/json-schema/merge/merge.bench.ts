@@ -44,10 +44,10 @@ describe("shallow merge", () => {
 
 describe("huge shallow merge", () => {
   bench("shallowAllOfMerge", () => {
-    shallowAllOfMerge(userSchema as any);
+    shallowAllOfMerge(userSchema as unknown as JSONSchema7);
   });
   bench("json-schema-merge-allof", () => {
-    jsonSchemaMergeAllOf(userSchema as any);
+    jsonSchemaMergeAllOf(userSchema as unknown as JSONSchema7);
   });
   bench("allof-merge", () => {
     allOfMerge(userSchema);
@@ -56,10 +56,10 @@ describe("huge shallow merge", () => {
 
 describe("deep merge", () => {
   bench("deepAllOfMerge", () => {
-    deepAllOfMerge(testData as any);
+    deepAllOfMerge(testData as unknown as JSONSchema7);
   });
   bench("json-schema-merge-allof", () => {
-    jsonSchemaMergeAllOf(testData as any);
+    jsonSchemaMergeAllOf(testData as unknown as JSONSchema7);
   });
   bench("allof-merge", () => {
     allOfMerge(testData);

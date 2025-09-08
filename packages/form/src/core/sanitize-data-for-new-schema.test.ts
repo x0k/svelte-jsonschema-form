@@ -15,7 +15,7 @@ import { sanitizeDataForNewSchema } from "./sanitize-data-for-new-schema.js";
 import { retrieveSchema } from "./resolve.js";
 import type { Schema } from "./schema.js";
 import { createValidator } from "./test-validator.js";
-import { defaultMerger } from './merger.js';
+import { defaultMerger } from "./merger.js";
 
 let testValidator: Validator;
 
@@ -69,7 +69,7 @@ describe("sanitizeDataForNewSchema", () => {
       retrieveSchema(testValidator, defaultMerger, FIRST_ONE_OF, oneOfSchema)
     );
     // Change the type of name to trigger a fall-thru
-    // @ts-expect-error
+    // @ts-expect-error hack for test
     oldSchema.properties.name.type = "boolean";
     // By changing the type, the name will be marked as undefined
     const expected = { ...oneOfData, name: undefined };

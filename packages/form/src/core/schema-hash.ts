@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
 
-import type { Schema } from './schema.js';
+import type { Schema } from "./schema.js";
 
 function hashString(string: string): string {
   let hash = 0;
@@ -17,6 +17,7 @@ function hashString(string: string): string {
 export function schemaHash(schema: Schema) {
   const allKeys = new Set<string>();
   // solution source: https://stackoverflow.com/questions/16167581/sort-object-properties-and-json-stringify/53593328#53593328
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   JSON.stringify(schema, (key, value) => (allKeys.add(key), value));
   return hashString(JSON.stringify(schema, Array.from(allKeys).sort()));
 }

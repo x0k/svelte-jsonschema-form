@@ -76,7 +76,7 @@ export function makeSchemaDefinitionTraverser<
         type: "sub",
         parent: schema,
         key: fakeKey as SubSchemaKey & K,
-        // @ts-expect-error
+        // @ts-expect-error ignore
         path: ctx.path.concat(fakeKey as SubSchemaKey),
       };
       const arrayCtx: ArraySchemaTraverserContext<K> = {
@@ -84,7 +84,7 @@ export function makeSchemaDefinitionTraverser<
         parent: schema,
         key: fakeKey as SubSchemasArrayKey & K,
         index: 0,
-        // @ts-expect-error
+        // @ts-expect-error ignore
         path: ctx.path.concat(fakeKey as SubSchemasArrayKey, 0),
       };
       const recordCtx: RecordSchemaTraverserContext<K> = {
@@ -92,7 +92,7 @@ export function makeSchemaDefinitionTraverser<
         parent: schema,
         key: fakeKey as SubSchemasRecordKey & K,
         property: "",
-        // @ts-expect-error
+        // @ts-expect-error ignore
         path: ctx.path.concat(fakeKey as SubSchemasRecordKey, ""),
       };
       for (const key of keys) {

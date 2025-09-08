@@ -10,22 +10,17 @@ interface TestCase {
   b: JSONSchema7Definition;
 }
 
-type SchemaWithProperties = JSONSchema7 & {
-  properties: Exclude<JSONSchema7["properties"], undefined>;
-};
-
-const largeSchema: SchemaWithProperties = {
+const largeSchema = {
   type: "object",
-  properties: {},
-};
+  properties: {} as Record<`prop${number}`, JSONSchema7>,
+} as const;
 
 for (let i = 0; i < 100; i++) {
   largeSchema.properties[`prop${i}`] = { type: "string", minLength: i };
 }
 
 const largeSchema2 = structuredClone(largeSchema);
-// @ts-expect-error
-largeSchema2.properties.prop50.minLength = 999;
+largeSchema2.properties.prop50!.minLength = 999;
 
 enum TransformPreset {
   Default = "Default",
@@ -208,8 +203,17 @@ const realSchema = {
   },
 } as const satisfies JSONSchema7;
 
-const realSchema2 = structuredClone(realSchema);
-// @ts-expect-error
+type DeepWritable<T> = {
+  -readonly [K in keyof T]: T[K] extends object
+    ? DeepWritable<T[K]>
+    : T[K] extends number
+      ? number
+      : T[K];
+};
+
+const realSchema2 = structuredClone(realSchema) as DeepWritable<
+  typeof realSchema
+>;
 realSchema2.dependencies.preset.oneOf[1].properties.proportionalSizeAdjustmentThreshold.default = 10;
 
 const cases: TestCase[] = [

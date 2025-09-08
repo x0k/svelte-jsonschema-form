@@ -22,19 +22,16 @@
   const Description = $derived(getComponent(ctx, "description", config));
   const ErrorsList = $derived(getComponent(ctx, "errorsList", config));
 
-  const { title, description, showMeta } = $derived(getTemplateProps(uiOption, config));
+  const { title, description, showMeta } = $derived(
+    getTemplateProps(uiOption, config)
+  );
 </script>
 
 <Layout type="array-field" {config} {errors}>
   {#if showMeta && (title || description)}
     <Layout type="array-field-meta" {config} {errors}>
       {#if title}
-        <Title
-          type="array"
-          {title}
-          {config}
-          {errors}
-        />
+        <Title type="array" {title} {config} {errors} />
       {/if}
       {#if description}
         <Description type="array" {description} {config} {errors} />

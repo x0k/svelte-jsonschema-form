@@ -14,7 +14,7 @@ import {
   createDeepAllOfMerge,
   createShallowAllOfMerge,
 } from "./all-of-merge.js";
-import { legacyPatternsMerger } from './patterns.js';
+import { legacyPatternsMerger } from "./patterns.js";
 
 const { compareSchemaValues, compareSchemaDefinitions } = createComparator();
 
@@ -643,32 +643,35 @@ describe("basic", () => {
 
     // CHANGED: we use different sorting algorithm
     it("merges nested allOf if inside singular anyOf", () => {
-      const result = merger({
-        allOf: [
-          {
-            anyOf: [
-              {
-                required: ["123"],
-                allOf: [
-                  {
-                    required: ["768"],
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            anyOf: [
-              {
-                required: ["123"],
-              },
-              {
-                required: ["456"],
-              },
-            ],
-          },
-        ],
-      }, true);
+      const result = merger(
+        {
+          allOf: [
+            {
+              anyOf: [
+                {
+                  required: ["123"],
+                  allOf: [
+                    {
+                      required: ["768"],
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              anyOf: [
+                {
+                  required: ["123"],
+                },
+                {
+                  required: ["456"],
+                },
+              ],
+            },
+          ],
+        },
+        true
+      );
 
       expect(result).toEqual({
         anyOf: [
@@ -1808,29 +1811,32 @@ describe("basic", () => {
 
   describe("propertyNames", () => {
     it("merges simliar schemas", () => {
-      const result = merger({
-        propertyNames: {
-          type: "string",
+      const result = merger(
+        {
+          propertyNames: {
+            type: "string",
+            allOf: [
+              {
+                minLength: 5,
+              },
+            ],
+          },
           allOf: [
             {
-              minLength: 5,
+              propertyNames: {
+                type: "string",
+                pattern: "abc.*",
+                allOf: [
+                  {
+                    maxLength: 7,
+                  },
+                ],
+              },
             },
           ],
         },
-        allOf: [
-          {
-            propertyNames: {
-              type: "string",
-              pattern: "abc.*",
-              allOf: [
-                {
-                  maxLength: 7,
-                },
-              ],
-            },
-          },
-        ],
-      }, true);
+        true
+      );
 
       expect(result).toEqual({
         propertyNames: {

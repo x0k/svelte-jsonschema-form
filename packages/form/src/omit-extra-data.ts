@@ -1,5 +1,5 @@
 import { isObject } from "@/lib/object.js";
-import { isSchemaObject } from '@/lib/json-schema/index.js';
+import { isSchemaObject } from "@/lib/json-schema/index.js";
 import {
   getKnownProperties,
   resolveRef,

@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  import type { AnyComponent } from '@/lib/component.js';
+  import type { AnyComponent } from "@/lib/component.js";
 
   import Message from "./error-message.svelte";
 

@@ -22,7 +22,7 @@ catalogs:
       specifier: ^1.2.2
       version: 1.2.2
     globals:
-      specifier: ^16.3.0
+      specifier: 16.3.0
       version: 16.3.0
     postcss:
       specifier: ^8.5.6
@@ -1419,6 +1419,9 @@ importers:
       deep-freeze-es6:
         specifier: ^4.0.1
         version: 4.0.1
+      globals:
+        specifier: 'catalog:'
+        version: 16.3.0
       json-schema-compare:
         specifier: ^0.2.2
         version: 0.2.2

@@ -19,41 +19,41 @@ npm install @sjsf/form @sjsf/basic-theme @sjsf/ajv8-validator ajv@8
 
 ```svelte
 <script lang="ts">
-  import { createForm, BasicForm, type Schema } from '@sjsf/form';
-  import { resolver } from '@sjsf/form/resolvers/basic';
-  import { translation } from '@sjsf/form/translations/en';
-  import { theme } from '@sjsf/basic-theme';
+  import { createForm, BasicForm, type Schema } from "@sjsf/form";
+  import { resolver } from "@sjsf/form/resolvers/basic";
+  import { translation } from "@sjsf/form/translations/en";
+  import { theme } from "@sjsf/basic-theme";
   import { createFormValidator } from "@sjsf/ajv8-validator";
 
   const validator = createFormValidator();
 
   const schema: Schema = {
-    title: 'Tasks',
-    type: 'array',
+    title: "Tasks",
+    type: "array",
     items: {
-      type: 'object',
+      type: "object",
       properties: {
         name: {
-          type: 'string',
-          title: 'Name',
+          type: "string",
+          title: "Name",
         },
         description: {
-          type: 'string',
-          title: 'Description',
+          type: "string",
+          title: "Description",
         },
       },
-      required: ["name"]
+      required: ["name"],
     },
-  }
+  };
 
   const form = createForm({
     theme,
     schema,
-    resolver
+    resolver,
     validator,
     translation,
-    onSubmit: console.log
-  })
+    onSubmit: console.log,
+  });
 </script>
 
 <BasicForm {form} />

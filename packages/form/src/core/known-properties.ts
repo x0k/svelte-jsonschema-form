@@ -1,4 +1,4 @@
-import { isSchemaObject } from '@/lib/json-schema/index.js'
+import { isSchemaObject } from "@/lib/json-schema/index.js";
 
 import { resolveRef } from "./definitions.js";
 import type { Schema } from "./schema.js";

@@ -168,8 +168,8 @@ export function sanitizeDataForNewSchema(
     newSchema.type === "array" &&
     Array.isArray(data)
   ) {
-    let oldSchemaItems = oldSchema.items;
-    let newSchemaItems = newSchema.items;
+    const oldSchemaItems = oldSchema.items;
+    const newSchemaItems = newSchema.items;
     if (
       isSchemaObjectValue(oldSchemaItems) &&
       isSchemaObjectValue(newSchemaItems)

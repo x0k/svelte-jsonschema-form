@@ -1,4 +1,4 @@
-import type { Schema } from './schema.js';
+import type { Schema } from "./schema.js";
 
 export interface SimpleEnumOption<T> {
   id: string;

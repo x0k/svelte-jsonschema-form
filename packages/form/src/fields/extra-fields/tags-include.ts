@@ -9,4 +9,4 @@ declare module "../resolver/definitions.js" {
   }
 }
 
-definitions.tagsField = Tags
+definitions.tagsField = Tags;

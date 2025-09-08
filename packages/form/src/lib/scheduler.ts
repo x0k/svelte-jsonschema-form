@@ -1,1 +1,3 @@
-export type SchedulerYield = (options: { signal: AbortSignal }) => Promise<void>
+export type SchedulerYield = (options: {
+  signal: AbortSignal;
+}) => Promise<void>;

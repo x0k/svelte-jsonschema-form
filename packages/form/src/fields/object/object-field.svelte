@@ -25,7 +25,7 @@
     () => config,
     () => value,
     (v) => (value = v),
-    translate,
+    translate
   );
   setObjectContext(objCtx);
 

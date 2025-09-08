@@ -15,6 +15,7 @@ export function typeOfValue(
   switch (type) {
     case "boolean":
     // TODO: Integer type inference ?
+    // eslint-disable-next-line no-fallthrough
     case "number":
     case "object":
     case "string":

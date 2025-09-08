@@ -12,13 +12,13 @@ export function isSchemaOfConstantValue(schema: Schema): boolean {
 }
 
 export function getSchemaConstantValue(schema: Schema) {
-  const enumValues = schema.enum
+  const enumValues = schema.enum;
   if (Array.isArray(enumValues) && enumValues.length === 1) {
     return enumValues[0]!;
   }
-  const constant = schema.const
+  const constant = schema.const;
   if (constant !== undefined) {
-    return constant
+    return constant;
   }
-  throw new Error('schema cannot be inferred as a constant');
+  throw new Error("schema cannot be inferred as a constant");
 }
