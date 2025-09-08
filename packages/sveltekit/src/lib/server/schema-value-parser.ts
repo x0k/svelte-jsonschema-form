@@ -2,11 +2,11 @@ import { some } from '@sjsf/form/lib/array';
 import { isObject } from '@sjsf/form/lib/object';
 import { escapeRegex } from '@sjsf/form/lib/reg-exp';
 import { type Trie, getValueByKeys, insertValue } from '@sjsf/form/lib/trie';
+import { isSchemaObject } from '@sjsf/form/lib/json-schema';
 import {
   getClosestMatchingOption,
   getDiscriminatorFieldFromSchema,
   getSimpleSchemaType,
-  isSchema,
   isSchemaArrayValue,
   isSchemaObjectValue,
   isSelect,
@@ -180,7 +180,7 @@ export function parseSchemaValue<T>({
       const knownProperties = new Set(getKnownProperties(schema, rootSchema));
       const additionalKeys = new Map<string, string>();
       const isObjectOrArraySchema =
-        isSchema(additionalProperties) &&
+        isSchemaObject(additionalProperties) &&
         some(typeOfSchema(additionalProperties), isArrayOrObjectSchemaType);
       for (const entry of entriesStack[entriesStack.length - 1]) {
         const str = entry[0];
@@ -363,7 +363,7 @@ export function parseSchemaValue<T>({
     value?: SchemaValue
   ): SchemaValue | undefined {
     uiSchema = resolveUiRef(rootUiSchema, uiSchema) ?? {};
-    if (!isSchema(schema)) {
+    if (!isSchemaObject(schema)) {
       return schema
         ? convertEntries({ schema, uiSchema, entries: entriesStack[entriesStack.length - 1] })
         : undefined;

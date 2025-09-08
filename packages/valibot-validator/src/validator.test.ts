@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
+import { isSchemaObject } from '@sjsf/form/lib/json-schema';
 import {
   createAugmentSchema,
-  isSchema,
   isSchemaWithProperties,
 } from "@sjsf/form/core";
 import * as v from "valibot";
@@ -26,9 +26,9 @@ describe("FormValidator", () => {
     const [first, second] = schema?.anyOf ?? [];
     if (
       first === undefined ||
-      !isSchema(first) ||
+      !isSchemaObject(first) ||
       second === undefined ||
-      !isSchema(second)
+      !isSchemaObject(second)
     ) {
       throw new Error(`Invalid anyOf value "${JSON.stringify(schema)}"`);
     }
@@ -50,10 +50,10 @@ describe("FormValidator", () => {
     const [first, second] = schema.anyOf ?? [];
     if (
       first === undefined ||
-      !isSchema(first) ||
+      !isSchemaObject(first) ||
       !isSchemaWithProperties(first) ||
       second === undefined ||
-      !isSchema(second) ||
+      !isSchemaObject(second) ||
       !isSchemaWithProperties(second)
     ) {
       throw new Error(`Invalid 'anyOf' items '${JSON.stringify(schema)}'`);

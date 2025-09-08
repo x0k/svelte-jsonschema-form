@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isSchema } from "@sjsf/form/core";
+import { isSchemaObject } from "@sjsf/form/lib/json-schema";
 import { toJsonSchema } from "@valibot/to-json-schema";
 import * as v from "valibot";
 
@@ -259,7 +259,7 @@ describe("SchemasRegistry", () => {
       }
     );
     const definitions = anyOf ?? [];
-    if (!definitions.every(isSchema)) {
+    if (!definitions.every(isSchemaObject)) {
       throw new Error("All `oneOf` elements must be schemas");
     }
     const [first, second] = definitions.map(({ $id: id }, i) => {

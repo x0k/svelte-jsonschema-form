@@ -197,10 +197,7 @@
             "allof1": true
           },
           "additionalProperties": {
-            "type": [
-              "string",
-              "null"
-            ],
+            "type": ["string", "null"],
             "maxLength": 10
           }
         },
@@ -212,11 +209,7 @@
             "allof2": true
           },
           "additionalProperties": {
-            "type": [
-              "string",
-              "integer",
-              "null"
-            ],
+            "type": ["string", "integer", "null"],
             "maxLength": 8
           }
         },
@@ -250,11 +243,7 @@
             "allof1": true
           },
           "additionalProperties": {
-            "type": [
-              "string",
-              "null",
-              "integer"
-            ],
+            "type": ["string", "null", "integer"],
             "maxLength": 10
           }
         },
@@ -274,11 +263,7 @@
             }
           },
           "additionalProperties": {
-            "type": [
-              "string",
-              "integer",
-              "null"
-            ],
+            "type": ["string", "integer", "null"],
             "maxLength": 8
           }
         },
@@ -300,20 +285,13 @@
       "allOf": [
         {
           "additionalProperties": {
-            "type": [
-              "string",
-              "null"
-            ],
+            "type": ["string", "null"],
             "maxLength": 10
           }
         },
         {
           "additionalProperties": {
-            "type": [
-              "string",
-              "integer",
-              "null"
-            ],
+            "type": ["string", "integer", "null"],
             "maxLength": 8
           }
         }
@@ -322,11 +300,7 @@
     "a13": {
       "patternProperties": {
         "^\\$.+": {
-          "type": [
-            "string",
-            "null",
-            "integer"
-          ],
+          "type": ["string", "null", "integer"],
           "allOf": [
             {
               "minimum": 5
@@ -338,10 +312,7 @@
         {
           "patternProperties": {
             "^\\$.+": {
-              "type": [
-                "string",
-                "null"
-              ],
+              "type": ["string", "null"],
               "allOf": [
                 {
                   "minimum": 7
@@ -415,9 +386,7 @@
       },
       "allOf": [
         {
-          "items": [
-            true
-          ],
+          "items": [true],
           "additionalItems": {
             "properties": {
               "name": {
@@ -428,9 +397,7 @@
           }
         },
         {
-          "items": [
-            true
-          ],
+          "items": [true],
           "additionalItems": {
             "properties": {
               "name": {
@@ -729,10 +696,7 @@
               "allOf": [
                 {
                   "title": "pri2",
-                  "type": [
-                    "string",
-                    "integer"
-                  ],
+                  "type": ["string", "integer"],
                   "minimum": 15,
                   "maximum": 10
                 }
@@ -777,37 +741,22 @@
         {
           "oneOf": [
             {
-              "type": [
-                "array",
-                "string",
-                "object"
-              ],
-              "required": [
-                "123"
-              ]
+              "type": ["array", "string", "object"],
+              "required": ["123"]
             },
             {
-              "required": [
-                "abc"
-              ]
+              "required": ["abc"]
             }
           ]
         },
         {
           "oneOf": [
             {
-              "type": [
-                "string"
-              ]
+              "type": ["string"]
             },
             {
-              "type": [
-                "object",
-                "array"
-              ],
-              "required": [
-                "abc"
-              ]
+              "type": ["object", "array"],
+              "required": ["abc"]
             }
           ]
         }
@@ -816,31 +765,20 @@
     "a29": {
       "allOf": [
         {
-          "type": [
-            "array",
-            "string",
-            "number"
-          ],
+          "type": ["array", "string", "number"],
           "oneOf": [
             {
-              "required": [
-                "123"
-              ],
+              "required": ["123"],
               "allOf": [
                 {
-                  "required": [
-                    "768"
-                  ]
+                  "required": ["768"]
                 }
               ]
             }
           ]
         },
         {
-          "type": [
-            "array",
-            "string"
-          ]
+          "type": ["array", "string"]
         }
       ]
     }

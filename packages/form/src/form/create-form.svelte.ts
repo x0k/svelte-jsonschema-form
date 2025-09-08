@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-deprecated */
 import { setContext } from "svelte";
 import type { Attachment } from "svelte/attachments";
 import { SvelteMap } from "svelte/reactivity";
@@ -45,11 +44,7 @@ import {
   type FieldsValidation,
   type FormValidationResult,
 } from "./errors.js";
-import {
-  type FormInternalContext,
-  type FormContext,
-  FORM_CONTEXT,
-} from "./context/index.js";
+import type { FormInternalContext } from "./context/index.js";
 import type { FormMerger } from "./merger.js";
 import {
   type Id,
@@ -62,6 +57,7 @@ import type { Theme } from "./components.js";
 import type { FormValue, KeyedArraysMap } from "./model.js";
 import type { ResolveFieldType } from "./fields.js";
 import { createSchemaValuesReconciler, UNCHANGED } from "./reconcile.js";
+import { FORM_CONTEXT } from "./internal.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
 
@@ -259,8 +255,6 @@ export interface FormOptions<T, V extends Validator>
 }
 
 export interface FormState<T, V extends Validator> {
-  /** @deprecated don't use this property */
-  readonly context: FormContext;
   readonly [FORM_CONTEXT]: FormInternalContext<V>;
   readonly submission: FormSubmission<V>;
   readonly fieldsValidation: FieldsValidation<V>;
@@ -274,13 +268,17 @@ export interface FormState<T, V extends Validator> {
   isSubmitted: boolean;
   isChanged: boolean;
   errors: FieldErrorsMap<PossibleError<V>>;
-  submit(e: SubmitEvent): void;
-  reset(e: Event): void;
+  submit: (e: SubmitEvent) => void;
+  reset: (e: Event) => void;
 }
 
-export function setFormContext2(form: FormState<any, any>) {
+export function setFormContext(form: FormState<any, any>) {
   setContext(FORM_CONTEXT, form[FORM_CONTEXT]);
 }
+
+// TODO: Remove in v4
+/** @deprecated use `setFormContext` */
+export const setFormContext2 = setFormContext;
 
 export function createForm<T, V extends Validator>(
   options: FormOptions<T, V>
@@ -325,10 +323,6 @@ export function createForm<T, V extends Validator>(
   let isChanged = $state.raw(false);
   const fieldsValidationMode = $derived(options.fieldsValidationMode ?? 0);
   const uiOptionsRegistry = $derived(options[UI_OPTIONS_REGISTRY_KEY] ?? {});
-  const uiOptions = $derived({
-    ...uiSchemaRoot["ui:globalOptions"],
-    ...uiSchema["ui:options"],
-  });
   const keyedArrays: KeyedArraysMap = $derived(
     options.keyedArraysMap ?? new WeakMap()
   );
@@ -500,7 +494,6 @@ export function createForm<T, V extends Validator>(
   }
 
   const context: FormInternalContext<V> = {
-    ...({} as FormContext),
     get rootId() {
       return idPrefix as Id;
     },
@@ -544,9 +537,6 @@ export function createForm<T, V extends Validator>(
     },
     get uiSchema() {
       return uiSchema;
-    },
-    get uiOptions() {
-      return uiOptions;
     },
     get extraUiOptions() {
       return options.extraUiOptions;
@@ -611,7 +601,6 @@ export function createForm<T, V extends Validator>(
   }
 
   return {
-    context,
     [FORM_CONTEXT]: context,
     get value() {
       return getSnapshot(context) as T | undefined;
@@ -647,20 +636,6 @@ export function createForm<T, V extends Validator>(
   };
 }
 
-// TODO: Remove in v3
-/** @deprecated use `handlers` attachment */
-export function enhance(node: HTMLFormElement, context: FormContext) {
-  $effect(() => {
-    const ctx = context as FormInternalContext<any>;
-    const disposeSubmit = on(node, "submit", ctx.submitHandler);
-    const disposeReset = on(node, "reset", ctx.resetHandler);
-    return () => {
-      disposeReset();
-      disposeSubmit();
-    };
-  });
-}
-
 export function handlers(
   ctxOrState: FormState<any, any> | FormInternalContext<any>
 ): Attachment<HTMLFormElement> {
@@ -675,7 +650,3 @@ export function handlers(
     };
   };
 }
-
-// TODO: Remove in v3
-/** @deprecated use `handlers` */
-export const formHandlers = handlers;

@@ -1,4 +1,4 @@
-import { isSchemaObject } from '@/lib/json-schema/index.js';
+import { isSchemaObject } from "@/lib/json-schema/index.js";
 import {
   ADDITIONAL_PROPERTY_FLAG,
   type Schema,

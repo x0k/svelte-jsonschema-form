@@ -27,10 +27,6 @@ export function pathFromParts(parts: string[]): Path {
   });
 }
 
-// TODO: Remove in v3
-/** @deprecated use `pathFromParts` */
-export const partsToPath = pathFromParts;
-
 export function pathFromRef(ref: string): Path {
   if (ref === "#") {
     return [];
@@ -39,10 +35,6 @@ export function pathFromRef(ref: string): Path {
   const parts = ref.substring(2).split("/");
   return pathFromParts(parts);
 }
-
-// TODO: Remove in v3
-/** @deprecated use `pathFromRef` */
-export const refToPath = pathFromRef;
 
 export function getSchemaDefinitionByPath(
   rootSchema: Schema,
