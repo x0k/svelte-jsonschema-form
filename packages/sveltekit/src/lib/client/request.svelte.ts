@@ -43,12 +43,14 @@ export function createSvelteKitRequest<Meta extends SvelteKitFormMeta<any, any, 
         if (method !== 'post') {
           throw new Error('use:enhance can only be used on <form> fields with method="POST"');
         }
-        const formData = new FormData(formElement);
-        for (const value of formData.values()) {
-          if (value instanceof File) {
-            throw new Error(
-              'Your form contains <input type="file"> fields, but is missing the necessary `enctype="multipart/form-data"` attribute. This will lead to inconsistent behavior between enhanced and native forms. For more details, see https://github.com/sveltejs/kit/issues/9819.'
-            );
+        if (enctype !== 'multipart/form-data') {
+          const formData = new FormData(formElement);
+          for (const value of formData.values()) {
+            if (value instanceof File) {
+              throw new Error(
+                'Your form contains <input type="file"> fields, but is missing the necessary `enctype="multipart/form-data"` attribute. This will lead to inconsistent behavior between enhanced and native forms. For more details, see https://github.com/sveltejs/kit/issues/9819.'
+              );
+            }
           }
         }
       }
