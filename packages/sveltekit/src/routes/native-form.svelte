@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Content, setFormContext2 } from '@sjsf/form';
+  import { Content, setFormContext } from '@sjsf/form';
   import { createFormValidator } from '@sjsf/ajv8-validator';
   import { theme } from '@sjsf/basic-theme';
   import { translation } from '@sjsf/form/translations/en';
@@ -38,7 +38,7 @@
       ),
     createMerger: createFormMerger
   });
-  setFormContext2(form);
+  setFormContext(form);
 </script>
 
 <form
