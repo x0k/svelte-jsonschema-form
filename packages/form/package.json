@@ -1,6 +1,6 @@
 {
   "name": "@sjsf/form",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "description": "Svelte 5 library for creating forms based on JSON schema.",
   "license": "(MIT AND Apache-2.0)",
   "keywords": [
@@ -31,9 +31,11 @@
   "scripts": {
     "dev": "vite",
     "test": "vitest run --typecheck --exclude '.svelte-kit/**'",
-    "bench": "vitest bench",
+    "bench": "vitest bench --exclude '.svelte-kit/**'",
     "build": "svelte-package && publint",
-    "check": "svelte-check --tsconfig ./tsconfig.json"
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "format": "prettier --write .",
+    "lint": "prettier --check . && eslint ."
   },
   "dependencies": {
     "@standard-schema/spec": "^1.0.0",
@@ -60,6 +62,7 @@
     "ajv": "catalog:",
     "allof-merge": "^0.6.7",
     "deep-freeze-es6": "^4.0.1",
+    "globals": "catalog:",
     "json-schema-compare": "^0.2.2",
     "json-schema-merge-allof": "^0.8.1",
     "svelte": "catalog:"

@@ -25,8 +25,7 @@ export type FailedTask<E> =
   | AbstractFailedTask<"timeout">
   | AbstractFailedTask<"aborted">;
 
-export interface ProcessingTask<T, R>
-  extends AbstractTaskState<"processing"> {
+export interface ProcessingTask<T, R> extends AbstractTaskState<"processing"> {
   delayed: boolean;
   args: T;
   promise: Promise<R>;
@@ -170,6 +169,7 @@ export function createTask<
 
   function runEffect(promise: Promise<R>, effect: () => void) {
     if (state.status === "failed") {
+      // eslint-disable-next-line @typescript-eslint/only-throw-error
       throw new CompletionError(state);
     }
     if (state.status === "processing" && state.promise === promise) {
@@ -190,6 +190,7 @@ export function createTask<
 
   async function run(decision: TasksCombinatorDecision, args: T): Promise<R> {
     if (decision === false) {
+      // eslint-disable-next-line @typescript-eslint/only-throw-error
       throw new InitializationError(state);
     }
     const abortController = initAbortController(decision);
@@ -207,9 +208,10 @@ export function createTask<
       },
       (error) => {
         runEffect(promise, () => {
-          state = { status: "failed", reason: "error", error };
+          state = { status: "failed", reason: "error", error: error as E };
           options.onFailure?.(state, ...args);
         });
+        // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors
         return Promise.reject(error);
       }
     );

@@ -22,7 +22,7 @@ catalogs:
       specifier: ^1.2.2
       version: 1.2.2
     globals:
-      specifier: ^16.3.0
+      specifier: 16.3.0
       version: 16.3.0
     postcss:
       specifier: ^8.5.6
@@ -1217,7 +1217,7 @@ importers:
   packages/daisyui-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^2.3.0
+        specifier: workspace:^2.4.0
         version: link:../basic-theme
     devDependencies:
       '@sjsf/form':
@@ -1248,7 +1248,7 @@ importers:
   packages/daisyui5-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^2.3.0
+        specifier: workspace:^2.4.0
         version: link:../basic-theme
     devDependencies:
       '@sjsf/ajv8-validator':
@@ -1349,7 +1349,7 @@ importers:
   packages/flowbite3-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^2.3.0
+        specifier: workspace:^2.4.0
         version: link:../basic-theme
     devDependencies:
       '@sjsf/ajv8-validator':
@@ -1422,6 +1422,9 @@ importers:
       json-schema-merge-allof:
         specifier: ^0.8.1
         version: 0.8.1
+      globals:
+        specifier: 'catalog:'
+        version: 16.3.0
       svelte:
         specifier: 'catalog:'
         version: 5.38.6
@@ -1495,7 +1498,7 @@ importers:
   packages/shadcn-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^2.3.0
+        specifier: workspace:^2.4.0
         version: link:../basic-theme
     devDependencies:
       '@internationalized/date':
@@ -1544,7 +1547,7 @@ importers:
   packages/shadcn4-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^2.3.0
+        specifier: workspace:^2.4.0
         version: link:../basic-theme
     devDependencies:
       '@internationalized/date':
@@ -1596,7 +1599,7 @@ importers:
   packages/skeleton-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^2.3.0
+        specifier: workspace:^2.4.0
         version: link:../basic-theme
     devDependencies:
       '@sjsf/form':
@@ -1630,7 +1633,7 @@ importers:
   packages/skeleton3-theme:
     dependencies:
       '@sjsf/basic-theme':
-        specifier: workspace:^2.3.0
+        specifier: workspace:^2.4.0
         version: link:../basic-theme
     devDependencies:
       '@sjsf/ajv8-validator':

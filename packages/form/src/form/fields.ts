@@ -10,14 +10,14 @@ import type {
   FoundationalComponentType,
 } from "./components.js";
 import type { UiOption } from "./ui-schema.js";
-import type { Translate } from './translation.js';
+import type { Translate } from "./translation.js";
 
 export interface FieldCommonProps<V> {
   type: "field";
   value: V | undefined;
   config: Config;
   uiOption: UiOption;
-  translate: Translate
+  translate: Translate;
 }
 
 export type FoundationalFieldType = {

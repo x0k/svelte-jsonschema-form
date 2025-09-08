@@ -95,6 +95,7 @@ export function resolveAllReferences(
       if (copy.size === stackSize) {
         continue;
       }
+      // eslint-disable-next-line @typescript-eslint/unbound-method
       copy.forEach(stack.add, stack);
     }
     resolvedSchema = {
@@ -417,7 +418,6 @@ export function stubExistingAdditionalProperties(
       }
       const propertySchema = getAdditionalPropertySchemaShallowClone(key);
       // Set our additional property flag so we know it was dynamically added
-      // @ts-expect-error TODO: Remove this hack
       propertySchema[ADDITIONAL_PROPERTY_FLAG] = true;
       // The type of our new key should match the additionalProperties value;
       schema.properties[key] = propertySchema;
@@ -705,7 +705,7 @@ export function withExactlyOneSubSchema(
   stack: Set<string>,
   formData?: SchemaValue
 ): Schema[] {
-  const validSubSchemas = oneOf!.filter(
+  const validSubSchemas = oneOf.filter(
     (subschema): subschema is SchemaWithProperties => {
       if (
         typeof subschema === "boolean" ||
@@ -731,7 +731,7 @@ export function withExactlyOneSubSchema(
     }
   );
 
-  if (!expandAllBranches && validSubSchemas!.length !== 1) {
+  if (!expandAllBranches && validSubSchemas.length !== 1) {
     console.warn(
       "ignoring oneOf in dependencies because there isn't exactly one subschema that is valid"
     );

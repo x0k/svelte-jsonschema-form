@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-deprecated */
 import { setContext } from "svelte";
 import type { Attachment } from "svelte/attachments";
 import { SvelteMap } from "svelte/reactivity";
 import { on } from "svelte/events";
 
-import { type Ref, type Lens, refFromLens } from "@/lib/svelte.svelte.js";
+import { refFromBind, type Bind, type Ref } from "@/lib/svelte.svelte.js";
 import type { SchedulerYield } from "@/lib/scheduler.js";
 import { createDataURLtoBlob } from "@/lib/file.js";
 import {
@@ -58,7 +59,7 @@ import {
 } from "./id.js";
 import type { Config } from "./config.js";
 import type { Theme } from "./components.js";
-import type { FormValue, KeyedArraysMap, ValueRef } from "./model.js";
+import type { FormValue, KeyedArraysMap } from "./model.js";
 import type { ResolveFieldType } from "./fields.js";
 import { createSchemaValuesReconciler, UNCHANGED } from "./reconcile.js";
 
@@ -160,9 +161,9 @@ export interface FormOptions<T, V extends Validator>
   idPseudoSeparator?: string;
   //
   initialValue?: InitialValue<T>;
-  value?: Lens<T>;
+  value?: Bind<T>;
   initialErrors?: InitialErrors<V>;
-  errors?: Lens<FieldErrorsMap<PossibleError<V>>>;
+  errors?: Bind<FieldErrorsMap<PossibleError<V>>>;
   /**
    * @default waitPrevious
    */
@@ -311,12 +312,12 @@ export function createForm<T, V extends Validator>(
   );
   const valueRef = $derived(
     options.value
-      ? refFromLens(options.value as unknown as Lens<FormValue>)
+      ? refFromBind(options.value as unknown as Bind<FormValue>)
       : createValueRef(merger, options.schema, options.initialValue)
   );
-  let errorsRef = $derived(
+  const errorsRef = $derived(
     options.errors
-      ? refFromLens(options.errors)
+      ? refFromBind(options.errors)
       : createErrorsRef(options.initialErrors)
   );
   const disabled = $derived(options.disabled ?? false);
@@ -342,6 +343,7 @@ export function createForm<T, V extends Validator>(
           new Promise((resolve, reject) => {
             setTimeout(() => {
               if (signal.aborted) {
+                // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors
                 reject(signal.reason);
               } else {
                 resolve();
@@ -674,6 +676,6 @@ export function handlers(
   };
 }
 
-// TODO: Remove in v4
+// TODO: Remove in v3
 /** @deprecated use `handlers` */
 export const formHandlers = handlers;

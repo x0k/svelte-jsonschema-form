@@ -37,6 +37,7 @@ describe("createTask", () => {
 
     it("Should correctly update status during error flow", async () => {
       const task = createTask({
+        // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors
         execute: () => Promise.reject(),
         delayedMs: 50,
         timeoutMs: 100,

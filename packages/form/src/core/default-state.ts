@@ -47,9 +47,11 @@ export function getDefaultValueForType(type: SchemaType) {
       return "";
     case "null":
       return null;
-    default:
+    default: {
       const n: never = type;
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       throw new Error(`Unsupported schema type: ${n}`);
+    }
   }
 }
 

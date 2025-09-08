@@ -10,16 +10,16 @@ export function isRecordEmpty<R extends Record<string, any>>(
   rec: R | Record<string, never>
 ): rec is Record<string, never> {
   for (const key in rec) {
-    if (rec.hasOwnProperty(key)) {
+    if (Object.prototype.hasOwnProperty.call(rec, key)) {
       return false;
     }
   }
   return true;
 }
 
-// TODO: Remove in v4
+// TODO: Remove in v3
 /** @deprecated use `isRecordEmpty` */
-export const isEmptyRecord = isRecordEmpty
+export const isEmptyRecord = isRecordEmpty;
 
 export function getValueByPath<T, R>(
   from: T,

@@ -13,6 +13,7 @@ export function resolveRef(ref: string, rootSchema: Schema) {
   if (!ref.startsWith("#")) {
     throw new Error(`Invalid reference: ${ref}, must start with #`);
   }
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const schemaDef: SchemaDefinition | undefined = jsonpointer.get(
     rootSchema,
     decodeURIComponent(ref.substring(1))

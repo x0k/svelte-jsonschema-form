@@ -8,10 +8,11 @@ export interface KeyedArray<T> {
   remove(index: number): void;
 }
 
-const EMPTY: any[] = [];
+const EMPTY: never[] = [];
 
 // TODO: Remove in v3
 /** @deprecated migrate to `KeyedArray2` */
+// eslint-disable-next-line @typescript-eslint/no-deprecated
 export function createKeyedArray<T>(array: () => T[]): KeyedArray<T> {
   let arrayRef: WeakRef<T[]> = new WeakRef(EMPTY);
   let lastKeys: number[] = EMPTY;
@@ -23,7 +24,7 @@ export function createKeyedArray<T>(array: () => T[]): KeyedArray<T> {
       return lastKeys;
     }
     arrayRef = new WeakRef(arr);
-    lastKeys = new Array(arr.length);
+    lastKeys = new Array<number>(arr.length);
     for (let i = 0; i < arr.length; i++) {
       // NOTE: there is no `wrap-around` behavior
       // But i think `Infinity` is unreachable here
@@ -33,6 +34,7 @@ export function createKeyedArray<T>(array: () => T[]): KeyedArray<T> {
   });
   return {
     key(index: number) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       changesPropagator;
       return keys[index]!;
     },
@@ -83,7 +85,7 @@ export class SimpleKeyedArray<K, T> implements KeyedArray2<K, T> {
     protected readonly array: T[],
     protected readonly nextKey: () => K
   ) {
-    const keys = new Array(array.length);
+    const keys = new Array<K>(array.length);
     for (let i = 0; i < array.length; i++) {
       keys[i] = nextKey();
     }
@@ -91,6 +93,7 @@ export class SimpleKeyedArray<K, T> implements KeyedArray2<K, T> {
   }
 
   key(index: number): K {
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     this.changesPropagator;
     return this.keys[index]!;
   }
@@ -126,7 +129,7 @@ export class SimpleKeyedArray<K, T> implements KeyedArray2<K, T> {
   splice(start: number, count: number, ...items: T[]): T[] {
     const l = items.length;
     if (l > 0) {
-      const newKeys = new Array(items.length);
+      const newKeys = new Array<K>(items.length);
       for (let i = 0; i < l; i++) {
         newKeys[i] = this.nextKey();
       }

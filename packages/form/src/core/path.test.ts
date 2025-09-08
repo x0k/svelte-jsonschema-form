@@ -47,7 +47,10 @@ describe("getSchemaDefinitionByPath", () => {
         },
       },
     };
-    const result = getSchemaDefinitionByPath(schema, schema, ["nested", "value"]);
+    const result = getSchemaDefinitionByPath(schema, schema, [
+      "nested",
+      "value",
+    ]);
     expect(result).toEqual({ type: "boolean" });
   });
 
@@ -56,12 +59,12 @@ describe("getSchemaDefinitionByPath", () => {
       type: "object",
       patternProperties: {
         "^foo$": {
-          type: 'string'
+          type: "string",
         },
         "^bar$": {
-          type: "number"
-        }
-      }
+          type: "number",
+        },
+      },
     };
     const result = getSchemaDefinitionByPath(schema, schema, ["foo"]);
     expect(result).toEqual({ type: "string" });

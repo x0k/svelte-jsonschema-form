@@ -21,7 +21,6 @@ function testMerger(
   b: JSONSchema7Definition,
   expected: JSONSchema7Definition
 ) {
-  a;
   const result = mergeSchemaDefinitions(a, b);
   expect(result).toEqual(expected);
   expect(mergeAllOf({ allOf: [a, b] })).toEqual(expected);
@@ -32,10 +31,10 @@ const ajv = new Ajv({
   allowMatchingProperties: true,
 });
 
-function validateInputOutput(
+function validateInputOutput<O>(
   schema: JSONSchema7Definition,
   transformedSchema: JSONSchema7Definition,
-  obj: any
+  obj: O
 ) {
   const validOriginal = ajv.validate(schema, obj);
   const validNew = ajv.validate(transformedSchema, obj);

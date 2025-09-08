@@ -49,13 +49,14 @@ export function makeIdConfig({
 export type IdSeparatorEntries = [string, string][];
 
 export function makeIdSeparatorEntries(idConfig: IdConfig): [string, string][] {
-  return Object.entries(idConfig).filter((e) => e[0] !== "prefix");
+  const entries = Object.entries(idConfig) as [string, string][];
+  return entries.filter((e) => e[0] !== "prefix");
 }
 
 export function* idConfigAnalysis(idConfig: IdConfig): Generator<SchemaIssue> {
   const keys = Object.keys(idConfig) as (keyof IdConfig)[];
   for (const key of keys) {
-    const value = idConfig[key]!;
+    const value = idConfig[key];
     if (value.length === 0) {
       yield {
         issuer: ID_CONFIG_ISSUER,
@@ -76,7 +77,7 @@ export function* idConfigAnalysis(idConfig: IdConfig): Generator<SchemaIssue> {
       if (key === key2) {
         continue;
       }
-      const value2 = idConfig[key2]!;
+      const value2 = idConfig[key2];
       if (value.includes(value2)) {
         yield {
           issuer: ID_CONFIG_ISSUER,

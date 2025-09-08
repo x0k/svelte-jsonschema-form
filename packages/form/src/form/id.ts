@@ -21,7 +21,9 @@ export interface IdPseudoSeparatorOption {
   idPseudoSeparator?: string;
 }
 
-export type IdOptions = IdPrefixOption & IdSeparatorOption & IdPseudoSeparatorOption
+export type IdOptions = IdPrefixOption &
+  IdSeparatorOption &
+  IdPseudoSeparatorOption;
 
 export type PathToIdOptions = IdPrefixOption & IdSeparatorOption;
 

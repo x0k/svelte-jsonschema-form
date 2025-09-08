@@ -178,11 +178,13 @@ function intersectSchemaTypes(
         return "integer";
       }
     }
+    // eslint-disable-next-line no-fallthrough
     case "integer": {
       if (b === "number") {
         return "integer";
       }
     }
+    // eslint-disable-next-line no-fallthrough
     default:
       return undefined;
   }
@@ -420,7 +422,9 @@ export function createMerger({
           );
         }
       );
-      while (!gen.next().done) {}
+      while (!gen.next().done) {
+        /* empty */
+      }
     }
     patterns = assignPatternPropertiesAndAdditionalPropertiesMerge(
       patterns,
@@ -456,7 +460,7 @@ export function createMerger({
   ) => {
     const isLArr = Array.isArray(lItems);
     const isRArr = Array.isArray(rItems);
-    let itemsArray: JSONSchema7Definition[] = [];
+    const itemsArray: JSONSchema7Definition[] = [];
     target.items = itemsArray;
     if (isLArr && isRArr) {
       const [l, additional, tail] =
@@ -565,7 +569,7 @@ export function createMerger({
       }
       const lv = left[rKey];
       if (lv === undefined) {
-        // @ts-expect-error
+        // @ts-expect-error too complex
         target[rKey] = rv;
         continue;
       }
@@ -574,8 +578,9 @@ export function createMerger({
         assigners.add(assign);
         continue;
       }
-      const merge = MERGERS[rKey as keyof typeof MERGERS] ?? defaultMerger;
-      target[rKey] = merge(lv, rv);
+      const merge = MERGERS[rKey] ?? defaultMerger;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      target[rKey] = merge(lv as never, rv as never);
     }
     for (const assign of assigners) {
       target = assign(target, left, right);
@@ -639,7 +644,7 @@ export function createMerger({
         }
       }
       throw new Error(
-        `It is not possible to create an intersection of the following incompatible types: ${a}, ${b}`
+        `It is not possible to create an intersection of the following incompatible types: ${a.toString()}, ${b.toString()}`
       );
     },
     default: defaultMerger,

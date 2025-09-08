@@ -7,11 +7,11 @@ import {
   ALL_SUB_SCHEMA_KEYS,
 } from "@/lib/json-schema/index.js";
 
-// TODO: Remove in v4
+// TODO: Remove in v3
 /** @deprecated use `ALL_SUB_SCHEMA_KEYS` from 'lib/json-schema` */
 export const SCHEMA_KEYS = ALL_SUB_SCHEMA_KEYS;
 
-// TODO: Remove in v4
+// TODO: Remove in v3
 import {
   type SubSchemaKey,
   type SubSchemasArrayKey,
@@ -67,6 +67,7 @@ export interface OpenAPIDiscriminator {
 export interface Schema
   extends TransformedSchema<SchemaDefinition, JSONSchema7> {
   discriminator?: OpenAPIDiscriminator;
+  [ADDITIONAL_PROPERTY_FLAG]?: boolean;
 }
 export type SchemaDefinition = boolean | Schema;
 
@@ -115,6 +116,7 @@ export const ONE_OF_KEY = "oneOf";
 export const NOT_KEY = "not";
 
 export const ROOT_SCHEMA_PREFIX = "__sjsf_rootSchema";
+// TODO: Turn into a Symbol
 export const ADDITIONAL_PROPERTY_FLAG = "__additional_property";
 export const ADDITIONAL_PROPERTIES_KEY = "additionalProperties";
 export const ADDITIONAL_ITEMS_KEY = "additionalItems";
@@ -125,11 +127,11 @@ export const PROPERTY_NAME_KEY = "propertyName";
 
 export const DATA_URL_FORMAT = "data-url";
 
-// TODO: Remove in v4
+// TODO: Remove in v3
 /** @deprecated use `AnySubSchemaKey` from `lib/json-schema` */
 export type SchemaKey = AnySubSchemaKey;
 
-// TODO: Remove in v4
+// TODO: Remove in v3
 /** @deprecated use `isSchemaObject` from `lib/json-schema` */
 export const isSchema = isSchemaObject as (d: SchemaDefinition) => d is Schema;
 
@@ -143,6 +145,6 @@ export function isNormalArrayItems(items: Schema["items"]): items is Schema {
   return typeof items === "object" && !Array.isArray(items);
 }
 
-// TODO: Remove in v4
+// TODO: Remove in v3
 /** @deprecated use `isAllowAnySchema` from `lib/json-schema` */
 export const isTruthySchemaDefinition = isAllowAnySchema;

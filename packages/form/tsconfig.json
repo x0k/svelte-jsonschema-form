@@ -8,22 +8,14 @@
       "ESNext.Disposable",
       "ESNext.Collection",
       "ESNext.Iterator",
-      "DOM",
+      "DOM"
     ],
     "rootDir": "src",
-    "types": [
-      "vite/client",
-    ],
+    "types": ["vite/client"],
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
+      "@/*": ["./src/*"]
     }
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.js",
-    "src/**/*.svelte",
-  ],
+  "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.svelte"]
 }

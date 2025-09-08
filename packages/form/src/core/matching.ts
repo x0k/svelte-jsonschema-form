@@ -3,7 +3,7 @@
 // Modifications made by Roman Krasilnikov.
 
 import { weakMemoize } from "@/lib/memoize.js";
-import { isSchemaObject } from '@/lib/json-schema/index.js';
+import { isSchemaObject } from "@/lib/json-schema/index.js";
 
 import {
   getDiscriminatorFieldFromSchema,

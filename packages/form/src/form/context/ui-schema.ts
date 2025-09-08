@@ -43,7 +43,7 @@ export function uiTitleOption<V extends Validator>(
 
 export function retrieveUiOption<
   V extends Validator,
-  O extends keyof UiOptions
+  O extends keyof UiOptions,
 >(ctx: FormInternalContext<V>, config: Config, option: O) {
   return (
     ctx.extraUiOptions?.(option, config) ??
@@ -69,7 +69,7 @@ export function uiOptionProps<O extends keyof ObjectUiOptions>(option: O) {
 
 export function uiOptionNestedProps<
   O extends keyof ObjectUiOptions,
-  R extends object
+  R extends object,
 >(option: O, selector: (data: NonNullable<UiOptions[O]>) => R | undefined) {
   return <V extends Validator>(
     props: R,

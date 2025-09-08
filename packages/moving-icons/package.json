@@ -1,6 +1,6 @@
 {
 	"name": "@sjsf/moving-icons",
-	"version": "2.3.0",
+	"version": "2.4.0",
 	"description": "The jis3r/icons based icons set for svelte-jsonschema-form",
 	"license": "MIT",
 	"keywords": [
@@ -45,7 +45,7 @@
 	},
 	"peerDependencies": {
 		"@jis3r/icons": "^1.1.0",
-		"@sjsf/form": "workspace:^2.3.0",
+		"@sjsf/form": "workspace:^2.4.0",
 		"svelte": "^5.33.0"
 	},
 	"devDependencies": {

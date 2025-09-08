@@ -78,9 +78,9 @@ export function createDeduplicator<T>(
 ): Deduplicator<T> {
   return (arr) => {
     const al = arr.length;
-    
+
     if (al === 0) {
-      return arr
+      return arr;
     }
 
     if (al <= threshold) {

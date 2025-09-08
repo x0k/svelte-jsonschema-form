@@ -1,4 +1,4 @@
-// TODO: Remove in v4
+// TODO: Remove in v3
 import {
   type AbstractSchemaTraverserContext,
   type ArraySchemaTraverserContext,
@@ -9,7 +9,7 @@ import {
   type SchemaTraverserContextType,
   type SubSchemaTraverserContext,
   makeSchemaDefinitionTraverser,
-} from "@/lib/json-schema/traverse.js";
+} from "@/lib/json-schema/index.js";
 
 export {
   /** @deprecated use `AbstractSchemaTraverserContext` from `lib/json-schema` */

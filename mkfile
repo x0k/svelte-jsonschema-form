@@ -77,6 +77,10 @@ f/:
     pnpm run check
   t:
     pnpm run test $@
+  l:
+    pnpm run lint
+  f:
+    pnpm run format
   tui:
     pnpm run test:ui
   popd

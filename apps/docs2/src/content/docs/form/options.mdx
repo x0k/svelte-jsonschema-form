@@ -37,9 +37,8 @@ export interface MergerFactoryOptions<V extends Validator> {
   uiSchema: UiSchemaRoot;
 }
 
-export interface ValueRef<T> {
-  current: T;
-}
+// from '@sjsf/form/lib/svelte.svelte'
+type Bind<T> = [get: () => T, set: (v: T) => void];
 
 export interface FormOptions<T, V extends Validator>
   extends UiOptionsRegistryOption {
@@ -68,7 +67,7 @@ export interface FormOptions<T, V extends Validator>
   idPseudoSeparator?: string;
   //
   initialValue?: InitialValue<T>;
-  value?: [() => T, (v: T) => void];
+  value?: Bind<T>;
   initialErrors?: InitialErrors<V>;
   errors?: [
     () => FieldErrorsMap<PossibleError<V>>,

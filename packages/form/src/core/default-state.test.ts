@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 // This file was copied and modified from https://github.com/rjsf-team/react-jsonschema-form/blob/b12175679079be956570349771dddd65406b3773/packages/utils/test/schema/getDefaultFormStateTest.ts
 // Licensed under the Apache License, Version 2.0.
 // Modifications made by Roman Krasilnikov.
@@ -1172,7 +1174,8 @@ describe("getDefaultFormState()", () => {
                 emptyObjectFields: "populateAllDefaults",
                 allOf: "skipDefaults",
                 arrayMinItems: {
-                  populate: "populate" as any,
+                  // CHANGED: I don't know why this line is here.
+                  // populate: "all" as any,
                   mergeExtraDefaults: false,
                 },
                 mergeDefaultsIntoFormData: "useFormDataIfPresent",
@@ -7339,8 +7342,8 @@ describe("getDefaultFormState()", () => {
       expect(Array.isArray(result.config.items)).toBe(true);
 
       // Verify objects are independent instances - modifying one shouldn't affect the other
-      (result.config.items[0] as any).field = "test-value-1";
-      expect((result.config.items[1] as any).field).toBeUndefined();
+      result.config.items[0].field = "test-value-1";
+      expect(result.config.items[1].field).toBeUndefined();
       expect(result.config.items[0]).not.toBe(result.config.items[1]);
     });
 
@@ -7357,8 +7360,8 @@ describe("getDefaultFormState()", () => {
       expect(Array.isArray(result.config.items)).toBe(true);
 
       // Verify objects are independent instances - modifying one shouldn't affect the other
-      (result.config.items[0] as any).field = "test-value-1";
-      expect((result.config.items[1] as any).field).toBeUndefined();
+      result.config.items[0].field = "test-value-1";
+      expect(result.config.items[1].field).toBeUndefined();
       expect(result.config.items[0]).not.toBe(result.config.items[1]);
     });
 
@@ -7394,9 +7397,9 @@ describe("getDefaultFormState()", () => {
       expect(Array.isArray(result)).toBe(true);
 
       // Verify objects are independent instances
-      (result[0] as any).field = "test-value-1";
-      (result[1] as any).field = "test-value-2";
-      expect((result[2] as any).field).toBeUndefined();
+      result[0].field = "test-value-1";
+      result[1].field = "test-value-2";
+      expect(result[2].field).toBeUndefined();
       expect(result[0]).not.toBe(result[1]);
       expect(result[1]).not.toBe(result[2]);
       expect(result[0]).not.toBe(result[2]);
@@ -7438,8 +7441,8 @@ describe("getDefaultFormState()", () => {
       expect(Array.isArray(result)).toBe(true);
 
       // Verify objects are independent instances - modifying one shouldn't affect the other
-      (result[0] as any).field = "modified-value";
-      expect((result[1] as any).field).toBe("default-value");
+      result[0].field = "modified-value";
+      expect(result[1].field).toBe("default-value");
       expect(result[0]).not.toBe(result[1]);
     });
 
@@ -7484,10 +7487,10 @@ describe("getDefaultFormState()", () => {
       expect(Array.isArray(result)).toBe(true);
 
       // Verify nested objects are independent instances
-      (result[0] as any).nested.value = "modified-nested-value";
-      expect((result[1] as any).nested.value).toBe("nested-default");
+      result[0].nested.value = "modified-nested-value";
+      expect(result[1].nested.value).toBe("nested-default");
       expect(result[0]).not.toBe(result[1]);
-      expect((result[0] as any).nested).not.toBe((result[1] as any).nested);
+      expect(result[0].nested).not.toBe(result[1].nested);
     });
   });
 });

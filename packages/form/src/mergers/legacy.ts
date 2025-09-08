@@ -53,7 +53,7 @@ function mergeArrays<T>(
   if (merge) {
     const [minArr, maxArr] =
       left.length <= right.length ? [left, right] : [right, left];
-    merged = new Array(maxArr.length);
+    merged = new Array<T>(maxArr.length);
     for (let i = 0; i < minArr.length; i++) {
       merged[i] = merge(left[i]!, right[i]!);
     }

@@ -74,7 +74,7 @@ function createArrayComparator<T>(compare: (a: T, b: T) => number) {
 function insertUniqueValues<K>(mutableTarget: K[], mutableSource: K[]): K[] {
   const tl = mutableTarget.length;
   if (tl === 0) return mutableSource;
-  let sl = mutableSource.length;
+  const sl = mutableSource.length;
   if (sl === 0) return mutableTarget;
   if (sl > tl) {
     const t = mutableTarget;
@@ -172,7 +172,8 @@ export function createComparator({
       }
       for (let i = 0; i < l; i++) {
         const key = aKeys[i]!;
-        const cmp = compare(a[key]!, b[key]!);
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+        const cmp = compare(a[key], b[key]);
         if (cmp !== 0) {
           return cmp;
         }
@@ -210,8 +211,7 @@ export function createComparator({
             continue;
           }
           const cmp = COMPARATORS[key] ?? compareOptionalSchemaValues;
-          // @ts-expect-error
-          const d = cmp(a[key], b[key]);
+          const d = cmp(a[key] as undefined, b[key] as undefined);
           if (d !== 0) {
             return d;
           }

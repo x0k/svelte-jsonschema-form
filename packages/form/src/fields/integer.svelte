@@ -12,8 +12,11 @@
 
   import FieldBase from "./field-base.svelte";
 
-  let { value = $bindable(), config, uiOption }: ComponentProps["integerField"] =
-    $props();
+  let {
+    value = $bindable(),
+    config,
+    uiOption,
+  }: ComponentProps["integerField"] = $props();
 </script>
 
 <FieldBase
@@ -28,7 +31,7 @@
       if (Number.isInteger(v)) {
         value = v;
       } else if (v === undefined) {
-        value = uiOption('numberEmptyValue');
+        value = uiOption("numberEmptyValue");
       }
     }
   }

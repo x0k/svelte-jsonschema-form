@@ -222,7 +222,7 @@ describe("sanitizeDataForNewSchema", () => {
       )
     );
     // Change the type of name to trigger a fall-thru
-    // @ts-expect-error
+    // @ts-expect-error hack for test
     oldSchema.properties.name.type = "boolean";
     // By changing the type, the name will be marked as undefined
     const expected = { ...oneOfData, name: undefined };

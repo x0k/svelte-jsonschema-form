@@ -8,7 +8,7 @@ import {
   type PossibleError,
 } from "../errors.js";
 import { isAdditionalPropertyKeyValidator } from "../validator.js";
-import type { FormValue } from '../model.js';
+import type { FormValue } from "../model.js";
 
 import type { FormInternalContext } from "./context.js";
 
