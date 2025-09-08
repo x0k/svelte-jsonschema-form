@@ -35,8 +35,8 @@ export interface FormState<T, V extends Validator> {
   isSubmitted: boolean;
   isChanged: boolean;
   errors: FieldErrorsMap<PossibleError<V>>;
-  submit(e: SubmitEvent): void;
-  reset(e: Event): void;
+  submit: (e: SubmitEvent) => void;
+  reset: (e: Event) => void;
 }
 ```
 
