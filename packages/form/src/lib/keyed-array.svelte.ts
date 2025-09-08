@@ -8,7 +8,7 @@ export interface KeyedArray<K, V> {
   splice(index: number, count: number, ...items: V[]): V[];
 }
 
-export type KeyedArray2<K, V> = KeyedArray<K, V>
+export type KeyedArray2<K, V> = KeyedArray<K, V>;
 
 export class SimpleKeyedArray<K, T> implements KeyedArray<K, T> {
   protected changesPropagator = $state.raw(0);

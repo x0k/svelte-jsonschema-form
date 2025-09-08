@@ -16,7 +16,7 @@
     type ArrayContext,
     type ArrayContextOptions,
   } from "./context.svelte.js";
-  import { VirtualKeyedArray } from './virtual-keyed-array.js';
+  import { VirtualKeyedArray } from "./virtual-keyed-array.js";
 
   let {
     value = $bindable(),
