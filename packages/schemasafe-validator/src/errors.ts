@@ -2,7 +2,7 @@ import type { ValidationError } from "@exodus/schemasafe";
 import { getValueByPath } from "@sjsf/form/lib/object";
 import {
   getSchemaDefinitionByPath,
-  refToPath,
+  pathFromRef,
   type Path,
 } from "@sjsf/form/core";
 import {
@@ -42,8 +42,8 @@ function transformError({
   instanceLocation,
   keywordLocation,
 }: ValidationError) {
-  const instancePath = refToPath(instanceLocation);
-  const keywordPath = refToPath(keywordLocation);
+  const instancePath = pathFromRef(instanceLocation);
+  const keywordPath = pathFromRef(keywordLocation);
   const keyword = keywordPath[keywordPath.length - 1]?.toString() ?? "invalid";
   const schemaPath = keywordPath.slice(0, -1);
   return {

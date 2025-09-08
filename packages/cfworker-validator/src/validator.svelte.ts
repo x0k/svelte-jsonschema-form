@@ -8,7 +8,7 @@ import { getValueByPath } from "@sjsf/form/lib/object";
 import {
   ID_KEY,
   prefixSchemaRefs,
-  refToPath,
+  pathFromRef,
   ROOT_SCHEMA_PREFIX,
   type Path,
   type SchemaValue,
@@ -104,7 +104,7 @@ function createErrorsTransformer(options: ErrorsTransformerOptions) {
     if (title !== undefined) {
       return title;
     }
-    const schemaPath = refToPath(unit.keywordLocation).slice(0, -1);
+    const schemaPath = pathFromRef(unit.keywordLocation).slice(0, -1);
     const schema = getValueByPath(rootSchema, schemaPath);
     if (
       schema &&
@@ -122,7 +122,7 @@ function createErrorsTransformer(options: ErrorsTransformerOptions) {
   };
   return (rootSchema: Schema, errors: OutputUnit[]) =>
     errors.map((unit) => {
-      const path = refToPath(unit.instanceLocation);
+      const path = pathFromRef(unit.instanceLocation);
       const instanceId = pathToId(path, options);
       return {
         instanceId,
@@ -197,8 +197,8 @@ export function createFormValidator({
     v === undefined || v === null
       ? null
       : typeof v === "object"
-      ? JSON.parse(JSON.stringify(v))
-      : v,
+        ? JSON.parse(JSON.stringify(v))
+        : v,
   ...rest
 }: Partial<FormValidatorOptions> & {
   factory?: CfValidatorFactory;

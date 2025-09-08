@@ -1,4 +1,4 @@
-import { isSchema } from "@sjsf/form/core";
+import { isSchemaObject } from "@sjsf/form/lib/json-schema";
 import type {
   JSONSchema7,
   OverrideSchemaContext,
@@ -60,7 +60,7 @@ export function createSchemaRegistry({
           if (
             anyOf === undefined ||
             anyOf.length !== 2 ||
-            !isSchema(anyOf[1]!) ||
+            !isSchemaObject(anyOf[1]!) ||
             anyOf[1]!.type !== "null"
           ) {
             throw new Error(
@@ -70,7 +70,7 @@ export function createSchemaRegistry({
           const innerSchema = anyOf[0];
           if (
             innerSchema === undefined ||
-            !isSchema(innerSchema) ||
+            !isSchemaObject(innerSchema) ||
             innerSchema.type === undefined ||
             Array.isArray(innerSchema.type)
           ) {
@@ -86,7 +86,7 @@ export function createSchemaRegistry({
           const { anyOf } = jsonSchema;
           if (
             anyOf === undefined ||
-            !anyOf.every(isSchema) ||
+            !anyOf.every(isSchemaObject) ||
             vSchema.options.length !== anyOf.length
           ) {
             throw new Error(
