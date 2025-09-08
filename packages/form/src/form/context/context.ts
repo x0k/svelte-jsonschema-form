@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/no-deprecated */
-import { getContext, setContext } from "svelte";
+import { getContext } from "svelte";
 
-import type { Brand } from "@/lib/types.js";
 import type { DataURLToBlob } from "@/lib/file.js";
 import type { Schema, Validator } from "@/core/index.js";
 
@@ -24,13 +22,10 @@ import type { Theme } from "../components.js";
 import type { Id, IdOptions } from "../id.js";
 import type { FormValue, KeyedArraysMap } from "../model.js";
 import type { ResolveFieldType } from "../fields.js";
-
-/** @deprecated don't use this type */
-export type FormContext = Brand<"sjsf-context", {}>;
+import { FORM_CONTEXT } from "../internal.js";
 
 export interface FormInternalContext<V extends Validator>
-  extends FormContext,
-    Readonly<Required<IdOptions>> {
+  extends Readonly<Required<IdOptions>> {
   value: FormValue;
   isChanged: boolean;
   readonly markSchemaChange: () => void;
@@ -59,15 +54,6 @@ export interface FormInternalContext<V extends Validator>
   readonly fieldsValidation: FieldsValidation<V>;
 }
 
-// TODO: Do not export this symbol
-/** @deprecated this symbol will become internal */
-export const FORM_CONTEXT = Symbol("form-context");
-
 export function getFormContext<V extends Validator>(): FormInternalContext<V> {
   return getContext(FORM_CONTEXT);
-}
-
-/** @deprecated use `setFormContext2` */
-export function setFormContext(ctx: FormContext) {
-  setContext(FORM_CONTEXT, ctx);
 }

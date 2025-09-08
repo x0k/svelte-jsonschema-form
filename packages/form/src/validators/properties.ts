@@ -8,7 +8,7 @@ import {
 import type { AdditionalPropertyKeyValidator, Config } from "@/form/main.js";
 
 // This is an attempt to restore the original scheme for correct field validation
-// TODO: Remove in v3
+// TODO: Remove when we are not using custom schema properties
 export function removeVirtualAdditionalProperties(schema: Schema): Schema {
   return transformSchemaDefinition(schema, (copy: SchemaDefinition) => {
     if (typeof copy === "boolean") {

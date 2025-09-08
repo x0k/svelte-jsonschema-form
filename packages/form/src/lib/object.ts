@@ -17,10 +17,6 @@ export function isRecordEmpty<R extends Record<string, any>>(
   return true;
 }
 
-// TODO: Remove in v3
-/** @deprecated use `isRecordEmpty` */
-export const isEmptyRecord = isRecordEmpty;
-
 export function getValueByPath<T, R>(
   from: T,
   path: PropertyKey[],

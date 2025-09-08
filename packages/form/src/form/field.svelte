@@ -7,14 +7,13 @@
   import { getSchemaDefinitionByPath, type Validator } from "@/core/index.js";
 
   import {
-    FORM_CONTEXT,
     getFieldComponent,
     retrieveSchema,
     retrieveTranslate,
     retrieveUiOption,
     uiTitleOption,
   } from "./context/index.js";
-  import { setFormContext2, type FormState } from "./create-form.svelte.js";
+  import { setFormContext, type FormState } from "./create-form.svelte.js";
   import type { FieldValue } from "./model.js";
   import {
     getUiSchemaByPath,
@@ -25,6 +24,7 @@
   import type { Config } from "./config.js";
   import type { ComponentProps } from "./components.js";
   import type { FoundationalFieldType } from "./fields.js";
+  import { FORM_CONTEXT } from "./internal.js";
 
   interface Props {
     form: FormState<T, V>;
@@ -32,16 +32,6 @@
     required?: boolean;
     uiSchema?: UiSchema;
     render?: Snippet<
-      [
-        Omit<ComponentProps[FoundationalFieldType], "value"> & {
-          valueRef: { value: FieldValue };
-        },
-      ]
-    >;
-    /**
-     * @deprecated use `render` instead
-     */
-    children?: Snippet<
       [
         Omit<ComponentProps[FoundationalFieldType], "value"> & {
           valueRef: { value: FieldValue };
@@ -56,7 +46,6 @@
     required: requiredOverride,
     uiSchema: uiSchemaOverride,
     render,
-    children,
   }: Props = $props();
 
   const ctx = form[FORM_CONTEXT];
@@ -170,13 +159,11 @@
   const translate = $derived(retrieveTranslate(ctx, config));
   const uiOption: UiOption = (opt) => retrieveUiOption(ctx, config, opt);
 
-  const renderField = $derived(render ?? children);
-
-  setFormContext2(form);
+  setFormContext(form);
 </script>
 
-{#if renderField}
-  {@render renderField({
+{#if render}
+  {@render render({
     type: "field",
     config,
     translate,
