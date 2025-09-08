@@ -1,5 +1,12 @@
 # @sjsf/radix-icons
 
+## 2.4.0
+
+### Patch Changes
+
+- Updated dependencies [[`1752153`](https://github.com/x0k/svelte-jsonschema-form/commit/1752153696b020da21e7e72b136f2a4bbcfee0d0), [`745d067`](https://github.com/x0k/svelte-jsonschema-form/commit/745d067064d0be502fc8d3ce4bbeba71b0b7a6bc), [`def84a7`](https://github.com/x0k/svelte-jsonschema-form/commit/def84a76c5b99e23c5209587c791ac13bf7466b4)]:
+  - @sjsf/form@2.4.0
+
 ## 2.3.0
 
 ### Patch Changes

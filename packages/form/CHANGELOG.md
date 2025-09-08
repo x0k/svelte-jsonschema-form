@@ -1,5 +1,15 @@
 # @sjsf/form
 
+## 2.4.0
+
+### Minor Changes
+
+- Add `Ref` and `Bind` types ([#190](https://github.com/x0k/svelte-jsonschema-form/pull/190))
+
+- Export mergers from `form/mergers` ([#191](https://github.com/x0k/svelte-jsonschema-form/pull/191))
+
+- Add `json-schema`, `math`, `ord`, `traverser` libs, new `array` functions ([#191](https://github.com/x0k/svelte-jsonschema-form/pull/191))
+
 ## 2.3.0
 
 ### Minor Changes
