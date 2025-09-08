@@ -93,18 +93,16 @@ export function createSvelteKitForm<
 export type SvelteKitFormSetupOptions<Meta extends SvelteKitFormMeta<any, any, string, any>> = Omit<
   SvelteKitFormOptions<Meta['__formValue'], Validator, Meta['__sendSchema']>,
   'onSubmit'
->;
+> &
+  SveltekitRequestOptions<Meta['__actionData'], Meta['__formValue']>;
 
 export function setupSvelteKitForm<
   Meta extends SvelteKitFormMeta<any, any, string, any>,
-  FormOptions extends Omit<
-    SvelteKitFormOptions<Meta['__formValue'], Validator, Meta['__sendSchema']>,
-    'onSubmit'
-  >
+  FormOptions extends SvelteKitFormSetupOptions<Meta>
 >(
   meta: Meta,
   formOptions: FormOptions,
-  requestOptions: SveltekitRequestOptions<Meta['__actionData'], Meta['__formValue']> = {}
+  requestOptions: SveltekitRequestOptions<Meta['__actionData'], Meta['__formValue']> = formOptions
 ) {
   const request = createSvelteKitRequest(meta, requestOptions);
   const form = createSvelteKitForm(
