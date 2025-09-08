@@ -86,8 +86,18 @@ Form Builder
 	</script> </sl-sidebar-state-persist>  <div class="md:sl-hidden"> <div class="mobile-preferences sl-flex astro-3bgtchmk"> <div class="social-icons astro-3bgtchmk"> <a href="https://github.com/x0k/svelte-jsonschema-form" rel="me" class="sl-flex astro-la5hv6lo"><span class="sr-only astro-la5hv6lo">GitHub</span><svg aria-hidden="true" class="astro-la5hv6lo astro-n465rgpp" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a> </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-7aoarsnz"> <span class="sr-only astro-7aoarsnz">Select theme</span> <svg aria-hidden="true" class="icon label-icon astro-7aoarsnz astro-n465rgpp" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg> <select value="auto" autocomplete="off" class="astro-7aoarsnz"> <option value="dark" class="astro-7aoarsnz">Dark</option><option value="light" class="astro-7aoarsnz">Light</option><option value="auto" selected class="astro-7aoarsnz">Auto</option> </select> <svg aria-hidden="true" class="icon caret astro-7aoarsnz astro-n465rgpp" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label>  </starlight-theme-select>  <script>
 	StarlightThemeProvider.updatePickers();
 </script>   </div>  </div> </div> </div> </nav> <div class="main-frame astro-5ltmxbqr">  <script type="module">const a=document.getElementById("starlight__sidebar"),n=a?.querySelector("sl-sidebar-state-persist"),o="sl-sidebar-state",i=()=>{let t=[];const e=n?.dataset.hash||"";try{const s=sessionStorage.getItem(o),r=JSON.parse(s||"{}");Array.isArray(r.open)&&r.hash===e&&(t=r.open)}catch{}return{hash:e,open:t,scroll:a?.scrollTop||0}},c=t=>{try{sessionStorage.setItem(o,JSON.stringify(t))}catch{}},d=()=>c(i()),l=(t,e)=>{const s=i();s.open[e]=t,c(s)};n?.addEventListener("click",t=>{if(!(t.target instanceof Element))return;const e=t.target.closest("summary")?.closest("details");if(!e)return;const s=e.querySelector("sl-sidebar-restore"),r=parseInt(s?.dataset.index||"");isNaN(r)||l(!e.open,r)});addEventListener("visibilitychange",()=>{document.visibilityState==="hidden"&&d()});addEventListener("pageHide",d);</script> <div class="lg:sl-flex astro-dbv75es5"> <aside class="right-sidebar-container print:hidden astro-dbv75es5"> <div class="right-sidebar astro-dbv75es5"> <div class="lg:sl-hidden astro-wpz3eici"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-6kq5jb3l"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-6kq5jb3l"><details id="starlight__mobile-toc" class="astro-6kq5jb3l"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-6kq5jb3l"><div class="toggle sl-flex astro-6kq5jb3l">On this page<svg aria-hidden="true" class="caret astro-6kq5jb3l astro-n465rgpp" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></div><span class="display-current astro-6kq5jb3l"></span></summary><div class="dropdown astro-6kq5jb3l"><ul class="isMobile astro-okop6tqd" style="--depth: 0;"> <li class="astro-okop6tqd" style="--depth: 0;"> <a href="#_top" class="astro-okop6tqd" style="--depth: 0;"> <span class="astro-okop6tqd" style="--depth: 0;">Overview</span> </a>  </li> </ul> </div></details></nav></mobile-starlight-toc><script type="module" src="/svelte-jsonschema-form/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.C181hMzK.js"></script></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-wpz3eici"><div class="sl-container astro-wpz3eici"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-okop6tqd" style="--depth: 0;"> <li class="astro-okop6tqd" style="--depth: 0;"> <a href="#_top" class="astro-okop6tqd" style="--depth: 0;"> <span class="astro-okop6tqd" style="--depth: 0;">Overview</span> </a>  </li> </ul> </nav></starlight-toc><script type="module" src="/svelte-jsonschema-form/_astro/TableOfContents.astro_astro_type_script_index_0_lang.CKWWgpjV.js"></script></div></div> </div> </aside> <div class="main-pane astro-dbv75es5">  <main data-pagefind-body class="astro-b54qodp6" lang="en" dir="ltr">    <div class="content-panel astro-xtgglbyb"> <div class="sl-container astro-xtgglbyb"> <h1 id="_top" class="astro-hvswyxzw">@sjsf/flowbite3-theme</h1>  </div> </div>  <div class="content-panel astro-xtgglbyb"> <div class="sl-container astro-xtgglbyb"> <div class="sl-markdown-content">  <h1 id="sjsfflowbite3-theme">@sjsf/flowbite3-theme</h1>
-<h2 id="230">2.3.0</h2>
+<h2 id="240">2.4.0</h2>
 <h3 id="patch-changes">Patch Changes</h3>
+<ul>
+<li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/1752153696b020da21e7e72b136f2a4bbcfee0d0"><code>1752153</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/745d067064d0be502fc8d3ce4bbeba71b0b7a6bc"><code>745d067</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/def84a76c5b99e23c5209587c791ac13bf7466b4"><code>def84a7</code></a>]:
+<ul>
+<li>@sjsf/form@2.4.0</li>
+<li>@sjsf/basic-theme@2.4.0</li>
+</ul>
+</li>
+</ul>
+<h2 id="230">2.3.0</h2>
+<h3 id="patch-changes-1">Patch Changes</h3>
 <ul>
 <li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/877251689dc60c91b7d2a257c3f05665d9a7ea96"><code>8772516</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/66ca1a5001a65fa794e8fcb6b1362c8365ff6686"><code>66ca1a5</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/123fc70c1e7ef7ad1d045584790d48c957b6f03c"><code>123fc70</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/5f64b23a9baedba6d6df2c4933acb180a6300668"><code>5f64b23</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/2c8501b59a7beef6ac20d88a2f16bdc350779183"><code>2c8501b</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/b171e7116617eb8d47f7f9552c5cb5235ca1a86e"><code>b171e71</code></a>]:
 <ul>
@@ -97,7 +107,7 @@ Form Builder
 </li>
 </ul>
 <h2 id="224">2.2.4</h2>
-<h3 id="patch-changes-1">Patch Changes</h3>
+<h3 id="patch-changes-2">Patch Changes</h3>
 <ul>
 <li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/bab9bce095f75884fb7444f9c8a6640599c861e1"><code>bab9bce</code></a>]:
 <ul>
@@ -107,7 +117,7 @@ Form Builder
 </li>
 </ul>
 <h2 id="223">2.2.3</h2>
-<h3 id="patch-changes-2">Patch Changes</h3>
+<h3 id="patch-changes-3">Patch Changes</h3>
 <ul>
 <li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/8be93831dfcda3716067dc02349f6c4011489967"><code>8be9383</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/a6e6cba6c63c5cd47d938c401bb89c293b512d3f"><code>a6e6cba</code></a>]:
 <ul>
@@ -117,7 +127,7 @@ Form Builder
 </li>
 </ul>
 <h2 id="222">2.2.2</h2>
-<h3 id="patch-changes-3">Patch Changes</h3>
+<h3 id="patch-changes-4">Patch Changes</h3>
 <ul>
 <li>Updated dependencies []:
 <ul>
@@ -127,7 +137,7 @@ Form Builder
 </li>
 </ul>
 <h2 id="221">2.2.1</h2>
-<h3 id="patch-changes-4">Patch Changes</h3>
+<h3 id="patch-changes-5">Patch Changes</h3>
 <ul>
 <li>
 <p>Deprecate <code>from.context</code> property (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/159">#159</a>)</p>
@@ -141,7 +151,7 @@ Form Builder
 </li>
 </ul>
 <h2 id="220">2.2.0</h2>
-<h3 id="patch-changes-5">Patch Changes</h3>
+<h3 id="patch-changes-6">Patch Changes</h3>
 <ul>
 <li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/803d56dcb8dd0fe135d104ecbdb54eb529a83401"><code>803d56d</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/d03234b8247eda3c03b3c11076f9dd0409e75d22"><code>d03234b</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/3488450e7b26e285a17f86996beb32e7dbdc7b66"><code>3488450</code></a>]:
 <ul>
@@ -151,7 +161,7 @@ Form Builder
 </li>
 </ul>
 <h2 id="212">2.1.2</h2>
-<h3 id="patch-changes-6">Patch Changes</h3>
+<h3 id="patch-changes-7">Patch Changes</h3>
 <ul>
 <li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/35afc7b801026f64fe2d9f278c2a31fd714fec48"><code>35afc7b</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/f2f1cbcfcdcfe7e5999a69c5d21903f24a0be978"><code>f2f1cbc</code></a>]:
 <ul>
@@ -161,7 +171,7 @@ Form Builder
 </li>
 </ul>
 <h2 id="211">2.1.1</h2>
-<h3 id="patch-changes-7">Patch Changes</h3>
+<h3 id="patch-changes-8">Patch Changes</h3>
 <ul>
 <li>Updated dependencies []:
 <ul>
@@ -171,7 +181,7 @@ Form Builder
 </li>
 </ul>
 <h2 id="210">2.1.0</h2>
-<h3 id="patch-changes-8">Patch Changes</h3>
+<h3 id="patch-changes-9">Patch Changes</h3>
 <ul>
 <li>Updated dependencies []:
 <ul>
@@ -181,7 +191,7 @@ Form Builder
 </li>
 </ul>
 <h2 id="202">2.0.2</h2>
-<h3 id="patch-changes-9">Patch Changes</h3>
+<h3 id="patch-changes-10">Patch Changes</h3>
 <ul>
 <li>
 <p>Fix item alignment in <code>object-property</code> layout (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/f8278d1c60bdf954e8455ba7a9009481348f44ab"><code>f8278d1</code></a>)</p>
@@ -195,7 +205,7 @@ Form Builder
 </li>
 </ul>
 <h2 id="201">2.0.1</h2>
-<h3 id="patch-changes-10">Patch Changes</h3>
+<h3 id="patch-changes-11">Patch Changes</h3>
 <ul>
 <li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/d3c05fe33cb0847b4db3422a46e3372988dc40fc"><code>d3c05fe</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/935d41467d0a2d84e9f0c5dd2cf9e8f8b9f6f406"><code>935d414</code></a>]:
 <ul>
@@ -244,7 +254,7 @@ Form Builder
 <p>Add support for extra ui options (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/1d00405aa38fbb11636b83027433a763fa23c931"><code>1d00405</code></a>)</p>
 </li>
 </ul>
-<h3 id="patch-changes-11">Patch Changes</h3>
+<h3 id="patch-changes-12">Patch Changes</h3>
 <ul>
 <li>
 <p>Use <code>grid</code> layout for <code>object-property</code> layout (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/921c2bd638a4e45cb8ec7c498013d8b4e23c89bc"><code>921c2bd</code></a>)</p>
@@ -269,7 +279,7 @@ Form Builder
 <ul>
 <li>Add radio buttons widget (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/124">#124</a>)</li>
 </ul>
-<h3 id="patch-changes-12">Patch Changes</h3>
+<h3 id="patch-changes-13">Patch Changes</h3>
 <ul>
 <li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/00a1ea1c431c7f8637cb2cc5e3aa73dd6d94771f"><code>00a1ea1</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/e904c7f59daf600188ef02ce8c4ee6d7f843656f"><code>e904c7f</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/ba140fb1ad3e371cb5c163b869998e20750db939"><code>ba140fb</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/21e47cccb6f53c698582db9c3639a33672e21552"><code>21e47cc</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/95e52e6e70620007be1b05a7880376b24215d4cb"><code>95e52e6</code></a>]:
 <ul>
@@ -279,7 +289,7 @@ Form Builder
 </li>
 </ul>
 <h2 id="200-next14">2.0.0-next.14</h2>
-<h3 id="patch-changes-13">Patch Changes</h3>
+<h3 id="patch-changes-14">Patch Changes</h3>
 <ul>
 <li>Updated dependencies []:
 <ul>
@@ -289,7 +299,7 @@ Form Builder
 </li>
 </ul>
 <h2 id="200-next13">2.0.0-next.13</h2>
-<h3 id="patch-changes-14">Patch Changes</h3>
+<h3 id="patch-changes-15">Patch Changes</h3>
 <ul>
 <li>Updated dependencies []:
 <ul>
@@ -303,7 +313,7 @@ Form Builder
 <ul>
 <li>Add <code>tags</code> widget (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/bd497f3e379b40c8983d2f9f5c8215a004d967ec"><code>bd497f3</code></a>)</li>
 </ul>
-<h3 id="patch-changes-15">Patch Changes</h3>
+<h3 id="patch-changes-16">Patch Changes</h3>
 <ul>
 <li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/38ae58337d6b240a4fda87d4428bd979a952baf7"><code>38ae583</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/f30da6d2b9161d848e3ec1be631d555b20783739"><code>f30da6d</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/1c753287e206049acec0d19aa60c85f8ef902b4c"><code>1c75328</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/1e641de9ce630da729bf295c508371dabaa2e802"><code>1e641de</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/50c357a57b7819a83ceab99a96d09b21af848b17"><code>50c357a</code></a>]:
 <ul>
@@ -317,7 +327,7 @@ Form Builder
 <ul>
 <li>Bump flowbite-svelte version to <code>1.0.0</code> (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/7ac8149dca317aed88331de0686399d064d4df90"><code>7ac8149</code></a>)</li>
 </ul>
-<h3 id="patch-changes-16">Patch Changes</h3>
+<h3 id="patch-changes-17">Patch Changes</h3>
 <ul>
 <li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/162b0018a630c58e72a775af02d6655cc8e65fab"><code>162b001</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/f6fd57c724450da74b26fc63cdb5fdb510203613"><code>f6fd57c</code></a>]:
 <ul>
@@ -331,7 +341,7 @@ Form Builder
 <ul>
 <li>Change ui options prefix to <code>flowbite3</code> (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/100">#100</a>)</li>
 </ul>
-<h3 id="patch-changes-17">Patch Changes</h3>
+<h3 id="patch-changes-18">Patch Changes</h3>
 <ul>
 <li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/0aa15554efa7306f0a7d2adcb3b05785c2e0125e"><code>0aa1555</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/1669b7072ba474f53a0d23cbb27596c44f7397bd"><code>1669b70</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/c72cbf258fe9f60b3b0462baa758a5a570200124"><code>c72cbf2</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/b392c41b3bc6f3ecfbd65a1481ff01a512db786b"><code>b392c41</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/3ae493a8905e38122fe0a1f996e25c70334cce0d"><code>3ae493a</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/71afdd2a32b88ae95b9799902a538b38da0ad7bb"><code>71afdd2</code></a>]:
 <ul>
@@ -345,7 +355,7 @@ Form Builder
 <ul>
 <li>Bump <code>flowbite-svelte</code> peer dependency to <code>^1.0.0-next.11</code> (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/18348cd214840d7d4d377a32972b384cfc92d942"><code>18348cd</code></a>)</li>
 </ul>
-<h3 id="patch-changes-18">Patch Changes</h3>
+<h3 id="patch-changes-19">Patch Changes</h3>
 <ul>
 <li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/99b77fb416960e7204154a29826684af1939792a"><code>99b77fb</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/9882dd8b84a19be80d47786708379fedcda2db31"><code>9882dd8</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/73ee1fb8c35b43c00e6e0d1045d3672f05e78842"><code>73ee1fb</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/b2c896b2058b56a4f4ee5794f490f6298a375f94"><code>b2c896b</code></a>]:
 <ul>
@@ -358,7 +368,7 @@ Form Builder
 <ul>
 <li>Add support for extra ui options (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/1d00405aa38fbb11636b83027433a763fa23c931"><code>1d00405</code></a>)</li>
 </ul>
-<h3 id="patch-changes-19">Patch Changes</h3>
+<h3 id="patch-changes-20">Patch Changes</h3>
 <ul>
 <li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/61b8daba452f2490457a2b6f202c81276705efc4"><code>61b8dab</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/cff3574d8921e4fa09fd55c1c60c2e95a4984297"><code>cff3574</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/1a552e8f43c65a3af595f313739200ca97c69e97"><code>1a552e8</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/d75d84772fdc7636ddc0862719d69f3f296e15bc"><code>d75d847</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/768f8c206e475dc6acdeaf8a4db7fa8c4ce4d965"><code>768f8c2</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/9ca2d7f7aec5d0dec83f61032a38298d68757f01"><code>9ca2d7f</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/cb176ac730f085d715dbd68621c597babcf5c3b9"><code>cb176ac</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/ef7ea0027037457b540bf3534759b9938d0d6620"><code>ef7ea00</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/49e4b89f302c54fdb664e0604a316bf6ab02da30"><code>49e4b89</code></a>]:
 <ul>
@@ -371,7 +381,7 @@ Form Builder
 <ul>
 <li>Add <code>label</code> component, implement two level title (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/ce19144520e76e8071ae3066a6f41964643e9187"><code>ce19144</code></a>)</li>
 </ul>
-<h3 id="patch-changes-20">Patch Changes</h3>
+<h3 id="patch-changes-21">Patch Changes</h3>
 <ul>
 <li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/b215668587f9add91fc848cc579746303f3ba0f7"><code>b215668</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/f1c6d713afbcee2de58d78770041c674bc3adc1f"><code>f1c6d71</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/e8eaae3d332ced78d87748d56dd0f05117ec92d5"><code>e8eaae3</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/f6588ff52f88ee9d6f5c1cebdcb80db8b736acea"><code>f6588ff</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/749a3333969401b8758f28672585f1ba7a140984"><code>749a333</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/1138f616c30cd6e722bef3a037aed08e92033ac9"><code>1138f61</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/52676ca7976f6cff6053bba48d73193881b93405"><code>52676ca</code></a>]:
 <ul>
@@ -389,7 +399,7 @@ Form Builder
 <p>Removed automatic setting of <code>false</code> for <code>undefined</code> value in <code>Checkbox</code> widgets. (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/6cfff91a6ed28d82f3337a27f9bbddcd04a279a8"><code>6cfff91</code></a>)</p>
 </li>
 </ul>
-<h3 id="patch-changes-21">Patch Changes</h3>
+<h3 id="patch-changes-22">Patch Changes</h3>
 <ul>
 <li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/6f4942b24f754ad99040f35cbaa2285d4d9d7c27"><code>6f4942b</code></a>]:
 <ul>
@@ -402,7 +412,7 @@ Form Builder
 <ul>
 <li>Add flowbite v3 package (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/56bafda368e3729210d15451a76a7d48013ef0b5"><code>56bafda</code></a>)</li>
 </ul>
-<h3 id="patch-changes-22">Patch Changes</h3>
+<h3 id="patch-changes-23">Patch Changes</h3>
 <ul>
 <li>Updated dependencies [<a href="https://github.com/x0k/svelte-jsonschema-form/commit/33fcab1e99d3da5d464cbd814b4f8445ceb2e4d9"><code>33fcab1</code></a>, <a href="https://github.com/x0k/svelte-jsonschema-form/commit/69535c3d53fd2d95b2e02d0fe5e6c309aa4d0df6"><code>69535c3</code></a>]:
 <ul>

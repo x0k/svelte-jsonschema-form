@@ -86,8 +86,21 @@ Form Builder
 	</script> </sl-sidebar-state-persist>  <div class="md:sl-hidden"> <div class="mobile-preferences sl-flex astro-3bgtchmk"> <div class="social-icons astro-3bgtchmk"> <a href="https://github.com/x0k/svelte-jsonschema-form" rel="me" class="sl-flex astro-la5hv6lo"><span class="sr-only astro-la5hv6lo">GitHub</span><svg aria-hidden="true" class="astro-la5hv6lo astro-n465rgpp" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a> </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-7aoarsnz"> <span class="sr-only astro-7aoarsnz">Select theme</span> <svg aria-hidden="true" class="icon label-icon astro-7aoarsnz astro-n465rgpp" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg> <select value="auto" autocomplete="off" class="astro-7aoarsnz"> <option value="dark" class="astro-7aoarsnz">Dark</option><option value="light" class="astro-7aoarsnz">Light</option><option value="auto" selected class="astro-7aoarsnz">Auto</option> </select> <svg aria-hidden="true" class="icon caret astro-7aoarsnz astro-n465rgpp" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label>  </starlight-theme-select>  <script>
 	StarlightThemeProvider.updatePickers();
 </script>   </div>  </div> </div> </div> </nav> <div class="main-frame astro-5ltmxbqr">  <script type="module">const a=document.getElementById("starlight__sidebar"),n=a?.querySelector("sl-sidebar-state-persist"),o="sl-sidebar-state",i=()=>{let t=[];const e=n?.dataset.hash||"";try{const s=sessionStorage.getItem(o),r=JSON.parse(s||"{}");Array.isArray(r.open)&&r.hash===e&&(t=r.open)}catch{}return{hash:e,open:t,scroll:a?.scrollTop||0}},c=t=>{try{sessionStorage.setItem(o,JSON.stringify(t))}catch{}},d=()=>c(i()),l=(t,e)=>{const s=i();s.open[e]=t,c(s)};n?.addEventListener("click",t=>{if(!(t.target instanceof Element))return;const e=t.target.closest("summary")?.closest("details");if(!e)return;const s=e.querySelector("sl-sidebar-restore"),r=parseInt(s?.dataset.index||"");isNaN(r)||l(!e.open,r)});addEventListener("visibilitychange",()=>{document.visibilityState==="hidden"&&d()});addEventListener("pageHide",d);</script> <div class="lg:sl-flex astro-dbv75es5"> <aside class="right-sidebar-container print:hidden astro-dbv75es5"> <div class="right-sidebar astro-dbv75es5"> <div class="lg:sl-hidden astro-wpz3eici"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-6kq5jb3l"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-6kq5jb3l"><details id="starlight__mobile-toc" class="astro-6kq5jb3l"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-6kq5jb3l"><div class="toggle sl-flex astro-6kq5jb3l">On this page<svg aria-hidden="true" class="caret astro-6kq5jb3l astro-n465rgpp" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></div><span class="display-current astro-6kq5jb3l"></span></summary><div class="dropdown astro-6kq5jb3l"><ul class="isMobile astro-okop6tqd" style="--depth: 0;"> <li class="astro-okop6tqd" style="--depth: 0;"> <a href="#_top" class="astro-okop6tqd" style="--depth: 0;"> <span class="astro-okop6tqd" style="--depth: 0;">Overview</span> </a>  </li> </ul> </div></details></nav></mobile-starlight-toc><script type="module" src="/svelte-jsonschema-form/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.C181hMzK.js"></script></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-wpz3eici"><div class="sl-container astro-wpz3eici"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-okop6tqd" style="--depth: 0;"> <li class="astro-okop6tqd" style="--depth: 0;"> <a href="#_top" class="astro-okop6tqd" style="--depth: 0;"> <span class="astro-okop6tqd" style="--depth: 0;">Overview</span> </a>  </li> </ul> </nav></starlight-toc><script type="module" src="/svelte-jsonschema-form/_astro/TableOfContents.astro_astro_type_script_index_0_lang.CKWWgpjV.js"></script></div></div> </div> </aside> <div class="main-pane astro-dbv75es5">  <main data-pagefind-body class="astro-b54qodp6" lang="en" dir="ltr">    <div class="content-panel astro-xtgglbyb"> <div class="sl-container astro-xtgglbyb"> <h1 id="_top" class="astro-hvswyxzw">@sjsf/form</h1>  </div> </div>  <div class="content-panel astro-xtgglbyb"> <div class="sl-container astro-xtgglbyb"> <div class="sl-markdown-content">  <h1 id="sjsfform">@sjsf/form</h1>
-<h2 id="230">2.3.0</h2>
+<h2 id="240">2.4.0</h2>
 <h3 id="minor-changes">Minor Changes</h3>
+<ul>
+<li>
+<p>Add <code>Ref</code> and <code>Bind</code> types (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/190">#190</a>)</p>
+</li>
+<li>
+<p>Export mergers from <code>form/mergers</code> (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/191">#191</a>)</p>
+</li>
+<li>
+<p>Add <code>json-schema</code>, <code>math</code>, <code>ord</code>, <code>traverser</code> libs, new <code>array</code> functions (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/191">#191</a>)</p>
+</li>
+</ul>
+<h2 id="230">2.3.0</h2>
+<h3 id="minor-changes-1">Minor Changes</h3>
 <ul>
 <li>
 <p>Pass item value to <code>itemTitle</code> function (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/178">#178</a>)</p>
@@ -138,7 +151,7 @@ Form Builder
 </li>
 </ul>
 <h2 id="220">2.2.0</h2>
-<h3 id="minor-changes-1">Minor Changes</h3>
+<h3 id="minor-changes-2">Minor Changes</h3>
 <ul>
 <li>
 <p>Add <code>value</code> option (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/158">#158</a>)</p>
@@ -341,7 +354,7 @@ Remove <code>Equal</code> and <code>ExpandAndEqual</code> types from <code>lib/t
 <p>Remove <code>getValueByPath</code> function (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/1516c2dde9256c87118db659d7dd904b370d65ec"><code>1516c2d</code></a>)</p>
 </li>
 </ul>
-<h3 id="minor-changes-2">Minor Changes</h3>
+<h3 id="minor-changes-3">Minor Changes</h3>
 <ul>
 <li>
 <p>Add <code>fromFactories</code> function to <code>lib/resolver</code> (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/61b8daba452f2490457a2b6f202c81276705efc4"><code>61b8dab</code></a>)</p>
@@ -515,7 +528,7 @@ Remove <code>Equal</code> and <code>ExpandAndEqual</code> types from <code>lib/t
 <ul>
 <li>Add support for <code>patternProperties</code> keyword (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/162b0018a630c58e72a775af02d6655cc8e65fab"><code>162b001</code></a>)</li>
 </ul>
-<h3 id="minor-changes-3">Minor Changes</h3>
+<h3 id="minor-changes-4">Minor Changes</h3>
 <ul>
 <li>Add support for <code>discriminator</code> schema property (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/f6fd57c724450da74b26fc63cdb5fdb510203613"><code>f6fd57c</code></a>)</li>
 </ul>
@@ -532,7 +545,7 @@ Remove <code>Equal</code> and <code>ExpandAndEqual</code> types from <code>lib/t
 <p>Rename <code>FormTag</code> to <code>Form</code> (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/100">#100</a>)</p>
 </li>
 </ul>
-<h3 id="minor-changes-4">Minor Changes</h3>
+<h3 id="minor-changes-5">Minor Changes</h3>
 <ul>
 <li>
 <p>Add <code>lib/component</code> submodule (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/100">#100</a>)</p>
@@ -555,7 +568,7 @@ Remove <code>Equal</code> and <code>ExpandAndEqual</code> types from <code>lib/t
 <p>Extract object field logic into <code>createObjectContext</code> function (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/73ee1fb8c35b43c00e6e0d1045d3672f05e78842"><code>73ee1fb</code></a>)</p>
 </li>
 </ul>
-<h3 id="minor-changes-5">Minor Changes</h3>
+<h3 id="minor-changes-6">Minor Changes</h3>
 <ul>
 <li>
 <p>Add <code>validators/precompile</code> submodule (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/9882dd8b84a19be80d47786708379fedcda2db31"><code>9882dd8</code></a>)</p>
@@ -585,7 +598,7 @@ Remove <code>Equal</code> and <code>ExpandAndEqual</code> types from <code>lib/t
 <p>Remove <code>UiSchemaRootContent</code> type (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/49e4b89f302c54fdb664e0604a316bf6ab02da30"><code>49e4b89</code></a>)</p>
 </li>
 </ul>
-<h3 id="minor-changes-6">Minor Changes</h3>
+<h3 id="minor-changes-7">Minor Changes</h3>
 <ul>
 <li>
 <p>Add <code>fromFactories</code> function to <code>lib/resolver</code> (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/61b8daba452f2490457a2b6f202c81276705efc4"><code>61b8dab</code></a>)</p>
@@ -619,7 +632,7 @@ Remove <code>Equal</code> and <code>ExpandAndEqual</code> types from <code>lib/t
 <p>Remove <code>required</code> and <code>forId</code> from the <code>title</code> component props (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/52676ca7976f6cff6053bba48d73193881b93405"><code>52676ca</code></a>)</p>
 </li>
 </ul>
-<h3 id="minor-changes-7">Minor Changes</h3>
+<h3 id="minor-changes-8">Minor Changes</h3>
 <ul>
 <li>Pass <code>widgetType</code> property to the <code>fieldTemplate</code> component (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/749a3333969401b8758f28672585f1ba7a140984"><code>749a333</code></a>)</li>
 </ul>
@@ -642,7 +655,7 @@ Remove <code>Equal</code> and <code>ExpandAndEqual</code> types from <code>lib/t
 <li>Refactor matching logic to improve validation performance and accuracy (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/69535c3d53fd2d95b2e02d0fe5e6c309aa4d0df6"><code>69535c3</code></a>)</li>
 </ul>
 <h2 id="200-next4">2.0.0-next.4</h2>
-<h3 id="minor-changes-8">Minor Changes</h3>
+<h3 id="minor-changes-9">Minor Changes</h3>
 <ul>
 <li>
 <p>The <code>getValueByPath</code> function has been returned. (<a href="https://github.com/x0k/svelte-jsonschema-form/commit/f37bf4a9e49eec84bb64b8471ff8f34bc056fdd8"><code>f37bf4a</code></a>)</p>
@@ -667,7 +680,7 @@ Remove <code>Equal</code> and <code>ExpandAndEqual</code> types from <code>lib/t
 <p>Remove <code>getValueByPath</code> function (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/83">#83</a>)</p>
 </li>
 </ul>
-<h3 id="minor-changes-9">Minor Changes</h3>
+<h3 id="minor-changes-10">Minor Changes</h3>
 <ul>
 <li>
 <p>Add <code>getSchemaDefinitionByPath</code> function (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/83">#83</a>)</p>
@@ -724,7 +737,7 @@ Remove <code>Equal</code> and <code>ExpandAndEqual</code> types from <code>lib/t
 <p>Migrate to a new <code>Validator</code> type model (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/78">#78</a>)</p>
 </li>
 </ul>
-<h3 id="minor-changes-10">Minor Changes</h3>
+<h3 id="minor-changes-11">Minor Changes</h3>
 <ul>
 <li>
 <p>Add <code>env</code> lib (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/71">#71</a>)</p>
@@ -752,7 +765,7 @@ Remove <code>Equal</code> and <code>ExpandAndEqual</code> types from <code>lib/t
 <li>Use keyed array inside an array field to preserve items state (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/65">#65</a>)</li>
 </ul>
 <h2 id="190">1.9.0</h2>
-<h3 id="minor-changes-11">Minor Changes</h3>
+<h3 id="minor-changes-12">Minor Changes</h3>
 <ul>
 <li>
 <p>Add omit extra data submodule (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/56">#56</a>)</p>
@@ -780,7 +793,7 @@ Remove <code>Equal</code> and <code>ExpandAndEqual</code> types from <code>lib/t
 </li>
 </ul>
 <h2 id="180">1.8.0</h2>
-<h3 id="minor-changes-12">Minor Changes</h3>
+<h3 id="minor-changes-13">Minor Changes</h3>
 <ul>
 <li>
 <p>Add <code>isSchemaValueDeepEqual</code> and <code>isSchemaDeepEqual</code> functions (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/55">#55</a>)</p>
@@ -804,7 +817,7 @@ Remove <code>Equal</code> and <code>ExpandAndEqual</code> types from <code>lib/t
 </li>
 </ul>
 <h2 id="170">1.7.0</h2>
-<h3 id="minor-changes-13">Minor Changes</h3>
+<h3 id="minor-changes-14">Minor Changes</h3>
 <ul>
 <li>
 <p>Add <code>constAsDefaults</code> option to get default form state function. (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/34">#34</a>)</p>
@@ -845,7 +858,7 @@ Remove <code>Equal</code> and <code>ExpandAndEqual</code> types from <code>lib/t
 </li>
 </ul>
 <h2 id="160">1.6.0</h2>
-<h3 id="minor-changes-14">Minor Changes</h3>
+<h3 id="minor-changes-15">Minor Changes</h3>
 <ul>
 <li>
 <p>Add <code>parent</code> property to the <code>SchemaTraverserContext</code> (<a href="https://github.com/x0k/svelte-jsonschema-form/pull/28">#28</a>)</p>
@@ -863,7 +876,7 @@ Remove <code>Equal</code> and <code>ExpandAndEqual</code> types from <code>lib/t
 </li>
 </ul>
 <h2 id="150">1.5.0</h2>
-<h3 id="minor-changes-15">Minor Changes</h3>
+<h3 id="minor-changes-16">Minor Changes</h3>
 <ul>
 <li>
 <p><a href="https://github.com/x0k/svelte-jsonschema-form/pull/26">#26</a> <a href="https://github.com/x0k/svelte-jsonschema-form/commit/c75aa31735b7e5bc27ca4a5203339dd4a43cec3d"><code>c75aa31</code></a> Thanks <a href="https://github.com/x0k">@x0k</a>! - Add <code>preventDataLoss</code> function for handling <code>beforeunload</code> event</p>
@@ -889,7 +902,7 @@ Remove <code>Equal</code> and <code>ExpandAndEqual</code> types from <code>lib/t
 </li>
 </ul>
 <h2 id="140">1.4.0</h2>
-<h3 id="minor-changes-16">Minor Changes</h3>
+<h3 id="minor-changes-17">Minor Changes</h3>
 <ul>
 <li>
 <p><a href="https://github.com/x0k/svelte-jsonschema-form/commit/56a406a177adcd22b6e468522cfee7c5d483abb4"><code>56a406a</code></a> Thanks <a href="https://github.com/x0k">@x0k</a>! - Add <code>isChanged</code> property to the from state</p>
@@ -905,7 +918,7 @@ Remove <code>Equal</code> and <code>ExpandAndEqual</code> types from <code>lib/t
 </li>
 </ul>
 <h2 id="130">1.3.0</h2>
-<h3 id="minor-changes-17">Minor Changes</h3>
+<h3 id="minor-changes-18">Minor Changes</h3>
 <ul>
 <li>
 <p><a href="https://github.com/x0k/svelte-jsonschema-form/commit/fe35ad2e4a557e4904a055558f10a86319e4ee79"><code>fe35ad2</code></a> Thanks <a href="https://github.com/x0k">@x0k</a>! - Reset form value in default reset handler</p>
@@ -955,7 +968,7 @@ Remove <code>Equal</code> and <code>ExpandAndEqual</code> types from <code>lib/t
 <li><a href="https://github.com/x0k/svelte-jsonschema-form/commit/985b1ceb1f2a4c5db87f29a559be6d0a143073d2"><code>985b1ce</code></a> Thanks <a href="https://github.com/x0k">@x0k</a>! - Simplify <code>Merger</code> type</li>
 </ul>
 <h2 id="110">1.1.0</h2>
-<h3 id="minor-changes-18">Minor Changes</h3>
+<h3 id="minor-changes-19">Minor Changes</h3>
 <ul>
 <li>
 <p><a href="https://github.com/x0k/svelte-jsonschema-form/commit/67ff48cab5055a0167bde46b316d5f6f85f79279"><code>67ff48c</code></a> Thanks <a href="https://github.com/x0k">@x0k</a>! - Add <code>merger</code> form option</p>
@@ -1035,12 +1048,12 @@ Remove <code>Equal</code> and <code>ExpandAndEqual</code> types from <code>lib/t
 </li>
 </ul>
 <h2 id="020">0.2.0</h2>
-<h3 id="minor-changes-19">Minor Changes</h3>
+<h3 id="minor-changes-20">Minor Changes</h3>
 <ul>
 <li><a href="https://github.com/x0k/svelte-jsonschema-form/commit/d36a76c157305e4a62eccc710e5b8f45fa13dbe0"><code>d36a76c</code></a> Thanks <a href="https://github.com/x0k">@x0k</a>! - Remove form <code>readonly</code> attribute (use <code>inert</code> instead)</li>
 </ul>
 <h2 id="010">0.1.0</h2>
-<h3 id="minor-changes-20">Minor Changes</h3>
+<h3 id="minor-changes-21">Minor Changes</h3>
 <ul>
 <li>
 <p><a href="https://github.com/x0k/svelte-jsonschema-form/commit/ea62b7c8d40d4f8b4e5440c28fd9d81f2201b3ec"><code>ea62b7c</code></a> Thanks <a href="https://github.com/x0k">@x0k</a>! - Make default behavior of the form the same as native form</p>
