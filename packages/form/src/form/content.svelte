@@ -30,7 +30,7 @@
 
 <Field
   type="field"
-  bind:value={ctx.value as undefined}
+  bind:value={ctx[FORM_VALUE] as undefined}
   {config}
   uiOption={(opt) => retrieveUiOption(ctx, config, opt)}
   translate={retrieveTranslate(ctx, config)}
