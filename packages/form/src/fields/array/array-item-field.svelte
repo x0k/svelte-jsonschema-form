@@ -52,7 +52,7 @@
 </script>
 
 {#snippet buttons()}
-  {#if arrayCtx.orderable}
+  {#if arrayCtx.orderable()}
     <Button
       {errors}
       {config}

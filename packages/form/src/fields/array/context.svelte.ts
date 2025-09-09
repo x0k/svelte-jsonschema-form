@@ -35,33 +35,33 @@ import {
 import { titleWithIndex, type ItemTitle } from "./model.js";
 
 export interface ArrayContext<V extends Validator> {
-  readonly config: Config;
-  readonly addable: boolean;
-  readonly removable: boolean;
-  readonly orderable: boolean;
-  readonly copyable: boolean;
-  readonly itemTitle: ItemTitle;
-  readonly errors: FieldError<PossibleError<V>>[];
-  readonly uiOption: UiOption;
-  length(): number;
-  set(index: number, value: SchemaValue | undefined): void;
-  canAdd(): boolean;
-  canCopy(index: number): boolean;
-  canRemove(index: number): boolean;
-  canMoveUp(index: number): boolean;
-  canMoveDown(index: number): boolean;
-  key(index: number): number;
-  itemConfig(
+  config: () => Config;
+  addable: () => boolean;
+  removable: () => boolean;
+  orderable: () => boolean;
+  copyable: () => boolean;
+  errors: () => FieldError<PossibleError<V>>[];
+  itemTitle: ItemTitle;
+  uiOption: UiOption;
+  length: () => number;
+  set: (index: number, value: SchemaValue | undefined) => void;
+  canAdd: () => boolean;
+  canCopy: (index: number) => boolean;
+  canRemove: (index: number) => boolean;
+  canMoveUp: (index: number) => boolean;
+  canMoveDown: (index: number) => boolean;
+  key: (index: number) => number;
+  itemConfig: (
     config: Config,
     item: SchemaValue | undefined,
     index: number
-  ): Config;
-  pushItem(): void;
-  moveItemUp(index: number): void;
-  moveItemDown(index: number): void;
-  copyItem(index: number): void;
-  removeItem(index: number): void;
-  validate(): void;
+  ) => Config;
+  pushItem: () => void;
+  moveItemUp: (index: number) => void;
+  moveItemDown: (index: number) => void;
+  copyItem: (index: number) => void;
+  removeItem: (index: number) => void;
+  validate: () => void;
 }
 
 const ARRAY_CONTEXT = Symbol("array-context");
@@ -89,6 +89,7 @@ function createItems<T, V extends Validator>({
   keyedArray,
   value,
 }: ItemsOptions<T, V>) {
+  const uiOption: UiOption = (opt) => retrieveUiOption(ctx, config(), opt);
   function validate() {
     const m = getFieldsValidationMode(ctx);
     if (!(m & ON_ARRAY_CHANGE) || (m & AFTER_SUBMITTED && !ctx.isSubmitted)) {
@@ -96,7 +97,6 @@ function createItems<T, V extends Validator>({
     }
     validateField(ctx, config(), value());
   }
-  const uiOption: UiOption = (opt) => retrieveUiOption(ctx, config(), opt);
 
   const keyed = $derived.by(keyedArray);
 
@@ -109,33 +109,19 @@ function createItems<T, V extends Validator>({
   const itemTitle = $derived(uiOption("itemTitle") ?? titleWithIndex);
 
   return {
+    config,
     uiOption,
     validate,
-    get itemTitle() {
-      return itemTitle;
+    itemTitle(title, index, c, v) {
+      return itemTitle(title, index, c, v);
     },
-    get config() {
-      return config();
-    },
-    get addable() {
-      return addable;
-    },
-    get orderable() {
-      return orderable;
-    },
-    get removable() {
-      return removable;
-    },
-    get copyable() {
-      return copyable;
-    },
-    get errors() {
-      return errors;
-    },
-    key(index) {
-      return keyed.key(index);
-    },
-    pushItem() {
+    addable: () => addable,
+    orderable: () => orderable,
+    removable: () => removable,
+    copyable: () => copyable,
+    errors: () => errors,
+    key: (index) => keyed.key(index),
+    pushItem: () => {
       const schema = itemSchema();
       if (schema === undefined) {
         return;
@@ -218,9 +204,10 @@ export function createArrayContext<T, V extends Validator>({
 
   const length = () => arr?.length ?? 0;
 
-  const canAdd = $derived.by(createCanAdd(config, length, () => items.addable));
+  const canAdd = $derived.by(createCanAdd(config, length, items.addable));
 
-  return Object.assign(items, {
+  return {
+    ...items,
     length,
     set(index, itemValue) {
       arr![index] = itemValue;
@@ -229,16 +216,14 @@ export function createArrayContext<T, V extends Validator>({
       return canAdd;
     },
     canCopy() {
-      return items.copyable && canAdd;
+      return items.copyable() && canAdd;
     },
-    canRemove() {
-      return items.removable;
-    },
+    canRemove: items.removable,
     canMoveUp(index) {
-      return items.orderable && index > 0;
+      return items.orderable() && index > 0;
     },
     canMoveDown(index) {
-      return items.orderable && index < arr!.length - 1;
+      return items.orderable() && index < arr!.length - 1;
     },
     itemConfig(config, item, index) {
       const schema = retrieveSchema(ctx, itemSchema, item);
@@ -255,7 +240,7 @@ export function createArrayContext<T, V extends Validator>({
         required: !isSchemaNullable(schema),
       };
     },
-  } satisfies Partial<ArrayContext<V>>);
+  };
 }
 
 export function createTupleContext<T, V extends Validator>({
@@ -304,7 +289,7 @@ export function createTupleContext<T, V extends Validator>({
     createCanAdd(
       config,
       length,
-      () => items.addable && schemaAdditionalItems !== undefined
+      () => items.addable() && schemaAdditionalItems !== undefined
     )
   );
 
@@ -314,14 +299,14 @@ export function createTupleContext<T, V extends Validator>({
     keyed.splice(0, 0, ...arr);
   }
 
-  const pushItem = items.pushItem;
-  return Object.assign(items, {
+  return {
+    ...items,
     length,
     pushItem() {
       if (arr === undefined) {
         initTuple();
       }
-      pushItem();
+      items.pushItem();
     },
     set(index, itemValue) {
       if (arr !== undefined) {
@@ -336,16 +321,16 @@ export function createTupleContext<T, V extends Validator>({
       return canAdd;
     },
     canCopy(index) {
-      return items.copyable && canAdd && isAdditional(index);
+      return items.copyable() && canAdd && isAdditional(index);
     },
     canRemove(index) {
-      return items.removable && isAdditional(index);
+      return items.removable() && isAdditional(index);
     },
     canMoveUp(index) {
-      return items.orderable && index > itemsSchema.length;
+      return items.orderable() && index > itemsSchema.length;
     },
     canMoveDown(index) {
-      return items.orderable && index < arrLen - 1 && isAdditional(index);
+      return items.orderable() && index < arrLen - 1 && isAdditional(index);
     },
     itemConfig(config, item, index) {
       const additional = isAdditional(index);
@@ -375,5 +360,5 @@ export function createTupleContext<T, V extends Validator>({
         required: !isSchemaNullable(schema),
       };
     },
-  } satisfies Partial<ArrayContext<V>>);
+  };
 }

@@ -51,7 +51,7 @@
 
 {#snippet addButton()}
   <Button
-    errors={arrayCtx.errors}
+    errors={arrayCtx.errors()}
     {config}
     disabled={false}
     type="array-item-add"
@@ -62,7 +62,7 @@
 {/snippet}
 <Template
   type="template"
-  errors={arrayCtx.errors}
+  errors={arrayCtx.errors()}
   {config}
   {value}
   addButton={arrayCtx.canAdd() ? addButton : undefined}
