@@ -2,7 +2,8 @@
   import type { Label, Labels, Translate } from "./translation.js";
   import type { Config } from "./config.js";
   import type { IconConfig, IconDefinition } from "./icons.js";
-  import { getFormContext } from "./context/index.js";
+  import { getFormContext } from "./state/index.js";
+    import { FORM_ICONS } from './internals.js';
 
   const ctx = getFormContext();
 
@@ -32,7 +33,7 @@
     translation,
   });
   const icon: IconDefinition<L> | undefined = $derived(
-    ctx.icons?.(
+    ctx[FORM_ICONS]?.(
       id,
       //@ts-expect-error TODO: fix if possible
       iconConfig

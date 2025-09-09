@@ -11,42 +11,48 @@ import {
   type UiOptions,
 } from "../ui-schema.js";
 import { createTranslate } from "../translation.js";
+import {
+  FORM_EXTRA_UI_OPTIONS,
+  FORM_TRANSLATION,
+  FORM_UI_OPTIONS_REGISTRY,
+  FORM_UI_SCHEMA_ROOT,
+} from "../internals.js";
+import type { FormState } from "./state.js";
 
-import type { FormInternalContext } from "./context.js";
-
-export function retrieveUiSchema<V extends Validator>(
-  ctx: FormInternalContext<V>,
+export function retrieveUiSchema<T, V extends Validator>(
+  ctx: FormState<T, V>,
   uiSchemaDef: UiSchemaDefinition | undefined
 ) {
-  return resolveUiRef(ctx.uiSchemaRoot, uiSchemaDef) ?? {};
+  return resolveUiRef(ctx[FORM_UI_SCHEMA_ROOT], uiSchemaDef) ?? {};
 }
 
-function resolveUiOption<V extends Validator, O extends keyof UiOptions>(
-  ctx: FormInternalContext<V>,
+function resolveUiOption<T, V extends Validator, O extends keyof UiOptions>(
+  ctx: FormState<T, V>,
   uiSchema: UiSchema,
   option: O
 ) {
   return resolveUiOptionInternal(
-    ctx.uiSchemaRoot,
-    ctx.uiOptionsRegistry,
+    ctx[FORM_UI_SCHEMA_ROOT],
+    ctx[FORM_UI_OPTIONS_REGISTRY],
     uiSchema,
     option
   );
 }
 
-export function uiTitleOption<V extends Validator>(
-  ctx: FormInternalContext<V>,
+export function uiTitleOption<T, V extends Validator>(
+  ctx: FormState<T, V>,
   uiSchema: UiSchema
 ) {
   return resolveUiOption(ctx, uiSchema, "title");
 }
 
 export function retrieveUiOption<
+  T,
   V extends Validator,
   O extends keyof UiOptions,
->(ctx: FormInternalContext<V>, config: Config, option: O) {
+>(ctx: FormState<T, V>, config: Config, option: O) {
   return (
-    ctx.extraUiOptions?.(option, config) ??
+    ctx[FORM_EXTRA_UI_OPTIONS]?.(option, config) ??
     resolveUiOption(ctx, config.uiSchema, option)
   );
 }
@@ -54,15 +60,15 @@ export function retrieveUiOption<
 export type ObjectUiOptions = ObjectProperties<UiOptions>;
 
 export function uiOptionProps<O extends keyof ObjectUiOptions>(option: O) {
-  return <V extends Validator>(
+  return <T, V extends Validator>(
     props: NonNullable<UiOptions[O]>,
     config: Config,
-    ctx: FormInternalContext<V>
+    ctx: FormState<T, V>
   ): NonNullable<UiOptions[O]> => {
     return Object.assign(
       props,
       resolveUiOption(ctx, config.uiSchema, option),
-      ctx.extraUiOptions?.(option, config as never)
+      ctx[FORM_EXTRA_UI_OPTIONS]?.(option, config as never)
     );
   };
 }
@@ -71,13 +77,13 @@ export function uiOptionNestedProps<
   O extends keyof ObjectUiOptions,
   R extends object,
 >(option: O, selector: (data: NonNullable<UiOptions[O]>) => R | undefined) {
-  return <V extends Validator>(
+  return <T, V extends Validator>(
     props: R,
     config: Config,
-    ctx: FormInternalContext<V>
+    ctx: FormState<T, V>
   ): R => {
     const options = resolveUiOption(ctx, config.uiSchema, option);
-    const extraOptions = ctx.extraUiOptions?.(option, config as never);
+    const extraOptions = ctx[FORM_EXTRA_UI_OPTIONS]?.(option, config as never);
     return Object.assign(
       props,
       options && selector(options),
@@ -86,16 +92,16 @@ export function uiOptionNestedProps<
   };
 }
 
-export function retrieveTranslate<V extends Validator>(
-  ctx: FormInternalContext<V>,
+export function retrieveTranslate<T, V extends Validator>(
+  ctx: FormState<T, V>,
   config: Config
 ) {
-  let translation = ctx.translation;
+  let translation = ctx[FORM_TRANSLATION];
   const uiOption = resolveUiOption(ctx, config.uiSchema, "translations");
   translation = uiOption
     ? overrideByRecord(translation, uiOption)
     : translation;
-  const extraUiOption = ctx.extraUiOptions?.("translations", config);
+  const extraUiOption = ctx[FORM_EXTRA_UI_OPTIONS]?.("translations", config);
   translation = extraUiOption
     ? overrideByRecord(translation, extraUiOption)
     : translation;

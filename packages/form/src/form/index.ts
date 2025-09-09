@@ -18,7 +18,7 @@ export * from "./id.js";
 export * from "./icons.js";
 export * from "./translation.js";
 
-export * from "./context/index.js";
+export * from "./state/index.js";
 
 export * from "./create-form.svelte.js";
 export { default as Content } from "./content.svelte";

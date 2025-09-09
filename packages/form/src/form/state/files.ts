@@ -1,20 +1,21 @@
 import type { Validator } from "@/core/index.js";
 
-import type { FormInternalContext } from "./context.js";
+import { FORM_DATA_URL_TO_BLOB } from "../internals.js";
+import type { FormState } from "./state.js";
 
-export async function addFile<V extends Validator>(
-  ctx: FormInternalContext<V>,
+export async function addFile<T, V extends Validator>(
+  ctx: FormState<T, V>,
   signal: AbortSignal,
   data: DataTransfer,
   value: string
 ) {
   // TODO: cache this operation
-  const { name, blob } = await ctx.dataUrlToBlob(signal, value);
+  const { name, blob } = await ctx[FORM_DATA_URL_TO_BLOB](signal, value);
   data.items.add(new File([blob], name, { type: blob.type }));
 }
 
-export function addFiles<V extends Validator>(
-  ctx: FormInternalContext<V>,
+export function addFiles<T, V extends Validator>(
+  ctx: FormState<T, V>,
   signal: AbortSignal,
   data: DataTransfer,
   values: string[]

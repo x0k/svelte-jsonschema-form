@@ -4,11 +4,11 @@ import {
   type Validator,
 } from "@/core/index.js";
 
-import type { FormInternalContext } from "../context/index.js";
+import type { FormState } from '../state/index.js';
 import type { ResolveFieldType } from "../fields.js";
 
-export function resolver<V extends Validator>(
-  _: FormInternalContext<V>
+export function resolver<T, V extends Validator>(
+  _: FormState<T, V>
 ): ResolveFieldType {
   return ({ schema }) => {
     if (schema.oneOf !== undefined) {

@@ -10,11 +10,11 @@ import {
   type UiSchema,
   type UiSchemaDefinition,
   type Validator,
-  type FormInternalContext,
   retrieveUiSchema,
   createPseudoId,
   type Config,
   type UiOption,
+  type FormState,
 } from "@/form/index.js";
 
 function getAltSchemas(
@@ -26,8 +26,8 @@ function getAltSchemas(
     : [schema.oneOf, uiSchema.oneOf];
 }
 
-export function createOptions<V extends Validator>(
-  ctx: FormInternalContext<V>,
+export function createOptions<T, V extends Validator>(
+  ctx: FormState<T, V>,
   config: Config,
   uiOption: UiOption,
   schema: Schema

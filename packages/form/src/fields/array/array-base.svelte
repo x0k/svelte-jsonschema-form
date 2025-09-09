@@ -25,8 +25,8 @@
     uiOption,
     translate,
   }: ComponentProps["arrayField" | "tupleField"] & {
-    createArrayContext: <V extends Validator>(
-      options: ArrayContextOptions<V>
+    createArrayContext: <T, V extends Validator>(
+      options: ArrayContextOptions<T, V>
     ) => ArrayContext<V>;
   } = $props();
 

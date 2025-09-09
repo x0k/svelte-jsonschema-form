@@ -7,11 +7,11 @@ import {
   ON_CHANGE,
   ON_BLUR,
 } from "../validation.js";
+import { FORM_FIELDS_VALIDATION_MODE } from '../internals.js';
+import type { FormState } from './state.js';
 
-import type { FormInternalContext } from "./context.js";
-
-export function makeEventHandlers<V extends Validator>(
-  ctx: FormInternalContext<V>,
+export function makeEventHandlers<T, V extends Validator>(
+  ctx: FormState<T, V>,
   validate: () => void
 ) {
   let changed = $state(false);
@@ -27,7 +27,7 @@ export function makeEventHandlers<V extends Validator>(
   });
 
   const makeHandler = (event: number) => {
-    const m = ctx.fieldsValidationMode;
+    const m = ctx[FORM_FIELDS_VALIDATION_MODE];
     if (
       !(m & event) ||
       (m & AFTER_SUBMITTED && !ctx.isSubmitted) ||

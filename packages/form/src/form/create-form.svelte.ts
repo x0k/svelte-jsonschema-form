@@ -1,4 +1,3 @@
-import { setContext } from "svelte";
 import type { Attachment } from "svelte/attachments";
 import { SvelteMap } from "svelte/reactivity";
 import { on } from "svelte/events";
@@ -44,7 +43,6 @@ import {
   type FieldsValidation,
   type FormValidationResult,
 } from "./errors.js";
-import type { FormInternalContext } from "./context/index.js";
 import type { FormMerger } from "./merger.js";
 import {
   type Id,
@@ -57,7 +55,27 @@ import type { Theme } from "./components.js";
 import type { FormValue, KeyedArraysMap } from "./model.js";
 import type { ResolveFieldType } from "./fields.js";
 import { createSchemaValuesReconciler, UNCHANGED } from "./reconcile.js";
-import { FORM_CONTEXT } from "./internals.js";
+import type { FormState } from "./state/index.js";
+import {
+  FORM_DATA_URL_TO_BLOB,
+  FORM_EXTRA_UI_OPTIONS as FORM_UI_EXTRA_OPTIONS,
+  FORM_FIELDS_VALIDATION_MODE,
+  FORM_KEYED_ARRAYS,
+  FORM_SCHEMA,
+  FORM_UI_SCHEMA,
+  FORM_UI_SCHEMA_ROOT,
+  FORM_VALUE,
+  FORM_UI_OPTIONS_REGISTRY,
+  FORM_DISABLED,
+  FORM_VALIDATOR,
+  FORM_MERGER,
+  FORM_RESOLVER,
+  FORM_THEME,
+  FORM_TRANSLATION,
+  FORM_TRANSLATE,
+  FORM_ICONS,
+  FORM_MARK_SCHEMA_CHANGE,
+} from "./internals.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
 
@@ -124,10 +142,18 @@ export interface ValidatorFactoryOptions {
    */
   merger: () => FormMerger;
 }
+
 export interface MergerFactoryOptions<V extends Validator> {
   validator: V;
   schema: Schema;
   uiSchema: UiSchemaRoot;
+}
+
+export interface GetSnapshotOptions<V extends Validator> {
+  validator: V;
+  merger: FormMerger;
+  schema: Schema;
+  value: FormValue;
 }
 
 export interface FormOptions<T, V extends Validator>
@@ -135,7 +161,7 @@ export interface FormOptions<T, V extends Validator>
   schema: Schema;
   theme: Theme;
   translation: Translation;
-  resolver: (ctx: FormInternalContext<V>) => ResolveFieldType;
+  resolver: (ctx: FormState<T, V>) => ResolveFieldType;
   createValidator: (options: ValidatorFactoryOptions) => V;
   createMerger: (options: MergerFactoryOptions<V>) => FormMerger;
   icons?: Icons;
@@ -204,7 +230,7 @@ export interface FormOptions<T, V extends Validator>
    *
    * @default (ctx) => $state.snapshot(ctx.value)
    */
-  getSnapshot?: (ctx: FormInternalContext<V>) => FormValue;
+  getSnapshot?: (ctx: GetSnapshotOptions<V>) => FormValue;
   /**
    * Submit handler
    *
@@ -253,32 +279,6 @@ export interface FormOptions<T, V extends Validator>
   schedulerYield?: SchedulerYield;
   keyedArraysMap?: KeyedArraysMap;
 }
-
-export interface FormState<T, V extends Validator> {
-  readonly [FORM_CONTEXT]: FormInternalContext<V>;
-  readonly submission: FormSubmission<V>;
-  readonly fieldsValidation: FieldsValidation<V>;
-  /**
-   * An accessor that maintains form state consistency:
-   *
-   * - A snapshot of the form state is returned on access
-   * - Default values from JSON Schema are taken into account during assignment
-   */
-  value: T | undefined;
-  isSubmitted: boolean;
-  isChanged: boolean;
-  errors: FieldErrorsMap<PossibleError<V>>;
-  submit: (e: SubmitEvent) => void;
-  reset: (e: Event) => void;
-}
-
-export function setFormContext(form: FormState<any, any>) {
-  setContext(FORM_CONTEXT, form[FORM_CONTEXT]);
-}
-
-// TODO: Remove in v4
-/** @deprecated use `setFormContext` */
-export const setFormContext2 = setFormContext;
 
 export function createForm<T, V extends Validator>(
   options: FormOptions<T, V>
@@ -346,9 +346,27 @@ export function createForm<T, V extends Validator>(
           })
   );
   const dataUrlToBlob = $derived(createDataURLtoBlob(schedulerYield));
-  const getSnapshot = $derived(
-    options.getSnapshot ?? (() => $state.snapshot(valueRef.current))
-  );
+  const getSnapshot = $derived.by(() => {
+    const get = options.getSnapshot;
+    if (get === undefined) {
+      return () => $state.snapshot(valueRef.current);
+    }
+    const opts: GetSnapshotOptions<V> = {
+      get merger() {
+        return merger;
+      },
+      get schema() {
+        return options.schema;
+      },
+      get validator() {
+        return validator;
+      },
+      get value() {
+        return valueRef.current;
+      },
+    };
+    return () => get(opts);
+  });
   const translate = $derived(createTranslate(options.translation));
   /** STATE END */
 
@@ -369,7 +387,7 @@ export function createForm<T, V extends Validator>(
   const submission: FormSubmission<V> = createTask({
     async execute(signal, _event: SubmitEvent) {
       isSubmitted = true;
-      const formValue = getSnapshot(context);
+      const formValue = getSnapshot();
       return {
         formValue,
         formErrors: groupErrors(
@@ -387,7 +405,7 @@ export function createForm<T, V extends Validator>(
       options.onSubmitError?.(formErrors, event, formValue);
     },
     onFailure(error, e) {
-      errorsRef.current.set(context.rootId, [
+      errorsRef.current.set(idPrefix as Id, [
         {
           propertyTitle: "",
           message: translate("validation-process-error", { error }),
@@ -493,26 +511,17 @@ export function createForm<T, V extends Validator>(
     options.onReset?.(e);
   }
 
-  const context: FormInternalContext<V> = {
-    get rootId() {
-      return idPrefix as Id;
-    },
-    get value() {
-      return valueRef.current;
-    },
-    set value(v) {
-      valueRef.current = v;
-    },
-    get fieldsValidationMode() {
-      return fieldsValidationMode;
-    },
+  const formState: FormState<T, V> = {
     submission,
     fieldsValidation,
-    get dataUrlToBlob() {
-      return dataUrlToBlob;
+    get value() {
+      return getSnapshot() as T | undefined;
     },
-    get keyedArrays() {
-      return keyedArrays;
+    set value(v) {
+      valueRef.current = merger.mergeFormDataAndSchemaDefaults(
+        v as FormValue,
+        options.schema
+      );
     },
     get isSubmitted() {
       return isSubmitted;
@@ -529,23 +538,8 @@ export function createForm<T, V extends Validator>(
     get errors() {
       return errorsRef.current;
     },
-    get schema() {
-      return options.schema;
-    },
-    get uiSchemaRoot() {
-      return uiSchemaRoot;
-    },
-    get uiSchema() {
-      return uiSchema;
-    },
-    get extraUiOptions() {
-      return options.extraUiOptions;
-    },
-    get uiOptionsRegistry() {
-      return uiOptionsRegistry;
-    },
-    get disabled() {
-      return disabled;
+    set errors(v) {
+      errorsRef.current = v;
     },
     get idPrefix() {
       return idPrefix;
@@ -556,36 +550,70 @@ export function createForm<T, V extends Validator>(
     get idPseudoSeparator() {
       return idPseudoSeparator;
     },
-    get validator() {
-      return validator;
-    },
-    get merger() {
-      return merger;
-    },
-    get fieldTypeResolver() {
-      return fieldTypeResolver;
-    },
-    get theme() {
-      return options.theme;
-    },
-    get translation() {
-      return options.translation;
-    },
-    get translate() {
-      return translate;
-    },
-    get icons() {
-      return options.icons;
-    },
     submit,
     reset,
-    markSchemaChange() {
+    // INTERNALS
+    get [FORM_VALUE]() {
+      return valueRef.current;
+    },
+    set [FORM_VALUE](v) {
+      valueRef.current = v;
+    },
+    get [FORM_FIELDS_VALIDATION_MODE]() {
+      return fieldsValidationMode;
+    },
+    get [FORM_DATA_URL_TO_BLOB]() {
+      return dataUrlToBlob;
+    },
+    get [FORM_KEYED_ARRAYS]() {
+      return keyedArrays;
+    },
+    get [FORM_SCHEMA]() {
+      return options.schema;
+    },
+    get [FORM_UI_SCHEMA_ROOT]() {
+      return uiSchemaRoot;
+    },
+    get [FORM_UI_SCHEMA]() {
+      return uiSchema;
+    },
+    get [FORM_UI_EXTRA_OPTIONS]() {
+      return options.extraUiOptions;
+    },
+    get [FORM_UI_OPTIONS_REGISTRY]() {
+      return uiOptionsRegistry;
+    },
+    get [FORM_DISABLED]() {
+      return disabled;
+    },
+    get [FORM_VALIDATOR]() {
+      return validator;
+    },
+    get [FORM_MERGER]() {
+      return merger;
+    },
+    get [FORM_RESOLVER]() {
+      return fieldTypeResolver;
+    },
+    get [FORM_THEME]() {
+      return options.theme;
+    },
+    get [FORM_TRANSLATION]() {
+      return options.translation;
+    },
+    get [FORM_TRANSLATE]() {
+      return translate;
+    },
+    get [FORM_ICONS]() {
+      return options.icons;
+    },
+    [FORM_MARK_SCHEMA_CHANGE]() {
       if (isDefaultsInjectionQueued) return;
       isDefaultsInjectionQueued = true;
       queueMicrotask(injectSchemaDefaults);
     },
   };
-  const fieldTypeResolver = $derived(options.resolver(context));
+  const fieldTypeResolver = $derived(options.resolver(formState));
 
   let isDefaultsInjectionQueued = false;
   function injectSchemaDefaults() {
@@ -599,49 +627,15 @@ export function createForm<T, V extends Validator>(
       valueRef.current = change;
     }
   }
-
-  return {
-    [FORM_CONTEXT]: context,
-    get value() {
-      return getSnapshot(context) as T | undefined;
-    },
-    set value(v) {
-      valueRef.current = merger.mergeFormDataAndSchemaDefaults(
-        v as FormValue,
-        options.schema
-      );
-    },
-    get errors() {
-      return errorsRef.current;
-    },
-    set errors(v) {
-      errorsRef.current = v;
-    },
-    get isSubmitted() {
-      return isSubmitted;
-    },
-    set isSubmitted(v) {
-      isSubmitted = v;
-    },
-    get isChanged() {
-      return isChanged;
-    },
-    set isChanged(v) {
-      isChanged = v;
-    },
-    submission,
-    fieldsValidation,
-    submit,
-    reset,
-  };
+  return formState;
 }
 
-export function handlers(
-  ctxOrState: FormState<any, any> | FormInternalContext<any>
+export function handlers<T, V extends Validator>(
+  form: FormState<T, V>
 ): Attachment<HTMLFormElement> {
   return (node) => {
-    const disposeSubmit = on(node, "submit", ctxOrState.submit);
-    const disposeReset = on(node, "reset", ctxOrState.reset);
+    const disposeSubmit = on(node, "submit", form.submit);
+    const disposeReset = on(node, "reset", form.reset);
     return () => {
       disposeReset();
       disposeSubmit();

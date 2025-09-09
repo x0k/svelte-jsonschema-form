@@ -12,13 +12,14 @@ import type { Validator } from "@/core/index.js";
 import type { Config } from "../config.js";
 import { createPseudoId, type IdentifiableFieldElement } from "../id.js";
 import type { UiOptions } from "../ui-schema.js";
+import { FORM_DISABLED } from "../internals.js";
 
-import type { FormInternalContext } from "./context.js";
 import {
   uiOptionNestedProps,
   uiOptionProps,
   type ObjectUiOptions,
 } from "./ui-schema.js";
+import type { FormState } from "./state.js";
 
 interface Disabled {
   disabled: boolean;
@@ -30,67 +31,67 @@ interface Handlers {
   onchange?: () => void;
 }
 
-export function composeProps<V extends Validator, A>(
-  ctx: FormInternalContext<V>,
+export function composeProps<T, V extends Validator, A>(
+  ctx: FormState<T, V>,
   config: Config,
   props: A
 ): A;
-export function composeProps<V extends Validator, A, B>(
-  ctx: FormInternalContext<V>,
+export function composeProps<T, V extends Validator, A, B>(
+  ctx: FormState<T, V>,
   config: Config,
   props: A,
-  ab: (props: A, config: Config, ctx: FormInternalContext<V>) => B
+  ab: (props: A, config: Config, ctx: FormState<T, V>) => B
 ): B;
-export function composeProps<V extends Validator, A, B, C>(
-  ctx: FormInternalContext<V>,
+export function composeProps<T, V extends Validator, A, B, C>(
+  ctx: FormState<T, V>,
   config: Config,
   props: A,
-  ab: (props: A, config: Config, ctx: FormInternalContext<V>) => B,
-  bc: (props: B, config: Config, ctx: FormInternalContext<V>) => C
+  ab: (props: A, config: Config, ctx: FormState<T, V>) => B,
+  bc: (props: B, config: Config, ctx: FormState<T, V>) => C
 ): C;
-export function composeProps<V extends Validator, A, B, C, D>(
-  ctx: FormInternalContext<V>,
+export function composeProps<T, V extends Validator, A, B, C, D>(
+  ctx: FormState<T, V>,
   config: Config,
   props: A,
-  ab: (props: A, config: Config, ctx: FormInternalContext<V>) => B,
-  bc: (props: B, config: Config, ctx: FormInternalContext<V>) => C,
-  cd: (props: C, config: Config, ctx: FormInternalContext<V>) => D
+  ab: (props: A, config: Config, ctx: FormState<T, V>) => B,
+  bc: (props: B, config: Config, ctx: FormState<T, V>) => C,
+  cd: (props: C, config: Config, ctx: FormState<T, V>) => D
 ): D;
-export function composeProps<V extends Validator, A, B, C, D, E>(
-  ctx: FormInternalContext<V>,
+export function composeProps<T, V extends Validator, A, B, C, D, E>(
+  ctx: FormState<T, V>,
   config: Config,
   props: A,
-  ab: (props: A, config: Config, ctx: FormInternalContext<V>) => B,
-  bc: (props: B, config: Config, ctx: FormInternalContext<V>) => C,
-  cd: (props: C, config: Config, ctx: FormInternalContext<V>) => D,
-  de: (props: D, config: Config, ctx: FormInternalContext<V>) => E
+  ab: (props: A, config: Config, ctx: FormState<T, V>) => B,
+  bc: (props: B, config: Config, ctx: FormState<T, V>) => C,
+  cd: (props: C, config: Config, ctx: FormState<T, V>) => D,
+  de: (props: D, config: Config, ctx: FormState<T, V>) => E
 ): E;
-export function composeProps<V extends Validator, A, B, C, D, E, F>(
-  ctx: FormInternalContext<V>,
+export function composeProps<T, V extends Validator, A, B, C, D, E, F>(
+  ctx: FormState<T, V>,
   config: Config,
   props: A,
-  ab: (props: A, config: Config, ctx: FormInternalContext<V>) => B,
-  bc: (props: B, config: Config, ctx: FormInternalContext<V>) => C,
-  cd: (props: C, config: Config, ctx: FormInternalContext<V>) => D,
-  de: (props: D, config: Config, ctx: FormInternalContext<V>) => E,
-  ef: (props: E, config: Config, ctx: FormInternalContext<V>) => F
+  ab: (props: A, config: Config, ctx: FormState<T, V>) => B,
+  bc: (props: B, config: Config, ctx: FormState<T, V>) => C,
+  cd: (props: C, config: Config, ctx: FormState<T, V>) => D,
+  de: (props: D, config: Config, ctx: FormState<T, V>) => E,
+  ef: (props: E, config: Config, ctx: FormState<T, V>) => F
 ): F;
-export function composeProps<V extends Validator, A, B, C, D, E, F, G>(
-  ctx: FormInternalContext<V>,
+export function composeProps<T, V extends Validator, A, B, C, D, E, F, G>(
+  ctx: FormState<T, V>,
   config: Config,
   props: A,
-  ab: (props: A, config: Config, ctx: FormInternalContext<V>) => B,
-  bc: (props: B, config: Config, ctx: FormInternalContext<V>) => C,
-  cd: (props: C, config: Config, ctx: FormInternalContext<V>) => D,
-  de: (props: D, config: Config, ctx: FormInternalContext<V>) => E,
-  ef: (props: E, config: Config, ctx: FormInternalContext<V>) => F,
-  fg: (props: F, config: Config, ctx: FormInternalContext<V>) => G
+  ab: (props: A, config: Config, ctx: FormState<T, V>) => B,
+  bc: (props: B, config: Config, ctx: FormState<T, V>) => C,
+  cd: (props: C, config: Config, ctx: FormState<T, V>) => D,
+  de: (props: D, config: Config, ctx: FormState<T, V>) => E,
+  ef: (props: E, config: Config, ctx: FormState<T, V>) => F,
+  fg: (props: F, config: Config, ctx: FormState<T, V>) => G
 ): G;
-export function composeProps<V extends Validator, R>(
-  ctx: FormInternalContext<V>,
+export function composeProps<T, V extends Validator, R>(
+  ctx: FormState<T, V>,
   config: Config,
   props: R,
-  ...options: ((props: R, config: Config, ctx: FormInternalContext<V>) => R)[]
+  ...options: ((props: R, config: Config, ctx: FormState<T, V>) => R)[]
 ) {
   for (let i = 0; i < options.length; i++) {
     props = options[i]!(props, config, ctx);
@@ -102,19 +103,19 @@ export function assignProps<O>(options: O) {
   return <T extends object>(props: T) => Object.assign(props, options);
 }
 
-export function isDisabled<V extends Validator>(
-  ctx: FormInternalContext<V>,
+export function isDisabled<T, V extends Validator>(
+  ctx: FormState<T, V>,
   attributes?: Partial<Nullable<Disabled>>
 ) {
-  return attributes?.disabled || ctx.disabled;
+  return attributes?.disabled || ctx[FORM_DISABLED];
 }
 
-export function disabledProp<V extends Validator, T>(
+export function disabledProp<T, FT, V extends Validator>(
   obj: T & Partial<Nullable<Disabled>>,
   _: Config,
-  ctx: FormInternalContext<V>
+  ctx: FormState<FT, V>
 ) {
-  obj.disabled ||= ctx.disabled;
+  obj.disabled ||= ctx[FORM_DISABLED];
   return obj as T & Disabled;
 }
 
@@ -142,8 +143,8 @@ const DEFAULT_DESCRIBE_ELEMENTS: (keyof IdentifiableFieldElement)[] = [
 const DEFAULT_DESCRIBE_ELEMENTS_WITH_EXAMPLES =
   DEFAULT_DESCRIBE_ELEMENTS.concat("examples");
 
-export function describedBy<V extends Validator>(
-  ctx: FormInternalContext<V>,
+export function describedBy<T, V extends Validator>(
+  ctx: FormState<T, V>,
   config: Config
 ) {
   return (
@@ -156,10 +157,10 @@ export function describedBy<V extends Validator>(
 }
 
 export function inputProps(handlers: Handlers) {
-  return <V extends Validator, T>(
+  return <T, FT, V extends Validator>(
     props: T & HTMLInputAttributes,
     config: Config,
-    ctx: FormInternalContext<V>
+    ctx: FormState<FT, V>
   ) => {
     const { id, required, schema } = config;
     props.id = id;
@@ -189,10 +190,10 @@ export function inputProps(handlers: Handlers) {
 }
 
 export function textareaProps(handlers: Handlers) {
-  return <T, V extends Validator>(
+  return <T, FT, V extends Validator>(
     props: T & HTMLTextareaAttributes,
     config: Config,
-    ctx: FormInternalContext<V>
+    ctx: FormState<FT, V>
   ) => {
     const { id, required, schema } = config;
     props.id = id;
@@ -210,10 +211,10 @@ export function textareaProps(handlers: Handlers) {
 }
 
 export function selectProps(handlers: Handlers) {
-  return <T, V extends Validator>(
+  return <T, FT, V extends Validator>(
     props: T & HTMLSelectAttributes,
     config: Config,
-    ctx: FormInternalContext<V>
+    ctx: FormState<FT, V>
   ) => {
     const { id, required } = config;
     props.id = id;
@@ -241,10 +242,10 @@ type WithId<T> = T & {
 };
 
 export function idProp(element: keyof IdentifiableFieldElement) {
-  return <V extends Validator, T>(
+  return <T, FT, V extends Validator>(
     props: WithId<T>,
     config: Config,
-    ctx: FormInternalContext<V>
+    ctx: FormState<FT, V>
   ) => {
     props.id = createPseudoId(config.id, element, ctx);
     return props;
@@ -283,10 +284,11 @@ export function buttonTypeProp(
 }
 
 export function descriptionAttributes<
+  T,
   V extends Validator,
   O extends keyof ObjectUiOptions,
 >(
-  ctx: FormInternalContext<V>,
+  ctx: FormState<T, V>,
   config: Config,
   option: O,
   props: NonNullable<UiOptions[O]>
@@ -301,10 +303,11 @@ export function descriptionAttributes<
 }
 
 export function errorsListAttributes<
+  T,
   V extends Validator,
   O extends keyof ObjectUiOptions,
 >(
-  ctx: FormInternalContext<V>,
+  ctx: FormState<T, V>,
   config: Config,
   option: O,
   props: NonNullable<UiOptions[O]>
@@ -320,10 +323,11 @@ export function errorsListAttributes<
 }
 
 export function formAttributes<
+  T,
   V extends Validator,
   O extends keyof ObjectUiOptions,
 >(
-  ctx: FormInternalContext<V>,
+  ctx: FormState<T, V>,
   config: Config,
   option: O,
   attributes: HTMLFormAttributes | undefined,
@@ -339,10 +343,11 @@ export function formAttributes<
 }
 
 export function helpAttributes<
+  T,
   V extends Validator,
   O extends keyof ObjectUiOptions,
 >(
-  ctx: FormInternalContext<V>,
+  ctx: FormState<T, V>,
   config: Config,
   option: O,
   props: NonNullable<UiOptions[O]>
@@ -357,10 +362,11 @@ export function helpAttributes<
 }
 
 export function labelAttributes<
+  T,
   V extends Validator,
   O extends keyof ObjectUiOptions,
 >(
-  ctx: FormInternalContext<V>,
+  ctx: FormState<T, V>,
   config: Config,
   option: O,
   props: NonNullable<UiOptions[O]>
@@ -369,10 +375,11 @@ export function labelAttributes<
 }
 
 export function titleAttributes<
+  T,
   V extends Validator,
   O extends keyof ObjectUiOptions,
 >(
-  ctx: FormInternalContext<V>,
+  ctx: FormState<T, V>,
   config: Config,
   option: O,
   props: NonNullable<UiOptions[O]>
@@ -388,12 +395,13 @@ export function titleAttributes<
 
 // WARN: basic layout depends on amount of required props
 export function layoutAttributes<
+  FT,
   V extends Validator,
   O extends keyof ObjectUiOptions,
   O2 extends keyof ObjectUiOptions,
   T extends keyof ObjectProperties<NonNullable<UiOptions[O2]>>,
 >(
-  ctx: FormInternalContext<V>,
+  ctx: FormState<FT, V>,
   config: Config,
   option: O,
   nestedOption: O2,
@@ -414,10 +422,11 @@ export function layoutAttributes<
 }
 
 export function buttonAttributes<
+  T,
   V extends Validator,
   O extends keyof ObjectUiOptions,
 >(
-  ctx: FormInternalContext<V>,
+  ctx: FormState<T, V>,
   config: Config,
   option: O,
   type: Exclude<HTMLButtonAttributes["type"], undefined>,
@@ -434,10 +443,11 @@ export function buttonAttributes<
 }
 
 export function customInputAttributes<
+  T,
   V extends Validator,
   O extends keyof ObjectUiOptions,
 >(
-  ctx: FormInternalContext<V>,
+  ctx: FormState<T, V>,
   config: Config,
   option: O,
   props: NonNullable<UiOptions[O]>
@@ -446,10 +456,11 @@ export function customInputAttributes<
 }
 
 export function inputAttributes<
+  T,
   V extends Validator,
   O extends keyof ObjectUiOptions,
 >(
-  ctx: FormInternalContext<V>,
+  ctx: FormState<T, V>,
   config: Config,
   option: O,
   handlers: Handlers,
@@ -466,10 +477,11 @@ export function inputAttributes<
 }
 
 export function selectAttributes<
+  T,
   V extends Validator,
   O extends keyof ObjectUiOptions,
 >(
-  ctx: FormInternalContext<V>,
+  ctx: FormState<T, V>,
   config: Config,
   option: O,
   handlers: Handlers,
@@ -486,10 +498,11 @@ export function selectAttributes<
 }
 
 export function textareaAttributes<
+  T,
   V extends Validator,
   O extends keyof ObjectUiOptions,
 >(
-  ctx: FormInternalContext<V>,
+  ctx: FormState<T, V>,
   config: Config,
   option: O,
   handlers: Handlers,

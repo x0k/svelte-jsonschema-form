@@ -16,6 +16,7 @@ import {
   createChildId,
   getDefaultFieldState,
   getErrors,
+  getFieldsValidationMode,
   ON_ARRAY_CHANGE,
   retrieveSchema,
   retrieveUiOption,
@@ -24,7 +25,8 @@ import {
   validateField,
   type Config,
   type FieldError,
-  type FormInternalContext,
+  type FormState,
+  type FieldValue,
   type KeyedFieldValues,
   type PossibleError,
   type UiOption,
@@ -72,23 +74,23 @@ export function setArrayContext<V extends Validator>(ctx: ArrayContext<V>) {
   setContext(ARRAY_CONTEXT, ctx);
 }
 
-interface ItemsOptions<V extends Validator> {
-  ctx: FormInternalContext<V>;
+interface ItemsOptions<T, V extends Validator> {
+  ctx: FormState<T, V>;
   config: () => Config;
   value: () => SchemaArrayValue | undefined;
   keyedArray: () => KeyedFieldValues;
   itemSchema: () => Schema | undefined;
 }
 
-function createItems<V extends Validator>({
+function createItems<T, V extends Validator>({
   ctx,
   config,
   itemSchema,
   keyedArray,
   value,
-}: ItemsOptions<V>) {
+}: ItemsOptions<T, V>) {
   function validate() {
-    const m = ctx.fieldsValidationMode;
+    const m = getFieldsValidationMode(ctx);
     if (!(m & ON_ARRAY_CHANGE) || (m & AFTER_SUBMITTED && !ctx.isSubmitted)) {
       return;
     }
@@ -175,19 +177,19 @@ function createCanAdd(
     maxItems === undefined || length() < maxItems);
 }
 
-export interface ArrayContextOptions<V extends Validator> {
-  ctx: FormInternalContext<V>;
+export interface ArrayContextOptions<T, V extends Validator> {
+  ctx: FormState<T, V>;
   config: () => Config;
   value: () => SchemaArrayValue | undefined;
   keyedArray: () => KeyedFieldValues;
 }
 
-export function createArrayContext<V extends Validator>({
+export function createArrayContext<T, V extends Validator>({
   ctx,
   config,
   value,
   keyedArray,
-}: ArrayContextOptions<V>): ArrayContext<V> {
+}: ArrayContextOptions<T, V>): ArrayContext<V> {
   const arr = $derived.by(value);
 
   const itemSchema: Schema = $derived.by(() => {
@@ -256,12 +258,12 @@ export function createArrayContext<V extends Validator>({
   } satisfies Partial<ArrayContext<V>>);
 }
 
-export function createTupleContext<V extends Validator>({
+export function createTupleContext<T, V extends Validator>({
   ctx,
   config,
   value,
   keyedArray,
-}: ArrayContextOptions<V>): ArrayContext<V> {
+}: ArrayContextOptions<T, V>): ArrayContext<V> {
   const arr = $derived.by(value);
 
   const itemsSchema = $derived.by(() => {
@@ -307,7 +309,7 @@ export function createTupleContext<V extends Validator>({
   );
 
   function initTuple(onInit: (arr: SchemaArrayValue) => void = noop) {
-    const arr = new Array(arrLen);
+    const arr = new Array<FieldValue>(arrLen);
     onInit(arr);
     keyed.splice(0, 0, ...arr);
   }

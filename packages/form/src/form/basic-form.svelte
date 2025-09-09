@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { HTMLFormAttributes } from "svelte/elements";
 
-  import { type FormState, setFormContext } from "./create-form.svelte.js";
+  import { type FormState, setFormContext } from "./state/index.js";
   import Form from "./form.svelte";
   import Content from "./content.svelte";
   import SubmitButton from "./submit-button.svelte";
