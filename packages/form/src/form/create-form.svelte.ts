@@ -57,7 +57,7 @@ import type { Theme } from "./components.js";
 import type { FormValue, KeyedArraysMap } from "./model.js";
 import type { ResolveFieldType } from "./fields.js";
 import { createSchemaValuesReconciler, UNCHANGED } from "./reconcile.js";
-import { FORM_CONTEXT } from "./internal.js";
+import { FORM_CONTEXT } from "./internals.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
 
@@ -476,12 +476,12 @@ export function createForm<T, V extends Validator>(
     },
   });
 
-  function submitHandler(e: SubmitEvent) {
+  function submit(e: SubmitEvent) {
     e.preventDefault();
     submission.run(e);
   }
 
-  function resetHandler(e: Event) {
+  function reset(e: Event) {
     e.preventDefault();
     isSubmitted = false;
     isChanged = false;
@@ -577,8 +577,8 @@ export function createForm<T, V extends Validator>(
     get icons() {
       return options.icons;
     },
-    submitHandler,
-    resetHandler,
+    submit,
+    reset,
     markSchemaChange() {
       if (isDefaultsInjectionQueued) return;
       isDefaultsInjectionQueued = true;
@@ -631,19 +631,17 @@ export function createForm<T, V extends Validator>(
     },
     submission,
     fieldsValidation,
-    submit: submitHandler,
-    reset: resetHandler,
+    submit,
+    reset,
   };
 }
 
 export function handlers(
   ctxOrState: FormState<any, any> | FormInternalContext<any>
 ): Attachment<HTMLFormElement> {
-  const ctx =
-    FORM_CONTEXT in ctxOrState ? ctxOrState[FORM_CONTEXT] : ctxOrState;
   return (node) => {
-    const disposeSubmit = on(node, "submit", ctx.submitHandler);
-    const disposeReset = on(node, "reset", ctx.resetHandler);
+    const disposeSubmit = on(node, "submit", ctxOrState.submit);
+    const disposeReset = on(node, "reset", ctxOrState.reset);
     return () => {
       disposeReset();
       disposeSubmit();

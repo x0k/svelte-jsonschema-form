@@ -24,7 +24,7 @@
   import type { Config } from "./config.js";
   import type { ComponentProps } from "./components.js";
   import type { FoundationalFieldType } from "./fields.js";
-  import { FORM_CONTEXT } from "./internal.js";
+  import { FORM_CONTEXT } from "./internals.js";
 
   interface Props {
     form: FormState<T, V>;

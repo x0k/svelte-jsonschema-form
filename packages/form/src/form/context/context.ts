@@ -22,7 +22,7 @@ import type { Theme } from "../components.js";
 import type { Id, IdOptions } from "../id.js";
 import type { FormValue, KeyedArraysMap } from "../model.js";
 import type { ResolveFieldType } from "../fields.js";
-import { FORM_CONTEXT } from "../internal.js";
+import { FORM_CONTEXT } from "../internals.js";
 
 export interface FormInternalContext<V extends Validator>
   extends Readonly<Required<IdOptions>> {
@@ -48,8 +48,8 @@ export interface FormInternalContext<V extends Validator>
   readonly translate: Translate;
   readonly fieldTypeResolver: ResolveFieldType;
   readonly theme: Theme;
-  readonly submitHandler: (e: SubmitEvent) => void;
-  readonly resetHandler: (e: Event) => void;
+  readonly submit: (e: SubmitEvent) => void;
+  readonly reset: (e: Event) => void;
   readonly submission: FormSubmission<V>;
   readonly fieldsValidation: FieldsValidation<V>;
 }
