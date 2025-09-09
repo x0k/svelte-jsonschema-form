@@ -12,7 +12,7 @@ import {
 } from "../ui-schema.js";
 import { createTranslate } from "../translation.js";
 import {
-  FORM_EXTRA_UI_OPTIONS,
+  FORM_UI_EXTRA_OPTIONS,
   FORM_TRANSLATION,
   FORM_UI_OPTIONS_REGISTRY,
   FORM_UI_SCHEMA_ROOT,
@@ -52,7 +52,7 @@ export function retrieveUiOption<
   O extends keyof UiOptions,
 >(ctx: FormState<T, V>, config: Config, option: O) {
   return (
-    ctx[FORM_EXTRA_UI_OPTIONS]?.(option, config) ??
+    ctx[FORM_UI_EXTRA_OPTIONS]?.(option, config) ??
     resolveUiOption(ctx, config.uiSchema, option)
   );
 }
@@ -68,7 +68,7 @@ export function uiOptionProps<O extends keyof ObjectUiOptions>(option: O) {
     return Object.assign(
       props,
       resolveUiOption(ctx, config.uiSchema, option),
-      ctx[FORM_EXTRA_UI_OPTIONS]?.(option, config as never)
+      ctx[FORM_UI_EXTRA_OPTIONS]?.(option, config as never)
     );
   };
 }
@@ -83,7 +83,7 @@ export function uiOptionNestedProps<
     ctx: FormState<T, V>
   ): R => {
     const options = resolveUiOption(ctx, config.uiSchema, option);
-    const extraOptions = ctx[FORM_EXTRA_UI_OPTIONS]?.(option, config as never);
+    const extraOptions = ctx[FORM_UI_EXTRA_OPTIONS]?.(option, config as never);
     return Object.assign(
       props,
       options && selector(options),
@@ -101,7 +101,7 @@ export function retrieveTranslate<T, V extends Validator>(
   translation = uiOption
     ? overrideByRecord(translation, uiOption)
     : translation;
-  const extraUiOption = ctx[FORM_EXTRA_UI_OPTIONS]?.("translations", config);
+  const extraUiOption = ctx[FORM_UI_EXTRA_OPTIONS]?.("translations", config);
   translation = extraUiOption
     ? overrideByRecord(translation, extraUiOption)
     : translation;

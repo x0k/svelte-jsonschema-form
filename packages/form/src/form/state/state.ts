@@ -25,7 +25,7 @@ import {
   FORM_CONTEXT,
   FORM_DATA_URL_TO_BLOB,
   FORM_DISABLED,
-  FORM_EXTRA_UI_OPTIONS,
+  FORM_UI_EXTRA_OPTIONS,
   FORM_RESOLVER,
   FORM_FIELDS_VALIDATION_MODE,
   FORM_ICONS,
@@ -61,6 +61,8 @@ export interface FormState<T, V extends Validator>
   submit: (e: SubmitEvent) => void;
   reset: (e: Event) => void;
 
+  /** Internals */
+
   [FORM_VALUE]: FormValue;
   readonly [FORM_MARK_SCHEMA_CHANGE]: () => void;
   readonly [FORM_KEYED_ARRAYS]: KeyedArraysMap;
@@ -69,7 +71,7 @@ export interface FormState<T, V extends Validator>
   readonly [FORM_UI_SCHEMA_ROOT]: UiSchemaRoot;
   readonly [FORM_UI_SCHEMA]: UiSchema;
   readonly [FORM_UI_OPTIONS_REGISTRY]: UiOptionsRegistry;
-  readonly [FORM_EXTRA_UI_OPTIONS]?: ExtraUiOptions;
+  readonly [FORM_UI_EXTRA_OPTIONS]?: ExtraUiOptions;
   readonly [FORM_VALIDATOR]: V;
   readonly [FORM_MERGER]: FormMerger;
   readonly [FORM_ICONS]?: Icons;

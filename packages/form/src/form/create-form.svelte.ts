@@ -58,7 +58,7 @@ import { createSchemaValuesReconciler, UNCHANGED } from "./reconcile.js";
 import type { FormState } from "./state/index.js";
 import {
   FORM_DATA_URL_TO_BLOB,
-  FORM_EXTRA_UI_OPTIONS as FORM_UI_EXTRA_OPTIONS,
+  FORM_UI_EXTRA_OPTIONS,
   FORM_FIELDS_VALIDATION_MODE,
   FORM_KEYED_ARRAYS,
   FORM_SCHEMA,
