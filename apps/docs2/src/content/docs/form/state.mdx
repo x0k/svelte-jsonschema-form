@@ -22,7 +22,8 @@ export type FieldsValidation<V> = Task<
   unknown
 >;
 
-export interface FormState<T, V extends Validator> {
+export interface FormState<T, V extends Validator>
+  extends Readonly<Required<IdOptions>> {
   readonly submission: FormSubmission<V>;
   readonly fieldsValidation: FieldsValidation<V>;
   /**
@@ -37,6 +38,27 @@ export interface FormState<T, V extends Validator> {
   errors: FieldErrorsMap<PossibleError<V>>;
   submit: (e: SubmitEvent) => void;
   reset: (e: Event) => void;
+
+  /** Internals */
+
+  [FORM_VALUE]: FormValue;
+  readonly [FORM_MARK_SCHEMA_CHANGE]: () => void;
+  readonly [FORM_KEYED_ARRAYS]: KeyedArraysMap;
+  readonly [FORM_FIELDS_VALIDATION_MODE]: number;
+  readonly [FORM_SCHEMA]: Schema;
+  readonly [FORM_UI_SCHEMA_ROOT]: UiSchemaRoot;
+  readonly [FORM_UI_SCHEMA]: UiSchema;
+  readonly [FORM_UI_OPTIONS_REGISTRY]: UiOptionsRegistry;
+  readonly [FORM_UI_EXTRA_OPTIONS]?: ExtraUiOptions;
+  readonly [FORM_VALIDATOR]: V;
+  readonly [FORM_MERGER]: FormMerger;
+  readonly [FORM_ICONS]?: Icons;
+  readonly [FORM_DISABLED]: boolean;
+  readonly [FORM_DATA_URL_TO_BLOB]: DataURLToBlob;
+  readonly [FORM_TRANSLATION]: Translation;
+  readonly [FORM_TRANSLATE]: Translate;
+  readonly [FORM_RESOLVER]: ResolveFieldType;
+  readonly [FORM_THEME]: Theme;
 }
 ```
 
@@ -83,3 +105,27 @@ if (api) {
   api.push(123)
 }
 ```
+
+## Internals
+
+The `@sjsf/form` package exports a number of utility functions (e.g. `getErrors`)
+that let you safely interact with the form's internal state.
+These helpers are the preferred way to read or manipulate internals,
+since they are considered part of the supported API and follow semantic versioning.
+
+For advanced cases, you may also access raw internals
+by importing symbols from `@sjsf/form/internals` and using them on a `FormState` instance.
+
+:::caution
+
+Symbols from `@sjsf/form/internals` and the internal state itself
+are not part of the public API.
+They may change or be removed in any release, including patch versions.
+
+:::
+
+If you need functionality that isn't covered by the exported helpers,
+please [open an issue](https://github.com/x0k/svelte-jsonschema-form/issues/new/choose)
+or [start a discussion](https://github.com/x0k/svelte-jsonschema-form/discussions/new/choose)
+on GitHub.
+This way we can continue improving the API for everyone.
