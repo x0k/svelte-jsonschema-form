@@ -11,9 +11,10 @@
     retrieveSchema,
     retrieveTranslate,
     retrieveUiOption,
+    setFormContext,
     uiTitleOption,
-  } from "./context/index.js";
-  import { setFormContext, type FormState } from "./create-form.svelte.js";
+    type FormState,
+  } from "./state/index.js";
   import type { FieldValue } from "./model.js";
   import {
     getUiSchemaByPath,
@@ -24,7 +25,12 @@
   import type { Config } from "./config.js";
   import type { ComponentProps } from "./components.js";
   import type { FoundationalFieldType } from "./fields.js";
-  import { FORM_CONTEXT } from "./internal.js";
+  import {
+    FORM_SCHEMA,
+    FORM_UI_SCHEMA,
+    FORM_UI_SCHEMA_ROOT,
+    FORM_VALUE,
+  } from "./internals.js";
 
   interface Props {
     form: FormState<T, V>;
@@ -48,8 +54,6 @@
     render,
   }: Props = $props();
 
-  const ctx = form[FORM_CONTEXT];
-
   if (DEV) {
     $effect(() => {
       if (name === "" && render === undefined) {
@@ -60,13 +64,20 @@
 
   const valuePath = $derived(name === "" ? [] : name.split("."));
 
-  const id = $derived(pathToId(valuePath, ctx));
+  const id = $derived(pathToId(valuePath, form));
 
   const valueRef: { value: FieldValue } = $derived.by(() => {
     if (valuePath.length === 0) {
-      return ctx;
+      return {
+        get value() {
+          return form[FORM_VALUE];
+        },
+        set value(v) {
+          form[FORM_VALUE] = v;
+        },
+      };
     }
-    let node = ctx.value;
+    let node = form[FORM_VALUE];
     let i = -1;
     const lastIndex = valuePath.length - 1;
     while (isObject(node) && ++i < lastIndex) {
@@ -74,7 +85,7 @@
       node = node[valuePath[i]];
     }
     if (i !== lastIndex) {
-      console.error("Current form state", $state.snapshot(ctx.value));
+      console.error("Current form state", $state.snapshot(form[FORM_VALUE]));
       throw new Error(
         `Path "${name}" is not populated or invalid, check current form state`
       );
@@ -95,11 +106,11 @@
   const parentSchema = $derived.by(() => {
     const len = valuePath.length;
     if (len < 2) {
-      return ctx.schema;
+      return form[FORM_SCHEMA];
     }
     const def = getSchemaDefinitionByPath(
-      ctx.schema,
-      ctx.schema,
+      form[FORM_SCHEMA],
+      form[FORM_SCHEMA],
       valuePath.slice(0, -1)
     );
     return def === undefined || typeof def === "boolean" ? {} : def;
@@ -107,21 +118,27 @@
 
   const schema = $derived.by(() => {
     if (valuePath.length === 0) {
-      return ctx.schema;
+      return form[FORM_SCHEMA];
     }
     const def = getSchemaDefinitionByPath(
-      ctx.schema,
+      form[FORM_SCHEMA],
       parentSchema,
       valuePath.slice(-1)
     );
     return def === undefined || typeof def === "boolean" ? {} : def;
   });
 
-  const retrievedSchema = $derived(retrieveSchema(ctx, schema, valueRef.value));
+  const retrievedSchema = $derived(
+    retrieveSchema(form, schema, valueRef.value)
+  );
 
   const uiSchema = $derived(
     uiSchemaOverride ??
-      getUiSchemaByPath(ctx.uiSchemaRoot, ctx.uiSchema, valuePath) ??
+      getUiSchemaByPath(
+        form[FORM_UI_SCHEMA_ROOT],
+        form[FORM_UI_SCHEMA],
+        valuePath
+      ) ??
       {}
   );
 
@@ -151,13 +168,13 @@
 
   const config: Config = $derived({
     id,
-    title: uiTitleOption(ctx, uiSchema) ?? retrievedSchema.title ?? "",
+    title: uiTitleOption(form, uiSchema) ?? retrievedSchema.title ?? "",
     schema: retrievedSchema,
     uiSchema,
     required,
   });
-  const translate = $derived(retrieveTranslate(ctx, config));
-  const uiOption: UiOption = (opt) => retrieveUiOption(ctx, config, opt);
+  const translate = $derived(retrieveTranslate(form, config));
+  const uiOption: UiOption = (opt) => retrieveUiOption(form, config, opt);
 
   setFormContext(form);
 </script>
@@ -171,7 +188,7 @@
     valueRef,
   })}
 {:else}
-  {@const Field = getFieldComponent(ctx, config)}
+  {@const Field = getFieldComponent(form, config)}
   <Field
     type="field"
     bind:value={valueRef.value as undefined}

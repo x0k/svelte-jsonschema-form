@@ -9,31 +9,37 @@ import {
 } from "../errors.js";
 import { isAdditionalPropertyKeyValidator } from "../validator.js";
 import type { FormValue } from "../model.js";
+import { FORM_FIELDS_VALIDATION_MODE, FORM_VALIDATOR } from "../internals.js";
+import type { FormState } from "./state.js";
 
-import type { FormInternalContext } from "./context.js";
+export function getFieldsValidationMode<T, V extends Validator>(
+  ctx: FormState<T, V>
+) {
+  return ctx[FORM_FIELDS_VALIDATION_MODE];
+}
 
-export function getErrors<V extends Validator>(
-  ctx: FormInternalContext<V>,
+export function getErrors<T, V extends Validator>(
+  ctx: FormState<T, V>,
   id: Id
 ): FieldError<PossibleError<V>>[] {
   return ctx.errors.get(id) ?? [];
 }
 
-export function validateField<V extends Validator>(
-  ctx: FormInternalContext<V>,
+export function validateField<T, V extends Validator>(
+  ctx: FormState<T, V>,
   config: Config,
   value: FormValue
 ) {
   ctx.fieldsValidation.run(config, value);
 }
 
-export function validateAdditionalPropertyKey<V extends Validator>(
-  ctx: FormInternalContext<V>,
+export function validateAdditionalPropertyKey<T, V extends Validator>(
+  ctx: FormState<T, V>,
   config: Config,
   key: string,
   fieldConfig: Config
 ) {
-  const validator = ctx.validator;
+  const validator = ctx[FORM_VALIDATOR];
   if (!isAdditionalPropertyKeyValidator(validator)) {
     return true;
   }

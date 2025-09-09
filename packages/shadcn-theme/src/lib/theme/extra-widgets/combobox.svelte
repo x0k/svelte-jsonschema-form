@@ -31,6 +31,7 @@
 	import Check from '@lucide/svelte/icons/check';
 	import ChevronsUpDown from '@lucide/svelte/icons/chevrons-up-down';
 	import {
+		disabledProp,
 		getFormContext,
 		inputAttributes,
 		retrieveUiOption,
@@ -89,7 +90,7 @@
 </script>
 
 <Popover bind:open>
-	<PopoverTrigger bind:ref={triggerRef} disabled={ctx.disabled}>
+	<PopoverTrigger bind:ref={triggerRef} {...disabledProp({}, config, ctx)}>
 		{#snippet child({ props })}
 			<Button
 				class="w-full justify-between"

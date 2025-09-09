@@ -17,7 +17,6 @@ import {
   validateField,
   type Config,
   type Schema,
-  type FormInternalContext,
   type Validator,
   validateAdditionalPropertyKey,
   retrieveSchema,
@@ -32,6 +31,8 @@ import {
   uiTitleOption,
   type Translate,
   markSchemaChange,
+  type FormState,
+  getFieldsValidationMode,
 } from "@/form/index.js";
 
 import {
@@ -65,8 +66,8 @@ export function setObjectContext<V extends Validator>(ctx: ObjectContext<V>) {
   setContext(OBJECT_CONTEXT, ctx);
 }
 
-export function createObjectContext<V extends Validator>(
-  ctx: FormInternalContext<V>,
+export function createObjectContext<T, V extends Validator>(
+  ctx: FormState<T, V>,
   config: () => Config,
   value: () => SchemaObjectValue | undefined,
   setValue: (v: SchemaObjectValue) => void,
@@ -150,7 +151,7 @@ export function createObjectContext<V extends Validator>(
   const newKeyPrefix = $derived(translate("additional-property", {}));
 
   function validate(val: SchemaObjectValue) {
-    const m = ctx.fieldsValidationMode;
+    const m = getFieldsValidationMode(ctx)
     if (!(m & ON_OBJECT_CHANGE) || (m & AFTER_SUBMITTED && !ctx.isSubmitted)) {
       return;
     }

@@ -1,5 +1,7 @@
 <script lang="ts">
+  import { FORM_SCHEMA, FORM_UI_SCHEMA, FORM_VALUE } from "./internals.js";
   import type { Config } from "./config.js";
+  import type { Id } from "./id.js";
   import {
     retrieveSchema,
     getFormContext,
@@ -7,16 +9,19 @@
     retrieveUiOption,
     uiTitleOption,
     retrieveTranslate,
-  } from "./context/index.js";
+  } from "./state/index.js";
 
   const ctx = getFormContext();
 
-  const retrievedSchema = $derived(retrieveSchema(ctx, ctx.schema, ctx.value));
+  const retrievedSchema = $derived(
+    retrieveSchema(ctx, ctx[FORM_SCHEMA], ctx[FORM_VALUE])
+  );
   const config: Config = $derived({
-    id: ctx.rootId,
-    title: uiTitleOption(ctx, ctx.uiSchema) ?? retrievedSchema.title ?? "",
+    id: ctx.idPrefix as Id,
+    title:
+      uiTitleOption(ctx, ctx[FORM_UI_SCHEMA]) ?? retrievedSchema.title ?? "",
     schema: retrievedSchema,
-    uiSchema: ctx.uiSchema,
+    uiSchema: ctx[FORM_UI_SCHEMA],
     required: false,
   });
 
