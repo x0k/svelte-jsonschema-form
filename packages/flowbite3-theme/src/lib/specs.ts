@@ -26,7 +26,7 @@ const tagsAsArrayField = cast(TagsField, {
 export const specs: s.Specs = {
 	datePicker: [
 		s.text,
-		{ 'ui:components': { textWidget: 'datePickerWidget' }, 'ui:options': { useLabel: false } }
+		{ 'ui:components': { textWidget: 'datePickerWidget' } }
 	],
 	multiSelect: [
 		s.uniqueArray,
@@ -65,9 +65,6 @@ export const specs: s.Specs = {
 		{
 			'ui:components': {
 				arrayField: tagsAsArrayField
-			},
-			"ui:options": {
-				useLabel: false
 			}
 		}
 	],

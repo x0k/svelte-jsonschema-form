@@ -1368,8 +1368,8 @@ importers:
         specifier: ^3.1.2
         version: 3.1.2(rollup@4.46.2)
       flowbite-svelte:
-        specifier: ^1.13.7
-        version: 1.13.7(rollup@4.46.2)(svelte@5.38.6)(tailwindcss@4.1.12)
+        specifier: ^1.13.8
+        version: 1.13.8(rollup@4.46.2)(svelte@5.38.6)(tailwindcss@4.1.12)
       globals:
         specifier: 'catalog:'
         version: 16.3.0
@@ -1416,15 +1416,15 @@ importers:
       deep-freeze-es6:
         specifier: ^4.0.1
         version: 4.0.1
+      globals:
+        specifier: 'catalog:'
+        version: 16.3.0
       json-schema-compare:
         specifier: ^0.2.2
         version: 0.2.2
       json-schema-merge-allof:
         specifier: ^0.8.1
         version: 0.8.1
-      globals:
-        specifier: 'catalog:'
-        version: 16.3.0
       svelte:
         specifier: 'catalog:'
         version: 5.38.6
@@ -4728,8 +4728,8 @@ packages:
       svelte: ^5.29.0
       tailwindcss: ^4.1.4
 
-  flowbite-svelte@1.13.7:
-    resolution: {integrity: sha512-P18k7zTW9vC/5PfCjdtHCQKgX2lir6y6c4LTOtFz1+DxKjyttglNzxYlB3/xogtU6Gka9oTvQ5xe1iMw4UL4Xg==}
+  flowbite-svelte@1.13.8:
+    resolution: {integrity: sha512-ZOUsoqycnKmraVsETJoX+hGKxEkNZeOuU93qAHrh4RafpX3eW3PYCrJmElRvzCEUEHsjdTWTgMeXWzA6r6HNYg==}
     peerDependencies:
       svelte: ^5.29.0
       tailwindcss: ^4.1.4
@@ -10951,7 +10951,7 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
-  flowbite-svelte@1.13.7(rollup@4.46.2)(svelte@5.38.6)(tailwindcss@4.1.12):
+  flowbite-svelte@1.13.8(rollup@4.46.2)(svelte@5.38.6)(tailwindcss@4.1.12):
     dependencies:
       '@floating-ui/dom': 1.7.4
       '@floating-ui/utils': 0.2.10

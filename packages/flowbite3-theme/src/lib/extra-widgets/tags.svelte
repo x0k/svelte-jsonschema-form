@@ -20,6 +20,11 @@
 
 <TagsInput
 	class="flex-1"
-	{...customInputAttributes(ctx, config, 'flowbite3Tags', {})}
+	{...customInputAttributes(ctx, config, 'flowbite3Tags', {
+		inputProps: {
+			id: config.id,
+			name: config.id,
+		},
+	})}
 	bind:value={() => value ?? [], (v) => (value = v)}
 />

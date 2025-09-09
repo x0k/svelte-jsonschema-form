@@ -35,7 +35,10 @@
 			(v) => (value = v?.toLocaleDateString('en-CA'))
 		}
 		{...customInputAttributes(ctx, config, 'flowbite3Datepicker', {
-			id: config.id,
+			inputProps: {
+				id: config.id,
+				name: config.id,
+			},
 			required: config.required,
 			showActionButtons: true,
 			autohide: false,
