@@ -20,13 +20,12 @@
     translate,
   }: ComponentProps["objectField"] = $props();
 
-  const objCtx = createObjectContext(
+  const objCtx = createObjectContext({
     ctx,
-    () => config,
-    () => value,
-    (v) => (value = v),
-    translate
-  );
+    config: () => config,
+    value: () => value,
+    translate,
+  });
   setObjectContext(objCtx);
 
   const ObjectProperty = $derived(
@@ -40,7 +39,7 @@
   <Button
     type="object-property-add"
     {config}
-    errors={objCtx.errors}
+    errors={objCtx.errors()}
     disabled={false}
     onclick={objCtx.addProperty}
   >
@@ -51,11 +50,11 @@
   type="template"
   {value}
   {config}
-  errors={objCtx.errors}
-  addButton={objCtx.canExpand ? addButton : undefined}
+  errors={objCtx.errors()}
+  addButton={objCtx.canExpand() ? addButton : undefined}
   {uiOption}
 >
-  {#each objCtx.propertiesOrder as property (property)}
+  {#each objCtx.propertiesOrder() as property (property)}
     {@const isAdditional = objCtx.isAdditionalProperty(property)}
     {@const cfg = objCtx.propertyConfig(config, property, isAdditional)}
     <ObjectProperty

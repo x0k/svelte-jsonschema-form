@@ -42,18 +42,18 @@ import {
 } from "./model.js";
 
 export type ObjectContext<V extends Validator> = {
-  readonly errors: FieldError<PossibleError<V>>[];
-  readonly canExpand: boolean;
-  readonly propertiesOrder: string[];
-  addProperty(): void;
-  renameProperty(oldProp: string, newProp: string, config: Config): void;
-  removeProperty(prop: string): void;
-  isAdditionalProperty(property: string): boolean;
-  propertyConfig(
+  errors: () => FieldError<PossibleError<V>>[];
+  canExpand: () => boolean;
+  propertiesOrder: () => string[];
+  addProperty: () => void;
+  renameProperty: (oldProp: string, newProp: string, config: Config) => void;
+  removeProperty: (prop: string) => void;
+  isAdditionalProperty: (property: string) => boolean;
+  propertyConfig: (
     config: Config,
     property: string,
     isAdditional: boolean
-  ): Config;
+  ) => Config;
 };
 
 const OBJECT_CONTEXT = Symbol("object-context");
@@ -66,13 +66,19 @@ export function setObjectContext<V extends Validator>(ctx: ObjectContext<V>) {
   setContext(OBJECT_CONTEXT, ctx);
 }
 
-export function createObjectContext<T, V extends Validator>(
-  ctx: FormState<T, V>,
-  config: () => Config,
-  value: () => SchemaObjectValue | undefined,
-  setValue: (v: SchemaObjectValue) => void,
-  translate: Translate
-): ObjectContext<V> {
+export interface ObjectContextOptions<T, V extends Validator> {
+  ctx: FormState<T, V>;
+  config: () => Config;
+  value: () => SchemaObjectValue | undefined;
+  translate: Translate;
+}
+
+export function createObjectContext<T, V extends Validator>({
+  ctx,
+  config,
+  value,
+  translate,
+}: ObjectContextOptions<T, V>): ObjectContext<V> {
   // NOTE: This is required for computing a schema which will include all
   // additional properties in the `properties` field with the
   // `ADDITIONAL_PROPERTY_FLAG` flag and `dependencies` resolution.
@@ -151,7 +157,7 @@ export function createObjectContext<T, V extends Validator>(
   const newKeyPrefix = $derived(translate("additional-property", {}));
 
   function validate(val: SchemaObjectValue) {
-    const m = getFieldsValidationMode(ctx)
+    const m = getFieldsValidationMode(ctx);
     if (!(m & ON_OBJECT_CHANGE) || (m & AFTER_SUBMITTED && !ctx.isSubmitted)) {
       return;
     }
@@ -163,13 +169,13 @@ export function createObjectContext<T, V extends Validator>(
   );
 
   return {
-    get errors() {
+    errors() {
       return errors;
     },
-    get canExpand() {
+    canExpand() {
       return canExpand;
     },
-    get propertiesOrder() {
+    propertiesOrder() {
       return schemaPropertiesOrder;
     },
     isAdditionalProperty(property) {
