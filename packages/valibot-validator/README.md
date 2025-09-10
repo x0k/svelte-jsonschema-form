@@ -22,11 +22,11 @@ const vSchema = v.object({
   /* your schema */
 });
 
-const { schema, validator } = setupFormValidator(vSchema);
+const { schema, createValidator } = setupFormValidator(vSchema);
 
 const form = createForm({
   schema,
-  validator,
+  createValidator,
   ...
 })
 ```

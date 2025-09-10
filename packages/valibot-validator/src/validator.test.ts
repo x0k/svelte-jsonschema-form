@@ -10,12 +10,13 @@ import { setupFormValidator } from "./setup.js";
 
 describe("FormValidator", () => {
   it("should correctly match options", () => {
-    const { validator, schema } = setupFormValidator(
+    const { createValidator, schema } = setupFormValidator(
       v.union([
         v.object({ foo: v.string() }),
         v.object({ bar: v.string(), baz: v.number() }),
       ])
     );
+    const validator = createValidator()
     expect(validator.isValid(schema, schema, {})).toBe(false);
     expect(validator.isValid(schema, schema, { foo: "foo" })).toBe(true);
     expect(validator.isValid(schema, schema, { bar: "bar" })).toBe(false);
@@ -41,7 +42,7 @@ describe("FormValidator", () => {
     );
   });
   it("should use augmented schema", () => {
-    const { validator, schema } = setupFormValidator(
+    const { createValidator, schema } = setupFormValidator(
       v.union([
         v.object({ foo: v.string() }),
         v.object({ bar: v.string(), baz: v.number() }),
@@ -59,6 +60,7 @@ describe("FormValidator", () => {
       throw new Error(`Invalid 'anyOf' items '${JSON.stringify(schema)}'`);
     }
     const firstAg = createAugmentSchema(first);
+    const validator = createValidator()
     expect(validator.isValid(firstAg, schema, {})).toBe(false);
     expect(validator.isValid(firstAg, schema, { foo: "foo" })).toBe(true);
     const secondAg = createAugmentSchema(second);

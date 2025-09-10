@@ -22,11 +22,11 @@ const zodSchema = z.object({
   /* your schema */
 });
 
-const { schema, validator } = setupFormValidator(zodSchema);
+const { schema, createValidator } = setupFormValidator(zodSchema);
 
 const form = createForm({
   schema,
-  validator,
+  createValidator,
   ...
 })
 ```

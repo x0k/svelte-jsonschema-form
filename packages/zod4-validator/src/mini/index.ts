@@ -1,5 +1,5 @@
 import type { Schema } from "@sjsf/form";
-import { ZodMiniObject, partial, safeParse, safeParseAsync } from "zod/v4-mini";
+import { ZodMiniObject, partial, safeParse, safeParseAsync } from "zod/mini";
 
 import type { AugmentedSchemaFactory } from "../model.js";
 import { createSchemaRegistry } from "../schemas-registry.js";

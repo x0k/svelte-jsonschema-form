@@ -18,20 +18,23 @@ function createFormValidatorFactory<O, V extends Validator>({
   createFormValidator,
 }: CreateFormValidatorFactoryOptions<O, V>) {
   return (
-    valibotSchema: ValibotSchema,
-    options: Partial<O> = {}
+    valibotSchema: ValibotSchema
   ): {
     schemaRegistry: ReturnType<typeof createSchemaRegistry>;
-    validator: V;
+    createValidator: (options?: Partial<O>) => V;
     schema: Schema;
   } => {
     const schemaRegistry = createSchemaRegistry();
-    const validator = createFormValidator(schemaRegistry, options);
     const schema = toJsonSchema(valibotSchema, {
       overrideSchema: schemaRegistry.register,
       typeMode: "input",
     }) as Schema;
-    return { schemaRegistry, validator, schema };
+    return {
+      schemaRegistry,
+      schema,
+      createValidator: (options = {}) =>
+        createFormValidator(schemaRegistry, options),
+    };
   };
 }
 

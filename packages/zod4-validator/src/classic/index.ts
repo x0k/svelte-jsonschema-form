@@ -1,4 +1,4 @@
-import { safeParse, safeParseAsync, ZodObject } from "zod/v4";
+import { safeParse, safeParseAsync, ZodObject } from "zod";
 
 import type { AugmentedSchemaFactory } from "../model.js";
 import {

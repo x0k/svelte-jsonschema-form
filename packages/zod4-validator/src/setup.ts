@@ -14,20 +14,23 @@ export function createFormValidatorFactory<O, V extends Validator>({
   createAugmentedSchema,
 }: CreateFormValidatorFactoryOptions<O, V>) {
   return (
-    zodSchema: $ZodType,
-    options: Partial<O> = {}
+    zodSchema: $ZodType
   ): {
     schemaRegistry: ReturnType<typeof createSchemaRegistry>;
-    validator: V;
+    createValidator: (options?: Partial<O>) => V;
     schema: Schema;
   } => {
     const schemaRegistry = createSchemaRegistry({ createAugmentedSchema });
-    const validator = createFormValidator(schemaRegistry, options);
     const schema = toJSONSchema(zodSchema, {
       target: "draft-7",
       override: schemaRegistry.register,
       io: "input",
     }) as Schema;
-    return { schemaRegistry, validator, schema };
+    return {
+      schemaRegistry,
+      createValidator: (options = {}) =>
+        createFormValidator(schemaRegistry, options),
+      schema,
+    };
   };
 }
