@@ -1,9 +1,9 @@
 name: Deploy to GitHub Pages
 on:
-  pull_request:
-    types: [closed]
-    branches:
-      - main
+  # pull_request:
+  #   types: [closed]
+  #   branches:
+  #     - main
   workflow_dispatch: # Adds the manual trigger
 
 permissions:
