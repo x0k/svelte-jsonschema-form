@@ -71,12 +71,12 @@
 		"@sjsf/basic-theme": "workspace:^2.4.0"
 	},
 	"peerDependencies": {
-		"@internationalized/date": "^3.8.1",
+		"@internationalized/date": "^3.9.0",
 		"@lucide/svelte": "^0.501.0",
 		"@sjsf/form": "workspace:^2.4.0",
-		"bits-ui": "^2.5.0",
+		"bits-ui": "^2.9.0",
 		"clsx": "^2.1.0",
-		"svelte": "^5.33.0",
+		"svelte": "^5.38.0",
 		"tailwind-merge": "^3.3.0",
 		"tailwind-variants": "^1.0.0 || ^2.0.0"
 	},

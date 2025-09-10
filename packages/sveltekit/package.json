@@ -53,9 +53,9 @@
 	},
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^2.4.0",
-		"@sveltejs/kit": "^2.20.0",
+		"@sveltejs/kit": "^2.37.0",
 		"esm-env": "^1.2.0",
-		"svelte": "^5.33.0"
+		"svelte": "^5.38.0"
 	},
 	"devDependencies": {
 		"@sjsf/ajv8-validator": "workspace:*",

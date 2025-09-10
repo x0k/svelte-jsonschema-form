@@ -65,9 +65,9 @@
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^2.4.0",
 		"cally": "^0.8.0",
-		"daisyui": "^5.0.0",
+		"daisyui": "^5.1.0",
 		"pikaday": "^1.8.2",
-		"svelte": "^5.33.0"
+		"svelte": "^5.38.0"
 	},
 	"peerDependenciesMeta": {
 		"cally": {

@@ -44,7 +44,7 @@
 	},
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^2.4.0",
-		"svelte": "^5.33.0",
+		"svelte": "^5.38.0",
 		"svelte-radix": "^2.0.0"
 	},
 	"devDependencies": {
