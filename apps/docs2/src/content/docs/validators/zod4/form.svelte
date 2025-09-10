@@ -7,16 +7,16 @@
     ON_INPUT,
   } from "@sjsf/form";
   import { setupFormValidator } from "@sjsf/zod4-validator/classic";
-  import { z } from "zod/v4";
-  import en from "zod/v4/locales/en.js"
+  import { z } from "zod";
+  import { en } from "zod/locales";
 
   import * as defaults from "@/lib/form/defaults";
 
   import { initialValue, uiSchema } from "../shared";
 
-  z.config(en())
+  z.config(en());
 
-  const zodSchema = z.object({
+  const schema = z.object({
     id: z
       .string()
       .regex(new RegExp("^\\d+$"), "Must be a number")
@@ -30,13 +30,10 @@
       .optional(),
   });
 
-  const { schema, validator } = setupFormValidator(zodSchema, { uiSchema });
-
   const form = createForm({
     ...defaults,
-    schema,
+    ...setupFormValidator(schema),
     uiSchema,
-    createValidator: () => validator,
     fieldsValidationMode: ON_INPUT | ON_CHANGE | ON_ARRAY_CHANGE,
     initialValue: initialValue,
   });

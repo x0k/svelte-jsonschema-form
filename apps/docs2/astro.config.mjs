@@ -89,7 +89,7 @@ export default defineConfig({
       exclude: ["@jis3r/icons"],
     },
     ssr: {
-      noExternal: ["lucide-svelte"],
+      noExternal: ["lucide-svelte", "zod"],
     },
     resolve: {
       alias: {

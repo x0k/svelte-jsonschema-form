@@ -6,17 +6,14 @@
     ON_CHANGE,
     ON_INPUT,
   } from "@sjsf/form";
-  import {
-    setupFormValidator,
-    createFormValidator,
-  } from "@sjsf/valibot-validator";
+  import { setupFormValidator } from "@sjsf/valibot-validator";
   import * as v from "valibot";
 
   import * as defaults from "@/lib/form/defaults";
 
   import { initialValue, uiSchema } from "../shared";
 
-  const vSchema = v.object({
+  const schema = v.object({
     id: v.optional(
       v.pipe(
         v.string(),
@@ -32,16 +29,12 @@
       v.pipe(v.array(v.picklist(["foo", "bar", "fuzz"])), v.maxLength(2))
     ),
   });
-  type Value = v.InferInput<typeof vSchema>;
-
-  const { schema, schemaRegistry } = setupFormValidator(vSchema);
+  type Value = v.InferInput<typeof schema>;
 
   const form = createForm({
     ...defaults,
-    schema,
+    ...setupFormValidator(schema),
     uiSchema,
-    createValidator: (options) =>
-      createFormValidator({ ...options, schemaRegistry }),
     fieldsValidationMode: ON_INPUT | ON_CHANGE | ON_ARRAY_CHANGE,
     initialValue: initialValue as Value,
   });
