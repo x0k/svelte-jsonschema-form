@@ -21,7 +21,6 @@ exports[`object fields > additionalProperties 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
       <div
         class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
         data-layout="object-property"
@@ -201,7 +200,6 @@ exports[`object fields > additionalProperties 1`] = `
       
       
       
-      
       <!---->
     </div>
     <!---->
@@ -234,7 +232,6 @@ exports[`object fields > additionalProperties with error 1`] = `
       class="flex gap-4 flex-col"
       data-layout="object-properties"
     >
-      <!---->
       <!---->
       <!---->
       <!---->
@@ -431,7 +428,6 @@ exports[`object fields > additionalProperties with error 1`] = `
       
       
       
-      
       <!---->
     </div>
     <!---->
@@ -464,7 +460,6 @@ exports[`object fields > has errors 1`] = `
       class="flex gap-4 flex-col"
       data-layout="object-properties"
     >
-      <!---->
       <!---->
       <!---->
       <!---->
@@ -556,7 +551,6 @@ exports[`object fields > has errors 1`] = `
       
       
       
-      
       <!---->
     </div>
     <!---->
@@ -601,7 +595,6 @@ exports[`object fields > object 1`] = `
       class="flex gap-4 flex-col"
       data-layout="object-properties"
     >
-      <!---->
       <!---->
       <!---->
       <!---->
@@ -781,7 +774,6 @@ exports[`object fields > object 1`] = `
       
       
       
-      
       <!---->
     </div>
     <!---->
@@ -833,7 +825,6 @@ exports[`object fields > one of defaults > default preset 1`] = `
       class="flex gap-4 flex-col"
       data-layout="object-properties"
     >
-      <!---->
       <!---->
       <!---->
       <!---->
@@ -1174,7 +1165,6 @@ exports[`object fields > one of defaults > default preset 1`] = `
       
       
       
-      
       <!---->
     </div>
     <!---->
@@ -1226,7 +1216,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       class="flex gap-4 flex-col"
       data-layout="object-properties"
     >
-      <!---->
       <!---->
       <!---->
       <!---->
@@ -2123,7 +2112,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       
       
       
-      
       <!---->
     </div>
     <!---->
@@ -2156,7 +2144,6 @@ exports[`object fields > show add button and fields if additionalProperties is t
       class="flex gap-4 flex-col"
       data-layout="object-properties"
     >
-      <!---->
       <!---->
       <!---->
       <!---->
@@ -2341,7 +2328,6 @@ exports[`object fields > show add button and fields if additionalProperties is t
       
       
       
-      
       <!---->
     </div>
     <!---->
@@ -2401,7 +2387,6 @@ exports[`object fields > with title and description > additionalProperties 1`] =
       class="flex gap-4 flex-col"
       data-layout="object-properties"
     >
-      <!---->
       <!---->
       <!---->
       <!---->
@@ -2586,7 +2571,6 @@ exports[`object fields > with title and description > additionalProperties 1`] =
       
       
       
-      
       <!---->
     </div>
     <!---->
@@ -2646,7 +2630,6 @@ exports[`object fields > with title and description > object 1`] = `
       class="flex gap-4 flex-col"
       data-layout="object-properties"
     >
-      <!---->
       <!---->
       <!---->
       <!---->
@@ -2842,7 +2825,6 @@ exports[`object fields > with title and description > object 1`] = `
       
       
       
-      
       <!---->
     </div>
     <!---->
@@ -2902,7 +2884,6 @@ exports[`object fields > with title and description > show add button and fields
       class="flex gap-4 flex-col"
       data-layout="object-properties"
     >
-      <!---->
       <!---->
       <!---->
       <!---->
@@ -3082,7 +3063,6 @@ exports[`object fields > with title and description > show add button and fields
         <!---->
         <!---->
       </div>
-      
       
       
       
@@ -3152,7 +3132,6 @@ exports[`object fields > with title and description from both > additionalProper
       <!---->
       <!---->
       <!---->
-      <!---->
       <div
         class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
         data-layout="object-property"
@@ -3327,7 +3306,6 @@ exports[`object fields > with title and description from both > additionalProper
         <!---->
         <!---->
       </div>
-      
       
       
       
@@ -3397,7 +3375,6 @@ exports[`object fields > with title and description from both > object 1`] = `
       <!---->
       <!---->
       <!---->
-      <!---->
       <div
         class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
         data-layout="object-property"
@@ -3588,7 +3565,6 @@ exports[`object fields > with title and description from both > object 1`] = `
       
       
       
-      
       <!---->
     </div>
     <!---->
@@ -3648,7 +3624,6 @@ exports[`object fields > with title and description from uiSchema > additionalPr
       class="flex gap-4 flex-col"
       data-layout="object-properties"
     >
-      <!---->
       <!---->
       <!---->
       <!---->
@@ -3833,7 +3808,6 @@ exports[`object fields > with title and description from uiSchema > additionalPr
       
       
       
-      
       <!---->
     </div>
     <!---->
@@ -3893,7 +3867,6 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
       class="flex gap-4 flex-col"
       data-layout="object-properties"
     >
-      <!---->
       <!---->
       <!---->
       <!---->
@@ -4089,7 +4062,6 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
       
       
       
-      
       <!---->
     </div>
     <!---->
@@ -4149,7 +4121,6 @@ exports[`object fields > with title and description from uiSchema > show add but
       class="flex gap-4 flex-col"
       data-layout="object-properties"
     >
-      <!---->
       <!---->
       <!---->
       <!---->
@@ -4334,7 +4305,6 @@ exports[`object fields > with title and description from uiSchema > show add but
       
       
       
-      
       <!---->
     </div>
     <!---->
@@ -4367,7 +4337,6 @@ exports[`object fields > with title and description with global label off > addi
       class="flex gap-4 flex-col"
       data-layout="object-properties"
     >
-      <!---->
       <!---->
       <!---->
       <!---->
@@ -4509,7 +4478,6 @@ exports[`object fields > with title and description with global label off > addi
       
       
       
-      
       <!---->
     </div>
     <!---->
@@ -4542,7 +4510,6 @@ exports[`object fields > with title and description with global label off > obje
       class="flex gap-4 flex-col"
       data-layout="object-properties"
     >
-      <!---->
       <!---->
       <!---->
       <!---->
@@ -4682,7 +4649,6 @@ exports[`object fields > with title and description with global label off > obje
       
       
       
-      
       <!---->
     </div>
     <!---->
@@ -4715,7 +4681,6 @@ exports[`object fields > with title and description with global label off > show
       class="flex gap-4 flex-col"
       data-layout="object-properties"
     >
-      <!---->
       <!---->
       <!---->
       <!---->
@@ -4852,7 +4817,6 @@ exports[`object fields > with title and description with global label off > show
         <!---->
         <!---->
       </div>
-      
       
       
       

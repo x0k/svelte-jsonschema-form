@@ -25,8 +25,6 @@ exports[`array fields > array 1`] = `
       >
         <!---->
         <!---->
-        <!---->
-        
         
         
         <!---->
@@ -114,7 +112,6 @@ exports[`array fields > array icons 1`] = `
         class="flex gap-4 flex-col"
         data-layout="array-items"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -549,7 +546,6 @@ exports[`array fields > array icons 1`] = `
         
         
         
-        
         <!---->
       </div>
       
@@ -684,7 +680,6 @@ exports[`array fields > empty errors array 1`] = `
         <!---->
         <!---->
         <!---->
-        <!---->
         <div
           class="grid [&:has(>:nth-child(2))]:grid-cols-[1fr_1fr_auto] grid-cols-1 grid-rows-[1fr] items-start gap-x-2"
           data-layout="object-property"
@@ -801,7 +796,6 @@ exports[`array fields > empty errors array 1`] = `
         
         
         
-        
         <!---->
       </div>
       
@@ -880,7 +874,6 @@ exports[`array fields > fixed array 1`] = `
         class="flex gap-4 flex-col"
         data-layout="array-items"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -1070,7 +1063,6 @@ exports[`array fields > fixed array 1`] = `
         
         
         
-        
         <!---->
       </div>
       
@@ -1168,8 +1160,6 @@ exports[`with title and description > array 1`] = `
       >
         <!---->
         <!---->
-        <!---->
-        
         
         
         <!---->
@@ -1286,7 +1276,6 @@ exports[`with title and description > array icons 1`] = `
         class="flex gap-4 flex-col"
         data-layout="array-items"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -1737,7 +1726,6 @@ exports[`with title and description > array icons 1`] = `
         
         
         
-        
         <!---->
       </div>
       
@@ -1895,7 +1883,6 @@ exports[`with title and description > fixed array 1`] = `
         class="flex gap-4 flex-col"
         data-layout="array-items"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -2157,7 +2144,6 @@ exports[`with title and description > fixed array 1`] = `
         
         
         
-        
         <!---->
       </div>
       
@@ -2255,8 +2241,6 @@ exports[`with title and description from both > array 1`] = `
       >
         <!---->
         <!---->
-        <!---->
-        
         
         
         <!---->
@@ -2373,7 +2357,6 @@ exports[`with title and description from both > array icons 1`] = `
         class="flex gap-4 flex-col"
         data-layout="array-items"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -2818,7 +2801,6 @@ exports[`with title and description from both > array icons 1`] = `
           <!---->
           <!---->
         </div>
-        
         
         
         
@@ -2988,7 +2970,6 @@ exports[`with title and description from both > fixed array 1`] = `
         <!---->
         <!---->
         <!---->
-        <!---->
         <div
           class="flex gap-2 items-start"
           data-layout="array-item"
@@ -3244,7 +3225,6 @@ exports[`with title and description from both > fixed array 1`] = `
         
         
         
-        
         <!---->
       </div>
       
@@ -3342,8 +3322,6 @@ exports[`with title and description from uiSchema > array 1`] = `
       >
         <!---->
         <!---->
-        <!---->
-        
         
         
         <!---->
@@ -3460,7 +3438,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
         class="flex gap-4 flex-col"
         data-layout="array-items"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -3911,7 +3888,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
         
         
         
-        
         <!---->
       </div>
       
@@ -4069,7 +4045,6 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
         class="flex gap-4 flex-col"
         data-layout="array-items"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -4331,7 +4306,6 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
         
         
         
-        
         <!---->
       </div>
       
@@ -4400,8 +4374,6 @@ exports[`with title and description with global label off > array 1`] = `
       >
         <!---->
         <!---->
-        <!---->
-        
         
         
         <!---->
@@ -4489,7 +4461,6 @@ exports[`with title and description with global label off > array icons 1`] = `
         class="flex gap-4 flex-col"
         data-layout="array-items"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -4868,7 +4839,6 @@ exports[`with title and description with global label off > array icons 1`] = `
         
         
         
-        
         <!---->
       </div>
       
@@ -4997,7 +4967,6 @@ exports[`with title and description with global label off > fixed array 1`] = `
         class="flex gap-4 flex-col"
         data-layout="array-items"
       >
-        <!---->
         <!---->
         <!---->
         <!---->
@@ -5181,7 +5150,6 @@ exports[`with title and description with global label off > fixed array 1`] = `
           <!---->
           <!---->
         </div>
-        
         
         
         
