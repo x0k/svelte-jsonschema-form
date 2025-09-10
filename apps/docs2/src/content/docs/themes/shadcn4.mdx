@@ -12,7 +12,6 @@ import { peerDependencies } from '#/shadcn4-theme/package.json'
 
 import { withTag } from '@/shared';
 import Npm from '@/components/npm.astro';
-import Picker from '@/components/picker.astro';
 import FormCard from '@/components/form-card.astro';
 
 import Form from './shadcn4/form.svelte';
@@ -20,11 +19,6 @@ import uiOptionsCode from './shadcn4/ui-options?raw';
 import { createSchemas, replacer, createExtraImports } from "./_demo-schema";
 
 export const schemas = createSchemas(specs)
-
-<Picker>
-  <a href="../shadcn/" data-active={false}>tw3</a>
-  <a href="." data-active={true}>tw4</a>
-</Picker>
 
 ## Installation
 

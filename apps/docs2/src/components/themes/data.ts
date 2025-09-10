@@ -81,7 +81,7 @@ export const uiSchema: UiSchemaRoot = {
       text: {
         autocomplete: "name",
       },
-      flowbiteText: {
+      flowbite3Text: {
         autocomplete: "name",
       },
     },
@@ -125,7 +125,7 @@ export const uiSchema: UiSchemaRoot = {
       textarea: {
         rows: 5,
       },
-      flowbiteTextarea: {
+      flowbite3Textarea: {
         rows: 5,
       },
     },

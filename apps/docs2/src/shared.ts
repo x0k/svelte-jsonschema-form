@@ -75,24 +75,15 @@ export const EXAMPLES = Object.values(Example);
 
 export const THEMES = [
   "basic",
-  "daisyui",
   "daisyui5",
-  "flowbite",
   "flowbite3",
-  "skeleton",
   "skeleton3",
-  "shadcn",
   "shadcn4",
 ] as const;
 
 export type Theme = (typeof THEMES)[number];
 
-export const DEPRECATED_THEMES = [
-  "daisyui",
-  "flowbite",
-  "skeleton",
-  "shadcn",
-] as const satisfies Theme[];
+export const DEPRECATED_THEMES = [] as const satisfies Theme[];
 
 export const DEPRECATED_THEMES_SET = new Set<Theme>(DEPRECATED_THEMES);
 
@@ -106,37 +97,25 @@ export type ActualTheme = Exclude<Theme, DeprecatedTheme>;
 
 export const THEME_TITLES = {
   basic: "basic",
-  daisyui: "daisyUI v4",
   daisyui5: "daisyUI v5",
-  flowbite: "Flowbite",
   flowbite3: "Flowbite Svelte",
-  skeleton: "Skeleton v3 RC1",
   skeleton3: "Skeleton v3",
-  shadcn: "shadcn-svelte",
   shadcn4: "shadcn-svelte",
 } satisfies Record<Theme, string>;
 
 export const THEME_BRAND = {
   basic: "",
-  daisyui: "daisyUi",
   daisyui5: "daisyUI",
-  flowbite: "Flowbite",
   flowbite3: "Flowbite",
-  skeleton: "Skeleton",
   skeleton3: "Skeleton",
-  shadcn: "shadcn-svelte",
   shadcn4: "shadcn-svelte",
 } satisfies Record<Theme, string>;
 
 export const THEME_PACKAGES = {
   basic: "@sjsf/basic-theme",
-  daisyui: "@sjsf/daisyui-theme",
   daisyui5: "@sjsf/daisyui5-theme",
-  flowbite: "@sjsf/flowbite-theme",
   flowbite3: "@sjsf/flowbite3-theme",
-  skeleton: "@sjsf/skeleton-theme",
   skeleton3: "@sjsf/skeleton3-theme",
-  shadcn: "@sjsf/shadcn-theme",
   shadcn4: "@sjsf/shadcn4-theme",
 } satisfies Record<Theme, string>;
 

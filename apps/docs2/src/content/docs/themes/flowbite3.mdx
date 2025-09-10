@@ -12,7 +12,6 @@ import { peerDependencies } from '#/flowbite3-theme/package.json'
 
 import { withTag } from '@/shared';
 import Npm from '@/components/npm.astro';
-import Picker from '@/components/picker.astro';
 import FormCard from '@/components/form-card.astro';
 
 import Form from './flowbite3/form.svelte';
@@ -24,11 +23,6 @@ export const schemas = createSchemas(specs)
 > Flowbite™ is a registered trademark of Bergside Inc.
 This website is not affiliated with, endorsed by, or sponsored by Bergside Inc.
 All rights to the trademark are owned by Bergside Inc.
-
-<Picker>
-  <a href="../flowbite/" data-active={false}>v2</a>
-  <a href="." data-active={true}>v3</a>
-</Picker>
 
 ## Installation
 

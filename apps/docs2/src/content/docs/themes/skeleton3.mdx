@@ -12,7 +12,6 @@ import { peerDependencies } from '#/skeleton3-theme/package.json'
 
 import { withTag } from '@/shared';
 import Npm from '@/components/npm.astro';
-import Picker from '@/components/picker.astro';
 import FormCard from '@/components/form-card.astro';
 
 import Form from './skeleton3/form.svelte';
@@ -20,11 +19,6 @@ import uiOptionsCode from './skeleton3/ui-options?raw';
 import { createSchemas, replacer, createExtraImports } from "./_demo-schema";
 
 export const schemas = createSchemas(specs)
-
-<Picker>
-  <a href="../skeleton/" data-active={false}>v3 RC1</a>
-  <a href="." data-active={true}>v3</a>
-</Picker>
 
 ## Installation
 

@@ -22,7 +22,7 @@ import type {
   TagsProps,
   TextareaProps,
   ToggleProps,
-} from "flowbite-svelte3";
+} from "flowbite-svelte";
 
 type ButtonProps = Extract<
   ButtonPropsUnion,
