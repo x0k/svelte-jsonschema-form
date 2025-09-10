@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { FORM_SCHEMA, FORM_UI_SCHEMA } from "./internals.js";
+  import { FORM_ROOT_ID, FORM_SCHEMA, FORM_UI_SCHEMA } from "./internals.js";
   import {
     getComponent,
     getFormContext,
@@ -7,13 +7,12 @@
   } from "./state/index.js";
   import type { Config } from "./config.js";
   import Text from "./text.svelte";
-  import type { Id } from "./id.js";
+  import { createPseudoId } from "./id.js";
 
   const ctx = getFormContext();
 
   const config: Config = $derived({
-    id: ctx.idPrefix as Id,
-    name: "submit-button",
+    id: createPseudoId(ctx[FORM_ROOT_ID], "submit"),
     title: "",
     schema: ctx[FORM_SCHEMA],
     uiSchema: ctx[FORM_UI_SCHEMA],

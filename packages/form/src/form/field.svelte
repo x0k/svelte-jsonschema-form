@@ -21,7 +21,7 @@
     type UiOption,
     type UiSchema,
   } from "./ui-schema.js";
-  import { pathToId } from "./id.js";
+  import { idFromPath } from "./id.js";
   import type { Config } from "./config.js";
   import type { ComponentProps } from "./components.js";
   import type { FoundationalFieldType } from "./fields.js";
@@ -64,7 +64,7 @@
 
   const valuePath = $derived(name === "" ? [] : name.split("."));
 
-  const id = $derived(pathToId(valuePath, form));
+  const id = $derived(idFromPath(valuePath, form));
 
   const valueRef: { value: FieldValue } = $derived.by(() => {
     if (valuePath.length === 0) {

@@ -41,8 +41,9 @@ import {
   FORM_UI_SCHEMA_ROOT,
   FORM_VALIDATOR,
   FORM_VALUE,
+  FORM_ROOT_ID,
 } from "../internals.js";
-import type { IdOptions } from "../id.js";
+import type { Id, IdOptions } from "../id.js";
 
 export interface FormState<T, V extends Validator>
   extends Readonly<Required<IdOptions>> {
@@ -64,6 +65,7 @@ export interface FormState<T, V extends Validator>
   /** Internals */
 
   [FORM_VALUE]: FormValue;
+  readonly [FORM_ROOT_ID]: Id;
   readonly [FORM_MARK_SCHEMA_CHANGE]: () => void;
   readonly [FORM_KEYED_ARRAYS]: KeyedArraysMap;
   readonly [FORM_FIELDS_VALIDATION_MODE]: number;

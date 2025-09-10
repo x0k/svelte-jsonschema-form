@@ -27,7 +27,7 @@ export type IdOptions = IdPrefixOption &
 
 export type PathToIdOptions = IdPrefixOption & IdSeparatorOption;
 
-export function pathToId(
+export function idFromPath(
   path: Path,
   {
     idPrefix = DEFAULT_ID_PREFIX,
@@ -41,6 +41,10 @@ export function pathToId(
   ) as Id;
 }
 
+// TODO: Remove in v4
+/** @deprecated use `idFromPath` */
+export const pathToId = idFromPath;
+
 export interface IdentifiableFieldElement {
   help: {};
   "key-input": {};
@@ -50,6 +54,8 @@ export interface IdentifiableFieldElement {
   errors: {};
   oneof: {};
   anyof: {};
+  form: {};
+  submit: {};
 }
 
 export function createPseudoId(

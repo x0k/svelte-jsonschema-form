@@ -75,6 +75,7 @@ import {
   FORM_TRANSLATE,
   FORM_ICONS,
   FORM_MARK_SCHEMA_CHANGE,
+  FORM_ROOT_ID,
 } from "./internals.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
@@ -284,7 +285,7 @@ export function createForm<T, V extends Validator>(
   options: FormOptions<T, V>
 ): FormState<T, V> {
   /** STATE BEGIN */
-  const idPrefix = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX);
+  const idPrefix = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX) as Id;
   const idSeparator = $derived(options.idSeparator ?? DEFAULT_ID_SEPARATOR);
   const idPseudoSeparator = $derived(
     options.idPseudoSeparator ?? DEFAULT_ID_PSEUDO_SEPARATOR
@@ -405,7 +406,7 @@ export function createForm<T, V extends Validator>(
       options.onSubmitError?.(formErrors, event, formValue);
     },
     onFailure(error, e) {
-      errorsRef.current.set(idPrefix as Id, [
+      errorsRef.current.set(idPrefix, [
         {
           propertyTitle: "",
           message: translate("validation-process-error", { error }),
@@ -553,6 +554,9 @@ export function createForm<T, V extends Validator>(
     submit,
     reset,
     // INTERNALS
+    get [FORM_ROOT_ID]() {
+      return idPrefix;
+    },
     get [FORM_VALUE]() {
       return valueRef.current;
     },

@@ -196,7 +196,6 @@ export function createObjectContext<T, V extends Validator>({
       );
       return {
         id: createChildId(config.id, property, ctx),
-        name: property,
         title: uiTitleOption(ctx, uiSchema) ?? schema.title ?? property,
         schema,
         uiSchema,

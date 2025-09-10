@@ -4,7 +4,7 @@ import type { Path, Schema } from "@/core/index.js";
 import {
   getRootSchemaTitleByPath,
   getRootUiSchemaTitleByPath,
-  pathToId,
+  idFromPath,
   type AsyncFormValueValidator,
   type FormValueValidator,
   type PathToIdOptions,
@@ -33,7 +33,7 @@ function createErrorsTransformer(options: ErrorsTransformerOptions) {
     }
     return issues.map((issue) => {
       const path = issueToPath(issue);
-      const instanceId = pathToId(path, options);
+      const instanceId = idFromPath(path, options);
       const propertyTitle =
         getRootUiSchemaTitleByPath(options.uiSchema ?? {}, path) ??
         getRootSchemaTitleByPath(rootSchema, path) ??
