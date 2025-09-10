@@ -20,6 +20,8 @@ export class ValidationProcessError {
   constructor(public state: FailedTask<unknown>) {}
 }
 
+export class InvalidValidatorError extends Error {}
+
 export type FieldError<T> = Omit<ValidationError<T>, "instanceId">;
 
 export type FieldErrorsMap<T> = SvelteMap<Id, FieldError<T>[]>;

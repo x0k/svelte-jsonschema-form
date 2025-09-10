@@ -15,6 +15,8 @@ import type {
   FieldErrorsMap,
   FormSubmission,
   FieldsValidation,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  InvalidValidatorError,
 } from "../errors.js";
 import type { Icons } from "../icons.js";
 import type { FormMerger } from "../merger.js";
@@ -61,6 +63,21 @@ export interface FormState<T, V extends Validator>
   errors: FieldErrorsMap<PossibleError<V>>;
   submit: (e: SubmitEvent) => void;
   reset: (e: Event) => void;
+  /**
+   * Performs the following actions:
+   * - Takes a snapshot of the current state
+   * - Calls the corresponding validator method
+   * - Groups errors
+   *
+   * Actions it does not perform:
+   * - Updates the form error list
+   *
+   * @throws {InvalidValidatorError} If the validator does not have the corresponding method
+   */
+  validate: () => FieldErrorsMap<PossibleError<V>>;
+  validateAsync: (
+    signal: AbortSignal
+  ) => Promise<FieldErrorsMap<PossibleError<V>>>;
 
   /** Internals */
 

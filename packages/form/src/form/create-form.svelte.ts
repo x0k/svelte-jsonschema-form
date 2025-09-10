@@ -42,6 +42,7 @@ import {
   type FormSubmission,
   type FieldsValidation,
   type FormValidationResult,
+  InvalidValidatorError,
 } from "./errors.js";
 import type { FormMerger } from "./merger.js";
 import {
@@ -386,7 +387,7 @@ export function createForm<T, V extends Validator>(
   });
 
   const submission: FormSubmission<V> = createTask({
-    async execute(signal, _event: SubmitEvent) {
+    async execute(signal) {
       isSubmitted = true;
       const formValue = getSnapshot();
       return {
@@ -512,6 +513,28 @@ export function createForm<T, V extends Validator>(
     options.onReset?.(e);
   }
 
+  function validate() {
+    if (!isFormValueValidator(validator)) {
+      throw new InvalidValidatorError(`expected sync from validator`);
+    }
+    return groupErrors(
+      validator.validateFormValue(options.schema, getSnapshot())
+    );
+  }
+
+  async function validateAsync(signal: AbortSignal) {
+    if (!isAsyncFormValueValidator(validator)) {
+      throw new InvalidValidatorError(`expected async form validator`);
+    }
+    return groupErrors(
+      await validator.validateFormValueAsync(
+        signal,
+        options.schema,
+        getSnapshot()
+      )
+    );
+  }
+
   const formState: FormState<T, V> = {
     submission,
     fieldsValidation,
@@ -553,6 +576,8 @@ export function createForm<T, V extends Validator>(
     },
     submit,
     reset,
+    validate,
+    validateAsync,
     // INTERNALS
     get [FORM_ROOT_ID]() {
       return idPrefix;
