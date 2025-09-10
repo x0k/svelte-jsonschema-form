@@ -20,4 +20,3 @@ catalog:
 catalogs:
   legacy:
     tailwindcss: ^3.4.17
-    zod: ~3.25.76

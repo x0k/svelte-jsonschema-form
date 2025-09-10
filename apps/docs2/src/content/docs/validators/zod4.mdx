@@ -7,17 +7,11 @@ sidebar:
 import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
 
 import Npm from '@/components/npm.astro';
-import Picker from '@/components/picker.astro';
 import FormCard from '@/components/form-card.astro';
 
 import Form from './zod4/form.svelte';
 import formCode from './zod4/form.svelte?raw';
 import sharedCode from './shared/index.ts?raw';
-
-<Picker>
-  <a href="../zod/" data-active={false}>v3</a>
-  <a href="." data-active={true}>v4</a>
-</Picker>
 
 You may want to use Zod validator because:
 

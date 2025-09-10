@@ -35,7 +35,6 @@
     "@sjsf/skeleton3-theme": "workspace:*",
     "@sjsf/sveltekit": "workspace:*",
     "@sjsf/valibot-validator": "workspace:*",
-    "@sjsf/zod-validator": "workspace:*",
     "@sjsf/zod4-validator": "workspace:*",
     "@skeletonlabs/skeleton": "3.0.0-next.10",
     "@skeletonlabs/skeleton-svelte": "^1.5.1",
@@ -58,8 +57,7 @@
     "tailwind-variants": "^0.3.1",
     "testing": "workspace:*",
     "valibot": "^1.1.0",
-    "zod": "catalog:legacy",
-    "zod-to-json-schema": "^3.24.6"
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",

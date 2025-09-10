@@ -43,9 +43,6 @@ catalogs:
     tailwindcss:
       specifier: ^3.4.17
       version: 3.4.17
-    zod:
-      specifier: ~3.25.76
-      version: 3.25.76
 
 overrides:
   svelte2tsx: 0.7.42
@@ -311,9 +308,6 @@ importers:
       '@sjsf/valibot-validator':
         specifier: workspace:*
         version: link:../../packages/valibot-validator
-      '@sjsf/zod-validator':
-        specifier: workspace:*
-        version: link:../../packages/zod-validator
       '@sjsf/zod4-validator':
         specifier: workspace:*
         version: link:../../packages/zod4-validator
@@ -381,11 +375,8 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0(typescript@5.9.2)
       zod:
-        specifier: catalog:legacy
-        version: 3.25.76
-      zod-to-json-schema:
-        specifier: ^3.24.6
-        version: 3.24.6(zod@3.25.76)
+        specifier: 'catalog:'
+        version: 4.1.5
     devDependencies:
       '@astrojs/check':
         specifier: ^0.9.4
@@ -1734,18 +1725,6 @@ importers:
       valibot:
         specifier: ^1.1.0
         version: 1.1.0(typescript@5.9.2)
-
-  packages/zod-validator:
-    devDependencies:
-      '@sjsf/form':
-        specifier: workspace:*
-        version: link:../form
-      json-schema-to-zod:
-        specifier: ^2.6.1
-        version: 2.6.1
-      zod:
-        specifier: catalog:legacy
-        version: 3.25.76
 
   packages/zod4-validator:
     devDependencies:
@@ -5102,10 +5081,6 @@ packages:
   json-schema-to-ts@3.1.1:
     resolution: {integrity: sha512-+DWg8jCJG2TEnpy7kOm/7/AxaYoaRbjVB4LFZLySZlWn8exGs3A4OLJR966cVvU26N7X9TWxl+Jsw7dzAqKT6g==}
     engines: {node: '>=16'}
-
-  json-schema-to-zod@2.6.1:
-    resolution: {integrity: sha512-uiHmWH21h9FjKJkRBntfVGTLpYlCZ1n98D0izIlByqQLqpmkQpNTBtfbdP04Na6+43lgsvrShFh2uWLkQDKJuQ==}
-    hasBin: true
 
   json-schema-traverse@0.4.1:
     resolution: {integrity: sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg==}
@@ -11461,8 +11436,6 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.28.2
       ts-algebra: 2.0.0
-
-  json-schema-to-zod@2.6.1: {}
 
   json-schema-traverse@0.4.1: {}
 
