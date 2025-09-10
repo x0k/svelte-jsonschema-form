@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createForm, BasicForm, type Schema, groupErrors } from "@sjsf/form";
+  import { createForm, BasicForm, type Schema } from "@sjsf/form";
   import { resolver } from "@sjsf/form/resolvers/basic";
   import { translation } from "@sjsf/form/translations/en";
   import { createFormMerger } from "@sjsf/form/mergers/modern";
@@ -11,8 +11,6 @@
     minLength: 10,
   };
 
-  const validator = createFormValidator();
-
   const form = createForm({
     theme,
     initialValue: "initial",
@@ -20,12 +18,14 @@
     resolver,
     translation,
     onSubmit: console.log,
-    createValidator: () => validator,
+    createValidator: createFormValidator,
     createMerger: createFormMerger,
   });
 
   $effect(() => {
-    form.errors = groupErrors(validator.validateFormValue(schema, form.value));
+    // NOTE: `validate` reads the state snapshot,
+    // causing `$effect` to subscribe to all changes.
+    form.errors = form.validate()
   });
 </script>
 
