@@ -95,18 +95,26 @@ export interface FormValidatorOptions
   extends ValidatorOptions,
     FormValueValidatorOptions {}
 
-export function createFormValidator({
+export function createFormValidatorFactory({
   // `isJSON` validator option is `false` by default
   valueToJSON = (value) => value as Json,
-  ...rest
-}: Omit<FormValidatorOptions, keyof ValueToJSON> & Partial<ValueToJSON>) {
-  const options: FormValidatorOptions = {
-    ...rest,
-    valueToJSON,
+  ...vOptions
+}: Omit<ValidatorOptions, keyof ValueToJSON> & Partial<ValueToJSON>) {
+  return (
+    options: Omit<
+      FormValidatorOptions,
+      keyof ValueToJSON | keyof ValidatorOptions
+    >
+  ) => {
+    const full: FormValidatorOptions = {
+      valueToJSON,
+      ...vOptions,
+      ...options,
+    };
+    return Object.assign(
+      createValidator(full),
+      createFormValueValidator(full),
+      createFieldValueValidator(full)
+    );
   };
-  return Object.assign(
-    createValidator(options),
-    createFormValueValidator(options),
-    createFieldValueValidator(options)
-  );
 }

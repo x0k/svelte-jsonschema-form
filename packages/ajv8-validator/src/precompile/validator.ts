@@ -143,18 +143,30 @@ export interface FormValidatorOptions
   extends ValidatorOptions,
     FormValueValidatorOptions {}
 
-export function createFormValidator(options: FormValidatorOptions) {
-  return Object.assign(
-    createValidator(options),
-    createFormValueValidator(options),
-    createFieldValueValidator(options)
-  );
+export function createFormValidatorFactory(vOptions: ValidatorOptions) {
+  return (options: Omit<FormValidatorOptions, keyof ValidatorOptions>) => {
+    const full = {
+      ...vOptions,
+      ...options,
+    };
+    return Object.assign(
+      createValidator(full),
+      createFormValueValidator(full),
+      createFieldValueValidator(full)
+    );
+  };
 }
 
-export function createAsyncFormValidator(options: FormValidatorOptions) {
-  return Object.assign(
-    createValidator(options),
-    createAsyncFormValueValidator(options),
-    createAsyncFieldValueValidator(options)
-  );
+export function createAsyncFormValidatorFactory(vOptions: ValidatorOptions) {
+  return (options: Omit<FormValidatorOptions, keyof ValidatorOptions>) => {
+    const full = {
+      ...vOptions,
+      ...options,
+    };
+    return Object.assign(
+      createValidator(full),
+      createAsyncFormValueValidator(full),
+      createAsyncFieldValueValidator(full)
+    );
+  };
 }
