@@ -7,8 +7,8 @@ import {
 import { z as zz } from "zod/v4";
 import { z as zm } from "zod/v4-mini";
 
-import { setupAsyncFormValidator as setupAsyncFormValidatorClassic } from "./classic/index.js";
-import { setupFormValidator as setupFormValidatorMini } from "./mini/index.js";
+import { adaptAsync as setupAsyncFormValidatorClassic } from "./classic/index.js";
+import { adapt as setupFormValidatorMini } from "./mini/index.js";
 
 describe("FormValidator", () => {
   it.each([

@@ -23,7 +23,7 @@ export const createAugmentedSchema: AugmentedSchemaFactory = (schema) => {
     );
 };
 
-export const setupFormValidator = createFormValidatorFactory({
+export const adapt = createFormValidatorFactory({
   createAugmentedSchema,
   createFormValidator: (
     schemaRegistry,
@@ -40,7 +40,11 @@ export const setupFormValidator = createFormValidatorFactory({
     ),
 });
 
-export const setupAsyncFormValidator = createFormValidatorFactory({
+// TODO: Remove in v4
+/** @deprecated use `adapt` */
+export const setupFormValidator = adapt;
+
+export const adaptAsync = createFormValidatorFactory({
   createAugmentedSchema,
   createFormValidator: (
     schemaRegistry,
@@ -60,3 +64,7 @@ export const setupAsyncFormValidator = createFormValidatorFactory({
       )
     ),
 });
+
+// TODO: Remove in v4
+/** @deprecated use `adaptAsync` */
+export const setupAsyncFormValidator = adaptAsync

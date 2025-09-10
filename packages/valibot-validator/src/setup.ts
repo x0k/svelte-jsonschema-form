@@ -38,7 +38,7 @@ function createFormValidatorFactory<O, V extends Validator>({
   };
 }
 
-export const setupFormValidator = createFormValidatorFactory({
+export const adapt = createFormValidatorFactory({
   createFormValidator: (
     schemaRegistry,
     options: Omit<FormValidatorOptions, "schemaRegistry">
@@ -51,7 +51,11 @@ export const setupFormValidator = createFormValidatorFactory({
     ),
 });
 
-export const setupAsyncFormValidator = createFormValidatorFactory({
+// TODO: Remove in v4
+/** @deprecated use `adapt` */
+export const setupFormValidator = adapt;
+
+export const adaptAsync = createFormValidatorFactory({
   createFormValidator: (
     schemaRegistry,
     options: Omit<FormValidatorOptions, "schemaRegistry">
@@ -63,3 +67,7 @@ export const setupAsyncFormValidator = createFormValidatorFactory({
       )
     ),
 });
+
+// TODO: Remove in v4
+/** @deprecated use `adaptAsync` */
+export const setupAsyncFormValidator = adaptAsync

@@ -6,11 +6,11 @@ import {
 } from "@sjsf/form/core";
 import * as v from "valibot";
 
-import { setupFormValidator } from "./setup.js";
+import { adapt } from "./setup.js";
 
 describe("FormValidator", () => {
   it("should correctly match options", () => {
-    const { createValidator, schema } = setupFormValidator(
+    const { createValidator, schema } = adapt(
       v.union([
         v.object({ foo: v.string() }),
         v.object({ bar: v.string(), baz: v.number() }),
@@ -42,7 +42,7 @@ describe("FormValidator", () => {
     );
   });
   it("should use augmented schema", () => {
-    const { createValidator, schema } = setupFormValidator(
+    const { createValidator, schema } = adapt(
       v.union([
         v.object({ foo: v.string() }),
         v.object({ bar: v.string(), baz: v.number() }),
