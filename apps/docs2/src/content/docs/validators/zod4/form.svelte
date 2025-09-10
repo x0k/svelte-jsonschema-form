@@ -6,7 +6,7 @@
     ON_CHANGE,
     ON_INPUT,
   } from "@sjsf/form";
-  import { setupFormValidator } from "@sjsf/zod4-validator/classic";
+  import { adapt } from "@sjsf/zod4-validator/classic";
   import { z } from "zod";
   import { en } from "zod/locales";
 
@@ -32,7 +32,7 @@
 
   const form = createForm({
     ...defaults,
-    ...setupFormValidator(schema),
+    ...adapt(schema),
     uiSchema,
     fieldsValidationMode: ON_INPUT | ON_CHANGE | ON_ARRAY_CHANGE,
     initialValue: initialValue,

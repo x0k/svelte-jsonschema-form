@@ -6,7 +6,7 @@
     ON_CHANGE,
     ON_INPUT,
   } from "@sjsf/form";
-  import { setupFormValidator } from "@sjsf/valibot-validator";
+  import { adapt } from "@sjsf/valibot-validator";
   import * as v from "valibot";
 
   import * as defaults from "@/lib/form/defaults";
@@ -33,7 +33,7 @@
 
   const form = createForm({
     ...defaults,
-    ...setupFormValidator(schema),
+    ...adapt(schema),
     uiSchema,
     fieldsValidationMode: ON_INPUT | ON_CHANGE | ON_ARRAY_CHANGE,
     initialValue: initialValue as Value,
