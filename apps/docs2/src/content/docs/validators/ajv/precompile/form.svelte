@@ -1,6 +1,6 @@
 <script lang="ts">
   import { BasicForm, createForm } from "@sjsf/form";
-  import { createFormValidator } from "@sjsf/ajv8-validator/precompile";
+  import { createFormValidatorFactory } from "@sjsf/ajv8-validator/precompile";
   import { resolver } from "@sjsf/form/resolvers/compat";
 
   import * as defaults from "@/lib/form/defaults";
@@ -11,8 +11,7 @@
   const form = createForm({
     ...defaults,
     schema,
-    createValidator: (options) =>
-      createFormValidator({ ...options, validateFunctions }),
+    createValidator: createFormValidatorFactory({ validateFunctions }),
     fieldsValidationMode,
     resolver,
   });
