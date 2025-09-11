@@ -10,7 +10,7 @@ import styles from '@sjsf/daisyui5-theme/styles.css?inline';
 
 import { peerDependencies } from '#/daisyui5-theme/package.json'
 
-import { withTag } from '@/shared';
+import { themePkg } from '@/shared';
 import Npm from '@/components/npm.astro';
 import FormCard from '@/components/form-card.astro';
 
@@ -22,7 +22,7 @@ export const schemas = createSchemas(specs)
 
 ## Installation
 
-<Npm pkg={withTag("daisyui5")} />
+<Npm pkg={themePkg("daisyui5")} />
 
 daisyUI <code>{peerDependencies.daisyui}</code> is required.
 

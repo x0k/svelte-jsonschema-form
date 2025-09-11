@@ -10,7 +10,7 @@ import styles from '@sjsf/flowbite3-theme/styles.css?inline';
 
 import { peerDependencies } from '#/flowbite3-theme/package.json'
 
-import { withTag } from '@/shared';
+import { themePkg } from '@/shared';
 import Npm from '@/components/npm.astro';
 import FormCard from '@/components/form-card.astro';
 
@@ -26,7 +26,7 @@ All rights to the trademark are owned by Bergside Inc.
 
 ## Installation
 
-<Npm pkg={withTag("flowbite3")} />
+<Npm pkg={themePkg("flowbite3")} />
 
 flowbite-svelte <code>{peerDependencies['flowbite-svelte']}</code> is required.
 

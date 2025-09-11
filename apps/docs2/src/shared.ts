@@ -4,9 +4,11 @@ import { version } from "#/form/package.json";
 
 export const VERSION = version;
 
+export const IS_NEXT_VERSION = VERSION.includes("next");
+
 export const FORM_PACKAGE = `@sjsf/form`;
 
-export const AJV_PACKAGE_V = "ajv@8";
+export const AJV_PACKAGE_WITH_TAG = "ajv@8";
 
 export const AJV_VALIDATOR_PACKAGE = `@sjsf/ajv8-validator`;
 
@@ -123,14 +125,30 @@ export function isTheme(str: string): str is Theme {
   return str in THEME_TITLES;
 }
 
-export function withTag(theme: Theme) {
-  return THEME_PACKAGES[theme];
+export function pkg(val: string) {
+  return IS_NEXT_VERSION && val.startsWith("@sjsf/")
+    ? `${val}@next`
+    : val;
+}
+
+export function packages(
+  strings: TemplateStringsArray,
+  ...values: unknown[]
+): string {
+  const processed = IS_NEXT_VERSION
+    ? values.map((v) => (typeof v === "string" ? pkg(v) : v))
+    : values;
+  return strings.reduce((acc, str, i) => acc + str + (processed[i] ?? ""), "");
+}
+
+export function themePkg(theme: Theme) {
+  return pkg(THEME_PACKAGES[theme]);
 }
 
 export function createThemeInstall(theme: Theme) {
-  return `${FORM_PACKAGE} ${AJV_VALIDATOR_PACKAGE} ${AJV_PACKAGE_V} ${withTag(
-    theme
-  )}`;
+  return packages`${FORM_PACKAGE} ${AJV_VALIDATOR_PACKAGE} ${AJV_PACKAGE_WITH_TAG} ${
+    THEME_PACKAGES[theme]
+  }`;
 }
 
 export const ICONS_PACKAGES = [
@@ -141,6 +159,10 @@ export const ICONS_PACKAGES = [
 ] as const;
 
 export type IconsPackage = (typeof ICONS_PACKAGES)[number];
+
+export function iconsPkg(icons: IconsPackage) {
+  return pkg(ICONS_PACKAGE_NAMES[icons]);
+}
 
 export const ICONS_PACKAGE_NAMES = {
   flowbite: "@sjsf/flowbite-icons",

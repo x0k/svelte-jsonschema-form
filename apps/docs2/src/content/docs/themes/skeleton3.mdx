@@ -10,7 +10,7 @@ import styles from "@sjsf/skeleton3-theme/styles.css?inline";
 
 import { peerDependencies } from '#/skeleton3-theme/package.json'
 
-import { withTag } from '@/shared';
+import { themePkg } from '@/shared';
 import Npm from '@/components/npm.astro';
 import FormCard from '@/components/form-card.astro';
 
@@ -22,7 +22,7 @@ export const schemas = createSchemas(specs)
 
 ## Installation
 
-<Npm pkg={withTag("skeleton3")} />
+<Npm pkg={themePkg("skeleton3")} />
 
 @skeletonlabs/skeleton <code>{peerDependencies['@skeletonlabs/skeleton']}</code> and
 @skeletonlabs/skeleton-svelte <code>{peerDependencies['@skeletonlabs/skeleton-svelte']}</code> are required.

@@ -7,7 +7,7 @@ sidebar:
 import { Code, Card, TabItem, Tabs } from '@astrojs/starlight/components';
 import { specs, extraWidgets } from '@sjsf/basic-theme/specs';
 
-import { withTag } from '@/shared';
+import { themePkg } from '@/shared';
 import Npm from '@/components/npm.astro';
 import FormCard from '@/components/form-card.astro';
 
@@ -19,7 +19,7 @@ export const schemas = createSchemas(specs)
 
 ## Installation
 
-<Npm pkg={withTag('basic')} />
+<Npm pkg={themePkg('basic')} />
 
 ## Extra widgets
 

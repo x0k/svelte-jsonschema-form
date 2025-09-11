@@ -10,7 +10,7 @@ import styles from '@sjsf/shadcn4-theme/styles.css?inline';
 
 import { peerDependencies } from '#/shadcn4-theme/package.json'
 
-import { withTag } from '@/shared';
+import { themePkg } from '@/shared';
 import Npm from '@/components/npm.astro';
 import FormCard from '@/components/form-card.astro';
 
@@ -22,7 +22,7 @@ export const schemas = createSchemas(specs)
 
 ## Installation
 
-<Npm pkg={withTag("shadcn4")} />
+<Npm pkg={themePkg("shadcn4")} />
 
 :::note
 
