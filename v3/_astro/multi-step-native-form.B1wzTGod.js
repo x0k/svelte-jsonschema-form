@@ -1,4 +1,4 @@
-import{o as e}from"./advanced-examples.DC-pmwQ6.js";import"./_commonjsHelpers.CZ3AZj88.js";import"./render.C_uzIxE0.js";import"./function.D4bMrD2D.js";import"./shared.Gg_5Lxuo.js";import"./preload-helper.1-HTDuIo.js";import"./buttons.tz9KgSNw.js";/* empty css                                                       *//* empty css                                                                 */const t="multi-step-native-form",n="0.0.1",s="module",o={dev:"vite dev",preview:"vite preview",prepare:"svelte-kit sync || echo ''",check:"svelte-kit sync && svelte-check --tsconfig ./tsconfig.json","check:watch":"svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"},r={"@sveltejs/adapter-auto":"^6.1.0","@sveltejs/kit":"^2.28.0","@sveltejs/vite-plugin-svelte":"^6.1.2",svelte:"^5.38.1","svelte-check":"^4.3.1",typescript:"^5.9.2",vite:"^7.1.2"},a={"@sjsf/ajv8-validator":"^2.2.1","@sjsf/basic-theme":"^2.2.1","@sjsf/form":"^2.2.1","@sjsf/sveltekit":"^2.2.1",ajv:"^8.17.1"},i={name:t,private:!0,version:n,type:s,scripts:o,devDependencies:r,dependencies:a},m=`import { fail } from "@sveltejs/kit";
+import{o as e}from"./advanced-examples.DMNWcU9p.js";import"./_commonjsHelpers.CZ3AZj88.js";import"./render.C_uzIxE0.js";import"./function.D4bMrD2D.js";import"./shared.Gg_5Lxuo.js";import"./preload-helper.1-HTDuIo.js";import"./buttons.tz9KgSNw.js";/* empty css                                                       *//* empty css                                                                 */const t="multi-step-native-form",n="0.0.1",s="module",o={dev:"vite dev",preview:"vite preview",prepare:"svelte-kit sync || echo ''",check:"svelte-kit sync && svelte-check --tsconfig ./tsconfig.json","check:watch":"svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"},r={"@sveltejs/adapter-auto":"^6.1.0","@sveltejs/kit":"^2.38.1","@sveltejs/vite-plugin-svelte":"^6.1.2",svelte:"^5.38.1","svelte-check":"^4.3.1",typescript:"^5.9.2",vite:"^7.1.2"},a={"@sjsf/ajv8-validator":"^3.0.0-next.0","@sjsf/basic-theme":"^3.0.0-next.0","@sjsf/form":"^3.0.0-next.0","@sjsf/sveltekit":"^3.0.0-next.0",ajv:"^8.17.1"},i={name:t,private:!0,version:n,type:s,scripts:o,devDependencies:r,dependencies:a},m=`import { fail } from "@sveltejs/kit";
 import type { AnyFormValueValidatorError, SchemaValue } from "@sjsf/form";
 import type { ValidatedFormData } from "@sjsf/sveltekit";
 import {
@@ -7,10 +7,12 @@ import {
   validateForm,
 } from "@sjsf/sveltekit/server";
 
-import { validator } from "$lib/form-defaults";
+import { createValidator } from "$lib/form-defaults";
 
 import { schema, STEP_KEY, stepNames, type Stepped } from "./model";
 import type { Actions } from "./$types";
+
+const validator = createValidator()
 
 const parseFormData = makeFormDataParser({
   validator,
@@ -22,7 +24,7 @@ export const load = async () => {
     sendSchema: true,
     initialValue: {
       [STEP_KEY]: "first",
-    } satisfies Stepped & SchemaValue,
+    } as const satisfies Stepped & SchemaValue,
   });
   return { form };
 };
@@ -70,11 +72,11 @@ export const actions = {
 `,p=`<script lang="ts">
   import { fromFactories } from "@sjsf/form/lib/resolver";
   import {
-    setFormContext2,
+    setFormContext,
     Content,
     SubmitButton,
     type Config,
-    pathToId,
+    idFromPath,
   } from "@sjsf/form";
   import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit/client";
 
@@ -85,7 +87,7 @@ export const actions = {
 
   const meta = createMeta<ActionData, PageData>().form;
 
-  const rootIds = new Set(rootKeys.map((l) => pathToId([l])));
+  const rootIds = new Set(rootKeys.map((l) => idFromPath([l])));
   const { form } = setupSvelteKitForm(meta, {
     ...defaults,
     extraUiOptions: fromFactories({
@@ -97,18 +99,7 @@ export const actions = {
                   return \`display: \${
                     // NOTE: Remember that each call to form.value causes a new
                     // form state snapshot to be created.
-                    // If performance is critical for you, use:
-                    // \`\`\`ts
-                    // import type { FormInternalContext } from "@sjsf/form";
-                    // import type { Value } from "./model";
-                    // ...
-                    // const stateRef = (
-                    //   form.context as FormInternalContext<
-                    //     typeof defaults.validator
-                    //   >
-                    // ).value as Value;
-                    // \`\`\`
-                    // and \`stateRef.step\`
+                    // If performance is critical for you can use controlled form
                     config.id.endsWith(form.value?.[STEP_KEY]!)
                       ? "block"
                       : "none"
@@ -119,7 +110,7 @@ export const actions = {
           : undefined,
     }),
   });
-  setFormContext2(form);
+  setFormContext(form);
 <\/script>
 
 <form

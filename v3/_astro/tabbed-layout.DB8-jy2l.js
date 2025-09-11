@@ -55,7 +55,7 @@ export function createTabsNode(initialTab: number): TabsNode {
 
   const arrCtx = getArrayContext();
 
-  const isTuple = $derived(isFixedItems(arrCtx.config.schema));
+  const isTuple = $derived(isFixedItems(arrCtx.config().schema));
 <\/script>
 
 {#if props.type === "array-items" && isTuple}
@@ -157,8 +157,8 @@ export const schema = {
     },
   ],
 } as const satisfies Schema;
-`,o=`<script lang="ts">
-  import { isSchema } from "@sjsf/form/core";
+`,s=`<script lang="ts">
+  import { isSchemaObject } from "@sjsf/form/lib/json-schema";
   import type { ComponentProps } from "@sjsf/form";
 
   import {
@@ -181,7 +181,7 @@ export const schema = {
     const { items } = config.schema;
     if (Array.isArray(items)) {
       const item = items[i];
-      if (isSchema(item) && item.title) {
+      if (isSchemaObject(item) && item.title) {
         return item.title
       }
     }
@@ -219,9 +219,9 @@ export const schema = {
 <!-- {#if tabs.length > 0}
   {@render tabs[selectedTab]()}
 {/if} -->
-`,s=`import {
+`,o=`import {
   DEFAULT_ID_SEPARATOR,
-  pathToId,
+  idFromPath,
   type FieldErrorsMap,
   type IdOptions,
 } from "@sjsf/form";
@@ -246,7 +246,7 @@ export function createTabbedFocusOnFirstError<E>(
       .slice(1);
     let children = ctx;
     for (let i = 0; i < path.length && children.size; i++) {
-      const id = pathToId(path.slice(0, i), options);
+      const id = idFromPath(path.slice(0, i), options);
       const node = children.get(id);
       if (node === undefined) {
         continue;
@@ -352,4 +352,4 @@ export { default as Layout } from './layout.svelte'
 <\/script>
 
 <BasicForm {form} novalidate />
-`,b={files:{"src/lib/tabs/context.svelte.ts":t,"src/lib/tabs/layout.svelte":e,"src/lib/tabs/schema.ts":n,"src/lib/tabs/tabs.svelte":o,"src/lib/tabs/focus.ts":s,"src/lib/tabs/tab.svelte":r,"src/lib/tabs/index.ts":a,"src/routes/sub-tabs.svelte":i,"src/routes/+page.svelte":c,"src/routes/top-tabs.svelte":l}};export{b as layer};
+`,b={files:{"src/lib/tabs/context.svelte.ts":t,"src/lib/tabs/layout.svelte":e,"src/lib/tabs/schema.ts":n,"src/lib/tabs/tabs.svelte":s,"src/lib/tabs/focus.ts":o,"src/lib/tabs/tab.svelte":r,"src/lib/tabs/index.ts":a,"src/routes/sub-tabs.svelte":i,"src/routes/+page.svelte":c,"src/routes/top-tabs.svelte":l}};export{b as layer};

@@ -36,6 +36,7 @@ const e=`<script lang="ts">
 
 <Field {form} name="hello">
   {#snippet render({ config, uiOption, valueRef })}
+    <!-- NOTE: form === ctx -->
     {@const ctx = getFormContext()}
     <!--
       NOTE: We use the \`theme\` call because the example needs to be generic,

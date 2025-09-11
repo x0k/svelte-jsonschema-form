@@ -1,4 +1,4 @@
-import{o as n}from"./advanced-examples.DC-pmwQ6.js";import"./_commonjsHelpers.CZ3AZj88.js";import"./render.C_uzIxE0.js";import"./function.D4bMrD2D.js";import"./shared.Gg_5Lxuo.js";import"./preload-helper.1-HTDuIo.js";import"./buttons.tz9KgSNw.js";/* empty css                                                       *//* empty css                                                                 */const e="async-combobox",t="0.0.1",i="module",o={dev:"vite dev",preview:"vite preview",prepare:"svelte-kit sync || echo ''",check:"svelte-kit sync && svelte-check --tsconfig ./tsconfig.json","check:watch":"svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"},a={"@sveltejs/adapter-auto":"^6.1.0","@sveltejs/kit":"^2.28.0","@sveltejs/vite-plugin-svelte":"^6.1.2",svelte:"^5.38.1","svelte-check":"^4.3.1",typescript:"^5.9.2",vite:"^7.1.2"},r={"@sjsf/ajv8-validator":"^2.2.1","@sjsf/basic-theme":"^2.2.1","@sjsf/form":"^2.2.1",ajv:"^8.17.1","esm-env":"^1.2.2"},s={name:e,private:!0,version:t,type:i,scripts:o,devDependencies:a,dependencies:r},l=`export const COUNTRIES = [
+import{o as n}from"./advanced-examples.DMNWcU9p.js";import"./_commonjsHelpers.CZ3AZj88.js";import"./render.C_uzIxE0.js";import"./function.D4bMrD2D.js";import"./shared.Gg_5Lxuo.js";import"./preload-helper.1-HTDuIo.js";import"./buttons.tz9KgSNw.js";/* empty css                                                       *//* empty css                                                                 */const e="async-combobox",t="0.0.1",i="module",o={dev:"vite dev",preview:"vite preview",prepare:"svelte-kit sync || echo ''",check:"svelte-kit sync && svelte-check --tsconfig ./tsconfig.json","check:watch":"svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"},a={"@sveltejs/adapter-auto":"^6.1.0","@sveltejs/kit":"^2.28.0","@sveltejs/vite-plugin-svelte":"^6.1.2",svelte:"^5.38.1","svelte-check":"^4.3.1",typescript:"^5.9.2",vite:"^7.1.2"},r={"@sjsf/ajv8-validator":"^3.0.0-next.0","@sjsf/basic-theme":"^3.0.0-next.0","@sjsf/form":"^3.0.0-next.0",ajv:"^8.17.1","esm-env":"^1.2.2"},s={name:e,private:!0,version:t,type:i,scripts:o,devDependencies:a,dependencies:r},l=`export const COUNTRIES = [
   "Afghanistan",
   "Albania",
   "Algeria",
@@ -206,7 +206,7 @@ import{o as n}from"./advanced-examples.DC-pmwQ6.js";import"./_commonjsHelpers.CZ
     type UiSchemaRoot,
     type AsyncFormValueValidator,
     type FormValueValidatorError,
-    pathToId,
+    idFromPath,
   } from "@sjsf/form";
 
   import * as defaults from "$lib/form-defaults";
@@ -241,35 +241,6 @@ import{o as n}from"./advanced-examples.DC-pmwQ6.js";import"./_commonjsHelpers.CZ
 
   class InvalidCountry {}
 
-  const validator = {
-    ...defaults.validator,
-    async validateFormValueAsync(signal, rootSchema, formValue) {
-      const errors = defaults.validator.validateFormValue(
-        rootSchema,
-        formValue
-      );
-      if (errors.length > 0) {
-        return errors;
-      }
-      if (typeof formValue === "string") {
-        const countries = await searchFn(signal, formValue);
-        if (countries.includes(formValue)) {
-          return [];
-        }
-      }
-      return [
-        {
-          instanceId: pathToId([]),
-          propertyTitle: "Country",
-          message: "invalid country",
-          error: new InvalidCountry(),
-        },
-      ];
-    },
-  } satisfies AsyncFormValueValidator<
-    FormValueValidatorError<typeof defaults.validator> | InvalidCountry
-  >;
-
   const schema = {
     type: "string",
     title: "Country",
@@ -295,13 +266,43 @@ import{o as n}from"./advanced-examples.DC-pmwQ6.js";import"./_commonjsHelpers.CZ
 
   const form = createForm({
     ...defaults,
+    createValidator: (options) => {
+      const defaultValidator = defaults.createValidator(options);
+      return {
+        ...defaultValidator,
+        async validateFormValueAsync(signal, rootSchema, formValue) {
+          const errors = defaultValidator.validateFormValue(
+            rootSchema,
+            formValue
+          );
+          if (errors.length > 0) {
+            return errors;
+          }
+          if (typeof formValue === "string") {
+            const countries = await searchFn(signal, formValue);
+            if (countries.includes(formValue)) {
+              return [];
+            }
+          }
+          return [
+            {
+              instanceId: idFromPath([]),
+              propertyTitle: "Country",
+              message: "invalid country",
+              error: new InvalidCountry(),
+            },
+          ];
+        },
+      } satisfies AsyncFormValueValidator<
+        FormValueValidatorError<typeof defaultValidator> | InvalidCountry
+      >;
+    },
     // NOTE: the behavior of the \`$derived\` rune during SSR is different from the browser
     get disabled(): boolean {
       return BROWSER && form.submission.isProcessed;
     },
     schema,
     uiSchema,
-    validator,
     onSubmit: console.log,
   });
 <\/script>
@@ -334,9 +335,9 @@ import{o as n}from"./advanced-examples.DC-pmwQ6.js";import"./_commonjsHelpers.CZ
 
   import {
     abortPrevious,
-    createAction,
-    type Action,
-  } from "@sjsf/form/lib/action.svelte";
+    createTask,
+    type Task,
+  } from "@sjsf/form/lib/task.svelte";
 
   let {
     searchFn,
@@ -359,7 +360,7 @@ import{o as n}from"./advanced-examples.DC-pmwQ6.js";import"./_commonjsHelpers.CZ
   let listElement: HTMLUListElement;
 
   // Create the search action with throttling
-  const searchAction: Action<[string], T[], Error> = createAction({
+  const searchAction: Task<[string], T[], Error> = createTask({
     execute: async (signal: AbortSignal, searchQuery: string) => {
       if (searchQuery.length < minQueryLength) {
         return [];

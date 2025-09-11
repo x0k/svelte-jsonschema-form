@@ -1,8 +1,8 @@
-const n=`<script lang="ts">
+const e=`<script lang="ts">
   import { flip } from "svelte/animate";
   import { fade } from "svelte/transition";
 
-  import { isSchemaArrayValue } from "@sjsf/form/core";
+  import { SimpleKeyedArray } from "@sjsf/form/lib/keyed-array.svelte";
   import {
     getComponent,
     getFormContext,
@@ -10,7 +10,9 @@ const n=`<script lang="ts">
     Text,
     retrieveUiOption,
     retrieveTranslate,
+    createKeyedArrayDeriver,
   } from "@sjsf/form";
+  import { VirtualKeyedArray } from "@sjsf/form/fields/array/virtual-keyed-array";
   import {
     createArrayContext,
     setArrayContext,
@@ -24,12 +26,17 @@ const n=`<script lang="ts">
   }: ComponentProps["arrayField"] = $props();
 
   const ctx = getFormContext();
-  const arrayCtx = createArrayContext(
+  const arrayCtx = createArrayContext({
     ctx,
-    () => config,
-    () => value,
-    (v) => (value = v)
-  );
+    config: () => config,
+    value: () => value,
+    keyedArray: createKeyedArrayDeriver(
+      ctx,
+      () => value,
+      () => new VirtualKeyedArray((v) => (value = v)),
+      (v, g) => new SimpleKeyedArray(v, g)
+    ),
+  });
   setArrayContext(arrayCtx);
 
   const ArrayItem = $derived(getComponent(ctx, "arrayItemField", config));
@@ -39,7 +46,7 @@ const n=`<script lang="ts">
 
 {#snippet addButton()}
   <Button
-    errors={arrayCtx.errors}
+    errors={arrayCtx.errors()}
     {config}
     disabled={false}
     type="array-item-add"
@@ -50,29 +57,27 @@ const n=`<script lang="ts">
 {/snippet}
 <Template
   type="template"
-  errors={arrayCtx.errors}
+  errors={arrayCtx.errors()}
   {config}
   {value}
   {uiOption}
   addButton={arrayCtx.canAdd() ? addButton : undefined}
 >
-  {#if isSchemaArrayValue(value)}
-    {#each value as item, index (arrayCtx.key(index))}
-      {@const cfg = arrayCtx.itemConfig(config, item, index)}
-      <div animate:flip transition:fade>
-        <ArrayItem
-          type="field"
-          {index}
-          bind:value={value[index]}
-          config={cfg}
-          uiOption={(opt) => retrieveUiOption(ctx, cfg, opt)}
-          translate={retrieveTranslate(ctx, config)}
-        />
-      </div>
-    {/each}
-  {/if}
+  {#each { length: arrayCtx.length() } as _, index (arrayCtx.key(index))}
+    {@const cfg = arrayCtx.itemConfig(config, value?.[index], index)}
+    <div animate:flip transition:fade>
+      <ArrayItem
+        type="field"
+        {index}
+        config={cfg}
+        bind:value={() => value?.[index], (v) => arrayCtx.set(index, v)}
+        uiOption={(opt) => retrieveUiOption(ctx, cfg, opt)}
+        translate={retrieveTranslate(ctx, cfg)}
+      />
+    </div>
+  {/each}
 </Template>
-`,e=`<script lang="ts">
+`,n=`<script lang="ts">
   import { overrideByRecord } from "@sjsf/form/lib/resolver";
   import { createForm, BasicForm, type Schema } from "@sjsf/form";
 
@@ -104,4 +109,6 @@ const n=`<script lang="ts">
 <\/script>
 
 <BasicForm {form} />
-`,t={files:{"src/routes/animated-array.svelte":n,"src/routes/+page.svelte":e}};export{t as layer};
+
+<pre><code>{JSON.stringify(form.value, null, 2)}</code></pre>
+`,t={files:{"src/routes/animated-array.svelte":e,"src/routes/+page.svelte":n}};export{t as layer};
