@@ -14,21 +14,18 @@ npm install @sjsf/zod4-validator zod
 ## Usage
 
 ```typescript
-import { createForm, type Schema } from '@sjsf/form'
-import { setupFormValidator } from "@sjsf/zod4-validator/classic";
+import { createForm, type Schema } from "@sjsf/form";
+import { adapt } from "@sjsf/zod4-validator/classic";
 import { z } from "zod/v4";
 
-const zodSchema = z.object({
+const schema = z.object({
   /* your schema */
 });
 
-const { schema, createValidator } = setupFormValidator(zodSchema);
-
 const form = createForm({
-  schema,
-  createValidator,
-  ...
-})
+  ...adapt(schema),
+  /* other options */
+});
 ```
 
 ## License

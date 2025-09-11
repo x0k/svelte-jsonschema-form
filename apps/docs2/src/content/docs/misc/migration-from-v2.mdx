@@ -1,0 +1,190 @@
+---
+title: Migration from v2
+sidebar:
+  order: 0
+---
+
+Before migrating, make sure you are using the latest version of SJSF and
+that you are not using any deprecated APIs.
+
+## TL;DR
+
+Update your `defaults.ts` file:
+
+```diff
++ export { createFormMerger as createMerger } from "@sjsf/form/mergers/legacy";
+
+- import { createFormValidator } from "@sjsf/ajv8-validator";
+-
+- export const validator = createFormValidator();
++ export { createFormValidator as createValidator } from "@sjsf/ajv8-validator";
+```
+
+Yes, this change should be sufficient for migrating most projects.
+However, I recommend reviewing the full list of changes,
+as you might find opportunities to improve or simplify your current solution.
+
+## Form
+
+### New `createValidator` and `createMerger` form options
+
+New options replace the `validator` and `merger` properties.
+This change addresses several issues:
+
+- A single validator instance was shared across all forms
+- Form parameters had to be passed manually to validator and merger (`uiSchema`, `idPrefix`, etc.)
+- The default merger relied on a [heavy library](https://github.com/x0k/svelte-jsonschema-form/issues/147)
+as a dependency
+
+Now:
+
+- Each form creates its own validator and merger instances, passing the necessary parameters automatically
+- The merger is specified explicitly, making it easy to replace if needed
+- A new merger is available with significant improvements in both performance and bundle size
+(`@sjsf/form/mergers/modern`)
+
+### All form options now can be reactive
+
+All form options now support reactivity. For example:
+
+```ts
+import { createForm } from '@sjsf/form';
+
+import { getInitialData } from './data.remote';
+
+const initialData = $derived(await getInitialData())
+
+const form = createForm({
+  get initialValue() {
+    return initialData;
+  },
+  get initialErrors() {
+    initialData;
+    return undefined;
+  }
+  /// ...
+})
+```
+
+When `initialData` changes, the form state will be updated!
+
+### Changed default values population behavior
+
+Previously, objects and tuples were always initialized with a value,
+even when they were not required. For example:
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "foo": {
+      "type": "object",
+      "properties": {
+        "bar": {
+          "type": "string"
+        }
+      },
+      "required": ["bar"]
+    }
+  }
+}
+```
+
+The `foo` object used to be initialized as an empty object (unless another initial value was provided).
+This forced users to fill in the `bar` field, even though the `foo` object itself was optional.
+
+Now, when creating a form, the form state is initialized with an empty object (for this case),
+and the form can be submitted without filling in the `bar` field.
+
+### The `form.context` property has been removed
+
+Previously, the public and internal APIs were split between two objects:
+`form` and `form.context`.
+In v3, `form.context` and `FormInternalContext` no longer exist.
+All internal fields and methods have been moved directly into `form`,
+but they must be accessed via [internal symbols](../../form/state/#internals).
+
+:::caution
+
+If you were using `ctx.value` in your custom components, replace it with `ctx[FORM_VALUE]`.
+The context now provides the entire `form` object, while `form.value` is a public value accessor.
+
+:::
+
+### `ArrayContext` and `ObjectContext` objects update
+
+Context constructors now accept an options object instead of a list of arguments:
+
+```ts
+const objCtx = createObjectContext({
+  ctx,
+  config: () => config,
+  value: () => value,
+  translate,
+});
+```
+
+These interfaces now only include methods, making them easier to extend:
+
+```ts
+const myObjCtx = {
+  ...objCtx,
+  canExpand() => someCondition && objCtx.canExpand(),
+}
+setObjectContext(myObjCtx)
+```
+
+## Validators
+
+### Zod and Valibot
+
+The `setupFormValidator` and `setupAsyncFormValidator` functions have been renamed
+to `adapt` and `adaptAsync`.
+They can now be used directly when calling `createForm`:
+
+```ts
+const form = createForm({
+  ...defaults,
+  ...adapt(schema),
+});
+```
+
+### Ajv and @exodus/schemasafe
+
+In the `precompile` submodules, the `createFormValidator` functions
+have been replaced with `createFormValidatorFactory`.
+
+For convenient use with `createForm`:
+
+```ts
+  const form = createForm({
+    ...defaults,
+    schema,
+    createValidator: createFormValidatorFactory({ validateFunctions }),
+  });
+```
+
+## Dependency versions have been updated
+
+- `svelte@^5.38.0`
+- `@sveltejs/kit@^2.37.0` (`@sjsf/sveltekit`)
+- `flowbite-svelte-icons@^3.0.0` (`@sjsf/flowbite-icons`)
+- `flowbite-svelte@^1.13.0` (`@sjsf/flowbite3-theme`)
+- New peer dependency `@jis3r/icons@^1.1.0` (`@sjsf/moving-icons`)
+- `zod@^4.1.0`, drop `zod` v3 support (`@sjsf/zod4-validator`)
+
+## Deprecated packages were removed
+
+- `@sjsf/zod-validator`
+- `@sjsf/daisyui-theme`
+- `@sjsf/flowbite-theme`
+- `@sjsf/shadcn-theme`
+- `@sjsf/skeleton-theme`
+
+You can use [overrides](https://docs.npmjs.com/cli/v11/configuring-npm/package-json#overrides)
+to use these packages with v3.
+
+## Etc.
+
+Feel free to get in touch about migrating to v3 on [GitHub](https://github.com/x0k/svelte-jsonschema-form/discussions)
+or in the [Svelte ecosystem discrod channel](https://discord.com/channels/457912077277855764/1060332203571151019).
