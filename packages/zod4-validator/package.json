@@ -1,6 +1,6 @@
 {
   "name": "@sjsf/zod4-validator",
-  "version": "2.4.0",
+  "version": "3.0.0-next.0",
   "description": "The Zod v4 based validator for svelte-jsonschema-form",
   "license": "MIT",
   "keywords": [
@@ -49,7 +49,7 @@
     }
   },
   "peerDependencies": {
-    "@sjsf/form": "workspace:^2.4.0",
+    "@sjsf/form": "workspace:^3.0.0-next.0",
     "zod": "^4.1.0"
   },
   "devDependencies": {

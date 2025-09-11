@@ -1,5 +1,36 @@
 # @sjsf/form
 
+## 3.0.0-next.0
+
+### Major Changes
+
+- - Add `mergeSchemas` method to the `Merger` interface ([#177](https://github.com/x0k/svelte-jsonschema-form/pull/177))
+  - Update `resolveAllReferences` and related functions to accept a `Merger` instance for schema merging
+  - Make `merger` form option required
+
+- Refactor array field context to make it extendable ([#198](https://github.com/x0k/svelte-jsonschema-form/pull/198))
+
+- Refactor `KeyedArray` interface ([#198](https://github.com/x0k/svelte-jsonschema-form/pull/198))
+
+- Refactor object field context to make it extendable ([#198](https://github.com/x0k/svelte-jsonschema-form/pull/198))
+
+- Add `length`, `set` and `validate` methods to `ArrayContext` interface ([#198](https://github.com/x0k/svelte-jsonschema-form/pull/198))
+
+- Replace `validator` and `merger` with required `createValidator` and `createMerger` options. ([#177](https://github.com/x0k/svelte-jsonschema-form/pull/177))
+  Consider all options as reactive.
+
+- Remove deprecated code ([#196](https://github.com/x0k/svelte-jsonschema-form/pull/196))
+
+- Replace `FormInternalContext` with `FormState` ([#197](https://github.com/x0k/svelte-jsonschema-form/pull/197))
+
+### Minor Changes
+
+- Add `validate` and `validateAsync` form methods ([#198](https://github.com/x0k/svelte-jsonschema-form/pull/198))
+
+- Add `createValidator` and `createMerger` form options for convenient use as defaults values. ([#177](https://github.com/x0k/svelte-jsonschema-form/pull/177))
+  Add `errors` option for creating controlled forms.
+  Rename `formHandlers` to `handlers`.
+
 ## 2.4.0
 
 ### Minor Changes
