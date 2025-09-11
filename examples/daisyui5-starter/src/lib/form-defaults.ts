@@ -4,7 +4,6 @@ export { theme } from "@sjsf/daisyui5-theme";
 
 export { translation } from "@sjsf/form/translations/en";
 
-import { createFormValidator } from "@sjsf/ajv8-validator";
+export { createFormMerger as createMerger } from "@sjsf/form/mergers/modern";
 
-// NOTE: One validator will be used for all forms
-export const validator = createFormValidator();
+export { createFormValidator as createValidator } from "@sjsf/ajv8-validator";

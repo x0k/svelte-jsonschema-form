@@ -32,19 +32,17 @@
     },
   };
 
-  const validator = {
-    ...defaults.validator,
-    ...createPatternPropertyKeyValidator(({ patternProperties }) => {
-      const keys = Object.keys(patternProperties);
-      return `Must match "${keys.length < 2 ? keys[0] : keys.join('" or "')}"`;
-    }),
-  };
-
   const form = createForm({
     ...defaults,
+    createValidator: (options) => ({
+      ...defaults.createValidator(options),
+      ...createPatternPropertyKeyValidator(({ patternProperties }) => {
+        const keys = Object.keys(patternProperties);
+        return `Must match "${keys.length < 2 ? keys[0] : keys.join('" or "')}"`;
+      }),
+    }),
     schema,
     uiSchema,
-    validator,
     onSubmit: console.log,
   });
 </script>

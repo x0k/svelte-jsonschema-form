@@ -25,9 +25,9 @@
 
   import {
     abortPrevious,
-    createAction,
-    type Action,
-  } from "@sjsf/form/lib/action.svelte";
+    createTask,
+    type Task,
+  } from "@sjsf/form/lib/task.svelte";
 
   let {
     searchFn,
@@ -50,7 +50,7 @@
   let listElement: HTMLUListElement;
 
   // Create the search action with throttling
-  const searchAction: Action<[string], T[], Error> = createAction({
+  const searchAction: Task<[string], T[], Error> = createTask({
     execute: async (signal: AbortSignal, searchQuery: string) => {
       if (searchQuery.length < minQueryLength) {
         return [];

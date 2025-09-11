@@ -8,7 +8,7 @@
     type UiSchemaRoot,
     type AsyncFormValueValidator,
     type FormValueValidatorError,
-    pathToId,
+    idFromPath,
   } from "@sjsf/form";
 
   import * as defaults from "$lib/form-defaults";
@@ -43,35 +43,6 @@
 
   class InvalidCountry {}
 
-  const validator = {
-    ...defaults.validator,
-    async validateFormValueAsync(signal, rootSchema, formValue) {
-      const errors = defaults.validator.validateFormValue(
-        rootSchema,
-        formValue
-      );
-      if (errors.length > 0) {
-        return errors;
-      }
-      if (typeof formValue === "string") {
-        const countries = await searchFn(signal, formValue);
-        if (countries.includes(formValue)) {
-          return [];
-        }
-      }
-      return [
-        {
-          instanceId: pathToId([]),
-          propertyTitle: "Country",
-          message: "invalid country",
-          error: new InvalidCountry(),
-        },
-      ];
-    },
-  } satisfies AsyncFormValueValidator<
-    FormValueValidatorError<typeof defaults.validator> | InvalidCountry
-  >;
-
   const schema = {
     type: "string",
     title: "Country",
@@ -97,13 +68,43 @@
 
   const form = createForm({
     ...defaults,
+    createValidator: (options) => {
+      const defaultValidator = defaults.createValidator(options);
+      return {
+        ...defaultValidator,
+        async validateFormValueAsync(signal, rootSchema, formValue) {
+          const errors = defaultValidator.validateFormValue(
+            rootSchema,
+            formValue
+          );
+          if (errors.length > 0) {
+            return errors;
+          }
+          if (typeof formValue === "string") {
+            const countries = await searchFn(signal, formValue);
+            if (countries.includes(formValue)) {
+              return [];
+            }
+          }
+          return [
+            {
+              instanceId: idFromPath([]),
+              propertyTitle: "Country",
+              message: "invalid country",
+              error: new InvalidCountry(),
+            },
+          ];
+        },
+      } satisfies AsyncFormValueValidator<
+        FormValueValidatorError<typeof defaultValidator> | InvalidCountry
+      >;
+    },
     // NOTE: the behavior of the `$derived` rune during SSR is different from the browser
     get disabled(): boolean {
       return BROWSER && form.submission.isProcessed;
     },
     schema,
     uiSchema,
-    validator,
     onSubmit: console.log,
   });
 </script>

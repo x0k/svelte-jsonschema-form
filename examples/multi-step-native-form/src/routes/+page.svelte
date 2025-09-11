@@ -1,11 +1,11 @@
 <script lang="ts">
   import { fromFactories } from "@sjsf/form/lib/resolver";
   import {
-    setFormContext2,
+    setFormContext,
     Content,
     SubmitButton,
     type Config,
-    pathToId,
+    idFromPath,
   } from "@sjsf/form";
   import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit/client";
 
@@ -16,7 +16,7 @@
 
   const meta = createMeta<ActionData, PageData>().form;
 
-  const rootIds = new Set(rootKeys.map((l) => pathToId([l])));
+  const rootIds = new Set(rootKeys.map((l) => idFromPath([l])));
   const { form } = setupSvelteKitForm(meta, {
     ...defaults,
     extraUiOptions: fromFactories({
@@ -28,18 +28,7 @@
                   return `display: ${
                     // NOTE: Remember that each call to form.value causes a new
                     // form state snapshot to be created.
-                    // If performance is critical for you, use:
-                    // ```ts
-                    // import type { FormInternalContext } from "@sjsf/form";
-                    // import type { Value } from "./model";
-                    // ...
-                    // const stateRef = (
-                    //   form.context as FormInternalContext<
-                    //     typeof defaults.validator
-                    //   >
-                    // ).value as Value;
-                    // ```
-                    // and `stateRef.step`
+                    // If performance is critical for you can use controlled form
                     config.id.endsWith(form.value?.[STEP_KEY]!)
                       ? "block"
                       : "none"
@@ -50,7 +39,7 @@
           : undefined,
     }),
   });
-  setFormContext2(form);
+  setFormContext(form);
 </script>
 
 <form

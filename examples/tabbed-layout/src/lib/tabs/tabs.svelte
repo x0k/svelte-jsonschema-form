@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { isSchema } from "@sjsf/form/core";
+  import { isSchemaObject } from "@sjsf/form/lib/json-schema";
   import type { ComponentProps } from "@sjsf/form";
 
   import {
@@ -22,7 +22,7 @@
     const { items } = config.schema;
     if (Array.isArray(items)) {
       const item = items[i];
-      if (isSchema(item) && item.title) {
+      if (isSchemaObject(item) && item.title) {
         return item.title
       }
     }

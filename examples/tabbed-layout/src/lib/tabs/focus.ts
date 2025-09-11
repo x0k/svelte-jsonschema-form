@@ -1,6 +1,6 @@
 import {
   DEFAULT_ID_SEPARATOR,
-  pathToId,
+  idFromPath,
   type FieldErrorsMap,
   type IdOptions,
 } from "@sjsf/form";
@@ -25,7 +25,7 @@ export function createTabbedFocusOnFirstError<E>(
       .slice(1);
     let children = ctx;
     for (let i = 0; i < path.length && children.size; i++) {
-      const id = pathToId(path.slice(0, i), options);
+      const id = idFromPath(path.slice(0, i), options);
       const node = children.get(id);
       if (node === undefined) {
         continue;

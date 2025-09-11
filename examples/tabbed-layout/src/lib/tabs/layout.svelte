@@ -11,7 +11,7 @@
 
   const arrCtx = getArrayContext();
 
-  const isTuple = $derived(isFixedItems(arrCtx.config.schema));
+  const isTuple = $derived(isFixedItems(arrCtx.config().schema));
 </script>
 
 {#if props.type === "array-items" && isTuple}

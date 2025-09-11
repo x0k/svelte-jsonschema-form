@@ -30,3 +30,5 @@
 </script>
 
 <BasicForm {form} />
+
+<pre><code>{JSON.stringify(form.value, null, 2)}</code></pre>

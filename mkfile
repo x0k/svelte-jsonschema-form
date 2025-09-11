@@ -348,7 +348,7 @@ e/:
     d:
       pnpm run dev
     popd
-  comp/:
+  formulas/:
     pushd formulas
     c:
       pnpm run check

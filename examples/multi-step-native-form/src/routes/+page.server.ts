@@ -7,10 +7,12 @@ import {
   validateForm,
 } from "@sjsf/sveltekit/server";
 
-import { validator } from "$lib/form-defaults";
+import { createValidator } from "$lib/form-defaults";
 
 import { schema, STEP_KEY, stepNames, type Stepped } from "./model";
 import type { Actions } from "./$types";
+
+const validator = createValidator()
 
 const parseFormData = makeFormDataParser({
   validator,
@@ -22,7 +24,7 @@ export const load = async () => {
     sendSchema: true,
     initialValue: {
       [STEP_KEY]: "first",
-    } satisfies Stepped & SchemaValue,
+    } as const satisfies Stepped & SchemaValue,
   });
   return { form };
 };

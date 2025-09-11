@@ -6,9 +6,11 @@ import {
   validateForm,
 } from "@sjsf/sveltekit/server";
 
-import { validator } from '$lib/form-defaults'
+import { createValidator } from '$lib/form-defaults'
 
 import type { Actions } from "./$types";
+
+const validator = createValidator()
 
 const parseFormData = makeFormDataParser({
   validator,
