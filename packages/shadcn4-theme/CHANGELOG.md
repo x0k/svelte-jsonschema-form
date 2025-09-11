@@ -1,5 +1,13 @@
 # @sjsf/shadcn4-theme
 
+## 3.0.0-next.0
+
+### Patch Changes
+
+- Updated dependencies [[`b9647e0`](https://github.com/x0k/svelte-jsonschema-form/commit/b9647e04d524c10fb9b840b60db58c413c8a86aa), [`5b88676`](https://github.com/x0k/svelte-jsonschema-form/commit/5b886769563ab3ea7cc044fb312b6616baa77622), [`8d4b2c2`](https://github.com/x0k/svelte-jsonschema-form/commit/8d4b2c2d9c524a34fcc472594d654db5fa75d0c6), [`2bf6e64`](https://github.com/x0k/svelte-jsonschema-form/commit/2bf6e643cfe9c0f8fcc0a17b374a9a73ec599a2e), [`2b810e7`](https://github.com/x0k/svelte-jsonschema-form/commit/2b810e742d861c05cf91a020f7ef5af43a649ec0), [`3653592`](https://github.com/x0k/svelte-jsonschema-form/commit/36535929efaec32701299c0b3fc39a99af1c1cc0), [`aa34020`](https://github.com/x0k/svelte-jsonschema-form/commit/aa3402024c082a715a600e4a16a9e766bf4f2da3), [`2b810e7`](https://github.com/x0k/svelte-jsonschema-form/commit/2b810e742d861c05cf91a020f7ef5af43a649ec0), [`c963ca3`](https://github.com/x0k/svelte-jsonschema-form/commit/c963ca3aae90ffc692dce13c06345dee59ae1610), [`16b68d7`](https://github.com/x0k/svelte-jsonschema-form/commit/16b68d74f51740c754edced8ae77fd10c357356f)]:
+  - @sjsf/form@3.0.0-next.0
+  - @sjsf/basic-theme@3.0.0-next.0
+
 ## 2.4.0
 
 ### Patch Changes

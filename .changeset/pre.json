@@ -43,5 +43,27 @@
     "@sjsf/zod-validator": "2.4.0",
     "@sjsf/zod4-validator": "2.4.0"
   },
-  "changesets": []
+  "changesets": [
+    "bitter-paths-rest",
+    "bright-dogs-create",
+    "cute-bags-call",
+    "dry-crabs-accept",
+    "easy-worlds-win",
+    "gold-windows-spend",
+    "heavy-cameras-thank",
+    "itchy-buttons-thank",
+    "lovely-taxes-do",
+    "ninety-months-hide",
+    "puny-carpets-eat",
+    "purple-papayas-love",
+    "slick-ghosts-obey",
+    "slick-waves-laugh",
+    "small-knives-stick",
+    "strong-clouds-fix",
+    "sweet-shrimps-push",
+    "tough-regions-taste",
+    "true-taxes-turn",
+    "wide-pots-smash",
+    "wise-lions-rule"
+  ]
 }
