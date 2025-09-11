@@ -4,7 +4,10 @@ export const DEFAULT_LOCALE = "en";
 
 export const PLAYGROUND_LINK = getAbsoluteLocaleUrl(
   DEFAULT_LOCALE,
-  "/playground3/"
+  "../playground3/"
 );
 
-export const BUILDER_LINK = getAbsoluteLocaleUrl(DEFAULT_LOCALE, "/builder3/");
+export const BUILDER_LINK = getAbsoluteLocaleUrl(
+  DEFAULT_LOCALE,
+  "../builder3/"
+);
