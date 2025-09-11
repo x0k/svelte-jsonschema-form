@@ -22,10 +22,9 @@ npm install @sjsf/form @sjsf/basic-theme @sjsf/ajv8-validator ajv@8
   import { createForm, BasicForm, type Schema } from "@sjsf/form";
   import { resolver } from "@sjsf/form/resolvers/basic";
   import { translation } from "@sjsf/form/translations/en";
+  import { createFormMerger } from "@sjsf/form/mergers/modern";
   import { theme } from "@sjsf/basic-theme";
   import { createFormValidator } from "@sjsf/ajv8-validator";
-
-  const validator = createFormValidator();
 
   const schema: Schema = {
     title: "Tasks",
@@ -50,8 +49,9 @@ npm install @sjsf/form @sjsf/basic-theme @sjsf/ajv8-validator ajv@8
     theme,
     schema,
     resolver,
-    validator,
     translation,
+    createMerger: createFormMerger,
+    createValidator: createFormValidator,
     onSubmit: console.log,
   });
 </script>

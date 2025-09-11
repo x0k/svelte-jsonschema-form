@@ -14,21 +14,18 @@ npm install @sjsf/valibot-validator @valibot/to-json-schema valibot
 ## Usage
 
 ```typescript
-import { createForm, type Schema } from '@sjsf/form'
-import { setupFormValidator } from "@sjsf/valibot-validator";
-import * as v from 'valibot';
+import { createForm, type Schema } from "@sjsf/form";
+import { adapt } from "@sjsf/valibot-validator";
+import * as v from "valibot";
 
-const vSchema = v.object({
+const schema = v.object({
   /* your schema */
 });
 
-const { schema, createValidator } = setupFormValidator(vSchema);
-
 const form = createForm({
-  schema,
-  createValidator,
-  ...
-})
+  ...adapt(schema),
+  /* other options */
+});
 ```
 
 ## License
