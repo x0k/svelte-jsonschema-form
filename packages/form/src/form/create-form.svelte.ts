@@ -2,8 +2,9 @@ import type { Attachment } from "svelte/attachments";
 import { SvelteMap } from "svelte/reactivity";
 import { on } from "svelte/events";
 
-import { refFromBind, type Bind, type Ref } from "@/lib/svelte.svelte.js";
+import type { DeepPartial } from '@/lib/types.js';
 import type { SchedulerYield } from "@/lib/scheduler.js";
+import { refFromBind, type Bind, type Ref } from "@/lib/svelte.svelte.js";
 import { createDataURLtoBlob } from "@/lib/file.js";
 import {
   abortPrevious,
@@ -80,8 +81,6 @@ import {
 } from "./internals.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
-
-export type InitialValue<T> = T extends Record<string, any> ? Partial<T> : T;
 
 export type InitialErrors<V extends Validator> =
   | ValidationError<PossibleError<V>>[]
@@ -184,7 +183,7 @@ export interface FormOptions<T, V extends Validator>
    */
   idPseudoSeparator?: string;
   //
-  initialValue?: InitialValue<T>;
+  initialValue?: DeepPartial<T>;
   value?: Bind<T>;
   initialErrors?: InitialErrors<V>;
   errors?: Bind<FieldErrorsMap<PossibleError<V>>>;
