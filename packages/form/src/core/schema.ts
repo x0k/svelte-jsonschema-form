@@ -20,13 +20,16 @@ export type SchemaWithProperties = Schema & {
 
 export type SchemaType = JSONSchema7TypeName;
 
-export type SchemaValue =
-  | string
-  | number
-  | boolean
-  | SchemaObjectValue
-  | SchemaArrayValue
-  | null;
+export interface SchemaValues {
+  null: null
+  string: string;
+  number: number;
+  boolean: boolean;
+  object: SchemaObjectValue
+  array: SchemaArrayValue
+}
+
+export type SchemaValue = SchemaValues[keyof SchemaValues];
 
 export interface SchemaObjectValue {
   [key: string]: SchemaValue | undefined;
