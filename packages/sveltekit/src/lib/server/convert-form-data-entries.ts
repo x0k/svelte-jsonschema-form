@@ -1,3 +1,4 @@
+import { fileToDataURL } from '@sjsf/form/lib/file';
 import {
   getSchemaConstantValue,
   isNullableSchemaType,
@@ -7,7 +8,7 @@ import {
   type Merger,
   type Validator
 } from '@sjsf/form/core';
-import { DEFAULT_BOOLEAN_ENUM, type Schema, type UiSchemaRoot } from '@sjsf/form';
+import { DEFAULT_BOOLEAN_ENUM, type FieldValue, type Schema, type UiSchemaRoot } from '@sjsf/form';
 
 import type { EntriesConverter } from './entry.js';
 
@@ -18,15 +19,15 @@ export interface FormDataConverterOptions {
   rootUiSchema: UiSchemaRoot;
 }
 
-export function makeFormDataEntriesConverter({
+export function createFormDataEntriesConverter({
   validator,
   merger,
   rootSchema,
   rootUiSchema
-}: FormDataConverterOptions): EntriesConverter<string> {
-  return ({ entries, schema, uiSchema }) => {
+}: FormDataConverterOptions): EntriesConverter<FormDataEntryValue> {
+  return async (signal, { entries, schema, uiSchema }) => {
     if (typeof schema === 'boolean') {
-      return schema ? entries[0]?.[1] : undefined;
+      return schema ? (entries[0]?.[1] as FieldValue) : undefined;
     }
     const typeOrTypes = typeOfSchema(schema);
     const type = Array.isArray(typeOrTypes) ? pickSchemaType(typeOrTypes) : typeOrTypes;
@@ -37,6 +38,22 @@ export function makeFormDataEntriesConverter({
       return isNullableSchemaType(typeOrTypes) ? null : undefined;
     }
     const value = entries[0][1];
+    if (value instanceof File) {
+      if (type === 'string') {
+        const format = schema.format;
+        if (format !== 'data-url') {
+          throw new Error(`Unexpected format "${format}" for File value, expected: "data-url"`);
+        }
+        return await fileToDataURL(signal, value);
+      }
+      if (type === 'null') {
+        // @ts-expect-error force cast
+        return value as FieldValue;
+      }
+      throw new Error(
+        `Unexpected type "${type}" for 'File' value instance, expected: "string", "any" (null)`
+      );
+    }
     if (isSelect(validator, merger, schema, rootSchema)) {
       const altSchemas = schema.oneOf ?? schema.anyOf;
       const options = Array.isArray(altSchemas)

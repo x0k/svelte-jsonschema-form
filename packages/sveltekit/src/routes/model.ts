@@ -1,4 +1,4 @@
-import type { Schema } from '@sjsf/form';
+import type { Schema, UiSchemaRoot } from '@sjsf/form';
 
 import { AdditionalPropertyKeyValidationErrorType } from '$lib/client/index.js';
 
@@ -23,6 +23,14 @@ export const schema: Schema = {
     lastName: {
       type: 'string',
       title: 'Last name'
+    }
+  }
+};
+
+export const uiSchema: UiSchemaRoot = {
+  firstName: {
+    'ui:options': {
+      description: 'First name description'
     }
   }
 };

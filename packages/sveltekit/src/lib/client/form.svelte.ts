@@ -6,8 +6,7 @@ import {
   groupErrors,
   type Schema,
   type FormOptions,
-  type PossibleError,
-  type ValidatorFactoryOptions
+  type PossibleError
 } from '@sjsf/form';
 
 import { page } from '$app/state';

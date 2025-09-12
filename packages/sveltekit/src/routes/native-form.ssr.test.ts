@@ -1,7 +1,7 @@
 import { render } from 'svelte/server';
 import type { Page } from '@sveltejs/kit';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { pathToId } from '@sjsf/form';
+import { idFromPath } from '@sjsf/form';
 
 import type { ValidatedFormData } from '$lib/model.js';
 import { initForm } from '$lib/server/server.js';
@@ -28,7 +28,7 @@ describe('native form SSR', () => {
           initialValue: 'initial value',
           initialErrors: [
             {
-              instanceId: pathToId([]),
+              instanceId: idFromPath([]),
               propertyTitle: 'Property',
               message: 'error message',
               error: null
@@ -50,7 +50,7 @@ describe('native form SSR', () => {
           initialValue: 'initial value',
           initialErrors: [
             {
-              instanceId: pathToId([]),
+              instanceId: idFromPath([]),
               propertyTitle: 'Property',
               message: 'error message',
               error: null
@@ -65,7 +65,7 @@ describe('native form SSR', () => {
           data: 'validated value',
           errors: [
             {
-              instanceId: pathToId([]),
+              instanceId: idFromPath([]),
               propertyTitle: 'Validated property',
               message: 'validation error message',
               error: null
@@ -87,7 +87,7 @@ describe('native form SSR', () => {
           initialValue: 'initial value',
           initialErrors: [
             {
-              instanceId: pathToId([]),
+              instanceId: idFromPath([]),
               propertyTitle: 'Property',
               message: 'error message',
               error: null
@@ -102,7 +102,7 @@ describe('native form SSR', () => {
           data: 'validated value',
           errors: [
             {
-              instanceId: pathToId([]),
+              instanceId: idFromPath([]),
               propertyTitle: 'Validated property',
               message: 'validation error message',
               error: null
