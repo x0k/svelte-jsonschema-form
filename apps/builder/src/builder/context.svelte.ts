@@ -39,7 +39,7 @@ import { Validator } from "$lib/sjsf/validators.js";
 import { Resolver } from "$lib/sjsf/resolver.js";
 import { Icons, ICONS_APP_CSS } from "$lib/sjsf/icons.js";
 import { highlight, type SupportedLanguage } from "$lib/shiki.js";
-import { mergeSchemas } from '$lib/json-schema.js';
+import { mergeSchemas } from "$lib/json-schema.js";
 
 import {
   type Route,
@@ -47,6 +47,8 @@ import {
   DEFAULT_COMPONENTS,
   DEFAULT_WIDGETS,
   FILE_FIELD_MULTIPLE_MODE,
+  FILE_FIELD_NATIVE_MULTIPLE_MODE,
+  FILE_FIELD_NATIVE_SINGLE_MODE,
   FILE_FIELD_SINGLE_MODE,
   RADIO_WIDGET_OPTIONS,
   RouteName,
@@ -246,9 +248,13 @@ export class BuilderContext {
           propertiesOrder: [],
           uiComponents: (node) => {
             if (isFileNode(node)) {
-              fileFieldMode |= node.options.multiple
-                ? FILE_FIELD_MULTIPLE_MODE
-                : FILE_FIELD_SINGLE_MODE;
+              fileFieldMode |= node.options.native
+                ? node.options.multiple
+                  ? FILE_FIELD_NATIVE_MULTIPLE_MODE
+                  : FILE_FIELD_NATIVE_SINGLE_MODE
+                : node.options.multiple
+                  ? FILE_FIELD_MULTIPLE_MODE
+                  : FILE_FIELD_SINGLE_MODE;
             }
             const widget = node.options.widget as WidgetType;
             widgets.add(widget);
@@ -511,9 +517,7 @@ export class BuilderContext {
   nodeSchema(node: CustomizableNode) {
     const original = NODE_OPTIONS_SCHEMAS[node.type];
     const augmentation = THEME_SCHEMAS[this.theme][node.type];
-    return augmentation
-      ? mergeSchemas(original, augmentation)
-      : original;
+    return augmentation ? mergeSchemas(original, augmentation) : original;
   }
 
   nodeUiSchema(node: CustomizableNode) {

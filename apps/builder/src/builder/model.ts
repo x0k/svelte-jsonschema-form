@@ -168,12 +168,18 @@ export const DEFAULT_COMPONENTS: Record<
     [NodeType.File]: (node): UiSchema["ui:components"] => {
       if (node.options.multiple) {
         return {
-          arrayField: "filesFieldWrapper",
+          arrayField: node.options.native
+            ? "nativeFilesFieldWrapper"
+            : "filesFieldWrapper",
         };
       }
-      return {
-        stringField: "fileField",
-      };
+      return node.options.native
+        ? {
+            unknownField: "nativeFileFieldWrapper",
+          }
+        : {
+            stringField: "fileField",
+          };
     },
     [NodeType.Tags]: constant({
       arrayField: "tagsFieldWrapper",
@@ -237,9 +243,47 @@ export function isEphemeralWidget(w: WidgetType): w is EphemeralWidgetType {
   return EPHEMERAL_WIDGETS_SET.has(w);
 }
 
-const EPHEMERAL_FIELDS = ["files", "tags"] as const;
+const EPHEMERAL_FIELDS = [
+  "files",
+  "tags",
+  "nativeFile",
+  "nativeFiles",
+] as const;
 
 export type EphemeralFieldType = (typeof EPHEMERAL_FIELDS)[number];
+
+export const EPHEMERAL_FIELD_VALUE_TYPES: Record<EphemeralFieldType, string> = {
+  files: "SchemaArrayValue",
+  tags: "SchemaArrayValue",
+  nativeFile: "unknown",
+  nativeFiles: "SchemaArrayValue",
+};
+
+export const ASSERT_TYPES = ["file"] as const;
+
+export type AssertType = (typeof ASSERT_TYPES)[number];
+
+export const ARRAY_ASSERT_TYPES = ["strings", "files"] as const;
+
+export type ArrayAssertType = (typeof ARRAY_ASSERT_TYPES)[number];
+
+const SET_OF_ARRAY_ASSERT_TYPES = new Set<string>(ARRAY_ASSERT_TYPES);
+
+export function isArrayAssertType(
+  assertType: AssertType | ArrayAssertType
+): assertType is ArrayAssertType {
+  return SET_OF_ARRAY_ASSERT_TYPES.has(assertType);
+}
+
+export const EPHEMERA_FIELD_ASSERT_TYPE: Record<
+  EphemeralFieldType,
+  AssertType | ArrayAssertType
+> = {
+  nativeFile: "file",
+  files: "strings",
+  tags: "strings",
+  nativeFiles: "files",
+};
 
 const EPHEMERAL_FIELDS_SET = new Set<string>(EPHEMERAL_FIELDS);
 
@@ -250,6 +294,9 @@ export function isEphemeralField(field: string): field is EphemeralFieldType {
 export type FileFieldMode = number;
 export const FILE_FIELD_SINGLE_MODE = 1;
 export const FILE_FIELD_MULTIPLE_MODE = FILE_FIELD_SINGLE_MODE << 1;
+export const FILE_FIELD_NATIVE_SINGLE_MODE = FILE_FIELD_MULTIPLE_MODE << 1;
+export const FILE_FIELD_NATIVE_MULTIPLE_MODE =
+  FILE_FIELD_NATIVE_SINGLE_MODE << 1;
 
 export function fileFieldModeToFields(mode: FileFieldMode): string[] {
   const fields: string[] = [];
@@ -258,6 +305,12 @@ export function fileFieldModeToFields(mode: FileFieldMode): string[] {
   }
   if (mode & FILE_FIELD_MULTIPLE_MODE) {
     fields.push("files");
+  }
+  if (mode & FILE_FIELD_NATIVE_SINGLE_MODE) {
+    fields.push("nativeFile");
+  }
+  if (mode & FILE_FIELD_NATIVE_MULTIPLE_MODE) {
+    fields.push("nativeFiles");
   }
   return fields;
 }

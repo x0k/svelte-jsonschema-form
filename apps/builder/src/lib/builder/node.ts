@@ -547,6 +547,10 @@ export const FILE_NODE_OPTIONS_SCHEMA = {
       title: "Help",
       type: "string",
     },
+    native: {
+      title: "Native",
+      type: "boolean"
+    },
     multiple: {
       title: "Multiple",
       type: "boolean",
@@ -831,7 +835,7 @@ export const NODE_OPTIONS_UI_SCHEMAS = {
     },
   }),
   [NodeType.File]: mergeUiSchemas(COMMON_UI_SCHEMA, {
-    "ui:options": order("widget", "multiple", "*"),
+    "ui:options": order("widget", "native", "multiple", "*", "help"),
   }),
   [NodeType.Tags]: COMMON_UI_SCHEMA,
 } satisfies Record<CustomizableNodeType, UiSchemaRoot>;

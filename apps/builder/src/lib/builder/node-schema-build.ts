@@ -1,7 +1,7 @@
 import type { Schema } from "@sjsf/form";
 
 import { assertThing } from "$lib/assert.js";
-import { mergeSchemas } from '$lib/json-schema.js';
+import { mergeSchemas } from "$lib/json-schema.js";
 
 import {
   NodeType,
@@ -451,10 +451,12 @@ const NODE_SCHEMA_BUILDERS: {
     );
   },
   [NodeType.File]: (_, { options }) => {
-    const file: Schema = {
-      type: "string",
-      format: "data-url",
-    };
+    const file: Schema = options.native
+      ? {}
+      : {
+          type: "string",
+          format: "data-url",
+        };
     return assignSchemaOptions(
       options.multiple
         ? {
