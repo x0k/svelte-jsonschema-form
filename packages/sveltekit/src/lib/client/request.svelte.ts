@@ -6,7 +6,7 @@ import { createTask, type TaskOptions } from '@sjsf/form/lib/task.svelte';
 import { applyAction, deserialize } from '$app/forms';
 import { invalidateAll } from '$app/navigation';
 
-import { JSON_CHUNKS_KEY } from '../model.js';
+import { FORM_DATA_FILE_PREFIX, JSON_CHUNKS_KEY } from '../model.js';
 
 import type { SvelteKitFormMeta } from './meta.js';
 
@@ -14,6 +14,8 @@ export type SveltekitRequestOptions<ActionData, V> = Omit<
   TaskOptions<[V, SubmitEvent], ActionResult<NonNullable<ActionData>>, unknown>,
   'execute'
 > & {
+  /** By default, handles conversion of `File` */
+  createReplacer?: (formData: FormData) => (key: string, value: any) => any;
   /** @default 500000 */
   jsonChunkSize?: number;
   /** @default true */
@@ -22,11 +24,27 @@ export type SveltekitRequestOptions<ActionData, V> = Omit<
   invalidateAll?: boolean;
 };
 
+function createDefaultReplacer(formData: FormData) {
+  const seen = new Set<string>();
+  return (key: string, value: any) => {
+    if (!(value instanceof File)) {
+      return value;
+    }
+    const initialKey = `${FORM_DATA_FILE_PREFIX}${key}`;
+    let fdKey = initialKey;
+    let i = 1;
+    while (seen.has(fdKey)) fdKey = `${initialKey}__${i++}`;
+    formData.append(fdKey, value);
+    return fdKey;
+  };
+}
+
 export function createSvelteKitRequest<Meta extends SvelteKitFormMeta<any, any, any, any>>(
   _meta: Meta,
   options: SveltekitRequestOptions<Meta['__actionData'], Meta['__formValue']>
 ) {
   const jsonChunkSize = $derived(options.jsonChunkSize ?? 500000);
+  const createReplacer = $derived(options.createReplacer ?? createDefaultReplacer);
   return createTask({
     // Based on https://github.com/sveltejs/kit/blob/92b2686314a7dbebee1761c3da7719d599f003c7/packages/kit/src/runtime/app/forms.js
     async execute(signal: AbortSignal, data: Meta['__formValue'], e: SubmitEvent) {
@@ -56,7 +74,7 @@ export function createSvelteKitRequest<Meta extends SvelteKitFormMeta<any, any, 
       }
 
       const formData = new FormData();
-      for (const chunk of chunks(JSON.stringify(data), jsonChunkSize)) {
+      for (const chunk of chunks(JSON.stringify(data, createReplacer(formData)), jsonChunkSize)) {
         formData.append(JSON_CHUNKS_KEY, chunk);
       }
 

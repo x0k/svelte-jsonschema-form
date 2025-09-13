@@ -21,6 +21,7 @@ import {
 } from '@sjsf/form';
 
 import {
+  FORM_DATA_FILE_PREFIX,
   JSON_CHUNKS_KEY,
   type InitialFormData,
   type SerializableOptionalFormOptions,
@@ -77,6 +78,17 @@ export interface FormHandlerOptions<
   convertUnknownEntry?: UnknownEntryConverter;
   /** @default false */
   sendData?: SendData;
+  /** By default, handles conversion of `File` */
+  createReviver?: (formData: FormData) => (key: string, value: any) => any;
+}
+
+function createDefaultReviver(formData: FormData) {
+  return (_: string, value: any) => {
+    if (typeof value === 'string' && value.startsWith(FORM_DATA_FILE_PREFIX)) {
+      return formData.get(value);
+    }
+    return value;
+  };
 }
 
 export function createFormHandler<
@@ -92,7 +104,8 @@ export function createFormHandler<
   idPrefix = DEFAULT_ID_PREFIX,
   idSeparator = DEFAULT_ID_SEPARATOR,
   idPseudoSeparator = DEFAULT_ID_PSEUDO_SEPARATOR,
-  sendData
+  sendData,
+  createReviver = createDefaultReviver
 }: FormHandlerOptions<V, SendData>) {
   const validator = createValidator({
     schema,
@@ -118,21 +131,19 @@ export function createFormHandler<
     signal: AbortSignal,
     formData: FormData
   ): Promise<[ValidatedFormData<AnyFormValueValidatorError<V>, SendData>, FormValue]> => {
-    if (formData.has(JSON_CHUNKS_KEY)) {
-      const chunks = formData.getAll(JSON_CHUNKS_KEY).join('');
-      return JSON.parse(chunks);
-    }
-    const data = await parseSchemaValue(signal, {
-      idPrefix,
-      idSeparator,
-      idPseudoSeparator,
-      schema,
-      uiSchema,
-      entries: Array.from(formData.entries()),
-      validator,
-      merger,
-      convertEntries
-    });
+    const data = formData.has(JSON_CHUNKS_KEY)
+      ? JSON.parse(formData.getAll(JSON_CHUNKS_KEY).join(''), createReviver(formData))
+      : await parseSchemaValue(signal, {
+          idPrefix,
+          idSeparator,
+          idPseudoSeparator,
+          schema,
+          uiSchema,
+          entries: Array.from(formData.entries()),
+          validator,
+          merger,
+          convertEntries
+        });
     const errors = isAsyncFormValueValidator(validator)
       ? await validator.validateFormValueAsync(signal, schema, data)
       : isFormValueValidator(validator)

@@ -25,20 +25,22 @@ export const schema: Schema = {
       title: 'Last name'
     },
     file: {
-      type: "string",
-      title: "File",
-      format: "data-url"
+      type: 'string',
+      title: 'File',
+      format: 'data-url'
     },
     nativeFile: {
-      title: "Native file"
+      title: 'Native file'
     }
   }
 };
 
 export const uiSchema: UiSchemaRoot = {
-  "ui:options": {
-    "form": {
-      "enctype": "multipart/form-data"
+  'ui:options': {
+    form: {
+      enctype: 'multipart/form-data',
+      method: 'POST',
+      action: '?/first'
     }
   },
   firstName: {
@@ -47,14 +49,14 @@ export const uiSchema: UiSchemaRoot = {
     }
   },
   file: {
-    "ui:components": {
+    'ui:components': {
       stringField: 'fileField'
     }
   },
   //@ts-expect-error hack
   nativeFile: {
-    "ui:components": {
-      'unknownField': "nativeFileField"
+    'ui:components': {
+      unknownField: 'nativeFileField'
     }
   }
 };

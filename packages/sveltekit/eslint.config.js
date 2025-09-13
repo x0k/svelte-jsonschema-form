@@ -38,7 +38,8 @@ export default ts.config(
   },
   {
     rules: {
-      '@typescript-eslint/no-empty-object-type': 'off'
+      '@typescript-eslint/no-empty-object-type': 'off',
+      "svelte/prefer-svelte-reactivity": "off",
     }
   }
 );
