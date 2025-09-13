@@ -79,6 +79,7 @@ const EXAMPLE_LAYERS: Record<Example, () => LayerPromise> = {
   [Example.MultiStepNativeForm]: () =>
     import("./examples/multi-step-native-form"),
   [Example.LayoutSlots]: () => import("./examples/layout-slots"),
+  [Example.StoredFile]: () => import("./examples/stored-file"),
 };
 
 export async function openProject({

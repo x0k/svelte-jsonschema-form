@@ -71,6 +71,7 @@ export enum Example {
   DecomposedField = "decomposed-field",
   MultiStepNativeForm = "multi-step-native-form",
   LayoutSlots = "layout-slots",
+  StoredFile = "stored-file",
 }
 
 export const EXAMPLES = Object.values(Example);
@@ -126,9 +127,7 @@ export function isTheme(str: string): str is Theme {
 }
 
 export function pkg(val: string) {
-  return IS_NEXT_VERSION && val.startsWith("@sjsf/")
-    ? `${val}@next`
-    : val;
+  return IS_NEXT_VERSION && val.startsWith("@sjsf/") ? `${val}@next` : val;
 }
 
 export function packages(
