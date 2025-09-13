@@ -8,7 +8,7 @@ declare module "../../core/index.js" {
 
 declare module "../components.js" {
   interface ComponentProps {
-    nativeFilesFields: FieldCommonProps<File[]>;
+    nativeFilesField: FieldCommonProps<File[]>;
   }
   interface ComponentBindings {
     nativeFilesField: "value";

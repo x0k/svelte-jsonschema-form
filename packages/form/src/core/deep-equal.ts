@@ -1,4 +1,4 @@
-import { isObject } from "@/lib/object.js";
+import { isObject, isObjectProto } from "@/lib/object.js";
 
 import type { Schema, SchemaValue } from "./schema.js";
 
@@ -25,7 +25,12 @@ export function isSchemaValueDeepEqual(
       }
       return true;
     }
-    if (Array.isArray(b)) {
+    if (
+      Array.isArray(b) ||
+      !isObjectProto<SchemaValue | undefined>(a) ||
+      !isObjectProto<SchemaValue | undefined>(b)
+    ) {
+      // This should have been handled with ===
       return false;
     }
     const aKeys = Object.keys(a);

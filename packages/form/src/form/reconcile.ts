@@ -1,6 +1,7 @@
+import { isObjectProto } from "@/lib/object.js";
 import type { SchemaValue } from "@/core/index.js";
 
-import type { KeyedArraysMap } from "./model.js";
+import type { FieldValue, KeyedArraysMap } from "./model.js";
 
 export const UNCHANGED = Symbol("unchanged");
 
@@ -33,7 +34,14 @@ export function createSchemaValuesReconciler(keyedArraysMap: KeyedArraysMap) {
         }
         return UNCHANGED;
       }
-      if (!isTArr && !isSArr && target !== null && source !== null) {
+      if (
+        !isTArr &&
+        !isSArr &&
+        target !== null &&
+        source !== null &&
+        isObjectProto<FieldValue>(target) &&
+        isObjectProto<FieldValue>(source)
+      ) {
         const tKeys = Object.keys(target);
         let l = tKeys.length;
         for (let i = 0; i < l; i++) {
