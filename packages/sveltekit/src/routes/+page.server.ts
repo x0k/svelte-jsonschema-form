@@ -31,6 +31,7 @@ export const actions = {
     if (!isValid(form, data)) {
       return fail(400, { form });
     }
+    console.log(data)
     return {
       form
     };

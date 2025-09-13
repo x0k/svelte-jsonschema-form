@@ -30,7 +30,8 @@ import {
 import { parseSchemaValue } from './schema-value-parser.js';
 import {
   createFormDataEntriesConverter,
-  type FormDataConverterOptions
+  type FormDataConverterOptions,
+  type UnknownEntryConverter
 } from './convert-form-data-entries.js';
 import type { EntriesConverter } from './entry.js';
 
@@ -73,6 +74,7 @@ export interface FormHandlerOptions<
   createEntriesConverter?: (
     options: FormDataConverterOptions
   ) => EntriesConverter<FormDataEntryValue>;
+  convertUnknownEntry?: UnknownEntryConverter;
   /** @default false */
   sendData?: SendData;
 }
@@ -86,6 +88,7 @@ export function createFormHandler<
   createMerger,
   createValidator,
   createEntriesConverter = createFormDataEntriesConverter,
+  convertUnknownEntry,
   idPrefix = DEFAULT_ID_PREFIX,
   idSeparator = DEFAULT_ID_SEPARATOR,
   idPseudoSeparator = DEFAULT_ID_PSEUDO_SEPARATOR,
@@ -108,7 +111,8 @@ export function createFormHandler<
     validator,
     merger,
     rootSchema: schema,
-    rootUiSchema: uiSchema
+    rootUiSchema: uiSchema,
+    convertUnknownEntry
   });
   return async (
     signal: AbortSignal,

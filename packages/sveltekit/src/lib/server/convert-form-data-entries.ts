@@ -10,22 +10,30 @@ import {
 } from '@sjsf/form/core';
 import { DEFAULT_BOOLEAN_ENUM, type FieldValue, type Schema, type UiSchemaRoot } from '@sjsf/form';
 
-import type { EntriesConverter } from './entry.js';
+import type { EntriesConverter, EntriesConverterOptions } from './entry.js';
 
+export type UnknownEntryConverter = (
+  key: string,
+  value: string,
+  options: EntriesConverterOptions<FormDataEntryValue>
+) => Promise<FieldValue> | FieldValue;
 export interface FormDataConverterOptions {
   validator: Validator;
   merger: Merger;
   rootSchema: Schema;
   rootUiSchema: UiSchemaRoot;
+  convertUnknownEntry?: UnknownEntryConverter;
 }
 
 export function createFormDataEntriesConverter({
   validator,
   merger,
   rootSchema,
-  rootUiSchema
+  rootUiSchema,
+  convertUnknownEntry
 }: FormDataConverterOptions): EntriesConverter<FormDataEntryValue> {
-  return async (signal, { entries, schema, uiSchema }) => {
+  return async (signal, options) => {
+    const { entries, schema, uiSchema } = options;
     if (typeof schema === 'boolean') {
       return schema ? (entries[0]?.[1] as FieldValue) : undefined;
     }
@@ -46,12 +54,11 @@ export function createFormDataEntriesConverter({
         }
         return await fileToDataURL(signal, value);
       }
-      if (type === 'null') {
-        // @ts-expect-error force cast
+      if (type === 'unknown') {
         return value as FieldValue;
       }
       throw new Error(
-        `Unexpected type "${type}" for 'File' value instance, expected: "string", "any" (null)`
+        `Unexpected type "${type}" for 'File' value instance, expected: "string", "unknown"`
       );
     }
     if (isSelect(validator, merger, schema, rootSchema)) {
@@ -71,6 +78,9 @@ export function createFormDataEntriesConverter({
       }
       throw new Error(`Value "${value}" does not match the schema: ${JSON.stringify(schema)}`);
     }
+    if (type === 'unknown' && convertUnknownEntry) {
+      return await convertUnknownEntry(entries[0][0], value, options);
+    }
     switch (type) {
       case 'string':
         if (value === '') {
@@ -87,13 +97,8 @@ export function createFormDataEntriesConverter({
         return parseInt(value, 10);
       case 'number':
         return parseFloat(value);
-      case 'null':
-      case 'array':
-      case 'object':
-        throw new Error(`Unsupported schema type: ${type}`);
       default: {
-        const n: never = type;
-        throw new Error(`Unexpected schema type: ${n}`);
+        throw new Error(`Unexpected schema type: ${type}`);
       }
     }
   };

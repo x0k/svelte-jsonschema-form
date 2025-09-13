@@ -23,14 +23,38 @@ export const schema: Schema = {
     lastName: {
       type: 'string',
       title: 'Last name'
+    },
+    file: {
+      type: "string",
+      title: "File",
+      format: "data-url"
+    },
+    nativeFile: {
+      title: "Native file"
     }
   }
 };
 
 export const uiSchema: UiSchemaRoot = {
+  "ui:options": {
+    "form": {
+      "enctype": "multipart/form-data"
+    }
+  },
   firstName: {
     'ui:options': {
       description: 'First name description'
+    }
+  },
+  file: {
+    "ui:components": {
+      stringField: 'fileField'
+    }
+  },
+  //@ts-expect-error hack
+  nativeFile: {
+    "ui:components": {
+      'unknownField': "nativeFileField"
     }
   }
 };
