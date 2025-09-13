@@ -14,6 +14,7 @@ import {
   pickSchemaType,
   type Path,
   type SchemaDefinition,
+  type SchemaType,
 } from "@/core/index.js";
 import {
   ON_ARRAY_CHANGE,
@@ -62,14 +63,14 @@ export function isValidatableNode(
   if (node.$ref !== undefined || !(validationMode & FIELDS_VALIDATION)) {
     return false;
   }
-  let { type } = node;
+  let type: SchemaType[] | SchemaType | undefined = node.type;
   if (type === undefined) {
     return Boolean(validationMode & OBJECT_VALIDATION);
   }
   if (Array.isArray(type)) {
     type = pickSchemaType(type);
   }
-  if (isPrimitiveSchemaType(type)) {
+  if (isPrimitiveSchemaType(type) || type === "unknown") {
     return Boolean(validationMode & INPUTS_VALIDATION);
   }
   if (type === "object") {

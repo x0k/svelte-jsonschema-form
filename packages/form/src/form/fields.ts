@@ -42,6 +42,7 @@ declare module "./components.js" {
     nullField: {};
     oneOfField: {};
     anyOfField: {};
+    unknownField: {};
   }
   interface ComponentProps {
     stringField: FieldCommonProps<string>;
@@ -54,6 +55,7 @@ declare module "./components.js" {
     nullField: FieldCommonProps<null>;
     oneOfField: FieldCommonProps<SchemaValue>;
     anyOfField: FieldCommonProps<SchemaValue>;
+    unknownField: FieldCommonProps<unknown>;
   }
   interface ComponentBindings {
     stringField: "value";
@@ -66,5 +68,6 @@ declare module "./components.js" {
     nullField: "value";
     oneOfField: "value";
     anyOfField: "value";
+    unknownField: "value";
   }
 }

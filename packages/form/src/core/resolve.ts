@@ -4,7 +4,7 @@
 
 import { array } from "@/lib/array.js";
 import { isRecordEmpty } from "@/lib/object.js";
-import { isSchemaObject } from "@/lib/json-schema/index.js";
+import { isJsonSchemaType, isSchemaObject } from "@/lib/json-schema/index.js";
 
 import {
   ADDITIONAL_PROPERTY_FLAG,
@@ -404,7 +404,8 @@ export function stubExistingAdditionalProperties(
     if (isArbitraryAdditionalProperty) {
       const value = formData?.[key];
       if (value !== undefined) {
-        return { type: typeOfValue(value) };
+        const type = typeOfValue(value);
+        return isJsonSchemaType(type) ? { type } : {};
       }
     }
     return { type: "null" };
