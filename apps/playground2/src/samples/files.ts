@@ -32,6 +32,12 @@ export default {
           format: "data-url",
         },
       },
+      nativeFile: {
+        title: "Native file",
+      },
+      nativeFiles: {
+        title: "Multiple native files",
+      },
     },
   },
   uiSchema: {
@@ -48,6 +54,16 @@ export default {
     orderableFiles: {
       "ui:options": {
         orderable: true,
+      },
+    },
+    nativeFile: {
+      "ui:components": {
+        nullField: "nativeFileWrapper",
+      },
+    },
+    nativeFiles: {
+      "ui:components": {
+        nullField: "nativeFilesWrapper",
       },
     },
   },
