@@ -36,7 +36,14 @@ export default {
         title: "Native file",
       },
       nativeFiles: {
+        type: "array",
         title: "Multiple native files",
+        items: {},
+      },
+      orderableNativeFiles: {
+        type: "array",
+        title: "Multiple native files with order",
+        items: {},
       },
     },
   },
@@ -58,12 +65,19 @@ export default {
     },
     nativeFile: {
       "ui:components": {
-        nullField: "nativeFileWrapper",
+        unknownField: "nativeFileWrapper",
       },
     },
     nativeFiles: {
       "ui:components": {
-        nullField: "nativeFilesWrapper",
+        arrayField: "nativeFilesWrapper",
+      },
+    },
+    orderableNativeFiles: {
+      items: {
+        "ui:components": {
+          unknownField: "nativeFileWrapper",
+        },
       },
     },
   },

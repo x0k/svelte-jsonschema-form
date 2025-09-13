@@ -14,23 +14,23 @@ import "@sjsf/form/fields/extra-fields/file-include";
 import "@sjsf/form/fields/extra-fields/files-include";
 import "@sjsf/form/fields/extra-fields/multi-enum-include";
 import "@sjsf/form/fields/extra-fields/tags-include";
+import FilesField from "@sjsf/form/fields/extra-fields/files.svelte";
 import NativeFileField from "@sjsf/form/fields/extra-fields/native-file.svelte";
 import NativeFilesField from "@sjsf/form/fields/extra-fields/native-files.svelte";
-import FilesField from "@sjsf/form/fields/extra-fields/files.svelte";
 import TagsField from "@sjsf/form/fields/extra-fields/tags.svelte";
 
 declare module "@sjsf/form" {
   interface ComponentProps {
     filesFieldWrapper: FieldCommonProps<SchemaArrayValue>;
+    nativeFileWrapper: FieldCommonProps<unknown>;
+    nativeFilesWrapper: FieldCommonProps<SchemaArrayValue>;
     tagsFieldWrapper: FieldCommonProps<SchemaArrayValue>;
-    nativeFileWrapper: FieldCommonProps<null>;
-    nativeFilesWrapper: FieldCommonProps<null>;
   }
   interface ComponentBinding {
     filesFieldWrapper: "value";
-    tagsFieldWrapper: "value";
     nativeFileWrapper: "value";
     nativeFilesWrapper: "value";
+    tagsFieldWrapper: "value";
   }
 }
 
@@ -161,16 +161,38 @@ const assertStrings: ArrayAssert<string> = createArrayAssert(
   (v: SchemaValue): v is string => typeof v === "string"
 );
 
-function isFile(v: unknown): v is File {
-  return v instanceof File;
-}
-
-const assertFiles: ArrayAssert<File> = createArrayAssert("File", isFile);
+const assertFiles: ArrayAssert<File> = createArrayAssert(
+  "File",
+  (v): v is File => v instanceof File
+);
 
 const filesFieldWrapper = cast(FilesField, {
   value: {
     transform(props) {
       assertStrings(props.value);
+      return props.value;
+    },
+  },
+}) satisfies ComponentDefinition<"arrayField">;
+
+const nativeFileWrapper = cast(NativeFileField, {
+  value: {
+    transform(props) {
+      const v = props.value;
+      if (v !== undefined && !(v instanceof File)) {
+        throw new Error(
+          `expected "File" or "undefined" value, but got ${typeof v}`
+        );
+      }
+      return v;
+    },
+  },
+}) satisfies ComponentDefinition<"unknownField">;
+
+const nativeFilesWrapper = cast(NativeFilesField, {
+  value: {
+    transform(props) {
+      assertFiles(props.value);
       return props.value;
     },
   },
@@ -185,66 +207,19 @@ const tagsFieldWrapper = cast(TagsField, {
   },
 }) satisfies ComponentDefinition<"arrayField">;
 
-const nativeFileWrapper = cast(NativeFileField, {
-  value: {
-    transform(props) {
-      const v = props.value;
-      return isFile(v) ? v : undefined;
-    },
-    recover(props, value) {
-      // @ts-expect-error
-      props.value = value;
-    },
-  },
-}) satisfies ComponentDefinition<"nullField">;
-
-const nativeFilesWrapper = cast(NativeFilesField, {
-  value: {
-    transform(props) {
-      if (!Array.isArray(props.value)) {
-        return undefined;
-      }
-      assertFiles(props.value);
-      return props.value;
-    },
-    recover(props, value) {
-      // @ts-expect-error
-      props.value = value;
-    },
-  },
-}) satisfies ComponentDefinition<"nullField">;
+const wrappers = {
+  filesFieldWrapper,
+  nativeFileWrapper,
+  nativeFilesWrapper,
+  tagsFieldWrapper,
+} as const;
 
 export const themes = {
-  basic: extendByRecord(basic, {
-    filesFieldWrapper,
-    tagsFieldWrapper,
-    nativeFileWrapper,
-    nativeFilesWrapper,
-  }),
-  daisy5: extendByRecord(daisy5, {
-    filesFieldWrapper,
-    tagsFieldWrapper,
-    nativeFileWrapper,
-    nativeFilesWrapper,
-  }),
-  flowbite3: extendByRecord(flowbite3, {
-    filesFieldWrapper,
-    tagsFieldWrapper,
-    nativeFileWrapper,
-    nativeFilesWrapper,
-  }),
-  skeleton3: extendByRecord(skeleton3, {
-    filesFieldWrapper,
-    tagsFieldWrapper,
-    nativeFileWrapper,
-    nativeFilesWrapper,
-  }),
-  shadcn4: extendByRecord(shadcn4, {
-    filesFieldWrapper,
-    tagsFieldWrapper,
-    nativeFileWrapper,
-    nativeFilesWrapper,
-  }),
+  basic: extendByRecord(basic, wrappers),
+  daisy5: extendByRecord(daisy5, wrappers),
+  flowbite3: extendByRecord(flowbite3, wrappers),
+  skeleton3: extendByRecord(skeleton3, wrappers),
+  shadcn4: extendByRecord(shadcn4, wrappers),
 };
 
 export const themeStyles = {
