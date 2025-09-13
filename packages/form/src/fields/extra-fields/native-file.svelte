@@ -7,6 +7,7 @@
 </script>
 
 <script lang="ts">
+  import { BROWSER } from "esm-env";
   import {
     makeEventHandlers,
     getErrors,
@@ -51,15 +52,17 @@
   <Widget
     type="widget"
     bind:value={
-      () => {
-        const v = value;
-        if (v === undefined) {
-          return v;
-        }
-        const t = new DataTransfer();
-        t.items.add(v);
-        return t.files;
-      },
+      BROWSER
+        ? () => {
+            const v = value;
+            if (v === undefined) {
+              return v;
+            }
+            const t = new DataTransfer();
+            t.items.add(v);
+            return t.files;
+          }
+        : () => undefined,
       (v) => (value = v?.item(0) ?? undefined)
     }
     processing={false}
