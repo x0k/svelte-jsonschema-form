@@ -7,6 +7,7 @@ import type { Id } from "./id.js";
 import type {
   AdditionalPropertyKeyValidator,
   AsyncFieldValueValidatorError,
+  AsyncFileListValidator,
   AsyncFormValueValidatorError,
   FieldValueValidatorError,
   FormValueValidatorError,
@@ -15,6 +16,8 @@ import type {
 import type { Config } from "./config.js";
 
 export class AdditionalPropertyKeyError {}
+
+export class FileListValidationError {}
 
 export class ValidationProcessError {
   constructor(public state: FailedTask<unknown>) {}
@@ -41,10 +44,15 @@ export type AnyValueValidatorError<V> =
 export type AdditionalPropertyKeyValidatorError<V> =
   V extends AdditionalPropertyKeyValidator ? AdditionalPropertyKeyError : never;
 
+export type AsyncFileListValidatorError<V> = V extends AsyncFileListValidator
+  ? FileListValidationError
+  : never;
+
 export type PossibleError<V> =
   | ValidationProcessError
   | AnyValueValidatorError<V>
-  | AdditionalPropertyKeyValidatorError<V>;
+  | AdditionalPropertyKeyValidatorError<V>
+  | AsyncFileListValidatorError<V>;
 
 export interface FormValidationResult<E> {
   formValue: FormValue;
