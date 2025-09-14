@@ -17,6 +17,8 @@
     addFile,
     getComponent,
     type ComponentProps,
+    validateFileList,
+    FileListValidationError,
   } from "@/form/index.js";
   import "@/form/extra-fields/file.js";
 
@@ -50,9 +52,13 @@
       return data.files;
     },
     async toInput(signal, files) {
-      return files === undefined || files.length === 0
-        ? undefined
-        : fileToDataURL(signal, files[0]!);
+      if (files === undefined || files.length === 0) {
+        return undefined;
+      }
+      if (!(await validateFileList(signal, ctx, config, files))) {
+        throw new FileListValidationError();
+      }
+      return fileToDataURL(signal, files[0]!);
     },
   });
 

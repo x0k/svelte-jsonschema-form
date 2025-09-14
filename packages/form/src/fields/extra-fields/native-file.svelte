@@ -8,6 +8,8 @@
 
 <script lang="ts">
   import { BROWSER } from "esm-env";
+
+  import { abortPrevious, createTask } from "@/lib/task.svelte.js";
   import {
     makeEventHandlers,
     getErrors,
@@ -15,6 +17,8 @@
     getFormContext,
     getComponent,
     type ComponentProps,
+    validateFileList,
+    FileListValidationError,
   } from "@/form/index.js";
   import "@/form/extra-fields/native-file.js";
 
@@ -37,6 +41,22 @@
   );
 
   const errors = $derived(getErrors(ctx, config.id));
+
+  const setValue = createTask({
+    combinator: abortPrevious,
+    async execute(signal, files: FileList | undefined) {
+      if (files === undefined || files.length === 0) {
+        return undefined;
+      }
+      if (!(await validateFileList(signal, ctx, config, files))) {
+        throw new FileListValidationError();
+      }
+      return files[0]!;
+    },
+    onSuccess(file: File | undefined) {
+      value = file;
+    },
+  });
 </script>
 
 <Template
@@ -55,17 +75,16 @@
       BROWSER
         ? () => {
             const v = value;
-            if (v === undefined) {
-              return v;
-            }
             const t = new DataTransfer();
-            t.items.add(v);
+            if (v !== undefined) {
+              t.items.add(v);
+            }
             return t.files;
           }
         : () => undefined,
-      (v) => (value = v?.item(0) ?? undefined)
+      setValue.run
     }
-    processing={false}
+    processing={setValue.isProcessed}
     loading={false}
     {uiOption}
     {handlers}
