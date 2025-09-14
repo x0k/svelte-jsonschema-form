@@ -71,7 +71,7 @@ export enum Example {
   DecomposedField = "decomposed-field",
   MultiStepNativeForm = "multi-step-native-form",
   LayoutSlots = "layout-slots",
-  StoredFile = "stored-file",
+  UploadFile = "upload-file",
 }
 
 export const EXAMPLES = Object.values(Example);
