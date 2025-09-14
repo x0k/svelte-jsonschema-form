@@ -1,33 +1,27 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import { SvelteSet } from "svelte/reactivity";
-  import { createTask } from "@sjsf/form/lib/task.svelte";
 
   import Form from "./form.svelte";
 
   const files = new SvelteSet<string>();
-  const loadFiles = createTask({
-    async execute() {
-      const root = await navigator.storage.getDirectory();
-      const fileNames: string[] = [];
-      for await (const [name, handle] of root) {
-        if (handle.kind === "file") {
-          fileNames.push(name);
-        }
+  onMount(async () => {
+    const root = await navigator.storage.getDirectory();
+    for await (const [name, handle] of root) {
+      if (handle.kind === "file") {
+        files.add(name);
       }
-      return fileNames;
-    },
-    onSuccess(result: string[]) {
-      result.forEach(files.add, files);
-    },
+    }
   });
-  loadFiles.run();
 </script>
 
-<p>Open form with preselected file:</p>
-<div style="display: flex; flex-direction: row; gap: 1rem;">
+<p>Open form with uploaded file:</p>
+<div style="display: flex; gap: 1rem; padding-bottom: 1rem;">
   {#each files as f (f)}
     <a href={f}>{f}</a>
+  {:else}
+    <p>Upload at least 1 file</p>
   {/each}
 </div>
 
-<Form onFileCreation={(key) => files.add(key)} />
+<Form onFileCreated={(key) => files.add(key)} />

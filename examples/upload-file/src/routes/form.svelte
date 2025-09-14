@@ -13,18 +13,18 @@
 
   const {
     initialValue,
-    onFileCreation,
+    onFileCreated,
   }: {
     initialValue?: { file: string };
-    onFileCreation?: (key: string) => void;
+    onFileCreated?: (key: string) => void;
   } = $props();
 
   const schema = {
     type: "object",
-    title: "Basic form",
+    title: "File form",
     properties: {
       file: {
-        title: "Hello",
+        title: "File",
         type: "string",
       },
     },
@@ -62,7 +62,7 @@
       await writable.write(file);
       await writable.close();
       await sleep(2000);
-      onFileCreation?.(key);
+      onFileCreated?.(key);
       return key;
     },
     async retrieveFile(_, key) {
