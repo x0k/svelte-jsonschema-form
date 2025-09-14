@@ -1,0 +1,72 @@
+---
+title: File handling
+sidebar:
+  order: 8
+---
+
+SJSF provides several ways of working with files.
+
+## Data URL
+
+When using `file` or `files` fields, the form automatically converts
+uploaded files into Data URL strings.
+
+**Advantages:**
+
+- Easy-to-use format compatible with JSON Schema validators
+- Files can be provided from the server (as initial values or when re-sending form data after a server-side validation error)
+
+**Disadvantages:**
+
+- Base64 encoding increases file size by about 30%
+- Requires encoding/decoding steps to work with the actual file
+- Some metadata is lost
+
+You can use the `createDataURLtoBlob` and `fileToDataURL` functions
+(available in both browser and server environments) from
+the `@sjsf/form/lib/file` module to convert files to and from Data URLs.
+
+## Native File
+
+When using `native-file` or `native-files` fields, uploaded files are
+represented directly as `File` objects.
+
+**Advantages:**
+
+- No encoding/decoding required
+- File metadata is preserved
+
+**Disadvantages:**
+
+- Cannot be provided from the server
+- May cause issues for JSON-oriented tools (e.g. JSON Schema validators)
+
+### SvelteKit
+
+With any file handling method, you must set `enctype="multipart/form-data"` on the form.
+
+For native file handling, add the following `transport` hook in your `hooks.ts` file:
+
+```ts
+import type { Transport } from '@sveltejs/kit';
+
+export const transport: Transport = {
+  File: {
+    encode: (v) => v instanceof File && 'file',
+    decode: () => undefined
+  }
+};
+```
+
+## Preloading files
+
+Another approach is to **preload files** into a storage backend as soon as the user selects them.
+Instead of embedding file data in the form, the form value only stores a lightweight file identifier (ID).
+
+This avoids the drawbacks of Data URLs and native `File` objects:
+- Smaller payloads
+- No `base64` overhead
+- Files can be validated or processed on the server before submission
+- Files can be provided from the server
+
+See the [advanced example](../../examples/advanced/) `upload-file` for more information.
