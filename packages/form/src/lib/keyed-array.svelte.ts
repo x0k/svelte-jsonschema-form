@@ -43,13 +43,12 @@ export class SimpleKeyedArray<K, T> implements KeyedArray<K, T> {
     const key = this.keys[a];
     this.keys[a] = this.keys[b]!;
     this.keys[b] = key!;
-    if (this.array[a] === this.array[b]) {
-      this.changesPropagator++;
-    } else {
+    if (this.array[a] !== this.array[b]) {
       const tmp = this.array[a]!;
       this.array[a] = this.array[b]!;
       this.array[b] = tmp;
     }
+    this.changesPropagator++;
   }
 
   insert(index: number, value: T): void {
@@ -64,16 +63,19 @@ export class SimpleKeyedArray<K, T> implements KeyedArray<K, T> {
 
   splice(start: number, count: number, ...items: T[]): T[] {
     const l = items.length;
+    let deleted: T[];
     if (l > 0) {
       const newKeys = new Array<K>(items.length);
       for (let i = 0; i < l; i++) {
         newKeys[i] = this.nextKey();
       }
       this.keys.splice(start, count, ...newKeys);
-      return this.array.splice(start, count, ...items);
+      deleted = this.array.splice(start, count, ...items);
     } else {
       this.keys.splice(start, count);
-      return this.array.splice(start, count);
+      deleted = this.array.splice(start, count);
     }
+    this.changesPropagator++;
+    return deleted;
   }
 }
