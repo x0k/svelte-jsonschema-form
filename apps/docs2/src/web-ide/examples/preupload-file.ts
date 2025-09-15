@@ -1,8 +1,8 @@
-import sveltePage from "%/upload-file/src/routes/+page.svelte?raw";
-import nestedSveltePage from "%/upload-file/src/routes/[id]/+page.svelte?raw";
-import contextTs from "%/upload-file/src/routes/context.ts?raw";
-import svelteFrom from "%/upload-file/src/routes/form.svelte?raw";
-import svelteStoredFileField from "%/upload-file/src/routes/stored-file-field.svelte?raw";
+import sveltePage from "%/preupload-file/src/routes/+page.svelte?raw";
+import nestedSveltePage from "%/preupload-file/src/routes/[id]/+page.svelte?raw";
+import contextTs from "%/preupload-file/src/routes/context.ts?raw";
+import svelteFrom from "%/preupload-file/src/routes/form.svelte?raw";
+import svelteStoredFileField from "%/preupload-file/src/routes/stored-file-field.svelte?raw";
 
 import type { Layer } from "../layer";
 
