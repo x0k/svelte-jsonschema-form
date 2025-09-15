@@ -111,6 +111,14 @@ The context now provides the entire `form` object, while `form.value` is a publi
 
 :::
 
+### `onsubmit` and `onreset` attributes
+
+The `onsubmit` and `onreset` attributes applied to `Form`, `BasicForm`,
+or via `uiSchema` override the default handlers.
+
+If you need additional handlers, use `attachments`
+or call `form.submit(e)` in your handler.
+
 ### `ArrayContext` and `ObjectContext` objects update
 
 Context constructors now accept an options object instead of a list of arguments:
@@ -163,6 +171,13 @@ For convenient use with `createForm`:
     createValidator: createFormValidatorFactory({ validateFunctions }),
   });
 ```
+
+## SvelteKit
+
+The `makeFormDataParser` and `validateForm` functions
+have been replaced with `createFormHandler`.
+See the [integration](../../integrations/sveltekit/#server) page for more information.
+
 
 ## Dependency versions have been updated
 
