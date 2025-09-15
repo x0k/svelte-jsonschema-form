@@ -1,10 +1,7 @@
 <script lang="ts">
-  import { createFormValidator } from "@sjsf/ajv8-validator";
-  import { createFormMerger } from "@sjsf/form/mergers/modern";
-  import { theme } from "@sjsf/basic-theme";
-  import { resolver } from "@sjsf/form/resolvers/basic";
-  import { translation } from "@sjsf/form/translations/en";
   import { SvelteKitForm, createMeta } from "@sjsf/sveltekit/client";
+
+  import * as defaults from '$lib/form/defaults'
 
   import type { PageData, ActionData } from "./$types";
 
@@ -12,12 +9,8 @@
 </script>
 
 <SvelteKitForm
-  {resolver}
-  {theme}
+  {...defaults}
   {meta}
-  {translation}
-  createValidator={createFormValidator}
-  createMerger={createFormMerger}
   onSuccess={console.log}
   onFailure={console.error}
   onSubmitError={console.warn}

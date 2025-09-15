@@ -1,30 +1,18 @@
 <script lang="ts">
   import { BasicForm } from "@sjsf/form";
-  import { createFormValidator } from "@sjsf/ajv8-validator";
-  import { createFormMerger } from "@sjsf/form/mergers/modern";
-  import { resolver } from "@sjsf/form/resolvers/basic";
-  import { translation } from "@sjsf/form/translations/en";
-  import { theme } from "@sjsf/basic-theme";
   import { createMeta, setupSvelteKitForm } from "@sjsf/sveltekit/client";
+
+  import * as defaults from "$lib/form/defaults";
 
   import type { PageData, ActionData } from "./$types.js";
 
   const meta = createMeta<ActionData, PageData>().form;
-  const { form } = setupSvelteKitForm(
-    meta,
-    {
-      resolver,
-      theme,
-      translation,
-      onSubmitError: console.warn,
-      createValidator: createFormValidator,
-      createMerger: createFormMerger,
-    },
-    {
-      onSuccess: console.log,
-      onFailure: console.error,
-    }
-  );
+  const { form } = setupSvelteKitForm(meta, {
+    ...defaults,
+    onSubmitError: console.warn,
+    onSuccess: console.log,
+    onFailure: console.error,
+  });
 </script>
 
 <BasicForm {form} method="POST" />
