@@ -1,20 +1,10 @@
 import { fail } from "@sveltejs/kit";
 import type { Schema } from "@sjsf/form";
-import {
-  initForm,
-  makeFormDataParser,
-  validateForm,
-} from "@sjsf/sveltekit/server";
+import { initForm, isValid, createFormHandler } from "@sjsf/sveltekit/server";
 
-import { createValidator } from '$lib/form-defaults'
+import * as defaults from "$lib/form-defaults";
 
 import type { Actions } from "./$types";
-
-const validator = createValidator()
-
-const parseFormData = makeFormDataParser({
-  validator,
-});
 
 const schema: Schema = {
   title: "Registration form",
@@ -37,6 +27,18 @@ const schema: Schema = {
   required: ["firstName", "lastName", "age"],
 };
 
+interface Value {
+  firstName: string;
+  lastName: string;
+  age: number;
+}
+
+const handleForm = createFormHandler({
+  ...defaults,
+  schema,
+  sendData: true,
+});
+
 export const load = async () => {
   const form = initForm({ schema, sendSchema: true });
   return { form };
@@ -44,21 +46,15 @@ export const load = async () => {
 
 export const actions = {
   default: async ({ request }) => {
-    const data = await parseFormData({
-      request,
-      schema,
-    });
-    const form = await validateForm({
-      sendData: true,
-      request,
-      schema,
-      validator,
-      data,
-    });
-    if (!form.isValid) {
+    const [form, data] = await handleForm(
+      request.signal,
+      await request.formData()
+    );
+    if (!isValid<Value>(form, data)) {
       return fail(400, { form });
     }
     // TODO: Do something with `data`
+    console.log(data);
     return {
       form,
     };

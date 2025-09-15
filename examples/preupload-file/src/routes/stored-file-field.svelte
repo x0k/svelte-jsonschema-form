@@ -15,6 +15,8 @@
     getFormContext,
     getComponent,
     type ComponentProps,
+    validateFileList,
+    FileListValidationError,
   } from "@sjsf/form";
 
   import "@sjsf/form/fields/extra-widgets/file";
@@ -53,9 +55,9 @@
       if (files === undefined || files.length === 0) {
         return undefined;
       }
-      // if (!(await validateFileList(signal, ctx, config, files))) {
-      //   throw new FileListValidationError();
-      // }
+      if (!(await validateFileList(signal, ctx, config, files))) {
+        throw new FileListValidationError();
+      }
       return await storeCtx.storeFile(signal, files[0]!);
     },
   });
