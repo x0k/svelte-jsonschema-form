@@ -11,7 +11,6 @@
 <script lang="ts">
   import {
     formAttributes,
-    handlers,
     getFormContext,
     type ComponentProps,
   } from "@sjsf/form";
@@ -28,7 +27,8 @@
 
 <form
   bind:this={ref}
-  {@attach handlers(ctx)}
+  onsubmit={ctx.submit}
+  onreset={ctx.reset}
   {...formAttributes(ctx, config, "form", attributes, {
     style: "display: flex; flex-direction: column; gap: 1rem",
   })}

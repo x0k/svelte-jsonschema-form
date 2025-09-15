@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { handlers, formAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
+	import { formAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
 	import '@sjsf/basic-theme/components/form.svelte';
 
 	let { config, children, ref = $bindable(), attributes }: ComponentProps['form'] = $props();
@@ -9,7 +9,8 @@
 
 <form
 	bind:this={ref}
-	{@attach handlers(ctx)}
+  onsubmit={ctx.submit}
+  onreset={ctx.reset}
 	class="flex flex-col gap-4"
 	{...formAttributes(ctx, config, 'form', attributes, {})}
 >
