@@ -50,9 +50,13 @@
       return data.files;
     },
     async toInput(signal, files) {
-      return files === undefined || files.length === 0
-        ? undefined
-        : await storeCtx.storeFile(signal, files[0]!);
+      if (files === undefined || files.length === 0) {
+        return undefined;
+      }
+      // if (!(await validateFileList(signal, ctx, config, files))) {
+      //   throw new FileListValidationError();
+      // }
+      return await storeCtx.storeFile(signal, files[0]!);
     },
   });
 
