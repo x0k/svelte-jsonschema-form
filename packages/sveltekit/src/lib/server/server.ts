@@ -17,7 +17,8 @@ import {
   type FormValue,
   type ValidatorFactoryOptions,
   type MergerFactoryOptions,
-  type FormMerger
+  type FormMerger,
+  type UiOptionsRegistry
 } from '@sjsf/form';
 
 import {
@@ -70,6 +71,7 @@ export interface FormHandlerOptions<
 > extends IdOptions {
   schema: Schema;
   uiSchema?: UiSchemaRoot;
+  uiOptionsRegistry?: UiOptionsRegistry;
   createValidator: (options: ValidatorFactoryOptions) => V;
   createMerger: (options: MergerFactoryOptions<V>) => FormMerger;
   createEntriesConverter?: (
@@ -97,6 +99,7 @@ export function createFormHandler<
 >({
   schema,
   uiSchema = {},
+  uiOptionsRegistry = {},
   createMerger,
   createValidator,
   createEntriesConverter = createFormDataEntriesConverter,
@@ -110,6 +113,7 @@ export function createFormHandler<
   const validator = createValidator({
     schema,
     uiSchema,
+    uiOptionsRegistry,
     idPrefix,
     idPseudoSeparator,
     idSeparator,
@@ -118,7 +122,8 @@ export function createFormHandler<
   const merger = createMerger({
     schema,
     uiSchema,
-    validator
+    validator,
+    uiOptionsRegistry,
   });
   const convertEntries = createEntriesConverter({
     validator,
