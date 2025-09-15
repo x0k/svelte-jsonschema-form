@@ -1,5 +1,32 @@
 # docs
 
+## 1.9.0-next.1
+
+### Minor Changes
+
+- Add `File handling` guide ([#200](https://github.com/x0k/svelte-jsonschema-form/pull/200))
+
+### Patch Changes
+
+- Updated dependencies [[`40e924f`](https://github.com/x0k/svelte-jsonschema-form/commit/40e924fb2e50844df81722718a2c0b885017b279), [`b649510`](https://github.com/x0k/svelte-jsonschema-form/commit/b649510948cb89d62568e2624bd008a30832c6b2), [`65f4343`](https://github.com/x0k/svelte-jsonschema-form/commit/65f4343fd0323a6189cfa5983b5fc93a3ed2ef51), [`836d10f`](https://github.com/x0k/svelte-jsonschema-form/commit/836d10f77ff60fe962bba70593811ce07f7c3df3), [`3fca555`](https://github.com/x0k/svelte-jsonschema-form/commit/3fca555123de0e0f8fbf51718471134dc89b6248), [`f261cb8`](https://github.com/x0k/svelte-jsonschema-form/commit/f261cb8147726d31ae5a469d11cbaf8ad5efa49e), [`f60ae1f`](https://github.com/x0k/svelte-jsonschema-form/commit/f60ae1f63416e9b4464f3ba1d09bfe1351003c4e), [`ad86d61`](https://github.com/x0k/svelte-jsonschema-form/commit/ad86d619f0f6e9636f8b364d7126fb614fe2669a), [`b2d6ac6`](https://github.com/x0k/svelte-jsonschema-form/commit/b2d6ac6157988590c3ec833e49e8c122eaf3fc25)]:
+  - @sjsf/flowbite3-theme@3.0.0-next.1
+  - @sjsf/skeleton3-theme@3.0.0-next.1
+  - @sjsf/daisyui5-theme@3.0.0-next.1
+  - @sjsf/shadcn4-theme@3.0.0-next.1
+  - @sjsf/basic-theme@3.0.0-next.1
+  - @sjsf/form@3.0.0-next.1
+  - @sjsf/sveltekit@3.0.0-next.1
+  - @sjsf/ajv8-validator@3.0.0-next.1
+  - @sjsf/cfworker-validator@3.0.0-next.1
+  - @sjsf/flowbite-icons@3.0.0-next.1
+  - @sjsf/lucide-icons@3.0.0-next.1
+  - @sjsf/moving-icons@3.0.0-next.1
+  - @sjsf/radix-icons@3.0.0-next.1
+  - @sjsf/schemasafe-validator@3.0.0-next.1
+  - testing@1.0.13-next.1
+  - @sjsf/valibot-validator@3.0.0-next.1
+  - @sjsf/zod4-validator@3.0.0-next.1
+
 ## 1.9.0-next.0
 
 ### Minor Changes

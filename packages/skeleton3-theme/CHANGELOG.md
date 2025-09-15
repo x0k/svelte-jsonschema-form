@@ -1,5 +1,17 @@
 # @sjsf/skeleton3-theme
 
+## 3.0.0-next.1
+
+### Major Changes
+
+- Allow overwriting of default handlers using the `onsubmit` and `onreset` attributes ([`40e924f`](https://github.com/x0k/svelte-jsonschema-form/commit/40e924fb2e50844df81722718a2c0b885017b279))
+
+### Patch Changes
+
+- Updated dependencies [[`40e924f`](https://github.com/x0k/svelte-jsonschema-form/commit/40e924fb2e50844df81722718a2c0b885017b279), [`b649510`](https://github.com/x0k/svelte-jsonschema-form/commit/b649510948cb89d62568e2624bd008a30832c6b2), [`65f4343`](https://github.com/x0k/svelte-jsonschema-form/commit/65f4343fd0323a6189cfa5983b5fc93a3ed2ef51), [`3fca555`](https://github.com/x0k/svelte-jsonschema-form/commit/3fca555123de0e0f8fbf51718471134dc89b6248), [`f261cb8`](https://github.com/x0k/svelte-jsonschema-form/commit/f261cb8147726d31ae5a469d11cbaf8ad5efa49e), [`f60ae1f`](https://github.com/x0k/svelte-jsonschema-form/commit/f60ae1f63416e9b4464f3ba1d09bfe1351003c4e), [`ad86d61`](https://github.com/x0k/svelte-jsonschema-form/commit/ad86d619f0f6e9636f8b364d7126fb614fe2669a), [`b2d6ac6`](https://github.com/x0k/svelte-jsonschema-form/commit/b2d6ac6157988590c3ec833e49e8c122eaf3fc25)]:
+  - @sjsf/basic-theme@3.0.0-next.1
+  - @sjsf/form@3.0.0-next.1
+
 ## 3.0.0-next.0
 
 ### Patch Changes

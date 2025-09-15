@@ -1,5 +1,27 @@
 # @sjsf/form
 
+## 3.0.0-next.1
+
+### Major Changes
+
+- Add `unknown` schema type ([#200](https://github.com/x0k/svelte-jsonschema-form/pull/200))
+
+### Minor Changes
+
+- Allow to extend `SchemaValue` type ([#200](https://github.com/x0k/svelte-jsonschema-form/pull/200))
+
+- Add `AsyncFileListValidator` validator ([#200](https://github.com/x0k/svelte-jsonschema-form/pull/200))
+
+- Add node.js support for `lib/file` ([#200](https://github.com/x0k/svelte-jsonschema-form/pull/200))
+
+- Add `nativeFile*` fields ([#200](https://github.com/x0k/svelte-jsonschema-form/pull/200))
+
+- Add `validators/file-size` validator ([#200](https://github.com/x0k/svelte-jsonschema-form/pull/200))
+
+### Patch Changes
+
+- Fix changes propagation in keyed array ([`b649510`](https://github.com/x0k/svelte-jsonschema-form/commit/b649510948cb89d62568e2624bd008a30832c6b2))
+
 ## 3.0.0-next.0
 
 ### Major Changes
