@@ -1,3 +1,4 @@
+import { fileToDataURL } from '@sjsf/form/lib/file';
 import {
   getSchemaConstantValue,
   isNullableSchemaType,
@@ -7,26 +8,34 @@ import {
   type Merger,
   type Validator
 } from '@sjsf/form/core';
-import { DEFAULT_BOOLEAN_ENUM, type Schema, type UiSchemaRoot } from '@sjsf/form';
+import { DEFAULT_BOOLEAN_ENUM, type FieldValue, type Schema, type UiSchemaRoot } from '@sjsf/form';
 
-import type { EntriesConverter } from './entry.js';
+import type { EntriesConverter, EntriesConverterOptions } from './entry.js';
 
+export type UnknownEntryConverter = (
+  key: string,
+  value: string,
+  options: EntriesConverterOptions<FormDataEntryValue>
+) => Promise<FieldValue> | FieldValue;
 export interface FormDataConverterOptions {
   validator: Validator;
   merger: Merger;
   rootSchema: Schema;
   rootUiSchema: UiSchemaRoot;
+  convertUnknownEntry?: UnknownEntryConverter;
 }
 
-export function makeFormDataEntriesConverter({
+export function createFormDataEntriesConverter({
   validator,
   merger,
   rootSchema,
-  rootUiSchema
-}: FormDataConverterOptions): EntriesConverter<string> {
-  return ({ entries, schema, uiSchema }) => {
+  rootUiSchema,
+  convertUnknownEntry
+}: FormDataConverterOptions): EntriesConverter<FormDataEntryValue> {
+  return async (signal, options) => {
+    const { entries, schema, uiSchema } = options;
     if (typeof schema === 'boolean') {
-      return schema ? entries[0]?.[1] : undefined;
+      return schema ? (entries[0]?.[1] as FieldValue) : undefined;
     }
     const typeOrTypes = typeOfSchema(schema);
     const type = Array.isArray(typeOrTypes) ? pickSchemaType(typeOrTypes) : typeOrTypes;
@@ -37,6 +46,21 @@ export function makeFormDataEntriesConverter({
       return isNullableSchemaType(typeOrTypes) ? null : undefined;
     }
     const value = entries[0][1];
+    if (value instanceof File) {
+      if (type === 'string') {
+        const format = schema.format;
+        if (format !== 'data-url') {
+          throw new Error(`Unexpected format "${format}" for File value, expected: "data-url"`);
+        }
+        return await fileToDataURL(signal, value);
+      }
+      if (type === 'unknown') {
+        return value as FieldValue;
+      }
+      throw new Error(
+        `Unexpected type "${type}" for 'File' value instance, expected: "string", "unknown"`
+      );
+    }
     if (isSelect(validator, merger, schema, rootSchema)) {
       const altSchemas = schema.oneOf ?? schema.anyOf;
       const options = Array.isArray(altSchemas)
@@ -54,6 +78,9 @@ export function makeFormDataEntriesConverter({
       }
       throw new Error(`Value "${value}" does not match the schema: ${JSON.stringify(schema)}`);
     }
+    if (type === 'unknown' && convertUnknownEntry) {
+      return await convertUnknownEntry(entries[0][0], value, options);
+    }
     switch (type) {
       case 'string':
         if (value === '') {
@@ -70,13 +97,8 @@ export function makeFormDataEntriesConverter({
         return parseInt(value, 10);
       case 'number':
         return parseFloat(value);
-      case 'null':
-      case 'array':
-      case 'object':
-        throw new Error(`Unsupported schema type: ${type}`);
       default: {
-        const n: never = type;
-        throw new Error(`Unexpected schema type: ${n}`);
+        throw new Error(`Unexpected schema type: ${type}`);
       }
     }
   };

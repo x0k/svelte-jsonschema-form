@@ -32,6 +32,19 @@ export default {
           format: "data-url",
         },
       },
+      nativeFile: {
+        title: "Native file",
+      },
+      nativeFiles: {
+        type: "array",
+        title: "Multiple native files",
+        items: {},
+      },
+      orderableNativeFiles: {
+        type: "array",
+        title: "Multiple native files with order",
+        items: {},
+      },
     },
   },
   uiSchema: {
@@ -48,6 +61,23 @@ export default {
     orderableFiles: {
       "ui:options": {
         orderable: true,
+      },
+    },
+    nativeFile: {
+      "ui:components": {
+        unknownField: "nativeFileWrapper",
+      },
+    },
+    nativeFiles: {
+      "ui:components": {
+        arrayField: "nativeFilesWrapper",
+      },
+    },
+    orderableNativeFiles: {
+      items: {
+        "ui:components": {
+          unknownField: "nativeFileWrapper",
+        },
       },
     },
   },

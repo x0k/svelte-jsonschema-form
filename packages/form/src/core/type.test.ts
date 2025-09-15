@@ -82,7 +82,7 @@ const cases: { schema: Schema; expected: string }[] = [
   },
   {
     schema: {},
-    expected: "null",
+    expected: "unknown",
   },
 ];
 

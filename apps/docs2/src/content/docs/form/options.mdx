@@ -73,7 +73,7 @@ export interface FormOptions<T, V extends Validator>
    */
   idPseudoSeparator?: string;
   //
-  initialValue?: InitialValue<T>;
+  initialValue?: DeepPartial<T>;
   value?: Bind<T>;
   initialErrors?: InitialErrors<V>;
   errors?: [

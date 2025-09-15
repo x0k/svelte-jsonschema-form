@@ -17,6 +17,8 @@ import "@sjsf/form/fields/extra-fields/boolean-select-include";
 import "@sjsf/form/fields/extra-fields/enum-include";
 import "@sjsf/form/fields/extra-fields/file-include";
 import "@sjsf/form/fields/extra-fields/multi-enum-include";
+import NativeFileField from "@sjsf/form/fields/extra-fields/native-file.svelte";
+import NativeFilesField from "@sjsf/form/fields/extra-fields/native-files.svelte";
 import FilesField from "@sjsf/form/fields/extra-fields/files.svelte";
 import TagsField from "@sjsf/form/fields/extra-fields/tags.svelte";
 
@@ -24,10 +26,14 @@ declare module "@sjsf/form" {
   interface ComponentProps {
     filesFieldWrapper: FieldCommonProps<SchemaArrayValue>;
     tagsFieldWrapper: FieldCommonProps<SchemaArrayValue>;
+    nativeFileFieldWrapper: FieldCommonProps<unknown>;
+    nativeFilesFieldWrapper: FieldCommonProps<SchemaArrayValue>;
   }
   interface ComponentBinding {
     filesFieldWrapper: "value";
     tagsFieldWrapper: "value";
+    nativeFileFieldWrapper: "value";
+    nativeFilesFieldWrapper: "value";
   }
 }
 
@@ -195,16 +201,41 @@ const SJSF_THEMES: Record<Theme, SJSFTheme> = {
   [Theme.Shadcn4]: shadcn4,
 };
 
-function assertStrings(
+type ArrayAssert<T extends SchemaValue> = (
   arr: SchemaArrayValue | undefined
-): asserts arr is string[] | undefined {
-  if (
-    arr !== undefined &&
-    arr.find((item) => {
-      return item !== undefined && typeof item !== "string";
-    })
-  ) {
-    throw new TypeError("expected array of strings");
+) => asserts arr is T[] | undefined;
+
+function createArrayAssert<T extends SchemaValue>(
+  itemName: string,
+  isItem: (v: SchemaValue) => v is T
+) {
+  return (
+    arr: SchemaArrayValue | undefined
+  ): asserts arr is T[] | undefined => {
+    if (
+      arr !== undefined &&
+      arr.findIndex((item) => item === undefined || !isItem(item)) !== -1
+    ) {
+      throw new TypeError(`expected array of "${itemName}"`);
+    }
+  };
+}
+
+const assertStrings: ArrayAssert<string> = createArrayAssert(
+  "string",
+  (v: SchemaValue): v is string => typeof v === "string"
+);
+
+const assertFiles: ArrayAssert<File> = createArrayAssert(
+  "File",
+  (v): v is File => v instanceof File
+);
+
+function assertFile(v: unknown): asserts v is File | undefined {
+  if (v !== undefined && !(v instanceof File)) {
+    throw new Error(
+      `expected "undefined" or "File" type, but got "${typeof v}"`
+    );
   }
 }
 
@@ -226,10 +257,30 @@ const tagsFieldWrapper = cast(TagsField, {
   },
 }) satisfies ComponentDefinition<"arrayField">;
 
+const nativeFileFieldWrapper = cast(NativeFileField, {
+  value: {
+    transform(props) {
+      assertFile(props.value)
+      return props.value
+    },
+  },
+}) satisfies ComponentDefinition<"unknownField">;
+
+const nativeFilesFieldWrapper = cast(NativeFilesField, {
+  value: {
+    transform(props) {
+      assertFiles(props.value);
+      return props.value;
+    },
+  },
+}) satisfies ComponentDefinition<"arrayField">;
+
 export function sjsfTheme(theme: Theme): SJSFTheme {
   return extendByRecord(SJSF_THEMES[theme], {
     filesFieldWrapper,
     tagsFieldWrapper,
+    nativeFileFieldWrapper,
+    nativeFilesFieldWrapper,
   });
 }
 

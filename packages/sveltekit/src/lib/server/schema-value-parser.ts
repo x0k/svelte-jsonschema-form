@@ -80,18 +80,21 @@ function removePseudoElements<T>(
   });
 }
 
-export function parseSchemaValue<T>({
-  convertEntries,
-  entries,
-  idPrefix,
-  idPseudoSeparator,
-  idSeparator: idSeparator,
-  schema: rootSchema,
-  uiSchema: rootUiSchema,
-  validator,
-  merger,
-  identifiableInputElementsTrie = DEFAULT_IDENTIFIABLE_INPUT_ELEMENTS_TRIE
-}: SchemaValueParserOptions<T>) {
+export function parseSchemaValue<T>(
+  signal: AbortSignal,
+  {
+    convertEntries,
+    entries,
+    idPrefix,
+    idPseudoSeparator,
+    idSeparator: idSeparator,
+    schema: rootSchema,
+    uiSchema: rootUiSchema,
+    validator,
+    merger,
+    identifiableInputElementsTrie = DEFAULT_IDENTIFIABLE_INPUT_ELEMENTS_TRIE
+  }: SchemaValueParserOptions<T>
+) {
   if (entries.length === 0) {
     return undefined;
   }
@@ -153,14 +156,14 @@ export function parseSchemaValue<T>({
     popFilter();
   }
 
-  function parseObject(schema: Schema, uiSchema: UiSchema, value: SchemaObjectValue) {
-    function setProperty(
+  async function parseObject(schema: Schema, uiSchema: UiSchema, value: SchemaObjectValue) {
+    async function setProperty(
       property: string,
       schemaDef: SchemaDefinition,
       uiSchema: UiSchemaDefinition
     ) {
       if (value[property] === undefined) {
-        const propertyValue = parseSchemaDef(schemaDef, uiSchema);
+        const propertyValue = await parseSchemaDef(schemaDef, uiSchema);
         if (propertyValue !== undefined) {
           value[property] = propertyValue;
         }
@@ -172,7 +175,7 @@ export function parseSchemaValue<T>({
     if (properties !== undefined) {
       for (const [property, schema] of Object.entries(properties)) {
         pushFilterAndEntries(`${escapedIdSeparator}${escapeRegex(property)}`);
-        setProperty(property, schema, (uiSchema[property] ?? {}) as UiSchema);
+        await setProperty(property, schema, (uiSchema[property] ?? {}) as UiSchema);
         popEntriesAndFilter();
       }
     }
@@ -209,7 +212,7 @@ export function parseSchemaValue<T>({
       for (const [key, entries] of unknown) {
         pushFilter(`${escapedIdSeparator}${escapeRegex(key)}`);
         entriesStack.push(entries);
-        setProperty(
+        await setProperty(
           additionalKeys.get(key) ?? key,
           additionalProperties,
           uiSchema.additionalProperties ?? {}
@@ -221,7 +224,7 @@ export function parseSchemaValue<T>({
     return value;
   }
 
-  function parseArray(schema: Schema, uiSchema: UiSchema, value: SchemaArrayValue) {
+  async function parseArray(schema: Schema, uiSchema: UiSchema, value: SchemaArrayValue) {
     const { items, additionalItems } = schema;
     if (items !== undefined) {
       if (Array.isArray(items)) {
@@ -229,7 +232,7 @@ export function parseSchemaValue<T>({
         const uiIsArray = Array.isArray(uiItems);
         for (let i = 0; i < items.length; i++) {
           pushFilterAndEntries(`${escapedIdSeparator}${i}`);
-          value.push(parseSchemaDef(items[i], uiIsArray ? uiItems[i] : uiItems));
+          value.push(await parseSchemaDef(items[i], uiIsArray ? uiItems[i] : uiItems));
           popEntriesAndFilter();
         }
         if (additionalItems !== undefined) {
@@ -240,7 +243,7 @@ export function parseSchemaValue<T>({
               popEntriesAndFilter();
               break;
             }
-            value.push(parseSchemaDef(additionalItems, uiSchema.additionalItems ?? {}));
+            value.push(await parseSchemaDef(additionalItems, uiSchema.additionalItems ?? {}));
             popEntriesAndFilter();
           }
         }
@@ -256,13 +259,13 @@ export function parseSchemaValue<T>({
             const arrayEntries = entriesStack[entriesStack.length - 1];
             for (let j = 0; j < arrayEntries.length; j++) {
               entriesStack.push([arrayEntries[j]]);
-              value.push(parseSchemaDef(items, uiIsArray ? (uiItems[j] ?? {}) : uiItems));
+              value.push(await parseSchemaDef(items, uiIsArray ? (uiItems[j] ?? {}) : uiItems));
               entriesStack.pop();
             }
             arrayEntries.length = 0;
             break;
           }
-          value.push(parseSchemaDef(items, uiIsArray ? uiItems[i - 1] : uiItems));
+          value.push(await parseSchemaDef(items, uiIsArray ? uiItems[i - 1] : uiItems));
           popEntriesAndFilter();
         }
       }
@@ -270,7 +273,7 @@ export function parseSchemaValue<T>({
     return value;
   }
 
-  function handleAllOf(
+  async function handleAllOf(
     allOf: Schema['allOf'],
     allOffUiSchema: UiSchemaDefinition | UiSchemaDefinition[],
     value: SchemaValue | undefined
@@ -280,7 +283,7 @@ export function parseSchemaValue<T>({
     }
     const isArray = Array.isArray(allOffUiSchema);
     for (let i = 0; i < allOf.length; i++) {
-      value = parseSchemaDef(allOf[i], isArray ? allOffUiSchema[i] : allOffUiSchema, value);
+      value = await parseSchemaDef(allOf[i], isArray ? allOffUiSchema[i] : allOffUiSchema, value);
     }
     return value;
   }
@@ -343,7 +346,11 @@ export function parseSchemaValue<T>({
     return branch === undefined ? value : parseSchemaDef(branch, uiSchema, value);
   }
 
-  function handleDependencies(schema: Schema, uiSchema: UiSchema, value: SchemaValue | undefined) {
+  async function handleDependencies(
+    schema: Schema,
+    uiSchema: UiSchema,
+    value: SchemaValue | undefined
+  ) {
     const { dependencies } = schema;
     if (dependencies === undefined || !isSchemaObjectValue(value)) {
       return value;
@@ -352,20 +359,24 @@ export function parseSchemaValue<T>({
       if (!(key in value) || Array.isArray(deps)) {
         continue;
       }
-      value = parseSchemaDef(deps, uiSchema, value) as SchemaObjectValue;
+      value = (await parseSchemaDef(deps, uiSchema, value)) as SchemaObjectValue;
     }
     return value;
   }
 
-  function parseSchemaDef(
+  async function parseSchemaDef(
     schema: SchemaDefinition,
     uiSchema: UiSchemaDefinition,
     value?: SchemaValue
-  ): SchemaValue | undefined {
+  ): Promise<SchemaValue | undefined> {
     uiSchema = resolveUiRef(rootUiSchema, uiSchema) ?? {};
     if (!isSchemaObject(schema)) {
       return schema
-        ? convertEntries({ schema, uiSchema, entries: entriesStack[entriesStack.length - 1] })
+        ? await convertEntries(signal, {
+            schema,
+            uiSchema,
+            entries: entriesStack[entriesStack.length - 1]
+          })
         : undefined;
     }
     const { $ref: ref } = schema;
@@ -374,26 +385,30 @@ export function parseSchemaValue<T>({
     }
     const type = getSimpleSchemaType(schema);
     if (type === 'object') {
-      value = parseObject(schema, uiSchema, isSchemaObjectValue(value) ? value : {});
+      value = await parseObject(schema, uiSchema, isSchemaObjectValue(value) ? value : {});
     } else if (type === 'array') {
-      value = parseArray(schema, uiSchema, isSchemaArrayValue(value) ? value : []);
+      value = await parseArray(schema, uiSchema, isSchemaArrayValue(value) ? value : []);
     } else if (value === undefined) {
-      value = convertEntries({ schema, uiSchema, entries: entriesStack[entriesStack.length - 1] });
+      value = await convertEntries(signal, {
+        schema,
+        uiSchema,
+        entries: entriesStack[entriesStack.length - 1]
+      });
     }
     return handleDependencies(
       schema,
       uiSchema,
-      handleAnyOf(
+      await handleAnyOf(
         schema,
         uiSchema,
-        handleAllOf(
+        await handleAllOf(
           schema.allOf,
           (uiSchema.allOf as UiSchema) ?? uiSchema,
-          handleOneOf(
+          await handleOneOf(
             schema.oneOf,
             schema,
             uiSchema.oneOf ?? uiSchema,
-            handleConditions(schema, uiSchema, value)
+            await handleConditions(schema, uiSchema, value)
           )
         )
       )

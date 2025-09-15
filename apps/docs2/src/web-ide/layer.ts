@@ -1,3 +1,4 @@
+import { unique } from "@sjsf/form/lib/array";
 import type { SchemaValue } from "@sjsf/form";
 
 import {
@@ -28,6 +29,7 @@ export interface LayerFiles {
 
 export interface FormDefaultsConfig {
   theme?: ActualTheme;
+  widgets?: string[];
   validator?: Validator;
   resolver?: Resolver;
 }
@@ -74,6 +76,7 @@ function mergeFormDefaultsConfig(
   return {
     ...a,
     ...b,
+    widgets: unique([...(a.widgets ?? []), ...(b.widgets ?? [])]),
   };
 }
 
@@ -116,6 +119,7 @@ function buildFormDefaultsConfig({
   resolver = "basic",
   theme = "basic",
   validator = "Ajv",
+  widgets = [],
 }: FormDefaultsConfig): string {
   const pkg = validatorPackage(validator);
   const validatorCode = pkg
@@ -126,6 +130,7 @@ export { createFormValidator as createValidator } from "${pkg}";
   return `export { resolver } from "@sjsf/form/resolvers/${resolver}";
 
 export { theme } from "@sjsf/${theme}-theme";
+${widgets.map((w) => `import "@sjsf/${theme}-theme/extra-widgets/${w}-include";`).join("\n")}
 
 export { translation } from "@sjsf/form/translations/en";
 

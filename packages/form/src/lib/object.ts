@@ -1,9 +1,17 @@
 export function isObject(value: unknown): value is object {
-  return typeof value === "object" && value !== null;
+  return value !== null && typeof value === "object";
+}
+
+const objProto = Object.prototype;
+
+export function isObjectProto<T>(
+  value: object
+): value is Record<PropertyKey, T> {
+  return Object.getPrototypeOf(value) === objProto;
 }
 
 export function isRecord<T>(value: unknown): value is Record<PropertyKey, T> {
-  return isObject(value) && !Array.isArray(value);
+  return isObject(value) && isObjectProto(value);
 }
 
 export function isRecordEmpty<R extends Record<string, any>>(

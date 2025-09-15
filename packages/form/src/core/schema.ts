@@ -18,15 +18,19 @@ export type SchemaWithProperties = Schema & {
   properties: Exclude<Schema["properties"], undefined>;
 };
 
-export type SchemaType = JSONSchema7TypeName;
+export type SchemaType = JSONSchema7TypeName | "unknown";
 
-export type SchemaValue =
-  | string
-  | number
-  | boolean
-  | SchemaObjectValue
-  | SchemaArrayValue
-  | null;
+export interface SchemaValues {
+  null: null;
+  string: string;
+  number: number;
+  integer: number;
+  boolean: boolean;
+  object: SchemaObjectValue;
+  array: SchemaArrayValue;
+}
+
+export type SchemaValue = SchemaValues[keyof SchemaValues];
 
 export interface SchemaObjectValue {
   [key: string]: SchemaValue | undefined;

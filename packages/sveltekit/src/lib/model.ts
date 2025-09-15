@@ -9,6 +9,7 @@ import type {
 } from '@sjsf/form';
 
 export const JSON_CHUNKS_KEY = '__sjsf_sveltekit_json_chunks';
+export const FORM_DATA_FILE_PREFIX = '__sjsf_sveltekit_file__';
 
 type SerializablePrimitive = string | number | boolean | null | undefined | bigint;
 
@@ -36,7 +37,9 @@ type SerializableKeys<T> = {
 
 type PickOptionalSerializable<T> = Pick<T, Extract<OptionalKeys<T>, SerializableKeys<T>>>;
 
-export type SerializableOptionalFormOptions<T> = PickOptionalSerializable<FormOptions<T, Validator>>;
+export type SerializableOptionalFormOptions<T> = PickOptionalSerializable<
+  FormOptions<T, Validator>
+>;
 
 export type InitialFormData<
   T,

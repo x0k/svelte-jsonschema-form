@@ -44,6 +44,7 @@
 <form
   method="POST"
   action="?/first"
+  enctype="multipart/form-data"
   novalidate
   style="display: flex; flex-direction: column; gap: 1rem"
 >

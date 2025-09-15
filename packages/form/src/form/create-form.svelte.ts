@@ -2,8 +2,9 @@ import type { Attachment } from "svelte/attachments";
 import { SvelteMap } from "svelte/reactivity";
 import { on } from "svelte/events";
 
-import { refFromBind, type Bind, type Ref } from "@/lib/svelte.svelte.js";
+import type { DeepPartial } from "@/lib/types.js";
 import type { SchedulerYield } from "@/lib/scheduler.js";
+import { refFromBind, type Bind, type Ref } from "@/lib/svelte.svelte.js";
 import { createDataURLtoBlob } from "@/lib/file.js";
 import {
   abortPrevious,
@@ -81,8 +82,6 @@ import {
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
 
-export type InitialValue<T> = T extends Record<string, any> ? Partial<T> : T;
-
 export type InitialErrors<V extends Validator> =
   | ValidationError<PossibleError<V>>[]
   | Iterable<readonly [Id, FieldError<PossibleError<V>>[]]>;
@@ -136,6 +135,7 @@ function createErrorsRef<V extends Validator>(
 export interface ValidatorFactoryOptions {
   schema: Schema;
   uiSchema: UiSchemaRoot;
+  uiOptionsRegistry: UiOptionsRegistry;
   idPrefix: string;
   idSeparator: string;
   idPseudoSeparator: string;
@@ -149,6 +149,7 @@ export interface MergerFactoryOptions<V extends Validator> {
   validator: V;
   schema: Schema;
   uiSchema: UiSchemaRoot;
+  uiOptionsRegistry: UiOptionsRegistry;
 }
 
 export interface GetSnapshotOptions<V extends Validator> {
@@ -184,7 +185,7 @@ export interface FormOptions<T, V extends Validator>
    */
   idPseudoSeparator?: string;
   //
-  initialValue?: InitialValue<T>;
+  initialValue?: DeepPartial<T>;
   value?: Bind<T>;
   initialErrors?: InitialErrors<V>;
   errors?: Bind<FieldErrorsMap<PossibleError<V>>>;
@@ -293,12 +294,14 @@ export function createForm<T, V extends Validator>(
   );
   const uiSchemaRoot = $derived(options.uiSchema ?? {});
   const uiSchema = $derived(resolveUiRef(uiSchemaRoot, options.uiSchema) ?? {});
+  const uiOptionsRegistry = $derived(options[UI_OPTIONS_REGISTRY_KEY] ?? {});
   const validator = $derived(
     options.createValidator({
       idPrefix,
       idSeparator,
       idPseudoSeparator,
       uiSchema: uiSchemaRoot,
+      uiOptionsRegistry,
       schema: options.schema,
       merger: (): FormMerger => merger,
     })
@@ -308,6 +311,7 @@ export function createForm<T, V extends Validator>(
       validator,
       schema: options.schema,
       uiSchema: uiSchemaRoot,
+      uiOptionsRegistry,
     })
   );
   const valueRef = $derived(
@@ -324,7 +328,6 @@ export function createForm<T, V extends Validator>(
   let isSubmitted = $state.raw(false);
   let isChanged = $state.raw(false);
   const fieldsValidationMode = $derived(options.fieldsValidationMode ?? 0);
-  const uiOptionsRegistry = $derived(options[UI_OPTIONS_REGISTRY_KEY] ?? {});
   const keyedArrays: KeyedArraysMap = $derived(
     options.keyedArraysMap ?? new WeakMap()
   );

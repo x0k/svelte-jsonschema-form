@@ -22,7 +22,7 @@ export function typeOfValue(
     case "string":
       return type;
     default:
-      throw new Error(`Unsupported schema type: ${type}`);
+      return "unknown";
   }
 }
 
@@ -56,7 +56,7 @@ export function typeOfSchema(schema: Schema): SchemaType | SchemaType[] {
     }
     return unique(types);
   }
-  return "null";
+  return "unknown";
 }
 
 export function isNullableSchemaType(type: SchemaType | SchemaType[]): boolean {

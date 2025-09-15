@@ -23,6 +23,11 @@ import {
   EPHEMERAL_WIDGET_DEFINITIONS,
   type FileFieldMode,
   fileFieldModeToFields,
+  EPHEMERAL_FIELD_VALUE_TYPES,
+  type ArrayAssertType,
+  type AssertType,
+  EPHEMERA_FIELD_ASSERT_TYPE,
+  isArrayAssertType,
 } from "./model.js";
 
 export interface FormDefaultsOptions {
@@ -32,6 +37,14 @@ export interface FormDefaultsOptions {
   icons: Icons;
   validator: Validator;
   fileFieldMode: FileFieldMode;
+}
+
+function camelToKebabCase(str: string): string {
+  return str.replace(/([A-Z])/g, "-$1").toLowerCase();
+}
+
+function capitalize<T extends string>(str: T): Capitalize<T> {
+  return (str.charAt(0).toUpperCase() + str.slice(1)) as Capitalize<T>;
 }
 
 export function join(...args: (string | boolean)[]) {
@@ -113,30 +126,76 @@ function createDefinition(definition: string) {
   };
 }
 
+const ASSERTS: Record<AssertType, string> = {
+  file:
+    `function assertFile(v: unknown): asserts v is File | undefined {
+  if (v !== undefined && !(v instanceof File)) {
+    throw new Error(
+      ` +
+    '`expected "undefined" or "File" type, but got "${typeof v}"`' +
+    `
+    );
+  }
+}`,
+};
+
+const ARRAY_ASSERTS: Record<ArrayAssertType, string> = {
+  strings: `const assertStrings: ArrayAssert<string> = createArrayAssert(
+  "string",
+  (v: SchemaValue): v is string => typeof v === "string"
+);`,
+  files: `const assertFiles: ArrayAssert<File> = createArrayAssert(
+  "File",
+  (v): v is File => v instanceof File
+);`,
+};
+
 function defineEphemeralFields(ephemeralFields: Set<EphemeralFieldType>) {
   if (ephemeralFields.size === 0) {
     return createDefinition("");
   }
   const fields = Array.from(ephemeralFields);
+  const asserts: AssertType[] = [];
+  const arrayAsserts: ArrayAssertType[] = [];
+  for (const f of fields) {
+    const assertType = EPHEMERA_FIELD_ASSERT_TYPE[f];
+    if (isArrayAssertType(assertType)) {
+      arrayAsserts.push(assertType);
+    } else {
+      asserts.push(assertType);
+    }
+  }
   return createDefinition(
     join2(
-      `function assertStrings(
+      arrayAsserts.length > 0 &&
+        `type ArrayAssert<T extends SchemaValue> = (
   arr: SchemaArrayValue | undefined
-): asserts arr is string[] | undefined {
-  if (
-    arr !== undefined &&
-    arr.find((item) => {
-      return item !== undefined && typeof item !== "string";
-    })
-  ) {
-    throw new TypeError("expected array of strings");
-  }
+) => asserts arr is T[] | undefined;
+
+function createArrayAssert<T extends SchemaValue>(
+  itemName: string,
+  isItem: (v: SchemaValue) => v is T
+) {
+  return (
+    arr: SchemaArrayValue | undefined
+  ): asserts arr is T[] | undefined => {
+    if (
+      arr !== undefined &&
+      arr.findIndex((item) => item === undefined || !isItem(item)) !== -1
+    ) {
+      throw new TypeError(` +
+          '`expected "${itemName}[]" or "undefined"`' +
+          `);
+    }
+  };
 }`,
+      ...arrayAsserts.map((a) => ARRAY_ASSERTS[a]),
+      ...asserts.map((a) => ASSERTS[a]),
       ...fields.map(
         (f) => `const ${f}FieldWrapper = cast(${f}Field, {
   value: {
     transform(props) {
-      assertStrings(props.value);
+      assert${capitalize(EPHEMERA_FIELD_ASSERT_TYPE[f])}(props.value);
       return props.value;
     },
   },
@@ -144,7 +203,8 @@ function defineEphemeralFields(ephemeralFields: Set<EphemeralFieldType>) {
       ),
       declareModule(
         fields.map(
-          (f) => `${f}FieldWrapper: FieldCommonProps<SchemaArrayValue>;`
+          (f) =>
+            `${f}FieldWrapper: FieldCommonProps<${EPHEMERAL_FIELD_VALUE_TYPES[f]}>;`
         ),
         fields.map((f) => `${f}FieldWrapper: "value";`)
       )
@@ -226,11 +286,12 @@ export function buildFormDefaults({
     join(
       `export { resolver } from "@sjsf/form/resolvers/${resolver}";`,
       ...Array.from(extraFields).map(
-        (f) => `import "@sjsf/form/fields/extra-fields/${f}-include";`
+        (f) =>
+          `import "@sjsf/form/fields/extra-fields/${camelToKebabCase(f)}-include";`
       ),
       ...Array.from(ephemeralFieldTypes).map(
         (f) =>
-          `import ${f}Field from "@sjsf/form/fields/extra-fields/${f}.svelte";`
+          `import ${f}Field from "@sjsf/form/fields/extra-fields/${camelToKebabCase(f)}.svelte";`
       )
     ),
     ephemeralFields.definition,
@@ -250,7 +311,7 @@ export function buildFormDefaults({
     iconsExport,
     'export { translation } from "@sjsf/form/translations/en";',
     `export { createFormValidator as createValidator } from "@sjsf/${validator}-validator";`,
-    `export { createFormMerger as createMerger } from "@sjsf/form/mergers/modern";`,
+    `export { createFormMerger as createMerger } from "@sjsf/form/mergers/modern";`
   );
 }
 
