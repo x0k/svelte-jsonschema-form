@@ -43,7 +43,7 @@ export const schema = {
         enum: ["HTML", "CSS", "JS/TS", "Svelte"],
       },
       uniqueItems: true,
-      maxItems: 3,
+      minItems: 4
     },
     bio: {
       type: "string",
@@ -163,7 +163,7 @@ export const initialValue: Data = {
   email: "sarah.johnson@invalid",
   age: 28,
   country: "CA",
-  skills: ["Svelte"],
+  skills: ["HTML", "CSS", "JS/TS", "Svelte"],
   experience: "intermediate",
   startDate: new Date().toLocaleDateString("en-CA"),
   bio: "Bio",
