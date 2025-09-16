@@ -8,7 +8,6 @@ import { Code, Tabs, TabItem } from "@astrojs/starlight/components";
 import { DEFAULT_ID_SEPARATOR, DEFAULT_ID_PSEUDO_SEPARATOR } from '@sjsf/form';
 
 import Npm from '@/components/npm.astro';
-import { pkg } from '@/shared'
 
 import clientCode from './_sveltekit-client.svelte.api?raw';
 import clientFlexCode from './_sveltekit-flex-client.svelte.api?raw'
@@ -27,7 +26,7 @@ even if the user has `JavaScript` disabled.
 
 ## Installation
 
-<Npm pkg={pkg("@sjsf/sveltekit")} />
+<Npm pkg="@sjsf/sveltekit" />
 
 ## Example
 
