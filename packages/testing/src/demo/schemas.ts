@@ -1,6 +1,6 @@
 import type { SchemaArrayValue } from "@sjsf/form/core";
 import {
-  pathToId,
+  idFromPath,
   type PathToIdOptions,
   type Schema,
   type UiSchema,
@@ -59,10 +59,10 @@ export const createErrors = (keys: string[], options?: PathToIdOptions) =>
     (key) =>
       ({
         error: null,
-        instanceId: pathToId([key, "error"], options),
+        instanceId: idFromPath([key, "error"], options),
         propertyTitle: "error",
         message: `${key} error`,
-      } satisfies ValidationError<null>)
+      }) satisfies ValidationError<null>
   );
 
 export type Specs = Record<string, [Schema, UiSchema]>;
@@ -95,14 +95,9 @@ export function createSchemas(
 }
 
 export function assertStrings(
-  arr: SchemaArrayValue | undefined
+  arr: SchemaArrayValue | null | undefined
 ): asserts arr is string[] | undefined {
-  if (
-    arr !== undefined &&
-    arr.find((item) => {
-      return item !== undefined && typeof item !== "string";
-    })
-  ) {
+  if (arr?.some((item) => typeof item !== "string")) {
     throw new TypeError("expected array of strings");
   }
 }
