@@ -76,7 +76,7 @@
         ? () => {
             const v = value;
             const t = new DataTransfer();
-            if (v !== undefined) {
+            if (v) {
               for (const f of v) {
                 t.items.add(f);
               }

@@ -76,7 +76,7 @@
         ? () => {
             const v = value;
             const t = new DataTransfer();
-            if (v !== undefined) {
+            if (v) {
               t.items.add(v);
             }
             return t.files;

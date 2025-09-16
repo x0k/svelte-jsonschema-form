@@ -14,7 +14,7 @@ import type { Translate } from "./translation.js";
 
 export interface FieldCommonProps<V> {
   type: "field";
-  value: V | undefined;
+  value: V | null | undefined;
   config: Config;
   uiOption: UiOption;
   translate: Translate;

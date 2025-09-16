@@ -46,7 +46,7 @@
     setInput: (v) => (value = v),
     async toOutput(signal, value) {
       const data = new DataTransfer();
-      if (value !== undefined) {
+      if (value) {
         await addFile(ctx, signal, data, value);
       }
       return data.files;

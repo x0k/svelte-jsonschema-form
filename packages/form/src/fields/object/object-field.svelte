@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { isSchemaObjectValue } from "@/core/value.js";
   import {
     Text,
     getComponent,
@@ -24,6 +23,7 @@
     ctx,
     config: () => config,
     value: () => value,
+    setValue: (v) => (value = v),
     translate,
   });
   setObjectContext(objCtx);
@@ -65,7 +65,7 @@
         () => value?.[property],
         (v) => {
           const c = value;
-          if (c === undefined) {
+          if (!c) {
             value = { [property]: v };
           } else {
             c[property] = v;

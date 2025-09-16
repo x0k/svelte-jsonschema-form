@@ -77,7 +77,7 @@ export function setArrayContext<V extends Validator>(ctx: ArrayContext<V>) {
 interface ItemsOptions<T, V extends Validator> {
   ctx: FormState<T, V>;
   config: () => Config;
-  value: () => SchemaArrayValue | undefined;
+  value: () => SchemaArrayValue | null | undefined;
   keyedArray: () => KeyedFieldValues;
   itemSchema: () => Schema | undefined;
 }
@@ -166,7 +166,7 @@ function createCanAdd(
 export interface ArrayContextOptions<T, V extends Validator> {
   ctx: FormState<T, V>;
   config: () => Config;
-  value: () => SchemaArrayValue | undefined;
+  value: () => SchemaArrayValue | null | undefined;
   keyedArray: () => KeyedFieldValues;
 }
 
@@ -303,13 +303,13 @@ export function createTupleContext<T, V extends Validator>({
     ...items,
     length,
     pushItem() {
-      if (arr === undefined) {
+      if (!arr) {
         initTuple();
       }
       items.pushItem();
     },
     set(index, itemValue) {
-      if (arr !== undefined) {
+      if (arr) {
         arr[index] = itemValue;
       } else {
         initTuple((items) => {

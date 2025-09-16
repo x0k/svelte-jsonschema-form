@@ -14,7 +14,7 @@ import type {
 
 export interface TemplateCommonProps<V extends SchemaValue> {
   type: "template";
-  value: V | undefined;
+  value: V | null | undefined;
   config: Config;
   uiOption: UiOption;
   errors: FieldError<unknown>[];

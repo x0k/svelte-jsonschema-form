@@ -6,7 +6,7 @@ import type { FormState } from "./state.js";
 
 export function createKeyedArrayDeriver<T, V extends Validator>(
   ctx: FormState<T, V>,
-  value: () => SchemaArrayValue | undefined,
+  value: () => SchemaArrayValue | null | undefined,
   virtualKeyedArrayFactory: () => KeyedFieldValues,
   keyedArrayFactory: (v: SchemaArrayValue, g: () => number) => KeyedFieldValues
 ) {
@@ -14,7 +14,7 @@ export function createKeyedArrayDeriver<T, V extends Validator>(
   return () => {
     let stored: KeyedFieldValues | undefined;
     const v = value();
-    if (v === undefined) {
+    if (!v) {
       stored = virtualKeyedArrayFactory();
     } else {
       stored = ctx[FORM_KEYED_ARRAYS].get(v);

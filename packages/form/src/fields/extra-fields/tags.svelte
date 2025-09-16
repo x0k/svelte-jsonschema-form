@@ -28,6 +28,6 @@
   useLabel
   widgetType="tagsWidget"
   bind:value
-  fromValue={identity}
+  fromValue={(v) => v ?? undefined}
   toValue={identity}
 />

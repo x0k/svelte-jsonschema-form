@@ -59,7 +59,7 @@
     {handlers}
     {config}
     {errors}
-    bind:value
+    bind:value={() => value ?? undefined, (v) => (value = v)}
     {options}
     {uiOption}
   />

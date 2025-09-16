@@ -54,7 +54,7 @@ export type ObjectContext<V extends Validator> = {
     property: string,
     isAdditional: boolean
   ) => Config;
-  validate: () => void
+  validate: () => void;
 };
 
 const OBJECT_CONTEXT = Symbol("object-context");
@@ -70,7 +70,8 @@ export function setObjectContext<V extends Validator>(ctx: ObjectContext<V>) {
 export interface ObjectContextOptions<T, V extends Validator> {
   ctx: FormState<T, V>;
   config: () => Config;
-  value: () => SchemaObjectValue | undefined;
+  value: () => SchemaObjectValue | null | undefined;
+  setValue: (value: SchemaObjectValue) => void;
   translate: Translate;
 }
 
@@ -78,6 +79,7 @@ export function createObjectContext<T, V extends Validator>({
   ctx,
   config,
   value,
+  setValue,
   translate,
 }: ObjectContextOptions<T, V>): ObjectContext<V> {
   // NOTE: This is required for computing a schema which will include all
@@ -119,7 +121,10 @@ export function createObjectContext<T, V extends Validator>({
   const requiredProperties = $derived(new Set(retrievedSchema.required));
 
   const getAdditionalPropertySchema = $derived.by(
-    (): ((val: SchemaObjectValue | undefined, key: string) => Schema) => {
+    (): ((
+      val: SchemaObjectValue | null | undefined,
+      key: string
+    ) => Schema) => {
       const { additionalProperties, patternProperties } = retrievedSchema;
 
       if (isSchemaObjectValue(additionalProperties)) {
@@ -157,7 +162,7 @@ export function createObjectContext<T, V extends Validator>({
 
   const newKeyPrefix = $derived(translate("additional-property", {}));
 
-  function validate(val: SchemaObjectValue | undefined) {
+  function validate(val: SchemaObjectValue | null | undefined) {
     const m = getFieldsValidationMode(ctx);
     if (!(m & ON_OBJECT_CHANGE) || (m & AFTER_SUBMITTED && !ctx.isSubmitted)) {
       return;
@@ -171,7 +176,7 @@ export function createObjectContext<T, V extends Validator>({
 
   return {
     validate() {
-      validate(value())
+      validate(value());
     },
     errors() {
       return errors;
@@ -203,20 +208,25 @@ export function createObjectContext<T, V extends Validator>({
       };
     },
     addProperty() {
-      const val = value();
-      if (val === undefined) {
-        return;
-      }
-      const newKey = generateNewKey(val, newKeyPrefix, additionalPropertyKey);
+      let val = value();
+      const newKey = val
+        ? generateNewKey(val, newKeyPrefix, additionalPropertyKey)
+        : additionalPropertyKey(newKeyPrefix, 0);
       const additionalPropertySchema = getAdditionalPropertySchema(val, newKey);
-      val[newKey] =
+      const propValue =
         getDefaultFieldState(ctx, additionalPropertySchema, undefined) ??
         getDefaultValueForType(getSimpleSchemaType(additionalPropertySchema));
+      if (val) {
+        val[newKey] = propValue;
+      } else {
+        val = { [newKey]: propValue };
+        setValue(val);
+      }
       validate(val);
     },
     removeProperty(prop) {
       const val = value();
-      if (val === undefined) {
+      if (!val) {
         return;
       }
       delete val[prop];
@@ -224,7 +234,7 @@ export function createObjectContext<T, V extends Validator>({
     },
     renameProperty(oldProp, newProp, fieldConfig) {
       const val = value();
-      if (val === undefined) {
+      if (!val) {
         return;
       }
       const newKey = generateNewKey(val, newProp, additionalPropertyKey);

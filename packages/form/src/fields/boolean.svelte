@@ -18,6 +18,6 @@
   widgetType="checkboxWidget"
   showTitle={uiOption("hideTitle") === false}
   useLabel
-  fromValue={identity}
+  fromValue={(v) => v ?? undefined}
   toValue={identity}
 />

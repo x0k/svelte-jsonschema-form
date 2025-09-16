@@ -53,7 +53,7 @@
         a.every((v, i) => v === b[i])),
     async toOutput(signal, value) {
       const data = new DataTransfer();
-      if (value !== undefined) {
+      if (value) {
         await addFiles(ctx, signal, data, value);
       }
       return data.files;

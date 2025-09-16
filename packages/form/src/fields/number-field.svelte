@@ -26,6 +26,6 @@
   useLabel
   widgetType="numberWidget"
   bind:value
-  fromValue={identity}
+  fromValue={(v) => v ?? undefined}
   toValue={(v) => v ?? uiOption("numberEmptyValue")}
 />
