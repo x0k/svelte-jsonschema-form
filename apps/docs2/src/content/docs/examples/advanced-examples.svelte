@@ -3,11 +3,13 @@
 
   import {
     ACTUAL_THEMES,
-    EXAMPLES,
+    GENERIC_EXAMPLES,
     THEME_TITLES,
-    VALIDATORS,
     type ActualTheme,
     type Validator,
+    VALIDATOR_SPECIFIC_EXAMPLES,
+    VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS,
+    VALIDATORS,
   } from "@/shared";
   import { openProject, Platform, PLATFORMS } from "@/web-ide";
 
@@ -52,14 +54,32 @@
   </label>
 </div>
 
+<h3>Generic examples</h3>
+
 <Buttons
-  items={EXAMPLES}
+  items={GENERIC_EXAMPLES}
   onClick={(example) => {
     openProject({
       platform,
       example,
       theme,
       validator,
+    });
+  }}
+  label={identity}
+/>
+
+<h3>Validator specific examples</h3>
+<p><em>Validator selector will be ignored</em></p>
+
+<Buttons
+  items={VALIDATOR_SPECIFIC_EXAMPLES}
+  onClick={(example) => {
+    openProject({
+      platform,
+      example,
+      theme,
+      validator: VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS[example],
     });
   }}
   label={identity}

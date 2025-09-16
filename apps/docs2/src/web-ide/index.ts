@@ -3,12 +3,14 @@ import sdk from "@stackblitz/sdk";
 import lz from "lz-string";
 
 import {
-  Example,
+  GenericExample,
   VALIDATOR_DEPENDENCIES,
   validatorPackage,
   VALIDATORS,
+  ValidatorSpecificExample,
   VERSION,
   type ActualTheme,
+  type Example,
   type Validator,
 } from "@/shared";
 
@@ -65,21 +67,24 @@ const THEME_LAYERS: Record<ActualTheme, () => LayerPromise[]> = {
 };
 
 const EXAMPLE_LAYERS: Record<Example, () => LayerPromise> = {
-  [Example.Starter]: () => import("./examples/starter"),
-  [Example.AnimatedArray]: () => import("./examples/animated-array"),
-  [Example.MarkdownDescription]: () =>
+  [GenericExample.Starter]: () => import("./examples/starter"),
+  [GenericExample.AnimatedArray]: () => import("./examples/animated-array"),
+  [GenericExample.MarkdownDescription]: () =>
     import("./examples/markdown-description"),
-  [Example.TabbedLayout]: () => import("./examples/tabbed-layout"),
-  [Example.AsyncCombobox]: () => import("./examples/async-combobox"),
-  [Example.Formulas]: () => import("./examples/formulas"),
-  [Example.PatternPropertiesValidator]: () =>
+  [GenericExample.TabbedLayout]: () => import("./examples/tabbed-layout"),
+  [GenericExample.AsyncCombobox]: () => import("./examples/async-combobox"),
+  [GenericExample.Formulas]: () => import("./examples/formulas"),
+  [GenericExample.PatternPropertiesValidator]: () =>
     import("./examples/pattern-properties-validator"),
-  [Example.NativeForm]: () => import("./examples/native-form"),
-  [Example.DecomposedField]: () => import("./examples/decomposed-field"),
-  [Example.MultiStepNativeForm]: () =>
+  [GenericExample.NativeForm]: () => import("./examples/native-form"),
+  [GenericExample.DecomposedField]: () => import("./examples/decomposed-field"),
+  [GenericExample.MultiStepNativeForm]: () =>
     import("./examples/multi-step-native-form"),
-  [Example.LayoutSlots]: () => import("./examples/layout-slots"),
-  [Example.PreuploadFile]: () => import("./examples/preupload-file"),
+  [GenericExample.LayoutSlots]: () => import("./examples/layout-slots"),
+  [GenericExample.PreuploadFile]: () => import("./examples/preupload-file"),
+  [ValidatorSpecificExample.ZodStarter]: () => import("./examples/zod-starter"),
+  [ValidatorSpecificExample.ValibotStarter]: () =>
+    import("./examples/valibot-starter"),
 };
 
 export async function openProject({

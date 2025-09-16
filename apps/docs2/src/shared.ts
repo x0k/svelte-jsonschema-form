@@ -30,6 +30,12 @@ export const VALIDATORS = [
 
 export type Validator = (typeof VALIDATORS)[number];
 
+export const JSON_SCHEMA_VALIDATORS: Validator[] = [
+  "Ajv",
+  "@cfworker/json-schema",
+  "@exodus/schemasafe",
+];
+
 const VALIDATOR_TO_PACKAGE_PREFIX: Partial<Record<Validator, string>> = {
   Ajv: "ajv8",
   "@cfworker/json-schema": "cfworker",
@@ -62,7 +68,7 @@ export const VALIDATOR_DEPENDENCIES: Record<
   "Standard Schema": {},
 };
 
-export enum Example {
+export enum GenericExample {
   Starter = "starter",
   AnimatedArray = "animated-array",
   MarkdownDescription = "markdown-description",
@@ -77,7 +83,26 @@ export enum Example {
   PreuploadFile = "preupload-file",
 }
 
-export const EXAMPLES = Object.values(Example);
+export const GENERIC_EXAMPLES = Object.values(GenericExample);
+
+export enum ValidatorSpecificExample {
+  ZodStarter = "zod-starter",
+  ValibotStarter = "valibot-starter",
+}
+
+export const VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS: Record<
+  ValidatorSpecificExample,
+  Validator
+> = {
+  [ValidatorSpecificExample.ZodStarter]: "Zod",
+  [ValidatorSpecificExample.ValibotStarter]: "Valibot",
+};
+
+export const VALIDATOR_SPECIFIC_EXAMPLES = Object.values(
+  ValidatorSpecificExample
+);
+
+export type Example = GenericExample | ValidatorSpecificExample;
 
 export const THEMES = [
   "basic",
