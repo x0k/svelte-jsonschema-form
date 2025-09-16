@@ -4,12 +4,14 @@ import type { ComponentDefinition, FieldCommonProps } from "@sjsf/form";
 
 export { resolver } from "@sjsf/form/resolvers/basic";
 import "@sjsf/form/fields/extra-fields/enum-include";
+import "@sjsf/form/fields/extra-fields/multi-enum-include";
 import "@sjsf/form/fields/extra-fields/file-include";
 import NativeFileField from "@sjsf/form/fields/extra-fields/native-file.svelte";
 
 import { theme as basicTheme } from "@sjsf/basic-theme";
 import "@sjsf/basic-theme/extra-widgets/textarea-include";
 import "@sjsf/basic-theme/extra-widgets/file-include";
+import "@sjsf/basic-theme/extra-widgets/checkboxes-include";
 
 declare module "@sjsf/form" {
   interface ComponentProps {
