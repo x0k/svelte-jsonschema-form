@@ -54,7 +54,7 @@ export const VALIDATOR_DEPENDENCIES: Record<
   "@exodus/schemasafe": {
     "@exodus/schemasafe": "^1.3.0",
   },
-  Zod: { zod: "^4.0.0" },
+  Zod: { zod: "^4.1.0" },
   Valibot: {
     valibot: "^1.1.0",
     "@valibot/to-json-schema": "^1.3.0",

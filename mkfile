@@ -426,6 +426,28 @@ e/:
     d:
       pnpm run dev
     popd
+  zod/:
+    pushd zod-starter
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    p:
+      pnpm run preview
+    d:
+      pnpm run dev
+    popd
+  valibot/:
+    pushd valibot-starter
+    c:
+      pnpm run check
+    b:
+      pnpm run build
+    p:
+      pnpm run preview
+    d:
+      pnpm run dev
+    popd
   popd
 
 p:
