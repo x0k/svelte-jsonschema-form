@@ -2,6 +2,9 @@ import type { StarlightIcon } from "@astrojs/starlight/types";
 
 import { version } from "#/form/package.json";
 
+// NOTE: Required for correct UiSchema augmentation
+import "@sjsf/basic-theme";
+
 export const VERSION = version;
 
 export const IS_NEXT_VERSION = VERSION.includes("next");
