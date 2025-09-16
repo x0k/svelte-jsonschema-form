@@ -10,7 +10,7 @@ import "@sjsf/form/fields/extra-fields/multi-enum-include";
 import "@sjsf/form/fields/extra-fields/file-include";
 import NativeFileField from "@sjsf/form/fields/extra-fields/native-file.svelte";
 
-import { theme as baseTheme } from "@sjsf/basic-theme";
+import { theme as baseTheme } from "@sjsf/shadcn4-theme";
 import "@sjsf/shadcn4-theme/extra-widgets/textarea-include";
 import "@sjsf/shadcn4-theme/extra-widgets/checkboxes-include";
 import "@sjsf/shadcn4-theme/extra-widgets/radio-include";
