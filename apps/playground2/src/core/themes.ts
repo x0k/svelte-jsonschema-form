@@ -137,7 +137,7 @@ import "@sjsf/shadcn4-theme/extra-widgets/switch-include";
 import "@sjsf/shadcn4-theme/extra-widgets/textarea-include";
 
 type ArrayAssert<T extends SchemaValue> = (
-  arr: SchemaArrayValue | undefined
+  arr: SchemaArrayValue | null | undefined
 ) => asserts arr is T[] | undefined;
 
 function createArrayAssert<T extends SchemaValue>(
@@ -145,12 +145,9 @@ function createArrayAssert<T extends SchemaValue>(
   isItem: (v: SchemaValue) => v is T
 ) {
   return (
-    arr: SchemaArrayValue | undefined
+    arr: SchemaArrayValue | null | undefined
   ): asserts arr is T[] | undefined => {
-    if (
-      arr !== undefined &&
-      arr.findIndex((item) => item === undefined || !isItem(item)) !== -1
-    ) {
+    if (arr?.some((item) => item === undefined || !isItem(item))) {
       throw new TypeError(`expected array of "${itemName}"`);
     }
   };
