@@ -3,7 +3,13 @@
 
   import { createAstro } from "@/astro.svelte";
 
-  import { schema, uiSchema, initialValue } from "../data";
+  import {
+    schema,
+    uiSchema,
+    initialValue,
+    withFile,
+    type Data,
+  } from "../data";
   import * as defaults from "./defaults";
 
   const form = createForm({
@@ -13,7 +19,7 @@
     initialValue,
     schema,
     uiSchema,
-    onSubmit: ({ name }) => window.alert(`Hello, ${name}`),
+    onSubmit: ({ name }: Data) => window.alert(`Hello, ${name}`),
   });
   const astro = createAstro();
 </script>
@@ -24,4 +30,4 @@
   data-theme={astro.darkOrLight}
 />
 
-<pre>{JSON.stringify(form.value, null, 2)}</pre>
+<pre>{JSON.stringify(form.value, withFile, 2)}</pre>

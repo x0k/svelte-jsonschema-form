@@ -1,3 +1,4 @@
+import { formatFileSize } from "#/form/dist/validators/file-size";
 import type { Schema, UiSchemaRoot } from "@sjsf/form";
 import type { FromSchema } from "json-schema-to-ts";
 
@@ -55,14 +56,12 @@ export const schema = {
       format: "date",
     },
     resume: {
-      type: "string",
       title: "Upload Resume",
-      format: "data-url",
     },
   },
 } as const satisfies Schema;
 
-export type FormValue = FromSchema<typeof schema>;
+export type Data = FromSchema<typeof schema>;
 
 export const uiSchema: UiSchemaRoot = {
   "ui:options": {
@@ -154,12 +153,12 @@ export const uiSchema: UiSchemaRoot = {
   },
   resume: {
     "ui:components": {
-      stringField: "fileField",
+      unknownField: "nativeFileFieldWrapper",
     },
   },
 };
 
-export const initialValue: FormValue = {
+export const initialValue: Data = {
   name: "Sarah Johnson",
   email: "sarah.johnson@invalid",
   age: 28,
@@ -169,3 +168,10 @@ export const initialValue: FormValue = {
   startDate: new Date().toLocaleDateString("en-CA"),
   bio: "Bio",
 };
+
+export function withFile(_: string, value: any) {
+  if (value instanceof File) {
+    return `File(${value.name}, ${formatFileSize(value.size)})`;
+  }
+  return value;
+}

@@ -1,7 +1,13 @@
 <script lang="ts">
   import { createForm, BasicForm } from "@sjsf/form";
 
-  import { schema, uiSchema, initialValue } from "../data";
+  import {
+    schema,
+    uiSchema,
+    initialValue,
+    type Data,
+    withFile,
+  } from "../data";
   import * as defaults from "./defaults";
 
   const form = createForm({
@@ -11,10 +17,10 @@
     initialValue,
     schema,
     uiSchema,
-    onSubmit: ({ name }) => window.alert(`Hello, ${name}`),
+    onSubmit: ({ name }: Data) => window.alert(`Hello, ${name}`),
   });
 </script>
 
 <BasicForm {form} />
 
-<pre>{JSON.stringify(form.value, null, 2)}</pre>
+<pre>{JSON.stringify(form.value, withFile, 2)}</pre>
