@@ -3,7 +3,6 @@
   import { theme, setThemeContext } from "@sjsf/shadcn4-theme";
   import * as components from "@sjsf/shadcn4-theme/new-york";
   import { specs } from "@sjsf/shadcn4-theme/specs";
-  import { BitsConfig } from "bits-ui";
 
   import { createAstro } from "@/astro.svelte";
   import * as defaults from "@/lib/form/defaults";
@@ -19,18 +18,13 @@
   });
 
   setThemeContext({ components });
-
-  let portalEl = $state.raw() as HTMLDivElement;
 </script>
 
-<BitsConfig defaultPortalTo={portalEl}>
-  <BasicForm
-    {form}
-    novalidate
-    class="flex flex-col gap-4 {astro.darkOrLight}"
-    style="margin-bottom: 1rem;"
-  />
-</BitsConfig>
-<div bind:this={portalEl}></div>
+<BasicForm
+  {form}
+  novalidate
+  class="flex flex-col gap-4 {astro.darkOrLight}"
+  style="margin-bottom: 1rem;"
+/>
 
 <pre>{JSON.stringify(form.value, null, 2)}</pre>
