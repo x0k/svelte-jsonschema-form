@@ -202,20 +202,15 @@ const SJSF_THEMES: Record<Theme, SJSFTheme> = {
 };
 
 type ArrayAssert<T extends SchemaValue> = (
-  arr: SchemaArrayValue | undefined
+  arr: SchemaArrayValue | null | undefined
 ) => asserts arr is T[] | undefined;
 
 function createArrayAssert<T extends SchemaValue>(
   itemName: string,
   isItem: (v: SchemaValue) => v is T
-) {
-  return (
-    arr: SchemaArrayValue | undefined
-  ): asserts arr is T[] | undefined => {
-    if (
-      arr !== undefined &&
-      arr.findIndex((item) => item === undefined || !isItem(item)) !== -1
-    ) {
+): ArrayAssert<T> {
+  return (arr) => {
+    if (arr?.some((item) => item === undefined || !isItem(item))) {
       throw new TypeError(`expected array of "${itemName}"`);
     }
   };
@@ -260,8 +255,8 @@ const tagsFieldWrapper = cast(TagsField, {
 const nativeFileFieldWrapper = cast(NativeFileField, {
   value: {
     transform(props) {
-      assertFile(props.value)
-      return props.value
+      assertFile(props.value);
+      return props.value;
     },
   },
 }) satisfies ComponentDefinition<"unknownField">;

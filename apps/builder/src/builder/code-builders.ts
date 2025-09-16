@@ -169,20 +169,15 @@ function defineEphemeralFields(ephemeralFields: Set<EphemeralFieldType>) {
     join2(
       arrayAsserts.length > 0 &&
         `type ArrayAssert<T extends SchemaValue> = (
-  arr: SchemaArrayValue | undefined
+  arr: SchemaArrayValue | null | undefined
 ) => asserts arr is T[] | undefined;
 
 function createArrayAssert<T extends SchemaValue>(
   itemName: string,
   isItem: (v: SchemaValue) => v is T
-) {
-  return (
-    arr: SchemaArrayValue | undefined
-  ): asserts arr is T[] | undefined => {
-    if (
-      arr !== undefined &&
-      arr.findIndex((item) => item === undefined || !isItem(item)) !== -1
-    ) {
+): ArrayAssert<T> {
+  return (arr) => {
+    if (arr?.some((item) => item === undefined || !isItem(item))) {
       throw new TypeError(` +
           '`expected "${itemName}[]" or "undefined"`' +
           `);
