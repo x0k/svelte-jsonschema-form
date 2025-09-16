@@ -48,7 +48,7 @@ export function getDefaultValueForType(type: SchemaType) {
     case "null":
       return null;
     default: {
-      return undefined
+      return undefined;
     }
   }
 }
@@ -486,6 +486,26 @@ export function ensureFormDataMatchingSchema(
   return validFormData;
 }
 
+/** Checks if the given `schema` contains the `null` type along with another type AND if the `default` contained within
+ * the schema is `null` AND the `computedDefault` is empty. If all of those conditions are true, then the `schema`'s
+ * default should be `null` rather than `computedDefault`.
+ *
+ * @param schema - The schema to inspect
+ * @param computedDefault - The computed default for the schema
+ * @returns - Flag indicating whether a null should be returned instead of the computedDefault
+ */
+export function computeDefaultBasedOnSchemaTypeAndDefaults<
+  T extends SchemaValue,
+>(schema: Schema, computedDefault: T | undefined) {
+  const { default: schemaDefault, type } = schema;
+  const shouldReturnNullAsDefault =
+    Array.isArray(type) &&
+    type.includes("null") &&
+    isSchemaValueEmpty(computedDefault) &&
+    schemaDefault === null;
+  return shouldReturnNullAsDefault ? null : computedDefault;
+}
+
 function maybeAddDefaultToObject(
   obj: Map<string, SchemaValue | undefined>,
   key: string,
@@ -637,7 +657,7 @@ export function getObjectDefaults(
     shouldMergeDefaultsIntoFormData,
   }: ComputeDefaultsProps<SchemaObjectValue>,
   defaults: SchemaValue | undefined
-): SchemaObjectValue {
+): SchemaObjectValue | null {
   // This is a custom addition that fixes this issue:
   // https://github.com/rjsf-team/react-jsonschema-form/issues/3832
   const retrievedSchema =
@@ -736,7 +756,10 @@ export function getObjectDefaults(
       );
     });
   }
-  return Object.fromEntries(objDefaults);
+  return computeDefaultBasedOnSchemaTypeAndDefaults(
+    schema,
+    Object.fromEntries(objDefaults)
+  )!;
 }
 
 export function getArrayDefaults(
@@ -752,7 +775,7 @@ export function getArrayDefaults(
     shouldMergeDefaultsIntoFormData,
   }: ComputeDefaultsProps,
   defaults: SchemaArrayValue | undefined
-): SchemaArrayValue | undefined {
+): SchemaArrayValue | null | undefined {
   const {
     populate: arrayMinItemsPopulate,
     mergeExtraDefaults: arrayMergeExtraDefaults,
@@ -841,6 +864,7 @@ export function getArrayDefaults(
     }
   }
 
+  let arrayDefault: SchemaArrayValue | undefined;
   const defaultsLength = defaults?.length ?? 0;
   if (
     !schema.minItems ||
@@ -848,31 +872,34 @@ export function getArrayDefaults(
     computeSkipPopulate(validator, schema, rootSchema) ||
     schema.minItems <= defaultsLength
   ) {
-    return defaults ?? emptyDefault;
+    arrayDefault = defaults ?? emptyDefault;
+  } else {
+    const fillerSchema = getInnerSchemaForArrayItem(
+      schema,
+      AdditionalItemsHandling.Invert
+    );
+    const fillerDefault = fillerSchema.default;
+
+    // Calculate filler entries for remaining items (minItems - existing raw data/defaults)
+    const fillerEntries = Array.from(
+      { length: schema.minItems - defaultsLength },
+      () =>
+        computeDefaults(validator, merger, fillerSchema, {
+          parentDefaults: fillerDefault,
+          rootSchema,
+          stack,
+          experimental_defaultFormStateBehavior,
+          includeUndefinedValues: false,
+          rawFormData: undefined,
+          isSchemaRoot: false,
+          required,
+          shouldMergeDefaultsIntoFormData,
+        })
+    );
+    // then fill up the rest with either the item default or empty, up to minItems
+    arrayDefault = defaultsLength
+      ? defaults!.concat(fillerEntries)
+      : fillerEntries;
   }
-
-  const fillerSchema = getInnerSchemaForArrayItem(
-    schema,
-    AdditionalItemsHandling.Invert
-  );
-  const fillerDefault = fillerSchema.default;
-
-  // Calculate filler entries for remaining items (minItems - existing raw data/defaults)
-  const fillerEntries = Array.from(
-    { length: schema.minItems - defaultsLength },
-    () =>
-      computeDefaults(validator, merger, fillerSchema, {
-        parentDefaults: fillerDefault,
-        rootSchema,
-        stack: stack,
-        experimental_defaultFormStateBehavior,
-        required,
-        includeUndefinedValues: false,
-        rawFormData: undefined,
-        isSchemaRoot: false,
-        shouldMergeDefaultsIntoFormData,
-      })
-  );
-  // then fill up the rest with either the item default or empty, up to minItems
-  return defaultsLength ? defaults!.concat(fillerEntries) : fillerEntries;
+  return computeDefaultBasedOnSchemaTypeAndDefaults(schema, arrayDefault);
 }

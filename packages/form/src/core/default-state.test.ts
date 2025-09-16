@@ -29,6 +29,7 @@ import {
   getDefaultFormState,
   getInnerSchemaForArrayItem,
   getObjectDefaults,
+  computeDefaultBasedOnSchemaTypeAndDefaults,
   type Experimental_DefaultFormStateBehavior,
 } from "./default-state.js";
 import type { Merger } from "./merger.js";
@@ -2850,6 +2851,156 @@ describe("getDefaultFormState()", () => {
         0
       )
     ).toEqual({});
+  });
+
+  describe("computeDefaultBasedOnSchemaTypeAndDefaults()", () => {
+    let schema: Schema;
+    describe("Object", () => {
+      beforeAll(() => {
+        schema = {
+          type: "object",
+          default: null,
+        };
+      });
+      it("computedDefaults is undefined", () => {
+        expect(
+          computeDefaultBasedOnSchemaTypeAndDefaults(schema, undefined)
+        ).toBeUndefined();
+      });
+      it("computedDefaults is empty object", () => {
+        expect(computeDefaultBasedOnSchemaTypeAndDefaults(schema, {})).toEqual(
+          {}
+        );
+      });
+      it("computedDefaults is non-empty object", () => {
+        const computedDefault = { foo: "bar" };
+        expect(
+          computeDefaultBasedOnSchemaTypeAndDefaults(schema, computedDefault)
+        ).toEqual(computedDefault);
+      });
+    });
+    describe("Nullable Object", () => {
+      beforeAll(() => {
+        schema = {
+          type: ["null", "object"],
+          default: null,
+        };
+      });
+      it("computedDefaults is undefined", () => {
+        expect(
+          computeDefaultBasedOnSchemaTypeAndDefaults(schema, undefined)
+        ).toBeNull();
+      });
+      it("computedDefaults is empty object", () => {
+        expect(
+          computeDefaultBasedOnSchemaTypeAndDefaults(schema, {})
+        ).toBeNull();
+      });
+      it("computedDefaults is non-empty object", () => {
+        const computedDefault = { foo: "bar" };
+        expect(
+          computeDefaultBasedOnSchemaTypeAndDefaults(schema, computedDefault)
+        ).toEqual(computedDefault);
+      });
+    });
+    describe("Array", () => {
+      beforeAll(() => {
+        schema = {
+          type: "array",
+          default: null,
+          items: { type: "string" },
+        };
+      });
+      it("computedDefaults is undefined", () => {
+        expect(
+          computeDefaultBasedOnSchemaTypeAndDefaults(schema, undefined)
+        ).toBeUndefined();
+      });
+      it("computedDefaults is empty object", () => {
+        expect(computeDefaultBasedOnSchemaTypeAndDefaults(schema, [])).toEqual(
+          []
+        );
+      });
+      it("computedDefaults is non-empty object", () => {
+        const computedDefault = ["bar"];
+        expect(
+          computeDefaultBasedOnSchemaTypeAndDefaults(schema, computedDefault)
+        ).toEqual(computedDefault);
+      });
+    });
+    describe("Nullable Array", () => {
+      beforeAll(() => {
+        schema = {
+          type: ["null", "array"],
+          default: null,
+          items: { type: "string" },
+        };
+      });
+      it("computedDefaults is undefined", () => {
+        expect(
+          computeDefaultBasedOnSchemaTypeAndDefaults(schema, undefined)
+        ).toBeNull();
+      });
+      it("computedDefaults is empty object", () => {
+        expect(
+          computeDefaultBasedOnSchemaTypeAndDefaults(schema, [])
+        ).toBeNull();
+      });
+      it("computedDefaults is non-empty object", () => {
+        const computedDefault = ["bar"];
+        expect(
+          computeDefaultBasedOnSchemaTypeAndDefaults(schema, computedDefault)
+        ).toEqual(computedDefault);
+      });
+    });
+    describe("Nullable String", () => {
+      beforeAll(() => {
+        schema = {
+          type: "string",
+          default: null,
+        };
+      });
+      it("computedDefaults is undefined", () => {
+        expect(
+          computeDefaultBasedOnSchemaTypeAndDefaults(schema, undefined)
+        ).toBeUndefined();
+      });
+      it("computedDefaults is empty object", () => {
+        expect(computeDefaultBasedOnSchemaTypeAndDefaults(schema, "")).toEqual(
+          ""
+        );
+      });
+      it("computedDefaults is non-empty object", () => {
+        const computedDefault = "bar";
+        expect(
+          computeDefaultBasedOnSchemaTypeAndDefaults(schema, computedDefault)
+        ).toEqual(computedDefault);
+      });
+    });
+    describe("Nullable String", () => {
+      beforeAll(() => {
+        schema = {
+          type: ["null", "string"],
+          default: null,
+        };
+      });
+      it("computedDefaults is undefined", () => {
+        expect(
+          computeDefaultBasedOnSchemaTypeAndDefaults(schema, undefined)
+        ).toBeNull();
+      });
+      it("computedDefaults is empty object", () => {
+        expect(
+          computeDefaultBasedOnSchemaTypeAndDefaults(schema, "")
+        ).toBeNull();
+      });
+      it("computedDefaults is non-empty object", () => {
+        const computedDefault = "bar";
+        expect(
+          computeDefaultBasedOnSchemaTypeAndDefaults(schema, computedDefault)
+        ).toEqual(computedDefault);
+      });
+    });
   });
 
   describe("getValidFormData", () => {

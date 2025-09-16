@@ -1,4 +1,4 @@
-import { isRecord, isObject } from "@/lib/object.js";
+import { isRecord, isObject, isRecordEmpty } from "@/lib/object.js";
 
 import type {
   SchemaArrayValue,
@@ -16,14 +16,31 @@ export function isSchemaArrayValue(value: unknown): value is SchemaArrayValue {
   return Array.isArray(value);
 }
 
-export function isSchemaValueEmpty<V extends SchemaValue>(value: V) {
+/**
+ * Broad emptiness:
+ * Anything that doesn’t match known categories is treated as empty.
+ */
+export function isSchemaValueEmpty<V extends SchemaValue>(
+  value: V | undefined
+) {
+  if (typeof value === "string" || Array.isArray(value)) {
+    return value.length === 0;
+  }
   if (!isObject(value)) {
     return true;
   }
-  if (Array.isArray(value)) {
-    return value.length === 0;
+  if (ArrayBuffer.isView(value) || value instanceof ArrayBuffer) {
+    return value.byteLength === 0;
   }
-  return Object.keys(value).length === 0;
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const proto = Object.getPrototypeOf(value);
+  if (proto === Object.prototype || proto === null) {
+    return isRecordEmpty(value);
+  }
+  if (Object.prototype.hasOwnProperty.call(proto, "size")) {
+    return value.size === 0;
+  }
+  return true;
 }
 
 export function schemaValueToString(v: SchemaValue) {
