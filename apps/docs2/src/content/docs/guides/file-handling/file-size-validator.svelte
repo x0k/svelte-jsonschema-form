@@ -5,7 +5,7 @@
   import {
     createFileSizeValidator,
     formatFileSize,
-  } from "#/form/dist/validators/file-size";
+  } from "@sjsf/form/validators/file-size";
 
   const form = createForm({
     ...defaults,
