@@ -49,18 +49,16 @@ function createErrorsTransformer(options: ErrorsTransformerOptions) {
   };
 }
 
-export interface FormValidatorOptions<T extends StandardSchemaV1>
-  extends ErrorsTransformerOptions {
-  schema: T;
-}
+export interface FormValidatorOptions extends ErrorsTransformerOptions {}
 
 export function createFormValueValidator<T extends StandardSchemaV1>(
-  options: FormValidatorOptions<T>
+  schema: T,
+  options: FormValidatorOptions = {}
 ): FormValueValidator<StandardSchemaV1.Issue> {
   const transform = createErrorsTransformer(options);
   return {
     validateFormValue(rootSchema, formValue) {
-      const result = options.schema["~standard"].validate(formValue);
+      const result = schema["~standard"].validate(formValue);
       if (result instanceof Promise) {
         throw new TypeError("Schema validation must be synchronous");
       }
@@ -70,12 +68,13 @@ export function createFormValueValidator<T extends StandardSchemaV1>(
 }
 
 export function createAsyncFormValueValidator<T extends StandardSchemaV1>(
-  options: FormValidatorOptions<T>
+  schema: T,
+  options: FormValidatorOptions = {}
 ): AsyncFormValueValidator<StandardSchemaV1.Issue> {
   const transform = createErrorsTransformer(options);
   return {
     async validateFormValueAsync(_, rootSchema, formValue) {
-      const result = await options.schema["~standard"].validate(formValue);
+      const result = await schema["~standard"].validate(formValue);
       return transform(result, rootSchema);
     },
   };
