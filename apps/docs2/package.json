@@ -15,7 +15,6 @@
   "dependencies": {
     "@exodus/schemasafe": "catalog:",
     "@lucide/svelte": "^0.525.0",
-    "@sinclair/typebox": "^0.34.41",
     "@sjsf/ajv8-validator": "workspace:*",
     "@sjsf/basic-theme": "workspace:*",
     "@sjsf/cfworker-validator": "workspace:*",
@@ -51,6 +50,7 @@
     "tailwind-merge": "^3.3.1",
     "tailwind-variants": "^3.1.1",
     "testing": "workspace:*",
+    "typebox": "^1.0.7",
     "valibot": "^1.1.0",
     "zod": "catalog:"
   },

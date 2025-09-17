@@ -238,9 +238,6 @@ importers:
       '@lucide/svelte':
         specifier: ^0.525.0
         version: 0.525.0(svelte@5.38.6)
-      '@sinclair/typebox':
-        specifier: ^0.34.41
-        version: 0.34.41
       '@sjsf/ajv8-validator':
         specifier: workspace:*
         version: link:../../packages/ajv8-validator
@@ -346,6 +343,9 @@ importers:
       testing:
         specifier: workspace:*
         version: link:../../packages/testing
+      typebox:
+        specifier: ^1.0.7
+        version: 1.0.7
       valibot:
         specifier: ^1.1.0
         version: 1.1.0(typescript@5.9.2)
@@ -2827,9 +2827,6 @@ packages:
 
   '@shikijs/vscode-textmate@10.0.2':
     resolution: {integrity: sha512-83yeghZ2xxin3Nj8z1NMd/NCuca+gsYXswywDy5bHvwlWL8tpTQmzGeUuHd9FC3E/SBEMvzJRwWEOz5gGes9Qg==}
-
-  '@sinclair/typebox@0.34.41':
-    resolution: {integrity: sha512-6gS8pZzSXdyRHTIqoqSVknxolr1kzfy4/CeDnrzsVz8TTIWUbOBr6gnzOmTYJ3eXQNh4IYHIGi5aIL7sOZ2G/g==}
 
   '@sjsf/ajv8-validator@3.0.0-next.1':
     resolution: {integrity: sha512-1Sp2PDlVrdwywFHh0XLAwxrG5egALhrEl6oyiV2VEyaA3tZ9pVZvBfLUsU3BWHcofAdOt02mWp4AKsEzUUa18A==}
@@ -8231,8 +8228,6 @@ snapshots:
       '@types/hast': 3.0.4
 
   '@shikijs/vscode-textmate@10.0.2': {}
-
-  '@sinclair/typebox@0.34.41': {}
 
   '@sjsf/ajv8-validator@3.0.0-next.1(@sjsf/form@3.0.0-next.1(@types/json-schema-merge-allof@0.6.5)(esm-env@1.2.2)(json-schema-merge-allof@0.8.1)(svelte@5.38.1))(ajv@8.17.1)':
     dependencies:
