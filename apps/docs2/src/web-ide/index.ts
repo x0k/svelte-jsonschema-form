@@ -85,6 +85,10 @@ const EXAMPLE_LAYERS: Record<Example, () => LayerPromise> = {
   [ValidatorSpecificExample.ZodStarter]: () => import("./examples/zod-starter"),
   [ValidatorSpecificExample.ValibotStarter]: () =>
     import("./examples/valibot-starter"),
+  [ValidatorSpecificExample.ArkTypeStarter]: () =>
+    import("./examples/arktype-starter"),
+  [ValidatorSpecificExample.TypeBoxStarter]: () =>
+    import("./examples/typebox-starter"),
 };
 
 export async function openProject({

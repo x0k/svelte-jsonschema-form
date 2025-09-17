@@ -88,6 +88,8 @@ export const GENERIC_EXAMPLES = Object.values(GenericExample);
 export enum ValidatorSpecificExample {
   ZodStarter = "zod-starter",
   ValibotStarter = "valibot-starter",
+  ArkTypeStarter = "arktype-starter",
+  TypeBoxStarter = "typebox-starter",
 }
 
 export const VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS: Record<
@@ -96,6 +98,8 @@ export const VALIDATOR_SPECIFIC_EXAMPLE_VALIDATORS: Record<
 > = {
   [ValidatorSpecificExample.ZodStarter]: "Zod",
   [ValidatorSpecificExample.ValibotStarter]: "Valibot",
+  [ValidatorSpecificExample.ArkTypeStarter]: "Standard Schema",
+  [ValidatorSpecificExample.TypeBoxStarter]: "Standard Schema",
 };
 
 export const VALIDATOR_SPECIFIC_EXAMPLES = Object.values(
