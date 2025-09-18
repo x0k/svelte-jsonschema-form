@@ -26,8 +26,6 @@ npm i @sjsf/form @sjsf/basic-theme @sjsf/ajv8-validator ajv@8
   import { theme } from '@sjsf/basic-theme';
   import { createFormValidator } from "@sjsf/ajv8-validator";
 
-  const validator = createFormValidator();
-
   const schema: Schema = {
     title: 'Tasks',
     type: 'array',
