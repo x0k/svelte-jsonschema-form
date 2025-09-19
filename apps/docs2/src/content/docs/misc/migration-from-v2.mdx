@@ -20,7 +20,7 @@ Update your `defaults.ts` file:
 + export { createFormValidator as createValidator } from "@sjsf/ajv8-validator";
 ```
 
-Yes, this change should be sufficient for migrating most projects.
+This change should be sufficient for migrating simple projects.
 However, I recommend reviewing the full list of changes,
 as you might find opportunities to improve or simplify your current solution.
 
@@ -119,7 +119,9 @@ or via `uiSchema` override the default handlers.
 If you need additional handlers, use `attachments`
 or call `form.submit(e)` in your handler.
 
-### `ArrayContext` and `ObjectContext` objects update
+### Custom components
+
+#### `ArrayContext` and `ObjectContext` objects update
 
 Context constructors now accept an options object instead of a list of arguments:
 
@@ -141,6 +143,23 @@ const myObjCtx = {
 }
 setObjectContext(myObjCtx)
 ```
+
+#### Forced support for nullable fields
+
+The FieldCommonProps interface has been updated:
+```diff
+export interface FieldCommonProps<V> {
+  ...
+- value: V | undefined;
++ value: V | null | undefined;
+}
+```
+
+This change introduces explicit support for nullable fields ([example](https://x0k.dev/svelte-jsonschema-form/playground3/#N4IgzgxgFgpgtgQxALlAFwJZoDYxSAMQHsAnOAAgHcspyA7AV22wQCNdyAzDGbAEzBUoGaOQQkY9JtnKsAnuT4xOCJmhAAaEGjkAHPMhBFWAKxgR1W3SSL6SmGGBShGzNrgDyp82gDqNABFlVWx1VG0sXHwAOWl3SS8zC01tPQMAbRBXbBTjJPUAXS0lFTUUbIBfLWz4gEESEgQ5fzQoINLQ5wicAxBYt3ZJesa5FJ19FEzslPERkCKQEpCw7K0seCdw8d6wNBIMOgBzEAqqrLjBxJ8W2DhdHQA1BGwGA3RI3v6WQfIr5K1tpNzsxct5kgUzjVBgBlPYHY5bD4xC4cWH7I5jNJA6ZaXbo44LJZlZCVaoomCxOCsGAkLqYHrIgYcSnU2kArHIKbSFKMKk0+bFYLEyqnLQMDDQ6DwJDhKGeMF+Gjwe5yJ4vN4gcXIZWPZ6vcrSUUgA5YDDPNX62Xkv6K1rtZYG5hkpkwYZNG724XSZ3fXBo+GO7A++Is-kkw3FDBgeJ8FAqbBgGBaKBoODYACsaowfAQmCIdDjz0TWk4RAgDDAHjoBAwJF2AFEGqQUHtXloiHAsPWAB57BABXMy+PFkDcXgCLM5vN0ACyRCUKAADFoAG7PbO55uGBAmFcADjGt16rAQYBEKRE+c2WXzeC0EjARGwK7DIAgHd0uZmDSaM4OAEk0A2AAFWwmFzXpnhyLRZl-ACgLgMAZxpQ4YB7PtPVCTZhyTEAoI8Th8DAABrDBdEwtAnC0d86F2WowAo-BnkoJoqJAHU5BtGtx2vXQwJYIDamYCi2LgFCYBE-86DQIhiDIAc0BlTVEzkuAFIQf9OGAh8YGkk4gA)).
+
+In most cases, it’s enough to update your widget’s value binding from:
+
+`bind:value` to `bind:value={() => value ?? undefined, (v) => (value = v)}`
 
 ## Validators
 
