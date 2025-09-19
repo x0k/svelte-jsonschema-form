@@ -1,5 +1,25 @@
 # @sjsf/form
 
+## 3.0.0-next.2
+
+### Major Changes
+
+- Add support for nullable schemas ([#202](https://github.com/x0k/svelte-jsonschema-form/pull/202))
+
+- Refactor standard schema validator factory signature ([#202](https://github.com/x0k/svelte-jsonschema-form/pull/202))
+
+- Make `itemValue` parameter of `ItemTitle` function required ([#202](https://github.com/x0k/svelte-jsonschema-form/pull/202))
+
+### Minor Changes
+
+- Export `createArrayComparator` and `simpleComparison` functions ([`51997f5`](https://github.com/x0k/svelte-jsonschema-form/commit/51997f535b192d68fba514a993759489b2974ed4))
+
+- Add and implement `collectErrors` UI option for `tags` field ([`db2518b`](https://github.com/x0k/svelte-jsonschema-form/commit/db2518bef264d2bc81a3fdcdd545f662ea9c0a1e))
+
+### Patch Changes
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/4771 ([#202](https://github.com/x0k/svelte-jsonschema-form/pull/202))
+
 ## 3.0.0-next.1
 
 ### Major Changes
