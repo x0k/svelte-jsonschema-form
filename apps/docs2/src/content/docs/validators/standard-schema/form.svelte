@@ -23,7 +23,7 @@
     }) as Schema,
     uiSchema,
     createValidator: (options) => ({
-      ...createFormValueValidator({ ...options, schema }),
+      ...createFormValueValidator(schema, options),
       isValid: () => true,
     }),
     initialValue: initialValue as Value,
