@@ -65,6 +65,24 @@ export function isArrayEmpty<T>(arr: T[]): arr is [] {
   return arr.length === 0;
 }
 
+export function createArrayComparator<T>(compare: (a: T, b: T) => number) {
+  return (a: T[], b: T[]) => {
+    const d = a.length - b.length;
+    if (d !== 0) {
+      return d;
+    }
+    for (let i = 0; i < a.length; i++) {
+      if (a[i] !== b[i]) {
+        const d = compare(a[i]!, b[i]!);
+        if (d !== 0) {
+          return d;
+        }
+      }
+    }
+    return 0;
+  };
+}
+
 export type Deduplicator<T> = (data: T[]) => T[];
 
 export interface DeduplicatorOptions {
