@@ -1,12 +1,16 @@
 import type {
+  HTMLAttributes,
   HTMLButtonAttributes,
   HTMLFormAttributes,
   HTMLInputAttributes,
   HTMLSelectAttributes,
   HTMLTextareaAttributes,
 } from "svelte/elements";
+import { createAttachmentKey, type Attachment } from "svelte/attachments";
+import { on } from "svelte/events";
 
 import type { Nullable, ObjectProperties } from "@/lib/types.js";
+import { weakMemoize } from "@/lib/memoize.js";
 import type { Validator } from "@/core/index.js";
 
 import type { Config } from "../config.js";
@@ -30,6 +34,35 @@ interface Handlers {
   oninput?: () => void;
   onchange?: () => void;
 }
+
+export const HANDLERS_ATTACHMENT_CACHE = new WeakMap<
+  Handlers,
+  <T extends HTMLAttributes<HTMLElement>>(props: T) => T
+>();
+
+/**
+ * NOTE: memoized
+ */
+export const handlersAttachment = weakMemoize(
+  HANDLERS_ATTACHMENT_CACHE,
+  (handlers: Handlers) => {
+    const key = createAttachmentKey();
+    const attachment: Attachment<HTMLElement> = (node) => {
+      const r1 = handlers.oninput && on(node, "input", handlers.oninput);
+      const r2 = handlers.onchange && on(node, "change", handlers.onchange);
+      const r3 = handlers.onblur && on(node, "blur", handlers.onblur);
+      return () => {
+        r1?.();
+        r2?.();
+        r3?.();
+      };
+    };
+    return <T extends HTMLAttributes<HTMLElement>>(props: T): T => {
+      (props as HTMLAttributes<HTMLElement>)[key] = attachment;
+      return props;
+    };
+  }
+);
 
 export function composeProps<T, V extends Validator, A>(
   ctx: FormState<T, V>,
@@ -156,76 +189,61 @@ export function describedBy<T, V extends Validator>(
     .join(" ");
 }
 
-export function inputProps(handlers: Handlers) {
-  return <T, FT, V extends Validator>(
-    props: T & HTMLInputAttributes,
-    config: Config,
-    ctx: FormState<FT, V>
-  ) => {
-    const { id, required, schema } = config;
-    props.id = id;
-    props.name = id;
-    const type = inputType(schema.format);
-    if (type !== undefined) {
-      props.type = type;
-    }
-    props.required = required;
-    props.minlength = schema.minLength;
-    props.maxlength = schema.maxLength;
-    props.pattern = schema.pattern;
-    props.min = schema.minimum;
-    props.max = schema.maximum;
-    props.step =
-      schema.multipleOf ?? (schema.type === "number" ? "any" : undefined);
-    props.list = Array.isArray(schema.examples)
-      ? createPseudoId(id, "examples", ctx)
-      : undefined;
-    props.readonly = schema.readOnly;
-    props.oninput = handlers.oninput;
-    props.onchange = handlers.onchange;
-    props.onblur = handlers.onblur;
-    props["aria-describedby"] = describedBy(ctx, config);
-    return props;
-  };
+export function inputProps<
+  T extends HTMLInputAttributes,
+  FT,
+  V extends Validator,
+>(props: T, config: Config, ctx: FormState<FT, V>) {
+  const { id, required, schema } = config;
+  props.id = id;
+  props.name = id;
+  const type = inputType(schema.format);
+  if (type !== undefined) {
+    props.type = type;
+  }
+  props.required = required;
+  props.minlength = schema.minLength;
+  props.maxlength = schema.maxLength;
+  props.pattern = schema.pattern;
+  props.min = schema.minimum;
+  props.max = schema.maximum;
+  props.step =
+    schema.multipleOf ?? (schema.type === "number" ? "any" : undefined);
+  props.list = Array.isArray(schema.examples)
+    ? createPseudoId(id, "examples", ctx)
+    : undefined;
+  props.readonly = schema.readOnly;
+  props["aria-describedby"] = describedBy(ctx, config);
+  return props;
 }
 
-export function textareaProps(handlers: Handlers) {
-  return <T, FT, V extends Validator>(
-    props: T & HTMLTextareaAttributes,
-    config: Config,
-    ctx: FormState<FT, V>
-  ) => {
-    const { id, required, schema } = config;
-    props.id = id;
-    props.name = id;
-    props.required = required;
-    props.minlength = schema.minLength;
-    props.maxlength = schema.maxLength;
-    props.readonly = schema.readOnly;
-    props.oninput = handlers.oninput;
-    props.onchange = handlers.onchange;
-    props.onblur = handlers.onblur;
-    props["aria-describedby"] = describedBy(ctx, config);
-    return props;
-  };
+export function textareaProps<
+  T extends HTMLTextareaAttributes,
+  FT,
+  V extends Validator,
+>(props: T, config: Config, ctx: FormState<FT, V>) {
+  const { id, required, schema } = config;
+  props.id = id;
+  props.name = id;
+  props.required = required;
+  props.minlength = schema.minLength;
+  props.maxlength = schema.maxLength;
+  props.readonly = schema.readOnly;
+  props["aria-describedby"] = describedBy(ctx, config);
+  return props;
 }
 
-export function selectProps(handlers: Handlers) {
-  return <T, FT, V extends Validator>(
-    props: T & HTMLSelectAttributes,
-    config: Config,
-    ctx: FormState<FT, V>
-  ) => {
-    const { id, required } = config;
-    props.id = id;
-    props.name = id;
-    props.required = required;
-    props.oninput = handlers.oninput;
-    props.onchange = handlers.onchange;
-    props.onblur = handlers.onblur;
-    props["aria-describedby"] = describedBy(ctx, config);
-    return props;
-  };
+export function selectProps<
+  T extends HTMLSelectAttributes,
+  FT,
+  V extends Validator,
+>(props: T, config: Config, ctx: FormState<FT, V>) {
+  const { id, required } = config;
+  props.id = id;
+  props.name = id;
+  props.required = required;
+  props["aria-describedby"] = describedBy(ctx, config);
+  return props;
 }
 
 type WithFor<T> = T & {
@@ -470,7 +488,8 @@ export function inputAttributes<
     ctx,
     config,
     props,
-    inputProps(handlers),
+    inputProps,
+    handlersAttachment(handlers),
     uiOptionProps(option),
     disabledProp
   );
@@ -491,7 +510,8 @@ export function selectAttributes<
     ctx,
     config,
     props,
-    selectProps(handlers),
+    selectProps,
+    handlersAttachment(handlers),
     uiOptionProps(option),
     disabledProp
   );
@@ -512,7 +532,8 @@ export function textareaAttributes<
     ctx,
     config,
     props,
-    textareaProps(handlers),
+    textareaProps,
+    handlersAttachment(handlers),
     uiOptionProps(option),
     disabledProp
   );
