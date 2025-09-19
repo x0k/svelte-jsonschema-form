@@ -2,4 +2,4 @@
 "@sjsf/form": minor
 ---
 
-Export `createArrayComparator` and `simpleComparison` functions
+Export `createArrayComparator` and `ascComparator` functions
