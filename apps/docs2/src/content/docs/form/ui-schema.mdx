@@ -233,6 +233,11 @@ interface UiOptions {
    * Overrides form translation
    */
   translations?: Partial<TranslatorDefinitions>;
+  /**
+   * Display errors from child elements (applies only to aggregating fields like `tags`).
+   * @default false
+   */
+  collectErrors?: boolean;
 }
 ```
 
