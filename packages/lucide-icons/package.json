@@ -44,11 +44,11 @@
 	},
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^3.0.0-next.1",
-		"@lucide/svelte": "^0.487.0",
-		"svelte": "^5.38.0"
+		"@lucide/svelte": "^0.544.0",
+		"svelte": "^5.39.0"
 	},
 	"devDependencies": {
-		"@lucide/svelte": "^0.539.0",
+		"@lucide/svelte": "^0.544.0",
 		"@sjsf/form": "workspace:*",
 		"globals": "catalog:",
 		"svelte": "catalog:",

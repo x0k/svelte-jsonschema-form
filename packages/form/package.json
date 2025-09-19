@@ -46,7 +46,7 @@
     "@types/json-schema-merge-allof": "^0.6.0",
     "esm-env": "^1.2.0",
     "json-schema-merge-allof": "^0.8.0",
-    "svelte": "^5.38.0"
+    "svelte": "^5.39.0"
   },
   "peerDependenciesMeta": {
     "@types/json-schema-merge-allof": {
@@ -61,7 +61,7 @@
     "@types/json-schema-compare": "^0.2.4",
     "ajv": "catalog:",
     "allof-merge": "^0.6.7",
-    "deep-freeze-es6": "^4.0.1",
+    "deep-freeze-es6": "^5.0.0",
     "globals": "catalog:",
     "json-schema-compare": "^0.2.2",
     "json-schema-merge-allof": "^0.8.1",

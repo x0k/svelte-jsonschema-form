@@ -44,12 +44,12 @@
 		}
 	},
 	"peerDependencies": {
-		"@jis3r/icons": "^1.1.0",
+		"@jis3r/icons": "^1.2.0",
 		"@sjsf/form": "workspace:^3.0.0-next.1",
-		"svelte": "^5.38.0"
+		"svelte": "^5.39.0"
 	},
 	"devDependencies": {
-		"@jis3r/icons": "^1.1.5",
+		"@jis3r/icons": "^1.2.0",
 		"@sjsf/form": "workspace:*",
 		"globals": "catalog:",
 		"svelte": "catalog:",

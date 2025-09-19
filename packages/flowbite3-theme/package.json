@@ -66,7 +66,7 @@
 		"@sjsf/form": "workspace:^3.0.0-next.1",
 		"flowbite": "^3.1.0",
 		"flowbite-svelte": "^1.13.11",
-		"svelte": "^5.38.0"
+		"svelte": "^5.39.0"
 	},
 	"devDependencies": {
 		"@sjsf/ajv8-validator": "workspace:*",
@@ -77,7 +77,7 @@
 		"flowbite-svelte": "^1.13.12",
 		"globals": "catalog:",
 		"svelte": "catalog:",
-		"tailwind-variants": "^3.1.0",
+		"tailwind-variants": "^3.1.1",
 		"tailwindcss": "catalog:",
 		"testing": "workspace:*"
 	},

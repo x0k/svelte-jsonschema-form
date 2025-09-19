@@ -5,14 +5,14 @@ packages:
 
 catalog:
   '@exodus/schemasafe': ^1.3.0
-  '@tailwindcss/vite': ^4.1.12
+  '@tailwindcss/vite': ^4.1.13
   ajv: ^8.17.1
   autoprefixer: ^10.4.21
   esm-env: ^1.2.2
-  globals: 16.3.0
+  globals: 16.4.0
   postcss: ^8.5.6
-  svelte: ~5.38.6
-  tailwindcss: ^4.1.12
-  vite: ^7.1.4
+  svelte: ^5.39.2
+  tailwindcss: ^4.1.13
+  vite: ^7.1.6
   vitest: ^3.2.4
-  zod: 4.1.5
+  zod: 4.1.9

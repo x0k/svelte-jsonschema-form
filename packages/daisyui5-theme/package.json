@@ -67,7 +67,7 @@
 		"cally": "^0.8.0",
 		"daisyui": "^5.1.0",
 		"pikaday": "^1.8.2",
-		"svelte": "^5.38.0"
+		"svelte": "^5.39.0"
 	},
 	"peerDependenciesMeta": {
 		"cally": {
@@ -84,7 +84,7 @@
 		"@types/pikaday": "^1.7.9",
 		"ajv": "catalog:",
 		"cally": "~0.8.0",
-		"daisyui": "~5.0.55",
+		"daisyui": "~5.1.13",
 		"globals": "catalog:",
 		"pikaday": "~1.8.2",
 		"svelte": "catalog:",

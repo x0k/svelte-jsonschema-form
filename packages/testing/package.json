@@ -9,7 +9,7 @@
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "peerDependencies": {
-    "svelte": "^5.38.0"
+    "svelte": "^5.39.0"
   },
   "dependencies": {
     "@sjsf/ajv8-validator": "workspace:*",

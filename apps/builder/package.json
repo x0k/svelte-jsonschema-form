@@ -11,14 +11,14 @@
   },
   "devDependencies": {
     "@internationalized/date": "~3.9.0",
-    "@lucide/svelte": "^0.525.0",
+    "@lucide/svelte": "^0.544.0",
     "@tailwindcss/vite": "catalog:",
-    "bits-ui": "^2.9.6",
+    "bits-ui": "^2.10.0",
     "clsx": "^2.1.1",
     "svelte": "catalog:",
     "json-schema-to-ts": "^3.1.1",
     "tailwind-merge": "^3.3.1",
-    "tailwind-variants": "^2.1.0",
+    "tailwind-variants": "^3.1.1",
     "tailwindcss": "catalog:",
     "tw-animate-css": "^1.3.8"
   },
@@ -41,7 +41,7 @@
     "@sjsf/shadcn4-theme": "workspace:*",
     "@sjsf/skeleton3-theme": "workspace:*",
     "ajv": "^8.17.1",
-    "dompurify": "^3.2.6",
+    "dompurify": "^3.2.7",
     "lz-string": "^1.5.0",
     "shiki": "^3.12.2"
   }
