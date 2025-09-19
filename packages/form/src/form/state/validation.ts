@@ -29,6 +29,22 @@ export function getErrors<T, V extends Validator>(
   return ctx.errors.get(id) ?? [];
 }
 
+export function getErrorsForIds<T, V extends Validator>(
+  ctx: FormState<T, V>,
+  ids: Id[]
+): FieldError<PossibleError<V>>[] {
+  const errors: FieldError<PossibleError<V>>[] = [];
+  for (let i = 0; i < ids.length; i++) {
+    const errs = ctx.errors.get(ids[i]!);
+    if (errs) {
+      for (let j = 0; j < errs.length; j++) {
+        errors.push(errs[j]!);
+      }
+    }
+  }
+  return errors;
+}
+
 export function validateField<T, V extends Validator>(
   ctx: FormState<T, V>,
   config: Config,

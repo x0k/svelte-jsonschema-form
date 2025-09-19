@@ -7,11 +7,19 @@
 </script>
 
 <script lang="ts">
-  import { identity } from "@/lib/function.js";
-  import type { ComponentProps } from "@/form/index.js";
+  import {
+    createPseudoId,
+    getComponent,
+    getErrors,
+    getErrorsForIds,
+    getFormContext,
+    makeEventHandlers,
+    validateField,
+    type ComponentProps,
+    type Id,
+  } from "@/form/index.js";
   import "@/form/extra-fields/tags.js";
 
-  import FieldBase from "../field-base.svelte";
   import "../extra-widgets/tags.js";
 
   let {
@@ -19,15 +27,55 @@
     value = $bindable(),
     uiOption,
   }: ComponentProps["tagsField"] = $props();
+
+  const widgetType = "tagsWidget";
+
+  const ctx = getFormContext();
+
+  const Template = $derived(getComponent(ctx, "fieldTemplate", config));
+  const Widget = $derived(getComponent(ctx, widgetType, config));
+
+  const handlers = makeEventHandlers(ctx, () =>
+    validateField(ctx, config, value)
+  );
+
+  const collectErrors = $derived(uiOption("collectErrors") ?? false);
+
+  let lastIds: Id[] | undefined;
+  const ids = $derived.by(() => {
+    const l = value?.length ?? 0;
+    const id = config.id;
+    if (lastIds?.length === l + 1 && lastIds[0] === id) {
+      return lastIds;
+    }
+    const ids = [id];
+    for (let i = 0; i < l; i++) {
+      ids.push(createPseudoId(id, i, ctx));
+    }
+    return ids;
+  });
+
+  const errors = $derived(
+    collectErrors ? getErrorsForIds(ctx, ids) : getErrors(ctx, config.id)
+  );
 </script>
 
-<FieldBase
-  {config}
-  {uiOption}
+<Template
+  type="template"
   showTitle
   useLabel
-  widgetType="tagsWidget"
-  bind:value
-  fromValue={(v) => v ?? undefined}
-  toValue={identity}
-/>
+  {widgetType}
+  {uiOption}
+  {value}
+  {config}
+  {errors}
+>
+  <Widget
+    type="widget"
+    {config}
+    {errors}
+    {uiOption}
+    bind:value={() => value ?? undefined, (v) => (value = v)}
+    {handlers}
+  />
+</Template>
