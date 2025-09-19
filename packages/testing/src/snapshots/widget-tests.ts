@@ -3,7 +3,7 @@ import {
   type Schema,
   type Theme,
   type UiSchemaRoot,
-  pathToId,
+  idFromPath,
 } from "@sjsf/form";
 
 import { DEFAULT_SPECS, type s } from "../demo";
@@ -41,7 +41,7 @@ export function widgetTests(
         initialErrors: [
           {
             error: null as any,
-            instanceId: pathToId([]),
+            instanceId: idFromPath([]),
             propertyTitle: "title",
             message: "error",
           },
@@ -60,9 +60,11 @@ export function widgetTests(
   }
 
   describe("widgets", () => {
-    for (const [key, [schema, uiSchema]] of Object.entries(
-      Object.assign(DEFAULT_SPECS, additionalSpecs)
-    )) {
+    const specs = {
+      ...DEFAULT_SPECS,
+      ...additionalSpecs,
+    };
+    for (const [key, [schema, uiSchema]] of Object.entries(specs)) {
       testWidget(key, schema, uiSchema);
     }
   });
