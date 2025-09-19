@@ -13,7 +13,9 @@
 <script lang="ts">
 	import { ButtonToggle, ButtonToggleGroup } from 'flowbite-svelte';
 	import {
+		composeProps,
 		customInputAttributes,
+		disabledProp,
 		getFormContext,
 		uiOptionProps,
 		type ComponentProps
@@ -36,7 +38,9 @@
 
 	const ctx = getFormContext();
 
-	const itemAttributes = $derived(uiOptionProps('flowbite3RadioButtonsItem')({}, config, ctx));
+	const itemAttributes = $derived(
+		composeProps(ctx, config, {}, uiOptionProps('flowbite3RadioButtonsItem'), disabledProp)
+	);
 </script>
 
 <ButtonToggleGroup

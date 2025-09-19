@@ -1449,8 +1449,8 @@ importers:
         specifier: ^3.1.2
         version: 3.1.2(rollup@4.46.2)
       flowbite-svelte:
-        specifier: ^1.13.8
-        version: 1.13.8(rollup@4.46.2)(svelte@5.38.6)(tailwindcss@4.1.12)
+        specifier: ^1.13.12
+        version: 1.13.12(rollup@4.46.2)(svelte@5.38.6)(tailwindcss@4.1.12)
       globals:
         specifier: 'catalog:'
         version: 16.3.0
@@ -3784,6 +3784,9 @@ packages:
   apexcharts@5.3.4:
     resolution: {integrity: sha512-N0gNh8uLu/BN8N+BCphNK+gZAoSoUtDDn1jFGB+3+EMcv8s6vajuP3W0g4dMLTRp6chFkjMmQK3uD8pz4ISmLA==}
 
+  apexcharts@5.3.5:
+    resolution: {integrity: sha512-I04DY/WBZbJgJD2uixeV5EzyiL+J5LgKQXEu8rctqAwyRmKv44aDVeofJoLdTJe3ao4r2KEQfCgtVzXn6pqirg==}
+
   arg@5.0.2:
     resolution: {integrity: sha512-PYjyFOLKQ9y57JvQ6QLo8dAgNqswh8M1RMJYdQduT6xbWSgK36P/Z/v+p888pM69jMMfS8Xd8F6I1kQ/I9HUGg==}
 
@@ -4612,6 +4615,12 @@ packages:
     resolution: {integrity: sha512-7qm8vLOW4uHq1UeDDx0DLrLZXiE8H0i/XCFjGMsSAhIFfpkyIwlE4qXlmy8mjO4p+rzKNbVALQIoDEnuo8tPgg==}
     peerDependencies:
       svelte: ^5.0.0
+
+  flowbite-svelte@1.13.12:
+    resolution: {integrity: sha512-E+gfC2/Ks7E95RgGzaJQTTatWzEOJ0GtN8m4G+ca1hGTAGAHqQPTCUi6rKqxf1+SFOO4JnN3nnuWoXq9IQqV6Q==}
+    peerDependencies:
+      svelte: ^5.29.0
+      tailwindcss: ^4.1.4
 
   flowbite-svelte@1.13.5:
     resolution: {integrity: sha512-hvM/X6rw733iHgTuy2RjSdOflcrbYwP4e7z7TP00iAS9SFkK1rOlfoPfos+R9I7RIV5phUEQIxRPC9RKteJBJw==}
@@ -9496,6 +9505,15 @@ snapshots:
       '@svgdotjs/svg.select.js': 4.0.3(@svgdotjs/svg.js@3.2.4)
       '@yr/monotone-cubic-spline': 1.0.3
 
+  apexcharts@5.3.5:
+    dependencies:
+      '@svgdotjs/svg.draggable.js': 3.0.6(@svgdotjs/svg.js@3.2.4)
+      '@svgdotjs/svg.filter.js': 3.0.9
+      '@svgdotjs/svg.js': 3.2.4
+      '@svgdotjs/svg.resize.js': 2.0.5(@svgdotjs/svg.js@3.2.4)(@svgdotjs/svg.select.js@4.0.3(@svgdotjs/svg.js@3.2.4))
+      '@svgdotjs/svg.select.js': 4.0.3(@svgdotjs/svg.js@3.2.4)
+      '@yr/monotone-cubic-spline': 1.0.3
+
   arg@5.0.2: {}
 
   argparse@1.0.10:
@@ -10499,6 +10517,21 @@ snapshots:
       svelte: 5.38.6
       tailwind-merge: 3.3.1
 
+  flowbite-svelte@1.13.12(rollup@4.46.2)(svelte@5.38.6)(tailwindcss@4.1.12):
+    dependencies:
+      '@floating-ui/dom': 1.7.4
+      '@floating-ui/utils': 0.2.10
+      apexcharts: 5.3.5
+      clsx: 2.1.1
+      date-fns: 4.1.0
+      flowbite: 3.1.2(rollup@4.46.2)
+      svelte: 5.38.6
+      tailwind-merge: 3.3.1
+      tailwind-variants: 3.1.1(tailwind-merge@3.3.1)(tailwindcss@4.1.12)
+      tailwindcss: 4.1.12
+    transitivePeerDependencies:
+      - rollup
+
   flowbite-svelte@1.13.5(rollup@4.46.2)(svelte@5.38.6)(tailwindcss@4.1.12):
     dependencies:
       '@floating-ui/dom': 1.7.4
@@ -10526,21 +10559,6 @@ snapshots:
       tailwind-merge: 3.3.1
       tailwind-variants: 3.0.0(tailwind-merge@3.3.1)(tailwindcss@4.1.11)
       tailwindcss: 4.1.11
-    transitivePeerDependencies:
-      - rollup
-
-  flowbite-svelte@1.13.8(rollup@4.46.2)(svelte@5.38.6)(tailwindcss@4.1.12):
-    dependencies:
-      '@floating-ui/dom': 1.7.4
-      '@floating-ui/utils': 0.2.10
-      apexcharts: 5.3.4
-      clsx: 2.1.1
-      date-fns: 4.1.0
-      flowbite: 3.1.2(rollup@4.46.2)
-      svelte: 5.38.6
-      tailwind-merge: 3.3.1
-      tailwind-variants: 3.0.0(tailwind-merge@3.3.1)(tailwindcss@4.1.12)
-      tailwindcss: 4.1.12
     transitivePeerDependencies:
       - rollup
 

@@ -10,7 +10,14 @@
 </script>
 
 <script lang="ts">
-	import { customInputAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
+	import type { HTMLInputAttributes } from 'svelte/elements';
+	import {
+		customInputAttributes,
+		disabledProp,
+		getFormContext,
+		type ComponentProps,
+		type Validator
+	} from '@sjsf/form';
 	import { Tags as TagsInput } from 'flowbite-svelte';
 
 	let { value = $bindable(), config }: ComponentProps['tagsWidget'] = $props();
@@ -21,10 +28,14 @@
 <TagsInput
 	class="flex-1"
 	{...customInputAttributes(ctx, config, 'flowbite3Tags', {
-		inputProps: {
-			id: config.id,
-			name: config.id,
-		},
+		inputProps: disabledProp<HTMLInputAttributes, any, Validator>(
+			{
+				id: config.id,
+				name: config.id
+			},
+			config,
+			ctx
+		)
 	})}
 	bind:value={() => value ?? [], (v) => (value = v)}
 />
