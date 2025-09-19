@@ -1,5 +1,13 @@
 # @sjsf/flowbite3-theme
 
+## 3.0.0-next.2
+
+### Patch Changes
+
+- Updated dependencies [[`c4fb2b2`](https://github.com/x0k/svelte-jsonschema-form/commit/c4fb2b2f95470e78bda46436b86d27861ca555b9), [`51997f5`](https://github.com/x0k/svelte-jsonschema-form/commit/51997f535b192d68fba514a993759489b2974ed4), [`75f3134`](https://github.com/x0k/svelte-jsonschema-form/commit/75f3134829181eb51eeccc84a6226d627ecdfda7), [`ae6aae3`](https://github.com/x0k/svelte-jsonschema-form/commit/ae6aae3f13d6aebf13c218f474399ec1d53f74fa), [`db2518b`](https://github.com/x0k/svelte-jsonschema-form/commit/db2518bef264d2bc81a3fdcdd545f662ea9c0a1e), [`cffd71e`](https://github.com/x0k/svelte-jsonschema-form/commit/cffd71e578dcb46c06725b2c65c12672c7967634)]:
+  - @sjsf/form@3.0.0-next.2
+  - @sjsf/basic-theme@3.0.0-next.2
+
 ## 3.0.0-next.1
 
 ### Major Changes
