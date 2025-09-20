@@ -7,7 +7,7 @@ exports[`object fields > additionalProperties 1`] = `
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="svelte-w3x0gi"
     data-layout="object-field"
     style="display: flex; flex-direction: column; gap: 1rem;"
   >
@@ -16,7 +16,7 @@ exports[`object fields > additionalProperties 1`] = `
      
     <!---->
     <div
-      class="svelte-e9ah86"
+      class="svelte-w3x0gi"
       data-layout="object-properties"
       style="display: flex; flex-direction: column; gap: 1rem;"
     >
@@ -27,7 +27,7 @@ exports[`object fields > additionalProperties 1`] = `
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -35,7 +35,7 @@ exports[`object fields > additionalProperties 1`] = `
         <!---->
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-key-input"
           style="flex-grow: 1;"
         >
@@ -44,7 +44,7 @@ exports[`object fields > additionalProperties 1`] = `
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -52,7 +52,7 @@ exports[`object fields > additionalProperties 1`] = `
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -80,7 +80,7 @@ exports[`object fields > additionalProperties 1`] = `
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -122,7 +122,7 @@ exports[`object fields > additionalProperties 1`] = `
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -132,7 +132,7 @@ exports[`object fields > additionalProperties 1`] = `
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -140,7 +140,7 @@ exports[`object fields > additionalProperties 1`] = `
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -165,7 +165,7 @@ exports[`object fields > additionalProperties 1`] = `
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -256,7 +256,7 @@ exports[`object fields > additionalProperties with error 1`] = `
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="svelte-w3x0gi"
     data-layout="object-field"
     style="display: flex; flex-direction: column; gap: 1rem;"
   >
@@ -265,7 +265,7 @@ exports[`object fields > additionalProperties with error 1`] = `
      
     <!---->
     <div
-      class="svelte-e9ah86"
+      class="svelte-w3x0gi"
       data-layout="object-properties"
       style="display: flex; flex-direction: column; gap: 1rem;"
     >
@@ -276,7 +276,7 @@ exports[`object fields > additionalProperties with error 1`] = `
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -284,7 +284,7 @@ exports[`object fields > additionalProperties with error 1`] = `
         <!---->
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-key-input"
           style="flex-grow: 1;"
         >
@@ -293,7 +293,7 @@ exports[`object fields > additionalProperties with error 1`] = `
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -301,7 +301,7 @@ exports[`object fields > additionalProperties with error 1`] = `
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -329,7 +329,7 @@ exports[`object fields > additionalProperties with error 1`] = `
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -383,7 +383,7 @@ exports[`object fields > additionalProperties with error 1`] = `
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -393,7 +393,7 @@ exports[`object fields > additionalProperties with error 1`] = `
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -401,7 +401,7 @@ exports[`object fields > additionalProperties with error 1`] = `
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -426,7 +426,7 @@ exports[`object fields > additionalProperties with error 1`] = `
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -517,7 +517,7 @@ exports[`object fields > has errors 1`] = `
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="svelte-w3x0gi"
     data-layout="object-field"
     style="display: flex; flex-direction: column; gap: 1rem;"
   >
@@ -526,7 +526,7 @@ exports[`object fields > has errors 1`] = `
      
     <!---->
     <div
-      class="svelte-e9ah86"
+      class="svelte-w3x0gi"
       data-layout="object-properties"
       style="display: flex; flex-direction: column; gap: 1rem;"
     >
@@ -537,7 +537,7 @@ exports[`object fields > has errors 1`] = `
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -546,7 +546,7 @@ exports[`object fields > has errors 1`] = `
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -556,7 +556,7 @@ exports[`object fields > has errors 1`] = `
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -564,7 +564,7 @@ exports[`object fields > has errors 1`] = `
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -589,7 +589,7 @@ exports[`object fields > has errors 1`] = `
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -674,7 +674,7 @@ exports[`object fields > object 1`] = `
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="svelte-w3x0gi"
     data-layout="object-field"
     style="display: flex; flex-direction: column; gap: 1rem;"
   >
@@ -683,7 +683,7 @@ exports[`object fields > object 1`] = `
      
     <!---->
     <div
-      class="svelte-e9ah86"
+      class="svelte-w3x0gi"
       data-layout="object-properties"
       style="display: flex; flex-direction: column; gap: 1rem;"
     >
@@ -694,7 +694,7 @@ exports[`object fields > object 1`] = `
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -703,7 +703,7 @@ exports[`object fields > object 1`] = `
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -713,7 +713,7 @@ exports[`object fields > object 1`] = `
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -721,7 +721,7 @@ exports[`object fields > object 1`] = `
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -746,7 +746,7 @@ exports[`object fields > object 1`] = `
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -797,7 +797,7 @@ exports[`object fields > object 1`] = `
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -806,7 +806,7 @@ exports[`object fields > object 1`] = `
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -816,7 +816,7 @@ exports[`object fields > object 1`] = `
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -824,7 +824,7 @@ exports[`object fields > object 1`] = `
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -849,7 +849,7 @@ exports[`object fields > object 1`] = `
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -923,7 +923,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="svelte-w3x0gi"
     data-layout="object-field"
     style="display: flex; flex-direction: column; gap: 1rem;"
   >
@@ -931,7 +931,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
     <!---->
     <!---->
     <div
-      class="svelte-e9ah86"
+      class="svelte-w3x0gi"
       data-layout="object-field-meta"
       style="padding-bottom: 0px;"
     >
@@ -955,7 +955,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
      
     <!---->
     <div
-      class="svelte-e9ah86"
+      class="svelte-w3x0gi"
       data-layout="object-properties"
       style="display: flex; flex-direction: column; gap: 1rem;"
     >
@@ -966,7 +966,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -975,7 +975,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -1005,7 +1005,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -1014,7 +1014,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -1024,7 +1024,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -1032,7 +1032,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -1056,7 +1056,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -1105,7 +1105,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -1114,7 +1114,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -1144,7 +1144,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -1153,7 +1153,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -1163,7 +1163,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -1171,7 +1171,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -1195,7 +1195,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -1244,7 +1244,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -1253,7 +1253,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -1263,7 +1263,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -1271,7 +1271,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -1295,7 +1295,7 @@ exports[`object fields > one of defaults > default preset 1`] = `
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -1366,7 +1366,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="svelte-w3x0gi"
     data-layout="object-field"
     style="display: flex; flex-direction: column; gap: 1rem;"
   >
@@ -1374,7 +1374,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
     <!---->
     <!---->
     <div
-      class="svelte-e9ah86"
+      class="svelte-w3x0gi"
       data-layout="object-field-meta"
       style="padding-bottom: 0px;"
     >
@@ -1398,7 +1398,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
      
     <!---->
     <div
-      class="svelte-e9ah86"
+      class="svelte-w3x0gi"
       data-layout="object-properties"
       style="display: flex; flex-direction: column; gap: 1rem;"
     >
@@ -1409,7 +1409,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -1418,7 +1418,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -1448,7 +1448,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -1457,7 +1457,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -1467,7 +1467,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -1475,7 +1475,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -1499,7 +1499,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -1548,7 +1548,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -1557,7 +1557,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -1567,7 +1567,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -1575,7 +1575,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -1599,7 +1599,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -1648,7 +1648,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -1657,7 +1657,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -1667,7 +1667,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -1675,7 +1675,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -1699,7 +1699,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -1748,7 +1748,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -1757,7 +1757,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -1767,7 +1767,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -1775,7 +1775,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -1799,7 +1799,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -1848,7 +1848,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -1857,7 +1857,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -1867,7 +1867,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -1875,7 +1875,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -1911,7 +1911,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -1965,7 +1965,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -1974,7 +1974,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -1984,7 +1984,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -1992,7 +1992,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -2025,7 +2025,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -2076,7 +2076,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -2085,7 +2085,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -2095,7 +2095,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -2103,7 +2103,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -2127,7 +2127,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -2176,7 +2176,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -2185,7 +2185,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -2215,7 +2215,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -2224,7 +2224,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -2234,7 +2234,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -2242,7 +2242,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -2266,7 +2266,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -2315,7 +2315,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -2324,7 +2324,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -2334,7 +2334,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -2342,7 +2342,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -2366,7 +2366,7 @@ exports[`object fields > one of defaults > manual preset 1`] = `
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -2437,7 +2437,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="svelte-w3x0gi"
     data-layout="object-field"
     style="display: flex; flex-direction: column; gap: 1rem;"
   >
@@ -2446,7 +2446,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
      
     <!---->
     <div
-      class="svelte-e9ah86"
+      class="svelte-w3x0gi"
       data-layout="object-properties"
       style="display: flex; flex-direction: column; gap: 1rem;"
     >
@@ -2457,7 +2457,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -2465,7 +2465,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
         <!---->
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-key-input"
           style="flex-grow: 1;"
         >
@@ -2474,7 +2474,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -2482,7 +2482,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -2510,7 +2510,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -2552,7 +2552,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -2562,7 +2562,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -2570,7 +2570,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -2595,7 +2595,7 @@ exports[`object fields > show add button and fields if additionalProperties is t
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -2686,7 +2686,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="svelte-w3x0gi"
     data-layout="object-field"
     style="display: flex; flex-direction: column; gap: 1rem;"
   >
@@ -2694,7 +2694,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
     <!---->
     <!---->
     <div
-      class="svelte-e9ah86"
+      class="svelte-w3x0gi"
       data-layout="object-field-meta"
       style="padding-bottom: 0px;"
     >
@@ -2726,7 +2726,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
      
     <!---->
     <div
-      class="svelte-e9ah86"
+      class="svelte-w3x0gi"
       data-layout="object-properties"
       style="display: flex; flex-direction: column; gap: 1rem;"
     >
@@ -2737,7 +2737,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -2745,7 +2745,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
         <!---->
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-key-input"
           style="flex-grow: 1;"
         >
@@ -2754,7 +2754,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -2762,7 +2762,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -2790,7 +2790,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -2832,7 +2832,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -2842,7 +2842,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -2850,7 +2850,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -2875,7 +2875,7 @@ exports[`object fields > with title and description > additionalProperties 1`] =
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -2966,7 +2966,7 @@ exports[`object fields > with title and description > object 1`] = `
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="svelte-w3x0gi"
     data-layout="object-field"
     style="display: flex; flex-direction: column; gap: 1rem;"
   >
@@ -2974,7 +2974,7 @@ exports[`object fields > with title and description > object 1`] = `
     <!---->
     <!---->
     <div
-      class="svelte-e9ah86"
+      class="svelte-w3x0gi"
       data-layout="object-field-meta"
       style="padding-bottom: 0px;"
     >
@@ -3006,7 +3006,7 @@ exports[`object fields > with title and description > object 1`] = `
      
     <!---->
     <div
-      class="svelte-e9ah86"
+      class="svelte-w3x0gi"
       data-layout="object-properties"
       style="display: flex; flex-direction: column; gap: 1rem;"
     >
@@ -3017,7 +3017,7 @@ exports[`object fields > with title and description > object 1`] = `
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -3026,7 +3026,7 @@ exports[`object fields > with title and description > object 1`] = `
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -3036,7 +3036,7 @@ exports[`object fields > with title and description > object 1`] = `
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -3044,7 +3044,7 @@ exports[`object fields > with title and description > object 1`] = `
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -3077,7 +3077,7 @@ exports[`object fields > with title and description > object 1`] = `
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -3128,7 +3128,7 @@ exports[`object fields > with title and description > object 1`] = `
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -3137,7 +3137,7 @@ exports[`object fields > with title and description > object 1`] = `
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -3147,7 +3147,7 @@ exports[`object fields > with title and description > object 1`] = `
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -3155,7 +3155,7 @@ exports[`object fields > with title and description > object 1`] = `
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -3188,7 +3188,7 @@ exports[`object fields > with title and description > object 1`] = `
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -3262,7 +3262,7 @@ exports[`object fields > with title and description > show add button and fields
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="svelte-w3x0gi"
     data-layout="object-field"
     style="display: flex; flex-direction: column; gap: 1rem;"
   >
@@ -3270,7 +3270,7 @@ exports[`object fields > with title and description > show add button and fields
     <!---->
     <!---->
     <div
-      class="svelte-e9ah86"
+      class="svelte-w3x0gi"
       data-layout="object-field-meta"
       style="padding-bottom: 0px;"
     >
@@ -3302,7 +3302,7 @@ exports[`object fields > with title and description > show add button and fields
      
     <!---->
     <div
-      class="svelte-e9ah86"
+      class="svelte-w3x0gi"
       data-layout="object-properties"
       style="display: flex; flex-direction: column; gap: 1rem;"
     >
@@ -3313,7 +3313,7 @@ exports[`object fields > with title and description > show add button and fields
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -3321,7 +3321,7 @@ exports[`object fields > with title and description > show add button and fields
         <!---->
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-key-input"
           style="flex-grow: 1;"
         >
@@ -3330,7 +3330,7 @@ exports[`object fields > with title and description > show add button and fields
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -3338,7 +3338,7 @@ exports[`object fields > with title and description > show add button and fields
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -3366,7 +3366,7 @@ exports[`object fields > with title and description > show add button and fields
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -3408,7 +3408,7 @@ exports[`object fields > with title and description > show add button and fields
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -3418,7 +3418,7 @@ exports[`object fields > with title and description > show add button and fields
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -3426,7 +3426,7 @@ exports[`object fields > with title and description > show add button and fields
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -3451,7 +3451,7 @@ exports[`object fields > with title and description > show add button and fields
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -3542,7 +3542,7 @@ exports[`object fields > with title and description from both > additionalProper
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="svelte-w3x0gi"
     data-layout="object-field"
     style="display: flex; flex-direction: column; gap: 1rem;"
   >
@@ -3550,7 +3550,7 @@ exports[`object fields > with title and description from both > additionalProper
     <!---->
     <!---->
     <div
-      class="svelte-e9ah86"
+      class="svelte-w3x0gi"
       data-layout="object-field-meta"
       style="padding-bottom: 0px;"
     >
@@ -3582,7 +3582,7 @@ exports[`object fields > with title and description from both > additionalProper
      
     <!---->
     <div
-      class="svelte-e9ah86"
+      class="svelte-w3x0gi"
       data-layout="object-properties"
       style="display: flex; flex-direction: column; gap: 1rem;"
     >
@@ -3593,7 +3593,7 @@ exports[`object fields > with title and description from both > additionalProper
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -3601,7 +3601,7 @@ exports[`object fields > with title and description from both > additionalProper
         <!---->
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-key-input"
           style="flex-grow: 1;"
         >
@@ -3610,7 +3610,7 @@ exports[`object fields > with title and description from both > additionalProper
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -3618,7 +3618,7 @@ exports[`object fields > with title and description from both > additionalProper
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -3646,7 +3646,7 @@ exports[`object fields > with title and description from both > additionalProper
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -3688,7 +3688,7 @@ exports[`object fields > with title and description from both > additionalProper
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -3698,7 +3698,7 @@ exports[`object fields > with title and description from both > additionalProper
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -3706,7 +3706,7 @@ exports[`object fields > with title and description from both > additionalProper
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -3731,7 +3731,7 @@ exports[`object fields > with title and description from both > additionalProper
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -3822,7 +3822,7 @@ exports[`object fields > with title and description from both > object 1`] = `
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="svelte-w3x0gi"
     data-layout="object-field"
     style="display: flex; flex-direction: column; gap: 1rem;"
   >
@@ -3830,7 +3830,7 @@ exports[`object fields > with title and description from both > object 1`] = `
     <!---->
     <!---->
     <div
-      class="svelte-e9ah86"
+      class="svelte-w3x0gi"
       data-layout="object-field-meta"
       style="padding-bottom: 0px;"
     >
@@ -3862,7 +3862,7 @@ exports[`object fields > with title and description from both > object 1`] = `
      
     <!---->
     <div
-      class="svelte-e9ah86"
+      class="svelte-w3x0gi"
       data-layout="object-properties"
       style="display: flex; flex-direction: column; gap: 1rem;"
     >
@@ -3873,7 +3873,7 @@ exports[`object fields > with title and description from both > object 1`] = `
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -3882,7 +3882,7 @@ exports[`object fields > with title and description from both > object 1`] = `
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -3892,7 +3892,7 @@ exports[`object fields > with title and description from both > object 1`] = `
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -3900,7 +3900,7 @@ exports[`object fields > with title and description from both > object 1`] = `
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -3933,7 +3933,7 @@ exports[`object fields > with title and description from both > object 1`] = `
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -3984,7 +3984,7 @@ exports[`object fields > with title and description from both > object 1`] = `
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -3993,7 +3993,7 @@ exports[`object fields > with title and description from both > object 1`] = `
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -4003,7 +4003,7 @@ exports[`object fields > with title and description from both > object 1`] = `
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -4011,7 +4011,7 @@ exports[`object fields > with title and description from both > object 1`] = `
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -4044,7 +4044,7 @@ exports[`object fields > with title and description from both > object 1`] = `
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -4118,7 +4118,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="svelte-w3x0gi"
     data-layout="object-field"
     style="display: flex; flex-direction: column; gap: 1rem;"
   >
@@ -4126,7 +4126,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
     <!---->
     <!---->
     <div
-      class="svelte-e9ah86"
+      class="svelte-w3x0gi"
       data-layout="object-field-meta"
       style="padding-bottom: 0px;"
     >
@@ -4158,7 +4158,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
      
     <!---->
     <div
-      class="svelte-e9ah86"
+      class="svelte-w3x0gi"
       data-layout="object-properties"
       style="display: flex; flex-direction: column; gap: 1rem;"
     >
@@ -4169,7 +4169,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -4177,7 +4177,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
         <!---->
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-key-input"
           style="flex-grow: 1;"
         >
@@ -4186,7 +4186,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -4194,7 +4194,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -4222,7 +4222,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -4264,7 +4264,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -4274,7 +4274,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -4282,7 +4282,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -4307,7 +4307,7 @@ exports[`object fields > with title and description from uiSchema > additionalPr
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -4398,7 +4398,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="svelte-w3x0gi"
     data-layout="object-field"
     style="display: flex; flex-direction: column; gap: 1rem;"
   >
@@ -4406,7 +4406,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
     <!---->
     <!---->
     <div
-      class="svelte-e9ah86"
+      class="svelte-w3x0gi"
       data-layout="object-field-meta"
       style="padding-bottom: 0px;"
     >
@@ -4438,7 +4438,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
      
     <!---->
     <div
-      class="svelte-e9ah86"
+      class="svelte-w3x0gi"
       data-layout="object-properties"
       style="display: flex; flex-direction: column; gap: 1rem;"
     >
@@ -4449,7 +4449,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -4458,7 +4458,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -4468,7 +4468,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -4476,7 +4476,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -4509,7 +4509,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -4560,7 +4560,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -4569,7 +4569,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -4579,7 +4579,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -4587,7 +4587,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -4620,7 +4620,7 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -4694,7 +4694,7 @@ exports[`object fields > with title and description from uiSchema > show add but
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="svelte-w3x0gi"
     data-layout="object-field"
     style="display: flex; flex-direction: column; gap: 1rem;"
   >
@@ -4702,7 +4702,7 @@ exports[`object fields > with title and description from uiSchema > show add but
     <!---->
     <!---->
     <div
-      class="svelte-e9ah86"
+      class="svelte-w3x0gi"
       data-layout="object-field-meta"
       style="padding-bottom: 0px;"
     >
@@ -4734,7 +4734,7 @@ exports[`object fields > with title and description from uiSchema > show add but
      
     <!---->
     <div
-      class="svelte-e9ah86"
+      class="svelte-w3x0gi"
       data-layout="object-properties"
       style="display: flex; flex-direction: column; gap: 1rem;"
     >
@@ -4745,7 +4745,7 @@ exports[`object fields > with title and description from uiSchema > show add but
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -4753,7 +4753,7 @@ exports[`object fields > with title and description from uiSchema > show add but
         <!---->
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-key-input"
           style="flex-grow: 1;"
         >
@@ -4762,7 +4762,7 @@ exports[`object fields > with title and description from uiSchema > show add but
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -4770,7 +4770,7 @@ exports[`object fields > with title and description from uiSchema > show add but
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -4798,7 +4798,7 @@ exports[`object fields > with title and description from uiSchema > show add but
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -4840,7 +4840,7 @@ exports[`object fields > with title and description from uiSchema > show add but
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -4850,7 +4850,7 @@ exports[`object fields > with title and description from uiSchema > show add but
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -4858,7 +4858,7 @@ exports[`object fields > with title and description from uiSchema > show add but
             <!---->
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-meta"
               style="display: block;"
             >
@@ -4883,7 +4883,7 @@ exports[`object fields > with title and description from uiSchema > show add but
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -4974,7 +4974,7 @@ exports[`object fields > with title and description with global label off > addi
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="svelte-w3x0gi"
     data-layout="object-field"
     style="display: flex; flex-direction: column; gap: 1rem;"
   >
@@ -4983,7 +4983,7 @@ exports[`object fields > with title and description with global label off > addi
      
     <!---->
     <div
-      class="svelte-e9ah86"
+      class="svelte-w3x0gi"
       data-layout="object-properties"
       style="display: flex; flex-direction: column; gap: 1rem;"
     >
@@ -4994,7 +4994,7 @@ exports[`object fields > with title and description with global label off > addi
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -5002,7 +5002,7 @@ exports[`object fields > with title and description with global label off > addi
         <!---->
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-key-input"
           style="flex-grow: 1;"
         >
@@ -5011,7 +5011,7 @@ exports[`object fields > with title and description with global label off > addi
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -5020,7 +5020,7 @@ exports[`object fields > with title and description with global label off > addi
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -5062,7 +5062,7 @@ exports[`object fields > with title and description with global label off > addi
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -5072,7 +5072,7 @@ exports[`object fields > with title and description with global label off > addi
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -5081,7 +5081,7 @@ exports[`object fields > with title and description with global label off > addi
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -5172,7 +5172,7 @@ exports[`object fields > with title and description with global label off > obje
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="svelte-w3x0gi"
     data-layout="object-field"
     style="display: flex; flex-direction: column; gap: 1rem;"
   >
@@ -5181,7 +5181,7 @@ exports[`object fields > with title and description with global label off > obje
      
     <!---->
     <div
-      class="svelte-e9ah86"
+      class="svelte-w3x0gi"
       data-layout="object-properties"
       style="display: flex; flex-direction: column; gap: 1rem;"
     >
@@ -5192,7 +5192,7 @@ exports[`object fields > with title and description with global label off > obje
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -5201,7 +5201,7 @@ exports[`object fields > with title and description with global label off > obje
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -5211,7 +5211,7 @@ exports[`object fields > with title and description with global label off > obje
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -5220,7 +5220,7 @@ exports[`object fields > with title and description with global label off > obje
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -5271,7 +5271,7 @@ exports[`object fields > with title and description with global label off > obje
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -5280,7 +5280,7 @@ exports[`object fields > with title and description with global label off > obje
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -5290,7 +5290,7 @@ exports[`object fields > with title and description with global label off > obje
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -5299,7 +5299,7 @@ exports[`object fields > with title and description with global label off > obje
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -5373,7 +5373,7 @@ exports[`object fields > with title and description with global label off > show
   <!---->
   <!---->
   <div
-    class="svelte-e9ah86"
+    class="svelte-w3x0gi"
     data-layout="object-field"
     style="display: flex; flex-direction: column; gap: 1rem;"
   >
@@ -5382,7 +5382,7 @@ exports[`object fields > with title and description with global label off > show
      
     <!---->
     <div
-      class="svelte-e9ah86"
+      class="svelte-w3x0gi"
       data-layout="object-properties"
       style="display: flex; flex-direction: column; gap: 1rem;"
     >
@@ -5393,7 +5393,7 @@ exports[`object fields > with title and description with global label off > show
       <!---->
       <!---->
       <div
-        class="svelte-e9ah86"
+        class="svelte-w3x0gi"
         data-layout="object-property"
         style="display: grid; grid-template-rows: 1fr; align-items: start; column-gap: 0.2rem;"
       >
@@ -5401,7 +5401,7 @@ exports[`object fields > with title and description with global label off > show
         <!---->
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-key-input"
           style="flex-grow: 1;"
         >
@@ -5410,7 +5410,7 @@ exports[`object fields > with title and description with global label off > show
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -5419,7 +5419,7 @@ exports[`object fields > with title and description with global label off > show
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >
@@ -5461,7 +5461,7 @@ exports[`object fields > with title and description with global label off > show
          
         <!---->
         <div
-          class="svelte-e9ah86"
+          class="svelte-w3x0gi"
           data-layout="object-property-content"
           style="flex-grow: 1;"
         >
@@ -5471,7 +5471,7 @@ exports[`object fields > with title and description with global label off > show
           <!---->
           <!---->
           <div
-            class="svelte-e9ah86"
+            class="svelte-w3x0gi"
             data-layout="field"
             style="display: flex; flex-direction: column; gap: 0.2rem;"
           >
@@ -5480,7 +5480,7 @@ exports[`object fields > with title and description with global label off > show
              
             <!---->
             <div
-              class="svelte-e9ah86"
+              class="svelte-w3x0gi"
               data-layout="field-content"
               style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
             >

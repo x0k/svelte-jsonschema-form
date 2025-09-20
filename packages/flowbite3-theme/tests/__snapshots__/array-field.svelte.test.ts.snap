@@ -180,10 +180,6 @@ exports[`array fields > array icons 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.0::description root.0::help root.0::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -194,10 +190,6 @@ exports[`array fields > array icons 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -395,10 +387,6 @@ exports[`array fields > array icons 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.1::description root.1::help root.1::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -409,10 +397,6 @@ exports[`array fields > array icons 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -741,10 +725,6 @@ exports[`array fields > empty errors array 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.name::description root.name::help root.name::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -754,10 +734,6 @@ exports[`array fields > empty errors array 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -914,10 +890,6 @@ exports[`array fields > fixed array 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.0::description root.0::help root.0::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -928,10 +900,6 @@ exports[`array fields > fixed array 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -1006,10 +974,6 @@ exports[`array fields > fixed array 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.1::description root.1::help root.1::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -1021,10 +985,6 @@ exports[`array fields > fixed array 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -1352,10 +1312,6 @@ exports[`with title and description > array icons 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.0::description root.0::help root.0::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -1366,10 +1322,6 @@ exports[`with title and description > array icons 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -1575,10 +1527,6 @@ exports[`with title and description > array icons 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.1::description root.1::help root.1::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -1589,10 +1537,6 @@ exports[`with title and description > array icons 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -1959,10 +1903,6 @@ exports[`with title and description > fixed array 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.0::description root.0::help root.0::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -1973,10 +1913,6 @@ exports[`with title and description > fixed array 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -2087,10 +2023,6 @@ exports[`with title and description > fixed array 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.1::description root.1::help root.1::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -2102,10 +2034,6 @@ exports[`with title and description > fixed array 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -2433,10 +2361,6 @@ exports[`with title and description from both > array icons 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.0::description root.0::help root.0::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -2447,10 +2371,6 @@ exports[`with title and description from both > array icons 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -2656,10 +2576,6 @@ exports[`with title and description from both > array icons 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.1::description root.1::help root.1::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -2670,10 +2586,6 @@ exports[`with title and description from both > array icons 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -3040,10 +2952,6 @@ exports[`with title and description from both > fixed array 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.0::description root.0::help root.0::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -3054,10 +2962,6 @@ exports[`with title and description from both > fixed array 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -3168,10 +3072,6 @@ exports[`with title and description from both > fixed array 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.1::description root.1::help root.1::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -3183,10 +3083,6 @@ exports[`with title and description from both > fixed array 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -3514,10 +3410,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.0::description root.0::help root.0::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -3528,10 +3420,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -3737,10 +3625,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.1::description root.1::help root.1::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -3751,10 +3635,6 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -4121,10 +4001,6 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.0::description root.0::help root.0::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -4135,10 +4011,6 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -4249,10 +4121,6 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.1::description root.1::help root.1::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -4264,10 +4132,6 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -4501,10 +4365,6 @@ exports[`with title and description with global label off > array icons 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.0::description root.0::help root.0::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -4515,10 +4375,6 @@ exports[`with title and description with global label off > array icons 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -4688,10 +4544,6 @@ exports[`with title and description with global label off > array icons 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.1::description root.1::help root.1::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -4702,10 +4554,6 @@ exports[`with title and description with global label off > array icons 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -5007,10 +4855,6 @@ exports[`with title and description with global label off > fixed array 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.0::description root.0::help root.0::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -5021,10 +4865,6 @@ exports[`with title and description with global label off > fixed array 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -5099,10 +4939,6 @@ exports[`with title and description with global label off > fixed array 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.1::description root.1::help root.1::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -5114,10 +4950,6 @@ exports[`with title and description with global label off > fixed array 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->

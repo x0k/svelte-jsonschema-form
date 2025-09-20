@@ -2816,10 +2816,6 @@ exports[`widgets > number > disabled 1`] = `
         <!---->
          
         <!---->
-        <!---->
-        <!---->
-        <!---->
-         
         <input
           aria-describedby="root::description root::help root::errors"
           class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -2831,10 +2827,6 @@ exports[`widgets > number > disabled 1`] = `
         />
          
         <!---->
-        <!---->
-         
-        <!---->
-        
         
         <!---->
         <!---->
@@ -2918,10 +2910,6 @@ exports[`widgets > number > error 1`] = `
         <!---->
          
         <!---->
-        <!---->
-        <!---->
-        <!---->
-         
         <input
           aria-describedby="root::description root::help root::errors"
           class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -2932,10 +2920,6 @@ exports[`widgets > number > error 1`] = `
         />
          
         <!---->
-        <!---->
-         
-        <!---->
-        
         
         <!---->
         <!---->
@@ -3030,10 +3014,6 @@ exports[`widgets > number > normal 1`] = `
         <!---->
          
         <!---->
-        <!---->
-        <!---->
-        <!---->
-         
         <input
           aria-describedby="root::description root::help root::errors"
           class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -3044,10 +3024,6 @@ exports[`widgets > number > normal 1`] = `
         />
          
         <!---->
-        <!---->
-         
-        <!---->
-        
         
         <!---->
         <!---->
@@ -3130,10 +3106,6 @@ exports[`widgets > number > readonly 1`] = `
         <!---->
          
         <!---->
-        <!---->
-        <!---->
-        <!---->
-         
         <input
           aria-describedby="root::description root::help root::errors"
           class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -3145,10 +3117,6 @@ exports[`widgets > number > readonly 1`] = `
         />
          
         <!---->
-        <!---->
-         
-        <!---->
-        
         
         <!---->
         <!---->
@@ -3835,8 +3803,9 @@ exports[`widgets > radioButtons > disabled 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 disabled:cursor-not-allowed disabled:opacity-50 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
               data-selected="false"
+              disabled=""
               role="radio"
               type="button"
             >
@@ -3855,8 +3824,9 @@ exports[`widgets > radioButtons > disabled 1`] = `
             </button>
             <button
               aria-checked="false"
-              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 disabled:cursor-not-allowed disabled:opacity-50 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
               data-selected="false"
+              disabled=""
               role="radio"
               type="button"
             >
@@ -3875,8 +3845,9 @@ exports[`widgets > radioButtons > disabled 1`] = `
             </button>
             <button
               aria-checked="false"
-              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 disabled:cursor-not-allowed disabled:opacity-50 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
               data-selected="false"
+              disabled=""
               role="radio"
               type="button"
             >
@@ -3895,8 +3866,9 @@ exports[`widgets > radioButtons > disabled 1`] = `
             </button>
             <button
               aria-checked="false"
-              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 disabled:cursor-not-allowed disabled:opacity-50 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
               data-selected="false"
+              disabled=""
               role="radio"
               type="button"
             >
@@ -4000,7 +3972,7 @@ exports[`widgets > radioButtons > error 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 disabled:cursor-not-allowed disabled:opacity-50 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
               data-selected="false"
               role="radio"
               type="button"
@@ -4020,7 +3992,7 @@ exports[`widgets > radioButtons > error 1`] = `
             </button>
             <button
               aria-checked="false"
-              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 disabled:cursor-not-allowed disabled:opacity-50 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
               data-selected="false"
               role="radio"
               type="button"
@@ -4040,7 +4012,7 @@ exports[`widgets > radioButtons > error 1`] = `
             </button>
             <button
               aria-checked="false"
-              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 disabled:cursor-not-allowed disabled:opacity-50 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
               data-selected="false"
               role="radio"
               type="button"
@@ -4060,7 +4032,7 @@ exports[`widgets > radioButtons > error 1`] = `
             </button>
             <button
               aria-checked="false"
-              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 disabled:cursor-not-allowed disabled:opacity-50 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
               data-selected="false"
               role="radio"
               type="button"
@@ -4176,7 +4148,7 @@ exports[`widgets > radioButtons > normal 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 disabled:cursor-not-allowed disabled:opacity-50 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
               data-selected="false"
               role="radio"
               type="button"
@@ -4196,7 +4168,7 @@ exports[`widgets > radioButtons > normal 1`] = `
             </button>
             <button
               aria-checked="false"
-              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 disabled:cursor-not-allowed disabled:opacity-50 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
               data-selected="false"
               role="radio"
               type="button"
@@ -4216,7 +4188,7 @@ exports[`widgets > radioButtons > normal 1`] = `
             </button>
             <button
               aria-checked="false"
-              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 disabled:cursor-not-allowed disabled:opacity-50 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
               data-selected="false"
               role="radio"
               type="button"
@@ -4236,7 +4208,7 @@ exports[`widgets > radioButtons > normal 1`] = `
             </button>
             <button
               aria-checked="false"
-              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 disabled:cursor-not-allowed disabled:opacity-50 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
               data-selected="false"
               role="radio"
               type="button"
@@ -4340,7 +4312,7 @@ exports[`widgets > radioButtons > readonly 1`] = `
             <!---->
             <button
               aria-checked="false"
-              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 disabled:cursor-not-allowed disabled:opacity-50 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
               data-selected="false"
               role="radio"
               type="button"
@@ -4360,7 +4332,7 @@ exports[`widgets > radioButtons > readonly 1`] = `
             </button>
             <button
               aria-checked="false"
-              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 disabled:cursor-not-allowed disabled:opacity-50 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
               data-selected="false"
               role="radio"
               type="button"
@@ -4380,7 +4352,7 @@ exports[`widgets > radioButtons > readonly 1`] = `
             </button>
             <button
               aria-checked="false"
-              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 disabled:cursor-not-allowed disabled:opacity-50 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
               data-selected="false"
               role="radio"
               type="button"
@@ -4400,7 +4372,7 @@ exports[`widgets > radioButtons > readonly 1`] = `
             </button>
             <button
               aria-checked="false"
-              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
+              class="relative flex items-center transition-all duration-200 focus:outline-none border-r last:border-r-0 dark:bg-white dark:text-gray-800 disabled:cursor-not-allowed disabled:opacity-50 p-2 px-4 text-base first:rounded-s-md last:rounded-e-md data-[selected=true]:bg-primary-200 data-[selected=false]:hover:bg-gray-100"
               data-selected="false"
               role="radio"
               type="button"
@@ -5706,7 +5678,7 @@ exports[`widgets > tags > disabled 1`] = `
         <!---->
          
         <div
-          class="border bg-gray-50 border-gray-300 rounded-lg flex focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 scrollbar-hidden flex-1"
+          class="border border-gray-300 dark:border-gray-600 rounded-lg flex focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 scrollbar-hidden bg-gray-50 dark:bg-gray-700 flex-1"
           disabled="true"
         >
           <!---->
@@ -5716,7 +5688,8 @@ exports[`widgets > tags > disabled 1`] = `
           >
             <input
               autocomplete="off"
-              class="block text-sm m-2.5 p-0 bg-transparent border-none outline-none text-gray-900 h-min w-full min-w-fit focus:ring-0 placeholder-gray-400"
+              class="block text-sm m-2.5 p-0 bg-transparent border-none outline-none text-gray-900 h-min w-full min-w-fit focus:ring-0 placeholder-gray-400 dark:text-white disabled:cursor-not-allowed disabled:opacity-50"
+              disabled=""
               id="root"
               name="root"
               placeholder="Enter tags"
@@ -5803,7 +5776,7 @@ exports[`widgets > tags > error 1`] = `
         <!---->
          
         <div
-          class="border bg-gray-50 border-gray-300 rounded-lg flex focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 scrollbar-hidden flex-1"
+          class="border border-gray-300 dark:border-gray-600 rounded-lg flex focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 scrollbar-hidden bg-gray-50 dark:bg-gray-700 flex-1"
           disabled="false"
         >
           <!---->
@@ -5813,7 +5786,7 @@ exports[`widgets > tags > error 1`] = `
           >
             <input
               autocomplete="off"
-              class="block text-sm m-2.5 p-0 bg-transparent border-none outline-none text-gray-900 h-min w-full min-w-fit focus:ring-0 placeholder-gray-400"
+              class="block text-sm m-2.5 p-0 bg-transparent border-none outline-none text-gray-900 h-min w-full min-w-fit focus:ring-0 placeholder-gray-400 dark:text-white disabled:cursor-not-allowed disabled:opacity-50"
               id="root"
               name="root"
               placeholder="Enter tags"
@@ -5911,7 +5884,7 @@ exports[`widgets > tags > normal 1`] = `
         <!---->
          
         <div
-          class="border bg-gray-50 border-gray-300 rounded-lg flex focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 scrollbar-hidden flex-1"
+          class="border border-gray-300 dark:border-gray-600 rounded-lg flex focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 scrollbar-hidden bg-gray-50 dark:bg-gray-700 flex-1"
           disabled="false"
         >
           <!---->
@@ -5921,7 +5894,7 @@ exports[`widgets > tags > normal 1`] = `
           >
             <input
               autocomplete="off"
-              class="block text-sm m-2.5 p-0 bg-transparent border-none outline-none text-gray-900 h-min w-full min-w-fit focus:ring-0 placeholder-gray-400"
+              class="block text-sm m-2.5 p-0 bg-transparent border-none outline-none text-gray-900 h-min w-full min-w-fit focus:ring-0 placeholder-gray-400 dark:text-white disabled:cursor-not-allowed disabled:opacity-50"
               id="root"
               name="root"
               placeholder="Enter tags"
@@ -6007,7 +5980,7 @@ exports[`widgets > tags > readonly 1`] = `
         <!---->
          
         <div
-          class="border bg-gray-50 border-gray-300 rounded-lg flex focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 scrollbar-hidden flex-1"
+          class="border border-gray-300 dark:border-gray-600 rounded-lg flex focus-within:ring-primary-500 focus-within:ring-1 focus-within:border-primary-500 scrollbar-hidden bg-gray-50 dark:bg-gray-700 flex-1"
           disabled="false"
         >
           <!---->
@@ -6017,7 +5990,7 @@ exports[`widgets > tags > readonly 1`] = `
           >
             <input
               autocomplete="off"
-              class="block text-sm m-2.5 p-0 bg-transparent border-none outline-none text-gray-900 h-min w-full min-w-fit focus:ring-0 placeholder-gray-400"
+              class="block text-sm m-2.5 p-0 bg-transparent border-none outline-none text-gray-900 h-min w-full min-w-fit focus:ring-0 placeholder-gray-400 dark:text-white disabled:cursor-not-allowed disabled:opacity-50"
               id="root"
               name="root"
               placeholder="Enter tags"
@@ -6102,10 +6075,6 @@ exports[`widgets > text > disabled 1`] = `
         <!---->
          
         <!---->
-        <!---->
-        <!---->
-        <!---->
-         
         <input
           aria-describedby="root::description root::help root::errors"
           class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -6116,10 +6085,6 @@ exports[`widgets > text > disabled 1`] = `
         />
          
         <!---->
-        <!---->
-         
-        <!---->
-        
         
         <!---->
         <!---->
@@ -6203,10 +6168,6 @@ exports[`widgets > text > error 1`] = `
         <!---->
          
         <!---->
-        <!---->
-        <!---->
-        <!---->
-         
         <input
           aria-describedby="root::description root::help root::errors"
           class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -6216,10 +6177,6 @@ exports[`widgets > text > error 1`] = `
         />
          
         <!---->
-        <!---->
-         
-        <!---->
-        
         
         <!---->
         <!---->
@@ -6314,10 +6271,6 @@ exports[`widgets > text > normal 1`] = `
         <!---->
          
         <!---->
-        <!---->
-        <!---->
-        <!---->
-         
         <input
           aria-describedby="root::description root::help root::errors"
           class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -6327,10 +6280,6 @@ exports[`widgets > text > normal 1`] = `
         />
          
         <!---->
-        <!---->
-         
-        <!---->
-        
         
         <!---->
         <!---->
@@ -6413,10 +6362,6 @@ exports[`widgets > text > readonly 1`] = `
         <!---->
          
         <!---->
-        <!---->
-        <!---->
-        <!---->
-         
         <input
           aria-describedby="root::description root::help root::errors"
           class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -6427,10 +6372,6 @@ exports[`widgets > text > readonly 1`] = `
         />
          
         <!---->
-        <!---->
-         
-        <!---->
-        
         
         <!---->
         <!---->

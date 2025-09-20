@@ -91,10 +91,6 @@ exports[`object fields > additionalProperties 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -105,10 +101,6 @@ exports[`object fields > additionalProperties 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -192,10 +184,6 @@ exports[`object fields > additionalProperties 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.foo::description root.foo::help root.foo::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -205,10 +193,6 @@ exports[`object fields > additionalProperties 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -411,10 +395,6 @@ exports[`object fields > additionalProperties with error 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -425,10 +405,6 @@ exports[`object fields > additionalProperties with error 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -524,10 +500,6 @@ exports[`object fields > additionalProperties with error 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.foo::description root.foo::help root.foo::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -537,10 +509,6 @@ exports[`object fields > additionalProperties with error 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -742,10 +710,6 @@ exports[`object fields > has errors 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.name::description root.name::help root.name::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -755,10 +719,6 @@ exports[`object fields > has errors 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -942,10 +902,6 @@ exports[`object fields > object 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.a::description root.a::help root.a::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -955,10 +911,6 @@ exports[`object fields > object 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -1060,10 +1012,6 @@ exports[`object fields > object 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.b::description root.b::help root.b::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -1074,10 +1022,6 @@ exports[`object fields > object 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -2225,10 +2169,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.proportionalSizeAdjustmentThreshold::description root.proportionalSizeAdjustmentThreshold::help root.proportionalSizeAdjustmentThreshold::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -2241,10 +2181,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -2354,10 +2290,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.cornerCellValue::description root.cornerCellValue::help root.cornerCellValue::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -2367,10 +2299,6 @@ exports[`object fields > one of defaults > manual preset 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -2898,10 +2826,6 @@ exports[`object fields > show add button and fields if additionalProperties is t
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -2912,10 +2836,6 @@ exports[`object fields > show add button and fields if additionalProperties is t
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -2999,10 +2919,6 @@ exports[`object fields > show add button and fields if additionalProperties is t
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -3012,10 +2928,6 @@ exports[`object fields > show add button and fields if additionalProperties is t
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -3247,10 +3159,6 @@ exports[`object fields > with title and description > additionalProperties 1`] =
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -3261,10 +3169,6 @@ exports[`object fields > with title and description > additionalProperties 1`] =
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -3348,10 +3252,6 @@ exports[`object fields > with title and description > additionalProperties 1`] =
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.foo::description root.foo::help root.foo::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -3361,10 +3261,6 @@ exports[`object fields > with title and description > additionalProperties 1`] =
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -3603,10 +3499,6 @@ exports[`object fields > with title and description > object 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.a::description root.a::help root.a::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -3616,10 +3508,6 @@ exports[`object fields > with title and description > object 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -3729,10 +3617,6 @@ exports[`object fields > with title and description > object 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.b::description root.b::help root.b::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -3743,10 +3627,6 @@ exports[`object fields > with title and description > object 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -3948,10 +3828,6 @@ exports[`object fields > with title and description > show add button and fields
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -3962,10 +3838,6 @@ exports[`object fields > with title and description > show add button and fields
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -4049,10 +3921,6 @@ exports[`object fields > with title and description > show add button and fields
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -4062,10 +3930,6 @@ exports[`object fields > with title and description > show add button and fields
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -4297,10 +4161,6 @@ exports[`object fields > with title and description from both > additionalProper
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -4311,10 +4171,6 @@ exports[`object fields > with title and description from both > additionalProper
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -4398,10 +4254,6 @@ exports[`object fields > with title and description from both > additionalProper
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.foo::description root.foo::help root.foo::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -4411,10 +4263,6 @@ exports[`object fields > with title and description from both > additionalProper
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -4653,10 +4501,6 @@ exports[`object fields > with title and description from both > object 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.a::description root.a::help root.a::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -4666,10 +4510,6 @@ exports[`object fields > with title and description from both > object 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -4779,10 +4619,6 @@ exports[`object fields > with title and description from both > object 1`] = `
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.b::description root.b::help root.b::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -4793,10 +4629,6 @@ exports[`object fields > with title and description from both > object 1`] = `
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -4998,10 +4830,6 @@ exports[`object fields > with title and description from uiSchema > additionalPr
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -5012,10 +4840,6 @@ exports[`object fields > with title and description from uiSchema > additionalPr
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -5099,10 +4923,6 @@ exports[`object fields > with title and description from uiSchema > additionalPr
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.foo::description root.foo::help root.foo::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -5112,10 +4932,6 @@ exports[`object fields > with title and description from uiSchema > additionalPr
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -5354,10 +5170,6 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.a::description root.a::help root.a::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -5367,10 +5179,6 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -5480,10 +5288,6 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.b::description root.b::help root.b::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -5494,10 +5298,6 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -5699,10 +5499,6 @@ exports[`object fields > with title and description from uiSchema > show add but
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -5713,10 +5509,6 @@ exports[`object fields > with title and description from uiSchema > show add but
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -5800,10 +5592,6 @@ exports[`object fields > with title and description from uiSchema > show add but
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -5813,10 +5601,6 @@ exports[`object fields > with title and description from uiSchema > show add but
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -5991,10 +5775,6 @@ exports[`object fields > with title and description with global label off > addi
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.foo::key-input::description root.foo::key-input::help root.foo::key-input::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -6005,10 +5785,6 @@ exports[`object fields > with title and description with global label off > addi
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -6067,10 +5843,6 @@ exports[`object fields > with title and description with global label off > addi
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.foo::description root.foo::help root.foo::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -6080,10 +5852,6 @@ exports[`object fields > with title and description with global label off > addi
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -6260,10 +6028,6 @@ exports[`object fields > with title and description with global label off > obje
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.a::description root.a::help root.a::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -6273,10 +6037,6 @@ exports[`object fields > with title and description with global label off > obje
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -6353,10 +6113,6 @@ exports[`object fields > with title and description with global label off > obje
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.b::description root.b::help root.b::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -6367,10 +6123,6 @@ exports[`object fields > with title and description with global label off > obje
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -6515,10 +6267,6 @@ exports[`object fields > with title and description with global label off > show
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.additionalProperty::key-input::description root.additionalProperty::key-input::help root.additionalProperty::key-input::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -6529,10 +6277,6 @@ exports[`object fields > with title and description with global label off > show
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
@@ -6591,10 +6335,6 @@ exports[`object fields > with title and description with global label off > show
                 <!---->
                  
                 <!---->
-                <!---->
-                <!---->
-                <!---->
-                 
                 <input
                   aria-describedby="root.additionalProperty::description root.additionalProperty::help root.additionalProperty::errors"
                   class="block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right focus:outline-hidden text-sm px-2.5 py-2.5 border border-gray-300 dark:border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 rounded-lg"
@@ -6604,10 +6344,6 @@ exports[`object fields > with title and description with global label off > show
                 />
                  
                 <!---->
-                <!---->
-                 
-                <!---->
-                
                 
                 <!---->
                 <!---->
