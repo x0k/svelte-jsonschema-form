@@ -1,22 +1,27 @@
-import { describe } from "vitest";
+import { describe, expect, test } from "vitest";
 import {
-  type Schema,
+  type FieldValueValidator,
   type Theme,
-  type UiSchemaRoot,
+  type Validator,
   idFromPath,
 } from "@sjsf/form";
 
-import { DEFAULT_SPECS, type s } from "../demo";
+import { render } from "vitest-browser-svelte";
 
+import * as defaults from "../components/form-defaults.js";
+import { s } from "../demo/index.js";
 import {
   testMatchSnapshot,
   type MatchSnapshotOptions,
   type SnapshotFormOptions,
-} from "./core";
+} from "./core.js";
+import Form from "./form.svelte";
+
+const ERROR_TEXT = "field_error";
 
 export function widgetTests(
   theme: Theme,
-  additionalSpecs: s.Specs,
+  specs: s.Specs,
   matchOptions?: MatchSnapshotOptions
 ) {
   const snapshot = (
@@ -32,40 +37,76 @@ export function widgetTests(
       matchOptions
     );
 
-  function testWidget(widget: string, schema: Schema, uiSchema: UiSchemaRoot) {
+  function testWidget(
+    widget: string,
+    [schema, uiSchema, validationTriggers]: s.Specs[string]
+  ) {
     describe(widget, () => {
-      snapshot("normal", { schema, uiSchema });
-      snapshot("error", {
-        schema,
-        uiSchema,
-        initialErrors: [
-          {
-            error: null as any,
-            instanceId: idFromPath([]),
-            propertyTitle: "title",
-            message: "error",
-          },
-        ],
+      describe("snapshots", () => {
+        snapshot("normal", { schema, uiSchema });
+        snapshot("error", {
+          schema,
+          uiSchema,
+          initialErrors: [
+            {
+              error: null as any,
+              instanceId: idFromPath([]),
+              propertyTitle: "title",
+              message: "error",
+            },
+          ],
+        });
+        snapshot("disabled", {
+          schema,
+          uiSchema,
+          disabled: true,
+        });
+        snapshot("readonly", {
+          schema: Object.assign({ readOnly: true }, schema),
+          uiSchema,
+        });
       });
-      snapshot("disabled", {
-        schema,
-        uiSchema,
-        disabled: true,
-      });
-      snapshot("readonly", {
-        schema: Object.assign({ readOnly: true }, schema),
-        uiSchema,
-      });
+      for (const mode of s.FIELD_VALIDATION_MODES) {
+        const modeName = s.FIELD_VALIDATION_MODE_NAMES[mode]!;
+        const trigger = validationTriggers[modeName];
+        if (trigger) {
+          test(`${widget} ${modeName} validation mode`, async () => {
+            const screen = render(Form, {
+              target: document.body.appendChild(document.createElement("div")),
+              props: {
+                ...defaults,
+                theme,
+                schema,
+                uiSchema,
+                fieldsValidationMode: mode,
+                createValidator: (options) =>
+                  ({
+                    ...defaults.createValidator(options),
+                    validateFieldValue(cfg) {
+                      return [
+                        {
+                          instanceId: cfg.id,
+                          propertyTitle: cfg.title,
+                          message: ERROR_TEXT,
+                          error: null,
+                        },
+                      ];
+                    },
+                  }) satisfies Validator & FieldValueValidator<any>,
+              },
+            });
+            await trigger(screen.locator);
+            const err = screen.getByText(ERROR_TEXT);
+            await expect.element(err).toBeInTheDocument();
+          });
+        }
+      }
     });
   }
 
   describe("widgets", () => {
-    const specs = {
-      ...DEFAULT_SPECS,
-      ...additionalSpecs,
-    };
-    for (const [key, [schema, uiSchema]] of Object.entries(specs)) {
-      testWidget(key, schema, uiSchema);
+    for (const [key, data] of Object.entries(specs)) {
+      testWidget(key, data);
     }
   });
 }

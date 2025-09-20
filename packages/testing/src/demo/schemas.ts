@@ -1,6 +1,10 @@
+import type { Locator } from '@vitest/browser/context'
 import type { SchemaArrayValue } from "@sjsf/form/core";
 import {
   idFromPath,
+  ON_BLUR,
+  ON_CHANGE,
+  ON_INPUT,
   type PathToIdOptions,
   type Schema,
   type UiSchema,
@@ -20,10 +24,10 @@ export const boolean: Schema = {
   type: "boolean",
 };
 
-export const enumeration: Schema = {
+export const enumeration = {
   type: "string",
   enum: ["foo", "bar", "fuzz", "qux"],
-};
+} as const satisfies Schema
 
 export const uniqueArray: Schema = {
   type: "array",
@@ -65,7 +69,31 @@ export const createErrors = (keys: string[], options?: PathToIdOptions) =>
       }) satisfies ValidationError<null>
   );
 
-export type Specs = Record<string, [Schema, UiSchema]>;
+export const FIELD_VALIDATION_MODE_NAMES = {
+  [ON_INPUT]: "oninput",
+  [ON_CHANGE]: "onchange",
+  [ON_BLUR]: "onblur",
+} as const satisfies Record<number, string>;
+
+export const FIELD_VALIDATION_MODES = Object.keys(
+  FIELD_VALIDATION_MODE_NAMES
+).map(Number);
+
+export type FieldValidationModeName =
+  (typeof FIELD_VALIDATION_MODE_NAMES)[number];
+
+export type FieldValidationTrigger = (
+  locator: Locator
+) => Promise<void>;
+
+export type Specs = Record<
+  string,
+  [
+    Schema,
+    UiSchema,
+    Partial<Record<FieldValidationModeName, FieldValidationTrigger>>,
+  ]
+>;
 
 export function createSchemas(
   specs: Specs,

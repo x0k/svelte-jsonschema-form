@@ -17,9 +17,9 @@ import {
   matchSnapshot,
   type MatchSnapshotOptions,
   type SnapshotFormOptions,
-} from "./core";
+} from "./core.js";
 
-import * as oneOfDefaults from "./test-data/one-of-defaults";
+import * as oneOfDefaults from "./test-data/one-of-defaults.js";
 
 const titleAndDesc = {
   title: "Test field",

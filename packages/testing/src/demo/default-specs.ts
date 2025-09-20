@@ -16,7 +16,19 @@ import {
   text,
   uniqueArray,
   type Specs,
-} from "./schemas";
+} from "./schemas.js";
+import {
+  changeCheckbox,
+  changeFile,
+  changeNumber,
+  changeSelect,
+  changeText,
+  inputNumber,
+  inputText,
+  visitCheckbox,
+  visitFile,
+  visitSelect,
+} from "./triggers.js";
 
 const filesAsArrayField = cast(FilesField, {
   value: {
@@ -28,13 +40,24 @@ const filesAsArrayField = cast(FilesField, {
 }) satisfies ComponentDefinition<"arrayField">;
 
 export const DEFAULT_SPECS: Specs = {
-  checkbox: [boolean, {}],
+  checkbox: [
+    boolean,
+    {},
+    {
+      onchange: changeCheckbox,
+      onblur: visitCheckbox,
+    },
+  ],
   checkboxes: [
     uniqueArray,
     {
       "ui:components": {
         arrayField: "multiEnumField",
       },
+    },
+    {
+      onchange: changeCheckbox,
+      onblur: visitCheckbox,
     },
   ],
   file: [
@@ -44,6 +67,10 @@ export const DEFAULT_SPECS: Specs = {
         stringField: "fileField",
       },
     },
+    {
+      onchange: changeFile,
+      onblur: visitFile,
+    },
   ],
   multiFile: [
     filesArray,
@@ -52,8 +79,20 @@ export const DEFAULT_SPECS: Specs = {
         arrayField: filesAsArrayField,
       },
     },
+    {
+      onchange: changeFile,
+      onblur: visitFile,
+    },
   ],
-  number: [number, {}],
+  number: [
+    number,
+    {},
+    {
+      oninput: inputNumber,
+      onchange: changeNumber,
+      onblur: changeNumber,
+    },
+  ],
   select: [
     enumeration,
     {
@@ -61,6 +100,18 @@ export const DEFAULT_SPECS: Specs = {
         stringField: "enumField",
       },
     },
+    {
+      onchange: changeSelect,
+      onblur: visitSelect,
+    },
   ],
-  text: [text, {}],
+  text: [
+    text,
+    {},
+    {
+      oninput: inputText,
+      onchange: changeText,
+      onblur: changeText,
+    },
+  ],
 };

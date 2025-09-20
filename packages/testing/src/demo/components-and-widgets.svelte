@@ -2,18 +2,18 @@
   import type { Snippet } from "svelte";
   import {
     createForm,
-    pathToId,
+    idFromPath,
     type Schema,
     type Theme,
     type UiOptionsRegistryOption,
     type UiSchemaRoot,
   } from "@sjsf/form";
 
-  import * as defaults from "../components/form-defaults";
+  import * as defaults from "../components/form-defaults.js";
 
   import Form from "./form.svelte";
-  import { createSchemas, type Specs } from "./schemas";
-  import { DEFAULT_SPECS } from "./default-specs";
+  import { createSchemas, type Specs } from "./schemas.js";
+  import { DEFAULT_SPECS } from "./default-specs.js";
 
   const {
     theme,
@@ -92,7 +92,7 @@
     },
     initialErrors: [
       {
-        instanceId: pathToId([]),
+        instanceId: idFromPath([]),
         message: "message",
         propertyTitle: "Title",
         error: null as any,

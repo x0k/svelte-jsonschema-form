@@ -3,7 +3,7 @@ import { expect, test } from "vitest";
 import { render } from "vitest-browser-svelte";
 import type { FormOptions, Validator } from "@sjsf/form";
 
-import * as defaults from "../components/form-defaults";
+import * as defaults from "../components/form-defaults.js";
 import DefaultForm from "./form.svelte";
 
 type Defaults = keyof typeof defaults;
