@@ -1,4 +1,4 @@
-import { s } from "testing/demo";
+import { s, t, DEFAULT_SPECS } from "testing/demo";
 
 import "./extra-widgets/checkboxes-include.js";
 import "./extra-widgets/date-picker-include.js";
@@ -9,6 +9,7 @@ import "./extra-widgets/range-include.js";
 import "./extra-widgets/textarea-include.js";
 
 export const specs: s.Specs = {
+  ...DEFAULT_SPECS,
   radio: [
     s.enumeration,
     {
@@ -17,6 +18,11 @@ export const specs: s.Specs = {
         selectWidget: "radioWidget",
       },
       "ui:options": { useLabel: false },
+    },
+    {
+      oninput: t.inputRadio,
+      onchange: t.changeRadio,
+      onblur: t.visitRadio,
     },
   ],
   multiSelect: [
@@ -28,10 +34,39 @@ export const specs: s.Specs = {
       },
       "ui:options": { useLabel: true },
     },
+    {
+      oninput: t.inputMultiSelect,
+      onchange: t.changeMultiSelect,
+      onblur: t.visitMultiSelect,
+    },
   ],
-  textarea: [s.text, { "ui:components": { textWidget: "textareaWidget" } }],
-  datePicker: [s.text, { "ui:components": { textWidget: "datePickerWidget" } }],
-  range: [s.number, { "ui:components": { numberWidget: "rangeWidget" } }],
+  textarea: [
+    s.text,
+    { "ui:components": { textWidget: "textareaWidget" } },
+    {
+      oninput: t.inputText,
+      onchange: t.changeText,
+      onblur: t.visitText,
+    },
+  ],
+  datePicker: [
+    s.text,
+    { "ui:components": { textWidget: "datePickerWidget" } },
+    {
+      oninput: t.inputDate,
+      onchange: t.changeDate,
+      onblur: t.visitDate,
+    },
+  ],
+  range: [
+    s.number,
+    { "ui:components": { numberWidget: "rangeWidget" } },
+    {
+      oninput: t.inputSlider,
+      onchange: t.changeSlider,
+      onblur: t.visitSlider,
+    },
+  ],
 };
 
 export const extraWidgets = Object.keys(

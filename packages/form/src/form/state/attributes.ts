@@ -1,5 +1,4 @@
 import type {
-  HTMLAttributes,
   HTMLButtonAttributes,
   HTMLFormAttributes,
   HTMLInputAttributes,
@@ -35,9 +34,14 @@ interface Handlers {
   onchange?: () => void;
 }
 
+interface Attachable {
+  // allow any attachment and falsy values (by using false we prevent the usage of booleans values by themselves)
+  [key: symbol]: Attachment<any> | false | undefined | null;
+}
+
 export const HANDLERS_ATTACHMENT_CACHE = new WeakMap<
   Handlers,
-  <T extends HTMLAttributes<HTMLElement>>(props: T) => T
+  <P extends Attachable>(props: P) => P
 >();
 
 /**
@@ -45,7 +49,7 @@ export const HANDLERS_ATTACHMENT_CACHE = new WeakMap<
  */
 export const handlersAttachment = weakMemoize(
   HANDLERS_ATTACHMENT_CACHE,
-  (handlers: Handlers) => {
+  (handlers) => {
     const key = createAttachmentKey();
     const attachment: Attachment<HTMLElement> = (node) => {
       const r1 = handlers.oninput && on(node, "input", handlers.oninput);
@@ -57,8 +61,8 @@ export const handlersAttachment = weakMemoize(
         r3?.();
       };
     };
-    return <T extends HTMLAttributes<HTMLElement>>(props: T): T => {
-      (props as HTMLAttributes<HTMLElement>)[key] = attachment;
+    return (props) => {
+      (props as Attachable)[key] = attachment;
       return props;
     };
   }

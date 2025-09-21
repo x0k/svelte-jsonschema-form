@@ -14,6 +14,7 @@
 		customInputAttributes,
 		describedBy,
 		getFormContext,
+		handlersAttachment,
 		type ComponentProps
 	} from '@sjsf/form';
 	import Datepicker from 'flowbite-svelte/Datepicker.svelte';
@@ -26,6 +27,7 @@
 	}
 
 	const ctx = getFormContext();
+	const { onchange, ...inputHandlers } = $derived(handlers);
 </script>
 
 <div class="w-full">
@@ -35,15 +37,15 @@
 			(v) => (value = v?.toLocaleDateString('en-CA'))
 		}
 		{...customInputAttributes(ctx, config, 'flowbite3Datepicker', {
-			inputProps: {
+			inputProps: handlersAttachment(inputHandlers)({
 				id: config.id,
-				name: config.id,
-			},
+				name: config.id
+			}),
 			required: config.required,
 			showActionButtons: true,
 			autohide: false,
-			onselect: handlers.onchange,
-			onclear: handlers.onchange,
+			onselect: onchange,
+			onclear: onchange,
 			'aria-describedby': describedBy(ctx, config)
 		})}
 	/>

@@ -10,7 +10,13 @@
 </script>
 
 <script lang="ts">
-	import { customInputAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
+	import {
+		composeProps,
+		customInputAttributes,
+		getFormContext,
+		handlersAttachment,
+		type ComponentProps
+	} from '@sjsf/form';
 
 	import { getThemeContext } from '../context.js';
 
@@ -22,18 +28,36 @@
 
 	const { Checkbox, Label } = $derived(themeCtx.components);
 
+	const { oninput, onchange, ...buttonHandlers } = $derived(handlers);
+
 	const attributes = $derived(
-		customInputAttributes(ctx, config, 'shadcn4Checkbox', {
-			...handlers,
-			id: config.id,
-			name: config.id,
-			required: config.required
-		})
+		customInputAttributes(
+			ctx,
+			config,
+			'shadcn4Checkbox',
+			handlersAttachment(buttonHandlers)({
+				id: config.id,
+				name: config.id,
+				required: config.required,
+				onCheckedChange: () => {
+					oninput?.();
+					onchange?.();
+				}
+			})
+		)
 	);
 </script>
 
 <div class="flex items-center space-x-2">
-	<Checkbox bind:checked={() => value ?? false, (v) => (value = v)} {...attributes} />
+	<Checkbox
+		bind:checked={
+			() => value ?? false,
+			(v) => {
+				value = v;
+			}
+		}
+		{...attributes}
+	/>
 	<Label for={attributes.id}>
 		{config.title}
 	</Label>

@@ -29,9 +29,10 @@
 		invalid: errors.length > 0,
 		onCheckedChange: (e) => {
 			value = e.checked;
+			handlers.oninput?.();
 			handlers.onchange?.();
 		},
-		checked: value
+		checked: value,
 	})}
 >
 	{config.title}

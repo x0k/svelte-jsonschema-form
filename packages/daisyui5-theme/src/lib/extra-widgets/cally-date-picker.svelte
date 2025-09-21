@@ -34,26 +34,21 @@
 
 <script lang="ts">
 	import { formatAsCustomPropertyName } from '@sjsf/form/lib/css';
-	import {
-		buttonAttributes,
-		getFormContext,
-		retrieveUiOption,
-		uiOptionProps,
-		type ComponentProps
-	} from '@sjsf/form';
+	import { buttonAttributes, getFormContext, uiOptionProps, type ComponentProps } from '@sjsf/form';
 	import 'cally';
 
 	let {
 		value = $bindable(),
 		config,
 		errors,
-		handlers
+		handlers,
+		uiOption
 	}: ComponentProps['datePickerWidget'] = $props();
 
 	const ctx = getFormContext();
 
 	const formatDate = $derived.by(() => {
-		const formatDate = retrieveUiOption(ctx, config, 'daisyui5CallyCalendarDateFormatter');
+		const formatDate = uiOption('daisyui5CallyCalendarDateFormatter');
 		if (formatDate !== undefined) {
 			return formatDate;
 		}

@@ -11,7 +11,12 @@
 </script>
 
 <script lang="ts">
-	import { customInputAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
+	import {
+		customInputAttributes,
+		getFormContext,
+		handlersAttachment,
+		type ComponentProps
+	} from '@sjsf/form';
 	import { multipleOptions, stringIndexMapper } from '@sjsf/form/options.svelte';
 
 	import { getThemeContext } from '../context.js';
@@ -37,12 +42,19 @@
 
 	const indexes = $derived(new Set(mapped.value));
 
+	const { oninput, onchange, ...buttonHandlers } = $derived(handlers);
+
 	const attributes = $derived(
-		customInputAttributes(ctx, config, 'shadcn4Checkboxes', {
-			...handlers,
-			name: config.id,
-			required: config.required
-		})
+		customInputAttributes(
+			ctx,
+			config,
+			'shadcn4Checkboxes',
+			handlersAttachment(buttonHandlers)({
+				...handlers,
+				name: config.id,
+				required: config.required
+			})
+		)
 	);
 </script>
 
@@ -56,6 +68,8 @@
 				mapped.value = v
 					? mapped.value.concat(indexStr)
 					: mapped.value.filter((index) => index !== indexStr);
+				oninput?.();
+				onchange?.();
 			}}
 			{...attributes}
 			id={option.id}

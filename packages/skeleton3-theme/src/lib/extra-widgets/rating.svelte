@@ -26,9 +26,9 @@
 		name: config.id,
 		required: config.required,
 		readOnly: config.schema.readOnly,
-		onHoverChange: handlers.oninput,
 		onValueChange: (details) => {
 			value = details.value;
+			handlers.oninput?.();
 			handlers.onchange?.();
 		},
 		count: config.schema.maximum

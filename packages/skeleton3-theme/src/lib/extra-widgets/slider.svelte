@@ -35,8 +35,9 @@
 		onFocusChange: handlers.onblur,
 		onValueChange: (details) => {
 			value = details.value[0];
-			handlers.onchange?.();
+			handlers.oninput?.();
 		},
+		onValueChangeEnd: handlers.onchange,
 		value: value === undefined ? undefined : [value]
 	})}
 />

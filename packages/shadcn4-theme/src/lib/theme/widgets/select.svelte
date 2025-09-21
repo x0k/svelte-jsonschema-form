@@ -10,7 +10,12 @@
 </script>
 
 <script lang="ts">
-	import { customInputAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
+	import {
+		customInputAttributes,
+		getFormContext,
+		handlersAttachment,
+		type ComponentProps
+	} from '@sjsf/form';
 	import { singleOption, stringIndexMapper } from '@sjsf/form/options.svelte';
 
 	import { getThemeContext } from '../context.js';
@@ -30,10 +35,15 @@
 		})
 	);
 
+	const { oninput, onchange, ...buttonHandlers } = $derived(handlers);
+
 	const selectAttributes = $derived(
 		customInputAttributes(ctx, config, 'shadcn4Select', {
-			onValueChange: handlers.onchange,
-			required: config.required
+			required: config.required,
+			onValueChange: () => {
+				oninput?.();
+				onchange?.();
+			}
 		})
 	);
 
@@ -52,10 +62,15 @@
 <Select bind:value={mapped.value} {...selectAttributes} type="single">
 	<SelectTrigger
 		class="w-full"
-		{...customInputAttributes(ctx, config, 'shadcn4SelectTrigger', {
-			id: config.id,
-			name: config.id
-		})}
+		{...customInputAttributes(
+			ctx,
+			config,
+			'shadcn4SelectTrigger',
+			handlersAttachment(buttonHandlers)({
+				id: config.id,
+				name: config.id
+			})
+		)}
 	>
 		<span>
 			{triggerContent}

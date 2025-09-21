@@ -46,6 +46,7 @@
 		readOnly: config.schema.readOnly,
 		onValueChange: (details) => {
 			mapped.value = details.value ?? '';
+			handlers.oninput?.();
 			handlers.onchange?.();
 		}
 	})}

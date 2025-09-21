@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`widgets > checkbox > disabled 1`] = `
+exports[`widgets > checkbox > snapshots > disabled 1`] = `
 <div>
   <!---->
   <form
@@ -93,7 +93,7 @@ exports[`widgets > checkbox > disabled 1`] = `
 </div>
 `;
 
-exports[`widgets > checkbox > error 1`] = `
+exports[`widgets > checkbox > snapshots > error 1`] = `
 <div>
   <!---->
   <form
@@ -196,7 +196,7 @@ exports[`widgets > checkbox > error 1`] = `
 </div>
 `;
 
-exports[`widgets > checkbox > normal 1`] = `
+exports[`widgets > checkbox > snapshots > normal 1`] = `
 <div>
   <!---->
   <form
@@ -287,7 +287,7 @@ exports[`widgets > checkbox > normal 1`] = `
 </div>
 `;
 
-exports[`widgets > checkbox > readonly 1`] = `
+exports[`widgets > checkbox > snapshots > readonly 1`] = `
 <div>
   <!---->
   <form
@@ -379,7 +379,7 @@ exports[`widgets > checkbox > readonly 1`] = `
 </div>
 `;
 
-exports[`widgets > checkboxes > disabled 1`] = `
+exports[`widgets > checkboxes > snapshots > disabled 1`] = `
 <div>
   <!---->
   <form
@@ -540,7 +540,7 @@ exports[`widgets > checkboxes > disabled 1`] = `
 </div>
 `;
 
-exports[`widgets > checkboxes > error 1`] = `
+exports[`widgets > checkboxes > snapshots > error 1`] = `
 <div>
   <!---->
   <form
@@ -708,7 +708,7 @@ exports[`widgets > checkboxes > error 1`] = `
 </div>
 `;
 
-exports[`widgets > checkboxes > normal 1`] = `
+exports[`widgets > checkboxes > snapshots > normal 1`] = `
 <div>
   <!---->
   <form
@@ -864,7 +864,7 @@ exports[`widgets > checkboxes > normal 1`] = `
 </div>
 `;
 
-exports[`widgets > checkboxes > readonly 1`] = `
+exports[`widgets > checkboxes > snapshots > readonly 1`] = `
 <div>
   <!---->
   <form
@@ -1024,7 +1024,7 @@ exports[`widgets > checkboxes > readonly 1`] = `
 </div>
 `;
 
-exports[`widgets > datePicker > disabled 1`] = `
+exports[`widgets > datePicker > snapshots > disabled 1`] = `
 <div>
   <!---->
   <form
@@ -1140,7 +1140,7 @@ exports[`widgets > datePicker > disabled 1`] = `
 </div>
 `;
 
-exports[`widgets > datePicker > error 1`] = `
+exports[`widgets > datePicker > snapshots > error 1`] = `
 <div>
   <!---->
   <form
@@ -1265,7 +1265,7 @@ exports[`widgets > datePicker > error 1`] = `
 </div>
 `;
 
-exports[`widgets > datePicker > normal 1`] = `
+exports[`widgets > datePicker > snapshots > normal 1`] = `
 <div>
   <!---->
   <form
@@ -1378,7 +1378,7 @@ exports[`widgets > datePicker > normal 1`] = `
 </div>
 `;
 
-exports[`widgets > datePicker > readonly 1`] = `
+exports[`widgets > datePicker > snapshots > readonly 1`] = `
 <div>
   <!---->
   <form
@@ -1491,7 +1491,7 @@ exports[`widgets > datePicker > readonly 1`] = `
 </div>
 `;
 
-exports[`widgets > file > disabled 1`] = `
+exports[`widgets > file > snapshots > disabled 1`] = `
 <div>
   <!---->
   <form
@@ -1578,7 +1578,7 @@ exports[`widgets > file > disabled 1`] = `
 </div>
 `;
 
-exports[`widgets > file > error 1`] = `
+exports[`widgets > file > snapshots > error 1`] = `
 <div>
   <!---->
   <form
@@ -1675,7 +1675,7 @@ exports[`widgets > file > error 1`] = `
 </div>
 `;
 
-exports[`widgets > file > normal 1`] = `
+exports[`widgets > file > snapshots > normal 1`] = `
 <div>
   <!---->
   <form
@@ -1760,7 +1760,7 @@ exports[`widgets > file > normal 1`] = `
 </div>
 `;
 
-exports[`widgets > file > readonly 1`] = `
+exports[`widgets > file > snapshots > readonly 1`] = `
 <div>
   <!---->
   <form
@@ -1846,7 +1846,7 @@ exports[`widgets > file > readonly 1`] = `
 </div>
 `;
 
-exports[`widgets > multiFile > disabled 1`] = `
+exports[`widgets > multiFile > snapshots > disabled 1`] = `
 <div>
   <!---->
   <form
@@ -1934,7 +1934,7 @@ exports[`widgets > multiFile > disabled 1`] = `
 </div>
 `;
 
-exports[`widgets > multiFile > error 1`] = `
+exports[`widgets > multiFile > snapshots > error 1`] = `
 <div>
   <!---->
   <form
@@ -2032,7 +2032,7 @@ exports[`widgets > multiFile > error 1`] = `
 </div>
 `;
 
-exports[`widgets > multiFile > normal 1`] = `
+exports[`widgets > multiFile > snapshots > normal 1`] = `
 <div>
   <!---->
   <form
@@ -2118,7 +2118,7 @@ exports[`widgets > multiFile > normal 1`] = `
 </div>
 `;
 
-exports[`widgets > multiFile > readonly 1`] = `
+exports[`widgets > multiFile > snapshots > readonly 1`] = `
 <div>
   <!---->
   <form
@@ -2205,7 +2205,7 @@ exports[`widgets > multiFile > readonly 1`] = `
 </div>
 `;
 
-exports[`widgets > multiSelect > disabled 1`] = `
+exports[`widgets > multiSelect > snapshots > disabled 1`] = `
 <div>
   <!---->
   <form
@@ -2348,7 +2348,7 @@ exports[`widgets > multiSelect > disabled 1`] = `
 </div>
 `;
 
-exports[`widgets > multiSelect > error 1`] = `
+exports[`widgets > multiSelect > snapshots > error 1`] = `
 <div>
   <!---->
   <form
@@ -2502,7 +2502,7 @@ exports[`widgets > multiSelect > error 1`] = `
 </div>
 `;
 
-exports[`widgets > multiSelect > normal 1`] = `
+exports[`widgets > multiSelect > snapshots > normal 1`] = `
 <div>
   <!---->
   <form
@@ -2644,7 +2644,7 @@ exports[`widgets > multiSelect > normal 1`] = `
 </div>
 `;
 
-exports[`widgets > multiSelect > readonly 1`] = `
+exports[`widgets > multiSelect > snapshots > readonly 1`] = `
 <div>
   <!---->
   <form
@@ -2786,7 +2786,7 @@ exports[`widgets > multiSelect > readonly 1`] = `
 </div>
 `;
 
-exports[`widgets > number > disabled 1`] = `
+exports[`widgets > number > snapshots > disabled 1`] = `
 <div>
   <!---->
   <form
@@ -2880,7 +2880,7 @@ exports[`widgets > number > disabled 1`] = `
 </div>
 `;
 
-exports[`widgets > number > error 1`] = `
+exports[`widgets > number > snapshots > error 1`] = `
 <div>
   <!---->
   <form
@@ -2984,7 +2984,7 @@ exports[`widgets > number > error 1`] = `
 </div>
 `;
 
-exports[`widgets > number > normal 1`] = `
+exports[`widgets > number > snapshots > normal 1`] = `
 <div>
   <!---->
   <form
@@ -3076,7 +3076,7 @@ exports[`widgets > number > normal 1`] = `
 </div>
 `;
 
-exports[`widgets > number > readonly 1`] = `
+exports[`widgets > number > snapshots > readonly 1`] = `
 <div>
   <!---->
   <form
@@ -3169,7 +3169,7 @@ exports[`widgets > number > readonly 1`] = `
 </div>
 `;
 
-exports[`widgets > radio > disabled 1`] = `
+exports[`widgets > radio > snapshots > disabled 1`] = `
 <div>
   <!---->
   <form
@@ -3318,7 +3318,7 @@ exports[`widgets > radio > disabled 1`] = `
 </div>
 `;
 
-exports[`widgets > radio > error 1`] = `
+exports[`widgets > radio > snapshots > error 1`] = `
 <div>
   <!---->
   <form
@@ -3474,7 +3474,7 @@ exports[`widgets > radio > error 1`] = `
 </div>
 `;
 
-exports[`widgets > radio > normal 1`] = `
+exports[`widgets > radio > snapshots > normal 1`] = `
 <div>
   <!---->
   <form
@@ -3618,7 +3618,7 @@ exports[`widgets > radio > normal 1`] = `
 </div>
 `;
 
-exports[`widgets > radio > readonly 1`] = `
+exports[`widgets > radio > snapshots > readonly 1`] = `
 <div>
   <!---->
   <form
@@ -3766,7 +3766,7 @@ exports[`widgets > radio > readonly 1`] = `
 </div>
 `;
 
-exports[`widgets > radioButtons > disabled 1`] = `
+exports[`widgets > radioButtons > snapshots > disabled 1`] = `
 <div>
   <!---->
   <form
@@ -3935,7 +3935,7 @@ exports[`widgets > radioButtons > disabled 1`] = `
 </div>
 `;
 
-exports[`widgets > radioButtons > error 1`] = `
+exports[`widgets > radioButtons > snapshots > error 1`] = `
 <div>
   <!---->
   <form
@@ -4111,7 +4111,7 @@ exports[`widgets > radioButtons > error 1`] = `
 </div>
 `;
 
-exports[`widgets > radioButtons > normal 1`] = `
+exports[`widgets > radioButtons > snapshots > normal 1`] = `
 <div>
   <!---->
   <form
@@ -4275,7 +4275,7 @@ exports[`widgets > radioButtons > normal 1`] = `
 </div>
 `;
 
-exports[`widgets > radioButtons > readonly 1`] = `
+exports[`widgets > radioButtons > snapshots > readonly 1`] = `
 <div>
   <!---->
   <form
@@ -4439,7 +4439,7 @@ exports[`widgets > radioButtons > readonly 1`] = `
 </div>
 `;
 
-exports[`widgets > range > disabled 1`] = `
+exports[`widgets > range > snapshots > disabled 1`] = `
 <div>
   <!---->
   <form
@@ -4519,7 +4519,7 @@ exports[`widgets > range > disabled 1`] = `
 </div>
 `;
 
-exports[`widgets > range > error 1`] = `
+exports[`widgets > range > snapshots > error 1`] = `
 <div>
   <!---->
   <form
@@ -4609,7 +4609,7 @@ exports[`widgets > range > error 1`] = `
 </div>
 `;
 
-exports[`widgets > range > normal 1`] = `
+exports[`widgets > range > snapshots > normal 1`] = `
 <div>
   <!---->
   <form
@@ -4687,7 +4687,7 @@ exports[`widgets > range > normal 1`] = `
 </div>
 `;
 
-exports[`widgets > range > readonly 1`] = `
+exports[`widgets > range > snapshots > readonly 1`] = `
 <div>
   <!---->
   <form
@@ -4766,7 +4766,7 @@ exports[`widgets > range > readonly 1`] = `
 </div>
 `;
 
-exports[`widgets > select > disabled 1`] = `
+exports[`widgets > select > snapshots > disabled 1`] = `
 <div>
   <!---->
   <form
@@ -4885,7 +4885,7 @@ exports[`widgets > select > disabled 1`] = `
 </div>
 `;
 
-exports[`widgets > select > error 1`] = `
+exports[`widgets > select > snapshots > error 1`] = `
 <div>
   <!---->
   <form
@@ -5014,7 +5014,7 @@ exports[`widgets > select > error 1`] = `
 </div>
 `;
 
-exports[`widgets > select > normal 1`] = `
+exports[`widgets > select > snapshots > normal 1`] = `
 <div>
   <!---->
   <form
@@ -5131,7 +5131,7 @@ exports[`widgets > select > normal 1`] = `
 </div>
 `;
 
-exports[`widgets > select > readonly 1`] = `
+exports[`widgets > select > snapshots > readonly 1`] = `
 <div>
   <!---->
   <form
@@ -5248,7 +5248,7 @@ exports[`widgets > select > readonly 1`] = `
 </div>
 `;
 
-exports[`widgets > switch > disabled 1`] = `
+exports[`widgets > switch > snapshots > disabled 1`] = `
 <div>
   <!---->
   <form
@@ -5294,7 +5294,7 @@ exports[`widgets > switch > disabled 1`] = `
           />
            
           <!---->
-          
+          switch
           
           <!---->
           <!---->
@@ -5346,7 +5346,7 @@ exports[`widgets > switch > disabled 1`] = `
 </div>
 `;
 
-exports[`widgets > switch > error 1`] = `
+exports[`widgets > switch > snapshots > error 1`] = `
 <div>
   <!---->
   <form
@@ -5391,7 +5391,7 @@ exports[`widgets > switch > error 1`] = `
           />
            
           <!---->
-          
+          switch
           
           <!---->
           <!---->
@@ -5454,7 +5454,7 @@ exports[`widgets > switch > error 1`] = `
 </div>
 `;
 
-exports[`widgets > switch > normal 1`] = `
+exports[`widgets > switch > snapshots > normal 1`] = `
 <div>
   <!---->
   <form
@@ -5499,7 +5499,7 @@ exports[`widgets > switch > normal 1`] = `
           />
            
           <!---->
-          
+          switch
           
           <!---->
           <!---->
@@ -5550,7 +5550,7 @@ exports[`widgets > switch > normal 1`] = `
 </div>
 `;
 
-exports[`widgets > switch > readonly 1`] = `
+exports[`widgets > switch > snapshots > readonly 1`] = `
 <div>
   <!---->
   <form
@@ -5596,7 +5596,7 @@ exports[`widgets > switch > readonly 1`] = `
           />
            
           <!---->
-          
+          switch
           
           <!---->
           <!---->
@@ -5647,7 +5647,7 @@ exports[`widgets > switch > readonly 1`] = `
 </div>
 `;
 
-exports[`widgets > tags > disabled 1`] = `
+exports[`widgets > tags > snapshots > disabled 1`] = `
 <div>
   <!---->
   <form
@@ -5745,7 +5745,7 @@ exports[`widgets > tags > disabled 1`] = `
 </div>
 `;
 
-exports[`widgets > tags > error 1`] = `
+exports[`widgets > tags > snapshots > error 1`] = `
 <div>
   <!---->
   <form
@@ -5853,7 +5853,7 @@ exports[`widgets > tags > error 1`] = `
 </div>
 `;
 
-exports[`widgets > tags > normal 1`] = `
+exports[`widgets > tags > snapshots > normal 1`] = `
 <div>
   <!---->
   <form
@@ -5949,7 +5949,7 @@ exports[`widgets > tags > normal 1`] = `
 </div>
 `;
 
-exports[`widgets > tags > readonly 1`] = `
+exports[`widgets > tags > snapshots > readonly 1`] = `
 <div>
   <!---->
   <form
@@ -6045,7 +6045,7 @@ exports[`widgets > tags > readonly 1`] = `
 </div>
 `;
 
-exports[`widgets > text > disabled 1`] = `
+exports[`widgets > text > snapshots > disabled 1`] = `
 <div>
   <!---->
   <form
@@ -6138,7 +6138,7 @@ exports[`widgets > text > disabled 1`] = `
 </div>
 `;
 
-exports[`widgets > text > error 1`] = `
+exports[`widgets > text > snapshots > error 1`] = `
 <div>
   <!---->
   <form
@@ -6241,7 +6241,7 @@ exports[`widgets > text > error 1`] = `
 </div>
 `;
 
-exports[`widgets > text > normal 1`] = `
+exports[`widgets > text > snapshots > normal 1`] = `
 <div>
   <!---->
   <form
@@ -6332,7 +6332,7 @@ exports[`widgets > text > normal 1`] = `
 </div>
 `;
 
-exports[`widgets > text > readonly 1`] = `
+exports[`widgets > text > snapshots > readonly 1`] = `
 <div>
   <!---->
   <form
@@ -6424,7 +6424,7 @@ exports[`widgets > text > readonly 1`] = `
 </div>
 `;
 
-exports[`widgets > textarea > disabled 1`] = `
+exports[`widgets > textarea > snapshots > disabled 1`] = `
 <div>
   <!---->
   <form
@@ -6509,7 +6509,7 @@ exports[`widgets > textarea > disabled 1`] = `
 </div>
 `;
 
-exports[`widgets > textarea > error 1`] = `
+exports[`widgets > textarea > snapshots > error 1`] = `
 <div>
   <!---->
   <form
@@ -6604,7 +6604,7 @@ exports[`widgets > textarea > error 1`] = `
 </div>
 `;
 
-exports[`widgets > textarea > normal 1`] = `
+exports[`widgets > textarea > snapshots > normal 1`] = `
 <div>
   <!---->
   <form
@@ -6687,7 +6687,7 @@ exports[`widgets > textarea > normal 1`] = `
 </div>
 `;
 
-exports[`widgets > textarea > readonly 1`] = `
+exports[`widgets > textarea > snapshots > readonly 1`] = `
 <div>
   <!---->
   <form

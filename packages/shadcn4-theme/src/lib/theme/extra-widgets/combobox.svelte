@@ -32,8 +32,10 @@
 	import Check from '@lucide/svelte/icons/check';
 	import ChevronsUpDown from '@lucide/svelte/icons/chevrons-up-down';
 	import {
-	disabledProp,
+		composeProps,
+		disabledProp,
 		getFormContext,
+		handlersAttachment,
 		inputAttributes,
 		retrieveUiOption,
 		uiOptionProps,
@@ -88,29 +90,37 @@
 
 	const attributes = $derived(inputAttributes(ctx, config, 'shadcn4ComboboxInput', handlers, {}));
 
-	const triggerContent = $derived(
-		options[Number(mapped.value)]?.label ?? attributes.placeholder ?? ''
-	);
+	const triggerContent = $derived(options[Number(mapped.value)]?.label ?? attributes.placeholder);
 
 	const emptyText = $derived(retrieveUiOption(ctx, config, 'shadcn4ComboboxEmptyText'));
+
+	const { oninput, onchange, ...buttonHandlers } = $derived(handlers);
 </script>
 
 <Popover bind:open>
-	<PopoverTrigger class="w-full justify-between" bind:ref={triggerRef} {...disabledProp({}, config, ctx)}>
+	<PopoverTrigger
+		class="w-full justify-between"
+		bind:ref={triggerRef}
+		{...disabledProp({}, config, ctx)}
+	>
 		{#snippet child({ props })}
 			<Button
-				{...uiOptionProps('shadcn4ComboboxTrigger')(
+				{...composeProps(
+					ctx,
+					config,
 					{
 						variant: 'outline',
 						...props,
 						role: 'combobox',
 						'aria-expanded': open
-					},
-					config,
-					ctx
+					} satisfies ButtonProps,
+					uiOptionProps('shadcn4ComboboxTrigger'),
+					handlersAttachment(buttonHandlers)
 				)}
 			>
-				{triggerContent}
+				<span>
+					{triggerContent}
+				</span>
 				<ChevronsUpDown class="ml-2 size-4 shrink-0 opacity-50" />
 			</Button>
 		{/snippet}
@@ -128,6 +138,8 @@
 							value={option.label}
 							onSelect={() => {
 								mapped.value = index;
+								oninput?.();
+								onchange?.();
 								closeAndFocusTrigger();
 							}}
 							disabled={option.disabled}

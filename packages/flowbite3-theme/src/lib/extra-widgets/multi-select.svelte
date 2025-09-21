@@ -44,6 +44,10 @@
 	class="grow"
 	bind:value={mapped.value}
 	{...selectAttributes(ctx, config, 'flowbite3MultiSelect', handlers, {
-		items: selectOptions
+		items: selectOptions,
+		onchange: () => {
+			handlers.oninput?.();
+			handlers.onchange?.();
+		}
 	})}
 />

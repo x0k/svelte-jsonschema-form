@@ -3,6 +3,8 @@
 exports[`object fields > additionalProperties 1`] = `
 <div>
   <!---->
+  <!---->
+  <!---->
   <form
     class="flex flex-col gap-4"
   >
@@ -277,11 +279,17 @@ exports[`object fields > additionalProperties 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
 exports[`object fields > additionalProperties with error 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -569,11 +577,17 @@ exports[`object fields > additionalProperties with error 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
 exports[`object fields > has errors 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -747,11 +761,17 @@ exports[`object fields > has errors 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
 exports[`object fields > object 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -1016,11 +1036,17 @@ exports[`object fields > object 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
 exports[`object fields > one of defaults > default preset 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -1596,11 +1622,17 @@ exports[`object fields > one of defaults > default preset 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
 exports[`object fields > one of defaults > manual preset 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -3011,11 +3043,17 @@ exports[`object fields > one of defaults > manual preset 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
 exports[`object fields > show add button and fields if additionalProperties is true and not an object 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -3291,11 +3329,17 @@ exports[`object fields > show add button and fields if additionalProperties is t
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
 exports[`object fields > with title and description > additionalProperties 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -3598,11 +3642,17 @@ exports[`object fields > with title and description > additionalProperties 1`] =
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
 exports[`object fields > with title and description > object 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -3910,11 +3960,17 @@ exports[`object fields > with title and description > object 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
 exports[`object fields > with title and description > show add button and fields if additionalProperties is true and not an object 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -4217,11 +4273,17 @@ exports[`object fields > with title and description > show add button and fields
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
 exports[`object fields > with title and description from both > additionalProperties 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -4524,11 +4586,17 @@ exports[`object fields > with title and description from both > additionalProper
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
 exports[`object fields > with title and description from both > object 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -4836,11 +4904,17 @@ exports[`object fields > with title and description from both > object 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
 exports[`object fields > with title and description from uiSchema > additionalProperties 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -5143,11 +5217,17 @@ exports[`object fields > with title and description from uiSchema > additionalPr
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
 exports[`object fields > with title and description from uiSchema > object 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -5455,11 +5535,17 @@ exports[`object fields > with title and description from uiSchema > object 1`] =
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
 exports[`object fields > with title and description from uiSchema > show add button and fields if additionalProperties is true and not an object 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -5762,11 +5848,17 @@ exports[`object fields > with title and description from uiSchema > show add but
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
 exports[`object fields > with title and description with global label off > additionalProperties 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -5979,11 +6071,17 @@ exports[`object fields > with title and description with global label off > addi
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
 exports[`object fields > with title and description with global label off > object 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -6188,11 +6286,17 @@ exports[`object fields > with title and description with global label off > obje
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
 exports[`object fields > with title and description with global label off > show add button and fields if additionalProperties is true and not an object 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -6404,6 +6508,10 @@ exports[`object fields > with title and description with global label off > show
     <!---->
   </form>
   
+  
+  <!---->
+   
+  <div />
   
 </div>
 `;

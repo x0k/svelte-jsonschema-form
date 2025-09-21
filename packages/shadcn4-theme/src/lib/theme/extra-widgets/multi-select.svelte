@@ -12,7 +12,12 @@
 </script>
 
 <script lang="ts">
-	import { customInputAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
+	import {
+		customInputAttributes,
+		getFormContext,
+		handlersAttachment,
+		type ComponentProps
+	} from '@sjsf/form';
 	import { multipleOptions, stringIndexMapper } from '@sjsf/form/options.svelte';
 
 	import { getThemeContext } from '../context.js';
@@ -37,9 +42,14 @@
 		})
 	);
 
+	const { oninput, onchange, ...buttonHandlers } = $derived(handlers);
+
 	const selectAttributes = $derived(
 		customInputAttributes(ctx, config, 'shadcn4MultiSelect', {
-			onValueChange: handlers.onchange,
+			onValueChange: () => {
+				oninput?.();
+				onchange?.();
+			},
 			required: config.required
 		})
 	);
@@ -59,10 +69,15 @@
 <Select bind:value={mapped.value} {...selectAttributes} type="multiple">
 	<SelectTrigger
 		class="w-full"
-		{...customInputAttributes(ctx, config, 'shadcn4MultiSelectTrigger', {
-			id: config.id,
-			name: config.id
-		})}
+		{...customInputAttributes(
+			ctx,
+			config,
+			'shadcn4MultiSelectTrigger',
+			handlersAttachment(buttonHandlers)({
+				id: config.id,
+				name: config.id
+			})
+		)}
 	>
 		<span>
 			{triggerContent}

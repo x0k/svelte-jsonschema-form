@@ -1,7 +1,9 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`widgets > checkbox > disabled 1`] = `
+exports[`widgets > checkbox > snapshots > disabled 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -127,11 +129,17 @@ exports[`widgets > checkbox > disabled 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > checkbox > error 1`] = `
+exports[`widgets > checkbox > snapshots > error 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -265,11 +273,17 @@ exports[`widgets > checkbox > error 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > checkbox > normal 1`] = `
+exports[`widgets > checkbox > snapshots > normal 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -391,11 +405,17 @@ exports[`widgets > checkbox > normal 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > checkbox > readonly 1`] = `
+exports[`widgets > checkbox > snapshots > readonly 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -517,11 +537,17 @@ exports[`widgets > checkbox > readonly 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > checkboxes > disabled 1`] = `
+exports[`widgets > checkboxes > snapshots > disabled 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -599,329 +625,8 @@ exports[`widgets > checkboxes > disabled 1`] = `
             data-label-root=""
             data-slot="label"
             for="root::0"
-            id="bits-c26"
-          >
-            foo
-            <!---->
-          </label>
-          
-          
-          <!---->
-        </div>
-        <div
-          class="flex items-center space-x-2"
-        >
-          <!---->
-          <!---->
-          <button
-            aria-checked="false"
-            aria-readonly="false"
-            aria-required="false"
-            class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
-            data-checkbox-root=""
-            data-disabled=""
-            data-slot="checkbox"
-            data-state="unchecked"
-            disabled=""
-            id="root::1"
-            role="checkbox"
-            type="button"
-          >
-            <div
-              class="text-current transition-none"
-              data-slot="checkbox-indicator"
-            >
-              <!---->
-              
-              <!---->
-            </div>
-            <!---->
-          </button>
-          <!---->
-           
-          <!---->
-          <!---->
-          <input
-            aria-hidden="true"
-            disabled=""
-            name="root"
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
-            tabindex="-1"
-            type="checkbox"
-            value="1"
-          />
-          
-          
-          <!---->
-          
-          <!---->
-           
-          <!---->
-          <!---->
-          <label
-            class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
-            data-label-root=""
-            data-slot="label"
-            for="root::1"
-            id="bits-c28"
-          >
-            bar
-            <!---->
-          </label>
-          
-          
-          <!---->
-        </div>
-        <div
-          class="flex items-center space-x-2"
-        >
-          <!---->
-          <!---->
-          <button
-            aria-checked="false"
-            aria-readonly="false"
-            aria-required="false"
-            class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
-            data-checkbox-root=""
-            data-disabled=""
-            data-slot="checkbox"
-            data-state="unchecked"
-            disabled=""
-            id="root::2"
-            role="checkbox"
-            type="button"
-          >
-            <div
-              class="text-current transition-none"
-              data-slot="checkbox-indicator"
-            >
-              <!---->
-              
-              <!---->
-            </div>
-            <!---->
-          </button>
-          <!---->
-           
-          <!---->
-          <!---->
-          <input
-            aria-hidden="true"
-            disabled=""
-            name="root"
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
-            tabindex="-1"
-            type="checkbox"
-            value="2"
-          />
-          
-          
-          <!---->
-          
-          <!---->
-           
-          <!---->
-          <!---->
-          <label
-            class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
-            data-label-root=""
-            data-slot="label"
-            for="root::2"
-            id="bits-c30"
-          >
-            fuzz
-            <!---->
-          </label>
-          
-          
-          <!---->
-        </div>
-        <div
-          class="flex items-center space-x-2"
-        >
-          <!---->
-          <!---->
-          <button
-            aria-checked="false"
-            aria-readonly="false"
-            aria-required="false"
-            class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
-            data-checkbox-root=""
-            data-disabled=""
-            data-slot="checkbox"
-            data-state="unchecked"
-            disabled=""
-            id="root::3"
-            role="checkbox"
-            type="button"
-          >
-            <div
-              class="text-current transition-none"
-              data-slot="checkbox-indicator"
-            >
-              <!---->
-              
-              <!---->
-            </div>
-            <!---->
-          </button>
-          <!---->
-           
-          <!---->
-          <!---->
-          <input
-            aria-hidden="true"
-            disabled=""
-            name="root"
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
-            tabindex="-1"
-            type="checkbox"
-            value="3"
-          />
-          
-          
-          <!---->
-          
-          <!---->
-           
-          <!---->
-          <!---->
-          <label
-            class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
-            data-label-root=""
-            data-slot="label"
-            for="root::3"
             id="bits-c32"
           >
-            qux
-            <!---->
-          </label>
-          
-          
-          <!---->
-        </div>
-        
-        
-        
-        <!---->
-      </div>
-      <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
-    </div>
-    
-    
-    
-    <!---->
-     
-    <!---->
-    <!---->
-    <!---->
-    <button
-      class="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3"
-      data-slot="button"
-      disabled=""
-      type="submit"
-    >
-      <!---->
-      <!---->
-      Submit
-      
-      
-      <!---->
-    </button>
-    
-    
-    
-    <!---->
-    <!---->
-  </form>
-  
-  
-</div>
-`;
-
-exports[`widgets > checkboxes > error 1`] = `
-<div>
-  <!---->
-  <form
-    class="flex flex-col gap-4"
-  >
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <div
-      class="flex gap-1.5 flex-col"
-      data-layout="field"
-    >
-      <!---->
-      <!---->
-       
-      <div
-        class="flex gap-1.5 items-start"
-        data-layout="field-content"
-      >
-        <!---->
-        <!---->
-        <!---->
-        <div
-          class="flex items-center space-x-2"
-        >
-          <!---->
-          <!---->
-          <button
-            aria-checked="false"
-            aria-readonly="false"
-            aria-required="false"
-            class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
-            data-checkbox-root=""
-            data-slot="checkbox"
-            data-state="unchecked"
-            id="root::0"
-            role="checkbox"
-            type="button"
-          >
-            <div
-              class="text-current transition-none"
-              data-slot="checkbox-indicator"
-            >
-              <!---->
-              
-              <!---->
-            </div>
-            <!---->
-          </button>
-          <!---->
-           
-          <!---->
-          <!---->
-          <input
-            aria-hidden="true"
-            name="root"
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
-            tabindex="-1"
-            type="checkbox"
-            value="0"
-          />
-          
-          
-          <!---->
-          
-          <!---->
-           
-          <!---->
-          <!---->
-          <label
-            class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
-            data-label-root=""
-            data-slot="label"
-            for="root::0"
-            id="bits-c18"
-          >
             foo
             <!---->
           </label>
@@ -940,8 +645,10 @@ exports[`widgets > checkboxes > error 1`] = `
             aria-required="false"
             class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
             data-checkbox-root=""
+            data-disabled=""
             data-slot="checkbox"
             data-state="unchecked"
+            disabled=""
             id="root::1"
             role="checkbox"
             type="button"
@@ -962,6 +669,7 @@ exports[`widgets > checkboxes > error 1`] = `
           <!---->
           <input
             aria-hidden="true"
+            disabled=""
             name="root"
             style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
             tabindex="-1"
@@ -981,581 +689,271 @@ exports[`widgets > checkboxes > error 1`] = `
             data-label-root=""
             data-slot="label"
             for="root::1"
-            id="bits-c20"
-          >
-            bar
-            <!---->
-          </label>
-          
-          
-          <!---->
-        </div>
-        <div
-          class="flex items-center space-x-2"
-        >
-          <!---->
-          <!---->
-          <button
-            aria-checked="false"
-            aria-readonly="false"
-            aria-required="false"
-            class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
-            data-checkbox-root=""
-            data-slot="checkbox"
-            data-state="unchecked"
-            id="root::2"
-            role="checkbox"
-            type="button"
-          >
-            <div
-              class="text-current transition-none"
-              data-slot="checkbox-indicator"
-            >
-              <!---->
-              
-              <!---->
-            </div>
-            <!---->
-          </button>
-          <!---->
-           
-          <!---->
-          <!---->
-          <input
-            aria-hidden="true"
-            name="root"
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
-            tabindex="-1"
-            type="checkbox"
-            value="2"
-          />
-          
-          
-          <!---->
-          
-          <!---->
-           
-          <!---->
-          <!---->
-          <label
-            class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
-            data-label-root=""
-            data-slot="label"
-            for="root::2"
-            id="bits-c22"
-          >
-            fuzz
-            <!---->
-          </label>
-          
-          
-          <!---->
-        </div>
-        <div
-          class="flex items-center space-x-2"
-        >
-          <!---->
-          <!---->
-          <button
-            aria-checked="false"
-            aria-readonly="false"
-            aria-required="false"
-            class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
-            data-checkbox-root=""
-            data-slot="checkbox"
-            data-state="unchecked"
-            id="root::3"
-            role="checkbox"
-            type="button"
-          >
-            <div
-              class="text-current transition-none"
-              data-slot="checkbox-indicator"
-            >
-              <!---->
-              
-              <!---->
-            </div>
-            <!---->
-          </button>
-          <!---->
-           
-          <!---->
-          <!---->
-          <input
-            aria-hidden="true"
-            name="root"
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
-            tabindex="-1"
-            type="checkbox"
-            value="3"
-          />
-          
-          
-          <!---->
-          
-          <!---->
-           
-          <!---->
-          <!---->
-          <label
-            class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
-            data-label-root=""
-            data-slot="label"
-            for="root::3"
-            id="bits-c24"
-          >
-            qux
-            <!---->
-          </label>
-          
-          
-          <!---->
-        </div>
-        
-        
-        
-        <!---->
-      </div>
-      <!---->
-       
-      <!---->
-      <ul
-        class="text-destructive list-disc list-inside"
-        id="root::errors"
-        tabindex="-1"
-      >
-        <li>
-          error
-        </li>
-        
-      </ul>
-      
-      <!---->
-       
-      <!---->
-      <!---->
-    </div>
-    
-    
-    
-    <!---->
-     
-    <!---->
-    <!---->
-    <!---->
-    <button
-      class="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3"
-      data-slot="button"
-      type="submit"
-    >
-      <!---->
-      <!---->
-      Submit
-      
-      
-      <!---->
-    </button>
-    
-    
-    
-    <!---->
-    <!---->
-  </form>
-  
-  
-</div>
-`;
-
-exports[`widgets > checkboxes > normal 1`] = `
-<div>
-  <!---->
-  <form
-    class="flex flex-col gap-4"
-  >
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <div
-      class="flex gap-1.5 flex-col"
-      data-layout="field"
-    >
-      <!---->
-      <!---->
-       
-      <div
-        class="flex gap-1.5 items-start"
-        data-layout="field-content"
-      >
-        <!---->
-        <!---->
-        <!---->
-        <div
-          class="flex items-center space-x-2"
-        >
-          <!---->
-          <!---->
-          <button
-            aria-checked="false"
-            aria-readonly="false"
-            aria-required="false"
-            class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
-            data-checkbox-root=""
-            data-slot="checkbox"
-            data-state="unchecked"
-            id="root::0"
-            role="checkbox"
-            type="button"
-          >
-            <div
-              class="text-current transition-none"
-              data-slot="checkbox-indicator"
-            >
-              <!---->
-              
-              <!---->
-            </div>
-            <!---->
-          </button>
-          <!---->
-           
-          <!---->
-          <!---->
-          <input
-            aria-hidden="true"
-            name="root"
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
-            tabindex="-1"
-            type="checkbox"
-            value="0"
-          />
-          
-          
-          <!---->
-          
-          <!---->
-           
-          <!---->
-          <!---->
-          <label
-            class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
-            data-label-root=""
-            data-slot="label"
-            for="root::0"
-            id="bits-c10"
-          >
-            foo
-            <!---->
-          </label>
-          
-          
-          <!---->
-        </div>
-        <div
-          class="flex items-center space-x-2"
-        >
-          <!---->
-          <!---->
-          <button
-            aria-checked="false"
-            aria-readonly="false"
-            aria-required="false"
-            class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
-            data-checkbox-root=""
-            data-slot="checkbox"
-            data-state="unchecked"
-            id="root::1"
-            role="checkbox"
-            type="button"
-          >
-            <div
-              class="text-current transition-none"
-              data-slot="checkbox-indicator"
-            >
-              <!---->
-              
-              <!---->
-            </div>
-            <!---->
-          </button>
-          <!---->
-           
-          <!---->
-          <!---->
-          <input
-            aria-hidden="true"
-            name="root"
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
-            tabindex="-1"
-            type="checkbox"
-            value="1"
-          />
-          
-          
-          <!---->
-          
-          <!---->
-           
-          <!---->
-          <!---->
-          <label
-            class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
-            data-label-root=""
-            data-slot="label"
-            for="root::1"
-            id="bits-c12"
-          >
-            bar
-            <!---->
-          </label>
-          
-          
-          <!---->
-        </div>
-        <div
-          class="flex items-center space-x-2"
-        >
-          <!---->
-          <!---->
-          <button
-            aria-checked="false"
-            aria-readonly="false"
-            aria-required="false"
-            class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
-            data-checkbox-root=""
-            data-slot="checkbox"
-            data-state="unchecked"
-            id="root::2"
-            role="checkbox"
-            type="button"
-          >
-            <div
-              class="text-current transition-none"
-              data-slot="checkbox-indicator"
-            >
-              <!---->
-              
-              <!---->
-            </div>
-            <!---->
-          </button>
-          <!---->
-           
-          <!---->
-          <!---->
-          <input
-            aria-hidden="true"
-            name="root"
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
-            tabindex="-1"
-            type="checkbox"
-            value="2"
-          />
-          
-          
-          <!---->
-          
-          <!---->
-           
-          <!---->
-          <!---->
-          <label
-            class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
-            data-label-root=""
-            data-slot="label"
-            for="root::2"
-            id="bits-c14"
-          >
-            fuzz
-            <!---->
-          </label>
-          
-          
-          <!---->
-        </div>
-        <div
-          class="flex items-center space-x-2"
-        >
-          <!---->
-          <!---->
-          <button
-            aria-checked="false"
-            aria-readonly="false"
-            aria-required="false"
-            class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
-            data-checkbox-root=""
-            data-slot="checkbox"
-            data-state="unchecked"
-            id="root::3"
-            role="checkbox"
-            type="button"
-          >
-            <div
-              class="text-current transition-none"
-              data-slot="checkbox-indicator"
-            >
-              <!---->
-              
-              <!---->
-            </div>
-            <!---->
-          </button>
-          <!---->
-           
-          <!---->
-          <!---->
-          <input
-            aria-hidden="true"
-            name="root"
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
-            tabindex="-1"
-            type="checkbox"
-            value="3"
-          />
-          
-          
-          <!---->
-          
-          <!---->
-           
-          <!---->
-          <!---->
-          <label
-            class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
-            data-label-root=""
-            data-slot="label"
-            for="root::3"
-            id="bits-c16"
-          >
-            qux
-            <!---->
-          </label>
-          
-          
-          <!---->
-        </div>
-        
-        
-        
-        <!---->
-      </div>
-      <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
-    </div>
-    
-    
-    
-    <!---->
-     
-    <!---->
-    <!---->
-    <!---->
-    <button
-      class="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3"
-      data-slot="button"
-      type="submit"
-    >
-      <!---->
-      <!---->
-      Submit
-      
-      
-      <!---->
-    </button>
-    
-    
-    
-    <!---->
-    <!---->
-  </form>
-  
-  
-</div>
-`;
-
-exports[`widgets > checkboxes > readonly 1`] = `
-<div>
-  <!---->
-  <form
-    class="flex flex-col gap-4"
-  >
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <div
-      class="flex gap-1.5 flex-col"
-      data-layout="field"
-    >
-      <!---->
-      <!---->
-       
-      <div
-        class="flex gap-1.5 items-start"
-        data-layout="field-content"
-      >
-        <!---->
-        <!---->
-        <!---->
-        <div
-          class="flex items-center space-x-2"
-        >
-          <!---->
-          <!---->
-          <button
-            aria-checked="false"
-            aria-readonly="false"
-            aria-required="false"
-            class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
-            data-checkbox-root=""
-            data-slot="checkbox"
-            data-state="unchecked"
-            id="root::0"
-            role="checkbox"
-            type="button"
-          >
-            <div
-              class="text-current transition-none"
-              data-slot="checkbox-indicator"
-            >
-              <!---->
-              
-              <!---->
-            </div>
-            <!---->
-          </button>
-          <!---->
-           
-          <!---->
-          <!---->
-          <input
-            aria-hidden="true"
-            name="root"
-            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
-            tabindex="-1"
-            type="checkbox"
-            value="0"
-          />
-          
-          
-          <!---->
-          
-          <!---->
-           
-          <!---->
-          <!---->
-          <label
-            class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
-            data-label-root=""
-            data-slot="label"
-            for="root::0"
             id="bits-c34"
           >
+            bar
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-2"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-readonly="false"
+            aria-required="false"
+            class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+            data-checkbox-root=""
+            data-disabled=""
+            data-slot="checkbox"
+            data-state="unchecked"
+            disabled=""
+            id="root::2"
+            role="checkbox"
+            type="button"
+          >
+            <div
+              class="text-current transition-none"
+              data-slot="checkbox-indicator"
+            >
+              <!---->
+              
+              <!---->
+            </div>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            disabled=""
+            name="root"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="2"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
+            data-label-root=""
+            data-slot="label"
+            for="root::2"
+            id="bits-c36"
+          >
+            fuzz
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-2"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-readonly="false"
+            aria-required="false"
+            class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+            data-checkbox-root=""
+            data-disabled=""
+            data-slot="checkbox"
+            data-state="unchecked"
+            disabled=""
+            id="root::3"
+            role="checkbox"
+            type="button"
+          >
+            <div
+              class="text-current transition-none"
+              data-slot="checkbox-indicator"
+            >
+              <!---->
+              
+              <!---->
+            </div>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            disabled=""
+            name="root"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="3"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
+            data-label-root=""
+            data-slot="label"
+            for="root::3"
+            id="bits-c38"
+          >
+            qux
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3"
+      data-slot="button"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+</div>
+`;
+
+exports[`widgets > checkboxes > snapshots > error 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-1.5 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-1.5 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center space-x-2"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-readonly="false"
+            aria-required="false"
+            class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+            data-checkbox-root=""
+            data-slot="checkbox"
+            data-state="unchecked"
+            id="root::0"
+            role="checkbox"
+            type="button"
+          >
+            <div
+              class="text-current transition-none"
+              data-slot="checkbox-indicator"
+            >
+              <!---->
+              
+              <!---->
+            </div>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="0"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
+            data-label-root=""
+            data-slot="label"
+            for="root::0"
+            id="bits-c24"
+          >
             foo
             <!---->
           </label>
@@ -1615,7 +1013,7 @@ exports[`widgets > checkboxes > readonly 1`] = `
             data-label-root=""
             data-slot="label"
             for="root::1"
-            id="bits-c36"
+            id="bits-c26"
           >
             bar
             <!---->
@@ -1676,7 +1074,7 @@ exports[`widgets > checkboxes > readonly 1`] = `
             data-label-root=""
             data-slot="label"
             for="root::2"
-            id="bits-c38"
+            id="bits-c28"
           >
             fuzz
             <!---->
@@ -1737,7 +1135,336 @@ exports[`widgets > checkboxes > readonly 1`] = `
             data-label-root=""
             data-slot="label"
             for="root::3"
-            id="bits-c40"
+            id="bits-c30"
+          >
+            qux
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-destructive list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3"
+      data-slot="button"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+</div>
+`;
+
+exports[`widgets > checkboxes > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-1.5 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-1.5 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center space-x-2"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-readonly="false"
+            aria-required="false"
+            class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+            data-checkbox-root=""
+            data-slot="checkbox"
+            data-state="unchecked"
+            id="root::0"
+            role="checkbox"
+            type="button"
+          >
+            <div
+              class="text-current transition-none"
+              data-slot="checkbox-indicator"
+            >
+              <!---->
+              
+              <!---->
+            </div>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="0"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
+            data-label-root=""
+            data-slot="label"
+            for="root::0"
+            id="bits-c16"
+          >
+            foo
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-2"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-readonly="false"
+            aria-required="false"
+            class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+            data-checkbox-root=""
+            data-slot="checkbox"
+            data-state="unchecked"
+            id="root::1"
+            role="checkbox"
+            type="button"
+          >
+            <div
+              class="text-current transition-none"
+              data-slot="checkbox-indicator"
+            >
+              <!---->
+              
+              <!---->
+            </div>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="1"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
+            data-label-root=""
+            data-slot="label"
+            for="root::1"
+            id="bits-c18"
+          >
+            bar
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-2"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-readonly="false"
+            aria-required="false"
+            class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+            data-checkbox-root=""
+            data-slot="checkbox"
+            data-state="unchecked"
+            id="root::2"
+            role="checkbox"
+            type="button"
+          >
+            <div
+              class="text-current transition-none"
+              data-slot="checkbox-indicator"
+            >
+              <!---->
+              
+              <!---->
+            </div>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="2"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
+            data-label-root=""
+            data-slot="label"
+            for="root::2"
+            id="bits-c20"
+          >
+            fuzz
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-2"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-readonly="false"
+            aria-required="false"
+            class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+            data-checkbox-root=""
+            data-slot="checkbox"
+            data-state="unchecked"
+            id="root::3"
+            role="checkbox"
+            type="button"
+          >
+            <div
+              class="text-current transition-none"
+              data-slot="checkbox-indicator"
+            >
+              <!---->
+              
+              <!---->
+            </div>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="3"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
+            data-label-root=""
+            data-slot="label"
+            for="root::3"
+            id="bits-c22"
           >
             qux
             <!---->
@@ -1786,11 +1513,334 @@ exports[`widgets > checkboxes > readonly 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > combobox > disabled 1`] = `
+exports[`widgets > checkboxes > snapshots > readonly 1`] = `
 <div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-1.5 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-1.5 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <div
+          class="flex items-center space-x-2"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-readonly="false"
+            aria-required="false"
+            class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+            data-checkbox-root=""
+            data-slot="checkbox"
+            data-state="unchecked"
+            id="root::0"
+            role="checkbox"
+            type="button"
+          >
+            <div
+              class="text-current transition-none"
+              data-slot="checkbox-indicator"
+            >
+              <!---->
+              
+              <!---->
+            </div>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="0"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
+            data-label-root=""
+            data-slot="label"
+            for="root::0"
+            id="bits-c40"
+          >
+            foo
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-2"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-readonly="false"
+            aria-required="false"
+            class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+            data-checkbox-root=""
+            data-slot="checkbox"
+            data-state="unchecked"
+            id="root::1"
+            role="checkbox"
+            type="button"
+          >
+            <div
+              class="text-current transition-none"
+              data-slot="checkbox-indicator"
+            >
+              <!---->
+              
+              <!---->
+            </div>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="1"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
+            data-label-root=""
+            data-slot="label"
+            for="root::1"
+            id="bits-c42"
+          >
+            bar
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-2"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-readonly="false"
+            aria-required="false"
+            class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+            data-checkbox-root=""
+            data-slot="checkbox"
+            data-state="unchecked"
+            id="root::2"
+            role="checkbox"
+            type="button"
+          >
+            <div
+              class="text-current transition-none"
+              data-slot="checkbox-indicator"
+            >
+              <!---->
+              
+              <!---->
+            </div>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="2"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
+            data-label-root=""
+            data-slot="label"
+            for="root::2"
+            id="bits-c44"
+          >
+            fuzz
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        <div
+          class="flex items-center space-x-2"
+        >
+          <!---->
+          <!---->
+          <button
+            aria-checked="false"
+            aria-readonly="false"
+            aria-required="false"
+            class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+            data-checkbox-root=""
+            data-slot="checkbox"
+            data-state="unchecked"
+            id="root::3"
+            role="checkbox"
+            type="button"
+          >
+            <div
+              class="text-current transition-none"
+              data-slot="checkbox-indicator"
+            >
+              <!---->
+              
+              <!---->
+            </div>
+            <!---->
+          </button>
+          <!---->
+           
+          <!---->
+          <!---->
+          <input
+            aria-hidden="true"
+            name="root"
+            style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+            tabindex="-1"
+            type="checkbox"
+            value="3"
+          />
+          
+          
+          <!---->
+          
+          <!---->
+           
+          <!---->
+          <!---->
+          <label
+            class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
+            data-label-root=""
+            data-slot="label"
+            for="root::3"
+            id="bits-c46"
+          >
+            qux
+            <!---->
+          </label>
+          
+          
+          <!---->
+        </div>
+        
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3"
+      data-slot="button"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+</div>
+`;
+
+exports[`widgets > combobox > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -1830,10 +1880,13 @@ exports[`widgets > combobox > disabled 1`] = `
           data-slot="popover-trigger"
           data-state="closed"
           disabled=""
-          id="bits-c53"
+          id="bits-c122"
           role="combobox"
           type="button"
         >
+          <span>
+            
+          </span>
            
           <svg
             class="lucide-icon lucide lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50"
@@ -1925,11 +1978,31 @@ exports[`widgets > combobox > disabled 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div>
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
 </div>
 `;
 
-exports[`widgets > combobox > error 1`] = `
+exports[`widgets > combobox > snapshots > error 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -1968,10 +2041,13 @@ exports[`widgets > combobox > error 1`] = `
           data-popover-trigger=""
           data-slot="popover-trigger"
           data-state="closed"
-          id="bits-c51"
+          id="bits-c119"
           role="combobox"
           type="button"
         >
+          <span>
+            
+          </span>
            
           <svg
             class="lucide-icon lucide lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50"
@@ -2074,11 +2150,31 @@ exports[`widgets > combobox > error 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div>
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
 </div>
 `;
 
-exports[`widgets > combobox > normal 1`] = `
+exports[`widgets > combobox > snapshots > normal 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -2117,10 +2213,13 @@ exports[`widgets > combobox > normal 1`] = `
           data-popover-trigger=""
           data-slot="popover-trigger"
           data-state="closed"
-          id="bits-c49"
+          id="bits-c116"
           role="combobox"
           type="button"
         >
+          <span>
+            
+          </span>
            
           <svg
             class="lucide-icon lucide lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50"
@@ -2211,11 +2310,31 @@ exports[`widgets > combobox > normal 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div>
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
 </div>
 `;
 
-exports[`widgets > combobox > readonly 1`] = `
+exports[`widgets > combobox > snapshots > readonly 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -2254,10 +2373,13 @@ exports[`widgets > combobox > readonly 1`] = `
           data-popover-trigger=""
           data-slot="popover-trigger"
           data-state="closed"
-          id="bits-c55"
+          id="bits-c125"
           role="combobox"
           type="button"
         >
+          <span>
+            
+          </span>
            
           <svg
             class="lucide-icon lucide lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50"
@@ -2348,11 +2470,31 @@ exports[`widgets > combobox > readonly 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div>
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
 </div>
 `;
 
-exports[`widgets > datePicker > disabled 1`] = `
+exports[`widgets > datePicker > snapshots > disabled 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -2391,7 +2533,7 @@ exports[`widgets > datePicker > disabled 1`] = `
           data-popover-trigger=""
           data-slot="popover-trigger"
           data-state="closed"
-          id="bits-c61"
+          id="bits-c173"
           type="button"
         >
           
@@ -2453,11 +2595,31 @@ exports[`widgets > datePicker > disabled 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div>
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
 </div>
 `;
 
-exports[`widgets > datePicker > error 1`] = `
+exports[`widgets > datePicker > snapshots > error 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -2496,7 +2658,7 @@ exports[`widgets > datePicker > error 1`] = `
           data-popover-trigger=""
           data-slot="popover-trigger"
           data-state="closed"
-          id="bits-c59"
+          id="bits-c170"
           type="button"
         >
           
@@ -2569,11 +2731,31 @@ exports[`widgets > datePicker > error 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div>
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
 </div>
 `;
 
-exports[`widgets > datePicker > normal 1`] = `
+exports[`widgets > datePicker > snapshots > normal 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -2612,7 +2794,7 @@ exports[`widgets > datePicker > normal 1`] = `
           data-popover-trigger=""
           data-slot="popover-trigger"
           data-state="closed"
-          id="bits-c57"
+          id="bits-c167"
           type="button"
         >
           
@@ -2673,11 +2855,31 @@ exports[`widgets > datePicker > normal 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div>
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
 </div>
 `;
 
-exports[`widgets > datePicker > readonly 1`] = `
+exports[`widgets > datePicker > snapshots > readonly 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -2716,7 +2918,7 @@ exports[`widgets > datePicker > readonly 1`] = `
           data-popover-trigger=""
           data-slot="popover-trigger"
           data-state="closed"
-          id="bits-c63"
+          id="bits-c176"
           type="button"
         >
           
@@ -2777,11 +2979,31 @@ exports[`widgets > datePicker > readonly 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div>
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
 </div>
 `;
 
-exports[`widgets > file > disabled 1`] = `
+exports[`widgets > file > snapshots > disabled 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -2858,11 +3080,17 @@ exports[`widgets > file > disabled 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > file > error 1`] = `
+exports[`widgets > file > snapshots > error 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -2949,11 +3177,17 @@ exports[`widgets > file > error 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > file > normal 1`] = `
+exports[`widgets > file > snapshots > normal 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -3028,11 +3262,17 @@ exports[`widgets > file > normal 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > file > readonly 1`] = `
+exports[`widgets > file > snapshots > readonly 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -3108,11 +3348,17 @@ exports[`widgets > file > readonly 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > multiFile > disabled 1`] = `
+exports[`widgets > multiFile > snapshots > disabled 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -3190,11 +3436,17 @@ exports[`widgets > multiFile > disabled 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > multiFile > error 1`] = `
+exports[`widgets > multiFile > snapshots > error 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -3282,11 +3534,17 @@ exports[`widgets > multiFile > error 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > multiFile > normal 1`] = `
+exports[`widgets > multiFile > snapshots > normal 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -3362,11 +3620,17 @@ exports[`widgets > multiFile > normal 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > multiFile > readonly 1`] = `
+exports[`widgets > multiFile > snapshots > readonly 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -3443,11 +3707,17 @@ exports[`widgets > multiFile > readonly 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > multiSelect > disabled 1`] = `
+exports[`widgets > multiSelect > snapshots > disabled 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -3587,11 +3857,31 @@ exports[`widgets > multiSelect > disabled 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div>
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
 </div>
 `;
 
-exports[`widgets > multiSelect > error 1`] = `
+exports[`widgets > multiSelect > snapshots > error 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -3740,11 +4030,31 @@ exports[`widgets > multiSelect > error 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div>
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
 </div>
 `;
 
-exports[`widgets > multiSelect > normal 1`] = `
+exports[`widgets > multiSelect > snapshots > normal 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -3881,11 +4191,31 @@ exports[`widgets > multiSelect > normal 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div>
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
 </div>
 `;
 
-exports[`widgets > multiSelect > readonly 1`] = `
+exports[`widgets > multiSelect > snapshots > readonly 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -4022,11 +4352,31 @@ exports[`widgets > multiSelect > readonly 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div>
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
 </div>
 `;
 
-exports[`widgets > number > disabled 1`] = `
+exports[`widgets > number > snapshots > disabled 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -4106,11 +4456,17 @@ exports[`widgets > number > disabled 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > number > error 1`] = `
+exports[`widgets > number > snapshots > error 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -4200,11 +4556,17 @@ exports[`widgets > number > error 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > number > normal 1`] = `
+exports[`widgets > number > snapshots > normal 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -4282,11 +4644,17 @@ exports[`widgets > number > normal 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > number > readonly 1`] = `
+exports[`widgets > number > snapshots > readonly 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -4365,11 +4733,17 @@ exports[`widgets > number > readonly 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > radio > disabled 1`] = `
+exports[`widgets > radio > snapshots > disabled 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -4402,7 +4776,7 @@ exports[`widgets > radio > disabled 1`] = `
           data-orientation="vertical"
           data-radio-group-root=""
           data-slot="radio-group"
-          id="bits-c111"
+          id="bits-c811"
           role="radiogroup"
         >
           <!---->
@@ -4445,7 +4819,7 @@ exports[`widgets > radio > disabled 1`] = `
               data-label-root=""
               data-slot="label"
               for="root::0"
-              id="bits-c113"
+              id="bits-c813"
             >
               foo
               <!---->
@@ -4493,7 +4867,7 @@ exports[`widgets > radio > disabled 1`] = `
               data-label-root=""
               data-slot="label"
               for="root::1"
-              id="bits-c115"
+              id="bits-c815"
             >
               bar
               <!---->
@@ -4541,7 +4915,7 @@ exports[`widgets > radio > disabled 1`] = `
               data-label-root=""
               data-slot="label"
               for="root::2"
-              id="bits-c117"
+              id="bits-c817"
             >
               fuzz
               <!---->
@@ -4589,7 +4963,7 @@ exports[`widgets > radio > disabled 1`] = `
               data-label-root=""
               data-slot="label"
               for="root::3"
-              id="bits-c119"
+              id="bits-c819"
             >
               qux
               <!---->
@@ -4648,11 +5022,17 @@ exports[`widgets > radio > disabled 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > radio > error 1`] = `
+exports[`widgets > radio > snapshots > error 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -4684,7 +5064,7 @@ exports[`widgets > radio > error 1`] = `
           data-orientation="vertical"
           data-radio-group-root=""
           data-slot="radio-group"
-          id="bits-c102"
+          id="bits-c802"
           role="radiogroup"
         >
           <!---->
@@ -4725,7 +5105,7 @@ exports[`widgets > radio > error 1`] = `
               data-label-root=""
               data-slot="label"
               for="root::0"
-              id="bits-c104"
+              id="bits-c804"
             >
               foo
               <!---->
@@ -4771,7 +5151,7 @@ exports[`widgets > radio > error 1`] = `
               data-label-root=""
               data-slot="label"
               for="root::1"
-              id="bits-c106"
+              id="bits-c806"
             >
               bar
               <!---->
@@ -4817,7 +5197,7 @@ exports[`widgets > radio > error 1`] = `
               data-label-root=""
               data-slot="label"
               for="root::2"
-              id="bits-c108"
+              id="bits-c808"
             >
               fuzz
               <!---->
@@ -4863,7 +5243,7 @@ exports[`widgets > radio > error 1`] = `
               data-label-root=""
               data-slot="label"
               for="root::3"
-              id="bits-c110"
+              id="bits-c810"
             >
               qux
               <!---->
@@ -4933,11 +5313,17 @@ exports[`widgets > radio > error 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > radio > normal 1`] = `
+exports[`widgets > radio > snapshots > normal 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -4969,7 +5355,7 @@ exports[`widgets > radio > normal 1`] = `
           data-orientation="vertical"
           data-radio-group-root=""
           data-slot="radio-group"
-          id="bits-c93"
+          id="bits-c793"
           role="radiogroup"
         >
           <!---->
@@ -5010,7 +5396,7 @@ exports[`widgets > radio > normal 1`] = `
               data-label-root=""
               data-slot="label"
               for="root::0"
-              id="bits-c95"
+              id="bits-c795"
             >
               foo
               <!---->
@@ -5056,7 +5442,7 @@ exports[`widgets > radio > normal 1`] = `
               data-label-root=""
               data-slot="label"
               for="root::1"
-              id="bits-c97"
+              id="bits-c797"
             >
               bar
               <!---->
@@ -5102,7 +5488,7 @@ exports[`widgets > radio > normal 1`] = `
               data-label-root=""
               data-slot="label"
               for="root::2"
-              id="bits-c99"
+              id="bits-c799"
             >
               fuzz
               <!---->
@@ -5148,7 +5534,7 @@ exports[`widgets > radio > normal 1`] = `
               data-label-root=""
               data-slot="label"
               for="root::3"
-              id="bits-c101"
+              id="bits-c801"
             >
               qux
               <!---->
@@ -5206,11 +5592,17 @@ exports[`widgets > radio > normal 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > radio > readonly 1`] = `
+exports[`widgets > radio > snapshots > readonly 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -5242,7 +5634,7 @@ exports[`widgets > radio > readonly 1`] = `
           data-orientation="vertical"
           data-radio-group-root=""
           data-slot="radio-group"
-          id="bits-c120"
+          id="bits-c820"
           role="radiogroup"
         >
           <!---->
@@ -5283,7 +5675,7 @@ exports[`widgets > radio > readonly 1`] = `
               data-label-root=""
               data-slot="label"
               for="root::0"
-              id="bits-c122"
+              id="bits-c822"
             >
               foo
               <!---->
@@ -5329,7 +5721,7 @@ exports[`widgets > radio > readonly 1`] = `
               data-label-root=""
               data-slot="label"
               for="root::1"
-              id="bits-c124"
+              id="bits-c824"
             >
               bar
               <!---->
@@ -5375,7 +5767,7 @@ exports[`widgets > radio > readonly 1`] = `
               data-label-root=""
               data-slot="label"
               for="root::2"
-              id="bits-c126"
+              id="bits-c826"
             >
               fuzz
               <!---->
@@ -5421,7 +5813,7 @@ exports[`widgets > radio > readonly 1`] = `
               data-label-root=""
               data-slot="label"
               for="root::3"
-              id="bits-c128"
+              id="bits-c828"
             >
               qux
               <!---->
@@ -5479,11 +5871,17 @@ exports[`widgets > radio > readonly 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > radioButtons > disabled 1`] = `
+exports[`widgets > radioButtons > snapshots > disabled 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -5536,7 +5934,7 @@ exports[`widgets > radioButtons > disabled 1`] = `
             data-value="0"
             data-variant="default"
             disabled=""
-            id="bits-c84"
+            id="bits-c769"
             role="radio"
             tabindex="-1"
             type="button"
@@ -5562,7 +5960,7 @@ exports[`widgets > radioButtons > disabled 1`] = `
             data-value="1"
             data-variant="default"
             disabled=""
-            id="bits-c85"
+            id="bits-c770"
             role="radio"
             tabindex="-1"
             type="button"
@@ -5588,7 +5986,7 @@ exports[`widgets > radioButtons > disabled 1`] = `
             data-value="2"
             data-variant="default"
             disabled=""
-            id="bits-c86"
+            id="bits-c771"
             role="radio"
             tabindex="-1"
             type="button"
@@ -5614,7 +6012,7 @@ exports[`widgets > radioButtons > disabled 1`] = `
             data-value="3"
             data-variant="default"
             disabled=""
-            id="bits-c87"
+            id="bits-c772"
             role="radio"
             tabindex="-1"
             type="button"
@@ -5671,11 +6069,17 @@ exports[`widgets > radioButtons > disabled 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > radioButtons > error 1`] = `
+exports[`widgets > radioButtons > snapshots > error 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -5725,7 +6129,7 @@ exports[`widgets > radioButtons > error 1`] = `
             data-toggle-group-item=""
             data-value="0"
             data-variant="default"
-            id="bits-c79"
+            id="bits-c764"
             role="radio"
             tabindex="0"
             type="button"
@@ -5749,7 +6153,7 @@ exports[`widgets > radioButtons > error 1`] = `
             data-toggle-group-item=""
             data-value="1"
             data-variant="default"
-            id="bits-c80"
+            id="bits-c765"
             role="radio"
             tabindex="-1"
             type="button"
@@ -5773,7 +6177,7 @@ exports[`widgets > radioButtons > error 1`] = `
             data-toggle-group-item=""
             data-value="2"
             data-variant="default"
-            id="bits-c81"
+            id="bits-c766"
             role="radio"
             tabindex="-1"
             type="button"
@@ -5797,7 +6201,7 @@ exports[`widgets > radioButtons > error 1`] = `
             data-toggle-group-item=""
             data-value="3"
             data-variant="default"
-            id="bits-c82"
+            id="bits-c767"
             role="radio"
             tabindex="-1"
             type="button"
@@ -5865,11 +6269,17 @@ exports[`widgets > radioButtons > error 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > radioButtons > normal 1`] = `
+exports[`widgets > radioButtons > snapshots > normal 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -5919,7 +6329,7 @@ exports[`widgets > radioButtons > normal 1`] = `
             data-toggle-group-item=""
             data-value="0"
             data-variant="default"
-            id="bits-c74"
+            id="bits-c759"
             role="radio"
             tabindex="0"
             type="button"
@@ -5943,7 +6353,7 @@ exports[`widgets > radioButtons > normal 1`] = `
             data-toggle-group-item=""
             data-value="1"
             data-variant="default"
-            id="bits-c75"
+            id="bits-c760"
             role="radio"
             tabindex="-1"
             type="button"
@@ -5967,7 +6377,7 @@ exports[`widgets > radioButtons > normal 1`] = `
             data-toggle-group-item=""
             data-value="2"
             data-variant="default"
-            id="bits-c76"
+            id="bits-c761"
             role="radio"
             tabindex="-1"
             type="button"
@@ -5991,7 +6401,7 @@ exports[`widgets > radioButtons > normal 1`] = `
             data-toggle-group-item=""
             data-value="3"
             data-variant="default"
-            id="bits-c77"
+            id="bits-c762"
             role="radio"
             tabindex="-1"
             type="button"
@@ -6047,11 +6457,17 @@ exports[`widgets > radioButtons > normal 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > radioButtons > readonly 1`] = `
+exports[`widgets > radioButtons > snapshots > readonly 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -6102,7 +6518,7 @@ exports[`widgets > radioButtons > readonly 1`] = `
             data-toggle-group-item=""
             data-value="0"
             data-variant="default"
-            id="bits-c89"
+            id="bits-c774"
             role="radio"
             tabindex="0"
             type="button"
@@ -6126,7 +6542,7 @@ exports[`widgets > radioButtons > readonly 1`] = `
             data-toggle-group-item=""
             data-value="1"
             data-variant="default"
-            id="bits-c90"
+            id="bits-c775"
             role="radio"
             tabindex="-1"
             type="button"
@@ -6150,7 +6566,7 @@ exports[`widgets > radioButtons > readonly 1`] = `
             data-toggle-group-item=""
             data-value="2"
             data-variant="default"
-            id="bits-c91"
+            id="bits-c776"
             role="radio"
             tabindex="-1"
             type="button"
@@ -6174,7 +6590,7 @@ exports[`widgets > radioButtons > readonly 1`] = `
             data-toggle-group-item=""
             data-value="3"
             data-variant="default"
-            id="bits-c92"
+            id="bits-c777"
             role="radio"
             tabindex="-1"
             type="button"
@@ -6230,11 +6646,17 @@ exports[`widgets > radioButtons > readonly 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > range > disabled 1`] = `
+exports[`widgets > range > snapshots > disabled 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -6280,7 +6702,7 @@ exports[`widgets > range > disabled 1`] = `
               data-orientation="horizontal"
               data-slider-range=""
               data-slot="slider-range"
-              id="bits-c136"
+              id="bits-c863"
               style="position: absolute; left: 0%; right: 98.0676%;"
             >
               <!---->
@@ -6303,7 +6725,7 @@ exports[`widgets > range > disabled 1`] = `
             data-slider-thumb=""
             data-slot="slider-thumb"
             data-value="0"
-            id="bits-c137"
+            id="bits-c864"
             role="slider"
             style="position: absolute; left: 1.93237%; translate: -50%;"
             tabindex="-1"
@@ -6358,11 +6780,17 @@ exports[`widgets > range > disabled 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > range > error 1`] = `
+exports[`widgets > range > snapshots > error 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -6406,7 +6834,7 @@ exports[`widgets > range > error 1`] = `
               data-orientation="horizontal"
               data-slider-range=""
               data-slot="slider-range"
-              id="bits-c133"
+              id="bits-c860"
               style="position: absolute; left: 0%; right: 98.0676%;"
             >
               <!---->
@@ -6428,7 +6856,7 @@ exports[`widgets > range > error 1`] = `
             data-slider-thumb=""
             data-slot="slider-thumb"
             data-value="0"
-            id="bits-c134"
+            id="bits-c861"
             role="slider"
             style="position: absolute; left: 1.93237%; translate: -50%;"
             tabindex="0"
@@ -6494,11 +6922,17 @@ exports[`widgets > range > error 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > range > normal 1`] = `
+exports[`widgets > range > snapshots > normal 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -6542,7 +6976,7 @@ exports[`widgets > range > normal 1`] = `
               data-orientation="horizontal"
               data-slider-range=""
               data-slot="slider-range"
-              id="bits-c130"
+              id="bits-c857"
               style="position: absolute; left: 0%; right: 98.0676%;"
             >
               <!---->
@@ -6564,7 +6998,7 @@ exports[`widgets > range > normal 1`] = `
             data-slider-thumb=""
             data-slot="slider-thumb"
             data-value="0"
-            id="bits-c131"
+            id="bits-c858"
             role="slider"
             style="position: absolute; left: 1.93237%; translate: -50%;"
             tabindex="0"
@@ -6618,11 +7052,17 @@ exports[`widgets > range > normal 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > range > readonly 1`] = `
+exports[`widgets > range > snapshots > readonly 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -6666,7 +7106,7 @@ exports[`widgets > range > readonly 1`] = `
               data-orientation="horizontal"
               data-slider-range=""
               data-slot="slider-range"
-              id="bits-c139"
+              id="bits-c866"
               style="position: absolute; left: 0%; right: 98.0676%;"
             >
               <!---->
@@ -6688,7 +7128,7 @@ exports[`widgets > range > readonly 1`] = `
             data-slider-thumb=""
             data-slot="slider-thumb"
             data-value="0"
-            id="bits-c140"
+            id="bits-c867"
             role="slider"
             style="position: absolute; left: 1.93237%; translate: -50%;"
             tabindex="0"
@@ -6742,11 +7182,17 @@ exports[`widgets > range > readonly 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > select > disabled 1`] = `
+exports[`widgets > select > snapshots > disabled 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -6883,11 +7329,31 @@ exports[`widgets > select > disabled 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div>
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
 </div>
 `;
 
-exports[`widgets > select > error 1`] = `
+exports[`widgets > select > snapshots > error 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -7033,11 +7499,31 @@ exports[`widgets > select > error 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div>
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
 </div>
 `;
 
-exports[`widgets > select > normal 1`] = `
+exports[`widgets > select > snapshots > normal 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -7171,11 +7657,31 @@ exports[`widgets > select > normal 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div>
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
 </div>
 `;
 
-exports[`widgets > select > readonly 1`] = `
+exports[`widgets > select > snapshots > readonly 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -7309,11 +7815,31 @@ exports[`widgets > select > readonly 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div>
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
 </div>
 `;
 
-exports[`widgets > switch > disabled 1`] = `
+exports[`widgets > switch > snapshots > disabled 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -7359,7 +7885,7 @@ exports[`widgets > switch > disabled 1`] = `
             data-slot="switch-thumb"
             data-state="unchecked"
             data-switch-thumb=""
-            id="bits-c146"
+            id="bits-c881"
           >
             <!---->
           </span>
@@ -7384,432 +7910,21 @@ exports[`widgets > switch > disabled 1`] = `
         
         <!---->
         
-        
-        
-        
         <!---->
-      </div>
-      <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
-    </div>
-    
-    
-    
-    <!---->
-     
-    <!---->
-    <!---->
-    <!---->
-    <button
-      class="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3"
-      data-slot="button"
-      disabled=""
-      type="submit"
-    >
-      <!---->
-      <!---->
-      Submit
-      
-      
-      <!---->
-    </button>
-    
-    
-    
-    <!---->
-    <!---->
-  </form>
-  
-  
-</div>
-`;
-
-exports[`widgets > switch > error 1`] = `
-<div>
-  <!---->
-  <form
-    class="flex flex-col gap-4"
-  >
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <div
-      class="flex gap-1.5 flex-col"
-      data-layout="field"
-    >
-      <!---->
-      <!---->
-       
-      <div
-        class="flex gap-1.5 items-start"
-        data-layout="field-content"
-      >
+         
         <!---->
         <!---->
-        <!---->
-        <!---->
-        <!---->
-        <button
-          aria-checked="false"
-          aria-required="false"
-          class="data-[state=checked]:bg-primary data-[state=unchecked]:bg-input focus-visible:border-ring focus-visible:ring-ring/50 dark:data-[state=unchecked]:bg-input/80 shadow-xs peer inline-flex h-[1.15rem] w-8 shrink-0 items-center rounded-full border border-transparent outline-none transition-all focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
-          data-slot="switch"
-          data-state="unchecked"
-          data-switch-root=""
-          id="root"
-          role="switch"
-          type="button"
+        <label
+          class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
+          data-label-root=""
+          data-slot="label"
+          for="root"
+          id="bits-c882"
         >
+          switch
           <!---->
-          <!---->
-          <span
-            class="bg-background dark:data-[state=unchecked]:bg-foreground dark:data-[state=checked]:bg-primary-foreground pointer-events-none block size-4 rounded-full ring-0 transition-transform data-[state=checked]:translate-x-[calc(100%-2px)] data-[state=unchecked]:translate-x-0"
-            data-slot="switch-thumb"
-            data-state="unchecked"
-            data-switch-thumb=""
-            id="bits-c144"
-          >
-            <!---->
-          </span>
-          
-          
-          <!---->
-        </button>
-        <!---->
-         
-        <!---->
-        <!---->
-        <input
-          aria-hidden="true"
-          name="root"
-          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
-          tabindex="-1"
-          type="checkbox"
-          value="on"
-        />
+        </label>
         
-        
-        <!---->
-        
-        
-        
-        
-        <!---->
-      </div>
-      <!---->
-       
-      <!---->
-      <ul
-        class="text-destructive list-disc list-inside"
-        id="root::errors"
-        tabindex="-1"
-      >
-        <li>
-          error
-        </li>
-        
-      </ul>
-      
-      <!---->
-       
-      <!---->
-      <!---->
-    </div>
-    
-    
-    
-    <!---->
-     
-    <!---->
-    <!---->
-    <!---->
-    <button
-      class="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3"
-      data-slot="button"
-      type="submit"
-    >
-      <!---->
-      <!---->
-      Submit
-      
-      
-      <!---->
-    </button>
-    
-    
-    
-    <!---->
-    <!---->
-  </form>
-  
-  
-</div>
-`;
-
-exports[`widgets > switch > normal 1`] = `
-<div>
-  <!---->
-  <form
-    class="flex flex-col gap-4"
-  >
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <div
-      class="flex gap-1.5 flex-col"
-      data-layout="field"
-    >
-      <!---->
-      <!---->
-       
-      <div
-        class="flex gap-1.5 items-start"
-        data-layout="field-content"
-      >
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <button
-          aria-checked="false"
-          aria-required="false"
-          class="data-[state=checked]:bg-primary data-[state=unchecked]:bg-input focus-visible:border-ring focus-visible:ring-ring/50 dark:data-[state=unchecked]:bg-input/80 shadow-xs peer inline-flex h-[1.15rem] w-8 shrink-0 items-center rounded-full border border-transparent outline-none transition-all focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
-          data-slot="switch"
-          data-state="unchecked"
-          data-switch-root=""
-          id="root"
-          role="switch"
-          type="button"
-        >
-          <!---->
-          <!---->
-          <span
-            class="bg-background dark:data-[state=unchecked]:bg-foreground dark:data-[state=checked]:bg-primary-foreground pointer-events-none block size-4 rounded-full ring-0 transition-transform data-[state=checked]:translate-x-[calc(100%-2px)] data-[state=unchecked]:translate-x-0"
-            data-slot="switch-thumb"
-            data-state="unchecked"
-            data-switch-thumb=""
-            id="bits-c142"
-          >
-            <!---->
-          </span>
-          
-          
-          <!---->
-        </button>
-        <!---->
-         
-        <!---->
-        <!---->
-        <input
-          aria-hidden="true"
-          name="root"
-          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
-          tabindex="-1"
-          type="checkbox"
-          value="on"
-        />
-        
-        
-        <!---->
-        
-        
-        
-        
-        <!---->
-      </div>
-      <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
-    </div>
-    
-    
-    
-    <!---->
-     
-    <!---->
-    <!---->
-    <!---->
-    <button
-      class="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3"
-      data-slot="button"
-      type="submit"
-    >
-      <!---->
-      <!---->
-      Submit
-      
-      
-      <!---->
-    </button>
-    
-    
-    
-    <!---->
-    <!---->
-  </form>
-  
-  
-</div>
-`;
-
-exports[`widgets > switch > readonly 1`] = `
-<div>
-  <!---->
-  <form
-    class="flex flex-col gap-4"
-  >
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <div
-      class="flex gap-1.5 flex-col"
-      data-layout="field"
-    >
-      <!---->
-      <!---->
-       
-      <div
-        class="flex gap-1.5 items-start"
-        data-layout="field-content"
-      >
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <button
-          aria-checked="false"
-          aria-required="false"
-          class="data-[state=checked]:bg-primary data-[state=unchecked]:bg-input focus-visible:border-ring focus-visible:ring-ring/50 dark:data-[state=unchecked]:bg-input/80 shadow-xs peer inline-flex h-[1.15rem] w-8 shrink-0 items-center rounded-full border border-transparent outline-none transition-all focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
-          data-slot="switch"
-          data-state="unchecked"
-          data-switch-root=""
-          id="root"
-          role="switch"
-          type="button"
-        >
-          <!---->
-          <!---->
-          <span
-            class="bg-background dark:data-[state=unchecked]:bg-foreground dark:data-[state=checked]:bg-primary-foreground pointer-events-none block size-4 rounded-full ring-0 transition-transform data-[state=checked]:translate-x-[calc(100%-2px)] data-[state=unchecked]:translate-x-0"
-            data-slot="switch-thumb"
-            data-state="unchecked"
-            data-switch-thumb=""
-            id="bits-c148"
-          >
-            <!---->
-          </span>
-          
-          
-          <!---->
-        </button>
-        <!---->
-         
-        <!---->
-        <!---->
-        <input
-          aria-hidden="true"
-          name="root"
-          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
-          tabindex="-1"
-          type="checkbox"
-          value="on"
-        />
-        
-        
-        <!---->
-        
-        
-        
-        
-        <!---->
-      </div>
-      <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
-    </div>
-    
-    
-    
-    <!---->
-     
-    <!---->
-    <!---->
-    <!---->
-    <button
-      class="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3"
-      data-slot="button"
-      type="submit"
-    >
-      <!---->
-      <!---->
-      Submit
-      
-      
-      <!---->
-    </button>
-    
-    
-    
-    <!---->
-    <!---->
-  </form>
-  
-  
-</div>
-`;
-
-exports[`widgets > text > disabled 1`] = `
-<div>
-  <!---->
-  <form
-    class="flex flex-col gap-4"
-  >
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <div
-      class="flex gap-1.5 flex-col"
-      data-layout="field"
-    >
-      <!---->
-      <!---->
-       
-      <div
-        class="flex gap-1.5 items-start"
-        data-layout="field-content"
-      >
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <input
-          aria-describedby="root::description root::help root::errors"
-          class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
-          data-slot="input"
-          disabled=""
-          id="root"
-          name="root"
-        />
-        
-        <!---->
-         
-        <!---->
         
         <!---->
         
@@ -7852,11 +7967,17 @@ exports[`widgets > text > disabled 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > text > error 1`] = `
+exports[`widgets > switch > snapshots > error 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -7880,17 +8001,64 @@ exports[`widgets > text > error 1`] = `
         <!---->
         <!---->
         <!---->
-        <input
-          aria-describedby="root::description root::help root::errors"
-          class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
-          data-slot="input"
+        <!---->
+        <button
+          aria-checked="false"
+          aria-required="false"
+          class="data-[state=checked]:bg-primary data-[state=unchecked]:bg-input focus-visible:border-ring focus-visible:ring-ring/50 dark:data-[state=unchecked]:bg-input/80 shadow-xs peer inline-flex h-[1.15rem] w-8 shrink-0 items-center rounded-full border border-transparent outline-none transition-all focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+          data-slot="switch"
+          data-state="unchecked"
+          data-switch-root=""
           id="root"
+          role="switch"
+          type="button"
+        >
+          <!---->
+          <!---->
+          <span
+            class="bg-background dark:data-[state=unchecked]:bg-foreground dark:data-[state=checked]:bg-primary-foreground pointer-events-none block size-4 rounded-full ring-0 transition-transform data-[state=checked]:translate-x-[calc(100%-2px)] data-[state=unchecked]:translate-x-0"
+            data-slot="switch-thumb"
+            data-state="unchecked"
+            data-switch-thumb=""
+            id="bits-c878"
+          >
+            <!---->
+          </span>
+          
+          
+          <!---->
+        </button>
+        <!---->
+         
+        <!---->
+        <!---->
+        <input
+          aria-hidden="true"
           name="root"
+          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+          tabindex="-1"
+          type="checkbox"
+          value="on"
         />
+        
+        
+        <!---->
         
         <!---->
          
         <!---->
+        <!---->
+        <label
+          class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
+          data-label-root=""
+          data-slot="label"
+          for="root"
+          id="bits-c879"
+        >
+          switch
+          <!---->
+        </label>
+        
         
         <!---->
         
@@ -7944,11 +8112,469 @@ exports[`widgets > text > error 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > text > normal 1`] = `
+exports[`widgets > switch > snapshots > normal 1`] = `
 <div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-1.5 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-1.5 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <button
+          aria-checked="false"
+          aria-required="false"
+          class="data-[state=checked]:bg-primary data-[state=unchecked]:bg-input focus-visible:border-ring focus-visible:ring-ring/50 dark:data-[state=unchecked]:bg-input/80 shadow-xs peer inline-flex h-[1.15rem] w-8 shrink-0 items-center rounded-full border border-transparent outline-none transition-all focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+          data-slot="switch"
+          data-state="unchecked"
+          data-switch-root=""
+          id="root"
+          role="switch"
+          type="button"
+        >
+          <!---->
+          <!---->
+          <span
+            class="bg-background dark:data-[state=unchecked]:bg-foreground dark:data-[state=checked]:bg-primary-foreground pointer-events-none block size-4 rounded-full ring-0 transition-transform data-[state=checked]:translate-x-[calc(100%-2px)] data-[state=unchecked]:translate-x-0"
+            data-slot="switch-thumb"
+            data-state="unchecked"
+            data-switch-thumb=""
+            id="bits-c875"
+          >
+            <!---->
+          </span>
+          
+          
+          <!---->
+        </button>
+        <!---->
+         
+        <!---->
+        <!---->
+        <input
+          aria-hidden="true"
+          name="root"
+          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+          tabindex="-1"
+          type="checkbox"
+          value="on"
+        />
+        
+        
+        <!---->
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        <label
+          class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
+          data-label-root=""
+          data-slot="label"
+          for="root"
+          id="bits-c876"
+        >
+          switch
+          <!---->
+        </label>
+        
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3"
+      data-slot="button"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+</div>
+`;
+
+exports[`widgets > switch > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-1.5 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-1.5 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <button
+          aria-checked="false"
+          aria-required="false"
+          class="data-[state=checked]:bg-primary data-[state=unchecked]:bg-input focus-visible:border-ring focus-visible:ring-ring/50 dark:data-[state=unchecked]:bg-input/80 shadow-xs peer inline-flex h-[1.15rem] w-8 shrink-0 items-center rounded-full border border-transparent outline-none transition-all focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+          data-slot="switch"
+          data-state="unchecked"
+          data-switch-root=""
+          id="root"
+          role="switch"
+          type="button"
+        >
+          <!---->
+          <!---->
+          <span
+            class="bg-background dark:data-[state=unchecked]:bg-foreground dark:data-[state=checked]:bg-primary-foreground pointer-events-none block size-4 rounded-full ring-0 transition-transform data-[state=checked]:translate-x-[calc(100%-2px)] data-[state=unchecked]:translate-x-0"
+            data-slot="switch-thumb"
+            data-state="unchecked"
+            data-switch-thumb=""
+            id="bits-c884"
+          >
+            <!---->
+          </span>
+          
+          
+          <!---->
+        </button>
+        <!---->
+         
+        <!---->
+        <!---->
+        <input
+          aria-hidden="true"
+          name="root"
+          style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; transform: translateX(-100%);"
+          tabindex="-1"
+          type="checkbox"
+          value="on"
+        />
+        
+        
+        <!---->
+        
+        <!---->
+         
+        <!---->
+        <!---->
+        <label
+          class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
+          data-label-root=""
+          data-slot="label"
+          for="root"
+          id="bits-c885"
+        >
+          switch
+          <!---->
+        </label>
+        
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3"
+      data-slot="button"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+</div>
+`;
+
+exports[`widgets > text > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-1.5 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-1.5 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
+          data-slot="input"
+          disabled=""
+          id="root"
+          name="root"
+        />
+        
+        <!---->
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3"
+      data-slot="button"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+</div>
+`;
+
+exports[`widgets > text > snapshots > error 1`] = `
+<div>
+  <!---->
+  <!---->
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-1.5 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-1.5 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <input
+          aria-describedby="root::description root::help root::errors"
+          class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
+          data-slot="input"
+          id="root"
+          name="root"
+        />
+        
+        <!---->
+         
+        <!---->
+        
+        <!---->
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-destructive list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <!---->
+    <!---->
+    <button
+      class="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3"
+      data-slot="button"
+      type="submit"
+    >
+      <!---->
+      <!---->
+      Submit
+      
+      
+      <!---->
+    </button>
+    
+    
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+  <!---->
+   
+  <div />
+  
+</div>
+`;
+
+exports[`widgets > text > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -8024,11 +8650,17 @@ exports[`widgets > text > normal 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > text > readonly 1`] = `
+exports[`widgets > text > snapshots > readonly 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -8105,11 +8737,17 @@ exports[`widgets > text > readonly 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > textarea > disabled 1`] = `
+exports[`widgets > textarea > snapshots > disabled 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -8181,11 +8819,17 @@ exports[`widgets > textarea > disabled 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > textarea > error 1`] = `
+exports[`widgets > textarea > snapshots > error 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -8267,11 +8911,17 @@ exports[`widgets > textarea > error 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > textarea > normal 1`] = `
+exports[`widgets > textarea > snapshots > normal 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -8341,11 +8991,17 @@ exports[`widgets > textarea > normal 1`] = `
   </form>
   
   
+  <!---->
+   
+  <div />
+  
 </div>
 `;
 
-exports[`widgets > textarea > readonly 1`] = `
+exports[`widgets > textarea > snapshots > readonly 1`] = `
 <div>
+  <!---->
+  <!---->
   <!---->
   <form
     class="flex flex-col gap-4"
@@ -8415,6 +9071,10 @@ exports[`widgets > textarea > readonly 1`] = `
     <!---->
   </form>
   
+  
+  <!---->
+   
+  <div />
   
 </div>
 `;

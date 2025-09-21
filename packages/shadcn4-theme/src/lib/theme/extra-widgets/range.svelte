@@ -37,7 +37,7 @@
 		max: config.schema.maximum,
 		step: config.schema.multipleOf,
 		onValueChange: handlers.oninput,
-		onValueCommit: handlers.onchange
+		onValueCommit: handlers.onchange,
 	})}
 	type="single"
 />
