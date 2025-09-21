@@ -9,6 +9,7 @@ import {
 } from "@sjsf/form";
 
 import * as defaults from "../components/form-defaults.js";
+import * as triggers from '../demo/triggers.js'
 import { s } from "../demo/index.js";
 import {
   testMatchSnapshot,
@@ -101,7 +102,7 @@ export function widgetTests(
                       }) satisfies Validator & FieldValueValidator<any>,
                   },
                 });
-                await trigger(screen.locator);
+                await triggers[trigger](screen.locator);
                 const err = screen.getByText(ERROR_TEXT);
                 await expect.element(err).toBeInTheDocument();
               });

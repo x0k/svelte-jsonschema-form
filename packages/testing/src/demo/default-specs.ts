@@ -17,22 +17,6 @@ import {
   uniqueArray,
   type Specs,
 } from "./schemas.js";
-import {
-  changeCheckbox,
-  changeFile,
-  changeNumber,
-  changeSelect,
-  changeText,
-  inputCheckbox,
-  inputNumber,
-  inputSelect,
-  inputText,
-  visitCheckbox,
-  visitFile,
-  visitNumber,
-  visitSelect,
-  visitText,
-} from "./triggers.js";
 
 const filesAsArrayField = cast(FilesField, {
   value: {
@@ -48,9 +32,9 @@ export const DEFAULT_SPECS: Specs = {
     boolean,
     {},
     {
-      oninput: inputCheckbox,
-      onchange: changeCheckbox,
-      onblur: visitCheckbox,
+      oninput: "inputCheckbox",
+      onchange: "changeCheckbox",
+      onblur: "visitCheckbox",
     },
   ],
   checkboxes: [
@@ -61,9 +45,9 @@ export const DEFAULT_SPECS: Specs = {
       },
     },
     {
-      oninput: inputCheckbox,
-      onchange: changeCheckbox,
-      onblur: visitCheckbox,
+      oninput: "inputCheckbox",
+      onchange: "changeCheckbox",
+      onblur: "visitCheckbox",
     },
   ],
   file: [
@@ -74,8 +58,8 @@ export const DEFAULT_SPECS: Specs = {
       },
     },
     {
-      onchange: changeFile,
-      onblur: visitFile,
+      onchange: "changeFile",
+      onblur: "visitFile",
     },
   ],
   multiFile: [
@@ -86,17 +70,17 @@ export const DEFAULT_SPECS: Specs = {
       },
     },
     {
-      onchange: changeFile,
-      onblur: visitFile,
+      onchange: "changeFile",
+      onblur: "visitFile",
     },
   ],
   number: [
     number,
     {},
     {
-      oninput: inputNumber,
-      onchange: changeNumber,
-      onblur: visitNumber,
+      oninput: "inputNumber",
+      onchange: "changeNumber",
+      onblur: "visitNumber",
     },
   ],
   select: [
@@ -107,18 +91,18 @@ export const DEFAULT_SPECS: Specs = {
       },
     },
     {
-      oninput: inputSelect,
-      onchange: changeSelect,
-      onblur: visitSelect,
+      oninput: "inputSelect",
+      onchange: "changeSelect",
+      onblur: "visitSelect",
     },
   ],
   text: [
     text,
     {},
     {
-      oninput: inputText,
-      onchange: changeText,
-      onblur: visitText,
+      oninput: "inputText",
+      onchange: "changeText",
+      onblur: "visitText",
     },
   ],
 };

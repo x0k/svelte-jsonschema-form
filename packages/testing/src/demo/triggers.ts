@@ -1,6 +1,10 @@
 import { userEvent, type Locator } from "@vitest/browser/context";
 
-import { enumeration, type FieldValidationTrigger } from "./schemas.js";
+import {
+  enumeration,
+  SWITCH_LABEL_TEXT,
+  type FieldValidationTrigger,
+} from "./schemas.js";
 
 export function withTab(
   t: FieldValidationTrigger,
@@ -103,9 +107,58 @@ export const changeTags: FieldValidationTrigger = async (l) => {
 };
 export const visitTags = withTab(inputTags);
 
-export const SWITCH_LABEL_TEXT = "switch";
 export const getSwitchLabel = (l: Locator, text = SWITCH_LABEL_TEXT) =>
   l.getByText(text);
 export const inputSwitch = click(getSwitchLabel);
 export const changeSwitch = inputSwitch;
 export const visitSwitch = withTab(inputSwitch);
+
+export const changeCallyDatePicker: FieldValidationTrigger = async (l) => {
+  await customElements.whenDefined("calendar-date");
+  await customElements.whenDefined("calendar-month");
+  const button = getButton(l);
+  await userEvent.click(button);
+  const day = l.getByText("26");
+  await userEvent.click(day);
+};
+
+export const inputFlowbiteMultiSelect: FieldValidationTrigger = async (l) => {
+  const select = getListbox(l);
+  await userEvent.click(select);
+  const option = l.getByRole("presentation").last();
+  await userEvent.click(option);
+};
+
+export const inputShadcnSelect: FieldValidationTrigger = async (l) => {
+  const select = getButton(l);
+  await userEvent.click(select);
+  const option = l.getByRole("option").last();
+  await userEvent.click(option);
+};
+export const changeShadcnSelect = inputShadcnSelect;
+export const visitShadcnSelect = withTab(inputShadcnSelect);
+
+export const inputShadcnDatePicker: FieldValidationTrigger = async (l) => {
+  const btn = getButton(l);
+  await userEvent.click(btn);
+  const day = l.getByText("26");
+  await userEvent.click(day);
+};
+export const changeShadcnDatePicker = inputShadcnDatePicker;
+export const visitShadcnDatePicker = withTab(inputShadcnDatePicker);
+
+export const inputShadcnCombobox: FieldValidationTrigger = async (l) => {
+  const cmb = getCombobox(l);
+  await userEvent.click(cmb);
+  const opt = l.getByRole("option").last();
+  await userEvent.click(opt);
+};
+export const changeShadcnCombobox = inputShadcnCombobox;
+export const visitShadcnCombobox = withTab(inputShadcnCombobox);
+
+export const getRadioButtonLabel = (l: Locator) => l.getByTestId('segment-item').last();
+export const inputSkeletonRadioButton = click(getRadioButtonLabel)
+export const changeSkeletonRadioButton = inputSkeletonRadioButton
+
+export const getFileInput = (l: Locator) => l.getByRole('button').nth(1)
+export const changeSkeletonFile = uploadFile(getFileInput)

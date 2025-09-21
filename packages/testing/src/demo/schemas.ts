@@ -1,4 +1,4 @@
-import type { Locator } from '@vitest/browser/context'
+import type { Locator } from "@vitest/browser/context";
 import type { SchemaArrayValue } from "@sjsf/form/core";
 import {
   idFromPath,
@@ -11,6 +11,8 @@ import {
   type UiSchemaRoot,
   type ValidationError,
 } from "@sjsf/form";
+
+import type * as triggers from "./triggers.js";
 
 export const states = (schema: Schema): Schema => ({
   type: "object",
@@ -27,7 +29,7 @@ export const boolean: Schema = {
 export const enumeration = {
   type: "string",
   enum: ["foo", "bar", "fuzz", "qux"],
-} as const satisfies Schema
+} as const satisfies Schema;
 
 export const uniqueArray: Schema = {
   type: "array",
@@ -82,17 +84,21 @@ export const FIELD_VALIDATION_MODES = Object.keys(
 export type FieldValidationModeName =
   (typeof FIELD_VALIDATION_MODE_NAMES)[number];
 
-export type FieldValidationTrigger = (
-  locator: Locator
-) => Promise<void>;
+export type FieldValidationTrigger = (locator: Locator) => Promise<void>;
+
+type Triggers = typeof triggers;
+
+export type Trigger = keyof {
+  [K in keyof Triggers as Triggers[K] extends FieldValidationTrigger
+    ? K
+    : never]: true;
+};
+
+export const SWITCH_LABEL_TEXT = "switch";
 
 export type Specs = Record<
   string,
-  [
-    Schema,
-    UiSchema,
-    Partial<Record<FieldValidationModeName, FieldValidationTrigger>>,
-  ]
+  [Schema, UiSchema, Partial<Record<FieldValidationModeName, Trigger>>]
 >;
 
 export function createSchemas(

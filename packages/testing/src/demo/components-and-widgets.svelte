@@ -13,21 +13,20 @@
 
   import Form from "./form.svelte";
   import { createSchemas, type Specs } from "./schemas.js";
-  import { DEFAULT_SPECS } from "./default-specs.js";
 
   const {
     theme,
     append,
-    additionalSpecs,
+    specs,
     uiOptionsRegistry,
   }: {
     theme: Theme;
-    additionalSpecs?: Specs;
+    specs: Specs;
     append?: Snippet;
   } & UiOptionsRegistryOption = $props();
 
   const widgetsSchemas = (idPrefix: string) =>
-    createSchemas(Object.assign(DEFAULT_SPECS, additionalSpecs), { idPrefix });
+    createSchemas(specs, { idPrefix });
 
   const widgetsForm = $derived(
     createForm({
