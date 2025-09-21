@@ -23,11 +23,15 @@ import {
   changeNumber,
   changeSelect,
   changeText,
+  inputCheckbox,
   inputNumber,
+  inputSelect,
   inputText,
   visitCheckbox,
   visitFile,
+  visitNumber,
   visitSelect,
+  visitText,
 } from "./triggers.js";
 
 const filesAsArrayField = cast(FilesField, {
@@ -44,6 +48,7 @@ export const DEFAULT_SPECS: Specs = {
     boolean,
     {},
     {
+      oninput: inputCheckbox,
       onchange: changeCheckbox,
       onblur: visitCheckbox,
     },
@@ -56,6 +61,7 @@ export const DEFAULT_SPECS: Specs = {
       },
     },
     {
+      oninput: inputCheckbox,
       onchange: changeCheckbox,
       onblur: visitCheckbox,
     },
@@ -90,7 +96,7 @@ export const DEFAULT_SPECS: Specs = {
     {
       oninput: inputNumber,
       onchange: changeNumber,
-      onblur: changeNumber,
+      onblur: visitNumber,
     },
   ],
   select: [
@@ -101,6 +107,7 @@ export const DEFAULT_SPECS: Specs = {
       },
     },
     {
+      oninput: inputSelect,
       onchange: changeSelect,
       onblur: visitSelect,
     },
@@ -111,7 +118,7 @@ export const DEFAULT_SPECS: Specs = {
     {
       oninput: inputText,
       onchange: changeText,
-      onblur: changeText,
+      onblur: visitText,
     },
   ],
 };

@@ -1,12 +1,12 @@
+import { render } from "vitest-browser-svelte";
 import { describe, expect, test } from "vitest";
+import { isRecordEmpty } from "@sjsf/form/lib/object";
 import {
   type FieldValueValidator,
   type Theme,
   type Validator,
   idFromPath,
 } from "@sjsf/form";
-
-import { render } from "vitest-browser-svelte";
 
 import * as defaults from "../components/form-defaults.js";
 import { s } from "../demo/index.js";
@@ -66,40 +66,48 @@ export function widgetTests(
           uiSchema,
         });
       });
-      for (const mode of s.FIELD_VALIDATION_MODES) {
-        const modeName = s.FIELD_VALIDATION_MODE_NAMES[mode]!;
-        const trigger = validationTriggers[modeName];
-        if (trigger) {
-          test(`${widget} ${modeName} validation mode`, async () => {
-            const screen = render(Form, {
-              target: document.body.appendChild(document.createElement("div")),
-              props: {
-                ...defaults,
-                theme,
-                schema,
-                uiSchema,
-                fieldsValidationMode: mode,
-                createValidator: (options) =>
-                  ({
-                    ...defaults.createValidator(options),
-                    validateFieldValue(cfg) {
-                      return [
-                        {
-                          instanceId: cfg.id,
-                          propertyTitle: cfg.title,
-                          message: ERROR_TEXT,
-                          error: null,
+      if (!isRecordEmpty(validationTriggers)) {
+        describe(`${widget}: validations mode`, () => {
+          for (const mode of s.FIELD_VALIDATION_MODES) {
+            const modeName = s.FIELD_VALIDATION_MODE_NAMES[mode]!;
+            const trigger = validationTriggers[modeName];
+            if (trigger) {
+              test(`${widget}: ${modeName}`, async () => {
+                const rootDiv = document.createElement("div");
+                rootDiv.dataset["testid"] = "root-element";
+                const screen = render(matchOptions?.Form ?? Form, {
+                  target: document.body.appendChild(rootDiv),
+                  context: matchOptions?.context,
+                  props: {
+                    ...defaults,
+                    ...matchOptions?.defaultFormOptions,
+                    theme,
+                    schema,
+                    uiSchema,
+                    fieldsValidationMode: mode,
+                    createValidator: (options) =>
+                      ({
+                        ...defaults.createValidator(options),
+                        validateFieldValue(cfg) {
+                          return [
+                            {
+                              instanceId: cfg.id,
+                              propertyTitle: cfg.title,
+                              message: ERROR_TEXT,
+                              error: null,
+                            },
+                          ];
                         },
-                      ];
-                    },
-                  }) satisfies Validator & FieldValueValidator<any>,
-              },
-            });
-            await trigger(screen.locator);
-            const err = screen.getByText(ERROR_TEXT);
-            await expect.element(err).toBeInTheDocument();
-          });
-        }
+                      }) satisfies Validator & FieldValueValidator<any>,
+                  },
+                });
+                await trigger(screen.locator);
+                const err = screen.getByText(ERROR_TEXT);
+                await expect.element(err).toBeInTheDocument();
+              });
+            }
+          }
+        });
       }
     });
   }
