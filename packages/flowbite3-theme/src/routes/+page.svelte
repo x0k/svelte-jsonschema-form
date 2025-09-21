@@ -6,4 +6,4 @@
 	import { specs } from '../lib/specs';
 </script>
 
-<ComponentsAndWidgets {theme} additionalSpecs={specs} />
+<ComponentsAndWidgets {theme} {specs} />

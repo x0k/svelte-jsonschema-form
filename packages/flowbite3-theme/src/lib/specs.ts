@@ -1,8 +1,7 @@
-import { userEvent } from '@vitest/browser/context';
 import { cast } from '@sjsf/form/lib/component';
 import type { ComponentDefinition } from '@sjsf/form';
 import TagsField from '@sjsf/form/fields/extra-fields/tags.svelte';
-import { s, t, DEFAULT_SPECS } from 'testing/demo';
+import { s, DEFAULT_SPECS } from 'testing/demo';
 
 import './extra-widgets/checkboxes-include';
 import './extra-widgets/date-picker-include';
@@ -24,22 +23,15 @@ const tagsAsArrayField = cast(TagsField, {
 	}
 }) satisfies ComponentDefinition<'arrayField'>;
 
-const inputMultiSelect: s.FieldValidationTrigger = async (l) => {
-	const select = t.getListbox(l);
-	await userEvent.click(select);
-	const option = l.getByRole('presentation').last();
-	await userEvent.click(option);
-};
-
 export const specs: s.Specs = {
 	...DEFAULT_SPECS,
 	datePicker: [
 		s.text,
 		{ 'ui:components': { textWidget: 'datePickerWidget' } },
 		{
-			oninput: t.inputDate,
-			onchange: t.changeDate,
-			onblur: t.visitDate
+			oninput: 'inputDate',
+			onchange: 'changeDate',
+			onblur: 'visitDate'
 		}
 	],
 	multiSelect: [
@@ -52,9 +44,9 @@ export const specs: s.Specs = {
 			'ui:options': { useLabel: false }
 		},
 		{
-			oninput: inputMultiSelect,
-			onchange: inputMultiSelect,
-			onblur: t.visitMultiSelect
+			oninput: 'inputFlowbiteMultiSelect',
+			onchange: 'inputFlowbiteMultiSelect',
+			onblur: 'visitMultiSelect'
 		}
 	],
 	// TODO: Rename to `ToggleRadioButtons`, create new `RadioButtons` widget
@@ -68,7 +60,7 @@ export const specs: s.Specs = {
 			'ui:options': { useLabel: false }
 		},
 		{
-			onchange: t.changeRadio
+			onchange: 'changeRadio'
 		}
 	],
 	radio: [
@@ -81,9 +73,9 @@ export const specs: s.Specs = {
 			'ui:options': { useLabel: false }
 		},
 		{
-			oninput: t.inputRadio,
-			onchange: t.changeRadio,
-			onblur: t.visitRadio
+			oninput: 'inputRadio',
+			onchange: 'changeRadio',
+			onblur: 'visitRadio'
 		}
 	],
 	range: [
@@ -91,9 +83,9 @@ export const specs: s.Specs = {
 		{ 'ui:components': { numberWidget: 'rangeWidget' } },
 
 		{
-			oninput: t.inputSlider,
-			onchange: t.changeSlider,
-			onblur: t.visitSlider
+			oninput: 'inputSlider',
+			onchange: 'changeSlider',
+			onblur: 'visitSlider'
 		}
 	],
 	switch: [
@@ -101,13 +93,13 @@ export const specs: s.Specs = {
 		{
 			'ui:components': { checkboxWidget: 'switchWidget' },
 			'ui:options': {
-				title: t.SWITCH_LABEL_TEXT
+				title: s.SWITCH_LABEL_TEXT
 			}
 		},
 		{
-			oninput: t.inputSwitch,
-			onchange: t.changeSwitch,
-			onblur: t.visitSwitch
+			oninput: 'inputSwitch',
+			onchange: 'changeSwitch',
+			onblur: 'visitSwitch'
 		}
 	],
 	tags: [
@@ -118,18 +110,18 @@ export const specs: s.Specs = {
 			}
 		},
 		{
-			oninput: t.inputTags,
-			onchange: t.changeTags,
-			onblur: t.visitTags
+			oninput: 'inputTags',
+			onchange: 'changeTags',
+			onblur: 'visitTags'
 		}
 	],
 	textarea: [
 		s.text,
 		{ 'ui:components': { textWidget: 'textareaWidget' } },
 		{
-			oninput: t.inputText,
-			onchange: t.changeText,
-			onblur: t.visitText
+			oninput: 'inputText',
+			onchange: 'changeText',
+			onblur: 'visitText'
 		}
 	]
 };

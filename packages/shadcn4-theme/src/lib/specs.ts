@@ -1,5 +1,4 @@
-import { userEvent } from '@vitest/browser/context';
-import { s, t, DEFAULT_SPECS } from 'testing/demo';
+import { s, DEFAULT_SPECS } from 'testing/demo';
 
 import './theme/extra-widgets/checkboxes-include.js';
 import './theme/extra-widgets/combobox-include.js';
@@ -12,26 +11,7 @@ import './theme/extra-widgets/range-include.js';
 import './theme/extra-widgets/switch-include.js';
 import './theme/extra-widgets/textarea-include.js';
 
-const inputSelect: s.FieldValidationTrigger = async (l) => {
-	const select = t.getButton(l);
-	await userEvent.click(select);
-	const option = l.getByRole('option').last();
-	await userEvent.click(option);
-};
 
-const inputDatePicker: s.FieldValidationTrigger = async (l) => {
-	const btn = t.getButton(l);
-	await userEvent.click(btn);
-	const day = l.getByText('26');
-	await userEvent.click(day);
-};
-
-const inputCombobox: s.FieldValidationTrigger = async (l) => {
-	const cmb = t.getCombobox(l);
-	await userEvent.click(cmb);
-	const opt = l.getByRole('option').last();
-	await userEvent.click(opt);
-};
 
 export const specs: s.Specs = {
 	...DEFAULT_SPECS,
@@ -43,9 +23,9 @@ export const specs: s.Specs = {
 			}
 		},
 		{
-			oninput: inputSelect,
-			onchange: inputSelect,
-			onblur: t.withTab(inputSelect)
+			oninput: "inputShadcnSelect",
+			onchange: "changeShadcnSelect",
+			onblur: "visitShadcnSelect",
 		}
 	],
 	combobox: [
@@ -58,9 +38,9 @@ export const specs: s.Specs = {
 			'ui:options': { useLabel: false }
 		},
 		{
-			oninput: inputCombobox,
-			onchange: inputCombobox,
-			onblur: t.withTab(inputCombobox)
+			oninput: "inputShadcnCombobox",
+			onchange: "changeShadcnCombobox",
+			onblur: "visitShadcnCombobox",
 		}
 	],
 	datePicker: [
@@ -68,9 +48,9 @@ export const specs: s.Specs = {
 		// NOTE: DatePicker is a button
 		{ 'ui:components': { textWidget: 'datePickerWidget' }, 'ui:options': { useLabel: false } },
 		{
-			oninput: inputDatePicker,
-			onchange: inputDatePicker,
-			onblur: t.withTab(inputDatePicker)
+			oninput: "inputShadcnDatePicker",
+			onchange: "changeShadcnDatePicker",
+			onblur: "visitShadcnDatePicker",
 		}
 	],
 	multiSelect: [
@@ -83,9 +63,9 @@ export const specs: s.Specs = {
 			'ui:options': { useLabel: true }
 		},
 		{
-			oninput: inputSelect,
-			onchange: inputSelect,
-			onblur: t.withTab(inputSelect)
+			oninput: "inputShadcnSelect",
+			onchange: "changeShadcnSelect",
+			onblur: "visitShadcnSelect",
 		}
 	],
 	radioButtons: [
@@ -98,9 +78,9 @@ export const specs: s.Specs = {
 			'ui:options': { useLabel: false }
 		},
 		{
-			oninput: t.inputRadio,
-			onchange: t.changeRadio,
-			onblur: t.visitRadio
+			oninput: "inputRadio",
+			onchange: "changeRadio",
+			onblur: "visitRadio"
 		}
 	],
 	radio: [
@@ -113,9 +93,9 @@ export const specs: s.Specs = {
 			'ui:options': { useLabel: false }
 		},
 		{
-			oninput: t.inputRadio,
-			onchange: t.changeRadio,
-			onblur: t.visitRadio
+			oninput: "inputRadio",
+			onchange: "changeRadio",
+			onblur: "visitRadio"
 		}
 	],
 	range: [
@@ -123,8 +103,8 @@ export const specs: s.Specs = {
 		// NOTE: Range is span based
 		{ 'ui:components': { numberWidget: 'rangeWidget' }, 'ui:options': { useLabel: false } },
 		{
-			oninput: t.inputSlider,
-			onchange: t.changeSlider
+			oninput: "inputSlider",
+			onchange: "changeSlider"
 		}
 	],
 	switch: [
@@ -132,22 +112,22 @@ export const specs: s.Specs = {
 		{
 			'ui:components': { checkboxWidget: 'switchWidget' },
 			'ui:options': {
-				title: t.SWITCH_LABEL_TEXT
+				title: s.SWITCH_LABEL_TEXT
 			}
 		},
 		{
-			oninput: t.inputSwitch,
-			onchange: t.changeSwitch,
-			onblur: t.visitSwitch
+			oninput: "inputSwitch",
+			onchange: "changeSwitch",
+			onblur: "visitSwitch"
 		}
 	],
 	textarea: [
 		s.text,
 		{ 'ui:components': { textWidget: 'textareaWidget' } },
 		{
-			oninput: t.inputText,
-			onchange: t.changeText,
-			onblur: t.visitText
+			oninput: "inputText",
+			onchange: "changeText",
+			onblur: "visitText"
 		}
 	]
 };

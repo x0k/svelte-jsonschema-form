@@ -9,4 +9,4 @@
 	setThemeContext({ components });
 </script>
 
-<ComponentsAndWidgets {theme} additionalSpecs={specs} />
+<ComponentsAndWidgets {theme} {specs} />
