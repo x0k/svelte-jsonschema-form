@@ -52,7 +52,6 @@ export const specs: s.Specs = {
 			onblur: 'visitMultiSelect'
 		}
 	],
-	// TODO: Rename to `ToggleRadioButtons`, create new `RadioButtons` widget
 	radioButtons: [
 		s.enumeration,
 		{

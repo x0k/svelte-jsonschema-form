@@ -27,7 +27,11 @@
 	}
 
 	const ctx = getFormContext();
-	const { onchange, ...inputHandlers } = $derived(handlers);
+
+	function onChange() {
+		handlers.oninput?.()
+		handlers.onchange?.()
+	}
 </script>
 
 <div class="w-full">
@@ -37,15 +41,15 @@
 			(v) => (value = v?.toLocaleDateString('en-CA'))
 		}
 		{...customInputAttributes(ctx, config, 'flowbite3Datepicker', {
-			inputProps: handlersAttachment(inputHandlers)({
+			inputProps: handlersAttachment(handlers)({
 				id: config.id,
 				name: config.id
 			}),
 			required: config.required,
 			showActionButtons: true,
 			autohide: false,
-			onselect: onchange,
-			onclear: onchange,
+			onselect: onChange,
+			onclear: onChange,
 			'aria-describedby': describedBy(ctx, config)
 		})}
 	/>
