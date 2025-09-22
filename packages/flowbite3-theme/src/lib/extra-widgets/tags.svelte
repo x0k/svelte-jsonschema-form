@@ -12,13 +12,10 @@
 <script lang="ts">
 	import type { HTMLInputAttributes } from 'svelte/elements';
 	import {
-		composeProps,
 		customInputAttributes,
-		disabledProp,
 		getFormContext,
 		handlersAttachment,
-		type ComponentProps,
-		type Validator
+		type ComponentProps
 	} from '@sjsf/form';
 	import { Tags as TagsInput } from 'flowbite-svelte';
 
@@ -31,16 +28,10 @@
 <TagsInput
 	class="flex-1"
 	{...customInputAttributes(ctx, config, 'flowbite3Tags', {
-		inputProps: composeProps(
-			ctx,
-			config,
-			{
-				id: config.id,
-				name: config.id
-			} satisfies HTMLInputAttributes as HTMLInputAttributes,
-			handlersAttachment(inputHandlers),
-			disabledProp
-		)
+		inputProps: handlersAttachment(inputHandlers)({
+			id: config.id,
+			name: config.id
+		} satisfies HTMLInputAttributes)
 	})}
 	bind:value={
 		() => value ?? [],
