@@ -1,5 +1,12 @@
 # @sjsf/ajv8-validator
 
+## 3.0.0-next.2
+
+### Patch Changes
+
+- Updated dependencies [[`0201f5e`](https://github.com/x0k/svelte-jsonschema-form/commit/0201f5e8d0574103eb0f5dd0bfa97d2648706166), [`c4fb2b2`](https://github.com/x0k/svelte-jsonschema-form/commit/c4fb2b2f95470e78bda46436b86d27861ca555b9), [`51997f5`](https://github.com/x0k/svelte-jsonschema-form/commit/51997f535b192d68fba514a993759489b2974ed4), [`75f3134`](https://github.com/x0k/svelte-jsonschema-form/commit/75f3134829181eb51eeccc84a6226d627ecdfda7), [`181c3ce`](https://github.com/x0k/svelte-jsonschema-form/commit/181c3ce45c6897a0fffc6c73d0ed2db838dc83c1), [`ae6aae3`](https://github.com/x0k/svelte-jsonschema-form/commit/ae6aae3f13d6aebf13c218f474399ec1d53f74fa), [`390b77e`](https://github.com/x0k/svelte-jsonschema-form/commit/390b77ed55a673ba6025239b01861563a45dd5e2), [`db2518b`](https://github.com/x0k/svelte-jsonschema-form/commit/db2518bef264d2bc81a3fdcdd545f662ea9c0a1e), [`cffd71e`](https://github.com/x0k/svelte-jsonschema-form/commit/cffd71e578dcb46c06725b2c65c12672c7967634), [`3c90ec2`](https://github.com/x0k/svelte-jsonschema-form/commit/3c90ec22f934f28862c6515987e367c3078e21d8), [`3ac49c9`](https://github.com/x0k/svelte-jsonschema-form/commit/3ac49c954675ded403ac1a25e2dd4782fc223600), [`3100b4d`](https://github.com/x0k/svelte-jsonschema-form/commit/3100b4d109798494a157a453f46c0e1cf2d746ae)]:
+  - @sjsf/form@3.0.0-next.2
+
 ## 3.0.0-next.1
 
 ### Patch Changes
