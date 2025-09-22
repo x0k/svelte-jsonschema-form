@@ -1,23 +1,21 @@
 <script lang="ts" module>
-	import type { ButtonToggleGroupProps, ButtonToggleProps } from 'flowbite-svelte';
+	import type { ButtonGroupProps, RadioButtonProps } from 'flowbite-svelte';
 	import '@sjsf/form/fields/extra-widgets/radio-buttons';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			flowbite3RadioButtons?: Omit<ButtonToggleGroupProps, 'children'>;
-			flowbite3RadioButtonsItem?: Partial<ButtonToggleProps>;
+			flowbite3RadioButtons?: Omit<ButtonGroupProps, 'children'>;
+			flowbite3RadioButtonsItem?: Partial<RadioButtonProps<string>>;
 		}
 	}
 </script>
 
 <script lang="ts">
-	import { ButtonToggle, ButtonToggleGroup } from 'flowbite-svelte';
+	import { RadioButton, ButtonGroup } from 'flowbite-svelte';
 	import {
-		composeProps,
 		customInputAttributes,
-		disabledProp,
 		getFormContext,
-		uiOptionProps,
+		inputAttributes,
 		type ComponentProps
 	} from '@sjsf/form';
 	import { stringIndexMapper, singleOption } from '@sjsf/form/options.svelte';
@@ -38,25 +36,22 @@
 
 	const ctx = getFormContext();
 
-	const itemAttributes = $derived(
-		composeProps(ctx, config, {}, uiOptionProps('flowbite3RadioButtonsItem'), disabledProp)
+	const attributes = $derived(
+		inputAttributes(ctx, config, 'flowbite3RadioButtonsItem', handlers, {
+			checkedClass: 'outline-1 outline-primary-500'
+		})
 	);
 </script>
 
-<ButtonToggleGroup
-	{...customInputAttributes(ctx, config, 'flowbite3RadioButtons', {
-		onSelect(val: string | null) {
-			mapped.value = val ?? '-1';
-			handlers.onchange?.();
-		}
-	})}
->
+<ButtonGroup {...customInputAttributes(ctx, config, 'flowbite3RadioButtons', {})}>
 	{#each options as option, index (option.id)}
 		{@const strIndex = index.toString()}
-		<ButtonToggle
-			{...itemAttributes}
-			selected={mapper.fromValue(option.value) === strIndex}
-			value={strIndex}>{option.label}</ButtonToggle
+		<RadioButton
+			bind:group={mapped.value}
+			value={strIndex}
+			{...attributes}
+			id={option.id}
+			disabled={option.disabled || attributes.disabled}>{option.label}</RadioButton
 		>
 	{/each}
-</ButtonToggleGroup>
+</ButtonGroup>

@@ -14,6 +14,9 @@ import './extra-widgets/switch-include';
 import './extra-widgets/tags-include';
 import './extra-widgets/textarea-include';
 
+import ToggleRadioButtons from './extra-widgets/toggle-radio-buttons.svelte';
+import './extra-widgets/toggle-radio-buttons.svelte';
+
 const tagsAsArrayField = cast(TagsField, {
 	value: {
 		transform(props) {
@@ -60,7 +63,9 @@ export const specs: s.Specs = {
 			'ui:options': { useLabel: false }
 		},
 		{
-			onchange: 'changeRadio'
+			oninput: 'inputFlowbiteRadioButton',
+			onchange: 'changeFlowbiteRadioButton',
+			onblur: 'visitFlowbiteRadioButton'
 		}
 	],
 	radio: [
@@ -122,6 +127,19 @@ export const specs: s.Specs = {
 			oninput: 'inputText',
 			onchange: 'changeText',
 			onblur: 'visitText'
+		}
+	],
+	toggleRadioButtons: [
+		s.enumeration,
+		{
+			'ui:components': {
+				stringField: 'enumField',
+				selectWidget: ToggleRadioButtons
+			},
+			'ui:options': { useLabel: false }
+		},
+		{
+			onchange: 'changeRadio'
 		}
 	]
 };
