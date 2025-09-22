@@ -16,7 +16,7 @@ import FormCard from '@/components/form-card.astro';
 
 import Form from './shadcn4/wrapper.svelte';
 import uiOptionsCode from './shadcn4/ui-options?raw';
-import { createSchemas, replacer, createExtraImports } from "./_demo-schema";
+import { createSchemas, replacer, createExtraImports, validationEvents } from "./_demo-schema";
 
 export const schemas = createSchemas(specs)
 
@@ -78,10 +78,6 @@ or used in the field as the default widget.
 
 <Code lang='ts' code={createExtraImports("shadcn4", extraWidgets)} />
 
-## UI options
-
-<Code code={uiOptionsCode} lang="typescript" />
-
 ## Widgets demo
 
 <Tabs>
@@ -97,3 +93,11 @@ or used in the field as the default widget.
     <Code lang="json" code={JSON.stringify(schemas.uiSchema, replacer, 2)} />
   </TabItem>
 </Tabs>
+
+## Supported validation events
+
+<div set:html={validationEvents(specs)}></div>
+
+## UI options
+
+<Code code={uiOptionsCode} lang="typescript" />

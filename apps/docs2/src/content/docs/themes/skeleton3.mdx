@@ -16,7 +16,7 @@ import FormCard from '@/components/form-card.astro';
 
 import Form from './skeleton3/form.svelte';
 import uiOptionsCode from './skeleton3/ui-options?raw';
-import { createSchemas, replacer, createExtraImports } from "./_demo-schema";
+import { createSchemas, replacer, createExtraImports, validationEvents } from "./_demo-schema";
 
 export const schemas = createSchemas(specs)
 
@@ -62,10 +62,6 @@ replace each other - use one or import the replacement widget directly.
 
 <Code lang='ts' code={createExtraImports("skeleton3", extraWidgets)} />
 
-## UI options
-
-<Code code={uiOptionsCode} lang="typescript" />
-
 ## Widgets demo
 
 <Tabs>
@@ -81,3 +77,11 @@ replace each other - use one or import the replacement widget directly.
     <Code lang="json" code={JSON.stringify(schemas.uiSchema, replacer, 2)} />
   </TabItem>
 </Tabs>
+
+## Supported validation events
+
+<div set:html={validationEvents(specs)}></div>
+
+## UI options
+
+<Code code={uiOptionsCode} lang="typescript" />

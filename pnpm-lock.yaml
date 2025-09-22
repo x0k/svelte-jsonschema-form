@@ -235,6 +235,9 @@ importers:
       '@exodus/schemasafe':
         specifier: 'catalog:'
         version: 1.3.0
+      '@json-table/core':
+        specifier: ^0.1.0
+        version: 0.1.0
       '@lucide/svelte':
         specifier: ^0.544.0
         version: 0.544.0(svelte@5.39.3)
@@ -2628,6 +2631,9 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.30':
     resolution: {integrity: sha512-GQ7Nw5G2lTu/BtHTKfXhKHok2WGetd4XYcVKGx00SjAk8GMwgJM3zr6zORiPGuOE+/vkc90KtTosSSvaCjKb2Q==}
+
+  '@json-table/core@0.1.0':
+    resolution: {integrity: sha512-kcpsLQOfQqciB5hRRQPWpjNBON7pSCDOksfRcsYc9mCkNtoq2+fPHGO5Iit+SijJ0dZ+xxvEPu2daBeLBHgBLw==}
 
   '@lezer/common@1.2.3':
     resolution: {integrity: sha512-w7ojc8ejBqr2REPsWxJjrMFsA/ysDCFICn8zEOR9mrqzOu2amhITYuLD8ag6XZf0CFXDrhKqw7+tW8cX66NaDA==}
@@ -7968,6 +7974,8 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
+
+  '@json-table/core@0.1.0': {}
 
   '@lezer/common@1.2.3': {}
 
