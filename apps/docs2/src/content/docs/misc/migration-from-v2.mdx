@@ -161,6 +161,25 @@ In most cases, it’s enough to update your widget’s value binding from:
 
 `bind:value` to `bind:value={() => value ?? undefined, (v) => (value = v)}`
 
+#### Using `attachment` for attaching event handlers
+
+Previously, helper functions like `inputProps`, `selectProps`, and `textareaProps`
+passed event handlers as attributes, which in some cases could be overwritten by the user.
+Now, instead of attributes, they use `attachment`,
+where handlers are added via `addEventListener`.
+
+If your component does not support `attachment`,
+or attaches handlers to the wrong DOM node,
+you should map the attributes manually:
+
+```ts
+inputAttributes(ctx, config, "text", handlers, {
+  // spread handlers as attributes
+  ...handlers,
+  type: "text",
+});
+```
+
 ## Validators
 
 ### Zod and Valibot
