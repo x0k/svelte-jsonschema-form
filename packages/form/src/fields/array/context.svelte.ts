@@ -63,7 +63,6 @@ export interface ArrayContext<V extends Validator> {
   moveItemDown: (index: number) => void;
   copyItem: (index: number) => void;
   removeItem: (index: number) => void;
-  validate: () => void;
 }
 
 const ARRAY_CONTEXT = Symbol("array-context");
@@ -92,16 +91,13 @@ function createItems<T, V extends Validator>({
   value,
 }: ItemsOptions<T, V>) {
   const uiOption: UiOption = (opt) => retrieveUiOption(ctx, config(), opt);
-  function validate() {
-    validateField(ctx, config(), value());
-  }
   function onChange() {
     setFieldState(ctx, config().id, FIELD_CHANGED);
     const m = getFieldsValidationMode(ctx);
     if (!(m & ON_ARRAY_CHANGE) || (m & AFTER_SUBMITTED && !ctx.isSubmitted)) {
       return;
     }
-    validate();
+    validateField(ctx, config(), value());
   }
 
   const keyed = $derived.by(keyedArray);
@@ -117,7 +113,6 @@ function createItems<T, V extends Validator>({
   return {
     config,
     uiOption,
-    validate,
     itemTitle(title, index, c, v) {
       return itemTitle(title, index, c, v);
     },

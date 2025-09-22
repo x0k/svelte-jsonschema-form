@@ -56,7 +56,6 @@ export type ObjectContext<V extends Validator> = {
     property: string,
     isAdditional: boolean
   ) => Config;
-  validate: () => void;
 };
 
 const OBJECT_CONTEXT = Symbol("object-context");
@@ -164,17 +163,13 @@ export function createObjectContext<T, V extends Validator>({
 
   const newKeyPrefix = $derived(translate("additional-property", {}));
 
-  function validate(val: SchemaObjectValue | null | undefined) {
-    validateField(ctx, config(), val);
-  }
-
   function onChange(val: SchemaObjectValue | null | undefined) {
     setFieldState(ctx, config().id, FIELD_CHANGED);
     const m = getFieldsValidationMode(ctx);
     if (!(m & ON_OBJECT_CHANGE) || (m & AFTER_SUBMITTED && !ctx.isSubmitted)) {
       return;
     }
-    validate(val);
+    validateField(ctx, config(), val);
   }
 
   const additionalPropertyKey = $derived(
@@ -182,9 +177,6 @@ export function createObjectContext<T, V extends Validator>({
   );
 
   return {
-    validate() {
-      validate(value());
-    },
     errors() {
       return errors;
     },
