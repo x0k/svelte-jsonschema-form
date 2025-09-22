@@ -1,5 +1,41 @@
 # @sjsf/form
 
+## 3.0.0-next.2
+
+### Major Changes
+
+- Bump minimal `svelte` version to `5.39.0` ([#202](https://github.com/x0k/svelte-jsonschema-form/pull/202))
+
+- Add support for nullable schemas ([#202](https://github.com/x0k/svelte-jsonschema-form/pull/202))
+
+- Refactor standard schema validator factory signature ([#202](https://github.com/x0k/svelte-jsonschema-form/pull/202))
+
+- - The `makeEventHandlers` function signature has been updated ([`181c3ce`](https://github.com/x0k/svelte-jsonschema-form/commit/181c3ce45c6897a0fffc6c73d0ed2db838dc83c1))
+  - Added the `hasFieldState` function to check a field’s state
+  - The `isSubmitted` and `isChanged` properties are now `readonly`
+  - `isSubmitted` is reset after successful processing (validation + `onSubmit` handler)
+  - `isChanged` becomes `true` after any interaction before the form is submitted or reset
+
+- Make `itemValue` parameter of `ItemTitle` function required ([#202](https://github.com/x0k/svelte-jsonschema-form/pull/202))
+
+- Extract handlers application into `handlersAttachment` helper ([#202](https://github.com/x0k/svelte-jsonschema-form/pull/202))
+
+- Remove `@sjsf/form/extra-fields/date-field` extra field definition ([`3c90ec2`](https://github.com/x0k/svelte-jsonschema-form/commit/3c90ec22f934f28862c6515987e367c3078e21d8))
+
+- Remove `validate` method form `ObjectContext` and `ArrayContext` interfaces ([`3ac49c9`](https://github.com/x0k/svelte-jsonschema-form/commit/3ac49c954675ded403ac1a25e2dd4782fc223600))
+
+### Minor Changes
+
+- Export `createArrayComparator` and `ascComparator` functions ([#202](https://github.com/x0k/svelte-jsonschema-form/pull/202))
+
+- Add and implement `collectErrors` UI option for `tags` field ([#202](https://github.com/x0k/svelte-jsonschema-form/pull/202))
+
+- Add `aggregatedField` field and `aggregatedWidget` widget definition ([`3100b4d`](https://github.com/x0k/svelte-jsonschema-form/commit/3100b4d109798494a157a453f46c0e1cf2d746ae))
+
+### Patch Changes
+
+- Port https://github.com/rjsf-team/react-jsonschema-form/pull/4771 ([#202](https://github.com/x0k/svelte-jsonschema-form/pull/202))
+
 ## 3.0.0-next.1
 
 ### Major Changes
