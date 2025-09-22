@@ -169,9 +169,8 @@ export const specs: s.Specs = {
 		},
 		{
 			oninput: 'inputTags',
-			onchange: 'changeTags'
-			// TODO: Figure out why it doesn't work in headless mode
-			// onblur: "withTab"(t.inputTags, true)
+			onchange: 'changeTags',
+			onblur: 'visitTags'
 		}
 	],
 	textarea: [
