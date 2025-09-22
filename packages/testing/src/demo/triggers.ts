@@ -129,6 +129,11 @@ export const inputFlowbiteMultiSelect: FieldValidationTrigger = async (l) => {
   await userEvent.click(option);
 };
 
+export const getFlowbiteRadioButton = (l: Locator) => l.getByText(enumeration.enum[0])
+export const inputFlowbiteRadioButton = click(getFlowbiteRadioButton)
+export const changeFlowbiteRadioButton = inputFlowbiteRadioButton
+export const visitFlowbiteRadioButton = withTab(inputFlowbiteRadioButton)
+
 export const inputShadcnSelect: FieldValidationTrigger = async (l) => {
   const select = getButton(l);
   await userEvent.click(select);
