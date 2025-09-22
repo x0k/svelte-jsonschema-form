@@ -10,6 +10,7 @@ catalog:
   autoprefixer: ^10.4.21
   esm-env: ^1.2.2
   globals: 16.4.0
+  playwright: 1.54.1
   postcss: ^8.5.6
   svelte: ^5.39.3
   tailwindcss: ^4.1.13
