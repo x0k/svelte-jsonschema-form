@@ -30,7 +30,14 @@ export const specs: s.Specs = {
 	...DEFAULT_SPECS,
 	datePicker: [
 		s.text,
-		{ 'ui:components': { textWidget: 'datePickerWidget' } },
+		{
+			'ui:components': { textWidget: 'datePickerWidget' },
+			'ui:options': {
+				flowbite3Datepicker: {
+					locale: 'en-US'
+				}
+			}
+		},
 		{
 			oninput: 'inputDate',
 			onchange: 'changeDate',
