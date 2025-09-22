@@ -1,5 +1,12 @@
 <script lang="ts">
-  import { createForm, BasicForm, type Schema } from "@sjsf/form";
+  import { untrack } from "svelte";
+  import {
+    createForm,
+    BasicForm,
+    hasFieldState,
+    type Schema,
+    FIELD_INTERACTED,
+  } from "@sjsf/form";
   import { resolver } from "@sjsf/form/resolvers/basic";
   import { translation } from "@sjsf/form/translations/en";
   import { createFormMerger } from "@sjsf/form/mergers/modern";
@@ -7,13 +14,25 @@
   import { theme } from "@sjsf/basic-theme";
 
   const schema: Schema = {
-    type: "string",
-    minLength: 10,
+    title: "Live validation",
+    properties: {
+      foo: {
+        type: "string",
+        minLength: 10,
+      },
+      bar: {
+        type: "number",
+        minimum: 1000,
+      },
+    },
   };
 
   const form = createForm({
     theme,
-    initialValue: "initial",
+    initialValue: {
+      foo: "initial",
+      bar: 1,
+    },
     schema,
     resolver,
     translation,
@@ -25,7 +44,16 @@
   $effect(() => {
     // NOTE: `validate` reads the state snapshot,
     // causing `$effect` to subscribe to all changes.
-    form.errors = form.validate()
+    const formErrors = form.validate();
+    untrack(() => {
+      form.errors.clear();
+      for (const [id, errors] of formErrors) {
+        if (!hasFieldState(form, id, FIELD_INTERACTED)) {
+          continue;
+        }
+        form.errors.set(id, errors);
+      }
+    });
   });
 </script>
 

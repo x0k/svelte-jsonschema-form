@@ -180,6 +180,14 @@ inputAttributes(ctx, config, "text", handlers, {
 });
 ```
 
+### Other changes
+
+- The `makeEventHandlers` function signature has been changed
+- The `isSubmitted` and `isChanged` properties are now `readonly`
+- `isSubmitted` is reset after successful processing (validation + `onSubmit` handler)
+- `isChanged` becomes `true` after any interaction until
+  the form is successfully submitted or reset
+
 ## Validators
 
 ### Zod and Valibot
