@@ -146,7 +146,7 @@ setObjectContext(myObjCtx)
 
 #### Forced support for nullable fields
 
-The FieldCommonProps interface has been updated:
+The `FieldCommonProps` interface has been updated:
 ```diff
 export interface FieldCommonProps<V> {
   ...
@@ -217,6 +217,24 @@ from the `@sjsf/form/validators/standard-schema` module have changed.
 
 Now, the Standard Schema is passed as the first argument,
 followed by the remaining options.
+
+## Themes
+
+### Flowbite
+
+The `radioButtons` widget now uses [RadioButton](https://flowbite-svelte.com/docs/forms/radio#radiobutton) instead of [Button Toggle](https://flowbite-svelte.com/docs/extend/button-toggle) component.
+
+To preserve the previous behavior, replace:
+
+```ts
+import "@sjsf/flowbite3-theme/extra-widgets/radio-buttons-include";
+```
+
+with:
+
+```ts
+import "@sjsf/flowbite3-theme/extra-widgets/toggle-radio-buttons-include";
+```
 
 ## SvelteKit
 
