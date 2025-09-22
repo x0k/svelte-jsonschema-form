@@ -1,4 +1,5 @@
 import { getContext, setContext } from "svelte";
+import type { SvelteMap } from "svelte/reactivity";
 
 import type { DataURLToBlob } from "@/lib/file.js";
 import type { Schema, Validator } from "@/core/index.js";
@@ -44,13 +45,17 @@ import {
   FORM_VALIDATOR,
   FORM_VALUE,
   FORM_ROOT_ID,
+  FORM_FIELDS_STATE_MAP,
 } from "../internals.js";
 import type { Id, IdOptions } from "../id.js";
+import type { FieldState } from '../field-state.js';
 
 export interface FormState<T, V extends Validator>
   extends Readonly<Required<IdOptions>> {
   readonly submission: FormSubmission<V>;
   readonly fieldsValidation: FieldsValidation<V>;
+  readonly isChanged: boolean;
+  readonly isSubmitted: boolean;
   /**
    * An accessor that maintains form state consistency:
    *
@@ -58,8 +63,6 @@ export interface FormState<T, V extends Validator>
    * - Default values from JSON Schema are taken into account during assignment
    */
   value: T | undefined;
-  isSubmitted: boolean;
-  isChanged: boolean;
   errors: FieldErrorsMap<PossibleError<V>>;
   submit: (e: SubmitEvent) => void;
   reset: (e: Event) => void;
@@ -100,6 +103,7 @@ export interface FormState<T, V extends Validator>
   readonly [FORM_TRANSLATE]: Translate;
   readonly [FORM_RESOLVER]: ResolveFieldType;
   readonly [FORM_THEME]: Theme;
+  readonly [FORM_FIELDS_STATE_MAP]: SvelteMap<Id, FieldState>;
 }
 
 export function getFormContext<T, V extends Validator>(): FormState<T, V> {

@@ -33,6 +33,8 @@ import {
   markSchemaChange,
   type FormState,
   getFieldsValidationMode,
+  setFieldState,
+  FIELD_CHANGED,
 } from "@/form/index.js";
 
 import {
@@ -163,11 +165,16 @@ export function createObjectContext<T, V extends Validator>({
   const newKeyPrefix = $derived(translate("additional-property", {}));
 
   function validate(val: SchemaObjectValue | null | undefined) {
+    validateField(ctx, config(), val);
+  }
+
+  function onChange(val: SchemaObjectValue | null | undefined) {
+    setFieldState(ctx, config().id, FIELD_CHANGED);
     const m = getFieldsValidationMode(ctx);
     if (!(m & ON_OBJECT_CHANGE) || (m & AFTER_SUBMITTED && !ctx.isSubmitted)) {
       return;
     }
-    validateField(ctx, config(), val);
+    validate(val);
   }
 
   const additionalPropertyKey = $derived(
@@ -222,7 +229,7 @@ export function createObjectContext<T, V extends Validator>({
         val = { [newKey]: propValue };
         setValue(val);
       }
-      validate(val);
+      onChange(val);
     },
     removeProperty(prop) {
       const val = value();
@@ -230,7 +237,7 @@ export function createObjectContext<T, V extends Validator>({
         return;
       }
       delete val[prop];
-      validate(val);
+      onChange(val);
     },
     renameProperty(oldProp, newProp, fieldConfig) {
       const val = value();
@@ -243,7 +250,7 @@ export function createObjectContext<T, V extends Validator>({
       }
       val[newKey] = val[oldProp];
       delete val[oldProp];
-      validate(val);
+      onChange(val);
     },
   };
 }

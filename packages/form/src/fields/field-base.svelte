@@ -41,7 +41,7 @@
   const Template = $derived(getComponent(ctx, "fieldTemplate", config));
   const Widget = $derived(getComponent(ctx, widgetType, config));
 
-  const handlers = makeEventHandlers(ctx, () =>
+  const handlers = makeEventHandlers(ctx, () => config, () =>
     validateField(ctx, config, value)
   );
 

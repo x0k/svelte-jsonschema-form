@@ -29,6 +29,7 @@ interface Disabled {
 }
 
 interface Handlers {
+  onfocus?: () => void;
   onblur?: () => void;
   oninput?: () => void;
   onchange?: () => void;
@@ -52,10 +53,12 @@ export const handlersAttachment = weakMemoize(
   (handlers) => {
     const key = createAttachmentKey();
     const attachment: Attachment<HTMLElement> = (node) => {
+      const r0 = handlers.onfocus && on(node, "focus", handlers.onfocus);
       const r1 = handlers.oninput && on(node, "input", handlers.oninput);
       const r2 = handlers.onchange && on(node, "change", handlers.onchange);
       const r3 = handlers.onblur && on(node, "blur", handlers.onblur);
       return () => {
+        r0?.();
         r1?.();
         r2?.();
         r3?.();

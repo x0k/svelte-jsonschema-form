@@ -1,4 +1,7 @@
+import { onMount } from "svelte";
+
 import type { Validator } from "@/core/index.js";
+
 import {
   AFTER_SUBMITTED,
   AFTER_CHANGED,
@@ -7,32 +10,58 @@ import {
   ON_CHANGE,
   ON_BLUR,
 } from "../validation.js";
-import { FORM_FIELDS_VALIDATION_MODE } from '../internals.js';
-import type { FormState } from './state.js';
+import {
+  FORM_FIELDS_STATE_MAP,
+  FORM_FIELDS_VALIDATION_MODE,
+} from "../internals.js";
+import type { Id } from "../id.js";
+import type { FormState } from "./state.js";
+import type { Config } from "../config.js";
+import {
+  FIELD_BLURRED,
+  FIELD_CHANGED,
+  FIELD_FOCUSED,
+  FIELD_INPUTTED,
+  type FieldState,
+} from "../field-state.js";
+
+export function setFieldState<T, V extends Validator>(
+  ctx: FormState<T, V>,
+  id: Id,
+  state: FieldState
+) {
+  const currentFlags = ctx[FORM_FIELDS_STATE_MAP].get(id) ?? 0;
+  ctx[FORM_FIELDS_STATE_MAP].set(id, currentFlags | state);
+}
+
+export function hasFieldState<T, V extends Validator>(
+  ctx: FormState<T, V>,
+  id: Id,
+  state: FieldState
+) {
+  return ((ctx[FORM_FIELDS_STATE_MAP].get(id) ?? 0) & state) > 0;
+}
 
 export function makeEventHandlers<T, V extends Validator>(
   ctx: FormState<T, V>,
+  config: () => Config,
   validate: () => void
 ) {
-  let changed = $state(false);
-  let touched = $state(false);
+  const id = $derived(config().id);
 
-  // Clear on reset
-  $effect(() => {
-    if (ctx.isSubmitted) {
-      return;
-    }
-    changed = false;
-    touched = false;
+  onMount(() => () => {
+    ctx[FORM_FIELDS_STATE_MAP].delete(id);
   });
 
+  const mode = $derived(ctx[FORM_FIELDS_VALIDATION_MODE]);
+  const flag = $derived(ctx[FORM_FIELDS_STATE_MAP].get(id) ?? 0);
+
   const makeHandler = (event: number) => {
-    const m = ctx[FORM_FIELDS_VALIDATION_MODE];
     if (
-      !(m & event) ||
-      (m & AFTER_SUBMITTED && !ctx.isSubmitted) ||
-      (m & AFTER_CHANGED && !changed) ||
-      (m & AFTER_TOUCHED && !touched)
+      !(mode & event) ||
+      (mode & AFTER_SUBMITTED && !ctx.isSubmitted) ||
+      (mode & AFTER_CHANGED && !(flag & FIELD_CHANGED)) ||
+      (mode & AFTER_TOUCHED && !(flag & FIELD_BLURRED))
     ) {
       return;
     }
@@ -43,16 +72,19 @@ export function makeEventHandlers<T, V extends Validator>(
   const onBlur = $derived(makeHandler(ON_BLUR));
 
   return {
+    onfocus() {
+      setFieldState(ctx, id, FIELD_FOCUSED);
+    },
     oninput() {
+      setFieldState(ctx, id, FIELD_INPUTTED);
       onInput?.();
     },
     onchange() {
-      changed = true;
-      ctx.isChanged = true;
+      setFieldState(ctx, id, FIELD_CHANGED);
       onChange?.();
     },
     onblur() {
-      touched = true;
+      setFieldState(ctx, id, FIELD_BLURRED);
       onBlur?.();
     },
   };

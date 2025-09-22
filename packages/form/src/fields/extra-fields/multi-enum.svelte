@@ -33,7 +33,7 @@
   const widgetType = "checkboxesWidget";
   const Widget = $derived(getComponent(ctx, widgetType, config));
 
-  const handlers = makeEventHandlers(ctx, () =>
+  const handlers = makeEventHandlers(ctx, () => config, () =>
     validateField(ctx, config, value)
   );
   const options = $derived.by(() => {

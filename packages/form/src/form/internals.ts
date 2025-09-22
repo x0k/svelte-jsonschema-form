@@ -22,3 +22,4 @@ export const FORM_TRANSLATE = Symbol("form-translate");
 export const FORM_RESOLVER = Symbol("form-resolver");
 export const FORM_THEME = Symbol("form-theme");
 export const FORM_ROOT_ID = Symbol("form-root-id");
+export const FORM_FIELDS_STATE_MAP = Symbol("form-fields-state-map");

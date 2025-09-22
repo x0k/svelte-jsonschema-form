@@ -70,7 +70,7 @@
     );
   });
 
-  const handlers = makeEventHandlers(ctx, () =>
+  const handlers = makeEventHandlers(ctx, () => config, () =>
     validateField(ctx, config, value)
   );
   const errors = $derived(getErrors(ctx, config.id));

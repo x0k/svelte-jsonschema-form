@@ -30,6 +30,8 @@ import {
   type KeyedFieldValues,
   type PossibleError,
   type UiOption,
+  setFieldState,
+  FIELD_CHANGED,
 } from "@/form/index.js";
 
 import { titleWithIndex, type ItemTitle } from "./model.js";
@@ -91,11 +93,15 @@ function createItems<T, V extends Validator>({
 }: ItemsOptions<T, V>) {
   const uiOption: UiOption = (opt) => retrieveUiOption(ctx, config(), opt);
   function validate() {
+    validateField(ctx, config(), value());
+  }
+  function onChange() {
+    setFieldState(ctx, config().id, FIELD_CHANGED);
     const m = getFieldsValidationMode(ctx);
     if (!(m & ON_ARRAY_CHANGE) || (m & AFTER_SUBMITTED && !ctx.isSubmitted)) {
       return;
     }
-    validateField(ctx, config(), value());
+    validate();
   }
 
   const keyed = $derived.by(keyedArray);
@@ -130,23 +136,23 @@ function createItems<T, V extends Validator>({
         getDefaultFieldState(ctx, schema, undefined) ??
           getDefaultValueForType(getSimpleSchemaType(schema))
       );
-      validate();
+      onChange();
     },
     moveItemUp(index) {
       keyed.swap(index, index - 1);
-      validate();
+      onChange();
     },
     moveItemDown(index) {
       keyed.swap(index, index + 1);
-      validate();
+      onChange();
     },
     copyItem(index) {
       keyed.insert(index, $state.snapshot(value()![index]));
-      validate();
+      onChange();
     },
     removeItem(index) {
       keyed.remove(index);
-      validate();
+      onChange();
     },
   } satisfies Partial<ArrayContext<V>>;
 }

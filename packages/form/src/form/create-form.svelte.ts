@@ -57,7 +57,7 @@ import type { Theme } from "./components.js";
 import type { FormValue, KeyedArraysMap } from "./model.js";
 import type { ResolveFieldType } from "./fields.js";
 import { createSchemaValuesReconciler, UNCHANGED } from "./reconcile.js";
-import type { FormState } from "./state/index.js";
+import { hasFieldState, setFieldState, type FormState } from "./state/index.js";
 import {
   FORM_DATA_URL_TO_BLOB,
   FORM_UI_EXTRA_OPTIONS,
@@ -78,7 +78,9 @@ import {
   FORM_ICONS,
   FORM_MARK_SCHEMA_CHANGE,
   FORM_ROOT_ID,
+  FORM_FIELDS_STATE_MAP,
 } from "./internals.js";
+import { FIELD_SUBMITTED } from "./field-state.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
 
@@ -325,8 +327,6 @@ export function createForm<T, V extends Validator>(
       : createErrorsRef(options.initialErrors)
   );
   const disabled = $derived(options.disabled ?? false);
-  let isSubmitted = $state.raw(false);
-  let isChanged = $state.raw(false);
   const fieldsValidationMode = $derived(options.fieldsValidationMode ?? 0);
   const keyedArrays: KeyedArraysMap = $derived(
     options.keyedArraysMap ?? new WeakMap()
@@ -373,6 +373,11 @@ export function createForm<T, V extends Validator>(
     return () => get(opts);
   });
   const translate = $derived(createTranslate(options.translation));
+  const fieldsStateMap = new SvelteMap<Id, number>();
+  const isChanged = $derived(fieldsStateMap.size > 0);
+  const isSubmitted = $derived.by(() =>
+    hasFieldState(formState, idPrefix, FIELD_SUBMITTED)
+  );
   /** STATE END */
 
   const validateForm: AsyncFormValueValidator<
@@ -391,7 +396,7 @@ export function createForm<T, V extends Validator>(
 
   const submission: FormSubmission<V> = createTask({
     async execute(signal) {
-      isSubmitted = true;
+      setFieldState(formState, idPrefix, FIELD_SUBMITTED);
       const formValue = getSnapshot();
       return {
         formValue,
@@ -404,7 +409,7 @@ export function createForm<T, V extends Validator>(
       errorsRef.current = formErrors;
       if (formErrors.size === 0) {
         options.onSubmit?.(formValue as T, event);
-        isChanged = false;
+        fieldsStateMap.clear();
         return;
       }
       options.onSubmitError?.(formErrors, event, formValue);
@@ -506,8 +511,7 @@ export function createForm<T, V extends Validator>(
 
   function reset(e: Event) {
     e.preventDefault();
-    isSubmitted = false;
-    isChanged = false;
+    fieldsStateMap.clear();
     errorsRef.current.clear();
     valueRef.current = merger.mergeFormDataAndSchemaDefaults(
       options.initialValue as FormValue,
@@ -553,14 +557,8 @@ export function createForm<T, V extends Validator>(
     get isSubmitted() {
       return isSubmitted;
     },
-    set isSubmitted(v) {
-      isSubmitted = v;
-    },
     get isChanged() {
       return isChanged;
-    },
-    set isChanged(v) {
-      isChanged = v;
     },
     get errors() {
       return errorsRef.current;
@@ -582,6 +580,7 @@ export function createForm<T, V extends Validator>(
     validate,
     validateAsync,
     // INTERNALS
+    [FORM_FIELDS_STATE_MAP]: fieldsStateMap,
     get [FORM_ROOT_ID]() {
       return idPrefix;
     },
