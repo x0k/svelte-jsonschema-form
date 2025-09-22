@@ -1,5 +1,6 @@
 import type { Resolver } from "@/lib/resolver.js";
 import type { FailedTask } from "@/lib/task.svelte.js";
+import type { Schema } from '@/core/index.js';
 
 export interface Labels {
   submit: {};
@@ -19,6 +20,7 @@ export interface Labels {
   "component-not-found": { type: string };
   "key-input-title": { name: string };
   "additional-property": {};
+  "unknown-field-error": { schema: Schema }
 }
 
 export type Label = keyof Labels;

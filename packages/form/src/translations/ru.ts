@@ -21,6 +21,18 @@ export const definitions: TranslatorDefinitions = {
   "component-not-found": ({ type }) => `Компонент "${type}" не найден`,
   "key-input-title": ({ name }) => `${name} Ключ`,
   "additional-property": "Дополнительное свойство",
+  "unknown-field-error": ({
+    schema,
+  }) => `Вы видите эту ошибку, потому что в вашей JSON схеме недостаточно информации
+для определения её типа. Возможные варианты решения:
+- указать тип схемы (например, с помощью ключевого слова 'type')
+- указать, какой компонент использовать, через UiSchema
+  ('{ "ui:components": { "unknownField": "myField" } }')
+- указать компонент с помощью собственного 'resolver'
+  (https://x0k.dev/svelte-jsonschema-form/guides/fields-resolution/)
+
+JSON Schema:
+${JSON.stringify(schema, null, 2)}`,
 };
 
 const FAILURE_REASONS: Record<TaskFailureReason, string> = {
