@@ -114,7 +114,7 @@
 
   let callbackId: number | undefined;
   $effect(() => {
-    Object.values(data);
+    $state.snapshot(data);
     clearTimeout(callbackId);
     callbackId = setTimeout(() => {
       const url = new URL(location.href);
@@ -125,7 +125,6 @@
 
   const theme = $derived(extendByRecord(themes[data.theme], customComponents));
   const themeStyle = $derived(themeStyles[data.theme]);
-  const validator = $derived(validators[data.validator]());
   const iconsSet = $derived(data.icons && icons[data.icons]);
   const iconSetStyle = $derived(data.icons && iconsStyles[data.icons]);
   const fieldsValidationCount = $derived.by(() => {
@@ -141,24 +140,10 @@
   });
   const resolver = $derived(resolvers[data.resolver]);
   const { compareSchemaDefinitions, compareSchemaValues } = createComparator();
-  const merger = $derived(
-    createFormMerger({
-      validator,
-      schema: data.schema,
-      jsonSchemaMerger: createMerger({
-        intersectJson: createIntersector(compareSchemaValues),
-        deduplicateJsonSchemaDef: createDeduplicator(compareSchemaDefinitions),
-      }),
-      allOf: data.allOf,
-      arrayMinItems: {
-        populate: data.arrayMinItemsPopulate,
-        mergeExtraDefaults: data.arrayMinItemsMergeExtraDefaults,
-      },
-      constAsDefaults: data.constAsDefault,
-      emptyObjectFields: data.emptyObjectFields,
-      mergeDefaultsIntoFormData: data.mergeDefaultsIntoFormData,
-    })
-  );
+  const jsonSchemaMerger = createMerger({
+    intersectJson: createIntersector(compareSchemaValues),
+    deduplicateJsonSchemaDef: createDeduplicator(compareSchemaDefinitions),
+  });
 
   let portalEl = $state.raw() as HTMLDivElement;
   const rootNode = $derived(portalEl?.getRootNode());
@@ -174,7 +159,12 @@
     get resolver() {
       return resolver;
     },
-    value: [() => data.initialValue, (v) => (data.initialValue = v)],
+    value: [
+      () => data.initialValue,
+      (v) => {
+        data.initialValue = v;
+      },
+    ],
     translation,
     get theme() {
       return theme;
@@ -185,8 +175,22 @@
     get uiSchema() {
       return data.uiSchema;
     },
-    createValidator: () => validator,
-    createMerger: () => merger,
+    get createValidator() {
+      return validators[data.validator];
+    },
+    createMerger: (options) =>
+      createFormMerger({
+        ...options,
+        jsonSchemaMerger,
+        allOf: data.allOf,
+        arrayMinItems: {
+          populate: data.arrayMinItemsPopulate,
+          mergeExtraDefaults: data.arrayMinItemsMergeExtraDefaults,
+        },
+        constAsDefaults: data.constAsDefault,
+        emptyObjectFields: data.emptyObjectFields,
+        mergeDefaultsIntoFormData: data.mergeDefaultsIntoFormData,
+      }),
     get disabled() {
       return data.disabled;
     },
@@ -213,12 +217,13 @@
       }
       console.log("errors", errors);
     },
+    getSnapshot({ merger, validator, schema, value }) {
+      const snap = $state.snapshot(value);
+      return data.omitExtraData
+        ? omitExtraData(validator, merger, schema, snap)
+        : snap;
+    },
   });
-  const formValue = $derived(
-    data.omitExtraData
-      ? omitExtraData(validator, merger, data.schema, data.initialValue)
-      : data.initialValue
-  );
 
   setShadcnContext();
 
@@ -371,14 +376,19 @@
   />
   <Editor
     class="row-start-3 col-span-2 border rounded-md data-[error=true]:border-red-500 data-[error=true]:outline-none"
-    bind:value={() => formValue, (v) => (data.initialValue = v)}
+    bind:value={
+      () => form.value,
+      (v) => {
+        data.initialValue = v;
+      }
+    }
   />
   <ShadowHost
     class="col-span-3 row-span-2 overflow-y-auto border border-[var(--global-border)] rounded-md"
     style={`${themeStyle}\n${iconSetStyle}`}
   >
-    {#if portalEl}
-      <BitsConfig defaultPortalTo={portalEl}>
+    <BitsConfig defaultPortalTo={portalEl}>
+      <svelte:boundary>
         <BasicForm
           id="form"
           {form}
@@ -389,8 +399,12 @@
             ? "cerberus"
             : themeManager.darkOrLight}
         />
-      </BitsConfig>
-    {/if}
+        {#snippet failed(error, reset)}
+          {@const _ = setTimeout(reset, 1000)}
+          <p style="color: red; padding: 1rem;">{error}</p>
+        {/snippet}
+      </svelte:boundary>
+    </BitsConfig>
     <div bind:this={portalEl}></div>
   </ShadowHost>
 </div>
