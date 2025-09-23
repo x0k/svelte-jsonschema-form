@@ -824,6 +824,564 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
 </div>
 `;
 
+exports[`widgets > combobox > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <span
+          class="  w-full svelte-4lja87"
+          data-part="root"
+          data-scope="combobox"
+          data-testid="combobox"
+          id="combobox:c3"
+        >
+          <label
+            class="label  svelte-4lja87"
+            data-disabled=""
+            data-part="label"
+            data-scope="combobox"
+            for="root"
+            id="combobox:c3:label"
+          >
+            <!---->
+             
+            <div
+              class="input-group grid-cols-[1fr_auto]  svelte-4lja87"
+              data-disabled=""
+              data-part="control"
+              data-scope="combobox"
+              data-state="closed"
+              id="combobox:c3:control"
+            >
+              <input
+                aria-autocomplete="list"
+                aria-controls="combobox:c3:content"
+                aria-expanded="false"
+                autocapitalize="none"
+                autocomplete="off"
+                autocorrect="off"
+                class="ig-input svelte-4lja87"
+                data-part="input"
+                data-scope="combobox"
+                data-state="closed"
+                disabled=""
+                id="root"
+                name="root"
+                role="combobox"
+                spellcheck="false"
+                type="text"
+              />
+               
+              <button
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                aria-label="Toggle suggestions"
+                class="ig-btn hover:preset-tonal svelte-4lja87"
+                data-disabled=""
+                data-part="trigger"
+                data-scope="combobox"
+                data-state="closed"
+                disabled=""
+                id="combobox:c3:toggle-btn"
+                tabindex="-1"
+                type="button"
+              >
+                <svg
+                  fill="none"
+                  height="16"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  style="opacity: 0.5"
+                  viewBox="0 0 24 24"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+                <!---->
+              </button>
+            </div>
+          </label>
+           
+          <!---->
+        </span>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > combobox > snapshots > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <span
+          class="  w-full svelte-4lja87"
+          data-part="root"
+          data-scope="combobox"
+          data-testid="combobox"
+          id="combobox:c2"
+        >
+          <label
+            class="label  svelte-4lja87"
+            data-part="label"
+            data-scope="combobox"
+            for="root"
+            id="combobox:c2:label"
+          >
+            <!---->
+             
+            <div
+              class="input-group grid-cols-[1fr_auto]  svelte-4lja87"
+              data-part="control"
+              data-scope="combobox"
+              data-state="closed"
+              id="combobox:c2:control"
+            >
+              <input
+                aria-autocomplete="list"
+                aria-controls="combobox:c2:content"
+                aria-expanded="false"
+                autocapitalize="none"
+                autocomplete="off"
+                autocorrect="off"
+                class="ig-input svelte-4lja87"
+                data-part="input"
+                data-scope="combobox"
+                data-state="closed"
+                id="root"
+                name="root"
+                role="combobox"
+                spellcheck="false"
+                type="text"
+              />
+               
+              <button
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                aria-label="Toggle suggestions"
+                class="ig-btn hover:preset-tonal svelte-4lja87"
+                data-part="trigger"
+                data-scope="combobox"
+                data-state="closed"
+                id="combobox:c2:toggle-btn"
+                tabindex="-1"
+                type="button"
+              >
+                <svg
+                  fill="none"
+                  height="16"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  style="opacity: 0.5"
+                  viewBox="0 0 24 24"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+                <!---->
+              </button>
+            </div>
+          </label>
+           
+          <!---->
+        </span>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error-500 list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > combobox > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <span
+          class="  w-full svelte-4lja87"
+          data-part="root"
+          data-scope="combobox"
+          data-testid="combobox"
+          id="combobox:c1"
+        >
+          <label
+            class="label  svelte-4lja87"
+            data-part="label"
+            data-scope="combobox"
+            for="root"
+            id="combobox:c1:label"
+          >
+            <!---->
+             
+            <div
+              class="input-group grid-cols-[1fr_auto]  svelte-4lja87"
+              data-part="control"
+              data-scope="combobox"
+              data-state="closed"
+              id="combobox:c1:control"
+            >
+              <input
+                aria-autocomplete="list"
+                aria-controls="combobox:c1:content"
+                aria-expanded="false"
+                autocapitalize="none"
+                autocomplete="off"
+                autocorrect="off"
+                class="ig-input svelte-4lja87"
+                data-part="input"
+                data-scope="combobox"
+                data-state="closed"
+                id="root"
+                name="root"
+                role="combobox"
+                spellcheck="false"
+                type="text"
+              />
+               
+              <button
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                aria-label="Toggle suggestions"
+                class="ig-btn hover:preset-tonal svelte-4lja87"
+                data-part="trigger"
+                data-scope="combobox"
+                data-state="closed"
+                id="combobox:c1:toggle-btn"
+                tabindex="-1"
+                type="button"
+              >
+                <svg
+                  fill="none"
+                  height="16"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  style="opacity: 0.5"
+                  viewBox="0 0 24 24"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+                <!---->
+              </button>
+            </div>
+          </label>
+           
+          <!---->
+        </span>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > combobox > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <div
+      class="flex gap-2 flex-col"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <div
+        class="flex gap-2 items-start"
+        data-layout="field-content"
+      >
+        <!---->
+        <!---->
+        <span
+          class="  w-full svelte-4lja87"
+          data-part="root"
+          data-readonly=""
+          data-scope="combobox"
+          data-testid="combobox"
+          id="combobox:c4"
+        >
+          <label
+            class="label  svelte-4lja87"
+            data-part="label"
+            data-readonly=""
+            data-scope="combobox"
+            for="root"
+            id="combobox:c4:label"
+          >
+            <!---->
+             
+            <div
+              class="input-group grid-cols-[1fr_auto]  svelte-4lja87"
+              data-part="control"
+              data-scope="combobox"
+              data-state="closed"
+              id="combobox:c4:control"
+            >
+              <input
+                aria-autocomplete="list"
+                aria-controls="combobox:c4:content"
+                aria-expanded="false"
+                autocapitalize="none"
+                autocomplete="off"
+                autocorrect="off"
+                class="ig-input svelte-4lja87"
+                data-part="input"
+                data-scope="combobox"
+                data-state="closed"
+                id="root"
+                name="root"
+                readonly=""
+                role="combobox"
+                spellcheck="false"
+                type="text"
+              />
+               
+              <button
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                aria-label="Toggle suggestions"
+                class="ig-btn hover:preset-tonal svelte-4lja87"
+                data-part="trigger"
+                data-readonly=""
+                data-scope="combobox"
+                data-state="closed"
+                id="combobox:c4:toggle-btn"
+                tabindex="-1"
+                type="button"
+              >
+                <svg
+                  fill="none"
+                  height="16"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  style="opacity: 0.5"
+                  viewBox="0 0 24 24"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+                <!---->
+              </button>
+            </div>
+          </label>
+           
+          <!---->
+        </span>
+        
+        
+        <!---->
+      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </div>
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn preset-filled preset-filled-primary-500 w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
 exports[`widgets > datePicker > snapshots > disabled 1`] = `
 <div>
   <!---->
@@ -1411,7 +1969,7 @@ exports[`widgets > fileUpload > snapshots > disabled 1`] = `
           data-part="root"
           data-scope="file-upload"
           data-testid="uploader"
-          id="file:c3"
+          id="file:c7"
           style="display: block;"
         >
           <div
@@ -1420,7 +1978,7 @@ exports[`widgets > fileUpload > snapshots > disabled 1`] = `
             data-disabled=""
             data-part="dropzone"
             data-scope="file-upload"
-            id="file:c3:dropzone"
+            id="file:c7:dropzone"
             role="button"
           >
             <input
@@ -1526,7 +2084,7 @@ exports[`widgets > fileUpload > snapshots > error 1`] = `
           data-part="root"
           data-scope="file-upload"
           data-testid="uploader"
-          id="file:c2"
+          id="file:c6"
           style="display: block;"
         >
           <div
@@ -1535,7 +2093,7 @@ exports[`widgets > fileUpload > snapshots > error 1`] = `
             data-invalid=""
             data-part="dropzone"
             data-scope="file-upload"
-            id="file:c2:dropzone"
+            id="file:c6:dropzone"
             role="button"
             tabindex="0"
           >
@@ -1651,7 +2209,7 @@ exports[`widgets > fileUpload > snapshots > normal 1`] = `
           data-part="root"
           data-scope="file-upload"
           data-testid="uploader"
-          id="file:c1"
+          id="file:c5"
           style="display: block;"
         >
           <div
@@ -1659,7 +2217,7 @@ exports[`widgets > fileUpload > snapshots > normal 1`] = `
             aria-label="dropzone"
             data-part="dropzone"
             data-scope="file-upload"
-            id="file:c1:dropzone"
+            id="file:c5:dropzone"
             role="button"
             tabindex="0"
           >
@@ -1763,7 +2321,7 @@ exports[`widgets > fileUpload > snapshots > readonly 1`] = `
           data-part="root"
           data-scope="file-upload"
           data-testid="uploader"
-          id="file:c4"
+          id="file:c8"
           style="display: block;"
         >
           <div
@@ -1771,7 +2329,7 @@ exports[`widgets > fileUpload > snapshots > readonly 1`] = `
             aria-label="dropzone"
             data-part="dropzone"
             data-scope="file-upload"
-            id="file:c4:dropzone"
+            id="file:c8:dropzone"
             role="button"
             tabindex="0"
           >
@@ -1876,7 +2434,7 @@ exports[`widgets > fileUploadMultiple > snapshots > disabled 1`] = `
           data-part="root"
           data-scope="file-upload"
           data-testid="uploader"
-          id="file:c8"
+          id="file:c12"
           style="display: block;"
         >
           <div
@@ -1885,7 +2443,7 @@ exports[`widgets > fileUploadMultiple > snapshots > disabled 1`] = `
             data-disabled=""
             data-part="dropzone"
             data-scope="file-upload"
-            id="file:c8:dropzone"
+            id="file:c12:dropzone"
             role="button"
           >
             <input
@@ -1992,7 +2550,7 @@ exports[`widgets > fileUploadMultiple > snapshots > error 1`] = `
           data-part="root"
           data-scope="file-upload"
           data-testid="uploader"
-          id="file:c7"
+          id="file:c11"
           style="display: block;"
         >
           <div
@@ -2001,7 +2559,7 @@ exports[`widgets > fileUploadMultiple > snapshots > error 1`] = `
             data-invalid=""
             data-part="dropzone"
             data-scope="file-upload"
-            id="file:c7:dropzone"
+            id="file:c11:dropzone"
             role="button"
             tabindex="0"
           >
@@ -2118,7 +2676,7 @@ exports[`widgets > fileUploadMultiple > snapshots > normal 1`] = `
           data-part="root"
           data-scope="file-upload"
           data-testid="uploader"
-          id="file:c6"
+          id="file:c10"
           style="display: block;"
         >
           <div
@@ -2126,7 +2684,7 @@ exports[`widgets > fileUploadMultiple > snapshots > normal 1`] = `
             aria-label="dropzone"
             data-part="dropzone"
             data-scope="file-upload"
-            id="file:c6:dropzone"
+            id="file:c10:dropzone"
             role="button"
             tabindex="0"
           >
@@ -2231,7 +2789,7 @@ exports[`widgets > fileUploadMultiple > snapshots > readonly 1`] = `
           data-part="root"
           data-scope="file-upload"
           data-testid="uploader"
-          id="file:c9"
+          id="file:c13"
           style="display: block;"
         >
           <div
@@ -2239,7 +2797,7 @@ exports[`widgets > fileUploadMultiple > snapshots > readonly 1`] = `
             aria-label="dropzone"
             data-part="dropzone"
             data-scope="file-upload"
-            id="file:c9:dropzone"
+            id="file:c13:dropzone"
             role="button"
             tabindex="0"
           >
@@ -3820,7 +4378,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
             data-part="indicator"
             data-scope="radio-group"
             data-testid="segment-indicator"
-            id="radio-group:c13:indicator"
+            id="radio-group:c17:indicator"
             style="--transition-property: left, top, width, height; position: absolute; will-change: var(--transition-property); transition-property: var(--transition-property); transition-duration: 0ms; transition-timing-function: var(--transition-timing-function); left: var(--left);"
           />
            
@@ -3834,8 +4392,8 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
             data-scope="radio-group"
             data-state="unchecked"
             data-testid="segment-item"
-            for="radio-group:c13:radio:input:0"
-            id="radio-group:c13:radio:0"
+            for="radio-group:c17:radio:input:0"
+            id="radio-group:c17:radio:0"
           >
             <span
               class="pointer-events-none transition-colors duration-100  "
@@ -3845,7 +4403,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               data-testid="segment-item-label"
-              id="radio-group:c13:radio:label:0"
+              id="radio-group:c17:radio:label:0"
             >
               foo
               <!---->
@@ -3855,7 +4413,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
               data-ownedby="root"
               data-testid="segment-item-input"
               disabled=""
-              id="radio-group:c13:radio:input:0"
+              id="radio-group:c17:radio:input:0"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
               type="radio"
@@ -3872,8 +4430,8 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
             data-scope="radio-group"
             data-state="unchecked"
             data-testid="segment-item"
-            for="radio-group:c13:radio:input:1"
-            id="radio-group:c13:radio:1"
+            for="radio-group:c17:radio:input:1"
+            id="radio-group:c17:radio:1"
           >
             <span
               class="pointer-events-none transition-colors duration-100  "
@@ -3883,7 +4441,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               data-testid="segment-item-label"
-              id="radio-group:c13:radio:label:1"
+              id="radio-group:c17:radio:label:1"
             >
               bar
               <!---->
@@ -3893,7 +4451,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
               data-ownedby="root"
               data-testid="segment-item-input"
               disabled=""
-              id="radio-group:c13:radio:input:1"
+              id="radio-group:c17:radio:input:1"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
               type="radio"
@@ -3910,8 +4468,8 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
             data-scope="radio-group"
             data-state="unchecked"
             data-testid="segment-item"
-            for="radio-group:c13:radio:input:2"
-            id="radio-group:c13:radio:2"
+            for="radio-group:c17:radio:input:2"
+            id="radio-group:c17:radio:2"
           >
             <span
               class="pointer-events-none transition-colors duration-100  "
@@ -3921,7 +4479,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               data-testid="segment-item-label"
-              id="radio-group:c13:radio:label:2"
+              id="radio-group:c17:radio:label:2"
             >
               fuzz
               <!---->
@@ -3931,7 +4489,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
               data-ownedby="root"
               data-testid="segment-item-input"
               disabled=""
-              id="radio-group:c13:radio:input:2"
+              id="radio-group:c17:radio:input:2"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
               type="radio"
@@ -3948,8 +4506,8 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
             data-scope="radio-group"
             data-state="unchecked"
             data-testid="segment-item"
-            for="radio-group:c13:radio:input:3"
-            id="radio-group:c13:radio:3"
+            for="radio-group:c17:radio:input:3"
+            id="radio-group:c17:radio:3"
           >
             <span
               class="pointer-events-none transition-colors duration-100  "
@@ -3959,7 +4517,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               data-testid="segment-item-label"
-              id="radio-group:c13:radio:label:3"
+              id="radio-group:c17:radio:label:3"
             >
               qux
               <!---->
@@ -3969,7 +4527,7 @@ exports[`widgets > radioButtons > snapshots > disabled 1`] = `
               data-ownedby="root"
               data-testid="segment-item-input"
               disabled=""
-              id="radio-group:c13:radio:input:3"
+              id="radio-group:c17:radio:input:3"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
               type="radio"
@@ -4057,7 +4615,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
             data-part="indicator"
             data-scope="radio-group"
             data-testid="segment-indicator"
-            id="radio-group:c12:indicator"
+            id="radio-group:c16:indicator"
             style="--transition-property: left, top, width, height; position: absolute; will-change: var(--transition-property); transition-property: var(--transition-property); transition-duration: 0ms; transition-timing-function: var(--transition-timing-function); left: var(--left);"
           />
            
@@ -4070,8 +4628,8 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
             data-scope="radio-group"
             data-state="unchecked"
             data-testid="segment-item"
-            for="radio-group:c12:radio:input:0"
-            id="radio-group:c12:radio:0"
+            for="radio-group:c16:radio:input:0"
+            id="radio-group:c16:radio:0"
           >
             <span
               class="pointer-events-none transition-colors duration-100  "
@@ -4080,7 +4638,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               data-testid="segment-item-label"
-              id="radio-group:c12:radio:label:0"
+              id="radio-group:c16:radio:label:0"
             >
               foo
               <!---->
@@ -4089,7 +4647,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
             <input
               data-ownedby="root"
               data-testid="segment-item-input"
-              id="radio-group:c12:radio:input:0"
+              id="radio-group:c16:radio:input:0"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
               type="radio"
@@ -4105,8 +4663,8 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
             data-scope="radio-group"
             data-state="unchecked"
             data-testid="segment-item"
-            for="radio-group:c12:radio:input:1"
-            id="radio-group:c12:radio:1"
+            for="radio-group:c16:radio:input:1"
+            id="radio-group:c16:radio:1"
           >
             <span
               class="pointer-events-none transition-colors duration-100  "
@@ -4115,7 +4673,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               data-testid="segment-item-label"
-              id="radio-group:c12:radio:label:1"
+              id="radio-group:c16:radio:label:1"
             >
               bar
               <!---->
@@ -4124,7 +4682,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
             <input
               data-ownedby="root"
               data-testid="segment-item-input"
-              id="radio-group:c12:radio:input:1"
+              id="radio-group:c16:radio:input:1"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
               type="radio"
@@ -4140,8 +4698,8 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
             data-scope="radio-group"
             data-state="unchecked"
             data-testid="segment-item"
-            for="radio-group:c12:radio:input:2"
-            id="radio-group:c12:radio:2"
+            for="radio-group:c16:radio:input:2"
+            id="radio-group:c16:radio:2"
           >
             <span
               class="pointer-events-none transition-colors duration-100  "
@@ -4150,7 +4708,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               data-testid="segment-item-label"
-              id="radio-group:c12:radio:label:2"
+              id="radio-group:c16:radio:label:2"
             >
               fuzz
               <!---->
@@ -4159,7 +4717,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
             <input
               data-ownedby="root"
               data-testid="segment-item-input"
-              id="radio-group:c12:radio:input:2"
+              id="radio-group:c16:radio:input:2"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
               type="radio"
@@ -4175,8 +4733,8 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
             data-scope="radio-group"
             data-state="unchecked"
             data-testid="segment-item"
-            for="radio-group:c12:radio:input:3"
-            id="radio-group:c12:radio:3"
+            for="radio-group:c16:radio:input:3"
+            id="radio-group:c16:radio:3"
           >
             <span
               class="pointer-events-none transition-colors duration-100  "
@@ -4185,7 +4743,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               data-testid="segment-item-label"
-              id="radio-group:c12:radio:label:3"
+              id="radio-group:c16:radio:label:3"
             >
               qux
               <!---->
@@ -4194,7 +4752,7 @@ exports[`widgets > radioButtons > snapshots > error 1`] = `
             <input
               data-ownedby="root"
               data-testid="segment-item-input"
-              id="radio-group:c12:radio:input:3"
+              id="radio-group:c16:radio:input:3"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
               type="radio"
@@ -4293,7 +4851,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
             data-part="indicator"
             data-scope="radio-group"
             data-testid="segment-indicator"
-            id="radio-group:c11:indicator"
+            id="radio-group:c15:indicator"
             style="--transition-property: left, top, width, height; position: absolute; will-change: var(--transition-property); transition-property: var(--transition-property); transition-duration: 0ms; transition-timing-function: var(--transition-timing-function); left: var(--left);"
           />
            
@@ -4306,8 +4864,8 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
             data-scope="radio-group"
             data-state="unchecked"
             data-testid="segment-item"
-            for="radio-group:c11:radio:input:0"
-            id="radio-group:c11:radio:0"
+            for="radio-group:c15:radio:input:0"
+            id="radio-group:c15:radio:0"
           >
             <span
               class="pointer-events-none transition-colors duration-100  "
@@ -4316,7 +4874,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               data-testid="segment-item-label"
-              id="radio-group:c11:radio:label:0"
+              id="radio-group:c15:radio:label:0"
             >
               foo
               <!---->
@@ -4325,7 +4883,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
             <input
               data-ownedby="root"
               data-testid="segment-item-input"
-              id="radio-group:c11:radio:input:0"
+              id="radio-group:c15:radio:input:0"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
               type="radio"
@@ -4341,8 +4899,8 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
             data-scope="radio-group"
             data-state="unchecked"
             data-testid="segment-item"
-            for="radio-group:c11:radio:input:1"
-            id="radio-group:c11:radio:1"
+            for="radio-group:c15:radio:input:1"
+            id="radio-group:c15:radio:1"
           >
             <span
               class="pointer-events-none transition-colors duration-100  "
@@ -4351,7 +4909,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               data-testid="segment-item-label"
-              id="radio-group:c11:radio:label:1"
+              id="radio-group:c15:radio:label:1"
             >
               bar
               <!---->
@@ -4360,7 +4918,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
             <input
               data-ownedby="root"
               data-testid="segment-item-input"
-              id="radio-group:c11:radio:input:1"
+              id="radio-group:c15:radio:input:1"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
               type="radio"
@@ -4376,8 +4934,8 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
             data-scope="radio-group"
             data-state="unchecked"
             data-testid="segment-item"
-            for="radio-group:c11:radio:input:2"
-            id="radio-group:c11:radio:2"
+            for="radio-group:c15:radio:input:2"
+            id="radio-group:c15:radio:2"
           >
             <span
               class="pointer-events-none transition-colors duration-100  "
@@ -4386,7 +4944,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               data-testid="segment-item-label"
-              id="radio-group:c11:radio:label:2"
+              id="radio-group:c15:radio:label:2"
             >
               fuzz
               <!---->
@@ -4395,7 +4953,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
             <input
               data-ownedby="root"
               data-testid="segment-item-input"
-              id="radio-group:c11:radio:input:2"
+              id="radio-group:c15:radio:input:2"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
               type="radio"
@@ -4411,8 +4969,8 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
             data-scope="radio-group"
             data-state="unchecked"
             data-testid="segment-item"
-            for="radio-group:c11:radio:input:3"
-            id="radio-group:c11:radio:3"
+            for="radio-group:c15:radio:input:3"
+            id="radio-group:c15:radio:3"
           >
             <span
               class="pointer-events-none transition-colors duration-100  "
@@ -4421,7 +4979,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               data-testid="segment-item-label"
-              id="radio-group:c11:radio:label:3"
+              id="radio-group:c15:radio:label:3"
             >
               qux
               <!---->
@@ -4430,7 +4988,7 @@ exports[`widgets > radioButtons > snapshots > normal 1`] = `
             <input
               data-ownedby="root"
               data-testid="segment-item-input"
-              id="radio-group:c11:radio:input:3"
+              id="radio-group:c15:radio:input:3"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
               type="radio"
@@ -4517,7 +5075,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             data-part="indicator"
             data-scope="radio-group"
             data-testid="segment-indicator"
-            id="radio-group:c14:indicator"
+            id="radio-group:c18:indicator"
             style="--transition-property: left, top, width, height; position: absolute; will-change: var(--transition-property); transition-property: var(--transition-property); transition-duration: 0ms; transition-timing-function: var(--transition-timing-function); left: var(--left);"
           />
            
@@ -4531,8 +5089,8 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             data-scope="radio-group"
             data-state="unchecked"
             data-testid="segment-item"
-            for="radio-group:c14:radio:input:0"
-            id="radio-group:c14:radio:0"
+            for="radio-group:c18:radio:input:0"
+            id="radio-group:c18:radio:0"
           >
             <span
               class="pointer-events-none transition-colors duration-100  "
@@ -4542,7 +5100,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               data-testid="segment-item-label"
-              id="radio-group:c14:radio:label:0"
+              id="radio-group:c18:radio:label:0"
             >
               foo
               <!---->
@@ -4551,7 +5109,8 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             <input
               data-ownedby="root"
               data-testid="segment-item-input"
-              id="radio-group:c14:radio:input:0"
+              disabled=""
+              id="radio-group:c18:radio:input:0"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
               type="radio"
@@ -4568,8 +5127,8 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             data-scope="radio-group"
             data-state="unchecked"
             data-testid="segment-item"
-            for="radio-group:c14:radio:input:1"
-            id="radio-group:c14:radio:1"
+            for="radio-group:c18:radio:input:1"
+            id="radio-group:c18:radio:1"
           >
             <span
               class="pointer-events-none transition-colors duration-100  "
@@ -4579,7 +5138,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               data-testid="segment-item-label"
-              id="radio-group:c14:radio:label:1"
+              id="radio-group:c18:radio:label:1"
             >
               bar
               <!---->
@@ -4588,7 +5147,8 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             <input
               data-ownedby="root"
               data-testid="segment-item-input"
-              id="radio-group:c14:radio:input:1"
+              disabled=""
+              id="radio-group:c18:radio:input:1"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
               type="radio"
@@ -4605,8 +5165,8 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             data-scope="radio-group"
             data-state="unchecked"
             data-testid="segment-item"
-            for="radio-group:c14:radio:input:2"
-            id="radio-group:c14:radio:2"
+            for="radio-group:c18:radio:input:2"
+            id="radio-group:c18:radio:2"
           >
             <span
               class="pointer-events-none transition-colors duration-100  "
@@ -4616,7 +5176,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               data-testid="segment-item-label"
-              id="radio-group:c14:radio:label:2"
+              id="radio-group:c18:radio:label:2"
             >
               fuzz
               <!---->
@@ -4625,7 +5185,8 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             <input
               data-ownedby="root"
               data-testid="segment-item-input"
-              id="radio-group:c14:radio:input:2"
+              disabled=""
+              id="radio-group:c18:radio:input:2"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
               type="radio"
@@ -4642,8 +5203,8 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             data-scope="radio-group"
             data-state="unchecked"
             data-testid="segment-item"
-            for="radio-group:c14:radio:input:3"
-            id="radio-group:c14:radio:3"
+            for="radio-group:c18:radio:input:3"
+            id="radio-group:c18:radio:3"
           >
             <span
               class="pointer-events-none transition-colors duration-100  "
@@ -4653,7 +5214,7 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
               data-scope="radio-group"
               data-state="unchecked"
               data-testid="segment-item-label"
-              id="radio-group:c14:radio:label:3"
+              id="radio-group:c18:radio:label:3"
             >
               qux
               <!---->
@@ -4662,7 +5223,8 @@ exports[`widgets > radioButtons > snapshots > readonly 1`] = `
             <input
               data-ownedby="root"
               data-testid="segment-item-input"
-              id="radio-group:c14:radio:input:3"
+              disabled=""
+              id="radio-group:c18:radio:input:3"
               name="root"
               style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;"
               type="radio"
@@ -5016,12 +5578,12 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
           data-scope="rating-group"
           data-testid="rating"
           dir="ltr"
-          id="rating:c19"
+          id="rating:c23"
         >
           <!---->
            
           <div
-            aria-labelledby="rating:c19:label"
+            aria-labelledby="rating:c23:label"
             aria-orientation="horizontal"
             class="flex gap-2  cursor-not-allowed opacity-50 "
             data-disabled=""
@@ -5029,7 +5591,7 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
             data-scope="rating-group"
             data-testid="rating-control"
             dir="ltr"
-            id="rating:c19:control"
+            id="rating:c23:control"
             role="radiogroup"
           >
             <span
@@ -5046,7 +5608,7 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
               data-scope="rating-group"
               data-testid="rating-item"
               dir="ltr"
-              id="rating:c19:item:1"
+              id="rating:c23:item:1"
               role="radio"
             >
               <!---->
@@ -5085,7 +5647,7 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
               data-scope="rating-group"
               data-testid="rating-item"
               dir="ltr"
-              id="rating:c19:item:2"
+              id="rating:c23:item:2"
               role="radio"
             >
               <!---->
@@ -5124,7 +5686,7 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
               data-scope="rating-group"
               data-testid="rating-item"
               dir="ltr"
-              id="rating:c19:item:3"
+              id="rating:c23:item:3"
               role="radio"
             >
               <!---->
@@ -5163,7 +5725,7 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
               data-scope="rating-group"
               data-testid="rating-item"
               dir="ltr"
-              id="rating:c19:item:4"
+              id="rating:c23:item:4"
               role="radio"
             >
               <!---->
@@ -5202,7 +5764,7 @@ exports[`widgets > rating > snapshots > disabled 1`] = `
               data-scope="rating-group"
               data-testid="rating-item"
               dir="ltr"
-              id="rating:c19:item:5"
+              id="rating:c23:item:5"
               role="radio"
             >
               <!---->
@@ -5305,19 +5867,19 @@ exports[`widgets > rating > snapshots > error 1`] = `
           data-scope="rating-group"
           data-testid="rating"
           dir="ltr"
-          id="rating:c18"
+          id="rating:c22"
         >
           <!---->
            
           <div
-            aria-labelledby="rating:c18:label"
+            aria-labelledby="rating:c22:label"
             aria-orientation="horizontal"
             class="flex gap-2   "
             data-part="control"
             data-scope="rating-group"
             data-testid="rating-control"
             dir="ltr"
-            id="rating:c18:control"
+            id="rating:c22:control"
             role="radiogroup"
           >
             <span
@@ -5333,7 +5895,7 @@ exports[`widgets > rating > snapshots > error 1`] = `
               data-scope="rating-group"
               data-testid="rating-item"
               dir="ltr"
-              id="rating:c18:item:1"
+              id="rating:c22:item:1"
               role="radio"
               tabindex="0"
             >
@@ -5372,7 +5934,7 @@ exports[`widgets > rating > snapshots > error 1`] = `
               data-scope="rating-group"
               data-testid="rating-item"
               dir="ltr"
-              id="rating:c18:item:2"
+              id="rating:c22:item:2"
               role="radio"
               tabindex="-1"
             >
@@ -5411,7 +5973,7 @@ exports[`widgets > rating > snapshots > error 1`] = `
               data-scope="rating-group"
               data-testid="rating-item"
               dir="ltr"
-              id="rating:c18:item:3"
+              id="rating:c22:item:3"
               role="radio"
               tabindex="-1"
             >
@@ -5450,7 +6012,7 @@ exports[`widgets > rating > snapshots > error 1`] = `
               data-scope="rating-group"
               data-testid="rating-item"
               dir="ltr"
-              id="rating:c18:item:4"
+              id="rating:c22:item:4"
               role="radio"
               tabindex="-1"
             >
@@ -5489,7 +6051,7 @@ exports[`widgets > rating > snapshots > error 1`] = `
               data-scope="rating-group"
               data-testid="rating-item"
               dir="ltr"
-              id="rating:c18:item:5"
+              id="rating:c22:item:5"
               role="radio"
               tabindex="-1"
             >
@@ -5603,19 +6165,19 @@ exports[`widgets > rating > snapshots > normal 1`] = `
           data-scope="rating-group"
           data-testid="rating"
           dir="ltr"
-          id="rating:c17"
+          id="rating:c21"
         >
           <!---->
            
           <div
-            aria-labelledby="rating:c17:label"
+            aria-labelledby="rating:c21:label"
             aria-orientation="horizontal"
             class="flex gap-2   "
             data-part="control"
             data-scope="rating-group"
             data-testid="rating-control"
             dir="ltr"
-            id="rating:c17:control"
+            id="rating:c21:control"
             role="radiogroup"
           >
             <span
@@ -5631,7 +6193,7 @@ exports[`widgets > rating > snapshots > normal 1`] = `
               data-scope="rating-group"
               data-testid="rating-item"
               dir="ltr"
-              id="rating:c17:item:1"
+              id="rating:c21:item:1"
               role="radio"
               tabindex="0"
             >
@@ -5670,7 +6232,7 @@ exports[`widgets > rating > snapshots > normal 1`] = `
               data-scope="rating-group"
               data-testid="rating-item"
               dir="ltr"
-              id="rating:c17:item:2"
+              id="rating:c21:item:2"
               role="radio"
               tabindex="-1"
             >
@@ -5709,7 +6271,7 @@ exports[`widgets > rating > snapshots > normal 1`] = `
               data-scope="rating-group"
               data-testid="rating-item"
               dir="ltr"
-              id="rating:c17:item:3"
+              id="rating:c21:item:3"
               role="radio"
               tabindex="-1"
             >
@@ -5748,7 +6310,7 @@ exports[`widgets > rating > snapshots > normal 1`] = `
               data-scope="rating-group"
               data-testid="rating-item"
               dir="ltr"
-              id="rating:c17:item:4"
+              id="rating:c21:item:4"
               role="radio"
               tabindex="-1"
             >
@@ -5787,7 +6349,7 @@ exports[`widgets > rating > snapshots > normal 1`] = `
               data-scope="rating-group"
               data-testid="rating-item"
               dir="ltr"
-              id="rating:c17:item:5"
+              id="rating:c21:item:5"
               role="radio"
               tabindex="-1"
             >
@@ -5889,12 +6451,12 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
           data-scope="rating-group"
           data-testid="rating"
           dir="ltr"
-          id="rating:c20"
+          id="rating:c24"
         >
           <!---->
            
           <div
-            aria-labelledby="rating:c20:label"
+            aria-labelledby="rating:c24:label"
             aria-orientation="horizontal"
             aria-readonly="true"
             class="flex gap-2   "
@@ -5903,7 +6465,7 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
             data-scope="rating-group"
             data-testid="rating-control"
             dir="ltr"
-            id="rating:c20:control"
+            id="rating:c24:control"
             role="radiogroup"
           >
             <span
@@ -5920,7 +6482,7 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
               data-scope="rating-group"
               data-testid="rating-item"
               dir="ltr"
-              id="rating:c20:item:1"
+              id="rating:c24:item:1"
               role="radio"
               tabindex="0"
             >
@@ -5960,7 +6522,7 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
               data-scope="rating-group"
               data-testid="rating-item"
               dir="ltr"
-              id="rating:c20:item:2"
+              id="rating:c24:item:2"
               role="radio"
             >
               <!---->
@@ -5999,7 +6561,7 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
               data-scope="rating-group"
               data-testid="rating-item"
               dir="ltr"
-              id="rating:c20:item:3"
+              id="rating:c24:item:3"
               role="radio"
             >
               <!---->
@@ -6038,7 +6600,7 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
               data-scope="rating-group"
               data-testid="rating-item"
               dir="ltr"
-              id="rating:c20:item:4"
+              id="rating:c24:item:4"
               role="radio"
             >
               <!---->
@@ -6077,7 +6639,7 @@ exports[`widgets > rating > snapshots > readonly 1`] = `
               data-scope="rating-group"
               data-testid="rating-item"
               dir="ltr"
-              id="rating:c20:item:5"
+              id="rating:c24:item:5"
               role="radio"
             >
               <!---->
@@ -6563,7 +7125,7 @@ exports[`widgets > slider > snapshots > disabled 1`] = `
           data-scope="slider"
           data-testid="slider"
           dir="ltr"
-          id="slider:c25"
+          id="slider:c29"
           style="--slider-thumb-offset-0: calc(0% - -16px); --slider-thumb-width: 32px; --slider-thumb-height: 32px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%;"
         >
           <div
@@ -6574,7 +7136,7 @@ exports[`widgets > slider > snapshots > disabled 1`] = `
             data-scope="slider"
             data-testid="slider-control"
             dir="ltr"
-            id="slider:c25:control"
+            id="slider:c29:control"
             style="touch-action: none; user-select: none; position: relative;"
           >
             <div
@@ -6585,7 +7147,7 @@ exports[`widgets > slider > snapshots > disabled 1`] = `
               data-scope="slider"
               data-testid="slider-track"
               dir="ltr"
-              id="slider:c25:track"
+              id="slider:c29:track"
               style="position: relative;"
             >
               <div
@@ -6596,7 +7158,7 @@ exports[`widgets > slider > snapshots > disabled 1`] = `
                 data-scope="slider"
                 data-testid="slider-meter"
                 dir="ltr"
-                id="slider:c25:range"
+                id="slider:c29:range"
                 style="position: absolute; left: var(--slider-range-start); right: var(--slider-range-end);"
               />
             </div>
@@ -6608,7 +7170,7 @@ exports[`widgets > slider > snapshots > disabled 1`] = `
             >
               <div
                 aria-disabled="true"
-                aria-labelledby="slider:c25:label"
+                aria-labelledby="slider:c29:label"
                 aria-orientation="horizontal"
                 aria-valuemax="100"
                 aria-valuemin="0"
@@ -6620,7 +7182,7 @@ exports[`widgets > slider > snapshots > disabled 1`] = `
                 data-scope="slider"
                 dir="ltr"
                 draggable="false"
-                id="slider:c25:thumb:0"
+                id="slider:c29:thumb:0"
                 role="slider"
                 style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-0);"
               >
@@ -6710,7 +7272,7 @@ exports[`widgets > slider > snapshots > error 1`] = `
           data-scope="slider"
           data-testid="slider"
           dir="ltr"
-          id="slider:c24"
+          id="slider:c28"
           style="--slider-thumb-offset-0: calc(0% - -16px); --slider-thumb-width: 32px; --slider-thumb-height: 32px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%;"
         >
           <div
@@ -6721,7 +7283,7 @@ exports[`widgets > slider > snapshots > error 1`] = `
             data-scope="slider"
             data-testid="slider-control"
             dir="ltr"
-            id="slider:c24:control"
+            id="slider:c28:control"
             style="touch-action: none; user-select: none; position: relative;"
           >
             <div
@@ -6732,7 +7294,7 @@ exports[`widgets > slider > snapshots > error 1`] = `
               data-scope="slider"
               data-testid="slider-track"
               dir="ltr"
-              id="slider:c24:track"
+              id="slider:c28:track"
               style="position: relative;"
             >
               <div
@@ -6743,7 +7305,7 @@ exports[`widgets > slider > snapshots > error 1`] = `
                 data-scope="slider"
                 data-testid="slider-meter"
                 dir="ltr"
-                id="slider:c24:range"
+                id="slider:c28:range"
                 style="position: absolute; left: var(--slider-range-start); right: var(--slider-range-end);"
               />
             </div>
@@ -6754,7 +7316,7 @@ exports[`widgets > slider > snapshots > error 1`] = `
               style="display: flex; align-items: center; transform: translateY(-100%);"
             >
               <div
-                aria-labelledby="slider:c24:label"
+                aria-labelledby="slider:c28:label"
                 aria-orientation="horizontal"
                 aria-valuemax="100"
                 aria-valuemin="0"
@@ -6765,7 +7327,7 @@ exports[`widgets > slider > snapshots > error 1`] = `
                 data-scope="slider"
                 dir="ltr"
                 draggable="false"
-                id="slider:c24:thumb:0"
+                id="slider:c28:thumb:0"
                 role="slider"
                 style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-0);"
                 tabindex="0"
@@ -6866,7 +7428,7 @@ exports[`widgets > slider > snapshots > normal 1`] = `
           data-scope="slider"
           data-testid="slider"
           dir="ltr"
-          id="slider:c23"
+          id="slider:c27"
           style="--slider-thumb-offset-0: calc(0% - -16px); --slider-thumb-width: 32px; --slider-thumb-height: 32px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%;"
         >
           <div
@@ -6876,7 +7438,7 @@ exports[`widgets > slider > snapshots > normal 1`] = `
             data-scope="slider"
             data-testid="slider-control"
             dir="ltr"
-            id="slider:c23:control"
+            id="slider:c27:control"
             style="touch-action: none; user-select: none; position: relative;"
           >
             <div
@@ -6886,7 +7448,7 @@ exports[`widgets > slider > snapshots > normal 1`] = `
               data-scope="slider"
               data-testid="slider-track"
               dir="ltr"
-              id="slider:c23:track"
+              id="slider:c27:track"
               style="position: relative;"
             >
               <div
@@ -6896,7 +7458,7 @@ exports[`widgets > slider > snapshots > normal 1`] = `
                 data-scope="slider"
                 data-testid="slider-meter"
                 dir="ltr"
-                id="slider:c23:range"
+                id="slider:c27:range"
                 style="position: absolute; left: var(--slider-range-start); right: var(--slider-range-end);"
               />
             </div>
@@ -6907,7 +7469,7 @@ exports[`widgets > slider > snapshots > normal 1`] = `
               style="display: flex; align-items: center; transform: translateY(-100%);"
             >
               <div
-                aria-labelledby="slider:c23:label"
+                aria-labelledby="slider:c27:label"
                 aria-orientation="horizontal"
                 aria-valuemax="100"
                 aria-valuemin="0"
@@ -6918,7 +7480,7 @@ exports[`widgets > slider > snapshots > normal 1`] = `
                 data-scope="slider"
                 dir="ltr"
                 draggable="false"
-                id="slider:c23:thumb:0"
+                id="slider:c27:thumb:0"
                 role="slider"
                 style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-0);"
                 tabindex="0"
@@ -7007,7 +7569,7 @@ exports[`widgets > slider > snapshots > readonly 1`] = `
           data-scope="slider"
           data-testid="slider"
           dir="ltr"
-          id="slider:c26"
+          id="slider:c30"
           style="--slider-thumb-offset-0: calc(0% - -16px); --slider-thumb-width: 32px; --slider-thumb-height: 32px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%;"
         >
           <div
@@ -7017,7 +7579,7 @@ exports[`widgets > slider > snapshots > readonly 1`] = `
             data-scope="slider"
             data-testid="slider-control"
             dir="ltr"
-            id="slider:c26:control"
+            id="slider:c30:control"
             style="touch-action: none; user-select: none; position: relative;"
           >
             <div
@@ -7027,7 +7589,7 @@ exports[`widgets > slider > snapshots > readonly 1`] = `
               data-scope="slider"
               data-testid="slider-track"
               dir="ltr"
-              id="slider:c26:track"
+              id="slider:c30:track"
               style="position: relative;"
             >
               <div
@@ -7037,7 +7599,7 @@ exports[`widgets > slider > snapshots > readonly 1`] = `
                 data-scope="slider"
                 data-testid="slider-meter"
                 dir="ltr"
-                id="slider:c26:range"
+                id="slider:c30:range"
                 style="position: absolute; left: var(--slider-range-start); right: var(--slider-range-end);"
               />
             </div>
@@ -7048,7 +7610,7 @@ exports[`widgets > slider > snapshots > readonly 1`] = `
               style="display: flex; align-items: center; transform: translateY(-100%);"
             >
               <div
-                aria-labelledby="slider:c26:label"
+                aria-labelledby="slider:c30:label"
                 aria-orientation="horizontal"
                 aria-valuemax="100"
                 aria-valuemin="0"
@@ -7059,7 +7621,7 @@ exports[`widgets > slider > snapshots > readonly 1`] = `
                 data-scope="slider"
                 dir="ltr"
                 draggable="false"
-                id="slider:c26:thumb:0"
+                id="slider:c30:thumb:0"
                 role="slider"
                 style="visibility: visible; position: absolute; transform: var(--slider-thumb-transform); inset-inline-start: var(--slider-thumb-offset-0);"
                 tabindex="0"
@@ -7149,11 +7711,11 @@ exports[`widgets > switch > snapshots > disabled 1`] = `
           data-state="unchecked"
           data-testid="switch"
           for="root"
-          id="switch:c32"
+          id="switch:c36"
         >
           <input
             aria-invalid="false"
-            aria-labelledby="switch:c32:label"
+            aria-labelledby="switch:c36:label"
             data-testid="switch-input"
             disabled=""
             id="root"
@@ -7171,7 +7733,7 @@ exports[`widgets > switch > snapshots > disabled 1`] = `
             data-scope="switch"
             data-state="unchecked"
             data-testid="switch-control"
-            id="switch:c32:control"
+            id="switch:c36:control"
           >
             <span
               aria-hidden="true"
@@ -7181,7 +7743,7 @@ exports[`widgets > switch > snapshots > disabled 1`] = `
               data-scope="switch"
               data-state="unchecked"
               data-testid="switch-thumb"
-              id="switch:c32:thumb"
+              id="switch:c36:thumb"
             >
               <!---->
                
@@ -7196,7 +7758,7 @@ exports[`widgets > switch > snapshots > disabled 1`] = `
             data-scope="switch"
             data-state="unchecked"
             data-testid="switch-label"
-            id="switch:c32:label"
+            id="switch:c36:label"
           >
             switch
             <!---->
@@ -7270,11 +7832,11 @@ exports[`widgets > switch > snapshots > error 1`] = `
           data-state="unchecked"
           data-testid="switch"
           for="root"
-          id="switch:c31"
+          id="switch:c35"
         >
           <input
             aria-invalid="true"
-            aria-labelledby="switch:c31:label"
+            aria-labelledby="switch:c35:label"
             data-testid="switch-input"
             id="root"
             name="root"
@@ -7291,7 +7853,7 @@ exports[`widgets > switch > snapshots > error 1`] = `
             data-scope="switch"
             data-state="unchecked"
             data-testid="switch-control"
-            id="switch:c31:control"
+            id="switch:c35:control"
           >
             <span
               aria-hidden="true"
@@ -7301,7 +7863,7 @@ exports[`widgets > switch > snapshots > error 1`] = `
               data-scope="switch"
               data-state="unchecked"
               data-testid="switch-thumb"
-              id="switch:c31:thumb"
+              id="switch:c35:thumb"
             >
               <!---->
                
@@ -7316,7 +7878,7 @@ exports[`widgets > switch > snapshots > error 1`] = `
             data-scope="switch"
             data-state="unchecked"
             data-testid="switch-label"
-            id="switch:c31:label"
+            id="switch:c35:label"
           >
             switch
             <!---->
@@ -7400,11 +7962,11 @@ exports[`widgets > switch > snapshots > normal 1`] = `
           data-state="unchecked"
           data-testid="switch"
           for="root"
-          id="switch:c30"
+          id="switch:c34"
         >
           <input
             aria-invalid="false"
-            aria-labelledby="switch:c30:label"
+            aria-labelledby="switch:c34:label"
             data-testid="switch-input"
             id="root"
             name="root"
@@ -7420,7 +7982,7 @@ exports[`widgets > switch > snapshots > normal 1`] = `
             data-scope="switch"
             data-state="unchecked"
             data-testid="switch-control"
-            id="switch:c30:control"
+            id="switch:c34:control"
           >
             <span
               aria-hidden="true"
@@ -7429,7 +7991,7 @@ exports[`widgets > switch > snapshots > normal 1`] = `
               data-scope="switch"
               data-state="unchecked"
               data-testid="switch-thumb"
-              id="switch:c30:thumb"
+              id="switch:c34:thumb"
             >
               <!---->
                
@@ -7443,7 +8005,7 @@ exports[`widgets > switch > snapshots > normal 1`] = `
             data-scope="switch"
             data-state="unchecked"
             data-testid="switch-label"
-            id="switch:c30:label"
+            id="switch:c34:label"
           >
             switch
             <!---->
@@ -7516,11 +8078,11 @@ exports[`widgets > switch > snapshots > readonly 1`] = `
           data-state="unchecked"
           data-testid="switch"
           for="root"
-          id="switch:c33"
+          id="switch:c37"
         >
           <input
             aria-invalid="false"
-            aria-labelledby="switch:c33:label"
+            aria-labelledby="switch:c37:label"
             data-testid="switch-input"
             id="root"
             name="root"
@@ -7537,7 +8099,7 @@ exports[`widgets > switch > snapshots > readonly 1`] = `
             data-scope="switch"
             data-state="unchecked"
             data-testid="switch-control"
-            id="switch:c33:control"
+            id="switch:c37:control"
           >
             <span
               aria-hidden="true"
@@ -7547,7 +8109,7 @@ exports[`widgets > switch > snapshots > readonly 1`] = `
               data-scope="switch"
               data-state="unchecked"
               data-testid="switch-thumb"
-              id="switch:c33:thumb"
+              id="switch:c37:thumb"
             >
               <!---->
                
@@ -7562,7 +8124,7 @@ exports[`widgets > switch > snapshots > readonly 1`] = `
             data-scope="switch"
             data-state="unchecked"
             data-testid="switch-label"
-            id="switch:c33:label"
+            id="switch:c37:label"
           >
             switch
             <!---->
@@ -7635,7 +8197,7 @@ exports[`widgets > tags > snapshots > disabled 1`] = `
           data-scope="tags-input"
           data-testid="tags"
           dir="ltr"
-          id="tags-input:c38"
+          id="tags-input:c42"
         >
           <input
             autocapitalize="none"
@@ -7655,7 +8217,7 @@ exports[`widgets > tags > snapshots > disabled 1`] = `
             data-testid="tags-input"
             disabled=""
             hidden=""
-            id="tags-input:c38:hidden-input"
+            id="tags-input:c42:hidden-input"
             name="root"
             type="text"
           />
@@ -7729,7 +8291,7 @@ exports[`widgets > tags > snapshots > error 1`] = `
           data-scope="tags-input"
           data-testid="tags"
           dir="ltr"
-          id="tags-input:c37"
+          id="tags-input:c41"
         >
           <input
             aria-invalid="true"
@@ -7749,7 +8311,7 @@ exports[`widgets > tags > snapshots > error 1`] = `
           <input
             data-testid="tags-input"
             hidden=""
-            id="tags-input:c37:hidden-input"
+            id="tags-input:c41:hidden-input"
             name="root"
             type="text"
           />
@@ -7833,7 +8395,7 @@ exports[`widgets > tags > snapshots > normal 1`] = `
           data-scope="tags-input"
           data-testid="tags"
           dir="ltr"
-          id="tags-input:c36"
+          id="tags-input:c40"
         >
           <input
             autocapitalize="none"
@@ -7851,7 +8413,7 @@ exports[`widgets > tags > snapshots > normal 1`] = `
           <input
             data-testid="tags-input"
             hidden=""
-            id="tags-input:c36:hidden-input"
+            id="tags-input:c40:hidden-input"
             name="root"
             type="text"
           />
@@ -7924,7 +8486,7 @@ exports[`widgets > tags > snapshots > readonly 1`] = `
           data-scope="tags-input"
           data-testid="tags"
           dir="ltr"
-          id="tags-input:c39"
+          id="tags-input:c43"
         >
           <input
             autocapitalize="none"
@@ -7944,7 +8506,7 @@ exports[`widgets > tags > snapshots > readonly 1`] = `
           <input
             data-testid="tags-input"
             hidden=""
-            id="tags-input:c39:hidden-input"
+            id="tags-input:c43:hidden-input"
             name="root"
             readonly=""
             type="text"

@@ -5,6 +5,7 @@ import TagsField from '@sjsf/form/fields/extra-fields/tags.svelte';
 import { s, DEFAULT_SPECS } from 'testing/demo';
 
 import './extra-widgets/checkboxes-include';
+import './extra-widgets/combobox-include.js';
 import './extra-widgets/date-picker-include';
 
 import FileUpload from './extra-widgets/file-upload.svelte';
@@ -44,6 +45,20 @@ const tagsAsArrayField = cast(TagsField, {
 
 export const specs: s.Specs = {
 	...DEFAULT_SPECS,
+	combobox: [
+		s.enumeration,
+		{
+			'ui:components': {
+				stringField: 'enumField',
+				selectWidget: 'comboboxWidget'
+			},
+		},
+		{
+			// oninput: 'inputSkeletonCombobox',
+			// onchange: 'changeSkeletonCombobox',
+			// onblur: 'visitSkeletonCombobox'
+		}
+	],
 	datePicker: [
 		s.text,
 		{ 'ui:components': { textWidget: 'datePickerWidget' } },
