@@ -161,6 +161,15 @@ export const inputShadcnCombobox: FieldValidationTrigger = async (l) => {
 export const changeShadcnCombobox = inputShadcnCombobox;
 export const visitShadcnCombobox = withTab(inputShadcnCombobox);
 
+export const inputSkeletonCombobox: FieldValidationTrigger = async (l) => {
+  const select = getButton(l);
+  await userEvent.click(select);
+  const option = l.getByText(enumeration.enum[0])
+  await userEvent.click(option);
+};
+export const changeSkeletonCombobox = inputSkeletonCombobox;
+export const visitSkeletonCombobox = withTab(inputSkeletonCombobox);
+
 export const getRadioButtonLabel = (l: Locator) => l.getByTestId('segment-item').last();
 export const inputSkeletonRadioButton = click(getRadioButtonLabel)
 export const changeSkeletonRadioButton = inputSkeletonRadioButton
