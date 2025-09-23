@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import type { ButtonGroupProps, RadioButtonProps } from 'flowbite-svelte';
+	import type { ButtonGroupProps, RadioButtonProps } from 'flowbite-svelte/types';
 	import '@sjsf/form/fields/extra-widgets/radio-buttons';
 
 	declare module '@sjsf/form' {
@@ -11,7 +11,8 @@
 </script>
 
 <script lang="ts">
-	import { RadioButton, ButtonGroup } from 'flowbite-svelte';
+	import RadioButton from 'flowbite-svelte/RadioButton.svelte';
+	import ButtonGroup from 'flowbite-svelte/ButtonGroup.svelte';
 	import {
 		customInputAttributes,
 		getFormContext,

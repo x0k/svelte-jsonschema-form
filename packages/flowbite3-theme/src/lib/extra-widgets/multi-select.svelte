@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import type { MultiSelectProps } from 'flowbite-svelte';
+	import type { MultiSelectProps } from 'flowbite-svelte/types';
 	import '@sjsf/form/fields/extra-widgets/multi-select';
 
 	declare module '@sjsf/form' {

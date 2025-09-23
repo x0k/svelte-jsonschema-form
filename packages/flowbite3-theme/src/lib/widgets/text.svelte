@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import type { InputProps, InputValue } from 'flowbite-svelte';
+	import type { InputProps, InputValue } from 'flowbite-svelte/types';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {

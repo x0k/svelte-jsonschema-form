@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import type { TagsProps } from 'flowbite-svelte';
+	import type { TagsProps } from 'flowbite-svelte/types';
 	import '@sjsf/form/fields/extra-widgets/tags';
 
 	declare module '@sjsf/form' {
@@ -17,7 +17,7 @@
 		handlersAttachment,
 		type ComponentProps
 	} from '@sjsf/form';
-	import { Tags as TagsInput } from 'flowbite-svelte';
+	import TagsInput from 'flowbite-svelte/Tags.svelte';
 
 	let { value = $bindable(), config, handlers }: ComponentProps['tagsWidget'] = $props();
 

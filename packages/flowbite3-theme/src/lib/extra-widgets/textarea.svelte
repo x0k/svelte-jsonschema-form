@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import type { TextareaProps } from 'flowbite-svelte';
+	import type { TextareaProps } from 'flowbite-svelte/types';
 	import '@sjsf/form/fields/extra-widgets/textarea';
 
 	declare module '@sjsf/form' {
@@ -22,6 +22,6 @@
 	bind:value
 	class="w-full"
 	{...textareaAttributes(ctx, config, 'flowbite3Textarea', handlers, {
-		classes: { div: 'w-full' }
+		divClass: 'w-full'
 	})}
 />

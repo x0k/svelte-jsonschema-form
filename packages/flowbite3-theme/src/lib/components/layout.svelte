@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import type { ButtonGroupProps } from 'flowbite-svelte';
+	import type { ButtonGroupProps } from 'flowbite-svelte/types';
 	import '@sjsf/basic-theme/components/layout.svelte';
 	declare module '@sjsf/form' {
 		interface UiOptions {

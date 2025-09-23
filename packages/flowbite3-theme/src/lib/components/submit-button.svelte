@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import type { HTMLButtonAttributes } from 'svelte/elements';
-	import type { ButtonProps as ButtonPropsUnion } from 'flowbite-svelte';
+	import type { ButtonProps as ButtonPropsUnion } from 'flowbite-svelte/types';
 
 	type ButtonProps = Extract<ButtonPropsUnion, { type?: HTMLButtonAttributes['type'] }>;
 

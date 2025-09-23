@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import type { DatepickerProps } from 'flowbite-svelte';
+	import type { DatepickerProps } from 'flowbite-svelte/types';
 	import '@sjsf/form/fields/extra-widgets/date-picker';
 
 	declare module '@sjsf/form' {

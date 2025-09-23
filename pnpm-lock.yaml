@@ -1455,8 +1455,8 @@ importers:
         specifier: ^3.1.2
         version: 3.1.2(rollup@4.46.2)
       flowbite-svelte:
-        specifier: ^1.13.15
-        version: 1.13.15(rollup@4.46.2)(svelte@5.39.4)(tailwindcss@4.1.13)
+        specifier: ^1.13.16
+        version: 1.13.16(rollup@4.46.2)(svelte@5.39.4)(tailwindcss@4.1.13)
       globals:
         specifier: 'catalog:'
         version: 16.4.0
@@ -4488,12 +4488,6 @@ packages:
 
   flowbite-svelte@1.13.12:
     resolution: {integrity: sha512-E+gfC2/Ks7E95RgGzaJQTTatWzEOJ0GtN8m4G+ca1hGTAGAHqQPTCUi6rKqxf1+SFOO4JnN3nnuWoXq9IQqV6Q==}
-    peerDependencies:
-      svelte: ^5.29.0
-      tailwindcss: ^4.1.4
-
-  flowbite-svelte@1.13.15:
-    resolution: {integrity: sha512-+9n+7Jf1dX1aGMOIapVgVUgyKaS82zxpRsLzPdfazAY4J+Qm7eD+vfJQ8BNmAYzobjz95TzwPD7EG8boK986gw==}
     peerDependencies:
       svelte: ^5.29.0
       tailwindcss: ^4.1.4
@@ -10196,21 +10190,6 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
-  flowbite-svelte@1.13.15(rollup@4.46.2)(svelte@5.39.4)(tailwindcss@4.1.13):
-    dependencies:
-      '@floating-ui/dom': 1.7.4
-      '@floating-ui/utils': 0.2.10
-      apexcharts: 5.3.5
-      clsx: 2.1.1
-      date-fns: 4.1.0
-      flowbite: 3.1.2(rollup@4.46.2)
-      svelte: 5.39.4
-      tailwind-merge: 3.3.1
-      tailwind-variants: 3.1.1(tailwind-merge@3.3.1)(tailwindcss@4.1.13)
-      tailwindcss: 4.1.13
-    transitivePeerDependencies:
-      - rollup
-
   flowbite-svelte@1.13.16(rollup@4.46.2)(svelte@5.39.3)(tailwindcss@4.1.11):
     dependencies:
       '@floating-ui/dom': 1.7.4
@@ -10223,6 +10202,21 @@ snapshots:
       tailwind-merge: 3.3.1
       tailwind-variants: 3.1.1(tailwind-merge@3.3.1)(tailwindcss@4.1.11)
       tailwindcss: 4.1.11
+    transitivePeerDependencies:
+      - rollup
+
+  flowbite-svelte@1.13.16(rollup@4.46.2)(svelte@5.39.4)(tailwindcss@4.1.13):
+    dependencies:
+      '@floating-ui/dom': 1.7.4
+      '@floating-ui/utils': 0.2.10
+      apexcharts: 5.3.5
+      clsx: 2.1.1
+      date-fns: 4.1.0
+      flowbite: 3.1.2(rollup@4.46.2)
+      svelte: 5.39.4
+      tailwind-merge: 3.3.1
+      tailwind-variants: 3.1.1(tailwind-merge@3.3.1)(tailwindcss@4.1.13)
+      tailwindcss: 4.1.13
     transitivePeerDependencies:
       - rollup
 

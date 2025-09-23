@@ -1,4 +1,4 @@
-import { definitions } from '../definitions';
+import { definitions } from '../definitions.js';
 
 import Tags from './tags.svelte';
 import './tags.svelte';

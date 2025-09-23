@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import type { ButtonToggleGroupProps, ButtonToggleProps } from 'flowbite-svelte';
+	import type { ButtonToggleGroupProps, ButtonToggleProps } from 'flowbite-svelte/types';
 	import '@sjsf/form/fields/extra-widgets/radio-buttons';
 
 	declare module '@sjsf/form' {
@@ -11,7 +11,8 @@
 </script>
 
 <script lang="ts">
-	import { ButtonToggle, ButtonToggleGroup } from 'flowbite-svelte';
+	import ButtonToggle from 'flowbite-svelte/ButtonToggle.svelte';
+	import ButtonToggleGroup from 'flowbite-svelte/ButtonToggleGroup.svelte';
 	import {
 		composeProps,
 		customInputAttributes,

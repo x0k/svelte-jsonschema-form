@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import type { CheckboxProps } from 'flowbite-svelte';
+	import type { CheckboxProps } from 'flowbite-svelte/types';
 	import '@sjsf/form/fields/extra-widgets/checkboxes';
 
 	declare module '@sjsf/form' {

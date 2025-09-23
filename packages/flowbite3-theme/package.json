@@ -65,7 +65,7 @@
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^3.0.0-next.3",
 		"flowbite": "^3.1.0",
-		"flowbite-svelte": "^1.13.15",
+		"flowbite-svelte": "^1.13.16",
 		"svelte": "^5.39.0"
 	},
 	"devDependencies": {
@@ -74,7 +74,7 @@
 		"@tailwindcss/vite": "catalog:",
 		"ajv": "catalog:",
 		"flowbite": "^3.1.2",
-		"flowbite-svelte": "^1.13.15",
+		"flowbite-svelte": "^1.13.16",
 		"globals": "catalog:",
 		"svelte": "catalog:",
 		"tailwind-variants": "^3.1.1",
