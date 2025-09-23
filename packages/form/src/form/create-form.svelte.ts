@@ -1,3 +1,4 @@
+import { BROWSER } from "esm-env";
 import type { Attachment } from "svelte/attachments";
 import { SvelteMap } from "svelte/reactivity";
 import { on } from "svelte/events";
@@ -375,8 +376,8 @@ export function createForm<T, V extends Validator>(
   const translate = $derived(createTranslate(options.translation));
   const fieldsStateMap = new SvelteMap<Id, number>();
   const isChanged = $derived(fieldsStateMap.size > 0);
-  const isSubmitted = $derived.by(() =>
-    hasFieldState(formState, idPrefix, FIELD_SUBMITTED)
+  const isSubmitted = $derived.by(
+    () => BROWSER && hasFieldState(formState, idPrefix, FIELD_SUBMITTED)
   );
   /** STATE END */
 
