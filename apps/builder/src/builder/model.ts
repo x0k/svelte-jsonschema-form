@@ -1,10 +1,4 @@
-import type {
-  ComponentProps,
-  ComponentType,
-  UiOptions,
-  UiSchema,
-} from "@sjsf/form";
-import type { WidgetCommonProps } from "@sjsf/form/fields/widgets";
+import type { UiOptions, UiSchema } from "@sjsf/form";
 
 import { constant } from "$lib/function.js";
 import { Resolver } from "$lib/sjsf/resolver.js";
@@ -67,7 +61,7 @@ export const TEXT_WIDGET_OPTIONS: Record<
 > = {
   [Theme.Basic]: basicTextOptions,
   [Theme.Daisy5]: basicTextOptions,
-  [Theme.Flowbite3]: (params) => ({ flowbite3Text: params }),
+  [Theme.Flowbite3]: (params) => ({ flowbite3Text: { ...params } }),
   [Theme.Skeleton3]: basicTextOptions,
   [Theme.Shadcn4]: (params) => ({ shadcn4Text: { ...params } }),
 };
