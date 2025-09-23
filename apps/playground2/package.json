@@ -12,7 +12,7 @@
   "dependencies": {
     "@codemirror/lang-json": "^6.0.2",
     "@codemirror/state": "^6.5.2",
-    "@codemirror/view": "^6.38.2",
+    "@codemirror/view": "^6.38.3",
     "@ddietr/codemirror-themes": "^1.5.2",
     "@sjsf/ajv8-validator": "workspace:*",
     "@sjsf/basic-theme": "workspace:*",
@@ -36,7 +36,7 @@
     "@internationalized/date": "~3.9.0",
     "@lucide/svelte": "^0.544.0",
     "@tailwindcss/vite": "catalog:",
-    "bits-ui": "^2.10.0",
+    "bits-ui": "^2.11.1",
     "clsx": "^2.1.1",
     "svelte": "catalog:",
     "tailwind-merge": "^3.3.1",
