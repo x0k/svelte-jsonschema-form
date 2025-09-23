@@ -1,12 +1,12 @@
 <script lang="ts" module>
-	import type { ComponentProps as SvelteComponentProps } from 'svelte';
-	import { Segment } from '@skeletonlabs/skeleton-svelte';
 	import '@sjsf/form/fields/extra-widgets/radio-buttons';
+
+	import type { SegmentProps, SegmentItemProps } from '$lib/segment-types.js';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			skeleton3Segment?: SvelteComponentProps<typeof Segment>;
-			skeleton3SegmentItem?: SvelteComponentProps<typeof Segment.Item>;
+			skeleton3Segment?: SegmentProps;
+			skeleton3SegmentItem?: SegmentItemProps;
 		}
 	}
 </script>
@@ -19,6 +19,7 @@
 		type ComponentProps
 	} from '@sjsf/form';
 	import { stringIndexMapper, singleOption } from '@sjsf/form/options.svelte';
+	import { Segment } from '@skeletonlabs/skeleton-svelte';
 
 	let {
 		config,

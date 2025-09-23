@@ -25,6 +25,7 @@
 	"bugs": "https://github.com/x0k/svelte-jsonschema-form/issues",
 	"homepage": "https://x0k.github.io/svelte-jsonschema-form/",
 	"scripts": {
+		"prepare": "node scripts/copy-segment-types.ts",
 		"dev": "vite dev",
 		"build": "svelte-package && vite build && mv $(find .svelte-kit/output/server/_app/immutable/assets/ -name \"_page*.css\" | head -n 1) dist/styles.css && publint",
 		"preview": "vite preview",
@@ -81,6 +82,7 @@
 		"@skeletonlabs/skeleton-svelte": "^1.5.1",
 		"@tailwindcss/forms": "^0.5.10",
 		"@tailwindcss/vite": "catalog:",
+		"@zag-js/radio-group": "^1.18.3",
 		"ajv": "catalog:",
 		"globals": "catalog:",
 		"svelte": "catalog:",
