@@ -92,7 +92,7 @@
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr;
     column-gap: 2rem;
-    & select {
+    & :global(select) {
       width: 100%;
       background-color: var(--sl-color-bg);
       padding: 0.5rem;
