@@ -311,7 +311,7 @@ export function buttonTypeProp(
 export function descriptionAttributes<
   T,
   V extends Validator,
-  O extends keyof ObjectUiOptions,
+  const O extends keyof ObjectUiOptions,
 >(
   ctx: FormState<T, V>,
   config: Config,
@@ -330,7 +330,7 @@ export function descriptionAttributes<
 export function errorsListAttributes<
   T,
   V extends Validator,
-  O extends keyof ObjectUiOptions,
+  const O extends keyof ObjectUiOptions,
 >(
   ctx: FormState<T, V>,
   config: Config,
@@ -350,7 +350,7 @@ export function errorsListAttributes<
 export function formAttributes<
   T,
   V extends Validator,
-  O extends keyof ObjectUiOptions,
+  const O extends keyof ObjectUiOptions,
 >(
   ctx: FormState<T, V>,
   config: Config,
@@ -370,7 +370,7 @@ export function formAttributes<
 export function helpAttributes<
   T,
   V extends Validator,
-  O extends keyof ObjectUiOptions,
+  const O extends keyof ObjectUiOptions,
 >(
   ctx: FormState<T, V>,
   config: Config,
@@ -389,7 +389,7 @@ export function helpAttributes<
 export function labelAttributes<
   T,
   V extends Validator,
-  O extends keyof ObjectUiOptions,
+  const O extends keyof ObjectUiOptions,
 >(
   ctx: FormState<T, V>,
   config: Config,
@@ -402,7 +402,7 @@ export function labelAttributes<
 export function titleAttributes<
   T,
   V extends Validator,
-  O extends keyof ObjectUiOptions,
+  const O extends keyof ObjectUiOptions,
 >(
   ctx: FormState<T, V>,
   config: Config,
@@ -422,8 +422,8 @@ export function titleAttributes<
 export function layoutAttributes<
   FT,
   V extends Validator,
-  O extends keyof ObjectUiOptions,
-  O2 extends keyof ObjectUiOptions,
+  const O extends keyof ObjectUiOptions,
+  const O2 extends keyof ObjectUiOptions,
   T extends keyof ObjectProperties<NonNullable<UiOptions[O2]>>,
 >(
   ctx: FormState<FT, V>,
@@ -449,7 +449,7 @@ export function layoutAttributes<
 export function buttonAttributes<
   T,
   V extends Validator,
-  O extends keyof ObjectUiOptions,
+  const O extends keyof ObjectUiOptions,
 >(
   ctx: FormState<T, V>,
   config: Config,
@@ -470,7 +470,7 @@ export function buttonAttributes<
 export function customInputAttributes<
   T,
   V extends Validator,
-  O extends keyof ObjectUiOptions,
+  const O extends keyof ObjectUiOptions,
 >(
   ctx: FormState<T, V>,
   config: Config,
@@ -483,7 +483,7 @@ export function customInputAttributes<
 export function inputAttributes<
   T,
   V extends Validator,
-  O extends keyof ObjectUiOptions,
+  const O extends keyof ObjectUiOptions,
 >(
   ctx: FormState<T, V>,
   config: Config,
@@ -505,7 +505,7 @@ export function inputAttributes<
 export function selectAttributes<
   T,
   V extends Validator,
-  O extends keyof ObjectUiOptions,
+  const O extends keyof ObjectUiOptions,
 >(
   ctx: FormState<T, V>,
   config: Config,
@@ -527,7 +527,7 @@ export function selectAttributes<
 export function textareaAttributes<
   T,
   V extends Validator,
-  O extends keyof ObjectUiOptions,
+  const O extends keyof ObjectUiOptions,
 >(
   ctx: FormState<T, V>,
   config: Config,
