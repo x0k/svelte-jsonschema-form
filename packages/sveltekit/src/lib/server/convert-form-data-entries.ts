@@ -47,6 +47,9 @@ export function createFormDataEntriesConverter({
     }
     const value = entries[0][1];
     if (value instanceof File) {
+      if (value.name === '' && value.size === 0) {
+        return undefined;
+      }
       if (type === 'string') {
         const format = schema.format;
         if (format !== 'data-url') {
