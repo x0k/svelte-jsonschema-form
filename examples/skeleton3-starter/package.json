@@ -14,21 +14,21 @@
 		"@skeletonlabs/skeleton": "^3.2.0",
 		"@skeletonlabs/skeleton-svelte": "^1.5.1",
 		"@sveltejs/adapter-auto": "^6.1.0",
-		"@sveltejs/kit": "^2.28.0",
+		"@sveltejs/kit": "^2.42.0",
 		"@sveltejs/vite-plugin-svelte": "^6.1.2",
 		"@tailwindcss/forms": "^0.5.10",
 		"@tailwindcss/vite": "^4.1.11",
-		"svelte": "^5.38.1",
+		"svelte": "^5.39.0",
 		"svelte-check": "^4.3.1",
 		"tailwindcss": "^4.1.11",
 		"typescript": "^5.9.2",
 		"vite": "^7.1.2"
 	},
 	"dependencies": {
-		"@sjsf/ajv8-validator": "^3.0.0-next.1",
-		"@sjsf/basic-theme": "^3.0.0-next.1",
-		"@sjsf/form": "^3.0.0-next.1",
-		"@sjsf/skeleton3-theme": "^3.0.0-next.1",
+		"@sjsf/ajv8-validator": "^3.0.0-next.3",
+		"@sjsf/basic-theme": "^3.0.0-next.3",
+		"@sjsf/form": "^3.0.0-next.3",
+		"@sjsf/skeleton3-theme": "^3.0.0-next.3",
 		"ajv": "^8.17.1"
 	}
 }

@@ -12,7 +12,7 @@
   const form = createForm({
     ...defaults,
     createValidator: (options) => ({
-      ...createFormValueValidator({ ...options, schema }),
+      ...createFormValueValidator(schema, options),
       isValid: () => true,
     }),
     schema: schema.toJsonSchema({

@@ -56,8 +56,8 @@
     property: keyof Value,
     calculate: (v: Required<Value>) => number
   ) {
-    return (value: SchemaObjectValue | undefined) => {
-      if (value === undefined) {
+    return (value: SchemaObjectValue | null | undefined) => {
+      if (!value) {
         return;
       }
       let ignore = false;

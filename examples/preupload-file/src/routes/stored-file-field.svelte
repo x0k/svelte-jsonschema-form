@@ -36,8 +36,10 @@
   const widgetType = "fileWidget";
   const Widget = $derived(getComponent(ctx, widgetType, config));
 
-  const handlers = makeEventHandlers(ctx, () =>
-    validateField(ctx, config, value)
+  const handlers = makeEventHandlers(
+    ctx,
+    () => config,
+    () => validateField(ctx, config, value)
   );
 
   const files = createAsyncBinding({
@@ -46,7 +48,7 @@
     setInput: (v) => (value = v),
     async toOutput(signal, value) {
       const data = new DataTransfer();
-      if (value !== undefined) {
+      if (value) {
         data.items.add(await storeCtx.retrieveFile(signal, value));
       }
       return data.files;

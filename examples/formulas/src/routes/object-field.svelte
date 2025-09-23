@@ -4,7 +4,7 @@
   declare module "@sjsf/form" {
     interface UiOptions {
       myObjectEffects?: ((
-        value: SchemaObjectValue | undefined
+        value: SchemaObjectValue | null | undefined
       ) => void | (() => void))[];
     }
   }
@@ -23,7 +23,7 @@
   const effects = $derived(uiOption("myObjectEffects"));
 
   $effect(() => {
-    if (effects === undefined) {
+    if (!effects) {
       return;
     }
     for (const fn of effects) {

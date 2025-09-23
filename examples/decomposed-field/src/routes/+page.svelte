@@ -58,8 +58,10 @@
     {@const errors = getErrors(ctx, config.id)}
     {@const help = uiOption("help")}
     {@const Widget = t("textWidget", config)}
-    {@const handlers = makeEventHandlers(ctx, () =>
-      validateField(ctx, config, valueRef.value)
+    {@const handlers = makeEventHandlers(
+      ctx,
+      () => config,
+      () => validateField(ctx, config, valueRef.value)
     )}
     <Layout type="field" {config} {errors}>
       {#if showMeta && (title || description)}
