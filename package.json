@@ -22,9 +22,9 @@
     "@eslint/js": "^9.36.0",
     "@sveltejs/adapter-auto": "^6.1.0",
     "@sveltejs/adapter-static": "^3.0.9",
-    "@sveltejs/kit": "^2.43.2",
+    "@sveltejs/kit": "^2.43.4",
     "@sveltejs/package": "2.5.4",
-    "@sveltejs/vite-plugin-svelte": "^6.2.0",
+    "@sveltejs/vite-plugin-svelte": "^6.2.1",
     "@svitejs/changesets-changelog-github-compact": "^1.2.0",
     "@total-typescript/tsconfig": "^1.0.4",
     "@types/node": "^24.5.2",
@@ -39,7 +39,7 @@
     "prettier-plugin-tailwindcss": "^0.6.14",
     "publint": "^0.3.13",
     "svelte-check": "^4.3.2",
-    "turbo": "^2.5.7",
+    "turbo": "^2.5.8",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.44.1",
     "vite": "catalog:",
@@ -54,7 +54,6 @@
       "sharp"
     ],
     "overrides": {
-      "svelte2tsx": "0.7.44",
       "vite": "catalog:",
       "playwright": "catalog:"
     }
