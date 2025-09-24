@@ -848,14 +848,14 @@ exports[`widgets > combobox > snapshots > disabled 1`] = `
         <!---->
         <!---->
         <span
-          class="  w-full svelte-4lja87"
+          class="  w-full svelte-140c0dr"
           data-part="root"
           data-scope="combobox"
           data-testid="combobox"
           id="combobox:c3"
         >
           <label
-            class="label  svelte-4lja87"
+            class="label  svelte-140c0dr"
             data-disabled=""
             data-part="label"
             data-scope="combobox"
@@ -865,7 +865,7 @@ exports[`widgets > combobox > snapshots > disabled 1`] = `
             <!---->
              
             <div
-              class="input-group grid-cols-[1fr_auto]  svelte-4lja87"
+              class="input-group grid-cols-[1fr_auto]  svelte-140c0dr"
               data-disabled=""
               data-part="control"
               data-scope="combobox"
@@ -879,7 +879,7 @@ exports[`widgets > combobox > snapshots > disabled 1`] = `
                 autocapitalize="none"
                 autocomplete="off"
                 autocorrect="off"
-                class="ig-input svelte-4lja87"
+                class="ig-input svelte-140c0dr"
                 data-part="input"
                 data-scope="combobox"
                 data-state="closed"
@@ -895,7 +895,7 @@ exports[`widgets > combobox > snapshots > disabled 1`] = `
                 aria-expanded="false"
                 aria-haspopup="listbox"
                 aria-label="Toggle suggestions"
-                class="ig-btn hover:preset-tonal svelte-4lja87"
+                class="ig-btn hover:preset-tonal svelte-140c0dr"
                 data-disabled=""
                 data-part="trigger"
                 data-scope="combobox"
@@ -988,14 +988,14 @@ exports[`widgets > combobox > snapshots > error 1`] = `
         <!---->
         <!---->
         <span
-          class="  w-full svelte-4lja87"
+          class="  w-full svelte-140c0dr"
           data-part="root"
           data-scope="combobox"
           data-testid="combobox"
           id="combobox:c2"
         >
           <label
-            class="label  svelte-4lja87"
+            class="label  svelte-140c0dr"
             data-part="label"
             data-scope="combobox"
             for="root"
@@ -1004,7 +1004,7 @@ exports[`widgets > combobox > snapshots > error 1`] = `
             <!---->
              
             <div
-              class="input-group grid-cols-[1fr_auto]  svelte-4lja87"
+              class="input-group grid-cols-[1fr_auto]  svelte-140c0dr"
               data-part="control"
               data-scope="combobox"
               data-state="closed"
@@ -1017,7 +1017,7 @@ exports[`widgets > combobox > snapshots > error 1`] = `
                 autocapitalize="none"
                 autocomplete="off"
                 autocorrect="off"
-                class="ig-input svelte-4lja87"
+                class="ig-input svelte-140c0dr"
                 data-part="input"
                 data-scope="combobox"
                 data-state="closed"
@@ -1032,7 +1032,7 @@ exports[`widgets > combobox > snapshots > error 1`] = `
                 aria-expanded="false"
                 aria-haspopup="listbox"
                 aria-label="Toggle suggestions"
-                class="ig-btn hover:preset-tonal svelte-4lja87"
+                class="ig-btn hover:preset-tonal svelte-140c0dr"
                 data-part="trigger"
                 data-scope="combobox"
                 data-state="closed"
@@ -1134,14 +1134,14 @@ exports[`widgets > combobox > snapshots > normal 1`] = `
         <!---->
         <!---->
         <span
-          class="  w-full svelte-4lja87"
+          class="  w-full svelte-140c0dr"
           data-part="root"
           data-scope="combobox"
           data-testid="combobox"
           id="combobox:c1"
         >
           <label
-            class="label  svelte-4lja87"
+            class="label  svelte-140c0dr"
             data-part="label"
             data-scope="combobox"
             for="root"
@@ -1150,7 +1150,7 @@ exports[`widgets > combobox > snapshots > normal 1`] = `
             <!---->
              
             <div
-              class="input-group grid-cols-[1fr_auto]  svelte-4lja87"
+              class="input-group grid-cols-[1fr_auto]  svelte-140c0dr"
               data-part="control"
               data-scope="combobox"
               data-state="closed"
@@ -1163,7 +1163,7 @@ exports[`widgets > combobox > snapshots > normal 1`] = `
                 autocapitalize="none"
                 autocomplete="off"
                 autocorrect="off"
-                class="ig-input svelte-4lja87"
+                class="ig-input svelte-140c0dr"
                 data-part="input"
                 data-scope="combobox"
                 data-state="closed"
@@ -1178,7 +1178,7 @@ exports[`widgets > combobox > snapshots > normal 1`] = `
                 aria-expanded="false"
                 aria-haspopup="listbox"
                 aria-label="Toggle suggestions"
-                class="ig-btn hover:preset-tonal svelte-4lja87"
+                class="ig-btn hover:preset-tonal svelte-140c0dr"
                 data-part="trigger"
                 data-scope="combobox"
                 data-state="closed"
@@ -1268,7 +1268,7 @@ exports[`widgets > combobox > snapshots > readonly 1`] = `
         <!---->
         <!---->
         <span
-          class="  w-full svelte-4lja87"
+          class="  w-full svelte-140c0dr"
           data-part="root"
           data-readonly=""
           data-scope="combobox"
@@ -1276,7 +1276,7 @@ exports[`widgets > combobox > snapshots > readonly 1`] = `
           id="combobox:c4"
         >
           <label
-            class="label  svelte-4lja87"
+            class="label  svelte-140c0dr"
             data-part="label"
             data-readonly=""
             data-scope="combobox"
@@ -1286,7 +1286,7 @@ exports[`widgets > combobox > snapshots > readonly 1`] = `
             <!---->
              
             <div
-              class="input-group grid-cols-[1fr_auto]  svelte-4lja87"
+              class="input-group grid-cols-[1fr_auto]  svelte-140c0dr"
               data-part="control"
               data-scope="combobox"
               data-state="closed"
@@ -1299,7 +1299,7 @@ exports[`widgets > combobox > snapshots > readonly 1`] = `
                 autocapitalize="none"
                 autocomplete="off"
                 autocorrect="off"
-                class="ig-input svelte-4lja87"
+                class="ig-input svelte-140c0dr"
                 data-part="input"
                 data-scope="combobox"
                 data-state="closed"
@@ -1315,7 +1315,7 @@ exports[`widgets > combobox > snapshots > readonly 1`] = `
                 aria-expanded="false"
                 aria-haspopup="listbox"
                 aria-label="Toggle suggestions"
-                class="ig-btn hover:preset-tonal svelte-4lja87"
+                class="ig-btn hover:preset-tonal svelte-140c0dr"
                 data-part="trigger"
                 data-readonly=""
                 data-scope="combobox"
