@@ -1,11 +1,10 @@
 import type { Locator } from "@vitest/browser/context";
 import type { SchemaArrayValue } from "@sjsf/form/core";
 import {
-  idFromPath,
   ON_BLUR,
   ON_CHANGE,
   ON_INPUT,
-  type PathToIdOptions,
+  type FormIdBuilder,
   type Schema,
   type UiSchema,
   type UiSchemaRoot,
@@ -60,12 +59,12 @@ export const uiStates = (uiSchema: UiSchema): UiSchema => ({
   error: uiSchema,
 });
 
-export const createErrors = (keys: string[], options?: PathToIdOptions) =>
+export const createErrors = (keys: string[], idBuilder: FormIdBuilder) =>
   keys.map(
     (key) =>
       ({
         error: null,
-        instanceId: idFromPath([key, "error"], options),
+        instanceId: idBuilder.fromPath([key, "error"]),
         propertyTitle: "error",
         message: `${key} error`,
       }) satisfies ValidationError<null>
@@ -103,7 +102,7 @@ export type Specs = Record<
 
 export function createSchemas(
   specs: Specs,
-  options?: PathToIdOptions
+  idBuilder: FormIdBuilder
 ): {
   schema: Schema;
   uiSchema: UiSchemaRoot;
@@ -124,7 +123,7 @@ export function createSchemas(
         : [];
     })
   );
-  const initialErrors = createErrors(keys, options);
+  const initialErrors = createErrors(keys, idBuilder);
   return { schema, uiSchema, initialErrors };
 }
 

@@ -5,13 +5,13 @@ import {
   type FieldValueValidator,
   type Theme,
   type Validator,
-  idFromPath,
 } from "@sjsf/form";
 
 import * as defaults from "../components/form-defaults.js";
-import * as triggers from '../demo/triggers.js'
+import * as triggers from "../demo/triggers.js";
 import { s } from "../demo/index.js";
 import {
+  idBuilder,
   testMatchSnapshot,
   type MatchSnapshotOptions,
   type SnapshotFormOptions,
@@ -51,7 +51,7 @@ export function widgetTests(
           initialErrors: [
             {
               error: null as any,
-              instanceId: idFromPath([]),
+              instanceId: idBuilder.fromPath([]),
               propertyTitle: "title",
               message: "error",
             },
