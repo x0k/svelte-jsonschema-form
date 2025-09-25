@@ -222,6 +222,7 @@ const EPHEMERAL_WIDGETS = [
   "pikadayDatePickerWidget",
   "fileUploadWidget",
   "sliderWidget",
+  "toggleRadioButtonsWidget",
 ] as const satisfies WidgetType[];
 
 export type EphemeralWidgetType = (typeof EPHEMERAL_WIDGETS)[number];
@@ -330,6 +331,7 @@ export const WIDGET_EXTRA_FIELD: Record<WidgetType, string | undefined> = {
   filterRadioButtonsWidget: "enum",
   pikadayDatePickerWidget: undefined,
   fileUploadWidget: undefined,
+  toggleRadioButtonsWidget: "enum",
 };
 
 export const WIDGET_NAMES: Record<WidgetType, string> = {
@@ -353,6 +355,7 @@ export const WIDGET_NAMES: Record<WidgetType, string> = {
   filterRadioButtonsWidget: "Radio buttons 2",
   pikadayDatePickerWidget: "Pikaday date picker",
   fileUploadWidget: "Drop zone",
+  toggleRadioButtonsWidget: "Toggle radio buttons",
 };
 
 export const WIDGET_USE_LABEL: Record<WidgetType, boolean> = {
@@ -376,6 +379,7 @@ export const WIDGET_USE_LABEL: Record<WidgetType, boolean> = {
   filterRadioButtonsWidget: false,
   pikadayDatePickerWidget: true,
   fileUploadWidget: true,
+  toggleRadioButtonsWidget: false,
 };
 
 export const EXTRA_WIDGET_IMPORTS: Record<ExtraWidgetType, string> = {
@@ -398,6 +402,7 @@ export const EPHEMERAL_WIDGET_IMPORTS: Record<EphemeralWidgetType, string> = {
   pikadayDatePickerWidget: "pikaday-date-picker",
   fileUploadWidget: "file-upload",
   sliderWidget: "slider",
+  toggleRadioButtonsWidget: "toggle-radio-buttons",
 };
 
 export const EPHEMERAL_WIDGET_DEFINITIONS: Record<EphemeralWidgetType, string> =
@@ -410,4 +415,5 @@ export const EPHEMERAL_WIDGET_DEFINITIONS: Record<EphemeralWidgetType, string> =
       processing: boolean;
     }`,
     sliderWidget: "WidgetCommonProps<number>",
+    toggleRadioButtonsWidget: "WidgetCommonProps<SchemaValue> & Options",
   };

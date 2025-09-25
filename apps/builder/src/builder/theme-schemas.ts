@@ -147,6 +147,7 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
             "selectWidget",
             "radioWidget",
             "radioButtonsWidget",
+            "toggleRadioButtonsWidget"
           ] satisfies CompatibleComponentType<"selectWidget">[],
         },
       },
@@ -219,6 +220,7 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
             "selectWidget",
             "radioWidget",
             "radioButtonsWidget",
+            "comboboxWidget"
           ] satisfies CompatibleComponentType<"selectWidget">[],
         },
       },

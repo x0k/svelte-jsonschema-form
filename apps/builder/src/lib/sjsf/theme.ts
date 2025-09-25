@@ -78,7 +78,7 @@ const daisy5 = extendByRecord(daisy5base, {
   pikadayDatePickerWidget: PikadayDatePicker,
 });
 
-import { theme as flowbite3 } from "@sjsf/flowbite3-theme";
+import { theme as flowbite3base } from "@sjsf/flowbite3-theme";
 import { default as flowbite3Styles } from "@sjsf/flowbite3-theme/styles.css?inline";
 import "@sjsf/flowbite3-theme/extra-widgets/checkboxes-include";
 import "@sjsf/flowbite3-theme/extra-widgets/date-picker-include";
@@ -90,6 +90,20 @@ import "@sjsf/flowbite3-theme/extra-widgets/range-include";
 import "@sjsf/flowbite3-theme/extra-widgets/switch-include";
 import "@sjsf/flowbite3-theme/extra-widgets/tags-include";
 import "@sjsf/flowbite3-theme/extra-widgets/textarea-include";
+import ToggleRadioButtons from "@sjsf/flowbite3-theme/extra-widgets/toggle-radio-buttons.svelte";
+
+declare module "@sjsf/form" {
+  interface ComponentProps {
+    toggleRadioButtonsWidget: WidgetCommonProps<SchemaValue> & Options;
+  }
+  interface ComponentBinding {
+    toggleRadioButtonsWidget: "value";
+  }
+}
+
+const flowbite3 = extendByRecord(flowbite3base, {
+  toggleRadioButtonsWidget: ToggleRadioButtons,
+});
 
 import { theme as skeleton3base } from "@sjsf/skeleton3-theme";
 import { default as skeleton3Styles } from "@sjsf/skeleton3-theme/styles.css?inline";
@@ -104,6 +118,7 @@ import "@sjsf/skeleton3-theme/extra-widgets/rating-include";
 import "@sjsf/skeleton3-theme/extra-widgets/switch-include";
 import "@sjsf/skeleton3-theme/extra-widgets/tags-include";
 import "@sjsf/skeleton3-theme/extra-widgets/textarea-include";
+import "@sjsf/skeleton3-theme/extra-widgets/combobox-include";
 import FileUpload from "@sjsf/skeleton3-theme/extra-widgets/file-upload.svelte";
 import Slider from "@sjsf/skeleton3-theme/extra-widgets/slider.svelte";
 
