@@ -49,8 +49,17 @@ export function makeEventHandlers<T, V extends Validator>(
 ) {
   const id = $derived(config().id);
 
-  onMount(() => () => {
-    ctx[FORM_FIELDS_STATE_MAP].delete(id);
+  onMount(() => {
+    // WARN: Read of derived during teardown will lead to
+    // re-evaluation of all form state.
+    // Let's assume that field cannot change own id
+    // without unmount.
+    // https://github.com/sveltejs/svelte/pull/16278
+    const initialId = id;
+    return () => {
+      ctx[FORM_FIELDS_STATE_MAP].delete(initialId);
+      ctx.errors.delete(initialId);
+    };
   });
 
   const mode = $derived(ctx[FORM_FIELDS_VALIDATION_MODE]);
