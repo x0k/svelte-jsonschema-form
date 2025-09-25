@@ -1,5 +1,11 @@
 # @sjsf/form
 
+## 3.0.0-next.4
+
+### Patch Changes
+
+- Fix field state cleanup ([`ca11ecb`](https://github.com/x0k/svelte-jsonschema-form/commit/ca11ecbc71f18ce0c043e8a55a34a4b4b5010c67))
+
 ## 3.0.0-next.3
 
 ### Patch Changes

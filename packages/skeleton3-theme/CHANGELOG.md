@@ -1,5 +1,17 @@
 # @sjsf/skeleton3-theme
 
+## 3.0.0-next.4
+
+### Minor Changes
+
+- Add `comboboxWidget` widget ([#204](https://github.com/x0k/svelte-jsonschema-form/pull/204))
+
+### Patch Changes
+
+- Updated dependencies [[`ca11ecb`](https://github.com/x0k/svelte-jsonschema-form/commit/ca11ecbc71f18ce0c043e8a55a34a4b4b5010c67)]:
+  - @sjsf/form@3.0.0-next.4
+  - @sjsf/basic-theme@3.0.0-next.4
+
 ## 3.0.0-next.3
 
 ### Patch Changes
