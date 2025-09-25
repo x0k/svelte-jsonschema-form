@@ -99,14 +99,8 @@ export type UiOptionsRegistryOption = keyof UiOptionsRegistry extends never
       [UI_OPTIONS_REGISTRY_KEY]: UiOptionsRegistry;
     };
 
-function createValueRef<T>(
-  merger: FormMerger,
-  schema: Schema,
-  initialValue: T | Partial<T>
-): Ref<FormValue> {
-  let value = $state(
-    merger.mergeFormDataAndSchemaDefaults(initialValue as FormValue, schema)
-  );
+function createValueRef(initialValue: FormValue): Ref<FormValue> {
+  let value = $state(initialValue);
   return {
     get current() {
       return value;
@@ -320,7 +314,12 @@ export function createForm<T, V extends Validator>(
   const valueRef = $derived(
     options.value
       ? refFromBind(options.value as unknown as Bind<FormValue>)
-      : createValueRef(merger, options.schema, options.initialValue)
+      : createValueRef(
+          merger.mergeFormDataAndSchemaDefaults(
+            options.initialValue as FormValue,
+            options.schema
+          )
+        )
   );
   const errorsRef = $derived(
     options.errors
