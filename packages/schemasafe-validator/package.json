@@ -1,6 +1,6 @@
 {
   "name": "@sjsf/schemasafe-validator",
-  "version": "3.0.0-next.3",
+  "version": "3.0.0-next.4",
   "description": "The @exodus/schemasafe based validator for svelte-jsonschema-form",
   "license": "MIT",
   "keywords": [
@@ -44,7 +44,7 @@
   },
   "peerDependencies": {
     "@exodus/schemasafe": "^1.3.0",
-    "@sjsf/form": "workspace:^3.0.0-next.3"
+    "@sjsf/form": "workspace:^3.0.0-next.4"
   },
   "devDependencies": {
     "@exodus/schemasafe": "catalog:",
