@@ -2,6 +2,7 @@ export const FORM_CONTEXT = Symbol("form-context");
 
 export const FORM_VALUE = Symbol("form-value");
 
+export const FORM_ID_BUILDER = Symbol("form-id-builder");
 export const FORM_MARK_SCHEMA_CHANGE = Symbol("form-mark-schema-change");
 export const FORM_KEYED_ARRAYS = Symbol("form-keyed-arrays");
 export const FORM_FIELDS_VALIDATION_MODE = Symbol(

@@ -30,7 +30,7 @@
   const ctx = getFormContext();
   const objCtx = getObjectContext();
 
-  const id = $derived(createPseudoId(parentId, "key-input", ctx));
+  const id = $derived(createPseudoId(ctx, parentId, "key-input"));
   const config: Config = $derived({
     id,
     name: id,

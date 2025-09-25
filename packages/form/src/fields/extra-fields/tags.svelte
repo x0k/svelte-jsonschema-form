@@ -35,8 +35,10 @@
   const Template = $derived(getComponent(ctx, "fieldTemplate", config));
   const Widget = $derived(getComponent(ctx, widgetType, config));
 
-  const handlers = makeEventHandlers(ctx, () => config, () =>
-    validateField(ctx, config, value)
+  const handlers = makeEventHandlers(
+    ctx,
+    () => config,
+    () => validateField(ctx, config, value)
   );
 
   const collectErrors = $derived(uiOption("collectErrors") ?? false);
@@ -50,7 +52,7 @@
     }
     const ids = [id];
     for (let i = 0; i < l; i++) {
-      ids.push(createPseudoId(id, i, ctx));
+      ids.push(createPseudoId(ctx, id, i));
     }
     return ids;
   });

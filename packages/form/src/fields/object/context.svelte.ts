@@ -23,7 +23,7 @@ import {
   getErrors,
   type FieldError,
   type PossibleError,
-  createChildId,
+  createPropertyId,
   retrieveUiSchema,
   type UiSchemaDefinition,
   type UiOption,
@@ -199,7 +199,7 @@ export function createObjectContext<T, V extends Validator>({
           : (config.uiSchema[property] as UiSchemaDefinition | undefined)
       );
       return {
-        id: createChildId(config.id, property, ctx),
+        id: createPropertyId(ctx, config.id, property),
         title: uiTitleOption(ctx, uiSchema) ?? schema.title ?? property,
         schema,
         uiSchema,

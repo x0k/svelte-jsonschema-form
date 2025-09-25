@@ -4,16 +4,16 @@ import type { Path, Schema } from "@/core/index.js";
 import {
   getRootSchemaTitleByPath,
   getRootUiSchemaTitleByPath,
-  idFromPath,
   type AsyncFormValueValidator,
+  type FormIdBuilder,
   type FormValueValidator,
-  type PathToIdOptions,
   type UiSchemaRoot,
   type ValidationError,
 } from "@/form/main.js";
 
-export interface ErrorsTransformerOptions extends PathToIdOptions {
-  uiSchema?: UiSchemaRoot;
+export interface ErrorsTransformerOptions {
+  idBuilder: FormIdBuilder;
+  uiSchema: UiSchemaRoot;
 }
 
 function issueToPath({ path }: StandardSchemaV1.Issue): Path {
@@ -23,7 +23,10 @@ function issueToPath({ path }: StandardSchemaV1.Issue): Path {
   return path.map((val) => (typeof val === "object" ? val.key : val) as string);
 }
 
-function createErrorsTransformer(options: ErrorsTransformerOptions) {
+function createErrorsTransformer({
+  idBuilder,
+  uiSchema,
+}: ErrorsTransformerOptions) {
   return <O>(
     { issues }: StandardSchemaV1.Result<O>,
     rootSchema: Schema
@@ -33,9 +36,9 @@ function createErrorsTransformer(options: ErrorsTransformerOptions) {
     }
     return issues.map((issue) => {
       const path = issueToPath(issue);
-      const instanceId = idFromPath(path, options);
+      const instanceId = idBuilder.fromPath(path);
       const propertyTitle =
-        getRootUiSchemaTitleByPath(options.uiSchema ?? {}, path) ??
+        getRootUiSchemaTitleByPath(uiSchema, path) ??
         getRootSchemaTitleByPath(rootSchema, path) ??
         path[path.length - 1] ??
         instanceId;
@@ -53,7 +56,7 @@ export interface FormValidatorOptions extends ErrorsTransformerOptions {}
 
 export function createFormValueValidator<T extends StandardSchemaV1>(
   schema: T,
-  options: FormValidatorOptions = {}
+  options: FormValidatorOptions
 ): FormValueValidator<StandardSchemaV1.Issue> {
   const transform = createErrorsTransformer(options);
   return {
@@ -69,7 +72,7 @@ export function createFormValueValidator<T extends StandardSchemaV1>(
 
 export function createAsyncFormValueValidator<T extends StandardSchemaV1>(
   schema: T,
-  options: FormValidatorOptions = {}
+  options: FormValidatorOptions
 ): AsyncFormValueValidator<StandardSchemaV1.Issue> {
   const transform = createErrorsTransformer(options);
   return {

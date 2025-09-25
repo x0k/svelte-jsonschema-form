@@ -47,12 +47,7 @@ import {
   InvalidValidatorError,
 } from "./errors.js";
 import type { FormMerger } from "./merger.js";
-import {
-  type Id,
-  DEFAULT_ID_PREFIX,
-  DEFAULT_ID_PSEUDO_SEPARATOR,
-  DEFAULT_ID_SEPARATOR,
-} from "./id.js";
+import { DEFAULT_ID_PREFIX, type FormIdBuilder, type Id } from "./id.js";
 import type { Config } from "./config.js";
 import type { Theme } from "./components.js";
 import type { FormValue, KeyedArraysMap } from "./model.js";
@@ -80,6 +75,7 @@ import {
   FORM_MARK_SCHEMA_CHANGE,
   FORM_ROOT_ID,
   FORM_FIELDS_STATE_MAP,
+  FORM_ID_BUILDER,
 } from "./internals.js";
 import { FIELD_SUBMITTED } from "./field-state.js";
 
@@ -129,13 +125,18 @@ function createErrorsRef<V extends Validator>(
   };
 }
 
-export interface ValidatorFactoryOptions {
+export interface IdBuilderFactoryOptions {
+  idPrefix: string;
   schema: Schema;
   uiSchema: UiSchemaRoot;
   uiOptionsRegistry: UiOptionsRegistry;
-  idPrefix: string;
-  idSeparator: string;
-  idPseudoSeparator: string;
+}
+
+export interface ValidatorFactoryOptions {
+  idBuilder: FormIdBuilder;
+  schema: Schema;
+  uiSchema: UiSchemaRoot;
+  uiOptionsRegistry: UiOptionsRegistry;
   /**
    * This is a getter that can be used to access the Merger lazily.
    */
@@ -162,26 +163,18 @@ export interface FormOptions<T, V extends Validator>
   theme: Theme;
   translation: Translation;
   resolver: (ctx: FormState<T, V>) => ResolveFieldType;
+  createIdBuilder: (options: IdBuilderFactoryOptions) => FormIdBuilder;
   createValidator: (options: ValidatorFactoryOptions) => V;
   createMerger: (options: MergerFactoryOptions<V>) => FormMerger;
+  /**
+   * @default DEFAULT_ID_PREFIX
+   */
+  idPrefix?: string;
   icons?: Icons;
   uiSchema?: UiSchemaRoot;
   extraUiOptions?: ExtraUiOptions;
   fieldsValidationMode?: FieldsValidationMode;
   disabled?: boolean;
-  /**
-   * @default DEFAULT_ID_PREFIX
-   */
-  idPrefix?: string;
-  /**
-   * @default DEFAULT_ID_SEPARATOR
-   */
-  idSeparator?: string;
-  /**
-   * @default DEFAULT_ID_PSEUDO_SEPARATOR
-   */
-  idPseudoSeparator?: string;
-  //
   initialValue?: DeepPartial<T>;
   value?: Bind<T>;
   initialErrors?: InitialErrors<V>;
@@ -251,7 +244,8 @@ export interface FormOptions<T, V extends Validator>
   onSubmitError?: (
     errors: FieldErrorsMap<AnyFormValueValidatorError<V>>,
     e: SubmitEvent,
-    snapshot: FormValue
+    snapshot: FormValue,
+    form: FormState<T, V>
   ) => void;
   /**
    * Form submission error handler
@@ -284,19 +278,22 @@ export function createForm<T, V extends Validator>(
   options: FormOptions<T, V>
 ): FormState<T, V> {
   /** STATE BEGIN */
-  const idPrefix = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX) as Id;
-  const idSeparator = $derived(options.idSeparator ?? DEFAULT_ID_SEPARATOR);
-  const idPseudoSeparator = $derived(
-    options.idPseudoSeparator ?? DEFAULT_ID_PSEUDO_SEPARATOR
-  );
+  const idPrefix = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX);
   const uiSchemaRoot = $derived(options.uiSchema ?? {});
   const uiSchema = $derived(resolveUiRef(uiSchemaRoot, options.uiSchema) ?? {});
   const uiOptionsRegistry = $derived(options[UI_OPTIONS_REGISTRY_KEY] ?? {});
+  const idBuilder = $derived(
+    options.createIdBuilder({
+      idPrefix,
+      schema: options.schema,
+      uiSchema: uiSchemaRoot,
+      uiOptionsRegistry,
+    })
+  );
+  const rootId = $derived(idBuilder.fromPath([]));
   const validator = $derived(
     options.createValidator({
-      idPrefix,
-      idSeparator,
-      idPseudoSeparator,
+      idBuilder,
       uiSchema: uiSchemaRoot,
       uiOptionsRegistry,
       schema: options.schema,
@@ -376,7 +373,7 @@ export function createForm<T, V extends Validator>(
   const fieldsStateMap = new SvelteMap<Id, number>();
   const isChanged = $derived(fieldsStateMap.size > 0);
   const isSubmitted = $derived.by(
-    () => BROWSER && hasFieldState(formState, idPrefix, FIELD_SUBMITTED)
+    () => BROWSER && hasFieldState(formState, rootId, FIELD_SUBMITTED)
   );
   /** STATE END */
 
@@ -396,7 +393,7 @@ export function createForm<T, V extends Validator>(
 
   const submission: FormSubmission<V> = createTask({
     async execute(signal) {
-      setFieldState(formState, idPrefix, FIELD_SUBMITTED);
+      setFieldState(formState, rootId, FIELD_SUBMITTED);
       const formValue = getSnapshot();
       return {
         formValue,
@@ -412,10 +409,10 @@ export function createForm<T, V extends Validator>(
         fieldsStateMap.clear();
         return;
       }
-      options.onSubmitError?.(formErrors, event, formValue);
+      options.onSubmitError?.(formErrors, event, formValue, formState);
     },
     onFailure(error, e) {
-      errorsRef.current.set(idPrefix, [
+      errorsRef.current.set(rootId, [
         {
           propertyTitle: "",
           message: translate("validation-process-error", { error }),
@@ -566,23 +563,17 @@ export function createForm<T, V extends Validator>(
     set errors(v) {
       errorsRef.current = v;
     },
-    get idPrefix() {
-      return idPrefix;
-    },
-    get idSeparator() {
-      return idSeparator;
-    },
-    get idPseudoSeparator() {
-      return idPseudoSeparator;
-    },
     submit,
     reset,
     validate,
     validateAsync,
     // INTERNALS
     [FORM_FIELDS_STATE_MAP]: fieldsStateMap,
+    get [FORM_ID_BUILDER]() {
+      return idBuilder;
+    },
     get [FORM_ROOT_ID]() {
-      return idPrefix;
+      return rootId;
     },
     get [FORM_VALUE]() {
       return valueRef.current;

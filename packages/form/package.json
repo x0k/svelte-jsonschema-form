@@ -143,6 +143,10 @@
       "types": "./dist/mergers/*.d.ts",
       "default": "./dist/mergers/*.js"
     },
+    "./id-builders/*": {
+      "types": "./dist/id-builders/*.d.ts",
+      "default": "./dist/id-builders/*.js"
+    },
     "./focus-on-first-error": {
       "types": "./dist/focus-on-first-error.d.ts",
       "svelte": "./dist/focus-on-first-error.js"
