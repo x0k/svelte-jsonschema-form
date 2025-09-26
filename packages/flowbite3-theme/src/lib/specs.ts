@@ -1,7 +1,7 @@
 import { cast } from '@sjsf/form/lib/component';
 import type { ComponentDefinition } from '@sjsf/form';
 import TagsField from '@sjsf/form/fields/extra-fields/tags.svelte';
-import { s, DEFAULT_SPECS } from 'testing/demo';
+import { s, DEFAULT_SPECS } from 'theme-testing/demo';
 
 import './extra-widgets/checkboxes-include';
 import './extra-widgets/date-picker-include';

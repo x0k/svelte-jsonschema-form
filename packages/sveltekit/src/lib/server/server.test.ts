@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { createFormValidator } from '@sjsf/ajv8-validator';
+import { createFormMerger } from '@sjsf/form/mergers/modern';
 
 import { createFormHandler } from './server.js';
-import { createFormMerger } from '@sjsf/form/mergers/modern';
 
 describe('makeFormDataParser', () => {
   it('Should handle File objects', async () => {

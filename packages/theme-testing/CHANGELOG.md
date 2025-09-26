@@ -1,4 +1,4 @@
-# testing
+# theme-testing
 
 ## 1.0.13-next.4
 

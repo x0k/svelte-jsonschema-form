@@ -37,8 +37,17 @@ f/:
     pnpm run test:ui
   popd
 
-ts/:
-  pushd packages/testing
+tt/:
+  pushd packages/theme-testing
+  c:
+    pnpm run check
+  b:
+    pnpm run build
+  popd
+
+
+vt/:
+  pushd packages/validator-testing
   c:
     pnpm run check
   b:

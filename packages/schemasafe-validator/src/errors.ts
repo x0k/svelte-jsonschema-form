@@ -2,24 +2,22 @@ import type { ValidationError } from "@exodus/schemasafe";
 import { getValueByPath } from "@sjsf/form/lib/object";
 import {
   getSchemaDefinitionByPath,
+  pathFromLocation,
   pathFromRef,
   type Path,
 } from "@sjsf/form/core";
 import {
   getRootSchemaTitleByPath,
   getRootUiSchemaTitleByPath,
-  pathToId,
   type Config,
-  type IdPrefixOption,
-  type IdSeparatorOption,
+  type FormIdBuilder,
   type Schema,
   type UiSchemaRoot,
 } from "@sjsf/form";
 
-export interface ErrorsTransformerOptions
-  extends IdPrefixOption,
-    IdSeparatorOption {
-  uiSchema?: UiSchemaRoot;
+export interface ErrorsTransformerOptions {
+  idBuilder: FormIdBuilder;
+  uiSchema: UiSchemaRoot;
 }
 
 function extractKeywordValue(
@@ -38,11 +36,11 @@ function extractKeywordValue(
   }
 }
 
-function transformError({
-  instanceLocation,
-  keywordLocation,
-}: ValidationError) {
-  const instancePath = pathFromRef(instanceLocation);
+function transformError(
+  { instanceLocation, keywordLocation }: ValidationError,
+  data: unknown
+) {
+  const instancePath = pathFromLocation(instanceLocation, data);
   const keywordPath = pathFromRef(keywordLocation);
   const keyword = keywordPath[keywordPath.length - 1]?.toString() ?? "invalid";
   const schemaPath = keywordPath.slice(0, -1);
@@ -58,14 +56,17 @@ function createErrorMessage(keyword: string, details: string | undefined) {
   return details ? `${keyword} (${details})` : keyword;
 }
 
-export function createErrorsTransformer(options: ErrorsTransformerOptions) {
+export function createErrorsTransformer({
+  idBuilder,
+  uiSchema,
+}: ErrorsTransformerOptions) {
   const extractPropertyTitle = (
     rootSchema: Schema,
     instance: Path,
     schemaPath: Path,
     error: ValidationError
   ): string => {
-    let title = getRootUiSchemaTitleByPath(options.uiSchema ?? {}, instance);
+    let title = getRootUiSchemaTitleByPath(uiSchema, instance);
     if (title !== undefined) {
       return title;
     }
@@ -84,16 +85,20 @@ export function createErrorsTransformer(options: ErrorsTransformerOptions) {
       error.instanceLocation
     );
   };
-  return (rootSchema: Schema, errors: ValidationError[] | undefined) => {
+  return (
+    rootSchema: Schema,
+    errors: ValidationError[] | undefined,
+    data: unknown
+  ) => {
     // NOTE: According to the compiled output of `schemasafe`
     // errors can be `null`
     if (!errors) {
       return [];
     }
     return errors.map((error) => {
-      const { instancePath, schemaPath, keyword } = transformError(error);
+      const { instancePath, schemaPath, keyword } = transformError(error, data);
       return {
-        instanceId: pathToId(instancePath, options),
+        instanceId: idBuilder.fromPath(instancePath),
         propertyTitle: extractPropertyTitle(
           rootSchema,
           instancePath,
@@ -120,7 +125,8 @@ function isRootNonTypeError(error: ValidationError): boolean {
 
 export function transformFieldErrors(
   field: Config,
-  errors: ValidationError[] | undefined
+  errors: ValidationError[] | undefined,
+  data: unknown
 ) {
   // NOTE: According to the compiled output of `schemasafe`
   // errors can be `null`
@@ -131,7 +137,7 @@ export function transformFieldErrors(
     errors
       .filter(field.required ? isRootError : isRootNonTypeError)
       .map((error) => {
-        const { keyword } = transformError(error);
+        const { keyword } = transformError(error, data);
         return {
           instanceId: field.id,
           propertyTitle: field.title,

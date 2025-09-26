@@ -44,6 +44,7 @@
   "devDependencies": {
     "@sjsf/form": "workspace:*",
     "@cfworker/json-schema": "~4.1.1",
-    "svelte": "catalog:"
+    "svelte": "catalog:",
+    "validator-testing": "workspace:*"
   }
 }

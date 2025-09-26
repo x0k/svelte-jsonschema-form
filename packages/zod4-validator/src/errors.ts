@@ -1,20 +1,20 @@
 import {
   getRootSchemaTitleByPath,
   getRootUiSchemaTitleByPath,
-  pathToId,
   type Config,
-  type PathToIdOptions,
+  type FormIdBuilder,
   type Schema,
   type UiSchemaRoot,
   type ValidationError,
 } from "@sjsf/form";
 import type { $ZodIssue, util } from "zod/v4/core";
 
-export interface ErrorsTransformerOptions extends PathToIdOptions {
-  uiSchema?: UiSchemaRoot;
+export interface ErrorsTransformerOptions {
+  idBuilder: FormIdBuilder;
+  uiSchema: UiSchemaRoot;
 }
 
-export function createErrorsTransformer(options: ErrorsTransformerOptions) {
+export function createErrorsTransformer({ uiSchema, idBuilder }: ErrorsTransformerOptions) {
   return (
     result: util.SafeParseResult<any>,
     rootSchema: Schema
@@ -26,9 +26,9 @@ export function createErrorsTransformer(options: ErrorsTransformerOptions) {
       const issuePath = issue.path.map((v) =>
         typeof v === "symbol" ? v.toString() : v
       );
-      const instanceId = pathToId(issuePath, options);
+      const instanceId = idBuilder.fromPath(issuePath);
       const propertyTitle =
-        getRootUiSchemaTitleByPath(options.uiSchema ?? {}, issuePath) ??
+        getRootUiSchemaTitleByPath(uiSchema, issuePath) ??
         // TODO: Retrieve title from Zod metadata registry
         getRootSchemaTitleByPath(rootSchema, issuePath) ??
         issue.path[issue.path.length - 1] ??

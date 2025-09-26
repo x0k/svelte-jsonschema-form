@@ -29,7 +29,7 @@
 			bind:group={value}
 			value={index + 1}
 			{...attributes}
-			id={createPseudoId(config.id, index, ctx)}
+			id={createPseudoId(ctx, config.id, index)}
 		/>
 	{/each}
 </div>

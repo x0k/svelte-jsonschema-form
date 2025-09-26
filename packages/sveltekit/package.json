@@ -65,7 +65,7 @@
 		"esm-env": "catalog:",
 		"globals": "catalog:",
 		"svelte": "catalog:",
-		"testing": "workspace:*"
+		"theme-testing": "workspace:*"
 	},
 	"svelte": "./dist/model.js",
 	"types": "./dist/model.d.ts"

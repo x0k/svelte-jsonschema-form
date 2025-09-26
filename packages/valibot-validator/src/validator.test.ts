@@ -1,9 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { isSchemaObject } from '@sjsf/form/lib/json-schema';
-import {
-  createAugmentSchema,
-  isSchemaWithProperties,
-} from "@sjsf/form/core";
+import { isSchemaObject } from "@sjsf/form/lib/json-schema";
+import { createAugmentSchema, isSchemaWithProperties } from "@sjsf/form/core";
+import { createFormIdBuilder } from "@sjsf/form/id-builders/legacy";
 import * as v from "valibot";
 
 import { adapt } from "./setup.js";
@@ -16,7 +14,10 @@ describe("FormValidator", () => {
         v.object({ bar: v.string(), baz: v.number() }),
       ])
     );
-    const validator = createValidator()
+    const validator = createValidator({
+      idBuilder: createFormIdBuilder(),
+      uiSchema: {},
+    });
     expect(validator.isValid(schema, schema, {})).toBe(false);
     expect(validator.isValid(schema, schema, { foo: "foo" })).toBe(true);
     expect(validator.isValid(schema, schema, { bar: "bar" })).toBe(false);
@@ -60,7 +61,10 @@ describe("FormValidator", () => {
       throw new Error(`Invalid 'anyOf' items '${JSON.stringify(schema)}'`);
     }
     const firstAg = createAugmentSchema(first);
-    const validator = createValidator()
+    const validator = createValidator({
+      idBuilder: createFormIdBuilder(),
+      uiSchema: {},
+    });
     expect(validator.isValid(firstAg, schema, {})).toBe(false);
     expect(validator.isValid(firstAg, schema, { foo: "foo" })).toBe(true);
     const secondAg = createAugmentSchema(second);

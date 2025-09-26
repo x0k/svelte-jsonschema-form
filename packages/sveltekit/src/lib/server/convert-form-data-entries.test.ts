@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import type { Schema } from '@sjsf/form/core';
 import { createMerger } from '@sjsf/form/mergers/modern';
+import { createFormIdBuilder } from '@sjsf/form/id-builders/legacy';
 import { createFormValidator } from '@sjsf/ajv8-validator';
 
 import {
@@ -8,12 +9,13 @@ import {
   type FormDataConverterOptions
 } from './convert-form-data-entries.js';
 import type { Entries } from './entry.js';
-
+const uiSchema = {};
+const idBuilder = createFormIdBuilder();
 const defaultOptions: FormDataConverterOptions = {
-  validator: createFormValidator(),
+  validator: createFormValidator({ uiSchema, idBuilder }),
   merger: createMerger(),
   rootSchema: {},
-  rootUiSchema: {}
+  rootUiSchema: uiSchema
 };
 
 const convert = createFormDataEntriesConverter(defaultOptions);

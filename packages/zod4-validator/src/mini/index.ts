@@ -10,6 +10,7 @@ import {
   type FormValidatorOptions,
 } from "../validator.js";
 import { createFormValidatorFactory } from "../setup.js";
+import type { ErrorsTransformerOptions } from "../errors.js";
 
 export const createAugmentedSchema: AugmentedSchemaFactory = (schema) => {
   // TODO: Turn records into partial records
@@ -36,14 +37,17 @@ export const adapt = createFormValidatorFactory({
   createAugmentedSchema,
   createFormValidator: (
     schemaRegistry,
-    options: Omit<FormValidatorOptions, "schemaRegistry" | "safeParse">
+    options: Partial<
+      Omit<FormValidatorOptions, keyof ErrorsTransformerOptions>
+    > &
+      ErrorsTransformerOptions
   ) =>
     createFormValidator(
       Object.setPrototypeOf(
         {
           safeParse,
           schemaRegistry,
-        } satisfies FormValidatorOptions,
+        } satisfies Omit<FormValidatorOptions, keyof ErrorsTransformerOptions>,
         options
       )
     ),
@@ -57,10 +61,10 @@ export const adaptAsync = createFormValidatorFactory({
   createAugmentedSchema,
   createFormValidator: (
     schemaRegistry,
-    options: Omit<
-      FormValidatorOptions,
-      "schemaRegistry" | "safeParse" | "safeParseAsync"
-    >
+    options: Partial<
+      Omit<FormValidatorOptions, keyof ErrorsTransformerOptions>
+    > &
+      ErrorsTransformerOptions
   ) =>
     createAsyncFormValidator(
       Object.setPrototypeOf(
@@ -68,7 +72,10 @@ export const adaptAsync = createFormValidatorFactory({
           safeParse,
           safeParseAsync,
           schemaRegistry,
-        } satisfies AsyncFormValidatorOptions,
+        } satisfies Omit<
+          AsyncFormValidatorOptions,
+          keyof ErrorsTransformerOptions
+        >,
         options
       )
     ),
@@ -76,4 +83,4 @@ export const adaptAsync = createFormValidatorFactory({
 
 // TODO: Remove in v4
 /** @deprecated use `adaptAsync` */
-export const setupAsyncFormValidator = adaptAsync
+export const setupAsyncFormValidator = adaptAsync;

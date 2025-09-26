@@ -1,4 +1,4 @@
-import { s, DEFAULT_SPECS } from "testing/demo";
+import { s, DEFAULT_SPECS } from "theme-testing/demo";
 
 import "./extra-widgets/checkboxes-include.js";
 import "./extra-widgets/date-picker-include.js";
