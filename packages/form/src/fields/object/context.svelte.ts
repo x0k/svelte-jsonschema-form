@@ -21,8 +21,6 @@ import {
   validateAdditionalPropertyKey,
   retrieveSchema,
   getErrors,
-  type FieldError,
-  type PossibleError,
   createPropertyId,
   retrieveUiSchema,
   type UiSchemaDefinition,
@@ -43,8 +41,8 @@ import {
   createOriginalKeysOrder,
 } from "./model.js";
 
-export type ObjectContext<V extends Validator> = {
-  errors: () => FieldError<PossibleError<V>>[];
+export type ObjectContext = {
+  errors: () => string[];
   canExpand: () => boolean;
   propertiesOrder: () => string[];
   addProperty: () => void;
@@ -60,11 +58,11 @@ export type ObjectContext<V extends Validator> = {
 
 const OBJECT_CONTEXT = Symbol("object-context");
 
-export function getObjectContext<V extends Validator>(): ObjectContext<V> {
+export function getObjectContext(): ObjectContext {
   return getContext(OBJECT_CONTEXT);
 }
 
-export function setObjectContext<V extends Validator>(ctx: ObjectContext<V>) {
+export function setObjectContext(ctx: ObjectContext) {
   setContext(OBJECT_CONTEXT, ctx);
 }
 
@@ -82,7 +80,7 @@ export function createObjectContext<T, V extends Validator>({
   value,
   setValue,
   translate,
-}: ObjectContextOptions<T, V>): ObjectContext<V> {
+}: ObjectContextOptions<T, V>): ObjectContext {
   // NOTE: This is required for computing a schema which will include all
   // additional properties in the `properties` field with the
   // `ADDITIONAL_PROPERTY_FLAG` flag and `dependencies` resolution.

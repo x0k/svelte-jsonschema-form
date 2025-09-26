@@ -3,18 +3,19 @@ import type { Validator } from "@/core/index.js";
 import type { Id } from "../id.js";
 import type { Config } from "../config.js";
 import {
-  AdditionalPropertyKeyError,
-  FileListValidationError,
-  type FieldError,
-  type PossibleError,
-} from "../errors.js";
-import {
   isAdditionalPropertyKeyValidator,
   isAsyncFileListValidator,
+  type ValidationError,
 } from "../validator.js";
 import type { FormValue } from "../model.js";
-import { FORM_FIELDS_VALIDATION_MODE, FORM_VALIDATOR } from "../internals.js";
+import {
+  FORM_FIELDS_VALIDATION_MODE,
+  FORM_ID_BUILDER,
+  FORM_VALIDATOR,
+} from "../internals.js";
 import type { FormState } from "./state.js";
+import { SvelteMap } from "svelte/reactivity";
+import type { FormErrorsMap } from "../errors.js";
 
 export function getFieldsValidationMode<T, V extends Validator>(
   ctx: FormState<T, V>
@@ -25,15 +26,15 @@ export function getFieldsValidationMode<T, V extends Validator>(
 export function getErrors<T, V extends Validator>(
   ctx: FormState<T, V>,
   id: Id
-): FieldError<PossibleError<V>>[] {
+): string[] {
   return ctx.errors.get(id) ?? [];
 }
 
 export function getErrorsForIds<T, V extends Validator>(
   ctx: FormState<T, V>,
   ids: Id[]
-): FieldError<PossibleError<V>>[] {
-  const errors: FieldError<PossibleError<V>>[] = [];
+): string[] {
+  const errors: string[] = [];
   for (let i = 0; i < ids.length; i++) {
     const errs = ctx.errors.get(ids[i]!);
     if (errs) {
@@ -53,22 +54,6 @@ export function validateField<T, V extends Validator>(
   ctx.fieldsValidation.run(config, value);
 }
 
-function setErrors<T, V extends Validator>(
-  ctx: FormState<T, V>,
-  config: Config,
-  messages: string[],
-  error: () => PossibleError<V>
-) {
-  ctx.errors.set(
-    config.id,
-    messages.map((message) => ({
-      propertyTitle: config.title,
-      message,
-      error: error(),
-    }))
-  );
-}
-
 export function validateAdditionalPropertyKey<T, V extends Validator>(
   ctx: FormState<T, V>,
   config: Config,
@@ -80,12 +65,7 @@ export function validateAdditionalPropertyKey<T, V extends Validator>(
     return true;
   }
   const messages = validator.validateAdditionalPropertyKey(key, config.schema);
-  setErrors(
-    ctx,
-    fieldConfig,
-    messages,
-    () => new AdditionalPropertyKeyError() as PossibleError<V>
-  );
+  ctx.errors.set(fieldConfig.id, messages);
   return messages.length === 0;
 }
 
@@ -104,11 +84,24 @@ export async function validateFileList<T, V extends Validator>(
     fileList,
     config
   );
-  setErrors(
-    ctx,
-    config,
-    messages,
-    () => new FileListValidationError() as PossibleError<V>
-  );
+  ctx.errors.set(config.id, messages);
   return messages.length === 0;
+}
+
+export function groupErrors<T, V extends Validator>(
+  ctx: FormState<T, V>,
+  errors: ValidationError[]
+): FormErrorsMap {
+  const b = ctx[FORM_ID_BUILDER];
+  const map = new SvelteMap<Id, string[]>();
+  for (const { path, message } of errors) {
+    const id = b.fromPath(path);
+    const arr = map.get(id);
+    if (arr) {
+      arr.push(message);
+    } else {
+      map.set(id, [message]);
+    }
+  }
+  return map;
 }

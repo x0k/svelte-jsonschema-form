@@ -16,7 +16,6 @@ import {
 import type { Schema, Validator } from "@/core/index.js";
 
 import {
-  type ValidationError,
   isFormValueValidator,
   isFieldValueValidator,
   isAsyncFormValueValidator,
@@ -34,13 +33,7 @@ import {
 import type { Icons } from "./icons.js";
 import type { FieldsValidationMode } from "./validation.js";
 import {
-  groupErrors,
-  ValidationProcessError,
-  type FieldError,
-  type PossibleError,
-  type FieldErrorsMap,
-  type AnyFormValueValidatorError,
-  type AnyFieldValueValidatorError,
+  type FormErrorsMap,
   type FormSubmission,
   type FieldsValidation,
   type FormValidationResult,
@@ -53,7 +46,12 @@ import type { Theme } from "./components.js";
 import type { FormValue, KeyedArraysMap } from "./model.js";
 import type { ResolveFieldType } from "./fields.js";
 import { createSchemaValuesReconciler, UNCHANGED } from "./reconcile.js";
-import { hasFieldState, setFieldState, type FormState } from "./state/index.js";
+import {
+  groupErrors,
+  hasFieldState,
+  setFieldState,
+  type FormState,
+} from "./state/index.js";
 import {
   FORM_DATA_URL_TO_BLOB,
   FORM_UI_EXTRA_OPTIONS,
@@ -81,9 +79,7 @@ import { FIELD_SUBMITTED } from "./field-state.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
 
-export type InitialErrors<V extends Validator> =
-  | ValidationError<PossibleError<V>>[]
-  | Iterable<readonly [Id, FieldError<PossibleError<V>>[]]>;
+export type InitialErrors = Iterable<readonly [Id, string[]]>;
 
 const UI_OPTIONS_REGISTRY_KEY = "uiOptionsRegistry";
 
@@ -107,14 +103,10 @@ function createValueRef(initialValue: FormValue): Ref<FormValue> {
   };
 }
 
-function createErrorsRef<V extends Validator>(
-  initialErrors: InitialErrors<V> | undefined
-): Ref<FieldErrorsMap<PossibleError<V>>> {
-  let value = $state.raw(
-    Array.isArray(initialErrors)
-      ? groupErrors(initialErrors)
-      : new SvelteMap(initialErrors)
-  );
+function createErrorsRef(
+  initialErrors: InitialErrors | undefined
+): Ref<FormErrorsMap> {
+  let value = $state.raw(new SvelteMap(initialErrors));
   return {
     get current() {
       return value;
@@ -177,14 +169,14 @@ export interface FormOptions<T, V extends Validator>
   disabled?: boolean;
   initialValue?: DeepPartial<T>;
   value?: Bind<T>;
-  initialErrors?: InitialErrors<V>;
-  errors?: Bind<FieldErrorsMap<PossibleError<V>>>;
+  initialErrors?: InitialErrors;
+  errors?: Bind<FormErrorsMap>;
   /**
    * @default waitPrevious
    */
   submissionCombinator?: TasksCombinator<
     [event: SubmitEvent],
-    FormValidationResult<AnyFormValueValidatorError<V>>,
+    FormValidationResult,
     unknown
   >;
   /**
@@ -204,7 +196,7 @@ export interface FormOptions<T, V extends Validator>
    */
   fieldsValidationCombinator?: TasksCombinator<
     [Config, FormValue],
-    FieldError<AnyFieldValueValidatorError<V>>[],
+    string[],
     unknown
   >;
   /**
@@ -242,7 +234,7 @@ export interface FormOptions<T, V extends Validator>
    * snapshot is not valid
    */
   onSubmitError?: (
-    errors: FieldErrorsMap<AnyFormValueValidatorError<V>>,
+    errors: FormErrorsMap,
     e: SubmitEvent,
     snapshot: FormValue,
     form: FormState<T, V>
@@ -377,27 +369,27 @@ export function createForm<T, V extends Validator>(
   );
   /** STATE END */
 
-  const validateForm: AsyncFormValueValidator<
-    AnyFormValueValidatorError<V>
-  >["validateFormValueAsync"] = $derived.by(() => {
-    if (isAsyncFormValueValidator(validator)) {
-      return (signal, schema, formValue) =>
-        validator.validateFormValueAsync(signal, schema, formValue);
-    }
-    if (isFormValueValidator(validator)) {
-      return (_, schema, formValue) =>
-        Promise.resolve(validator.validateFormValue(schema, formValue));
-    }
-    return async () => Promise.resolve([]);
-  });
+  const validateForm: AsyncFormValueValidator["validateFormValueAsync"] =
+    $derived.by(() => {
+      if (isAsyncFormValueValidator(validator)) {
+        return (signal, schema, formValue) =>
+          validator.validateFormValueAsync(signal, schema, formValue);
+      }
+      if (isFormValueValidator(validator)) {
+        return (_, schema, formValue) =>
+          Promise.resolve(validator.validateFormValue(schema, formValue));
+      }
+      return async () => Promise.resolve([]);
+    });
 
-  const submission: FormSubmission<V> = createTask({
+  const submission: FormSubmission = createTask({
     async execute(signal) {
       setFieldState(formState, rootId, FIELD_SUBMITTED);
       const formValue = getSnapshot();
       return {
         formValue,
         formErrors: groupErrors(
+          formState,
           await validateForm(signal, options.schema, formValue)
         ),
       };
@@ -413,11 +405,7 @@ export function createForm<T, V extends Validator>(
     },
     onFailure(error, e) {
       errorsRef.current.set(rootId, [
-        {
-          propertyTitle: "",
-          message: translate("validation-process-error", { error }),
-          error: new ValidationProcessError(error),
-        },
+        translate("validation-process-error", { error }),
       ]);
       options.onSubmissionFailure?.(error, e);
     },
@@ -432,29 +420,27 @@ export function createForm<T, V extends Validator>(
     },
   });
 
-  const validateFields: AsyncFieldValueValidator<
-    AnyFieldValueValidatorError<V>
-  >["validateFieldValueAsync"] = $derived.by(() => {
-    if (isAsyncFieldValueValidator(validator)) {
-      return (signal, config, value) =>
-        validator.validateFieldValueAsync(signal, config, value);
-    }
-    if (isFieldValueValidator(validator)) {
-      return (_, config, value) =>
-        Promise.resolve(validator.validateFieldValue(config, value));
-    }
-    return () => Promise.resolve([]);
-  });
+  const validateFields: AsyncFieldValueValidator["validateFieldValueAsync"] =
+    $derived.by(() => {
+      if (isAsyncFieldValueValidator(validator)) {
+        return (signal, config, value) =>
+          validator.validateFieldValueAsync(signal, config, value);
+      }
+      if (isFieldValueValidator(validator)) {
+        return (_, config, value) =>
+          Promise.resolve(validator.validateFieldValue(config, value));
+      }
+      return () => Promise.resolve([]);
+    });
 
-  const fieldsValidation: FieldsValidation<V> = createTask({
+  const fieldsValidation: FieldsValidation = createTask({
     execute(signal, config, value) {
       const debounceMs = options.fieldsValidationDebounceMs ?? 300;
       if (debounceMs < 0) {
         return validateFields(signal, config, value);
       }
 
-      const promise =
-        Promise.withResolvers<FieldError<AnyFieldValueValidatorError<V>>[]>();
+      const promise = Promise.withResolvers<string[]>();
       const id = setTimeout(() => {
         promise.resolve(validateFields(signal, config, value));
       }, debounceMs);
@@ -481,11 +467,7 @@ export function createForm<T, V extends Validator>(
     onFailure(error, config, value) {
       if (error.reason !== "aborted") {
         errorsRef.current.set(config.id, [
-          {
-            propertyTitle: config.title,
-            message: translate("validation-process-error", { error }),
-            error: new ValidationProcessError(error),
-          },
+          translate("validation-process-error", { error }),
         ]);
       }
       options.onFieldsValidationFailure?.(error, config, value);
@@ -521,21 +503,17 @@ export function createForm<T, V extends Validator>(
     if (!isFormValueValidator(validator)) {
       throw new InvalidValidatorError(`expected sync from validator`);
     }
-    return groupErrors(
-      validator.validateFormValue(options.schema, getSnapshot())
-    );
+    return validator.validateFormValue(options.schema, getSnapshot());
   }
 
   async function validateAsync(signal: AbortSignal) {
     if (!isAsyncFormValueValidator(validator)) {
       throw new InvalidValidatorError(`expected async form validator`);
     }
-    return groupErrors(
-      await validator.validateFormValueAsync(
-        signal,
-        options.schema,
-        getSnapshot()
-      )
+    return await validator.validateFormValueAsync(
+      signal,
+      options.schema,
+      getSnapshot()
     );
   }
 

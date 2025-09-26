@@ -24,11 +24,9 @@ import {
   uiTitleOption,
   validateField,
   type Config,
-  type FieldError,
   type FormState,
   type FieldValue,
   type KeyedFieldValues,
-  type PossibleError,
   type UiOption,
   setFieldState,
   FIELD_CHANGED,
@@ -36,13 +34,13 @@ import {
 
 import { titleWithIndex, type ItemTitle } from "./model.js";
 
-export interface ArrayContext<V extends Validator> {
+export interface ArrayContext {
   config: () => Config;
   addable: () => boolean;
   removable: () => boolean;
   orderable: () => boolean;
   copyable: () => boolean;
-  errors: () => FieldError<PossibleError<V>>[];
+  errors: () => string[];
   itemTitle: ItemTitle;
   uiOption: UiOption;
   length: () => number;
@@ -67,11 +65,11 @@ export interface ArrayContext<V extends Validator> {
 
 const ARRAY_CONTEXT = Symbol("array-context");
 
-export function getArrayContext<V extends Validator>(): ArrayContext<V> {
+export function getArrayContext(): ArrayContext {
   return getContext(ARRAY_CONTEXT);
 }
 
-export function setArrayContext<V extends Validator>(ctx: ArrayContext<V>) {
+export function setArrayContext(ctx: ArrayContext) {
   setContext(ARRAY_CONTEXT, ctx);
 }
 
@@ -149,7 +147,7 @@ function createItems<T, V extends Validator>({
       keyed.remove(index);
       onChange();
     },
-  } satisfies Partial<ArrayContext<V>>;
+  } satisfies Partial<ArrayContext>;
 }
 
 function createCanAdd(
@@ -176,7 +174,7 @@ export function createArrayContext<T, V extends Validator>({
   config,
   value,
   keyedArray,
-}: ArrayContextOptions<T, V>): ArrayContext<V> {
+}: ArrayContextOptions<T, V>): ArrayContext {
   const arr = $derived.by(value);
 
   const itemSchema: Schema = $derived.by(() => {
@@ -249,7 +247,7 @@ export function createTupleContext<T, V extends Validator>({
   config,
   value,
   keyedArray,
-}: ArrayContextOptions<T, V>): ArrayContext<V> {
+}: ArrayContextOptions<T, V>): ArrayContext {
   const arr = $derived.by(value);
 
   const itemsSchema = $derived.by(() => {

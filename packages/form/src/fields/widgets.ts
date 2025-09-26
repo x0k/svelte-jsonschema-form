@@ -2,7 +2,6 @@ import type { EnumOption } from "@/core/index.js";
 import type {
   ComponentProps,
   Config,
-  FieldError,
   FoundationalComponentType,
   SchemaValue,
   UiOption,
@@ -19,7 +18,7 @@ export interface WidgetCommonProps<V> {
   config: Config;
   value: V | undefined;
   handlers: Handlers;
-  errors: FieldError<unknown>[];
+  errors: string[];
   uiOption: UiOption;
 }
 

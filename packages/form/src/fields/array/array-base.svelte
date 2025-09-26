@@ -27,7 +27,7 @@
   }: ComponentProps["arrayField" | "tupleField"] & {
     createArrayContext: <T, V extends Validator>(
       options: ArrayContextOptions<T, V>
-    ) => ArrayContext<V>;
+    ) => ArrayContext;
   } = $props();
 
   const ctx = getFormContext();

@@ -12,8 +12,7 @@ import {
   type UiSchemaRoot,
 } from "../ui-schema.js";
 import type {
-  PossibleError,
-  FieldErrorsMap,
+  FormErrorsMap,
   FormSubmission,
   FieldsValidation,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -50,10 +49,11 @@ import {
 } from "../internals.js";
 import type { FormIdBuilder, Id } from "../id.js";
 import type { FieldState } from "../field-state.js";
+import type { ValidationError } from "../validator.js";
 
 export interface FormState<T, V extends Validator> {
-  readonly submission: FormSubmission<V>;
-  readonly fieldsValidation: FieldsValidation<V>;
+  readonly submission: FormSubmission;
+  readonly fieldsValidation: FieldsValidation;
   readonly isChanged: boolean;
   readonly isSubmitted: boolean;
   /**
@@ -63,24 +63,22 @@ export interface FormState<T, V extends Validator> {
    * - Default values from JSON Schema are taken into account during assignment
    */
   value: T | undefined;
-  errors: FieldErrorsMap<PossibleError<V>>;
+  errors: FormErrorsMap;
   submit: (e: SubmitEvent) => void;
   reset: (e: Event) => void;
   /**
    * Performs the following actions:
    * - Takes a snapshot of the current state
    * - Calls the corresponding validator method
-   * - Groups errors
    *
    * Actions it does not perform:
+   * - Groups errors
    * - Updates the form error list
    *
    * @throws {InvalidValidatorError} If the validator does not have the corresponding method
    */
-  validate: () => FieldErrorsMap<PossibleError<V>>;
-  validateAsync: (
-    signal: AbortSignal
-  ) => Promise<FieldErrorsMap<PossibleError<V>>>;
+  validate: () => ValidationError[];
+  validateAsync: (signal: AbortSignal) => Promise<ValidationError[]>;
 
   /** Internals */
 
