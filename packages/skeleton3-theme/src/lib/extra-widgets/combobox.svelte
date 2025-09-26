@@ -1,11 +1,11 @@
 <script lang="ts" module>
 	import type { ComponentProps as SvelteComponentProps } from 'svelte';
-	import { Combobox } from '@skeletonlabs/skeleton-svelte';
+	import { Combobox as SkeletonCombobox } from '@skeletonlabs/skeleton-svelte';
 	import '@sjsf/form/fields/extra-widgets/combobox';
 
 	declare module '@sjsf/form' {
 		interface UiOptions {
-			skeleton3Combobox?: SvelteComponentProps<typeof Combobox>;
+			skeleton3Combobox?: SvelteComponentProps<typeof SkeletonCombobox>;
 		}
 	}
 </script>
@@ -49,4 +49,4 @@
 	);
 </script>
 
-<Combobox classes="w-full" {data} value={mapped.value} {...attributes} />
+<SkeletonCombobox classes="w-full" {data} value={mapped.value} {...attributes} />
