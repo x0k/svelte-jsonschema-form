@@ -19,6 +19,9 @@
   },
   "include": [
     ".astro/types.d.ts",
+    "src/**/*.ts",
+    "src/**/*.js",
+    "src/**/*.svelte",
     "**/*"
   ],
   "exclude": [

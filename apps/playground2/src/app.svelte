@@ -20,6 +20,7 @@
   import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
   import { createFormMerger } from "@sjsf/form/mergers/modern";
+  import { createFormIdBuilder } from "@sjsf/form/id-builders/legacy";
   import {
     compressToEncodedURIComponent,
     decompressFromEncodedURIComponent,
@@ -156,6 +157,7 @@
 
   const focusOnFirstError = createFocusOnFirstError();
   const form = createForm({
+    createIdBuilder: createFormIdBuilder,
     get resolver() {
       return resolver;
     },
@@ -211,9 +213,9 @@
     onSubmit(value) {
       console.log("submit", value);
     },
-    onSubmitError(errors, e) {
+    onSubmitError(errors, e, snap) {
       if (data.focusOnFirstError) {
-        focusOnFirstError(errors, e);
+        focusOnFirstError(errors, e, snap, form);
       }
       console.log("errors", errors);
     },

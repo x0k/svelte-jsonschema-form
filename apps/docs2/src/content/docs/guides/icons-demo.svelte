@@ -4,7 +4,7 @@
   import { icons as lucide } from "@sjsf/lucide-icons";
   import { icons as flowbite } from "@sjsf/flowbite-icons";
   import { icons as moving } from "@sjsf/moving-icons";
-  import { AllIcons } from "testing/demo";
+  import { AllIcons } from "theme-testing/demo";
 
   import type { IconsPackage } from "@/shared";
 

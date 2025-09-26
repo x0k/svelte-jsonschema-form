@@ -1,4 +1,7 @@
-import type { Validator as SJSFValidator } from "@sjsf/form";
+import type {
+  Validator as SJSFValidator,
+  ValidatorFactoryOptions,
+} from "@sjsf/form";
 
 import { createFormValidator as ajv } from "@sjsf/ajv8-validator";
 import { createFormValidator as schemasafe } from "@sjsf/schemasafe-validator";
@@ -12,10 +15,13 @@ export enum Validator {
 
 export const VALIDATORS = Object.values(Validator);
 
-export const SJSF_VALIDATORS: Record<Validator, SJSFValidator> = {
-  [Validator.Ajv]: ajv(),
-  [Validator.SchemaSafe]: schemasafe(),
-  [Validator.CfWorker]: cfworker(),
+export const SJSF_VALIDATORS: Record<
+  Validator,
+  (options: ValidatorFactoryOptions) => SJSFValidator
+> = {
+  [Validator.Ajv]: ajv,
+  [Validator.SchemaSafe]: schemasafe,
+  [Validator.CfWorker]: cfworker,
 };
 
 export const VALIDATOR_TITLES: Record<Validator, string> = {
@@ -28,4 +34,4 @@ export const VALIDATOR_PEER_DEPS: Record<Validator, string> = {
   [Validator.Ajv]: "ajv",
   [Validator.SchemaSafe]: "@exodus/schemasafe",
   [Validator.CfWorker]: "@cfworker/json-schema",
-}
+};
