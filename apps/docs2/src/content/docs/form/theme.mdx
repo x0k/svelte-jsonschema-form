@@ -48,6 +48,7 @@ All components can be divided into four **logical** types:
   - `nullField`
   - `oneOfField`
   - `anyOfField`
+  - `unknownField`
 
 Also found out that the above components are enough to display any JSON schema.
 
@@ -86,11 +87,14 @@ fields, as well as a set of definitions for extra widgets.
 
 Here is a list of extra fields that can be imported from `@sjsf/form/fields/extra-fields/*`.
 
+- `aggregated`
 - `boolean-select`
 - `enum`
 - `file`
 - `files`
 - `multi-enum`
+- `native-file`
+- `native-files`
 - `tags`
 
 To use them you can import them directly
@@ -122,7 +126,9 @@ const uiSchema: UISchema = {
 There are several types of extra widgets already defined in the library
 (`@sjsf/form/fields/extra-widgets/*`):
 
+- `aggregated`
 - `checkboxes`
+- `combobox`
 - `date-picker`
 - `file`
 - `multi-select`

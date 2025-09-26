@@ -12,6 +12,7 @@
   {...defaults}
   schema={{
     title: "With icons",
+    type: "null",
   }}
   icons={fromRecord({
     submit: children,
