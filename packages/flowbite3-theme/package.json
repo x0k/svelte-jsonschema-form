@@ -79,7 +79,7 @@
 		"svelte": "catalog:",
 		"tailwind-variants": "^3.1.1",
 		"tailwindcss": "catalog:",
-		"testing": "workspace:*"
+		"theme-testing": "workspace:*"
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts"

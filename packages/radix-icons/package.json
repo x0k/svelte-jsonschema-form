@@ -52,7 +52,7 @@
 		"globals": "catalog:",
 		"svelte": "catalog:",
 		"svelte-radix": "^2.0.2",
-		"testing": "workspace:*"
+		"theme-testing": "workspace:*"
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts"

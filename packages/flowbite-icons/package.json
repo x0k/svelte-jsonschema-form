@@ -60,7 +60,7 @@
 		"globals": "catalog:",
 		"svelte": "catalog:",
 		"tailwindcss": "catalog:",
-		"testing": "workspace:*"
+		"theme-testing": "workspace:*"
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts"

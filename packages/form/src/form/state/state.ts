@@ -46,12 +46,12 @@ import {
   FORM_VALUE,
   FORM_ROOT_ID,
   FORM_FIELDS_STATE_MAP,
+  FORM_ID_BUILDER,
 } from "../internals.js";
-import type { Id, IdOptions } from "../id.js";
-import type { FieldState } from '../field-state.js';
+import type { FormIdBuilder, Id } from "../id.js";
+import type { FieldState } from "../field-state.js";
 
-export interface FormState<T, V extends Validator>
-  extends Readonly<Required<IdOptions>> {
+export interface FormState<T, V extends Validator> {
   readonly submission: FormSubmission<V>;
   readonly fieldsValidation: FieldsValidation<V>;
   readonly isChanged: boolean;
@@ -85,6 +85,7 @@ export interface FormState<T, V extends Validator>
   /** Internals */
 
   [FORM_VALUE]: FormValue;
+  readonly [FORM_ID_BUILDER]: FormIdBuilder;
   readonly [FORM_ROOT_ID]: Id;
   readonly [FORM_MARK_SCHEMA_CHANGE]: () => void;
   readonly [FORM_KEYED_ARRAYS]: KeyedArraysMap;

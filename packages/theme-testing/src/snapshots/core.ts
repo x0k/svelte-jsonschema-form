@@ -1,10 +1,18 @@
 import type { Component } from "svelte";
 import { expect, test } from "vitest";
 import { render } from "vitest-browser-svelte";
-import type { FormOptions, Validator } from "@sjsf/form";
+import {
+  DEFAULT_ID_PREFIX,
+  type FormOptions,
+  type Validator,
+} from "@sjsf/form";
 
 import * as defaults from "../components/form-defaults.js";
 import DefaultForm from "./form.svelte";
+
+export const idBuilder = defaults.createIdBuilder({
+  idPrefix: DEFAULT_ID_PREFIX,
+});
 
 type Defaults = keyof typeof defaults;
 

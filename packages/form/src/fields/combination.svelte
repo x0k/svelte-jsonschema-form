@@ -158,7 +158,7 @@
 
   const enumOptions = $derived<EnumOption<number>[]>(
     optionTitles.map((label, i) => ({
-      id: createPseudoId(config.id, i, ctx),
+      id: createPseudoId(ctx, config.id, i),
       label,
       value: i,
       disabled: false,
@@ -174,7 +174,7 @@
       config.uiSchema.combinationFieldOptionSelector
     );
     return {
-      id: createPseudoId(config.id, suffix, ctx),
+      id: createPseudoId(ctx, config.id, suffix),
       title: uiTitleOption(ctx, uiSchema) ?? config.title,
       schema: { type: "integer", default: 0 },
       uiSchema,

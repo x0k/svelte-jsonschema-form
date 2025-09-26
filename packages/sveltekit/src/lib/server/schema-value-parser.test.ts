@@ -2,19 +2,22 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import type { Schema } from '@sjsf/form';
 import { createMerger } from '@sjsf/form/mergers/modern';
 import { createFormValidator } from '@sjsf/ajv8-validator';
+import { createFormIdBuilder } from '@sjsf/form/id-builders/legacy';
 
 import type { Entries } from './entry.js';
 import { parseSchemaValue, type SchemaValueParserOptions } from './schema-value-parser.js';
 import { createFormDataEntriesConverter } from './convert-form-data-entries.js';
 
+const uiSchema = {};
+const idBuilder = createFormIdBuilder();
 const defaultOptions: SchemaValueParserOptions<string> = {
   schema: {},
-  uiSchema: {},
+  uiSchema,
   entries: [],
   idPrefix: 'root',
   idSeparator: '.',
   idPseudoSeparator: '::',
-  validator: createFormValidator(),
+  validator: createFormValidator({ idBuilder, uiSchema }),
   merger: createMerger(),
   convertEntries: (_, { entries }) => entries[0]?.[1]
 };

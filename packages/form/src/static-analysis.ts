@@ -10,12 +10,12 @@ import {
   type Schema,
   type SchemaValue,
 } from "@/core/index.js";
+import { DEFAULT_ID_PREFIX } from "@/form/main.js";
 
 import {
   DEFAULT_ID_SEPARATOR,
-  DEFAULT_ID_PREFIX,
   DEFAULT_ID_PSEUDO_SEPARATOR,
-} from "./form/id.js";
+} from "./id-builders/legacy.js";
 
 export const SEQUENCE_OF_DIGITS_REGEX = /^\d+$/;
 

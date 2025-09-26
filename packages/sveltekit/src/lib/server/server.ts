@@ -3,14 +3,11 @@ import type { DeepPartial } from '@sjsf/form/lib/types';
 import type { Validator } from '@sjsf/form/core';
 import {
   DEFAULT_ID_PREFIX,
-  DEFAULT_ID_SEPARATOR,
-  DEFAULT_ID_PSEUDO_SEPARATOR,
   isFormValueValidator,
   type Schema,
   type SchemaValue,
   type UiSchemaRoot,
   type ValidationError,
-  type IdOptions,
   type AnyFormValueValidatorError,
   type AnyFormValueValidator,
   isAsyncFormValueValidator,
@@ -20,6 +17,12 @@ import {
   type FormMerger,
   type UiOptionsRegistry
 } from '@sjsf/form';
+import {
+  type IdOptions,
+  DEFAULT_ID_SEPARATOR,
+  DEFAULT_ID_PSEUDO_SEPARATOR,
+  createFormIdBuilder,
+} from '@sjsf/form/id-builders/legacy';
 
 import {
   FORM_DATA_FILE_PREFIX,
@@ -110,20 +113,23 @@ export function createFormHandler<
   sendData,
   createReviver = createDefaultReviver
 }: FormHandlerOptions<V, SendData>) {
+  const idBuilder = createFormIdBuilder({
+    idPrefix,
+    idSeparator,
+    idPseudoSeparator,
+  })
   const validator = createValidator({
     schema,
     uiSchema,
+    idBuilder,
     uiOptionsRegistry,
-    idPrefix,
-    idPseudoSeparator,
-    idSeparator,
     merger: () => merger
   });
   const merger = createMerger({
     schema,
     uiSchema,
     validator,
-    uiOptionsRegistry,
+    uiOptionsRegistry
   });
   const convertEntries = createEntriesConverter({
     validator,

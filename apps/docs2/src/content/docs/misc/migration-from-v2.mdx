@@ -12,6 +12,7 @@ that you are not using any deprecated APIs.
 Update your `defaults.ts` file:
 
 ```diff
++ export { createFormIdBuilder as createIdBuilder } from "@sjsf/form/id-builders/legacy";
 + export { createFormMerger as createMerger } from "@sjsf/form/mergers/legacy";
 
 - import { createFormValidator } from "@sjsf/ajv8-validator";
@@ -26,15 +27,16 @@ as you might find opportunities to improve or simplify your current solution.
 
 ## Form
 
-### New `createValidator` and `createMerger` form options
+### New `createIdBuilder`, `createMerger` and `createValidator` form options
 
-New options replace the `validator` and `merger` properties.
+New options replace the `validator`, `merger`, `idSeparator` and `idPseudoSeparator` properties.
 This change addresses several issues:
 
 - A single validator instance was shared across all forms
 - Form parameters had to be passed manually to validator and merger (`uiSchema`, `idPrefix`, etc.)
 - The default merger relied on a [heavy library](https://github.com/x0k/svelte-jsonschema-form/issues/147)
 as a dependency
+- Uncontrolled ID generation system
 
 Now:
 
@@ -42,6 +44,7 @@ Now:
 - The merger is specified explicitly, making it easy to replace if needed
 - A new merger is available with significant improvements in both performance and bundle size
 (`@sjsf/form/mergers/modern`)
+- A controlled and configurable ID generation system
 
 ### All form options now can be reactive
 
@@ -187,6 +190,22 @@ inputAttributes(ctx, config, "text", handlers, {
 - `isSubmitted` is reset after successful processing (validation + `onSubmit` handler)
 - `isChanged` becomes `true` after any interaction until
   the form is successfully submitted or reset
+- Removed the `idSeparator` and `idPseudoSeparator` form parameters
+- Updated function signatures (context is now passed as the first argument):
+  - `createPseudoId`
+  - `idFromPath`
+- Split `createChildId` into two separate functions:
+  - `createItemId`
+  - `createPropertyId`
+- Removed the following types:
+  - `IdPrefixOption`
+  - `IdSeparatorOption`
+  - `IdPseudoSeparator`
+  - `IdOptions`
+  - `PathToIdOptions`
+- `focus-on-first-error` module changes:
+  - Updated signatures of `getErrorsList` and `getFocusAction`
+  - Removed the `GetFocusActionOptions` type
 
 ## Validators
 

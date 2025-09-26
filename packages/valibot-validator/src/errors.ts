@@ -2,9 +2,8 @@ import type { Path } from "@sjsf/form/core";
 import {
   getRootSchemaTitleByPath,
   getRootUiSchemaTitleByPath,
-  pathToId,
   type Config,
-  type PathToIdOptions,
+  type FormIdBuilder,
   type Schema,
   type UiSchemaRoot,
   type ValidationError,
@@ -13,11 +12,15 @@ import * as v from "valibot";
 
 import type { ValibotIssue, ValibotSchema } from "./model.js";
 
-export interface ErrorsTransformerOptions extends PathToIdOptions {
-  uiSchema?: UiSchemaRoot;
+export interface ErrorsTransformerOptions {
+  idBuilder: FormIdBuilder;
+  uiSchema: UiSchemaRoot;
 }
 
-export function createErrorsTransformer(options: ErrorsTransformerOptions) {
+export function createErrorsTransformer({
+  idBuilder,
+  uiSchema,
+}: ErrorsTransformerOptions) {
   return (
     result: v.SafeParseResult<ValibotSchema>,
     rootSchema: Schema
@@ -27,9 +30,9 @@ export function createErrorsTransformer(options: ErrorsTransformerOptions) {
     }
     return result.issues.map((issue) => {
       const issuePath = issue.path?.map((v) => v.key as Path[number]) ?? [];
-      const instanceId = pathToId(issuePath, options);
+      const instanceId = idBuilder.fromPath(issuePath);
       const propertyTitle =
-        getRootUiSchemaTitleByPath(options.uiSchema ?? {}, issuePath) ??
+        getRootUiSchemaTitleByPath(uiSchema, issuePath) ??
         // TODO: Retrieve title from Zod metadata registry
         getRootSchemaTitleByPath(rootSchema, issuePath) ??
         issuePath[issuePath.length - 1] ??

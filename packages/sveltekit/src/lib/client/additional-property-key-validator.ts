@@ -1,17 +1,12 @@
 import { some } from '@sjsf/form/lib/array';
 import { isSchemaObject } from '@sjsf/form/lib/json-schema';
+import { isArrayOrObjectSchemaType, isPrimitiveSchemaType, typeOfSchema } from '@sjsf/form/core';
 import {
-  isArrayOrObjectSchemaType,
-  isPrimitiveSchemaType,
-  typeOfSchema
-} from '@sjsf/form/core';
-import {
-  DEFAULT_ID_SEPARATOR,
-  DEFAULT_ID_PSEUDO_SEPARATOR,
   type IdentifiableFieldElement,
   type Schema,
   type AdditionalPropertyKeyValidator
 } from '@sjsf/form';
+import { DEFAULT_ID_SEPARATOR, DEFAULT_ID_PSEUDO_SEPARATOR } from '@sjsf/form/id-builders/legacy';
 
 import { IDENTIFIABLE_INPUT_ELEMENTS } from '../model.js';
 

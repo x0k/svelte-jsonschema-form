@@ -40,6 +40,8 @@ export const theme = extendByRecord(basicTheme, {
   nativeFileFieldWrapper,
 });
 
+export { createFormIdBuilder as createIdBuilder } from "@sjsf/form/id-builders/legacy";
+
 export { createFormValidator as createValidator } from "@sjsf/ajv8-validator";
 
 export { createFormMerger as createMerger } from "@sjsf/form/mergers/modern";

@@ -1,4 +1,4 @@
-import { widgetTests } from 'testing/snapshots/widget-tests';
+import { widgetTests } from 'theme-testing/snapshots/widget-tests';
 
 import * as components from '../src/lib/components/ui/index.js';
 import { THEME_CONTEXT } from '../src/lib/theme/internal.js';

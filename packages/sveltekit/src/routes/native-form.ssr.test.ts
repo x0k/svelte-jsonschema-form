@@ -1,7 +1,7 @@
 import { render } from 'svelte/server';
 import type { Page } from '@sveltejs/kit';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { idFromPath } from '@sjsf/form';
+import { createFormIdBuilder } from '@sjsf/form/id-builders/legacy';
 
 import type { ValidatedFormData } from '$lib/model.js';
 import { initForm } from '$lib/server/server.js';
@@ -13,8 +13,10 @@ async function renderForm(page: Partial<Page>) {
   const m = await import('./native-form.svelte');
   // Prevent async SSR
   const form = render(m.default);
-  return form
+  return form;
 }
+
+const idBuilder = createFormIdBuilder();
 
 // TODO: Create an issue about broken SSR
 // TODO: Enable this test as SSR will be fixes
@@ -32,7 +34,7 @@ describe.skip('native form SSR', () => {
           initialValue: 'initial value',
           initialErrors: [
             {
-              instanceId: idFromPath([]),
+              instanceId: idBuilder.fromPath([]),
               propertyTitle: 'Property',
               message: 'error message',
               error: null
@@ -54,7 +56,7 @@ describe.skip('native form SSR', () => {
           initialValue: 'initial value',
           initialErrors: [
             {
-              instanceId: idFromPath([]),
+              instanceId: idBuilder.fromPath([]),
               propertyTitle: 'Property',
               message: 'error message',
               error: null
@@ -69,7 +71,7 @@ describe.skip('native form SSR', () => {
           data: 'validated value',
           errors: [
             {
-              instanceId: idFromPath([]),
+              instanceId: idBuilder.fromPath([]),
               propertyTitle: 'Validated property',
               message: 'validation error message',
               error: null
@@ -91,7 +93,7 @@ describe.skip('native form SSR', () => {
           initialValue: 'initial value',
           initialErrors: [
             {
-              instanceId: idFromPath([]),
+              instanceId: idBuilder.fromPath([]),
               propertyTitle: 'Property',
               message: 'error message',
               error: null
@@ -106,7 +108,7 @@ describe.skip('native form SSR', () => {
           data: 'validated value',
           errors: [
             {
-              instanceId: idFromPath([]),
+              instanceId: idBuilder.fromPath([]),
               propertyTitle: 'Validated property',
               message: 'validation error message',
               error: null

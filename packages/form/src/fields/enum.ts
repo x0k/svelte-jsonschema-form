@@ -39,7 +39,7 @@ export function createOptions<T, V extends Validator>(
     return enumValues.map((value, index) => {
       const label = enumNames?.[index] ?? schemaValueToString(value);
       return {
-        id: createPseudoId(config.id, index, ctx),
+        id: createPseudoId(ctx, config.id, index),
         label,
         value,
         disabled: disabledValues.has(value),
@@ -59,7 +59,7 @@ export function createOptions<T, V extends Validator>(
         altSchemaDef.title ??
         schemaValueToString(value);
       return {
-        id: createPseudoId(config.id, index, ctx),
+        id: createPseudoId(ctx, config.id, index),
         schema: altSchemaDef,
         label,
         value,

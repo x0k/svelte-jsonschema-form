@@ -13,7 +13,7 @@ import {
 } from "@/core/index.js";
 import {
   AFTER_SUBMITTED,
-  createChildId,
+  createItemId,
   getDefaultFieldState,
   getErrors,
   getFieldsValidationMode,
@@ -229,7 +229,7 @@ export function createArrayContext<T, V extends Validator>({
     itemConfig(config, item, index) {
       const schema = retrieveSchema(ctx, itemSchema, item);
       return {
-        id: createChildId(config.id, index, ctx),
+        id: createItemId(ctx, config.id, index),
         title: items.itemTitle(
           itemUiTitle ?? schema.title ?? config.title,
           index,
@@ -349,7 +349,7 @@ export function createTupleContext<T, V extends Validator>({
             : config.uiSchema.items
       );
       return {
-        id: createChildId(config.id, index, ctx),
+        id: createItemId(ctx, config.id, index),
         title: items.itemTitle(
           uiTitleOption(ctx, uiSchema) ?? schema.title ?? config.title,
           index,

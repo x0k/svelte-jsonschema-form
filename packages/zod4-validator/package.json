@@ -55,6 +55,7 @@
   "devDependencies": {
     "@sjsf/form": "workspace:*",
     "zod": "catalog:",
-    "svelte": "catalog:"
+    "svelte": "catalog:",
+    "validator-testing": "workspace:*"
   }
 }

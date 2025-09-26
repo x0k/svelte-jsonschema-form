@@ -13,7 +13,7 @@ import { weakMemoize } from "@/lib/memoize.js";
 import type { Validator } from "@/core/index.js";
 
 import type { Config } from "../config.js";
-import { createPseudoId, type IdentifiableFieldElement } from "../id.js";
+import type { FieldPseudoElement } from "../id.js";
 import type { UiOptions } from "../ui-schema.js";
 import { FORM_DISABLED } from "../internals.js";
 
@@ -23,6 +23,7 @@ import {
   type ObjectUiOptions,
 } from "./ui-schema.js";
 import type { FormState } from "./state.js";
+import { createPseudoId } from "./id.js";
 
 interface Disabled {
   disabled: boolean;
@@ -175,7 +176,7 @@ export function inputType(format: string | undefined) {
   }
 }
 
-const DEFAULT_DESCRIBE_ELEMENTS: (keyof IdentifiableFieldElement)[] = [
+const DEFAULT_DESCRIBE_ELEMENTS: FieldPseudoElement[] = [
   "description",
   "help",
   "errors",
@@ -192,7 +193,7 @@ export function describedBy<T, V extends Validator>(
       ? DEFAULT_DESCRIBE_ELEMENTS_WITH_EXAMPLES
       : DEFAULT_DESCRIBE_ELEMENTS
   )
-    .map((el) => createPseudoId(config.id, el, ctx))
+    .map((el) => createPseudoId(ctx, config.id, el))
     .join(" ");
 }
 
@@ -217,7 +218,7 @@ export function inputProps<
   props.step =
     schema.multipleOf ?? (schema.type === "number" ? "any" : undefined);
   props.list = Array.isArray(schema.examples)
-    ? createPseudoId(id, "examples", ctx)
+    ? createPseudoId(ctx, id, "examples")
     : undefined;
   props.readonly = schema.readOnly;
   props["aria-describedby"] = describedBy(ctx, config);
@@ -266,13 +267,13 @@ type WithId<T> = T & {
   id?: string;
 };
 
-export function idProp(element: keyof IdentifiableFieldElement) {
+export function idProp(element: FieldPseudoElement) {
   return <T, FT, V extends Validator>(
     props: WithId<T>,
     config: Config,
     ctx: FormState<FT, V>
   ) => {
-    props.id = createPseudoId(config.id, element, ctx);
+    props.id = createPseudoId(ctx, config.id, element);
     return props;
   };
 }

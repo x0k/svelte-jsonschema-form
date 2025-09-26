@@ -54,7 +54,7 @@
       uiOption("enumNames") === undefined
     ) {
       return enumValues.map((v, i) => ({
-        id: createPseudoId(config.id, i, ctx),
+        id: createPseudoId(ctx, config.id, i),
         label: v ? yes : no,
         value: v,
         disabled: false,

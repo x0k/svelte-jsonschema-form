@@ -1,4 +1,4 @@
-import { arrayFieldTests } from "testing/snapshots/array-field-tests";
+import { arrayFieldTests } from "theme-testing/snapshots/array-field-tests";
 
 import { theme } from "../src/index.js";
 

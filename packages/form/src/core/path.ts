@@ -10,7 +10,18 @@ import { getSimpleSchemaType } from "./type.js";
 
 export type Path = Array<string | number>;
 
-export function pathFromParts(parts: string[]): Path {
+function toParts(ref: string): string[] {
+  return ref
+    .split("/")
+    .slice(1)
+    .map((s) => s.replace(/~1/g, "/").replace(/~0/g, "~"));
+}
+
+export function pathFromRef(ref: string): Path {
+  if (ref === "#") {
+    return [];
+  }
+  const parts = toParts(ref);
   let parentIsArrayOfSubSchemas = false;
   return parts.map((p) => {
     if (parentIsArrayOfSubSchemas) {
@@ -27,13 +38,26 @@ export function pathFromParts(parts: string[]): Path {
   });
 }
 
-export function pathFromRef(ref: string): Path {
-  if (ref === "#") {
-    return [];
+export function pathFromLocation(location: string, data: unknown): Path {
+  const path: Path = [];
+  if (location === "") {
+    return path;
   }
-  // TODO: Handle escaped `/`
-  const parts = ref.substring(2).split("/");
-  return pathFromParts(parts);
+  const parts = toParts(location);
+  let current: any = data;
+  for (const p of parts) {
+    if (Array.isArray(current) && /^\d+$/.test(p)) {
+      const idx = Number(p);
+      path.push(idx);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      current = current[idx];
+    } else {
+      path.push(p);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+      current = current?.[p];
+    }
+  }
+  return path;
 }
 
 export function getSchemaDefinitionByPath(

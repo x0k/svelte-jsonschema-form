@@ -3,16 +3,11 @@
 // Modifications made by Roman Krasilnikov.
 
 import { describe, test } from "vitest";
-import {
-  pathToId,
-  type Schema,
-  type Theme,
-  type UiSchema,
-  type UiSchemaRoot,
-} from "@sjsf/form";
+import type { Schema, Theme, UiSchema, UiSchemaRoot } from "@sjsf/form";
 import { resolver } from "@sjsf/form/resolvers/compat";
 
 import {
+  idBuilder,
   matchSnapshot,
   type MatchSnapshotOptions,
   type SnapshotFormOptions,
@@ -122,7 +117,7 @@ export function arrayFieldTests(
         initialErrors: [
           {
             error: null as any,
-            instanceId: pathToId([]),
+            instanceId: idBuilder.fromPath([]),
             propertyTitle: "title",
             message: "error",
           },

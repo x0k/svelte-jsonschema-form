@@ -1,4 +1,4 @@
-import { s, DEFAULT_SPECS } from 'testing/demo';
+import { s, DEFAULT_SPECS } from 'theme-testing/demo';
 
 import './theme/extra-widgets/checkboxes-include.js';
 import './theme/extra-widgets/combobox-include.js';

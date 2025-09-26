@@ -27,6 +27,9 @@
 
   const form = createForm({
     ...defaults,
+    get createValidator() {
+      return SJSF_VALIDATORS[ctx.validator];
+    },
     get schema() {
       return ctx.schema;
     },
@@ -42,9 +45,6 @@
     get icons() {
       return SJSF_ICONS[ctx.icons];
     },
-    get validator() {
-      return SJSF_VALIDATORS[ctx.validator];
-    },
     extraUiOptions: fromRecord({
       skeleton3Slider: options,
       skeleton3FileUpload: options,
@@ -52,6 +52,7 @@
       skeleton3Segment: options,
       skeleton3Switch: options,
       skeleton3Tags: options,
+      skeleton3Combobox: options,
     }),
     onSubmit: console.log,
     onSubmitError: console.warn,

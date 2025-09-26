@@ -1,18 +1,18 @@
 <script lang="ts">
   import { FORM_ROOT_ID, FORM_SCHEMA, FORM_UI_SCHEMA } from "./internals.js";
   import {
+    createPseudoId,
     getComponent,
     getFormContext,
     retrieveTranslate,
   } from "./state/index.js";
   import type { Config } from "./config.js";
   import Text from "./text.svelte";
-  import { createPseudoId } from "./id.js";
 
   const ctx = getFormContext();
 
   const config: Config = $derived({
-    id: createPseudoId(ctx[FORM_ROOT_ID], "submit"),
+    id: createPseudoId(ctx, ctx[FORM_ROOT_ID], "submit"),
     title: "",
     schema: ctx[FORM_SCHEMA],
     uiSchema: ctx[FORM_UI_SCHEMA],

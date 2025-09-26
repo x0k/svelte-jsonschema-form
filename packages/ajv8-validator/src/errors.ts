@@ -1,14 +1,12 @@
 import {
-  createChildId,
-  createPseudoId,
   getRootUiSchemaTitleByPath,
-  pathToId,
   type Config,
-  type IdOptions,
+  type FormIdBuilder,
   type Schema,
   type UiSchemaRoot,
   type ValidationError,
 } from "@sjsf/form";
+import { pathFromLocation, type Path } from "@sjsf/form/core";
 import {
   Ajv,
   type AsyncValidateFunction,
@@ -16,8 +14,9 @@ import {
   type ValidateFunction,
 } from "ajv";
 
-export interface ErrorsTransformerOptions extends IdOptions {
-  uiSchema?: UiSchemaRoot;
+export interface ErrorsTransformerOptions {
+  idBuilder: FormIdBuilder;
+  uiSchema: UiSchemaRoot;
 }
 
 function errorObjectToMessage(
@@ -40,46 +39,45 @@ function errorObjectToMessage(
   return message.replace(missingProperty, propertyTitle);
 }
 
-export function createFormErrorsTransformer(options: ErrorsTransformerOptions) {
+export function createFormErrorsTransformer({
+  idBuilder,
+  uiSchema,
+}: ErrorsTransformerOptions) {
   const instancePathToId = (
     {
       params: { missingProperty, propertyName: propertyNameParam },
       propertyName = propertyNameParam,
     }: ErrorObject,
-    path: string[]
+    path: Path
   ) => {
-    let id = pathToId(path, options);
+    let id = idBuilder.fromPath(path);
     id =
       missingProperty !== undefined
-        ? createChildId(id, missingProperty, options)
+        ? idBuilder.propertyId(id, missingProperty)
         : id;
     id =
       propertyName !== undefined
-        ? createPseudoId(
-            createChildId(id, propertyName, options),
-            "key-input",
-            options
+        ? idBuilder.pseudoId(
+            idBuilder.propertyId(id, propertyName),
+            "key-input"
           )
         : id;
     return id;
   };
-  return (errors: ErrorObject[]) => {
+  return (errors: ErrorObject[], data: unknown) => {
     return errors.map((error) => {
-      let path = error.instancePath.split("/");
-      if (path[0] === "") {
-        path = path.slice(1);
-      }
+      const path = pathFromLocation(error.instancePath, data);
       return {
         instanceId: instancePathToId(error, path),
         propertyTitle:
-          getRootUiSchemaTitleByPath(options.uiSchema ?? {}, path) ??
+          getRootUiSchemaTitleByPath(uiSchema, path) ??
           error.parentSchema?.title ??
-          path.join("."),
+          path[path.length - 1],
         message: errorObjectToMessage(
           error,
           (missingProperty, parentSchema) => {
             const uiSchemaTitle = getRootUiSchemaTitleByPath(
-              options.uiSchema ?? {},
+              uiSchema,
               path.concat(missingProperty)
             );
             if (uiSchemaTitle !== undefined) {
@@ -119,12 +117,13 @@ export function createFieldErrorsTransformer(config: Config) {
 }
 
 export type TransformErrors = (
-  errors: ErrorObject[]
+  errors: ErrorObject[],
+  data: unknown
 ) => ValidationError<ErrorObject>[];
 
 export function validateAndTransformErrors(
   validate: ValidateFunction,
-  data: any,
+  data: unknown,
   transformErrors: TransformErrors
 ) {
   validate(data);
@@ -133,12 +132,12 @@ export function validateAndTransformErrors(
   if (!errors) {
     return [];
   }
-  return transformErrors(errors);
+  return transformErrors(errors, data);
 }
 
 export async function validateAndTransformErrorsAsync(
   validate: AsyncValidateFunction,
-  data: any,
+  data: unknown,
   transformErrors: TransformErrors
 ) {
   try {
@@ -147,7 +146,7 @@ export async function validateAndTransformErrorsAsync(
     if (!(e instanceof Ajv.ValidationError)) {
       throw e;
     }
-    return transformErrors(e.errors as ErrorObject[]);
+    return transformErrors(e.errors as ErrorObject[], data);
   } finally {
     validate.errors = null;
   }

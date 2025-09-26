@@ -1,4 +1,4 @@
-import { s, DEFAULT_SPECS } from 'testing/demo';
+import { s, DEFAULT_SPECS } from 'theme-testing/demo';
 
 import './extra-widgets/cally-date-picker-include';
 import './extra-widgets/checkboxes-include';

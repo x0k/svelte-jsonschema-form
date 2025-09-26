@@ -13,19 +13,18 @@ import {
   type Path,
   type SchemaValue,
   type Validator,
+  pathFromLocation,
 } from "@sjsf/form/core";
 import {
-  pathToId,
   type Config,
   type Schema,
   type FieldValueValidator,
   type FormValueValidator,
   type UiSchemaRoot,
-  type IdPrefixOption,
-  type IdSeparatorOption,
   getRootSchemaTitleByPath,
   type FormValue,
   getRootUiSchemaTitleByPath,
+  type FormIdBuilder,
 } from "@sjsf/form";
 
 export interface ValueToJSON {
@@ -89,21 +88,26 @@ export function createValidator({
   };
 }
 
-interface ErrorsTransformerOptions extends IdPrefixOption, IdSeparatorOption {
-  uiSchema?: UiSchemaRoot;
+interface ErrorsTransformerOptions {
+  idBuilder: FormIdBuilder;
+  uiSchema: UiSchemaRoot;
 }
 
-function createErrorsTransformer(options: ErrorsTransformerOptions) {
+function createErrorsTransformer({
+  idBuilder,
+  uiSchema,
+}: ErrorsTransformerOptions) {
   const extractPropertyTitle = (
     unit: OutputUnit,
     rootSchema: Schema,
     path: Path,
     instanceId: string
   ): string => {
-    const title = getRootUiSchemaTitleByPath(options.uiSchema ?? {}, path);
+    const title = getRootUiSchemaTitleByPath(uiSchema, path);
     if (title !== undefined) {
       return title;
     }
+    // NOTE: Will fail on $ref
     const schemaPath = pathFromRef(unit.keywordLocation).slice(0, -1);
     const schema = getValueByPath(rootSchema, schemaPath);
     if (
@@ -120,10 +124,10 @@ function createErrorsTransformer(options: ErrorsTransformerOptions) {
       instanceId
     );
   };
-  return (rootSchema: Schema, errors: OutputUnit[]) =>
+  return (rootSchema: Schema, errors: OutputUnit[], data: unknown) =>
     errors.map((unit) => {
-      const path = pathFromRef(unit.instanceLocation);
-      const instanceId = pathToId(path, options);
+      const path = pathFromLocation(unit.instanceLocation, data);
+      const instanceId = idBuilder.fromPath(path);
       return {
         instanceId,
         propertyTitle: extractPropertyTitle(unit, rootSchema, path, instanceId),
@@ -146,7 +150,8 @@ export function createFormValueValidator(
       const validator = options.createSchemaValidator(rootSchema, rootSchema);
       return errorsTransformer(
         rootSchema,
-        validator.validate(options.valueToJSON(formValue)).errors
+        validator.validate(options.valueToJSON(formValue)).errors,
+        formValue
       );
     },
   };
@@ -200,9 +205,10 @@ export function createFormValidator({
         ? JSON.parse(JSON.stringify(v))
         : v,
   ...rest
-}: Partial<FormValidatorOptions> & {
-  factory?: CfValidatorFactory;
-} = {}) {
+}: Partial<Omit<FormValidatorOptions, keyof ErrorsTransformerOptions>> &
+  ErrorsTransformerOptions & {
+    factory?: CfValidatorFactory;
+  }) {
   const options: FormValidatorOptions = {
     ...rest,
     valueToJSON,

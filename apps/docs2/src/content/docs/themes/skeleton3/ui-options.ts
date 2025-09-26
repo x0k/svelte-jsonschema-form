@@ -16,6 +16,7 @@ import type {
   Slider as SkeletonSlider,
   Switch as SkeletonSwitch,
   TagsInput,
+  Combobox as SkeletonCombobox,
 } from "@skeletonlabs/skeleton-svelte";
 
 export interface UiOptions {
@@ -86,6 +87,8 @@ export interface UiOptions {
   range?: HTMLInputAttributes;
 
   textarea?: HTMLTextareaAttributes;
+
+  skeleton3Combobox?: SvelteComponentProps<typeof SkeletonCombobox>;
 
   skeleton3FileUpload?: SvelteComponentProps<typeof SkeletonFileUpload>;
 

@@ -1,0 +1,29 @@
+---
+title: ID Builder
+---
+
+```ts
+type Id = Brand<"sjsf-id">;
+
+interface IdentifiableFieldElement {
+  help: {};
+  "key-input": {};
+  examples: {};
+  title: {};
+  description: {};
+  errors: {};
+  oneof: {};
+  anyof: {};
+  form: {};
+  submit: {};
+}
+
+type FieldPseudoElement = keyof IdentifiableFieldElement | number;
+
+interface FormIdBuilder {
+  fromPath: (path: Path) => Id;
+  propertyId: (parentId: Id, property: string) => Id;
+  itemId: (parentId: Id, index: number) => Id;
+  pseudoId: (instanceId: Id, element: FieldPseudoElement) => Id;
+}
+```

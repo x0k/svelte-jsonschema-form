@@ -74,7 +74,7 @@ export function createFormValueValidator(
     validateFormValue(rootSchema, formValue) {
       const validate = getValidate(options, rootSchema);
       validate(options.valueToJSON(formValue));
-      return transform(rootSchema, validate.errors);
+      return transform(rootSchema, validate.errors, formValue);
     },
   };
 }
@@ -86,7 +86,7 @@ export function createFieldValueValidator(
     validateFieldValue(field, fieldValue) {
       const validate = getValidate(options, field.schema);
       validate(options.valueToJSON(fieldValue));
-      return transformFieldErrors(field, validate.errors);
+      return transformFieldErrors(field, validate.errors, fieldValue);
     },
   };
 }

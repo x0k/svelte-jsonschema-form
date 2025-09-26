@@ -9,9 +9,10 @@ import {
   type AsyncFormValidatorOptions,
   type FormValidatorOptions,
 } from "./validator.js";
+import type { ErrorsTransformerOptions } from "./errors.js";
 
 export interface CreateFormValidatorFactoryOptions<O, V extends Validator> {
-  createFormValidator: (registry: SchemaRegistry, options: Partial<O>) => V;
+  createFormValidator: (registry: SchemaRegistry, options: O) => V;
 }
 
 function createFormValidatorFactory<O, V extends Validator>({
@@ -21,7 +22,7 @@ function createFormValidatorFactory<O, V extends Validator>({
     valibotSchema: ValibotSchema
   ): {
     schemaRegistry: ReturnType<typeof createSchemaRegistry>;
-    createValidator: (options?: Partial<O>) => V;
+    createValidator: (options: O) => V;
     schema: Schema;
   } => {
     const schemaRegistry = createSchemaRegistry();
@@ -32,7 +33,7 @@ function createFormValidatorFactory<O, V extends Validator>({
     return {
       schemaRegistry,
       schema,
-      createValidator: (options = {}) =>
+      createValidator: (options) =>
         createFormValidator(schemaRegistry, options),
     };
   };
@@ -41,11 +42,17 @@ function createFormValidatorFactory<O, V extends Validator>({
 export const adapt = createFormValidatorFactory({
   createFormValidator: (
     schemaRegistry,
-    options: Omit<FormValidatorOptions, "schemaRegistry">
+    options: Partial<
+      Omit<FormValidatorOptions, keyof ErrorsTransformerOptions>
+    > &
+      ErrorsTransformerOptions
   ) =>
     createFormValidator(
       Object.setPrototypeOf(
-        { schemaRegistry } satisfies FormValidatorOptions,
+        { schemaRegistry } satisfies Omit<
+          FormValidatorOptions,
+          keyof ErrorsTransformerOptions
+        >,
         options
       )
     ),
@@ -58,11 +65,17 @@ export const setupFormValidator = adapt;
 export const adaptAsync = createFormValidatorFactory({
   createFormValidator: (
     schemaRegistry,
-    options: Omit<FormValidatorOptions, "schemaRegistry">
+    options: Partial<
+      Omit<FormValidatorOptions, keyof ErrorsTransformerOptions>
+    > &
+      ErrorsTransformerOptions
   ) =>
     createAsyncFormValidator(
       Object.setPrototypeOf(
-        { schemaRegistry } satisfies AsyncFormValidatorOptions,
+        { schemaRegistry } satisfies Omit<
+          AsyncFormValidatorOptions,
+          keyof ErrorsTransformerOptions
+        >,
         options
       )
     ),
@@ -70,4 +83,4 @@ export const adaptAsync = createFormValidatorFactory({
 
 // TODO: Remove in v4
 /** @deprecated use `adaptAsync` */
-export const setupAsyncFormValidator = adaptAsync
+export const setupAsyncFormValidator = adaptAsync;

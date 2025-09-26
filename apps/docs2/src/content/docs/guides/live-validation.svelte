@@ -7,11 +7,8 @@
     type Schema,
     FIELD_INTERACTED,
   } from "@sjsf/form";
-  import { resolver } from "@sjsf/form/resolvers/basic";
-  import { translation } from "@sjsf/form/translations/en";
-  import { createFormMerger } from "@sjsf/form/mergers/modern";
-  import { createFormValidator } from "@sjsf/ajv8-validator";
-  import { theme } from "@sjsf/basic-theme";
+
+  import * as defaults from "@/lib/form/defaults";
 
   const schema: Schema = {
     title: "Live validation",
@@ -28,17 +25,13 @@
   };
 
   const form = createForm({
-    theme,
+    ...defaults,
     initialValue: {
       foo: "initial",
       bar: 1,
     },
     schema,
-    resolver,
-    translation,
     onSubmit: console.log,
-    createValidator: createFormValidator,
-    createMerger: createFormMerger,
   });
 
   $effect(() => {

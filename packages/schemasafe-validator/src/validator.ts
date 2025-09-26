@@ -93,7 +93,7 @@ export function createFormValueValidator(
     validateFormValue(rootSchema, formValue) {
       const validator = options.createSchemaValidator(rootSchema, rootSchema);
       validator(options.valueToJSON(formValue));
-      return transform(rootSchema, validator.errors);
+      return transform(rootSchema, validator.errors, formValue);
     },
   };
 }
@@ -110,7 +110,7 @@ export function createFieldValueValidator({
     validateFieldValue(field, fieldValue) {
       const validate = createFieldSchemaValidator(field);
       validate(valueToJSON(fieldValue));
-      return transformFieldErrors(field, validate.errors);
+      return transformFieldErrors(field, validate.errors, fieldValue);
     },
   };
 }
@@ -133,9 +133,10 @@ export function createFormValidator({
   // `isJSON` validator option is `false` by default
   valueToJSON = (value) => value as Json,
   ...rest
-}: Partial<FormValidatorOptions> & {
-  factory?: ValidateFactory;
-} = {}) {
+}: Partial<Omit<FormValidatorOptions, keyof ErrorsTransformerOptions>> &
+  ErrorsTransformerOptions & {
+    factory?: ValidateFactory;
+  }) {
   const options: FormValidatorOptions = {
     ...rest,
     valueToJSON,

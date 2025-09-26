@@ -52,34 +52,23 @@ export interface FormOptions<T, V extends Validator>
   schema: Schema;
   theme: Theme;
   translation: Translation;
-  resolver: (ctx: FormInternalContext<V>) => ResolveFieldType;
+  resolver: (ctx: FormState<T, V>) => ResolveFieldType;
+  createIdBuilder: (options: IdBuilderFactoryOptions) => FormIdBuilder;
   createValidator: (options: ValidatorFactoryOptions) => V;
   createMerger: (options: MergerFactoryOptions<V>) => FormMerger;
+  /**
+   * @default DEFAULT_ID_PREFIX
+   */
+  idPrefix?: string;
   icons?: Icons;
   uiSchema?: UiSchemaRoot;
   extraUiOptions?: ExtraUiOptions;
   fieldsValidationMode?: FieldsValidationMode;
   disabled?: boolean;
-  /**
-   * @default DEFAULT_ID_PREFIX
-   */
-  idPrefix?: string;
-  /**
-   * @default DEFAULT_ID_SEPARATOR
-   */
-  idSeparator?: string;
-  /**
-   * @default DEFAULT_ID_PSEUDO_SEPARATOR
-   */
-  idPseudoSeparator?: string;
-  //
   initialValue?: DeepPartial<T>;
   value?: Bind<T>;
   initialErrors?: InitialErrors<V>;
-  errors?: [
-    () => FieldErrorsMap<PossibleError<V>>,
-    (v: FieldErrorsMap<PossibleError<V>>) => void,
-  ];
+  errors?: Bind<FieldErrorsMap<PossibleError<V>>>;
   /**
    * @default waitPrevious
    */
@@ -145,7 +134,8 @@ export interface FormOptions<T, V extends Validator>
   onSubmitError?: (
     errors: FieldErrorsMap<AnyFormValueValidatorError<V>>,
     e: SubmitEvent,
-    snapshot: FormValue
+    snapshot: FormValue,
+    form: FormState<T, V>
   ) => void;
   /**
    * Form submission error handler

@@ -50,6 +50,7 @@
   "devDependencies": {
     "ajv": "catalog:",
     "@sjsf/form": "workspace:*",
-    "svelte": "catalog:"
+    "svelte": "catalog:",
+    "validator-testing": "workspace:*"
   }
 }

@@ -1,10 +1,11 @@
 import type { UiSchema } from "@sjsf/form";
+import { createFormIdBuilder } from '@sjsf/form/id-builders/legacy';
 import { transpose } from "@json-table/core/lib/matrix";
 import { createMatrix, fromMatrix } from "@json-table/core/block-matrix";
 import { makeBlockFactory } from "@json-table/core/json-to-table";
 import { blockToHTML } from "@json-table/core/block-to-html";
 
-import { s } from "testing/demo";
+import { s } from "theme-testing/demo";
 
 import { THEME_PACKAGES, type Theme } from "@/shared";
 
@@ -39,7 +40,7 @@ export function createSchemas(specs: s.Specs = {}) {
       },
     }) as typeof v;
   }
-  const schemas = s.createSchemas(clone);
+  const schemas = s.createSchemas(clone, createFormIdBuilder());
   const ui = schemas.uiSchema as UiSchema;
   for (const key of Object.keys(ui)) {
     ui[key] = {

@@ -19,7 +19,7 @@
     getFormContext,
     makeEventHandlers,
     validateField,
-    createChildId,
+    createPropertyId,
     getErrorsForIds,
     getErrors,
   } from "@/form/index.js";
@@ -52,7 +52,7 @@
     const id = config.id;
     const v = value;
     const nextIds = v
-      ? Object.keys(v).map((k) => createChildId(id, k, ctx))
+      ? Object.keys(v).map((k) => createPropertyId(ctx, id, k))
       : [];
     nextIds.unshift(id);
     return lastIds && compareIds(nextIds, lastIds) === 0 ? lastIds : nextIds;

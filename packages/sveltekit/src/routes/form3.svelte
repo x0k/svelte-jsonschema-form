@@ -4,6 +4,7 @@
   import { translation } from '@sjsf/form/translations/en';
   import { resolver } from '@sjsf/form/resolvers/basic';
   import { createFormMerger } from '@sjsf/form/mergers/modern';
+  import { createFormIdBuilder } from '@sjsf/form/id-builders/legacy'
 
   import {
     SvelteKitForm,
@@ -23,6 +24,7 @@
   {theme}
   {resolver}
   {translation}
+  createIdBuilder={createFormIdBuilder}
   createValidator={(options) =>
     Object.assign(
       createFormValidator(options),
