@@ -41,13 +41,19 @@ import {
   InvalidValidatorError,
 } from "./errors.js";
 import type { FormMerger } from "./merger.js";
-import { DEFAULT_ID_PREFIX, type FormIdBuilder, type Id } from "./id.js";
+import {
+  DEFAULT_ID_PREFIX,
+  isIdBuilderToPathExtension,
+  type FormIdBuilder,
+  type Id,
+} from "./id.js";
 import type { Config } from "./config.js";
 import type { Theme } from "./components.js";
 import type { Factory, FormValue, KeyedArraysMap, Update } from "./model.js";
 import type { ResolveFieldType } from "./fields.js";
 import { createSchemaValuesReconciler, UNCHANGED } from "./reconcile.js";
 import {
+  getFieldTitleByPath,
   groupErrors,
   hasFieldState,
   setFieldState,
@@ -550,6 +556,15 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     updateErrors: (path: Path, errors: Update<string[]>) => {
       const id = idBuilder.fromPath(path);
       updateErrors(formState, id, errors);
+    },
+    fieldTitle: (id) => {
+      if (!isIdBuilderToPathExtension(idBuilder)) {
+        throw new Error("ToPath extension for ID Builder is required");
+      }
+      const path = idBuilder.toPath(id);
+      return (
+        getFieldTitleByPath(formState, path) ?? String(path[path.length - 1])
+      );
     },
     // INTERNALS
     [FORM_FIELDS_STATE_MAP]: fieldsStateMap,

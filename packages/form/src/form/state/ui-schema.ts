@@ -1,6 +1,8 @@
 import type { ObjectProperties } from "@/lib/types.js";
 import { overrideByRecord } from "@/lib/resolver.js";
+import type { Path } from "@/core/path.js";
 
+import { getRootSchemaTitleByPath } from "../model.js";
 import type { Config } from "../config.js";
 import {
   resolveUiRef,
@@ -8,6 +10,7 @@ import {
   type UiSchemaDefinition,
   resolveUiOption as resolveUiOptionInternal,
   type UiOptions,
+  getUiSchemaByPath,
 } from "../ui-schema.js";
 import { createTranslate } from "../translation.js";
 import {
@@ -15,6 +18,7 @@ import {
   FORM_TRANSLATION,
   FORM_UI_OPTIONS_REGISTRY,
   FORM_UI_SCHEMA_ROOT,
+  FORM_SCHEMA,
 } from "../internals.js";
 import type { FormState } from "./state.js";
 
@@ -97,4 +101,19 @@ export function retrieveTranslate<T>(ctx: FormState<T>, config: Config) {
     ? overrideByRecord(translation, extraUiOption)
     : translation;
   return createTranslate(translation);
+}
+
+export function getFieldTitleByPath<T>(ctx: FormState<T>, path: Path) {
+  const uiSchema = getUiSchemaByPath(
+    ctx[FORM_UI_SCHEMA_ROOT],
+    ctx[FORM_UI_SCHEMA_ROOT],
+    path
+  );
+  if (uiSchema !== undefined) {
+    const resolved = resolveUiOption(ctx, uiSchema, "title");
+    if (resolved !== undefined) {
+      return resolved;
+    }
+  }
+  return getRootSchemaTitleByPath(ctx[FORM_SCHEMA], path);
 }

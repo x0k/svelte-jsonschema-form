@@ -80,6 +80,10 @@ export interface FormState<T> {
   validate: () => ValidationError[];
   validateAsync: (signal: AbortSignal) => Promise<ValidationError[]>;
   updateErrors: (path: Path, update: Update<string[]>) => void;
+  /**
+   * @throws {Error} If `FormIdBuilder` does not have `ToPath` extension 
+   */
+  fieldTitle: (id: Id) => string;
 
   /** Internals */
 
