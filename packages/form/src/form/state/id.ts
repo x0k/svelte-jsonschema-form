@@ -1,6 +1,10 @@
 import type { Path, Validator } from "@/core/index.js";
 
-import type { FieldPseudoElement, Id } from "../id.js";
+import {
+  tryGetPseudoElement,
+  type FieldPseudoElement,
+  type Id,
+} from "../id.js";
 import { FORM_ID_BUILDER } from "../internals.js";
 import type { FormState } from "./state.js";
 
@@ -32,5 +36,9 @@ export function idFromPath<T, V extends Validator>(
   ctx: FormState<T, V>,
   path: Path
 ) {
-  return ctx[FORM_ID_BUILDER].fromPath(path);
+  const pseudoElement = tryGetPseudoElement(path);
+  const b = ctx[FORM_ID_BUILDER];
+  return pseudoElement !== undefined
+    ? b.pseudoId(b.fromPath(path.slice(0, -1)), pseudoElement)
+    : b.fromPath(path);
 }
