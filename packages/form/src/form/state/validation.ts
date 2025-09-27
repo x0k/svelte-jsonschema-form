@@ -5,7 +5,7 @@ import {
   isAsyncFileListValidator,
   type ValidationError,
 } from "../validator.js";
-import type { FormValue } from "../model.js";
+import type { FormValue, Update } from "../model.js";
 import {
   FORM_FIELDS_VALIDATION_MODE,
   FORM_ID_BUILDER,
@@ -44,6 +44,19 @@ export function validateField<T>(
   ctx.fieldsValidation.run(config, value);
 }
 
+export function updateErrors<T>(
+  ctx: FormState<T>,
+  id: Id,
+  errors: Update<string[]>
+): boolean {
+  if (typeof errors === "function") {
+    const arr = ctx.errors.get(id) ?? [];
+    errors = errors(arr);
+  }
+  ctx.errors.set(id, errors);
+  return errors.length === 0;
+}
+
 export function validateAdditionalPropertyKey<T>(
   ctx: FormState<T>,
   config: Config,
@@ -54,9 +67,8 @@ export function validateAdditionalPropertyKey<T>(
   if (!isAdditionalPropertyKeyValidator(validator)) {
     return true;
   }
-  const messages = validator.validateAdditionalPropertyKey(key, config.schema);
-  ctx.errors.set(fieldConfig.id, messages);
-  return messages.length === 0;
+  const errors = validator.validateAdditionalPropertyKey(key, config.schema);
+  return updateErrors(ctx, fieldConfig.id, errors);
 }
 
 export async function validateFileList<T>(
@@ -69,13 +81,12 @@ export async function validateFileList<T>(
   if (!isAsyncFileListValidator(validator)) {
     return true;
   }
-  const messages = await validator.validateFileListAsync(
+  const errors = await validator.validateFileListAsync(
     signal,
     fileList,
     config
   );
-  ctx.errors.set(config.id, messages);
-  return messages.length === 0;
+  return updateErrors(ctx, config.id, errors);
 }
 
 export function groupErrors<T>(

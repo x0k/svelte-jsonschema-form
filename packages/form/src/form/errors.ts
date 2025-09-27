@@ -2,7 +2,7 @@ import { SvelteMap } from "svelte/reactivity";
 
 import type { Task } from "@/lib/task.svelte.js";
 
-import type { FieldValue, FormValue } from "./model.js";
+import type { FieldValue, FormValue, Update } from "./model.js";
 import type { Config } from "./config.js";
 import type { Id } from "./id.js";
 
@@ -25,6 +25,6 @@ export type FormSubmission = Task<
 
 export type FieldsValidation = Task<
   [config: Config, value: FieldValue],
-  string[],
+  Update<string[]>,
   unknown
 >;

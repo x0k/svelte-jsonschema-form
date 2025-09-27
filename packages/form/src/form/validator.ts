@@ -1,7 +1,7 @@
 import type { Path, Schema, Validator } from "@/core/index.js";
 
 import type { Config } from "./config.js";
-import type { FieldValue, FormValue } from "./model.js";
+import type { FieldValue, FormValue, Update } from "./model.js";
 
 export interface ValidationError {
   path: Path;
@@ -39,7 +39,10 @@ export function isAsyncFormValueValidator<V extends Validator>(
   return "validateFormValueAsync" in v;
 }
 export interface FieldValueValidator {
-  validateFieldValue: (field: Config, fieldValue: FieldValue) => string[];
+  validateFieldValue: (
+    field: Config,
+    fieldValue: FieldValue
+  ) => Update<string[]>;
 }
 
 export function isFieldValueValidator<V extends Validator>(
@@ -53,7 +56,7 @@ export interface AsyncFieldValueValidator {
     signal: AbortSignal,
     field: Config,
     fieldValue: FieldValue
-  ) => Promise<string[]>;
+  ) => Promise<Update<string[]>>;
 }
 
 export function isAsyncFieldValueValidator<V extends Validator>(
@@ -67,7 +70,10 @@ export type AnyFieldValueValidator =
   | AsyncFieldValueValidator;
 
 export interface AdditionalPropertyKeyValidator {
-  validateAdditionalPropertyKey: (key: string, schema: Schema) => string[];
+  validateAdditionalPropertyKey: (
+    key: string,
+    schema: Schema
+  ) => Update<string[]>;
 }
 
 export function isAdditionalPropertyKeyValidator<V extends Validator>(
@@ -81,7 +87,7 @@ export interface AsyncFileListValidator {
     signal: AbortSignal,
     fileList: FileList,
     config: Config
-  ) => Promise<string[]>;
+  ) => Promise<Update<string[]>>;
 }
 
 export function isAsyncFileListValidator(

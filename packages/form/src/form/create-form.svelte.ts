@@ -51,6 +51,7 @@ import {
   groupErrors,
   hasFieldState,
   setFieldState,
+  updateErrors,
   type FormState,
 } from "./state/index.js";
 import {
@@ -200,7 +201,7 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
    */
   fieldsValidationCombinator?: TasksCombinator<
     [Config, FormValue],
-    string[],
+    Update<string[]>,
     unknown
   >;
   /**
@@ -446,7 +447,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
         return validateFields(signal, config, value);
       }
 
-      const promise = Promise.withResolvers<string[]>();
+      const promise = Promise.withResolvers<Update<string[]>>();
       const id = setTimeout(() => {
         promise.resolve(validateFields(signal, config, value));
       }, debounceMs);
@@ -463,12 +464,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       });
     },
     onSuccess(fieldErrors, config) {
-      const errors = errorsRef.current;
-      if (fieldErrors.length > 0) {
-        errors.set(config.id, fieldErrors);
-      } else {
-        errors.delete(config.id);
-      }
+      updateErrors(formState, config.id, fieldErrors);
     },
     onFailure(error, config, value) {
       if (error.reason !== "aborted") {
@@ -523,16 +519,6 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     );
   }
 
-  function updateErrors(path: Path, update: Update<string[]>) {
-    const id = idBuilder.fromPath(path);
-    const map = errorsRef.current;
-    if (typeof update === "function") {
-      const errors = map.get(id) ?? [];
-      update = update(errors);
-    }
-    map.set(id, update);
-  }
-
   const formState: FormState<T> = {
     submission,
     fieldsValidation,
@@ -561,7 +547,10 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     reset,
     validate,
     validateAsync,
-    updateErrors,
+    updateErrors: (path: Path, errors: Update<string[]>) => {
+      const id = idBuilder.fromPath(path);
+      updateErrors(formState, id, errors);
+    },
     // INTERNALS
     [FORM_FIELDS_STATE_MAP]: fieldsStateMap,
     get [FORM_ID_BUILDER]() {
