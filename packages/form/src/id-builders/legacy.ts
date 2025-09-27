@@ -15,12 +15,6 @@ export function createFormIdBuilder({
   idSeparator = DEFAULT_ID_SEPARATOR,
   idPseudoSeparator = DEFAULT_ID_PSEUDO_SEPARATOR,
 }: IdOptions = {}): FormIdBuilder {
-  function createChildId(
-    arrayOrObjectId: Id,
-    indexOrProperty: number | string
-  ): Id {
-    return `${arrayOrObjectId}${idSeparator}${indexOrProperty}` as Id;
-  }
   return {
     fromPath: (path: Path) =>
       (path.length === 0
@@ -29,8 +23,6 @@ export function createFormIdBuilder({
     toPath: () => {
       throw new Error(`This method cannot be implemented for legacy builder`);
     },
-    propertyId: createChildId,
-    itemId: createChildId,
     pseudoId: (instanceId, element) =>
       `${instanceId}${idPseudoSeparator}${element}` as Id,
   };

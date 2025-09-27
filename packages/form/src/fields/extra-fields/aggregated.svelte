@@ -19,9 +19,9 @@
     getFormContext,
     makeEventHandlers,
     validateField,
-    createPropertyId,
     getErrorsForIds,
     getErrors,
+    idFromPath,
   } from "@/form/index.js";
   import "@/form/extra-fields/aggregated.js";
 
@@ -52,7 +52,7 @@
     const id = config.id;
     const v = value;
     const nextIds = v
-      ? Object.keys(v).map((k) => createPropertyId(ctx, id, k))
+      ? Object.keys(v).map((k) => idFromPath(ctx, config.path.concat(k)))
       : [];
     nextIds.unshift(id);
     return lastIds && compareIds(nextIds, lastIds) === 0 ? lastIds : nextIds;

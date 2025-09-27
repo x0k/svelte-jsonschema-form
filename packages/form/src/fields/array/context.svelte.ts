@@ -13,7 +13,6 @@ import {
 } from "@/core/index.js";
 import {
   AFTER_SUBMITTED,
-  createItemId,
   getDefaultFieldState,
   getErrors,
   getFieldsValidationMode,
@@ -30,6 +29,7 @@ import {
   type UiOption,
   setFieldState,
   FIELD_CHANGED,
+  idFromPath,
 } from "@/form/index.js";
 
 import { titleWithIndex, type ItemTitle } from "./model.js";
@@ -226,9 +226,10 @@ export function createArrayContext<T, V extends Validator>({
     },
     itemConfig(config, item, index) {
       const schema = retrieveSchema(ctx, itemSchema, item);
+      const path = config.path.concat(index);
       return {
-        id: createItemId(ctx, config.id, index),
-        path: config.path.concat(index),
+        path,
+        id: idFromPath(ctx, path),
         title: items.itemTitle(
           itemUiTitle ?? schema.title ?? config.title,
           index,
@@ -347,9 +348,10 @@ export function createTupleContext<T, V extends Validator>({
             ? config.uiSchema.items[index]
             : config.uiSchema.items
       );
+      const path = config.path.concat(index);
       return {
-        id: createItemId(ctx, config.id, index),
-        path: config.path.concat(index),
+        path,
+        id: idFromPath(ctx, path),
         title: items.itemTitle(
           uiTitleOption(ctx, uiSchema) ?? schema.title ?? config.title,
           index,

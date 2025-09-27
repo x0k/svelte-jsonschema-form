@@ -79,9 +79,6 @@ export function createFormIdBuilder({
       path.push(get());
       return path;
     },
-    propertyId: (parentId, property) =>
-      `${parentId}${propertySeparator}${property}` as Id,
-    itemId: (parentId, index) => `${parentId}${indexSeparator}${index}` as Id,
     pseudoId: (instanceId, element) =>
       `${instanceId}${pseudoSeparator}${element}` as Id,
   };

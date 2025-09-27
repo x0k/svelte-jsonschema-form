@@ -21,7 +21,6 @@ import {
   validateAdditionalPropertyKey,
   retrieveSchema,
   getErrors,
-  createPropertyId,
   retrieveUiSchema,
   type UiSchemaDefinition,
   type UiOption,
@@ -33,6 +32,7 @@ import {
   getFieldsValidationMode,
   setFieldState,
   FIELD_CHANGED,
+  idFromPath,
 } from "@/form/index.js";
 
 import {
@@ -196,9 +196,10 @@ export function createObjectContext<T, V extends Validator>({
           ? config.uiSchema.additionalProperties
           : (config.uiSchema[property] as UiSchemaDefinition | undefined)
       );
+      const path = config.path.concat(property);
       return {
-        id: createPropertyId(ctx, config.id, property),
-        path: config.path.concat(property),
+        path,
+        id: idFromPath(ctx, path),
         title: uiTitleOption(ctx, uiSchema) ?? schema.title ?? property,
         schema,
         uiSchema,
