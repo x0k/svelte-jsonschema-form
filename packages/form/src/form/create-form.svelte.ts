@@ -13,7 +13,7 @@ import {
   type TasksCombinator,
   type FailedTask,
 } from "@/lib/task.svelte.js";
-import type { Schema, Validator } from "@/core/index.js";
+import type { Path, Schema, Validator } from "@/core/index.js";
 
 import {
   isFormValueValidator,
@@ -44,7 +44,7 @@ import type { FormMerger } from "./merger.js";
 import { DEFAULT_ID_PREFIX, type FormIdBuilder, type Id } from "./id.js";
 import type { Config } from "./config.js";
 import type { Theme } from "./components.js";
-import type { Factory, FormValue, KeyedArraysMap } from "./model.js";
+import type { Factory, FormValue, KeyedArraysMap, Update } from "./model.js";
 import type { ResolveFieldType } from "./fields.js";
 import { createSchemaValuesReconciler, UNCHANGED } from "./reconcile.js";
 import {
@@ -523,6 +523,16 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     );
   }
 
+  function updateErrors(path: Path, update: Update<string[]>) {
+    const id = idBuilder.fromPath(path);
+    const map = errorsRef.current;
+    if (typeof update === "function") {
+      const errors = map.get(id) ?? [];
+      update = update(errors);
+    }
+    map.set(id, update);
+  }
+
   const formState: FormState<T> = {
     submission,
     fieldsValidation,
@@ -551,6 +561,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     reset,
     validate,
     validateAsync,
+    updateErrors,
     // INTERNALS
     [FORM_FIELDS_STATE_MAP]: fieldsStateMap,
     get [FORM_ID_BUILDER]() {

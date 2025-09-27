@@ -11,6 +11,8 @@ export type Factory<Options, Result> =
   | ((options: Options) => Result)
   | (() => Result);
 
+export type Update<T> = T | ((data: T) => T);
+
 export type FieldValue = SchemaValue | undefined;
 
 export type FormValue = SchemaValue | undefined;
