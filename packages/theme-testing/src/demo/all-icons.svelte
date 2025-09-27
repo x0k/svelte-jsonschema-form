@@ -6,6 +6,7 @@
     $props();
   const config: Config = {
     id: "root" as Id,
+    path: [],
     required: false,
     schema: {},
     uiSchema: {},

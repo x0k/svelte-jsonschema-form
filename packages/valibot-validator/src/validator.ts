@@ -13,11 +13,7 @@ import {
   type SchemaRegistry,
   type ValibotIssue,
 } from "./model.js";
-import {
-  createErrorsTransformer,
-  transformFieldErrors,
-  type ErrorsTransformerOptions,
-} from "./errors.js";
+import { transformFormErrors, transformFieldErrors } from "./errors.js";
 
 function getValibotSchema(
   registry: SchemaRegistry,
@@ -61,33 +57,28 @@ export function createValidator({
   };
 }
 
-export interface FormValueValidatorOptions
-  extends ValidatorOptions,
-    ErrorsTransformerOptions {}
+export interface FormValueValidatorOptions extends ValidatorOptions {}
 
 export function createFormValueValidator(
   options: FormValueValidatorOptions
-): FormValueValidator<ValibotIssue> {
-  const transform = createErrorsTransformer(options);
+): FormValueValidator {
   return {
     validateFormValue(rootSchema, formValue) {
       const valibotSchema = getValibotSchema(
         options.schemaRegistry,
         rootSchema
       );
-      return transform(v.safeParse(valibotSchema, formValue), rootSchema);
+      return transformFormErrors(v.safeParse(valibotSchema, formValue));
     },
   };
 }
 
 export interface AsyncFormValueValidatorOptions
-  extends SchemaRegistryProvider,
-    ErrorsTransformerOptions {}
+  extends SchemaRegistryProvider {}
 
 export function createAsyncFormValueValidator(
   options: AsyncFormValueValidatorOptions
-): AsyncFormValueValidator<ValibotIssue> {
-  const transform = createErrorsTransformer(options);
+): AsyncFormValueValidator {
   return {
     async validateFormValueAsync(_, rootSchema, formValue) {
       const valibotSchema = getValibotSchema(
@@ -95,7 +86,7 @@ export function createAsyncFormValueValidator(
         rootSchema
       );
       const result = await v.safeParseAsync(valibotSchema, formValue);
-      return transform(result, rootSchema);
+      return transformFormErrors(result);
     },
   };
 }
@@ -104,12 +95,12 @@ export interface FieldValueValidatorOptions extends SchemaRegistryProvider {}
 
 export function createFieldValueValidator({
   schemaRegistry,
-}: FieldValueValidatorOptions): FieldValueValidator<ValibotIssue> {
+}: FieldValueValidatorOptions): FieldValueValidator {
   return {
     validateFieldValue(field, fieldValue) {
       const valibotSchema = getValibotSchema(schemaRegistry, field.schema);
       const result = v.safeParse(valibotSchema, fieldValue);
-      return transformFieldErrors(field, result);
+      return transformFieldErrors(result);
     },
   };
 }
@@ -119,12 +110,12 @@ export interface AsyncFieldValueValidatorOptions
 
 export function createAsyncFieldValueValidator({
   schemaRegistry,
-}: AsyncFieldValueValidatorOptions): AsyncFieldValueValidator<ValibotIssue> {
+}: AsyncFieldValueValidatorOptions): AsyncFieldValueValidator {
   return {
     async validateFieldValueAsync(_, field, fieldValue) {
       const valibotSchema = getValibotSchema(schemaRegistry, field.schema);
       const result = await v.safeParseAsync(valibotSchema, fieldValue);
-      return transformFieldErrors(field, result);
+      return transformFieldErrors(result);
     },
   };
 }

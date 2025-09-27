@@ -12,6 +12,6 @@
 	{...errorsListAttributes(ctx, config, 'errorsList', {})}
 >
 	{#each errors as err}
-		<li>{err.message}</li>
+		<li>{err}</li>
 	{/each}
 </ul>

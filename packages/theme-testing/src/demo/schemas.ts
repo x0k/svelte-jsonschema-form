@@ -4,7 +4,6 @@ import {
   ON_BLUR,
   ON_CHANGE,
   ON_INPUT,
-  type FormIdBuilder,
   type Schema,
   type UiSchema,
   type UiSchemaRoot,
@@ -59,15 +58,13 @@ export const uiStates = (uiSchema: UiSchema): UiSchema => ({
   error: uiSchema,
 });
 
-export const createErrors = (keys: string[], idBuilder: FormIdBuilder) =>
+export const createErrors = (keys: string[]) =>
   keys.map(
     (key) =>
       ({
-        error: null,
-        instanceId: idBuilder.fromPath([key, "error"]),
-        propertyTitle: "error",
+        path: [key, "error"],
         message: `${key} error`,
-      }) satisfies ValidationError<null>
+      }) satisfies ValidationError
   );
 
 export const FIELD_VALIDATION_MODE_NAMES = {
@@ -100,13 +97,10 @@ export type Specs = Record<
   [Schema, UiSchema, Partial<Record<FieldValidationModeName, Trigger>>]
 >;
 
-export function createSchemas(
-  specs: Specs,
-  idBuilder: FormIdBuilder
-): {
+export function createSchemas(specs: Specs): {
   schema: Schema;
   uiSchema: UiSchemaRoot;
-  initialErrors: ValidationError<any>[];
+  initialErrors: ValidationError[];
 } {
   const keys = Object.keys(specs);
   const schema: Schema = {
@@ -123,7 +117,7 @@ export function createSchemas(
         : [];
     })
   );
-  const initialErrors = createErrors(keys, idBuilder);
+  const initialErrors = createErrors(keys);
   return { schema, uiSchema, initialErrors };
 }
 

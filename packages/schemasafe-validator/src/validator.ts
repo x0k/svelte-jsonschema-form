@@ -3,7 +3,6 @@ import {
   type Schema as SafeSchema,
   type Json,
   type Validate,
-  type ValidationError,
 } from "@exodus/schemasafe";
 import { weakMemoize } from "@sjsf/form/lib/memoize";
 import { prefixSchemaRefs, ROOT_SCHEMA_PREFIX } from "@sjsf/form/core";
@@ -16,11 +15,7 @@ import type {
   Validator,
 } from "@sjsf/form";
 
-import {
-  createErrorsTransformer,
-  transformFieldErrors,
-  type ErrorsTransformerOptions,
-} from "./errors.js";
+import { transformFormErrors, transformFieldErrors } from "./errors.js";
 import { DEFAULT_VALIDATOR_OPTIONS } from "./model.js";
 
 export type ValidateFactory = (schema: Schema, rootSchema: Schema) => Validate;
@@ -81,19 +76,16 @@ export function createValidator({
   };
 }
 
-export interface FormValueValidatorOptions
-  extends ValidatorOptions,
-    ErrorsTransformerOptions {}
+export interface FormValueValidatorOptions extends ValidatorOptions {}
 
 export function createFormValueValidator(
   options: FormValueValidatorOptions
-): FormValueValidator<ValidationError> {
-  const transform = createErrorsTransformer(options);
+): FormValueValidator {
   return {
     validateFormValue(rootSchema, formValue) {
       const validator = options.createSchemaValidator(rootSchema, rootSchema);
       validator(options.valueToJSON(formValue));
-      return transform(rootSchema, validator.errors, formValue);
+      return transformFormErrors(rootSchema, validator.errors, formValue);
     },
   };
 }
@@ -105,7 +97,7 @@ export interface FieldValueValidatorOptions extends ValueToJSON {
 export function createFieldValueValidator({
   createFieldSchemaValidator,
   valueToJSON,
-}: FieldValueValidatorOptions): FieldValueValidator<ValidationError> {
+}: FieldValueValidatorOptions): FieldValueValidator {
   return {
     validateFieldValue(field, fieldValue) {
       const validate = createFieldSchemaValidator(field);
@@ -133,10 +125,9 @@ export function createFormValidator({
   // `isJSON` validator option is `false` by default
   valueToJSON = (value) => value as Json,
   ...rest
-}: Partial<Omit<FormValidatorOptions, keyof ErrorsTransformerOptions>> &
-  ErrorsTransformerOptions & {
-    factory?: ValidateFactory;
-  }) {
+}: Partial<FormValidatorOptions> & {
+  factory?: ValidateFactory;
+} = {}) {
   const options: FormValidatorOptions = {
     ...rest,
     valueToJSON,

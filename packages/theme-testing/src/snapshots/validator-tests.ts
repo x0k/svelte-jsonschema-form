@@ -72,7 +72,7 @@ export function validatorTests(
 export function formValueValidatorTests(
   createFormValueValidator: (
     options: ValidatorFactoryOptions
-  ) => FormValueValidator<any> & Validator
+  ) => FormValueValidator & Validator
 ) {
   const init = createInitializer(createFormValueValidator);
 
@@ -103,55 +103,10 @@ export function formValueValidatorTests(
 
       const errors = validator.validateFormValue(schema, ["foo"]);
       const error = errors.find(
-        (e) => e.instanceId === `${DEFAULT_ID_PREFIX}[0]`
+        ({ path }) =>
+          path.length === 2 && path[0] === DEFAULT_ID_PREFIX && path[1] === 0
       );
       expect(error).toBeDefined();
-    });
-
-    it("Should properly evaluate title from json schema with $ref`s", () => {
-      const schema: Schema = {
-        definitions: {
-          node: {
-            type: "object",
-            properties: {
-              name: {
-                type: "string",
-                title: "title",
-              },
-              children: {
-                type: "array",
-                items: {
-                  $ref: "#/definitions/node",
-                },
-              },
-            },
-          },
-        },
-        type: "object",
-        properties: {
-          tree: {
-            title: "Recursive references",
-            $ref: "#/definitions/node",
-          },
-        },
-      };
-      const value = {
-        tree: {
-          children: [
-            {
-              children: [
-                {
-                  name: NaN,
-                },
-              ],
-            },
-          ],
-        },
-      };
-
-      const { validator } = init({ schema });
-      const errors = validator.validateFormValue(schema, value);
-      expect(errors[errors.length - 1]?.propertyTitle).toBe("title");
     });
 
     it("Should handle undefined", () => {

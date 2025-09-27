@@ -4,27 +4,20 @@ import {
   type Schema as CfSchema,
 } from "@cfworker/json-schema";
 import { weakMemoize } from "@sjsf/form/lib/memoize";
-import { getValueByPath } from "@sjsf/form/lib/object";
 import {
   ID_KEY,
   prefixSchemaRefs,
-  pathFromRef,
   ROOT_SCHEMA_PREFIX,
-  type Path,
   type SchemaValue,
   type Validator,
   pathFromLocation,
 } from "@sjsf/form/core";
-import {
-  type Config,
-  type Schema,
-  type FieldValueValidator,
-  type FormValueValidator,
-  type UiSchemaRoot,
-  getRootSchemaTitleByPath,
-  type FormValue,
-  getRootUiSchemaTitleByPath,
-  type FormIdBuilder,
+import type {
+  Config,
+  Schema,
+  FieldValueValidator,
+  FormValueValidator,
+  FormValue,
 } from "@sjsf/form";
 
 export interface ValueToJSON {
@@ -88,71 +81,22 @@ export function createValidator({
   };
 }
 
-interface ErrorsTransformerOptions {
-  idBuilder: FormIdBuilder;
-  uiSchema: UiSchemaRoot;
-}
-
-function createErrorsTransformer({
-  idBuilder,
-  uiSchema,
-}: ErrorsTransformerOptions) {
-  const extractPropertyTitle = (
-    unit: OutputUnit,
-    rootSchema: Schema,
-    path: Path,
-    instanceId: string
-  ): string => {
-    const title = getRootUiSchemaTitleByPath(uiSchema, path);
-    if (title !== undefined) {
-      return title;
-    }
-    // NOTE: Will fail on $ref
-    const schemaPath = pathFromRef(unit.keywordLocation).slice(0, -1);
-    const schema = getValueByPath(rootSchema, schemaPath);
-    if (
-      schema &&
-      typeof schema === "object" &&
-      "title" in schema &&
-      typeof schema.title === "string"
-    ) {
-      return schema.title;
-    }
-    return (
-      getRootSchemaTitleByPath(rootSchema, path) ??
-      path[path.length - 1]?.toString() ??
-      instanceId
-    );
-  };
-  return (rootSchema: Schema, errors: OutputUnit[], data: unknown) =>
-    errors.map((unit) => {
-      const path = pathFromLocation(unit.instanceLocation, data);
-      const instanceId = idBuilder.fromPath(path);
-      return {
-        instanceId,
-        propertyTitle: extractPropertyTitle(unit, rootSchema, path, instanceId),
-        message: unit.error,
-        error: unit,
-      };
-    });
-}
-
-export interface FormValueValidatorOptions
-  extends ValidatorOptions,
-    ErrorsTransformerOptions {}
+export interface FormValueValidatorOptions extends ValidatorOptions {}
 
 export function createFormValueValidator(
   options: FormValueValidatorOptions
-): FormValueValidator<OutputUnit> {
-  const errorsTransformer = createErrorsTransformer(options);
+): FormValueValidator {
   return {
     validateFormValue(rootSchema, formValue) {
       const validator = options.createSchemaValidator(rootSchema, rootSchema);
-      return errorsTransformer(
-        rootSchema,
-        validator.validate(options.valueToJSON(formValue)).errors,
-        formValue
-      );
+      const { errors } = validator.validate(options.valueToJSON(formValue));
+      return errors.map((unit) => {
+        const path = pathFromLocation(unit.instanceLocation, formValue);
+        return {
+          path,
+          message: unit.error,
+        };
+      });
     },
   };
 }
@@ -172,19 +116,14 @@ function isRootNonTypeError(error: OutputUnit): boolean {
 export function createFieldValueValidator({
   createFieldSchemaValidator,
   valueToJSON,
-}: FieldValueValidatorOptions): FieldValueValidator<OutputUnit> {
+}: FieldValueValidatorOptions): FieldValueValidator {
   return {
     validateFieldValue(config, fieldValue) {
       const validator = createFieldSchemaValidator(config);
       const errors = validator.validate(valueToJSON(fieldValue)).errors;
       return errors
         .filter(config.required ? isRootError : isRootNonTypeError)
-        .map((unit) => ({
-          instanceId: config.id,
-          propertyTitle: config.title,
-          message: unit.error,
-          error: unit,
-        }));
+        .map((unit) => unit.error);
     },
   };
 }
@@ -205,10 +144,9 @@ export function createFormValidator({
         ? JSON.parse(JSON.stringify(v))
         : v,
   ...rest
-}: Partial<Omit<FormValidatorOptions, keyof ErrorsTransformerOptions>> &
-  ErrorsTransformerOptions & {
-    factory?: CfValidatorFactory;
-  }) {
+}: Partial<FormValidatorOptions> & {
+  factory?: CfValidatorFactory;
+} = {}) {
   const options: FormValidatorOptions = {
     ...rest,
     valueToJSON,

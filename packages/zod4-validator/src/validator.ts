@@ -9,11 +9,7 @@ import type {
 import type { $ZodIssue, $ZodTypes, util } from "zod/v4/core";
 
 import { createAugmentedId, type SchemaRegistry } from "./model.js";
-import {
-  createErrorsTransformer,
-  transformFieldErrors,
-  type ErrorsTransformerOptions,
-} from "./errors.js";
+import { transformFormErrors, transformFieldErrors } from "./errors.js";
 
 function getZodSchema(registry: SchemaRegistry, { $id: id, allOf }: Schema) {
   if (id === undefined) {
@@ -68,36 +64,31 @@ export function createValidator({
   };
 }
 
-export interface FormValueValidatorOptions
-  extends ValidatorOptions,
-    ErrorsTransformerOptions {}
+export interface FormValueValidatorOptions extends ValidatorOptions {}
 
 export function createFormValueValidator(
   options: FormValueValidatorOptions
-): FormValueValidator<$ZodIssue> {
-  const transform = createErrorsTransformer(options);
+): FormValueValidator {
   return {
     validateFormValue(rootSchema, formValue) {
       const zodSchema = getZodSchema(options.schemaRegistry, rootSchema);
-      return transform(options.safeParse(zodSchema, formValue), rootSchema);
+      return transformFormErrors(options.safeParse(zodSchema, formValue));
     },
   };
 }
 
 export interface AsyncFormValueValidatorOptions
   extends SchemaRegistryProvider,
-    SafeParseAsyncProvider,
-    ErrorsTransformerOptions {}
+    SafeParseAsyncProvider {}
 
 export function createAsyncFormValueValidator(
   options: AsyncFormValueValidatorOptions
-): AsyncFormValueValidator<$ZodIssue> {
-  const transform = createErrorsTransformer(options);
+): AsyncFormValueValidator {
   return {
     async validateFormValueAsync(_, rootSchema, formValue) {
       const zodSchema = getZodSchema(options.schemaRegistry, rootSchema);
       const result = await options.safeParseAsync(zodSchema, formValue);
-      return transform(result, rootSchema);
+      return transformFormErrors(result);
     },
   };
 }
@@ -109,12 +100,12 @@ export interface FieldValueValidatorOptions
 export function createFieldValueValidator({
   schemaRegistry,
   safeParse,
-}: FieldValueValidatorOptions): FieldValueValidator<$ZodIssue> {
+}: FieldValueValidatorOptions): FieldValueValidator {
   return {
     validateFieldValue(field, fieldValue) {
       const zodSchema = getZodSchema(schemaRegistry, field.schema);
       const result = safeParse(zodSchema, fieldValue);
-      return transformFieldErrors(field, result);
+      return transformFieldErrors(result);
     },
   };
 }
@@ -126,12 +117,12 @@ export interface AsyncFieldValueValidatorOptions
 export function createAsyncFieldValueValidator({
   schemaRegistry,
   safeParseAsync,
-}: AsyncFieldValueValidatorOptions): AsyncFieldValueValidator<$ZodIssue> {
+}: AsyncFieldValueValidatorOptions): AsyncFieldValueValidator {
   return {
     async validateFieldValueAsync(_, field, fieldValue) {
       const zodSchema = getZodSchema(schemaRegistry, field.schema);
       const result = await safeParseAsync(zodSchema, fieldValue);
-      return transformFieldErrors(field, result);
+      return transformFieldErrors(result);
     },
   };
 }

@@ -8,10 +8,10 @@
 </script>
 
 <ul
-	class="text-destructive list-disc list-inside"
+	class="text-destructive list-inside list-disc"
 	{...errorsListAttributes(ctx, config, 'errorsList', {})}
 >
 	{#each errors as err}
-		<li>{err.message}</li>
+		<li>{err}</li>
 	{/each}
 </ul>

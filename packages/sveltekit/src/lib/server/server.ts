@@ -8,7 +8,6 @@ import {
   type SchemaValue,
   type UiSchemaRoot,
   type ValidationError,
-  type AnyFormValueValidatorError,
   type AnyFormValueValidator,
   isAsyncFormValueValidator,
   type FormValue,
@@ -21,7 +20,7 @@ import {
   type IdOptions,
   DEFAULT_ID_SEPARATOR,
   DEFAULT_ID_PSEUDO_SEPARATOR,
-  createFormIdBuilder,
+  createFormIdBuilder
 } from '@sjsf/form/id-builders/legacy';
 
 import {
@@ -40,14 +39,10 @@ import {
 } from './convert-form-data-entries.js';
 import type { EntriesConverter } from './entry.js';
 
-export type InitFormOptions<
-  T,
-  E,
-  SendSchema extends boolean
-> = SerializableOptionalFormOptions<T> & {
+export type InitFormOptions<T, SendSchema extends boolean> = SerializableOptionalFormOptions<T> & {
   sendSchema?: SendSchema;
   initialValue?: DeepPartial<T>;
-  initialErrors?: ValidationError<E>[];
+  initialErrors?: ValidationError[];
   uiSchema?: UiSchemaRoot;
 } & (SendSchema extends true
     ? { schema: Schema }
@@ -55,9 +50,9 @@ export type InitFormOptions<
         schema?: never;
       });
 
-export function initForm<T, E, SendSchema extends boolean = false>(
-  options: InitFormOptions<T, E, SendSchema>
-): InitialFormData<T, E, SendSchema> {
+export function initForm<T, SendSchema extends boolean = false>(
+  options: InitFormOptions<T, SendSchema>
+): InitialFormData<T, SendSchema> {
   const data = {
     ...options,
     schema: (options.sendSchema ? options.schema : undefined) as SendSchema extends true
@@ -69,7 +64,7 @@ export function initForm<T, E, SendSchema extends boolean = false>(
 }
 
 export interface FormHandlerOptions<
-  V extends Validator & AnyFormValueValidator<any>,
+  V extends Validator & AnyFormValueValidator,
   SendData extends boolean
 > extends IdOptions {
   schema: Schema;
@@ -97,7 +92,7 @@ function createDefaultReviver(formData: FormData) {
 }
 
 export function createFormHandler<
-  V extends Validator & AnyFormValueValidator<any>,
+  V extends Validator & AnyFormValueValidator,
   SendData extends boolean
 >({
   schema,
@@ -116,8 +111,8 @@ export function createFormHandler<
   const idBuilder = createFormIdBuilder({
     idPrefix,
     idSeparator,
-    idPseudoSeparator,
-  })
+    idPseudoSeparator
+  });
   const validator = createValidator({
     schema,
     uiSchema,
@@ -141,7 +136,7 @@ export function createFormHandler<
   return async (
     signal: AbortSignal,
     formData: FormData
-  ): Promise<[ValidatedFormData<AnyFormValueValidatorError<V>, SendData>, FormValue]> => {
+  ): Promise<[ValidatedFormData<SendData>, FormValue]> => {
     const data = formData.has(JSON_CHUNKS_KEY)
       ? JSON.parse(formData.getAll(JSON_CHUNKS_KEY).join(''), createReviver(formData))
       : await parseSchemaValue(signal, {
@@ -174,6 +169,6 @@ export function createFormHandler<
   };
 }
 
-export function isValid<T>(vfd: ValidatedFormData<any, boolean>, data: unknown): data is T {
+export function isValid<T>(vfd: ValidatedFormData<boolean>, data: unknown): data is T {
   return vfd.isValid;
 }

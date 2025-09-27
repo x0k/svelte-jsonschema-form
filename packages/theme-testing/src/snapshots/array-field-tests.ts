@@ -116,9 +116,7 @@ export function arrayFieldTests(
         schema,
         initialErrors: [
           {
-            error: null as any,
-            instanceId: idBuilder.fromPath([]),
-            propertyTitle: "title",
+            path:[],
             message: "error",
           },
         ],

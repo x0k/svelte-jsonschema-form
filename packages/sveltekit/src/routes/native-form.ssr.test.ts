@@ -1,7 +1,6 @@
 import { render } from 'svelte/server';
 import type { Page } from '@sveltejs/kit';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { createFormIdBuilder } from '@sjsf/form/id-builders/legacy';
 
 import type { ValidatedFormData } from '$lib/model.js';
 import { initForm } from '$lib/server/server.js';
@@ -15,8 +14,6 @@ async function renderForm(page: Partial<Page>) {
   const form = render(m.default);
   return form;
 }
-
-const idBuilder = createFormIdBuilder();
 
 // TODO: Create an issue about broken SSR
 // TODO: Enable this test as SSR will be fixes
@@ -34,10 +31,8 @@ describe.skip('native form SSR', () => {
           initialValue: 'initial value',
           initialErrors: [
             {
-              instanceId: idBuilder.fromPath([]),
-              propertyTitle: 'Property',
-              message: 'error message',
-              error: null
+              path: [],
+              message: 'error message'
             }
           ]
         })
@@ -56,10 +51,8 @@ describe.skip('native form SSR', () => {
           initialValue: 'initial value',
           initialErrors: [
             {
-              instanceId: idBuilder.fromPath([]),
-              propertyTitle: 'Property',
-              message: 'error message',
-              error: null
+              path: [],
+              message: 'error message'
             }
           ]
         })
@@ -71,13 +64,11 @@ describe.skip('native form SSR', () => {
           data: 'validated value',
           errors: [
             {
-              instanceId: idBuilder.fromPath([]),
-              propertyTitle: 'Validated property',
-              message: 'validation error message',
-              error: null
+              path: [],
+              message: 'validation error message'
             }
           ]
-        } satisfies ValidatedFormData<null, true>
+        } satisfies ValidatedFormData<true>
       }
     });
     expect(body).toContain('Schema title');
@@ -93,10 +84,8 @@ describe.skip('native form SSR', () => {
           initialValue: 'initial value',
           initialErrors: [
             {
-              instanceId: idBuilder.fromPath([]),
-              propertyTitle: 'Property',
-              message: 'error message',
-              error: null
+              path: [],
+              message: 'error message'
             }
           ]
         })
@@ -108,13 +97,11 @@ describe.skip('native form SSR', () => {
           data: 'validated value',
           errors: [
             {
-              instanceId: idBuilder.fromPath([]),
-              propertyTitle: 'Validated property',
-              message: 'validation error message',
-              error: null
+              path: [],
+              message: 'validation error message'
             }
           ]
-        } satisfies ValidatedFormData<null, true>
+        } satisfies ValidatedFormData<true>
       }
     });
     expect(body).toContain('Schema title');

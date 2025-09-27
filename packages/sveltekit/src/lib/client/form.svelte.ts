@@ -6,7 +6,6 @@ import {
   groupErrors,
   type Schema,
   type FormOptions,
-  type PossibleError
 } from '@sjsf/form';
 
 import { page } from '$app/state';
@@ -34,11 +33,11 @@ export type SvelteKitFormOptions<
 function initialFormData<Meta extends SvelteKitFormMeta<any, any, string, any>>(
   meta: Meta
 ):
-  | InitialFormData<Meta['__formValue'], Meta['__validationError'], Meta['__sendSchema']>
+  | InitialFormData<Meta['__formValue'], Meta['__sendSchema']>
   | undefined {
   if (isRecord(page.form)) {
     const validationData = page.form[meta.name] as
-      | ValidatedFormData<Meta['__validationError'], Meta['__sendData']>
+      | ValidatedFormData<Meta['__sendData']>
       | undefined;
     if (validationData !== undefined) {
       return validationData.isValid
@@ -77,7 +76,7 @@ export function createSvelteKitForm<
       return;
     }
     const validationData = page.form[meta.name] as
-      | ValidatedFormData<PossibleError<ReturnType<Options['createValidator']>>, Meta['__sendData']>
+      | ValidatedFormData<Meta['__sendData']>
       | undefined;
     if (validationData === undefined) {
       return;
@@ -85,7 +84,7 @@ export function createSvelteKitForm<
     if (validationData.sendData && form.isSubmitted) {
       form.value = validationData.data;
     }
-    form.errors = groupErrors(validationData.errors);
+    form.errors = groupErrors(form, validationData.errors);
   });
   return form;
 }
