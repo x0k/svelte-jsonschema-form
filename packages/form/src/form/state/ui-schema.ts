@@ -1,6 +1,5 @@
 import type { ObjectProperties } from "@/lib/types.js";
 import { overrideByRecord } from "@/lib/resolver.js";
-import type { Validator } from "@/core/index.js";
 
 import type { Config } from "../config.js";
 import {
@@ -19,15 +18,15 @@ import {
 } from "../internals.js";
 import type { FormState } from "./state.js";
 
-export function retrieveUiSchema<T, V extends Validator>(
-  ctx: FormState<T, V>,
+export function retrieveUiSchema<T>(
+  ctx: FormState<T>,
   uiSchemaDef: UiSchemaDefinition | undefined
 ) {
   return resolveUiRef(ctx[FORM_UI_SCHEMA_ROOT], uiSchemaDef) ?? {};
 }
 
-function resolveUiOption<T, V extends Validator, O extends keyof UiOptions>(
-  ctx: FormState<T, V>,
+function resolveUiOption<T, O extends keyof UiOptions>(
+  ctx: FormState<T>,
   uiSchema: UiSchema,
   option: O
 ) {
@@ -39,18 +38,15 @@ function resolveUiOption<T, V extends Validator, O extends keyof UiOptions>(
   );
 }
 
-export function uiTitleOption<T, V extends Validator>(
-  ctx: FormState<T, V>,
-  uiSchema: UiSchema
-) {
+export function uiTitleOption<T>(ctx: FormState<T>, uiSchema: UiSchema) {
   return resolveUiOption(ctx, uiSchema, "title");
 }
 
-export function retrieveUiOption<
-  T,
-  V extends Validator,
-  const O extends keyof UiOptions,
->(ctx: FormState<T, V>, config: Config, option: O) {
+export function retrieveUiOption<T, const O extends keyof UiOptions>(
+  ctx: FormState<T>,
+  config: Config,
+  option: O
+) {
   return (
     ctx[FORM_UI_EXTRA_OPTIONS]?.(option, config) ??
     resolveUiOption(ctx, config.uiSchema, option)
@@ -62,10 +58,10 @@ export type ObjectUiOptions = ObjectProperties<UiOptions>;
 export function uiOptionProps<const O extends keyof ObjectUiOptions>(
   option: O
 ) {
-  return <T, V extends Validator>(
+  return <T>(
     props: NonNullable<UiOptions[O]>,
     config: Config,
-    ctx: FormState<T, V>
+    ctx: FormState<T>
   ): NonNullable<UiOptions[O]> => {
     return Object.assign(
       props,
@@ -79,11 +75,7 @@ export function uiOptionNestedProps<
   const O extends keyof ObjectUiOptions,
   R extends object,
 >(option: O, selector: (data: NonNullable<UiOptions[O]>) => R | undefined) {
-  return <T, V extends Validator>(
-    props: R,
-    config: Config,
-    ctx: FormState<T, V>
-  ): R => {
+  return <T>(props: R, config: Config, ctx: FormState<T>): R => {
     const options = resolveUiOption(ctx, config.uiSchema, option);
     const extraOptions = ctx[FORM_UI_EXTRA_OPTIONS]?.(option, config as never);
     return Object.assign(
@@ -94,10 +86,7 @@ export function uiOptionNestedProps<
   };
 }
 
-export function retrieveTranslate<T, V extends Validator>(
-  ctx: FormState<T, V>,
-  config: Config
-) {
+export function retrieveTranslate<T>(ctx: FormState<T>, config: Config) {
   let translation = ctx[FORM_TRANSLATION];
   const uiOption = resolveUiOption(ctx, config.uiSchema, "translations");
   translation = uiOption

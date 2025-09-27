@@ -20,7 +20,6 @@ export type FieldPseudoElement = keyof IdentifiableFieldElement | number;
 
 export interface FormIdBuilder {
   fromPath: (path: Path) => Id;
-  toPath(id: Id): Path;
   pseudoId: (instanceId: Id, element: FieldPseudoElement) => Id;
 }
 
@@ -61,4 +60,14 @@ export function tryGetPseudoElement(
         `Unexpected pseudo element suffix "${last[PSEUDO_PREFIX_LEN]}", expected "${STRING_SUFFIX}" or "${NUMBER_SUFFIX}"`
       );
   }
+}
+
+export interface IdBuilderToPathExtension {
+  toPath(id: Id): Path;
+}
+
+export function isIdBuilderToPathExtension<B extends FormIdBuilder>(
+  b: B
+): b is B & IdBuilderToPathExtension {
+  return "toPath" in b;
 }

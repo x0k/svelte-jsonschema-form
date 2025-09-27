@@ -7,7 +7,6 @@ import {
   retrieveSchema as retrieveSchemaInternal,
   sanitizeDataForNewSchema as sanitizeDataForNewSchemaInternal,
   getClosestMatchingOption as getClosestMatchingOptionInternal,
-  type Validator,
 } from "@/core/index.js";
 
 import {
@@ -18,10 +17,7 @@ import {
 } from "../internals.js";
 import type { FormState } from "./state.js";
 
-export function isSelect<T, V extends Validator>(
-  ctx: FormState<T, V>,
-  schema: Schema
-) {
+export function isSelect<T>(ctx: FormState<T>, schema: Schema) {
   return isSelectInternal(
     ctx[FORM_VALIDATOR],
     ctx[FORM_MERGER],
@@ -30,10 +26,7 @@ export function isSelect<T, V extends Validator>(
   );
 }
 
-export function isMultiSelect<T, V extends Validator>(
-  ctx: FormState<T, V>,
-  schema: Schema
-) {
+export function isMultiSelect<T>(ctx: FormState<T>, schema: Schema) {
   return isMultiSelectInternal(
     ctx[FORM_VALIDATOR],
     ctx[FORM_MERGER],
@@ -42,10 +35,7 @@ export function isMultiSelect<T, V extends Validator>(
   );
 }
 
-export function isFilesArray<T, V extends Validator>(
-  ctx: FormState<T, V>,
-  schema: Schema
-) {
+export function isFilesArray<T>(ctx: FormState<T>, schema: Schema) {
   return isFilesArrayInternal(
     ctx[FORM_VALIDATOR],
     ctx[FORM_MERGER],
@@ -54,8 +44,8 @@ export function isFilesArray<T, V extends Validator>(
   );
 }
 
-export function retrieveSchema<T, V extends Validator>(
-  ctx: FormState<T, V>,
+export function retrieveSchema<T>(
+  ctx: FormState<T>,
   schema: Schema,
   formData: SchemaValue | undefined
 ) {
@@ -68,8 +58,8 @@ export function retrieveSchema<T, V extends Validator>(
   );
 }
 
-export function sanitizeDataForNewSchema<T, V extends Validator>(
-  ctx: FormState<T, V>,
+export function sanitizeDataForNewSchema<T>(
+  ctx: FormState<T>,
   newSchema: Schema,
   oldSchema: Schema,
   formData: SchemaValue | undefined
@@ -84,8 +74,8 @@ export function sanitizeDataForNewSchema<T, V extends Validator>(
   );
 }
 
-export function getClosestMatchingOption<T, V extends Validator>(
-  ctx: FormState<T, V>,
+export function getClosestMatchingOption<T>(
+  ctx: FormState<T>,
   formData: SchemaValue | undefined,
   options: Schema[],
   selectedOption: number,
@@ -102,14 +92,14 @@ export function getClosestMatchingOption<T, V extends Validator>(
   );
 }
 
-export function getDefaultFieldState<T, V extends Validator>(
-  ctx: FormState<T, V>,
+export function getDefaultFieldState<T>(
+  ctx: FormState<T>,
   schema: Schema,
   formData: SchemaValue | undefined
 ) {
   return ctx[FORM_MERGER].mergeFormDataAndSchemaDefaults(formData, schema);
 }
 
-export function markSchemaChange<T, V extends Validator>(ctx: FormState<T, V>) {
+export function markSchemaChange<T>(ctx: FormState<T>) {
   ctx[FORM_MARK_SCHEMA_CHANGE]();
 }

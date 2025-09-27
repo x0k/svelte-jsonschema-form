@@ -1,5 +1,3 @@
-import type { Validator } from "@/core/index.js";
-
 import type { Id } from "../id.js";
 import type { Config } from "../config.js";
 import {
@@ -17,23 +15,15 @@ import {
 import type { FormState } from "./state.js";
 import type { FormErrorsMap } from "../errors.js";
 
-export function getFieldsValidationMode<T, V extends Validator>(
-  ctx: FormState<T, V>
-) {
+export function getFieldsValidationMode<T>(ctx: FormState<T>) {
   return ctx[FORM_FIELDS_VALIDATION_MODE];
 }
 
-export function getErrors<T, V extends Validator>(
-  ctx: FormState<T, V>,
-  id: Id
-): string[] {
+export function getErrors<T>(ctx: FormState<T>, id: Id): string[] {
   return ctx.errors.get(id) ?? [];
 }
 
-export function getErrorsForIds<T, V extends Validator>(
-  ctx: FormState<T, V>,
-  ids: Id[]
-): string[] {
+export function getErrorsForIds<T>(ctx: FormState<T>, ids: Id[]): string[] {
   const errors: string[] = [];
   for (let i = 0; i < ids.length; i++) {
     const errs = ctx.errors.get(ids[i]!);
@@ -46,16 +36,16 @@ export function getErrorsForIds<T, V extends Validator>(
   return errors;
 }
 
-export function validateField<T, V extends Validator>(
-  ctx: FormState<T, V>,
+export function validateField<T>(
+  ctx: FormState<T>,
   config: Config,
   value: FormValue
 ) {
   ctx.fieldsValidation.run(config, value);
 }
 
-export function validateAdditionalPropertyKey<T, V extends Validator>(
-  ctx: FormState<T, V>,
+export function validateAdditionalPropertyKey<T>(
+  ctx: FormState<T>,
   config: Config,
   key: string,
   fieldConfig: Config
@@ -69,9 +59,9 @@ export function validateAdditionalPropertyKey<T, V extends Validator>(
   return messages.length === 0;
 }
 
-export async function validateFileList<T, V extends Validator>(
+export async function validateFileList<T>(
   signal: AbortSignal,
-  ctx: FormState<T, V>,
+  ctx: FormState<T>,
   config: Config,
   fileList: FileList
 ) {
@@ -88,8 +78,8 @@ export async function validateFileList<T, V extends Validator>(
   return messages.length === 0;
 }
 
-export function groupErrors<T, V extends Validator>(
-  ctx: FormState<T, V>,
+export function groupErrors<T>(
+  ctx: FormState<T>,
   errors: ValidationError[]
 ): FormErrorsMap {
   return internalGroupErrors(ctx[FORM_ID_BUILDER], errors);

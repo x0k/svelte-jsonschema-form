@@ -9,7 +9,6 @@ import {
   type Schema,
   type SchemaArrayValue,
   type SchemaValue,
-  type Validator,
 } from "@/core/index.js";
 import {
   AFTER_SUBMITTED,
@@ -73,21 +72,21 @@ export function setArrayContext(ctx: ArrayContext) {
   setContext(ARRAY_CONTEXT, ctx);
 }
 
-interface ItemsOptions<T, V extends Validator> {
-  ctx: FormState<T, V>;
+interface ItemsOptions<T> {
+  ctx: FormState<T>;
   config: () => Config;
   value: () => SchemaArrayValue | null | undefined;
   keyedArray: () => KeyedFieldValues;
   itemSchema: () => Schema | undefined;
 }
 
-function createItems<T, V extends Validator>({
+function createItems<T>({
   ctx,
   config,
   itemSchema,
   keyedArray,
   value,
-}: ItemsOptions<T, V>) {
+}: ItemsOptions<T>) {
   const uiOption: UiOption = (opt) => retrieveUiOption(ctx, config(), opt);
   function onChange() {
     setFieldState(ctx, config().id, FIELD_CHANGED);
@@ -162,19 +161,19 @@ function createCanAdd(
     maxItems === undefined || length() < maxItems);
 }
 
-export interface ArrayContextOptions<T, V extends Validator> {
-  ctx: FormState<T, V>;
+export interface ArrayContextOptions<T> {
+  ctx: FormState<T>;
   config: () => Config;
   value: () => SchemaArrayValue | null | undefined;
   keyedArray: () => KeyedFieldValues;
 }
 
-export function createArrayContext<T, V extends Validator>({
+export function createArrayContext<T>({
   ctx,
   config,
   value,
   keyedArray,
-}: ArrayContextOptions<T, V>): ArrayContext {
+}: ArrayContextOptions<T>): ArrayContext {
   const arr = $derived.by(value);
 
   const itemSchema: Schema = $derived.by(() => {
@@ -244,12 +243,12 @@ export function createArrayContext<T, V extends Validator>({
   };
 }
 
-export function createTupleContext<T, V extends Validator>({
+export function createTupleContext<T>({
   ctx,
   config,
   value,
   keyedArray,
-}: ArrayContextOptions<T, V>): ArrayContext {
+}: ArrayContextOptions<T>): ArrayContext {
   const arr = $derived.by(value);
 
   const itemsSchema = $derived.by(() => {

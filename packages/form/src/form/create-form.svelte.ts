@@ -140,29 +140,28 @@ export interface ValidatorFactoryOptions {
   merger: () => FormMerger;
 }
 
-export interface MergerFactoryOptions<V extends Validator> {
-  validator: V;
+export interface MergerFactoryOptions {
+  validator: Validator;
   schema: Schema;
   uiSchema: UiSchemaRoot;
   uiOptionsRegistry: UiOptionsRegistry;
 }
 
-export interface GetSnapshotOptions<V extends Validator> {
-  validator: V;
+export interface GetSnapshotOptions {
+  validator: Validator;
   merger: FormMerger;
   schema: Schema;
   value: FormValue;
 }
 
-export interface FormOptions<T, V extends Validator>
-  extends UiOptionsRegistryOption {
+export interface FormOptions<T> extends UiOptionsRegistryOption {
   schema: Schema;
   theme: Theme;
   translation: Translation;
-  resolver: (ctx: FormState<T, V>) => ResolveFieldType;
+  resolver: (ctx: FormState<T>) => ResolveFieldType;
   createIdBuilder: (options: IdBuilderFactoryOptions) => FormIdBuilder;
-  createValidator: (options: ValidatorFactoryOptions) => V;
-  createMerger: (options: MergerFactoryOptions<V>) => FormMerger;
+  createValidator: (options: ValidatorFactoryOptions) => Validator;
+  createMerger: (options: MergerFactoryOptions) => FormMerger;
   /**
    * @default DEFAULT_ID_PREFIX
    */
@@ -220,7 +219,7 @@ export interface FormOptions<T, V extends Validator>
    *
    * @default (ctx) => $state.snapshot(ctx.value)
    */
-  getSnapshot?: (ctx: GetSnapshotOptions<V>) => FormValue;
+  getSnapshot?: (ctx: GetSnapshotOptions) => FormValue;
   /**
    * Submit handler
    *
@@ -242,7 +241,7 @@ export interface FormOptions<T, V extends Validator>
     errors: FormErrorsMap,
     e: SubmitEvent,
     snapshot: FormValue,
-    form: FormState<T, V>
+    form: FormState<T>
   ) => void;
   /**
    * Form submission error handler
@@ -271,9 +270,7 @@ export interface FormOptions<T, V extends Validator>
   keyedArraysMap?: KeyedArraysMap;
 }
 
-export function createForm<T, V extends Validator>(
-  options: FormOptions<T, V>
-): FormState<T, V> {
+export function createForm<T>(options: FormOptions<T>): FormState<T> {
   /** STATE BEGIN */
   const idPrefix = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX);
   const uiSchemaRoot = $derived(options.uiSchema ?? {});
@@ -354,7 +351,7 @@ export function createForm<T, V extends Validator>(
     if (get === undefined) {
       return () => $state.snapshot(valueRef.current);
     }
-    const opts: GetSnapshotOptions<V> = {
+    const opts: GetSnapshotOptions = {
       get merger() {
         return merger;
       },
@@ -526,7 +523,7 @@ export function createForm<T, V extends Validator>(
     );
   }
 
-  const formState: FormState<T, V> = {
+  const formState: FormState<T> = {
     submission,
     fieldsValidation,
     get value() {
@@ -639,9 +636,7 @@ export function createForm<T, V extends Validator>(
   return formState;
 }
 
-export function handlers<T, V extends Validator>(
-  form: FormState<T, V>
-): Attachment<HTMLFormElement> {
+export function handlers<T>(form: FormState<T>): Attachment<HTMLFormElement> {
   return (node) => {
     const disposeSubmit = on(node, "submit", form.submit);
     const disposeReset = on(node, "reset", form.reset);

@@ -59,7 +59,7 @@ export function createFocusOnFirstError(
     errors: FormErrorsMap,
     e: SubmitEvent,
     _: FormValue,
-    ctx: FormState<any, any>
+    ctx: FormState<any>
   ) => {
     if (errors.size === 0) {
       return false;

@@ -1,10 +1,10 @@
-<script lang="ts" generics="T, V extends Validator, P extends JsonPaths<T>">
+<script lang="ts" generics="T, P extends JsonPaths<T>">
   import type { Snippet } from "svelte";
   import { DEV } from "esm-env";
 
   import type { JsonPaths } from "@/lib/types.js";
   import { isObject } from "@/lib/object.js";
-  import { getSchemaDefinitionByPath, type Validator } from "@/core/index.js";
+  import { getSchemaDefinitionByPath } from "@/core/index.js";
 
   import {
     getFieldComponent,
@@ -33,7 +33,7 @@
   } from "./internals.js";
 
   interface Props {
-    form: FormState<T, V>;
+    form: FormState<T>;
     path: P;
     required?: boolean;
     uiSchema?: UiSchema;

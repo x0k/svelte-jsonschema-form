@@ -1,10 +1,8 @@
-import type { Validator } from "@/core/index.js";
-
 import { FORM_DATA_URL_TO_BLOB } from "../internals.js";
 import type { FormState } from "./state.js";
 
-export async function addFile<T, V extends Validator>(
-  ctx: FormState<T, V>,
+export async function addFile<T>(
+  ctx: FormState<T>,
   signal: AbortSignal,
   data: DataTransfer,
   value: string
@@ -14,8 +12,8 @@ export async function addFile<T, V extends Validator>(
   data.items.add(new File([blob], name, { type: blob.type }));
 }
 
-export function addFiles<T, V extends Validator>(
-  ctx: FormState<T, V>,
+export function addFiles<T>(
+  ctx: FormState<T>,
   signal: AbortSignal,
   data: DataTransfer,
   values: string[]

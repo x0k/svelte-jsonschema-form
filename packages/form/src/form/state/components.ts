@@ -1,5 +1,4 @@
 import type { Resolved } from "@/lib/resolver.js";
-import type { Validator } from "@/core/index.js";
 
 import type { Config } from "../config.js";
 import type {
@@ -10,12 +9,8 @@ import { createMessage } from "../error-message.svelte";
 import { FORM_RESOLVER, FORM_THEME, FORM_TRANSLATE } from "../internals.js";
 import type { FormState } from "./state.js";
 
-export function getComponent<
-  FT,
-  V extends Validator,
-  T extends FoundationalComponentType,
->(
-  ctx: FormState<FT, V>,
+export function getComponent<FT, T extends FoundationalComponentType>(
+  ctx: FormState<FT>,
   type: T,
   config: Config
 ): Resolved<T, CompatibleComponentDefinitions> {
@@ -41,9 +36,6 @@ export function getComponent<
   }
 }
 
-export function getFieldComponent<T, V extends Validator>(
-  ctx: FormState<T, V>,
-  config: Config
-) {
+export function getFieldComponent<T>(ctx: FormState<T>, config: Config) {
   return getComponent(ctx, ctx[FORM_RESOLVER](config), config);
 }

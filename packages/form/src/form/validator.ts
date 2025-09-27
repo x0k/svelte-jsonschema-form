@@ -1,4 +1,4 @@
-import type { Path, Schema } from "@/core/index.js";
+import type { Path, Schema, Validator } from "@/core/index.js";
 
 import type { Config } from "./config.js";
 import type { FieldValue, FormValue } from "./model.js";
@@ -15,7 +15,7 @@ export interface FormValueValidator {
   ) => ValidationError[];
 }
 
-export function isFormValueValidator<V extends object>(
+export function isFormValueValidator<V extends Validator>(
   v: V
 ): v is V & FormValueValidator {
   return "validateFormValue" in v;
@@ -33,7 +33,7 @@ export type AnyFormValueValidator =
   | FormValueValidator
   | AsyncFormValueValidator;
 
-export function isAsyncFormValueValidator<V extends object>(
+export function isAsyncFormValueValidator<V extends Validator>(
   v: V
 ): v is V & AsyncFormValueValidator {
   return "validateFormValueAsync" in v;
@@ -42,7 +42,7 @@ export interface FieldValueValidator {
   validateFieldValue: (field: Config, fieldValue: FieldValue) => string[];
 }
 
-export function isFieldValueValidator<V extends object>(
+export function isFieldValueValidator<V extends Validator>(
   v: V
 ): v is V & FieldValueValidator {
   return "validateFieldValue" in v;
@@ -56,7 +56,7 @@ export interface AsyncFieldValueValidator {
   ) => Promise<string[]>;
 }
 
-export function isAsyncFieldValueValidator<V extends object>(
+export function isAsyncFieldValueValidator<V extends Validator>(
   v: V
 ): v is V & AsyncFieldValueValidator {
   return "validateFieldValueAsync" in v;
@@ -70,9 +70,9 @@ export interface AdditionalPropertyKeyValidator {
   validateAdditionalPropertyKey: (key: string, schema: Schema) => string[];
 }
 
-export function isAdditionalPropertyKeyValidator(
-  v: object
-): v is AdditionalPropertyKeyValidator {
+export function isAdditionalPropertyKeyValidator<V extends Validator>(
+  v: V
+): v is V & AdditionalPropertyKeyValidator {
   return "validateAdditionalPropertyKey" in v;
 }
 

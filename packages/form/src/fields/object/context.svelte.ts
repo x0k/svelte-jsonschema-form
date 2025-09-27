@@ -17,7 +17,6 @@ import {
   validateField,
   type Config,
   type Schema,
-  type Validator,
   validateAdditionalPropertyKey,
   retrieveSchema,
   getErrors,
@@ -66,21 +65,21 @@ export function setObjectContext(ctx: ObjectContext) {
   setContext(OBJECT_CONTEXT, ctx);
 }
 
-export interface ObjectContextOptions<T, V extends Validator> {
-  ctx: FormState<T, V>;
+export interface ObjectContextOptions<T> {
+  ctx: FormState<T>;
   config: () => Config;
   value: () => SchemaObjectValue | null | undefined;
   setValue: (value: SchemaObjectValue) => void;
   translate: Translate;
 }
 
-export function createObjectContext<T, V extends Validator>({
+export function createObjectContext<T>({
   ctx,
   config,
   value,
   setValue,
   translate,
-}: ObjectContextOptions<T, V>): ObjectContext {
+}: ObjectContextOptions<T>): ObjectContext {
   // NOTE: This is required for computing a schema which will include all
   // additional properties in the `properties` field with the
   // `ADDITIONAL_PROPERTY_FLAG` flag and `dependencies` resolution.

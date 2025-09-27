@@ -1,7 +1,5 @@
 import { onMount } from "svelte";
 
-import type { Validator } from "@/core/index.js";
-
 import {
   AFTER_SUBMITTED,
   AFTER_CHANGED,
@@ -25,25 +23,17 @@ import {
   type FieldState,
 } from "../field-state.js";
 
-export function setFieldState<T, V extends Validator>(
-  ctx: FormState<T, V>,
-  id: Id,
-  state: FieldState
-) {
+export function setFieldState<T>(ctx: FormState<T>, id: Id, state: FieldState) {
   const currentFlags = ctx[FORM_FIELDS_STATE_MAP].get(id) ?? 0;
   ctx[FORM_FIELDS_STATE_MAP].set(id, currentFlags | state);
 }
 
-export function hasFieldState<T, V extends Validator>(
-  ctx: FormState<T, V>,
-  id: Id,
-  state: FieldState
-) {
+export function hasFieldState<T>(ctx: FormState<T>, id: Id, state: FieldState) {
   return ((ctx[FORM_FIELDS_STATE_MAP].get(id) ?? 0) & state) > 0;
 }
 
-export function makeEventHandlers<T, V extends Validator>(
-  ctx: FormState<T, V>,
+export function makeEventHandlers<T>(
+  ctx: FormState<T>,
   config: () => Config,
   validate: () => void
 ) {

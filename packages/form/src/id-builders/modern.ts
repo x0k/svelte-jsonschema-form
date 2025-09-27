@@ -1,5 +1,10 @@
 import type { Path } from "@/core/index.js";
-import { DEFAULT_ID_PREFIX, type FormIdBuilder, type Id } from "@/form/main.js";
+import {
+  DEFAULT_ID_PREFIX,
+  type FormIdBuilder,
+  type Id,
+  type IdBuilderToPathExtension,
+} from "@/form/main.js";
 
 export interface IdOptions {
   idPrefix?: string;
@@ -17,7 +22,7 @@ export function createFormIdBuilder({
   indexSeparator = DEFAULT_INDEX_SEPARATOR,
   propertySeparator = DEFAULT_PROPERTY_SEPARATOR,
   pseudoSeparator = DEFAULT_PSEUDO_SEPARATOR,
-}: IdOptions = {}): FormIdBuilder {
+}: IdOptions = {}): FormIdBuilder & IdBuilderToPathExtension {
   function joinPath(path: Path) {
     let str = "";
     for (let i = 0; i < path.length; i++) {

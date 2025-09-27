@@ -51,7 +51,7 @@ import type { FormIdBuilder, Id } from "../id.js";
 import type { FieldState } from "../field-state.js";
 import type { ValidationError } from "../validator.js";
 
-export interface FormState<T, V extends Validator> {
+export interface FormState<T> {
   readonly submission: FormSubmission;
   readonly fieldsValidation: FieldsValidation;
   readonly isChanged: boolean;
@@ -93,7 +93,7 @@ export interface FormState<T, V extends Validator> {
   readonly [FORM_UI_SCHEMA]: UiSchema;
   readonly [FORM_UI_OPTIONS_REGISTRY]: UiOptionsRegistry;
   readonly [FORM_UI_EXTRA_OPTIONS]?: ExtraUiOptions;
-  readonly [FORM_VALIDATOR]: V;
+  readonly [FORM_VALIDATOR]: Validator;
   readonly [FORM_MERGER]: FormMerger;
   readonly [FORM_ICONS]?: Icons;
   readonly [FORM_DISABLED]: boolean;
@@ -105,11 +105,11 @@ export interface FormState<T, V extends Validator> {
   readonly [FORM_FIELDS_STATE_MAP]: SvelteMap<Id, FieldState>;
 }
 
-export function getFormContext<T, V extends Validator>(): FormState<T, V> {
+export function getFormContext<T>(): FormState<T> {
   return getContext(FORM_CONTEXT);
 }
 
-export function setFormContext<T, V extends Validator>(form: FormState<T, V>) {
+export function setFormContext<T>(form: FormState<T>) {
   setContext(FORM_CONTEXT, form);
 }
 

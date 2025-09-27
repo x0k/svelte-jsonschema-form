@@ -9,7 +9,6 @@ import {
 import {
   type UiSchema,
   type UiSchemaDefinition,
-  type Validator,
   retrieveUiSchema,
   createPseudoId,
   type Config,
@@ -26,8 +25,8 @@ function getAltSchemas(
     : [schema.oneOf, uiSchema.oneOf];
 }
 
-export function createOptions<T, V extends Validator>(
-  ctx: FormState<T, V>,
+export function createOptions<T>(
+  ctx: FormState<T>,
   config: Config,
   uiOption: UiOption,
   schema: Schema
