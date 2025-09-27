@@ -17,6 +17,7 @@
   );
   const config: Config = $derived({
     id: ctx[FORM_ROOT_ID],
+    path: [],
     title:
       uiTitleOption(ctx, ctx[FORM_UI_SCHEMA]) ?? retrievedSchema.title ?? "",
     schema: retrievedSchema,

@@ -1,4 +1,4 @@
-<script lang="ts" generics="T, V extends Validator, N extends JsonPaths<T>">
+<script lang="ts" generics="T, V extends Validator, P extends JsonPaths<T>">
   import type { Snippet } from "svelte";
   import { DEV } from "esm-env";
 
@@ -34,7 +34,7 @@
 
   interface Props {
     form: FormState<T, V>;
-    name: N;
+    path: P;
     required?: boolean;
     uiSchema?: UiSchema;
     render?: Snippet<
@@ -48,7 +48,7 @@
 
   const {
     form,
-    name,
+    path,
     required: requiredOverride,
     uiSchema: uiSchemaOverride,
     render,
@@ -56,18 +56,15 @@
 
   if (DEV) {
     $effect(() => {
-      if (name === "" && render === undefined) {
+      if (path.length === 0 && render === undefined) {
         console.warn('Use `<Content />` instead of `<Field name="" />`');
       }
     });
   }
-
-  const valuePath = $derived(name === "" ? [] : name.split("."));
-
-  const id = $derived(idFromPath(form, valuePath));
+  const id = $derived(idFromPath(form, path));
 
   const valueRef: { value: FieldValue } = $derived.by(() => {
-    if (valuePath.length === 0) {
+    if (path.length === 0) {
       return {
         get value() {
           return form[FORM_VALUE];
@@ -79,18 +76,18 @@
     }
     let node = form[FORM_VALUE];
     let i = -1;
-    const lastIndex = valuePath.length - 1;
+    const lastIndex = path.length - 1;
     while (isObject(node) && ++i < lastIndex) {
       // @ts-expect-error
-      node = node[valuePath[i]];
+      node = node[path[i]];
     }
     if (i !== lastIndex) {
       console.error("Current form state", $state.snapshot(form[FORM_VALUE]));
       throw new Error(
-        `Path "${name}" is not populated or invalid, check current form state`
+        `Path "[${path.join(", ")}]" is not populated or invalid, check current form state`
       );
     }
-    const lastKey = valuePath[lastIndex]!;
+    const lastKey = path[lastIndex]!;
     return {
       get value() {
         //@ts-expect-error
@@ -104,26 +101,26 @@
   });
 
   const parentSchema = $derived.by(() => {
-    const len = valuePath.length;
+    const len = path.length;
     if (len < 2) {
       return form[FORM_SCHEMA];
     }
     const def = getSchemaDefinitionByPath(
       form[FORM_SCHEMA],
       form[FORM_SCHEMA],
-      valuePath.slice(0, -1)
+      path.slice(0, -1)
     );
     return def === undefined || typeof def === "boolean" ? {} : def;
   });
 
   const schema = $derived.by(() => {
-    if (valuePath.length === 0) {
+    if (path.length === 0) {
       return form[FORM_SCHEMA];
     }
     const def = getSchemaDefinitionByPath(
       form[FORM_SCHEMA],
       parentSchema,
-      valuePath.slice(-1)
+      path.slice(-1)
     );
     return def === undefined || typeof def === "boolean" ? {} : def;
   });
@@ -137,7 +134,7 @@
       getUiSchemaByPath(
         form[FORM_UI_SCHEMA_ROOT],
         form[FORM_UI_SCHEMA],
-        valuePath
+        path
       ) ??
       {}
   );
@@ -146,13 +143,13 @@
     if (requiredOverride !== undefined) {
       return requiredOverride;
     }
-    if (valuePath.length === 0) {
+    if (path.length === 0) {
       return false;
     }
-    const property = valuePath[valuePath.length - 1]!;
+    const property = path[path.length - 1]!;
     const { required, items, minItems } = parentSchema;
     if (Array.isArray(required)) {
-      return required.includes(property);
+      return required.includes(property as string);
     }
     const num = Number(property);
     if (Number.isInteger(num) && num >= 0) {
@@ -168,6 +165,7 @@
 
   const config: Config = $derived({
     id,
+    path,
     title: uiTitleOption(form, uiSchema) ?? retrievedSchema.title ?? "",
     schema: retrievedSchema,
     uiSchema,

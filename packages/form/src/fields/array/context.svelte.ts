@@ -228,6 +228,7 @@ export function createArrayContext<T, V extends Validator>({
       const schema = retrieveSchema(ctx, itemSchema, item);
       return {
         id: createItemId(ctx, config.id, index),
+        path: config.path.concat(index),
         title: items.itemTitle(
           itemUiTitle ?? schema.title ?? config.title,
           index,
@@ -348,6 +349,7 @@ export function createTupleContext<T, V extends Validator>({
       );
       return {
         id: createItemId(ctx, config.id, index),
+        path: config.path.concat(index),
         title: items.itemTitle(
           uiTitleOption(ctx, uiSchema) ?? schema.title ?? config.title,
           index,

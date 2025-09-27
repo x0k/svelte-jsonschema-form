@@ -9,6 +9,7 @@
     getFormContext,
   } from "./state/index.js";
   import type { Config } from "./config.js";
+  import { createPseudoPath } from "./id.js";
 
   let {
     ref = $bindable(),
@@ -24,6 +25,7 @@
 
   const config: Config = $derived({
     id: createPseudoId(ctx, ctx[FORM_ROOT_ID], "form"),
+    path: createPseudoPath([], "form"),
     title: "",
     schema: ctx[FORM_SCHEMA],
     uiSchema: ctx[FORM_UI_SCHEMA],

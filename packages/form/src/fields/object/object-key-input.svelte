@@ -6,22 +6,22 @@
     getFormContext,
     createPseudoId,
     getComponent,
-    type Id,
     type UiOption,
     retrieveUiOption,
     uiTitleOption,
     type Translate,
+    createPseudoPath,
   } from "@/form/index.js";
 
   import { getObjectContext } from "./context.svelte.js";
 
   const {
-    parentId,
+    parent,
     property,
     uiSchema,
     translate,
   }: {
-    parentId: Id;
+    parent: Config;
     property: string;
     uiSchema: UiSchema;
     translate: Translate;
@@ -30,9 +30,10 @@
   const ctx = getFormContext();
   const objCtx = getObjectContext();
 
-  const id = $derived(createPseudoId(ctx, parentId, "key-input"));
+  const id = $derived(createPseudoId(ctx, parent.id, "key-input"));
   const config: Config = $derived({
     id,
+    path: createPseudoPath(parent.path, "key-input"),
     name: id,
     title:
       uiTitleOption(ctx, uiSchema) ??

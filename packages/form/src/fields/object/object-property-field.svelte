@@ -55,7 +55,7 @@
   <ObjectKeyInput
     {translate}
     {property}
-    parentId={config.id}
+    parent={config}
     uiSchema={retrieveUiSchema(ctx, config.uiSchema.additionalPropertyKeyInput)}
   />
 {/snippet}

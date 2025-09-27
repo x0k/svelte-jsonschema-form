@@ -198,6 +198,7 @@ export function createObjectContext<T, V extends Validator>({
       );
       return {
         id: createPropertyId(ctx, config.id, property),
+        path: config.path.concat(property),
         title: uiTitleOption(ctx, uiSchema) ?? schema.title ?? property,
         schema,
         uiSchema,
