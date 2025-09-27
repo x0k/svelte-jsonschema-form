@@ -44,6 +44,8 @@ export function validateField<T>(
   ctx.fieldsValidation.run(config, value);
 }
 
+// NOTE: The `errors` map must contain non-empty error lists
+// for the `errors.size > 0` check to be useful.
 export function updateErrors<T>(
   ctx: FormState<T>,
   id: Id,
@@ -53,7 +55,11 @@ export function updateErrors<T>(
     const arr = ctx.errors.get(id) ?? [];
     errors = errors(arr);
   }
-  ctx.errors.set(id, errors);
+  if (errors.length > 0) {
+    ctx.errors.set(id, errors);
+  } else {
+    ctx.errors.delete(id);
+  }
   return errors.length === 0;
 }
 
