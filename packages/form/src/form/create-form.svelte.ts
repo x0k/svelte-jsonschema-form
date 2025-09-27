@@ -22,6 +22,7 @@ import {
   isAsyncFieldValueValidator,
   type AsyncFormValueValidator,
   type AsyncFieldValueValidator,
+  type ValidationError,
 } from "./validator.js";
 import { createTranslate, type Translation } from "./translation.js";
 import {
@@ -74,12 +75,16 @@ import {
   FORM_ROOT_ID,
   FORM_FIELDS_STATE_MAP,
   FORM_ID_BUILDER,
+  internalGroupErrors,
 } from "./internals.js";
 import { FIELD_SUBMITTED } from "./field-state.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
 
-export type InitialErrors = Iterable<readonly [Id, string[]]>;
+export type InitialErrors =
+  | ValidationError[]
+  // WARN: This should't be an array
+  | Iterable<readonly [Id, string[]]>;
 
 const UI_OPTIONS_REGISTRY_KEY = "uiOptionsRegistry";
 
@@ -104,7 +109,7 @@ function createValueRef(initialValue: FormValue): Ref<FormValue> {
 }
 
 function createErrorsRef(
-  initialErrors: InitialErrors | undefined
+  initialErrors: Iterable<readonly [Id, string[]]> | undefined
 ): Ref<FormErrorsMap> {
   let value = $state.raw(new SvelteMap(initialErrors));
   return {
@@ -313,7 +318,11 @@ export function createForm<T, V extends Validator>(
   const errorsRef = $derived(
     options.errors
       ? refFromBind(options.errors)
-      : createErrorsRef(options.initialErrors)
+      : createErrorsRef(
+          Array.isArray(options.initialErrors)
+            ? internalGroupErrors(idBuilder, options.initialErrors)
+            : options.initialErrors
+        )
   );
   const disabled = $derived(options.disabled ?? false);
   const fieldsValidationMode = $derived(options.fieldsValidationMode ?? 0);

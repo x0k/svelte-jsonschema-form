@@ -12,9 +12,9 @@ import {
   FORM_FIELDS_VALIDATION_MODE,
   FORM_ID_BUILDER,
   FORM_VALIDATOR,
+  internalGroupErrors,
 } from "../internals.js";
 import type { FormState } from "./state.js";
-import { SvelteMap } from "svelte/reactivity";
 import type { FormErrorsMap } from "../errors.js";
 
 export function getFieldsValidationMode<T, V extends Validator>(
@@ -92,16 +92,5 @@ export function groupErrors<T, V extends Validator>(
   ctx: FormState<T, V>,
   errors: ValidationError[]
 ): FormErrorsMap {
-  const b = ctx[FORM_ID_BUILDER];
-  const map = new SvelteMap<Id, string[]>();
-  for (const { path, message } of errors) {
-    const id = b.fromPath(path);
-    const arr = map.get(id);
-    if (arr) {
-      arr.push(message);
-    } else {
-      map.set(id, [message]);
-    }
-  }
-  return map;
+  return internalGroupErrors(ctx[FORM_ID_BUILDER], errors);
 }

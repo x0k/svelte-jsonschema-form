@@ -1,3 +1,9 @@
+import { SvelteMap } from "svelte/reactivity";
+
+import type { FormIdBuilder, Id } from "./id.js";
+import type { FormErrorsMap } from "./errors.js";
+import type { ValidationError } from "./validator.js";
+
 export const FORM_CONTEXT = Symbol("form-context");
 
 export const FORM_VALUE = Symbol("form-value");
@@ -24,3 +30,20 @@ export const FORM_RESOLVER = Symbol("form-resolver");
 export const FORM_THEME = Symbol("form-theme");
 export const FORM_ROOT_ID = Symbol("form-root-id");
 export const FORM_FIELDS_STATE_MAP = Symbol("form-fields-state-map");
+
+export function internalGroupErrors(
+  idBuilder: FormIdBuilder,
+  errors: ValidationError[]
+): FormErrorsMap {
+  const map = new SvelteMap<Id, string[]>();
+  for (const { path, message } of errors) {
+    const id = idBuilder.fromPath(path);
+    const arr = map.get(id);
+    if (arr) {
+      arr.push(message);
+    } else {
+      map.set(id, [message]);
+    }
+  }
+  return map;
+}
