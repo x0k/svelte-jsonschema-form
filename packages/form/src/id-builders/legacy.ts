@@ -26,6 +26,9 @@ export function createFormIdBuilder({
       (path.length === 0
         ? idPrefix
         : `${idPrefix}${idSeparator}${path.join(idSeparator)}`) as Id,
+    toPath: () => {
+      throw new Error(`This method cannot be implemented for legacy builder`);
+    },
     propertyId: createChildId,
     itemId: createChildId,
     pseudoId: (instanceId, element) =>

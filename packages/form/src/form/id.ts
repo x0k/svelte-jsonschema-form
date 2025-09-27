@@ -20,6 +20,7 @@ export type FieldPseudoElement = keyof IdentifiableFieldElement | number;
 
 export interface FormIdBuilder {
   fromPath: (path: Path) => Id;
+  toPath(id: Id): Path;
   propertyId: (parentId: Id, property: string) => Id;
   itemId: (parentId: Id, index: number) => Id;
   pseudoId: (instanceId: Id, element: FieldPseudoElement) => Id;
