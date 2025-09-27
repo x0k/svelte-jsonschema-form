@@ -6,7 +6,7 @@
   import { ShadowHost } from "../components/shadow/index.js";
 
   interface Props extends HTMLAttributes<HTMLDivElement> {
-    form: FormState<any, any>
+    form: FormState<any>
   }
 
   const { form, ...rest }: Props = $props();

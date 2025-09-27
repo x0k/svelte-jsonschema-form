@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { BasicForm, createForm, type FormOptions, type Validator } from '@sjsf/form';
+	import { BasicForm, createForm, type FormOptions } from '@sjsf/form';
 
 	import '../src/app.css';
 	import { BitsConfig } from 'bits-ui';
 
-	const props: FormOptions<any, Validator> = $props();
+	const props: FormOptions<any> = $props();
 
 	const form = createForm(props);
 

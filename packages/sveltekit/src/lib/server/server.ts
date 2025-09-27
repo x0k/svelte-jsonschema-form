@@ -8,7 +8,6 @@ import {
   type SchemaValue,
   type UiSchemaRoot,
   type ValidationError,
-  type AnyFormValueValidator,
   isAsyncFormValueValidator,
   type FormValue,
   type ValidatorFactoryOptions,
@@ -63,15 +62,12 @@ export function initForm<T, SendSchema extends boolean = false>(
   return data;
 }
 
-export interface FormHandlerOptions<
-  V extends Validator & AnyFormValueValidator,
-  SendData extends boolean
-> extends IdOptions {
+export interface FormHandlerOptions<SendData extends boolean> extends IdOptions {
   schema: Schema;
   uiSchema?: UiSchemaRoot;
   uiOptionsRegistry?: UiOptionsRegistry;
-  createValidator: (options: ValidatorFactoryOptions) => V;
-  createMerger: (options: MergerFactoryOptions<V>) => FormMerger;
+  createValidator: (options: ValidatorFactoryOptions) => Validator;
+  createMerger: (options: MergerFactoryOptions) => FormMerger;
   createEntriesConverter?: (
     options: FormDataConverterOptions
   ) => EntriesConverter<FormDataEntryValue>;
@@ -91,10 +87,7 @@ function createDefaultReviver(formData: FormData) {
   };
 }
 
-export function createFormHandler<
-  V extends Validator & AnyFormValueValidator,
-  SendData extends boolean
->({
+export function createFormHandler<SendData extends boolean>({
   schema,
   uiSchema = {},
   uiOptionsRegistry = {},
@@ -107,7 +100,7 @@ export function createFormHandler<
   idPseudoSeparator = DEFAULT_ID_PSEUDO_SEPARATOR,
   sendData,
   createReviver = createDefaultReviver
-}: FormHandlerOptions<V, SendData>) {
+}: FormHandlerOptions<SendData>) {
   const idBuilder = createFormIdBuilder({
     idPrefix,
     idSeparator,
