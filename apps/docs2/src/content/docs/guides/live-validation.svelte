@@ -6,6 +6,8 @@
     hasFieldState,
     type Schema,
     FIELD_INTERACTED,
+    groupErrors,
+    updateErrors,
   } from "@sjsf/form";
 
   import * as defaults from "@/lib/form/defaults";
@@ -35,16 +37,16 @@
   });
 
   $effect(() => {
-    // NOTE: `validate` reads the state snapshot,
+    // NOTE: `validate()` reads the state snapshot,
     // causing `$effect` to subscribe to all changes.
-    const formErrors = form.validate();
+    const formErrors = groupErrors(form, form.validate());
     untrack(() => {
       form.errors.clear();
       for (const [id, errors] of formErrors) {
         if (!hasFieldState(form, id, FIELD_INTERACTED)) {
           continue;
         }
-        form.errors.set(id, errors);
+        updateErrors(form, id, errors);
       }
     });
   });

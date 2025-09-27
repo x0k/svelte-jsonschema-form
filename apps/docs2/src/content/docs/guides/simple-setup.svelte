@@ -3,7 +3,7 @@
   import { resolver } from "@sjsf/form/resolvers/basic";
   import { translation } from "@sjsf/form/translations/en";
   import { createFormMerger } from "@sjsf/form/mergers/modern";
-  import { createFormIdBuilder } from '@sjsf/form/id-builders/legacy';
+  import { createFormIdBuilder } from '@sjsf/form/id-builders/modern';
   import { theme } from "@sjsf/basic-theme";
 </script>
 

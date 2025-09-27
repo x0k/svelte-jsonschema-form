@@ -17,9 +17,9 @@
   <div style="padding-top: 1rem;">
     <span style="font-size: larger; font-weight: bold;">Errors</span>
     <ui style="color: red;">
-      {#each form.errors as [field, fieldErrors] (field)}
-        {#each fieldErrors as err}
-          <li>"{err.propertyTitle}" {err.message}</li>
+      {#each form.errors as [id, errors] (id)}
+        {#each errors as error}
+          <li>{error}</li>
         {/each}
       {/each}
     </ui>
