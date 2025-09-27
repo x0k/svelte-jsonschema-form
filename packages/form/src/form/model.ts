@@ -7,6 +7,10 @@ import {
   type SchemaValue,
 } from "@/core/index.js";
 
+export type Factory<Options, Result> =
+  | ((options: Options) => Result)
+  | (() => Result);
+
 export type FieldValue = SchemaValue | undefined;
 
 export type FormValue = SchemaValue | undefined;

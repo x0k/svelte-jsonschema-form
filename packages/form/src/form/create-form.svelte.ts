@@ -44,7 +44,7 @@ import type { FormMerger } from "./merger.js";
 import { DEFAULT_ID_PREFIX, type FormIdBuilder, type Id } from "./id.js";
 import type { Config } from "./config.js";
 import type { Theme } from "./components.js";
-import type { FormValue, KeyedArraysMap } from "./model.js";
+import type { Factory, FormValue, KeyedArraysMap } from "./model.js";
 import type { ResolveFieldType } from "./fields.js";
 import { createSchemaValuesReconciler, UNCHANGED } from "./reconcile.js";
 import {
@@ -159,9 +159,9 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
   theme: Theme;
   translation: Translation;
   resolver: (ctx: FormState<T>) => ResolveFieldType;
-  createIdBuilder: (options: IdBuilderFactoryOptions) => FormIdBuilder;
-  createValidator: (options: ValidatorFactoryOptions) => Validator;
-  createMerger: (options: MergerFactoryOptions) => FormMerger;
+  createIdBuilder: Factory<IdBuilderFactoryOptions, FormIdBuilder>;
+  createValidator: Factory<ValidatorFactoryOptions, Validator>;
+  createMerger: Factory<MergerFactoryOptions, FormMerger>;
   /**
    * @default DEFAULT_ID_PREFIX
    */
