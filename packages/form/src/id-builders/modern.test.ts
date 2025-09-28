@@ -1,12 +1,12 @@
 import { beforeEach, describe, expect, test } from "vitest";
 
 import type { Path } from "@/core/path.js";
-import type { FormIdBuilder, IdBuilderToPathExtension } from "@/form/main.js";
+import type { FormIdBuilder, FormIdBuilderToPath } from "@/form/main.js";
 
 import { createFormIdBuilder } from "./modern.js";
 
 describe("createFormIdBuilder", () => {
-  let idBuilder: FormIdBuilder & IdBuilderToPathExtension;
+  let idBuilder: FormIdBuilder & FormIdBuilderToPath;
 
   beforeEach(() => {
     idBuilder = createFormIdBuilder();

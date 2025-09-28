@@ -62,12 +62,12 @@ export function tryGetPseudoElement(
   }
 }
 
-export interface IdBuilderToPathExtension {
+export interface FormIdBuilderToPath {
   toPath(id: Id): Path;
 }
 
-export function isIdBuilderToPathExtension<B extends FormIdBuilder>(
+export function isFormIdBuilderToPath<B extends FormIdBuilder>(
   b: B
-): b is B & IdBuilderToPathExtension {
+): b is B & FormIdBuilderToPath {
   return "toPath" in b;
 }

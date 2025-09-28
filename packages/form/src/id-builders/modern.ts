@@ -3,7 +3,7 @@ import {
   DEFAULT_ID_PREFIX,
   type FormIdBuilder,
   type Id,
-  type IdBuilderToPathExtension,
+  type FormIdBuilderToPath,
 } from "@/form/main.js";
 
 export interface IdOptions {
@@ -22,7 +22,7 @@ export function createFormIdBuilder({
   indexSeparator = DEFAULT_INDEX_SEPARATOR,
   propertySeparator = DEFAULT_PROPERTY_SEPARATOR,
   pseudoSeparator = DEFAULT_PSEUDO_SEPARATOR,
-}: IdOptions = {}): FormIdBuilder & IdBuilderToPathExtension {
+}: IdOptions = {}): FormIdBuilder & FormIdBuilderToPath {
   function joinPath(path: Path) {
     let str = "";
     for (let i = 0; i < path.length; i++) {

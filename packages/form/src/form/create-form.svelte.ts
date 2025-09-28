@@ -43,7 +43,7 @@ import {
 import type { FormMerger } from "./merger.js";
 import {
   DEFAULT_ID_PREFIX,
-  isIdBuilderToPathExtension,
+  isFormIdBuilderToPath,
   type FormIdBuilder,
   type Id,
 } from "./id.js";
@@ -558,8 +558,8 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       updateErrors(formState, id, errors);
     },
     fieldTitle: (id) => {
-      if (!isIdBuilderToPathExtension(idBuilder)) {
-        throw new Error("ToPath extension for ID Builder is required");
+      if (!isFormIdBuilderToPath(idBuilder)) {
+        throw new Error("`toPath` method for `FormIdBuilder` is required");
       }
       const path = idBuilder.toPath(id);
       return (
