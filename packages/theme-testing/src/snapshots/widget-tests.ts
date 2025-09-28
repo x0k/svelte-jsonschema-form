@@ -11,7 +11,6 @@ import * as defaults from "../components/form-defaults.js";
 import * as triggers from "../demo/triggers.js";
 import { s } from "../demo/index.js";
 import {
-  idBuilder,
   testMatchSnapshot,
   type MatchSnapshotOptions,
   type SnapshotFormOptions,
@@ -84,9 +83,9 @@ export function widgetTests(
                     schema,
                     uiSchema,
                     fieldsValidationMode: mode,
-                    createValidator: (options) =>
+                    validator: (options) =>
                       ({
-                        ...defaults.createValidator(options),
+                        ...defaults.validator(options),
                         validateFieldValue() {
                           return [ERROR_TEXT];
                         },

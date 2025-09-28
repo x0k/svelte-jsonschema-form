@@ -6,7 +6,7 @@ import { DEFAULT_ID_PREFIX, type FormOptions } from "@sjsf/form";
 import * as defaults from "../components/form-defaults.js";
 import DefaultForm from "./form.svelte";
 
-export const idBuilder = defaults.createIdBuilder({
+export const idBuilder = defaults.idBuilder({
   idPrefix: DEFAULT_ID_PREFIX,
 });
 

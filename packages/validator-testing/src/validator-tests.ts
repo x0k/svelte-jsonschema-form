@@ -1,6 +1,7 @@
 import {
+  create,
   DEFAULT_ID_PREFIX,
-  type Factory,
+  type Creatable,
   type FormIdBuilder,
   type FormValueValidator,
   type Id,
@@ -15,7 +16,7 @@ import { createFormMerger } from "@sjsf/form/mergers/modern";
 import { expect, it, describe } from "vitest";
 
 function createInitializer<V extends Validator>(
-  createValidator: Factory<ValidatorFactoryOptions, V>
+  createValidator: Creatable<V, ValidatorFactoryOptions>
 ) {
   return ({
     schema = {},
@@ -28,7 +29,7 @@ function createInitializer<V extends Validator>(
     idBuilder?: FormIdBuilder;
     uiOptionsRegistry?: UiOptionsRegistry;
   } = {}) => {
-    const validator = createValidator({
+    const validator = create(createValidator, {
       idBuilder,
       merger: () => merger,
       schema,
@@ -44,7 +45,7 @@ function createInitializer<V extends Validator>(
 }
 
 export function validatorTests(
-  createValidator: Factory<ValidatorFactoryOptions, Validator>
+  createValidator: Creatable<Validator, ValidatorFactoryOptions>
 ) {
   const init = createInitializer(createValidator);
   describe("Validator", () => {
@@ -71,9 +72,9 @@ export function validatorTests(
 }
 
 export function formValueValidatorTests(
-  createFormValueValidator: Factory<
-    ValidatorFactoryOptions,
-    FormValueValidator & Validator
+  createFormValueValidator: Creatable<
+    FormValueValidator & Validator,
+    ValidatorFactoryOptions
   >
 ) {
   const init = createInitializer(createFormValueValidator);
