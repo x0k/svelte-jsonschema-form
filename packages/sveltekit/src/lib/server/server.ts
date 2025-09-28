@@ -13,7 +13,9 @@ import {
   type ValidatorFactoryOptions,
   type MergerFactoryOptions,
   type FormMerger,
-  type UiOptionsRegistry
+  type UiOptionsRegistry,
+  type Creatable,
+  create
 } from '@sjsf/form';
 import {
   type IdOptions,
@@ -66,11 +68,12 @@ export interface FormHandlerOptions<SendData extends boolean> extends IdOptions 
   schema: Schema;
   uiSchema?: UiSchemaRoot;
   uiOptionsRegistry?: UiOptionsRegistry;
-  createValidator: (options: ValidatorFactoryOptions) => Validator;
-  createMerger: (options: MergerFactoryOptions) => FormMerger;
-  createEntriesConverter?: (
-    options: FormDataConverterOptions
-  ) => EntriesConverter<FormDataEntryValue>;
+  validator: Creatable<Validator, ValidatorFactoryOptions>;
+  merger: Creatable<FormMerger, MergerFactoryOptions>;
+  createEntriesConverter?: Creatable<
+    EntriesConverter<FormDataEntryValue>,
+    FormDataConverterOptions
+  >;
   convertUnknownEntry?: UnknownEntryConverter;
   /** @default false */
   sendData?: SendData;
@@ -91,8 +94,8 @@ export function createFormHandler<SendData extends boolean>({
   schema,
   uiSchema = {},
   uiOptionsRegistry = {},
-  createMerger,
-  createValidator,
+  merger: createMerger,
+  validator: createValidator,
   createEntriesConverter = createFormDataEntriesConverter,
   convertUnknownEntry,
   idPrefix = DEFAULT_ID_PREFIX,
@@ -106,20 +109,20 @@ export function createFormHandler<SendData extends boolean>({
     idSeparator,
     idPseudoSeparator
   });
-  const validator = createValidator({
+  const validator: Validator = create(createValidator, {
     schema,
     uiSchema,
     idBuilder,
     uiOptionsRegistry,
     merger: () => merger
   });
-  const merger = createMerger({
+  const merger = create(createMerger, {
     schema,
     uiSchema,
     validator,
     uiOptionsRegistry
   });
-  const convertEntries = createEntriesConverter({
+  const convertEntries = create(createEntriesConverter, {
     validator,
     merger,
     rootSchema: schema,
