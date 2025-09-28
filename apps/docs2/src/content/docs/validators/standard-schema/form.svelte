@@ -22,10 +22,10 @@
       dialect: "https://json-schema.org/draft-07/schema",
     }) as Schema,
     uiSchema,
-    createValidator: (options) => ({
-      ...createFormValueValidator(schema, options),
+    validator: {
+      ...createFormValueValidator(schema),
       isValid: () => true,
-    }),
+    },
     initialValue: initialValue as Value,
   });
 </script>

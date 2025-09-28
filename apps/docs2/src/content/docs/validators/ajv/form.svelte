@@ -16,7 +16,7 @@
     ...defaults,
     schema,
     uiSchema,
-    createValidator: createFormValidator,
+    validator: createFormValidator,
     fieldsValidationMode: ON_INPUT | ON_CHANGE | ON_ARRAY_CHANGE,
     initialValue,
   });

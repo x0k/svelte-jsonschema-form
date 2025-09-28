@@ -8,20 +8,16 @@ export { translation } from "@sjsf/form/translations/en";
 
 export { icons } from "@sjsf/lucide-icons";
 
-import { createFormIdBuilder as createIdBuilder } from "@sjsf/form/id-builders/legacy";
-export { createIdBuilder };
+export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/legacy";
+
+export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
-export { createFormMerger as createMerger } from "@sjsf/form/mergers/modern";
 
-export const createValidator = (options: ValidatorFactoryOptions) =>
+import { addBuilderFormats } from "$lib/ajv.js";
+
+export const validator = (options: ValidatorFactoryOptions) =>
   createFormValidator({
     ...options,
     ajvPlugins: (ajv) => addFormComponents(addBuilderFormats(ajv)),
   });
-
-import { addBuilderFormats } from "$lib/ajv.js";
-
-export const validator = createFormValidator({
-  ajvPlugins: (ajv) => addFormComponents(addBuilderFormats(ajv)),
-});
