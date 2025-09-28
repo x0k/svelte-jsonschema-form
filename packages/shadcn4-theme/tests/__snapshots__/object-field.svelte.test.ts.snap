@@ -397,7 +397,7 @@ exports[`object fields > additionalProperties with error 1`] = `
                
               <!---->
               <ul
-                class="text-destructive list-disc list-inside"
+                class="text-destructive list-inside list-disc"
                 id="root.foo::key-input::errors"
                 tabindex="-1"
               >
@@ -720,7 +720,7 @@ exports[`object fields > has errors 1`] = `
        
       <!---->
       <ul
-        class="text-destructive list-disc list-inside"
+        class="text-destructive list-inside list-disc"
         id="root::errors"
         tabindex="-1"
       >

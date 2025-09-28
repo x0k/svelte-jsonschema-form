@@ -148,7 +148,7 @@ exports[`array fields > array icons 1`] = `
                   class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
                   data-label-root=""
                   data-slot="label"
-                  for="root.0"
+                  for="root@0"
                   id="bits-c1"
                 >
                   -1 
@@ -179,11 +179,11 @@ exports[`array fields > array icons 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.0::description root.0::help root.0::errors"
+                  aria-describedby="root@0::description root@0::help root@0::errors"
                   class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                   data-slot="input"
-                  id="root.0"
-                  name="root.0"
+                  id="root@0"
+                  name="root@0"
                   required=""
                 />
                 
@@ -340,7 +340,7 @@ exports[`array fields > array icons 1`] = `
                   class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
                   data-label-root=""
                   data-slot="label"
-                  for="root.1"
+                  for="root@1"
                   id="bits-c2"
                 >
                   -2 
@@ -371,11 +371,11 @@ exports[`array fields > array icons 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.1::description root.1::help root.1::errors"
+                  aria-describedby="root@1::description root@1::help root@1::errors"
                   class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                   data-slot="input"
-                  id="root.1"
-                  name="root.1"
+                  id="root@1"
+                  name="root@1"
                   required=""
                 />
                 
@@ -746,7 +746,7 @@ exports[`array fields > empty errors array 1`] = `
        
       <!---->
       <ul
-        class="text-destructive list-disc list-inside"
+        class="text-destructive list-inside list-disc"
         id="root::errors"
         tabindex="-1"
       >
@@ -851,11 +851,11 @@ exports[`array fields > fixed array 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.0::description root.0::help root.0::errors"
+                  aria-describedby="root@0::description root@0::help root@0::errors"
                   class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                   data-slot="input"
-                  id="root.0"
-                  name="root.0"
+                  id="root@0"
+                  name="root@0"
                   required=""
                 />
                 
@@ -921,11 +921,11 @@ exports[`array fields > fixed array 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.1::description root.1::help root.1::errors"
+                  aria-describedby="root@1::description root@1::help root@1::errors"
                   class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                   data-slot="input"
-                  id="root.1"
-                  name="root.1"
+                  id="root@1"
+                  name="root@1"
                   required=""
                   step="any"
                   type="number"
@@ -1209,7 +1209,7 @@ exports[`with title and description > array icons 1`] = `
                   class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
                   data-label-root=""
                   data-slot="label"
-                  for="root.0"
+                  for="root@0"
                   id="bits-c6"
                 >
                   Test item-1 
@@ -1228,7 +1228,7 @@ exports[`with title and description > array icons 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground text-sm"
-                  id="root.0::description"
+                  id="root@0::description"
                 >
                   a test item description
                 </div>
@@ -1248,11 +1248,11 @@ exports[`with title and description > array icons 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.0::description root.0::help root.0::errors"
+                  aria-describedby="root@0::description root@0::help root@0::errors"
                   class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                   data-slot="input"
-                  id="root.0"
-                  name="root.0"
+                  id="root@0"
+                  name="root@0"
                   required=""
                 />
                 
@@ -1409,7 +1409,7 @@ exports[`with title and description > array icons 1`] = `
                   class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
                   data-label-root=""
                   data-slot="label"
-                  for="root.1"
+                  for="root@1"
                   id="bits-c7"
                 >
                   Test item-2 
@@ -1428,7 +1428,7 @@ exports[`with title and description > array icons 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground text-sm"
-                  id="root.1::description"
+                  id="root@1::description"
                 >
                   a test item description
                 </div>
@@ -1448,11 +1448,11 @@ exports[`with title and description > array icons 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.1::description root.1::help root.1::errors"
+                  aria-describedby="root@1::description root@1::help root@1::errors"
                   class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                   data-slot="input"
-                  id="root.1"
-                  name="root.1"
+                  id="root@1"
+                  name="root@1"
                   required=""
                 />
                 
@@ -1773,7 +1773,7 @@ exports[`with title and description > fixed array 1`] = `
                   class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
                   data-label-root=""
                   data-slot="label"
-                  for="root.0"
+                  for="root@0"
                   id="bits-c4"
                 >
                   Test item 
@@ -1792,7 +1792,7 @@ exports[`with title and description > fixed array 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground text-sm"
-                  id="root.0::description"
+                  id="root@0::description"
                 >
                   a test item description
                 </div>
@@ -1812,11 +1812,11 @@ exports[`with title and description > fixed array 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.0::description root.0::help root.0::errors"
+                  aria-describedby="root@0::description root@0::help root@0::errors"
                   class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                   data-slot="input"
-                  id="root.0"
-                  name="root.0"
+                  id="root@0"
+                  name="root@0"
                   required=""
                 />
                 
@@ -1884,7 +1884,7 @@ exports[`with title and description > fixed array 1`] = `
                   class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
                   data-label-root=""
                   data-slot="label"
-                  for="root.1"
+                  for="root@1"
                   id="bits-c5"
                 >
                   Test item 
@@ -1903,7 +1903,7 @@ exports[`with title and description > fixed array 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground text-sm"
-                  id="root.1::description"
+                  id="root@1::description"
                 >
                   a test item description
                 </div>
@@ -1923,11 +1923,11 @@ exports[`with title and description > fixed array 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.1::description root.1::help root.1::errors"
+                  aria-describedby="root@1::description root@1::help root@1::errors"
                   class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                   data-slot="input"
-                  id="root.1"
-                  name="root.1"
+                  id="root@1"
+                  name="root@1"
                   required=""
                   step="any"
                   type="number"
@@ -2211,7 +2211,7 @@ exports[`with title and description from both > array icons 1`] = `
                   class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
                   data-label-root=""
                   data-slot="label"
-                  for="root.0"
+                  for="root@0"
                   id="bits-c14"
                 >
                   My Item-1 
@@ -2230,7 +2230,7 @@ exports[`with title and description from both > array icons 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground text-sm"
-                  id="root.0::description"
+                  id="root@0::description"
                 >
                   a fancier item description
                 </div>
@@ -2250,11 +2250,11 @@ exports[`with title and description from both > array icons 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.0::description root.0::help root.0::errors"
+                  aria-describedby="root@0::description root@0::help root@0::errors"
                   class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                   data-slot="input"
-                  id="root.0"
-                  name="root.0"
+                  id="root@0"
+                  name="root@0"
                   required=""
                 />
                 
@@ -2411,7 +2411,7 @@ exports[`with title and description from both > array icons 1`] = `
                   class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
                   data-label-root=""
                   data-slot="label"
-                  for="root.1"
+                  for="root@1"
                   id="bits-c15"
                 >
                   My Item-2 
@@ -2430,7 +2430,7 @@ exports[`with title and description from both > array icons 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground text-sm"
-                  id="root.1::description"
+                  id="root@1::description"
                 >
                   a fancier item description
                 </div>
@@ -2450,11 +2450,11 @@ exports[`with title and description from both > array icons 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.1::description root.1::help root.1::errors"
+                  aria-describedby="root@1::description root@1::help root@1::errors"
                   class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                   data-slot="input"
-                  id="root.1"
-                  name="root.1"
+                  id="root@1"
+                  name="root@1"
                   required=""
                 />
                 
@@ -2775,7 +2775,7 @@ exports[`with title and description from both > fixed array 1`] = `
                   class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
                   data-label-root=""
                   data-slot="label"
-                  for="root.0"
+                  for="root@0"
                   id="bits-c12"
                 >
                   My Item 
@@ -2794,7 +2794,7 @@ exports[`with title and description from both > fixed array 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground text-sm"
-                  id="root.0::description"
+                  id="root@0::description"
                 >
                   a fancier item description
                 </div>
@@ -2814,11 +2814,11 @@ exports[`with title and description from both > fixed array 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.0::description root.0::help root.0::errors"
+                  aria-describedby="root@0::description root@0::help root@0::errors"
                   class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                   data-slot="input"
-                  id="root.0"
-                  name="root.0"
+                  id="root@0"
+                  name="root@0"
                   required=""
                 />
                 
@@ -2886,7 +2886,7 @@ exports[`with title and description from both > fixed array 1`] = `
                   class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
                   data-label-root=""
                   data-slot="label"
-                  for="root.1"
+                  for="root@1"
                   id="bits-c13"
                 >
                   My Item 
@@ -2905,7 +2905,7 @@ exports[`with title and description from both > fixed array 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground text-sm"
-                  id="root.1::description"
+                  id="root@1::description"
                 >
                   a fancier item description
                 </div>
@@ -2925,11 +2925,11 @@ exports[`with title and description from both > fixed array 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.1::description root.1::help root.1::errors"
+                  aria-describedby="root@1::description root@1::help root@1::errors"
                   class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                   data-slot="input"
-                  id="root.1"
-                  name="root.1"
+                  id="root@1"
+                  name="root@1"
                   required=""
                   step="any"
                   type="number"
@@ -3213,7 +3213,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                   class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
                   data-label-root=""
                   data-slot="label"
-                  for="root.0"
+                  for="root@0"
                   id="bits-c10"
                 >
                   My Item-1 
@@ -3232,7 +3232,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground text-sm"
-                  id="root.0::description"
+                  id="root@0::description"
                 >
                   a fancier item description
                 </div>
@@ -3252,11 +3252,11 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.0::description root.0::help root.0::errors"
+                  aria-describedby="root@0::description root@0::help root@0::errors"
                   class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                   data-slot="input"
-                  id="root.0"
-                  name="root.0"
+                  id="root@0"
+                  name="root@0"
                   required=""
                 />
                 
@@ -3413,7 +3413,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                   class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
                   data-label-root=""
                   data-slot="label"
-                  for="root.1"
+                  for="root@1"
                   id="bits-c11"
                 >
                   My Item-2 
@@ -3432,7 +3432,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground text-sm"
-                  id="root.1::description"
+                  id="root@1::description"
                 >
                   a fancier item description
                 </div>
@@ -3452,11 +3452,11 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.1::description root.1::help root.1::errors"
+                  aria-describedby="root@1::description root@1::help root@1::errors"
                   class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                   data-slot="input"
-                  id="root.1"
-                  name="root.1"
+                  id="root@1"
+                  name="root@1"
                   required=""
                 />
                 
@@ -3777,7 +3777,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                   class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
                   data-label-root=""
                   data-slot="label"
-                  for="root.0"
+                  for="root@0"
                   id="bits-c8"
                 >
                   My Item 
@@ -3796,7 +3796,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground text-sm"
-                  id="root.0::description"
+                  id="root@0::description"
                 >
                   a fancier item description
                 </div>
@@ -3816,11 +3816,11 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.0::description root.0::help root.0::errors"
+                  aria-describedby="root@0::description root@0::help root@0::errors"
                   class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                   data-slot="input"
-                  id="root.0"
-                  name="root.0"
+                  id="root@0"
+                  name="root@0"
                   required=""
                 />
                 
@@ -3888,7 +3888,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                   class="flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50"
                   data-label-root=""
                   data-slot="label"
-                  for="root.1"
+                  for="root@1"
                   id="bits-c9"
                 >
                   My Item 
@@ -3907,7 +3907,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                 <!---->
                 <div
                   class="text-muted-foreground text-sm"
-                  id="root.1::description"
+                  id="root@1::description"
                 >
                   a fancier item description
                 </div>
@@ -3927,11 +3927,11 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.1::description root.1::help root.1::errors"
+                  aria-describedby="root@1::description root@1::help root@1::errors"
                   class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                   data-slot="input"
-                  id="root.1"
-                  name="root.1"
+                  id="root@1"
+                  name="root@1"
                   required=""
                   step="any"
                   type="number"
@@ -4159,11 +4159,11 @@ exports[`with title and description with global label off > array icons 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.0::description root.0::help root.0::errors"
+                  aria-describedby="root@0::description root@0::help root@0::errors"
                   class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                   data-slot="input"
-                  id="root.0"
-                  name="root.0"
+                  id="root@0"
+                  name="root@0"
                   required=""
                 />
                 
@@ -4318,11 +4318,11 @@ exports[`with title and description with global label off > array icons 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.1::description root.1::help root.1::errors"
+                  aria-describedby="root@1::description root@1::help root@1::errors"
                   class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                   data-slot="input"
-                  id="root.1"
-                  name="root.1"
+                  id="root@1"
+                  name="root@1"
                   required=""
                 />
                 
@@ -4614,11 +4614,11 @@ exports[`with title and description with global label off > fixed array 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.0::description root.0::help root.0::errors"
+                  aria-describedby="root@0::description root@0::help root@0::errors"
                   class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                   data-slot="input"
-                  id="root.0"
-                  name="root.0"
+                  id="root@0"
+                  name="root@0"
                   required=""
                 />
                 
@@ -4684,11 +4684,11 @@ exports[`with title and description with global label off > fixed array 1`] = `
                 <!---->
                 <!---->
                 <input
-                  aria-describedby="root.1::description root.1::help root.1::errors"
+                  aria-describedby="root@1::description root@1::help root@1::errors"
                   class="border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                   data-slot="input"
-                  id="root.1"
-                  name="root.1"
+                  id="root@1"
+                  name="root@1"
                   required=""
                   step="any"
                   type="number"
