@@ -1,4 +1,4 @@
-export type { Schema, SchemaValue, Validator } from "@/core/index.js";
+export type { Schema, SchemaValue, Validator, Path } from "@/core/index.js";
 
 export * from "./model.js";
 export * from "./components.js";

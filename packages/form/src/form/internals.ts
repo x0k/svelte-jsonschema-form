@@ -1,8 +1,6 @@
 import { SvelteMap } from "svelte/reactivity";
 
-import type { Path } from "@/core/path.js";
-
-import { tryGetPseudoElement, type FormIdBuilder, type Id } from "./id.js";
+import type { FormIdBuilder, Id } from "./id.js";
 import type { FormErrorsMap } from "./errors.js";
 import type { ValidationError } from "./validator.js";
 
@@ -33,20 +31,13 @@ export const FORM_THEME = Symbol("form-theme");
 export const FORM_ROOT_ID = Symbol("form-root-id");
 export const FORM_FIELDS_STATE_MAP = Symbol("form-fields-state-map");
 
-export function internalIdFromPath(idBuilder: FormIdBuilder, path: Path) {
-  const pseudoElement = tryGetPseudoElement(path);
-  return pseudoElement !== undefined
-    ? idBuilder.pseudoId(idBuilder.fromPath(path.slice(0, -1)), pseudoElement)
-    : idBuilder.fromPath(path);
-}
-
 export function internalGroupErrors(
   idBuilder: FormIdBuilder,
   errors: ValidationError[]
 ): FormErrorsMap {
   const map = new SvelteMap<Id, string[]>();
   for (const { path, message } of errors) {
-    const id = internalIdFromPath(idBuilder, path);
+    const id = idBuilder.fromPath(path);
     const arr = map.get(id);
     if (arr) {
       arr.push(message);

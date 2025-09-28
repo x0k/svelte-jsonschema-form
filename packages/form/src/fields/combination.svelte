@@ -26,7 +26,6 @@
     retrieveSchema,
     sanitizeDataForNewSchema,
     getFormContext,
-    createPseudoId,
     getComponent,
     type ComponentProps,
     getFieldComponent,
@@ -34,7 +33,8 @@
     retrieveUiOption,
     uiTitleOption,
     retrieveTranslate,
-    createPseudoPath,
+    encodePseudoElement,
+    idFromPath,
   } from "@/form/index.js";
 
   let {
@@ -157,14 +157,19 @@
     });
   });
 
-  const enumOptions = $derived<EnumOption<number>[]>(
-    optionTitles.map((label, i) => ({
-      id: createPseudoId(ctx, config.id, i),
-      label,
-      value: i,
-      disabled: false,
-    }))
-  );
+  const enumOptions = $derived.by<EnumOption<number>[]>(() => {
+    const x = config.path.length;
+    const tmpPath = config.path.concat("");
+    return optionTitles.map((label, i) => {
+      tmpPath[x] = encodePseudoElement(i);
+      return {
+        id: idFromPath(ctx, tmpPath),
+        label,
+        value: i,
+        disabled: false,
+      };
+    });
+  });
 
   const widgetConfig: Config = $derived.by(() => {
     const suffix = combinationKey.toLowerCase() as Lowercase<
@@ -174,9 +179,10 @@
       ctx,
       config.uiSchema.combinationFieldOptionSelector
     );
+    const path = config.path.concat(encodePseudoElement(suffix));
     return {
-      id: createPseudoId(ctx, config.id, suffix),
-      path: createPseudoPath(config.path, suffix),
+      id: idFromPath(ctx, path),
+      path,
       title: uiTitleOption(ctx, uiSchema) ?? config.title,
       schema: { type: "integer", default: 0 },
       uiSchema,

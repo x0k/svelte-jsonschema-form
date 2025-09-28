@@ -1,17 +1,13 @@
 import type { Path } from "@/core/index.js";
 
-import type { FieldPseudoElement, Id } from "../id.js";
-import { FORM_ID_BUILDER, internalIdFromPath } from "../internals.js";
+import { FORM_ID_BUILDER } from "../internals.js";
+import type { Id } from "../id.js";
 import type { FormState } from "./state.js";
 
-export function createPseudoId<T>(
-  ctx: FormState<T>,
-  instanceId: Id,
-  elementOrIndex: FieldPseudoElement
-) {
-  return ctx[FORM_ID_BUILDER].pseudoId(instanceId, elementOrIndex);
+export function idFromPath<T>(ctx: FormState<T>, path: Path) {
+  return ctx[FORM_ID_BUILDER].fromPath(path);
 }
 
-export function idFromPath<T>(ctx: FormState<T>, path: Path) {
-  return internalIdFromPath(ctx[FORM_ID_BUILDER], path);
+export function pathFormId<T>(ctx: FormState<T>, id: Id) {
+  return ctx[FORM_ID_BUILDER].toPath(id);
 }

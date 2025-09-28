@@ -2,14 +2,10 @@
   import type { Snippet } from "svelte";
   import type { HTMLFormAttributes } from "svelte/elements";
 
-  import { FORM_ROOT_ID, FORM_SCHEMA, FORM_UI_SCHEMA } from "./internals.js";
-  import {
-    createPseudoId,
-    getComponent,
-    getFormContext,
-  } from "./state/index.js";
+  import { getComponent, getFormContext, idFromPath } from "./state/index.js";
+  import { FORM_SCHEMA, FORM_UI_SCHEMA } from "./internals.js";
   import type { Config } from "./config.js";
-  import { createPseudoPath } from "./id.js";
+  import { encodePseudoElement } from "./id.js";
 
   let {
     ref = $bindable(),
@@ -23,9 +19,10 @@
 
   const ctx = getFormContext();
 
+  const path = [encodePseudoElement("form")];
   const config: Config = $derived({
-    id: createPseudoId(ctx, ctx[FORM_ROOT_ID], "form"),
-    path: createPseudoPath([], "form"),
+    id: idFromPath(ctx, path),
+    path,
     title: "",
     schema: ctx[FORM_SCHEMA],
     uiSchema: ctx[FORM_UI_SCHEMA],

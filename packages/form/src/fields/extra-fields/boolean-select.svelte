@@ -6,9 +6,10 @@
     getFormContext,
     getComponent,
     type ComponentProps,
-    createPseudoId,
     type Schema,
     DEFAULT_BOOLEAN_ENUM,
+    idFromPath,
+    encodePseudoElement,
   } from "@/form/index.js";
   import "@/form/extra-fields/boolean-select.js";
 
@@ -53,12 +54,17 @@
       enumValues.every((v) => typeof v === "boolean") &&
       uiOption("enumNames") === undefined
     ) {
-      return enumValues.map((v, i) => ({
-        id: createPseudoId(ctx, config.id, i),
-        label: v ? yes : no,
-        value: v,
-        disabled: false,
-      }));
+      const x = config.path.length;
+      const tmpPath = config.path.concat("");
+      return enumValues.map((v, i) => {
+        tmpPath[x] = encodePseudoElement(i);
+        return {
+          id: idFromPath(ctx, tmpPath),
+          label: v ? yes : no,
+          value: v,
+          disabled: false,
+        };
+      });
     }
     return (
       createOptions(
@@ -70,8 +76,10 @@
     );
   });
 
-  const handlers = makeEventHandlers(ctx, () => config, () =>
-    validateField(ctx, config, value)
+  const handlers = makeEventHandlers(
+    ctx,
+    () => config,
+    () => validateField(ctx, config, value)
   );
   const errors = $derived(getErrors(ctx, config.id));
 </script>

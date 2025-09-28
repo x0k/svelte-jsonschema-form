@@ -20,7 +20,7 @@ export type FieldPseudoElement = keyof IdentifiableFieldElement | number;
 
 export interface FormIdBuilder {
   fromPath: (path: Path) => Id;
-  pseudoId: (instanceId: Id, element: FieldPseudoElement) => Id;
+  toPath: (id: Id) => Path;
 }
 
 export const DEFAULT_ID_PREFIX = "root";
@@ -30,44 +30,28 @@ const PSEUDO_PREFIX_LEN = PSEUDO_PREFIX.length;
 const STRING_SUFFIX = "S";
 const NUMBER_SUFFIX = "N";
 
-export function createPseudoPath(
-  path: Path,
-  element: FieldPseudoElement
-): Path {
-  return path.concat(
-    `${PSEUDO_PREFIX}${typeof element === "string" ? STRING_SUFFIX : NUMBER_SUFFIX}${element}`
-  );
+export function encodePseudoElement(element: FieldPseudoElement): string {
+  return `${PSEUDO_PREFIX}${typeof element === "string" ? STRING_SUFFIX : NUMBER_SUFFIX}${element}`;
 }
 
-export function tryGetPseudoElement(
-  path: Path
+export function decodePseudoElement(
+  pathElement: Path[number]
 ): FieldPseudoElement | undefined {
-  if (path.length === 0) {
+  if (
+    typeof pathElement !== "string" ||
+    !pathElement.startsWith(PSEUDO_PREFIX)
+  ) {
     return;
   }
-  const last = path[path.length - 1];
-  if (typeof last !== "string" || !last.startsWith(PSEUDO_PREFIX)) {
-    return;
-  }
-  const token = last.substring(PSEUDO_PREFIX_LEN + 1);
-  switch (last[PSEUDO_PREFIX_LEN]) {
+  const token = pathElement.substring(PSEUDO_PREFIX_LEN + 1);
+  switch (pathElement[PSEUDO_PREFIX_LEN]) {
     case STRING_SUFFIX:
       return token as FieldPseudoElement;
     case NUMBER_SUFFIX:
       return Number(token);
     default:
       throw new Error(
-        `Unexpected pseudo element suffix "${last[PSEUDO_PREFIX_LEN]}", expected "${STRING_SUFFIX}" or "${NUMBER_SUFFIX}"`
+        `Unexpected pseudo element suffix "${pathElement[PSEUDO_PREFIX_LEN]}", expected "${STRING_SUFFIX}" or "${NUMBER_SUFFIX}"`
       );
   }
-}
-
-export interface FormIdBuilderToPath {
-  toPath(id: Id): Path;
-}
-
-export function isFormIdBuilderToPath<B extends FormIdBuilder>(
-  b: B
-): b is B & FormIdBuilderToPath {
-  return "toPath" in b;
 }

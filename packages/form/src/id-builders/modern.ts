@@ -1,9 +1,11 @@
 import type { Path } from "@/core/index.js";
 import {
+  encodePseudoElement,
   DEFAULT_ID_PREFIX,
+  decodePseudoElement,
+  type FieldPseudoElement,
   type FormIdBuilder,
   type Id,
-  type FormIdBuilderToPath,
 } from "@/form/main.js";
 
 export interface IdOptions {
@@ -22,12 +24,16 @@ export function createFormIdBuilder({
   indexSeparator = DEFAULT_INDEX_SEPARATOR,
   propertySeparator = DEFAULT_PROPERTY_SEPARATOR,
   pseudoSeparator = DEFAULT_PSEUDO_SEPARATOR,
-}: IdOptions = {}): FormIdBuilder & FormIdBuilderToPath {
+}: IdOptions = {}): FormIdBuilder {
   function joinPath(path: Path) {
     let str = "";
     for (let i = 0; i < path.length; i++) {
       const p = path[i]!;
-      str += (typeof p === "string" ? propertySeparator : indexSeparator) + p;
+      const pseudo = decodePseudoElement(p);
+      str +=
+        pseudo !== undefined
+          ? `${pseudoSeparator}${pseudo}`
+          : `${typeof p === "string" ? propertySeparator : indexSeparator}${p}`;
     }
     return str;
   }
@@ -82,9 +88,18 @@ export function createFormIdBuilder({
         i++;
       }
       path.push(get());
+      if (i < id.length) {
+        const token = id.substring(i + pseudoSeparator.length);
+        const n = Number(token);
+        path.push(
+          encodePseudoElement(
+            Number.isInteger(n) && token.trim() !== ""
+              ? n
+              : (token as FieldPseudoElement)
+          )
+        );
+      }
       return path;
     },
-    pseudoId: (instanceId, element) =>
-      `${instanceId}${pseudoSeparator}${element}` as Id,
   };
 }

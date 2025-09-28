@@ -12,7 +12,7 @@ import type { Nullable, ObjectProperties } from "@/lib/types.js";
 import { weakMemoize } from "@/lib/memoize.js";
 
 import type { Config } from "../config.js";
-import type { FieldPseudoElement } from "../id.js";
+import { encodePseudoElement, type FieldPseudoElement } from "../id.js";
 import type { UiOptions } from "../ui-schema.js";
 import { FORM_DISABLED } from "../internals.js";
 
@@ -22,7 +22,7 @@ import {
   type ObjectUiOptions,
 } from "./ui-schema.js";
 import type { FormState } from "./state.js";
-import { createPseudoId } from "./id.js";
+import { idFromPath } from "./id.js";
 
 interface Disabled {
   disabled: boolean;
@@ -184,12 +184,17 @@ const DEFAULT_DESCRIBE_ELEMENTS_WITH_EXAMPLES =
   DEFAULT_DESCRIBE_ELEMENTS.concat("examples");
 
 export function describedBy<T>(ctx: FormState<T>, config: Config) {
+  const x = config.path.length;
+  const tmpPath = config.path.concat("");
   return (
     Array.isArray(config.schema.examples)
       ? DEFAULT_DESCRIBE_ELEMENTS_WITH_EXAMPLES
       : DEFAULT_DESCRIBE_ELEMENTS
   )
-    .map((el) => createPseudoId(ctx, config.id, el))
+    .map((el) => {
+      tmpPath[x] = encodePseudoElement(el);
+      return idFromPath(ctx, tmpPath);
+    })
     .join(" ");
 }
 
@@ -214,7 +219,7 @@ export function inputProps<T extends HTMLInputAttributes, FT>(
   props.step =
     schema.multipleOf ?? (schema.type === "number" ? "any" : undefined);
   props.list = Array.isArray(schema.examples)
-    ? createPseudoId(ctx, id, "examples")
+    ? idFromPath(ctx, config.path.concat(encodePseudoElement("examples")))
     : undefined;
   props.readonly = schema.readOnly;
   props["aria-describedby"] = describedBy(ctx, config);
@@ -265,7 +270,10 @@ type WithId<T> = T & {
 
 export function idProp(element: FieldPseudoElement) {
   return <T, FT>(props: WithId<T>, config: Config, ctx: FormState<FT>) => {
-    props.id = createPseudoId(ctx, config.id, element);
+    props.id = idFromPath(
+      ctx,
+      config.path.concat(encodePseudoElement(element))
+    );
     return props;
   };
 }

@@ -41,12 +41,7 @@ import {
   InvalidValidatorError,
 } from "./errors.js";
 import type { FormMerger } from "./merger.js";
-import {
-  DEFAULT_ID_PREFIX,
-  isFormIdBuilderToPath,
-  type FormIdBuilder,
-  type Id,
-} from "./id.js";
+import { DEFAULT_ID_PREFIX, type FormIdBuilder, type Id } from "./id.js";
 import type { Config } from "./config.js";
 import type { Theme } from "./components.js";
 import {
@@ -564,9 +559,6 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       updateErrors(formState, id, errors);
     },
     fieldTitle: (id) => {
-      if (!isFormIdBuilderToPath(idBuilder)) {
-        throw new Error("`toPath` method for `FormIdBuilder` is required");
-      }
       const path = idBuilder.toPath(id);
       return (
         getFieldTitleByPath(formState, path) ?? String(path[path.length - 1])

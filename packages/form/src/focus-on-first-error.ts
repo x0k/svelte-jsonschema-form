@@ -5,7 +5,9 @@ import {
   type FormValue,
   type Id,
   type FormState,
-  createPseudoId,
+  pathFormId,
+  idFromPath,
+  encodePseudoElement,
 } from "./form/index.js";
 
 export interface GetFocusableElementOptions {
@@ -76,7 +78,14 @@ export function createFocusOnFirstError(
     const instanceId = error[0];
     const focusAction = getFocusAction(
       getFocusableElement(form, instanceId, options),
-      () => getErrorsList(form, createPseudoId(ctx, instanceId, "errors"))
+      () =>
+        getErrorsList(
+          form,
+          idFromPath(
+            ctx,
+            pathFormId(ctx, instanceId).concat(encodePseudoElement("errors"))
+          )
+        )
     );
     if (focusAction === null) {
       return false;

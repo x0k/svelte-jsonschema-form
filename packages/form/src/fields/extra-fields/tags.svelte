@@ -8,11 +8,11 @@
 
 <script lang="ts">
   import {
-    createPseudoId,
     getComponent,
     getErrors,
     getErrorsForIds,
     getFormContext,
+    idFromPath,
     makeEventHandlers,
     validateField,
     type ComponentProps,
@@ -52,7 +52,7 @@
     }
     const ids = [id];
     for (let i = 0; i < l; i++) {
-      ids.push(createPseudoId(ctx, id, i));
+      ids.push(idFromPath(ctx, config.path.concat(i)));
     }
     return ids;
   });
