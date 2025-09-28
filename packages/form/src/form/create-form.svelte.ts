@@ -49,7 +49,13 @@ import {
 } from "./id.js";
 import type { Config } from "./config.js";
 import type { Theme } from "./components.js";
-import type { Factory, FormValue, KeyedArraysMap, Update } from "./model.js";
+import {
+  create,
+  type Creatable,
+  type FormValue,
+  type KeyedArraysMap,
+  type Update,
+} from "./model.js";
 import type { ResolveFieldType } from "./fields.js";
 import { createSchemaValuesReconciler, UNCHANGED } from "./reconcile.js";
 import {
@@ -166,9 +172,9 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
   theme: Theme;
   translation: Translation;
   resolver: (ctx: FormState<T>) => ResolveFieldType;
-  createIdBuilder: Factory<IdBuilderFactoryOptions, FormIdBuilder>;
-  createValidator: Factory<ValidatorFactoryOptions, Validator>;
-  createMerger: Factory<MergerFactoryOptions, FormMerger>;
+  idBuilder: Creatable<FormIdBuilder, IdBuilderFactoryOptions>;
+  validator: Creatable<Validator, ValidatorFactoryOptions>;
+  merger: Creatable<FormMerger, MergerFactoryOptions>;
   /**
    * @default DEFAULT_ID_PREFIX
    */
@@ -284,7 +290,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   const uiSchema = $derived(resolveUiRef(uiSchemaRoot, options.uiSchema) ?? {});
   const uiOptionsRegistry = $derived(options[UI_OPTIONS_REGISTRY_KEY] ?? {});
   const idBuilder = $derived(
-    options.createIdBuilder({
+    create(options.idBuilder, {
       idPrefix,
       schema: options.schema,
       uiSchema: uiSchemaRoot,
@@ -293,7 +299,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   );
   const rootId = $derived(idBuilder.fromPath([]));
   const validator = $derived(
-    options.createValidator({
+    create(options.validator, {
       idBuilder,
       uiSchema: uiSchemaRoot,
       uiOptionsRegistry,
@@ -302,7 +308,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     })
   );
   const merger = $derived(
-    options.createMerger({
+    create(options.merger, {
       validator,
       schema: options.schema,
       uiSchema: uiSchemaRoot,
