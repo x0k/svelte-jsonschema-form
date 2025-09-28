@@ -10,7 +10,7 @@
   const form = createForm({
     ...defaults,
     validator: (options) => ({
-      ...defaults.createValidator(options),
+      ...defaults.validator(options),
       ...createFileSizeValidator(
         ({ file, maxSizeBytes }) =>
           `File ${file.name} is too large, max file size ${formatFileSize(maxSizeBytes)}`,

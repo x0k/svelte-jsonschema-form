@@ -14,9 +14,9 @@ Update your `defaults.ts` file:
 ```diff
 - import { createFormValidator } from "@sjsf/ajv8-validator";
 - export const validator = createFormValidator();
-+ export { createFormValidator as createValidator } from "@sjsf/ajv8-validator";
-+ export { createFormIdBuilder as createIdBuilder } from "@sjsf/form/id-builders/legacy";
-+ export { createFormMerger as createMerger } from "@sjsf/form/mergers/legacy";
++ export { createFormValidator as validator } from "@sjsf/ajv8-validator";
++ export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/legacy";
++ export { createFormMerger as merger } from "@sjsf/form/mergers/legacy";
 ```
 
 This change should be sufficient for migrating simple projects.
@@ -25,9 +25,12 @@ as you might find opportunities to improve or simplify your current solution.
 
 ## Form
 
-### New `createIdBuilder`, `createMerger` and `createValidator` form options
+### Form options overhaul
 
-New options replace the `validator`, `merger`, `idSeparator` and `idPseudoSeparator` properties.
+- Introduced a new `idBuilder` option, replacing the former `idSeparator` and `idPseudoSeparator` properties
+- The `merger` option is now required
+- The `idBuilder`, `merger`, and `validator` options can now also be provided as factory functions
+
 This change addresses several issues:
 
 - A single validator instance was shared across all forms
@@ -111,6 +114,11 @@ If you were using `ctx.value` in your custom components, replace it with `ctx[FO
 The context now provides the entire `form` object, while `form.value` is a public value accessor.
 
 :::
+
+### The `form.errors` property has changed
+
+Its type is now `SvelteMap<Id, string[]>`.
+You can retrieve the field's display name using the `form.fieldTitle` method.
 
 ### `onsubmit` and `onreset` attributes
 
@@ -235,7 +243,7 @@ For convenient use with `createForm`:
   const form = createForm({
     ...defaults,
     schema,
-    createValidator: createFormValidatorFactory({ validateFunctions }),
+    validator: createFormValidatorFactory({ validateFunctions }),
   });
 ```
 

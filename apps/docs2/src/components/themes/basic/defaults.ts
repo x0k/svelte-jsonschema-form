@@ -43,15 +43,15 @@ export const theme = extendByRecord(baseTheme, {
   nativeFileFieldWrapper,
 });
 
-export { createFormIdBuilder as createIdBuilder } from "@sjsf/form/id-builders/modern";
+export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
 
-export { createFormMerger as createMerger } from "@sjsf/form/mergers/modern";
+export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 
 import type { ValidatorFactoryOptions } from "@sjsf/form";
 import { addFormComponents, createFormValidator } from "@sjsf/ajv8-validator";
 import addFormats from "ajv-formats";
 
-export const createValidator = (options: ValidatorFactoryOptions) =>
+export const validator = (options: ValidatorFactoryOptions) =>
   createFormValidator({
     ...options,
     ajvPlugins: (ajv) => addFormComponents(addFormats(ajv)),
