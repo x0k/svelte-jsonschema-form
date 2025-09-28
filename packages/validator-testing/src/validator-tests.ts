@@ -9,7 +9,7 @@ import {
   type Validator,
   type ValidatorFactoryOptions,
 } from "@sjsf/form";
-import { createFormIdBuilder } from "@sjsf/form/id-builders/legacy";
+import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
 import { createFormMerger } from "@sjsf/form/mergers/modern";
 import { expect, it, describe } from "vitest";
 

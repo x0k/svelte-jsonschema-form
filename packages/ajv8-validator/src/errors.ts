@@ -1,5 +1,5 @@
 import {
-  createPseudoPath,
+  encodePseudoElement,
   getRootUiSchemaTitleByPath,
   type Config,
   type Schema,
@@ -28,7 +28,7 @@ function createInstancePath(
   id = missingProperty !== undefined ? path.concat(missingProperty) : id;
   id =
     propertyName !== undefined
-      ? createPseudoPath(path.concat(propertyName), "key-input")
+      ? path.concat(propertyName, encodePseudoElement("key-input"))
       : id;
   return id;
 }

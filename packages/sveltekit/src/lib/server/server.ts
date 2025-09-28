@@ -105,6 +105,7 @@ export function createFormHandler<SendData extends boolean>({
   createReviver = createDefaultReviver
 }: FormHandlerOptions<SendData>) {
   const idBuilder = createFormIdBuilder({
+    schema,
     idPrefix,
     idSeparator,
     idPseudoSeparator

@@ -4,7 +4,7 @@
 
 import { describe, test } from "vitest";
 import {
-  createPseudoPath,
+  encodePseudoElement,
   type Schema,
   type Theme,
   type UiSchema,
@@ -111,7 +111,7 @@ export function objectTests(theme: Theme, matchOptions?: MatchSnapshotOptions) {
         initialValue: { foo: "foo" },
         initialErrors: [
           {
-            path: createPseudoPath(["foo"], "key-input"),
+            path: ["foo", encodePseudoElement("key-input")],
             message: "error",
           },
         ],
