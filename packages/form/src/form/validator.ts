@@ -29,15 +29,16 @@ export interface AsyncFormValueValidator {
   ) => Promise<ValidationError[]>;
 }
 
-export type AnyFormValueValidator =
-  | FormValueValidator
-  | AsyncFormValueValidator;
-
 export function isAsyncFormValueValidator<V extends Validator>(
   v: V
 ): v is V & AsyncFormValueValidator {
   return "validateFormValueAsync" in v;
 }
+
+export type AnyFormValueValidator =
+  | FormValueValidator
+  | AsyncFormValueValidator;
+
 export interface FieldValueValidator {
   validateFieldValue: (
     field: Config,
