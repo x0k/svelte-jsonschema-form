@@ -2,7 +2,7 @@ import { getContext, setContext } from "svelte";
 import type { SvelteMap } from "svelte/reactivity";
 
 import type { DataURLToBlob } from "@/lib/file.js";
-import type { Schema, Validator } from "@/core/index.js";
+import type { Path, Schema, Validator } from "@/core/index.js";
 
 import type { Translate, Translation } from "../translation.js";
 import {
@@ -12,8 +12,7 @@ import {
   type UiSchemaRoot,
 } from "../ui-schema.js";
 import type {
-  PossibleError,
-  FieldErrorsMap,
+  FormErrorsMap,
   FormSubmission,
   FieldsValidation,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -22,7 +21,7 @@ import type {
 import type { Icons } from "../icons.js";
 import type { FormMerger } from "../merger.js";
 import type { Theme } from "../components.js";
-import type { FormValue, KeyedArraysMap } from "../model.js";
+import type { FormValue, KeyedArraysMap, Update } from "../model.js";
 import type { ResolveFieldType } from "../fields.js";
 import {
   FORM_CONTEXT,
@@ -50,10 +49,11 @@ import {
 } from "../internals.js";
 import type { FormIdBuilder, Id } from "../id.js";
 import type { FieldState } from "../field-state.js";
+import type { ValidationError } from "../validator.js";
 
-export interface FormState<T, V extends Validator> {
-  readonly submission: FormSubmission<V>;
-  readonly fieldsValidation: FieldsValidation<V>;
+export interface FormState<T> {
+  readonly submission: FormSubmission;
+  readonly fieldsValidation: FieldsValidation;
   readonly isChanged: boolean;
   readonly isSubmitted: boolean;
   /**
@@ -63,24 +63,27 @@ export interface FormState<T, V extends Validator> {
    * - Default values from JSON Schema are taken into account during assignment
    */
   value: T | undefined;
-  errors: FieldErrorsMap<PossibleError<V>>;
+  errors: FormErrorsMap;
   submit: (e: SubmitEvent) => void;
   reset: (e: Event) => void;
   /**
    * Performs the following actions:
    * - Takes a snapshot of the current state
    * - Calls the corresponding validator method
-   * - Groups errors
    *
    * Actions it does not perform:
+   * - Groups errors
    * - Updates the form error list
    *
    * @throws {InvalidValidatorError} If the validator does not have the corresponding method
    */
-  validate: () => FieldErrorsMap<PossibleError<V>>;
-  validateAsync: (
-    signal: AbortSignal
-  ) => Promise<FieldErrorsMap<PossibleError<V>>>;
+  validate: () => ValidationError[];
+  validateAsync: (signal: AbortSignal) => Promise<ValidationError[]>;
+  updateErrors: (path: Path, update: Update<string[]>) => void;
+  /**
+   * @throws {Error} If `FormIdBuilder` does not have `toPath` method
+   */
+  fieldTitle: (id: Id) => string;
 
   /** Internals */
 
@@ -95,7 +98,7 @@ export interface FormState<T, V extends Validator> {
   readonly [FORM_UI_SCHEMA]: UiSchema;
   readonly [FORM_UI_OPTIONS_REGISTRY]: UiOptionsRegistry;
   readonly [FORM_UI_EXTRA_OPTIONS]?: ExtraUiOptions;
-  readonly [FORM_VALIDATOR]: V;
+  readonly [FORM_VALIDATOR]: Validator;
   readonly [FORM_MERGER]: FormMerger;
   readonly [FORM_ICONS]?: Icons;
   readonly [FORM_DISABLED]: boolean;
@@ -107,11 +110,11 @@ export interface FormState<T, V extends Validator> {
   readonly [FORM_FIELDS_STATE_MAP]: SvelteMap<Id, FieldState>;
 }
 
-export function getFormContext<T, V extends Validator>(): FormState<T, V> {
+export function getFormContext<T>(): FormState<T> {
   return getContext(FORM_CONTEXT);
 }
 
-export function setFormContext<T, V extends Validator>(form: FormState<T, V>) {
+export function setFormContext<T>(form: FormState<T>) {
   setContext(FORM_CONTEXT, form);
 }
 

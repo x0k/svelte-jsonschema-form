@@ -9,10 +9,9 @@ import {
   type AsyncFormValidatorOptions,
   type FormValidatorOptions,
 } from "./validator.js";
-import type { ErrorsTransformerOptions } from "./errors.js";
 
 export interface CreateFormValidatorFactoryOptions<O, V extends Validator> {
-  createFormValidator: (registry: SchemaRegistry, options: O) => V;
+  createFormValidator: (registry: SchemaRegistry, options: Partial<O>) => V;
 }
 
 function createFormValidatorFactory<O, V extends Validator>({
@@ -22,7 +21,7 @@ function createFormValidatorFactory<O, V extends Validator>({
     valibotSchema: ValibotSchema
   ): {
     schemaRegistry: ReturnType<typeof createSchemaRegistry>;
-    createValidator: (options: O) => V;
+    createValidator: (options?: Partial<O>) => V;
     schema: Schema;
   } => {
     const schemaRegistry = createSchemaRegistry();
@@ -33,7 +32,7 @@ function createFormValidatorFactory<O, V extends Validator>({
     return {
       schemaRegistry,
       schema,
-      createValidator: (options) =>
+      createValidator: (options = {}) =>
         createFormValidator(schemaRegistry, options),
     };
   };
@@ -42,17 +41,11 @@ function createFormValidatorFactory<O, V extends Validator>({
 export const adapt = createFormValidatorFactory({
   createFormValidator: (
     schemaRegistry,
-    options: Partial<
-      Omit<FormValidatorOptions, keyof ErrorsTransformerOptions>
-    > &
-      ErrorsTransformerOptions
+    options: Omit<FormValidatorOptions, "schemaRegistry">
   ) =>
     createFormValidator(
       Object.setPrototypeOf(
-        { schemaRegistry } satisfies Omit<
-          FormValidatorOptions,
-          keyof ErrorsTransformerOptions
-        >,
+        { schemaRegistry } satisfies FormValidatorOptions,
         options
       )
     ),
@@ -65,17 +58,11 @@ export const setupFormValidator = adapt;
 export const adaptAsync = createFormValidatorFactory({
   createFormValidator: (
     schemaRegistry,
-    options: Partial<
-      Omit<FormValidatorOptions, keyof ErrorsTransformerOptions>
-    > &
-      ErrorsTransformerOptions
+    options: Omit<FormValidatorOptions, "schemaRegistry">
   ) =>
     createAsyncFormValidator(
       Object.setPrototypeOf(
-        { schemaRegistry } satisfies Omit<
-          AsyncFormValidatorOptions,
-          keyof ErrorsTransformerOptions
-        >,
+        { schemaRegistry } satisfies AsyncFormValidatorOptions,
         options
       )
     ),

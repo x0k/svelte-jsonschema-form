@@ -1,7 +1,6 @@
 import {
   Ajv,
   type AsyncValidateFunction,
-  type ErrorObject,
   type Options,
   type ValidateFunction,
 } from "ajv";
@@ -57,7 +56,7 @@ export interface FormValueValidatorOptions
 
 export function createFormValueValidator(
   options: FormValueValidatorOptions
-): FormValueValidator<ErrorObject> {
+): FormValueValidator {
   const transformErrors = createFormErrorsTransformer(options);
   return {
     validateFormValue(rootSchema, formValue) {
@@ -76,7 +75,7 @@ export interface FieldValueValidatorOptions {
 
 export function createFieldValueValidator({
   compileFieldSchema,
-}: FieldValueValidatorOptions): FieldValueValidator<ErrorObject> {
+}: FieldValueValidatorOptions): FieldValueValidator {
   return {
     validateFieldValue(config, fieldValue) {
       return validateAndTransformErrors(
@@ -98,7 +97,7 @@ export interface AsyncFormValueValidatorOptions
 
 export function createAsyncFormValueValidator(
   options: AsyncFormValueValidatorOptions
-): AsyncFormValueValidator<ErrorObject> {
+): AsyncFormValueValidator {
   const transformErrors = createFormErrorsTransformer(options);
   return {
     async validateFormValueAsync(_, rootSchema, formValue) {
@@ -117,7 +116,7 @@ export interface AsyncFieldValueValidatorOptions {
 
 export function createAsyncFieldValueValidator({
   compileAsyncFieldSchema,
-}: AsyncFieldValueValidatorOptions): AsyncFieldValueValidator<ErrorObject> {
+}: AsyncFieldValueValidatorOptions): AsyncFieldValueValidator {
   return {
     async validateFieldValueAsync(_, config, fieldValue) {
       return validateAndTransformErrorsAsync(
@@ -141,18 +140,17 @@ export function createFormValidator({
   compileSchema = createSchemaCompiler(ajv, false),
   compileFieldSchema = createFieldSchemaCompiler(ajv, false),
   ...rest
-}: Partial<Omit<FormValidatorOptions, keyof ErrorsTransformerOptions>> &
-  ErrorsTransformerOptions & {
-    /**
-     * @default `DEFAULT_AJV_CONFIG`
-     */
-    ajvOptions?: Options;
-    /**
-     * @default `addFormComponents`
-     */
-    ajvPlugins?: (ajv: Ajv) => Ajv;
-    ajv?: Ajv;
-  }) {
+}: Partial<FormValidatorOptions> & {
+  /**
+   * @default `DEFAULT_AJV_CONFIG`
+   */
+  ajvOptions?: Options;
+  /**
+   * @default `addFormComponents`
+   */
+  ajvPlugins?: (ajv: Ajv) => Ajv;
+  ajv?: Ajv;
+} = {}) {
   const options: FormValidatorOptions = {
     ...rest,
     compileSchema,
@@ -176,8 +174,7 @@ export function createAsyncFormValidator({
   compileAsyncSchema = createSchemaCompiler(ajv, true),
   compileAsyncFieldSchema = createFieldSchemaCompiler(ajv, true),
   ...rest
-}: Partial<Omit<AsyncFormValidatorOptions, keyof ErrorsTransformerOptions>> &
-  ErrorsTransformerOptions & { ajv: Ajv }) {
+}: Partial<AsyncFormValidatorOptions> & { ajv: Ajv }) {
   const options: AsyncFormValidatorOptions = {
     ...rest,
     compileSchema,

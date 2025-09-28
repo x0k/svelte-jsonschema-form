@@ -8,11 +8,7 @@ import type {
 import { DEFAULT_AUGMENT_SUFFIX } from "@sjsf/form/validators/precompile";
 
 import type { ValueToJSON } from "../validator.js";
-import {
-  createErrorsTransformer,
-  transformFieldErrors,
-  type ErrorsTransformerOptions,
-} from "../errors.js";
+import { transformFormErrors, transformFieldErrors } from "../errors.js";
 
 export type CompiledValidateFunction = (data: unknown) => boolean;
 
@@ -62,26 +58,23 @@ export function createValidator(options: ValidatorOptions): Validator {
   };
 }
 
-export interface FormValueValidatorOptions
-  extends ValidatorOptions,
-    ErrorsTransformerOptions {}
+export interface FormValueValidatorOptions extends ValidatorOptions {}
 
 export function createFormValueValidator(
   options: FormValueValidatorOptions
-): FormValueValidator<ValidationError> {
-  const transform = createErrorsTransformer(options);
+): FormValueValidator {
   return {
     validateFormValue(rootSchema, formValue) {
       const validate = getValidate(options, rootSchema);
       validate(options.valueToJSON(formValue));
-      return transform(rootSchema, validate.errors, formValue);
+      return transformFormErrors(rootSchema, validate.errors, formValue);
     },
   };
 }
 
 export function createFieldValueValidator(
   options: ValidatorOptions
-): FieldValueValidator<ValidationError> {
+): FieldValueValidator {
   return {
     validateFieldValue(field, fieldValue) {
       const validate = getValidate(options, field.schema);

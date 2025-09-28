@@ -4,7 +4,7 @@
 
 import { describe, test } from "vitest";
 import {
-  createPseudoId,
+  createPseudoPath,
   type Schema,
   type Theme,
   type UiSchema,
@@ -13,7 +13,6 @@ import {
 import { resolver } from "@sjsf/form/resolvers/compat";
 
 import {
-  idBuilder,
   matchSnapshot,
   type MatchSnapshotOptions,
   type SnapshotFormOptions,
@@ -86,9 +85,7 @@ export function objectTests(theme: Theme, matchOptions?: MatchSnapshotOptions) {
         schema,
         initialErrors: [
           {
-            error: null as any,
-            instanceId: idBuilder.fromPath([]),
-            propertyTitle: "title",
+            path: [],
             message: "error",
           },
         ],
@@ -114,13 +111,8 @@ export function objectTests(theme: Theme, matchOptions?: MatchSnapshotOptions) {
         initialValue: { foo: "foo" },
         initialErrors: [
           {
-            error: null as any,
-            instanceId: idBuilder.pseudoId(
-              idBuilder.fromPath(["foo"]),
-              "key-input"
-            ),
+            path: createPseudoPath(["foo"], "key-input"),
             message: "error",
-            propertyTitle: "title",
           },
         ],
       });

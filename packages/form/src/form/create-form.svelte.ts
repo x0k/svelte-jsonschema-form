@@ -13,16 +13,16 @@ import {
   type TasksCombinator,
   type FailedTask,
 } from "@/lib/task.svelte.js";
-import type { Schema, Validator } from "@/core/index.js";
+import type { Path, Schema, Validator } from "@/core/index.js";
 
 import {
-  type ValidationError,
   isFormValueValidator,
   isFieldValueValidator,
   isAsyncFormValueValidator,
   isAsyncFieldValueValidator,
   type AsyncFormValueValidator,
   type AsyncFieldValueValidator,
+  type ValidationError,
 } from "./validator.js";
 import { createTranslate, type Translation } from "./translation.js";
 import {
@@ -34,26 +34,32 @@ import {
 import type { Icons } from "./icons.js";
 import type { FieldsValidationMode } from "./validation.js";
 import {
-  groupErrors,
-  ValidationProcessError,
-  type FieldError,
-  type PossibleError,
-  type FieldErrorsMap,
-  type AnyFormValueValidatorError,
-  type AnyFieldValueValidatorError,
+  type FormErrorsMap,
   type FormSubmission,
   type FieldsValidation,
   type FormValidationResult,
   InvalidValidatorError,
 } from "./errors.js";
 import type { FormMerger } from "./merger.js";
-import { DEFAULT_ID_PREFIX, type FormIdBuilder, type Id } from "./id.js";
+import {
+  DEFAULT_ID_PREFIX,
+  isFormIdBuilderToPath,
+  type FormIdBuilder,
+  type Id,
+} from "./id.js";
 import type { Config } from "./config.js";
 import type { Theme } from "./components.js";
-import type { FormValue, KeyedArraysMap } from "./model.js";
+import type { Factory, FormValue, KeyedArraysMap, Update } from "./model.js";
 import type { ResolveFieldType } from "./fields.js";
 import { createSchemaValuesReconciler, UNCHANGED } from "./reconcile.js";
-import { hasFieldState, setFieldState, type FormState } from "./state/index.js";
+import {
+  getFieldTitleByPath,
+  groupErrors,
+  hasFieldState,
+  setFieldState,
+  updateErrors,
+  type FormState,
+} from "./state/index.js";
 import {
   FORM_DATA_URL_TO_BLOB,
   FORM_UI_EXTRA_OPTIONS,
@@ -76,14 +82,16 @@ import {
   FORM_ROOT_ID,
   FORM_FIELDS_STATE_MAP,
   FORM_ID_BUILDER,
+  internalGroupErrors,
 } from "./internals.js";
 import { FIELD_SUBMITTED } from "./field-state.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
 
-export type InitialErrors<V extends Validator> =
-  | ValidationError<PossibleError<V>>[]
-  | Iterable<readonly [Id, FieldError<PossibleError<V>>[]]>;
+export type InitialErrors =
+  | ValidationError[]
+  // WARN: This should't be an array
+  | Iterable<readonly [Id, string[]]>;
 
 const UI_OPTIONS_REGISTRY_KEY = "uiOptionsRegistry";
 
@@ -107,14 +115,10 @@ function createValueRef(initialValue: FormValue): Ref<FormValue> {
   };
 }
 
-function createErrorsRef<V extends Validator>(
-  initialErrors: InitialErrors<V> | undefined
-): Ref<FieldErrorsMap<PossibleError<V>>> {
-  let value = $state.raw(
-    Array.isArray(initialErrors)
-      ? groupErrors(initialErrors)
-      : new SvelteMap(initialErrors)
-  );
+function createErrorsRef(
+  initialErrors: Iterable<readonly [Id, string[]]> | undefined
+): Ref<FormErrorsMap> {
+  let value = $state.raw(new SvelteMap(initialErrors));
   return {
     get current() {
       return value;
@@ -143,29 +147,28 @@ export interface ValidatorFactoryOptions {
   merger: () => FormMerger;
 }
 
-export interface MergerFactoryOptions<V extends Validator> {
-  validator: V;
+export interface MergerFactoryOptions {
+  validator: Validator;
   schema: Schema;
   uiSchema: UiSchemaRoot;
   uiOptionsRegistry: UiOptionsRegistry;
 }
 
-export interface GetSnapshotOptions<V extends Validator> {
-  validator: V;
+export interface GetSnapshotOptions {
+  validator: Validator;
   merger: FormMerger;
   schema: Schema;
   value: FormValue;
 }
 
-export interface FormOptions<T, V extends Validator>
-  extends UiOptionsRegistryOption {
+export interface FormOptions<T> extends UiOptionsRegistryOption {
   schema: Schema;
   theme: Theme;
   translation: Translation;
-  resolver: (ctx: FormState<T, V>) => ResolveFieldType;
-  createIdBuilder: (options: IdBuilderFactoryOptions) => FormIdBuilder;
-  createValidator: (options: ValidatorFactoryOptions) => V;
-  createMerger: (options: MergerFactoryOptions<V>) => FormMerger;
+  resolver: (ctx: FormState<T>) => ResolveFieldType;
+  createIdBuilder: Factory<IdBuilderFactoryOptions, FormIdBuilder>;
+  createValidator: Factory<ValidatorFactoryOptions, Validator>;
+  createMerger: Factory<MergerFactoryOptions, FormMerger>;
   /**
    * @default DEFAULT_ID_PREFIX
    */
@@ -177,14 +180,14 @@ export interface FormOptions<T, V extends Validator>
   disabled?: boolean;
   initialValue?: DeepPartial<T>;
   value?: Bind<T>;
-  initialErrors?: InitialErrors<V>;
-  errors?: Bind<FieldErrorsMap<PossibleError<V>>>;
+  initialErrors?: InitialErrors;
+  errors?: Bind<FormErrorsMap>;
   /**
    * @default waitPrevious
    */
   submissionCombinator?: TasksCombinator<
     [event: SubmitEvent],
-    FormValidationResult<AnyFormValueValidatorError<V>>,
+    FormValidationResult,
     unknown
   >;
   /**
@@ -204,7 +207,7 @@ export interface FormOptions<T, V extends Validator>
    */
   fieldsValidationCombinator?: TasksCombinator<
     [Config, FormValue],
-    FieldError<AnyFieldValueValidatorError<V>>[],
+    Update<string[]>,
     unknown
   >;
   /**
@@ -223,7 +226,7 @@ export interface FormOptions<T, V extends Validator>
    *
    * @default (ctx) => $state.snapshot(ctx.value)
    */
-  getSnapshot?: (ctx: GetSnapshotOptions<V>) => FormValue;
+  getSnapshot?: (ctx: GetSnapshotOptions) => FormValue;
   /**
    * Submit handler
    *
@@ -242,10 +245,10 @@ export interface FormOptions<T, V extends Validator>
    * snapshot is not valid
    */
   onSubmitError?: (
-    errors: FieldErrorsMap<AnyFormValueValidatorError<V>>,
+    errors: FormErrorsMap,
     e: SubmitEvent,
     snapshot: FormValue,
-    form: FormState<T, V>
+    form: FormState<T>
   ) => void;
   /**
    * Form submission error handler
@@ -274,9 +277,7 @@ export interface FormOptions<T, V extends Validator>
   keyedArraysMap?: KeyedArraysMap;
 }
 
-export function createForm<T, V extends Validator>(
-  options: FormOptions<T, V>
-): FormState<T, V> {
+export function createForm<T>(options: FormOptions<T>): FormState<T> {
   /** STATE BEGIN */
   const idPrefix = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX);
   const uiSchemaRoot = $derived(options.uiSchema ?? {});
@@ -321,7 +322,11 @@ export function createForm<T, V extends Validator>(
   const errorsRef = $derived(
     options.errors
       ? refFromBind(options.errors)
-      : createErrorsRef(options.initialErrors)
+      : createErrorsRef(
+          Array.isArray(options.initialErrors)
+            ? internalGroupErrors(idBuilder, options.initialErrors)
+            : options.initialErrors
+        )
   );
   const disabled = $derived(options.disabled ?? false);
   const fieldsValidationMode = $derived(options.fieldsValidationMode ?? 0);
@@ -353,7 +358,7 @@ export function createForm<T, V extends Validator>(
     if (get === undefined) {
       return () => $state.snapshot(valueRef.current);
     }
-    const opts: GetSnapshotOptions<V> = {
+    const opts: GetSnapshotOptions = {
       get merger() {
         return merger;
       },
@@ -377,27 +382,27 @@ export function createForm<T, V extends Validator>(
   );
   /** STATE END */
 
-  const validateForm: AsyncFormValueValidator<
-    AnyFormValueValidatorError<V>
-  >["validateFormValueAsync"] = $derived.by(() => {
-    if (isAsyncFormValueValidator(validator)) {
-      return (signal, schema, formValue) =>
-        validator.validateFormValueAsync(signal, schema, formValue);
-    }
-    if (isFormValueValidator(validator)) {
-      return (_, schema, formValue) =>
-        Promise.resolve(validator.validateFormValue(schema, formValue));
-    }
-    return async () => Promise.resolve([]);
-  });
+  const validateForm: AsyncFormValueValidator["validateFormValueAsync"] =
+    $derived.by(() => {
+      if (isAsyncFormValueValidator(validator)) {
+        return (signal, schema, formValue) =>
+          validator.validateFormValueAsync(signal, schema, formValue);
+      }
+      if (isFormValueValidator(validator)) {
+        return (_, schema, formValue) =>
+          Promise.resolve(validator.validateFormValue(schema, formValue));
+      }
+      return async () => Promise.resolve([]);
+    });
 
-  const submission: FormSubmission<V> = createTask({
+  const submission: FormSubmission = createTask({
     async execute(signal) {
       setFieldState(formState, rootId, FIELD_SUBMITTED);
       const formValue = getSnapshot();
       return {
         formValue,
         formErrors: groupErrors(
+          formState,
           await validateForm(signal, options.schema, formValue)
         ),
       };
@@ -413,11 +418,7 @@ export function createForm<T, V extends Validator>(
     },
     onFailure(error, e) {
       errorsRef.current.set(rootId, [
-        {
-          propertyTitle: "",
-          message: translate("validation-process-error", { error }),
-          error: new ValidationProcessError(error),
-        },
+        translate("validation-process-error", { error }),
       ]);
       options.onSubmissionFailure?.(error, e);
     },
@@ -432,29 +433,27 @@ export function createForm<T, V extends Validator>(
     },
   });
 
-  const validateFields: AsyncFieldValueValidator<
-    AnyFieldValueValidatorError<V>
-  >["validateFieldValueAsync"] = $derived.by(() => {
-    if (isAsyncFieldValueValidator(validator)) {
-      return (signal, config, value) =>
-        validator.validateFieldValueAsync(signal, config, value);
-    }
-    if (isFieldValueValidator(validator)) {
-      return (_, config, value) =>
-        Promise.resolve(validator.validateFieldValue(config, value));
-    }
-    return () => Promise.resolve([]);
-  });
+  const validateFields: AsyncFieldValueValidator["validateFieldValueAsync"] =
+    $derived.by(() => {
+      if (isAsyncFieldValueValidator(validator)) {
+        return (signal, config, value) =>
+          validator.validateFieldValueAsync(signal, config, value);
+      }
+      if (isFieldValueValidator(validator)) {
+        return (_, config, value) =>
+          Promise.resolve(validator.validateFieldValue(config, value));
+      }
+      return () => Promise.resolve([]);
+    });
 
-  const fieldsValidation: FieldsValidation<V> = createTask({
+  const fieldsValidation: FieldsValidation = createTask({
     execute(signal, config, value) {
       const debounceMs = options.fieldsValidationDebounceMs ?? 300;
       if (debounceMs < 0) {
         return validateFields(signal, config, value);
       }
 
-      const promise =
-        Promise.withResolvers<FieldError<AnyFieldValueValidatorError<V>>[]>();
+      const promise = Promise.withResolvers<Update<string[]>>();
       const id = setTimeout(() => {
         promise.resolve(validateFields(signal, config, value));
       }, debounceMs);
@@ -471,21 +470,12 @@ export function createForm<T, V extends Validator>(
       });
     },
     onSuccess(fieldErrors, config) {
-      const errors = errorsRef.current;
-      if (fieldErrors.length > 0) {
-        errors.set(config.id, fieldErrors);
-      } else {
-        errors.delete(config.id);
-      }
+      updateErrors(formState, config.id, fieldErrors);
     },
     onFailure(error, config, value) {
       if (error.reason !== "aborted") {
         errorsRef.current.set(config.id, [
-          {
-            propertyTitle: config.title,
-            message: translate("validation-process-error", { error }),
-            error: new ValidationProcessError(error),
-          },
+          translate("validation-process-error", { error }),
         ]);
       }
       options.onFieldsValidationFailure?.(error, config, value);
@@ -521,25 +511,21 @@ export function createForm<T, V extends Validator>(
     if (!isFormValueValidator(validator)) {
       throw new InvalidValidatorError(`expected sync from validator`);
     }
-    return groupErrors(
-      validator.validateFormValue(options.schema, getSnapshot())
-    );
+    return validator.validateFormValue(options.schema, getSnapshot());
   }
 
   async function validateAsync(signal: AbortSignal) {
     if (!isAsyncFormValueValidator(validator)) {
       throw new InvalidValidatorError(`expected async form validator`);
     }
-    return groupErrors(
-      await validator.validateFormValueAsync(
-        signal,
-        options.schema,
-        getSnapshot()
-      )
+    return await validator.validateFormValueAsync(
+      signal,
+      options.schema,
+      getSnapshot()
     );
   }
 
-  const formState: FormState<T, V> = {
+  const formState: FormState<T> = {
     submission,
     fieldsValidation,
     get value() {
@@ -567,6 +553,19 @@ export function createForm<T, V extends Validator>(
     reset,
     validate,
     validateAsync,
+    updateErrors: (path: Path, errors: Update<string[]>) => {
+      const id = idBuilder.fromPath(path);
+      updateErrors(formState, id, errors);
+    },
+    fieldTitle: (id) => {
+      if (!isFormIdBuilderToPath(idBuilder)) {
+        throw new Error("`toPath` method for `FormIdBuilder` is required");
+      }
+      const path = idBuilder.toPath(id);
+      return (
+        getFieldTitleByPath(formState, path) ?? String(path[path.length - 1])
+      );
+    },
     // INTERNALS
     [FORM_FIELDS_STATE_MAP]: fieldsStateMap,
     get [FORM_ID_BUILDER]() {
@@ -652,9 +651,7 @@ export function createForm<T, V extends Validator>(
   return formState;
 }
 
-export function handlers<T, V extends Validator>(
-  form: FormState<T, V>
-): Attachment<HTMLFormElement> {
+export function handlers<T>(form: FormState<T>): Attachment<HTMLFormElement> {
   return (node) => {
     const disposeSubmit = on(node, "submit", form.submit);
     const disposeReset = on(node, "reset", form.reset);

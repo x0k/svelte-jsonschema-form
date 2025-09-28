@@ -2,7 +2,6 @@ import {
   getSimpleSchemaType,
   isFileSchema,
   isFixedItems,
-  type Validator,
 } from "@/core/index.js";
 
 import {
@@ -19,9 +18,7 @@ import "../extra-fields/multi-enum.js";
 import "../extra-fields/file.js";
 import "../extra-fields/files.js";
 
-export function resolver<T, V extends Validator>(
-  ctx: FormState<T, V>
-): ResolveFieldType {
+export function resolver<T>(ctx: FormState<T>): ResolveFieldType {
   return (config) => {
     const { schema } = config;
     if (isSelect(ctx, schema)) {

@@ -1,97 +1,85 @@
-import type { Schema } from "@/core/index.js";
+import type { Path, Schema, Validator } from "@/core/index.js";
 
-import type { Id } from "./id.js";
 import type { Config } from "./config.js";
-import type { FieldValue, FormValue } from "./model.js";
+import type { FieldValue, FormValue, Update } from "./model.js";
 
-export interface ValidationError<E> {
-  instanceId: Id;
-  propertyTitle: string;
+export interface ValidationError {
+  path: Path;
   message: string;
-  error: E;
 }
 
-export interface FormValueValidator<E> {
+export interface FormValueValidator {
   validateFormValue: (
     rootSchema: Schema,
     formValue: FormValue
-  ) => ValidationError<E>[];
+  ) => ValidationError[];
 }
 
-export type FormValueValidatorError<V> =
-  V extends FormValueValidator<infer E> ? E : never;
-
-export function isFormValueValidator<V extends object>(
+export function isFormValueValidator<V extends Validator>(
   v: V
-): v is V & FormValueValidator<FormValueValidatorError<V>> {
+): v is V & FormValueValidator {
   return "validateFormValue" in v;
 }
 
-export interface AsyncFormValueValidator<E> {
+export interface AsyncFormValueValidator {
   validateFormValueAsync: (
     signal: AbortSignal,
     rootSchema: Schema,
     formValue: FormValue
-  ) => Promise<ValidationError<E>[]>;
+  ) => Promise<ValidationError[]>;
 }
 
-export type AsyncFormValueValidatorError<V> =
-  V extends AsyncFormValueValidator<infer E> ? E : never;
-
-export function isAsyncFormValueValidator<V extends object>(
+export function isAsyncFormValueValidator<V extends Validator>(
   v: V
-): v is V & AsyncFormValueValidator<AsyncFormValueValidatorError<V>> {
+): v is V & AsyncFormValueValidator {
   return "validateFormValueAsync" in v;
 }
 
-export type AnyFormValueValidator<E> =
-  | FormValueValidator<E>
-  | AsyncFormValueValidator<E>;
+export type AnyFormValueValidator =
+  | FormValueValidator
+  | AsyncFormValueValidator;
 
-export interface FieldValueValidator<E> {
+export interface FieldValueValidator {
   validateFieldValue: (
     field: Config,
     fieldValue: FieldValue
-  ) => ValidationError<E>[];
+  ) => Update<string[]>;
 }
 
-export type FieldValueValidatorError<V> =
-  V extends FieldValueValidator<infer E> ? E : never;
-
-export function isFieldValueValidator<V extends object>(
+export function isFieldValueValidator<V extends Validator>(
   v: V
-): v is V & FieldValueValidator<FieldValueValidatorError<V>> {
+): v is V & FieldValueValidator {
   return "validateFieldValue" in v;
 }
 
-export interface AsyncFieldValueValidator<E> {
+export interface AsyncFieldValueValidator {
   validateFieldValueAsync: (
     signal: AbortSignal,
     field: Config,
     fieldValue: FieldValue
-  ) => Promise<ValidationError<E>[]>;
+  ) => Promise<Update<string[]>>;
 }
 
-export type AsyncFieldValueValidatorError<V> =
-  V extends AsyncFieldValueValidator<infer E> ? E : never;
-
-export function isAsyncFieldValueValidator<V extends object>(
+export function isAsyncFieldValueValidator<V extends Validator>(
   v: V
-): v is V & AsyncFieldValueValidator<AsyncFieldValueValidatorError<V>> {
+): v is V & AsyncFieldValueValidator {
   return "validateFieldValueAsync" in v;
 }
 
-export type AnyFieldValueValidator<E> =
-  | FieldValueValidator<E>
-  | AsyncFieldValueValidator<E>;
+export type AnyFieldValueValidator =
+  | FieldValueValidator
+  | AsyncFieldValueValidator;
 
 export interface AdditionalPropertyKeyValidator {
-  validateAdditionalPropertyKey: (key: string, schema: Schema) => string[];
+  validateAdditionalPropertyKey: (
+    key: string,
+    schema: Schema
+  ) => Update<string[]>;
 }
 
-export function isAdditionalPropertyKeyValidator(
-  v: object
-): v is AdditionalPropertyKeyValidator {
+export function isAdditionalPropertyKeyValidator<V extends Validator>(
+  v: V
+): v is V & AdditionalPropertyKeyValidator {
   return "validateAdditionalPropertyKey" in v;
 }
 
@@ -100,7 +88,7 @@ export interface AsyncFileListValidator {
     signal: AbortSignal,
     fileList: FileList,
     config: Config
-  ) => Promise<string[]>;
+  ) => Promise<Update<string[]>>;
 }
 
 export function isAsyncFileListValidator(

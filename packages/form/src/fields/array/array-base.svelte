@@ -5,7 +5,6 @@
     getFormContext,
     type ComponentProps,
     Text,
-    type Validator,
     retrieveUiOption,
     retrieveTranslate,
     createKeyedArrayDeriver,
@@ -25,9 +24,7 @@
     uiOption,
     translate,
   }: ComponentProps["arrayField" | "tupleField"] & {
-    createArrayContext: <T, V extends Validator>(
-      options: ArrayContextOptions<T, V>
-    ) => ArrayContext<V>;
+    createArrayContext: <T>(options: ArrayContextOptions<T>) => ArrayContext;
   } = $props();
 
   const ctx = getFormContext();

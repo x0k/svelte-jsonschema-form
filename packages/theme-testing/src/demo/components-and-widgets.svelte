@@ -2,13 +2,11 @@
   import type { Snippet } from "svelte";
   import {
     createForm,
-    DEFAULT_ID_PREFIX,
     type Schema,
     type Theme,
     type UiOptionsRegistryOption,
     type UiSchemaRoot,
   } from "@sjsf/form";
-  import { createFormIdBuilder } from "@sjsf/form/id-builders/legacy";
 
   import * as defaults from "../components/form-defaults.js";
 
@@ -26,13 +24,12 @@
     append?: Snippet;
   } & UiOptionsRegistryOption = $props();
 
-  const widgetsSchemas = (idPrefix: string) =>
-    createSchemas(specs, createFormIdBuilder({ idPrefix }));
+  const widgetsSchemas = createSchemas(specs);
 
   const widgetsForm = $derived(
     createForm({
       ...defaults,
-      ...widgetsSchemas("widgets"),
+      ...widgetsSchemas,
       idPrefix: "widgets",
       theme,
       uiOptionsRegistry,
@@ -41,7 +38,7 @@
   const disabledWidgetsForm = $derived(
     createForm({
       ...defaults,
-      ...widgetsSchemas("widgetsDisabled"),
+      ...widgetsSchemas,
       idPrefix: "widgetsDisabled",
       disabled: true,
       theme,
@@ -92,10 +89,8 @@
     },
     initialErrors: [
       {
-        instanceId: createFormIdBuilder().fromPath([]),
+        path: [],
         message: "message",
-        propertyTitle: "Title",
-        error: null as any,
       },
     ],
     uiOptionsRegistry,

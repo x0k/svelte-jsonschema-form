@@ -8,11 +8,13 @@
   } from "./state/index.js";
   import type { Config } from "./config.js";
   import Text from "./text.svelte";
+    import { createPseudoPath } from './id.js';
 
   const ctx = getFormContext();
 
   const config: Config = $derived({
     id: createPseudoId(ctx, ctx[FORM_ROOT_ID], "submit"),
+    path: createPseudoPath([], "submit"),
     title: "",
     schema: ctx[FORM_SCHEMA],
     uiSchema: ctx[FORM_UI_SCHEMA],

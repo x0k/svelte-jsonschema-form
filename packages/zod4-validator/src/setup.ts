@@ -6,7 +6,7 @@ import { createSchemaRegistry } from "./schemas-registry.js";
 
 export interface CreateFormValidatorFactoryOptions<O, V extends Validator> {
   createAugmentedSchema: AugmentedSchemaFactory;
-  createFormValidator: (registry: SchemaRegistry, options: O) => V;
+  createFormValidator: (registry: SchemaRegistry, options: Partial<O>) => V;
 }
 
 export function createFormValidatorFactory<O, V extends Validator>({
@@ -17,7 +17,7 @@ export function createFormValidatorFactory<O, V extends Validator>({
     zodSchema: $ZodType
   ): {
     schemaRegistry: ReturnType<typeof createSchemaRegistry>;
-    createValidator: (options: O) => V;
+    createValidator: (options?: Partial<O>) => V;
     schema: Schema;
   } => {
     const schemaRegistry = createSchemaRegistry({ createAugmentedSchema });
@@ -28,7 +28,7 @@ export function createFormValidatorFactory<O, V extends Validator>({
     }) as Schema;
     return {
       schemaRegistry,
-      createValidator: (options) =>
+      createValidator: (options = {}) =>
         createFormValidator(schemaRegistry, options),
       schema,
     };

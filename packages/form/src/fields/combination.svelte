@@ -34,6 +34,7 @@
     retrieveUiOption,
     uiTitleOption,
     retrieveTranslate,
+    createPseudoPath,
   } from "@/form/index.js";
 
   let {
@@ -175,6 +176,7 @@
     );
     return {
       id: createPseudoId(ctx, config.id, suffix),
+      path: createPseudoPath(config.path, suffix),
       title: uiTitleOption(ctx, uiSchema) ?? config.title,
       schema: { type: "integer", default: 0 },
       uiSchema,
@@ -204,6 +206,7 @@
         : config.uiSchema;
     return {
       id: config.id,
+      path: config.path,
       title: "",
       schema: optionSchema,
       uiSchema: optionUiSchema,

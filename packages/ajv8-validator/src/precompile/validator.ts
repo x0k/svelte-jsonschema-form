@@ -1,9 +1,4 @@
-import type {
-  Ajv,
-  AsyncValidateFunction,
-  ErrorObject,
-  ValidateFunction,
-} from "ajv";
+import type { Ajv, AsyncValidateFunction, ValidateFunction } from "ajv";
 import type {
   AsyncFieldValueValidator,
   AsyncFormValueValidator,
@@ -83,7 +78,7 @@ export interface FormValueValidatorOptions
 
 export function createFormValueValidator(
   options: FormValueValidatorOptions
-): FormValueValidator<ErrorObject> {
+): FormValueValidator {
   const transformErrors = createFormErrorsTransformer(options);
   return {
     validateFormValue(rootSchema, formValue) {
@@ -98,7 +93,7 @@ export function createFormValueValidator(
 
 export function createFieldValueValidator(
   options: ValidatorOptions
-): FieldValueValidator<ErrorObject> {
+): FieldValueValidator {
   return {
     validateFieldValue(field, fieldValue) {
       return validateAndTransformErrors(
@@ -112,7 +107,7 @@ export function createFieldValueValidator(
 
 export function createAsyncFormValueValidator(
   options: FormValidatorOptions
-): AsyncFormValueValidator<ErrorObject> {
+): AsyncFormValueValidator {
   const transformErrors = createFormErrorsTransformer(options);
   return {
     validateFormValueAsync(_, rootSchema, formValue) {
@@ -127,7 +122,7 @@ export function createAsyncFormValueValidator(
 
 export function createAsyncFieldValueValidator(
   options: ValidatorOptions
-): AsyncFieldValueValidator<ErrorObject> {
+): AsyncFieldValueValidator {
   return {
     validateFieldValueAsync(_, field, fieldValue) {
       return validateAndTransformErrorsAsync(

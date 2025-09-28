@@ -1,11 +1,11 @@
-import type { SchemaArrayValue, Validator } from "@/core/index.js";
+import type { SchemaArrayValue } from "@/core/index.js";
 
 import type { KeyedFieldValues } from "../model.js";
 import { FORM_KEYED_ARRAYS } from "../internals.js";
 import type { FormState } from "./state.js";
 
-export function createKeyedArrayDeriver<T, V extends Validator>(
-  ctx: FormState<T, V>,
+export function createKeyedArrayDeriver<T>(
+  ctx: FormState<T>,
   value: () => SchemaArrayValue | null | undefined,
   virtualKeyedArrayFactory: () => KeyedFieldValues,
   keyedArrayFactory: (v: SchemaArrayValue, g: () => number) => KeyedFieldValues

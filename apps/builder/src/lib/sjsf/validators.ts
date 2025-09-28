@@ -1,4 +1,5 @@
 import type {
+  Factory,
   Validator as SJSFValidator,
   ValidatorFactoryOptions,
 } from "@sjsf/form";
@@ -17,7 +18,7 @@ export const VALIDATORS = Object.values(Validator);
 
 export const SJSF_VALIDATORS: Record<
   Validator,
-  (options: ValidatorFactoryOptions) => SJSFValidator
+  Factory<ValidatorFactoryOptions, SJSFValidator>
 > = {
   [Validator.Ajv]: ajv,
   [Validator.SchemaSafe]: schemasafe,

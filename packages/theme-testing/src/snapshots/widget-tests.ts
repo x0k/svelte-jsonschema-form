@@ -50,9 +50,7 @@ export function widgetTests(
           uiSchema,
           initialErrors: [
             {
-              error: null as any,
-              instanceId: idBuilder.fromPath([]),
-              propertyTitle: "title",
+              path: [],
               message: "error",
             },
           ],
@@ -89,17 +87,10 @@ export function widgetTests(
                     createValidator: (options) =>
                       ({
                         ...defaults.createValidator(options),
-                        validateFieldValue(cfg) {
-                          return [
-                            {
-                              instanceId: cfg.id,
-                              propertyTitle: cfg.title,
-                              message: ERROR_TEXT,
-                              error: null,
-                            },
-                          ];
+                        validateFieldValue() {
+                          return [ERROR_TEXT];
                         },
-                      }) satisfies Validator & FieldValueValidator<any>,
+                      }) satisfies Validator & FieldValueValidator,
                   },
                 });
                 await triggers[trigger](screen.locator);

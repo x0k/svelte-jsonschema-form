@@ -10,7 +10,6 @@ import {
   type FormValidatorOptions,
 } from "../validator.js";
 import { createFormValidatorFactory } from "../setup.js";
-import type { ErrorsTransformerOptions } from "../errors.js";
 
 export const createAugmentedSchema: AugmentedSchemaFactory = (schema) => {
   // TODO: Turn records into partial records
@@ -37,17 +36,14 @@ export const adapt = createFormValidatorFactory({
   createAugmentedSchema,
   createFormValidator: (
     schemaRegistry,
-    options: Partial<
-      Omit<FormValidatorOptions, keyof ErrorsTransformerOptions>
-    > &
-      ErrorsTransformerOptions
+    options: Omit<FormValidatorOptions, "schemaRegistry" | "safeParse">
   ) =>
     createFormValidator(
       Object.setPrototypeOf(
         {
           safeParse,
           schemaRegistry,
-        } satisfies Omit<FormValidatorOptions, keyof ErrorsTransformerOptions>,
+        } satisfies FormValidatorOptions,
         options
       )
     ),
@@ -61,10 +57,10 @@ export const adaptAsync = createFormValidatorFactory({
   createAugmentedSchema,
   createFormValidator: (
     schemaRegistry,
-    options: Partial<
-      Omit<FormValidatorOptions, keyof ErrorsTransformerOptions>
-    > &
-      ErrorsTransformerOptions
+    options: Omit<
+      FormValidatorOptions,
+      "schemaRegistry" | "safeParse" | "safeParseAsync"
+    >
   ) =>
     createAsyncFormValidator(
       Object.setPrototypeOf(
@@ -72,10 +68,7 @@ export const adaptAsync = createFormValidatorFactory({
           safeParse,
           safeParseAsync,
           schemaRegistry,
-        } satisfies Omit<
-          AsyncFormValidatorOptions,
-          keyof ErrorsTransformerOptions
-        >,
+        } satisfies AsyncFormValidatorOptions,
         options
       )
     ),

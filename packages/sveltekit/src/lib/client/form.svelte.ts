@@ -1,13 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { isRecord } from '@sjsf/form/lib/object';
-import type { Validator } from '@sjsf/form/core';
-import {
-  createForm,
-  groupErrors,
-  type Schema,
-  type FormOptions,
-  type PossibleError
-} from '@sjsf/form';
+import { createForm, groupErrors, type Schema, type FormOptions } from '@sjsf/form';
 
 import { page } from '$app/state';
 
@@ -26,19 +19,16 @@ type SchemaOption<SendSchema> = SendSchema extends true
 
 export type SvelteKitFormOptions<
   T,
-  V extends Validator,
   SendSchema extends boolean,
-  ToOmit extends keyof FormOptions<T, V> = never
-> = Omit<FormOptions<T, V>, 'schema' | ToOmit> & SchemaOption<SendSchema>;
+  ToOmit extends keyof FormOptions<T> = never
+> = Omit<FormOptions<T>, 'schema' | ToOmit> & SchemaOption<SendSchema>;
 
 function initialFormData<Meta extends SvelteKitFormMeta<any, any, string, any>>(
   meta: Meta
-):
-  | InitialFormData<Meta['__formValue'], Meta['__validationError'], Meta['__sendSchema']>
-  | undefined {
+): InitialFormData<Meta['__formValue'], Meta['__sendSchema']> | undefined {
   if (isRecord(page.form)) {
     const validationData = page.form[meta.name] as
-      | ValidatedFormData<Meta['__validationError'], Meta['__sendData']>
+      | ValidatedFormData<Meta['__sendData']>
       | undefined;
     if (validationData !== undefined) {
       return validationData.isValid
@@ -56,7 +46,7 @@ function initialFormData<Meta extends SvelteKitFormMeta<any, any, string, any>>(
 
 export function createSvelteKitForm<
   Meta extends SvelteKitFormMeta<any, any, string, any>,
-  Options extends SvelteKitFormOptions<Meta['__formValue'], Validator, Meta['__sendSchema']>
+  Options extends SvelteKitFormOptions<Meta['__formValue'], Meta['__sendSchema']>
 >(meta: Meta, options: Options) {
   const defaults = initialFormData(meta) ?? {};
   const form = createForm(
@@ -70,14 +60,14 @@ export function createSvelteKitForm<
         }
         return Reflect.get(target, p, receiver);
       }
-    }) as unknown as FormOptions<Meta['__formValue'], ReturnType<Options['createValidator']>>
+    }) as unknown as FormOptions<Meta['__formValue']>
   );
   $effect(() => {
     if (!isRecord(page.form)) {
       return;
     }
     const validationData = page.form[meta.name] as
-      | ValidatedFormData<PossibleError<ReturnType<Options['createValidator']>>, Meta['__sendData']>
+      | ValidatedFormData<Meta['__sendData']>
       | undefined;
     if (validationData === undefined) {
       return;
@@ -85,13 +75,13 @@ export function createSvelteKitForm<
     if (validationData.sendData && form.isSubmitted) {
       form.value = validationData.data;
     }
-    form.errors = groupErrors(validationData.errors);
+    form.errors = groupErrors(form, validationData.errors);
   });
   return form;
 }
 
 export type SvelteKitFormSetupOptions<Meta extends SvelteKitFormMeta<any, any, string, any>> =
-  SvelteKitFormOptions<Meta['__formValue'], Validator, Meta['__sendSchema'], 'onSubmit'> &
+  SvelteKitFormOptions<Meta['__formValue'], Meta['__sendSchema'], 'onSubmit'> &
     SveltekitRequestOptions<Meta['__actionData'], Meta['__formValue']>;
 
 export function setupSvelteKitForm<

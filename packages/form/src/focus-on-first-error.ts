@@ -1,7 +1,7 @@
 import { tick } from "svelte";
 
 import {
-  type FieldErrorsMap,
+  type FormErrorsMap,
   type FormValue,
   type Id,
   type FormState,
@@ -55,11 +55,11 @@ export function getFocusAction(
 export function createFocusOnFirstError(
   options: GetFocusableElementOptions = {}
 ) {
-  return <E>(
-    errors: FieldErrorsMap<E>,
+  return (
+    errors: FormErrorsMap,
     e: SubmitEvent,
     _: FormValue,
-    ctx: FormState<any, any>
+    ctx: FormState<any>
   ) => {
     if (errors.size === 0) {
       return false;

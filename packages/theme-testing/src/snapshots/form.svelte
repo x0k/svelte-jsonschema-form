@@ -4,10 +4,9 @@
     createForm,
     setFormContext,
     type FormOptions,
-    type Validator,
   } from "@sjsf/form";
 
-  const props: FormOptions<any, Validator> = $props();
+  const props: FormOptions<any> = $props();
 
   const form = createForm(props);
   setFormContext(form);

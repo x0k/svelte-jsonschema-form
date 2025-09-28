@@ -23,7 +23,5 @@ export const createValidator = (options: ValidatorFactoryOptions) =>
 import { addBuilderFormats } from "$lib/ajv.js";
 
 export const validator = createFormValidator({
-  idBuilder: createIdBuilder(),
-  uiSchema: {},
   ajvPlugins: (ajv) => addFormComponents(addBuilderFormats(ajv)),
 });

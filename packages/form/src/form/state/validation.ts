@@ -1,39 +1,30 @@
-import type { Validator } from "@/core/index.js";
-
 import type { Id } from "../id.js";
 import type { Config } from "../config.js";
 import {
-  AdditionalPropertyKeyError,
-  FileListValidationError,
-  type FieldError,
-  type PossibleError,
-} from "../errors.js";
-import {
   isAdditionalPropertyKeyValidator,
   isAsyncFileListValidator,
+  type ValidationError,
 } from "../validator.js";
-import type { FormValue } from "../model.js";
-import { FORM_FIELDS_VALIDATION_MODE, FORM_VALIDATOR } from "../internals.js";
+import type { FormValue, Update } from "../model.js";
+import {
+  FORM_FIELDS_VALIDATION_MODE,
+  FORM_ID_BUILDER,
+  FORM_VALIDATOR,
+  internalGroupErrors,
+} from "../internals.js";
 import type { FormState } from "./state.js";
+import type { FormErrorsMap } from "../errors.js";
 
-export function getFieldsValidationMode<T, V extends Validator>(
-  ctx: FormState<T, V>
-) {
+export function getFieldsValidationMode<T>(ctx: FormState<T>) {
   return ctx[FORM_FIELDS_VALIDATION_MODE];
 }
 
-export function getErrors<T, V extends Validator>(
-  ctx: FormState<T, V>,
-  id: Id
-): FieldError<PossibleError<V>>[] {
+export function getErrors<T>(ctx: FormState<T>, id: Id): string[] {
   return ctx.errors.get(id) ?? [];
 }
 
-export function getErrorsForIds<T, V extends Validator>(
-  ctx: FormState<T, V>,
-  ids: Id[]
-): FieldError<PossibleError<V>>[] {
-  const errors: FieldError<PossibleError<V>>[] = [];
+export function getErrorsForIds<T>(ctx: FormState<T>, ids: Id[]): string[] {
+  const errors: string[] = [];
   for (let i = 0; i < ids.length; i++) {
     const errs = ctx.errors.get(ids[i]!);
     if (errs) {
@@ -45,32 +36,35 @@ export function getErrorsForIds<T, V extends Validator>(
   return errors;
 }
 
-export function validateField<T, V extends Validator>(
-  ctx: FormState<T, V>,
+export function validateField<T>(
+  ctx: FormState<T>,
   config: Config,
   value: FormValue
 ) {
   ctx.fieldsValidation.run(config, value);
 }
 
-function setErrors<T, V extends Validator>(
-  ctx: FormState<T, V>,
-  config: Config,
-  messages: string[],
-  error: () => PossibleError<V>
-) {
-  ctx.errors.set(
-    config.id,
-    messages.map((message) => ({
-      propertyTitle: config.title,
-      message,
-      error: error(),
-    }))
-  );
+// NOTE: The `errors` map must contain non-empty error lists
+// for the `errors.size > 0` check to be useful.
+export function updateErrors<T>(
+  ctx: FormState<T>,
+  id: Id,
+  errors: Update<string[]>
+): boolean {
+  if (typeof errors === "function") {
+    const arr = ctx.errors.get(id) ?? [];
+    errors = errors(arr);
+  }
+  if (errors.length > 0) {
+    ctx.errors.set(id, errors);
+  } else {
+    ctx.errors.delete(id);
+  }
+  return errors.length === 0;
 }
 
-export function validateAdditionalPropertyKey<T, V extends Validator>(
-  ctx: FormState<T, V>,
+export function validateAdditionalPropertyKey<T>(
+  ctx: FormState<T>,
   config: Config,
   key: string,
   fieldConfig: Config
@@ -79,19 +73,13 @@ export function validateAdditionalPropertyKey<T, V extends Validator>(
   if (!isAdditionalPropertyKeyValidator(validator)) {
     return true;
   }
-  const messages = validator.validateAdditionalPropertyKey(key, config.schema);
-  setErrors(
-    ctx,
-    fieldConfig,
-    messages,
-    () => new AdditionalPropertyKeyError() as PossibleError<V>
-  );
-  return messages.length === 0;
+  const errors = validator.validateAdditionalPropertyKey(key, config.schema);
+  return updateErrors(ctx, fieldConfig.id, errors);
 }
 
-export async function validateFileList<T, V extends Validator>(
+export async function validateFileList<T>(
   signal: AbortSignal,
-  ctx: FormState<T, V>,
+  ctx: FormState<T>,
   config: Config,
   fileList: FileList
 ) {
@@ -99,16 +87,17 @@ export async function validateFileList<T, V extends Validator>(
   if (!isAsyncFileListValidator(validator)) {
     return true;
   }
-  const messages = await validator.validateFileListAsync(
+  const errors = await validator.validateFileListAsync(
     signal,
     fileList,
     config
   );
-  setErrors(
-    ctx,
-    config,
-    messages,
-    () => new FileListValidationError() as PossibleError<V>
-  );
-  return messages.length === 0;
+  return updateErrors(ctx, config.id, errors);
+}
+
+export function groupErrors<T>(
+  ctx: FormState<T>,
+  errors: ValidationError[]
+): FormErrorsMap {
+  return internalGroupErrors(ctx[FORM_ID_BUILDER], errors);
 }

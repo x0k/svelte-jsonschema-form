@@ -12,13 +12,11 @@ that you are not using any deprecated APIs.
 Update your `defaults.ts` file:
 
 ```diff
-+ export { createFormIdBuilder as createIdBuilder } from "@sjsf/form/id-builders/legacy";
-+ export { createFormMerger as createMerger } from "@sjsf/form/mergers/legacy";
-
 - import { createFormValidator } from "@sjsf/ajv8-validator";
--
 - export const validator = createFormValidator();
 + export { createFormValidator as createValidator } from "@sjsf/ajv8-validator";
++ export { createFormIdBuilder as createIdBuilder } from "@sjsf/form/id-builders/legacy";
++ export { createFormMerger as createMerger } from "@sjsf/form/mergers/legacy";
 ```
 
 This change should be sufficient for migrating simple projects.
@@ -182,6 +180,10 @@ inputAttributes(ctx, config, "text", handlers, {
   type: "text",
 });
 ```
+
+### `Field` component update
+
+The `name` prop has been replaced with `path`.
 
 ### Other changes
 

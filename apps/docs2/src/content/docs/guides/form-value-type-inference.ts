@@ -16,12 +16,9 @@ const schema = {
   additionalProperties: false
 } as const satisfies Schema;
 
-const form = createForm({
+const form = createForm<FromSchema<typeof schema>>({
   ...defaults,
   schema,
-  onSubmit: (value: FromSchema<typeof schema>) => {
-    console.log(value)
-  }
 })
 
 // { text: string } | undefined

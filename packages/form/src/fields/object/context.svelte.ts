@@ -17,13 +17,9 @@ import {
   validateField,
   type Config,
   type Schema,
-  type Validator,
   validateAdditionalPropertyKey,
   retrieveSchema,
   getErrors,
-  type FieldError,
-  type PossibleError,
-  createPropertyId,
   retrieveUiSchema,
   type UiSchemaDefinition,
   type UiOption,
@@ -35,6 +31,7 @@ import {
   getFieldsValidationMode,
   setFieldState,
   FIELD_CHANGED,
+  idFromPath,
 } from "@/form/index.js";
 
 import {
@@ -43,8 +40,8 @@ import {
   createOriginalKeysOrder,
 } from "./model.js";
 
-export type ObjectContext<V extends Validator> = {
-  errors: () => FieldError<PossibleError<V>>[];
+export type ObjectContext = {
+  errors: () => string[];
   canExpand: () => boolean;
   propertiesOrder: () => string[];
   addProperty: () => void;
@@ -60,29 +57,29 @@ export type ObjectContext<V extends Validator> = {
 
 const OBJECT_CONTEXT = Symbol("object-context");
 
-export function getObjectContext<V extends Validator>(): ObjectContext<V> {
+export function getObjectContext(): ObjectContext {
   return getContext(OBJECT_CONTEXT);
 }
 
-export function setObjectContext<V extends Validator>(ctx: ObjectContext<V>) {
+export function setObjectContext(ctx: ObjectContext) {
   setContext(OBJECT_CONTEXT, ctx);
 }
 
-export interface ObjectContextOptions<T, V extends Validator> {
-  ctx: FormState<T, V>;
+export interface ObjectContextOptions<T> {
+  ctx: FormState<T>;
   config: () => Config;
   value: () => SchemaObjectValue | null | undefined;
   setValue: (value: SchemaObjectValue) => void;
   translate: Translate;
 }
 
-export function createObjectContext<T, V extends Validator>({
+export function createObjectContext<T>({
   ctx,
   config,
   value,
   setValue,
   translate,
-}: ObjectContextOptions<T, V>): ObjectContext<V> {
+}: ObjectContextOptions<T>): ObjectContext {
   // NOTE: This is required for computing a schema which will include all
   // additional properties in the `properties` field with the
   // `ADDITIONAL_PROPERTY_FLAG` flag and `dependencies` resolution.
@@ -198,8 +195,10 @@ export function createObjectContext<T, V extends Validator>({
           ? config.uiSchema.additionalProperties
           : (config.uiSchema[property] as UiSchemaDefinition | undefined)
       );
+      const path = config.path.concat(property);
       return {
-        id: createPropertyId(ctx, config.id, property),
+        path,
+        id: idFromPath(ctx, path),
         title: uiTitleOption(ctx, uiSchema) ?? schema.title ?? property,
         schema,
         uiSchema,
