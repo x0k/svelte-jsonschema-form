@@ -10,8 +10,8 @@ import { schema, uiSchema } from './model.js';
 const handleForm = createFormHandler({
   schema,
   uiSchema,
-  createValidator: createFormValidator,
-  createMerger: createFormMerger,
+  validator: createFormValidator,
+  merger: createFormMerger,
   sendData: true
 });
 
