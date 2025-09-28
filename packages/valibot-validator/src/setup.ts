@@ -21,7 +21,7 @@ function createFormValidatorFactory<O, V extends Validator>({
     valibotSchema: ValibotSchema
   ): {
     schemaRegistry: ReturnType<typeof createSchemaRegistry>;
-    createValidator: (options?: Partial<O>) => V;
+    validator: (options?: Partial<O>) => V;
     schema: Schema;
   } => {
     const schemaRegistry = createSchemaRegistry();
@@ -32,7 +32,7 @@ function createFormValidatorFactory<O, V extends Validator>({
     return {
       schemaRegistry,
       schema,
-      createValidator: (options = {}) =>
+      validator: (options = {}) =>
         createFormValidator(schemaRegistry, options),
     };
   };

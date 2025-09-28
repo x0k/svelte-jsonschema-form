@@ -17,7 +17,7 @@ export function createFormValidatorFactory<O, V extends Validator>({
     zodSchema: $ZodType
   ): {
     schemaRegistry: ReturnType<typeof createSchemaRegistry>;
-    createValidator: (options?: Partial<O>) => V;
+    validator: (options?: Partial<O>) => V;
     schema: Schema;
   } => {
     const schemaRegistry = createSchemaRegistry({ createAugmentedSchema });
@@ -28,7 +28,7 @@ export function createFormValidatorFactory<O, V extends Validator>({
     }) as Schema;
     return {
       schemaRegistry,
-      createValidator: (options = {}) =>
+      validator: (options = {}) =>
         createFormValidator(schemaRegistry, options),
       schema,
     };
