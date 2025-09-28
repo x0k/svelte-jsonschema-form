@@ -9,15 +9,14 @@
 
   const form = createForm({
     ...defaults,
-    createValidator: (options) =>
-      Object.assign(
-        defaults.createValidator(options),
-        createFileSizeValidator(
-          ({ file, maxSizeBytes }) =>
-            `File ${file.name} is too large, max file size ${formatFileSize(maxSizeBytes)}`,
-          options
-        )
+    validator: (options) => ({
+      ...defaults.validator(options),
+      ...createFileSizeValidator(
+        ({ file, maxSizeBytes }) =>
+          `File ${file.name} is too large, max file size ${formatFileSize(maxSizeBytes)}`,
+        options
       ),
+    }),
     schema: {
       type: "string",
       title: "File",

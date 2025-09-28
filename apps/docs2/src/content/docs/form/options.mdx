@@ -53,20 +53,21 @@ export interface GetSnapshotOptions {
 }
 
 // from '@sjsf/form/lib/svelte.svelte'
-type Bind<T> = [get: () => T, set: (v: T) => void];
+export type Bind<T> = [get: () => T, set: (v: T) => void];
 
-type Factory<Options, Result> =
+export type Creatable<Result, Options> =
   | ((options: Options) => Result)
-  | (() => Result);
+  | (() => Result)
+  | Result;
 
 export interface FormOptions<T> extends UiOptionsRegistryOption {
   schema: Schema;
   theme: Theme;
   translation: Translation;
   resolver: (ctx: FormState<T>) => ResolveFieldType;
-  createIdBuilder: Factory<IdBuilderFactoryOptions, FormIdBuilder>;
-  createValidator: Factory<ValidatorFactoryOptions, Validator>;
-  createMerger: Factory<MergerFactoryOptions, FormMerger>;
+  idBuilder: Creatable<FormIdBuilder, IdBuilderFactoryOptions>;
+  validator: Creatable<Validator, ValidatorFactoryOptions>;
+  merger: Creatable<FormMerger, MergerFactoryOptions>;
   /**
    * @default DEFAULT_ID_PREFIX
    */

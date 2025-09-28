@@ -1,7 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { isSchemaObject } from "@sjsf/form/lib/json-schema";
 import { createAugmentSchema, isSchemaWithProperties } from "@sjsf/form/core";
-import { createFormIdBuilder } from "@sjsf/form/id-builders/legacy";
 import { z as zz } from "zod/v4";
 import { z as zm } from "zod/v4-mini";
 
@@ -13,16 +12,13 @@ describe("FormValidator", () => {
     ["classic", setupAsyncFormValidatorClassic, zz],
     ["mini", setupFormValidatorMini, zm],
   ])("should correctly match options (%s)", (_, setupFormValidator, z) => {
-    const { createValidator, schema } = setupFormValidator(
+    const { validator: createValidator, schema } = setupFormValidator(
       z.union([
         z.object({ foo: z.string() }),
         z.object({ bar: z.string(), baz: z.number() }),
       ])
     );
-    const validator = createValidator({
-      idBuilder: createFormIdBuilder(),
-      uiSchema: {},
-    });
+    const validator = createValidator();
     expect(validator.isValid(schema, schema, {})).toBe(false);
     expect(validator.isValid(schema, schema, { foo: "foo" })).toBe(true);
     expect(validator.isValid(schema, schema, { bar: "bar" })).toBe(false);
@@ -51,7 +47,7 @@ describe("FormValidator", () => {
     ["classic", setupAsyncFormValidatorClassic, zz],
     ["mini", setupFormValidatorMini, zm],
   ])("should use augmented schema", (_, setupFormValidator, z) => {
-    const { createValidator, schema } = setupFormValidator(
+    const { validator: createValidator, schema } = setupFormValidator(
       z.union([
         z.object({ foo: z.string() }),
         z.object({ bar: z.string(), baz: z.number() }),
@@ -69,10 +65,7 @@ describe("FormValidator", () => {
       throw new Error(`Invalid 'anyOf' items '${JSON.stringify(schema)}'`);
     }
     const firstAg = createAugmentSchema(first);
-    const validator = createValidator({
-      idBuilder: createFormIdBuilder(),
-      uiSchema: {},
-    });
+    const validator = createValidator();
     expect(validator.isValid(firstAg, schema, {})).toBe(false);
     expect(validator.isValid(firstAg, schema, { foo: "foo" })).toBe(true);
     const secondAg = createAugmentSchema(second);

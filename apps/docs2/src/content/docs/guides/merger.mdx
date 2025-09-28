@@ -22,7 +22,7 @@ The following configuration will work for most projects:
 import { createFormMerger } from "@sjsf/form/mergers/modern";
 
 const form = createForm({
-  createMerger: createFormMerger,
+  merger: createFormMerger,
   // ... other form options
 });
 ```
@@ -48,7 +48,7 @@ Sometimes you need to override properties of a referenced schema. For example, w
 import { createFormMerger } from "@sjsf/form/mergers/modern";
 import { mergeSchemas } from "@sjsf/form/mergers/legacy";
 
-const createMerger = (options: MergerFactoryOptions) => {
+export const merger = (options: MergerFactoryOptions) => {
   return {
     ...createFormMerger(options),
     mergeSchemas,
@@ -62,7 +62,7 @@ const createMerger = (options: MergerFactoryOptions) => {
 import { createMerger as createJsonSchemaMerger } from "@sjsf/lib/json-schema";
 import { createFormMerger } from "@sjsf/form/mergers/modern";
 
-export const createMerger = (options: MergerFactoryOptions) => createFormMerger({
+export const merger = (options: MergerFactoryOptions) => createFormMerger({
   ...options,
   jsonSchemaMerger: createJsonSchemaMerger({
     mergers: {
@@ -73,7 +73,9 @@ export const createMerger = (options: MergerFactoryOptions) => createFormMerger(
 ```
 
 :::caution[Property Override Behavior]
+
 When using the custom property merger approach, the `title` property will always receive the last non-`undefined` value in the merge chain.
+
 :::
 
 ### Handling `allOf` Keyword
@@ -93,7 +95,7 @@ import { createFormMerger } from "@sjsf/form/mergers/modern";
 
 const { compareSchemaValues, compareSchemaDefinitions } = createComparator();
 
-export const createMerger = (options: MergerFactoryOptions) => createFormMerger({
+export const merger = (options: MergerFactoryOptions) => createFormMerger({
   ...options,
   jsonSchemaMerger: createJsonSchemaMerger({
     intersectJson: createIntersector(compareSchemaValues),
@@ -132,7 +134,7 @@ The legacy merger requires additional dependencies:
 import { createFormMerger } from "@sjsf/form/mergers/legacy";
 
 const form = createForm({
-  createMerger: createFormMerger,
+  merger: createFormMerger,
   // ... other form options
 });
 ```

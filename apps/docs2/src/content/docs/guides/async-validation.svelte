@@ -35,7 +35,7 @@
 
   const form = createForm({
     ...defaults,
-    createValidator: (options) => createAsyncFormValidator({ ...options, ajv }),
+    validator: (options) => createAsyncFormValidator({ ...options, ajv }),
     schema,
     fieldsValidationMode: ON_INPUT,
     onSubmit: console.log,

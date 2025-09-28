@@ -138,7 +138,7 @@ exports[`array fields > array icons 1`] = `
               <!---->
               <label
                 class="fieldset-legend"
-                for="root.0"
+                for="root@0"
               >
                 -1 
                 *
@@ -158,10 +158,10 @@ exports[`array fields > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
+                aria-describedby="root@0::description root@0::help root@0::errors"
                 class="input input-bordered w-full"
-                id="root.0"
-                name="root.0"
+                id="root@0"
+                name="root@0"
                 required=""
                 type="text"
               />
@@ -299,7 +299,7 @@ exports[`array fields > array icons 1`] = `
               <!---->
               <label
                 class="fieldset-legend"
-                for="root.1"
+                for="root@1"
               >
                 -2 
                 *
@@ -319,10 +319,10 @@ exports[`array fields > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
+                aria-describedby="root@1::description root@1::help root@1::errors"
                 class="input input-bordered w-full"
-                id="root.1"
-                name="root.1"
+                id="root@1"
+                name="root@1"
                 required=""
                 type="text"
               />
@@ -746,10 +746,10 @@ exports[`array fields > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
+                aria-describedby="root@0::description root@0::help root@0::errors"
                 class="input input-bordered w-full"
-                id="root.0"
-                name="root.0"
+                id="root@0"
+                name="root@0"
                 required=""
                 type="text"
               />
@@ -822,10 +822,10 @@ exports[`array fields > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
+                aria-describedby="root@1::description root@1::help root@1::errors"
                 class="w-full input input-bordered"
-                id="root.1"
-                name="root.1"
+                id="root@1"
+                name="root@1"
                 required=""
                 step="any"
                 type="number"
@@ -1094,7 +1094,7 @@ exports[`with title and description > array icons 1`] = `
               <!---->
               <label
                 class="fieldset-legend"
-                for="root.0"
+                for="root@0"
               >
                 Test item-1 
                 *
@@ -1106,7 +1106,7 @@ exports[`with title and description > array icons 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.0::description"
+                id="root@0::description"
               >
                 a test item description
               </p>
@@ -1122,10 +1122,10 @@ exports[`with title and description > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
+                aria-describedby="root@0::description root@0::help root@0::errors"
                 class="input input-bordered w-full"
-                id="root.0"
-                name="root.0"
+                id="root@0"
+                name="root@0"
                 required=""
                 type="text"
               />
@@ -1263,7 +1263,7 @@ exports[`with title and description > array icons 1`] = `
               <!---->
               <label
                 class="fieldset-legend"
-                for="root.1"
+                for="root@1"
               >
                 Test item-2 
                 *
@@ -1275,7 +1275,7 @@ exports[`with title and description > array icons 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.1::description"
+                id="root@1::description"
               >
                 a test item description
               </p>
@@ -1291,10 +1291,10 @@ exports[`with title and description > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
+                aria-describedby="root@1::description root@1::help root@1::errors"
                 class="input input-bordered w-full"
-                id="root.1"
-                name="root.1"
+                id="root@1"
+                name="root@1"
                 required=""
                 type="text"
               />
@@ -1570,7 +1570,7 @@ exports[`with title and description > fixed array 1`] = `
               <!---->
               <label
                 class="fieldset-legend"
-                for="root.0"
+                for="root@0"
               >
                 Test item 
                 *
@@ -1582,7 +1582,7 @@ exports[`with title and description > fixed array 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.0::description"
+                id="root@0::description"
               >
                 a test item description
               </p>
@@ -1598,10 +1598,10 @@ exports[`with title and description > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
+                aria-describedby="root@0::description root@0::help root@0::errors"
                 class="input input-bordered w-full"
-                id="root.0"
-                name="root.0"
+                id="root@0"
+                name="root@0"
                 required=""
                 type="text"
               />
@@ -1674,7 +1674,7 @@ exports[`with title and description > fixed array 1`] = `
               <!---->
               <label
                 class="fieldset-legend"
-                for="root.1"
+                for="root@1"
               >
                 Test item 
                 *
@@ -1686,7 +1686,7 @@ exports[`with title and description > fixed array 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.1::description"
+                id="root@1::description"
               >
                 a test item description
               </p>
@@ -1702,10 +1702,10 @@ exports[`with title and description > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
+                aria-describedby="root@1::description root@1::help root@1::errors"
                 class="w-full input input-bordered"
-                id="root.1"
-                name="root.1"
+                id="root@1"
+                name="root@1"
                 required=""
                 step="any"
                 type="number"
@@ -1974,7 +1974,7 @@ exports[`with title and description from both > array icons 1`] = `
               <!---->
               <label
                 class="fieldset-legend"
-                for="root.0"
+                for="root@0"
               >
                 My Item-1 
                 *
@@ -1986,7 +1986,7 @@ exports[`with title and description from both > array icons 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.0::description"
+                id="root@0::description"
               >
                 a fancier item description
               </p>
@@ -2002,10 +2002,10 @@ exports[`with title and description from both > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
+                aria-describedby="root@0::description root@0::help root@0::errors"
                 class="input input-bordered w-full"
-                id="root.0"
-                name="root.0"
+                id="root@0"
+                name="root@0"
                 required=""
                 type="text"
               />
@@ -2143,7 +2143,7 @@ exports[`with title and description from both > array icons 1`] = `
               <!---->
               <label
                 class="fieldset-legend"
-                for="root.1"
+                for="root@1"
               >
                 My Item-2 
                 *
@@ -2155,7 +2155,7 @@ exports[`with title and description from both > array icons 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.1::description"
+                id="root@1::description"
               >
                 a fancier item description
               </p>
@@ -2171,10 +2171,10 @@ exports[`with title and description from both > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
+                aria-describedby="root@1::description root@1::help root@1::errors"
                 class="input input-bordered w-full"
-                id="root.1"
-                name="root.1"
+                id="root@1"
+                name="root@1"
                 required=""
                 type="text"
               />
@@ -2450,7 +2450,7 @@ exports[`with title and description from both > fixed array 1`] = `
               <!---->
               <label
                 class="fieldset-legend"
-                for="root.0"
+                for="root@0"
               >
                 My Item 
                 *
@@ -2462,7 +2462,7 @@ exports[`with title and description from both > fixed array 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.0::description"
+                id="root@0::description"
               >
                 a fancier item description
               </p>
@@ -2478,10 +2478,10 @@ exports[`with title and description from both > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
+                aria-describedby="root@0::description root@0::help root@0::errors"
                 class="input input-bordered w-full"
-                id="root.0"
-                name="root.0"
+                id="root@0"
+                name="root@0"
                 required=""
                 type="text"
               />
@@ -2554,7 +2554,7 @@ exports[`with title and description from both > fixed array 1`] = `
               <!---->
               <label
                 class="fieldset-legend"
-                for="root.1"
+                for="root@1"
               >
                 My Item 
                 *
@@ -2566,7 +2566,7 @@ exports[`with title and description from both > fixed array 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.1::description"
+                id="root@1::description"
               >
                 a fancier item description
               </p>
@@ -2582,10 +2582,10 @@ exports[`with title and description from both > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
+                aria-describedby="root@1::description root@1::help root@1::errors"
                 class="w-full input input-bordered"
-                id="root.1"
-                name="root.1"
+                id="root@1"
+                name="root@1"
                 required=""
                 step="any"
                 type="number"
@@ -2854,7 +2854,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               <!---->
               <label
                 class="fieldset-legend"
-                for="root.0"
+                for="root@0"
               >
                 My Item-1 
                 *
@@ -2866,7 +2866,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.0::description"
+                id="root@0::description"
               >
                 a fancier item description
               </p>
@@ -2882,10 +2882,10 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
+                aria-describedby="root@0::description root@0::help root@0::errors"
                 class="input input-bordered w-full"
-                id="root.0"
-                name="root.0"
+                id="root@0"
+                name="root@0"
                 required=""
                 type="text"
               />
@@ -3023,7 +3023,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               <!---->
               <label
                 class="fieldset-legend"
-                for="root.1"
+                for="root@1"
               >
                 My Item-2 
                 *
@@ -3035,7 +3035,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.1::description"
+                id="root@1::description"
               >
                 a fancier item description
               </p>
@@ -3051,10 +3051,10 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
+                aria-describedby="root@1::description root@1::help root@1::errors"
                 class="input input-bordered w-full"
-                id="root.1"
-                name="root.1"
+                id="root@1"
+                name="root@1"
                 required=""
                 type="text"
               />
@@ -3330,7 +3330,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
               <!---->
               <label
                 class="fieldset-legend"
-                for="root.0"
+                for="root@0"
               >
                 My Item 
                 *
@@ -3342,7 +3342,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.0::description"
+                id="root@0::description"
               >
                 a fancier item description
               </p>
@@ -3358,10 +3358,10 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
+                aria-describedby="root@0::description root@0::help root@0::errors"
                 class="input input-bordered w-full"
-                id="root.0"
-                name="root.0"
+                id="root@0"
+                name="root@0"
                 required=""
                 type="text"
               />
@@ -3434,7 +3434,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
               <!---->
               <label
                 class="fieldset-legend"
-                for="root.1"
+                for="root@1"
               >
                 My Item 
                 *
@@ -3446,7 +3446,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
               <!---->
               <p
                 class="fieldset-label"
-                id="root.1::description"
+                id="root@1::description"
               >
                 a fancier item description
               </p>
@@ -3462,10 +3462,10 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
+                aria-describedby="root@1::description root@1::help root@1::errors"
                 class="w-full input input-bordered"
-                id="root.1"
-                name="root.1"
+                id="root@1"
+                name="root@1"
                 required=""
                 step="any"
                 type="number"
@@ -3682,10 +3682,10 @@ exports[`with title and description with global label off > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
+                aria-describedby="root@0::description root@0::help root@0::errors"
                 class="input input-bordered w-full"
-                id="root.0"
-                name="root.0"
+                id="root@0"
+                name="root@0"
                 required=""
                 type="text"
               />
@@ -3823,10 +3823,10 @@ exports[`with title and description with global label off > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
+                aria-describedby="root@1::description root@1::help root@1::errors"
                 class="input input-bordered w-full"
-                id="root.1"
-                name="root.1"
+                id="root@1"
+                name="root@1"
                 required=""
                 type="text"
               />
@@ -4076,10 +4076,10 @@ exports[`with title and description with global label off > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
+                aria-describedby="root@0::description root@0::help root@0::errors"
                 class="input input-bordered w-full"
-                id="root.0"
-                name="root.0"
+                id="root@0"
+                name="root@0"
                 required=""
                 type="text"
               />
@@ -4152,10 +4152,10 @@ exports[`with title and description with global label off > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
+                aria-describedby="root@1::description root@1::help root@1::errors"
                 class="w-full input input-bordered"
-                id="root.1"
-                name="root.1"
+                id="root@1"
+                name="root@1"
                 required=""
                 step="any"
                 type="number"

@@ -17,7 +17,7 @@ You can easily extend/modify the validator to suit your needs.
 import type { FormValueValidator } from "@sjsf/form";
 import { createFormValidator } from "@sjsf/ajv8-validator";
 
-export function createValidator() {
+export function validator() {
   const validator = createFormValidator();
   return {
     ...validator,

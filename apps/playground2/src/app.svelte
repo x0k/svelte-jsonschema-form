@@ -139,7 +139,7 @@
     }
     return count;
   });
-  const resolver = $derived(resolvers[data.resolver]);
+
   const { compareSchemaDefinitions, compareSchemaValues } = createComparator();
   const jsonSchemaMerger = createMerger({
     intersectJson: createIntersector(compareSchemaValues),
@@ -157,9 +157,9 @@
 
   const focusOnFirstError = createFocusOnFirstError();
   const form = createForm({
-    createIdBuilder: createFormIdBuilder,
+    idBuilder: createFormIdBuilder,
     get resolver() {
-      return resolver;
+      return resolvers[data.resolver];
     },
     value: [
       () => data.initialValue,
@@ -177,10 +177,10 @@
     get uiSchema() {
       return data.uiSchema;
     },
-    get createValidator() {
+    get validator() {
       return validators[data.validator];
     },
-    createMerger: (options) =>
+    merger: (options) =>
       createFormMerger({
         ...options,
         jsonSchemaMerger,

@@ -22,8 +22,8 @@
     },
     required: ["text"],
   }}
-  createMerger={createFormMerger}
-  createIdBuilder={createFormIdBuilder}
-  createValidator={() => ({ isValid: () => true })}
+  merger={createFormMerger}
+  idBuilder={createFormIdBuilder}
+  validator={() => ({ isValid: () => true })}
   onSubmit={(v: { text: string }) => window.alert(v.text)}
 />

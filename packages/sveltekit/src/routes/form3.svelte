@@ -24,8 +24,8 @@
   {theme}
   {resolver}
   {translation}
-  createIdBuilder={createFormIdBuilder}
-  createValidator={(options) =>
+  idBuilder={createFormIdBuilder}
+  validator={(options) =>
     Object.assign(
       createFormValidator(options),
       createAdditionalPropertyKeyValidator({
@@ -34,7 +34,7 @@
         }
       })
     )}
-  createMerger={createFormMerger}
+  merger={createFormMerger}
   onSubmitError={console.warn}
   onSuccess={console.log}
   onFailure={console.error}

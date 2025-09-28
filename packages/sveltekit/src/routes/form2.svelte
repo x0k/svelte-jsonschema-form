@@ -34,8 +34,8 @@
     resolver,
     translation,
     onSubmitError: console.warn,
-    createIdBuilder: createFormIdBuilder,
-    createValidator: (options) =>
+    idBuilder: createFormIdBuilder,
+    validator: (options) =>
       Object.assign(
         createFormValidator(options),
         createAdditionalPropertyKeyValidator({
@@ -44,7 +44,7 @@
           }
         })
       ),
-    createMerger: createFormMerger
+    merger: createFormMerger
   });
 </script>
 

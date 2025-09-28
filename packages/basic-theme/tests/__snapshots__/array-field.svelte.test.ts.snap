@@ -112,7 +112,7 @@ exports[`array fields > array icons 1`] = `
               <!---->
               <!---->
               <label
-                for="root.0"
+                for="root@0"
                 style="font-weight: bold;"
               >
                 -1 
@@ -140,9 +140,9 @@ exports[`array fields > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
-                id="root.0"
-                name="root.0"
+                aria-describedby="root@0::description root@0::help root@0::errors"
+                id="root@0"
+                name="root@0"
                 required=""
                 style="flex-grow: 1;"
                 type="text"
@@ -277,7 +277,7 @@ exports[`array fields > array icons 1`] = `
               <!---->
               <!---->
               <label
-                for="root.1"
+                for="root@1"
                 style="font-weight: bold;"
               >
                 -2 
@@ -305,9 +305,9 @@ exports[`array fields > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
-                id="root.1"
-                name="root.1"
+                aria-describedby="root@1::description root@1::help root@1::errors"
+                id="root@1"
+                name="root@1"
                 required=""
                 style="flex-grow: 1;"
                 type="text"
@@ -666,9 +666,9 @@ exports[`array fields > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
-                id="root.0"
-                name="root.0"
+                aria-describedby="root@0::description root@0::help root@0::errors"
+                id="root@0"
+                name="root@0"
                 required=""
                 style="flex-grow: 1;"
                 type="text"
@@ -744,9 +744,9 @@ exports[`array fields > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
-                id="root.1"
-                name="root.1"
+                aria-describedby="root@1::description root@1::help root@1::errors"
+                id="root@1"
+                name="root@1"
                 required=""
                 step="any"
                 style="flex-grow: 1;"
@@ -979,7 +979,7 @@ exports[`with title and description > array icons 1`] = `
               <!---->
               <!---->
               <label
-                for="root.0"
+                for="root@0"
                 style="font-weight: bold;"
               >
                 Test item-1 
@@ -993,7 +993,7 @@ exports[`with title and description > array icons 1`] = `
                
               <!---->
               <div
-                id="root.0::description"
+                id="root@0::description"
                 style="font-weight: 300;"
               >
                 a test item description
@@ -1015,9 +1015,9 @@ exports[`with title and description > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
-                id="root.0"
-                name="root.0"
+                aria-describedby="root@0::description root@0::help root@0::errors"
+                id="root@0"
+                name="root@0"
                 required=""
                 style="flex-grow: 1;"
                 type="text"
@@ -1152,7 +1152,7 @@ exports[`with title and description > array icons 1`] = `
               <!---->
               <!---->
               <label
-                for="root.1"
+                for="root@1"
                 style="font-weight: bold;"
               >
                 Test item-2 
@@ -1166,7 +1166,7 @@ exports[`with title and description > array icons 1`] = `
                
               <!---->
               <div
-                id="root.1::description"
+                id="root@1::description"
                 style="font-weight: 300;"
               >
                 a test item description
@@ -1188,9 +1188,9 @@ exports[`with title and description > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
-                id="root.1"
-                name="root.1"
+                aria-describedby="root@1::description root@1::help root@1::errors"
+                id="root@1"
+                name="root@1"
                 required=""
                 style="flex-grow: 1;"
                 type="text"
@@ -1422,7 +1422,7 @@ exports[`with title and description > fixed array 1`] = `
               <!---->
               <!---->
               <label
-                for="root.0"
+                for="root@0"
                 style="font-weight: bold;"
               >
                 Test item 
@@ -1436,7 +1436,7 @@ exports[`with title and description > fixed array 1`] = `
                
               <!---->
               <div
-                id="root.0::description"
+                id="root@0::description"
                 style="font-weight: 300;"
               >
                 a test item description
@@ -1458,9 +1458,9 @@ exports[`with title and description > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
-                id="root.0"
-                name="root.0"
+                aria-describedby="root@0::description root@0::help root@0::errors"
+                id="root@0"
+                name="root@0"
                 required=""
                 style="flex-grow: 1;"
                 type="text"
@@ -1535,7 +1535,7 @@ exports[`with title and description > fixed array 1`] = `
               <!---->
               <!---->
               <label
-                for="root.1"
+                for="root@1"
                 style="font-weight: bold;"
               >
                 Test item 
@@ -1549,7 +1549,7 @@ exports[`with title and description > fixed array 1`] = `
                
               <!---->
               <div
-                id="root.1::description"
+                id="root@1::description"
                 style="font-weight: 300;"
               >
                 a test item description
@@ -1571,9 +1571,9 @@ exports[`with title and description > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
-                id="root.1"
-                name="root.1"
+                aria-describedby="root@1::description root@1::help root@1::errors"
+                id="root@1"
+                name="root@1"
                 required=""
                 step="any"
                 style="flex-grow: 1;"
@@ -1806,7 +1806,7 @@ exports[`with title and description from both > array icons 1`] = `
               <!---->
               <!---->
               <label
-                for="root.0"
+                for="root@0"
                 style="font-weight: bold;"
               >
                 My Item-1 
@@ -1820,7 +1820,7 @@ exports[`with title and description from both > array icons 1`] = `
                
               <!---->
               <div
-                id="root.0::description"
+                id="root@0::description"
                 style="font-weight: 300;"
               >
                 a fancier item description
@@ -1842,9 +1842,9 @@ exports[`with title and description from both > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
-                id="root.0"
-                name="root.0"
+                aria-describedby="root@0::description root@0::help root@0::errors"
+                id="root@0"
+                name="root@0"
                 required=""
                 style="flex-grow: 1;"
                 type="text"
@@ -1979,7 +1979,7 @@ exports[`with title and description from both > array icons 1`] = `
               <!---->
               <!---->
               <label
-                for="root.1"
+                for="root@1"
                 style="font-weight: bold;"
               >
                 My Item-2 
@@ -1993,7 +1993,7 @@ exports[`with title and description from both > array icons 1`] = `
                
               <!---->
               <div
-                id="root.1::description"
+                id="root@1::description"
                 style="font-weight: 300;"
               >
                 a fancier item description
@@ -2015,9 +2015,9 @@ exports[`with title and description from both > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
-                id="root.1"
-                name="root.1"
+                aria-describedby="root@1::description root@1::help root@1::errors"
+                id="root@1"
+                name="root@1"
                 required=""
                 style="flex-grow: 1;"
                 type="text"
@@ -2249,7 +2249,7 @@ exports[`with title and description from both > fixed array 1`] = `
               <!---->
               <!---->
               <label
-                for="root.0"
+                for="root@0"
                 style="font-weight: bold;"
               >
                 My Item 
@@ -2263,7 +2263,7 @@ exports[`with title and description from both > fixed array 1`] = `
                
               <!---->
               <div
-                id="root.0::description"
+                id="root@0::description"
                 style="font-weight: 300;"
               >
                 a fancier item description
@@ -2285,9 +2285,9 @@ exports[`with title and description from both > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
-                id="root.0"
-                name="root.0"
+                aria-describedby="root@0::description root@0::help root@0::errors"
+                id="root@0"
+                name="root@0"
                 required=""
                 style="flex-grow: 1;"
                 type="text"
@@ -2362,7 +2362,7 @@ exports[`with title and description from both > fixed array 1`] = `
               <!---->
               <!---->
               <label
-                for="root.1"
+                for="root@1"
                 style="font-weight: bold;"
               >
                 My Item 
@@ -2376,7 +2376,7 @@ exports[`with title and description from both > fixed array 1`] = `
                
               <!---->
               <div
-                id="root.1::description"
+                id="root@1::description"
                 style="font-weight: 300;"
               >
                 a fancier item description
@@ -2398,9 +2398,9 @@ exports[`with title and description from both > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
-                id="root.1"
-                name="root.1"
+                aria-describedby="root@1::description root@1::help root@1::errors"
+                id="root@1"
+                name="root@1"
                 required=""
                 step="any"
                 style="flex-grow: 1;"
@@ -2633,7 +2633,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               <!---->
               <!---->
               <label
-                for="root.0"
+                for="root@0"
                 style="font-weight: bold;"
               >
                 My Item-1 
@@ -2647,7 +2647,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                
               <!---->
               <div
-                id="root.0::description"
+                id="root@0::description"
                 style="font-weight: 300;"
               >
                 a fancier item description
@@ -2669,9 +2669,9 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
-                id="root.0"
-                name="root.0"
+                aria-describedby="root@0::description root@0::help root@0::errors"
+                id="root@0"
+                name="root@0"
                 required=""
                 style="flex-grow: 1;"
                 type="text"
@@ -2806,7 +2806,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               <!---->
               <!---->
               <label
-                for="root.1"
+                for="root@1"
                 style="font-weight: bold;"
               >
                 My Item-2 
@@ -2820,7 +2820,7 @@ exports[`with title and description from uiSchema > array icons 1`] = `
                
               <!---->
               <div
-                id="root.1::description"
+                id="root@1::description"
                 style="font-weight: 300;"
               >
                 a fancier item description
@@ -2842,9 +2842,9 @@ exports[`with title and description from uiSchema > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
-                id="root.1"
-                name="root.1"
+                aria-describedby="root@1::description root@1::help root@1::errors"
+                id="root@1"
+                name="root@1"
                 required=""
                 style="flex-grow: 1;"
                 type="text"
@@ -3076,7 +3076,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
               <!---->
               <!---->
               <label
-                for="root.0"
+                for="root@0"
                 style="font-weight: bold;"
               >
                 My Item 
@@ -3090,7 +3090,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                
               <!---->
               <div
-                id="root.0::description"
+                id="root@0::description"
                 style="font-weight: 300;"
               >
                 a fancier item description
@@ -3112,9 +3112,9 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
-                id="root.0"
-                name="root.0"
+                aria-describedby="root@0::description root@0::help root@0::errors"
+                id="root@0"
+                name="root@0"
                 required=""
                 style="flex-grow: 1;"
                 type="text"
@@ -3189,7 +3189,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
               <!---->
               <!---->
               <label
-                for="root.1"
+                for="root@1"
                 style="font-weight: bold;"
               >
                 My Item 
@@ -3203,7 +3203,7 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
                
               <!---->
               <div
-                id="root.1::description"
+                id="root@1::description"
                 style="font-weight: 300;"
               >
                 a fancier item description
@@ -3225,9 +3225,9 @@ exports[`with title and description from uiSchema > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
-                id="root.1"
-                name="root.1"
+                aria-describedby="root@1::description root@1::help root@1::errors"
+                id="root@1"
+                name="root@1"
                 required=""
                 step="any"
                 style="flex-grow: 1;"
@@ -3399,9 +3399,9 @@ exports[`with title and description with global label off > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
-                id="root.0"
-                name="root.0"
+                aria-describedby="root@0::description root@0::help root@0::errors"
+                id="root@0"
+                name="root@0"
                 required=""
                 style="flex-grow: 1;"
                 type="text"
@@ -3537,9 +3537,9 @@ exports[`with title and description with global label off > array icons 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
-                id="root.1"
-                name="root.1"
+                aria-describedby="root@1::description root@1::help root@1::errors"
+                id="root@1"
+                name="root@1"
                 required=""
                 style="flex-grow: 1;"
                 type="text"
@@ -3741,9 +3741,9 @@ exports[`with title and description with global label off > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.0::description root.0::help root.0::errors"
-                id="root.0"
-                name="root.0"
+                aria-describedby="root@0::description root@0::help root@0::errors"
+                id="root@0"
+                name="root@0"
                 required=""
                 style="flex-grow: 1;"
                 type="text"
@@ -3819,9 +3819,9 @@ exports[`with title and description with global label off > fixed array 1`] = `
               <!---->
               <!---->
               <input
-                aria-describedby="root.1::description root.1::help root.1::errors"
-                id="root.1"
-                name="root.1"
+                aria-describedby="root@1::description root@1::help root@1::errors"
+                id="root@1"
+                name="root@1"
                 required=""
                 step="any"
                 style="flex-grow: 1;"

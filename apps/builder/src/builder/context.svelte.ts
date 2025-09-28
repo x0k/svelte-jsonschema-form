@@ -1,5 +1,6 @@
 import { flushSync, getContext, onDestroy, setContext } from "svelte";
 import type { FormValue, Schema, UiSchema } from "@sjsf/form";
+import { addFormComponents, createFormValidator } from '@sjsf/ajv8-validator';
 import { DragDropManager, Draggable, Droppable } from "@dnd-kit/dom";
 import type { HighlighterCore } from "shiki/core";
 import {
@@ -34,12 +35,12 @@ import {
   isFileNode,
 } from "$lib/builder/index.js";
 import { mergeUiSchemas, Theme, type WidgetType } from "$lib/sjsf/theme.js";
-import { validator } from "$lib/form/defaults.js";
 import { Validator } from "$lib/sjsf/validators.js";
 import { Resolver } from "$lib/sjsf/resolver.js";
 import { Icons, ICONS_APP_CSS } from "$lib/sjsf/icons.js";
 import { highlight, type SupportedLanguage } from "$lib/shiki.js";
 import { mergeSchemas } from "$lib/json-schema.js";
+import { addBuilderFormats } from '$lib/ajv.js';
 
 import {
   type Route,
@@ -554,6 +555,9 @@ export class BuilderContext {
     if (this.rootNode === undefined) {
       return false;
     }
+    const validator = createFormValidator({
+      ajvPlugins: (ajv) => addFormComponents(addBuilderFormats(ajv)),
+    });
     const registries: {
       [K in keyof ValidatorRegistries]: Array<ValidatorRegistries[K]>;
     } = {

@@ -11,7 +11,7 @@
   const form = createForm({
     ...defaults,
     schema,
-    createValidator: createFormValidatorFactory({ validateFunctions }),
+    validator: createFormValidatorFactory({ validateFunctions }),
     fieldsValidationMode,
     resolver,
   });

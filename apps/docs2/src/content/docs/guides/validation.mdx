@@ -71,15 +71,13 @@ The form in the example above, will validate fields on `input` and `change` even
 
 ## Async validation
 
-The form supports asynchronous validation.
-
-:::note
-
-By default
+The form supports asynchronous validation. By default:
 
 - a new form validation process can only be started after the previous one is completed;
 - a new fields validation process aborts the previous one;
 - fields validation abort errors are not displayed.
+
+:::note
 
 You can change this behavior by passing the `submissionCombinator` and `fieldsValidationCombinator` options.
 

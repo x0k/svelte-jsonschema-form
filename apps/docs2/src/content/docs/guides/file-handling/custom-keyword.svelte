@@ -35,8 +35,8 @@
 
   const form = createForm({
     ...defaults,
-    createValidator: (options) =>
-      defaults.createValidator({
+    validator: (options) =>
+      defaults.validator({
         ...options,
         ajvPlugins: (ajv) => addKeywords(addFormComponents(ajv)),
       }),

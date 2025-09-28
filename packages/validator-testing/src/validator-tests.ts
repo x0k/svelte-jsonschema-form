@@ -1,9 +1,8 @@
 import {
-  DEFAULT_ID_PREFIX,
-  type Factory,
+  create,
+  type Creatable,
   type FormIdBuilder,
   type FormValueValidator,
-  type Id,
   type Schema,
   type UiOptionsRegistry,
   type UiSchemaRoot,
@@ -15,7 +14,7 @@ import { createFormMerger } from "@sjsf/form/mergers/modern";
 import { expect, it, describe } from "vitest";
 
 function createInitializer<V extends Validator>(
-  createValidator: Factory<ValidatorFactoryOptions, V>
+  createValidator: Creatable<V, ValidatorFactoryOptions>
 ) {
   return ({
     schema = {},
@@ -28,7 +27,7 @@ function createInitializer<V extends Validator>(
     idBuilder?: FormIdBuilder;
     uiOptionsRegistry?: UiOptionsRegistry;
   } = {}) => {
-    const validator = createValidator({
+    const validator = create(createValidator, {
       idBuilder,
       merger: () => merger,
       schema,
@@ -44,7 +43,7 @@ function createInitializer<V extends Validator>(
 }
 
 export function validatorTests(
-  createValidator: Factory<ValidatorFactoryOptions, Validator>
+  createValidator: Creatable<Validator, ValidatorFactoryOptions>
 ) {
   const init = createInitializer(createValidator);
   describe("Validator", () => {
@@ -71,29 +70,15 @@ export function validatorTests(
 }
 
 export function formValueValidatorTests(
-  createFormValueValidator: Factory<
-    ValidatorFactoryOptions,
-    FormValueValidator & Validator
+  createFormValueValidator: Creatable<
+    FormValueValidator & Validator,
+    ValidatorFactoryOptions
   >
 ) {
   const init = createInitializer(createFormValueValidator);
 
   describe("Form value validator", () => {
-    it("Should correctly recreate instanceId", () => {
-      const idBuilder: FormIdBuilder = {
-        ...createFormIdBuilder(),
-        fromPath(path) {
-          let id = DEFAULT_ID_PREFIX;
-          for (let p of path) {
-            if (typeof p === "number") {
-              id += "[" + p + "]";
-            } else {
-              id += "." + p;
-            }
-          }
-          return id as Id;
-        },
-      };
+    it("Should correctly infer path", () => {
       const schema: Schema = {
         type: "array",
         items: {
@@ -101,12 +86,11 @@ export function formValueValidatorTests(
           minLength: 10,
         },
       };
-      const { validator } = init({ schema, idBuilder });
+      const { validator } = init({ schema });
 
       const errors = validator.validateFormValue(schema, ["foo"]);
       const error = errors.find(
-        ({ path }) =>
-          path.length === 2 && path[0] === DEFAULT_ID_PREFIX && path[1] === 0
+        ({ path }) => path.length === 1 && path[0] === 0
       );
       expect(error).toBeDefined();
     });
