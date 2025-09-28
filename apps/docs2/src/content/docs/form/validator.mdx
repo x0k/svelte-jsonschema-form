@@ -14,8 +14,6 @@ Validator - a set of functions called by the form to check the data:
 You can easily extend/modify the validator to suit your needs.
 
 ```ts
-import type { ErrorObject } from "ajv";
-import { isSchemaObjectValue } from "@sjsf/form/core";
 import type { FormValueValidator } from "@sjsf/form";
 import { createFormValidator } from "@sjsf/ajv8-validator";
 
@@ -28,7 +26,7 @@ export function createValidator() {
       // Your logic
       return errors
     },
-  } satisfies FormValueValidator<ErrorObject>;
+  } satisfies FormValueValidator;
 }
 ```
 
@@ -43,52 +41,62 @@ export interface Validator {
   ): boolean;
 }
 
-export interface ValidationError<E> {
-  instanceId: Id;
-  propertyTitle: string;
+export interface ValidationError {
+  path: Path;
   message: string;
-  error: E;
 }
 
-export interface FormValueValidator<E> {
+export interface FormValueValidator {
   validateFormValue: (
     rootSchema: Schema,
     formValue: FormValue
-  ) => ValidationError<E>[];
+  ) => ValidationError[];
 }
 
-export interface AsyncFormValueValidator<E> {
+export interface AsyncFormValueValidator {
   validateFormValueAsync: (
     signal: AbortSignal,
     rootSchema: Schema,
     formValue: FormValue
-  ) => Promise<ValidationError<E>[]>;
+  ) => Promise<ValidationError[]>;
 }
 
-export type AnyFormValueValidator<E> =
-  | FormValueValidator<E>
-  | AsyncFormValueValidator<E>;
+export type AnyFormValueValidator =
+  | FormValueValidator
+  | AsyncFormValueValidator;
 
-export interface FieldValueValidator<E> {
+export type Update<T> = T | ((data: T) => T);
+
+export interface FieldValueValidator {
   validateFieldValue: (
     field: Config,
     fieldValue: FieldValue
-  ) => ValidationError<E>[];
+  ) => Update<string[]>;
 }
 
-export interface AsyncFieldValueValidator<E> {
+export interface AsyncFieldValueValidator {
   validateFieldValueAsync: (
     signal: AbortSignal,
     field: Config,
     fieldValue: FieldValue
-  ) => Promise<ValidationError<E>[]>;
+  ) => Promise<Update<string[]>>;
 }
 
-export type AnyFieldValueValidator<E> =
-  | FieldValueValidator<E>
-  | AsyncFieldValueValidator<E>;
+export type AnyFieldValueValidator =
+  | FieldValueValidator
+  | AsyncFieldValueValidator;
 
 export interface AdditionalPropertyKeyValidator {
-  validateAdditionalPropertyKey: (key: string, schema: Schema) => string[];
+  validateAdditionalPropertyKey: (
+    key: string,
+    schema: Schema
+  ) => Update<string[]>;
 }
-```
+
+export interface AsyncFileListValidator {
+  validateFileListAsync: (
+    signal: AbortSignal,
+    fileList: FileList,
+    config: Config
+  ) => Promise<Update<string[]>>;
+}

@@ -22,10 +22,10 @@
     additionalProperties: false,
   } as const satisfies Schema;
 
-  const form = createForm({
+  const form = createForm<FromSchema<typeof schema>>({
     ...defaults,
     schema,
-    onSubmit(value: FromSchema<typeof schema>) {
+    onSubmit(value) {
       console.log(value);
     },
   });
@@ -36,10 +36,10 @@
   {@attach handlers(form)}
   style="display: flex; flex-direction: column; gap: 1rem;"
 >
-  <Field {form} name="login" />
+  <Field {form} path={["login"]} />
   <Field
     {form}
-    name="password"
+    path={["password"]}
     uiSchema={{ "ui:options": { text: { type: "password" } } }}
   />
   <button type="submit">Submit</button>

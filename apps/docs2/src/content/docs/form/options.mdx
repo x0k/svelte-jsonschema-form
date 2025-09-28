@@ -5,9 +5,10 @@ sidebar:
 ---
 
 ```typescript
-export type InitialErrors<V extends Validator> =
-  | ValidationError<PossibleError<V>>[]
-  | Iterable<readonly [Id, FieldError<PossibleError<V>>[]]>;
+export type InitialErrors =
+  | ValidationError[]
+  // WARN: This should't be an array
+  | Iterable<readonly [Id, string[]]>;
 
 const UI_OPTIONS_REGISTRY_KEY = "uiOptionsRegistry";
 
@@ -19,26 +20,33 @@ export type UiOptionsRegistryOption = keyof UiOptionsRegistry extends never
       [UI_OPTIONS_REGISTRY_KEY]: UiOptionsRegistry;
     };
 
-export interface ValidatorFactoryOptions {
+export interface IdBuilderFactoryOptions {
+  idPrefix: string;
   schema: Schema;
   uiSchema: UiSchemaRoot;
-  idPrefix: string;
-  idSeparator: string;
-  idPseudoSeparator: string;
+  uiOptionsRegistry: UiOptionsRegistry;
+}
+
+export interface ValidatorFactoryOptions {
+  idBuilder: FormIdBuilder;
+  schema: Schema;
+  uiSchema: UiSchemaRoot;
+  uiOptionsRegistry: UiOptionsRegistry;
   /**
    * This is a getter that can be used to access the Merger lazily.
    */
   merger: () => FormMerger;
 }
 
-export interface MergerFactoryOptions<V extends Validator> {
-  validator: V;
+export interface MergerFactoryOptions {
+  validator: Validator;
   schema: Schema;
   uiSchema: UiSchemaRoot;
+  uiOptionsRegistry: UiOptionsRegistry;
 }
 
-export interface GetSnapshotOptions<V extends Validator> {
-  validator: V;
+export interface GetSnapshotOptions {
+  validator: Validator;
   merger: FormMerger;
   schema: Schema;
   value: FormValue;
@@ -47,15 +55,18 @@ export interface GetSnapshotOptions<V extends Validator> {
 // from '@sjsf/form/lib/svelte.svelte'
 type Bind<T> = [get: () => T, set: (v: T) => void];
 
-export interface FormOptions<T, V extends Validator>
-  extends UiOptionsRegistryOption {
+type Factory<Options, Result> =
+  | ((options: Options) => Result)
+  | (() => Result);
+
+export interface FormOptions<T> extends UiOptionsRegistryOption {
   schema: Schema;
   theme: Theme;
   translation: Translation;
-  resolver: (ctx: FormState<T, V>) => ResolveFieldType;
-  createIdBuilder: (options: IdBuilderFactoryOptions) => FormIdBuilder;
-  createValidator: (options: ValidatorFactoryOptions) => V;
-  createMerger: (options: MergerFactoryOptions<V>) => FormMerger;
+  resolver: (ctx: FormState<T>) => ResolveFieldType;
+  createIdBuilder: Factory<IdBuilderFactoryOptions, FormIdBuilder>;
+  createValidator: Factory<ValidatorFactoryOptions, Validator>;
+  createMerger: Factory<MergerFactoryOptions, FormMerger>;
   /**
    * @default DEFAULT_ID_PREFIX
    */
@@ -67,14 +78,14 @@ export interface FormOptions<T, V extends Validator>
   disabled?: boolean;
   initialValue?: DeepPartial<T>;
   value?: Bind<T>;
-  initialErrors?: InitialErrors<V>;
-  errors?: Bind<FieldErrorsMap<PossibleError<V>>>;
+  initialErrors?: InitialErrors;
+  errors?: Bind<FormErrorsMap>;
   /**
    * @default waitPrevious
    */
   submissionCombinator?: TasksCombinator<
     [event: SubmitEvent],
-    FormValidationResult<AnyFormValueValidatorError<V>>,
+    FormValidationResult,
     unknown
   >;
   /**
@@ -94,7 +105,7 @@ export interface FormOptions<T, V extends Validator>
    */
   fieldsValidationCombinator?: TasksCombinator<
     [Config, FormValue],
-    FieldError<AnyFieldValueValidatorError<V>>[],
+    Update<string[]>,
     unknown
   >;
   /**
@@ -113,7 +124,7 @@ export interface FormOptions<T, V extends Validator>
    *
    * @default (ctx) => $state.snapshot(ctx.value)
    */
-  getSnapshot?: (ctx: GetSnapshotOptions<V>) => FormValue;
+  getSnapshot?: (ctx: GetSnapshotOptions) => FormValue;
   /**
    * Submit handler
    *
@@ -132,10 +143,10 @@ export interface FormOptions<T, V extends Validator>
    * snapshot is not valid
    */
   onSubmitError?: (
-    errors: FieldErrorsMap<AnyFormValueValidatorError<V>>,
+    errors: FormErrorsMap,
     e: SubmitEvent,
     snapshot: FormValue,
-    form: FormState<T, V>
+    form: FormState<T>
   ) => void;
   /**
    * Form submission error handler

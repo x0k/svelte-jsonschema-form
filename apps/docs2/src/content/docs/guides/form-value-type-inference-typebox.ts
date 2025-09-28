@@ -18,13 +18,10 @@ const uiSchema: UiSchema = {
   },
 };
 
-const form = createForm({
+const form = createForm<Static<typeof schema>>({
   ...defaults,
   schema,
   uiSchema,
-  onSubmit: (value: Static<typeof schema>) => {
-    console.log(value);
-  },
 });
 
 // { text: string } | undefined

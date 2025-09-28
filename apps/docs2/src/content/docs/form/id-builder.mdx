@@ -20,10 +20,12 @@ interface IdentifiableFieldElement {
 
 type FieldPseudoElement = keyof IdentifiableFieldElement | number;
 
-interface FormIdBuilder {
+export interface FormIdBuilder {
   fromPath: (path: Path) => Id;
-  propertyId: (parentId: Id, property: string) => Id;
-  itemId: (parentId: Id, index: number) => Id;
   pseudoId: (instanceId: Id, element: FieldPseudoElement) => Id;
+}
+
+export interface FormIdBuilderToPath {
+  toPath(id: Id): Path;
 }
 ```
