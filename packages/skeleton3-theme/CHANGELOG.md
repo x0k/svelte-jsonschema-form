@@ -1,5 +1,13 @@
 # @sjsf/skeleton3-theme
 
+## 3.0.0-next.6
+
+### Patch Changes
+
+- Updated dependencies [[`b735108`](https://github.com/x0k/svelte-jsonschema-form/commit/b735108aa2b29ebe2db824a92364a478644e9780)]:
+  - @sjsf/form@3.0.0-next.6
+  - @sjsf/basic-theme@3.0.0-next.6
+
 ## 3.0.0-next.5
 
 ### Patch Changes
