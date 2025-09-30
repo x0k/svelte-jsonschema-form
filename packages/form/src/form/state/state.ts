@@ -2,7 +2,7 @@ import { getContext, setContext } from "svelte";
 import type { SvelteMap } from "svelte/reactivity";
 
 import type { DataURLToBlob } from "@/lib/file.js";
-import type { RPath, Schema, Validator } from "@/core/index.js";
+import type { Schema, Validator } from "@/core/index.js";
 
 import type { Translate, Translation } from "../translation.js";
 import {
@@ -21,12 +21,7 @@ import type {
 import type { Icons } from "../icons.js";
 import type { FormMerger } from "../merger.js";
 import type { Theme } from "../components.js";
-import type {
-  FormValue,
-  KeyedArraysMap,
-  PathTrieRef,
-  Update,
-} from "../model.js";
+import type { FormValue, KeyedArraysMap, PathTrieRef } from "../model.js";
 import type { ResolveFieldType } from "../fields.js";
 import {
   FORM_CONTEXT,
@@ -85,7 +80,6 @@ export interface FormState<T> {
    */
   validate: () => ValidationError[];
   validateAsync: (signal: AbortSignal) => Promise<ValidationError[]>;
-  updateFieldErrors: (path: RPath, errors: Update<string[]>) => void;
 
   // Internals
 

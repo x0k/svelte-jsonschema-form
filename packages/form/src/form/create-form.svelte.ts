@@ -13,6 +13,7 @@ import {
   type TasksCombinator,
   type FailedTask,
 } from "@/lib/task.svelte.js";
+import { weakMemoize } from "@/lib/memoize.js";
 import type { Schema, Validator } from "@/core/index.js";
 
 import {
@@ -93,7 +94,6 @@ import {
   FORM_PATHS_TRIE_REF,
 } from "./internals.js";
 import { FIELD_SUBMITTED } from "./field-state.js";
-import { weakMemoize } from "@/lib/memoize.js";
 
 export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
 
@@ -549,13 +549,6 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     reset,
     validate,
     validateAsync,
-    updateFieldErrors: (path, update) => {
-      updateFieldErrors(
-        formState,
-        internalRegisterFieldPath(pathsTrieRef, path),
-        update
-      );
-    },
     // INTERNALS
     [FORM_FIELDS_STATE_MAP]: fieldsStateMap,
     get [FORM_ERRORS]() {

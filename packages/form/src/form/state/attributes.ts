@@ -22,7 +22,7 @@ import {
   type ObjectUiOptions,
 } from "./ui-schema.js";
 import type { FormState } from "./state.js";
-import { createPseudoPath, idFromPath } from "./id.js";
+import { createPseudoPath, idFromPath } from "./path.js";
 
 interface Disabled {
   disabled: boolean;
