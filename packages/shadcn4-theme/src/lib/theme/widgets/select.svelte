@@ -14,6 +14,7 @@
 		customInputAttributes,
 		getFormContext,
 		handlersAttachment,
+		idFromPath,
 		type ComponentProps
 	} from '@sjsf/form';
 	import { singleOption, stringIndexMapper } from '@sjsf/form/options.svelte';
@@ -57,6 +58,8 @@
 		}
 		return selectAttributes.placeholder;
 	});
+
+	const id = $derived(idFromPath(ctx, config.path));
 </script>
 
 <Select bind:value={mapped.value} {...selectAttributes} type="single">
@@ -67,8 +70,8 @@
 			config,
 			'shadcn4SelectTrigger',
 			handlersAttachment(buttonHandlers)({
-				id: config.id,
-				name: config.id
+				id,
+				name: id
 			})
 		)}
 	>

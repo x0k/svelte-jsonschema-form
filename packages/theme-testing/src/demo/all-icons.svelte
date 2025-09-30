@@ -1,12 +1,11 @@
 <script lang="ts">
   import type { HTMLAttributes } from "svelte/elements";
-  import type { Config, IconConfig, Icons, Id, Labels } from "@sjsf/form";
+  import type { Config, FieldPath, IconConfig, Icons, Labels } from "@sjsf/form";
 
   const { icons, ...rest }: { icons: Icons } & HTMLAttributes<HTMLDivElement> =
     $props();
   const config: Config = {
-    id: "root" as Id,
-    path: [],
+    path: [] as unknown as FieldPath,
     required: false,
     schema: {},
     uiSchema: {},

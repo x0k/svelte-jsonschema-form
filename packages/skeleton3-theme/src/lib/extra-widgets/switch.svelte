@@ -11,19 +11,26 @@
 </script>
 
 <script lang="ts">
-	import { customInputAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
+	import {
+		customInputAttributes,
+		getFormContext,
+		idFromPath,
+		type ComponentProps
+	} from '@sjsf/form';
 
 	let { config, value = $bindable(), handlers, errors }: ComponentProps['switchWidget'] = $props();
 
 	const ctx = getFormContext();
+
+	const id = $derived(idFromPath(ctx, config.path));
 </script>
 
 <SkeletonSwitch
 	{...customInputAttributes(ctx, config, 'skeleton3Switch', {
 		ids: {
-			hiddenInput: config.id
+			hiddenInput: id
 		},
-		name: config.id,
+		name: id,
 		required: config.required,
 		readOnly: config.schema.readOnly,
 		invalid: errors.length > 0,
@@ -32,7 +39,7 @@
 			handlers.oninput?.();
 			handlers.onchange?.();
 		},
-		checked: value,
+		checked: value
 	})}
 >
 	{config.title}

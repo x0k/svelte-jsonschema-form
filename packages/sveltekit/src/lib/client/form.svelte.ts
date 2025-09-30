@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { isRecord } from '@sjsf/form/lib/object';
-import { createForm, groupErrors, type Schema, type FormOptions } from '@sjsf/form';
+import { createForm, type Schema, type FormOptions, updateErrors } from '@sjsf/form';
 
 import { page } from '$app/state';
 
@@ -75,7 +75,7 @@ export function createSvelteKitForm<
     if (validationData.sendData && form.isSubmitted) {
       form.value = validationData.data;
     }
-    form.errors = groupErrors(form, validationData.errors);
+    updateErrors(form, validationData.errors);
   });
   return form;
 }

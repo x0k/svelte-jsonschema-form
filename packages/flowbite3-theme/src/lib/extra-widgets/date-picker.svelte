@@ -15,6 +15,7 @@
 		describedBy,
 		getFormContext,
 		handlersAttachment,
+		idFromPath,
 		type ComponentProps
 	} from '@sjsf/form';
 	import Datepicker from 'flowbite-svelte/Datepicker.svelte';
@@ -28,9 +29,11 @@
 
 	const ctx = getFormContext();
 
+	const id = $derived(idFromPath(ctx, config.path));
+
 	function onChange() {
-		handlers.oninput?.()
-		handlers.onchange?.()
+		handlers.oninput?.();
+		handlers.onchange?.();
 	}
 </script>
 
@@ -42,8 +45,8 @@
 		}
 		{...customInputAttributes(ctx, config, 'flowbite3Datepicker', {
 			inputProps: handlersAttachment(handlers)({
-				id: config.id,
-				name: config.id
+				id,
+				name: id
 			}),
 			required: config.required,
 			showActionButtons: true,

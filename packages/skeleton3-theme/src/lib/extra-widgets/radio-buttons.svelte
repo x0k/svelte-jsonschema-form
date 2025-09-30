@@ -15,6 +15,7 @@
 	import {
 		customInputAttributes,
 		getFormContext,
+		idFromPath,
 		uiOptionProps,
 		type ComponentProps
 	} from '@sjsf/form';
@@ -35,15 +36,17 @@
 	});
 
 	const ctx = getFormContext();
+
+	const id = $derived(idFromPath(ctx, config.path))
 </script>
 
 <Segment
 	value={mapped.value}
 	{...customInputAttributes(ctx, config, 'skeleton3Segment', {
 		ids: {
-			root: config.id
+			root: id
 		},
-		name: config.id,
+		name: id,
 		readOnly: config.schema.readOnly,
 		onValueChange: (details) => {
 			mapped.value = details.value ?? '';

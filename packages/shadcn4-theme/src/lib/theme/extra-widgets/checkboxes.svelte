@@ -15,6 +15,7 @@
 		customInputAttributes,
 		getFormContext,
 		handlersAttachment,
+		idFromPath,
 		type ComponentProps
 	} from '@sjsf/form';
 	import { multipleOptions, stringIndexMapper } from '@sjsf/form/options.svelte';
@@ -44,6 +45,8 @@
 
 	const { oninput, onchange, ...buttonHandlers } = $derived(handlers);
 
+	const id = $derived(idFromPath(ctx, config.path));
+
 	const attributes = $derived(
 		customInputAttributes(
 			ctx,
@@ -51,7 +54,7 @@
 			'shadcn4Checkboxes',
 			handlersAttachment(buttonHandlers)({
 				...handlers,
-				name: config.id,
+				name: id,
 				required: config.required
 			})
 		)

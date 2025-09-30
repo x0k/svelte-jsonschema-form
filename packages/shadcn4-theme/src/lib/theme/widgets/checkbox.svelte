@@ -15,6 +15,7 @@
 		customInputAttributes,
 		getFormContext,
 		handlersAttachment,
+		idFromPath,
 		type ComponentProps
 	} from '@sjsf/form';
 
@@ -30,14 +31,16 @@
 
 	const { oninput, onchange, ...buttonHandlers } = $derived(handlers);
 
+	const id = $derived(idFromPath(ctx, config.path));
+
 	const attributes = $derived(
 		customInputAttributes(
 			ctx,
 			config,
 			'shadcn4Checkbox',
 			handlersAttachment(buttonHandlers)({
-				id: config.id,
-				name: config.id,
+				id,
+				name: id,
 				required: config.required,
 				onCheckedChange: () => {
 					oninput?.();

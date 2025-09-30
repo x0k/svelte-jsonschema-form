@@ -11,7 +11,7 @@
 
 <script lang="ts">
 	import {
-		encodePseudoElement,
+		createPseudoPath,
 		getFormContext,
 		idFromPath,
 		inputAttributes,
@@ -35,7 +35,7 @@
 			bind:group={value}
 			value={index + 1}
 			{...attributes}
-			id={idFromPath(ctx, config.path.concat(encodePseudoElement(index)))}
+			id={idFromPath(ctx, createPseudoPath(ctx, config.path, index))}
 		/>
 	{/each}
 </div>

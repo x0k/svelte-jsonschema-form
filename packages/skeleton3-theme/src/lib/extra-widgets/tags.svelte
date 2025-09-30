@@ -11,19 +11,21 @@
 </script>
 
 <script lang="ts">
-	import { type ComponentProps, customInputAttributes, getFormContext } from '@sjsf/form';
+	import { type ComponentProps, customInputAttributes, getFormContext, idFromPath } from '@sjsf/form';
 
 	let { value = $bindable(), config, handlers, errors }: ComponentProps['tagsWidget'] = $props();
 
 	const ctx = getFormContext();
+
+	const id = $derived(idFromPath(ctx, config.path))
 </script>
 
 <TagsInput
 	{...customInputAttributes(ctx, config, 'skeleton3Tags', {
 		ids: {
-			input: config.id
+			input: id
 		},
-		name: config.id,
+		name: id,
 		required: config.required,
 		max: config.schema.maxItems,
 		readOnly: config.schema.readOnly,
