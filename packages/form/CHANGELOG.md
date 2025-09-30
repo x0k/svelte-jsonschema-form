@@ -1,5 +1,45 @@
 # @sjsf/form
 
+## 3.0.0-next.5
+
+### Major Changes
+
+- - Added a **required** `path` property to the `Config` type ([#207](https://github.com/x0k/svelte-jsonschema-form/pull/207))
+  - Updated the `JsonPaths` type to return a union of `Path`s
+  - Replaced the `name` prop with `path` in the `Field` component
+
+- Remove generic validator parameter ([#207](https://github.com/x0k/svelte-jsonschema-form/pull/207))
+
+- - Added a new **required** `createForm` parameter: `createIdBuilder` ([#205](https://github.com/x0k/svelte-jsonschema-form/pull/205))
+  - Removed the `idSeparator` and `idPseudoSeparator` parameters
+  - Removed the following types:
+    - `IdPrefixOption`
+    - `IdSeparatorOption`
+    - `IdPseudoSeparator`
+    - `IdOptions`
+    - `PathToIdOptions`
+  - `focus-on-first-error` module changes:
+    - Updated signatures of `getErrorsList` and `getFocusAction`
+    - Removed the `GetFocusActionOptions` type
+
+- - Replace `id` property with `path` in `Config` type ([#209](https://github.com/x0k/svelte-jsonschema-form/pull/209))
+  - Remove `from.errors` property
+  - Remove form `errors` bindable option
+  - Replace `idFromPath` with `createId` function
+  - Replace `createChildId` with `createChildPath` function
+  - Replace `getErrors` with `getFieldErrors` function
+  - Add `updateErrors`, `hasErrors`, `getErrors` functions
+
+- Remove `create` prefix from creatable form options ([#208](https://github.com/x0k/svelte-jsonschema-form/pull/208))
+
+- Change the error type to simple `string` ([#207](https://github.com/x0k/svelte-jsonschema-form/pull/207))
+
+- Replace the `validate` and `validateAsync` form methods with separate functions ([#209](https://github.com/x0k/svelte-jsonschema-form/pull/209))
+
+### Minor Changes
+
+- Allow to return update callback from form validator methods ([#207](https://github.com/x0k/svelte-jsonschema-form/pull/207))
+
 ## 3.0.0-next.4
 
 ### Patch Changes
