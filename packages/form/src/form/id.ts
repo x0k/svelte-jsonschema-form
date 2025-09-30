@@ -1,5 +1,5 @@
 import type { Brand } from "@/lib/types.js";
-import type { RPath } from '@/core/index.js';
+import type { RPath } from "@/core/index.js";
 
 export type Id = Brand<"sjsf-id">;
 export type FieldPath = Brand<"sjsf-path", RPath>;
