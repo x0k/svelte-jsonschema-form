@@ -51,7 +51,6 @@ import {
 } from "../internals.js";
 import type { FieldPath, Id } from "../id.js";
 import type { FieldState } from "../field-state.js";
-import type { ValidationError } from "../validator.js";
 
 export interface FormState<T> {
   readonly submission: FormSubmission;
@@ -67,19 +66,6 @@ export interface FormState<T> {
   value: T | undefined;
   submit: (e: SubmitEvent) => void;
   reset: (e: Event) => void;
-  /**
-   * Performs the following actions:
-   * - Takes a snapshot of the current state
-   * - Calls the corresponding validator method
-   *
-   * Actions it does not perform:
-   * - Groups errors
-   * - Updates the form error list
-   *
-   * @throws {InvalidValidatorError} If the validator does not have the corresponding method
-   */
-  validate: () => ValidationError[];
-  validateAsync: (signal: AbortSignal) => Promise<ValidationError[]>;
 
   // Internals
 

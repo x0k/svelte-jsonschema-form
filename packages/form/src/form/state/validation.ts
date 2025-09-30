@@ -2,10 +2,14 @@ import type { Config } from "../config.js";
 import {
   isAdditionalPropertyKeyValidator,
   isAsyncFileListValidator,
+  isAsyncFormValueValidator,
+  isFormValueValidator,
 } from "../validator.js";
 import type { FormValue } from "../model.js";
+import { InvalidValidatorError } from "../errors.js";
 import {
   FORM_FIELDS_VALIDATION_MODE,
+  FORM_SCHEMA,
   FORM_VALIDATOR,
 } from "../internals.js";
 import type { FormState } from "./state.js";
@@ -53,4 +57,24 @@ export async function validateFileList<T>(
     config
   );
   return updateFieldErrors(ctx, config.path, errors);
+}
+
+export function validate<T>(ctx: FormState<T>) {
+  const validator = ctx[FORM_VALIDATOR];
+  if (!isFormValueValidator(validator)) {
+    throw new InvalidValidatorError(`expected sync from validator`);
+  }
+  return validator.validateFormValue(ctx[FORM_SCHEMA], ctx.value as FormValue);
+}
+
+export function validateAsync<T>(ctx: FormState<T>, signal: AbortSignal) {
+  const validator = ctx[FORM_VALIDATOR];
+  if (!isAsyncFormValueValidator(validator)) {
+    throw new InvalidValidatorError(`expected async form validator`);
+  }
+  return validator.validateFormValueAsync(
+    signal,
+    ctx[FORM_SCHEMA],
+    ctx.value as FormValue
+  );
 }

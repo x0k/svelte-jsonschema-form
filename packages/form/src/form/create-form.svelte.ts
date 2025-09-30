@@ -34,11 +34,10 @@ import {
 } from "./ui-schema.js";
 import type { Icons } from "./icons.js";
 import type { FieldsValidationMode } from "./validation.js";
-import {
-  type FormSubmission,
-  type FieldsValidation,
-  type FormValidationResult,
-  InvalidValidatorError,
+import type {
+  FormSubmission,
+  FieldsValidation,
+  FormValidationResult,
 } from "./errors.js";
 import type { FormMerger } from "./merger.js";
 import {
@@ -509,24 +508,6 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     options.onReset?.(e);
   }
 
-  function validate() {
-    if (!isFormValueValidator(validator)) {
-      throw new InvalidValidatorError(`expected sync from validator`);
-    }
-    return validator.validateFormValue(options.schema, getSnapshot());
-  }
-
-  async function validateAsync(signal: AbortSignal) {
-    if (!isAsyncFormValueValidator(validator)) {
-      throw new InvalidValidatorError(`expected async form validator`);
-    }
-    return await validator.validateFormValueAsync(
-      signal,
-      options.schema,
-      getSnapshot()
-    );
-  }
-
   const formState: FormState<T> = {
     submission,
     fieldsValidation,
@@ -547,8 +528,6 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     },
     submit,
     reset,
-    validate,
-    validateAsync,
     // INTERNALS
     [FORM_FIELDS_STATE_MAP]: fieldsStateMap,
     get [FORM_ERRORS]() {
