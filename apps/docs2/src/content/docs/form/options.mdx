@@ -8,7 +8,7 @@ sidebar:
 export type InitialErrors =
   | ValidationError[]
   // WARN: This should't be an array
-  | Iterable<readonly [Id, string[]]>;
+  | Iterable<readonly [FieldPath, string[]]>;
 
 const UI_OPTIONS_REGISTRY_KEY = "uiOptionsRegistry";
 
@@ -80,7 +80,6 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
   initialValue?: DeepPartial<T>;
   value?: Bind<T>;
   initialErrors?: InitialErrors;
-  errors?: Bind<FormErrorsMap>;
   /**
    * @default waitPrevious
    */
@@ -144,7 +143,7 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
    * snapshot is not valid
    */
   onSubmitError?: (
-    errors: FormErrorsMap,
+    errors: ValidationError[],
     e: SubmitEvent,
     snapshot: FormValue,
     form: FormState<T>

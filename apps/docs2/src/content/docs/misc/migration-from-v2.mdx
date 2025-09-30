@@ -115,10 +115,12 @@ The context now provides the entire `form` object, while `form.value` is a publi
 
 :::
 
-### The `form.errors` property has changed
+### The `form.errors` property has been removed
 
-Its type is now `SvelteMap<Id, string[]>`.
-You can retrieve the field's display name using the `form.fieldTitle` method.
+Reason — to hide the internal error storage structure from the user for future optimization.
+
+You can access form errors and even more by using the following functions:
+`hasErrors`, `getErrors`, `updateErrors`, `getFieldErrors`, `updateFieldErrors`
 
 ### `onsubmit` and `onreset` attributes
 
@@ -201,12 +203,6 @@ The `name` prop has been replaced with `path`.
 - `isChanged` becomes `true` after any interaction until
   the form is successfully submitted or reset
 - Removed the `idSeparator` and `idPseudoSeparator` form parameters
-- Updated function signatures (context is now passed as the first argument):
-  - `createPseudoId`
-  - `idFromPath`
-- Split `createChildId` into two separate functions:
-  - `createItemId`
-  - `createPropertyId`
 - Removed the following types:
   - `IdPrefixOption`
   - `IdSeparatorOption`
@@ -216,6 +212,10 @@ The `name` prop has been replaced with `path`.
 - `focus-on-first-error` module changes:
   - Updated signatures of `getErrorsList` and `getFocusAction`
   - Removed the `GetFocusActionOptions` type
+- Replace `id` property with `path` in `Config` type
+- Replace `idFromPath` with `createId` function
+- Replace `createChildId` with `createChildPath` function
+- Replace `getErrors` with `getFieldErrors` function
 
 ## Validators
 

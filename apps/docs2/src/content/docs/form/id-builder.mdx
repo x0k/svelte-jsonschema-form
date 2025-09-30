@@ -4,6 +4,7 @@ title: ID Builder
 
 ```ts
 type Id = Brand<"sjsf-id">;
+type FieldPath = Brand<"sjsf-path", RPath>;
 
 interface IdentifiableFieldElement {
   help: {};
@@ -20,8 +21,7 @@ interface IdentifiableFieldElement {
 
 type FieldPseudoElement = keyof IdentifiableFieldElement | number;
 
-export interface FormIdBuilder {
-  fromPath: (path: Path) => Id;
-  toPath: (id: Id) => Path;
+interface FormIdBuilder {
+  fromPath: (path: FieldPath) => string;
 }
 ```

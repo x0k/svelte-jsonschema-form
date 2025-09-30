@@ -34,33 +34,16 @@ export interface FormState<T> {
    * - Default values from JSON Schema are taken into account during assignment
    */
   value: T | undefined;
-  errors: FormErrorsMap;
   submit: (e: SubmitEvent) => void;
   reset: (e: Event) => void;
-  /**
-   * Performs the following actions:
-   * - Takes a snapshot of the current state
-   * - Calls the corresponding validator method
-   *
-   * Actions it does not perform:
-   * - Groups errors
-   * - Updates the form error list
-   *
-   * @throws {InvalidValidatorError} If the validator does not have the corresponding method
-   */
-  validate: () => ValidationError[];
-  validateAsync: (signal: AbortSignal) => Promise<ValidationError[]>;
-  updateErrors: (path: Path, update: Update<string[]>) => void;
-  /**
-   * @throws {Error} If `FormIdBuilder` does not have `toPath` method
-   */
-  fieldTitle: (id: Id) => string;
 
-  /** Internals */
+  // Internals
 
   [FORM_VALUE]: FormValue;
-  readonly [FORM_ID_BUILDER]: FormIdBuilder;
-  readonly [FORM_ROOT_ID]: Id;
+  readonly [FORM_ROOT_PATH]: FieldPath;
+  readonly [FORM_ID_FROM_PATH]: (path: FieldPath) => Id;
+  readonly [FORM_PATHS_TRIE_REF]: PathTrieRef<FieldPath>;
+  readonly [FORM_ERRORS]: FormErrorsMap;
   readonly [FORM_MARK_SCHEMA_CHANGE]: () => void;
   readonly [FORM_KEYED_ARRAYS]: KeyedArraysMap;
   readonly [FORM_FIELDS_VALIDATION_MODE]: number;
@@ -78,7 +61,7 @@ export interface FormState<T> {
   readonly [FORM_TRANSLATE]: Translate;
   readonly [FORM_RESOLVER]: ResolveFieldType;
   readonly [FORM_THEME]: Theme;
-  readonly [FORM_FIELDS_STATE_MAP]: SvelteMap<Id, FieldState>;
+  readonly [FORM_FIELDS_STATE_MAP]: SvelteMap<FieldPath, FieldState>;
 }
 ```
 

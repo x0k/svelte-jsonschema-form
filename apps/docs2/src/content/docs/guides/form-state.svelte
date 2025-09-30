@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { BasicForm, createForm, type Schema } from "@sjsf/form";
+  import { BasicForm, createForm, getErrors, type Schema } from "@sjsf/form";
 
   import * as defaults from "@/lib/form/defaults";
 
@@ -19,7 +19,7 @@
 <BasicForm {form} novalidate />
 
 <pre>{JSON.stringify(
-    { value: form.value, errors: Object.fromEntries(form.errors) },
+    { value: form.value, errors: Array.from(getErrors(form)) },
     null,
     2
   )}</pre>

@@ -243,7 +243,7 @@ previous category, have the suffix `Attributes`. Examples:
       }
     }
 
-    import { customInputAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
+    import { customInputAttributes, getFormContext, type ComponentProps, createId } from '@sjsf/form';
 
     let { config, value = $bindable(), handlers, errors }: ComponentProps['switchWidget'] = $props();
 
@@ -251,7 +251,7 @@ previous category, have the suffix `Attributes`. Examples:
 
     const attributes = $derived(customInputAttributes(ctx, config, 'skeleton3Switch', {
       ids: {
-        hiddenInput: config.id
+        hiddenInput: createId(ctx, config.path)
       },
       required: config.required,
       readOnly: config.schema.readOnly,
