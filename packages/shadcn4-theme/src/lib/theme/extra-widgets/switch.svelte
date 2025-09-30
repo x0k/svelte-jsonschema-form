@@ -23,7 +23,7 @@
 		customInputAttributes,
 		getFormContext,
 		handlersAttachment,
-		idFromPath,
+		createId,
 		type ComponentProps
 	} from '@sjsf/form';
 
@@ -38,7 +38,7 @@
 
 	const { oninput, onchange, ...buttonHandlers } = $derived(handlers);
 
-	const id = $derived(idFromPath(ctx, config.path));
+	const id = $derived(createId(ctx, config.path));
 </script>
 
 <Switch

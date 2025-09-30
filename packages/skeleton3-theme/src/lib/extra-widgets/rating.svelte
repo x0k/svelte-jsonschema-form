@@ -11,12 +11,12 @@
 </script>
 
 <script lang="ts">
-	import { type ComponentProps, customInputAttributes, getFormContext, idFromPath } from '@sjsf/form';
+	import { type ComponentProps, customInputAttributes, getFormContext, createId } from '@sjsf/form';
 	let { value = $bindable(), config, handlers }: ComponentProps['ratingWidget'] = $props();
 
 	const ctx = getFormContext();
 
-	const id = $derived(idFromPath(ctx, config.path))
+	const id = $derived(createId(ctx, config.path))
 </script>
 
 <SkeletonRating

@@ -12,13 +12,13 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, type ComponentProps, customInputAttributes, idFromPath } from '@sjsf/form';
+	import { getFormContext, type ComponentProps, customInputAttributes, createId } from '@sjsf/form';
 
 	let { value = $bindable(), config, handlers, errors }: ComponentProps['rangeWidget'] = $props();
 
 	const ctx = getFormContext();
 
-	const id = $derived(idFromPath(ctx, config.path))
+	const id = $derived(createId(ctx, config.path))
 </script>
 
 <SkeletonSlider

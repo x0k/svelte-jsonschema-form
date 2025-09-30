@@ -15,7 +15,7 @@
 		customInputAttributes,
 		getFormContext,
 		handlersAttachment,
-		idFromPath,
+		createId,
 		type ComponentProps
 	} from '@sjsf/form';
 	import { multipleOptions, stringIndexMapper } from '@sjsf/form/options.svelte';
@@ -45,7 +45,7 @@
 
 	const { oninput, onchange, ...buttonHandlers } = $derived(handlers);
 
-	const id = $derived(idFromPath(ctx, config.path));
+	const id = $derived(createId(ctx, config.path));
 
 	const attributes = $derived(
 		customInputAttributes(

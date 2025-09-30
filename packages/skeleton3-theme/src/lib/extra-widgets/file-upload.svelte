@@ -15,7 +15,7 @@
 	import {
 		customInputAttributes,
 		getFormContext,
-		idFromPath,
+		createId,
 		type ComponentProps
 	} from '@sjsf/form';
 
@@ -29,7 +29,7 @@
 
 	const ctx = getFormContext();
 
-	const id = $derived(idFromPath(ctx, config.path));
+	const id = $derived(createId(ctx, config.path));
 
 	let lastFiles: FileList | undefined;
 	const attributes = $derived(

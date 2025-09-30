@@ -11,7 +11,7 @@
 </script>
 
 <script lang="ts">
-	import { customInputAttributes, getFormContext, idFromPath, type ComponentProps } from '@sjsf/form';
+	import { customInputAttributes, getFormContext, createId, type ComponentProps } from '@sjsf/form';
 	import { multipleOptions, stringIndexMapper } from '@sjsf/form/options.svelte';
 
 	let {
@@ -32,7 +32,7 @@
 	});
 
 
-	const id = $derived(idFromPath(ctx, config.path))
+	const id = $derived(createId(ctx, config.path))
 
 	const attributes = $derived(
 		customInputAttributes(ctx, config, 'skeleton3Combobox', {

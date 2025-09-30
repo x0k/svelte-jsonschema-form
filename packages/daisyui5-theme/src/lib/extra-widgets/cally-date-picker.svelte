@@ -34,7 +34,7 @@
 
 <script lang="ts">
 	import { formatAsCustomPropertyName } from '@sjsf/form/lib/css';
-	import { buttonAttributes, getFormContext, idFromPath, uiOptionProps, type ComponentProps } from '@sjsf/form';
+	import { buttonAttributes, getFormContext, createId, uiOptionProps, type ComponentProps } from '@sjsf/form';
 	import 'cally';
 
 	let {
@@ -60,7 +60,7 @@
 		return (date: string) => format.format(new Date(date));
 	});
 
-	const id = $derived(idFromPath(ctx, config.path));
+	const id = $derived(createId(ctx, config.path));
 
 	const anchorName = $derived(formatAsCustomPropertyName(id));
 

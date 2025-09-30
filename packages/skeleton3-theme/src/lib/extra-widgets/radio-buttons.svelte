@@ -15,7 +15,7 @@
 	import {
 		customInputAttributes,
 		getFormContext,
-		idFromPath,
+		createId,
 		uiOptionProps,
 		type ComponentProps
 	} from '@sjsf/form';
@@ -37,7 +37,7 @@
 
 	const ctx = getFormContext();
 
-	const id = $derived(idFromPath(ctx, config.path))
+	const id = $derived(createId(ctx, config.path))
 </script>
 
 <Segment
