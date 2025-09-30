@@ -124,7 +124,7 @@ function buildFormDefaultsConfig({
   const pkg = validatorPackage(validator);
   const validatorCode = pkg
     ? `
-export { createFormValidator as createValidator } from "${pkg}";
+export { createFormValidator as validator } from "${pkg}";
 `
     : "";
   return `export { resolver } from "@sjsf/form/resolvers/${resolver}";
@@ -134,7 +134,9 @@ ${widgets.map((w) => `import "@sjsf/${theme}-theme/extra-widgets/${w}-include";`
 
 export { translation } from "@sjsf/form/translations/en";
 
-export { createFormMerger as createMerger } from "@sjsf/form/mergers/modern";
+export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";
+
+export { createFormMerger as merger } from "@sjsf/form/mergers/modern";
 ${validatorCode}`;
 }
 
