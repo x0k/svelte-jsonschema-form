@@ -1,7 +1,8 @@
 import type { Brand } from "@/lib/types.js";
-import type { Path } from "@/core/index.js";
+import type { RPath } from "@/core/index.js";
 
 export type Id = Brand<"sjsf-id">;
+export type FieldPath = Brand<"sjsf-path", RPath>;
 
 export interface IdentifiableFieldElement {
   help: {};
@@ -19,8 +20,7 @@ export interface IdentifiableFieldElement {
 export type FieldPseudoElement = keyof IdentifiableFieldElement | number;
 
 export interface FormIdBuilder {
-  fromPath: (path: Path) => Id;
-  toPath: (id: Id) => Path;
+  fromPath: (path: FieldPath) => string;
 }
 
 export const DEFAULT_ID_PREFIX = "root";
@@ -35,7 +35,7 @@ export function encodePseudoElement(element: FieldPseudoElement): string {
 }
 
 export function decodePseudoElement(
-  pathElement: Path[number]
+  pathElement: RPath[number]
 ): FieldPseudoElement | undefined {
   if (
     typeof pathElement !== "string" ||

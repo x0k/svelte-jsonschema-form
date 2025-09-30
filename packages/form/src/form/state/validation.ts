@@ -1,39 +1,22 @@
-import type { Id } from "../id.js";
 import type { Config } from "../config.js";
 import {
   isAdditionalPropertyKeyValidator,
   isAsyncFileListValidator,
-  type ValidationError,
+  isAsyncFormValueValidator,
+  isFormValueValidator,
 } from "../validator.js";
-import type { FormValue, Update } from "../model.js";
+import type { FormValue } from "../model.js";
+import { InvalidValidatorError } from "../errors.js";
 import {
   FORM_FIELDS_VALIDATION_MODE,
-  FORM_ID_BUILDER,
+  FORM_SCHEMA,
   FORM_VALIDATOR,
-  internalGroupErrors,
 } from "../internals.js";
 import type { FormState } from "./state.js";
-import type { FormErrorsMap } from "../errors.js";
+import { updateFieldErrors } from "./errors.js";
 
 export function getFieldsValidationMode<T>(ctx: FormState<T>) {
   return ctx[FORM_FIELDS_VALIDATION_MODE];
-}
-
-export function getErrors<T>(ctx: FormState<T>, id: Id): string[] {
-  return ctx.errors.get(id) ?? [];
-}
-
-export function getErrorsForIds<T>(ctx: FormState<T>, ids: Id[]): string[] {
-  const errors: string[] = [];
-  for (let i = 0; i < ids.length; i++) {
-    const errs = ctx.errors.get(ids[i]!);
-    if (errs) {
-      for (let j = 0; j < errs.length; j++) {
-        errors.push(errs[j]!);
-      }
-    }
-  }
-  return errors;
 }
 
 export function validateField<T>(
@@ -42,25 +25,6 @@ export function validateField<T>(
   value: FormValue
 ) {
   ctx.fieldsValidation.run(config, value);
-}
-
-// NOTE: The `errors` map must contain non-empty error lists
-// for the `errors.size > 0` check to be useful.
-export function updateErrors<T>(
-  ctx: FormState<T>,
-  id: Id,
-  errors: Update<string[]>
-): boolean {
-  if (typeof errors === "function") {
-    const arr = ctx.errors.get(id) ?? [];
-    errors = errors(arr);
-  }
-  if (errors.length > 0) {
-    ctx.errors.set(id, errors);
-  } else {
-    ctx.errors.delete(id);
-  }
-  return errors.length === 0;
 }
 
 export function validateAdditionalPropertyKey<T>(
@@ -74,7 +38,7 @@ export function validateAdditionalPropertyKey<T>(
     return true;
   }
   const errors = validator.validateAdditionalPropertyKey(key, config.schema);
-  return updateErrors(ctx, fieldConfig.id, errors);
+  return updateFieldErrors(ctx, fieldConfig.path, errors);
 }
 
 export async function validateFileList<T>(
@@ -92,12 +56,25 @@ export async function validateFileList<T>(
     fileList,
     config
   );
-  return updateErrors(ctx, config.id, errors);
+  return updateFieldErrors(ctx, config.path, errors);
 }
 
-export function groupErrors<T>(
-  ctx: FormState<T>,
-  errors: ValidationError[]
-): FormErrorsMap {
-  return internalGroupErrors(ctx[FORM_ID_BUILDER], errors);
+export function validate<T>(ctx: FormState<T>) {
+  const validator = ctx[FORM_VALIDATOR];
+  if (!isFormValueValidator(validator)) {
+    throw new InvalidValidatorError(`expected sync from validator`);
+  }
+  return validator.validateFormValue(ctx[FORM_SCHEMA], ctx.value as FormValue);
+}
+
+export function validateAsync<T>(ctx: FormState<T>, signal: AbortSignal) {
+  const validator = ctx[FORM_VALIDATOR];
+  if (!isAsyncFormValueValidator(validator)) {
+    throw new InvalidValidatorError(`expected async form validator`);
+  }
+  return validator.validateFormValueAsync(
+    signal,
+    ctx[FORM_SCHEMA],
+    ctx.value as FormValue
+  );
 }

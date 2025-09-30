@@ -1,5 +1,5 @@
 import type { Resolver } from "@/lib/resolver.js";
-import type { Path } from "@/core/index.js";
+import type { RPath } from "@/core/index.js";
 
 import type {
   CompatibleComponentType,
@@ -103,7 +103,7 @@ export function resolveUiOption<O extends keyof UiOptions>(
 export function getUiSchemaByPath(
   rootSchema: UiSchemaRoot,
   schemaDef: UiSchemaDefinition | undefined,
-  path: Path
+  path: RPath
 ): UiSchema | undefined {
   let schema = resolveUiRef(rootSchema, schemaDef);
   for (let i = 0; i < path.length; i++) {
@@ -138,7 +138,7 @@ export function getUiSchemaByPath(
 
 export function getRootUiSchemaTitleByPath(
   uiSchemaRoot: UiSchemaRoot,
-  path: Path
+  path: RPath
 ) {
   return getUiSchemaByPath(uiSchemaRoot, uiSchemaRoot, path)?.["ui:options"]
     ?.title;

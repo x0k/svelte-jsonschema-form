@@ -1,4 +1,3 @@
-import { BROWSER } from "esm-env";
 import type { Attachment } from "svelte/attachments";
 import { SvelteMap } from "svelte/reactivity";
 import { on } from "svelte/events";
@@ -13,7 +12,8 @@ import {
   type TasksCombinator,
   type FailedTask,
 } from "@/lib/task.svelte.js";
-import type { Path, Schema, Validator } from "@/core/index.js";
+import { weakMemoize } from "@/lib/memoize.js";
+import type { Schema, Validator } from "@/core/index.js";
 
 import {
   isFormValueValidator,
@@ -33,15 +33,18 @@ import {
 } from "./ui-schema.js";
 import type { Icons } from "./icons.js";
 import type { FieldsValidationMode } from "./validation.js";
-import {
-  type FormErrorsMap,
-  type FormSubmission,
-  type FieldsValidation,
-  type FormValidationResult,
-  InvalidValidatorError,
+import type {
+  FormSubmission,
+  FieldsValidation,
+  FormValidationResult,
 } from "./errors.js";
 import type { FormMerger } from "./merger.js";
-import { DEFAULT_ID_PREFIX, type FormIdBuilder, type Id } from "./id.js";
+import {
+  DEFAULT_ID_PREFIX,
+  type FieldPath,
+  type FormIdBuilder,
+  type Id,
+} from "./id.js";
 import type { Config } from "./config.js";
 import type { Theme } from "./components.js";
 import {
@@ -49,16 +52,15 @@ import {
   type Creatable,
   type FormValue,
   type KeyedArraysMap,
+  type PathTrieRef,
   type Update,
 } from "./model.js";
 import type { ResolveFieldType } from "./fields.js";
 import { createSchemaValuesReconciler, UNCHANGED } from "./reconcile.js";
 import {
-  getFieldTitleByPath,
-  groupErrors,
-  hasFieldState,
   setFieldState,
   updateErrors,
+  updateFieldErrors,
   type FormState,
 } from "./state/index.js";
 import {
@@ -80,10 +82,14 @@ import {
   FORM_TRANSLATE,
   FORM_ICONS,
   FORM_MARK_SCHEMA_CHANGE,
-  FORM_ROOT_ID,
   FORM_FIELDS_STATE_MAP,
-  FORM_ID_BUILDER,
-  internalGroupErrors,
+  FORM_ID_FROM_PATH,
+  internalRegisterFieldPath,
+  internalAssignErrors,
+  FORM_ROOT_PATH,
+  FORM_ERRORS,
+  FORM_PATHS_TRIE_REF,
+  internalHasFieldState,
 } from "./internals.js";
 import { FIELD_SUBMITTED } from "./field-state.js";
 
@@ -92,7 +98,7 @@ export const DEFAULT_FIELDS_VALIDATION_DEBOUNCE_MS = 300;
 export type InitialErrors =
   | ValidationError[]
   // WARN: This should't be an array
-  | Iterable<readonly [Id, string[]]>;
+  | Iterable<readonly [FieldPath, string[]]>;
 
 const UI_OPTIONS_REGISTRY_KEY = "uiOptionsRegistry";
 
@@ -106,20 +112,6 @@ export type UiOptionsRegistryOption = keyof UiOptionsRegistry extends never
 
 function createValueRef(initialValue: FormValue): Ref<FormValue> {
   let value = $state(initialValue);
-  return {
-    get current() {
-      return value;
-    },
-    set current(v) {
-      value = v;
-    },
-  };
-}
-
-function createErrorsRef(
-  initialErrors: Iterable<readonly [Id, string[]]> | undefined
-): Ref<FormErrorsMap> {
-  let value = $state.raw(new SvelteMap(initialErrors));
   return {
     get current() {
       return value;
@@ -182,7 +174,6 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
   initialValue?: DeepPartial<T>;
   value?: Bind<T>;
   initialErrors?: InitialErrors;
-  errors?: Bind<FormErrorsMap>;
   /**
    * @default waitPrevious
    */
@@ -246,7 +237,7 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
    * snapshot is not valid
    */
   onSubmitError?: (
-    errors: FormErrorsMap,
+    errors: ValidationError[],
     e: SubmitEvent,
     snapshot: FormValue,
     form: FormState<T>
@@ -279,7 +270,7 @@ export interface FormOptions<T> extends UiOptionsRegistryOption {
 }
 
 export function createForm<T>(options: FormOptions<T>): FormState<T> {
-  /** STATE BEGIN */
+  // STATE BEGIN
   const idPrefix = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX);
   const uiSchemaRoot = $derived(options.uiSchema ?? {});
   const uiSchema = $derived(resolveUiRef(uiSchemaRoot, options.uiSchema) ?? {});
@@ -292,7 +283,18 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       uiOptionsRegistry,
     })
   );
-  const rootId = $derived(idBuilder.fromPath([]));
+  const idCache = new WeakMap<FieldPath, Id>();
+  const createId = $derived(
+    weakMemoize(idCache, (path) => idBuilder.fromPath(path) as Id)
+  );
+  const pathsTrieRef: PathTrieRef<FieldPath> = $derived.by(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    options.schema;
+    return {
+      current: undefined,
+    };
+  });
+  const rootPath = $derived(internalRegisterFieldPath(pathsTrieRef, []));
   const validator = $derived(
     create(options.validator, {
       idBuilder,
@@ -320,14 +322,14 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
           )
         )
   );
-  const errorsRef = $derived(
-    options.errors
-      ? refFromBind(options.errors)
-      : createErrorsRef(
-          Array.isArray(options.initialErrors)
-            ? internalGroupErrors(idBuilder, options.initialErrors)
-            : options.initialErrors
+  const errors = $derived(
+    Array.isArray(options.initialErrors)
+      ? internalAssignErrors(
+          pathsTrieRef,
+          new SvelteMap(),
+          options.initialErrors
         )
+      : new SvelteMap(options.initialErrors)
   );
   const disabled = $derived(options.disabled ?? false);
   const fieldsValidationMode = $derived(options.fieldsValidationMode ?? 0);
@@ -376,12 +378,12 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     return () => get(opts);
   });
   const translate = $derived(createTranslate(options.translation));
-  const fieldsStateMap = new SvelteMap<Id, number>();
+  const fieldsStateMap = new SvelteMap<FieldPath, number>();
   const isChanged = $derived(fieldsStateMap.size > 0);
-  const isSubmitted = $derived.by(
-    () => BROWSER && hasFieldState(formState, rootId, FIELD_SUBMITTED)
+  const isSubmitted = $derived(
+    internalHasFieldState(fieldsStateMap, rootPath, FIELD_SUBMITTED)
   );
-  /** STATE END */
+  // STATE END
 
   const validateForm: AsyncFormValueValidator["validateFormValueAsync"] =
     $derived.by(() => {
@@ -398,19 +400,16 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
 
   const submission: FormSubmission = createTask({
     async execute(signal) {
-      setFieldState(formState, rootId, FIELD_SUBMITTED);
+      setFieldState(formState, rootPath, FIELD_SUBMITTED);
       const formValue = getSnapshot();
       return {
         formValue,
-        formErrors: groupErrors(
-          formState,
-          await validateForm(signal, options.schema, formValue)
-        ),
+        formErrors: await validateForm(signal, options.schema, formValue),
       };
     },
     onSuccess({ formValue, formErrors }, event) {
-      errorsRef.current = formErrors;
-      if (formErrors.size === 0) {
+      updateErrors(formState, formErrors);
+      if (formErrors.length === 0) {
         options.onSubmit?.(formValue as T, event);
         fieldsStateMap.clear();
         return;
@@ -418,7 +417,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       options.onSubmitError?.(formErrors, event, formValue, formState);
     },
     onFailure(error, e) {
-      errorsRef.current.set(rootId, [
+      updateFieldErrors(formState, rootPath, [
         translate("validation-process-error", { error }),
       ]);
       options.onSubmissionFailure?.(error, e);
@@ -471,11 +470,11 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       });
     },
     onSuccess(fieldErrors, config) {
-      updateErrors(formState, config.id, fieldErrors);
+      updateFieldErrors(formState, config.path, fieldErrors);
     },
     onFailure(error, config, value) {
       if (error.reason !== "aborted") {
-        errorsRef.current.set(config.id, [
+        updateFieldErrors(formState, config.path, [
           translate("validation-process-error", { error }),
         ]);
       }
@@ -500,30 +499,12 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   function reset(e: Event) {
     e.preventDefault();
     fieldsStateMap.clear();
-    errorsRef.current.clear();
+    errors.clear();
     valueRef.current = merger.mergeFormDataAndSchemaDefaults(
       options.initialValue as FormValue,
       options.schema
     );
     options.onReset?.(e);
-  }
-
-  function validate() {
-    if (!isFormValueValidator(validator)) {
-      throw new InvalidValidatorError(`expected sync from validator`);
-    }
-    return validator.validateFormValue(options.schema, getSnapshot());
-  }
-
-  async function validateAsync(signal: AbortSignal) {
-    if (!isAsyncFormValueValidator(validator)) {
-      throw new InvalidValidatorError(`expected async form validator`);
-    }
-    return await validator.validateFormValueAsync(
-      signal,
-      options.schema,
-      getSnapshot()
-    );
   }
 
   const formState: FormState<T> = {
@@ -544,33 +525,21 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     get isChanged() {
       return isChanged;
     },
-    get errors() {
-      return errorsRef.current;
-    },
-    set errors(v) {
-      errorsRef.current = v;
-    },
     submit,
     reset,
-    validate,
-    validateAsync,
-    updateErrors: (path: Path, errors: Update<string[]>) => {
-      const id = idBuilder.fromPath(path);
-      updateErrors(formState, id, errors);
-    },
-    fieldTitle: (id) => {
-      const path = idBuilder.toPath(id);
-      return (
-        getFieldTitleByPath(formState, path) ?? String(path[path.length - 1])
-      );
-    },
     // INTERNALS
     [FORM_FIELDS_STATE_MAP]: fieldsStateMap,
-    get [FORM_ID_BUILDER]() {
-      return idBuilder;
+    get [FORM_ERRORS]() {
+      return errors;
     },
-    get [FORM_ROOT_ID]() {
-      return rootId;
+    get [FORM_PATHS_TRIE_REF]() {
+      return pathsTrieRef;
+    },
+    get [FORM_ID_FROM_PATH]() {
+      return createId;
+    },
+    get [FORM_ROOT_PATH]() {
+      return rootPath;
     },
     get [FORM_VALUE]() {
       return valueRef.current;

@@ -1,10 +1,10 @@
-import type { Path, Schema, Validator } from "@/core/index.js";
+import type { RPath, Schema, Validator } from "@/core/index.js";
 
 import type { Config } from "./config.js";
 import type { FieldValue, FormValue, Update } from "./model.js";
 
 export interface ValidationError {
-  path: Path;
+  path: RPath
   message: string;
 }
 

@@ -1,6 +1,6 @@
 import type { ObjectProperties } from "@/lib/types.js";
 import { overrideByRecord } from "@/lib/resolver.js";
-import type { Path } from "@/core/path.js";
+import type { RPath } from "@/core/path.js";
 
 import { getRootSchemaTitleByPath } from "../model.js";
 import type { Config } from "../config.js";
@@ -103,7 +103,7 @@ export function retrieveTranslate<T>(ctx: FormState<T>, config: Config) {
   return createTranslate(translation);
 }
 
-export function getFieldTitleByPath<T>(ctx: FormState<T>, path: Path) {
+export function getFieldTitle<T>(ctx: FormState<T>, path: RPath) {
   const uiSchema = getUiSchemaByPath(
     ctx[FORM_UI_SCHEMA_ROOT],
     ctx[FORM_UI_SCHEMA_ROOT],

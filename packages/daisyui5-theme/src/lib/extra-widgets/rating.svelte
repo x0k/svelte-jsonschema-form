@@ -10,13 +10,7 @@
 </script>
 
 <script lang="ts">
-	import {
-		encodePseudoElement,
-		getFormContext,
-		idFromPath,
-		inputAttributes,
-		type ComponentProps
-	} from '@sjsf/form';
+	import { createPseudoId, getFormContext, inputAttributes, type ComponentProps } from '@sjsf/form';
 	import '@sjsf/form/fields/extra-widgets/rating';
 
 	let { config, handlers, value = $bindable() }: ComponentProps['ratingWidget'] = $props();
@@ -35,7 +29,7 @@
 			bind:group={value}
 			value={index + 1}
 			{...attributes}
-			id={idFromPath(ctx, config.path.concat(encodePseudoElement(index)))}
+			id={createPseudoId(ctx, config.path, index)}
 		/>
 	{/each}
 </div>

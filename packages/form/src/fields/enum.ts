@@ -13,8 +13,7 @@ import {
   type Config,
   type UiOption,
   type FormState,
-  encodePseudoElement,
-  idFromPath,
+  createPseudoId,
 } from "@/form/index.js";
 
 function getAltSchemas(
@@ -34,15 +33,12 @@ export function createOptions<T>(
 ): EnumOption<SchemaValue>[] | undefined {
   const enumValues = schema.enum;
   const disabledValues = new Set(uiOption("disabledEnumValues"));
-  const x = config.path.length;
-  const tmpPath = config.path.concat("");
   if (enumValues) {
     const enumNames = uiOption("enumNames");
     return enumValues.map((value, index) => {
       const label = enumNames?.[index] ?? schemaValueToString(value);
-      tmpPath[x] = encodePseudoElement(index);
       return {
-        id: idFromPath(ctx, tmpPath),
+        id: createPseudoId(ctx, config.path, index),
         label,
         value,
         disabled: disabledValues.has(value),
@@ -61,9 +57,8 @@ export function createOptions<T>(
         retrieveUiSchema(ctx, altUiSchemas?.[index])["ui:options"]?.title ??
         altSchemaDef.title ??
         schemaValueToString(value);
-      tmpPath[x] = encodePseudoElement(index)
       return {
-        id: idFromPath(ctx, tmpPath),
+        id: createPseudoId(ctx, config.path, index),
         schema: altSchemaDef,
         label,
         value,

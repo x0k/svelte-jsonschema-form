@@ -1,6 +1,5 @@
 <script lang="ts" module>
   import { createArrayComparator } from "@/lib/array.js";
-  import { ascComparator } from "@/lib/ord.js";
 
   declare module "../../form/index.js" {
     interface FoundationalComponents {
@@ -8,20 +7,22 @@
     }
   }
 
-  const compareIds = createArrayComparator(ascComparator);
+  const comparePaths = createArrayComparator((a: FieldPath, b: FieldPath) =>
+    a === b ? 0 : 1
+  );
 </script>
 
 <script lang="ts">
   import {
-    type Id,
     type ComponentProps,
     getComponent,
     getFormContext,
     makeEventHandlers,
     validateField,
-    getErrorsForIds,
-    getErrors,
-    idFromPath,
+    getFieldsErrors,
+    getFieldErrors,
+    type FieldPath,
+    createChildPath,
   } from "@/form/index.js";
   import "@/form/extra-fields/aggregated.js";
 
@@ -47,19 +48,23 @@
 
   const collectErrors = $derived(uiOption("collectErrors") ?? false);
 
-  let lastIds: Id[] | undefined;
-  const ids = $derived.by(() => {
-    const id = config.id;
+  let lastPaths: FieldPath[] | undefined;
+  const paths = $derived.by(() => {
+    const path = config.path;
     const v = value;
-    const nextIds = v
-      ? Object.keys(v).map((k) => idFromPath(ctx, config.path.concat(k)))
+    const nextPaths = v
+      ? Object.keys(v).map((k) => createChildPath(ctx, path, k))
       : [];
-    nextIds.unshift(id);
-    return lastIds && compareIds(nextIds, lastIds) === 0 ? lastIds : nextIds;
+    nextPaths.unshift(path);
+    return lastPaths && comparePaths(nextPaths, lastPaths) === 0
+      ? lastPaths
+      : nextPaths;
   });
 
   const errors = $derived(
-    collectErrors ? getErrorsForIds(ctx, ids) : getErrors(ctx, config.id)
+    collectErrors
+      ? getFieldsErrors(ctx, paths)
+      : getFieldErrors(ctx, config.path)
   );
 </script>
 

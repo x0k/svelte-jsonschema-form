@@ -12,21 +12,23 @@
 </script>
 
 <script lang="ts">
-	import { getFormContext, type ComponentProps, customInputAttributes } from '@sjsf/form';
+	import { getFormContext, type ComponentProps, customInputAttributes, createId } from '@sjsf/form';
 
 	let { value = $bindable(), config, handlers, errors }: ComponentProps['rangeWidget'] = $props();
 
 	const ctx = getFormContext();
+
+	const id = $derived(createId(ctx, config.path))
 </script>
 
 <SkeletonSlider
 	{...customInputAttributes(ctx, config, 'skeleton3Slider', {
 		ids: {
 			hiddenInput() {
-				return config.id;
+				return id;
 			}
 		},
-		name: config.id,
+		name: id,
 		readOnly: config.schema.readOnly,
 		min: config.schema.minimum,
 		max: config.schema.maximum,

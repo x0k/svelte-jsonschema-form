@@ -12,7 +12,7 @@
   import { abortPrevious, createTask } from "@/lib/task.svelte.js";
   import {
     makeEventHandlers,
-    getErrors,
+    getFieldErrors,
     validateField,
     getFormContext,
     getComponent,
@@ -40,7 +40,7 @@
     validateField(ctx, config, value)
   );
 
-  const errors = $derived(getErrors(ctx, config.id));
+  const errors = $derived(getFieldErrors(ctx, config.path));
 
   const setValue = createTask({
     combinator: abortPrevious,

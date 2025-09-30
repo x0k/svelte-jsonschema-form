@@ -15,6 +15,7 @@
 		customInputAttributes,
 		getFormContext,
 		handlersAttachment,
+		createId,
 		type ComponentProps
 	} from '@sjsf/form';
 	import TagsInput from 'flowbite-svelte/Tags.svelte';
@@ -23,14 +24,15 @@
 
 	const ctx = getFormContext();
 	const { onchange, ...inputHandlers } = $derived(handlers);
+	const id = $derived(createId(ctx, config.path));
 </script>
 
 <TagsInput
 	class="flex-1"
 	{...customInputAttributes(ctx, config, 'flowbite3Tags', {
 		inputProps: handlersAttachment(inputHandlers)({
-			id: config.id,
-			name: config.id
+			id,
+			name: id
 		} satisfies HTMLInputAttributes)
 	})}
 	bind:value={

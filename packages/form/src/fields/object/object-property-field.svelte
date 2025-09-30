@@ -18,7 +18,7 @@
 <script lang="ts">
   import {
     getComponent,
-    getErrors,
+    getFieldErrors,
     getFieldComponent,
     getFormContext,
     retrieveUiSchema,
@@ -48,7 +48,7 @@
   );
   const Field = $derived(getFieldComponent(ctx, config));
   const Button = $derived(getComponent(ctx, "button", config));
-  const errors = $derived(getErrors(ctx, config.id));
+  const errors = $derived(getFieldErrors(ctx, config.path));
 </script>
 
 {#snippet keyInput()}

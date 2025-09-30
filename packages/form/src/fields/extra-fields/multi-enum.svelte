@@ -10,7 +10,7 @@
   import { isSchemaObjectValue } from "@/core/index.js";
   import {
     makeEventHandlers,
-    getErrors,
+    getFieldErrors,
     validateField,
     getFormContext,
     getComponent,
@@ -41,7 +41,7 @@
     const itemSchema = isSchemaObjectValue(items) ? items : {};
     return createOptions(ctx, config, uiOption, itemSchema) ?? [];
   });
-  const errors = $derived(getErrors(ctx, config.id));
+  const errors = $derived(getFieldErrors(ctx, config.path));
 </script>
 
 <Template

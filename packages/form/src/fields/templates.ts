@@ -7,6 +7,7 @@ import type {
 } from "@/core/index.js";
 import type {
   Config,
+  FieldErrors,
   FoundationalComponentType,
   UiOption,
 } from "@/form/index.js";
@@ -16,7 +17,7 @@ export interface TemplateCommonProps<V extends SchemaValue> {
   value: V | null | undefined;
   config: Config;
   uiOption: UiOption;
-  errors: string[];
+  errors: FieldErrors;
   children: Snippet;
 }
 

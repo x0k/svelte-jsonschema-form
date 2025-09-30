@@ -4,7 +4,7 @@
     addFormComponents,
     createAsyncFormValidator,
   } from "@sjsf/ajv8-validator";
-  import { ON_INPUT, BasicForm, createForm } from "@sjsf/form";
+  import { ON_INPUT, BasicForm, createForm, hasErrors } from "@sjsf/form";
 
   import * as defaults from "@/lib/form/defaults";
 
@@ -49,6 +49,6 @@
 </p>
 <p>
   form validation: {form.submission.status}, fields validation: {form
-    .fieldsValidation.status}, errors: {form.errors.size > 0}
+    .fieldsValidation.status}, errors: {hasErrors(form)}
 </p>
 <BasicForm {form} novalidate autocomplete="off" />

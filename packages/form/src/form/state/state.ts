@@ -2,7 +2,7 @@ import { getContext, setContext } from "svelte";
 import type { SvelteMap } from "svelte/reactivity";
 
 import type { DataURLToBlob } from "@/lib/file.js";
-import type { Path, Schema, Validator } from "@/core/index.js";
+import type { Schema, Validator } from "@/core/index.js";
 
 import type { Translate, Translation } from "../translation.js";
 import {
@@ -21,7 +21,7 @@ import type {
 import type { Icons } from "../icons.js";
 import type { FormMerger } from "../merger.js";
 import type { Theme } from "../components.js";
-import type { FormValue, KeyedArraysMap, Update } from "../model.js";
+import type { FormValue, KeyedArraysMap, PathTrieRef } from "../model.js";
 import type { ResolveFieldType } from "../fields.js";
 import {
   FORM_CONTEXT,
@@ -43,13 +43,14 @@ import {
   FORM_UI_SCHEMA_ROOT,
   FORM_VALIDATOR,
   FORM_VALUE,
-  FORM_ROOT_ID,
   FORM_FIELDS_STATE_MAP,
-  FORM_ID_BUILDER,
+  FORM_ID_FROM_PATH,
+  FORM_ERRORS,
+  FORM_PATHS_TRIE_REF,
+  FORM_ROOT_PATH,
 } from "../internals.js";
-import type { FormIdBuilder, Id } from "../id.js";
+import type { FieldPath, Id } from "../id.js";
 import type { FieldState } from "../field-state.js";
-import type { ValidationError } from "../validator.js";
 
 export interface FormState<T> {
   readonly submission: FormSubmission;
@@ -63,33 +64,16 @@ export interface FormState<T> {
    * - Default values from JSON Schema are taken into account during assignment
    */
   value: T | undefined;
-  errors: FormErrorsMap;
   submit: (e: SubmitEvent) => void;
   reset: (e: Event) => void;
-  /**
-   * Performs the following actions:
-   * - Takes a snapshot of the current state
-   * - Calls the corresponding validator method
-   *
-   * Actions it does not perform:
-   * - Groups errors
-   * - Updates the form error list
-   *
-   * @throws {InvalidValidatorError} If the validator does not have the corresponding method
-   */
-  validate: () => ValidationError[];
-  validateAsync: (signal: AbortSignal) => Promise<ValidationError[]>;
-  updateErrors: (path: Path, update: Update<string[]>) => void;
-  /**
-   * @throws {Error} If `FormIdBuilder` does not have `toPath` method
-   */
-  fieldTitle: (id: Id) => string;
 
-  /** Internals */
+  // Internals
 
   [FORM_VALUE]: FormValue;
-  readonly [FORM_ID_BUILDER]: FormIdBuilder;
-  readonly [FORM_ROOT_ID]: Id;
+  readonly [FORM_ROOT_PATH]: FieldPath;
+  readonly [FORM_ID_FROM_PATH]: (path: FieldPath) => Id;
+  readonly [FORM_PATHS_TRIE_REF]: PathTrieRef<FieldPath>;
+  readonly [FORM_ERRORS]: FormErrorsMap;
   readonly [FORM_MARK_SCHEMA_CHANGE]: () => void;
   readonly [FORM_KEYED_ARRAYS]: KeyedArraysMap;
   readonly [FORM_FIELDS_VALIDATION_MODE]: number;
@@ -107,7 +91,7 @@ export interface FormState<T> {
   readonly [FORM_TRANSLATE]: Translate;
   readonly [FORM_RESOLVER]: ResolveFieldType;
   readonly [FORM_THEME]: Theme;
-  readonly [FORM_FIELDS_STATE_MAP]: SvelteMap<Id, FieldState>;
+  readonly [FORM_FIELDS_STATE_MAP]: SvelteMap<FieldPath, FieldState>;
 }
 
 export function getFormContext<T>(): FormState<T> {

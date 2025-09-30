@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { BasicForm, createForm } from "@sjsf/form";
+  import { BasicForm, createForm, getErrors, hasErrors } from "@sjsf/form";
 
   import * as defaults from "@/lib/form/defaults";
 
@@ -13,11 +13,11 @@
 
 <BasicForm {form} novalidate />
 
-{#if form.errors.size > 0}
+{#if hasErrors(form)}
   <div style="padding-top: 1rem;">
     <span style="font-size: larger; font-weight: bold;">Errors</span>
     <ui style="color: red;">
-      {#each form.errors as [id, errors] (id)}
+      {#each getErrors(form) as [path, errors] (path)}
         {#each errors as error}
           <li>{error}</li>
         {/each}

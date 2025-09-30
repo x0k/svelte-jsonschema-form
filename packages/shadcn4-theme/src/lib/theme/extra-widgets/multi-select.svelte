@@ -16,6 +16,7 @@
 		customInputAttributes,
 		getFormContext,
 		handlersAttachment,
+		createId,
 		type ComponentProps
 	} from '@sjsf/form';
 	import { multipleOptions, stringIndexMapper } from '@sjsf/form/options.svelte';
@@ -64,6 +65,8 @@
 		}
 		return selectAttributes.placeholder;
 	});
+
+	const id = $derived(createId(ctx, config.path));
 </script>
 
 <Select bind:value={mapped.value} {...selectAttributes} type="multiple">
@@ -74,8 +77,8 @@
 			config,
 			'shadcn4MultiSelectTrigger',
 			handlersAttachment(buttonHandlers)({
-				id: config.id,
-				name: config.id
+				id,
+				name: id
 			})
 		)}
 	>

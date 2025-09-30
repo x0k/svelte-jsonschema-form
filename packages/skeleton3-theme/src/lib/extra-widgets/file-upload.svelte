@@ -12,7 +12,12 @@
 
 <script lang="ts">
 	import { type FileUploadApi } from '@skeletonlabs/skeleton-svelte';
-	import { customInputAttributes, getFormContext, type ComponentProps } from '@sjsf/form';
+	import {
+		customInputAttributes,
+		getFormContext,
+		createId,
+		type ComponentProps
+	} from '@sjsf/form';
 
 	let {
 		config,
@@ -24,14 +29,16 @@
 
 	const ctx = getFormContext();
 
+	const id = $derived(createId(ctx, config.path));
+
 	let lastFiles: FileList | undefined;
 	const attributes = $derived(
 		customInputAttributes(ctx, config, 'skeleton3FileUpload', {
 			ids: {
-				hiddenInput: config.id
+				hiddenInput: id
 			},
 			invalid: errors.length > 0,
-			name: config.id,
+			name: id,
 			required: config.required,
 			maxFiles: config.schema.maxItems ?? (multiple ? Infinity : 1),
 			onFileChange: handlers.onchange,

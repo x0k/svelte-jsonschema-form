@@ -36,6 +36,7 @@
 		customInputAttributes,
 		getFormContext,
 		handlersAttachment,
+		createId,
 		uiOptionProps,
 		type ComponentProps
 	} from '@sjsf/form';
@@ -66,7 +67,7 @@
 	const attributes = $derived(
 		customInputAttributes(ctx, config, 'shadcn4RadioButtons', {
 			type: 'single',
-			id: config.id,
+			id: createId(ctx, config.path),
 			'aria-required': config.required,
 			'aria-readonly': config.schema.readOnly,
 			onValueChange: () => {

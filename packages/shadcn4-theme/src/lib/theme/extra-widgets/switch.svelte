@@ -23,6 +23,7 @@
 		customInputAttributes,
 		getFormContext,
 		handlersAttachment,
+		createId,
 		type ComponentProps
 	} from '@sjsf/form';
 
@@ -36,6 +37,8 @@
 	let { value = $bindable(), config, handlers }: ComponentProps['switchWidget'] = $props();
 
 	const { oninput, onchange, ...buttonHandlers } = $derived(handlers);
+
+	const id = $derived(createId(ctx, config.path));
 </script>
 
 <Switch
@@ -45,8 +48,8 @@
 		config,
 		'shadcn4Switch',
 		handlersAttachment(buttonHandlers)({
-			id: config.id,
-			name: config.id,
+			id,
+			name: id,
 			required: config.required,
 			onCheckedChange: () => {
 				oninput?.();
@@ -55,4 +58,4 @@
 		})
 	)}
 />
-<Label for={config.id}>{config.title}</Label>
+<Label for={id}>{config.title}</Label>

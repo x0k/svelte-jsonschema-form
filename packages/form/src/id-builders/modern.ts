@@ -1,11 +1,8 @@
-import type { Path } from "@/core/index.js";
 import {
-  encodePseudoElement,
   DEFAULT_ID_PREFIX,
   decodePseudoElement,
-  type FieldPseudoElement,
+  type FieldPath,
   type FormIdBuilder,
-  type Id,
 } from "@/form/main.js";
 
 export interface IdOptions {
@@ -25,81 +22,18 @@ export function createFormIdBuilder({
   propertySeparator = DEFAULT_PROPERTY_SEPARATOR,
   pseudoSeparator = DEFAULT_PSEUDO_SEPARATOR,
 }: IdOptions = {}): FormIdBuilder {
-  function joinPath(path: Path) {
-    let str = "";
-    for (let i = 0; i < path.length; i++) {
-      const p = path[i]!;
-      const pseudo = decodePseudoElement(p);
-      str +=
-        pseudo !== undefined
-          ? `${pseudoSeparator}${pseudo}`
-          : `${typeof p === "string" ? propertySeparator : indexSeparator}${p}`;
-    }
-    return str;
-  }
   return {
-    fromPath: (path: Path) => `${idPrefix}${joinPath(path)}` as Id,
-    toPath: (id) => {
-      if (!id.startsWith(idPrefix)) {
-        throw new Error(
-          `Invalid id "${id}", expected to be started with "${idPrefix}"`
-        );
+    fromPath: (path: FieldPath) => {
+      let str = "";
+      for (let i = 0; i < path.length; i++) {
+        const p = path[i]!;
+        const pseudo = decodePseudoElement(p);
+        str +=
+          pseudo !== undefined
+            ? `${pseudoSeparator}${pseudo}`
+            : `${typeof p === "string" ? propertySeparator : indexSeparator}${p}`;
       }
-      const path: Path = [];
-      id = id.substring(idPrefix.length) as Id;
-      if (id.length === 0) {
-        return path;
-      }
-      let i = 0;
-      let lastSep: string | undefined;
-      let lastSepIndex = 0;
-      const get = () => {
-        const token = id.substring(lastSepIndex, i);
-        switch (lastSep) {
-          case propertySeparator:
-            return token;
-          case indexSeparator:
-            return Number(token);
-          default:
-            throw new Error(`Unexpected last separator "${lastSep}"`);
-        }
-      };
-      while (i < id.length) {
-        let nextSep: string | undefined;
-        if (id.startsWith(propertySeparator, i)) {
-          nextSep = propertySeparator;
-        } else if (id.startsWith(indexSeparator, i)) {
-          nextSep = indexSeparator;
-        } else if (id.startsWith(pseudoSeparator, i)) {
-          nextSep = pseudoSeparator;
-        }
-        if (nextSep !== undefined) {
-          if (nextSep === pseudoSeparator) {
-            break;
-          }
-          if (lastSep !== undefined) {
-            path.push(get());
-          }
-          lastSep = nextSep;
-          i += nextSep.length;
-          lastSepIndex = i;
-          continue;
-        }
-        i++;
-      }
-      path.push(get());
-      if (i < id.length) {
-        const token = id.substring(i + pseudoSeparator.length);
-        const n = Number(token);
-        path.push(
-          encodePseudoElement(
-            Number.isInteger(n) && token.trim() !== ""
-              ? n
-              : (token as FieldPseudoElement)
-          )
-        );
-      }
-      return path;
+      return `${idPrefix}${str}`;
     },
   };
 }

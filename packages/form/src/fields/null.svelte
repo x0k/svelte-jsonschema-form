@@ -1,7 +1,7 @@
 <script lang="ts">
   import {
     getComponent,
-    getErrors,
+    getFieldErrors,
     getFormContext,
     type ComponentProps,
   } from "@/form/index.js";
@@ -22,7 +22,7 @@
 
   const Template = $derived(getComponent(ctx, "fieldTemplate", config));
 
-  const errors = $derived(getErrors(ctx, config.id));
+  const errors = $derived(getFieldErrors(ctx, config.path));
 </script>
 
 <Template

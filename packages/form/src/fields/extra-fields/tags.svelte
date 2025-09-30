@@ -8,15 +8,15 @@
 
 <script lang="ts">
   import {
+    createChildPath,
     getComponent,
-    getErrors,
-    getErrorsForIds,
+    getFieldErrors,
+    getFieldsErrors,
     getFormContext,
-    idFromPath,
     makeEventHandlers,
     validateField,
     type ComponentProps,
-    type Id,
+    type FieldPath,
   } from "@/form/index.js";
   import "@/form/extra-fields/tags.js";
 
@@ -43,22 +43,22 @@
 
   const collectErrors = $derived(uiOption("collectErrors") ?? false);
 
-  let lastIds: Id[] | undefined;
-  const ids = $derived.by(() => {
+  let lastPaths: FieldPath[] | undefined;
+  const paths = $derived.by(() => {
     const l = value?.length ?? 0;
-    const id = config.id;
-    if (lastIds?.length === l + 1 && lastIds[0] === id) {
-      return lastIds;
+    const path = config.path;
+    if (lastPaths?.length === l + 1 && lastPaths[0] === path) {
+      return lastPaths;
     }
-    const ids = [id];
+    const paths = [path];
     for (let i = 0; i < l; i++) {
-      ids.push(idFromPath(ctx, config.path.concat(i)));
+      paths.push(createChildPath(ctx, path, i));
     }
-    return ids;
+    return paths;
   });
 
   const errors = $derived(
-    collectErrors ? getErrorsForIds(ctx, ids) : getErrors(ctx, config.id)
+    collectErrors ? getFieldsErrors(ctx, paths) : getFieldErrors(ctx, config.path)
   );
 </script>
 

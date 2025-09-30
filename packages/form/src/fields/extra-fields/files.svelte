@@ -11,7 +11,7 @@
   import { createAsyncBinding } from "@/lib/svelte.svelte.js";
   import {
     makeEventHandlers,
-    getErrors,
+    getFieldErrors,
     validateField,
     getFormContext,
     addFiles,
@@ -71,7 +71,7 @@
     },
   });
 
-  const errors = $derived(getErrors(ctx, config.id));
+  const errors = $derived(getFieldErrors(ctx, config.path));
 </script>
 
 <Template

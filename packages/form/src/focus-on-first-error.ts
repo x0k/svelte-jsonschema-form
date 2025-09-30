@@ -1,12 +1,11 @@
 import { tick } from "svelte";
 
 import {
-  type FormErrorsMap,
   type FormValue,
   type Id,
   type FormState,
-  pathFormId,
-  idFromPath,
+  type ValidationError,
+  createIdByPath,
   encodePseudoElement,
 } from "./form/index.js";
 
@@ -58,12 +57,12 @@ export function createFocusOnFirstError(
   options: GetFocusableElementOptions = {}
 ) {
   return (
-    errors: FormErrorsMap,
+    errors: ValidationError[],
     e: SubmitEvent,
     _: FormValue,
     ctx: FormState<any>
   ) => {
-    if (errors.size === 0) {
+    if (errors.length === 0) {
       return false;
     }
     const form = e.target;
@@ -71,20 +70,13 @@ export function createFocusOnFirstError(
       console.warn("Expected form to be an HTMLElement, got", form);
       return false;
     }
-    const error = errors.entries().next().value;
-    if (error === undefined || error[1].length === 0) {
-      return false;
-    }
-    const instanceId = error[0];
+    const { path } = errors[0]!;
     const focusAction = getFocusAction(
-      getFocusableElement(form, instanceId, options),
+      getFocusableElement(form, createIdByPath(ctx, path), options),
       () =>
         getErrorsList(
           form,
-          idFromPath(
-            ctx,
-            pathFormId(ctx, instanceId).concat(encodePseudoElement("errors"))
-          )
+          createIdByPath(ctx, path.concat(encodePseudoElement("errors")))
         )
     );
     if (focusAction === null) {
