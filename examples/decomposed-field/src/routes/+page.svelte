@@ -3,7 +3,7 @@
     type Schema,
     createForm,
     Field,
-    getErrors,
+    getFieldErrors,
     getFormContext,
     makeEventHandlers,
     validateField,
@@ -34,7 +34,7 @@
   const t = defaults.theme;
 </script>
 
-<Field {form} name="hello">
+<Field {form} path={["hello"]}>
   {#snippet render({ config, uiOption, valueRef })}
     <!-- NOTE: form === ctx -->
     {@const ctx = getFormContext()}
@@ -55,7 +55,7 @@
       uiOption,
       config
     )}
-    {@const errors = getErrors(ctx, config.id)}
+    {@const errors = getFieldErrors(ctx, config.path)}
     {@const help = uiOption("help")}
     {@const Widget = t("textWidget", config)}
     {@const handlers = makeEventHandlers(

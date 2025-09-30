@@ -11,10 +11,10 @@
 
   const form = createForm({
     ...defaults,
-    createValidator: (options) => ({
-      ...createFormValueValidator(schema, options),
+    validator: {
+      ...createFormValueValidator(schema),
       isValid: () => true,
-    }),
+    },
     schema: schema.toJsonSchema({
       dialect: null,
     }) as Schema,

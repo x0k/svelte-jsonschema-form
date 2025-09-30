@@ -7,8 +7,6 @@
     type Schema,
     type UiSchemaRoot,
     type AsyncFormValueValidator,
-    type FormValueValidatorError,
-    idFromPath,
   } from "@sjsf/form";
 
   import * as defaults from "$lib/form-defaults";
@@ -41,8 +39,6 @@
     });
   }
 
-  class InvalidCountry {}
-
   const schema = {
     type: "string",
     title: "Country",
@@ -68,8 +64,8 @@
 
   const form = createForm({
     ...defaults,
-    createValidator: (options) => {
-      const defaultValidator = defaults.createValidator(options);
+    validator: (options) => {
+      const defaultValidator = defaults.validator(options);
       return {
         ...defaultValidator,
         async validateFormValueAsync(signal, rootSchema, formValue) {
@@ -88,16 +84,12 @@
           }
           return [
             {
-              instanceId: idFromPath([]),
-              propertyTitle: "Country",
+              path: [],
               message: "invalid country",
-              error: new InvalidCountry(),
             },
           ];
         },
-      } satisfies AsyncFormValueValidator<
-        FormValueValidatorError<typeof defaultValidator> | InvalidCountry
-      >;
+      } satisfies AsyncFormValueValidator;
     },
     // NOTE: the behavior of the `$derived` rune during SSR is different from the browser
     get disabled(): boolean {

@@ -12,14 +12,13 @@
 
   const form = createForm({
     ...defaults,
-    createValidator: (options) => ({
+    validator: {
       ...createFormValueValidator(
         //@ts-expect-error
-        Compile(schema),
-        options
+        Compile(schema)
       ),
       isValid: () => true,
-    }),
+    },
     schema,
     uiSchema: {
       "ui:options": {

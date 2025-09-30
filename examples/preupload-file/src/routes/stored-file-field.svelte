@@ -10,13 +10,13 @@
   import { createAsyncBinding } from "@sjsf/form/lib/svelte.svelte";
   import {
     makeEventHandlers,
-    getErrors,
     validateField,
     getFormContext,
     getComponent,
     type ComponentProps,
     validateFileList,
     FileListValidationError,
+    getFieldErrors,
   } from "@sjsf/form";
 
   import "@sjsf/form/fields/extra-widgets/file";
@@ -64,7 +64,7 @@
     },
   });
 
-  const errors = $derived(getErrors(ctx, config.id));
+  const errors = $derived(getFieldErrors(ctx, config.path));
 </script>
 
 <Template

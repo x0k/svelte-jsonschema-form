@@ -23,10 +23,10 @@
 		"vite": "^7.1.2"
 	},
 	"dependencies": {
-		"@sjsf/ajv8-validator": "^3.0.0-next.4",
-		"@sjsf/basic-theme": "^3.0.0-next.4",
-		"@sjsf/daisyui5-theme": "^3.0.0-next.4",
-		"@sjsf/form": "^3.0.0-next.4",
+		"@sjsf/ajv8-validator": "^3.0.0-next.5",
+		"@sjsf/basic-theme": "^3.0.0-next.5",
+		"@sjsf/daisyui5-theme": "^3.0.0-next.5",
+		"@sjsf/form": "^3.0.0-next.5",
 		"ajv": "^8.17.1"
 	}
 }

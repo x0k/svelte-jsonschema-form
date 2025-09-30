@@ -1,6 +1,6 @@
 <script lang="ts">
   import { isSchemaObject } from "@sjsf/form/lib/json-schema";
-  import type { ComponentProps } from "@sjsf/form";
+  import { createId, getFormContext, type ComponentProps } from "@sjsf/form";
 
   import {
     createTabsNode,
@@ -11,9 +11,10 @@
 
   const { config, children }: ComponentProps["layout"] = $props();
 
+  const ctx = getFormContext()
   const tabsCtx = getTabsContext();
   const node = createTabsNode(0);
-  tabsCtx.set(config.id, node);
+  tabsCtx.set(createId(ctx, config.path), node);
   setTabsContext(node.children);
   setTabsNodeContext(node);
 
