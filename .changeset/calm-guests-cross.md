@@ -4,12 +4,6 @@
 
 - Added a new **required** `createForm` parameter: `createIdBuilder`
 - Removed the `idSeparator` and `idPseudoSeparator` parameters
-- Updated function signatures (context is now passed as the first argument):
-  - `createPseudoId`
-  - `idFromPath`
-- Split `createChildId` into two separate functions:
-  - `createItemId`
-  - `createPropertyId`
 - Removed the following types:
   - `IdPrefixOption`
   - `IdSeparatorOption`
