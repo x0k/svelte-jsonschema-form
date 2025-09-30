@@ -1,5 +1,7 @@
 import { onMount } from "svelte";
 
+import type { RPath } from "@/core/index.js";
+
 import {
   AFTER_SUBMITTED,
   AFTER_CHANGED,
@@ -12,6 +14,9 @@ import {
   FORM_ERRORS,
   FORM_FIELDS_STATE_MAP,
   FORM_FIELDS_VALIDATION_MODE,
+  FORM_PATHS_TRIE_REF,
+  internalHasFieldState,
+  internalRegisterFieldPath,
 } from "../internals.js";
 import type { FieldPath } from "../id.js";
 import type { Config } from "../config.js";
@@ -33,12 +38,36 @@ export function setFieldState<T>(
   ctx[FORM_FIELDS_STATE_MAP].set(path, currentFlags | state);
 }
 
+export function setFieldStateByPath<T>(
+  ctx: FormState<T>,
+  path: RPath,
+  state: FieldState
+) {
+  setFieldState(
+    ctx,
+    internalRegisterFieldPath(ctx[FORM_PATHS_TRIE_REF], path),
+    state
+  );
+}
+
 export function hasFieldState<T>(
   ctx: FormState<T>,
   path: FieldPath,
   state: FieldState
 ) {
-  return ((ctx[FORM_FIELDS_STATE_MAP].get(path) ?? 0) & state) > 0;
+  return internalHasFieldState(ctx[FORM_FIELDS_STATE_MAP], path, state);
+}
+
+export function hasFieldStateByPath<T>(
+  ctx: FormState<T>,
+  path: RPath,
+  state: FieldState
+) {
+  return hasFieldState(
+    ctx,
+    internalRegisterFieldPath(ctx[FORM_PATHS_TRIE_REF], path),
+    state
+  );
 }
 
 export function makeEventHandlers<T>(

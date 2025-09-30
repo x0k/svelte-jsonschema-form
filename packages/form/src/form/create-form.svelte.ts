@@ -1,4 +1,3 @@
-import { BROWSER } from "esm-env";
 import type { Attachment } from "svelte/attachments";
 import { SvelteMap } from "svelte/reactivity";
 import { on } from "svelte/events";
@@ -59,7 +58,6 @@ import {
 import type { ResolveFieldType } from "./fields.js";
 import { createSchemaValuesReconciler, UNCHANGED } from "./reconcile.js";
 import {
-  hasFieldState,
   setFieldState,
   updateErrors,
   updateFieldErrors,
@@ -91,6 +89,7 @@ import {
   FORM_ROOT_PATH,
   FORM_ERRORS,
   FORM_PATHS_TRIE_REF,
+  internalHasFieldState,
 } from "./internals.js";
 import { FIELD_SUBMITTED } from "./field-state.js";
 
@@ -285,7 +284,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     })
   );
   const idCache = new WeakMap<FieldPath, Id>();
-  const idFromPath = $derived(
+  const createId = $derived(
     weakMemoize(idCache, (path) => idBuilder.fromPath(path) as Id)
   );
   const pathsTrieRef: PathTrieRef<FieldPath> = $derived.by(() => {
@@ -381,8 +380,8 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   const translate = $derived(createTranslate(options.translation));
   const fieldsStateMap = new SvelteMap<FieldPath, number>();
   const isChanged = $derived(fieldsStateMap.size > 0);
-  const isSubmitted = $derived.by(
-    () => BROWSER && hasFieldState(formState, rootPath, FIELD_SUBMITTED)
+  const isSubmitted = $derived(
+    internalHasFieldState(fieldsStateMap, rootPath, FIELD_SUBMITTED)
   );
   // STATE END
 
@@ -537,7 +536,7 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       return pathsTrieRef;
     },
     get [FORM_ID_FROM_PATH]() {
-      return idFromPath;
+      return createId;
     },
     get [FORM_ROOT_PATH]() {
       return rootPath;

@@ -8,7 +8,6 @@
 
   import {
     getFieldComponent,
-    registerFieldPath,
     retrieveSchema,
     retrieveTranslate,
     retrieveUiOption,
@@ -26,10 +25,12 @@
   import type { ComponentProps } from "./components.js";
   import type { FoundationalFieldType } from "./fields.js";
   import {
+    FORM_PATHS_TRIE_REF,
     FORM_SCHEMA,
     FORM_UI_SCHEMA,
     FORM_UI_SCHEMA_ROOT,
     FORM_VALUE,
+    internalRegisterFieldPath,
   } from "./internals.js";
 
   interface Props {
@@ -62,7 +63,9 @@
     });
   }
 
-  const path = $derived(registerFieldPath(form, providedPath));
+  const path = $derived(
+    internalRegisterFieldPath(form[FORM_PATHS_TRIE_REF], providedPath)
+  );
 
   const valueRef: { value: FieldValue } = $derived.by(() => {
     if (path.length === 0) {

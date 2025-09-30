@@ -1,4 +1,5 @@
 import { getNodeByKeys, insertValue } from "@/lib/trie.js";
+import type { RPath } from "@/core/index.js";
 
 import {
   encodePseudoElement,
@@ -13,17 +14,16 @@ import {
 } from "../internals.js";
 
 import type { FormState } from "./state.js";
-import type { RPath } from "../main.js";
 
-export function registerFieldPath<T>(
-  ctx: FormState<T>,
-  path: RPath
-): FieldPath {
-  return internalRegisterFieldPath(ctx[FORM_PATHS_TRIE_REF], path);
+export function createId<T>(ctx: FormState<T>, path: FieldPath): Id {
+  return ctx[FORM_ID_FROM_PATH](path);
 }
 
-export function idFromPath<T>(ctx: FormState<T>, path: FieldPath): Id {
-  return ctx[FORM_ID_FROM_PATH](path);
+export function createIdByPath<T>(ctx: FormState<T>, path: RPath): Id {
+  return createId(
+    ctx,
+    internalRegisterFieldPath(ctx[FORM_PATHS_TRIE_REF], path)
+  );
 }
 
 export function createChildPath<T>(
@@ -53,3 +53,24 @@ export function createPseudoPath<T>(
 ) {
   return createChildPath(ctx, parentPath, encodePseudoElement(element));
 }
+
+export function createPseudoId<T>(
+  ctx: FormState<T>,
+  path: FieldPath,
+  element: FieldPseudoElement
+): Id {
+  return createId(ctx, createPseudoPath(ctx, path, element));
+}
+
+export function createPseudoIdByPath<T>(
+  ctx: FormState<T>,
+  path: RPath,
+  element: FieldPseudoElement
+): Id {
+  return createPseudoIdByPath(
+    ctx,
+    internalRegisterFieldPath(ctx[FORM_PATHS_TRIE_REF], path),
+    element
+  );
+}
+

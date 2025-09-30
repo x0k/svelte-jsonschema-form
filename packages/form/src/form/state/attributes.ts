@@ -22,7 +22,7 @@ import {
   type ObjectUiOptions,
 } from "./ui-schema.js";
 import type { FormState } from "./state.js";
-import { createPseudoPath, idFromPath } from "./path.js";
+import { createId, createPseudoId } from "./path.js";
 
 interface Disabled {
   disabled: boolean;
@@ -189,7 +189,7 @@ export function describedBy<T>(ctx: FormState<T>, config: Config) {
       ? DEFAULT_DESCRIBE_ELEMENTS_WITH_EXAMPLES
       : DEFAULT_DESCRIBE_ELEMENTS
   )
-    .map((el) => idFromPath(ctx, createPseudoPath(ctx, config.path, el)))
+    .map((el) => createPseudoId(ctx, config.path, el))
     .join(" ");
 }
 
@@ -199,7 +199,7 @@ export function inputProps<T extends HTMLInputAttributes, FT>(
   ctx: FormState<FT>
 ) {
   const { required, schema, path } = config;
-  const id = idFromPath(ctx, path);
+  const id = createId(ctx, path);
   props.id = id;
   props.name = id;
   const type = inputType(schema.format);
@@ -215,7 +215,7 @@ export function inputProps<T extends HTMLInputAttributes, FT>(
   props.step =
     schema.multipleOf ?? (schema.type === "number" ? "any" : undefined);
   props.list = Array.isArray(schema.examples)
-    ? idFromPath(ctx, createPseudoPath(ctx, config.path, "examples"))
+    ? createPseudoId(ctx, config.path, "examples")
     : undefined;
   props.readonly = schema.readOnly;
   props["aria-describedby"] = describedBy(ctx, config);
@@ -228,7 +228,7 @@ export function textareaProps<T extends HTMLTextareaAttributes, FT>(
   ctx: FormState<FT>
 ) {
   const { path, required, schema } = config;
-  const id = idFromPath(ctx, path);
+  const id = createId(ctx, path);
   props.id = id;
   props.name = id;
   props.required = required;
@@ -245,7 +245,7 @@ export function selectProps<T extends HTMLSelectAttributes, FT>(
   ctx: FormState<FT>
 ) {
   const { path, required } = config;
-  const id = idFromPath(ctx, path);
+  const id = createId(ctx, path);
   props.id = id;
   props.name = id;
   props.required = required;
@@ -262,7 +262,7 @@ export function forProp<T, FT>(
   config: Config,
   ctx: FormState<FT>
 ) {
-  props.for = idFromPath(ctx, config.path);
+  props.for = createId(ctx, config.path);
   return props;
 }
 
@@ -272,7 +272,7 @@ type WithId<T> = T & {
 
 export function idProp(element: FieldPseudoElement) {
   return <T, FT>(props: WithId<T>, config: Config, ctx: FormState<FT>) => {
-    props.id = idFromPath(ctx, createPseudoPath(ctx, config.path, element));
+    props.id = createPseudoId(ctx, config.path, element);
     return props;
   };
 }

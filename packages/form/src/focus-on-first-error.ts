@@ -4,10 +4,9 @@ import {
   type FormValue,
   type Id,
   type FormState,
-  idFromPath,
-  createPseudoPath,
   type ValidationError,
-  registerFieldPath,
+  createIdByPath,
+  encodePseudoElement,
 } from "./form/index.js";
 
 export interface GetFocusableElementOptions {
@@ -71,14 +70,13 @@ export function createFocusOnFirstError(
       console.warn("Expected form to be an HTMLElement, got", form);
       return false;
     }
-    const { path } = errors[0]!
-    const fieldPath = registerFieldPath(ctx, path)
+    const { path } = errors[0]!;
     const focusAction = getFocusAction(
-      getFocusableElement(form, idFromPath(ctx, fieldPath), options),
+      getFocusableElement(form, createIdByPath(ctx, path), options),
       () =>
         getErrorsList(
           form,
-          idFromPath(ctx, createPseudoPath(ctx, fieldPath, "errors"))
+          createIdByPath(ctx, path.concat(encodePseudoElement("errors")))
         )
     );
     if (focusAction === null) {

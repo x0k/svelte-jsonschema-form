@@ -33,8 +33,8 @@
     retrieveUiOption,
     uiTitleOption,
     retrieveTranslate,
-    idFromPath,
     createPseudoPath,
+    createPseudoId,
   } from "@/form/index.js";
 
   let {
@@ -159,7 +159,7 @@
 
   const enumOptions = $derived<EnumOption<number>[]>(
     optionTitles.map((label, i) => ({
-      id: idFromPath(ctx, createPseudoPath(ctx, config.path, i)),
+      id: createPseudoId(ctx, config.path, i),
       label,
       value: i,
       disabled: false,

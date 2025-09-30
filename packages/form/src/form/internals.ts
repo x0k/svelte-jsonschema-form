@@ -1,3 +1,5 @@
+import type { SvelteMap } from 'svelte/reactivity';
+
 import { getNodeByKeys, insertValue } from "@/lib/trie.js";
 import type { RPath } from '@/core/index.js';
 
@@ -5,6 +7,7 @@ import type { FormErrorsMap } from "./errors.js";
 import type { ValidationError } from "./validator.js";
 import type { PathTrieRef } from "./model.js";
 import type { FieldPath } from "./id.js";
+import type { FieldState } from './field-state.js';
 
 export const FORM_CONTEXT = Symbol("form-context");
 
@@ -69,4 +72,12 @@ export function internalAssignErrors(
     }
   }
   return map;
+}
+
+export function internalHasFieldState(
+  map: SvelteMap<FieldPath, FieldState>,
+  path: FieldPath,
+  state: FieldState
+) {
+  return ((map.get(path) ?? 0) & state) > 0;
 }

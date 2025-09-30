@@ -1,9 +1,12 @@
+import type { RPath } from "@/core/index.js";
+
 import type { FieldErrors } from "../errors.js";
 import type { FieldPath } from "../id.js";
 import {
   FORM_ERRORS,
   FORM_PATHS_TRIE_REF,
   internalAssignErrors,
+  internalRegisterFieldPath,
 } from "../internals.js";
 import type { Update } from "../model.js";
 import type { ValidationError } from "../validator.js";
@@ -16,6 +19,16 @@ export function getFieldErrors<T>(
   path: FieldPath
 ): FieldErrors {
   return ctx[FORM_ERRORS].get(path) ?? NO_ERRORS;
+}
+
+export function getFieldErrorsByPath<T>(
+  ctx: FormState<T>,
+  path: RPath
+): FieldErrors {
+  return getFieldErrors(
+    ctx,
+    internalRegisterFieldPath(ctx[FORM_PATHS_TRIE_REF], path)
+  );
 }
 
 export function getFieldsErrors<T>(
@@ -32,6 +45,16 @@ export function getFieldsErrors<T>(
     }
   }
   return errors;
+}
+
+export function getFieldsErrorsByPath<T>(
+  ctx: FormState<T>,
+  paths: RPath[]
+): string[] {
+  return getFieldsErrors(
+    ctx,
+    paths.map((p) => internalRegisterFieldPath(ctx[FORM_PATHS_TRIE_REF], p))
+  );
 }
 
 export function updateErrors<T>(ctx: FormState<T>, errors: ValidationError[]) {
@@ -55,6 +78,18 @@ export function updateFieldErrors<T>(
     ctx[FORM_ERRORS].delete(path);
   }
   return errors.length === 0;
+}
+
+export function updateFieldErrorsByPath<T>(
+  ctx: FormState<T>,
+  path: RPath,
+  errors: Update<string[]>
+): boolean {
+  return updateFieldErrors(
+    ctx,
+    internalRegisterFieldPath(ctx[FORM_PATHS_TRIE_REF], path),
+    errors
+  );
 }
 
 export function hasErrors<T>(ctx: FormState<T>) {

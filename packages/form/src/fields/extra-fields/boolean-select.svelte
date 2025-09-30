@@ -8,8 +8,7 @@
     type ComponentProps,
     type Schema,
     DEFAULT_BOOLEAN_ENUM,
-    idFromPath,
-    createPseudoPath,
+    createPseudoId,
   } from "@/form/index.js";
   import "@/form/extra-fields/boolean-select.js";
 
@@ -56,7 +55,7 @@
     ) {
       return enumValues.map((v, i) => {
         return {
-          id: idFromPath(ctx, createPseudoPath(ctx, config.path, i)),
+          id: createPseudoId(ctx, config.path, i),
           label: v ? yes : no,
           value: v,
           disabled: false,
