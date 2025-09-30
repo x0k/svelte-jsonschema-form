@@ -2,15 +2,14 @@
   import {
     type UiSchema,
     type Config,
-    getErrors,
+    getFieldErrors,
     getFormContext,
     getComponent,
     type UiOption,
     retrieveUiOption,
     uiTitleOption,
     type Translate,
-    encodePseudoElement,
-    idFromPath,
+    createPseudoPath,
   } from "@/form/index.js";
 
   import { getObjectContext } from "./context.svelte.js";
@@ -30,12 +29,8 @@
   const ctx = getFormContext();
   const objCtx = getObjectContext();
 
-  const path = $derived(parent.path.concat(encodePseudoElement("key-input")))
-  const id = $derived(idFromPath(ctx, path));
   const config: Config = $derived({
-    id,
-    path,
-    name: id,
+    path: createPseudoPath(ctx, parent.path, "key-input"),
     title:
       uiTitleOption(ctx, uiSchema) ??
       translate("key-input-title", { name: property }),
@@ -59,7 +54,7 @@
     },
   };
 
-  const errors = $derived(getErrors(ctx, id));
+  const errors = $derived(getFieldErrors(ctx, config.path));
   const uiOption: UiOption = (opt) => retrieveUiOption(ctx, config, opt);
 </script>
 

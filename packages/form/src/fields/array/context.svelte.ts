@@ -13,7 +13,7 @@ import {
 import {
   AFTER_SUBMITTED,
   getDefaultFieldState,
-  getErrors,
+  getFieldErrors,
   getFieldsValidationMode,
   ON_ARRAY_CHANGE,
   retrieveSchema,
@@ -28,7 +28,8 @@ import {
   type UiOption,
   setFieldState,
   FIELD_CHANGED,
-  idFromPath,
+  createChildPath,
+  type FieldErrors,
 } from "@/form/index.js";
 
 import { titleWithIndex, type ItemTitle } from "./model.js";
@@ -39,7 +40,7 @@ export interface ArrayContext {
   removable: () => boolean;
   orderable: () => boolean;
   copyable: () => boolean;
-  errors: () => string[];
+  errors: () => FieldErrors;
   itemTitle: ItemTitle;
   uiOption: UiOption;
   length: () => number;
@@ -89,7 +90,7 @@ function createItems<T>({
 }: ItemsOptions<T>) {
   const uiOption: UiOption = (opt) => retrieveUiOption(ctx, config(), opt);
   function onChange() {
-    setFieldState(ctx, config().id, FIELD_CHANGED);
+    setFieldState(ctx, config().path, FIELD_CHANGED);
     const m = getFieldsValidationMode(ctx);
     if (!(m & ON_ARRAY_CHANGE) || (m & AFTER_SUBMITTED && !ctx.isSubmitted)) {
       return;
@@ -99,7 +100,7 @@ function createItems<T>({
 
   const keyed = $derived.by(keyedArray);
 
-  const errors = $derived(getErrors(ctx, config().id));
+  const errors = $derived(getFieldErrors(ctx, config().path));
 
   const addable = $derived(uiOption("addable") ?? true);
   const orderable = $derived(uiOption("orderable") ?? true);
@@ -225,10 +226,8 @@ export function createArrayContext<T>({
     },
     itemConfig(config, item, index) {
       const schema = retrieveSchema(ctx, itemSchema, item);
-      const path = config.path.concat(index);
       return {
-        path,
-        id: idFromPath(ctx, path),
+        path: createChildPath(ctx, config.path, index),
         title: items.itemTitle(
           itemUiTitle ?? schema.title ?? config.title,
           index,
@@ -347,10 +346,8 @@ export function createTupleContext<T>({
             ? config.uiSchema.items[index]
             : config.uiSchema.items
       );
-      const path = config.path.concat(index);
       return {
-        path,
-        id: idFromPath(ctx, path),
+        path: createChildPath(ctx, config.path, index),
         title: items.itemTitle(
           uiTitleOption(ctx, uiSchema) ?? schema.title ?? config.title,
           index,

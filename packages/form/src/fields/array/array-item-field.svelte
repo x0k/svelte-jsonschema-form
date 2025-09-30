@@ -17,7 +17,7 @@
 <script lang="ts">
   import {
     getComponent,
-    getErrors,
+    getFieldErrors,
     getFieldComponent,
     getFormContext,
     Text,
@@ -48,7 +48,7 @@
   const canMoveUp = $derived(arrayCtx.canMoveUp(index));
   const canMoveDown = $derived(arrayCtx.canMoveDown(index));
   const toolbar = $derived(canCopy || canRemove || canMoveUp || canMoveDown);
-  const errors = $derived(getErrors(ctx, config.id));
+  const errors = $derived(getFieldErrors(ctx, config.path));
 </script>
 
 {#snippet buttons()}

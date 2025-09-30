@@ -1,21 +1,18 @@
 <script lang="ts">
-  import { FORM_SCHEMA, FORM_UI_SCHEMA } from "./internals.js";
+  import { FORM_ROOT_PATH, FORM_SCHEMA, FORM_UI_SCHEMA } from "./internals.js";
   import {
+    createPseudoPath,
     getComponent,
     getFormContext,
-    idFromPath,
     retrieveTranslate,
   } from "./state/index.js";
   import type { Config } from "./config.js";
   import Text from "./text.svelte";
-  import { encodePseudoElement } from "./id.js";
 
   const ctx = getFormContext();
 
-  const path = [encodePseudoElement("submit")];
   const config: Config = $derived({
-    id: idFromPath(ctx, path),
-    path,
+    path: createPseudoPath(ctx, ctx[FORM_ROOT_PATH], "submit"),
     title: "",
     schema: ctx[FORM_SCHEMA],
     uiSchema: ctx[FORM_UI_SCHEMA],

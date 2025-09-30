@@ -1,5 +1,10 @@
 <script lang="ts">
-  import { FORM_ROOT_ID, FORM_SCHEMA, FORM_UI_SCHEMA, FORM_VALUE } from "./internals.js";
+  import {
+    FORM_ROOT_PATH,
+    FORM_SCHEMA,
+    FORM_UI_SCHEMA,
+    FORM_VALUE,
+  } from "./internals.js";
   import type { Config } from "./config.js";
   import {
     retrieveSchema,
@@ -16,8 +21,7 @@
     retrieveSchema(ctx, ctx[FORM_SCHEMA], ctx[FORM_VALUE])
   );
   const config: Config = $derived({
-    id: ctx[FORM_ROOT_ID],
-    path: [],
+    path: ctx[FORM_ROOT_PATH],
     title:
       uiTitleOption(ctx, ctx[FORM_UI_SCHEMA]) ?? retrievedSchema.title ?? "",
     schema: retrievedSchema,

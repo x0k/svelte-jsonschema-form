@@ -9,11 +9,11 @@ import {
   ON_BLUR,
 } from "../validation.js";
 import {
+  FORM_ERRORS,
   FORM_FIELDS_STATE_MAP,
   FORM_FIELDS_VALIDATION_MODE,
 } from "../internals.js";
-import type { Id } from "../id.js";
-import type { FormState } from "./state.js";
+import type { FieldPath } from "../id.js";
 import type { Config } from "../config.js";
 import {
   FIELD_BLURRED,
@@ -22,14 +22,23 @@ import {
   FIELD_INPUTTED,
   type FieldState,
 } from "../field-state.js";
+import type { FormState } from "./state.js";
 
-export function setFieldState<T>(ctx: FormState<T>, id: Id, state: FieldState) {
-  const currentFlags = ctx[FORM_FIELDS_STATE_MAP].get(id) ?? 0;
-  ctx[FORM_FIELDS_STATE_MAP].set(id, currentFlags | state);
+export function setFieldState<T>(
+  ctx: FormState<T>,
+  path: FieldPath,
+  state: FieldState
+) {
+  const currentFlags = ctx[FORM_FIELDS_STATE_MAP].get(path) ?? 0;
+  ctx[FORM_FIELDS_STATE_MAP].set(path, currentFlags | state);
 }
 
-export function hasFieldState<T>(ctx: FormState<T>, id: Id, state: FieldState) {
-  return ((ctx[FORM_FIELDS_STATE_MAP].get(id) ?? 0) & state) > 0;
+export function hasFieldState<T>(
+  ctx: FormState<T>,
+  path: FieldPath,
+  state: FieldState
+) {
+  return ((ctx[FORM_FIELDS_STATE_MAP].get(path) ?? 0) & state) > 0;
 }
 
 export function makeEventHandlers<T>(
@@ -37,7 +46,7 @@ export function makeEventHandlers<T>(
   config: () => Config,
   validate: () => void
 ) {
-  const id = $derived(config().id);
+  const path = $derived(config().path);
 
   onMount(() => {
     // WARN: Read of derived during teardown will lead to
@@ -45,15 +54,15 @@ export function makeEventHandlers<T>(
     // Let's assume that field cannot change own id
     // without unmount.
     // https://github.com/sveltejs/svelte/pull/16278
-    const initialId = id;
+    const initialPath = path;
     return () => {
-      ctx[FORM_FIELDS_STATE_MAP].delete(initialId);
-      ctx.errors.delete(initialId);
+      ctx[FORM_FIELDS_STATE_MAP].delete(initialPath);
+      ctx[FORM_ERRORS].delete(initialPath);
     };
   });
 
   const mode = $derived(ctx[FORM_FIELDS_VALIDATION_MODE]);
-  const flag = $derived(ctx[FORM_FIELDS_STATE_MAP].get(id) ?? 0);
+  const flag = $derived(ctx[FORM_FIELDS_STATE_MAP].get(path) ?? 0);
 
   const makeHandler = (event: number) => {
     if (
@@ -72,18 +81,18 @@ export function makeEventHandlers<T>(
 
   return {
     onfocus() {
-      setFieldState(ctx, id, FIELD_FOCUSED);
+      setFieldState(ctx, path, FIELD_FOCUSED);
     },
     oninput() {
-      setFieldState(ctx, id, FIELD_INPUTTED);
+      setFieldState(ctx, path, FIELD_INPUTTED);
       onInput?.();
     },
     onchange() {
-      setFieldState(ctx, id, FIELD_CHANGED);
+      setFieldState(ctx, path, FIELD_CHANGED);
       onChange?.();
     },
     onblur() {
-      setFieldState(ctx, id, FIELD_BLURRED);
+      setFieldState(ctx, path, FIELD_BLURRED);
       onBlur?.();
     },
   };

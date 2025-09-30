@@ -1,11 +1,10 @@
-import type { Path, Schema } from "@/core/index.js";
+import type { Schema } from "@/core/index.js";
 
-import type { Id } from "./id.js";
+import type { FieldPath } from "./id.js";
 import type { UiSchema } from "./ui-schema.js";
 
 export interface Config {
-  id: Id;
-  path: Path;
+  path: FieldPath;
   title: string;
   schema: Schema;
   uiSchema: UiSchema;

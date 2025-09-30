@@ -19,7 +19,7 @@ import {
   type Schema,
   validateAdditionalPropertyKey,
   retrieveSchema,
-  getErrors,
+  getFieldErrors,
   retrieveUiSchema,
   type UiSchemaDefinition,
   type UiOption,
@@ -31,7 +31,8 @@ import {
   getFieldsValidationMode,
   setFieldState,
   FIELD_CHANGED,
-  idFromPath,
+  createChildPath,
+  type FieldErrors,
 } from "@/form/index.js";
 
 import {
@@ -41,7 +42,7 @@ import {
 } from "./model.js";
 
 export type ObjectContext = {
-  errors: () => string[];
+  errors: () => FieldErrors;
   canExpand: () => boolean;
   propertiesOrder: () => string[];
   addProperty: () => void;
@@ -156,12 +157,12 @@ export function createObjectContext<T>({
       isSchemaExpandable(retrievedSchema, value())
   );
 
-  const errors = $derived(getErrors(ctx, config().id));
+  const errors = $derived(getFieldErrors(ctx, config().path));
 
   const newKeyPrefix = $derived(translate("additional-property", {}));
 
   function onChange(val: SchemaObjectValue | null | undefined) {
-    setFieldState(ctx, config().id, FIELD_CHANGED);
+    setFieldState(ctx, config().path, FIELD_CHANGED);
     const m = getFieldsValidationMode(ctx);
     if (!(m & ON_OBJECT_CHANGE) || (m & AFTER_SUBMITTED && !ctx.isSubmitted)) {
       return;
@@ -195,10 +196,8 @@ export function createObjectContext<T>({
           ? config.uiSchema.additionalProperties
           : (config.uiSchema[property] as UiSchemaDefinition | undefined)
       );
-      const path = config.path.concat(property);
       return {
-        path,
-        id: idFromPath(ctx, path),
+        path: createChildPath(ctx, config.path, property),
         title: uiTitleOption(ctx, uiSchema) ?? schema.title ?? property,
         schema,
         uiSchema,

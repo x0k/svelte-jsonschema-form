@@ -9,6 +9,7 @@ import { type Schema, type SchemaDefinition } from "./schema.js";
 import { getSimpleSchemaType } from "./type.js";
 
 export type Path = Array<string | number>;
+export type RPath = Readonly<Path>;
 
 function toParts(ref: string): string[] {
   return ref
@@ -63,7 +64,7 @@ export function pathFromLocation(location: string, data: unknown): Path {
 export function getSchemaDefinitionByPath(
   rootSchema: Schema,
   schema: SchemaDefinition | undefined,
-  path: Path
+  path: RPath
 ): SchemaDefinition | undefined {
   for (let i = 0; i < path.length; i++) {
     if (schema === undefined || !isSchemaObject(schema)) {

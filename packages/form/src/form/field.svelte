@@ -8,7 +8,6 @@
 
   import {
     getFieldComponent,
-    idFromPath,
     retrieveSchema,
     retrieveTranslate,
     retrieveUiOption,
@@ -26,10 +25,12 @@
   import type { ComponentProps } from "./components.js";
   import type { FoundationalFieldType } from "./fields.js";
   import {
+    FORM_PATHS_TRIE_REF,
     FORM_SCHEMA,
     FORM_UI_SCHEMA,
     FORM_UI_SCHEMA_ROOT,
     FORM_VALUE,
+    internalRegisterFieldPath,
   } from "./internals.js";
 
   interface Props {
@@ -48,7 +49,7 @@
 
   const {
     form,
-    path,
+    path: providedPath,
     required: requiredOverride,
     uiSchema: uiSchemaOverride,
     render,
@@ -56,12 +57,15 @@
 
   if (DEV) {
     $effect(() => {
-      if (path.length === 0 && render === undefined) {
+      if (providedPath.length === 0 && render === undefined) {
         console.warn('Use `<Content />` instead of `<Field name="" />`');
       }
     });
   }
-  const id = $derived(idFromPath(form, path));
+
+  const path = $derived(
+    internalRegisterFieldPath(form[FORM_PATHS_TRIE_REF], providedPath)
+  );
 
   const valueRef: { value: FieldValue } = $derived.by(() => {
     if (path.length === 0) {
@@ -164,7 +168,6 @@
   });
 
   const config: Config = $derived({
-    id,
     path,
     title: uiTitleOption(form, uiSchema) ?? retrievedSchema.title ?? "",
     schema: retrievedSchema,

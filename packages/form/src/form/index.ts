@@ -1,4 +1,10 @@
-export type { Schema, SchemaValue, Validator, Path } from "@/core/index.js";
+export type {
+  Schema,
+  SchemaValue,
+  Validator,
+  RPath,
+  Path,
+} from "@/core/index.js";
 
 import "./content.module.js";
 import "./form.module.js";

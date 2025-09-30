@@ -1,7 +1,7 @@
 <script lang="ts">
   import {
     makeEventHandlers,
-    getErrors,
+    getFieldErrors,
     validateField,
     getFormContext,
     getComponent,
@@ -9,7 +9,7 @@
     type Schema,
     DEFAULT_BOOLEAN_ENUM,
     idFromPath,
-    encodePseudoElement,
+    createPseudoPath,
   } from "@/form/index.js";
   import "@/form/extra-fields/boolean-select.js";
 
@@ -54,12 +54,9 @@
       enumValues.every((v) => typeof v === "boolean") &&
       uiOption("enumNames") === undefined
     ) {
-      const x = config.path.length;
-      const tmpPath = config.path.concat("");
       return enumValues.map((v, i) => {
-        tmpPath[x] = encodePseudoElement(i);
         return {
-          id: idFromPath(ctx, tmpPath),
+          id: idFromPath(ctx, createPseudoPath(ctx, config.path, i)),
           label: v ? yes : no,
           value: v,
           disabled: false,
@@ -81,7 +78,7 @@
     () => config,
     () => validateField(ctx, config, value)
   );
-  const errors = $derived(getErrors(ctx, config.id));
+  const errors = $derived(getFieldErrors(ctx, config.path));
 </script>
 
 <Template
