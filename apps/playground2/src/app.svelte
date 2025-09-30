@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { SvelteMap } from "svelte/reactivity";
   import { BitsConfig } from "bits-ui";
   import { extendByRecord, fromRecord } from "@sjsf/form/lib/resolver";
   import { createComparator, createMerger } from "@sjsf/form/lib/json-schema";
@@ -243,7 +242,6 @@
     <SamplePicker
       onSelect={(sample) => {
         Object.assign(data, sample);
-        form.errors = new SvelteMap();
       }}
     />
     <Popup>
