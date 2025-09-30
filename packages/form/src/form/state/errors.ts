@@ -1,3 +1,5 @@
+import { untrack } from "svelte";
+
 import type { RPath } from "@/core/index.js";
 
 import type { FieldErrors } from "../errors.js";
@@ -58,7 +60,9 @@ export function getFieldsErrorsByPath<T>(
 }
 
 export function updateErrors<T>(ctx: FormState<T>, errors: ValidationError[]) {
-  internalAssignErrors(ctx[FORM_PATHS_TRIE_REF], ctx[FORM_ERRORS], errors);
+  untrack(() => {
+    internalAssignErrors(ctx[FORM_PATHS_TRIE_REF], ctx[FORM_ERRORS], errors);
+  });
 }
 
 // NOTE: The `errors` map must contain non-empty error lists
