@@ -305,8 +305,9 @@ export function buildFormDefaults({
     themeExport,
     iconsExport,
     'export { translation } from "@sjsf/form/translations/en";',
-    `export { createFormValidator as createValidator } from "@sjsf/${validator}-validator";`,
-    `export { createFormMerger as createMerger } from "@sjsf/form/mergers/modern";`
+    `export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";`,
+    `export { createFormMerger as merger } from "@sjsf/form/mergers/modern";`,
+    `export { createFormValidator as validator } from "@sjsf/${validator}-validator";`
   );
 }
 
@@ -314,12 +315,14 @@ export interface FormDotSvelteOptions {
   theme: Theme;
   schema: Schema;
   uiSchema: UiSchema | undefined;
+  html5Validation: boolean;
 }
 
 export function buildFormDotSvelte({
   theme,
   schema,
   uiSchema = {},
+  html5Validation,
 }: FormDotSvelteOptions): string {
   const isShadcn = theme === Theme.Shadcn4;
   const schemaLines = JSON.stringify(schema, null, 2).split("\n");
@@ -346,7 +349,8 @@ export function buildFormDotSvelte({
     isShadcn &&
       `
   setThemeContext({ components })`,
-    `</script>`
+    `</script>`,
+    `<BasicForm {form}${html5Validation ? "" : " novalidate"} />`
   );
 }
 
