@@ -20,10 +20,10 @@
 		"vite": "^7.1.2"
 	},
 	"dependencies": {
-		"@sjsf/ajv8-validator": "^3.0.0-next.5",
-		"@sjsf/basic-theme": "^3.0.0-next.5",
-		"@sjsf/form": "^3.0.0-next.5",
-		"@sjsf/sveltekit": "^3.0.0-next.5",
+		"@sjsf/ajv8-validator": "^3.0.0-next.6",
+		"@sjsf/basic-theme": "^3.0.0-next.6",
+		"@sjsf/form": "^3.0.0-next.6",
+		"@sjsf/sveltekit": "^3.0.0-next.6",
 		"ajv": "^8.17.1"
 	}
 }
