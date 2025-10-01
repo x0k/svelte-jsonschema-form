@@ -23,7 +23,19 @@ const { mergeArrayOfSchemaDefinitions } = createMerger({
 const shallowAllOfMerge = createShallowAllOfMerge(
   mergeArrayOfSchemaDefinitions
 );
-const deepAllOfMerge = createDeepAllOfMerge(shallowAllOfMerge);
+
+const {
+  mergeArrayOfSchemaDefinitions: mergeArrayOfSchemaDefinitionsWithoutChecks,
+} = createMerger({
+  intersectJson: createIntersector(compareSchemaValues),
+  deduplicateJsonSchemaDef: createDeduplicator(compareSchemaDefinitions),
+  // NOTE: We disable checks in order to get at least some result, otherwise there will be an error.
+  checks: [],
+});
+const shallowAllOfMergeWithoutChecks = createShallowAllOfMerge(
+  mergeArrayOfSchemaDefinitionsWithoutChecks
+);
+const deepAllOfMerge = createDeepAllOfMerge(shallowAllOfMergeWithoutChecks);
 
 describe("shallow merge", () => {
   for (const [name, data] of Object.entries(testData.properties)) {
