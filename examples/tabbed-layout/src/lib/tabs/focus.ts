@@ -28,15 +28,13 @@ export function createTabbedFocusOnFirstError<E>(
     // NOTE: For simplicity, we will switch to the tab with the first error,
     // although it would be nice to take into account the current tab selection
     const { path } = errors[0];
-    let children = ctx;
-    for (let i = 0; i < path.length && children.size; i++) {
-      const id = createIdByPath(form, path.slice(0, i));
-      const node = children.get(id);
-      if (node === undefined) {
-        continue;
+    let children = ctx.current;
+    for (let i = 0; i < path.length && children; i++) {
+      const node = children.value;
+      if (node !== undefined) {
+        node.selectedTab = Number(path[i]);
       }
-      node.selectedTab = Number(path[i]);
-      children = node.children;
+      children = children.values.get(path[i]);
     }
     return focus(errors, e, snap, form);
   };

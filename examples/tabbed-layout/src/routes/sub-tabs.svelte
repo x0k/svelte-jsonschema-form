@@ -11,7 +11,7 @@
     type TabsContext,
   } from "$lib/tabs";
 
-  const tabsCtx: TabsContext = new Map();
+  const tabsCtx: TabsContext = { current: undefined };
   setTabsContext(tabsCtx);
 
   const theme = overrideByRecord(defaults.theme, {

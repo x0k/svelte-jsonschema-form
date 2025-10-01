@@ -21,7 +21,7 @@
     },
   } satisfies UiSchemaRoot;
 
-  const tabsCtx: TabsContext = new Map();
+  const tabsCtx: TabsContext = { current: undefined };
   setTabsContext(tabsCtx);
 
   const form = createForm({

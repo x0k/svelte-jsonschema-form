@@ -1,10 +1,12 @@
 <script lang="ts">
-  import type { ComponentProps } from '@sjsf/form';
-  
-  import { getTabsNodeContext } from './context.svelte';
+  import { getValueByKeys } from "@sjsf/form/lib/trie";
+  import type { ComponentProps } from "@sjsf/form";
 
-  const { children }: ComponentProps["layout"] = $props();
-  const node = getTabsNodeContext()
+  import { getTabsContext } from "./context.svelte";
 
-  node.tabs.push(children)
+  const { children, config }: ComponentProps["layout"] = $props();
+  const tabsCtx = getTabsContext();
+
+  const node = getValueByKeys(tabsCtx.current, config.path.slice(0, -1));
+  node?.tabs.push(children);
 </script>

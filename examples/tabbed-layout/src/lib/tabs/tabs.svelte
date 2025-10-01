@@ -1,33 +1,22 @@
 <script lang="ts">
-  import { isSchemaObject } from "@sjsf/form/lib/json-schema";
-  import { createId, getFormContext, type ComponentProps } from "@sjsf/form";
-
+  import { insertValue } from "@sjsf/form/lib/trie";
   import {
-    createTabsNode,
-    getTabsContext,
-    setTabsContext,
-    setTabsNodeContext,
-  } from "./context.svelte";
+    getFieldTitle,
+    getFormContext,
+    type ComponentProps,
+  } from "@sjsf/form";
+
+  import { createTabsNode, getTabsContext } from "./context.svelte";
 
   const { config, children }: ComponentProps["layout"] = $props();
 
-  const ctx = getFormContext()
+  const ctx = getFormContext();
   const tabsCtx = getTabsContext();
   const node = createTabsNode(0);
-  tabsCtx.set(createId(ctx, config.path), node);
-  setTabsContext(node.children);
-  setTabsNodeContext(node);
+  tabsCtx.current = insertValue(tabsCtx.current, config.path, node);
 
   function getTabTitle(i: number): string {
-    // TODO: handle `config.uiSchema`
-    const { items } = config.schema;
-    if (Array.isArray(items)) {
-      const item = items[i];
-      if (isSchemaObject(item) && item.title) {
-        return item.title
-      }
-    }
-    return `Tab ${i + 1}`;
+    return getFieldTitle(ctx, config.path.concat(i)) ?? `Tab ${i + 1}`;
   }
 </script>
 
