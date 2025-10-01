@@ -1,5 +1,11 @@
 # @sjsf/form
 
+## 3.0.0-next.6
+
+### Patch Changes
+
+- Remove tracking when calling `updateErrors` ([`b735108`](https://github.com/x0k/svelte-jsonschema-form/commit/b735108aa2b29ebe2db824a92364a478644e9780))
+
 ## 3.0.0-next.5
 
 ### Major Changes
