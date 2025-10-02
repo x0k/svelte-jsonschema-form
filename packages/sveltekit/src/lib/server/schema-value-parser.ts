@@ -28,6 +28,7 @@ import {
   type UiSchemaDefinition,
   type UiSchemaRoot
 } from '@sjsf/form';
+import { DEFAULT_INDEX_SEPARATOR } from '@sjsf/form/id-builders/modern';
 
 import type { Entries, EntriesConverter, Entry } from './entry.js';
 
@@ -41,6 +42,7 @@ export interface SchemaValueParserOptions<T> {
   validator: Validator;
   merger: Merger;
   convertEntries: EntriesConverter<T>;
+  idIndexSeparator?: string;
 }
 
 const KNOWN_PROPERTIES = Symbol('known-properties');
@@ -60,15 +62,19 @@ export function parseSchemaValue<T>(
     schema: rootSchema,
     uiSchema: rootUiSchema,
     validator,
-    merger
+    merger,
+    idIndexSeparator = DEFAULT_INDEX_SEPARATOR
   }: SchemaValueParserOptions<T>
 ) {
   if (entries.length === 0) {
     return undefined;
   }
   const escapedIdSeparator = escapeRegex(idSeparator);
+  const escapedIndexSeparator = escapeRegex(idIndexSeparator);
+  const escapedIdOrIndexSeparator = `(${escapedIdSeparator}|${escapedIndexSeparator})`;
   const escapedPseudoSeparator = escapeRegex(idPseudoSeparator);
-  const BOUNDARY = `($|${escapedIdSeparator}|${escapedPseudoSeparator})`;
+
+  const BOUNDARY = `($|${escapedIdSeparator}|${escapedPseudoSeparator}|${escapedIndexSeparator})`;
   const SEPARATED_KEY_INPUT_KEY = `${idPseudoSeparator}${KEY_INPUT_KEY}`;
   let filter = '';
   const filterLengthStack: number[] = [];
@@ -198,14 +204,14 @@ export function parseSchemaValue<T>(
         const uiItems = uiSchema.items ?? {};
         const uiIsArray = Array.isArray(uiItems);
         for (let i = 0; i < items.length; i++) {
-          pushFilterAndEntries(`${escapedIdSeparator}${i}`);
+          pushFilterAndEntries(`${escapedIdOrIndexSeparator}${i}`);
           value.push(await parseSchemaDef(items[i], uiIsArray ? uiItems[i] : uiItems));
           popEntriesAndFilter();
         }
         if (additionalItems !== undefined) {
           let i = items.length;
           while (entriesStack[entriesStack.length - 1].length > 0) {
-            pushFilterAndEntries(`${escapedIdSeparator}${i++}`);
+            pushFilterAndEntries(`${escapedIdOrIndexSeparator}${i++}`);
             if (i === items.length + 1 && entriesStack[entriesStack.length - 1].length === 0) {
               popEntriesAndFilter();
               break;
@@ -219,7 +225,7 @@ export function parseSchemaValue<T>(
         const uiItems = uiSchema.items ?? {};
         const uiIsArray = Array.isArray(uiItems);
         while (entriesStack[entriesStack.length - 1].length > 0) {
-          pushFilterAndEntries(`${escapedIdSeparator}${i++}`);
+          pushFilterAndEntries(`${escapedIdOrIndexSeparator}${i++}`);
           // Special case: array items have no indexes, but they have the same names
           if (i === 1 && entriesStack[entriesStack.length - 1].length === 0) {
             popEntriesAndFilter();
