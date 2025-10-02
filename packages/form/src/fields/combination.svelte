@@ -55,7 +55,7 @@
   const restFieldConfig = $derived.by(() => {
     const { [combinationKey]: _, ...restSchema } = config.schema;
     const restSchemaType = getSimpleSchemaType(restSchema);
-    return restSchemaType !== "null"
+    return restSchemaType !== "unknown"
       ? {
           ...config,
           schema: restSchema,
