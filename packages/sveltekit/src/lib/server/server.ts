@@ -23,6 +23,7 @@ import {
   DEFAULT_ID_PSEUDO_SEPARATOR,
   createFormIdBuilder
 } from '@sjsf/form/id-builders/legacy';
+import { DEFAULT_INDEX_SEPARATOR } from '@sjsf/form/id-builders/modern';
 
 import {
   FORM_DATA_FILE_PREFIX,
@@ -68,6 +69,7 @@ export interface FormHandlerOptions<SendData extends boolean> extends IdOptions 
   schema: Schema;
   uiSchema?: UiSchemaRoot;
   uiOptionsRegistry?: UiOptionsRegistry;
+  idIndexSeparator?: string
   validator: Creatable<Validator, ValidatorFactoryOptions>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
   createEntriesConverter?: Creatable<
@@ -100,6 +102,7 @@ export function createFormHandler<SendData extends boolean>({
   convertUnknownEntry,
   idPrefix = DEFAULT_ID_PREFIX,
   idSeparator = DEFAULT_ID_SEPARATOR,
+  idIndexSeparator = DEFAULT_INDEX_SEPARATOR,
   idPseudoSeparator = DEFAULT_ID_PSEUDO_SEPARATOR,
   sendData,
   createReviver = createDefaultReviver
@@ -138,6 +141,7 @@ export function createFormHandler<SendData extends boolean>({
       : await parseSchemaValue(signal, {
           idPrefix,
           idSeparator,
+          idIndexSeparator,
           idPseudoSeparator,
           schema,
           uiSchema,

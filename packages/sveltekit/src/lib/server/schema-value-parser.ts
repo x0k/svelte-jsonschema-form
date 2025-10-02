@@ -28,7 +28,6 @@ import {
   type UiSchemaDefinition,
   type UiSchemaRoot
 } from '@sjsf/form';
-import { DEFAULT_INDEX_SEPARATOR } from '@sjsf/form/id-builders/modern';
 
 import type { Entries, EntriesConverter, Entry } from './entry.js';
 
@@ -38,11 +37,11 @@ export interface SchemaValueParserOptions<T> {
   entries: Entries<T>;
   idPrefix: string;
   idSeparator: string;
+  idIndexSeparator: string;
   idPseudoSeparator: string;
   validator: Validator;
   merger: Merger;
   convertEntries: EntriesConverter<T>;
-  idIndexSeparator?: string;
 }
 
 const KNOWN_PROPERTIES = Symbol('known-properties');
@@ -63,7 +62,7 @@ export function parseSchemaValue<T>(
     uiSchema: rootUiSchema,
     validator,
     merger,
-    idIndexSeparator = DEFAULT_INDEX_SEPARATOR
+    idIndexSeparator
   }: SchemaValueParserOptions<T>
 ) {
   if (entries.length === 0) {
