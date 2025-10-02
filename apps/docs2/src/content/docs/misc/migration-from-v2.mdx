@@ -257,21 +257,36 @@ followed by the remaining options.
 
 ## Themes
 
+### daisyUI v5
+
+File renames:
+- `@sjsf/daisyui5-theme/extra-widgets/pikaday-date-picker.svelte` → `@sjsf/daisyui5-theme/extra-widgets/date-picker.svelte`
+- `@sjsf/daisyui5-theme/extra-widgets/pikaday-date-picker-include` → `@sjsf/daisyui5-theme/extra-widgets/date-picker-include`
+
+Widget changes:
+- `@sjsf/daisyui5-theme/extra-widgets/cally-date-picker-include`
+  now includes `daisyui5CallyDatePickerWidget` instead of `datePickerWidget`
+- `@sjsf/daisyui5-theme/extra-widgets/filter-radio-buttons-include`
+  now includes `daisyui5FilterRadioButtonsWidget` instead of `radioButtonsWidget`
+
 ### Flowbite
 
 The `radioButtons` widget now uses [RadioButton](https://flowbite-svelte.com/docs/forms/radio#radiobutton) instead of [Button Toggle](https://flowbite-svelte.com/docs/extend/button-toggle) component.
 
-To preserve the previous behavior, replace:
-
-```ts
-import "@sjsf/flowbite3-theme/extra-widgets/radio-buttons-include";
-```
-
-with:
+To preserve the previous behavior you can use the following import,
+witch includes `flowbite3ToggleRadioButtonsWidget` widget:
 
 ```ts
 import "@sjsf/flowbite3-theme/extra-widgets/toggle-radio-buttons-include";
 ```
+
+### Skeleton v3
+
+Widget changes:
+- `@sjsf/skeleton3-theme/extra-widgets/file-upload-include`
+  now includes `skeleton3FileUploadWidget` instead of `fileWidget`
+- `@sjsf/skeleton3-theme/extra-widgets/slider-include`
+  now includes `skeleton3SliderWidget` instead of `rangeWidget`
 
 ## SvelteKit
 
