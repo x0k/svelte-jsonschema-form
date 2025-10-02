@@ -1,4 +1,4 @@
-import { onMount } from "svelte";
+import { onMount, untrack } from "svelte";
 
 import type { RPath } from "@/core/index.js";
 
@@ -38,18 +38,26 @@ export function setFieldState<T>(
   ctx[FORM_FIELDS_STATE_MAP].set(path, currentFlags | state);
 }
 
+/**
+ * @command
+ */
 export function setFieldStateByPath<T>(
   ctx: FormState<T>,
   path: RPath,
   state: FieldState
-) {
-  setFieldState(
-    ctx,
-    internalRegisterFieldPath(ctx[FORM_PATHS_TRIE_REF], path),
-    state
-  );
+): void {
+  untrack(() => {
+    setFieldState(
+      ctx,
+      internalRegisterFieldPath(ctx[FORM_PATHS_TRIE_REF], path),
+      state
+    );
+  });
 }
 
+/**
+ * @query
+ */
 export function hasFieldState<T>(
   ctx: FormState<T>,
   path: FieldPath,
@@ -58,6 +66,9 @@ export function hasFieldState<T>(
   return internalHasFieldState(ctx[FORM_FIELDS_STATE_MAP], path, state);
 }
 
+/**
+ * @query
+ */
 export function hasFieldStateByPath<T>(
   ctx: FormState<T>,
   path: RPath,

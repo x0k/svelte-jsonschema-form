@@ -9,6 +9,9 @@ import { createMessage } from "../error-message.svelte";
 import { FORM_RESOLVER, FORM_THEME, FORM_TRANSLATE } from "../internals.js";
 import type { FormState } from "./state.js";
 
+/**
+ * @query
+ */
 export function getComponent<FT, T extends FoundationalComponentType>(
   ctx: FormState<FT>,
   type: T,
@@ -36,6 +39,9 @@ export function getComponent<FT, T extends FoundationalComponentType>(
   }
 }
 
+/**
+ * @query
+ */
 export function getFieldComponent<T>(ctx: FormState<T>, config: Config) {
   return getComponent(ctx, ctx[FORM_RESOLVER](config), config);
 }

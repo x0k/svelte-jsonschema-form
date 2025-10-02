@@ -22,6 +22,9 @@ import {
 } from "../internals.js";
 import type { FormState } from "./state.js";
 
+/**
+ * @query
+ */
 export function retrieveUiSchema<T>(
   ctx: FormState<T>,
   uiSchemaDef: UiSchemaDefinition | undefined
@@ -42,10 +45,16 @@ function resolveUiOption<T, O extends keyof UiOptions>(
   );
 }
 
+/**
+ * @query
+ */
 export function uiTitleOption<T>(ctx: FormState<T>, uiSchema: UiSchema) {
   return resolveUiOption(ctx, uiSchema, "title");
 }
 
+/**
+ * @query
+ */
 export function retrieveUiOption<T, const O extends keyof UiOptions>(
   ctx: FormState<T>,
   config: Config,
@@ -59,6 +68,9 @@ export function retrieveUiOption<T, const O extends keyof UiOptions>(
 
 export type ObjectUiOptions = ObjectProperties<UiOptions>;
 
+/**
+ * @query
+ */
 export function uiOptionProps<const O extends keyof ObjectUiOptions>(
   option: O
 ) {
@@ -75,6 +87,9 @@ export function uiOptionProps<const O extends keyof ObjectUiOptions>(
   };
 }
 
+/**
+ * @query
+ */
 export function uiOptionNestedProps<
   const O extends keyof ObjectUiOptions,
   R extends object,
@@ -90,6 +105,9 @@ export function uiOptionNestedProps<
   };
 }
 
+/**
+ * @query
+ */
 export function retrieveTranslate<T>(ctx: FormState<T>, config: Config) {
   let translation = ctx[FORM_TRANSLATION];
   const uiOption = resolveUiOption(ctx, config.uiSchema, "translations");
@@ -103,6 +121,9 @@ export function retrieveTranslate<T>(ctx: FormState<T>, config: Config) {
   return createTranslate(translation);
 }
 
+/**
+ * @query
+ */
 export function getFieldTitle<T>(ctx: FormState<T>, path: RPath) {
   const uiSchema = getUiSchemaByPath(
     ctx[FORM_UI_SCHEMA_ROOT],

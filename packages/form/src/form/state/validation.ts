@@ -1,3 +1,5 @@
+import { untrack } from "svelte";
+
 import type { Config } from "../config.js";
 import {
   isAdditionalPropertyKeyValidator,
@@ -15,10 +17,16 @@ import {
 import type { FormState } from "./state.js";
 import { updateFieldErrors } from "./errors.js";
 
+/**
+ * @query
+ */
 export function getFieldsValidationMode<T>(ctx: FormState<T>) {
   return ctx[FORM_FIELDS_VALIDATION_MODE];
 }
 
+/**
+ * @command
+ */
 export function validateField<T>(
   ctx: FormState<T>,
   config: Config,
@@ -27,54 +35,73 @@ export function validateField<T>(
   ctx.fieldsValidation.run(config, value);
 }
 
+/**
+ * @command
+ */
 export function validateAdditionalPropertyKey<T>(
   ctx: FormState<T>,
   config: Config,
   key: string,
   fieldConfig: Config
 ) {
-  const validator = ctx[FORM_VALIDATOR];
-  if (!isAdditionalPropertyKeyValidator(validator)) {
-    return true;
-  }
-  const errors = validator.validateAdditionalPropertyKey(key, config.schema);
-  return updateFieldErrors(ctx, fieldConfig.path, errors);
+  return untrack(() => {
+    const validator = ctx[FORM_VALIDATOR];
+    if (!isAdditionalPropertyKeyValidator(validator)) {
+      return true;
+    }
+    const errors = validator.validateAdditionalPropertyKey(key, config.schema);
+    return updateFieldErrors(ctx, fieldConfig.path, errors);
+  });
 }
 
+/**
+ * @command
+ */
 export async function validateFileList<T>(
   signal: AbortSignal,
   ctx: FormState<T>,
   config: Config,
   fileList: FileList
-) {
-  const validator = ctx[FORM_VALIDATOR];
-  if (!isAsyncFileListValidator(validator)) {
-    return true;
-  }
-  const errors = await validator.validateFileListAsync(
-    signal,
-    fileList,
-    config
-  );
-  return updateFieldErrors(ctx, config.path, errors);
+): Promise<boolean> {
+  const errors = await untrack(() => {
+    const validator = ctx[FORM_VALIDATOR];
+    if (!isAsyncFileListValidator(validator)) {
+      return true;
+    }
+    return validator.validateFileListAsync(signal, fileList, config);
+  });
+  return errors === true || updateFieldErrors(ctx, config.path, errors);
 }
 
+/**
+ * @command
+ */
 export function validate<T>(ctx: FormState<T>) {
-  const validator = ctx[FORM_VALIDATOR];
-  if (!isFormValueValidator(validator)) {
-    throw new InvalidValidatorError(`expected sync from validator`);
-  }
-  return validator.validateFormValue(ctx[FORM_SCHEMA], ctx.value as FormValue);
+  return untrack(() => {
+    const validator = ctx[FORM_VALIDATOR];
+    if (!isFormValueValidator(validator)) {
+      throw new InvalidValidatorError(`expected sync from validator`);
+    }
+    return validator.validateFormValue(
+      ctx[FORM_SCHEMA],
+      ctx.value as FormValue
+    );
+  });
 }
 
+/**
+ * @command
+ */
 export function validateAsync<T>(ctx: FormState<T>, signal: AbortSignal) {
-  const validator = ctx[FORM_VALIDATOR];
-  if (!isAsyncFormValueValidator(validator)) {
-    throw new InvalidValidatorError(`expected async form validator`);
-  }
-  return validator.validateFormValueAsync(
-    signal,
-    ctx[FORM_SCHEMA],
-    ctx.value as FormValue
-  );
+  return untrack(() => {
+    const validator = ctx[FORM_VALIDATOR];
+    if (!isAsyncFormValueValidator(validator)) {
+      throw new InvalidValidatorError(`expected async form validator`);
+    }
+    return validator.validateFormValueAsync(
+      signal,
+      ctx[FORM_SCHEMA],
+      ctx.value as FormValue
+    );
+  });
 }

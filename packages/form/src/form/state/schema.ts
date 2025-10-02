@@ -17,6 +17,9 @@ import {
 } from "../internals.js";
 import type { FormState } from "./state.js";
 
+/**
+ * @query
+ */
 export function isSelect<T>(ctx: FormState<T>, schema: Schema) {
   return isSelectInternal(
     ctx[FORM_VALIDATOR],
@@ -26,6 +29,9 @@ export function isSelect<T>(ctx: FormState<T>, schema: Schema) {
   );
 }
 
+/**
+ * @query
+ */
 export function isMultiSelect<T>(ctx: FormState<T>, schema: Schema) {
   return isMultiSelectInternal(
     ctx[FORM_VALIDATOR],
@@ -35,6 +41,9 @@ export function isMultiSelect<T>(ctx: FormState<T>, schema: Schema) {
   );
 }
 
+/**
+ * @query
+ */
 export function isFilesArray<T>(ctx: FormState<T>, schema: Schema) {
   return isFilesArrayInternal(
     ctx[FORM_VALIDATOR],
@@ -44,6 +53,9 @@ export function isFilesArray<T>(ctx: FormState<T>, schema: Schema) {
   );
 }
 
+/**
+ * @query
+ */
 export function retrieveSchema<T>(
   ctx: FormState<T>,
   schema: Schema,
@@ -58,6 +70,9 @@ export function retrieveSchema<T>(
   );
 }
 
+/**
+ * @query
+ */
 export function sanitizeDataForNewSchema<T>(
   ctx: FormState<T>,
   newSchema: Schema,
@@ -74,6 +89,9 @@ export function sanitizeDataForNewSchema<T>(
   );
 }
 
+/**
+ * @query
+ */
 export function getClosestMatchingOption<T>(
   ctx: FormState<T>,
   formData: SchemaValue | undefined,
@@ -92,6 +110,9 @@ export function getClosestMatchingOption<T>(
   );
 }
 
+/**
+ * @query
+ */
 export function getDefaultFieldState<T>(
   ctx: FormState<T>,
   schema: Schema,
