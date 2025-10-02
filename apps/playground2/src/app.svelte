@@ -11,7 +11,6 @@
     AFTER_SUBMITTED,
     AFTER_TOUCHED,
     createForm,
-    BasicForm,
     ON_ARRAY_CHANGE,
     ON_OBJECT_CHANGE,
     setFormContext,
@@ -23,7 +22,7 @@
   import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
   import { omitExtraData } from "@sjsf/form/omit-extra-data";
   import { createFormMerger } from "@sjsf/form/mergers/modern";
-  import { createFormIdBuilder } from "@sjsf/form/id-builders/legacy";
+  import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
   import {
     compressToEncodedURIComponent,
     decompressFromEncodedURIComponent,
