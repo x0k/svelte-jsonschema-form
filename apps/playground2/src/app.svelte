@@ -14,6 +14,10 @@
     BasicForm,
     ON_ARRAY_CHANGE,
     ON_OBJECT_CHANGE,
+    setFormContext,
+    Form,
+    Content,
+    SubmitButton,
   } from "@sjsf/form";
   import { translation } from "@sjsf/form/translations/en";
   import { createFocusOnFirstError } from "@sjsf/form/focus-on-first-error";
@@ -60,6 +64,7 @@
   import { themeManager } from "./theme.svelte";
   import SamplePicker from "./sample-picker.svelte";
   import { setShadcnContext } from "./shadcn-context.js";
+  import Debug from './debug.svelte';
 
   const DEFAULT_PLAYGROUND_STATE: PlaygroundState = {
     schema: {
@@ -225,6 +230,7 @@
         : snap;
     },
   });
+  setFormContext(form);
 
   setShadcnContext();
 
@@ -389,16 +395,22 @@
   >
     <BitsConfig defaultPortalTo={portalEl}>
       <svelte:boundary>
-        <BasicForm
-          id="form"
-          {form}
-          class={themeManager.darkOrLight}
-          style="min-height: 100%; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;"
-          novalidate={!data.html5Validation || undefined}
-          data-theme={data.theme.startsWith("skeleton")
-            ? "cerberus"
-            : themeManager.darkOrLight}
-        />
+        <Form
+          attributes={{
+            id: "form",
+            class: themeManager.darkOrLight,
+            style:
+              "min-height: 100%; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;",
+            novalidate: !data.html5Validation || undefined,
+            ["data-theme"]: data.theme.startsWith("skeleton")
+              ? "cerberus"
+              : themeManager.darkOrLight,
+          }}
+        >
+          <Content />
+          <SubmitButton />
+          <Debug />
+        </Form>
         {#snippet failed(error, reset)}
           {@const _ = setTimeout(reset, 1000)}
           <p style="color: red; padding: 1rem;">{error}</p>
