@@ -1049,6 +1049,289 @@ exports[`widgets > checkboxes > snapshots > readonly 1`] = `
 </div>
 `;
 
+exports[`widgets > datePicker > snapshots > disabled 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        class="input pika-single w-full"
+        disabled=""
+        id="root"
+        name="root"
+        type="text"
+      />
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      disabled=""
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > datePicker > snapshots > error 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        class="input pika-single w-full input-error"
+        id="root"
+        name="root"
+        type="text"
+      />
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+      <ul
+        class="text-error list-disc list-inside"
+        id="root::errors"
+        tabindex="-1"
+      >
+        <li>
+          error
+        </li>
+        
+      </ul>
+      
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > datePicker > snapshots > normal 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        class="input pika-single w-full"
+        id="root"
+        name="root"
+        type="text"
+      />
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
+exports[`widgets > datePicker > snapshots > readonly 1`] = `
+<div>
+  <!---->
+  <form
+    class="flex flex-col gap-4"
+  >
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    <fieldset
+      class="fieldset gap-y-2"
+      data-layout="field"
+    >
+      <!---->
+      <!---->
+       
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <input
+        aria-describedby="root::description root::help root::errors"
+        class="input pika-single w-full"
+        id="root"
+        name="root"
+        readonly=""
+        type="text"
+      />
+      
+      
+      
+      
+      <!---->
+       
+      <!---->
+       
+      <!---->
+      <!---->
+    </fieldset>
+    
+    
+    
+    
+    
+    <!---->
+     
+    <!---->
+    <button
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      <!---->
+      Submit
+      
+      <!---->
+    </button>
+    
+    <!---->
+    <!---->
+  </form>
+  
+  
+</div>
+`;
+
 exports[`widgets > file > snapshots > disabled 1`] = `
 <div>
   <!---->
@@ -2734,289 +3017,6 @@ exports[`widgets > number > snapshots > readonly 1`] = `
       <!---->
       
       <!---->
-      
-      
-      
-      
-      <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
-    </fieldset>
-    
-    
-    
-    
-    
-    <!---->
-     
-    <!---->
-    <button
-      class="btn btn-primary w-full"
-      type="submit"
-    >
-      <!---->
-      Submit
-      
-      <!---->
-    </button>
-    
-    <!---->
-    <!---->
-  </form>
-  
-  
-</div>
-`;
-
-exports[`widgets > pikadayDatePicker > snapshots > disabled 1`] = `
-<div>
-  <!---->
-  <form
-    class="flex flex-col gap-4"
-  >
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <fieldset
-      class="fieldset gap-y-2"
-      data-layout="field"
-    >
-      <!---->
-      <!---->
-       
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <input
-        aria-describedby="root::description root::help root::errors"
-        class="input pika-single w-full"
-        disabled=""
-        id="root"
-        name="root"
-        type="text"
-      />
-      
-      
-      
-      
-      <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
-    </fieldset>
-    
-    
-    
-    
-    
-    <!---->
-     
-    <!---->
-    <button
-      class="btn btn-primary w-full"
-      disabled=""
-      type="submit"
-    >
-      <!---->
-      Submit
-      
-      <!---->
-    </button>
-    
-    <!---->
-    <!---->
-  </form>
-  
-  
-</div>
-`;
-
-exports[`widgets > pikadayDatePicker > snapshots > error 1`] = `
-<div>
-  <!---->
-  <form
-    class="flex flex-col gap-4"
-  >
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <fieldset
-      class="fieldset gap-y-2"
-      data-layout="field"
-    >
-      <!---->
-      <!---->
-       
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <input
-        aria-describedby="root::description root::help root::errors"
-        class="input pika-single w-full input-error"
-        id="root"
-        name="root"
-        type="text"
-      />
-      
-      
-      
-      
-      <!---->
-       
-      <!---->
-      <ul
-        class="text-error list-disc list-inside"
-        id="root::errors"
-        tabindex="-1"
-      >
-        <li>
-          error
-        </li>
-        
-      </ul>
-      
-      <!---->
-       
-      <!---->
-      <!---->
-    </fieldset>
-    
-    
-    
-    
-    
-    <!---->
-     
-    <!---->
-    <button
-      class="btn btn-primary w-full"
-      type="submit"
-    >
-      <!---->
-      Submit
-      
-      <!---->
-    </button>
-    
-    <!---->
-    <!---->
-  </form>
-  
-  
-</div>
-`;
-
-exports[`widgets > pikadayDatePicker > snapshots > normal 1`] = `
-<div>
-  <!---->
-  <form
-    class="flex flex-col gap-4"
-  >
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <fieldset
-      class="fieldset gap-y-2"
-      data-layout="field"
-    >
-      <!---->
-      <!---->
-       
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <input
-        aria-describedby="root::description root::help root::errors"
-        class="input pika-single w-full"
-        id="root"
-        name="root"
-        type="text"
-      />
-      
-      
-      
-      
-      <!---->
-       
-      <!---->
-       
-      <!---->
-      <!---->
-    </fieldset>
-    
-    
-    
-    
-    
-    <!---->
-     
-    <!---->
-    <button
-      class="btn btn-primary w-full"
-      type="submit"
-    >
-      <!---->
-      Submit
-      
-      <!---->
-    </button>
-    
-    <!---->
-    <!---->
-  </form>
-  
-  
-</div>
-`;
-
-exports[`widgets > pikadayDatePicker > snapshots > readonly 1`] = `
-<div>
-  <!---->
-  <form
-    class="flex flex-col gap-4"
-  >
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <fieldset
-      class="fieldset gap-y-2"
-      data-layout="field"
-    >
-      <!---->
-      <!---->
-       
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <input
-        aria-describedby="root::description root::help root::errors"
-        class="input pika-single w-full"
-        id="root"
-        name="root"
-        readonly=""
-        type="text"
-      />
       
       
       
