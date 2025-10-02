@@ -65,18 +65,18 @@ export default {
     },
     nativeFile: {
       "ui:components": {
-        unknownField: "nativeFileWrapper",
+        unknownField: "unknownNativeFileField",
       },
     },
     nativeFiles: {
       "ui:components": {
-        arrayField: "nativeFilesWrapper",
+        arrayField: "arrayNativeFilesField",
       },
     },
     orderableNativeFiles: {
       items: {
         "ui:components": {
-          unknownField: "nativeFileWrapper",
+          unknownField: "unknownNativeFileField",
         },
       },
     },
