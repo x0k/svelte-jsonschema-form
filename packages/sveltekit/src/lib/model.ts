@@ -54,6 +54,7 @@ export interface ValidatedFormData<SendData extends boolean> {
 export const IDENTIFIABLE_INPUT_ELEMENTS: (keyof IdentifiableFieldElement)[] = [
   // NOTE: We use the value of `key-input` to infer new key value
   // 'key-input',
-  'anyof',
-  'oneof'
+  // NOTE: We use the value of `anyof` and `oneof` to infer selected subSchema
+  // 'anyof',
+  // 'oneof'
 ];

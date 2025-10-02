@@ -7,17 +7,34 @@ import type { Entries } from './entry.js';
 import { parseSchemaValue, type SchemaValueParserOptions } from './schema-value-parser.js';
 import { createFormDataEntriesConverter } from './convert-form-data-entries.js';
 
-const defaultOptions: SchemaValueParserOptions<string> = {
-  schema: {},
-  uiSchema: {},
-  entries: [],
-  idPrefix: 'root',
-  idSeparator: '.',
-  idPseudoSeparator: '::',
-  validator: createFormValidator(),
-  merger: createMerger(),
-  convertEntries: (_, { entries }) => entries[0]?.[1]
-};
+const opts = ({
+  schema = {},
+  entries = [],
+  uiSchema = {},
+  idPrefix = 'root',
+  idSeparator = '.',
+  idPseudoSeparator = '::',
+  validator = createFormValidator(),
+  merger = createMerger(),
+  convertEntries = createFormDataEntriesConverter({
+    merger,
+    validator,
+    rootSchema: schema,
+    rootUiSchema: uiSchema
+  })
+}: Partial<
+  SchemaValueParserOptions<FormDataEntryValue>
+> = {}): SchemaValueParserOptions<FormDataEntryValue> => ({
+  schema,
+  uiSchema,
+  entries,
+  idPrefix,
+  idSeparator,
+  idPseudoSeparator,
+  validator,
+  merger,
+  convertEntries
+});
 
 describe('parseSchemaValue', async () => {
   let c: AbortController;
@@ -27,14 +44,17 @@ describe('parseSchemaValue', async () => {
   });
 
   it('Should parse empty entries', () => {
-    expect(parseSchemaValue(c.signal, defaultOptions)).toBeUndefined();
+    expect(parseSchemaValue(c.signal, opts())).toBeUndefined();
   });
   it('Should parse root value', async () => {
     await expect(
-      parseSchemaValue(c.signal, {
-        ...defaultOptions,
-        entries: [['root', 'value']]
-      })
+      parseSchemaValue(
+        c.signal,
+        opts({
+          schema: { type: 'string' },
+          entries: [['root', 'value']]
+        })
+      )
     ).resolves.toBe('value');
   });
   it('Should parse simple schema', async () => {
@@ -81,12 +101,10 @@ describe('parseSchemaValue', async () => {
       ['root.password', 'noneed'],
       ['root.telephone', '1-800-KICKASS']
     ];
-    await expect(
-      parseSchemaValue(c.signal, { ...defaultOptions, schema, entries })
-    ).resolves.toEqual({
+    await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
       firstName: 'Chuck',
       lastName: 'Norris',
-      age: '75',
+      age: 75,
       bio: 'Roundhouse kicking asses since 1940',
       password: 'noneed',
       telephone: '1-800-KICKASS'
@@ -143,18 +161,16 @@ describe('parseSchemaValue', async () => {
         'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
       ]
     ];
-    await expect(
-      parseSchemaValue(c.signal, { ...defaultOptions, schema, entries })
-    ).resolves.toEqual({
+    await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
       tasks: [
         {
-          done: 'on',
+          done: true,
           title: 'My first task',
           details:
             'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
         },
         {
-          done: undefined,
+          done: false,
           title: 'My second task',
           details:
             'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
@@ -191,9 +207,7 @@ describe('parseSchemaValue', async () => {
       ['root.new.key::key-input', 'new.keyChanged'],
       ['root.new.key', 'foo']
     ];
-    await expect(
-      parseSchemaValue(c.signal, { ...defaultOptions, schema, entries })
-    ).resolves.toEqual({
+    await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
       firstName: 'Chuck',
       lastName: 'Norris',
       assKickCountChanged: 'infinity',
@@ -261,9 +275,7 @@ describe('parseSchemaValue', async () => {
       ['root.tree.children.0.children.0.name', 'bar'],
       ['root.tree.children.1.name', 'foo']
     ];
-    await expect(
-      parseSchemaValue(c.signal, { ...defaultOptions, schema, entries })
-    ).resolves.toEqual({
+    await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
       tree: {
         children: [
           {
@@ -294,7 +306,7 @@ describe('parseSchemaValue', async () => {
       }
     });
   });
-  it('Should parse schema with oneOf', async () => {
+  it('Should parse schema with oneOf (select)', async () => {
     const schema: Schema = {
       definitions: {
         Color: {
@@ -387,14 +399,52 @@ describe('parseSchemaValue', async () => {
       ['root.colorPalette.0', '0'],
       ['root.blendMode', '0']
     ];
-    await expect(
-      parseSchemaValue(c.signal, { ...defaultOptions, schema, entries })
-    ).resolves.toEqual({
-      colorMask: ['2'],
-      toggleMask: '0',
-      colorPalette: ['0'],
-      blendMode: '0',
-      currentColor: '1'
+    await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
+      colorMask: ['#0000ff'],
+      toggleMask: true,
+      colorPalette: ['#ff0000'],
+      blendMode: 'screen',
+      currentColor: '#00ff00'
+    });
+  });
+  it('Should parse schema with oneOf', async () => {
+    const schema: Schema = {
+      oneOf: [{ type: 'string' }, { type: 'number' }]
+    };
+    const entries: Entries<string> = [
+      ['root::oneof', '1'],
+      ['root', '123']
+    ];
+    await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual(123);
+  });
+  it('Sould parse schema with oneOf 2', async () => {
+    const schema: Schema = {
+      type: 'object',
+      oneOf: [
+        {
+          properties: {
+            ipsum: {
+              type: 'string'
+            }
+          },
+          required: ['ipsum']
+        },
+        {
+          properties: {
+            ipsum: {
+              type: 'number'
+            }
+          },
+          required: ['ipsum']
+        }
+      ]
+    };
+    const entries: Entries<string> = [
+      ['root::oneof', '1'],
+      ['root.ipsum', '123']
+    ];
+    await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
+      ipsum: 123
     });
   });
   it('Should parse schema with anyOf', async () => {
@@ -464,9 +514,7 @@ describe('parseSchemaValue', async () => {
       ['root.firstName', 'Chuck'],
       ['root.lastName', '']
     ];
-    await expect(
-      parseSchemaValue(c.signal, { ...defaultOptions, schema, entries })
-    ).resolves.toEqual({
+    await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
       firstName: 'Chuck',
       items: [
         {
@@ -476,8 +524,7 @@ describe('parseSchemaValue', async () => {
           foo: 'foo'
         }
       ],
-      age: '123',
-      lastName: ''
+      age: 123
     });
   });
   it('Should parse schema with allOf', async () => {
@@ -508,9 +555,7 @@ describe('parseSchemaValue', async () => {
       ['root.lorem', 'on'],
       ['root.ipsum', 'foo']
     ];
-    await expect(
-      parseSchemaValue(c.signal, { ...defaultOptions, schema, entries })
-    ).resolves.toEqual({
+    await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
       lorem: 'on',
       ipsum: 'foo'
     });
@@ -683,12 +728,10 @@ describe('parseSchemaValue', async () => {
       ['root.fixedNoToolbar.2', 'additional item one'],
       ['root.fixedNoToolbar.3', 'additional item two']
     ];
-    await expect(
-      parseSchemaValue(c.signal, { ...defaultOptions, schema, entries })
-    ).resolves.toEqual({
+    await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
       listOfStrings: ['foo', 'bar'],
-      multipleChoicesList: ['0', '1'],
-      fixedItemsList: ['Some text', '0', '123'],
+      multipleChoicesList: ['foo', 'bar'],
+      fixedItemsList: ['Some text', true, 123],
       minItemsList: [
         {
           name: 'Default name'
@@ -706,7 +749,7 @@ describe('parseSchemaValue', async () => {
       copyable: ['one', 'two'],
       unremovable: ['one', 'two'],
       noToolbar: ['one', 'two'],
-      fixedNoToolbar: ['42', 'on', 'additional item one', 'additional item two']
+      fixedNoToolbar: [42, true, 'additional item one', 'additional item two']
     });
   });
   it('Should parse schema with dependencies', async () => {
@@ -829,20 +872,18 @@ describe('parseSchemaValue', async () => {
       ['root.fixedArrayOfConditionals.2.Do you have any pets?', '2'],
       ['root.fixedArrayOfConditionals.2.Do you want to get rid of any?', '0']
     ];
-    await expect(
-      parseSchemaValue(c.signal, { ...defaultOptions, schema, entries })
-    ).resolves.toEqual({
+    await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
       conditional: {
         'Do you have any pets?': '0'
       },
       arrayOfConditionals: [
         {
           'Do you have any pets?': '1',
-          'How old is your pet?': '6'
+          'How old is your pet?': 6
         },
         {
           'Do you have any pets?': '2',
-          'Do you want to get rid of any?': '1'
+          'Do you want to get rid of any?': false
         }
       ],
       fixedArrayOfConditionals: [
@@ -851,16 +892,15 @@ describe('parseSchemaValue', async () => {
         },
         {
           'Do you have any pets?': '1',
-          'How old is your pet?': '6'
+          'How old is your pet?': 6
         },
         {
           'Do you have any pets?': '2',
-          'Do you want to get rid of any?': '0'
+          'Do you want to get rid of any?': true
         }
       ],
       simple: {
-        name: 'Randy',
-        credit_card: ''
+        name: 'Randy'
       }
     });
   });
@@ -923,12 +963,10 @@ describe('parseSchemaValue', async () => {
       ['root.food', '0'],
       ['root.water', '1']
     ];
-    await expect(
-      parseSchemaValue(c.signal, { ...defaultOptions, schema, entries })
-    ).resolves.toEqual({
+    await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
       animal: '1',
-      food: '0',
-      water: '1'
+      food: 'insect',
+      water: 'sea'
     });
   });
 
@@ -1103,17 +1141,13 @@ describe('parseSchemaValue', async () => {
         ['root.fixedNoToolbar.3', 'additional item two']
       ];
       await expect(
-        parseSchemaValue(c.signal, {
-          ...defaultOptions,
-          schema,
-          entries,
-          convertEntries: createFormDataEntriesConverter({
-            validator: defaultOptions.validator,
-            merger: defaultOptions.merger,
-            rootSchema: schema,
-            rootUiSchema: {}
+        parseSchemaValue(
+          c.signal,
+          opts({
+            schema,
+            entries
           })
-        })
+        )
       ).resolves.toEqual({
         listOfStrings: ['foo', 'bar'],
         multipleChoicesList: ['foo', 'bar'],

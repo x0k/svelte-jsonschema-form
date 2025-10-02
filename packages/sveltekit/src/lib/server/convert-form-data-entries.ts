@@ -25,6 +25,8 @@ export interface FormDataConverterOptions {
   convertUnknownEntry?: UnknownEntryConverter;
 }
 
+const DEFAULT_BOOLEAN_ENUM_KEYS_SET = new Set(Object.keys(DEFAULT_BOOLEAN_ENUM));
+
 export function createFormDataEntriesConverter({
   validator,
   merger,
@@ -95,11 +97,13 @@ export function createFormDataEntriesConverter({
         }
         return value;
       case 'boolean':
-        return value === 'on';
+        return DEFAULT_BOOLEAN_ENUM_KEYS_SET.has(value)
+          ? DEFAULT_BOOLEAN_ENUM[Number(value)]
+          : value === 'on';
       case 'integer':
-        return parseInt(value, 10);
+        return value.trim() === '' ? undefined : parseInt(value, 10);
       case 'number':
-        return parseFloat(value);
+        return value.trim() === '' ? undefined : parseFloat(value);
       default: {
         throw new Error(`Unexpected schema type: ${type}`);
       }

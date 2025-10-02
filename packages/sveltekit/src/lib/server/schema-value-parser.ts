@@ -1,5 +1,4 @@
 import { some } from '@sjsf/form/lib/array';
-import { isObject } from '@sjsf/form/lib/object';
 import { escapeRegex } from '@sjsf/form/lib/reg-exp';
 import { type Trie, getValueByKeys, insertValue } from '@sjsf/form/lib/trie';
 import { isSchemaObject } from '@sjsf/form/lib/json-schema';
@@ -22,6 +21,7 @@ import {
 } from '@sjsf/form/core';
 import {
   resolveUiRef,
+  type FieldPseudoElement,
   type IdentifiableFieldElement,
   type Schema,
   type SchemaValue,
@@ -99,7 +99,8 @@ export function parseSchemaValue<T>(
     return undefined;
   }
   const escapedIdSeparator = escapeRegex(idSeparator);
-  const BOUNDARY = `($|${escapedIdSeparator})`;
+  const escapedPseudoSeparator = escapeRegex(idPseudoSeparator);
+  const BOUNDARY = `($|${escapedIdSeparator}|${escapedPseudoSeparator})`;
   const SEPARATED_KEY_INPUT_KEY = `${idPseudoSeparator}${KEY_INPUT_KEY}`;
   let filter = '';
   const filterLengthStack: number[] = [];
@@ -274,43 +275,57 @@ export function parseSchemaValue<T>(
   }
 
   async function handleAllOf(
-    allOf: Schema['allOf'],
+    allOf: SchemaDefinition[],
+    schema: Schema,
     allOffUiSchema: UiSchemaDefinition | UiSchemaDefinition[],
     value: SchemaValue | undefined
   ) {
-    if (!Array.isArray(allOf)) {
-      return value;
-    }
     const isArray = Array.isArray(allOffUiSchema);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { allOf: _, ...rest } = schema;
     for (let i = 0; i < allOf.length; i++) {
-      value = await parseSchemaDef(allOf[i], isArray ? allOffUiSchema[i] : allOffUiSchema, value);
+      const subSchema = allOf[i];
+      value = await parseSchemaDef(
+        typeof subSchema === 'boolean' ? subSchema : { ...rest, ...subSchema },
+        isArray ? allOffUiSchema[i] : allOffUiSchema,
+        value
+      );
     }
     return value;
   }
 
-  function handleOneOf(
-    oneOf: Schema['oneOf'],
+  async function handleOneOf(
+    oneOf: SchemaDefinition[],
     schema: Schema,
     oneOfUiSchema: UiSchemaDefinition | UiSchemaDefinition[],
-    value: SchemaValue | undefined
+    value: SchemaValue | undefined,
+    element: FieldPseudoElement = 'oneof'
   ) {
-    if (!Array.isArray(oneOf) || isSelect(validator, merger, schema, rootSchema)) {
+    if (isSelect(validator, merger, schema, rootSchema)) {
       return value;
     }
-    const bestIndex = getClosestMatchingOption(
-      validator,
-      merger,
-      rootSchema,
-      value,
-      oneOf.map((def) => {
-        if (typeof def === 'boolean') {
-          return def ? {} : { not: {} };
-        }
-        return def;
-      }),
-      0,
-      getDiscriminatorFieldFromSchema(schema)
-    );
+    pushFilterAndEntries(`${escapedPseudoSeparator}${element}`);
+    const bestIndex =
+      ((await convertEntries(signal, {
+        schema: { type: 'integer' },
+        uiSchema: {},
+        entries: entriesStack[entriesStack.length - 1]
+      })) as number | undefined) ??
+      getClosestMatchingOption(
+        validator,
+        merger,
+        rootSchema,
+        value,
+        oneOf.map((def) => {
+          if (typeof def === 'boolean') {
+            return def ? {} : { not: {} };
+          }
+          return def;
+        }),
+        0,
+        getDiscriminatorFieldFromSchema(schema)
+      );
+    popEntriesAndFilter();
     return parseSchemaDef(
       oneOf[bestIndex],
       Array.isArray(oneOfUiSchema) ? oneOfUiSchema[bestIndex] : oneOfUiSchema,
@@ -318,19 +333,13 @@ export function parseSchemaValue<T>(
     );
   }
 
-  function handleAnyOf(schema: Schema, uiSchema: UiSchema, value: SchemaValue | undefined) {
-    const { anyOf } = schema;
-    if (!Array.isArray(anyOf)) {
-      return value;
-    }
-    if (
-      value === undefined ||
-      (isObject(value) &&
-        (Array.isArray(value) ? value.length === 0 : Object.keys(value).length === 0))
-    ) {
-      return handleAllOf(anyOf, uiSchema.anyOf ?? uiSchema, value);
-    }
-    return handleOneOf(anyOf, schema, uiSchema.anyOf ?? uiSchema, value);
+  function handleAnyOf(
+    anyOf: SchemaDefinition[],
+    schema: Schema,
+    uiSchema: UiSchema,
+    value: SchemaValue | undefined
+  ) {
+    return handleOneOf(anyOf, schema, uiSchema.anyOf ?? uiSchema, value, 'anyof');
   }
 
   function handleConditions(schema: Schema, uiSchema: UiSchema, value: SchemaValue | undefined) {
@@ -383,6 +392,20 @@ export function parseSchemaValue<T>(
     if (ref !== undefined) {
       return parseSchemaDef(resolveRef(ref, rootSchema), uiSchema);
     }
+    if (schema.oneOf) {
+      value = await handleOneOf(schema.oneOf, schema, uiSchema.oneOf ?? uiSchema, value);
+    }
+    if (schema.anyOf) {
+      value = await handleAnyOf(schema.anyOf, schema, uiSchema, value);
+    }
+    if (schema.allOf) {
+      value = await handleAllOf(
+        schema.allOf,
+        schema,
+        (uiSchema.allOf as UiSchema | UiSchema[]) ?? uiSchema,
+        value
+      );
+    }
     const type = getSimpleSchemaType(schema);
     if (type === 'object') {
       value = await parseObject(schema, uiSchema, isSchemaObjectValue(value) ? value : {});
@@ -395,24 +418,7 @@ export function parseSchemaValue<T>(
         entries: entriesStack[entriesStack.length - 1]
       });
     }
-    return handleDependencies(
-      schema,
-      uiSchema,
-      await handleAnyOf(
-        schema,
-        uiSchema,
-        await handleAllOf(
-          schema.allOf,
-          (uiSchema.allOf as UiSchema) ?? uiSchema,
-          await handleOneOf(
-            schema.oneOf,
-            schema,
-            uiSchema.oneOf ?? uiSchema,
-            await handleConditions(schema, uiSchema, value)
-          )
-        )
-      )
-    );
+    return handleDependencies(schema, uiSchema, await handleConditions(schema, uiSchema, value));
   }
 
   pushFilterAndEntries(`^${escapeRegex(idPrefix)}`);
