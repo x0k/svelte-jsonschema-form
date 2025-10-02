@@ -7,20 +7,14 @@ import { s, DEFAULT_SPECS } from 'theme-testing/demo';
 import './extra-widgets/checkboxes-include';
 import './extra-widgets/combobox-include.js';
 import './extra-widgets/date-picker-include';
-
-import FileUpload from './extra-widgets/file-upload.svelte';
-import './extra-widgets/file-upload.svelte';
-
+import './extra-widgets/file-upload-include.js';
 import './extra-widgets/file-include';
 import './extra-widgets/multi-select-include';
 import './extra-widgets/radio-buttons-include';
 import './extra-widgets/radio-include';
 import './extra-widgets/range-include';
 import './extra-widgets/rating-include';
-
-import Slider from './extra-widgets/slider.svelte';
-import './extra-widgets/slider.svelte';
-
+import './extra-widgets/slider-include.js';
 import './extra-widgets/switch-include';
 import './extra-widgets/tags-include';
 import './extra-widgets/textarea-include';
@@ -51,7 +45,7 @@ export const specs: s.Specs = {
 			'ui:components': {
 				stringField: 'enumField',
 				selectWidget: 'comboboxWidget'
-			},
+			}
 		},
 		{
 			// oninput: 'inputSkeletonCombobox',
@@ -73,7 +67,7 @@ export const specs: s.Specs = {
 		{
 			'ui:components': {
 				stringField: 'fileField',
-				fileWidget: FileUpload
+				fileWidget: 'skeleton3FileUploadWidget'
 			}
 		},
 		{
@@ -85,7 +79,7 @@ export const specs: s.Specs = {
 		{
 			'ui:components': {
 				arrayField: filesAsArrayField,
-				fileWidget: FileUpload
+				fileWidget: 'skeleton3FileUploadWidget'
 			}
 		},
 		{
@@ -155,7 +149,7 @@ export const specs: s.Specs = {
 	],
 	slider: [
 		s.number,
-		{ 'ui:components': { numberWidget: Slider } },
+		{ 'ui:components': { numberWidget: 'skeleton3SliderWidget' } },
 		{
 			oninput: 'inputSlider',
 			onchange: 'changeSlider',

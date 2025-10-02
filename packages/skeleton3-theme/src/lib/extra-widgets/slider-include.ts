@@ -5,8 +5,8 @@ import './slider.svelte';
 
 declare module '../definitions.js' {
 	interface ExtraWidgets {
-		rangeWidget: {};
+		skeleton3SliderWidget: {};
 	}
 }
 
-definitions.rangeWidget = Slider;
+definitions.skeleton3SliderWidget = Slider;

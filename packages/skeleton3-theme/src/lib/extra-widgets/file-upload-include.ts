@@ -5,8 +5,8 @@ import './file-upload.svelte';
 
 declare module '../definitions.js' {
 	interface ExtraWidgets {
-		fileWidget: {};
+		skeleton3FileUploadWidget: {};
 	}
 }
 
-definitions.fileWidget = FileUpload;
+definitions.skeleton3FileUploadWidget = FileUpload;

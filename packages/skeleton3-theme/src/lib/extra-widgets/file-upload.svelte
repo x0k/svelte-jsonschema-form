@@ -1,9 +1,19 @@
 <script lang="ts" module>
 	import { untrack, type ComponentProps as SvelteComponentProps } from 'svelte';
+	import type { WidgetCommonProps } from '@sjsf/form/fields/widgets';
 	import { FileUpload as SkeletonFileUpload } from '@skeletonlabs/skeleton-svelte';
-	import '@sjsf/form/fields/extra-widgets/file';
 
 	declare module '@sjsf/form' {
+		interface ComponentProps {
+			skeleton3FileUploadWidget: WidgetCommonProps<FileList> & {
+				multiple: boolean;
+				loading: boolean;
+				processing: boolean;
+			};
+		}
+		interface ComponentBindings {
+			skeleton3FileUploadWidget: 'value';
+		}
 		interface UiOptions {
 			skeleton3FileUpload?: SvelteComponentProps<typeof SkeletonFileUpload>;
 		}
@@ -12,12 +22,7 @@
 
 <script lang="ts">
 	import { type FileUploadApi } from '@skeletonlabs/skeleton-svelte';
-	import {
-		customInputAttributes,
-		getFormContext,
-		createId,
-		type ComponentProps
-	} from '@sjsf/form';
+	import { customInputAttributes, getFormContext, createId, type ComponentProps } from '@sjsf/form';
 
 	let {
 		config,
@@ -25,7 +30,7 @@
 		multiple,
 		value = $bindable(),
 		errors
-	}: ComponentProps['fileWidget'] = $props();
+	}: ComponentProps['skeleton3FileUploadWidget'] = $props();
 
 	const ctx = getFormContext();
 

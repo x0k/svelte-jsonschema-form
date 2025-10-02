@@ -1,10 +1,16 @@
 <script lang="ts" module>
 	import type { ComponentProps as SvelteComponentProps } from 'svelte';
+	import type { WidgetCommonProps } from '@sjsf/form/fields/widgets';
 	// NOTE: avoids types collision
 	import { Slider as SkeletonSlider } from '@skeletonlabs/skeleton-svelte';
-	import '@sjsf/form/fields/extra-widgets/range';
 
 	declare module '@sjsf/form' {
+		interface ComponentProps {
+			skeleton3SliderWidget: WidgetCommonProps<number>;
+		}
+		interface ComponentBindings {
+			skeleton3SliderWidget: 'value';
+		}
 		interface UiOptions {
 			skeleton3Slider?: SvelteComponentProps<typeof SkeletonSlider>;
 		}
@@ -14,11 +20,16 @@
 <script lang="ts">
 	import { getFormContext, type ComponentProps, customInputAttributes, createId } from '@sjsf/form';
 
-	let { value = $bindable(), config, handlers, errors }: ComponentProps['rangeWidget'] = $props();
+	let {
+		value = $bindable(),
+		config,
+		handlers,
+		errors
+	}: ComponentProps['skeleton3SliderWidget'] = $props();
 
 	const ctx = getFormContext();
 
-	const id = $derived(createId(ctx, config.path))
+	const id = $derived(createId(ctx, config.path));
 </script>
 
 <SkeletonSlider

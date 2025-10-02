@@ -1,8 +1,15 @@
 <script lang="ts" module>
 	import type { HTMLAttributes, HTMLInputAttributes } from 'svelte/elements';
-	import '@sjsf/form/fields/extra-widgets/radio-buttons';
+	import type { SchemaValue } from '@sjsf/form';
+	import type { Options, WidgetCommonProps } from '@sjsf/form/fields/widgets';
 
 	declare module '@sjsf/form' {
+		interface ComponentProps {
+			daisyui5FilterRadioButtonsWidget: WidgetCommonProps<SchemaValue> & Options;
+		}
+		interface ComponentBindings {
+			daisyui5FilterRadioButtonsWidget: 'value';
+		}
 		interface UiOptions {
 			daisyui5Filter?: HTMLAttributes<HTMLDivElement>;
 			daisyui5FilterItem?: HTMLInputAttributes;
@@ -20,7 +27,7 @@
 		config,
 		errors,
 		handlers
-	}: ComponentProps['radioButtonsWidget'] = $props();
+	}: ComponentProps['daisyui5FilterRadioButtonsWidget'] = $props();
 
 	const mapped = $derived(
 		singleOption({

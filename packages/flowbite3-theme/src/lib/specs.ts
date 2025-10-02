@@ -13,9 +13,7 @@ import './extra-widgets/range-include';
 import './extra-widgets/switch-include';
 import './extra-widgets/tags-include';
 import './extra-widgets/textarea-include';
-
-import ToggleRadioButtons from './extra-widgets/toggle-radio-buttons.svelte';
-import './extra-widgets/toggle-radio-buttons.svelte';
+import './extra-widgets/toggle-radio-buttons-include.js';
 
 const tagsAsArrayField = cast(TagsField, {
 	value: {
@@ -140,7 +138,7 @@ export const specs: s.Specs = {
 		{
 			'ui:components': {
 				stringField: 'enumField',
-				selectWidget: ToggleRadioButtons
+				selectWidget: 'flowbite3ToggleRadioButtonsWidget'
 			},
 			'ui:options': { useLabel: false }
 		},

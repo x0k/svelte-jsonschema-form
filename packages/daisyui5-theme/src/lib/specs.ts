@@ -3,10 +3,7 @@ import { s, DEFAULT_SPECS } from 'theme-testing/demo';
 import './extra-widgets/cally-date-picker-include';
 import './extra-widgets/checkboxes-include';
 import './extra-widgets/file-include';
-
-import FilterRadioButtons from './extra-widgets/filter-radio-buttons.svelte';
-import './extra-widgets/filter-radio-buttons.svelte';
-
+import './extra-widgets/filter-radio-buttons-include.js';
 import './extra-widgets/multi-select-include';
 import './extra-widgets/radio-buttons-include';
 import './extra-widgets/radio-include';
@@ -14,17 +11,27 @@ import './extra-widgets/range-include';
 import './extra-widgets/rating-include';
 import './extra-widgets/switch-include';
 import './extra-widgets/textarea-include';
-
-import PikadayDatePicker from './extra-widgets/pikaday-date-picker.svelte';
-import './extra-widgets/pikaday-date-picker.svelte';
+import './extra-widgets/date-picker-include.js';
 
 export const specs: s.Specs = {
 	...DEFAULT_SPECS,
 	callyDatePicker: [
 		s.text,
-		{ 'ui:components': { textWidget: 'datePickerWidget' }, 'ui:options': { useLabel: false } },
 		{
-			onchange: "changeCallyDatePicker"
+			'ui:components': { textWidget: 'daisyui5CallyDatePickerWidget' },
+			'ui:options': { useLabel: false }
+		},
+		{
+			onchange: 'changeCallyDatePicker'
+		}
+	],
+	datePicker: [
+		s.text,
+		{ 'ui:components': { textWidget: 'datePickerWidget' } },
+		{
+			oninput: 'inputDate',
+			onchange: 'changeDate',
+			onblur: 'visitDate'
 		}
 	],
 	filterRadioButtons: [
@@ -32,14 +39,14 @@ export const specs: s.Specs = {
 		{
 			'ui:components': {
 				stringField: 'enumField',
-				selectWidget: FilterRadioButtons
+				selectWidget: 'daisyui5FilterRadioButtonsWidget'
 			},
 			'ui:options': { useLabel: false }
 		},
 		{
-			oninput: "inputRadio",
-			onchange: "changeRadio",
-			onblur: "visitRadio"
+			oninput: 'inputRadio',
+			onchange: 'changeRadio',
+			onblur: 'visitRadio'
 		}
 	],
 	multiSelect: [
@@ -52,18 +59,9 @@ export const specs: s.Specs = {
 			'ui:options': { useLabel: true }
 		},
 		{
-			oninput: "inputMultiSelect",
-			onchange: "changeMultiSelect",
-			onblur: "visitMultiSelect"
-		}
-	],
-	pikadayDatePicker: [
-		s.text,
-		{ 'ui:components': { textWidget: PikadayDatePicker } },
-		{
-			oninput: "inputDate",
-			onchange: "changeDate",
-			onblur: "visitDate"
+			oninput: 'inputMultiSelect',
+			onchange: 'changeMultiSelect',
+			onblur: 'visitMultiSelect'
 		}
 	],
 	radioButtons: [
@@ -76,9 +74,9 @@ export const specs: s.Specs = {
 			'ui:options': { useLabel: false }
 		},
 		{
-			oninput: "inputRadio",
-			onchange: "changeRadio",
-			onblur: "visitRadio"
+			oninput: 'inputRadio',
+			onchange: 'changeRadio',
+			onblur: 'visitRadio'
 		}
 	],
 	radio: [
@@ -91,45 +89,45 @@ export const specs: s.Specs = {
 			'ui:options': { useLabel: false }
 		},
 		{
-			oninput: "inputRadio",
-			onchange: "changeRadio",
-			onblur: "visitRadio"
+			oninput: 'inputRadio',
+			onchange: 'changeRadio',
+			onblur: 'visitRadio'
 		}
 	],
 	range: [
 		s.number,
 		{ 'ui:components': { numberWidget: 'rangeWidget' } },
 		{
-			oninput: "inputSlider",
-			onchange: "changeSlider",
-			onblur: "visitSlider"
+			oninput: 'inputSlider',
+			onchange: 'changeSlider',
+			onblur: 'visitSlider'
 		}
 	],
 	rating: [
 		s.number,
 		{ 'ui:components': { numberWidget: 'ratingWidget' }, 'ui:options': { useLabel: false } },
 		{
-			oninput: "inputRadio",
-			onchange: "changeRadio",
-			onblur: "visitRadio"
+			oninput: 'inputRadio',
+			onchange: 'changeRadio',
+			onblur: 'visitRadio'
 		}
 	],
 	switch: [
 		s.boolean,
 		{ 'ui:components': { checkboxWidget: 'switchWidget' } },
 		{
-			oninput: "inputCheckbox",
-			onchange: "changeCheckbox",
-			onblur: "visitCheckbox"
+			oninput: 'inputCheckbox',
+			onchange: 'changeCheckbox',
+			onblur: 'visitCheckbox'
 		}
 	],
 	textarea: [
 		s.text,
 		{ 'ui:components': { textWidget: 'textareaWidget' } },
 		{
-			oninput: "inputText",
-			onchange: "changeText",
-			onblur: "visitText"
+			oninput: 'inputText',
+			onchange: 'changeText',
+			onblur: 'visitText'
 		}
 	]
 };

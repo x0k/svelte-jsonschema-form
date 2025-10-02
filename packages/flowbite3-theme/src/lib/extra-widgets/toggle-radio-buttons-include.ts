@@ -5,8 +5,8 @@ import './toggle-radio-buttons.svelte';
 
 declare module '../definitions.js' {
 	interface ExtraWidgets {
-		radioButtonsWidget: {};
+		flowbite3ToggleRadioButtonsWidget: {};
 	}
 }
 
-definitions.radioButtonsWidget = ToggleRadioButtons;
+definitions.flowbite3ToggleRadioButtonsWidget = ToggleRadioButtons;
