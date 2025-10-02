@@ -1,10 +1,11 @@
 <script lang="ts">
   import { fromRecord } from "@sjsf/form/lib/resolver";
+  import { formatFileSize } from "@sjsf/form/validators/file-size";
   import { BasicForm, createForm } from "@sjsf/form";
   import { BitsConfig } from "bits-ui";
 
   import { ShadowHost } from "$lib/components/shadow/index.js";
-  import { THEME_STYLES, sjsfTheme, Theme } from "$lib/sjsf/theme.js";
+  import { THEME_STYLES, SJSF_THEMES, Theme } from "$lib/sjsf/theme.js";
   import * as defaults from "$lib/form/defaults.js";
   import { SJSF_RESOLVERS } from "$lib/sjsf/resolver.js";
   import { ICONS_STYLES, SJSF_ICONS } from "$lib/sjsf/icons.js";
@@ -37,7 +38,7 @@
       return ctx.uiSchema;
     },
     get theme() {
-      return sjsfTheme(ctx.theme);
+      return SJSF_THEMES[ctx.theme];
     },
     get resolver() {
       return SJSF_RESOLVERS[ctx.resolver];
@@ -58,6 +59,13 @@
     onSubmitError: console.warn,
     onSubmissionFailure: console.error,
   });
+
+  function withFile(_: string, value: any) {
+    if (value instanceof File) {
+      return `File(${value.name}, ${formatFileSize(value.size)})`;
+    }
+    return value;
+  }
 </script>
 
 <div class="flex flex-col gap-2">
@@ -83,7 +91,7 @@
   </ShadowHost>
   {#if form.value !== undefined}
     <div class="rounded-md border">
-      {@html ctx.highlight("json", JSON.stringify(form.value, null, 2))}
+      {@html ctx.highlight("json", JSON.stringify(form.value, withFile, 2))}
     </div>
   {/if}
 </div>

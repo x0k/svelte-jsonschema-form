@@ -11,23 +11,12 @@ import {
 import { VALIDATOR_PEER_DEPS, type Validator } from "$lib/sjsf/validators.js";
 
 import {
-  EPHEMERAL_WIDGET_IMPORTS,
   isBaseWidget,
-  isEphemeralField,
-  isEphemeralWidget,
   WIDGET_EXTRA_FIELD,
-  type EphemeralWidgetType,
-  type EphemeralFieldType,
   type ExtraWidgetType,
   EXTRA_WIDGET_IMPORTS,
-  EPHEMERAL_WIDGET_DEFINITIONS,
   type FileFieldMode,
   fileFieldModeToFields,
-  EPHEMERAL_FIELD_VALUE_TYPES,
-  type ArrayAssertType,
-  type AssertType,
-  EPHEMERA_FIELD_ASSERT_TYPE,
-  isArrayAssertType,
 } from "./model.js";
 
 export interface FormDefaultsOptions {
@@ -126,87 +115,6 @@ function createDefinition(definition: string) {
   };
 }
 
-const ASSERTS: Record<AssertType, string> = {
-  file:
-    `function assertFile(v: unknown): asserts v is File | undefined {
-  if (v !== undefined && !(v instanceof File)) {
-    throw new Error(
-      ` +
-    '`expected "undefined" or "File" type, but got "${typeof v}"`' +
-    `
-    );
-  }
-}`,
-};
-
-const ARRAY_ASSERTS: Record<ArrayAssertType, string> = {
-  strings: `const assertStrings: ArrayAssert<string> = createArrayAssert(
-  "string",
-  (v: SchemaValue): v is string => typeof v === "string"
-);`,
-  files: `const assertFiles: ArrayAssert<File> = createArrayAssert(
-  "File",
-  (v): v is File => v instanceof File
-);`,
-};
-
-function defineEphemeralFields(ephemeralFields: Set<EphemeralFieldType>) {
-  if (ephemeralFields.size === 0) {
-    return createDefinition("");
-  }
-  const fields = Array.from(ephemeralFields);
-  const asserts: AssertType[] = [];
-  const arrayAsserts: ArrayAssertType[] = [];
-  for (const f of fields) {
-    const assertType = EPHEMERA_FIELD_ASSERT_TYPE[f];
-    if (isArrayAssertType(assertType)) {
-      arrayAsserts.push(assertType);
-    } else {
-      asserts.push(assertType);
-    }
-  }
-  return createDefinition(
-    join2(
-      arrayAsserts.length > 0 &&
-        `type ArrayAssert<T extends SchemaValue> = (
-  arr: SchemaArrayValue | null | undefined
-) => asserts arr is T[] | undefined;
-
-function createArrayAssert<T extends SchemaValue>(
-  itemName: string,
-  isItem: (v: SchemaValue) => v is T
-): ArrayAssert<T> {
-  return (arr) => {
-    if (arr?.some((item) => item === undefined || !isItem(item))) {
-      throw new TypeError(` +
-          '`expected "${itemName}[]" or "undefined"`' +
-          `);
-    }
-  };
-}`,
-      ...arrayAsserts.map((a) => ARRAY_ASSERTS[a]),
-      ...asserts.map((a) => ASSERTS[a]),
-      ...fields.map(
-        (f) => `const ${f}FieldWrapper = cast(${f}Field, {
-  value: {
-    transform(props) {
-      assert${capitalize(EPHEMERA_FIELD_ASSERT_TYPE[f])}(props.value);
-      return props.value;
-    },
-  },
-}) satisfies ComponentDefinition<"arrayField">;`
-      ),
-      declareModule(
-        fields.map(
-          (f) =>
-            `${f}FieldWrapper: FieldCommonProps<${EPHEMERAL_FIELD_VALUE_TYPES[f]}>;`
-        ),
-        fields.map((f) => `${f}FieldWrapper: "value";`)
-      )
-    )
-  );
-}
-
 export function buildFormDefaults({
   widgets,
   icons,
@@ -216,54 +124,20 @@ export function buildFormDefaults({
   fileFieldMode,
 }: FormDefaultsOptions): string {
   const extraFields = new Set<string>();
-  const ephemeralFieldTypes = new Set<EphemeralFieldType>();
   const extraWidgetTypes: ExtraWidgetType[] = [];
-  const ephemeralWidgetTypes: EphemeralWidgetType[] = [];
   for (const w of widgets) {
     if (!isBaseWidget(w)) {
-      if (isEphemeralWidget(w)) {
-        ephemeralWidgetTypes.push(w);
-      } else {
-        extraWidgetTypes.push(w);
-      }
+      extraWidgetTypes.push(w);
     }
     const fields = fileFieldModeToFields(fileFieldMode);
-    const f = WIDGET_EXTRA_FIELD[w];
-    if (f !== undefined) {
-      fields.push(f);
+    const widgetExtraField = WIDGET_EXTRA_FIELD[w];
+    if (widgetExtraField !== undefined) {
+      fields.push(widgetExtraField);
     }
     for (const f of fields) {
-      if (isEphemeralField(f)) {
-        ephemeralFieldTypes.add(f);
-      } else {
-        extraFields.add(f);
-      }
+      extraFields.add(f);
     }
   }
-
-  const hasEphemeral =
-    ephemeralWidgetTypes.length > 0 || ephemeralFieldTypes.size > 0;
-
-  const ephemeralFields = defineEphemeralFields(ephemeralFieldTypes);
-  const ephemeralWidgets = createDefinition(
-    ephemeralWidgetTypes.length > 0
-      ? declareModule(
-          ephemeralWidgetTypes.map(
-            (w) => `${w}: ${EPHEMERAL_WIDGET_DEFINITIONS[w]};`
-          ),
-          ephemeralWidgetTypes.map((w) => `${w}: "value";`)
-        )
-      : ""
-  );
-
-  const themeExport = hasEphemeral
-    ? `export const theme = extendByRecord(base, {
-  ${[
-    ...Array.from(ephemeralFieldTypes).map((f) => `${f}FieldWrapper`),
-    ...ephemeralWidgetTypes,
-  ].join(",\n  ")}
-})`
-    : "";
 
   const iconsExport =
     Icons.None === icons
@@ -271,38 +145,20 @@ export function buildFormDefaults({
       : `export { icons } from "@sjsf/${icons}-icons";`;
 
   return join2(
-    defineTypeImports(ephemeralFields.imports.union(ephemeralWidgets.imports)),
-    join(
-      hasEphemeral &&
-        'import { extendByRecord } from "@sjsf/form/lib/resolver";',
-      ephemeralFieldTypes.size > 0 &&
-        'import { cast } from "@sjsf/form/lib/component";'
-    ),
     join(
       `export { resolver } from "@sjsf/form/resolvers/${resolver}";`,
       ...Array.from(extraFields).map(
         (f) =>
           `import "@sjsf/form/fields/extra-fields/${camelToKebabCase(f)}-include";`
-      ),
-      ...Array.from(ephemeralFieldTypes).map(
-        (f) =>
-          `import ${f}Field from "@sjsf/form/fields/extra-fields/${camelToKebabCase(f)}.svelte";`
       )
     ),
-    ephemeralFields.definition,
     join(
-      `${hasEphemeral ? "import { theme as base" : "export { theme"} } from "@sjsf/${theme}-theme";`,
+      `export { theme } from "@sjsf/${theme}-theme";`,
       ...extraWidgetTypes.map(
         (w) =>
           `import "@sjsf/${theme}-theme/extra-widgets/${EXTRA_WIDGET_IMPORTS[w]}-include";`
-      ),
-      ...ephemeralWidgetTypes.map(
-        (w) =>
-          `import ${w} from "@sjsf/${theme}-theme/extra-widgets/${EPHEMERAL_WIDGET_IMPORTS[w]}.svelte";`
       )
     ),
-    ephemeralWidgets.definition,
-    themeExport,
     iconsExport,
     'export { translation } from "@sjsf/form/translations/en";',
     `export { createFormIdBuilder as idBuilder } from "@sjsf/form/id-builders/modern";`,

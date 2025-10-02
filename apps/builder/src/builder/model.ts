@@ -1,3 +1,4 @@
+import { pickSchemaType, typeOfValue } from "@sjsf/form/core";
 import type { UiOptions, UiSchema } from "@sjsf/form";
 
 import { constant } from "$lib/function.js";
@@ -17,10 +18,9 @@ import {
   type WidgetNode,
   type WidgetNodeType,
 } from "$lib/builder/index.js";
-import { Theme, type WidgetType } from "$lib/sjsf/theme.js";
+import { Theme, type FieldType, type WidgetType } from "$lib/sjsf/theme.js";
 
 import type { BuilderDraggable } from "./context.svelte.js";
-import { pickSchemaType, typeOfValue } from "@sjsf/form/core";
 
 export interface NodeProps<T extends NodeType> {
   node: Extract<Node, AbstractNode<T>>;
@@ -163,20 +163,20 @@ export const DEFAULT_COMPONENTS: Record<
       if (node.options.multiple) {
         return {
           arrayField: node.options.native
-            ? "nativeFilesFieldWrapper"
-            : "filesFieldWrapper",
+            ? "arrayNativeFilesField"
+            : "arrayFilesField",
         };
       }
       return node.options.native
         ? {
-            unknownField: "nativeFileFieldWrapper",
+            unknownField: "unknownNativeFileField",
           }
         : {
             stringField: "fileField",
           };
     },
     [NodeType.Tags]: constant({
-      arrayField: "tagsFieldWrapper",
+      arrayField: "arrayTagsField",
     }),
   },
   [Resolver.Compat]: {
@@ -185,9 +185,20 @@ export const DEFAULT_COMPONENTS: Record<
     [NodeType.String]: constant(undefined),
     [NodeType.Number]: constant(undefined),
     [NodeType.Boolean]: constant(undefined),
-    [NodeType.File]: constant(undefined),
+    [NodeType.File]: (node): UiSchema["ui:components"] => {
+      if (!node.options.native) {
+        return undefined;
+      }
+      return node.options.multiple
+        ? {
+            arrayField: "arrayNativeFilesField",
+          }
+        : {
+            unknownField: "unknownNativeFileField",
+          };
+    },
     [NodeType.Tags]: constant({
-      arrayField: "tagsFieldWrapper",
+      arrayField: "arrayTagsField",
     }),
   },
 };
@@ -217,74 +228,7 @@ export function isBaseWidget(w: WidgetType): w is BaseWidgetType {
   return BASE_WIDGETS_SET.has(w);
 }
 
-const EPHEMERAL_WIDGETS = [
-  "filterRadioButtonsWidget",
-  "pikadayDatePickerWidget",
-  "fileUploadWidget",
-  "sliderWidget",
-  "toggleRadioButtonsWidget",
-] as const satisfies WidgetType[];
-
-export type EphemeralWidgetType = (typeof EPHEMERAL_WIDGETS)[number];
-
-export type ExtraWidgetType = Exclude<
-  WidgetType,
-  BaseWidgetType | EphemeralWidgetType
->;
-
-const EPHEMERAL_WIDGETS_SET = new Set<WidgetType>(EPHEMERAL_WIDGETS);
-
-export function isEphemeralWidget(w: WidgetType): w is EphemeralWidgetType {
-  return EPHEMERAL_WIDGETS_SET.has(w);
-}
-
-const EPHEMERAL_FIELDS = [
-  "files",
-  "tags",
-  "nativeFile",
-  "nativeFiles",
-] as const;
-
-export type EphemeralFieldType = (typeof EPHEMERAL_FIELDS)[number];
-
-export const EPHEMERAL_FIELD_VALUE_TYPES: Record<EphemeralFieldType, string> = {
-  files: "SchemaArrayValue",
-  tags: "SchemaArrayValue",
-  nativeFile: "unknown",
-  nativeFiles: "SchemaArrayValue",
-};
-
-export const ASSERT_TYPES = ["file"] as const;
-
-export type AssertType = (typeof ASSERT_TYPES)[number];
-
-export const ARRAY_ASSERT_TYPES = ["strings", "files"] as const;
-
-export type ArrayAssertType = (typeof ARRAY_ASSERT_TYPES)[number];
-
-const SET_OF_ARRAY_ASSERT_TYPES = new Set<string>(ARRAY_ASSERT_TYPES);
-
-export function isArrayAssertType(
-  assertType: AssertType | ArrayAssertType
-): assertType is ArrayAssertType {
-  return SET_OF_ARRAY_ASSERT_TYPES.has(assertType);
-}
-
-export const EPHEMERA_FIELD_ASSERT_TYPE: Record<
-  EphemeralFieldType,
-  AssertType | ArrayAssertType
-> = {
-  nativeFile: "file",
-  files: "strings",
-  tags: "strings",
-  nativeFiles: "files",
-};
-
-const EPHEMERAL_FIELDS_SET = new Set<string>(EPHEMERAL_FIELDS);
-
-export function isEphemeralField(field: string): field is EphemeralFieldType {
-  return EPHEMERAL_FIELDS_SET.has(field);
-}
+export type ExtraWidgetType = Exclude<WidgetType, BaseWidgetType>;
 
 export type FileFieldMode = number;
 export const FILE_FIELD_SINGLE_MODE = 1;
@@ -293,8 +237,10 @@ export const FILE_FIELD_NATIVE_SINGLE_MODE = FILE_FIELD_MULTIPLE_MODE << 1;
 export const FILE_FIELD_NATIVE_MULTIPLE_MODE =
   FILE_FIELD_NATIVE_SINGLE_MODE << 1;
 
-export function fileFieldModeToFields(mode: FileFieldMode): string[] {
-  const fields: string[] = [];
+type StripFieldSuffix<T> = T extends `${infer U}Field` ? U : T;
+
+export function fileFieldModeToFields(mode: FileFieldMode): StripFieldSuffix<FieldType>[] {
+  const fields: StripFieldSuffix<FieldType>[] = [];
   if (mode & FILE_FIELD_SINGLE_MODE) {
     fields.push("file");
   }
@@ -302,36 +248,36 @@ export function fileFieldModeToFields(mode: FileFieldMode): string[] {
     fields.push("files");
   }
   if (mode & FILE_FIELD_NATIVE_SINGLE_MODE) {
-    fields.push("nativeFile");
+    fields.push("unknownNativeFile");
   }
   if (mode & FILE_FIELD_NATIVE_MULTIPLE_MODE) {
-    fields.push("nativeFiles");
+    fields.push("arrayNativeFiles");
   }
   return fields;
 }
 
-export const WIDGET_EXTRA_FIELD: Record<WidgetType, string | undefined> = {
+export const WIDGET_EXTRA_FIELD: Record<WidgetType, StripFieldSuffix<FieldType> | undefined> = {
   textWidget: undefined,
   numberWidget: undefined,
   selectWidget: "enum",
   checkboxWidget: undefined,
   fileWidget: undefined,
-  checkboxesWidget: "multi-enum",
+  checkboxesWidget: "multiEnum",
   tagsWidget: "tags",
   datePickerWidget: undefined,
-  multiSelectWidget: "multi-enum",
+  multiSelectWidget: "multiEnum",
   radioWidget: "enum",
-  sliderWidget: undefined,
   rangeWidget: undefined,
   textareaWidget: undefined,
   radioButtonsWidget: "enum",
   ratingWidget: undefined,
   switchWidget: undefined,
   comboboxWidget: "enum",
-  filterRadioButtonsWidget: "enum",
-  pikadayDatePickerWidget: undefined,
-  fileUploadWidget: undefined,
-  toggleRadioButtonsWidget: "enum",
+  daisyui5FilterRadioButtonsWidget: "enum",
+  daisyui5CallyDatePickerWidget: undefined,
+  skeleton3SliderWidget: undefined,
+  skeleton3FileUploadWidget: undefined,
+  flowbite3ToggleRadioButtonsWidget: "enum",
 };
 
 export const WIDGET_NAMES: Record<WidgetType, string> = {
@@ -345,17 +291,17 @@ export const WIDGET_NAMES: Record<WidgetType, string> = {
   datePickerWidget: "Date picker",
   multiSelectWidget: "Multi Select",
   radioWidget: "Radio group",
-  sliderWidget: "Slider",
   rangeWidget: "Range",
   textareaWidget: "Textarea",
   radioButtonsWidget: "Radio buttons",
   ratingWidget: "Rating",
   switchWidget: "Switch",
   comboboxWidget: "Combobox",
-  filterRadioButtonsWidget: "Radio buttons 2",
-  pikadayDatePickerWidget: "Pikaday date picker",
-  fileUploadWidget: "Drop zone",
-  toggleRadioButtonsWidget: "Toggle radio buttons",
+  daisyui5FilterRadioButtonsWidget: "Filter radio buttons",
+  daisyui5CallyDatePickerWidget: "Cally date picker",
+  skeleton3FileUploadWidget: "Drop zone",
+  skeleton3SliderWidget: "Slider",
+  flowbite3ToggleRadioButtonsWidget: "Toggle radio buttons",
 };
 
 export const WIDGET_USE_LABEL: Record<WidgetType, boolean> = {
@@ -369,17 +315,17 @@ export const WIDGET_USE_LABEL: Record<WidgetType, boolean> = {
   datePickerWidget: true,
   multiSelectWidget: true,
   radioWidget: false,
-  sliderWidget: true,
   rangeWidget: true,
   textareaWidget: true,
   radioButtonsWidget: false,
   ratingWidget: false,
   switchWidget: true,
   comboboxWidget: true,
-  filterRadioButtonsWidget: false,
-  pikadayDatePickerWidget: true,
-  fileUploadWidget: true,
-  toggleRadioButtonsWidget: false,
+  daisyui5FilterRadioButtonsWidget: false,
+  daisyui5CallyDatePickerWidget: true,
+  skeleton3SliderWidget: true,
+  skeleton3FileUploadWidget: true,
+  flowbite3ToggleRadioButtonsWidget: false,
 };
 
 export const EXTRA_WIDGET_IMPORTS: Record<ExtraWidgetType, string> = {
@@ -395,25 +341,9 @@ export const EXTRA_WIDGET_IMPORTS: Record<ExtraWidgetType, string> = {
   ratingWidget: "rating",
   switchWidget: "switch",
   comboboxWidget: "combobox",
+  daisyui5FilterRadioButtonsWidget: "filter-radio-buttons",
+  daisyui5CallyDatePickerWidget: "cally-date-picker",
+  skeleton3SliderWidget: "slider",
+  skeleton3FileUploadWidget: "file-upload",
+  flowbite3ToggleRadioButtonsWidget: "toggle-radio-buttons",
 };
-
-export const EPHEMERAL_WIDGET_IMPORTS: Record<EphemeralWidgetType, string> = {
-  filterRadioButtonsWidget: "filter-radio-buttons",
-  pikadayDatePickerWidget: "pikaday-date-picker",
-  fileUploadWidget: "file-upload",
-  sliderWidget: "slider",
-  toggleRadioButtonsWidget: "toggle-radio-buttons",
-};
-
-export const EPHEMERAL_WIDGET_DEFINITIONS: Record<EphemeralWidgetType, string> =
-  {
-    filterRadioButtonsWidget: "WidgetCommonProps<SchemaValue> & Options",
-    pikadayDatePickerWidget: "WidgetCommonProps<string>",
-    fileUploadWidget: `WidgetCommonProps<FileList> & {
-      multiple: boolean;
-      loading: boolean;
-      processing: boolean;
-    }`,
-    sliderWidget: "WidgetCommonProps<number>",
-    toggleRadioButtonsWidget: "WidgetCommonProps<SchemaValue> & Options",
-  };

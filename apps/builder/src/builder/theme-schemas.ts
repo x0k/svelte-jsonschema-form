@@ -81,7 +81,7 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
             "selectWidget",
             "radioWidget",
             "radioButtonsWidget",
-            "filterRadioButtonsWidget",
+            "daisyui5FilterRadioButtonsWidget",
           ] satisfies CompatibleComponentType<"selectWidget">[],
         },
       },
@@ -103,7 +103,7 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
             "textWidget",
             "textareaWidget",
             "datePickerWidget",
-            "pikadayDatePickerWidget",
+            "daisyui5CallyDatePickerWidget",
           ] satisfies CompatibleComponentType<"textWidget">[],
         },
       },
@@ -147,7 +147,7 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
             "selectWidget",
             "radioWidget",
             "radioButtonsWidget",
-            "toggleRadioButtonsWidget"
+            "flowbite3ToggleRadioButtonsWidget"
           ] satisfies CompatibleComponentType<"selectWidget">[],
         },
       },
@@ -252,7 +252,7 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
           enum: [
             "numberWidget",
             "rangeWidget",
-            "sliderWidget",
+            "skeleton3SliderWidget",
             "ratingWidget",
           ] satisfies CompatibleComponentType<"numberWidget">[],
         },
@@ -273,7 +273,7 @@ export const THEME_SCHEMAS: Record<Theme, { [T in NodeType]?: Schema }> = {
         widget: {
           enum: [
             "fileWidget",
-            "fileUploadWidget",
+            "skeleton3FileUploadWidget",
           ] satisfies CompatibleComponentType<"fileWidget">[],
         },
       },
