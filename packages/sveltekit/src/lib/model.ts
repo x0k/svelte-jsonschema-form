@@ -7,6 +7,7 @@ import type {
   ValidationError
 } from '@sjsf/form';
 
+export const ID_PREFIX_KEY = '__sjsf_sveltekit_id_prefix';
 export const JSON_CHUNKS_KEY = '__sjsf_sveltekit_json_chunks';
 export const FORM_DATA_FILE_PREFIX = '__sjsf_sveltekit_file__';
 
@@ -45,6 +46,7 @@ export type InitialFormData<T, SendSchema extends boolean> = SerializableOptiona
 };
 
 export interface ValidatedFormData<SendData extends boolean> {
+  idPrefix: string;
   isValid: boolean;
   sendData?: SendData;
   data: SendData extends true ? SchemaValue | undefined : undefined;

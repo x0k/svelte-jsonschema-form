@@ -59,6 +59,7 @@ describe.skip('native form SSR', () => {
       },
       form: {
         form: {
+          idPrefix: 'root',
           isValid: false,
           sendData: true,
           data: 'validated value',
@@ -92,6 +93,7 @@ describe.skip('native form SSR', () => {
       },
       form: {
         form: {
+          idPrefix: 'root',
           isValid: true,
           sendData: true,
           data: 'validated value',

@@ -6,14 +6,17 @@ import { createTask, type TaskOptions } from '@sjsf/form/lib/task.svelte';
 import { applyAction, deserialize } from '$app/forms';
 import { invalidateAll } from '$app/navigation';
 
-import { FORM_DATA_FILE_PREFIX, JSON_CHUNKS_KEY } from '../model.js';
+import { FORM_DATA_FILE_PREFIX, ID_PREFIX_KEY, JSON_CHUNKS_KEY } from '../model.js';
 
 import type { SvelteKitFormMeta } from './meta.js';
+import { DEFAULT_ID_PREFIX } from '@sjsf/form';
 
 export type SveltekitRequestOptions<ActionData, V> = Omit<
   TaskOptions<[V, SubmitEvent], ActionResult<NonNullable<ActionData>>, unknown>,
   'execute'
 > & {
+  /** @default DEFAULT_ID_PREFIX */
+  idPrefix?: string;
   /** By default, handles conversion of `File` */
   createReplacer?: (formData: FormData) => (key: string, value: any) => any;
   /** @default 500000 */
@@ -74,6 +77,7 @@ export function createSvelteKitRequest<Meta extends SvelteKitFormMeta<any, any, 
       }
 
       const formData = new FormData();
+      formData.append(ID_PREFIX_KEY, options.idPrefix ?? DEFAULT_ID_PREFIX);
       for (const chunk of chunks(JSON.stringify(data, createReplacer(formData)), jsonChunkSize)) {
         formData.append(JSON_CHUNKS_KEY, chunk);
       }

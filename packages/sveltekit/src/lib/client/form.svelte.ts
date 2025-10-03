@@ -1,6 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { isRecord } from '@sjsf/form/lib/object';
-import { createForm, type Schema, type FormOptions, updateErrors } from '@sjsf/form';
+import {
+  createForm,
+  type Schema,
+  type FormOptions,
+  updateErrors,
+  DEFAULT_ID_PREFIX
+} from '@sjsf/form';
 
 import { page } from '$app/state';
 
@@ -24,31 +30,34 @@ export type SvelteKitFormOptions<
 > = Omit<FormOptions<T>, 'schema' | ToOmit> & SchemaOption<SendSchema>;
 
 function initialFormData<Meta extends SvelteKitFormMeta<any, any, string, any>>(
-  meta: Meta
+  meta: Meta,
+  idPrefix: string
 ): InitialFormData<Meta['__formValue'], Meta['__sendSchema']> | undefined {
   if (isRecord(page.form)) {
     const validationData = page.form[meta.name] as
       | ValidatedFormData<Meta['__sendData']>
       | undefined;
-    if (validationData !== undefined) {
-      return validationData.isValid
-        ? page.data[meta.name]
-        : {
-            ...page.data[meta.name],
-            initialValue: validationData.data,
-            initialErrors: validationData.errors
-          };
+    if (
+      validationData !== undefined &&
+      validationData.idPrefix === idPrefix &&
+      !validationData.isValid
+    ) {
+      return {
+        ...page.data[meta.name],
+        initialValue: validationData.data,
+        initialErrors: validationData.errors
+      };
     }
-  } else {
-    return page.data[meta.name];
   }
+  return page.data[meta.name];
 }
 
 export function createSvelteKitForm<
   Meta extends SvelteKitFormMeta<any, any, string, any>,
   Options extends SvelteKitFormOptions<Meta['__formValue'], Meta['__sendSchema']>
 >(meta: Meta, options: Options) {
-  const defaults = initialFormData(meta) ?? {};
+  const formIdPrefix = $derived(options.idPrefix ?? DEFAULT_ID_PREFIX);
+  const defaults = initialFormData(meta, formIdPrefix) ?? {};
   const form = createForm(
     new Proxy(options, {
       has(target, p) {
@@ -69,7 +78,7 @@ export function createSvelteKitForm<
     const validationData = page.form[meta.name] as
       | ValidatedFormData<Meta['__sendData']>
       | undefined;
-    if (validationData === undefined) {
+    if (validationData === undefined || formIdPrefix !== validationData.idPrefix) {
       return;
     }
     if (validationData.sendData) {
