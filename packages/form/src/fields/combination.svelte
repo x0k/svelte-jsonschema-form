@@ -71,19 +71,19 @@
     )
   );
 
-  let readableSelectedOption = $state(0);
-  let writableSelectedOption = $derived(
+  let previousSelectedOption = $state.raw<number>();
+  let nextSelectedOption = $derived(
     getClosestMatchingOption(
       ctx,
       value,
       retrievedOptions,
-      readableSelectedOption,
+      previousSelectedOption ?? 0,
       getDiscriminatorFieldFromSchema(config.schema)
     )
   );
   $effect(() => {
-    const nextSelected = writableSelectedOption;
-    if (readableSelectedOption === nextSelected) {
+    const nextSelected = nextSelectedOption;
+    if (previousSelectedOption === nextSelected) {
       return;
     }
     value = untrack(() => {
@@ -91,7 +91,10 @@
       if (nextSchema === undefined) {
         return undefined;
       }
-      const oldSchema = retrievedOptions[readableSelectedOption];
+      const oldSchema =
+        previousSelectedOption !== undefined
+          ? retrievedOptions[previousSelectedOption]
+          : undefined;
       return getDefaultFieldState(
         ctx,
         nextSchema,
@@ -100,7 +103,7 @@
           : value
       );
     });
-    readableSelectedOption = nextSelected;
+    previousSelectedOption = nextSelected;
   });
 
   const optionsUiSchemas = $derived.by(() => {
@@ -185,7 +188,7 @@
   const errors = $derived(getFieldErrors(ctx, config.path));
 
   const combinationFieldConfig: Config | null = $derived.by(() => {
-    const selected = readableSelectedOption;
+    const selected = previousSelectedOption ?? nextSelectedOption;
     if (selected < 0) {
       return null;
     }
@@ -236,7 +239,8 @@
       uiOption={(opt) => retrieveUiOption(ctx, widgetConfig, opt)}
       options={enumOptions}
       bind:value={
-        () => readableSelectedOption, (v) => (writableSelectedOption = v)
+        () => previousSelectedOption ?? nextSelectedOption,
+        (v) => (nextSelectedOption = v)
       }
     />
   {/snippet}
