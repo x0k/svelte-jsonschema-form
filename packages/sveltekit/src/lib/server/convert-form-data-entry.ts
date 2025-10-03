@@ -10,12 +10,10 @@ import {
 } from '@sjsf/form/core';
 import { DEFAULT_BOOLEAN_ENUM, type FieldValue, type Schema, type UiSchemaRoot } from '@sjsf/form';
 
-import type { EntriesConverter, EntriesConverterOptions } from './entry.js';
+import type { EntryConverter, EntryConverterOptions } from './entry.js';
 
 export type UnknownEntryConverter = (
-  key: string,
-  value: string,
-  options: EntriesConverterOptions<FormDataEntryValue>
+  options: EntryConverterOptions<FormDataEntryValue>
 ) => Promise<FieldValue> | FieldValue;
 export interface FormDataConverterOptions {
   validator: Validator;
@@ -27,27 +25,26 @@ export interface FormDataConverterOptions {
 
 const DEFAULT_BOOLEAN_ENUM_KEYS_SET = new Set(Object.keys(DEFAULT_BOOLEAN_ENUM));
 
-export function createFormDataEntriesConverter({
+export function createFormDataEntryConverter({
   validator,
   merger,
   rootSchema,
   rootUiSchema,
   convertUnknownEntry
-}: FormDataConverterOptions): EntriesConverter<FormDataEntryValue> {
+}: FormDataConverterOptions): EntryConverter<FormDataEntryValue> {
   return async (signal, options) => {
-    const { entries, schema, uiSchema } = options;
+    const { value, schema, uiSchema } = options;
     if (typeof schema === 'boolean') {
-      return schema ? (entries[0]?.[1] as FieldValue) : undefined;
+      return schema ? (value as FieldValue) : undefined;
     }
     const typeOrTypes = typeOfSchema(schema);
     const type = Array.isArray(typeOrTypes) ? pickSchemaType(typeOrTypes) : typeOrTypes;
-    if (entries.length === 0) {
+    if (value === undefined) {
       if (type === 'boolean') {
         return false;
       }
       return isNullableSchemaType(typeOrTypes) ? null : undefined;
     }
-    const value = entries[0][1];
     if (value instanceof File) {
       if (value.name === '' && value.size === 0) {
         return undefined;
@@ -84,7 +81,7 @@ export function createFormDataEntriesConverter({
       throw new Error(`Value "${value}" does not match the schema: ${JSON.stringify(schema)}`);
     }
     if (type === 'unknown' && convertUnknownEntry) {
-      return await convertUnknownEntry(entries[0][0], value, options);
+      return await convertUnknownEntry(options);
     }
     switch (type) {
       case 'string':

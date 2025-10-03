@@ -5,7 +5,7 @@ import { createFormValidator } from '@sjsf/ajv8-validator';
 
 import type { Entries } from './entry.js';
 import { parseSchemaValue, type SchemaValueParserOptions } from './schema-value-parser.js';
-import { createFormDataEntriesConverter } from './convert-form-data-entries.js';
+import { createFormDataEntryConverter } from './convert-form-data-entry.js';
 
 const opts = ({
   schema = {},
@@ -17,7 +17,7 @@ const opts = ({
   idPseudoSeparator = '::',
   validator = createFormValidator(),
   merger = createMerger(),
-  convertEntries = createFormDataEntriesConverter({
+  convertEntry: convertEntry = createFormDataEntryConverter({
     merger,
     validator,
     rootSchema: schema,
@@ -35,7 +35,7 @@ const opts = ({
   idPseudoSeparator,
   validator,
   merger,
-  convertEntries
+  convertEntry: convertEntry
 });
 
 describe('parseSchemaValue', async () => {

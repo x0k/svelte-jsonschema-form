@@ -1,13 +1,12 @@
 import { beforeEach, describe, expect, it } from 'vitest';
-import type { Schema } from '@sjsf/form/core';
+import type { RPath, Schema } from '@sjsf/form/core';
 import { createMerger } from '@sjsf/form/mergers/modern';
 import { createFormValidator } from '@sjsf/ajv8-validator';
 
 import {
-  createFormDataEntriesConverter,
+  createFormDataEntryConverter,
   type FormDataConverterOptions
-} from './convert-form-data-entries.js';
-import type { Entries } from './entry.js';
+} from './convert-form-data-entry.js';
 
 const defaultOptions: FormDataConverterOptions = {
   validator: createFormValidator(),
@@ -16,7 +15,7 @@ const defaultOptions: FormDataConverterOptions = {
   rootUiSchema: {}
 };
 
-const convert = createFormDataEntriesConverter(defaultOptions);
+const convert = createFormDataEntryConverter(defaultOptions);
 
 describe('convertFormDataEntries', async () => {
   let c: AbortController;
@@ -32,45 +31,48 @@ describe('convertFormDataEntries', async () => {
           type: ['string', 'null']
         },
         uiSchema: {},
-        entries: []
+        path: [],
+        value: undefined
       })
     ).toBeNull();
   });
   it('Should convert boolean', async () => {
     const schema: Schema = { title: 'A boolean', type: 'boolean', default: false };
-    const entries: Entries<string> = [['root.fixedNoToolbar.1', 'on']];
-    await expect(convert(c.signal, { schema, uiSchema: {}, entries })).resolves.toEqual(true);
+    await expect(
+      convert(c.signal, { schema, uiSchema: {}, path: ['fixedNoToolbar', 1], value: 'on' })
+    ).resolves.toEqual(true);
   });
   it('Should convert number', async () => {
     const schema: Schema = { title: 'A number', type: 'number', default: 42 };
-    const entries: Entries<string> = [['root.fixedNoToolbar.0', '42']];
-    await expect(convert(c.signal, { schema, uiSchema: {}, entries })).resolves.toEqual(42);
+    await expect(
+      convert(c.signal, { schema, uiSchema: {}, path: ['fixedNoToolbar', 0], value: '42' })
+    ).resolves.toEqual(42);
   });
   it('Should convert enum value', async () => {
     const schema: Schema = {
       type: 'string',
       enum: ['foo', 'bar', 'baz']
     };
-    const entries: Entries<string> = [['root', 'bar']];
-    await expect(convert(c.signal, { schema, uiSchema: {}, entries })).resolves.toEqual('bar');
+    await expect(
+      convert(c.signal, { schema, uiSchema: {}, path: [], value: 'bar' })
+    ).resolves.toEqual('bar');
   });
   it('Should return correct value from enum of string numbers', async () => {
     const schema: Schema = {
       type: 'string',
       enum: ['1', '2', '3']
     };
+    const path: RPath = [];
     // First, the value is treated as an index
-    await expect(
-      convert(c.signal, { schema, uiSchema: {}, entries: [['root', '0']] })
-    ).resolves.toEqual('1');
+    await expect(convert(c.signal, { schema, uiSchema: {}, path, value: '0' })).resolves.toEqual(
+      '1'
+    );
     // Then we check if there is a value in the enumeration
-    await expect(
-      convert(c.signal, { schema, uiSchema: {}, entries: [['root', '3']] })
-    ).resolves.toEqual('3');
+    await expect(convert(c.signal, { schema, uiSchema: {}, path, value: '3' })).resolves.toEqual(
+      '3'
+    );
     // If nothing fits, it's an error
-    await expect(
-      convert(c.signal, { schema, uiSchema: {}, entries: [['root', '4']] })
-    ).rejects.toThrow();
+    await expect(convert(c.signal, { schema, uiSchema: {}, path, value: '4' })).rejects.toThrow();
   });
   it('Should return correct value from anyOf', async () => {
     const schema: Schema = {
@@ -94,8 +96,9 @@ describe('convertFormDataEntries', async () => {
         }
       ]
     };
-    const entries: Entries<string> = [['root.currentColor', '1']];
-    await expect(convert(c.signal, { schema, uiSchema: {}, entries })).resolves.toEqual('#00ff00');
+    await expect(
+      convert(c.signal, { schema, uiSchema: {}, path: ['currentColor'], value: '1' })
+    ).resolves.toEqual('#00ff00');
   });
   it('Should return correct value from oneOf', async () => {
     const schema: Schema = {
@@ -106,12 +109,14 @@ describe('convertFormDataEntries', async () => {
         { title: 'Disable', const: false }
       ]
     };
-    const entries: Entries<string> = [['root.toggleMask', '0']];
-    await expect(convert(c.signal, { schema, uiSchema: {}, entries })).resolves.toEqual(true);
+    await expect(
+      convert(c.signal, { schema, uiSchema: {}, path: ['toggleMask'], value: '0' })
+    ).resolves.toEqual(true);
   });
   it('Should return correct value from enum', async () => {
     const schema: Schema = { type: 'string', enum: ['foo', 'bar', 'fuzz', 'qux'] };
-    const entries: Entries<string> = [['root.multipleChoicesList', '1']];
-    await expect(convert(c.signal, { schema, uiSchema: {}, entries })).resolves.toEqual('bar');
+    await expect(
+      convert(c.signal, { schema, uiSchema: {}, path: ['multipleChoicesList'], value: '1' })
+    ).resolves.toEqual('bar');
   });
 });

@@ -37,11 +37,11 @@ import {
 
 import { parseSchemaValue } from './schema-value-parser.js';
 import {
-  createFormDataEntriesConverter,
+  createFormDataEntryConverter,
   type FormDataConverterOptions,
   type UnknownEntryConverter
-} from './convert-form-data-entries.js';
-import type { EntriesConverter } from './entry.js';
+} from './convert-form-data-entry.js';
+import type { EntryConverter } from './entry.js';
 import { parseIdPrefix } from './id-prefix-parser.js';
 
 export type InitFormOptions<T, SendSchema extends boolean> = SerializableOptionalFormOptions<T> & {
@@ -77,7 +77,7 @@ export interface FormHandlerOptions<SendData extends boolean> extends IdOptions 
   validator: Creatable<Validator, ValidatorFactoryOptions>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
   createEntriesConverter?: Creatable<
-    EntriesConverter<FormDataEntryValue>,
+    EntryConverter<FormDataEntryValue>,
     FormDataConverterOptions
   >;
   convertUnknownEntry?: UnknownEntryConverter;
@@ -103,7 +103,7 @@ export function createFormHandler<SendData extends boolean>({
   idBuilder: createIdBuilder,
   merger: createMerger,
   validator: createValidator,
-  createEntriesConverter = createFormDataEntriesConverter,
+  createEntriesConverter = createFormDataEntryConverter,
   convertUnknownEntry,
   idPrefix = DEFAULT_ID_PREFIX,
   idSeparator = DEFAULT_ID_SEPARATOR,
@@ -168,7 +168,7 @@ export function createFormHandler<SendData extends boolean>({
           entries: Array.from(formData.entries()),
           validator,
           merger,
-          convertEntries
+          convertEntry: convertEntries
         });
     const errors = isAsyncFormValueValidator(validator)
       ? await validator.validateFormValueAsync(signal, schema, data)
