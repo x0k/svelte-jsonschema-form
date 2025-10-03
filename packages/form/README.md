@@ -19,41 +19,43 @@ npm install @sjsf/form @sjsf/basic-theme @sjsf/ajv8-validator ajv@8
 
 ```svelte
 <script lang="ts">
-  import { createForm, BasicForm, type Schema } from "@sjsf/form";
-  import { resolver } from "@sjsf/form/resolvers/basic";
-  import { translation } from "@sjsf/form/translations/en";
+  import { createForm, BasicForm, type Schema } from '@sjsf/form';
+  import { resolver } from '@sjsf/form/resolvers/basic';
+  import { translation } from '@sjsf/form/translations/en';
   import { createFormMerger } from "@sjsf/form/mergers/modern";
-  import { theme } from "@sjsf/basic-theme";
+  import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
   import { createFormValidator } from "@sjsf/ajv8-validator";
+  import { theme } from '@sjsf/basic-theme';
 
   const schema: Schema = {
-    title: "Tasks",
-    type: "array",
+    title: 'Tasks',
+    type: 'array',
     items: {
-      type: "object",
+      type: 'object',
       properties: {
         name: {
-          type: "string",
-          title: "Name",
+          type: 'string',
+          title: 'Name',
         },
         description: {
-          type: "string",
-          title: "Description",
+          type: 'string',
+          title: 'Description',
         },
       },
-      required: ["name"],
+      required: ["name"]
     },
-  };
+  }
 
   const form = createForm({
     theme,
     schema,
     resolver,
     translation,
-    createMerger: createFormMerger,
-    createValidator: createFormValidator,
-    onSubmit: console.log,
-  });
+    merger: createFormMerger,
+    validator: createFormValidator,
+    idBuilder: createFormIdBuilder,
+    onSubmit: console.log
+  })
 </script>
 
 <BasicForm {form} />

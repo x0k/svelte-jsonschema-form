@@ -23,8 +23,9 @@ npm i @sjsf/form @sjsf/basic-theme @sjsf/ajv8-validator ajv@8
   import { resolver } from '@sjsf/form/resolvers/basic';
   import { translation } from '@sjsf/form/translations/en';
   import { createFormMerger } from "@sjsf/form/mergers/modern";
-  import { theme } from '@sjsf/basic-theme';
+  import { createFormIdBuilder } from "@sjsf/form/id-builders/modern";
   import { createFormValidator } from "@sjsf/ajv8-validator";
+  import { theme } from '@sjsf/basic-theme';
 
   const schema: Schema = {
     title: 'Tasks',
@@ -50,8 +51,9 @@ npm i @sjsf/form @sjsf/basic-theme @sjsf/ajv8-validator ajv@8
     schema,
     resolver,
     translation,
-    createMerger: createFormMerger,
-    createValidator: createFormValidator,
+    merger: createFormMerger,
+    validator: createFormValidator,
+    idBuilder: createFormIdBuilder,
     onSubmit: console.log
   })
 </script>
