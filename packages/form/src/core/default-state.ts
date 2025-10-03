@@ -60,7 +60,8 @@ export function getDefaultFormState(
   formData: SchemaValue | undefined = undefined,
   rootSchema: Schema = {},
   includeUndefinedValues: boolean | "excludeObjectChildren" = false,
-  experimental_defaultFormStateBehavior: Experimental_DefaultFormStateBehavior = {}
+  experimental_defaultFormStateBehavior: Experimental_DefaultFormStateBehavior = {},
+  initialDefaultsGenerated = false
 ): SchemaValue | undefined {
   const schema = retrieveSchema(
     validator,
@@ -82,6 +83,7 @@ export function getDefaultFormState(
     isSchemaRoot: true,
     stack: new Set<string>(),
     shouldMergeDefaultsIntoFormData: true,
+    initialDefaultsGenerated,
   });
 
   // WARN: How about fixed arrays?
@@ -210,6 +212,8 @@ interface ComputeDefaultsProps<FormData = SchemaValue | undefined> {
    * The formData should take precedence unless it's not valid. This is useful when for example the value from formData does not exist in the schema 'enum' property, in such cases we take the value from the defaults because the value from the formData is not valid.
    */
   shouldMergeDefaultsIntoFormData: boolean;
+  /** Indicates whether initial defaults have been generated */
+  initialDefaultsGenerated: boolean;
 }
 
 export function computeDefaults(
@@ -228,6 +232,7 @@ export function computeDefaults(
     required,
     isSchemaRoot,
     shouldMergeDefaultsIntoFormData,
+    initialDefaultsGenerated,
   } = computeDefaultsProps;
   const rawDataIsObject = isSchemaObjectValue(rawFormData);
   const formData: SchemaObjectValue = rawDataIsObject ? rawFormData : {};
@@ -328,6 +333,8 @@ export function computeDefaults(
         required,
         isSchemaRoot: false,
         shouldMergeDefaultsIntoFormData,
+        // CHANGED: this property is not provided in the original code
+        initialDefaultsGenerated,
       })
     );
   } else if (schemaOneOf !== undefined) {
@@ -402,6 +409,7 @@ export function computeDefaults(
       rawFormData: rawFormData ?? schemaToComputeFormData,
       required,
       shouldMergeDefaultsIntoFormData,
+      initialDefaultsGenerated,
     });
   }
 
@@ -655,6 +663,7 @@ export function getObjectDefaults(
     isSchemaRoot,
     rawFormData: formData,
     shouldMergeDefaultsIntoFormData,
+    initialDefaultsGenerated,
   }: ComputeDefaultsProps<SchemaObjectValue>,
   defaults: SchemaValue | undefined
 ): SchemaObjectValue | null {
@@ -688,6 +697,7 @@ export function getObjectDefaults(
         required: retrievedSchemaRequired.has(key),
         isSchemaRoot: false,
         shouldMergeDefaultsIntoFormData,
+        initialDefaultsGenerated,
       });
       const isConst =
         (value.const !== undefined || parentConstObject[key] !== undefined) &&
@@ -706,7 +716,7 @@ export function getObjectDefaults(
     }
   }
   const schemaAdditionalProperties = retrievedSchema.additionalProperties;
-  if (schemaAdditionalProperties !== undefined) {
+  if (schemaAdditionalProperties !== undefined && !initialDefaultsGenerated) {
     let keys = new Set(
       isSchemaObjectValue(defaults)
         ? schemaProperties === undefined
@@ -740,6 +750,7 @@ export function getObjectDefaults(
           required: retrievedSchemaRequired.has(key),
           isSchemaRoot,
           shouldMergeDefaultsIntoFormData,
+          initialDefaultsGenerated,
         }
       );
       // Since these are additional properties we don't need to add the `experimental_defaultFormStateBehavior` prop
@@ -773,6 +784,7 @@ export function getArrayDefaults(
     experimental_defaultFormStateBehavior,
     required,
     shouldMergeDefaultsIntoFormData,
+    initialDefaultsGenerated,
   }: ComputeDefaultsProps,
   defaults: SchemaArrayValue | undefined
 ): SchemaArrayValue | null | undefined {
@@ -813,6 +825,7 @@ export function getArrayDefaults(
         rawFormData: undefined,
         isSchemaRoot: false,
         shouldMergeDefaultsIntoFormData,
+        initialDefaultsGenerated,
       });
     });
   }
@@ -834,6 +847,7 @@ export function getArrayDefaults(
           includeUndefinedValues: false,
           isSchemaRoot: false,
           shouldMergeDefaultsIntoFormData,
+          initialDefaultsGenerated,
         });
       });
       // If the populate 'requiredOnly' flag is set then we only merge and include extra defaults if they are required.
@@ -894,6 +908,7 @@ export function getArrayDefaults(
           isSchemaRoot: false,
           required,
           shouldMergeDefaultsIntoFormData,
+          initialDefaultsGenerated,
         })
     );
     // then fill up the rest with either the item default or empty, up to minItems

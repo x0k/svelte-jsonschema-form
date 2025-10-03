@@ -53,6 +53,7 @@ const defaults = {
   experimental_defaultFormStateBehavior: {},
   rawFormData: undefined,
   shouldMergeDefaultsIntoFormData: false,
+  initialDefaultsGenerated: false
 };
 
 describe("getDefaultFormState()", () => {
