@@ -1,11 +1,5 @@
 <script lang="ts">
   import { BasicForm } from '@sjsf/form';
-  import { createFormValidator } from '@sjsf/ajv8-validator';
-  import { theme } from '@sjsf/basic-theme';
-  import { resolver } from '@sjsf/form/resolvers/basic';
-  import { translation } from '@sjsf/form/translations/en';
-  import { createFormMerger } from '@sjsf/form/mergers/modern';
-  import { createFormIdBuilder } from '@sjsf/form/id-builders/legacy'
 
   import {
     createMeta,
@@ -15,9 +9,11 @@
 
   import type { PageData, ActionData } from './$types.js';
   import { ERROR_TYPE_OBJECTS } from './model.js';
+  import * as defaults from './form-defaults.js';
 
   const meta = createMeta<ActionData, PageData>().form2;
   const { form } = setupSvelteKitForm(meta, {
+    ...defaults,
     idPrefix: 'form2',
     schema: {
       title: 'Parent',
@@ -30,21 +26,16 @@
         }
       }
     },
-    theme,
-    resolver,
-    translation,
     onSubmitError: console.warn,
-    idBuilder: createFormIdBuilder,
     validator: (options) =>
       Object.assign(
-        createFormValidator(options),
+        defaults.validator(options),
         createAdditionalPropertyKeyValidator({
           error({ type, values }) {
             return `The presence of these ${ERROR_TYPE_OBJECTS[type]} ("${values.join('", "')}") is prohibited`;
           }
         })
-      ),
-    merger: createFormMerger
+      )
   });
 </script>
 

@@ -1,17 +1,16 @@
 import { fail } from '@sveltejs/kit';
-import { createFormMerger } from '@sjsf/form/mergers/modern';
-import { createFormValidator } from '@sjsf/ajv8-validator';
+import type { FormValue } from '@sjsf/form';
 
-import { initForm, isValid, createFormHandler } from '$lib/server/index.js';
+import { initForm, isValid, createFormHandler, createAction } from '$lib/server/index.js';
 
 import type { Actions } from './$types.js';
 import { schema, uiSchema } from './model.js';
+import * as defaults from './form-defaults.js';
 
 const handleForm = createFormHandler({
+  ...defaults,
   schema,
   uiSchema,
-  validator: createFormValidator,
-  merger: createFormMerger,
   sendData: true
 });
 
@@ -31,7 +30,7 @@ export const actions = {
     if (!isValid(form, data)) {
       return fail(400, { form });
     }
-    console.log(data)
+    console.log(data);
     return {
       form
     };
@@ -41,5 +40,17 @@ export const actions = {
     return {
       form2
     };
-  }
+  },
+  third: createAction(
+    {
+      ...defaults,
+      name: 'form3',
+      schema,
+      uiSchema,
+      sendData: true
+    },
+    (data: FormValue) => {
+      console.log(data);
+    }
+  )
 } satisfies Actions;

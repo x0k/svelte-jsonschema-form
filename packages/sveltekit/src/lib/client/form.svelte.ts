@@ -72,7 +72,7 @@ export function createSvelteKitForm<
     if (validationData === undefined) {
       return;
     }
-    if (validationData.sendData && form.isSubmitted) {
+    if (validationData.sendData) {
       form.value = validationData.data;
     }
     updateErrors(form, validationData.errors);

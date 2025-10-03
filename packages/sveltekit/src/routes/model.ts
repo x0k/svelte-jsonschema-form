@@ -53,10 +53,9 @@ export const uiSchema: UiSchemaRoot = {
       stringField: 'fileField'
     }
   },
-  //@ts-expect-error hack
   nativeFile: {
     'ui:components': {
-      unknownField: 'nativeFileField'
+      unknownField: 'unknownNativeFileField'
     }
   }
 };

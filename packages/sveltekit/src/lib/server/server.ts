@@ -1,11 +1,11 @@
+import { fail, type ActionFailure, type RequestEvent } from '@sveltejs/kit';
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { DeepPartial } from '@sjsf/form/lib/types';
+import type { DeepPartial, MaybePromise } from '@sjsf/form/lib/types';
 import type { Validator } from '@sjsf/form/core';
 import {
   DEFAULT_ID_PREFIX,
   isFormValueValidator,
   type Schema,
-  type SchemaValue,
   type UiSchemaRoot,
   type ValidationError,
   isAsyncFormValueValidator,
@@ -69,7 +69,7 @@ export interface FormHandlerOptions<SendData extends boolean> extends IdOptions 
   schema: Schema;
   uiSchema?: UiSchemaRoot;
   uiOptionsRegistry?: UiOptionsRegistry;
-  idIndexSeparator?: string
+  idIndexSeparator?: string;
   validator: Creatable<Validator, ValidatorFactoryOptions>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
   createEntriesConverter?: Creatable<
@@ -135,7 +135,13 @@ export function createFormHandler<SendData extends boolean>({
   return async (
     signal: AbortSignal,
     formData: FormData
-  ): Promise<[ValidatedFormData<SendData>, FormValue]> => {
+  ): Promise<
+    [
+      ValidatedFormData<SendData>,
+      FormValue,
+      (errors: ValidationError[]) => ValidatedFormData<SendData>
+    ]
+  > => {
     const data = formData.has(JSON_CHUNKS_KEY)
       ? JSON.parse(formData.getAll(JSON_CHUNKS_KEY).join(''), createReviver(formData))
       : await parseSchemaValue(signal, {
@@ -155,20 +161,58 @@ export function createFormHandler<SendData extends boolean>({
       : isFormValueValidator(validator)
         ? validator.validateFormValue(schema, data)
         : [];
-    return [
-      {
+    function validated(errors: ValidationError[]) {
+      return {
         isValid: errors.length === 0,
-        sendData,
-        data: (sendData ? data : undefined) as SendData extends true
-          ? SchemaValue | undefined
-          : undefined,
+        sendData: sendData ? data : undefined,
+        data: data as FormValue,
         errors
-      },
-      data
-    ];
+      } as ValidatedFormData<SendData>;
+    }
+    return [validated(errors), data, validated];
   };
 }
 
 export function isValid<T>(vfd: ValidatedFormData<boolean>, data: unknown): data is T {
   return vfd.isValid;
+}
+
+type FormRecord<F extends string, SendData extends boolean> = {
+  [K in F]: ValidatedFormData<SendData>;
+};
+
+export function createAction<
+  const F extends string,
+  const SendData extends boolean,
+  E extends RequestEvent,
+  R extends Record<string, any> | void
+>(
+  options: FormHandlerOptions<SendData> & {
+    name: F;
+  },
+  userAction: (data: any, event: E) => MaybePromise<ValidationError[] | R | void>
+) {
+  const handle = createFormHandler(options);
+  return async (
+    event: E
+  ): Promise<(FormRecord<F, SendData> & R) | ActionFailure<FormRecord<F, SendData>>> => {
+    const [form, data, validated] = await handle(
+      event.request.signal,
+      await event.request.formData()
+    );
+    if (!form.isValid) {
+      return fail(400, { [options.name]: form } as FormRecord<F, SendData>);
+    }
+    let result = await userAction(data, event);
+    if (Array.isArray(result)) {
+      if (result.length > 0) {
+        return fail(400, {
+          [options.name]: validated(result)
+        } as FormRecord<F, SendData>);
+      } else {
+        result = undefined;
+      }
+    }
+    return { ...result, [options.name]: form } as FormRecord<F, SendData> & R;
+  };
 }
