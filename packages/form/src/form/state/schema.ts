@@ -118,7 +118,11 @@ export function getDefaultFieldState<T>(
   schema: Schema,
   formData: SchemaValue | undefined
 ) {
-  return ctx[FORM_MERGER].mergeFormDataAndSchemaDefaults(formData, schema);
+  return ctx[FORM_MERGER].mergeFormDataAndSchemaDefaults({
+    formData,
+    schema,
+    initialDefaultsGenerated: false,
+  });
 }
 
 export function markSchemaChange<T>(ctx: FormState<T>) {

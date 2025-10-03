@@ -316,10 +316,11 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     options.value
       ? refFromBind(options.value as unknown as Bind<FormValue>)
       : createValueRef(
-          merger.mergeFormDataAndSchemaDefaults(
-            options.initialValue as FormValue,
-            options.schema
-          )
+          merger.mergeFormDataAndSchemaDefaults({
+            formData: options.initialValue as FormValue,
+            schema: options.schema,
+            initialDefaultsGenerated: false,
+          })
         )
   );
   const errors = $derived(
@@ -383,6 +384,14 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   const isSubmitted = $derived(
     internalHasFieldState(fieldsStateMap, rootPath, FIELD_SUBMITTED)
   );
+  let isFirstRender = true
+  let initialDefaultsGenerated = $derived.by(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    options.schema;
+    const result = isFirstRender
+    isFirstRender = false
+    return result
+  });
   // STATE END
 
   const validateForm: AsyncFormValueValidator["validateFormValueAsync"] =
@@ -500,10 +509,11 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     e.preventDefault();
     fieldsStateMap.clear();
     errors.clear();
-    valueRef.current = merger.mergeFormDataAndSchemaDefaults(
-      options.initialValue as FormValue,
-      options.schema
-    );
+    valueRef.current = merger.mergeFormDataAndSchemaDefaults({
+      formData: options.initialValue as FormValue,
+      schema: options.schema,
+      initialDefaultsGenerated: false,
+    });
     options.onReset?.(e);
   }
 
@@ -514,10 +524,11 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
       return getSnapshot() as T | undefined;
     },
     set value(v) {
-      valueRef.current = merger.mergeFormDataAndSchemaDefaults(
-        v as FormValue,
-        options.schema
-      );
+      valueRef.current = merger.mergeFormDataAndSchemaDefaults({
+        formData: v as FormValue,
+        schema: options.schema,
+        initialDefaultsGenerated: true,
+      });
     },
     get isSubmitted() {
       return isSubmitted;
@@ -606,10 +617,12 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   let isDefaultsInjectionQueued = false;
   function injectSchemaDefaults() {
     isDefaultsInjectionQueued = false;
-    const nextValue = merger.mergeFormDataAndSchemaDefaults(
-      valueRef.current,
-      options.schema
-    );
+    const nextValue = merger.mergeFormDataAndSchemaDefaults({
+      formData: valueRef.current,
+      schema: options.schema,
+      initialDefaultsGenerated,
+    });
+    initialDefaultsGenerated = true;
     const change = reconcileSchemaValues(valueRef.current, nextValue);
     if (change !== UNCHANGED) {
       valueRef.current = change;

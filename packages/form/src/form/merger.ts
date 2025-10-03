@@ -1,11 +1,16 @@
-import { type Merger, type Schema, type SchemaValue } from "@/core/index.js";
+import type { Merger, Schema, SchemaValue } from "@/core/index.js";
+
+export interface MergeFormDataAndSchemaDefaultsOptions {
+  schema: Schema;
+  formData: SchemaValue | undefined;
+  initialDefaultsGenerated: boolean;
+}
 
 export interface FormMerger extends Merger {
   /**
    * Merges defaults of `schema` into `formData`
    */
   mergeFormDataAndSchemaDefaults(
-    formData: SchemaValue | undefined,
-    schema: Schema
+    options: MergeFormDataAndSchemaDefaultsOptions
   ): SchemaValue | undefined;
 }

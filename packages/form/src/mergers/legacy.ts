@@ -181,7 +181,11 @@ export function createFormMerger(options: FormMergerOptions): FormMerger {
   const merger = createMerger();
   return {
     ...merger,
-    mergeFormDataAndSchemaDefaults(formData, schema) {
+    mergeFormDataAndSchemaDefaults({
+      formData,
+      schema,
+      initialDefaultsGenerated,
+    }) {
       return getDefaultFormState(
         options.validator,
         merger,
@@ -189,7 +193,8 @@ export function createFormMerger(options: FormMergerOptions): FormMerger {
         formData,
         options.schema,
         options.includeUndefinedValues,
-        options
+        options,
+        initialDefaultsGenerated
       );
     },
   };
