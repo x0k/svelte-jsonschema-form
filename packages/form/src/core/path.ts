@@ -3,10 +3,10 @@ import {
   SET_OF_ARRAYS_OF_SUB_SCHEMAS,
   type SubSchemasArrayKey,
 } from "@/lib/json-schema/index.js";
+import { isRecord } from "@/lib/object.js";
 
 import { resolveRef } from "./definitions.js";
 import { type Schema, type SchemaDefinition } from "./schema.js";
-import { getSimpleSchemaType } from "./type.js";
 
 export type Path = Array<string | number>;
 export type RPath = Readonly<Path>;
@@ -61,11 +61,31 @@ export function pathFromLocation(location: string, data: unknown): Path {
   return path;
 }
 
+// TODO: Use value to infer schema correctly
 export function getSchemaDefinitionByPath(
   rootSchema: Schema,
   schema: SchemaDefinition | undefined,
   path: RPath
 ): SchemaDefinition | undefined {
+  function pickSubSchema(subSchemas: SchemaDefinition[], subPath: RPath) {
+    let def: SchemaDefinition | undefined;
+    let lastBool: boolean | undefined;
+    for (const subSchema of subSchemas) {
+      if (!isSchemaObject(subSchema)) {
+        continue;
+      }
+      def = getSchemaDefinitionByPath(rootSchema, subSchema, subPath);
+      if (def === undefined) {
+        continue;
+      }
+      if (isSchemaObject(def)) {
+        return def;
+      }
+      lastBool = def;
+    }
+    return lastBool;
+  }
+
   for (let i = 0; i < path.length; i++) {
     if (schema === undefined || !isSchemaObject(schema)) {
       return undefined;
@@ -79,46 +99,44 @@ export function getSchemaDefinitionByPath(
     }
     const alt = schema.anyOf ?? schema.oneOf ?? schema.allOf;
     if (alt) {
-      const slice = path.slice(i);
-      let def: SchemaDefinition | undefined;
-      let lastBool: boolean | undefined;
-      for (const subSchema of alt) {
-        if (!isSchemaObject(subSchema)) {
-          continue;
-        }
-        def = getSchemaDefinitionByPath(rootSchema, subSchema, slice);
-        if (def === undefined) {
-          continue;
-        }
-        if (isSchemaObject(def)) {
-          return def;
-        }
-        lastBool = def;
-      }
-      if (lastBool !== undefined) {
-        return lastBool;
+      const subSchema = pickSubSchema(alt, path.slice(i));
+      if (subSchema !== undefined) {
+        return subSchema;
       }
       // Alt schema may be mixed with normal schema so
       // no early exit here
     }
     const k = path[i]!;
-    const type = getSimpleSchemaType(schema);
-    if (type === "array") {
+    const type = typeof k;
+    if (type === "number") {
       const { items, additionalItems }: Schema = schema;
       schema =
         (Array.isArray(items) ? items[k as number] : items) ?? additionalItems;
       continue;
     }
-    if (type === "object") {
-      const { properties, patternProperties, additionalProperties }: Schema =
-        schema;
+    if (type === "string") {
+      const {
+        properties,
+        patternProperties,
+        additionalProperties,
+        dependencies,
+        then,
+        else: otherwise,
+      }: Schema = schema;
       schema =
         (properties && properties[k as string]) ??
         (patternProperties &&
           Object.entries(patternProperties).find(([p]) =>
             new RegExp(p).test(k as string)
           )?.[1]) ??
-        additionalProperties;
+        additionalProperties ??
+        (dependencies &&
+          pickSubSchema(
+            Object.values(dependencies).filter(isRecord),
+            path.slice(i)
+          )) ??
+        ((then || otherwise) &&
+          pickSubSchema([then, otherwise].filter(isRecord), path.slice(i)));
       continue;
     }
     return undefined;

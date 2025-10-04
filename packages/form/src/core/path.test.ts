@@ -91,4 +91,121 @@ describe("getSchemaDefinitionByPath", () => {
     const result = getSchemaDefinitionByPath(schema, schema, ["alt"]);
     expect(result).toEqual({ type: "string" });
   });
+
+  it("should handle dependencies keyword", () => {
+    const schema: Schema = {
+      title: "Person",
+      type: "object",
+      properties: {
+        "Do you have any pets?": {
+          type: "string",
+          enum: ["No", "Yes: One", "Yes: More than one"],
+          default: "No",
+        },
+      },
+      required: ["Do you have any pets?"],
+      dependencies: {
+        "Do you have any pets?": {
+          oneOf: [
+            {
+              properties: {
+                "Do you have any pets?": {
+                  enum: ["No"],
+                },
+              },
+            },
+            {
+              properties: {
+                "Do you have any pets?": {
+                  enum: ["Yes: One"],
+                },
+                "How old is your pet?": {
+                  type: "number",
+                },
+              },
+              required: ["How old is your pet?"],
+            },
+            {
+              properties: {
+                "Do you have any pets?": {
+                  enum: ["Yes: More than one"],
+                },
+                "Do you want to get rid of any?": {
+                  type: "boolean",
+                },
+              },
+              required: ["Do you want to get rid of any?"],
+            },
+          ],
+        },
+      },
+    };
+    const result = getSchemaDefinitionByPath(schema, schema, [
+      "How old is your pet?",
+    ]);
+    expect(result).toEqual({
+      type: "number",
+    });
+  });
+
+  it("should handle if,then,else keywords", () => {
+    const schema: Schema = {
+      type: "object",
+      properties: {
+        animal: {
+          enum: ["Cat", "Fish"],
+        },
+      },
+      allOf: [
+        {
+          if: {
+            properties: {
+              animal: {
+                const: "Cat",
+              },
+            },
+          },
+          then: {
+            properties: {
+              food: {
+                type: "string",
+                enum: ["meat", "grass", "fish"],
+              },
+            },
+            required: ["food"],
+          },
+        },
+        {
+          if: {
+            properties: {
+              animal: {
+                const: "Fish",
+              },
+            },
+          },
+          then: {
+            properties: {
+              food: {
+                type: "string",
+                enum: ["insect", "worms"],
+              },
+              water: {
+                type: "string",
+                enum: ["lake", "sea"],
+              },
+            },
+            required: ["food", "water"],
+          },
+        },
+        {
+          required: ["animal"],
+        },
+      ],
+    };
+    const result = getSchemaDefinitionByPath(schema, schema, ["water"]);
+    expect(result).toEqual({
+      type: "string",
+      enum: ["lake", "sea"],
+    });
+  });
 });
