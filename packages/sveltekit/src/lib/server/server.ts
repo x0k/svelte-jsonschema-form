@@ -76,10 +76,7 @@ export interface FormHandlerOptions<SendData extends boolean> extends IdOptions 
   idBuilder: Creatable<FormIdBuilder, IdBuilderFactoryOptions>;
   validator: Creatable<Validator, ValidatorFactoryOptions>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
-  createEntriesConverter?: Creatable<
-    EntryConverter<FormDataEntryValue>,
-    FormDataConverterOptions
-  >;
+  createEntriesConverter?: Creatable<EntryConverter<FormDataEntryValue>, FormDataConverterOptions>;
   convertUnknownEntry?: UnknownEntryConverter;
   /** @default false */
   sendData?: SendData;
@@ -112,11 +109,13 @@ export function createFormHandler<SendData extends boolean>({
   sendData,
   createReviver = createDefaultReviver
 }: FormHandlerOptions<SendData>) {
-  const idBuilder = create(createIdBuilder, {
+  const idBuilder: FormIdBuilder = create(createIdBuilder, {
     idPrefix,
     schema,
     uiOptionsRegistry,
-    uiSchema
+    uiSchema,
+    validator: () => validator,
+    merger: () => merger
   });
   const validator: Validator = create(createValidator, {
     schema,
@@ -131,7 +130,7 @@ export function createFormHandler<SendData extends boolean>({
     validator,
     uiOptionsRegistry
   });
-  const convertEntries = create(createEntriesConverter, {
+  const convertEntry = create(createEntriesConverter, {
     validator,
     merger,
     rootSchema: schema,
@@ -168,7 +167,7 @@ export function createFormHandler<SendData extends boolean>({
           entries: Array.from(formData.entries()),
           validator,
           merger,
-          convertEntry: convertEntries
+          convertEntry
         });
     const errors = isAsyncFormValueValidator(validator)
       ? await validator.validateFormValueAsync(signal, schema, data)
@@ -196,6 +195,10 @@ type FormRecord<F extends string, SendData extends boolean> = {
   [K in F]: ValidatedFormData<SendData>;
 };
 
+interface FormMeta {
+  idPrefix: string;
+}
+
 export function createAction<
   const F extends string,
   const SendData extends boolean,
@@ -205,7 +208,11 @@ export function createAction<
   options: FormHandlerOptions<SendData> & {
     name: F;
   },
-  userAction: (data: any, event: E) => MaybePromise<ValidationError[] | R | void>
+  userAction: (
+    data: any,
+    event: E,
+    meta: Readonly<FormMeta>
+  ) => MaybePromise<ValidationError[] | R | void>
 ) {
   const handle = createFormHandler(options);
   return async (
@@ -218,7 +225,7 @@ export function createAction<
     if (!form.isValid) {
       return fail(400, { [options.name]: form } as FormRecord<F, SendData>);
     }
-    let result = await userAction(data, event);
+    let result = await userAction(data, event, form);
     if (Array.isArray(result)) {
       if (result.length > 0) {
         return fail(400, {
