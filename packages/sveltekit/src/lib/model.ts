@@ -1,11 +1,4 @@
-import type {
-  FormOptions,
-  IdentifiableFieldElement,
-  Schema,
-  SchemaValue,
-  UiSchemaRoot,
-  ValidationError
-} from '@sjsf/form';
+import type { FormOptions, Schema, SchemaValue, UiSchemaRoot, ValidationError } from '@sjsf/form';
 
 export const ID_PREFIX_KEY = '__sjsf_sveltekit_id_prefix';
 export const JSON_CHUNKS_KEY = '__sjsf_sveltekit_json_chunks';
@@ -52,11 +45,3 @@ export interface ValidatedFormData<SendData extends boolean> {
   data: SendData extends true ? SchemaValue | undefined : undefined;
   errors: ValidationError[];
 }
-
-export const IDENTIFIABLE_INPUT_ELEMENTS: (keyof IdentifiableFieldElement)[] = [
-  // NOTE: We use the value of `key-input` to infer new key value
-  // 'key-input',
-  // NOTE: We use the value of `anyof` and `oneof` to infer selected subSchema
-  // 'anyof',
-  // 'oneof'
-];

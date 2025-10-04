@@ -8,8 +8,6 @@ import {
 } from '@sjsf/form';
 import { DEFAULT_ID_SEPARATOR, DEFAULT_ID_PSEUDO_SEPARATOR } from '@sjsf/form/id-builders/legacy';
 
-import { IDENTIFIABLE_INPUT_ELEMENTS } from '../model.js';
-
 export enum AdditionalPropertyKeyValidationErrorType {
   ForbiddenSequence = 'forbidden-sequence',
   ForbiddenSuffix = 'forbidden-suffix'
@@ -28,6 +26,13 @@ export interface AdditionalPropertyKeyValidatorOptions {
   identifiableFieldElements?: (keyof IdentifiableFieldElement)[];
   error: string | ((ctx: ErrorFactoryOptions) => string);
 }
+
+const IDENTIFIABLE_INPUT_ELEMENTS: (keyof IdentifiableFieldElement)[] = [
+  'key-input',
+  'anyof',
+  'oneof'
+];
+
 
 export function createAdditionalPropertyKeyValidator({
   idSeparator = DEFAULT_ID_SEPARATOR,
