@@ -127,6 +127,8 @@ export interface IdBuilderFactoryOptions {
   schema: Schema;
   uiSchema: UiSchemaRoot;
   uiOptionsRegistry: UiOptionsRegistry;
+  validator: () => Validator;
+  merger: () => FormMerger;
 }
 
 export interface ValidatorFactoryOptions {
@@ -275,12 +277,14 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   const uiSchemaRoot = $derived(options.uiSchema ?? {});
   const uiSchema = $derived(resolveUiRef(uiSchemaRoot, options.uiSchema) ?? {});
   const uiOptionsRegistry = $derived(options[UI_OPTIONS_REGISTRY_KEY] ?? {});
-  const idBuilder = $derived(
+  const idBuilder: FormIdBuilder = $derived(
     create(options.idBuilder, {
       idPrefix,
       schema: options.schema,
       uiSchema: uiSchemaRoot,
       uiOptionsRegistry,
+      merger: () => merger,
+      validator: () => validator,
     })
   );
   const idCache = new WeakMap<FieldPath, Id>();
@@ -384,13 +388,13 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   const isSubmitted = $derived(
     internalHasFieldState(fieldsStateMap, rootPath, FIELD_SUBMITTED)
   );
-  let isFirstRender = true
+  let isFirstRender = true;
   let initialDefaultsGenerated = $derived.by(() => {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     options.schema;
-    const result = isFirstRender
-    isFirstRender = false
-    return result
+    const result = isFirstRender;
+    isFirstRender = false;
+    return result;
   });
   // STATE END
 
