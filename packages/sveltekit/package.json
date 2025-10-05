@@ -68,5 +68,8 @@
 		"theme-testing": "workspace:*"
 	},
 	"svelte": "./dist/model.js",
-	"types": "./dist/model.d.ts"
+	"types": "./dist/model.d.ts",
+	"dependencies": {
+		"@standard-schema/spec": "^1.0.0"
+	}
 }
