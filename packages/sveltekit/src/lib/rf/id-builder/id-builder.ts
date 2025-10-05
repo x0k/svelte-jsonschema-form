@@ -2,6 +2,7 @@ import { isSchemaObject } from '@sjsf/form/lib/json-schema';
 import { getSchemaDefinitionByPath, isMultiSelect, type SchemaDefinition } from '@sjsf/form/core';
 import {
   decodePseudoElement,
+  type FieldPath,
   type FieldPseudoElement,
   type FormIdBuilder,
   type FormMerger,
@@ -17,6 +18,7 @@ export interface FormIdBuilderOptions {
   pseudoSeparator?: string;
   validator: () => Validator;
   merger: () => FormMerger;
+  isPrivate: (path: FieldPath) => boolean;
 }
 
 export const DEFAULT_PSEUDO_SEPARATOR = '::';
@@ -26,11 +28,18 @@ export function createFormIdBuilder({
   schema: rootSchema,
   pseudoSeparator = DEFAULT_PSEUDO_SEPARATOR,
   validator,
-  merger
+  merger,
+  isPrivate
 }: FormIdBuilderOptions): FormIdBuilder {
+  const parts: string[] = [];
+  const encodedPseudoSeparator = encode(pseudoSeparator);
   return {
     fromPath: (path) => {
-      let str = '';
+      parts.length = 0;
+      if (isPrivate?.(path)) {
+        parts.push('_');
+      }
+      parts.push(encode(idPrefix));
       let currentSchema: SchemaDefinition | undefined = rootSchema;
       let pseudo: FieldPseudoElement | undefined;
       let isPseudoUndefined = true;
@@ -40,9 +49,13 @@ export function createFormIdBuilder({
         isPseudoUndefined = pseudo === undefined;
         if (isPseudoUndefined) {
           currentSchema = getSchemaDefinitionByPath(rootSchema, currentSchema, [p]);
-          str += typeof p === 'string' ? '.' + encode(p) : `[${p}]`;
+          if (typeof p === 'string') {
+            parts.push('.', encode(p));
+          } else {
+            parts.push('[', p.toString(), ']');
+          }
         } else {
-          str += encode(`${pseudoSeparator}${pseudo}`);
+          parts.push(encodedPseudoSeparator, encode(pseudo!.toString()));
         }
       }
       if (
@@ -51,9 +64,9 @@ export function createFormIdBuilder({
         isSchemaObject(currentSchema) &&
         isMultiSelect(validator(), merger(), currentSchema, rootSchema)
       ) {
-        str += '[]';
+        parts.push('[]');
       }
-      return `${encode(idPrefix)}${str}`;
+      return parts.join('');
     }
   };
 }
