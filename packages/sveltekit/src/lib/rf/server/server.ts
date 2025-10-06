@@ -6,14 +6,12 @@ import { isRecord } from '@sjsf/form/lib/object';
 import {
   create,
   createTranslate,
-  DEFAULT_ID_PREFIX,
   isAsyncFormValueValidator,
   isFormValueValidator,
   type Creatable,
-  type FormIdBuilder,
+  type FieldValue,
   type FormMerger,
   type FormValue,
-  type IdBuilderFactoryOptions,
   type MergerFactoryOptions,
   type Schema,
   type TranslatorDefinitions,
@@ -42,10 +40,8 @@ export interface Labels {
 export interface SvelteKitFormValidatorOptions {
   serverTranslation: Resolver<Partial<Labels>, Partial<TranslatorDefinitions<Labels>>>;
   schema: Schema;
-  idBuilder: Creatable<FormIdBuilder, IdBuilderFactoryOptions>;
   validator: Creatable<Validator, ValidatorFactoryOptions>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
-  idPrefix?: string;
   uiSchema?: UiSchemaRoot;
   uiOptionsRegistry?: UiOptionsRegistry;
   createEntryConverter?: Creatable<EntryConverter<RemoteFormInput>, FormDataConverterOptions>;
@@ -86,29 +82,18 @@ function createDefaultReviver(input: Record<string, unknown>) {
 export function createServerValidator<R = FormValue>({
   schema,
   serverTranslation,
-  idBuilder: createIdBuilder,
   merger: createMerger,
   validator: createValidator,
   uiSchema = {},
   uiOptionsRegistry = {},
-  idPrefix = DEFAULT_ID_PREFIX,
   createEntryConverter,
   convertUnknownEntry,
   createReviver = createDefaultReviver
 }: SvelteKitFormValidatorOptions) {
   const t = createTranslate(serverTranslation);
-  const idBuilder: FormIdBuilder = create(createIdBuilder, {
-    idPrefix,
-    schema,
-    uiOptionsRegistry,
-    uiSchema,
-    validator: () => validator,
-    merger: () => merger
-  });
   const validator: Validator = create(createValidator, {
     schema,
     uiSchema,
-    idBuilder,
     uiOptionsRegistry,
     merger: () => merger
   });
@@ -136,7 +121,11 @@ export function createServerValidator<R = FormValue>({
     }
     return decode(keys[0]);
   }
-  async function parseSchemaValue(data: unknown): Promise<FormValue> {
+  async function parseSchemaValue(
+    schema: Schema,
+    value: unknown,
+    defaults: FieldValue
+  ): Promise<FormValue> {
     return {};
   }
   function parseData(input: Record<string, unknown>, idPrefix: string) {

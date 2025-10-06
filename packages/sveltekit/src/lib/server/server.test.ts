@@ -1,7 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { createFormValidator } from '@sjsf/ajv8-validator';
 import { createFormMerger } from '@sjsf/form/mergers/modern';
-import { createFormIdBuilder } from '@sjsf/form/id-builders/modern';
 
 import { createFormHandler } from './server.js';
 
@@ -10,7 +9,6 @@ describe('makeFormDataParser', () => {
     const formData = new FormData();
     formData.append('root', new File(['hello'], 'test.txt', { type: 'text/plain' }));
     const parse = createFormHandler({
-      idBuilder: createFormIdBuilder,
       validator: createFormValidator,
       merger: createFormMerger,
       schema: {
@@ -26,7 +24,6 @@ describe('makeFormDataParser', () => {
     const formData = new FormData();
     formData.append('root', new File([], '', { type: '' }));
     const parse = createFormHandler({
-      idBuilder: createFormIdBuilder,
       validator: createFormValidator,
       merger: createFormMerger,
       schema: {

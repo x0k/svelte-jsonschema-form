@@ -3,7 +3,6 @@ import { fail, type ActionFailure, type RequestEvent } from '@sveltejs/kit';
 import type { DeepPartial, MaybePromise } from '@sjsf/form/lib/types';
 import type { Validator } from '@sjsf/form/core';
 import {
-  DEFAULT_ID_PREFIX,
   isFormValueValidator,
   type Schema,
   type UiSchemaRoot,
@@ -15,9 +14,7 @@ import {
   type FormMerger,
   type UiOptionsRegistry,
   type Creatable,
-  create,
-  type FormIdBuilder,
-  type IdBuilderFactoryOptions
+  create
 } from '@sjsf/form';
 import {
   type IdOptions,
@@ -73,7 +70,6 @@ export interface FormHandlerOptions<SendData extends boolean> extends IdOptions 
   uiSchema?: UiSchemaRoot;
   uiOptionsRegistry?: UiOptionsRegistry;
   idIndexSeparator?: string;
-  idBuilder: Creatable<FormIdBuilder, IdBuilderFactoryOptions>;
   validator: Creatable<Validator, ValidatorFactoryOptions>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
   createEntryConverter?: Creatable<EntryConverter<FormDataEntryValue>, FormDataConverterOptions>;
@@ -97,30 +93,19 @@ export function createFormHandler<SendData extends boolean>({
   schema,
   uiSchema = {},
   uiOptionsRegistry = {},
-  idBuilder: createIdBuilder,
   merger: createMerger,
   validator: createValidator,
   createEntryConverter = createFormDataEntryConverter,
   convertUnknownEntry,
-  idPrefix = DEFAULT_ID_PREFIX,
   idSeparator = DEFAULT_ID_SEPARATOR,
   idIndexSeparator = DEFAULT_INDEX_SEPARATOR,
   idPseudoSeparator = DEFAULT_ID_PSEUDO_SEPARATOR,
   sendData,
   createReviver = createDefaultReviver
 }: FormHandlerOptions<SendData>) {
-  const idBuilder: FormIdBuilder = create(createIdBuilder, {
-    idPrefix,
-    schema,
-    uiOptionsRegistry,
-    uiSchema,
-    validator: () => validator,
-    merger: () => merger
-  });
   const validator: Validator = create(createValidator, {
     schema,
     uiSchema,
-    idBuilder,
     uiOptionsRegistry,
     merger: () => merger
   });
