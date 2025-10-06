@@ -53,7 +53,7 @@
 	},
 	"peerDependencies": {
 		"@sjsf/form": "workspace:^3.0.0-next.6",
-		"@sveltejs/kit": "^2.42.0",
+		"@sveltejs/kit": "^2.44.0",
 		"esm-env": "^1.2.0",
 		"svelte": "^5.39.0"
 	},

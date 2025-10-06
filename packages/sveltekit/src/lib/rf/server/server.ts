@@ -1,3 +1,5 @@
+import type { StandardSchemaV1 } from '@standard-schema/spec';
+import type { RemoteFormInput } from '@sveltejs/kit';
 import type { Resolver } from '@sjsf/form/lib/resolver';
 import { isRecord } from '@sjsf/form/lib/object';
 import {
@@ -6,12 +8,13 @@ import {
   type Schema,
   type TranslatorDefinitions
 } from '@sjsf/form';
-import type { RemoteFormInput } from '@sveltejs/kit';
-import type { StandardSchemaV1 } from '@standard-schema/spec';
+
+import { decode } from '../id-builder/codec.js';
 
 export interface Labels {
   'expected-record': {};
   'invalid-root-keys': { keys: string[] };
+  'unexpected-error': {};
 }
 
 export interface SvelteKitFormValidatorOptions {
@@ -24,22 +27,27 @@ interface Output<R> {
   idPrefix: string;
 }
 
+class PublicError {
+  constructor(public readonly message: string) {}
+}
+
+function failure(message: string): StandardSchemaV1.FailureResult {
+  return {
+    issues: [
+      {
+        message,
+        path: []
+      }
+    ]
+  };
+}
+
 export function createServerValidator<R = FormValue>({
   schema,
   serverTranslation
 }: SvelteKitFormValidatorOptions) {
   const t = createTranslate(serverTranslation);
-  function failure(message: string): StandardSchemaV1.FailureResult {
-    return {
-      issues: [
-        {
-          message,
-          path: []
-        }
-      ]
-    };
-  }
-  function parseData(data: unknown): Promise<StandardSchemaV1.Result<FormValue>> {
+  async function parseData(data: unknown): Promise<FormValue> {
     return {};
   }
   async function validate(input: unknown): Promise<StandardSchemaV1.Result<Output<R>>> {
@@ -50,12 +58,16 @@ export function createServerValidator<R = FormValue>({
     if (keys.length !== 1) {
       return failure(t('invalid-root-keys', { keys }));
     }
-    const r = await parseData(input[keys[0]]);
+    try {
+      const value = await parseData(input[keys[0]]);
+    } catch (e) {
+      return failure(e instanceof PublicError ? e.message : t('unexpected-error', {}));
+    }
     if (r.issues) {
       return r;
     }
     return {
-      value: { idPrefix: keys[0], data: r.value as R }
+      value: { idPrefix: decode(keys[0]), data: r.value as R }
     };
   }
   return {
