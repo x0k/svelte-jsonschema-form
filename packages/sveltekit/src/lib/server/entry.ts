@@ -11,6 +11,7 @@ export interface EntryConverterOptions<T> {
   uiSchema: UiSchema;
   path: RPath;
   value: T | undefined;
+  defaultValue: SchemaValue | undefined
 }
 
 export type EntryConverter<T> = (

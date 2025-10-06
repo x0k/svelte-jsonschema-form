@@ -80,11 +80,11 @@ function createDefaultReviver(input: Record<string, unknown>) {
 }
 
 export function createServerValidator<R = FormValue>({
-  schema,
   serverTranslation,
+  schema: rootSchema,
   merger: createMerger,
   validator: createValidator,
-  uiSchema = {},
+  uiSchema: rootUiSchema = {},
   uiOptionsRegistry = {},
   createEntryConverter,
   convertUnknownEntry,
@@ -92,22 +92,22 @@ export function createServerValidator<R = FormValue>({
 }: SvelteKitFormValidatorOptions) {
   const t = createTranslate(serverTranslation);
   const validator: Validator = create(createValidator, {
-    schema,
-    uiSchema,
+    schema: rootSchema,
+    uiSchema: rootUiSchema,
     uiOptionsRegistry,
     merger: () => merger
   });
   const merger = create(createMerger, {
-    schema,
-    uiSchema,
+    schema: rootSchema,
+    uiSchema: rootUiSchema,
     validator,
     uiOptionsRegistry
   });
   const convertEntry = create(createEntryConverter, {
     validator,
     merger,
-    rootSchema: schema,
-    rootUiSchema: uiSchema,
+    rootSchema: rootSchema,
+    rootUiSchema: rootUiSchema,
     convertUnknownEntry
   });
   function parseIdPrefix(input: Record<string, unknown>) {
@@ -121,19 +121,12 @@ export function createServerValidator<R = FormValue>({
     }
     return decode(keys[0]);
   }
-  async function parseSchemaValue(
-    schema: Schema,
-    value: unknown,
-    defaults: FieldValue
-  ): Promise<FormValue> {
-    return {};
-  }
   function parseData(input: Record<string, unknown>, idPrefix: string) {
     const data = input[JSON_CHUNKS_KEY];
     if (Array.isArray(data) && data.every((t) => typeof t === 'string')) {
       return JSON.parse(data.join(''), createReviver(input));
     }
-    return parseSchemaValue(input[idPrefix]);
+    return parseSchemaValue(rootSchema, input[idPrefix], rootSchema.default);
   }
   async function validate(input: unknown): Promise<StandardSchemaV1.Result<Output<R>>> {
     if (!isRecord(input)) {
@@ -142,11 +135,11 @@ export function createServerValidator<R = FormValue>({
     const { request } = getRequestEvent();
     try {
       const idPrefix = parseIdPrefix(input);
-      const value = await parseSchemaValue(input[idPrefix]);
+      const value = await parseData(input, idPrefix);
       const errors = isAsyncFormValueValidator(validator)
-        ? await validator.validateFormValueAsync(request.signal, schema, value)
+        ? await validator.validateFormValueAsync(request.signal, rootSchema, value)
         : isFormValueValidator(validator)
-          ? validator.validateFormValue(schema, value)
+          ? validator.validateFormValue(rootSchema, value)
           : [];
       return errors.length > 0
         ? { issues: errors }

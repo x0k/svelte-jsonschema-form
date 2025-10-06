@@ -80,12 +80,17 @@ export function parseSchemaValue<T>(
   const path: Path = [];
   const entriesStack: Entries<T>[] = [entries];
 
-  const convert = (schema: SchemaDefinition, uiSchema: UiSchema) =>
+  const convert = (
+    schema: SchemaDefinition,
+    uiSchema: UiSchema,
+    defaultValue: SchemaValue | undefined
+  ) =>
     convertEntry(signal, {
       path,
       schema,
       uiSchema,
-      value: entriesStack[entriesStack.length - 1][0]?.[1]
+      value: entriesStack[entriesStack.length - 1][0]?.[1],
+      defaultValue
     });
 
   const groups = new Map<string | typeof KNOWN_PROPERTIES, Entries<T>>();
@@ -289,7 +294,7 @@ export function parseSchemaValue<T>(
     }
     pushFilterAndEntries(escapedPseudoSeparator, element);
     const bestIndex =
-      ((await convert({ type: 'integer' }, {})) as number | undefined) ??
+      ((await convert({ type: 'integer' }, {}, undefined)) as number | undefined) ??
       getClosestMatchingOption(
         validator,
         merger,
@@ -391,6 +396,6 @@ export function parseSchemaValue<T>(
   }
 
   pushFilterAndEntries('^', idPrefix);
-  path.pop()
+  path.pop();
   return parseSchemaDef(rootSchema, rootUiSchema);
 }
