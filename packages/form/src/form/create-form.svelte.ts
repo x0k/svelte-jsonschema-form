@@ -127,12 +127,12 @@ export interface IdBuilderFactoryOptions {
   schema: Schema;
   uiSchema: UiSchemaRoot;
   uiOptionsRegistry: UiOptionsRegistry;
-  validator: () => Validator;
-  merger: () => FormMerger;
+  validator: Validator;
+  merger: FormMerger;
+  value: Ref<FormValue>;
 }
 
 export interface ValidatorFactoryOptions {
-  idBuilder: FormIdBuilder;
   schema: Schema;
   uiSchema: UiSchemaRoot;
   uiOptionsRegistry: UiOptionsRegistry;
@@ -277,20 +277,6 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   const uiSchemaRoot = $derived(options.uiSchema ?? {});
   const uiSchema = $derived(resolveUiRef(uiSchemaRoot, options.uiSchema) ?? {});
   const uiOptionsRegistry = $derived(options[UI_OPTIONS_REGISTRY_KEY] ?? {});
-  const idBuilder: FormIdBuilder = $derived(
-    create(options.idBuilder, {
-      idPrefix,
-      schema: options.schema,
-      uiSchema: uiSchemaRoot,
-      uiOptionsRegistry,
-      merger: () => merger,
-      validator: () => validator,
-    })
-  );
-  const idCache = new WeakMap<FieldPath, Id>();
-  const createId = $derived(
-    weakMemoize(idCache, (path) => idBuilder.fromPath(path) as Id)
-  );
   const pathsTrieRef: PathTrieRef<FieldPath> = $derived.by(() => {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     options.schema;
@@ -301,7 +287,6 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
   const rootPath = $derived(internalRegisterFieldPath(pathsTrieRef, []));
   const validator = $derived(
     create(options.validator, {
-      idBuilder,
       uiSchema: uiSchemaRoot,
       uiOptionsRegistry,
       schema: options.schema,
@@ -326,6 +311,21 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
             initialDefaultsGenerated: false,
           })
         )
+  );
+  const idBuilder: FormIdBuilder = $derived(
+    create(options.idBuilder, {
+      idPrefix,
+      schema: options.schema,
+      uiSchema: uiSchemaRoot,
+      uiOptionsRegistry,
+      merger: merger,
+      validator: validator,
+      value: valueRef,
+    })
+  );
+  const idCache = new WeakMap<FieldPath, Id>();
+  const createId = $derived(
+    weakMemoize(idCache, (path) => idBuilder.fromPath(path) as Id)
   );
   const errors = $derived(
     Array.isArray(options.initialErrors)
