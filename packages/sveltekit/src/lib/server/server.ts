@@ -76,7 +76,7 @@ export interface FormHandlerOptions<SendData extends boolean> extends IdOptions 
   idBuilder: Creatable<FormIdBuilder, IdBuilderFactoryOptions>;
   validator: Creatable<Validator, ValidatorFactoryOptions>;
   merger: Creatable<FormMerger, MergerFactoryOptions>;
-  createEntriesConverter?: Creatable<EntryConverter<FormDataEntryValue>, FormDataConverterOptions>;
+  createEntryConverter?: Creatable<EntryConverter<FormDataEntryValue>, FormDataConverterOptions>;
   convertUnknownEntry?: UnknownEntryConverter;
   /** @default false */
   sendData?: SendData;
@@ -100,7 +100,7 @@ export function createFormHandler<SendData extends boolean>({
   idBuilder: createIdBuilder,
   merger: createMerger,
   validator: createValidator,
-  createEntriesConverter = createFormDataEntryConverter,
+  createEntryConverter = createFormDataEntryConverter,
   convertUnknownEntry,
   idPrefix = DEFAULT_ID_PREFIX,
   idSeparator = DEFAULT_ID_SEPARATOR,
@@ -130,7 +130,7 @@ export function createFormHandler<SendData extends boolean>({
     validator,
     uiOptionsRegistry
   });
-  const convertEntry = create(createEntriesConverter, {
+  const convertEntry = create(createEntryConverter, {
     validator,
     merger,
     rootSchema: schema,
