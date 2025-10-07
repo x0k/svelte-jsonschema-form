@@ -14,22 +14,22 @@ import { encode } from './codec.js';
 
 export interface FormIdBuilderOptions {
   schema: Schema;
+  validator: Validator;
+  merger: FormMerger;
   idPrefix: string;
   pseudoSeparator?: string;
-  validator: () => Validator;
-  merger: () => FormMerger;
-  isPrivate: (path: FieldPath) => boolean;
+  isPrivate?: (path: FieldPath) => boolean;
 }
 
 export const DEFAULT_PSEUDO_SEPARATOR = '::';
 
 export function createFormIdBuilder({
-  idPrefix,
   schema: rootSchema,
+  idPrefix,
   pseudoSeparator = DEFAULT_PSEUDO_SEPARATOR,
   validator,
   merger,
-  isPrivate
+  isPrivate = () => false
 }: FormIdBuilderOptions): FormIdBuilder {
   const parts: string[] = [];
   const encodedPseudoSeparator = encode(pseudoSeparator);
@@ -62,7 +62,7 @@ export function createFormIdBuilder({
         isPseudoUndefined &&
         currentSchema &&
         isSchemaObject(currentSchema) &&
-        isMultiSelect(validator(), merger(), currentSchema, rootSchema)
+        isMultiSelect(validator, merger, currentSchema, rootSchema)
       ) {
         parts.push('[]');
       }

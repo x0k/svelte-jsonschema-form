@@ -3,7 +3,8 @@ import type { Schema } from '@sjsf/form';
 import { createMerger } from '@sjsf/form/mergers/modern';
 import { createFormValidator } from '@sjsf/ajv8-validator';
 
-import type { Entries } from './entry.js';
+import type { Entries } from '$lib/model.js';
+
 import { parseSchemaValue, type SchemaValueParserOptions } from './schema-value-parser.js';
 import { createFormDataEntryConverter } from './convert-form-data-entry.js';
 
@@ -17,7 +18,7 @@ const opts = ({
   idPseudoSeparator = '::',
   validator = createFormValidator(),
   merger = createMerger(),
-  convertEntry: convertEntry = createFormDataEntryConverter({
+  convertEntry = createFormDataEntryConverter({
     merger,
     validator,
     rootSchema: schema,

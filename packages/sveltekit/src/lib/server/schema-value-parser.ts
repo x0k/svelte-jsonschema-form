@@ -29,7 +29,14 @@ import {
   type UiSchemaRoot
 } from '@sjsf/form';
 
-import type { Entries, EntryConverter, Entry } from './entry.js';
+import {
+  KEY_INPUT_KEY,
+  ONE_OF,
+  ANY_OF,
+  type Entries,
+  type Entry,
+  type EntryConverter
+} from '$lib/model.js';
 
 export interface SchemaValueParserOptions<T> {
   schema: Schema;
@@ -45,10 +52,6 @@ export interface SchemaValueParserOptions<T> {
 }
 
 const KNOWN_PROPERTIES = Symbol('known-properties');
-
-const KEY_INPUT_KEY: keyof IdentifiableFieldElement = 'key-input';
-const ONE_OF = 'oneof' satisfies keyof IdentifiableFieldElement;
-const ANY_OF = 'anyof' satisfies keyof IdentifiableFieldElement;
 
 export function parseSchemaValue<T>(
   signal: AbortSignal,
@@ -357,6 +360,12 @@ export function parseSchemaValue<T>(
     if (ref !== undefined) {
       return parseSchemaDef(resolveRef(ref, rootSchema), uiSchema, value);
     }
+    // NOTE: We can execute `handleCombination` before `parseObject` because
+    // correct schema index is stored under `oneof/anyof` pseduoelement.
+    // We also need to call `handleCombination` before `parseObject`
+    // so that the processing of `additionalProperties` does not capture
+    // the properties specified in the `oneOf/anyOf` sub-schemas.
+    // TODO: What about `dependencies` and `additionalProperties` conflict?
     if (schema.oneOf) {
       value = await handleCombination(
         ONE_OF,

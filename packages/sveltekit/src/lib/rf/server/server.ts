@@ -9,7 +9,6 @@ import {
   isAsyncFormValueValidator,
   isFormValueValidator,
   type Creatable,
-  type FieldValue,
   type FormMerger,
   type FormValue,
   type MergerFactoryOptions,
@@ -21,15 +20,22 @@ import {
   type ValidatorFactoryOptions
 } from '@sjsf/form';
 
-import type {
-  FormDataConverterOptions,
-  UnknownEntryConverter
+import {
+  createFormDataEntryConverter,
+  type FormDataConverterOptions,
+  type UnknownEntryConverter
 } from '$lib/server/convert-form-data-entry.js';
-import type { EntryConverter } from '$lib/server/entry.js';
 
 import { getRequestEvent } from '$app/server';
-import { FORM_DATA_FILE_PREFIX, ID_PREFIX_KEY, JSON_CHUNKS_KEY } from '$lib/model.js';
+import {
+  FORM_DATA_FILE_PREFIX,
+  ID_PREFIX_KEY,
+  JSON_CHUNKS_KEY,
+  type EntryConverter
+} from '$lib/model.js';
+
 import { decode } from '../id-builder/codec.js';
+import { parseSchemaValue } from './schema-value-parser.js';
 
 export interface Labels {
   'expected-record': {};
@@ -44,7 +50,7 @@ export interface SvelteKitFormValidatorOptions {
   merger: Creatable<FormMerger, MergerFactoryOptions>;
   uiSchema?: UiSchemaRoot;
   uiOptionsRegistry?: UiOptionsRegistry;
-  createEntryConverter?: Creatable<EntryConverter<RemoteFormInput>, FormDataConverterOptions>;
+  createEntryConverter?: Creatable<EntryConverter<FormDataEntryValue>, FormDataConverterOptions>;
   convertUnknownEntry?: UnknownEntryConverter;
   /** By default, handles conversion of `File` */
   createReviver?: (input: Record<string, unknown>) => (key: string, value: any) => any;
@@ -81,33 +87,33 @@ function createDefaultReviver(input: Record<string, unknown>) {
 
 export function createServerValidator<R = FormValue>({
   serverTranslation,
-  schema: rootSchema,
+  schema,
+  uiSchema = {},
   merger: createMerger,
   validator: createValidator,
-  uiSchema: rootUiSchema = {},
   uiOptionsRegistry = {},
-  createEntryConverter,
+  createEntryConverter = createFormDataEntryConverter,
   convertUnknownEntry,
   createReviver = createDefaultReviver
 }: SvelteKitFormValidatorOptions) {
   const t = createTranslate(serverTranslation);
   const validator: Validator = create(createValidator, {
-    schema: rootSchema,
-    uiSchema: rootUiSchema,
+    schema: schema,
+    uiSchema: uiSchema,
     uiOptionsRegistry,
     merger: () => merger
   });
   const merger = create(createMerger, {
-    schema: rootSchema,
-    uiSchema: rootUiSchema,
+    schema: schema,
+    uiSchema: uiSchema,
     validator,
     uiOptionsRegistry
   });
   const convertEntry = create(createEntryConverter, {
     validator,
     merger,
-    rootSchema: rootSchema,
-    rootUiSchema: rootUiSchema,
+    rootSchema: schema,
+    rootUiSchema: uiSchema,
     convertUnknownEntry
   });
   function parseIdPrefix(input: Record<string, unknown>) {
@@ -121,12 +127,19 @@ export function createServerValidator<R = FormValue>({
     }
     return decode(keys[0]);
   }
-  function parseData(input: Record<string, unknown>, idPrefix: string) {
+  function parseData(signal: AbortSignal, input: Record<string, unknown>, idPrefix: string) {
     const data = input[JSON_CHUNKS_KEY];
     if (Array.isArray(data) && data.every((t) => typeof t === 'string')) {
       return JSON.parse(data.join(''), createReviver(input));
     }
-    return parseSchemaValue(rootSchema, input[idPrefix], rootSchema.default);
+    return parseSchemaValue(signal, {
+      convertEntry,
+      input,
+      merger,
+      schema: schema,
+      uiSchema: uiSchema,
+      validator
+    });
   }
   async function validate(input: unknown): Promise<StandardSchemaV1.Result<Output<R>>> {
     if (!isRecord(input)) {
@@ -137,9 +150,9 @@ export function createServerValidator<R = FormValue>({
       const idPrefix = parseIdPrefix(input);
       const value = await parseData(input, idPrefix);
       const errors = isAsyncFormValueValidator(validator)
-        ? await validator.validateFormValueAsync(request.signal, rootSchema, value)
+        ? await validator.validateFormValueAsync(request.signal, schema, value)
         : isFormValueValidator(validator)
-          ? validator.validateFormValue(rootSchema, value)
+          ? validator.validateFormValue(schema, value)
           : [];
       return errors.length > 0
         ? { issues: errors }

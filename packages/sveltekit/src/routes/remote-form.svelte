@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createPost } from './data.remote.js'
+  import { createPost } from './rf/data.remote.js'
 </script>
 
 <input {...createPost.fields.as('select multiple')} />

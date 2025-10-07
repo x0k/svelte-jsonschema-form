@@ -1,4 +1,14 @@
-import type { FormOptions, Schema, SchemaValue, UiSchemaRoot, ValidationError } from '@sjsf/form';
+import type { MaybePromise } from '@sjsf/form/lib/types';
+import type { RPath, SchemaDefinition } from '@sjsf/form/core';
+import type {
+  FormOptions,
+  IdentifiableFieldElement,
+  Schema,
+  SchemaValue,
+  UiSchema,
+  UiSchemaRoot,
+  ValidationError
+} from '@sjsf/form';
 
 export const ID_PREFIX_KEY = '__sjsf_sveltekit_id_prefix';
 export const JSON_CHUNKS_KEY = '__sjsf_sveltekit_json_chunks';
@@ -45,3 +55,23 @@ export interface ValidatedFormData<SendData extends boolean> {
   data: SendData extends true ? SchemaValue | undefined : undefined;
   errors: ValidationError[];
 }
+
+export const KEY_INPUT_KEY: keyof IdentifiableFieldElement = 'key-input';
+export const ONE_OF = 'oneof' satisfies keyof IdentifiableFieldElement;
+export const ANY_OF = 'anyof' satisfies keyof IdentifiableFieldElement;
+
+export type Entry<T> = [key: string, value: T];
+
+export type Entries<T> = Entry<T>[];
+
+export interface EntryConverterOptions<T> {
+  schema: SchemaDefinition;
+  uiSchema: UiSchema;
+  path: RPath;
+  value: T | undefined;
+}
+
+export type EntryConverter<T> = (
+  signal: AbortSignal,
+  options: EntryConverterOptions<T>
+) => MaybePromise<SchemaValue | undefined>;

@@ -29,8 +29,9 @@ import {
   JSON_CHUNKS_KEY,
   type InitialFormData,
   type SerializableOptionalFormOptions,
-  type ValidatedFormData
-} from '../model.js';
+  type ValidatedFormData,
+  type EntryConverter
+} from '$lib/model.js';
 
 import { parseSchemaValue } from './schema-value-parser.js';
 import {
@@ -38,7 +39,6 @@ import {
   type FormDataConverterOptions,
   type UnknownEntryConverter
 } from './convert-form-data-entry.js';
-import type { EntryConverter } from './entry.js';
 import { parseIdPrefix } from './id-prefix-parser.js';
 
 export type InitFormOptions<T, SendSchema extends boolean> = SerializableOptionalFormOptions<T> & {
