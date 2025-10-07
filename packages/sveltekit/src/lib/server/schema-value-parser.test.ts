@@ -13,7 +13,7 @@ const opts = ({
   uiSchema = {},
   idPrefix = 'root',
   idSeparator = '.',
-  idIndexSeparator = "@",
+  idIndexSeparator = '@',
   idPseudoSeparator = '::',
   validator = createFormValidator(),
   merger = createMerger(),
@@ -45,8 +45,8 @@ describe('parseSchemaValue', async () => {
     c = new AbortController();
   });
 
-  it('Should parse empty entries', () => {
-    expect(parseSchemaValue(c.signal, opts())).toBeUndefined();
+  it('Should parse empty entries', async () => {
+    await expect(parseSchemaValue(c.signal, opts())).resolves.toBeUndefined();
   });
   it('Should parse root value', async () => {
     await expect(
@@ -1366,5 +1366,18 @@ describe('parseSchemaValue', async () => {
       ],
       defaultsAndMinItems: ['carp', 'trout', 'bream', 'unidentified', 'unidentified']
     });
+  });
+
+  it('Should revive empty array', async () => {
+    const schema: Schema = {
+      title: 'Locations Checkboxes',
+      type: 'array',
+      uniqueItems: true,
+      items: {
+        enum: ['foo', 'bar', 'baz']
+      }
+    };
+    const entries: Entries<FormDataEntryValue> = [];
+    await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual([]);
   });
 });
