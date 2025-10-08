@@ -90,6 +90,7 @@ import {
   FORM_ERRORS,
   FORM_PATHS_TRIE_REF,
   internalHasFieldState,
+  FORM_ID_PREFIX,
 } from "./internals.js";
 import { FIELD_SUBMITTED } from "./field-state.js";
 
@@ -544,6 +545,9 @@ export function createForm<T>(options: FormOptions<T>): FormState<T> {
     reset,
     // INTERNALS
     [FORM_FIELDS_STATE_MAP]: fieldsStateMap,
+    get [FORM_ID_PREFIX]() {
+      return idPrefix;
+    },
     get [FORM_ERRORS]() {
       return errors;
     },

@@ -1,18 +1,19 @@
-import type { SvelteMap } from 'svelte/reactivity';
+import type { SvelteMap } from "svelte/reactivity";
 
 import { getNodeByKeys, insertValue } from "@/lib/trie.js";
-import type { RPath } from '@/core/index.js';
+import type { RPath } from "@/core/index.js";
 
 import type { FormErrorsMap } from "./errors.js";
 import type { ValidationError } from "./validator.js";
 import type { PathTrieRef } from "./model.js";
 import type { FieldPath } from "./id.js";
-import type { FieldState } from './field-state.js';
+import type { FieldState } from "./field-state.js";
 
 export const FORM_CONTEXT = Symbol("form-context");
 
 export const FORM_VALUE = Symbol("form-value");
 
+export const FORM_ID_PREFIX = Symbol("form-id-prefix");
 export const FORM_ERRORS = Symbol("form-errors");
 export const FORM_ID_FROM_PATH = Symbol("form-id-from-path");
 export const FORM_PATHS_TRIE_REF = Symbol("form-paths-trie-ref");
