@@ -10,18 +10,8 @@
   import { createPost } from './data.remote.js';
 
   const schema: Schema = {
-      type: 'array',
-      items: [
-        { type: 'string' },
-        {
-          type: 'object',
-          additionalProperties: {
-            type: 'string'
-          }
-        },
-        { type: 'number' }
-      ]
-    };
+    oneOf: [{ type: 'string' }, { type: 'number' }]
+  };
 
   const uiSchema: UiSchema = {};
 
@@ -37,7 +27,7 @@
     resolver,
     idBuilder: createFormIdBuilder,
     schema,
-    uiSchema,
+    uiSchema
     // initialValue
   });
 </script>

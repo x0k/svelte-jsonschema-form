@@ -10,9 +10,11 @@ import {
   type Input,
   type SchemaValueParserOptions
 } from './schema-value-parser.js';
+import { DEFAULT_PSEUDO_PREFIX } from '../id-builder/id-builder.js';
 
 const opts = ({
   idPrefix = DEFAULT_ID_PREFIX,
+  pseudoPrefix = DEFAULT_PSEUDO_PREFIX,
   input,
   schema = {},
   uiSchema = {},
@@ -33,7 +35,8 @@ const opts = ({
   validator,
   merger,
   convertEntry,
-  idPrefix
+  idPrefix,
+  pseudoPrefix
 });
 
 describe('parseSchemaValue', async () => {
@@ -228,7 +231,7 @@ describe('parseSchemaValue', async () => {
         assKickCount: 'infinity',
         newX21akey: 'foo'
       },
-      keyX219input: {
+      X21mX21mkeyX219input: {
         [DEFAULT_ID_PREFIX]: { assKickCount: 'assKickCountChanged', newX21akey: 'new.keyChanged' }
       }
     };
@@ -240,7 +243,7 @@ describe('parseSchemaValue', async () => {
     });
   });
 
-  it.only('Should parse schema with `additionalProperties` 2', async () => {
+  it('Should parse schema with `additionalProperties` 2', async () => {
     const schema: Schema = {
       type: 'array',
       items: [
@@ -260,7 +263,7 @@ describe('parseSchemaValue', async () => {
         { AdditionalX1wproperty: '123', AdditionalX1wpropertyX2191: '456' },
         '789'
       ],
-      keyX219input: {
+      X21mX21mkeyX219input: {
         [DEFAULT_ID_PREFIX]: [
           undefined,
           {
@@ -479,7 +482,10 @@ describe('parseSchemaValue', async () => {
     const schema: Schema = {
       oneOf: [{ type: 'string' }, { type: 'number' }]
     };
-    const input: Input<FormDataEntryValue> = { rootX21mX21moneof: '1', root: '123' };
+    const input: Input<FormDataEntryValue> = {
+      X21mX21moneof: { [DEFAULT_ID_PREFIX]: '1' },
+      [DEFAULT_ID_PREFIX]: '123'
+    };
     await expect(
       parseSchemaValue(c.signal, opts({ schema, input, idPrefix: 'root' }))
     ).resolves.toEqual(123);

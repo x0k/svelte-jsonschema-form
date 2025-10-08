@@ -17,17 +17,23 @@ export interface FormIdBuilderOptions {
   validator: Validator;
   merger: FormMerger;
   idPrefix: string;
+  pseudoPrefix?: string;
   isPrivate?: (path: FieldPath) => boolean;
 }
+
+export const DEFAULT_PSEUDO_PREFIX = '::';
 
 export function createFormIdBuilder({
   schema: rootSchema,
   idPrefix,
   validator,
   merger,
+  pseudoPrefix = DEFAULT_PSEUDO_PREFIX,
   isPrivate = () => false
 }: FormIdBuilderOptions): FormIdBuilder {
   const parts: string[] = [];
+  const encodedIdPrefix = encode(idPrefix);
+  const encodedPseudoPrefix = encode(pseudoPrefix);
   return {
     fromPath: (path) => {
       parts.length = 0;
@@ -36,11 +42,15 @@ export function createFormIdBuilder({
       }
       let i = path.length - 1;
       let pseudo: FieldPseudoElement | undefined;
-      while (i > 0 && (pseudo = decodePseudoElement(path[i])) !== undefined) {
-        parts.push(typeof pseudo === 'string' ? encode(pseudo) : pseudo.toString(), '.');
+      while (i >= 0 && (pseudo = decodePseudoElement(path[i])) !== undefined) {
+        parts.push(
+          encodedPseudoPrefix,
+          typeof pseudo === 'string' ? encode(pseudo) : pseudo.toString(),
+          '.'
+        );
         i--;
       }
-      parts.push(encode(idPrefix));
+      parts.push(encodedIdPrefix);
       let currentSchema: SchemaDefinition | undefined = rootSchema;
       for (let j = 0; j <= i; j++) {
         const p = path[j]!;

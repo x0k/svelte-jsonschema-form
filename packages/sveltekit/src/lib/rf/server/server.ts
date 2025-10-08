@@ -35,6 +35,7 @@ import {
 } from '$lib/model.js';
 
 import { decode } from '../id-builder/codec.js';
+import { DEFAULT_PSEUDO_PREFIX } from '../id-builder/index.js';
 import { parseSchemaValue } from './schema-value-parser.js';
 
 export interface Labels {
@@ -52,6 +53,7 @@ export interface SvelteKitFormValidatorOptions {
   uiOptionsRegistry?: UiOptionsRegistry;
   createEntryConverter?: Creatable<EntryConverter<FormDataEntryValue>, FormDataConverterOptions>;
   convertUnknownEntry?: UnknownEntryConverter;
+  pseudoPrefix?: string;
   /** By default, handles conversion of `File` */
   createReviver?: (input: Record<string, unknown>) => (key: string, value: any) => any;
 }
@@ -94,6 +96,7 @@ export function createServerValidator<R = FormValue>({
   uiOptionsRegistry = {},
   createEntryConverter = createFormDataEntryConverter,
   convertUnknownEntry,
+  pseudoPrefix = DEFAULT_PSEUDO_PREFIX,
   createReviver = createDefaultReviver,
 }: SvelteKitFormValidatorOptions) {
   const t = createTranslate(serverTranslation);
@@ -134,6 +137,7 @@ export function createServerValidator<R = FormValue>({
     }
     return parseSchemaValue(signal, {
       idPrefix,
+      pseudoPrefix,
       convertEntry,
       input,
       merger,
