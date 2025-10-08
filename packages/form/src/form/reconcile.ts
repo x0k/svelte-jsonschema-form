@@ -1,4 +1,4 @@
-import { isObjectProto } from "@/lib/object.js";
+import { isRecordProto } from "@/lib/object.js";
 import type { SchemaValue } from "@/core/index.js";
 
 import type { FieldValue, KeyedArraysMap } from "./model.js";
@@ -39,8 +39,8 @@ export function createSchemaValuesReconciler(keyedArraysMap: KeyedArraysMap) {
         !isSArr &&
         target !== null &&
         source !== null &&
-        isObjectProto<FieldValue>(target) &&
-        isObjectProto<FieldValue>(source)
+        isRecordProto<FieldValue>(target) &&
+        isRecordProto<FieldValue>(source)
       ) {
         const tKeys = Object.keys(target);
         let l = tKeys.length;
