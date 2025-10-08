@@ -9,3 +9,4 @@ export { createFormIdBuilder as idBuilder } from '@sjsf/form/id-builders/modern'
 export { createFormValidator as validator } from '@sjsf/ajv8-validator';
 export { theme } from '@sjsf/basic-theme';
 import '@sjsf/basic-theme/extra-widgets/checkboxes-include';
+import '@sjsf/basic-theme/extra-widgets/radio-include';

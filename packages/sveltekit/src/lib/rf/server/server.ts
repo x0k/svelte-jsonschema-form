@@ -8,6 +8,7 @@ import {
   createTranslate,
   isAsyncFormValueValidator,
   isFormValueValidator,
+  SJSF_ID_PREFIX,
   type Creatable,
   type FormMerger,
   type FormValue,
@@ -29,13 +30,11 @@ import {
 import { getRequestEvent } from '$app/server';
 import {
   FORM_DATA_FILE_PREFIX,
-  ID_PREFIX_KEY,
   JSON_CHUNKS_KEY,
   type EntryConverter
 } from '$lib/model.js';
 
 import { decode } from '../id-builder/codec.js';
-import { DEFAULT_PSEUDO_SEPARATOR } from '../id-builder/index.js';
 import { parseSchemaValue } from './schema-value-parser.js';
 
 export interface Labels {
@@ -55,7 +54,6 @@ export interface SvelteKitFormValidatorOptions {
   convertUnknownEntry?: UnknownEntryConverter;
   /** By default, handles conversion of `File` */
   createReviver?: (input: Record<string, unknown>) => (key: string, value: any) => any;
-  pseudoSeparator?: string;
 }
 
 interface Output<R> {
@@ -97,7 +95,6 @@ export function createServerValidator<R = FormValue>({
   createEntryConverter = createFormDataEntryConverter,
   convertUnknownEntry,
   createReviver = createDefaultReviver,
-  pseudoSeparator = DEFAULT_PSEUDO_SEPARATOR
 }: SvelteKitFormValidatorOptions) {
   const t = createTranslate(serverTranslation);
   const validator: Validator = create(createValidator, {
@@ -120,7 +117,7 @@ export function createServerValidator<R = FormValue>({
     convertUnknownEntry
   });
   function parseIdPrefix(input: Record<string, unknown>) {
-    const idPrefix = input[ID_PREFIX_KEY];
+    const idPrefix = input[SJSF_ID_PREFIX];
     if (typeof idPrefix === 'string') {
       return idPrefix;
     }
@@ -136,7 +133,7 @@ export function createServerValidator<R = FormValue>({
       return JSON.parse(data.join(''), createReviver(input));
     }
     return parseSchemaValue(signal, {
-      pseudoSeparator,
+      idPrefix,
       convertEntry,
       input,
       merger,

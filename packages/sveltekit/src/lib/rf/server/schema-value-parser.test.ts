@@ -1,11 +1,9 @@
 import { describe, beforeEach, expect, it } from 'vitest';
-import type { Schema } from '@sjsf/form';
+import { DEFAULT_ID_PREFIX, SJSF_ID_PREFIX, type Schema } from '@sjsf/form';
 import { createMerger } from '@sjsf/form/mergers/modern';
 import { createFormValidator } from '@sjsf/ajv8-validator';
 
 import { createFormDataEntryConverter } from '$lib/server/convert-form-data-entry.js';
-
-import { DEFAULT_PSEUDO_SEPARATOR } from '../id-builder/index.js'
 
 import {
   parseSchemaValue,
@@ -14,6 +12,7 @@ import {
 } from './schema-value-parser.js';
 
 const opts = ({
+  idPrefix = DEFAULT_ID_PREFIX,
   input,
   schema = {},
   uiSchema = {},
@@ -24,18 +23,17 @@ const opts = ({
     validator,
     rootSchema: schema,
     rootUiSchema: uiSchema
-  }),
-  pseudoSeparator = DEFAULT_PSEUDO_SEPARATOR
+  })
 }: Partial<
   SchemaValueParserOptions<FormDataEntryValue>
 > = {}): SchemaValueParserOptions<FormDataEntryValue> => ({
-  input,
+  input: { [SJSF_ID_PREFIX]: idPrefix, ...input },
   schema,
   uiSchema,
   validator,
   merger,
   convertEntry,
-  pseudoSeparator
+  idPrefix
 });
 
 describe('parseSchemaValue', async () => {
@@ -67,7 +65,7 @@ describe('parseSchemaValue', async () => {
         c.signal,
         opts({
           schema: { type: 'string' },
-          input: 'value'
+          input: { [DEFAULT_ID_PREFIX]: 'value' }
         })
       )
     ).resolves.toBe('value');
@@ -110,12 +108,14 @@ describe('parseSchemaValue', async () => {
       }
     };
     const input: Input<FormDataEntryValue> = {
-      firstName: 'Chuck',
-      lastName: 'Norris',
-      age: '75',
-      bio: 'Roundhouse kicking asses since 1940',
-      password: 'noneed',
-      telephone: '1-800-KICKASS'
+      [DEFAULT_ID_PREFIX]: {
+        firstName: 'Chuck',
+        lastName: 'Norris',
+        age: '75',
+        bio: 'Roundhouse kicking asses since 1940',
+        password: 'noneed',
+        telephone: '1-800-KICKASS'
+      }
     };
     await expect(parseSchemaValue(c.signal, opts({ schema, input }))).resolves.toEqual({
       firstName: 'Chuck',
@@ -165,20 +165,22 @@ describe('parseSchemaValue', async () => {
       }
     };
     const input: Input<FormDataEntryValue> = {
-      title: 'My current tasks',
-      tasks: [
-        {
-          title: 'My first task',
-          details:
-            'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          done: 'on'
-        },
-        {
-          title: 'My second task',
-          details:
-            'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
-        }
-      ]
+      [DEFAULT_ID_PREFIX]: {
+        title: 'My current tasks',
+        tasks: [
+          {
+            title: 'My first task',
+            details:
+              'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+            done: 'on'
+          },
+          {
+            title: 'My second task',
+            details:
+              'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
+          }
+        ]
+      }
     };
     await expect(parseSchemaValue(c.signal, opts({ schema, input }))).resolves.toEqual({
       tasks: [
@@ -199,7 +201,7 @@ describe('parseSchemaValue', async () => {
     });
   });
 
-  it.only('Should parse schema with `additionalProperties`', async () => {
+  it('Should parse schema with `additionalProperties`', async () => {
     const schema: Schema = {
       title: 'A customizable registration form',
       description: 'A simple form with additional properties example.',
@@ -220,12 +222,15 @@ describe('parseSchemaValue', async () => {
       }
     };
     const input: Input<FormDataEntryValue> = {
-      firstName: 'Chuck',
-      lastName: 'Norris',
-      assKickCountX21mX21mkeyX219input: 'assKickCountChanged',
-      assKickCount: 'infinity',
-      newX21akeyX21mX21mkeyX219input: 'new.keyChanged',
-      newX21akey: 'foo'
+      [DEFAULT_ID_PREFIX]: {
+        firstName: 'Chuck',
+        lastName: 'Norris',
+        assKickCount: 'infinity',
+        newX21akey: 'foo'
+      },
+      keyX219input: {
+        [DEFAULT_ID_PREFIX]: { assKickCount: 'assKickCountChanged', newX21akey: 'new.keyChanged' }
+      }
     };
     await expect(parseSchemaValue(c.signal, opts({ schema, input }))).resolves.toEqual({
       firstName: 'Chuck',
@@ -233,5 +238,250 @@ describe('parseSchemaValue', async () => {
       assKickCountChanged: 'infinity',
       'new.keyChanged': 'foo'
     });
+  });
+
+  it.only('Should parse schema with `additionalProperties` 2', async () => {
+    const schema: Schema = {
+      type: 'array',
+      items: [
+        { type: 'string' },
+        {
+          type: 'object',
+          additionalProperties: {
+            type: 'string'
+          }
+        },
+        { type: 'number' }
+      ]
+    };
+    const input: Input<FormDataEntryValue> = {
+      [DEFAULT_ID_PREFIX]: [
+        'str',
+        { AdditionalX1wproperty: '123', AdditionalX1wpropertyX2191: '456' },
+        '789'
+      ],
+      keyX219input: {
+        [DEFAULT_ID_PREFIX]: [
+          undefined,
+          {
+            AdditionalX1wproperty: 'Additional property',
+            AdditionalX1wpropertyX2191: 'Additional property-1'
+          }
+        ]
+      }
+    };
+    await expect(parseSchemaValue(c.signal, opts({ schema, input }))).resolves.toEqual([
+      'str',
+      {
+        'Additional property': '123',
+        'Additional property-1': '456'
+      },
+      789
+    ]);
+  });
+
+  it('Should resolve references', async () => {
+    const schema: Schema = {
+      definitions: {
+        address: {
+          type: 'object',
+          properties: {
+            street_address: {
+              type: 'string'
+            },
+            city: {
+              type: 'string'
+            },
+            state: {
+              type: 'string'
+            }
+          },
+          required: ['street_address', 'city', 'state']
+        },
+        node: {
+          type: 'object',
+          properties: {
+            name: {
+              type: 'string'
+            },
+            children: {
+              type: 'array',
+              items: {
+                $ref: '#/definitions/node'
+              }
+            }
+          }
+        }
+      },
+      type: 'object',
+      properties: {
+        billing_address: {
+          title: 'Billing address',
+          $ref: '#/definitions/address'
+        },
+        shipping_address: {
+          title: 'Shipping address',
+          $ref: '#/definitions/address'
+        },
+        tree: {
+          title: 'Recursive references',
+          $ref: '#/definitions/node'
+        }
+      }
+    };
+    const input: Input<FormDataEntryValue> = {
+      [DEFAULT_ID_PREFIX]: {
+        billing_address: { street_address: '21, Jump Street', city: 'Babel', state: 'Neverland' },
+        shipping_address: { street_address: '221B, Baker Street', city: 'London', state: 'N/A' },
+        tree: {
+          name: 'root',
+          children: [{ name: 'leaf', children: [{ name: 'bar' }] }, { name: 'foo' }]
+        }
+      }
+    };
+    await expect(parseSchemaValue(c.signal, opts({ schema, input }))).resolves.toEqual({
+      tree: {
+        children: [
+          {
+            children: [
+              {
+                children: [],
+                name: 'bar'
+              }
+            ],
+            name: 'leaf'
+          },
+          {
+            children: [],
+            name: 'foo'
+          }
+        ],
+        name: 'root'
+      },
+      billing_address: {
+        street_address: '21, Jump Street',
+        city: 'Babel',
+        state: 'Neverland'
+      },
+      shipping_address: {
+        street_address: '221B, Baker Street',
+        city: 'London',
+        state: 'N/A'
+      }
+    });
+  });
+
+  it('Should parse schema with oneOf (select)', async () => {
+    const schema: Schema = {
+      definitions: {
+        Color: {
+          title: 'Color',
+          type: 'string',
+          anyOf: [
+            {
+              type: 'string',
+              enum: ['#ff0000'],
+              title: 'Red'
+            },
+            {
+              type: 'string',
+              enum: ['#00ff00'],
+              title: 'Green'
+            },
+            {
+              type: 'string',
+              enum: ['#0000ff'],
+              title: 'Blue'
+            }
+          ]
+        },
+        Toggle: {
+          title: 'Toggle',
+          type: 'boolean',
+          oneOf: [
+            {
+              title: 'Enable',
+              const: true
+            },
+            {
+              title: 'Disable',
+              const: false
+            }
+          ]
+        }
+      },
+      title: 'Image editor',
+      type: 'object',
+      required: ['currentColor', 'colorMask', 'blendMode'],
+      properties: {
+        currentColor: {
+          $ref: '#/definitions/Color',
+          title: 'Brush color'
+        },
+        colorMask: {
+          type: 'array',
+          uniqueItems: true,
+          items: {
+            $ref: '#/definitions/Color'
+          },
+          title: 'Color mask'
+        },
+        toggleMask: {
+          title: 'Apply color mask',
+          $ref: '#/definitions/Toggle'
+        },
+        colorPalette: {
+          type: 'array',
+          title: 'Color palette',
+          items: {
+            $ref: '#/definitions/Color'
+          }
+        },
+        blendMode: {
+          title: 'Blend mode',
+          type: 'string',
+          oneOf: [
+            {
+              const: 'screen',
+              title: 'Screen'
+            },
+            {
+              const: 'multiply',
+              title: 'Multiply'
+            },
+            {
+              const: 'overlay',
+              title: 'Overlay'
+            }
+          ]
+        }
+      }
+    };
+    const input: Input<FormDataEntryValue> = {
+      [DEFAULT_ID_PREFIX]: {
+        currentColor: '1',
+        colorMask: ['2'],
+        toggleMask: '0',
+        colorPalette: ['0'],
+        blendMode: '0'
+      }
+    };
+    await expect(parseSchemaValue(c.signal, opts({ schema, input }))).resolves.toEqual({
+      colorMask: ['#0000ff'],
+      toggleMask: true,
+      colorPalette: ['#ff0000'],
+      blendMode: 'screen',
+      currentColor: '#00ff00'
+    });
+  });
+
+  it('Should parse schema with oneOf', async () => {
+    const schema: Schema = {
+      oneOf: [{ type: 'string' }, { type: 'number' }]
+    };
+    const input: Input<FormDataEntryValue> = { rootX21mX21moneof: '1', root: '123' };
+    await expect(
+      parseSchemaValue(c.signal, opts({ schema, input, idPrefix: 'root' }))
+    ).resolves.toEqual(123);
   });
 });

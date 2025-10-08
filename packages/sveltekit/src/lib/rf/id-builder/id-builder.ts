@@ -17,49 +17,42 @@ export interface FormIdBuilderOptions {
   validator: Validator;
   merger: FormMerger;
   idPrefix: string;
-  pseudoSeparator?: string;
   isPrivate?: (path: FieldPath) => boolean;
 }
-
-export const DEFAULT_PSEUDO_SEPARATOR = '::';
 
 export function createFormIdBuilder({
   schema: rootSchema,
   idPrefix,
-  pseudoSeparator = DEFAULT_PSEUDO_SEPARATOR,
   validator,
   merger,
   isPrivate = () => false
 }: FormIdBuilderOptions): FormIdBuilder {
   const parts: string[] = [];
-  const encodedPseudoSeparator = encode(pseudoSeparator);
   return {
     fromPath: (path) => {
       parts.length = 0;
       if (isPrivate?.(path)) {
         parts.push('_');
       }
+      let i = path.length - 1;
+      let pseudo: FieldPseudoElement | undefined;
+      while (i > 0 && (pseudo = decodePseudoElement(path[i])) !== undefined) {
+        parts.push(typeof pseudo === 'string' ? encode(pseudo) : pseudo.toString(), '.');
+        i--;
+      }
       parts.push(encode(idPrefix));
       let currentSchema: SchemaDefinition | undefined = rootSchema;
-      let pseudo: FieldPseudoElement | undefined;
-      let isPseudoUndefined = true;
-      for (let i = 0; i < path.length; i++) {
-        const p = path[i]!;
-        pseudo = decodePseudoElement(p);
-        isPseudoUndefined = pseudo === undefined;
-        if (isPseudoUndefined) {
-          currentSchema = getSchemaDefinitionByPath(rootSchema, currentSchema, [p]);
-          if (typeof p === 'string') {
-            parts.push('.', encode(p));
-          } else {
-            parts.push('[', p.toString(), ']');
-          }
+      for (let j = 0; j <= i; j++) {
+        const p = path[j]!;
+        currentSchema = getSchemaDefinitionByPath(rootSchema, currentSchema, [p]);
+        if (typeof p === 'string') {
+          parts.push('.', encode(p));
         } else {
-          parts.push(encodedPseudoSeparator, encode(pseudo!.toString()));
+          parts.push('[', p.toString(), ']');
         }
       }
       if (
-        isPseudoUndefined &&
+        pseudo === undefined &&
         currentSchema &&
         isSchemaObject(currentSchema) &&
         isMultiSelect(validator, merger, currentSchema, rootSchema)

@@ -18,7 +18,6 @@ import {
 } from '@sjsf/form/core';
 import {
   resolveUiRef,
-  type IdentifiableFieldElement,
   type Schema,
   type UiSchema,
   type UiSchemaDefinition,
@@ -26,23 +25,25 @@ import {
   type Validator
 } from '@sjsf/form';
 
-import { KEY_INPUT_KEY, ONE_OF, type EntryConverter } from '$lib/model.js';
+import { ANY_OF, KEY_INPUT_KEY, ONE_OF, type EntryConverter } from '$lib/model.js';
 
-import { decode } from '../id-builder/codec.js';
+import { decode, encode } from '../id-builder/codec.js';
 
 export type Input<T> = T | { [key: string]: Input<T> } | Input<T>[] | undefined;
 
 export interface SchemaValueParserOptions<T> {
   schema: Schema;
   uiSchema: UiSchemaRoot;
-  input: Input<T>;
+  input: Record<string, Input<T>>;
   validator: Validator;
   merger: Merger;
-  convertEntry: EntryConverter<T | undefined>;
-  pseudoSeparator: string;
+  convertEntry: EntryConverter<T>;
+  idPrefix: string;
 }
 
-export function parseSchemaValue<T>(
+type CombinationIdentifiableElement = typeof ONE_OF | typeof ANY_OF;
+
+export async function parseSchemaValue<T>(
   signal: AbortSignal,
   {
     schema: rootSchema,
@@ -51,22 +52,54 @@ export function parseSchemaValue<T>(
     validator,
     merger,
     convertEntry,
-    pseudoSeparator
+    idPrefix
   }: SchemaValueParserOptions<T>
 ) {
   const path: Path = [];
-  const SEPARATED_KEY_INPUT_KEY = `${pseudoSeparator}${KEY_INPUT_KEY}`;
+  const inputStack: Input<T>[] = [input];
+  const keyInputStack: Input<T>[] = [input[encode(KEY_INPUT_KEY)]];
+  const oneOfStack: Input<T>[] = [input[encode(ONE_OF)]];
+  const anyOfStack: Input<T>[] = [input[encode(ANY_OF)]];
 
-  const convert = (schema: SchemaDefinition, uiSchema: UiSchema, input: Input<T>) =>
+  function pushKey(input: Record<string, Input<T>>, decodedKey: string) {
+    path.push(decodedKey);
+    const encodedKey = encode(decodedKey);
+    inputStack.push(input[encodedKey]);
+    const keyInput = keyInputStack[keyInputStack.length - 1];
+    keyInputStack.push(isRecord(keyInput) ? keyInput[encodedKey] : undefined);
+    const oneOf = oneOfStack[oneOfStack.length - 1];
+    oneOfStack.push(isRecord(oneOf) ? oneOf[encodedKey] : undefined);
+    const anyOf = anyOfStack[anyOfStack.length - 1];
+    anyOfStack.push(isRecord(anyOf) ? anyOf[encodedKey] : undefined);
+  }
+  function pushIndex(input: Input<T>[], index: number) {
+    path.push(index);
+    inputStack.push(input[index]);
+    const keyInput = keyInputStack[keyInputStack.length - 1];
+    keyInputStack.push(Array.isArray(keyInput) ? keyInput[index] : undefined);
+    const oneOf = oneOfStack[oneOfStack.length - 1];
+    oneOfStack.push(Array.isArray(oneOf) ? oneOf[index] : undefined);
+    const anyOf = anyOfStack[anyOfStack.length - 1];
+    anyOfStack.push(Array.isArray(anyOf) ? anyOf[index] : undefined);
+  }
+  function pop() {
+    path.pop();
+    inputStack.pop();
+    keyInputStack.pop();
+    oneOfStack.pop();
+    anyOfStack.pop();
+  }
+
+  const convert = (schema: SchemaDefinition, uiSchema: UiSchema) =>
     convertEntry(signal, {
       path,
       schema,
       uiSchema,
-      value: input as T
+      value: inputStack[inputStack.length - 1] as T | undefined
     });
 
   async function parseCombination(
-    element: keyof IdentifiableFieldElement,
+    element: CombinationIdentifiableElement,
     schemas: SchemaDefinition[],
     uiSchemas: UiSchemaDefinition | UiSchemaDefinition[],
     schema: Schema,
@@ -75,8 +108,17 @@ export function parseSchemaValue<T>(
     if (isSelect(validator, merger, schema, rootSchema)) {
       return value;
     }
+    if (!isRecord(input)) {
+      throw new Error('Unsupported input structure, expected object');
+    }
+    const key = Object.keys(input).find((k) =>
+      k.endsWith(ENCODED_SEPARATED_IDENTIFIABLE_ELEMENTS[element])
+    );
+    pushKey();
     const bestIndex =
-      ((await convert({ type: 'integer' }, {}, input)) as number | undefined) ??
+      (key !== undefined
+        ? ((await convert({ type: 'integer' }, {})) as number | undefined)
+        : undefined) ??
       getClosestMatchingOption(
         validator,
         merger,
@@ -91,10 +133,10 @@ export function parseSchemaValue<T>(
         0,
         getDiscriminatorFieldFromSchema(schema)
       );
+    pop();
     return parseSchemaDef(
       schemas[bestIndex],
       Array.isArray(uiSchemas) ? uiSchemas[bestIndex] : uiSchemas,
-      input,
       value
     );
   }
@@ -102,57 +144,52 @@ export function parseSchemaValue<T>(
   async function parseArray(
     schema: Schema,
     uiSchema: UiSchema,
-    input: Input<T>,
     value: SchemaArrayValue
   ): Promise<SchemaValue | undefined> {
     const { items, additionalItems } = schema;
+    const input = inputStack[inputStack.length - 1];
     if (Array.isArray(input) && items !== undefined) {
       const uiItems = uiSchema.items ?? {};
       const uiIsArray = Array.isArray(uiItems);
       let i = 0;
       if (Array.isArray(items)) {
         for (; i < items.length; i++) {
-          value.push(
-            await parseSchemaDef(items[i], uiIsArray ? uiItems[i] : uiItems, input[i], undefined)
-          );
+          pushIndex(input, i);
+          value.push(await parseSchemaDef(items[i], uiIsArray ? uiItems[i] : uiItems, undefined));
+          pop();
         }
         if (additionalItems !== undefined) {
           const additionalUiSchema = uiSchema.additionalItems ?? {};
           while (i < input.length) {
-            value.push(
-              await parseSchemaDef(additionalItems, additionalUiSchema, input[i++], undefined)
-            );
+            pushIndex(input, i++);
+            value.push(await parseSchemaDef(additionalItems, additionalUiSchema, undefined));
+            pop();
           }
         }
       } else {
         for (; i < input.length; i++) {
-          value.push(
-            await parseSchemaDef(items, uiIsArray ? uiItems[i] : uiItems, input[i], undefined)
-          );
+          pushIndex(input, i);
+          value.push(await parseSchemaDef(items, uiIsArray ? uiItems[i] : uiItems, undefined));
+          pop();
         }
       }
     }
     return value;
   }
 
-  async function parseObject(
-    schema: Schema,
-    uiSchema: UiSchema,
-    input: Input<T>,
-    value: SchemaObjectValue
-  ) {
+  async function parseObject(schema: Schema, uiSchema: UiSchema, value: SchemaObjectValue) {
+    const input = inputStack[inputStack.length - 1];
     if (!isRecord(input)) {
       return value;
     }
 
     async function setProperty(
       property: string,
-      input: Input<T>,
       schemaDef: SchemaDefinition,
       uiSchema: UiSchemaDefinition
     ) {
       if (value[property] === undefined) {
-        const propValue = await parseSchemaDef(schemaDef, uiSchema, input, undefined);
+        const propValue = await parseSchemaDef(schemaDef, uiSchema, undefined);
         if (propValue !== undefined) {
           value[property] = propValue;
         }
@@ -164,13 +201,20 @@ export function parseSchemaValue<T>(
       const keys = Object.keys(properties);
       for (let i = 0; i < keys.length; i++) {
         const key = keys[i];
-        await setProperty(key, input[key], properties[key], (uiSchema[key] ?? {}) as UiSchema);
+        pushKey(input, key);
+        await setProperty(key, properties[key], (uiSchema[key] ?? {}) as UiSchema);
+        pop();
       }
     }
     if (additionalProperties !== undefined) {
       const knownProperties = new Set(getKnownProperties(schema, rootSchema));
       const keys = Object.keys(input);
-      const additionalKeys = new Map<string, string>();
+      let additionalKeys = keyInputStack[keyInputStack.length - 1] as
+        | Record<string, string>
+        | undefined;
+      if (!isRecord(additionalKeys)) {
+        additionalKeys = {};
+      }
       const additionalUiSchema = uiSchema.additionalProperties ?? {};
       for (let i = 0; i < keys.length; i++) {
         const encodedKey = keys[i];
@@ -178,29 +222,13 @@ export function parseSchemaValue<T>(
         if (knownProperties.has(key)) {
           continue;
         }
-        const val = input[encodedKey];
-        if (key.endsWith(SEPARATED_KEY_INPUT_KEY) && typeof val === 'string') {
-          const k = key.substring(0, key.length - SEPARATED_KEY_INPUT_KEY.length);
-          if (k !== val) {
-            additionalKeys.set(k, val);
-          }
-          continue;
-        }
+        pushKey(input, key);
         await setProperty(
-          additionalKeys.get(key) ?? key,
-          val,
+          additionalKeys[encodedKey] ?? key,
           additionalProperties,
           additionalUiSchema
         );
-        additionalKeys.delete(key);
-      }
-      // NOTE: fallback
-      for (const [oldKey, newKey] of additionalKeys) {
-        if (!(oldKey in value)) {
-          continue;
-        }
-        value[newKey] = value[oldKey];
-        delete value[oldKey];
+        pop();
       }
     }
     return value;
@@ -209,30 +237,31 @@ export function parseSchemaValue<T>(
   async function parseSchemaDef(
     schema: SchemaDefinition,
     uiSchema: UiSchemaDefinition,
-    input: Input<T>,
     value: SchemaValue | undefined
   ): Promise<SchemaValue | undefined> {
     uiSchema = resolveUiRef(rootUiSchema, uiSchema) ?? {};
     if (!isSchemaObject(schema)) {
-      return schema ? convert(schema, uiSchema, input) : undefined;
+      return schema ? convert(schema, uiSchema) : undefined;
     }
     const { $ref: ref, oneOf, anyOf, allOf } = schema;
     if (ref !== undefined) {
-      return parseSchemaDef(resolveRef(ref, rootSchema), uiSchema, input, value);
+      return parseSchemaDef(resolveRef(ref, rootSchema), uiSchema, value);
     }
     if (oneOf) {
       value = await parseCombination(ONE_OF, oneOf, uiSchema.oneOf ?? uiSchema, schema, value);
     }
     const type = getSimpleSchemaType(schema);
     if (type === 'object') {
-      value = await parseObject(schema, uiSchema, input, isSchemaObjectValue(value) ? value : {});
+      value = await parseObject(schema, uiSchema, isSchemaObjectValue(value) ? value : {});
     } else if (type === 'array') {
-      value = await parseArray(schema, uiSchema, input, isSchemaArrayValue(value) ? value : []);
+      value = await parseArray(schema, uiSchema, isSchemaArrayValue(value) ? value : []);
     } else if (value === undefined) {
-      value = await convert(schema, uiSchema, input);
+      value = await convert(schema, uiSchema);
     }
     return value;
   }
 
-  return parseSchemaDef(rootSchema, rootUiSchema, input, undefined);
+  pushKey(input, idPrefix);
+  path.pop();
+  return parseSchemaDef(rootSchema, rootUiSchema, undefined);
 }

@@ -10,7 +10,6 @@ import type {
   ValidationError
 } from '@sjsf/form';
 
-export const ID_PREFIX_KEY = '__sjsf_sveltekit_id_prefix';
 export const JSON_CHUNKS_KEY = '__sjsf_sveltekit_json_chunks';
 export const FORM_DATA_FILE_PREFIX = '__sjsf_sveltekit_file__';
 

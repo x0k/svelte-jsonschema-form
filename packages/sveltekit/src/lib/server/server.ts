@@ -14,7 +14,8 @@ import {
   type FormMerger,
   type UiOptionsRegistry,
   type Creatable,
-  create
+  create,
+  SJSF_ID_PREFIX
 } from '@sjsf/form';
 import {
   type IdOptions,
@@ -25,7 +26,6 @@ import { DEFAULT_INDEX_SEPARATOR } from '@sjsf/form/id-builders/modern';
 
 import {
   FORM_DATA_FILE_PREFIX,
-  ID_PREFIX_KEY,
   JSON_CHUNKS_KEY,
   type InitialFormData,
   type SerializableOptionalFormOptions,
@@ -39,7 +39,6 @@ import {
   type FormDataConverterOptions,
   type UnknownEntryConverter
 } from './convert-form-data-entry.js';
-import { parseIdPrefix } from './id-prefix-parser.js';
 
 export type InitFormOptions<T, SendSchema extends boolean> = SerializableOptionalFormOptions<T> & {
   sendSchema?: SendSchema;
@@ -132,14 +131,10 @@ export function createFormHandler<SendData extends boolean>({
       (errors: ValidationError[]) => ValidatedFormData<SendData>
     ]
   > => {
-    const idPrefix = formData.has(ID_PREFIX_KEY)
-      ? (formData.get(ID_PREFIX_KEY) as string)
-      : parseIdPrefix({
-          formData,
-          idIndexSeparator,
-          idPseudoSeparator,
-          idSeparator
-        });
+    const idPrefix = formData.get(SJSF_ID_PREFIX);
+    if (typeof idPrefix !== 'string') {
+      throw new Error(`"${SJSF_ID_PREFIX}" key is missing in FormData or not a string`);
+    }
     const data = formData.has(JSON_CHUNKS_KEY)
       ? JSON.parse(formData.getAll(JSON_CHUNKS_KEY).join(''), createReviver(formData))
       : await parseSchemaValue(signal, {
@@ -161,7 +156,7 @@ export function createFormHandler<SendData extends boolean>({
         : [];
     function validated(errors: ValidationError[]) {
       return {
-        idPrefix,
+        idPrefix: idPrefix as string,
         isValid: errors.length === 0,
         sendData,
         data: (sendData ? data : undefined) as SendData extends true ? FormValue : undefined,

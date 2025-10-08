@@ -1,6 +1,7 @@
 <script lang="ts">
   import { noop } from '@sjsf/form/lib/function';
   import { BasicForm, createForm, type Schema, type UiSchema } from '@sjsf/form';
+  import { resolver } from '@sjsf/form/resolvers/compat';
 
   import { createFormIdBuilder } from '$lib/rf/id-builder/index.js';
 
@@ -9,38 +10,36 @@
   import { createPost } from './data.remote.js';
 
   const schema: Schema = {
-    title: 'A customizable registration form',
-    description: 'A simple form with additional properties example.',
-    type: 'object',
-    required: ['firstName', 'lastName'],
-    additionalProperties: {
-      type: 'string'
-    },
-    properties: {
-      firstName: {
-        type: 'string',
-        title: 'First name'
-      },
-      lastName: {
-        type: 'string',
-        title: 'Last name'
-      }
-    }
-  };
+      type: 'array',
+      items: [
+        { type: 'string' },
+        {
+          type: 'object',
+          additionalProperties: {
+            type: 'string'
+          }
+        },
+        { type: 'number' }
+      ]
+    };
 
   const uiSchema: UiSchema = {};
 
+  const initialValue = {
+    firstName: 'Chuck',
+    lastName: 'Norris',
+    assKickCountChanged: 'infinity',
+    'new.keyChanged': 'foo'
+  };
+
   const form = createForm({
     ...defaults,
+    resolver,
     idBuilder: createFormIdBuilder,
     schema,
     uiSchema,
-    initialValue: {
-      firstName: 'Chuck',
-      lastName: 'Norris',
-      assKickCount: 'infinity'
-    }
+    // initialValue
   });
 </script>
 
-<BasicForm {...defaults} {form} onsubmit={noop} {...createPost} />
+<BasicForm {...defaults} {form} onsubmit={noop} novalidate {...createPost} />

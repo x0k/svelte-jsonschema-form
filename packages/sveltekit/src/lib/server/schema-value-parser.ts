@@ -355,12 +355,10 @@ export function parseSchemaValue<T>(
     if (ref !== undefined) {
       return parseSchemaDef(resolveRef(ref, rootSchema), uiSchema, value);
     }
-    // NOTE: We can execute `handleCombination` before `parseObject` because
-    // correct schema index is stored under `oneof/anyof` pseduoelement.
-    // We also need to call `handleCombination` before `parseObject`
-    // so that the processing of `additionalProperties` does not capture
-    // the properties specified in the `oneOf/anyOf` sub-schemas.
-    // TODO: What about `dependencies` and `additionalProperties` conflict?
+    // NOTE: We can execute `handleCombination` before `parseObject` because:
+    // - correct schema index is stored under `oneof/anyof` pseduoelement
+    // - handling of `additionalProperties` is based on `getKnownProperties`
+    // TODO: Add handling of `patternProperties`
     if (schema.oneOf) {
       value = await handleCombination(
         ONE_OF,
