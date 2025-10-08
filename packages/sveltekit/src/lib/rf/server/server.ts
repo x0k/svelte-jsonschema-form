@@ -35,6 +35,7 @@ import {
 } from '$lib/model.js';
 
 import { decode } from '../id-builder/codec.js';
+import { DEFAULT_PSEUDO_SEPARATOR } from '../id-builder/index.js';
 import { parseSchemaValue } from './schema-value-parser.js';
 
 export interface Labels {
@@ -54,6 +55,7 @@ export interface SvelteKitFormValidatorOptions {
   convertUnknownEntry?: UnknownEntryConverter;
   /** By default, handles conversion of `File` */
   createReviver?: (input: Record<string, unknown>) => (key: string, value: any) => any;
+  pseudoSeparator?: string;
 }
 
 interface Output<R> {
@@ -94,7 +96,8 @@ export function createServerValidator<R = FormValue>({
   uiOptionsRegistry = {},
   createEntryConverter = createFormDataEntryConverter,
   convertUnknownEntry,
-  createReviver = createDefaultReviver
+  createReviver = createDefaultReviver,
+  pseudoSeparator = DEFAULT_PSEUDO_SEPARATOR
 }: SvelteKitFormValidatorOptions) {
   const t = createTranslate(serverTranslation);
   const validator: Validator = create(createValidator, {
@@ -133,6 +136,7 @@ export function createServerValidator<R = FormValue>({
       return JSON.parse(data.join(''), createReviver(input));
     }
     return parseSchemaValue(signal, {
+      pseudoSeparator,
       convertEntry,
       input,
       merger,
@@ -148,7 +152,7 @@ export function createServerValidator<R = FormValue>({
     const { request } = getRequestEvent();
     try {
       const idPrefix = parseIdPrefix(input);
-      const value = await parseData(input, idPrefix);
+      const value = await parseData(request.signal, input, idPrefix);
       const errors = isAsyncFormValueValidator(validator)
         ? await validator.validateFormValueAsync(request.signal, schema, value)
         : isFormValueValidator(validator)

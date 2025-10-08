@@ -171,6 +171,7 @@ export function parseSchemaValue<T>(
         some(typeOfSchema(additionalProperties), isArrayOrObjectSchemaType);
       for (const entry of entriesStack[entriesStack.length - 1]) {
         const str = entry[0];
+        // TODO: is it correct to use `filter.length` here?
         let keyEnd: number | undefined = str.indexOf(idSeparator, filter.length);
         if (keyEnd !== -1 && !isObjectOrArraySchema) {
           keyEnd = -1;
@@ -178,6 +179,7 @@ export function parseSchemaValue<T>(
         if (keyEnd === -1) {
           const val = entry[1];
           if (str.endsWith(SEPARATED_KEY_INPUT_KEY) && typeof val === 'string') {
+            // TODO: is it correct to use `filter.length` here?
             const group = str.slice(filter.length, str.length - SEPARATED_KEY_INPUT_KEY.length);
             additionalKeys.set(group, val);
             continue;
@@ -193,14 +195,11 @@ export function parseSchemaValue<T>(
       }
       const { known, unknown } = popGroupEntries();
       entriesStack[entriesStack.length - 1] = known;
+      const additionalUiSchema = uiSchema.additionalProperties ?? {};
       for (const [key, entries] of unknown) {
         pushFilter(escapedIdSeparator, key);
         entriesStack.push(entries);
-        await setProperty(
-          additionalKeys.get(key) ?? key,
-          additionalProperties,
-          uiSchema.additionalProperties ?? {}
-        );
+        await setProperty(additionalKeys.get(key) ?? key, additionalProperties, additionalUiSchema);
         entriesStack.pop();
         popFilter();
       }
@@ -211,32 +210,28 @@ export function parseSchemaValue<T>(
   async function parseArray(schema: Schema, uiSchema: UiSchema, value: SchemaArrayValue) {
     const { items, additionalItems } = schema;
     if (items !== undefined) {
+      const uiItems = uiSchema.items ?? {};
+      const uiIsArray = Array.isArray(uiItems);
+      let i = 0;
       if (Array.isArray(items)) {
-        const uiItems = uiSchema.items ?? {};
-        const uiIsArray = Array.isArray(uiItems);
-        for (let i = 0; i < items.length; i++) {
+        for (; i < items.length; i++) {
           pushFilterAndEntries(escapedIdOrIndexSeparator, i);
           value.push(await parseSchemaDef(items[i], uiIsArray ? uiItems[i] : uiItems, undefined));
           popEntriesAndFilter();
         }
         if (additionalItems !== undefined) {
-          let i = items.length;
+          const additionalUiSchema = uiSchema.additionalItems ?? {};
           while (entriesStack[entriesStack.length - 1].length > 0) {
             pushFilterAndEntries(escapedIdOrIndexSeparator, i++);
             if (i === items.length + 1 && entriesStack[entriesStack.length - 1].length === 0) {
               popEntriesAndFilter();
               break;
             }
-            value.push(
-              await parseSchemaDef(additionalItems, uiSchema.additionalItems ?? {}, undefined)
-            );
+            value.push(await parseSchemaDef(additionalItems, additionalUiSchema, undefined));
             popEntriesAndFilter();
           }
         }
       } else {
-        let i = 0;
-        const uiItems = uiSchema.items ?? {};
-        const uiIsArray = Array.isArray(uiItems);
         while (entriesStack[entriesStack.length - 1].length > 0) {
           pushFilterAndEntries(escapedIdOrIndexSeparator, i++);
           // Special case: array items have no indexes, but they have the same names

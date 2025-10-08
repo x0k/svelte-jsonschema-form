@@ -1,7 +1,9 @@
 import { isSchemaObject } from '@sjsf/form/lib/json-schema';
+import { isRecord } from '@sjsf/form/lib/object';
 import {
   getClosestMatchingOption,
   getDiscriminatorFieldFromSchema,
+  getKnownProperties,
   getSimpleSchemaType,
   isSchemaArrayValue,
   isSchemaObjectValue,
@@ -24,8 +26,9 @@ import {
   type Validator
 } from '@sjsf/form';
 
-import { ONE_OF, type EntryConverter } from '$lib/model.js';
-import { isRecord } from '@sjsf/form/lib/object';
+import { KEY_INPUT_KEY, ONE_OF, type EntryConverter } from '$lib/model.js';
+
+import { decode } from '../id-builder/codec.js';
 
 export type Input<T> = T | { [key: string]: Input<T> } | Input<T>[] | undefined;
 
@@ -36,6 +39,7 @@ export interface SchemaValueParserOptions<T> {
   validator: Validator;
   merger: Merger;
   convertEntry: EntryConverter<T | undefined>;
+  pseudoSeparator: string;
 }
 
 export function parseSchemaValue<T>(
@@ -46,10 +50,12 @@ export function parseSchemaValue<T>(
     input,
     validator,
     merger,
-    convertEntry
+    convertEntry,
+    pseudoSeparator
   }: SchemaValueParserOptions<T>
 ) {
   const path: Path = [];
+  const SEPARATED_KEY_INPUT_KEY = `${pseudoSeparator}${KEY_INPUT_KEY}`;
 
   const convert = (schema: SchemaDefinition, uiSchema: UiSchema, input: Input<T>) =>
     convertEntry(signal, {
@@ -97,11 +103,36 @@ export function parseSchemaValue<T>(
     schema: Schema,
     uiSchema: UiSchema,
     input: Input<T>,
-    value: SchemaArrayValue | undefined
+    value: SchemaArrayValue
   ): Promise<SchemaValue | undefined> {
-    if (!Array.isArray(input)) {
-      return value;
+    const { items, additionalItems } = schema;
+    if (Array.isArray(input) && items !== undefined) {
+      const uiItems = uiSchema.items ?? {};
+      const uiIsArray = Array.isArray(uiItems);
+      let i = 0;
+      if (Array.isArray(items)) {
+        for (; i < items.length; i++) {
+          value.push(
+            await parseSchemaDef(items[i], uiIsArray ? uiItems[i] : uiItems, input[i], undefined)
+          );
+        }
+        if (additionalItems !== undefined) {
+          const additionalUiSchema = uiSchema.additionalItems ?? {};
+          while (i < input.length) {
+            value.push(
+              await parseSchemaDef(additionalItems, additionalUiSchema, input[i++], undefined)
+            );
+          }
+        }
+      } else {
+        for (; i < input.length; i++) {
+          value.push(
+            await parseSchemaDef(items, uiIsArray ? uiItems[i] : uiItems, input[i], undefined)
+          );
+        }
+      }
     }
+    return value;
   }
 
   async function parseObject(
@@ -116,30 +147,60 @@ export function parseSchemaValue<T>(
 
     async function setProperty(
       property: string,
+      input: Input<T>,
       schemaDef: SchemaDefinition,
       uiSchema: UiSchemaDefinition
     ) {
       if (value[property] === undefined) {
-        const propValue = await parseSchemaDef(
-          schemaDef,
-          uiSchema,
-          (input as Record<string, Input<T>>)[property],
-          undefined
-        );
+        const propValue = await parseSchemaDef(schemaDef, uiSchema, input, undefined);
         if (propValue !== undefined) {
           value[property] = propValue;
         }
       }
     }
 
-    const visited = new Set<string>();
     const { properties, additionalProperties } = schema;
     if (properties !== undefined) {
       const keys = Object.keys(properties);
       for (let i = 0; i < keys.length; i++) {
         const key = keys[i];
-        await setProperty(key, properties[key], (uiSchema[key] ?? {}) as UiSchema);
-        visited.add(key);
+        await setProperty(key, input[key], properties[key], (uiSchema[key] ?? {}) as UiSchema);
+      }
+    }
+    if (additionalProperties !== undefined) {
+      const knownProperties = new Set(getKnownProperties(schema, rootSchema));
+      const keys = Object.keys(input);
+      const additionalKeys = new Map<string, string>();
+      const additionalUiSchema = uiSchema.additionalProperties ?? {};
+      for (let i = 0; i < keys.length; i++) {
+        const encodedKey = keys[i];
+        const key = decode(encodedKey);
+        if (knownProperties.has(key)) {
+          continue;
+        }
+        const val = input[encodedKey];
+        if (key.endsWith(SEPARATED_KEY_INPUT_KEY) && typeof val === 'string') {
+          const k = key.substring(0, key.length - SEPARATED_KEY_INPUT_KEY.length);
+          if (k !== val) {
+            additionalKeys.set(k, val);
+          }
+          continue;
+        }
+        await setProperty(
+          additionalKeys.get(key) ?? key,
+          val,
+          additionalProperties,
+          additionalUiSchema
+        );
+        additionalKeys.delete(key);
+      }
+      // NOTE: fallback
+      for (const [oldKey, newKey] of additionalKeys) {
+        if (!(oldKey in value)) {
+          continue;
+        }
+        value[newKey] = value[oldKey];
+        delete value[oldKey];
       }
     }
     return value;

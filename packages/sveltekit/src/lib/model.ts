@@ -56,7 +56,7 @@ export interface ValidatedFormData<SendData extends boolean> {
   errors: ValidationError[];
 }
 
-export const KEY_INPUT_KEY: keyof IdentifiableFieldElement = 'key-input';
+export const KEY_INPUT_KEY = 'key-input' satisfies keyof IdentifiableFieldElement;
 export const ONE_OF = 'oneof' satisfies keyof IdentifiableFieldElement;
 export const ANY_OF = 'anyof' satisfies keyof IdentifiableFieldElement;
 
