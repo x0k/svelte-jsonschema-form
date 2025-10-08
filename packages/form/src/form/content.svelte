@@ -14,6 +14,7 @@
     uiTitleOption,
     retrieveTranslate,
   } from "./state/index.js";
+  import HiddenIdPrefixInput from "./hidden-id-prefix-input.svelte";
 
   const ctx = getFormContext();
 
@@ -32,6 +33,7 @@
   const Field = $derived(getFieldComponent(ctx, config));
 </script>
 
+<HiddenIdPrefixInput form={ctx} />
 <Field
   type="field"
   bind:value={ctx[FORM_VALUE] as undefined}
