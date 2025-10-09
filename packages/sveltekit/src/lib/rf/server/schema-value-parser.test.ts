@@ -1040,4 +1040,57 @@ describe('parseSchemaValue', async () => {
       water: 'sea'
     });
   });
+
+  it('Should support pattern properties', async () => {
+    const schema: Schema = {
+      title: 'A customizable registration form',
+      description: 'A simple form with pattern properties example.',
+      type: 'object',
+      required: ['firstName', 'lastName'],
+      properties: {
+        firstName: {
+          type: 'string',
+          title: 'First name'
+        },
+        lastName: {
+          type: 'string',
+          title: 'Last name'
+        }
+      },
+      additionalProperties: {
+        type: 'boolean'
+      },
+      patternProperties: {
+        '^foo.*$': {
+          type: 'string'
+        },
+        '^bar.*$': {
+          type: 'number'
+        }
+      }
+    };
+    const input = {
+      [DEFAULT_ID_PREFIX]: {
+        firstName: 'Chuck',
+        lastName: 'Norris',
+        fooPropertyExample: 'foo',
+        barPropertyExample: '123',
+        baz: 'on'
+      },
+      X21mX21mkeyX219input: {
+        [DEFAULT_ID_PREFIX]: {
+          fooPropertyExample: { X21mX21m: 'fooProperty' },
+          barPropertyExample: { X21mX21m: 'barProperty' },
+          baz: { X21mX21m: 'baz' }
+        }
+      }
+    };
+    await expect(parseSchemaValue(c.signal, opts({ schema, input }))).resolves.toEqual({
+      firstName: 'Chuck',
+      lastName: 'Norris',
+      fooProperty: 'foo',
+      barProperty: 123,
+      baz: true
+    });
+  });
 });

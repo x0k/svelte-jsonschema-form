@@ -25,7 +25,8 @@ import {
   type Validator
 } from '@sjsf/form';
 
-import { ANY_OF, KEY_INPUT_KEY, ONE_OF, type EntryConverter } from '$lib/model.js';
+import type { EntryConverter } from '$lib/model.js';
+import { ANY_OF, compilePatterns, KEY_INPUT_KEY, ONE_OF } from '$lib/internal.js';
 
 import { decode, encode } from '../id-builder/codec.js';
 
@@ -142,7 +143,8 @@ export async function parseSchemaValue<T>(
   }
 
   async function parseObject(schema: Schema, uiSchema: UiSchema, value: SchemaObjectValue) {
-    const input = inputStack[inputStack.length - 1];
+    // Can be replaced after patternProperties handling
+    let input = inputStack[inputStack.length - 1];
     if (!isRecord(input)) {
       return value;
     }
@@ -160,7 +162,7 @@ export async function parseSchemaValue<T>(
       }
     }
 
-    const { properties, additionalProperties } = schema;
+    const { properties, patternProperties, additionalProperties } = schema;
     if (properties !== undefined) {
       const keys = Object.keys(properties);
       for (let i = 0; i < keys.length; i++) {
@@ -170,8 +172,50 @@ export async function parseSchemaValue<T>(
         pop();
       }
     }
-    if (additionalProperties !== undefined) {
-      const knownProperties = new Set(getKnownProperties(schema, rootSchema));
+    let knownProperties: Set<string>;
+    if (patternProperties !== undefined) {
+      knownProperties ??= new Set(getKnownProperties(schema, rootSchema));
+      const encodedKeys = Object.keys(input);
+      const originalLen = encodedKeys.length;
+      let additionalKeys = keyInputStack[keyInputStack.length - 1] as
+        | Record<string, Record<string, string>>
+        | undefined;
+      if (!isRecord(additionalKeys)) {
+        additionalKeys = {};
+      }
+      const patterns = compilePatterns(patternProperties);
+      for (const { regExp, schema } of patterns) {
+        let shift = 0;
+        for (let i = 0; i < encodedKeys.length; i++) {
+          const encodedKey = encodedKeys[i];
+          const key = decode(encodedKey);
+          if (knownProperties.has(key)) {
+            shift++;
+          } else if (regExp.test(key)) {
+            pushKey(input, key);
+            await setProperty(
+              additionalKeys[encodedKey][encodedPseudoPrefix] ?? key,
+              schema,
+              uiSchema
+            );
+            pop();
+            shift++;
+          } else {
+            encodedKeys[i - shift] = encodedKeys[i];
+          }
+        }
+        encodedKeys.length -= shift;
+      }
+      if (originalLen > encodedKeys.length) {
+        const cleaned: Record<string, Input<T>> = {};
+        for (const key of encodedKeys) {
+          cleaned[key] = input[key];
+        }
+        input = cleaned;
+      }
+    }
+    if (additionalProperties) {
+      knownProperties ??= new Set(getKnownProperties(schema, rootSchema));
       const keys = Object.keys(input);
       let additionalKeys = keyInputStack[keyInputStack.length - 1] as
         | Record<string, Record<string, string>>

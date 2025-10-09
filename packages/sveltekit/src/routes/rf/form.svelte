@@ -10,120 +10,40 @@
   import { createPost } from './data.remote.js';
 
   const schema: Schema = {
-    type: 'object',
-    properties: {
-      animal: {
-        enum: ['Cat', 'Fish']
-      }
-    },
-    allOf: [
-      {
-        if: {
-          properties: { animal: { const: 'Cat' } }
+      title: 'A customizable registration form',
+      description: 'A simple form with pattern properties example.',
+      type: 'object',
+      required: ['firstName', 'lastName'],
+      properties: {
+        firstName: {
+          type: 'string',
+          title: 'First name'
         },
-        then: {
-          properties: {
-            food: { type: 'string', enum: ['meat', 'grass', 'fish'] }
-          },
-          required: ['food']
+        lastName: {
+          type: 'string',
+          title: 'Last name'
         }
       },
-      {
-        if: {
-          properties: { animal: { const: 'Fish' } }
-        },
-        then: {
-          properties: {
-            food: {
-              type: 'string',
-              enum: ['insect', 'worms']
-            },
-            water: {
-              type: 'string',
-              enum: ['lake', 'sea']
-            }
-          },
-          required: ['food', 'water']
-        }
+      additionalProperties: {
+        type: 'boolean'
       },
-      {
-        required: ['animal']
+      patternProperties: {
+        '^foo.*$': {
+          type: 'string'
+        },
+        '^bar.*$': {
+          type: 'number'
+        }
       }
-    ]
-  };
+    };
 
-  const uiSchema: UiSchemaRoot = {
-    'ui:definitions': {
-      getRid: {
-        'ui:components': {
-          booleanField: 'booleanSelectField',
-          selectWidget: 'radioWidget'
-        }
-      }
-    },
-    simple: {
-      credit_card: {
-        'ui:options': {
-          help: 'If you enter anything here then billing_address will be dynamically added to the form.'
-        }
-      }
-    },
-    conditional: {
-      'Do you want to get rid of any?': {
-        $ref: 'getRid'
-      }
-    },
-    arrayOfConditionals: {
-      items: {
-        'Do you want to get rid of any?': {
-          $ref: 'getRid'
-        }
-      }
-    },
-    fixedArrayOfConditionals: {
-      items: {
-        'Do you want to get rid of any?': {
-          $ref: 'getRid'
-        }
-      },
-      additionalItems: {
-        'Do you want to get rid of any?': {
-          $ref: 'getRid'
-        }
-      }
-    }
-  };
+  const uiSchema: UiSchemaRoot = {}
 
   const initialValue = {
-    simple: {
-      name: 'Randy'
-    },
-    conditional: {
-      'Do you have any pets?': 'No'
-    },
-    arrayOfConditionals: [
-      {
-        'Do you have any pets?': 'Yes: One',
-        'How old is your pet?': 6
-      },
-      {
-        'Do you have any pets?': 'Yes: More than one',
-        'Do you want to get rid of any?': false
-      }
-    ],
-    fixedArrayOfConditionals: [
-      {
-        'Do you have any pets?': 'No'
-      },
-      {
-        'Do you have any pets?': 'Yes: One',
-        'How old is your pet?': 6
-      },
-      {
-        'Do you have any pets?': 'Yes: More than one',
-        'Do you want to get rid of any?': true
-      }
-    ]
+    firstName: "Chuck",
+    lastName: "Norris",
+    fooPropertyExample: "foo",
+    barPropertyExample: 123,
   };
 
   const form = createForm({

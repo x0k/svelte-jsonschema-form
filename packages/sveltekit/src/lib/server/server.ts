@@ -27,10 +27,10 @@ import { DEFAULT_INDEX_SEPARATOR } from '@sjsf/form/id-builders/modern';
 import {
   FORM_DATA_FILE_PREFIX,
   JSON_CHUNKS_KEY,
+  type EntryConverter,
   type InitialFormData,
   type SerializableOptionalFormOptions,
   type ValidatedFormData,
-  type EntryConverter
 } from '$lib/model.js';
 
 import { parseSchemaValue } from './schema-value-parser.js';

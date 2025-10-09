@@ -29,14 +29,17 @@ import {
   type UiSchemaRoot
 } from '@sjsf/form';
 
+import type {
+  Entries,
+  Entry,
+  EntryConverter,
+} from '$lib/model.js'
 import {
   KEY_INPUT_KEY,
   ONE_OF,
   ANY_OF,
-  type Entries,
-  type Entry,
-  type EntryConverter
-} from '$lib/model.js';
+  compilePatterns
+} from '$lib/internal.js';
 
 export interface SchemaValueParserOptions<T> {
   schema: Schema;
@@ -163,9 +166,65 @@ export function parseSchemaValue<T>(
         popEntriesAndFilter();
       }
     }
-    let knownProperties: Set<string>
-    if (additionalProperties !== undefined) {
-      knownProperties = new Set(getKnownProperties(schema, rootSchema));
+    let knownProperties: Set<string>;
+    if (patternProperties !== undefined) {
+      knownProperties ??= new Set(getKnownProperties(schema, rootSchema));
+      const additionalKeys = new Map<string, string>();
+      const patterns = compilePatterns(patternProperties);
+      const isMaybeObjectOrArraySchema = patterns.some(
+        (d) => isSchemaObject(d.schema) && some(typeOfSchema(d.schema), isArrayOrObjectSchemaType)
+      );
+      for (const entry of entriesStack[entriesStack.length - 1]) {
+        const str = entry[0];
+        // TODO: is it correct to use `filter.length` here?
+        let keyEnd: number | undefined = str.indexOf(idSeparator, filter.length);
+        if (keyEnd !== -1 && !isMaybeObjectOrArraySchema) {
+          keyEnd = -1;
+        }
+        if (keyEnd === -1) {
+          const val = entry[1];
+          if (str.endsWith(SEPARATED_KEY_INPUT_KEY) && typeof val === 'string') {
+            // TODO: is it correct to use `filter.length` here?
+            const group = str.slice(filter.length, str.length - SEPARATED_KEY_INPUT_KEY.length);
+            additionalKeys.set(group, val);
+            continue;
+          }
+          keyEnd = undefined;
+        }
+        const key = str.slice(filter.length, keyEnd);
+        if (knownProperties.has(key)) {
+          addGroupEntry(KNOWN_PROPERTIES, entry);
+        } else {
+          addGroupEntry(key, entry);
+        }
+      }
+      const { known, unknown } = popGroupEntries();
+      entriesStack[entriesStack.length - 1] = known;
+      for (const { regExp, schema } of patterns) {
+        let shift = 0;
+        for (let i = 0; i < unknown.length; i++) {
+          const [key, items] = unknown[i];
+          if (regExp.test(key)) {
+            pushFilter(escapedIdSeparator, key);
+            entriesStack.push(items);
+            await setProperty(additionalKeys.get(key) ?? key, schema, uiSchema);
+            entriesStack.pop();
+            popFilter();
+            shift++;
+          } else {
+            unknown[i - shift] = unknown[i];
+          }
+        }
+        unknown.length -= shift;
+      }
+      if (unknown.length > 0) {
+        for (const [, items] of unknown) {
+          known.push(...items);
+        }
+      }
+    }
+    if (additionalProperties) {
+      knownProperties ??= new Set(getKnownProperties(schema, rootSchema));
       const additionalKeys = new Map<string, string>();
       const isObjectOrArraySchema =
         isSchemaObject(additionalProperties) &&
@@ -204,9 +263,6 @@ export function parseSchemaValue<T>(
         entriesStack.pop();
         popFilter();
       }
-    }
-    if (patternProperties !== undefined) {
-      knownProperties ??= new Set(getKnownProperties(schema, rootSchema))
     }
     return value;
   }

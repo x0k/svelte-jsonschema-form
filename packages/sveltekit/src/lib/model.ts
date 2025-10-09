@@ -1,14 +1,13 @@
 import type { MaybePromise } from '@sjsf/form/lib/types';
-import type { RPath, SchemaDefinition } from '@sjsf/form/core';
 import type {
   FormOptions,
-  IdentifiableFieldElement,
   Schema,
   SchemaValue,
   UiSchema,
   UiSchemaRoot,
   ValidationError
 } from '@sjsf/form';
+import type { RPath, SchemaDefinition } from '@sjsf/form/core';
 
 export const JSON_CHUNKS_KEY = '__sjsf_sveltekit_json_chunks';
 export const FORM_DATA_FILE_PREFIX = '__sjsf_sveltekit_file__';
@@ -54,10 +53,6 @@ export interface ValidatedFormData<SendData extends boolean> {
   data: SendData extends true ? SchemaValue | undefined : undefined;
   errors: ValidationError[];
 }
-
-export const KEY_INPUT_KEY = 'key-input' satisfies keyof IdentifiableFieldElement;
-export const ONE_OF = 'oneof' satisfies keyof IdentifiableFieldElement;
-export const ANY_OF = 'anyof' satisfies keyof IdentifiableFieldElement;
 
 export type Entry<T> = [key: string, value: T];
 

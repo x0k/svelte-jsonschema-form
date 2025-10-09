@@ -1398,7 +1398,9 @@ describe('parseSchemaValue', async () => {
           title: 'Last name'
         }
       },
-      additionalProperties: false,
+      additionalProperties: {
+        type: 'boolean'
+      },
       patternProperties: {
         '^foo.*$': {
           type: 'string'
@@ -1412,16 +1414,19 @@ describe('parseSchemaValue', async () => {
       [SJSF_ID_PREFIX, 'root'],
       ['root.firstName', 'Chuck'],
       ['root.lastName', 'Norris'],
-      ['root.fooPropertyExample::key-input', 'fooPropertyExample'],
+      ['root.fooPropertyExample::key-input', 'fooProperty'],
       ['root.fooPropertyExample', 'foo'],
-      ['root.barPropertyExample::key-input', 'barPropertyExample'],
-      ['root.barPropertyExample', '123']
+      ['root.barPropertyExample::key-input', 'barProperty'],
+      ['root.barPropertyExample', '123'],
+      ['root.baz::key-input', 'baz'],
+      ['root.baz', 'on']
     ];
     await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual({
       firstName: 'Chuck',
       lastName: 'Norris',
-      fooPropertyExample: 'foo',
-      barPropertyExample: 123
+      fooProperty: 'foo',
+      barProperty: 123,
+      baz: true
     });
   });
 });
