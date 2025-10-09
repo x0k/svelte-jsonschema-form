@@ -10,7 +10,7 @@ import {
   type Input,
   type SchemaValueParserOptions
 } from './schema-value-parser.js';
-import { DEFAULT_PSEUDO_PREFIX } from '../id-builder/id-builder.js';
+import { DEFAULT_PSEUDO_PREFIX } from '../id-builder.js';
 
 const opts = ({
   idPrefix = DEFAULT_ID_PREFIX,

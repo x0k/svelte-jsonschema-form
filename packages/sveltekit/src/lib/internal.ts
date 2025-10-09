@@ -23,3 +23,11 @@ export function compilePatterns(patterns: Record<string, SchemaDefinition>) {
   }
   return result;
 }
+
+// https://stackoverflow.com/a/29202760/70894
+export function* chunks(str: string, size: number) {
+  const numChunks = Math.ceil(str.length / size);
+  for (let i = 0, o = 0; i < numChunks; ++i, o += size) {
+    yield str.substring(o, o + size);
+  }
+}

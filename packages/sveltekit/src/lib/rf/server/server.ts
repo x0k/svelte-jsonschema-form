@@ -28,15 +28,11 @@ import {
 } from '$lib/server/convert-form-data-entry.js';
 
 import { getRequestEvent } from '$app/server';
-import {
-  FORM_DATA_FILE_PREFIX,
-  JSON_CHUNKS_KEY,
-  type EntryConverter
-} from '$lib/model.js';
+import { FORM_DATA_FILE_PREFIX, JSON_CHUNKS_KEY, type EntryConverter } from '$lib/model.js';
 
-import { decode } from '../id-builder/codec.js';
-import { DEFAULT_PSEUDO_PREFIX } from '../id-builder/index.js';
-import { parseSchemaValue } from './schema-value-parser.js';
+import { decode } from '../internal/codec.js';
+import { DEFAULT_PSEUDO_PREFIX } from '../index.js';
+import { parseSchemaValue, type Input } from './schema-value-parser.js';
 
 export interface Labels {
   'expected-record': {};
@@ -81,7 +77,7 @@ function failure(message: string): StandardSchemaV1.FailureResult {
 function createDefaultReviver(input: Record<string, unknown>) {
   return (_: string, value: any) => {
     if (typeof value === 'string' && value.startsWith(FORM_DATA_FILE_PREFIX)) {
-      return input[value];
+      return input[decode(value)];
     }
     return value;
   };
@@ -97,7 +93,7 @@ export function createServerValidator<R = FormValue>({
   createEntryConverter = createFormDataEntryConverter,
   convertUnknownEntry,
   pseudoPrefix = DEFAULT_PSEUDO_PREFIX,
-  createReviver = createDefaultReviver,
+  createReviver = createDefaultReviver
 }: SvelteKitFormValidatorOptions) {
   const t = createTranslate(serverTranslation);
   const validator: Validator = create(createValidator, {
@@ -139,7 +135,7 @@ export function createServerValidator<R = FormValue>({
       idPrefix,
       pseudoPrefix,
       convertEntry,
-      input,
+      input: input as Record<string, Input<FormDataEntryValue>>,
       merger,
       schema: schema,
       uiSchema: uiSchema,

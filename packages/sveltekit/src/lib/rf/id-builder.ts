@@ -10,7 +10,7 @@ import {
   type Validator
 } from '@sjsf/form';
 
-import { encode } from './codec.js';
+import { encode } from './internal/codec.js';
 
 export interface FormIdBuilderOptions {
   schema: Schema;

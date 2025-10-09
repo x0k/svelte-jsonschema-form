@@ -1,20 +1,25 @@
 <script lang="ts">
-  import { BasicForm, createForm } from '@sjsf/form';
+  import { Content, createForm, setFormContext, SubmitButton } from '@sjsf/form';
   import { resolver } from '@sjsf/form/resolvers/compat';
 
   import { createFormIdBuilder } from '$lib/rf/index.js';
-  import { enhance } from '$lib/rf/client/client.js';
 
   import * as defaults from '../form-defaults.js';
   import { schema, uiSchema } from '../model.js';
 
   import { createPost } from './data.remote.js';
 
+  const native = createPost.for('native')
+
   const form = createForm({
     ...defaults,
+    idPrefix: 'native',
+    get initialValue() {
+      return undefined;
+    },
     get initialErrors() {
       // @ts-expect-error
-      return createPost.fields.allIssues()?.map((i) => ({
+      return native.fields.allIssues()?.map((i) => ({
         path: [],
         message: i.message
       }));
@@ -24,6 +29,11 @@
     schema,
     uiSchema
   });
+  setFormContext(form);
 </script>
 
-<BasicForm {...defaults} novalidate enctype="multipart/form-data" {form} {...enhance(createPost)} />
+<form novalidate enctype="multipart/form-data" {...native}>
+  <Content />
+  <br />
+  <SubmitButton />
+</form>
