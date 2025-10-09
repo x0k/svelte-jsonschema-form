@@ -10,7 +10,23 @@
   import { createPost } from './data.remote.js';
 
   const schema: Schema = {
-    oneOf: [{ type: 'string' }, { type: 'number' }]
+    title: 'A customizable registration form',
+    description: 'A simple form with additional properties example.',
+    type: 'object',
+    required: ['firstName', 'lastName'],
+    additionalProperties: {
+      type: 'string'
+    },
+    properties: {
+      firstName: {
+        type: 'string',
+        title: 'First name'
+      },
+      lastName: {
+        type: 'string',
+        title: 'Last name'
+      }
+    }
   };
 
   const uiSchema: UiSchema = {};
@@ -18,8 +34,8 @@
   const initialValue = {
     firstName: 'Chuck',
     lastName: 'Norris',
-    assKickCountChanged: 'infinity',
-    'new.keyChanged': 'foo'
+    assKickCount: 'infinity',
+    'new.key': 'foo'
   };
 
   const form = createForm({
@@ -27,8 +43,8 @@
     resolver,
     idBuilder: createFormIdBuilder,
     schema,
-    uiSchema
-    // initialValue
+    uiSchema,
+    initialValue
   });
 </script>
 

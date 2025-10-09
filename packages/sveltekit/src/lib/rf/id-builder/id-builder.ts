@@ -61,13 +61,17 @@ export function createFormIdBuilder({
           parts.push('[', p.toString(), ']');
         }
       }
-      if (
-        pseudo === undefined &&
-        currentSchema &&
-        isSchemaObject(currentSchema) &&
-        isMultiSelect(validator, merger, currentSchema, rootSchema)
-      ) {
-        parts.push('[]');
+      // no pseudo elements
+      if (i === path.length - 1) {
+        if (
+          currentSchema &&
+          isSchemaObject(currentSchema) &&
+          isMultiSelect(validator, merger, currentSchema, rootSchema)
+        ) {
+          parts.push('[]');
+        }
+      } else {
+        parts.push('.', encodedPseudoPrefix);
       }
       return parts.join('');
     }

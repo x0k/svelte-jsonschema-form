@@ -420,7 +420,7 @@ describe('parseSchemaValue', async () => {
     ];
     await expect(parseSchemaValue(c.signal, opts({ schema, entries }))).resolves.toEqual(123);
   });
-  it('Sould parse schema with oneOf 2', async () => {
+  it('Should parse schema with oneOf 2', async () => {
     const schema: Schema = {
       type: 'object',
       oneOf: [

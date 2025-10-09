@@ -232,7 +232,10 @@ describe('parseSchemaValue', async () => {
         newX21akey: 'foo'
       },
       X21mX21mkeyX219input: {
-        [DEFAULT_ID_PREFIX]: { assKickCount: 'assKickCountChanged', newX21akey: 'new.keyChanged' }
+        [DEFAULT_ID_PREFIX]: {
+          assKickCount: { X21mX21m: 'assKickCountChanged' },
+          newX21akey: { X21mX21m: 'new.keyChanged' }
+        }
       }
     };
     await expect(parseSchemaValue(c.signal, opts({ schema, input }))).resolves.toEqual({
@@ -267,8 +270,8 @@ describe('parseSchemaValue', async () => {
         [DEFAULT_ID_PREFIX]: [
           undefined,
           {
-            AdditionalX1wproperty: 'Additional property',
-            AdditionalX1wpropertyX2191: 'Additional property-1'
+            AdditionalX1wproperty: { X21mX21m: 'Additional property changed' },
+            AdditionalX1wpropertyX2191: { X21mX21m: 'Additional property-1 changed' }
           }
         ]
       }
@@ -276,8 +279,8 @@ describe('parseSchemaValue', async () => {
     await expect(parseSchemaValue(c.signal, opts({ schema, input }))).resolves.toEqual([
       'str',
       {
-        'Additional property': '123',
-        'Additional property-1': '456'
+        'Additional property changed': '123',
+        'Additional property-1 changed': '456'
       },
       789
     ]);
@@ -483,11 +486,124 @@ describe('parseSchemaValue', async () => {
       oneOf: [{ type: 'string' }, { type: 'number' }]
     };
     const input: Input<FormDataEntryValue> = {
-      X21mX21moneof: { [DEFAULT_ID_PREFIX]: '1' },
+      X21mX21moneof: { [DEFAULT_ID_PREFIX]: { X21mX21m: '1' } },
       [DEFAULT_ID_PREFIX]: '123'
     };
     await expect(
       parseSchemaValue(c.signal, opts({ schema, input, idPrefix: 'root' }))
     ).resolves.toEqual(123);
+  });
+
+  it('Should parse schema with oneOf 2', async () => {
+    const schema: Schema = {
+      type: 'object',
+      oneOf: [
+        {
+          properties: {
+            ipsum: {
+              type: 'string'
+            }
+          },
+          required: ['ipsum']
+        },
+        {
+          properties: {
+            ipsum: {
+              type: 'number'
+            }
+          },
+          required: ['ipsum']
+        }
+      ]
+    };
+    const input: Input<FormDataEntryValue> = {
+      X21mX21moneof: { [DEFAULT_ID_PREFIX]: { X21mX21m: '1' } },
+      [DEFAULT_ID_PREFIX]: { ipsum: '123' }
+    };
+    await expect(parseSchemaValue(c.signal, opts({ schema, input }))).resolves.toEqual({
+      ipsum: 123
+    });
+  });
+
+  it('Should parse schema with anyOf', async () => {
+    const schema: Schema = {
+      type: 'object',
+      properties: {
+        age: {
+          type: 'integer',
+          title: 'Age'
+        },
+        items: {
+          type: 'array',
+          items: {
+            type: 'object',
+            anyOf: [
+              {
+                properties: {
+                  foo: {
+                    type: 'string'
+                  }
+                }
+              },
+              {
+                properties: {
+                  bar: {
+                    type: 'string'
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      anyOf: [
+        {
+          title: 'First method of identification',
+          properties: {
+            firstName: {
+              type: 'string',
+              title: 'First name',
+              default: 'Chuck'
+            },
+            lastName: {
+              type: 'string',
+              title: 'Last name'
+            }
+          }
+        },
+        {
+          title: 'Second method of identification',
+          properties: {
+            idCode: {
+              type: 'string',
+              title: 'ID code'
+            }
+          }
+        }
+      ]
+    };
+    const input: Input<FormDataEntryValue> = {
+      [DEFAULT_ID_PREFIX]: {
+        age: '123',
+        items: [{ bar: 'bar' }, { foo: 'foo' }],
+        firstName: 'Chuck',
+        lastName: ''
+      },
+      X21mX21manyof: {
+        [DEFAULT_ID_PREFIX]: { items: [{ X21mX21m: '1' }, { X21mX21m: '0' }], X21mX21m: '0' }
+      }
+    };
+    await expect(parseSchemaValue(c.signal, opts({ schema, input }))).resolves.toEqual({
+      firstName: 'Chuck',
+      items: [
+        {
+          bar: 'bar'
+        },
+        {
+          foo: 'foo'
+        }
+      ],
+      age: 123
+    });
   });
 });
